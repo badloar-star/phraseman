@@ -22,6 +22,13 @@ export interface PhraseErrorTraps {
 
 export type LessonErrorTrapsMap = Readonly<Record<number, readonly PhraseErrorTraps[]>>;
 
+export interface ErrorWordInfo {
+  readonly wordIndex: number;      // позиция слова в правильном ответе
+  readonly userWord: string;       // что написал пользователь
+  readonly correctWord: string;    // правильное слово
+  readonly hint: string;           // подсказка для этого слова
+}
+
 export interface FeedbackResult {
   /** Одно объяснение (первое) — для обратной совместимости */
   readonly explanation: string;
@@ -29,4 +36,6 @@ export interface FeedbackResult {
   readonly explanations: readonly string[];
   readonly source: 'word_trap' | 'trap' | 'general_rule';
   readonly matchedTrigger?: string;
+  /** Информация об ошибочных словах для визуальной привязки */
+  readonly errorWords?: readonly ErrorWordInfo[];
 }

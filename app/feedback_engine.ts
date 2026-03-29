@@ -44,11 +44,20 @@ export const findAllExplanations = (
     const correctWords = normalizeForComparison(correctAnswer).split(/\s+/);
 
     const hints: string[] = [];
+    const errorWords: Array<{ wordIndex: number; userWord: string; correctWord: string; hint: string }> = [];
+
     for (const wt of errorTraps.wordTraps) {
       const correct = correctWords[wt.wordIndex] ?? '';
       const user    = userWords[wt.wordIndex]    ?? '';
       if (user !== correct) {
-        hints.push(quizMode && wt.lite ? wt.lite : wt.hint);
+        const hint = quizMode && wt.lite ? wt.lite : wt.hint;
+        hints.push(hint);
+        errorWords.push({
+          wordIndex: wt.wordIndex,
+          userWord: user,
+          correctWord: correct,
+          hint,
+        });
       }
     }
 
@@ -57,6 +66,7 @@ export const findAllExplanations = (
         explanation:  hints[0],
         explanations: hints,
         source:       'word_trap',
+        errorWords,
       };
     }
   }

@@ -3344,19 +3344,34 @@ export default function LessonScreen() {
                     source="lesson" sourceId={String(lessonId)}
                   />
                 </View>
-                {feedbackResult && wasWrong && feedbackResult.explanations.length > 0 && (
-                  <View style={{ marginTop: 10, gap: 8 }}>
-                    {feedbackResult.explanations.map((hint, i) => (
-                      <View key={i} style={{
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                        padding: 15,
-                        borderRadius: 10,
-                        borderLeftWidth: 3,
-                        borderLeftColor: '#3B82F6',
-                      }}>
-                        <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }}>
-                          {hint}
-                        </Text>
+                {feedbackResult && wasWrong && feedbackResult.errorWords && feedbackResult.errorWords.length > 0 && (
+                  <View style={{ marginTop: 15, gap: 12 }}>
+                    {/* Показываем каждое неправильное слово с подсказкой */}
+                    {feedbackResult.errorWords.map((err, i) => (
+                      <View key={i} style={{ gap: 6 }}>
+                        {/* Выделенное неправильное слово */}
+                        <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 6 }}>
+                          <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600' }}>
+                            ❌ {err.userWord}
+                          </Text>
+                          <Text style={{ color: t.textMuted, fontSize: f.label }}>
+                            (правильно: <Text style={{ color: t.correct, fontWeight: '600' }}>{err.correctWord}</Text>)
+                          </Text>
+                        </View>
+                        {/* Подсказка для этого слова */}
+                        <View style={{
+                          backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                          padding: 12,
+                          paddingLeft: 15,
+                          borderRadius: 8,
+                          borderLeftWidth: 3,
+                          borderLeftColor: '#3B82F6',
+                          marginLeft: 8,
+                        }}>
+                          <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }}>
+                            {err.hint}
+                          </Text>
+                        </View>
                       </View>
                     ))}
                   </View>

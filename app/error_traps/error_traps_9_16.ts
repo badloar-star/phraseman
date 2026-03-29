@@ -36,7 +36,22 @@ const L9_TRAPS: readonly PhraseErrorTraps[] = [
   },
 ];
 
-const L10_TRAPS: readonly PhraseErrorTraps[] = [];
+// ══════════════════════════════════════════════════════════════
+// УРОК 10-16: Comparative & Superlative, Questions, Quantifiers (базовая структура)
+// ══════════════════════════════════════════════════════════════
+
+const L10_TRAPS: readonly PhraseErrorTraps[] = [
+  {
+    phraseIndex: 0,  // "This is bigger than that"
+    wordTraps: [
+      { wordIndex: 2, hint: 'Сравнительная форма: "bigger" (big → bigger).' },
+      { wordIndex: 3, hint: 'После сравнительной идёт "than".' },
+    ],
+    generalRule: 'Comparative: adjective + -er + than. (bigger than...)',
+    traps: []
+  },
+];
+
 const L11_TRAPS: readonly PhraseErrorTraps[] = [];
 const L12_TRAPS: readonly PhraseErrorTraps[] = [];
 const L13_TRAPS: readonly PhraseErrorTraps[] = [];

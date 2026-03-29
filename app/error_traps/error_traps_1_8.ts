@@ -197,11 +197,40 @@ const L3_TRAPS: readonly PhraseErrorTraps[] = [
 ];
 
 // ══════════════════════════════════════════════════════════════
-// УРОК 4-8: Future Simple, Past Simple, Present Perfect (заполнить позже)
+// УРОК 4: Past Simple (V-ed)
 // ══════════════════════════════════════════════════════════════
 
-const L4_TRAPS: readonly PhraseErrorTraps[] = [];
-const L5_TRAPS: readonly PhraseErrorTraps[] = [];
+const L4_TRAPS: readonly PhraseErrorTraps[] = [
+  {
+    phraseIndex: 0,  // "I worked in London"
+    wordTraps: [
+      { wordIndex: 1, hint: 'Past Simple: добавьте -ed к глаголу. "worked" (не "work").' },
+    ],
+    generalRule: 'Past Simple: V-ed. (I worked...)',
+    traps: []
+  },
+];
+
+// ══════════════════════════════════════════════════════════════
+// УРОК 5: Future Simple (will + V)
+// ══════════════════════════════════════════════════════════════
+
+const L5_TRAPS: readonly PhraseErrorTraps[] = [
+  {
+    phraseIndex: 0,  // "I will finish tomorrow"
+    wordTraps: [
+      { wordIndex: 1, hint: 'Future Simple: "will" + базовая форма.' },
+      { wordIndex: 2, hint: 'После "will" базовая форма: "finish" (не "finished").' },
+    ],
+    generalRule: 'Future Simple: will + V. (I will finish...)',
+    traps: []
+  },
+];
+
+// ══════════════════════════════════════════════════════════════
+// УРОК 6-8: Другие времена (базовая структура)
+// ══════════════════════════════════════════════════════════════
+
 const L6_TRAPS: readonly PhraseErrorTraps[] = [];
 const L7_TRAPS: readonly PhraseErrorTraps[] = [];
 const L8_TRAPS: readonly PhraseErrorTraps[] = [];

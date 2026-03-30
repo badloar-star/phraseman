@@ -17,7 +17,10 @@ export interface PhraseErrorTraps {
   readonly wordTraps?: readonly WordTrap[];
   /** Устаревшие триггеры (fallback) */
   readonly traps: readonly ErrorTrap[];
+  /** Основное объяснение (RU) */
   readonly generalRule?: string;
+  /** Основное объяснение (UA) */
+  readonly generalRule_UA?: string;
 }
 
 export type LessonErrorTrapsMap = Readonly<Record<number, readonly PhraseErrorTraps[]>>;

@@ -1,236 +1,921 @@
 // app/error_traps/error_traps_1_8.ts
 // Per-word система подсказок — Уроки 1-8
-// phraseIndex — 0-based, wordIndex — позиция слова в правильном ответе
+// УРОК 1: 51 фраза с To Be (базовый уровень)
 
 import type { PhraseErrorTraps, LessonErrorTrapsMap } from '../types/feedback';
 
 // ══════════════════════════════════════════════════════════════
-// УРОК 1: To Be + Профессии
+// УРОК 1: To Be + Профессии и прилагательные (51 фраза)
 // ══════════════════════════════════════════════════════════════
 
 const L1_TRAPS: readonly PhraseErrorTraps[] = [
+  // 0: "I am a teacher"
   {
-    phraseIndex: 0,  // "I am a teacher"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "I" глагол "to be" только "am": I am.' },
-      { wordIndex: 2, hint: 'Перед согласной нужен артикль "a": a teacher.' },
-    ],
-    generalRule: 'Схема: I + am + a/an + профессия. (I am a teacher.)',
+    phraseIndex: 0,
+    wordTraps: [],
+    generalRule: 'С «I» всегда идет am, а перед профессией — a. Представьте, что am — это знак «=». Без него вы не «есть» учитель, вы просто два случайных слова.',
+    generalRule_UA: 'З «I» завжди йде am, а перед професією — a. Уявіть, що am — це знак «=». Без нього ви не «є» вчителем, ви просто два випадкових слова.',
     traps: []
   },
+  // 1: "He is a doctor"
   {
-    phraseIndex: 1,  // "He is a doctor"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "He" глагол "to be" только "is": He is.' },
-      { wordIndex: 2, hint: 'Перед согласной нужен артикль "a": a doctor.' },
-    ],
-    generalRule: 'Схема: He + is + a/an + профессия. (He is a doctor.)',
+    phraseIndex: 1,
+    wordTraps: [],
+    generalRule: 'Для «Он/Она» мостик меняется на is. Is — это клей для единственного числа. Он намертво приклеивает доктора к «нему».',
+    generalRule_UA: 'Для «Він/Вона» місток змінюється на is. Is — це клей для однини. Він намертво приклеює лікаря до «нього».',
     traps: []
   },
+  // 2: "She is a manager"
   {
-    phraseIndex: 2,  // "She is a manager"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "She" глагол "to be" только "is": She is.' },
-      { wordIndex: 2, hint: 'Перед согласной нужен артикль "a": a manager.' },
-    ],
-    generalRule: 'Схема: She + is + a/an + существительное. (She is a manager.)',
+    phraseIndex: 2,
+    wordTraps: [],
+    generalRule: 'Схема та же: She + is + a. Английское предложение — это поезд. She — тепловоз, is — уголь. Без угля не поедем!',
+    generalRule_UA: 'Схема та сама: She + is + a. Англійське речення — це потяг. She — тепловоз, is — вугілля. Без вугілля не поїдемо!',
     traps: []
   },
+  // 3: "We are students"
   {
-    phraseIndex: 3,  // "We are students"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "We" глагол "to be" только "are": We are.' },
-      { wordIndex: 2, hint: 'Множественное число не требует артикля: students (не "a students").' },
-    ],
-    generalRule: 'Схема: We + are + существительное (множественное). (We are students.)',
+    phraseIndex: 3,
+    wordTraps: [],
+    generalRule: 'Нас много — берем are и добавляем -s в конце. Артикль a (один) убегает, когда видит толпу студентов. Его заменяет -s.',
+    generalRule_UA: 'Нас багато — беремо are і додаємо -s в кінці. Артикль a (один) тікає, коли бачить натовп студентів. Його замінює -s.',
     traps: []
   },
+  // 4: "They are colleagues"
   {
-    phraseIndex: 4,  // "They are colleagues"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "They" глагол "to be" только "are": They are.' },
-      { wordIndex: 2, hint: 'Множественное число не требует артикля. (colleagues)' },
-    ],
-    generalRule: 'Схема: They + are + существительное (множественное). (They are colleagues.)',
+    phraseIndex: 4,
+    wordTraps: [],
+    generalRule: 'Для «They» тоже используем are + -s. Слово «коллеги» длинное, но правило простое: много людей = are.',
+    generalRule_UA: 'Для «They» теж використовуємо are + -s. Слово «колеги» довге, але правило просте: багато людей = are.',
     traps: []
   },
+  // 5: "I am young"
   {
-    phraseIndex: 5,  // "I am young"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "I" глагол "to be" только "am": I am.' },
-    ],
-    generalRule: 'Прилагательные не требуют артикля при "to be". (I am young.)',
+    phraseIndex: 5,
+    wordTraps: [],
+    generalRule: 'Описание («какой?») не требует артикля a. Вы не можете быть «одним молодым» в штуках. Качества артиклей не боятся.',
+    generalRule_UA: 'Опис («який?») не потребує артикля a. Ви не можете бути «одним молодим» у штуках. Якості артиклів не бояться.',
     traps: []
   },
+  // 6: "He is tall"
   {
-    phraseIndex: 6,  // "He is tall"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "He" глагол "to be" только "is": He is.' },
-    ],
-    generalRule: 'При прилагательных после "to be" артикль не нужен. (He is tall.)',
+    phraseIndex: 6,
+    wordTraps: [],
+    generalRule: 'Просто He + is + описание. Слово tall универсально — оно не меняет окончание для мальчиков и девочек.',
+    generalRule_UA: 'Просто He + is + опис. Слово tall універсальне — воно не змінює закінчення для хлопчиків та дівчаток.',
     traps: []
   },
+  // 7: "She is smart"
   {
-    phraseIndex: 7,  // "She is smart"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "She" глагол "to be" только "is": She is.' },
-    ],
-    generalRule: 'Прилагательное идёт прямо после "to be". (She is smart.)',
+    phraseIndex: 7,
+    wordTraps: [],
+    generalRule: 'She + is + описание. В английском «умный» и «умная» — это одно и то же слово. Красота!',
+    generalRule_UA: 'She + is + опис. В англійській мові «розумний» і «розумна» — це одне й те саме слово. Краса!',
     traps: []
   },
+  // 8: "We are ready"
   {
-    phraseIndex: 8,  // "We are ready"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "We" глагол "to be" только "are": We are.' },
-    ],
-    generalRule: 'Прилагательное после "to be" не требует артикля. (We are ready.)',
+    phraseIndex: 8,
+    wordTraps: [],
+    generalRule: 'Для «Мы» — are, но описание ready без -s. Состояние (готовность) не множится. Мы все «ready» в одном общем смысле.',
+    generalRule_UA: 'Для «Ми» — are, але опис ready без -s. Стан (готовність) не множиться. Ми всі «ready» в одному загальному сенсі.',
     traps: []
   },
+  // 9: "They are at home"
   {
-    phraseIndex: 9,  // "They are at home"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "They" глагол "to be" только "are": They are.' },
-      { wordIndex: 3, hint: '"At home" — фраза с предлогом "at". (at home)' },
-    ],
-    generalRule: 'После "are" может быть место + предлог. (They are at home.)',
+    phraseIndex: 9,
+    wordTraps: [],
+    generalRule: 'Указываем место: They + are + предлог at. Предлог at — это как точка GPS, приколовшая их к дому.',
+    generalRule_UA: 'Вказуємо місце: They + are + прийменник at. Прийменник at — це як точка GPS, що приколола їх до будинку.',
+    traps: []
+  },
+  // 10: "I am a programmer"
+  {
+    phraseIndex: 10,
+    wordTraps: [],
+    generalRule: 'С «I» всегда идет am, а перед профессией — a. Даже если вы крутой кодер, в английском вы сначала «есть» (am), а потом уже «один программист» (a).',
+    generalRule_UA: 'З «I» завжди йде am, а перед професією — a. Навіть якщо ви крутий кодер, в англійській ви спочатку «є» (am), а потім уже «один програміст» (a).',
+    traps: []
+  },
+  // 11: "He is a lawyer"
+  {
+    phraseIndex: 11,
+    wordTraps: [],
+    generalRule: 'Для «He» мостик — is. Не забудьте артикль a. Юристы любят законы, а закон английского гласит: «Нет связки is — нет предложения».',
+    generalRule_UA: 'Для «He» місток — is. Не забудьте артикль a. Юристи люблять закони, а закон англійської каже: «Немає зв\'язки is — немає речення».',
+    traps: []
+  },
+  // 12: "She is an engineer"
+  {
+    phraseIndex: 12,
+    wordTraps: [],
+    generalRule: 'Перед гласной «e» артикль a превращается в an. Попробуйте сказать «a engineer» — язык запнется. An нужен для скорости и красоты.',
+    generalRule_UA: 'Перед голосною «e» артикль a перетворюється на an. Спробуйте сказати «a engineer» — язик запнеться. An потрібен для швидкості та краси.',
+    traps: []
+  },
+  // 13: "We are partners"
+  {
+    phraseIndex: 13,
+    wordTraps: [],
+    generalRule: 'Нас много — берем are и добавляем -s в конце. Are — это мостик для компании. Если вас двое и больше, забудьте про «а» и шипите в конце: -s.',
+    generalRule_UA: 'Нас багато — беремо are і додаємо -s в кінці. Are — це місток для компанії. Якщо вас двоє і більше, забудьте про «а» і шипіть у кінці: -s.',
+    traps: []
+  },
+  // 14: "They are drivers"
+  {
+    phraseIndex: 14,
+    wordTraps: [],
+    generalRule: 'Для «They» тоже используем are + -s. Водители едят в одном автобусе под названием are, а -s на конце — это их багаж.',
+    generalRule_UA: 'Для «They» теж використовуємо are + -s. Водії їдять в одному автобусі під назвою are, а -s наприкінці — це їхній багаж.',
+    traps: []
+  },
+  // 15: "I am free"
+  {
+    phraseIndex: 15,
+    wordTraps: [],
+    generalRule: 'Качество («какой?») не требует артикля a. Вы свободны от артиклей! Если это описание состояния, просто ставьте am.',
+    generalRule_UA: 'Якість («який?») не потребує артикля a. Ви вільні від артиклів! Якщо це опис стану, просто ставте am.',
+    traps: []
+  },
+  // 16: "She is very smart"
+  {
+    phraseIndex: 16,
+    wordTraps: [],
+    generalRule: 'Усилитель very ставится прямо перед качеством. Very — это специя. Сначала «кто есть», а потом «насколько умная».',
+    generalRule_UA: 'Підсилювач very ставиться прямо перед якістю. Very — це спеція. Спочатку «хто є», а потім «наскільки розумна».',
+    traps: []
+  },
+  // 17: "We are very tired"
+  {
+    phraseIndex: 17,
+    wordTraps: [],
+    generalRule: 'Усталость в английском — это качество (какие?), а не глагол. Неважно, как сильно вы устали, are никуда не денется.',
+    generalRule_UA: 'Втома в англійській — це якість (які?), а не дієслово. Неважливо, як сильно ви втомилися, are нікуди не дінеться.',
+    traps: []
+  },
+  // 18: "They are very tall"
+  {
+    phraseIndex: 18,
+    wordTraps: [],
+    generalRule: 'Для «Они» берем are, но слово tall не меняется. Описания в английском очень ленивые — они не добавляют -s, даже если речь о великанах.',
+    generalRule_UA: 'Для «Вони» беремо are, але слово tall не змінюється. Описи в англійській дуже ліниві — вони не додають -s, навіть якщо мова про велетнів.',
+    traps: []
+  },
+  // 19: "It is easy"
+  {
+    phraseIndex: 19,
+    wordTraps: [],
+    generalRule: 'Для предметов и ситуаций используем It is. В английском «что-то» всегда должно «быть». It is — это универсальный старт для любой оценки.',
+    generalRule_UA: 'Для предметів та ситуацій використовуємо It is. В англійській «щось» завжди має «бути». It is — це універсальний старт для будь-якої оцінки.',
+    traps: []
+  },
+  // 20: "It is hard"
+  {
+    phraseIndex: 20,
+    wordTraps: [],
+    generalRule: 'Для «Это» всегда используем связку is. В английском нельзя просто сказать «Сложно». Нужно обязательно добавить «Оно есть» (It is).',
+    generalRule_UA: 'Для «Це» завжди використовуємо зв\'язку is. В англійській не можна просто сказати «Складно». Треба обов\'язково додати «Воно є» (It is).',
+    traps: []
+  },
+  // 21: "It is a new phone"
+  {
+    phraseIndex: 21,
+    wordTraps: [],
+    generalRule: 'Предмет один, поэтому ставим is a. Артикль a всегда стоит перед описанием (new), а не перед самим предметом.',
+    generalRule_UA: 'Предмет один, тому ставимо is a. Артикль a завжди стоїть перед описом (new), а не перед самим предметом.',
+    traps: []
+  },
+  // 22: "He is my new manager"
+  {
+    phraseIndex: 22,
+    wordTraps: [],
+    generalRule: 'Если появилось слово «мой» (my), артикль a позорно убегает. Слова-владельцы (мой, твой) — очень ревнивые, они не терпят артиклей рядом с собой.',
+    generalRule_UA: 'Якщо з\'явилося слово «мій» (my), артикль a ганебно тікає. Слова-власники (мій, твій) — дуже ревниві, вони не терплять артиклі поруч із собою.',
+    traps: []
+  },
+  // 23: "I am very busy"
+  {
+    phraseIndex: 23,
+    wordTraps: [],
+    generalRule: 'Используем am для себя и very для усиления. Даже если вы на пике занятости, не забудьте про am — без него вы просто «очень занятость».',
+    generalRule_UA: 'Використовуємо am для себе та very для посилення. Навіть якщо ви на піку зайнятості, не забудьте про am — без нього ви просто «дуже зайнятість».',
+    traps: []
+  },
+  // 24: "He is a civil engineer"
+  {
+    phraseIndex: 24,
+    wordTraps: [],
+    generalRule: 'Длинная профессия? Артикль a всё равно ставится в самое начало. Артикль — это как заголовок для всей группы слов «гражданский инженер».',
+    generalRule_UA: 'Довга професія? Артикль a все одно ставиться на самий початок. Артикль — це як заголовок для всієї групи слів «цивільний інженер».',
+    traps: []
+  },
+  // 25: "It is an important meeting"
+  {
+    phraseIndex: 25,
+    wordTraps: [],
+    generalRule: 'Слово «important» начинается на гласную, поэтому берем an. Гласные любят компанию согласных. An помогает фразе звучать мелодично.',
+    generalRule_UA: 'Слово «important» починається на голосну, тому беремо an. Голосні люблять компанію приголосних. An допомагає фразі звучати мелодійно.',
+    traps: []
+  },
+  // 26: "She is a surgeon"
+  {
+    phraseIndex: 26,
+    wordTraps: [],
+    generalRule: 'Для «She» неизменно используем is + a. В английском у профессий нет женского рода (кроме редких исключений), так что surgeon подходит всем.',
+    generalRule_UA: 'Для «She» незмінно використовуємо is + a. В англійській у професій немає жіночого роду (крім рідкісних винятків), тож surgeon підходить усім.',
+    traps: []
+  },
+  // 27: "They are our new clients"
+  {
+    phraseIndex: 27,
+    wordTraps: [],
+    generalRule: '«Они» (They) требуют are, а слово «наши» (our) убирает артикль. Клиентов много, поэтому в конце слова обязательно вешаем колокольчик — букву -s.',
+    generalRule_UA: '«Вони» (They) вимагають are, а слово «наші» (our) прибирає артикль. Клієнтів багато, тому в кінці слова обов\'язково вішаємо дзвіночок — букву -s.',
+    traps: []
+  },
+  // 28: "I am an accountant"
+  {
+    phraseIndex: 28,
+    wordTraps: [],
+    generalRule: 'Опять гласная в начале (a) — значит, используем an. Бухгалтеры любят счета, а английский любит порядок: I + am + an + Job.',
+    generalRule_UA: 'Знову голосна на початку (a) — значить, використовуємо an. Бухгалтери люблять рахунки, а англійська любить порядок: I + am + an + Job.',
+    traps: []
+  },
+  // 29: "He is a dentist"
+  {
+    phraseIndex: 29,
+    wordTraps: [],
+    generalRule: 'Простая связка He + is. Даже если вы боитесь стоматологов, артикль a перед ними ставить придётся!',
+    generalRule_UA: 'Проста зв\'язка He + is. Навіть якщо ви боїтеся стоматологів, артикль a перед ними ставити доведеться!',
+    traps: []
+  },
+  // 30: "She is a consultant"
+  {
+    phraseIndex: 30,
+    wordTraps: [],
+    generalRule: 'Для «She» неизменно берем is + a. В английском «консультант» не меняет окончание для женщин. Consultant — слово универсальное.',
+    generalRule_UA: 'Для «She» незмінно беремо is + a. В англійській «консультант» не змінює закінчення для жінок. Consultant — слово універсальне.',
+    traps: []
+  },
+  // 31: "We are neighbours"
+  {
+    phraseIndex: 31,
+    wordTraps: [],
+    generalRule: 'Нас много — берем are и добавляем -s в конце. Артикль a (один) тут лишний, ведь соседа как минимум два.',
+    generalRule_UA: 'Нас багато — беремо are і додаємо -s в кінці. Артикль a (один) тут зайвий, адже сусідів як мінімум двоє.',
+    traps: []
+  },
+  // 32: "They are parents"
+  {
+    phraseIndex: 32,
+    wordTraps: [],
+    generalRule: 'Для «They» (Они) тоже используем are + -s. Родители — это всегда пара или группа, поэтому буква s в конце обязательна.',
+    generalRule_UA: 'Для «They» (Вони) теж використовуємо are + -s. Батьки — це завжди пара або група, тому буква s в кінці обов\'язкова.',
+    traps: []
+  },
+  // 33: "It is the right answer"
+  {
+    phraseIndex: 33,
+    wordTraps: [],
+    generalRule: 'Используем the, потому что ответ конкретный (правильный). Если ответ один-единственный верный, артикль a меняется на «королевский» the.',
+    generalRule_UA: 'Використовуємо the, бо відповідь конкретна (правильна). Якщо відповідь одна-єдина вірна, артикль a змінюється на «королівський» the.',
+    traps: []
+  },
+  // 34: "He is my partner"
+  {
+    phraseIndex: 34,
+    wordTraps: [],
+    generalRule: 'Слово «мой» (my) заменяет собой любые артиклей. Нельзя сказать «my a partner». Либо он чей-то (my), либо просто какой-то (a).',
+    generalRule_UA: 'Слово «мій» (my) замінює собою будь-які артиклі. Не можна сказати «my a partner». Або він чийсь (my), або просто якийсь (a).',
+    traps: []
+  },
+  // 35: "She is my colleague"
+  {
+    phraseIndex: 35,
+    wordTraps: [],
+    generalRule: 'Схема та же: is + my + профессия/статус. Коллега может быть мужчиной или женщиной, слово colleague не меняется.',
+    generalRule_UA: 'Схема та сама: is + my + професія/статус. Колега може бути чоловіком або жінкою, слово colleague не змінюється.',
+    traps: []
+  },
+  // 36: "We are your neighbours"
+  {
+    phraseIndex: 36,
+    wordTraps: [],
+    generalRule: 'Для «Мы» — are, а «ваши» (your) убирает артиклей. Не забудьте -s в конце слова neighbours, ведь вас много!',
+    generalRule_UA: 'Для «Ми» — are, а «ваші» (your) прибирає артиклі. Не забудьте -s у кінці слова neighbours, адже вас багато!',
+    traps: []
+  },
+  // 37: "He is a very good doctor"
+  {
+    phraseIndex: 37,
+    wordTraps: [],
+    generalRule: 'Артикль a ставится в самое начало всей связки. Сначала артикль, потом «очень хороший», и только потом «врач».',
+    generalRule_UA: 'Артикль a ставиться на самий початок усієї зв\'язки. Спочатку артикль, потім «дуже хороший», і тільки потім «лікар».',
+    traps: []
+  },
+  // 38: "She is a very experienced engineer"
+  {
+    phraseIndex: 38,
+    wordTraps: [],
+    generalRule: 'Хотя «experienced» начинается на гласную, мы ставим a, так как первым идет «very». Артикль дружит с тем словом, которое идет сразу за ним.',
+    generalRule_UA: 'Хоча «experienced» починається на голосну, ми ставимо a, бо першим йде «very». Артикль дружить із тим словом, яке йде одразу за ним.',
+    traps: []
+  },
+  // 39: "It is a new project"
+  {
+    phraseIndex: 39,
+    wordTraps: [],
+    generalRule: 'It is + a + описание + предмет. Каждому новому проекту в английском положен свой артикль a.',
+    generalRule_UA: 'It is + a + опис + предмет. Кожному новому проекту в англійській мові належить свій артикль a.',
+    traps: []
+  },
+  // 40: "It is a beautiful city"
+  {
+    phraseIndex: 40,
+    wordTraps: [],
+    generalRule: 'Предмет один, поэтому используем связку is a. Артикль a ставится перед «beautiful». Сначала оценка, потом сам город.',
+    generalRule_UA: 'Предмет один, тому використовуємо зв\'язку is a. Артикль a ставиться перед «beautiful». Спочатку оцінка, потім саме місто.',
+    traps: []
+  },
+  // 41: "He is from London"
+  {
+    phraseIndex: 41,
+    wordTraps: [],
+    generalRule: 'Чтобы сказать «из», используем связку is from. Перед городами артикль a не нужен. Лондон один, мы и так знаем, о чем речь.',
+    generalRule_UA: 'Щоб сказати «з», використовуємо зв\'язку is from. Перед містами артикль a не потрібен. Лондон один, ми і так знаємо, про що йде мова.',
+    traps: []
+  },
+  // 42: "She is from Berlin"
+  {
+    phraseIndex: 42,
+    wordTraps: [],
+    generalRule: 'Схема та же: is from + название города. Глагол is — это обязательный «паспортный контроль» перед упоминанием родины.',
+    generalRule_UA: 'Схема та сама: is from + назва міста. Дієслово is — це обов\'язковий «паспортний контроль» перед згадкою батьківщини.',
+    traps: []
+  },
+  // 43: "We are from Canada"
+  {
+    phraseIndex: 43,
+    wordTraps: [],
+    generalRule: 'Нас много, поэтому мостик меняется на are. Перед странами артиклей тоже не ставим. Просто from + название.',
+    generalRule_UA: 'Нас багато, тому місток змінюється на are. Перед країнами артиклі теж не ставимо. Просто from + назва.',
+    traps: []
+  },
+  // 44: "It is my favourite book"
+  {
+    phraseIndex: 44,
+    wordTraps: [],
+    generalRule: 'Слово «моя» (my) вытесняет артикль a. Если вещь «любимая», она уже особенная. Достаточно слова my, чтобы это подчеркнуть.',
+    generalRule_UA: 'Слово «моя» (my) витісняє артикль a. Якщо річ «улюблена», вона вже особлива. Достатньо слова my, щоб це підкреслити.',
+    traps: []
+  },
+  // 45: "He is such a busy person"
+  {
+    phraseIndex: 45,
+    wordTraps: [],
+    generalRule: 'Усилитель «такой» (such) требует после себя артикль a. В связке «такой + предмет» артикль a зажат посередине: such + a + busy person.',
+    generalRule_UA: 'Підсилювач «такий» (such) вимагає після себе артикль a. У зв\'язці «такий + предмет» артикль a затиснутий посередині: such + a + busy person.',
+    traps: []
+  },
+  // 46: "She is so kind"
+  {
+    phraseIndex: 46,
+    wordTraps: [],
+    generalRule: 'Если после «такой» нет существительного (человек, город), используем so. So — для чувств и качеств, Such a — для людей и вещей.',
+    generalRule_UA: 'Якщо після «така» немає іменника (людина, місто), використовуємо so. So — для почуттів та якостей, Such a — для людей та речей.',
+    traps: []
+  },
+  // 47: "We are a young team"
+  {
+    phraseIndex: 47,
+    wordTraps: [],
+    generalRule: 'Мы — это are, но команда одна, поэтому ставим a. Хотя «нас» много, слово «команда» — это один коллектив. Поэтому a team.',
+    generalRule_UA: 'Ми — це are, але команда одна, тому ставимо a. Хоча «нас» багато, слово «команда» — це один колектив. Тому a team.',
+    traps: []
+  },
+  // 48: "They are experienced specialists"
+  {
+    phraseIndex: 48,
+    wordTraps: [],
+    generalRule: 'Для «Они» берем are и добавляем -s в конце. Специалистов много, поэтому артикль a (один) исчезает.',
+    generalRule_UA: 'Для «Вони» беремо are і додаємо -s в кінці. Фахівців багато, тому артикль a (один) зникає.',
+    traps: []
+  },
+  // 49: "I am a senior analyst"
+  {
+    phraseIndex: 49,
+    wordTraps: [],
+    generalRule: 'Стандартная формула: I + am + a + должность. Даже если ваша должность звучит солидно, вы всё равно «один из» (a) в компании.',
+    generalRule_UA: 'Стандартна формула: I + am + a + посада. Навіть якщо ваша посада звучить солідно, ви все одно «один із» (a) в компанії.',
     traps: []
   },
 ];
 
 // ══════════════════════════════════════════════════════════════
-// УРОК 2: Отрицание и вопросы с To Be
+// УРОК 2: To Be + Отрицания и вопросы (51 фраза)
 // ══════════════════════════════════════════════════════════════
 
 const L2_TRAPS: readonly PhraseErrorTraps[] = [
+  // 0: "I am not tired" → [i, am, not, tired]
   {
-    phraseIndex: 0,  // "I am not tired"
+    phraseIndex: 0,
     wordTraps: [
-      { wordIndex: 2, hint: 'Отрицание: "am not" (без сокращения: "I am not", с сокращением: "I\'m not").' },
+      { wordIndex: 1, hint: 'С "I" глагол "to be" только "am": I am not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после глагола "am": am not.' },
     ],
-    generalRule: 'Отрицание: I am not + прилагательное. (I am not tired.)',
+    generalRule: 'I + am + not + прилагательное.',
     traps: []
   },
+  // 1: "He is not busy" → [he, is, not, busy]
   {
-    phraseIndex: 1,  // "He is not busy"
+    phraseIndex: 1,
     wordTraps: [
-      { wordIndex: 2, hint: 'Отрицание: "is not" (или "isn\'t"). (He is not busy.)' },
+      { wordIndex: 1, hint: 'С "He" глагол только "is": He is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
     ],
-    generalRule: 'Отрицание: He/She/It is not + прилагательное. (He is not busy.)',
+    generalRule: 'He + is + not + прилагательное.',
     traps: []
   },
+  // 2: "She is not ready" → [she, is, not, ready]
   {
-    phraseIndex: 2,  // "She is not ready"
+    phraseIndex: 2,
     wordTraps: [
-      { wordIndex: 2, hint: 'Отрицание: "is not" (She is not ready.)' },
+      { wordIndex: 1, hint: 'С "She" только "is": She is not.' },
+      { wordIndex: 2, hint: 'Отрицание "not" идёт после "is": is not.' },
     ],
-    generalRule: 'Отрицание с "she": She is not + прилагательное. (She is not ready.)',
+    generalRule: 'She + is + not + прилагательное.',
     traps: []
   },
+  // 3: "We are not at home" → [we, are, not, at, home]
   {
-    phraseIndex: 3,  // "We are not at home"
+    phraseIndex: 3,
     wordTraps: [
-      { wordIndex: 2, hint: 'Отрицание: "are not" (We are not at home.)' },
-      { wordIndex: 4, hint: 'Место: "at home" с предлогом "at". (at home)' },
+      { wordIndex: 1, hint: 'С "We" только "are": We are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
     ],
-    generalRule: 'Отрицание: We/You/They are not. (We are not at home.)',
+    generalRule: 'We + are + not + место.',
     traps: []
   },
+  // 4: "They are not students" → [they, are, not, students]
   {
-    phraseIndex: 4,  // "They are not students"
+    phraseIndex: 4,
     wordTraps: [
-      { wordIndex: 2, hint: 'Отрицание: "are not". (They are not...)' },
+      { wordIndex: 1, hint: 'С "They" только "are": They are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
     ],
-    generalRule: 'Отрицание: They are not + существительное. (They are not students.)',
+    generalRule: 'They + are + not + существительное (мн.ч.).',
     traps: []
   },
+  // 5: "Are you a doctor?" → [are, you, a, doctor]
   {
-    phraseIndex: 5,  // "Are you a doctor"
+    phraseIndex: 5,
     wordTraps: [
-      { wordIndex: 0, hint: 'Вопрос: глагол идёт в начало. (Are you...)' },
-      { wordIndex: 2, hint: 'Артикль "a" перед согласной. (a doctor)' },
+      { wordIndex: 0, hint: 'Вопрос начинается с "Are": Are you...?' },
+      { wordIndex: 2, hint: 'Артикль "a" перед согласной: a doctor.' },
     ],
-    generalRule: 'Вопрос: Are + you + a/an + существительное? (Are you a doctor?)',
+    generalRule: 'Are + you + a + профессия?',
     traps: []
   },
+  // 6: "Is he a teacher?" → [is, he, a, teacher]
   {
-    phraseIndex: 6,  // "Is he a teacher"
+    phraseIndex: 6,
     wordTraps: [
-      { wordIndex: 0, hint: 'Вопрос: "Is he..." глагол в начале. (Is he...)' },
-      { wordIndex: 2, hint: 'Артикль "a" перед согласной. (a teacher)' },
+      { wordIndex: 0, hint: 'Вопрос начинается с "Is": Is he...?' },
+      { wordIndex: 2, hint: 'Артикль "a": a teacher.' },
     ],
-    generalRule: 'Вопрос с "he": Is + he + a/an + существительное? (Is he a teacher?)',
+    generalRule: 'Is + he + a + профессия?',
+    traps: []
+  },
+  // 7: "Is she ready?" → [is, she, ready]
+  {
+    phraseIndex: 7,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос начинается с "Is": Is she...?' },
+    ],
+    generalRule: 'Is + she + прилагательное?',
+    traps: []
+  },
+  // 8: "Are you colleagues?" → [are, you, colleagues]
+  {
+    phraseIndex: 8,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "you" начинается с "Are": Are you...?' },
+    ],
+    generalRule: 'Are + you + существительное?',
+    traps: []
+  },
+  // 9: "Are they at home?" → [are, they, at, home]
+  {
+    phraseIndex: 9,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "they" начинается с "Are": Are they...?' },
+      { wordIndex: 2, hint: 'Предлог "at" для местоположения: at home.' },
+    ],
+    generalRule: 'Are + they + at + место?',
+    traps: []
+  },
+  // 10: "Yes I am a doctor" → [yes, i, am, a, doctor]
+  {
+    phraseIndex: 10,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С "I" глагол только "am": I am.' },
+      { wordIndex: 3, hint: 'Артикль "a": a doctor.' },
+    ],
+    generalRule: 'Yes + I + am + a + профессия.',
+    traps: []
+  },
+  // 11: "No he is not busy" → [no, he, is, not, busy]
+  {
+    phraseIndex: 11,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С "He" только "is": He is.' },
+      { wordIndex: 3, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'No + he + is + not + прилагательное.',
+    traps: []
+  },
+  // 12: "Yes she is smart" → [yes, she, is, smart]
+  {
+    phraseIndex: 12,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С "She" только "is": She is.' },
+    ],
+    generalRule: 'Yes + she + is + прилагательное.',
+    traps: []
+  },
+  // 13: "No we are not ready" → [no, we, are, not, ready]
+  {
+    phraseIndex: 13,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С "We" только "are": We are.' },
+      { wordIndex: 3, hint: 'Отрицание идёт после "are": are not.' },
+    ],
+    generalRule: 'No + we + are + not + прилагательное.',
+    traps: []
+  },
+  // 14: "He is not young" → [he, is, not, young]
+  {
+    phraseIndex: 14,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "He" только "is": He is not.' },
+      { wordIndex: 2, hint: 'Отрицание "not" идёт после "is": is not.' },
+    ],
+    generalRule: 'He + is + not + прилагательное.',
+    traps: []
+  },
+  // 15: "She is not old" → [she, is, not, old]
+  {
+    phraseIndex: 15,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "She" только "is": She is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'She + is + not + прилагательное.',
+    traps: []
+  },
+  // 16: "We are not right" → [we, are, not, right]
+  {
+    phraseIndex: 16,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "We" только "are": We are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
+    ],
+    generalRule: 'We + are + not + прилагательное.',
+    traps: []
+  },
+  // 17: "They are not free" → [they, are, not, free]
+  {
+    phraseIndex: 17,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "They" только "are": They are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
+    ],
+    generalRule: 'They + are + not + прилагательное.',
+    traps: []
+  },
+  // 18: "Are you free?" → [are, you, free]
+  {
+    phraseIndex: 18,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "you" начинается с "Are": Are you...?' },
+    ],
+    generalRule: 'Are + you + прилагательное?',
+    traps: []
+  },
+  // 19: "Is she a programmer?" → [is, she, a, programmer]
+  {
+    phraseIndex: 19,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "she" начинается с "Is": Is she...?' },
+      { wordIndex: 2, hint: 'Артикль "a": a programmer.' },
+    ],
+    generalRule: 'Is + she + a + профессия?',
+    traps: []
+  },
+  // 20: "It is not hard" → [it, is, not, hard]
+  {
+    phraseIndex: 20,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "It" только "is": It is not.' },
+      { wordIndex: 2, hint: 'Отрицание "not" идёт после "is": is not.' },
+    ],
+    generalRule: 'It + is + not + прилагательное.',
+    traps: []
+  },
+  // 21: "It is not new" → [it, is, not, new]
+  {
+    phraseIndex: 21,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "It" только "is": It is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'It + is + not + прилагательное.',
+    traps: []
+  },
+  // 22: "Are you tired?" → [are, you, tired]
+  {
+    phraseIndex: 22,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "you" начинается с "Are": Are you...?' },
+    ],
+    generalRule: 'Are + you + прилагательное?',
+    traps: []
+  },
+  // 23: "I am not a dentist" → [i, am, not, a, dentist]
+  {
+    phraseIndex: 23,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "I" только "am": I am not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "am": am not.' },
+      { wordIndex: 3, hint: 'Артикль "a": a dentist.' },
+    ],
+    generalRule: 'I + am + not + a + профессия.',
+    traps: []
+  },
+  // 24: "He is not a manager" → [he, is, not, a, manager]
+  {
+    phraseIndex: 24,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "He" только "is": He is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+      { wordIndex: 3, hint: 'Артикль "a": a manager.' },
+    ],
+    generalRule: 'He + is + not + a + профессия.',
+    traps: []
+  },
+  // 25: "She is not a driver" → [she, is, not, a, driver]
+  {
+    phraseIndex: 25,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "She" только "is": She is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+      { wordIndex: 3, hint: 'Артикль "a": a driver.' },
+    ],
+    generalRule: 'She + is + not + a + профессия.',
+    traps: []
+  },
+  // 26: "We are not neighbours" → [we, are, not, neighbours]
+  {
+    phraseIndex: 26,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "We" только "are": We are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
+    ],
+    generalRule: 'We + are + not + существительное (мн.ч.).',
+    traps: []
+  },
+  // 27: "They are not partners" → [they, are, not, partners]
+  {
+    phraseIndex: 27,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "They" только "are": They are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
+    ],
+    generalRule: 'They + are + not + существительное (мн.ч.).',
+    traps: []
+  },
+  // 28: "Are you an accountant?" → [are, you, an, accountant]
+  {
+    phraseIndex: 28,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "you" начинается с "Are": Are you...?' },
+      { wordIndex: 2, hint: 'Артикль "an" перед гласной: an accountant.' },
+    ],
+    generalRule: 'Are + you + an + профессия (гласная)?',
+    traps: []
+  },
+  // 29: "Are they colleagues?" → [are, they, colleagues]
+  {
+    phraseIndex: 29,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "they" начинается с "Are": Are they...?' },
+    ],
+    generalRule: 'Are + they + существительное?',
+    traps: []
+  },
+  // 30: "No he is not a dentist" → [no, he, is, not, a, dentist]
+  {
+    phraseIndex: 30,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С "He" только "is": He is not.' },
+      { wordIndex: 3, hint: 'Отрицание идёт после "is": is not.' },
+      { wordIndex: 4, hint: 'Артикль "a": a dentist.' },
+    ],
+    generalRule: 'No + he + is + not + a + профессия.',
+    traps: []
+  },
+  // 31: "I am not right" → [i, am, not, right]
+  {
+    phraseIndex: 31,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "I" только "am": I am not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "am": am not.' },
+    ],
+    generalRule: 'I + am + not + прилагательное.',
+    traps: []
+  },
+  // 32: "It is not my problem" → [it, is, not, my, problem]
+  {
+    phraseIndex: 32,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "It" только "is": It is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'It + is + not + притяжательное + существительное.',
+    traps: []
+  },
+  // 33: "Is he very busy now?" → [is, he, very, busy, now]
+  {
+    phraseIndex: 33,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "he" начинается с "Is": Is he...?' },
+    ],
+    generalRule: 'Is + he + very + прилагательное + now?',
+    traps: []
+  },
+  // 34: "They are not our competitors" → [they, are, not, our, competitors]
+  {
+    phraseIndex: 34,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "They" только "are": They are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
+    ],
+    generalRule: 'They + are + not + притяжательное + существительное (мн.ч.).',
+    traps: []
+  },
+  // 35: "Is this your office?" → [is, this, your, office]
+  {
+    phraseIndex: 35,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос начинается с "Is": Is this...?' },
+    ],
+    generalRule: 'Is + this + притяжательное + существительное?',
+    traps: []
+  },
+  // 36: "He is not from London" → [he, is, not, from, london]
+  {
+    phraseIndex: 36,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "He" только "is": He is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+      { wordIndex: 3, hint: 'Предлог "from" для происхождения: from London.' },
+    ],
+    generalRule: 'He + is + not + from + место.',
+    traps: []
+  },
+  // 37: "Is she not your colleague?" → [is, she, not, your, colleague]
+  {
+    phraseIndex: 37,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с отрицанием начинается с "Is": Is she not...?' },
+      { wordIndex: 2, hint: 'Отрицание "not" может быть в вопросе: is she not.' },
+    ],
+    generalRule: 'Is + she + not + притяжательное + существительное?',
+    traps: []
+  },
+  // 38: "We are not ready" → [we, are, not, ready]
+  {
+    phraseIndex: 38,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "We" только "are": We are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
+    ],
+    generalRule: 'We + are + not + прилагательное.',
+    traps: []
+  },
+  // 39: "This is not true" → [this, is, not, true]
+  {
+    phraseIndex: 39,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "this" глагол "is": This is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'This + is + not + прилагательное.',
+    traps: []
+  },
+  // 40: "Are you partners?" → [are, you, partners]
+  {
+    phraseIndex: 40,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с "you" начинается с "Are": Are you...?' },
+    ],
+    generalRule: 'Are + you + существительное?',
+    traps: []
+  },
+  // 41: "Yes we are ready" → [yes, we, are, ready]
+  {
+    phraseIndex: 41,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С "We" только "are": We are.' },
+    ],
+    generalRule: 'Yes + we + are + прилагательное.',
+    traps: []
+  },
+  // 42: "No she is not tired" → [no, she, is, not, tired]
+  {
+    phraseIndex: 42,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С "She" только "is": She is not.' },
+      { wordIndex: 3, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'No + she + is + not + прилагательное.',
+    traps: []
+  },
+  // 43: "Is this your phone?" → [is, this, your, phone]
+  {
+    phraseIndex: 43,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос начинается с "Is": Is this...?' },
+    ],
+    generalRule: 'Is + this + притяжательное + существительное?',
+    traps: []
+  },
+  // 44: "Is he not your new employee?" → [is, he, not, your, new, employee]
+  {
+    phraseIndex: 44,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос с отрицанием начинается с "Is": Is he not...?' },
+      { wordIndex: 2, hint: 'Отрицание "not" может быть в вопросе: is he not.' },
+    ],
+    generalRule: 'Is + he + not + притяжательное + прилагательное + существительное?',
+    traps: []
+  },
+  // 45: "She is not right" → [she, is, not, right]
+  {
+    phraseIndex: 45,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "She" только "is": She is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'She + is + not + прилагательное.',
+    traps: []
+  },
+  // 46: "It is not your mistake" → [it, is, not, your, mistake]
+  {
+    phraseIndex: 46,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "It" только "is": It is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'It + is + not + притяжательное + существительное.',
+    traps: []
+  },
+  // 47: "We are not in the office" → [we, are, not, in, the, office]
+  {
+    phraseIndex: 47,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "We" только "are": We are not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "are": are not.' },
+      { wordIndex: 3, hint: 'Предлог "in" для места: in the office.' },
+    ],
+    generalRule: 'We + are + not + in + артикль + место.',
+    traps: []
+  },
+  // 48: "He is not your competitor" → [he, is, not, your, competitor]
+  {
+    phraseIndex: 48,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "He" только "is": He is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'He + is + not + притяжательное + существительное.',
+    traps: []
+  },
+  // 49: "This is not that person" → [this, is, not, that, person]
+  {
+    phraseIndex: 49,
+    wordTraps: [
+      { wordIndex: 1, hint: 'С "this" глагол "is": This is not.' },
+      { wordIndex: 2, hint: 'Отрицание идёт после "is": is not.' },
+    ],
+    generalRule: 'This + is + not + that + существительное.',
     traps: []
   },
 ];
 
-// ══════════════════════════════════════════════════════════════
-// УРОК 3: Present Simple (Действия)
-// ══════════════════════════════════════════════════════════════
-
-const L3_TRAPS: readonly PhraseErrorTraps[] = [
-  {
-    phraseIndex: 0,  // "I work in an office"
-    wordTraps: [
-      { wordIndex: 2, hint: 'Глагол в простой форме: "work" (I work, not "I am work").' },
-      { wordIndex: 4, hint: 'Артикль "an" перед гласной "o". (an office)' },
-    ],
-    generalRule: 'Present Simple: I + глагол (базовая форма). (I work...)',
-    traps: []
-  },
-  {
-    phraseIndex: 1,  // "He works in a bank"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "He" глагол + -s: works (He works, not "He work").' },
-      { wordIndex: 3, hint: 'Артикль "a" перед согласной. (a bank)' },
-    ],
-    generalRule: 'Present Simple: He/She/It + глагол-s. (He works...)',
-    traps: []
-  },
-  {
-    phraseIndex: 2,  // "She studies at university"
-    wordTraps: [
-      { wordIndex: 1, hint: 'С "She" глагол + -s или -es: studies. (She studies)' },
-    ],
-    generalRule: 'Present Simple: She + глагол + -es (после согласной + y → ies). (She studies.)',
-    traps: []
-  },
-];
-
-// ══════════════════════════════════════════════════════════════
-// УРОК 4: Past Simple (V-ed)
-// ══════════════════════════════════════════════════════════════
-
-const L4_TRAPS: readonly PhraseErrorTraps[] = [
-  {
-    phraseIndex: 0,  // "I worked in London"
-    wordTraps: [
-      { wordIndex: 1, hint: 'Past Simple: добавьте -ed к глаголу. "worked" (не "work").' },
-    ],
-    generalRule: 'Past Simple: V-ed. (I worked...)',
-    traps: []
-  },
-];
-
-// ══════════════════════════════════════════════════════════════
-// УРОК 5: Future Simple (will + V)
-// ══════════════════════════════════════════════════════════════
-
-const L5_TRAPS: readonly PhraseErrorTraps[] = [
-  {
-    phraseIndex: 0,  // "I will finish tomorrow"
-    wordTraps: [
-      { wordIndex: 1, hint: 'Future Simple: "will" + базовая форма.' },
-      { wordIndex: 2, hint: 'После "will" базовая форма: "finish" (не "finished").' },
-    ],
-    generalRule: 'Future Simple: will + V. (I will finish...)',
-    traps: []
-  },
-];
-
-// ══════════════════════════════════════════════════════════════
-// УРОК 6-8: Другие времена (базовая структура)
-// ══════════════════════════════════════════════════════════════
-
+const L3_TRAPS: readonly PhraseErrorTraps[] = [];
+const L4_TRAPS: readonly PhraseErrorTraps[] = [];
+const L5_TRAPS: readonly PhraseErrorTraps[] = [];
 const L6_TRAPS: readonly PhraseErrorTraps[] = [];
 const L7_TRAPS: readonly PhraseErrorTraps[] = [];
 const L8_TRAPS: readonly PhraseErrorTraps[] = [];

@@ -3069,27 +3069,6 @@ function LessonContent({
                 />
               </View>
 
-              {feedbackResult && feedbackResult.explanation && (
-                <View style={{
-                  marginTop: 15,
-                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                  padding: 16,
-                  paddingLeft: 18,
-                  borderRadius: 10,
-                  borderLeftWidth: 4,
-                  borderLeftColor: '#3B82F6',
-                }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.6, fontWeight: '500' }}>
-                    {(() => {
-                      const traps = getErrorTrapsByIndex(lessonId, cellIndex);
-                      if (!traps) return feedbackResult.explanation;
-                      // Select RU or UA version of generalRule based on user's language setting
-                      if (lang === 'uk' && traps.generalRule_UA) return traps.generalRule_UA;
-                      return feedbackResult.explanation;
-                    })()}
-                  </Text>
-                </View>
-              )}
               <TouchableOpacity
                 style={{ alignSelf: 'center', marginTop: 36 }}
                 onPress={() => Speech.speak(phrase.english, { language: 'en-US', rate: settings.speechRate })}

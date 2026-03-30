@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /c/appsprojects/phraseman/app/lesson_data_all.ts /c/appsprojects/phraseman/app/lesson_words.tsx /c/appsprojects/phraseman/app/lesson_verbs.tsx /c/appsprojects/phraseman/app/'\\(tabs\\)'/home.tsx)",
+      "Bash(diff c:/appsprojects/phraseman/app/settings_edu.tsx \"c:/appsprojects/phraseman/app/\\(tabs\\)/settings_edu.tsx\")",
+      "Bash(grep -rn \"Ð\\\\|Ñ\\\\|Ò\\\\|ÐŸ\\\\|Ð¾\" c:/appsprojects/phraseman/app/ --include=*.tsx --include=*.ts -l)",
+      "Bash(grep -rln \"Ð\\\\|Ñ\" c:/appsprojects/phraseman/app/ --include=*.tsx --include=*.ts)",
+      "Bash(for f:*)",
+      "Bash(do echo:*)",
+      "Read(//c/appsprojects/phraseman/**)",
+      "Bash(done)",
+      "Bash(grep -n \"^  [0-9]*: {$\\\\|titleRU:\" c:/appsprojects/phraseman/app/lesson_help.tsx)",
+      "Bash(node -e \":*)",
+      "Bash(node c:/appsprojects/phraseman/fix_lessons.js)",
+      "Bash(node c:/appsprojects/phraseman/fix_lessons2.js)",
+      "Bash(npx tsc:*)"
+    ]
+  }
+}

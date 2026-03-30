@@ -14,7 +14,7 @@ import { DEV_MODE } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
 import { loadAllMedals, getMedalTier, getExamMedalTier, MEDAL_DOT_COLOR, getEarnedDots, type MedalTier } from '../medal_utils';
 
-const LESSON_TOTAL = 50;
+const LESSON_TOTAL = 32;
 
 // ── CEFR палитры (не зависят от темы) ─────────────────────────────────────────
 const PALETTE: Record<string, string[]> = {
@@ -110,7 +110,8 @@ export default function LessonsTab() {
           const saved = await AsyncStorage.getItem(`lesson${i + 1}_progress`);
           if (!saved) return 0;
           const p: string[] = JSON.parse(saved);
-          return p.filter(x => x === 'correct' || x === 'replay_correct').length / LESSON_TOTAL * 5;
+          if (p.length === 0) return 0;
+          return p.filter(x => x === 'correct' || x === 'replay_correct').length / p.length * 5;
         } catch { return 0; }
       })
     ).then(setScores);
@@ -162,9 +163,9 @@ export default function LessonsTab() {
     u[0] = true;
     for (let i = 1; i < 32; i++) {
       const num = i + 1;
-      if      (num === 9)  u[i] = plIdx >= 1 || blockAll45(1, 8);
-      else if (num === 19) u[i] = plIdx >= 2 || blockAll45(9, 18);
-      else if (num === 29) u[i] = plIdx >= 3 || blockAll45(19, 28);
+      if      (num === 9)  u[i] = blockAll45(1, 8);
+      else if (num === 19) u[i] = blockAll45(9, 18);
+      else if (num === 29) u[i] = blockAll45(19, 28);
       else                 u[i] = u[i - 1] && scores[i - 1] >= 2.5;
     }
     return u;

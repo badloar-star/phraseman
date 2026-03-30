@@ -24,7 +24,7 @@ export interface ClubDef {
 
 export const CLUBS: ClubDef[] = [
   {
-    id: 0, ionIcon: 'flag-outline', imageUri: require("../../assets/images/levels/club_initiators.png"), color: '#7B9BB5', frameId: 'club_initiator',
+    id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/club_initiators.png"), color: '#7B9BB5', frameId: 'club_initiator',
     nameRU: 'Клуб Инициаторов',  nameUK: 'Клуб Ініціаторів',
     shortRU: 'Инициаторы',        shortUK: 'Ініціатори',
     descRU: 'Первый шаг — самый важный. Здесь собираются те, кто решился начать путь к знаниям. Каждое занятие — вклад в будущее.',
@@ -33,7 +33,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ласкаво просимо, ініціаторе! Кожен експерт колись стояв на твоєму місці. Головне — почати.',
   },
   {
-    id: 1, ionIcon: 'flame', imageUri: require("../../assets/images/levels/club_adepts.png"), color: '#5BA88B', frameId: 'club_adept',
+    id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/club_adepts.png"), color: '#5BA88B', frameId: 'club_adept',
     nameRU: 'Клуб Адептов',      nameUK: 'Клуб Адептів',
     shortRU: 'Адепты',            shortUK: 'Адепти',
     descRU: 'Огонь знаний разгорается. Адепты верны своей цели и не останавливаются. Постоянство — их главная суперсила.',
@@ -42,7 +42,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твою відданість помічено! Адепти знають: повторення — мати навчання. Продовжуй в тому ж дусі!',
   },
   {
-    id: 2, ionIcon: 'compass-outline', imageUri: require("../../assets/images/levels/club_seekers.png"), color: '#4A90A4', frameId: 'club_seeker',
+    id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/club_seekers.png"), color: '#4A90A4', frameId: 'club_seeker',
     nameRU: 'Клуб Искателей',    nameUK: 'Клуб Шукачів',
     shortRU: 'Искатели',          shortUK: 'Шукачі',
     descRU: 'Искатели не боятся неизвестного. Они задают вопросы и находят ответы. Язык для них — это карта к новым мирам.',
@@ -51,7 +51,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти на вірному шляху, шукачу! Кожен новий урок — це відкриття нового горизонту.',
   },
   {
-    id: 3, ionIcon: 'hammer-outline', imageUri: require("../../assets/images/levels/club_practitioners.png"), color: '#7BA84A', frameId: 'club_practitioner',
+    id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/club_practitioners.png"), color: '#7BA84A', frameId: 'club_practitioner',
     nameRU: 'Клуб Практиков',    nameUK: 'Клуб Практиків',
     shortRU: 'Практики',          shortUK: 'Практики',
     descRU: 'Практики превращают теорию в навык. Они знают: язык учится в действии, а не из книг. Говори, пиши, практикуй!',
@@ -60,7 +60,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Справа майстра боїться! Практики будують знання цеглина за цеглиною. Ти у відмінній формі!',
   },
   {
-    id: 4, ionIcon: 'analytics-outline', imageUri: require("../../assets/images/levels/club_analysts.png"), color: '#C8A84A', frameId: 'club_analyst',
+    id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/club_analysts.png"), color: '#C8A84A', frameId: 'club_analyst',
     nameRU: 'Клуб Аналитиков',   nameUK: 'Клуб Аналітиків',
     shortRU: 'Аналитики',         shortUK: 'Аналітики',
     descRU: 'Аналитики видят паттерны там, где другие видят хаос. Грамматика для них — это система, а не набор правил.',
@@ -69,7 +69,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Твій розум гостріший, ніж учора! Аналітики перетворюють складність на ясність. Ти мислиш системно!',
   },
   {
-    id: 5, ionIcon: 'library-outline', imageUri: require("../../assets/images/levels/club_erudites.png"), color: '#CD7F32', frameId: 'club_erudite',
+    id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/club_erudites.png"), color: '#CD7F32', frameId: 'club_erudite',
     nameRU: 'Клуб Эрудитов',     nameUK: 'Клуб Ерудитів',
     shortRU: 'Эрудиты',           shortUK: 'Ерудити',
     descRU: 'Эрудиты — это люди широкого кругозора. Их словарный запас и понимание грамматики открывают любые двери.',
@@ -78,7 +78,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Знання — твоя сила! Ерудити — люди, яким завжди є що сказати. Ти заслужено тут!',
   },
   {
-    id: 6, ionIcon: 'diamond', imageUri: require("../../assets/images/levels/club_connoisseurs.png"), color: '#4A90D9', frameId: 'club_connoisseur',
+    id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/club_connoisseurs.png"), color: '#4A90D9', frameId: 'club_connoisseur',
     nameRU: 'Клуб Знатоков',     nameUK: 'Клуб Знавців',
     shortRU: 'Знатоки',           shortUK: 'Знавці',
     descRU: 'Знатоки понимают тонкости языка: идиомы, фразовые глаголы, нюансы. Для них язык — это не набор слов, а живая система.',
@@ -87,7 +87,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти знаєш мову зсередини! Знавці помічають те, що інші пропускають. Ти в еліті!',
   },
   {
-    id: 7, ionIcon: 'medal', imageUri: require("../../assets/images/levels/club_experts.png"), color: '#9B59B6', frameId: 'club_expert',
+    id: 7, ionIcon: 'medal', imageUri: require("../assets/images/levels/club_experts.png"), color: '#9B59B6', frameId: 'club_expert',
     nameRU: 'Клуб Экспертов',    nameUK: 'Клуб Експертів',
     shortRU: 'Эксперты',          shortUK: 'Експерти',
     descRU: 'Экспертиза — это когда язык перестаёт быть усилием и становится инструментом. Ты говоришь — и это звучит естественно.',
@@ -96,7 +96,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Експертний рівень! Твої знання виходять за межі підручника. Ти говориш — всі слухають!',
   },
   {
-    id: 8, ionIcon: 'school-outline', imageUri: require("../../assets/images/levels/club_magistri.png"), color: '#A8B4C0', frameId: 'club_magister',
+    id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/club_magistri.png"), color: '#A8B4C0', frameId: 'club_magister',
     nameRU: 'Клуб Магистров',    nameUK: 'Клуб Магістрів',
     shortRU: 'Магистры',          shortUK: 'Магістри',
     descRU: 'Магистры стоят выше большинства пользователей. Их уровень — предмет зависти и восхищения. Это уже почти вершина.',
@@ -105,7 +105,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Магістерська мантія тобі личить! Ти в абсолютній еліті тих, хто вивчає англійську. Капелюх долу!',
   },
   {
-    id: 9, ionIcon: 'bulb-outline', imageUri: require("../../assets/images/levels/club_thinkers.png"), color: '#E87E30', frameId: 'club_thinker',
+    id: 9, ionIcon: 'bulb-outline', imageUri: require("../assets/images/levels/club_thinkers.png"), color: '#E87E30', frameId: 'club_thinker',
     nameRU: 'Клуб Мыслителей',   nameUK: 'Клуб Мислителів',
     shortRU: 'Мыслители',         shortUK: 'Мислителі',
     descRU: 'Мыслители не просто учат язык — они думают на нём. Язык становится способом мышления, а не средством перевода.',
@@ -114,7 +114,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти мислиш по-англійськи! Це найвищий рівень занурення. Мислителі — рідкість і гордість клубу!',
   },
   {
-    id: 10, ionIcon: 'hammer', imageUri: require("../../assets/images/levels/club_masters.png"), color: '#D4A017', frameId: 'club_master',
+    id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/club_masters.png"), color: '#D4A017', frameId: 'club_master',
     nameRU: 'Клуб Мастеров',     nameUK: 'Клуб Майстрів',
     shortRU: 'Мастера',           shortUK: 'Майстри',
     descRU: 'Мастерство — это когда можешь всё: говорить, писать, понимать, шутить. Язык — не инструмент, а часть личности.',
@@ -123,7 +123,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Майстер слова! Ти серед найкращих у додатку. Твоя англійська — це мистецтво. Ми пишаємось тобою!',
   },
   {
-    id: 11, ionIcon: 'trophy-outline', imageUri: require("../../assets/images/levels/club_professors.png"), color: '#FFD700', frameId: 'club_professor',
+    id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/club_professors.png"), color: '#FFD700', frameId: 'club_professor',
     nameRU: 'Клуб Профессоров',   nameUK: 'Клуб Професорів',
     shortRU: 'Профессора',         shortUK: 'Професори',
     descRU: 'Высший клуб приложения. Профессора — легенды, на которых равняются другие. Достичь этого уровня — значит стать примером.',

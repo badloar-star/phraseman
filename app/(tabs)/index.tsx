@@ -82,6 +82,7 @@ export default function LessonsTab() {
   const { height: SCREEN_H } = useWindowDimensions();
   const VIEWPORT_H = SCREEN_H - 90; // approx tab bar + status bar
 
+  const [noLimits,       setNoLimits]       = useState(false);
   const [scores,         setScores]         = useState<number[]>(new Array(32).fill(0));
   const [passCounts,     setPassCounts]     = useState<number[]>(new Array(32).fill(0));
   const [examBestPcts,   setExamBestPcts]   = useState<Record<string, number>>({});
@@ -103,6 +104,7 @@ export default function LessonsTab() {
   useEffect(() => { if (activeIdx === 1) loadScores(); }, [activeIdx]);
 
   const loadScores = () => {
+    AsyncStorage.getItem('tester_no_limits').then(v => setNoLimits(v === 'true'));
     AsyncStorage.getItem('placement_level').then(pl => { if (pl) setPlacementLevel(pl); });
     Promise.all(
       Array.from({ length: 32 }, (_, i) => i).map(async i => {
@@ -154,7 +156,7 @@ export default function LessonsTab() {
   const lessons = isUK ? LESSON_NAMES_UK : LESSON_NAMES_RU;
 
   const unlockedLessons = useMemo(() => {
-    if (DEV_MODE) return new Array(32).fill(true);
+    if (DEV_MODE || noLimits) return new Array(32).fill(true);
     const LEVEL_ORDER = ['A1','A2','B1','B2','C1','C2'];
     const plIdx = LEVEL_ORDER.indexOf(placementLevel);
     const blockAll45 = (from: number, to: number) =>
@@ -169,7 +171,7 @@ export default function LessonsTab() {
       else                 u[i] = u[i - 1] && scores[i - 1] >= 2.5;
     }
     return u;
-  }, [scores, placementLevel]);
+  }, [scores, placementLevel, noLimits]);
 
   type ListItem =
     | { kind: 'header'; label: string; color: string }
@@ -269,7 +271,7 @@ export default function LessonsTab() {
             const { level: lvl } = item;
             const meta     = EXAM_META[lvl];
             const [from, to] = lvl === 'A1' ? [1,8] : lvl === 'A2' ? [9,18] : lvl === 'B1' ? [19,28] : [29,32];
-            const allDone  = DEV_MODE || scores.slice(from - 1, to).every(s => s >= 4.5);
+            const allDone  = DEV_MODE || noLimits || scores.slice(from - 1, to).every(s => s >= 4.5);
             const result   = examResults[lvl];
             const isB2     = lvl === 'B2';
             const examMedal = getExamMedalTier(examBestPcts[lvl] ?? 0);

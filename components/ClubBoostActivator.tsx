@@ -127,6 +127,7 @@ export default function ClubBoostActivator({
           justifyContent: 'center',
           alignItems: 'center',
           paddingHorizontal: 20,
+          paddingVertical: 20,
         }}
         onPress={onClose}
       >

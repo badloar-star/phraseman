@@ -643,12 +643,22 @@ export const unlockAllAchievements = async (): Promise<void> => {
   try {
     const states = await loadAchievementStates();
     const now = new Date().toISOString();
-    // Разблокиваем все достижения
+    const existingIds = new Set(states.map(s => s.id));
+
+    // Разблокиваем все существующие достижения
     states.forEach(state => {
       if (state.unlockedAt === null) {
         state.unlockedAt = now;
       }
     });
+
+    // Добавляем и разблокиваем любые новые достижения из ALL_ACHIEVEMENTS
+    ALL_ACHIEVEMENTS.forEach(achievement => {
+      if (!existingIds.has(achievement.id)) {
+        states.push({ id: achievement.id, unlockedAt: now, notified: false });
+      }
+    });
+
     await saveStates(states);
   } catch {}
 };

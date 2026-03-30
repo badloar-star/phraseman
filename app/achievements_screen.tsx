@@ -197,25 +197,15 @@ function BadgeShield({
 
   return (
     <View style={{ width: W, alignItems: 'center' }}>
-      {/* Изображение - achievement.png с цветной подложкой */}
+      {/* Изображение - achievement.png (щит как фон, окрашен в цвет) */}
       <View style={{ width: W, height: BODY_H, alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
-        {/* Цветная подложка под иконку */}
-        <View
-          style={{
-            position: 'absolute',
-            width: W,
-            height: BODY_H,
-            backgroundColor: tintColor,
-            opacity: isLocked ? 0.3 : inProgress ? 0.4 : 0.8,
-          }}
-        />
-        {/* PNG изображение сверху */}
+        {/* PNG изображение щита, окрашенное в цвет достижения */}
         <Image
           source={require('../assets/images/levels/achivement.png')}
-          style={{ width: W, height: BODY_H, tintColor: '#ffffff' }}
+          style={{ width: W, height: BODY_H, tintColor }}
           resizeMode="contain"
         />
-        {/* Иконка поверх всего */}
+        {/* Иконка поверх щита */}
         <Ionicons
           name={iconName as any}
           size={ICON}

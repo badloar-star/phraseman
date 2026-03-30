@@ -12,6 +12,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import ContentWrap from '../components/ContentWrap';
 import { unlockAllAchievements } from './achievements';
+import { getXPForLevel } from '../constants/theme';
 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
@@ -100,8 +101,13 @@ export default function SettingsTestersFunctions() {
           text: isUK ? 'Разблокировать' : 'Разблокировать',
           onPress: async () => {
             try {
-              // Разблокиваем все достижения в базе данных
+              // Разблокиваем все достижения
               await unlockAllAchievements();
+
+              // Разблокиваем все рамки установкой XP на уровень 50
+              const xpForLevel50 = getXPForLevel(50);
+              await AsyncStorage.setItem('user_total_xp', String(xpForLevel50));
+
               Alert.alert('OK', isUK ? 'Все разблокировано' : 'Все разблокировано');
             } catch {
               Alert.alert('Ошибка', isUK ? 'Ошибка разблокировки' : 'Ошибка разблокировки');
@@ -151,19 +157,17 @@ export default function SettingsTestersFunctions() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
-        <ContentWrap>
-          {/* Header with Back Button */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
-            <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-            </TouchableOpacity>
-            <View style={{ flex: 1, marginLeft: 8 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-                {isUK ? 'Функції для тестерів' : 'Функции для тестеров'}
-              </Text>
-            </View>
+        {/* Header with Back Button - outside ContentWrap */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+          <TouchableOpacity onPress={() => router.back()}>
+            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+          </TouchableOpacity>
+          <View style={{ flex: 1, marginLeft: 8 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
+              {isUK ? 'Функції для тестерів' : 'Функции для тестеров'}
+            </Text>
           </View>
-        </ContentWrap>
+        </View>
 
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
 

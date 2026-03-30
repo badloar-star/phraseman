@@ -202,9 +202,9 @@ function PlayerProfileModal({
             )}
           </View>
 
-          {/* League */}
+          {/* League with larger icon */}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: t.bgSurface, borderRadius: 14, padding: 14 }}>
-            <ClubIcon league={league} size={22} bgSize={42} />
+            <ClubIcon league={league} size={36} bgSize={64} />
             <View>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {isUK ? league.nameUK : league.nameRU}
@@ -399,7 +399,7 @@ export default function LeagueScreen() {
                   onPress={(e) => { e.stopPropagation(); setDescModal(league); }}
                   hitSlop={{ top:6, bottom:6, left:6, right:6 }}
                 >
-                  <ClubIcon league={league} size={24} bgSize={44} />
+                  <ClubIcon league={league} size={32} bgSize={56} />
                 </TouchableOpacity>
                 <View style={{ flex:1 }}>
                   <View style={{ flexDirection:'row', alignItems:'center', gap:8, flexWrap:'wrap' }}>

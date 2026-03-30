@@ -55,6 +55,13 @@ export default function LessonMenu() {
 
     // Проверить, заблокирован ли урок
     (async () => {
+      // Если включена тестерская функция "Без ограничений", все уроки доступны
+      const noLimits = await AsyncStorage.getItem('tester_no_limits');
+      if (noLimits === 'true') {
+        setIsLessonLocked(false);
+        return;
+      }
+
       const unlocked = await isLessonUnlocked(lessonId);
       setIsLessonLocked(!unlocked);
       if (!unlocked) {

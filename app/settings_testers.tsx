@@ -96,26 +96,40 @@ export default function SettingsTestersFunctions() {
     setNoLimitsEnabled(val);
     await saveSettings('tester_no_limits', val);
 
-    // When enabling No Limits, immediately give 5 points to all 32 lessons and 100% to all exams
+    // When enabling No Limits, award all medals on lessons and exams
     if (val) {
       try {
-        // Give 5 points to all 32 lessons
+        const keysToSet: [string, string][] = [];
+
+        // Award gold medals on all 32 lessons
         for (let i = 1; i <= 32; i++) {
-          await AsyncStorage.setItem(`lesson${i}_score`, '5');
+          // Set all necessary lesson data for gold medal
+          keysToSet.push([`lesson${i}_score`, '5']);
+          keysToSet.push([`lesson${i}_best_score`, '5']); // Gold medal requires best_score = 5
+          keysToSet.push([`lesson${i}_pass_count`, '1']);
+          // Create full progress array (all 50 answers marked as correct)
+          const progressArray = new Array(50).fill('correct');
+          keysToSet.push([`lesson${i}_progress`, JSON.stringify(progressArray)]);
         }
+
         // Unlock all lessons
         const unlockedLessons = Array.from({ length: 32 }, (_, i) => i + 1);
-        await AsyncStorage.setItem('unlocked_lessons', JSON.stringify(unlockedLessons));
+        keysToSet.push(['unlocked_lessons', JSON.stringify(unlockedLessons)]);
 
-        // Give 100% to all 4 level exams
+        // Award gold medals on all 4 exams (90%+ = gold)
         for (let lvl = 1; lvl <= 4; lvl++) {
-          await AsyncStorage.setItem(`level_exam_${lvl}_pct`, '100');
-          await AsyncStorage.setItem(`level_exam_${lvl}_passed`, '1');
+          keysToSet.push([`level_exam_${lvl}_pct`, '100']);
+          keysToSet.push([`level_exam_${lvl}_best_pct`, '100']); // Gold medal requires best_pct >= 90
+          keysToSet.push([`level_exam_${lvl}_passed`, '1']);
+          keysToSet.push([`level_exam_${lvl}_pass_count`, '1']);
         }
+
+        // Set all keys at once
+        await AsyncStorage.multiSet(keysToSet);
 
         Alert.alert(
           isUK ? 'Готово' : 'Готово',
-          isUK ? 'Всім урокам дано 5 балів\nУсім екзаменам дано 100%' : 'Всем урокам дано 5 баллов\nВсем экзаменам дано 100%'
+          isUK ? 'Всім урокам дані ЗОЛОТІ МЕДАЛІ\nУсім екзаменам дані ЗОЛОТІ МЕДАЛІ' : 'Всем урокам даны ЗОЛОТЫЕ МЕДАЛИ\nВсем экзаменам даны ЗОЛОТЫЕ МЕДАЛИ'
         );
       } catch {
         Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось активувати' : 'Не удалось активировать');
@@ -292,12 +306,14 @@ export default function SettingsTestersFunctions() {
                   { text: isUK ? 'Скасувати' : 'Отмена', onPress: () => {}, style: 'cancel' },
                   { text: isUK ? 'Скинути' : 'Сбросить', onPress: async () => {
                     try {
-                      // Уроки — прогресс, оценки, слова, слушание
+                      // Уроки — прогресс, оценки, слова, слушание, медали
                       const lessonKeys = Array.from({ length: 32 }, (_, i) => [
                         `lesson${i + 1}_progress`,
                         `lesson${i + 1}_score`,
                         `lesson${i + 1}_words`,
                         `lesson${i + 1}_listening_progress`,
+                        `lesson${i + 1}_best_score`,
+                        `lesson${i + 1}_pass_count`,
                       ]).flat();
 
                       // Достижения и медали
@@ -334,6 +350,7 @@ export default function SettingsTestersFunctions() {
                       const examKeys = Array.from({ length: 4 }, (_, i) => [
                         `level_exam_${i + 1}_pct`,
                         `level_exam_${i + 1}_passed`,
+                        `level_exam_${i + 1}_best_pct`,
                         `level_exam_${i + 1}_medal_tier`,
                         `level_exam_${i + 1}_pass_count`,
                       ]).flat();

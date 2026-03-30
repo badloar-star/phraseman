@@ -2890,6 +2890,8 @@ interface LessonContentProps {
   lang: 'ru' | 'uk';
   emptyTapFlash: boolean;
   setEmptyTapFlash: (val: boolean) => void;
+  shouldShake: boolean;
+  setShouldShake: (val: boolean) => void;
 }
 
 function LessonContent({
@@ -2936,6 +2938,8 @@ function LessonContent({
   lang,
   emptyTapFlash,
   setEmptyTapFlash,
+  shouldShake,
+  setShouldShake,
 }: LessonContentProps) {
   // Show intro screens on first visit
   if (showIntroScreens) {
@@ -3789,6 +3793,8 @@ export default function LessonScreen() {
             lang={lang}
             emptyTapFlash={emptyTapFlash}
             setEmptyTapFlash={setEmptyTapFlash}
+            shouldShake={shouldShake}
+            setShouldShake={setShouldShake}
           />
         </SafeAreaView>
         {/* МОДАЛЬНОЕ ОКНО - НЕДОСТАТОЧНО ЭНЕРГИИ */}

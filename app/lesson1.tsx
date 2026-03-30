@@ -3405,8 +3405,6 @@ export default function LessonScreen() {
         setSettings(loaded);
       }
 
-      // Тратим энергию после успешной загрузки урока
-      await spendEnergy(1);
       setInsufficientEnergy(false);
     } catch {}
   };

@@ -373,15 +373,6 @@ function WordList({ words, learnedCounts, lang, speechRate, onStartTraining }: {
       sections={sections}
       keyExtractor={item => item.en}
       contentContainerStyle={{ paddingBottom:30 }}
-      ListFooterComponent={onStartTraining ? (
-        <TouchableOpacity
-          onPress={onStartTraining}
-          style={{ marginHorizontal:16, marginTop:16, marginBottom:8, backgroundColor:t.bgCard, borderRadius:14, paddingVertical:13, alignItems:'center', borderWidth:1, borderColor:t.textSecond+'55', flexDirection:'row', justifyContent:'center', gap:8 }}
-        >
-          <Ionicons name="pencil" size={18} color={t.textSecond} />
-          <Text style={{ color:t.textSecond, fontSize:f.bodyLg, fontWeight:'600' }}>{isUK ? 'Повернутись до тренування' : 'Вернуться к тренировке'}</Text>
-        </TouchableOpacity>
-      ) : null}
       ListHeaderComponent={onStartTraining ? (
         <TouchableOpacity
           onPress={onStartTraining}

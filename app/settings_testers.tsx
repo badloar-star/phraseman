@@ -15,6 +15,44 @@ import { unlockAllFrames } from '../constants/avatars';
 import { checkLeagueOnAppOpen, CLUBS } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 
+const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
+  icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
+  t: any; f: any;
+}) => (
+  <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+    <Ionicons name={icon as any} size={22} color={t.textSecond} style={{ marginRight: 14 }} />
+    <View style={{ flex: 1 }}>
+      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg }}>{label}</Text>
+      {sub && <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
+    </View>
+    <Switch value={value} onValueChange={onToggle} />
+  </View>
+);
+
+const ButtonRow = ({ icon, label, sub, onPress, danger, t, f, doHaptic }: {
+  icon: string; label: string; sub?: string; onPress: () => void; danger?: boolean;
+  t: any; f: any; doHaptic: () => void;
+}) => (
+  <TouchableOpacity
+    style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}
+    onPress={() => { doHaptic(); onPress(); }}
+    activeOpacity={0.7}
+  >
+    <Ionicons name={icon as any} size={22} color={danger ? t.wrong : t.textSecond} style={{ marginRight: 14 }} />
+    <View style={{ flex: 1 }}>
+      <Text style={{ color: danger ? t.wrong : t.textPrimary, fontSize: f.bodyLg }}>{label}</Text>
+      {sub && <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
+    </View>
+    <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
+  </TouchableOpacity>
+);
+
+const SectionTitle = ({ title, t, f }: { title: string; t: any; f: any }) => (
+  <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 1, paddingHorizontal: 20, paddingTop: 20, paddingBottom: 8 }}>
+    {title}
+  </Text>
+);
+
 export default function SettingsTestersFunctions() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
@@ -148,41 +186,6 @@ export default function SettingsTestersFunctions() {
     );
   };
 
-  const ToggleRow = ({ icon, label, sub, value, onToggle }: {
-    icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
-  }) => (
-    <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-      <Ionicons name={icon as any} size={22} color={t.textSecond} style={{ marginRight: 14 }} />
-      <View style={{ flex: 1 }}>
-        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg }}>{label}</Text>
-        {sub && <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
-      </View>
-      <Switch value={value} onValueChange={onToggle} />
-    </View>
-  );
-
-  const ButtonRow = ({ icon, label, sub, onPress, danger }: {
-    icon: string; label: string; sub?: string; onPress: () => void; danger?: boolean;
-  }) => (
-    <TouchableOpacity
-      style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}
-      onPress={() => { doHaptic(); onPress(); }}
-      activeOpacity={0.7}
-    >
-      <Ionicons name={icon as any} size={22} color={danger ? t.wrong : t.textSecond} style={{ marginRight: 14 }} />
-      <View style={{ flex: 1 }}>
-        <Text style={{ color: danger ? t.wrong : t.textPrimary, fontSize: f.bodyLg }}>{label}</Text>
-        {sub && <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>{sub}</Text>}
-      </View>
-      <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
-    </TouchableOpacity>
-  );
-
-  const SectionTitle = ({ title }: { title: string }) => (
-    <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 1, paddingHorizontal: 20, paddingTop: 20, paddingBottom: 8 }}>
-      {title}
-    </Text>
-  );
 
   return (
     <ScreenGradient>
@@ -201,21 +204,23 @@ export default function SettingsTestersFunctions() {
 
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
 
-          <SectionTitle title={isUK ? 'Активи' : 'АКТИВЫ'} />
+          <SectionTitle title={isUK ? 'Активи' : 'АКТИВЫ'} t={t} f={f} />
           <ButtonRow
             icon={noLimitsEnabled ? "lock-open-outline" : "lock-outline"}
             label={noLimitsEnabled ? (isUK ? 'Без обмежень ✓' : 'Без ограничений ✓') : (isUK ? 'Без обмежень' : 'Без ограничений')}
             sub={isUK ? 'Всі уроки і екзамени доступні' : 'Все уроки и экзамены доступны'}
             onPress={() => toggleNoLimits(!noLimitsEnabled)}
+            t={t} f={f} doHaptic={doHaptic}
           />
 
-          <SectionTitle title={isUK ? 'Енергія' : 'ЭНЕРГИЯ'} />
+          <SectionTitle title={isUK ? 'Енергія' : 'ЭНЕРГИЯ'} t={t} f={f} />
           <ToggleRow
             icon="flash-outline"
             label={isUK ? 'Енергія не витрачається' : 'Энергия не тратится'}
             sub={isUK ? 'Уроки не будуть коштувати енергію' : 'Уроки не будут стоить энергию'}
             value={energyDisabled}
             onToggle={toggleEnergyDisabled}
+            t={t} f={f}
           />
 
           <ToggleRow
@@ -224,43 +229,49 @@ export default function SettingsTestersFunctions() {
             sub={isUK ? 'Енергія відновлюється відразу' : 'Энергия восстанавливается сразу'}
             value={energyInstantRecovery}
             onToggle={toggleEnergyInstantRecovery}
+            t={t} f={f}
           />
 
-          <SectionTitle title={isUK ? 'Опит' : 'ОПЫТ'} />
+          <SectionTitle title={isUK ? 'Опит' : 'ОПЫТ'} t={t} f={f} />
           <ButtonRow
             icon="add-circle-outline"
             label={isUK ? 'Додати 5000 XP' : 'Добавить 5000 XP'}
             onPress={addXP}
+            t={t} f={f} doHaptic={doHaptic}
           />
 
-          <SectionTitle title={isUK ? 'Ліга' : 'ЛИГА'} />
+          <SectionTitle title={isUK ? 'Ліга' : 'ЛИГА'} t={t} f={f} />
           <ButtonRow
             icon="trophy-outline"
             label={isUK ? 'Конец недели' : 'Конец недели'}
             sub={isUK ? 'Рух между клубами' : 'Движение между клубами'}
             onPress={triggerEndOfWeek}
+            t={t} f={f} doHaptic={doHaptic}
           />
 
-          <SectionTitle title={isUK ? 'Досягнення' : 'ДОСТИЖЕНИЯ'} />
+          <SectionTitle title={isUK ? 'Досягнення' : 'ДОСТИЖЕНИЯ'} t={t} f={f} />
           <ButtonRow
             icon="star-outline"
             label={isUK ? 'Розблокувати все' : 'Разблокировать всё'}
             sub={isUK ? 'Досягнення та рамки' : 'Достижения и рамки'}
             onPress={unlockAllAchievementsHandler}
+            t={t} f={f} doHaptic={doHaptic}
           />
 
-          <SectionTitle title={isUK ? 'Управління' : 'УПРАВЛЕНИЕ'} />
+          <SectionTitle title={isUK ? 'Управління' : 'УПРАВЛЕНИЕ'} t={t} f={f} />
           <ButtonRow
             icon="play-circle-outline"
             label={isUK ? 'Переглянути онбординг' : 'Просмотреть онбординг'}
             sub={isUK ? 'Повторити пошаговое введення' : 'Повторить пошаговое введение'}
-            onPress={async () => { doHaptic(); await AsyncStorage.removeItem('onboarding_done'); router.replace('/(tabs)/home' as any); }}
+            onPress={async () => { await AsyncStorage.removeItem('onboarding_done'); router.replace('/(tabs)/home' as any); }}
+            t={t} f={f} doHaptic={doHaptic}
           />
           <ButtonRow
             icon="refresh-outline"
             label={isUK ? 'Скинути ВСЕ дані' : 'Сбросить ВСЕ данные'}
             sub={isUK ? 'Видалити весь прогрес та налаштування' : 'Удалить весь прогресс и настройки'}
             danger
+            t={t} f={f} doHaptic={doHaptic}
             onPress={() => {
               Alert.alert(
                 isUK ? 'Скинути все?' : 'Сбросить все?',
@@ -268,7 +279,6 @@ export default function SettingsTestersFunctions() {
                 [
                   { text: isUK ? 'Скасувати' : 'Отмена', onPress: () => {}, style: 'cancel' },
                   { text: isUK ? 'Скинути' : 'Сбросить', onPress: async () => {
-                    doHaptic();
                     try {
                       // Уроки
                       const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
@@ -300,6 +310,7 @@ export default function SettingsTestersFunctions() {
             label={isUK ? 'Скинути статистику' : 'Сбросить статистику'}
             sub={isUK ? 'Скинути стрік та інші статистики' : 'Сбросить стрик и другую статистику'}
             danger
+            t={t} f={f} doHaptic={doHaptic}
             onPress={() => {
               Alert.alert(
                 isUK ? 'Скинути статистику?' : 'Сбросить статистику?',
@@ -307,7 +318,6 @@ export default function SettingsTestersFunctions() {
                 [
                   { text: isUK ? 'Скасувати' : 'Отмена', onPress: () => {}, style: 'cancel' },
                   { text: isUK ? 'Скинути' : 'Сбросить', onPress: async () => {
-                    doHaptic();
                     try {
                       await AsyncStorage.multiRemove(['streak_count', 'daily_stats', 'streak_freeze']);
                       Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? 'Статистику скинуто' : 'Статистика сброшена');

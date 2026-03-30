@@ -3622,7 +3622,13 @@ export default function LessonScreen() {
       setTimeout(async () => {
         // Получаем финальную оценку урока перед переходом на lesson_complete
         const correct = np.filter(x => x === 'correct' || x === 'replay_correct').length;
-        const finalScore = parseFloat((correct / TOTAL * 5).toFixed(1));
+        let finalScore = parseFloat((correct / TOTAL * 5).toFixed(1));
+
+        // Если включен режим "Без ограничений", даём 5 баллов автоматически
+        const noLimits = await AsyncStorage.getItem('tester_no_limits');
+        if (noLimits === 'true') {
+          finalScore = 5;
+        }
 
         // Пытаемся разблокировать следующий урок
         await tryUnlockNextLesson(lessonId, finalScore);

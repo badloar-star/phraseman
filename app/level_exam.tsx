@@ -220,7 +220,14 @@ export default function LevelExam() {
 
   const finishExam = async () => {
     const correct = choices.filter((c, i) => c !== null && c === questions[i].correct).length;
-    const pct = Math.round(correct / total * 100);
+    let pct = Math.round(correct / total * 100);
+
+    // Если включен режим "Без ограничений", даём 100% автоматически
+    const noLimits = await AsyncStorage.getItem('tester_no_limits');
+    if (noLimits === 'true') {
+      pct = 100;
+    }
+
     const passed = pct >= PASS_PCT;
     try {
       await AsyncStorage.setItem(`level_exam_${lvl}_pct`, String(pct));

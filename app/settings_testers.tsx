@@ -70,25 +70,13 @@ export default function SettingsTestersFunctions() {
 
   const addXP = async () => {
     doHaptic();
-    Alert.alert(
-      isUK ? 'Добавить 5000 XP?' : 'Добавить 5000 XP?',
-      '',
-      [
-        { text: isUK ? 'Отмена' : 'Отмена', style: 'cancel' },
-        {
-          text: isUK ? 'Добавить' : 'Добавить',
-          onPress: async () => {
-            try {
-              const current = parseInt(await AsyncStorage.getItem('user_total_xp') || '0') || 0;
-              await AsyncStorage.setItem('user_total_xp', String(current + 5000));
-              Alert.alert('OK', '5000 XP добавлено');
-            } catch {
-              Alert.alert('Ошибка', 'Не удалось добавить XP');
-            }
-          },
-        },
-      ]
-    );
+    try {
+      const current = parseInt(await AsyncStorage.getItem('user_total_xp') || '0') || 0;
+      await AsyncStorage.setItem('user_total_xp', String(current + 5000));
+      Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? '5000 XP додано' : '5000 XP добавлено');
+    } catch {
+      Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось додати XP' : 'Не удалось добавить XP');
+    }
   };
 
   const unlockAllAchievementsHandler = async () => {

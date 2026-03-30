@@ -3804,10 +3804,8 @@ export default function LessonScreen() {
             setEmptyTapFlash={setEmptyTapFlash}
           />
         </SafeAreaView>
-      </ScreenGradient>
-
-      {/* МОДАЛЬНОЕ ОКНО - НЕДОСТАТОЧНО ЭНЕРГИИ */}
-      {showEnergyModal && insufficientEnergy && (
+        {/* МОДАЛЬНОЕ ОКНО - НЕДОСТАТОЧНО ЭНЕРГИИ */}
+        {showEnergyModal && insufficientEnergy && (
         <View style={{
           ...StyleSheet.absoluteFillObject,
           backgroundColor: 'rgba(0,0,0,0.5)',
@@ -3861,6 +3859,7 @@ export default function LessonScreen() {
           </View>
         </View>
       )}
+      </ScreenGradient>
     </TouchableWithoutFeedback>
   );
 }

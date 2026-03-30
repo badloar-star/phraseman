@@ -173,41 +173,29 @@ export default function SettingsTestersFunctions() {
 
   const triggerEndOfWeek = async () => {
     doHaptic();
-    Alert.alert(
-      isUK ? 'Конец тижня?' : 'Конец недели?',
-      isUK ? 'Це спровокує рух між клубами' : 'Это спровоцирует движение между клубами',
-      [
-        { text: isUK ? 'Скасувати' : 'Отмена', style: 'cancel' },
-        {
-          text: isUK ? 'Виконати' : 'Выполнить',
-          onPress: async () => {
-            try {
-              // Load current league state
-              const state = await loadLeagueState();
-              if (!state) {
-                Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Ліга не ініціалізована' : 'Лига не инициализирована');
-                return;
-              }
+    try {
+      // Load current league state
+      const state = await loadLeagueState();
+      if (!state) {
+        Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Ліга не ініціалізована' : 'Лига не инициализирована');
+        return;
+      }
 
-              // Get current week points
-              const myWeekPoints = await getMyWeekPoints();
+      // Get current week points
+      const myWeekPoints = await getMyWeekPoints();
 
-              // Force calculate league result (for testing, not checking if week changed)
-              const leagueResult = calculateResult(state, myWeekPoints);
+      // Force calculate league result (for testing, not checking if week changed)
+      const leagueResult = calculateResult(state, myWeekPoints);
 
-              // Save as pending so it persists and shows on next app open
-              await savePendingResult(leagueResult);
+      // Save as pending so it persists and shows on next app open
+      await savePendingResult(leagueResult);
 
-              // Show the modal immediately
-              setLeagueResult(leagueResult);
-              setLeagueResultVisible(true);
-            } catch (error) {
-              Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось виконати конец тижня' : 'Не удалось выполнить конец недели');
-            }
-          },
-        },
-      ]
-    );
+      // Show the beautiful modal immediately (no confirmation alert)
+      setLeagueResult(leagueResult);
+      setLeagueResultVisible(true);
+    } catch (error) {
+      Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось виконати конец тижня' : 'Не удалось выполнить конец недели');
+    }
   };
 
 

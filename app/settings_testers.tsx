@@ -169,12 +169,11 @@ export default function SettingsTestersFunctions() {
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
 
           <SectionTitle title={isUK ? 'Активи' : 'АКТИВЫ'} />
-          <ToggleRow
-            icon="lock-open-outline"
-            label={isUK ? 'Без обмежень' : 'Без ограничений'}
+          <ButtonRow
+            icon={noLimitsEnabled ? "lock-outline" : "lock-open-outline"}
+            label={noLimitsEnabled ? (isUK ? 'Без обмежень ✓' : 'Без ограничений ✓') : (isUK ? 'Без обмежень' : 'Без ограничений')}
             sub={isUK ? 'Всі уроки і екзамени доступні' : 'Все уроки и экзамены доступны'}
-            value={noLimitsEnabled}
-            onToggle={toggleNoLimits}
+            onPress={() => toggleNoLimits(!noLimitsEnabled)}
           />
 
           <SectionTitle title={isUK ? 'Енергія' : 'ЭНЕРГИЯ'} />
@@ -218,23 +217,37 @@ export default function SettingsTestersFunctions() {
           />
           <ButtonRow
             icon="refresh-outline"
-            label={isUK ? 'Скинути прогрес уроків' : 'Сбросить прогресс уроков'}
-            sub={isUK ? 'Видалити всі збережені відповіді' : 'Удалить все сохраненные ответы'}
+            label={isUK ? 'Скинути ВСЕ дані' : 'Сбросить ВСЕ данные'}
+            sub={isUK ? 'Видалити весь прогрес та налаштування' : 'Удалить весь прогресс и настройки'}
             danger
             onPress={() => {
               Alert.alert(
-                isUK ? 'Скинути прогрес?' : 'Сбросить прогресс?',
-                isUK ? 'Це видалить прогрес усіх 32 уроків. Це не можна скасувати!' : 'Это удалит прогресс всех 32 уроков. Это нельзя отменить!',
+                isUK ? 'Скинути все?' : 'Сбросить все?',
+                isUK ? 'Це видалить уроки, досягнення, рамки, енергію, XP та всі налаштування. Це не можна скасувати!' : 'Это удалит уроки, достижения, рамки, энергию, XP и все настройки. Это нельзя отменить!',
                 [
                   { text: isUK ? 'Скасувати' : 'Отмена', onPress: () => {}, style: 'cancel' },
                   { text: isUK ? 'Скинути' : 'Сбросить', onPress: async () => {
                     doHaptic();
                     try {
+                      // Уроки
                       const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
-                      await AsyncStorage.multiRemove(lessonKeys);
-                      Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? 'Прогрес уроків скинуто' : 'Прогресс уроков сброшен');
+                      // Достижения
+                      const achievementKeys = ['achievement_states'];
+                      // Рамки и аватары
+                      const frameKeys = ['user_frame', 'user_avatar', 'unlocked_frames'];
+                      // Энергия и XP
+                      const systemKeys = ['user_total_xp', 'current_energy', 'last_energy_recovery'];
+                      // Статистика
+                      const statsKeys = ['streak_count', 'login_bonus_v1'];
+                      // Тестер настройки
+                      const testerKeys = ['tester_no_limits', 'tester_energy_disabled', 'tester_energy_instant_recovery'];
+
+                      const allKeys = [...lessonKeys, ...achievementKeys, ...frameKeys, ...systemKeys, ...statsKeys, ...testerKeys];
+                      await AsyncStorage.multiRemove(allKeys);
+
+                      Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? 'Всі дані скинуті' : 'Все данные сброшены');
                     } catch {
-                      Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось скинути прогрес' : 'Не удалось сбросить прогресс');
+                      Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось скинути дані' : 'Не удалось сбросить данные');
                     }
                   }, style: 'destructive' }
                 ]

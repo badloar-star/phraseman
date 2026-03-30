@@ -13,7 +13,7 @@ import {
 } from '../hall_of_fame_utils';
 import { loadLeagueState, LEAGUES } from '../league_engine';
 import AnimatedFrame from '../../components/AnimatedFrame';
-import { getBotAvatarData, getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
+import { getBotAvatarData, getBestAvatarForLevel, getBestFrameForLevel, getAvatarImageByIndex } from '../../constants/avatars';
 import { getLevelFromXP } from '../../constants/theme';
 
 export { addOrUpdateScore, pointsForAnswer, streakMultiplier };
@@ -68,11 +68,21 @@ function HoFProfileModal({
 
   const isMe = player.isMe;
   const npc = NPC_PLAYERS.find(n => n.name === player.name);
+  const isMyAvatarNumeric = myAvatar && /^\d+$/.test(myAvatar);
   const avatarData = isMe
-    ? { emoji: myAvatar, frameId: myFrame }
+    ? { image: isMyAvatarNumeric ? getAvatarImageByIndex(parseInt(myAvatar)) : undefined, emoji: myAvatar, frameId: myFrame }
     : npc
-      ? getBotAvatarData(npc.name, npc.weekBase)
-      : { emoji: '🐣', frameId: 'plain', level: 1 };
+      ? (() => {
+        const botData = getBotAvatarData(npc.name, npc.weekBase);
+        const isBotAvatarNumeric = botData.emoji && /^\d+$/.test(botData.emoji);
+        return {
+          image: isBotAvatarNumeric ? getAvatarImageByIndex(parseInt(botData.emoji)) : undefined,
+          emoji: botData.emoji,
+          frameId: botData.frameId,
+          level: botData.level
+        };
+      })()
+      : { image: getAvatarImageByIndex(1), emoji: '1', frameId: 'plain', level: 1 };
 
   const level     = isMe ? getLevelFromXP(myTotalXP) : ((avatarData as any).level ?? 1);
   const streak    = isMe ? null : getNPCHoFStreak(player.name, npc?.weekBase ?? 50);
@@ -94,7 +104,7 @@ function HoFProfileModal({
         }}>
           <View style={{ width: 40, height: 4, borderRadius: 2, backgroundColor: t.border, alignSelf: 'center', marginBottom: 20 }} />
           <View style={{ alignItems: 'center', marginBottom: 16 }}>
-            <AnimatedFrame emoji={avatarData.emoji} frameId={avatarData.frameId} size={72} />
+            <AnimatedFrame image={avatarData.image} emoji={avatarData.emoji} frameId={avatarData.frameId} size={72} />
             <Text style={{ fontSize: f.h2, fontWeight: '700', color: t.textPrimary, marginTop: 10 }}>
               {player.name}{isMe ? (isUK ? ' (ти)' : ' (ты)') : ''}
             </Text>
@@ -362,7 +372,7 @@ export default function HallOfFame() {
           borderRadius: 14, padding: 14, borderWidth: 0.5, borderColor: t.border,
           flexDirection: 'row', alignItems: 'center', gap: 12,
         }}>
-          <AnimatedFrame emoji={myAvatar} frameId={myFrame} size={36} />
+          <AnimatedFrame image={/^\d+$/.test(myAvatar) ? getAvatarImageByIndex(parseInt(myAvatar)) : undefined} emoji={myAvatar} frameId={myFrame} size={36} />
           <View style={{ flex: 1 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>{myName}</Text>
             <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }}>
@@ -417,11 +427,19 @@ export default function HallOfFame() {
             const isMe   = item.name === myName;
             // Аватарка: своя или бота
             const npc = NPC_PLAYERS.find(n => n.name === item.name);
-            const avatarData = isMe
-              ? { emoji: myAvatar, frameId: myFrame }
-              : npc
-                ? (() => { const d = getBotAvatarData(npc.name, npc.weekBase); return { emoji: d.emoji, frameId: d.frameId }; })()
-                : { emoji: '🐣', frameId: 'plain' };
+            const getAvatarData = () => {
+              if (isMe) {
+                const isNumeric = myAvatar && /^\d+$/.test(myAvatar);
+                return { image: isNumeric ? getAvatarImageByIndex(parseInt(myAvatar)) : undefined, emoji: myAvatar, frameId: myFrame };
+              }
+              if (npc) {
+                const d = getBotAvatarData(npc.name, npc.weekBase);
+                const isNumeric = d.emoji && /^\d+$/.test(d.emoji);
+                return { image: isNumeric ? getAvatarImageByIndex(parseInt(d.emoji)) : undefined, emoji: d.emoji, frameId: d.frameId };
+              }
+              return { image: getAvatarImageByIndex(1), emoji: '1', frameId: 'plain' };
+            };
+            const avatarData = getAvatarData();
 
             return (
               <TouchableOpacity
@@ -436,7 +454,7 @@ export default function HallOfFame() {
                 <Text style={{ width: 36, fontSize: isTop3 ? 22 : 14, color: t.textPrimary, textAlign: 'center' }}>
                   {isTop3 ? MEDALS[index] : `${index + 1}`}
                 </Text>
-                <AnimatedFrame emoji={avatarData.emoji} frameId={avatarData.frameId} size={28} style={{ marginRight: 10 }} />
+                <AnimatedFrame image={avatarData.image} emoji={avatarData.emoji} frameId={avatarData.frameId} size={28} style={{ marginRight: 10 }} />
                 <Text
                   numberOfLines={1}
                   style={{

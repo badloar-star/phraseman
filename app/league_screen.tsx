@@ -16,6 +16,7 @@ import {
 } from './league_engine';
 import { checkAchievements } from './achievements';
 import ClubBoostActivator from '../components/ClubBoostActivator';
+import { getAvatarImageByIndex } from '../constants/avatars';
 
 // NPC-заглушки для одиночного режима (пока нет Firebase)
 const NPC_NAMES_RU = [
@@ -119,9 +120,27 @@ function PlayerProfileModal({
 
   if (!player) return null;
 
-  const botData    = player.isMe
-    ? { emoji: myAvatarEmoji, frameId: myFrameId, level: 1 }
-    : getBotAvatarData(player.name, getNPCWeekBase(player.name, player.points));
+  const getBotData = () => {
+    if (player.isMe) {
+      const isNumeric = myAvatarEmoji && /^\d+$/.test(myAvatarEmoji);
+      return {
+        image: isNumeric ? getAvatarImageByIndex(parseInt(myAvatarEmoji)) : undefined,
+        emoji: myAvatarEmoji,
+        frameId: myFrameId,
+        level: 1
+      };
+    }
+    const botDataRaw = getBotAvatarData(player.name, getNPCWeekBase(player.name, player.points));
+    const isNumeric = botDataRaw.emoji && /^\d+$/.test(botDataRaw.emoji);
+    return {
+      image: isNumeric ? getAvatarImageByIndex(parseInt(botDataRaw.emoji)) : undefined,
+      emoji: botDataRaw.emoji,
+      frameId: botDataRaw.frameId,
+      level: botDataRaw.level
+    };
+  };
+
+  const botData    = getBotData();
   const streak     = player.isMe ? null : getNPCStreak(player.name, player.points);
   const totalXP    = getNPCTotalXP(player.name, player.points);
   const leagueIdx  = player.isMe ? player.leagueId : getNPCLeagueIdx(player.points);
@@ -144,7 +163,7 @@ function PlayerProfileModal({
 
           {/* Avatar + frame */}
           <View style={{ alignItems: 'center', marginBottom: 16 }}>
-            <AnimatedFrame emoji={botData.emoji} frameId={botData.frameId} size={68} />
+            <AnimatedFrame image={botData.image} emoji={botData.emoji} frameId={botData.frameId} size={68} />
             <View style={{ marginTop: 8, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
               <Text style={{ fontSize: f.h2, fontWeight: '700', color: t.textPrimary }}>
                 {player.name}{player.isMe ? (isUK ? ' (ти)' : ' (ты)') : ''}

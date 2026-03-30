@@ -34,73 +34,23 @@ const POS_LABELS_UK: Record<POS,string> = {
   adverbs:'Прислівники', nouns:'Іменники',
 };
 
-// LESSON 1 VOCABULARY — extracted from 50 phrases (To Be + locations/states) with RU/UK translations
+// LESSON 1 VOCABULARY — To Be verbs and key vocabulary (Phrases 1–5)
 const WORDS_BY_LESSON: Record<number, Word[]> = {
   1: [
-    // Pronouns
-    { en: 'I', ru: 'Я', uk: 'Я', pos: 'pronouns' },
-    { en: 'You', ru: 'Ты', uk: 'Ти', pos: 'pronouns' },
-    { en: 'He', ru: 'Он', uk: 'Він', pos: 'pronouns' },
-    { en: 'She', ru: 'Она', uk: 'Вона', pos: 'pronouns' },
-    { en: 'It', ru: 'Это', uk: 'Це', pos: 'pronouns' },
-    { en: 'We', ru: 'Мы', uk: 'Ми', pos: 'pronouns' },
-    { en: 'They', ru: 'Они', uk: 'Вони', pos: 'pronouns' },
-
     // Verbs (to-be)
     { en: 'am', ru: 'есть (am)', uk: 'є (am)', pos: 'verbs' },
     { en: 'is', ru: 'есть (is)', uk: 'є (is)', pos: 'verbs' },
     { en: 'are', ru: 'есть (are)', uk: 'є (are)', pos: 'verbs' },
 
-    // Irregular Verbs (from Lesson 1)
+    // Irregular Verbs
     { en: 'be', ru: 'быть', uk: 'бути', pos: 'irregular_verbs' },
-    { en: 'break', ru: 'ломать', uk: 'ламати', pos: 'irregular_verbs' },
 
-    // Adjectives
+    // Vocabulary from Phrases 1–5
+    { en: 'here', ru: 'здесь', uk: 'тут', pos: 'adverbs' },
     { en: 'ready', ru: 'готовый', uk: 'готовий', pos: 'adjectives' },
     { en: 'busy', ru: 'занятый', uk: 'зайнятий', pos: 'adjectives' },
-    { en: 'important', ru: 'важный', uk: 'важливий', pos: 'adjectives' },
-    { en: 'okay', ru: 'в порядке', uk: 'в порядку', pos: 'adjectives' },
-    { en: 'right', ru: 'правый', uk: 'правий', pos: 'adjectives' },
-    { en: 'safe', ru: 'безопасный', uk: 'безпечний', pos: 'adjectives' },
-    { en: 'sick', ru: 'больной', uk: 'хворий', pos: 'adjectives' },
-    { en: 'cheap', ru: 'дешевый', uk: 'дешевий', pos: 'adjectives' },
-    { en: 'upset', ru: 'расстроенный', uk: 'засмучений', pos: 'adjectives' },
-    { en: 'late', ru: 'поздний', uk: 'пізній', pos: 'adjectives' },
-    { en: 'kind', ru: 'добрый', uk: 'добрий', pos: 'adjectives' },
-    { en: 'urgent', ru: 'срочный', uk: 'терміновий', pos: 'adjectives' },
-    { en: 'shocked', ru: 'шокированный', uk: 'шокований', pos: 'adjectives' },
-    { en: 'married', ru: 'замужняя', uk: 'заміжня', pos: 'adjectives' },
-    { en: 'desperate', ru: 'в отчаянии', uk: 'у розпачі', pos: 'adjectives' },
-    { en: 'broken', ru: 'сломанный', uk: 'зламаний', pos: 'adjectives' },
-    { en: 'empty', ru: 'пустой', uk: 'порожній', pos: 'adjectives' },
-    { en: 'free', ru: 'бесплатный', uk: 'безкоштовний', pos: 'adjectives' },
-
-    // Adverbs
-    { en: 'here', ru: 'здесь', uk: 'тут', pos: 'adverbs' },
-    { en: 'together', ru: 'вместе', uk: 'разом', pos: 'adverbs' },
-    { en: 'very', ru: 'очень', uk: 'дуже', pos: 'adverbs' },
-    { en: 'outside', ru: 'снаружи', uk: 'зовні', pos: 'adverbs' },
-    { en: 'near', ru: 'рядом', uk: 'поруч', pos: 'adverbs' },
-    { en: 'abroad', ru: 'за границей', uk: 'за кордоном', pos: 'adverbs' },
-
-    // Nouns (locations, places, objects)
     { en: 'home', ru: 'дома', uk: 'вдома', pos: 'nouns' },
-    { en: 'work', ru: 'работа', uk: 'робота', pos: 'nouns' },
-    { en: 'way', ru: 'путь', uk: 'шлях', pos: 'nouns' },
-    { en: 'car', ru: 'машина', uk: 'машина', pos: 'nouns' },
-    { en: 'holiday', ru: 'отпуск', uk: 'відпустка', pos: 'nouns' },
-    { en: 'line', ru: 'очередь', uk: 'черга', pos: 'nouns' },
-    { en: 'elevator', ru: 'лифт', uk: 'ліфт', pos: 'nouns' },
-    { en: 'kitchen', ru: 'кухня', uk: 'кухня', pos: 'nouns' },
-    { en: 'taxi', ru: 'такси', uk: 'таксі', pos: 'nouns' },
-    { en: 'airport', ru: 'аэропорт', uk: 'аеропорт', pos: 'nouns' },
-    { en: 'train', ru: 'поезд', uk: 'поїзд', pos: 'nouns' },
-    { en: 'bathroom', ru: 'ванная комната', uk: 'ванна кімната', pos: 'nouns' },
-    { en: 'shop', ru: 'магазин', uk: 'магазин', pos: 'nouns' },
-    { en: 'gym', ru: 'спортзал', uk: 'спортзал', pos: 'nouns' },
-    { en: 'bus', ru: 'автобус', uk: 'автобус', pos: 'nouns' },
-    { en: 'list', ru: 'список', uk: 'список', pos: 'nouns' },
-    { en: 'pharmacy', ru: 'аптека', uk: 'аптека', pos: 'nouns' },
+    { en: 'together', ru: 'вместе', uk: 'разом', pos: 'adverbs' },
   ],
 };
 

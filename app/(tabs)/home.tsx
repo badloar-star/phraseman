@@ -23,7 +23,7 @@ import { hapticTap } from '../../hooks/use-haptics';
 import CircularProgress from '../../components/CircularProgress';
 import { DIALOGS } from '../dialogs_data';
 import AnimatedFrame from '../../components/AnimatedFrame';
-import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
+import { getBestAvatarForLevel, getBestFrameForLevel, getAvatarImageByIndex } from '../../constants/avatars';
 import LevelBadge from '../../components/LevelBadge';
 import EnergyIcon from '../../components/EnergyIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
@@ -474,7 +474,7 @@ export default function HomeScreen() {
                 )}
               </View>
               <TouchableOpacity onPress={()=>router.push('/avatar_select')}>
-                <AnimatedFrame emoji={userAvatar} frameId={userFrame} size={40} />
+                <AnimatedFrame image={/^\d+$/.test(userAvatar) ? getAvatarImageByIndex(parseInt(userAvatar)) : undefined} emoji={userAvatar} frameId={userFrame} size={40} />
               </TouchableOpacity>
             </View>
           </View>
@@ -690,7 +690,7 @@ export default function HomeScreen() {
               <Text style={{ color:t.textPrimary, fontSize:f.h1, fontWeight:'700', marginTop:2 }}>{userName || '...'}</Text>
             </View>
             <TouchableOpacity onPress={() => router.push('/avatar_select')}>
-              <AnimatedFrame emoji={userAvatar} frameId={userFrame} size={40} />
+              <AnimatedFrame image={/^\d+$/.test(userAvatar) ? getAvatarImageByIndex(parseInt(userAvatar)) : undefined} emoji={userAvatar} frameId={userFrame} size={40} />
             </TouchableOpacity>
           </View>
 
@@ -1109,7 +1109,7 @@ export default function HomeScreen() {
               </Text>
 
               <View style={{ marginTop:16, alignItems:'center', gap:4 }}>
-                <AnimatedFrame emoji={newAvatar} frameId={newFrameDef.id} size={60} />
+                <AnimatedFrame image={/^\d+$/.test(newAvatar) ? getAvatarImageByIndex(parseInt(newAvatar)) : undefined} emoji={newAvatar} frameId={newFrameDef.id} size={60} />
                 {newFrameDef.unlockLevel === newLevel && (
                   <View style={{ backgroundColor:t.bgSurface, borderRadius:12, paddingHorizontal:12, paddingVertical:4, marginTop:4 }}>
                     <Text style={{ color:t.textSecond, fontSize:f.label, fontWeight:'700' }}>

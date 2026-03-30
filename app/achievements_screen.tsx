@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import {
-  View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Pressable, Share,
+  View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Pressable, Share, Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
@@ -18,7 +17,6 @@ const { width: SW } = Dimensions.get('window');
 const COLS = 4;
 const SHIELD_OUTER = Math.floor((SW - 32 - (COLS - 1) * 10) / COLS);
 const SHIELD_W = SHIELD_OUTER - 4;
-const SHIELD_H = Math.round(SHIELD_W * 1.18);
 
 interface AchievementStats {
   streak: number;
@@ -181,7 +179,7 @@ const CAT_LABEL_UK: Record<string, string> = {
 
 const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special'] as const;
 
-// ── Щит-значок (скруглённые верх + V-низ, без overflow:hidden) ───────────────
+// ── Щит-значок с PNG фоном ────────────────────────────────────────────────────
 function BadgeShield({
   unlocked, inProgress, color, iconName, size,
 }: {
@@ -191,25 +189,24 @@ function BadgeShield({
   const W      = size;
   const BODY_H = Math.round(W * 0.88);
   const TIP_H  = Math.round(W * 0.26);
-  const CORNER = Math.round(W * 0.18);
   const ICON   = Math.round(W * 0.42);
 
   const isLocked  = !unlocked && !inProgress;
-  const bodyColor = isLocked ? '#1E1E1E' : inProgress ? color + '2A' : color;
-  const tipColor  = isLocked ? '#1E1E1E' : inProgress ? color + '2A' : color;
+  const tintColor = isLocked ? '#383838' : inProgress ? color + '55' : color;
   const iconColor = isLocked ? '#383838' : inProgress ? color + 'BB' : '#fff';
 
   return (
     <View style={{ width: W, alignItems: 'center' }}>
-      {/* Тело — без overflow:hidden чтобы Ionicons не вытекал в соседний Text */}
-      <View style={{
-        width: W, height: BODY_H,
-        backgroundColor: bodyColor,
-        borderTopLeftRadius: CORNER,
-        borderTopRightRadius: CORNER,
-        alignItems: 'center', justifyContent: 'center',
-      }}>
-        <Ionicons name={iconName as any} size={ICON} color={iconColor} />
+      {/* Изображение - achievement.png с tintColor */}
+      <View style={{ width: W, height: BODY_H, alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <Image
+          source={require('../../assets/images/levels/achivement.png')}
+          style={{ width: W, height: BODY_H, tintColor }}
+          resizeMode="contain"
+        />
+        <View style={{ position: 'absolute', alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name={iconName as any} size={ICON} color={iconColor} />
+        </View>
       </View>
       {/* V-образный низ */}
       <View style={{
@@ -217,7 +214,7 @@ function BadgeShield({
         borderLeftWidth: W / 2, borderRightWidth: W / 2,
         borderTopWidth: TIP_H,
         borderLeftColor: 'transparent', borderRightColor: 'transparent',
-        borderTopColor: tipColor,
+        borderTopColor: tintColor,
         marginTop: -1,
       }} />
     </View>

@@ -196,7 +196,7 @@ export const loadPendingResult = async (): Promise<LeagueResult | null> => {
   } catch { return null; }
 };
 
-const savePendingResult = async (r: LeagueResult) => {
+export const savePendingResult = async (r: LeagueResult) => {
   try { await AsyncStorage.setItem(RESULT_KEY, JSON.stringify(r)); } catch {}
 };
 
@@ -229,7 +229,7 @@ export const submitMyPoints = async (points: number) => {
   // LOCAL: ничего, очки уже в week_leaderboard через addOrUpdateScore
 };
 
-const calculateResult = (state: LeagueState, myWeekPoints: number): LeagueResult => {
+export const calculateResult = (state: LeagueState, myWeekPoints: number): LeagueResult => {
   const updated = state.group
     .map(m => m.isMe ? { ...m, points: myWeekPoints } : m)
     .sort((a, b) => b.points - a.points);

@@ -12,7 +12,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements } from './achievements';
 import { unlockAllFrames } from '../constants/avatars';
-import { checkLeagueOnAppOpen, LeagueResult } from './league_engine';
+import { checkLeagueOnAppOpen, LeagueResult, calculateResult, savePendingResult, loadLeagueState } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import LeagueResultModal from './LeagueResultModal';
 
@@ -182,16 +182,26 @@ export default function SettingsTestersFunctions() {
           text: isUK ? 'Виконати' : 'Выполнить',
           onPress: async () => {
             try {
-              const userName = await AsyncStorage.getItem('user_name') || 'TestUser';
+              // Load current league state
+              const state = await loadLeagueState();
+              if (!state) {
+                Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Ліга не ініціалізована' : 'Лига не инициализирована');
+                return;
+              }
+
+              // Get current week points
               const myWeekPoints = await getMyWeekPoints();
 
-              const result = await checkLeagueOnAppOpen(userName, myWeekPoints);
+              // Force calculate league result (for testing, not checking if week changed)
+              const leagueResult = calculateResult(state, myWeekPoints);
 
-              if (result.result) {
-                setLeagueResult(result.result);
-                setLeagueResultVisible(true);
-              }
-            } catch {
+              // Save as pending so it persists and shows on next app open
+              await savePendingResult(leagueResult);
+
+              // Show the modal immediately
+              setLeagueResult(leagueResult);
+              setLeagueResultVisible(true);
+            } catch (error) {
               Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось виконати конец тижня' : 'Не удалось выполнить конец недели');
             }
           },

@@ -3154,28 +3154,48 @@ function LessonContent({
             <Ionicons name="book-outline" size={26} color={t.textSecond} />
             <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
           </TouchableOpacity>
+
+          {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}
           <TouchableOpacity
             style={{ flex: 1, alignItems: 'center', opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
             onPress={() => {
               hapticTap();
               if (status === 'result') { goNext(); return; }
-              if (settings.hardMode) { handleTypedSubmit(); return; }
-              // When all words selected and autoCheck is off: check the answer
-              if (shuffled.length === 0 && selectedWords.length > 0 && !settings.autoCheck) { handleBgTap(); return; }
-              // Otherwise: undo if words are selected
+              if (settings.hardMode) {
+                const words = typedText.trim().split(/\s+/);
+                words.pop();
+                setTypedText(words.join(' '));
+                return;
+              }
               if (selectedWords.length > 0) { undoLastWord(); return; }
             }}
           >
-            {(() => {
-              const showUndo = status !== 'result' && !settings.hardMode && selectedWords.length > 0;
-              return <>
-                <Ionicons name={status === 'result' ? 'play-forward' : (showUndo ? 'arrow-undo' : 'checkmark-circle-outline')} size={26} color={t.textSecond} />
-                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>
-                  {status === 'result' ? s.lesson.next : (showUndo ? s.lesson.undo : s.lesson.check)}
-                </Text>
-              </>;
-            })()}
+            {status === 'result' ? (
+              <>
+                <Ionicons name="play-forward" size={26} color={t.textSecond} />
+                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.next}</Text>
+              </>
+            ) : (
+              <>
+                <Ionicons name="arrow-undo" size={26} color={t.textSecond} />
+                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
+              </>
+            )}
           </TouchableOpacity>
+
+          {/* Check Button - видна только когда все слова введены и autoCheck выключен */}
+          {!settings.hardMode && shuffled.length === 0 && selectedWords.length > 0 && !settings.autoCheck && status === 'playing' && (
+            <TouchableOpacity
+              style={{ flex: 1, alignItems: 'center' }}
+              onPress={() => {
+                hapticTap();
+                checkAnswer(selectedWords.join(' '));
+              }}
+            >
+              <Ionicons name="checkmark-circle" size={26} color={t.correct} />
+              <Text style={{ color: t.correct, fontSize: f.label, marginTop: 4 }}>{s.lesson.check}</Text>
+            </TouchableOpacity>
+          )}
         </View>
 
         {/* No Energy Modal */}
@@ -3249,6 +3269,7 @@ export default function LessonScreen() {
   const [showEnergyModal, setShowEnergyModal] = useState(false);
   const [currentEnergy, setCurrentEnergy] = useState(5); // для отображения молний
   const [shouldShake, setShouldShake] = useState(false); // Trigger shake animation when energy is empty
+  const [testerNoLimits, setTesterNoLimits] = useState(false); // Тестерская функция - без ограничений
   // ==================== NEW: Intro & Encouragement Screens ====================
   const [showIntroScreens, setShowIntroScreens] = useState(false);
   const [showEncouragementScreen, setShowEncouragementScreen] = useState(false);
@@ -3353,6 +3374,15 @@ export default function LessonScreen() {
 
   useEffect(() => {
     setFailedTapCount(0);
+    // Перезагружаем доступные кнопки при смене фразы/ячейки
+    if (status === 'playing') {
+      const p = LESSON_DATA[cellIndex % LESSON_DATA.length];
+      setShuffled(getPerWordDistracts(p, phraseWordIdx));
+      setSelectedWords([]);
+      setTypedText('');
+      setPhraseWordIdx(0);
+      setContrExpanded(null);
+    }
   }, [cellIndex]);
 
   const loadData = async () => {
@@ -3364,10 +3394,19 @@ export default function LessonScreen() {
         return; // Don't load lesson yet, show intro first
       }
 
-      // Проверяем энергию ПЕРЕД началом урока
-      const energyState = await checkAndRecover();
-      // Инициализируем энергию для отображения молний
-      setCurrentEnergy(energyState.current);
+      // Проверяем тестерскую функцию "Без ограничений"
+      const noLimits = await AsyncStorage.getItem('tester_no_limits');
+      setTesterNoLimits(noLimits === 'true');
+
+      // Проверяем энергию ПЕРЕД началом урока (только если НЕ включена тестерская функция без ограничений)
+      if (noLimits !== 'true') {
+        const energyState = await checkAndRecover();
+        // Инициализируем энергию для отображения молний
+        setCurrentEnergy(energyState.current);
+      } else {
+        // Если включена функция без ограничений, показываем полную энергию
+        setCurrentEnergy(5);
+      }
 
       // ==================== NEW: Initialize to-be hint for phrase 1 ====================
       setShowToBeHint(true);
@@ -3643,8 +3682,8 @@ export default function LessonScreen() {
   const handleWordPress = (word: string) => {
     if (status === 'result') return;
 
-    // Check if energy is empty - show shake animation instead of proceeding
-    if (currentEnergy === 0) {
+    // Check if energy is empty - show shake animation instead of proceeding (but skip if tester has no limits)
+    if (currentEnergy === 0 && !testerNoLimits) {
       setShouldShake(true);
       setTimeout(() => setShouldShake(false), 300);
 

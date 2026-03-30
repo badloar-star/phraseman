@@ -638,5 +638,20 @@ export const getPendingNotifications = async (): Promise<Achievement[]> => {
   } catch { return []; }
 };
 
+/** Разблокировать все достижения (для тестеров) */
+export const unlockAllAchievements = async (): Promise<void> => {
+  try {
+    const states = await loadAchievementStates();
+    const now = new Date().toISOString();
+    // Разблокиваем все достижения
+    states.forEach(state => {
+      if (state.unlockedAt === null) {
+        state.unlockedAt = now;
+      }
+    });
+    await saveStates(states);
+  } catch {}
+};
+
 // Required by Expo Router — not a screen
 export default {};

@@ -10,6 +10,8 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
+import ContentWrap from '../components/ContentWrap';
+import { unlockAllAchievements } from './achievements';
 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
@@ -17,7 +19,6 @@ export default function SettingsTestersFunctions() {
   const { lang } = useLang();
   const isUK = lang === 'uk';
 
-  const [premiumEnabled, setPremiumEnabled] = useState(false);
   const [noLimitsEnabled, setNoLimitsEnabled] = useState(false);
   const [energyDisabled, setEnergyDisabled] = useState(false);
   const [energyInstantRecovery, setEnergyInstantRecovery] = useState(false);
@@ -30,13 +31,11 @@ export default function SettingsTestersFunctions() {
   // Save settings to AsyncStorage
   const loadSettings = async () => {
     try {
-      const [premium, noLimits, noEnergy, instantEnergy] = await AsyncStorage.multiGet([
-        'tester_premium_enabled',
+      const [noLimits, noEnergy, instantEnergy] = await AsyncStorage.multiGet([
         'tester_no_limits',
         'tester_energy_disabled',
         'tester_energy_instant_recovery',
       ]);
-      setPremiumEnabled(premium[1] === 'true');
       setNoLimitsEnabled(noLimits[1] === 'true');
       setEnergyDisabled(noEnergy[1] === 'true');
       setEnergyInstantRecovery(instantEnergy[1] === 'true');
@@ -47,18 +46,6 @@ export default function SettingsTestersFunctions() {
     try {
       await AsyncStorage.setItem(key, String(value));
     } catch {}
-  };
-
-  const togglePremium = async (val: boolean) => {
-    doHaptic();
-    setPremiumEnabled(val);
-    await saveSettings('tester_premium_enabled', val);
-    if (val) {
-      await AsyncStorage.setItem('premium_active', 'true');
-      await AsyncStorage.setItem('premium_plan', 'yearly');
-    } else {
-      await AsyncStorage.setItem('premium_active', 'false');
-    }
   };
 
   const toggleNoLimits = async (val: boolean) => {
@@ -102,7 +89,7 @@ export default function SettingsTestersFunctions() {
     );
   };
 
-  const unlockAllAchievements = async () => {
+  const unlockAllAchievementsHandler = async () => {
     doHaptic();
     Alert.alert(
       isUK ? 'Разблокировать все?' : 'Разблокировать все?',
@@ -113,8 +100,8 @@ export default function SettingsTestersFunctions() {
           text: isUK ? 'Разблокировать' : 'Разблокировать',
           onPress: async () => {
             try {
-              await AsyncStorage.setItem('tester_all_achievements_unlocked', 'true');
-              await AsyncStorage.setItem('tester_all_frames_unlocked', 'true');
+              // Разблокиваем все достижения в базе данных
+              await unlockAllAchievements();
               Alert.alert('OK', isUK ? 'Все разблокировано' : 'Все разблокировано');
             } catch {
               Alert.alert('Ошибка', isUK ? 'Ошибка разблокировки' : 'Ошибка разблокировки');
@@ -164,22 +151,23 @@ export default function SettingsTestersFunctions() {
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
-          <View style={{ paddingHorizontal: 20, paddingTop: 14, paddingBottom: 4 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, fontWeight: 'bold' }}>
-              {isUK ? 'Функції для тестерів' : 'Функции для тестеров'}
-            </Text>
+        <ContentWrap>
+          {/* Header with Back Button */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+            </TouchableOpacity>
+            <View style={{ flex: 1, marginLeft: 8 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
+                {isUK ? 'Функції для тестерів' : 'Функции для тестеров'}
+              </Text>
+            </View>
           </View>
+        </ContentWrap>
+
+        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
 
           <SectionTitle title={isUK ? 'Активи' : 'АКТИВЫ'} />
-          <ToggleRow
-            icon="diamond-outline"
-            label={isUK ? 'Premium функції' : 'Premium функции'}
-            sub={isUK ? 'Активовано' : 'Активировано'}
-            value={premiumEnabled}
-            onToggle={togglePremium}
-          />
-
           <ToggleRow
             icon="lock-open-outline"
             label={isUK ? 'Без обмежень' : 'Без ограничений'}
@@ -217,7 +205,7 @@ export default function SettingsTestersFunctions() {
             icon="star-outline"
             label={isUK ? 'Розблокувати все' : 'Разблокировать всё'}
             sub={isUK ? 'Досягнення та рамки' : 'Достижения и рамки'}
-            onPress={unlockAllAchievements}
+            onPress={unlockAllAchievementsHandler}
           />
         </ScrollView>
       </SafeAreaView>

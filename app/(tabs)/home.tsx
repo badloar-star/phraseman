@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
-  ScrollView, Animated, Dimensions, Alert,
+  ScrollView, Animated, Dimensions, Alert, Image,
 } from 'react-native';
 
 import { useRouter } from 'expo-router';
@@ -620,8 +620,12 @@ export default function HomeScreen() {
                     onPress={()=>go(item.path)}
                     style={{ flex:1, backgroundColor:t.bgCard, borderRadius:20, borderWidth:0.5, borderColor:t.border, padding:20, alignItems:'center', justifyContent:'center', minHeight:130 }}
                   >
-                    <View style={{ width:48, height:48, borderRadius:14, backgroundColor:item.iconColor+'22', justifyContent:'center', alignItems:'center', marginBottom:10 }}>
-                      <Ionicons name={item.iconName} size={26} color={item.iconColor} />
+                    <View style={{ width:60, height:60, borderRadius:16, backgroundColor:item.iconColor+'22', justifyContent:'center', alignItems:'center', marginBottom:10 }}>
+                      {item.label === (isUK ? 'Клуб' : 'Клуб') && engineLeague?.imageUri ? (
+                        <Image source={engineLeague.imageUri} style={{ width:48, height:48, borderRadius:12 }} resizeMode="contain" />
+                      ) : (
+                        <Ionicons name={item.iconName} size={32} color={item.iconColor} />
+                      )}
                     </View>
                     <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700', textAlign:'center', marginBottom:4 }}>{item.label}</Text>
                     {item.isTasksBlock ? (

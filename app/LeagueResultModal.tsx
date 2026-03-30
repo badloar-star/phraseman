@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   View, Text, Modal, Animated, TouchableOpacity,
-  Dimensions, ScrollView, Share,
+  Dimensions, ScrollView,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { LeagueResult, LEAGUES, clearPendingResult } from './league_engine';
-import { STORE_URL } from './config';
 
 const { width: W, height: H } = Dimensions.get('window');
 const MEDALS = ['🥇', '🥈', '🥉'];
@@ -113,10 +112,10 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
       : (isUK ? 'Залишаєшся в клубі' : 'Остаёшься в клубе');
 
   const btnText = result.promoted
-    ? (isUK ? '🚀 Вперед у новий клуб!' : '🚀 Вперёд в новый клуб!')
+    ? (isUK ? '✅ Вперед!' : '✅ Вперед!')
     : result.demoted
-      ? (isUK ? 'Наступного тижня краще!' : 'В следующий раз лучше!')
-      : (isUK ? 'Продовжити' : 'Продолжить');
+      ? (isUK ? '✅ Розумію' : '✅ Понял')
+      : (isUK ? '✅ Продовжити' : '✅ Продолжить');
 
   return (
     <Modal visible={visible} transparent animationType="fade">
@@ -239,29 +238,13 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
           </Animated.View>
 
           {/* Кнопка */}
-          <Animated.View style={{ opacity: btnOpacity, paddingHorizontal:20, paddingTop:14, gap:10 }}>
+          <Animated.View style={{ opacity: btnOpacity, paddingHorizontal:20, paddingTop:14 }}>
             <TouchableOpacity
               style={{ backgroundColor: outcomeColor, borderRadius:16, padding:16, alignItems:'center' }}
               onPress={handleClose}
             >
               <Text style={{ color:'#fff', fontSize:17, fontWeight:'700' }}>{btnText}</Text>
             </TouchableOpacity>
-            {result.promoted && (
-              <TouchableOpacity
-                style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', gap:8, padding:10 }}
-                onPress={async () => {
-                  const msg = isUK
-                    ? `Підвищений до ${newLeague.nameUK} у Phraseman! 🏆\n${STORE_URL}`
-                    : `Повышен до ${newLeague.nameRU} в Phraseman! 🏆\n${STORE_URL}`;
-                  try { await Share.share({ message: msg }); } catch {}
-                }}
-              >
-                <Ionicons name="share-outline" size={16} color={t.textSecond}/>
-                <Text style={{ color:t.textSecond, fontSize:14 }}>
-                  {isUK ? 'Поділитися' : 'Поделиться'}
-                </Text>
-              </TouchableOpacity>
-            )}
           </Animated.View>
 
         </View>

@@ -37,7 +37,7 @@ const GIFS: Record<number, any> = {
   32: require('../assets/images/levels/32.png'),
   33: require('../assets/images/levels/33.png'),
   34: require('../assets/images/levels/34.png'),
-  35: require('../assets/images/levels/35.png'),
+  // 35: require('../assets/images/levels/35.png'), // MISSING FILE - fallback to 34
   36: require('../assets/images/levels/36.png'),
   37: require('../assets/images/levels/37.png'),
   38: require('../assets/images/levels/38.png'),

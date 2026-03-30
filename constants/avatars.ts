@@ -56,7 +56,7 @@ export const AVATARS: AvatarDef[] = [
   { image: require('../assets/images/levels/32.png'), unlockLevel: 32 },
   { image: require('../assets/images/levels/33.png'), unlockLevel: 33 },
   { image: require('../assets/images/levels/34.png'), unlockLevel: 34 },
-  { image: require('../assets/images/levels/35.png'), unlockLevel: 35 },
+  // { image: require('../assets/images/levels/35.png'), unlockLevel: 35 }, // MISSING FILE - use fallback
   { image: require('../assets/images/levels/36.png'), unlockLevel: 36 },
   { image: require('../assets/images/levels/37.png'), unlockLevel: 37 },
   { image: require('../assets/images/levels/38.png'), unlockLevel: 38 },

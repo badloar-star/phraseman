@@ -15,68 +15,63 @@ export interface FrameDef {
 }
 
 export interface AvatarDef {
-  emoji: string;
+  image: string; // path to PNG file in assets/images/levels/
   unlockLevel: number;
 }
 
 // ── Аватарки — разблокируются по уровню ────────────────────────────────────
 export const AVATARS: AvatarDef[] = [
-  // Tier 1 — уровни 1–9
-  { emoji: '🐣', unlockLevel: 1 },
-  { emoji: '🐤', unlockLevel: 2 },
-  { emoji: '🐧', unlockLevel: 3 },
-  { emoji: '🦊', unlockLevel: 4 },
-  { emoji: '🐸', unlockLevel: 5 },
-  { emoji: '🐙', unlockLevel: 6 },
-  { emoji: '🦝', unlockLevel: 7 },
-  { emoji: '🐺', unlockLevel: 8 },
-  { emoji: '🦇', unlockLevel: 9 },
-  // Tier 2 — уровни 10–19
-  { emoji: '🦁', unlockLevel: 10 },
-  { emoji: '🐯', unlockLevel: 11 },
-  { emoji: '🐻', unlockLevel: 12 },
-  { emoji: '🦋', unlockLevel: 13 },
-  { emoji: '🦜', unlockLevel: 14 },
-  { emoji: '🦚', unlockLevel: 15 },
-  { emoji: '🦩', unlockLevel: 16 },
-  { emoji: '🦢', unlockLevel: 17 },
-  { emoji: '🦅', unlockLevel: 18 },
-  { emoji: '🐉', unlockLevel: 19 },
-  // Tier 3 — уровни 20–29
-  { emoji: '🦄', unlockLevel: 20 },
-  { emoji: '🔥', unlockLevel: 21 },
-  { emoji: '⚡', unlockLevel: 22 },
-  { emoji: '🌊', unlockLevel: 23 },
-  { emoji: '🌟', unlockLevel: 24 },
-  { emoji: '💫', unlockLevel: 25 },
-  { emoji: '🎯', unlockLevel: 26 },
-  { emoji: '🏆', unlockLevel: 27 },
-  { emoji: '🌈', unlockLevel: 28 },
-  { emoji: '🎪', unlockLevel: 29 },
-  // Tier 4 — уровни 30–39
-  { emoji: '💎', unlockLevel: 30 },
-  { emoji: '👑', unlockLevel: 31 },
-  { emoji: '🌙', unlockLevel: 32 },
-  { emoji: '🎓', unlockLevel: 33 },
-  { emoji: '🧠', unlockLevel: 34 },
-  { emoji: '💡', unlockLevel: 35 },
-  { emoji: '🏅', unlockLevel: 36 },
-  { emoji: '🌺', unlockLevel: 37 },
-  { emoji: '🌸', unlockLevel: 38 },
-  { emoji: '🎭', unlockLevel: 39 },
-  // Tier 5 — уровни 40–49
-  { emoji: '🌌', unlockLevel: 40 },
-  { emoji: '🌠', unlockLevel: 41 },
-  { emoji: '🎆', unlockLevel: 42 },
-  { emoji: '🔮', unlockLevel: 43 },
-  { emoji: '✨', unlockLevel: 44 },
-  { emoji: '🧿', unlockLevel: 45 },
-  { emoji: '🪄', unlockLevel: 46 },
-  { emoji: '🌀', unlockLevel: 47 },
-  { emoji: '🎇', unlockLevel: 48 },
-  { emoji: '🪐', unlockLevel: 49 },
-  // Tier 6 — уровень 50
-  { emoji: '👾', unlockLevel: 50 },
+  // Уровни 1–50 — используют PNG изображения из assets/images/levels/
+  { image: require('../assets/images/levels/1.png'), unlockLevel: 1 },
+  { image: require('../assets/images/levels/2.png'), unlockLevel: 2 },
+  { image: require('../assets/images/levels/3.png'), unlockLevel: 3 },
+  { image: require('../assets/images/levels/4.png'), unlockLevel: 4 },
+  { image: require('../assets/images/levels/5.png'), unlockLevel: 5 },
+  { image: require('../assets/images/levels/6.png'), unlockLevel: 6 },
+  { image: require('../assets/images/levels/7.png'), unlockLevel: 7 },
+  { image: require('../assets/images/levels/8.png'), unlockLevel: 8 },
+  { image: require('../assets/images/levels/9.png'), unlockLevel: 9 },
+  { image: require('../assets/images/levels/10.png'), unlockLevel: 10 },
+  { image: require('../assets/images/levels/11.png'), unlockLevel: 11 },
+  { image: require('../assets/images/levels/12.png'), unlockLevel: 12 },
+  { image: require('../assets/images/levels/13.png'), unlockLevel: 13 },
+  { image: require('../assets/images/levels/14.png'), unlockLevel: 14 },
+  { image: require('../assets/images/levels/15.png'), unlockLevel: 15 },
+  { image: require('../assets/images/levels/16.png'), unlockLevel: 16 },
+  { image: require('../assets/images/levels/17.png'), unlockLevel: 17 },
+  { image: require('../assets/images/levels/18.png'), unlockLevel: 18 },
+  { image: require('../assets/images/levels/19.png'), unlockLevel: 19 },
+  { image: require('../assets/images/levels/20.png'), unlockLevel: 20 },
+  { image: require('../assets/images/levels/21.png'), unlockLevel: 21 },
+  { image: require('../assets/images/levels/22.png'), unlockLevel: 22 },
+  { image: require('../assets/images/levels/23.png'), unlockLevel: 23 },
+  { image: require('../assets/images/levels/24.png'), unlockLevel: 24 },
+  { image: require('../assets/images/levels/25.png'), unlockLevel: 25 },
+  { image: require('../assets/images/levels/26.png'), unlockLevel: 26 },
+  { image: require('../assets/images/levels/27.png'), unlockLevel: 27 },
+  { image: require('../assets/images/levels/28.png'), unlockLevel: 28 },
+  { image: require('../assets/images/levels/29.png'), unlockLevel: 29 },
+  { image: require('../assets/images/levels/30.png'), unlockLevel: 30 },
+  { image: require('../assets/images/levels/31.png'), unlockLevel: 31 },
+  { image: require('../assets/images/levels/32.png'), unlockLevel: 32 },
+  { image: require('../assets/images/levels/33.png'), unlockLevel: 33 },
+  { image: require('../assets/images/levels/34.png'), unlockLevel: 34 },
+  { image: require('../assets/images/levels/35.png'), unlockLevel: 35 },
+  { image: require('../assets/images/levels/36.png'), unlockLevel: 36 },
+  { image: require('../assets/images/levels/37.png'), unlockLevel: 37 },
+  { image: require('../assets/images/levels/38.png'), unlockLevel: 38 },
+  { image: require('../assets/images/levels/39.png'), unlockLevel: 39 },
+  { image: require('../assets/images/levels/40.png'), unlockLevel: 40 },
+  { image: require('../assets/images/levels/41.png'), unlockLevel: 41 },
+  { image: require('../assets/images/levels/42.png'), unlockLevel: 42 },
+  { image: require('../assets/images/levels/43.png'), unlockLevel: 43 },
+  { image: require('../assets/images/levels/44.png'), unlockLevel: 44 },
+  { image: require('../assets/images/levels/45.png'), unlockLevel: 45 },
+  { image: require('../assets/images/levels/46.png'), unlockLevel: 46 },
+  { image: require('../assets/images/levels/47.png'), unlockLevel: 47 },
+  { image: require('../assets/images/levels/48.png'), unlockLevel: 48 },
+  { image: require('../assets/images/levels/49.png'), unlockLevel: 49 },
+  { image: require('../assets/images/levels/50.png'), unlockLevel: 50 },
 ];
 
 // ── Рамки — 17 штук, все анимированные ──────────────────────────────────────
@@ -199,6 +194,18 @@ export const getBestFrameForLevel = (level: number): FrameDef => {
 /** Лучший значок доступный на данном уровне (возвращает номер уровня как строку) */
 export const getBestAvatarForLevel = (level: number): string =>
   String(Math.max(1, Math.min(50, level)));
+
+/** Получить аватарку по индексу (1-50) */
+export const getAvatarByIndex = (index: number): AvatarDef | undefined => {
+  if (index < 1 || index > AVATARS.length) return undefined;
+  return AVATARS[index - 1]; // AVATARS[0] = level 1
+};
+
+/** Получить image аватарки по индексу (1-50) */
+export const getAvatarImageByIndex = (index: number): any | undefined => {
+  const avatar = getAvatarByIndex(index);
+  return avatar?.image;
+};
 
 // ── Боты: детерминированный уровень + аватарка/рамка по имени ───────────────
 // weekBase → базовый уровень (логарифмически)

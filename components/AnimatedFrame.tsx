@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, Animated, Easing } from 'react-native';
+import { View, Text, Animated, Easing, Image } from 'react-native';
 import { getFrameById } from '../constants/avatars';
 import LevelBadge from './LevelBadge';
 
 interface Props {
-  emoji:     string;
+  emoji?:    string;     // emoji (deprecated) - для обратной совместимости
+  image?:    any;        // require() для PNG аватарки
   frameId:   string;
   size?:     number;
   style?:    any;
@@ -19,14 +20,14 @@ const RAINBOW_COLORS = [
   '#00F5FF','#7B2FBE','#A855F7','#FF006E',
 ];
 
-export default function AnimatedFrame({ emoji, frameId, size = 44, style, fontSize, noAvatar = false, bgColor }: Props) {
+export default function AnimatedFrame({ emoji, image, frameId, size = 44, style, fontSize, noAvatar = false, bgColor }: Props) {
   const frame = getFrameById(frameId);
 
   const BW        = Math.max(2, Math.round(size * 0.055));
   const outerW    = size + BW * 2;
   const containerW = outerW + 20;
   const containerH = outerW + 20;
-  const isLevel = /^\d+$/.test(emoji);
+  const isLevel = emoji && /^\d+$/.test(emoji);
 
   // ── Animated values ───────────────────────────────────────────────────────
   const glowAnim    = useRef(new Animated.Value(0)).current;
@@ -266,8 +267,10 @@ export default function AnimatedFrame({ emoji, frameId, size = 44, style, fontSi
             borderRadius: outerW / 2, overflow: 'hidden',
             alignItems: 'center', justifyContent: 'center',
           }}>
-            {isLevel
-              ? <LevelBadge level={parseInt(emoji)} size={Math.round(outerW * 0.86)} />
+            {image
+              ? <Image source={image} style={{ width: outerW, height: outerW, borderRadius: outerW / 2 }} />
+              : isLevel
+              ? <LevelBadge level={parseInt(emoji!)} size={Math.round(outerW * 0.86)} />
               : <Text style={{ fontSize: fontSize ?? Math.round(outerW * 0.5), lineHeight: Math.round(outerW * 0.5) * 1.2 }}>{emoji}</Text>
             }
           </View>

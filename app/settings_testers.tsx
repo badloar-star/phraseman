@@ -107,12 +107,12 @@ export default function SettingsTestersFunctions() {
   const triggerEndOfWeek = async () => {
     doHaptic();
     Alert.alert(
-      isUK ? 'Конец недели?' : 'Конец недели?',
-      isUK ? 'Это спровоцирует движение между клубами' : 'Это спровоцирует движение между клубами',
+      isUK ? 'Конец тижня?' : 'Конец недели?',
+      isUK ? 'Це спровокує рух між клубами' : 'Это спровоцирует движение между клубами',
       [
-        { text: isUK ? 'Отмена' : 'Отмена', style: 'cancel' },
+        { text: isUK ? 'Скасувати' : 'Отмена', style: 'cancel' },
         {
-          text: isUK ? 'Выполнить' : 'Выполнить',
+          text: isUK ? 'Виконати' : 'Выполнить',
           onPress: async () => {
             try {
               const userName = await AsyncStorage.getItem('user_name') || 'TestUser';
@@ -126,21 +126,21 @@ export default function SettingsTestersFunctions() {
                 let msg = '';
                 if (promoted) {
                   msg = isUK
-                    ? `Повышение! 🎉 Теперь вы в ${newClub.nameUK}`
+                    ? `Підвищення! 🎉 Тепер ви в ${newClub.nameUK}`
                     : `Повышение! 🎉 Теперь вы в ${newClub.nameRU}`;
                 } else if (demoted) {
                   msg = isUK
-                    ? `Понижение 📉 Теперь вы в ${newClub.nameUK}`
+                    ? `Пониження 📉 Тепер ви в ${newClub.nameUK}`
                     : `Понижение 📉 Теперь вы в ${newClub.nameRU}`;
                 } else {
                   msg = isUK
-                    ? `На месте 📍 Остались в ${newClub.nameUK}`
+                    ? `На місці 📍 Залишилися в ${newClub.nameUK}`
                     : `На месте 📍 Остались в ${newClub.nameRU}`;
                 }
                 Alert.alert('OK', msg);
               }
-            } catch (err) {
-              Alert.alert('Ошибка', isUK ? 'Не удалось выполнить конец недели' : 'Не удалось выполнить конец недели');
+            } catch {
+              Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось виконати конец тижня' : 'Не удалось выполнить конец недели');
             }
           },
         },

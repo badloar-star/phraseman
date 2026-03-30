@@ -36,7 +36,7 @@ export const L1_SEMANTIC_POOLS = {
   intensifiers: ['very', 'so', 'such'],
 
   // Other auxiliaries/structures (for confusing answers)
-  confusing_words: ["don't", "doesn't", "didn't", "won't", "can't"],
+  confusing_words: ["not", "nothing", "never", "still", "also"],
 };
 
 // ════════════════════════════════════════════════════════════════════════════════════

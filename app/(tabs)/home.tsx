@@ -32,7 +32,6 @@ import { loadAllMedals, countMedals } from '../medal_utils';
 // Используется только для получения количества — сами карточки рендерит review.tsx.
 import { getDueItems } from '../active_recall';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
-import DailyTreasureChest from '../../components/DailyTreasureChest';
 import ActiveBoostBar from '../../components/ActiveBoostBar';
 import { getEnergyState, checkAndRecover } from '../energy_system';
 
@@ -105,6 +104,7 @@ export default function HomeScreen() {
   const [userLevel, setUserLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1');
   const [energyCount, setEnergyCount] = useState(5);
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string>('');
+  const [shouldShake, setShouldShake] = useState(false);
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const diagChecked = true;
@@ -462,6 +462,7 @@ export default function HomeScreen() {
                         themeColor={i < energyCount ? t.gold : t.textGhost}
                         size={18}
                         animateChange={true}
+                        shouldShake={shouldShake}
                       />
                     </View>
                   ))}
@@ -655,12 +656,6 @@ export default function HomeScreen() {
               </View>
             ))}
           </View>
-
-          {/* ── ЕЖЕДНЕВНЫЙ СУНДУК ── */}
-          <DailyTreasureChest isPremium={isPremium} onBonusXPEarned={(bonus) => {
-            const newXP = totalXP + bonus;
-            setTotalXP(newXP);
-          }} />
 
           {/* ── ФРАЗА ДНЯ ── */}
           <DailyPhraseCard userLevel={userLevel} />

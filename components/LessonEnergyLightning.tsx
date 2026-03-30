@@ -7,6 +7,7 @@ import { getTimeUntilNextRecovery, formatTimeUntilRecovery } from '../app/energy
 interface Props {
   energyCount: number; // 0-5
   maxEnergy?: number; // default 5
+  shouldShake?: boolean; // Trigger shake animation when energy runs out
 }
 
 /**
@@ -14,7 +15,7 @@ interface Props {
  * Displays 5 stacked energy icons representing energy units
  * Icons overlap for compact layout (50% offset)
  */
-export default function LessonEnergyLightning({ energyCount, maxEnergy = 5 }: Props) {
+export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
   const { theme: t } = useTheme();
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
 
@@ -49,6 +50,7 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5 }: Pr
               themeColor={i < energyCount ? t.gold : t.textGhost}
               size={18}
               animateChange={true}
+              shouldShake={shouldShake}
             />
           </View>
         ))}

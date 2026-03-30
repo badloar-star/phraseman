@@ -1,10 +1,9 @@
 /**
  * Referral Program System
- * Players earn 50 Phrasemen by inviting friends via unique referral codes
+ * Players earn 7-day premium access by inviting friends via unique referral codes
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { rewardReferral } from './phrasemen_integration';
 
 export interface ReferralCode {
   code: string;           // "PH4RM2N5X9" (10 chars, alphanumeric)
@@ -24,7 +23,7 @@ export interface ReferralState {
 const REFERRAL_STATE_KEY = 'referral_state_v1';
 const REFERRAL_HISTORY_KEY = 'referral_history_v1'; // Track all referral transactions
 const CODE_EXPIRY_DAYS = 365;
-const REFERRAL_BONUS_XP = 50; // Phrasemen earned per successful referral
+const REFERRAL_PREMIUM_DAYS = 7; // Days of premium access per successful referral
 
 /**
  * Generate unique 10-character alphanumeric referral code
@@ -60,6 +59,31 @@ function getExpirationDate(): string {
   const month = String(now.getMonth() + 1).padStart(2, '0');
   const day = String(now.getDate()).padStart(2, '0');
   return `${year}-${month}-${day}`;
+}
+
+/**
+ * Award 7-day premium access to referrer
+ */
+async function awardPremiumBonus(playerName: string): Promise<void> {
+  try {
+    const expiry = Date.now() + REFERRAL_PREMIUM_DAYS * 24 * 60 * 60 * 1000;
+    await AsyncStorage.setItem('premium_plan', 'referral_bonus');
+    await AsyncStorage.setItem('premium_expiry', String(expiry));
+    await AsyncStorage.setItem('premium_active', 'true');
+
+    // Log the referral transaction for history
+    const history = await AsyncStorage.getItem(`${REFERRAL_HISTORY_KEY}_${playerName}`) || '[]';
+    const historyArray = JSON.parse(history);
+    historyArray.push({
+      date: new Date().toISOString(),
+      type: 'premium_bonus',
+      days: REFERRAL_PREMIUM_DAYS,
+      expiresAt: new Date(expiry).toISOString(),
+    });
+    await AsyncStorage.setItem(`${REFERRAL_HISTORY_KEY}_${playerName}`, JSON.stringify(historyArray));
+  } catch (e) {
+    console.warn('Failed to award premium bonus:', e);
+  }
 }
 
 /**
@@ -200,11 +224,11 @@ export async function redeemReferralCode(
     // Mark code as used by this player
     await AsyncStorage.setItem(usedKey, newPlayerName);
 
-    // Award referrer 50 Phrasemen using the phrasemen system
+    // Award referrer 7-day premium access
     try {
-      await rewardReferral(newPlayerName);
+      await awardPremiumBonus(referrerName);
     } catch (e) {
-      console.warn('Failed to reward referral:', e);
+      console.warn('Failed to award premium bonus:', e);
       // Continue anyway - the transaction is recorded even if the reward fails
     }
 
@@ -222,7 +246,7 @@ export async function redeemReferralCode(
     history.push({
       date: getTodayString(),
       newPlayer: newPlayerName,
-      bonus: REFERRAL_BONUS_XP,
+      bonus: REFERRAL_PREMIUM_DAYS,
     });
 
     await AsyncStorage.setItem(historyKey, JSON.stringify(history));
@@ -230,7 +254,7 @@ export async function redeemReferralCode(
     return {
       success: true,
       referrerName,
-      bonusAwarded: REFERRAL_BONUS_XP,
+      bonusAwarded: REFERRAL_PREMIUM_DAYS,
     };
   } catch (e) {
     console.warn('redeemReferralCode error:', e);

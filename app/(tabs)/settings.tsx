@@ -433,8 +433,8 @@ export default function SettingsMain() {
                   </Text>
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
                     {isUK
-                      ? `${referralStats.totalReferrals} запрошень · +${referralStats.totalBonus} Фразменів`
-                      : `${referralStats.totalReferrals} приглашений · +${referralStats.totalBonus} Phrasemen`}
+                      ? `${referralStats.totalReferrals} запрошень · +${referralStats.totalBonus} днів премиум`
+                      : `${referralStats.totalReferrals} приглашений · +${referralStats.totalBonus} дней премиум`}
                   </Text>
                 </View>
               )}

@@ -7,6 +7,7 @@ interface EnergyIconProps {
   themeColor: string;
   size?: number; // default 20
   animateChange?: boolean;
+  shouldShake?: boolean; // Trigger shake animation when energy runs out
 }
 
 export default function EnergyIcon({
@@ -14,8 +15,10 @@ export default function EnergyIcon({
   themeColor,
   size = 20,
   animateChange = true,
+  shouldShake = false,
 }: EnergyIconProps) {
   const opacityAnim = useRef(new Animated.Value(filled ? 1 : 0.4)).current;
+  const shakeAnim = useRef(new Animated.Value(0)).current;
 
   // Animate when filled state changes
   useEffect(() => {
@@ -30,6 +33,34 @@ export default function EnergyIcon({
     }
   }, [filled, animateChange, opacityAnim]);
 
+  // Shake animation when shouldShake is triggered
+  useEffect(() => {
+    if (shouldShake) {
+      Animated.sequence([
+        Animated.timing(shakeAnim, {
+          toValue: -5,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: 5,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: -5,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+        Animated.timing(shakeAnim, {
+          toValue: 0,
+          duration: 50,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+  }, [shouldShake, shakeAnim]);
+
   // Lightning bolt SVG path (normalized to 24×24 viewBox)
   const lightningPath =
     'M12 2 L6 12 L10 12 L8 22 L16 12 L12 12 L14 2 Z';
@@ -40,6 +71,7 @@ export default function EnergyIcon({
         width: size,
         height: size * 1.2,
         opacity: opacityAnim,
+        transform: [{ translateX: shakeAnim }],
       }}
     >
       <Svg

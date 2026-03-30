@@ -80,7 +80,7 @@ const LESSON_1_PHRASES: LessonPhrase[] = [
     russian: 'Ты готов',
     ukrainian: 'Ти готовий',
     words: [
-      { text: 'You', correct: 'You', distractors: ['your', "you're", 'yours', 'u', 'youth'], category: 'pronoun' },
+      { text: 'You', correct: 'You', distractors: ['your', "yells", 'yours', 'u', 'youth'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'ready', correct: 'ready', distractors: ['read', 'red', 'road', 'real', 'already'], category: 'adjective' },
     ],
@@ -158,7 +158,7 @@ const LESSON_1_PHRASES: LessonPhrase[] = [
     russian: 'Вы правы',
     ukrainian: 'Ви праві',
     words: [
-      { text: 'You', correct: 'You', distractors: ['your', "you're", 'u', 'youth', 'year'], category: 'pronoun' },
+      { text: 'You', correct: 'You', distractors: ['your', "yells", 'u', 'youth', 'year'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'right', correct: 'right', distractors: ['write', 'light', 'night', 'bright', 'ride'], category: 'adjective' },
     ],
@@ -338,7 +338,7 @@ const LESSON_1_PHRASES: LessonPhrase[] = [
     russian: 'Ты очень добрый',
     ukrainian: 'Ти дуже добрий',
     words: [
-      { text: 'You', correct: 'You', distractors: ['your', "you're", 'u', 'youth', 'year'], category: 'pronoun' },
+      { text: 'You', correct: 'You', distractors: ['your', "yells", 'u', 'youth', 'year'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'very', correct: 'very', distractors: ['vary', 'every', 'valley', 'view', 'victory'], category: 'adverb' },
       { text: 'kind', correct: 'kind', distractors: ['king', 'kids', 'kiss', 'kill', 'mind'], category: 'adjective' },
@@ -397,7 +397,7 @@ const LESSON_1_PHRASES: LessonPhrase[] = [
     russian: 'Ты в безопасности',
     ukrainian: 'Ти в безпеці',
     words: [
-      { text: 'You', correct: 'You', distractors: ['your', "you're", 'yours', 'u', 'youth'], category: 'pronoun' },
+      { text: 'You', correct: 'You', distractors: ['your', "yells", 'yours', 'u', 'youth'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'safe', correct: 'safe', distractors: ['save', 'salt', 'self', 'soft', 'side'], category: 'adjective' },
     ],
@@ -459,7 +459,7 @@ const LESSON_1_PHRASES: LessonPhrase[] = [
     russian: 'Ты прав',
     ukrainian: 'Ти правий',
     words: [
-      { text: 'You', correct: 'You', distractors: ['your', "you're", 'yours', 'u', 'youth'], category: 'pronoun' },
+      { text: 'You', correct: 'You', distractors: ['your', "yells", 'yours', 'u', 'youth'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'right', correct: 'right', distractors: ['write', 'light', 'night', 'bright', 'ride'], category: 'adjective' },
     ],
@@ -532,7 +532,7 @@ const LESSON_1_PHRASES: LessonPhrase[] = [
     russian: 'Вы в списке',
     ukrainian: 'Ви у списку',
     words: [
-      { text: 'You', correct: 'You', distractors: ['your', "you're", 'yours', 'u', 'youth'], category: 'pronoun' },
+      { text: 'You', correct: 'You', distractors: ['your', "yells", 'yours', 'u', 'youth'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'of', 'to', 'by'], category: 'preposition' },
       { text: 'the', correct: 'the', distractors: ['then', 'than', 'that', 'this', 'thus'], category: 'article' },
@@ -583,7 +583,7 @@ const LESSON_1_PHRASES: LessonPhrase[] = [
     russian: 'Вы в безопасности',
     ukrainian: 'Ви в безпеці',
     words: [
-      { text: 'You', correct: 'You', distractors: ['your', "you're", 'yours', 'u', 'youth'], category: 'pronoun' },
+      { text: 'You', correct: 'You', distractors: ['your', "yells", 'yours', 'u', 'youth'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'safe', correct: 'safe', distractors: ['save', 'salt', 'self', 'soft', 'side'], category: 'adjective' },
     ],

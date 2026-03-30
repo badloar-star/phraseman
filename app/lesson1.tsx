@@ -2991,7 +2991,7 @@ function LessonContent({
       </View>
 
       {/* МОЛНИИ ЭНЕРГИИ */}
-      <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={5} />
+      <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={5} shouldShake={shouldShake} />
 
       {/* ОСНОВНАЯ ЗОНА */}
       <ScrollView
@@ -3214,6 +3214,7 @@ export default function LessonScreen() {
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
   const [currentEnergy, setCurrentEnergy] = useState(5); // для отображения молний
+  const [shouldShake, setShouldShake] = useState(false); // Trigger shake animation when energy is empty
   // ==================== NEW: Intro & Encouragement Screens ====================
   const [showIntroScreens, setShowIntroScreens] = useState(false);
   const [showEncouragementScreen, setShowEncouragementScreen] = useState(false);
@@ -3596,6 +3597,13 @@ export default function LessonScreen() {
   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
   const handleWordPress = (word: string) => {
     if (status === 'result') return;
+
+    // Check if energy is empty - show shake animation instead of proceeding
+    if (currentEnergy === 0) {
+      setShouldShake(true);
+      setTimeout(() => setShouldShake(false), 300);
+      return;
+    }
 
     const phraseWords = getPhraseWords(phrase.english);
     const totalPhraseWords = phraseWords.length;

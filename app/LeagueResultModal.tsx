@@ -135,17 +135,24 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
         )}
 
         <View style={{
-          backgroundColor: t.bgCard,
+          backgroundColor: result.demoted ? 'rgba(255,59,48,0.08)' : t.bgCard,
           borderTopLeftRadius: 24, borderTopRightRadius: 24,
           paddingBottom: 40, maxHeight: H * 0.9,
+          borderTopWidth: result.demoted ? 3 : 0,
+          borderTopColor: result.demoted ? '#FF3B30' : 'transparent',
         }}>
 
           {/* Заголовок */}
           <Animated.View style={{
             alignItems: 'center', padding: 24, paddingBottom: 12,
             transform: [{ scale: headerScale }],
+            backgroundColor: result.promoted ? 'rgba(52,199,89,0.08)' : result.demoted ? 'rgba(255,59,48,0.12)' : 'transparent',
+            marginHorizontal: -24, marginTop: -24, marginBottom: 12,
+            paddingHorizontal: 24, borderRadius: 24,
           }}>
-            <Text style={{ fontSize: 56, marginBottom: 6 }}>{newLeague.icon}</Text>
+            <Text style={{ fontSize: 56, marginBottom: 6 }}>
+              {result.promoted ? newLeague.icon : result.demoted ? '📉' : '📍'}
+            </Text>
             <Text style={{ color: t.textPrimary, fontSize: 22, fontWeight: '800' }}>
               {isUK ? 'Підсумки тижня' : 'Итоги недели'}
             </Text>
@@ -167,9 +174,11 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
           {/* Моё место */}
           <Animated.View style={{
             alignSelf: 'center',
-            backgroundColor: t.bgSurface,
+            backgroundColor: result.promoted ? 'rgba(52,199,89,0.1)' : result.demoted ? 'rgba(255,59,48,0.1)' : t.bgSurface,
             borderRadius: 14, paddingHorizontal: 28, paddingVertical: 10,
             marginBottom: 14, transform: [{ scale: rankScale }],
+            borderWidth: result.promoted ? 1.5 : result.demoted ? 1.5 : 0,
+            borderColor: result.promoted ? '#34C759' : result.demoted ? '#FF3B30' : 'transparent',
           }}>
             <Text style={{ color: t.textMuted, fontSize: 11, textTransform:'uppercase', letterSpacing:0.8, textAlign:'center' }}>
               {isUK ? 'Твоє місце' : 'Твоё место'}

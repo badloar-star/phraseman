@@ -3208,8 +3208,8 @@ function LessonContent({
                 </Text>
                 <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20, textAlign: 'center' }}>
                   {lang === 'uk'
-                    ? `Ми цінуємо ваше бажання вчитися, але у вас закінчилася енергія. Зробіть невеликий перерву і повертайтеся через ${recoveryTimeText} або купіть преміум - там без обмежень.`
-                    : `Ценим Ваше стремление к учебе, но у вас закончилась энергия. Сделайте небольшой перерыв и вернтесь через ${recoveryTimeText} или купите премиум, там без ограничений.`
+                    ? ''
+                    : ''
                   }
                 </Text>
                 <TouchableOpacity

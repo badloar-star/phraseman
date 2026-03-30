@@ -3418,8 +3418,7 @@ export default function LessonScreen() {
             />
           ) : (
             <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-
-          {/* ХЕДЕР */}
+              {/* ХЕДЕР */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, paddingVertical: 12 }}>
             {/* Кнопка назад совмещена с названием урока — как на скриншоте */}
             <TouchableOpacity

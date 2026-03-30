@@ -2941,6 +2941,7 @@ function LessonContent({
   shouldShake,
   setShouldShake,
 }: LessonContentProps) {
+
   // Show intro screens on first visit
   if (showIntroScreens) {
     return (
@@ -3088,7 +3089,7 @@ function LessonContent({
         </ScrollView>
 
         {/* КНОПКИ СЛОВ — снаружи ScrollView, тап по любому месту работает */}
-        {status === 'playing' && !safeHardMode && (
+        {status === 'playing' && (
           <Pressable
             onPress={handleBgTap}
             style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 4 }}
@@ -3264,9 +3265,6 @@ export default function LessonScreen() {
 
   // Фраза определяется ТОЛЬКО позицией ячейки — строго цикличная привязка
   const phrase = LESSON_DATA[cellIndex % LESSON_DATA.length];
-
-  // CRITICAL: Ensure buttons always render - hardMode must always be false
-  const safeHardMode = false;  // Force disable hard mode to ensure word buttons show
 
   // CHANGE v5: cursor blinks only when no words are selected yet; stays solid while composing
   useEffect(() => {

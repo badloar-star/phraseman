@@ -213,15 +213,6 @@ function BadgeShield({
           style={{ position: 'absolute' }}
         />
       </View>
-      {/* V-образный низ */}
-      <View style={{
-        width: 0, height: 0,
-        borderLeftWidth: W / 2, borderRightWidth: W / 2,
-        borderTopWidth: TIP_H,
-        borderLeftColor: 'transparent', borderRightColor: 'transparent',
-        borderTopColor: tintColor,
-        marginTop: -1,
-      }} />
     </View>
   );
 }

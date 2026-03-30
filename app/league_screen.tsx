@@ -63,15 +63,15 @@ import { getXPProgress } from '../constants/theme';
 const MEDALS = ['🥇', '🥈', '🥉'];
 
 // ── Club icon renderer ────────────────────────────────────────────────────────
-function ClubIcon({ league, size = 24, bgSize = 44 }: { league: any; size?: number; bgSize?: number }) {
+function ClubIcon({ league, size = 24 }: { league: any; size?: number }) {
   return (
-    <View style={{ width: bgSize, height: bgSize, borderRadius: 12, backgroundColor: (league.color) + '22', justifyContent: 'center', alignItems: 'center' }}>
+    <>
       {league.imageUri ? (
         <Image source={league.imageUri} style={{ width: size, height: size }} resizeMode="contain" />
       ) : (
         <Ionicons name={(league as any).ionIcon ?? 'trophy'} size={size} color={league.color} />
       )}
-    </View>
+    </>
   );
 }
 
@@ -204,7 +204,7 @@ function PlayerProfileModal({
 
           {/* League with larger icon */}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: t.bgSurface, borderRadius: 14, padding: 14 }}>
-            <ClubIcon league={league} size={60} bgSize={72} />
+            <ClubIcon league={league} size={90} />
             <View>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {isUK ? league.nameUK : league.nameRU}
@@ -399,7 +399,7 @@ export default function LeagueScreen() {
                   onPress={(e) => { e.stopPropagation(); setDescModal(league); }}
                   hitSlop={{ top:6, bottom:6, left:6, right:6 }}
                 >
-                  <ClubIcon league={league} size={56} bgSize={64} />
+                  <ClubIcon league={league} size={80} />
                 </TouchableOpacity>
                 <View style={{ flex:1 }}>
                   <View style={{ flexDirection:'row', alignItems:'center', gap:8, flexWrap:'wrap' }}>

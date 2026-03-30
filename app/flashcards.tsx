@@ -613,41 +613,39 @@ export default function FlashcardsScreen() {
                 {draftEN}
               </Text>
             </Animated.View>
+          {/* Action buttons — directly under card */}
+          <View style={{ paddingHorizontal:16, paddingTop:12, gap: 10 }}>
+            {/* Flip button */}
+            {createStep === 'back' && (
+              <TouchableOpacity
+                style={[st.navBtnPrimary, { backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.accent }]}
+                onPress={handleCreateNext}
+              >
+                <Ionicons name="swap-horizontal-outline" size={18} color={t.accent} style={{ marginRight: 8 }} />
+                <Text style={{ color: t.accent, fontSize: f.body, fontWeight:'700' }}>{lang === 'uk' ? 'Обернути' : 'Перевернуть'}</Text>
+              </TouchableOpacity>
+            )}
+
+            {/* Primary action button */}
+            {createStep === 'front' ? (
+              <TouchableOpacity
+                style={[st.navBtnPrimary, { backgroundColor: draftEN.trim() ? t.accent : t.bgSurface }]}
+                onPress={handleCreateNext}
+                disabled={!draftEN.trim()}
+              >
+                <Text style={{ color: draftEN.trim() ? t.correctText : t.textGhost, fontSize: f.body, fontWeight:'700' }}>{s.next}</Text>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={[st.navBtnPrimary, { backgroundColor: draftTR.trim() ? t.correct : t.bgSurface }]}
+                onPress={handleSave}
+                disabled={!draftTR.trim()}
+              >
+                <Ionicons name="checkmark" size={18} color={draftTR.trim() ? '#fff' : t.textGhost} style={{ marginRight: 8 }} />
+                <Text style={{ color: draftTR.trim() ? '#fff' : t.textGhost, fontSize: f.body, fontWeight:'700' }}>{s.save}</Text>
+              </TouchableOpacity>
+            )}
           </View>
-        </View>
-
-        {/* Action buttons — pinned at bottom, always above keyboard */}
-        <View style={{ paddingHorizontal:16, paddingTop:12, paddingBottom:20, gap: 10 }}>
-          {/* Flip button */}
-          {createStep === 'back' && (
-            <TouchableOpacity
-              style={[st.navBtnPrimary, { backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.accent }]}
-              onPress={handleCreateNext}
-            >
-              <Ionicons name="swap-horizontal-outline" size={18} color={t.accent} style={{ marginRight: 8 }} />
-              <Text style={{ color: t.accent, fontSize: f.body, fontWeight:'700' }}>{lang === 'uk' ? 'Обернути' : 'Перевернуть'}</Text>
-            </TouchableOpacity>
-          )}
-
-          {/* Primary action button */}
-          {createStep === 'front' ? (
-            <TouchableOpacity
-              style={[st.navBtnPrimary, { backgroundColor: draftEN.trim() ? t.accent : t.bgSurface }]}
-              onPress={handleCreateNext}
-              disabled={!draftEN.trim()}
-            >
-              <Text style={{ color: draftEN.trim() ? t.correctText : t.textGhost, fontSize: f.body, fontWeight:'700' }}>{s.next}</Text>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={[st.navBtnPrimary, { backgroundColor: draftTR.trim() ? t.correct : t.bgSurface }]}
-              onPress={handleSave}
-              disabled={!draftTR.trim()}
-            >
-              <Ionicons name="checkmark" size={18} color={draftTR.trim() ? '#fff' : t.textGhost} style={{ marginRight: 8 }} />
-              <Text style={{ color: draftTR.trim() ? '#fff' : t.textGhost, fontSize: f.body, fontWeight:'700' }}>{s.save}</Text>
-            </TouchableOpacity>
-          )}
         </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
@@ -889,24 +887,7 @@ export default function FlashcardsScreen() {
         {/* Category bar — fixed above cards */}
         <CategoryBar />
 
-        {/* Sub-tab: Карточки / Тренировка — only for custom category */}
-        {activeCat === 'custom' && customCards.length > 0 && (
-          <View style={{ flexDirection:'row', paddingHorizontal:16, paddingTop:8, paddingBottom:4, gap:8 }}>
-            <View style={{ flex:1, paddingVertical:7, borderRadius:10, backgroundColor: t.bgCard, borderWidth:1, borderColor: t.accent, alignItems:'center' }}>
-              <Text style={{ color: t.accent, fontSize: f.sub, fontWeight:'700' }}>
-                {lang==='uk'?'Картки':'Карточки'}
-              </Text>
-            </View>
-            <TouchableOpacity
-              style={{ flex:1, paddingVertical:7, borderRadius:10, backgroundColor: t.bgSurface, borderWidth:1, borderColor: t.border, alignItems:'center' }}
-              onPress={startPractice}
-            >
-              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight:'500' }}>
-                {lang==='uk'?'Тренування':'Тренировка'}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
+        {/* Sub-tab removed: Тренировка tab hidden */}
 
         {/* Progress — sliding window of up to 10 stripes */}
         {(() => {

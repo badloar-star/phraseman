@@ -613,6 +613,8 @@ export default function FlashcardsScreen() {
                 {draftEN}
               </Text>
             </Animated.View>
+          </View>
+
           {/* Action buttons — directly under card */}
           <View style={{ paddingHorizontal:16, paddingTop:12, gap: 10 }}>
             {/* Flip button */}

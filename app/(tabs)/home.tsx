@@ -405,8 +405,8 @@ export default function HomeScreen() {
     const cefr = CEFR_FOR_LEVEL(level);
     const PILL_W = (CONTENT_W - 32 - 30) / 4;  // 4 пилюли равной ширины
     const quickItems = [
-      { icon:'chatbubbles' as const,  label:isUK?'Діалоги':'Диалоги',  sub:`20 ${isUK?'сценаріїв':'сценариев'}`, path:'/dialogs' },
       { icon:'book' as const,         label:isUK?'Уроки':'Уроки',       sub:`32 ${isUK?'уроки':'урока'}`,           path:'index' },
+      { icon:'chatbubbles' as const,  label:isUK?'Діалоги':'Диалоги',  sub:`20 ${isUK?'сценаріїв':'сценариев'}`, path:'/dialogs' },
       { icon:'trophy-outline' as const, label:isUK?'Квізи':'Квизы',     sub:`3 ${isUK?'рівні':'уровня'}`,            path:'/(tabs)/quizzes' },
       { icon:'bookmark' as const,     label:isUK?'Картки':'Карточки',   sub:isUK?'Збережені':'Сохранённые', path:'/flashcards' },
     ];

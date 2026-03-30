@@ -17,7 +17,6 @@ import { useLang } from '../../components/LangContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import { DEV_MODE, STORE_URL } from '../config';
-import { getReferralCode, getReferralStats } from '../referral_system';
 
 export default function SettingsMain() {
   const router = useRouter();
@@ -63,17 +62,12 @@ export default function SettingsMain() {
   const [hapticTap,  setHapticTap]   = useState(true);
   const [userAvatar, setUserAvatar]   = useState('🐣');
   const [userFrame,  setUserFrame]    = useState('plain');
-  const [referralCode, setReferralCode] = useState('');
-  const [referralStats, setReferralStats] = useState({ totalReferrals: 0, totalBonus: 0 });
   const isUK = lang === 'uk';
 
   useEffect(() => {
     AsyncStorage.multiGet(['user_name', 'premium_active', 'premium_plan', 'haptics_tap', 'user_total_xp', 'user_avatar', 'user_frame', 'home_style']).then(pairs => {
       if (pairs[0][1]) {
         setUserName(pairs[0][1]);
-        // Load referral code and stats
-        getReferralCode(pairs[0][1]).then(setReferralCode).catch(() => {});
-        getReferralStats(pairs[0][1]).then(setReferralStats).catch(() => {});
       }
       setIsPremium(pairs[1][1] === 'true');
       setPremiumPlan(pairs[2][1]);
@@ -391,63 +385,7 @@ export default function SettingsMain() {
         <Row icon="school-outline"        label={isUK ? 'Налаштування навчання' : 'Настройки обучения'}   onPress={() => router.push('/settings_edu')} />
         <Row icon="notifications-outline" label={isUK ? 'Нагадування' : 'Напоминания'} sub={isUK ? 'Щоденна мотивація' : 'Ежедневная мотивация'} onPress={() => router.push('/settings_notifications')} />
 
-        <SectionTitle title={isUK ? 'Реферальна програма' : 'Реферальная программа'} />
-        <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12 }}>
-            <Ionicons name="share-social-outline" size={22} color={t.textSecond} style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                {isUK ? 'Твій код' : 'Твой код'}
-              </Text>
-            </View>
-          </View>
-          {referralCode && (
-            <>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 10 }}>
-                  <Text style={{ color: t.accent, fontSize: f.bodyLg, fontWeight: '700', textAlign: 'center', letterSpacing: 1 }}>
-                    {referralCode}
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  style={{ paddingHorizontal: 14, paddingVertical: 10, borderRadius: 10, backgroundColor: t.accentBg }}
-                  onPress={async () => {
-                    try {
-                      await Share.share({
-                        message: isUK
-                          ? `Приєднуйся до мене у Phraseman! Код: ${referralCode}\n${STORE_URL}`
-                          : `Присоединяйся ко мне в Phraseman! Код: ${referralCode}\n${STORE_URL}`,
-                      });
-                      doHaptic();
-                    } catch {}
-                  }}
-                  activeOpacity={0.7}
-                >
-                  <Ionicons name="share-outline" size={18} color={t.textPrimary} />
-                </TouchableOpacity>
-              </View>
-              {referralStats.totalReferrals > 0 && (
-                <View style={{ backgroundColor: t.bgCard + '80', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 10 }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 4 }}>
-                    {isUK ? '📊 Статистика' : '📊 Статистика'}
-                  </Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                    {isUK
-                      ? `${referralStats.totalReferrals} запрошень · +${referralStats.totalBonus} днів премиум`
-                      : `${referralStats.totalReferrals} приглашений · +${referralStats.totalBonus} дней премиум`}
-                  </Text>
-                </View>
-              )}
-            </>
-          )}
-          {!referralCode && (
-            <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-              {isUK ? 'Завантаження...' : 'Загрузка...'}
-            </Text>
-          )}
-        </View>
-
-        <SectionTitle title={isUK ? 'Ще' : 'Ещё'} />
+<SectionTitle title={isUK ? 'Ще' : 'Ещё'} />
         <Row icon="play-circle-outline" label={isUK ? 'Переглянути онбординг' : 'Просмотреть онбординг'} sub={isUK ? 'Повторить пошаговое введение' : 'Повторить пошаговое введение'} onPress={async () => { doHaptic(); await AsyncStorage.removeItem('onboarding_done'); router.replace('/(tabs)/home' as any); }} />
         <Row icon="person-add-outline"  label={isUK ? 'Запросити друга' : 'Пригласить друга'}  sub={isUK ? 'Поділися застосунком' : 'Поделиться приложением'} onPress={async () => { try { await Share.share({ message: isUK ? `Вивчаю англійську з Phraseman — зручно та ефективно! 🔥 Спробуй і ти! ${STORE_URL}` : `Учу английский с Phraseman — удобно и эффективно! 🔥 Попробуй и ты! ${STORE_URL}`, url: STORE_URL }); } catch {} }} />
         <Row icon="help-circle-outline" label={isUK ? 'Допомога' : 'Помощь'}                             onPress={() => router.push('/help')} />

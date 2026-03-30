@@ -3115,15 +3115,6 @@ function LessonContent({
                 );
               })}
             </View>
-            {showTapHint && !settings.autoCheck && (
-              <View style={{ alignItems: 'center', marginBottom: 4 }}>
-                <View style={{ backgroundColor: t.bgCard, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 6, borderWidth: 0.5, borderColor: t.border }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1}>
-                    {lang === 'uk' ? '👆 Торкнись, щоб перевірити' : '👆 Тапни, чтобы проверить'}
-                  </Text>
-                </View>
-              </View>
-            )}
           </Pressable>
         )}
 
@@ -3316,12 +3307,6 @@ export default function LessonScreen() {
 
       // Проверяем энергию ПЕРЕД началом урока
       const energyState = await checkAndRecover();
-      if (energyState.current <= 0) {
-        setInsufficientEnergy(true);
-        setCurrentEnergy(0);
-        // Не загружаем урок, если нет энергии
-        return;
-      }
       // Инициализируем энергию для отображения молний
       setCurrentEnergy(energyState.current);
 
@@ -3371,9 +3356,8 @@ export default function LessonScreen() {
       setShuffled(getPerWordDistracts(startPhrase, 0));
 
       if (ss) {
-        const loaded = { ...DEFAULT_SETTINGS, ...JSON.parse(ss) };
+        const loaded = { ...DEFAULT_SETTINGS, ...JSON.parse(ss), hardMode: false };
         setSettings(loaded);
-        if (loaded.hardMode) setTimeout(() => textInputRef.current?.focus(), 400);
       }
 
       // Тратим энергию после успешной загрузки урока

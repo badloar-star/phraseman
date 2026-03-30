@@ -294,23 +294,69 @@ export default function SettingsTestersFunctions() {
                   { text: isUK ? 'Скасувати' : 'Отмена', onPress: () => {}, style: 'cancel' },
                   { text: isUK ? 'Скинути' : 'Сбросить', onPress: async () => {
                     try {
-                      // Уроки
-                      const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
-                      // Достижения
-                      const achievementKeys = ['achievement_states'];
+                      // Уроки — прогресс, оценки, слова, слушание
+                      const lessonKeys = Array.from({ length: 32 }, (_, i) => [
+                        `lesson${i + 1}_progress`,
+                        `lesson${i + 1}_score`,
+                        `lesson${i + 1}_words`,
+                        `lesson${i + 1}_listening_progress`,
+                      ]).flat();
+
+                      // Достижения и медали
+                      const achievementKeys = [
+                        'achievement_states',
+                        'achievement_progress',
+                        'medal_states',
+                        'medal_tiers',
+                      ];
+
                       // Рамки и аватары
                       const frameKeys = ['user_frame', 'user_avatar', 'unlocked_frames'];
+
                       // Энергия и XP
                       const systemKeys = ['user_total_xp', 'current_energy', 'last_energy_recovery'];
-                      // Статистика
-                      const statsKeys = ['streak_count', 'login_bonus_v1'];
-                      // Тестер настройки
-                      const testerKeys = ['tester_no_limits', 'tester_energy_disabled', 'tester_energy_instant_recovery'];
 
-                      const allKeys = [...lessonKeys, ...achievementKeys, ...frameKeys, ...systemKeys, ...statsKeys, ...testerKeys];
+                      // Статистика и статус
+                      const statsKeys = [
+                        'streak_count', 'login_bonus_v1', 'daily_stats',
+                        'streak_freeze', 'last_opened_lesson',
+                      ];
+
+                      // Лига и рейтинг
+                      const leagueKeys = [
+                        'league_state_v3',
+                        'league_result_pending',
+                        'week_leaderboard',
+                        'my_week_points',
+                      ];
+
+                      // Экзамены
+                      const examKeys = Array.from({ length: 4 }, (_, i) => [
+                        `level_exam_${i + 1}_pct`,
+                        `level_exam_${i + 1}_passed`,
+                        `level_exam_${i + 1}_medal_tier`,
+                        `level_exam_${i + 1}_pass_count`,
+                      ]).flat();
+
+                      // Тестер настройки
+                      const testerKeys = [
+                        'tester_no_limits',
+                        'tester_energy_disabled',
+                        'tester_energy_instant_recovery',
+                      ];
+
+                      const allKeys = [
+                        ...lessonKeys, ...achievementKeys, ...frameKeys,
+                        ...systemKeys, ...statsKeys, ...leagueKeys,
+                        ...examKeys, ...testerKeys,
+                      ];
+
                       await AsyncStorage.multiRemove(allKeys);
 
-                      Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? 'Всі дані скинуті' : 'Все данные сброшены');
+                      Alert.alert(
+                        isUK ? 'Готово' : 'Готово',
+                        isUK ? 'Всі дані скинуті на рівень 0' : 'Все данные сброшены на уровень 0'
+                      );
                     } catch {
                       Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось скинути дані' : 'Не удалось сбросить данные');
                     }

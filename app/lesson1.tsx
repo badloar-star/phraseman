@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect, useRef } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Pressable,
   Animated, useWindowDimensions, TextInput, KeyboardAvoidingView, ScrollView,
-  Platform,
+  Platform, Modal,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -3170,6 +3170,36 @@ function LessonContent({
             })()}
           </TouchableOpacity>
         </View>
+
+        {/* No Energy Modal */}
+        <Modal transparent animationType="fade" visible={showNoEnergyModal} onRequestClose={() => setShowNoEnergyModal(false)}>
+          <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' }} onPress={() => setShowNoEnergyModal(false)}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
+              <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 24, gap: 16, maxWidth: 300 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
+                  {lang === 'uk' ? '❤️ Дякуємо' : '❤️ Спасибо'}
+                </Text>
+                <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20, textAlign: 'center' }}>
+                  {lang === 'uk'
+                    ? `Ми цінуємо ваше бажання вчитися, але у вас закінчилася енергія. Зробіть невеликий перерву і повертайтеся через ${recoveryTimeText} або купіть преміум - там без обмежень.`
+                    : `Ценим Ваше стремление к учебе, но у вас закончилась энергия. Сделайте небольшой перерыв и вернтесь через ${recoveryTimeText} или купите премиум, там без ограничений.`
+                  }
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    setShowNoEnergyModal(false);
+                    setFailedTapCount(0);
+                  }}
+                  style={{ backgroundColor: t.accent, paddingVertical: 12, borderRadius: 8, marginTop: 8 }}
+                >
+                  <Text style={{ color: t.bgPrimary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+                    {lang === 'uk' ? 'Зрозумів' : 'Понял'}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </Pressable>
+        </Modal>
     </KeyboardAvoidingView>
   );
 }
@@ -3216,6 +3246,10 @@ export default function LessonScreen() {
   const [showIntroScreens, setShowIntroScreens] = useState(false);
   const [showEncouragementScreen, setShowEncouragementScreen] = useState(false);
   const [showToBeHint, setShowToBeHint] = useState(false);
+  // No energy modal after 3 failed taps
+  const [failedTapCount, setFailedTapCount] = useState(0);
+  const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
+  const [recoveryTimeText, setRecoveryTimeText] = useState('');
 
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const cursorAnim  = useRef(new Animated.Value(1)).current;
@@ -3295,6 +3329,17 @@ export default function LessonScreen() {
       hintPulseAnim.setValue(0.4);
     }
   }, [showToBeHint, cellIndex]);
+
+  // Reset failed tap counter when energy recovers or phrase changes
+  useEffect(() => {
+    if (currentEnergy > 0) {
+      setFailedTapCount(0);
+    }
+  }, [currentEnergy]);
+
+  useEffect(() => {
+    setFailedTapCount(0);
+  }, [cellIndex]);
 
   const loadData = async () => {
     try {
@@ -3590,6 +3635,25 @@ export default function LessonScreen() {
     if (currentEnergy === 0) {
       setShouldShake(true);
       setTimeout(() => setShouldShake(false), 300);
+
+      // Track failed taps and show modal after 3rd attempt
+      setFailedTapCount(prev => {
+        const newCount = prev + 1;
+        if (newCount === 3) {
+          // Get recovery time and show modal
+          (async () => {
+            const { getTimeUntilNextRecovery, formatTimeUntilRecovery } = await import('./energy_system');
+            const timeMs = await getTimeUntilNextRecovery();
+            if (timeMs !== null && timeMs > 0) {
+              const formatted = formatTimeUntilRecovery(timeMs);
+              setRecoveryTimeText(formatted);
+              setShowNoEnergyModal(true);
+            }
+          })();
+        }
+        return newCount;
+      });
+
       return;
     }
 

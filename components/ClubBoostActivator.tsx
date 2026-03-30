@@ -124,18 +124,21 @@ export default function ClubBoostActivator({
         style={{
           flex: 1,
           backgroundColor: 'rgba(0,0,0,0.55)',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
+          alignItems: 'center',
+          paddingHorizontal: 20,
         }}
         onPress={onClose}
       >
         <Animated.View
           style={{
             backgroundColor: t.bgCard,
-            borderTopLeftRadius: 24,
-            borderTopRightRadius: 24,
+            borderRadius: 24,
             paddingHorizontal: 16,
             paddingVertical: 24,
-            maxHeight: '85%',
+            maxHeight: '70%',
+            width: '100%',
+            maxWidth: 400,
             transform: [{ translateY: slideAnim }],
           }}
         >

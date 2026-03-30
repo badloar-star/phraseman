@@ -616,8 +616,20 @@ export default function FlashcardsScreen() {
           </View>
         </View>
 
-        {/* Action button — pinned at bottom, always above keyboard */}
-        <View style={{ paddingHorizontal:16, paddingTop:12, paddingBottom:20 }}>
+        {/* Action buttons — pinned at bottom, always above keyboard */}
+        <View style={{ paddingHorizontal:16, paddingTop:12, paddingBottom:20, gap: 10 }}>
+          {/* Flip button */}
+          {createStep === 'back' && (
+            <TouchableOpacity
+              style={[st.navBtnPrimary, { backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.accent }]}
+              onPress={handleCreateNext}
+            >
+              <Ionicons name="swap-horizontal-outline" size={18} color={t.accent} style={{ marginRight: 8 }} />
+              <Text style={{ color: t.accent, fontSize: f.body, fontWeight:'700' }}>{lang === 'uk' ? 'Обернути' : 'Перевернуть'}</Text>
+            </TouchableOpacity>
+          )}
+
+          {/* Primary action button */}
           {createStep === 'front' ? (
             <TouchableOpacity
               style={[st.navBtnPrimary, { backgroundColor: draftEN.trim() ? t.accent : t.bgSurface }]}
@@ -632,6 +644,7 @@ export default function FlashcardsScreen() {
               onPress={handleSave}
               disabled={!draftTR.trim()}
             >
+              <Ionicons name="checkmark" size={18} color={draftTR.trim() ? '#fff' : t.textGhost} style={{ marginRight: 8 }} />
               <Text style={{ color: draftTR.trim() ? '#fff' : t.textGhost, fontSize: f.body, fontWeight:'700' }}>{s.save}</Text>
             </TouchableOpacity>
           )}

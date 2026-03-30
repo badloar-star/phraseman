@@ -433,12 +433,7 @@ export default function AchievementsScreen() {
                           maskBg={t.bgPrimary}
                         />
 
-                        {/* Mini progress bar под щитом */}
-                        {inProgress && prog && prog[1] > 0 && progPct > 0 && (
-                          <View style={{ width: SHIELD_W * 0.8, height: 3, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
-                            <View style={{ height: 3, width: `${progPct}%` as any, backgroundColor: color, borderRadius: 2 }} />
-                          </View>
-                        )}
+                        {/* Mini progress bar under shield - disabled for clean UI */}
 
                         {/* Название */}
                         {!isLocked && (

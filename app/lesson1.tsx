@@ -3317,7 +3317,6 @@ export default function LessonScreen() {
       // Проверяем энергию ПЕРЕД началом урока
       const energyState = await checkAndRecover();
       if (energyState.current <= 0) {
-        setShowEnergyModal(true);
         setInsufficientEnergy(true);
         setCurrentEnergy(0);
         // Не загружаем урок, если нет энергии
@@ -3469,7 +3468,6 @@ export default function LessonScreen() {
           // Если энергия закончилась, показываем модаль
           if (newEnergy === 0) {
             setTimeout(() => {
-              setShowEnergyModal(true);
               setInsufficientEnergy(true);
             }, 1000);
           }
@@ -3799,61 +3797,6 @@ export default function LessonScreen() {
             setShouldShake={setShouldShake}
           />
         </SafeAreaView>
-        {/* МОДАЛЬНОЕ ОКНО - НЕДОСТАТОЧНО ЭНЕРГИИ */}
-        {showEnergyModal && insufficientEnergy && (
-        <View style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: 'rgba(0,0,0,0.5)',
-          justifyContent: 'center',
-          alignItems: 'center',
-          zIndex: 1000,
-        }}>
-          <View style={{
-            backgroundColor: t.bgCard,
-            borderRadius: 16,
-            padding: 24,
-            width: '85%',
-            maxWidth: 320,
-            borderWidth: 1,
-            borderColor: t.border,
-          }}>
-            <Text style={{
-              color: t.textPrimary,
-              fontSize: f.h3,
-              fontWeight: '700',
-              textAlign: 'center',
-              marginBottom: 12,
-            }}>⚡ {s.lesson?.noEnergy || 'Нет энергии'}</Text>
-
-            <Text style={{
-              color: t.textSecond,
-              fontSize: f.body,
-              textAlign: 'center',
-              marginBottom: 20,
-              lineHeight: 20,
-            }}>{s.lesson?.needEnergyToStart || 'Требуется 1 единица энергии для начала урока. Энергия восстанавливается каждые 2 часа.'}</Text>
-
-            <TouchableOpacity
-              onPress={() => {
-                setShowEnergyModal(false);
-                router.back();
-              }}
-              style={{
-                backgroundColor: t.accent,
-                borderRadius: 10,
-                paddingVertical: 12,
-                alignItems: 'center',
-              }}
-            >
-              <Text style={{
-                color: '#fff',
-                fontSize: f.bodyLg,
-                fontWeight: '600',
-              }}>{s.common?.back || 'Назад'}</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      )}
       </ScreenGradient>
     </TouchableWithoutFeedback>
   );

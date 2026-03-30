@@ -34,24 +34,9 @@ const POS_LABELS_UK: Record<POS,string> = {
   adverbs:'Прислівники', nouns:'Іменники',
 };
 
-// LESSON 1 VOCABULARY — To Be verbs and key vocabulary (Phrases 1–5)
+// LESSON 1 VOCABULARY — Empty (will be provided by user)
 const WORDS_BY_LESSON: Record<number, Word[]> = {
-  1: [
-    // Verbs (to-be)
-    { en: 'am', ru: 'есть (am)', uk: 'є (am)', pos: 'verbs' },
-    { en: 'is', ru: 'есть (is)', uk: 'є (is)', pos: 'verbs' },
-    { en: 'are', ru: 'есть (are)', uk: 'є (are)', pos: 'verbs' },
-
-    // Irregular Verbs
-    { en: 'be', ru: 'быть', uk: 'бути', pos: 'irregular_verbs' },
-
-    // Vocabulary from Phrases 1–5
-    { en: 'here', ru: 'здесь', uk: 'тут', pos: 'adverbs' },
-    { en: 'ready', ru: 'готовый', uk: 'готовий', pos: 'adjectives' },
-    { en: 'busy', ru: 'занятый', uk: 'зайнятий', pos: 'adjectives' },
-    { en: 'home', ru: 'дома', uk: 'вдома', pos: 'nouns' },
-    { en: 'together', ru: 'вместе', uk: 'разом', pos: 'adverbs' },
-  ],
+  1: [],
 };
 
 const groupByPOS = (words: Word[], lang: 'ru'|'uk') => {

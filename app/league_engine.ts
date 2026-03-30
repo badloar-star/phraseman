@@ -137,7 +137,7 @@ export const CLUBS: ClubDef[] = [
 export const LEAGUES = CLUBS.map(c => ({
   id: c.id, nameRU: c.nameRU, nameUK: c.nameUK,
   shortRU: c.shortRU, shortUK: c.shortUK,
-  ionIcon: c.ionIcon, color: c.color, frameId: c.frameId,
+  ionIcon: c.ionIcon, imageUri: c.imageUri, color: c.color, frameId: c.frameId,
   icon: '', descRU: c.descRU, descUK: c.descUK,
   greetingRU: c.greetingRU, greetingUK: c.greetingUK,
 }));

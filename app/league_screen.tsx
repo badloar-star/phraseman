@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Pressable, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Pressable, Alert, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -61,6 +61,19 @@ import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getXPProgress } from '../constants/theme';
 
 const MEDALS = ['🥇', '🥈', '🥉'];
+
+// ── Club icon renderer ────────────────────────────────────────────────────────
+function ClubIcon({ league, size = 24, bgSize = 44 }: { league: any; size?: number; bgSize?: number }) {
+  return (
+    <View style={{ width: bgSize, height: bgSize, borderRadius: 12, backgroundColor: (league.color) + '22', justifyContent: 'center', alignItems: 'center' }}>
+      {league.imageUri ? (
+        <Image source={league.imageUri} style={{ width: size, height: size }} resizeMode="contain" />
+      ) : (
+        <Ionicons name={(league as any).ionIcon ?? 'trophy'} size={size} color={league.color} />
+      )}
+    </View>
+  );
+}
 
 // ── NPC profile generation (seeded by name) ──────────────────────────────────
 const seedNum = (s: string): number => {
@@ -191,9 +204,7 @@ function PlayerProfileModal({
 
           {/* League */}
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, backgroundColor: t.bgSurface, borderRadius: 14, padding: 14 }}>
-            <View style={{ width:42, height:42, borderRadius:12, backgroundColor:(league.color)+'22', justifyContent:'center', alignItems:'center' }}>
-              <Ionicons name={(league as any).ionIcon ?? 'trophy'} size={22} color={league.color} />
-            </View>
+            <ClubIcon league={league} size={22} bgSize={42} />
             <View>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {isUK ? league.nameUK : league.nameRU}
@@ -386,10 +397,9 @@ export default function LeagueScreen() {
               <View style={{ flexDirection:'row', alignItems:'center', padding:14, gap:12 }}>
                 <TouchableOpacity
                   onPress={(e) => { e.stopPropagation(); setDescModal(league); }}
-                  style={{ width:44, height:44, borderRadius:12, backgroundColor:(league.color)+'22', justifyContent:'center', alignItems:'center' }}
                   hitSlop={{ top:6, bottom:6, left:6, right:6 }}
                 >
-                  <Ionicons name={(league as any).ionIcon ?? 'trophy'} size={24} color={league.color} />
+                  <ClubIcon league={league} size={24} bgSize={44} />
                 </TouchableOpacity>
                 <View style={{ flex:1 }}>
                   <View style={{ flexDirection:'row', alignItems:'center', gap:8, flexWrap:'wrap' }}>

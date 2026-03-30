@@ -6,8 +6,10 @@ export interface IrregularVerb {
   uk: string;
 }
 
-// CLEARED: Waiting for new irregular verbs data to be added
-export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {};
+// Placeholder for Lesson 1 - waiting for user data
+export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
+  1: [],
+};
 
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(Object.keys(IRREGULAR_VERBS_BY_LESSON).map(Number));
 export const IRREGULAR_VERB_COUNT_BY_LESSON: Record<number, number> = Object.fromEntries(

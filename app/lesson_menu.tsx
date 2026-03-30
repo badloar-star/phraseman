@@ -183,13 +183,15 @@ export default function LessonMenu() {
         }
       },
     },
-    ...(LESSONS_WITH_IRREGULAR_VERBS.has(lessonId) && irregularLearned < (IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0) ? [{
+    ...(LESSONS_WITH_IRREGULAR_VERBS.has(lessonId) ? [{
       label: lang==='uk' ? 'Неправильні дієслова' : 'Неправильные глаголы',
       sub: (() => {
         const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
-        return lang==='uk'
-          ? `${irregularLearned}/${total} дієслів`
-          : `${irregularLearned}/${total} глаголов`;
+        return total > 0
+          ? (lang==='uk'
+              ? `${irregularLearned}/${total} дієслів`
+              : `${irregularLearned}/${total} глаголов`)
+          : (lang==='uk' ? 'Неправильні дієслова уроку' : 'Неправильные глаголы урока');
       })(),
       icon: 'flash-outline' as const,
       pct: (() => {

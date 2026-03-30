@@ -95,6 +95,32 @@ export default function SettingsTestersFunctions() {
     doHaptic();
     setNoLimitsEnabled(val);
     await saveSettings('tester_no_limits', val);
+
+    // When enabling No Limits, immediately give 5 points to all 32 lessons and 100% to all exams
+    if (val) {
+      try {
+        // Give 5 points to all 32 lessons
+        for (let i = 1; i <= 32; i++) {
+          await AsyncStorage.setItem(`lesson${i}_score`, '5');
+        }
+        // Unlock all lessons
+        const unlockedLessons = Array.from({ length: 32 }, (_, i) => i + 1);
+        await AsyncStorage.setItem('unlocked_lessons', JSON.stringify(unlockedLessons));
+
+        // Give 100% to all 4 level exams
+        for (let lvl = 1; lvl <= 4; lvl++) {
+          await AsyncStorage.setItem(`level_exam_${lvl}_pct`, '100');
+          await AsyncStorage.setItem(`level_exam_${lvl}_passed`, '1');
+        }
+
+        Alert.alert(
+          isUK ? 'Готово' : 'Готово',
+          isUK ? 'Всім урокам дано 5 балів\nУсім екзаменам дано 100%' : 'Всем урокам дано 5 баллов\nВсем экзаменам дано 100%'
+        );
+      } catch {
+        Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось активувати' : 'Не удалось активировать');
+      }
+    }
   };
 
   const toggleEnergyDisabled = async (val: boolean) => {

@@ -23,7 +23,7 @@ export interface ClubDef {
 
 export const CLUBS: ClubDef[] = [
   {
-    id: 0, ionIcon: 'rocket-outline',     color: '#7B9BB5', frameId: 'club_initiator',
+    id: 0, ionIcon: 'flag-outline',       color: '#7B9BB5', frameId: 'club_initiator',
     nameRU: 'Клуб Инициаторов',  nameUK: 'Клуб Ініціаторів',
     shortRU: 'Инициаторы',        shortUK: 'Ініціатори',
     descRU: 'Первый шаг — самый важный. Здесь собираются те, кто решился начать путь к знаниям. Каждое занятие — вклад в будущее.',
@@ -32,7 +32,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ласкаво просимо, ініціаторе! Кожен експерт колись стояв на твоєму місці. Головне — почати.',
   },
   {
-    id: 1, ionIcon: 'flame-outline',      color: '#5BA88B', frameId: 'club_adept',
+    id: 1, ionIcon: 'flame',              color: '#5BA88B', frameId: 'club_adept',
     nameRU: 'Клуб Адептов',      nameUK: 'Клуб Адептів',
     shortRU: 'Адепты',            shortUK: 'Адепти',
     descRU: 'Огонь знаний разгорается. Адепты верны своей цели и не останавливаются. Постоянство — их главная суперсила.',
@@ -77,7 +77,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Знання — твоя сила! Ерудити — люди, яким завжди є що сказати. Ти заслужено тут!',
   },
   {
-    id: 6, ionIcon: 'star-outline',        color: '#4A90D9', frameId: 'club_connoisseur',
+    id: 6, ionIcon: 'diamond',             color: '#4A90D9', frameId: 'club_connoisseur',
     nameRU: 'Клуб Знатоков',     nameUK: 'Клуб Знавців',
     shortRU: 'Знатоки',           shortUK: 'Знавці',
     descRU: 'Знатоки понимают тонкости языка: идиомы, фразовые глаголы, нюансы. Для них язык — это не набор слов, а живая система.',
@@ -86,7 +86,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти знаєш мову зсередини! Знавці помічають те, що інші пропускають. Ти в еліті!',
   },
   {
-    id: 7, ionIcon: 'ribbon-outline',     color: '#9B59B6', frameId: 'club_expert',
+    id: 7, ionIcon: 'medal',               color: '#9B59B6', frameId: 'club_expert',
     nameRU: 'Клуб Экспертов',    nameUK: 'Клуб Експертів',
     shortRU: 'Эксперты',          shortUK: 'Експерти',
     descRU: 'Экспертиза — это когда язык перестаёт быть усилием и становится инструментом. Ты говоришь — и это звучит естественно.',
@@ -113,7 +113,7 @@ export const CLUBS: ClubDef[] = [
     greetingUK: 'Ти мислиш по-англійськи! Це найвищий рівень занурення. Мислителі — рідкість і гордість клубу!',
   },
   {
-    id: 10, ionIcon: 'construct-outline', color: '#D4A017', frameId: 'club_master',
+    id: 10, ionIcon: 'hammer',             color: '#D4A017', frameId: 'club_master',
     nameRU: 'Клуб Мастеров',     nameUK: 'Клуб Майстрів',
     shortRU: 'Мастера',           shortUK: 'Майстри',
     descRU: 'Мастерство — это когда можешь всё: говорить, писать, понимать, шутить. Язык — не инструмент, а часть личности.',

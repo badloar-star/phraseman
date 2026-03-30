@@ -34,9 +34,104 @@ const POS_LABELS_UK: Record<POS,string> = {
   adverbs:'Прислівники', nouns:'Іменники',
 };
 
-// LESSON 1 VOCABULARY — Empty (will be provided by user)
+// LESSON VOCABULARY
 const WORDS_BY_LESSON: Record<number, Word[]> = {
-  1: [],
+  1: [
+    { en: 'here', ru: 'Здесь', uk: 'Тут', pos: 'adverbs' },
+    { en: 'ready', ru: 'Готовый', uk: 'Готовий', pos: 'adjectives' },
+    { en: 'busy', ru: 'Занятый', uk: 'Зайнятий', pos: 'adjectives' },
+    { en: 'home', ru: 'Дома', uk: 'Вдома', pos: 'nouns' },
+    { en: 'together', ru: 'Вместе', uk: 'Разом', pos: 'adverbs' },
+    { en: 'they', ru: 'Они', uk: 'Вони', pos: 'pronouns' },
+    { en: 'important', ru: 'Важный', uk: 'Важливий', pos: 'adjectives' },
+    { en: 'okay', ru: 'В порядке (хорошо)', uk: 'В порядку (добре)', pos: 'adjectives' },
+    { en: 'right', ru: 'Правый (верный)', uk: 'Правий (вірний)', pos: 'adjectives' },
+    { en: 'safe', ru: 'Безопасный', uk: 'Безпечний', pos: 'adjectives' },
+    { en: 'sick', ru: 'Больной', uk: 'Хворий', pos: 'adjectives' },
+    { en: 'cheap', ru: 'Дешевый', uk: 'Дешевий', pos: 'adjectives' },
+    { en: 'upset', ru: 'Расстроенный', uk: 'Засмучений', pos: 'adjectives' },
+    { en: 'late', ru: 'Поздний (опоздавший)', uk: 'Пізній (той, що запізнився)', pos: 'adjectives' },
+    { en: 'work', ru: 'Работа', uk: 'Робота', pos: 'nouns' },
+    { en: 'way', ru: 'Путь', uk: 'Шлях', pos: 'nouns' },
+    { en: 'car', ru: 'Машина', uk: 'Машина', pos: 'nouns' },
+    { en: 'holiday', ru: 'Отпуск', uk: 'Відпустка', pos: 'nouns' },
+    { en: 'free', ru: 'Бесплатный', uk: 'Безкоштовний', pos: 'adjectives' },
+    { en: 'line', ru: 'Очередь', uk: 'Черга', pos: 'nouns' },
+    { en: 'elevator', ru: 'Лифт', uk: 'Ліфт', pos: 'nouns' },
+    { en: 'kitchen', ru: 'Кухня', uk: 'Кухня', pos: 'nouns' },
+    { en: 'very', ru: 'Очень', uk: 'Дуже', pos: 'adverbs' },
+    { en: 'kind', ru: 'Добрый', uk: 'Добрий', pos: 'adjectives' },
+    { en: 'urgent', ru: 'Срочный', uk: 'Терміновий', pos: 'adjectives' },
+    { en: 'shocked', ru: 'Шокированный', uk: 'Шокований', pos: 'adjectives' },
+    { en: 'taxi', ru: 'Такси', uk: 'Таксі', pos: 'nouns' },
+    { en: 'married', ru: 'Замужняя (женатый)', uk: 'Заміжня (одружений)', pos: 'adjectives' },
+    { en: 'outside', ru: 'Снаружи (на улице)', uk: 'Зовні (на вулиці)', pos: 'adverbs' },
+    { en: 'airport', ru: 'Аэропорт', uk: 'Аеропорт', pos: 'nouns' },
+    { en: 'train', ru: 'Поезд', uk: 'Поїзд', pos: 'nouns' },
+    { en: 'bathroom', ru: 'Ванная комната', uk: 'Ванна кімната', pos: 'nouns' },
+    { en: 'shop', ru: 'Магазин', uk: 'Магазин', pos: 'nouns' },
+    { en: 'gym', ru: 'Спортзал', uk: 'Спортзал', pos: 'nouns' },
+    { en: 'bus', ru: 'Автобус', uk: 'Автобус', pos: 'nouns' },
+    { en: 'near', ru: 'Рядом', uk: 'Поруч', pos: 'adverbs' },
+    { en: 'desperate', ru: 'В отчаянии (безнадежный)', uk: 'У розпачі (безнадійний)', pos: 'adjectives' },
+    { en: 'list', ru: 'Список', uk: 'Список', pos: 'nouns' },
+    { en: 'pharmacy', ru: 'Аптека', uk: 'Аптека', pos: 'nouns' },
+    { en: 'abroad', ru: 'За границей', uk: 'За кордоном', pos: 'adverbs' },
+    { en: 'broken', ru: 'Сломанный', uk: 'Зламаний', pos: 'adjectives' },
+    { en: 'empty', ru: 'Пустой', uk: 'Порожній', pos: 'adjectives' },
+  ],
+  2: [
+    // Phrases 1-5
+    { en: 'hungry', ru: 'Голодный', uk: 'Голодний', pos: 'adjectives' },
+    { en: 'sure', ru: 'Уверенный', uk: 'Впевнений', pos: 'adjectives' },
+    { en: 'expensive', ru: 'Дорогой (по цене)', uk: 'Дорогий (за ціною)', pos: 'adjectives' },
+    { en: 'ready', ru: 'Готовый', uk: 'Готовий', pos: 'adjectives' },
+    { en: 'not', ru: 'Не', uk: 'Не', pos: 'adverbs' },
+    // Phrases 6-10
+    { en: 'home', ru: 'Дома', uk: 'Вдома', pos: 'nouns' },
+    { en: 'doctor', ru: 'Врач', uk: 'Лікар', pos: 'nouns' },
+    { en: 'scary', ru: 'Страшный', uk: 'Страшний', pos: 'adjectives' },
+    { en: 'busy', ru: 'Занятый', uk: 'Зайнятий', pos: 'adjectives' },
+    { en: 'alone', ru: 'Один (одинокий)', uk: 'Один (самотній)', pos: 'adjectives' },
+    // Phrases 11-15
+    { en: 'danger', ru: 'Опасность', uk: 'Небезпека', pos: 'nouns' },
+    { en: 'angry', ru: 'Сердитый (злой)', uk: 'Сердитий (злий)', pos: 'adjectives' },
+    { en: 'married', ru: 'Замужняя (женатый)', uk: 'Заміжня (одружений)', pos: 'adjectives' },
+    { en: 'open', ru: 'Открытый', uk: 'Відкритий', pos: 'adjectives' },
+    // Phrases 16-20
+    { en: 'list', ru: 'Список', uk: 'Список', pos: 'nouns' },
+    { en: 'free', ru: 'Бесплатный', uk: 'Безкоштовний', pos: 'adjectives' },
+    { en: 'right', ru: 'Правый (верный)', uk: 'Правий (вірний)', pos: 'adjectives' },
+    { en: 'here', ru: 'Здесь', uk: 'Тут', pos: 'adverbs' },
+    // Phrases 21-25
+    { en: 'joke', ru: 'Шутка', uk: 'Жарт', pos: 'nouns' },
+    { en: 'okay', ru: 'В порядке', uk: 'В порядку', pos: 'adjectives' },
+    { en: 'taxi', ru: 'Такси', uk: 'Таксі', pos: 'nouns' },
+    { en: 'school', ru: 'Школа', uk: 'Школа', pos: 'nouns' },
+    // Phrases 26-30
+    { en: 'afraid', ru: 'Боящийся (испуганный)', uk: 'Той, хто боїться (переляканий)', pos: 'adjectives' },
+    { en: 'far', ru: 'Далекий', uk: 'Далекий', pos: 'adjectives' },
+    { en: 'enemy', ru: 'Враг', uk: 'Ворог', pos: 'nouns' },
+    // Phrases 31-35
+    { en: 'office', ru: 'Офис', uk: 'Офіс', pos: 'nouns' },
+    { en: 'mood', ru: 'Настроение', uk: 'Настрій', pos: 'nouns' },
+    { en: 'true', ru: 'Правда (истинный)', uk: 'Правда (істинний)', pos: 'adjectives' },
+    { en: 'trap', ru: 'Ловушка', uk: 'Пастка', pos: 'nouns' },
+    // Phrases 36-40
+    { en: 'important', ru: 'Важный', uk: 'Важливо', pos: 'adjectives' },
+    { en: 'way', ru: 'Путь (дорога)', uk: 'Шлях (дорога)', pos: 'nouns' },
+    { en: 'sick', ru: 'Больной', uk: 'Хворий', pos: 'adjectives' },
+    { en: 'car', ru: 'Машина', uk: 'Машина', pos: 'nouns' },
+    // Phrases 41-45
+    { en: 'guilty', ru: 'Виноватый', uk: 'Винний', pos: 'adjectives' },
+    { en: 'elevator', ru: 'Лифт', uk: 'Ліфт', pos: 'nouns' },
+    { en: 'dangerous', ru: 'Опасный', uk: 'Небезпечний', pos: 'adjectives' },
+    { en: 'building', ru: 'Здание', uk: 'Будівля', pos: 'nouns' },
+    { en: 'mean', ru: 'Злой (подлый)', uk: 'Злий (підлий)', pos: 'adjectives' },
+    // Phrases 46-50
+    { en: 'serious', ru: 'Серьезный', uk: 'Серйозний', pos: 'adjectives' },
+    { en: 'together', ru: 'Вместе', uk: 'Разом', pos: 'adverbs' },
+  ],
 };
 
 const groupByPOS = (words: Word[], lang: 'ru'|'uk') => {

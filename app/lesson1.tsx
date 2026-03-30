@@ -2892,6 +2892,10 @@ interface LessonContentProps {
   setEmptyTapFlash: (val: boolean) => void;
   shouldShake: boolean;
   setShouldShake: (val: boolean) => void;
+  showNoEnergyModal: boolean;
+  setShowNoEnergyModal: (val: boolean) => void;
+  recoveryTimeText: string;
+  setFailedTapCount: (val: (prev: number) => number) => void;
 }
 
 function LessonContent({
@@ -2940,6 +2944,10 @@ function LessonContent({
   setEmptyTapFlash,
   shouldShake,
   setShouldShake,
+  showNoEnergyModal,
+  setShowNoEnergyModal,
+  recoveryTimeText,
+  setFailedTapCount,
 }: LessonContentProps) {
 
   // Show intro screens on first visit
@@ -3132,7 +3140,7 @@ function LessonContent({
                 }} />
               ))}
             </View>
-            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{displayProgress}/{TOTAL}</Text>
+            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{correctCount}/{TOTAL}</Text>
           </View>
         </View>
 
@@ -3159,9 +3167,7 @@ function LessonContent({
             }}
           >
             {(() => {
-              const allDone = status === 'playing' && !settings.hardMode && shuffled.length === 0 && selectedWords.length > 0;
-              // When all done: show "Проверить" only if autoCheck is off, else show "Отменить"
-              const showUndo = status !== 'result' && !settings.hardMode && selectedWords.length > 0 && !(allDone && !settings.autoCheck);
+              const showUndo = status !== 'result' && !settings.hardMode && selectedWords.length > 0;
               return <>
                 <Ionicons name={status === 'result' ? 'play-forward' : (showUndo ? 'arrow-undo' : 'checkmark-circle-outline')} size={26} color={t.textSecond} />
                 <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>
@@ -3779,9 +3785,6 @@ export default function LessonScreen() {
   const correctCount = progress.filter(p => p === 'correct' || p === 'replay_correct').length;
   const wrongCount   = progress.filter(p => p === 'wrong').length;
   const score = (correctCount / TOTAL * 5).toFixed(1);
-  // Progress display should show completed phrases, not current position
-  const displayProgress = correctCount;
-
 
   // Жёлтая подсветка для поля ввода когда 0 слов + тап
   const [emptyTapFlash, setEmptyTapFlash] = useState(false);
@@ -3851,6 +3854,10 @@ export default function LessonScreen() {
             setEmptyTapFlash={setEmptyTapFlash}
             shouldShake={shouldShake}
             setShouldShake={setShouldShake}
+            showNoEnergyModal={showNoEnergyModal}
+            setShowNoEnergyModal={setShowNoEnergyModal}
+            recoveryTimeText={recoveryTimeText}
+            setFailedTapCount={setFailedTapCount}
           />
         </SafeAreaView>
       </ScreenGradient>

@@ -385,8 +385,48 @@ export default function SettingsMain() {
         <Row icon="school-outline"        label={isUK ? 'Налаштування навчання' : 'Настройки обучения'}   onPress={() => router.push('/settings_edu')} />
         <Row icon="notifications-outline" label={isUK ? 'Нагадування' : 'Напоминания'} sub={isUK ? 'Щоденна мотивація' : 'Ежедневная мотивация'} onPress={() => router.push('/settings_notifications')} />
 
+        <SectionTitle title={isUK ? '🧪 Бета тест' : '🧪 Бета тест'} />
+        <Row icon="settings-outline" label={isUK ? 'Функції для тестерів' : 'Функции для тестеров'} sub={isUK ? 'Premium, енергія, опит' : 'Premium, энергия, опыт'} onPress={() => router.push('/settings_testers')} />
+        <Row icon="play-circle-outline" label={isUK ? 'Переглянути онбординг' : 'Просмотреть онбординг'} sub={isUK ? 'Повторити пошаговое введення' : 'Повторить пошаговое введение'} onPress={async () => { doHaptic(); await AsyncStorage.removeItem('onboarding_done'); router.replace('/(tabs)/home' as any); }} />
+        <Row icon="refresh-outline" label={isUK ? 'Скинути прогрес уроків' : 'Сбросить прогресс уроков'} sub={isUK ? 'Видалити всі збережені відповіді' : 'Удалить все сохраненные ответы'} danger onPress={() => {
+          Alert.alert(
+            isUK ? 'Скинути прогрес?' : 'Сбросить прогресс?',
+            isUK ? 'Це видалить прогрес усіх 32 уроків. Це не можна скасувати!' : 'Это удалит прогресс всех 32 уроков. Это нельзя отменить!',
+            [
+              { text: isUK ? 'Скасувати' : 'Отмена', onPress: () => {}, style: 'cancel' },
+              { text: isUK ? 'Скинути' : 'Сбросить', onPress: async () => {
+                doHaptic();
+                try {
+                  const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
+                  await AsyncStorage.multiRemove(lessonKeys);
+                  Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? 'Прогрес уроків скинуто' : 'Прогресс уроков сброшен');
+                } catch {
+                  Alert.alert('Помилка' + (isUK ? '' : ''), isUK ? 'Не вдалось скинути прогрес' : 'Не удалось сбросить прогресс');
+                }
+              }, style: 'destructive' }
+            ]
+          );
+        }} />
+        <Row icon="trash-outline" label={isUK ? 'Скинути статистику' : 'Сбросить статистику'} sub={isUK ? 'Скинути стрік та інші статистики' : 'Сбросить стрик и другую статистику'} danger onPress={() => {
+          Alert.alert(
+            isUK ? 'Скинути статистику?' : 'Сбросить статистику?',
+            isUK ? 'Це видалить стрік, щоденну статистику та інші досягнення. Це не можна скасувати!' : 'Это удалит стрик, ежедневную статистику и другие достижения. Это нельзя отменить!',
+            [
+              { text: isUK ? 'Скасувати' : 'Отмена', onPress: () => {}, style: 'cancel' },
+              { text: isUK ? 'Скинути' : 'Сбросить', onPress: async () => {
+                doHaptic();
+                try {
+                  await AsyncStorage.multiRemove(['streak_count', 'daily_stats', 'streak_freeze']);
+                  Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? 'Статистику скинуто' : 'Статистика сброшена');
+                } catch {
+                  Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось скинути статистику' : 'Не удалось сбросить статистику');
+                }
+              }, style: 'destructive' }
+            ]
+          );
+        }} />
+
 <SectionTitle title={isUK ? 'Ще' : 'Ещё'} />
-        <Row icon="play-circle-outline" label={isUK ? 'Переглянути онбординг' : 'Просмотреть онбординг'} sub={isUK ? 'Повторить пошаговое введение' : 'Повторить пошаговое введение'} onPress={async () => { doHaptic(); await AsyncStorage.removeItem('onboarding_done'); router.replace('/(tabs)/home' as any); }} />
         <Row icon="person-add-outline"  label={isUK ? 'Запросити друга' : 'Пригласить друга'}  sub={isUK ? 'Поділися застосунком' : 'Поделиться приложением'} onPress={async () => { try { await Share.share({ message: isUK ? `Вивчаю англійську з Phraseman — зручно та ефективно! 🔥 Спробуй і ти! ${STORE_URL}` : `Учу английский с Phraseman — удобно и эффективно! 🔥 Попробуй и ты! ${STORE_URL}`, url: STORE_URL }); } catch {} }} />
         <Row icon="help-circle-outline" label={isUK ? 'Допомога' : 'Помощь'}                             onPress={() => router.push('/help')} />
         <Row icon="mail-outline"        label={isUK ? 'Пропозиція або зауваження' : 'Предложение или замечание'} onPress={async () => {

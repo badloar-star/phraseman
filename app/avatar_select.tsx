@@ -10,7 +10,7 @@ import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { getLevelFromXP } from '../constants/theme';
-import { FRAMES, getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
+import { FRAMES, getBestAvatarForLevel, getBestFrameForLevel, getUnlockedFrames } from '../constants/avatars';
 import AnimatedFrame from '../components/AnimatedFrame';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -87,12 +87,17 @@ export default function AvatarSelect() {
   const [level, setLevel]       = useState(1);
   const [selEmoji, setSelEmoji] = useState('🐣');
   const [selFrame, setSelFrame] = useState('plain');
+  const [unlockedFrameIds, setUnlockedFrameIds] = useState<string[]>([]);
 
   useEffect(() => {
-    AsyncStorage.multiGet(['user_total_xp', 'user_avatar', 'user_frame']).then(pairs => {
+    Promise.all([
+      AsyncStorage.multiGet(['user_total_xp', 'user_avatar', 'user_frame']),
+      getUnlockedFrames(),
+    ]).then(([pairs, frameIds]) => {
       const xp  = parseInt(pairs[0][1] || '0') || 0;
       const lvl = getLevelFromXP(xp) || 1;
       setLevel(lvl);
+      setUnlockedFrameIds(frameIds);
       const bestAvatar = getBestAvatarForLevel(lvl);
       const bestFrame  = getBestFrameForLevel(lvl);
       setSelEmoji(pairs[1][1] || bestAvatar || '🐣');
@@ -106,8 +111,8 @@ export default function AvatarSelect() {
     AsyncStorage.multiSet([['user_avatar', selEmoji || '🐣'], ['user_frame', frameId]]).catch(() => {});
   };
 
-  const unlockedFrames = FRAMES.filter(fr => fr.unlockLevel <= level);
-  const lockedFrames   = FRAMES.filter(fr => fr.unlockLevel > level);
+  const unlockedFrames = FRAMES.filter(fr => fr.unlockLevel <= level || unlockedFrameIds.includes(fr.id));
+  const lockedFrames   = FRAMES.filter(fr => fr.unlockLevel > level && !unlockedFrameIds.includes(fr.id));
 
   return (
     <ScreenGradient>

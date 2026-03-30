@@ -244,3 +244,24 @@ export const getBotAvatarData = (botName: string, weekBase: number): BotAvatarDa
   // Use level badge image (number string) — consistent with user avatar display
   return { emoji: getBestAvatarForLevel(level), frameId: frame.id, level };
 };
+
+// ── Разблокировка рамок для тестеров (без изменения XP) ──────────────────────
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+export const unlockAllFrames = async (): Promise<void> => {
+  try {
+    const unlockedFrameIds = FRAMES.map(f => f.id);
+    await AsyncStorage.setItem('unlocked_frames', JSON.stringify(unlockedFrameIds));
+  } catch (err) {
+    console.error('Error unlocking all frames:', err);
+  }
+};
+
+export const getUnlockedFrames = async (): Promise<string[]> => {
+  try {
+    const data = await AsyncStorage.getItem('unlocked_frames');
+    return data ? JSON.parse(data) : [];
+  } catch {
+    return [];
+  }
+};

@@ -12,7 +12,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import ContentWrap from '../components/ContentWrap';
 import { unlockAllAchievements } from './achievements';
-import { getXPForLevel } from '../constants/theme';
+import { TOTAL_XP_FOR_LEVEL } from '../constants/theme';
 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
@@ -105,7 +105,7 @@ export default function SettingsTestersFunctions() {
               await unlockAllAchievements();
 
               // Разблокиваем все рамки установкой XP на уровень 50
-              const xpForLevel50 = getXPForLevel(50);
+              const xpForLevel50 = TOTAL_XP_FOR_LEVEL(50);
               await AsyncStorage.setItem('user_total_xp', String(xpForLevel50));
 
               Alert.alert('OK', isUK ? 'Все разблокировано' : 'Все разблокировано');

@@ -1,8 +1,8 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Pressable,
-  Animated, Dimensions, useWindowDimensions, TextInput, KeyboardAvoidingView, ScrollView,
-  Platform, NativeModules,
+  Animated, useWindowDimensions, TextInput, KeyboardAvoidingView, ScrollView,
+  Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
@@ -13,7 +13,8 @@ import * as Speech from 'expo-speech';
 import * as Haptics from 'expo-haptics';
 import { useTheme, getCardShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { isCorrectAnswer, normalize } from '../constants/contractions';
+import { isCorrectAnswer } from '../constants/contractions';
+import { L1_PHRASE_STRUCTURES, getDistractorsForWord } from './lesson1_distractor_logic';
 import { addOrUpdateScore } from './hall_of_fame_utils';
 import { checkAchievements } from './achievements';
 import { updateMultipleTaskProgress, resetAndUpdateTaskProgress } from './daily_tasks';
@@ -27,14 +28,15 @@ import { recordMistake } from './active_recall';
 import { findAllExplanations } from './feedback_engine';
 import { getErrorTrapsByIndex } from './error_traps/index';
 import type { FeedbackResult } from './types/feedback';
-import { getLessonData, ALL_LESSONS_RU, ALL_LESSONS_UK } from './lesson_data_all';
+import { getLessonData, getLessonIntroScreens, getLessonEncouragementScreens, ALL_LESSONS_RU, ALL_LESSONS_UK } from './lesson_data_all';
 import { hapticTap } from '../hooks/use-haptics';
 import AddToFlashcard from '../components/AddToFlashcard';
 import { loadMedalInfo, getProgressCellColor } from './medal_utils';
+import { spendEnergy, checkAndRecover } from './energy_system';
+import LessonEnergyLightning from '../components/LessonEnergyLightning';
+import LessonIntroScreens from './lesson_intro_screens';
 
-const { width: SCREEN_W, height: screenH } = Dimensions.get('window');
-const width = Math.min(SCREEN_W, 640); // ограничиваем по ContentWrap
-const COMPACT = screenH < 720;
+import { tryUnlockNextLesson } from './lesson_lock_system';
 
 let SpeechRec: any = null;
 let tapHintShownThisSession = false;
@@ -394,6 +396,52 @@ const VERB_FORM_GROUPS: string[][] = [
   ['carry','carries','carried','carrying','is carrying','was carrying','has carried','will carry'],
   ['have','has','had','having','is having','was having','has had','will have'],
 ];
+
+// ════════════════════════════════════════════════════════════════════════════════════
+// LESSON 1: INTELLIGENT DISTRACTOR SELECTION
+// Uses position-aware distractor logic for better learning outcomes
+// ════════════════════════════════════════════════════════════════════════════════════
+// ==================== NEW: Per-word distractor logic ====================
+const getPerWordDistracts = (phrase: any, wordIndex: number = 0): string[] => {
+  const shuffle = <T,>(a: T[]): T[] => [...a].sort(() => Math.random() - 0.5);
+
+  // NEW format: phrase has .words array with explicit distractors
+  if (phrase && phrase.words && phrase.words[wordIndex]) {
+    const wordData = phrase.words[wordIndex];
+    const allOptions = [wordData.correct, ...wordData.distractors];
+    return shuffle(allOptions);
+  }
+
+  // Fallback for old format (shouldn't happen with new lesson data)
+  return [];
+};
+
+const makeSmartOptionsL1 = (english: string, wordIndex: number = 0): string[] => {
+  const shuffle = <T,>(a: T[]): T[] => [...a].sort(() => Math.random() - 0.5);
+
+  // Find the phrase structure from L1_PHRASE_STRUCTURES
+  const phraseStr = L1_PHRASE_STRUCTURES.find(ps =>
+    ps.phrase.toLowerCase() === english.toLowerCase()
+  );
+
+  if (!phraseStr || !phraseStr.tokens[wordIndex]) {
+    // Fall back to regular makeSmartOptions if phrase not found in structures
+    return [];
+  }
+
+  const token = phraseStr.tokens[wordIndex];
+  const correctWord = token.word;
+
+  // Get smart distractors based on position and category
+  const previousTokens = phraseStr.tokens
+    .slice(0, wordIndex)
+    .map(t => t.word);
+
+  const distractors = getDistractorsForWord(correctWord, token.category, previousTokens);
+
+  // Return correct word + 5-6 distractors, shuffled
+  return shuffle([correctWord, ...distractors.slice(0, 5)]);
+};
 
 const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: number = 1): string[] => {
   const normalizePool = (w: string) => w.toLowerCase() === 'i' ? 'I' : w.toLowerCase();
@@ -2781,9 +2829,13 @@ const DEFAULT_SETTINGS: Settings = {
 // ── XP сохранение ────────────────────────────────────────────────────────────
 const saveXP = async (amount: number) => {
   try {
+    const { getXPMultiplier } = await import('./club_boosts');
+    const multiplier = await getXPMultiplier();
+    const finalAmount = Math.floor(amount * multiplier);
+
     const raw = await AsyncStorage.getItem('user_total_xp');
     const current = parseInt(raw || '0') || 0;
-    await AsyncStorage.setItem('user_total_xp', String(current + amount));
+    await AsyncStorage.setItem('user_total_xp', String(current + finalAmount));
   } catch {}
 };
 // ── Гексагональный прогресс-индикатор ────────────────────────────────────────
@@ -2801,7 +2853,7 @@ export default function LessonScreen() {
   const LESSON_KEY = `lesson${lessonId}_progress`;
   const CELL_KEY   = `lesson${lessonId}_cellIndex`;
 
-  const LESSON_DATA = getLessonData(lessonId, lang as 'ru' | 'uk');
+  const LESSON_DATA = getLessonData(lessonId);
 
   // cellIndex — позиция в прогресс-баре (0..49), двигается строго по кругу
   const [cellIndex,    setCellIndex]    = useState(0);
@@ -2824,9 +2876,17 @@ export default function LessonScreen() {
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
   const [passCount, setPassCount]   = useState(0);
+  const [insufficientEnergy, setInsufficientEnergy] = useState(false);
+  const [showEnergyModal, setShowEnergyModal] = useState(false);
+  const [currentEnergy, setCurrentEnergy] = useState(5); // для отображения молний
+  // ==================== NEW: Intro & Encouragement Screens ====================
+  const [showIntroScreens, setShowIntroScreens] = useState(false);
+  const [showEncouragementScreen, setShowEncouragementScreen] = useState(false);
+  const [showToBeHint, setShowToBeHint] = useState(false);
 
   const fadeAnim    = useRef(new Animated.Value(0)).current;
   const cursorAnim  = useRef(new Animated.Value(1)).current;
+  const hintPulseAnim = useRef(new Animated.Value(0.4)).current;
   const autoTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textInputRef = useRef<any>(null);
   const voiceResultSub    = useRef<any>(null);
@@ -2881,8 +2941,52 @@ export default function LessonScreen() {
     }, [])
   );
 
+  // Pulsing animation for to-be hint (only on first phrase of lesson 1)
+  useEffect(() => {
+    if (showToBeHint && cellIndex === 0) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(hintPulseAnim, {
+            toValue: 1,
+            duration: 600,
+            useNativeDriver: true,
+          }),
+          Animated.timing(hintPulseAnim, {
+            toValue: 0.4,
+            duration: 600,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    } else {
+      hintPulseAnim.setValue(0.4);
+    }
+  }, [showToBeHint, cellIndex]);
+
   const loadData = async () => {
     try {
+      // ==================== NEW: Check intro screens ====================
+      const introShown = await AsyncStorage.getItem(`lesson${lessonId}_intro_shown`);
+      if (!introShown) {
+        setShowIntroScreens(true);
+        return; // Don't load lesson yet, show intro first
+      }
+
+      // Проверяем энергию ПЕРЕД началом урока
+      const energyState = await checkAndRecover();
+      if (energyState.current <= 0) {
+        setShowEnergyModal(true);
+        setInsufficientEnergy(true);
+        setCurrentEnergy(0);
+        // Не загружаем урок, если нет энергии
+        return;
+      }
+      // Инициализируем энергию для отображения молний
+      setCurrentEnergy(energyState.current);
+
+      // ==================== NEW: Initialize to-be hint for phrase 1 ====================
+      setShowToBeHint(true);
+
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
       const [sp, ss, ci] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
@@ -2923,13 +3027,17 @@ export default function LessonScreen() {
 
       // Перемешиваем слова для стартовой фразы
       const startPhrase = LESSON_DATA[startCell % LESSON_DATA.length];
-      setShuffled(makeSmartOptions(startPhrase.english, 0, lessonId));
+      setShuffled(getPerWordDistracts(startPhrase, 0));
 
       if (ss) {
         const loaded = { ...DEFAULT_SETTINGS, ...JSON.parse(ss) };
         setSettings(loaded);
         if (loaded.hardMode) setTimeout(() => textInputRef.current?.focus(), 400);
       }
+
+      // Тратим энергию после успешной загрузки урока
+      await spendEnergy(1);
+      setInsufficientEnergy(false);
     } catch {}
   };
 
@@ -3011,16 +3119,30 @@ export default function LessonScreen() {
       } else {
         updateMultipleTaskProgress([{ type: 'total_answers' }]);
       }
+
+      // При ОШИБКЕ: молния исчезает
+      if (currentEnergy > 0) {
+        setCurrentEnergy(prev => {
+          const newEnergy = Math.max(0, prev - 1);
+          // Если энергия закончилась, показываем модаль
+          if (newEnergy === 0) {
+            setTimeout(() => {
+              setShowEnergyModal(true);
+              setInsufficientEnergy(true);
+            }, 1000);
+          }
+          return newEnergy;
+        });
+      }
     }
 
     setWasWrong(!isRight);
-    if (!isRight) {
-      const userAnswer = settings.hardMode ? typedText : selectedWords.join(' ');
-      const traps = getErrorTrapsByIndex(lessonId, cellIndex);
-      setFeedbackResult(findAllExplanations(userAnswer, phrase.english, traps));
-    } else {
-      setFeedbackResult(null);
-    }
+    // ВСЕГДА показываем карточку объяснения — для правильных и неправильных ответов
+    const userAnswer = settings.hardMode ? typedText : selectedWords.join(' ');
+    const traps = getErrorTrapsByIndex(lessonId, cellIndex);
+    const feedback = findAllExplanations(userAnswer, phrase.english, traps);
+    setFeedbackResult(feedback);
+
     setProgress(np);
 
     if (!isRight && settings.haptics) {
@@ -3028,11 +3150,41 @@ export default function LessonScreen() {
     }
 
     try { await AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)); } catch {}
-    // Сохраняем cellIndex сразу — защита от читерства при закрытии без перехода
+
+    // СОХРАНЯЕМ РЕЗУЛЬТАТ СРАЗУ при правильном ответе — автоматический переход к следующей фразе
     if (isRight) {
-      try { await AsyncStorage.setItem(CELL_KEY, String(cellIndex)); } catch {}
+      try {
+        // Находим следующую ячейку и сохраняем её как текущую позицию
+        let nextCell = (cellIndex + 1) % TOTAL;
+        const isDone = (x: string) => x === 'correct' || x === 'replay_correct';
+        const hasNonDone = np.some(x => !isDone(x));
+        if (hasNonDone) {
+          let attempts = 0;
+          while (isDone(np[nextCell]) && attempts < TOTAL) {
+            nextCell = (nextCell + 1) % TOTAL;
+            attempts++;
+          }
+        }
+        // Сохраняем nextCell сразу — результат уже зафиксирован
+        await AsyncStorage.setItem(CELL_KEY, String(nextCell));
+      } catch {}
     }
     setStatus('result');
+
+    // ==================== NEW: Handle to-be hint and encouragement screens ====================
+    if (isRight) {
+      // Disable to-be hint after phrase 1
+      if (cellIndex === 0) {
+        setShowToBeHint(false);
+      }
+
+      // Show encouragement screen after phrase 5
+      if (cellIndex === 4) {
+        setTimeout(() => {
+          setShowEncouragementScreen(true);
+        }, 1500);
+      }
+    }
 
     if (settings.voiceOut) {
       Speech.speak(phrase.english, { rate: settings.speechRate, language: 'en-US' });
@@ -3047,7 +3199,14 @@ export default function LessonScreen() {
     if (allCorrect && sessionAnswerCount.current >= TOTAL) {
       sessionAnswerCount.current = 0; // сброс для следующего повтора
       isReplayRef.current = true;
-      setTimeout(() => {
+      setTimeout(async () => {
+        // Получаем финальную оценку урока перед переходом на lesson_complete
+        const correct = np.filter(x => x === 'correct' || x === 'replay_correct').length;
+        const finalScore = parseFloat((correct / TOTAL * 5).toFixed(1));
+
+        // Пытаемся разблокировать следующий урок
+        await tryUnlockNextLesson(lessonId, finalScore);
+
         router.replace({ pathname: '/lesson_complete', params: { id: lessonId } });
       }, 1500);
       return;
@@ -3093,7 +3252,7 @@ export default function LessonScreen() {
 
     // Фраза для следующей ячейки
     const nextPhrase = LESSON_DATA[nextCell % LESSON_DATA.length];
-    setShuffled(makeSmartOptions(nextPhrase.english, 0, lessonId));
+    setShuffled(getPerWordDistracts(nextPhrase, 0));
 
     // Сохраняем позицию
     try { await AsyncStorage.setItem(CELL_KEY, String(nextCell)); } catch {}
@@ -3120,7 +3279,7 @@ export default function LessonScreen() {
           setShuffled([]);
           if (settings.autoCheck) checkAnswer(next.join(' '));
         } else {
-          setShuffled(makeSmartOptions(phrase.english, newIdx, lessonId));
+          setShuffled(getPerWordDistracts(phrase, newIdx));
         }
       } else {
         setContrExpanded(remaining);
@@ -3147,7 +3306,7 @@ export default function LessonScreen() {
       setShuffled([]);
       if (settings.autoCheck) checkAnswer(next.join(' '));
     } else {
-      setShuffled(makeSmartOptions(phrase.english, newIdx, lessonId));
+      setShuffled(getPerWordDistracts(phrase, newIdx));
     }
   };
 
@@ -3166,9 +3325,9 @@ export default function LessonScreen() {
       if (!selectedWords.length) return;
       if (contrExpanded !== null) {
         // In expansion mode: undo the first expansion token picked, exit expansion mode
-        setSelectedWords(p => p.slice(0, -1));
+        setSelectedWords((p: string[]) => p.slice(0, -1));
         setContrExpanded(null);
-        setShuffled(makeSmartOptions(phrase.english, phraseWordIdx, lessonId));
+        setShuffled(getPerWordDistracts(phrase, phraseWordIdx));
         return;
       }
       // Normal undo: pop last word, decrement phraseWordIdx
@@ -3189,7 +3348,7 @@ export default function LessonScreen() {
           return;
         }
       }
-      setShuffled(makeSmartOptions(phrase.english, newPhraseIdx, lessonId));
+      setShuffled(getPerWordDistracts(phrase, newPhraseIdx));
     }
   };
 
@@ -3243,7 +3402,22 @@ export default function LessonScreen() {
     <TouchableWithoutFeedback onPress={handleBgTap}>
       <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <>
+          {/* INTRO SCREENS — shown only on first visit */}
+          {showIntroScreens ? (
+            <LessonIntroScreens
+              introScreens={getLessonIntroScreens(lessonId)}
+              lessonId={lessonId}
+              onComplete={() => setShowIntroScreens(false)}
+            />
+          ) : showEncouragementScreen ? (
+            <LessonIntroScreens
+              introScreens={getLessonEncouragementScreens(lessonId)}
+              lessonId={lessonId}
+              onComplete={() => setShowEncouragementScreen(false)}
+            />
+          ) : (
+            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
 
           {/* ХЕДЕР */}
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, paddingVertical: 12 }}>
@@ -3272,6 +3446,9 @@ export default function LessonScreen() {
               </View>
             </View>
           </View>
+
+          {/* МОЛНИИ ЭНЕРГИИ */}
+          <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={5} />
 
           {/* ОСНОВНАЯ ЗОНА */}
           <ScrollView
@@ -3318,15 +3495,21 @@ export default function LessonScreen() {
               <Animated.View style={{ opacity: fadeAnim, width: '100%' }}>
                 {wasWrong && (
                   <View style={{ backgroundColor: t.wrongBg, padding: 15, borderRadius: 10, marginBottom: 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
-                    <Text style={{ color: t.wrong, fontSize: f.h1 }}>
-                      {/* Strip trailing punctuation user may have typed — comparison uses normalize() anyway */}
-                      {(settings.hardMode ? typedText : (
-                        selectedWords.length > 0
-                          ? selectedWords[0].charAt(0).toUpperCase() + selectedWords[0].slice(1)
-                            + (selectedWords.length > 1 ? ' ' + selectedWords.slice(1).map(w => w.toLowerCase() === 'i' ? 'I' : (w[0] !== w[0].toLowerCase() ? w : w.toLowerCase())).join(' ') : '')
-                          : ''
-                      )).replace(/[.?!,;]+$/, '')}
-                    </Text>
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
+                      {selectedWords.map((word, i) => {
+                        const correctWord = phrase.english.split(/\s+/)[i]?.toLowerCase();
+                        const isWrong = word.toLowerCase() !== correctWord;
+                        return (
+                          <Text key={i} style={{
+                            color: isWrong ? t.wrong : t.textPrimary,
+                            fontWeight: isWrong ? '700' : '500',
+                            fontSize: f.h1,
+                          }}>
+                            {word}
+                          </Text>
+                        );
+                      })}
+                    </View>
                   </View>
                 )}
                 <View style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -3339,41 +3522,31 @@ export default function LessonScreen() {
                   }</Text>
                   <AddToFlashcard
                     en={phrase.english}
-                    ru={(ALL_LESSONS_RU[lessonId] || []).find(p => p.english === phrase.english)?.russian ?? phrase.russian}
-                    uk={(ALL_LESSONS_UK[lessonId] || []).find(p => p.english === phrase.english)?.russian ?? phrase.russian}
+                    ru={(ALL_LESSONS_RU[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
+                    uk={(ALL_LESSONS_UK[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
                     source="lesson" sourceId={String(lessonId)}
                   />
                 </View>
-                {feedbackResult && wasWrong && feedbackResult.errorWords && feedbackResult.errorWords.length > 0 && (
-                  <View style={{ marginTop: 15, gap: 12 }}>
-                    {/* Показываем каждое неправильное слово с подсказкой */}
-                    {feedbackResult.errorWords.map((err, i) => (
-                      <View key={i} style={{ gap: 6 }}>
-                        {/* Выделенное неправильное слово */}
-                        <View style={{ flexDirection: 'row', alignItems: 'baseline', gap: 6 }}>
-                          <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600' }}>
-                            ❌ {err.userWord}
-                          </Text>
-                          <Text style={{ color: t.textMuted, fontSize: f.label }}>
-                            (правильно: <Text style={{ color: t.correct, fontWeight: '600' }}>{err.correctWord}</Text>)
-                          </Text>
-                        </View>
-                        {/* Подсказка для этого слова */}
-                        <View style={{
-                          backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                          padding: 12,
-                          paddingLeft: 15,
-                          borderRadius: 8,
-                          borderLeftWidth: 3,
-                          borderLeftColor: '#3B82F6',
-                          marginLeft: 8,
-                        }}>
-                          <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }}>
-                            {err.hint}
-                          </Text>
-                        </View>
-                      </View>
-                    ))}
+
+                {feedbackResult && feedbackResult.explanation && (
+                  <View style={{
+                    marginTop: 15,
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    padding: 16,
+                    paddingLeft: 18,
+                    borderRadius: 10,
+                    borderLeftWidth: 4,
+                    borderLeftColor: '#3B82F6',
+                  }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.6, fontWeight: '500' }}>
+                      {(() => {
+                        const traps = getErrorTrapsByIndex(lessonId, cellIndex);
+                        if (!traps) return feedbackResult.explanation;
+                        // Select RU or UA version of generalRule based on user's language setting
+                        if (lang === 'uk' && traps.generalRule_UA) return traps.generalRule_UA;
+                        return feedbackResult.explanation;
+                      })()}
+                    </Text>
                   </View>
                 )}
                 <TouchableOpacity
@@ -3395,15 +3568,26 @@ export default function LessonScreen() {
               style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 4 }}
             >
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-                {shuffled.map((word, i) => (
-                  <TouchableOpacity key={i}
-                    style={{ width: '48%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, marginBottom: compact ? 7 : 10, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
-                    onPress={() => { hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
-                    activeOpacity={0.7}
-                  >
-                    <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{word === 'I' ? 'I' : (word[0] !== word[0].toLowerCase() ? word : word.toLowerCase())}</Text>
-                  </TouchableOpacity>
-                ))}
+                {shuffled.map((word, i) => {
+                  const isToBeVerb = ['am', 'is', 'are', 'am not', 'is not', 'are not', "isn't", "aren't"].includes(word.toLowerCase());
+                  const shouldShowHint = showToBeHint && cellIndex === 0 && isToBeVerb;
+
+                  return (
+                    <Animated.View key={i} style={{
+                      width: '48%',
+                      marginBottom: compact ? 7 : 10,
+                      opacity: shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] })
+                    }}>
+                      <TouchableOpacity
+                        style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
+                        onPress={() => { hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
+                        activeOpacity={0.7}
+                      >
+                        <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{word === 'I' ? 'I' : (word[0] !== word[0].toLowerCase() ? word : word.toLowerCase())}</Text>
+                      </TouchableOpacity>
+                    </Animated.View>
+                  );
+                })}
               </View>
               {showTapHint && !settings.autoCheck && (
                 <View style={{ alignItems: 'center', marginBottom: 4 }}>
@@ -3450,26 +3634,87 @@ export default function LessonScreen() {
                 hapticTap();
                 if (status === 'result') { goNext(); return; }
                 if (settings.hardMode) { handleTypedSubmit(); return; }
-                if (shuffled.length === 0 && selectedWords.length > 0) { checkAnswer(selectedWords.join(' ')); return; }
+                // When all words selected and autoCheck is off: check the answer
+                if (shuffled.length === 0 && selectedWords.length > 0 && !settings.autoCheck) { checkAnswer(selectedWords.join(' ')); return; }
+                // Otherwise: undo if words are selected
                 if (selectedWords.length > 0) { undoLastWord(); return; }
               }}
             >
               {(() => {
                 const allDone = status === 'playing' && !settings.hardMode && shuffled.length === 0 && selectedWords.length > 0;
-                const showUndo = status !== 'result' && !settings.hardMode && selectedWords.length > 0 && !allDone;
+                // When all done: show "Проверить" only if autoCheck is off, else show "Отменить"
+                const showUndo = status !== 'result' && !settings.hardMode && selectedWords.length > 0 && !(allDone && !settings.autoCheck);
                 return <>
-                  <Ionicons name={status === 'result' || allDone ? 'play-forward' : (showUndo ? 'arrow-undo' : 'checkmark-circle-outline')} size={26} color={t.textSecond} />
+                  <Ionicons name={status === 'result' ? 'play-forward' : (showUndo ? 'arrow-undo' : 'checkmark-circle-outline')} size={26} color={t.textSecond} />
                   <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>
-                    {status === 'result' || allDone ? s.lesson.next : (showUndo ? s.lesson.undo : s.lesson.check)}
+                    {status === 'result' ? s.lesson.next : (showUndo ? s.lesson.undo : s.lesson.check)}
                   </Text>
                 </>;
               })()}
             </TouchableOpacity>
           </View>
 
-        </KeyboardAvoidingView>
+            </KeyboardAvoidingView>
+          )}
+        </>
       </SafeAreaView>
       </ScreenGradient>
+
+      {/* МОДАЛЬНОЕ ОКНО - НЕДОСТАТОЧНО ЭНЕРГИИ */}
+      {showEnergyModal && insufficientEnergy && (
+        <View style={{
+          ...StyleSheet.absoluteFillObject,
+          backgroundColor: 'rgba(0,0,0,0.5)',
+          justifyContent: 'center',
+          alignItems: 'center',
+          zIndex: 1000,
+        }}>
+          <View style={{
+            backgroundColor: t.bgCard,
+            borderRadius: 16,
+            padding: 24,
+            width: '85%',
+            maxWidth: 320,
+            borderWidth: 1,
+            borderColor: t.border,
+          }}>
+            <Text style={{
+              color: t.textPrimary,
+              fontSize: f.h3,
+              fontWeight: '700',
+              textAlign: 'center',
+              marginBottom: 12,
+            }}>⚡ {s.lesson?.noEnergy || 'Нет энергии'}</Text>
+
+            <Text style={{
+              color: t.textSecond,
+              fontSize: f.body,
+              textAlign: 'center',
+              marginBottom: 20,
+              lineHeight: 20,
+            }}>{s.lesson?.needEnergyToStart || 'Требуется 1 единица энергии для начала урока. Энергия восстанавливается каждые 2 часа.'}</Text>
+
+            <TouchableOpacity
+              onPress={() => {
+                setShowEnergyModal(false);
+                router.back();
+              }}
+              style={{
+                backgroundColor: t.accent,
+                borderRadius: 10,
+                paddingVertical: 12,
+                alignItems: 'center',
+              }}
+            >
+              <Text style={{
+                color: '#fff',
+                fontSize: f.bodyLg,
+                fontWeight: '600',
+              }}>{s.common?.back || 'Назад'}</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      )}
     </TouchableWithoutFeedback>
   );
 }

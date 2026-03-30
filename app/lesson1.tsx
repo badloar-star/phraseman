@@ -2841,6 +2841,362 @@ const saveXP = async (amount: number) => {
 // ── Гексагональный прогресс-индикатор ────────────────────────────────────────
 // LessonHexProgress is now imported from components/LessonHexProgress.tsx
 
+/**
+ * LessonContent: Renders the lesson UI (intro screens, encouragement, or main lesson).
+ * Extracted as separate component to ensure SafeAreaView receives exactly ONE child.
+ */
+interface LessonContentProps {
+  showIntroScreens: boolean;
+  setShowIntroScreens: (val: boolean) => void;
+  showEncouragementScreen: boolean;
+  setShowEncouragementScreen: (val: boolean) => void;
+  lessonId: number;
+  // All the main lesson UI props
+  compact: boolean;
+  phrase: any;
+  selectedWords: string[];
+  status: 'playing' | 'result';
+  feedbackResult: FeedbackResult | null;
+  handleBgTap: () => void;
+  handleWordPress: (word: string) => void;
+  undoLastWord: () => void;
+  goNext: () => void;
+  handleTypedSubmit: () => void;
+  typedText: string;
+  setTypedText: (val: string) => void;
+  shuffled: string[];
+  cursorAnim: Animated.Value;
+  fadeAnim: Animated.Value;
+  cellIndex: number;
+  passCount: number;
+  correctCount: number;
+  wrongCount: number;
+  score: number;
+  currentEnergy: number;
+  progress: string[];
+  comboCount: number;
+  showTapHint: boolean;
+  setShowTapHint: (val: boolean) => void;
+  showToBeHint: boolean;
+  hintPulseAnim: Animated.Value;
+  wasWrong: boolean;
+  textInputRef: React.RefObject<TextInput>;
+  settings: any;
+  router: any;
+  s: any;
+  t: any;
+  f: any;
+  themeMode: string;
+  lang: 'ru' | 'uk';
+  emptyTapFlash: boolean;
+  setEmptyTapFlash: (val: boolean) => void;
+}
+
+function LessonContent({
+  showIntroScreens,
+  setShowIntroScreens,
+  showEncouragementScreen,
+  setShowEncouragementScreen,
+  lessonId,
+  compact,
+  phrase,
+  selectedWords,
+  status,
+  feedbackResult,
+  handleBgTap,
+  handleWordPress,
+  undoLastWord,
+  goNext,
+  handleTypedSubmit,
+  typedText,
+  setTypedText,
+  shuffled,
+  cursorAnim,
+  fadeAnim,
+  cellIndex,
+  passCount,
+  correctCount,
+  wrongCount,
+  score,
+  currentEnergy,
+  progress,
+  comboCount,
+  showTapHint,
+  setShowTapHint,
+  showToBeHint,
+  hintPulseAnim,
+  wasWrong,
+  textInputRef,
+  settings,
+  router,
+  s,
+  t,
+  f,
+  themeMode,
+  lang,
+  emptyTapFlash,
+  setEmptyTapFlash,
+}: LessonContentProps) {
+  // Show intro screens on first visit
+  if (showIntroScreens) {
+    return (
+      <LessonIntroScreens
+        introScreens={getLessonIntroScreens(lessonId)}
+        lessonId={lessonId}
+        onComplete={() => setShowIntroScreens(false)}
+      />
+    );
+  }
+
+  // Show encouragement screen between phrase groups
+  if (showEncouragementScreen) {
+    return (
+      <LessonIntroScreens
+        introScreens={getLessonEncouragementScreens(lessonId)}
+        lessonId={lessonId}
+        onComplete={() => setShowEncouragementScreen(false)}
+      />
+    );
+  }
+
+  // Main lesson UI
+  return (
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+      {/* ХЕДЕР */}
+      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, paddingVertical: 12 }}>
+        {/* Кнопка назад совмещена с названием урока — как на скриншоте */}
+        <TouchableOpacity
+          onPress={() => router.back()}
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 20, paddingHorizontal: 12, paddingVertical: 7, borderWidth: 0.5, borderColor: t.border }}
+        >
+          <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
+          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
+            {lang === 'uk' ? 'Урок' : 'Урок'} {lessonId}
+          </Text>
+        </TouchableOpacity>
+        {/* Right side: combo badge + stats */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          {comboCount >= 3 && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, backgroundColor: '#FF9500', borderRadius: 10, paddingHorizontal: 7, paddingVertical: 3 }}>
+              <Text style={{ fontSize: 11 }}>🔥</Text>
+              <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.label }}>×{comboCount >= 5 ? '3' : '2'}</Text>
+            </View>
+          )}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '700' }}>★{score}</Text>
+            <Text style={{ color: t.correct, fontSize: f.label, fontWeight: '700' }}>●{correctCount}</Text>
+            <Text style={{ color: t.wrong, fontSize: f.label, fontWeight: '700' }}>●{wrongCount}</Text>
+          </View>
+        </View>
+      </View>
+
+      {/* МОЛНИИ ЭНЕРГИИ */}
+      <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={5} />
+
+      {/* ОСНОВНАЯ ЗОНА */}
+      <ScrollView
+        style={{ flex: 1 }}
+        contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: status === 'result' ? 100 : 8 }}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+      >
+        <Pressable onPress={handleBgTap} style={{ width: '100%' }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{phrase.russian}</Text>
+
+          <View style={{ minHeight: 60, borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+            {settings.hardMode ? (
+              /* Keep TextInput always mounted in hardMode — prevents keyboard slide animation between questions */
+              <TextInput
+                ref={textInputRef}
+                style={{ color: t.textSecond, fontSize: f.h1, padding: 0, minHeight: 40, opacity: status === 'playing' ? 1 : 0 }}
+                value={typedText}
+                onChangeText={setTypedText}
+                onSubmitEditing={handleTypedSubmit}
+                placeholder={status === 'playing' ? s.lesson.typeHere : ''}
+                placeholderTextColor={t.textGhost}
+                returnKeyType="done"
+                autoCapitalize="none"
+                autoCorrect={false}
+                blurOnSubmit={false}
+                editable={status === 'playing'}
+              />
+            ) : (
+              <Text style={{ color: t.textSecond, fontSize: f.h1 }}>
+                {selectedWords.length > 0
+                  ? (selectedWords[0].charAt(0).toUpperCase() + selectedWords[0].slice(1)
+                    + (selectedWords.length > 1 ? ' ' + selectedWords.slice(1).map(w => w.toLowerCase() === 'i' ? 'I' : (w[0] !== w[0].toLowerCase() ? w : w.toLowerCase())).join(' ') : ''))
+                  : ''
+                }{status !== 'result' && <Animated.Text style={{ color: t.textPrimary, opacity: cursorAnim }}>|</Animated.Text>}
+              </Text>
+            )}
+          </View>
+
+          </Pressable>
+          {status === 'result' && (
+            <Animated.View style={{ opacity: fadeAnim, width: '100%' }}>
+              {wasWrong && (
+                <View style={{ backgroundColor: t.wrongBg, padding: 15, borderRadius: 10, marginBottom: 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
+                  <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
+                    {selectedWords.map((word, i) => {
+                      const correctWord = phrase.english.split(/\s+/)[i]?.toLowerCase();
+                      const isWrong = word.toLowerCase() !== correctWord;
+                      return (
+                        <Text key={i} style={{
+                          color: isWrong ? t.wrong : t.textPrimary,
+                          fontWeight: isWrong ? '700' : '500',
+                          fontSize: f.h1,
+                        }}>
+                          {word}
+                        </Text>
+                      );
+                    })}
+                  </View>
+                </View>
+              )}
+              <View style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                <Text style={{ color: t.correct, fontSize: f.h1, flex: 1 }}>{
+                  /[.?!]$/.test(phrase.english) ? phrase.english
+                  : phrase.russian?.endsWith('?') ? phrase.english + '?'
+                  : phrase.russian?.endsWith('!') ? phrase.english + '!'
+                  : phrase.russian?.endsWith('.') ? phrase.english + '.'
+                  : phrase.english
+                }</Text>
+                <AddToFlashcard
+                  en={phrase.english}
+                  ru={(ALL_LESSONS_RU[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
+                  uk={(ALL_LESSONS_UK[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
+                  source="lesson" sourceId={String(lessonId)}
+                />
+              </View>
+
+              {feedbackResult && feedbackResult.explanation && (
+                <View style={{
+                  marginTop: 15,
+                  backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                  padding: 16,
+                  paddingLeft: 18,
+                  borderRadius: 10,
+                  borderLeftWidth: 4,
+                  borderLeftColor: '#3B82F6',
+                }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.6, fontWeight: '500' }}>
+                    {(() => {
+                      const traps = getErrorTrapsByIndex(lessonId, cellIndex);
+                      if (!traps) return feedbackResult.explanation;
+                      // Select RU or UA version of generalRule based on user's language setting
+                      if (lang === 'uk' && traps.generalRule_UA) return traps.generalRule_UA;
+                      return feedbackResult.explanation;
+                    })()}
+                  </Text>
+                </View>
+              )}
+              <TouchableOpacity
+                style={{ alignSelf: 'center', marginTop: 36 }}
+                onPress={() => Speech.speak(phrase.english, { language: 'en-US', rate: settings.speechRate })}
+              >
+                <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: t.correct, justifyContent: 'center', alignItems: 'center' }}>
+                  <Ionicons name="volume-high" size={42} color={t.bgPrimary} />
+                </View>
+              </TouchableOpacity>
+            </Animated.View>
+          )}
+        </ScrollView>
+
+        {/* КНОПКИ СЛОВ — снаружи ScrollView, тап по любому месту работает */}
+        {status === 'playing' && !settings.hardMode && (
+          <Pressable
+            onPress={handleBgTap}
+            style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 4 }}
+          >
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
+              {shuffled.map((word, i) => {
+                const isToBeVerb = ['am', 'is', 'are', 'am not', 'is not', 'are not', "isn't", "aren't"].includes(word.toLowerCase());
+                const shouldShowHint = showToBeHint && cellIndex === 0 && isToBeVerb;
+
+                return (
+                  <Animated.View key={i} style={{
+                    width: '48%',
+                    marginBottom: compact ? 7 : 10,
+                    opacity: shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] })
+                  }}>
+                    <TouchableOpacity
+                      style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
+                      onPress={() => { hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
+                      activeOpacity={0.7}
+                    >
+                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{word === 'I' ? 'I' : (word[0] !== word[0].toLowerCase() ? word : word.toLowerCase())}</Text>
+                    </TouchableOpacity>
+                  </Animated.View>
+                );
+              })}
+            </View>
+            {showTapHint && !settings.autoCheck && (
+              <View style={{ alignItems: 'center', marginBottom: 4 }}>
+                <View style={{ backgroundColor: t.bgCard, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 6, borderWidth: 0.5, borderColor: t.border }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1}>
+                    {lang === 'uk' ? '👆 Торкнись, щоб перевірити' : '👆 Тапни, чтобы проверить'}
+                  </Text>
+                </View>
+              </View>
+            )}
+          </Pressable>
+        )}
+
+        {/* ГОРИЗОНТАЛЬНЫЙ ПРОГРЕСС-БАР */}
+        <View style={{ paddingHorizontal: 14, paddingVertical: 6 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+            <View style={{ flex: 1, flexDirection: 'row', gap: 2 }}>
+              {Array.from({ length: TOTAL }).map((_, i) => (
+                <View key={i} style={{
+                  flex: 1,
+                  height: 8,
+                  borderRadius: 4,
+                  backgroundColor: getProgressCellColor(progress[i], passCount, t, i === cellIndex),
+                }} />
+              ))}
+            </View>
+            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{cellIndex}/{TOTAL}</Text>
+          </View>
+        </View>
+
+        {/* ФУТЕР */}
+        <View style={{ flexDirection: 'row', paddingVertical: 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/hint', params: { id: lessonId } }); }}>
+            <Ionicons name="list" size={26} color={t.textSecond} />
+            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.cheat}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
+            <Ionicons name="book-outline" size={26} color={t.textSecond} />
+            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{ flex: 1, alignItems: 'center', opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
+            onPress={() => {
+              hapticTap();
+              if (status === 'result') { goNext(); return; }
+              if (settings.hardMode) { handleTypedSubmit(); return; }
+              // When all words selected and autoCheck is off: check the answer
+              if (shuffled.length === 0 && selectedWords.length > 0 && !settings.autoCheck) { handleBgTap(); return; }
+              // Otherwise: undo if words are selected
+              if (selectedWords.length > 0) { undoLastWord(); return; }
+            }}
+          >
+            {(() => {
+              const allDone = status === 'playing' && !settings.hardMode && shuffled.length === 0 && selectedWords.length > 0;
+              // When all done: show "Проверить" only if autoCheck is off, else show "Отменить"
+              const showUndo = status !== 'result' && !settings.hardMode && selectedWords.length > 0 && !(allDone && !settings.autoCheck);
+              return <>
+                <Ionicons name={status === 'result' ? 'play-forward' : (showUndo ? 'arrow-undo' : 'checkmark-circle-outline')} size={26} color={t.textSecond} />
+                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>
+                  {status === 'result' ? s.lesson.next : (showUndo ? s.lesson.undo : s.lesson.check)}
+                </Text>
+              </>;
+            })()}
+          </TouchableOpacity>
+        </View>
+    </KeyboardAvoidingView>
+  );
+}
 
 export default function LessonScreen() {
   const router = useRouter();
@@ -3401,262 +3757,53 @@ export default function LessonScreen() {
   return (
     <TouchableWithoutFeedback onPress={handleBgTap}>
       <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
-        <>
-          {/* INTRO SCREENS — shown only on first visit */}
-          {showIntroScreens ? (
-            <LessonIntroScreens
-              introScreens={getLessonIntroScreens(lessonId)}
-              lessonId={lessonId}
-              onComplete={() => setShowIntroScreens(false)}
-            />
-          ) : showEncouragementScreen ? (
-            <LessonIntroScreens
-              introScreens={getLessonEncouragementScreens(lessonId)}
-              lessonId={lessonId}
-              onComplete={() => setShowEncouragementScreen(false)}
-            />
-          ) : (
-            <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-              {/* ХЕДЕР */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, paddingVertical: 12 }}>
-            {/* Кнопка назад совмещена с названием урока — как на скриншоте */}
-            <TouchableOpacity
-              onPress={() => router.back()}
-              style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 20, paddingHorizontal: 12, paddingVertical: 7, borderWidth: 0.5, borderColor: t.border }}
-            >
-              <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                {lang === 'uk' ? 'Урок' : 'Урок'} {lessonId}
-              </Text>
-            </TouchableOpacity>
-            {/* Right side: combo badge + stats */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-              {comboCount >= 3 && (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, backgroundColor: '#FF9500', borderRadius: 10, paddingHorizontal: 7, paddingVertical: 3 }}>
-                  <Text style={{ fontSize: 11 }}>🔥</Text>
-                  <Text style={{ color: '#fff', fontWeight: '800', fontSize: f.label }}>×{comboCount >= 5 ? '3' : '2'}</Text>
-                </View>
-              )}
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '700' }}>★{score}</Text>
-                <Text style={{ color: t.correct, fontSize: f.label, fontWeight: '700' }}>●{correctCount}</Text>
-                <Text style={{ color: t.wrong, fontSize: f.label, fontWeight: '700' }}>●{wrongCount}</Text>
-              </View>
-            </View>
-          </View>
-
-          {/* МОЛНИИ ЭНЕРГИИ */}
-          <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={5} />
-
-          {/* ОСНОВНАЯ ЗОНА */}
-          <ScrollView
-            style={{ flex: 1 }}
-            contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: status === 'result' ? 100 : 8 }}
-            keyboardShouldPersistTaps="handled"
-            showsVerticalScrollIndicator={false}
-          >
-            <Pressable onPress={handleBgTap} style={{ width: '100%' }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{phrase.russian}</Text>
-
-            <View style={{ minHeight: 60, borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
-              {settings.hardMode ? (
-                /* Keep TextInput always mounted in hardMode — prevents keyboard slide animation between questions */
-                <TextInput
-                  ref={textInputRef}
-                  style={{ color: t.textSecond, fontSize: f.h1, padding: 0, minHeight: 40, opacity: status === 'playing' ? 1 : 0 }}
-                  value={typedText}
-                  onChangeText={setTypedText}
-                  onSubmitEditing={handleTypedSubmit}
-                  placeholder={status === 'playing' ? s.lesson.typeHere : ''}
-                  placeholderTextColor={t.textGhost}
-                  returnKeyType="done"
-                  autoCapitalize="none"
-                  autoCorrect={false}
-                  blurOnSubmit={false}
-                  editable={status === 'playing'}
-                />
-              ) : (
-                <Text style={{ color: t.textSecond, fontSize: f.h1 }}>
-                  {selectedWords.length > 0
-                    ? (selectedWords[0].charAt(0).toUpperCase() + selectedWords[0].slice(1)
-                      + (selectedWords.length > 1 ? ' ' + selectedWords.slice(1).map(w => w.toLowerCase() === 'i' ? 'I' : (w[0] !== w[0].toLowerCase() ? w : w.toLowerCase())).join(' ') : ''))
-                    : ''
-                  }{status !== 'result' && <Animated.Text style={{ color: t.textPrimary, opacity: cursorAnim }}>|</Animated.Text>}
-                </Text>
-              )}
-            </View>
-
-
-
-            </Pressable>
-            {status === 'result' && (
-              <Animated.View style={{ opacity: fadeAnim, width: '100%' }}>
-                {wasWrong && (
-                  <View style={{ backgroundColor: t.wrongBg, padding: 15, borderRadius: 10, marginBottom: 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
-                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
-                      {selectedWords.map((word, i) => {
-                        const correctWord = phrase.english.split(/\s+/)[i]?.toLowerCase();
-                        const isWrong = word.toLowerCase() !== correctWord;
-                        return (
-                          <Text key={i} style={{
-                            color: isWrong ? t.wrong : t.textPrimary,
-                            fontWeight: isWrong ? '700' : '500',
-                            fontSize: f.h1,
-                          }}>
-                            {word}
-                          </Text>
-                        );
-                      })}
-                    </View>
-                  </View>
-                )}
-                <View style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                  <Text style={{ color: t.correct, fontSize: f.h1, flex: 1 }}>{
-                    /[.?!]$/.test(phrase.english) ? phrase.english
-                    : phrase.russian?.endsWith('?') ? phrase.english + '?'
-                    : phrase.russian?.endsWith('!') ? phrase.english + '!'
-                    : phrase.russian?.endsWith('.') ? phrase.english + '.'
-                    : phrase.english
-                  }</Text>
-                  <AddToFlashcard
-                    en={phrase.english}
-                    ru={(ALL_LESSONS_RU[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
-                    uk={(ALL_LESSONS_UK[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
-                    source="lesson" sourceId={String(lessonId)}
-                  />
-                </View>
-
-                {feedbackResult && feedbackResult.explanation && (
-                  <View style={{
-                    marginTop: 15,
-                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
-                    padding: 16,
-                    paddingLeft: 18,
-                    borderRadius: 10,
-                    borderLeftWidth: 4,
-                    borderLeftColor: '#3B82F6',
-                  }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.6, fontWeight: '500' }}>
-                      {(() => {
-                        const traps = getErrorTrapsByIndex(lessonId, cellIndex);
-                        if (!traps) return feedbackResult.explanation;
-                        // Select RU or UA version of generalRule based on user's language setting
-                        if (lang === 'uk' && traps.generalRule_UA) return traps.generalRule_UA;
-                        return feedbackResult.explanation;
-                      })()}
-                    </Text>
-                  </View>
-                )}
-                <TouchableOpacity
-                  style={{ alignSelf: 'center', marginTop: 36 }}
-                  onPress={() => Speech.speak(phrase.english, { language: 'en-US', rate: settings.speechRate })}
-                >
-                  <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: t.correct, justifyContent: 'center', alignItems: 'center' }}>
-                    <Ionicons name="volume-high" size={42} color={t.bgPrimary} />
-                  </View>
-                </TouchableOpacity>
-              </Animated.View>
-            )}
-          </ScrollView>
-
-          {/* КНОПКИ СЛОВ — снаружи ScrollView, тап по любому месту работает */}
-          {status === 'playing' && !settings.hardMode && (
-            <Pressable
-              onPress={handleBgTap}
-              style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 4 }}
-            >
-              <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-                {shuffled.map((word, i) => {
-                  const isToBeVerb = ['am', 'is', 'are', 'am not', 'is not', 'are not', "isn't", "aren't"].includes(word.toLowerCase());
-                  const shouldShowHint = showToBeHint && cellIndex === 0 && isToBeVerb;
-
-                  return (
-                    <Animated.View key={i} style={{
-                      width: '48%',
-                      marginBottom: compact ? 7 : 10,
-                      opacity: shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] })
-                    }}>
-                      <TouchableOpacity
-                        style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
-                        onPress={() => { hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
-                        activeOpacity={0.7}
-                      >
-                        <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{word === 'I' ? 'I' : (word[0] !== word[0].toLowerCase() ? word : word.toLowerCase())}</Text>
-                      </TouchableOpacity>
-                    </Animated.View>
-                  );
-                })}
-              </View>
-              {showTapHint && !settings.autoCheck && (
-                <View style={{ alignItems: 'center', marginBottom: 4 }}>
-                  <View style={{ backgroundColor: t.bgCard, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 6, borderWidth: 0.5, borderColor: t.border }}>
-                    <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1}>
-                      {lang === 'uk' ? '👆 Торкнись, щоб перевірити' : '👆 Тапни, чтобы проверить'}
-                    </Text>
-                  </View>
-                </View>
-              )}
-            </Pressable>
-          )}
-
-          {/* ГОРИЗОНТАЛЬНЫЙ ПРОГРЕСС-БАР */}
-          <View style={{ paddingHorizontal: 14, paddingVertical: 6 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              <View style={{ flex: 1, flexDirection: 'row', gap: 2 }}>
-                {Array.from({ length: TOTAL }).map((_, i) => (
-                  <View key={i} style={{
-                    flex: 1,
-                    height: 8,
-                    borderRadius: 4,
-                    backgroundColor: getProgressCellColor(progress[i], passCount, t, i === cellIndex),
-                  }} />
-                ))}
-              </View>
-              <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{cellIndex}/{TOTAL}</Text>
-            </View>
-          </View>
-
-          {/* ФУТЕР */}
-          <View style={{ flexDirection: 'row', paddingVertical: 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
-            <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/hint', params: { id: lessonId } }); }}>
-              <Ionicons name="list" size={26} color={t.textSecond} />
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.cheat}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
-              <Ionicons name="book-outline" size={26} color={t.textSecond} />
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={{ flex: 1, alignItems: 'center', opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
-              onPress={() => {
-                hapticTap();
-                if (status === 'result') { goNext(); return; }
-                if (settings.hardMode) { handleTypedSubmit(); return; }
-                // When all words selected and autoCheck is off: check the answer
-                if (shuffled.length === 0 && selectedWords.length > 0 && !settings.autoCheck) { checkAnswer(selectedWords.join(' ')); return; }
-                // Otherwise: undo if words are selected
-                if (selectedWords.length > 0) { undoLastWord(); return; }
-              }}
-            >
-              {(() => {
-                const allDone = status === 'playing' && !settings.hardMode && shuffled.length === 0 && selectedWords.length > 0;
-                // When all done: show "Проверить" only if autoCheck is off, else show "Отменить"
-                const showUndo = status !== 'result' && !settings.hardMode && selectedWords.length > 0 && !(allDone && !settings.autoCheck);
-                return <>
-                  <Ionicons name={status === 'result' ? 'play-forward' : (showUndo ? 'arrow-undo' : 'checkmark-circle-outline')} size={26} color={t.textSecond} />
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>
-                    {status === 'result' ? s.lesson.next : (showUndo ? s.lesson.undo : s.lesson.check)}
-                  </Text>
-                </>;
-              })()}
-            </TouchableOpacity>
-          </View>
-
-            </KeyboardAvoidingView>
-          )}
-        </>
-      </SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
+          <LessonContent
+            showIntroScreens={showIntroScreens}
+            setShowIntroScreens={setShowIntroScreens}
+            showEncouragementScreen={showEncouragementScreen}
+            setShowEncouragementScreen={setShowEncouragementScreen}
+            lessonId={lessonId}
+            compact={compact}
+            phrase={phrase}
+            selectedWords={selectedWords}
+            status={status}
+            feedbackResult={feedbackResult}
+            handleBgTap={handleBgTap}
+            handleWordPress={handleWordPress}
+            undoLastWord={undoLastWord}
+            goNext={goNext}
+            handleTypedSubmit={handleTypedSubmit}
+            typedText={typedText}
+            setTypedText={setTypedText}
+            shuffled={shuffled}
+            cursorAnim={cursorAnim}
+            fadeAnim={fadeAnim}
+            cellIndex={cellIndex}
+            passCount={passCount}
+            correctCount={correctCount}
+            wrongCount={wrongCount}
+            score={score}
+            currentEnergy={currentEnergy}
+            progress={progress}
+            comboCount={comboCount}
+            showTapHint={showTapHint}
+            setShowTapHint={setShowTapHint}
+            showToBeHint={showToBeHint}
+            hintPulseAnim={hintPulseAnim}
+            wasWrong={wasWrong}
+            textInputRef={textInputRef}
+            settings={settings}
+            router={router}
+            s={s}
+            t={t}
+            f={f}
+            themeMode={themeMode}
+            lang={lang}
+            emptyTapFlash={emptyTapFlash}
+            setEmptyTapFlash={setEmptyTapFlash}
+          />
+        </SafeAreaView>
       </ScreenGradient>
 
       {/* МОДАЛЬНОЕ ОКНО - НЕДОСТАТОЧНО ЭНЕРГИИ */}

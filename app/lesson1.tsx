@@ -3132,7 +3132,7 @@ function LessonContent({
                 }} />
               ))}
             </View>
-            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{cellIndex}/{TOTAL}</Text>
+            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{displayProgress}/{TOTAL}</Text>
           </View>
         </View>
 
@@ -3779,6 +3779,8 @@ export default function LessonScreen() {
   const correctCount = progress.filter(p => p === 'correct' || p === 'replay_correct').length;
   const wrongCount   = progress.filter(p => p === 'wrong').length;
   const score = (correctCount / TOTAL * 5).toFixed(1);
+  // Progress display should show completed phrases, not current position
+  const displayProgress = correctCount;
 
 
   // Жёлтая подсветка для поля ввода когда 0 слов + тап

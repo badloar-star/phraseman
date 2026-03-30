@@ -211,7 +211,7 @@ function BadgeShield({
         />
         {/* PNG изображение сверху */}
         <Image
-          source={require('../../assets/images/levels/achivement.png')}
+          source={require('../assets/images/levels/achivement.png')}
           style={{ width: W, height: BODY_H, tintColor: '#ffffff' }}
           resizeMode="contain"
         />

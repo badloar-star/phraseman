@@ -48,7 +48,7 @@ export default function ClubBoostActivator({
   const [selectedBoost, setSelectedBoost] = useState<BoostDef | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const slideAnim = useRef(new Animated.Value(300)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current;
 
   const openBoost = (boost: BoostDef) => {
     setSelectedBoost(boost);

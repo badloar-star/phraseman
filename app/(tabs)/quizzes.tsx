@@ -27,6 +27,7 @@ import { DEV_MODE, STORE_URL } from '../config';
 import AddToFlashcard from '../../components/AddToFlashcard';
 import { calculateRewardWithBonus } from '../variable_reward_system';
 import BonusXPCard from '../../components/BonusXPCard';
+import { spendEnergy } from '../energy_system';
 
 // Используем QuizPhrase из quiz_data.ts
 type Phrase = QuizPhrase;
@@ -556,6 +557,9 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         setShowBreak(currentStreak >= 2);
         setStreak(0);
         setTimeout(() => setShowBreak(false), 800);
+
+        // Spend energy on wrong answer in quiz
+        spendEnergy(1).catch(() => {});
 
         if (settings.hardMode && !hardTipDismissed) {
           const newCount = hardWrongCount + 1;

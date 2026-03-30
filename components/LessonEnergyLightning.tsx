@@ -41,14 +41,14 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
 
   return (
     <View style={styles.container}>
-      {/* Stacked energy icons with 50% overlap */}
-      <View style={[styles.stackContainer, { marginLeft: -40 }]}>
+      {/* Horizontal energy icons with slight overlap */}
+      <View style={styles.stackContainer}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
-          <View key={i} style={{ marginLeft: i > 0 ? -10 : 0 }}>
+          <View key={i} style={{ marginLeft: i > 0 ? -6 : 0 }}>
             <EnergyIcon
               filled={i < energyCount}
               themeColor={i < energyCount ? t.gold : t.textGhost}
-              size={18}
+              size={16}
               animateChange={true}
               shouldShake={shouldShake}
             />

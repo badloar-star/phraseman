@@ -2978,8 +2978,13 @@ function LessonContent({
             {lang === 'uk' ? 'Урок' : 'Урок'} {lessonId}
           </Text>
         </TouchableOpacity>
-        {/* Right side: combo badge + stats */}
+        {/* Right side: energy icons + combo badge + stats */}
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+          {/* Energy icons at top */}
+          <View style={{ paddingVertical: 8 }}>
+            <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={5} shouldShake={shouldShake} />
+          </View>
+
           {comboCount >= 3 && (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, backgroundColor: '#FF9500', borderRadius: 10, paddingHorizontal: 7, paddingVertical: 3 }}>
               <Text style={{ fontSize: 11 }}>🔥</Text>
@@ -2993,9 +2998,6 @@ function LessonContent({
           </View>
         </View>
       </View>
-
-      {/* МОЛНИИ ЭНЕРГИИ */}
-      <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={5} shouldShake={shouldShake} />
 
       {/* ОСНОВНАЯ ЗОНА */}
       <ScrollView

@@ -215,7 +215,7 @@ export default function SettingsTestersFunctions() {
 
           <SectionTitle title={isUK ? 'Активи' : 'АКТИВЫ'} />
           <ButtonRow
-            icon={noLimitsEnabled ? "lock-outline" : "lock-open-outline"}
+            icon={noLimitsEnabled ? "lock-open-outline" : "lock-outline"}
             label={noLimitsEnabled ? (isUK ? 'Без обмежень ✓' : 'Без ограничений ✓') : (isUK ? 'Без обмежень' : 'Без ограничений')}
             sub={isUK ? 'Всі уроки і екзамени доступні' : 'Все уроки и экзамены доступны'}
             onPress={() => toggleNoLimits(!noLimitsEnabled)}

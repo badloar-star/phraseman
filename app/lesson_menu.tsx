@@ -43,19 +43,9 @@ export default function LessonMenu() {
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   const [showLockModal, setShowLockModal] = useState(false);
 
-  useEffect(()=>{
-    AsyncStorage.setItem('last_opened_lesson', String(lessonId));
-    vocabAlertShown.current = false;
-    setScore(0);
-    setProgress(0);
-    setProgressArr(new Array(50).fill('empty'));
-    setWordsLearned(0);
-    setIrregularLearned(0);
-    setPassCount(0);
-
-    // Проверить, заблокирован ли урок
+  const loadLockState = useCallback(() => {
+    // Проверить, заблокирован ли урок (с учётом тестерской функции "Без ограничений")
     (async () => {
-      // Если включена тестерская функция "Без ограничений", все уроки доступны
       const noLimits = await AsyncStorage.getItem('tester_no_limits');
       if (noLimits === 'true') {
         setIsLessonLocked(false);
@@ -105,6 +95,19 @@ export default function LessonMenu() {
     }
   }, [lessonId]);
 
+  useEffect(() => {
+    AsyncStorage.setItem('last_opened_lesson', String(lessonId));
+    vocabAlertShown.current = false;
+    setScore(0);
+    setProgress(0);
+    setProgressArr(new Array(50).fill('empty'));
+    setWordsLearned(0);
+    setIrregularLearned(0);
+    setPassCount(0);
+
+    loadLockState();
+  }, [lessonId, loadLockState]);
+
   // Показать подсказку при первом нажатии «Начать урок»
   const handleStartLesson = useCallback(() => {
     if (!vocabAlertShown.current && LESSONS_WITH_WORDS.has(lessonId)) {
@@ -142,6 +145,7 @@ export default function LessonMenu() {
   }, []);
 
   useFocusEffect(loadProgress);
+  useFocusEffect(loadLockState);
 
   const isStarted = progress > 0;
 

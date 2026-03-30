@@ -12,8 +12,9 @@ import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements } from './achievements';
 import { unlockAllFrames } from '../constants/avatars';
-import { checkLeagueOnAppOpen, CLUBS } from './league_engine';
+import { checkLeagueOnAppOpen, LeagueResult } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
+import LeagueResultModal from './LeagueResultModal';
 
 const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
   icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
@@ -62,6 +63,8 @@ export default function SettingsTestersFunctions() {
   const [noLimitsEnabled, setNoLimitsEnabled] = useState(false);
   const [energyDisabled, setEnergyDisabled] = useState(false);
   const [energyInstantRecovery, setEnergyInstantRecovery] = useState(false);
+  const [leagueResultVisible, setLeagueResultVisible] = useState(false);
+  const [leagueResult, setLeagueResult] = useState<LeagueResult | null>(null);
 
   // Load settings on mount
   useEffect(() => {
@@ -159,23 +162,8 @@ export default function SettingsTestersFunctions() {
               const result = await checkLeagueOnAppOpen(userName, myWeekPoints);
 
               if (result.result) {
-                const { promoted, demoted, newLeagueId } = result.result;
-                const newClub = CLUBS[newLeagueId];
-                let msg = '';
-                if (promoted) {
-                  msg = isUK
-                    ? `Підвищення! 🎉 Тепер ви в ${newClub.nameUK}`
-                    : `Повышение! 🎉 Теперь вы в ${newClub.nameRU}`;
-                } else if (demoted) {
-                  msg = isUK
-                    ? `Пониження 📉 Тепер ви в ${newClub.nameUK}`
-                    : `Понижение 📉 Теперь вы в ${newClub.nameRU}`;
-                } else {
-                  msg = isUK
-                    ? `На місці 📍 Залишилися в ${newClub.nameUK}`
-                    : `На месте 📍 Остались в ${newClub.nameRU}`;
-                }
-                Alert.alert('OK', msg);
+                setLeagueResult(result.result);
+                setLeagueResultVisible(true);
               }
             } catch {
               Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось виконати конец тижня' : 'Не удалось выполнить конец недели');
@@ -331,6 +319,14 @@ export default function SettingsTestersFunctions() {
           />
         </ScrollView>
       </SafeAreaView>
+
+      {leagueResult && (
+        <LeagueResultModal
+          visible={leagueResultVisible}
+          result={leagueResult}
+          onClose={() => setLeagueResultVisible(false)}
+        />
+      )}
     </ScreenGradient>
   );
 }

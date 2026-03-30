@@ -308,6 +308,8 @@ export default function SettingsTestersFunctions() {
                         'achievement_progress',
                         'medal_states',
                         'medal_tiers',
+                        'achievements_v1',
+                        'quiz_hard_count',
                       ];
 
                       // Рамки и аватары

@@ -3,6 +3,7 @@
 // Хранение: AsyncStorage 'phrasemen_state' → PhrasemenState
 // ════════════════════════════════════════════════════════════════════════════
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 export type TransactionType =
   | 'daily_task'              // Дневные задачи
@@ -52,7 +53,8 @@ export const loadPhrasemenState = async (): Promise<PhrasemenState> => {
     const initial = getInitialState();
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(initial));
     return initial;
-  } catch {
+  } catch (error) {
+    DebugLogger.error('phrasemen_system.ts:loadPhrasemenState', error, 'critical');
     return getInitialState();
   }
 };
@@ -62,7 +64,7 @@ const savePhrasemenState = async (state: PhrasemenState): Promise<void> => {
   try {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('phrasemen_system.ts:savePhrasemenState', error, 'critical');
   }
 };
 
@@ -166,7 +168,7 @@ export const clearPhrasemenData = async (): Promise<void> => {
   try {
     await AsyncStorage.removeItem(STORAGE_KEY);
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('phrasemen_system.ts:clearPhrasemenData', error, 'warning');
   }
 };
 

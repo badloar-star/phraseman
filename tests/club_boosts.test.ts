@@ -38,12 +38,13 @@ describe('Club Boosts System', () => {
   // ═══════════════════════════════════════════════════════════════════════════
 
   describe('Boost Definitions', () => {
-    test('should have 3 different boosts', () => {
-      expect(CLUB_BOOSTS).toHaveLength(3);
+    test('should have 4 different boosts', () => {
+      expect(CLUB_BOOSTS).toHaveLength(4);
     });
 
     test('should have correct boost IDs', () => {
       const ids = CLUB_BOOSTS.map(b => b.id);
+      expect(ids).toContain('xp_2x_2h_250xp');
       expect(ids).toContain('xp_2x_1h');
       expect(ids).toContain('xp_1_5x_2h');
       expect(ids).toContain('energy_plus_1');

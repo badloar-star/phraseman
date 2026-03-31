@@ -187,12 +187,11 @@ describe('findContextualExplanation', () => {
       expect(result?.explanation).not.toBe('Short trigger: "saw" matched.');
     });
 
-    test('3b. [KNOWN BEHAVIOR] Короткий трап первым → срабатывает он, даже если длинный тоже совпадает', () => {
-      // Документирует фактическое поведение движка:
-      // порядок трапов в массиве определяет приоритет, не длина trigger.
-      // sortTriggersByLengthDesc работает только внутри одного трапа.
+    test('3b. Трапы сортируются по длине наибольшего триггера → длинный trigger побеждает', () => {
+      // Движок сортирует трапы по длине наибольшего триггера (от большего к меньшему).
+      // Даже если "saw" стоит первым в массиве, "not saw" побеждает потому что длиннее.
       const result = findContextualExplanation('i did not saw him', priorityTrapsWrongOrder);
-      expect(result?.explanation).toBe('Short trigger: "saw" matched.');
+      expect(result?.explanation).toBe('Long trigger: "not saw" matched.');
     });
 
     test('Только короткий trigger присутствует → возвращает short match', () => {

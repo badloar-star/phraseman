@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 export interface EnergyState {
   current: number;
@@ -8,7 +9,7 @@ export interface EnergyState {
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 const MAX_ENERGY = 5;
-const RECOVERY_INTERVAL_MS = 30 * 60 * 1000; // 30 минут в миллисекундах
+const RECOVERY_INTERVAL_MS = 2 * 60 * 60 * 1000; // 2 часа в миллисекундах
 const ENERGY_PER_LESSON = 1;
 
 const DEFAULT_STATE: EnergyState = {
@@ -36,7 +37,7 @@ export async function getEnergyState(): Promise<EnergyState> {
     const parsed = JSON.parse(stored) as EnergyState;
     return parsed;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('energy_system.ts:getEnergyState', error, 'critical');
     return DEFAULT_STATE;
   }
 }
@@ -69,7 +70,7 @@ export async function checkAndRecover(): Promise<EnergyState> {
 
     return state;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('energy_system.ts:checkAndRecover', error, 'critical');
     return await getEnergyState();
   }
 }
@@ -95,7 +96,7 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(newState));
     return true;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('energy_system.ts:spendEnergy', error, 'critical');
     return false;
   }
 }
@@ -116,7 +117,7 @@ export async function addEnergy(amount: number = 1): Promise<EnergyState> {
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
     return state;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('energy_system.ts:addEnergy', error, 'critical');
     return await getEnergyState();
   }
 }
@@ -135,7 +136,7 @@ export async function resetEnergyToMax(): Promise<EnergyState> {
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
     return state;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('energy_system.ts:resetEnergyToMax', error, 'critical');
     return DEFAULT_STATE;
   }
 }
@@ -157,7 +158,7 @@ export async function getTimeUntilNextRecovery(): Promise<number> {
 
     return Math.max(0, timeUntilNextRecovery);
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('energy_system.ts:getTimeUntilNextRecovery', error, 'warning');
     return 0;
   }
 }

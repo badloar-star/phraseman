@@ -37,9 +37,9 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
 const selectRandomPhrase = (): DailyPhrase => {
   const allPhrases: DailyPhrase[] = [];
   for (let i = 1; i <= 32; i++) {
-    const lesson = ALL_LESSONS_RU[i - 1];
-    if (lesson && lesson.phrases && lesson.phrases.length > 0) {
-      const phrase = lesson.phrases[0];
+    const lesson = ALL_LESSONS_RU[i];
+    if (lesson && Array.isArray(lesson) && lesson.length > 0) {
+      const phrase = lesson[0];
       const level = ['A1', 'A2', 'B1', 'B2'][Math.floor((i - 1) / 8)] as 'A1' | 'A2' | 'B1' | 'B2';
       allPhrases.push({
         russian: phrase.russian,

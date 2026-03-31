@@ -16,6 +16,7 @@ import { canShowReview, markReviewPrompted, requestNativeReview } from './review
 import { STORE_URL } from './config';
 import { saveMedalProgress, checkGemAchievements, getMedalTier, type MedalTier } from './medal_utils';
 import { calculateRewardWithBonus } from './variable_reward_system';
+import { CEFR_FOR_LESSON } from '../constants/theme';
 
 // Medal images for completion screen
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
@@ -167,7 +168,7 @@ export default function LessonComplete() {
         gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem } as any).catch(() => {}));
       }
     });
-    const cefr = lessonId <= 8 ? 'A1' : lessonId <= 18 ? 'A2' : lessonId <= 28 ? 'B1' : 'B2';
+    const cefr = CEFR_FOR_LESSON(lessonId);
     setLessonCefr(cefr);
     return () => bounce.stop();
   }, []);

@@ -450,7 +450,7 @@ export default function StreakStats() {
       const ls = await loadLeagueState();
       if (ls) setEngineLeague(LEAGUES.find(l => l.id === ls.leagueId) || null);
 
-      // Count completed lessons (≥90 correct out of 100)
+      // Count completed lessons (≥45 correct+replay_correct out of 50)
       let completedCount = 0;
       let totalCorrectAll = 0;
       const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
@@ -458,13 +458,13 @@ export default function StreakStats() {
       for (const [, val] of lessonResults) {
         if (val) {
           const p: string[] = JSON.parse(val);
-          const correctCount = p.filter(x => x === 'correct').length;
+          const correctCount = p.filter(x => x === 'correct' || x === 'replay_correct').length;
           totalCorrectAll += correctCount;
           if (correctCount >= 45) completedCount++; // 90% of TOTAL=50
         }
       }
       setLessonsCompleted(completedCount);
-      setLessonsProgressPct(Math.min(100, Math.round(totalCorrectAll / (32 * 100) * 100)));
+      setLessonsProgressPct(Math.min(100, Math.round(totalCorrectAll / (32 * 50) * 100)));
     } catch {}
   };
 
@@ -652,15 +652,15 @@ export default function StreakStats() {
         {/* PATH A1 → B2 */}
         {(() => {
           const stages = ['A1','A2','B1','B2'];
-          // Lesson brackets: A1=1-8, A2=9-16, B1=17-24, B2=25-32
+          // Lesson brackets: A1=1-8, A2=9-18, B1=19-28, B2=29-32
           const lessonStages = [
             { label: 'A1', from: 1,  to: 8  },
-            { label: 'A2', from: 9,  to: 16 },
-            { label: 'B1', from: 17, to: 24 },
-            { label: 'B2', from: 25, to: 32 },
+            { label: 'A2', from: 9,  to: 18 },
+            { label: 'B1', from: 19, to: 28 },
+            { label: 'B2', from: 29, to: 32 },
           ];
           const overallPct = lessonsProgressPct;
-          const currentStage = lessonsCompleted < 8 ? 0 : lessonsCompleted < 16 ? 1 : lessonsCompleted < 24 ? 2 : 3;
+          const currentStage = lessonsCompleted < 8 ? 0 : lessonsCompleted < 18 ? 1 : lessonsCompleted < 28 ? 2 : 3;
           const currentStageMeta = lessonStages[currentStage] || lessonStages[3];
           return (
             <View style={{ borderRadius: 16, padding: 14, borderWidth: 0.5, backgroundColor: t.bgCard, borderColor: t.border }}>

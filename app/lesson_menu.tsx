@@ -133,10 +133,6 @@ export default function LessonMenu() {
             onPress: () => router.push({ pathname: '/lesson_words', params: { id: lessonId } }),
           },
           {
-            text: lang === 'uk' ? 'Теорія' : 'Теория',
-            onPress: () => router.push({ pathname: '/lesson_help', params: { id: lessonId } }),
-          },
-          {
             text: lang === 'uk' ? 'Почати урок' : 'Начать урок',
             style: 'cancel',
             onPress: () => router.push({ pathname: '/lesson1', params: { id: lessonId } }),
@@ -220,13 +216,6 @@ export default function LessonMenu() {
       })(),
       onPress: () => { hapticTap(); router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } }); },
     }] : []),
-    {
-      label: s.lessonMenu.theory,
-      sub: lang==='uk' ? 'Граматика та правила' : 'Грамматика и правила',
-      icon: 'book-outline',
-      pct: undefined,
-      onPress: () => { vocabAlertShown.current = true; router.push({pathname:'/lesson_help',params:{id:lessonId}}); },
-    },
   ];
 
   return (

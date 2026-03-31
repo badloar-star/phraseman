@@ -21,7 +21,6 @@ export function PhrasemenDisplay({ refreshTrigger, style }: PhrasemenDisplayProp
         const current = await getPhrasemenBalance();
         setBalance(current);
       } catch (error) {
-        // removed console.error
       } finally {
         setLoading(false);
       }

@@ -6,11 +6,9 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
-import Constants from 'expo-constants';
 import { sendPremiumNotification } from '../app/notifications';
 import { generateReferralCode } from '../app/referral_system';
-
-const IS_EXPO_GO = Constants.executionEnvironment === 'storeClient';
+import { IS_EXPO_GO } from '../app/config';
 import { T, Lang } from '../constants/i18n';
 import {
   UserProfile,
@@ -225,7 +223,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     try {
       await generateReferralCode(name);
     } catch (e) {
-      // removed console.warn
     }
   };
 

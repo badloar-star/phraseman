@@ -13,6 +13,7 @@ import { useTabNav } from '../TabContext';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ContentWrap from '../../components/ContentWrap';
+import { DebugLogger } from '../debug-logger';
 import ScreenGradient from '../../components/ScreenGradient';
 import LevelBadge from '../../components/LevelBadge';
 import { getXPProgress } from '../../constants/theme';
@@ -151,7 +152,9 @@ const saveXP = async (amount: number) => {
     const raw = await AsyncStorage.getItem('user_total_xp');
     const current = parseInt(raw || '0') || 0;
     await AsyncStorage.setItem('user_total_xp', String(current + finalAmount));
-  } catch {}
+  } catch (error) {
+    DebugLogger.error('quizzes.tsx:addXP', error, 'warning');
+  }
 };
 
 function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
@@ -338,7 +341,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         const result = getQuizPhrases(level, 10, lang as 'ru' | 'uk');
         setPhrases(result.length > 0 ? result : []);
       } catch (e) {
-        // removed console.warn
+        DebugLogger.error('quizzes.tsx:loadPhrases', e, 'warning');
         setPhrases([]);
       } finally {
         setPhrasesLoaded(true);
@@ -470,7 +473,9 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             }
           }
         }
-      } catch {}
+      } catch (error) {
+        DebugLogger.error('quizzes.tsx:processDoneQuiz', error, 'warning');
+      }
     };
 
     processDoneQuiz();

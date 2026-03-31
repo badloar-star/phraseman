@@ -13,6 +13,7 @@ import ScreenGradient from '../../components/ScreenGradient';
 import { getLevelFromXP } from '../../constants/theme';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
+import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
@@ -39,8 +40,8 @@ export default function SettingsMain() {
       } else {
         await cancelAllNotifications();
       }
-    } catch {
-      // expo-notifications недоступен в Expo Go — игнорируем
+    } catch (error) {
+      DebugLogger.error('settings.tsx:toggleNotifications', error, 'warning');
     }
   };
   const { lang, setLang } = useLang();
@@ -107,7 +108,9 @@ export default function SettingsMain() {
         );
         await AsyncStorage.setItem('leaderboard', JSON.stringify(updated));
       }
-    } catch {}
+    } catch (error) {
+      DebugLogger.error('settings.tsx:renameName:leaderboard', error, 'warning');
+    }
 
     // Обновляем имя в week_leaderboard
     try {
@@ -119,7 +122,9 @@ export default function SettingsMain() {
         );
         await AsyncStorage.setItem('week_leaderboard', JSON.stringify(updated));
       }
-    } catch {}
+    } catch (error) {
+      DebugLogger.error('settings.tsx:renameName:weekLeaderboard', error, 'warning');
+    }
 
     // Обновляем имя в league_state_v3 — находим isMe:true и меняем name
     try {
@@ -133,7 +138,9 @@ export default function SettingsMain() {
           await AsyncStorage.setItem('league_state_v3', JSON.stringify(state));
         }
       }
-    } catch {}
+    } catch (error) {
+      DebugLogger.error('settings.tsx:renameName:leagueState', error, 'warning');
+    }
 
     // Обновляем имя в league_result_pending (если есть)
     try {
@@ -147,7 +154,9 @@ export default function SettingsMain() {
           await AsyncStorage.setItem('league_result_pending', JSON.stringify(result));
         }
       }
-    } catch {}
+    } catch (error) {
+      DebugLogger.error('settings.tsx:renameName:leagueResultPending', error, 'warning');
+    }
 
     setNameModal(false);
   };

@@ -8,12 +8,10 @@ import { AchievementProvider, useAchievement } from '../components/AchievementCo
 import AchievementToast from '../components/AchievementToast';
 import Onboarding from '../components/onboarding';
 import Purchases from 'react-native-purchases';
-import Constants from 'expo-constants';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { scheduleWeeklyRecapNotification, scheduleMonthlyRecapNotification, scheduleStreakWarningIfNeeded, schedulePhrasOfDayNotification } from './notifications';
 import { preloadImages } from './image_preload';
-
-const IS_EXPO_GO = Constants.executionEnvironment === 'storeClient';
+import { IS_EXPO_GO } from './config';
 
 // RevenueCat API keys must be set via environment variables.
 // Android: EXPO_PUBLIC_RC_ANDROID in .env.local or eas.json > build > [profile] > env
@@ -225,8 +223,8 @@ function AppContent() {
       <Stack.Screen name="lesson_words" />
       <Stack.Screen name="lesson_irregular_verbs" />
       <Stack.Screen name="lesson_complete" />
-      <Stack.Screen name="lesson_help" />
-      <Stack.Screen name="hint" />
+
+
       <Stack.Screen name="help" />
       <Stack.Screen name="settings_edu" />
       <Stack.Screen name="settings_notifications" />

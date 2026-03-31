@@ -136,7 +136,7 @@ const s = StyleSheet.create({
   tabBtn:     { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, position: 'relative' },
   indicator:  { position: 'absolute', top: -6, left: '25%', right: '25%', height: 2, borderRadius: 1 },
   tabLabel:   { fontSize: 10, letterSpacing: 0.1 },
-  pillLight:  { flexDirection: 'row', alignItems: 'center', gap: 5, borderRadius: 20, paddingHorizontal: 12, paddingVertical: 6 },
+
   badge:      { position: 'absolute', top: -4, right: -7, backgroundColor: '#FF3B30', borderRadius: 8, minWidth: 16, height: 16, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 3, borderWidth: 1.5 },
   badgeText:  { color: '#fff', fontSize: 9, fontWeight: '800' as const, lineHeight: 13 },
 });

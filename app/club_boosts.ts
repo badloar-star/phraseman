@@ -4,6 +4,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { DebugLogger } from './debug-logger';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES & INTERFACES
@@ -141,7 +142,7 @@ export async function getActiveBoosts(): Promise<ActiveBoost[]> {
 
     return active;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:getActiveBoosts', error, 'critical');
     return [];
   }
 }
@@ -173,7 +174,7 @@ export async function getActiveBoostById(
 
     return boost;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:getActiveBoostById', error, 'critical');
     return null;
   }
 }
@@ -192,7 +193,6 @@ export async function activateBoost(
   try {
     const boostDef = CLUB_BOOSTS.find(b => b.id === boostId);
     if (!boostDef) {
-      // removed console.error
       return false;
     }
 
@@ -255,7 +255,7 @@ export async function activateBoost(
 
     return true;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:activateBoost', error, 'critical');
     return false;
   }
 }
@@ -268,7 +268,7 @@ export async function getBoostsHistory(): Promise<BoostHistory[]> {
     const data = await AsyncStorage.getItem(BOOSTS_HISTORY_KEY);
     return data ? JSON.parse(data) : [];
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:getBoostsHistory', error, 'warning');
     return [];
   }
 }
@@ -295,7 +295,7 @@ export async function getXPMultiplier(): Promise<number> {
 
     return maxMultiplier;
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:getXPMultiplier', error, 'warning');
     return 1.0;
   }
 }
@@ -311,7 +311,7 @@ export async function hasEnergyBoost(): Promise<boolean> {
       return def?.type === 'energy';
     });
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:hasEnergyBoost', error, 'warning');
     return false;
   }
 }
@@ -406,7 +406,7 @@ export async function clearAllBoosts(): Promise<void> {
     await AsyncStorage.removeItem(ACTIVE_BOOSTS_KEY);
     await AsyncStorage.removeItem(BOOSTS_HISTORY_KEY);
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:clearAllBoosts', error, 'warning');
   }
 }
 
@@ -414,6 +414,6 @@ export async function clearBoostHistory(): Promise<void> {
   try {
     await AsyncStorage.removeItem(BOOSTS_HISTORY_KEY);
   } catch (error) {
-    // removed console.error
+    DebugLogger.error('club_boosts.ts:clearBoostHistory', error, 'warning');
   }
 }

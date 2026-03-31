@@ -7,7 +7,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UNLOCKED_LESSONS_KEY = 'unlocked_lessons';
-const LESSON_SCORE_KEY = (lessonId: number) => `lesson${lessonId}_score`;
 
 export const isLessonUnlocked = async (lessonId: number): Promise<boolean> => {
   if (lessonId === 1) return true;
@@ -29,7 +28,6 @@ export const unlockLesson = async (lessonId: number): Promise<void> => {
       await AsyncStorage.setItem(UNLOCKED_LESSONS_KEY, JSON.stringify(unlocked));
     }
   } catch (err) {
-    // removed console.error
   }
 };
 
@@ -45,14 +43,7 @@ export const tryUnlockNextLesson = async (currentLessonId: number, score: number
 export const getLessonLockInfo = async (lessonId: number) => {
   const isUnlocked = await isLessonUnlocked(lessonId);
   const prevLessonId = lessonId - 1;
-  let prevScore = 0;
-  try {
-    const scoreStr = await AsyncStorage.getItem(LESSON_SCORE_KEY(prevLessonId));
-    prevScore = scoreStr ? parseFloat(scoreStr) : 0;
-  } catch {
-    prevScore = 0;
-  }
-  return { isUnlocked, prevLessonId, prevScore, requiredScore: 4.5 };
+  return { isUnlocked, prevLessonId, prevScore: 0, requiredScore: 4.5 };
 };
 
 export const getLockMessageText = (info: Awaited<ReturnType<typeof getLessonLockInfo>>, lang: 'ru' | 'uk'): string => {

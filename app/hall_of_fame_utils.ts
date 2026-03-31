@@ -252,15 +252,11 @@ export const addOrUpdateScore = async (
   await updateStreakOnActivity();
 
   // ── 6. XP достижения ──────────────────────────────────────────────────────
-  // Читаем актуальный user_total_xp после того как screen его сохранил
-  // (saveXP вызывается параллельно, даём 50мс на запись)
-  setTimeout(async () => {
-    try {
-      const xpRaw = await AsyncStorage.getItem('user_total_xp');
-      const totalXP = parseInt(xpRaw || '0') || 0;
-      if (totalXP > 0) checkAchievements({ type: 'xp', totalXP }).catch(() => {});
-    } catch {}
-  }, 50);
+  try {
+    const xpRaw = await AsyncStorage.getItem('user_total_xp');
+    const totalXP = parseInt(xpRaw || '0') || 0;
+    if (totalXP > 0) checkAchievements({ type: 'xp', totalXP }).catch(() => {});
+  } catch {}
 };
 
 /**

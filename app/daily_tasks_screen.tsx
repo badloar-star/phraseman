@@ -106,7 +106,7 @@ export default function DailyTasksScreen() {
         router.push('/(tabs)/quizzes');
         break;
       case 'open_theory':
-        router.push({ pathname: '/lesson_help', params: { id: lessonId } });
+        router.push({ pathname: '/lesson1', params: { id: lessonId } });
         break;
       default:
         router.push({ pathname: '/lesson1', params: { id: lessonId } });

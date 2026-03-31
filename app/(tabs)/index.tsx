@@ -169,17 +169,20 @@ export default function LessonsTab() {
 
   const unlockedLessons = useMemo(() => {
     if (DEV_MODE || noLimits) return new Array(32).fill(true);
-    const LEVEL_ORDER = ['A1','A2','B1','B2','C1','C2'];
-    const plIdx = LEVEL_ORDER.indexOf(placementLevel);
+    // Placement test pre-unlocks: A2→lessons 1-8, B1→1-18, B2→1-28
+    const PLACEMENT_UNLOCK: Record<string, number> = { A1: 0, A2: 8, B1: 18, B2: 28 };
+    const preUnlock = PLACEMENT_UNLOCK[placementLevel] ?? 0;
     const blockAll45 = (from: number, to: number) =>
       scores.slice(from - 1, to).every(s => s >= 4.5);
     const u = new Array(32).fill(false);
-    u[0] = true;
-    for (let i = 1; i < 32; i++) {
+    // Pre-unlock lessons based on placement result
+    for (let i = 0; i < preUnlock; i++) u[i] = true;
+    if (u.length > 0) u[0] = true; // lesson 1 always unlocked
+    for (let i = Math.max(1, preUnlock); i < 32; i++) {
       const num = i + 1;
-      if      (num === 9)  u[i] = blockAll45(1, 8);
-      else if (num === 19) u[i] = blockAll45(9, 18);
-      else if (num === 29) u[i] = blockAll45(19, 28);
+      if      (num === 9)  u[i] = u[i - 1] || blockAll45(1, 8);
+      else if (num === 19) u[i] = u[i - 1] || blockAll45(9, 18);
+      else if (num === 29) u[i] = u[i - 1] || blockAll45(19, 28);
       else                 u[i] = u[i - 1] && scores[i - 1] >= 2.5;
     }
     return u;

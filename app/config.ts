@@ -44,6 +44,10 @@ export const DEV_MODE = false;
 // false = диалоги закрыты (в разработке), игнорирует DEV_MODE
 export const DIALOGS_ENABLED = true;
 
+// ── Expo Go detection ─────────────────────────────────────────────────────────
+import Constants from 'expo-constants';
+export const IS_EXPO_GO = Constants.executionEnvironment === 'storeClient';
+
 // ── Store links ───────────────────────────────────────────────────────────────
 export const STORE_URL_IOS     = 'https://apps.apple.com/app/phraseman/id6744042438';
 export const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';

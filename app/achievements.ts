@@ -19,7 +19,7 @@ export interface AchievementState {
   notified:    boolean;       // тост показан
 }
 
-// ─── Все ачивки (35 штук) ────────────────────────────────────────────────────
+// ─── Все ачивки (79 штук) ────────────────────────────────────────────────────
 
 export const ALL_ACHIEVEMENTS: Achievement[] = [
   // ── Цепочка ────────────────────────────────────────────────────────────────
@@ -391,10 +391,13 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
     nameRu:'Профессор',         nameUk:'Професор',
     descRu:'Высший клуб — Профессоров', descUk:'Найвищий клуб — Професорів',
   },
+
+  // ── Медали-коллекция ───────────────────────────────────────────────────────
   {
-    id:'club_all', icon:'👑', category:'special', secret: true,
-    nameRu:'Все клубы',         nameUk:'Всі клуби',
-    descRu:'Прошёл все 12 клубов', descUk:'Пройшов всі 12 клубів',
+    id:'gem_all_complete', icon:'💎', category:'medal', secret: true,
+    nameRu:'Коллекционер медалей [SECRET]', nameUk:'Колекціонер медалей [SECRET]',
+    descRu:'Собрать все золотые медали (gem_*_diamond)',
+    descUk:'Зібрати всі золоті медалі (gem_*_diamond)',
   },
 ];
 
@@ -596,14 +599,19 @@ export const checkAchievements = async (event: AchievementEvent): Promise<Achiev
         if (lid >= 0)  u('league_1');   // вступил в любой клуб
         if (lid >= 5)  u('league_3');   // клуб Эрудитов
         if (lid >= 11) u('league_5');   // клуб Профессоров
-        if (lid >= 11) u('club_all');   // все 12 клубов
         break;
       }
       case 'gem': {
         const lvlKey = event.level.toLowerCase();
         if (event.gem === 'ruby')    u(`gem_${lvlKey}_ruby`);
         if (event.gem === 'emerald') u(`gem_${lvlKey}_emerald`);
-        if (event.gem === 'diamond') u(`gem_${lvlKey}_diamond`);
+        if (event.gem === 'diamond') {
+          u(`gem_${lvlKey}_diamond`);
+          // Check if all 4 diamond gems are now unlocked
+          const allDiamonds = ['gem_a1_diamond','gem_a2_diamond','gem_b1_diamond','gem_b2_diamond']
+            .every(id => states.find(s => s.id === id)?.unlockedAt !== null);
+          if (allDiamonds) u('gem_all_complete');
+        }
         break;
       }
     }

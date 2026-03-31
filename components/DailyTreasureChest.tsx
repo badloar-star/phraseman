@@ -78,7 +78,6 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
           await AsyncStorage.setItem('user_total_xp', newXP.toString());
           onBonusXPEarned?.(result.bonusXP);
         } catch (e) {
-          // removed console.warn
         }
       }
 

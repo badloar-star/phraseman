@@ -8,15 +8,12 @@ import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
-import Constants from 'expo-constants';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { sendPremiumNotification } from './notifications';
-import { DEV_MODE } from './config';
-
-const IS_EXPO_GO = Constants.executionEnvironment === 'storeClient';
+import { DEV_MODE, IS_EXPO_GO } from './config';
 
 type Plan = 'monthly' | 'yearly';
 

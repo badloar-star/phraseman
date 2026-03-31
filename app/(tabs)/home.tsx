@@ -12,6 +12,7 @@ import { useTheme } from '../../components/ThemeContext';
 import { useLang, getLeague } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
 import { loadLeagueState, LEAGUES } from '../league_engine';
+import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
 import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { getTodayTasks, loadTodayProgress, TaskProgress } from '../daily_tasks';
@@ -178,8 +179,8 @@ export default function HomeScreen() {
           verifiedPremium = rcActive;
           await AsyncStorage.setItem('premium_active', rcActive ? 'true' : 'false');
         }
-      } catch {
-        // RevenueCat unavailable (Expo Go, offline) — fall back to stored value
+      } catch (error) {
+        DebugLogger.error('home.tsx:loadData:revenueCat', error, 'warning');
       }
       setIsPremium(verifiedPremium);
       if (energyState) setEnergyCount(energyState.current);
@@ -340,7 +341,9 @@ export default function HomeScreen() {
           }
         }
       }
-    } catch {}
+    } catch (error) {
+      DebugLogger.error('home.tsx:checkDailyReward', error, 'warning');
+    }
   };
 
   const dismissHelpHint = async () => {

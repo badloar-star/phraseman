@@ -5,6 +5,7 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Crypto from 'expo-crypto';
+import { DebugLogger } from './debug-logger';
 
 export interface ReferralCode {
   code: string;           // "PH4RM2N5X9" (10 chars, alphanumeric)
@@ -52,8 +53,8 @@ export async function getOrCreateUserUUID(): Promise<string> {
     const uuid = Crypto.randomUUID();
     await AsyncStorage.setItem(USER_UUID_KEY, uuid);
     return uuid;
-  } catch {
-    // Fallback: generate a pseudo-UUID
+  } catch (error) {
+    DebugLogger.error('referral_system.ts:getOrCreateUserUUID', error, 'warning');
     const uuid = Crypto.randomUUID();
     return uuid;
   }
@@ -103,7 +104,7 @@ async function awardPremiumBonus(playerName: string): Promise<void> {
     });
     await AsyncStorage.setItem(`${REFERRAL_HISTORY_KEY}_${playerName}`, JSON.stringify(historyArray));
   } catch (e) {
-    // removed console.warn
+    DebugLogger.error('referral_system.ts:awardPremiumBonus', e, 'warning');
   }
 }
 
@@ -116,7 +117,9 @@ export async function getReferralState(playerName: string): Promise<ReferralStat
     if (stateStr) {
       return JSON.parse(stateStr);
     }
-  } catch {}
+  } catch (error) {
+    DebugLogger.error('referral_system.ts:getReferralState:load', error, 'warning');
+  }
 
   // No existing state - create new code for this player
   const newCode = generateUniqueCode();
@@ -131,7 +134,9 @@ export async function getReferralState(playerName: string): Promise<ReferralStat
 
   try {
     await AsyncStorage.setItem(`${REFERRAL_STATE_KEY}_${playerName}`, JSON.stringify(newState));
-  } catch {}
+  } catch (error) {
+    DebugLogger.error('referral_system.ts:getReferralState:save', error, 'warning');
+  }
 
   return newState;
 }
@@ -153,7 +158,9 @@ export async function generateReferralCode(playerName: string): Promise<string> 
 
   try {
     await AsyncStorage.setItem(`${REFERRAL_STATE_KEY}_${playerName}`, JSON.stringify(state));
-  } catch {}
+  } catch (error) {
+    DebugLogger.error('referral_system.ts:generateReferralCode', error, 'warning');
+  }
 
   return newCode;
 }
@@ -196,6 +203,7 @@ export async function validateReferralCode(code: string): Promise<{
       error: 'Код не знайдено / Code not found',
     };
   } catch (e) {
+    DebugLogger.error('referral_system.ts:validateReferralCode', e, 'warning');
     return {
       valid: false,
       error: 'Помилка валідації / Validation error',
@@ -256,8 +264,7 @@ export async function redeemReferralCode(
     try {
       await awardPremiumBonus(referrerName);
     } catch (e) {
-      // removed console.warn
-      // Continue anyway - the transaction is recorded even if the reward fails
+      DebugLogger.error('referral_system.ts:redeemReferralCode:awardBonus', e, 'warning');
     }
 
     // Record new player's referral source
@@ -285,7 +292,7 @@ export async function redeemReferralCode(
       bonusAwarded: REFERRAL_PREMIUM_DAYS,
     };
   } catch (e) {
-    // removed console.warn
+    DebugLogger.error('referral_system.ts:redeemReferralCode', e, 'critical');
     return { success: false, error: 'Помилка при викупі коду / Redemption error' };
   }
 }
@@ -324,7 +331,8 @@ export async function getReferralStats(playerName: string): Promise<{
         bonus: h.bonus,
       })),
     };
-  } catch {
+  } catch (error) {
+    DebugLogger.error('referral_system.ts:getReferralStats', error, 'warning');
     return {
       totalReferrals: 0,
       totalBonus: 0,
@@ -340,7 +348,8 @@ export async function getReferredByCode(playerName: string): Promise<string | nu
   try {
     const state = await getReferralState(playerName);
     return state.referredBy || null;
-  } catch {
+  } catch (error) {
+    DebugLogger.error('referral_system.ts:getReferredByCode', error, 'warning');
     return null;
   }
 }

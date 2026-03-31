@@ -11,6 +11,7 @@ import Purchases from 'react-native-purchases';
 import Constants from 'expo-constants';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { scheduleWeeklyRecapNotification, scheduleMonthlyRecapNotification, scheduleStreakWarningIfNeeded, schedulePhrasOfDayNotification } from './notifications';
+import { preloadImages } from './image_preload';
 
 const IS_EXPO_GO = Constants.executionEnvironment === 'storeClient';
 
@@ -159,6 +160,9 @@ function AppContent() {
 
         // Логин-бонус и Comeback запускаем при каждом старте (fire-and-forget)
         runSessionChecks();
+
+        // Pre-load all images to ensure they're cached locally (prevents disappearing on PC offline)
+        preloadImages().catch(() => {});
 
         const val = await AsyncStorage.getItem('onboarding_done');
         setShow(!val);

@@ -98,7 +98,7 @@ export const scheduleDailyReminder = async (
     await AsyncStorage.setItem('notification_minute', String(minute));
     await AsyncStorage.setItem('notifications_enabled', 'true');
   } catch (e) {
-    console.warn('scheduleDailyReminder failed:', e);
+    // removed console.warn
   }
 };
 
@@ -463,6 +463,6 @@ export const schedulePhrasOfDayNotification = async (lang: 'ru' | 'uk' = 'ru'): 
 
     await AsyncStorage.setItem('phrase_notif_scheduled', today);
   } catch (e) {
-    console.warn('schedulePhrasOfDayNotification failed:', e);
+    // removed console.warn
   }
 };

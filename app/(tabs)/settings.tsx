@@ -385,8 +385,12 @@ export default function SettingsMain() {
         <Row icon="school-outline"        label={isUK ? 'Налаштування навчання' : 'Настройки обучения'}   onPress={() => router.push('/settings_edu')} />
         <Row icon="notifications-outline" label={isUK ? 'Нагадування' : 'Напоминания'} sub={isUK ? 'Щоденна мотивація' : 'Ежедневная мотивация'} onPress={() => router.push('/settings_notifications')} />
 
-        <SectionTitle title={isUK ? '🧪 Бета тест' : '🧪 Бета тест'} />
-        <Row icon="settings-outline" label={isUK ? 'Функції для тестерів' : 'Функции для тестеров'} sub={isUK ? 'Premium, енергія, опит' : 'Premium, энергия, опыт'} onPress={() => router.push('/settings_testers')} />
+        {(__DEV__ || DEV_MODE) && (
+          <>
+            <SectionTitle title={isUK ? '🧪 Бета тест' : '🧪 Бета тест'} />
+            <Row icon="settings-outline" label={isUK ? 'Функції для тестерів' : 'Функции для тестеров'} sub={isUK ? 'Premium, енергія, опит' : 'Premium, энергия, опыт'} onPress={() => router.push('/settings_testers')} />
+          </>
+        )}
 
 <SectionTitle title={isUK ? 'Ще' : 'Ещё'} />
         <Row icon="person-add-outline"  label={isUK ? 'Запросити друга' : 'Пригласить друга'}  sub={isUK ? 'Поділися застосунком' : 'Поделиться приложением'} onPress={async () => { try { await Share.share({ message: isUK ? `Вивчаю англійську з Phraseman — зручно та ефективно! 🔥 Спробуй і ти! ${STORE_URL}` : `Учу английский с Phraseman — удобно и эффективно! 🔥 Попробуй и ты! ${STORE_URL}`, url: STORE_URL }); } catch {} }} />

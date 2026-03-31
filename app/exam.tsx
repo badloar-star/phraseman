@@ -281,7 +281,7 @@ export default function ExamScreen() {
       const pairs = await AsyncStorage.multiGet(keys);
       let done=0;
       for(const [,saved] of pairs){
-        if(saved){ try{const p:string[]=JSON.parse(saved);if(p.filter(x=>x==='correct').length>=90)done++;}catch{} }
+        if(saved){ try{const p:string[]=JSON.parse(saved);if(p.filter(x=>x==='correct').length>=45)done++;}catch{} } // 90% of TOTAL=50
       }
       setCompleted(done);
       if(done<32 && !DEV_MODE) setPhase('locked');

@@ -1,25 +1,25 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   View, Text, Modal, Animated, TouchableOpacity,
-  Dimensions, ScrollView,
+  Dimensions, ScrollView, Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { LeagueResult, LEAGUES, clearPendingResult } from './league_engine';
+import { LeagueResult, LEAGUES, CLUBS, clearPendingResult } from './league_engine';
 
 const { width: W, height: H } = Dimensions.get('window');
 const MEDALS = ['🥇', '🥈', '🥉'];
 const CONFETTI_COLORS = ['#FFD700','#34C759','#007AFF','#FF3B30','#AF52DE','#FF9500'];
 
-// ─── Одна конфетти-частица ───────────────────────────────────────────────────
+// ─── Confetti particle ──────────────────────────────────────────────────────
 function ConfettiPiece({ color, delay, startX }: { color: string; delay: number; startX: number }) {
   const y   = useRef(new Animated.Value(-20)).current;
   const rot = useRef(new Animated.Value(0)).current;
   const op  = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       Animated.parallel([
         Animated.timing(y,   { toValue: H + 20, duration: 2200 + Math.random()*800, useNativeDriver: true }),
         Animated.timing(rot, { toValue: 1080,   duration: 2000, useNativeDriver: true }),
@@ -29,6 +29,7 @@ function ConfettiPiece({ color, delay, startX }: { color: string; delay: number;
         ]),
       ]).start();
     }, delay);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
@@ -62,39 +63,57 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
   const newLeague  = LEAGUES[result.newLeagueId]  ?? LEAGUES[0];
+  const club       = CLUBS[result.newLeagueId]     ?? CLUBS[0];
 
-  const headerScale = useRef(new Animated.Value(0)).current;
-  const listOpacity = useRef(new Animated.Value(0)).current;
-  const rankScale   = useRef(new Animated.Value(0)).current;
-  const btnOpacity  = useRef(new Animated.Value(0)).current;
-  const myRowY      = useRef(new Animated.Value(80)).current;
+  const headerScale  = useRef(new Animated.Value(0)).current;
+  const iconScale    = useRef(new Animated.Value(0)).current;
+  const iconGlow     = useRef(new Animated.Value(0)).current;
+  const listOpacity  = useRef(new Animated.Value(0)).current;
+  const rankScale    = useRef(new Animated.Value(0)).current;
+  const btnOpacity   = useRef(new Animated.Value(0)).current;
+  const myRowY       = useRef(new Animated.Value(80)).current;
+  const transitionOp = useRef(new Animated.Value(0)).current;
 
   const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     if (!visible) return;
 
-    // Сбрасываем
     headerScale.setValue(0);
+    iconScale.setValue(0);
+    iconGlow.setValue(0);
     listOpacity.setValue(0);
     rankScale.setValue(0);
     btnOpacity.setValue(0);
     myRowY.setValue(80);
+    transitionOp.setValue(0);
 
-    // Последовательная анимация
     Animated.sequence([
-      Animated.spring(headerScale, { toValue: 1, friction: 6, tension: 100, useNativeDriver: true }),
-      Animated.delay(200),
-      Animated.timing(listOpacity, { toValue: 1, duration: 350, useNativeDriver: true }),
-      Animated.spring(myRowY,      { toValue: 0, friction: 8, tension: 80,  useNativeDriver: true }),
-      Animated.spring(rankScale,   { toValue: 1, friction: 5, tension: 120, useNativeDriver: true }),
+      Animated.spring(iconScale,    { toValue: 1, friction: 5, tension: 100, useNativeDriver: true }),
+      Animated.parallel([
+        Animated.spring(headerScale,  { toValue: 1, friction: 6, tension: 100, useNativeDriver: true }),
+        Animated.timing(transitionOp, { toValue: 1, duration: 300, useNativeDriver: true }),
+      ]),
+      Animated.delay(150),
+      Animated.spring(rankScale,    { toValue: 1, friction: 5, tension: 120, useNativeDriver: true }),
+      Animated.timing(listOpacity,  { toValue: 1, duration: 350, useNativeDriver: true }),
+      Animated.spring(myRowY,       { toValue: 0, friction: 8, tension: 80,  useNativeDriver: true }),
       Animated.delay(100),
-      Animated.timing(btnOpacity,  { toValue: 1, duration: 250, useNativeDriver: true }),
+      Animated.timing(btnOpacity,   { toValue: 1, duration: 250, useNativeDriver: true }),
     ]).start();
 
+    // Pulsing glow on club icon
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(iconGlow, { toValue: 1, duration: 1200, useNativeDriver: true }),
+        Animated.timing(iconGlow, { toValue: 0.3, duration: 1200, useNativeDriver: true }),
+      ])
+    ).start();
+
     if (result.promoted) {
-      setTimeout(() => setShowConfetti(true), 500);
-      setTimeout(() => setShowConfetti(false), 3500);
+      const t1 = setTimeout(() => setShowConfetti(true), 400);
+      const t2 = setTimeout(() => setShowConfetti(false), 3500);
+      return () => { clearTimeout(t1); clearTimeout(t2); };
     }
   }, [visible]);
 
@@ -103,99 +122,209 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
     onClose();
   };
 
-  const outcomeColor = result.promoted ? '#34C759' : result.demoted ? '#FF3B30' : t.textSecond;
-  const outcomeIcon  = result.promoted ? 'arrow-up-circle' : result.demoted ? 'arrow-down-circle' : 'checkmark-circle';
-  const outcomeText  = result.promoted
+  const isPromo  = result.promoted;
+  const isDemo   = result.demoted;
+  const isStay   = !isPromo && !isDemo;
+
+  const outcomeColor = isPromo ? '#34C759' : isDemo ? '#FF3B30' : t.textSecond;
+  const glowColor    = isPromo ? '#FFD700' : isDemo ? '#FF3B30' : club.color;
+  const outcomeIcon  = isPromo ? 'arrow-up-circle' : isDemo ? 'arrow-down-circle' : 'checkmark-circle';
+
+  const outcomeText = isPromo
     ? (isUK ? `Підвищено до ${newLeague.nameUK}!` : `Повышен до ${newLeague.nameRU}!`)
-    : result.demoted
+    : isDemo
       ? (isUK ? `Понижено до ${newLeague.nameUK}` : `Понижен до ${newLeague.nameRU}`)
       : (isUK ? 'Залишаєшся в клубі' : 'Остаёшься в клубе');
 
-  const btnText = result.promoted
-    ? (isUK ? '✅ Вперед!' : '✅ Вперед!')
-    : result.demoted
-      ? (isUK ? '✅ Розумію' : '✅ Понял')
-      : (isUK ? '✅ Продовжити' : '✅ Продолжить');
+  const btnText = isPromo
+    ? (isUK ? '🚀 Вперед!' : '🚀 Вперед!')
+    : isDemo
+      ? (isUK ? 'Розумію' : 'Понял')
+      : (isUK ? 'Продовжити' : 'Продолжить');
+
+  const headerBg = isPromo
+    ? 'rgba(52,199,89,0.12)'
+    : isDemo
+      ? 'rgba(255,59,48,0.15)'
+      : 'rgba(100,100,100,0.08)';
+
+  const cardBg = isDemo ? 'rgba(255,59,48,0.06)' : t.bgCard;
 
   return (
     <Modal visible={visible} transparent animationType="fade">
-      <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.88)', justifyContent:'flex-end' }}>
+      <View style={{
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.88)',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+      }}>
 
-        {/* Конфетти при повышении */}
+        {/* Confetti on promotion */}
         {showConfetti && CONFETTI_COLORS.flatMap((color, ci) =>
-          Array.from({ length: 6 }, (_, i) => (
+          Array.from({ length: 8 }, (_, i) => (
             <ConfettiPiece
               key={`${ci}-${i}`}
               color={color}
-              delay={i * 60 + ci * 30}
+              delay={i * 50 + ci * 25}
               startX={Math.random() * W}
             />
           ))
         )}
 
         <View style={{
-          backgroundColor: result.demoted ? 'rgba(255,59,48,0.08)' : t.bgCard,
-          borderTopLeftRadius: 24, borderTopRightRadius: 24,
-          paddingBottom: 40, maxHeight: H * 0.9,
-          borderTopWidth: result.demoted ? 3 : 0,
-          borderTopColor: result.demoted ? '#FF3B30' : 'transparent',
+          backgroundColor: cardBg,
+          borderRadius: 24,
+          width: W - 32,
+          maxHeight: H * 0.85,
+          overflow: 'hidden',
+          borderWidth: isDemo ? 2 : isPromo ? 2 : 0,
+          borderColor: isDemo ? '#FF3B30' : isPromo ? '#FFD700' : 'transparent',
         }}>
 
-          {/* Заголовок */}
-          <Animated.View style={{
-            alignItems: 'center', padding: 24, paddingBottom: 12,
-            transform: [{ scale: headerScale }],
-            backgroundColor: result.promoted ? 'rgba(52,199,89,0.08)' : result.demoted ? 'rgba(255,59,48,0.12)' : 'transparent',
-            marginHorizontal: -24, marginTop: -24, marginBottom: 12,
-            paddingHorizontal: 24, borderRadius: 24,
+          {/* Gradient-like header area */}
+          <View style={{
+            backgroundColor: headerBg,
+            paddingTop: 28,
+            paddingBottom: 18,
+            alignItems: 'center',
           }}>
-            <Text style={{ fontSize: 56, marginBottom: 6 }}>
-              {result.promoted ? newLeague.icon : result.demoted ? '📉' : '📍'}
-            </Text>
-            <Text style={{ color: t.textPrimary, fontSize: 22, fontWeight: '800' }}>
-              {isUK ? 'Підсумки тижня' : 'Итоги недели'}
-            </Text>
-            <View style={{ flexDirection:'row', alignItems:'center', gap:6, marginTop:8 }}>
-              <Ionicons name={outcomeIcon as any} size={20} color={outcomeColor}/>
-              <Text style={{ color: outcomeColor, fontSize: 16, fontWeight: '700' }}>
-                {outcomeText}
-              </Text>
-            </View>
-            {(result.promoted || result.demoted) && (
-              <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 5 }}>
-                {isUK
-                  ? `${prevLeague.nameUK} → ${newLeague.nameUK}`
-                  : `${prevLeague.nameRU} → ${newLeague.nameRU}`}
-              </Text>
-            )}
-          </Animated.View>
 
-          {/* Моё место */}
+            {/* Club icon */}
+            <Animated.View style={{
+              transform: [{ scale: iconScale }],
+              marginBottom: 12,
+            }}>
+              <Image
+                source={club.imageUri}
+                style={{
+                  width: 96,
+                  height: 96,
+                  borderRadius: 48,
+                }}
+              />
+            </Animated.View>
+
+            {/* Header text */}
+            <Animated.View style={{
+              alignItems: 'center',
+              transform: [{ scale: headerScale }],
+            }}>
+              <Text style={{
+                color: t.textPrimary,
+                fontSize: 26,
+                fontWeight: '900',
+                letterSpacing: 0.5,
+              }}>
+                {isUK ? 'Підсумки тижня' : 'Итоги недели'}
+              </Text>
+
+              <View style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 6,
+                marginTop: 10,
+              }}>
+                <Ionicons name={outcomeIcon as any} size={22} color={outcomeColor}/>
+                <Text style={{
+                  color: outcomeColor,
+                  fontSize: 18,
+                  fontWeight: '800',
+                }}>
+                  {outcomeText}
+                </Text>
+              </View>
+            </Animated.View>
+
+            {/* League transition */}
+            {(isPromo || isDemo) && (
+              <Animated.View style={{
+                opacity: transitionOp,
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 8,
+                marginTop: 10,
+                backgroundColor: 'rgba(0,0,0,0.15)',
+                paddingHorizontal: 14,
+                paddingVertical: 6,
+                borderRadius: 12,
+              }}>
+                <Text style={{ color: t.textMuted, fontSize: 14 }}>
+                  {isUK ? prevLeague.nameUK : prevLeague.nameRU}
+                </Text>
+                <Ionicons
+                  name={isPromo ? 'arrow-forward' : 'arrow-forward'}
+                  size={16}
+                  color={outcomeColor}
+                />
+                <Text style={{ color: outcomeColor, fontSize: 14, fontWeight: '700' }}>
+                  {isUK ? newLeague.nameUK : newLeague.nameRU}
+                </Text>
+              </Animated.View>
+            )}
+          </View>
+
+          {/* Rank badge */}
           <Animated.View style={{
             alignSelf: 'center',
-            backgroundColor: result.promoted ? 'rgba(52,199,89,0.1)' : result.demoted ? 'rgba(255,59,48,0.1)' : t.bgSurface,
-            borderRadius: 14, paddingHorizontal: 28, paddingVertical: 10,
-            marginBottom: 14, transform: [{ scale: rankScale }],
-            borderWidth: result.promoted ? 1.5 : result.demoted ? 1.5 : 0,
-            borderColor: result.promoted ? '#34C759' : result.demoted ? '#FF3B30' : 'transparent',
+            backgroundColor: isPromo ? 'rgba(52,199,89,0.12)' : isDemo ? 'rgba(255,59,48,0.12)' : t.bgSurface,
+            borderRadius: 18,
+            paddingHorizontal: 36,
+            paddingVertical: 14,
+            marginTop: 16,
+            marginBottom: 14,
+            transform: [{ scale: rankScale }],
+            borderWidth: 2,
+            borderColor: isPromo ? '#34C759' : isDemo ? '#FF3B30' : club.color + '40',
+            shadowColor: outcomeColor,
+            shadowOffset: { width: 0, height: 4 },
+            shadowOpacity: 0.3,
+            shadowRadius: 8,
+            elevation: 6,
           }}>
-            <Text style={{ color: t.textMuted, fontSize: 11, textTransform:'uppercase', letterSpacing:0.8, textAlign:'center' }}>
+            <Text style={{
+              color: t.textMuted,
+              fontSize: 12,
+              textTransform: 'uppercase',
+              letterSpacing: 1,
+              textAlign: 'center',
+              fontWeight: '600',
+            }}>
               {isUK ? 'Твоє місце' : 'Твоё место'}
             </Text>
-            <Text style={{ color: t.textPrimary, fontSize: 38, fontWeight: '800', textAlign: 'center' }}>
+            <Text style={{
+              color: t.textPrimary,
+              fontSize: 52,
+              fontWeight: '900',
+              textAlign: 'center',
+              lineHeight: 58,
+            }}>
               #{result.myRank}
-              <Text style={{ color: t.textMuted, fontSize: 18, fontWeight: '400' }}>
-                {' '}/{result.totalInGroup}
-              </Text>
+            </Text>
+            <Text style={{
+              color: t.textMuted,
+              fontSize: 15,
+              textAlign: 'center',
+              fontWeight: '500',
+            }}>
+              {isUK ? `з ${result.totalInGroup} учасників` : `из ${result.totalInGroup} участников`}
             </Text>
           </Animated.View>
 
-          {/* Таблица группы */}
+          {/* Group table */}
           <Animated.View style={{ opacity: listOpacity }}>
-            <Text style={{ color:t.textMuted, fontSize:11, textTransform:'uppercase', letterSpacing:0.8, paddingHorizontal:20, marginBottom:6 }}>
+            <Text style={{
+              color: t.textMuted,
+              fontSize: 11,
+              textTransform: 'uppercase',
+              letterSpacing: 0.8,
+              paddingHorizontal: 20,
+              marginBottom: 6,
+              fontWeight: '600',
+            }}>
               {isUK ? 'Група тижня' : 'Группа недели'}
             </Text>
-            <ScrollView style={{ maxHeight: 260 }} showsVerticalScrollIndicator={false}>
+            <ScrollView style={{ maxHeight: 220 }} showsVerticalScrollIndicator={false}>
               {result.group.slice(0, 10).map((member, i) => (
                 <Animated.View
                   key={member.name}
@@ -203,15 +332,14 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                     flexDirection: 'row', alignItems: 'center',
                     paddingHorizontal: 20, paddingVertical: 10,
                     backgroundColor: member.isMe
-                      ? (result.promoted ? 'rgba(52,199,89,0.13)' : result.demoted ? 'rgba(255,59,48,0.1)' : t.bgSurface)
+                      ? (isPromo ? 'rgba(52,199,89,0.13)' : isDemo ? 'rgba(255,59,48,0.1)' : t.bgSurface)
                       : 'transparent',
                     borderLeftWidth: member.isMe ? 3 : 0,
                     borderLeftColor: outcomeColor,
-                    // Анимация скольжения только для моей строки
                     transform: member.isMe ? [{ translateY: myRowY }] : [],
                   }}
                 >
-                  <Text style={{ width:36, fontSize: i < 3 ? 20 : 14, color: t.textPrimary }}>
+                  <Text style={{ width: 36, fontSize: i < 3 ? 20 : 14, color: t.textPrimary }}>
                     {i < 3 ? MEDALS[i] : `${i + 1}`}
                   </Text>
                   <Text style={{
@@ -221,29 +349,42 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   }}>
                     {member.name}{member.isMe ? (isUK ? ' (ти)' : ' (ты)') : ''}
                   </Text>
-                  <View style={{ flexDirection:'row', alignItems:'center', gap:3 }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
                     <Ionicons name="star" size={11} color={i < 3 ? '#FFD700' : t.textMuted}/>
-                    <Text style={{ color: i < 3 ? '#FFD700' : t.textMuted, fontSize:14, fontWeight:'600' }}>
+                    <Text style={{ color: i < 3 ? '#FFD700' : t.textMuted, fontSize: 14, fontWeight: '600' }}>
                       {member.points}
                     </Text>
                   </View>
                 </Animated.View>
               ))}
               {result.group.length > 10 && (
-                <Text style={{ color:t.textGhost, fontSize:12, textAlign:'center', padding:10 }}>
+                <Text style={{ color: t.textGhost, fontSize: 12, textAlign: 'center', padding: 10 }}>
                   +{result.group.length - 10} {isUK ? 'учасників' : 'участников'}
                 </Text>
               )}
             </ScrollView>
           </Animated.View>
 
-          {/* Кнопка */}
-          <Animated.View style={{ opacity: btnOpacity, paddingHorizontal:20, paddingTop:14 }}>
+          {/* Button */}
+          <Animated.View style={{ opacity: btnOpacity, paddingHorizontal: 20, paddingTop: 16, paddingBottom: 28 }}>
             <TouchableOpacity
-              style={{ backgroundColor: outcomeColor, borderRadius:16, padding:16, alignItems:'center' }}
+              style={{
+                backgroundColor: isPromo ? '#34C759' : isDemo ? '#FF3B30' : club.color,
+                borderRadius: 16,
+                padding: 18,
+                alignItems: 'center',
+                shadowColor: outcomeColor,
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.35,
+                shadowRadius: 8,
+                elevation: 6,
+              }}
               onPress={handleClose}
+              activeOpacity={0.8}
             >
-              <Text style={{ color:'#fff', fontSize:17, fontWeight:'700' }}>{btnText}</Text>
+              <Text style={{ color: '#fff', fontSize: 18, fontWeight: '800', letterSpacing: 0.5 }}>
+                {btnText}
+              </Text>
             </TouchableOpacity>
           </Animated.View>
 

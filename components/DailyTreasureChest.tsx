@@ -78,7 +78,7 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
           await AsyncStorage.setItem('user_total_xp', newXP.toString());
           onBonusXPEarned?.(result.bonusXP);
         } catch (e) {
-          console.warn('Failed to add bonus XP:', e);
+          // removed console.warn
         }
       }
 

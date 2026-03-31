@@ -15,7 +15,7 @@ import { getTaskById } from './daily_tasks';
 export const rewardPhrasemenForTask = async (taskId: string): Promise<void> => {
   const task = getTaskById(taskId);
   if (!task) {
-    console.warn(`Задача с ID ${taskId} не найдена`);
+    // removed console.warn
     return;
   }
 

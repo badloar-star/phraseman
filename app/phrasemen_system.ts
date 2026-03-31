@@ -62,7 +62,7 @@ const savePhrasemenState = async (state: PhrasemenState): Promise<void> => {
   try {
     await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   } catch (error) {
-    console.error('Ошибка при сохранении фразменов:', error);
+    // removed console.error
   }
 };
 
@@ -166,7 +166,7 @@ export const clearPhrasemenData = async (): Promise<void> => {
   try {
     await AsyncStorage.removeItem(STORAGE_KEY);
   } catch (error) {
-    console.error('Ошибка при очистке фразменов:', error);
+    // removed console.error
   }
 };
 

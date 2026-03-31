@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Alert, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -12,7 +12,12 @@ import ScreenGradient from '../components/ScreenGradient';
 import { addOrUpdateScore } from './hall_of_fame_utils';
 import { checkAchievements } from './achievements';
 import { saveExamProgress, getExamMedalTier, type MedalTier } from './medal_utils';
-import MedalIcon from '../components/MedalIcon';
+
+const MEDAL_IMAGES_EXAM: Record<string, any> = {
+  bronze:  require('../assets/images/levels/bronza.png'),
+  silver:  require('../assets/images/levels/serebro.png'),
+  gold:    require('../assets/images/levels/zoloto.png'),
+};
 
 // ── Пул вопросов (общий с exam.tsx) ──────────────────────────────────────────
 type QType = 'fill' | 'choice4' | 'error';
@@ -316,7 +321,17 @@ export default function LevelExam() {
           <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
             {/* Итог */}
             <View style={{ alignItems: 'center', gap: 8, paddingVertical: 12 }}>
-              <MedalIcon tier={examMedalTier} size={80} animate={examMedalTier === 'silver'} />
+              {examMedalTier !== 'none' && MEDAL_IMAGES_EXAM[examMedalTier] ? (
+                <Image
+                  source={MEDAL_IMAGES_EXAM[examMedalTier]}
+                  style={{ width: 90, height: 90 }}
+                  resizeMode="contain"
+                />
+              ) : (
+                <View style={{ width: 90, height: 90, borderRadius: 45, backgroundColor: '#3A3A3A', justifyContent: 'center', alignItems: 'center' }}>
+                  <Text style={{ fontSize: 36, color: '#555' }}>?</Text>
+                </View>
+              )}
               {medalImproved && (
                 <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700', marginTop: 4 }}>
                   {examMedalTier === 'gold' ? (isUK ? '🥇 Золото!' : '🥇 Золото!') :

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
-  View, Text, TouchableOpacity, Alert, Dimensions, Animated, useWindowDimensions,
+  View, Text, TouchableOpacity, Alert, Dimensions, Animated, useWindowDimensions, Image,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTabNav } from '../TabContext';
@@ -40,24 +40,36 @@ function bookPalette(num: number): string {
   return PALETTE[key][Math.min(idx, PALETTE[key].length - 1)];
 }
 
-// ── Overlapping medal dots ────────────────────────────────────────────────────
+// ── Medal images ────────────────────────────────────────────────────────────
+const MEDAL_IMAGES: Record<string, any> = {
+  bronze:  require('../../assets/images/levels/bronza.png'),
+  silver:  require('../../assets/images/levels/serebro.png'),
+  gold:    require('../../assets/images/levels/zoloto.png'),
+  ruby:    require('../../assets/images/levels/rubin.png'),
+  emerald: require('../../assets/images/levels/izumrud.png'),
+  diamond: require('../../assets/images/levels/almaz.png'),
+};
+
 function MedalDots({ dots }: { dots: string[] }) {
   if (dots.length === 0) return null;
-  const DOT = 16;
-  const OFFSET = 10; // overlap amount
-  const totalW = DOT + (dots.length - 1) * OFFSET;
+  const SIZE = 22;
+  const OFFSET = 14;
+  const totalW = SIZE + (dots.length - 1) * OFFSET;
   return (
-    <View style={{ width: totalW, height: DOT }}>
+    <View style={{ width: totalW, height: SIZE }}>
       {dots.map((key, i) => (
-        <View key={i} style={{
-          position: 'absolute',
-          left: i * OFFSET,
-          width: DOT, height: DOT, borderRadius: DOT / 2,
-          backgroundColor: MEDAL_DOT_COLOR[key] ?? '#888',
-          borderWidth: 1.5,
-          borderColor: 'rgba(0,0,0,0.25)',
-          zIndex: dots.length - i,
-        }} />
+        <Image
+          key={i}
+          source={MEDAL_IMAGES[key]}
+          style={{
+            position: 'absolute',
+            left: i * OFFSET,
+            width: SIZE,
+            height: SIZE,
+            zIndex: dots.length - i,
+          }}
+          resizeMode="contain"
+        />
       ))}
     </View>
   );
@@ -327,6 +339,7 @@ export default function LessonsTab() {
                           {subLine}
                         </Text>
                       </View>
+                      {examDots.length > 0 && <MedalDots dots={examDots} />}
                       {allDone && <Ionicons name="chevron-forward" size={16} color={meta.accent + '80'} />}
                     </View>
                   </View>
@@ -376,12 +389,14 @@ export default function LessonsTab() {
                     <Text style={{ color: cardText, fontSize: f.label, fontWeight: '700', letterSpacing: 0.7 }} maxFontSizeMultiplier={1}>
                       {isUK ? 'УРОК' : 'УРОК'} {num}
                     </Text>
-                    {isUnlocked && medalDots.length > 0 && (
-                      <MedalDots dots={medalDots} />
-                    )}
-                    {!isUnlocked && (
-                      <Ionicons name="lock-closed" size={12} color={cardText} />
-                    )}
+                    <View style={{ width: 80, alignItems: 'flex-start' }}>
+                      {isUnlocked && medalDots.length > 0 && (
+                        <MedalDots dots={medalDots} />
+                      )}
+                      {!isUnlocked && (
+                        <Ionicons name="lock-closed" size={12} color={cardText} />
+                      )}
+                    </View>
                   </View>
                   <Text style={{ color: cardTitle, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} maxFontSizeMultiplier={1}>
                     {name}

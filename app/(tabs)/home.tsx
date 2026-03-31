@@ -18,6 +18,7 @@ import { getTodayTasks, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, CEFR_FOR_LEVEL, getLevelFromXP } from '../../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK } from '../../constants/lessons';
 import { DEV_MODE } from '../config';
+import Purchases from 'react-native-purchases';
 import PremiumCard from '../../components/PremiumCard';
 import { hapticTap } from '../../hooks/use-haptics';
 import CircularProgress from '../../components/CircularProgress';
@@ -164,7 +165,23 @@ export default function HomeScreen() {
         AsyncStorage.getItem('user_frame'),
         checkAndRecover(),
       ]);
-      setIsPremium(premiumVal === 'true');
+      // Verify premium status via RevenueCat to prevent AsyncStorage tampering
+      let verifiedPremium = premiumVal === 'true';
+      try {
+        const info = await Promise.race([
+          Purchases.getCustomerInfo(),
+          new Promise<null>(resolve => setTimeout(() => resolve(null), 3000)),
+        ]);
+        if (info) {
+          const rcActive = !!info.entitlements.active['premium']
+            || info.activeSubscriptions.length > 0;
+          verifiedPremium = rcActive;
+          await AsyncStorage.setItem('premium_active', rcActive ? 'true' : 'false');
+        }
+      } catch {
+        // RevenueCat unavailable (Expo Go, offline) — fall back to stored value
+      }
+      setIsPremium(verifiedPremium);
       if (energyState) setEnergyCount(energyState.current);
       if (name) setUserName(name);
       if (streakVal) setStreak(parseInt(streakVal) || 0);
@@ -640,9 +657,9 @@ export default function HomeScreen() {
                     onPress={()=>go(item.path)}
                     style={{ flex:1, backgroundColor:t.bgCard, borderRadius:20, borderWidth:0.5, borderColor:t.border, padding:20, alignItems:'center', justifyContent:'center', minHeight:130 }}
                   >
-                    <View style={{ width:72, height:72, borderRadius:18, backgroundColor:item.iconColor+'22', justifyContent:'center', alignItems:'center', marginBottom:10 }}>
+                    <View style={{ width:72, height:72, borderRadius:item.label === (isUK ? 'Клуб' : 'Клуб') ? 0 : 18, backgroundColor:item.label === (isUK ? 'Клуб' : 'Клуб') ? 'transparent' : item.iconColor+'22', justifyContent:'center', alignItems:'center', marginBottom:10 }}>
                       {item.label === (isUK ? 'Клуб' : 'Клуб') && engineLeague?.imageUri ? (
-                        <Image source={engineLeague.imageUri} style={{ width:56, height:56, borderRadius:14 }} resizeMode="contain" />
+                        <Image source={engineLeague.imageUri} style={{ width:72, height:72 }} resizeMode="contain" />
                       ) : (
                         <Ionicons name={item.iconName} size={40} color={item.iconColor} />
                       )}

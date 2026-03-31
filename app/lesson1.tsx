@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Pressable,
   Animated, useWindowDimensions, TextInput, KeyboardAvoidingView, ScrollView,
@@ -2942,9 +2942,10 @@ interface LessonContentProps {
   setShowNoEnergyModal: (val: boolean) => void;
   recoveryTimeText: string;
   setFailedTapCount: (val: (prev: number) => number) => void;
+  checkAnswer: (answer: string) => Promise<void>;
 }
 
-function LessonContent({
+const LessonContent = React.memo(function LessonContent({
   showIntroScreens,
   setShowIntroScreens,
   showEncouragementScreen,
@@ -2994,6 +2995,7 @@ function LessonContent({
   setShowNoEnergyModal,
   recoveryTimeText,
   setFailedTapCount,
+  checkAnswer,
 }: LessonContentProps) {
 
   // Show intro screens on first visit
@@ -3019,6 +3021,14 @@ function LessonContent({
   }
 
   // Main lesson UI
+  if (!phrase) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ color: t.textPrimary }}>Loading lesson...</Text>
+      </View>
+    );
+  }
+
   return (
     <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       {/* ХЕДЕР */}
@@ -3062,7 +3072,7 @@ function LessonContent({
         showsVerticalScrollIndicator={false}
       >
         <Pressable onPress={handleBgTap} style={{ width: '100%' }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{phrase.russian}</Text>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{phrase?.russian || 'Loading...'}</Text>
 
           <View style={{ minHeight: 60, borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {settings.hardMode ? (
@@ -3275,7 +3285,7 @@ function LessonContent({
         </Modal>
     </KeyboardAvoidingView>
   );
-}
+});
 
 export default function LessonScreen() {
   const router = useRouter();
@@ -3337,7 +3347,7 @@ export default function LessonScreen() {
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
 
   // Фраза определяется ТОЛЬКО позицией ячейки — строго цикличная привязка
-  const phrase = LESSON_DATA[cellIndex % LESSON_DATA.length];
+  const phrase = LESSON_DATA && LESSON_DATA.length > 0 ? LESSON_DATA[cellIndex % LESSON_DATA.length] : null;
 
   // CHANGE v5: cursor blinks only when no words are selected yet; stays solid while composing
   useEffect(() => {
@@ -3511,6 +3521,7 @@ export default function LessonScreen() {
   const shuffleWords = (words: string[]) => setShuffled(words);
 
   const checkAnswer = useCallback(async (answer: string) => {
+    if (!phrase) return;
     const isRight = isCorrectAnswer(answer, phrase.english);
     const np = [...progress];
 
@@ -3731,7 +3742,7 @@ export default function LessonScreen() {
   }, [cellIndex, progress, fadeAnim, LESSON_DATA]);
 
   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
-  const handleWordPress = (word: string) => {
+  const handleWordPress = useCallback((word: string) => {
     if (status === 'result') return;
 
     // Check if energy is empty - show shake animation instead of proceeding (but skip if tester has no limits)
@@ -3806,14 +3817,14 @@ export default function LessonScreen() {
     } else {
       setShuffled(getPerWordDistracts(phrase, newIdx));
     }
-  };
+  }, [status, currentEnergy, testerNoLimits, selectedWords, phrase, phraseWordIdx, contrExpanded, settings.autoCheck, checkAnswer]);
 
-  const handleTypedSubmit = () => {
+  const handleTypedSubmit = useCallback(() => {
     if (typedText.trim() && status === 'playing') checkAnswer(typedText);
-  };
+  }, [typedText, status, checkAnswer]);
 
   // CHANGE v5: updated for contraction branching undo
-  const undoLastWord = () => {
+  const undoLastWord = useCallback(() => {
     if (status === 'result') return;
     if (settings.hardMode) {
       const words = typedText.trim().split(/\s+/);
@@ -3848,7 +3859,7 @@ export default function LessonScreen() {
       }
       setShuffled(getPerWordDistracts(phrase, newPhraseIdx));
     }
-  };
+  }, [status, settings.hardMode, typedText, selectedWords, contrExpanded, phrase, phraseWordIdx]);
 
   const handleVoice = async () => {
     if (!VOICE_OK) { alert(lang === 'uk' ? 'Потребує EAS Build' : 'Требует EAS Build'); return; }
@@ -3873,14 +3884,14 @@ export default function LessonScreen() {
     } catch { setIsListening(false); }
   };
 
-  const correctCount = progress.filter(p => p === 'correct' || p === 'replay_correct').length;
-  const wrongCount   = progress.filter(p => p === 'wrong').length;
-  const score = (correctCount / TOTAL * 5).toFixed(1);
+  const correctCount = useMemo(() => progress.filter(p => p === 'correct' || p === 'replay_correct').length, [progress]);
+  const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
+  const score = useMemo(() => (correctCount / TOTAL * 5).toFixed(1), [correctCount, TOTAL]);
 
   // Жёлтая подсветка для поля ввода когда 0 слов + тап
   const [emptyTapFlash, setEmptyTapFlash] = useState(false);
 
-  const handleBgTap = () => {
+  const handleBgTap = useCallback(() => {
     if (status === 'result') { goNext(); return; } // тап на результате → следующая фраза
     if (settings.hardMode) return; // hard mode — кнопка/enter клавиатуры
     // Скрываем хинт при первом тапе
@@ -3893,7 +3904,7 @@ export default function LessonScreen() {
       // ≥1 слово — сразу проверяем (неполный ответ = неправильный)
       checkAnswer(selectedWords.join(' '));
     }
-  };
+  }, [status, settings.hardMode, showTapHint, selectedWords, goNext, checkAnswer]);
 
   return (
     <TouchableWithoutFeedback onPress={handleBgTap}>
@@ -3949,6 +3960,7 @@ export default function LessonScreen() {
             setShowNoEnergyModal={setShowNoEnergyModal}
             recoveryTimeText={recoveryTimeText}
             setFailedTapCount={setFailedTapCount}
+            checkAnswer={checkAnswer}
           />
         </SafeAreaView>
       </ScreenGradient>

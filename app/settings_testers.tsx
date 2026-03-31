@@ -117,7 +117,9 @@ export default function SettingsTestersFunctions() {
         keysToSet.push(['unlocked_lessons', JSON.stringify(unlockedLessons)]);
 
         // Award gold medals on all 4 exams (90%+ = gold)
-        for (let lvl = 1; lvl <= 4; lvl++) {
+        // Use string level IDs ('A1','A2','B1','B2') to match level_exam.tsx format
+        const examLevels = ['A1', 'A2', 'B1', 'B2'];
+        for (const lvl of examLevels) {
           keysToSet.push([`level_exam_${lvl}_pct`, '100']);
           keysToSet.push([`level_exam_${lvl}_best_pct`, '100']); // Gold medal requires best_pct >= 90
           keysToSet.push([`level_exam_${lvl}_passed`, '1']);
@@ -346,14 +348,25 @@ export default function SettingsTestersFunctions() {
                         'my_week_points',
                       ];
 
-                      // Экзамены
-                      const examKeys = Array.from({ length: 4 }, (_, i) => [
-                        `level_exam_${i + 1}_pct`,
-                        `level_exam_${i + 1}_passed`,
-                        `level_exam_${i + 1}_best_pct`,
-                        `level_exam_${i + 1}_medal_tier`,
-                        `level_exam_${i + 1}_pass_count`,
-                      ]).flat();
+                      // Экзамены (string level IDs used by level_exam.tsx + legacy numeric keys)
+                      const examLevelIds = ['A1', 'A2', 'B1', 'B2'];
+                      const examKeys = [
+                        ...examLevelIds.flatMap(lvl => [
+                          `level_exam_${lvl}_pct`,
+                          `level_exam_${lvl}_passed`,
+                          `level_exam_${lvl}_best_pct`,
+                          `level_exam_${lvl}_medal_tier`,
+                          `level_exam_${lvl}_pass_count`,
+                        ]),
+                        // Also clean up legacy numeric keys (1-4)
+                        ...Array.from({ length: 4 }, (_, i) => [
+                          `level_exam_${i + 1}_pct`,
+                          `level_exam_${i + 1}_passed`,
+                          `level_exam_${i + 1}_best_pct`,
+                          `level_exam_${i + 1}_medal_tier`,
+                          `level_exam_${i + 1}_pass_count`,
+                        ]).flat(),
+                      ];
 
                       // Тестер настройки
                       const testerKeys = [

@@ -21,7 +21,7 @@ export function PhrasemenDisplay({ refreshTrigger, style }: PhrasemenDisplayProp
         const current = await getPhrasemenBalance();
         setBalance(current);
       } catch (error) {
-        console.error('Ошибка при загрузке баланса фразменов:', error);
+        // removed console.error
       } finally {
         setLoading(false);
       }

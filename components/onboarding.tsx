@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
 import Constants from 'expo-constants';
 import { sendPremiumNotification } from '../app/notifications';
-import { generateReferralCode, redeemReferralCode } from '../app/referral_system';
+import { generateReferralCode } from '../app/referral_system';
 
 const IS_EXPO_GO = Constants.executionEnvironment === 'storeClient';
 import { T, Lang } from '../constants/i18n';
@@ -29,22 +29,49 @@ interface Props {
 
 type Plan = 'monthly' | 'yearly';
 
-const GOAL_LABELS: Record<LearningGoal, string> = {
+const GOAL_DESCRIPTIONS: Record<LearningGoal, { ru: string; uk: string }> = {
+  tourism: { ru: 'Путешествовать без границ', uk: 'Подорожувати без кордонів' },
+  work: { ru: 'Карьера и новые перспективы', uk: 'Кар\'єра та нові перспективи' },
+  emigration: { ru: 'Переехать в другую страну', uk: 'Переїхати в іншу країну' },
+  hobby: { ru: 'Учить для души и интереса', uk: 'Вчити для душі та інтересу' },
+};
+
+const GOAL_EMOJIS: Record<LearningGoal, string> = {
   tourism: '🌍',
   work: '💼',
-  emigration: '🏠',
-  hobby: '🎬',
+  emigration: '✈️',
+  hobby: '🎨',
 };
 
 const MINUTES_OPTIONS: MinutesPerDay[] = [5, 15, 30, 60];
 const MINUTES_EMOJIS: Record<MinutesPerDay, string> = {
-  5: '⚡',
+  5: '⚡️',
   15: '💪',
   30: '🔥',
   60: '💯',
 };
 
-const LEVEL_OPTIONS: CurrentLevel[] = ['a1', 'a2', 'b1', 'b2'];
+const MINUTES_DESCRIPTIONS: Record<MinutesPerDay, { ru: string; uk: string }> = {
+  5: { ru: 'Быстрый старт — легко!', uk: 'Швидкий старт — легко!' },
+  15: { ru: 'Уверенный прогресс!', uk: 'Впевнений прогрес!' },
+  30: { ru: 'Серьезный подход — мощно!', uk: 'Серйозний підхід — потужно!' },
+  60: { ru: 'Погружение на максимум — чемпион!', uk: 'Занурення на максимум — чемпіон!' },
+};
+
+const LEVEL_EMOJIS: Record<CurrentLevel, string> = {
+  a1: '🐣',
+  a2: '🌱',
+  b1: '🚀',
+  b2: '🎧',
+};
+
+const LEVEL_DESCRIPTIONS: Record<CurrentLevel, { ru: string; uk: string }> = {
+  a1: { ru: 'Пока только мечтаю', uk: 'Поки що тільки мрію' },
+  a2: { ru: 'Знаю буквы и пару слов', uk: 'Знаю букви та кілька слів' },
+  b1: { ru: 'Могу поддержать беседу', uk: 'Можу підтримати розмову' },
+  b2: { ru: 'Понимаю фильмы и музыку', uk: 'Розумію фільми та музику' },
+};
+
 const TARGET_LEVELS: TargetLevel[] = ['a1', 'a2', 'b1', 'b2', 'c1'];
 
 const TIME_OPTIONS = ['08:00', '12:00', '18:00', '20:00', '22:00'];
@@ -59,8 +86,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   const [targetLevel, setTargetLevel] = useState<TargetLevel | null>(null);
   const [notificationTime, setNotificationTime] = useState<string>('08:00');
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [referralCode, setReferralCode] = useState('');
-  const [redeemingCode, setRedeemingCode] = useState(false);
   const [selected, setSelected] = useState<Plan>('yearly');
   const [purchasing, setPurchasing] = useState(false);
   const [packages, setPackages] = useState<{ monthly?: PurchasesPackage; yearly?: PurchasesPackage }>({});
@@ -200,7 +225,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     try {
       await generateReferralCode(name);
     } catch (e) {
-      console.warn('Failed to generate referral code:', e);
+      // removed console.warn
     }
   };
 
@@ -232,45 +257,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
   const handleContinueToPremium = async () => {
     await saveUserProfile();
-    setStep('referral');
-  };
-
-  const handleReferralContinue = async () => {
-    // If user entered a referral code, try to redeem it
-    const trimmed = referralCode.trim().toUpperCase();
-    if (trimmed) {
-      setRedeemingCode(true);
-      try {
-        const result = await redeemReferralCode(trimmed, name);
-        setRedeemingCode(false);
-
-        if (result.success) {
-          Alert.alert(
-            isUK ? 'Успіх!' : '¡Успех!',
-            isUK
-              ? `Ви отримали ${result.bonusAwarded} Фразменів від ${result.referrerName}!`
-              : `Ты получил ${result.bonusAwarded} Phrasemen от ${result.referrerName}!`,
-            [{ text: 'OK', onPress: () => setStep('test_offer') }]
-          );
-          return;
-        } else {
-          Alert.alert(
-            isUK ? 'Помилка' : 'Ошибка',
-            result.error || (isUK ? 'Код невалідний' : 'Код невалидный')
-          );
-          return;
-        }
-      } catch (e) {
-        setRedeemingCode(false);
-        Alert.alert(
-          isUK ? 'Помилка' : 'Ошибка',
-          isUK ? 'Помилка при викупі коду' : 'Ошибка при выкупе кода'
-        );
-        return;
-      }
-    }
-
-    // Skip referral code
     setStep('test_offer');
   };
 
@@ -408,10 +394,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   // ── Шаг 3: Выбор цели ───────────────────────────────────────────────────────
   if (step === 'goal') {
     const goals: Array<{ key: LearningGoal; label: string; emoji: string }> = [
-      { key: 'tourism', label: isUK ? 'Туризм' : 'Туризм', emoji: '🌍' },
-      { key: 'work', label: isUK ? 'Робота' : 'Работа', emoji: '💼' },
-      { key: 'emigration', label: isUK ? 'Еміграція' : 'Эмиграция', emoji: '🏠' },
-      { key: 'hobby', label: isUK ? 'Хобі' : 'Хобби', emoji: '🎬' },
+      { key: 'tourism', label: GOAL_DESCRIPTIONS['tourism'][isUK ? 'uk' : 'ru'], emoji: GOAL_EMOJIS.tourism },
+      { key: 'work', label: GOAL_DESCRIPTIONS['work'][isUK ? 'uk' : 'ru'], emoji: GOAL_EMOJIS.work },
+      { key: 'emigration', label: GOAL_DESCRIPTIONS['emigration'][isUK ? 'uk' : 'ru'], emoji: GOAL_EMOJIS.emigration },
+      { key: 'hobby', label: GOAL_DESCRIPTIONS['hobby'][isUK ? 'uk' : 'ru'], emoji: GOAL_EMOJIS.hobby },
     ];
 
     return (
@@ -419,7 +405,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
         <ScrollView contentContainerStyle={styles.center} showsVerticalScrollIndicator={false}>
           <Text style={styles.appName}>Phraseman</Text>
           <Text style={styles.title}>
-            {isUK ? 'Навіщо ти вчиш англійську?' : 'Зачем ты учишь английский?'}
+            {isUK ? 'Чому ти вчиш англійську?' : 'Зачем ты учишь английский?'}
           </Text>
           <View style={{ width: '100%', gap: 12, marginBottom: 20 }}>
             {goals.map(g => (
@@ -459,7 +445,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
         <ScrollView contentContainerStyle={styles.center} showsVerticalScrollIndicator={false}>
           <Text style={styles.appName}>Phraseman</Text>
           <Text style={styles.title}>
-            {isUK ? 'Скільки часу на день?' : 'Сколько времени в день?'}
+            {isUK ? 'Скільки часу щодня?' : 'Сколько времени в день?'}
           </Text>
           <View style={{ width: '100%', gap: 12, marginBottom: 20 }}>
             {MINUTES_OPTIONS.map(mins => (
@@ -470,9 +456,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                 activeOpacity={0.8}
               >
                 <Text style={styles.optionEmoji}>{MINUTES_EMOJIS[mins]}</Text>
-                <Text style={[styles.optionLabel, minutesPerDay === mins && styles.optionLabelSelected]}>
-                  {mins} {isUK ? 'хвилин' : 'минут'}
-                </Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={[styles.optionLabel, minutesPerDay === mins && styles.optionLabelSelected, { marginLeft: 0 }]}>
+                    {MINUTES_DESCRIPTIONS[mins][isUK ? 'uk' : 'ru']}
+                  </Text>
+                </View>
               </TouchableOpacity>
             ))}
           </View>
@@ -495,10 +483,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   // ── Шаг 5: Выбор текущего уровня ────────────────────────────────────────────
   if (step === 'level') {
     const levels = [
-      { key: 'a1' as CurrentLevel, label: isUK ? 'Початківець (ніколи не вчив)' : 'Начинающий (никогда не учил)' },
-      { key: 'a2' as CurrentLevel, label: isUK ? 'Основи (знаю абетку)' : 'Основы (знаю алфавит)' },
-      { key: 'b1' as CurrentLevel, label: isUK ? 'Середній (можу розмовляти)' : 'Среднее (могу разговаривать)' },
-      { key: 'b2' as CurrentLevel, label: isUK ? 'Добре (розумію фільми)' : 'Хорошо (понимаю фильмы)' },
+      { key: 'a1' as CurrentLevel, emoji: LEVEL_EMOJIS.a1, label: LEVEL_DESCRIPTIONS.a1[isUK ? 'uk' : 'ru'] },
+      { key: 'a2' as CurrentLevel, emoji: LEVEL_EMOJIS.a2, label: LEVEL_DESCRIPTIONS.a2[isUK ? 'uk' : 'ru'] },
+      { key: 'b1' as CurrentLevel, emoji: LEVEL_EMOJIS.b1, label: LEVEL_DESCRIPTIONS.b1[isUK ? 'uk' : 'ru'] },
+      { key: 'b2' as CurrentLevel, emoji: LEVEL_EMOJIS.b2, label: LEVEL_DESCRIPTIONS.b2[isUK ? 'uk' : 'ru'] },
     ];
 
     return (
@@ -506,7 +494,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
         <ScrollView contentContainerStyle={styles.center} showsVerticalScrollIndicator={false}>
           <Text style={styles.appName}>Phraseman</Text>
           <Text style={styles.title}>
-            {isUK ? 'Твій поточний рівень?' : 'Твой текущий уровень?'}
+            {isUK ? '❤️ Давай познайомимось. Який твій досвід з англійської?' : '❤️ Давай познакомимся. Каков твой опыт в английском?'}
           </Text>
           <View style={{ width: '100%', gap: 12, marginBottom: 20 }}>
             {levels.map(lvl => (
@@ -516,7 +504,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                 onPress={() => setCurrentLevel(lvl.key)}
                 activeOpacity={0.8}
               >
-                <Text style={[styles.optionLabel, currentLevel === lvl.key && styles.optionLabelSelected, { marginLeft: 0 }]}>
+                <Text style={styles.optionEmoji}>{lvl.emoji}</Text>
+                <Text style={[styles.optionLabel, currentLevel === lvl.key && styles.optionLabelSelected]}>
                   {lvl.label}
                 </Text>
               </TouchableOpacity>
@@ -544,57 +533,72 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     const target = TARGET_LEVELS[targetIdx];
     const daysEstimate = estimateDaysToTarget(currentLevel, target, minutesPerDay);
     const targetDate = addDays(new Date(), daysEstimate);
-    const weekHours = ((minutesPerDay * 7) / 60).toFixed(1);
 
-    const goalLabels: Record<LearningGoal, string> = {
-      tourism: isUK ? 'туризму' : 'туризма',
-      work: isUK ? 'роботи' : 'работы',
-      emigration: isUK ? 'еміграції' : 'эмиграции',
-      hobby: isUK ? 'хобі' : 'хобби',
+    const levelDescriptions: Record<CurrentLevel | TargetLevel, { ru: string; uk: string }> = {
+      a1: { ru: 'нулевой уровень', uk: 'нульовий рівень' },
+      a2: { ru: 'базовый уровень', uk: 'базовий рівень' },
+      b1: { ru: 'свободное общение', uk: 'вільне спілкування' },
+      b2: { ru: 'уверенное владение', uk: 'впевнене володіння' },
+      c1: { ru: 'профессиональный уровень', uk: 'професійний рівень' },
     };
 
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
-          <Text style={{ fontSize: 48, marginBottom: 16, textAlign: 'center' }}>✅</Text>
-          <Text style={[styles.title, { marginBottom: 12 }]}>
-            {isUK ? 'На основі твого вибору ми створили план:' : 'На основе твоего выбора мы создали план:'}
+          <Text style={[styles.title, { marginBottom: 32, fontSize: 28 }]}>
+            {isUK ? '🎯 Твоя суперцель' : '🎯 Твоя суперцель'}
           </Text>
 
           <View style={styles.planBox}>
-            <Text style={{ color: '#C8FF00', fontSize: 15, fontWeight: '700', marginBottom: 12 }}>
-              {isUK ? 'Ціль:' : 'Цель:'} {isUK ? 'Навчитися англійської для' : 'Научиться английскому для'} <Text style={{ color: '#fff' }}>{goalLabels[goal]}</Text>
-            </Text>
-            <Text style={{ color: '#A8A8A8', fontSize: 15, marginBottom: 20 }}>
-              {isUK ? 'Інтенсивність:' : 'Интенсивность:'} <Text style={{ color: '#fff' }}>{minutesPerDay} {isUK ? 'хвилин на день' : 'минут в день'}</Text>
-            </Text>
-
-            <View style={{ backgroundColor: '#2A2A2A', borderRadius: 12, padding: 16, marginBottom: 20 }}>
-              <Text style={{ color: '#C8FF00', fontSize: 13, fontWeight: '800', marginBottom: 12 }}>
-                {isUK ? 'ТВІЙ ПРОГНОЗ:' : 'ТВОЙ ПРОГНОЗ:'}
+            <View style={{ marginBottom: 24 }}>
+              <Text style={{ color: '#C8FF00', fontSize: 14, fontWeight: '700', marginBottom: 8 }}>
+                {GOAL_EMOJIS[goal]} {isUK ? 'Твоя мета:' : 'Твоя цель:'}
               </Text>
-              <View style={{ gap: 8 }}>
-                <View style={styles.forecastRow}>
-                  <Text style={styles.forecastLabel}>{isUK ? 'Поточний рівень:' : 'Текущий уровень:'}</Text>
-                  <Text style={styles.forecastValue}>{currentLevel.toUpperCase()} ({isUK ? 'початківець' : 'начинающий'})</Text>
+              <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>
+                {GOAL_DESCRIPTIONS[goal][isUK ? 'uk' : 'ru']}
+              </Text>
+            </View>
+
+            <View style={{ marginBottom: 24 }}>
+              <Text style={{ color: '#C8FF00', fontSize: 14, fontWeight: '700', marginBottom: 8 }}>
+                ⚡️ {isUK ? 'Будемо на зв\'язку:' : 'Будем на связи:'}
+              </Text>
+              <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>
+                {MINUTES_DESCRIPTIONS[minutesPerDay][isUK ? 'uk' : 'ru'].split(' — ')[0]} {isUK ? 'щодня' : 'каждый день'}
+              </Text>
+            </View>
+
+            <View style={{ marginBottom: 24, backgroundColor: '#2A2A2A', borderRadius: 12, padding: 16 }}>
+              <Text style={{ color: '#C8FF00', fontSize: 14, fontWeight: '700', marginBottom: 12 }}>
+                {isUK ? 'ТВІЙ ПРОГРЕС:' : 'ТВ​ОЙ ПРОГРЕС:'}
+              </Text>
+              <View style={{ gap: 12 }}>
+                <View>
+                  <Text style={{ color: '#A8A8A8', fontSize: 12, marginBottom: 4 }}>
+                    {isUK ? 'У тебе вже є база!' : 'У тебя уже есть база!'}
+                  </Text>
+                  <Text style={{ color: '#fff', fontSize: 15, fontWeight: '600' }}>
+                    {currentLevel.toUpperCase()} — {levelDescriptions[currentLevel][isUK ? 'uk' : 'ru']}
+                  </Text>
                 </View>
-                <View style={styles.forecastRow}>
-                  <Text style={styles.forecastLabel}>{isUK ? 'Цільовий рівень:' : 'Целевой уровень:'}</Text>
-                  <Text style={styles.forecastValue}>{target.toUpperCase()} ({isUK ? 'середній' : 'промежуточный'})</Text>
+                <View>
+                  <Text style={{ color: '#A8A8A8', fontSize: 12, marginBottom: 4 }}>
+                    {isUK ? 'Давай покоримо' : 'Давай покорим'}
+                  </Text>
+                  <Text style={{ color: '#fff', fontSize: 15, fontWeight: '600' }}>
+                    {target.toUpperCase()} — {levelDescriptions[target][isUK ? 'uk' : 'ru']}
+                  </Text>
                 </View>
-                <View style={styles.forecastRow}>
-                  <Text style={styles.forecastLabel}>{isUK ? 'Час до цілі:' : 'Время до цели:'}</Text>
-                  <Text style={styles.forecastValue}>~{daysEstimate} {isUK ? 'днів' : 'дней'}</Text>
+                <View>
+                  <Text style={{ color: '#A8A8A8', fontSize: 12, marginBottom: 4 }}>
+                    ⏳ {isUK ? 'Час до цілі:' : 'Время до цели:'}
+                  </Text>
+                  <Text style={{ color: '#C8FF00', fontSize: 15, fontWeight: '700' }}>
+                    {isUK ? 'Через' : 'Через'} {daysEstimate} {isUK ? 'днів ти заговориш по-новому' : 'дней ты заговоришь по-новому'}
+                  </Text>
                 </View>
               </View>
             </View>
-
-            <Text style={{ color: '#A8A8A8', fontSize: 14, lineHeight: 22, marginBottom: 16 }}>
-              {isUK ? 'Це означає:' : 'Это означает:'}{'\n'}
-              • {Math.round(daysEstimate / 16)} {isUK ? 'уроків у твоєму темпі' : 'уроков в твоём темпе'}{'\n'}
-              • ~{weekHours} {isUK ? 'годин на тиждень навчання' : 'часов в неделю обучения'}{'\n'}
-              • {isUK ? 'Ти досягнеш цільового рівня к' : 'Ты достигнешь целевого уровня к'} <Text style={{ color: '#C8FF00', fontWeight: '700' }}>{targetDate.toLocaleDateString(isUK ? 'uk-UA' : 'ru-RU', { month: 'long', year: 'numeric' })}</Text>
-            </Text>
           </View>
 
           <TouchableOpacity
@@ -612,55 +616,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   }
 
   // ── Шаг 6b: Реферальный код (опциональный) ─────────────────────────────────────
-  if (step === 'referral') {
-    return (
-      <SafeAreaView style={styles.container}>
-        <ScrollView contentContainerStyle={styles.center} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
-          <Text style={styles.appName}>Phraseman</Text>
-          <Text style={styles.title}>
-            {isUK ? 'Вже має запрошення?' : '¿Ya tienes invitación?'}
-          </Text>
-          <Text style={{ color: '#A8A8A8', fontSize: 14, textAlign: 'center', marginBottom: 24, lineHeight: 20 }}>
-            {isUK
-              ? 'Якщо друг поділився з тобою кодом, введи його щоб отримати початковий бонус!'
-              : '¡Si un amigo compartió contigo un código, ingrésalo para obtener un bono inicial!'}
-          </Text>
-
-          <TextInput
-            style={[styles.input, { marginBottom: 24 }]}
-            placeholder={isUK ? 'Код реферала (опціонально)' : 'Código de referencia (opcional)'}
-            placeholderTextColor="#666"
-            value={referralCode}
-            onChangeText={setReferralCode}
-            editable={!redeemingCode}
-            maxLength={10}
-          />
-
-          <TouchableOpacity
-            style={[styles.continueBtn, redeemingCode && { opacity: 0.6 }]}
-            onPress={handleReferralContinue}
-            disabled={redeemingCode}
-            activeOpacity={0.85}
-          >
-            {redeemingCode ? (
-              <ActivityIndicator color="#1A2400" />
-            ) : (
-              <Text style={styles.continueBtnText}>
-                {isUK ? 'Далі' : 'Далее'}
-              </Text>
-            )}
-          </TouchableOpacity>
-
-          {referralCode && (
-            <Text style={{ color: '#666', fontSize: 12, marginTop: 16 }}>
-              {isUK ? 'Пропустити: просто натисніть Далі' : 'Saltar: simplemente presiona Siguiente'}
-            </Text>
-          )}
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-
   // ── Шаг 7: Выбор времени напоминаний ────────────────────────────────────────
   if (step === 'time') {
     return (

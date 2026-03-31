@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Animated, Easing, Image } from 'react-native';
 import { getFrameById } from '../constants/avatars';
 import LevelBadge from './LevelBadge';
@@ -22,6 +22,7 @@ const RAINBOW_COLORS = [
 
 export default function AnimatedFrame({ emoji, image, frameId, size = 44, style, fontSize, noAvatar = false, bgColor }: Props) {
   const frame = getFrameById(frameId);
+  const [imageLoadFailed, setImageLoadFailed] = useState(false);
 
   const BW        = Math.max(2, Math.round(size * 0.055));
   const outerW    = size + BW * 2;
@@ -37,6 +38,11 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
   const waveAnim    = useRef(new Animated.Value(0)).current;
   const waveOpacity = useRef(new Animated.Value(0)).current;
   const rainbowAnim = useRef(new Animated.Value(0)).current;
+
+  // Reset image load state when image source changes
+  useEffect(() => {
+    setImageLoadFailed(false);
+  }, [image]);
 
   useEffect(() => {
     let loop: Animated.CompositeAnimation | null = null;
@@ -267,8 +273,13 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
             borderRadius: outerW / 2, overflow: 'hidden',
             alignItems: 'center', justifyContent: 'center',
           }}>
-            {image
-              ? <Image source={image} style={{ width: outerW, height: outerW, borderRadius: outerW / 2 }} />
+            {image && !imageLoadFailed
+              ? <Image
+                  source={image}
+                  style={{ width: outerW, height: outerW, borderRadius: outerW / 2 }}
+                  onError={() => setImageLoadFailed(true)}
+                  onLoadStart={() => setImageLoadFailed(false)}
+                />
               : isLevel
               ? <LevelBadge level={parseInt(emoji!)} size={Math.round(outerW * 0.86)} />
               : <Text style={{ fontSize: fontSize ?? Math.round(outerW * 0.5), lineHeight: Math.round(outerW * 0.5) * 1.2 }}>{emoji}</Text>

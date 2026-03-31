@@ -36,7 +36,7 @@ export async function getEnergyState(): Promise<EnergyState> {
     const parsed = JSON.parse(stored) as EnergyState;
     return parsed;
   } catch (error) {
-    console.error('Failed to load energy state:', error);
+    // removed console.error
     return DEFAULT_STATE;
   }
 }
@@ -69,7 +69,7 @@ export async function checkAndRecover(): Promise<EnergyState> {
 
     return state;
   } catch (error) {
-    console.error('Failed to check and recover energy:', error);
+    // removed console.error
     return await getEnergyState();
   }
 }
@@ -95,7 +95,7 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(newState));
     return true;
   } catch (error) {
-    console.error('Failed to spend energy:', error);
+    // removed console.error
     return false;
   }
 }
@@ -116,7 +116,7 @@ export async function addEnergy(amount: number = 1): Promise<EnergyState> {
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
     return state;
   } catch (error) {
-    console.error('Failed to add energy:', error);
+    // removed console.error
     return await getEnergyState();
   }
 }
@@ -135,7 +135,7 @@ export async function resetEnergyToMax(): Promise<EnergyState> {
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
     return state;
   } catch (error) {
-    console.error('Failed to reset energy:', error);
+    // removed console.error
     return DEFAULT_STATE;
   }
 }
@@ -157,7 +157,7 @@ export async function getTimeUntilNextRecovery(): Promise<number> {
 
     return Math.max(0, timeUntilNextRecovery);
   } catch (error) {
-    console.error('Failed to get time until next recovery:', error);
+    // removed console.error
     return 0;
   }
 }

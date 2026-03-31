@@ -96,6 +96,7 @@ export const saveMedalProgress = async (
         [`lesson${lessonId}_best_score`, String(newBest)],
         [`lesson${lessonId}_pass_count`, String(newPass)],
       ]);
+      invalidateMedalsCache();
     }
 
     return { newTier, prevTier, isNewBest };
@@ -104,12 +105,20 @@ export const saveMedalProgress = async (
   }
 };
 
-// Загружает медали для всех 32 уроков разом
+// In-memory cache for loadAllMedals
+let _medalsCache: MedalTier[] | null = null;
+
+/** Invalidate medal cache (call after saveMedalProgress / saveExamProgress) */
+export const invalidateMedalsCache = () => { _medalsCache = null; };
+
+// Загружает медали для всех 32 уроков разом (cached in memory)
 export const loadAllMedals = async (): Promise<MedalTier[]> => {
+  if (_medalsCache) return _medalsCache;
   try {
     const keys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_best_score`);
     const pairs = await AsyncStorage.multiGet(keys);
-    return pairs.map(([, v]) => getMedalTier(parseFloat(v ?? '0') || 0));
+    _medalsCache = pairs.map(([, v]) => getMedalTier(parseFloat(v ?? '0') || 0));
+    return _medalsCache;
   } catch {
     return new Array(32).fill('none');
   }

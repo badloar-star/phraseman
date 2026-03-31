@@ -236,10 +236,13 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
 
   const total        = updated.length;
   const myRank       = updated.findIndex(m => m.isMe) + 1;
-  const topCutoff    = Math.max(1, Math.ceil(total * 0.15));
-  const bottomCutoff = total - Math.ceil(total * 0.15) + 1;
-  const promoted     = myRank <= topCutoff    && state.leagueId < CLUBS.length - 1;
-  const demoted      = myRank >= bottomCutoff && state.leagueId > 0 && !promoted;
+
+  // Need at least 2 participants for meaningful ranking
+  const hasValidGroup = total >= 2;
+  const topCutoff    = hasValidGroup ? Math.max(1, Math.ceil(total * 0.15)) : 0;
+  const bottomCutoff = hasValidGroup ? total - Math.ceil(total * 0.15) + 1 : total + 1;
+  const promoted     = hasValidGroup && myRank <= topCutoff && state.leagueId < CLUBS.length - 1;
+  const demoted      = hasValidGroup && myRank >= bottomCutoff && state.leagueId > 0 && !promoted;
 
   return {
     prevLeagueId: state.leagueId,
@@ -258,13 +261,18 @@ export const checkLeagueOnAppOpen = async (
 ): Promise<{ needShowResult: boolean; result: LeagueResult | null; state: LeagueState }> => {
   const currentWeekId = getWeekId();
 
-  const pending = await loadPendingResult();
+  // Batch both reads into a single multiGet
+  const [[, pendingRaw], [, stateRaw]] = await AsyncStorage.multiGet([RESULT_KEY, STATE_KEY]);
+
+  let pending: LeagueResult | null = null;
+  try { pending = pendingRaw ? JSON.parse(pendingRaw) : null; } catch { pending = null; }
+
+  let state: LeagueState | null = null;
+  try { state = stateRaw ? JSON.parse(stateRaw) : null; } catch { state = null; }
+
   if (pending) {
-    const state = await loadLeagueState();
     return { needShowResult: true, result: pending, state: state! };
   }
-
-  let state = await loadLeagueState();
 
   // Первый запуск
   if (!state) {

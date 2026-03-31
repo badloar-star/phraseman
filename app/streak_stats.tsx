@@ -4,7 +4,7 @@ import {
   TouchableOpacity, Dimensions, Alert, Share } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams } from 'expo-router';
+import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
@@ -349,6 +349,9 @@ export default function StreakStats() {
 
   useEffect(() => { loadAll(); }, []);
 
+  // Reload data when screen regains focus (e.g. after tester functions)
+  useFocusEffect(React.useCallback(() => { loadAll(); }, []));
+
   // Scroll to level section if opened from level block on home screen
   useEffect(() => {
     if (section === 'level' && levelY > 0) {
@@ -457,7 +460,7 @@ export default function StreakStats() {
           const p: string[] = JSON.parse(val);
           const correctCount = p.filter(x => x === 'correct').length;
           totalCorrectAll += correctCount;
-          if (correctCount >= 90) completedCount++;
+          if (correctCount >= 45) completedCount++; // 90% of TOTAL=50
         }
       }
       setLessonsCompleted(completedCount);

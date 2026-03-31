@@ -15,10 +15,19 @@ import { LESSONS_WITH_WORDS, WORD_COUNT_BY_LESSON } from './lesson_words';
 import { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
 import { GLOBAL_IRREGULAR_KEY } from './lesson_irregular_verbs';
 import CircularProgress from '../components/CircularProgress';
-import MedalIcon from '../components/MedalIcon';
-import { getMedalTier, getNextMedalHint, loadMedalInfo } from './medal_utils';
+import { getMedalTier, getNextMedalHint, loadMedalInfo, getEarnedDots } from './medal_utils';
+import { Image } from 'react-native';
 import { isLessonUnlocked, getLessonLockInfo, getLockMessageText } from './lesson_lock_system';
 
+// Medal images
+const MEDAL_IMAGES: Record<string, any> = {
+  bronze:  require('../assets/images/levels/bronza.png'),
+  silver:  require('../assets/images/levels/serebro.png'),
+  gold:    require('../assets/images/levels/zoloto.png'),
+  ruby:    require('../assets/images/levels/rubin.png'),
+  emerald: require('../assets/images/levels/izumrud.png'),
+  diamond: require('../assets/images/levels/almaz.png'),
+};
 
 export default function LessonMenu() {
   const router = useRouter();
@@ -248,21 +257,46 @@ export default function LessonMenu() {
         {lessonName}
       </Text>
 
-      {/* Медаль прогресса */}
+      {/* Медали прогресса */}
       <View style={{alignItems:'center',marginTop:12,marginBottom:8}}>
-        <MedalIcon tier={getMedalTier(score)} size={80} animate={getMedalTier(score)==='silver'} />
-        {progress > 0 && (
-          <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:6}}>
-            {progress}/50  ★ {score.toFixed(1)}
-          </Text>
-        )}
         {(() => {
-          const hint = getNextMedalHint(score, lang as 'ru'|'uk');
-          return hint ? (
-            <Text style={{color:t.textSecond,fontSize:f.sub,marginTop:3,opacity:0.85}}>
-              {hint}
-            </Text>
-          ) : null;
+          const earnedDots = getEarnedDots(getMedalTier(score), passCount);
+          const medalSize = 60;
+          const gap = 8;
+          return (
+            <View style={{gap:8}}>
+              <View style={{flexDirection:'row', justifyContent:'center', gap, alignItems:'center'}}>
+                {earnedDots.map((dot, i) => (
+                  <View key={i} style={{
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.25,
+                    shadowRadius: 4,
+                    elevation: 4,
+                  }}>
+                    <Image
+                      source={MEDAL_IMAGES[dot]}
+                      style={{width: medalSize, height: medalSize}}
+                      resizeMode="contain"
+                    />
+                  </View>
+                ))}
+              </View>
+              {progress > 0 && (
+                <Text style={{color:t.textMuted,fontSize:f.caption,textAlign:'center'}}>
+                  {progress}/50  ★ {score.toFixed(1)}
+                </Text>
+              )}
+              {(() => {
+                const hint = getNextMedalHint(score, lang as 'ru'|'uk');
+                return hint ? (
+                  <Text style={{color:t.textSecond,fontSize:f.sub,opacity:0.85,textAlign:'center'}}>
+                    {hint}
+                  </Text>
+                ) : null;
+              })()}
+            </View>
+          );
         })()}
       </View>
 

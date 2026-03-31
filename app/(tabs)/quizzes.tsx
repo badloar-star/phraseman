@@ -338,7 +338,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         const result = getQuizPhrases(level, 10, lang as 'ru' | 'uk');
         setPhrases(result.length > 0 ? result : []);
       } catch (e) {
-        console.warn('getQuizPhrases error:', e);
+        // removed console.warn
         setPhrases([]);
       } finally {
         setPhrasesLoaded(true);
@@ -1006,18 +1006,6 @@ export default function QuizzesScreen() {
       setReady(true);
     });
   }, []);
-
-  // Если вкладка уже активна и снова приходит nav (повторное нажатие)
-  useEffect(() => {
-    if (!ready) return;
-    if (activeIdx !== 2) return;
-    AsyncStorage.getItem('quiz_nav_level').then(val => {
-      if (val === 'hard' || val === 'medium' || val === 'easy') {
-        AsyncStorage.removeItem('quiz_nav_level');
-        setLevel(val as Level);
-      }
-    });
-  }, [activeIdx]);
 
   if (!ready) return null;
 

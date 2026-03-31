@@ -96,8 +96,12 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
   const [scores, setScores] = useState<Record<string, number>>({});
 
   useEffect(() => {
-    AsyncStorage.getItem('dialogs_completed').then(v => { if (v) setCompleted(JSON.parse(v)); });
-    AsyncStorage.getItem('dialogs_scores').then(v => { if (v) setScores(JSON.parse(v)); });
+    AsyncStorage.getItem('dialogs_completed').then(v => {
+      if (v) { try { const parsed = JSON.parse(v); if (Array.isArray(parsed)) setCompleted(parsed); } catch {} }
+    });
+    AsyncStorage.getItem('dialogs_scores').then(v => {
+      if (v) { try { const parsed = JSON.parse(v); if (parsed && typeof parsed === 'object') setScores(parsed); } catch {} }
+    });
   }, []);
 
   return (
@@ -583,14 +587,16 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
 
     // Save progress
     const saved = await AsyncStorage.getItem('dialogs_completed');
-    const list: string[] = saved ? JSON.parse(saved) : [];
+    let list: string[] = [];
+    if (saved) { try { const parsed = JSON.parse(saved); if (Array.isArray(parsed)) list = parsed; } catch {} }
     if (!list.includes(dialog.id)) {
       list.push(dialog.id);
       await AsyncStorage.setItem('dialogs_completed', JSON.stringify(list));
     }
     // Save score for colored border in list
     const savedScores = await AsyncStorage.getItem('dialogs_scores');
-    const scoreMap: Record<string, number> = savedScores ? JSON.parse(savedScores) : {};
+    let scoreMap: Record<string, number> = {};
+    if (savedScores) { try { const parsed = JSON.parse(savedScores); if (parsed && typeof parsed === 'object') scoreMap = parsed; } catch {} }
     scoreMap[dialog.id] = score;
     await AsyncStorage.setItem('dialogs_scores', JSON.stringify(scoreMap));
     if (ending.xpReward > 0) {

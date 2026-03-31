@@ -4,6 +4,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Crypto from 'expo-crypto';
 
 export interface ReferralCode {
   code: string;           // "PH4RM2N5X9" (10 chars, alphanumeric)
@@ -32,10 +33,30 @@ const REFERRAL_PREMIUM_DAYS = 7; // Days of premium access per successful referr
 function generateUniqueCode(): string {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let code = 'PH';
+  const randomBytes = Crypto.getRandomBytes(8);
   for (let i = 0; i < 8; i++) {
-    code += chars.charAt(Math.floor(Math.random() * chars.length));
+    code += chars.charAt(randomBytes[i] % chars.length);
   }
   return code;
+}
+
+const USER_UUID_KEY = 'user_uuid';
+
+/**
+ * Get or create a persistent UUID for this device/user
+ */
+export async function getOrCreateUserUUID(): Promise<string> {
+  try {
+    const existing = await AsyncStorage.getItem(USER_UUID_KEY);
+    if (existing) return existing;
+    const uuid = Crypto.randomUUID();
+    await AsyncStorage.setItem(USER_UUID_KEY, uuid);
+    return uuid;
+  } catch {
+    // Fallback: generate a pseudo-UUID
+    const uuid = Crypto.randomUUID();
+    return uuid;
+  }
 }
 
 /**
@@ -82,7 +103,7 @@ async function awardPremiumBonus(playerName: string): Promise<void> {
     });
     await AsyncStorage.setItem(`${REFERRAL_HISTORY_KEY}_${playerName}`, JSON.stringify(historyArray));
   } catch (e) {
-    console.warn('Failed to award premium bonus:', e);
+    // removed console.warn
   }
 }
 
@@ -103,6 +124,10 @@ export async function getReferralState(playerName: string): Promise<ReferralStat
     myCode: newCode,
     myReferrals: [],
   };
+
+  // Store UUID mapping for this player (used in self-referral check)
+  const uuid = await getOrCreateUserUUID();
+  await AsyncStorage.setItem(`user_uuid_for_${playerName}`, uuid);
 
   try {
     await AsyncStorage.setItem(`${REFERRAL_STATE_KEY}_${playerName}`, JSON.stringify(newState));
@@ -202,8 +227,11 @@ export async function redeemReferralCode(
     return { success: false, error: 'Реферер не знайдений / Referrer not found' };
   }
 
-  // Prevent self-referrals
-  if (referrerName === newPlayerName) {
+  // Prevent self-referrals using UUID comparison (resistant to name changes)
+  const myUUID = await getOrCreateUserUUID();
+  const referrerUUIDKey = `user_uuid_for_${referrerName}`;
+  const referrerUUID = await AsyncStorage.getItem(referrerUUIDKey);
+  if (referrerUUID && referrerUUID === myUUID) {
     return { success: false, error: 'Не можна використовувати власний код / Cannot use own code' };
   }
 
@@ -228,7 +256,7 @@ export async function redeemReferralCode(
     try {
       await awardPremiumBonus(referrerName);
     } catch (e) {
-      console.warn('Failed to award premium bonus:', e);
+      // removed console.warn
       // Continue anyway - the transaction is recorded even if the reward fails
     }
 
@@ -257,7 +285,7 @@ export async function redeemReferralCode(
       bonusAwarded: REFERRAL_PREMIUM_DAYS,
     };
   } catch (e) {
-    console.warn('redeemReferralCode error:', e);
+    // removed console.warn
     return { success: false, error: 'Помилка при викупі коду / Redemption error' };
   }
 }

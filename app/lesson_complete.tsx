@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, Animated, Modal, Pressable, Share } from 'react-native';
+import { View, Text, TouchableOpacity, Animated, Modal, Pressable, Share, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -15,8 +15,14 @@ import { hapticTap } from '../hooks/use-haptics';
 import { canShowReview, markReviewPrompted, requestNativeReview } from './review_utils';
 import { STORE_URL } from './config';
 import { saveMedalProgress, checkGemAchievements, getMedalTier, type MedalTier } from './medal_utils';
-import MedalIcon from '../components/MedalIcon';
 import { calculateRewardWithBonus } from './variable_reward_system';
+
+// Medal images for completion screen
+const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
+  bronze:  require('../assets/images/levels/bronza.png'),
+  silver:  require('../assets/images/levels/serebro.png'),
+  gold:    require('../assets/images/levels/zoloto.png'),
+};
 import BonusXPCard from '../components/BonusXPCard';
 
 const BONUS = 500;
@@ -248,7 +254,17 @@ export default function LessonComplete() {
           marginBottom: 24,
           alignItems: 'center',
         }}>
-          <MedalIcon tier={medalTier} size={100} animate={medalTier === 'silver'} />
+          {medalTier !== 'none' && MEDAL_IMAGES_COMPLETE[medalTier] ? (
+            <Image
+              source={MEDAL_IMAGES_COMPLETE[medalTier]}
+              style={{ width: 110, height: 110 }}
+              resizeMode="contain"
+            />
+          ) : (
+            <View style={{ width: 110, height: 110, borderRadius: 55, backgroundColor: '#3A3A3A', justifyContent: 'center', alignItems: 'center' }}>
+              <Text style={{ fontSize: 40, color: '#555' }}>?</Text>
+            </View>
+          )}
           {medalImproved && (
             <Animated.Text style={{
               color: t.gold, fontSize: f.bodyLg, fontWeight: '700',

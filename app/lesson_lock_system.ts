@@ -29,7 +29,7 @@ export const unlockLesson = async (lessonId: number): Promise<void> => {
       await AsyncStorage.setItem(UNLOCKED_LESSONS_KEY, JSON.stringify(unlocked));
     }
   } catch (err) {
-    console.error('Error unlocking lesson:', err);
+    // removed console.error
   }
 };
 

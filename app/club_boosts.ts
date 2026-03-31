@@ -141,7 +141,7 @@ export async function getActiveBoosts(): Promise<ActiveBoost[]> {
 
     return active;
   } catch (error) {
-    console.error('Error getting active boosts:', error);
+    // removed console.error
     return [];
   }
 }
@@ -173,7 +173,7 @@ export async function getActiveBoostById(
 
     return boost;
   } catch (error) {
-    console.error('Error getting active boost by id:', error);
+    // removed console.error
     return null;
   }
 }
@@ -192,7 +192,7 @@ export async function activateBoost(
   try {
     const boostDef = CLUB_BOOSTS.find(b => b.id === boostId);
     if (!boostDef) {
-      console.error(`Boost not found: ${boostId}`);
+      // removed console.error
       return false;
     }
 
@@ -255,7 +255,7 @@ export async function activateBoost(
 
     return true;
   } catch (error) {
-    console.error('Error activating boost:', error);
+    // removed console.error
     return false;
   }
 }
@@ -268,7 +268,7 @@ export async function getBoostsHistory(): Promise<BoostHistory[]> {
     const data = await AsyncStorage.getItem(BOOSTS_HISTORY_KEY);
     return data ? JSON.parse(data) : [];
   } catch (error) {
-    console.error('Error getting boosts history:', error);
+    // removed console.error
     return [];
   }
 }
@@ -295,7 +295,7 @@ export async function getXPMultiplier(): Promise<number> {
 
     return maxMultiplier;
   } catch (error) {
-    console.error('Error getting XP multiplier:', error);
+    // removed console.error
     return 1.0;
   }
 }
@@ -311,7 +311,7 @@ export async function hasEnergyBoost(): Promise<boolean> {
       return def?.type === 'energy';
     });
   } catch (error) {
-    console.error('Error checking energy boost:', error);
+    // removed console.error
     return false;
   }
 }
@@ -406,7 +406,7 @@ export async function clearAllBoosts(): Promise<void> {
     await AsyncStorage.removeItem(ACTIVE_BOOSTS_KEY);
     await AsyncStorage.removeItem(BOOSTS_HISTORY_KEY);
   } catch (error) {
-    console.error('Error clearing boosts:', error);
+    // removed console.error
   }
 }
 
@@ -414,6 +414,6 @@ export async function clearBoostHistory(): Promise<void> {
   try {
     await AsyncStorage.removeItem(BOOSTS_HISTORY_KEY);
   } catch (error) {
-    console.error('Error clearing boost history:', error);
+    // removed console.error
   }
 }

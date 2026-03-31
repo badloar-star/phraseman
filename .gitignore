@@ -38,6 +38,9 @@ yarn-error.*
 
 app-example
 
+# Dev-only demo file
+app/phrasemen_example.ts
+
 # generated native folders
 /ios
 /android

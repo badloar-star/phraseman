@@ -217,7 +217,7 @@ export async function openTreasureChest(isPremium: boolean = false): Promise<Tre
   try {
     await AsyncStorage.setItem('daily_treasure_state', JSON.stringify(state));
   } catch (e) {
-    console.warn('Failed to save treasure state:', e);
+    // removed console.warn
   }
 
   return {

@@ -226,6 +226,8 @@ function AppContent() {
 
 
       <Stack.Screen name="help" />
+      <Stack.Screen name="hint" />
+      <Stack.Screen name="lesson_help" />
       <Stack.Screen name="settings_edu" />
       <Stack.Screen name="settings_notifications" />
       <Stack.Screen name="league_screen" />

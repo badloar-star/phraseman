@@ -1,6 +1,5 @@
 // ─── ПАЛИТРА ────────────────────────────────────────────────────────────────
 // Тёмная: Deep Forest Green (Duolingo-style) | Светлая: Warm Sage (Duolingo-style)
-// Backup оригинала: constants/theme_backup.ts
 
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка

@@ -59,6 +59,10 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'wear', past: 'wore', pp: 'worn', ru: 'Носить', uk: 'Носити' },
     { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
   ],
+  7: [
+    { base: 'have', past: 'had', pp: 'had', ru: 'Иметь', uk: 'Мати' },
+    { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
+  ],
 };
 
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(Object.keys(IRREGULAR_VERBS_BY_LESSON).map(Number));

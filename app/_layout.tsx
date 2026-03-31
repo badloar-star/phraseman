@@ -7,20 +7,14 @@ import { LangProvider, useLang } from '../components/LangContext';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
 import Onboarding from '../components/onboarding';
-import Purchases from 'react-native-purchases';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { scheduleWeeklyRecapNotification, scheduleMonthlyRecapNotification, scheduleStreakWarningIfNeeded, schedulePhrasOfDayNotification } from './notifications';
 import { preloadImages } from './image_preload';
 import { IS_EXPO_GO } from './config';
+import { initRevenueCat } from './revenuecat_init';
 
 // RevenueCat API keys must be set via environment variables.
-// Android: EXPO_PUBLIC_RC_ANDROID in .env.local or eas.json > build > [profile] > env
-// iOS:     EXPO_PUBLIC_RC_IOS    in .env.local or eas.json > build > [profile] > env
-const RC_API_KEY = Platform.select({
-  ios:     process.env.EXPO_PUBLIC_RC_IOS ?? '',
-  android: process.env.EXPO_PUBLIC_RC_ANDROID ?? '',
-  default: '',
-})!;
+// See revenuecat_init.ts for singleton initialization pattern.
 
 // ── Daily Login Bonus + Comeback Bonus — запускается при каждом старте ────────
 const runSessionChecks = async () => {
@@ -133,28 +127,14 @@ function AppContent() {
   }, [showAchievement]);
 
   useEffect(() => {
-    // Глобальный таймаут — приложение ВСЕГДА запустится не позже 6 секунд
-    const safetyTimer = setTimeout(() => setReady(true), 6000);
+    // Глобальный таймаут — приложение ВСЕГДА запустится не позже 10 секунд (было 6)
+    // Увеличено с 6s чтобы дать время RevenueCat (таймаут 8s) завершиться
+    const safetyTimer = setTimeout(() => setReady(true), 10000);
 
     const init = async () => {
       try {
-        if (!IS_EXPO_GO && RC_API_KEY) {
-          try {
-            Purchases.configure({ apiKey: RC_API_KEY });
-            // Таймаут 3с — предотвращает зависание если RevenueCat недоступен
-            const info = await Promise.race([
-              Purchases.getCustomerInfo(),
-              new Promise<null>(resolve => setTimeout(() => resolve(null), 3000)),
-            ]);
-            if (info) {
-              const isActive = !!(info as any).entitlements.active['premium']
-                || (info as any).activeSubscriptions.length > 0;
-              if (isActive) {
-                await AsyncStorage.setItem('premium_active', 'true');
-              }
-            }
-          } catch {}
-        }
+        // Singleton инициализация RevenueCat с retry-защитой и логированием
+        await initRevenueCat();
 
         // Логин-бонус и Comeback запускаем при каждом старте (fire-and-forget)
         runSessionChecks();

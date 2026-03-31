@@ -216,6 +216,12 @@ export default function LessonMenu() {
       })(),
       onPress: () => { hapticTap(); router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } }); },
     }] : []),
+    {
+      label: lang==='uk' ? 'Теорія' : 'Теория',
+      sub: lang==='uk' ? 'Правила та пояснення' : 'Правила и пояснения',
+      icon: 'book-outline' as const,
+      onPress: () => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); },
+    },
   ];
 
   return (

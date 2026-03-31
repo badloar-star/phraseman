@@ -18,7 +18,7 @@ import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { getTodayTasks, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, CEFR_FOR_LEVEL, getLevelFromXP } from '../../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK } from '../../constants/lessons';
-import { DEV_MODE } from '../config';
+import { DEV_MODE, IS_EXPO_GO } from '../config';
 import Purchases from 'react-native-purchases';
 import PremiumCard from '../../components/PremiumCard';
 import { hapticTap } from '../../hooks/use-haptics';
@@ -168,19 +168,21 @@ export default function HomeScreen() {
       ]);
       // Verify premium status via RevenueCat to prevent AsyncStorage tampering
       let verifiedPremium = premiumVal === 'true';
-      try {
-        const info = await Promise.race([
-          Purchases.getCustomerInfo(),
-          new Promise<null>(resolve => setTimeout(() => resolve(null), 3000)),
-        ]);
-        if (info) {
-          const rcActive = !!info.entitlements.active['premium']
-            || info.activeSubscriptions.length > 0;
-          verifiedPremium = rcActive;
-          await AsyncStorage.setItem('premium_active', rcActive ? 'true' : 'false');
+      if (!IS_EXPO_GO) {
+        try {
+          const info = await Promise.race([
+            Purchases.getCustomerInfo(),
+            new Promise<null>(resolve => setTimeout(() => resolve(null), 3000)),
+          ]);
+          if (info) {
+            const rcActive = !!info.entitlements.active['premium']
+              || info.activeSubscriptions.length > 0;
+            verifiedPremium = rcActive;
+            await AsyncStorage.setItem('premium_active', rcActive ? 'true' : 'false');
+          }
+        } catch (error) {
+          DebugLogger.error('home.tsx:loadData:revenueCat', error, 'warning');
         }
-      } catch (error) {
-        DebugLogger.error('home.tsx:loadData:revenueCat', error, 'warning');
       }
       setIsPremium(verifiedPremium);
       if (energyState) setEnergyCount(energyState.current);

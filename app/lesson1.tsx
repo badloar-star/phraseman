@@ -394,8 +394,17 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* ФУТЕР */}
         <View style={{ flexDirection: 'row', paddingVertical: 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
+          {/* Hint Button */}
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/hint', params: { id: lessonId } }); }}>
+            <Ionicons name="list" size={26} color={t.textSecond} />
+            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.cheat}</Text>
+          </TouchableOpacity>
 
-
+          {/* Theory Button */}
+          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
+            <Ionicons name="book-outline" size={26} color={t.textSecond} />
+            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
+          </TouchableOpacity>
 
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}
           <TouchableOpacity

@@ -200,8 +200,8 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                 style={{
                   width: 96,
                   height: 96,
-                  borderRadius: 48,
                 }}
+                resizeMode="contain"
               />
             </Animated.View>
 

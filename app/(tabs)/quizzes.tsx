@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
-  View, Text, TouchableOpacity, Pressable,
+  View, Text, TouchableOpacity, Pressable, Modal,
   Animated, TextInput, KeyboardAvoidingView, Platform, ScrollView, Share,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -173,6 +173,27 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     hard:   new Animated.Value(0),
   }).current;
 
+  // Pulse animation per level icon
+  const pulseAnims = useRef<Record<Level, Animated.Value>>({
+    easy:   new Animated.Value(1),
+    medium: new Animated.Value(1),
+    hard:   new Animated.Value(1),
+  }).current;
+
+  useEffect(() => {
+    const loops = (Object.keys(pulseAnims) as Level[]).map((lv, i) => {
+      const anim = Animated.loop(
+        Animated.sequence([
+          Animated.timing(pulseAnims[lv], { toValue: 1.18, duration: 900 + i * 120, useNativeDriver: true }),
+          Animated.timing(pulseAnims[lv], { toValue: 1.0,  duration: 900 + i * 120, useNativeDriver: true }),
+        ])
+      );
+      anim.start();
+      return anim;
+    });
+    return () => loops.forEach(a => a.stop());
+  }, []);
+
   useEffect(() => {
     AsyncStorage.getItem('premium_active').then(v => setIsPremium(v === 'true'));
   }, []);
@@ -271,7 +292,9 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                   </View>
 
                   {/* Иконка справа */}
-                  <Text style={{ fontSize: 36, opacity: locked ? 0.3 : 0.85, paddingRight: 16 }}>{c.icon}</Text>
+                  <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], paddingRight: 16 }}>
+                    <Text style={{ fontSize: 36, opacity: locked ? 0.3 : 0.85 }}>{c.icon}</Text>
+                  </Animated.View>
                 </LinearGradient>
               </TouchableOpacity>
 
@@ -369,11 +392,13 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const [hardWrongCount,   setHardWrongCount]   = useState(0);
   const [showBonus, setShowBonus] = useState(false);
   const [bonusXP, setBonusXP] = useState(0);
-  const TIMER_SECONDS = level === 'easy' ? 20 : level === 'medium' ? 30 : 40;
+  const TIMER_SECONDS = level === 'easy' ? 40 : level === 'medium' ? 50 : 70;
   const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isTabActiveRef = useRef(true);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [showTimeoutAlert, setShowTimeoutAlert] = useState(false);
+  const settingsRef = useRef<Settings>(DEFAULT_SETTINGS);
 
   // ── Имя пользователя загружаем ОДИН РАЗ в ref — нет race condition ──────
   const userNameRef = useRef<string>('');
@@ -420,6 +445,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
 
   const onBackRef = useRef(onBack);
   useEffect(() => { onBackRef.current = onBack; }, [onBack]);
+  useEffect(() => { settingsRef.current = settings; }, [settings]);
 
   // ── Таймер на вопрос — работает даже при смене вкладки ──────────────────
   const answeredRef = useRef(false);
@@ -434,8 +460,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           clearInterval(timerRef.current!);
           if (!answeredRef.current) {
             answeredRef.current = true;
-            // Время истекло — закрываем квиз, возвращаемся к выбору сложности
-            onBackRef.current();
+            setShowTimeoutAlert(true);
           }
           return 0;
         }
@@ -990,6 +1015,41 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       </KeyboardAvoidingView>
       </ContentWrap>
     </View>
+
+    {/* Модал: время вышло */}
+    <Modal transparent animationType="fade" visible={showTimeoutAlert} onRequestClose={() => { setShowTimeoutAlert(false); onBackRef.current(); }}>
+      <Pressable style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', padding:32 }}
+        onPress={() => { setShowTimeoutAlert(false); onBackRef.current(); }}
+      >
+        <Pressable onPress={e => e.stopPropagation()}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 320, width: '100%' }}>
+            <Text style={{ fontSize: 52, marginBottom: 12 }}>⏰</Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
+              {isUK ? 'Час вийшов!' : 'Время вышло!'}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginBottom: settings.hardMode ? 8 : 24 }}>
+              {isUK ? 'Дуже шкода 😔 Спробуй ще раз!' : 'Очень жаль 😔 Попробуй ещё раз!'}
+            </Text>
+            {settings.hardMode && (
+              <Text style={{ color: t.textSecond, fontSize: f.sub, textAlign: 'center', lineHeight: 20, marginBottom: 24, opacity: 0.85 }}>
+                {isUK
+                  ? 'Підказка: спробуй вибрати рівень легше або вимкни ручне введення в налаштуваннях.'
+                  : 'Подсказка: попробуй выбрать уровень полегче или выключи ручной ввод в настройках.'}
+              </Text>
+            )}
+            <TouchableOpacity
+              style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 32, width: '100%', alignItems: 'center' }}
+              onPress={() => { setShowTimeoutAlert(false); onBackRef.current(); }}
+            >
+              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+                {isUK ? 'Зрозуміло' : 'Понятно'}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        </Pressable>
+      </Pressable>
+    </Modal>
+
     </ScreenGradient>
   );
 }

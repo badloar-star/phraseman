@@ -59,14 +59,13 @@ export default function SettingsMain() {
   const [newName, setNewName]     = useState('');
   const [isPremium, setIsPremium]     = useState(false);
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
-  const [homeStyle, setHomeStyle]     = useState<'classic' | 'new'>('new');
   const [hapticTap,  setHapticTap]   = useState(true);
   const [userAvatar, setUserAvatar]   = useState('🐣');
   const [userFrame,  setUserFrame]    = useState('plain');
   const isUK = lang === 'uk';
 
   useEffect(() => {
-    AsyncStorage.multiGet(['user_name', 'premium_active', 'premium_plan', 'haptics_tap', 'user_total_xp', 'user_avatar', 'user_frame', 'home_style']).then(pairs => {
+    AsyncStorage.multiGet(['user_name', 'premium_active', 'premium_plan', 'haptics_tap', 'user_total_xp', 'user_avatar', 'user_frame']).then(pairs => {
       if (pairs[0][1]) {
         setUserName(pairs[0][1]);
       }
@@ -77,7 +76,6 @@ export default function SettingsMain() {
       const lvl = getLevelFromXP(xp);
       setUserAvatar(pairs[5][1] || getBestAvatarForLevel(lvl));
       setUserFrame(pairs[6][1]  || getBestFrameForLevel(lvl).id);
-      setHomeStyle((pairs[7][1] as 'classic' | 'new') || 'new');
     });
   }, [activeIdx]); // обновляем при переключении на этот таб
 
@@ -344,50 +342,6 @@ export default function SettingsMain() {
               AsyncStorage.setItem('haptics_tap', String(val));
             }}
           />
-        </View>
-
-        {/* Стиль главного экрана (для тестеров) */}
-        <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 10 }}>
-            <Ionicons name="layers-outline" size={22} color={t.textSecond} style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg }}>{isUK ? 'Стиль головного екрану' : 'Стиль главного экрана'}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                {isUK ? '🧪 Для тестерів — оберіть варіант і залиште відгук!' : '🧪 Для тестеров — выберите вариант и оставьте отзыв!'}
-              </Text>
-            </View>
-          </View>
-          <View style={{ flexDirection: 'row', gap: 10 }}>
-            {([
-              { key: 'new'     as const, labelRU: 'Новый',      labelUK: 'Новий',     icon: '✨' },
-              { key: 'classic' as const, labelRU: 'Классический', labelUK: 'Класичний', icon: '📋' },
-            ]).map(opt => (
-              <TouchableOpacity
-                key={opt.key}
-                activeOpacity={0.8}
-                onPress={() => {
-                  doHaptic();
-                  setHomeStyle(opt.key);
-                  AsyncStorage.setItem('home_style', opt.key);
-                }}
-                style={{
-                  flex: 1, alignItems: 'center', paddingVertical: 12,
-                  borderRadius: 14,
-                  borderWidth: homeStyle === opt.key ? 2 : 0.5,
-                  borderColor: homeStyle === opt.key ? t.correct : t.border,
-                  backgroundColor: homeStyle === opt.key ? t.correctBg : t.bgCard,
-                }}
-              >
-                <Text style={{ fontSize: 20, marginBottom: 4 }}>{opt.icon}</Text>
-                <Text style={{ color: homeStyle === opt.key ? t.correct : t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-                  {isUK ? opt.labelUK : opt.labelRU}
-                </Text>
-                {homeStyle === opt.key && (
-                  <View style={{ width: 20, height: 3, borderRadius: 2, backgroundColor: t.correct, marginTop: 4 }} />
-                )}
-              </TouchableOpacity>
-            ))}
-          </View>
         </View>
 
         <SectionTitle title={isUK ? 'Навчання' : 'Обучение'} />

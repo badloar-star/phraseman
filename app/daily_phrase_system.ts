@@ -1,20 +1,33 @@
 /**
  * Система "Фраза дня"
+ * Идиомы показываются по кругу — каждый день следующая по порядку.
+ * Когда все закончатся — начинаются снова с первой.
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ALL_LESSONS_RU } from './lesson_data_all';
+import { IDIOMS, Idiom } from './idioms_data';
 
 export interface DailyPhrase {
-  russian: string;
   english: string;
-  lessonId: number;
-  level: 'A1' | 'A2' | 'B1' | 'B2';
+  literal: string;
+  meaning: string;
+  text: string;
   date: string;
 }
 
-const DAILY_PHRASE_KEY = 'daily_phrase';
-const LAST_PHRASE_DATE_KEY = 'last_phrase_date';
+const DAILY_PHRASE_KEY = 'daily_phrase_v2';
+const LAST_PHRASE_DATE_KEY = 'last_phrase_date_v2';
+
+// Считаем номер дня с эпохи (UTC) для стабильного порядка
+const getDayIndex = (): number => {
+  const MS_PER_DAY = 86400000;
+  return Math.floor(Date.now() / MS_PER_DAY);
+};
+
+const idiomForDay = (): Idiom => {
+  const idx = getDayIndex() % IDIOMS.length;
+  return IDIOMS[idx];
+};
 
 export const getTodayPhrase = async (): Promise<DailyPhrase> => {
   const today = new Date().toISOString().split('T')[0];
@@ -24,41 +37,29 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
       const phraseStr = await AsyncStorage.getItem(DAILY_PHRASE_KEY);
       if (phraseStr) return JSON.parse(phraseStr);
     }
-    const newPhrase = selectRandomPhrase();
-    newPhrase.date = today;
-    await AsyncStorage.setItem(DAILY_PHRASE_KEY, JSON.stringify(newPhrase));
+    const idiom = idiomForDay();
+    const phrase: DailyPhrase = {
+      english: idiom.english,
+      literal: idiom.literal,
+      meaning: idiom.meaning,
+      text: idiom.text,
+      date: today,
+    };
+    await AsyncStorage.setItem(DAILY_PHRASE_KEY, JSON.stringify(phrase));
     await AsyncStorage.setItem(LAST_PHRASE_DATE_KEY, today);
-    return newPhrase;
+    return phrase;
   } catch {
     return getDefaultPhrase();
   }
 };
 
-const selectRandomPhrase = (): DailyPhrase => {
-  const allPhrases: DailyPhrase[] = [];
-  for (let i = 1; i <= 32; i++) {
-    const lesson = ALL_LESSONS_RU[i];
-    if (lesson && Array.isArray(lesson) && lesson.length > 0) {
-      const phrase = lesson[0];
-      const level = ['A1', 'A2', 'B1', 'B2'][Math.floor((i - 1) / 8)] as 'A1' | 'A2' | 'B1' | 'B2';
-      allPhrases.push({
-        russian: phrase.russian,
-        english: phrase.english,
-        lessonId: i,
-        level,
-        date: new Date().toISOString().split('T')[0],
-      });
-    }
-  }
-  if (allPhrases.length === 0) return getDefaultPhrase();
-  const randomIdx = Math.floor(Math.random() * allPhrases.length);
-  return allPhrases[randomIdx];
+const getDefaultPhrase = (): DailyPhrase => {
+  const idiom = IDIOMS[0];
+  return {
+    english: idiom.english,
+    literal: idiom.literal,
+    meaning: idiom.meaning,
+    text: idiom.text,
+    date: new Date().toISOString().split('T')[0],
+  };
 };
-
-const getDefaultPhrase = (): DailyPhrase => ({
-  russian: 'Привет, как дела?',
-  english: 'Hello, how are you?',
-  lessonId: 1,
-  level: 'A1',
-  date: new Date().toISOString().split('T')[0],
-});

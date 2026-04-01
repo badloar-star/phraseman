@@ -63,6 +63,8 @@ const MIN_EASE_FACTOR     = 1.3;
 const MAX_EASE_FACTOR     = 2.5;
 /** Минимальный балл «хорошего» ответа (0–5 шкала SM-2, мы используем boolean → 0 / 3) */
 const GOOD_QUALITY        = 3;
+/** Максимум фраз в одной сессии повторения — не перегружаем пользователя */
+export const SESSION_LIMIT = 7;
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
 
@@ -154,16 +156,19 @@ export async function recordMistake(
 /**
  * Получить фразы, которые нужно повторить сегодня (nextDue ≤ сегодня + конец дня).
  *
- * @param limit Максимальное количество фраз (по умолчанию 20)
- * @returns Список фраз, отсортированных по просроченности (сначала самые давние)
+ * Приоритет: сначала самые трудные (errorCount DESC), затем самые просроченные (nextDue ASC).
+ * По умолчанию лимит = SESSION_LIMIT (7) — не перегружаем пользователя.
+ *
+ * @param limit Максимальное количество фраз (по умолчанию SESSION_LIMIT)
+ * @returns Список фраз для повторения
  */
-export async function getDueItems(limit = 20): Promise<RecallItem[]> {
+export async function getDueItems(limit = SESSION_LIMIT): Promise<RecallItem[]> {
   const items = await loadItems();
   const endOfToday = todayStart() + MS_PER_DAY - 1;
 
   return items
     .filter(i => i.nextDue <= endOfToday)
-    .sort((a, b) => a.nextDue - b.nextDue)
+    .sort((a, b) => b.errorCount - a.errorCount || a.nextDue - b.nextDue)
     .slice(0, limit);
 }
 

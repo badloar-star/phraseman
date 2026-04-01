@@ -360,10 +360,9 @@ export default function ReviewScreen() {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        {/* Метка урока + счётчик ошибок */}
+        {/* Метка урока */}
         <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 12 }}>
-          {isUK ? `Урок ${item.lessonId}` : `Урок ${item.lessonId}`}
-          {item.errorCount > 1 ? `  ·  ⚠️ ${item.errorCount} ${isUK ? pluralizeUK(item.errorCount, 'помилка', 'помилки', 'помилок') : pluralizeRU(item.errorCount, 'ошибка', 'ошибки', 'ошибок')}` : ''}
+          {`Урок ${item.lessonId}`}
         </Text>
 
         {/* Весь контент карточки анимируется при переходе (slideAnim) */}

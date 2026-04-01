@@ -40,6 +40,13 @@ function bookPalette(num: number): string {
   return PALETTE[key][Math.min(idx, PALETTE[key].length - 1)];
 }
 
+function darkenHex(hex: string, factor = 0.45): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgb(${Math.round(r * factor)},${Math.round(g * factor)},${Math.round(b * factor)})`;
+}
+
 // ── Medal images ────────────────────────────────────────────────────────────
 const MEDAL_IMAGES: Record<string, any> = {
   bronze:  require('../../assets/images/levels/bronza.png'),
@@ -78,7 +85,7 @@ function MedalDots({ dots }: { dots: string[] }) {
 // Высоты элементов (должны точно совпадать с реальным рендером)
 const HEADER_H  = 66;  // ListHeader
 const CEFR_H    = 52;  // CEFR divider item
-const BOOK_H    = 66;  // высота книги
+const BOOK_H    = 72;  // высота книги
 const LESSON_H  = BOOK_H + 5;  // marginTop:5 + BOOK_H
 const EXAM_H    = 78 + 8;      // examH + marginTop:8
 
@@ -96,6 +103,7 @@ export default function LessonsTab() {
 
   const [noLimits,       setNoLimits]       = useState(false);
   const [scores,         setScores]         = useState<number[]>(new Array(32).fill(0));
+  const [progCounts,     setProgCounts]     = useState<number[]>(new Array(32).fill(0));
   const [passCounts,     setPassCounts]     = useState<number[]>(new Array(32).fill(0));
   const [examBestPcts,   setExamBestPcts]   = useState<Record<string, number>>({});
   const [examPassCounts, setExamPassCounts] = useState<Record<string, number>>({});
@@ -122,13 +130,17 @@ export default function LessonsTab() {
       Array.from({ length: 32 }, (_, i) => i).map(async i => {
         try {
           const saved = await AsyncStorage.getItem(`lesson${i + 1}_progress`);
-          if (!saved) return 0;
+          if (!saved) return { score: 0, correct: 0 };
           const p: string[] = JSON.parse(saved);
-          if (p.length === 0) return 0;
-          return p.filter(x => x === 'correct' || x === 'replay_correct').length / p.length * 5;
-        } catch { return 0; }
+          if (p.length === 0) return { score: 0, correct: 0 };
+          const correct = p.filter((x: string) => x === 'correct' || x === 'replay_correct').length;
+          return { score: correct / p.length * 5, correct };
+        } catch { return { score: 0, correct: 0 }; }
       })
-    ).then(setScores);
+    ).then(results => {
+      setScores(results.map(r => r.score));
+      setProgCounts(results.map(r => r.correct));
+    });
     // Pass counts for lesson gem dots
     Promise.all(
       Array.from({ length: 32 }, (_, i) =>
@@ -271,7 +283,7 @@ export default function LessonsTab() {
           // ── CEFR divider ─────────────────────────────────────────────
           if (item.kind === 'header') {
             return (
-              <View key={`h-${item.label}`} style={{ paddingLeft: 14, paddingTop: 14, paddingBottom: 4, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <View key={`h-${item.label}`} style={{ paddingLeft: 22, paddingTop: 14, paddingBottom: 4, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: item.color }} />
                 <Text style={{ color: item.color, fontSize: f.label, fontWeight: '800', letterSpacing: 1.4 }}>
                   {item.label}
@@ -354,14 +366,28 @@ export default function LessonsTab() {
           // ── Lesson book ──────────────────────────────────────────────
           const { index, name } = item;
           const num        = index + 1;
-          const score      = scores[index];
-          const passCount  = passCounts[index] ?? 0;
           const isUnlocked = unlockedLessons[index];
           const bg         = bookPalette(num);
-          const medalDots  = getEarnedDots(getMedalTier(score), passCount);
+          const darkBg     = darkenHex(bg, 0.42);
+          const progPct    = Math.min(100, Math.round((progCounts[index] ?? 0) / 50 * 100));
+          const isComplete = progPct >= 100;
 
           return (
-            <Animated.View key={`l-${num}`} style={{ marginTop: 5, transform: [{ scale: scaleAnim ?? 1 }] }}>
+            <Animated.View
+              key={`l-${num}`}
+              style={{
+                marginTop: 5,
+                marginHorizontal: 14,
+                borderRadius: 16,
+                transform: [{ scale: scaleAnim ?? 1 }],
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.28,
+                shadowRadius: 8,
+                elevation: 6,
+                opacity: isUnlocked ? 1 : 0.45,
+              }}
+            >
               <TouchableOpacity
                 activeOpacity={0.82}
                 onPress={() => {
@@ -381,25 +407,52 @@ export default function LessonsTab() {
                 }}
                 style={{
                   height: BOOK_H,
-                  flexDirection: 'row',
-                  backgroundColor: bg,
-                  opacity: isUnlocked ? 1 : 0.42,
+                  borderRadius: 16,
                   overflow: 'hidden',
+                  backgroundColor: darkBg,
                 }}
               >
+                {/* Progress fill — goes left-to-right */}
+                {progPct > 0 && (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      left: 0, top: 0, bottom: 0,
+                      width: `${progPct}%`,
+                      backgroundColor: bg,
+                      borderTopLeftRadius: 16,
+                      borderBottomLeftRadius: 16,
+                      borderTopRightRadius: isComplete ? 16 : 0,
+                      borderBottomRightRadius: isComplete ? 16 : 0,
+                    }}
+                  />
+                )}
+                {/* Subtle inner highlight on filled part top edge */}
+                {progPct > 0 && (
+                  <View style={{
+                    position: 'absolute', left: 0, top: 0,
+                    width: `${progPct}%`, height: 1.5,
+                    backgroundColor: 'rgba(255,255,255,0.3)',
+                    borderTopLeftRadius: 16,
+                    borderTopRightRadius: isComplete ? 16 : 0,
+                  }} />
+                )}
+
+                {/* Content */}
                 <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 3 }}>
-                    <Text style={{ color: cardText, fontSize: f.label, fontWeight: '700', letterSpacing: 0.7 }} maxFontSizeMultiplier={1}>
-                      {isUK ? 'УРОК' : 'УРОК'} {num}
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+                    <Text style={{ color: cardText, fontSize: f.label, fontWeight: '700', letterSpacing: 0.8 }} maxFontSizeMultiplier={1}>
+                      УРОК {num}
                     </Text>
-                    <View style={{ width: 80, alignItems: 'flex-start' }}>
-                      {isUnlocked && medalDots.length > 0 && (
-                        <MedalDots dots={medalDots} />
-                      )}
-                      {!isUnlocked && (
-                        <Ionicons name="lock-closed" size={12} color={cardText} />
-                      )}
-                    </View>
+                    {/* Right side: percentage or lock */}
+                    {!isUnlocked
+                      ? <Ionicons name="lock-closed" size={13} color={cardText} />
+                      : progPct > 0
+                        ? <Text style={{ color: isComplete ? 'rgba(255,255,255,0.95)' : 'rgba(255,255,255,0.75)', fontSize: f.label, fontWeight: '800' }} maxFontSizeMultiplier={1}>
+                            {progPct}%
+                          </Text>
+                        : null
+                    }
                   </View>
                   <Text style={{ color: cardTitle, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} maxFontSizeMultiplier={1}>
                     {name}

@@ -6,6 +6,7 @@ import {
   KeyboardAvoidingView, Platform,
 } from 'react-native';
 import { useRouter } from 'expo-router';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
@@ -18,9 +19,11 @@ import * as Speech from 'expo-speech';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 const CUSTOM_KEY = 'custom_flashcards_v2';
+const CARD_H = 240;
+const CARD_SPACING = 46;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-type CategoryId = 'emotions' | 'fillers' | 'reactions' | 'traps' | 'phrasal' | 'situations' | 'connectors' | 'saved' | 'custom';
+type CategoryId = 'emotions' | 'fillers' | 'reactions' | 'traps' | 'phrasal' | 'situations' | 'connectors' | 'saved';
 
 interface Category {
   id: CategoryId;
@@ -74,7 +77,6 @@ const STR = {
 
 // ─── Static data ──────────────────────────────────────────────────────────────
 const CATEGORIES: Category[] = [
-  { id: 'custom',     icon: 'create-outline',               labelRU: 'Мои',       labelUK: 'Мої'       },
   { id: 'saved',      icon: 'bookmark-outline',             labelRU: 'Сохр.',     labelUK: 'Збер.'     },
   { id: 'emotions',   icon: 'heart-outline',               labelRU: 'Эмоции',    labelUK: 'Емоції'    },
   { id: 'fillers',    icon: 'chatbubble-ellipses-outline',  labelRU: 'Филлеры',   labelUK: 'Філери'    },
@@ -88,6 +90,18 @@ const CATEGORIES: Category[] = [
 const SOURCE_COLORS: Record<string, string> = {
   lesson: '#4A90D9', word: '#7B68EE', verb: '#E87D3E', dialog: '#50BFA0',
 };
+
+function getCardTint(card: CardItem): string | null {
+  if (!card.source) return null;
+  if (card.source === 'lesson' && card.sourceId) {
+    const n = parseInt(card.sourceId, 10);
+    if (n <= 8)  return '#4CAF72'; // A1 green
+    if (n <= 18) return '#40B4E8'; // A2 blue
+    if (n <= 28) return '#D4A017'; // B1 gold
+    return '#DC6428';              // B2 orange
+  }
+  return SOURCE_COLORS[card.source] ?? null;
+}
 
 const SYSTEM_CARDS: CardItem[] = [
   // ─── Emotions ─────────────────────────────────────────────────────────────
@@ -279,6 +293,7 @@ export default function FlashcardsScreen() {
   const { lang } = useLang();
   const router   = useRouter();
   const s        = STR[lang];
+  const insets   = useSafeAreaInsets();
 
   // ── State ──────────────────────────────────────────────────────────────────
   const [activeCat, setActiveCat]     = useState<CategoryId>('saved');
@@ -310,6 +325,18 @@ export default function FlashcardsScreen() {
   const slideAnim = useRef(new Animated.Value(0)).current; // category switch
   const createFlipAnim = useRef(new Animated.Value(0)).current;
   const stripeAnim    = useRef(new Animated.Value(1)).current;
+  const pulseAnim     = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, { toValue: 1.4, duration: 600, useNativeDriver: true }),
+        Animated.timing(pulseAnim, { toValue: 1.0, duration: 600, useNativeDriver: true }),
+      ])
+    );
+    loop.start();
+    return () => loop.stop();
+  }, []);
 
   // ── Load ───────────────────────────────────────────────────────────────────
   const loadAll = useCallback(async () => {
@@ -342,7 +369,7 @@ export default function FlashcardsScreen() {
   useEffect(() => {
     setIsFlipped(false);
     flipAnim.setValue(0);
-    swipeX.setValue(0);
+    swipeY.setValue(0);
     stripeAnim.setValue(0);
     Animated.timing(stripeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
   }, [index]);
@@ -380,32 +407,35 @@ export default function FlashcardsScreen() {
   const goPrev = () => { if (index > 0) setIndex(i => i - 1); };
 
   // ── Swipe gesture ──────────────────────────────────────────────────────────
-  const swipeX     = useRef(new Animated.Value(0)).current;
+  const swipeY     = useRef(new Animated.Value(0)).current;
   const cardsLenRef = useRef(cards.length);
   useEffect(() => { cardsLenRef.current = cards.length; }, [cards]);
 
   const cardPan = useRef(
     PanResponder.create({
-      onMoveShouldSetPanResponder: (_, gs) => Math.abs(gs.dx) > 10 && Math.abs(gs.dx) > Math.abs(gs.dy),
-      onPanResponderMove: (_, gs) => swipeX.setValue(gs.dx),
+      onMoveShouldSetPanResponder: (_, gs) => Math.abs(gs.dy) > 5 && Math.abs(gs.dy) > Math.abs(gs.dx),
+      onPanResponderMove: (_, gs) => swipeY.setValue(gs.dy),
       onPanResponderRelease: (_, gs) => {
-        if (gs.dx < -60) {
-          Animated.timing(swipeX, { toValue: -SCREEN_W, duration: 180, useNativeDriver: true }).start(() => {
-            setIndex(i => (i + 1) % cardsLenRef.current);
+        const isFlick = Math.abs(gs.vy) > 0.4;
+        if (gs.dy < -20 || (isFlick && gs.vy < 0)) {
+          Animated.timing(swipeY, { toValue: -CARD_SPACING, duration: 110, useNativeDriver: true }).start(() => {
+            swipeY.setValue(0);
+            setIndex(i => Math.min(i + 1, cardsLenRef.current - 1));
           });
-        } else if (gs.dx > 60) {
-          Animated.timing(swipeX, { toValue: SCREEN_W, duration: 180, useNativeDriver: true }).start(() => {
-            setIndex(i => (i - 1 + cardsLenRef.current) % cardsLenRef.current);
+        } else if (gs.dy > 20 || (isFlick && gs.vy > 0)) {
+          Animated.timing(swipeY, { toValue: CARD_SPACING, duration: 110, useNativeDriver: true }).start(() => {
+            swipeY.setValue(0);
+            setIndex(i => Math.max(i - 1, 0));
           });
         } else {
-          Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
+          Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
         }
       },
       onPanResponderTerminate: () => {
-        Animated.spring(swipeX, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
+        Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
       },
     })
-  ).current;
+).current;
 
   // ── Delete ─────────────────────────────────────────────────────────────────
   const handleDelete = () => {
@@ -479,7 +509,7 @@ export default function FlashcardsScreen() {
     await AsyncStorage.setItem(CUSTOM_KEY, JSON.stringify(updated));
     setCustomCards(updated);
     slideAnim.setValue(0);
-    swipeX.setValue(0);
+    swipeY.setValue(0);
     setActiveCat('custom');
     setMode('view');
   };
@@ -657,7 +687,7 @@ export default function FlashcardsScreen() {
 
   // ── Category bar (tab-bar style, horizontally scrollable) ─────────────────
   const CategoryBar = () => (
-    <View style={{ borderTopWidth:0.5, borderTopColor:t.border }}>
+    <View style={{ borderTopWidth:0.5, borderTopColor:t.border, backgroundColor: t.bgPrimary }}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{ paddingTop:6, paddingBottom:4 }}>
         {CATEGORIES.map(cat => {
           const active = cat.id === activeCat;
@@ -671,9 +701,9 @@ export default function FlashcardsScreen() {
               style={{ width:68, alignItems:'center', gap:2, position:'relative' }}
             >
               {active && (
-                <View style={{ position:'absolute', top:-6, left:'25%', right:'25%', height:2, borderRadius:1, backgroundColor:t.textPrimary }} />
+                <View style={{ position:'absolute', bottom:-4, left:'25%', right:'25%', height:2, borderRadius:1, backgroundColor:t.textPrimary }} />
               )}
-              <Ionicons name={cat.icon as any} size={22} color={color} />
+              <Ionicons name={cat.icon as any} size={33} color={color} />
               <Text style={{ fontSize:10, color, fontWeight: active ? '600' : '400', letterSpacing:0.1 }} numberOfLines={1} adjustsFontSizeToFit>
                 {label}
               </Text>
@@ -835,21 +865,15 @@ export default function FlashcardsScreen() {
           <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{s.title}</Text>
           <View style={{ width: 40 }} />
         </View>
-        <CategoryBar />
         <View style={st.centerState}>
           <Ionicons name="bookmark-outline" size={56} color={t.textGhost} />
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight:'700', marginTop: 12 }}>{s.empty}</Text>
           <Text style={{ color: t.textMuted, fontSize: f.body, textAlign:'center', marginTop: 6 }}>{s.emptySub}</Text>
-          {activeCat === 'custom' && (
-            <TouchableOpacity
-              style={{ marginTop: 20, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 24, paddingVertical: 12 }}
-              onPress={startCreate}
-            >
-              <Text style={{ color: t.correctText, fontWeight:'700', fontSize: f.body }}>+ {s.newCard}</Text>
-            </TouchableOpacity>
-          )}
         </View>
       </ContentWrap>
+      <View style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
+        <CategoryBar />
+      </View>
     </SafeAreaView>
     </ScreenGradient>
   );
@@ -873,11 +897,6 @@ export default function FlashcardsScreen() {
           </TouchableOpacity>
           <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{s.title}</Text>
           <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 20, minWidth: 40 }}>
-            {activeCat === 'custom' && (
-              <TouchableOpacity onPress={startCreate} hitSlop={{ top:14,bottom:14,left:14,right:14 }} style={{ padding: 4 }}>
-                <Ionicons name="add-circle-outline" size={26} color={t.textSecond} />
-              </TouchableOpacity>
-            )}
             {canDelete && (
               <TouchableOpacity onPress={handleDelete} hitSlop={{ top:14,bottom:14,left:14,right:14 }} style={{ padding: 4 }}>
                 <Ionicons name="trash-outline" size={22} color={t.wrong} />
@@ -886,109 +905,129 @@ export default function FlashcardsScreen() {
           </View>
         </View>
 
-        {/* Category bar — fixed above cards */}
-        <CategoryBar />
-
-        {/* Sub-tab removed: Тренировка tab hidden */}
-
-        {/* Progress — sliding window of up to 10 stripes */}
+        {/* Card stack deck */}
         {(() => {
-          const WIN = 10;
-          const total = cards.length;
-          const winSize = Math.min(total, WIN);
-          const winStart = Math.floor(index / WIN) * WIN;
+          const STACK_ABOVE = 3;
+          const containerH = CARD_H + CARD_SPACING * STACK_ABOVE + CARD_SPACING;
+          const tint = getCardTint(currentCard!);
+          const activeBorderColor = tint ? tint + '60' : t.border;
+
           return (
-            <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 2 }}>
-              <View style={{ flexDirection:'row', gap: 3 }}>
-                {Array.from({ length: winSize }, (_, i) => {
-                  const realIdx = winStart + i;
-                  const active = realIdx === index;
-                  return active ? (
+            <Animated.View
+              style={{
+                height: containerH,
+                overflow: 'hidden',
+                marginHorizontal: 16,
+                transform: [{ translateX: slideAnim }],
+              }}
+              {...cardPan.panHandlers}
+            >
+              {[-3, -2, -1, 0, 1, 2].map((offset) => {
+                const cardIdx = index + offset;
+                if (cardIdx < 0 || cardIdx >= cards.length) return null;
+                const card = cards[cardIdx];
+                const isActive = offset === 0;
+                const absOff = Math.abs(offset);
+                const cardTop = CARD_SPACING * STACK_ABOVE + offset * CARD_SPACING;
+                const zIdx = 10 - absOff;
+                const peekTint = getCardTint(card);
+
+                if (!isActive) {
+                  return (
                     <Animated.View
-                      key={realIdx}
-                      style={{ flex:1, height:4, borderRadius:2, backgroundColor: t.correct, opacity: stripeAnim }}
-                    />
-                  ) : (
-                    <View
-                      key={realIdx}
-                      style={{ flex:1, height:4, borderRadius:2, backgroundColor: t.bgSurface2 }}
-                    />
+                      key={card.id}
+                      style={{
+                        position: 'absolute', left: 0, right: 0,
+                        top: cardTop, height: CARD_H,
+                        zIndex: zIdx,
+                        transform: [{ translateY: swipeY }],
+                      }}
+                    >
+                      <View style={{
+                        flex: 1, borderRadius: 20, borderWidth: 1,
+                        borderColor: t.border,
+                        backgroundColor: peekTint ? peekTint + '12' : t.bgCard,
+                        opacity: Math.max(0.4, 1 - absOff * 0.18),
+                      }} />
+                    </Animated.View>
                   );
-                })}
-              </View>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign:'center', marginTop: 5 }}>
-                {index + 1} / {total}
-              </Text>
-            </View>
+                }
+
+                return (
+                  <Animated.View
+                    key={card.id}
+                    style={{
+                      position: 'absolute', left: 0, right: 0,
+                      top: cardTop, height: CARD_H,
+                      zIndex: 10,
+                      transform: [{ translateY: swipeY }],
+                    }}
+                  >
+                    <TouchableOpacity activeOpacity={0.95} onPress={handleFlip} style={{ flex: 1 }}>
+                      {/* Front: EN */}
+                      <Animated.View style={[st.card, {
+                        backgroundColor: tint ? tint + '10' : t.bgCard,
+                        borderColor: activeBorderColor,
+                        transform: [{ perspective: 1200 }, { rotateY: frontRotate }],
+                        opacity: frontOp,
+                      }]}>
+                        {sourceLabel && (
+                          <View style={[st.sourceBadge, { backgroundColor: `${sourceBadgeColor}22`, borderColor: `${sourceBadgeColor}66` }]}>
+                            <Text style={[st.sourceBadgeText, { color: sourceBadgeColor }]}>
+                              {sourceLabel}{currentCard!.sourceId ? ` ${currentCard!.sourceId}` : ''}
+                            </Text>
+                          </View>
+                        )}
+                        <Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 16 }}>EN</Text>
+                        <Text style={{ color: t.textPrimary, fontSize: f.h1 + 4, fontWeight: '700', textAlign: 'center' }}>
+                          {currentCard!.en}
+                        </Text>
+                        <Text style={{ position: 'absolute', bottom: 20, color: t.textGhost, fontSize: f.caption }}>
+                          {s.tapFlip}
+                        </Text>
+                      </Animated.View>
+                      {/* Back: Translation */}
+                      <Animated.View style={[st.card, {
+                        backgroundColor: tint ? tint + '18' : t.bgSurface,
+                        borderColor: activeBorderColor,
+                        transform: [{ perspective: 1200 }, { rotateY: backRotate }],
+                        opacity: backOp,
+                      }]}>
+                        {sourceLabel && (
+                          <View style={[st.sourceBadge, { backgroundColor: `${sourceBadgeColor}22`, borderColor: `${sourceBadgeColor}66` }]}>
+                            <Text style={[st.sourceBadgeText, { color: sourceBadgeColor }]}>
+                              {sourceLabel}{currentCard!.sourceId ? ` ${currentCard!.sourceId}` : ''}
+                            </Text>
+                          </View>
+                        )}
+                        <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 16 }}>
+                          {lang === 'uk' ? 'UK' : 'RU'}
+                        </Text>
+                        {translation.includes('≠') ? (
+                          <>
+                            <Text style={{ color: t.correct, fontSize: f.h1 + 4, fontWeight: '700', textAlign: 'center' }}>
+                              {translation.split('≠')[0].trim()}
+                            </Text>
+                            <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600', textAlign: 'center', marginTop: 10, textDecorationLine: 'line-through' }}>
+                              {translation.split('≠')[1].trim()}
+                            </Text>
+                          </>
+                        ) : (
+                          <Text style={{ color: t.textPrimary, fontSize: f.h1 + 4, fontWeight: '700', textAlign: 'center' }}>
+                            {translation}
+                          </Text>
+                        )}
+                        <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 16, textAlign: 'center', fontStyle: 'italic' }}>
+                          {currentCard!.en}
+                        </Text>
+                      </Animated.View>
+                    </TouchableOpacity>
+                  </Animated.View>
+                );
+              })}
+            </Animated.View>
           );
         })()}
-
-        {/* Card area */}
-        <View style={st.cardArea}>
-          <Animated.View style={{ width:'100%', transform:[{ translateX: slideAnim }, { translateX: swipeX }] }}
-            {...cardPan.panHandlers}
-          >
-            <TouchableOpacity activeOpacity={0.95} onPress={handleFlip} style={st.cardTouchable}>
-
-              {/* Front: EN */}
-              <Animated.View style={[st.card, {
-                backgroundColor: t.bgCard, borderColor: t.border,
-                transform: [{ perspective:1200 }, { rotateY: frontRotate }],
-                opacity: frontOp,
-              }]}>
-                {sourceLabel && (
-                  <View style={[st.sourceBadge, { backgroundColor: `${sourceBadgeColor}22`, borderColor:`${sourceBadgeColor}66` }]}>
-                    <Text style={[st.sourceBadgeText, { color: sourceBadgeColor }]}>
-                      {sourceLabel}{currentCard!.sourceId ? ` ${currentCard!.sourceId}` : ''}
-                    </Text>
-                  </View>
-                )}
-                <Text style={{ color: t.textGhost, fontSize:11, fontWeight:'800', letterSpacing:1.5, marginBottom:16 }}>EN</Text>
-                <Text style={{ color: t.textPrimary, fontSize: f.h1+4, fontWeight:'700', textAlign:'center' }}>
-                  {currentCard!.en}
-                </Text>
-                <Text style={{ position:'absolute', bottom:20, color: t.textGhost, fontSize: f.caption }}>
-                  {s.tapFlip}
-                </Text>
-              </Animated.View>
-
-              {/* Back: Translation */}
-              <Animated.View style={[st.card, {
-                backgroundColor: t.bgSurface, borderColor: t.accent,
-                transform: [{ perspective:1200 }, { rotateY: backRotate }],
-                opacity: backOp,
-              }]}>
-                {sourceLabel && (
-                  <View style={[st.sourceBadge, { backgroundColor:`${sourceBadgeColor}22`, borderColor:`${sourceBadgeColor}66` }]}>
-                    <Text style={[st.sourceBadgeText, { color: sourceBadgeColor }]}>
-                      {sourceLabel}{currentCard!.sourceId ? ` ${currentCard!.sourceId}` : ''}
-                    </Text>
-                  </View>
-                )}
-                <Text style={{ color: t.accent, fontSize:11, fontWeight:'800', letterSpacing:1.5, marginBottom:16 }}>
-                  {lang === 'uk' ? 'UK' : 'RU'}
-                </Text>
-                {translation.includes('≠') ? (
-                  <>
-                    <Text style={{ color: t.correct, fontSize: f.h1+4, fontWeight:'700', textAlign:'center' }}>
-                      {translation.split('≠')[0].trim()}
-                    </Text>
-                    <Text style={{ color: t.wrong, fontSize: f.body, fontWeight:'600', textAlign:'center', marginTop:10, textDecorationLine:'line-through' }}>
-                      {translation.split('≠')[1].trim()}
-                    </Text>
-                  </>
-                ) : (
-                  <Text style={{ color: t.textPrimary, fontSize: f.h1+4, fontWeight:'700', textAlign:'center' }}>
-                    {translation}
-                  </Text>
-                )}
-                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop:16, textAlign:'center', fontStyle:'italic' }}>
-                  {currentCard!.en}
-                </Text>
-              </Animated.View>
-            </TouchableOpacity>
-          </Animated.View>
-        </View>
 
         {/* Speak button */}
         <View style={{ alignItems:'center', paddingVertical: 6 }}>
@@ -1006,36 +1045,11 @@ export default function FlashcardsScreen() {
           </TouchableOpacity>
         </View>
 
-        {/* Nav row */}
-        <View style={st.navRow}>
-          <TouchableOpacity
-            style={[st.navBtn, { backgroundColor: t.bgCard, borderColor: t.border, opacity: index === 0 ? 0.35 : 1 }]}
-            onPress={goPrev} disabled={index === 0}
-          >
-            <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
-          </TouchableOpacity>
-
-          {activeCat === 'custom' && currentCard && (
-            <TouchableOpacity
-              style={[st.navBtn, { backgroundColor: t.bgCard, borderColor: t.border, flex: undefined, width: 56 }]}
-              onPress={() => startEdit(currentCard)}
-            >
-              <Ionicons name="pencil-outline" size={20} color={t.textSecond} />
-            </TouchableOpacity>
-          )}
-
-          <TouchableOpacity
-            style={[st.navBtnPrimary, { backgroundColor: t.accent }]}
-            onPress={goNext}
-          >
-            <Ionicons
-              name={index >= cards.length - 1 ? 'checkmark' : 'chevron-forward'}
-              size={26} color={t.correctText}
-            />
-          </TouchableOpacity>
-        </View>
-
       </ContentWrap>
+      {/* Category bar — bottom, above Android nav buttons */}
+      <View style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
+        <CategoryBar />
+      </View>
     </SafeAreaView>
     </ScreenGradient>
   );
@@ -1049,13 +1063,12 @@ const st = StyleSheet.create({
   progressWrap: { flexDirection:'row', alignItems:'center', marginVertical:8, gap:10 },
   progressTrack:{ flex:1, height:6, borderRadius:3, overflow:'hidden' },
   progressFill: { height:'100%', borderRadius:3 },
-  cardArea:     { flex:1, paddingHorizontal:16, justifyContent:'center', alignItems:'center' },
-  cardTouchable:{ width:'100%', height:260 },
+  cardArea:     { paddingHorizontal:0, justifyContent:'center', alignItems:'center' },
+  cardTouchable:{ width:'100%', height:CARD_H },
   card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:1, padding:28, alignItems:'center', justifyContent:'center', backfaceVisibility:'hidden', shadowColor:'#000', shadowOffset:{width:0,height:4}, shadowOpacity:0.15, shadowRadius:10, elevation:5 },
   sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:1 },
   sourceBadgeText: { fontSize:11, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 },
-  navRow:       { flexDirection:'row', alignItems:'center', paddingHorizontal:16, paddingTop:12, paddingBottom:24, gap:12 },
-  navBtn:       { flex:1, height:56, borderRadius:28, borderWidth:1, alignItems:'center', justifyContent:'center' },
+  swipeHint:    { flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:32, paddingTop:8, paddingBottom:32 },
   navBtnPrimary:{ flex:1, height:56, borderRadius:28, alignItems:'center', justifyContent:'center' },
   centerState:  { flex:1, alignItems:'center', justifyContent:'center', paddingHorizontal:32 },
 });

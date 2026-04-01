@@ -63,16 +63,30 @@ import { getXPProgress } from '../constants/theme';
 const MEDALS = ['🥇', '🥈', '🥉'];
 
 // ── Club icon renderer ────────────────────────────────────────────────────────
-function ClubIcon({ league, size = 24 }: { league: any; size?: number }) {
-  return (
-    <>
-      {league.imageUri ? (
-        <Image source={league.imageUri} style={{ width: size, height: size }} resizeMode="contain" />
-      ) : (
-        <Ionicons name={(league as any).ionIcon ?? 'trophy'} size={size} color={league.color} />
-      )}
-    </>
+function ClubIcon({ league, size = 24, pulse = false }: { league: any; size?: number; pulse?: boolean }) {
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (!pulse) return;
+    const anim = Animated.loop(
+      Animated.sequence([
+        Animated.timing(scaleAnim, { toValue: 1.12, duration: 900, useNativeDriver: true }),
+        Animated.timing(scaleAnim, { toValue: 1.0,  duration: 900, useNativeDriver: true }),
+      ])
+    );
+    anim.start();
+    return () => anim.stop();
+  }, [pulse]);
+
+  const icon = league.imageUri ? (
+    <Image source={league.imageUri} style={{ width: size, height: size }} resizeMode="contain" />
+  ) : (
+    <Ionicons name={(league as any).ionIcon ?? 'trophy'} size={size} color={league.color} />
   );
+
+  return pulse ? (
+    <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>{icon}</Animated.View>
+  ) : <>{icon}</>;
 }
 
 // ── NPC profile generation (seeded by name) ──────────────────────────────────
@@ -399,7 +413,7 @@ export default function LeagueScreen() {
                   onPress={(e) => { e.stopPropagation(); setDescModal(league); }}
                   hitSlop={{ top:6, bottom:6, left:6, right:6 }}
                 >
-                  <ClubIcon league={league} size={80} />
+                  <ClubIcon league={league} size={80} pulse />
                 </TouchableOpacity>
                 <View style={{ flex:1 }}>
                   <View style={{ flexDirection:'row', alignItems:'center', gap:8, flexWrap:'wrap' }}>
@@ -414,11 +428,9 @@ export default function LeagueScreen() {
                       </View>
                     )}
                   </View>
-                  {isMyLeague && (
-                    <Text style={{ color:t.textMuted, fontSize: f.caption, marginTop:2 }}>
-                      {isUK ? 'Твій поточний клуб' : 'Твой текущий клуб'}
-                    </Text>
-                  )}
+                  <Text style={{ color:t.textMuted, fontSize: f.caption, marginTop:2 }} numberOfLines={1}>
+                    {isUK ? league.tagUK : league.tagRU}
+                  </Text>
                 </View>
                 <View style={{ alignItems:'flex-end', gap:2 }}>
                   {isMyLeague && (

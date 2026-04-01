@@ -199,23 +199,36 @@ export default function LessonMenu() {
         }
       },
     },
-    ...(LESSONS_WITH_IRREGULAR_VERBS.has(lessonId) ? [{
+    {
       label: lang==='uk' ? 'Неправильні дієслова' : 'Неправильные глаголы',
-      sub: (() => {
-        const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
-        return total > 0
-          ? (lang==='uk'
-              ? `${irregularLearned}/${total} дієслів`
-              : `${irregularLearned}/${total} глаголов`)
-          : (lang==='uk' ? 'Неправильні дієслова уроку' : 'Неправильные глаголы урока');
-      })(),
+      sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
+        ? (() => {
+            const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
+            return total > 0
+              ? (lang==='uk'
+                  ? `${irregularLearned}/${total} дієслів`
+                  : `${irregularLearned}/${total} глаголов`)
+              : (lang==='uk' ? 'Неправильні дієслова уроку' : 'Неправильные глаголы урока');
+          })()
+        : (lang==='uk' ? 'Скоро буде доступно' : 'Скоро будет доступно'),
       icon: 'flash-outline' as const,
       pct: (() => {
+        if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;
         const total = IRREGULAR_VERB_COUNT_BY_LESSON[lessonId] ?? 0;
         return total > 0 ? Math.round(irregularLearned / total * 100) : undefined;
       })(),
-      onPress: () => { hapticTap(); router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } }); },
-    }] : []),
+      onPress: () => {
+        hapticTap();
+        if (LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) {
+          router.push({ pathname: '/lesson_irregular_verbs', params: { id: lessonId } });
+        } else {
+          Alert.alert(
+            lang==='uk' ? 'Скоро' : 'Скоро',
+            lang==='uk' ? 'Матеріал для цього уроку ще готується' : 'Материал для этого урока ещё готовится'
+          );
+        }
+      },
+    },
     {
       label: lang==='uk' ? 'Теорія' : 'Теория',
       sub: lang==='uk' ? 'Правила та пояснення' : 'Правила и пояснения',

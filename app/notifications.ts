@@ -7,6 +7,8 @@ import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayPhrase } from './daily_phrase_system';
 
+const getDayIndex = () => Math.floor(Date.now() / 86400000);
+
 // Lazy-загрузка модуля — не падает в Expo Go
 let Notifications: any = null;
 const getNotifications = async () => {
@@ -447,8 +449,24 @@ export const schedulePhrasOfDayNotification = async (lang: 'ru' | 'uk' = 'ru'): 
       secondsUntil = Math.floor((phraseTime.getTime() - now.getTime()) / 1000);
     }
 
-    const title = lang === 'uk' ? '☀️ Фраза дня' : '☀️ Фраза дня';
-    const body = `"${phrase.english}" — ${phrase.russian}`;
+    const TEASERS_RU = [
+      `"${phrase.english}" — знаешь что это значит? 👀`,
+      `"${phrase.english}" — открой приложение, чтобы узнать смысл ✨`,
+      `"${phrase.english}" — natives говорят так каждый день. А ты знаешь зачем? 🤔`,
+      `"${phrase.english}" — это не то, что ты думаешь 😏`,
+      `"${phrase.english}" — одна фраза, которая изменит твой English 🚀`,
+    ];
+    const TEASERS_UK = [
+      `"${phrase.english}" — знаєш що це означає? 👀`,
+      `"${phrase.english}" — відкрий додаток, щоб дізнатись зміст ✨`,
+      `"${phrase.english}" — natives кажуть так щодня. А ти знаєш навіщо? 🤔`,
+      `"${phrase.english}" — це не те, що ти думаєш 😏`,
+      `"${phrase.english}" — одна фраза, що змінить твій English 🚀`,
+    ];
+    const teasers = lang === 'uk' ? TEASERS_UK : TEASERS_RU;
+    const teaserIdx = getDayIndex() % teasers.length;
+    const title = '☀️ Фраза дня';
+    const body = teasers[teaserIdx];
 
     await N.scheduleNotificationAsync({
       content: {

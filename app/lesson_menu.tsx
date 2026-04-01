@@ -155,7 +155,7 @@ export default function LessonMenu() {
   const isStarted = progress > 0;
 
   type IconName = React.ComponentProps<typeof Ionicons>['name'];
-  const menuItems: {label:string; sub:string; icon:IconName; pct?:number; onPress:()=>void; disabled?: boolean}[] = [
+  const menuItems: {label:string; sub:string; icon:IconName; pct?:number; onPress:()=>void; disabled?: boolean; hidden?: boolean}[] = [
     {
       label: isStarted ? s.lessonMenu.continue : s.lessonMenu.start,
       sub: isStarted
@@ -200,6 +200,7 @@ export default function LessonMenu() {
       },
     },
     {
+      hidden: lessonId === 11,
       label: lang==='uk' ? 'Неправильні дієслова' : 'Неправильные глаголы',
       sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
         ? (() => {
@@ -310,7 +311,7 @@ export default function LessonMenu() {
 
       {/* Меню */}
       <View style={{paddingHorizontal:16,gap:10}}>
-        {menuItems.map((item,i)=>(
+        {menuItems.filter(item => !item.hidden).map((item,i)=>(
           <PremiumCard key={i} level={2} onPress={() => { !item.disabled && (hapticTap(), item.onPress()); }}
             innerStyle={{padding:18, flexDirection:'row', alignItems:'center', gap:14, opacity: item.disabled ? 0.5 : 1}}
           >

@@ -285,9 +285,9 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                         </View>
                       )}
                     </View>
-                    <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
+                    <View style={{ flexDirection:'column', gap:4, marginTop:4 }}>
                       <Text style={{ color: textCol, fontSize: f.h1, fontWeight:'900' }}>{lbl}</Text>
-                      <Text style={{ color: textCol2, fontSize: f.sub, flex:1 }} numberOfLines={1}>{tag}</Text>
+                      <Text style={{ color: textCol2, fontSize: f.sub, flexWrap:'wrap' }}>{tag}</Text>
                     </View>
                   </View>
 
@@ -895,6 +895,33 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               )}
             </Animated.View>
           )}
+          {/* РАЗБОР ОТВЕТА */}
+          {(chosen !== null || typedOk !== null) && current.explanations && (() => {
+            const explanationIdx = chosen !== null ? chosen : current.correct;
+            const explanation = current.explanations[explanationIdx];
+            const correct = chosen === current.correct || typedOk === true;
+            if (!explanation) return null;
+            return (
+              <Animated.View style={{
+                opacity: insertAnim,
+                transform: [{ scale: insertScale }],
+                backgroundColor: correct ? 'rgba(74,144,255,0.13)' : 'rgba(212,160,23,0.13)',
+                borderRadius: 14,
+                padding: 16,
+                marginBottom: 16,
+                borderLeftWidth: 3,
+                borderLeftColor: correct ? '#4A90FF' : '#D4A017',
+              }}>
+                <Text style={{ color: correct ? '#4A90FF' : '#D4A017', fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
+                  {lang === 'uk' ? 'ПОЯСНЕННЯ' : 'РАЗБОР'}
+                </Text>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }}>
+                  {explanation}
+                </Text>
+              </Animated.View>
+            );
+          })()}
+
           {/* Кнопка "далее" после ответа если autoAdvance выключен */}
           {(chosen !== null || typedOk !== null) && !settings.autoAdvance && (
             <TouchableOpacity

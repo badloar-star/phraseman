@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, Animated,
   SafeAreaView, StatusBar, Alert, ActivityIndicator,
-  ScrollView, TextInput, Keyboard, Dimensions, PanResponder,
+  ScrollView, FlatList, TextInput, Keyboard, Dimensions,
   KeyboardAvoidingView, Platform,
 } from 'react-native';
 import { useRouter } from 'expo-router';
@@ -17,10 +17,11 @@ import { loadFlashcards, removeFlashcard, Flashcard } from '../hooks/use-flashca
 import { checkAchievements } from './achievements';
 import * as Speech from 'expo-speech';
 
-const { width: SCREEN_W } = Dimensions.get('window');
+const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 const CUSTOM_KEY = 'custom_flashcards_v2';
-const CARD_H = 240;
-const CARD_SPACING = 46;
+const CARD_H  = 260;   // full card height — never changes
+const PEEK    = 56;    // visible top strip of each non-active card
+const LIST_PAD = Math.round((SCREEN_H - CARD_H) / 2); // center first card
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type CategoryId = 'emotions' | 'fillers' | 'reactions' | 'traps' | 'phrasal' | 'situations' | 'connectors' | 'saved' | 'custom';
@@ -298,10 +299,14 @@ export default function FlashcardsScreen() {
   // ── State ──────────────────────────────────────────────────────────────────
   const [activeCat, setActiveCat]     = useState<CategoryId>('saved');
   const [cards, setCards]             = useState<CardItem[]>([]);
+  const [filteredCards, setFilteredCards] = useState<CardItem[]>([]);
+  const [activeFilter, setActiveFilter]   = useState<string>('all');
+  const [filterOpen, setFilterOpen]       = useState(false);
   const [savedCards, setSavedCards]   = useState<CardItem[]>([]);
   const [customCards, setCustomCards] = useState<CardItem[]>([]);
   const [index, setIndex]             = useState(0);
   const [isFlipped, setIsFlipped]     = useState(false);
+  const isFlippedRef                  = useRef(false);
   const [loading, setLoading]         = useState(true);
   const sessionDoneRef                = useRef(false); // achievement fired once per session
   // Create / Edit / Practice mode
@@ -314,6 +319,7 @@ export default function FlashcardsScreen() {
   // Refs
   const backInputRef     = useRef<any>(null);
   const practiceInputRef = useRef<any>(null);
+  const flatListRef      = useRef<any>(null);
 
   // Practice state
   const [practiceQueue,  setPracticeQueue]  = useState<CardItem[]>([]);
@@ -321,22 +327,11 @@ export default function FlashcardsScreen() {
   const [practiceStatus, setPracticeStatus] = useState<'idle'|'correct'|'wrong'>('idle');
 
   // Animations
-  const flipAnim  = useRef(new Animated.Value(0)).current;
-  const slideAnim = useRef(new Animated.Value(0)).current; // category switch
+  const flipAnim    = useRef(new Animated.Value(0)).current;
+  const slideAnim   = useRef(new Animated.Value(0)).current;
   const createFlipAnim = useRef(new Animated.Value(0)).current;
-  const stripeAnim    = useRef(new Animated.Value(1)).current;
-  const pulseAnim     = useRef(new Animated.Value(1)).current;
-
-  useEffect(() => {
-    const loop = Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulseAnim, { toValue: 1.4, duration: 600, useNativeDriver: true }),
-        Animated.timing(pulseAnim, { toValue: 1.0, duration: 600, useNativeDriver: true }),
-      ])
-    );
-    loop.start();
-    return () => loop.stop();
-  }, []);
+  const scrollY     = useRef(new Animated.Value(0)).current;
+  const focusAnim   = useRef(new Animated.Value(1)).current;
 
   // ── Load ───────────────────────────────────────────────────────────────────
   const loadAll = useCallback(async () => {
@@ -360,21 +355,38 @@ export default function FlashcardsScreen() {
     else if (activeCat === 'custom') list = customCards;
     else list = SYSTEM_CARDS.filter(c => c.categoryId === activeCat);
     setCards(list);
+    setActiveFilter('all');
     setIndex(0);
     setIsFlipped(false);
     flipAnim.setValue(0);
   }, [activeCat, savedCards, customCards]);
 
-  // ── Reset flip and swipe on card change ────────────────────────────────────
+  // ── Apply filter ───────────────────────────────────────────────────────────
+  useEffect(() => {
+    if (activeFilter === 'all') {
+      setFilteredCards(cards);
+    } else {
+      setFilteredCards(cards.filter(c => {
+        if (activeFilter.startsWith('lesson:')) {
+          return c.source === 'lesson' && c.sourceId === activeFilter.slice(7);
+        }
+        return c.source === activeFilter;
+      }));
+    }
+    setIndex(0);
+    setIsFlipped(false);
+    flipAnim.setValue(0);
+  }, [activeFilter, cards]);
+
+  // ── Reset flip + pulse focus on card change ────────────────────────────────
   useEffect(() => {
     setIsFlipped(false);
     flipAnim.setValue(0);
-    swipeY.setValue(0);
-    stripeAnim.setValue(0);
-    Animated.timing(stripeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
+    focusAnim.setValue(0.96);
+    Animated.spring(focusAnim, { toValue: 1, useNativeDriver: true, friction: 7, tension: 120 }).start();
   }, [index]);
 
-  const currentCard = cards[index] ?? null;
+  const currentCard = filteredCards[index] ?? null;
 
   // ── Category switch with slide animation ───────────────────────────────────
   const switchCategory = (catId: CategoryId) => {
@@ -389,53 +401,77 @@ export default function FlashcardsScreen() {
   // ── Flip ───────────────────────────────────────────────────────────────────
   const handleFlip = () => {
     const toValue = isFlipped ? 0 : 1;
-    setIsFlipped(!isFlipped);
+    const next = !isFlipped;
+    setIsFlipped(next);
+    isFlippedRef.current = next;
     Animated.spring(flipAnim, { toValue, useNativeDriver: true, friction: 8, tension: 70 }).start();
   };
+
+  // ── Flip back then change index ────────────────────────────────────────────
+  const pendingIndexRef = useRef<number | null>(null);
+  const isAnimatingFlipBack = useRef(false);
+
+  const changeIndex = useCallback((newIdx: number) => {
+    if (!isFlippedRef.current) {
+      setIndex(newIdx);
+      return;
+    }
+    if (isAnimatingFlipBack.current) return;
+    isAnimatingFlipBack.current = true;
+    pendingIndexRef.current = newIdx;
+    Animated.spring(flipAnim, { toValue: 0, useNativeDriver: true, friction: 8, tension: 70 }).start(() => {
+      setIsFlipped(false);
+      isFlippedRef.current = false;
+      isAnimatingFlipBack.current = false;
+      if (pendingIndexRef.current !== null) {
+        setIndex(pendingIndexRef.current);
+        pendingIndexRef.current = null;
+      }
+    });
+  }, [flipAnim]);
+
+  // ── Filter options — must be before any early return ─────────────────────
+  const SOURCE_LABELS: Record<string, string> = {
+    word: 'Слова', verb: 'Глаголы', dialog: 'Диалоги',
+    quiz: 'Квизы', daily_phrase: 'Фраза дня',
+  };
+  const filterOptions: { key: string; label: string }[] = useMemo(() => {
+    if (activeCat !== 'saved' && activeCat !== 'custom') return [];
+    const lessons = new Map<string, number>(); // sourceId → num
+    const others  = new Map<string, string>(); // source → label
+    for (const c of cards) {
+      if (c.source === 'lesson' && c.sourceId) {
+        const n = parseInt(c.sourceId, 10);
+        if (!isNaN(n)) lessons.set(c.sourceId, n);
+      } else if (c.source) {
+        if (!others.has(c.source)) {
+          others.set(c.source, SOURCE_LABELS[c.source] ?? c.source);
+        }
+      }
+    }
+    if (lessons.size === 0 && others.size === 0) return [];
+    const lessonOpts = Array.from(lessons.entries())
+      .sort((a, b) => a[1] - b[1])
+      .map(([id]) => ({ key: `lesson:${id}`, label: `Урок ${id}` }));
+    const otherOpts = Array.from(others.entries())
+      .sort((a, b) => a[1].localeCompare(b[1]))
+      .map(([key, label]) => ({ key, label }));
+    return [
+      { key: 'all', label: lang === 'uk' ? 'Всі' : 'Все' },
+      ...lessonOpts,
+      ...otherOpts,
+    ];
+  }, [cards, activeCat, lang]);
 
   // Reset session-done flag when category or cards change
   useEffect(() => { sessionDoneRef.current = false; }, [activeCat, cards.length]);
 
-  // ── Navigation ─────────────────────────────────────────────────────────────
-  const goNext = () => {
-    if (index >= cards.length - 1 && !sessionDoneRef.current && cards.length > 0) {
-      sessionDoneRef.current = true;
-      checkAchievements({ type: 'flashcards_session' }).catch(() => {});
+  // ── Scroll to card when category switches ─────────────────────────────────
+  useEffect(() => {
+    if (flatListRef.current) {
+      (flatListRef.current as any).scrollTo({ y: 0, animated: false });
     }
-    setIndex(i => (i + 1) % cards.length);
-  };
-  const goPrev = () => { if (index > 0) setIndex(i => i - 1); };
-
-  // ── Swipe gesture ──────────────────────────────────────────────────────────
-  const swipeY     = useRef(new Animated.Value(0)).current;
-  const cardsLenRef = useRef(cards.length);
-  useEffect(() => { cardsLenRef.current = cards.length; }, [cards]);
-
-  const cardPan = useRef(
-    PanResponder.create({
-      onMoveShouldSetPanResponder: (_, gs) => Math.abs(gs.dy) > 5 && Math.abs(gs.dy) > Math.abs(gs.dx),
-      onPanResponderMove: (_, gs) => swipeY.setValue(gs.dy),
-      onPanResponderRelease: (_, gs) => {
-        const isFlick = Math.abs(gs.vy) > 0.4;
-        if (gs.dy < -20 || (isFlick && gs.vy < 0)) {
-          Animated.timing(swipeY, { toValue: -CARD_SPACING, duration: 110, useNativeDriver: true }).start(() => {
-            swipeY.setValue(0);
-            setIndex(i => Math.min(i + 1, cardsLenRef.current - 1));
-          });
-        } else if (gs.dy > 20 || (isFlick && gs.vy > 0)) {
-          Animated.timing(swipeY, { toValue: CARD_SPACING, duration: 110, useNativeDriver: true }).start(() => {
-            swipeY.setValue(0);
-            setIndex(i => Math.max(i - 1, 0));
-          });
-        } else {
-          Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
-        }
-      },
-      onPanResponderTerminate: () => {
-        Animated.spring(swipeY, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
-      },
-    })
-).current;
+  }, [activeCat]);
 
   // ── Delete ─────────────────────────────────────────────────────────────────
   const handleDelete = () => {
@@ -509,7 +545,6 @@ export default function FlashcardsScreen() {
     await AsyncStorage.setItem(CUSTOM_KEY, JSON.stringify(updated));
     setCustomCards(updated);
     slideAnim.setValue(0);
-    swipeY.setValue(0);
     setActiveCat('custom');
     setMode('view');
   };
@@ -853,7 +888,7 @@ export default function FlashcardsScreen() {
   }
 
   // ── Empty state ────────────────────────────────────────────────────────────
-  if (cards.length === 0) return (
+  if (filteredCards.length === 0) return (
     <ScreenGradient>
     <SafeAreaView style={[st.safe]}>
       <StatusBar barStyle="light-content" />
@@ -879,16 +914,15 @@ export default function FlashcardsScreen() {
   );
 
   // ── Main card view ─────────────────────────────────────────────────────────
-  const translation = lang === 'uk' ? currentCard!.uk : currentCard!.ru;
-  const sourceBadgeColor = SOURCE_COLORS[currentCard!.source ?? 'lesson'] ?? '#4A90D9';
-  const sourceLabel = currentCard!.source ? (s.source as any)[currentCard!.source] : null;
-  const canDelete = !currentCard!.isSystem;
+  const translation = lang === 'uk' ? (currentCard?.uk ?? '') : (currentCard?.ru ?? '');
+  const sourceBadgeColor = SOURCE_COLORS[currentCard?.source ?? 'lesson'] ?? '#4A90D9';
+  const sourceLabel = currentCard?.source ? (s.source as any)[currentCard.source] : null;
+  const canDelete = !(currentCard?.isSystem ?? true);
 
   return (
     <ScreenGradient>
     <SafeAreaView style={[st.safe]}>
       <StatusBar barStyle="light-content" backgroundColor={t.bgPrimary} />
-      <ContentWrap>
 
         {/* Header */}
         <View style={[st.header, { borderBottomColor: t.border }]}>
@@ -896,7 +930,60 @@ export default function FlashcardsScreen() {
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{s.title}</Text>
-          <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 20, minWidth: 40 }}>
+          <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 12, minWidth: 40 }}>
+            {filterOptions.length > 0 && (
+              <View style={{ position: 'relative' }}>
+                <TouchableOpacity
+                  onPress={() => setFilterOpen(o => !o)}
+                  hitSlop={{ top:8,bottom:8,left:8,right:8 }}
+                  style={{
+                    flexDirection: 'row', alignItems: 'center', gap: 3,
+                    paddingHorizontal: 10, paddingVertical: 5,
+                    borderRadius: 12, borderWidth: 1,
+                    borderColor: activeFilter !== 'all' ? t.accent : t.border,
+                    backgroundColor: activeFilter !== 'all' ? t.accent + '18' : 'transparent',
+                  }}
+                >
+                  <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
+                  <Text style={{ fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}>
+                    {activeFilter === 'all'
+                      ? (lang === 'uk' ? 'Фільтр' : 'Фильтр')
+                      : (filterOptions.find(o => o.key === activeFilter)?.label ?? 'Фильтр')}
+                  </Text>
+                  <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
+                </TouchableOpacity>
+                {filterOpen && (
+                  <View style={{
+                    position: 'absolute', top: 32, left: 0, zIndex: 9999,
+                    backgroundColor: t.bgSurface, borderRadius: 14, borderWidth: 1,
+                    borderColor: t.border, minWidth: 160,
+                    shadowColor: '#000', shadowOffset: { width: 0, height: 4 },
+                    shadowOpacity: 0.25, shadowRadius: 12, elevation: 20,
+                    overflow: 'hidden',
+                  }}>
+                    {filterOptions.map((opt, i) => {
+                      const active = activeFilter === opt.key;
+                      return (
+                        <TouchableOpacity
+                          key={opt.key}
+                          onPress={() => { setActiveFilter(opt.key); setFilterOpen(false); }}
+                          style={{
+                            flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+                            paddingHorizontal: 16, paddingVertical: 12,
+                            borderTopWidth: i === 0 ? 0 : 0.5, borderTopColor: t.border,
+                          }}
+                        >
+                          <Text style={{ fontSize: f.body, color: active ? t.accent : t.textPrimary, fontWeight: active ? '700' : '400' }}>
+                            {opt.label}
+                          </Text>
+                          {active && <Ionicons name="checkmark" size={16} color={t.accent} />}
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </View>
+                )}
+              </View>
+            )}
             {canDelete && (
               <TouchableOpacity onPress={handleDelete} hitSlop={{ top:14,bottom:14,left:14,right:14 }} style={{ padding: 4 }}>
                 <Ionicons name="trash-outline" size={22} color={t.wrong} />
@@ -905,147 +992,131 @@ export default function FlashcardsScreen() {
           </View>
         </View>
 
-        {/* Card stack deck */}
+        {/* Card stack: all cards full size, stacked with PEEK overlap, active on top */}
         {(() => {
-          const STACK_ABOVE = 3;
-          const containerH = CARD_H + CARD_SPACING * STACK_ABOVE + CARD_SPACING;
-          const tint = getCardTint(currentCard!);
-          const activeBorderColor = tint ? tint + '60' : t.border;
-
+          // Total scroll content: first card centered, each card adds PEEK
+          const contentH = LIST_PAD * 2 + CARD_H + (filteredCards.length - 1) * PEEK;
           return (
-            <Animated.View
-              style={{
-                height: containerH,
-                overflow: 'hidden',
-                marginHorizontal: 16,
-                transform: [{ translateX: slideAnim }],
-              }}
-              {...cardPan.panHandlers}
+            <Animated.ScrollView
+              ref={flatListRef as any}
+              style={{ flex: 1 }}
+              contentContainerStyle={{ height: contentH }}
+              showsVerticalScrollIndicator={false}
+              decelerationRate="normal"
+              scrollEventThrottle={16}
+              onScroll={Animated.event(
+                [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+                {
+                  useNativeDriver: false,
+                  listener: (e: any) => {
+                    const y = e.nativeEvent.contentOffset.y;
+                    const fi = Math.round(y / PEEK);
+                    const clamped = Math.max(0, Math.min(fi, filteredCards.length - 1));
+                    setIndex(clamped);
+                  },
+                }
+              )}
             >
-              {[-3, -2, -1, 0, 1, 2].map((offset) => {
-                const cardIdx = index + offset;
-                if (cardIdx < 0 || cardIdx >= cards.length) return null;
-                const card = cards[cardIdx];
-                const isActive = offset === 0;
-                const absOff = Math.abs(offset);
-                const cardTop = CARD_SPACING * STACK_ABOVE + offset * CARD_SPACING;
-                const zIdx = 10 - absOff;
-                const peekTint = getCardTint(card);
+              <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
+                {filteredCards.map((item, itemIdx) => {
+                  const isActive = itemIdx === index;
+                  // Each card top: LIST_PAD + itemIdx * PEEK
+                  const cardTop = LIST_PAD + itemIdx * PEEK;
+                  const cardBorderColor = isActive ? t.accent + '80' : t.border;
+                  const tr = lang === 'uk' ? item.uk : item.ru;
+                  const srcBadgeColor = SOURCE_COLORS[item.source ?? 'lesson'] ?? '#4A90D9';
+                  const srcLabel = item.source ? (s.source as any)[item.source] : null;
 
-                if (!isActive) {
                   return (
-                    <Animated.View
-                      key={card.id}
+                    <TouchableOpacity
+                      key={item.id}
+                      activeOpacity={isActive ? 0.92 : 1}
+                      onPress={isActive ? handleFlip : () => {
+                        (flatListRef.current as any)?.scrollTo({
+                          y: itemIdx * PEEK, animated: true,
+                        });
+                      }}
                       style={{
-                        position: 'absolute', left: 0, right: 0,
-                        top: cardTop, height: CARD_H,
-                        zIndex: zIdx,
-                        transform: [{ translateY: swipeY }],
+                        position: 'absolute',
+                        top: cardTop,
+                        left: 16, right: 16,
+                        height: CARD_H,   // ALWAYS full height — never shrinks
+                        zIndex: isActive ? 999 : itemIdx,
+                        elevation: isActive ? 20 : itemIdx + 1,
                       }}
                     >
-                      <View style={{
-                        flex: 1, borderRadius: 20, borderWidth: 1,
-                        borderColor: t.border,
-                        backgroundColor: peekTint ? peekTint + '12' : t.bgCard,
-                        opacity: Math.max(0.4, 1 - absOff * 0.18),
-                      }} />
-                    </Animated.View>
-                  );
-                }
-
-                return (
-                  <Animated.View
-                    key={card.id}
-                    style={{
-                      position: 'absolute', left: 0, right: 0,
-                      top: cardTop, height: CARD_H,
-                      zIndex: 10,
-                      transform: [{ translateY: swipeY }],
-                    }}
-                  >
-                    <TouchableOpacity activeOpacity={0.95} onPress={handleFlip} style={{ flex: 1 }}>
-                      {/* Front: EN */}
+                      {/* Front face */}
                       <Animated.View style={[st.card, {
-                        backgroundColor: tint ? tint + '10' : t.bgCard,
-                        borderColor: activeBorderColor,
-                        transform: [{ perspective: 1200 }, { rotateY: frontRotate }],
-                        opacity: frontOp,
+                        backgroundColor: t.bgCard,
+                        borderColor: cardBorderColor,
+                        transform: [
+                          { perspective: 1200 },
+                          { rotateY: isActive ? frontRotate : '0deg' },
+                          { scale: isActive ? focusAnim : 1 },
+                        ],
+                        opacity: isActive ? frontOp : 1,
+                        shadowOpacity: isActive ? 0.28 : 0.08,
+                        shadowRadius: isActive ? 14 : 6,
                       }]}>
-                        {sourceLabel && (
-                          <View style={[st.sourceBadge, { backgroundColor: `${sourceBadgeColor}22`, borderColor: `${sourceBadgeColor}66` }]}>
-                            <Text style={[st.sourceBadgeText, { color: sourceBadgeColor }]}>
-                              {sourceLabel}{currentCard!.sourceId ? ` ${currentCard!.sourceId}` : ''}
+                        {srcLabel && (
+                          <View style={[st.sourceBadge, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
+                            <Text style={[st.sourceBadgeText, { color: srcBadgeColor }]}>
+                              {srcLabel}{item.sourceId ? ` ${item.sourceId}` : ''}
                             </Text>
                           </View>
                         )}
-                        <Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 16 }}>EN</Text>
-                        <Text style={{ color: t.textPrimary, fontSize: f.h1 + 4, fontWeight: '700', textAlign: 'center' }}>
-                          {currentCard!.en}
-                        </Text>
-                        <Text style={{ position: 'absolute', bottom: 20, color: t.textGhost, fontSize: f.caption }}>
-                          {s.tapFlip}
-                        </Text>
-                      </Animated.View>
-                      {/* Back: Translation */}
-                      <Animated.View style={[st.card, {
-                        backgroundColor: tint ? tint + '18' : t.bgSurface,
-                        borderColor: activeBorderColor,
-                        transform: [{ perspective: 1200 }, { rotateY: backRotate }],
-                        opacity: backOp,
-                      }]}>
-                        {sourceLabel && (
-                          <View style={[st.sourceBadge, { backgroundColor: `${sourceBadgeColor}22`, borderColor: `${sourceBadgeColor}66` }]}>
-                            <Text style={[st.sourceBadgeText, { color: sourceBadgeColor }]}>
-                              {sourceLabel}{currentCard!.sourceId ? ` ${currentCard!.sourceId}` : ''}
-                            </Text>
-                          </View>
-                        )}
-                        <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 16 }}>
-                          {lang === 'uk' ? 'UK' : 'RU'}
-                        </Text>
-                        {translation.includes('≠') ? (
+                        {isActive && (
                           <>
-                            <Text style={{ color: t.correct, fontSize: f.h1 + 4, fontWeight: '700', textAlign: 'center' }}>
-                              {translation.split('≠')[0].trim()}
-                            </Text>
-                            <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600', textAlign: 'center', marginTop: 10, textDecorationLine: 'line-through' }}>
-                              {translation.split('≠')[1].trim()}
-                            </Text>
+                            <Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 14 }}>EN</Text>
+                            <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{item.en}</Text>
+                            <Text style={{ position: 'absolute', bottom: 18, color: t.textGhost, fontSize: f.caption }}>{s.tapFlip}</Text>
                           </>
-                        ) : (
-                          <Text style={{ color: t.textPrimary, fontSize: f.h1 + 4, fontWeight: '700', textAlign: 'center' }}>
-                            {translation}
-                          </Text>
                         )}
-                        <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 16, textAlign: 'center', fontStyle: 'italic' }}>
-                          {currentCard!.en}
-                        </Text>
                       </Animated.View>
+
+                      {/* Back face — active only */}
+                      {isActive && (
+                        <Animated.View style={[st.card, {
+                          backgroundColor: t.bgSurface,
+                          borderColor: cardBorderColor,
+                          transform: [
+                            { perspective: 1200 },
+                            { rotateY: backRotate },
+                            { scale: focusAnim },
+                          ],
+                          opacity: backOp,
+                          shadowOpacity: 0.28,
+                          shadowRadius: 14,
+                        }]}>
+                          {srcLabel && (
+                            <View style={[st.sourceBadge, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
+                              <Text style={[st.sourceBadgeText, { color: srcBadgeColor }]}>
+                                {srcLabel}{item.sourceId ? ` ${item.sourceId}` : ''}
+                              </Text>
+                            </View>
+                          )}
+                          <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 14 }}>
+                            {lang === 'uk' ? 'UK' : 'RU'}
+                          </Text>
+                          {tr.includes('≠') ? (
+                            <>
+                              <Text style={{ color: t.correct, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{tr.split('≠')[0].trim()}</Text>
+                              <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600', textAlign: 'center', marginTop: 8, textDecorationLine: 'line-through' }}>{tr.split('≠')[1].trim()}</Text>
+                            </>
+                          ) : (
+                            <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{tr}</Text>
+                          )}
+                          <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 14, textAlign: 'center', fontStyle: 'italic' }}>{item.en}</Text>
+                        </Animated.View>
+                      )}
                     </TouchableOpacity>
-                  </Animated.View>
-                );
-              })}
-            </Animated.View>
+                  );
+                })}
+              </Animated.View>
+            </Animated.ScrollView>
           );
         })()}
 
-        {/* Speak button */}
-        <View style={{ alignItems:'center', paddingVertical: 6 }}>
-          <TouchableOpacity
-            onPress={() => {
-              if (isFlipped) {
-                Speech.speak(translation, { language: lang === 'uk' ? 'uk-UA' : 'ru-RU' });
-              } else {
-                Speech.speak(currentCard!.en, { language: 'en-US' });
-              }
-            }}
-            style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: t.correct, alignItems:'center', justifyContent:'center' }}
-          >
-            <Ionicons name="volume-high" size={26} color={t.correctText} />
-          </TouchableOpacity>
-        </View>
-
-      </ContentWrap>
       {/* Category bar — bottom, above Android nav buttons */}
       <View style={{ paddingBottom: Math.max(insets.bottom, 8) }}>
         <CategoryBar />
@@ -1065,7 +1136,7 @@ const st = StyleSheet.create({
   progressFill: { height:'100%', borderRadius:3 },
   cardArea:     { paddingHorizontal:0, justifyContent:'center', alignItems:'center' },
   cardTouchable:{ width:'100%', height:CARD_H },
-  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:1, padding:28, alignItems:'center', justifyContent:'center', backfaceVisibility:'hidden', shadowColor:'#000', shadowOffset:{width:0,height:4}, shadowOpacity:0.15, shadowRadius:10, elevation:5 },
+  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:1, padding:28, alignItems:'center', justifyContent:'center', backfaceVisibility:'hidden', shadowColor:'#000', shadowOffset:{width:0,height:6}, shadowOpacity:0.15, shadowRadius:10, elevation:5 },
   sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:1 },
   sourceBadgeText: { fontSize:11, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 },
   swipeHint:    { flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:32, paddingTop:8, paddingBottom:32 },

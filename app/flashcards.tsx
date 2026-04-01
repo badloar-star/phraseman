@@ -23,7 +23,7 @@ const CARD_H = 240;
 const CARD_SPACING = 46;
 
 // ─── Types ────────────────────────────────────────────────────────────────────
-type CategoryId = 'emotions' | 'fillers' | 'reactions' | 'traps' | 'phrasal' | 'situations' | 'connectors' | 'saved';
+type CategoryId = 'emotions' | 'fillers' | 'reactions' | 'traps' | 'phrasal' | 'situations' | 'connectors' | 'saved' | 'custom';
 
 interface Category {
   id: CategoryId;

@@ -278,6 +278,23 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Відправляти' },
     { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
   ],
+  21: [
+    { base: 'know', past: 'knew', pp: 'known', ru: 'Знать', uk: 'Знати' },
+    { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити' },
+    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
+    { base: 'see', past: 'saw', pp: 'seen', ru: 'Видеть', uk: 'Бачити' },
+    { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
+    { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити' },
+    { base: 'steal', past: 'stole', pp: 'stolen', ru: 'Красть', uk: 'Красти' },
+    { base: 'hide', past: 'hid', pp: 'hidden', ru: 'Прятать', uk: 'Ховати' },
+    { base: 'understand', past: 'understood', pp: 'understood', ru: 'Понимать', uk: 'Розуміти' },
+    { base: 'put', past: 'put', pp: 'put', ru: 'Класть', uk: 'Класти' },
+    { base: 'send', past: 'sent', pp: 'sent', ru: 'Посылать', uk: 'Надсилати' },
+    { base: 'forget', past: 'forgot', pp: 'forgotten', ru: 'Забывать', uk: 'Забувати' },
+    { base: 'leave', past: 'left', pp: 'left', ru: 'Оставлять', uk: 'Залишати' },
+    { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Почуватися' },
+    { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
+  ],
 };
 
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(Object.keys(IRREGULAR_VERBS_BY_LESSON).map(Number));

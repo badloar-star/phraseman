@@ -295,6 +295,17 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Почуватися' },
     { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
   ],
+  22: [
+    { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
+    { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
+    { base: 'understand', past: 'understood', pp: 'understood', ru: 'Понимать', uk: 'Розуміти' },
+    { base: 'ride', past: 'rode', pp: 'ridden', ru: 'Ездить', uk: 'Їздити' },
+    { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
+    { base: 'keep', past: 'kept', pp: 'kept', ru: 'Держать', uk: 'Тримати' },
+    { base: 'take', past: 'took', pp: 'taken', ru: 'Брать', uk: 'Брати' },
+    { base: 'have', past: 'had', pp: 'had', ru: 'Иметь', uk: 'Мати' },
+    { base: 'sell', past: 'sold', pp: 'sold', ru: 'Продавать', uk: 'Продавати' },
+  ],
 };
 
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(Object.keys(IRREGULAR_VERBS_BY_LESSON).map(Number));

@@ -1,29 +1,27 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Haptics from 'expo-haptics';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  View, Text, TouchableOpacity,
-  ScrollView, Animated, TextInput, KeyboardAvoidingView, Platform,
+  Animated,
+  KeyboardAvoidingView, Platform,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const saveXP = async (amount: number) => {
-  try {
-    const raw = await AsyncStorage.getItem('user_total_xp');
-    const current = parseInt(raw || '0') || 0;
-    await AsyncStorage.setItem('user_total_xp', String(current + amount));
-  } catch {}
-};
-import { Ionicons } from '@expo/vector-icons';
-import * as Haptics from 'expo-haptics';
-import { useTheme } from '../components/ThemeContext';
-import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
+import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import { addOrUpdateScore } from './hall_of_fame_utils';
+import { useTheme } from '../components/ThemeContext';
+import { hapticTap } from '../hooks/use-haptics';
 import { checkAchievements } from './achievements';
 import { loadSettings } from './settings_edu';
-import { hapticTap } from '../hooks/use-haptics';
+import { shuffle } from './utils_shuffle';
+import { registerXP } from './xp_manager';
 
 const TIMER_SEC = 30;
 
@@ -249,7 +247,6 @@ const getResult = (score: number, qs?: Question[], ans?: boolean[]) => {
   }
   return [...LEVEL_RESULTS].reverse().find(r => score >= r.min) || LEVEL_RESULTS[0];
 };
-const shuffle = <T,>(a: T[]): T[] => [...a].sort(() => Math.random() - 0.5);
 
 // Pick 20 questions: 4×A1, 4×A2, 4×B1, 4×B2, 4×C1 — mix of types
 const pickQuestions = () => {
@@ -361,8 +358,9 @@ export default function DiagnosticTest() {
     const ns = isRight ? score + 1 : score;
     if (isRight) {
       setScore(ns);
-      saveXP(2);
-      AsyncStorage.getItem('user_name').then(name => { if (name) addOrUpdateScore(name, 2, lang); });
+      if (userName) {
+        registerXP(2, 'diagnostic_test', userName, lang as 'ru'|'uk');
+      }
     } else if (hapticsOn) {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
     }

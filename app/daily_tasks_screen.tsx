@@ -1,24 +1,28 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Haptics from 'expo-haptics';
+import { useFocusEffect, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  View, Text, TouchableOpacity,
-  ScrollView, Animated,
+  Animated,
+  ScrollView,
+  Text, TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useFocusEffect } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import * as Haptics from 'expo-haptics';
-import { useTheme } from '../components/ThemeContext';
-import ScreenGradient from '../components/ScreenGradient';
-import PremiumCard from '../components/PremiumCard';
-import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
-import { addOrUpdateScore } from './hall_of_fame_utils';
+import { useLang } from '../components/LangContext';
+import PremiumCard from '../components/PremiumCard';
+import ScreenGradient from '../components/ScreenGradient';
+import { useTheme } from '../components/ThemeContext';
 import { checkAchievements } from './achievements';
 import {
-  getTodayTasks, loadTodayProgress, claimTask,
-  TaskProgress, DailyTask,
+  claimTask,
+  DailyTask,
+  getTodayTasks, loadTodayProgress,
+  TaskProgress,
 } from './daily_tasks';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { registerXP } from './xp_manager';
 
 export default function DailyTasksScreen() {
   const router = useRouter();
@@ -55,12 +59,8 @@ export default function DailyTasksScreen() {
     await claimTask(taskId);
     const updated = await loadTodayProgress();
     setProgress(updated);
-    AsyncStorage.getItem('user_total_xp').then(raw => {
-      AsyncStorage.setItem('user_total_xp', String((parseInt(raw || '0') || 0) + xp));
-    });
-    if (userName) addOrUpdateScore(userName, xp, lang);
-    // [ACHIEVEMENT] Проверяем ачивки за задания
-    const allDone = updated.filter(p => p.claimed).length >= tasks.length;
+
+    if (userName) await registerXP(xp, 'daily_task_reward', userName, lang); // [ACHIEVEMENT] Проверяем ачивки за задания
     checkAchievements({ type: 'daily_task', allDone }).catch(() => {});
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
     const anim = claimAnims.current[taskId];
@@ -246,4 +246,3 @@ export default function DailyTasksScreen() {
     </ScreenGradient>
   );
 }
-

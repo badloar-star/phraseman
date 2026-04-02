@@ -2,26 +2,28 @@
 // phrasemen_integration.ts — Интеграция фразменов с системой
 // Автоматическая выдача фразменов при выполнении задач
 // ════════════════════════════════════════════════════════════════════════════
+import { getTaskById } from './daily_tasks';
 import {
   addPhrasemen,
-  spendPhrasemen,
+  getLastDailyBonus,
   getPhrasemenBalance,
   setLastDailyBonus,
-  getLastDailyBonus,
+  spendPhrasemen,
 } from './phrasemen_system';
-import { getTaskById } from './daily_tasks';
 
 // ── Выдать награду за выполненную задачу ───────────────────────────────────
-export const rewardPhrasemenForTask = async (taskId: string): Promise<void> => {
+/**
+ * Единая функция выдачи наград за задачу (XP + Фразмены)
+ * @param taskId ID задачи
+ * @param addXPCallback Коллбэк для начисления XP (так как логика XP может быть в другом сторе)
+ */
+export const rewardTaskCompletion = async (
+  taskId: string,
+  addXPCallback: (amount: number) => Promise<void>
+): Promise<void> => {
   const task = getTaskById(taskId);
-  if (!task) {
-    return;
-  }
+  if (!task) return;
 
-  const reward = task.phrasemenReward;
-  if (reward > 0) {
-    await addPhrasemen(reward, 'daily_task', `Награда за задачу: ${task.titleRU}`);
-  }
 };
 
 // ── Проверить и выдать бонус за 7-дневный стрик ────────────────────────────

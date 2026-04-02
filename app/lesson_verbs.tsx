@@ -1,22 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Haptics from 'expo-haptics';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import * as Speech from 'expo-speech';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  View, Text, TouchableOpacity, FlatList, ScrollView, Dimensions,
+  Dimensions,
+  FlatList, ScrollView,
+  Text, TouchableOpacity,
+  View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import * as Speech from 'expo-speech';
-import * as Haptics from 'expo-haptics';
-import { loadSettings } from './settings_edu';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTheme } from '../components/ThemeContext';
-import { useLang } from '../components/LangContext';
+import AddToFlashcard from '../components/AddToFlashcard';
 import ContentWrap from '../components/ContentWrap';
-import ScreenGradient from '../components/ScreenGradient';
-import { addOrUpdateScore } from './hall_of_fame_utils';
+import { useLang } from '../components/LangContext';
+import ScreenGradient from '../components/ScreenGradient'; // Import registerXP
+import { useTheme } from '../components/ThemeContext';
 import { hapticTap } from '../hooks/use-haptics';
 import { updateMultipleTaskProgress } from './daily_tasks';
-import AddToFlashcard from '../components/AddToFlashcard';
+import { loadSettings } from './settings_edu';
+import { registerXP } from './xp_manager';
 
 const { width: _SW } = Dimensions.get('window');
 const width = Math.min(_SW, 640);
@@ -319,7 +322,7 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
       Speech.speak(current.step === 'past' ? current.verb[1] : current.verb[2], { language: 'en-US' });
     }
 
-    setTimeout(() => {
+    setTimeout(async () => {
       const newQueue = [...queue];
       const pos = qIdx % newQueue.length;
 
@@ -371,11 +374,8 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
               onCountUpdate(current.verb[0], REQUIRED);
             });
 
-            AsyncStorage.getItem('user_total_xp').then(raw => {
-              AsyncStorage.setItem('user_total_xp', String((parseInt(raw || '0') || 0) + POINTS_PER_VERB));
-            });
             if (userName) {
-              addOrUpdateScore(userName, POINTS_PER_VERB, lang);
+              await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang);
               updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]);
               setTotalPts(p => p + POINTS_PER_VERB);
             }
@@ -655,4 +655,3 @@ export default function LessonVerbs() {
     </SafeAreaView>
   );
 }
-

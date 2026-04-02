@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { checkAchievements } from './achievements';
-import { checkWagerProgress } from './streak_wager';
 import { wasRepairedToday } from './streak_repair';
+import { checkWagerProgress } from './streak_wager';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
 
@@ -165,21 +165,14 @@ export const addOrUpdateScore = async (
   lang: string,
   avatar?: string,
 ) => {
-  if (!name || delta <= 0) return;
-
-  // ── Comeback multiplier: 2× XP если вернулся после 3+ дней отсутствия ──
-  const todayStr = new Date().toISOString().split('T')[0];
-  const comebackRaw = await AsyncStorage.getItem('comeback_active');
-  if (comebackRaw === todayStr) {
-    delta = delta * 2;
-  }
+  // РАЗРЕШАЕМ отрицательную дельту для ставок (списание XP)
+  if (!name || delta === 0) return;
 
   // ── 1. Leaderboard (накопительный) ──────────────────────────────────────
   const board = await loadLeaderboard();
   const idx = board.findIndex(e => e.name === name);
   if (idx >= 0) {
     board[idx].points += delta;
-    if (avatar) board[idx].avatar = avatar;
   } else {
     board.push({ name, points: delta, lang, avatar });
   }
@@ -251,12 +244,6 @@ export const addOrUpdateScore = async (
   // ── 5. Стрик и week_days_done ─────────────────────────────────────────────
   await updateStreakOnActivity();
 
-  // ── 6. XP достижения ──────────────────────────────────────────────────────
-  try {
-    const xpRaw = await AsyncStorage.getItem('user_total_xp');
-    const totalXP = parseInt(xpRaw || '0') || 0;
-    if (totalXP > 0) checkAchievements({ type: 'xp', totalXP }).catch(() => {});
-  } catch {}
 };
 
 /**
@@ -317,4 +304,3 @@ export const resetAllStats = async () => {
 
 // Required by Expo Router — not a screen
 export default {};
-

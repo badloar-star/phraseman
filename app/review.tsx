@@ -27,23 +27,34 @@
  * ═══════════════════════════════════════════════════════════════════════════
  */
 
-import React, { useState, useEffect, useRef } from 'react';
-import {
-  View, Text, TouchableOpacity,
-  Animated, Dimensions, ScrollView,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
-import { useTheme } from '../components/ThemeContext';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  Animated, Dimensions, ScrollView,
+  Text, TouchableOpacity,
+  View,
+} from 'react-native';
+import Reanimated, {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withSequence,
+  withSpring,
+  withTiming
+} from 'react-native-reanimated';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import { getDueItems, markReviewed, RecallItem } from './active_recall';
-import { addOrUpdateScore } from './hall_of_fame_utils';
+import { useTheme } from '../components/ThemeContext';
 import { isCorrectAnswer } from '../constants/contractions';
 import { hapticTap } from '../hooks/use-haptics';
+import { getDueItems, markReviewed, RecallItem, removeItem, SESSION_LIMIT } from './active_recall';
+import { registerXP } from './xp_manager';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -96,6 +107,90 @@ function makeTiles(phrase: string): { tiles: Tile[]; wordCount: number } {
   };
 }
 
+// ─── Частица огня ────────────────────────────────────────────────────────────
+type FlameParticleProps = {
+  x: number; startY: number; delay: number; size: number; color: string;
+  onDone?: () => void;
+};
+function FlameParticle({ x, startY, delay, size, color, onDone }: FlameParticleProps) {
+  const translateY = useSharedValue(0);
+  const opacity    = useSharedValue(0);
+  const scale      = useSharedValue(0.4);
+  const rotate     = useSharedValue(0);
+
+  useEffect(() => {
+    const totalDist = startY + 40 + Math.random() * 60;
+    translateY.value = withDelay(delay, withTiming(-totalDist, { duration: 900 + Math.random() * 400, easing: Easing.out(Easing.quad) }));
+    opacity.value    = withDelay(delay, withSequence(
+      withTiming(1, { duration: 120 }),
+      withTiming(1, { duration: 500 }),
+      withTiming(0, { duration: 300, easing: Easing.in(Easing.quad) }),
+    ));
+    scale.value      = withDelay(delay, withSequence(
+      withSpring(1.2, { damping: 6 }),
+      withTiming(0.3, { duration: 700 }),
+    ));
+    rotate.value     = withDelay(delay, withRepeat(
+      withSequence(
+        withTiming(-0.3, { duration: 180 }),
+        withTiming(0.3,  { duration: 180 }),
+      ), -1, true,
+    ));
+    // Уведомить родителя последней частицей
+    if (onDone) {
+      setTimeout(onDone, delay + 1300);
+    }
+  }, []);
+
+  const style = useAnimatedStyle(() => ({
+    transform: [
+      { translateY: translateY.value },
+      { scale: scale.value },
+      { rotate: `${rotate.value}rad` },
+    ],
+    opacity: opacity.value,
+  }));
+
+  return (
+    <Reanimated.View style={[style, {
+      position: 'absolute', left: x - size / 2, bottom: startY,
+      width: size, height: size * 1.3,
+      borderRadius: size / 2,
+      backgroundColor: color,
+      shadowColor: color, shadowOpacity: 0.9, shadowRadius: size * 0.8, shadowOffset: { width: 0, height: 0 },
+    }]} />
+  );
+}
+
+// ─── Огонь поверх карточки ────────────────────────────────────────────────────
+function BurnOverlay({ width, height, onDone }: { width: number; height: number; onDone: () => void }) {
+  const particles: React.ReactElement[] = [];
+  const colors = ['#FF1500','#FF4500','#FF6B00','#FFA500','#FFD700','#FF3300','#FF6600'];
+  let doneTriggered = false;
+  const triggerDone = () => { if (!doneTriggered) { doneTriggered = true; onDone(); } };
+
+  for (let i = 0; i < 40; i++) {
+    const px    = 10 + Math.random() * (width - 20);
+    const py    = Math.random() * height;
+    const delay = Math.random() * 400;
+    const size  = 10 + Math.random() * 24;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    particles.push(
+      <FlameParticle
+        key={i} x={px} startY={py} delay={delay}
+        size={size} color={color}
+        onDone={i === 39 ? triggerDone : undefined}
+      />
+    );
+  }
+
+  return (
+    <View style={{ position: 'absolute', top: 0, left: 0, width, height, zIndex: 100, overflow: 'hidden' }} pointerEvents="none">
+      {particles}
+    </View>
+  );
+}
+
 // ─── Компонент ────────────────────────────────────────────────────────────────
 export default function ReviewScreen() {
   const router  = useRouter();
@@ -116,16 +211,20 @@ export default function ReviewScreen() {
   const [selected,  setSelected]  = useState<Tile[]>([]);    // выбранные (зона ответа)
   const [wordCount, setWordCount] = useState(0);             // кол-во слов правильного ответа
   const [status,    setStatus]    = useState<Status>('playing');
-  const [wasCorrect, setWasCorrect] = useState(false);
+  const [wasCorrect,  setWasCorrect]  = useState(false);
+  const [canBurn,     setCanBurn]     = useState(false);  // кнопка "сжечь" (правильно за 20с)
+  const [burning,     setBurning]     = useState(false);  // идёт анимация сжигания
+  const [cardLayout,  setCardLayout]  = useState({ width: CONTENT_W - 32, height: 110 });
 
   // Анимации
-  const resultAnim = useRef(new Animated.Value(0)).current;  // появление правильного ответа
-  const slideAnim  = useRef(new Animated.Value(0)).current;  // переход между карточками
-  const autoTimer  = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resultAnim    = useRef(new Animated.Value(0)).current;  // появление правильного ответа
+  const slideAnim     = useRef(new Animated.Value(0)).current;  // переход между карточками
+  const autoTimer     = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const cardStartTime = useRef<number>(0);                      // когда была загружена карточка
 
   // Загружаем фразы для повторения сегодня (один раз при монтировании)
   useEffect(() => {
-    getDueItems(20).then(due => {
+    getDueItems(SESSION_LIMIT).then(due => {
       setItems(due);
       setLoading(false);
       if (due.length > 0) loadCard(due[0]);
@@ -141,7 +240,10 @@ export default function ReviewScreen() {
     setWordCount(wc);
     setStatus('playing');
     setWasCorrect(false);
+    setCanBurn(false);
+    setBurning(false);
     resultAnim.setValue(0);
+    cardStartTime.current = Date.now();
   };
 
   // Пользователь тапнул плитку снизу → переносим в зону ответа
@@ -187,15 +289,19 @@ export default function ReviewScreen() {
     // Обновляем SM-2: правильно → интервал растёт, неправильно → сброс к 1 дню
     await markReviewed(item.phrase, ok);
 
+    // Кнопка "сжечь": правильно И уложился в 20 секунд
+    if (ok) {
+      const elapsed = Date.now() - cardStartTime.current;
+      if (elapsed <= 20_000) setCanBurn(true);
+    }
+
     // XP только за правильный ответ (2 XP — меньше чем за урок, т.к. сессия легче)
     if (ok) {
       setCorrect(c => c + 1);
-      const [name, xpRaw] = await Promise.all([
-        AsyncStorage.getItem('user_name'),
-        AsyncStorage.getItem('user_total_xp'),
-      ]);
-      AsyncStorage.setItem('user_total_xp', String((parseInt(xpRaw || '0') || 0) + 2));
-      if (name) addOrUpdateScore(name, 2, lang);
+      const name = await AsyncStorage.getItem('user_name');
+      if (name) {
+        await registerXP(2, 'review_answer', name, lang as 'ru'|'uk');
+      }
     } else {
       setWrong(w => w + 1);
     }
@@ -217,6 +323,29 @@ export default function ReviewScreen() {
       }
       Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
     });
+  };
+
+  // Сжечь карточку — удалить навсегда с анимацией
+  const burnCard = async () => {
+    const item = items[index];
+    setBurning(true);
+    setCanBurn(false);
+    await removeItem(item.phrase);
+    const newItems = items.filter((_, i) => i !== index);
+    setItems(newItems);
+    // После догорания (1.4с) переходим к следующей
+    setTimeout(() => {
+      setBurning(false);
+      slideAnim.setValue(CONTENT_W);
+      if (newItems.length === 0) {
+        setDone(true);
+      } else {
+        const next = index >= newItems.length ? newItems.length - 1 : index;
+        setIndex(next);
+        loadCard(newItems[next]);
+        Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
+      }
+    }, 1400);
   };
 
   // ─── Загрузка ─────────────────────────────────────────────────────────────
@@ -330,7 +459,7 @@ export default function ReviewScreen() {
 
   return (
     <ScreenGradient>
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, position: 'relative' }}>
 
       {/* Хедер: назад + заголовок + счётчик */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 12 }}>
@@ -368,18 +497,26 @@ export default function ReviewScreen() {
         {/* Весь контент карточки анимируется при переходе (slideAnim) */}
         <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
 
+
           {/* Карточка с переводом — то что нужно составить */}
-          <View style={{
-            backgroundColor: t.bgCard,
-            borderRadius: 20,
-            padding: 28,
-            minHeight: 110,
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderWidth: 0.5,
-            borderColor: t.border,
-            marginBottom: 20,
-          }}>
+          <View
+            onLayout={e => setCardLayout({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height })}
+            style={{
+              backgroundColor: t.bgCard,
+              borderRadius: 20,
+              padding: 28,
+              minHeight: 110,
+              justifyContent: 'center',
+              alignItems: 'center',
+              borderWidth: 0.5,
+              borderColor: t.border,
+              marginBottom: 20,
+            }}
+          >
+            {/* Огонь привязан к карточке */}
+            {burning && (
+              <BurnOverlay width={cardLayout.width} height={cardLayout.height} onDone={() => {}} />
+            )}
             <Text style={{ color: t.textMuted, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
               {isUK ? 'Складіть фразу' : 'Составьте фразу'}
             </Text>
@@ -490,9 +627,31 @@ export default function ReviewScreen() {
         </Animated.View>
       </ScrollView>
 
-      {/* Кнопка "Далее" — появляется после ответа */}
+      {/* Кнопки "Далее" и "Сжечь" — появляются после ответа */}
       {status === 'result' && (
-        <View style={{ paddingHorizontal: 16, paddingBottom: 16, paddingTop: 8 }}>
+        <View style={{ paddingHorizontal: 16, paddingBottom: 16, paddingTop: 8, gap: 10 }}>
+          {/* Кнопка "Сжечь" — только если правильно за 20 секунд */}
+          {canBurn && (
+            <TouchableOpacity
+              onPress={burnCard}
+              style={{
+                backgroundColor: '#1a0a00',
+                borderRadius: 16,
+                paddingVertical: 14,
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                gap: 8,
+                borderWidth: 1.5,
+                borderColor: '#FF4500',
+              }}
+            >
+              <Text style={{ fontSize: 18 }}>🔥</Text>
+              <Text style={{ color: '#FF6B2B', fontSize: f.bodyLg, fontWeight: '700' }}>
+                {isUK ? 'Спалити картку' : 'Сжечь карточку'}
+              </Text>
+            </TouchableOpacity>
+          )}
           <TouchableOpacity
             onPress={advanceCard}
             style={{

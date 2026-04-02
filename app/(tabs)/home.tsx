@@ -253,22 +253,8 @@ export default function HomeScreen() {
         if (saved) {
           const p: string[] = JSON.parse(saved);
           const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-          // If lesson is complete (50/50), suggest the NEXT lesson instead
-          if (correct >= 50 && lastId < 32) {
-            const nextId = lastId + 1;
-            const nextSaved = await AsyncStorage.getItem(`lesson${nextId}_progress`);
-            if (nextSaved) {
-              const np: string[] = JSON.parse(nextSaved);
-              const nCorrect = np.filter(x => x === 'correct' || x === 'replay_correct').length;
-              setLastLesson({ id: nextId, name: lessonNames[nextId - 1], progress: nCorrect, score: (nCorrect / 50 * 5).toFixed(1) });
-            } else {
-              setLastLesson({ id: nextId, name: lessonNames[nextId - 1], progress: 0, score: '0.0' });
-            }
-          } else {
-            setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: (correct / 50 * 5).toFixed(1) });
-          }
+          setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: correct, score: (correct / 50 * 5).toFixed(1) });
         } else {
-          // No progress saved yet — still show the last opened lesson
           setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
         }
       }

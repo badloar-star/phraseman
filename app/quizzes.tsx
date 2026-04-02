@@ -6,16 +6,16 @@ import { useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Animated,
-  KeyboardAvoidingView,
-  Modal,
-  Platform,
-  Pressable,
-  ScrollView, Share,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
+    Animated,
+    KeyboardAvoidingView,
+    Modal,
+    Platform,
+    Pressable,
+    ScrollView, Share,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 import AddToFlashcard from '../../components/AddToFlashcard';
 import BonusXPCard from '../../components/BonusXPCard';
@@ -149,22 +149,6 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
 }
 
 // ── ВЫБОР УРОВНЯ ────────────────────────────────────────────────────────────
-
-// ── XP сохранение ────────────────────────────────────────────────────────────
-const saveXP = async (amount: number) => {
-  try {
-    const { getXPMultiplier } = await import('../club_boosts');
-    const multiplier = await getXPMultiplier();
-    const finalAmount = Math.floor(amount * multiplier);
-
-    const raw = await AsyncStorage.getItem('user_total_xp');
-    const current = parseInt(raw || '0') || 0;
-    await AsyncStorage.setItem('user_total_xp', String(current + finalAmount));
-  } catch (error) {
-    DebugLogger.error('quizzes.tsx:addXP', error, 'warning');
-  }
-};
-
 function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   const { goHome } = useTabNav();
   const { theme:t , f, themeMode } = useTheme();

@@ -1,22 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Animated, Pressable } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Speech from 'expo-speech';
 import * as Haptics from 'expo-haptics';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import { useTheme } from '../components/ThemeContext';
-import { useLang } from '../components/LangContext';
+import * as Speech from 'expo-speech';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
-import ScreenGradient from '../components/ScreenGradient';
+import { useLang } from '../components/LangContext';
 import PremiumCard from '../components/PremiumCard';
-import { addOrUpdateScore } from './hall_of_fame_utils';
+import ScreenGradient from '../components/ScreenGradient';
+import { useTheme } from '../components/ThemeContext';
 import { checkAchievements } from './achievements';
 import { updateTaskProgress } from './daily_tasks';
-import { DIALOGS, getDialogById, DialogScenario3, ChoiceStyle, GlossaryEntry } from './dialogs_data';
+import { ChoiceStyle, DIALOGS, DialogScenario3, getDialogById, GlossaryEntry } from './dialogs_data';
 import { loadSettings } from './settings_edu';
+import { registerXP } from './xp_manager';
 
 const NPC_SPEECH_OPTS = { language: 'en-US', rate: 0.9, pitch: 1.0 };
 
@@ -600,10 +600,8 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
     scoreMap[dialog.id] = score;
     await AsyncStorage.setItem('dialogs_scores', JSON.stringify(scoreMap));
     if (ending.xpReward > 0) {
-      const raw = await AsyncStorage.getItem('user_total_xp');
-      const current = parseInt(raw || '0') || 0;
-      await AsyncStorage.setItem('user_total_xp', String(current + ending.xpReward));
-      if (userName) addOrUpdateScore(userName, ending.xpReward, lang);
+      const name = await AsyncStorage.getItem('user_name');
+      if (name) { await registerXP(ending.xpReward, 'dialog_complete', name, lang); }
     }
     checkAchievements({ type: 'dialog', totalCompleted: list.length, totalDialogs: DIALOGS.length }).catch(() => {});
     await updateTaskProgress('daily_active', 1);

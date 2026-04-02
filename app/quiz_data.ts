@@ -21,7 +21,7 @@ type QuizPoolEntry = {
   level: PhraseLevel;
 };
 
-const shuffle = <T,>(arr: T[]): T[] => [...arr].sort(() => Math.random() - 0.5);
+import { shuffle } from './utils_shuffle';
 
 // ============================================
 // EASY POOL — A1–A2

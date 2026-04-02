@@ -1,22 +1,22 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, TouchableOpacity, Animated, Modal, Pressable, Share, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTheme } from '../components/ThemeContext';
-import ScreenGradient from '../components/ScreenGradient';
-import { useLang } from '../components/LangContext';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, Image, Modal, Pressable, Share, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import BonusXPCard from '../components/BonusXPCard';
 import ContentWrap from '../components/ContentWrap';
-import { addOrUpdateScore } from './hall_of_fame_utils';
-import { checkAchievements } from './achievements';
-import { recordLessonForRepair } from './streak_repair';
-import { hapticTap } from '../hooks/use-haptics';
-import { canShowReview, markReviewPrompted, requestNativeReview } from './review_utils';
-import { STORE_URL } from './config';
-import { saveMedalProgress, checkGemAchievements, getMedalTier, type MedalTier } from './medal_utils';
-import { calculateRewardWithBonus } from './variable_reward_system';
+import { useLang } from '../components/LangContext';
+import ScreenGradient from '../components/ScreenGradient';
+import { useTheme } from '../components/ThemeContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
+import { hapticTap } from '../hooks/use-haptics';
+import { checkAchievements } from './achievements';
+import { STORE_URL } from './config';
+import { checkGemAchievements, saveMedalProgress, type MedalTier } from './medal_utils';
+import { canShowReview, markReviewPrompted, requestNativeReview } from './review_utils';
+import { recordLessonForRepair } from './streak_repair';
+import { calculateRewardWithBonus } from './variable_reward_system';
 
 // Medal images for completion screen
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
@@ -24,7 +24,6 @@ const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
   silver:  require('../assets/images/levels/serebro.png'),
   gold:    require('../assets/images/levels/zoloto.png'),
 };
-import BonusXPCard from '../components/BonusXPCard';
 
 const BONUS = 500;
 
@@ -178,21 +177,16 @@ export default function LessonComplete() {
       const key = `lesson${lessonId}_bonus_granted`;
       const already = await AsyncStorage.getItem(key);
       if (already) {
-        const eligible = await canShowReview();
-        if (eligible) setShowReview(true);
       } else {
-        const [name, xpRaw] = await Promise.all([
-          AsyncStorage.getItem('user_name'),
-          AsyncStorage.getItem('user_total_xp'),
-        ]);
-        const currentXP = parseInt(xpRaw || '0') || 0;
+        const name = await AsyncStorage.getItem('user_name');
+
 
         // Рассчитываем переменную награду
         const reward = calculateRewardWithBonus(BONUS);
-        const totalXPToAdd = reward.totalXP;
-
-        await AsyncStorage.setItem('user_total_xp', String(currentXP + totalXPToAdd));
-        if (name) addOrUpdateScore(name, totalXPToAdd, lang);
+        
+        if (name) {
+          await registerXP(reward.totalXP, 'bonus_chest', name, lang);
+        }
 
         // Показываем карточку бонуса если был выигран
         if (reward.hasBonusWon) {
@@ -201,9 +195,9 @@ export default function LessonComplete() {
         }
 
         await AsyncStorage.setItem(key, '1');
-        const eligible = await canShowReview();
-        if (eligible) setShowReview(true);
       }
+      const eligible = await canShowReview();
+      if (eligible) setShowReview(true);
 
       // [ACHIEVEMENT] Считаем сколько уроков завершено + проверяем идеальность
       let lessonCount = 0;

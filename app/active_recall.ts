@@ -65,6 +65,10 @@ const MAX_EASE_FACTOR     = 2.5;
 const GOOD_QUALITY        = 3;
 /** Максимум фраз в одной сессии повторения — не перегружаем пользователя */
 export const SESSION_LIMIT = 7;
+/** Максимальное кол-во фраз в хранилище — защита от переполнения */
+const MAX_ITEMS = 300;
+/** Фраза не показывалась N дней → авто-удаление (пользователь всё равно забыл) */
+const AUTO_DELETE_DAYS = 60;
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
 
@@ -115,7 +119,19 @@ export async function recordMistake(
   lessonId:         number,
   correctAnswerUK?: string,
 ): Promise<void> {
-  const items = await loadItems();
+  const raw = await loadItems();
+
+  // Авто-удаление: фразы, которые не показывались AUTO_DELETE_DAYS дней
+  const cutoff = Date.now() - AUTO_DELETE_DAYS * MS_PER_DAY;
+  let items = raw.filter(i => i.lastReviewed >= cutoff);
+
+  // Лимит хранилища: если > MAX_ITEMS, удаляем самые лёгкие и самые старые
+  if (items.length >= MAX_ITEMS) {
+    items = items
+      .sort((a, b) => b.errorCount - a.errorCount || b.createdAt - a.createdAt)
+      .slice(0, MAX_ITEMS - 1);
+  }
+
   const existing = items.find(i => i.phrase === phrase);
 
   if (existing) {
@@ -166,10 +182,25 @@ export async function getDueItems(limit = SESSION_LIMIT): Promise<RecallItem[]> 
   const items = await loadItems();
   const endOfToday = todayStart() + MS_PER_DAY - 1;
 
-  return items
+  const due = items
     .filter(i => i.nextDue <= endOfToday)
-    .sort((a, b) => b.errorCount - a.errorCount || a.nextDue - b.nextDue)
-    .slice(0, limit);
+    .sort((a, b) => b.errorCount - a.errorCount || a.nextDue - b.nextDue);
+
+  const selected = due.slice(0, limit);
+  const overflow = due.slice(limit); // остаток сегодняшних — переносим на завтра
+
+  if (overflow.length > 0) {
+    const tomorrow = daysFromNow(1);
+    const selectedSet = new Set(selected.map(i => i.phrase));
+    for (const item of items) {
+      if (!selectedSet.has(item.phrase) && item.nextDue <= endOfToday) {
+        item.nextDue = tomorrow;
+      }
+    }
+    await saveItems(items);
+  }
+
+  return selected;
 }
 
 /**

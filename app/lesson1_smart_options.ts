@@ -426,8 +426,6 @@ const makeExpansionOptions = (token: string): string[] => {
 // ════════════════════════════════════════════════════════════════════════════════════
 // ==================== NEW: Per-word distractor logic ====================
 const getPerWordDistracts = (phrase: any, wordIndex: number = 0): string[] => {
-  const shuffle = <T,>(a: T[]): T[] => [...a].sort(() => Math.random() - 0.5);
-
   // NEW format: phrase has .words array with explicit distractors
   if (phrase && phrase.words && phrase.words[wordIndex]) {
     const wordData = phrase.words[wordIndex];
@@ -440,8 +438,6 @@ const getPerWordDistracts = (phrase: any, wordIndex: number = 0): string[] => {
 };
 
 const makeSmartOptionsL1 = (english: string, wordIndex: number = 0): string[] => {
-  const shuffle = <T,>(a: T[]): T[] => [...a].sort(() => Math.random() - 0.5);
-
   // Find the phrase structure from L1_PHRASE_STRUCTURES
   const phraseStr = L1_PHRASE_STRUCTURES.find(ps =>
     ps.phrase.toLowerCase() === english.toLowerCase()
@@ -468,7 +464,6 @@ const makeSmartOptionsL1 = (english: string, wordIndex: number = 0): string[] =>
 
 const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: number = 1): string[] => {
   const normalizePool = (w: string) => w.toLowerCase() === 'i' ? 'I' : w.toLowerCase();
-  const shuffle = <T,>(a: T[]): T[] => [...a].sort(() => Math.random() - 0.5);
 
   // Phrasal-aware token array (phrasal verbs merged into single tokens)
   const allWords = tokenizePhrase(english);
@@ -2772,16 +2767,9 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
 };
 
 export {
-  WORD_POOLS_L1,
-  CONTRACTION_MAP,
-  LESSON_TOPIC_POOLS,
-  VERB_FORM_GROUPS,
-  PHRASAL_SET,
-  tokenizePhrase,
-  getPhraseWords,
-  lookupContraction,
-  makeExpansionOptions,
-  getPerWordDistracts,
-  makeSmartOptionsL1,
-  makeSmartOptions,
+    CONTRACTION_MAP,
+    LESSON_TOPIC_POOLS, PHRASAL_SET, VERB_FORM_GROUPS, WORD_POOLS_L1, getPerWordDistracts, getPhraseWords,
+    lookupContraction,
+    makeExpansionOptions, makeSmartOptions, makeSmartOptionsL1, tokenizePhrase
 };
+

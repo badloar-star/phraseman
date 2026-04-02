@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { Stack, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { View, Platform } from 'react-native';
-import { ThemeProvider } from '../components/ThemeContext';
-import { LangProvider, useLang } from '../components/LangContext';
+import { Stack, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { View } from 'react-native';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
+import { LangProvider, useLang } from '../components/LangContext';
 import Onboarding from '../components/onboarding';
+import { ThemeProvider } from '../components/ThemeContext';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
-import { scheduleWeeklyRecapNotification, scheduleMonthlyRecapNotification, scheduleStreakWarningIfNeeded, schedulePhrasOfDayNotification } from './notifications';
 import { preloadImages } from './image_preload';
-import { IS_EXPO_GO } from './config';
+import { scheduleMonthlyRecapNotification, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
+import { registerXP } from './xp_manager';
 
 // RevenueCat API keys must be set via environment variables.
 // See revenuecat_init.ts for singleton initialization pattern.
@@ -46,10 +46,10 @@ const runSessionChecks = async () => {
       const cycle = ((consecutive - 1) % 7) + 1;
       const bonusXP = cycle === 7 ? 50 : cycle >= 5 ? 15 : cycle >= 3 ? 10 : 5;
 
-      // Начислить XP без лидерборда (просто user_total_xp)
-      const xpRaw = await AsyncStorage.getItem('user_total_xp');
-      const xp = parseInt(xpRaw || '0') || 0;
-      await AsyncStorage.setItem('user_total_xp', String(xp + bonusXP));
+      const name = await AsyncStorage.getItem('user_name');
+      if (name) {
+        await registerXP(bonusXP, 'daily_login_bonus', name);
+      }
 
       // Сохранить бонус для отображения на Home
       await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle }));
@@ -240,4 +240,3 @@ export default function RootLayout() {
     </ThemeProvider>
   );
 }
-

@@ -1,46 +1,55 @@
-import React, { useState, useCallback, useEffect, useRef, useMemo } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as Haptics from 'expo-haptics';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import * as Speech from 'expo-speech';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Pressable,
-  Animated, useWindowDimensions, TextInput, KeyboardAvoidingView, ScrollView,
-  Platform, Modal,
+  Animated,
+  KeyboardAvoidingView,
+  Modal,
+  Platform,
+  Pressable,
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity, TouchableWithoutFeedback,
+  useWindowDimensions,
+  View
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import ScreenGradient from '../components/ScreenGradient';
-import { Ionicons } from '@expo/vector-icons';
-import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Speech from 'expo-speech';
-import * as Haptics from 'expo-haptics';
-import { useTheme, getCardShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import ScreenGradient from '../components/ScreenGradient';
+import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { isCorrectAnswer } from '../constants/contractions';
-import { addOrUpdateScore } from './hall_of_fame_utils';
 import { checkAchievements } from './achievements';
-import { updateMultipleTaskProgress, resetAndUpdateTaskProgress } from './daily_tasks';
+import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
+import { registerXP } from './xp_manager';
 // [SRS] Модуль интервального повторения (active_recall.ts).
 // recordMistake() вызывается при каждом неверном ответе в уроке.
 // Фраза попадает в AsyncStorage ('active_recall_items') с алгоритмом SM-2:
 //   interval=1 день, easeFactor=2.5. При повторных ошибках easeFactor снижается.
 // Связь: review.tsx читает эти данные через getDueItems() и показывает карточки.
 // Связь: home.tsx показывает счётчик getDueItems().length на главном экране.
-import { recordMistake } from './active_recall';
-import { findAllExplanations } from './feedback_engine';
-import { getErrorTrapsByIndex } from './error_traps/index';
-import type { FeedbackResult } from './types/feedback';
-import { getLessonData, getLessonIntroScreens, getLessonEncouragementScreens, ALL_LESSONS_RU, ALL_LESSONS_UK } from './lesson_data_all';
-import { hapticTap } from '../hooks/use-haptics';
 import AddToFlashcard from '../components/AddToFlashcard';
-import { loadMedalInfo, getProgressCellColor } from './medal_utils';
-import { spendEnergy, checkAndRecover } from './energy_system';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
+import { hapticTap } from '../hooks/use-haptics';
+import { recordMistake } from './active_recall';
+import { checkAndRecover } from './energy_system';
+import { getErrorTrapsByIndex } from './error_traps/index';
+import { findAllExplanations } from './feedback_engine';
+import { ALL_LESSONS_RU, ALL_LESSONS_UK, getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import LessonIntroScreens from './lesson_intro_screens';
+import { getProgressCellColor, loadMedalInfo } from './medal_utils';
+import type { FeedbackResult } from './types/feedback';
 
-import { tryUnlockNextLesson } from './lesson_lock_system';
 import { ENERGY_MESSAGES_RU, ENERGY_MESSAGES_UK } from './lesson1_energy';
 import {
+  getPerWordDistracts,
   getPhraseWords, lookupContraction,
-  makeExpansionOptions, getPerWordDistracts,
+  makeExpansionOptions,
 } from './lesson1_smart_options';
+import { tryUnlockNextLesson } from './lesson_lock_system';
 
 let SpeechRec: any = null;
 let tapHintShownThisSession = false;
@@ -64,18 +73,6 @@ const DEFAULT_SETTINGS: Settings = {
 };
 
 
-// ── XP сохранение ────────────────────────────────────────────────────────────
-const saveXP = async (amount: number) => {
-  try {
-    const { getXPMultiplier } = await import('./club_boosts');
-    const multiplier = await getXPMultiplier();
-    const finalAmount = Math.floor(amount * multiplier);
-
-    const raw = await AsyncStorage.getItem('user_total_xp');
-    const current = parseInt(raw || '0') || 0;
-    await AsyncStorage.setItem('user_total_xp', String(current + finalAmount));
-  } catch {}
-};
 // ── Гексагональный прогресс-индикатор ────────────────────────────────────────
 // LessonHexProgress is now imported from components/LessonHexProgress.tsx
 
@@ -769,9 +766,9 @@ export default function LessonScreen() {
       ]);
       // Начисляем XP: 1-3 в зависимости от стрика
       const xpAmount = correctStreakRef.current >= 5 ? 3 : correctStreakRef.current >= 3 ? 2 : 1;
-      saveXP(xpAmount);
+      
       if (userNameRef.current) {
-        addOrUpdateScore(userNameRef.current, xpAmount, lang);
+        await registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang);
       }
       // [COMBO] Ачивки за серию правильных ответов
       checkAchievements({ type: 'combo', count: correctStreakRef.current }).catch(() => {});
@@ -1162,6 +1159,3 @@ export default function LessonScreen() {
     </TouchableWithoutFeedback>
   );
 }
-
-
-

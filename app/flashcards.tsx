@@ -1,27 +1,37 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import {
-  View, Text, StyleSheet, TouchableOpacity, Animated,
-  SafeAreaView, StatusBar, Alert, ActivityIndicator,
-  ScrollView, FlatList, TextInput, Keyboard, Dimensions,
-  KeyboardAvoidingView, Platform,
-} from 'react-native';
-import { useRouter } from 'expo-router';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTheme } from '../components/ThemeContext';
-import { useLang } from '../components/LangContext';
-import ContentWrap from '../components/ContentWrap';
-import ScreenGradient from '../components/ScreenGradient';
-import { loadFlashcards, removeFlashcard, Flashcard } from '../hooks/use-flashcards';
-import { checkAchievements } from './achievements';
+import { useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import {
+    ActivityIndicator,
+    Alert,
+    Animated,
+    Dimensions,
+    Keyboard,
+    KeyboardAvoidingView, Platform,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import ContentWrap from '../components/ContentWrap';
+import { useLang } from '../components/LangContext';
+import ScreenGradient from '../components/ScreenGradient';
+import { useTheme } from '../components/ThemeContext';
+import { Flashcard, loadFlashcards, removeFlashcard } from '../hooks/use-flashcards';
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 const CUSTOM_KEY = 'custom_flashcards_v2';
 const CARD_H  = 260;   // full card height — never changes
 const PEEK    = 56;    // visible top strip of each non-active card
 const LIST_PAD = Math.round((SCREEN_H - CARD_H) / 2); // center first card
+const GAP = 92;    // extra separation pushed away from active card during scroll
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type CategoryId = 'emotions' | 'fillers' | 'reactions' | 'traps' | 'phrasal' | 'situations' | 'connectors' | 'saved' | 'custom';
@@ -306,6 +316,9 @@ export default function FlashcardsScreen() {
   const [customCards, setCustomCards] = useState<CardItem[]>([]);
   const [index, setIndex]             = useState(0);
   const [isFlipped, setIsFlipped]     = useState(false);
+  const [allFlipped, setAllFlipped]   = useState(false);
+  const [isFlipping, setIsFlipping]   = useState(false);
+  const cardFlipAnims                 = useRef<Animated.Value[]>([]);
   const isFlippedRef                  = useRef(false);
   const [loading, setLoading]         = useState(true);
   const sessionDoneRef                = useRef(false); // achievement fired once per session
@@ -333,6 +346,7 @@ export default function FlashcardsScreen() {
   const scrollY     = useRef(new Animated.Value(0)).current;
   const focusAnim   = useRef(new Animated.Value(1)).current;
 
+
   // ── Load ───────────────────────────────────────────────────────────────────
   const loadAll = useCallback(async () => {
     setLoading(true);
@@ -359,6 +373,7 @@ export default function FlashcardsScreen() {
     setIndex(0);
     setIsFlipped(false);
     flipAnim.setValue(0);
+    cardFlipAnims.current.forEach(a => a.setValue(0));
   }, [activeCat, savedCards, customCards]);
 
   // ── Apply filter ───────────────────────────────────────────────────────────
@@ -386,6 +401,12 @@ export default function FlashcardsScreen() {
     Animated.spring(focusAnim, { toValue: 1, useNativeDriver: true, friction: 7, tension: 120 }).start();
   }, [index]);
 
+  // ── Sync per-card flip anims array ────────────────────────────────────────
+  useEffect(() => {
+    const cur = cardFlipAnims.current;
+    while (cur.length < filteredCards.length) cur.push(new Animated.Value(0));
+  }, [filteredCards.length]);
+
   const currentCard = filteredCards[index] ?? null;
 
   // ── Category switch with slide animation ───────────────────────────────────
@@ -404,8 +425,27 @@ export default function FlashcardsScreen() {
     const next = !isFlipped;
     setIsFlipped(next);
     isFlippedRef.current = next;
-    Animated.spring(flipAnim, { toValue, useNativeDriver: true, friction: 8, tension: 70 }).start();
+    const cardAnim = cardFlipAnims.current[index];
+    const cfg = { useNativeDriver: true, friction: 9, tension: 120 };
+    setIsFlipping(true);
+    if (cardAnim) Animated.spring(cardAnim, { toValue, ...cfg }).start();
+    Animated.spring(flipAnim, { toValue, ...cfg }).start(() => setIsFlipping(false));
   };
+
+  // ── Flip all cards top-to-bottom with 80ms stagger ────────────────────────
+  const handleFlipAll = useCallback(() => {
+    const toValue = allFlipped ? 0 : 1;
+    const cfg = { useNativeDriver: true, friction: 8, tension: 80 };
+    // Active card (flipAnim) flips immediately
+    Animated.spring(flipAnim, { toValue, ...cfg }).start();
+    // All other cards flip with stagger
+    cardFlipAnims.current.slice(0, filteredCards.length).forEach((anim, i) => {
+      setTimeout(() => Animated.spring(anim, { toValue, ...cfg }).start(), i * 80);
+    });
+    setAllFlipped(!allFlipped);
+    setIsFlipped(toValue === 1);
+    isFlippedRef.current = toValue === 1;
+  }, [allFlipped, filteredCards.length, flipAnim]);
 
   // ── Flip back then change index ────────────────────────────────────────────
   const pendingIndexRef = useRef<number | null>(null);
@@ -558,7 +598,7 @@ export default function FlashcardsScreen() {
   // ── Practice ───────────────────────────────────────────────────────────────
   const startPractice = () => {
     if (customCards.length === 0) return;
-    const shuffled = [...customCards].sort(() => Math.random() - 0.5);
+    const shuffled = shuffle([...customCards]);
     setPracticeQueue(shuffled);
     setPracticeInput('');
     setPracticeStatus('idle');
@@ -992,6 +1032,26 @@ export default function FlashcardsScreen() {
           </View>
         </View>
 
+        {/* Flip all button */}
+        {filteredCards.length > 0 && (
+          <TouchableOpacity
+            onPress={handleFlipAll}
+            style={{
+              marginHorizontal: 16, marginTop: 8, marginBottom: 4,
+              paddingVertical: 8, paddingHorizontal: 16,
+              borderRadius: 20, borderWidth: 1,
+              borderColor: allFlipped ? t.accent : t.border,
+              backgroundColor: allFlipped ? t.accent + '18' : 'transparent',
+              flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6,
+            }}
+          >
+            <Ionicons name="sync-outline" size={15} color={allFlipped ? t.accent : t.textSecond} />
+            <Text style={{ fontSize: 13, fontWeight: '600', color: allFlipped ? t.accent : t.textSecond }}>
+              {lang === 'uk' ? 'Розгорнути всі' : 'Развернуть все'}
+            </Text>
+          </TouchableOpacity>
+        )}
+
         {/* Card stack: all cards full size, stacked with PEEK overlap, active on top */}
         {(() => {
           // Total scroll content: first card centered, each card adds PEEK
@@ -1018,75 +1078,100 @@ export default function FlashcardsScreen() {
               )}
             >
               <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
+                {/* Overlay: blocks overlapping cards behind active card during flip */}
+                {isFlipping && (
+                  <View
+                    pointerEvents="none"
+                    style={{
+                      position: 'absolute',
+                      top: LIST_PAD + index * PEEK,
+                      left: 16, right: 16,
+                      height: CARD_H,
+                      zIndex: 998,
+                      elevation: 19,
+                      backgroundColor: t.bgCard,
+                      borderRadius: 20,
+                    }}
+                  />
+                )}
                 {filteredCards.map((item, itemIdx) => {
                   const isActive = itemIdx === index;
-                  // Each card top: LIST_PAD + itemIdx * PEEK
                   const cardTop = LIST_PAD + itemIdx * PEEK;
                   const cardBorderColor = isActive ? t.accent + '80' : t.border;
                   const tr = lang === 'uk' ? item.uk : item.ru;
                   const srcBadgeColor = SOURCE_COLORS[item.source ?? 'lesson'] ?? '#4A90D9';
                   const srcLabel = item.source ? (s.source as any)[item.source] : null;
 
+                  // Per-card flip animation
+                  const cAnim = cardFlipAnims.current[itemIdx] ?? new Animated.Value(0);
+                  const fAnim = isActive ? flipAnim : cAnim;
+                  // scaleX squeeze flip — card narrows to 0 then expands with back face
+                  // No transparency at any point → no see-through artifacts
+                  const cFrontScaleX = fAnim.interpolate({ inputRange:[0,0.5,1], outputRange:[1,0,0] });
+                  const cBackScaleX  = fAnim.interpolate({ inputRange:[0,0.5,1], outputRange:[0,0,1] });
+                  const cFrontOp     = fAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[1,1,0,0] });
+                  const cBackOp      = fAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[0,0,1,1] });
+
                   return (
-                    <TouchableOpacity
+                    <View
                       key={item.id}
-                      activeOpacity={isActive ? 0.92 : 1}
-                      onPress={isActive ? handleFlip : () => {
-                        (flatListRef.current as any)?.scrollTo({
-                          y: itemIdx * PEEK, animated: true,
-                        });
-                      }}
                       style={{
                         position: 'absolute',
                         top: cardTop,
                         left: 16, right: 16,
-                        height: CARD_H,   // ALWAYS full height — never shrinks
+                        height: CARD_H,
                         zIndex: isActive ? 999 : itemIdx,
                         elevation: isActive ? 20 : itemIdx + 1,
+                        backgroundColor: 'transparent',
                       }}
                     >
-                      {/* Front face */}
-                      <Animated.View style={[st.card, {
-                        backgroundColor: t.bgCard,
-                        borderColor: cardBorderColor,
-                        transform: [
-                          { perspective: 1200 },
-                          { rotateY: isActive ? frontRotate : '0deg' },
-                          { scale: isActive ? focusAnim : 1 },
-                        ],
-                        opacity: isActive ? frontOp : 1,
-                        shadowOpacity: isActive ? 0.28 : 0.08,
-                        shadowRadius: isActive ? 14 : 6,
-                      }]}>
-                        {srcLabel && (
-                          <View style={[st.sourceBadge, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
-                            <Text style={[st.sourceBadgeText, { color: srcBadgeColor }]}>
-                              {srcLabel}{item.sourceId ? ` ${item.sourceId}` : ''}
-                            </Text>
-                          </View>
-                        )}
-                        {isActive && (
-                          <>
-                            <Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 14 }}>EN</Text>
-                            <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{item.en}</Text>
-                            <Text style={{ position: 'absolute', bottom: 18, color: t.textGhost, fontSize: f.caption }}>{s.tapFlip}</Text>
-                          </>
-                        )}
-                      </Animated.View>
+                      <TouchableOpacity
+                        activeOpacity={isActive ? 0.92 : 1}
+                        onPress={isActive ? handleFlip : () => {
+                          (flatListRef.current as any)?.scrollTo({ y: itemIdx * PEEK, animated: true });
+                        }}
+                        style={{ flex: 1 }}
+                      >
 
-                      {/* Back face — active only */}
-                      {isActive && (
+                        {/* Front face */}
+                        <Animated.View style={[st.card, {
+                          backgroundColor: t.bgCard,
+                          borderColor: cardBorderColor,
+                          transform: [
+                            { scaleX: cFrontScaleX },
+                            { scale: isActive ? focusAnim : 1 },
+                          ],
+                          opacity: cFrontOp,
+                          shadowOpacity: isActive ? 0.28 : 0.08,
+                          shadowRadius: isActive ? 14 : 6,
+                        }]}>
+                          {srcLabel && (
+                            <View style={[st.sourceBadge, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
+                              <Text style={[st.sourceBadgeText, { color: srcBadgeColor }]}>
+                                {srcLabel}{item.sourceId ? ` ${item.sourceId}` : ''}
+                              </Text>
+                            </View>
+                          )}
+                          {isActive && (
+                            <>
+                              <Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 14 }}>EN</Text>
+                              <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{item.en}</Text>
+                              <Text style={{ position: 'absolute', bottom: 18, color: t.textGhost, fontSize: f.caption }}>{s.tapFlip}</Text>
+                            </>
+                          )}
+                        </Animated.View>
+
+                        {/* Back face */}
                         <Animated.View style={[st.card, {
                           backgroundColor: t.bgSurface,
                           borderColor: cardBorderColor,
                           transform: [
-                            { perspective: 1200 },
-                            { rotateY: backRotate },
-                            { scale: focusAnim },
+                            { scaleX: cBackScaleX },
+                            { scale: isActive ? focusAnim : 1 },
                           ],
-                          opacity: backOp,
-                          shadowOpacity: 0.28,
-                          shadowRadius: 14,
+                          opacity: cBackOp,
+                          shadowOpacity: isActive ? 0.28 : 0.08,
+                          shadowRadius: isActive ? 14 : 6,
                         }]}>
                           {srcLabel && (
                             <View style={[st.sourceBadge, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
@@ -1106,10 +1191,13 @@ export default function FlashcardsScreen() {
                           ) : (
                             <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{tr}</Text>
                           )}
-                          <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 14, textAlign: 'center', fontStyle: 'italic' }}>{item.en}</Text>
+                          {/* Hide EN hint when flip-all active — practice RU→EN */}
+                          {!allFlipped && (
+                            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 14, textAlign: 'center', fontStyle: 'italic' }}>{item.en}</Text>
+                          )}
                         </Animated.View>
-                      )}
-                    </TouchableOpacity>
+                      </TouchableOpacity>
+                    </View>
                   );
                 })}
               </Animated.View>

@@ -1,20 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import {
-  View, Text, TouchableOpacity, ScrollView, Alert, Switch,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useTheme } from '../components/ThemeContext';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useState } from 'react';
+import {
+  Alert,
+  ScrollView,
+  Switch,
+  Text, TouchableOpacity,
+  View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
+import { useTheme } from '../components/ThemeContext';
+import { unlockAllFrames } from '../constants/avatars';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements } from './achievements';
-import { unlockAllFrames } from '../constants/avatars';
-import { checkLeagueOnAppOpen, LeagueResult, calculateResult, savePendingResult, loadLeagueState } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
+import { calculateResult, LeagueResult, loadLeagueState, savePendingResult } from './league_engine';
 import LeagueResultModal from './LeagueResultModal';
+import { registerXP } from './xp_manager';
 
 const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
   icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
@@ -153,9 +158,9 @@ export default function SettingsTestersFunctions() {
 
   const addXP = async () => {
     doHaptic();
-    try {
-      const current = parseInt(await AsyncStorage.getItem('user_total_xp') || '0') || 0;
-      await AsyncStorage.setItem('user_total_xp', String(current + 5000));
+    try { // Use registerXP for adding XP
+      const name = await AsyncStorage.getItem('user_name');
+      if (name) { await registerXP(5000, 'bonus_chest', name, lang); }
       Alert.alert(isUK ? 'Готово' : 'Готово', isUK ? '5000 XP додано' : '5000 XP добавлено');
     } catch {
       Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось додати XP' : 'Не удалось добавить XP');

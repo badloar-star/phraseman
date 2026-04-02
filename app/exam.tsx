@@ -1,18 +1,21 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  View, Text, TouchableOpacity,
-  ScrollView, Share,
+    ScrollView, Share,
+    Text, TouchableOpacity,
+    View,
 } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import { DEV_MODE, STORE_URL } from './config';
+import { useTheme } from '../components/ThemeContext';
+import { registerXP } from './xp_manager';
 import { checkAchievements } from './achievements';
+import { DEV_MODE, STORE_URL } from './config';
 import { addOrUpdateScore } from './hall_of_fame_utils';
+import { shuffle } from './utils_shuffle';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 
@@ -221,8 +224,6 @@ const EXAM_POOL: ExamQuestion[] = [
   {lessonNum:32, topic:'Повторение всех тем',    topicUK:'Повторення всіх тем',      q:'Correct: She [have] worked here for years.', opts:['has','have','had','is'],                                             correct:0, type:'error'},
 ];
 
-const shuffle = <T,>(a:T[]):T[] => [...a].sort(()=>Math.random()-0.5);
-
 function ProgressRing({progress,size=70,color,bg}:{progress:number;size?:number;color:string;bg:string}) {
   const pct = Math.round(progress*100);
   return(
@@ -342,18 +343,9 @@ export default function ExamScreen() {
     const xp = 50 + Math.round(p / 2);
     checkAchievements({ type: 'exam', pct: p }).catch(() => {});
     try {
-      const [nameRaw, xpRaw] = await Promise.all([
-        AsyncStorage.getItem('user_name'),
-        AsyncStorage.getItem('user_total_xp'),
-      ]);
-      const cur = parseInt(xpRaw || '0') || 0;
-      await AsyncStorage.setItem('user_total_xp', String(cur + xp));
+      const nameRaw = await AsyncStorage.getItem('user_name');
       if (nameRaw) {
-        const { lang } = await (async () => {
-          const l = await AsyncStorage.getItem('app_lang');
-          return { lang: (l === 'uk' ? 'uk' : 'ru') as 'ru' | 'uk' };
-        })();
-        addOrUpdateScore(nameRaw, xp, lang);
+        await registerXP(xp, 'exam_complete', nameRaw, lang as 'ru'|'uk');
       }
     } catch {}
     setPhase('result');

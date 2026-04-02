@@ -11,6 +11,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { registerXP } from './xp_manager';
 
 export interface WagerTier {
   tierIdx:      number;
@@ -76,9 +77,9 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
     const xpRaw = await AsyncStorage.getItem('user_total_xp');
     const currentXP = parseInt(xpRaw || '0') || 0;
     if (currentXP < tier.betXP) return false;
-
-    await AsyncStorage.setItem('user_total_xp', String(currentXP - tier.betXP));
-
+    
+    await registerXP(-tier.betXP, 'wager_bet', ''); // Используем менеджер
+    
     const wager: WagerState = {
       active:       true,
       startDate:    today(),
@@ -119,9 +120,7 @@ export const checkWagerProgress = async (
     const daysKept = wager.daysKept + 1;
 
     if (daysKept >= wager.daysRequired) {
-      const xpRaw = await AsyncStorage.getItem('user_total_xp');
-      const xp = parseInt(xpRaw || '0') || 0;
-      await AsyncStorage.setItem('user_total_xp', String(xp + wager.rewardXP));
+      await registerXP(wager.rewardXP, 'wager_win', ''); // Используем менеджер
       await saveWager({ ...wager, active: false, result: 'won', daysKept, lastChecked: t });
       return 'won';
     }

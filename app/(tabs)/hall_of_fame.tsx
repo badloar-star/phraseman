@@ -1,20 +1,23 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, FlatList, TouchableOpacity, Modal, Animated, Pressable } from 'react-native';
-import { useTabNav } from '../TabContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '../../components/ThemeContext';
-import { useLang, getLeague } from '../../components/LangContext';
-import ContentWrap from '../../components/ContentWrap';
-import ScreenGradient from '../../components/ScreenGradient';
-import {
-  loadLeaderboard, addOrUpdateScore, pointsForAnswer,
-  streakMultiplier, getMyWeekPoints, LeaderEntry,
-} from '../hall_of_fame_utils';
-import { loadLeagueState, LEAGUES } from '../league_engine';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, FlatList, Modal, Pressable, Text, TouchableOpacity, View } from 'react-native';
 import AnimatedFrame from '../../components/AnimatedFrame';
-import { getBotAvatarData, getBestAvatarForLevel, getBestFrameForLevel, getAvatarImageByIndex } from '../../constants/avatars';
+import ContentWrap from '../../components/ContentWrap';
+import { getLeague, useLang } from '../../components/LangContext';
+import ScreenGradient from '../../components/ScreenGradient';
+import { useTheme } from '../../components/ThemeContext';
+import { getAvatarImageByIndex, getBestAvatarForLevel, getBestFrameForLevel, getBotAvatarData } from '../../constants/avatars';
 import { getLevelFromXP } from '../../constants/theme';
+import {
+    addOrUpdateScore,
+    getMyWeekPoints, LeaderEntry,
+    loadLeaderboard,
+    pointsForAnswer,
+    streakMultiplier,
+} from '../hall_of_fame_utils';
+import { LEAGUES, loadLeagueState } from '../league_engine';
+import { useTabNav } from '../TabContext';
 
 export { addOrUpdateScore, pointsForAnswer, streakMultiplier };
 
@@ -246,7 +249,7 @@ async function updateNPCDeltas(): Promise<Record<string, number>> {
     const THREE_H = 3 * 60 * 60 * 1000;
     if (!data.lastUpdate3h || now - new Date(data.lastUpdate3h).getTime() >= THREE_H) {
       const count = 10 + Math.floor(Math.random() * 11);
-      const shuffled = [...NPC_PLAYERS].sort(() => Math.random() - 0.5).slice(0, count);
+      const shuffled = shuffle([...NPC_PLAYERS]).slice(0, count);
       for (const npc of shuffled) {
         const gain = 3 + Math.floor(Math.random() * 186);
         data.deltas[npc.name] = (data.deltas[npc.name] ?? 0) + gain;
@@ -259,7 +262,7 @@ async function updateNPCDeltas(): Promise<Record<string, number>> {
     if (data.lastUpdateDaily !== today) {
       const topBots = NPC_PLAYERS.slice(0, 10);
       const count = 1 + Math.floor(Math.random() * 3);
-      const chosen = [...topBots].sort(() => Math.random() - 0.5).slice(0, count);
+      const chosen = shuffle([...topBots]).slice(0, count);
       for (const npc of chosen) {
         data.deltas[npc.name] = (data.deltas[npc.name] ?? 0) + 500;
       }

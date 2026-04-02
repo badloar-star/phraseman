@@ -1,23 +1,27 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
-import {
-  View, Text, TextInput, TouchableOpacity, ScrollView,
-  TouchableWithoutFeedback, Keyboard, Platform, Animated,
-} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
-import { hapticTap } from '../hooks/use-haptics';
-import { useTheme } from '../components/ThemeContext';
-import { useLang } from '../components/LangContext';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import {
+  Animated,
+  Keyboard, Platform,
+  ScrollView,
+  Text, TextInput, TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
-import ScreenGradient from '../components/ScreenGradient';
-import { addOrUpdateScore } from './hall_of_fame_utils';
+import { useLang } from '../components/LangContext';
+import ScreenGradient from '../components/ScreenGradient'; // Import registerXP
+import { useTheme } from '../components/ThemeContext';
+import { hapticTap } from '../hooks/use-haptics';
 import { updateMultipleTaskProgress } from './daily_tasks';
-import { IrregularVerb, IRREGULAR_VERBS_BY_LESSON } from './irregular_verbs_data';
+import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb } from './irregular_verbs_data';
+import { registerXP } from './xp_manager';
 
-export { LESSONS_WITH_IRREGULAR_VERBS, IRREGULAR_VERB_COUNT_BY_LESSON } from './irregular_verbs_data';
+export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 
 const REQUIRED = 3;
 const POINTS_PER_VERB = 3;
@@ -112,7 +116,7 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
     goNext(pendingNext.queue, pendingNext.pos);
   }, [pendingNext, goNext]);
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = useCallback(async () => {
     if (!queue.length || locked.current || feedback !== 'idle') return;
     const verb = queue[pos % queue.length];
     if (!verb) return;
@@ -139,12 +143,9 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
       setFeedback('correct');
       if (newCount >= REQUIRED) {
         setLearnedCnt(c => c + 1);
-        showXpToast();
-        updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]);
-        AsyncStorage.getItem('user_total_xp').then(raw => {
-          AsyncStorage.setItem('user_total_xp', String((parseInt(raw || '0') || 0) + POINTS_PER_VERB));
-        });
-        if (userName) { addOrUpdateScore(userName, POINTS_PER_VERB, lang); setTotalPts(p => p + POINTS_PER_VERB); }
+        showXpToast(); // Show toast for XP
+        updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]); // Update daily tasks
+        if (userName) { await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang); setTotalPts(p => p + POINTS_PER_VERB); }
         const nq = [...queue]; nq.splice(pos % nq.length, 1);
         setPendingNext({ queue: nq, pos });
       } else {

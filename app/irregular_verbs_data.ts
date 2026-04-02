@@ -305,6 +305,7 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'take', past: 'took', pp: 'taken', ru: 'Брать', uk: 'Брати' },
     { base: 'have', past: 'had', pp: 'had', ru: 'Иметь', uk: 'Мати' },
     { base: 'sell', past: 'sold', pp: 'sold', ru: 'Продавать', uk: 'Продавати' },
+    { base: 'forbid', past: 'forbade', pp: 'forbidden', ru: 'Запрещать', uk: 'Забороняти' },
   ],
 };
 

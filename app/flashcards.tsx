@@ -1145,6 +1145,8 @@ export default function FlashcardsScreen() {
                           shadowOpacity: isActive ? 0.28 : 0.08,
                           shadowRadius: isActive ? 14 : 6,
                         }]}>
+                          {/* EN label always visible at top so non-active peek strip shows which side */}
+                          <Text style={{ position: 'absolute', top: 14, color: t.textGhost, fontSize: 10, fontWeight: '800', letterSpacing: 1.5 }}>EN</Text>
                           {srcLabel && (
                             <View style={[st.sourceBadge, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
                               <Text style={[st.sourceBadgeText, { color: srcBadgeColor }]}>
@@ -1173,6 +1175,10 @@ export default function FlashcardsScreen() {
                           shadowOpacity: isActive ? 0.28 : 0.08,
                           shadowRadius: isActive ? 14 : 6,
                         }]}>
+                          {/* RU/UK label always visible at top so non-active peek strip shows which side */}
+                          <Text style={{ position: 'absolute', top: 14, color: t.accent, fontSize: 10, fontWeight: '800', letterSpacing: 1.5 }}>
+                            {lang === 'uk' ? 'UK' : 'RU'}
+                          </Text>
                           {srcLabel && (
                             <View style={[st.sourceBadge, { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }]}>
                               <Text style={[st.sourceBadgeText, { color: srcBadgeColor }]}>

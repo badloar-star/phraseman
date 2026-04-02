@@ -21,6 +21,12 @@ import { updateMultipleTaskProgress } from './daily_tasks';
 import { loadSettings } from './settings_edu';
 import { registerXP } from './xp_manager';
 
+const shuffle = <T,>(arr: T[]): T[] => {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+  return a;
+};
+
 const REQUIRED = 3;
 const POINTS_PER_WORD = 3;
 
@@ -1755,6 +1761,107 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'kitchen', ru: 'Кухня', uk: 'Кухня', pos: 'nouns' },
     { en: 'cupboard', ru: 'Шкаф', uk: 'Шафа', pos: 'nouns' },
   ],
+  19: [
+    { en: 'lie', ru: 'Лежать', uk: 'Лежати', pos: 'irregular_verbs' },
+    { en: 'hang', ru: 'Вешать', uk: 'Вішати', pos: 'irregular_verbs' },
+    { en: 'hide', ru: 'Прятаться', uk: 'Ховатися', pos: 'irregular_verbs' },
+    { en: 'stand', ru: 'Стоять', uk: 'Стояти', pos: 'irregular_verbs' },
+    { en: 'sit', ru: 'Сидеть', uk: 'Сидіти', pos: 'irregular_verbs' },
+    { en: 'see', ru: 'Видеть', uk: 'Бачити', pos: 'irregular_verbs' },
+    { en: 'grow', ru: 'Расти', uk: 'Рости', pos: 'irregular_verbs' },
+    { en: 'put', ru: 'Класть', uk: 'Класти', pos: 'irregular_verbs' },
+    { en: 'find', ru: 'Находить', uk: 'Знаходити', pos: 'irregular_verbs' },
+    { en: 'leave', ru: 'Оставлять', uk: 'Залишати', pos: 'irregular_verbs' },
+    { en: 'grey', ru: 'Серый', uk: 'Сірий', pos: 'adjectives' },
+    { en: 'soft', ru: 'Мягкий', uk: "М'який", pos: 'adjectives' },
+    { en: 'black', ru: 'Черный', uk: 'Чорний', pos: 'adjectives' },
+    { en: 'tall', ru: 'Высокий', uk: 'Високий', pos: 'adjectives' },
+    { en: 'white', ru: 'Белый', uk: 'Білий', pos: 'adjectives' },
+    { en: 'wooden', ru: 'Деревянный', uk: "Дерев'яний", pos: 'adjectives' },
+    { en: 'low', ru: 'Низкий', uk: 'Низький', pos: 'adjectives' },
+    { en: 'dirty', ru: 'Грязный', uk: 'Брудний', pos: 'adjectives' },
+    { en: 'sandy', ru: 'Песчаный', uk: 'Піщаний', pos: 'adjectives' },
+    { en: 'free', ru: 'Свободный', uk: 'Вільний', pos: 'adjectives' },
+    { en: 'experienced', ru: 'Опытный', uk: 'Досвідчений', pos: 'adjectives' },
+    { en: 'tight', ru: 'Тесный', uk: 'Тісний', pos: 'adjectives' },
+    { en: 'noisy', ru: 'Шумный', uk: 'Шумний', pos: 'adjectives' },
+    { en: 'empty', ru: 'Пустой', uk: 'Порожній', pos: 'adjectives' },
+    { en: 'ripe', ru: 'Спелый', uk: 'Стиглий', pos: 'adjectives' },
+    { en: 'modern', ru: 'Современный', uk: 'Сучасний', pos: 'adjectives' },
+    { en: 'dangerous', ru: 'Опасный', uk: 'Небезпечний', pos: 'adjectives' },
+    { en: 'rocky', ru: 'Скалистый', uk: 'Скелястий', pos: 'adjectives' },
+    { en: 'dark', ru: 'Темный', uk: 'Темний', pos: 'adjectives' },
+    { en: 'brave', ru: 'Смелый', uk: 'Сміливий', pos: 'adjectives' },
+    { en: 'thorny', ru: 'Колючий', uk: 'Колючий', pos: 'adjectives' },
+    { en: 'thick', ru: 'Густой', uk: 'Густий', pos: 'adjectives' },
+    { en: 'heavy', ru: 'Тяжелый', uk: 'Важкий', pos: 'adjectives' },
+    { en: 'narrow', ru: 'Узкий', uk: 'Вузький', pos: 'adjectives' },
+    { en: 'bright', ru: 'Яркий', uk: 'Яскравий', pos: 'adjectives' },
+    { en: 'often', ru: 'Часто', uk: 'Часто', pos: 'adverbs' },
+    { en: 'slowly', ru: 'Медленно', uk: 'Повільно', pos: 'adverbs' },
+    { en: 'pillow', ru: 'Подушка', uk: 'Подушка', pos: 'nouns' },
+    { en: 'corner', ru: 'Угол', uk: 'Куток', pos: 'nouns' },
+    { en: 'basket', ru: 'Корзина', uk: 'Кошик', pos: 'nouns' },
+    { en: 'bank', ru: 'Банк', uk: 'Банк', pos: 'nouns' },
+    { en: 'mirror', ru: 'Зеркало', uk: 'Дзеркало', pos: 'nouns' },
+    { en: 'briefcase', ru: 'Портфель', uk: 'Портфель', pos: 'nouns' },
+    { en: 'pharmacy', ru: 'Аптека', uk: 'Аптека', pos: 'nouns' },
+    { en: 'village', ru: 'Деревня', uk: 'Село', pos: 'nouns' },
+    { en: 'hill', ru: 'Холм', uk: 'Пагорб', pos: 'nouns' },
+    { en: 'motorcycle', ru: 'Мотоцикл', uk: 'Мотоцикл', pos: 'nouns' },
+    { en: 'garage', ru: 'Гараж', uk: 'Гараж', pos: 'nouns' },
+    { en: 'curtain', ru: 'Занавеска', uk: 'Завіса', pos: 'nouns' },
+    { en: 'towel', ru: 'Полотенце', uk: 'Рушник', pos: 'nouns' },
+    { en: 'hook', ru: 'Крючок', uk: 'Гачок', pos: 'nouns' },
+    { en: 'sink', ru: 'Раковина', uk: 'Раковина', pos: 'nouns' },
+    { en: 'tool', ru: 'Инструмент', uk: 'Інструмент', pos: 'nouns' },
+    { en: 'shore', ru: 'Берег', uk: 'Берег', pos: 'nouns' },
+    { en: 'campfire', ru: 'Костер', uk: 'Багаття', pos: 'nouns' },
+    { en: 'courier', ru: 'Курьер', uk: "Кур'єр", pos: 'nouns' },
+    { en: 'entrance', ru: 'Вход', uk: 'Вхід', pos: 'nouns' },
+    { en: 'building', ru: 'Здание', uk: 'Будівля', pos: 'nouns' },
+    { en: 'stairs', ru: 'Лестница', uk: 'Сходи', pos: 'nouns' },
+    { en: 'flat', ru: 'Квартира', uk: 'Квартира', pos: 'nouns' },
+    { en: 'market', ru: 'Рынок', uk: 'Ринок', pos: 'nouns' },
+    { en: 'lighthouse', ru: 'Маяк', uk: 'Маяк', pos: 'nouns' },
+    { en: 'island', ru: 'Остров', uk: 'Острів', pos: 'nouns' },
+    { en: 'armchair', ru: 'Кресло', uk: 'Крісло', pos: 'nouns' },
+    { en: 'oak', ru: 'Дуб', uk: 'Дуб', pos: 'nouns' },
+    { en: 'scarf', ru: 'Шарф', uk: 'Шарф', pos: 'nouns' },
+    { en: 'rainbow', ru: 'Радуга', uk: 'Веселка', pos: 'nouns' },
+    { en: 'sea', ru: 'Море', uk: 'Море', pos: 'nouns' },
+    { en: 'basement', ru: 'Подвал', uk: 'Підвал', pos: 'nouns' },
+    { en: 'bicycle', ru: 'Велосипед', uk: 'Велосипед', pos: 'nouns' },
+    { en: 'fence', ru: 'Забор', uk: 'Паркан', pos: 'nouns' },
+    { en: 'shed', ru: 'Сарай', uk: 'Сарай', pos: 'nouns' },
+    { en: 'sneakers', ru: 'Кроссовки', uk: 'Кросівки', pos: 'nouns' },
+    { en: 'bench', ru: 'Скамейка', uk: 'Лавка', pos: 'nouns' },
+    { en: 'waiter', ru: 'Официант', uk: 'Офіціант', pos: 'nouns' },
+    { en: 'vegetable', ru: 'Овощ', uk: 'Овоч', pos: 'nouns' },
+    { en: 'fridge', ru: 'Холодильник', uk: 'Холодильник', pos: 'nouns' },
+    { en: 'sign', ru: 'Вывеска', uk: 'Вивіска', pos: 'nouns' },
+    { en: 'bookstore', ru: 'Книжный магазин', uk: 'Книжковий магазин', pos: 'nouns' },
+    { en: 'wallet', ru: 'Кошелек', uk: 'Гаманець', pos: 'nouns' },
+    { en: 'musician', ru: 'Музыкант', uk: 'Музикант', pos: 'nouns' },
+    { en: 'guitar', ru: 'Гитара', uk: 'Гітара', pos: 'nouns' },
+    { en: 'bridge', ru: 'Мост', uk: 'Міст', pos: 'nouns' },
+    { en: 'key', ru: 'Ключ', uk: 'Ключ', pos: 'nouns' },
+    { en: 'fireplace', ru: 'Камин', uk: 'Камін', pos: 'nouns' },
+    { en: 'ball', ru: 'Мяч', uk: "М'яч", pos: 'nouns' },
+    { en: 'bush', ru: 'Куст', uk: 'Кущ', pos: 'nouns' },
+    { en: 'path', ru: 'Тропинка', uk: 'Стежка', pos: 'nouns' },
+    { en: 'forest', ru: 'Лес', uk: 'Ліс', pos: 'nouns' },
+    { en: 'niece', ru: 'Племянница', uk: 'Племінниця', pos: 'nouns' },
+    { en: 'beach', ru: 'Пляж', uk: 'Пляж', pos: 'nouns' },
+    { en: 'driver', ru: 'Водитель', uk: 'Водій', pos: 'nouns' },
+    { en: 'truck', ru: 'Грузовик', uk: 'Вантажівка', pos: 'nouns' },
+    { en: 'lane', ru: 'Переулок', uk: 'Провулок', pos: 'nouns' },
+    { en: 'chess', ru: 'Шахматы', uk: 'Шахи', pos: 'nouns' },
+    { en: 'watch', ru: 'Часы', uk: 'Годинник', pos: 'nouns' },
+    { en: 'cloud', ru: 'Облако', uk: 'Хмара', pos: 'nouns' },
+    { en: 'sun', ru: 'Солнце', uk: 'Сонце', pos: 'nouns' },
+    { en: 'blanket', ru: 'Одеяло', uk: 'Ковдра', pos: 'nouns' },
+  ],
 };
 
 const groupByPOS = (words: Word[], lang: 'ru'|'uk') => {
@@ -1890,7 +1997,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
     }
   }, [current?.word.en]);
 
-  const handleChoice = (opt: string) => {
+  const handleChoice = async (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
     locked.current = true;
 
@@ -1903,7 +2010,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
       try { if(hapticsOn) Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
     }
 
-    setTimeout(() => {
+    setTimeout(async () => {
       // Все изменения очереди – внутри одного setTimeout, один ре-рендер
       const newQueue = [...queue];
 
@@ -1915,11 +2022,10 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
           newQueue.splice(qIdx % newQueue.length, 1);
           const newLearned = Math.min(learnedCnt + 1, words.length);
 
-          AsyncStorage.getItem(storageKey + '_words').then(saved => {
-            const counts: Record<string,number> = saved ? JSON.parse(saved) : {};
-            counts[current.word.en] = REQUIRED;
-            AsyncStorage.setItem(storageKey + '_words', JSON.stringify(counts));
-          });
+          const saved = await AsyncStorage.getItem(storageKey + '_words');
+          const counts: Record<string,number> = saved ? JSON.parse(saved) : {};
+          counts[current.word.en] = REQUIRED;
+          AsyncStorage.setItem(storageKey + '_words', JSON.stringify(counts));
           onCountUpdate(current.word.en, REQUIRED);
           updateMultipleTaskProgress([{ type: 'words_learned' }, { type: 'daily_active' }]);
           showXpToast(); // Show toast for XP

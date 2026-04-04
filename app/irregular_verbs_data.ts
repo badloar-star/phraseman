@@ -359,6 +359,26 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Відправляти' },
     { base: 'break', past: 'broke', pp: 'broken', ru: 'Ломать', uk: 'Ламати' },
   ],
+  26: [
+    { base: 'get', past: 'got', pp: 'got/gotten', ru: 'Получать', uk: 'Отримувати' },
+    { base: 'leave', past: 'left', pp: 'left', ru: 'Оставлять', uk: 'Залишати' },
+    { base: 'catch', past: 'caught', pp: 'caught', ru: 'Ловить', uk: 'Ловити' },
+    { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити' },
+    { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Відправляти' },
+    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
+    { base: 'know', past: 'knew', pp: 'known', ru: 'Знать', uk: 'Знати' },
+    { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
+    { base: 'run', past: 'ran', pp: 'run', ru: 'Запускать', uk: 'Запускати' },
+    { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
+    { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити' },
+    { base: 'burn', past: 'burnt/burned', pp: 'burnt/burned', ru: 'Гореть', uk: 'Горіти' },
+    { base: 'show', past: 'showed', pp: 'shown', ru: 'Показывать', uk: 'Показувати' },
+    { base: 'throw', past: 'threw', pp: 'thrown', ru: 'Бросать', uk: 'Кидати' },
+    { base: 'grow', past: 'grew', pp: 'grown', ru: 'Расти', uk: 'Рости' },
+    { base: 'hold', past: 'held', pp: 'held', ru: 'Держать', uk: 'Тримати' },
+    { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
+    { base: 'put', past: 'put', pp: 'put', ru: 'Класть', uk: 'Класти' },
+  ],
 };
 
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(Object.keys(IRREGULAR_VERBS_BY_LESSON).map(Number));

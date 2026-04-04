@@ -74,6 +74,33 @@ const THEME_PALETTES: Record<string, Record<Level, { gradA: string; gradB: strin
   },
 };
 
+// Word-level diff using LCS to highlight wrong words in quiz answers
+const stripPunct = (w: string) => w.replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
+
+function diffWords(wrong: string, correct: string): { word: string; isWrong: boolean }[] {
+  const wWords = wrong.trim().split(/\s+/);
+  const cWords = correct.trim().split(/\s+/);
+  const wn = wWords.length, cn = cWords.length;
+  // Build LCS table (compare without punctuation)
+  const dp: number[][] = Array.from({ length: wn + 1 }, () => new Array(cn + 1).fill(0));
+  for (let i = 1; i <= wn; i++) {
+    for (let j = 1; j <= cn; j++) {
+      dp[i][j] = stripPunct(wWords[i-1]) === stripPunct(cWords[j-1])
+        ? dp[i-1][j-1] + 1
+        : Math.max(dp[i-1][j], dp[i][j-1]);
+    }
+  }
+  // Backtrack to find matching positions in wrong[]
+  const matched = new Set<number>();
+  let i = wn, j = cn;
+  while (i > 0 && j > 0) {
+    if (stripPunct(wWords[i-1]) === stripPunct(cWords[j-1])) { matched.add(i-1); i--; j--; }
+    else if (dp[i-1][j] >= dp[i][j-1]) i--;
+    else j--;
+  }
+  return wWords.map((word, idx) => ({ word, isWrong: !matched.has(idx) }));
+}
+
 // DEPRECATED: Use theme.textPrimary and theme.textMuted directly
 // Kept for backward compatibility with locked items
 const THEME_TEXT: Record<string, { primary: string; secondary: string }> = {
@@ -894,17 +921,26 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                   <AddToFlashcard en={current.answer} ru={current.ru} uk={current.uk} source="lesson" sourceId="quiz" />
                 </View>
               </View>
-              {(isRight === false || typedOk === false) && (
-                <Text style={{ color: t.wrong, fontSize: f.bodyLg, marginTop: 6, textDecorationLine: 'line-through', opacity: 0.8 }}>
-                  {displayAnswer}
-                </Text>
+              {(isRight === false || typedOk === false) && displayAnswer && (
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', marginTop: 8, rowGap: 2 }}>
+                  {diffWords(displayAnswer, current.answer).map((item, idx) => (
+                    <Text key={idx} style={{
+                      color: item.isWrong ? t.wrong : t.textMuted,
+                      fontSize: f.bodyLg,
+                      fontWeight: item.isWrong ? '700' : '400',
+                    }}>
+                      {item.word}{' '}
+                    </Text>
+                  ))}
+                </View>
               )}
             </Animated.View>
           )}
           {/* РАЗБОР ОТВЕТА */}
           {(chosen !== null || typedOk !== null) && current.explanations && (() => {
             const explanationIdx = chosen !== null ? chosen : current.correct;
-            const explanation = current.explanations[explanationIdx];
+            const explanationsArr = (lang === 'uk' && current.explanationsUK) ? current.explanationsUK : current.explanations;
+            const explanation = explanationsArr[explanationIdx];
             const correct = chosen === current.correct || typedOk === true;
             if (!explanation) return null;
             return (

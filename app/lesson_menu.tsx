@@ -45,6 +45,7 @@ export default function LessonMenu() {
   const [wordsLearned, setWordsLearned] = useState(0);
   const [irregularLearned, setIrregularLearned] = useState(0);
   const [passCount, setPassCount] = useState(0);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const vocabAlertShown = useRef(false);
 
   // Состояние блокировки урока
@@ -84,6 +85,7 @@ export default function LessonMenu() {
           setProgressArr(new Array(50).fill('empty'));
         }
       } catch { setScore(0); setProgress(0); setProgressArr(new Array(50).fill('empty')); }
+      setDataLoaded(true);
     });
     loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
     AsyncStorage.getItem(`lesson${lessonId}_words`).then(saved => {
@@ -105,11 +107,11 @@ export default function LessonMenu() {
   }, [lessonId]);
 
   useEffect(() => {
+    setDataLoaded(false);
     AsyncStorage.setItem('last_opened_lesson', String(lessonId));
     vocabAlertShown.current = false;
     loadLockState();
-    loadProgress();
-  }, [lessonId, loadLockState, loadProgress]);
+  }, [lessonId, loadLockState]);
 
   // Показать подсказку при первом нажатии «Начать урок»
   const handleStartLesson = useCallback(() => {
@@ -309,7 +311,7 @@ export default function LessonMenu() {
           <PremiumCard key={i} level={2} onPress={() => { !item.disabled && (hapticTap(), item.onPress()); }}
             innerStyle={{padding:18, flexDirection:'row', alignItems:'center', gap:14, opacity: item.disabled ? 0.5 : 1}}
           >
-            {item.pct !== undefined ? (
+            {item.pct !== undefined && dataLoaded ? (
               <CircularProgress
                 pct={item.pct}
                 size={44}
@@ -319,6 +321,12 @@ export default function LessonMenu() {
                 textColor={t.textPrimary}
                 fontSize={9}
               />
+            ) : item.pct !== undefined ? (
+              <View style={{
+                width:44,height:44,borderRadius:22,
+                backgroundColor:t.bgSurface,
+                borderWidth:0.5,borderColor:t.border,
+              }}/>
             ) : (
               <View style={{
                 width:44,height:44,borderRadius:22,

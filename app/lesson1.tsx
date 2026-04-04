@@ -21,7 +21,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
-import { isCorrectAnswer } from '../constants/contractions';
+import { isCorrectAnswer, normalize } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
 import { registerXP } from './xp_manager';
@@ -45,11 +45,30 @@ import type { FeedbackResult } from './types/feedback';
 
 import { ENERGY_MESSAGES_RU, ENERGY_MESSAGES_UK } from './lesson1_energy';
 import {
+  getContractionFor,
   getPerWordDistracts,
   getPhraseWords, lookupContraction,
   makeExpansionOptions,
 } from './lesson1_smart_options';
 import { tryUnlockNextLesson } from './lesson_lock_system';
+
+// Strip special article/marker symbols from display text
+// /the/ → the, «a» → a, «-» → (empty, skip)
+const stripMarkers = (word: string): string =>
+  word.replace(/^\/|\/$/g, '').replace(/«-»/g, '').replace(/[«»]/g, '').trim();
+
+// Safe wrapper: if getPerWordDistracts returns [] (phraseWordIdx out of bounds),
+// fall back to the last valid position so buttons never disappear mid-phrase
+const safeGetDistracts = (phrase: any, wordIndex: number): string[] => {
+  const result = getPerWordDistracts(phrase, wordIndex);
+  if (result.length > 0) return result;
+  // Walk back to find the last position with data
+  for (let i = wordIndex - 1; i >= 0; i--) {
+    const fallback = getPerWordDistracts(phrase, i);
+    if (fallback.length > 0) return fallback;
+  }
+  return result;
+};
 
 let SpeechRec: any = null;
 let tapHintShownThisSession = false;
@@ -285,8 +304,13 @@ const LessonContent = React.memo(function LessonContent({
             ) : (
               <Text style={{ color: t.textSecond, fontSize: f.h1 }}>
                 {selectedWords.length > 0
-                  ? (selectedWords[0].charAt(0).toUpperCase() + selectedWords[0].slice(1)
-                    + (selectedWords.length > 1 ? ' ' + selectedWords.slice(1).map(w => w.toLowerCase() === 'i' ? 'I' : (w[0] !== w[0].toLowerCase() ? w : w.toLowerCase())).join(' ') : ''))
+                  ? (() => {
+                      const cleaned = selectedWords.map(w => stripMarkers(w)).filter(w => w.length > 0);
+                      if (cleaned.length === 0) return '';
+                      const first = cleaned[0].charAt(0).toUpperCase() + cleaned[0].slice(1);
+                      const rest = cleaned.slice(1).map(w => w.toLowerCase() === 'i' ? 'I' : w.toLowerCase()).join(' ');
+                      return first + (rest ? ' ' + rest : '');
+                    })()
                   : ''
                 }{status !== 'result' && <Animated.Text style={{ color: t.textPrimary, opacity: cursorAnim }}>|</Animated.Text>}
               </Text>
@@ -299,19 +323,23 @@ const LessonContent = React.memo(function LessonContent({
               {wasWrong && (
                 <View style={{ backgroundColor: t.wrongBg, padding: 15, borderRadius: 10, marginBottom: 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
-                    {selectedWords.map((word, i) => {
-                      const correctWord = phrase.english.split(/\s+/)[i]?.toLowerCase();
-                      const isWrong = word.toLowerCase() !== correctWord;
-                      return (
-                        <Text key={i} style={{
-                          color: isWrong ? t.wrong : t.textPrimary,
-                          fontWeight: isWrong ? '700' : '500',
-                          fontSize: f.h1,
-                        }}>
-                          {word}
-                        </Text>
-                      );
-                    })}
+                    {(() => {
+                      const expandedWords = normalize(selectedWords.join(' ')).split(/\s+/);
+                      const correctWords = phrase.english.split(/\s+/).map(w => w.replace(/[.!?,;]+$/, '').toLowerCase());
+                      return expandedWords.map((word, i) => {
+                        const correctWord = correctWords[i];
+                        const isWrong = word !== correctWord;
+                        return (
+                          <Text key={i} style={{
+                            color: isWrong ? t.wrong : t.textPrimary,
+                            fontWeight: isWrong ? '700' : '500',
+                            fontSize: f.h1,
+                          }}>
+                            {word}
+                          </Text>
+                        );
+                      });
+                    })()}
                   </View>
                 </View>
               )}
@@ -365,7 +393,7 @@ const LessonContent = React.memo(function LessonContent({
                       onPress={() => { hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
                       activeOpacity={0.7}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{word === 'I' ? 'I' : (word[0] !== word[0].toLowerCase() ? word : word.toLowerCase())}</Text>
+                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{(() => { const w = stripMarkers(word); return w === 'I' ? 'I' : w.toLowerCase(); })()}</Text>
                     </TouchableOpacity>
                   </Animated.View>
                 );
@@ -434,7 +462,7 @@ const LessonContent = React.memo(function LessonContent({
           </TouchableOpacity>
 
           {/* Check Button - видна только когда все слова введены и autoCheck выключен */}
-          {!settings.hardMode && shuffled.length === 0 && selectedWords.length > 0 && !settings.autoCheck && status === 'playing' && (
+          {!settings.hardMode && selectedWords.length > 0 && !settings.autoCheck && status === 'playing' && (
             <TouchableOpacity
               style={{ flex: 1, alignItems: 'center' }}
               onPress={() => {
@@ -826,24 +854,20 @@ export default function LessonScreen() {
 
     try { await AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)); } catch {}
 
-    // СОХРАНЯЕМ РЕЗУЛЬТАТ СРАЗУ при правильном ответе — автоматический переход к следующей фразе
-    if (isRight) {
-      try {
-        // Находим следующую ячейку и сохраняем её как текущую позицию
-        let nextCell = (cellIndex + 1) % TOTAL;
-        const isDone = (x: string) => x === 'correct' || x === 'replay_correct';
-        const hasNonDone = np.some(x => !isDone(x));
-        if (hasNonDone) {
-          let attempts = 0;
-          while (isDone(np[nextCell]) && attempts < TOTAL) {
-            nextCell = (nextCell + 1) % TOTAL;
-            attempts++;
-          }
+    // СОХРАНЯЕМ СЛЕДУЮЩУЮ ПОЗИЦИЮ СРАЗУ — чтобы нельзя было перепройти выйдя с экрана результата
+    try {
+      let nextCell = (cellIndex + 1) % TOTAL;
+      const isDone = (x: string) => x === 'correct' || x === 'replay_correct';
+      const hasNonDone = np.some(x => !isDone(x));
+      if (hasNonDone) {
+        let attempts = 0;
+        while (isDone(np[nextCell]) && attempts < TOTAL) {
+          nextCell = (nextCell + 1) % TOTAL;
+          attempts++;
         }
-        // Сохраняем nextCell сразу — результат уже зафиксирован
-        await AsyncStorage.setItem(CELL_KEY, String(nextCell));
-      } catch {}
-    }
+      }
+      await AsyncStorage.setItem(CELL_KEY, String(nextCell));
+    } catch {}
     setStatus('result');
 
     // ==================== NEW: Handle to-be hint and encouragement screens ====================
@@ -970,7 +994,7 @@ export default function LessonScreen() {
           setShuffled([]);
           if (settings.autoCheck) checkAnswer(next.join(' '));
         } else {
-          setShuffled(getPerWordDistracts(phrase, newIdx));
+          setShuffled(safeGetDistracts(phrase, newIdx));
         }
       } else {
         setContrExpanded(remaining);
@@ -990,6 +1014,24 @@ export default function LessonScreen() {
       return;
     }
 
+    // Check if user picked a contraction that covers current word + next word
+    // e.g. expected "do" + "not" but user picked "don't" → skip "not"
+    const currentExpected = phraseWords[phraseWordIdx] ?? '';
+    const nextExpected = phraseWords[phraseWordIdx + 1] ?? '';
+    const matchingContraction = getContractionFor(currentExpected, nextExpected);
+    if (matchingContraction && word.toLowerCase() === matchingContraction.toLowerCase()) {
+      // Contraction chosen — skip the next word (e.g. "not") and advance by 2
+      const skipIdx = phraseWordIdx + 2;
+      setPhraseWordIdx(skipIdx);
+      if (skipIdx >= totalPhraseWords) {
+        setShuffled([]);
+        if (settings.autoCheck) checkAnswer(next.join(' '));
+      } else {
+        setShuffled(safeGetDistracts(phrase, skipIdx));
+      }
+      return;
+    }
+
     // Regular word picked (or contraction picked directly)
     const newIdx = phraseWordIdx + 1;
     setPhraseWordIdx(newIdx);
@@ -997,7 +1039,7 @@ export default function LessonScreen() {
       setShuffled([]);
       if (settings.autoCheck) checkAnswer(next.join(' '));
     } else {
-      setShuffled(getPerWordDistracts(phrase, newIdx));
+      setShuffled(safeGetDistracts(phrase, newIdx));
     }
   }, [status, currentEnergy, testerNoLimits, selectedWords, phrase, phraseWordIdx, contrExpanded, settings.autoCheck, checkAnswer]);
 
@@ -1018,7 +1060,7 @@ export default function LessonScreen() {
         // In expansion mode: undo the first expansion token picked, exit expansion mode
         setSelectedWords((p: string[]) => p.slice(0, -1));
         setContrExpanded(null);
-        setShuffled(getPerWordDistracts(phrase, phraseWordIdx));
+        setShuffled(safeGetDistracts(phrase, phraseWordIdx));
         return;
       }
       // Normal undo: pop last word, decrement phraseWordIdx
@@ -1039,7 +1081,7 @@ export default function LessonScreen() {
           return;
         }
       }
-      setShuffled(getPerWordDistracts(phrase, newPhraseIdx));
+      setShuffled(safeGetDistracts(phrase, newPhraseIdx));
     }
   }, [status, settings.hardMode, typedText, selectedWords, contrExpanded, phrase, phraseWordIdx]);
 

@@ -434,12 +434,75 @@ const makeExpansionOptions = (token: string): string[] => {
 // Uses position-aware distractor logic for better learning outcomes
 // ════════════════════════════════════════════════════════════════════════════════════
 // ==================== NEW: Per-word distractor logic ====================
+// Reverse lookup: [expanded_first, expanded_second] → contraction
+// Used to offer contraction as an alternative when phrase has two-word form
+const EXPANSION_TO_CONTRACTION: Record<string, Record<string, string>> = {
+  'do':     { 'not': "don't" },
+  'does':   { 'not': "doesn't" },
+  'did':    { 'not': "didn't" },
+  'will':   { 'not': "won't" },
+  'can':    { 'not': "can't" },
+  'could':  { 'not': "couldn't" },
+  'should': { 'not': "shouldn't" },
+  'would':  { 'not': "wouldn't" },
+  'have':   { 'not': "haven't" },
+  'had':    { 'not': "hadn't" },
+  'has':    { 'not': "hasn't" },
+  'is':     { 'not': "isn't" },
+  'are':    { 'not': "aren't" },
+  'was':    { 'not': "wasn't" },
+  'were':   { 'not': "weren't" },
+  'I':      { 'am': "I'm", 'have': "I've", 'will': "I'll", 'would': "I'd" },
+  'it':     { 'is': "it's" },
+  'he':     { 'is': "he's" },
+  'she':    { 'is': "she's" },
+};
+
+export const getContractionFor = (word: string, nextWord: string): string | null =>
+  EXPANSION_TO_CONTRACTION[word]?.[nextWord?.toLowerCase()] ?? null;
+
 const getPerWordDistracts = (phrase: any, wordIndex: number = 0): string[] => {
   // NEW format: phrase has .words array with explicit distractors
   if (phrase && phrase.words && phrase.words[wordIndex]) {
     const wordData = phrase.words[wordIndex];
-    const allOptions = [wordData.correct, ...wordData.distractors];
-    return shuffle(allOptions);
+    const currentCorrect = wordData.correct;
+
+    // Sliding window: pull distractors from next word too (like competitor)
+    const nextWordData = phrase.words[wordIndex + 1];
+    if (nextWordData) {
+      const nextCorrect = nextWordData.correct;
+
+      // Check if current+next form a contraction pair — offer contraction as alternative
+      const contraction = getContractionFor(currentCorrect, nextCorrect);
+
+      const seen = new Set<string>([currentCorrect.toLowerCase()]);
+      if (contraction) seen.add(contraction.toLowerCase());
+
+      const pickUnique = (pool: string[], count: number): string[] => {
+        const result: string[] = [];
+        for (const w of shuffle([...pool])) {
+          if (result.length >= count) break;
+          if (!seen.has(w.toLowerCase())) { seen.add(w.toLowerCase()); result.push(w); }
+        }
+        return result;
+      };
+
+      const fromCurrent = pickUnique(wordData.distractors, contraction ? 3 : 4);
+      const fromNext = pickUnique(
+        nextWordData.distractors.filter((d: string) => d !== nextCorrect),
+        3,
+      );
+
+      const extras = contraction ? [contraction] : [];
+      return shuffle([currentCorrect, ...fromCurrent, ...fromNext, ...extras]);
+    }
+
+    // Last word or no next word: show up to 6, deduplicated
+    const seenLast = new Set<string>([currentCorrect.toLowerCase()]);
+    const uniqueDistractors = wordData.distractors.filter(
+      (d: string) => { const k = d.toLowerCase(); if (seenLast.has(k)) return false; seenLast.add(k); return true; }
+    );
+    return shuffle([currentCorrect, ...uniqueDistractors]);
   }
 
   // Fallback for old format (shouldn't happen with new lesson data)

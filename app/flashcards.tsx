@@ -41,6 +41,8 @@ interface Category {
   icon: string;
   labelRU: string;
   labelUK: string;
+  fullLabelRU: string;
+  fullLabelUK: string;
 }
 
 interface CardItem {
@@ -88,14 +90,14 @@ const STR = {
 
 // ─── Static data ──────────────────────────────────────────────────────────────
 const CATEGORIES: Category[] = [
-  { id: 'saved',      icon: 'bookmark-outline',             labelRU: 'Сохр.',     labelUK: 'Збер.'     },
-  { id: 'emotions',   icon: 'heart-outline',               labelRU: 'Эмоции',    labelUK: 'Емоції'    },
-  { id: 'fillers',    icon: 'chatbubble-ellipses-outline',  labelRU: 'Филлеры',   labelUK: 'Філери'    },
-  { id: 'reactions',  icon: 'flash-outline',                labelRU: 'Реакции',   labelUK: 'Реакції'   },
-  { id: 'traps',      icon: 'alert-circle-outline',         labelRU: 'Ловушки',   labelUK: 'Пастки'    },
-  { id: 'phrasal',    icon: 'git-branch-outline',           labelRU: 'Глаголы',   labelUK: 'Дієслова'  },
-  { id: 'situations',  icon: 'map-outline',                  labelRU: 'Ситуации',  labelUK: 'Ситуації'  },
-  { id: 'connectors',  icon: 'git-network-outline',          labelRU: 'Связки',    labelUK: 'Зв\'язки'  },
+  { id: 'saved',      icon: 'bookmark-outline',             labelRU: 'Сохр.',     labelUK: 'Збер.',     fullLabelRU: 'Сохранённые',  fullLabelUK: 'Збережені'   },
+  { id: 'emotions',   icon: 'heart-outline',               labelRU: 'Эмоции',    labelUK: 'Емоції',    fullLabelRU: 'Эмоции',       fullLabelUK: 'Емоції'      },
+  { id: 'fillers',    icon: 'chatbubble-ellipses-outline',  labelRU: 'Филлеры',   labelUK: 'Філери',    fullLabelRU: 'Филлеры',      fullLabelUK: 'Філери'      },
+  { id: 'reactions',  icon: 'flash-outline',                labelRU: 'Реакции',   labelUK: 'Реакції',   fullLabelRU: 'Реакции',      fullLabelUK: 'Реакції'     },
+  { id: 'traps',      icon: 'alert-circle-outline',         labelRU: 'Ловушки',   labelUK: 'Пастки',    fullLabelRU: 'Ловушки',      fullLabelUK: 'Пастки'      },
+  { id: 'phrasal',    icon: 'git-branch-outline',           labelRU: 'Глаголы',   labelUK: 'Дієслова',  fullLabelRU: 'Фразовые глаголы', fullLabelUK: 'Дієслова' },
+  { id: 'situations',  icon: 'map-outline',                  labelRU: 'Ситуации',  labelUK: 'Ситуації',  fullLabelRU: 'Ситуации',     fullLabelUK: 'Ситуації'    },
+  { id: 'connectors',  icon: 'git-network-outline',          labelRU: 'Связки',    labelUK: 'Зв\'язки',  fullLabelRU: 'Связки',       fullLabelUK: 'Зв\'язки'    },
 ];
 
 const SOURCE_COLORS: Record<string, string> = {
@@ -992,7 +994,9 @@ export default function FlashcardsScreen() {
           <TouchableOpacity onPress={() => router.back()} style={{ width: 40 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{s.title}</Text>
+          <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {CATEGORIES.find(c => c.id === activeCat)?.[lang === 'uk' ? 'fullLabelUK' : 'fullLabelRU'] ?? s.title}
+          </Text>
           <View style={{ width: 40 }} />
         </View>
         <View style={st.centerState}>
@@ -1024,7 +1028,9 @@ export default function FlashcardsScreen() {
           <TouchableOpacity onPress={() => router.back()} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{s.title}</Text>
+          <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
+            {CATEGORIES.find(c => c.id === activeCat)?.[lang === 'uk' ? 'fullLabelUK' : 'fullLabelRU'] ?? s.title}
+          </Text>
           <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 12, minWidth: 40, overflow: 'hidden' }}>
             {savedBtnsVisible && filterOptions.length > 0 && (
               <Animated.View style={{ transform: [{ translateX: filterBtnX }] }}>

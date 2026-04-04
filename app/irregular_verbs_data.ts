@@ -397,6 +397,19 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
     { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
   ],
+  28: [
+    { base: 'hurt', past: 'hurt', pp: 'hurt', ru: 'Ранить', uk: 'Поранити' },
+    { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
+    { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Почуватися' },
+    { base: 'build', past: 'built', pp: 'built', ru: 'Строить', uk: 'Будувати' },
+    { base: 'choose', past: 'chose', pp: 'chosen', ru: 'Выбирать', uk: 'Обирати' },
+    { base: 'keep', past: 'kept', pp: 'kept', ru: 'Хранить', uk: 'Зберігати' },
+    { base: 'make', past: 'made', pp: 'made', ru: 'Делать', uk: 'Робити' },
+    { base: 'teach', past: 'taught', pp: 'taught', ru: 'Учить', uk: 'Вчити' },
+    { base: 'wake', past: 'woke', pp: 'woken', ru: 'Просыпаться', uk: 'Прокидатися' },
+    { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
+    { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
+  ],
 };
 
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(Object.keys(IRREGULAR_VERBS_BY_LESSON).map(Number));

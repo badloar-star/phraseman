@@ -379,6 +379,24 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
     { base: 'put', past: 'put', pp: 'put', ru: 'Класть', uk: 'Класти' },
   ],
+  27: [
+    { base: 'say', past: 'said', pp: 'said', ru: 'Говорить', uk: 'Говорити' },
+    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
+    { base: 'know', past: 'knew', pp: 'known', ru: 'Знать', uk: 'Знати' },
+    { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Відправляти' },
+    { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити' },
+    { base: 'lose', past: 'lost', pp: 'lost', ru: 'Терять', uk: 'Втрачати' },
+    { base: 'see', past: 'saw', pp: 'seen', ru: 'Видеть', uk: 'Бачити' },
+    { base: 'break', past: 'broke', pp: 'broken', ru: 'Ломать', uk: 'Зламати' },
+    { base: 'forget', past: 'forgot', pp: 'forgotten', ru: 'Забывать', uk: 'Забувати' },
+    { base: 'make', past: 'made', pp: 'made', ru: 'Делать', uk: 'Робити' },
+    { base: 'steal', past: 'stole', pp: 'stolen', ru: 'Красть', uk: 'Красти' },
+    { base: 'pay', past: 'paid', pp: 'paid', ru: 'Платить', uk: 'Платити' },
+    { base: 'take', past: 'took', pp: 'taken', ru: 'Брать', uk: 'Брати' },
+    { base: 'leave', past: 'left', pp: 'left', ru: 'Оставлять', uk: 'Залишати' },
+    { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
+    { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
+  ],
 };
 
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(Object.keys(IRREGULAR_VERBS_BY_LESSON).map(Number));

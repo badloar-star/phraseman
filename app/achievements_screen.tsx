@@ -80,6 +80,88 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   return null;
 }
 
+// ── PNG-изображения для каждого достижения ───────────────────────────────────
+const ACHIEVEMENT_IMAGE: Record<string, any> = {
+  streak_3:            require('../assets/images/levels/pervie tri.png'),
+  streak_7:            require('../assets/images/levels/odna nedelya.png'),
+  streak_14:           require('../assets/images/levels/dve nedeli.png'),
+  streak_30:           require('../assets/images/levels/mesyac v strou.png'),
+  streak_60:           require('../assets/images/levels/dva mesyaca.png'),
+  streak_100:          require('../assets/images/levels/sto dney.png'),
+  streak_200:          require('../assets/images/levels/200 dney.png'),
+  streak_365:          require('../assets/images/levels/tseliy god.png'),
+  streak_500:          require('../assets/images/levels/500 dney.png'),
+  streak_repair:       require('../assets/images/levels/fenix.png'),
+  perfect_week:        require('../assets/images/levels/idealnaya nedelya.png'),
+  lesson_1:            require('../assets/images/levels/perviy shag.png'),
+  lesson_3:            require('../assets/images/levels/tri uroka.png'),
+  lesson_5:            require('../assets/images/levels/5 urokov.png'),
+  lesson_10:           require('../assets/images/levels/10 urokov.png'),
+  lesson_15:           require('../assets/images/levels/15 urokov.png'),
+  lesson_20:           require('../assets/images/levels/dvadtsyaty 20 urokov.png'),
+  lesson_all:          require('../assets/images/levels/polniy kurs.png'),
+  lesson_perfect:      require('../assets/images/levels/ni odnoy oshibky.png'),
+  lesson_perfect3:     require('../assets/images/levels/3 idealnych uroka.png'),
+  lesson_all_perfect:  require('../assets/images/levels/absolut.png'),
+  xp_100:              require('../assets/images/levels/pervaya sotnya.png'),
+  xp_250:              require('../assets/images/levels/250 opita.png'),
+  xp_500:              require('../assets/images/levels/500 opita.png'),
+  xp_1000:             require('../assets/images/levels/tosyachnic.png'),
+  xp_2500:             require('../assets/images/levels/2500 opyta.png'),
+  xp_5000:             require('../assets/images/levels/5 tisyach opita.png'),
+  xp_10000:            require('../assets/images/levels/10 tisyach opita.png'),
+  xp_20000:            require('../assets/images/levels/20 tisyach opita.png'),
+  xp_50000:            require('../assets/images/levels/pol sotny tisyach opita.png'),
+  xp_100000:           require('../assets/images/levels/legenda.png'),
+  wager_win:           require('../assets/images/levels/risknul pobedil.png'),
+  personal_best:       require('../assets/images/levels/luchsaya nedelya.png'),
+  quiz_first:          require('../assets/images/levels/perviy kviz.png'),
+  quiz_medium:         require('../assets/images/levels/sredniy uroven.png'),
+  quiz_hard:           require('../assets/images/levels/prinyal vyzov.png'),
+  quiz_all_levels:     require('../assets/images/levels/polniy nabor.png'),
+  quiz_perfect_easy:   require('../assets/images/levels/legky odeal.png'),
+  quiz_perfect:        require('../assets/images/levels/zhelezny nervy.png'),
+  quiz_perfect_medium: require('../assets/images/levels/metky strelok.png'),
+  quiz_triple_perfect: require('../assets/images/levels/trizhdy ideal.png'),
+  quiz_speed_demon:    require('../assets/images/levels/skorostboy.png'),
+  combo_3:             require('../assets/images/levels/v potoke.png'),
+  combo_10:            require('../assets/images/levels/sniper.png'),
+  combo_20:            require('../assets/images/levels/nesokrushimiy.png'),
+  combo_50:            require('../assets/images/levels/mashina.png'),
+  combo_100:           require('../assets/images/levels/nepobedimiy.png'),
+  daily_task_first:    require('../assets/images/levels/pervoe zadanie.png'),
+  all_daily:           require('../assets/images/levels/vse za den.png'),
+  login_7:             require('../assets/images/levels/verny uchenic.png'),
+  login_14:            require('../assets/images/levels/2 nedely (osobie).png'),
+  login_30:            require('../assets/images/levels/mesyac v prilozhenii.png'),
+  login_60:            require('../assets/images/levels/2 mesyaca v prilozhenii.png'),
+  login_365:           require('../assets/images/levels/tseliy god v prilozhenii.png'),
+  comeback:            require('../assets/images/levels/vozvrashenie korolya.png'),
+  diagnosis:           require('../assets/images/levels/diagnoz postavlen.png'),
+  night_owl:           require('../assets/images/levels/nochnoy filin.png'),
+  early_bird:          require('../assets/images/levels/nabbiy podiem.png'),
+  exam_first:          require('../assets/images/levels/ekzamenator.png'),
+  exam_ace:            require('../assets/images/levels/otlychink.png'),
+  dialog_first:        require('../assets/images/levels/sobesednik.png'),
+  dialog_all:          require('../assets/images/levels/master dialogov.png'),
+  flashcards_session:  require('../assets/images/levels/kartzhnik.png'),
+  league_1:            require('../assets/images/levels/v clube.png'),
+  league_3:            require('../assets/images/levels/erudit.png'),
+  league_5:            require('../assets/images/levels/professor.png'),
+  gem_a1_ruby:         require('../assets/images/levels/rubin.png'),
+  gem_a1_emerald:      require('../assets/images/levels/izumrud.png'),
+  gem_a1_diamond:      require('../assets/images/levels/almaz.png'),
+  gem_a2_ruby:         require('../assets/images/levels/rubin.png'),
+  gem_a2_emerald:      require('../assets/images/levels/izumrud.png'),
+  gem_a2_diamond:      require('../assets/images/levels/almaz.png'),
+  gem_b1_ruby:         require('../assets/images/levels/rubin.png'),
+  gem_b1_emerald:      require('../assets/images/levels/izumrud.png'),
+  gem_b1_diamond:      require('../assets/images/levels/almaz.png'),
+  gem_b2_ruby:         require('../assets/images/levels/rubin.png'),
+  gem_b2_emerald:      require('../assets/images/levels/izumrud.png'),
+  gem_b2_diamond:      require('../assets/images/levels/almaz.png'),
+};
+
 // ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
 const ACHIEVEMENT_ICON: Record<string, any> = {
   streak_3:           'flame',
@@ -181,19 +263,31 @@ const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special'] as co
 
 // ── Щит-значок с PNG фоном ────────────────────────────────────────────────────
 function BadgeShield({
-  unlocked, inProgress, color, iconName, size,
+  unlocked, inProgress, color, iconName, size, achievementId,
 }: {
   unlocked: boolean; inProgress: boolean; color: string;
-  iconName: string; size: number; maskBg?: string;
+  iconName: string; size: number; maskBg?: string; achievementId?: string;
 }) {
   const W      = size;
   const BODY_H = Math.round(W * 0.88);
-  const TIP_H  = Math.round(W * 0.26);
   const ICON   = Math.round(W * 0.42);
 
   const isLocked  = !unlocked && !inProgress;
   const tintColor = isLocked ? '#383838' : inProgress ? color + '55' : color;
   const iconColor = isLocked ? '#383838' : inProgress ? color + 'BB' : '#fff';
+  const specificImage = achievementId ? ACHIEVEMENT_IMAGE[achievementId] : null;
+
+  if (specificImage) {
+    return (
+      <View style={{ width: W, alignItems: 'center' }}>
+        <Image
+          source={specificImage}
+          style={{ width: W, height: BODY_H, opacity: isLocked ? 0.25 : inProgress ? 0.55 : 1 }}
+          resizeMode="contain"
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={{ width: W, alignItems: 'center' }}>
@@ -256,6 +350,7 @@ function AchievementModal({
               iconName={iconName}
               size={72}
               maskBg={t.bgCard}
+              achievementId={achievement.id}
             />
 
             {/* Name */}
@@ -424,6 +519,7 @@ export default function AchievementsScreen() {
                           iconName={iconName}
                           size={SHIELD_W}
                           maskBg={t.bgPrimary}
+                          achievementId={a.id}
                         />
 
                         {/* Mini progress bar под щитом */}

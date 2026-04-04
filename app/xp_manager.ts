@@ -34,24 +34,35 @@ interface XPResult {
  * ЕДИНЫЙ МЕНЕДЖЕР ОПЫТА (XP Manager)
  * Центральный узел для всех изменений XP в приложении.
  */
+/**
+ * Множитель сложности урока: +5% за каждый урок.
+ * Урок 1 = x1.00, урок 10 = x1.45, урок 20 = x1.95, урок 32 = x2.55
+ */
+export const getLessonDifficultyMultiplier = (lessonNumber: number): number => {
+  if (!lessonNumber || lessonNumber < 1) return 1;
+  return 1 + (lessonNumber - 1) * 0.05;
+};
+
 export const registerXP = async (
   amount: number,
   source: XPSource,
   userName: string,
-  lang: 'ru' | 'uk' = 'ru'
+  lang: 'ru' | 'uk' = 'ru',
+  lessonNumber?: number
 ): Promise<XPResult> => {
+  if (!userName || amount === 0) return { finalDelta: 0, multiplier: 1, isBonus: false };
   try {
     let finalDelta = amount;
     let totalMultiplier = 1;
 
     // 1. Множители применяются ТОЛЬКО к заработку (уроки, квизы, сундуки)
     // К наградам за задачи, ставкам и выигрышам по ставкам множители не применяются.
-    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'review_answer', 'exam_complete', 'diagnostic_test'].includes(source);
+    const isEarnedXP = ['lesson_complete', 'lesson_answer', 'quiz_answer', 'bonus_chest', 'dialog_complete', 'vocabulary_learned', 'verb_learned', 'review_answer', 'exam_complete', 'diagnostic_test', 'daily_login_bonus'].includes(source);
 
     if (isEarnedXP && amount > 0) {
       // А) Клубные бустеры (x1.5, x2.0) из club_boosts.ts
       const clubM = await getXPMultiplier();
-      
+
       // Б) Множитель за стрик (x2, x3, x5)
       const streakRaw = await AsyncStorage.getItem('streak_count');
       const streakM = streakMultiplier(parseInt(streakRaw || '0'));
@@ -61,7 +72,12 @@ export const registerXP = async (
       const comebackRaw = await AsyncStorage.getItem('comeback_active');
       const comebackM = (comebackRaw === todayStr) ? 2 : 1;
 
-      totalMultiplier = clubM * streakM * comebackM;
+      // Г) Множитель сложности урока (+5% за каждый урок, только для lesson_answer/lesson_complete)
+      const lessonDiffM = (lessonNumber && (source === 'lesson_answer' || source === 'lesson_complete'))
+        ? getLessonDifficultyMultiplier(lessonNumber)
+        : 1;
+
+      totalMultiplier = clubM * streakM * comebackM * lessonDiffM;
       finalDelta = Math.round(amount * totalMultiplier);
     }
 

@@ -5,6 +5,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import * as Speech from 'expo-speech';
 import React, { useEffect, useRef, useState } from 'react';
 import {
+  Alert,
   Animated,
   SectionList,
   Text, TouchableOpacity,
@@ -28,10 +29,11 @@ const shuffle = <T,>(arr: T[]): T[] => {
 };
 
 const REQUIRED = 3;
-const POINTS_PER_WORD = 3;
+const POINTS_PER_CORRECT = 1;
+const POINTS_PER_LEARNED = 5;
 
 type POS = 'pronouns'|'verbs'|'irregular_verbs'|'adjectives'|'adverbs'|'nouns';
-interface Word { en:string; ru:string; uk:string; pos:POS; }
+interface Word { en:string; ru:string; uk:string; pos:POS; context?:string; definition?:string; }
 
 const POS_LABELS_RU: Record<POS,string> = {
   pronouns:'Местоимения', verbs:'Глаголы (to-be)', irregular_verbs:'Неправильные глаголы', adjectives:'Прилагательные',
@@ -2091,6 +2093,316 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'forest', ru: 'Лес', uk: 'Ліс', pos: 'nouns' },
     { en: 'topic', ru: 'Тема', uk: 'Тема', pos: 'nouns' },
   ],
+  23: [
+    { en: 'send', ru: 'Отправлять', uk: 'Відправляти', pos: 'irregular_verbs' },
+    { en: 'read', ru: 'Читать', uk: 'Читати', pos: 'irregular_verbs' },
+    { en: 'pay', ru: 'Оплачивать', uk: 'Оплачувати', pos: 'irregular_verbs' },
+    { en: 'make', ru: 'Делать', uk: 'Робити', pos: 'irregular_verbs' },
+    { en: 'write', ru: 'Писать', uk: 'Писати', pos: 'irregular_verbs' },
+    { en: 'bring', ru: 'Приносить', uk: 'Приносити', pos: 'irregular_verbs' },
+    { en: 'tell', ru: 'Рассказывать', uk: 'Розповідати', pos: 'irregular_verbs' },
+    { en: 'find', ru: 'Находить', uk: 'Знаходити', pos: 'irregular_verbs' },
+    { en: 'sell', ru: 'Продавать', uk: 'Продавати', pos: 'irregular_verbs' },
+    { en: 'choose', ru: 'Выбирать', uk: 'Обирати', pos: 'irregular_verbs' },
+    { en: 'buy', ru: 'Покупать', uk: 'Купувати', pos: 'irregular_verbs' },
+    { en: 'keep', ru: 'Хранить', uk: 'Зберігати', pos: 'irregular_verbs' },
+    { en: 'forget', ru: 'Забывать', uk: 'Забувати', pos: 'irregular_verbs' },
+    { en: 'throw', ru: 'Бросать', uk: 'Кидати', pos: 'irregular_verbs' },
+    { en: 'cook', ru: 'Готовить', uk: 'Готувати', pos: 'verbs' },
+    { en: 'fix', ru: 'Ремонтировать', uk: 'Лагодити', pos: 'verbs' },
+    { en: 'clean', ru: 'Убирать', uk: 'Прибирати', pos: 'verbs' },
+    { en: 'discuss', ru: 'Обсуждать', uk: 'Обговорювати', pos: 'verbs' },
+    { en: 'check', ru: 'Проверять', uk: 'Перевіряти', pos: 'verbs' },
+    { en: 'explain', ru: 'Объяснять', uk: 'Пояснювати', pos: 'verbs' },
+    { en: 'protect', ru: 'Защищать', uk: 'Захищати', pos: 'verbs' },
+    { en: 'lock', ru: 'Запирать', uk: 'Замикати', pos: 'verbs' },
+    { en: 'belong', ru: 'Принадлежать', uk: 'Належати', pos: 'verbs' },
+    { en: 'guard', ru: 'Охранять', uk: 'Охороняти', pos: 'verbs' },
+    { en: 'consider', ru: 'Рассматривать', uk: 'Розглядати', pos: 'verbs' },
+    { en: 'study', ru: 'Изучать', uk: 'Вивчати', pos: 'verbs' },
+    { en: 'sign', ru: 'Подписывать', uk: 'Підписувати', pos: 'verbs' },
+    { en: 'value', ru: 'Ценить', uk: 'Цінувати', pos: 'verbs' },
+    { en: 'repair', ru: 'Ремонтировать', uk: 'Ремонтувати', pos: 'verbs' },
+    { en: 'fill', ru: 'Наполнять', uk: 'Наповнювати', pos: 'verbs' },
+    { en: 'invite', ru: 'Приглашать', uk: 'Запрошувати', pos: 'verbs' },
+    { en: 'support', ru: 'Поддерживать', uk: 'Підтримувати', pos: 'verbs' },
+    { en: 'fresh', ru: 'Свежий', uk: 'Свіжий', pos: 'adjectives' },
+    { en: 'important', ru: 'Важный', uk: 'Важливий', pos: 'adjectives' },
+    { en: 'beautiful', ru: 'Красивый', uk: 'Красивий', pos: 'adjectives' },
+    { en: 'difficult', ru: 'Сложный', uk: 'Складний', pos: 'adjectives' },
+    { en: 'tasty', ru: 'Вкусный', uk: 'Смачний', pos: 'adjectives' },
+    { en: 'cosy', ru: 'Уютный', uk: 'Затишний', pos: 'adjectives' },
+    { en: 'reliable', ru: 'Надежный', uk: 'Надійний', pos: 'adjectives' },
+    { en: 'personal', ru: 'Личный', uk: 'Особистий', pos: 'adjectives' },
+    { en: 'abandoned', ru: 'Заброшенный', uk: 'Покинутий', pos: 'adjectives' },
+    { en: 'legal', ru: 'Юридический', uk: 'Юридичний', pos: 'adjectives' },
+    { en: 'rare', ru: 'Редкий', uk: 'Рідкісний', pos: 'adjectives' },
+    { en: 'wooden', ru: 'Деревянный', uk: 'Дерев\'яний', pos: 'adjectives' },
+    { en: 'skilful', ru: 'Умелый', uk: 'Вмілий', pos: 'adjectives' },
+    { en: 'modern', ru: 'Современный', uk: 'Сучасний', pos: 'adjectives' },
+    { en: 'bright', ru: 'Яркий', uk: 'Яскравий', pos: 'adjectives' },
+    { en: 'strict', ru: 'Строгий', uk: 'Суворий', pos: 'adjectives' },
+    { en: 'often', ru: 'Часто', uk: 'Часто', pos: 'adverbs' },
+    { en: 'always', ru: 'Всегда', uk: 'Завжди', pos: 'adverbs' },
+    { en: 'usually', ru: 'Обычно', uk: 'Зазвичай', pos: 'adverbs' },
+    { en: 'immediately', ru: 'Немедленно', uk: 'Негайно', pos: 'adverbs' },
+    { en: 'periodically', ru: 'Периодически', uk: 'Періодично', pos: 'adverbs' },
+    { en: 'thrice', ru: 'Трижды', uk: 'Тричі', pos: 'adverbs' },
+    { en: 'highly', ru: 'Высоко', uk: 'Високо', pos: 'adverbs' },
+    { en: 'chef', ru: 'Шеф-повар', uk: 'Шеф-кухар', pos: 'nouns' },
+    { en: 'secretary', ru: 'Секретарь', uk: 'Секретар', pos: 'nouns' },
+    { en: 'gardener', ru: 'Садовник', uk: 'Садівник', pos: 'nouns' },
+    { en: 'scientist', ru: 'Ученый', uk: 'Вчений', pos: 'nouns' },
+    { en: 'tourist', ru: 'Турист', uk: 'Турист', pos: 'nouns' },
+    { en: 'lawyer', ru: 'Юрист', uk: 'Юрист', pos: 'nouns' },
+    { en: 'employee', ru: 'Сотрудник', uk: 'Співробітник', pos: 'nouns' },
+    { en: 'director', ru: 'Директор', uk: 'Директор', pos: 'nouns' },
+    { en: 'postman', ru: 'Почтальон', uk: 'Листоноша', pos: 'nouns' },
+    { en: 'airport', ru: 'Аэропорт', uk: 'Аеропорт', pos: 'nouns' },
+    { en: 'laboratory', ru: 'Лаборатория', uk: 'Лабораторія', pos: 'nouns' },
+    { en: 'library', ru: 'Библиотека', uk: 'Бібліотека', pos: 'nouns' },
+    { en: 'bridge', ru: 'Мост', uk: 'Міст', pos: 'nouns' },
+    { en: 'garden', ru: 'Сад', uk: 'Сад', pos: 'nouns' },
+    { en: 'market', ru: 'Рынок', uk: 'Ринок', pos: 'nouns' },
+    { en: 'container', ru: 'Контейнер', uk: 'Контейнер', pos: 'nouns' },
+    { en: 'luggage', ru: 'Багаж', uk: 'Багаж', pos: 'nouns' },
+    { en: 'application', ru: 'Заявление', uk: 'Заява', pos: 'nouns' },
+    { en: 'password', ru: 'Пароль', uk: 'Пароль', pos: 'nouns' },
+    { en: 'document', ru: 'Документ', uk: 'Документ', pos: 'nouns' },
+    { en: 'report', ru: 'Отчет', uk: 'Звіт', pos: 'nouns' },
+    { en: 'department', ru: 'Отдел', uk: 'Відділ', pos: 'nouns' },
+    { en: 'bottle', ru: 'Бутылка', uk: 'Пляшка', pos: 'nouns' },
+    { en: 'bench', ru: 'Скамейка', uk: 'Лавка', pos: 'nouns' },
+  ],
+  24: [
+    { en: 'find', ru: 'Находить', uk: 'Знаходити', pos: 'irregular_verbs' },
+    { en: 'see', ru: 'Видеть', uk: 'Бачити', pos: 'irregular_verbs' },
+    { en: 'send', ru: 'Отправлять', uk: 'Відправляти', pos: 'irregular_verbs' },
+    { en: 'buy', ru: 'Покупать', uk: 'Купувати', pos: 'irregular_verbs' },
+    { en: 'make', ru: 'Делать', uk: 'Робити', pos: 'irregular_verbs' },
+    { en: 'write', ru: 'Писать', uk: 'Писати', pos: 'irregular_verbs' },
+    { en: 'leave', ru: 'Оставлять', uk: 'Залишати', pos: 'irregular_verbs' },
+    { en: 'lose', ru: 'Терять', uk: 'Губити', pos: 'irregular_verbs' },
+    { en: 'read', ru: 'Читать', uk: 'Читати', pos: 'irregular_verbs' },
+    { en: 'drink', ru: 'Пить', uk: 'Пити', pos: 'irregular_verbs' },
+    { en: 'hear', ru: 'Слышать', uk: 'Чути', pos: 'irregular_verbs' },
+    { en: 'build', ru: 'Строить', uk: 'Будувати', pos: 'irregular_verbs' },
+    { en: 'choose', ru: 'Выбирать', uk: 'Обирати', pos: 'irregular_verbs' },
+    { en: 'meet', ru: 'Встречать', uk: 'Зустрічати', pos: 'irregular_verbs' },
+    { en: 'lend', ru: 'Одалживать', uk: 'Позичати', pos: 'irregular_verbs' },
+    { en: 'steal', ru: 'Красть', uk: 'Красти', pos: 'irregular_verbs' },
+    { en: 'drive', ru: 'Водить', uk: 'Водити', pos: 'irregular_verbs' },
+    { en: 'bring', ru: 'Приносить', uk: 'Приносити', pos: 'irregular_verbs' },
+    { en: 'win', ru: 'Выигрывать', uk: 'Вигравати', pos: 'irregular_verbs' },
+    { en: 'sell', ru: 'Продавать', uk: 'Продавати', pos: 'irregular_verbs' },
+    { en: 'cook', ru: 'Готовить', uk: 'Готувати', pos: 'verbs' },
+    { en: 'finish', ru: 'Заканчивать', uk: 'Закінчувати', pos: 'verbs' },
+    { en: 'discuss', ru: 'Обсуждать', uk: 'Обговорювати', pos: 'verbs' },
+    { en: 'receive', ru: 'Получать', uk: 'Отримувати', pos: 'verbs' },
+    { en: 'repair', ru: 'Ремонтировать', uk: 'Ремонтувати', pos: 'verbs' },
+    { en: 'book', ru: 'Бронировать', uk: 'Бронювати', pos: 'verbs' },
+    { en: 'confirm', ru: 'Подтверждать', uk: 'Підтверджувати', pos: 'verbs' },
+    { en: 'create', ru: 'Создавать', uk: 'Створювати', pos: 'verbs' },
+    { en: 'explain', ru: 'Объяснять', uk: 'Пояснювати', pos: 'verbs' },
+    { en: 'sign', ru: 'Подписывать', uk: 'Підписувати', pos: 'verbs' },
+    { en: 'bake', ru: 'Выпекать', uk: 'Пекти', pos: 'verbs' },
+    { en: 'taste', ru: 'Пробовать на вкус', uk: 'Куштувати', pos: 'verbs' },
+    { en: 'important', ru: 'Важный', uk: 'Важливий', pos: 'adjectives' },
+    { en: 'traditional', ru: 'Традиционный', uk: 'Традиційний', pos: 'adjectives' },
+    { en: 'tasty', ru: 'Вкусный', uk: 'Смачний', pos: 'adjectives' },
+    { en: 'delicious', ru: 'Вкусный (восхит.)', uk: 'Смачний', pos: 'adjectives' },
+    { en: 'whole', ru: 'Целый', uk: 'Цілий', pos: 'adjectives' },
+    { en: 'official', ru: 'Официальный', uk: 'Офіційний', pos: 'adjectives' },
+    { en: 'experienced', ru: 'Опытный', uk: 'Досвідчений', pos: 'adjectives' },
+    { en: 'suitable', ru: 'Подходящий', uk: 'Підходящий', pos: 'adjectives' },
+    { en: 'exotic', ru: 'Экзотический', uk: 'Екзотичний', pos: 'adjectives' },
+    { en: 'expensive', ru: 'Дорогой', uk: 'Дорогий', pos: 'adjectives' },
+    { en: 'famous', ru: 'Известный', uk: 'Відомий', pos: 'adjectives' },
+    { en: 'attentive', ru: 'Внимательный', uk: 'Уважний', pos: 'adjectives' },
+    { en: 'ancient', ru: 'Старинный', uk: 'Стародавній', pos: 'adjectives' },
+    { en: 'grand', ru: 'Грандиозный', uk: 'Грандіозний', pos: 'adjectives' },
+    { en: 'secret', ru: 'Секретный', uk: 'Секретний', pos: 'adjectives' },
+    { en: 'personal', ru: 'Личный', uk: 'Особистий', pos: 'adjectives' },
+    { en: 'massive', ru: 'Массивный', uk: 'Масивний', pos: 'adjectives' },
+    { en: 'spicy', ru: 'Острый', uk: 'Гострий', pos: 'adjectives' },
+    { en: 'polite', ru: 'Вежливый', uk: 'Ввічливий', pos: 'adjectives' },
+    { en: 'powerful', ru: 'Мощный', uk: 'Потужний', pos: 'adjectives' },
+    { en: 'talented', ru: 'Талантливый', uk: 'Талановитий', pos: 'adjectives' },
+    { en: 'prestigious', ru: 'Престижный', uk: 'Престижний', pos: 'adjectives' },
+    { en: 'scientific', ru: 'Научный', uk: 'Науковий', pos: 'adjectives' },
+    { en: 'technical', ru: 'Технический', uk: 'Технічний', pos: 'adjectives' },
+    { en: 'international', ru: 'Международный', uk: 'Міжнародний', pos: 'adjectives' },
+    { en: 'natural', ru: 'Природный', uk: 'Природний', pos: 'adjectives' },
+    { en: 'rare', ru: 'Редкий', uk: 'Рідкісний', pos: 'adjectives' },
+    { en: 'complex', ru: 'Сложный', uk: 'Складний', pos: 'adjectives' },
+    { en: 'modern', ru: 'Современный', uk: 'Сучасний', pos: 'adjectives' },
+    { en: 'local', ru: 'Местный', uk: 'Місцевий', pos: 'adjectives' },
+    { en: 'foreign', ru: 'Иностранный', uk: 'Іноземний', pos: 'adjectives' },
+    { en: 'cosy', ru: 'Уютный', uk: 'Затишний', pos: 'adjectives' },
+    { en: 'just', ru: 'Только что', uk: 'Щойно', pos: 'adverbs' },
+    { en: 'already', ru: 'Уже', uk: 'Вже', pos: 'adverbs' },
+    { en: 'yet', ru: 'Еще (в отриц.)', uk: 'Ще', pos: 'adverbs' },
+    { en: 'ever', ru: 'Когда-либо', uk: 'Коли-небудь', pos: 'adverbs' },
+    { en: 'never', ru: 'Никогда', uk: 'Ніколи', pos: 'adverbs' },
+    { en: 'before', ru: 'Раньше', uk: 'Раніше', pos: 'adverbs' },
+    { en: 'somewhere', ru: 'Где-то', uk: 'Десь', pos: 'adverbs' },
+    { en: 'passport', ru: 'Паспорт', uk: 'Паспорт', pos: 'nouns' },
+    { en: 'drawer', ru: 'Ящик (выдвижной)', uk: 'Шухляда', pos: 'nouns' },
+    { en: 'report', ru: 'Отчет', uk: 'Звіт', pos: 'nouns' },
+    { en: 'manager', ru: 'Менеджер', uk: 'Менеджер', pos: 'nouns' },
+    { en: 'movie', ru: 'Фильм', uk: 'Фільм', pos: 'nouns' },
+    { en: 'cinema', ru: 'Кинотеатр', uk: 'Кінотеатр', pos: 'nouns' },
+    { en: 'dish', ru: 'Блюдо', uk: 'Страва', pos: 'nouns' },
+    { en: 'ticket', ru: 'Билет', uk: 'Квиток', pos: 'nouns' },
+    { en: 'concert', ru: 'Концерт', uk: 'Концерт', pos: 'nouns' },
+    { en: 'mistake', ru: 'Ошибка', uk: 'Помилка', pos: 'nouns' },
+    { en: 'review', ru: 'Отзыв', uk: 'Відгук', pos: 'nouns' },
+    { en: 'application', ru: 'Приложение', uk: 'Додаток', pos: 'nouns' },
+    { en: 'bag', ru: 'Сумка', uk: 'Сумка', pos: 'nouns' },
+    { en: 'sofa', ru: 'Диван', uk: 'Диван', pos: 'nouns' },
+    { en: 'project', ru: 'Проект', uk: 'Проект', pos: 'nouns' },
+    { en: 'client', ru: 'Клиент', uk: 'Клієнт', pos: 'nouns' },
+    { en: 'key', ru: 'Ключ', uk: 'Ключ', pos: 'nouns' },
+    { en: 'park', ru: 'Парк', uk: 'Парк', pos: 'nouns' },
+    { en: 'vacation', ru: 'Отпуск', uk: 'Відпустка', pos: 'nouns' },
+    { en: 'article', ru: 'Статья', uk: 'Стаття', pos: 'nouns' },
+    { en: 'technology', ru: 'Технология', uk: 'Технологія', pos: 'nouns' },
+    { en: 'animal', ru: 'Животное', uk: 'Тварина', pos: 'nouns' },
+    { en: 'environment', ru: 'Среда (окружающая)', uk: 'Середовище', pos: 'nouns' },
+    { en: 'roof', ru: 'Крыша', uk: 'Дах', pos: 'nouns' },
+    { en: 'detail', ru: 'Деталь', uk: 'Деталь', pos: 'nouns' },
+    { en: 'lawyer', ru: 'Юрист', uk: 'Юрист', pos: 'nouns' },
+    { en: 'juice', ru: 'Сок', uk: 'Сік', pos: 'nouns' },
+    { en: 'document', ru: 'Документ', uk: 'Документ', pos: 'nouns' },
+    { en: 'company', ru: 'Компания', uk: 'Компанія', pos: 'nouns' },
+    { en: 'music', ru: 'Музыка', uk: 'Музика', pos: 'nouns' },
+    { en: 'bridge', ru: 'Мост', uk: 'Міст', pos: 'nouns' },
+    { en: 'river', ru: 'Река', uk: 'Річка', pos: 'nouns' },
+    { en: 'doctor', ru: 'Врач', uk: 'Лікар', pos: 'nouns' },
+    { en: 'result', ru: 'Результат', uk: 'Результат', pos: 'nouns' },
+    { en: 'gift', ru: 'Подарок', uk: 'Подарунок', pos: 'nouns' },
+    { en: 'anniversary', ru: 'Годовщина', uk: 'Річниця', pos: 'nouns' },
+    { en: 'recipe', ru: 'Рецепт', uk: 'Рецепт', pos: 'nouns' },
+    { en: 'salad', ru: 'Салат', uk: 'Салат', pos: 'nouns' },
+    { en: 'order', ru: 'Заказ', uk: 'Замовлення', pos: 'nouns' },
+    { en: 'painting', ru: 'Картина', uk: 'Картина', pos: 'nouns' },
+    { en: 'gallery', ru: 'Галерея', uk: 'Галерея', pos: 'nouns' },
+    { en: 'news', ru: 'Новости', uk: 'Новини', pos: 'nouns' },
+    { en: 'castle', ru: 'Замок', uk: 'Замок', pos: 'nouns' },
+    { en: 'trip', ru: 'Поездка', uk: 'Подорож', pos: 'nouns' },
+    { en: 'dress', ru: 'Платье', uk: 'Сукня', pos: 'nouns' },
+    { en: 'party', ru: 'Вечеринка', uk: 'Вечірка', pos: 'nouns' },
+    { en: 'information', ru: 'Информация', uk: 'Інформація', pos: 'nouns' },
+    { en: 'computer', ru: 'Компьютер', uk: 'Комп\u2019ютер', pos: 'nouns' },
+    { en: 'neighbour', ru: 'Сосед', uk: 'Сусід', pos: 'nouns' },
+    { en: 'ladder', ru: 'Лестница (стремянка)', uk: 'Драбина', pos: 'nouns' },
+    { en: 'invitation', ru: 'Приглашение', uk: 'Запрошення', pos: 'nouns' },
+    { en: 'conference', ru: 'Конференция', uk: 'Конференція', pos: 'nouns' },
+    { en: 'door', ru: 'Дверь', uk: 'Двері', pos: 'nouns' },
+    { en: 'garden', ru: 'Сад', uk: 'Сад', pos: 'nouns' },
+    { en: 'sauce', ru: 'Соус', uk: 'Соус', pos: 'nouns' },
+    { en: 'restaurant', ru: 'Ресторан', uk: 'Ресторан', pos: 'nouns' },
+    { en: 'pie', ru: 'Пирог', uk: 'Пиріг', pos: 'nouns' },
+    { en: 'colleague', ru: 'Коллега', uk: 'Колега', pos: 'nouns' },
+    { en: 'grant', ru: 'Грант', uk: 'Грант', pos: 'nouns' },
+    { en: 'research', ru: 'Исследование', uk: 'Дослідження', pos: 'nouns' },
+    { en: 'engineer', ru: 'Инженер', uk: 'Інженер', pos: 'nouns' },
+    { en: 'furniture', ru: 'Мебель', uk: 'Меблі', pos: 'nouns' },
+    { en: 'apartment', ru: 'Квартира', uk: 'Квартира', pos: 'nouns' },
+    { en: 'magazine', ru: 'Журнал', uk: 'Журнал', pos: 'nouns' },
+    { en: 'director', ru: 'Директор', uk: 'Директор', pos: 'nouns' },
+    { en: 'contract', ru: 'Контракт', uk: 'Контракт', pos: 'nouns' },
+    { en: 'partner', ru: 'Партнер', uk: 'Партнер', pos: 'nouns' },
+    { en: 'mechanic', ru: 'Механик', uk: 'Механік', pos: 'nouns' },
+    { en: 'engine', ru: 'Двигатель', uk: 'Двигун', pos: 'nouns' },
+    { en: 'centre', ru: 'Центр', uk: 'Центр', pos: 'nouns' },
+    { en: 'rule', ru: 'Правило', uk: 'Правило', pos: 'nouns' },
+    { en: 'employee', ru: 'Сотрудник', uk: 'Співробітник', pos: 'nouns' },
+    { en: 'phenomenon', ru: 'Явление', uk: 'Явище', pos: 'nouns' },
+    { en: 'mountain', ru: 'Гора', uk: 'Гора', pos: 'nouns' },
+    { en: 'entrance', ru: 'Вход', uk: 'Вхід', pos: 'nouns' },
+  ],
+  25: [
+    { en: 'tell', ru: 'Рассказывать', uk: 'Розповідати', pos: 'irregular_verbs' },
+    { en: 'draw', ru: 'Рисовать', uk: 'Малювати', pos: 'irregular_verbs' },
+    { en: 'buy', ru: 'Покупать', uk: 'Купувати', pos: 'irregular_verbs' },
+    { en: 'write', ru: 'Писать', uk: 'Писати', pos: 'irregular_verbs' },
+    { en: 'bring', ru: 'Приносить', uk: 'Приносити', pos: 'irregular_verbs' },
+    { en: 'lose', ru: 'Терять', uk: 'Губити', pos: 'irregular_verbs' },
+    { en: 'sing', ru: 'Петь', uk: 'Співати', pos: 'irregular_verbs' },
+    { en: 'choose', ru: 'Выбирать', uk: 'Вибирати', pos: 'irregular_verbs' },
+    { en: 'set', ru: 'Устанавливать', uk: 'Встановлювати', pos: 'irregular_verbs' },
+    { en: 'send', ru: 'Отправлять', uk: 'Відправляти', pos: 'irregular_verbs' },
+    { en: 'break', ru: 'Ломать', uk: 'Ламати', pos: 'irregular_verbs' },
+    { en: 'listen', ru: 'Слушать', uk: 'Слухати', pos: 'verbs' },
+    { en: 'repair', ru: 'Чинить', uk: 'Ремонтувати', pos: 'verbs' },
+    { en: 'discuss', ru: 'Обсуждать', uk: 'Обговорювати', pos: 'verbs' },
+    { en: 'watch', ru: 'Смотреть', uk: 'Дивитися', pos: 'verbs' },
+    { en: 'sign', ru: 'Подписывать', uk: 'Підписувати', pos: 'verbs' },
+    { en: 'translate', ru: 'Переводить', uk: 'Перекладати', pos: 'verbs' },
+    { en: 'shout', ru: 'Кричать', uk: 'Кричати', pos: 'verbs' },
+    { en: 'knock', ru: 'Стучать', uk: 'Стукати', pos: 'verbs' },
+    { en: 'print', ru: 'Печатать', uk: 'Друкувати', pos: 'verbs' },
+    { en: 'celebrate', ru: 'Праздновать', uk: 'Святкувати', pos: 'verbs' },
+    { en: 'delete', ru: 'Удалять', uk: 'Видаляти', pos: 'verbs' },
+    { en: 'patrol', ru: 'Патрулировать', uk: 'Патрулювати', pos: 'verbs' },
+    { en: 'scratch', ru: 'Царапать', uk: 'Дряпати', pos: 'verbs' },
+    { en: 'boring', ru: 'Скучный', uk: 'Нудний', pos: 'adjectives' },
+    { en: 'amazing', ru: 'Удивительный', uk: 'Дивовижний', pos: 'adjectives' },
+    { en: 'experienced', ru: 'Опытный', uk: 'Досвідчений', pos: 'adjectives' },
+    { en: 'cautious', ru: 'Осторожный', uk: 'Обережний', pos: 'adjectives' },
+    { en: 'slippery', ru: 'Скользкий', uk: 'Слизький', pos: 'adjectives' },
+    { en: 'financial', ru: 'Финансовый', uk: 'Фінансовий', pos: 'adjectives' },
+    { en: 'fresh', ru: 'Свежий', uk: 'Свіжий', pos: 'adjectives' },
+    { en: 'dark', ru: 'Темный', uk: 'Темний', pos: 'adjectives' },
+    { en: 'suspicious', ru: 'Подозрительный', uk: 'Підозрілий', pos: 'adjectives' },
+    { en: 'annual', ru: 'Годовой', uk: 'Річний', pos: 'adjectives' },
+    { en: 'broken', ru: 'Сломанный', uk: 'Зламаний', pos: 'adjectives' },
+    { en: 'successful', ru: 'Успешный', uk: 'Успішний', pos: 'adjectives' },
+    { en: 'sad', ru: 'Грустный', uk: 'Сумний', pos: 'adjectives' },
+    { en: 'personal', ru: 'Личный', uk: 'Особистий', pos: 'adjectives' },
+    { en: 'unhealthy', ru: 'Вредный', uk: 'Шкідливий', pos: 'adjectives' },
+    { en: 'suitable', ru: 'Подходящий', uk: 'Відповідний', pos: 'adjectives' },
+    { en: 'loudly', ru: 'Громко', uk: 'Голосно', pos: 'adverbs' },
+    { en: 'still', ru: 'Все еще', uk: 'Все ще', pos: 'adverbs' },
+    { en: 'lecture', ru: 'Лекция', uk: 'Лекція', pos: 'nouns' },
+    { en: 'bicycle', ru: 'Велосипед', uk: 'Велосипед', pos: 'nouns' },
+    { en: 'movie', ru: 'Фильм', uk: 'Фільм', pos: 'nouns' },
+    { en: 'excursion', ru: 'Экскурсия', uk: 'Екскурсія', pos: 'nouns' },
+    { en: 'delegation', ru: 'Делегация', uk: 'Делегація', pos: 'nouns' },
+    { en: 'airport', ru: 'Аэропорт', uk: 'Аеропорт', pos: 'nouns' },
+    { en: 'landscape', ru: 'Пейзаж', uk: 'Пейзаж', pos: 'nouns' },
+    { en: 'system', ru: 'Система', uk: 'Система', pos: 'nouns' },
+    { en: 'driver', ru: 'Водитель', uk: 'Водій', pos: 'nouns' },
+    { en: 'road', ru: 'Дорога', uk: 'Дорога', pos: 'nouns' },
+    { en: 'report', ru: 'Отчет', uk: 'Звіт', pos: 'nouns' },
+    { en: 'yard', ru: 'Двор', uk: 'Двір', pos: 'nouns' },
+    { en: 'vegetable', ru: 'Овощ', uk: 'Овоч', pos: 'nouns' },
+    { en: 'waiter', ru: 'Официант', uk: 'Офіціант', pos: 'nouns' },
+    { en: 'folder', ru: 'Папка', uk: 'Папка', pos: 'nouns' },
+    { en: 'complaint', ru: 'Жалоба', uk: 'Скарга', pos: 'nouns' },
+    { en: 'conflict', ru: 'Конфликт', uk: 'Конфлікт', pos: 'nouns' },
+    { en: 'playground', ru: 'Площадка', uk: 'Майданчик', pos: 'nouns' },
+    { en: 'guard', ru: 'Охранник', uk: 'Охоронець', pos: 'nouns' },
+    { en: 'parking', ru: 'Парковка', uk: 'Парковка', pos: 'nouns' },
+    { en: 'song', ru: 'Песня', uk: 'Пісня', pos: 'nouns' },
+    { en: 'window', ru: 'Окно', uk: 'Вікно', pos: 'nouns' },
+    { en: 'platform', ru: 'Платформа', uk: 'Платформа', pos: 'nouns' },
+    { en: 'flower', ru: 'Цветок', uk: 'Квітка', pos: 'nouns' },
+    { en: 'key', ru: 'Ключ', uk: 'Ключ', pos: 'nouns' },
+    { en: 'bag', ru: 'Сумка', uk: 'Сумка', pos: 'nouns' },
+    { en: 'roof', ru: 'Крыша', uk: 'Дах', pos: 'nouns' },
+    { en: 'service', ru: 'Услуга', uk: 'Послуга', pos: 'nouns' },
+    { en: 'file', ru: 'Файл', uk: 'Файл', pos: 'nouns' },
+    { en: 'ticket', ru: 'Билет', uk: 'Квиток', pos: 'nouns' },
+    { en: 'parcel', ru: 'Посылка', uk: 'Посилка', pos: 'nouns' },
+    { en: 'agreement', ru: 'Соглашение', uk: 'Угода', pos: 'nouns' },
+    { en: 'deal', ru: 'Сделка', uk: 'Угода', pos: 'nouns' },
+    { en: 'architect', ru: 'Архитектор', uk: 'Архітектор', pos: 'nouns' },
+    { en: 'issue', ru: 'Вопрос', uk: 'Питання', pos: 'nouns' },
+    { en: 'inspector', ru: 'Инспектор', uk: 'Інспектор', pos: 'nouns' },
+    { en: 'passport', ru: 'Паспорт', uk: 'Паспорт', pos: 'nouns' },
+  ],
 };
 
 const groupByPOS = (words: Word[], lang: 'ru'|'uk') => {
@@ -2121,17 +2433,16 @@ const ALL_WORDS_FLAT: Word[] = (() => {
 
 // 6 вариантов – правильный гарантирован, дистракторы того же POS
 // Всегда берём часть из cross-lesson для разнообразия (не всегда одни и те же слова урока)
+type RoundType = 'recognition' | 'context';
+
 const makeOptions = (correct: Word, all: Word[]): string[] => {
   const notMe = (w: Word) => w.en !== correct.en;
-  // Из текущего урока (не более 3 — чтобы не повторялись одни и те же дистракторы)
   const lessonSamePos = fy(all.filter(w => notMe(w) && w.pos === correct.pos));
   const fromLesson    = lessonSamePos.slice(0, Math.min(3, lessonSamePos.length));
-  // Из других уроков (добираем до 5)
   const fromCross = fy(
     ALL_WORDS_FLAT.filter(w => notMe(w) && w.pos === correct.pos && !fromLesson.some(l => l.en === w.en))
   ).slice(0, 5 - fromLesson.length);
   let combined = [...fromLesson, ...fromCross];
-  // Если всё равно < 5, заполняем любыми словами урока/cross
   if (combined.length < 5) {
     const fallback = fy(
       [...all, ...ALL_WORDS_FLAT].filter(w => notMe(w) && !combined.some(c => c.en === w.en))
@@ -2144,11 +2455,20 @@ const makeOptions = (correct: Word, all: Word[]): string[] => {
 interface Card {
   word: Word;
   options: string[];
-  correctCount: number;
+  correctOption: string;
+  roundIndex: number;  // 0 | 1 | 2 — какой именно раунд
+  roundType: RoundType;
+  question: string;
 }
 
-function buildCard(word: Word, correctCount: number, all: Word[]): Card {
-  return { word, options: makeOptions(word, all), correctCount };
+function buildCard(word: Word, roundIndex: number, all: Word[], lang: 'ru' | 'uk'): Card {
+  const correctOption = word.en;
+  const translation = lang === 'uk' ? word.uk : word.ru;
+  const options = makeOptions(word, all);
+  if (roundIndex === 1 && word.context) {
+    return { word, options, correctOption, roundIndex, roundType: 'context', question: word.context };
+  }
+  return { word, options, correctOption, roundIndex, roundType: 'recognition', question: translation };
 }
 
 // ── Мини-гексагон ────────────────────────────────────────────────────────────
@@ -2176,10 +2496,21 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
   const router = useRouter();
   const ws = s.words;
 
-  const [queue,      setQueue]      = useState<Card[]>(() => {
+  // Состояние прогресса слов (сколько раундов пройдено)
+  const [counts, setCounts] = useState<Record<string,number>>({ ...initialCounts });
+
+  const [queue, setQueue] = useState<Card[]>(() => {
     const notLearned = words.filter(w => !initialLearned.includes(w.en));
     const pool = notLearned.length > 0 ? notLearned : words;
-    return shuffle([...pool]).map(w => buildCard(w, initialCounts[w.en] ?? 0, words));
+    // Строим ВСЕ раунды для всех слов и перемешиваем полностью
+    const cards: Card[] = [];
+    for (const w of pool) {
+      const done = Math.min(initialCounts[w.en] ?? 0, REQUIRED);
+      for (let r = done; r < REQUIRED; r++) {
+        cards.push(buildCard(w, r, pool, lang));
+      }
+    }
+    return shuffle(cards);
   });
   const [qIdx,       setQIdx]       = useState(0);
   const [chosen,     setChosen]     = useState<string|null>(null);
@@ -2194,6 +2525,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
 
   const xpAnim = useRef(new Animated.ValueXY({ x: 0, y: 60 })).current;
   const xpOpacity = useRef(new Animated.Value(0)).current;
+  const cardShownAt = useRef<number>(Date.now());
 
   const showXpToast = () => {
     xpAnim.setValue({ x: 0, y: 60 });
@@ -2218,21 +2550,23 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
   }, []);
 
   const current: Card | undefined = queue[qIdx % Math.max(queue.length, 1)];
-  const prevEnRef = React.useRef('');
+  const prevCardKeyRef = React.useRef('');
   React.useEffect(() => {
-    if (current && current.word.en !== prevEnRef.current) {
-      prevEnRef.current = current.word.en;
-      setDotCount(current.correctCount);
+    const key = current ? `${current.word.en}:${current.roundIndex}` : '';
+    if (key && key !== prevCardKeyRef.current) {
+      prevCardKeyRef.current = key;
+      setDotCount(counts[current!.word.en] ?? 0);
+      cardShownAt.current = Date.now();
     }
-  }, [current?.word.en]);
+  }, [current?.word.en, current?.roundIndex]);
 
   const handleChoice = async (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
     locked.current = true;
 
     setChosen(opt);
-    const isRight = opt === current.word.en;
-    if (isRight) setDotCount(c => Math.min(c + 1, REQUIRED)); // сразу показать заполнение
+    const isRight = opt === current.correctOption;
+    if (isRight) setDotCount(c => Math.min(c + 1, REQUIRED));
 
     Speech.speak(current.word.en, { language: 'en-US', rate: speechRate });
     if (!isRight) {
@@ -2240,70 +2574,84 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
     }
 
     setTimeout(async () => {
-      // Все изменения очереди – внутри одного setTimeout, один ре-рендер
       const newQueue = [...queue];
 
       if (isRight) {
-        const newCount = current.correctCount + 1;
+        const prevCount = counts[current.word.en] ?? 0;
+        const newCount = prevCount + 1;
+        const newCounts = { ...counts, [current.word.en]: newCount };
+        setCounts(newCounts);
+        onCountUpdate(current.word.en, newCount);
+
+        // Сохраняем в storage
+        AsyncStorage.getItem(storageKey + '_words').then(saved => {
+          const stored: Record<string,number> = saved ? JSON.parse(saved) : {};
+          stored[current.word.en] = newCount;
+          AsyncStorage.setItem(storageKey + '_words', JSON.stringify(stored));
+        });
+
+        // Удаляем текущую карточку из очереди
+        newQueue.splice(qIdx % newQueue.length, 1);
+
+        // +1 XP за каждый правильный ответ
+        if (userName) {
+          registerXP(POINTS_PER_CORRECT, 'vocabulary_learned', userName, lang);
+          setTotalPts(p => p + POINTS_PER_CORRECT);
+        }
 
         if (newCount >= REQUIRED) {
-          // Выучено – удаляем из очереди
-          newQueue.splice(qIdx % newQueue.length, 1);
+          // Слово выучено — убираем все оставшиеся карточки этого слова из очереди
+          const finalQ = newQueue.filter(c => c.word.en !== current.word.en);
           const newLearned = Math.min(learnedCnt + 1, words.length);
-
-          const saved = await AsyncStorage.getItem(storageKey + '_words');
-          const counts: Record<string,number> = saved ? JSON.parse(saved) : {};
-          counts[current.word.en] = REQUIRED;
-          AsyncStorage.setItem(storageKey + '_words', JSON.stringify(counts));
-          onCountUpdate(current.word.en, REQUIRED);
           updateMultipleTaskProgress([{ type: 'words_learned' }, { type: 'daily_active' }]);
-          showXpToast(); // Show toast for XP
+          showXpToast();
           if (userName) {
-            await registerXP(POINTS_PER_WORD, 'vocabulary_learned', userName, lang);
-            setTotalPts(p => p + POINTS_PER_WORD);
+            await registerXP(POINTS_PER_LEARNED, 'vocabulary_learned', userName, lang);
+            setTotalPts(p => p + POINTS_PER_LEARNED);
           }
-
-          if (newQueue.length === 0) {
-            setLearnedCnt(newLearned);
-            setQueue(newQueue);
-            setAllDone(true);
-            setChosen(null);
-            locked.current = false;
-            return;
+          if (finalQ.length === 0) {
+            setLearnedCnt(newLearned); setQueue(finalQ); setAllDone(true);
+            setChosen(null); locked.current = false; return;
           }
-
-          const nextIdx = (qIdx % newQueue.length);
           setLearnedCnt(newLearned);
-          setQueue(newQueue);
-          setQIdx(nextIdx);
+          setQueue(finalQ);
+          setQIdx(qIdx % finalQ.length);
         } else {
-          // Не выучено ещё – сохраняем частичный прогресс
-          AsyncStorage.getItem(storageKey + '_words').then(saved => {
-            const counts: Record<string,number> = saved ? JSON.parse(saved) : {};
-            counts[current.word.en] = newCount;
-            AsyncStorage.setItem(storageKey + '_words', JSON.stringify(counts));
-          });
-          onCountUpdate(current.word.en, newCount);
-          const updated = buildCard(current.word, newCount, words);
-          newQueue.splice(qIdx % newQueue.length, 1);
-          newQueue.push(updated);
-          const nextIdx = qIdx % newQueue.length;
+          const nextIdx = newQueue.length > 0 ? qIdx % newQueue.length : 0;
           setQueue(newQueue);
           setQIdx(nextIdx);
         }
       } else {
-        // Ошибка – перемещаем в конец с новыми вариантами
-        const resetCard = buildCard(current.word, current.correctCount, words);
+        // Ошибка — перемещаем карточку в случайную позицию (не сразу)
+        const resetCard = buildCard(current.word, current.roundIndex, words, lang);
         newQueue.splice(qIdx % newQueue.length, 1);
-        newQueue.push(resetCard);
-        const nextIdx = qIdx % newQueue.length;
+        const rem = newQueue.length;
+        const gap = Math.min(3, rem);
+        const insertAt = rem <= gap ? rem : gap + Math.floor(Math.random() * (rem - gap + 1));
+        newQueue.splice(insertAt, 0, resetCard);
         setQueue(newQueue);
-        setQIdx(nextIdx);
+        setQIdx(qIdx % newQueue.length);
       }
 
       setChosen(null);
       locked.current = false;
     }, 900);
+  };
+
+  const startPractice = () => {
+    // Пересобираем очередь со ВСЕМИ словами — прогресс не меняем
+    const cards: Card[] = [];
+    for (const w of words) {
+      for (let r = 0; r < REQUIRED; r++) {
+        cards.push(buildCard(w, r, words, lang));
+      }
+    }
+    setQueue(shuffle(cards));
+    setQIdx(0);
+    setChosen(null);
+    setLearnedCnt(0);
+    setAllDone(false);
+    locked.current = false;
   };
 
   if (allDone || queue.length === 0) return (
@@ -2325,19 +2673,54 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
       >
         <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>{lang === 'uk' ? '← До уроку' : '← К уроку'}</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        style={{ backgroundColor: t.bgCard, paddingHorizontal: 32, paddingVertical: 13, borderRadius: 14, borderWidth: 1, borderColor: t.border, flexDirection: 'row', alignItems: 'center', gap: 8 }}
+        onPress={() => {
+          hapticTap();
+          Alert.alert(
+            lang === 'uk' ? 'Повторення' : 'Повторение',
+            lang === 'uk'
+              ? 'Прогрес збережено. Це просто тренування — виучені слова не скинуться.'
+              : 'Прогресс сохранён. Это просто тренировка — выученные слова не сбросятся.',
+            [
+              { text: lang === 'uk' ? 'Відміна' : 'Отмена', style: 'cancel' },
+              { text: lang === 'uk' ? 'Повторити' : 'Повторить', onPress: startPractice },
+            ]
+          );
+        }}
+        activeOpacity={0.8}
+      >
+        <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
+        <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>{lang === 'uk' ? 'Повторити' : 'Повторить'}</Text>
+      </TouchableOpacity>
     </View>
   );
 
   if (!current) return null;
 
-  const question = lang === 'uk' ? current.word.uk : current.word.ru;
-
   const displayLearned = Math.min(learnedCnt, words.length);
+
+  const ROUND_CONFIG: Record<RoundType, { label: string; color: string; bg: string; icon: string }> = {
+    recognition: {
+      label: lang === 'uk' ? 'Впізнавання' : 'Узнавание',
+      color: t.correct,
+      bg: t.correctBg,
+      icon: 'eye-outline',
+    },
+    context: {
+      label: lang === 'uk' ? 'Контекст' : 'Контекст',
+      color: '#4A9EFF',
+      bg: 'rgba(74,158,255,0.14)',
+      icon: 'text-outline',
+    },
+  };
+  const round = ROUND_CONFIG[current.roundType];
 
   return (
     <View style={{ flex:1, paddingHorizontal:20, paddingTop:12 }}>
-      {/* Прогресс — вверху */}
-      <View style={{ width:'100%', marginBottom:16 }}>
+
+      {/* Прогресс */}
+      <View style={{ width:'100%', marginBottom:14 }}>
         <View style={{ flexDirection:'row', justifyContent:'space-between', marginBottom:5 }}>
           <Text style={{ color:t.textMuted, fontSize:f.label }}>
             {ws.learnedOf(displayLearned, words.length)}
@@ -2351,59 +2734,86 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
         </View>
       </View>
 
-      {/* 3 гексагона */}
-      <View style={{ flexDirection:'row', gap:10, marginBottom:20, justifyContent:'center', alignItems:'center' }}>
-        {[0,1,2].map(i => (
-          <MiniHex key={i} filled={dotCount > i} size={22} />
-        ))}
+      {/* Бейдж раунда + гексагоны */}
+      <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', gap:14, marginBottom:18 }}>
+        <View style={{ flexDirection:'row', alignItems:'center', gap:6, backgroundColor:round.bg, borderRadius:20, paddingHorizontal:12, paddingVertical:5, borderWidth:1, borderColor: round.color + '50' }}>
+          <Ionicons name={round.icon as any} size={13} color={round.color} />
+          <Text style={{ color:round.color, fontSize:f.label, fontWeight:'700', letterSpacing:0.3 }}>{round.label}</Text>
+        </View>
+        <View style={{ flexDirection:'row', gap:8 }}>
+          {[0,1,2].map(i => <MiniHex key={i} filled={dotCount > i} size={22} />)}
+        </View>
       </View>
 
-      {/* Вопрос — занимает всё свободное пространство, центрируется */}
-      <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
-        <Text style={{ color:t.textPrimary, fontSize:36, fontWeight:'300', textAlign:'center' }}>
-          {question}
-        </Text>
+      {/* Вопрос */}
+      <View style={{ flex:1, justifyContent:'center', alignItems:'center', gap:10 }}>
+        {current.roundType === 'context' ? (
+          <View style={{ alignItems:'center', gap:10, paddingHorizontal:4 }}>
+            <Text style={{ color:t.textGhost, fontSize:f.sub, letterSpacing:0.5 }}>
+              {lang === 'uk' ? 'Вставте слово у речення:' : 'Вставьте слово в предложение:'}
+            </Text>
+            <View style={{ backgroundColor: round.bg, borderRadius:16, paddingHorizontal:20, paddingVertical:16, borderWidth:1, borderColor: round.color + '40' }}>
+              {(() => {
+                const parts = current.question.split('...');
+                return (
+                  <Text style={{ color:t.textPrimary, fontSize:22, fontWeight:'400', textAlign:'center', lineHeight:32 }}>
+                    {parts[0]}
+                    <Text style={{ color: round.color, fontWeight:'800', letterSpacing:1 }}>{'___'}</Text>
+                    {parts[1] ?? ''}
+                  </Text>
+                );
+              })()}
+            </View>
+          </View>
+        ) : (
+          <View style={{ alignItems:'center', gap:8 }}>
+            <Text style={{ color:t.textGhost, fontSize:f.sub, letterSpacing:0.5 }}>
+              {lang === 'uk' ? 'Оберіть англійський переклад:' : 'Выберите английский перевод:'}
+            </Text>
+            <Text style={{ color:t.textPrimary, fontSize:38, fontWeight:'300', textAlign:'center', lineHeight:46 }}>
+              {current.question}
+            </Text>
+          </View>
+        )}
       </View>
 
-      {/* 6 вариантов в 2 колонки — внизу */}
-      <View style={{ width:'100%', flexDirection:'row', flexWrap:'wrap', gap:10, paddingBottom: 16 }}>
+      {/* Варианты ответов — 2 колонки */}
+      <View style={{ width:'100%', flexDirection:'row', flexWrap:'wrap', gap:10, paddingBottom:16 }}>
         {current.options.map((opt, i) => {
-          const isCorrect  = opt === current.word.en;
+          const isCorrect  = opt === current.correctOption;
           const isSelected = opt === chosen;
-          let bg=t.bgCard, border=t.border, tc=t.textSecond;
+          let bg = t.bgCard, borderColor = t.border, tc = t.textSecond, bw = 1;
           if (chosen !== null) {
-            if (isCorrect)        { bg=t.correctBg; border=t.correct; tc=t.correct; }
-            else if (isSelected)  { bg=t.wrongBg;   border=t.wrong;   tc=t.wrong;   }
+            if (isCorrect)       { bg = t.correctBg; borderColor = t.correct; tc = t.correct; bw = 1.5; }
+            else if (isSelected) { bg = t.wrongBg;   borderColor = t.wrong;   tc = t.wrong;   bw = 1.5; }
           }
           return (
             <TouchableOpacity key={i}
-              style={{ width:'48%', minHeight:64, paddingVertical:12, paddingHorizontal:8, borderRadius:14, alignItems:'center', justifyContent:'center', borderWidth:1, backgroundColor:bg, borderColor:border }}
+              style={{ width:'48%', minHeight:68, paddingVertical:12, paddingHorizontal:10, borderRadius:16, alignItems:'center', justifyContent:'center', borderWidth:bw, backgroundColor:bg, borderColor }}
               onPress={() => { hapticTap(); handleChoice(opt); }}
-              activeOpacity={0.8}
+              activeOpacity={0.72}
               disabled={chosen !== null}
             >
+              {chosen !== null && isCorrect && (
+                <View style={{ position:'absolute', top:7, right:8 }}>
+                  <Ionicons name="checkmark-circle" size={15} color={t.correct} />
+                </View>
+              )}
+              {chosen !== null && isSelected && !isCorrect && (
+                <View style={{ position:'absolute', top:7, right:8 }}>
+                  <Ionicons name="close-circle" size={15} color={t.wrong} />
+                </View>
+              )}
               <Text style={{ color:tc, fontSize:f.h2, fontWeight:'500', textAlign:'center' }} numberOfLines={2} adjustsFontSizeToFit>{opt}</Text>
             </TouchableOpacity>
           );
         })}
       </View>
 
+      {/* XP Toast */}
       {xpToastVisible && (
-        <Animated.View
-          style={{
-            position: 'absolute',
-            bottom: 110,
-            alignSelf: 'center',
-            backgroundColor: '#FFC800',
-            borderRadius: 20,
-            paddingHorizontal: 20,
-            paddingVertical: 10,
-            transform: [{ translateY: xpAnim.y }],
-            opacity: xpOpacity,
-            zIndex: 999,
-          }}
-        >
-          <Text style={{ color: '#fff', fontWeight: '700', fontSize: 16 }}>+3 XP</Text>
+        <Animated.View style={{ position:'absolute', bottom:110, alignSelf:'center', backgroundColor:'#FFC800', borderRadius:20, paddingHorizontal:20, paddingVertical:10, transform:[{translateY:xpAnim.y}], opacity:xpOpacity, zIndex:999 }}>
+          <Text style={{ color:'#fff', fontWeight:'700', fontSize:16 }}>+3 XP</Text>
         </Animated.View>
       )}
 

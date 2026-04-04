@@ -482,3 +482,35 @@ export const schedulePhrasOfDayNotification = async (lang: 'ru' | 'uk' = 'ru'): 
   } catch (e) {
   }
 };
+
+// ── Обработчик тапа по уведомлению (deep link) ───────────────────────────────
+// Вызывать один раз при старте приложения из _layout.tsx
+// router — объект от useRouter() или expo-router
+export const setupNotificationTapHandler = (
+  router: { push: (route: any) => void }
+): (() => void) => {
+  let subscription: any = null;
+  getNotifications().then(N => {
+    if (!N) return;
+    subscription = N.addNotificationResponseReceivedListener((response: any) => {
+      const data = response?.notification?.request?.content?.data;
+      if (!data?.type) return;
+      switch (data.type) {
+        case 'streak_warning':
+          router.push('/');
+          break;
+        case 'phrase_of_day':
+          router.push('/(tabs)/home');
+          break;
+        case 'weekly_recap':
+        case 'monthly_recap':
+          router.push('/(tabs)/hall_of_fame');
+          break;
+        default:
+          router.push('/');
+      }
+    });
+  });
+  // Вернуть функцию отписки для useEffect cleanup
+  return () => { subscription?.remove?.(); };
+};

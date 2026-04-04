@@ -288,9 +288,11 @@ export default function DiagnosticTest() {
   const inputRef    = useRef<any>(null);
   const timerAnim   = useRef(new Animated.Value(1)).current;
   const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null);
-  const answersRef  = useRef<boolean[]>([]); // per-question correctness for level-based scoring
+  const answersRef  = useRef<boolean[]>([]);
+  const userNameRef = useRef<string>('');
 
   useEffect(() => {
+    AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
     AsyncStorage.getItem('diagnostic_last').then(v => { if (v) setPrev(JSON.parse(v)); });
     loadSettings().then(s => {
       setHapticsOn(s.haptics);
@@ -358,8 +360,8 @@ export default function DiagnosticTest() {
     const ns = isRight ? score + 1 : score;
     if (isRight) {
       setScore(ns);
-      if (userName) {
-        registerXP(2, 'diagnostic_test', userName, lang as 'ru'|'uk');
+      if (userNameRef.current) {
+        registerXP(2, 'diagnostic_test', userNameRef.current, lang as 'ru'|'uk');
       }
     } else if (hapticsOn) {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
@@ -382,8 +384,7 @@ export default function DiagnosticTest() {
     setChosen(isRight ? q.correct : -1);
     if (isRight) {
       setScore(ns);
-      saveXP(2);
-      AsyncStorage.getItem('user_name').then(name => { if (name) addOrUpdateScore(name, 2, lang); });
+      if (userNameRef.current) registerXP(2, 'diagnostic_test', userNameRef.current, lang as 'ru'|'uk');
     } else if (hapticsOn) {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
     }
@@ -403,8 +404,7 @@ export default function DiagnosticTest() {
     setChosen(isRight ? 0 : -1);
     if (isRight) {
       setScore(ns);
-      saveXP(2);
-      AsyncStorage.getItem('user_name').then(name => { if (name) addOrUpdateScore(name, 2, lang); });
+      if (userNameRef.current) registerXP(2, 'diagnostic_test', userNameRef.current, lang as 'ru'|'uk');
     } else if (hapticsOn) {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
     }

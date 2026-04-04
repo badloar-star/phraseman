@@ -35,7 +35,7 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import { hapticTap } from '../hooks/use-haptics';
 import { recordMistake } from './active_recall';
-import { checkAndRecover } from './energy_system';
+import { checkAndRecover, spendEnergy } from './energy_system';
 import { getErrorTrapsByIndex } from './error_traps/index';
 import { findAllExplanations } from './feedback_engine';
 import { ALL_LESSONS_RU, ALL_LESSONS_UK, getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
@@ -83,6 +83,7 @@ const DEFAULT_SETTINGS: Settings = {
 interface LessonContentProps {
   showIntroScreens: boolean;
   setShowIntroScreens: (val: boolean) => void;
+  onIntroDone: () => void;
   showEncouragementScreen: boolean;
   setShowEncouragementScreen: (val: boolean) => void;
   lessonId: number;
@@ -137,6 +138,7 @@ interface LessonContentProps {
 const LessonContent = React.memo(function LessonContent({
   showIntroScreens,
   setShowIntroScreens,
+  onIntroDone,
   showEncouragementScreen,
   setShowEncouragementScreen,
   lessonId,
@@ -193,7 +195,7 @@ const LessonContent = React.memo(function LessonContent({
       <LessonIntroScreens
         introScreens={getLessonIntroScreens(lessonId)}
         lessonId={lessonId}
-        onComplete={() => setShowIntroScreens(false)}
+        onComplete={onIntroDone}
       />
     );
   }
@@ -726,10 +728,8 @@ export default function LessonScreen() {
       // В режиме повтора правильные ответы — синие (replay_correct)
       np[cellIndex] = isReplayRef.current ? 'replay_correct' : 'correct';
     } else {
-      // В режиме повтора и при повторном ответе неправильно — красный
-      if (isReplayRef.current || (np[cellIndex] !== 'correct' && np[cellIndex] !== 'replay_correct')) {
-        np[cellIndex] = 'wrong';
-      }
+      // Ошибка всегда перезаписывает ячейку красной (даже если была зелёной)
+      np[cellIndex] = 'wrong';
       if (!isReplayRef.current) {
         correctStreakRef.current = 0;
       }
@@ -764,11 +764,16 @@ export default function LessonScreen() {
         { type: 'total_answers' },
         { type: 'daily_active' },
       ]);
-      // Начисляем XP: 1-3 в зависимости от стрика
-      const xpAmount = correctStreakRef.current >= 5 ? 3 : correctStreakRef.current >= 3 ? 2 : 1;
+      // Начисляем XP: 5 базовых × комбо-множитель (за серию без ошибок подряд внутри урока)
+      const comboM = correctStreakRef.current >= 25 ? 3.0
+        : correctStreakRef.current >= 15 ? 2.5
+        : correctStreakRef.current >= 10 ? 2.0
+        : correctStreakRef.current >= 5  ? 1.5
+        : 1.0;
+      const xpAmount = Math.round(5 * comboM);
       
       if (userNameRef.current) {
-        await registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang);
+        await registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang, lessonId);
       }
       // [COMBO] Ачивки за серию правильных ответов
       checkAchievements({ type: 'combo', count: correctStreakRef.current }).catch(() => {});
@@ -790,18 +795,19 @@ export default function LessonScreen() {
         updateMultipleTaskProgress([{ type: 'total_answers' }]);
       }
 
-      // При ОШИБКЕ: молния исчезает
+      // При ОШИБКЕ: тратим энергию (пишем в AsyncStorage)
       if (currentEnergy > 0) {
-        setCurrentEnergy(prev => {
-          const newEnergy = Math.max(0, prev - 1);
-          // Если энергия закончилась, показываем модаль
-          if (newEnergy === 0) {
-            setTimeout(() => {
-              setInsufficientEnergy(true);
-            }, 1000);
+        spendEnergy(1).then(success => {
+          if (success) {
+            setCurrentEnergy(prev => {
+              const newEnergy = Math.max(0, prev - 1);
+              if (newEnergy === 0) {
+                setTimeout(() => { setInsufficientEnergy(true); }, 1000);
+              }
+              return newEnergy;
+            });
           }
-          return newEnergy;
-        });
+        }).catch(() => {});
       }
     }
 
@@ -892,27 +898,11 @@ export default function LessonScreen() {
     }
   }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId]);
 
-  const goNext = useCallback(async (currentProgress?: string[]) => {
+  const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
 
-    const prog = currentProgress || progress;
-
-    // Двигаемся по кругу: следующая ячейка после текущей
-    // Ищем следующую не-correct ячейку начиная с cellIndex+1
-    // Если все correct — урок завершён (обработано выше)
-    let nextCell = (cellIndex + 1) % TOTAL;
-
-    // Если следующая ячейка correct — продолжаем искать
-    // (но только если есть хоть одна не-correct)
-    const isDone = (x: string) => x === 'correct' || x === 'replay_correct';
-    const hasNonDone = prog.some(x => !isDone(x));
-    if (hasNonDone) {
-      let attempts = 0;
-      while (isDone(prog[nextCell]) && attempts < TOTAL) {
-        nextCell = (nextCell + 1) % TOTAL;
-        attempts++;
-      }
-    }
+    // Уроки зациклены: всегда переходим на следующий вопрос по кругу
+    const nextCell = (cellIndex + 1) % TOTAL;
 
     setCellIndex(nextCell);
     setStatus('playing');
@@ -1105,6 +1095,11 @@ export default function LessonScreen() {
           <LessonContent
             showIntroScreens={showIntroScreens}
             setShowIntroScreens={setShowIntroScreens}
+            onIntroDone={async () => {
+              await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true');
+              setShowIntroScreens(false);
+              loadData();
+            }}
             showEncouragementScreen={showEncouragementScreen}
             setShowEncouragementScreen={setShowEncouragementScreen}
             lessonId={lessonId}

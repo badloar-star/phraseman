@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { Ionicons } from '@expo/vector-icons';
+
+const DAILY_PHRASE_IMAGES: Record<string, any> = {
+  dark: require('../assets/images/levels/dayly phrase forest.png'),
+  neon: require('../assets/images/levels/dayly phrase neon.png'),
+  gold: require('../assets/images/levels/dayly phrase coral.png'),
+};
 import { getTodayPhrase, DailyPhrase } from '../app/daily_phrase_system';
 import AddToFlashcard from './AddToFlashcard';
 
@@ -11,7 +17,7 @@ interface Props {
 }
 
 export default function DailyPhraseCard({ userLevel }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const [phrase, setPhrase] = useState<DailyPhrase | null>(null);
   const [loading, setLoading] = useState(true);
@@ -45,8 +51,8 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
         {/* Header */}
         <View style={styles.header}>
-          <View style={{ alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 10, backgroundColor: t.accent + '20' }}>
-            <Ionicons name="sparkles" size={20} color={t.accent} />
+          <View style={{ alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 10, backgroundColor: 'transparent' }}>
+            <Image source={DAILY_PHRASE_IMAGES[themeMode]} style={{ width: 36, height: 36 }} resizeMode="contain" />
           </View>
           <View style={{ flex: 1, marginLeft: 12 }}>
             <Text style={[styles.title, { color: t.accent, fontSize: f.sm }]}>ФРАЗА ДНЯ</Text>

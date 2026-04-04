@@ -170,7 +170,7 @@ function PlayerProfileModal({
   const botData    = getBotData();
   const streak     = player.isMe ? null : getNPCStreak(player.name, player.points);
   const totalXP    = getNPCTotalXP(player.name, player.points);
-  const leagueIdx  = player.isMe ? player.leagueId : getNPCLeagueIdx(player.points);
+  const leagueIdx  = player.leagueId;
   const league     = LEAGUES[leagueIdx] ?? LEAGUES[0];
   const { level }  = getXPProgress(totalXP);
 
@@ -459,7 +459,7 @@ export default function LeagueScreen() {
                       <TouchableOpacity
                         key={p.name}
                         activeOpacity={0.7}
-                        onPress={() => setProfile({ name: p.name, points: p.points, isMe: p.isMe, leagueId: myLeagueId })}
+                        onPress={() => setProfile({ name: p.name, points: p.points, isMe: p.isMe, leagueId: league.id })}
                         style={{
                           flexDirection:'row', alignItems:'center',
                           paddingHorizontal:16, paddingVertical:11,

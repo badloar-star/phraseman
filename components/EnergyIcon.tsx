@@ -1,12 +1,21 @@
 import React, { useRef, useEffect } from 'react';
 import { Animated, Image } from 'react-native';
 
+type ThemeMode = 'dark' | 'neon' | 'gold';
+
+const ENERGY_IMAGES: Record<ThemeMode, any> = {
+  dark:  require('../assets/images/levels/ENERGY FOREST.png'),
+  neon:  require('../assets/images/levels/ENERGY NEON.png'),
+  gold:  require('../assets/images/levels/ENERGY CORAL.png'),
+};
+
 interface EnergyIconProps {
   filled: boolean;
   themeColor: string;
   size?: number; // default 20
   animateChange?: boolean;
   shouldShake?: boolean; // Trigger shake animation when energy runs out
+  themeMode?: ThemeMode;
 }
 
 export default function EnergyIcon({
@@ -15,6 +24,7 @@ export default function EnergyIcon({
   size = 20,
   animateChange = true,
   shouldShake = false,
+  themeMode,
 }: EnergyIconProps) {
   const opacityAnim = useRef(new Animated.Value(filled ? 1 : 0.4)).current;
   const shakeAnim = useRef(new Animated.Value(0)).current;
@@ -60,7 +70,7 @@ export default function EnergyIcon({
     }
   }, [shouldShake, shakeAnim]);
 
-  const energyImage = require('../assets/images/levels/energy.png');
+  const energyImage = themeMode ? ENERGY_IMAGES[themeMode] : require('../assets/images/levels/energy.png');
 
   return (
     <Animated.View

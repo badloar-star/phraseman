@@ -221,44 +221,93 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
         </Animated.View>
       )}
 
-      {/* Tappable area — verb card, dismisses keyboard */}
+      {/* Verb card area */}
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10 }}>
+
           {/* Progress */}
-          <View style={{ marginBottom: 8 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.label, marginBottom: 4 }}>
-              {learnedCnt} / {verbs.length} {lang === 'uk' ? 'вивчено' : 'выучено'}
-            </Text>
-            <View style={{ height: 4, backgroundColor: t.border, borderRadius: 2, overflow: 'hidden' }}>
-              <View style={{ height: '100%', width: `${Math.min((learnedCnt / Math.max(verbs.length, 1)) * 100, 100)}%` as any, backgroundColor: t.correct, borderRadius: 2 }} />
+          <View style={{ marginBottom: 12 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
+              <Text style={{ color: t.textMuted, fontSize: f.label }}>
+                {learnedCnt} / {verbs.length} {lang === 'uk' ? 'вивчено' : 'выучено'}
+              </Text>
+              <Text style={{ color: learnedCnt > 0 ? t.correct : t.textMuted, fontSize: f.label, fontWeight: '600' }}>
+                {Math.min(Math.round((learnedCnt / Math.max(verbs.length, 1)) * 100), 100)}%
+              </Text>
+            </View>
+            <View style={{ height: 5, backgroundColor: t.border, borderRadius: 3, overflow: 'hidden' }}>
+              <View style={{ height: '100%', width: `${Math.min((learnedCnt / Math.max(verbs.length, 1)) * 100, 100)}%` as any, backgroundColor: t.correct, borderRadius: 3 }} />
             </View>
           </View>
 
-          {/* Hex dots */}
-          <View style={{ flexDirection: 'row', gap: 12, marginBottom: 12, justifyContent: 'center' }}>
-            {[0, 1, 2].map(i => <MiniHex key={i} filled={count > i} size={26} />)}
-          </View>
+          {/* Round badge + hex dots */}
+          {(() => {
+            const formCfg = askForm === 'past'
+              ? { label: lang === 'uk' ? 'Форма 2 · Past Simple' : 'Форма 2 · Past Simple', color: '#4A9EFF', bg: 'rgba(74,158,255,0.14)', icon: 'pencil-outline' as const }
+              : askForm === 'pp'
+              ? { label: lang === 'uk' ? 'Форма 3 · Past Participle' : 'Форма 3 · Past Participle', color: '#C084FC', bg: 'rgba(192,132,252,0.14)', icon: 'create-outline' as const }
+              : { label: lang === 'uk' ? 'Форма 1 · Інфінітив' : 'Форма 1 · Инфинитив', color: t.correct, bg: t.correctBg, icon: 'flash-outline' as const };
+            return (
+              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 14, marginBottom: 16 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: formCfg.bg, borderRadius: 20, paddingHorizontal: 12, paddingVertical: 5, borderWidth: 1, borderColor: formCfg.color + '50' }}>
+                  <Ionicons name={formCfg.icon} size={13} color={formCfg.color} />
+                  <Text style={{ color: formCfg.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.3 }}>{formCfg.label}</Text>
+                </View>
+                <View style={{ flexDirection: 'row', gap: 8 }}>
+                  {[0, 1, 2].map(i => <MiniHex key={i} filled={count > i} size={22} />)}
+                </View>
+              </View>
+            );
+          })()}
 
-          {/* Verb + translation + feedback — centered */}
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 10 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+          {/* Verb display — centered */}
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 12 }}>
+
+            {/* Translation */}
+            <Text style={{ color: t.textGhost, fontSize: f.body, textAlign: 'center' }}>
               {lang === 'uk' ? verb.uk : verb.ru}
             </Text>
-            {askForm !== 'base' && (
-              <Text style={{ color: t.textPrimary, fontSize: 46, fontWeight: '300', letterSpacing: 1 }}>
-                {verb.base}
-              </Text>
-            )}
-            {feedback === 'correct' && (
-              <View style={{ alignItems: 'center', gap: 4, backgroundColor: t.correctBg, borderRadius: 12, paddingHorizontal: 20, paddingVertical: 10 }}>
-                <Text style={{ color: t.correct, fontSize: f.h2, fontWeight: '700' }}>
-                  {verb.base} → {verb.past} → {verb.pp}
-                </Text>
-              </View>
-            )}
+
+            {/* Forms chain */}
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+              {(['base', 'past', 'pp'] as const).map((form, i) => {
+                const isTarget = askForm === form;
+                const isKnown = (form === 'base' && count >= 2 && askForm !== 'base')
+                  || (form === 'past' && count >= 1)
+                  || (form === 'pp' && count >= 2);
+                const showValue = !isTarget || feedback !== 'idle';
+                const value = form === 'base' ? verb.base : form === 'past' ? verb.past : verb.pp;
+                return (
+                  <React.Fragment key={form}>
+                    {i > 0 && <Text style={{ color: t.textGhost, fontSize: f.body }}>→</Text>}
+                    <View style={{
+                      borderRadius: 10,
+                      paddingHorizontal: 10,
+                      paddingVertical: 5,
+                      backgroundColor: isTarget ? (feedback === 'correct' ? t.correctBg : feedback === 'wrong' ? 'rgba(240,84,84,0.12)' : t.bgSurface) : 'transparent',
+                      borderWidth: isTarget ? 1 : 0,
+                      borderColor: isTarget ? (feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : t.border) : 'transparent',
+                    }}>
+                      <Text style={{
+                        fontSize: isTarget ? 32 : 20,
+                        fontWeight: isTarget ? '500' : '300',
+                        color: isTarget
+                          ? (feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : t.textPrimary)
+                          : (isKnown ? t.textSecond : t.textGhost),
+                        letterSpacing: isTarget ? 1 : 0,
+                      }}>
+                        {showValue ? value : '___'}
+                      </Text>
+                    </View>
+                  </React.Fragment>
+                );
+              })}
+            </View>
+
+            {/* Correct answer hint on wrong */}
             {feedback === 'wrong' && correctAnswer ? (
-              <View style={{ alignItems: 'center', gap: 4, backgroundColor: 'rgba(255,68,68,0.12)', borderRadius: 12, paddingHorizontal: 20, paddingVertical: 10 }}>
-                <Text style={{ color: t.textMuted, fontSize: f.sub }}>{lang === 'uk' ? 'Правильно:' : 'Правильно:'}</Text>
+              <View style={{ alignItems: 'center', gap: 2, backgroundColor: 'rgba(240,84,84,0.10)', borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8 }}>
+                <Text style={{ color: t.textGhost, fontSize: f.sub }}>{lang === 'uk' ? 'Правильно:' : 'Правильно:'}</Text>
                 <Text style={{ color: t.correct, fontSize: f.h2, fontWeight: '700' }}>{correctAnswer}</Text>
               </View>
             ) : null}
@@ -266,7 +315,7 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
         </View>
       </TouchableWithoutFeedback>
 
-      {/* Input + button — pinned above keyboard */}
+      {/* Input + button */}
       <View style={{
         paddingHorizontal: 20,
         paddingBottom: Platform.OS === 'ios' && kbH > 0 ? kbH + 8 : 16,
@@ -276,31 +325,7 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
         borderTopColor: t.border,
         backgroundColor: t.bgPrimary,
       }}>
-        {/* Label: which form to enter */}
-        <View style={{
-          backgroundColor: t.accent,
-          borderRadius: 12,
-          paddingHorizontal: 16,
-          paddingVertical: 8,
-          alignSelf: 'center',
-          marginBottom: 4,
-        }}>
-          <Text style={{
-            color: (t as any).correctText ?? '#042010',
-            fontSize: 15,
-            fontWeight: '800',
-            textAlign: 'center',
-            letterSpacing: 0.5,
-          }}>
-            {askForm === 'past'
-              ? (lang === 'uk' ? '✍️ Past Simple (2-га форма)' : '✍️ Past Simple (2-я форма)')
-              : askForm === 'pp'
-              ? (lang === 'uk' ? '✍️ Past Participle (3-тя форма)' : '✍️ Past Participle (3-я форма)')
-              : (lang === 'uk' ? '✍️ Інфінітив (1-ша форма)' : '✍️ Инфинитив (1-я форма)')}
-          </Text>
-        </View>
-
-        <View style={{ borderRadius: 14, borderWidth: 2, backgroundColor: bgC, borderColor: borderC }}>
+        <View style={{ borderRadius: 16, borderWidth: 2, backgroundColor: bgC, borderColor: borderC }}>
           <TextInput
             ref={inputRef}
             autoFocus
@@ -319,7 +344,7 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
               fontSize: f.h2,
               fontWeight: '600',
               textAlign: 'center',
-              paddingVertical: 13,
+              paddingVertical: 14,
               paddingHorizontal: 16,
             }}
           />
@@ -329,23 +354,18 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
           style={{
             backgroundColor: isIdle ? t.accent : t.bgSurface,
             borderRadius: 14,
-            paddingVertical: 13,
+            paddingVertical: 14,
             alignItems: 'center',
             borderWidth: isIdle ? 0 : 1,
             borderColor: t.border,
           }}
-          onPress={() => {
-            hapticTap();
-            if (!isIdle) handleNext();
-            else handleSubmit();
-          }}
+          onPress={() => { hapticTap(); if (!isIdle) handleNext(); else handleSubmit(); }}
           activeOpacity={0.8}
         >
-          <Text style={{ color: isIdle ? t.correctText ?? '#1A2400' : t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+          <Text style={{ color: isIdle ? (t as any).correctText ?? '#1A2400' : t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
             {isIdle
               ? (lang === 'uk' ? 'Перевірити' : 'Проверить')
-              : (lang === 'uk' ? 'Далі →' : 'Дальше →')
-            }
+              : (lang === 'uk' ? 'Далі →' : 'Дальше →')}
           </Text>
         </TouchableOpacity>
       </View>

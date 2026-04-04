@@ -10,7 +10,8 @@ import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { getLevelFromXP } from '../constants/theme';
-import { FRAMES, getBestAvatarForLevel, getBestFrameForLevel, getUnlockedFrames } from '../constants/avatars';
+import { FRAMES, FrameDef, getBestAvatarForLevel, getBestFrameForLevel, getUnlockedFrames } from '../constants/avatars';
+import { loadAchievementStates } from './achievements';
 import AnimatedFrame from '../components/AnimatedFrame';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -30,7 +31,7 @@ function FrameCell({
 }: {
   frameId: string; color: string; nameUK: string; nameRU: string;
   unlockLevel: number; isSelected: boolean; isLocked: boolean;
-  isUK: boolean; onPress: () => void;
+  isUK: boolean; onPress: () => void; unlockType?: string;
 }) {
   const frameSize = Math.round(CELL_W * 0.62);
   const bodyBg    = isLocked ? '#181818' : color + '22';
@@ -88,16 +89,30 @@ export default function AvatarSelect() {
   const [selEmoji, setSelEmoji] = useState('🐣');
   const [selFrame, setSelFrame] = useState('plain');
   const [unlockedFrameIds, setUnlockedFrameIds] = useState<string[]>([]);
+  const [currentClubId, setCurrentClubId] = useState<number | null>(null);
+  const [unlockedAchIds, setUnlockedAchIds] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     Promise.all([
-      AsyncStorage.multiGet(['user_total_xp', 'user_avatar', 'user_frame']),
+      AsyncStorage.multiGet(['user_total_xp', 'user_avatar', 'user_frame', 'league_state']),
       getUnlockedFrames(),
-    ]).then(([pairs, frameIds]) => {
+      loadAchievementStates(),
+    ]).then(([pairs, frameIds, achStates]) => {
       const xp  = parseInt(pairs[0][1] || '0') || 0;
       const lvl = getLevelFromXP(xp) || 1;
       setLevel(lvl);
       setUnlockedFrameIds(frameIds);
+
+      // Текущий клуб
+      try {
+        const ls = pairs[3][1] ? JSON.parse(pairs[3][1]) : null;
+        if (ls && typeof ls.leagueId === 'number') setCurrentClubId(ls.leagueId);
+      } catch {}
+
+      // Разблокированные достижения
+      const achSet = new Set(achStates.filter(s => s.unlockedAt !== null).map(s => s.id));
+      setUnlockedAchIds(achSet);
+
       const bestAvatar = getBestAvatarForLevel(lvl);
       const bestFrame  = getBestFrameForLevel(lvl);
       setSelEmoji(pairs[1][1] || bestAvatar || '🐣');
@@ -111,8 +126,45 @@ export default function AvatarSelect() {
     AsyncStorage.multiSet([['user_avatar', selEmoji || '🐣'], ['user_frame', frameId]]).catch(() => {});
   };
 
-  const unlockedFrames = FRAMES.filter(fr => fr.unlockLevel <= level || unlockedFrameIds.includes(fr.id));
-  const lockedFrames   = FRAMES.filter(fr => fr.unlockLevel > level && !unlockedFrameIds.includes(fr.id));
+  const isFrameAvailable = (fr: FrameDef): boolean => {
+    const type = fr.unlockType ?? 'level';
+    if (type === 'level')       return fr.unlockLevel <= level || unlockedFrameIds.includes(fr.id);
+    if (type === 'achievement') return unlockedAchIds.has(fr.unlockAchievementId ?? '');
+    if (type === 'club')        return currentClubId !== null && currentClubId === fr.unlockClubId;
+    return false;
+  };
+
+  const getLockedAlert = (fr: FrameDef): { title: string; message: string } => {
+    const type = fr.unlockType ?? 'level';
+    if (type === 'achievement') {
+      const achName = isUK ? (fr.unlockAchievementNameUK ?? '') : (fr.unlockAchievementNameRU ?? '');
+      return {
+        title:   isUK ? `🏅 Досягнення потрібне` : `🏅 Нужно достижение`,
+        message: isUK
+          ? `Відкрий досягнення «${achName}», щоб розблокувати цю рамку`
+          : `Открой достижение «${achName}», чтобы разблокировать эту рамку`,
+      };
+    }
+    if (type === 'club') {
+      const clubName = isUK ? (fr.unlockClubNameUK ?? '') : (fr.unlockClubNameRU ?? '');
+      return {
+        title:   isUK ? `🏛 Лише для членів клубу` : `🏛 Только для членов клуба`,
+        message: isUK
+          ? `Ця рамка доступна лише членам «${clubName}». Потрапи до цього клубу, щоб використовувати її!`
+          : `Эта рамка доступна только членам «${clubName}». Попади в этот клуб, чтобы использовать её!`,
+      };
+    }
+    // level
+    return {
+      title:   isUK ? `🔒 Рівень ${fr.unlockLevel}` : `🔒 Уровень ${fr.unlockLevel}`,
+      message: isUK
+        ? `Ця рамка відкриється на рівні ${fr.unlockLevel}`
+        : `Эта рамка откроется на уровне ${fr.unlockLevel}`,
+    };
+  };
+
+  const unlockedFrames = FRAMES.filter(fr => isFrameAvailable(fr));
+  const lockedFrames   = FRAMES.filter(fr => !isFrameAvailable(fr));
 
   return (
     <ScreenGradient>
@@ -169,10 +221,11 @@ export default function AvatarSelect() {
                 isSelected={false}
                 isLocked={true}
                 isUK={isUK}
-                onPress={() => Alert.alert(
-                  isUK ? `🔒 Рівень ${fr.unlockLevel}` : `🔒 Уровень ${fr.unlockLevel}`,
-                  isUK ? `Ця рамка відкриється на рівні ${fr.unlockLevel}` : `Эта рамка откроется на уровне ${fr.unlockLevel}`,
-                )}
+                unlockType={fr.unlockType}
+                onPress={() => {
+                  const { title, message } = getLockedAlert(fr);
+                  Alert.alert(title, message);
+                }}
               />
             )),
           ]}

@@ -6,7 +6,7 @@ import { checkWagerProgress } from './streak_wager';
 export const LEVEL_BASE: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
 
 export const streakMultiplier = (s: number): number =>
-  s >= 15 ? 5 : s >= 7 ? 3 : s >= 3 ? 2 : 1;
+  s >= 30 ? 1.8 : s >= 14 ? 1.6 : s >= 7 ? 1.4 : s >= 3 ? 1.2 : 1;
 
 export const pointsForAnswer = (level: string, streak: number): number =>
   LEVEL_BASE[level] * streakMultiplier(streak);
@@ -165,7 +165,7 @@ export const addOrUpdateScore = async (
   lang: string,
   avatar?: string,
 ) => {
-  // РАЗРЕШАЕМ отрицательную дельту для ставок (списание XP)
+  // Разрешаем отрицательный опыт для списания ставок (wagers)
   if (!name || delta === 0) return;
 
   // ── 1. Leaderboard (накопительный) ──────────────────────────────────────
@@ -173,6 +173,7 @@ export const addOrUpdateScore = async (
   const idx = board.findIndex(e => e.name === name);
   if (idx >= 0) {
     board[idx].points += delta;
+    if (avatar) board[idx].avatar = avatar;
   } else {
     board.push({ name, points: delta, lang, avatar });
   }
@@ -241,8 +242,10 @@ export const addOrUpdateScore = async (
     await AsyncStorage.setItem('daily_stats', JSON.stringify(stats));
   } catch {}
 
-  // ── 5. Стрик и week_days_done ─────────────────────────────────────────────
-  await updateStreakOnActivity();
+  // ── 5. Стрик и week_days_done — только при положительном начислении ────────
+  if (delta > 0) {
+    await updateStreakOnActivity();
+  }
 
 };
 

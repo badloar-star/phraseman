@@ -17,7 +17,7 @@ import { unlockAllFrames } from '../constants/avatars';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements } from './achievements';
 import { getMyWeekPoints } from './hall_of_fame_utils';
-import { calculateResult, LeagueResult, loadLeagueState, savePendingResult } from './league_engine';
+import { calculateResult, LeagueResult, loadLeagueState, savePendingResult, getWeekId } from './league_engine';
 import LeagueResultModal from './LeagueResultModal';
 import { registerXP } from './xp_manager';
 
@@ -205,11 +205,52 @@ export default function SettingsTestersFunctions() {
       // Get current week points
       const myWeekPoints = await getMyWeekPoints();
 
+      // For testing: if group has only 1 member (just me, no bots in week_leaderboard),
+      // inject fake competitors so ranking is meaningful
+      let testState = state;
+      const realMembers = state.group.filter(m => !m.isMe);
+      if (realMembers.length < 4) {
+        // Bot XP: deterministic random per (name + day), 3–366 XP/day × days elapsed this week
+        const today = new Date();
+        const dayOfWeek = today.getUTCDay() || 7; // 1=Mon … 7=Sun
+        const daysElapsed = dayOfWeek; // days since week started (inclusive of today)
+        const seededRand = (seed: number) => {
+          let s = seed;
+          s = ((s >>> 16) ^ s) * 0x45d9f3b;
+          s = ((s >>> 16) ^ s) * 0x45d9f3b;
+          s = (s >>> 16) ^ s;
+          return (s >>> 0) / 0xffffffff;
+        };
+        const dateNum = today.getUTCFullYear() * 10000 + (today.getUTCMonth() + 1) * 100 + today.getUTCDate();
+        const botNames = ['Alex', 'Maria', 'Ivan', 'Olga', 'Sergey', 'Dasha', 'Misha', 'Ira', 'Kolya', 'Tanya',
+                          'Petro', 'Oksana', 'Vlad', 'Lena', 'Roma', 'Nastya', 'Dima', 'Katya', 'Andrey'];
+        const fakeBots = botNames.slice(0, 19 - realMembers.length).map((name, i) => {
+          let weekPoints = 0;
+          for (let day = 1; day <= daysElapsed; day++) {
+            const seed = (dateNum - dayOfWeek + day) * 100 + i;
+            weekPoints += Math.round(3 + seededRand(seed) * (366 - 3));
+          }
+          return { name, points: weekPoints, isMe: false };
+        });
+        const fakeGroup = [
+          ...fakeBots,
+          ...realMembers,
+          { name: state.group.find(m => m.isMe)?.name ?? 'Me', points: myWeekPoints, isMe: true },
+        ];
+        testState = { ...state, group: fakeGroup } as typeof state;
+      }
+
       // Force calculate league result (for testing, not checking if week changed)
-      const leagueResult = calculateResult(state, myWeekPoints);
+      const leagueResult = calculateResult(testState, myWeekPoints);
 
       // Save as pending so it persists and shows on next app open
       await savePendingResult(leagueResult);
+
+      // Update state to new leagueId — keep only real members (not fake bots)
+      const myMember = testState.group.find(m => m.isMe);
+      const newGroup = [...realMembers, ...(myMember ? [myMember] : [])];
+      const newState = { ...state, leagueId: leagueResult.newLeagueId, weekId: getWeekId(), group: newGroup };
+      await AsyncStorage.setItem('league_state_v3', JSON.stringify(newState));
 
       // Show the beautiful modal immediately (no confirmation alert)
       setLeagueResult(leagueResult);

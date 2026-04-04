@@ -16,7 +16,7 @@ interface Props {
  * Icons overlap for compact layout (50% offset)
  */
 export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
-  const { theme: t } = useTheme();
+  const { theme: t, themeMode } = useTheme();
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
 
   // Update timer every second when energy is not at max
@@ -51,6 +51,7 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
               size={20}
               animateChange={true}
               shouldShake={shouldShake}
+              themeMode={themeMode}
             />
           </View>
         ))}

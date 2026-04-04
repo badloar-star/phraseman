@@ -78,7 +78,8 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
     const currentXP = parseInt(xpRaw || '0') || 0;
     if (currentXP < tier.betXP) return false;
     
-    await registerXP(-tier.betXP, 'wager_bet', ''); // Используем менеджер
+    const betUserName = await AsyncStorage.getItem('user_name') || '';
+    await registerXP(-tier.betXP, 'wager_bet', betUserName);
     
     const wager: WagerState = {
       active:       true,
@@ -120,7 +121,8 @@ export const checkWagerProgress = async (
     const daysKept = wager.daysKept + 1;
 
     if (daysKept >= wager.daysRequired) {
-      await registerXP(wager.rewardXP, 'wager_win', ''); // Используем менеджер
+      const winUserName = await AsyncStorage.getItem('user_name') || '';
+      await registerXP(wager.rewardXP, 'wager_win', winUserName);
       await saveWager({ ...wager, active: false, result: 'won', daysKept, lastChecked: t });
       return 'won';
     }

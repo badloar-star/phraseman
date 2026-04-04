@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
-  ScrollView, Animated, Dimensions, Alert, Image,
+  ScrollView, Animated, Dimensions, Alert, Image, Modal,
 } from 'react-native';
 
 import { useRouter } from 'expo-router';
@@ -16,7 +16,7 @@ import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
 import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { getTodayTasks, loadTodayProgress, TaskProgress } from '../daily_tasks';
-import { getXPProgress, CEFR_FOR_LEVEL, getLevelFromXP } from '../../constants/theme';
+import { getXPProgress, getLevelFromXP } from '../../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK } from '../../constants/lessons';
 import { DEV_MODE, IS_EXPO_GO } from '../config';
 import Purchases from 'react-native-purchases';
@@ -120,10 +120,25 @@ export default function HomeScreen() {
   const [freezeActive, setFreezeActive] = useState(false);
   const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
   const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
-  const [userLevel, setUserLevel] = useState<'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2'>('A1');
   const [energyCount, setEnergyCount] = useState(5);
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string>('');
   const [shouldShake, setShouldShake] = useState(false);
+  const [energyTooltipVisible, setEnergyTooltipVisible] = useState(false);
+  const energyTooltipAnim = useRef(new Animated.Value(0)).current;
+  const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const showEnergyTooltip = () => {
+    hapticTap();
+    if (energyTooltipTimer.current) clearTimeout(energyTooltipTimer.current);
+    setEnergyTooltipVisible(true);
+    energyTooltipAnim.setValue(0);
+    Animated.spring(energyTooltipAnim, { toValue: 1, useNativeDriver: true, tension: 120, friction: 8 }).start();
+    energyTooltipTimer.current = setTimeout(() => {
+      Animated.timing(energyTooltipAnim, { toValue: 0, duration: 220, useNativeDriver: true }).start(() => {
+        setEnergyTooltipVisible(false);
+      });
+    }, 3000);
+  };
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const diagChecked = true;
@@ -195,9 +210,6 @@ export default function HomeScreen() {
         setUserAvatar(avatarVal || getBestAvatarForLevel(curLvl));
         setUserFrame(frameVal  || getBestFrameForLevel(curLvl).id);
 
-        // Set user level for daily phrase system
-        const cefr = CEFR_FOR_LEVEL[curLvl] as 'A1' | 'A2' | 'B1' | 'B2' | 'C1' | 'C2';
-        setUserLevel(cefr);
         if (newXP > prevXP) {
           const prevLvl = getLevelFromXP(prevXP);
           const newLvl  = getLevelFromXP(newXP);
@@ -422,18 +434,27 @@ export default function HomeScreen() {
   // ── Новый стиль главного экрана ──────────────────────────────────────────
   const renderNewHome = () => {
     const { level, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP);
-    const cefr = CEFR_FOR_LEVEL(level);
     const PILL_W = (CONTENT_W - 32 - 30) / 4;  // 4 пилюли равной ширины
+    const themeSuffix = themeMode === 'gold' ? 'coral' : themeMode === 'neon' ? 'neon' : 'forest';
+    const menuImages = {
+      lesson:       themeSuffix === 'coral' ? require('../../assets/images/levels/lesson coral.png')       : themeSuffix === 'neon' ? require('../../assets/images/levels/lesson neon.png')       : require('../../assets/images/levels/lesson forest.png'),
+      dialog:       themeSuffix === 'coral' ? require('../../assets/images/levels/dialog coral.png')       : themeSuffix === 'neon' ? require('../../assets/images/levels/dialog neon.png')       : require('../../assets/images/levels/dialog forest.png'),
+      quizes:       themeSuffix === 'coral' ? require('../../assets/images/levels/quizes coral.png')       : themeSuffix === 'neon' ? require('../../assets/images/levels/quizes neon.png')       : require('../../assets/images/levels/quizes forest.png'),
+      cards:        themeSuffix === 'coral' ? require('../../assets/images/levels/cards coral.png')        : themeSuffix === 'neon' ? require('../../assets/images/levels/cards neon.png')        : require('../../assets/images/levels/cards forest.png'),
+      dayTasks:     themeSuffix === 'coral' ? require('../../assets/images/levels/day tasks coral.png')    : themeSuffix === 'neon' ? require('../../assets/images/levels/day tasks neon.png')    : require('../../assets/images/levels/day tasks forest.png'),
+      test:         themeSuffix === 'coral' ? require('../../assets/images/levels/test coral.png')         : themeSuffix === 'neon' ? require('../../assets/images/levels/test neon.png')         : require('../../assets/images/levels/test forest.png'),
+      exam:         themeSuffix === 'coral' ? require('../../assets/images/levels/exam coral.png')         : themeSuffix === 'neon' ? require('../../assets/images/levels/exam neon.png')         : require('../../assets/images/levels/examen forest.png'),
+    };
     const quickItems = [
-      { icon:'book' as const,         label:isUK?'Уроки':'Уроки',       sub:`32 ${isUK?'уроки':'урока'}`,           path:'index' },
-      { icon:'chatbubbles' as const,  label:isUK?'Діалоги':'Диалоги',  sub:`20 ${isUK?'сценаріїв':'сценариев'}`, path:'/dialogs' },
-      { icon:'trophy-outline' as const, label:isUK?'Квізи':'Квизы',     sub:`3 ${isUK?'рівні':'уровня'}`,            path:'/(tabs)/quizzes' },
-      { icon:'bookmark' as const,     label:isUK?'Картки':'Карточки',   sub:isUK?'Збережені':'Сохранённые', path:'/flashcards' },
+      { img: menuImages.lesson,   label:isUK?'Уроки':'Уроки',       sub:`32 ${isUK?'уроки':'урока'}`,           path:'index' },
+      { img: menuImages.dialog,   label:isUK?'Діалоги':'Диалоги',  sub:`20 ${isUK?'сценаріїв':'сценариев'}`, path:'/dialogs' },
+      { img: menuImages.quizes,   label:isUK?'Квізи':'Квизы',     sub:`3 ${isUK?'рівні':'уровня'}`,            path:'/(tabs)/quizzes' },
+      { img: menuImages.cards,    label:isUK?'Картки':'Карточки',   sub:isUK?'Збережені':'Сохранённые', path:'/flashcards' },
     ];
     // Порядок: Задания | Клуб / Тест знаний | Экзамен
     const gridItems = [
       {
-        iconName:'flash' as const, iconColor:t.accent,
+        img: menuImages.dayTasks, iconName:'flash' as const, iconColor:t.accent,
         label:isUK?'Завдання':'Задания',
         path:'/daily_tasks_screen',
         isTasksBlock: true,
@@ -447,14 +468,14 @@ export default function HomeScreen() {
         pct: null,
       },
       {
-        iconName:'analytics' as const, iconColor:t.textSecond,
+        img: menuImages.test, iconName:'analytics' as const, iconColor:t.textSecond,
         label:isUK?'Тест знань':'Тест знаний',
         sub:isUK?'Дізнайся рівень':'Узнай уровень',
         path:'/diagnostic_test',
         pct: null,
       },
       {
-        iconName:'school' as const, iconColor:t.correct,
+        img: menuImages.exam, iconName:'school' as const, iconColor:t.correct,
         label:isUK?'Іспит':'Экзамен',
         sub:`${lessonsCompleted}/32 ${isUK?'уроків':'уроков'}`,
         path:'/exam',
@@ -473,26 +494,32 @@ export default function HomeScreen() {
               <Text style={{ color:t.textPrimary, fontSize:f.h1, fontWeight:'700', marginTop:2 }}>{userName||'...'}</Text>
             </View>
             <View style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
-              <View style={{ alignItems:'center' }}>
-                <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', height:28, marginLeft: -40 }}>
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <View key={i} style={{ marginLeft: i > 0 ? -10 : 0 }}>
-                      <EnergyIcon
-                        filled={i < energyCount}
-                        themeColor={i < energyCount ? t.gold : t.textGhost}
-                        size={18}
-                        animateChange={true}
-                        shouldShake={shouldShake}
-                      />
-                    </View>
-                  ))}
+              {/* Energy — с тултипом */}
+              <View style={{ alignItems:'flex-end' }}>
+                <TouchableOpacity activeOpacity={0.7} onPress={showEnergyTooltip} style={{ alignItems:'center' }}>
+                  <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', height:28, marginLeft: -40 }}>
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <View key={i} style={{ marginLeft: i > 0 ? -10 : 0 }}>
+                        <EnergyIcon
+                          filled={i < energyCount}
+                          themeColor={i < energyCount ? t.gold : t.textGhost}
+                          size={18}
+                          animateChange={true}
+                          shouldShake={shouldShake}
+                          themeMode={themeMode}
+                        />
+                      </View>
+                    ))}
+                  </View>
+                  {energyCount < 5 && timeUntilNextEnergy && (
+                    <Text style={{ fontSize: 10, color: t.textMuted, marginTop: 4, fontWeight: '500' }}>
+                      {timeUntilNextEnergy}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+
                 </View>
-                {energyCount < 5 && timeUntilNextEnergy && (
-                  <Text style={{ fontSize: 10, color: t.textMuted, marginTop: 4, fontWeight: '500' }}>
-                    {timeUntilNextEnergy}
-                  </Text>
-                )}
-              </View>
+
               <TouchableOpacity onPress={()=>router.push('/avatar_select')}>
                 <AnimatedFrame image={/^\d+$/.test(userAvatar) ? getAvatarImageByIndex(parseInt(userAvatar)) : undefined} emoji={userAvatar} frameId={userFrame} size={40} />
               </TouchableOpacity>
@@ -521,7 +548,6 @@ export default function HomeScreen() {
                     <LevelBadge level={level} size={34} />
                     <View style={{ flex:1 }}>
                       <Text style={{ color:t.textPrimary, fontSize:18, fontWeight:'800', lineHeight:22 }} numberOfLines={1}>{isUK?'Рівень':'Уровень'} {level}</Text>
-                      <Text style={{ color:t.textSecond, fontSize:13 }}>{cefr}</Text>
                     </View>
                   </View>
                 </View>
@@ -601,7 +627,7 @@ export default function HomeScreen() {
                   }}
                   style={{ backgroundColor:t.bgCard, borderRadius:18, borderWidth:0.5, borderColor:t.border, paddingHorizontal:10, paddingVertical:14, alignItems:'center', gap:5, width:PILL_W }}
                 >
-                  <Ionicons name={item.icon} size={26} color={t.accent} />
+                  <Image source={item.img} style={{ width: 52, height: 52 }} resizeMode="contain" />
                   <Text style={{ color:t.textPrimary, fontSize:f.label, fontWeight:'700', textAlign:'center' }} numberOfLines={1}>{item.label}</Text>
                   <Text style={{ color:t.textMuted, fontSize:9, textAlign:'center' }} numberOfLines={1}>{item.sub}</Text>
                 </TouchableOpacity>
@@ -615,8 +641,8 @@ export default function HomeScreen() {
               <TouchableOpacity activeOpacity={0.85} onPress={()=>router.push('/review')}
                 style={{ flexDirection:'row', alignItems:'center', gap:12, backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, padding:14 }}
               >
-                <View style={{ width:40, height:40, borderRadius:12, backgroundColor:t.accentBg, justifyContent:'center', alignItems:'center' }}>
-                  <Ionicons name="repeat" size={22} color={t.accent} />
+                <View style={{ width:44, height:44, borderRadius:12, backgroundColor:'transparent', justifyContent:'center', alignItems:'center' }}>
+                  <Image source={themeSuffix === 'coral' ? require('../../assets/images/levels/active recall coral.png') : themeSuffix === 'neon' ? require('../../assets/images/levels/active recall neon.png') : require('../../assets/images/levels/active recall forest.png')} style={{ width:44, height:44 }} resizeMode="contain" />
                 </View>
                 <View style={{ flex:1 }}>
                   <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>{isUK?'Повторити сьогодні':'Повторить сегодня'}</Text>
@@ -642,9 +668,11 @@ export default function HomeScreen() {
                     onPress={()=>go(item.path)}
                     style={{ flex:1, backgroundColor:t.bgCard, borderRadius:20, borderWidth:0.5, borderColor:t.border, padding:20, alignItems:'center', justifyContent:'center', minHeight:130 }}
                   >
-                    <View style={{ width:72, height:72, borderRadius:item.label === (isUK ? 'Клуб' : 'Клуб') ? 0 : 18, backgroundColor:item.label === (isUK ? 'Клуб' : 'Клуб') ? 'transparent' : item.iconColor+'22', justifyContent:'center', alignItems:'center', marginBottom:10 }}>
+                    <View style={{ width:72, height:72, borderRadius:item.label === (isUK ? 'Клуб' : 'Клуб') ? 0 : 18, backgroundColor:item.label === (isUK ? 'Клуб' : 'Клуб') ? 'transparent' : (item as any).img ? 'transparent' : (item.iconColor as string)+'22', justifyContent:'center', alignItems:'center', marginBottom:10 }}>
                       {item.label === (isUK ? 'Клуб' : 'Клуб') && engineLeague?.imageUri ? (
                         <Image source={engineLeague.imageUri} style={{ width:72, height:72 }} resizeMode="contain" />
+                      ) : (item as any).img ? (
+                        <Image source={(item as any).img} style={{ width:76, height:76 }} resizeMode="contain" />
                       ) : (
                         <Ionicons name={item.iconName} size={40} color={item.iconColor} />
                       )}
@@ -682,7 +710,7 @@ export default function HomeScreen() {
           </View>
 
           {/* ── ФРАЗА ДНЯ ── */}
-          <DailyPhraseCard userLevel={userLevel} />
+          <DailyPhraseCard />
 
           {/* Подвал */}
           <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:t.border }}>
@@ -704,7 +732,61 @@ export default function HomeScreen() {
       <ScreenGradient>
       <View style={{ flex:1 }}>
       {renderNewHome()}
+
       </View>
+
+      {/* Energy Tooltip — Modal чтобы не обрезался */}
+      <Modal visible={energyTooltipVisible} transparent animationType="none" onRequestClose={() => setEnergyTooltipVisible(false)}>
+        <TouchableOpacity style={{ flex:1 }} activeOpacity={1} onPress={() => setEnergyTooltipVisible(false)}>
+          <Animated.View pointerEvents="none" style={{
+            position: 'absolute',
+            top: 155,
+            right: 8,
+            opacity: energyTooltipAnim,
+            transform: [
+              { translateY: energyTooltipAnim.interpolate({ inputRange:[0,1], outputRange:[-8,0] }) },
+              { scale: energyTooltipAnim.interpolate({ inputRange:[0,1], outputRange:[0.88,1] }) },
+            ],
+          }}>
+            <View style={{
+              backgroundColor: '#1C1C1E',
+              borderRadius: 16,
+              paddingVertical: 12,
+              paddingHorizontal: 16,
+              borderWidth: 1,
+              borderColor: t.gold + '66',
+              width: 220,
+              shadowColor: '#000',
+              shadowOpacity: 0.6,
+              shadowRadius: 16,
+              shadowOffset: { width: 0, height: 6 },
+              elevation: 20,
+            }}>
+              {/* Стрелка вверх */}
+              <View style={{ position:'absolute', top:-7, right:52, width:0, height:0, borderLeftWidth:7, borderRightWidth:7, borderBottomWidth:7, borderLeftColor:'transparent', borderRightColor:'transparent', borderBottomColor: t.gold+'66' }} />
+              <View style={{ position:'absolute', top:-5.5, right:53, width:0, height:0, borderLeftWidth:6, borderRightWidth:6, borderBottomWidth:6, borderLeftColor:'transparent', borderRightColor:'transparent', borderBottomColor:'#1C1C1E' }} />
+
+              <View style={{ flexDirection:'row', alignItems:'center', gap:8, marginBottom: energyCount < 5 ? 10 : 0 }}>
+                <Text style={{ fontSize:16 }}>⚡</Text>
+                <Text style={{ color:'#FFFFFF', fontSize:13, fontWeight:'600', flex:1 }}>
+                  {isUK ? '1 енергія кожні 30 хвилин' : '1 энергия каждые 30 минут'}
+                </Text>
+              </View>
+
+              {energyCount < 5 && timeUntilNextEnergy ? (
+                <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', backgroundColor:'#2C2C2E', borderRadius:10, paddingVertical:8, paddingHorizontal:12 }}>
+                  <Text style={{ color:'#8E8E93', fontSize:12 }}>
+                    {isUK ? 'Через' : 'Через'}
+                  </Text>
+                  <Text style={{ color: t.gold, fontSize:16, fontWeight:'800' }}>
+                    {timeUntilNextEnergy}
+                  </Text>
+                </View>
+              ) : null}
+            </View>
+          </Animated.View>
+        </TouchableOpacity>
+      </Modal>
 
       {/* Level-Up анимация — поверх экрана */}
       {showLevelUp && (() => {

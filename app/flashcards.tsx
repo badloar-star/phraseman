@@ -317,8 +317,10 @@ export default function FlashcardsScreen() {
   const [index, setIndex]             = useState(0);
   const [isFlipped, setIsFlipped]     = useState(false);
   const [allFlipped, setAllFlipped]   = useState(false);
+  const [hideEnHint, setHideEnHint]   = useState(false);
   const [isFlipping, setIsFlipping]   = useState(false);
   const cardFlipAnims                 = useRef<Animated.Value[]>([]);
+  const flipAllTimers                 = useRef<ReturnType<typeof setTimeout>[]>([]);
   const isFlippedRef                  = useRef(false);
   const [loading, setLoading]         = useState(true);
   const sessionDoneRef                = useRef(false); // achievement fired once per session
@@ -346,6 +348,11 @@ export default function FlashcardsScreen() {
   const scrollY     = useRef(new Animated.Value(0)).current;
   const focusAnim   = useRef(new Animated.Value(1)).current;
 
+  // Header button animations (Filter + Delete on saved tab)
+  const filterBtnX  = useRef(new Animated.Value(0)).current;
+  const deleteBtnX  = useRef(new Animated.Value(0)).current;
+  const [savedBtnsVisible, setSavedBtnsVisible] = useState(true);
+
 
   // ── Load ───────────────────────────────────────────────────────────────────
   const loadAll = useCallback(async () => {
@@ -372,6 +379,8 @@ export default function FlashcardsScreen() {
     setActiveFilter('all');
     setIndex(0);
     setIsFlipped(false);
+    setAllFlipped(false);
+    setHideEnHint(false);
     flipAnim.setValue(0);
     cardFlipAnims.current.forEach(a => a.setValue(0));
   }, [activeCat, savedCards, customCards]);
@@ -395,10 +404,16 @@ export default function FlashcardsScreen() {
 
   // ── Reset flip + pulse focus on card change ────────────────────────────────
   useEffect(() => {
-    setIsFlipped(false);
-    flipAnim.setValue(0);
+    const toValue = allFlipped ? 1 : 0;
+    setIsFlipped(allFlipped);
+    isFlippedRef.current = allFlipped;
+    flipAnim.setValue(toValue);
+    // Sync per-card anim so peek strips stay consistent
+    const cardAnim = cardFlipAnims.current[index];
+    if (cardAnim) cardAnim.setValue(toValue);
     focusAnim.setValue(0.96);
     Animated.spring(focusAnim, { toValue: 1, useNativeDriver: true, friction: 7, tension: 120 }).start();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
 
   // ── Sync per-card flip anims array ────────────────────────────────────────
@@ -412,10 +427,37 @@ export default function FlashcardsScreen() {
   // ── Category switch with slide animation ───────────────────────────────────
   const switchCategory = (catId: CategoryId) => {
     if (catId === activeCat) return;
+
+    const leavingSaved = activeCat === 'saved';
+    const enteringSaved = catId === 'saved';
+
+    if (leavingSaved) {
+      // Animate delete out first, then filter
+      Animated.sequence([
+        Animated.timing(deleteBtnX, { toValue: 120, duration: 150, useNativeDriver: true }),
+        Animated.timing(filterBtnX, { toValue: 120, duration: 130, useNativeDriver: true }),
+      ]).start(() => {
+        setSavedBtnsVisible(false);
+        filterBtnX.setValue(0);
+        deleteBtnX.setValue(0);
+      });
+    }
+
     Animated.timing(slideAnim, { toValue: -SCREEN_W, duration: 200, useNativeDriver: true }).start(() => {
       setActiveCat(catId);
       slideAnim.setValue(SCREEN_W);
       Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, friction: 8, tension: 80 }).start();
+
+      if (enteringSaved) {
+        // Start off-screen to the right, animate filter in first, then delete
+        filterBtnX.setValue(120);
+        deleteBtnX.setValue(120);
+        setSavedBtnsVisible(true);
+        Animated.spring(filterBtnX, { toValue: 0, useNativeDriver: true, friction: 7, tension: 120 }).start();
+        setTimeout(() => {
+          Animated.spring(deleteBtnX, { toValue: 0, useNativeDriver: true, friction: 7, tension: 120 }).start();
+        }, 80);
+      }
     });
   };
 
@@ -436,16 +478,29 @@ export default function FlashcardsScreen() {
   const handleFlipAll = useCallback(() => {
     const toValue = allFlipped ? 0 : 1;
     const cfg = { useNativeDriver: true, friction: 8, tension: 80 };
-    // Active card (flipAnim) flips immediately
-    Animated.spring(flipAnim, { toValue, ...cfg }).start();
-    // All other cards flip with stagger
+    // Cancel any pending stagger timers from previous call
+    flipAllTimers.current.forEach(clearTimeout);
+    flipAllTimers.current = [];
+    // All cards flip with stagger in order; camera follows each flipping card
     cardFlipAnims.current.slice(0, filteredCards.length).forEach((anim, i) => {
-      setTimeout(() => Animated.spring(anim, { toValue, ...cfg }).start(), i * 80);
+      const t = setTimeout(() => {
+        Animated.spring(anim, { toValue, ...cfg }).start();
+        if (i === index) Animated.spring(flipAnim, { toValue, ...cfg }).start();
+      }, i * 80);
+      flipAllTimers.current.push(t);
     });
     setAllFlipped(!allFlipped);
     setIsFlipped(toValue === 1);
     isFlippedRef.current = toValue === 1;
-  }, [allFlipped, filteredCards.length, flipAnim]);
+    if (toValue === 1) {
+      // Флипаем вперёд — прячем EN сразу
+      setHideEnHint(true);
+    } else {
+      // Флипаем назад — показываем EN только после окончания анимации активной карточки
+      const delay = index * 80 + 400;
+      setTimeout(() => setHideEnHint(false), delay);
+    }
+  }, [allFlipped, filteredCards.length, flipAnim, index]);
 
   // ── Flip back then change index ────────────────────────────────────────────
   const pendingIndexRef = useRef<number | null>(null);
@@ -628,12 +683,12 @@ export default function FlashcardsScreen() {
   const frontRotate = flipAnim.interpolate({ inputRange:[0,1], outputRange:['0deg','180deg'] });
   const backRotate  = flipAnim.interpolate({ inputRange:[0,1], outputRange:['180deg','360deg'] });
   const frontOp     = flipAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[1,1,0,0] });
-  const backOp      = flipAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[0,0,1,1] });
+  const backOp      = flipAnim.interpolate({ inputRange:[0,0.49,0.5,0.85,1], outputRange:[0,0,0,1,1] });
 
   const cfFrontRot  = createFlipAnim.interpolate({ inputRange:[0,1], outputRange:['0deg','180deg'] });
   const cfBackRot   = createFlipAnim.interpolate({ inputRange:[0,1], outputRange:['180deg','360deg'] });
   const cfFrontOp   = createFlipAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[1,1,0,0] });
-  const cfBackOp    = createFlipAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[0,0,1,1] });
+  const cfBackOp    = createFlipAnim.interpolate({ inputRange:[0,0.49,0.5,0.85,1], outputRange:[0,0,0,1,1] });
 
   // ─────────────────────────────────────────────────────────────────────────
   if (loading) return (
@@ -970,64 +1025,68 @@ export default function FlashcardsScreen() {
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{s.title}</Text>
-          <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 12, minWidth: 40 }}>
-            {filterOptions.length > 0 && (
-              <View style={{ position: 'relative' }}>
-                <TouchableOpacity
-                  onPress={() => setFilterOpen(o => !o)}
-                  hitSlop={{ top:8,bottom:8,left:8,right:8 }}
-                  style={{
-                    flexDirection: 'row', alignItems: 'center', gap: 3,
-                    paddingHorizontal: 10, paddingVertical: 5,
-                    borderRadius: 12, borderWidth: 1,
-                    borderColor: activeFilter !== 'all' ? t.accent : t.border,
-                    backgroundColor: activeFilter !== 'all' ? t.accent + '18' : 'transparent',
-                  }}
-                >
-                  <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
-                  <Text style={{ fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}>
-                    {activeFilter === 'all'
-                      ? (lang === 'uk' ? 'Фільтр' : 'Фильтр')
-                      : (filterOptions.find(o => o.key === activeFilter)?.label ?? 'Фильтр')}
-                  </Text>
-                  <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
-                </TouchableOpacity>
-                {filterOpen && (
-                  <View style={{
-                    position: 'absolute', top: 32, left: 0, zIndex: 9999,
-                    backgroundColor: t.bgSurface, borderRadius: 14, borderWidth: 1,
-                    borderColor: t.border, minWidth: 160,
-                    shadowColor: '#000', shadowOffset: { width: 0, height: 4 },
-                    shadowOpacity: 0.25, shadowRadius: 12, elevation: 20,
-                    overflow: 'hidden',
-                  }}>
-                    {filterOptions.map((opt, i) => {
-                      const active = activeFilter === opt.key;
-                      return (
-                        <TouchableOpacity
-                          key={opt.key}
-                          onPress={() => { setActiveFilter(opt.key); setFilterOpen(false); }}
-                          style={{
-                            flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
-                            paddingHorizontal: 16, paddingVertical: 12,
-                            borderTopWidth: i === 0 ? 0 : 0.5, borderTopColor: t.border,
-                          }}
-                        >
-                          <Text style={{ fontSize: f.body, color: active ? t.accent : t.textPrimary, fontWeight: active ? '700' : '400' }}>
-                            {opt.label}
-                          </Text>
-                          {active && <Ionicons name="checkmark" size={16} color={t.accent} />}
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </View>
-                )}
-              </View>
+          <View style={{ flexDirection:'row', justifyContent:'flex-end', alignItems:'center', gap: 12, minWidth: 40, overflow: 'hidden' }}>
+            {savedBtnsVisible && filterOptions.length > 0 && (
+              <Animated.View style={{ transform: [{ translateX: filterBtnX }] }}>
+                <View style={{ position: 'relative' }}>
+                  <TouchableOpacity
+                    onPress={() => setFilterOpen(o => !o)}
+                    hitSlop={{ top:8,bottom:8,left:8,right:8 }}
+                    style={{
+                      flexDirection: 'row', alignItems: 'center', gap: 3,
+                      paddingHorizontal: 10, paddingVertical: 5,
+                      borderRadius: 12, borderWidth: 1,
+                      borderColor: activeFilter !== 'all' ? t.accent : t.border,
+                      backgroundColor: activeFilter !== 'all' ? t.accent + '18' : 'transparent',
+                    }}
+                  >
+                    <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
+                    <Text style={{ fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}>
+                      {activeFilter === 'all'
+                        ? (lang === 'uk' ? 'Фільтр' : 'Фильтр')
+                        : (filterOptions.find(o => o.key === activeFilter)?.label ?? 'Фильтр')}
+                    </Text>
+                    <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
+                  </TouchableOpacity>
+                  {filterOpen && (
+                    <View style={{
+                      position: 'absolute', top: 32, right: 0, zIndex: 9999,
+                      backgroundColor: t.bgSurface, borderRadius: 14, borderWidth: 1,
+                      borderColor: t.border, minWidth: 160,
+                      shadowColor: '#000', shadowOffset: { width: 0, height: 4 },
+                      shadowOpacity: 0.25, shadowRadius: 12, elevation: 20,
+                      overflow: 'hidden',
+                    }}>
+                      {filterOptions.map((opt, i) => {
+                        const active = activeFilter === opt.key;
+                        return (
+                          <TouchableOpacity
+                            key={opt.key}
+                            onPress={() => { setActiveFilter(opt.key); setFilterOpen(false); }}
+                            style={{
+                              flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
+                              paddingHorizontal: 16, paddingVertical: 12,
+                              borderTopWidth: i === 0 ? 0 : 0.5, borderTopColor: t.border,
+                            }}
+                          >
+                            <Text style={{ fontSize: f.body, color: active ? t.accent : t.textPrimary, fontWeight: active ? '700' : '400' }}>
+                              {opt.label}
+                            </Text>
+                            {active && <Ionicons name="checkmark" size={16} color={t.accent} />}
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </View>
+                  )}
+                </View>
+              </Animated.View>
             )}
-            {canDelete && (
-              <TouchableOpacity onPress={handleDelete} hitSlop={{ top:14,bottom:14,left:14,right:14 }} style={{ padding: 4 }}>
-                <Ionicons name="trash-outline" size={22} color={t.wrong} />
-              </TouchableOpacity>
+            {savedBtnsVisible && canDelete && (
+              <Animated.View style={{ transform: [{ translateX: deleteBtnX }] }}>
+                <TouchableOpacity onPress={handleDelete} hitSlop={{ top:14,bottom:14,left:14,right:14 }} style={{ padding: 4 }}>
+                  <Ionicons name="trash-outline" size={22} color={t.wrong} />
+                </TouchableOpacity>
+              </Animated.View>
             )}
           </View>
         </View>
@@ -1110,7 +1169,7 @@ export default function FlashcardsScreen() {
                   const cFrontScaleX = fAnim.interpolate({ inputRange:[0,0.5,1], outputRange:[1,0,0] });
                   const cBackScaleX  = fAnim.interpolate({ inputRange:[0,0.5,1], outputRange:[0,0,1] });
                   const cFrontOp     = fAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[1,1,0,0] });
-                  const cBackOp      = fAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[0,0,1,1] });
+                  const cBackOp      = fAnim.interpolate({ inputRange:[0,0.49,0.5,0.85,1], outputRange:[0,0,0,1,1] });
 
                   return (
                     <View
@@ -1156,7 +1215,6 @@ export default function FlashcardsScreen() {
                           )}
                           {isActive && (
                             <>
-                              <Text style={{ color: t.textGhost, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 14 }}>EN</Text>
                               <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{item.en}</Text>
                               <Text style={{ position: 'absolute', bottom: 18, color: t.textGhost, fontSize: f.caption }}>{s.tapFlip}</Text>
                             </>
@@ -1186,9 +1244,6 @@ export default function FlashcardsScreen() {
                               </Text>
                             </View>
                           )}
-                          <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800', letterSpacing: 1.5, marginBottom: 14 }}>
-                            {lang === 'uk' ? 'UK' : 'RU'}
-                          </Text>
                           {tr.includes('≠') ? (
                             <>
                               <Text style={{ color: t.correct, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{tr.split('≠')[0].trim()}</Text>
@@ -1198,7 +1253,7 @@ export default function FlashcardsScreen() {
                             <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>{tr}</Text>
                           )}
                           {/* Hide EN hint when flip-all active — practice RU→EN */}
-                          {!allFlipped && (
+                          {!hideEnHint && (
                             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 14, textAlign: 'center', fontStyle: 'italic' }}>{item.en}</Text>
                           )}
                         </Animated.View>

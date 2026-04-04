@@ -12,11 +12,18 @@ import {
   Platform,
   Pressable,
   ScrollView, Share,
+  Image,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
+
+const LEVEL_IMAGES: Record<string, number> = {
+  easy:   require('../../assets/images/levels/easy.png'),
+  medium: require('../../assets/images/levels/medium.png'),
+  hard:   require('../../assets/images/levels/hard.png'),
+};
 import AddToFlashcard from '../../components/AddToFlashcard';
 import BonusXPCard from '../../components/BonusXPCard';
 import ContentWrap from '../../components/ContentWrap';
@@ -149,22 +156,6 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
 }
 
 // ── ВЫБОР УРОВНЯ ────────────────────────────────────────────────────────────
-
-// ── XP сохранение ────────────────────────────────────────────────────────────
-const saveXP = async (amount: number) => {
-  try {
-    const { getXPMultiplier } = await import('../club_boosts');
-    const multiplier = await getXPMultiplier();
-    const finalAmount = Math.floor(amount * multiplier);
-
-    const raw = await AsyncStorage.getItem('user_total_xp');
-    const current = parseInt(raw || '0') || 0;
-    await AsyncStorage.setItem('user_total_xp', String(current + finalAmount));
-  } catch (error) {
-    DebugLogger.error('quizzes.tsx:addXP', error, 'warning');
-  }
-};
-
 function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   const { goHome } = useTabNav();
   const { theme:t , f, themeMode } = useTheme();
@@ -302,7 +293,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
 
                   {/* Иконка справа */}
                   <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], paddingRight: 16 }}>
-                    <Text style={{ fontSize: 36, opacity: locked ? 0.3 : 0.85 }}>{c.icon}</Text>
+                    <Image source={LEVEL_IMAGES[lv]} style={{ width: 100, height: 100, opacity: locked ? 0.3 : 1 }} resizeMode="contain" />
                   </Animated.View>
                 </LinearGradient>
               </TouchableOpacity>

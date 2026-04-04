@@ -9,7 +9,7 @@ import Onboarding from '../components/onboarding';
 import { ThemeProvider } from '../components/ThemeContext';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { preloadImages } from './image_preload';
-import { scheduleMonthlyRecapNotification, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification } from './notifications';
+import { scheduleMonthlyRecapNotification, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { registerXP } from './xp_manager';
 
@@ -112,8 +112,13 @@ function AppContent() {
   const { setLang } = useLang();
   const { showAchievement } = useAchievement();
   const router = useRouter();
-  // Ref для интервала проверки pending-ачивок
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  // Обработчик тапа по уведомлению — deep link в нужный экран
+  useEffect(() => {
+    const unsub = setupNotificationTapHandler(router);
+    return unsub;
+  }, []);
 
   // Проверяем pending-ачивки и показываем тосты
   // Вызывается сразу при старте и каждые 4 секунды (покрывает async checkAchievements из addOrUpdateScore)

@@ -357,7 +357,6 @@ export default function SettingsMain() {
 
 <SectionTitle title={isUK ? 'Ще' : 'Ещё'} />
         <Row icon="person-add-outline"  label={isUK ? 'Запросити друга' : 'Пригласить друга'}  sub={isUK ? 'Поділися застосунком' : 'Поделиться приложением'} onPress={async () => { try { await Share.share({ message: isUK ? `Вивчаю англійську з Phraseman — зручно та ефективно! 🔥 Спробуй і ти! ${STORE_URL}` : `Учу английский с Phraseman — удобно и эффективно! 🔥 Попробуй и ты! ${STORE_URL}`, url: STORE_URL }); } catch {} }} />
-        <Row icon="help-circle-outline" label={isUK ? 'Допомога' : 'Помощь'}                             onPress={() => router.push('/help')} />
         <Row icon="mail-outline"        label={isUK ? 'Пропозиція або зауваження' : 'Предложение или замечание'} onPress={async () => {
           const url = 'mailto:badloar@gmail.com';
           const can = await Linking.canOpenURL(url);

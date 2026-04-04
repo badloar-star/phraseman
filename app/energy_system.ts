@@ -9,7 +9,7 @@ export interface EnergyState {
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 const MAX_ENERGY = 5;
-const RECOVERY_INTERVAL_MS = 2 * 60 * 60 * 1000; // 2 часа в миллисекундах
+const RECOVERY_INTERVAL_MS = 30 * 60 * 1000; // 30 минут в миллисекундах
 const ENERGY_PER_LESSON = 1;
 
 const DEFAULT_STATE: EnergyState = {
@@ -78,9 +78,14 @@ export async function checkAndRecover(): Promise<EnergyState> {
 /**
  * Потратить энергию.
  * Возвращает true если энергия была потрачена успешно, false если энергии недостаточно.
+ * Премиум игроки не тратят энергию.
  */
 export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<boolean> {
   try {
+    // Премиум: энергия не тратится
+    const premiumRaw = await AsyncStorage.getItem('premium_active');
+    if (premiumRaw === 'true') return true;
+
     const state = await checkAndRecover();
 
     if (state.current < amount) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, ScrollView, Modal, Pressable,
-  TouchableOpacity, Dimensions, Alert, Share } from 'react-native';
+  TouchableOpacity, Dimensions, Alert, Share, Image } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
@@ -11,7 +11,7 @@ import { useTheme } from '../components/ThemeContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import LevelBadge from '../components/LevelBadge';
-import { getXPProgress, CEFR_FOR_LEVEL } from '../constants/theme';
+import { getXPProgress } from '../constants/theme';
 import { useLang, getLeague } from '../components/LangContext';
 import { loadLeagueState, LEAGUES } from './league_engine';
 import { loadLeaderboard, loadWeekLeaderboard, getMyWeekPoints, getWeekKey } from './hall_of_fame_utils';
@@ -394,14 +394,19 @@ export default function StreakStats() {
       });
       setDays(dayData);
 
-      // All-history chart: always show last 60 days
+      // All-history chart: from first day of usage to first day + 60 days
       const todayStr = toDateStr(new Date());
-      const sixtyDaysAgo = new Date(); sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 59);
-      const startDate = toDateStr(sixtyDaysAgo);
+      const statsKeys = Object.keys(statsMap).sort();
+      const firstUsageDate = statsKeys.length > 0 ? statsKeys[0] : todayStr;
+      const firstDay = new Date(firstUsageDate + 'T12:00:00');
+      const sixtyDaysFromFirst = new Date(firstDay);
+      sixtyDaysFromFirst.setDate(sixtyDaysFromFirst.getDate() + 59);
+
+      const todayDay = new Date(todayStr + 'T12:00:00');
+      const endDate = todayDay < sixtyDaysFromFirst ? todayDay : sixtyDaysFromFirst;
 
       const allHistoryDays: DayData[] = [];
-      const cursor = new Date(startDate + 'T12:00:00');
-      const endDate = new Date(todayStr + 'T12:00:00');
+      const cursor = new Date(firstDay);
       while (cursor <= endDate) {
         const dateStr = toDateStr(cursor);
         const val = statsMap[dateStr];
@@ -492,14 +497,13 @@ export default function StreakStats() {
         <View onLayout={(e) => setLevelY(e.nativeEvent.layout.y)}>
           {(() => {
             const { level, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP);
-            const cefr = CEFR_FOR_LEVEL(level);
             return (
               <View style={{ borderRadius: 16, padding: 14, borderWidth: 0.5, backgroundColor: t.bgCard, borderColor: t.border }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10 }}>
                   <LevelBadge level={level} size={44} />
                   <View style={{ flex: 1 }}>
                     <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-                      {isUK ? `Рівень ${level} · ${cefr}` : `Уровень ${level} · ${cefr}`}
+                      {isUK ? `Рівень ${level}` : `Уровень ${level}`}
                     </Text>
                     <Text style={{ color: '#D4A017', fontSize: f.label, fontWeight: '600', marginTop: 2 }}>{totalXP} XP</Text>
                   </View>
@@ -583,7 +587,10 @@ export default function StreakStats() {
             {isUK ? 'Поточна ліга' : 'Текущая лига'}
           </Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-            <Ionicons name="medal-outline" size={28} color={t.textSecond} />
+            {engineLeague?.imageUri
+              ? <Image source={engineLeague.imageUri} style={{ width: 48, height: 48 }} resizeMode="contain" />
+              : <Ionicons name="medal-outline" size={28} color={t.textSecond} />
+            }
             <View style={{ flex: 1 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={1}>
                 {engineLeague ? (isUK ? engineLeague.nameUK : engineLeague.nameRU) : league.name}

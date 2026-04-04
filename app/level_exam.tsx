@@ -9,7 +9,6 @@ import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
-import { addOrUpdateScore } from './hall_of_fame_utils';
 import { checkAchievements } from './achievements';
 import { saveExamProgress, getExamMedalTier, type MedalTier } from './medal_utils';
 

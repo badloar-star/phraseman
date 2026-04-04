@@ -457,7 +457,7 @@ export default function HallOfFame() {
                 <Text style={{ width: 36, fontSize: isTop3 ? 22 : 14, color: t.textPrimary, textAlign: 'center' }}>
                   {isTop3 ? MEDALS[index] : `${index + 1}`}
                 </Text>
-                <AnimatedFrame image={avatarData.image} emoji={avatarData.emoji} frameId={avatarData.frameId} size={28} style={{ marginRight: 10 }} />
+                <AnimatedFrame image={avatarData.image} emoji={avatarData.emoji} frameId={avatarData.frameId} size={28} style={{ marginRight: 10 }} animated={false} />
                 <Text
                   numberOfLines={1}
                   style={{

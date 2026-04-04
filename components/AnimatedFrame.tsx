@@ -4,158 +4,149 @@ import { getFrameById } from '../constants/avatars';
 import LevelBadge from './LevelBadge';
 
 interface Props {
-  emoji?:    string;     // emoji (deprecated) - для обратной совместимости
-  image?:    any;        // require() для PNG аватарки
+  emoji?:    string;
+  image?:    any;
   frameId:   string;
   size?:     number;
   style?:    any;
   fontSize?: number;
-  noAvatar?: boolean; // показывать только кольцо рамки (без аватарки)
-  bgColor?:  string;  // цвет заливки центра при noAvatar=true
+  noAvatar?: boolean;
+  bgColor?:  string;
+  animated?: boolean; // false = static (for grids) — keeps visual style, no motion
 }
 
-// ── Rainbow colours ─────────────────────────────────────────────────────────
+// ── Rainbow colours ──────────────────────────────────────────────────────────
 const RAINBOW_COLORS = [
   '#FF006E','#FF4500','#FFD700','#47C870',
   '#00F5FF','#7B2FBE','#A855F7','#FF006E',
 ];
 
-export default function AnimatedFrame({ emoji, image, frameId, size = 44, style, fontSize, noAvatar = false, bgColor }: Props) {
+// ── Shared animation values — one set for the entire app ─────────────────────
+// This means 8 loops total regardless of how many AnimatedFrame components exist.
+const S = {
+  glow:      new Animated.Value(0),
+  breathScale: new Animated.Value(1),
+  heartbeat: new Animated.Value(1),
+  spin:      new Animated.Value(0),
+  float:     new Animated.Value(0),
+  floatGlow: new Animated.Value(0),
+  wave:      new Animated.Value(0),
+  waveOp:    new Animated.Value(0),
+  rainbow:   new Animated.Value(0),
+};
+
+// ── Start shared loops once at module load ────────────────────────────────────
+(function startSharedAnimations() {
+  // glow — used by pulse / spin / orbit / breathe
+  Animated.loop(Animated.sequence([
+    Animated.timing(S.glow, { toValue: 1,   duration: 1600, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+    Animated.timing(S.glow, { toValue: 0.1, duration: 1600, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+  ])).start();
+
+  // breathe scale
+  Animated.loop(Animated.sequence([
+    Animated.timing(S.breathScale, { toValue: 1.09, duration: 2400, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
+    Animated.timing(S.breathScale, { toValue: 1,    duration: 2400, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
+  ])).start();
+
+  // heartbeat — double-beat pattern
+  Animated.loop(Animated.sequence([
+    Animated.timing(S.heartbeat, { toValue: 1.12, duration: 160, easing: Easing.out(Easing.quad),   useNativeDriver: true }),
+    Animated.timing(S.heartbeat, { toValue: 0.97, duration: 130, easing: Easing.in(Easing.quad),    useNativeDriver: true }),
+    Animated.timing(S.heartbeat, { toValue: 1.06, duration: 160, easing: Easing.out(Easing.quad),   useNativeDriver: true }),
+    Animated.timing(S.heartbeat, { toValue: 1,    duration: 220, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
+    Animated.delay(1200),
+  ])).start();
+
+  // spin — used by spin & orbit
+  Animated.loop(
+    Animated.timing(S.spin, { toValue: 1, duration: 4500, easing: Easing.linear, useNativeDriver: true })
+  ).start();
+
+  // float (translateY)
+  Animated.loop(Animated.sequence([
+    Animated.timing(S.float,     { toValue: -5, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+    Animated.timing(S.float,     { toValue:  5, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+  ])).start();
+  Animated.loop(Animated.sequence([
+    Animated.timing(S.floatGlow, { toValue: 0.6, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+    Animated.timing(S.floatGlow, { toValue: 0.1, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+  ])).start();
+
+  // wave
+  const runWave = () => {
+    S.wave.setValue(0);
+    S.waveOp.setValue(0.7);
+    Animated.parallel([
+      Animated.timing(S.wave,   { toValue: 1, duration: 1400, easing: Easing.out(Easing.quad), useNativeDriver: true }),
+      Animated.timing(S.waveOp, { toValue: 0, duration: 1400, easing: Easing.in(Easing.quad),  useNativeDriver: true }),
+    ]).start(() => setTimeout(runWave, 600));
+  };
+  runWave();
+
+  // rainbow — only 1 loop with useNativeDriver: false
+  Animated.loop(
+    Animated.timing(S.rainbow, { toValue: 1, duration: 3000, easing: Easing.linear, useNativeDriver: false })
+  ).start();
+})();
+
+// ── Precomputed interpolations (stable references) ───────────────────────────
+const I = {
+  glowOpacity:  S.glow.interpolate({ inputRange: [0, 1], outputRange: [0.08, 0.55] }),
+  outerOpacity: S.glow.interpolate({ inputRange: [0, 1], outputRange: [0.02, 0.22] }),
+  spinRotate:   S.spin.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] }),
+  spinRotate2:  S.spin.interpolate({ inputRange: [0, 1], outputRange: ['180deg', '540deg'] }),
+  waveScale:    S.wave.interpolate({ inputRange: [0, 1], outputRange: [1, 1.8] }),
+  rainbowColor: S.rainbow.interpolate({
+    inputRange:  RAINBOW_COLORS.map((_, i) => i / (RAINBOW_COLORS.length - 1)),
+    outputRange: RAINBOW_COLORS,
+  }),
+};
+
+export default function AnimatedFrame({
+  emoji, image, frameId, size = 44, style, fontSize,
+  noAvatar = false, bgColor, animated = true,
+}: Props) {
   const frame = getFrameById(frameId);
   const [imageLoadFailed, setImageLoadFailed] = useState(false);
 
-  const BW        = Math.max(2, Math.round(size * 0.055));
-  const outerW    = size + BW * 2;
+  const BW         = Math.max(2, Math.round(size * 0.055));
+  const outerW     = size + BW * 2;
   const containerW = outerW + 20;
   const containerH = outerW + 20;
-  const isLevel = emoji && /^\d+$/.test(emoji);
+  const isLevel    = emoji && /^\d+$/.test(emoji);
 
-  // ── Animated values ───────────────────────────────────────────────────────
-  const glowAnim    = useRef(new Animated.Value(0)).current;
-  const scaleAnim   = useRef(new Animated.Value(1)).current;
-  const translateY  = useRef(new Animated.Value(0)).current;
-  const spinAnim    = useRef(new Animated.Value(0)).current;
-  const waveAnim    = useRef(new Animated.Value(0)).current;
-  const waveOpacity = useRef(new Animated.Value(0)).current;
-  const rainbowAnim = useRef(new Animated.Value(0)).current;
+  useEffect(() => { setImageLoadFailed(false); }, [image]);
 
-  // Reset image load state when image source changes
-  useEffect(() => {
-    setImageLoadFailed(false);
-  }, [image]);
-
-  useEffect(() => {
-    let loop: Animated.CompositeAnimation | null = null;
-
-    switch (frame.animation) {
-      case 'pulse':
-        loop = Animated.loop(Animated.sequence([
-          Animated.timing(glowAnim, { toValue: 1,   duration: 1600, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-          Animated.timing(glowAnim, { toValue: 0.1, duration: 1600, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ]));
-        break;
-
-      case 'breathe':
-        loop = Animated.loop(Animated.sequence([
-          Animated.timing(scaleAnim, { toValue: 1.09, duration: 2400, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-          Animated.timing(scaleAnim, { toValue: 1,    duration: 2400, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-        ]));
-        Animated.loop(Animated.sequence([
-          Animated.timing(glowAnim, { toValue: 0.7, duration: 2400, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-          Animated.timing(glowAnim, { toValue: 0.2, duration: 2400, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-        ])).start();
-        break;
-
-      case 'heartbeat':
-        loop = Animated.loop(Animated.sequence([
-          Animated.timing(scaleAnim, { toValue: 1.12, duration: 160, easing: Easing.out(Easing.quad),   useNativeDriver: true }),
-          Animated.timing(scaleAnim, { toValue: 0.97, duration: 130, easing: Easing.in(Easing.quad),    useNativeDriver: true }),
-          Animated.timing(scaleAnim, { toValue: 1.06, duration: 160, easing: Easing.out(Easing.quad),   useNativeDriver: true }),
-          Animated.timing(scaleAnim, { toValue: 1,    duration: 220, easing: Easing.inOut(Easing.quad), useNativeDriver: true }),
-          Animated.delay(1200),
-        ]));
-        break;
-
-      case 'float':
-        loop = Animated.loop(Animated.sequence([
-          Animated.timing(translateY, { toValue: -5, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-          Animated.timing(translateY, { toValue:  5, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ]));
-        Animated.loop(Animated.sequence([
-          Animated.timing(glowAnim, { toValue: 0.6, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-          Animated.timing(glowAnim, { toValue: 0.1, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ])).start();
-        break;
-
-      case 'wave': {
-        const runWave = () => {
-          waveAnim.setValue(0);
-          waveOpacity.setValue(0.7);
-          Animated.parallel([
-            Animated.timing(waveAnim,    { toValue: 1, duration: 1400, easing: Easing.out(Easing.quad), useNativeDriver: true }),
-            Animated.timing(waveOpacity, { toValue: 0, duration: 1400, easing: Easing.in(Easing.quad),  useNativeDriver: true }),
-          ]).start(() => setTimeout(runWave, 600));
-        };
-        runWave();
-        Animated.loop(Animated.sequence([
-          Animated.timing(glowAnim, { toValue: 0.5, duration: 1200, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-          Animated.timing(glowAnim, { toValue: 0.1, duration: 1200, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ])).start();
-        return;
-      }
-
-      case 'spin':
-        loop = Animated.loop(Animated.timing(spinAnim, { toValue: 1, duration: 4500, easing: Easing.linear, useNativeDriver: true }));
-        Animated.loop(Animated.sequence([
-          Animated.timing(glowAnim, { toValue: 0.65, duration: 1500, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-          Animated.timing(glowAnim, { toValue: 0.15, duration: 1500, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ])).start();
-        break;
-
-      case 'orbit':
-        loop = Animated.loop(Animated.timing(spinAnim, { toValue: 1, duration: 3000, easing: Easing.linear, useNativeDriver: true }));
-        Animated.loop(Animated.sequence([
-          Animated.timing(glowAnim, { toValue: 0.5, duration: 1500, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-          Animated.timing(glowAnim, { toValue: 0.1, duration: 1500, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ])).start();
-        break;
-
-      case 'rainbow':
-        loop = Animated.loop(Animated.timing(rainbowAnim, { toValue: 1, duration: 3000, easing: Easing.linear, useNativeDriver: false }));
-        Animated.loop(Animated.sequence([
-          Animated.timing(scaleAnim, { toValue: 1.07, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-          Animated.timing(scaleAnim, { toValue: 1,    duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        ])).start();
-        break;
-
-      default: break;
-    }
-
-    if (loop) loop.start();
-    return () => { loop?.stop(); };
-  }, [frame.animation]);
-
-  // ── Interpolations ────────────────────────────────────────────────────────
-  const glowOpacity  = glowAnim.interpolate({ inputRange: [0, 1], outputRange: [0.08, 0.55] });
-  const outerOpacity = glowAnim.interpolate({ inputRange: [0, 1], outputRange: [0.02, 0.22] });
-  const spinRotate   = spinAnim.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '360deg'] });
-  const waveScale    = waveAnim.interpolate({ inputRange: [0, 1], outputRange: [1, 1.8] });
-  const rainbowColor = rainbowAnim.interpolate({
-    inputRange:  RAINBOW_COLORS.map((_, i) => i / (RAINBOW_COLORS.length - 1)),
-    outputRange: RAINBOW_COLORS,
-  });
-
+  // ── Container transform ───────────────────────────────────────────────────
   const containerTransform: any[] = [];
-  if (frame.animation === 'breathe' || frame.animation === 'heartbeat' || frame.animation === 'rainbow') {
-    containerTransform.push({ scale: scaleAnim });
-  }
-  if (frame.animation === 'float') {
-    containerTransform.push({ translateY });
+  if (animated) {
+    if (frame.animation === 'breathe' || frame.animation === 'rainbow') {
+      containerTransform.push({ scale: S.breathScale });
+    } else if (frame.animation === 'heartbeat') {
+      containerTransform.push({ scale: S.heartbeat });
+    } else if (frame.animation === 'float') {
+      containerTransform.push({ translateY: S.float });
+    }
   }
 
-  // ── Круговые эффекты за рамкой ────────────────────────────────────────────
+  // ── Effects layer ─────────────────────────────────────────────────────────
   const renderEffects = () => {
     if (frame.animation === 'plain') return null;
+
+    if (!animated) {
+      // Static mode — just a glowing ring without motion
+      return (
+        <View style={{
+          position: 'absolute',
+          width: outerW + 8, height: outerW + 8,
+          borderRadius: (outerW + 8) / 2,
+          borderWidth: 2,
+          borderColor: frame.color,
+          opacity: 0.45,
+        }} />
+      );
+    }
 
     if (frame.animation === 'rainbow') {
       return (
@@ -164,7 +155,7 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
           width: outerW + 8, height: outerW + 8,
           borderRadius: (outerW + 8) / 2,
           borderWidth: 3,
-          borderColor: rainbowColor as any,
+          borderColor: I.rainbowColor as any,
           opacity: 0.85,
         }} />
       );
@@ -175,7 +166,7 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
       return (
         <>
           <Animated.View style={{
-            position: 'absolute', opacity: outerOpacity,
+            position: 'absolute', opacity: I.outerOpacity,
             width: outerW + 14, height: outerW + 14,
             borderRadius: (outerW + 14) / 2,
             backgroundColor: frame.color2 || frame.color,
@@ -183,7 +174,7 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
           <Animated.View style={{
             position: 'absolute',
             width: outerW + 12, height: outerW + 12,
-            transform: [{ rotate: spinRotate }],
+            transform: [{ rotate: I.spinRotate }],
           }}>
             <View style={{
               width: outerW + 12, height: outerW + 12,
@@ -206,12 +197,12 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
             <Animated.View style={{
               position: 'absolute',
               width: outerW + 12, height: outerW + 12,
-              transform: [{ rotate: spinAnim.interpolate({ inputRange: [0,1], outputRange: ['180deg','540deg'] }) }],
+              transform: [{ rotate: I.spinRotate2 }],
             }}>
               <View style={{
                 position: 'absolute',
-                top: -(dotSize-2)/2, left: (outerW+12)/2 - (dotSize-2)/2,
-                width: dotSize-2, height: dotSize-2, borderRadius: (dotSize-2)/2,
+                top: -(dotSize - 2) / 2, left: (outerW + 12) / 2 - (dotSize - 2) / 2,
+                width: dotSize - 2, height: dotSize - 2, borderRadius: (dotSize - 2) / 2,
                 backgroundColor: frame.color2 || frame.color, opacity: 0.6,
               }} />
             </Animated.View>
@@ -224,12 +215,12 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
       return (
         <>
           <Animated.View style={{
-            position: 'absolute', opacity: waveOpacity, transform: [{ scale: waveScale }],
+            position: 'absolute', opacity: S.waveOp, transform: [{ scale: I.waveScale }],
             width: outerW, height: outerW, borderRadius: outerW / 2,
             backgroundColor: frame.color,
           }} />
           <Animated.View style={{
-            position: 'absolute', opacity: glowOpacity,
+            position: 'absolute', opacity: I.glowOpacity,
             width: outerW + 10, height: outerW + 10, borderRadius: (outerW + 10) / 2,
             backgroundColor: frame.color,
           }} />
@@ -237,16 +228,33 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
       );
     }
 
-    // pulse / breathe / heartbeat / float — круговое свечение
+    if (frame.animation === 'float') {
+      return (
+        <>
+          <Animated.View style={{
+            position: 'absolute', opacity: S.floatGlow,
+            width: outerW + 6, height: outerW + 6, borderRadius: (outerW + 6) / 2,
+            backgroundColor: frame.color,
+          }} />
+          <Animated.View style={{
+            position: 'absolute', opacity: I.outerOpacity,
+            width: outerW + 18, height: outerW + 18, borderRadius: (outerW + 18) / 2,
+            backgroundColor: frame.color2 || frame.color,
+          }} />
+        </>
+      );
+    }
+
+    // pulse / breathe / heartbeat — glow circles
     return (
       <>
         <Animated.View style={{
-          position: 'absolute', opacity: glowOpacity,
+          position: 'absolute', opacity: I.glowOpacity,
           width: outerW + 6, height: outerW + 6, borderRadius: (outerW + 6) / 2,
           backgroundColor: frame.color,
         }} />
         <Animated.View style={{
-          position: 'absolute', opacity: outerOpacity,
+          position: 'absolute', opacity: I.outerOpacity,
           width: outerW + 18, height: outerW + 18, borderRadius: (outerW + 18) / 2,
           backgroundColor: frame.color2 || frame.color,
         }} />
@@ -263,10 +271,7 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
     ]}>
       {renderEffects()}
 
-      {/* Контейнер рамки */}
       <View style={{ width: outerW, height: outerW }}>
-
-        {/* Аватарка */}
         {!noAvatar && (
           <View style={{
             position: 'absolute', width: outerW, height: outerW,
@@ -287,7 +292,6 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
           </View>
         )}
 
-        {/* Заливка центра (noAvatar) */}
         {noAvatar && bgColor && (
           <View style={{
             position: 'absolute', width: outerW, height: outerW,
@@ -295,7 +299,6 @@ export default function AnimatedFrame({ emoji, image, frameId, size = 44, style,
           }} />
         )}
 
-        {/* Кольцо рамки поверх — круглое, полое */}
         <View style={{
           position: 'absolute', width: outerW, height: outerW,
           borderRadius: outerW / 2,

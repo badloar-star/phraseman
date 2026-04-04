@@ -5,6 +5,7 @@ import { useLang } from './LangContext';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { openTreasureChest, canOpenTreasureChest, getTreasureChestState } from '../app/variable_reward_system';
+import { registerXP } from '../app/xp_manager';
 
 interface Props {
   onBonusXPEarned?: (bonusXP: number) => void;
@@ -69,13 +70,16 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
       setBonusXPResult(result.bonusXP);
       setShowBonusDisplay(true);
 
-      // Add XP to user total
+      // Add XP to user total via manager (multipliers, leaderboard, achievements)
       if (result.bonusXP > 0) {
         try {
-          const currentXPStr = await AsyncStorage.getItem('user_total_xp');
-          const currentXP = parseInt(currentXPStr || '0') || 0;
-          const newXP = currentXP + result.bonusXP;
-          await AsyncStorage.setItem('user_total_xp', newXP.toString());
+          const [nameRaw, langRaw] = await Promise.all([
+            AsyncStorage.getItem('user_name'),
+            AsyncStorage.getItem('app_lang'),
+          ]);
+          if (nameRaw) {
+            await registerXP(result.bonusXP, 'bonus_chest', nameRaw, (langRaw === 'uk' ? 'uk' : 'ru'));
+          }
           onBonusXPEarned?.(result.bonusXP);
         } catch (e) {
         }

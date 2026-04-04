@@ -336,14 +336,12 @@ export default function ReviewScreen() {
     // После догорания (1.4с) переходим к следующей
     setTimeout(() => {
       setBurning(false);
-      slideAnim.setValue(CONTENT_W);
       if (newItems.length === 0) {
         setDone(true);
       } else {
         const next = index >= newItems.length ? newItems.length - 1 : index;
         setIndex(next);
         loadCard(newItems[next]);
-        Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, friction: 8 }).start();
       }
     }, 1400);
   };

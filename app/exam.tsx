@@ -14,7 +14,6 @@ import { useTheme } from '../components/ThemeContext';
 import { registerXP } from './xp_manager';
 import { checkAchievements } from './achievements';
 import { DEV_MODE, STORE_URL } from './config';
-import { addOrUpdateScore } from './hall_of_fame_utils';
 import { shuffle } from './utils_shuffle';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total

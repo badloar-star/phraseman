@@ -56,44 +56,6 @@ export const CLUB_BOOSTS: BoostDef[] = [
     icon: '⚡',
     type: 'xp',
   },
-  {
-    id: 'xp_2x_1h',
-    nameRU: '×2 Опыт на 1 час',
-    nameUK: '×2 Досвід на 1 годину',
-    descRU: 'Все члены клуба получают ×2 XP в течение 1 часа',
-    descUK: 'Всі члени клубу отримують ×2 XP протягом 1 години',
-    multiplier: 2.0,
-    durationMs: 1 * 60 * 60 * 1000, // 1 час
-    cost: 50,
-    costCurrency: 'phrasemen',
-    icon: '⚡',
-    type: 'xp',
-  },
-  {
-    id: 'xp_1_5x_2h',
-    nameRU: '×1.5 Опыт на 2 часа',
-    nameUK: '×1.5 Досвід на 2 години',
-    descRU: 'Все члены клуба получают ×1.5 XP в течение 2 часов',
-    descUK: 'Всі члени клубу отримують ×1.5 XP протягом 2 годин',
-    multiplier: 1.5,
-    durationMs: 2 * 60 * 60 * 1000, // 2 часа
-    cost: 35,
-    costCurrency: 'phrasemen',
-    icon: '✨',
-    type: 'xp',
-  },
-  {
-    id: 'energy_plus_1',
-    nameRU: '+1 энергия для всех',
-    nameUK: '+1 енергія для всіх',
-    descRU: 'Все члены клуба получают +1 максимальной энергии',
-    descUK: 'Всі члени клубу отримують +1 максимальної енергії',
-    durationMs: 0, // постоянный
-    cost: 30,
-    costCurrency: 'phrasemen',
-    icon: '💪',
-    type: 'energy',
-  },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════

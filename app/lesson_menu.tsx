@@ -107,15 +107,9 @@ export default function LessonMenu() {
   useEffect(() => {
     AsyncStorage.setItem('last_opened_lesson', String(lessonId));
     vocabAlertShown.current = false;
-    setScore(0);
-    setProgress(0);
-    setProgressArr(new Array(50).fill('empty'));
-    setWordsLearned(0);
-    setIrregularLearned(0);
-    setPassCount(0);
-
     loadLockState();
-  }, [lessonId, loadLockState]);
+    loadProgress();
+  }, [lessonId, loadLockState, loadProgress]);
 
   // Показать подсказку при первом нажатии «Начать урок»
   const handleStartLesson = useCallback(() => {
@@ -180,7 +174,7 @@ export default function LessonMenu() {
             }
             return lang==='uk' ? 'Слова цього уроку' : 'Слова этого урока';
           })()
-        : (lang==='uk' ? 'Скоро буде доступно' : 'Скоро будет доступно'),
+        : (lang==='uk' ? 'Слова цього уроку' : 'Слова этого урока'),
       icon: 'book-outline',
       pct: (() => {
         if (!LESSONS_WITH_WORDS.has(lessonId)) return undefined;
@@ -211,7 +205,7 @@ export default function LessonMenu() {
                   : `${irregularLearned}/${total} глаголов`)
               : (lang==='uk' ? 'Неправильні дієслова уроку' : 'Неправильные глаголы урока');
           })()
-        : (lang==='uk' ? 'Скоро буде доступно' : 'Скоро будет доступно'),
+        : (lang==='uk' ? 'Неправильні дієслова уроку' : 'Неправильные глаголы урока'),
       icon: 'flash-outline' as const,
       pct: (() => {
         if (!LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)) return undefined;

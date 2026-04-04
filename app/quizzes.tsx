@@ -12,31 +12,38 @@ import {
     Platform,
     Pressable,
     ScrollView, Share,
+    Image,
     Text,
     TextInput,
     TouchableOpacity,
     View,
 } from 'react-native';
-import AddToFlashcard from '../../components/AddToFlashcard';
-import BonusXPCard from '../../components/BonusXPCard';
-import ContentWrap from '../../components/ContentWrap';
-import { useLang } from '../../components/LangContext';
-import LevelBadge from '../../components/LevelBadge';
-import ScreenGradient from '../../components/ScreenGradient';
-import { useTheme } from '../../components/ThemeContext';
-import { isCorrectAnswer } from '../../constants/contractions';
-import { getXPProgress } from '../../constants/theme';
-import { checkAchievements } from '../achievements';
-import { DEV_MODE, STORE_URL } from '../config';
-import { updateMultipleTaskProgress } from '../daily_tasks';
-import { DebugLogger } from '../debug-logger';
-import { spendEnergy } from '../energy_system';
-import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
-import { getQuizPhrases, QuizPhrase } from '../quiz_data';
-import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from '../settings_edu';
-import { useTabNav } from '../TabContext';
-import { calculateRewardWithBonus } from '../variable_reward_system';
-import { registerXP } from '../xp_manager';
+
+const LEVEL_IMAGES: Record<string, number> = {
+  easy:   require('../assets/images/levels/easy.png'),
+  medium: require('../assets/images/levels/medium.png'),
+  hard:   require('../assets/images/levels/hard.png'),
+};
+import AddToFlashcard from '../components/AddToFlashcard';
+import BonusXPCard from '../components/BonusXPCard';
+import ContentWrap from '../components/ContentWrap';
+import { useLang } from '../components/LangContext';
+import LevelBadge from '../components/LevelBadge';
+import ScreenGradient from '../components/ScreenGradient';
+import { useTheme } from '../components/ThemeContext';
+import { isCorrectAnswer } from '../constants/contractions';
+import { getXPProgress } from '../constants/theme';
+import { checkAchievements } from './achievements';
+import { DEV_MODE, STORE_URL } from './config';
+import { updateMultipleTaskProgress } from './daily_tasks';
+import { DebugLogger } from './debug-logger';
+import { spendEnergy } from './energy_system';
+import { pointsForAnswer, streakMultiplier } from './hall_of_fame_utils';
+import { getQuizPhrases, QuizPhrase } from './quiz_data';
+import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from './settings_edu';
+import { useTabNav } from './TabContext';
+import { calculateRewardWithBonus } from './variable_reward_system';
+import { registerXP } from './xp_manager';
 
 // Используем QuizPhrase из quiz_data.ts
 type Phrase = QuizPhrase;
@@ -286,7 +293,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
 
                   {/* Иконка справа */}
                   <Animated.View style={{ transform: [{ scale: locked ? 1 : pulseAnims[lv] }], paddingRight: 16 }}>
-                    <Text style={{ fontSize: 36, opacity: locked ? 0.3 : 0.85 }}>{c.icon}</Text>
+                    <Image source={LEVEL_IMAGES[lv]} style={{ width: 56, height: 56, opacity: locked ? 0.3 : 1 }} resizeMode="contain" />
                   </Animated.View>
                 </LinearGradient>
               </TouchableOpacity>

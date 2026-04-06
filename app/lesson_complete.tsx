@@ -17,6 +17,7 @@ import { checkGemAchievements, saveMedalProgress, type MedalTier } from './medal
 import { canShowReview, markReviewPrompted, requestNativeReview } from './review_utils';
 import { recordLessonForRepair } from './streak_repair';
 import { calculateRewardWithBonus } from './variable_reward_system';
+import { registerXP } from './xp_manager';
 
 // Medal images for completion screen
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
@@ -91,7 +92,7 @@ function ReviewModal({ visible, isUK, t, f, onClose }: {
                   style={{ flex: 1.4, backgroundColor: t.correct, borderRadius: 14, padding: 16, alignItems: 'center' }}
                   onPress={handleYes}
                 >
-                  <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+                  <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
                     {isUK ? 'Так, оцінити ⭐' : 'Да, оценить ⭐'}
                   </Text>
                 </TouchableOpacity>

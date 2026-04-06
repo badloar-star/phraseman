@@ -11,15 +11,17 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
+import { useEnergy } from '../components/EnergyContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { unlockAllFrames } from '../constants/avatars';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
-import { unlockAllAchievements } from './achievements';
+import { unlockAllAchievements, ALL_ACHIEVEMENTS } from './achievements';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { calculateResult, LeagueResult, loadLeagueState, savePendingResult, getWeekId } from './league_engine';
 import LeagueResultModal from './LeagueResultModal';
 import { registerXP } from './xp_manager';
+import { useAchievement } from '../components/AchievementContext';
 
 const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
   icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
@@ -67,9 +69,11 @@ export default function SettingsTestersFunctions() {
 
   const [noLimitsEnabled, setNoLimitsEnabled] = useState(false);
   const [energyDisabled, setEnergyDisabled] = useState(false);
-  const [energyInstantRecovery, setEnergyInstantRecovery] = useState(false);
+  const { reload: reloadEnergy } = useEnergy();
+
   const [leagueResultVisible, setLeagueResultVisible] = useState(false);
   const [leagueResult, setLeagueResult] = useState<LeagueResult | null>(null);
+  const { showAchievement } = useAchievement();
 
   // Load settings on mount
   useEffect(() => {
@@ -79,14 +83,12 @@ export default function SettingsTestersFunctions() {
   // Save settings to AsyncStorage
   const loadSettings = async () => {
     try {
-      const [noLimits, noEnergy, instantEnergy] = await AsyncStorage.multiGet([
+      const [noLimits, noEnergy] = await AsyncStorage.multiGet([
         'tester_no_limits',
         'tester_energy_disabled',
-        'tester_energy_instant_recovery',
       ]);
       setNoLimitsEnabled(noLimits[1] === 'true');
       setEnergyDisabled(noEnergy[1] === 'true');
-      setEnergyInstantRecovery(instantEnergy[1] === 'true');
     } catch {}
   };
 
@@ -100,6 +102,7 @@ export default function SettingsTestersFunctions() {
     doHaptic();
     setNoLimitsEnabled(val);
     await saveSettings('tester_no_limits', val);
+    await reloadEnergy(); // сразу синхронизируем EnergyContext
 
     // When enabling No Limits, award all medals on lessons and exams
     if (val) {
@@ -115,6 +118,7 @@ export default function SettingsTestersFunctions() {
           // Create full progress array (all 50 answers marked as correct)
           const progressArray = new Array(50).fill('correct');
           keysToSet.push([`lesson${i}_progress`, JSON.stringify(progressArray)]);
+          keysToSet.push([`lesson${i}_cellIndex`, '0']);
         }
 
         // Unlock all lessons
@@ -148,12 +152,7 @@ export default function SettingsTestersFunctions() {
     doHaptic();
     setEnergyDisabled(val);
     await saveSettings('tester_energy_disabled', val);
-  };
-
-  const toggleEnergyInstantRecovery = async (val: boolean) => {
-    doHaptic();
-    setEnergyInstantRecovery(val);
-    await saveSettings('tester_energy_instant_recovery', val);
+    await reloadEnergy(); // сразу синхронизируем EnergyContext
   };
 
   const addXP = async () => {
@@ -297,29 +296,11 @@ export default function SettingsTestersFunctions() {
             t={t} f={f}
           />
 
-          <ToggleRow
-            icon="flash"
-            label={isUK ? 'Миттєве відновлення' : 'Моментальное восстановление'}
-            sub={isUK ? 'Енергія відновлюється відразу' : 'Энергия восстанавливается сразу'}
-            value={energyInstantRecovery}
-            onToggle={toggleEnergyInstantRecovery}
-            t={t} f={f}
-          />
-
           <SectionTitle title={isUK ? 'Опит' : 'ОПЫТ'} t={t} f={f} />
           <ButtonRow
             icon="add-circle-outline"
             label={isUK ? 'Додати 5000 XP' : 'Добавить 5000 XP'}
             onPress={addXP}
-            t={t} f={f} doHaptic={doHaptic}
-          />
-
-          <SectionTitle title={isUK ? 'Ліга' : 'ЛИГА'} t={t} f={f} />
-          <ButtonRow
-            icon="trophy-outline"
-            label={isUK ? 'Конец недели' : 'Конец недели'}
-            sub={isUK ? 'Рух между клубами' : 'Движение между клубами'}
-            onPress={triggerEndOfWeek}
             t={t} f={f} doHaptic={doHaptic}
           />
 
@@ -332,14 +313,98 @@ export default function SettingsTestersFunctions() {
             t={t} f={f} doHaptic={doHaptic}
           />
 
-          <SectionTitle title={isUK ? 'Управління' : 'УПРАВЛЕНИЕ'} t={t} f={f} />
+          <SectionTitle title={isUK ? 'Преміум' : 'ПРЕМИУМ'} t={t} f={f} />
+          <ButtonRow
+            icon="diamond-outline"
+            label={isUK ? 'Зняти преміум' : 'Снять премиум'}
+            sub={isUK ? 'Переключити акаунт у режим без преміуму' : 'Переключить аккаунт в режим без премиума'}
+            danger
+            t={t} f={f} doHaptic={doHaptic}
+            onPress={() => {
+              Alert.alert(
+                isUK ? 'Зняти преміум?' : 'Снять премиум?',
+                isUK ? 'Акаунт буде переведено у режим без преміуму. RevenueCat не буде зачіпатись.' : 'Аккаунт будет переведён в режим без премиума. RevenueCat не будет затронут.',
+                [
+                  { text: isUK ? 'Скасувати' : 'Отмена', style: 'cancel' },
+                  {
+                    text: isUK ? 'Зняти' : 'Снять',
+                    style: 'destructive',
+                    onPress: async () => {
+                      try {
+                        await AsyncStorage.multiSet([
+                          ['premium_active', 'false'],
+                          ['premium_plan', ''],
+                        ]);
+                        Alert.alert(
+                          isUK ? 'Готово' : 'Готово',
+                          isUK ? 'Преміум знято. Перезапустіть додаток.' : 'Премиум снят. Перезапустите приложение.'
+                        );
+                      } catch {
+                        Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось зняти преміум' : 'Не удалось снять премиум');
+                      }
+                    },
+                  },
+                ]
+              );
+            }}
+          />
+
+          {/* ── ПЕЙВОЛЛЫ ── */}
+          <SectionTitle title={isUK ? 'ПЕЙВОЛИ' : 'ПЕЙВОЛЛЫ'} t={t} f={f} />
+          {([
+            { label: isUK ? '🎓 Урок 19 — B1 контент'         : '🎓 Урок 19 — B1 контент',      params: { context: 'lesson_b1',       lessons_done: '18' } },
+            { label: isUK ? '⚡ Квізи — ліміт вичерпано'      : '⚡ Квизы — лимит исчерпан',     params: { context: 'quiz_limit'  } },
+            { label: isUK ? '🧠 Квіз рівень B1/B2'            : '🧠 Квиз уровень B1/B2',         params: { context: 'quiz_level',      level: 'medium' } },
+            { label: isUK ? '📚 Картки — переповнено'         : '📚 Карточки — переполнено',      params: { context: 'flashcard_limit', saved: '20' } },
+            { label: isUK ? '🔥 Стрік під загрозою (7 днів)'  : '🔥 Стрик под угрозой (7 дней)', params: { context: 'streak',          streak: '7' } },
+            { label: isUK ? '💬 Діалог заблоковано'           : '💬 Диалог заблокирован',         params: { context: 'dialog' } },
+            { label: isUK ? '💎 Загальний (з налаштувань)'    : '💎 Общий (из настроек)',          params: { context: 'generic' } },
+          ] as { label: string; params: Record<string, string> }[]).map(({ label, params: p }) => (
+            <ButtonRow
+              key={p.context}
+              icon="card-outline"
+              label={label}
+              sub={p.context}
+              onPress={() => router.push({ pathname: '/premium_modal', params: p } as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+          ))}
+
+          {/* ── ВСПЛЫВАЮЩИЕ ОКНА ── */}
+          <SectionTitle title={isUK ? 'СПЛИВАЮЧІ ВІКНА' : 'ВСПЛЫВАЮЩИЕ ОКНА'} t={t} f={f} />
+          <ButtonRow
+            icon="star-outline"
+            label={isUK ? '🏅 Тост — досягнення' : '🏅 Тост — достижение'}
+            sub={isUK ? 'Показати тост з нагородою' : 'Показать тост с наградой'}
+            onPress={() => {
+              const testAch = ALL_ACHIEVEMENTS.find(a => a.id === 'streak_7') ?? ALL_ACHIEVEMENTS[0];
+              if (testAch) showAchievement(testAch);
+            }}
+            t={t} f={f} doHaptic={doHaptic}
+          />
+          <ButtonRow
+            icon="trophy-outline"
+            label={isUK ? '🏆 Фінал тижня — ліга' : '🏆 Финал недели — лига'}
+            sub={isUK ? 'Показати результат тижня' : 'Показать результат недели'}
+            onPress={triggerEndOfWeek}
+            t={t} f={f} doHaptic={doHaptic}
+          />
+          <ButtonRow
+            icon="diamond-outline"
+            label={isUK ? '💎 Екран успіху Premium' : '💎 Экран успеха Premium'}
+            sub={isUK ? 'Красивий екран після покупки' : 'Красивый экран после покупки'}
+            onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', _preview_success: '1' } } as any)}
+            t={t} f={f} doHaptic={doHaptic}
+          />
           <ButtonRow
             icon="play-circle-outline"
-            label={isUK ? 'Переглянути онбординг' : 'Просмотреть онбординг'}
-            sub={isUK ? 'Повторити пошаговое введення' : 'Повторить пошаговое введение'}
+            label={isUK ? '👋 Онбординг' : '👋 Онбординг'}
+            sub={isUK ? 'Переглянути повторно' : 'Просмотреть повторно'}
             onPress={async () => { await AsyncStorage.removeItem('onboarding_done'); router.replace('/(tabs)/home' as any); }}
             t={t} f={f} doHaptic={doHaptic}
           />
+
+          <SectionTitle title={isUK ? 'Управління' : 'УПРАВЛЕНИЕ'} t={t} f={f} />
           <ButtonRow
             icon="refresh-outline"
             label={isUK ? 'Скинути ВСЕ дані' : 'Сбросить ВСЕ данные'}
@@ -357,11 +422,13 @@ export default function SettingsTestersFunctions() {
                       // Уроки — прогресс, оценки, слова, слушание, медали
                       const lessonKeys = Array.from({ length: 32 }, (_, i) => [
                         `lesson${i + 1}_progress`,
+                        `lesson${i + 1}_cellIndex`,
                         `lesson${i + 1}_score`,
                         `lesson${i + 1}_words`,
                         `lesson${i + 1}_listening_progress`,
                         `lesson${i + 1}_best_score`,
                         `lesson${i + 1}_pass_count`,
+                        `lesson${i + 1}_intro_shown`,
                       ]).flat();
 
                       // Достижения и медали
@@ -418,7 +485,6 @@ export default function SettingsTestersFunctions() {
                       const testerKeys = [
                         'tester_no_limits',
                         'tester_energy_disabled',
-                        'tester_energy_instant_recovery',
                       ];
 
                       const allKeys = [

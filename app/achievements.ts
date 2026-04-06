@@ -331,18 +331,18 @@ export const ALL_ACHIEVEMENTS: Achievement[] = [
   },
 
   // ── Гемы (повторные проходы уровней) ───────────────────────────────────────
-  { id:'gem_a1_ruby',    icon:'🔴', category:'medal', nameRu:'Рубин A1',    nameUk:'Рубін A1',    descRu:'Все уроки A1 пройдены дважды',    descUk:'Всі уроки A1 пройдено двічі' },
-  { id:'gem_a1_emerald', icon:'💚', category:'medal', nameRu:'Изумруд A1',  nameUk:'Смарагд A1',  descRu:'Все уроки A1 пройдены трижды',    descUk:'Всі уроки A1 пройдено тричі' },
-  { id:'gem_a1_diamond', icon:'💎', category:'medal', nameRu:'Диамант A1',  nameUk:'Діамант A1',  descRu:'Все уроки A1 пройдены 4 раза',    descUk:'Всі уроки A1 пройдено 4 рази', secret:true },
-  { id:'gem_a2_ruby',    icon:'🔴', category:'medal', nameRu:'Рубин A2',    nameUk:'Рубін A2',    descRu:'Все уроки A2 пройдены дважды',    descUk:'Всі уроки A2 пройдено двічі' },
-  { id:'gem_a2_emerald', icon:'💚', category:'medal', nameRu:'Изумруд A2',  nameUk:'Смарагд A2',  descRu:'Все уроки A2 пройдены трижды',    descUk:'Всі уроки A2 пройдено тричі' },
-  { id:'gem_a2_diamond', icon:'💎', category:'medal', nameRu:'Диамант A2',  nameUk:'Діамант A2',  descRu:'Все уроки A2 пройдены 4 раза',    descUk:'Всі уроки A2 пройдено 4 рази', secret:true },
-  { id:'gem_b1_ruby',    icon:'🔴', category:'medal', nameRu:'Рубин B1',    nameUk:'Рубін B1',    descRu:'Все уроки B1 пройдены дважды',    descUk:'Всі уроки B1 пройдено двічі' },
-  { id:'gem_b1_emerald', icon:'💚', category:'medal', nameRu:'Изумруд B1',  nameUk:'Смарагд B1',  descRu:'Все уроки B1 пройдены трижды',    descUk:'Всі уроки B1 пройдено тричі' },
-  { id:'gem_b1_diamond', icon:'💎', category:'medal', nameRu:'Диамант B1',  nameUk:'Діамант B1',  descRu:'Все уроки B1 пройдены 4 раза',    descUk:'Всі уроки B1 пройдено 4 рази', secret:true },
-  { id:'gem_b2_ruby',    icon:'🔴', category:'medal', nameRu:'Рубин B2',    nameUk:'Рубін B2',    descRu:'Все уроки B2 пройдены дважды',    descUk:'Всі уроки B2 пройдено двічі' },
-  { id:'gem_b2_emerald', icon:'💚', category:'medal', nameRu:'Изумруд B2',  nameUk:'Смарагд B2',  descRu:'Все уроки B2 пройдены трижды',    descUk:'Всі уроки B2 пройдено тричі' },
-  { id:'gem_b2_diamond', icon:'💎', category:'medal', nameRu:'Диамант B2',  nameUk:'Діамант B2',  descRu:'Все уроки B2 пройдены 4 раза',    descUk:'Всі уроки B2 пройдено 4 рази', secret:true },
+  { id:'gem_a1_ruby',    icon:'🔴', category:'medal', nameRu:'A1 Рубин',      nameUk:'A1 Рубін',      descRu:'Все уроки A1 пройдены дважды',    descUk:'Всі уроки A1 пройдено двічі' },
+  { id:'gem_a1_emerald', icon:'💚', category:'medal', nameRu:'A1 Изумруд',    nameUk:'A1 Смарагд',    descRu:'Все уроки A1 пройдены трижды',    descUk:'Всі уроки A1 пройдено тричі' },
+  { id:'gem_a1_diamond', icon:'💎', category:'medal', nameRu:'A1 Бриллиант',  nameUk:'A1 Діамант',    descRu:'Все уроки A1 пройдены 4 раза',    descUk:'Всі уроки A1 пройдено 4 рази', secret:true },
+  { id:'gem_a2_ruby',    icon:'🔴', category:'medal', nameRu:'A2 Рубин',      nameUk:'A2 Рубін',      descRu:'Все уроки A2 пройдены дважды',    descUk:'Всі уроки A2 пройдено двічі' },
+  { id:'gem_a2_emerald', icon:'💚', category:'medal', nameRu:'A2 Изумруд',    nameUk:'A2 Смарагд',    descRu:'Все уроки A2 пройдены трижды',    descUk:'Всі уроки A2 пройдено тричі' },
+  { id:'gem_a2_diamond', icon:'💎', category:'medal', nameRu:'A2 Бриллиант',  nameUk:'A2 Діамант',    descRu:'Все уроки A2 пройдены 4 раза',    descUk:'Всі уроки A2 пройдено 4 рази', secret:true },
+  { id:'gem_b1_ruby',    icon:'🔴', category:'medal', nameRu:'B1 Рубин',      nameUk:'B1 Рубін',      descRu:'Все уроки B1 пройдены дважды',    descUk:'Всі уроки B1 пройдено двічі' },
+  { id:'gem_b1_emerald', icon:'💚', category:'medal', nameRu:'B1 Изумруд',    nameUk:'B1 Смарагд',    descRu:'Все уроки B1 пройдены трижды',    descUk:'Всі уроки B1 пройдено тричі' },
+  { id:'gem_b1_diamond', icon:'💎', category:'medal', nameRu:'B1 Бриллиант',  nameUk:'B1 Діамант',    descRu:'Все уроки B1 пройдены 4 раза',    descUk:'Всі уроки B1 пройдено 4 рази', secret:true },
+  { id:'gem_b2_ruby',    icon:'🔴', category:'medal', nameRu:'B2 Рубин',      nameUk:'B2 Рубін',      descRu:'Все уроки B2 пройдены дважды',    descUk:'Всі уроки B2 пройдено двічі' },
+  { id:'gem_b2_emerald', icon:'💚', category:'medal', nameRu:'B2 Изумруд',    nameUk:'B2 Смарагд',    descRu:'Все уроки B2 пройдены трижды',    descUk:'Всі уроки B2 пройдено тричі' },
+  { id:'gem_b2_diamond', icon:'💎', category:'medal', nameRu:'B2 Бриллиант',  nameUk:'B2 Діамант',    descRu:'Все уроки B2 пройдены 4 раза',    descUk:'Всі уроки B2 пройдено 4 рази', secret:true },
 
   // ── Экзамен ────────────────────────────────────────────────────────────────
   {
@@ -653,17 +653,18 @@ export const unlockAllAchievements = async (): Promise<void> => {
     const now = new Date().toISOString();
     const existingIds = new Set(states.map(s => s.id));
 
-    // Разблокиваем все существующие достижения
+    // Разблокиваем все существующие достижения (notified:true — тосты не показываем)
     states.forEach(state => {
       if (state.unlockedAt === null) {
         state.unlockedAt = now;
+        state.notified = true;
       }
     });
 
     // Добавляем и разблокиваем любые новые достижения из ALL_ACHIEVEMENTS
     ALL_ACHIEVEMENTS.forEach(achievement => {
       if (!existingIds.has(achievement.id)) {
-        states.push({ id: achievement.id, unlockedAt: now, notified: false });
+        states.push({ id: achievement.id, unlockedAt: now, notified: true });
       }
     });
 

@@ -17,6 +17,8 @@ import { loadLeagueState, LEAGUES } from './league_engine';
 import { loadLeaderboard, loadWeekLeaderboard, getMyWeekPoints, getWeekKey } from './hall_of_fame_utils';
 import { loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
 import { STORE_URL } from './config';
+import { checkStreakLossPending } from './hall_of_fame_utils';
+import { hapticTap } from '../hooks/use-haptics';
 
 const { width } = Dimensions.get('window');
 const CHART_H = 110;
@@ -341,6 +343,11 @@ export default function StreakStats() {
   const [totalXP, setTotalXP]            = useState(0);
   const [lessonsCompleted, setLessonsCompleted] = useState(0);
   const [lessonsProgressPct, setLessonsProgressPct] = useState(0);
+  const [isPremium, setIsPremium]               = useState(false);
+  const [freezeActive, setFreezeActive]         = useState(false);
+  const [streakAtRisk, setStreakAtRisk]          = useState(false);
+  const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(false);
+  const FREEZE_COST_XP = 200;
 
   const scrollRef     = useRef<any>(null);
   const chartScrollRef = useRef<any>(null);
@@ -470,9 +477,53 @@ export default function StreakStats() {
       }
       setLessonsCompleted(completedCount);
       setLessonsProgressPct(Math.min(100, Math.round(totalCorrectAll / (32 * 50) * 100)));
+
+      // Streak freeze state
+      const [premiumRaw, freezeRaw, freeUsedRaw] = await Promise.all([
+        AsyncStorage.getItem('premium_active'),
+        AsyncStorage.getItem('streak_freeze'),
+        AsyncStorage.getItem('premium_free_freeze_used'),
+      ]);
+      const premium = premiumRaw === 'true';
+      setIsPremium(premium);
+      const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
+      setFreezeActive(!!(freeze?.active));
+      setPremiumFreezeUsed(freeUsedRaw === 'true');
+      const { willLose } = await checkStreakLossPending();
+      setStreakAtRisk(willLose && !(freeze?.active));
     } catch {}
   };
 
+
+  const handleFreezeStreak = async () => {
+    hapticTap();
+    if (!isPremium) {
+      router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(totalStreak) } } as any);
+      return;
+    }
+    const today = toDateStr(new Date());
+    const freeAvailable = !premiumFreezeUsed;
+    if (freeAvailable) {
+      await AsyncStorage.setItem('premium_free_freeze_used', 'true');
+      setPremiumFreezeUsed(true);
+    } else {
+      if (totalXP < FREEZE_COST_XP) {
+        Alert.alert(
+          isUK ? 'Недостатньо досвіду' : 'Недостаточно опыта',
+          isUK
+            ? `Заморозка коштує ${FREEZE_COST_XP} XP. У тебе ${totalXP} XP.`
+            : `Заморозка стоит ${FREEZE_COST_XP} XP. У тебя ${totalXP} XP.`
+        );
+        return;
+      }
+      const newXP = totalXP - FREEZE_COST_XP;
+      await AsyncStorage.setItem('user_total_xp', String(newXP));
+      setTotalXP(newXP);
+    }
+    await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
+    setFreezeActive(true);
+    setStreakAtRisk(false);
+  };
 
   const maxPts = Math.max(...days.map(d => d.points), 1);
   const league = getLeague(weekPoints, lang);

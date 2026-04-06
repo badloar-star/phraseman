@@ -28,6 +28,7 @@ import { Flashcard, loadFlashcards, removeFlashcard } from '../hooks/use-flashca
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 const CUSTOM_KEY = 'custom_flashcards_v2';
+const PROGRESS_KEY = 'flashcards_progress_v1';
 const CARD_H  = 260;   // full card height — never changes
 const PEEK    = 56;    // visible top strip of each non-active card
 const LIST_PAD = Math.round((SCREEN_H - CARD_H) / 2); // center first card
@@ -295,7 +296,7 @@ const SYSTEM_CARDS: CardItem[] = [
 ];
 
 const savedToCard = (f: Flashcard): CardItem => ({
-  id: f.id, en: f.en, ru: f.ru, uk: f.uk ?? f.ru,
+  id: f.id, en: f.en, ru: f.ru, uk: f.uk || f.ru,
   categoryId: 'saved', isSystem: false,
   source: f.source, sourceId: f.sourceId,
 });
@@ -326,6 +327,7 @@ export default function FlashcardsScreen() {
   const isFlippedRef                  = useRef(false);
   const [loading, setLoading]         = useState(true);
   const sessionDoneRef                = useRef(false); // achievement fired once per session
+  const pendingRestoreRef             = useRef<{ cat: CategoryId; idx: number } | null>(null);
   // Create / Edit / Practice mode
   const [mode, setMode]               = useState<'view' | 'create' | 'edit' | 'practice'>('view');
   const [createStep, setCreateStep]   = useState<'front' | 'back'>('front');
@@ -359,13 +361,21 @@ export default function FlashcardsScreen() {
   // ── Load ───────────────────────────────────────────────────────────────────
   const loadAll = useCallback(async () => {
     setLoading(true);
-    const [saved, customRaw] = await Promise.all([
+    const [saved, customRaw, progressRaw] = await Promise.all([
       loadFlashcards(),
       AsyncStorage.getItem(CUSTOM_KEY),
+      AsyncStorage.getItem(PROGRESS_KEY),
     ]);
     const custom: CardItem[] = customRaw ? JSON.parse(customRaw) : [];
     setSavedCards(saved.map(savedToCard));
     setCustomCards(custom);
+    if (progressRaw) {
+      try {
+        const p = JSON.parse(progressRaw) as { cat: CategoryId; idx: number };
+        pendingRestoreRef.current = p;
+        setActiveCat(p.cat);
+      } catch { /* ignore corrupt data */ }
+    }
     setLoading(false);
   }, []);
 
@@ -379,7 +389,14 @@ export default function FlashcardsScreen() {
     else list = SYSTEM_CARDS.filter(c => c.categoryId === activeCat);
     setCards(list);
     setActiveFilter('all');
-    setIndex(0);
+    const restore = pendingRestoreRef.current;
+    if (restore && restore.cat === activeCat) {
+      const safeIdx = Math.min(restore.idx, Math.max(0, list.length - 1));
+      pendingRestoreRef.current = null;
+      setIndex(safeIdx);
+    } else {
+      setIndex(0);
+    }
     setIsFlipped(false);
     setAllFlipped(false);
     setHideEnHint(false);
@@ -403,6 +420,12 @@ export default function FlashcardsScreen() {
     setIsFlipped(false);
     flipAnim.setValue(0);
   }, [activeFilter, cards]);
+
+  // ── Persist progress so it survives tab switches ───────────────────────────
+  useEffect(() => {
+    if (loading) return;
+    AsyncStorage.setItem(PROGRESS_KEY, JSON.stringify({ cat: activeCat, idx: index }));
+  }, [index, activeCat, loading]);
 
   // ── Reset flip + pulse focus on card change ────────────────────────────────
   useEffect(() => {
@@ -805,8 +828,8 @@ export default function FlashcardsScreen() {
                 onPress={handleSave}
                 disabled={!draftTR.trim()}
               >
-                <Ionicons name="checkmark" size={18} color={draftTR.trim() ? '#fff' : t.textGhost} style={{ marginRight: 8 }} />
-                <Text style={{ color: draftTR.trim() ? '#fff' : t.textGhost, fontSize: f.body, fontWeight:'700' }}>{s.save}</Text>
+                <Ionicons name="checkmark" size={18} color={draftTR.trim() ? t.correctText : t.textGhost} style={{ marginRight: 8 }} />
+                <Text style={{ color: draftTR.trim() ? t.correctText : t.textGhost, fontSize: f.body, fontWeight:'700' }}>{s.save}</Text>
               </TouchableOpacity>
             )}
           </View>

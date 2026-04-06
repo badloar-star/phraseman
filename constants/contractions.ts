@@ -79,7 +79,7 @@ export const normalize = (text: string): string => {
   }
 
   result = result.replace(/\bcannot\b/g, 'can not');
-  return result.replace(/\s+/g, ' ').trim();
+  return result.replace(/\s+/g, ' ').trim().toLowerCase();
 };
 
 export const isCorrectAnswer = (userAnswer: string, correctAnswer: string): boolean => {

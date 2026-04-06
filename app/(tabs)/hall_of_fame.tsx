@@ -18,6 +18,7 @@ import {
 } from '../hall_of_fame_utils';
 import { LEAGUES, loadLeagueState } from '../league_engine';
 import { useTabNav } from '../TabContext';
+import EnergyBar from '../../components/EnergyBar';
 
 export { addOrUpdateScore, pointsForAnswer, streakMultiplier };
 
@@ -364,9 +365,10 @@ export default function HallOfFame() {
         >
           <Ionicons name="chevron-back" size={20} color={t.textPrimary}/>
         </TouchableOpacity>
-        <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, fontWeight: '700' }}>
+        <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, fontWeight: '700', flex:1 }}>
           {s.hallFame.title}
         </Text>
+        <EnergyBar size={16} />
       </View>
 
       {myName !== '' && (
@@ -457,7 +459,7 @@ export default function HallOfFame() {
                 <Text style={{ width: 36, fontSize: isTop3 ? 22 : 14, color: t.textPrimary, textAlign: 'center' }}>
                   {isTop3 ? MEDALS[index] : `${index + 1}`}
                 </Text>
-                <AnimatedFrame image={avatarData.image} emoji={avatarData.emoji} frameId={avatarData.frameId} size={28} style={{ marginRight: 10 }} animated={false} />
+                <AnimatedFrame image={avatarData.image} emoji={avatarData.emoji} frameId={avatarData.frameId} size={36} style={{ marginRight: 10 }} />
                 <Text
                   numberOfLines={1}
                   style={{

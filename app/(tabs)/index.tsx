@@ -13,6 +13,7 @@ import { LESSON_NAMES_RU, LESSON_NAMES_UK } from '../../constants/lessons';
 import { DEV_MODE } from '../config';
 import { hapticTap } from '../../hooks/use-haptics';
 import { loadAllMedals, getMedalTier, getExamMedalTier, MEDAL_DOT_COLOR, getEarnedDots, type MedalTier } from '../medal_utils';
+import EnergyBar from '../../components/EnergyBar';
 
 const LESSON_TOTAL = 32;
 
@@ -271,9 +272,10 @@ export default function LessonsTab() {
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TouchableOpacity>
-          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700', flex: 1 }}>
             {isUK ? 'Уроки' : 'Уроки'}
           </Text>
+          <EnergyBar size={16} />
         </View>
 
         {/* Items */}

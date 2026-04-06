@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { useTheme } from './ThemeContext';
 import EnergyIcon from './EnergyIcon';
+import { useEnergy } from './EnergyContext';
 import { getTimeUntilNextRecovery, formatTimeUntilRecovery } from '../app/energy_system';
+
+const PREMIUM_BLUE = '#4FC3F7';
 
 interface Props {
   energyCount: number; // 0-5
@@ -17,6 +20,9 @@ interface Props {
  */
 export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
   const { theme: t, themeMode } = useTheme();
+  const { isUnlimited } = useEnergy();
+  const filledTint = isUnlimited ? PREMIUM_BLUE : undefined;
+  const filledColor = isUnlimited ? PREMIUM_BLUE : t.gold;
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
 
   // Update timer every second when energy is not at max
@@ -47,18 +53,19 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
           <View key={i} style={{ marginLeft: i > 0 ? -8 : 0 }}>
             <EnergyIcon
               filled={i < energyCount}
-              themeColor={i < energyCount ? t.gold : t.textGhost}
+              themeColor={i < energyCount ? filledColor : t.textGhost}
               size={20}
               animateChange={true}
               shouldShake={shouldShake}
               themeMode={themeMode}
+              tintColor={i < energyCount ? filledTint : undefined}
             />
           </View>
         ))}
       </View>
 
       {/* Recovery timer (shown only when energy < max) */}
-      {energyCount < maxEnergy && timeUntilNextEnergy && (
+      {!isUnlimited && energyCount < maxEnergy && timeUntilNextEnergy && (
         <View style={styles.timerContainer}>
           <Text style={[styles.timerText, { color: t.textMuted }]}>
             {timeUntilNextEnergy}

@@ -1,72 +1,169 @@
-# Claude Code Configuration - Phraseman
+# PhraseMan
 
-## 📚 About Phraseman
+## Описание проекта
 
-**What:** React Native English learning app for Russian/Ukrainian speakers (iOS + Android).
-**Users:** 18-50 y.o. from post-Soviet countries learning business English or English for travel/work.
-**Monetization:** RevenueCat subscription (€3.99/mo, €23.99/yr). Freemium: A1+A2 free, B1+B2 premium.
-**Content:** 32 lessons (grammar progression), vocabulary, irregular verbs, quizzes, dialogs, cards, level exams, final exam, diagnostic test.
-**Status (Mar 2026):** Beta. Phase 1 complete (energy system, personal plans, Phrasemen currency). Moving to Phase 2 (Variable Reward, Push notifications).
+**PhraseMan** — это мобильное образовательное приложение для изучения английского языка, сфокусированное на запоминании фразовых глаголов и идиом. Приложение построено на React Native + Expo с использованием TypeScript.
 
-**Key files:**
-- `app/lesson1.tsx` — lesson engine (1000+ lines)
-- `app/energy_system.ts` — energy mechanic (NEW)
-- `app/phrasemen_system.ts` — currency system (NEW)
-- `app/league_engine.ts` — 12 clubs, weekly ranking
-- `constants/theme.ts` — colors & themes
-- `components/LangContext.tsx` — RU/UK localization
+## Краткая структура проекта
 
-**Phase 1 Progress (Mar 29, 2026):**
-- ✅ Paywall enabled (DEV_MODE = false)
-- ✅ Energy system (5 max, -1/lesson, +1/2h)
-- ✅ Phrasemen currency (13 shop items, 5 earning methods)
-- ✅ Onboarding with personal plan ("B1 through 120 days")
-- ✅ All systems tested (11 + 15 + 73 + 15 tests = 114 passing)
-
-**Next (Phase 2):**
-- Variable Reward (random XP bonuses, daily treasure)
-- Push notifications (phrase of day, streak reminders)
-- Firebase league integration (real opponents)
-- Group boosters (club members buy for all)
-- Referral program
-
----
-
-## Behavioral Rules (Always Enforced)
-
-- Do what has been asked; nothing more, nothing less
-- NEVER create files unless they're absolutely necessary for achieving your goal
-- ALWAYS prefer editing an existing file to creating a new one
-- NEVER proactively create documentation files (*.md) or README files unless explicitly requested
-- NEVER save working files, text/mds, or tests to the root folder
-- ALWAYS read a file before editing it
-- NEVER commit secrets, credentials, or .env files
-
-## File Organization
-
-- NEVER save to root folder
-- Use `/src` for source code files
-- Use `/tests` for test files
-- Use `/docs` for documentation and markdown files
-
-## Build & Test
-
-```bash
-npm run build
-npm test
-npm run lint
+```
+phraseman/
+├── app/                    # Основное приложение (React Native + Expo Router)
+│   ├── (tabs)/            # Вкладки навигации
+│   ├── achievements*      # Достижения
+│   ├── daily_phrase*      # Система ежедневных фраз
+│   ├── energy_system*     # Система энергии
+│   ├── flashcards*        # Карточки для запоминания
+│   ├── exam*              # Тестирование
+│   ├── dialogs*           # Диалоги
+│   ├── hint*              # Подсказки
+│   ├── diagnostic_test*   # Диагностический тест
+│   └── ...                # Другие экраны и модули
+├── components/            # Переиспользуемые UI компоненты
+├── constants/             # Константы приложения
+├── hooks/                 # Кастомные React хуки
+├── scripts/               # Скрипты для генерации данных и утилит
+├── tests/                 # Тесты
+├── assets/                # Статические ресурсы (изображения, шрифты)
+├── docs/                  # Документация
+├── package.json           # Зависимости проекта
+├── tsconfig.json          # Конфигурация TypeScript
+└── app.json               # Конфигурация Expo
 ```
 
-- ALWAYS run tests after making code changes
-- ALWAYS verify build succeeds before committing
+## Карта зависимостей home.tsx
 
-## Security Rules
+Главный экран `app/(tabs)/home.tsx` (825 строк) — центральный хаб приложения, агрегирующий данные со всех модулей.
 
-- NEVER hardcode API keys, secrets, or credentials in source files
-- NEVER commit .env files or any file containing secrets
-- Always validate user input at system boundaries
+### 1. Контексты (глобальное состояние)
 
-## Concurrency
+| Контекст | Файл | Что предоставляет | Использование в home.tsx |
+|----------|------|-------------------|-------------------------|
+| **useTheme** | `components/ThemeContext.tsx` | `theme` (цвета), `isDark`, `themeMode`, `toggle`, `setThemeMode`, `fontSize`, `setFontSize`, `f` (размеры шрифтов) | Все стили, цвета, тени, шрифты |
+| **useLang** | `components/LangContext.tsx` | `lang` ('ru'\|'uk'), `s` (строки переводов), `setLang`, `getLeague()` | Локализация UI, названия лиг |
+| **useEnergy** | `components/EnergyContext.tsx` | `energy` (0-5), `maxEnergy`, `timeUntilNextMs`, `formattedTime`, `isUnlimited`, `restoringPremium`, `spendOne()`, `reload()` | Отображение энергии, таймер восстановления |
+| **useTabNav** | `app/TabContext.tsx` | `activeIdx`, `goToTab()`, `goHome()`, `focusTick` | Навигация между вкладками, обновление данных при фокусе |
 
-- Batch ALL file reads/writes/edits in ONE message
-- Batch ALL Bash commands in ONE message
+### 2. Навигационные переходы (router.push / goToTab)
+
+| Маршрут | Экран | Описание |
+|---------|-------|----------|
+| `index` | Уроки | Список из 32 уроков |
+| `/dialogs` | Диалоги | 20 диалоговых сценариев |
+| `/(tabs)/quizzes` | Квизы | 3 уровня квизов (премиум) |
+| `/flashcards` | Карточки | Сохранённые фразы |
+| `/daily_tasks_screen` | Задания | 3 ежедневных задания |
+| `/league_screen` | Клуб | Экран лиги/клуба недели |
+| `/diagnostic_test` | Тест | Диагностический тест (20 вопросов) |
+| `/exam` | Экзамен | Итоговый экзамен по урокам |
+| `/review` | Повторение | SRS сессия (active_recall) |
+| `/avatar_select` | Аватар | Выбор аватара и рамки |
+| `/streak_stats` | Стрики | Статистика серий |
+| `/premium_modal` | Премиум | Модальное окно подписки |
+| `/lesson_menu` | Меню урока | Детали конкретного урока |
+
+### 3. UI компоненты (из `components/`)
+
+| Компонент | Назначение | Зависимости |
+|-----------|------------|-------------|
+| **ScreenGradient** | Фоновый градиент на весь экран | `useTheme`, `expo-linear-gradient` |
+| **PremiumCard** | Объёмная карточка с проверкой премиума (level 1-3) | `useTheme`, `hapticTap`, `expo-linear-gradient` |
+| **CircularProgress** | Круговой прогресс бар (процент внутри) | Чистый React Native (View, Text) |
+| **AnimatedFrame** | Анимированная рамка аватара (40+ типов анимации) | `useTheme` (через LevelBadge), `constants/avatars` |
+| **LevelBadge** | Бейдж уровня (GIF 1-50) | `expo-image`, `assets/images/levels/` |
+| **EnergyIcon** | Иконка энергии с анимацией (заполнена/пуста) | `assets/images/levels/ENERGY_*.png` |
+| **DailyPhraseCard** | Карточка фразы дня (расширяемая) | `useTheme`, `useLang`, `daily_phrase_system`, `AddToFlashcard` |
+
+### 4. Модули данных и утилиты (из `app/`)
+
+| Модуль | Экспортируемые функции | Назначение |
+|--------|----------------------|------------|
+| **active_recall.ts** | `getDueItems(limit)`, `SESSION_LIMIT` | SRS алгоритм (SM-2), возврат фраз на повторение |
+| **daily_tasks.ts** | `getTodayTasks()`, `loadTodayProgress()` | 3 ежедневных задания, прогресс выполнения |
+| **league_engine.ts** | `loadLeagueState()`, `LEAGUES` (массив лиг) | Текущая лига пользователя, данные лиг |
+| **hall_of_fame_utils.ts** | `getMyWeekPoints()`, `checkStreakLossPending()`, `getWeekKey()` | Очки недели, проверка потери стрика |
+| **streak_repair.ts** | `isRepairEligible()`, `getRepairProgress()` | Право на восстановление стрика, прогресс |
+| **medal_utils.ts** | `loadAllMedals()`, `countMedals()` | Медали пользователя (бронза/серебро/золото) |
+| **dialogs_data.ts** | `DIALOGS` (массив из 20 диалогов) | Данные для разблокировки при level-up |
+| **debug-logger.ts** | `DebugLogger.error()` | Логирование ошибок (warning level) |
+| **config.ts** | `DEV_MODE`, `IS_EXPO_GO` | Флаги разработки и среды |
+
+### 5. Константы (из `constants/`)
+
+| Модуль | Экспортируемые функции/значения | Назначение |
+|--------|--------------------------------|------------|
+| **avatars.ts** | `getBestAvatarForLevel()`, `getBestFrameForLevel()`, `getAvatarImageByIndex()` | Аватары и рамки по уровню |
+| **theme.ts** | `getXPProgress()`, `getLevelFromXP()`, `BASE_FONTS`, `FONT_SCALE` | Расчёт уровня (1-50) из XP, прогресс до следующего |
+| **lessons.ts** | `LESSON_NAMES_RU`, `LESSON_NAMES_UK` | Названия 32 уроков на RU/UK |
+
+### 6. Хуки (из `hooks/`)
+
+| Хук | Экспортируемые функции | Назначение |
+|-----|----------------------|------------|
+| **use-haptics.ts** | `hapticTap()` (функция, не хук) | Тактильный отклик при нажатии (использует `expo-haptics`) |
+
+### 7. Взаимосвязи с другими экранами
+
+| Экран | Связь с home.tsx |
+|-------|-----------------|
+| **lesson1.tsx** | Импортирует `AddToFlashcard`; home показывает `getDueItems().length` |
+| **review.tsx** | После сессии: `router.back()` → `focusTick` → `getDueItems()` → `dueCount=0` → карточка "Повторить сегодня" исчезает |
+
+### 8. Архитектурная схема
+
+```
+home.tsx (центральный хаб)
+├── Контексты: useTheme, useLang, useEnergy, useTabNav
+├── Навигация: useRouter (expo-router)
+├── Хранилище: AsyncStorage (пользователь, прогресс, премиум)
+├── UI компоненты: ScreenGradient, PremiumCard, CircularProgress, AnimatedFrame, LevelBadge, EnergyIcon, DailyPhraseCard
+├── Модули данных: active_recall, daily_tasks, league_engine, hall_of_fame_utils, streak_repair, medal_utils, dialogs_data
+├── Константы: avatars, theme, lessons
+├── Утилиты: debug-logger, config, use-haptics
+└── RevenueCat: Purchases.getCustomerInfo() (верификация премиума)
+```
+
+## Ключевые особенности
+
+- **Система ежедневных фраз** — ежедневное изучение новых фразовых глаголов
+- **Система энергии** — ограничение количества попыток для мотивации
+- **Карточки для запоминания** — интервальные повторения
+- **Тестирование и экзамены** — проверка знаний
+- **Диалоги** — контекстное использование фраз
+- **Достижения** — геймификация обучения
+- **Подсказки** — помощь при затруднениях
+
+## Как использовать этот файл
+
+**ВАЖНО**: Этот файл (CLAUDE.md) следует использовать как **основной контекст** при работе с проектом. Вместо того чтобы перечитывать всю структуру проекта каждый раз, обращайся к этому файлу для быстрого понимания:
+
+1. Что это за приложение (PhraseMan)
+2. Основная архитектура и структура проекта
+3. Ключевые особенности и модули
+
+При необходимости углубиться в конкретный модуль или компонент, читай соответствующие файлы в папках `app/`, `components/` или других директориях, указанных выше.
+
+## Технологии
+
+- **React Native + Expo** — кроссплатформенная мобильная разработка
+- **TypeScript** — типизация JavaScript кода
+- **Expo Router** — файловая маршрутизация
+- **Node.js** — серверная часть и скрипты
+
+## Запуск проекта
+
+```bash
+# Установка зависимостей
+npm install
+
+# Запуск проекта
+npx expo start
+```
+
+## Дополнительные документы
+
+- `README.md` — основная документация проекта
+- `PHRASEMEN_IMPLEMENTATION.md` — детали реализации
+- `DAILY_PHRASE_SYSTEM_GUIDE.md` — руководство по системе ежедневных фраз
+- `ENERGY_SYSTEM_QUICKSTART.md` — быстрый старт системы энергии
+- `ROADMAP_RETENTION.md` — дорожная карта развития

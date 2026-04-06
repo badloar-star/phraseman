@@ -25,9 +25,14 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
   useEffect(() => {
     (async () => {
-      const phraseOfDay = await getTodayPhrase();
-      setPhrase(phraseOfDay);
-      setLoading(false);
+      try {
+        const phraseOfDay = await getTodayPhrase();
+        if (phraseOfDay) setPhrase(phraseOfDay);
+      } catch (e) {
+        // phrase stays null, loading screen shown
+      } finally {
+        setLoading(false);
+      }
     })();
   }, []);
 
@@ -41,6 +46,9 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
   const labelLiteral = lang === 'uk' ? 'Дослівно' : 'Дословно';
   const labelMeaning = lang === 'uk' ? 'Що означає' : 'Что значит';
+  const phraseLiteral = lang === 'uk' ? phrase.literal_uk : phrase.literal;
+  const phraseMeaning = lang === 'uk' ? phrase.meaning_uk : phrase.meaning;
+  const phraseText = lang === 'uk' ? phrase.text_uk : phrase.text;
 
   return (
     <TouchableOpacity onPress={() => setExpanded(!expanded)} activeOpacity={0.9}>
@@ -79,7 +87,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
                 {labelLiteral}:
               </Text>
               <Text style={[styles.bodyText, { color: t.textPrimary, opacity: 0.7, fontSize: f.body }]}>
-                {phrase.literal}
+                {phraseLiteral}
               </Text>
             </View>
 
@@ -89,7 +97,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
                 {labelMeaning}:
               </Text>
               <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
-                {phrase.meaning}
+                {phraseMeaning}
               </Text>
             </View>
 
@@ -98,7 +106,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
             {/* Story text */}
             <Text style={[styles.storyText, { color: t.textPrimary, opacity: 0.75, fontSize: f.body }]}>
-              {phrase.text}
+              {phraseText}
             </Text>
 
             {/* Save button */}
@@ -106,7 +114,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
               <AddToFlashcard
                 en={phrase.english}
                 ru={phrase.meaning}
-                uk={phrase.meaning}
+                uk={phraseMeaning}
                 source="daily_phrase"
                 sourceId={phrase.date}
                 size={22}

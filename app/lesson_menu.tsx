@@ -8,6 +8,7 @@ import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
+import EnergyBar from '../components/EnergyBar';
 import PremiumCard from '../components/PremiumCard';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
@@ -34,7 +35,7 @@ export default function LessonMenu() {
   const { theme:t, f } = useTheme();
   const { s, lang } = useLang();
   const { id } = useLocalSearchParams<{id:string}>();
-  const lessonId = parseInt(id||'1',10);
+  const lessonId = parseInt(id || '1', 10) || 1;
 
   const lessonNames = lang==='uk' ? LESSON_NAMES_UK : LESSON_NAMES_RU;
   const lessonName = lessonNames[lessonId-1] || `Урок ${lessonId}`;
@@ -196,7 +197,7 @@ export default function LessonMenu() {
       },
     },
     {
-      hidden: lessonId === 11,
+      hidden: !LESSONS_WITH_IRREGULAR_VERBS.has(lessonId),
       label: lang==='uk' ? 'Неправильні дієслова' : 'Неправильные глаголы',
       sub: LESSONS_WITH_IRREGULAR_VERBS.has(lessonId)
         ? (() => {
@@ -249,8 +250,9 @@ export default function LessonMenu() {
         <Text style={{color:t.textPrimary,fontSize: f.body,fontWeight:'700',letterSpacing:0.5}}>
           {lang==='uk' ? 'УРОК' : 'УРОК'} {lessonId}{'  '}<Text style={{fontSize: f.label,fontWeight:'700',color:lessonId<=8?'#4CAF72':lessonId<=18?'#40B4E8':lessonId<=28?'#D4A017':'#DC6428'}}>{lessonId<=8?'A1':lessonId<=18?'A2':lessonId<=28?'B1':'B2'}</Text>
         </Text>
+        <EnergyBar size={15} />
         <PremiumCard level={1} onPress={()=>{ hapticTap(); router.push('/settings_edu'); }}
-          style={{width:38,height:38,borderRadius:19}}
+          style={{width:38,height:38,borderRadius:19,marginLeft:8}}
           innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
         >
           <Ionicons name="settings-outline" size={20} color={t.textSecond}/>
@@ -378,7 +380,7 @@ export default function LessonMenu() {
                     setShowLockModal(false);
                   }}
                 >
-                  <Text style={{color:'#fff', fontSize:f.body, fontWeight:'700'}}>
+                  <Text style={{color:t.correctText, fontSize:f.body, fontWeight:'700'}}>
                     {lang==='uk' ? 'Розумію' : 'Понимаю'}
                   </Text>
                 </TouchableOpacity>

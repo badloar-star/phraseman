@@ -103,7 +103,7 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
                 fontSize: f.sub,
               }}
             >
-              ×{multiplier} {isUK ? boostDef.nameUK : boostDef.nameRU}
+              {isUK ? boostDef.nameUK : boostDef.nameRU}
             </Text>
             {activeBoosts.length > 1 && (
               <View style={{ backgroundColor: t.accent + '44', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6 }}>

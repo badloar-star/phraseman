@@ -182,7 +182,8 @@ export default function LevelExam() {
   const { lang } = useLang();
   const isUK = lang === 'uk';
   const { level } = useLocalSearchParams<{ level: string }>();
-  const lvl = level || 'A1';
+  const validLevels = ['A1', 'A2', 'B1', 'B2'];
+  const lvl = validLevels.includes(level) ? level : 'A1';
 
   const [phase, setPhase] = useState<'intro' | 'quiz' | 'result'>('intro');
   const [idx, setIdx] = useState(0);
@@ -199,7 +200,7 @@ export default function LevelExam() {
 
   const title = LEVEL_LABELS[lvl]?.[isUK ? 'uk' : 'ru'] ?? `Зачёт ${lvl}`;
   const total = questions.length;
-  const q = questions[idx];
+  const q = idx < questions.length ? questions[idx] : undefined;
   const chosen = choices[idx] ?? null;
 
   const startExam = useCallback(() => {
@@ -404,6 +405,8 @@ export default function LevelExam() {
   }
 
   // ── QUIZ ─────────────────────────────────────────────────────────────────────
+  if (!q) return null;
+
   const progressPct = Math.round((idx + 1) / total * 100);
   const isCorrect = chosen !== null && chosen === q.correct;
   const isWrong   = chosen !== null && chosen !== q.correct;
@@ -484,7 +487,7 @@ export default function LevelExam() {
               onPress={() => { hapticTap(); goNext(); }}
               style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginTop: 4 }}
             >
-              <Text style={{ color: '#fff', fontSize: f.bodyLg, fontWeight: '700' }}>
+              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
                 {idx + 1 < total ? (isUK ? 'Далі →' : 'Далее →') : (isUK ? 'Завершити' : 'Завершить')}
               </Text>
             </TouchableOpacity>

@@ -12,11 +12,14 @@ export interface DailyPhrase {
   literal: string;
   meaning: string;
   text: string;
+  literal_uk: string;
+  meaning_uk: string;
+  text_uk: string;
   date: string;
 }
 
-const DAILY_PHRASE_KEY = 'daily_phrase_v2';
-const LAST_PHRASE_DATE_KEY = 'last_phrase_date_v2';
+const DAILY_PHRASE_KEY = 'daily_phrase_v3';
+const LAST_PHRASE_DATE_KEY = 'last_phrase_date_v3';
 
 // Считаем номер дня с эпохи (UTC) для стабильного порядка
 const getDayIndex = (): number => {
@@ -43,6 +46,9 @@ export const getTodayPhrase = async (): Promise<DailyPhrase> => {
       literal: idiom.literal,
       meaning: idiom.meaning,
       text: idiom.text,
+      literal_uk: idiom.literal_uk,
+      meaning_uk: idiom.meaning_uk,
+      text_uk: idiom.text_uk,
       date: today,
     };
     await AsyncStorage.setItem(DAILY_PHRASE_KEY, JSON.stringify(phrase));
@@ -60,6 +66,9 @@ const getDefaultPhrase = (): DailyPhrase => {
     literal: idiom.literal,
     meaning: idiom.meaning,
     text: idiom.text,
+    literal_uk: idiom.literal_uk,
+    meaning_uk: idiom.meaning_uk,
+    text_uk: idiom.text_uk,
     date: new Date().toISOString().split('T')[0],
   };
 };

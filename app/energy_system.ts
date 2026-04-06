@@ -3,7 +3,6 @@ import { DebugLogger } from './debug-logger';
 
 export interface EnergyState {
   current: number;
-  max: number;
   lastRecoveryTime: number;
 }
 
@@ -14,7 +13,6 @@ const ENERGY_PER_LESSON = 1;
 
 const DEFAULT_STATE: EnergyState = {
   current: MAX_ENERGY,
-  max: MAX_ENERGY,
   lastRecoveryTime: Date.now(),
 };
 
@@ -82,9 +80,15 @@ export async function checkAndRecover(): Promise<EnergyState> {
  */
 export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<boolean> {
   try {
-    // Премиум: энергия не тратится
-    const premiumRaw = await AsyncStorage.getItem('premium_active');
-    if (premiumRaw === 'true') return true;
+    // Премиум: энергия не тратится (проверяем active + срок действия)
+    const [[, premiumRaw], [, expiryRaw]] = await AsyncStorage.multiGet(['premium_active', 'premium_expiry']);
+    const expiry = parseInt(expiryRaw || '0');
+    const isPremium = premiumRaw === 'true' && (expiry === 0 || expiry > Date.now());
+    if (isPremium) return true;
+
+    // Тестерский режим: энергия не тратится
+    const testerEnergyDisabled = await AsyncStorage.getItem('tester_energy_disabled');
+    if (testerEnergyDisabled === 'true') return true;
 
     const state = await checkAndRecover();
 
@@ -96,6 +100,9 @@ export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<b
     const newState: EnergyState = {
       ...state,
       current: state.current - amount,
+      // Сбрасываем таймер восстановления при первой трате с максимума,
+      // чтобы countdown показывал корректное время (а не 0)
+      lastRecoveryTime: state.current >= MAX_ENERGY ? Date.now() : state.lastRecoveryTime,
     };
 
     await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(newState));
@@ -134,7 +141,6 @@ export async function resetEnergyToMax(): Promise<EnergyState> {
   try {
     const state: EnergyState = {
       current: MAX_ENERGY,
-      max: MAX_ENERGY,
       lastRecoveryTime: Date.now(),
     };
 
@@ -152,7 +158,9 @@ export async function resetEnergyToMax(): Promise<EnergyState> {
  */
 export async function getTimeUntilNextRecovery(): Promise<number> {
   try {
-    const state = await getEnergyState();
+    // checkAndRecover нужен чтобы применить прошедшие периоды восстановления
+    // и получить корректный lastRecoveryTime для расчёта таймера
+    const state = await checkAndRecover();
 
     if (state.current >= MAX_ENERGY) {
       return 0;

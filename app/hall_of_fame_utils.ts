@@ -56,13 +56,30 @@ export const getMyWeekPoints = async (): Promise<number> => {
   try {
     const currentWeekKey = getWeekKey(new Date());
     const raw = await AsyncStorage.getItem('week_points_v2');
-    if (!raw) {
-      const old = await AsyncStorage.getItem('week_points');
-      return old ? parseInt(old) || 0 : 0;
-    }
+    if (!raw) return 0;
     const data: { weekKey: string; points: number } = JSON.parse(raw);
     return data.weekKey === currentWeekKey ? data.points : 0;
   } catch { return 0; }
+};
+
+// Одноразовая миграция: сбрасывает week_points_v2 если там накопленный total XP
+export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
+  try {
+    const migrated = await AsyncStorage.getItem('week_points_migrated_v1');
+    if (migrated) return;
+    const raw = await AsyncStorage.getItem('week_points_v2');
+    if (raw) {
+      const data: { weekKey: string; points: number } = JSON.parse(raw);
+      const totalXpRaw = await AsyncStorage.getItem('user_total_xp');
+      const totalXp = totalXpRaw ? parseInt(totalXpRaw) || 0 : 0;
+      // Если недельные очки равны total XP — это ошибочная миграция
+      if (totalXp > 0 && data.points >= totalXp * 0.9) {
+        const currentWeekKey = getWeekKey(new Date());
+        await AsyncStorage.setItem('week_points_v2', JSON.stringify({ weekKey: currentWeekKey, points: 0 }));
+      }
+    }
+    await AsyncStorage.setItem('week_points_migrated_v1', '1');
+  } catch {}
 };
 
 // ── Обновить стрик и week_days_done при активности ───────────────────────────
@@ -193,9 +210,7 @@ export const addOrUpdateScore = async (
         wpData = { weekKey: currentWeekKey, points: 0 };
       }
     } else {
-      const oldWp = await AsyncStorage.getItem('week_points');
-      const oldVal = oldWp ? parseInt(oldWp) || 0 : 0;
-      wpData = { weekKey: currentWeekKey, points: oldVal };
+      wpData = { weekKey: currentWeekKey, points: 0 };
     }
 
     wpData.points += delta;

@@ -29,7 +29,7 @@ const shuffle = <T,>(arr: T[]): T[] => {
 };
 
 const REQUIRED = 3;
-const POINTS_PER_CORRECT = 1;
+const POINTS_PER_CORRECT = 3;
 const POINTS_PER_LEARNED = 5;
 
 type POS = 'pronouns'|'verbs'|'irregular_verbs'|'adjectives'|'adverbs'|'nouns';
@@ -303,7 +303,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
   7: [
     { en: 'have', ru: 'Иметь', uk: 'Мати', pos: 'verbs' },
     { en: 'has', ru: 'Имеет', uk: 'Має', pos: 'verbs' },
-    { en: 'does', ru: 'Делает', uk: 'Робит', pos: 'verbs' },
+    { en: 'does', ru: 'Делает', uk: 'Робить', pos: 'verbs' },
     { en: 'insurance', ru: 'Страховка', uk: 'Страховка', pos: 'nouns' },
     { en: 'driver', ru: 'Водитель', uk: 'Водій', pos: 'nouns' },
     { en: 'license', ru: 'Лицензия', uk: 'Ліцензія', pos: 'nouns' },
@@ -567,7 +567,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'headphones', ru: 'Наушники', uk: 'Навушники', pos: 'nouns' },
     { en: 'sandwich', ru: 'Бутерброд', uk: 'Бутерброд', pos: 'nouns' },
     { en: 'umbrella', ru: 'Зонт', uk: 'Парасолька', pos: 'nouns' },
-    { en: 'apple', ru: 'Яблуко', uk: 'Яблуко', pos: 'nouns' },
+    { en: 'apple', ru: 'Яблоко', uk: 'Яблуко', pos: 'nouns' },
     { en: 'article', ru: 'Статья', uk: 'Стаття', pos: 'nouns' },
     { en: 'jacket', ru: 'Куртка', uk: 'Куртка', pos: 'nouns' },
     { en: 'story', ru: 'История (рассказ)', uk: 'Історія (розповідь)', pos: 'nouns' },
@@ -1055,7 +1055,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'economy', ru: 'Экономика', uk: 'Економіка', pos: 'nouns' },
     { en: 'landscape', ru: 'Пейзаж', uk: 'Пейзаж', pos: 'nouns' },
     { en: 'patience', ru: 'Терпение', uk: 'Терпіння', pos: 'nouns' },
-    { en: 'feedback', ru: 'Обратная связь', uk: 'Зворотній зв\'язок', pos: 'nouns' },
+    { en: 'feedback', ru: 'Обратная связь', uk: 'Зворотний зв\'язок', pos: 'nouns' },
     { en: 'equipment', ru: 'Оборудование', uk: 'Обладнання', pos: 'nouns' },
     { en: 'laboratory', ru: 'Лаборатория', uk: 'Лабораторія', pos: 'nouns' },
     { en: 'conference', ru: 'Конференция', uk: 'Конференція', pos: 'nouns' },
@@ -1491,12 +1491,14 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
   const [speechRate, setSpeechRate] = useState(1.0);
   const [allDone,    setAllDone]    = useState(false);
   const [xpToastVisible, setXpToastVisible] = useState(false);
+  const [xpToastAmount, setXpToastAmount] = useState(3);
 
   const xpAnim = useRef(new Animated.ValueXY({ x: 0, y: 60 })).current;
   const xpOpacity = useRef(new Animated.Value(0)).current;
   const cardShownAt = useRef<number>(Date.now());
 
-  const showXpToast = () => {
+  const showXpToast = (amount: number = 3) => {
+    setXpToastAmount(amount);
     xpAnim.setValue({ x: 0, y: 60 });
     xpOpacity.setValue(0);
     setXpToastVisible(true);
@@ -1562,18 +1564,19 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
         // Удаляем текущую карточку из очереди
         newQueue.splice(qIdx % newQueue.length, 1);
 
-        // +1 XP за каждый правильный ответ
+        // +3 XP за каждый правильный ответ
         if (userName) {
           registerXP(POINTS_PER_CORRECT, 'vocabulary_learned', userName, lang);
           setTotalPts(p => p + POINTS_PER_CORRECT);
         }
+        showXpToast(POINTS_PER_CORRECT);
 
         if (newCount >= REQUIRED) {
           // Слово выучено — убираем все оставшиеся карточки этого слова из очереди
           const finalQ = newQueue.filter(c => c.word.en !== current.word.en);
           const newLearned = Math.min(learnedCnt + 1, words.length);
           updateMultipleTaskProgress([{ type: 'words_learned' }, { type: 'daily_active' }]);
-          showXpToast();
+          showXpToast(POINTS_PER_LEARNED);
           if (userName) {
             await registerXP(POINTS_PER_LEARNED, 'vocabulary_learned', userName, lang);
             setTotalPts(p => p + POINTS_PER_LEARNED);
@@ -1703,12 +1706,8 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
         </View>
       </View>
 
-      {/* Бейдж раунда + гексагоны */}
-      <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', gap:14, marginBottom:18 }}>
-        <View style={{ flexDirection:'row', alignItems:'center', gap:6, backgroundColor:round.bg, borderRadius:20, paddingHorizontal:12, paddingVertical:5, borderWidth:1, borderColor: round.color + '50' }}>
-          <Ionicons name={round.icon as any} size={13} color={round.color} />
-          <Text style={{ color:round.color, fontSize:f.label, fontWeight:'700', letterSpacing:0.3 }}>{round.label}</Text>
-        </View>
+      {/* Гексагоны */}
+      <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', marginBottom:18 }}>
         <View style={{ flexDirection:'row', gap:8 }}>
           {[0,1,2].map(i => <MiniHex key={i} filled={dotCount > i} size={22} />)}
         </View>
@@ -1782,7 +1781,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
       {/* XP Toast */}
       {xpToastVisible && (
         <Animated.View style={{ position:'absolute', bottom:110, alignSelf:'center', backgroundColor:'#FFC800', borderRadius:20, paddingHorizontal:20, paddingVertical:10, transform:[{translateY:xpAnim.y}], opacity:xpOpacity, zIndex:999 }}>
-          <Text style={{ color:'#fff', fontWeight:'700', fontSize:16 }}>+3 XP</Text>
+          <Text style={{ color:'#000', fontWeight:'700', fontSize:16 }}>+{xpToastAmount} XP</Text>
         </Animated.View>
       )}
 
@@ -1791,7 +1790,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
 }
 
 // ── СПИСОК ───────────────────────────────────────────────────────────────────
-function WordList({ words, learnedCounts, lang, speechRate, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang:'ru'|'uk'; speechRate:number; onStartTraining?: () => void }) {
+function WordList({ words, learnedCounts, lang, speechRate, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang:'ru'|'uk'; speechRate:number; onStartTraining?: () => void; }) {
   const { theme:t, f } = useTheme();
   const sections = groupByPOS(words, lang);
   const isUK = lang === 'uk';
@@ -1830,7 +1829,9 @@ function WordList({ words, learnedCounts, lang, speechRate, onStartTraining }: {
                 <MiniHex key={i} filled={count > i} partial={count > i && count < REQUIRED} size={11} />
               ))}
             </View>
-            <Text style={{ flex:1, color:t.textPrimary, fontSize:f.bodyLg }}>{item.en}</Text>
+            <TouchableOpacity style={{ flex:1 }} onPress={() => Speech.speak(item.en, { language: 'en-US', rate: speechRate })}>
+              <Text style={{ color:t.textPrimary, fontSize:f.bodyLg }}>{item.en}</Text>
+            </TouchableOpacity>
             <Text style={{ color:t.textMuted, fontSize:f.body, marginRight:8 }}>{tr}</Text>
             <AddToFlashcard en={item.en} ru={item.ru} uk={item.uk} source="word" />
           </View>

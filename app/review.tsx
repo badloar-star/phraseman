@@ -332,10 +332,10 @@ export default function ReviewScreen() {
     setCanBurn(false);
     await removeItem(item.phrase);
     const newItems = items.filter((_, i) => i !== index);
-    setItems(newItems);
-    // После догорания (1.4с) переходим к следующей
+    // Не переключаем items сразу — ждём окончания анимации сжигания
     setTimeout(() => {
       setBurning(false);
+      setItems(newItems);
       if (newItems.length === 0) {
         setDone(true);
       } else {
@@ -659,7 +659,7 @@ export default function ReviewScreen() {
               alignItems: 'center',
             }}
           >
-            <Text style={{ color: '#fff', fontSize: f.bodyLg, fontWeight: '700' }}>
+            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
               {isUK ? 'Далі →' : 'Далее →'}
             </Text>
           </TouchableOpacity>

@@ -16,6 +16,7 @@ import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
 import CustomSwitch from '../../components/CustomSwitch';
+import EnergyBar from '../../components/EnergyBar';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import { DEV_MODE, STORE_URL } from '../config';
 
@@ -36,6 +37,7 @@ export default function SettingsMain() {
     setNotifEnabled(val);
     try {
       if (val) {
+        if (!lang) return;
         await scheduleDailyReminder(notifHour, 0, lang as 'ru'|'uk');
       } else {
         await cancelAllNotifications();
@@ -186,10 +188,11 @@ export default function SettingsMain() {
     <ScreenGradient>
       <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }}>
 
-        <View style={{ paddingHorizontal:20, paddingTop:14, paddingBottom:4 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, fontWeight: 'bold' }}>
+        <View style={{ paddingHorizontal:20, paddingTop:14, paddingBottom:4, flexDirection:'row', alignItems:'center' }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex:1 }}>
             {isUK ? 'Налаштування' : 'Настройки'}
           </Text>
+          <EnergyBar size={16} />
         </View>
 
         <SectionTitle title={isUK ? 'Профіль' : 'Профиль'} />

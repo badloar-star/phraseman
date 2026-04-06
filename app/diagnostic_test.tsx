@@ -21,6 +21,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { checkAchievements } from './achievements';
 import { loadSettings } from './settings_edu';
 import { shuffle } from './utils_shuffle';
+import { isCorrectAnswer } from '../constants/contractions';
 import { registerXP } from './xp_manager';
 
 const TIMER_SEC = 30;
@@ -375,9 +376,8 @@ export default function DiagnosticTest() {
     if (timerRef.current) clearInterval(timerRef.current);
     const q = questions[idx];
     // Normalize: lowercase, trim, strip trailing punctuation (? ! .) so typing "?" doesn't cause error
-    const stripPunct = (s: string) => s.toLowerCase().trim().replace(/[?.!,]+$/, '').trim();
-    const expectedAnswer = stripPunct(q.answer || q.opts[q.correct]);
-    const isRight = stripPunct(typedAnswer) === expectedAnswer;
+    const expectedAnswer = q.answer || q.opts[q.correct];
+    const isRight = isCorrectAnswer(typedAnswer, expectedAnswer);
     answersRef.current = [...answersRef.current, isRight];
     const ns = isRight ? score + 1 : score;
     setTypeSubmitted(true);
@@ -395,9 +395,8 @@ export default function DiagnosticTest() {
     if (locked.current || buildSubmitted || buildSelected.length === 0) return;
     locked.current = true;
     if (timerRef.current) clearInterval(timerRef.current);
-    const expected = (questions[idx].answer || '').toLowerCase().trim();
-    const userAnswer = buildSelected.join(' ').toLowerCase().trim();
-    const isRight = userAnswer === expected;
+    const expected = questions[idx].answer || '';
+    const isRight = isCorrectAnswer(buildSelected.join(' '), expected);
     answersRef.current = [...answersRef.current, isRight];
     const ns = isRight ? score + 1 : score;
     setBuildSubmitted(true);

@@ -37,13 +37,15 @@ import { checkAchievements } from './achievements';
 import { DEV_MODE, STORE_URL } from './config';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { DebugLogger } from './debug-logger';
-import { spendEnergy } from './energy_system';
+import { useEnergy } from '../components/EnergyContext';
+import { ENERGY_MESSAGES_RU, ENERGY_MESSAGES_UK } from './lesson1_energy';
 import { pointsForAnswer, streakMultiplier } from './hall_of_fame_utils';
 import { getQuizPhrases, QuizPhrase } from './quiz_data';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from './settings_edu';
 import { useTabNav } from './TabContext';
 import { calculateRewardWithBonus } from './variable_reward_system';
 import { registerXP } from './xp_manager';
+import { getVerifiedPremiumStatus } from './premium_guard';
 
 // Используем QuizPhrase из quiz_data.ts
 type Phrase = QuizPhrase;
@@ -221,7 +223,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   }, []);
 
   useEffect(() => {
-    AsyncStorage.getItem('premium_active').then(v => setIsPremium(v === 'true'));
+    getVerifiedPremiumStatus().then(setIsPremium);
   }, []);
 
   const handleStart = (lv: Level) => {
@@ -419,12 +421,21 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const [hardWrongCount,   setHardWrongCount]   = useState(0);
   const [showBonus, setShowBonus] = useState(false);
   const [bonusXP, setBonusXP] = useState(0);
+  const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
+  const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, formattedTime: recoveryTimeText, spendOne } = useEnergy();
+  const currentEnergyRef = useRef(currentEnergy);
+  const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
+  const spendOneRef = useRef(spendOne);
+  useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
+  useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
+  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
   const TIMER_SECONDS = level === 'easy' ? 40 : level === 'medium' ? 50 : 70;
   const [timeLeft, setTimeLeft] = useState(TIMER_SECONDS);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const isTabActiveRef = useRef(true);
   const autoAdvanceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [showTimeoutAlert, setShowTimeoutAlert] = useState(false);
+  const [nextReady, setNextReady] = useState(false);
   const settingsRef = useRef<Settings>(DEFAULT_SETTINGS);
 
   // ── Имя пользователя загружаем ОДИН РАЗ в ref — нет race condition ──────
@@ -458,6 +469,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     AsyncStorage.getItem('user_total_xp').then(v => {
       setTotalXP(parseInt(v || '0') || 0);
     });
+    // energy comes from EnergyContext — no local load needed
   }, []);
 
   // Синхронизируем streakRef с streak стейтом
@@ -540,7 +552,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     processDoneQuiz();
   }, [done, score, results, phrases.length, lang]);
 
-  const current = reviewing ? reviewQ[rIdx] : phrases[idx];
+  const current = reviewing ? reviewQ[rIdx] : (idx < phrases.length ? phrases[idx] : undefined);
 
   // Guard: loading пока фразы загружаются
   if (!phrasesLoaded || phrases.length === 0) {
@@ -620,8 +632,14 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         setStreak(0);
         setTimeout(() => setShowBreak(false), 800);
 
-        // Spend energy on wrong answer in quiz
-        spendEnergy(1).catch(() => {});
+        // Spend energy on wrong answer in quiz (refs = no stale closure)
+        if (!testerEnergyDisabledRef.current) {
+          spendOneRef.current().then(success => {
+            if (success && currentEnergyRef.current - 1 === 0) {
+              setShowNoEnergyModal(true);
+            }
+          }).catch(() => {});
+        }
 
         if (settings.hardMode && !hardTipDismissed) {
           const newCount = hardWrongCount + 1;
@@ -671,19 +689,23 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     if (chosen !== null) return;
     answeredRef.current = true;
     if (timerRef.current) clearInterval(timerRef.current);
+    setNextReady(false);
     setChosen(ci);
     playInsertAnim();
     afterAnswer(ci === current.correct);
+    setTimeout(() => setNextReady(true), 500);
   };
 
   const handleTyped = () => {
     if (typedOk !== null) return;
     answeredRef.current = true;
     if (timerRef.current) clearInterval(timerRef.current);
+    setNextReady(false);
     const ok = isCorrectAnswer(typed, current.answer);
     setTypedOk(ok);
     playInsertAnim();
     afterAnswer(ok);
+    setTimeout(() => setNextReady(true), 500);
   };
 
   // ── ФИНАЛЬНЫЙ ЭКРАН ──────────────────────────────────────────────────────
@@ -886,10 +908,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           </View>
         )}
 
-        <Pressable
-          style={{ flex: 1 }}
-          onPress={(chosen !== null || typedOk !== null) ? handleTap : undefined}
-        >
         <Animated.View style={{ flex:1, opacity:fadeAnim }}>
           <ScrollView contentContainerStyle={{ paddingHorizontal:20, paddingTop:20, paddingBottom:40, flexGrow:1 }} keyboardShouldPersistTaps="handled">
           <Text style={{ color:t.textMuted, fontSize: f.caption, marginBottom:14 }}>
@@ -963,31 +981,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               </Animated.View>
             );
           })()}
-
-          {/* Кнопка "далее" после ответа если autoAdvance выключен */}
-          {(chosen !== null || typedOk !== null) && !settings.autoAdvance && (
-            <TouchableOpacity
-              onPress={handleTap}
-              activeOpacity={0.7}
-              style={{
-                marginTop: 16,
-                backgroundColor: t.bgSurface,
-                borderRadius: 14,
-                padding: 16,
-                alignItems: 'center',
-                borderWidth: 1,
-                borderColor: t.border,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                gap: 8,
-              }}
-            >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                {lang==='uk' ? 'Далі' : 'Далее'}
-              </Text>
-              <Ionicons name="arrow-forward" size={18} color={t.textPrimary}/>
-            </TouchableOpacity>
-          )}
 
           {/* ВАРИАНТЫ / ВВОД */}
           {settings.hardMode ? (
@@ -1078,8 +1071,32 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             </View>
           )}
           </ScrollView>
+
+          {/* Кнопка "далее" — закреплена снизу, вне ScrollView */}
+          {(chosen !== null || typedOk !== null) && (
+            <TouchableOpacity
+              onPress={nextReady ? handleTap : undefined}
+              activeOpacity={nextReady ? 0.7 : 1}
+              style={{
+                marginHorizontal: 20,
+                marginBottom: 12,
+                marginTop: 8,
+                backgroundColor: nextReady ? t.correct : t.bgCard,
+                borderRadius: 14,
+                padding: 16,
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                gap: 8,
+              }}
+            >
+              <Text style={{ color: nextReady ? t.correctText : t.textMuted, fontSize: f.bodyLg, fontWeight: '700' }}>
+                {lang==='uk' ? 'Далі' : 'Далее'}
+              </Text>
+              <Ionicons name="arrow-forward" size={18} color={nextReady ? t.correctText : t.textMuted}/>
+            </TouchableOpacity>
+          )}
         </Animated.View>
-        </Pressable>
 
       </KeyboardAvoidingView>
       </ContentWrap>
@@ -1110,11 +1127,32 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 32, width: '100%', alignItems: 'center' }}
               onPress={() => { setShowTimeoutAlert(false); onBackRef.current(); }}
             >
-              <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
                 {isUK ? 'Зрозуміло' : 'Понятно'}
               </Text>
             </TouchableOpacity>
           </View>
+        </Pressable>
+      </Pressable>
+    </Modal>
+
+    {/* No Energy Modal */}
+    <Modal transparent animationType="fade" visible={showNoEnergyModal} onRequestClose={() => setShowNoEnergyModal(false)}>
+      <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center' }} onPress={() => setShowNoEnergyModal(false)}>
+        <Pressable style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 24, marginHorizontal: 24, width: '88%' }} onPress={e => e.stopPropagation()}>
+          <Text style={{ color: t.textPrimary, fontSize: 15, lineHeight: 22, textAlign: 'center', marginBottom: 20 }}>
+            {isUK
+              ? ENERGY_MESSAGES_UK[Math.floor(Math.random() * ENERGY_MESSAGES_UK.length)]?.replace('{time}', recoveryTimeText) || ''
+              : ENERGY_MESSAGES_RU[Math.floor(Math.random() * ENERGY_MESSAGES_RU.length)]?.replace('{time}', recoveryTimeText) || ''}
+          </Text>
+          <TouchableOpacity
+            style={{ backgroundColor: t.accent, borderRadius: 12, paddingVertical: 13, alignItems: 'center' }}
+            onPress={() => setShowNoEnergyModal(false)}
+          >
+            <Text style={{ color: t.correctText, fontWeight: '700', fontSize: 15 }}>
+              {isUK ? 'Зрозуміло' : 'Понятно'}
+            </Text>
+          </TouchableOpacity>
         </Pressable>
       </Pressable>
     </Modal>

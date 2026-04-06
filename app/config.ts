@@ -39,10 +39,14 @@
 
 // true  = всё открыто (для проверки Google Play)
 // false = premium gates активны (включить в следующем обновлении)
-export const DEV_MODE = false;
+export const DEV_MODE = true;
 
 // false = диалоги закрыты (в разработке), игнорирует DEV_MODE
 export const DIALOGS_ENABLED = true;
+
+// true  = показывать бета-экран с инструкциями для тестеров
+// false = продакшн, бета-экран пропускается
+export const IS_BETA_TESTER = false;
 
 // ── Expo Go detection ─────────────────────────────────────────────────────────
 import Constants from 'expo-constants';
@@ -53,6 +57,12 @@ export const STORE_URL_IOS     = 'https://apps.apple.com/app/phraseman/id6744042
 export const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
 import { Platform } from 'react-native';
 export const STORE_URL = Platform.OS === 'ios' ? STORE_URL_IOS : STORE_URL_ANDROID;
+
+// ── Update check ──────────────────────────────────────────────────────────────
+// Укажите URL вашего version.json (GitHub Gist raw или любой статический хостинг).
+// Формат файла: { "versionCode": 11, "message": "Что нового" }
+// Обновляйте versionCode при каждом релизе в Google Play.
+export const UPDATE_CHECK_URL = 'https://gist.githubusercontent.com/YOUR_GITHUB_USERNAME/YOUR_GIST_ID/raw/version.json';
 
 // Минимальный балл для разблокировки следующего урока
 export const MIN_LESSON_SCORE = 4.5;

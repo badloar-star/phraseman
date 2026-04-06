@@ -5,10 +5,9 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
-  Keyboard, Platform,
+  Keyboard,
   ScrollView,
-  Text, TextInput, TouchableOpacity,
-  TouchableWithoutFeedback,
+  Text, TouchableOpacity,
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -41,21 +40,38 @@ function MiniHex({ filled, size = 16 }: { filled: boolean; size?: number }) {
   );
 }
 
-// ── useKeyboardHeight ─────────────────────────────────────────────────────────
-function useKeyboardHeight() {
-  const [kbH, setKbH] = useState(0);
-  useEffect(() => {
-    const showEv = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
-    const hideEv = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
-    const s = Keyboard.addListener(showEv, e => setKbH(e.endCoordinates.height));
-    const h = Keyboard.addListener(hideEv, () => setKbH(0));
-    return () => { s.remove(); h.remove(); };
-  }, []);
-  return kbH;
+// ── Learn Tab (One-form-at-a-time tap mechanic) ────────────────────────────────
+type BtnState = 'idle' | 'correct' | 'wrong';
+
+const FORM_SEQ = ['past', 'pp', 'base'] as const;
+type FormKey = typeof FORM_SEQ[number];
+
+const FORM_META: Record<FormKey, { label: string; color: string; bg: string }> = {
+  base: { label: 'V1 · Base form', color: '#4CAF50', bg: 'rgba(76,175,80,0.14)' },
+  past: { label: 'V2 · Past Simple', color: '#4A9EFF', bg: 'rgba(74,158,255,0.14)' },
+  pp:   { label: 'V3 · Past Participle', color: '#C084FC', bg: 'rgba(192,132,252,0.14)' },
+};
+
+const DISTRACTOR_POOL = ['went', 'gone', 'did', 'done', 'was', 'been', 'got', 'taken', 'came', 'seen', 'knew', 'told', 'kept', 'left', 'ran', 'made', 'said', 'gave'];
+
+function shuffleArr<T>(arr: T[]): T[] {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
 }
 
-// ── Learn Tab ─────────────────────────────────────────────────────────────────
-type Feedback = 'idle' | 'correct' | 'wrong';
+function make4Options(correct: string, verb: IrregularVerb, allVerbs: IrregularVerb[]): string[] {
+  const pool: string[] = [];
+  allVerbs.forEach(v => {
+    if (v.base !== verb.base) pool.push(v.base, v.past, v.pp);
+  });
+  const candidates = [...new Set([...pool, ...DISTRACTOR_POOL])].filter(w => w !== correct);
+  const distractors = shuffleArr(candidates).slice(0, 3);
+  return shuffleArr([correct, ...distractors]);
+}
 
 function LearnTab({ verbs, lang, initCounts, onUpdate }: {
   verbs: IrregularVerb[];
@@ -65,32 +81,34 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
 }) {
   const { theme: t, f } = useTheme();
   const router = useRouter();
-  const inputRef = useRef<TextInput>(null);
-  const kbH = useKeyboardHeight();
 
   const [queue, setQueue] = useState<IrregularVerb[]>(() => [...verbs]);
   const [pos, setPos] = useState(0);
-  const [input, setInput] = useState('');
-  const [feedback, setFeedback] = useState<Feedback>('idle');
-  const [correctAnswer, setCorrectAnswer] = useState('');
+  // step: 0=ask past, 1=ask pp, 2=ask base (mirrors original FORM_SEQ order)
+  const [step, setStep] = useState(0);
   const [counts, setCounts] = useState<Record<string, number>>({ ...initCounts });
   const [learnedCnt, setLearnedCnt] = useState(0);
   const [totalPts, setTotalPts] = useState(0);
   const [allDone, setAllDone] = useState(verbs.length === 0);
   const [userName, setUserName] = useState('');
-  const [pendingNext, setPendingNext] = useState<{ queue: IrregularVerb[]; pos: number } | null>(null);
-  const locked = useRef(false);
+
+  const [options, setOptions] = useState<string[]>([]);
+  const [btnStates, setBtnStates] = useState<BtnState[]>(['idle', 'idle', 'idle', 'idle']);
+  const [phase, setPhase] = useState<'answering' | 'feedback'>('answering');
+  const [feedbackCorrect, setFeedbackCorrect] = useState(true);
+  const [hadErrorThisVerb, setHadErrorThisVerb] = useState(false);
 
   const xpToastAnim = useRef(new Animated.Value(0)).current;
   const [xpToastVisible, setXpToastVisible] = useState(false);
+  const locked = useRef(false);
 
   const showXpToast = useCallback(() => {
     xpToastAnim.setValue(0);
     setXpToastVisible(true);
     Animated.sequence([
       Animated.timing(xpToastAnim, { toValue: 1, duration: 200, useNativeDriver: true }),
-      Animated.delay(800),
-      Animated.timing(xpToastAnim, { toValue: 0, duration: 400, useNativeDriver: true }),
+      Animated.delay(700),
+      Animated.timing(xpToastAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
     ]).start(() => setXpToastVisible(false));
   }, [xpToastAnim]);
 
@@ -98,68 +116,90 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
     AsyncStorage.getItem('user_name').then(n => { if (n) setUserName(n); });
   }, []);
 
-  const goNext = useCallback((newQueue: IrregularVerb[], nextPos: number) => {
-    if (newQueue.length === 0) { setAllDone(true); return; }
-    setQueue(newQueue);
-    setPos(nextPos % newQueue.length);
-    setInput('');
-    setFeedback('idle');
-    setCorrectAnswer('');
+  const buildStep = useCallback((verb: IrregularVerb, stepIdx: number) => {
+    const form = FORM_SEQ[stepIdx];
+    const correct = form === 'past' ? verb.past : form === 'pp' ? verb.pp : verb.base;
+    setOptions(make4Options(correct, verb, verbs));
+    setBtnStates(['idle', 'idle', 'idle', 'idle']);
+    setPhase('answering');
     locked.current = false;
-    // Keep keyboard open by refocusing
-    setTimeout(() => inputRef.current?.focus(), 50);
+  }, [verbs]);
+
+  const initVerb = useCallback((verb: IrregularVerb) => {
+    setStep(0);
+    setHadErrorThisVerb(false);
+    buildStep(verb, 0);
+  }, [buildStep]);
+
+  useEffect(() => {
+    if (queue.length > 0) initVerb(queue[0]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const handleNext = useCallback(() => {
-    if (!pendingNext) return;
-    setPendingNext(null);
-    goNext(pendingNext.queue, pendingNext.pos);
-  }, [pendingNext, goNext]);
+  const goNextVerb = useCallback((curQueue: IrregularVerb[], curPos: number) => {
+    if (curQueue.length === 0) { setAllDone(true); return; }
+    setPos(curPos % curQueue.length);
+    setQueue(curQueue);
+    initVerb(curQueue[curPos % curQueue.length]);
+  }, [initVerb]);
 
-  const handleSubmit = useCallback(async () => {
-    if (!queue.length || locked.current || feedback !== 'idle') return;
-    const verb = queue[pos % queue.length];
-    if (!verb) return;
+  const handleTap = useCallback(async (word: string, btnIdx: number) => {
+    if (locked.current || phase !== 'answering') return;
     locked.current = true;
 
-    const typed = input.trim().toLowerCase();
-    const currentCount = counts[verb.base] ?? 0;
-    const askForm0 = currentCount === 0 ? 'past' : currentCount === 1 ? 'pp' : 'base';
-    const correct = askForm0 === 'past' ? verb.past.toLowerCase()
-                  : askForm0 === 'pp'   ? verb.pp.toLowerCase()
-                  : verb.base.toLowerCase();
+    const verb = queue[pos % Math.max(queue.length, 1)];
+    if (!verb) return;
+    const form = FORM_SEQ[step];
+    const correct = form === 'past' ? verb.past : form === 'pp' ? verb.pp : verb.base;
+    const isCorrect = word === correct;
 
-    if (typed === correct) {
+    // Show feedback on buttons
+    const newStates: BtnState[] = options.map((opt, i) => {
+      if (opt === correct) return 'correct';
+      if (i === btnIdx && !isCorrect) return 'wrong';
+      return 'idle';
+    });
+    setBtnStates(newStates);
+    setFeedbackCorrect(isCorrect);
+    setPhase('feedback');
+
+    if (isCorrect) {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success); } catch {}
-      const newCount = (counts[verb.base] ?? 0) + 1;
-      const newCounts = { ...counts, [verb.base]: newCount };
-      setCounts(newCounts);
-      onUpdate(verb.base, newCount);
-      AsyncStorage.getItem(GLOBAL_IRREGULAR_KEY).then(raw => {
-        const g: Record<string, number> = raw ? JSON.parse(raw) : {};
-        g[verb.base] = newCount;
-        AsyncStorage.setItem(GLOBAL_IRREGULAR_KEY, JSON.stringify(g));
-      });
-      setFeedback('correct');
-      if (newCount >= REQUIRED) {
-        setLearnedCnt(c => c + 1);
-        showXpToast(); // Show toast for XP
-        updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]); // Update daily tasks
-        if (userName) { await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang); setTotalPts(p => p + POINTS_PER_VERB); }
-        const nq = [...queue]; nq.splice(pos % nq.length, 1);
-        setPendingNext({ queue: nq, pos });
-      } else {
-        const nq = [...queue]; const rem = nq.splice(pos % nq.length, 1)[0]; nq.push(rem);
-        setPendingNext({ queue: nq, pos: pos % Math.max(nq.length, 1) });
-      }
     } else {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
-      setFeedback('wrong');
-      setCorrectAnswer(askForm0 === 'past' ? verb.past : askForm0 === 'pp' ? verb.pp : verb.base);
-      const nq = [...queue]; const rem = nq.splice(pos % nq.length, 1)[0]; nq.push(rem);
-      setPendingNext({ queue: nq, pos: pos % Math.max(nq.length, 1) });
+      setHadErrorThisVerb(true);
     }
-  }, [queue, pos, input, counts, feedback, userName, lang, onUpdate, showXpToast]);
+
+    // Advance after short delay
+    setTimeout(async () => {
+      const nextStep = step + 1;
+      if (nextStep < FORM_SEQ.length) {
+        // Next form of same verb
+        setStep(nextStep);
+        buildStep(verb, nextStep);
+      } else {
+        // Verb complete
+        const newCount = 3;
+        const newCounts = { ...counts, [verb.base]: newCount };
+        setCounts(newCounts);
+        onUpdate(verb.base, newCount);
+        AsyncStorage.getItem(GLOBAL_IRREGULAR_KEY).then(raw => {
+          const g: Record<string, number> = raw ? JSON.parse(raw) : {};
+          g[verb.base] = newCount;
+          AsyncStorage.setItem(GLOBAL_IRREGULAR_KEY, JSON.stringify(g));
+        });
+        setLearnedCnt(c => c + 1);
+        if (!hadErrorThisVerb && isCorrect) {
+          showXpToast();
+          updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]);
+          if (userName) { await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang); setTotalPts(p => p + POINTS_PER_VERB); }
+        }
+        const nq = [...queue];
+        nq.splice(pos % nq.length, 1);
+        goNextVerb(nq, pos % Math.max(nq.length - 1, 1));
+      }
+    }, isCorrect ? 600 : 900);
+  }, [phase, queue, pos, step, options, counts, hadErrorThisVerb, userName, lang, onUpdate, showXpToast, buildStep, goNextVerb]);
 
   if (allDone) return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
@@ -180,7 +220,7 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
         style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
         onPress={() => router.back()}
       >
-        <Text style={{ color: '#fff', fontSize: f.h2, fontWeight: '700' }}>{lang === 'uk' ? '← До уроку' : '← К уроку'}</Text>
+        <Text style={{ color: (t as any).correctText ?? '#1A2400', fontSize: f.h2, fontWeight: '700' }}>{lang === 'uk' ? '← До уроку' : '← К уроку'}</Text>
       </TouchableOpacity>
     </View>
   );
@@ -188,186 +228,144 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
   const verb = queue[pos % Math.max(queue.length, 1)];
   if (!verb) return null;
 
-  const count = counts[verb.base] ?? 0;
-  const askForm = count === 0 ? 'past' : count === 1 ? 'pp' : 'base';
-  const borderC = feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : t.border;
-  const bgC    = feedback === 'correct' ? t.correctBg : feedback === 'wrong' ? (t as any).wrongBg ?? 'rgba(255,68,68,0.12)' : t.bgCard;
-  const textC  = feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : t.textPrimary;
+  const form = FORM_SEQ[step];
+  const meta = FORM_META[form];
+  const correctAnswer = form === 'past' ? verb.past : form === 'pp' ? verb.pp : verb.base;
 
-  const isIdle = feedback === 'idle';
+  // Context chain — show known forms, blank for current
+  const chainForms: { key: FormKey; value: string; isTarget: boolean }[] = [
+    { key: 'base', value: verb.base, isTarget: form === 'base' },
+    { key: 'past', value: verb.past, isTarget: form === 'past' },
+    { key: 'pp',   value: verb.pp,   isTarget: form === 'pp'   },
+  ];
 
   return (
-    <View style={{ flex: 1, position: 'relative' }}>
+    <View style={{ flex: 1 }}>
       {/* XP Toast */}
       {xpToastVisible && (
         <Animated.View style={{
-          position: 'absolute',
-          bottom: 120,
-          alignSelf: 'center',
-          zIndex: 999,
-          backgroundColor: '#FFC800',
-          borderRadius: 20,
-          paddingHorizontal: 20,
-          paddingVertical: 10,
+          position: 'absolute', top: 50, alignSelf: 'center', zIndex: 999,
+          backgroundColor: '#FFC800', borderRadius: 20,
+          paddingHorizontal: 18, paddingVertical: 8,
           opacity: xpToastAnim,
-          transform: [{
-            translateY: xpToastAnim.interpolate({
-              inputRange: [0, 1],
-              outputRange: [20, 0],
-            }),
-          }],
+          transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [-8, 0] }) }],
         }}>
-          <Text style={{ color: '#fff', fontSize: 16, fontWeight: '800' }}>+3 XP</Text>
+          <Text style={{ color: '#000', fontSize: 15, fontWeight: '800' }}>+3 XP ⚡</Text>
         </Animated.View>
       )}
 
-      {/* Verb card area */}
-      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10 }}>
+      {/* ── Top card area ── */}
+      <View style={{ flex: 1, paddingHorizontal: 20, paddingTop: 10, justifyContent: 'space-between' }}>
 
-          {/* Progress */}
-          <View style={{ marginBottom: 12 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.label }}>
-                {learnedCnt} / {verbs.length} {lang === 'uk' ? 'вивчено' : 'выучено'}
-              </Text>
-              <Text style={{ color: learnedCnt > 0 ? t.correct : t.textMuted, fontSize: f.label, fontWeight: '600' }}>
-                {Math.min(Math.round((learnedCnt / Math.max(verbs.length, 1)) * 100), 100)}%
-              </Text>
-            </View>
-            <View style={{ height: 5, backgroundColor: t.border, borderRadius: 3, overflow: 'hidden' }}>
-              <View style={{ height: '100%', width: `${Math.min((learnedCnt / Math.max(verbs.length, 1)) * 100, 100)}%` as any, backgroundColor: t.correct, borderRadius: 3 }} />
-            </View>
-          </View>
-
-          {/* Round badge + hex dots */}
-          {(() => {
-            const formCfg = askForm === 'past'
-              ? { label: lang === 'uk' ? 'Форма 2 · Past Simple' : 'Форма 2 · Past Simple', color: '#4A9EFF', bg: 'rgba(74,158,255,0.14)', icon: 'pencil-outline' as const }
-              : askForm === 'pp'
-              ? { label: lang === 'uk' ? 'Форма 3 · Past Participle' : 'Форма 3 · Past Participle', color: '#C084FC', bg: 'rgba(192,132,252,0.14)', icon: 'create-outline' as const }
-              : { label: lang === 'uk' ? 'Форма 1 · Інфінітив' : 'Форма 1 · Инфинитив', color: t.correct, bg: t.correctBg, icon: 'flash-outline' as const };
-            return (
-              <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 14, marginBottom: 16 }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: formCfg.bg, borderRadius: 20, paddingHorizontal: 12, paddingVertical: 5, borderWidth: 1, borderColor: formCfg.color + '50' }}>
-                  <Ionicons name={formCfg.icon} size={13} color={formCfg.color} />
-                  <Text style={{ color: formCfg.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.3 }}>{formCfg.label}</Text>
-                </View>
-                <View style={{ flexDirection: 'row', gap: 8 }}>
-                  {[0, 1, 2].map(i => <MiniHex key={i} filled={count > i} size={22} />)}
-                </View>
-              </View>
-            );
-          })()}
-
-          {/* Verb display — centered */}
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 12 }}>
-
-            {/* Translation */}
-            <Text style={{ color: t.textGhost, fontSize: f.body, textAlign: 'center' }}>
-              {lang === 'uk' ? verb.uk : verb.ru}
+        {/* Progress */}
+        <View style={{ marginBottom: 8 }}>
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 4 }}>
+            <Text style={{ color: t.textMuted, fontSize: f.label }}>
+              {learnedCnt} / {verbs.length} {lang === 'uk' ? 'вивчено' : 'выучено'}
             </Text>
-
-            {/* Forms chain */}
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-              {(['base', 'past', 'pp'] as const).map((form, i) => {
-                const isTarget = askForm === form;
-                const isKnown = (form === 'base' && count >= 2 && askForm !== 'base')
-                  || (form === 'past' && count >= 1)
-                  || (form === 'pp' && count >= 2);
-                const showValue = !isTarget || feedback !== 'idle';
-                const value = form === 'base' ? verb.base : form === 'past' ? verb.past : verb.pp;
-                return (
-                  <React.Fragment key={form}>
-                    {i > 0 && <Text style={{ color: t.textGhost, fontSize: f.body }}>→</Text>}
-                    <View style={{
-                      borderRadius: 10,
-                      paddingHorizontal: 10,
-                      paddingVertical: 5,
-                      backgroundColor: isTarget ? (feedback === 'correct' ? t.correctBg : feedback === 'wrong' ? 'rgba(240,84,84,0.12)' : t.bgSurface) : 'transparent',
-                      borderWidth: isTarget ? 1 : 0,
-                      borderColor: isTarget ? (feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : t.border) : 'transparent',
-                    }}>
-                      <Text style={{
-                        fontSize: isTarget ? 32 : 20,
-                        fontWeight: isTarget ? '500' : '300',
-                        color: isTarget
-                          ? (feedback === 'correct' ? t.correct : feedback === 'wrong' ? t.wrong : t.textPrimary)
-                          : (isKnown ? t.textSecond : t.textGhost),
-                        letterSpacing: isTarget ? 1 : 0,
-                      }}>
-                        {showValue ? value : '___'}
-                      </Text>
-                    </View>
-                  </React.Fragment>
-                );
-              })}
-            </View>
-
-            {/* Correct answer hint on wrong */}
-            {feedback === 'wrong' && correctAnswer ? (
-              <View style={{ alignItems: 'center', gap: 2, backgroundColor: 'rgba(240,84,84,0.10)', borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8 }}>
-                <Text style={{ color: t.textGhost, fontSize: f.sub }}>{lang === 'uk' ? 'Правильно:' : 'Правильно:'}</Text>
-                <Text style={{ color: t.correct, fontSize: f.h2, fontWeight: '700' }}>{correctAnswer}</Text>
-              </View>
-            ) : null}
+            <Text style={{ color: learnedCnt > 0 ? t.correct : t.textMuted, fontSize: f.label, fontWeight: '600' }}>
+              {Math.min(Math.round((learnedCnt / Math.max(verbs.length, 1)) * 100), 100)}%
+            </Text>
+          </View>
+          <View style={{ height: 4, backgroundColor: t.border, borderRadius: 2, overflow: 'hidden' }}>
+            <View style={{ height: '100%', width: `${Math.min((learnedCnt / Math.max(verbs.length, 1)) * 100, 100)}%` as any, backgroundColor: t.correct, borderRadius: 2 }} />
           </View>
         </View>
-      </TouchableWithoutFeedback>
 
-      {/* Input + button */}
+        {/* Card */}
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16 }}>
+          {/* Form badge */}
+          <View style={{ backgroundColor: meta.bg, borderRadius: 20, paddingHorizontal: 14, paddingVertical: 5, borderWidth: 1, borderColor: meta.color + '60' }}>
+            <Text style={{ color: meta.color, fontSize: f.label, fontWeight: '700', letterSpacing: 0.4 }}>{meta.label}</Text>
+          </View>
+
+          {/* Translation */}
+          <Text style={{ color: t.textGhost, fontSize: f.body, textAlign: 'center' }}>
+            {lang === 'uk' ? verb.uk : verb.ru}
+          </Text>
+
+          {/* Chain with blank */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, flexWrap: 'wrap', justifyContent: 'center' }}>
+            {chainForms.map((cf, i) => (
+              <React.Fragment key={cf.key}>
+                {i > 0 && <Text style={{ color: t.textGhost, fontSize: f.bodyLg }}>→</Text>}
+                {cf.isTarget ? (
+                  <View style={{
+                    borderBottomWidth: 2,
+                    borderBottomColor: phase === 'feedback'
+                      ? (feedbackCorrect ? meta.color : t.wrong)
+                      : meta.color,
+                    paddingHorizontal: 8, paddingBottom: 2, minWidth: 60, alignItems: 'center',
+                  }}>
+                    <Text style={{
+                      color: phase === 'feedback'
+                        ? (feedbackCorrect ? meta.color : t.wrong)
+                        : meta.color,
+                      fontSize: f.h1, fontWeight: '700', letterSpacing: 0.5,
+                    }}>
+                      {phase === 'feedback' ? correctAnswer : '?'}
+                    </Text>
+                  </View>
+                ) : (
+                  <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '400' }}>{cf.value}</Text>
+                )}
+              </React.Fragment>
+            ))}
+          </View>
+
+          {/* Step dots */}
+          <View style={{ flexDirection: 'row', gap: 6 }}>
+            {FORM_SEQ.map((_, i) => (
+              <View key={i} style={{
+                width: i === step ? 20 : 8, height: 8, borderRadius: 4,
+                backgroundColor: i < step ? t.correct : i === step ? meta.color : t.border,
+              }} />
+            ))}
+          </View>
+        </View>
+      </View>
+
+      {/* ── Bottom buttons (sticky, thumb zone) ── */}
       <View style={{
-        paddingHorizontal: 20,
-        paddingBottom: Platform.OS === 'ios' && kbH > 0 ? kbH + 8 : 16,
-        paddingTop: 10,
-        gap: 8,
-        borderTopWidth: 0.5,
-        borderTopColor: t.border,
+        paddingHorizontal: 16, paddingBottom: 20, paddingTop: 12,
+        gap: 10,
+        borderTopWidth: 0.5, borderTopColor: t.border,
         backgroundColor: t.bgPrimary,
       }}>
-        <View style={{ borderRadius: 16, borderWidth: 2, backgroundColor: bgC, borderColor: borderC }}>
-          <TextInput
-            ref={inputRef}
-            autoFocus
-            value={input}
-            onChangeText={v => { if (isIdle) setInput(v); }}
-            onSubmitEditing={() => { if (!isIdle) handleNext(); else handleSubmit(); }}
-            returnKeyType={isIdle ? 'done' : 'next'}
-            blurOnSubmit={false}
-            placeholder={askForm === 'past' ? 'past simple...' : askForm === 'pp' ? 'past participle...' : 'infinitive...'}
-            placeholderTextColor={t.textGhost}
-            autoCapitalize="none"
-            autoCorrect={false}
-            editable={isIdle}
-            style={{
-              color: textC,
-              fontSize: f.h2,
-              fontWeight: '600',
-              textAlign: 'center',
-              paddingVertical: 14,
-              paddingHorizontal: 16,
-            }}
-          />
-        </View>
-
-        <TouchableOpacity
-          style={{
-            backgroundColor: isIdle ? t.accent : t.bgSurface,
-            borderRadius: 14,
-            paddingVertical: 14,
-            alignItems: 'center',
-            borderWidth: isIdle ? 0 : 1,
-            borderColor: t.border,
-          }}
-          onPress={() => { hapticTap(); if (!isIdle) handleNext(); else handleSubmit(); }}
-          activeOpacity={0.8}
-        >
-          <Text style={{ color: isIdle ? (t as any).correctText ?? '#1A2400' : t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-            {isIdle
-              ? (lang === 'uk' ? 'Перевірити' : 'Проверить')
-              : (lang === 'uk' ? 'Далі →' : 'Дальше →')}
-          </Text>
-        </TouchableOpacity>
+        {[options.slice(0, 2), options.slice(2, 4)].map((row, rowIdx) => (
+          <View key={rowIdx} style={{ flexDirection: 'row', gap: 10 }}>
+            {row.map((word, colIdx) => {
+              const idx = rowIdx * 2 + colIdx;
+              const state = btnStates[idx];
+              const bg = state === 'correct' ? t.correctBg
+                       : state === 'wrong'   ? 'rgba(240,84,84,0.15)'
+                       : t.bgCard;
+              const border = state === 'correct' ? t.correct
+                           : state === 'wrong'   ? t.wrong
+                           : t.border;
+              const color = state === 'correct' ? t.correct
+                          : state === 'wrong'   ? t.wrong
+                          : t.textPrimary;
+              return (
+                <TouchableOpacity
+                  key={idx}
+                  disabled={phase !== 'answering'}
+                  onPress={() => { hapticTap(); handleTap(word, idx); }}
+                  activeOpacity={0.75}
+                  style={{
+                    flex: 1, paddingVertical: 16, borderRadius: 16,
+                    alignItems: 'center', justifyContent: 'center',
+                    backgroundColor: bg, borderWidth: 1.5, borderColor: border,
+                  }}
+                >
+                  <Text style={{ color, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>
+                    {word}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        ))}
       </View>
     </View>
   );

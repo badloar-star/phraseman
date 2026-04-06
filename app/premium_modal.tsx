@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  View, Text, StyleSheet, TouchableOpacity,
-  ScrollView, Alert, ActivityIndicator,
+  View, Text, TouchableOpacity,
+  ScrollView, Alert, ActivityIndicator, Animated,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -16,6 +16,7 @@ import { sendPremiumNotification } from './notifications';
 import { DEV_MODE, IS_EXPO_GO } from './config';
 
 type Plan = 'monthly' | 'yearly';
+type PremiumContext = 'lesson_b1' | 'quiz_limit' | 'quiz_level' | 'flashcard_limit' | 'streak' | 'dialog' | 'generic';
 
 const savePremiumLocally = async (plan: Plan) => {
   const expiry = plan === 'yearly'
@@ -26,134 +27,180 @@ const savePremiumLocally = async (plan: Plan) => {
   await AsyncStorage.setItem('premium_active', 'true');
 };
 
-const FEATURES_RU = [
-  { icon: 'book-outline',       text: 'Все 32 урока' },
-  { icon: 'aperture-outline',   text: 'Квизы всех уровней' },
-  { icon: 'trophy-outline',     text: 'Зал славы и клубы' },
-  { icon: 'chatbubbles-outline',text: 'Все 20 диалогов' },
-  { icon: 'ribbon-outline',     text: 'Финальный экзамен' },
-  { icon: 'infinite-outline',   text: 'Неограниченный доступ' },
-];
-const FEATURES_UK = [
-  { icon: 'book-outline',       text: 'Всі 32 уроки' },
-  { icon: 'aperture-outline',   text: 'Квізи всіх рівнів' },
-  { icon: 'trophy-outline',     text: 'Зал слави та клуби' },
-  { icon: 'chatbubbles-outline',text: 'Всі 20 діалогів' },
-  { icon: 'ribbon-outline',     text: 'Фінальний іспит' },
-  { icon: 'infinite-outline',   text: 'Необмежений доступ' },
-];
-// Для streak-paywall: список с заморозкой наверху
-const STREAK_FEATURES_RU = [
-  { icon: 'snow-outline',       text: 'Заморозка стрика на 1 день' },
-  ...FEATURES_RU,
-];
-const STREAK_FEATURES_UK = [
-  { icon: 'snow-outline',       text: 'Заморозка стріку на 1 день' },
-  ...FEATURES_UK,
+// ── Контекстные герои ─────────────────────────────────────────────────────────
+interface HeroConfig {
+  emoji: string;
+  titleRu: string;
+  titleUk: string;
+  subtitleRu: string;
+  subtitleUk: string;
+  highlightRow: number; // индекс строки сравнения для подсветки (0-5)
+}
+
+function getHero(
+  ctx: PremiumContext,
+  streakDays: number,
+  lessonsDone: number,
+  savedCards: number,
+): HeroConfig {
+  switch (ctx) {
+    case 'lesson_b1':
+      return {
+        emoji: '🎓',
+        titleRu: `${lessonsDone > 0 ? `Ты прошёл ${lessonsDone} уроков!` : 'Ты закончил A2!'}`,
+        titleUk: `${lessonsDone > 0 ? `Ти пройшов ${lessonsDone} уроків!` : 'Ти закінчив A2!'}`,
+        subtitleRu: 'Дальше — B1. Именно здесь английский\nстановится рабочим инструментом.',
+        subtitleUk: 'Далі — B1. Саме тут англійська\nстає робочим інструментом.',
+        highlightRow: 0,
+      };
+    case 'quiz_limit':
+      return {
+        emoji: '⚡',
+        titleRu: 'На сегодня всё',
+        titleUk: 'На сьогодні все',
+        subtitleRu: 'Ты использовал все бесплатные попытки.\nС Premium — учись столько, сколько хочешь.',
+        subtitleUk: 'Ти використав усі безкоштовні спроби.\nЗ Premium — навчайся скільки хочеш.',
+        highlightRow: 1,
+      };
+    case 'quiz_level':
+      return {
+        emoji: '🧠',
+        titleRu: 'Это уровень B1',
+        titleUk: 'Це рівень B1',
+        subtitleRu: 'Сложные задания — для тех, кто готов\nк настоящему вызову. Ты явно готов.',
+        subtitleUk: 'Складні завдання — для тих, хто готовий\nдо справжнього виклику. Ти явно готовий.',
+        highlightRow: 1,
+      };
+    case 'flashcard_limit':
+      return {
+        emoji: '📚',
+        titleRu: `Сохранено ${savedCards}/20 карточек`,
+        titleUk: `Збережено ${savedCards}/20 карток`,
+        subtitleRu: 'Твоя коллекция переполнена.\nС Premium — сохраняй всё без ограничений.',
+        subtitleUk: 'Твоя колекція переповнена.\nЗ Premium — зберігай все без обмежень.',
+        highlightRow: 2,
+      };
+    case 'streak':
+      return {
+        emoji: '🔥',
+        titleRu: `Стрик ${streakDays} ${streakDays === 1 ? 'день' : streakDays < 5 ? 'дня' : 'дней'} под угрозой!`,
+        titleUk: `Стрік ${streakDays} ${streakDays === 1 ? 'день' : 'днів'} під загрозою!`,
+        subtitleRu: 'Ты пропустил вчера. Без Premium стрик\nсгорит. Заморозь его прямо сейчас.',
+        subtitleUk: 'Ти пропустив вчора. Без Premium стрік\nзгорить. Заморозь його прямо зараз.',
+        highlightRow: 4,
+      };
+    case 'dialog':
+      return {
+        emoji: '💬',
+        titleRu: 'Живой английский',
+        titleUk: 'Жива англійська',
+        subtitleRu: 'Этот диалог открывается с Premium.\nРеальные разговоры — для работы и жизни.',
+        subtitleUk: 'Цей діалог відкривається з Premium.\nРеальні розмови — для роботи та життя.',
+        highlightRow: 5,
+      };
+    default:
+      return {
+        emoji: '💎',
+        titleRu: 'Полный доступ к Phraseman',
+        titleUk: 'Повний доступ до Phraseman',
+        subtitleRu: 'Все уровни. Без ожидания.\nАнглийский — без ограничений.',
+        subtitleUk: 'Всі рівні. Без очікування.\nАнглійська — без обмежень.',
+        highlightRow: -1,
+      };
+  }
+}
+
+// ── Строки сравнения ──────────────────────────────────────────────────────────
+interface CompareRow {
+  freeRu: string;
+  freeUk: string;
+  premRu: string;
+  premUk: string;
+  icon: string;
+}
+
+const COMPARE_ROWS: CompareRow[] = [
+  { icon: 'book-outline',             freeRu: 'Уроки A1–A2',         freeUk: 'Уроки A1–A2',         premRu: 'Все уроки A1–B2',       premUk: 'Всі уроки A1–B2'        },
+  { icon: 'flash-outline',            freeRu: '3 квиза в день',       freeUk: '3 квізи на день',      premRu: '∞ квизов всех уровней', premUk: '∞ квізів усіх рівнів'   },
+  { icon: 'albums-outline',           freeRu: '20 карточек',          freeUk: '20 карток',            premRu: '∞ карточек навсегда',   premUk: '∞ карток назавжди'      },
+  { icon: 'battery-charging-outline', freeRu: '5 занятий в день',     freeUk: '5 занять на день',     premRu: '∞ занятий',             premUk: '∞ занять'               },
+  { icon: 'flame-outline',            freeRu: 'Стрик',                freeUk: 'Стрік',                premRu: '+ Заморозка стрика',    premUk: '+ Заморозка стріку'     },
+  { icon: 'chatbubbles-outline',      freeRu: '5 диалогов',           freeUk: '5 діалогів',           premRu: 'Все 20 диалогов',       premUk: 'Усі 20 діалогів'        },
 ];
 
-type ViewMode = 'purchase' | 'manage' | 'change_plan';
+const formatDate = (ts: number, lang: string) =>
+  new Date(ts).toLocaleDateString(lang === 'uk' ? 'uk-UA' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 
-const formatDate = (ts: number, lang: string): string => {
-  const d = new Date(ts);
-  return d.toLocaleDateString(lang === 'uk' ? 'uk-UA' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
-};
-
+// ── Компонент ─────────────────────────────────────────────────────────────────
 export default function PremiumModal() {
   const router = useRouter();
-  const params = useLocalSearchParams<{ context?: string; streak?: string }>();
-  // context=streak → специальный заголовок и активация заморозки при покупке
-  const isStreakContext = params.context === 'streak';
-  const streakDays = parseInt(params.streak || '0') || 0;
+  const params = useLocalSearchParams<{
+    context?: string;
+    streak?: string;
+    lessons_done?: string;
+    saved?: string;
+    level?: string;
+    _preview_success?: string;
+  }>();
+
+  const ctx = (params.context ?? 'generic') as PremiumContext;
+  const streakDays   = parseInt(params.streak       ?? '0') || 0;
+  const lessonsDone  = parseInt(params.lessons_done ?? '0') || 0;
+  const savedCards   = parseInt(params.saved        ?? '0') || 0;
+
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isUK = lang === 'uk';
-  const [selected, setSelected] = useState<Plan>('yearly');
-  const [restoring, setRestoring] = useState(false);
+
+  const [selected,   setSelected]   = useState<Plan>('yearly');
+  const [restoring,  setRestoring]  = useState(false);
   const [purchasing, setPurchasing] = useState(false);
-  const [packages, setPackages] = useState<{ monthly?: PurchasesPackage; yearly?: PurchasesPackage }>({});
-  const [viewMode, setViewMode]         = useState<ViewMode>('purchase');
-  const [activePlan, setActivePlan]     = useState<Plan | null>(null);
-  const [expiryTs, setExpiryTs]         = useState<number>(0);
-  const [cancelled, setCancelled]       = useState(false);
+  const [packages,   setPackages]   = useState<{ monthly?: PurchasesPackage; yearly?: PurchasesPackage }>({});
+
+  // manage-view state
+  type ViewMode = 'purchase' | 'manage' | 'change_plan' | 'success';
+  const [viewMode,    setViewMode]   = useState<ViewMode>('purchase');
+  const successScale   = useRef(new Animated.Value(0.6)).current;
+  const successOpacity = useRef(new Animated.Value(0)).current;
+
+  // Запускаем анимацию всякий раз как входим в success-режим
+  useEffect(() => {
+    if (viewMode === 'success') {
+      successScale.setValue(0.6);
+      successOpacity.setValue(0);
+      Animated.parallel([
+        Animated.spring(successScale,   { toValue: 1, useNativeDriver: true, tension: 60, friction: 8 }),
+        Animated.timing(successOpacity, { toValue: 1, duration: 280, useNativeDriver: true }),
+      ]).start();
+    }
+  }, [viewMode]);
+
+  // Превью из тестерского экрана
+  useEffect(() => {
+    if (params._preview_success === '1') setViewMode('success');
+  }, [params._preview_success]);
+  const [activePlan,  setActivePlan] = useState<Plan | null>(null);
+  const [expiryTs,    setExpiryTs]   = useState<number>(0);
+  const [cancelled,   setCancelled]  = useState(false);
+
+  const hero = getHero(ctx, streakDays, lessonsDone, savedCards);
 
   useEffect(() => {
-    AsyncStorage.multiGet(['premium_active','premium_plan','premium_expiry']).then(res => {
+    AsyncStorage.multiGet(['premium_active', 'premium_plan', 'premium_expiry']).then(res => {
       const active  = res.find(r => r[0] === 'premium_active')?.[1];
       const plan    = res.find(r => r[0] === 'premium_plan')?.[1] as Plan | null;
       const expiry  = parseInt(res.find(r => r[0] === 'premium_expiry')?.[1] || '0');
       if (active === 'true' && plan && expiry > Date.now()) {
-        setActivePlan(plan);
-        setExpiryTs(expiry);
-        setViewMode('manage');
+        setActivePlan(plan); setExpiryTs(expiry); setViewMode('manage');
       }
     });
   }, []);
 
-  const features = isStreakContext
-    ? (isUK ? STREAK_FEATURES_UK : STREAK_FEATURES_RU)
-    : (isUK ? FEATURES_UK : FEATURES_RU);
-
-  const handleCancelSubscription = () => {
-    Alert.alert(
-      isUK ? 'Скасувати підписку?' : 'Отменить подписку?',
-      isUK
-        ? `Підписка залишиться активною до ${formatDate(expiryTs, lang)}. Після цього доступ до Premium буде закрито.`
-        : `Подписка останется активной до ${formatDate(expiryTs, lang)}. После этого доступ к Premium будет закрыт.`,
-      [
-        { text: isUK ? 'Назад' : 'Назад', style: 'cancel' },
-        {
-          text: isUK ? 'Скасувати підписку' : 'Отменить подписку',
-          style: 'destructive',
-          onPress: async () => {
-            await AsyncStorage.setItem('premium_cancelled', 'true');
-            setCancelled(true);
-          },
-        },
-      ]
-    );
-  };
-
-  const handleChangePlan = async (newPlan: Plan) => {
-    if (newPlan === activePlan) return;
-    // Switching from yearly to monthly — yearly stays active until expiry
-    if (activePlan === 'yearly' && newPlan === 'monthly') {
-      Alert.alert(
-        isUK ? 'Зміна плану' : 'Смена плана',
-        isUK
-          ? `Річний план буде активний до ${formatDate(expiryTs, lang)}. Після цього буде підключено щомісячну підписку.`
-          : `Годовой план будет активен до ${formatDate(expiryTs, lang)}. После этого будет подключена ежемесячная подписка.`,
-        [
-          { text: isUK ? 'Скасувати' : 'Отмена', style: 'cancel' },
-          {
-            text: isUK ? 'Підтвердити' : 'Подтвердить',
-            onPress: async () => {
-              await AsyncStorage.setItem('premium_pending_plan', 'monthly');
-              await savePremiumLocally('monthly');
-              const newExpiry = Date.now() + 30 * 24 * 60 * 60 * 1000;
-              setActivePlan('monthly');
-              setExpiryTs(newExpiry);
-              setViewMode('manage');
-            },
-          },
-        ]
-      );
-    } else {
-      await savePremiumLocally(newPlan);
-      const newExpiry = newPlan === 'yearly'
-        ? Date.now() + 365 * 24 * 60 * 60 * 1000
-        : Date.now() + 30  * 24 * 60 * 60 * 1000;
-      setActivePlan(newPlan);
-      setExpiryTs(newExpiry);
-      setViewMode('manage');
-    }
-  };
-
   useEffect(() => {
     if (IS_EXPO_GO || DEV_MODE) return;
     Purchases.getOfferings()
-      .then(offerings => {
-        const pkgs = offerings.current?.availablePackages ?? [];
+      .then(o => {
+        const pkgs    = o.current?.availablePackages ?? [];
         const monthly = pkgs.find(p => p.product.identifier.includes('monthly'));
         const yearly  = pkgs.find(p => p.product.identifier.includes('yearly'));
         setPackages({ monthly, yearly });
@@ -161,32 +208,32 @@ export default function PremiumModal() {
       .catch(() => {});
   }, []);
 
-  // При покупке в контексте streak — сразу активируем заморозку,
-  // чтобы updateStreakOnActivity() сохранил стрик при первой активности.
   const activateFreezeIfNeeded = async () => {
-    if (isStreakContext) {
+    if (ctx === 'streak') {
       await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true }));
     }
   };
 
+  const showSuccess = () => {
+    setViewMode('success');
+    setTimeout(() => router.back(), 2800);
+  };
+
   const handlePurchase = async (plan: Plan) => {
     setSelected(plan);
-    // In Expo Go or DEV_MODE: simulate successful purchase
     if (IS_EXPO_GO || DEV_MODE) {
       await savePremiumLocally(plan);
       await activateFreezeIfNeeded();
       sendPremiumNotification(lang as 'ru' | 'uk');
-      Alert.alert('Premium ✅', isUK ? 'Premium активовано!' : 'Premium активирован!', [
-        { text: 'OK', onPress: () => router.back() }
-      ]);
+      showSuccess();
       return;
     }
     const pkg = plan === 'yearly' ? packages.yearly : packages.monthly;
     if (!pkg) {
       Alert.alert(
         isUK ? 'Магазин недоступний' : 'Магазин недоступен',
-        isUK ? 'Спробуйте ще раз або перевірте підключення.' : 'Попробуйте ещё раз или проверьте подключение.',
-        [{ text: 'OK' }]
+        isUK ? 'Спробуйте ще раз.' : 'Попробуйте ещё раз.',
+        [{ text: 'OK' }],
       );
       return;
     }
@@ -199,15 +246,11 @@ export default function PremiumModal() {
         await savePremiumLocally(plan);
         await activateFreezeIfNeeded();
         sendPremiumNotification(lang as 'ru' | 'uk');
-        Alert.alert('Premium ✅', isUK ? 'Premium активовано!' : 'Premium активирован!');
-        router.back();
+        showSuccess();
       }
     } catch (e: any) {
       if (!e.userCancelled) {
-        Alert.alert(
-          isUK ? 'Помилка' : 'Ошибка',
-          e.message || (isUK ? 'Щось пішло не так.' : 'Что-то пошло не так.')
-        );
+        Alert.alert(isUK ? 'Помилка' : 'Ошибка', e.message || (isUK ? 'Щось пішло не так.' : 'Что-то пошло не так.'));
       }
     } finally {
       setPurchasing(false);
@@ -218,8 +261,7 @@ export default function PremiumModal() {
     setRestoring(true);
     try {
       const info = await Purchases.restorePurchases();
-      const isActive = !!info.entitlements.active['premium']
-        || info.activeSubscriptions.length > 0;
+      const isActive = !!info.entitlements.active['premium'] || info.activeSubscriptions.length > 0;
       if (isActive) {
         const plan: Plan = info.activeSubscriptions.some(s => s.includes('yearly')) ? 'yearly' : 'monthly';
         await savePremiumLocally(plan);
@@ -228,9 +270,9 @@ export default function PremiumModal() {
         router.back();
       } else {
         Alert.alert(
-          isUK ? 'Відновлення покупок' : 'Восстановление покупок',
+          isUK ? 'Відновлення' : 'Восстановление',
           isUK ? 'Активних підписок не знайдено.' : 'Активных подписок не найдено.',
-          [{ text: 'OK' }]
+          [{ text: 'OK' }],
         );
       }
     } catch (e: any) {
@@ -240,7 +282,40 @@ export default function PremiumModal() {
     }
   };
 
-  // ── Manage subscription view ────────────────────────────────────────────────
+  // ── Success view ─────────────────────────────────────────────────────────────
+  if (viewMode === 'success') {
+    return (
+      <ScreenGradient>
+        <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
+          <Animated.View style={{ alignItems: 'center', transform: [{ scale: successScale }], opacity: successOpacity }}>
+            <View style={{ width: 110, height: 110, borderRadius: 55, backgroundColor: t.correct + '22', borderWidth: 2, borderColor: t.correct, justifyContent: 'center', alignItems: 'center', marginBottom: 28 }}>
+              <Ionicons name="diamond" size={52} color={t.correct} />
+            </View>
+            <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
+              {isUK ? 'Premium активовано!' : 'Premium активирован!'}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.55, marginBottom: 32 }}>
+              {isUK
+                ? 'Усі рівні відкриті.\nВчи без обмежень.'
+                : 'Все уровни открыты.\nУчись без ограничений.'}
+            </Text>
+            {[
+              isUK ? '✓ Уроки B1 та B2' : '✓ Уроки B1 и B2',
+              isUK ? '✓ Необмежена енергія' : '✓ Безлимитная энергия',
+              isUK ? '✓ Усі квізи та діалоги' : '✓ Все квизы и диалоги',
+              isUK ? '✓ Заморозка стріку' : '✓ Заморозка стрика',
+            ].map((line, i) => (
+              <Text key={i} style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '600', marginBottom: 6 }}>
+                {line}
+              </Text>
+            ))}
+          </Animated.View>
+        </SafeAreaView>
+      </ScreenGradient>
+    );
+  }
+
+  // ── Manage view ─────────────────────────────────────────────────────────────
   if (viewMode === 'manage' && activePlan) {
     const amount = activePlan === 'yearly' ? '€23.99' : '€3.99';
     const period = activePlan === 'yearly'
@@ -248,93 +323,90 @@ export default function PremiumModal() {
       : (isUK ? 'місяць' : 'месяц');
     return (
       <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
-        <ContentWrap>
-        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={() => router.back()}>
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TouchableOpacity>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 8 }}>Premium</Text>
-        </View>
-        <ScrollView contentContainerStyle={{ padding: 20, gap: 14 }}>
-
-          {/* Status card */}
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 1, borderColor: t.correct, gap: 12 }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-              <Ionicons name="diamond" size={28} color={t.correct} />
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                  {isUK ? 'Premium активовано ✓' : 'Premium активирован ✓'}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
-                  {activePlan === 'yearly'
-                    ? (isUK ? 'Річна підписка' : 'Годовая подписка')
-                    : (isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка')}
-                </Text>
-              </View>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+              <TouchableOpacity onPress={() => router.back()}>
+                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              </TouchableOpacity>
+              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 8 }}>Premium</Text>
             </View>
-            {!cancelled && (
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 12, borderTopWidth: 0.5, borderTopColor: t.border }}>
-                <View>
-                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{isUK ? 'Наступний платіж' : 'Следующий платёж'}</Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 2 }}>{formatDate(expiryTs, lang)}</Text>
+            <ScrollView contentContainerStyle={{ padding: 20, gap: 14 }}>
+              <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 1, borderColor: t.correct, gap: 12 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                  <Ionicons name="diamond" size={28} color={t.correct} />
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                      {isUK ? 'Premium активовано ✓' : 'Premium активирован ✓'}
+                    </Text>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
+                      {activePlan === 'yearly'
+                        ? (isUK ? 'Річна підписка' : 'Годовая подписка')
+                        : (isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка')}
+                    </Text>
+                  </View>
                 </View>
-                <View style={{ alignItems: 'flex-end' }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{isUK ? 'Сума' : 'Сумма'}</Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 2 }}>{amount} / {period}</Text>
-                </View>
+                {!cancelled && (
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 12, borderTopWidth: 0.5, borderTopColor: t.border }}>
+                    <View>
+                      <Text style={{ color: t.textMuted, fontSize: f.label }}>{isUK ? 'Наступний платіж' : 'Следующий платёж'}</Text>
+                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 2 }}>{formatDate(expiryTs, lang)}</Text>
+                    </View>
+                    <View style={{ alignItems: 'flex-end' }}>
+                      <Text style={{ color: t.textMuted, fontSize: f.label }}>{isUK ? 'Сума' : 'Сумма'}</Text>
+                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 2 }}>{amount} / {period}</Text>
+                    </View>
+                  </View>
+                )}
+                {cancelled && (
+                  <Text style={{ color: t.wrong, fontSize: f.sub, paddingTop: 12, borderTopWidth: 0.5, borderTopColor: t.border }}>
+                    {isUK
+                      ? `Підписку скасовано. Доступ активний до ${formatDate(expiryTs, lang)}`
+                      : `Подписка отменена. Доступ активен до ${formatDate(expiryTs, lang)}`}
+                  </Text>
+                )}
               </View>
-            )}
-            {cancelled && (
-              <View style={{ paddingTop: 12, borderTopWidth: 0.5, borderTopColor: t.border }}>
-                <Text style={{ color: t.wrong, fontSize: f.sub }}>
-                  {isUK
-                    ? `Підписку скасовано. Доступ активний до ${formatDate(expiryTs, lang)}`
-                    : `Подписка отменена. Доступ активен до ${formatDate(expiryTs, lang)}`}
-                </Text>
-              </View>
-            )}
-          </View>
 
-          {/* Change plan */}
-          {!cancelled && (
-            <TouchableOpacity
-              style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.border, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
-              onPress={() => setViewMode('change_plan')}
-              activeOpacity={0.8}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                <Ionicons name="swap-horizontal-outline" size={22} color={t.textSecond} />
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
-                  {isUK ? 'Змінити план' : 'Сменить план'}
-                </Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
-            </TouchableOpacity>
-          )}
+              {!cancelled && (
+                <TouchableOpacity
+                  style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.border, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
+                  onPress={() => setViewMode('change_plan')}
+                  activeOpacity={0.8}
+                >
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                    <Ionicons name="swap-horizontal-outline" size={22} color={t.textSecond} />
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>{isUK ? 'Змінити план' : 'Сменить план'}</Text>
+                  </View>
+                  <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
+                </TouchableOpacity>
+              )}
 
-          {/* Cancel */}
-          {!cancelled && (
-            <TouchableOpacity
-              style={{ borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.wrong + '66', backgroundColor: t.bgCard, flexDirection: 'row', alignItems: 'center', gap: 12 }}
-              onPress={handleCancelSubscription}
-              activeOpacity={0.8}
-            >
-              <Ionicons name="close-circle-outline" size={22} color={t.wrong} />
-              <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600' }}>
-                {isUK ? 'Скасувати підписку' : 'Отменить подписку'}
+              {!cancelled && (
+                <TouchableOpacity
+                  style={{ borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.wrong + '66', backgroundColor: t.bgCard, flexDirection: 'row', alignItems: 'center', gap: 12 }}
+                  onPress={() => Alert.alert(
+                    isUK ? 'Скасувати підписку?' : 'Отменить подписку?',
+                    isUK
+                      ? `Підписка залишиться активною до ${formatDate(expiryTs, lang)}.`
+                      : `Подписка останется активной до ${formatDate(expiryTs, lang)}.`,
+                    [
+                      { text: isUK ? 'Назад' : 'Назад', style: 'cancel' },
+                      { text: isUK ? 'Скасувати' : 'Отменить', style: 'destructive', onPress: async () => { await AsyncStorage.setItem('premium_cancelled', 'true'); setCancelled(true); } },
+                    ],
+                  )}
+                  activeOpacity={0.8}
+                >
+                  <Ionicons name="close-circle-outline" size={22} color={t.wrong} />
+                  <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '600' }}>{isUK ? 'Скасувати підписку' : 'Отменить подписку'}</Text>
+                </TouchableOpacity>
+              )}
+
+              <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 4 }}>
+                {isUK ? 'Підписка управляється через App Store / Google Play' : 'Подписка управляется через App Store / Google Play'}
               </Text>
-            </TouchableOpacity>
-          )}
-
-          <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 4 }}>
-            {isUK
-              ? 'Підписка управляється через App Store / Google Play'
-              : 'Подписка управляется через App Store / Google Play'}
-          </Text>
-        </ScrollView>
-        </ContentWrap>
-      </SafeAreaView>
+            </ScrollView>
+          </ContentWrap>
+        </SafeAreaView>
       </ScreenGradient>
     );
   }
@@ -344,259 +416,271 @@ export default function PremiumModal() {
     const otherPlan: Plan = activePlan === 'yearly' ? 'monthly' : 'yearly';
     return (
       <ScreenGradient>
-      <SafeAreaView style={{ flex: 1 }}>
-        <ContentWrap>
-        <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={() => setViewMode('manage')}>
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-          </TouchableOpacity>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 8 }}>
-            {isUK ? 'Змінити план' : 'Сменить план'}
-          </Text>
-        </View>
-        <View style={{ padding: 20, gap: 12 }}>
-          {/* Current plan */}
-          {([activePlan, otherPlan] as Plan[]).map(plan => {
-            const isCurrent = plan === activePlan;
-            return (
-              <TouchableOpacity
-                key={plan}
-                style={{
-                  borderRadius: 16, padding: 18,
-                  borderWidth: isCurrent ? 2 : 1,
-                  borderColor: isCurrent ? t.correct : t.border,
-                  backgroundColor: isCurrent ? t.bgSurface : t.bgCard,
-                }}
-                onPress={() => handleChangePlan(plan)}
-                activeOpacity={isCurrent ? 1 : 0.8}
-              >
-                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <View>
-                    <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                      {plan === 'yearly'
-                        ? (isUK ? 'Річна підписка' : 'Годовая подписка')
-                        : (isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка')}
-                    </Text>
-                    {isCurrent && (
-                      <Text style={{ color: t.correct, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>
-                        {isUK ? '✓ Поточний план' : '✓ Текущий план'}
-                      </Text>
-                    )}
-                  </View>
-                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>
-                    {plan === 'yearly' ? '€23.99' : '€3.99'}
-                  </Text>
-                </View>
+        <SafeAreaView style={{ flex: 1 }}>
+          <ContentWrap>
+            <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+              <TouchableOpacity onPress={() => setViewMode('manage')}>
+                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
               </TouchableOpacity>
-            );
-          })}
-          <View style={{ backgroundColor: t.bgSurface, borderRadius: 12, padding: 14, gap: 4 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '600', textAlign: 'center' }}>
-              {isUK ? 'ℹ️ Наступний платіж' : 'ℹ️ Следующий платёж'}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: f.sub * 1.5 }}>
-              {isUK
-                ? `Новий план набуде чинності після закінчення поточного періоду${expiryTs ? ` (до ${formatDate(expiryTs, lang)})` : ''}. До цього моменту нічого не знімається.`
-                : `Новый план вступит в силу после окончания текущего периода${expiryTs ? ` (до ${formatDate(expiryTs, lang)})` : ''}. До этого момента ничего не списывается.`}
-            </Text>
-          </View>
-        </View>
-        </ContentWrap>
-      </SafeAreaView>
+              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 8 }}>{isUK ? 'Змінити план' : 'Сменить план'}</Text>
+            </View>
+            <View style={{ padding: 20, gap: 12 }}>
+              {([activePlan, otherPlan] as Plan[]).map(plan => {
+                const isCurrent = plan === activePlan;
+                return (
+                  <TouchableOpacity
+                    key={plan}
+                    style={{ borderRadius: 16, padding: 18, borderWidth: isCurrent ? 2 : 1, borderColor: isCurrent ? t.correct : t.border, backgroundColor: isCurrent ? t.bgSurface : t.bgCard }}
+                    onPress={() => {
+                      if (isCurrent) return;
+                      savePremiumLocally(plan);
+                      const newExpiry = plan === 'yearly' ? Date.now() + 365 * 86400000 : Date.now() + 30 * 86400000;
+                      setActivePlan(plan); setExpiryTs(newExpiry); setViewMode('manage');
+                    }}
+                    activeOpacity={isCurrent ? 1 : 0.8}
+                  >
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                      <View>
+                        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                          {plan === 'yearly' ? (isUK ? 'Річна підписка' : 'Годовая подписка') : (isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка')}
+                        </Text>
+                        {isCurrent && <Text style={{ color: t.correct, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>{isUK ? '✓ Поточний план' : '✓ Текущий план'}</Text>}
+                      </View>
+                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>{plan === 'yearly' ? '€23.99' : '€3.99'}</Text>
+                    </View>
+                  </TouchableOpacity>
+                );
+              })}
+              <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: f.sub * 1.5 }}>
+                {isUK
+                  ? `Новий план набуде чинності після закінчення поточного${expiryTs ? ` (до ${formatDate(expiryTs, lang)})` : ''}.`
+                  : `Новый план вступит в силу после окончания текущего${expiryTs ? ` (до ${formatDate(expiryTs, lang)})` : ''}.`}
+              </Text>
+            </View>
+          </ContentWrap>
+        </SafeAreaView>
       </ScreenGradient>
     );
   }
 
+  // ── Purchase view ─────────────────────────────────────────────────────────────
   return (
     <ScreenGradient>
-    <SafeAreaView style={{ flex: 1 }}>
-      <ContentWrap>
-      <ScrollView
-        contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 60, paddingBottom: 40, alignItems: 'center' }}
-        showsVerticalScrollIndicator={false}
-      >
-        {/* Крестик */}
-        <TouchableOpacity
-          style={{ alignSelf: 'flex-end', padding: 8, marginBottom: 4 }}
-          onPress={() => router.back()}
-        >
-          <Ionicons name="close" size={26} color={t.textMuted} />
-        </TouchableOpacity>
-
-        {/* Заголовок — стрик или стандартный */}
-        {isStreakContext ? (
-          <>
-            <Text style={{ fontSize: 56, marginBottom: 12 }}>🔥</Text>
-            <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '700', marginBottom: 8, textAlign: 'center' }}>
-              {isUK ? `Стрік ${streakDays} днів під загрозою!` : `Стрик ${streakDays} дней под угрозой!`}
-            </Text>
-            <View style={{ backgroundColor: t.bgCard, borderRadius: 14, padding: 14, marginBottom: 24, borderWidth: 1, borderColor: t.border }}>
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.5 }}>
-                {isUK
-                  ? 'Ти пропустив вчорашній день. Без Premium стрік згорить при першій активності. Купи Premium зараз — і ми заморозимо його на сьогодні!'
-                  : 'Ты пропустил вчерашний день. Без Premium стрик сгорит при первой активности. Купи Premium сейчас — и мы заморозим его на сегодня!'}
-              </Text>
-            </View>
-          </>
-        ) : (
-          <>
-            <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, borderWidth: 1.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginBottom: 16 }}>
-              <Ionicons name="diamond-outline" size={36} color={t.textSecond} />
-            </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '700', marginBottom: 6 }}>Premium</Text>
-            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginBottom: 28 }}>
-              {isUK ? 'Повний доступ до всіх матеріалів' : 'Полный доступ ко всем материалам'}
-            </Text>
-          </>
-        )}
-
-        {/* Фичи */}
-        <View style={{ width: '100%', marginBottom: 28 }}>
-          {features.map((feat, i) => (
-            <View key={i} style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 10, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-              <View style={{ width: 36, height: 36, borderRadius: 10, backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginRight: 14 }}>
-                <Ionicons name={feat.icon as any} size={18} color={t.textSecond} />
-              </View>
-              <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body }}>{feat.text}</Text>
-              <Ionicons name="checkmark" size={18} color={t.correct} />
-            </View>
-          ))}
-        </View>
-
-        {/* Выбор плана */}
-        <View style={{ width: '100%', gap: 12, marginBottom: 20 }}>
-
-          {/* Годовая — рекомендуемый */}
-          <TouchableOpacity
-            style={{
-              borderRadius: 16, padding: 18,
-              borderWidth: selected === 'yearly' ? 2 : 1,
-              borderColor: selected === 'yearly' ? t.textSecond : t.border,
-              backgroundColor: selected === 'yearly' ? t.bgSurface : t.bgCard,
-              opacity: purchasing && selected === 'yearly' ? 0.7 : 1,
-            }}
-            onPress={() => handlePurchase('yearly')}
-            activeOpacity={0.85}
-            disabled={purchasing}
+      <SafeAreaView style={{ flex: 1 }}>
+        <ContentWrap>
+          <ScrollView
+            contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 48, paddingBottom: 36 }}
+            showsVerticalScrollIndicator={false}
           >
-            {/* Бейдж "Лучший выбор" */}
-            <View style={{ position: 'absolute', top: -10, right: 16, backgroundColor: t.textSecond, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 3 }}>
-              <Text style={{ color: t.bgPrimary, fontSize: f.label, fontWeight: '700' }}>
-                {isUK ? '⭐ Найкращий вибір' : '⭐ Лучший выбор'}
+            {/* Крестик */}
+            <TouchableOpacity
+              style={{ alignSelf: 'flex-end', padding: 8, marginBottom: 8 }}
+              onPress={() => router.back()}
+            >
+              <Ionicons name="close" size={24} color={t.textMuted} />
+            </TouchableOpacity>
+
+            {/* БЛОК 1: Герой */}
+            <View style={{ alignItems: 'center', marginBottom: 24 }}>
+              <Text style={{ fontSize: 52, marginBottom: 12 }}>{hero.emoji}</Text>
+              <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '800', textAlign: 'center', marginBottom: 8 }}>
+                {isUK ? hero.titleUk : hero.titleRu}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: f.body * 1.55 }}>
+                {isUK ? hero.subtitleUk : hero.subtitleRu}
               </Text>
             </View>
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                  {isUK ? 'Річна підписка' : 'Годовая подписка'}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }}>
-                  {isUK ? '7 днів безкоштовно' : '7 дней бесплатно'}
-                </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 3 }}>
-                  {isUK ? '💰 Економиш 50% vs місячна' : '💰 Экономишь 50% vs ежемесячная'}
-                </Text>
-              </View>
-              <View style={{ alignItems: 'flex-end' }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>€23.99</Text>
-                <Text style={{ color: t.correct, fontSize: f.caption, fontWeight: '700', marginTop: 2 }}>
-                  ≈€2.00 / {isUK ? 'міс' : 'мес'}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, textDecorationLine: 'line-through' }}>
-                  €47.88/{isUK ? 'рік' : 'год'}
-                </Text>
-              </View>
-            </View>
-            {selected === 'yearly' && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 10, paddingTop: 10, borderTopWidth: 0.5, borderTopColor: t.border }}>
-                <Ionicons name="shield-checkmark-outline" size={14} color={t.correct} />
-                <Text style={{ color: t.textSecond, fontSize: f.caption }}>
-                  {isUK ? 'Всі майбутні оновлення включено' : 'Все будущие обновления включены'}
-                </Text>
-              </View>
-            )}
-          </TouchableOpacity>
 
-          {/* Месячная подписка */}
-          <TouchableOpacity
-            style={{
-              borderRadius: 16, padding: 18,
-              borderWidth: selected === 'monthly' ? 2 : 1,
-              borderColor: selected === 'monthly' ? t.textSecond : t.border,
-              backgroundColor: selected === 'monthly' ? t.bgSurface : t.bgCard,
-              opacity: purchasing && selected === 'monthly' ? 0.7 : 1,
-            }}
-            onPress={() => handlePurchase('monthly')}
-            activeOpacity={0.85}
-            disabled={purchasing}
-          >
-            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                  {isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка'}
-                </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }}>
-                  {isUK ? '7 днів безкоштовно' : '7 дней бесплатно'}
-                </Text>
+            {/* БЛОК 2: Сравнение */}
+            <View style={{ borderRadius: 16, overflow: 'hidden', borderWidth: 1, borderColor: t.border, marginBottom: 24 }}>
+              {/* Шапка */}
+              <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface }}>
+                <View style={{ flex: 1, padding: 10, borderRightWidth: 0.5, borderRightColor: t.border }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600', textAlign: 'center' }}>
+                    {isUK ? 'Зараз' : 'Сейчас'}
+                  </Text>
+                </View>
+                <View style={{ flex: 1, padding: 10, backgroundColor: t.textSecond + '18' }}>
+                  <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700', textAlign: 'center' }}>
+                    Premium ✨
+                  </Text>
+                </View>
               </View>
-              <View style={{ alignItems: 'flex-end' }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>€3.99</Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                  {isUK ? '/ місяць' : '/ месяц'}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-        </View>
 
-        {/* Главная CTA кнопка */}
-        <TouchableOpacity
-          style={{ width: '100%', backgroundColor: t.textSecond, borderRadius: 16, padding: 18, alignItems: 'center', marginBottom: 12, opacity: purchasing ? 0.7 : 1 }}
-          onPress={() => handlePurchase(selected)}
-          activeOpacity={0.85}
-          disabled={purchasing}
-        >
-          {purchasing
-            ? <ActivityIndicator color={t.bgPrimary} />
-            : <Text style={{ color: t.bgPrimary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>
-                {isUK ? '🚀 Почати 7 днів безкоштовно' : '🚀 Начать 7 дней бесплатно'}
+              {/* Строки */}
+              {COMPARE_ROWS.map((row, i) => {
+                const isHighlighted = i === hero.highlightRow;
+                return (
+                  <View
+                    key={i}
+                    style={{
+                      flexDirection: 'row',
+                      borderTopWidth: 0.5,
+                      borderTopColor: t.border,
+                      backgroundColor: isHighlighted ? t.textSecond + '10' : 'transparent',
+                    }}
+                  >
+                    {/* Бесплатно */}
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', padding: 10, gap: 6, borderRightWidth: 0.5, borderRightColor: t.border }}>
+                      <Ionicons name={row.icon as any} size={14} color={t.textGhost} />
+                      <Text style={{ color: t.textMuted, fontSize: f.label, flex: 1 }} numberOfLines={2}>
+                        {isUK ? row.freeUk : row.freeRu}
+                      </Text>
+                    </View>
+                    {/* Premium */}
+                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', padding: 10, gap: 6 }}>
+                      <Ionicons
+                        name={isHighlighted ? 'checkmark-circle' : 'checkmark'}
+                        size={isHighlighted ? 16 : 14}
+                        color={isHighlighted ? t.textSecond : t.correct}
+                      />
+                      <Text
+                        style={{
+                          color: isHighlighted ? t.textSecond : t.textPrimary,
+                          fontSize: f.label,
+                          fontWeight: isHighlighted ? '700' : '400',
+                          flex: 1,
+                        }}
+                        numberOfLines={2}
+                      >
+                        {isUK ? row.premUk : row.premRu}
+                      </Text>
+                    </View>
+                  </View>
+                );
+              })}
+            </View>
+
+            {/* БЛОК 3: Планы */}
+
+            {/* Годовой */}
+            <TouchableOpacity
+              style={{
+                borderRadius: 16, padding: 18, marginBottom: 10,
+                borderWidth: selected === 'yearly' ? 2 : 1,
+                borderColor: selected === 'yearly' ? t.textSecond : t.border,
+                backgroundColor: selected === 'yearly' ? t.bgSurface : t.bgCard,
+                opacity: purchasing && selected !== 'yearly' ? 0.5 : 1,
+              }}
+              onPress={() => setSelected('yearly')}
+              activeOpacity={0.85}
+              disabled={purchasing}
+            >
+              {/* Бейдж */}
+              <View style={{ position: 'absolute', top: -11, right: 14, backgroundColor: t.textSecond, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 3 }}>
+                <Text style={{ color: t.bgPrimary, fontSize: f.label, fontWeight: '700' }}>
+                  {isUK ? '⭐ Найкраща ціна' : '⭐ Лучшая цена'}
+                </Text>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                    {isUK ? 'Річна підписка' : 'Годовая подписка'}
+                  </Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>
+                    {isUK ? '≈ €2.00 / місяць · 7 днів безкоштовно' : '≈ €2.00 / месяц · 7 дней бесплатно'}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
+                    {isUK ? 'Економія 50% порівняно з місячним' : 'Экономия 50% по сравнению с месячным'}
+                  </Text>
+                </View>
+                <View style={{ alignItems: 'flex-end' }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>€23.99</Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption, textDecorationLine: 'line-through' }}>
+                    €47.88/{isUK ? 'рік' : 'год'}
+                  </Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+
+            {/* Месячный */}
+            <TouchableOpacity
+              style={{
+                borderRadius: 16, padding: 18, marginBottom: 20,
+                borderWidth: selected === 'monthly' ? 2 : 1,
+                borderColor: selected === 'monthly' ? t.textSecond : t.border,
+                backgroundColor: selected === 'monthly' ? t.bgSurface : t.bgCard,
+                opacity: purchasing && selected !== 'monthly' ? 0.5 : 1,
+              }}
+              onPress={() => setSelected('monthly')}
+              activeOpacity={0.85}
+              disabled={purchasing}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                    {isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка'}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3 }}>
+                    {isUK ? '☕ Як одна чашка кави на місяць' : '☕ Как одна чашка кофе в месяц'}
+                  </Text>
+                </View>
+                <View style={{ alignItems: 'flex-end' }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>€3.99</Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption }}>{isUK ? '/ місяць' : '/ месяц'}</Text>
+                </View>
+              </View>
+            </TouchableOpacity>
+
+            {/* CTA */}
+            <TouchableOpacity
+              style={{
+                backgroundColor: t.textSecond, borderRadius: 16, padding: 18,
+                alignItems: 'center', marginBottom: 10,
+                opacity: purchasing ? 0.7 : 1,
+              }}
+              onPress={() => handlePurchase(selected)}
+              activeOpacity={0.85}
+              disabled={purchasing}
+            >
+              {purchasing
+                ? <ActivityIndicator color={t.bgPrimary} />
+                : <Text style={{ color: t.bgPrimary, fontSize: f.h2, fontWeight: '800' }} adjustsFontSizeToFit numberOfLines={1}>
+                    {isUK ? '🚀 Спробувати 7 днів безкоштовно' : '🚀 Попробовать 7 дней бесплатно'}
+                  </Text>
+              }
+            </TouchableOpacity>
+
+            {/* Мелкие хуки */}
+            <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginBottom: 16 }}>
+              <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                {isUK ? '✓ Без списання зараз' : '✓ Без списания сейчас'}
               </Text>
-          }
-        </TouchableOpacity>
+              <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                {isUK ? '✓ Скасування в будь-який час' : '✓ Отмена в любой момент'}
+              </Text>
+            </View>
 
-        {/* Восстановить покупку */}
-        <TouchableOpacity
-          style={{ paddingVertical: 12, paddingHorizontal: 20 }}
-          onPress={handleRestore}
-          disabled={restoring}
-          activeOpacity={0.7}
-        >
-          <Text style={{ color: restoring ? t.textGhost : t.textSecond, fontSize: f.body, textAlign: 'center' }}>
-            {restoring
-              ? (isUK ? 'Відновлення...' : 'Восстанавливаем...')
-              : (isUK ? 'Відновити підписку' : 'Восстановить подписку')
-            }
-          </Text>
-        </TouchableOpacity>
+            {/* Восстановить */}
+            <TouchableOpacity
+              style={{ paddingVertical: 10, alignItems: 'center' }}
+              onPress={handleRestore}
+              disabled={restoring}
+            >
+              <Text style={{ color: restoring ? t.textGhost : t.textSecond, fontSize: f.body }}>
+                {restoring
+                  ? (isUK ? 'Відновлення...' : 'Восстанавливаем...')
+                  : (isUK ? 'Відновити підписку' : 'Восстановить подписку')}
+              </Text>
+            </TouchableOpacity>
 
-        {/* Продолжить бесплатно */}
-        <TouchableOpacity style={{ padding: 12 }} onPress={() => router.back()}>
-          <Text style={{ color: t.textGhost, fontSize: f.body, textDecorationLine: 'underline' }}>
-            {isStreakContext
-              ? (isUK ? 'Ні, дякую — стрік згорить' : 'Нет, спасибо — стрик сгорит')
-              : (isUK ? 'Продовжити безкоштовно (Урок 1)' : 'Продолжить бесплатно (Урок 1)')}
-          </Text>
-        </TouchableOpacity>
+            {/* Продолжить бесплатно */}
+            <TouchableOpacity style={{ paddingVertical: 8, alignItems: 'center' }} onPress={() => router.back()}>
+              <Text style={{ color: t.textGhost, fontSize: f.body, textDecorationLine: 'underline' }}>
+                {ctx === 'streak'
+                  ? (isUK ? 'Ні, дякую — стрік згорить' : 'Нет, спасибо — стрик сгорит')
+                  : (isUK ? 'Продовжити безкоштовно' : 'Продолжить бесплатно')}
+              </Text>
+            </TouchableOpacity>
 
-        {/* Мелкий текст */}
-        <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 16, lineHeight: 17 }}>
-          {isUK
-            ? 'Після завершення триалу підписка поновлюється автоматично. Скасування в налаштуваннях App Store / Google Play.'
-            : 'После окончания триала подписка продлевается автоматически. Отмена в настройках App Store / Google Play.'}
-        </Text>
-      </ScrollView>
-      </ContentWrap>
-    </SafeAreaView>
+            <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 12, lineHeight: 17 }}>
+              {isUK
+                ? 'Після 7 днів підписка продовжується автоматично. Скасування через App Store / Google Play.'
+                : 'После 7 дней подписка продлевается автоматически. Отмена через App Store / Google Play.'}
+            </Text>
+          </ScrollView>
+        </ContentWrap>
+      </SafeAreaView>
     </ScreenGradient>
   );
 }

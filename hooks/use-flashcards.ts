@@ -5,7 +5,7 @@ export interface Flashcard {
   en: string;
   ru: string;
   uk: string;
-  source: 'lesson' | 'word' | 'verb' | 'dialog';
+  source: 'lesson' | 'word' | 'verb' | 'dialog' | 'daily_phrase';
   sourceId?: string;
   addedAt: number;
 }
@@ -17,7 +17,12 @@ export const loadFlashcards = async (): Promise<Flashcard[]> => {
     const raw = await AsyncStorage.getItem(FLASHCARDS_KEY);
     if (!raw) return [];
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+    // Migrate old cards that were saved before the `uk` field existed
+    return parsed.map((card: Flashcard) => ({
+      ...card,
+      uk: card.uk || card.ru,
+    }));
   } catch {
     return [];
   }

@@ -3,6 +3,7 @@ import { Stack, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
+import { EnergyProvider } from '../components/EnergyContext';
 import AchievementToast from '../components/AchievementToast';
 import { LangProvider, useLang } from '../components/LangContext';
 import Onboarding from '../components/onboarding';
@@ -10,6 +11,8 @@ import { ThemeProvider } from '../components/ThemeContext';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { preloadImages } from './image_preload';
 import { scheduleMonthlyRecapNotification, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler } from './notifications';
+import { migrateWeekPointsIfNeeded } from './hall_of_fame_utils';
+import { checkForUpdate } from './update_check';
 import { initRevenueCat } from './revenuecat_init';
 import { registerXP } from './xp_manager';
 
@@ -141,11 +144,17 @@ function AppContent() {
         // Singleton инициализация RevenueCat с retry-защитой и логированием
         await initRevenueCat();
 
+        // Одноразовая миграция week_points (fire-and-forget)
+        migrateWeekPointsIfNeeded().catch(() => {});
+
         // Логин-бонус и Comeback запускаем при каждом старте (fire-and-forget)
         runSessionChecks();
 
         // Pre-load all images to ensure they're cached locally (prevents disappearing on PC offline)
         preloadImages().catch(() => {});
+
+        // Проверка обновления (fire-and-forget, показывает Alert если есть новая версия)
+        checkForUpdate().catch(() => {});
 
         const val = await AsyncStorage.getItem('onboarding_done');
         setShow(!val);
@@ -228,6 +237,7 @@ function AppContent() {
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
+      <Stack.Screen name="settings_testers" />
     </Stack>
   );
 }
@@ -236,11 +246,13 @@ export default function RootLayout() {
   return (
     <ThemeProvider>
       <LangProvider>
-        <AchievementProvider>
-          <AppContent />
-          {/* Тост монтируется поверх всего Stack-навигатора */}
-          <AchievementToast />
-        </AchievementProvider>
+        <EnergyProvider>
+          <AchievementProvider>
+            <AppContent />
+            {/* Тост монтируется поверх всего Stack-навигатора */}
+            <AchievementToast />
+          </AchievementProvider>
+        </EnergyProvider>
       </LangProvider>
     </ThemeProvider>
   );

@@ -31,14 +31,12 @@ describe('Energy System', () => {
       const state = await getEnergyState();
 
       expect(state.current).toBe(5);
-      expect(state.max).toBe(5);
       expect(typeof state.lastRecoveryTime).toBe('number');
     });
 
     it('should return stored state when available', async () => {
       const storedState: EnergyState = {
         current: 3,
-        max: 5,
         lastRecoveryTime: Date.now() - 1000,
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(storedState));
@@ -46,7 +44,6 @@ describe('Energy System', () => {
       const state = await getEnergyState();
 
       expect(state.current).toBe(3);
-      expect(state.max).toBe(5);
     });
   });
 
@@ -54,7 +51,6 @@ describe('Energy System', () => {
     it('should spend energy if available', async () => {
       const currentState: EnergyState = {
         current: 3,
-        max: 5,
         lastRecoveryTime: Date.now(),
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
@@ -69,7 +65,6 @@ describe('Energy System', () => {
     it('should not spend energy if unavailable', async () => {
       const currentState: EnergyState = {
         current: 0,
-        max: 5,
         lastRecoveryTime: Date.now(),
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
@@ -84,7 +79,6 @@ describe('Energy System', () => {
     it('should add energy up to max', async () => {
       const currentState: EnergyState = {
         current: 4,
-        max: 5,
         lastRecoveryTime: Date.now(),
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
@@ -98,7 +92,6 @@ describe('Energy System', () => {
     it('should not exceed max energy', async () => {
       const currentState: EnergyState = {
         current: 5,
-        max: 5,
         lastRecoveryTime: Date.now(),
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
@@ -117,7 +110,6 @@ describe('Energy System', () => {
       const state = await resetEnergyToMax();
 
       expect(state.current).toBe(5);
-      expect(state.max).toBe(5);
     });
   });
 
@@ -145,7 +137,6 @@ describe('Energy System', () => {
     it('should recover energy after 2 hours', async () => {
       const currentState: EnergyState = {
         current: 2,
-        max: 5,
         lastRecoveryTime: Date.now() - 2 * 60 * 60 * 1000, // 2 hours ago
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
@@ -159,7 +150,6 @@ describe('Energy System', () => {
     it('should not recover energy before 2 hours', async () => {
       const currentState: EnergyState = {
         current: 2,
-        max: 5,
         lastRecoveryTime: Date.now() - 1 * 60 * 60 * 1000, // 1 hour ago
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
@@ -172,7 +162,6 @@ describe('Energy System', () => {
     it('should not exceed max energy during recovery', async () => {
       const currentState: EnergyState = {
         current: 4,
-        max: 5,
         lastRecoveryTime: Date.now() - 2 * 60 * 60 * 1000, // 2 hours ago
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));

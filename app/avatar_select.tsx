@@ -54,6 +54,7 @@ function FrameCell({
             size={frameSize}
             noAvatar={!isLocked}
             bgColor={!isLocked ? bodyBg : undefined}
+
           />
         </View>
       </View>

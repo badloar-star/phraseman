@@ -35,7 +35,7 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import { hapticTap } from '../hooks/use-haptics';
 import { recordMistake } from './active_recall';
-import { checkAndRecover, spendEnergy } from './energy_system';
+import { useEnergy } from '../components/EnergyContext';
 import { getErrorTrapsByIndex } from './error_traps/index';
 import { findAllExplanations } from './feedback_engine';
 import { ALL_LESSONS_RU, ALL_LESSONS_UK, getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
@@ -51,6 +51,7 @@ import {
   makeExpansionOptions,
 } from './lesson1_smart_options';
 import { tryUnlockNextLesson } from './lesson_lock_system';
+import { getPhraseCard } from './lesson_cards_data';
 
 // Strip special article/marker symbols from display text
 // /the/ → the, «a» → a, «-» → (empty, skip)
@@ -133,6 +134,7 @@ interface LessonContentProps {
   showTapHint: boolean;
   setShowTapHint: (val: boolean) => void;
   showToBeHint: boolean;
+  phraseWordIdx: number;
   hintPulseAnim: Animated.Value;
   wasWrong: boolean;
   textInputRef: React.RefObject<TextInput>;
@@ -152,6 +154,7 @@ interface LessonContentProps {
   recoveryTimeText: string;
   setFailedTapCount: (val: (prev: number) => number) => void;
   checkAnswer: (answer: string) => Promise<void>;
+  contrExpanded: string[] | null;
 }
 
 const LessonContent = React.memo(function LessonContent({
@@ -187,6 +190,7 @@ const LessonContent = React.memo(function LessonContent({
   showTapHint,
   setShowTapHint,
   showToBeHint,
+  phraseWordIdx,
   hintPulseAnim,
   wasWrong,
   textInputRef,
@@ -206,6 +210,7 @@ const LessonContent = React.memo(function LessonContent({
   recoveryTimeText,
   setFailedTapCount,
   checkAnswer,
+  contrExpanded,
 }: LessonContentProps) {
 
   // Show intro screens on first visit
@@ -325,7 +330,7 @@ const LessonContent = React.memo(function LessonContent({
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
                     {(() => {
                       const expandedWords = normalize(selectedWords.join(' ')).split(/\s+/);
-                      const correctWords = phrase.english.split(/\s+/).map(w => w.replace(/[.!?,;]+$/, '').toLowerCase());
+                      const correctWords = (phrase.english || '').split(/\s+/).map(w => w.replace(/[.!?,;]+$/, '').toLowerCase());
                       return expandedWords.map((word, i) => {
                         const correctWord = correctWords[i];
                         const isWrong = word !== correctWord;
@@ -359,14 +364,56 @@ const LessonContent = React.memo(function LessonContent({
                 />
               </View>
 
-              <TouchableOpacity
-                style={{ alignSelf: 'center', marginTop: 36 }}
-                onPress={() => Speech.speak(phrase.english, { language: 'en-US', rate: settings.speechRate })}
-              >
-                <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: t.correct, justifyContent: 'center', alignItems: 'center' }}>
-                  <Ionicons name="volume-high" size={42} color={t.bgPrimary} />
-                </View>
-              </TouchableOpacity>
+              {(() => {
+                const _ld = getLessonData(lessonId);
+                const phraseIdx = _ld && _ld.length > 0 ? (cellIndex % _ld.length) + 1 : cellIndex + 1;
+                const card = getPhraseCard(lessonId, phraseIdx);
+                const hasCard = card && (card.correctRu || card.correctUk);
+                if (hasCard) {
+                  const mainText = wasWrong
+                    ? (lang === 'uk' ? card.wrongUk : card.wrongRu)
+                    : (lang === 'uk' ? card.correctUk : card.correctRu);
+                  const secretText = lang === 'uk' ? card.secretUk : card.secretRu;
+                  return (
+                    <View style={{ marginTop: 20 }}>
+                      <View style={{
+                        backgroundColor: wasWrong ? 'rgba(255,107,107,0.12)' : 'rgba(74,222,128,0.12)',
+                        borderRadius: 14,
+                        padding: 16,
+                        marginBottom: 12,
+                        borderLeftWidth: 3,
+                        borderLeftColor: wasWrong ? '#ff6b6b' : '#4ade80',
+                      }}>
+                        <Text style={{ color: wasWrong ? '#ff6b6b' : '#4ade80', fontSize: f.body, lineHeight: f.body * 1.6 }}>
+                          {mainText}
+                        </Text>
+                      </View>
+                      <View style={{
+                        backgroundColor: 'rgba(212,160,23,0.10)',
+                        borderRadius: 14,
+                        padding: 16,
+                        borderLeftWidth: 3,
+                        borderLeftColor: '#D4A017',
+                      }}>
+                        <Text style={{ color: '#D4A017', fontSize: f.body, lineHeight: f.body * 1.6 }}>
+                          {secretText}
+                        </Text>
+                      </View>
+                    </View>
+                  );
+                }
+                return (
+                  <TouchableOpacity
+                    style={{ alignSelf: 'center', marginTop: 36 }}
+                    onPress={() => Speech.speak(phrase.english, { language: 'en-US', rate: settings.speechRate })}
+                  >
+                    <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: t.correct, justifyContent: 'center', alignItems: 'center' }}>
+                      <Ionicons name="volume-high" size={42} color={t.bgPrimary} />
+                    </View>
+                  </TouchableOpacity>
+                );
+              })()}
+
             </Animated.View>
           )}
         </ScrollView>
@@ -379,8 +426,24 @@ const LessonContent = React.memo(function LessonContent({
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
               {shuffled.map((word, i) => {
-                const isToBeVerb = ['am', 'is', 'are', 'am not', 'is not', 'are not', "isn't", "aren't"].includes(word.toLowerCase());
-                const shouldShowHint = showToBeHint && cellIndex === 0 && isToBeVerb;
+                const phraseWordsList = phrase ? getPhraseWords(phrase.english) : [];
+                const correctWord = phraseWordsList[phraseWordIdx] ?? null;
+                const nextCorrectWord = phraseWordsList[phraseWordIdx + 1] ?? null;
+                const validContraction = correctWord && nextCorrectWord
+                  ? getContractionFor(correctWord, nextCorrectWord)
+                  : null;
+                const stripped = stripMarkers(word).toLowerCase();
+                // In expansion mode (user picked "do" when expected "don't"), correct token = contrExpanded[0]
+                const expansionCorrect = contrExpanded !== null && contrExpanded.length > 0
+                  ? contrExpanded[0]
+                  : null;
+                const isCorrectOption = contrExpanded !== null
+                  ? expansionCorrect != null && stripped === expansionCorrect.toLowerCase()
+                  : correctWord != null && (
+                    stripped === correctWord.toLowerCase() ||
+                    (validContraction != null && stripped === validContraction.toLowerCase())
+                  );
+                const shouldShowHint = showToBeHint && cellIndex < 2 && isCorrectOption;
 
                 return (
                   <Animated.View key={i} style={{
@@ -478,33 +541,32 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* No Energy Modal */}
         <Modal transparent animationType="fade" visible={showNoEnergyModal} onRequestClose={() => setShowNoEnergyModal(false)}>
-          <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)' }} onPress={() => setShowNoEnergyModal(false)}>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
-              <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 24, gap: 16, maxWidth: 300 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
-                  {lang === 'uk' ? '❤️ Ти на висоті!' : '❤️ Ты на высоте!'}
+          <TouchableOpacity activeOpacity={1} style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }} onPress={() => { setShowNoEnergyModal(false); setFailedTapCount(0); }}>
+            <TouchableOpacity activeOpacity={1} onPress={() => {}} style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 24, gap: 16, maxWidth: 300, width: '100%' }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
+                {lang === 'uk' ? '❤️ Ти на висоті!' : '❤️ Ты на высоте!'}
+              </Text>
+              <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20, textAlign: 'center' }}>
+                {lang === 'uk'
+                  ? ENERGY_MESSAGES_UK[Math.floor(Math.random() * ENERGY_MESSAGES_UK.length)]?.replace('{time}', recoveryTimeText) || ''
+                  : ENERGY_MESSAGES_RU[Math.floor(Math.random() * ENERGY_MESSAGES_RU.length)]?.replace('{time}', recoveryTimeText) || ''
+                }
+              </Text>
+              <TouchableOpacity
+                onPress={() => {
+                  setShowNoEnergyModal(false);
+                  setFailedTapCount(0);
+                }}
+                style={{ backgroundColor: t.accent, paddingVertical: 12, borderRadius: 8, marginTop: 8 }}
+              >
+                <Text style={{ color: t.bgPrimary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
+                  {lang === 'uk' ? 'Зрозуміло' : 'Понятно'}
                 </Text>
-                <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 20, textAlign: 'center' }}>
-                  {lang === 'uk'
-                    ? ENERGY_MESSAGES_UK[Math.floor(Math.random() * ENERGY_MESSAGES_UK.length)]?.replace('{time}', recoveryTimeText) || ''
-                    : ENERGY_MESSAGES_RU[Math.floor(Math.random() * ENERGY_MESSAGES_RU.length)]?.replace('{time}', recoveryTimeText) || ''
-                  }
-                </Text>
-                <TouchableOpacity
-                  onPress={() => {
-                    setShowNoEnergyModal(false);
-                    setFailedTapCount(0);
-                  }}
-                  style={{ backgroundColor: t.accent, paddingVertical: 12, borderRadius: 8, marginTop: 8 }}
-                >
-                  <Text style={{ color: t.bgPrimary, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
-                    {lang === 'uk' ? 'Зрозумів' : 'Понял'}
-                  </Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </Pressable>
+              </TouchableOpacity>
+            </TouchableOpacity>
+          </TouchableOpacity>
         </Modal>
+
     </KeyboardAvoidingView>
   );
 });
@@ -521,6 +583,14 @@ export default function LessonScreen() {
   const CELL_KEY   = `lesson${lessonId}_cellIndex`;
 
   const LESSON_DATA = getLessonData(lessonId);
+  const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, formattedTime: energyFormattedTime, spendOne } = useEnergy();
+  // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
+  const currentEnergyRef = useRef(currentEnergy);
+  const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
+  const spendOneRef = useRef(spendOne);
+  useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
+  useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
+  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
 
   // cellIndex — позиция в прогресс-баре (0..49), двигается строго по кругу
   const [cellIndex,    setCellIndex]    = useState(0);
@@ -545,7 +615,6 @@ export default function LessonScreen() {
   const [passCount, setPassCount]   = useState(0);
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
-  const [currentEnergy, setCurrentEnergy] = useState(5); // для отображения молний
   const [shouldShake, setShouldShake] = useState(false); // Trigger shake animation when energy is empty
   const [testerNoLimits, setTesterNoLimits] = useState(false); // Тестерская функция - без ограничений
   // ==================== NEW: Intro & Encouragement Screens ====================
@@ -623,7 +692,7 @@ export default function LessonScreen() {
 
   // Pulsing animation for to-be hint (only on first phrase of lesson 1)
   useEffect(() => {
-    if (showToBeHint && cellIndex === 0) {
+    if (showToBeHint && cellIndex < 2) {
       Animated.loop(
         Animated.sequence([
           Animated.timing(hintPulseAnim, {
@@ -655,7 +724,7 @@ export default function LessonScreen() {
     // Перезагружаем доступные кнопки при смене фразы/ячейки
     if (status === 'playing') {
       const p = LESSON_DATA[cellIndex % LESSON_DATA.length];
-      setShuffled(getPerWordDistracts(p, phraseWordIdx));
+      setShuffled(getPerWordDistracts(p, 0));
       setSelectedWords([]);
       setTypedText('');
       setPhraseWordIdx(0);
@@ -665,29 +734,13 @@ export default function LessonScreen() {
 
   const loadData = async () => {
     try {
-      // ==================== NEW: Check intro screens ====================
-      const introShown = await AsyncStorage.getItem(`lesson${lessonId}_intro_shown`);
-      if (!introShown) {
-        setShowIntroScreens(true);
-        return; // Don't load lesson yet, show intro first
-      }
+      // Intro screens disabled — always skip
+      await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true');
 
-      // Проверяем тестерскую функцию "Без ограничений"
+      // Проверяем тестерские функции
       const noLimits = await AsyncStorage.getItem('tester_no_limits');
       setTesterNoLimits(noLimits === 'true');
-
-      // Проверяем энергию ПЕРЕД началом урока (только если НЕ включена тестерская функция без ограничений)
-      if (noLimits !== 'true') {
-        const energyState = await checkAndRecover();
-        // Инициализируем энергию для отображения молний
-        setCurrentEnergy(energyState.current);
-      } else {
-        // Если включена функция без ограничений, показываем полную энергию
-        setCurrentEnergy(5);
-      }
-
-      // ==================== NEW: Initialize to-be hint for phrase 1 ====================
-      setShowToBeHint(true);
+      // energy state comes from EnergyContext — no local load needed
 
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
       const [sp, ss, ci] = await Promise.all([
@@ -707,23 +760,12 @@ export default function LessonScreen() {
       sessionAnswerCount.current = 0;
       isReplayRef.current = restoredProgress.every(x => x === 'correct');
 
-      // Восстанавливаем позицию ячейки
-      // Если сохранена — используем её, но проверяем что ячейка ещё не отвечена
-      // Если нет — ищем первую не-correct ячейку
-      let startCell = 0;
-      if (ci !== null) {
-        const saved = parseInt(ci) || 0;
-        // Если эта ячейка уже правильно отвечена — находим следующую не-correct
-        if (restoredProgress[saved] === 'correct' || restoredProgress[saved] === 'replay_correct') {
-          const nextNotCorrect = restoredProgress.findIndex((x, i) => i > saved && x !== 'correct' && x !== 'replay_correct');
-          startCell = nextNotCorrect >= 0 ? nextNotCorrect : saved;
-        } else {
-          startCell = saved;
-        }
-      } else {
-        // Первый запуск — найти первую не-correct ячейку
-        const firstNotCorrect = restoredProgress.findIndex(x => x !== 'correct');
-        startCell = firstNotCorrect >= 0 ? firstNotCorrect : 0;
+      // Восстанавливаем позицию строго из CELL_KEY — каждый индикатор = конкретная фраза
+      const startCell = ci !== null ? (parseInt(ci) || 0) : 0;
+
+      // Подсказка (подсветка правильного слова) только для урока 1 при первом посещении
+      if (lessonId === 1 && startCell === 0 && !sp) {
+        setShowToBeHint(true);
       }
       setCellIndex(startCell);
 
@@ -823,17 +865,11 @@ export default function LessonScreen() {
         updateMultipleTaskProgress([{ type: 'total_answers' }]);
       }
 
-      // При ОШИБКЕ: тратим энергию (пишем в AsyncStorage)
-      if (currentEnergy > 0) {
-        spendEnergy(1).then(success => {
-          if (success) {
-            setCurrentEnergy(prev => {
-              const newEnergy = Math.max(0, prev - 1);
-              if (newEnergy === 0) {
-                setTimeout(() => { setInsufficientEnergy(true); }, 1000);
-              }
-              return newEnergy;
-            });
+      // При ОШИБКЕ: тратим энергию через контекст (используем refs — нет stale closure)
+      if (currentEnergyRef.current > 0 && !testerEnergyDisabledRef.current) {
+        spendOneRef.current().then(success => {
+          if (success && currentEnergyRef.current - 1 === 0) {
+            setTimeout(() => { setInsufficientEnergy(true); }, 1000);
           }
         }).catch(() => {});
       }
@@ -854,26 +890,17 @@ export default function LessonScreen() {
 
     try { await AsyncStorage.setItem(LESSON_KEY, JSON.stringify(np)); } catch {}
 
-    // СОХРАНЯЕМ СЛЕДУЮЩУЮ ПОЗИЦИЮ СРАЗУ — чтобы нельзя было перепройти выйдя с экрана результата
+    // СОХРАНЯЕМ СЛЕДУЮЩУЮ ПОЗИЦИЮ — строго +1, каждый индикатор = конкретная фраза
     try {
-      let nextCell = (cellIndex + 1) % TOTAL;
-      const isDone = (x: string) => x === 'correct' || x === 'replay_correct';
-      const hasNonDone = np.some(x => !isDone(x));
-      if (hasNonDone) {
-        let attempts = 0;
-        while (isDone(np[nextCell]) && attempts < TOTAL) {
-          nextCell = (nextCell + 1) % TOTAL;
-          attempts++;
-        }
-      }
+      const nextCell = (cellIndex + 1) % TOTAL;
       await AsyncStorage.setItem(CELL_KEY, String(nextCell));
     } catch {}
     setStatus('result');
 
     // ==================== NEW: Handle to-be hint and encouragement screens ====================
     if (isRight) {
-      // Disable to-be hint after phrase 1
-      if (cellIndex === 0) {
+      // Disable correct-word hint after first two tests
+      if (cellIndex === 1) {
         setShowToBeHint(false);
       }
 
@@ -952,22 +979,22 @@ export default function LessonScreen() {
     if (status === 'result') return;
 
     // Check if energy is empty - show shake animation instead of proceeding (but skip if tester has no limits)
-    if (currentEnergy === 0 && !testerNoLimits) {
+    if (currentEnergy === 0 && !testerNoLimits && !testerEnergyDisabled) {
       setShouldShake(true);
       setTimeout(() => setShouldShake(false), 300);
 
       // Track failed taps and show modal after 3rd attempt
       setFailedTapCount(prev => {
         const newCount = prev + 1;
-        if (newCount === 3) {
-          // Get recovery time and show modal
+        if (newCount >= 3) {
           (async () => {
-            const { getTimeUntilNextRecovery, formatTimeUntilRecovery } = await import('./energy_system');
-            const timeMs = await getTimeUntilNextRecovery();
-            if (timeMs !== null && timeMs > 0) {
-              const formatted = formatTimeUntilRecovery(timeMs);
-              setRecoveryTimeText(formatted);
+            if (currentEnergy > 0) {
+              // Energy recovered via context — unblock
+              setFailedTapCount(0);
+            } else {
+              setRecoveryTimeText(energyFormattedTime);
               setShowNoEnergyModal(true);
+              setFailedTapCount(0);
             }
           })();
         }
@@ -1041,7 +1068,7 @@ export default function LessonScreen() {
     } else {
       setShuffled(safeGetDistracts(phrase, newIdx));
     }
-  }, [status, currentEnergy, testerNoLimits, selectedWords, phrase, phraseWordIdx, contrExpanded, settings.autoCheck, checkAnswer]);
+  }, [status, currentEnergy, testerNoLimits, testerEnergyDisabled, selectedWords, phrase, phraseWordIdx, contrExpanded, settings.autoCheck, checkAnswer]);
 
   const handleTypedSubmit = useCallback(() => {
     if (typedText.trim() && status === 'playing') checkAnswer(typedText);
@@ -1171,6 +1198,7 @@ export default function LessonScreen() {
             showTapHint={showTapHint}
             setShowTapHint={setShowTapHint}
             showToBeHint={showToBeHint}
+            phraseWordIdx={phraseWordIdx}
             hintPulseAnim={hintPulseAnim}
             wasWrong={wasWrong}
             textInputRef={textInputRef}
@@ -1190,6 +1218,7 @@ export default function LessonScreen() {
             recoveryTimeText={recoveryTimeText}
             setFailedTapCount={setFailedTapCount}
             checkAnswer={checkAnswer}
+            contrExpanded={contrExpanded}
           />
         </SafeAreaView>
       </ScreenGradient>

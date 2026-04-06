@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "android": {
       "package": "app.phraseman",
-      "versionCode": 10,
+      "versionCode": 13,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
         "foregroundImage": "./assets/images/android-icon-foreground.png",

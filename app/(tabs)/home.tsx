@@ -34,8 +34,7 @@ import { loadAllMedals, countMedals } from '../medal_utils';
 // Используется только для получения количества — сами карточки рендерит review.tsx.
 import { getDueItems, SESSION_LIMIT } from '../active_recall';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
-import ActiveBoostBar from '../../components/ActiveBoostBar';
-import { getEnergyState, checkAndRecover } from '../energy_system';
+import { useEnergy } from '../../components/EnergyContext';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 const CONTENT_W = Math.min(SCREEN_W, 640);
@@ -105,7 +104,6 @@ export default function HomeScreen() {
   const [tasksCompleted, setTasksCompleted] = useState(0);
   const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
   const [isPremium, setIsPremium] = useState(false);
-  const [showHelpHint, setShowHelpHint] = useState(false);
   // [SRS] Количество фраз, готовых к повторению сегодня.
   // 0 = карточка «Повторить сегодня» скрыта (не мешает новым пользователям).
   // >0 = карточка появляется над блоком «Тест/Экзамен» и ведёт на /review.
@@ -118,11 +116,14 @@ export default function HomeScreen() {
   const [showRepairCard, setShowRepairCard] = useState(false);
   const [repairProgress, setRepairProgress] = useState(0);
   const [freezeActive, setFreezeActive] = useState(false);
+  const [streakAtRisk, setStreakAtRisk] = useState(false);
+  const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(false);
   const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
   const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
-  const [energyCount, setEnergyCount] = useState(5);
-  const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string>('');
-  const [shouldShake, setShouldShake] = useState(false);
+  const { energy: energyCount, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
+  const PREMIUM_BLUE = '#4FC3F7';
+  const energyFilledTint = energyUnlimited ? PREMIUM_BLUE : undefined;
+  const energyFilledColor = energyUnlimited ? PREMIUM_BLUE : t.gold;
   const [energyTooltipVisible, setEnergyTooltipVisible] = useState(false);
   const energyTooltipAnim = useRef(new Animated.Value(0)).current;
   const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -143,21 +144,6 @@ export default function HomeScreen() {
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const diagChecked = true;
 
-  // Таймер для отсчёта энергии
-  useEffect(() => {
-    if (energyCount >= 5) return;
-
-    const updateTimer = async () => {
-      const { getTimeUntilNextRecovery, formatTimeUntilRecovery } = await import('../energy_system');
-      const timeMs = await getTimeUntilNextRecovery();
-      setTimeUntilNextEnergy(formatTimeUntilRecovery(timeMs));
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, [energyCount]);
-
   useEffect(() => {
     loadData();
     fadeAnim.setValue(0);
@@ -169,7 +155,7 @@ export default function HomeScreen() {
 
   const loadData = async () => {
     try {
-      const [name, streakVal, weekData, weekPts, xpStored, premiumVal, avatarVal, frameVal, energyState] = await Promise.all([
+      const [name, streakVal, weekData, weekPts, xpStored, premiumVal, avatarVal, frameVal] = await Promise.all([
         AsyncStorage.getItem('user_name'),
         AsyncStorage.getItem('streak_count'),
         AsyncStorage.getItem('week_days_done'),
@@ -178,7 +164,6 @@ export default function HomeScreen() {
         AsyncStorage.getItem('premium_active'),
         AsyncStorage.getItem('user_avatar'),
         AsyncStorage.getItem('user_frame'),
-        checkAndRecover(),
       ]);
       // Verify premium status via RevenueCat to prevent AsyncStorage tampering
       let verifiedPremium = premiumVal === 'true';
@@ -199,7 +184,6 @@ export default function HomeScreen() {
         }
       }
       setIsPremium(verifiedPremium);
-      if (energyState) setEnergyCount(energyState.current);
       if (name) setUserName(name);
       if (streakVal) setStreak(parseInt(streakVal) || 0);
       if (xpStored) {
@@ -278,10 +262,7 @@ export default function HomeScreen() {
       const leagueState = await loadLeagueState();
       if (leagueState) setEngineLeague(LEAGUES.find(l => l.id === leagueState.leagueId) ?? null);
 
-      const hintShown = await AsyncStorage.getItem('help_hint_shown');
-      if (!hintShown) setShowHelpHint(true);
-
-      // [SRS] Загружаем количество фраз для повторения.
+// [SRS] Загружаем количество фраз для повторения.
       // Лимит SESSION_LIMIT — показываем пользователю посильное количество,
       // а не весь накопленный долг. Карточка исчезнет после сессии в review.tsx.
       const dueItems = await getDueItems(SESSION_LIMIT);
@@ -316,22 +297,30 @@ export default function HomeScreen() {
       const freezeRaw = await AsyncStorage.getItem('streak_freeze');
       const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
       setFreezeActive(!!(freeze?.active));
+      const freeUsed = await AsyncStorage.getItem('premium_free_freeze_used');
+      setPremiumFreezeUsed(freeUsed === 'true');
 
       // Medal counts
       const allMedals = await loadAllMedals();
       setMedalCounts(countMedals(allMedals));
 
-      // [STREAK PAYWALL] Если пользователь пропустил вчерашний день (стрик сгорит
-      // при первой активности) и нет Premium — показываем paywall один раз в день.
-      // checkStreakLossPending не изменяет storage — только читает.
-      if (premiumVal !== 'true') {
-        const today = new Date().toISOString().split('T')[0];
-        const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
-        if (shownToday !== today) {
-          const { willLose, streakBefore } = await checkStreakLossPending();
-          if (willLose) {
+      // [STREAK PAYWALL / FREEZE] Проверяем угрозу стрику для всех пользователей.
+      // Для не-премиум — показываем paywall (один раз в день).
+      // Для премиум — показываем кнопку заморозки.
+      const { willLose, streakBefore } = await checkStreakLossPending();
+      if (willLose) {
+        const freezeRaw2 = await AsyncStorage.getItem('streak_freeze');
+        const freeze2 = freezeRaw2 ? JSON.parse(freezeRaw2) : null;
+        const alreadyFrozen = !!(freeze2?.active);
+        if (!alreadyFrozen) {
+          setStreakAtRisk(true);
+        }
+        if (verifiedPremium === false) {
+          const today = new Date().toISOString().split('T')[0];
+          const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
+          if (shownToday !== today) {
             await AsyncStorage.setItem('streak_paywall_shown', today);
-            router.push(`/premium_modal?context=streak&streak=${streakBefore}`);
+            router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streakBefore) } } as any);
           }
         }
       }
@@ -340,12 +329,46 @@ export default function HomeScreen() {
     }
   };
 
-  const dismissHelpHint = async () => {
-    setShowHelpHint(false);
-    await AsyncStorage.setItem('help_hint_shown', 'true');
+  const FREEZE_COST_XP = 200;
+
+  const handleFreezeStreak = async () => {
+    hapticTap();
+    const today = new Date().toISOString().split('T')[0];
+
+    // Проверяем бесплатную заморозку после покупки Premium
+    const freeAvailable = isPremium && !premiumFreezeUsed;
+
+    if (!isPremium) {
+      // Не-премиум — направляем на покупку подписки
+      router.push({ pathname: '/premium_modal', params: { context: 'streak', streak: String(streak) } } as any);
+      return;
+    }
+
+    if (freeAvailable) {
+      await AsyncStorage.setItem('premium_free_freeze_used', 'true');
+      setPremiumFreezeUsed(true);
+    } else {
+      // Премиум — платная заморозка за XP
+      if (totalXP < FREEZE_COST_XP) {
+        Alert.alert(
+          isUK ? 'Недостатньо досвіду' : 'Недостаточно опыта',
+          isUK
+            ? `Заморозка коштує ${FREEZE_COST_XP} XP. У тебе ${totalXP} XP.`
+            : `Заморозка стоит ${FREEZE_COST_XP} XP. У тебя ${totalXP} XP.`
+        );
+        return;
+      }
+      const newXP = totalXP - FREEZE_COST_XP;
+      await AsyncStorage.setItem('user_total_xp', String(newXP));
+      setTotalXP(newXP);
+    }
+
+    await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
+    setFreezeActive(true);
+    setStreakAtRisk(false);
   };
 
-  const league = getLeague(weekPoints, lang);
+const league = getLeague(weekPoints, lang);
   const leagueFromEngine = LEAGUES.find(l =>
     l.nameRU === league.name || l.nameUK === league.name
   ) ?? LEAGUES[0];
@@ -380,19 +403,6 @@ export default function HomeScreen() {
   // ── Общие баннеры (используются в обоих стилях) ──────────────────────────
   const bannersJSX = (
     <>
-      {showHelpHint && (
-        <View style={{ marginHorizontal:16, marginBottom:10, backgroundColor:t.bgCard, borderRadius:16, padding:14, flexDirection:'row', alignItems:'center', gap:10, borderWidth:0.5, borderColor:t.border }}>
-          <Ionicons name="help-circle-outline" size={26} color={t.textSecond} />
-          <View style={{ flex:1 }}>
-            <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>{isUK ? 'Перший раз тут?' : 'Впервые здесь?'}</Text>
-            <Text style={{ color:t.textMuted, fontSize:f.caption, marginTop:2 }}>{isUK ? 'Розділ Довідка пояснює всі функції' : 'Раздел Помощь объясняет все функции'}</Text>
-          </View>
-          <TouchableOpacity onPress={() => { dismissHelpHint(); router.push('/help'); }} style={{ backgroundColor:t.correct, borderRadius:10, paddingHorizontal:10, paddingVertical:7 }}>
-            <Text style={{ color:t.correctText, fontSize:f.caption, fontWeight:'700' }}>{isUK ? 'Відкрити' : 'Открыть'}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={dismissHelpHint} style={{ padding:4 }}><Ionicons name="close" size={18} color={t.textMuted} /></TouchableOpacity>
-        </View>
-      )}
       {loginBonus && (
         <View style={{ marginHorizontal:16, marginBottom:10, backgroundColor:t.bgCard, borderRadius:16, padding:14, flexDirection:'row', alignItems:'center', gap:10, borderWidth:1, borderColor:t.textSecond+'66' }}>
           <Text style={{ fontSize:28 }}>{loginBonus.cycle===7?'🎁':'🎉'}</Text>
@@ -502,11 +512,12 @@ export default function HomeScreen() {
                       <View key={i} style={{ marginLeft: i > 0 ? -10 : 0 }}>
                         <EnergyIcon
                           filled={i < energyCount}
-                          themeColor={i < energyCount ? t.gold : t.textGhost}
+                          themeColor={i < energyCount ? energyFilledColor : t.textGhost}
                           size={18}
                           animateChange={true}
-                          shouldShake={shouldShake}
+                          shouldShake={false}
                           themeMode={themeMode}
+                          tintColor={i < energyCount ? energyFilledTint : undefined}
                         />
                       </View>
                     ))}
@@ -527,9 +538,6 @@ export default function HomeScreen() {
           </View>
 
           {bannersJSX}
-
-          {/* Club Boost Bar */}
-          <ActiveBoostBar containerStyle={{ marginHorizontal:0, marginBottom:12 }} />
 
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
           <TouchableOpacity activeOpacity={0.88} onPress={()=>router.push('/streak_stats')} style={{ marginHorizontal:16, marginBottom:12 }}>
@@ -582,6 +590,43 @@ export default function HomeScreen() {
               </View>
             </View>
           </TouchableOpacity>
+
+          {/* ЗАМОРОЗКА СТРИКА — для всех когда стрик под угрозой */}
+          {streakAtRisk && !freezeActive && (
+            <TouchableOpacity
+              activeOpacity={0.88}
+              onPress={handleFreezeStreak}
+              style={{ marginHorizontal:16, marginBottom:12, borderRadius:16, backgroundColor:'#1A3A5C', borderWidth:1, borderColor:'#4FC3F7', padding:16, flexDirection:'row', alignItems:'center', gap:12 }}
+            >
+              <Text style={{ fontSize:28 }}>🧊</Text>
+              <View style={{ flex:1 }}>
+                <Text style={{ color:'#4FC3F7', fontSize:13, fontWeight:'700' }}>
+                  {isUK ? `Ланцюжок ${streak} днів під загрозою` : `Стрик ${streak} дней под угрозой`}
+                </Text>
+                <Text style={{ color:'#90CAF9', fontSize:12, marginTop:2 }}>
+                  {!isPremium
+                    ? (isUK ? 'Доступно лише для Premium' : 'Доступно только для Premium')
+                    : !premiumFreezeUsed
+                      ? (isUK ? 'Заморозити безкоштовно — бонус Premium' : 'Заморозить бесплатно — бонус Premium')
+                      : (isUK ? `Заморозити за ${FREEZE_COST_XP} XP` : `Заморозить за ${FREEZE_COST_XP} XP`)
+                  }
+                </Text>
+              </View>
+              <View style={{ alignItems:'flex-end', gap:2 }}>
+                {!isPremium
+                  ? <Text style={{ color:'#FFB74D', fontSize:11, fontWeight:'700' }}>Premium</Text>
+                  : isPremium && !premiumFreezeUsed
+                    ? <Text style={{ color:'#4FC3F7', fontSize:12, fontWeight:'700' }}>
+                        {isUK ? 'Безкоштовно' : 'Бесплатно'}
+                      </Text>
+                    : <Text style={{ color: totalXP >= FREEZE_COST_XP ? '#4FC3F7' : t.textGhost, fontSize:12, fontWeight:'700' }}>
+                        {FREEZE_COST_XP} XP
+                      </Text>
+                }
+                <Ionicons name="chevron-forward" size={16} color="#4FC3F7" />
+              </View>
+            </TouchableOpacity>
+          )}
 
           {/* ПРОДОЛЖИТЬ УРОК */}
           <PremiumCard
@@ -682,8 +727,7 @@ export default function HomeScreen() {
                       <View style={{ width:'100%', marginTop:8 }}>
                         <View style={{ flexDirection:'row', gap:6 }}>
                           {[0,1,2].map(ti => {
-                            const tp = taskProgress[ti];
-                            const done = tp?.claimed ?? false;
+                            const done = ti < tasksCompleted;
                             return (
                               <View key={ti} style={{ flex:1, height:6, backgroundColor:t.bgSurface2, borderRadius:3, overflow:'hidden' }}>
                                 {done && <View style={{ width:'100%', height:'100%', backgroundColor:t.correct, borderRadius:3 }} />}

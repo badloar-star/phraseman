@@ -16,6 +16,7 @@ interface EnergyIconProps {
   animateChange?: boolean;
   shouldShake?: boolean; // Trigger shake animation when energy runs out
   themeMode?: ThemeMode;
+  tintColor?: string; // override tint for premium blue
 }
 
 export default function EnergyIcon({
@@ -25,6 +26,7 @@ export default function EnergyIcon({
   animateChange = true,
   shouldShake = false,
   themeMode,
+  tintColor,
 }: EnergyIconProps) {
   const opacityAnim = useRef(new Animated.Value(filled ? 1 : 0.4)).current;
   const shakeAnim = useRef(new Animated.Value(0)).current;
@@ -86,7 +88,7 @@ export default function EnergyIcon({
         style={{
           width: size,
           height: size,
-          opacity: filled ? 1 : 0.35,
+          ...(tintColor ? { tintColor } : {}),
         }}
         resizeMode="contain"
       />

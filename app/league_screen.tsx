@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Pressable, Alert, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Pressable, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,7 +16,15 @@ import {
 } from './league_engine';
 import { checkAchievements } from './achievements';
 import ClubBoostActivator from '../components/ClubBoostActivator';
+import EnergyBar from '../components/EnergyBar';
 import { getAvatarImageByIndex } from '../constants/avatars';
+import {
+  getActiveBoosts,
+  ActiveBoost,
+  getBoostDef,
+  formatBoostTimeRemaining,
+  formatBoostTimeRemainingUK,
+} from './club_boosts';
 
 // NPC-заглушки для одиночного режима (пока нет Firebase)
 const NPC_NAMES_RU = [
@@ -254,7 +262,8 @@ export default function LeagueScreen() {
   const [userName, setUserName]         = useState('');
   const [playerPhrasm, setPlayerPhrasm] = useState(0);
   const [playerXP, setPlayerXP]         = useState(0);
-  const [boostNotification, setBoostNotification] = useState('');
+  const [activeBoosts, setActiveBoosts] = useState<ActiveBoost[]>([]);
+  const boostTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const load = async () => {
@@ -292,6 +301,18 @@ export default function LeagueScreen() {
       setLoading(false);
     };
     load();
+    const loadBoosts = async () => {
+      const boosts = await getActiveBoosts();
+      setActiveBoosts(boosts);
+    };
+    loadBoosts();
+    boostTimerRef.current = setInterval(async () => {
+      const boosts = await getActiveBoosts();
+      setActiveBoosts(boosts);
+    }, 10000);
+    return () => {
+      if (boostTimerRef.current) clearInterval(boostTimerRef.current);
+    };
   }, []);
 
   const myLeague = LEAGUES[myLeagueId];
@@ -326,6 +347,7 @@ export default function LeagueScreen() {
         <Text style={{ color:t.textPrimary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}>
           {isUK ? 'Клуб тижня' : 'Клуб недели'}
         </Text>
+        <EnergyBar size={15} />
         <TouchableOpacity
           onPress={() => setShowBoostActivator(true)}
           style={{
@@ -364,6 +386,46 @@ export default function LeagueScreen() {
             </View>
 
           </View>
+
+          {/* Активные бусты */}
+          {activeBoosts.length > 0 && (
+            <View style={{ marginTop: 14, gap: 8 }}>
+              {activeBoosts.map((boost, idx) => {
+                const def = getBoostDef(boost.id);
+                const timeLeft = isUK
+                  ? formatBoostTimeRemainingUK(boost)
+                  : formatBoostTimeRemaining(boost);
+                return (
+                  <View key={idx} style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    backgroundColor: '#7C3AED22',
+                    borderRadius: 12,
+                    paddingHorizontal: 12,
+                    paddingVertical: 10,
+                    borderLeftWidth: 3,
+                    borderLeftColor: '#7C3AED',
+                    gap: 10,
+                  }}>
+                    <Text style={{ fontSize: 20 }}>{def?.icon ?? '⚡'}</Text>
+                    <View style={{ flex: 1 }}>
+                      <Text style={{ color: '#C4B5FD', fontWeight: '700', fontSize: f.sub }}>
+                        {isUK ? (def?.nameUK ?? boost.id) : (def?.nameRU ?? boost.id)}
+                      </Text>
+                      <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
+                        {boost.activatedBy} · {isUK ? 'залишилось' : 'осталось'} {timeLeft}
+                      </Text>
+                    </View>
+                    <View style={{ backgroundColor: '#7C3AED44', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                      <Text style={{ color: '#A78BFA', fontWeight: '700', fontSize: f.caption }}>
+                        {isUK ? 'АКТИВНИЙ' : 'АКТИВЕН'}
+                      </Text>
+                    </View>
+                  </View>
+                );
+              })}
+            </View>
+          )}
 
           <View style={{ marginTop:14, paddingTop:14, borderTopWidth:0.5, borderTopColor:t.border, gap:6 }}>
             {/* Место в таблице */}
@@ -413,7 +475,7 @@ export default function LeagueScreen() {
                   onPress={(e) => { e.stopPropagation(); setDescModal(league); }}
                   hitSlop={{ top:6, bottom:6, left:6, right:6 }}
                 >
-                  <ClubIcon league={league} size={80} pulse />
+                  <ClubIcon league={league} size={80} pulse={isMyLeague} />
                 </TouchableOpacity>
                 <View style={{ flex:1 }}>
                   <View style={{ flexDirection:'row', alignItems:'center', gap:8, flexWrap:'wrap' }}>
@@ -540,7 +602,7 @@ export default function LeagueScreen() {
                 onPress={() => setDescModal(null)}
                 style={{ marginTop:20, backgroundColor:t.accent, borderRadius:12, paddingVertical:12, alignItems:'center' }}
               >
-                <Text style={{ color:'#fff', fontWeight:'700', fontSize:f.body }}>OK</Text>
+                <Text style={{ color:t.correctText, fontWeight:'700', fontSize:f.body }}>OK</Text>
               </TouchableOpacity>
             </View>
           </Pressable>
@@ -554,12 +616,12 @@ export default function LeagueScreen() {
         playerName={userName}
         playerPhrasm={playerPhrasm}
         playerXP={playerXP}
-        onBoostActivated={(boostId, notification) => {
-          setBoostNotification(notification);
-          Alert.alert(
-            isUK ? 'Буст активований!' : 'Буст активирован!',
-            notification
-          );
+        playerAvatarEmoji={myAvatarEmoji}
+        playerFrameId={myFrameId}
+        onBoostActivated={async () => {
+          const boosts = await getActiveBoosts();
+          setActiveBoosts(boosts);
+          setShowBoostActivator(false);
         }}
       />
     </SafeAreaView>

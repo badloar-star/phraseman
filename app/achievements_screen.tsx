@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import {
   View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Pressable, Share, Image,
 } from 'react-native';
@@ -80,8 +80,16 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   return null;
 }
 
+// Лейбл уровня для медалей (gem_*)
+const GEM_LEVEL_LABEL: Record<string, string> = {
+  gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1',
+  gem_a2_ruby: 'A2', gem_a2_emerald: 'A2', gem_a2_diamond: 'A2',
+  gem_b1_ruby: 'B1', gem_b1_emerald: 'B1', gem_b1_diamond: 'B1',
+  gem_b2_ruby: 'B2', gem_b2_emerald: 'B2', gem_b2_diamond: 'B2',
+};
+
 // ── PNG-изображения для каждого достижения ───────────────────────────────────
-const ACHIEVEMENT_IMAGE: Record<string, any> = {
+export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   streak_3:            require('../assets/images/levels/pervie tri.png'),
   streak_7:            require('../assets/images/levels/odna nedelya.png'),
   streak_14:           require('../assets/images/levels/dve nedeli.png'),
@@ -163,7 +171,7 @@ const ACHIEVEMENT_IMAGE: Record<string, any> = {
 };
 
 // ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
-const ACHIEVEMENT_ICON: Record<string, any> = {
+export const ACHIEVEMENT_ICON: Record<string, any> = {
   streak_3:           'flame',
   streak_7:           'medal',
   streak_14:          'medal-outline',
@@ -234,13 +242,14 @@ const ACHIEVEMENT_ICON: Record<string, any> = {
 };
 
 // ── Цвет категории ────────────────────────────────────────────────────────────
-const CAT_COLOR: Record<string, string> = {
+export const CAT_COLOR: Record<string, string> = {
   streak:  '#FF6B35',
   lessons: '#3B82F6',
   xp:      '#F59E0B',
   quiz:    '#8B5CF6',
   combo:   '#EC4899',
   special: '#10B981',
+  medal:   '#E11D48',
 };
 const CAT_ICON: Record<string, any> = {
   streak:  'flame',
@@ -249,20 +258,21 @@ const CAT_ICON: Record<string, any> = {
   quiz:    'help-circle',
   combo:   'flash',
   special: 'rocket',
+  medal:   'diamond',
 };
 const CAT_LABEL_RU: Record<string, string> = {
   streak: 'Цепочка', lessons: 'Уроки', xp: 'Опыт',
-  quiz: 'Квизы', combo: 'Серии', special: 'Особые',
+  quiz: 'Квизы', combo: 'Серии', special: 'Особые', medal: 'Медали',
 };
 const CAT_LABEL_UK: Record<string, string> = {
   streak: 'Ланцюжок', lessons: 'Уроки', xp: 'Досвід',
-  quiz: 'Квізи', combo: 'Серії', special: 'Особливі',
+  quiz: 'Квізи', combo: 'Серії', special: 'Особливі', medal: 'Медалі',
 };
 
-const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special'] as const;
+const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special', 'medal'] as const;
 
 // ── Щит-значок с PNG фоном ────────────────────────────────────────────────────
-function BadgeShield({
+function BadgeShieldInner({
   unlocked, inProgress, color, iconName, size, achievementId,
 }: {
   unlocked: boolean; inProgress: boolean; color: string;
@@ -276,15 +286,30 @@ function BadgeShield({
   const tintColor = isLocked ? '#383838' : inProgress ? color + '55' : color;
   const iconColor = isLocked ? '#383838' : inProgress ? color + 'BB' : '#fff';
   const specificImage = achievementId ? ACHIEVEMENT_IMAGE[achievementId] : null;
+  const levelLabel = achievementId ? GEM_LEVEL_LABEL[achievementId] : null;
 
   if (specificImage) {
     return (
       <View style={{ width: W, alignItems: 'center' }}>
         <Image
           source={specificImage}
-          style={{ width: W, height: BODY_H, opacity: isLocked ? 0.25 : inProgress ? 0.55 : 1 }}
+          style={{ width: W, height: BODY_H, opacity: isLocked ? 0.20 : inProgress ? 0.50 : 1 }}
           resizeMode="contain"
         />
+        {levelLabel && (
+          <View style={{
+            position: 'absolute', bottom: 2,
+            backgroundColor: isLocked ? '#33333388' : inProgress ? '#00000066' : '#000000AA',
+            borderRadius: 4, paddingHorizontal: 4, paddingVertical: 1,
+          }}>
+            <Text style={{
+              color: isLocked ? '#666' : inProgress ? '#aaa' : '#FFD700',
+              fontSize: Math.max(8, Math.round(W * 0.22)),
+              fontWeight: '900',
+              letterSpacing: 0.5,
+            }}>{levelLabel}</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -310,6 +335,7 @@ function BadgeShield({
     </View>
   );
 }
+export const BadgeShield = memo(BadgeShieldInner);
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
@@ -471,7 +497,7 @@ export default function AchievementsScreen() {
           <View style={{ height: 3, width: `${unlockedCount / total * 100}%` as any, backgroundColor: t.textSecond, borderRadius: 2 }} />
         </View>
 
-        <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 24 }} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 24 }} showsVerticalScrollIndicator={false} removeClippedSubviews={true}>
           {CATEGORIES.map(cat => {
             const color    = CAT_COLOR[cat];
             const catIcon  = CAT_ICON[cat];

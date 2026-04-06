@@ -122,6 +122,21 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
           </View>
         </View>
         <ScrollView contentContainerStyle={{ padding: 16, gap: 12 }}>
+          {DIALOGS.length === 0 && (
+            <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingTop: 80, paddingHorizontal: 32 }}>
+              <Text style={{ fontSize: 48, marginBottom: 20 }}>🚧</Text>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center', marginBottom: 12 }}>
+                {isUK
+                  ? 'Так, тут поки що нічого немає, я знаю.'
+                  : 'Да, тут пока ничего нет, я знаю.'}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 22 }}>
+                {isUK
+                  ? 'Я над цим працюю. Незабаром тут з\'явиться багато цікавих ситуацій і крутих механік — але поки що лише цей текст.'
+                  : 'Я над этим работаю. Скоро здесь появится много интересных ситуаций и крутых механик — но пока только этот текст.'}
+              </Text>
+            </View>
+          )}
           {DIALOGS.map(dialog => {
             const score = scores[dialog.id];
             const done = dialog.id in scores || completed.includes(dialog.id);

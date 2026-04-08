@@ -259,7 +259,14 @@ export default function SettingsMain() {
               return (
                 <TouchableOpacity
                   key={item.mode}
-                  onPress={() => { doHaptic(); setThemeMode(item.mode); }}
+                  onPress={() => {
+                    doHaptic();
+                    if (item.mode !== 'dark' && !isPremium && !DEV_MODE) {
+                      router.push({ pathname: '/premium_modal', params: { context: 'theme' } } as any);
+                      return;
+                    }
+                    setThemeMode(item.mode);
+                  }}
                   activeOpacity={0.8}
                   style={{
                     flex: 1, alignItems: 'center', paddingVertical: 10, paddingHorizontal: 2,
@@ -280,6 +287,9 @@ export default function SettingsMain() {
                   </Text>
                   {active && (
                     <View style={{ width: 14, height: 3, borderRadius: 2, backgroundColor: item.accent, marginTop: 4 }} />
+                  )}
+                  {item.mode !== 'dark' && !isPremium && !DEV_MODE && (
+                    <Ionicons name="lock-closed" size={10} color={item.text} style={{ opacity: 0.6, marginTop: 2 }} />
                   )}
                 </TouchableOpacity>
               );
@@ -361,10 +371,12 @@ export default function SettingsMain() {
 <SectionTitle title={isUK ? 'Ще' : 'Ещё'} />
         <Row icon="person-add-outline"  label={isUK ? 'Запросити друга' : 'Пригласить друга'}  sub={isUK ? 'Поділися застосунком' : 'Поделиться приложением'} onPress={async () => { try { await Share.share({ message: isUK ? `Вивчаю англійську з Phraseman — зручно та ефективно! 🔥 Спробуй і ти! ${STORE_URL}` : `Учу английский с Phraseman — удобно и эффективно! 🔥 Попробуй и ты! ${STORE_URL}`, url: STORE_URL }); } catch {} }} />
         <Row icon="mail-outline"        label={isUK ? 'Пропозиція або зауваження' : 'Предложение или замечание'} onPress={async () => {
-          const url = 'mailto:badloar@gmail.com';
+          const url = 'mailto:support.phraseman@gmail.com';
           const can = await Linking.canOpenURL(url);
           if (can) Linking.openURL(url);
         }} />
+        <Row icon="document-text-outline" label={isUK ? 'Політика конфіденційності' : 'Политика конфиденциальности'} onPress={() => Linking.openURL('https://badloar-star.github.io/phraseman-privacy/')} />
+        <Row icon="shield-checkmark-outline" label={isUK ? 'Умови використання' : 'Условия использования'} onPress={() => Linking.openURL('https://badloar-star.github.io/phraseman-privacy/terms.html')} />
         <Row icon="people-outline"      label={isUK ? 'Бета-тестери' : 'Бета-тестеры'} onPress={() => Alert.alert(
           isUK ? 'Бета-тестери' : 'Бета-тестеры',
           isUK
@@ -406,7 +418,7 @@ export default function SettingsMain() {
             <View style={{ flex: 1 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>Premium</Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                {isUK ? '7 днів безкоштовно · €3.99/міс або €23.99/рік' : '7 дней бесплатно · €3.99/мес или €23.99/год'}
+                {isUK ? '7 днів безкоштовно · місячний або річний план' : '7 дней бесплатно · месячный или годовой план'}
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={t.textGhost} />

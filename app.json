@@ -2,7 +2,7 @@
   "expo": {
     "name": "Phraseman",
     "slug": "phraseman",
-    "version": "1.1.0",
+    "version": "1.2.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -10,7 +10,7 @@
     "newArchEnabled": true,
     "android": {
       "package": "app.phraseman",
-      "versionCode": 13,
+      "versionCode": 16,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -30,11 +30,11 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "3",
+      "buildNumber": "5",
       "supportsTablet": false,
       "infoPlist": {
-        "NSSpeechRecognitionUsageDescription": "Allow $(PRODUCT_NAME) to use speech recognition.",
-        "NSMicrophoneUsageDescription": "Allow $(PRODUCT_NAME) to use the microphone."
+        "NSSpeechRecognitionUsageDescription": "Phraseman uses speech recognition to check your English pronunciation during lessons. Your voice is processed on-device and not stored.",
+        "NSMicrophoneUsageDescription": "Phraseman uses the microphone to listen to your spoken English answers during pronunciation practice in lessons."
       }
     },
     "web": {

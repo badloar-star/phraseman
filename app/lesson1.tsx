@@ -21,6 +21,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
+import { ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalize } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
@@ -56,7 +57,7 @@ import { getPhraseCard } from './lesson_cards_data';
 // Strip special article/marker symbols from display text
 // /the/ → the, «a» → a, «-» → (empty, skip)
 const stripMarkers = (word: string): string =>
-  word.replace(/^\/|\/$/g, '').replace(/«-»/g, '').replace(/[«»]/g, '').trim();
+  word.replace(/^\/|\/$/g, '').replace(/«-»/g, '').replace(/[«»]/g, '').replace(/[.!?,;]+$/, '').trim();
 
 // Safe wrapper: if getPerWordDistracts returns [] (phraseWordIdx out of bounds),
 // fall back to the last valid position so buttons never disappear mid-phrase
@@ -86,10 +87,11 @@ const SETTINGS_KEY = 'user_settings';
 interface Settings {
   speechRate: number; voiceOut: boolean;
   autoAdvance: boolean; hardMode: boolean; autoCheck: boolean; haptics: boolean;
+  showHints: boolean;
 }
 const DEFAULT_SETTINGS: Settings = {
   speechRate: 1.0, voiceOut: true, autoAdvance: false,
-  hardMode: false, autoCheck: false, haptics: true,
+  hardMode: false, autoCheck: false, haptics: true, showHints: true,
 };
 
 
@@ -143,7 +145,7 @@ interface LessonContentProps {
   s: any;
   t: any;
   f: any;
-  themeMode: string;
+  themeMode: ThemeMode;
   lang: 'ru' | 'uk';
   emptyTapFlash: boolean;
   setEmptyTapFlash: (val: boolean) => void;
@@ -152,9 +154,12 @@ interface LessonContentProps {
   showNoEnergyModal: boolean;
   setShowNoEnergyModal: (val: boolean) => void;
   recoveryTimeText: string;
-  setFailedTapCount: (val: (prev: number) => number) => void;
+  setFailedTapCount: (val: number | ((prev: number) => number)) => void;
   checkAnswer: (answer: string) => Promise<void>;
   contrExpanded: string[] | null;
+  onFiftyFifty: () => void;
+  fiftyFiftyUsedToday: number;
+  dimmedWords: Set<string>;
 }
 
 const LessonContent = React.memo(function LessonContent({
@@ -211,6 +216,9 @@ const LessonContent = React.memo(function LessonContent({
   setFailedTapCount,
   checkAnswer,
   contrExpanded,
+  onFiftyFifty,
+  fiftyFiftyUsedToday,
+  dimmedWords,
 }: LessonContentProps) {
 
   // Show intro screens on first visit
@@ -287,7 +295,7 @@ const LessonContent = React.memo(function LessonContent({
         showsVerticalScrollIndicator={false}
       >
         <Pressable onPress={handleBgTap} style={{ width: '100%' }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{phrase?.russian || 'Loading...'}</Text>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{(lang === 'uk' ? phrase?.ukrainian : phrase?.russian) || 'Loading...'}</Text>
 
           <View style={{ minHeight: 60, borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {settings.hardMode ? (
@@ -330,7 +338,7 @@ const LessonContent = React.memo(function LessonContent({
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
                     {(() => {
                       const expandedWords = normalize(selectedWords.join(' ')).split(/\s+/);
-                      const correctWords = (phrase.english || '').split(/\s+/).map(w => w.replace(/[.!?,;]+$/, '').toLowerCase());
+                      const correctWords = (phrase?.english || '').split(/\s+/).map((w: string) => w.replace(/[.!?,;]+$/, '').toLowerCase());
                       return expandedWords.map((word, i) => {
                         const correctWord = correctWords[i];
                         const isWrong = word !== correctWord;
@@ -348,7 +356,7 @@ const LessonContent = React.memo(function LessonContent({
                   </View>
                 </View>
               )}
-              <View style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <TouchableOpacity activeOpacity={0.75} onPress={() => { hapticTap(); Speech.stop(); Speech.speak(phrase.english, { language: 'en-US', rate: settings.speechRate }); }} style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Text style={{ color: t.correct, fontSize: f.h1, flex: 1 }}>{
                   /[.?!]$/.test(phrase.english) ? phrase.english
                   : phrase.russian?.endsWith('?') ? phrase.english + '?'
@@ -359,16 +367,16 @@ const LessonContent = React.memo(function LessonContent({
                 <AddToFlashcard
                   en={phrase.english}
                   ru={(ALL_LESSONS_RU[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
-                  uk={(ALL_LESSONS_UK[lessonId] || []).find((p: any) => p.english === phrase.english)?.russian ?? phrase.russian}
+                  uk={(ALL_LESSONS_UK[lessonId] || []).find((p: any) => p.english === phrase.english)?.ukrainian ?? phrase.ukrainian}
                   source="lesson" sourceId={String(lessonId)}
                 />
-              </View>
+              </TouchableOpacity>
 
               {(() => {
                 const _ld = getLessonData(lessonId);
                 const phraseIdx = _ld && _ld.length > 0 ? (cellIndex % _ld.length) + 1 : cellIndex + 1;
                 const card = getPhraseCard(lessonId, phraseIdx);
-                const hasCard = card && (card.correctRu || card.correctUk);
+                const hasCard = card && (card.correctRu || card.correctUk) && settings.showHints;
                 if (hasCard) {
                   const mainText = wasWrong
                     ? (lang === 'uk' ? card.wrongUk : card.wrongRu)
@@ -444,17 +452,18 @@ const LessonContent = React.memo(function LessonContent({
                     (validContraction != null && stripped === validContraction.toLowerCase())
                   );
                 const shouldShowHint = showToBeHint && cellIndex < 2 && isCorrectOption;
+                const isDimmed = dimmedWords.has(word);
 
                 return (
                   <Animated.View key={i} style={{
                     width: '48%',
                     marginBottom: compact ? 7 : 10,
-                    opacity: shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] })
+                    opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
                     <TouchableOpacity
                       style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
-                      onPress={() => { hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
-                      activeOpacity={0.7}
+                      onPress={() => { if (isDimmed) return; hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
+                      activeOpacity={isDimmed ? 1 : 0.7}
                     >
                       <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{(() => { const w = stripMarkers(word); return w === 'I' ? 'I' : w.toLowerCase(); })()}</Text>
                     </TouchableOpacity>
@@ -484,11 +493,31 @@ const LessonContent = React.memo(function LessonContent({
 
         {/* ФУТЕР */}
         <View style={{ flexDirection: 'row', paddingVertical: 14, borderTopWidth: 0.5, borderTopColor: t.border }}>
-          {/* Hint Button */}
-          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/hint', params: { id: lessonId } }); }}>
-            <Ionicons name="list" size={26} color={t.textSecond} />
-            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.cheat}</Text>
-          </TouchableOpacity>
+          {/* 50/50 Button — вместо Шпаргалки */}
+          {!settings.hardMode && (
+            (() => {
+              const hintsLeft = Math.max(0, 3 - fiftyFiftyUsedToday);
+              const canUse = hintsLeft > 0 && status === 'playing' && dimmedWords.size === 0;
+              return (
+                <TouchableOpacity
+                  style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
+                  onPress={() => {
+                    if (!canUse) return;
+                    hapticTap();
+                    onFiftyFifty();
+                  }}
+                >
+                  <View style={{ position: 'relative' }}>
+                    <Text style={{ color: canUse ? t.accent : t.textSecond, fontSize: 20, fontWeight: '700', lineHeight: 26 }}>½</Text>
+                    <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
+                      <Text style={{ color: t.bgPrimary, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{hintsLeft}</Text>
+                    </View>
+                  </View>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>50/50</Text>
+                </TouchableOpacity>
+              );
+            })()
+          )}
 
           {/* Theory Button */}
           <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
@@ -612,6 +641,10 @@ export default function LessonScreen() {
   const userNameRef      = useRef<string | null>(null); // кешируем имя чтобы не читать AsyncStorage на каждый ответ
   // [COMBO] Отображаемое значение комбо для UI-бейджа. Обновляется в setState.
   const [comboCount, setComboCount] = useState(0);
+  const [fiftyFiftyUsedToday, setFiftyFiftyUsedToday] = useState(0);
+  const [dimmedWords, setDimmedWords] = useState<Set<string>>(new Set());
+  // Сбрасываем затемнение при смене набора слов (новое слово/фраза)
+  useEffect(() => { setDimmedWords(new Set()); }, [shuffled]);
   const [passCount, setPassCount]   = useState(0);
   const [insufficientEnergy, setInsufficientEnergy] = useState(false);
   const [showEnergyModal, setShowEnergyModal] = useState(false);
@@ -622,8 +655,8 @@ export default function LessonScreen() {
   const [showEncouragementScreen, setShowEncouragementScreen] = useState(false);
   const [showToBeHint, setShowToBeHint] = useState(false);
   // No energy modal after 3 failed taps
-  const [failedTapCount, setFailedTapCount] = useState(0);
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
+  const [failedTapCount, setFailedTapCount] = useState(0);
   const [recoveryTimeText, setRecoveryTimeText] = useState('');
 
   const fadeAnim    = useRef(new Animated.Value(0)).current;
@@ -779,6 +812,11 @@ export default function LessonScreen() {
       }
 
       setInsufficientEnergy(false);
+
+      // Загружаем счётчик подсказок 50/50 за сегодня
+      const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
+      const ffCount = await AsyncStorage.getItem(todayKey);
+      setFiftyFiftyUsedToday(ffCount ? parseInt(ffCount, 10) : 0);
     } catch {}
   };
 
@@ -786,7 +824,7 @@ export default function LessonScreen() {
 
   const checkAnswer = useCallback(async (answer: string) => {
     if (!phrase) return;
-    const isRight = isCorrectAnswer(answer, phrase.english);
+    const isRight = isCorrectAnswer(answer, phrase.english, phrase.alternatives);
     const np = [...progress];
 
     // КЛЮЧЕВАЯ ЛОГИКА:
@@ -818,7 +856,7 @@ export default function LessonScreen() {
           phrase.english,
           ruPhrase?.russian ?? phrase.russian,
           lessonId,
-          ukPhrase?.russian,
+          ukPhrase?.ukrainian,
         );
       }
     }
@@ -937,9 +975,9 @@ export default function LessonScreen() {
         }
 
         // Пытаемся разблокировать следующий урок
-        await tryUnlockNextLesson(lessonId, finalScore);
+        const didUnlock = await tryUnlockNextLesson(lessonId, finalScore);
 
-        router.replace({ pathname: '/lesson_complete', params: { id: lessonId } });
+        router.replace({ pathname: '/lesson_complete', params: { id: lessonId, unlocked: didUnlock ? '1' : '0' } });
       }, 1500);
       return;
     }
@@ -975,36 +1013,11 @@ export default function LessonScreen() {
   }, [cellIndex, progress, fadeAnim, LESSON_DATA]);
 
   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
+  // Energy is only spent on mistakes — no gate here, users can always attempt answers
   const handleWordPress = useCallback((word: string) => {
     if (status === 'result') return;
 
-    // Check if energy is empty - show shake animation instead of proceeding (but skip if tester has no limits)
-    if (currentEnergy === 0 && !testerNoLimits && !testerEnergyDisabled) {
-      setShouldShake(true);
-      setTimeout(() => setShouldShake(false), 300);
-
-      // Track failed taps and show modal after 3rd attempt
-      setFailedTapCount(prev => {
-        const newCount = prev + 1;
-        if (newCount >= 3) {
-          (async () => {
-            if (currentEnergy > 0) {
-              // Energy recovered via context — unblock
-              setFailedTapCount(0);
-            } else {
-              setRecoveryTimeText(energyFormattedTime);
-              setShowNoEnergyModal(true);
-              setFailedTapCount(0);
-            }
-          })();
-        }
-        return newCount;
-      });
-
-      return;
-    }
-
-    const phraseWords = getPhraseWords(phrase.english);
+    const phraseWords = getPhraseWords(phrase?.english ?? '');
     const totalPhraseWords = phraseWords.length;
     const next = [...selectedWords, word];
     setSelectedWords(next);
@@ -1092,13 +1105,21 @@ export default function LessonScreen() {
       }
       // Normal undo: pop last word, decrement phraseWordIdx
       const newSelected = selectedWords.slice(0, -1);
-      const newPhraseIdx = Math.max(0, phraseWordIdx - 1);
+      // If the last word was a contraction that skipped 2 phrase words (e.g. "aren't" = "are"+"not"),
+      // we need to step back 2 positions, not 1.
+      const lastWord = selectedWords[selectedWords.length - 1] ?? '';
+      const phraseWordsForUndo = getPhraseWords(phrase?.english ?? '');
+      const twoWordContr = phraseWordIdx >= 2
+        ? getContractionFor(phraseWordsForUndo[phraseWordIdx - 2] ?? '', phraseWordsForUndo[phraseWordIdx - 1] ?? '')
+        : null;
+      const wasSkip2 = twoWordContr != null && lastWord.toLowerCase() === twoWordContr.toLowerCase();
+      const newPhraseIdx = Math.max(0, phraseWordIdx - (wasSkip2 ? 2 : 1));
       setSelectedWords(newSelected);
       setPhraseWordIdx(newPhraseIdx);
       // Check if last remaining word is expansion[0] of the contraction at newPhraseIdx
       // (happens when undoing the last expansion token, e.g. undoing "not" after "do")
       if (newSelected.length > 0) {
-        const phraseWords = getPhraseWords(phrase.english);
+        const phraseWords = getPhraseWords(phrase?.english ?? '');
         const origWord = phraseWords[newPhraseIdx];
         const prevContr = lookupContraction(origWord ?? '');
         if (prevContr && newSelected[newSelected.length - 1].toLowerCase() === prevContr[0].toLowerCase()) {
@@ -1137,7 +1158,7 @@ export default function LessonScreen() {
 
   const correctCount = useMemo(() => progress.filter(p => p === 'correct' || p === 'replay_correct').length, [progress]);
   const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
-  const score = useMemo(() => (correctCount / TOTAL * 5).toFixed(1), [correctCount, TOTAL]);
+  const score = useMemo(() => Number((correctCount / TOTAL * 5).toFixed(1)), [correctCount, TOTAL]);
 
   // Жёлтая подсветка для поля ввода когда 0 слов + тап
   const [emptyTapFlash, setEmptyTapFlash] = useState(false);
@@ -1156,6 +1177,42 @@ export default function LessonScreen() {
       checkAnswer(selectedWords.join(' '));
     }
   }, [status, settings.hardMode, showTapHint, selectedWords, goNext, checkAnswer]);
+
+  const handleFiftyFifty = useCallback(() => {
+    if (fiftyFiftyUsedToday >= 3 || !phrase) return;
+
+    const phraseWordsList = getPhraseWords(phrase.english);
+    const correctWord = phraseWordsList[phraseWordIdx] ?? null;
+    const nextCorrectWord = phraseWordsList[phraseWordIdx + 1] ?? null;
+    const validContraction = correctWord && nextCorrectWord
+      ? getContractionFor(correctWord, nextCorrectWord)
+      : null;
+
+    const isCorrect = (word: string): boolean => {
+      const stripped = stripMarkers(word).toLowerCase();
+      if (contrExpanded !== null && contrExpanded.length > 0) {
+        return stripped === contrExpanded[0].toLowerCase();
+      }
+      return correctWord != null && (
+        stripped === correctWord.toLowerCase() ||
+        (validContraction != null && stripped === validContraction.toLowerCase())
+      );
+    };
+
+    const wrong = shuffled.filter(w => !isCorrect(w));
+    // Затемняем половину неправильных, оставляя итого ~4 варианта
+    const correct = shuffled.filter(isCorrect);
+    const keepWrongCount = Math.max(0, 4 - correct.length);
+    const shuffledWrong = [...wrong].sort(() => Math.random() - 0.5);
+    const toDim = shuffledWrong.slice(keepWrongCount);
+
+    setDimmedWords(new Set(toDim));
+
+    const newCount = fiftyFiftyUsedToday + 1;
+    setFiftyFiftyUsedToday(newCount);
+    const todayKey = `fifty_fifty_${new Date().toISOString().slice(0, 10)}`;
+    AsyncStorage.setItem(todayKey, String(newCount));
+  }, [fiftyFiftyUsedToday, phrase, phraseWordIdx, shuffled, contrExpanded]);
 
   return (
     <TouchableWithoutFeedback onPress={handleBgTap}>
@@ -1219,6 +1276,9 @@ export default function LessonScreen() {
             setFailedTapCount={setFailedTapCount}
             checkAnswer={checkAnswer}
             contrExpanded={contrExpanded}
+            onFiftyFifty={handleFiftyFifty}
+            fiftyFiftyUsedToday={fiftyFiftyUsedToday}
+            dimmedWords={dimmedWords}
           />
         </SafeAreaView>
       </ScreenGradient>

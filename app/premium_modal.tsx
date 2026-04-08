@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, TouchableOpacity,
-  ScrollView, Alert, ActivityIndicator, Animated,
+  ScrollView, Alert, ActivityIndicator, Animated, Linking,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -14,9 +14,10 @@ import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { sendPremiumNotification } from './notifications';
 import { DEV_MODE, IS_EXPO_GO } from './config';
+import { invalidatePremiumCache } from './premium_guard';
 
 type Plan = 'monthly' | 'yearly';
-type PremiumContext = 'lesson_b1' | 'quiz_limit' | 'quiz_level' | 'flashcard_limit' | 'streak' | 'dialog' | 'generic';
+type PremiumContext = 'lesson_b1' | 'quiz_limit' | 'quiz_level' | 'quiz_medium' | 'quiz_hard' | 'flashcard_limit' | 'streak' | 'dialog' | 'theme' | 'hall_of_fame' | 'generic';
 
 const savePremiumLocally = async (plan: Plan) => {
   const expiry = plan === 'yearly'
@@ -25,6 +26,7 @@ const savePremiumLocally = async (plan: Plan) => {
   await AsyncStorage.setItem('premium_plan', plan);
   await AsyncStorage.setItem('premium_expiry', String(expiry));
   await AsyncStorage.setItem('premium_active', 'true');
+  invalidatePremiumCache();
 };
 
 // ── Контекстные герои ─────────────────────────────────────────────────────────
@@ -71,6 +73,24 @@ function getHero(
         subtitleUk: 'Складні завдання — для тих, хто готовий\nдо справжнього виклику. Ти явно готовий.',
         highlightRow: 1,
       };
+    case 'quiz_medium':
+      return {
+        emoji: '🔥',
+        titleRu: 'Квизы уровня Средний',
+        titleUk: 'Квізи рівня Середній',
+        subtitleRu: 'B1–B2: фразовые глаголы в реальных\nситуациях. 2× XP за каждый правильный ответ.',
+        subtitleUk: 'B1–B2: фразові дієслова в реальних\nситуаціях. 2× XP за кожну правильну відповідь.',
+        highlightRow: 1,
+      };
+    case 'quiz_hard':
+      return {
+        emoji: '💜',
+        titleRu: 'Квизы уровня Сложный',
+        titleUk: 'Квізи рівня Складний',
+        subtitleRu: 'C1–C2: продвинутые конструкции и идиомы.\n3× XP — для тех, кто хочет говорить как носитель.',
+        subtitleUk: 'C1–C2: просунуті конструкції та ідіоми.\n3× XP — для тих, хто хоче говорити як носій.',
+        highlightRow: 1,
+      };
     case 'flashcard_limit':
       return {
         emoji: '📚',
@@ -98,6 +118,24 @@ function getHero(
         subtitleUk: 'Цей діалог відкривається з Premium.\nРеальні розмови — для роботи та життя.',
         highlightRow: 5,
       };
+    case 'theme':
+      return {
+        emoji: '🎨',
+        titleRu: 'Персональная тема',
+        titleUk: 'Персональна тема',
+        subtitleRu: 'Тёмная, светлая, неон, закат — выбирай\nлюбой стиль приложения с Premium.',
+        subtitleUk: 'Темна, світла, неон, захід — обирай\nбудь-який стиль застосунку з Premium.',
+        highlightRow: 3,
+      };
+    case 'hall_of_fame':
+      return {
+        emoji: '🏆',
+        titleRu: 'Зал славы',
+        titleUk: 'Зал слави',
+        subtitleRu: 'Соревнуйся с другими учениками,\nзаходи в топ недели и побеждай с Premium.',
+        subtitleUk: 'Змагайся з іншими учнями,\nпотрапляй у топ тижня та перемагай з Premium.',
+        highlightRow: -1,
+      };
     default:
       return {
         emoji: '💎',
@@ -111,22 +149,6 @@ function getHero(
 }
 
 // ── Строки сравнения ──────────────────────────────────────────────────────────
-interface CompareRow {
-  freeRu: string;
-  freeUk: string;
-  premRu: string;
-  premUk: string;
-  icon: string;
-}
-
-const COMPARE_ROWS: CompareRow[] = [
-  { icon: 'book-outline',             freeRu: 'Уроки A1–A2',         freeUk: 'Уроки A1–A2',         premRu: 'Все уроки A1–B2',       premUk: 'Всі уроки A1–B2'        },
-  { icon: 'flash-outline',            freeRu: '3 квиза в день',       freeUk: '3 квізи на день',      premRu: '∞ квизов всех уровней', premUk: '∞ квізів усіх рівнів'   },
-  { icon: 'albums-outline',           freeRu: '20 карточек',          freeUk: '20 карток',            premRu: '∞ карточек навсегда',   premUk: '∞ карток назавжди'      },
-  { icon: 'battery-charging-outline', freeRu: '5 занятий в день',     freeUk: '5 занять на день',     premRu: '∞ занятий',             premUk: '∞ занять'               },
-  { icon: 'flame-outline',            freeRu: 'Стрик',                freeUk: 'Стрік',                premRu: '+ Заморозка стрика',    premUk: '+ Заморозка стріку'     },
-  { icon: 'chatbubbles-outline',      freeRu: '5 диалогов',           freeUk: '5 діалогів',           premRu: 'Все 20 диалогов',       premUk: 'Усі 20 діалогів'        },
-];
 
 const formatDate = (ts: number, lang: string) =>
   new Date(ts).toLocaleDateString(lang === 'uk' ? 'uk-UA' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -134,6 +156,10 @@ const formatDate = (ts: number, lang: string) =>
 // ── Компонент ─────────────────────────────────────────────────────────────────
 export default function PremiumModal() {
   const router = useRouter();
+  const goBack = () => {
+    if (router.canGoBack()) goBack();
+    else router.replace('/(tabs)/home' as any);
+  };
   const params = useLocalSearchParams<{
     context?: string;
     streak?: string;
@@ -216,7 +242,7 @@ export default function PremiumModal() {
 
   const showSuccess = () => {
     setViewMode('success');
-    setTimeout(() => router.back(), 2800);
+    setTimeout(() => goBack(), 2800);
   };
 
   const handlePurchase = async (plan: Plan) => {
@@ -267,7 +293,7 @@ export default function PremiumModal() {
         await savePremiumLocally(plan);
         sendPremiumNotification(lang as 'ru' | 'uk');
         Alert.alert('Premium ✅', isUK ? 'Підписку відновлено!' : 'Подписка восстановлена!');
-        router.back();
+        goBack();
       } else {
         Alert.alert(
           isUK ? 'Відновлення' : 'Восстановление',
@@ -302,7 +328,7 @@ export default function PremiumModal() {
             {[
               isUK ? '✓ Уроки B1 та B2' : '✓ Уроки B1 и B2',
               isUK ? '✓ Необмежена енергія' : '✓ Безлимитная энергия',
-              isUK ? '✓ Усі квізи та діалоги' : '✓ Все квизы и диалоги',
+              isUK ? '✓ Усі квізи та рівні' : '✓ Все квизы и уровни',
               isUK ? '✓ Заморозка стріку' : '✓ Заморозка стрика',
             ].map((line, i) => (
               <Text key={i} style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '600', marginBottom: 6 }}>
@@ -326,7 +352,7 @@ export default function PremiumModal() {
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-              <TouchableOpacity onPress={() => router.back()}>
+              <TouchableOpacity onPress={() => goBack()}>
                 <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
               </TouchableOpacity>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 8 }}>Premium</Text>
@@ -475,7 +501,7 @@ export default function PremiumModal() {
             {/* Крестик */}
             <TouchableOpacity
               style={{ alignSelf: 'flex-end', padding: 8, marginBottom: 8 }}
-              onPress={() => router.back()}
+              onPress={() => goBack()}
             >
               <Ionicons name="close" size={24} color={t.textMuted} />
             </TouchableOpacity>
@@ -491,64 +517,101 @@ export default function PremiumModal() {
               </Text>
             </View>
 
-            {/* БЛОК 2: Сравнение */}
-            <View style={{ borderRadius: 16, overflow: 'hidden', borderWidth: 1, borderColor: t.border, marginBottom: 24 }}>
-              {/* Шапка */}
-              <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface }}>
-                <View style={{ flex: 1, padding: 10, borderRightWidth: 0.5, borderRightColor: t.border }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600', textAlign: 'center' }}>
-                    {isUK ? 'Зараз' : 'Сейчас'}
+            {/* БЛОК 2: Feature Tiles */}
+            <View style={{ marginBottom: 24, gap: 10 }}>
+              {/* Заголовок секции */}
+              <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600', textAlign: 'center', letterSpacing: 0.5, textTransform: 'uppercase' }}>
+                {isUK ? 'Що відкривається' : 'Что открывается'}
+              </Text>
+
+              {/* 2×2 сетка плиток */}
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                {/* Уроки */}
+                <View style={{ flex: 1, backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 14, gap: 6 }}>
+                  <Text style={{ fontSize: 22 }}>📚</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {isUK ? 'Уроки' : 'Уроки'}
                   </Text>
+                  <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                    {isUK ? 'A1–A2 (1–18)' : 'A1–A2 (1–18)'}
+                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                    <Ionicons name="arrow-forward" size={12} color={t.textSecond} />
+                    <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>
+                      {isUK ? '+ B1 і B2' : '+ B1 и B2'}
+                    </Text>
+                  </View>
                 </View>
-                <View style={{ flex: 1, padding: 10, backgroundColor: t.textSecond + '18' }}>
-                  <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700', textAlign: 'center' }}>
-                    Premium ✨
+
+                {/* Квизы */}
+                <View style={{ flex: 1, backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 14, gap: 6 }}>
+                  <Text style={{ fontSize: 22 }}>⚡</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {isUK ? 'Квізи' : 'Квизы'}
                   </Text>
+                  <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                    {isUK ? '3/день, Easy' : '3/день, Easy'}
+                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                    <Ionicons name="arrow-forward" size={12} color={t.textSecond} />
+                    <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>
+                      {isUK ? '∞ усіх рівнів' : '∞ всех уровней'}
+                    </Text>
+                  </View>
                 </View>
               </View>
 
-              {/* Строки */}
-              {COMPARE_ROWS.map((row, i) => {
-                const isHighlighted = i === hero.highlightRow;
-                return (
-                  <View
-                    key={i}
-                    style={{
-                      flexDirection: 'row',
-                      borderTopWidth: 0.5,
-                      borderTopColor: t.border,
-                      backgroundColor: isHighlighted ? t.textSecond + '10' : 'transparent',
-                    }}
-                  >
-                    {/* Бесплатно */}
-                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', padding: 10, gap: 6, borderRightWidth: 0.5, borderRightColor: t.border }}>
-                      <Ionicons name={row.icon as any} size={14} color={t.textGhost} />
-                      <Text style={{ color: t.textMuted, fontSize: f.label, flex: 1 }} numberOfLines={2}>
-                        {isUK ? row.freeUk : row.freeRu}
-                      </Text>
-                    </View>
-                    {/* Premium */}
-                    <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center', padding: 10, gap: 6 }}>
-                      <Ionicons
-                        name={isHighlighted ? 'checkmark-circle' : 'checkmark'}
-                        size={isHighlighted ? 16 : 14}
-                        color={isHighlighted ? t.textSecond : t.correct}
-                      />
-                      <Text
-                        style={{
-                          color: isHighlighted ? t.textSecond : t.textPrimary,
-                          fontSize: f.label,
-                          fontWeight: isHighlighted ? '700' : '400',
-                          flex: 1,
-                        }}
-                        numberOfLines={2}
-                      >
-                        {isUK ? row.premUk : row.premRu}
-                      </Text>
-                    </View>
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                {/* Карточки */}
+                <View style={{ flex: 1, backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 14, gap: 6 }}>
+                  <Text style={{ fontSize: 22 }}>🃏</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {isUK ? 'Картки' : 'Карточки'}
+                  </Text>
+                  <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                    {isUK ? 'до 20 штук' : 'до 20 штук'}
+                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                    <Ionicons name="arrow-forward" size={12} color={t.textSecond} />
+                    <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>
+                      {isUK ? 'Без ліміту' : 'Без лимита'}
+                    </Text>
                   </View>
-                );
-              })}
+                </View>
+
+                {/* Энергия */}
+                <View style={{ flex: 1, backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 14, gap: 6 }}>
+                  <Text style={{ fontSize: 22 }}>🔋</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {isUK ? 'Енергія' : 'Энергия'}
+                  </Text>
+                  <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                    {isUK ? '30 хв/од.' : '30 мин/ед.'}
+                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                    <Ionicons name="arrow-forward" size={12} color={t.textSecond} />
+                    <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>
+                      {isUK ? 'Миттєво ∞' : 'Мгновенно ∞'}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+
+              {/* Заморозка стрика — полная ширина */}
+              <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 1, borderColor: t.border, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 14 }}>
+                <Text style={{ fontSize: 28 }}>🔥</Text>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                    {isUK ? 'Заморозка стріку' : 'Заморозка стрика'}
+                  </Text>
+                  <Text style={{ color: t.textGhost, fontSize: f.label, marginTop: 2 }}>
+                    {isUK ? 'Захисти серію — навіть якщо пропустив день' : 'Защити серию — даже если пропустил день'}
+                  </Text>
+                </View>
+                <View style={{ backgroundColor: t.textSecond + '20', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
+                  <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>Premium</Text>
+                </View>
+              </View>
             </View>
 
             {/* БЛОК 3: Планы */}
@@ -578,16 +641,18 @@ export default function PremiumModal() {
                     {isUK ? 'Річна підписка' : 'Годовая подписка'}
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>
-                    {isUK ? '≈ €2.00 / місяць · 7 днів безкоштовно' : '≈ €2.00 / месяц · 7 дней бесплатно'}
+                    {isUK ? '7 днів безкоштовно' : '7 дней бесплатно'}
                   </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
                     {isUK ? 'Економія 50% порівняно з місячним' : 'Экономия 50% по сравнению с месячным'}
                   </Text>
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>€23.99</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, textDecorationLine: 'line-through' }}>
-                    €47.88/{isUK ? 'рік' : 'год'}
+                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>
+                    {packages.yearly?.product.priceString ?? '€23.99'}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.caption }}>
+                    {isUK ? '/ рік' : '/ год'}
                   </Text>
                 </View>
               </View>
@@ -616,7 +681,9 @@ export default function PremiumModal() {
                   </Text>
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>€3.99</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>
+                    {packages.monthly?.product.priceString ?? '€3.99'}
+                  </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.caption }}>{isUK ? '/ місяць' : '/ месяц'}</Text>
                 </View>
               </View>
@@ -665,7 +732,7 @@ export default function PremiumModal() {
             </TouchableOpacity>
 
             {/* Продолжить бесплатно */}
-            <TouchableOpacity style={{ paddingVertical: 8, alignItems: 'center' }} onPress={() => router.back()}>
+            <TouchableOpacity style={{ paddingVertical: 8, alignItems: 'center' }} onPress={() => goBack()}>
               <Text style={{ color: t.textGhost, fontSize: f.body, textDecorationLine: 'underline' }}>
                 {ctx === 'streak'
                   ? (isUK ? 'Ні, дякую — стрік згорить' : 'Нет, спасибо — стрик сгорит')
@@ -678,6 +745,19 @@ export default function PremiumModal() {
                 ? 'Після 7 днів підписка продовжується автоматично. Скасування через App Store / Google Play.'
                 : 'После 7 дней подписка продлевается автоматически. Отмена через App Store / Google Play.'}
             </Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 14, marginBottom: 4 }}>
+              <TouchableOpacity onPress={() => Linking.openURL('https://badloar-star.github.io/phraseman-privacy/')}>
+                <Text style={{ color: t.textGhost, fontSize: f.label, textDecorationLine: 'underline' }}>
+                  {isUK ? 'Політика конфіденційності' : 'Политика конфиденциальности'}
+                </Text>
+              </TouchableOpacity>
+              <Text style={{ color: t.textGhost, fontSize: f.label }}>·</Text>
+              <TouchableOpacity onPress={() => Linking.openURL('https://badloar-star.github.io/phraseman-privacy/terms.html')}>
+                <Text style={{ color: t.textGhost, fontSize: f.label, textDecorationLine: 'underline' }}>
+                  {isUK ? 'Умови використання' : 'Условия использования'}
+                </Text>
+              </TouchableOpacity>
+            </View>
           </ScrollView>
         </ContentWrap>
       </SafeAreaView>

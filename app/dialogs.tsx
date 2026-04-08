@@ -552,6 +552,7 @@ function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabl
         </Animated.View>
       </View>
     </Pressable>
+    </Animated.View>
   );
 }
 

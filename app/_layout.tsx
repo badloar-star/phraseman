@@ -8,6 +8,7 @@ import AchievementToast from '../components/AchievementToast';
 import { LangProvider, useLang } from '../components/LangContext';
 import Onboarding from '../components/onboarding';
 import { ThemeProvider } from '../components/ThemeContext';
+import { AnimatedFrameProvider } from '../components/AnimContext';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { preloadImages } from './image_preload';
 import { scheduleMonthlyRecapNotification, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler } from './notifications';
@@ -248,9 +249,11 @@ export default function RootLayout() {
       <LangProvider>
         <EnergyProvider>
           <AchievementProvider>
-            <AppContent />
-            {/* Тост монтируется поверх всего Stack-навигатора */}
-            <AchievementToast />
+            <AnimatedFrameProvider>
+              <AppContent />
+              {/* Тост монтируется поверх всего Stack-навигатора */}
+              <AchievementToast />
+            </AnimatedFrameProvider>
           </AchievementProvider>
         </EnergyProvider>
       </LangProvider>

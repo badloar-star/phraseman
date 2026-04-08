@@ -1,10 +1,7 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useRef, useMemo } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Canvas, Circle, Path, Skia, Group, Paint, BlurMask, Line } from '@shopify/react-native-skia';
-import {
-  useSharedValue, useDerivedValue, withRepeat, withTiming,
-  withSequence, Easing, cancelAnimation,
-} from 'react-native-reanimated';
+import { useDerivedValue } from 'react-native-reanimated';
 import { getFrameById } from '../constants/avatars';
 import LevelBadge from './LevelBadge';
 
@@ -21,8 +18,24 @@ interface Props {
   animated?: boolean;
 }
 
+// AnimatedFrameProvider and useAnimCtx live in AnimContext.tsx (no Skia imports there)
+import { useAnimCtx } from './AnimContext';
+export { useAnimCtx };
+// Re-export provider for backwards compatibility
+export { AnimatedFrameProvider } from './AnimContext';
+
+// ─── ErrorBoundary ────────────────────────────────────────────────────────────
+class FrameErrorBoundary extends React.Component<
+  { children: React.ReactNode; fallback: React.ReactNode },
+  { hasError: boolean }
+> {
+  constructor(props: any) { super(props); this.state = { hasError: false }; }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  render() { return this.state.hasError ? this.props.fallback : this.props.children; }
+}
+
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function AnimatedFrame({
+function AnimatedFrameInner({
   emoji, image, frameId, size = 44, style,
   fontSize, noAvatar = false, bgColor, animated = true,
 }: Props) {
@@ -36,38 +49,7 @@ export default function AnimatedFrame({
   const cy      = canvasS / 2;
   const R       = outerW / 2 + 2;
 
-  // ── Animation values ────────────────────────────────────────────────────────
-  const t       = useSharedValue(0);
-  const tSlow   = useSharedValue(0);
-  const tMed    = useSharedValue(0);
-  const tFast   = useSharedValue(0);
-  const breathe = useSharedValue(0);
-  const pulse   = useSharedValue(0);
-
-  useEffect(() => {
-    if (!animated) return;
-    t.value     = withRepeat(withTiming(1, { duration: 4000,  easing: Easing.linear }), -1, false);
-    tSlow.value = withRepeat(withTiming(1, { duration: 10000, easing: Easing.linear }), -1, false);
-    tMed.value  = withRepeat(withTiming(1, { duration: 6000,  easing: Easing.linear }), -1, false);
-    tFast.value = withRepeat(withTiming(1, { duration: 2500,  easing: Easing.linear }), -1, false);
-    breathe.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 2000, easing: Easing.inOut(Easing.sin) }),
-        withTiming(0, { duration: 2000, easing: Easing.inOut(Easing.sin) }),
-      ), -1, false
-    );
-    pulse.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 1600, easing: Easing.inOut(Easing.sin) }),
-        withTiming(0.1, { duration: 1600, easing: Easing.inOut(Easing.sin) }),
-      ), -1, false
-    );
-    return () => {
-      cancelAnimation(t); cancelAnimation(tSlow);
-      cancelAnimation(tMed); cancelAnimation(tFast);
-      cancelAnimation(breathe); cancelAnimation(pulse);
-    };
-  }, [animated]);
+  const { t, tSlow, tMed, tFast, breathe, pulse } = useAnimCtx();
 
   const isLevel = emoji && /^\d+$/.test(emoji);
 
@@ -251,22 +233,45 @@ export default function AnimatedFrame({
   );
 }
 
+// Fallback: plain border ring shown when Skia crashes
+function AnimatedFrameFallback({ size = 44, frameId, style }: Partial<Props>) {
+  const frame = getFrameById(frameId ?? 'plain');
+  const BW = Math.max(2, Math.round(size! * 0.055));
+  const outerW = size! + BW * 2;
+  return (
+    <View style={[{ width: outerW + 8, height: outerW + 8, alignItems: 'center', justifyContent: 'center' }, style]}>
+      <View style={{ width: outerW, height: outerW, borderRadius: outerW / 2, borderWidth: BW, borderColor: frame.color }} />
+    </View>
+  );
+}
+
+export default function AnimatedFrame(props: Props) {
+  return (
+    <FrameErrorBoundary fallback={<AnimatedFrameFallback size={props.size} frameId={props.frameId} style={props.style} />}>
+      <AnimatedFrameInner {...props} />
+    </FrameErrorBoundary>
+  );
+}
+
 // ─────────────────────────────────────────────────────────────────────────────
 // EFFECT COMPONENTS
 // ─────────────────────────────────────────────────────────────────────────────
 
 // ── SPROUT ────────────────────────────────────────────────────────────────────
 function SproutEffect({ cx, cy, R, col, t, breathe, animated }: any) {
-  const waveScale   = useDerivedValue(() => 1 + t.value * 0.55, [t]);
   const waveOpacity = useDerivedValue(() => Math.max(0, 0.45 * (1 - t.value)), [t]);
   const glowOpacity = useDerivedValue(() => 0.08 + breathe.value * 0.18, [breathe]);
+  const waveTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { scale: 1 + t.value * 0.55 }, { translateX: -cx }, { translateY: -cy }],
+    [t]
+  );
   return (
     <Group>
       <Circle cx={cx} cy={cy} r={R + 4} color={col} opacity={glowOpacity}>
         <Paint style="fill"><BlurMask blur={8} style="normal" /></Paint>
       </Circle>
       <Circle cx={cx} cy={cy} r={R} color={col} opacity={waveOpacity}
-        transform={[{ scale: waveScale }]}
+        transform={waveTransform}
         style="stroke" strokeWidth={1.5} />
       <Circle cx={cx} cy={cy} r={R} color={col} style="stroke" strokeWidth={2} opacity={0.9} />
     </Group>
@@ -294,16 +299,24 @@ function ArcEffect({ cx, cy, R, col, col2, t, tFast, animated, BW }: any) {
   const rOuter = R + 4;
   const rInner = R - 2;
 
+  const outerTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { rotate: outerAngle.value }, { translateX: -cx }, { translateY: -cy }],
+    [outerAngle]
+  );
+  const innerTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { rotate: innerAngle.value }, { translateX: -cx }, { translateY: -cy }],
+    [innerAngle]
+  );
   const SPARKS = [-30, -15, 0, 15, 30];
   return (
     <Group>
       <Circle cx={cx} cy={cy} r={rOuter + 4} color={col} opacity={glowOp}>
         <Paint style="fill"><BlurMask blur={10} style="normal" /></Paint>
       </Circle>
-      <Group transform={[{ translateX: cx }, { translateY: cy }, { rotate: outerAngle }, { translateX: -cx }, { translateY: -cy }]}>
+      <Group transform={outerTransform}>
         <Circle cx={cx} cy={cy} r={rOuter} color={col} style="stroke" strokeWidth={BW * 0.9} strokeCap="round" opacity={0.92} />
       </Group>
-      <Group transform={[{ translateX: cx }, { translateY: cy }, { rotate: innerAngle }, { translateX: -cx }, { translateY: -cy }]}>
+      <Group transform={innerTransform}>
         <Circle cx={cx} cy={cy} r={rInner} color={col2} style="stroke" strokeWidth={BW * 0.65} strokeCap="round" opacity={0.82} />
       </Group>
       {SPARKS.map((offset, i) => (
@@ -341,26 +354,34 @@ function IceEffect({ cx, cy, R, col, col2, tSlow, tFast, breathe, animated }: an
     return { angle, big, x: cx + Math.cos(angle) * r, y: cy + Math.sin(angle) * r };
   }), [cx, cy, R]);
 
+  const spikesTransform = useDerivedValue(
+    () => [
+      { translateX: cx }, { translateY: cy },
+      { rotate: rotAngle.value },
+      { translateX: -cx }, { translateY: -cy },
+      { translateX: cx }, { translateY: cy },
+      { scale: breatheScl.value },
+      { translateX: -cx }, { translateY: -cy },
+    ],
+    [rotAngle, breatheScl]
+  );
+  const shimmerTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { rotate: shimmerAngle.value }, { translateX: -cx }, { translateY: -cy }],
+    [shimmerAngle]
+  );
   return (
     <Group>
       <Circle cx={cx} cy={cy} r={R + 8} color={col2} opacity={glowOp}>
         <Paint style="fill"><BlurMask blur={12} style="normal" /></Paint>
       </Circle>
       <Circle cx={cx} cy={cy} r={R} color={col} style="stroke" strokeWidth={2} opacity={ringOp} />
-      <Group transform={[
-        { translateX: cx }, { translateY: cy },
-        { rotate: rotAngle },
-        { translateX: -cx }, { translateY: -cy },
-        { translateX: cx }, { translateY: cy },
-        { scale: breatheScl },
-        { translateX: -cx }, { translateY: -cy },
-      ]}>
+      <Group transform={spikesTransform}>
         {iceSpikes.map(({ x, y, big }, i) => (
           <Circle key={i} cx={x} cy={y} r={big ? 5 : 3}
             color={big ? col : col2} opacity={big ? 0.95 : 0.65} />
         ))}
       </Group>
-      <Group transform={[{ translateX: cx }, { translateY: cy }, { rotate: shimmerAngle }, { translateX: -cx }, { translateY: -cy }]}>
+      <Group transform={shimmerTransform}>
         <Circle cx={cx} cy={cy} r={R + 4} color="#FFFFFF" style="stroke" strokeWidth={4}
           opacity={shimmerOp} strokeCap="round" />
       </Group>
@@ -599,6 +620,7 @@ function makeRainbowStrandPath(
   cx: number, cy: number, R: number, avR: number,
   tVal: number, strandIdx: number, strands: number,
 ): ReturnType<typeof Skia.Path.Make> {
+  'worklet';
   const STEPS = 48;
   const rotSpeed = 0.55;
   const p = Skia.Path.Make();
@@ -764,6 +786,10 @@ function AtomEffect({ cx, cy, R, col, col2, t, tSlow, breathe, animated }: any) 
   const e3 = ePos(orbit3, 120);
 
   const outerDots = useMemo(() => [0, Math.PI, Math.PI / 2], []);
+  const atomOuterTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { rotate: outerRot.value }, { translateX: -cx }, { translateY: -cy }],
+    [outerRot]
+  );
 
   return (
     <Group>
@@ -774,7 +800,7 @@ function AtomEffect({ cx, cy, R, col, col2, t, tSlow, breathe, animated }: any) 
       <Circle cx={e1.x} cy={e1.y} r={5} color={col} /><Circle cx={e1.x} cy={e1.y} r={2.5} color="#FFFFFF" />
       <Circle cx={e2.x} cy={e2.y} r={4.5} color={col2} /><Circle cx={e2.x} cy={e2.y} r={2} color="#FFFFFF" />
       <Circle cx={e3.x} cy={e3.y} r={4} color={col} /><Circle cx={e3.x} cy={e3.y} r={2} color="#FFFFFF" />
-      <Group transform={[{ translateX: cx }, { translateY: cy }, { rotate: outerRot }, { translateX: -cx }, { translateY: -cy }]}>
+      <Group transform={atomOuterTransform}>
         <Circle cx={cx} cy={cy} r={R + 10} color={col2} style="stroke" strokeWidth={1} opacity={0.30} />
         {outerDots.map((a, i) => (
           <Circle key={i}
@@ -837,6 +863,10 @@ function WebEffect({ cx, cy, R, col, col2, tSlow, breathe, animated }: any) {
 // ── HEX ───────────────────────────────────────────────────────────────────────
 function HexEffect({ cx, cy, R, col, col2, tSlow, t, animated }: any) {
   const rot = useDerivedValue(() => tSlow.value * Math.PI * 2, [tSlow]);
+  const hexGroupTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { rotate: rot.value }, { translateX: -cx }, { translateY: -cy }],
+    [rot]
+  );
 
   const hexPaths = useMemo(() => Array.from({ length: 8 }).map((_, i) => {
     const angle = (i / 8) * Math.PI * 2;
@@ -855,7 +885,7 @@ function HexEffect({ cx, cy, R, col, col2, tSlow, t, animated }: any) {
   }), [cx, cy, R]);
 
   return (
-    <Group transform={[{ translateX: cx }, { translateY: cy }, { rotate: rot }, { translateX: -cx }, { translateY: -cy }]}>
+    <Group transform={hexGroupTransform}>
       <Circle cx={cx} cy={cy} r={R} color={col2} style="stroke" strokeWidth={1} opacity={0.30} />
       {hexPaths.map((path, i) => (
         <HexCell key={i} path={path} col={col} t={t} idx={i} />
@@ -1252,16 +1282,25 @@ function SolarCycleEffect({ cx, cy, R, col, col2, tSlow, t, animated }: any) {
     i,
   })), [cx, cy, R]);
 
+  const solarOuterTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { rotate: outerRot.value }, { translateX: -cx }, { translateY: -cy }],
+    [outerRot]
+  );
+  const solarInnerTransform = useDerivedValue(
+    () => [{ translateX: cx }, { translateY: cy }, { rotate: innerRot.value }, { translateX: -cx }, { translateY: -cy }],
+    [innerRot]
+  );
+
   return (
     <Group>
       <Circle cx={cx} cy={cy} r={R + 6} color={col} style="stroke" strokeWidth={1} opacity={outerOp} />
-      <Group transform={[{ translateX: cx }, { translateY: cy }, { rotate: outerRot }, { translateX: -cx }, { translateY: -cy }]}>
+      <Group transform={solarOuterTransform}>
         {outerDots.map(({ x, y, big, i }) => (
           <SolarDot key={i} cx={x} cy={y} big={big} col={col} col2={col2} idx={i} signalIdx={signalIdx} />
         ))}
       </Group>
       <Circle cx={cx} cy={cy} r={R - 8} color={col2} style="stroke" strokeWidth={1} opacity={0.20} />
-      <Group transform={[{ translateX: cx }, { translateY: cy }, { rotate: innerRot }, { translateX: -cx }, { translateY: -cy }]}>
+      <Group transform={solarInnerTransform}>
         {Array.from({ length: 6 }).map((_, i) => (
           <SolarInnerDot key={i} cx={cx} cy={cy} R={R} col={col} t={t} idx={i} />
         ))}

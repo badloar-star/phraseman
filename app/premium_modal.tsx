@@ -157,7 +157,7 @@ const formatDate = (ts: number, lang: string) =>
 export default function PremiumModal() {
   const router = useRouter();
   const goBack = () => {
-    if (router.canGoBack()) goBack();
+    if (router.canGoBack()) router.back();
     else router.replace('/(tabs)/home' as any);
   };
   const params = useLocalSearchParams<{

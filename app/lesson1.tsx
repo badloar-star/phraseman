@@ -687,12 +687,6 @@ export default function LessonScreen() {
     return () => blink.stop();
   }, [selectedWords.length]);
 
-  // CRITICAL: Ensure hardMode is always false to keep word buttons visible
-  useEffect(() => {
-    if (settings.hardMode) {
-      setSettings(prev => ({ ...prev, hardMode: false }));
-    }
-  }, [settings.hardMode]);
 
   useEffect(() => {
     loadData();
@@ -807,7 +801,7 @@ export default function LessonScreen() {
       setShuffled(getPerWordDistracts(startPhrase, 0));
 
       if (ss) {
-        const loaded = { ...DEFAULT_SETTINGS, ...JSON.parse(ss), hardMode: false };
+        const loaded = { ...DEFAULT_SETTINGS, ...JSON.parse(ss) };
         setSettings(loaded);
       }
 

@@ -23,7 +23,6 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
     { base: 'eat', past: 'ate', pp: 'eaten', ru: 'Есть', uk: 'Їсти' },
     { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
     { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
-    { base: 'live', past: 'lived', pp: 'lived', ru: 'Жить', uk: 'Жити' },
     { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити' },
     { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
     { base: 'drive', past: 'drove', pp: 'driven', ru: 'Водить', uk: 'Водити' },

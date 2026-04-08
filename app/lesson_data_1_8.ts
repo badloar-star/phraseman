@@ -1668,13 +1668,14 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson3_phrase_34',
-    english: 'She uses internet',
+    english: 'She uses the Internet',
     russian: 'Она пользуется интернетом',
     ukrainian: 'Вона користується інтернетом',
     words: [
       { text: 'She', correct: 'She', distractors: ['the', 'he', 'we', 'see', 'her'], category: 'pronoun' },
       { text: 'uses', correct: 'uses', distractors: ['user', 'fuses', 'loses', 'muses', 'used'], category: 'verb' },
-      { text: 'internet', correct: 'internet', distractors: ['internal', 'interval', 'interest', 'interact', 'intranet'], category: 'noun' },
+      { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'those'], category: 'article' },
+      { text: 'Internet', correct: 'Internet', distractors: ['internal', 'interval', 'interest', 'interact', 'intranet'], category: 'noun' },
     ],
   },
   {

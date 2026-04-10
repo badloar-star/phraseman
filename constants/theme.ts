@@ -300,7 +300,7 @@ export const getXPProgress = (totalXP: number) => {
   const level = getLevelFromXP(totalXP);
   const xpForThis = TOTAL_XP_FOR_LEVEL(level);
   const xpNeeded = LEVEL_XP(level);
-  const xpInLevel = totalXP - xpForThis;
+  const xpInLevel = Math.round(totalXP - xpForThis);
   const progress = level >= MAX_LEVEL ? 1 : xpInLevel / xpNeeded;
   return { level, xpInLevel, xpNeeded, progress };
 };

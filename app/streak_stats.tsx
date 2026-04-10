@@ -556,7 +556,7 @@ export default function StreakStats() {
                     <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
                       {isUK ? `Рівень ${level}` : `Уровень ${level}`}
                     </Text>
-                    <Text style={{ color: '#D4A017', fontSize: f.label, fontWeight: '600', marginTop: 2 }}>{totalXP} XP</Text>
+                    <Text style={{ color: '#D4A017', fontSize: f.label, fontWeight: '600', marginTop: 2 }}>{Math.round(totalXP)} XP</Text>
                   </View>
                 </View>
                 <View style={{ height: 7, backgroundColor: t.bgSurface, borderRadius: 4, overflow: 'hidden', marginBottom: 4 }}>

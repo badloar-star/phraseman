@@ -410,8 +410,8 @@ export default function DiagnosticTest() {
     if (autoAdvance) setTimeout(() => advance(ns), 1500);
   };
 
-  const q = questions[idx];
-  const qOpts = (isUK && q.optsUK) ? q.optsUK : q.opts;
+  const q = questions[idx] ?? questions[0];
+  const qOpts = (isUK && q?.optsUK) ? q.optsUK : q?.opts ?? [];
   const result = getResult(score, questions, answersRef.current);
   const barColor = timerAnim.interpolate({
     inputRange: [0, 0.3, 1], outputRange: [t.wrong, t.bgSurface, t.textSecond],

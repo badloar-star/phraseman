@@ -345,6 +345,7 @@ export default function FlashcardsScreen() {
   const backInputRef     = useRef<any>(null);
   const practiceInputRef = useRef<any>(null);
   const flatListRef      = useRef<any>(null);
+  const isSwitchingRef   = useRef(false);
 
   // Practice state
   const [practiceQueue,  setPracticeQueue]  = useState<CardItem[]>([]);
@@ -409,6 +410,9 @@ export default function FlashcardsScreen() {
     setHideEnHint(false);
     flipAnim.setValue(0);
     cardFlipAnims.current.forEach(a => a.setValue(0));
+    // Reset flip-back animation state to prevent stale callbacks after category switch
+    isAnimatingFlipBack.current = false;
+    pendingIndexRef.current = null;
   }, [activeCat, savedCards, customCards]);
 
   // ── Apply filter ───────────────────────────────────────────────────────────
@@ -459,6 +463,8 @@ export default function FlashcardsScreen() {
   // ── Category switch with slide animation ───────────────────────────────────
   const switchCategory = (catId: CategoryId) => {
     if (catId === activeCat) return;
+    if (isSwitchingRef.current) return;
+    isSwitchingRef.current = true;
 
     const leavingSaved = activeCat === 'saved';
     const enteringSaved = catId === 'saved';
@@ -478,7 +484,9 @@ export default function FlashcardsScreen() {
     Animated.timing(slideAnim, { toValue: -SCREEN_W, duration: 200, useNativeDriver: true }).start(() => {
       setActiveCat(catId);
       slideAnim.setValue(SCREEN_W);
-      Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, friction: 8, tension: 80 }).start();
+      Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, friction: 8, tension: 80 }).start(() => {
+        isSwitchingRef.current = false;
+      });
 
       if (enteringSaved) {
         // Start off-screen to the right, animate filter in first, then delete

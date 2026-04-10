@@ -727,9 +727,14 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           <Text style={{ color:t.textPrimary, fontSize: f.numLg, fontWeight:'700', marginBottom:10 }} adjustsFontSizeToFit numberOfLines={1}>{s.quizzes.done}</Text>
           <Text style={{ color:t.textPrimary, fontSize: f.h1, marginBottom:4 }}>{right} / {total}</Text>
           <Text style={{ color:t.textSecond, fontSize: f.numLg + 8, fontWeight:'700', marginBottom:8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
-          <Text style={{ color:t.correct, fontSize: f.h2, fontWeight:'600', marginBottom:16 }}>
-            +{Math.round(score * 10) / 10} {lang==='uk'?'досвіду':'опыта'}
+          <Text style={{ color:t.correct, fontSize: f.h2, fontWeight:'600', marginBottom: bonusXP > 0 ? 4 : 16 }}>
+            +{Math.round(score)} {lang==='uk'?'досвіду':'опыта'}
           </Text>
+          {bonusXP > 0 && (
+            <Text style={{ color:'#D4A017', fontSize: f.body, fontWeight:'600', marginBottom:16 }}>
+              +{Math.round(bonusXP)} {lang==='uk'?'бонусного досвіду':'бонусного опыта'} 🎁
+            </Text>
+          )}
           {/* Уровень игрока */}
           {(() => {
             const { level: lv, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP + score);
@@ -743,7 +748,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                   <View style={{ height:5, backgroundColor:t.bgSurface, borderRadius:3, overflow:'hidden', marginTop:5 }}>
                     <View style={{ height:'100%', width:`${Math.round(progress*100)}%` as any, backgroundColor:'#D4A017', borderRadius:3 }} />
                   </View>
-                  <Text style={{ color:t.textMuted, fontSize:f.label, marginTop:3 }}>{xpInLevel} / {xpNeeded} XP</Text>
+                  <Text style={{ color:t.textMuted, fontSize:f.label, marginTop:3 }}>{Math.round(xpInLevel)} / {xpNeeded} XP</Text>
                 </View>
               </View>
             );

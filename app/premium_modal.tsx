@@ -281,7 +281,18 @@ export default function PremiumModal() {
     }
     setPurchasing(true);
     try {
-      const { customerInfo } = await Purchases.purchasePackage(pkg);
+      // На Android для free trial нужно явно выбрать subscriptionOption с триальной фазой
+      if (__DEV__) console.log('[RC] subscriptionOptions:', JSON.stringify(pkg.product.subscriptionOptions?.map(o => ({ id: o.id, freePhase: o.freePhase }))));
+      const trialOption = !trialUsed && plan === 'yearly'
+        ? pkg.product.subscriptionOptions?.find(o =>
+            o.freePhase != null || o.phases?.some((ph: { periodDuration?: string; price?: { amountMicros: number } }) => ph.price?.amountMicros === 0)
+          )
+        : undefined;
+      if (__DEV__) console.log('[RC] trialOption found:', trialOption?.id ?? 'none');
+
+      const { customerInfo } = trialOption
+        ? await Purchases.purchaseSubscriptionOption(trialOption)
+        : await Purchases.purchasePackage(pkg);
       // purchasePackage не выбросил исключение → покупка авторизована Apple/Google.
       // Активируем сразу, не дожидаясь синхронизации RC (sandbox может запаздывать).
       // RC-статус используем как дополнительную проверку, но не как условие активации.

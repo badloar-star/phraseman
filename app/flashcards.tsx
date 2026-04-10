@@ -1355,7 +1355,7 @@ const st = StyleSheet.create({
   progressFill: { height:'100%', borderRadius:3 },
   cardArea:     { paddingHorizontal:0, justifyContent:'center', alignItems:'center' },
   cardTouchable:{ width:'100%', height:CARD_H },
-  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:1, padding:28, alignItems:'center', justifyContent:'center', backfaceVisibility:'hidden', shadowColor:'#000', shadowOffset:{width:0,height:6}, shadowOpacity:0.15, shadowRadius:10, elevation:5 },
+  card:         { position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:20, borderWidth:1, padding:28, alignItems:'center', justifyContent:'center', shadowColor:'#000', shadowOffset:{width:0,height:6}, shadowOpacity:0.15, shadowRadius:10, elevation:5 },
   sourceBadge:  { position:'absolute', top:18, left:18, paddingHorizontal:10, paddingVertical:4, borderRadius:20, borderWidth:1 },
   sourceBadgeText: { fontSize:11, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 },
   swipeHint:    { flexDirection:'row', alignItems:'center', justifyContent:'space-between', paddingHorizontal:32, paddingTop:8, paddingBottom:32 },

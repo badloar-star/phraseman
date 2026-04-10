@@ -395,7 +395,7 @@ function IceEffect({ cx, cy, R, col, col2, tSlow, tFast, breathe, animated }: an
 
 // ── PLASMA ────────────────────────────────────────────────────────────────────
 function PlasmaEffect({ cx, cy, R, col, col2, t, tFast, animated, BW }: any) {
-  const SEGS = 60;
+  const SEGS = 24;
   const node0Angle = useDerivedValue(() => tFast.value * Math.PI * 2 * 1.8, [tFast]);
   const node1Angle = useDerivedValue(() => tFast.value * Math.PI * 2 * 1.3 + Math.PI, [tFast]);
   const node2Angle = useDerivedValue(() => tFast.value * Math.PI * 2 * 2.0 + Math.PI * 0.6, [tFast]);
@@ -404,8 +404,10 @@ function PlasmaEffect({ cx, cy, R, col, col2, t, tFast, animated, BW }: any) {
   const midRingOp  = useDerivedValue(() => 0.20 + Math.sin(t.value * Math.PI * 3) * 0.08, [t]);
   const hotOp      = useDerivedValue(() => 0.45 + Math.sin(t.value * Math.PI * 7) * 0.28, [t]);
 
+  const jitterPathRef = useRef(Skia.Path.Make());
   const jitterPath = useDerivedValue(() => {
-    const path = Skia.Path.Make();
+    const path = jitterPathRef.current;
+    path.reset();
     for (let i = 0; i <= SEGS; i++) {
       const angle = (i / SEGS) * Math.PI * 2;
       const noise = Math.sin(angle * 7 + t.value * Math.PI * 4) * 2.5
@@ -454,13 +456,15 @@ function MagnetLine({ cx, cy, R, col, tSlow, breathe, baseAngle, curveDir, lenFr
   const rotFrac = useDerivedValue(() => tSlow.value * Math.PI * 2 * 0.28, [tSlow]);
   const lineAngle = useDerivedValue(() => baseAngle + rotFrac.value, [rotFrac]);
 
+  const linePathRef = useRef(Skia.Path.Make());
   const linePath = useDerivedValue(() => {
+    const p = linePathRef.current;
+    p.reset();
     const bv = 0.88 + breathe.value * 0.12;
     const sx = cx + Math.cos(lineAngle.value) * r0;
     const sy = cy + Math.sin(lineAngle.value) * r0;
     const ex = cx + Math.cos(lineAngle.value + curveDir * 0.18) * (r0 + len * bv);
     const ey = cy + Math.sin(lineAngle.value + curveDir * 0.18) * (r0 + len * bv);
-    const p = Skia.Path.Make();
     p.moveTo(sx, sy);
     p.lineTo(ex, ey);
     return p;
@@ -541,11 +545,13 @@ function VortexDot({ cx, cy, R, t, speed, offset, rOff, trailIdx, trail, color }
 
 // ── DNA ───────────────────────────────────────────────────────────────────────
 function DnaEffect({ cx, cy, R, col, col2, t, animated, strands, avR }: any) {
-  const STEPS = 48;
+  const STEPS = 20;
   const rotSpeed = 0.55;
 
+  const pathARef = useRef(Skia.Path.Make());
   const pathA = useDerivedValue(() => {
-    const p = Skia.Path.Make();
+    const p = pathARef.current;
+    p.reset();
     const rot = t.value * Math.PI * 2 * rotSpeed;
     for (let si = 0; si < strands; si++) {
       const off = (si / strands) * Math.PI * 2;
@@ -563,8 +569,10 @@ function DnaEffect({ cx, cy, R, col, col2, t, animated, strands, avR }: any) {
     return p;
   }, [t]);
 
+  const pathBRef = useRef(Skia.Path.Make());
   const pathB = useDerivedValue(() => {
-    const p = Skia.Path.Make();
+    const p = pathBRef.current;
+    p.reset();
     const rot = t.value * Math.PI * 2 * rotSpeed;
     for (let si = 0; si < strands; si++) {
       const off = (si / strands) * Math.PI * 2;
@@ -582,8 +590,10 @@ function DnaEffect({ cx, cy, R, col, col2, t, animated, strands, avR }: any) {
     return p;
   }, [t]);
 
+  const bridgePathRef = useRef(Skia.Path.Make());
   const bridgePath = useDerivedValue(() => {
-    const p = Skia.Path.Make();
+    const p = bridgePathRef.current;
+    p.reset();
     const rot = t.value * Math.PI * 2 * rotSpeed;
     for (let si = 0; si < strands; si++) {
       const off = (si / strands) * Math.PI * 2;
@@ -621,13 +631,14 @@ function DnaEffect({ cx, cy, R, col, col2, t, animated, strands, avR }: any) {
 const RAINBOW_COLORS = ['#FF4466', '#FFD700', '#00CCFF'];
 
 function makeRainbowStrandPath(
+  p: ReturnType<typeof Skia.Path.Make>,
   cx: number, cy: number, R: number, avR: number,
   tVal: number, strandIdx: number, strands: number,
 ): ReturnType<typeof Skia.Path.Make> {
   'worklet';
   const STEPS = 48;
   const rotSpeed = 0.55;
-  const p = Skia.Path.Make();
+  p.reset();
   const rot = tVal * Math.PI * 2 * rotSpeed;
   const off = (strandIdx / strands) * Math.PI * 2;
   for (let i = 0; i < STEPS; i++) {
@@ -652,9 +663,12 @@ function makeRainbowStrandPath(
 
 function RainbowDnaEffect({ cx, cy, R, t, tSlow, animated, avR }: any) {
   const STRANDS = RAINBOW_COLORS.length;
-  const p0 = useDerivedValue(() => makeRainbowStrandPath(cx, cy, R, avR, t.value, 0, STRANDS), [t]);
-  const p1 = useDerivedValue(() => makeRainbowStrandPath(cx, cy, R, avR, t.value, 1, STRANDS), [t]);
-  const p2 = useDerivedValue(() => makeRainbowStrandPath(cx, cy, R, avR, t.value, 2, STRANDS), [t]);
+  const p0Ref = useRef(Skia.Path.Make());
+  const p1Ref = useRef(Skia.Path.Make());
+  const p2Ref = useRef(Skia.Path.Make());
+  const p0 = useDerivedValue(() => makeRainbowStrandPath(p0Ref.current, cx, cy, R, avR, t.value, 0, STRANDS), [t]);
+  const p1 = useDerivedValue(() => makeRainbowStrandPath(p1Ref.current, cx, cy, R, avR, t.value, 1, STRANDS), [t]);
+  const p2 = useDerivedValue(() => makeRainbowStrandPath(p2Ref.current, cx, cy, R, avR, t.value, 2, STRANDS), [t]);
   const op = useDerivedValue(() => 0.75 + Math.sin(tSlow.value * Math.PI * 2) * 0.15, [tSlow]);
 
   return (
@@ -684,8 +698,10 @@ function RunesEffect({ cx, cy, R, col, col2, tSlow, tMed, animated }: any) {
   const rot2 = useDerivedValue(() => -tMed.value * Math.PI * 2 * 0.6, [tMed]);
   const ringOp = useDerivedValue(() => 0.25 + Math.sin(tSlow.value * Math.PI * 2) * 0.15, [tSlow]);
 
+  const runesPath1Ref = useRef(Skia.Path.Make());
   const runesPath1 = useDerivedValue(() => {
-    const p = Skia.Path.Make();
+    const p = runesPath1Ref.current;
+    p.reset();
     for (let i = 0; i < N; i++) {
       const angle = (i / N) * Math.PI * 2 + rot1.value;
       const rx = cx + Math.cos(angle) * (R + 2);
@@ -707,8 +723,10 @@ function RunesEffect({ cx, cy, R, col, col2, tSlow, tMed, animated }: any) {
     return p;
   }, [tSlow]);
 
+  const runesPath2Ref = useRef(Skia.Path.Make());
   const runesPath2 = useDerivedValue(() => {
-    const p = Skia.Path.Make();
+    const p = runesPath2Ref.current;
+    p.reset();
     for (let i = 0; i < N; i++) {
       const angle = (i / N) * Math.PI * 2 + Math.PI / N + rot2.value;
       const rx = cx + Math.cos(angle) * (R + 12);
@@ -831,8 +849,10 @@ function WebEffect({ cx, cy, R, col, col2, tSlow, breathe, animated }: any) {
   const rot = useDerivedValue(() => tSlow.value * Math.PI * 2 * 0.5, [tSlow]);
   const outerOp = useDerivedValue(() => 0.22 + breathe.value * 0.12, [breathe]);
 
+  const webPathRef = useRef(Skia.Path.Make());
   const webPath = useDerivedValue(() => {
-    const p = Skia.Path.Make();
+    const p = webPathRef.current;
+    p.reset();
     const N = 5;
     for (let i = 0; i < N; i++) {
       const angle = (i / N) * Math.PI * 2 - Math.PI / 2 + rot.value;
@@ -927,9 +947,14 @@ function GeometryEffect({ cx, cy, R, col, col2, t, tSlow, tMed, animated }: any)
   const negTMed = useDerivedValue(() => -tMed.value, [tMed]);
   const negTSlowHalf = useDerivedValue(() => -tSlow.value * 0.5, [tSlow]);
 
-  function polyPath(n: number, r: number, angleOffset: number, rotVal: any) {
+  const triRef = useRef(Skia.Path.Make());
+  const sqRef = useRef(Skia.Path.Make());
+  const pentRef = useRef(Skia.Path.Make());
+
+  function polyPath(pathRef: React.MutableRefObject<ReturnType<typeof Skia.Path.Make>>, n: number, r: number, angleOffset: number, rotVal: any) {
     return useDerivedValue(() => {
-      const p = Skia.Path.Make();
+      const p = pathRef.current;
+      p.reset();
       for (let i = 0; i <= n; i++) {
         const angle = (i / n) * Math.PI * 2 + angleOffset + rotVal.value * Math.PI * 2;
         const x = cx + Math.cos(angle) * r;
@@ -941,9 +966,9 @@ function GeometryEffect({ cx, cy, R, col, col2, t, tSlow, tMed, animated }: any)
     }, [rotVal]);
   }
 
-  const tri  = polyPath(3, R * 0.90, -Math.PI / 2, t);
-  const sq   = polyPath(4, R * 0.85, -Math.PI / 4, negTMed);
-  const pent = polyPath(5, R * 0.92, -Math.PI / 2, negTSlowHalf);
+  const tri  = polyPath(triRef, 3, R * 0.90, -Math.PI / 2, t);
+  const sq   = polyPath(sqRef, 4, R * 0.85, -Math.PI / 4, negTMed);
+  const pent = polyPath(pentRef, 5, R * 0.92, -Math.PI / 2, negTSlowHalf);
   const outerRingOp = useDerivedValue(() => 0.22 + Math.sin(t.value * Math.PI * 2) * 0.08, [t]);
 
   const triAngles = useMemo(() => Array.from({ length: 3 }).map((_, i) => (i / 3) * Math.PI * 2 - Math.PI / 2), []);
@@ -980,8 +1005,10 @@ function NeuralEffect({ cx, cy, R, col, col2, tSlow, t, animated }: any) {
     return result;
   }, []);
 
+  const edgePathRef = useRef(Skia.Path.Make());
   const edgePath = useDerivedValue(() => {
-    const p = Skia.Path.Make();
+    const p = edgePathRef.current;
+    p.reset();
     const r = rot.value;
     const nodes = nodeAngles.map(a => ({
       x: cx + Math.cos(a + r) * R,
@@ -1032,9 +1059,15 @@ function AuroraStarEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: an
   const tFast16 = useDerivedValue(() => t.value * 1.6, [t]);
   const negTSlow05 = useDerivedValue(() => -tSlow.value * 0.5, [tSlow]);
 
-  function triPath(rotVal: any, up: boolean) {
+  const auroraTriRef1 = useRef(Skia.Path.Make());
+  const auroraTriRef2 = useRef(Skia.Path.Make());
+  const auroraTriRef3 = useRef(Skia.Path.Make());
+  const auroraTriRef4 = useRef(Skia.Path.Make());
+
+  function triPath(pathRef: React.MutableRefObject<ReturnType<typeof Skia.Path.Make>>, rotVal: any, up: boolean) {
     return useDerivedValue(() => {
-      const p = Skia.Path.Make();
+      const p = pathRef.current;
+      p.reset();
       const base = up ? -Math.PI / 2 : Math.PI / 2;
       for (let i = 0; i <= 3; i++) {
         const angle = (i / 3) * Math.PI * 2 + base + rotVal.value * Math.PI * 2;
@@ -1047,10 +1080,10 @@ function AuroraStarEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: an
     }, [rotVal]);
   }
 
-  const tri1 = triPath(t, true);
-  const tri2 = triPath(negTMed083, false);
-  const tri3 = triPath(tFast16, true);
-  const tri4 = triPath(negTSlow05, false);
+  const tri1 = triPath(auroraTriRef1, t, true);
+  const tri2 = triPath(auroraTriRef2, negTMed083, false);
+  const tri3 = triPath(auroraTriRef3, tFast16, true);
+  const tri4 = triPath(auroraTriRef4, negTSlow05, false);
 
   const ringOp = useDerivedValue(() => 0.22 + Math.sin(tSlow.value * Math.PI * 2) * 0.12, [tSlow]);
   const innerRingOp = useDerivedValue(() => ringOp.value * 0.55, [ringOp]);
@@ -1091,9 +1124,14 @@ function CrystalEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: any) 
   const negTMed071 = useDerivedValue(() => -tMed.value * 0.71, [tMed]);
   const tSlow038 = useDerivedValue(() => tSlow.value * 0.38, [tSlow]);
 
-  function squarePath(r: number, rotVal: any) {
+  const crystalSqRef1 = useRef(Skia.Path.Make());
+  const crystalSqRef2 = useRef(Skia.Path.Make());
+  const crystalSqRef3 = useRef(Skia.Path.Make());
+
+  function squarePath(pathRef: React.MutableRefObject<ReturnType<typeof Skia.Path.Make>>, r: number, rotVal: any) {
     return useDerivedValue(() => {
-      const p = Skia.Path.Make();
+      const p = pathRef.current;
+      p.reset();
       for (let i = 0; i <= 4; i++) {
         const angle = (i / 4) * Math.PI * 2 - Math.PI / 4 + rotVal.value * Math.PI * 2;
         const x = cx + Math.cos(angle) * r;
@@ -1105,9 +1143,9 @@ function CrystalEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: any) 
     }, [rotVal]);
   }
 
-  const sq1 = squarePath(R * 0.95, t);
-  const sq2 = squarePath(R * 0.78, negTMed071);
-  const sq3 = squarePath(R * 0.60, tSlow038);
+  const sq1 = squarePath(crystalSqRef1, R * 0.95, t);
+  const sq2 = squarePath(crystalSqRef2, R * 0.78, negTMed071);
+  const sq3 = squarePath(crystalSqRef3, R * 0.60, tSlow038);
 
   const outerOp = useDerivedValue(() => 0.20 + Math.sin(t.value * Math.PI * 2) * 0.10, [t]);
   const innerOp = useDerivedValue(() => 0.15 + Math.sin(tMed.value * Math.PI * 2) * 0.08, [tMed]);
@@ -1176,9 +1214,14 @@ function DoubleSquareEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: 
   const negTMed071 = useDerivedValue(() => -tMed.value * 0.71, [tMed]);
   const t045 = useDerivedValue(() => t.value * 0.45, [t]);
 
-  function sqPath(r: number, rotVal: any) {
+  const dblSqRef1 = useRef(Skia.Path.Make());
+  const dblSqRef2 = useRef(Skia.Path.Make());
+  const dblSqRef3 = useRef(Skia.Path.Make());
+
+  function sqPath(pathRef: React.MutableRefObject<ReturnType<typeof Skia.Path.Make>>, r: number, rotVal: any) {
     return useDerivedValue(() => {
-      const p = Skia.Path.Make();
+      const p = pathRef.current;
+      p.reset();
       for (let i = 0; i <= 4; i++) {
         const angle = (i / 4) * Math.PI * 2 - Math.PI / 4 + rotVal.value * Math.PI * 2;
         const x = cx + Math.cos(angle) * r;
@@ -1190,9 +1233,9 @@ function DoubleSquareEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: 
     }, [rotVal]);
   }
 
-  const sq1 = sqPath(R * 0.95, tSlow);
-  const sq2 = sqPath(R * 0.72, negTMed071);
-  const sq3 = sqPath(R * 0.52, t045);
+  const sq1 = sqPath(dblSqRef1, R * 0.95, tSlow);
+  const sq2 = sqPath(dblSqRef2, R * 0.72, negTMed071);
+  const sq3 = sqPath(dblSqRef3, R * 0.52, t045);
 
   const outerOp = useDerivedValue(() => 0.20 + Math.sin(tSlow.value * Math.PI * 2) * 0.08, [tSlow]);
   const sq1Angles = useMemo(() => Array.from({ length: 4 }).map((_, i) => (i / 4) * Math.PI * 2 - Math.PI / 4), []);
@@ -1228,9 +1271,15 @@ function TripleTriEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: any
   const t15 = useDerivedValue(() => t.value * 1.5, [t]);
   const negTSlow05 = useDerivedValue(() => -tSlow.value * 0.5, [tSlow]);
 
-  function triPath(r: number, rotVal: any, up: boolean) {
+  const tripleTriRef1 = useRef(Skia.Path.Make());
+  const tripleTriRef2 = useRef(Skia.Path.Make());
+  const tripleTriRef3 = useRef(Skia.Path.Make());
+  const tripleTriRef4 = useRef(Skia.Path.Make());
+
+  function triPath(pathRef: React.MutableRefObject<ReturnType<typeof Skia.Path.Make>>, r: number, rotVal: any, up: boolean) {
     return useDerivedValue(() => {
-      const p = Skia.Path.Make();
+      const p = pathRef.current;
+      p.reset();
       const base = up ? -Math.PI / 2 : Math.PI / 2;
       for (let i = 0; i <= 3; i++) {
         const angle = (i / 3) * Math.PI * 2 + base + rotVal.value * Math.PI * 2;
@@ -1243,10 +1292,10 @@ function TripleTriEffect({ cx, cy, R, col, col2, t, tMed, tSlow, animated }: any
     }, [rotVal]);
   }
 
-  const tri1 = triPath(R * 0.90, tSlow, true);
-  const tri2 = triPath(R * 0.90, negTMed083, false);
-  const tri3 = triPath(R * 0.65, t15, true);
-  const tri4 = triPath(R * 0.65, negTSlow05, false);
+  const tri1 = triPath(tripleTriRef1, R * 0.90, tSlow, true);
+  const tri2 = triPath(tripleTriRef2, R * 0.90, negTMed083, false);
+  const tri3 = triPath(tripleTriRef3, R * 0.65, t15, true);
+  const tri4 = triPath(tripleTriRef4, R * 0.65, negTSlow05, false);
 
   const innerOp = useDerivedValue(() => 0.18 + Math.sin(tMed.value * Math.PI * 2) * 0.08, [tMed]);
 

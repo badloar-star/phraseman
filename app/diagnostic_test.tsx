@@ -376,7 +376,8 @@ export default function DiagnosticTest() {
     if (timerRef.current) clearInterval(timerRef.current);
     const q = questions[idx];
     // Normalize: lowercase, trim, strip trailing punctuation (? ! .) so typing "?" doesn't cause error
-    const expectedAnswer = q.answer || q.opts[q.correct];
+    const expectedAnswer = q?.answer || q?.opts?.[q.correct];
+    if (!expectedAnswer) { locked.current = false; return; }
     const isRight = isCorrectAnswer(typedAnswer, expectedAnswer);
     answersRef.current = [...answersRef.current, isRight];
     const ns = isRight ? score + 1 : score;
@@ -555,7 +556,7 @@ export default function DiagnosticTest() {
   const isTyping = q.type === 'type';
   const isBuilding = q.type === 'build';
   const isAnswered = chosen !== null || typeSubmitted || buildSubmitted;
-  const correctAnswer = isTyping ? (q.answer || q.opts[q.correct]) : '';
+  const correctAnswer = isTyping ? (q?.answer || q?.opts?.[q.correct] || '') : '';
 
   return (
     <ScreenGradient>

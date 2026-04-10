@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { AppState } from 'react-native';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -48,11 +49,14 @@ function formatMs(ms: number): string {
 }
 
 async function readUnlimited(): Promise<boolean> {
-  const [prem, tester, noLimits] = await Promise.all([
+  const [prem, tester, noLimits, noPremium] = await Promise.all([
     AsyncStorage.getItem('premium_active'),
     AsyncStorage.getItem('tester_energy_disabled'),
     AsyncStorage.getItem('tester_no_limits'),
+    AsyncStorage.getItem('tester_no_premium'),
   ]);
+  // tester_no_premium overrides everything — force non-premium mode
+  if (noPremium === 'true') return false;
   return prem === 'true' || tester === 'true' || noLimits === 'true';
 }
 
@@ -102,6 +106,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       const wasUnlimited = isUnlimitedRef.current;
       isUnlimitedRef.current = unlimited;
       setIsUnlimited(unlimited);
+
+      // Premium removed — clear any pending restore animation timers
+      if (wasUnlimited && !unlimited) {
+        restoreTimersRef.current.forEach(t => clearTimeout(t));
+        restoreTimersRef.current = [];
+        setRestoringPremium(false);
+      }
 
       if (unlimited) {
         // Читаем реальное сохранённое значение энергии (не ref — он может быть MAX при монтировании)
@@ -158,10 +169,30 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // Load on mount
   useEffect(() => { load(); }, [load]);
 
-  // Poll every 30s for recovery (catches background time passing)
+  // Poll every 30s for recovery — paused while in background to prevent AsyncStorage deadlocks
   useEffect(() => {
-    const id = setInterval(load, 30_000);
-    return () => clearInterval(id);
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+
+    const startInterval = () => {
+      if (intervalId) clearInterval(intervalId);
+      intervalId = setInterval(load, 30_000);
+    };
+    const stopInterval = () => {
+      if (intervalId) { clearInterval(intervalId); intervalId = null; }
+    };
+
+    startInterval();
+
+    const sub = AppState.addEventListener('change', state => {
+      if (state === 'active') {
+        load();        // reload once on foreground resume
+        startInterval(); // restart polling
+      } else {
+        stopInterval(); // stop polling while in background
+      }
+    });
+
+    return () => { stopInterval(); sub.remove(); };
   }, [load]);
 
   // Countdown every second when energy is not full

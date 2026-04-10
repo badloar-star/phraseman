@@ -16,7 +16,7 @@ import { scheduleMonthlyRecapNotification, schedulePhrasOfDayNotification, sched
 import { migrateWeekPointsIfNeeded } from './hall_of_fame_utils';
 import { checkForUpdate } from './update_check';
 import { initRevenueCat } from './revenuecat_init';
-import crashlytics from '@react-native-firebase/crashlytics';
+import { IS_EXPO_GO } from './config';
 import { registerXP } from './xp_manager';
 import { incrementSessionCount } from './review_utils';
 
@@ -146,7 +146,10 @@ function AppContent() {
     const init = async () => {
       try {
         // Singleton инициализация RevenueCat с retry-защитой и логированием
-        await crashlytics().setCrashlyticsCollectionEnabled(true);
+        if (!IS_EXPO_GO) {
+          // eslint-disable-next-line @typescript-eslint/no-require-imports
+          await require('@react-native-firebase/crashlytics').default().setCrashlyticsCollectionEnabled(true);
+        }
         await initRevenueCat();
 
         // Одноразовая миграция week_points (fire-and-forget)

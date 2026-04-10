@@ -53,7 +53,7 @@ export const checkAndRewardDailyBonus = async (): Promise<boolean> => {
 
   // Выдаём дневной бонус
   const DAILY_BONUS = 5;
-  await addPhrasemen(DAILY_BONUS, 'daily_active', 'Дневной бонус за вход в приложение');
+  await addPhrasemen(DAILY_BONUS, 'daily_task', 'Дневной бонус за вход в приложение');
   await setLastDailyBonus(now);
 
   return true;

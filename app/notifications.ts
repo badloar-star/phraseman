@@ -473,7 +473,7 @@ export const schedulePhrasOfDayNotification = async (lang: 'ru' | 'uk' = 'ru'): 
         title,
         body,
         sound: true,
-        data: { type: 'phrase_of_day', phraseId: phrase.lessonId },
+        data: { type: 'phrase_of_day', phraseId: phrase.english },
       },
       trigger: { seconds: secondsUntil } as any,
     });

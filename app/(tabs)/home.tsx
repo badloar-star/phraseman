@@ -1,10 +1,12 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
-  ScrollView, Animated, Dimensions, Alert, Image, Modal,
+  ScrollView, Animated, Dimensions, Alert, Modal, AppState,
 } from 'react-native';
+import { Image } from 'expo-image';
 
 import { useRouter } from 'expo-router';
+import { usePremium } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -18,8 +20,7 @@ import { isRepairEligible, getRepairProgress } from '../streak_repair';
 import { getTodayTasks, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP } from '../../constants/theme';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK } from '../../constants/lessons';
-import { DEV_MODE, IS_EXPO_GO } from '../config';
-import Purchases from 'react-native-purchases';
+import { DEV_MODE } from '../config';
 import PremiumCard from '../../components/PremiumCard';
 import { hapticTap } from '../../hooks/use-haptics';
 import CircularProgress from '../../components/CircularProgress';
@@ -103,7 +104,7 @@ export default function HomeScreen() {
   const [taskProgress, setTaskProgress] = useState<TaskProgress[]>([]);
   const [tasksCompleted, setTasksCompleted] = useState(0);
   const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
-  const [isPremium, setIsPremium] = useState(false);
+  const { isPremium } = usePremium();
   // [SRS] Количество фраз, готовых к повторению сегодня.
   // 0 = карточка «Повторить сегодня» скрыта (не мешает новым пользователям).
   // >0 = карточка появляется над блоком «Тест/Экзамен» и ведёт на /review.
@@ -141,8 +142,32 @@ export default function HomeScreen() {
     }, 3000);
   };
 
-  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(1)).current;
   const diagChecked = true;
+
+  // Staggered секции: 0=header, 1=hero, 2=lesson, 3=quick, 4=grid, 5=phrase
+  const S_COUNT = 6;
+  const sectionOpacity = useRef(Array.from({ length: S_COUNT }, () => new Animated.Value(0))).current;
+  const sectionSlide   = useRef(Array.from({ length: S_COUNT }, () => new Animated.Value(18))).current;
+
+  const runSessionEntrance = () => {
+    sectionOpacity.forEach(v => v.setValue(0));
+    sectionSlide.forEach(v => v.setValue(18));
+    Animated.stagger(
+      75,
+      sectionOpacity.map((opac, i) =>
+        Animated.parallel([
+          Animated.timing(opac, { toValue: 1, duration: 420, useNativeDriver: true }),
+          Animated.spring(sectionSlide[i], { toValue: 0, tension: 70, friction: 11, useNativeDriver: true }),
+        ])
+      )
+    ).start();
+  };
+
+  const sectionStyle = (i: number) => ({
+    opacity: sectionOpacity[i],
+    transform: [{ translateY: sectionSlide[i] }],
+  });
 
   useEffect(() => {
     loadData();
@@ -150,40 +175,32 @@ export default function HomeScreen() {
     Animated.timing(fadeAnim, { toValue:1, duration:380, useNativeDriver:true }).start();
   }, [lang]);
 
+  // Анимация при старте сессии (монтирование + возврат из фона)
+  useEffect(() => {
+    runSessionEntrance();
+    const sub = AppState.addEventListener('change', (state) => {
+      if (state === 'active') {
+        loadData();
+        runSessionEntrance();
+      }
+    });
+    return () => sub.remove();
+  }, []);
+
   useEffect(() => { loadData(); }, [focusTick]);
   useEffect(() => { if (activeIdx === 0) loadData(); }, [activeIdx]);
 
   const loadData = async () => {
     try {
-      const [name, streakVal, weekData, weekPts, xpStored, premiumVal, avatarVal, frameVal] = await Promise.all([
+      const [name, streakVal, weekData, weekPts, xpStored, avatarVal, frameVal] = await Promise.all([
         AsyncStorage.getItem('user_name'),
         AsyncStorage.getItem('streak_count'),
         AsyncStorage.getItem('week_days_done'),
         getMyWeekPoints(),
         AsyncStorage.getItem('user_total_xp'),
-        AsyncStorage.getItem('premium_active'),
         AsyncStorage.getItem('user_avatar'),
         AsyncStorage.getItem('user_frame'),
       ]);
-      // Verify premium status via RevenueCat to prevent AsyncStorage tampering
-      let verifiedPremium = premiumVal === 'true';
-      if (!IS_EXPO_GO) {
-        try {
-          const info = await Promise.race([
-            Purchases.getCustomerInfo(),
-            new Promise<null>(resolve => setTimeout(() => resolve(null), 3000)),
-          ]);
-          if (info) {
-            const rcActive = !!info.entitlements.active['premium']
-              || info.activeSubscriptions.length > 0;
-            verifiedPremium = rcActive;
-            await AsyncStorage.setItem('premium_active', rcActive ? 'true' : 'false');
-          }
-        } catch (error) {
-          DebugLogger.error('home.tsx:loadData:revenueCat', error, 'warning');
-        }
-      }
-      setIsPremium(verifiedPremium);
       if (name) setUserName(name);
       if (streakVal) setStreak(parseInt(streakVal) || 0);
       if (xpStored) {
@@ -315,7 +332,7 @@ export default function HomeScreen() {
         if (!alreadyFrozen) {
           setStreakAtRisk(true);
         }
-        if (verifiedPremium === false) {
+        if (!isPremium) {
           const today = new Date().toISOString().split('T')[0];
           const shownToday = await AsyncStorage.getItem('streak_paywall_shown');
           if (shownToday !== today) {
@@ -385,8 +402,8 @@ const league = getLeague(weekPoints, lang);
     '/(tabs)/settings': 4, 'settings': 4,
   };
   const go = (path: string) => {
-    if (!DEV_MODE && !isPremium && (path.includes('quizzes') || path.includes('hall_of_fame'))) {
-      router.push('/premium_modal'); return;
+    if (!DEV_MODE && !isPremium && path.includes('hall_of_fame')) {
+      router.push({ pathname: '/premium_modal', params: { context: 'hall_of_fame' } } as any); return;
     }
     const tabIdx = TAB_IDX[path];
     if (tabIdx !== undefined) { goToTab(tabIdx); return; }
@@ -444,11 +461,9 @@ const league = getLeague(weekPoints, lang);
   // ── Новый стиль главного экрана ──────────────────────────────────────────
   const renderNewHome = () => {
     const { level, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP);
-    const PILL_W = (CONTENT_W - 32 - 30) / 4;  // 4 пилюли равной ширины
     const themeSuffix = themeMode === 'gold' ? 'coral' : themeMode === 'neon' ? 'neon' : 'forest';
     const menuImages = {
       lesson:       themeSuffix === 'coral' ? require('../../assets/images/levels/lesson coral.png')       : themeSuffix === 'neon' ? require('../../assets/images/levels/lesson neon.png')       : require('../../assets/images/levels/lesson forest.png'),
-      dialog:       themeSuffix === 'coral' ? require('../../assets/images/levels/dialog coral.png')       : themeSuffix === 'neon' ? require('../../assets/images/levels/dialog neon.png')       : require('../../assets/images/levels/dialog forest.png'),
       quizes:       themeSuffix === 'coral' ? require('../../assets/images/levels/quizes coral.png')       : themeSuffix === 'neon' ? require('../../assets/images/levels/quizes neon.png')       : require('../../assets/images/levels/quizes forest.png'),
       cards:        themeSuffix === 'coral' ? require('../../assets/images/levels/cards coral.png')        : themeSuffix === 'neon' ? require('../../assets/images/levels/cards neon.png')        : require('../../assets/images/levels/cards forest.png'),
       dayTasks:     themeSuffix === 'coral' ? require('../../assets/images/levels/day tasks coral.png')    : themeSuffix === 'neon' ? require('../../assets/images/levels/day tasks neon.png')    : require('../../assets/images/levels/day tasks forest.png'),
@@ -457,7 +472,6 @@ const league = getLeague(weekPoints, lang);
     };
     const quickItems = [
       { img: menuImages.lesson,   label:isUK?'Уроки':'Уроки',       sub:`32 ${isUK?'уроки':'урока'}`,           path:'index' },
-      { img: menuImages.dialog,   label:isUK?'Діалоги':'Диалоги',  sub:`20 ${isUK?'сценаріїв':'сценариев'}`, path:'/dialogs' },
       { img: menuImages.quizes,   label:isUK?'Квізи':'Квизы',     sub:`3 ${isUK?'рівні':'уровня'}`,            path:'/(tabs)/quizzes' },
       { img: menuImages.cards,    label:isUK?'Картки':'Карточки',   sub:isUK?'Збережені':'Сохранённые', path:'/flashcards' },
     ];
@@ -495,9 +509,9 @@ const league = getLeague(weekPoints, lang);
 
     return (
       <ScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom:32, paddingTop:6 }}>
-        <Animated.View style={{ opacity:fadeAnim, overflow:'visible' }}>
 
           {/* ХЕДЕР */}
+          <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection:'row', alignItems:'flex-start', padding:20, paddingBottom:12, gap:8 }}>
             <View style={{ flex:1 }}>
               <Text style={{ color:t.textMuted, fontSize:f.caption }}>{greeting}</Text>
@@ -538,8 +552,10 @@ const league = getLeague(weekPoints, lang);
           </View>
 
           {bannersJSX}
+          </Animated.View>
 
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
+          <Animated.View style={sectionStyle(1)}>
           <TouchableOpacity activeOpacity={0.88} onPress={()=>router.push('/streak_stats')} style={{ marginHorizontal:16, marginBottom:12 }}>
             <View style={{ borderRadius:24, backgroundColor:t.bgCard, borderWidth:0.5, borderColor:t.border, padding:20 }}>
               {/* Декоративные круги — в отдельном контейнере чтобы не обрезать текст */}
@@ -590,7 +606,10 @@ const league = getLeague(weekPoints, lang);
               </View>
             </View>
           </TouchableOpacity>
+          </Animated.View>
 
+          {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА */}
+          <Animated.View style={sectionStyle(2)}>
           {/* ЗАМОРОЗКА СТРИКА — для всех когда стрик под угрозой */}
           {streakAtRisk && !freezeActive && (
             <TouchableOpacity
@@ -651,18 +670,11 @@ const league = getLeague(weekPoints, lang);
             </View>
             <Ionicons name="chevron-forward" size={20} color={t.textGhost} />
           </PremiumCard>
+          </Animated.View>
 
-          {/* ГОРИЗОНТАЛЬНЫЙ СКРОЛЛ: быстрый доступ — равные пилюли */}
-          <View style={{ marginBottom:12 }}>
-            <ScrollView
-              horizontal
-              showsHorizontalScrollIndicator={false}
-              nestedScrollEnabled={true}
-              scrollEventThrottle={16}
-              bounces={false}
-              overScrollMode="never"
-              contentContainerStyle={{ paddingHorizontal:16, gap:10 }}
-            >
+          {/* БЫСТРЫЙ ДОСТУП: равные пилюли по всей ширине */}
+          <Animated.View style={sectionStyle(3)}>
+          <View style={{ marginBottom:12, flexDirection:'row', paddingHorizontal:16, gap:10 }}>
               {quickItems.map(item=>(
                 <TouchableOpacity
                   key={item.label}
@@ -670,16 +682,18 @@ const league = getLeague(weekPoints, lang);
                   onPress={() => {
                     go(item.path);
                   }}
-                  style={{ backgroundColor:t.bgCard, borderRadius:18, borderWidth:0.5, borderColor:t.border, paddingHorizontal:10, paddingVertical:14, alignItems:'center', gap:5, width:PILL_W }}
+                  style={{ flex:1, backgroundColor:t.bgCard, borderRadius:18, borderWidth:0.5, borderColor:t.border, paddingHorizontal:10, paddingVertical:14, alignItems:'center', gap:5 }}
                 >
-                  <Image source={item.img} style={{ width: 52, height: 52 }} resizeMode="contain" />
+                  <Image source={item.img} style={{ width: 52, height: 52 }} contentFit="contain" cachePolicy="memory-disk" />
                   <Text style={{ color:t.textPrimary, fontSize:f.label, fontWeight:'700', textAlign:'center' }} numberOfLines={1}>{item.label}</Text>
                   <Text style={{ color:t.textMuted, fontSize:9, textAlign:'center' }} numberOfLines={1}>{item.sub}</Text>
                 </TouchableOpacity>
               ))}
-            </ScrollView>
           </View>
+          </Animated.View>
 
+          {/* SRS ПОВТОРЕНИЕ + СЕТКА */}
+          <Animated.View style={sectionStyle(4)}>
           {/* SRS ПОВТОРЕНИЕ — только если есть карточки */}
           {dueCount > 0 && (
             <View style={{ paddingHorizontal:16, marginBottom:12 }}>
@@ -687,7 +701,7 @@ const league = getLeague(weekPoints, lang);
                 style={{ flexDirection:'row', alignItems:'center', gap:12, backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, padding:14 }}
               >
                 <View style={{ width:44, height:44, borderRadius:12, backgroundColor:'transparent', justifyContent:'center', alignItems:'center' }}>
-                  <Image source={themeSuffix === 'coral' ? require('../../assets/images/levels/active recall coral.png') : themeSuffix === 'neon' ? require('../../assets/images/levels/active recall neon.png') : require('../../assets/images/levels/active recall forest.png')} style={{ width:44, height:44 }} resizeMode="contain" />
+                  <Image source={themeSuffix === 'coral' ? require('../../assets/images/levels/active recall coral.png') : themeSuffix === 'neon' ? require('../../assets/images/levels/active recall neon.png') : require('../../assets/images/levels/active recall forest.png')} style={{ width:44, height:44 }} contentFit="contain" cachePolicy="memory-disk" />
                 </View>
                 <View style={{ flex:1 }}>
                   <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>{isUK?'Повторити сьогодні':'Повторить сегодня'}</Text>
@@ -715,9 +729,9 @@ const league = getLeague(weekPoints, lang);
                   >
                     <View style={{ width:72, height:72, borderRadius:item.label === (isUK ? 'Клуб' : 'Клуб') ? 0 : 18, backgroundColor:item.label === (isUK ? 'Клуб' : 'Клуб') ? 'transparent' : (item as any).img ? 'transparent' : (item.iconColor as string)+'22', justifyContent:'center', alignItems:'center', marginBottom:10 }}>
                       {item.label === (isUK ? 'Клуб' : 'Клуб') && engineLeague?.imageUri ? (
-                        <Image source={engineLeague.imageUri} style={{ width:72, height:72 }} resizeMode="contain" />
+                        <Image source={engineLeague.imageUri} style={{ width:72, height:72 }} contentFit="contain" cachePolicy="memory-disk" />
                       ) : (item as any).img ? (
-                        <Image source={(item as any).img} style={{ width:76, height:76 }} resizeMode="contain" />
+                        <Image source={(item as any).img} style={{ width:76, height:76 }} contentFit="contain" cachePolicy="memory-disk" />
                       ) : (
                         <Ionicons name={item.iconName} size={40} color={item.iconColor} />
                       )}
@@ -753,7 +767,10 @@ const league = getLeague(weekPoints, lang);
             ))}
           </View>
 
-          {/* ── ФРАЗА ДНЯ ── */}
+          </Animated.View>
+
+          {/* ── ФРАЗА ДНЯ + ПОДВАЛ ── */}
+          <Animated.View style={sectionStyle(5)}>
           <DailyPhraseCard />
 
           {/* Подвал */}
@@ -765,8 +782,8 @@ const league = getLeague(weekPoints, lang);
               by Professor Lingman
             </Text>
           </View>
+          </Animated.View>
 
-        </Animated.View>
       </ScrollView>
     );
   };

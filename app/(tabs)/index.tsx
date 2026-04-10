@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import {
-  View, Text, TouchableOpacity, Alert, Dimensions, Animated, useWindowDimensions, Image,
+  View, Text, TouchableOpacity, Alert, Dimensions, Animated, useWindowDimensions, Image, DeviceEventEmitter,
 } from 'react-native';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
+import { usePremium } from '../../components/PremiumContext';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -103,6 +104,7 @@ export default function LessonsTab() {
   const VIEWPORT_H = SCREEN_H - 90; // approx tab bar + status bar
 
   const [noLimits,       setNoLimits]       = useState(false);
+  const { isPremium } = usePremium();
   const [scores,         setScores]         = useState<number[]>(new Array(32).fill(0));
   const [progCounts,     setProgCounts]     = useState<number[]>(new Array(32).fill(0));
   const [passCounts,     setPassCounts]     = useState<number[]>(new Array(32).fill(0));
@@ -123,6 +125,7 @@ export default function LessonsTab() {
   useEffect(() => { loadScores(); }, []);
   useEffect(() => { loadScores(); }, [focusTick]);
   useEffect(() => { if (activeIdx === 1) loadScores(); }, [activeIdx]);
+  useFocusEffect(useCallback(() => { loadScores(); }, []));
 
   const loadScores = () => {
     AsyncStorage.getItem('tester_no_limits').then(v => setNoLimits(v === 'true'));
@@ -198,8 +201,12 @@ export default function LessonsTab() {
       else if (num === 29) u[i] = u[i - 1] || blockAll45(19, 28);
       else                 u[i] = u[i - 1] && scores[i - 1] >= 2.5;
     }
+    // B1 (lessons 19-28) and B2 (lessons 29-32) require premium
+    if (!isPremium && !DEV_MODE) {
+      for (let i = 18; i < 32; i++) u[i] = false;
+    }
     return u;
-  }, [scores, placementLevel, noLimits]);
+  }, [scores, placementLevel, noLimits, isPremium]);
 
   type ListItem =
     | { kind: 'header'; label: string; color: string }
@@ -284,12 +291,16 @@ export default function LessonsTab() {
 
           // ── CEFR divider ─────────────────────────────────────────────
           if (item.kind === 'header') {
+            const isPremiumLevel = (item.label === 'B1' || item.label === 'B2') && !isPremium && !DEV_MODE;
             return (
               <View key={`h-${item.label}`} style={{ paddingLeft: 22, paddingTop: 14, paddingBottom: 4, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: item.color }} />
                 <Text style={{ color: item.color, fontSize: f.label, fontWeight: '800', letterSpacing: 1.4 }}>
                   {item.label}
                 </Text>
+                {isPremiumLevel && (
+                  <Ionicons name="lock-closed" size={12} color={item.color} style={{ opacity: 0.7 }} />
+                )}
                 <View style={{ flex: 1, height: 0.5, backgroundColor: item.color + '30' }} />
               </View>
             );
@@ -325,11 +336,17 @@ export default function LessonsTab() {
                   activeOpacity={0.82}
                   onPress={() => {
                     hapticTap();
-                    if (allDone) router.push({ pathname: '/level_exam', params: { level: lvl } });
-                    else Alert.alert(
-                      isUK ? 'Недоступно' : 'Недоступно',
-                      isUK ? `Спочатку пройдіть всі уроки ${lvl} з оцінкою 4.5+` : `Сначала пройдите все уроки ${lvl} с оценкой 4.5+`
-                    );
+                    if (!isPremium && !DEV_MODE && (lvl === 'B1' || lvl === 'B2')) {
+                      const doneSoFar = scores.filter(s => s > 0).length;
+                      router.push({ pathname: '/premium_modal', params: { context: 'lesson_b1', lessons_done: String(doneSoFar) } } as any);
+                    } else if (allDone) {
+                      router.push({ pathname: '/level_exam', params: { level: lvl } });
+                    } else {
+                      Alert.alert(
+                        isUK ? 'Недоступно' : 'Недоступно',
+                        isUK ? `Спочатку пройдіть всі уроки ${lvl} з оцінкою 4.5+` : `Сначала пройдите все уроки ${lvl} с оценкой 4.5+`
+                      );
+                    }
                   }}
                   style={{
                     height: 78,
@@ -396,6 +413,9 @@ export default function LessonsTab() {
                   hapticTap();
                   if (isUnlocked) {
                     router.push({ pathname: '/lesson_menu', params: { id: num } });
+                  } else if (!isPremium && !DEV_MODE && num >= 19) {
+                    const doneSoFar = scores.filter(s => s > 0).length;
+                    router.push({ pathname: '/premium_modal', params: { context: 'lesson_b1', lessons_done: String(doneSoFar) } } as any);
                   } else {
                     const isLevelStart = num === 9 || num === 19 || num === 29;
                     const prevLevel = num <= 18 ? 'A1' : num <= 28 ? 'A2' : 'B1';

@@ -38,7 +38,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
   if (loading || !phrase) {
     return (
-      <View style={[styles.container, { backgroundColor: t.cardBg }]}>
+      <View style={[styles.container, { backgroundColor: t.bgCard }]}>
         <ActivityIndicator color={t.textPrimary} />
       </View>
     );
@@ -52,7 +52,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
   return (
     <TouchableOpacity onPress={() => setExpanded(!expanded)} activeOpacity={0.9}>
-      <View style={[styles.container, { backgroundColor: t.accentLight, borderColor: t.accent }]}>
+      <View style={[styles.container, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
         {/* Decorative background dots */}
         <View style={[styles.decorDot, { backgroundColor: t.accent + '15', top: -20, right: -20 }]} />
         <View style={[styles.decorDot, { backgroundColor: t.accent + '08', bottom: -15, left: -15 }]} />
@@ -63,7 +63,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
             <Image source={DAILY_PHRASE_IMAGES[themeMode]} style={{ width: 36, height: 36 }} resizeMode="contain" />
           </View>
           <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text style={[styles.title, { color: t.accent, fontSize: f.sm }]}>ФРАЗА ДНЯ</Text>
+            <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>ФРАЗА ДНЯ</Text>
           </View>
           <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.accent} />
         </View>
@@ -72,7 +72,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
         <View style={{ height: 1, backgroundColor: t.accent + '20', marginVertical: 12 }} />
 
         {/* English phrase */}
-        <Text style={[styles.englishText, { color: t.textPrimary, fontSize: f.md }]}>
+        <Text style={[styles.englishText, { color: t.textPrimary, fontSize: f.body }]}>
           "{phrase.english}"
         </Text>
 
@@ -83,7 +83,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
             {/* Literal */}
             <View style={{ marginBottom: 10 }}>
-              <Text style={[styles.label, { color: t.accent, fontSize: f.sm }]}>
+              <Text style={[styles.label, { color: t.accent, fontSize: f.sub }]}>
                 {labelLiteral}:
               </Text>
               <Text style={[styles.bodyText, { color: t.textPrimary, opacity: 0.7, fontSize: f.body }]}>
@@ -93,7 +93,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
             {/* Meaning */}
             <View style={{ marginBottom: 14 }}>
-              <Text style={[styles.label, { color: t.accent, fontSize: f.sm }]}>
+              <Text style={[styles.label, { color: t.accent, fontSize: f.sub }]}>
                 {labelMeaning}:
               </Text>
               <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>

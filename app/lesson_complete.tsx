@@ -2,7 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, Image, Modal, Pressable, Share, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Image, Modal, Pressable, ScrollView, Share, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
 import ContentWrap from '../components/ContentWrap';
@@ -10,10 +10,12 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { CEFR_FOR_LESSON } from '../constants/theme';
+import { LESSON_NAMES_RU, LESSON_NAMES_UK } from '../constants/lessons';
 import { hapticTap } from '../hooks/use-haptics';
 import { checkAchievements } from './achievements';
 import { STORE_URL } from './config';
 import { checkGemAchievements, saveMedalProgress, type MedalTier } from './medal_utils';
+import { tryUnlockLevelExam, tryUnlockLingmanExam } from './lesson_lock_system';
 import { canShowReview, markReviewPrompted, requestNativeReview } from './review_utils';
 import { recordLessonForRepair } from './streak_repair';
 import { calculateRewardWithBonus } from './variable_reward_system';
@@ -115,12 +117,176 @@ function ReviewModal({ visible, isUK, t, f, onClose }: {
   );
 }
 
+// ── Notification types ────────────────────────────────────────────────────────
+type NotifKind = 'medal' | 'lesson_unlock' | 'level_exam_unlock' | 'lingman_exam_unlock';
+interface Notif {
+  kind: NotifKind;
+  medalTier?: MedalTier;
+  unlockedLessonId?: number;
+  cefrLevel?: string; // for level_exam_unlock
+}
+
+// ── AchievementNotifModal ─────────────────────────────────────────────────────
+function AchievementNotifModal({ notif, isUK, t, f, lessonId, lessonScore, lessonCefr, onDismiss }: {
+  notif: Notif; isUK: boolean; t: any; f: any;
+  lessonId: number; lessonScore: number; lessonCefr: string;
+  onDismiss: () => void;
+}) {
+  const opacity   = useRef(new Animated.Value(0)).current;
+  const translateY = useRef(new Animated.Value(40)).current;
+
+  useEffect(() => {
+    Animated.parallel([
+      Animated.timing(opacity,    { toValue: 1, duration: 300, useNativeDriver: true }),
+      Animated.spring(translateY, { toValue: 0, friction: 6, useNativeDriver: true }),
+    ]).start();
+  }, []);
+
+  const dismiss = () => {
+    Animated.timing(opacity, { toValue: 0, duration: 200, useNativeDriver: true }).start(onDismiss);
+  };
+
+  const MEDAL_IMAGES: Record<string, any> = {
+    bronze: require('../assets/images/levels/bronza.png'),
+    silver: require('../assets/images/levels/serebro.png'),
+    gold:   require('../assets/images/levels/zoloto.png'),
+  };
+
+  const medalLabel = (tier: MedalTier) => {
+    if (isUK) {
+      if (tier === 'bronze') return '🥉 Бронзова медаль!';
+      if (tier === 'silver') return '🥈 Срібна медаль!';
+      return '🥇 Золота медаль!';
+    }
+    if (tier === 'bronze') return '🥉 Бронзовая медаль!';
+    if (tier === 'silver') return '🥈 Серебряная медаль!';
+    return '🥇 Золотая медаль!';
+  };
+
+  const shareMessage = () => {
+    if (notif.kind === 'medal' && notif.medalTier) {
+      const tier = notif.medalTier;
+      const emoji = tier === 'gold' ? '🥇' : tier === 'silver' ? '🥈' : '🥉';
+      return isUK
+        ? `${emoji} Отримав медаль за урок ${lessonId} (${lessonCefr}) у Phraseman! ★ ${lessonScore} 🔥\n${STORE_URL}`
+        : `${emoji} Получил медаль за урок ${lessonId} (${lessonCefr}) в Phraseman! ★ ${lessonScore} 🔥\n${STORE_URL}`;
+    }
+    if (notif.kind === 'lesson_unlock') {
+      return isUK
+        ? `🔓 Розблокував урок ${notif.unlockedLessonId} у Phraseman! 🚀\n${STORE_URL}`
+        : `🔓 Разблокировал урок ${notif.unlockedLessonId} в Phraseman! 🚀\n${STORE_URL}`;
+    }
+    if (notif.kind === 'level_exam_unlock') {
+      return isUK
+        ? `📋 Розблокував залік рівня ${notif.cefrLevel} у Phraseman! 🎯\n${STORE_URL}`
+        : `📋 Разблокировал зачёт уровня ${notif.cefrLevel} в Phraseman! 🎯\n${STORE_URL}`;
+    }
+    return isUK
+      ? `🎓 Розблокував іспит Професора Лінгмана у Phraseman! Всі уроки та заліки пройдено! 🏆\n${STORE_URL}`
+      : `🎓 Разблокировал экзамен Профессора Лингмана в Phraseman! Все уроки и зачёты пройдены! 🏆\n${STORE_URL}`;
+  };
+
+  return (
+    <Animated.View style={{
+      position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
+      opacity, justifyContent: 'center', alignItems: 'center',
+      backgroundColor: 'rgba(0,0,0,0.65)',
+    }}>
+      <Pressable style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} onPress={dismiss} />
+      <Animated.View style={{
+        transform: [{ translateY }],
+        backgroundColor: t.bgCard,
+        borderRadius: 28, padding: 28, marginHorizontal: 24,
+        alignItems: 'center', width: '100%', maxWidth: 360,
+        borderWidth: 1, borderColor: t.textSecond + '44',
+        shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20,
+      }}>
+        {/* Icon / Image */}
+        {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
+          <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} resizeMode="contain" />
+        )}
+        {notif.kind === 'lesson_unlock' && (
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.accentBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4 }}>
+            <Text style={{ fontSize: 40 }}>🔓</Text>
+          </View>
+        )}
+        {notif.kind === 'level_exam_unlock' && (
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center', marginBottom: 4 }}>
+            <Text style={{ fontSize: 40 }}>📋</Text>
+          </View>
+        )}
+        {notif.kind === 'lingman_exam_unlock' && (
+          <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.correctBg, justifyContent: 'center', alignItems: 'center', marginBottom: 4 }}>
+            <Text style={{ fontSize: 40 }}>🎓</Text>
+          </View>
+        )}
+
+        {/* Title */}
+        <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 12 }}>
+          {notif.kind === 'medal' && notif.medalTier ? medalLabel(notif.medalTier) : ''}
+          {notif.kind === 'lesson_unlock' ? (isUK ? '🔓 Урок розблоковано!' : '🔓 Урок разблокирован!') : ''}
+          {notif.kind === 'level_exam_unlock' ? (isUK ? `📋 Залік ${notif.cefrLevel} доступний!` : `📋 Зачёт ${notif.cefrLevel} доступен!`) : ''}
+          {notif.kind === 'lingman_exam_unlock' ? (isUK ? '🎓 Іспит Лінгмана відкрито!' : '🎓 Экзамен Лингмана открыт!') : ''}
+        </Text>
+
+        {/* Subtitle */}
+        <Text style={{ color: t.textMuted, fontSize: f.bodyLg, fontWeight: '500', marginTop: 8, textAlign: 'center', lineHeight: f.bodyLg * 1.4 }}>
+          {notif.kind === 'medal' && (
+            isUK ? 'Чудова робота! Продовжуй навчання!' : 'Отличная работа! Продолжай учиться!'
+          )}
+          {notif.kind === 'lesson_unlock' && notif.unlockedLessonId && (
+            isUK
+              ? `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_UK[notif.unlockedLessonId - 1]}» тепер доступний!`
+              : `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_RU[notif.unlockedLessonId - 1]}» теперь доступен!`
+          )}
+          {notif.kind === 'level_exam_unlock' && (
+            isUK
+              ? `Всі уроки рівня ${notif.cefrLevel} пройдено на 4.5+! Тепер можеш скласти залік.`
+              : `Все уроки уровня ${notif.cefrLevel} пройдены на 4.5+! Теперь можешь сдать зачёт.`
+          )}
+          {notif.kind === 'lingman_exam_unlock' && (
+            isUK
+              ? 'Всі уроки = 5.0 та всі заліки здано! Фінальний іспит відкрито.'
+              : 'Все уроки = 5.0 и все зачёты сданы! Финальный экзамен открыт.'
+          )}
+        </Text>
+
+        {/* Share button */}
+        <TouchableOpacity
+          style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginTop: 18,
+            backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 18, paddingVertical: 10 }}
+          onPress={async () => {
+            hapticTap();
+            try { await Share.share({ message: shareMessage() }); } catch {}
+          }}
+        >
+          <Ionicons name="share-outline" size={18} color={t.textSecond} />
+          <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
+            {isUK ? 'Поділитися' : 'Поделиться'}
+          </Text>
+        </TouchableOpacity>
+
+        {/* Dismiss */}
+        <TouchableOpacity
+          onPress={() => { hapticTap(); dismiss(); }}
+          style={{ marginTop: 14, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 40, paddingVertical: 12 }}
+        >
+          <Text style={{ color: t.bgPrimary, fontWeight: '800', fontSize: f.bodyLg }}>
+            {isUK ? 'Чудово!' : 'Отлично!'}
+          </Text>
+        </TouchableOpacity>
+      </Animated.View>
+    </Animated.View>
+  );
+}
+
 export default function LessonComplete() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { s, lang } = useLang();
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { id, unlocked } = useLocalSearchParams<{ id: string; unlocked?: string }>();
   const lessonId = parseInt(id || '1', 10);
+  const didUnlockNext = unlocked === '1';
   const c = s.lessonComplete;
   const isUK = lang === 'uk';
 
@@ -132,9 +298,25 @@ export default function LessonComplete() {
   const [showBonus, setShowBonus] = useState(false);
   const [bonusXP, setBonusXP] = useState(0);
 
+  // Notification queue
+  const [notifQueue, setNotifQueue] = useState<Notif[]>([]);
+  const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
+
   const scaleAnim  = useRef(new Animated.Value(0)).current;
   const fadeAnim   = useRef(new Animated.Value(0)).current;
   const bounceAnim = useRef(new Animated.Value(0)).current;
+
+  const dismissNotif = () => {
+    setActiveNotif(null);
+    setNotifQueue(prev => {
+      const rest = prev.slice(1);
+      if (rest.length > 0) {
+        setTimeout(() => setActiveNotif(rest[0]), 400);
+        return rest;
+      }
+      return rest;
+    });
+  };
 
   useEffect(() => {
     // Появление иконки
@@ -162,7 +344,33 @@ export default function LessonComplete() {
         setLessonScore(score);
         const { newTier, prevTier, isNewBest } = await saveMedalProgress(lessonId, score, p);
         setMedalTier(newTier);
-        setMedalImproved(isNewBest && newTier !== prevTier && newTier !== 'none');
+        const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';
+        setMedalImproved(medalUpgraded);
+
+        // Build notification queue
+        const queue: Notif[] = [];
+        if (medalUpgraded) {
+          queue.push({ kind: 'medal', medalTier: newTier });
+        }
+        if (didUnlockNext && lessonId < 32) {
+          queue.push({ kind: 'lesson_unlock', unlockedLessonId: lessonId + 1 });
+        }
+        // Зачёт уровня: все уроки уровня >= 4.5
+        const unlockedLevel = await tryUnlockLevelExam(lessonId);
+        if (unlockedLevel) {
+          queue.push({ kind: 'level_exam_unlock', cefrLevel: unlockedLevel });
+        }
+        // Экзамен Лингмана: все 32 урока = 5.0 + все зачёты сданы
+        const lingmanUnlocked = await tryUnlockLingmanExam();
+        if (lingmanUnlocked) {
+          queue.push({ kind: 'lingman_exam_unlock' });
+        }
+
+        if (queue.length > 0) {
+          setNotifQueue(queue);
+          setTimeout(() => setActiveNotif(queue[0]), 1200);
+        }
+
         // Gem achievements
         const gems = await checkGemAchievements(lessonId);
         gems.forEach(g => checkAchievements({ type: 'gem', level: g.level, gem: g.gem } as any).catch(() => {}));
@@ -186,7 +394,7 @@ export default function LessonComplete() {
         const reward = calculateRewardWithBonus(BONUS);
         
         if (name) {
-          await registerXP(reward.totalXP, 'bonus_chest', name, lang);
+          try { await registerXP(reward.totalXP, 'bonus_chest', name, lang); } catch {}
         }
 
         // Показываем карточку бонуса если был выигран
@@ -242,7 +450,7 @@ export default function LessonComplete() {
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{
@@ -358,7 +566,7 @@ export default function LessonComplete() {
           </TouchableOpacity>
         </Animated.View>
 
-      </View>
+      </ScrollView>
       </ContentWrap>
       {showBonus && (
         <BonusXPCard
@@ -375,6 +583,18 @@ export default function LessonComplete() {
         f={f}
         onClose={() => setShowReview(false)}
       />
+      {activeNotif && (
+        <AchievementNotifModal
+          notif={activeNotif}
+          isUK={isUK}
+          t={t}
+          f={f}
+          lessonId={lessonId}
+          lessonScore={lessonScore}
+          lessonCefr={lessonCefr}
+          onDismiss={dismissNotif}
+        />
+      )}
     </SafeAreaView>
     </ScreenGradient>
   );

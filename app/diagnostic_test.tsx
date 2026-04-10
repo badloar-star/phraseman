@@ -564,7 +564,7 @@ export default function DiagnosticTest() {
         <ContentWrap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
           {isFromOnboarding ? (
-            <TouchableOpacity onPress={() => { AsyncStorage.removeItem('open_diagnostic'); router.replace('/(tabs)' as any); }} hitSlop={{ all: 8 }}>
+            <TouchableOpacity onPress={() => { AsyncStorage.removeItem('open_diagnostic'); router.replace('/(tabs)' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
                 {isUK ? 'Відмінити' : 'Отменить'}
               </Text>

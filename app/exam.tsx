@@ -15,6 +15,7 @@ import { registerXP } from './xp_manager';
 import { checkAchievements } from './achievements';
 import { DEV_MODE, STORE_URL } from './config';
 import { shuffle } from './utils_shuffle';
+import { isLingmanExamAvailable } from './lesson_lock_system';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 
@@ -277,14 +278,19 @@ export default function ExamScreen() {
 
   useEffect(()=>{
     (async()=>{
+      // Подсчитываем завершённые уроки для отображения прогресса
       const keys = Array.from({length:32},(_,i)=>`lesson${i+1}_progress`);
       const pairs = await AsyncStorage.multiGet(keys);
       let done=0;
       for(const [,saved] of pairs){
-        if(saved){ try{const p:string[]=JSON.parse(saved);if(p.filter(x=>x==='correct').length>=45)done++;}catch{} } // 90% of TOTAL=50
+        if(saved){ try{const p:string[]=JSON.parse(saved);if(p.filter((x:string)=>x==='correct'||x==='replay_correct').length>=45)done++;}catch{} }
       }
       setCompleted(done);
-      if(done<32 && !DEV_MODE) setPhase('locked');
+      // Экзамен Лингмана: все 32 урока = 5.0 + все зачёты сданы
+      if(!DEV_MODE){
+        const available = await isLingmanExamAvailable();
+        if(!available) setPhase('locked');
+      }
     })();
   },[]);
 
@@ -377,8 +383,8 @@ export default function ExamScreen() {
         </Text>
         <Text style={{color:t.textMuted,fontSize:f.body,textAlign:'center',lineHeight:24}}>
           {isUK
-            ? 'Пройди всі 32 уроки щоб скласти іспит і отримати сертифікат Професора Лінгмана.'
-            : 'Пройди все 32 урока чтобы сдать экзамен и получить сертификат Профессора Лингмана.'}
+            ? 'Пройди всі 32 уроки з оцінкою 5.0 та склади всі 4 заліки щоб отримати сертифікат Професора Лінгмана.'
+            : 'Пройди все 32 урока с оценкой 5.0 и сдай все 4 зачёта, чтобы получить сертификат Профессора Лингмана.'}
         </Text>
         <View style={{backgroundColor:t.bgCard,borderRadius:16,padding:16,borderWidth:0.5,borderColor:t.border,width:'100%',marginTop:28}}>
           <View style={{height:8,backgroundColor:t.border,borderRadius:4,overflow:'hidden'}}>

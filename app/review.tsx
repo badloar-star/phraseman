@@ -31,9 +31,9 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  Animated, Dimensions, ScrollView,
+  AppState, AppStateStatus, Animated, Dimensions, ScrollView,
   Text, TouchableOpacity,
   View,
 } from 'react-native';
@@ -221,6 +221,7 @@ export default function ReviewScreen() {
   const slideAnim     = useRef(new Animated.Value(0)).current;  // переход между карточками
   const autoTimer     = useRef<ReturnType<typeof setTimeout> | null>(null);
   const cardStartTime = useRef<number>(0);                      // когда была загружена карточка
+  const checkingRef   = useRef(false);                          // защита от двойного вызова checkAnswer
 
   // Загружаем фразы для повторения сегодня (один раз при монтировании)
   useEffect(() => {
@@ -232,8 +233,22 @@ export default function ReviewScreen() {
     return () => { if (autoTimer.current) clearTimeout(autoTimer.current); };
   }, []);
 
+  // Сбрасываем анимацию и состояние карточки при возврате из фона —
+  // это исправляет зависание кнопок и некорректное отображение после свернувшего приложения
+  useEffect(() => {
+    const handleAppState = (state: AppStateStatus) => {
+      if (state === 'active') {
+        // Если slideAnim застрял в ненулевом положении — сбросить
+        slideAnim.setValue(0);
+      }
+    };
+    const sub = AppState.addEventListener('change', handleAppState);
+    return () => sub.remove();
+  }, [slideAnim]);
+
   // Инициализирует плитки для конкретной карточки
   const loadCard = (item: RecallItem) => {
+    checkingRef.current = false;
     const { tiles: newTiles, wordCount: wc } = makeTiles(item.phrase);
     setTiles(newTiles);
     setSelected([]);
@@ -269,7 +284,10 @@ export default function ReviewScreen() {
 
   // Проверка ответа — вызывается автоматически когда выбрано wordCount слов.
   // isCorrectAnswer() обрабатывает сокращения (don't = do not) и регистр.
-  const checkAnswer = async (sel: Tile[]) => {
+  const checkAnswer = useCallback(async (sel: Tile[]) => {
+    if (checkingRef.current) return;
+    checkingRef.current = true;
+
     const answer = sel.map(t => t.word).join(' ');
     const item = items[index];
     const ok   = isCorrectAnswer(answer, item.phrase);
@@ -286,28 +304,32 @@ export default function ReviewScreen() {
     // Плавное появление блока с правильным ответом (если ошиблись)
     Animated.spring(resultAnim, { toValue: 1, useNativeDriver: true, friction: 8 }).start();
 
-    // Обновляем SM-2: правильно → интервал растёт, неправильно → сброс к 1 дню
-    await markReviewed(item.phrase, ok);
-
-    // Кнопка "сжечь": правильно И уложился в 20 секунд
-    if (ok) {
-      const elapsed = Date.now() - cardStartTime.current;
-      if (elapsed <= 20_000) setCanBurn(true);
-    }
-
-    // XP только за правильный ответ (2 XP — меньше чем за урок, т.к. сессия легче)
+    // Считаем ответ немедленно — до async операций, чтобы не пропустить при ошибке
     if (ok) {
       setCorrect(c => c + 1);
-      const name = await AsyncStorage.getItem('user_name');
-      if (name) {
-        await registerXP(2, 'review_answer', name, lang as 'ru'|'uk');
-      }
     } else {
       setWrong(w => w + 1);
     }
 
+    // Обновляем SM-2 и XP асинхронно — ошибки здесь не должны влиять на счёт
+    try {
+      await markReviewed(item.phrase, ok);
+    } catch {}
+
+    try {
+      if (ok) {
+        const elapsed = Date.now() - cardStartTime.current;
+        if (elapsed <= 20_000) setCanBurn(true);
+        const name = await AsyncStorage.getItem('user_name');
+        if (name) {
+          await registerXP(2, 'review_answer', name, lang as 'ru'|'uk');
+        }
+      }
+    } catch {}
+
+    checkingRef.current = false;
     // Показываем кнопку "Далее" — пользователь переходит вручную
-  };
+  }, [items, index, lang, resultAnim]);
 
   // Анимированный переход к следующей карточке
   const advanceCard = () => {

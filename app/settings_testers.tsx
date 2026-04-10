@@ -4,6 +4,7 @@ import { useRouter } from 'expo-router';
 import React, { useEffect, useState } from 'react';
 import {
   Alert,
+  DeviceEventEmitter,
   ScrollView,
   Switch,
   Text, TouchableOpacity,
@@ -22,6 +23,7 @@ import { calculateResult, LeagueResult, loadLeagueState, savePendingResult, getW
 import LeagueResultModal from './LeagueResultModal';
 import { registerXP } from './xp_manager';
 import { useAchievement } from '../components/AchievementContext';
+import { invalidatePremiumCache } from './premium_guard';
 
 const ToggleRow = ({ icon, label, sub, value, onToggle, t, f }: {
   icon: string; label: string; sub?: string; value: boolean; onToggle: (val: boolean) => void;
@@ -69,6 +71,7 @@ export default function SettingsTestersFunctions() {
 
   const [noLimitsEnabled, setNoLimitsEnabled] = useState(false);
   const [energyDisabled, setEnergyDisabled] = useState(false);
+  const [noPremiumEnabled, setNoPremiumEnabled] = useState(false);
   const { reload: reloadEnergy } = useEnergy();
 
   const [leagueResultVisible, setLeagueResultVisible] = useState(false);
@@ -83,12 +86,14 @@ export default function SettingsTestersFunctions() {
   // Save settings to AsyncStorage
   const loadSettings = async () => {
     try {
-      const [noLimits, noEnergy] = await AsyncStorage.multiGet([
+      const [noLimits, noEnergy, noPrem] = await AsyncStorage.multiGet([
         'tester_no_limits',
         'tester_energy_disabled',
+        'tester_no_premium',
       ]);
       setNoLimitsEnabled(noLimits[1] === 'true');
       setEnergyDisabled(noEnergy[1] === 'true');
+      setNoPremiumEnabled(noPrem[1] === 'true');
     } catch {}
   };
 
@@ -102,6 +107,17 @@ export default function SettingsTestersFunctions() {
     doHaptic();
     setNoLimitsEnabled(val);
     await saveSettings('tester_no_limits', val);
+    // Enabling NoLimits restores premium mode — clear the no-premium override
+    if (val) {
+      await AsyncStorage.removeItem('tester_no_premium');
+      setNoPremiumEnabled(false);
+      invalidatePremiumCache();
+      // Уведомляем PremiumContext — isPremium сразу станет true
+      DeviceEventEmitter.emit('premium_activated');
+    } else {
+      invalidatePremiumCache();
+      DeviceEventEmitter.emit('premium_deactivated');
+    }
     await reloadEnergy(); // сразу синхронизируем EnergyContext
 
     // When enabling No Limits, award all medals on lessons and exams
@@ -334,10 +350,19 @@ export default function SettingsTestersFunctions() {
                         await AsyncStorage.multiSet([
                           ['premium_active', 'false'],
                           ['premium_plan', ''],
+                          ['tester_no_limits', 'false'],
+                          ['tester_energy_disabled', 'false'],
+                          ['tester_no_premium', 'true'],
                         ]);
+                        invalidatePremiumCache();
+                        setNoLimitsEnabled(false);
+                        setEnergyDisabled(false);
+                        setNoPremiumEnabled(true);
+                        DeviceEventEmitter.emit('premium_deactivated');
+                        await reloadEnergy();
                         Alert.alert(
                           isUK ? 'Готово' : 'Готово',
-                          isUK ? 'Преміум знято. Перезапустіть додаток.' : 'Премиум снят. Перезапустите приложение.'
+                          isUK ? 'Преміум знято' : 'Премиум снят'
                         );
                       } catch {
                         Alert.alert(isUK ? 'Помилка' : 'Ошибка', isUK ? 'Не вдалось зняти преміум' : 'Не удалось снять премиум');
@@ -485,6 +510,7 @@ export default function SettingsTestersFunctions() {
                       const testerKeys = [
                         'tester_no_limits',
                         'tester_energy_disabled',
+                        'tester_no_premium',
                       ];
 
                       const allKeys = [
@@ -494,6 +520,9 @@ export default function SettingsTestersFunctions() {
                       ];
 
                       await AsyncStorage.multiRemove(allKeys);
+                      invalidatePremiumCache();
+                      DeviceEventEmitter.emit('premium_deactivated');
+                      await reloadEnergy();
 
                       Alert.alert(
                         isUK ? 'Готово' : 'Готово',

@@ -1507,7 +1507,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
         Animated.timing(xpAnim, { toValue: { x: 0, y: 0 }, duration: 200, useNativeDriver: true }),
         Animated.timing(xpOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
       ]),
-      Animated.delay(800),
+      Animated.delay(400),
       Animated.timing(xpOpacity, { toValue: 0, duration: 400, useNativeDriver: true }),
     ]).start(() => setXpToastVisible(false));
   };
@@ -1554,12 +1554,8 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
         setCounts(newCounts);
         onCountUpdate(current.word.en, newCount);
 
-        // Сохраняем в storage
-        AsyncStorage.getItem(storageKey + '_words').then(saved => {
-          const stored: Record<string,number> = saved ? JSON.parse(saved) : {};
-          stored[current.word.en] = newCount;
-          AsyncStorage.setItem(storageKey + '_words', JSON.stringify(stored));
-        });
+        // Сохраняем полный объект counts напрямую — без read-modify-write (нет race condition)
+        AsyncStorage.setItem(storageKey + '_words', JSON.stringify(newCounts));
 
         // Удаляем текущую карточку из очереди
         newQueue.splice(qIdx % newQueue.length, 1);
@@ -1578,7 +1574,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
           updateMultipleTaskProgress([{ type: 'words_learned' }, { type: 'daily_active' }]);
           showXpToast(POINTS_PER_LEARNED);
           if (userName) {
-            await registerXP(POINTS_PER_LEARNED, 'vocabulary_learned', userName, lang);
+            try { await registerXP(POINTS_PER_LEARNED, 'vocabulary_learned', userName, lang); } catch {}
             setTotalPts(p => p + POINTS_PER_LEARNED);
           }
           if (finalQ.length === 0) {
@@ -1780,7 +1776,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
 
       {/* XP Toast */}
       {xpToastVisible && (
-        <Animated.View style={{ position:'absolute', bottom:110, alignSelf:'center', backgroundColor:'#FFC800', borderRadius:20, paddingHorizontal:20, paddingVertical:10, transform:[{translateY:xpAnim.y}], opacity:xpOpacity, zIndex:999 }}>
+        <Animated.View pointerEvents="none" style={{ position:'absolute', top:100, alignSelf:'center', backgroundColor:'#FFC800', borderRadius:20, paddingHorizontal:20, paddingVertical:10, transform:[{translateY:xpAnim.y}], opacity:xpOpacity, zIndex:999 }}>
           <Text style={{ color:'#000', fontWeight:'700', fontSize:16 }}>+{xpToastAmount} XP</Text>
         </Animated.View>
       )}

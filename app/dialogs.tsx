@@ -25,7 +25,6 @@ const CARDS_STAGGER_MS = 70;        // delay between each card spring-in
 const CARDS_DELAY_AFTER_TYPING_MS = 300;
 const FLIP_AUTO_RESET_MS = 2000;    // auto flip-back after 2s
 const HINT_WAVE_INTERVAL_MS = 5000; // highlight random word every 5s
-const FEEDBACK_DELAY_MS = 1200;
 const HINT_XP_PENALTY = 3;
 
 const CONNECTION_DELTA: Record<ChoiceStyle, number> = {
@@ -401,7 +400,41 @@ function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: (
   );
 }
 
-// ── NPC Text Renderer (dotted underline for glossary words) ───────────────────
+// ── Breathing glossary word (Duolingo-style bold + animated underline) ────────
+function GlossaryWord({ entry, isHint, onTap }: { entry: GlossaryEntry; isHint: boolean; onTap: () => void }) {
+  const underlineH = useRef(new Animated.Value(1)).current;
+  useEffect(() => {
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(underlineH, { toValue: 2.5, duration: 600, useNativeDriver: false }),
+        Animated.timing(underlineH, { toValue: 1, duration: 1400, useNativeDriver: false }),
+      ]),
+      { iterations: -1 }
+    );
+    // Start breathing at offset so words don't all pulse together
+    const delay = Math.floor(Math.random() * 3000);
+    const t = setTimeout(() => loop.start(), delay);
+    return () => { clearTimeout(t); loop.stop(); };
+  }, []);
+
+  return (
+    <Text onPress={onTap}>
+      <Text
+        style={{
+          color: isHint ? '#7EC8E3' : '#2b70c9',
+          fontWeight: '700',
+          textDecorationLine: 'underline',
+          textDecorationStyle: 'dotted',
+          textDecorationColor: isHint ? '#7EC8E3' : '#2b70c9',
+        }}
+      >
+        {entry.phrase}
+      </Text>
+    </Text>
+  );
+}
+
+// ── NPC Text Renderer ─────────────────────────────────────────────────────────
 function renderNPCText(
   text: string,
   glossary: GlossaryEntry[],
@@ -424,21 +457,15 @@ function renderNPCText(
     parts = newParts;
   }
   return (
-    <Text style={textStyle}>
+    <Text style={[textStyle, { fontSize: 18, fontWeight: '600', lineHeight: 28 }]}>
       {parts.map((p, i) =>
         p.entry ? (
-          <Text
+          <GlossaryWord
             key={i}
-            onPress={() => onWordTap(p.entry!)}
-            style={{
-              borderBottomWidth: 1,
-              borderBottomColor: activeHintPhrase === p.entry.phrase ? '#7EC8E3' : 'rgba(126,200,227,0.4)',
-              borderStyle: 'dotted',
-              color: activeHintPhrase === p.entry.phrase ? '#A8DCEE' : '#F0F7F2',
-            }}
-          >
-            {p.str}
-          </Text>
+            entry={p.entry}
+            isHint={activeHintPhrase === p.entry.phrase}
+            onTap={() => onWordTap(p.entry!)}
+          />
         ) : (
           <Text key={i} style={{ color: '#F0F7F2' }}>{p.str}</Text>
         )
@@ -459,13 +486,33 @@ interface FlipCardProps {
   entryAnim: Animated.Value;
   theme: any;
   f: any;
+  showHoldHint?: boolean;
 }
 
-function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabled, onTap, onFlip, entryAnim, theme: t, f }: FlipCardProps) {
+function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabled, onTap, onFlip, entryAnim, theme: t, f, showHoldHint }: FlipCardProps) {
   const flipAnim = useRef(new Animated.Value(0)).current;
   const pressScale = useRef(new Animated.Value(1)).current;
   const isFlippedRef = useRef(false);
   const autoFlipBackRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const holdHintOpacity = useRef(new Animated.Value(showHoldHint ? 1 : 0)).current;
+  const holdHintScale = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (!showHoldHint) return;
+    // Pulse then fade out after 1s
+    const pulse = Animated.loop(
+      Animated.sequence([
+        Animated.timing(holdHintScale, { toValue: 1.25, duration: 400, useNativeDriver: true }),
+        Animated.timing(holdHintScale, { toValue: 1, duration: 400, useNativeDriver: true }),
+      ])
+    );
+    pulse.start();
+    const t = setTimeout(() => {
+      pulse.stop();
+      Animated.timing(holdHintOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start();
+    }, 1200);
+    return () => { clearTimeout(t); pulse.stop(); };
+  }, [showHoldHint]);
 
   useEffect(() => () => { if (autoFlipBackRef.current) clearTimeout(autoFlipBackRef.current); }, []);
 
@@ -530,6 +577,15 @@ function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabl
             {textEN}
           </Text>
         </Animated.View>
+        {/* Hold hint overlay */}
+        {showHoldHint && (
+          <Animated.View style={{ position: 'absolute', top: 6, right: 8, opacity: holdHintOpacity, transform: [{ scale: holdHintScale }], zIndex: 10 }}>
+            <View style={{ backgroundColor: 'rgba(43,112,201,0.85)', borderRadius: 10, paddingHorizontal: 7, paddingVertical: 3, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+              <Text style={{ fontSize: 11 }}>👆</Text>
+              <Text style={{ color: '#fff', fontSize: 10, fontWeight: '700' }}>Hold</Text>
+            </View>
+          </Animated.View>
+        )}
         {/* Back (translation) */}
         <Animated.View
           style={{
@@ -589,11 +645,13 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
   // First-session onboarding
   const [isFirstVisit, setIsFirstVisit] = useState(false);
   const [firstFlipDone, setFirstFlipDone] = useState(false);
+  const [flipHintCard] = useState(() => Math.floor(Math.random() * 3)); // which card shows hold hint
 
   // Typewriter + sequenced reveal
   const [displayedText, setDisplayedText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [cardsReady, setCardsReady] = useState(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState(false);
 
   // Animation refs
   const cardEntryAnims = useRef([
@@ -610,7 +668,6 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
   const cardsRevealRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Refs
-  const advanceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isMounted = useRef(true);
   const stepIdxRef = useRef(stepIdx);
   stepIdxRef.current = stepIdx;
@@ -621,6 +678,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
   // Init
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n && isMounted.current) setUserName(n); });
+    AsyncStorage.getItem('dialogs_tutorial_done').then(v => { if (!v && isMounted.current) setIsFirstVisit(true); });
     loadSettings().then(s => {
       if (isMounted.current) { setVoiceOut(s.voiceOut ?? true); setHaptics(s.haptics); }
     });
@@ -628,7 +686,6 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
       isMounted.current = false;
       Speech.stop();
       if (typewriterRef.current) clearInterval(typewriterRef.current);
-      if (advanceRef.current) clearTimeout(advanceRef.current);
     };
   }, []);
 
@@ -667,6 +724,16 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
 
     const twStart = setTimeout(() => {
       if (!isMounted.current) return;
+      // Sync audio: start TTS together with typewriter
+      if (voiceOut) {
+        setIsAudioPlaying(true);
+        Speech.speak(fullText, {
+          ...NPC_SPEECH_OPTS,
+          onDone: () => { if (isMounted.current) setIsAudioPlaying(false); },
+          onStopped: () => { if (isMounted.current) setIsAudioPlaying(false); },
+          onError: () => { if (isMounted.current) setIsAudioPlaying(false); },
+        });
+      }
       let idx = 0;
       typewriterRef.current = setInterval(() => {
         if (!isMounted.current) { clearInterval(typewriterRef.current!); return; }
@@ -676,7 +743,6 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
           clearInterval(typewriterRef.current!);
           typewriterRef.current = null;
           setIsTyping(false);
-          if (voiceOut) Speech.speak(fullText, NPC_SPEECH_OPTS);
           // After typing done + 300ms: spring in cards (staggered)
           cardsRevealRef.current = setTimeout(() => {
             if (!isMounted.current) return;
@@ -743,7 +809,6 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
     const fullText = currentStep.npcTextEN.replace(/\[Name\]/gi, userName || 'you');
     setDisplayedText(fullText);
     setIsTyping(false);
-    if (voiceOut) { Speech.stop(); Speech.speak(fullText, NPC_SPEECH_OPTS); }
     setTimeout(revealCards, CARDS_DELAY_AFTER_TYPING_MS);
   };
 
@@ -827,13 +892,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
       if (voiceOut) setTimeout(() => Speech.speak(dialog.gameOverEN, NPC_SPEECH_OPTS), 600);
       return;
     }
-
-    if (advanceRef.current) clearTimeout(advanceRef.current);
-    advanceRef.current = setTimeout(() => {
-      if (!isMounted.current) return;
-      if (isLastStep) finishDialog(newScores);
-      else transitionToNext();
-    }, FEEDBACK_DELAY_MS);
+    // No auto-advance — user presses Continue manually
   };
 
   const finishDialog = async (scores: number[]) => {
@@ -867,7 +926,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
     const adjustedXP = Math.max(1, (ending?.xpReward ?? 0) - hintCount * HINT_XP_PENALTY);
     if (adjustedXP > 0) {
       const name = await AsyncStorage.getItem('user_name');
-      if (name) await registerXP(adjustedXP, 'dialog_complete', name, lang);
+      if (name) try { await registerXP(adjustedXP, 'dialog_complete', name, lang); } catch {}
     }
     checkAchievements({ type: 'dialog', totalCompleted: list.length, totalDialogs: DIALOGS.length }).catch(() => {});
     await updateTaskProgress('daily_active', 1);
@@ -885,7 +944,6 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
   };
 
   const resetForReplay = () => {
-    if (advanceRef.current) clearTimeout(advanceRef.current);
     if (typewriterRef.current) clearInterval(typewriterRef.current);
     if (hintIntervalRef.current) clearInterval(hintIntervalRef.current);
     if (cardsRevealRef.current) clearTimeout(cardsRevealRef.current);
@@ -1086,13 +1144,31 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
               { color: '#F0F7F2', fontSize: 17, lineHeight: 26 },
               activeHintPhrase,
             )}
-            {!isTyping && displayedText.length > 0 && (
+            {displayedText.length > 0 && (
               <TouchableOpacity
-                onPress={() => Speech.speak(currentStep.npcTextEN, NPC_SPEECH_OPTS)}
+                onPress={() => {
+                  if (isAudioPlaying) {
+                    Speech.stop();
+                    setIsAudioPlaying(false);
+                  } else {
+                    const txt = currentStep.npcTextEN.replace(/\[Name\]/gi, userName || 'you');
+                    setIsAudioPlaying(true);
+                    Speech.speak(txt, {
+                      ...NPC_SPEECH_OPTS,
+                      onDone: () => { if (isMounted.current) setIsAudioPlaying(false); },
+                      onStopped: () => { if (isMounted.current) setIsAudioPlaying(false); },
+                      onError: () => { if (isMounted.current) setIsAudioPlaying(false); },
+                    });
+                  }
+                }}
                 style={{ position: 'absolute', top: 10, right: 12 }}
                 hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}
               >
-                <Ionicons name="volume-medium-outline" size={15} color="rgba(255,255,255,0.3)" />
+                <Ionicons
+                  name={isAudioPlaying ? 'volume-high' : 'volume-medium-outline'}
+                  size={15}
+                  color={isAudioPlaying ? '#7EC8E3' : 'rgba(255,255,255,0.3)'}
+                />
               </TouchableOpacity>
             )}
             {isTyping && (
@@ -1104,13 +1180,41 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
         </Pressable>
 
         {/* ── Answer Cards — spring in after typewriter, each card independent ── */}
-        {cardsReady && (
-          <View style={{ height: 264, paddingHorizontal: 16, marginBottom: 20, gap: 8 }}>
-            {isFirstVisit && !firstFlipDone && (
-              <Text style={{ color: 'rgba(255,255,255,0.22)', fontSize: 11, textAlign: 'center', marginBottom: 2, marginTop: -4 }}>
-                {isUK ? 'Утримуй картку, щоб побачити переклад' : 'Удерживай карточку для перевода'}
+        {phase === 'feedback' && chosenIdx !== null ? (
+          /* After choice: show selected answer + Continue button */
+          <View style={{ paddingHorizontal: 16, marginBottom: 20, gap: 10 }}>
+            {/* Selected answer bubble */}
+            {(() => {
+              const originalIdx = choiceOrder[chosenIdx];
+              const choice = currentStep.choices[originalIdx];
+              const translation = isUK ? (choice.textUK ?? choice.impactUK ?? '') : (choice.textRU ?? choice.impactRU ?? '');
+              return (
+                <View style={{ backgroundColor: STYLE_COLOR[choice.style] + '22', borderRadius: 14, borderWidth: 1.5, borderColor: STYLE_COLOR[choice.style] + '88', padding: 14, gap: 4 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', lineHeight: 22 }}>{choice.textEN}</Text>
+                  {translation ? <Text style={{ color: t.textSecond, fontSize: f.sub, fontStyle: 'italic' }}>{translation}</Text> : null}
+                  {(isUK ? choice.impactUK : choice.impactRU) ? (
+                    <Text style={{ color: STYLE_COLOR[choice.style], fontSize: f.caption, marginTop: 4 }}>
+                      {isUK ? choice.impactUK : choice.impactRU}
+                    </Text>
+                  ) : null}
+                </View>
+              );
+            })()}
+            {/* Continue button */}
+            <TouchableOpacity
+              onPress={() => {
+                if (isLastStep) finishDialog([...socialScores]);
+                else transitionToNext();
+              }}
+              style={{ backgroundColor: t.accent, borderRadius: 16, paddingVertical: 16, alignItems: 'center' }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
+                {isUK ? 'Далі →' : 'Далее →'}
               </Text>
-            )}
+            </TouchableOpacity>
+          </View>
+        ) : cardsReady ? (
+          <View style={{ height: 264, paddingHorizontal: 16, marginBottom: 20, gap: 8 }}>
             {choiceOrder.map((originalIdx, visualPos) => {
               const choice = currentStep.choices[originalIdx];
               const translation = isUK
@@ -1129,11 +1233,12 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
                   entryAnim={cardEntryAnims[visualPos]}
                   theme={t}
                   f={f}
+                  showHoldHint={isFirstVisit && !firstFlipDone && visualPos === flipHintCard}
                 />
               );
             })}
           </View>
-        )}
+        ) : null}
 
       </ContentWrap>
 
@@ -1178,16 +1283,17 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
                 {isUK ? tooltip.contextUK : tooltip.contextRU}
               </Text>
             ) : null}
-            {/* Save button */}
+            {/* Save button (bookmark) */}
             <TouchableOpacity
               onPress={() => {
                 setTappedWords(prev => prev.find(w => w.phrase === tooltip.phrase) ? prev : [...prev, tooltip]);
                 hideTooltip();
               }}
-              style={{ marginTop: 8, backgroundColor: 'rgba(126,200,227,0.12)', borderRadius: 10, paddingVertical: 8, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(126,200,227,0.25)' }}
+              style={{ marginTop: 8, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, backgroundColor: 'rgba(126,200,227,0.12)', borderRadius: 10, paddingVertical: 9, borderWidth: 1, borderColor: 'rgba(126,200,227,0.25)' }}
             >
+              <Ionicons name="bookmark-outline" size={15} color="#7EC8E3" />
               <Text style={{ color: '#7EC8E3', fontSize: 13, fontWeight: '700' }}>
-                {isUK ? '+ Зберегти' : '+ Сохранить'}
+                {isUK ? 'Зберегти слово' : 'Сохранить слово'}
               </Text>
             </TouchableOpacity>
           </Animated.View>

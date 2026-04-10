@@ -28,7 +28,7 @@ export default function BonusXPCard({
   const slideAnim = useRef(new Animated.Value(0)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
-  const dismissTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const dismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const playBonusSound = () => {
     // Позитивный звук: быстрые пиксели (звучит весело и энергично)
@@ -37,7 +37,7 @@ export default function BonusXPCard({
         language: 'en-US',
         rate: 1,
         pitch: 1,
-      }).catch(() => {});
+      });
     } catch {}
   };
 

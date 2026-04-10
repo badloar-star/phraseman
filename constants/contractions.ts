@@ -82,6 +82,11 @@ export const normalize = (text: string): string => {
   return result.replace(/\s+/g, ' ').trim().toLowerCase();
 };
 
-export const isCorrectAnswer = (userAnswer: string, correctAnswer: string): boolean => {
-  return normalize(userAnswer) === normalize(correctAnswer);
+export const isCorrectAnswer = (userAnswer: string, correctAnswer: string, alternatives?: string[]): boolean => {
+  const norm = normalize(userAnswer);
+  if (norm === normalize(correctAnswer)) return true;
+  if (alternatives) {
+    return alternatives.some(alt => norm === normalize(alt));
+  }
+  return false;
 };

@@ -18,6 +18,7 @@ import { loadLeaderboard, loadWeekLeaderboard, getMyWeekPoints, getWeekKey } fro
 import { loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
 import { STORE_URL } from './config';
 import { checkStreakLossPending } from './hall_of_fame_utils';
+import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 
 const { width } = Dimensions.get('window');
@@ -343,7 +344,7 @@ export default function StreakStats() {
   const [totalXP, setTotalXP]            = useState(0);
   const [lessonsCompleted, setLessonsCompleted] = useState(0);
   const [lessonsProgressPct, setLessonsProgressPct] = useState(0);
-  const [isPremium, setIsPremium]               = useState(false);
+  const { isPremium }                            = usePremium();
   const [freezeActive, setFreezeActive]         = useState(false);
   const [streakAtRisk, setStreakAtRisk]          = useState(false);
   const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(false);
@@ -479,18 +480,17 @@ export default function StreakStats() {
       setLessonsProgressPct(Math.min(100, Math.round(totalCorrectAll / (32 * 50) * 100)));
 
       // Streak freeze state
-      const [premiumRaw, freezeRaw, freeUsedRaw] = await Promise.all([
-        AsyncStorage.getItem('premium_active'),
+      const [freezeRaw, freeUsedRaw] = await Promise.all([
         AsyncStorage.getItem('streak_freeze'),
         AsyncStorage.getItem('premium_free_freeze_used'),
       ]);
-      const premium = premiumRaw === 'true';
-      setIsPremium(premium);
       const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
-      setFreezeActive(!!(freeze?.active));
+      const freezeDateStr = new Date().toISOString().split('T')[0];
+      const freezeIsActive = !!(freeze?.active && freeze?.date === freezeDateStr);
+      setFreezeActive(freezeIsActive);
       setPremiumFreezeUsed(freeUsedRaw === 'true');
       const { willLose } = await checkStreakLossPending();
-      setStreakAtRisk(willLose && !(freeze?.active));
+      setStreakAtRisk(willLose && !freezeIsActive);
     } catch {}
   };
 
@@ -628,6 +628,38 @@ export default function StreakStats() {
                 </View>
               );
             })}
+          </View>
+
+          {/* Freeze button */}
+          <View style={{ marginTop: 14 }}>
+            {freezeActive ? (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(100,180,255,0.12)', borderRadius: 12, padding: 12 }}>
+                <Ionicons name="snow-outline" size={20} color="#64B4FF" />
+                <Text style={{ color: '#64B4FF', fontSize: f.body, fontWeight: '600', flex: 1 }}>
+                  {isUK ? 'Ланцюжок заморожено на сьогодні' : 'Цепочка заморожена на сегодня'}
+                </Text>
+              </View>
+            ) : (
+              <TouchableOpacity
+                onPress={handleFreezeStreak}
+                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: '#64B4FF', paddingVertical: 11, paddingHorizontal: 16 }}
+              >
+                <Ionicons name="snow-outline" size={18} color="#64B4FF" />
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: '#64B4FF', fontSize: f.body, fontWeight: '600' }}>
+                    {isUK ? 'Заморозити ланцюжок' : 'Заморозить цепочку'}
+                  </Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 1 }}>
+                    {isPremium
+                      ? (premiumFreezeUsed
+                        ? (isUK ? `${FREEZE_COST_XP} XP` : `${FREEZE_COST_XP} XP`)
+                        : (isUK ? 'Безкоштовно (Преміум)' : 'Бесплатно (Премиум)'))
+                      : (isUK ? 'Потрібен Преміум' : 'Нужен Премиум')}
+                  </Text>
+                </View>
+                {!isPremium && <Ionicons name="lock-closed-outline" size={16} color={t.textMuted} />}
+              </TouchableOpacity>
+            )}
           </View>
         </View>
 

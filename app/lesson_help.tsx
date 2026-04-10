@@ -1,13 +1,15 @@
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { updateTaskProgress } from './daily_tasks';
+import { registerXP } from './xp_manager';
 
 // ─── UI компоненты ────────────────────────────────────────────────────────────
 
@@ -109,7 +111,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Table key="t1" t={t} f={f} rows={[
       [isUK ? 'Займенник' : 'Местоимение', isUK ? 'Форма' : 'Форма', isUK ? 'Приклад' : 'Пример'],
       ['I', 'am', 'I am here'],
-      ['He / She / It', 'is', 'He is busy / She is home'],
+      ['He / She / It', 'is', 'He is busy / She is at home'],
       ['You / We / They', 'are', 'You are ready / We are safe'],
     ]} />,
     <Body key="b2b" t={t} f={f} text={isUK ? 'З I — тільки am. Ніколи не is, ніколи не are.' : 'С I — только am. Никогда не is, никогда не are.'} />,
@@ -118,7 +120,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Example key="e3" t={t} f={f} eng="I am at work" rus={isUK ? 'Я на роботі' : 'Я на работе'} />,
     <Body key="b2c" t={t} f={f} text={isUK ? 'З he / she / it — тільки is.' : 'С he / she / it — только is.'} />,
     <Example key="e4" t={t} f={f} eng="He is busy" rus={isUK ? 'Він зайнятий' : 'Он занят'} />,
-    <Example key="e5" t={t} f={f} eng="She is home" rus={isUK ? 'Вона вдома' : 'Она дома'} />,
+    <Example key="e5" t={t} f={f} eng="She is at home" rus={isUK ? 'Вона вдома' : 'Она дома'} />,
     <Example key="e6" t={t} f={f} eng="It is important" rus={isUK ? 'Це важливо' : 'Это важно'} />,
     <Body key="b2d" t={t} f={f} text={isUK ? 'З you / we / they — тільки are.' : 'С you / we / they — только are.'} />,
     <Example key="e7" t={t} f={f} eng="You are ready" rus={isUK ? 'Ти готовий' : 'Ты готов'} />,
@@ -171,10 +173,10 @@ const THEORY: Record<number, TheoryContent> = {
     <Example key="e1" t={t} f={f} eng="I am not hungry" rus={isUK ? 'Я не голодний' : 'Я не голоден'} />,
     <Example key="e2" t={t} f={f} eng="He is not here" rus={isUK ? 'Його тут немає' : 'Его здесь нет'} />,
     <Example key="e3" t={t} f={f} eng="We are not ready" rus={isUK ? 'Ми не готові' : 'Мы не готовы'} />,
-    <Example key="e4" t={t} f={f} eng="They are not home" rus={isUK ? 'Їх немає вдома' : 'Их нет дома'} />,
+    <Example key="e4" t={t} f={f} eng="They are not home / They are not at home" rus={isUK ? 'Їх немає вдома (обидві форми правильні)' : 'Их нет дома (обе формы правильны)'} />,
     <Body key="b1b" t={t} f={f} text={isUK ? 'Is not і are not можна скоротити: isn\'t і aren\'t. Це звучить природніше в розмові.' : 'Is not и are not можно сократить: isn\'t и aren\'t. Это звучит естественнее в разговоре.'} />,
-    <Example key="e5" t={t} f={f} eng="She is not married" rus={isUK ? 'Вона не одружена' : 'Она не замужем'} />,
-    <Example key="e6" t={t} f={f} eng="It is not scary" rus={isUK ? 'Це не страшно' : 'Это не страшно'} />,
+    <Example key="e5" t={t} f={f} eng="She isn't married" rus={isUK ? 'Вона не одружена' : 'Она не замужем'} />,
+    <Example key="e6" t={t} f={f} eng="It isn't scary" rus={isUK ? 'Це не страшно' : 'Это не страшно'} />,
     <Body key="b1c" t={t} f={f} text={isUK ? 'З I — тільки I\'m not. Скорочення «amn\'t» не існує в англійській мові.' : 'С I — только I\'m not. Сокращения «amn\'t» не существует в английском.'} />,
     <Warn key="w1" t={t} f={f} text={isUK ? '❌ «I amn\'t alone» → ✅ «I\'m not alone». Для I немає скороченої форми з not.' : '❌ «I amn\'t alone» → ✅ «I\'m not alone». Для I нет сокращённой формы с not.'} />,
 
@@ -1226,10 +1228,31 @@ export default function LessonHelp() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isUK = lang === 'uk';
+  const [xpClaimed, setXpClaimed] = useState(false);
+  const [xpShown, setXpShown] = useState(false);
+  const xpAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     updateTaskProgress('open_theory', 1).catch(() => {});
-  }, []);
+    const key = `theory_xp_claimed_${lessonId}`;
+    AsyncStorage.getItem(key).then(v => { if (v === '1') setXpClaimed(true); }).catch(() => {});
+  }, [lessonId]);
+
+  const handleClaimXP = async () => {
+    if (xpClaimed) return;
+    const key = `theory_xp_claimed_${lessonId}`;
+    await AsyncStorage.setItem(key, '1');
+    setXpClaimed(true);
+    const userName = await AsyncStorage.getItem('user_name') ?? '';
+    await registerXP(25, 'vocabulary_learned', userName, lang, lessonId).catch(() => {});
+    setXpShown(true);
+    xpAnim.setValue(0);
+    Animated.sequence([
+      Animated.timing(xpAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
+      Animated.delay(1500),
+      Animated.timing(xpAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
+    ]).start(() => setXpShown(false));
+  };
 
   const theory = THEORY[lessonId];
 
@@ -1273,6 +1296,44 @@ export default function LessonHelp() {
               : `Теория для урока ${lessonId} скоро появится. Продолжай практиковаться!`
           } />
         )}
+
+        {/* XP reward button at the bottom of theory */}
+        <View style={{ marginTop: 32, marginBottom: 8, alignItems: 'center' }}>
+          <TouchableOpacity
+            onPress={handleClaimXP}
+            disabled={xpClaimed}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'center',
+              backgroundColor: xpClaimed ? t.border : '#F5A623',
+              borderRadius: 16,
+              paddingVertical: 14,
+              paddingHorizontal: 28,
+              gap: 8,
+              opacity: xpClaimed ? 0.6 : 1,
+            }}
+          >
+            <Ionicons name={xpClaimed ? 'checkmark-circle' : 'star'} size={22} color="#fff" />
+            <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
+              {xpClaimed
+                ? (isUK ? 'XP отримано' : 'XP получено')
+                : (isUK ? 'Отримати 25 XP' : 'Получить 25 XP')}
+            </Text>
+          </TouchableOpacity>
+          {xpShown && (
+            <Animated.Text style={{
+              marginTop: 10,
+              color: '#F5A623',
+              fontSize: f.h2,
+              fontWeight: '700',
+              opacity: xpAnim,
+              transform: [{ translateY: xpAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
+            }}>
+              +25 XP
+            </Animated.Text>
+          )}
+        </View>
       </ScrollView>
       </ContentWrap>
     </SafeAreaView>

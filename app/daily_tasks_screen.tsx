@@ -60,7 +60,7 @@ export default function DailyTasksScreen() {
     const updated = await loadTodayProgress();
     setProgress(updated);
 
-    if (userName) await registerXP(xp, 'daily_task_reward', userName, lang); // [ACHIEVEMENT] Проверяем ачивки за задания
+    if (userName) try { await registerXP(xp, 'daily_task_reward', userName, lang); } catch {} // [ACHIEVEMENT] Проверяем ачивки за задания
     const allDone = updated.every(t => t.claimed);
     checkAchievements({ type: 'daily_task', allDone }).catch(() => {});
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);

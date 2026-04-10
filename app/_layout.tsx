@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import { EnergyProvider } from '../components/EnergyContext';
+import { PremiumProvider } from '../components/PremiumContext';
 import AchievementToast from '../components/AchievementToast';
 import { LangProvider, useLang } from '../components/LangContext';
 import Onboarding from '../components/onboarding';
@@ -15,7 +16,9 @@ import { scheduleMonthlyRecapNotification, schedulePhrasOfDayNotification, sched
 import { migrateWeekPointsIfNeeded } from './hall_of_fame_utils';
 import { checkForUpdate } from './update_check';
 import { initRevenueCat } from './revenuecat_init';
+import crashlytics from '@react-native-firebase/crashlytics';
 import { registerXP } from './xp_manager';
+import { incrementSessionCount } from './review_utils';
 
 // RevenueCat API keys must be set via environment variables.
 // See revenuecat_init.ts for singleton initialization pattern.
@@ -143,6 +146,7 @@ function AppContent() {
     const init = async () => {
       try {
         // Singleton инициализация RevenueCat с retry-защитой и логированием
+        await crashlytics().setCrashlyticsCollectionEnabled(true);
         await initRevenueCat();
 
         // Одноразовая миграция week_points (fire-and-forget)
@@ -150,6 +154,9 @@ function AppContent() {
 
         // Логин-бонус и Comeback запускаем при каждом старте (fire-and-forget)
         runSessionChecks();
+
+        // Счётчик сессий для запроса оценки в App Store / Google Play
+        incrementSessionCount().catch(() => {});
 
         // Pre-load all images to ensure they're cached locally (prevents disappearing on PC offline)
         preloadImages().catch(() => {});
@@ -247,15 +254,17 @@ export default function RootLayout() {
   return (
     <ThemeProvider>
       <LangProvider>
-        <EnergyProvider>
-          <AchievementProvider>
-            <AnimatedFrameProvider>
-              <AppContent />
-              {/* Тост монтируется поверх всего Stack-навигатора */}
-              <AchievementToast />
-            </AnimatedFrameProvider>
-          </AchievementProvider>
-        </EnergyProvider>
+        <PremiumProvider>
+          <EnergyProvider>
+            <AchievementProvider>
+              <AnimatedFrameProvider>
+                <AppContent />
+                {/* Тост монтируется поверх всего Stack-навигатора */}
+                <AchievementToast />
+              </AnimatedFrameProvider>
+            </AchievementProvider>
+          </EnergyProvider>
+        </PremiumProvider>
       </LangProvider>
     </ThemeProvider>
   );

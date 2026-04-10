@@ -245,7 +245,7 @@ export const LESSON_VOCABULARIES: Record<number, typeof LESSON_4_VOCABULARY> = {
 };
 
 // === Lesson Irregular Verbs ===
-export const LESSON_IRREGULAR_VERBS: Record<number, typeof LESSON_4_IRREGULAR_VERBS> = {
+export const LESSON_IRREGULAR_VERBS: Record<number, any[]> = {
   4: LESSON_4_IRREGULAR_VERBS,
   6: LESSON_6_IRREGULAR_VERBS,
   7: LESSON_7_IRREGULAR_VERBS,

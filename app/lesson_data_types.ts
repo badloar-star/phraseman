@@ -10,6 +10,7 @@ export interface LessonWord {
 export interface LessonPhrase {
   id: string | number;
   english: string;
+  alternatives?: string[];  // Дополнительные правильные переводы
   russian: string;
   ukrainian: string;
   words: LessonWord[];

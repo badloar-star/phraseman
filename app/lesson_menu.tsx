@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { View, Text, TouchableOpacity, Alert, Modal, Pressable } from 'react-native';
+import { View, Text, TouchableOpacity, Alert, Modal, Pressable, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -259,6 +259,7 @@ export default function LessonMenu() {
         </PremiumCard>
       </View>
 
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 24 }}>
       {/* Тема урока */}
       <Text style={{color:t.textMuted,fontSize: f.bodyLg,textAlign:'center',marginTop:20,marginHorizontal:30,lineHeight:24}}>
         {lessonName}
@@ -332,7 +333,7 @@ export default function LessonMenu() {
             ) : (
               <View style={{
                 width:44,height:44,borderRadius:22,
-                backgroundColor: item.disabled ? t.bgMuted : t.bgSurface,
+                backgroundColor: item.disabled ? t.bgPrimary : t.bgSurface,
                 borderTopWidth:0.5, borderLeftWidth:0.5,
                 borderRightWidth:0.5, borderBottomWidth:0.5,
                 borderTopColor:t.borderHighlight, borderLeftColor:t.borderHighlight,
@@ -351,6 +352,7 @@ export default function LessonMenu() {
         ))}
       </View>
 
+      </ScrollView>
       {/* Модальное окно блокировки */}
       <Modal transparent animationType="fade" visible={showLockModal} onRequestClose={() => setShowLockModal(false)}>
         <Pressable style={{flex:1, backgroundColor:'rgba(0,0,0,0.5)'}} onPress={() => setShowLockModal(false)}>
@@ -368,7 +370,7 @@ export default function LessonMenu() {
                   {lang==='uk' ? 'Урок заблокований' : 'Урок заблокирован'}
                 </Text>
                 <Text style={{color:t.textMuted, fontSize:f.body, textAlign:'center', marginBottom:28, lineHeight:22}}>
-                  {lockInfo ? getLockMessageText(lessonId, lang as 'ru'|'uk') : ''}
+                  {lockInfo ? getLockMessageText(lockInfo, lang as 'ru'|'uk') : ''}
                 </Text>
                 <TouchableOpacity
                   style={{

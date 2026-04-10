@@ -3,35 +3,9 @@ import { LessonIntroScreen, LessonPhrase } from './lesson_data_types';
 
 // ==================== LESSON 1 ====================
 
-export const LESSON_1_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Рад тебе! Забудь о скучных учебниках. Сегодня мы просто поиграем в конструктор: соберем твои первые фразы на английском легко и с удовольствием.',
-    textUK: 'Радий тебе! Забудь про нудні підручники. Сьогодні ми просто пограємось в конструктор: зберемо твої перші фрази англійською легко й з задоволенням.',
-  },
-  {
-    textRU: 'Главная фишка: в английском всегда нужен «глагол-двигатель». Там, где мы молчим, они говорят am, is или are. Это как связующий клей для слов.',
-    textUK: 'Головна фішка: в англійській завжди потрібний «дієслово-двигун». Там, де ми мовчимо, вони кажуть am, is або are. Це як в\'яжучий клей для слів.',
-  },
-  {
-    textRU: 'Наша формула успеха: Кто + Связка + артикль + Слово. Расслабься, у тебя всё получится. Погнали! ⚡️',
-    textUK: 'Наша формула успіху: Хто + Зв\'язка + артикль + Слово. Розслабся, у тебе все вийде. Поїхали! ⚡️',
-  },
-];
+export const LESSON_1_INTRO_SCREENS: LessonIntroScreen[] = [];
 
-export const LESSON_1_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Идем на взлет! ✈️',
-    textUK: 'Йдемо на злет! ✈️',
-  },
-  {
-    textRU: 'Ты на правильном пути! Заметил, как фразы складываются сами собой? Это и есть магия практики. Главное — не давай дистракторам себя запутать.',
-    textUK: 'Ти на правильному шляху! Помітив, як фрази складаються самі по собі? Це і є магія практики. Головне — не дай дистракторам себе збити з толку.',
-  },
-  {
-    textRU: 'Сейчас мы добавим слова, которые сделают твою речь солиднее. Принцип тот же: Кто + am/is/are + слово. Расслабься и получай удовольствие от процесса!',
-    textUK: 'Зараз ми додамо слова, які зроблять твоє мовлення більш солідним. Принцип той самий: Хто + am/is/are + слово. Розслабся й отримуй задоволення від процесу!',
-  },
-];
+export const LESSON_1_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_1_PHRASES: LessonPhrase[] = [
   // 1-5
@@ -70,12 +44,13 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson1_phrase_4',
-    english: 'She is home',
+    english: 'She is at home',
     russian: 'Она дома',
     ukrainian: 'Вона вдома',
     words: [
       { text: 'She', correct: 'She', distractors: ['her', 'see', 'sea', 'shy', 'show'], category: 'pronoun' },
       { text: 'is', correct: 'is', distractors: ['am', 'are', 'in', 'it', 'if'], category: 'to-be' },
+      { text: 'at', correct: 'at', distractors: ['on', 'in', 'by', 'to', 'of'], category: 'preposition' },
       { text: 'home', correct: 'home', distractors: ['house', 'hope', 'hole', 'horse', 'ham'], category: 'noun' },
     ],
   },
@@ -633,20 +608,7 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
 
 // ==================== LESSON 2 ====================
 
-export const LESSON_2_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Добро пожаловать в урок 2! Сегодня мы научимся говорить "нет" и задавать вопросы. Это супер мощный набор навыков!',
-    textUK: 'Ласкаво просимо на урок 2! Сьогодні ми навчимося говорити "ні" та задавати питання. Це супер потужний набір навичок!',
-  },
-  {
-    textRU: 'Главное: добавляем слово "not" для отрицания. I am → I am NOT. Просто и логично!',
-    textUK: 'Головне: додаємо слово "not" для заперечення. I am → I am NOT. Просто і логічно!',
-  },
-  {
-    textRU: 'Для вопросов переставляем слова: "I am" становится "Am I?". Порядок - король в английском!',
-    textUK: 'Для питань переставляємо слова: "I am" стає "Am I?". Порядок - король в англійській!',
-  },
-];
+export const LESSON_2_INTRO_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_2_PHRASES: LessonPhrase[] = [
   {
@@ -709,13 +671,15 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson2_phrase_6',
-    english: 'They are not home',
+    english: 'They are not at home',
+    alternatives: ['They are not home'],
     russian: 'Их нет дома',
     ukrainian: 'Їх немає вдома',
     words: [
       { text: 'They', correct: 'They', distractors: ['them', 'their', 'there', 'the', 'then'], category: 'pronoun' },
       { text: 'are', correct: 'are', distractors: ['am', 'is', 'art', 'air', 'arm'], category: 'to-be' },
       { text: 'not', correct: 'not', distractors: ['no', 'nor', 'net', 'note', 'nut'], category: 'adverb' },
+      { text: 'at', correct: 'at', distractors: ['in', 'on', 'by', 'of', 'home'], category: 'preposition' },
       { text: 'home', correct: 'home', distractors: ['come', 'some', 'dome', 'hole', 'hope'], category: 'noun' },
     ],
   },
@@ -782,6 +746,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson2_phrase_12',
     english: 'Is he angry?',
+    alternatives: ['Is he mean?'],
     russian: 'Он злой?',
     ukrainian: 'Він злий?',
     words: [
@@ -1186,6 +1151,7 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson2_phrase_45',
     english: 'I am not mean',
+    alternatives: ['I am not angry'],
     russian: 'Я не злой',
     ukrainian: 'Я не злий',
     words: [
@@ -1263,35 +1229,9 @@ export const LESSON_2_PHRASES: LessonPhrase[] = [
 
 // ==================== LESSON 3 ====================
 
-export const LESSON_3_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Добро пожаловать в урок 3! Сегодня мы выходим на новый уровень - начинаем использовать глаголы действия! Это похоже на переход с картинок на фильмы!',
-    textUK: 'Ласкаво просимо на урок 3! Сьогодні ми виходимо на новий рівень - починаємо використовувати дієслова дії! Це схоже на перехід з картинок на фільми!',
-  },
-  {
-    textRU: 'Новая супер-сила: Кто + Глагол + Что. Например: I work, She speaks, They drink. Очень просто и очень мощно!',
-    textUK: 'Нова супер-сила: Хто + Дієслово + Що. Наприклад: I work, She speaks, They drink. Дуже просто і дуже потужно!',
-  },
-  {
-    textRU: 'Главное правило Present Simple: если "он/она", добавляем -s к глаголу. He works, She speaks. Остальные - как есть. Логично и предсказуемо!',
-    textUK: 'Головне правило Present Simple: якщо "він/вона", додаємо -s до дієслова. He works, She speaks. Решта - як є. Логічно і передбачувано!',
-  },
-];
+export const LESSON_3_INTRO_SCREENS: LessonIntroScreen[] = [];
 
-export const LESSON_3_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Отличный старт! Видишь, как глаголы оживляют предложения? Это и есть магия языка! 🎬',
-    textUK: 'Чудовий старт! Бачиш, як дієслова оживляють речення? Це і є магія мови! 🎬',
-  },
-  {
-    textRU: 'Ты быстро учишься! Каждый новый глагол - это шаг к свободному разговору. Продолжай в том же духе!',
-    textUK: 'Ти швидко вчишся! Кожне нове дієслово - це крок до вільної розмови. Продовжуй в тому ж дусі!',
-  },
-  {
-    textRU: 'Примечание: не волнуйся о неправильных глаголах пока - их мы разберём отдельно. Сейчас главное - ловить логику!',
-    textUK: 'Примітка: не хвилюйся щодо неправильних дієслів поки - їх ми розберемо окремо. Зараз головне - ловити логіку!',
-  },
-];
+export const LESSON_3_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_3_PHRASES: LessonPhrase[] = [
   {
@@ -2639,31 +2579,9 @@ export const LESSON_4_PHRASES: LessonPhrase[] = [
 
 // ==================== LESSON 5 ====================
 
-export const LESSON_5_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Добро пожаловать в урок 5! Теперь мы переходим к вопросам! Do you...? Does he...? - это твоя новая супер-сила!',
-    textUK: 'Ласкаво просимо на урок 5! Тепер ми переходимо до питань! Do you...? Does he...? - це твоя нова супер-сила!',
-  },
-  {
-    textRU: 'Главное правило: для вопросов используй Do (я, ты, мы, они) и Does (он, она, оно). Потом идёт местоимение и глагол!',
-    textUK: 'Головне правило: для питань використовуй Do (я, ти, ми, вони) і Does (він, вона, воно). Потім іде займенник і дієслово!',
-  },
-  {
-    textRU: 'Порядок слов в вопросе: Do/Does + Кто + Глагол + Что. Это отличается от утверждений - здесь все по-другому!',
-    textUK: 'Порядок слів в питанні: Do/Does + Хто + Дієслово + Що. Це відрізняється від тверджень - тут все по-іншому!',
-  },
-];
+export const LESSON_5_INTRO_SCREENS: LessonIntroScreen[] = [];
 
-export const LESSON_5_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Отлично! Видишь, как легко задавать вопросы? Главное - не путать порядок слов! 🙋',
-    textUK: 'Чудово! Бачиш, як легко ставити питання? Головне - не плутати порядок слів! 🙋',
-  },
-  {
-    textRU: 'Ты уже чувствуешь разницу между Do и Does? Это фундамент для всех будущих вопросов!',
-    textUK: 'Ти вже відчуваєш різницю між Do і Does? Це фундамент для всіх майбутніх питань!',
-  },
-];
+export const LESSON_5_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_5_PHRASES: LessonPhrase[] = [
   {
@@ -4053,27 +3971,9 @@ export const LESSON_6_IRREGULAR_VERBS = [
 
 // ==================== LESSON 7 ====================
 
-export const LESSON_7_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Добро пожаловать в урок 7! Сегодня мы разбираемся с глаголом To Have — одним из самых важных в английском. Это не просто "иметь" — это ключ к описанию владения, состояния и множества других вещей.',
-    textUK: 'Добро пожалувати на урок 7! Сьогодні ми розбираємося з дієсловом To Have — одним з найважливіших в англійській. Це не просто "мати" — це ключ до описання володіння, стану та багатьох інших речей.',
-  },
-  {
-    textRU: 'Магия To Have: I have, he has, they have. Заметь форму — с he/she/it добавляем "s"! To Have откроет тебе целый мир фраз: I have a passport, She has an allergy. Это как волшебная палочка для реальных разговоров.',
-    textUK: 'Магія To Have: I have, he has, they have. Зверни увагу на форму — з he/she/it додаємо "s"! To Have відкриє тобі цілий світ фраз: I have a passport, She has an allergy. Це як чарівна паличка для справжніх розмов.',
-  },
-];
+export const LESSON_7_INTRO_SCREENS: LessonIntroScreen[] = [];
 
-export const LESSON_7_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Пока мы добавили To Have — уже 50 фраз в твоем арсенале! Видишь, как быстро ты учишься? Каждая фраза приносит тебя ближе к настоящей беседе на английском.',
-    textUK: 'Поки ми додали To Have — уже 50 фраз у твому арсеналі! Бачиш, як швидко ти навчаєшся? Кожна фраза наближає тебе до справжньої розмови англійською.',
-  },
-  {
-    textRU: 'Ты уже знаешь основы! Следующий уровень — это фразы, которые звучат как родные. Не переживай, если что-то забудешь — практика — лучший учитель. Давай повторим самые сложные моменты!',
-    textUK: 'Ти вже знаєш основи! Наступний рівень — це фрази, які звучать як рідні. Не хвилюйся, якщо щось забудеш — практика — найкращий учитель. Давай повторимо найскладніші моменти!',
-  },
-];
+export const LESSON_7_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_7_VOCABULARY = [
   { english: 'I', russian: 'Я', ukrainian: 'Я' },

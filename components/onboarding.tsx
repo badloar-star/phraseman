@@ -2,11 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity, SafeAreaView,
   TextInput, KeyboardAvoidingView, Platform, Alert, ScrollView,
-  ActivityIndicator, Switch, Animated,
+  Switch, Animated,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Purchases, { PurchasesPackage } from 'react-native-purchases';
-import { sendPremiumNotification } from '../app/notifications';
 import { generateReferralCode } from '../app/referral_system';
 import { IS_EXPO_GO, IS_BETA_TESTER } from '../app/config';
 import { T, Lang } from '../constants/i18n';
@@ -25,7 +23,6 @@ interface Props {
   onLangSelect?: (lang: Lang) => void;
 }
 
-type Plan = 'monthly' | 'yearly';
 
 const GOAL_DESCRIPTIONS: Record<LearningGoal, { ru: string; uk: string }> = {
   tourism: { ru: 'Путешествовать без границ', uk: 'Подорожувати без кордонів' },
@@ -85,7 +82,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     }
   };
 
-  const [step, setStep]       = useState<'beta' | 'demo' | 'demo2' | 'name' | 'test_offer' | 'streak' | 'time' | 'referral' | 'premium'>(IS_BETA_TESTER ? 'beta' : 'demo2');
+  const [step, setStep]       = useState<'beta' | 'demo' | 'demo2' | 'name' | 'test_offer' | 'streak' | 'time' | 'referral'>(IS_BETA_TESTER ? 'beta' : 'demo2');
   const [demoAnswered, setDemoAnswered] = useState(false);
   const [demoCorrect, setDemoCorrect]   = useState(false);
   const [demoSelected, setDemoSelected] = useState<number>(-1);
@@ -110,9 +107,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   const targetLevel: TargetLevel     = 'a2';
   const [notificationTime, setNotificationTime] = useState<string>('08:00');
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
-  const [selected, setSelected] = useState<Plan>('yearly');
-  const [purchasing, setPurchasing] = useState(false);
-  const [packages, setPackages] = useState<{ monthly?: PurchasesPackage; yearly?: PurchasesPackage }>({});
 
   const t = T[lang];
   const isUK = lang === 'uk';
@@ -135,14 +129,13 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   };
 
   // Прогресс-бар + кнопка назад
-  const PROGRESS_STEPS = ['demo2', 'demo', 'name', 'test_offer', 'streak', 'time', 'premium'];
+  const PROGRESS_STEPS = ['demo2', 'demo', 'name', 'test_offer', 'streak', 'time'];
   const PREV_STEP: Partial<Record<typeof step, typeof step>> = {
     demo:       'demo2',
     name:       'demo',
     test_offer: 'name',
     streak:     'test_offer',
     time:       'streak',
-    premium:    'time',
   };
 
   const renderProgressBar = () => {
@@ -193,18 +186,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     ]).start();
   }, [step]);
 
-  useEffect(() => {
-    if (step === 'premium' && !IS_EXPO_GO) {
-      Purchases.getOfferings()
-        .then(offerings => {
-          const pkgs = offerings.current?.availablePackages ?? [];
-          const monthly = pkgs.find(p => p.product.identifier.includes('monthly'));
-          const yearly  = pkgs.find(p => p.product.identifier.includes('yearly'));
-          setPackages({ monthly, yearly });
-        })
-        .catch(() => {});
-    }
-  }, [step]);
 
   // Уведомляем родителя о языке при монтировании
   useEffect(() => {
@@ -238,63 +219,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     goToStep('test_offer');
   };
 
-  const handlePurchase = async (plan: Plan) => {
-    if (IS_EXPO_GO) { await handleContinueFree(); return; }
-    const pkg = plan === 'yearly' ? packages.yearly : packages.monthly;
-    if (!pkg) {
-      Alert.alert(
-        isUK ? 'Магазин недоступний' : 'Магазин недоступен',
-        isUK ? 'Спробуйте пізніше або перевірте підключення.' : 'Попробуйте позже или проверьте подключение.',
-        [{ text: 'OK' }]
-      );
-      return;
-    }
-    setSelected(plan);
-    setPurchasing(true);
-    try {
-      const { customerInfo } = await Purchases.purchasePackage(pkg);
-      const isActive = !!customerInfo.entitlements.active['premium']
-        || customerInfo.activeSubscriptions.length > 0;
-      if (isActive) {
-        const expiry = plan === 'yearly'
-          ? Date.now() + 365 * 24 * 60 * 60 * 1000
-          : Date.now() + 30  * 24 * 60 * 60 * 1000;
-        await AsyncStorage.multiSet([
-          ['premium_active', 'true'],
-          ['premium_plan', plan],
-          ['premium_expiry', String(expiry)],
-          ['onboarding_done', '1'],
-        ]);
-        sendPremiumNotification(lang);
-        onDone();
-      } else {
-        // Покупка прошла, но entitlement ещё не активен (задержка RevenueCat).
-        // Сохраняем онбординг и продолжаем — подписка активируется при следующей проверке.
-        await AsyncStorage.setItem('onboarding_done', '1');
-        Alert.alert(
-          isUK ? 'Дякуємо!' : 'Спасибо!',
-          isUK
-            ? 'Покупку отримано. Premium активується протягом кількох хвилин.'
-            : 'Покупка получена. Premium активируется в течение нескольких минут.',
-          [{ text: 'OK', onPress: onDone }]
-        );
-      }
-    } catch (e: any) {
-      if (!e.userCancelled) {
-        Alert.alert(
-          isUK ? 'Помилка' : 'Ошибка',
-          e.message || (isUK ? 'Щось пішло не так.' : 'Что-то пошло не так.')
-        );
-      }
-    } finally {
-      setPurchasing(false);
-    }
-  };
-
-  const handleContinueFree = async () => {
-    await AsyncStorage.setItem('onboarding_done', '1');
-    onDone();
-  };
 
   const saveUserProfile = async () => {
     if (!goal || !minutesPerDay || !currentLevel) return;
@@ -354,9 +278,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     }
   };
 
-  const handleContinueToPremium = async () => {
+  const handleFinishOnboarding = async () => {
     await saveUserProfile();
-    setStep('premium');
+    await AsyncStorage.setItem('onboarding_done', '1');
+    onDone();
   };
 
   // ── Шаг 0: Добро пожаловать в бета ─────────────────────────────────────────
@@ -431,7 +356,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       <SafeAreaView style={styles.container}>
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
-        <View style={[styles.center, { paddingTop: 0 }]}>
+        <ScrollView contentContainerStyle={[styles.center, { paddingTop: 0, flexGrow: 1 }]} showsVerticalScrollIndicator={false}>
           <Text style={[styles.appName, { marginBottom: 8 }]}>Phraseman</Text>
           <Text style={{ color: '#A8A8A8', fontSize: 14, marginBottom: 28, textAlign: 'center' }}>
             {isUK ? 'Спробуй вгадати фразу прямо зараз' : 'Попробуй угадать фразу прямо сейчас'}
@@ -504,7 +429,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               </TouchableOpacity>
             </Animated.View>
           )}
-        </View>
+        </ScrollView>
         </Animated.View>
       </SafeAreaView>
     );
@@ -512,9 +437,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
   // ── Шаг 1: Демо1 — приветствие + сбор фразы ────────────────────────────────
   if (step === 'demo2') {
-    const demo2Words = ['gave', 'He', 'smoking', 'up', 'last', 'year'];
-    const demo2Correct_order = [1, 0, 3, 2, 4, 5]; // He gave up smoking last year
-    const demo2Answer = ['He', 'gave', 'up', 'smoking', 'last', 'year'];
+    const demo2Words = ['turn', 'Please', 'TV', 'off', 'the'];
+    const demo2Correct_order = [1, 0, 3, 4, 2]; // Please turn off the TV
+    const demo2Answer = ['Please', 'turn', 'off', 'the', 'TV'];
 
     const currentPhrase = demo2Selected.map(idx => demo2Words[idx]);
     const isDemo2Correct = demo2Selected.length === demo2Answer.length
@@ -578,6 +503,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             <View style={{ backgroundColor: '#1A1A1A', borderRadius: 12, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: 'rgba(200,255,0,0.15)' }}>
               <Text style={{ color: '#C8FF00', fontSize: 13, fontWeight: '600', textAlign: 'center' }}>
                 {isUK ? 'Спробуй скласти фразу з цих слів:' : 'Попробуй собрать фразу из этих слов:'}
+              </Text>
+              <Text style={{ color: '#555', fontSize: 12, textAlign: 'center', marginTop: 4 }}>
+                {isUK ? 'Будь ласка, вимкни телевізор' : 'Пожалуйста, выключи телевизор'}
               </Text>
             </View>
           </Animated.View>
@@ -659,6 +587,18 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                 </TouchableOpacity>
               </Animated.View>
             )}
+            {/* Кнопка пропустить — всегда видна если пользователь ещё не ответил */}
+            {!demo2Answered && (
+              <TouchableOpacity
+                style={{ marginTop: 20, alignSelf: 'center', padding: 12 }}
+                onPress={() => goToStep('demo')}
+                activeOpacity={0.7}
+              >
+                <Text style={{ color: '#555', fontSize: 13 }}>
+                  {isUK ? 'Пропустити →' : 'Пропустить →'}
+                </Text>
+              </TouchableOpacity>
+            )}
           </Animated.View>
         </ScrollView>
         </Animated.View>
@@ -703,7 +643,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       <SafeAreaView style={styles.container}>
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
-        <View style={styles.center}>
+        <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1 }]} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: 56, marginBottom: 16 }}>🔍</Text>
           <Text style={[styles.title, { marginBottom: 12 }]}>
             {isUK ? 'Дізнайся свій рівень' : 'Узнай свой уровень'}
@@ -727,43 +667,72 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               {isUK ? '🐣 Почати з початку' : '🐣 Начать сначала'}
             </Text>
           </TouchableOpacity>
-        </View>
+        </ScrollView>
         </Animated.View>
       </SafeAreaView>
     );
   }
 
-  // ── Шаг streak: Обязательство ────────────────────────────────────────────────
+  // ── Шаг streak: Мотивация + прогресс ────────────────────────────────────────
   if (step === 'streak') {
+    const streakMilestones = isUK
+      ? [
+          { days: 3,  emoji: '🔥', reward: 'Множник XP ×1.2 за кожну відповідь' },
+          { days: 7,  emoji: '⚡', reward: 'Множник XP ×1.4 — швидше зростаєш' },
+          { days: 30, emoji: '👑', reward: 'Множник XP ×1.8 — максимальний буст' },
+        ]
+      : [
+          { days: 3,  emoji: '🔥', reward: 'Множитель XP ×1.2 за каждый ответ' },
+          { days: 7,  emoji: '⚡', reward: 'Множитель XP ×1.4 — растёшь быстрее' },
+          { days: 30, emoji: '👑', reward: 'Множитель XP ×1.8 — максимальный буст' },
+        ];
     return (
       <SafeAreaView style={styles.container}>
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
-        <View style={styles.center}>
-          <Text style={{ fontSize: 64, marginBottom: 16 }}>🔥</Text>
-          <Text style={[styles.title, { marginBottom: 16 }]}>
-            {isUK ? 'Дай слово!' : 'Дай слово!'}
+        <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
+          <Text style={{ fontSize: 56, marginBottom: 12 }}>🔥</Text>
+          <Text style={[styles.title, { marginBottom: 8 }]}>
+            {isUK ? 'Щодня — і ти непереможний' : 'Каждый день — и ты непобедим'}
           </Text>
-          <Text style={{ color: '#A8A8A8', fontSize: 15, textAlign: 'center', lineHeight: 24, marginBottom: 40, paddingHorizontal: 8 }}>
+          <Text style={{ color: '#A8A8A8', fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28 }}>
             {isUK
-              ? 'Займайся щодня — навіть 5 хвилин. Серія днів робить тебе незупинним.'
-              : 'Занимайся каждый день — даже 5 минут. Серия дней делает тебя неостановимым.'}
+              ? 'Навіть 5 хвилин на день. Серія днів — твій головний інструмент.'
+              : 'Даже 5 минут в день. Серия дней — твой главный инструмент.'}
           </Text>
+
+          {/* Milestones */}
+          <View style={{ width: '100%', gap: 10, marginBottom: 32 }}>
+            {streakMilestones.map((m) => (
+              <View key={m.days} style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: '#1A1A1A', borderRadius: 14, padding: 14, gap: 14, borderWidth: 1, borderColor: 'rgba(200,255,0,0.10)' }}>
+                <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: '#252525', alignItems: 'center', justifyContent: 'center' }}>
+                  <Text style={{ fontSize: 22 }}>{m.emoji}</Text>
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ color: '#C8FF00', fontSize: 13, fontWeight: '700', marginBottom: 2 }}>
+                    {isUK ? `${m.days} днів` : `${m.days} дней`}
+                  </Text>
+                  <Text style={{ color: '#A8A8A8', fontSize: 13 }}>{m.reward}</Text>
+                </View>
+              </View>
+            ))}
+          </View>
+
           <TouchableOpacity
             style={[styles.continueBtn, { width: '100%' }]}
             onPress={() => goToStep('time')}
             activeOpacity={0.85}
           >
             <Text style={styles.continueBtnText}>
-              {isUK ? '🤝 Обіцяю!' : '🤝 Обещаю!'}
+              {isUK ? '🤝 Обіцяю щодня!' : '🤝 Обещаю каждый день!'}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ marginTop: 18 }} onPress={() => goToStep('time')} activeOpacity={0.7}>
+          <TouchableOpacity style={{ marginTop: 16 }} onPress={handleFinishOnboarding} activeOpacity={0.7}>
             <Text style={{ color: '#444', fontSize: 13 }}>
               {isUK ? 'Пропустити' : 'Пропустить'}
             </Text>
           </TouchableOpacity>
-        </View>
+        </ScrollView>
         </Animated.View>
       </SafeAreaView>
     );
@@ -809,11 +778,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
           <TouchableOpacity
             style={styles.continueBtn}
-            onPress={handleContinueToPremium}
+            onPress={handleFinishOnboarding}
             activeOpacity={0.85}
           >
             <Text style={styles.continueBtnText}>
-              {isUK ? 'Завершити' : 'Завершить'}
+              {isUK ? 'Почати навчання 🚀' : 'Начать обучение 🚀'}
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -822,99 +791,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     );
   }
 
-  // ── Шаг 8: Премиум ──────────────────────────────────────────────────────────
-  const features = isUK ? [
-    { icon: '📚', text: 'Всі 32 уроки' },
-    { icon: '🎯', text: 'Квізи всіх рівнів' },
-    { icon: '🏆', text: 'Зал слави та ліги' },
-    { icon: '💬', text: 'Усі діалоги' },
-    { icon: '🎓', text: 'Фінальний іспит' },
-    { icon: '⚡', text: 'Необмежений доступ' },
-  ] : [
-    { icon: '📚', text: 'Все 32 урока' },
-    { icon: '🎯', text: 'Квизы всех уровней' },
-    { icon: '🏆', text: 'Зал славы и клубы' },
-    { icon: '💬', text: 'Все диалоги' },
-    { icon: '🎓', text: 'Финальный экзамен' },
-    { icon: '⚡', text: 'Неограниченный доступ' },
-  ];
-
-  return (
-    <SafeAreaView style={styles.container}>
-      <Animated.View style={{ flex: 1, opacity: screenFade }}>
-      {renderProgressBar()}
-      <ScrollView contentContainerStyle={styles.premiumScroll} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
-        <Text style={styles.trialBadge}>
-          {isUK ? '7 ДНІВ БЕЗКОШТОВНО' : '7 ДНЕЙ БЕСПЛАТНО'}
-        </Text>
-        <Text style={styles.premiumTitle}>
-          {isUK ? 'Спробуй Premium' : 'Попробуй Premium'}
-        </Text>
-        <Text style={styles.premiumSub}>
-          {isUK
-            ? 'Повний доступ до всіх матеріалів — безкоштовно на тиждень'
-            : 'Полный доступ ко всем материалам — бесплатно на неделю'}
-        </Text>
-
-        <View style={styles.featuresBox}>
-          {features.map((f, i) => (
-            <View key={i} style={styles.featureRow}>
-              <Text style={styles.featureIcon}>{f.icon}</Text>
-              <Text style={styles.featureText}>{f.text}</Text>
-            </View>
-          ))}
-        </View>
-
-        {/* Годовая */}
-        <TouchableOpacity
-          style={[styles.planCard, purchasing && selected === 'yearly' && { opacity: 0.7 }]}
-          onPress={() => handlePurchase('yearly')}
-          activeOpacity={0.85}
-          disabled={purchasing}
-        >
-          <View style={styles.planCardLeft}>
-            <Text style={styles.planBadge}>{isUK ? '⭐ Найкращий вибір' : '⭐ Лучший выбор'}</Text>
-            <Text style={styles.planCardTitle}>{isUK ? 'Річна підписка' : 'Годовая подписка'}</Text>
-            <Text style={styles.planCardSub}>€23.99 · ≈€2.00/{isUK ? 'міс' : 'мес'} · {isUK ? 'економія 50%' : 'экономия 50%'}</Text>
-          </View>
-          {purchasing && selected === 'yearly'
-            ? <ActivityIndicator color="#1A2400" />
-            : <Text style={styles.planCardCta}>{isUK ? '7 днів\nбезкоштовно' : '7 дней\nбесплатно'}</Text>
-          }
-        </TouchableOpacity>
-
-        {/* Месячная */}
-        <TouchableOpacity
-          style={[styles.planCardSecondary, purchasing && selected === 'monthly' && { opacity: 0.7 }]}
-          onPress={() => handlePurchase('monthly')}
-          activeOpacity={0.85}
-          disabled={purchasing}
-        >
-          <View style={styles.planCardLeft}>
-            <Text style={[styles.planCardTitle, { color: '#fff' }]}>{isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка'}</Text>
-            <Text style={[styles.planCardSub, { color: '#A8A8A8' }]}>€3.99 / {isUK ? 'місяць' : 'месяц'}</Text>
-          </View>
-          {purchasing && selected === 'monthly'
-            ? <ActivityIndicator color="#C8FF00" />
-            : <Text style={styles.planCardCtaSecondary}>{isUK ? '7 днів\nбезкоштовно' : '7 дней\nбесплатно'}</Text>
-          }
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.freeBtn} onPress={handleContinueFree} activeOpacity={0.7}>
-          <Text style={styles.freeBtnText}>
-            {isUK ? 'Продовжити безкоштовно (Урок 1)' : 'Продолжить бесплатно (Урок 1)'}
-          </Text>
-        </TouchableOpacity>
-
-        <Text style={styles.legal}>
-          {isUK
-            ? 'Після 7 днів підписка продовжується автоматично. Скасування в будь-який час.'
-            : 'После 7 дней подписка продлевается автоматически. Отмена в любое время.'}
-        </Text>
-      </ScrollView>
-      </Animated.View>
-    </SafeAreaView>
-  );
+  // Fallback — не должен достигаться
+  return null;
 }
 
 const styles = StyleSheet.create({

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DARK, NEON, GOLD, Theme, ThemeMode } from '../constants/theme';
+import { DEV_MODE } from '../app/config';
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
 // Duolingo использует ~16px для основного текста, ~14px для вторичного
@@ -114,16 +115,24 @@ const THEME_MAP: Record<ThemeMode, Theme> = { dark: DARK, neon: NEON, gold: GOLD
 const CYCLE: ThemeMode[] = ['dark', 'neon', 'gold'];
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [themeMode, setThemeModeState] = useState<ThemeMode>('neon');
+  const [themeMode, setThemeModeState] = useState<ThemeMode>('dark');
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
 
   useEffect(() => {
     Promise.all([
       AsyncStorage.getItem('app_theme'),
       AsyncStorage.getItem('app_font_size'),
-    ]).then(([themeVal, fontVal]) => {
+      AsyncStorage.getItem('premium_active'),
+    ]).then(([themeVal, fontVal, premiumVal]) => {
+      const isPremium = premiumVal === 'true';
       if (themeVal === 'neon' || themeVal === 'dark' || themeVal === 'gold') {
-        setThemeModeState(themeVal as ThemeMode);
+        // Non-premium users are forced to forest theme
+        if (!isPremium && !DEV_MODE && themeVal !== 'dark') {
+          setThemeModeState('dark');
+          AsyncStorage.setItem('app_theme', 'dark');
+        } else {
+          setThemeModeState(themeVal as ThemeMode);
+        }
       }
       if (fontVal && fontVal in FONT_SCALE) setFontSizeState(fontVal as FontSize);
     });

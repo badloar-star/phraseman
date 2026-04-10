@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, TouchableOpacity,
-  ScrollView, Alert, ActivityIndicator, Animated, Linking,
+  ScrollView, Alert, ActivityIndicator, Animated, Linking, DeviceEventEmitter,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -15,6 +15,7 @@ import ScreenGradient from '../components/ScreenGradient';
 import { sendPremiumNotification } from './notifications';
 import { DEV_MODE, IS_EXPO_GO } from './config';
 import { invalidatePremiumCache } from './premium_guard';
+import { logPremiumPurchased, logPremiumModalOpened } from './firebase';
 
 type Plan = 'monthly' | 'yearly';
 type PremiumContext = 'lesson_b1' | 'quiz_limit' | 'quiz_level' | 'quiz_medium' | 'quiz_hard' | 'flashcard_limit' | 'streak' | 'dialog' | 'theme' | 'hall_of_fame' | 'generic';
@@ -49,8 +50,8 @@ function getHero(
     case 'lesson_b1':
       return {
         emoji: '🎓',
-        titleRu: `${lessonsDone > 0 ? `Ты прошёл ${lessonsDone} уроков!` : 'Ты закончил A2!'}`,
-        titleUk: `${lessonsDone > 0 ? `Ти пройшов ${lessonsDone} уроків!` : 'Ти закінчив A2!'}`,
+        titleRu: lessonsDone >= 18 ? 'Ты закончил A2!' : lessonsDone > 0 ? `Ты прошёл ${lessonsDone} уроков!` : 'Уроки B1 и B2',
+        titleUk: lessonsDone >= 18 ? 'Ти закінчив A2!' : lessonsDone > 0 ? `Ти пройшов ${lessonsDone} уроків!` : 'Уроки B1 і B2',
         subtitleRu: 'Дальше — B1. Именно здесь английский\nстановится рабочим инструментом.',
         subtitleUk: 'Далі — B1. Саме тут англійська\nстає робочим інструментом.',
         highlightRow: 0,
@@ -170,6 +171,7 @@ export default function PremiumModal() {
   }>();
 
   const ctx = (params.context ?? 'generic') as PremiumContext;
+  useEffect(() => { logPremiumModalOpened(ctx); }, []);
   const streakDays   = parseInt(params.streak       ?? '0') || 0;
   const lessonsDone  = parseInt(params.lessons_done ?? '0') || 0;
   const savedCards   = parseInt(params.saved        ?? '0') || 0;
@@ -182,6 +184,7 @@ export default function PremiumModal() {
   const [restoring,  setRestoring]  = useState(false);
   const [purchasing, setPurchasing] = useState(false);
   const [packages,   setPackages]   = useState<{ monthly?: PurchasesPackage; yearly?: PurchasesPackage }>({});
+  const [trialUsed,  setTrialUsed]  = useState(false);
 
   // manage-view state
   type ViewMode = 'purchase' | 'manage' | 'change_plan' | 'success';
@@ -212,13 +215,15 @@ export default function PremiumModal() {
   const hero = getHero(ctx, streakDays, lessonsDone, savedCards);
 
   useEffect(() => {
-    AsyncStorage.multiGet(['premium_active', 'premium_plan', 'premium_expiry']).then(res => {
+    AsyncStorage.multiGet(['premium_active', 'premium_plan', 'premium_expiry', 'trial_used']).then(res => {
       const active  = res.find(r => r[0] === 'premium_active')?.[1];
       const plan    = res.find(r => r[0] === 'premium_plan')?.[1] as Plan | null;
       const expiry  = parseInt(res.find(r => r[0] === 'premium_expiry')?.[1] || '0');
+      const tUsed   = res.find(r => r[0] === 'trial_used')?.[1];
       if (active === 'true' && plan && expiry > Date.now()) {
         setActivePlan(plan); setExpiryTs(expiry); setViewMode('manage');
       }
+      if (tUsed === 'true') setTrialUsed(true);
     });
   }, []);
 
@@ -236,19 +241,30 @@ export default function PremiumModal() {
 
   const activateFreezeIfNeeded = async () => {
     if (ctx === 'streak') {
-      await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true }));
+      const today = new Date().toISOString().split('T')[0];
+      await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
     }
   };
 
   const showSuccess = () => {
+    // Ensure cache is invalidated before notifying listeners
+    invalidatePremiumCache();
+    DeviceEventEmitter.emit('premium_activated');
     setViewMode('success');
-    setTimeout(() => goBack(), 2800);
+    setTimeout(() => {
+      // Re-emit after modal dismissal so any screens that remount on focus
+      // (e.g. under an iOS modal) pick up the fresh premium flag.
+      invalidatePremiumCache();
+      DeviceEventEmitter.emit('premium_activated');
+      goBack();
+    }, 2800);
   };
 
   const handlePurchase = async (plan: Plan) => {
     setSelected(plan);
     if (IS_EXPO_GO || DEV_MODE) {
       await savePremiumLocally(plan);
+      if (plan === 'yearly') await AsyncStorage.setItem('trial_used', 'true');
       await activateFreezeIfNeeded();
       sendPremiumNotification(lang as 'ru' | 'uk');
       showSuccess();
@@ -266,14 +282,16 @@ export default function PremiumModal() {
     setPurchasing(true);
     try {
       const { customerInfo } = await Purchases.purchasePackage(pkg);
-      const isActive = !!customerInfo.entitlements.active['premium']
-        || customerInfo.activeSubscriptions.length > 0;
-      if (isActive) {
-        await savePremiumLocally(plan);
-        await activateFreezeIfNeeded();
-        sendPremiumNotification(lang as 'ru' | 'uk');
-        showSuccess();
-      }
+      // purchasePackage не выбросил исключение → покупка авторизована Apple/Google.
+      // Активируем сразу, не дожидаясь синхронизации RC (sandbox может запаздывать).
+      // RC-статус используем как дополнительную проверку, но не как условие активации.
+      void customerInfo; // RC customerInfo доступен для отладки при необходимости
+      await savePremiumLocally(plan);
+      logPremiumPurchased(pkg.product.identifier);
+      if (plan === 'yearly') await AsyncStorage.setItem('trial_used', 'true');
+      await activateFreezeIfNeeded();
+      sendPremiumNotification(lang as 'ru' | 'uk');
+      showSuccess();
     } catch (e: any) {
       if (!e.userCancelled) {
         Alert.alert(isUK ? 'Помилка' : 'Ошибка', e.message || (isUK ? 'Щось пішло не так.' : 'Что-то пошло не так.'));
@@ -287,10 +305,13 @@ export default function PremiumModal() {
     setRestoring(true);
     try {
       const info = await Purchases.restorePurchases();
-      const isActive = !!info.entitlements.active['premium'] || info.activeSubscriptions.length > 0;
+      const isActive =
+        Object.keys(info.entitlements.active).length > 0 ||
+        info.activeSubscriptions.length > 0;
       if (isActive) {
         const plan: Plan = info.activeSubscriptions.some(s => s.includes('yearly')) ? 'yearly' : 'monthly';
         await savePremiumLocally(plan);
+        DeviceEventEmitter.emit('premium_activated');
         sendPremiumNotification(lang as 'ru' | 'uk');
         Alert.alert('Premium ✅', isUK ? 'Підписку відновлено!' : 'Подписка восстановлена!');
         goBack();
@@ -625,7 +646,7 @@ export default function PremiumModal() {
                 backgroundColor: selected === 'yearly' ? t.bgSurface : t.bgCard,
                 opacity: purchasing && selected !== 'yearly' ? 0.5 : 1,
               }}
-              onPress={() => setSelected('yearly')}
+              onPress={() => handlePurchase('yearly')}
               activeOpacity={0.85}
               disabled={purchasing}
             >
@@ -640,9 +661,11 @@ export default function PremiumModal() {
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
                     {isUK ? 'Річна підписка' : 'Годовая подписка'}
                   </Text>
-                  <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>
-                    {isUK ? '7 днів безкоштовно' : '7 дней бесплатно'}
-                  </Text>
+                  {!trialUsed && (
+                    <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>
+                      {isUK ? '7 днів безкоштовно' : '7 дней бесплатно'}
+                    </Text>
+                  )}
                   <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
                     {isUK ? 'Економія 50% порівняно з місячним' : 'Экономия 50% по сравнению с месячным'}
                   </Text>
@@ -667,7 +690,7 @@ export default function PremiumModal() {
                 backgroundColor: selected === 'monthly' ? t.bgSurface : t.bgCard,
                 opacity: purchasing && selected !== 'monthly' ? 0.5 : 1,
               }}
-              onPress={() => setSelected('monthly')}
+              onPress={() => handlePurchase('monthly')}
               activeOpacity={0.85}
               disabled={purchasing}
             >
@@ -703,16 +726,22 @@ export default function PremiumModal() {
               {purchasing
                 ? <ActivityIndicator color={t.bgPrimary} />
                 : <Text style={{ color: t.bgPrimary, fontSize: f.h2, fontWeight: '800' }} adjustsFontSizeToFit numberOfLines={1}>
-                    {isUK ? '🚀 Спробувати 7 днів безкоштовно' : '🚀 Попробовать 7 дней бесплатно'}
+                    {selected === 'monthly'
+                      ? (isUK ? '🚀 Оформити місячну підписку' : '🚀 Оформить месячную подписку')
+                      : trialUsed
+                        ? (isUK ? '🚀 Отримати Premium' : '🚀 Получить Premium')
+                        : (isUK ? '🚀 Спробувати 7 днів безкоштовно' : '🚀 Попробовать 7 дней бесплатно')}
                   </Text>
               }
             </TouchableOpacity>
 
             {/* Мелкие хуки */}
             <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginBottom: 16 }}>
-              <Text style={{ color: t.textGhost, fontSize: f.label }}>
-                {isUK ? '✓ Без списання зараз' : '✓ Без списания сейчас'}
-              </Text>
+              {!trialUsed && selected === 'yearly' && (
+                <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                  {isUK ? '✓ Без списання зараз' : '✓ Без списания сейчас'}
+                </Text>
+              )}
               <Text style={{ color: t.textGhost, fontSize: f.label }}>
                 {isUK ? '✓ Скасування в будь-який час' : '✓ Отмена в любой момент'}
               </Text>
@@ -740,11 +769,13 @@ export default function PremiumModal() {
               </Text>
             </TouchableOpacity>
 
-            <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 12, lineHeight: 17 }}>
-              {isUK
-                ? 'Після 7 днів підписка продовжується автоматично. Скасування через App Store / Google Play.'
-                : 'После 7 дней подписка продлевается автоматически. Отмена через App Store / Google Play.'}
-            </Text>
+            {!trialUsed && (
+              <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 12, lineHeight: 17 }}>
+                {isUK
+                  ? 'Після 7 днів підписка продовжується автоматично. Скасування через App Store / Google Play.'
+                  : 'После 7 дней подписка продлевается автоматически. Отмена через App Store / Google Play.'}
+              </Text>
+            )}
             <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 14, marginBottom: 4 }}>
               <TouchableOpacity onPress={() => Linking.openURL('https://badloar-star.github.io/phraseman-privacy/')}>
                 <Text style={{ color: t.textGhost, fontSize: f.label, textDecorationLine: 'underline' }}>

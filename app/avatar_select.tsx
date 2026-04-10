@@ -25,20 +25,19 @@ const FRAME_BODY_H = Math.round(CELL_W * 1.0);
 const FRAME_TIP_H  = Math.round(CELL_W * 0.26);
 const CORNER       = Math.round(CELL_W * 0.20);
 
-// ── Ячейка рамки (без аватарки внутри) ────────────────────────────────────────
+// ── Ячейка рамки (настоящий AnimatedFrame внутри) ────────────────────────────
 function FrameCell({
-  frameId, color, nameUK, nameRU, unlockLevel, isSelected, isLocked, isUK, onPress,
+  frameId, color, nameUK, nameRU, unlockLevel, isSelected, isLocked, isUK, onPress, emoji,
 }: {
   frameId: string; color: string; nameUK: string; nameRU: string;
   unlockLevel: number; isSelected: boolean; isLocked: boolean;
-  isUK: boolean; onPress: () => void; unlockType?: string;
+  isUK: boolean; onPress: () => void; emoji?: string;
 }) {
-  const frameSize = Math.round(CELL_W * 0.62);
-  const bodyBg    = isLocked ? '#181818' : color + '22';
+  const bodyBg = isLocked ? '#181818' : color + '22';
+  const frameSize = Math.round(CELL_W * 0.58);
 
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.75} style={{ alignItems: 'center', width: CELL_W }}>
-      {/* Тело */}
       <View style={{
         width: CELL_W, height: FRAME_BODY_H,
         backgroundColor: bodyBg,
@@ -46,17 +45,14 @@ function FrameCell({
         borderTopRightRadius: CORNER,
         alignItems: 'center',
         justifyContent: 'center',
+        borderWidth: isSelected ? 2 : 0,
+        borderColor: color,
       }}>
-        <View style={{ opacity: isLocked ? 0.25 : 1 }}>
-          <AnimatedFrame
-            emoji={isLocked ? '🔒' : '⬡'}
-            frameId={frameId}
-            size={frameSize}
-            noAvatar={!isLocked}
-            bgColor={!isLocked ? bodyBg : undefined}
-
-          />
-        </View>
+        {isLocked ? (
+          <Text style={{ fontSize: Math.round(CELL_W * 0.38) }}>🔒</Text>
+        ) : (
+          <AnimatedFrame emoji={emoji || '🐣'} frameId={frameId} size={frameSize} />
+        )}
       </View>
       {/* V-кончик */}
       <View style={{
@@ -66,7 +62,6 @@ function FrameCell({
         borderLeftColor: 'transparent', borderRightColor: 'transparent',
         borderTopColor: bodyBg,
       }} />
-      {/* Название + уровень */}
       <Text style={{ color: isSelected ? color : isLocked ? '#3A3A3A' : '#888', fontSize: 9, textAlign: 'center', marginTop: 4, fontWeight: '600' }}
             numberOfLines={1} maxFontSizeMultiplier={1}>
         {isUK ? nameUK : nameRU}
@@ -77,6 +72,14 @@ function FrameCell({
     </TouchableOpacity>
   );
 }
+
+type TabId = 'level' | 'achievement' | 'club';
+
+const TABS: { id: TabId; icon: string; labelRU: string; labelUK: string }[] = [
+  { id: 'level',       icon: '⭐',  labelRU: 'Уровень',      labelUK: 'Рівень' },
+  { id: 'achievement', icon: '🏅',  labelRU: 'Достижения',   labelUK: 'Досягнення' },
+  { id: 'club',        icon: '🏛',  labelRU: 'Клуб',         labelUK: 'Клуб' },
+];
 
 // ── Главный экран ─────────────────────────────────────────────────────────────
 export default function AvatarSelect() {
@@ -92,10 +95,11 @@ export default function AvatarSelect() {
   const [unlockedFrameIds, setUnlockedFrameIds] = useState<string[]>([]);
   const [currentClubId, setCurrentClubId] = useState<number | null>(null);
   const [unlockedAchIds, setUnlockedAchIds] = useState<Set<string>>(new Set());
+  const [activeTab, setActiveTab] = useState<TabId>('level');
 
   useEffect(() => {
     Promise.all([
-      AsyncStorage.multiGet(['user_total_xp', 'user_avatar', 'user_frame', 'league_state']),
+      AsyncStorage.multiGet(['user_total_xp', 'user_avatar', 'user_frame', 'league_state_v3']),
       getUnlockedFrames(),
       loadAchievementStates(),
     ]).then(([pairs, frameIds, achStates]) => {
@@ -104,13 +108,11 @@ export default function AvatarSelect() {
       setLevel(lvl);
       setUnlockedFrameIds(frameIds);
 
-      // Текущий клуб
       try {
         const ls = pairs[3][1] ? JSON.parse(pairs[3][1]) : null;
         if (ls && typeof ls.leagueId === 'number') setCurrentClubId(ls.leagueId);
       } catch {}
 
-      // Разблокированные достижения
       const achSet = new Set(achStates.filter(s => s.unlockedAt !== null).map(s => s.id));
       setUnlockedAchIds(achSet);
 
@@ -155,7 +157,6 @@ export default function AvatarSelect() {
           : `Эта рамка доступна только членам «${clubName}». Попади в этот клуб, чтобы использовать её!`,
       };
     }
-    // level
     return {
       title:   isUK ? `🔒 Рівень ${fr.unlockLevel}` : `🔒 Уровень ${fr.unlockLevel}`,
       message: isUK
@@ -164,8 +165,10 @@ export default function AvatarSelect() {
     };
   };
 
-  const unlockedFrames = FRAMES.filter(fr => isFrameAvailable(fr));
-  const lockedFrames   = FRAMES.filter(fr => !isFrameAvailable(fr));
+  // Фильтрация по активной вкладке
+  const tabFrames = FRAMES.filter(fr => (fr.unlockType ?? 'level') === activeTab);
+  const unlockedInTab = tabFrames.filter(fr => isFrameAvailable(fr));
+  const lockedInTab   = tabFrames.filter(fr => !isFrameAvailable(fr));
 
   return (
     <ScreenGradient>
@@ -184,20 +187,19 @@ export default function AvatarSelect() {
         </Text>
       </View>
 
-      {/* Превью — показывает рамку с текущей аватаркой */}
-      <View style={{ alignItems: 'center', paddingVertical: 20 }}>
-        <AnimatedFrame emoji={selEmoji} frameId={selFrame} size={72} />
+      {/* Превью */}
+      <View style={{ alignItems: 'center', paddingVertical: 16 }}>
+        <AnimatedFrame key={selFrame} emoji={selEmoji} frameId={selFrame} size={72} />
         <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 6 }}>
           {isUK ? `Рівень ${level}` : `Уровень ${level}`}
         </Text>
       </View>
 
       {/* Сетка рамок */}
-      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: insets.bottom + 24, paddingHorizontal: SIDE_PAD }}>
+      <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 12, paddingHorizontal: SIDE_PAD }}>
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', gap: CELL_GAP }}>
-
           {[
-            ...unlockedFrames.map(fr => (
+            ...unlockedInTab.map(fr => (
               <FrameCell
                 key={fr.id}
                 frameId={fr.id}
@@ -208,10 +210,11 @@ export default function AvatarSelect() {
                 isSelected={fr.id === selFrame}
                 isLocked={false}
                 isUK={isUK}
-                onPress={() => selectFrame(fr.id)}
+                emoji={selEmoji}
+                onPress={() => { hapticTap(); selectFrame(fr.id); }}
               />
             )),
-            ...lockedFrames.map(fr => (
+            ...lockedInTab.map(fr => (
               <FrameCell
                 key={fr.id}
                 frameId={fr.id}
@@ -222,17 +225,43 @@ export default function AvatarSelect() {
                 isSelected={false}
                 isLocked={true}
                 isUK={isUK}
-                unlockType={fr.unlockType}
                 onPress={() => {
+                  hapticTap();
                   const { title, message } = getLockedAlert(fr);
                   Alert.alert(title, message);
                 }}
               />
             )),
           ]}
-
         </View>
       </ScrollView>
+
+      {/* Нижние вкладки */}
+      <View style={{ borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: t.bgPrimary, paddingBottom: insets.bottom }}>
+        <View style={{ flexDirection: 'row', paddingTop: 6, paddingBottom: 4 }}>
+          {TABS.map(tab => {
+            const active = tab.id === activeTab;
+            const color  = active ? t.textPrimary : t.textMuted;
+            return (
+              <TouchableOpacity
+                key={tab.id}
+                onPress={() => { hapticTap(); setActiveTab(tab.id); }}
+                activeOpacity={0.7}
+                style={{ flex: 1, alignItems: 'center', gap: 2, position: 'relative' }}
+              >
+                {active && (
+                  <View style={{ position: 'absolute', top: 0, left: '25%', right: '25%', height: 2, borderRadius: 1, backgroundColor: t.textPrimary }} />
+                )}
+                <Text style={{ fontSize: 28 }}>{tab.icon}</Text>
+                <Text style={{ fontSize: 10, color, fontWeight: active ? '600' : '400', letterSpacing: 0.1 }} numberOfLines={1}>
+                  {isUK ? tab.labelUK : tab.labelRU}
+                </Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </View>
+
     </ScreenGradient>
   );
 }

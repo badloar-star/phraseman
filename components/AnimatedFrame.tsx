@@ -44,10 +44,12 @@ function AnimatedFrameInner({
   const BW      = Math.max(2, Math.round(size * 0.055));
   const outerW  = size + BW * 2;
   const avR     = outerW / 2;
-  const canvasS = outerW + 32;
-  const cx      = canvasS / 2;
-  const cy      = canvasS / 2;
-  const R       = outerW / 2 + 2;
+  const glowPad    = 48; // extra room for glow — canvas bleeds beyond layout bounds
+  const canvasS    = outerW + glowPad * 2;
+  const canvasOffset = -(glowPad - 16); // centers oversized canvas over the avatar
+  const cx         = canvasS / 2;
+  const cy         = canvasS / 2;
+  const R          = outerW / 2 + 2;
 
   const { t, tSlow, tMed, tFast, breathe, pulse } = useAnimCtx();
 
@@ -83,133 +85,133 @@ function AnimatedFrameInner({
     if (anim === 'plain') return null;
 
     if (anim === 'sprout') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <SproutEffect cx={cx} cy={cy} R={R} col={col} t={t} breathe={breathe} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'arc' || anim === 'arc_red') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <ArcEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tFast={tFast} animated={animated} BW={BW} />
       </Canvas>
     );
 
     if (anim === 'ice') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <IceEffect cx={cx} cy={cy} R={R} col={col} col2={col2} tSlow={tSlow} tFast={tFast} breathe={breathe} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'plasma') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <PlasmaEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tFast={tFast} animated={animated} BW={BW} />
       </Canvas>
     );
 
     if (anim === 'magnet') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <MagnetEffect cx={cx} cy={cy} R={R} col={col} col2={col2} tSlow={tSlow} breathe={breathe} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'vortex') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <VortexEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tMed={tMed} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'dna') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <DnaEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} animated={animated} strands={1} avR={avR} />
       </Canvas>
     );
 
     if (anim === 'double_dna') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <DnaEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} animated={animated} strands={2} avR={avR} />
       </Canvas>
     );
 
     if (anim === 'triple_dna') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <DnaEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} animated={animated} strands={3} avR={avR} />
       </Canvas>
     );
 
     if (anim === 'rainbow_dna') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <RainbowDnaEffect cx={cx} cy={cy} R={R} t={t} tSlow={tSlow} animated={animated} avR={avR} />
       </Canvas>
     );
 
     if (anim === 'runes') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <RunesEffect cx={cx} cy={cy} R={R} col={col} col2={col2} tSlow={tSlow} tMed={tMed} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'atom') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <AtomEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tSlow={tSlow} breathe={breathe} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'web') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <WebEffect cx={cx} cy={cy} R={R} col={col} col2={col2} tSlow={tSlow} breathe={breathe} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'hex') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <HexEffect cx={cx} cy={cy} R={R} col={col} col2={col2} tSlow={tSlow} t={t} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'geometry') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <GeometryEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tSlow={tSlow} tMed={tMed} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'neural') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <NeuralEffect cx={cx} cy={cy} R={R} col={col} col2={col2} tSlow={tSlow} t={t} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'aurora_star') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <AuroraStarEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tMed={tMed} tSlow={tSlow} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'crystal') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <CrystalEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tMed={tMed} tSlow={tSlow} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'pulsar') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <PulsarEffect cx={cx} cy={cy} R={R} col={col} t={t} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'double_square') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <DoubleSquareEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tMed={tMed} tSlow={tSlow} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'triple_tri') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <TripleTriEffect cx={cx} cy={cy} R={R} col={col} col2={col2} t={t} tMed={tMed} tSlow={tSlow} animated={animated} />
       </Canvas>
     );
 
     if (anim === 'solar_cycle') return (
-      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS }}>
+      <Canvas style={{ position:'absolute', width:canvasS, height:canvasS, left:canvasOffset, top:canvasOffset }}>
         <SolarCycleEffect cx={cx} cy={cy} R={R} col={col} col2={col2} tSlow={tSlow} t={t} animated={animated} />
       </Canvas>
     );
@@ -217,8 +219,10 @@ function AnimatedFrameInner({
     return null;
   };
 
+  const layoutS = outerW + 32; // visual footprint (unchanged)
+
   return (
-    <View style={[{ width: canvasS, height: canvasS, justifyContent:'center', alignItems:'center' }, style]}>
+    <View style={[{ width: layoutS, height: layoutS, justifyContent:'center', alignItems:'center', overflow:'visible' }, style]}>
       {renderSkiaFrame()}
       <View style={{ width: outerW, height: outerW }}>
         {renderAvatar()}

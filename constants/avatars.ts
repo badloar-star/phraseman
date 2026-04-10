@@ -152,9 +152,9 @@ export const FRAMES: FrameDef[] = [
   },
   {
     id: 'dna',
-    nameRU: 'Спираль',       nameUK: 'Спіраль',
+    nameRU: 'Пульсар',       nameUK: 'Пульсар',
     color: '#00DDFF',        color2: '#AA44FF',
-    animation: 'dna',        unlockLevel: 23,
+    animation: 'pulsar',     unlockLevel: 23,
   },
   {
     id: 'runes',
@@ -206,9 +206,9 @@ export const FRAMES: FrameDef[] = [
   },
   {
     id: 'legendary',
-    nameRU: 'Легенда',       nameUK: 'Легенда',
-    color: '#00DDFF',        color2: '#AA44FF',
-    animation: 'triple_dna', unlockLevel: 50,
+    nameRU: '✦ Абсолют',     nameUK: '✦ Абсолют',
+    color: '#FFFFFF',        color2: '#FFD700',
+    animation: 'solar_cycle', unlockLevel: 50,
   },
 
   // ── Рамки за достижения ───────────────────────────────────────────────────
@@ -226,7 +226,7 @@ export const FRAMES: FrameDef[] = [
     id: 'ach_streak500',
     nameRU: '500 дней',         nameUK: '500 днів',
     color: '#FFD700',           color2: '#FF4500',
-    animation: 'double_dna',    unlockLevel: 0,
+    animation: 'double_square', unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'streak_500',
     unlockAchievementNameRU: '500 дней',
@@ -255,8 +255,8 @@ export const FRAMES: FrameDef[] = [
   {
     id: 'ach_xp100k',
     nameRU: 'XP Легенда',       nameUK: 'XP Легенда',
-    color: '#FFD700',           color2: '#FF8C00',
-    animation: 'rainbow_dna',   unlockLevel: 0,
+    color: '#FFD700',           color2: '#E040FB',
+    animation: 'aurora_star',   unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'xp_100000',
     unlockAchievementNameRU: 'Легенда',
@@ -377,7 +377,7 @@ export const getFrameById = (id: string): FrameDef =>
   FRAMES.find(f => f.id === id) ?? FRAMES[0];
 
 export const getBestFrameForLevel = (level: number): FrameDef => {
-  const unlocked = FRAMES.filter(f => f.unlockLevel <= level);
+  const unlocked = FRAMES.filter(f => (f.unlockType ?? 'level') === 'level' && f.unlockLevel <= level);
   return unlocked[unlocked.length - 1] ?? FRAMES[0];
 };
 

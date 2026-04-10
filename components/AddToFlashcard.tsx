@@ -6,6 +6,7 @@ import {
   Platform,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { addFlashcard, removeFlashcard, isFlashcardSaved, loadFlashcards, Flashcard } from '../hooks/use-flashcards';
 
@@ -20,6 +21,7 @@ interface Props {
 
 export default function AddToFlashcard({ en, ru, uk, source, sourceId, size = 20 }: Props) {
   const { theme: t } = useTheme();
+  const router = useRouter();
   const [saved, setSaved] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -55,10 +57,12 @@ export default function AddToFlashcard({ en, ru, uk, source, sourceId, size = 20
         setSaved(false);
         popAnimation();
       } else {
-        const added = await addFlashcard({ en, ru, uk, source, sourceId });
-        if (added) {
+        const result = await addFlashcard({ en, ru, uk, source, sourceId });
+        if (result === 'added') {
           setSaved(true);
           popAnimation();
+        } else if (result === 'limit_reached') {
+          router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);
         }
       }
     } finally {

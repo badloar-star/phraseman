@@ -375,7 +375,7 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
             });
 
             if (userName) {
-              await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang);
+              try { await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang); } catch {}
               updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]);
               setTotalPts(p => p + POINTS_PER_VERB);
             }

@@ -72,6 +72,8 @@ export interface DialogScenario3 {
   steps: DialogStep3[];
   glossary: GlossaryEntry[];
   endings: DialogEnding3[];
+  words?: Array<{ en: string; ru: string; uk: string; }>;
+  verbs?: Array<{ en: string; ru: string; uk: string; base?: string; past?: string; pp?: string; }>;
 }
 
 // ============================================

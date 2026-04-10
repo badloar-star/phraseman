@@ -1,10 +1,7 @@
 // Lessons 25-32 Data
 import { LessonIntroScreen, LessonPhrase } from './lesson_data_types';
 
-export const LESSON_25_INTRO_SCREENS = [
-  { titleRU: 'Past Continuous', titleUK: 'Past Continuous', textRU: 'Прошедшее длительное время описывает действие, которое происходило в определённый момент в прошлом.', textUK: 'Минулий тривалий час описує дію, яка відбувалася в певний момент у минулому.' },
-  { titleRU: 'Структура', titleUK: 'Структура', textRU: 'was/were + глагол + -ing: I was reading. They were working.', textUK: 'was/were + дієслово + -ing: I was reading. They were working.' },
-];
+export const LESSON_25_INTRO_SCREENS = [];
 
 export const LESSON_25_PHRASES: LessonPhrase[] = [
   {id:'l25p1',english:"I was listening to that important lecture at ten o'clock.",russian:'Я внимательно слушал ту важную лекцию в десять часов вечера.',ukrainian:'Я уважно слухав ту важливу лекцію о десятій годині вечора.',words:[{text:'I',correct:'I',distractors: ['me','my','mine','we','you']},{text:'was',correct:'was',distractors: ['were','am','is','be','been']},{text:'listening',correct:'listening',distractors: ['listen','listened','listens','list','listing']},{text:'to',correct:'to',distractors: ['in','at','on','for','with']},{text:'that',correct:'that',distractors: ['this','these','those','than','then']},{text:'important',correct:'important',distractors: ['importance','improve','imagine','impact','import']},{text:'lecture',correct:'lecture',distractors: ['lectures','lecturer','lesson','letter','layer']},{text:'at',correct:'at',distractors: ['in','on','to','for','by']},{text:'ten',correct:'ten',distractors: ['tenth','tea','net','tin','ton']},{text:"o'clock.",correct:"o'clock.",distractors: ['clock.','clocks.','o-clock.','hour.','time.']}]},
@@ -3335,6 +3332,7 @@ export const LESSON_28_PHRASES: LessonPhrase[] = [
   {
     id: 45,
     english: 'Our little dog always cleans itself after that long walk.',
+    alternatives: ['Our small dog always cleans itself after that long walk.'],
     russian: 'Наша маленькая собака всегда чистит себя после той долгой прогулки.',
     ukrainian: 'Наш маленький собака завжди чистить себе після тієї довгої прогулянки.',
     words: [

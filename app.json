@@ -2,7 +2,7 @@
   "expo": {
     "name": "Phraseman",
     "slug": "phraseman",
-    "version": "1.2.1",
+    "version": "1.2.4",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -10,7 +10,8 @@
     "newArchEnabled": true,
     "android": {
       "package": "app.phraseman",
-      "versionCode": 16,
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 19,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
@@ -30,7 +31,7 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "5",
+      "buildNumber": "6",
       "supportsTablet": false,
       "infoPlist": {
         "NSSpeechRecognitionUsageDescription": "Phraseman uses speech recognition to check your English pronunciation during lessons. Your voice is processed on-device and not stored.",
@@ -62,7 +63,9 @@
           "color": "#06141B"
         }
       ],
-      "expo-speech-recognition"
+      "expo-speech-recognition",
+      "@react-native-firebase/app",
+      "@react-native-firebase/crashlytics"
     ],
     "experiments": {
       "typedRoutes": true,

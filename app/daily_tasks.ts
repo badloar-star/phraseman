@@ -267,7 +267,7 @@ export const updateTaskProgress = async (
   const updated = progress.map(p => {
     const task = tasks.find(t => t.id === p.taskId);
     if (!task || task.type !== type || p.completed) return p;
-    const newCurrent = Math.min(p.current + increment, task.target);
+    const newCurrent = Math.round(Math.min(p.current + increment, task.target) * 10) / 10;
     const nowCompleted = newCurrent >= task.target;
     if (nowCompleted && !p.completed) newlyCompleted = { ...p, current: newCurrent, completed: true };
     return { ...p, current: newCurrent, completed: nowCompleted };
@@ -313,7 +313,7 @@ export const resetAndUpdateTaskProgress = async (
     progress = progress.map(p => {
       const task = tasks.find(t => t.id === p.taskId);
       if (!task || task.type !== type || p.completed) return p;
-      const newCurrent = Math.min(p.current + increment, task.target);
+      const newCurrent = Math.round(Math.min(p.current + increment, task.target) * 10) / 10;
       return { ...p, current: newCurrent, completed: newCurrent >= task.target };
     });
   }
@@ -342,7 +342,7 @@ export const updateMultipleTaskProgress = async (
     progress = progress.map(p => {
       const task = tasks.find(t => t.id === p.taskId);
       if (!task || task.type !== type || p.completed) return p;
-      const newCurrent = Math.min(p.current + increment, task.target);
+      const newCurrent = Math.round(Math.min(p.current + increment, task.target) * 10) / 10;
       return { ...p, current: newCurrent, completed: newCurrent >= task.target };
     });
   }

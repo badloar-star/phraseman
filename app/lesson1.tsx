@@ -36,12 +36,14 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import { hapticTap } from '../hooks/use-haptics';
 import { recordMistake } from './active_recall';
+import { logLessonComplete } from './firebase';
 import { useEnergy } from '../components/EnergyContext';
 import { getErrorTrapsByIndex } from './error_traps/index';
 import { findAllExplanations } from './feedback_engine';
 import { ALL_LESSONS_RU, ALL_LESSONS_UK, getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import LessonIntroScreens from './lesson_intro_screens';
-import { getProgressCellColor, loadMedalInfo } from './medal_utils';
+import { getMedalTier, getProgressCellColor, loadMedalInfo } from './medal_utils';
+import type { MedalTier } from './medal_utils';
 import type { FeedbackResult } from './types/feedback';
 
 import { ENERGY_MESSAGES_RU, ENERGY_MESSAGES_UK } from './lesson1_energy';
@@ -106,8 +108,6 @@ interface LessonContentProps {
   showIntroScreens: boolean;
   setShowIntroScreens: (val: boolean) => void;
   onIntroDone: () => void;
-  showEncouragementScreen: boolean;
-  setShowEncouragementScreen: (val: boolean) => void;
   lessonId: number;
   // All the main lesson UI props
   compact: boolean;
@@ -166,8 +166,6 @@ const LessonContent = React.memo(function LessonContent({
   showIntroScreens,
   setShowIntroScreens,
   onIntroDone,
-  showEncouragementScreen,
-  setShowEncouragementScreen,
   lessonId,
   compact,
   phrase,
@@ -228,17 +226,6 @@ const LessonContent = React.memo(function LessonContent({
         introScreens={getLessonIntroScreens(lessonId)}
         lessonId={lessonId}
         onComplete={onIntroDone}
-      />
-    );
-  }
-
-  // Show encouragement screen between phrase groups
-  if (showEncouragementScreen) {
-    return (
-      <LessonIntroScreens
-        introScreens={getLessonEncouragementScreens(lessonId)}
-        lessonId={lessonId}
-        onComplete={() => setShowEncouragementScreen(false)}
       />
     );
   }
@@ -427,7 +414,7 @@ const LessonContent = React.memo(function LessonContent({
         </ScrollView>
 
         {/* КНОПКИ СЛОВ — снаружи ScrollView, тап по любому месту работает */}
-        {status === 'playing' && (
+        {status === 'playing' && !settings.hardMode && (
           <Pressable
             onPress={handleBgTap}
             style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 4 }}
@@ -462,7 +449,20 @@ const LessonContent = React.memo(function LessonContent({
                   }}>
                     <TouchableOpacity
                       style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
-                      onPress={() => { if (isDimmed) return; hapticTap(); if (showTapHint) setShowTapHint(false); handleWordPress(word); }}
+                      onPress={() => {
+                        if (isDimmed) return;
+                        hapticTap();
+                        if (showTapHint) setShowTapHint(false);
+                        if (settings.hardMode) {
+                          // В hardMode нажатие на кнопку вставляет слово в текстовое поле
+                          const w = stripMarkers(word);
+                          const current = typedText.trimEnd();
+                          setTypedText(current ? current + ' ' + w : w);
+                          setTimeout(() => textInputRef.current?.focus(), 50);
+                        } else {
+                          handleWordPress(word);
+                        }
+                      }}
                       activeOpacity={isDimmed ? 1 : 0.7}
                     >
                       <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{(() => { const w = stripMarkers(word); return w === 'I' ? 'I' : w.toLowerCase(); })()}</Text>
@@ -652,7 +652,6 @@ export default function LessonScreen() {
   const [testerNoLimits, setTesterNoLimits] = useState(false); // Тестерская функция - без ограничений
   // ==================== NEW: Intro & Encouragement Screens ====================
   const [showIntroScreens, setShowIntroScreens] = useState(false);
-  const [showEncouragementScreen, setShowEncouragementScreen] = useState(false);
   const [showToBeHint, setShowToBeHint] = useState(false);
   // No energy modal after 3 failed taps
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
@@ -875,7 +874,7 @@ export default function LessonScreen() {
       const xpAmount = Math.round(5 * comboM);
       
       if (userNameRef.current) {
-        await registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang, lessonId);
+        try { await registerXP(xpAmount, 'lesson_answer', userNameRef.current, lang, lessonId); } catch {}
       }
       // [COMBO] Ачивки за серию правильных ответов
       checkAchievements({ type: 'combo', count: correctStreakRef.current }).catch(() => {});
@@ -936,12 +935,6 @@ export default function LessonScreen() {
         setShowToBeHint(false);
       }
 
-      // Show encouragement screen after phrase 5
-      if (cellIndex === 4) {
-        setTimeout(() => {
-          setShowEncouragementScreen(true);
-        }, 1500);
-      }
     }
 
     if (settings.voiceOut) {
@@ -971,6 +964,7 @@ export default function LessonScreen() {
         // Пытаемся разблокировать следующий урок
         const didUnlock = await tryUnlockNextLesson(lessonId, finalScore);
 
+        logLessonComplete(lessonId);
         router.replace({ pathname: '/lesson_complete', params: { id: lessonId, unlocked: didUnlock ? '1' : '0' } });
       }, 1500);
       return;
@@ -1069,6 +1063,15 @@ export default function LessonScreen() {
     // Regular word picked (or contraction picked directly)
     const newIdx = phraseWordIdx + 1;
     setPhraseWordIdx(newIdx);
+
+    // Early completion: assembled answer already matches an alternative (e.g. optional word skipped)
+    const assembled = next.join(' ');
+    if (phrase?.alternatives && isCorrectAnswer(assembled, phrase.english, phrase.alternatives)) {
+      setShuffled([]);
+      if (settings.autoCheck) checkAnswer(assembled);
+      return;
+    }
+
     if (newIdx >= totalPhraseWords) {
       setShuffled([]);
       if (settings.autoCheck) checkAnswer(next.join(' '));
@@ -1154,12 +1157,44 @@ export default function LessonScreen() {
   const wrongCount   = useMemo(() => progress.filter(p => p === 'wrong').length, [progress]);
   const score = useMemo(() => Number((correctCount / TOTAL * 5).toFixed(1)), [correctCount, TOTAL]);
 
+  // ── Medal tier change toast ──────────────────────────────────────────────────
+  const prevMedalTierRef = useRef<MedalTier>('none');
+  const [medalToast, setMedalToast] = useState<{ tier: MedalTier; promoted: boolean } | null>(null);
+  const medalToastAnim = useRef(new Animated.Value(0)).current;
+
+  const showMedalToast = useCallback((tier: MedalTier, promoted: boolean) => {
+    setMedalToast({ tier, promoted });
+    medalToastAnim.setValue(0);
+    Animated.sequence([
+      Animated.spring(medalToastAnim, { toValue: 1, useNativeDriver: true, friction: 6 }),
+      Animated.delay(2200),
+      Animated.timing(medalToastAnim, { toValue: 0, duration: 350, useNativeDriver: true }),
+    ]).start(() => setMedalToast(null));
+  }, [medalToastAnim]);
+
+  useEffect(() => {
+    const prev = prevMedalTierRef.current;
+    const current = getMedalTier(score);
+    const tierOrder: MedalTier[] = ['none', 'bronze', 'silver', 'gold'];
+    const prevIdx = tierOrder.indexOf(prev);
+    const curIdx  = tierOrder.indexOf(current);
+    if (curIdx !== prevIdx) {
+      // Only show after at least a few answers to avoid toast on load
+      if (correctCount > 0) {
+        if (curIdx > prevIdx) showMedalToast(current, true);
+        else showMedalToast(current, false);
+      }
+      prevMedalTierRef.current = current;
+    }
+  }, [score, correctCount, showMedalToast]);
+  // ────────────────────────────────────────────────────────────────────────────
+
   // Жёлтая подсветка для поля ввода когда 0 слов + тап
   const [emptyTapFlash, setEmptyTapFlash] = useState(false);
 
   const handleBgTap = useCallback(() => {
+    if (settings.hardMode) return; // hard mode — нет тапа по фону, только клавиатура
     if (status === 'result') { goNext(); return; } // тап на результате → следующая фраза
-    if (settings.hardMode) return; // hard mode — кнопка/enter клавиатуры
     // Скрываем хинт при первом тапе
     if (showTapHint) setShowTapHint(false);
     if (selectedWords.length === 0) {
@@ -1209,7 +1244,7 @@ export default function LessonScreen() {
   }, [fiftyFiftyUsedToday, phrase, phraseWordIdx, shuffled, contrExpanded]);
 
   return (
-    <TouchableWithoutFeedback onPress={handleBgTap}>
+    <TouchableWithoutFeedback onPress={settings.hardMode ? undefined : handleBgTap}>
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <LessonContent
@@ -1220,8 +1255,6 @@ export default function LessonScreen() {
               setShowIntroScreens(false);
               loadData();
             }}
-            showEncouragementScreen={showEncouragementScreen}
-            setShowEncouragementScreen={setShowEncouragementScreen}
             lessonId={lessonId}
             compact={compact}
             phrase={phrase}
@@ -1275,6 +1308,73 @@ export default function LessonScreen() {
             dimmedWords={dimmedWords}
           />
         </SafeAreaView>
+
+        {/* ── Medal tier toast ── */}
+        {medalToast && (() => {
+          const { tier, promoted } = medalToast;
+          const MEDAL_COLORS: Record<MedalTier, string> = {
+            none:   '#888',
+            bronze: '#CD7F32',
+            silver: '#A8A9AD',
+            gold:   '#FFD700',
+          };
+          const MEDAL_EMOJI: Record<MedalTier, string> = {
+            none: '',
+            bronze: '🥉',
+            silver: '🥈',
+            gold:   '🥇',
+          };
+          const LABELS_RU: Record<MedalTier, { up: string; upSub: string; down: string; downSub: string }> = {
+            none:   { up: '', upSub: '', down: '', downSub: '' },
+            bronze: { up: 'Есть Бронза!', upSub: 'Так держать — продолжай!', down: 'Оценка упала...', downSub: 'Ещё пара верных ответов' },
+            silver: { up: 'Уже Серебро!', upSub: 'Отличный результат!', down: 'Соскользнул до Бронзы', downSub: 'Давай — вернём Серебро!' },
+            gold:   { up: 'Золото! Идеально!', upSub: 'Урок пройден на отлично!', down: 'Слетело Золото...', downSub: 'Нужен ещё один круг' },
+          };
+          const LABELS_UK: Record<MedalTier, { up: string; upSub: string; down: string; downSub: string }> = {
+            none:   { up: '', upSub: '', down: '', downSub: '' },
+            bronze: { up: 'Є Бронза!', upSub: 'Так тримати — продовжуй!', down: 'Оцінка впала...', downSub: 'Ще пара вірних відповідей' },
+            silver: { up: 'Вже Срібло!', upSub: 'Чудовий результат!', down: 'Злетів до Бронзи', downSub: 'Давай — повернемо Срібло!' },
+            gold:   { up: 'Золото! Ідеально!', upSub: 'Урок пройдено на відмінно!', down: 'Злетіло Золото...', downSub: 'Потрібне ще одне коло' },
+          };
+          const color  = MEDAL_COLORS[tier];
+          const emoji  = MEDAL_EMOJI[tier];
+          const labels = lang === 'uk' ? LABELS_UK[tier] : LABELS_RU[tier];
+          const title  = promoted ? labels.up   : labels.down;
+          const sub    = promoted ? labels.upSub : labels.downSub;
+          return (
+            <Animated.View
+              pointerEvents="none"
+              style={{
+                position: 'absolute', bottom: 120, left: 24, right: 24,
+                opacity: medalToastAnim,
+                transform: [
+                  { translateY: medalToastAnim.interpolate({ inputRange: [0, 1], outputRange: [20, 0] }) },
+                  { scale: medalToastAnim.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }) },
+                ],
+                backgroundColor: t.bgCard,
+                borderRadius: 20,
+                paddingHorizontal: 20,
+                paddingVertical: 14,
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 14,
+                borderWidth: 2,
+                borderColor: color + '99',
+                shadowColor: color,
+                shadowOpacity: 0.4,
+                shadowRadius: 12,
+                elevation: 12,
+              }}
+            >
+              <Text style={{ fontSize: 36 }}>{emoji}</Text>
+              <View style={{ flex: 1 }}>
+                <Text style={{ color, fontSize: 17, fontWeight: '900', marginBottom: 2 }}>{title}</Text>
+                <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '500' }}>{sub}</Text>
+              </View>
+            </Animated.View>
+          );
+        })()}
+        {/* ────────────────────── */}
       </ScreenGradient>
     </TouchableWithoutFeedback>
   );

@@ -2,11 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
+import { usePremium } from '../../components/PremiumContext';
 import * as Speech from 'expo-speech';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
+  DeviceEventEmitter,
   KeyboardAvoidingView,
   Modal,
   Platform,
@@ -183,11 +185,11 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
 
 // ── ВЫБОР УРОВНЯ ────────────────────────────────────────────────────────────
 function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
-  const { goHome } = useTabNav();
+  const { goHome, activeIdx } = useTabNav();
   const { theme:t , f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const router = useRouter();
-  const [isPremium, setIsPremium] = useState(false);
+  const { isPremium } = usePremium();
   const [selected, setSelected] = useState<Level | null>(null);
   const isUK = lang === 'uk';
 
@@ -219,9 +221,6 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     return () => loops.forEach(a => a.stop());
   }, []);
 
-  useEffect(() => {
-    getVerifiedPremiumStatus().then(setIsPremium);
-  }, []);
 
   const handleStart = (lv: Level) => {
     const anim = fillAnims[lv];
@@ -254,7 +253,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
           const c        = LEVEL_CONFIG[lv];
           const lbl      = lang === 'uk' ? c.labelUK : c.labelRU;
           const tag      = lang === 'uk' ? c.tagUK : c.tagRU;
-          const locked   = !DEV_MODE && !isPremium;
+          const locked   = !DEV_MODE && !isPremium && lv !== 'easy';
           const palette  = (THEME_PALETTES[themeMode] ?? THEME_PALETTES.dark)[lv];
           const txt      = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
           const gradA    = locked ? t.bgCard    : palette.gradA;
@@ -269,7 +268,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
               {/* ── Карточка уровня ── */}
               <TouchableOpacity
                 onPress={() => {
-                  if (locked) { router.push('/premium_modal'); return; }
+                  if (locked) { router.push({ pathname: '/premium_modal', params: { context: lv === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any); return; }
                   if (isSelected) { handleStart(lv); return; }
                   setSelected(lv);
                 }}
@@ -613,7 +612,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         setScore(p => p + pts);
 
         // Начисляем баллы — имя уже в ref, нет асинхронного запроса
-        if (userNameRef.current) { await registerXP(pts, 'quiz_answer', userNameRef.current, lang); }
+        if (userNameRef.current) { try { await registerXP(pts, 'quiz_answer', userNameRef.current, lang); } catch {} }
         // Триггеры заданий — quiz_score обновляется в done useEffect (один раз с итогом сессии)
         const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [
           { type: 'total_answers' },
@@ -720,7 +719,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       <ScreenGradient>
       <View style={{ flex:1 }}>
         <ContentWrap>
-        <View style={{ flex:1, justifyContent:'center', alignItems:'center', padding:30 }}>
+        <ScrollView contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: f.numLg + 28, marginBottom:10 }} adjustsFontSizeToFit numberOfLines={1}>{rankInfo.icon}</Text>
           <View style={{ backgroundColor: `${rankInfo.color}22`, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: `${rankInfo.color}55`, marginBottom:16 }}>
             <Text style={{ color: rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
@@ -729,7 +728,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           <Text style={{ color:t.textPrimary, fontSize: f.h1, marginBottom:4 }}>{right} / {total}</Text>
           <Text style={{ color:t.textSecond, fontSize: f.numLg + 8, fontWeight:'700', marginBottom:8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
           <Text style={{ color:t.correct, fontSize: f.h2, fontWeight:'600', marginBottom:16 }}>
-            +{score} {lang==='uk'?'досвіду':'опыта'}
+            +{Math.round(score * 10) / 10} {lang==='uk'?'досвіду':'опыта'}
           </Text>
           {/* Уровень игрока */}
           {(() => {
@@ -791,7 +790,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               {lang==='uk' ? '🏠 На головну' : '🏠 На главную'}
             </Text>
           </TouchableOpacity>
-        </View>
+        </ScrollView>
         </ContentWrap>
         {showBonus && (
           <BonusXPCard
@@ -885,7 +884,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             <StreakBreak show={showBreak} old={prevStr} t={t} f={f}/>
             <View style={{ flexDirection:'row', alignItems:'center', gap:3 }}>
               <Ionicons name="star" size={13} color={t.textSecond}/>
-              <Text style={{ color:t.textSecond, fontWeight:'600', fontSize: f.body }}>{score}</Text>
+              <Text style={{ color:t.textSecond, fontWeight:'600', fontSize: f.body }}>{Math.round(score * 10) / 10}</Text>
             </View>
           </View>
         </View>
@@ -904,7 +903,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
 
         <View style={{ flex: 1 }}>
         <Animated.View style={{ flex:1, opacity:fadeAnim }}>
-          <ScrollView contentContainerStyle={{ paddingHorizontal:20, paddingTop:20, paddingBottom:40, flexGrow:1 }} keyboardShouldPersistTaps="handled">
+          <ScrollView style={{ flex:1 }} contentContainerStyle={{ paddingHorizontal:20, paddingTop:20, paddingBottom:40 }} keyboardShouldPersistTaps="handled">
           <Text style={{ color:t.textMuted, fontSize: f.caption, marginBottom:14 }}>
             {(reviewing?rIdx:idx)+1} / {reviewing?reviewQ.length:phrases.length}
           </Text>
@@ -1136,7 +1135,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     {/* No Energy Modal */}
     <Modal transparent animationType="fade" visible={showNoEnergyModal} onRequestClose={() => setShowNoEnergyModal(false)}>
       <Pressable style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center' }} onPress={() => setShowNoEnergyModal(false)}>
-        <Pressable style={{ backgroundColor: t.cardBg, borderRadius: 20, padding: 24, marginHorizontal: 24, width: '88%' }} onPress={e => e.stopPropagation()}>
+        <Pressable style={{ backgroundColor: t.bgCard, borderRadius: 20, padding: 24, marginHorizontal: 24, width: '88%' }} onPress={e => e.stopPropagation()}>
           <Text style={{ color: t.textPrimary, fontSize: 15, lineHeight: 22, textAlign: 'center', marginBottom: 20 }}>
             {isUK
               ? ENERGY_MESSAGES_UK[Math.floor(Math.random() * ENERGY_MESSAGES_UK.length)]?.replace('{time}', recoveryTimeText) || ''

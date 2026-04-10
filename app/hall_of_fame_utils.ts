@@ -9,7 +9,7 @@ export const streakMultiplier = (s: number): number =>
   s >= 30 ? 1.8 : s >= 14 ? 1.6 : s >= 7 ? 1.4 : s >= 3 ? 1.2 : 1;
 
 export const pointsForAnswer = (level: string, streak: number): number =>
-  LEVEL_BASE[level] * streakMultiplier(streak);
+  Math.round(LEVEL_BASE[level] * streakMultiplier(streak) * 10) / 10;
 
 // ── Leaderboard (накопительный за всё время) ─────────────────────────────────
 export interface LeaderEntry { name: string; points: number; lang: string; avatar?: string; }
@@ -299,8 +299,9 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
 
     const freezeRaw = await AsyncStorage.getItem('streak_freeze');
     const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
-    // Заморозка уже активна — стрик будет сохранён автоматически
-    if (freeze?.active) return { willLose: false, streakBefore: streak };
+    const todayStr = new Date().toISOString().split('T')[0];
+    // Заморозка уже активна сегодня — стрик будет сохранён автоматически
+    if (freeze?.active && freeze?.date === todayStr) return { willLose: false, streakBefore: streak };
 
     return { willLose: true, streakBefore: streak };
   } catch { return { willLose: false, streakBefore: 0 }; }

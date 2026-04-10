@@ -37,6 +37,7 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson9_phrase_3',
     english: 'There is a big park in this city',
+    alternatives: ['There is a large park in this city'],
     russian: 'В этом городе есть большой парк',
     ukrainian: 'У цьому місті є великий парк',
     words: [
@@ -337,6 +338,7 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson9_phrase_23',
     english: 'There is a big TV in our living room',
+    alternatives: ['There is a large TV in our living room'],
     russian: 'В нашей гостиной есть большой телевизор',
     ukrainian: 'У нашій вітальні є великий телевізор',
     words: [
@@ -535,6 +537,7 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson9_phrase_36',
     english: 'There is a big supermarket in my district',
+    alternatives: ['There is a large supermarket in my district'],
     russian: 'В моем районе есть большой супермаркет',
     ukrainian: 'У моєму районі є великий супермаркет',
     words: [
@@ -2009,6 +2012,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson11_phrase_38',
     english: 'We finished that difficult work two hours ago',
+    alternatives: ['We finished that hard work two hours ago'],
     russian: 'Мы два часа назад закончили ту сложную работу',
     ukrainian: 'Ми дві години тому закінчили ту складну роботу',
     words: [
@@ -2542,6 +2546,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson12_phrase_23',
     english: 'They understood that difficult task two hours ago',
+    alternatives: ['They understood that hard task two hours ago'],
     russian: 'Они два часа назад поняли ту сложную задачу',
     ukrainian: 'Вони дві години тому зрозуміли ту складну задачу',
     words: [
@@ -4400,6 +4405,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
   {
     id: 44,
     english: 'I bought the freshest juice in that small shop today.',
+    alternatives: ['I bought the freshest juice in that little shop today.'],
     russian: 'Я сегодня купил самый свежий сок в том маленьком магазине.',
     ukrainian: 'Я сьогодні купив найсвіжіший сік у тому маленькому магазині.',
     words: [
@@ -5597,6 +5603,7 @@ export const LESSON_16_PHRASES: LessonPhrase[] = [
   {
     id: 'l16p22',
     english: 'This kind neighbor sometimes looks after my small garden.',
+    alternatives: ['This kind neighbor sometimes looks after my little garden.'],
     russian: 'Этот добрый сосед иногда присматривает за моим маленьким садом.',
     ukrainian: 'Цей добрий сусід іноді доглядає за моїм маленьким садом.',
     words: [

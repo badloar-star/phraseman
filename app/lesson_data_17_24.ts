@@ -153,6 +153,7 @@ export const LESSON_17_PHRASES: LessonPhrase[] = [
   {
     id: 'l17p9',
     english: 'These little children are playing happily in this green garden now.',
+    alternatives: ['These small children are playing happily in this green garden now.'],
     russian: 'Эти маленькие дети сейчас весело играют в этом зеленом саду.',
     ukrainian: 'Ці маленькі діти зараз весело грають у цьому зеленому саду.',
     words: [
@@ -266,6 +267,7 @@ export const LESSON_17_PHRASES: LessonPhrase[] = [
   {
     id: 'l17p15',
     english: 'They are translating that difficult article for this client now.',
+    alternatives: ['They are translating that hard article for this client now.'],
     russian: 'Они сейчас переводят ту трудную статью для этого клиента.',
     ukrainian: 'Вони зараз перекладають ту важку статтю для цього клієнта.',
     words: [
@@ -304,6 +306,7 @@ export const LESSON_17_PHRASES: LessonPhrase[] = [
   {
     id: 'l17p17',
     english: 'We are packing those fragile gifts into this big box now.',
+    alternatives: ['We are packing those fragile gifts into this large box now.'],
     russian: 'Мы сейчас упаковываем те хрупкие подарки в эту большую коробку.',
     ukrainian: 'Ми зараз пакуємо ті крихкі подарунки в цю велику коробку.',
     words: [
@@ -1183,20 +1186,7 @@ export const LESSON_17_IRREGULAR_VERBS = [
 ];
 
 
-export const LESSON_18_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Урок 18: Повелительное наклонение. Используется для команд, просьб и предложений. Образуется из базовой формы глагола без местоимения. Например: Open the window. / Close the door.',
-    textUK: 'Урок 18: Наказовий спосіб. Використовується для команд, прохань та пропозицій. Утворюється з базової форми дієслова без займенника. Наприклад: Open the window. / Close the door.',
-  },
-  {
-    textRU: 'Отрицание: "Do not" + базовая форма глагола. В разговорной речи — "Don\'t". Например: Do not press that button. / Don\'t forget your keys.',
-    textUK: 'Заперечення: "Do not" + базова форма дієслова. У розмовній мові — "Don\'t". Наприклад: Do not press that button. / Don\'t forget your keys.',
-  },
-  {
-    textRU: '"Let us" (или "Let\'s") используется для предложений о совместном действии. Это мягкая форма побуждения. Например: Let us discuss this plan.',
-    textUK: '"Let us" (або "Let\'s") використовується для пропозицій про спільну дію. Наприклад: Let us discuss this plan.',
-  },
-];
+export const LESSON_18_INTRO_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
@@ -1338,6 +1328,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'l18p9',
     english: 'Let us buy that convenient map in this small shop.',
+    alternatives: ['Let us buy that convenient map in this little shop.'],
     russian: 'Давайте купим ту удобную карту в этом маленьком магазине.',
     ukrainian: 'Давайте купимо ту зручну карту в цьому маленькому магазині.',
     words: [
@@ -1452,6 +1443,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'l18p15',
     english: 'Do not park that big car in front of this private exit.',
+    alternatives: ['Do not park that large car in front of this private exit.'],
     russian: 'Не паркуй ту большую машину перед этим частным выходом.',
     ukrainian: 'Не паркуй ту велику машину перед цим приватним виходом.',
     words: [
@@ -1654,6 +1646,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'l18p26',
     english: 'Leave those extra keys on that small shelf in our hallway.',
+    alternatives: ['Leave those extra keys on that little shelf in our hallway.'],
     russian: 'Оставь те лишние ключи на той маленькой полке в нашем коридоре.',
     ukrainian: 'Залиш ті зайві ключі на тій маленькій полиці в нашому коридорі.',
     words: [
@@ -1691,6 +1684,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'l18p28',
     english: 'Let us build this strong fence around that big garden.',
+    alternatives: ['Let us build this strong fence around that large garden.'],
     russian: 'Давайте построим этот прочный забор вокруг того большого сада.',
     ukrainian: 'Давайте побудуємо цей міцний паркан навколо того великого саду.',
     words: [
@@ -1784,6 +1778,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'l18p33',
     english: 'Let us hide those expensive gifts under that big fir-tree.',
+    alternatives: ['Let us hide those expensive gifts under that large fir-tree.'],
     russian: 'Давайте спрячем те дорогие подарки под той большой елью.',
     ukrainian: 'Давайте сховаємо ті дорогі подарунки під тією великою ялинкою.',
     words: [
@@ -2035,6 +2030,7 @@ export const LESSON_18_PHRASES: LessonPhrase[] = [
   {
     id: 'l18p47',
     english: 'Do not leave that sharp axe near those small children in this backyard.',
+    alternatives: ['Do not leave that sharp axe near those little children in this backyard.'],
     russian: 'Не оставляй тот острый топор рядом с теми маленькими детьми на этом заднем дворе.',
     ukrainian: 'Не залишай той гострий сокиру поруч з тими маленькими дітьми на цьому задньому дворі.',
     words: [
@@ -2321,20 +2317,7 @@ export const LESSON_18_IRREGULAR_VERBS = [
 ];
 
 
-export const LESSON_19_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Привет! В этом уроке мы разберемся с предлогами места. Они помогают нам точно описать, ГДЕ находится что-то: на столе, под стулом, между шкафом и окном.',
-    textUK: 'Привіт! На цьому уроці ми розберемось з прийменниками місця. Вони допомагають нам точно описати, ДЕ знаходиться щось: на столі, під стільцем, між шафою й вікном.',
-  },
-  {
-    textRU: 'Главные предлоги места: IN (в), ON (на), UNDER (под), BEHIND (за), BETWEEN (между), NEAR (рядом), ABOVE (над), BELOW (ниже), BESIDE (рядом с), OPPOSITE (напротив), INSIDE (внутри), OUTSIDE (снаружи), ALONG (вдоль), AMONG (среди), AROUND (вокруг).',
-    textUK: 'Головні прийменники місця: IN (у), ON (на), UNDER (під), BEHIND (за), BETWEEN (між), NEAR (біля), ABOVE (над), BELOW (нижче), BESIDE (поряд з), OPPOSITE (навпроти), INSIDE (всередині), OUTSIDE (зовні), ALONG (вздовж), AMONG (серед), AROUND (навколо).',
-  },
-  {
-    textRU: 'Помни: после предлога часто идет артикль (the) и слово. Давайте тренироваться! Начнем с простых предложений и постепенно усложним. Ты справишься! 💪',
-    textUK: 'Пам\'ятай: після прийменника часто йде артикль (the) і слово. Давайте тренуватися! Почнемо з простих речень і поступово ускладнимо. Ти справишся! 💪',
-  },
-];
+export const LESSON_19_INTRO_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_19_PHRASES: LessonPhrase[] = [
   { id: 'l19p1', english: 'That grey cat sleeps on that soft pillow in this corner.', russian: 'Тот серый кот спит на той мягкой подушке в этом углу.', ukrainian: 'Той сірий кіт спить на тій м\'якій подушці в цьому кутку.', words: [{text:'That',correct:'That',distractors: ['this','these','those','than','then']},{text:'grey',correct:'grey',distractors: ['great','green','greedy','greyly','gray-y']},{text:'cat',correct:'cat',distractors: ['cut','cap','car','cats','catty']},{text:'sleeps',correct:'sleeps',distractors: ['sleep','sleeping','slept','sleepsly','sleepy']},{text:'on',correct:'on',distractors: ['in','at','under','by','of']},{text:'that',correct:'that',distractors: ['this','these','those','than','then']},{text:'soft',correct:'soft',distractors: ['softy','softly','sort','salt','sofa']},{text:'pillow',correct:'pillow',distractors: ['pillows','yellow','pillow-y','pillar','pillowly']},{text:'in',correct:'in',distractors: ['on','at','out','onto','for']},{text:'this',correct:'this',distractors: ['that','these','those','thin','thus']},{text:'corner.',correct:'corner.',distractors: ['corners.','corn.','cornerly.','cornery.','cover.']}] },
@@ -2517,20 +2500,7 @@ export const LESSON_19_IRREGULAR_VERBS = [
 // ==================== LESSON 20 ====================
 
 
-export const LESSON_20_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Привет! В этом уроке мы разберёмся с артиклями английского языка. Артикль — это маленькое слово перед существительным: «a», «an» или «the». Иногда артикль не нужен — это называется нулевым артиклем «-».',
-    textUK: 'Привіт! На цьому уроці ми розберемось з артиклями англійської мови. Артикль — це маленьке слово перед іменником: «a», «an» або «the». Іноді артикль не потрібен — це називається нульовим артиклем «-».',
-  },
-  {
-    textRU: '«A» или «an» используется, когда говорим о чём-то впервые или о любом предмете из множества: «a phone» (какой-то телефон), «an apple» (какое-то яблоко). «An» — перед словами, начинающимися с гласного звука.',
-    textUK: '«A» або «an» використовується, коли говоримо про щось вперше або про будь-який предмет із множини: «a phone» (якийсь телефон), «an apple» (яке-небудь яблуко). «An» — перед словами, що починаються з голосного звуку.',
-  },
-  {
-    textRU: '«-» (нулевой артикль) используется с неисчисляемыми существительными (coffee, bread, water), именами собственными, и во многих устойчивых выражениях. Вы увидите «-» там, где артикль не нужен!',
-    textUK: '«-» (нульовий артикль) використовується з незлічуваними іменниками (coffee, bread, water), власними назвами та у багатьох сталих виразах. Ви побачите «-» там, де артикль не потрібен!',
-  },
-];
+export const LESSON_20_INTRO_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_20_PHRASES: LessonPhrase[] = [
   {id:'l20p1',english:'I bought «a» new «-» phone in that «-» small «-» shop.',russian:'Я купил новый телефон в том маленьком магазине.',ukrainian:'Я купив новий телефон у тому маленькому магазині.',words:[{text:'I',correct:'I',distractors: ['me','my','mine','it','am']},{text:'bought',correct:'bought',distractors: ['buy','buys','buying','brought','boat']},{text:'«a»',correct:'«a»',distractors: ['«an»','«the»','«some»','«any»','«-»']},{text:'new',correct:'new',distractors: ['news','newly','now','net','next']},{text:'«-»',correct:'«-»',distractors: ['«a»','«an»','«the»','«some»','«any»']},{text:'phone',correct:'phone',distractors: ['phones','photo','phrase','phone-s','phone-ly']},{text:'in',correct:'in',distractors: ['on','at','to','for','of']},{text:'that',correct:'that',distractors: ['this','these','those','than','then']},{text:'«-»',correct:'«-»',distractors: ['«a»','«an»','«the»','«some»','«any»']},{text:'small',correct:'small',distractors: ['small-ly','smaller','smile','smell','smart']},{text:'«-»',correct:'«-»',distractors: ['«a»','«an»','«the»','«some»','«any»']},{text:'shop.',correct:'shop.',distractors: ['shops.','ship.','shape.','sheep.','sharp.']}]},
@@ -2747,20 +2717,7 @@ export const LESSON_20_IRREGULAR_VERBS = [
 
 // Add Lesson 20 to ALL_LESSONS (must be after LESSON_20 declarations)
 
-export const LESSON_23_INTRO_SCREENS: LessonIntroScreen[] = [
-  {
-    textRU: 'Урок 23: Страдательный залог (Passive Voice). В пассиве действие совершается над подлежащим. Формула: субъект + to be + Past Participle + by + деятель.',
-    textUK: 'Урок 23: Пасивний стан (Passive Voice). В пасиві дія здійснюється над підметом. Формула: суб\'єкт + to be + Past Participle + by + діяч.',
-  },
-  {
-    textRU: 'Present Simple Passive: am/is/are + V3. Например: The book is read by many people. — Книга читается многими людьми.',
-    textUK: 'Present Simple Passive: am/is/are + V3. Наприклад: The book is read by many people. — Книга читається багатьма людьми.',
-  },
-  {
-    textRU: '"By" указывает на того, кто совершает действие. Иногда деятель не важен и "by" опускается. Passive делает речь более формальной.',
-    textUK: '"By" вказує на того, хто здійснює дію. Іноді діяч не важливий і "by" опускається. Passive робить мову більш формальною.',
-  },
-];
+export const LESSON_23_INTRO_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_23_PHRASES: LessonPhrase[] = [
   {
@@ -2924,6 +2881,7 @@ export const LESSON_23_PHRASES: LessonPhrase[] = [
   {
     id: 'l23p10',
     english: 'That difficult exercise is always explained by our teacher.',
+    alternatives: ['That hard exercise is always explained by our teacher.'],
     russian: 'То сложное упражнение всегда объясняется нашим учителем.',
     ukrainian: 'Та складна вправа завжди пояснюється нашим учителем.',
     words: [
@@ -3232,6 +3190,7 @@ export const LESSON_23_PHRASES: LessonPhrase[] = [
   {
     id: 'l23p27',
     english: 'Your little dog is always walked by someone from your family.',
+    alternatives: ['Your small dog is always walked by someone from your family.'],
     russian: 'Ваша маленькая собака всегда выгуливается кем-то из вашей семьи.',
     ukrainian: 'Ваш маленький собака завжди вигулюється кимось із вашої родини.',
     words: [
@@ -3362,6 +3321,7 @@ export const LESSON_23_PHRASES: LessonPhrase[] = [
   {
     id: 'l23p34',
     english: 'These empty boxes are thrown by them into that large container.',
+    alternatives: ['These empty boxes are thrown by them into that big container.'],
     russian: 'Эти пустые коробки выбрасываются ими в тот большой контейнер.',
     ukrainian: 'Ці порожні коробки викидаються ними в той великий контейнер.',
     words: [
@@ -3582,6 +3542,7 @@ export const LESSON_23_PHRASES: LessonPhrase[] = [
   {
     id: 'l23p46',
     english: 'Those old photos are always kept by them in that small box.',
+    alternatives: ['Those old photos are always kept by them in that little box.'],
     russian: 'Те старые фотографии всегда хранятся ими в той маленькой коробке.',
     ukrainian: 'Ті старі фотографії завжди зберігаються ними в тій маленькій коробці.',
     words: [
@@ -4119,10 +4080,7 @@ export const LESSON_24_IRREGULAR_VERBS: IrregularVerb[] = [
   { base: 'Sell', ru: 'Продавать', uk: 'Продавати', past: 'sold', pp: 'sold' },
 ];
 
-export const LESSON_21_INTRO_SCREENS = [
-  { titleRU: 'Урок 21: Неопределённые местоимения', titleUK: 'Урок 21: Неозначені займенники', textRU: 'В этом уроке мы изучаем слова, которые заменяют существительные, когда мы не говорим о ком-то или чём-то конкретном: somebody, nobody, everyone, something, anything и другие.', textUK: 'У цьому уроці ми вивчаємо слова, які замінюють іменники, коли ми не говоримо про когось або щось конкретне: somebody, nobody, everyone, something, anything та інші.' },
-  { titleRU: 'Важное правило', titleUK: 'Важливе правило', textRU: 'Неопределённые местоимения всегда требуют глагола в единственном числе (как для he/she/it): «Everybody knows» (не «know»), «Nobody was» (не «were»).', textUK: 'Неозначені займенники завжди вимагають дієслова в однині (як для he/she/it): «Everybody knows» (не «know»), «Nobody was» (не «were»).' },
-];
+export const LESSON_21_INTRO_SCREENS = [];
 
 export const LESSON_21_PHRASES: LessonPhrase[] = [
   {id:'l21p1',english:'Somebody knocked on my door late at night.',russian:'Кто-то постучал в мою дверь поздно ночью.',ukrainian:'Хтось постукав у мої двері пізно вночі.',words:[{text:'Somebody',correct:'Somebody',distractors: ['anybody','nobody','everybody','something','anything']},{text:'knocked',correct:'knocked',distractors: ['knock','knocks','knocking','know','knee']},{text:'on',correct:'on',distractors: ['in','at','to','for','by']},{text:'my',correct:'my',distractors: ['me','mine','I','your','his']},{text:'door',correct:'door',distractors: ['doors','doll','floor','deer','dark']},{text:'late',correct:'late',distractors: ['lately','later','last','lost','least']},{text:'at',correct:'at',distractors: ['in','on','to','for','by']},{text:'night.',correct:'night.',distractors: ['nights.','light.','right.','knight.','neighbor.']}]},
@@ -4315,10 +4273,7 @@ export const LESSON_21_IRREGULAR_VERBS = [
 // ============================================================
 
 
-export const LESSON_22_INTRO_SCREENS = [
-  { titleRU: 'Урок 22: Герундий', titleUK: 'Урок 22: Герундій', textRU: 'Герундий — форма глагола с окончанием -ing, которая работает как существительное. Например: Swimming is fun. I enjoy cooking. She finished writing.', textUK: 'Герундій — форма дієслова із закінченням -ing, яка працює як іменник. Наприклад: Swimming is fun. I enjoy cooking. She finished writing.' },
-  { titleRU: 'Глаголы с герундием', titleUK: 'Дієслова з герундієм', textRU: 'После этих глаголов всегда используется герундий: enjoy, finish, stop, avoid, keep, dislike, hate, suggest, mention, prefer, appreciate, imagine, require, include.', textUK: 'Після цих дієслів завжди вживається герундій: enjoy, finish, stop, avoid, keep, dislike, hate, suggest, mention, prefer, appreciate, imagine, require, include.' },
-];
+export const LESSON_22_INTRO_SCREENS = [];
 
 export const LESSON_22_PHRASES: LessonPhrase[] = [
   {id:'l22p1',english:'Swimming in cold ocean is very refreshing.',russian:'Плавание в холодном океане очень бодрит.',ukrainian:'Плавання в холодному океані дуже бадьорить.',words:[{text:'Swimming',correct:'Swimming',distractors: ['swim','swims','swam','swum','swimmer']},{text:'in',correct:'in',distractors: ['on','at','by','for','to']},{text:'cold',correct:'cold',distractors: ['cool','could','gold','bold','called']},{text:'ocean',correct:'ocean',distractors: ['sea','river','lake','open','often']},{text:'is',correct:'is',distractors: ['are','am','be','was','been']},{text:'very',correct:'very',distractors: ['every','vary','really','early','only']},{text:'refreshing.',correct:'refreshing.',distractors: ['refresh.','refreshed.','fresh.','fishing.','flash.']}]},

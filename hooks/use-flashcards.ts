@@ -36,18 +36,31 @@ export const saveFlashcards = async (cards: Flashcard[]): Promise<void> => {
   }
 };
 
+export const FREE_FLASHCARD_LIMIT = 20;
+
+export type AddFlashcardResult = 'added' | 'duplicate' | 'limit_reached';
+
 export const addFlashcard = async (
   card: Omit<Flashcard, 'id' | 'addedAt'>,
-): Promise<boolean> => {
+): Promise<AddFlashcardResult> => {
   const cards = await loadFlashcards();
   const normalizedEn = card.en.trim().toLowerCase();
   const duplicate = cards.some(c => c.en.trim().toLowerCase() === normalizedEn);
-  if (duplicate) return false;
+  if (duplicate) return 'duplicate';
+
+  // Check free tier limit
+  const [premRaw, noPremRaw, noLimitsRaw] = await Promise.all([
+    AsyncStorage.getItem('premium_active'),
+    AsyncStorage.getItem('tester_no_premium'),
+    AsyncStorage.getItem('tester_no_limits'),
+  ]);
+  const isPremium = noPremRaw === 'true' ? false : (premRaw === 'true' || noLimitsRaw === 'true');
+  if (!isPremium && cards.length >= FREE_FLASHCARD_LIMIT) return 'limit_reached';
 
   const id = `${card.source}_${normalizedEn.replace(/\s+/g, '_').slice(0, 40)}_${Date.now()}`;
   const newCard: Flashcard = { ...card, id, addedAt: Date.now() };
   await saveFlashcards([...cards, newCard]);
-  return true;
+  return 'added';
 };
 
 export const removeFlashcard = async (id: string): Promise<void> => {

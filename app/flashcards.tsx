@@ -1,12 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
+import { usePremium } from '../components/PremiumContext';
 import * as Speech from 'expo-speech';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
     ActivityIndicator,
     Alert,
     Animated,
+    DeviceEventEmitter,
     Dimensions,
     Keyboard,
     KeyboardAvoidingView, Platform,
@@ -33,6 +35,9 @@ const CARD_H  = 260;   // full card height — never changes
 const PEEK    = 56;    // visible top strip of each non-active card
 const LIST_PAD = Math.round((SCREEN_H - CARD_H) / 2); // center first card
 const GAP = 92;    // extra separation pushed away from active card during scroll
+
+// Fisher-Yates shuffle
+const shuffle = <T,>(a: T[]): T[] => { const r=[...a]; for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];} return r; };
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type CategoryId = 'emotions' | 'fillers' | 'reactions' | 'traps' | 'phrasal' | 'situations' | 'connectors' | 'saved' | 'custom';
@@ -317,6 +322,7 @@ export default function FlashcardsScreen() {
   const [filterOpen, setFilterOpen]       = useState(false);
   const [savedCards, setSavedCards]   = useState<CardItem[]>([]);
   const [customCards, setCustomCards] = useState<CardItem[]>([]);
+  const { isPremium } = usePremium();
   const [index, setIndex]             = useState(0);
   const [isFlipped, setIsFlipped]     = useState(false);
   const [allFlipped, setAllFlipped]   = useState(false);
@@ -380,6 +386,7 @@ export default function FlashcardsScreen() {
   }, []);
 
   useEffect(() => { loadAll(); }, []);
+  useFocusEffect(useCallback(() => { loadAll(); }, []));
 
   // ── Active cards for current category ──────────────────────────────────────
   useEffect(() => {
@@ -499,31 +506,25 @@ export default function FlashcardsScreen() {
     Animated.spring(flipAnim, { toValue, ...cfg }).start(() => setIsFlipping(false));
   };
 
-  // ── Flip all cards top-to-bottom with 80ms stagger ────────────────────────
+  // ── Flip all cards simultaneously ─────────────────────────────────────────
   const handleFlipAll = useCallback(() => {
     const toValue = allFlipped ? 0 : 1;
     const cfg = { useNativeDriver: true, friction: 8, tension: 80 };
-    // Cancel any pending stagger timers from previous call
+    // Cancel any pending timers from previous call
     flipAllTimers.current.forEach(clearTimeout);
     flipAllTimers.current = [];
-    // All cards flip with stagger in order; camera follows each flipping card
+    // All cards flip at the same time
     cardFlipAnims.current.slice(0, filteredCards.length).forEach((anim, i) => {
-      const t = setTimeout(() => {
-        Animated.spring(anim, { toValue, ...cfg }).start();
-        if (i === index) Animated.spring(flipAnim, { toValue, ...cfg }).start();
-      }, i * 80);
-      flipAllTimers.current.push(t);
+      Animated.spring(anim, { toValue, ...cfg }).start();
+      if (i === index) Animated.spring(flipAnim, { toValue, ...cfg }).start();
     });
     setAllFlipped(!allFlipped);
     setIsFlipped(toValue === 1);
     isFlippedRef.current = toValue === 1;
     if (toValue === 1) {
-      // Флипаем вперёд — прячем EN сразу
       setHideEnHint(true);
     } else {
-      // Флипаем назад — показываем EN только после окончания анимации активной карточки
-      const delay = index * 80 + 400;
-      setTimeout(() => setHideEnHint(false), delay);
+      setTimeout(() => setHideEnHint(false), 400);
     }
   }, [allFlipped, filteredCards.length, flipAnim, index]);
 
@@ -1189,6 +1190,8 @@ export default function FlashcardsScreen() {
                   const tr = lang === 'uk' ? item.uk : item.ru;
                   const srcBadgeColor = SOURCE_COLORS[item.source ?? 'lesson'] ?? '#4A90D9';
                   const srcLabel = item.source ? (s.source as any)[item.source] : null;
+                  // Premium guard: saved cards beyond 20 are locked for free users
+                  const isLocked = activeCat === 'saved' && !isPremium && itemIdx >= 20;
 
                   // Per-card flip animation
                   const cAnim = cardFlipAnims.current[itemIdx] ?? new Animated.Value(0);
@@ -1199,6 +1202,36 @@ export default function FlashcardsScreen() {
                   const cBackScaleX  = fAnim.interpolate({ inputRange:[0,0.5,1], outputRange:[0,0,1] });
                   const cFrontOp     = fAnim.interpolate({ inputRange:[0,0.49,0.5,1], outputRange:[1,1,0,0] });
                   const cBackOp      = fAnim.interpolate({ inputRange:[0,0.49,0.5,0.85,1], outputRange:[0,0,0,1,1] });
+
+                  if (isLocked) {
+                    return (
+                      <View
+                        key={item.id}
+                        style={{
+                          position: 'absolute',
+                          top: cardTop,
+                          left: 16, right: 16,
+                          height: CARD_H,
+                          zIndex: isActive ? 999 : itemIdx,
+                          elevation: isActive ? 20 : itemIdx + 1,
+                        }}
+                      >
+                        <TouchableOpacity
+                          activeOpacity={0.85}
+                          onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: String(savedCards.length) } } as any)}
+                          style={[st.card, { backgroundColor: t.bgCard, borderColor: t.border, justifyContent: 'center', alignItems: 'center' }]}
+                        >
+                          <Ionicons name="lock-closed" size={32} color={t.textMuted} />
+                          <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600', marginTop: 12 }}>
+                            {lang === 'uk' ? 'Преміум закінчився' : 'Премиум истёк'}
+                          </Text>
+                          <Text style={{ color: t.textGhost, fontSize: f.caption, marginTop: 4, textAlign: 'center', paddingHorizontal: 16 }}>
+                            {lang === 'uk' ? 'Поновіть Преміум щоб побачити ці картки' : 'Обновите Премиум чтобы увидеть эти карточки'}
+                          </Text>
+                        </TouchableOpacity>
+                      </View>
+                    );
+                  }
 
                   return (
                     <View

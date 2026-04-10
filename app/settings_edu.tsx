@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Slider from '@react-native-community/slider';
@@ -24,6 +24,7 @@ export const DEFAULT_SETTINGS = {
   autoAdvance:    false,
   haptics:        true,
   immediateCheck: false,
+  showHints:      true,
 };
 
 export type UserSettings = typeof DEFAULT_SETTINGS;
@@ -59,7 +60,8 @@ export default function SettingsEdu() {
     { key:'voiceOut',    label:'Озвучить ответ',            labelUK:'Озвучити відповідь',     sub:'Произносить фразу после ответа',                                        subUK:'Вимовляти фразу після відповіді' },
     { key:'autoAdvance', label:'Автопереход после ответа', labelUK:'Автоперехід після відповіді', sub:'Автоматически переходить к следующему заданию при правильном ответе', subUK:'Автоматично переходити до наступного завдання при правильній відповіді' },
     { key:'hardMode',    label:'Ввод с клавиатуры',        labelUK:'Введення з клавіатури',  sub:'Вводить ответ вручную вместо выбора слов (работает и в квизах)',          subUK:'Вводити відповідь вручну замість вибору слів (працює і в квізах)' },
-    { key:'haptics',         label:'Вибрация при ошибке',        labelUK:'Вібрація при помилці',   sub:'Тактильный сигнал при неправильном ответе',                              subUK:'Тактильний сигнал при неправильній відповіді' },
+    { key:'haptics',    label:'Вибрация при ошибке',    labelUK:'Вібрація при помилці',   sub:'Тактильный сигнал при неправильном ответе',                              subUK:'Тактильний сигнал при неправильній відповіді' },
+    { key:'showHints',  label:'Подсказки после ответа', labelUK:'Підказки після відповіді', sub:'Показывать карточки с объяснением после каждого ответа',                subUK:'Показувати картки з поясненням після кожної відповіді' },
   ];
 
   return (
@@ -76,6 +78,7 @@ export default function SettingsEdu() {
         <View style={{ width: 28 }} />
       </View>
 
+      <ScrollView showsVerticalScrollIndicator={false}>
       {ROWS.map(row => {
         const isOn = !!s[row.key];
         return (
@@ -122,6 +125,7 @@ export default function SettingsEdu() {
           <Text style={{ color: t.textMuted, fontSize: 11 }}>{isUK ? 'Швидко' : 'Быстро'}  1.2x</Text>
         </View>
       </View>}
+      </ScrollView>
       </ContentWrap>
     </SafeAreaView>
     </ScreenGradient>

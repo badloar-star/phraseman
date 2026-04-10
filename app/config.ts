@@ -39,7 +39,7 @@
 
 // true  = всё открыто (для проверки Google Play)
 // false = premium gates активны (включить в следующем обновлении)
-export const DEV_MODE = true;
+export const DEV_MODE = false;
 
 // false = диалоги закрыты (в разработке), игнорирует DEV_MODE
 export const DIALOGS_ENABLED = true;

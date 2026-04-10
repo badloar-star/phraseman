@@ -2,11 +2,13 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
+import { usePremium } from '../components/PremiumContext';
 import * as Speech from 'expo-speech';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
     Animated,
+    DeviceEventEmitter,
     KeyboardAvoidingView,
     Modal,
     Platform,
@@ -190,7 +192,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   const { theme:t , f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const router = useRouter();
-  const [isPremium, setIsPremium] = useState(false);
+  const { isPremium } = usePremium();
   const [selected, setSelected] = useState<Level | null>(null);
   const isUK = lang === 'uk';
 
@@ -222,9 +224,6 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     return () => loops.forEach(a => a.stop());
   }, []);
 
-  useEffect(() => {
-    getVerifiedPremiumStatus().then(setIsPremium);
-  }, []);
 
   const handleStart = (lv: Level) => {
     const anim = fillAnims[lv];
@@ -256,7 +255,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
           const c        = LEVEL_CONFIG[lv];
           const lbl      = lang === 'uk' ? c.labelUK : c.labelRU;
           const tag      = lang === 'uk' ? c.tagUK : c.tagRU;
-          const locked   = !DEV_MODE && !isPremium;
+          const locked   = !DEV_MODE && !isPremium && lv !== 'easy';
           const palette  = (THEME_PALETTES[themeMode] ?? THEME_PALETTES.dark)[lv];
           const txt      = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
           const gradA    = locked ? t.bgCard    : palette.gradA;
@@ -271,7 +270,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
               {/* ── Карточка уровня ── */}
               <TouchableOpacity
                 onPress={() => {
-                  if (locked) { router.push('/premium_modal'); return; }
+                  if (locked) { router.push({ pathname: '/premium_modal', params: { context: lv === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any); return; }
                   if (isSelected) { handleStart(lv); return; }
                   setSelected(lv);
                 }}
@@ -541,7 +540,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             ]);
             const currentXP = parseInt(xpRaw || '0') || 0;
             // registerXP already handles adding to user_total_xp and addOrUpdateScore
-            if (userNameRef.current) { await registerXP(reward.bonusXP, 'bonus_chest', userNameRef.current, lang); }
+            if (userNameRef.current) { try { await registerXP(reward.bonusXP, 'bonus_chest', userNameRef.current, lang); } catch {} }
           }
         }
       } catch (error) {
@@ -593,7 +592,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     ]).start();
   };
 
-  const afterAnswer = async (isRight: boolean) => {
+  const afterAnswer = async (isRight: boolean, isHardTyped = false) => {
     const nr = reviewing ? results : [...results, isRight];
     if (!reviewing) { resultsRef.current = nr; setResults(nr); }
 
@@ -606,7 +605,8 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         // Используем streakRef.current — всегда актуальное значение
         const currentStreak = streakRef.current;
         const ns  = currentStreak + 1;
-        const pts = pointsForAnswer(level, ns);
+        const basePts = pointsForAnswer(level, ns);
+        const pts = isHardTyped ? basePts * 2 : basePts;
 
         // Обновляем стейт и ref
         streakRef.current = ns;
@@ -616,7 +616,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         setScore(p => p + pts);
 
         // Начисляем баллы — имя уже в ref, нет асинхронного запроса
-        if (userNameRef.current) { await registerXP(pts, 'quiz_answer', userNameRef.current, lang); }
+        if (userNameRef.current) { try { await registerXP(pts, 'quiz_answer', userNameRef.current, lang); } catch {} }
         // Триггеры заданий — quiz_score обновляется в done useEffect (один раз с итогом сессии)
         const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [
           { type: 'total_answers' },
@@ -704,7 +704,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     const ok = isCorrectAnswer(typed, current.answer);
     setTypedOk(ok);
     playInsertAnim();
-    afterAnswer(ok);
+    afterAnswer(ok, true);
     setTimeout(() => setNextReady(true), 500);
   };
 
@@ -727,7 +727,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       <ScreenGradient>
       <View style={{ flex:1 }}>
         <ContentWrap>
-        <View style={{ flex:1, justifyContent:'center', alignItems:'center', padding:30 }}>
+        <ScrollView contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: f.numLg + 28, marginBottom:10 }} adjustsFontSizeToFit numberOfLines={1}>{rankInfo.icon}</Text>
           <View style={{ backgroundColor: `${rankInfo.color}22`, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: `${rankInfo.color}55`, marginBottom:16 }}>
             <Text style={{ color: rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
@@ -798,7 +798,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               {lang==='uk' ? '🏠 На головну' : '🏠 На главную'}
             </Text>
           </TouchableOpacity>
-        </View>
+        </ScrollView>
         </ContentWrap>
         {showBonus && (
           <BonusXPCard
@@ -909,7 +909,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         )}
 
         <Animated.View style={{ flex:1, opacity:fadeAnim }}>
-          <ScrollView contentContainerStyle={{ paddingHorizontal:20, paddingTop:20, paddingBottom:40, flexGrow:1 }} keyboardShouldPersistTaps="handled">
+          <ScrollView style={{ flex:1 }} contentContainerStyle={{ paddingHorizontal:20, paddingTop:20, paddingBottom:40 }} keyboardShouldPersistTaps="handled">
           <Text style={{ color:t.textMuted, fontSize: f.caption, marginBottom:14 }}>
             {(reviewing?rIdx:idx)+1} / {reviewing?reviewQ.length:phrases.length}
           </Text>
@@ -932,9 +932,11 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               borderLeftColor: isRight===true||typedOk===true ? t.correct : t.wrong,
             }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Text style={{ color: displayColor, fontSize: f.h2 + 2, fontWeight: '600', lineHeight: (f.h2 + 2) * 1.4, flex: 1 }}>
-                  {current.answer}
-                </Text>
+                <TouchableOpacity style={{ flex: 1 }} activeOpacity={0.75} onPress={() => { Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light); Speech.stop(); Speech.speak(current.answer, { language: 'en-US', rate: settings.speechRate ?? 1.0 }); }}>
+                  <Text style={{ color: displayColor, fontSize: f.h2 + 2, fontWeight: '600', lineHeight: (f.h2 + 2) * 1.4 }}>
+                    {current.answer}
+                  </Text>
+                </TouchableOpacity>
                 <View onStartShouldSetResponder={() => true}>
                   <AddToFlashcard en={current.answer} ru={current.ru} uk={current.uk} source="lesson" sourceId="quiz" />
                 </View>

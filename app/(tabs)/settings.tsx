@@ -15,6 +15,7 @@ import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/ava
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
+import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import EnergyBar from '../../components/EnergyBar';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
@@ -59,7 +60,7 @@ export default function SettingsMain() {
   const [userName, setUserName] = useState('');
   const [nameModal, setNameModal] = useState(false);
   const [newName, setNewName]     = useState('');
-  const [isPremium, setIsPremium]     = useState(false);
+  const { isPremium } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [hapticTap,  setHapticTap]   = useState(true);
   const [userAvatar, setUserAvatar]   = useState('🐣');
@@ -67,17 +68,16 @@ export default function SettingsMain() {
   const isUK = lang === 'uk';
 
   useEffect(() => {
-    AsyncStorage.multiGet(['user_name', 'premium_active', 'premium_plan', 'haptics_tap', 'user_total_xp', 'user_avatar', 'user_frame']).then(pairs => {
+    AsyncStorage.multiGet(['user_name', 'premium_plan', 'haptics_tap', 'user_total_xp', 'user_avatar', 'user_frame']).then(pairs => {
       if (pairs[0][1]) {
         setUserName(pairs[0][1]);
       }
-      setIsPremium(pairs[1][1] === 'true');
-      setPremiumPlan(pairs[2][1]);
-      if (pairs[3][1] !== null) setHapticTap(pairs[3][1] !== 'false');
-      const xp  = parseInt(pairs[4][1] || '0') || 0;
+      setPremiumPlan(pairs[1][1]);
+      if (pairs[2][1] !== null) setHapticTap(pairs[2][1] !== 'false');
+      const xp  = parseInt(pairs[3][1] || '0') || 0;
       const lvl = getLevelFromXP(xp);
-      setUserAvatar(pairs[5][1] || getBestAvatarForLevel(lvl));
-      setUserFrame(pairs[6][1]  || getBestFrameForLevel(lvl).id);
+      setUserAvatar(pairs[4][1] || getBestAvatarForLevel(lvl));
+      setUserFrame(pairs[5][1]  || getBestFrameForLevel(lvl).id);
     });
   }, [activeIdx]); // обновляем при переключении на этот таб
 

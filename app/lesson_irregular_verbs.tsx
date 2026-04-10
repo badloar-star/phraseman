@@ -192,7 +192,7 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
         if (!hadErrorThisVerb && isCorrect) {
           showXpToast();
           updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]);
-          if (userName) { await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang); setTotalPts(p => p + POINTS_PER_VERB); }
+          if (userName) { try { await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang); } catch {} setTotalPts(p => p + POINTS_PER_VERB); }
         }
         const nq = [...queue];
         nq.splice(pos % nq.length, 1);

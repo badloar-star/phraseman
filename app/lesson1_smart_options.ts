@@ -487,42 +487,42 @@ const getPerWordDistracts = (phrase: any, wordIndex: number = 0): string[] => {
         return result;
       };
 
-      const fromCurrent = pickUnique(wordData.distractors, contraction ? 3 : 4);
+      const fromCurrent = pickUnique(wordData.distractors, contraction ? 2 : 3);
       const fromNext = pickUnique(
         nextWordData.distractors.filter((d: string) => d !== nextCorrect),
-        3,
+        2,
       );
 
       const extras = contraction ? [contraction] : [];
       const combined = [currentCorrect, ...fromCurrent, ...fromNext, ...extras];
-      if (combined.length < 8) {
+      if (combined.length < 6) {
         const fallback = [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives]
           .filter(w => !w.includes(' ') && !seen.has(w.toLowerCase()));
         for (const w of shuffle(fallback)) {
-          if (combined.length >= 8) break;
+          if (combined.length >= 6) break;
           seen.add(w.toLowerCase());
           combined.push(w);
         }
       }
-      return shuffle(combined.slice(0, 8));
+      return shuffle(combined.slice(0, 6));
     }
 
-    // Last word or no next word: show exactly 8, deduplicated
+    // Last word or no next word: show exactly 6, deduplicated
     const seenLast = new Set<string>([currentCorrect.toLowerCase()]);
     const uniqueDistractors = wordData.distractors.filter(
       (d: string) => { const k = d.toLowerCase(); if (seenLast.has(k)) return false; seenLast.add(k); return true; }
     );
     const result = [currentCorrect, ...uniqueDistractors];
-    if (result.length < 8) {
+    if (result.length < 6) {
       const fallback = [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives]
         .filter(w => !w.includes(' ') && !seenLast.has(w.toLowerCase()));
       for (const w of shuffle(fallback)) {
-        if (result.length >= 8) break;
+        if (result.length >= 6) break;
         seenLast.add(w.toLowerCase());
         result.push(w);
       }
     }
-    return shuffle(result.slice(0, 8));
+    return shuffle(result.slice(0, 6));
   }
 
   // Fallback for old format (shouldn't happen with new lesson data)

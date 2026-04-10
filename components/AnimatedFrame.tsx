@@ -636,7 +636,7 @@ function makeRainbowStrandPath(
   tVal: number, strandIdx: number, strands: number,
 ): ReturnType<typeof Skia.Path.Make> {
   'worklet';
-  const STEPS = 48;
+  const STEPS = 20;
   const rotSpeed = 0.55;
   p.reset();
   const rot = tVal * Math.PI * 2 * rotSpeed;

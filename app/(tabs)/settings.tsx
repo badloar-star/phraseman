@@ -39,7 +39,7 @@ export default function SettingsMain() {
     try {
       if (val) {
         if (!lang) return;
-        await scheduleDailyReminder(notifHour, 0, lang as 'ru'|'uk');
+        await scheduleDailyReminder(notifHour, 0, (uiLang === 'en' ? 'ru' : uiLang) as 'ru'|'uk');
       } else {
         await cancelAllNotifications();
       }
@@ -47,7 +47,8 @@ export default function SettingsMain() {
       DebugLogger.error('settings.tsx:toggleNotifications', error, 'warning');
     }
   };
-  const { lang, setLang } = useLang();
+  const { uiLang, setUILang, learnLang, setLearnLang } = useLang();
+  const lang = uiLang; // обратная совместимость с кодом ниже
   const scrollRef = useRef<any>(null);
   const { activeIdx } = useTabNav();
 
@@ -65,7 +66,8 @@ export default function SettingsMain() {
   const [hapticTap,  setHapticTap]   = useState(true);
   const [userAvatar, setUserAvatar]   = useState('🐣');
   const [userFrame,  setUserFrame]    = useState('plain');
-  const isUK = lang === 'uk';
+  const isUK = uiLang === 'uk';
+  const isEN = uiLang === 'en';
 
   useEffect(() => {
     AsyncStorage.multiGet(['user_name', 'premium_plan', 'haptics_tap', 'user_total_xp', 'user_avatar', 'user_frame']).then(pairs => {
@@ -225,14 +227,36 @@ export default function SettingsMain() {
             {isUK ? 'Мова інтерфейсу' : 'Язык интерфейса'}
           </Text>
           <View style={{ flexDirection: 'row', gap: 8 }}>
-            {(['ru', 'uk'] as const).map(l => (
+            {(['ru', 'uk', 'en'] as const).map(l => (
               <TouchableOpacity
                 key={l}
                 activeOpacity={0.8}
-                style={{ paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, borderWidth: 1, borderColor: lang === l ? t.textSecond : t.border, backgroundColor: lang === l ? t.accentBg : 'transparent' }}
-                onPress={() => { doHaptic(); setLang(l); }}
+                style={{ paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, borderWidth: 1, borderColor: uiLang === l ? t.textSecond : t.border, backgroundColor: uiLang === l ? t.accentBg : 'transparent' }}
+                onPress={() => { doHaptic(); setUILang(l); }}
               >
-                <Text style={{ color: lang === l ? t.textPrimary : t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
+                <Text style={{ color: uiLang === l ? t.textPrimary : t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
+                  {l.toUpperCase()}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+
+        {/* Язык обучения */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+          <Ionicons name="book-outline" size={22} color={t.textSecond} style={{ marginRight: 14 }} />
+          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, flex: 1 }}>
+            {isEN ? 'I\'m learning' : isUK ? 'Вивчаю мову' : 'Изучаю язык'}
+          </Text>
+          <View style={{ flexDirection: 'row', gap: 8 }}>
+            {(['ru', 'uk', 'en'] as const).filter(l => l !== uiLang).map(l => (
+              <TouchableOpacity
+                key={l}
+                activeOpacity={0.8}
+                style={{ paddingHorizontal: 12, paddingVertical: 6, borderRadius: 8, borderWidth: 1, borderColor: learnLang === l ? t.correct : t.border, backgroundColor: learnLang === l ? t.correctBg : 'transparent' }}
+                onPress={() => { doHaptic(); setLearnLang(l); }}
+              >
+                <Text style={{ color: learnLang === l ? t.correct : t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
                   {l.toUpperCase()}
                 </Text>
               </TouchableOpacity>

@@ -213,7 +213,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       }
     } catch {}
     await AsyncStorage.multiSet([
-      ['app_lang', lang],
+      ['ui_lang', lang],
+      ['app_lang', lang], // legacy compat
+      ['learn_lang', 'en'], // дефолт — изучаем английский
       ['user_name', trimmed],
     ]);
     goToStep('test_offer');

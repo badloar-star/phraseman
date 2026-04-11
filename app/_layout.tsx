@@ -85,8 +85,10 @@ const runSessionChecks = async () => {
 
     // ── 3. Weekly / Monthly Recap уведомления ───────────────────────────────
     // Перепланируем если ещё не запланированы на текущую неделю/месяц
-    const langRaw = await AsyncStorage.getItem('app_lang');
-    const lang = (langRaw === 'uk' ? 'uk' : 'ru') as 'ru' | 'uk';
+    const langRaw = await AsyncStorage.getItem('ui_lang') ?? await AsyncStorage.getItem('app_lang');
+    const uiLang = (langRaw === 'uk' ? 'uk' : langRaw === 'en' ? 'en' : 'ru') as 'ru' | 'uk' | 'en';
+    // Для уведомлений используем 'ru' как fallback для 'en' (уведомления пока только RU/UK)
+    const lang = (uiLang === 'en' ? 'ru' : uiLang) as 'ru' | 'uk';
 
     const weeklyScheduled = await AsyncStorage.getItem('weekly_recap_scheduled');
     const now = new Date();
@@ -190,7 +192,7 @@ function AppContent() {
   }, []);
 
   // Вызывается из онбординга при выборе языка — синхронизирует контекст
-  const handleLangSelect = useCallback(async (lang: 'ru' | 'uk') => {
+  const handleLangSelect = useCallback(async (lang: 'ru' | 'uk' | 'en') => {
     await setLang(lang);
   }, [setLang]);
 

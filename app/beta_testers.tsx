@@ -54,7 +54,7 @@ const BETA_TESTERS = [
 export default function BetaTesters() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const [expanded, setExpanded] = useState<string | null>(null);
 

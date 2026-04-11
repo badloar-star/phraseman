@@ -47,7 +47,7 @@ export default function ClubBoostActivator({
   playerFrameId = 'plain',
 }: ClubBoostActivatorProps) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const isNumericAvatar = /^\d+$/.test(playerAvatarEmoji);

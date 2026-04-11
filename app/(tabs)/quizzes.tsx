@@ -187,7 +187,7 @@ function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:a
 function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   const { goHome, activeIdx } = useTabNav();
   const { theme:t , f, themeMode } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const router = useRouter();
   const { isPremium } = usePremium();
   const [selected, setSelected] = useState<Level | null>(null);
@@ -370,7 +370,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
 // ── КВИЗ ────────────────────────────────────────────────────────────────────
 function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const { theme:t , f } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const { goHome, activeIdx } = useTabNav();
   const isUK  = lang === 'uk';
   const cfg   = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];

@@ -31,7 +31,7 @@ const TABS = [
 ];
 
 export default function TabLayout() {
-  const { lang }             = useLang();
+  const { uiLang }             = useLang(); const lang = uiLang;
   const { theme: t, isDark } = useTheme();
   const { tabBarHeight, contentMaxW, bottomInset: PB } = useScreen();
   const isUK = lang === 'uk';

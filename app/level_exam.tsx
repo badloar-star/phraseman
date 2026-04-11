@@ -179,7 +179,7 @@ const PASS_PCT = 70; // минимум % для сдачи
 export default function LevelExam() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const { level } = useLocalSearchParams<{ level: string }>();
   const validLevels = ['A1', 'A2', 'B1', 'B2'];

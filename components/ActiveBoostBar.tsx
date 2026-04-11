@@ -21,7 +21,7 @@ interface ActiveBoostBarProps {
 
 export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [activeBoosts, setActiveBoosts] = useState<ActiveBoost[]>([]);

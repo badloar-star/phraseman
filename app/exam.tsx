@@ -244,7 +244,7 @@ type Phase = 'locked'|'intro'|'quiz'|'review'|'result';
 export default function ExamScreen() {
   const router = useRouter();
   const {theme:t, f } = useTheme();
-  const {lang} = useLang();
+  const {uiLang} = useLang(); const lang = uiLang;
   const insets = useSafeAreaInsets();
   const isUK = lang==='uk';
 

@@ -86,7 +86,7 @@ export default function AvatarSelect() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [level, setLevel]       = useState(1);

@@ -33,7 +33,7 @@ const MEDAL_IMAGES: Record<string, any> = {
 export default function LessonMenu() {
   const router = useRouter();
   const { theme:t, f } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const { id } = useLocalSearchParams<{id:string}>();
   const lessonId = parseInt(id || '1', 10) || 1;
 

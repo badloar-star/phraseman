@@ -113,7 +113,7 @@ function TimeModal({ visible, hour, minute, isUK, onConfirm, onCancel }: {
 export default function SettingsNotifications() {
   const router = useRouter();
   const { theme: t } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [s, setS]         = useState<NotifSettings>(DEFAULT_NOTIF);

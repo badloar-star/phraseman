@@ -225,7 +225,7 @@ function VerbList({ verbs, learnedVerbs, learnedVerbCounts, speechRate }: {
   speechRate: number;
 }) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   return (
@@ -277,7 +277,7 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
   onCountUpdate: (verb: string, count: number) => void;
 }) {
   const { theme: t } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const router = useRouter();
   const vs = s.verbs;
   const isUK = lang === 'uk';

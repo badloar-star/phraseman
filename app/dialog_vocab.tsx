@@ -32,7 +32,7 @@ const REQUIRED = 3;
 export default function DialogVocabScreen() {
   const router = useRouter();
   const { theme: t } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const { id, type } = useLocalSearchParams<{ id: string; type: 'words' | 'verbs' }>();
   

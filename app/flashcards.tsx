@@ -323,7 +323,7 @@ const savedToCard = (f: Flashcard): CardItem => ({
 // ─── Main screen ──────────────────────────────────────────────────────────────
 export default function FlashcardsScreen() {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const router   = useRouter();
   const s        = STR[lang];
   const insets   = useSafeAreaInsets();

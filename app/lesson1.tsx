@@ -609,7 +609,7 @@ export default function LessonScreen() {
   const { height: windowH } = useWindowDimensions();
   const compact = windowH < 780; // dynamic — recalculates on orientation change and accounts for safe area
   const { theme: t , f, themeMode } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const { id } = useLocalSearchParams<{ id: string }>();
   const lessonId = parseInt(id || '1', 10);
   const LESSON_KEY = `lesson${lessonId}_progress`;

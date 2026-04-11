@@ -438,7 +438,7 @@ function DictTab({ allVerbs, globalCounts, lang, onStartLearn }: {
 export default function LessonIrregularVerbs() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const { id } = useLocalSearchParams<{ id: string }>();
   const lessonId = parseInt(id || '1', 10);
   const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || [];

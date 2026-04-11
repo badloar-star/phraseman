@@ -177,7 +177,7 @@ export default function PremiumModal() {
   const savedCards   = parseInt(params.saved        ?? '0') || 0;
 
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [selected,   setSelected]   = useState<Plan>('yearly');

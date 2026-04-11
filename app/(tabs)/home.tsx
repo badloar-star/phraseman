@@ -85,7 +85,7 @@ const GREETINGS_UK = [
 export default function HomeScreen() {
   const router = useRouter();
   const { theme: t, isDark, f, themeMode } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const { goToTab, activeIdx, focusTick } = useTabNav();
 

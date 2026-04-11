@@ -953,7 +953,7 @@ export default function HintScreen() {
   const router = useRouter();
   const { id } = useLocalSearchParams<{ id: string }>();
   const { theme: t , f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const lessonId = parseInt(id || '1', 10);
   const hint = HINTS[lessonId] || HINTS[1];

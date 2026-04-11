@@ -58,7 +58,7 @@ interface Props {
 
 export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const { theme: t } = useTheme();
-  const { lang }     = useLang();
+  const { uiLang }     = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];

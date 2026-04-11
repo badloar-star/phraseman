@@ -1847,7 +1847,7 @@ function WordList({ words, learnedCounts, lang, speechRate, onStartTraining }: {
 export default function LessonWords() {
   const router = useRouter();
   const { theme:t, f } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const { id } = useLocalSearchParams<{ id:string }>();
   const lessonId = parseInt(id || '1', 10);
   const words = WORDS_BY_LESSON[lessonId] || WORDS_BY_LESSON[1];

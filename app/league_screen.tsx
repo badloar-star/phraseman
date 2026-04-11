@@ -245,7 +245,7 @@ function PlayerProfileModal({
 export default function LeagueScreen() {
   const router = useRouter();
   const { theme: t , f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [myLeagueId, setMyLeagueId]     = useState(0);

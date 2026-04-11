@@ -18,7 +18,7 @@ interface Props {
 
 export default function DailyPhraseCard({ userLevel }: Props) {
   const { theme: t, f, themeMode } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const [phrase, setPhrase] = useState<DailyPhrase | null>(null);
   const [loading, setLoading] = useState(true);
   const [expanded, setExpanded] = useState(false);

@@ -195,7 +195,7 @@ function BurnOverlay({ width, height, onDone }: { width: number; height: number;
 export default function ReviewScreen() {
   const router  = useRouter();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   // Данные сессии

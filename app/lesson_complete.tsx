@@ -283,7 +283,7 @@ function AchievementNotifModal({ notif, isUK, t, f, lessonId, lessonScore, lesso
 export default function LessonComplete() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const { id, unlocked } = useLocalSearchParams<{ id: string; unlocked?: string }>();
   const lessonId = parseInt(id || '1', 10);
   const didUnlockNext = unlocked === '1';

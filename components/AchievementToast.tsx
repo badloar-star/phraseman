@@ -22,7 +22,7 @@ const { width: SW } = Dimensions.get('window');
 export default function AchievementToast() {
   const { currentToast, dismissCurrent } = useAchievement();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const translateY = useRef(new Animated.Value(160)).current;

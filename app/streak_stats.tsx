@@ -326,7 +326,7 @@ export default function StreakStats() {
   const router = useRouter();
   const { section } = useLocalSearchParams<{section?:string}>();
   const { theme: t , f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const wdays = isUK ? WDAYS_UK : WDAYS_RU;
 

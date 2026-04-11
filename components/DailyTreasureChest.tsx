@@ -14,7 +14,7 @@ interface Props {
 
 export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false }: Props) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [canOpen, setCanOpen] = useState(false);

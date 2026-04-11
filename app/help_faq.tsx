@@ -157,7 +157,7 @@ function FaqItem({ item, t, f, isUK }: { item: typeof FAQ_RU[0]; t: any; f: any;
 export default function HelpFaq() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const items = isUK ? FAQ_UK : FAQ_RU;
 

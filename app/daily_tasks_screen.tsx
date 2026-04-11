@@ -27,7 +27,7 @@ import { registerXP } from './xp_manager';
 export default function DailyTasksScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [tasks] = useState<DailyTask[]>(getTodayTasks());

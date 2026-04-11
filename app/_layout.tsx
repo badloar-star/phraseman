@@ -122,7 +122,7 @@ function AppContent() {
   const [ready, setReady]         = useState(false);
   const [showOnboarding, setShow] = useState(false);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
-  const { setLang } = useLang();
+  const { setUILang } = useLang(); const setLang = setUILang;
   const { showAchievement } = useAchievement();
   const router = useRouter();
   const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);

@@ -19,7 +19,7 @@ export default function LessonIntroScreens({
   onComplete,
 }: LessonIntroScreensProps) {
   const { theme: t } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
 
   const [visibleCount, setVisibleCount] = useState(1);
 

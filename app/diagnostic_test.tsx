@@ -266,7 +266,7 @@ export default function DiagnosticTest() {
   const params = useLocalSearchParams();
   const isFromOnboarding = params.fromOnboarding === '1';
   const { theme: t , f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [phase,       setPhase]    = useState<Phase>('intro');

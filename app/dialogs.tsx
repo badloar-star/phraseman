@@ -132,7 +132,7 @@ function RelationshipScale({ value, lastDelta, version }: { value: number; lastD
 // ── Dialog List ───────────────────────────────────────────────────────────────
 function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const router = useRouter();
   const isUK = lang === 'uk';
   const [completed, setCompleted] = useState<string[]>([]);
@@ -218,7 +218,7 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
 // ── Role Card (Intro) ─────────────────────────────────────────────────────────
 function RoleCard({ dialog, onStart, onBack }: { dialog: DialogScenario3; onStart: () => void; onBack: () => void }) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   return (
@@ -265,7 +265,7 @@ function RoleCard({ dialog, onStart, onBack }: { dialog: DialogScenario3; onStar
 // ── Glossary Screen ───────────────────────────────────────────────────────────
 function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () => void }) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const [expanded, setExpanded] = useState<string | null>(null);
   const scaleAnims = useRef<Record<string, Animated.Value>>({}).current;
@@ -615,7 +615,7 @@ function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabl
 // ── Game Screen ───────────────────────────────────────────────────────────────
 function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () => void }) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [stepIdx, setStepIdx] = useState(0);

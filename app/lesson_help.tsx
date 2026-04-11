@@ -1245,7 +1245,7 @@ export default function LessonHelp() {
   const rawLessonId = Array.isArray(lessonIdParam) ? lessonIdParam[0] : lessonIdParam;
   const lessonId = Number(rawId || rawLessonId) || 1;
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const [xpClaimed, setXpClaimed] = useState(false);
   const [xpShown, setXpShown] = useState(false);

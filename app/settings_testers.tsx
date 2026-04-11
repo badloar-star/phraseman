@@ -66,7 +66,7 @@ const SectionTitle = ({ title, t, f }: { title: string; t: any; f: any }) => (
 export default function SettingsTestersFunctions() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const [noLimitsEnabled, setNoLimitsEnabled] = useState(false);

@@ -320,7 +320,7 @@ export default function HallOfFame() {
   const [myTotalXP, setMyTotalXP]   = useState(0);
   const [profilePlayer, setProfile] = useState<HoFPlayerInfo | null>(null);
   const { theme: t , f } = useTheme();
-  const { s, lang } = useLang();
+  const { s, uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
 
   const load = async () => {

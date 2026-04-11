@@ -98,7 +98,7 @@ export default function LessonsTab() {
   const { theme: t, f, themeMode } = useTheme();
   const cardText = 'rgba(255,255,255,0.65)';
   const cardTitle = 'rgba(255,255,255,0.95)';
-  const { lang }        = useLang();
+  const { uiLang }        = useLang(); const lang = uiLang;
   const isUK            = lang === 'uk';
   const { height: SCREEN_H } = useWindowDimensions();
   const VIEWPORT_H = SCREEN_H - 90; // approx tab bar + status bar

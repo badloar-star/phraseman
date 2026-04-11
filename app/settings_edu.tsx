@@ -43,7 +43,7 @@ export const saveSettings = async (s: UserSettings) => {
 export default function SettingsEdu() {
   const router = useRouter();
   const { theme: t } = useTheme();
-  const { lang } = useLang();
+  const { uiLang } = useLang(); const lang = uiLang;
   const isUK = lang === 'uk';
   const [s, setS] = useState<UserSettings>(DEFAULT_SETTINGS);
 

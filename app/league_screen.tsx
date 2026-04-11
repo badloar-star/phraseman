@@ -210,7 +210,7 @@ function PlayerProfileModal({
           <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>
             <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 14, padding: 14, alignItems: 'center' }}>
               <Text style={{ fontSize: f.numMd, fontWeight: '700', color: '#FFD700' }}>{player.points}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>{isUK ? 'очки тижня' : 'очки недели'}</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>{isUK ? 'очок тижня' : 'очки недели'}</Text>
             </View>
             <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 14, padding: 14, alignItems: 'center' }}>
               <Text style={{ fontSize: f.numMd, fontWeight: '700', color: t.textPrimary }}>Lv.{level}</Text>
@@ -413,7 +413,7 @@ export default function LeagueScreen() {
                         {isUK ? (def?.nameUK ?? boost.id) : (def?.nameRU ?? boost.id)}
                       </Text>
                       <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                        {boost.activatedBy} · {isUK ? 'залишилось' : 'осталось'} {timeLeft}
+                        {boost.activatedBy} · {isUK ? 'залишилося' : 'осталось'} {timeLeft}
                       </Text>
                     </View>
                     <View style={{ backgroundColor: '#7C3AED44', borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>

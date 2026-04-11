@@ -1,6 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useFocusEffect, usePathname } from 'expo-router';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useLang } from '../../components/LangContext';
@@ -37,6 +37,16 @@ export default function TabLayout() {
   const isUK = lang === 'uk';
   const [activeIdx, setActiveIdx] = useState(0);
   const [focusTick, setFocusTick] = useState(0);
+
+  // Sliding indicator animation
+  const [tabBarWidth, setTabBarWidth] = useState(Dimensions.get('window').width);
+  const tabWidth = tabBarWidth / 5;
+  const indicatorX = useRef(new Animated.Value(0)).current;
+
+  // Scale animations for each tab icon (5 tabs)
+  const iconScales = useRef(
+    Array.from({ length: 5 }, () => new Animated.Value(1))
+  ).current;
   // Бейдж на табе Home: кол-во фраз готовых к повторению сегодня.
   // Перезагружается при каждом focusTick — т.е. после возврата из review.tsx он сбросится.
   const [homeBadge, setHomeBadge] = useState(0);
@@ -52,7 +62,9 @@ export default function TabLayout() {
   };
   useEffect(() => {
     const idx = PATHNAME_TO_IDX[pathname];
-    if (idx !== undefined) setActiveIdx(idx);
+    if (idx !== undefined) {
+      setActiveIdx(idx);
+    }
   }, [pathname]);
 
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
@@ -63,7 +75,32 @@ export default function TabLayout() {
 
   const handleTabChange = useCallback((idx: number) => {
     setActiveIdx(idx);
-  }, []);
+
+    // Animate indicator sliding to new tab position
+    Animated.spring(indicatorX, {
+      toValue: idx * tabWidth,
+      friction: 8,
+      tension: 80,
+      useNativeDriver: true,
+    }).start();
+
+    // Bounce scale animation on the tapped icon
+    const scale = iconScales[idx];
+    Animated.sequence([
+      Animated.spring(scale, {
+        toValue: 1.2,
+        friction: 4,
+        tension: 150,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scale, {
+        toValue: 1,
+        friction: 4,
+        tension: 150,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [indicatorX, tabWidth, iconScales]);
 
   const tabScreens = [
     <HomeScreen       key="home" />,
@@ -83,10 +120,24 @@ export default function TabLayout() {
           </TabSlider>
         </View>
         <View style={[s.tabBarWrap, { backgroundColor: t.bgPrimary }]}>
-          <View style={[s.tabBar, { backgroundColor: t.bgPrimary, borderTopColor: t.border, height: tabBarHeight }]}>
+          <View
+            style={[s.tabBar, { backgroundColor: t.bgPrimary, borderTopColor: t.border, height: tabBarHeight }]}
+            onLayout={(e) => setTabBarWidth(e.nativeEvent.layout.width)}
+          >
+            {/* Sliding indicator — single animated view, slides between tabs */}
+            <Animated.View
+              style={[
+                s.indicator,
+                {
+                  backgroundColor: t.textPrimary,
+                  width: tabWidth * 0.5,
+                  left: tabWidth * 0.25,
+                  transform: [{ translateX: indicatorX }],
+                },
+              ]}
+            />
             {TABS.map((tab, i) => {
               const focused = activeIdx === i;
-              const isLight = !isDark;
               const color = focused ? t.textPrimary : t.textMuted;
               const label = isUK ? tab.uk : tab.ru;
               return (
@@ -96,10 +147,7 @@ export default function TabLayout() {
                   onPress={() => { hapticTap(); handleTabChange(i); }}
                   activeOpacity={0.7}
                 >
-                  {focused && (
-                    <View style={[s.indicator, { backgroundColor: t.textPrimary }]} />
-                  )}
-                  <View style={{ position: 'relative' }}>
+                  <Animated.View style={{ position: 'relative', transform: [{ scale: iconScales[i] }] }}>
                     <Ionicons
                       name={focused ? tab.active : tab.icon}
                       size={22}
@@ -112,7 +160,7 @@ export default function TabLayout() {
                         </Text>
                       </View>
                     )}
-                  </View>
+                  </Animated.View>
                   <Text style={[s.tabLabel, { color, fontWeight: focused ? '600' : '400' }]} numberOfLines={1}>
                     {label}
                   </Text>
@@ -134,7 +182,7 @@ const s = StyleSheet.create({
   tabBarWrap: { position: 'absolute', bottom: 0, left: 0, right: 0 },
   tabBar:     { flexDirection: 'row', borderTopWidth: 0.5, paddingTop: 6 },
   tabBtn:     { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 2, position: 'relative' },
-  indicator:  { position: 'absolute', top: -6, left: '25%', right: '25%', height: 2, borderRadius: 1 },
+  indicator:  { position: 'absolute', top: 0, height: 2, borderRadius: 1, zIndex: 1 },
   tabLabel:   { fontSize: 10, letterSpacing: 0.1 },
 
   badge:      { position: 'absolute', top: -4, right: -7, backgroundColor: '#FF3B30', borderRadius: 8, minWidth: 16, height: 16, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 3, borderWidth: 1.5 },

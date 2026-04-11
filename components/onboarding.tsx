@@ -482,7 +482,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       <SafeAreaView style={styles.container}>
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
-        <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingHorizontal: 28, paddingVertical: 20 }} showsVerticalScrollIndicator={false}>
+        <ScrollView contentContainerStyle={{ flexGrow: 1, paddingHorizontal: 28, paddingTop: 20, paddingBottom: 60 }} showsVerticalScrollIndicator={false}>
           {/* Приветствие */}
           <Animated.View style={{ opacity: demo2GreetFade, marginBottom: 28 }}>
             <Text style={{ color: '#C8FF00', fontSize: 13, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 10, textAlign: 'center' }}>
@@ -612,10 +612,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       <SafeAreaView style={styles.container}>
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
-        <KeyboardAvoidingView style={styles.center} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+          <ScrollView contentContainerStyle={styles.center} showsVerticalScrollIndicator={false} keyboardShouldPersistTaps="handled">
           <Text style={styles.appName}>Phraseman</Text>
           <Text style={styles.title}>
-            {isUK ? 'Введіть ваше ім\'я або нікнейм' : 'Введите ваше имя или никнейм'}
+            {isUK ? 'Введіть своє ім\'я або нікнейм' : 'Введите ваше имя или никнейм'}
           </Text>
           <TextInput
             style={styles.input}
@@ -631,6 +632,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           <TouchableOpacity style={styles.continueBtn} onPress={handleNameDone} activeOpacity={0.85}>
             <Text style={styles.continueBtnText}>{isUK ? 'Продовжити' : 'Продолжить'}</Text>
           </TouchableOpacity>
+          </ScrollView>
         </KeyboardAvoidingView>
         </Animated.View>
       </SafeAreaView>
@@ -797,7 +799,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
 const styles = StyleSheet.create({
   container:       { flex: 1, backgroundColor: '#0D0D0D' },
-  center:          { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
+  center:          { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30, paddingBottom: 60 },
   appName:         { color: '#C8FF00', fontSize: 15, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
   title:           { color: '#fff', fontSize: 24, fontWeight: '600', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
   langBtn: {

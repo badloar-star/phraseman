@@ -3,7 +3,32 @@ import { LessonIntroScreen, LessonPhrase } from './lesson_data_types';
 
 // ==================== LESSON 1 ====================
 
-export const LESSON_1_INTRO_SCREENS: LessonIntroScreen[] = [];
+export const LESSON_1_INTRO_SCREENS: LessonIntroScreen[] = [
+  {
+    textRU: 'Глагол "быть" в английском меняется в зависимости от лица:',
+    textUK: 'Дієслово "бути" в англійській змінюється залежно від особи:',
+  },
+  {
+    textRU: 'I am (я есть) · He / She / It is · You / We / They are',
+    textUK: 'I am (я є) · He / She / It is · You / We / They are',
+  },
+  {
+    textRU: 'Запомни: "am" только для I, "is" для одного, "are" для нескольких или "you"',
+    textUK: 'Запам\'ятай: "am" лише для I, "is" для одного, "are" для кількох або "you"',
+  },
+  {
+    textRU: 'Предлоги at / in / on часто путают. Вот простое правило:',
+    textUK: 'Прийменники at / in / on часто плутають. Ось просте правило:',
+  },
+  {
+    textRU: 'AT — точное место или время: at home, at school, at 5 o\'clock',
+    textUK: 'AT — точне місце або час: at home, at school, at 5 o\'clock',
+  },
+  {
+    textRU: 'IN — внутри: in the room, in the city · ON — на поверхности: on the table, on the bus',
+    textUK: 'IN — всередині: in the room, in the city · ON — на поверхні: on the table, on the bus',
+  },
+];
 
 export const LESSON_1_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 
@@ -608,7 +633,20 @@ export const LESSON_1_PHRASES: LessonPhrase[] = [
 
 // ==================== LESSON 2 ====================
 
-export const LESSON_2_INTRO_SCREENS: LessonIntroScreen[] = [];
+export const LESSON_2_INTRO_SCREENS: LessonIntroScreen[] = [
+  {
+    textRU: 'Чтобы сделать слово множественным, обычно добавляют -s:',
+    textUK: 'Щоб зробити слово множинним, зазвичай додають -s:',
+  },
+  {
+    textRU: 'friend → friends · cat → cats · book → books',
+    textUK: 'friend → friends · cat → cats · book → books',
+  },
+  {
+    textRU: 'Но если слово заканчивается на -y → меняем на -ies: enemy → enemies, city → cities',
+    textUK: 'Але якщо слово закінчується на -y → змінюємо на -ies: enemy → enemies, city → cities',
+  },
+];
 
 export const LESSON_2_PHRASES: LessonPhrase[] = [
   {
@@ -3015,7 +3053,7 @@ export const LESSON_5_PHRASES: LessonPhrase[] = [
       { text: 'Do', correct: 'Do', distractors: ['does', 'did', 'doth', 'due', 'dot'], category: 'verb' },
       { text: 'they', correct: 'they', distractors: ['them', 'the', 'then', 'there', 'hey'], category: 'pronoun' },
       { text: 'accept', correct: 'accept', distractors: ['except', 'accent', 'access', 'accpet', 'acept'], category: 'verb' },
-      { text: 'credit', correct: 'credit', distractors: ['debit', 'crеdit', 'credot', 'credo', 'greed'], category: 'adjective' },
+      { text: 'credit', correct: 'credit', distractors: ['debit', 'credits', 'credot', 'credo', 'greed'], category: 'adjective' },
       { text: 'cards', correct: 'cards', distractors: ['carts', 'yards', 'bards', 'car', 'cares'], category: 'noun' },
     ],
   },

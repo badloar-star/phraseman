@@ -1,7 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Stack, useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { View } from 'react-native';
+
+SplashScreen.preventAutoHideAsync().catch(() => {});
+import AppSplash from '../components/AppSplash';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import { EnergyProvider } from '../components/EnergyContext';
 import { PremiumProvider } from '../components/PremiumContext';
@@ -214,14 +218,16 @@ function AppContent() {
     }
   }, [showOnboarding, pendingRoute]);
 
-  if (!ready) return <View style={{ flex:1, backgroundColor:'#06141B' }} />;
+  if (!ready) return <AppSplash isVisible={true} />;
+
+  SplashScreen.hideAsync().catch(() => {});
 
   if (showOnboarding) {
     return <Onboarding onDone={handleOnboardingDone} onLangSelect={handleLangSelect} />;
   }
 
   return (
-    <Stack screenOptions={{ headerShown: false }}>
+    <Stack screenOptions={{ headerShown: false, animation: 'slide_from_right', animationDuration: 250 }}>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="lesson1" />
       <Stack.Screen name="lesson_menu" />
@@ -249,6 +255,7 @@ function AppContent() {
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
       <Stack.Screen name="settings_testers" />
+      <Stack.Screen name="beta_testers" />
     </Stack>
   );
 }

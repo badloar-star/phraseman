@@ -43,7 +43,7 @@ import { useEnergy } from '../../components/EnergyContext';
 import EnergyBar from '../../components/EnergyBar';
 import { ENERGY_MESSAGES_RU, ENERGY_MESSAGES_UK } from '../lesson1_energy';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
-import { getQuizPhrases, QuizPhrase } from '../quiz_data';
+import type { QuizPhrase } from '../quiz_data';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from '../settings_edu';
 import { useTabNav } from '../TabContext';
 import { calculateRewardWithBonus } from '../variable_reward_system';
@@ -387,6 +387,8 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     setPhrases([]);
     const timer = setTimeout(() => {
       try {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const { getQuizPhrases } = require('../quiz_data') as typeof import('../quiz_data');
         const result = getQuizPhrases(level, 10, lang as 'ru' | 'uk');
         setPhrases(result.length > 0 ? result : []);
       } catch (e) {
@@ -502,9 +504,11 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       setTimeLeft(prev => {
         if (prev <= 1) {
           clearInterval(timerRef.current!);
+          timerRef.current = null;
           if (!answeredRef.current) {
             answeredRef.current = true;
-            setShowTimeoutAlert(true);
+            // setTimeout чтобы не вызывать setState внутри setState
+            setTimeout(() => setShowTimeoutAlert(true), 0);
           }
           return 0;
         }

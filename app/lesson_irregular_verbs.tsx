@@ -73,11 +73,12 @@ function make4Options(correct: string, verb: IrregularVerb, allVerbs: IrregularV
   return shuffleArr([correct, ...distractors]);
 }
 
-function LearnTab({ verbs, lang, initCounts, onUpdate }: {
+function LearnTab({ verbs, lang, initCounts, onUpdate, onReset }: {
   verbs: IrregularVerb[];
-  lang: 'ru' | 'uk';
+  lang: 'ru' | 'uk' | 'en';
   initCounts: Record<string, number>;
   onUpdate: (base: string, count: number) => void;
+  onReset: () => void;
 }) {
   const { theme: t, f } = useTheme();
   const router = useRouter();
@@ -216,6 +217,12 @@ function LearnTab({ verbs, lang, initCounts, onUpdate }: {
           <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>+{totalPts} {lang === 'uk' ? 'очок' : 'очков'}</Text>
         </View>
       )}
+      <TouchableOpacity
+        style={{ backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
+        onPress={() => onReset()}
+      >
+        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{lang === 'uk' ? '↺ Вчити знову' : '↺ Учить снова'}</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
         onPress={() => router.back()}
@@ -378,7 +385,7 @@ const TABLE_W = COL.base + COL.past + COL.pp + COL.tr + 32;
 function DictTab({ allVerbs, globalCounts, lang, onStartLearn }: {
   allVerbs: IrregularVerb[];
   globalCounts: Record<string, number>;
-  lang: 'ru' | 'uk';
+  lang: 'ru' | 'uk' | 'en';
   onStartLearn: () => void;
 }) {
   const { theme: t, f } = useTheme();
@@ -439,6 +446,7 @@ export default function LessonIrregularVerbs() {
   const [tab, setTab] = useState<'dict' | 'learn'>('dict');
   const [globalCounts, setGlobalCounts] = useState<Record<string, number>>({});
   const [loaded, setLoaded] = useState(false);
+  const [learnKey, setLearnKey] = useState(0);
 
   useEffect(() => {
     AsyncStorage.getItem(GLOBAL_IRREGULAR_KEY).then(raw => {
@@ -466,10 +474,12 @@ export default function LessonIrregularVerbs() {
           <View style={{ flex: 1 }}>
             {loaded && (tab === 'learn'
               ? <LearnTab
-                  verbs={verbsToLearn}
+                  key={learnKey}
+                  verbs={learnKey > 0 ? allVerbs : verbsToLearn}
                   lang={lang}
-                  initCounts={globalCounts}
+                  initCounts={learnKey > 0 ? {} : globalCounts}
                   onUpdate={(base, count) => setGlobalCounts(prev => ({ ...prev, [base]: count }))}
+                  onReset={() => setLearnKey(k => k + 1)}
                 />
               : <DictTab
                   allVerbs={allVerbs}
@@ -486,7 +496,7 @@ export default function LessonIrregularVerbs() {
               const isActive = tab === key;
               const label = key === 'dict'
                 ? (lang === 'uk' ? 'Словник' : 'Словарь')
-                : (lang === 'uk' ? 'Учити' : 'Учить');
+                : (lang === 'uk' ? 'Вчити' : 'Учить');
               const icon: any = key === 'dict'
                 ? (isActive ? 'list' : 'list-outline')
                 : (isActive ? 'flash' : 'flash-outline');

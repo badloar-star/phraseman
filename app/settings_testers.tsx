@@ -560,6 +560,30 @@ export default function SettingsTestersFunctions() {
               );
             }}
           />
+          <ButtonRow
+            icon="bug-outline"
+            label="RC Debug: trial opts"
+            sub="Показать subscriptionOptions и trial_used"
+            t={t} f={f} doHaptic={doHaptic}
+            onPress={async () => {
+              const [opts, trial, trialUsed] = await Promise.all([
+                AsyncStorage.getItem('rc_debug_opts'),
+                AsyncStorage.getItem('rc_debug_trial'),
+                AsyncStorage.getItem('trial_used'),
+              ]);
+              Alert.alert('RC Debug', `trial_used: ${trialUsed}\ntrialOption: ${trial}\n\nopts: ${opts ?? 'not loaded yet'}`);
+            }}
+          />
+          <ButtonRow
+            icon="refresh-circle-outline"
+            label="Сбросить trial_used"
+            sub="Разрешить заново пробовать free trial"
+            t={t} f={f} doHaptic={doHaptic}
+            onPress={async () => {
+              await AsyncStorage.removeItem('trial_used');
+              Alert.alert('OK', 'trial_used удалён');
+            }}
+          />
         </ScrollView>
       </SafeAreaView>
 

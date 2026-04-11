@@ -30,11 +30,18 @@ export default function TabSlider({ activeIndex, onTabChange, children }: Props)
 
   useEffect(() => {
     if (currentIdx.current !== activeIndex) {
-      // Тап по таббару — мгновенно, без анимации
+      // Тап по таббару — плавное spring-скольжение
       currentIdx.current = activeIndex;
       translateX.stopAnimation();
-      translateX.setValue(-activeIndex * wRef.current);
-      isAnimating.current = false;
+      isAnimating.current = true;
+      Animated.spring(translateX, {
+        toValue: -activeIndex * wRef.current,
+        useNativeDriver: true,
+        friction: 9,
+        tension: 85,
+      }).start(() => {
+        isAnimating.current = false;
+      });
     }
   }, [activeIndex]);
 

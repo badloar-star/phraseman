@@ -7,6 +7,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import {
   Alert,
   Animated,
+  ScrollView,
   SectionList,
   Text, TouchableOpacity,
   View,
@@ -1374,7 +1375,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
   ],
 };
 
-const groupByPOS = (words: Word[], lang: 'ru'|'uk') => {
+const groupByPOS = (words: Word[], lang: 'ru'|'uk'|'en') => {
   const labels = lang === 'uk' ? POS_LABELS_UK : POS_LABELS_RU;
   const map: Partial<Record<POS, Word[]>> = {};
   for (const w of words) {
@@ -1430,7 +1431,7 @@ interface Card {
   question: string;
 }
 
-function buildCard(word: Word, roundIndex: number, all: Word[], lang: 'ru' | 'uk'): Card {
+function buildCard(word: Word, roundIndex: number, all: Word[], lang: 'ru' | 'uk' | 'en'): Card {
   const correctOption = word.en;
   const translation = lang === 'uk' ? word.uk : word.ru;
   const options = makeOptions(word, all);
@@ -1459,7 +1460,7 @@ function MiniHex({ filled, partial, size = 16 }: { filled: boolean; partial?: bo
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ words, storageKey, lang, initialLearned, initialCounts, onCountUpdate }: { words:Word[]; storageKey:string; lang:'ru'|'uk'; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void }) {
+function Training({ words, storageKey, lang, initialLearned, initialCounts, onCountUpdate }: { words:Word[]; storageKey:string; lang:'ru'|'uk'|'en'; initialLearned:string[]; initialCounts:Record<string,number>; onCountUpdate:(word:string, count:number)=>void }) {
   const { theme:t, f } = useTheme();
   const { s } = useLang();
   const router = useRouter();
@@ -1617,7 +1618,7 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
     setQueue(shuffle(cards));
     setQIdx(0);
     setChosen(null);
-    setLearnedCnt(0);
+    setLearnedCnt(words.length);
     setAllDone(false);
     locked.current = false;
   };
@@ -1786,54 +1787,59 @@ function Training({ words, storageKey, lang, initialLearned, initialCounts, onCo
 }
 
 // ── СПИСОК ───────────────────────────────────────────────────────────────────
-function WordList({ words, learnedCounts, lang, speechRate, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang:'ru'|'uk'; speechRate:number; onStartTraining?: () => void; }) {
+function WordList({ words, learnedCounts, lang, speechRate, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang:'ru'|'uk'|'en'; speechRate:number; onStartTraining?: () => void; }) {
   const { theme:t, f } = useTheme();
   const sections = groupByPOS(words, lang);
   const isUK = lang === 'uk';
 
   return (
-    <SectionList
-      sections={sections}
-      keyExtractor={item => item.en}
-      contentContainerStyle={{ paddingBottom:30 }}
-      ListHeaderComponent={onStartTraining ? (
-        <TouchableOpacity
-          onPress={onStartTraining}
-          style={{ marginHorizontal:16, marginTop:14, marginBottom:4, backgroundColor:t.bgCard, borderRadius:14, paddingVertical:13, alignItems:'center', borderWidth:1, borderColor:t.border, flexDirection:'row', justifyContent:'center', gap:8 }}
-        >
-          <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
-          <Text style={{ color:t.textSecond, fontSize:f.bodyLg, fontWeight:'600' }}>{isUK ? 'Почати тренування' : 'Начать тренировку'}</Text>
-        </TouchableOpacity>
-      ) : null}
-      renderSectionHeader={({ section }) => (
-        <View style={{ backgroundColor:t.bgPrimary, paddingHorizontal:20, paddingTop:16, paddingBottom:8 }}>
-          <Text style={{ color:t.textMuted, fontSize:f.label, fontWeight:'600', textTransform:'uppercase', letterSpacing:1 }}>
-            {section.title}
-          </Text>
-        </View>
-      )}
-      renderItem={({ item }) => {
-        const count = learnedCounts[item.en] ?? 0;
-        const learned = count >= REQUIRED;
-        const tr = lang === 'uk' ? item.uk : item.ru;
-        return (
-          <View
-            style={{ flexDirection:'row', alignItems:'center', paddingHorizontal:20, paddingVertical:14, borderBottomWidth:0.5, borderBottomColor:t.border }}
+    <ScrollView horizontal showsHorizontalScrollIndicator={false} bounces={false}>
+      <SectionList
+        sections={sections}
+        keyExtractor={item => item.en}
+        contentContainerStyle={{ paddingBottom:30 }}
+        scrollEnabled={true}
+        style={{ width: 500 }}
+        ListHeaderComponent={onStartTraining ? (
+          <TouchableOpacity
+            onPress={onStartTraining}
+            style={{ marginHorizontal:16, marginTop:14, marginBottom:4, backgroundColor:t.bgCard, borderRadius:14, paddingVertical:13, alignItems:'center', borderWidth:1, borderColor:t.border, flexDirection:'row', justifyContent:'center', gap:8 }}
           >
-            <View style={{ flexDirection:'row', gap:3, marginRight:12, alignItems:'center' }}>
-              {[0,1,2].map(i => (
-                <MiniHex key={i} filled={count > i} partial={count > i && count < REQUIRED} size={11} />
-              ))}
-            </View>
-            <TouchableOpacity style={{ flex:1 }} onPress={() => Speech.speak(item.en, { language: 'en-US', rate: speechRate })}>
-              <Text style={{ color:t.textPrimary, fontSize:f.bodyLg }}>{item.en}</Text>
-            </TouchableOpacity>
-            <Text style={{ color:t.textMuted, fontSize:f.body, marginRight:8 }}>{tr}</Text>
-            <AddToFlashcard en={item.en} ru={item.ru} uk={item.uk} source="word" />
+            <Ionicons name="pencil-outline" size={18} color={t.textSecond} />
+            <Text style={{ color:t.textSecond, fontSize:f.bodyLg, fontWeight:'600' }}>{isUK ? 'Почати тренування' : 'Начать тренировку'}</Text>
+          </TouchableOpacity>
+        ) : null}
+        renderSectionHeader={({ section }) => (
+          <View style={{ backgroundColor:t.bgPrimary, paddingHorizontal:20, paddingTop:16, paddingBottom:8 }}>
+            <Text style={{ color:t.textMuted, fontSize:f.label, fontWeight:'600', textTransform:'uppercase', letterSpacing:1 }}>
+              {section.title}
+            </Text>
           </View>
-        );
-      }}
-    />
+        )}
+        renderItem={({ item }) => {
+          const count = learnedCounts[item.en] ?? 0;
+          const learned = count >= REQUIRED;
+          const tr = lang === 'uk' ? item.uk : item.ru;
+          return (
+            <View
+              style={{ flexDirection:'row', alignItems:'center', paddingHorizontal:20, paddingVertical:14, borderBottomWidth:0.5, borderBottomColor:t.border }}
+            >
+              <AddToFlashcard en={item.en} ru={item.ru} uk={item.uk} source="word" />
+              <TouchableOpacity style={{ marginLeft:10, flex:1, flexDirection:'row', alignItems:'center', flexWrap:'wrap' }} onPress={() => Speech.speak(item.en, { language: 'en-US', rate: speechRate })}>
+                <Text style={{ color:t.textPrimary, fontSize:f.bodyLg }}>{item.en}</Text>
+                <Text style={{ color:t.textMuted, fontSize:f.body, marginHorizontal:6 }}>—</Text>
+                <Text style={{ color:t.textMuted, fontSize:f.body }}>{tr}</Text>
+              </TouchableOpacity>
+              <View style={{ flexDirection:'column', gap:3, marginLeft:8, alignItems:'center' }}>
+                {[0,1,2].map(i => (
+                  <MiniHex key={i} filled={count > i} partial={count > i && count < REQUIRED} size={11} />
+                ))}
+              </View>
+            </View>
+          );
+        }}
+      />
+    </ScrollView>
   );
 }
 
@@ -1850,12 +1856,13 @@ export default function LessonWords() {
 
   const [tab, setTab]              = useState<'train'|'list'>('train');
   const [learnedCounts, setLearnedCounts] = useState<Record<string,number>>({});
+  const [countsLoaded, setCountsLoaded] = useState(false);
   const learnedWords = Object.keys(learnedCounts).filter(k => learnedCounts[k] >= REQUIRED);
   const [listSpeechRate, setListSpeechRate] = useState(1.0);
 
   useEffect(() => {
     AsyncStorage.getItem(storageKey + '_words').then(v => {
-      if (!v) return;
+      if (!v) { setCountsLoaded(true); return; }
       const data = JSON.parse(v);
       if (Array.isArray(data)) {
         // старый формат string[] → конвертируем
@@ -1865,6 +1872,7 @@ export default function LessonWords() {
       } else {
         setLearnedCounts(data);
       }
+      setCountsLoaded(true);
     });
     loadSettings().then(cfg => setListSpeechRate(cfg.speechRate ?? 1.0));
   }, [storageKey]);
@@ -1883,14 +1891,16 @@ export default function LessonWords() {
 
       <View style={{ flex:1 }}>
         {tab === 'train'
-          ? <Training
-            words={words}
-            storageKey={storageKey}
-            lang={lang}
-            initialLearned={Object.keys(learnedCounts).filter(k => learnedCounts[k] >= REQUIRED)}
-            initialCounts={learnedCounts}
-            onCountUpdate={(word, count) => setLearnedCounts(prev => ({ ...prev, [word]: count }))}
-          />
+          ? (countsLoaded
+            ? <Training
+                words={words}
+                storageKey={storageKey}
+                lang={lang}
+                initialLearned={Object.keys(learnedCounts).filter(k => learnedCounts[k] >= REQUIRED)}
+                initialCounts={learnedCounts}
+                onCountUpdate={(word, count) => setLearnedCounts(prev => ({ ...prev, [word]: count }))}
+              />
+            : null)
           : <WordList words={words} learnedCounts={learnedCounts} lang={lang} speechRate={listSpeechRate} onStartTraining={() => setTab('train')} />
         }
       </View>

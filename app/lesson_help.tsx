@@ -61,27 +61,31 @@ function Table({ rows, t }: { rows: string[][]; t: any; f?: any }) {
   if (!rows.length) return null;
   const header = rows[0];
   const body = rows.slice(1);
+  const colWidth = 160;
+  const totalWidth = header.length * colWidth;
   return (
-    <View style={{ borderRadius: 10, borderWidth: 0.5, borderColor: t.border, marginVertical: 10, overflow: 'hidden' }}>
-      {/* Заголовок */}
-      <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface }}>
-        {header.map((cell, i) => (
-          <View key={i} style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: i < header.length - 1 ? 0.5 : 0, borderRightColor: t.border }}>
-            <Text style={{ color: t.textPrimary, fontSize: 12, fontWeight: '700' }} maxFontSizeMultiplier={1}>{cell}</Text>
-          </View>
-        ))}
-      </View>
-      {/* Строки */}
-      {body.map((row, ri) => (
-        <View key={ri} style={{ flexDirection: 'row', backgroundColor: ri % 2 === 0 ? t.bgCard : t.bgSurface, borderTopWidth: 0.5, borderTopColor: t.border }}>
-          {row.map((cell, ci) => (
-            <View key={ci} style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: ci < row.length - 1 ? 0.5 : 0, borderRightColor: t.border }}>
-              <Text style={{ color: t.textSecond, fontSize: 11, lineHeight: 17 }} maxFontSizeMultiplier={1}>{cell}</Text>
+    <ScrollView horizontal showsHorizontalScrollIndicator={true} bounces={false} style={{ marginVertical: 10 }}>
+      <View style={{ borderRadius: 10, borderWidth: 0.5, borderColor: t.border, overflow: 'hidden', width: totalWidth }}>
+        {/* Заголовок */}
+        <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface }}>
+          {header.map((cell, i) => (
+            <View key={i} style={{ width: colWidth, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: i < header.length - 1 ? 0.5 : 0, borderRightColor: t.border }}>
+              <Text style={{ color: t.textPrimary, fontSize: 12, fontWeight: '700' }} maxFontSizeMultiplier={1}>{cell}</Text>
             </View>
           ))}
         </View>
-      ))}
-    </View>
+        {/* Строки */}
+        {body.map((row, ri) => (
+          <View key={ri} style={{ flexDirection: 'row', backgroundColor: ri % 2 === 0 ? t.bgCard : t.bgSurface, borderTopWidth: 0.5, borderTopColor: t.border }}>
+            {row.map((cell, ci) => (
+              <View key={ci} style={{ width: colWidth, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: ci < row.length - 1 ? 0.5 : 0, borderRightColor: t.border }}>
+                <Text style={{ color: t.textSecond, fontSize: 11, lineHeight: 17 }} maxFontSizeMultiplier={1}>{cell}</Text>
+              </View>
+            ))}
+          </View>
+        ))}
+      </View>
+    </ScrollView>
   );
 }
 
@@ -159,6 +163,21 @@ const THEORY: Record<number, TheoryContent> = {
     <Warn key="w3" t={t} f={f} text={isUK ? '❌ «They is here» → ✅ «They are here». З they/we/you — тільки are.' : '❌ «They is here» → ✅ «They are here». С they/we/you — только are.'} />,
     <Warn key="w4" t={t} f={f} text={isUK ? '❌ «I are okay» → ✅ «I am okay». З I — тільки am. Завжди.' : '❌ «I are okay» → ✅ «I am okay». С I — только am. Всегда.'} />,
     <Tip key="tip2" t={t} f={f} text={isUK ? 'I → am (особлива). He/She/It → is (один). You/We/They → are (всі інші).' : 'I → am (особая). He/She/It → is (один). You/We/They → are (все остальные).'} />,
+
+    <Section key="s6" t={t} f={f} title={isUK ? '6. Артиклі: a, an, the' : '6. Артикли: a, an, the'} />,
+    <Body key="b6a" t={t} f={f} text={isUK ? 'В англійській перед іменниками майже завжди стоїть маленьке слово — артикль. Їх лише три: a, an, the.' : 'В английском перед существительными почти всегда стоит маленькое слово — артикль. Их всего три: a, an, the.'} />,
+    <Table key="t6" t={t} f={f} rows={[
+      [isUK ? 'Артикль' : 'Артикль', isUK ? 'Коли' : 'Когда', isUK ? 'Приклад' : 'Пример'],
+      ['a', isUK ? 'будь-який один (перед приголосним)' : 'любой один (перед согласным)', 'a car, a doctor, a taxi'],
+      ['an', isUK ? 'будь-який один (перед голосним)' : 'любой один (перед гласным)', 'an apple, an engineer'],
+      ['the', isUK ? 'конкретний, відомий обом' : 'конкретный, известный обоим', 'the car, the airport, the way'],
+    ]} />,
+    <Body key="b6b" t={t} f={f} text={isUK ? 'a/an — коли згадуєш щось вперше або говориш про будь-який предмет. the — коли обидва знають, про що мова.' : 'a/an — когда упоминаешь что-то впервые или говоришь о любом предмете. the — когда оба знают, о чём речь.'} />,
+    <Example key="e6a" t={t} f={f} eng="I am a doctor" rus={isUK ? 'Я лікар (будь-який лікар)' : 'Я врач (любой врач)'} />,
+    <Example key="e6b" t={t} f={f} eng="I am at the airport" rus={isUK ? 'Я в аеропорту (конкретному)' : 'Я в аэропорту (конкретном)'} />,
+    <Example key="e6c" t={t} f={f} eng="We are on the train" rus={isUK ? 'Ми у потязі (нашому)' : 'Мы в поезде (нашем)'} />,
+    <Warn key="w6a" t={t} f={f} text={isUK ? 'Після my, your, his, her — артикль НЕ потрібен: «my car» (не «my a car»). Слова-власники замінюють артикль.' : 'После my, your, his, her — артикль НЕ нужен: «my car» (не «my a car»). Слова-владельцы заменяют артикль.'} />,
+    <Tip key="tip6" t={t} f={f} text={isUK ? 'Правило звуку: a перед приголосним (a bus), an перед голосним (an apple). Зверни увагу на звук, а не на букву!' : 'Правило звука: a перед согласным (a bus), an перед гласным (an apple). Смотри на звук, а не на букву!'} />,
   ],
 },
 

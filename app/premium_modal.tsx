@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, TouchableOpacity,
-  ScrollView, Alert, ActivityIndicator, Animated, Linking, DeviceEventEmitter,
+  ScrollView, Alert, ActivityIndicator, Animated, Linking, DeviceEventEmitter, Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
@@ -105,7 +105,7 @@ function getHero(
       return {
         emoji: '🔥',
         titleRu: `Стрик ${streakDays} ${streakDays === 1 ? 'день' : streakDays < 5 ? 'дня' : 'дней'} под угрозой!`,
-        titleUk: `Стрік ${streakDays} ${streakDays === 1 ? 'день' : 'днів'} під загрозою!`,
+        titleUk: `Стрік ${streakDays} ${streakDays === 1 ? 'день' : streakDays < 5 ? 'дні' : 'днів'} під загрозою!`,
         subtitleRu: 'Ты пропустил вчера. Без Premium стрик\nсгорит. Заморозь его прямо сейчас.',
         subtitleUk: 'Ти пропустив вчора. Без Premium стрік\nзгорить. Заморозь його прямо зараз.',
         highlightRow: 4,
@@ -220,11 +220,21 @@ export default function PremiumModal() {
       const plan    = res.find(r => r[0] === 'premium_plan')?.[1] as Plan | null;
       const expiry  = parseInt(res.find(r => r[0] === 'premium_expiry')?.[1] || '0');
       const tUsed   = res.find(r => r[0] === 'trial_used')?.[1];
-      if (active === 'true' && plan && expiry > Date.now()) {
+      // expiry may be 0 for RevenueCat-managed subscriptions (no local expiry set)
+      if (active === 'true' && plan && (expiry === 0 || expiry > Date.now())) {
         setActivePlan(plan); setExpiryTs(expiry); setViewMode('manage');
       }
-      if (tUsed === 'true') setTrialUsed(true);
+      // Hide trial for anyone who ever had a subscription (any plan, even expired)
+      if (tUsed === 'true' || plan != null) setTrialUsed(true);
     });
+    // Also check RevenueCat purchase history — covers restored purchases and expired subs
+    if (!IS_EXPO_GO && !DEV_MODE) {
+      Purchases.getCustomerInfo()
+        .then(info => {
+          if (info.allPurchasedProductIdentifiers.length > 0) setTrialUsed(true);
+        })
+        .catch(() => {});
+    }
   }, []);
 
   useEffect(() => {
@@ -281,25 +291,51 @@ export default function PremiumModal() {
     }
     setPurchasing(true);
     try {
-      // На Android для free trial нужно явно выбрать subscriptionOption с триальной фазой
-      if (__DEV__) console.log('[RC] subscriptionOptions:', JSON.stringify(pkg.product.subscriptionOptions?.map(o => ({ id: o.id, freePhase: o.freePhase }))));
-      const trialOption = !trialUsed && plan === 'yearly'
-        ? pkg.product.subscriptionOptions?.find(o =>
-            o.freePhase != null || o.phases?.some((ph: { periodDuration?: string; price?: { amountMicros: number } }) => ph.price?.amountMicros === 0)
-          )
-        : undefined;
-      if (__DEV__) console.log('[RC] trialOption found:', trialOption?.id ?? 'none');
+      let customerInfo: Awaited<ReturnType<typeof Purchases.purchasePackage>>['customerInfo'];
 
-      const { customerInfo } = trialOption
-        ? await Purchases.purchaseSubscriptionOption(trialOption)
-        : await Purchases.purchasePackage(pkg);
+      const wantTrial = !trialUsed;
+
+      if (Platform.OS === 'android' && wantTrial) {
+        // На Android триал НЕ применяется через purchasePackage — нужен явный subscriptionOption
+        const opts = pkg.product.subscriptionOptions ?? [];
+        AsyncStorage.setItem('rc_debug_opts', JSON.stringify(
+          opts.map(o => ({ id: o.id, isBasePlan: o.isBasePlan, freePhase: o.freePhase != null, introPhase: o.introPhase != null }))
+        )).catch(() => {});
+
+        const trialOption =
+          opts.find(o => !o.isBasePlan && o.freePhase != null) ??
+          opts.find(o => !o.isBasePlan && o.introPhase != null) ??
+          opts.find(o => !o.isBasePlan && o.pricingPhases?.some(
+            (ph: { price?: { amountMicros: number } }) => ph.price?.amountMicros === 0
+          ));
+
+        AsyncStorage.setItem('rc_debug_trial', trialOption?.id ?? 'none').catch(() => {});
+
+        if (!trialOption) {
+          // Триал не найден — предупреждаем и не списываем молча
+          setPurchasing(false);
+          Alert.alert(
+            isUK ? 'Пробний період недоступний' : 'Пробный период недоступен',
+            isUK
+              ? 'Не вдалося знайти пропозицію з 7 днями безкоштовно. Спробуйте пізніше.'
+              : 'Не удалось найти предложение с 7 бесплатными днями. Попробуйте позже.',
+            [{ text: 'OK' }],
+          );
+          return;
+        }
+        ({ customerInfo } = await Purchases.purchaseSubscriptionOption(trialOption));
+      } else {
+        // iOS: purchasePackage применяет триал автоматически через introductoryPrice
+        // Android без триала (уже использован): purchasePackage использует base plan
+        ({ customerInfo } = await Purchases.purchasePackage(pkg));
+      }
       // purchasePackage не выбросил исключение → покупка авторизована Apple/Google.
       // Активируем сразу, не дожидаясь синхронизации RC (sandbox может запаздывать).
       // RC-статус используем как дополнительную проверку, но не как условие активации.
       void customerInfo; // RC customerInfo доступен для отладки при необходимости
       await savePremiumLocally(plan);
       logPremiumPurchased(pkg.product.identifier);
-      if (plan === 'yearly') await AsyncStorage.setItem('trial_used', 'true');
+      await AsyncStorage.setItem('trial_used', 'true');
       await activateFreezeIfNeeded();
       sendPremiumNotification(lang as 'ru' | 'uk');
       showSuccess();
@@ -322,6 +358,15 @@ export default function PremiumModal() {
       if (isActive) {
         const plan: Plan = info.activeSubscriptions.some(s => s.includes('yearly')) ? 'yearly' : 'monthly';
         await savePremiumLocally(plan);
+        // Override expiry with real value from RC if available
+        const activeEntitlements = Object.values(info.entitlements.active);
+        if (activeEntitlements.length > 0 && activeEntitlements[0].expirationDate) {
+          const realExpiry = new Date(activeEntitlements[0].expirationDate).getTime();
+          if (realExpiry > Date.now()) {
+            await AsyncStorage.setItem('premium_expiry', String(realExpiry));
+            invalidatePremiumCache();
+          }
+        }
         DeviceEventEmitter.emit('premium_activated');
         sendPremiumNotification(lang as 'ru' | 'uk');
         Alert.alert('Premium ✅', isUK ? 'Підписку відновлено!' : 'Подписка восстановлена!');
@@ -445,11 +490,19 @@ export default function PremiumModal() {
                   onPress={() => Alert.alert(
                     isUK ? 'Скасувати підписку?' : 'Отменить подписку?',
                     isUK
-                      ? `Підписка залишиться активною до ${formatDate(expiryTs, lang)}.`
-                      : `Подписка останется активной до ${formatDate(expiryTs, lang)}.`,
+                      ? 'Підписка управляється через App Store або Google Play. Ми відкриємо сторінку управління підписками.'
+                      : 'Подписка управляется через App Store или Google Play. Откроем страницу управления подписками.',
                     [
                       { text: isUK ? 'Назад' : 'Назад', style: 'cancel' },
-                      { text: isUK ? 'Скасувати' : 'Отменить', style: 'destructive', onPress: async () => { await AsyncStorage.setItem('premium_cancelled', 'true'); setCancelled(true); } },
+                      {
+                        text: isUK ? 'Відкрити налаштування' : 'Открыть настройки',
+                        onPress: () => {
+                          const url = Platform.OS === 'ios'
+                            ? 'itms-apps://apps.apple.com/account/subscriptions'
+                            : 'https://play.google.com/store/account/subscriptions';
+                          Linking.openURL(url);
+                        },
+                      },
                     ],
                   )}
                   activeOpacity={0.8}
@@ -491,9 +544,24 @@ export default function PremiumModal() {
                     style={{ borderRadius: 16, padding: 18, borderWidth: isCurrent ? 2 : 1, borderColor: isCurrent ? t.correct : t.border, backgroundColor: isCurrent ? t.bgSurface : t.bgCard }}
                     onPress={() => {
                       if (isCurrent) return;
-                      savePremiumLocally(plan);
-                      const newExpiry = plan === 'yearly' ? Date.now() + 365 * 86400000 : Date.now() + 30 * 86400000;
-                      setActivePlan(plan); setExpiryTs(newExpiry); setViewMode('manage');
+                      Alert.alert(
+                        isUK ? 'Змінити план?' : 'Сменить план?',
+                        isUK
+                          ? 'Зміна плану виконується через App Store або Google Play.'
+                          : 'Смена плана выполняется через App Store или Google Play.',
+                        [
+                          { text: isUK ? 'Скасувати' : 'Отмена', style: 'cancel' },
+                          {
+                            text: isUK ? 'Відкрити налаштування' : 'Открыть настройки',
+                            onPress: () => {
+                              const url = Platform.OS === 'ios'
+                                ? 'itms-apps://apps.apple.com/account/subscriptions'
+                                : 'https://play.google.com/store/account/subscriptions';
+                              Linking.openURL(url);
+                            },
+                          },
+                        ],
+                      );
                     }}
                     activeOpacity={isCurrent ? 1 : 0.8}
                   >
@@ -678,7 +746,7 @@ export default function PremiumModal() {
                     </Text>
                   )}
                   <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                    {isUK ? 'Економія 50% порівняно з місячним' : 'Экономия 50% по сравнению с месячным'}
+                    {isUK ? 'Економія 50% порівняно з місячною' : 'Экономия 50% по сравнению с месячным'}
                   </Text>
                 </View>
                 <View style={{ alignItems: 'flex-end' }}>
@@ -710,7 +778,12 @@ export default function PremiumModal() {
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
                     {isUK ? 'Щомісячна підписка' : 'Ежемесячная подписка'}
                   </Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3 }}>
+                  {!trialUsed && (
+                    <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>
+                      {isUK ? '7 днів безкоштовно' : '7 дней бесплатно'}
+                    </Text>
+                  )}
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
                     {isUK ? '☕ Як одна чашка кави на місяць' : '☕ Как одна чашка кофе в месяц'}
                   </Text>
                 </View>
@@ -737,18 +810,16 @@ export default function PremiumModal() {
               {purchasing
                 ? <ActivityIndicator color={t.bgPrimary} />
                 : <Text style={{ color: t.bgPrimary, fontSize: f.h2, fontWeight: '800' }} adjustsFontSizeToFit numberOfLines={1}>
-                    {selected === 'monthly'
-                      ? (isUK ? '🚀 Оформити місячну підписку' : '🚀 Оформить месячную подписку')
-                      : trialUsed
-                        ? (isUK ? '🚀 Отримати Premium' : '🚀 Получить Premium')
-                        : (isUK ? '🚀 Спробувати 7 днів безкоштовно' : '🚀 Попробовать 7 дней бесплатно')}
+                    {trialUsed
+                      ? (isUK ? '🚀 Отримати Premium' : '🚀 Получить Premium')
+                      : (isUK ? '🚀 Спробувати 7 днів безкоштовно' : '🚀 Попробовать 7 дней бесплатно')}
                   </Text>
               }
             </TouchableOpacity>
 
             {/* Мелкие хуки */}
             <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginBottom: 16 }}>
-              {!trialUsed && selected === 'yearly' && (
+              {!trialUsed && (
                 <Text style={{ color: t.textGhost, fontSize: f.label }}>
                   {isUK ? '✓ Без списання зараз' : '✓ Без списания сейчас'}
                 </Text>
@@ -783,8 +854,8 @@ export default function PremiumModal() {
             {!trialUsed && (
               <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 12, lineHeight: 17 }}>
                 {isUK
-                  ? 'Після 7 днів підписка продовжується автоматично. Скасування через App Store / Google Play.'
-                  : 'После 7 дней подписка продлевается автоматически. Отмена через App Store / Google Play.'}
+                  ? `Після 7 днів підписка продовжується автоматично (${selected === 'yearly' ? '€23.99/рік' : '€3.99/місяць'}). Скасування через App Store / Google Play.`
+                  : `После 7 дней подписка продлевается автоматически (${selected === 'yearly' ? '€23.99/год' : '€3.99/месяц'}). Отмена через App Store / Google Play.`}
               </Text>
             )}
             <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 14, marginBottom: 4 }}>

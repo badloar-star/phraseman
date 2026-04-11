@@ -369,6 +369,7 @@ export default function SettingsMain() {
         )}
 
 <SectionTitle title={isUK ? 'Ще' : 'Ещё'} />
+        <Row icon="help-circle-outline" label={isUK ? 'Допомога / FAQ' : 'Помощь / FAQ'} sub={isUK ? 'Відповіді на часті запитання' : 'Ответы на частые вопросы'} onPress={() => { doHaptic(); router.push('/help_faq' as any); }} />
         <Row icon="person-add-outline"  label={isUK ? 'Запросити друга' : 'Пригласить друга'}  sub={isUK ? 'Поділися застосунком' : 'Поделиться приложением'} onPress={async () => { try { await Share.share({ message: isUK ? `Вивчаю англійську з Phraseman — зручно та ефективно! 🔥 Спробуй і ти! ${STORE_URL}` : `Учу английский с Phraseman — удобно и эффективно! 🔥 Попробуй и ты! ${STORE_URL}`, url: STORE_URL }); } catch {} }} />
         <Row icon="mail-outline"        label={isUK ? 'Пропозиція або зауваження' : 'Предложение или замечание'} onPress={async () => {
           const url = 'mailto:support.phraseman@gmail.com';
@@ -377,13 +378,7 @@ export default function SettingsMain() {
         }} />
         <Row icon="document-text-outline" label={isUK ? 'Політика конфіденційності' : 'Политика конфиденциальности'} onPress={() => Linking.openURL('https://badloar-star.github.io/phraseman-privacy/')} />
         <Row icon="shield-checkmark-outline" label={isUK ? 'Умови використання' : 'Условия использования'} onPress={() => Linking.openURL('https://badloar-star.github.io/phraseman-privacy/terms.html')} />
-        <Row icon="people-outline"      label={isUK ? 'Бета-тестери' : 'Бета-тестеры'} onPress={() => Alert.alert(
-          isUK ? 'Бета-тестери' : 'Бета-тестеры',
-          isUK
-            ? 'У цьому списку будуть відображені імена найактивніших і найкорисніших бета-тестерів. Вони залишатимуться тут протягом року після офіційного релізу.'
-            : 'В этом списке будут отображены имена самых активных и полезных бета-тестеров. Они будут здесь на протяжении года после официального релиза.',
-          [{ text: 'OK' }]
-        )} />
+        <Row icon="people-outline" label={isUK ? 'Бета-тестери' : 'Бета-тестеры'} onPress={() => router.push('/beta_testers' as any)} />
 
 
         {/* Premium */}

@@ -61,8 +61,25 @@ const PAIRS: [RegExp, string][] = [
  * 4. Убирает пунктуацию в конце
  * 5. Убирает лишние пробелы
  */
+// Кириллические буквы, визуально идентичные латинским (lookalikes)
+const CYRILLIC_TO_LATIN: [RegExp, string][] = [
+  [/\u0430/g, 'a'], // а → a
+  [/\u0435/g, 'e'], // е → e
+  [/\u043E/g, 'o'], // о → o
+  [/\u0440/g, 'p'], // р → p
+  [/\u0441/g, 'c'], // с → c
+  [/\u0445/g, 'x'], // х → x
+  [/\u0443/g, 'y'], // у → y
+  [/\u0456/g, 'i'], // і → i
+];
+
 export const normalize = (text: string): string => {
   let result = text.trim();
+
+  // ── Нормализация кириллических lookalike-символов ──
+  for (const [pattern, replacement] of CYRILLIC_TO_LATIN) {
+    result = result.replace(pattern, replacement);
+  }
 
   // ── Ключевой фикс: нормализация всех видов апострофов ──
   // \u2019 = ' (right single quotation mark) — iOS автозамена

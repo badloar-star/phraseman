@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export type Lang = 'ru' | 'uk';
+export type UILang    = 'ru' | 'uk' | 'en';
+export type LearnLang = 'ru' | 'uk' | 'en';
+/** @deprecated Use UILang or LearnLang instead */
+export type Lang = UILang;
 
-// ─── ПЕРЕВОДЫ ────────────────────────────────────────────────────────────────
+// ─── РУССКИЙ ИНТЕРФЕЙС ───────────────────────────────────────────────────────
 const RU = {
   tabs: {
     home: 'Главная', lessons: 'Уроки', quizzes: 'Квизы',
@@ -70,9 +73,11 @@ const RU = {
   settings: {
     title: 'Настройки', profile: 'Профиль',
     name: 'Имя / никнейм', nameSub: (n: string) => n || 'Не задано',
-    lang: 'Язык интерфейса', appearance: 'Внешний вид',
+    lang: 'Язык интерфейса', learning: 'Обучение',
+    learnLangLabel: 'Изучаю язык',
+    appearance: 'Внешний вид',
     theme: 'Тема', themeDark: 'Тёмная', themeLight: 'Светлая',
-    learning: 'Обучение', learnSet: 'Настройки обучения',
+    learnSet: 'Настройки обучения',
     feedback: 'Предложение или замечание', help: 'Помощь',
     premium: 'Premium', premiumSub: 'Все уроки и квизы — €3.99/мес',
     changeName: 'Изменить имя', cancel: 'Отмена', save: 'Сохранить',
@@ -115,6 +120,7 @@ const RU = {
   },
   onboarding: {
     chooseLang: 'Выберите язык',
+    chooseLearnLang: 'Что хотите изучать?',
     enterName: 'Введите ваше имя или никнейм',
     placeholder: 'Ваше имя...',
     next: 'Продолжить',
@@ -128,8 +134,14 @@ const RU = {
     legal: 'Отмена в любое время в настройках App Store / Google Play.',
     features: ['Все 32 урока','Квизы всех уровней','Зал славы и лиги','Голосовой ввод','Подробная статистика'],
   },
+  learnLangNames: {
+    ru: 'Русский',
+    uk: 'Украинский',
+    en: 'Английский',
+  },
 };
 
+// ─── УКРАИНСКИЙ ИНТЕРФЕЙС ────────────────────────────────────────────────────
 const UK: typeof RU = {
   tabs: {
     home: 'Головна', lessons: 'Уроки', quizzes: 'Квізи',
@@ -196,11 +208,13 @@ const UK: typeof RU = {
   settings: {
     title: 'Налаштування', profile: 'Профіль',
     name: 'Імʼя / нікнейм', nameSub: (n: string) => n || 'Не задано',
-    lang: 'Мова інтерфейсу', appearance: 'Зовнішній вигляд',
+    lang: 'Мова інтерфейсу', learning: 'Навчання',
+    learnLangLabel: 'Вивчаю мову',
+    appearance: 'Зовнішній вигляд',
     theme: 'Тема', themeDark: 'Темна', themeLight: 'Світла',
-    learning: 'Навчання', learnSet: 'Налаштування навчання',
+    learnSet: 'Налаштування навчання',
     feedback: 'Пропозиція або зауваження', help: 'Допомога',
-    premium: 'Premium', premiumSub: 'Всі уроки та квізи — €3.99/міс',
+    premium: 'Premium', premiumSub: 'Усі уроки та квізи — €3.99/міс',
     changeName: 'Змінити імʼя', cancel: 'Скасувати', save: 'Зберегти',
     nameError: 'Введіть імʼя', namePlaceholder: 'Введіть імʼя...',
   },
@@ -215,7 +229,7 @@ const UK: typeof RU = {
   words: {
     title: (n: number) => `${n}. Словник`,
     training: 'Тренування', wordList: 'Список слів',
-    allLearned: 'Всі слова вивчено!',
+    allLearned: 'Усі слова вивчено!',
     learnedOf: (a: number, b: number) => `${a} / ${b} вивчено`,
     plusPoints: (n: number) => `+${n} очок`,
   },
@@ -241,7 +255,8 @@ const UK: typeof RU = {
   },
   onboarding: {
     chooseLang: 'Оберіть мову',
-    enterName: 'Введіть ваше імʼя або нікнейм',
+    chooseLearnLang: 'Що хочете вивчати?',
+    enterName: 'Введіть своє імʼя або нікнейм',
     placeholder: 'Ваше імʼя...',
     next: 'Продовжити',
     nameError: 'Введіть імʼя щоб продовжити',
@@ -252,7 +267,147 @@ const UK: typeof RU = {
     cta: 'Почати 7 днів безкоштовно',
     ctaSub: 'Підписатися — €3.99/міс',
     legal: 'Скасування будь-коли в налаштуваннях App Store / Google Play.',
-    features: ['Всі 32 уроки','Квізи всіх рівнів','Зал слави та ліги','Голосове введення','Докладна статистика'],
+    features: ['Усі 32 уроки','Квізи всіх рівнів','Зал слави та ліги','Голосове введення','Докладна статистика'],
+  },
+  learnLangNames: {
+    ru: 'Російська',
+    uk: 'Українська',
+    en: 'Англійська',
+  },
+};
+
+// ─── АНГЛИЙСКИЙ ИНТЕРФЕЙС ────────────────────────────────────────────────────
+const EN: typeof RU = {
+  tabs: {
+    home: 'Home', lessons: 'Lessons', quizzes: 'Quizzes',
+    hallFame: 'Hall of Fame', settings: 'Settings',
+  },
+  home: {
+    greeting: (n: string) => `${n}`,
+    greetingPrefix: (g: string) => g,
+    sub: 'Ready to continue?',
+    streakLabel: 'Streak',
+    streakDays: 'days in a row',
+    continueBtn: 'Continue',
+    startBtn: 'Start',
+    leagueLabel: 'Club of the week',
+    testBtn: 'Knowledge test',
+    testSub: 'Find your level',
+    examBtn: 'Final exam',
+  },
+  lessonMenu: {
+    start: 'Start lesson',
+    continue: 'Continue lesson',
+    vocab: 'Vocabulary',
+    verbs: 'Irregular verb forms',
+    theory: 'Theory',
+    fromScratch: 'Starting from scratch',
+    wordsOfLesson: 'Words of this lesson',
+    verbsOfLesson: 'Irregular forms only',
+    theoryOfLesson: 'Grammar & rules',
+  },
+  lesson: {
+    undo: 'Undo', cheat: 'Cheat sheet', theory: 'Theory',
+    oral: 'Oral', next: 'Next', check: 'Check',
+    typeHere: 'Type your answer...', listenTitle: 'Listening...',
+  },
+  lessonComplete: {
+    title: 'Lesson complete!',
+    subtitle: (n: number) => `Lesson ${n} — 100% done`,
+    bonus: '+500 XP',
+    rest: 'Take a short break — you\'ve earned it.',
+    nextLesson: 'Next lesson',
+    repeatLesson: 'Repeat lesson',
+    backHome: 'Back to home',
+  },
+  quizzes: {
+    selectLevel: 'Select level', easy: 'Easy', medium: 'Medium', hard: 'Hard',
+    done: 'Quiz complete!', again: 'Play again',
+    back: 'Select level', fixErrors: 'Fix mistakes', timeUp: 'Time\'s up',
+    perAnswer: 'pt / answer',
+  },
+  hallFame: {
+    title: 'Hall of Fame',
+    empty: 'No one here yet.\nComplete a quiz and claim your spot!',
+    rank: 'Rank', player: 'Player', points: 'Points',
+    weekReset: 'Resets every Sunday',
+  },
+  leagues: [
+    { name: 'Seeker',    min: 0 },
+    { name: 'Learner',   min: 100 },
+    { name: 'Scholar',   min: 300 },
+    { name: 'Speaker',   min: 700 },
+    { name: 'Wordsmith', min: 1500 },
+    { name: 'Professor', min: 3000 },
+  ],
+  settings: {
+    title: 'Settings', profile: 'Profile',
+    name: 'Name / nickname', nameSub: (n: string) => n || 'Not set',
+    lang: 'Interface language', learning: 'Learning',
+    learnLangLabel: 'I\'m learning',
+    appearance: 'Appearance',
+    theme: 'Theme', themeDark: 'Dark', themeLight: 'Light',
+    learnSet: 'Learning settings',
+    feedback: 'Feedback or suggestion', help: 'Help',
+    premium: 'Premium', premiumSub: 'All lessons & quizzes — €3.99/mo',
+    changeName: 'Change name', cancel: 'Cancel', save: 'Save',
+    nameError: 'Please enter a name', namePlaceholder: 'Enter name...',
+  },
+  edu: {
+    title: 'Learning settings',
+    autoCheck: 'Auto-check', autoCheckSub: 'Check when the last word is typed',
+    voiceOut: 'Read answer aloud', voiceOutSub: 'Pronounce the phrase after answering',
+    autoAdvance: 'Auto-advance after answer', autoAdvanceSub: 'Move to next question automatically on correct answer',
+    hardMode: 'Keyboard input', hardModeSub: 'Type the sentence manually',
+    speed: 'Pronunciation speed', speedHint: 'Release the slider to hear a sample',
+  },
+  words: {
+    title: (n: number) => `${n}. Vocabulary`,
+    training: 'Training', wordList: 'Word list',
+    allLearned: 'All words learned!',
+    learnedOf: (a: number, b: number) => `${a} / ${b} learned`,
+    plusPoints: (n: number) => `+${n} pts`,
+  },
+  verbs: {
+    title: (n: number) => `${n}. Verb forms`,
+    training: 'Training', list: 'List',
+    base: 'Base', past: 'Past Simple', pp: 'Past Participle', tr: 'Translation',
+    guessPast: 'Past Simple of:', guessPP: 'Past Participle of:',
+    done: 'Training complete!', repeat: 'Repeat',
+  },
+  diagnostic: {
+    title: 'Knowledge test', subtitle: 'Professor\'s test',
+    desc: '20 questions · 30 seconds each\nDetermines your level from A1 to C2',
+    prevResult: 'Previous result',
+    start: 'Start test',
+    yourLevel: 'Your level',
+    correct: 'Correct answers',
+    skipped: (n: number) => `Skipped (timer): ${n}`,
+    again: 'Retake test',
+    backHome: 'Back to home',
+    timeUp: 'Time\'s up — question skipped',
+    points: (n: number) => `+${n} pts`,
+  },
+  onboarding: {
+    chooseLang: 'Choose your language',
+    chooseLearnLang: 'What do you want to learn?',
+    enterName: 'Enter your name or nickname',
+    placeholder: 'Your name...',
+    next: 'Continue',
+    nameError: 'Please enter a name to continue',
+  },
+  premium: {
+    locked: 'Without Premium you lose access\nto 31 lessons, quizzes and Hall of Fame',
+    freeCont: 'Continue for free (Lesson 1)',
+    cta: 'Start 7 days free',
+    ctaSub: 'Subscribe — €3.99/mo',
+    legal: 'Cancel anytime in App Store / Google Play settings.',
+    features: ['All 32 lessons', 'All quiz levels', 'Hall of Fame & leagues', 'Voice input', 'Detailed stats'],
+  },
+  learnLangNames: {
+    ru: 'Russian',
+    uk: 'Ukrainian',
+    en: 'English',
   },
 };
 
@@ -260,35 +415,72 @@ export type Strings = typeof RU;
 
 // ─── КОНТЕКСТ ────────────────────────────────────────────────────────────────
 interface LangCtx {
-  lang: Lang;
+  uiLang: UILang;
   s: Strings;
-  setLang: (l: Lang) => Promise<void>;
+  setUILang: (l: UILang) => Promise<void>;
+  learnLang: LearnLang;
+  setLearnLang: (l: LearnLang) => Promise<void>;
+  /** @deprecated Use uiLang instead */
+  lang: UILang;
+  /** @deprecated Use setUILang instead */
+  setLang: (l: UILang) => Promise<void>;
 }
 
 const LangContext = createContext<LangCtx>({
-  lang: 'ru',
+  uiLang: 'ru',
   s: RU,
+  setUILang: async () => {},
+  learnLang: 'en',
+  setLearnLang: async () => {},
+  lang: 'ru',
   setLang: async () => {},
 });
 
+const UI_STRINGS: Record<UILang, Strings> = { ru: RU, uk: UK, en: EN };
+
 export const LangProvider = ({ children }: { children: React.ReactNode }) => {
-  const [lang, setLangState] = useState<Lang>('ru');
+  const [uiLang, setUILangState] = useState<UILang>('ru');
+  const [learnLang, setLearnLangState] = useState<LearnLang>('en');
 
   useEffect(() => {
-    AsyncStorage.getItem('app_lang').then(v => {
-      if (v === 'ru' || v === 'uk') {
-        setLangState(v);
+    const init = async () => {
+      // Миграция: app_lang → ui_lang
+      let ui = await AsyncStorage.getItem('ui_lang');
+      if (!ui) {
+        const legacy = await AsyncStorage.getItem('app_lang');
+        ui = (legacy === 'uk' ? 'uk' : legacy === 'en' ? 'en' : 'ru');
+        await AsyncStorage.setItem('ui_lang', ui);
       }
-    });
+
+      const learn = await AsyncStorage.getItem('learn_lang');
+
+      if (ui === 'ru' || ui === 'uk' || ui === 'en') setUILangState(ui);
+      if (learn === 'ru' || learn === 'uk' || learn === 'en') setLearnLangState(learn);
+    };
+    init();
   }, []);
 
-  const setLang = useCallback(async (l: Lang) => {
-    await AsyncStorage.setItem('app_lang', l);
-    setLangState(l); // вызывает ре-рендер всего дерева
+  const setUILang = useCallback(async (l: UILang) => {
+    await AsyncStorage.setItem('ui_lang', l);
+    setUILangState(l);
+  }, []);
+
+  const setLearnLang = useCallback(async (l: LearnLang) => {
+    await AsyncStorage.setItem('learn_lang', l);
+    setLearnLangState(l);
   }, []);
 
   return (
-    <LangContext.Provider value={{ lang, s: lang === 'uk' ? UK : RU, setLang }}>
+    <LangContext.Provider value={{
+      uiLang,
+      s: UI_STRINGS[uiLang],
+      setUILang,
+      learnLang,
+      setLearnLang,
+      // Обратная совместимость
+      lang: uiLang,
+      setLang: setUILang,
+    }}>
       {children}
     </LangContext.Provider>
   );
@@ -297,14 +489,18 @@ export const LangProvider = ({ children }: { children: React.ReactNode }) => {
 export const useLang = () => useContext(LangContext);
 
 // ─── УТИЛИТЫ ────────────────────────────────────────────────────────────────
-export const getLeague = (points: number, lang: Lang = 'ru') => {
-  const leagues = lang === 'uk' ? [...UK.leagues].reverse() : [...RU.leagues].reverse();
-  return leagues.find(l => points >= l.min) || (lang === 'uk' ? UK.leagues[0] : RU.leagues[0]);
+export const getLeague = (points: number, uiLang: UILang = 'ru') => {
+  const leagues = [...UI_STRINGS[uiLang].leagues].reverse();
+  return leagues.find(l => points >= l.min) ?? UI_STRINGS[uiLang].leagues[0];
 };
 
-export const getNextLeague = (points: number, lang: Lang = 'ru') => {
-  const leagues = lang === 'uk' ? UK.leagues : RU.leagues;
-  const current = getLeague(points, lang);
+export const getNextLeague = (points: number, uiLang: UILang = 'ru') => {
+  const leagues = UI_STRINGS[uiLang].leagues;
+  const current = getLeague(points, uiLang);
   const idx = leagues.findIndex(l => l.name === current.name);
-  return leagues[idx + 1] || null;
+  return leagues[idx + 1] ?? null;
 };
+
+/** Возвращает список языков для изучения (исключает язык интерфейса) */
+export const getLearnOptions = (uiLang: UILang): LearnLang[] =>
+  (['ru', 'uk', 'en'] as LearnLang[]).filter(l => l !== uiLang);

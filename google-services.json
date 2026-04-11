@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1047658658799",
+    "project_id": "phraseman-ea0b3",
+    "storage_bucket": "phraseman-ea0b3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047658658799:android:9b61e60ee3d5cf9813541a",
+        "android_client_info": {
+          "package_name": "app.phraseman"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxO_8xe9-HV-wFSMO4abkCHvZX8zb-T7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

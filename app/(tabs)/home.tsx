@@ -37,7 +37,7 @@ import { getDueItems, SESSION_LIMIT } from '../active_recall';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
 import { useEnergy } from '../../components/EnergyContext';
 
-const { width: SCREEN_W } = Dimensions.get('window');
+const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 const CONTENT_W = Math.min(SCREEN_W, 640);
 const CARD_W = (CONTENT_W - 32 - 10) / 2;
 
@@ -66,17 +66,17 @@ const GREETINGS_UK = [
   'Готовий до нових інсайтів?','Світ чекає твого слова','На крок ближче до цілі','Твій інтелект в тонусі',
   'Натхнення починається тут','Стань кращою версією себе','Твій шлях до майстерства','Час відкривати горизонти',
   'Змусь думки літати','Твій пропуск у світ','Прокачай свій потенціал','Сьогодні — найкращий день для старту',
-  'Будь на хвилі прогресу','Енергія твого розуму','Зробити крок до успіху','Твоє майбутнє починається зараз',
+  'Будь на хвилі прогресу','Енергія твого розуму','Зроби крок до успіху','Твоє майбутнє починається зараз',
   'Твій інтелектуальний апгрейд','Час розширювати границі','Зарядись на успіх','Твій мозок у відмінній формі',
   'Готовий до нових звершень?','Світ заговорить з тобою','На крок попереду всіх','Твоя щоденна порція знань',
-  'Натхнення в кожному слові','Стань майстром своєї справи','Твій персональний прорив','Час блискучати знаннями',
+  'Натхнення в кожному слові','Стань майстром своєї справи','Твій персональний прорив','Час блищати знаннями',
   'Зарядь розум на максимум','Твій мозок жадає відкриттів','Готовий здивувати весь світ?','Світ відкритий для тебе',
   'На крок ближче до мрії','Твій інтелект без меж','Натхнення в кожному кроці','Стань легендою сьогодні',
   'Твій інтелектуальний драйв','Час змінювати реальність','Зарядись на перемогу','Твій мозок в центрі подій',
   'Готовий до нових висот?','Світ розуміє тебе','На крок попереду вчорашнього','Твій безмежний потенціал',
-  'Натхнення всередині тебе','Стань кращим у своїй справі','Твій інтелектуальний триумф','Час яскравих відкриттів',
+  'Натхнення всередині тебе','Стань кращим у своїй справі','Твій інтелектуальний тріумф','Час яскравих відкриттів',
   'Зарядись на результат','Твій розум — твоя сила','Готовий до нового виклику?','Світ чує тебе',
-  'На крок ближче до ідеалу','Твій шлях до досконалості','Натхнення в деталях','Стань тим, кім мріяв',
+  'На крок ближче до ідеалу','Твій шлях до досконалості','Натхнення в деталях','Стань тим, ким мріяв',
   'Твій інтелектуальний кураж','Час думати ширше','Зарядись на максимум','Твій розум — твій капітал',
   'Готовий до нових інтриг?','Світ заграє барвами','На крок ближче до мрії','Твій шлях до свободи',
   'Натхнення в прогресі','Стань душею компанії',
@@ -91,6 +91,8 @@ export default function HomeScreen() {
 
   const [userName, setUserName]     = useState('');
   const [streak, setStreak]         = useState(0);
+  const [displayStreak, setDisplayStreak] = useState(0);
+  const streakScaleAnim = useRef(new Animated.Value(1)).current;
   const [totalXP, setTotalXP]       = useState(0);
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [newLevel, setNewLevel]       = useState(0);
@@ -144,6 +146,52 @@ export default function HomeScreen() {
 
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const diagChecked = true;
+  const pulseAnim = useRef(new Animated.Value(1)).current;
+  useEffect(() => {
+    if (dueCount <= 0) return;
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(pulseAnim, { toValue: 1.03, duration: 900, useNativeDriver: true }),
+        Animated.timing(pulseAnim, { toValue: 1, duration: 900, useNativeDriver: true }),
+      ])
+    );
+    loop.start();
+    return () => loop.stop();
+  }, [dueCount]);
+
+  // ── Анимация "карточки летят в раздел" ──────────────────────────────────────
+  const cardsIconScaleAnim = useRef(new Animated.Value(1)).current;
+  const cardsBadgeOpacity  = useRef(new Animated.Value(0)).current;
+  const cardsBadgeScale    = useRef(new Animated.Value(0)).current;
+  const [newCardsCount, setNewCardsCount]       = useState(0);
+  const [displayCardsCount, setDisplayCardsCount] = useState(0);
+
+  useEffect(() => {
+    if (newCardsCount <= 0) return;
+    setDisplayCardsCount(newCardsCount);
+    // Бейдж появляется
+    cardsBadgeOpacity.setValue(1);
+    cardsBadgeScale.setValue(0);
+    Animated.spring(cardsBadgeScale, { toValue: 1, useNativeDriver: true, friction: 4, tension: 200 }).start();
+
+    let current = newCardsCount;
+    const step = () => {
+      if (current <= 0) {
+        // Уходим
+        Animated.timing(cardsBadgeOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => setNewCardsCount(0));
+        return;
+      }
+      current--;
+      setDisplayCardsCount(current);
+      // Иконка подпрыгивает на каждый шаг
+      Animated.sequence([
+        Animated.spring(cardsIconScaleAnim, { toValue: 1.35, useNativeDriver: true, friction: 3, tension: 250 }),
+        Animated.spring(cardsIconScaleAnim, { toValue: 1,    useNativeDriver: true, friction: 5, tension: 180 }),
+      ]).start();
+      setTimeout(step, 220);
+    };
+    setTimeout(step, 400);
+  }, [newCardsCount]);
 
   // Staggered секции: 0=header, 1=hero, 2=lesson, 3=quick, 4=grid, 5=phrase
   const S_COUNT = 6;
@@ -202,7 +250,28 @@ export default function HomeScreen() {
         AsyncStorage.getItem('user_frame'),
       ]);
       if (name) setUserName(name);
-      if (streakVal) setStreak(parseInt(streakVal) || 0);
+      const currentStreakNum = parseInt(streakVal || '0') || 0;
+      if (streakVal) setStreak(currentStreakNum);
+      // Анимация стрика: если цифра изменилась с прошлого визита — показываем счётчик
+      const lastStreakShown = parseInt(await AsyncStorage.getItem('streak_last_shown') || '0') || 0;
+      if (currentStreakNum > 0 && currentStreakNum !== lastStreakShown) {
+        await AsyncStorage.setItem('streak_last_shown', String(currentStreakNum));
+        if (lastStreakShown > 0 && currentStreakNum > lastStreakShown) {
+          // Анимируем: показываем старое значение, потом увеличиваем с анимацией
+          setDisplayStreak(lastStreakShown);
+          setTimeout(() => {
+            setDisplayStreak(currentStreakNum);
+            Animated.sequence([
+              Animated.spring(streakScaleAnim, { toValue: 1.6, useNativeDriver: true, friction: 3, tension: 200 }),
+              Animated.spring(streakScaleAnim, { toValue: 1,   useNativeDriver: true, friction: 5, tension: 150 }),
+            ]).start();
+          }, 800);
+        } else {
+          setDisplayStreak(currentStreakNum);
+        }
+      } else {
+        setDisplayStreak(currentStreakNum);
+      }
       if (xpStored) {
         const newXP  = parseInt(xpStored) || 0;
         const prevXP = parseInt(await AsyncStorage.getItem('user_prev_xp') || '0') || 0;
@@ -284,6 +353,15 @@ export default function HomeScreen() {
       // а не весь накопленный долг. Карточка исчезнет после сессии в review.tsx.
       const dueItems = await getDueItems(SESSION_LIMIT);
       setDueCount(dueItems.length);
+
+      // Бейдж новых карточек — только если сейчас на главной вкладке
+      if (activeIdx === 0) {
+        const pendingCards = await AsyncStorage.getItem('flashcard_anim_pending');
+        if (pendingCards && parseInt(pendingCards, 10) > 0) {
+          await AsyncStorage.removeItem('flashcard_anim_pending');
+          setNewCardsCount(parseInt(pendingCards, 10));
+        }
+      }
 
       // [BANNERS] Login bonus, comeback, personal best, streak repair
       const bonusRaw = await AsyncStorage.getItem('login_bonus_pending');
@@ -578,7 +656,7 @@ const league = getLeague(weekPoints, lang);
                 <View style={{ alignItems:'flex-end', marginLeft:12 }}>
                   <Text style={{ color:t.textMuted, fontSize:10, textTransform:'uppercase', letterSpacing:1, marginBottom:6 }}>{isUK?'Ланцюжок':'Цепочка'}</Text>
                   <View style={{ flexDirection:'row', alignItems:'center', gap:4 }}>
-                    <Text style={{ color:t.textPrimary, fontSize:26, fontWeight:'800', lineHeight:30 }}>{streak}</Text>
+                    <Animated.Text style={{ color:t.textPrimary, fontSize:26, fontWeight:'800', lineHeight:30, transform:[{scale:streakScaleAnim}] }}>{displayStreak}</Animated.Text>
                     <Ionicons name="flame" size={24} color={streak>0?'#FF6B35':t.textGhost} />
                   </View>
                   <Text style={{ color:t.textSecond, fontSize:12 }} numberOfLines={1}>{isUK?'днів поспіль':'дней подряд'}</Text>
@@ -675,16 +753,33 @@ const league = getLeague(weekPoints, lang);
           {/* БЫСТРЫЙ ДОСТУП: равные пилюли по всей ширине */}
           <Animated.View style={sectionStyle(3)}>
           <View style={{ marginBottom:12, flexDirection:'row', paddingHorizontal:16, gap:10 }}>
-              {quickItems.map(item=>(
+              {quickItems.map((item)=>(
                 <TouchableOpacity
                   key={item.label}
+
                   activeOpacity={0.8}
-                  onPress={() => {
-                    go(item.path);
-                  }}
+                  onPress={() => { go(item.path); }}
                   style={{ flex:1, backgroundColor:t.bgCard, borderRadius:18, borderWidth:0.5, borderColor:t.border, paddingHorizontal:10, paddingVertical:14, alignItems:'center', gap:5 }}
                 >
-                  <Image source={item.img} style={{ width: 52, height: 52 }} contentFit="contain" cachePolicy="memory-disk" />
+                  <View style={{ position: 'relative' }}>
+                    <Animated.View style={item.path === '/flashcards' ? { transform:[{scale:cardsIconScaleAnim}] } : undefined}>
+                      <Image source={item.img} style={{ width: 52, height: 52 }} contentFit="contain" cachePolicy="memory-disk" />
+                    </Animated.View>
+                    {item.path === '/flashcards' && newCardsCount > 0 && (
+                      <Animated.View style={{
+                        position: 'absolute', top: -6, right: -8,
+                        backgroundColor: t.accent, borderRadius: 12,
+                        minWidth: 22, height: 22, paddingHorizontal: 5,
+                        justifyContent: 'center', alignItems: 'center',
+                        opacity: cardsBadgeOpacity,
+                        transform: [{ scale: cardsBadgeScale }],
+                      }}>
+                        <Text style={{ color: t.bgPrimary, fontSize: 12, fontWeight: '800' }}>
+                          {displayCardsCount > 0 ? `+${displayCardsCount}` : '✓'}
+                        </Text>
+                      </Animated.View>
+                    )}
+                  </View>
                   <Text style={{ color:t.textPrimary, fontSize:f.label, fontWeight:'700', textAlign:'center' }} numberOfLines={1}>{item.label}</Text>
                   <Text style={{ color:t.textMuted, fontSize:9, textAlign:'center' }} numberOfLines={1}>{item.sub}</Text>
                 </TouchableOpacity>
@@ -696,7 +791,7 @@ const league = getLeague(weekPoints, lang);
           <Animated.View style={sectionStyle(4)}>
           {/* SRS ПОВТОРЕНИЕ — только если есть карточки */}
           {dueCount > 0 && (
-            <View style={{ paddingHorizontal:16, marginBottom:12 }}>
+            <Animated.View style={{ paddingHorizontal:16, marginBottom:12, transform:[{scale:pulseAnim}] }}>
               <TouchableOpacity activeOpacity={0.85} onPress={()=>router.push('/review')}
                 style={{ flexDirection:'row', alignItems:'center', gap:12, backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, padding:14 }}
               >
@@ -713,7 +808,7 @@ const league = getLeague(weekPoints, lang);
                   <Text style={{ color:t.bgPrimary, fontSize:f.label, fontWeight:'700' }}>{isUK?'Почати':'Начать'}</Text>
                 </View>
               </TouchableOpacity>
-            </View>
+            </Animated.View>
           )}
 
           {/* СЕТКА 2×2: Задания|Клуб / Тест знаний|Экзамен */}
@@ -923,6 +1018,7 @@ const league = getLeague(weekPoints, lang);
         );
       })()}
       </ScreenGradient>
+
     </View>
   );
 }

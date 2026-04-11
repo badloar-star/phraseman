@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { addFlashcard, removeFlashcard, isFlashcardSaved, loadFlashcards, Flashcard } from '../hooks/use-flashcards';
 
@@ -61,6 +62,10 @@ export default function AddToFlashcard({ en, ru, uk, source, sourceId, size = 20
         if (result === 'added') {
           setSaved(true);
           popAnimation();
+          try {
+            const cur = await AsyncStorage.getItem('flashcard_anim_pending');
+            await AsyncStorage.setItem('flashcard_anim_pending', String(Math.min((parseInt(cur || '0', 10) + 1), 7)));
+          } catch {}
         } else if (result === 'limit_reached') {
           router.push({ pathname: '/premium_modal', params: { context: 'flashcard_limit', saved: '20' } } as any);
         }

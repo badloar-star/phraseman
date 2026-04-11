@@ -47,7 +47,7 @@ export const registerXP = async (
   amount: number,
   source: XPSource,
   userName: string,
-  lang: 'ru' | 'uk' = 'ru',
+  lang: 'ru' | 'uk' | 'en' = 'ru',
   lessonNumber?: number
 ): Promise<XPResult> => {
   if (!userName || amount === 0) return { finalDelta: 0, multiplier: 1, isBonus: false };

@@ -99,7 +99,7 @@ function WagerCard({ isUK, t, f, totalStreak }: { isUK: boolean; t: any; f: any;
       return;
     }
     Alert.alert(
-      isUK ? 'Підтвердити пари' : 'Подтвердить пари',
+      isUK ? 'Підтвердити парі' : 'Подтвердить пари',
       isUK
         ? `Ставка: ${tier.betXP} XP\n\n✅ Збережеш ланцюжок ${tier.daysRequired} днів — отримаєш +${tier.rewardXP} XP (×2)\n\n❌ Зірвеш ланцюжок — втратиш ${tier.betXP} XP`
         : `Ставка: ${tier.betXP} XP\n\n✅ Сохранишь цепочку ${tier.daysRequired} дней — получишь +${tier.rewardXP} XP (×2)\n\n❌ Собьёшь цепочку — потеряешь ${tier.betXP} XP`,
@@ -134,11 +134,11 @@ function WagerCard({ isUK, t, f, totalStreak }: { isUK: boolean; t: any; f: any;
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
             {won
-              ? (isUK ? `Пари виграно! +${wager.rewardXP} XP` : `Пари выиграно! +${wager.rewardXP} XP`)
+              ? (isUK ? `Парі виграно! +${wager.rewardXP} XP` : `Пари выиграно! +${wager.rewardXP} XP`)
               : (isUK ? `Ланцюжок зірвано · −${wager.betXP} XP` : `Цепочка сорвана · −${wager.betXP} XP`)}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
-            {isUK ? 'Прийняти нове пари?' : 'Принять новое пари?'}
+            {isUK ? 'Прийняти нове парі?' : 'Принять новое пари?'}
           </Text>
         </View>
         <TouchableOpacity
@@ -168,10 +168,10 @@ function WagerCard({ isUK, t, f, totalStreak }: { isUK: boolean; t: any; f: any;
           </View>
           <View style={{ flex: 1 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-              {isUK ? 'Пари активне' : 'Пари активно'}
+              {isUK ? 'Парі активне' : 'Пари активно'}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-              {isUK ? `${daysLeft} дн. залишилось · ставка ${wager.betXP} XP` : `${daysLeft} дн. осталось · ставка ${wager.betXP} XP`}
+              {isUK ? `${daysLeft} дн. залишилося · ставка ${wager.betXP} XP` : `${daysLeft} дн. осталось · ставка ${wager.betXP} XP`}
             </Text>
           </View>
           <View style={{ alignItems: 'flex-end' }}>
@@ -235,7 +235,7 @@ function WagerCard({ isUK, t, f, totalStreak }: { isUK: boolean; t: any; f: any;
               {/* Header */}
               <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>
-                  {isUK ? 'Пари на ланцюжок' : 'Пари на цепочку'}
+                  {isUK ? 'Парі на ланцюжок' : 'Пари на цепочку'}
                 </Text>
                 <View style={{ backgroundColor: t.bgSurface2, borderRadius: 8, paddingHorizontal: 10, paddingVertical: 4 }}>
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '700' }}>

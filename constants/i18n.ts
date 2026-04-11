@@ -109,7 +109,7 @@ export const T = {
     daysEstimate:    (days: number) => `~${days} дней`,
     lessonsCount:    (count: number) => `${count} уроков в твоём темпе`,
     hoursPerWeek:    (hours: number) => `~${hours} часов в неделю обучения`,
-    reachTargetBy:   (date: string) => `Ты достигнешь целевого уровня к ${date}`,
+    reachTargetBy:   (date: string) => `Ты достигнешь целевого уровня до ${date}`,
 
     // Онбординг: напоминания
     preferredTime:   'Когда обычно свободен?',
@@ -150,11 +150,11 @@ export const T = {
     selectLevel2: 'Обрати рівень',
     fixErrors:    'Виправ помилки',
     correct:      'правильно',
-    reviewDone:   'Всі помилки виправлено!',
+    reviewDone:   'Усі помилки виправлено!',
 
     training:     'Тренування',
     wordList:     'Список слів',
-    allLearned:   'Всі слова вивчено!',
+    allLearned:   'Усі слова вивчено!',
     wordsInLesson:(n: number) => `${n} слів у цьому уроці`,
 
     hallOfFame:   'Зал слави',
@@ -181,7 +181,7 @@ export const T = {
     helpMenu:       'Допомога',
 
     chooseLanguage: 'Оберіть мову',
-    enterName:      'Введіть ваше ім\'я або нікнейм',
+    enterName:      'Введіть своє ім\'я або нікнейм',
     namePlaceholder:'Ваше ім\'я...',
     continueBtn:    'Продовжити',
     nameRequired:   'Введіть ім\'я щоб продовжити',
@@ -218,11 +218,11 @@ export const T = {
     daysEstimate:    (days: number) => `~${days} днів`,
     lessonsCount:    (count: number) => `${count} уроків у твоєму темпі`,
     hoursPerWeek:    (hours: number) => `~${hours} годин на тиждень навчання`,
-    reachTargetBy:   (date: string) => `Ти досягнеш цільового рівня к ${date}`,
+    reachTargetBy:   (date: string) => `Ти досягнеш цільового рівня до ${date}`,
 
     // Онбординг: нагадування
     preferredTime:   'Коли зазвичай вільний?',
-    setNotifications: 'Нагадувати мені в {time} кожен день',
+    setNotifications: 'Нагадувати мені о {time} щодня',
 
     // Онбординг: завершення
     congratulations: 'Вітаємо!',

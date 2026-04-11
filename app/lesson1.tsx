@@ -146,7 +146,7 @@ interface LessonContentProps {
   t: any;
   f: any;
   themeMode: ThemeMode;
-  lang: 'ru' | 'uk';
+  lang: 'ru' | 'uk' | 'en';
   emptyTapFlash: boolean;
   setEmptyTapFlash: (val: boolean) => void;
   shouldShake: boolean;
@@ -421,7 +421,11 @@ const LessonContent = React.memo(function LessonContent({
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
               {shuffled.map((word, i) => {
-                const phraseWordsList = phrase ? getPhraseWords(phrase.english) : [];
+                // Use phrase.words[] when available — getPhraseWords merges phrasal verbs
+                // (e.g. "look for" → 1 token) causing index mismatch with phraseWordIdx
+                const phraseWordsList = phrase?.words
+                  ? phrase.words.map((w: any) => w.correct)
+                  : (phrase ? getPhraseWords(phrase.english) : []);
                 const correctWord = phraseWordsList[phraseWordIdx] ?? null;
                 const nextCorrectWord = phraseWordsList[phraseWordIdx + 1] ?? null;
                 const validContraction = correctWord && nextCorrectWord
@@ -442,7 +446,7 @@ const LessonContent = React.memo(function LessonContent({
                 const isDimmed = dimmedWords.has(word);
 
                 return (
-                  <Animated.View key={i} style={{
+                  <Animated.View key={word} style={{
                     width: '48%',
                     marginBottom: compact ? 7 : 10,
                     opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
@@ -487,7 +491,7 @@ const LessonContent = React.memo(function LessonContent({
                 }} />
               ))}
             </View>
-            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{correctCount}/{TOTAL}</Text>
+            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{cellIndex + 1}/{TOTAL}</Text>
           </View>
         </View>
 
@@ -1005,7 +1009,11 @@ export default function LessonScreen() {
   const handleWordPress = useCallback((word: string) => {
     if (status === 'result') return;
 
-    const phraseWords = getPhraseWords(phrase?.english ?? '');
+    // Use phrase.words[] when available — getPhraseWords merges phrasal verbs
+    // (e.g. "look for" → 1 token) causing index mismatch with phraseWordIdx
+    const phraseWords = phrase?.words
+      ? phrase.words.map((w: any) => w.correct)
+      : getPhraseWords(phrase?.english ?? '');
     const totalPhraseWords = phraseWords.length;
     const next = [...selectedWords, word];
     setSelectedWords(next);
@@ -1105,7 +1113,9 @@ export default function LessonScreen() {
       // If the last word was a contraction that skipped 2 phrase words (e.g. "aren't" = "are"+"not"),
       // we need to step back 2 positions, not 1.
       const lastWord = selectedWords[selectedWords.length - 1] ?? '';
-      const phraseWordsForUndo = getPhraseWords(phrase?.english ?? '');
+      const phraseWordsForUndo = phrase?.words
+        ? phrase.words.map((w: any) => w.correct)
+        : getPhraseWords(phrase?.english ?? '');
       const twoWordContr = phraseWordIdx >= 2
         ? getContractionFor(phraseWordsForUndo[phraseWordIdx - 2] ?? '', phraseWordsForUndo[phraseWordIdx - 1] ?? '')
         : null;
@@ -1116,8 +1126,10 @@ export default function LessonScreen() {
       // Check if last remaining word is expansion[0] of the contraction at newPhraseIdx
       // (happens when undoing the last expansion token, e.g. undoing "not" after "do")
       if (newSelected.length > 0) {
-        const phraseWords = getPhraseWords(phrase?.english ?? '');
-        const origWord = phraseWords[newPhraseIdx];
+        const phraseWordsUndo = phrase?.words
+          ? phrase.words.map((w: any) => w.correct)
+          : getPhraseWords(phrase?.english ?? '');
+        const origWord = phraseWordsUndo[newPhraseIdx];
         const prevContr = lookupContraction(origWord ?? '');
         if (prevContr && newSelected[newSelected.length - 1].toLowerCase() === prevContr[0].toLowerCase()) {
           // Restore expansion mode — user needs to pick the second token again
@@ -1210,7 +1222,11 @@ export default function LessonScreen() {
   const handleFiftyFifty = useCallback(() => {
     if (fiftyFiftyUsedToday >= 3 || !phrase) return;
 
-    const phraseWordsList = getPhraseWords(phrase.english);
+    // Use phrase.words[] when available — getPhraseWords merges phrasal verbs
+    // (e.g. "look for" → 1 token) causing index mismatch with phraseWordIdx
+    const phraseWordsList = phrase.words
+      ? phrase.words.map((w: any) => w.correct)
+      : getPhraseWords(phrase.english);
     const correctWord = phraseWordsList[phraseWordIdx] ?? null;
     const nextCorrectWord = phraseWordsList[phraseWordIdx + 1] ?? null;
     const validContraction = correctWord && nextCorrectWord
@@ -1333,7 +1349,7 @@ export default function LessonScreen() {
           const LABELS_UK: Record<MedalTier, { up: string; upSub: string; down: string; downSub: string }> = {
             none:   { up: '', upSub: '', down: '', downSub: '' },
             bronze: { up: 'Є Бронза!', upSub: 'Так тримати — продовжуй!', down: 'Оцінка впала...', downSub: 'Ще пара вірних відповідей' },
-            silver: { up: 'Вже Срібло!', upSub: 'Чудовий результат!', down: 'Злетів до Бронзи', downSub: 'Давай — повернемо Срібло!' },
+            silver: { up: 'Вже Срібло!', upSub: 'Чудовий результат!', down: 'Зліз до Бронзи', downSub: 'Давай — повернемо Срібло!' },
             gold:   { up: 'Золото! Ідеально!', upSub: 'Урок пройдено на відмінно!', down: 'Злетіло Золото...', downSub: 'Потрібне ще одне коло' },
           };
           const color  = MEDAL_COLORS[tier];

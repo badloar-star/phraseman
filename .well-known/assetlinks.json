@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.phraseman",
+      "sha256_cert_fingerprints":
+        ["6B:2E:3E:6C:4F:FD:E3:2D:B0:0D:11:72:8B:1E:4D:05:99:3F:8B:3B:84:17:15:C3:73:2A:17:D3:4E:AA:48:B0"]
+    }
+  }
+]

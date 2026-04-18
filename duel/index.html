@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PhraseMan Дуэль</title>
+  <script>
+    const path = window.location.pathname;
+    const roomId = path.split('/').pop();
+    // Пробуем открыть приложение
+    window.location = 'phraseman://duel/' + roomId;
+    // Если через 2 сек не открылось — редиректим в Play Store
+    setTimeout(() => {
+      window.location = 'https://play.google.com/store/apps/details?id=app.phraseman';
+    }, 2000);
+  </script>
+  <style>
+    body { font-family: -apple-system, sans-serif; background: #0f0f13; color: #fff; display: flex; align-items: center; justify-content: center; min-height: 100vh; text-align: center; }
+    .logo { font-size: 64px; margin-bottom: 16px; }
+    p { color: #888; }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="logo">⚔️</div>
+    <h2>Открываем дуэль...</h2>
+    <p>Если приложение не открылось — скачай PhraseMan</p>
+  </div>
+</body>
+</html>

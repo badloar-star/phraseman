@@ -16,14 +16,15 @@
   <script>
     var path = window.location.pathname;
     var duelMatch = path.match(/\/duel\/([A-Za-z0-9]+)/);
+    var playStoreBase = 'https://play.google.com/store/apps/details?id=app.phraseman';
     if (duelMatch) {
       var roomId = duelMatch[1];
       window.location = 'phraseman://duel/' + roomId;
       setTimeout(function() {
-        window.location = 'https://play.google.com/store/apps/details?id=app.phraseman';
+        window.location = playStoreBase + '&referrer=' + encodeURIComponent('duel_' + roomId);
       }, 1500);
     } else {
-      window.location = 'https://play.google.com/store/apps/details?id=app.phraseman';
+      window.location = playStoreBase;
     }
   </script>
 </head>

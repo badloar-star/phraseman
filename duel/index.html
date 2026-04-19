@@ -19,7 +19,8 @@
     if (roomId && roomId !== 'duel' && roomId !== 'index.html') {
       window.location = 'phraseman://duel/' + roomId;
       setTimeout(function() {
-        window.location = 'https://play.google.com/store/apps/details?id=app.phraseman';
+        var ref = encodeURIComponent('duel_' + roomId);
+        window.location = 'https://play.google.com/store/apps/details?id=app.phraseman&referrer=' + ref;
       }, 1500);
     }
   </script>

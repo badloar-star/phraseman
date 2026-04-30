@@ -29,7 +29,8 @@
         "image": "latest"
       },
       "ios": {
-        "simulator": false
+        "simulator": false,
+        "autoIncrement": true
       }
     }
   },

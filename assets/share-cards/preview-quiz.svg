@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" fill="none">
+  <defs>
+    <linearGradient id="qcBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1f28"/>
+      <stop offset="45%" stop-color="#06141b"/>
+      <stop offset="100%" stop-color="#020a0e"/>
+    </linearGradient>
+    <radialGradient id="qcGlow" cx="50%" cy="38%" r="50%">
+      <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#06141b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="qcBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d4a017"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="qcNum" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#f97316"/>
+    </linearGradient>
+    <linearGradient id="qcFlameOut" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="qcFlameIn" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#qcBg)"/>
+  <rect width="1080" height="1080" fill="url(#qcGlow)"/>
+  <g opacity="0.07" stroke="#7ab8cc" stroke-width="1">
+    <path d="M0 180 H1080 M0 360 H1080 M0 540 H1080 M0 720 H1080 M0 900 H1080"/>
+    <path d="M180 0 V1080 M360 0 V1080 M540 0 V1080 M720 0 V1080 M900 0 V1080"/>
+  </g>
+  <text x="540" y="110" text-anchor="middle" fill="#8aa8b4" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="28" font-weight="600" letter-spacing="0.2em">PHRASEMAN</text>
+  <text x="540" y="158" text-anchor="middle" fill="#3d5a66" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="24" font-weight="600">&#1050;&#1074;&#1080;&#1079;</text>
+  <text x="540" y="280" text-anchor="middle" font-size="100" font-family="Segoe UI, Apple Color Emoji, sans-serif">&#129352;</text>
+  <text x="540" y="440" text-anchor="middle" fill="url(#qcNum)" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="260" font-weight="800">70%</text>
+  <text x="540" y="510" text-anchor="middle" fill="#94a3b8" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="32" font-weight="600">7 &#1080;&#1079; 10 &#1074;&#1077;&#1088;&#1085;&#1099;&#1093;</text>
+  <text x="540" y="600" text-anchor="middle" fill="#fb923c" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="28" font-weight="600">&#1061;&#1086;&#1088;&#1086;&#1096;&#1086;!</text>
+  <g transform="translate(414,618) scale(0.4921875)">
+    <path fill="url(#qcFlameOut)" d="M394.23,197.56a300.43,300.43,0,0,0-53.37-90C301.2,61.65,249.05,32,208,32a16,16,0,0,0-15.48,20c13.87,53-14.88,97.07-45.31,143.72C122,234.36,96,274.27,96,320c0,88.22,71.78,160,160,160s160-71.78,160-160C416,276.7,408.68,235.51,394.23,197.56Z"/>
+    <path fill="url(#qcFlameIn)" d="M288.33,418.69C278,429.69,265.05,432,256,432s-22-2.31-32.33-13.31S208,390.24,208,368c0-25.14,8.82-44.28,17.34-62.78,4.95-10.74,10-21.67,13-33.37a8,8,0,0,1,12.49-4.51A126.48,126.48,0,0,1,275,292c18.17,24,29,52.42,29,76C304,390.24,298.58,407.77,288.33,418.69Z"/>
+  </g>
+  <rect x="120" y="990" width="840" height="3" rx="1.5" fill="url(#qcBar)" opacity="0.5"/>
+  <text x="540" y="1038" text-anchor="middle" fill="#5c7a86" font-family="Segoe UI, Roboto, Arial, sans-serif" font-size="24" font-weight="500">&#1059;&#1095;&#1080; &#1072;&#1085;&#1075;&#1083;&#1080;&#1081;&#1089;&#1082;&#1080;&#1081; &#1082;&#1072;&#1078;&#1076;&#1099;&#1081; &#1076;&#1077;&#1085;&#1100;</text>
+</svg>

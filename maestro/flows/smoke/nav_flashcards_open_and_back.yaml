@@ -1,0 +1,38 @@
+# Главная → карточки → назад (пустой список или обычный хедер — один testID).
+appId: app.phraseman
+---
+- launchApp
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "tab-home"
+    timeout: 90000
+- tapOn:
+    id: "tab-home"
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 45000
+# Быстрый ряд может быть ниже первого кадра (анимация секций / клавиатура).
+- scrollUntilVisible:
+    element:
+      id: "home-quick-flashcards"
+    direction: DOWN
+    timeout: 20000
+    speed: 80
+    visibilityPercentage: 50
+- tapOn:
+    id: "home-quick-flashcards"
+- extendedWaitUntil:
+    visible:
+      id: "flashcards-header-back"
+    timeout: 20000
+- tapOn:
+    id: "flashcards-header-back"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 15000

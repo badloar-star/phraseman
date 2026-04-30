@@ -1,0 +1,497 @@
+{
+  "summary": {
+    "generatedAt": "2026-04-25T18:24:04.636Z",
+    "packs": [
+      {
+        "file": "official_speaking_survival_chunks.json",
+        "packId": "official_speaking_survival_chunks",
+        "titleUk": "SOS-розмова",
+        "targetLevel": "A2-B2",
+        "cardCountDeclared": 60,
+        "cardCountActual": 60,
+        "countMismatch": false,
+        "duplicateIds": [],
+        "emptyEn": 0,
+        "emptyRu": 0,
+        "emptyUk": 0,
+        "emptyExplanations": {
+          "ru": 0,
+          "uk": 0
+        },
+        "missingTranscription": 0,
+        "usageNoteHomogeneity": {
+          "maxRepeatUk": 1,
+          "maxRepeatRu": 1,
+          "topUsageUk": [
+            {
+              "count": 1,
+              "sample": "Підходить майже для будь-якої розмовної ситуації; у формальному мовленні можна с"
+            },
+            {
+              "count": 1,
+              "sample": "Можна сказати перед відповіддю на запитання; не затягуйте паузу надто довго."
+            },
+            {
+              "count": 1,
+              "sample": "Добре підходить перед обережною або складною думкою."
+            }
+          ],
+          "topUsageRu": [
+            {
+              "count": 1,
+              "sample": "Подходит почти в любой разговорной ситуации; в формальной речи можно сказать Giv"
+            },
+            {
+              "count": 1,
+              "sample": "Можно сказать перед ответом на вопрос; не тяните паузу слишком долго."
+            },
+            {
+              "count": 1,
+              "sample": "Хорошо подходит перед осторожной или сложной мыслью."
+            }
+          ]
+        },
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "enGbPatternHits": [],
+        "usageTemplateRisk": "OK",
+        "blockers": []
+      },
+      {
+        "file": "official_office_remote_english.json",
+        "packId": "official_office_remote_english",
+        "titleUk": "Офіс · Дім · Zoom",
+        "cardCountDeclared": 60,
+        "cardCountActual": 60,
+        "countMismatch": false,
+        "duplicateIds": [],
+        "emptyEn": 0,
+        "emptyRu": 0,
+        "emptyUk": 0,
+        "emptyExplanations": {
+          "ru": 0,
+          "uk": 0
+        },
+        "missingTranscription": 0,
+        "usageNoteHomogeneity": {
+          "maxRepeatUk": 1,
+          "maxRepeatRu": 1,
+          "topUsageUk": [
+            {
+              "count": 1,
+              "sample": "Часто в першому рядку листа чи в Slack після паузи."
+            },
+            {
+              "count": 1,
+              "sample": "Пишіть, якщо вже пінгували, але накручувати тиск безсмисленно."
+            },
+            {
+              "count": 1,
+              "sample": "Далі одразу суть, без довгого вступу."
+            }
+          ],
+          "topUsageRu": [
+            {
+              "count": 1,
+              "sample": "Часто в первой строке письма или в Slack после паузы."
+            },
+            {
+              "count": 1,
+              "sample": "Пишите, если до этого уже пинговали, но нагнетать бессмысленно."
+            },
+            {
+              "count": 1,
+              "sample": "Потом сразу суть, без длинного вступления."
+            }
+          ]
+        },
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "enGbPatternHits": [],
+        "usageTemplateRisk": "OK",
+        "blockers": []
+      },
+      {
+        "file": "official_elegant_comebacks.json",
+        "packId": "official_elegant_comebacks",
+        "titleUk": "Влучно, та м'яко",
+        "targetLevel": "B1-B2",
+        "cardCountDeclared": 60,
+        "cardCountActual": 60,
+        "countMismatch": false,
+        "duplicateIds": [],
+        "emptyEn": 0,
+        "emptyRu": 0,
+        "emptyUk": 0,
+        "emptyExplanations": {
+          "ru": 0,
+          "uk": 0
+        },
+        "missingTranscription": 0,
+        "usageNoteHomogeneity": {
+          "maxRepeatUk": 3,
+          "maxRepeatRu": 3,
+          "topUsageUk": [
+            {
+              "count": 3,
+              "sample": "М'яке обличчя й коротка пауза знімають гостроту; на піку емоцій не перебивай."
+            },
+            {
+              "count": 3,
+              "sample": "Погодься з ланцюжком думок, а не з висновком: повага до людини й відстоювання по"
+            },
+            {
+              "count": 3,
+              "sample": "«Погодитись не погоджуватись» — зупиняє вічну суперечку без токсичної перемоги."
+            }
+          ],
+          "topUsageRu": [
+            {
+              "count": 3,
+              "sample": "Мягкое лицо и короткая пауза снимают остроту; на эмоциональном пике лучше не пер"
+            },
+            {
+              "count": 3,
+              "sample": "Соглашайтесь с логикой, не с выводом: это уважение к человеку без капитуляции по"
+            },
+            {
+              "count": 3,
+              "sample": "«Согласиться не соглашаться» — якорь, чтобы остановить бесконечный спор без «поб"
+            }
+          ]
+        },
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "enGbPatternHits": [],
+        "usageTemplateRisk": "OK",
+        "blockers": []
+      },
+      {
+        "file": "official_modern_abbrev_en.json",
+        "packId": "official_modern_abbrev_en",
+        "titleUk": "EN-шифр",
+        "targetLevel": "B1-B2",
+        "cardCountDeclared": 50,
+        "cardCountActual": 50,
+        "countMismatch": false,
+        "duplicateIds": [],
+        "emptyEn": 0,
+        "emptyRu": 0,
+        "emptyUk": 0,
+        "emptyExplanations": {
+          "ru": 0,
+          "uk": 0
+        },
+        "missingTranscription": 0,
+        "usageNoteHomogeneity": {
+          "maxRepeatUk": 1,
+          "maxRepeatRu": 1,
+          "topUsageUk": [
+            {
+              "count": 1,
+              "sample": "У листах усередині команди — норм; зовнішньому важкому клієнту інколи тепліше ре"
+            },
+            {
+              "count": 1,
+              "sample": "Сигнал дедлайну; постійні ASAP = вигорання. Краще дати час/дату, ніж кидати тіль"
+            },
+            {
+              "count": 1,
+              "sample": "Зміна фокуса в чаті — ок; у сухих юртекстах — окрема нейтральна вставка замість "
+            }
+          ],
+          "topUsageRu": [
+            {
+              "count": 1,
+              "sample": "В письмах внутри команды — норма; внешнему «важному» адресату иногда теплее речь"
+            },
+            {
+              "count": 1,
+              "sample": "Сигнал срочности; бесконечные ASAP = выгорание. Часто вежливее согласовать дату/"
+            },
+            {
+              "count": 1,
+              "sample": "Смена фокуса в чате — ок; в сухом юрконтракте лучше отдельное предложение вместо"
+            }
+          ]
+        },
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "enGbPatternHits": [],
+        "usageTemplateRisk": "OK",
+        "blockers": []
+      },
+      {
+        "file": "official_small_talk_en.json",
+        "packId": "official_small_talk_en",
+        "titleUk": "Перший контакт",
+        "targetLevel": "A2-B2",
+        "cardCountDeclared": 60,
+        "cardCountActual": 60,
+        "countMismatch": false,
+        "duplicateIds": [],
+        "emptyEn": 0,
+        "emptyRu": 0,
+        "emptyUk": 0,
+        "emptyExplanations": {
+          "ru": 0,
+          "uk": 0
+        },
+        "missingTranscription": 0,
+        "usageNoteHomogeneity": {
+          "maxRepeatUk": 0,
+          "maxRepeatRu": 0,
+          "topUsageUk": [],
+          "topUsageRu": []
+        },
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "enGbPatternHits": [],
+        "usageTemplateRisk": "OK",
+        "blockers": []
+      }
+    ],
+    "allPass_integrity": true,
+    "allPass_enUsSkim": true
+  },
+  "results": [
+    {
+      "file": "official_speaking_survival_chunks.json",
+      "packId": "official_speaking_survival_chunks",
+      "titleUk": "SOS-розмова",
+      "targetLevel": "A2-B2",
+      "cardCountDeclared": 60,
+      "cardCountActual": 60,
+      "countMismatch": false,
+      "duplicateIds": [],
+      "emptyEn": 0,
+      "emptyRu": 0,
+      "emptyUk": 0,
+      "emptyExplanations": {
+        "ru": 0,
+        "uk": 0
+      },
+      "missingTranscription": 0,
+      "usageNoteHomogeneity": {
+        "maxRepeatUk": 1,
+        "maxRepeatRu": 1,
+        "topUsageUk": [
+          {
+            "count": 1,
+            "sample": "Підходить майже для будь-якої розмовної ситуації; у формальному мовленні можна с"
+          },
+          {
+            "count": 1,
+            "sample": "Можна сказати перед відповіддю на запитання; не затягуйте паузу надто довго."
+          },
+          {
+            "count": 1,
+            "sample": "Добре підходить перед обережною або складною думкою."
+          }
+        ],
+        "topUsageRu": [
+          {
+            "count": 1,
+            "sample": "Подходит почти в любой разговорной ситуации; в формальной речи можно сказать Giv"
+          },
+          {
+            "count": 1,
+            "sample": "Можно сказать перед ответом на вопрос; не тяните паузу слишком долго."
+          },
+          {
+            "count": 1,
+            "sample": "Хорошо подходит перед осторожной или сложной мыслью."
+          }
+        ]
+      },
+      "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+      "enGbPatternHits": [],
+      "usageTemplateRisk": "OK",
+      "blockers": []
+    },
+    {
+      "file": "official_office_remote_english.json",
+      "packId": "official_office_remote_english",
+      "titleUk": "Офіс · Дім · Zoom",
+      "cardCountDeclared": 60,
+      "cardCountActual": 60,
+      "countMismatch": false,
+      "duplicateIds": [],
+      "emptyEn": 0,
+      "emptyRu": 0,
+      "emptyUk": 0,
+      "emptyExplanations": {
+        "ru": 0,
+        "uk": 0
+      },
+      "missingTranscription": 0,
+      "usageNoteHomogeneity": {
+        "maxRepeatUk": 1,
+        "maxRepeatRu": 1,
+        "topUsageUk": [
+          {
+            "count": 1,
+            "sample": "Часто в першому рядку листа чи в Slack після паузи."
+          },
+          {
+            "count": 1,
+            "sample": "Пишіть, якщо вже пінгували, але накручувати тиск безсмисленно."
+          },
+          {
+            "count": 1,
+            "sample": "Далі одразу суть, без довгого вступу."
+          }
+        ],
+        "topUsageRu": [
+          {
+            "count": 1,
+            "sample": "Часто в первой строке письма или в Slack после паузы."
+          },
+          {
+            "count": 1,
+            "sample": "Пишите, если до этого уже пинговали, но нагнетать бессмысленно."
+          },
+          {
+            "count": 1,
+            "sample": "Потом сразу суть, без длинного вступления."
+          }
+        ]
+      },
+      "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+      "enGbPatternHits": [],
+      "usageTemplateRisk": "OK",
+      "blockers": []
+    },
+    {
+      "file": "official_elegant_comebacks.json",
+      "packId": "official_elegant_comebacks",
+      "titleUk": "Влучно, та м'яко",
+      "targetLevel": "B1-B2",
+      "cardCountDeclared": 60,
+      "cardCountActual": 60,
+      "countMismatch": false,
+      "duplicateIds": [],
+      "emptyEn": 0,
+      "emptyRu": 0,
+      "emptyUk": 0,
+      "emptyExplanations": {
+        "ru": 0,
+        "uk": 0
+      },
+      "missingTranscription": 0,
+      "usageNoteHomogeneity": {
+        "maxRepeatUk": 3,
+        "maxRepeatRu": 3,
+        "topUsageUk": [
+          {
+            "count": 3,
+            "sample": "М'яке обличчя й коротка пауза знімають гостроту; на піку емоцій не перебивай."
+          },
+          {
+            "count": 3,
+            "sample": "Погодься з ланцюжком думок, а не з висновком: повага до людини й відстоювання по"
+          },
+          {
+            "count": 3,
+            "sample": "«Погодитись не погоджуватись» — зупиняє вічну суперечку без токсичної перемоги."
+          }
+        ],
+        "topUsageRu": [
+          {
+            "count": 3,
+            "sample": "Мягкое лицо и короткая пауза снимают остроту; на эмоциональном пике лучше не пер"
+          },
+          {
+            "count": 3,
+            "sample": "Соглашайтесь с логикой, не с выводом: это уважение к человеку без капитуляции по"
+          },
+          {
+            "count": 3,
+            "sample": "«Согласиться не соглашаться» — якорь, чтобы остановить бесконечный спор без «поб"
+          }
+        ]
+      },
+      "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+      "enGbPatternHits": [],
+      "usageTemplateRisk": "OK",
+      "blockers": []
+    },
+    {
+      "file": "official_modern_abbrev_en.json",
+      "packId": "official_modern_abbrev_en",
+      "titleUk": "EN-шифр",
+      "targetLevel": "B1-B2",
+      "cardCountDeclared": 50,
+      "cardCountActual": 50,
+      "countMismatch": false,
+      "duplicateIds": [],
+      "emptyEn": 0,
+      "emptyRu": 0,
+      "emptyUk": 0,
+      "emptyExplanations": {
+        "ru": 0,
+        "uk": 0
+      },
+      "missingTranscription": 0,
+      "usageNoteHomogeneity": {
+        "maxRepeatUk": 1,
+        "maxRepeatRu": 1,
+        "topUsageUk": [
+          {
+            "count": 1,
+            "sample": "У листах усередині команди — норм; зовнішньому важкому клієнту інколи тепліше ре"
+          },
+          {
+            "count": 1,
+            "sample": "Сигнал дедлайну; постійні ASAP = вигорання. Краще дати час/дату, ніж кидати тіль"
+          },
+          {
+            "count": 1,
+            "sample": "Зміна фокуса в чаті — ок; у сухих юртекстах — окрема нейтральна вставка замість "
+          }
+        ],
+        "topUsageRu": [
+          {
+            "count": 1,
+            "sample": "В письмах внутри команды — норма; внешнему «важному» адресату иногда теплее речь"
+          },
+          {
+            "count": 1,
+            "sample": "Сигнал срочности; бесконечные ASAP = выгорание. Часто вежливее согласовать дату/"
+          },
+          {
+            "count": 1,
+            "sample": "Смена фокуса в чате — ок; в сухом юрконтракте лучше отдельное предложение вместо"
+          }
+        ]
+      },
+      "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+      "enGbPatternHits": [],
+      "usageTemplateRisk": "OK",
+      "blockers": []
+    },
+    {
+      "file": "official_small_talk_en.json",
+      "packId": "official_small_talk_en",
+      "titleUk": "Перший контакт",
+      "targetLevel": "A2-B2",
+      "cardCountDeclared": 60,
+      "cardCountActual": 60,
+      "countMismatch": false,
+      "duplicateIds": [],
+      "emptyEn": 0,
+      "emptyRu": 0,
+      "emptyUk": 0,
+      "emptyExplanations": {
+        "ru": 0,
+        "uk": 0
+      },
+      "missingTranscription": 0,
+      "usageNoteHomogeneity": {
+        "maxRepeatUk": 0,
+        "maxRepeatRu": 0,
+        "topUsageUk": [],
+        "topUsageRu": []
+      },
+      "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+      "enGbPatternHits": [],
+      "usageTemplateRisk": "OK",
+      "blockers": []
+    }
+  ]
+}

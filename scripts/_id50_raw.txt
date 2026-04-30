@@ -1,0 +1,7 @@
+id: 50,
+    english: 'I used to doubt that final victory before that decisive moment.',
+    russian: 'Я раньше часто сомневался в той окончательной победе до того решающего момента.',
+    ukrainian: 'Я раніше часто сумнівався в тій остаточній перемозі до того вирішального моменту.',
+    words: [
+      { text: 'I', correct: 'I', distractors: ['me', 'my', 'mine', 'we', 'you'] },
+      { text: 'used'

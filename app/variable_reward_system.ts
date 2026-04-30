@@ -216,7 +216,7 @@ export async function openTreasureChest(isPremium: boolean = false): Promise<Tre
 
   try {
     await AsyncStorage.setItem('daily_treasure_state', JSON.stringify(state));
-  } catch (e) {
+  } catch {
   }
 
   return {
@@ -237,3 +237,6 @@ export async function getTreasureStats(): Promise<{ totalOpened: number; totalBo
     totalBonusXP: state.totalBonusXPWon,
   };
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

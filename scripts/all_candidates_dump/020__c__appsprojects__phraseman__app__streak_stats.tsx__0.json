@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/streak_stats.tsx",
+  "session": "33b61ac9",
+  "op_index": 0,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "import { hapticTap } from '../hooks/use-haptics';",
+  "new_string": "import { hapticTap } from '../hooks/use-haptics';\nimport { useDuelRank } from '../hooks/use-duel-rank';"
+}

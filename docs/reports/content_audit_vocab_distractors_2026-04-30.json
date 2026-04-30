@@ -1,0 +1,92 @@
+{
+  "stamp": "2026-04-30",
+  "byKind": {
+    "D_FP_CROSS_CLASS": 14
+  },
+  "issues": [
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 1,
+      "ctx": "fp=air|am|arm|art|is",
+      "msg": "один distractor-set для разных грамм. классов [be, pronoun]: L1:lesson1_phrase_2:are; L1:lesson1_phrase_6:are; L1:lesson1_phrase_9:are; L1:lesson1_phrase_13:are; L1:lesson1_phrase_17:are; L1:lesson1_phrase_18:are; L1:lesson1_phrase_24:are; L1:lesson1_phrase_29:are …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 2,
+      "ctx": "fp=u|you're|your|yours|youth",
+      "msg": "один distractor-set для разных грамм. классов [be, pronoun]: L2:lesson2_phrase_2:you; L2:lesson2_phrase_9:you; L2:lesson2_phrase_16:you; L2:lesson2_phrase_22:you; L2:lesson2_phrase_31:are; L2:lesson2_phrase_38:you; L2:lesson2_phrase_44:you; L2:lesson2_phrase_50:you …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 8,
+      "ctx": "fp=as|at|by|on|to",
+      "msg": "один distractor-set для разных грамм. классов [open, prep]: L8:lesson8_phrase_5:in; L8:lesson8_phrase_10:in; L8:lesson8_phrase_19:in; L8:lesson8_phrase_24:in; L9:lesson9_phrase_2:in; L9:lesson9_phrase_6:in; L9:lesson9_phrase_9:in; L9:lesson9_phrase_10:in …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 9,
+      "ctx": "fp=by|i|may|me|mine",
+      "msg": "один distractor-set для разных грамм. классов [prep, pronoun]: L9:lesson9_phrase_1:my; L9:lesson9_phrase_19:my; L9:lesson9_phrase_21:in; L9:lesson9_phrase_26:in; L9:lesson9_phrase_31:my; L9:lesson9_phrase_36:my; L9:lesson9_phrase_41:my; L9:lesson9_phrase_46:my …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 9,
+      "ctx": "fp=knot|no|none|note|now",
+      "msg": "один distractor-set для разных грамм. классов [neg, open]: L9:lesson9_phrase_12:not; L9:lesson9_phrase_22:not; L9:lesson9_phrase_29:not; L9:lesson9_phrase_41:not; L9:lesson9_phrase_47:not; L10:lesson10_phrase_3:fix; L10:lesson10_phrase_6:not; L10:lesson10_phrase_9:not …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 9,
+      "ctx": "fp=theirs|them|there|they|they are",
+      "msg": "один distractor-set для разных грамм. классов [prep, pronoun]: L9:lesson9_phrase_20:in; L9:lesson9_phrase_25:their; L9:lesson9_phrase_40:their; L9:lesson9_phrase_50:their"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 10,
+      "ctx": "fp=a|an|any|some|the",
+      "msg": "один distractor-set для разных грамм. классов [marker, open]: L10:lesson10_phrase_40:every; L10:lesson10_phrase_43:every; L20:l20p1:-; L20:l20p1:-; L20:l20p1:-; L20:l20p2:-; L20:l20p2:-; L20:l20p2:- …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 15,
+      "ctx": "fp=am|be|been|is|was",
+      "msg": "один distractor-set для разных грамм. классов [be, open]: L15:lesson15_phrase_9:are; L15:lesson15_phrase_14:are; L15:lesson15_phrase_18:are; L15:lesson15_phrase_19:are; L15:lesson15_phrase_24:are; L15:lesson15_phrase_26:are; L15:lesson15_phrase_28:are; L15:lesson15_phrase_29:are …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 21,
+      "ctx": "fp=a|an|any|each|some",
+      "msg": "один distractor-set для разных грамм. классов [article, open, prep]: L21:l21p3:the; L21:l21p6:the; L21:l21p8:the; L21:l21p15:the; L21:l21p20:the; L21:l21p27:the; L21:l21p31:because; L21:l21p34:the …"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 21,
+      "ctx": "fp=matter|meet|meets|mental|metal",
+      "msg": "один distractor-set для разных грамм. классов [article, open]: L21:l21p3:meeting; L21:l21p42:the"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 21,
+      "ctx": "fp=storm|straight|strange|strength|string",
+      "msg": "один distractor-set для разных грамм. классов [open, prep]: L21:l21p22:because; L21:l21p31:of"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 21,
+      "ctx": "fp=wide|wild|winds|wine|wing",
+      "msg": "один distractor-set для разных грамм. классов [article, prep]: L21:l21p22:of; L21:l21p31:the"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 21,
+      "ctx": "fp=dark|doing|dream|drink|drive",
+      "msg": "один distractor-set для разных грамм. классов [open, prep]: L21:l21p26:during; L21:l21p42:excuse"
+    },
+    {
+      "kind": "D_FP_CROSS_CLASS",
+      "lesson": 22,
+      "ctx": "fp=air|airplane|airports|passport|port",
+      "msg": "один distractor-set для разных грамм. классов [article, open]: L22:lesson22_phrase_28:the; L25:l25p8:airport"
+    }
+  ]
+}

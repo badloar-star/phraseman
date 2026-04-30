@@ -1,0 +1,1714 @@
+[
+  {
+    "id": "a2_001",
+    "level": "A2",
+    "rand": 0.9786303259897977,
+    "type": "fill_blank",
+    "task": "Выберите правильный предлог · Оберіть правильний прийменник",
+    "question": "I'm interested ___ learning more about your culture.",
+    "options": [
+      "on",
+      "in",
+      "to",
+      "at"
+    ],
+    "correct": "in",
+    "rule": "После interested ставят предлог in (+ -ing). · Після interested вживають прийменник in (+ -ing)."
+  },
+  {
+    "id": "a2_002",
+    "level": "A2",
+    "rand": 0.9395925016142428,
+    "type": "complete_phrasal",
+    "task": "Закончите фразовый глагол · Доповніть фразове дієслово",
+    "question": "Please fill ___ this application form and sign it.",
+    "options": [
+      "out",
+      "on",
+      "in",
+      "up"
+    ],
+    "correct": "in",
+    "rule": "fill in / fill out — заполнить бланк. · fill in / fill out — заповнити бланк."
+  },
+  {
+    "id": "a2_003",
+    "level": "A2",
+    "rand": 0.641738495323807,
+    "type": "find_error",
+    "task": "Найдите предложение с ошибкой · Знайдіть речення з помилкою",
+    "question": "Which sentence contains a grammar error?",
+    "options": [
+      "He doesn't like playing football.",
+      "He didn't like playing football.",
+      "He don't like playing football.",
+      "He never likes playing football."
+    ],
+    "correct": "He don't like playing football.",
+    "rule": "Для he/she/it в Present Simple — doesn't, не don't. · Для he/she/it у Present Simple — doesn't, не don't."
+  },
+  {
+    "id": "a2_004",
+    "level": "A2",
+    "rand": 0.09056178526952863,
+    "type": "translate_meaning",
+    "task": "Выберите значение выражения · Оберіть значення вислову",
+    "question": "What does \"I'm looking forward to it\" mean?",
+    "options": [
+      "Собираюсь это сделать · Збираюся це зробити",
+      "Ищу это сейчас · Зараз це шукаю",
+      "Жду этого с нетерпением · Дуже цього чекаю",
+      "Смотрю вперед на это · Дивлюся на це попереду"
+    ],
+    "correct": "Жду этого с нетерпением · Дуже цього чекаю",
+    "rule": "look forward to — с нетерпением ждать. · look forward to — з нетерпінням чекати."
+  },
+  {
+    "id": "a2_005",
+    "level": "A2",
+    "rand": 0.773963391315192,
+    "type": "choose_phrasal",
+    "task": "Выберите фразовый глагол · Оберіть фразове дієслово",
+    "question": "Which verb means \"to have a good relationship with someone\"?",
+    "options": [
+      "get back with",
+      "get in with",
+      "get up with",
+      "get on with"
+    ],
+    "correct": "get on with",
+    "rule": "get on (well) with — ладить с кем-то. · get on (well) with — ладнати з кимось."
+  },
+  {
+    "id": "a2_006",
+    "level": "A2",
+    "rand": 0.9559104745276272,
+    "type": "quiz_logic",
+    "task": "Выберите подходящую реплику · Оберіть доречну репліку",
+    "question": "A: \"Can I borrow your pen for a second?\" — B:",
+    "options": [
+      "Yes, it is my pen.",
+      "Sure, here you are.",
+      "No, I don't borrow.",
+      "I am using it never."
+    ],
+    "correct": "Sure, here you are.",
+    "rule": "При передаче вещи — Here you are. · Передаючи річ — Here you are."
+  },
+  {
+    "id": "a2_007",
+    "level": "A2",
+    "rand": 0.5083230740856379,
+    "type": "fill_blank",
+    "task": "Выберите форму прилагательного · Оберіть форму прикметника",
+    "question": "This is ___ film I have ever seen in my life.",
+    "options": [
+      "more worse",
+      "the worse",
+      "the baddest",
+      "the worst"
+    ],
+    "correct": "the worst",
+    "rule": "Превосходная степень bad — worst (не baddest). · Найвищий ступінь bad — worst (не baddest)."
+  },
+  {
+    "id": "a2_008",
+    "level": "A2",
+    "rand": 0.9322831770405173,
+    "type": "find_error",
+    "task": "Найдите неверное предложение · Знайдіть неправильне речення",
+    "question": "Identify the INCORRECT sentence:",
+    "options": [
+      "I saw him two days ago.",
+      "I saw him then.",
+      "I haven't seen him yet.",
+      "I have seen him two days ago."
+    ],
+    "correct": "I have seen him two days ago.",
+    "rule": "С ago обычно Past Simple, не Present Perfect. · З ago зазвичай Past Simple, не Present Perfect."
+  },
+  {
+    "id": "a2_009",
+    "level": "A2",
+    "rand": 0.4451088036876172,
+    "type": "fill_blank",
+    "task": "Выберите слово · Оберіть слово",
+    "question": "We don't have ___ apples to make a pie.",
+    "options": [
+      "anyway",
+      "too much",
+      "a little",
+      "enough"
+    ],
+    "correct": "enough",
+    "rule": "enough + существительное — достаточно. · enough + іменник — достатньо."
+  },
+  {
+    "id": "a2_010",
+    "level": "A2",
+    "rand": 0.6286630977410823,
+    "type": "quiz_logic",
+    "task": "Выберите ответ в диалоге · Оберіть відповідь у діалозі",
+    "question": "A: \"Would you mind opening the window?\" — B:",
+    "options": [
+      "Yes, I would mind.",
+      "No, not at all.",
+      "The window is white.",
+      "I open it yesterday."
+    ],
+    "correct": "No, not at all.",
+    "rule": "Would you mind…? — No, not at all = согласен помочь. · Would you mind…? — No, not at all = згоден допомогти."
+  },
+  {
+    "id": "a2_011",
+    "level": "A2",
+    "rand": 0.6481737580616027,
+    "type": "fill_blank",
+    "task": "Прийменник місця · Предлог места",
+    "question": "My office is ___ the second floor of that building.",
+    "options": [
+      "on",
+      "at",
+      "by",
+      "in"
+    ],
+    "correct": "on",
+    "rule": "Этаж здания — on the … floor. · Поверх будівлі — on the … floor."
+  },
+  {
+    "id": "a2_012",
+    "level": "A2",
+    "rand": 0.6686074959579855,
+    "type": "complete_phrasal",
+    "task": "Фразовый глагол · Фразове дієслово",
+    "question": "The heating is too high. Can you turn it ___ a little?",
+    "options": [
+      "away",
+      "into",
+      "down",
+      "back"
+    ],
+    "correct": "down",
+    "rule": "turn down — убавить громкость/температуру. · turn down — зменшити гучність/температуру."
+  },
+  {
+    "id": "a2_013",
+    "level": "A2",
+    "rand": 0.6625498833600432,
+    "type": "find_error",
+    "task": "Найдите ошибку · Знайдіть помилку",
+    "question": "Which of these sentences is WRONG?",
+    "options": [
+      "I am seeing him yesterday.",
+      "Did you see him yesterday?",
+      "I didn't see him yesterday.",
+      "I saw him yesterday."
+    ],
+    "correct": "I am seeing him yesterday.",
+    "rule": "Вчера + завершённое действие — Past Simple, не Continuous. · Учора + завершена дія — Past Simple, не Continuous."
+  },
+  {
+    "id": "a2_014",
+    "level": "A2",
+    "rand": 0.5629638331010938,
+    "type": "translate_meaning",
+    "task": "Значение фразы · Значення фрази",
+    "question": "What does \"I'm afraid so\" mean in a conversation?",
+    "options": [
+      "Я очень испуган · Я дуже наляканий",
+      "Боюсь, что так (к сожалению, да) · Боюся, що так (на жаль, так)",
+      "Мне всё равно · Мені все одно",
+      "Я так не думаю · Я так не думаю"
+    ],
+    "correct": "Боюсь, что так (к сожалению, да) · Боюся, що так (на жаль, так)",
+    "rule": "I'm afraid so — вежливое «к сожалению, да». · I'm afraid so — ввічливе «на жаль, так»."
+  },
+  {
+    "id": "a2_015",
+    "level": "A2",
+    "rand": 0.8400354811456054,
+    "type": "choose_phrasal",
+    "task": "Включить прибор · Увімкнути прилад",
+    "question": "Which verb means \"to start a computer or a machine\"?",
+    "options": [
+      "switch on",
+      "switch in",
+      "switch up",
+      "switch off"
+    ],
+    "correct": "switch on",
+    "rule": "switch on / turn on — включить. · switch on / turn on — увімкнути."
+  },
+  {
+    "id": "a2_016",
+    "level": "A2",
+    "rand": 0.5802466317545623,
+    "type": "quiz_logic",
+    "task": "Логичная реплика · Логічна репліка",
+    "question": "A: \"I'm going to take my exam today.\" — B:",
+    "options": [
+      "You're welcome.",
+      "Happy birthday!",
+      "Nice to meet you.",
+      "Good luck!"
+    ],
+    "correct": "Good luck!",
+    "rule": "Перед экзаменом желают удачи. · Перед іспитом бажають удачі."
+  },
+  {
+    "id": "a2_017",
+    "level": "A2",
+    "rand": 0.31565644568763673,
+    "type": "fill_blank",
+    "task": "much / many · much / many",
+    "question": "I haven't got ___ luggage with me today.",
+    "options": [
+      "a",
+      "few",
+      "many",
+      "much"
+    ],
+    "correct": "much",
+    "rule": "luggage — неисчисляемое → much. · luggage — незлічуване → much."
+  },
+  {
+    "id": "a2_018",
+    "level": "A2",
+    "rand": 0.19837751961313188,
+    "type": "fill_blank",
+    "task": "Past Continuous · Past Continuous",
+    "question": "We ___ lunch when the phone rang.",
+    "options": [
+      "have had",
+      "had",
+      "are having",
+      "were having"
+    ],
+    "correct": "were having",
+    "rule": "Длительное действие в прошлом, прерванное событием — Past Continuous. · Тривала дія в минулому, перервана подією — Past Continuous."
+  },
+  {
+    "id": "a2_019",
+    "level": "A2",
+    "rand": 0.47803689748980105,
+    "type": "quiz_logic",
+    "task": "What … like? · What … like?",
+    "question": "A: \"What is your new boss like?\" — B:",
+    "options": [
+      "He likes coffee.",
+      "He looks at a map.",
+      "He's very kind.",
+      "He's at work."
+    ],
+    "correct": "He's very kind.",
+    "rule": "What is … like? — о характере/впечатлении. · What is … like? — про характер/враження."
+  },
+  {
+    "id": "a2_020",
+    "level": "A2",
+    "rand": 0.44896122463978827,
+    "type": "fill_blank",
+    "task": "Present Perfect + yet · Present Perfect + yet",
+    "question": "We ___ any plans for the weekend yet.",
+    "options": [
+      "haven't make",
+      "didn't make",
+      "haven't made",
+      "don't make"
+    ],
+    "correct": "haven't made",
+    "rule": "yet в отрицании — Present Perfect. · yet у запереченні — Present Perfect."
+  },
+  {
+    "id": "a2_021",
+    "level": "A2",
+    "rand": 0.3588390436489135,
+    "type": "complete_phrasal",
+    "task": "Отменить · Скасувати",
+    "question": "The meeting was cancelled, so we had to call it ___.",
+    "options": [
+      "back",
+      "away",
+      "out",
+      "off"
+    ],
+    "correct": "off",
+    "rule": "call off — отменить событие. · call off — скасувати подію."
+  },
+  {
+    "id": "a2_022",
+    "level": "A2",
+    "rand": 0.9791300692595541,
+    "type": "find_error",
+    "task": "Сравнение прилагательных · Порівняння прикметників",
+    "question": "Which sentence is WRONG?",
+    "options": [
+      "He is more strong than me.",
+      "He is stronger than me.",
+      "He is very strong.",
+      "He is the strongest here."
+    ],
+    "correct": "He is more strong than me.",
+    "rule": "Короткие прилагательные чаще с -er: stronger. · Короткі прикметники частіше з -er: stronger."
+  },
+  {
+    "id": "a2_023",
+    "level": "A2",
+    "rand": 0.06517084082588553,
+    "type": "translate_meaning",
+    "task": "By the way · By the way",
+    "question": "What does the phrase \"By the way\" mean?",
+    "options": [
+      "У дороги · Біля дороги",
+      "Навсегда · Назавжди",
+      "Кстати · До речі",
+      "Наверное · Мабуть"
+    ],
+    "correct": "Кстати · До речі",
+    "rule": "by the way — кстати, между прочим. · by the way — до речі, між іншим."
+  },
+  {
+    "id": "a2_024",
+    "level": "A2",
+    "rand": 0.44738886412233114,
+    "type": "choose_phrasal",
+    "task": "continue · continue",
+    "question": "Which verb means \"to continue doing something\"?",
+    "options": [
+      "go off",
+      "go up",
+      "go out",
+      "go on"
+    ],
+    "correct": "go on",
+    "rule": "go on — продолжать. · go on — продовжувати."
+  },
+  {
+    "id": "a2_025",
+    "level": "A2",
+    "rand": 0.23394437646493316,
+    "type": "quiz_logic",
+    "task": "Извинения · Вибачення",
+    "question": "A: \"I'm sorry, I've broken your favorite mug.\" — B:",
+    "options": [
+      "Nice to meet you.",
+      "Yes, please do.",
+      "Don't worry about it.",
+      "You're welcome."
+    ],
+    "correct": "Don't worry about it.",
+    "rule": "Ответ на извинение за мелочь — Don't worry / It doesn't matter. · Відповідь на вибачення за дрібницю — Don't worry / It doesn't matter."
+  },
+  {
+    "id": "a2_026",
+    "level": "A2",
+    "rand": 0.4250926347449422,
+    "type": "fill_blank",
+    "task": "Транспорт · Транспорт",
+    "question": "I usually go to work ___ train.",
+    "options": [
+      "on",
+      "in",
+      "with",
+      "by"
+    ],
+    "correct": "by",
+    "rule": "by + transport без артикля. · by + транспорт без артикля."
+  },
+  {
+    "id": "a2_027",
+    "level": "A2",
+    "rand": 0.5089975099544972,
+    "type": "find_error",
+    "task": "they was · they was",
+    "question": "Which sentence has a grammar mistake?",
+    "options": [
+      "They were at home yesterday.",
+      "Were they at home yesterday?",
+      "They was at home yesterday.",
+      "They weren't at home yesterday."
+    ],
+    "correct": "They was at home yesterday.",
+    "rule": "they + were. · they + were."
+  },
+  {
+    "id": "a2_028",
+    "level": "A2",
+    "rand": 0.7380002620629966,
+    "type": "fill_blank",
+    "task": "time · time",
+    "question": "I don't have ___ free time this week.",
+    "options": [
+      "a lot of",
+      "many",
+      "few",
+      "much"
+    ],
+    "correct": "much",
+    "rule": "time неисчисляемое; в отрицании часто much. · time незлічуване; у запереченні часто much."
+  },
+  {
+    "id": "a2_029",
+    "level": "A2",
+    "rand": 0.316162375966087,
+    "type": "quiz_logic",
+    "task": "Как пройти · Як пройти",
+    "question": "A: \"Could you tell me where the station is?\" — B:",
+    "options": [
+      "It's just around the corner.",
+      "Yes, the station is big.",
+      "No, I don't tell you.",
+      "I go there daily."
+    ],
+    "correct": "It's just around the corner.",
+    "rule": "На просьбу пути — направление. · На прохання шляху — напрямок."
+  },
+  {
+    "id": "a2_030",
+    "level": "A2",
+    "rand": 0.41236885148100555,
+    "type": "fill_blank",
+    "task": "What time · What time",
+    "question": "___ does the last bus to the city center leave?",
+    "options": [
+      "How much",
+      "What time",
+      "How long",
+      "How far"
+    ],
+    "correct": "What time",
+    "rule": "Расписание — What time …? · Розклад — What time …?"
+  },
+  {
+    "id": "a2_031",
+    "level": "A2",
+    "rand": 0.9713213045615703,
+    "type": "complete_phrasal",
+    "task": "Искать · Шукати",
+    "question": "I need a job, so I'm looking ___ my old CV.",
+    "options": [
+      "into",
+      "at",
+      "after",
+      "for"
+    ],
+    "correct": "for",
+    "rule": "look for — искать. · look for — шукати."
+  },
+  {
+    "id": "a2_032",
+    "level": "A2",
+    "rand": 0.6078643503133208,
+    "type": "find_error",
+    "task": "taller · taller",
+    "question": "Which sentence is grammatically INCORRECT?",
+    "options": [
+      "This book is more expensive.",
+      "I am more tall than my brother.",
+      "He is the tallest in our class.",
+      "She is better at math than me."
+    ],
+    "correct": "I am more tall than my brother.",
+    "rule": "tall → taller, не more tall. · tall → taller, не more tall."
+  },
+  {
+    "id": "a2_033",
+    "level": "A2",
+    "rand": 0.7644577210303396,
+    "type": "translate_meaning",
+    "task": "Help yourself · Help yourself",
+    "question": "What does \"Help yourself\" mean when offering food?",
+    "options": [
+      "Помогите мне · Допоможіть мені",
+      "Уберите за собой · Приберіть за собою",
+      "Готовьте сами · Готуйте самі",
+      "Угощайтесь, берите сами · Пригощайтеся, беріть самі"
+    ],
+    "correct": "Угощайтесь, берите сами · Пригощайтеся, беріть самі",
+    "rule": "Help yourself — угощайтесь сами. · Help yourself — пригощайтеся самі."
+  },
+  {
+    "id": "a2_034",
+    "level": "A2",
+    "rand": 0.6628587474115193,
+    "type": "choose_phrasal",
+    "task": "В магазин · У магазин",
+    "question": "Which verb means \"to return something to a shop\"?",
+    "options": [
+      "take off",
+      "take up",
+      "take out",
+      "take back"
+    ],
+    "correct": "take back",
+    "rule": "take back — вернуть товар. · take back — повернути товар."
+  },
+  {
+    "id": "a2_035",
+    "level": "A2",
+    "rand": 0.4121763000730425,
+    "type": "quiz_logic",
+    "task": "Опоздание · Запізнення",
+    "question": "A: \"I'm sorry I'm late!\" — B:",
+    "options": [
+      "You're welcome.",
+      "Yes, you are late.",
+      "Don't say it.",
+      "That's okay. Sit down."
+    ],
+    "correct": "That's okay. Sit down.",
+    "rule": "That's okay — нормально, ничего страшного. · That's okay — нормально, нічого страшного."
+  },
+  {
+    "id": "a2_036",
+    "level": "A2",
+    "rand": 0.7245636959560215,
+    "type": "fill_blank",
+    "task": "airport · аеропорт",
+    "question": "We arrived ___ the airport two hours before the flight.",
+    "options": [
+      "to",
+      "on",
+      "in",
+      "at"
+    ],
+    "correct": "at",
+    "rule": "arrive at the airport. · arrive at the airport."
+  },
+  {
+    "id": "a2_037",
+    "level": "A2",
+    "rand": 0.42021352471783757,
+    "type": "find_error",
+    "task": "Порядок слов · Порядок слів",
+    "question": "Identify the WRONG sentence:",
+    "options": [
+      "I always am happy on Friday.",
+      "Do you often go to the cinema?",
+      "She usually studies at night.",
+      "They never eat meat at home."
+    ],
+    "correct": "I always am happy on Friday.",
+    "rule": "Наречия частотности после be: I am always…. · Прислівники частотності після be: I am always…."
+  },
+  {
+    "id": "a2_038",
+    "level": "A2",
+    "rand": 0.5884371374268085,
+    "type": "fill_blank",
+    "task": "few / little · few / little",
+    "question": "There are ___ students in the library today. It's very quiet.",
+    "options": [
+      "much",
+      "few",
+      "little",
+      "any"
+    ],
+    "correct": "few",
+    "rule": "few + исчисляемое (мало людей). · few + злічуване (мало людей)."
+  },
+  {
+    "id": "a2_039",
+    "level": "A2",
+    "rand": 0.892912766430527,
+    "type": "quiz_logic",
+    "task": "Путь к банку · Шлях до банку",
+    "question": "A: \"Can you tell me the way to the bank?\" — B:",
+    "options": [
+      "The bank is very big.",
+      "Yes, I can tell.",
+      "No, I don't like banks.",
+      "Yes, it's straight ahead."
+    ],
+    "correct": "Yes, it's straight ahead.",
+    "rule": "Краткое направление к месту. · Короткий напрямок до місця."
+  },
+  {
+    "id": "a2_040",
+    "level": "A2",
+    "rand": 0.3952961277682334,
+    "type": "fill_blank",
+    "task": "Части суток · Частини доби",
+    "question": "My father usually goes for a long walk ___ the afternoon.",
+    "options": [
+      "at",
+      "on",
+      "in",
+      "by"
+    ],
+    "correct": "in",
+    "rule": "in the morning/afternoon/evening. · in the morning/afternoon/evening."
+  },
+  {
+    "id": "a2_041",
+    "level": "A2",
+    "rand": 0.2835749238729477,
+    "type": "complete_phrasal",
+    "task": "Громче · Гучніше",
+    "question": "Can you turn ___ the radio? I can't hear the news.",
+    "options": [
+      "in",
+      "on",
+      "up",
+      "at"
+    ],
+    "correct": "up",
+    "rule": "turn up — сделать громче. · turn up — зробити гучніше."
+  },
+  {
+    "id": "a2_042",
+    "level": "A2",
+    "rand": 0.3720528744161129,
+    "type": "find_error",
+    "task": "ever в утверждении · ever у ствердженні",
+    "question": "Which sentence is INCORRECT?",
+    "options": [
+      "She has ever been to London.",
+      "She was in London last year.",
+      "She has never been to London.",
+      "Has she ever been to London?"
+    ],
+    "correct": "She has ever been to London.",
+    "rule": "ever обычно в вопросах; в утверждениях — never/already. · ever зазвичай у питаннях; у ствердженнях — never/already."
+  },
+  {
+    "id": "a2_043",
+    "level": "A2",
+    "rand": 0.5627997550182045,
+    "type": "translate_meaning",
+    "task": "How's it going · How's it going",
+    "question": "What does \"How is it going?\" mean?",
+    "options": [
+      "Как дела? · Як справи?",
+      "Как оно движется? · Як воно рухається?",
+      "Куда идёшь? · Куди йдеш?",
+      "Как добираешься? · Як дістаєшся?"
+    ],
+    "correct": "Как дела? · Як справи?",
+    "rule": "Разговорный аналог How are you? · Розмовний аналог How are you?"
+  },
+  {
+    "id": "a2_044",
+    "level": "A2",
+    "rand": 0.14556883205659688,
+    "type": "choose_phrasal",
+    "task": "Выбросить · Викинути",
+    "question": "Which verb often means \"to discard or get rid of something\"?",
+    "options": [
+      "throw down",
+      "throw in",
+      "throw back",
+      "throw away"
+    ],
+    "correct": "throw away",
+    "rule": "throw away — выбросить. · throw away — викинути."
+  },
+  {
+    "id": "a2_045",
+    "level": "A2",
+    "rand": 0.8176641699392349,
+    "type": "quiz_logic",
+    "task": "How often · How often",
+    "question": "A: \"How often do you go to the gym?\" — B:",
+    "options": [
+      "Last Tuesday.",
+      "Twice a week.",
+      "For two hours.",
+      "In the city."
+    ],
+    "correct": "Twice a week.",
+    "rule": "How often — частота. · How often — частота."
+  },
+  {
+    "id": "a2_046",
+    "level": "A2",
+    "rand": 0.8755488756578416,
+    "type": "fill_blank",
+    "task": "фильм · фільм",
+    "question": "We ___ a movie when the lights went out.",
+    "options": [
+      "was watching",
+      "watched",
+      "were watching",
+      "are watching"
+    ],
+    "correct": "were watching",
+    "rule": "we + were + V-ing. · we + were + V-ing."
+  },
+  {
+    "id": "a2_047",
+    "level": "A2",
+    "rand": 0.5905451476573944,
+    "type": "find_error",
+    "task": "money · money",
+    "question": "Find the grammatically WRONG sentence:",
+    "options": [
+      "I don't have many money.",
+      "I have some money.",
+      "I have a lot of money.",
+      "I don't have much money."
+    ],
+    "correct": "I don't have many money.",
+    "rule": "money неисчисляемое → much. · money незлічуване → much."
+  },
+  {
+    "id": "a2_048",
+    "level": "A2",
+    "rand": 0.9530150685459375,
+    "type": "fill_blank",
+    "task": "any в вопросе · any у питанні",
+    "question": "Is there ___ sugar in my tea? It tastes bitter.",
+    "options": [
+      "a",
+      "many",
+      "any",
+      "some"
+    ],
+    "correct": "any",
+    "rule": "Вопрос с неисчисляемым — часто any. · Питання з незлічуваним — часто any."
+  },
+  {
+    "id": "a2_049",
+    "level": "A2",
+    "rand": 0.8793474701233208,
+    "type": "quiz_logic",
+    "task": "Соль · Сіль",
+    "question": "A: \"Could you pass me the salt, please?\" — B:",
+    "options": [
+      "You're welcome.",
+      "Yes, I can salt.",
+      "Yes, of course.",
+      "No, I am busy."
+    ],
+    "correct": "Yes, of course.",
+    "rule": "Согласие передать предмет. · Згода передати предмет."
+  },
+  {
+    "id": "a2_050",
+    "level": "A2",
+    "rand": 0.03364211483858526,
+    "type": "fill_blank",
+    "task": "First conditional · First conditional",
+    "question": "If I ___ time this weekend, I will help you with your project.",
+    "options": [
+      "am having",
+      "have",
+      "will have",
+      "had"
+    ],
+    "correct": "have",
+    "rule": "If + Present Simple, will…. · If + Present Simple, will…."
+  },
+  {
+    "id": "a2_051",
+    "level": "A2",
+    "rand": 0.629264556337148,
+    "type": "complete_phrasal",
+    "task": "Словарь · Словник",
+    "question": "I don't know this word. I need to look it ___ in the dictionary.",
+    "options": [
+      "up",
+      "for",
+      "at",
+      "on"
+    ],
+    "correct": "up",
+    "rule": "look up — найти в словаре. · look up — знайти у словнику."
+  },
+  {
+    "id": "a2_052",
+    "level": "A2",
+    "rand": 0.6286309428978711,
+    "type": "translate_meaning",
+    "task": "short of money · short of money",
+    "question": "What does \"I'm short of money\" mean?",
+    "options": [
+      "Потерял кошелёк · Загубив гаманець",
+      "Мелкие купюры · Дрібні купюри",
+      "Не хватает денег · Не вистачає грошей",
+      "Деньги не нужны · Гроші не потрібні"
+    ],
+    "correct": "Не хватает денег · Не вистачає грошей",
+    "rule": "be short of — не хватать. · be short of — не вистачати."
+  },
+  {
+    "id": "a2_053",
+    "level": "A2",
+    "rand": 0.22112613171339035,
+    "type": "choose_phrasal",
+    "task": "Убрать на место · Прибрати на місце",
+    "question": "Which verb means \"to put something back in its proper place\"?",
+    "options": [
+      "put on",
+      "put out",
+      "put away",
+      "put off"
+    ],
+    "correct": "put away",
+    "rule": "put away — убрать (не надевая). · put away — прибрати (не одягати)."
+  },
+  {
+    "id": "a2_054",
+    "level": "A2",
+    "rand": 0.12307767733000219,
+    "type": "quiz_logic",
+    "task": "головний біль · головний біль",
+    "question": "A: \"I've got a splitting headache.\" — B:",
+    "options": [
+      "It's a big head.",
+      "Congratulations!",
+      "Why don't you lie down?",
+      "Me too, always."
+    ],
+    "correct": "Why don't you lie down?",
+    "rule": "Совет при боли. · Порада при болю."
+  },
+  {
+    "id": "a2_055",
+    "level": "A2",
+    "rand": 0.5428626530338079,
+    "type": "fill_blank",
+    "task": "Превосходная степень · Найвищий ступінь",
+    "question": "Paris is ___ most romantic city I have ever visited.",
+    "options": [
+      "—",
+      "a",
+      "an",
+      "the"
+    ],
+    "correct": "the",
+    "rule": "the + superlative. · the + superlative."
+  },
+  {
+    "id": "a2_056",
+    "level": "A2",
+    "rand": 0.8400103135500103,
+    "type": "fill_blank",
+    "task": "too many · too many",
+    "question": "There are ___ people in the shop today. It's very crowded.",
+    "options": [
+      "too much",
+      "too many",
+      "enough",
+      "any"
+    ],
+    "correct": "too many",
+    "rule": "too many + исчисляемое мн. · too many + злічуване мн."
+  },
+  {
+    "id": "a2_057",
+    "level": "A2",
+    "rand": 0.06981489900499582,
+    "type": "quiz_logic",
+    "task": "Кофе · Кава",
+    "question": "A: \"Would you like to go for a coffee?\" — B:",
+    "options": [
+      "I'd love to, but I'm busy.",
+      "No, I don't go.",
+      "Yes, I like coffee.",
+      "I'm drinking now."
+    ],
+    "correct": "I'd love to, but I'm busy.",
+    "rule": "Вежливый отказ на приглашение. · Ввічлива відмова на запрошення."
+  },
+  {
+    "id": "a2_058",
+    "level": "A2",
+    "rand": 0.1448985869064927,
+    "type": "fill_blank",
+    "task": "on Monday · on Monday",
+    "question": "The local museum is always closed ___ Mondays.",
+    "options": [
+      "at",
+      "to",
+      "in",
+      "on"
+    ],
+    "correct": "on",
+    "rule": "on + день недели. · on + день тижня."
+  },
+  {
+    "id": "a2_059",
+    "level": "A2",
+    "rand": 0.8486081319861114,
+    "type": "complete_phrasal",
+    "task": "Разбудить · Розбудити",
+    "question": "Can you wake me ___ at 7:00 tomorrow morning?",
+    "options": [
+      "on",
+      "to",
+      "in",
+      "up"
+    ],
+    "correct": "up",
+    "rule": "wake up — разбудить. · wake up — розбудити."
+  },
+  {
+    "id": "a2_060",
+    "level": "A2",
+    "rand": 0.14928872231394053,
+    "type": "translate_meaning",
+    "task": "Never mind · Never mind",
+    "question": "What does \"Never mind\" usually mean here?",
+    "options": [
+      "Никогда не думай · Ніколи не думай",
+      "Будь осторожен · Будь обережний",
+      "Ничего страшного / неважно · Нічого страшного / не важливо",
+      "Запомни это · Запам'ятай це"
+    ],
+    "correct": "Ничего страшного / неважно · Нічого страшного / не важливо",
+    "rule": "Never mind — забей, неважно. · Never mind — нічого, байдуже."
+  },
+  {
+    "id": "a2_061",
+    "level": "A2",
+    "rand": 0.7356943923514336,
+    "type": "choose_phrasal",
+    "task": "Перезвонить · Передзвонити",
+    "question": "Which verb means \"to return a phone call\"?",
+    "options": [
+      "call back",
+      "call in",
+      "call up",
+      "call off"
+    ],
+    "correct": "call back",
+    "rule": "call back — перезвонить. · call back — передзвонити."
+  },
+  {
+    "id": "a2_062",
+    "level": "A2",
+    "rand": 0.2142906787339598,
+    "type": "quiz_logic",
+    "task": "Простуда · застуда",
+    "question": "A: \"I've got a terrible cold.\" — B:",
+    "options": [
+      "I'm happy for you.",
+      "Congratulations!",
+      "Poor you! Get well soon.",
+      "Nice cold!"
+    ],
+    "correct": "Poor you! Get well soon.",
+    "rule": "Сочувствие при болезни. · Співчуття при хворобі."
+  },
+  {
+    "id": "a2_063",
+    "level": "A2",
+    "rand": 0.21212030295282602,
+    "type": "fill_blank",
+    "task": "any в отрицании · any у запереченні",
+    "question": "There isn't ___ milk left in the fridge.",
+    "options": [
+      "any",
+      "some",
+      "no",
+      "many"
+    ],
+    "correct": "any",
+    "rule": "Отрицание + any + неисчисляемое. · Заперечення + any + незлічуване."
+  },
+  {
+    "id": "a2_064",
+    "level": "A2",
+    "rand": 0.9715942498296499,
+    "type": "fill_blank",
+    "task": "цель · мета",
+    "question": "I'm going to the supermarket ___ some bread.",
+    "options": [
+      "buying",
+      "for buying",
+      "to buy",
+      "buy"
+    ],
+    "correct": "to buy",
+    "rule": "to + infinitive цель движения. · to + infinitive мета руху."
+  },
+  {
+    "id": "a2_065",
+    "level": "A2",
+    "rand": 0.7056513966526836,
+    "type": "quiz_logic",
+    "task": "Прогулка · Прогулянка",
+    "question": "A: \"Shall we go for a walk?\" — B:",
+    "options": [
+      "Yes, that's a great idea.",
+      "We never shall go.",
+      "I walked yesterday.",
+      "I'm not a walk."
+    ],
+    "correct": "Yes, that's a great idea.",
+    "rule": "Принятие предложения. · Прийняття пропозиції."
+  },
+  {
+    "id": "a2_066",
+    "level": "A2",
+    "rand": 0.24750565248541534,
+    "type": "fill_blank",
+    "task": "them · them",
+    "question": "I can't find my keys. Have you seen ___?",
+    "options": [
+      "they",
+      "them",
+      "theirs",
+      "their"
+    ],
+    "correct": "them",
+    "rule": "После глагола — объектный them. · Після дієслова — them у об'єкті."
+  },
+  {
+    "id": "a2_067",
+    "level": "A2",
+    "rand": 0.3459260037634522,
+    "type": "complete_phrasal",
+    "task": "Самолёт · Літак",
+    "question": "The plane will take ___ in ten minutes.",
+    "options": [
+      "up",
+      "on",
+      "out",
+      "off"
+    ],
+    "correct": "off",
+    "rule": "take off — взлететь. · take off — злетіти."
+  },
+  {
+    "id": "a2_068",
+    "level": "A2",
+    "rand": 0.9375376056414098,
+    "type": "choose_phrasal",
+    "task": "Отправиться · Вирушити",
+    "question": "Which verb means \"to start a journey\"?",
+    "options": [
+      "set up",
+      "set on",
+      "set off",
+      "set in"
+    ],
+    "correct": "set off",
+    "rule": "set off — тронуться в путь. · set off — вирушити в дорогу."
+  },
+  {
+    "id": "a2_069",
+    "level": "A2",
+    "rand": 0.14570360421203077,
+    "type": "quiz_logic",
+    "task": "How do you do · How do you do",
+    "question": "A: \"How do you do?\" — B:",
+    "options": [
+      "I'm a doctor.",
+      "How do you do?",
+      "I'm writing.",
+      "Very well, thanks."
+    ],
+    "correct": "How do you do?",
+    "rule": "Формальное знакомство — ответ такой же. · Формальне знайомство — така ж відповідь."
+  },
+  {
+    "id": "a2_070",
+    "level": "A2",
+    "rand": 0.1839619365055114,
+    "type": "fill_blank",
+    "task": "Запланированное будущее · Заплановане майбутнє",
+    "question": "I ___ to the dentist at 4 p.m. tomorrow.",
+    "options": [
+      "have gone",
+      "go",
+      "am going",
+      "went"
+    ],
+    "correct": "am going",
+    "rule": "Present Continuous для запланированного. · Present Continuous для запланованого."
+  },
+  {
+    "id": "a2_071",
+    "level": "A2",
+    "rand": 0.701185516314581,
+    "type": "find_error",
+    "task": "since + период · since + період",
+    "question": "Find the sentence with an error:",
+    "options": [
+      "She arrived two hours ago.",
+      "She has been here since 2 o'clock.",
+      "She has been here for two hours.",
+      "She has arrived since two hours."
+    ],
+    "correct": "She has arrived since two hours.",
+    "rule": "since + точка; for + период. · since + момент; for + період."
+  },
+  {
+    "id": "a2_072",
+    "level": "A2",
+    "rand": 0.8049314147792757,
+    "type": "fill_blank",
+    "task": "good at · good at",
+    "question": "I'm not very good ___ drawing people.",
+    "options": [
+      "on",
+      "with",
+      "in",
+      "at"
+    ],
+    "correct": "at",
+    "rule": "good at + noun/-ing. · good at + noun/-ing."
+  },
+  {
+    "id": "a2_073",
+    "level": "A2",
+    "rand": 0.9157453593797982,
+    "type": "quiz_logic",
+    "task": "Помощь с сумками · Допомога з сумками",
+    "question": "A: \"Would you like some help with those bags?\" — B:",
+    "options": [
+      "No, I don't help.",
+      "That's very kind of you.",
+      "You're welcome.",
+      "Yes, I like bags."
+    ],
+    "correct": "That's very kind of you.",
+    "rule": "Благодарность за предложение помощи. · Подяка за пропозицію допомоги."
+  },
+  {
+    "id": "a2_074",
+    "level": "A2",
+    "rand": 0.7719488614238799,
+    "type": "fill_blank",
+    "task": "Запрет mustn't · Заборона mustn't",
+    "question": "You ___ smoke in the hospital. It is against the rules.",
+    "options": [
+      "shouldn't",
+      "mustn't",
+      "couldn't",
+      "don't have to"
+    ],
+    "correct": "mustn't",
+    "rule": "mustn't — строгий запрет. · mustn't — сувора заборона."
+  },
+  {
+    "id": "a2_075",
+    "level": "A2",
+    "rand": 0.5841619267594069,
+    "type": "complete_phrasal",
+    "task": "Надеть · Одягнути",
+    "question": "Please put ___ your coat. It is very cold outside.",
+    "options": [
+      "up",
+      "on",
+      "in",
+      "off"
+    ],
+    "correct": "on",
+    "rule": "put on — надеть. · put on — одягнути."
+  },
+  {
+    "id": "a2_076",
+    "level": "A2",
+    "rand": 0.9438845447730273,
+    "type": "choose_phrasal",
+    "task": "Бросить привычку · Кинути звичку",
+    "question": "Which verb means \"to stop a habit or activity\"?",
+    "options": [
+      "give back",
+      "give up",
+      "give away",
+      "give in"
+    ],
+    "correct": "give up",
+    "rule": "give up smoking / hope — бросить. · give up — кинути."
+  },
+  {
+    "id": "a2_077",
+    "level": "A2",
+    "rand": 0.4995490820147097,
+    "type": "fill_blank",
+    "task": "have been · have been",
+    "question": "I ___ to Italy three times in my life.",
+    "options": [
+      "went",
+      "have been",
+      "am being",
+      "was going"
+    ],
+    "correct": "have been",
+    "rule": "Опыт жизни без точного времени — Present Perfect. · Життєвий досвід без точного часу — Present Perfect."
+  },
+  {
+    "id": "a2_078",
+    "level": "A2",
+    "rand": 0.22643326595425606,
+    "type": "find_error",
+    "task": "Does she have · Does she have",
+    "question": "Identify the sentence with a mistake:",
+    "options": [
+      "Is he her brother?",
+      "Does she has a brother?",
+      "Does she have a brother?",
+      "Has she got a brother?"
+    ],
+    "correct": "Does she has a brother?",
+    "rule": "Does + базовая форма have. · Does + базова форма have."
+  },
+  {
+    "id": "a2_079",
+    "level": "A2",
+    "rand": 0.3848146728705615,
+    "type": "fill_blank",
+    "task": "because · because",
+    "question": "I stayed at home ___ I was feeling very tired.",
+    "options": [
+      "although",
+      "because",
+      "so",
+      "but"
+    ],
+    "correct": "because",
+    "rule": "because — причина. · because — причина."
+  },
+  {
+    "id": "a2_080",
+    "level": "A2",
+    "rand": 0.23158794455230236,
+    "type": "quiz_logic",
+    "task": "Экзамен сдан · Іспит здано",
+    "question": "A: \"I've passed my driving test!\" — B:",
+    "options": [
+      "Congratulations!",
+      "Cheers!",
+      "Never mind.",
+      "Good luck!"
+    ],
+    "correct": "Congratulations!",
+    "rule": "Congratulations — при успехе. · Congratulations — при успіху."
+  },
+  {
+    "id": "a2_081",
+    "level": "A2",
+    "rand": 0.7108131586574018,
+    "type": "fill_blank",
+    "task": "at the bottom · at the bottom",
+    "question": "My keys were ___ the bottom of my bag all along.",
+    "options": [
+      "at",
+      "on",
+      "to",
+      "in"
+    ],
+    "correct": "at",
+    "rule": "at the bottom of — на дне / внизу. · at the bottom of — на дні / унизу."
+  },
+  {
+    "id": "a2_082",
+    "level": "A2",
+    "rand": 0.24522300879471004,
+    "type": "complete_phrasal",
+    "task": "Прилечь · Прилягти",
+    "question": "I'm tired. I think I'll lie ___ for half an hour.",
+    "options": [
+      "off",
+      "down",
+      "back",
+      "away"
+    ],
+    "correct": "down",
+    "rule": "lie down — лечь. · lie down — лягти."
+  },
+  {
+    "id": "a2_083",
+    "level": "A2",
+    "rand": 0.5385522011201829,
+    "type": "translate_meaning",
+    "task": "I'm afraid I can't · I'm afraid I can't",
+    "question": "What does \"I'm afraid I can't\" mean politely?",
+    "options": [
+      "Мне страшно · Мені страшно",
+      "Боюсь, не смогу (вежливый отказ) · Боюся, не зможу (ввічлива відмова)",
+      "Я боюсь это делать · Я боюся це робити",
+      "Не хочу помогать · Не хочу допомагати"
+    ],
+    "correct": "Боюсь, не смогу (вежливый отказ) · Боюся, не зможу (ввічлива відмова)",
+    "rule": "I'm afraid — смягчение отказа. · I'm afraid — пом'якшення відмови."
+  },
+  {
+    "id": "a2_084",
+    "level": "A2",
+    "rand": 0.5572993285022676,
+    "type": "fill_blank",
+    "task": "most expensive · most expensive",
+    "question": "We had dinner in ___ most expensive restaurant in town.",
+    "options": [
+      "the",
+      "a",
+      "—",
+      "an"
+    ],
+    "correct": "the",
+    "rule": "the most expensive. · the most expensive."
+  },
+  {
+    "id": "a2_085",
+    "level": "A2",
+    "rand": 0.3020086376927793,
+    "type": "find_error",
+    "task": "butter · butter",
+    "question": "Find the grammatically INCORRECT sentence:",
+    "options": [
+      "How many butter do we need?",
+      "How much sugar is there?",
+      "How many eggs are left?",
+      "How much butter do we need?"
+    ],
+    "correct": "How many butter do we need?",
+    "rule": "butter неисчисляемое → how much. · butter незлічуване → how much."
+  },
+  {
+    "id": "a2_086",
+    "level": "A2",
+    "rand": 0.5390316478442401,
+    "type": "fill_blank",
+    "task": "if + Present · if + Present",
+    "question": "If the weather ___ good tomorrow, we will go to the beach.",
+    "options": [
+      "be",
+      "will be",
+      "is",
+      "was"
+    ],
+    "correct": "is",
+    "rule": "First conditional: if + Present. · First conditional: if + Present."
+  },
+  {
+    "id": "a2_087",
+    "level": "A2",
+    "rand": 0.8463580538518727,
+    "type": "quiz_logic",
+    "task": "Кошелёк · гаманець",
+    "question": "A: \"I've lost my wallet!\" — B:",
+    "options": [
+      "Oh, what a pity!",
+      "Nice to meet you.",
+      "You're welcome!",
+      "Never mind."
+    ],
+    "correct": "Oh, what a pity!",
+    "rule": "Сочувствие при потере. · Співчуття при втраті."
+  },
+  {
+    "id": "a2_088",
+    "level": "A2",
+    "rand": 0.5139137548394501,
+    "type": "fill_blank",
+    "task": "over the bridge · over the bridge",
+    "question": "Go ___ the bridge and then turn left at the traffic lights.",
+    "options": [
+      "over",
+      "between",
+      "into",
+      "under"
+    ],
+    "correct": "over",
+    "rule": "over the bridge — перейти мост. · over the bridge — перейти міст."
+  },
+  {
+    "id": "a2_089",
+    "level": "A2",
+    "rand": 0.05403474997729063,
+    "type": "translate_meaning",
+    "task": "Mind the gap · Mind the gap",
+    "question": "What does \"Mind the gap\" mean?",
+    "options": [
+      "Осторожно, щель между поездом и платформой · Обережно, зазор між потягом і платформою",
+      "Купите билет · Купіть квиток",
+      "Запомните номер · Запам'ятайте номер",
+      "Закройте дверь · Зачиніть двері"
+    ],
+    "correct": "Осторожно, щель между поездом и платформой · Обережно, зазор між потягом і платформою",
+    "rule": "Типичное объявление в метро. · Типове оголошення в метро."
+  },
+  {
+    "id": "a2_090",
+    "level": "A2",
+    "rand": 0.7675486337393522,
+    "type": "choose_phrasal",
+    "task": "Проводить время неформально · Проводити час неформально",
+    "question": "Which phrase often means \"to spend informal time with friends (or relax socially)\"?",
+    "options": [
+      "hang out",
+      "work out",
+      "look out",
+      "go out (for food)"
+    ],
+    "correct": "hang out",
+    "rule": "hang out — тусоваться, проводить время. · hang out — тусуватися, проводити час."
+  },
+  {
+    "id": "a2_091",
+    "level": "A2",
+    "rand": 0.34220977523364127,
+    "type": "quiz_logic",
+    "task": "В аэропорт · До аеропорту",
+    "question": "A: \"How shall we go to the airport?\" — B:",
+    "options": [
+      "At three o'clock.",
+      "The airport is far.",
+      "Let's take a taxi.",
+      "Yes, let's go."
+    ],
+    "correct": "Let's take a taxi.",
+    "rule": "How — способ → предложить транспорт. · How — спосіб → запропонувати транспорт."
+  },
+  {
+    "id": "a2_092",
+    "level": "A2",
+    "rand": 0.2641292267944664,
+    "type": "fill_blank",
+    "task": "where · where",
+    "question": "That is the house ___ my aunt lives.",
+    "options": [
+      "which",
+      "when",
+      "who",
+      "where"
+    ],
+    "correct": "where",
+    "rule": "where — место. · where — місце."
+  },
+  {
+    "id": "a2_093",
+    "level": "A2",
+    "rand": 0.8563226729165763,
+    "type": "fill_blank",
+    "task": "Future promise · Future promise",
+    "question": "I promise I ___ you tomorrow.",
+    "options": [
+      "am calling",
+      "called",
+      "will call",
+      "call"
+    ],
+    "correct": "will call",
+    "rule": "promise + will для будущего. · promise + will для майбутнього."
+  },
+  {
+    "id": "a2_094",
+    "level": "A2",
+    "rand": 0.003079863265156746,
+    "type": "quiz_logic",
+    "task": "Торт · Торт",
+    "question": "A: \"Would you like some more cake?\" — B:",
+    "options": [
+      "No, I don't.",
+      "Yes, I want.",
+      "No, thank you.",
+      "This is cake."
+    ],
+    "correct": "No, thank you.",
+    "rule": "Вежливый отказ — No, thank you. · Ввічлива відмова — No, thank you."
+  },
+  {
+    "id": "a2_095",
+    "level": "A2",
+    "rand": 0.7819380422588438,
+    "type": "fill_blank",
+    "task": "on the wall · on the wall",
+    "question": "There is a beautiful painting ___ the wall in the living room.",
+    "options": [
+      "in",
+      "to",
+      "on",
+      "at"
+    ],
+    "correct": "on",
+    "rule": "on the wall. · on the wall."
+  },
+  {
+    "id": "a2_096",
+    "level": "A2",
+    "rand": 0.05444270605221391,
+    "type": "translate_meaning",
+    "task": "Have a go · Have a go",
+    "question": "What does \"Have a go\" mean?",
+    "options": [
+      "Потерпи · Потерпи",
+      "Счастливого пути · Щасливої дороги",
+      "Уходи · Йди геть",
+      "Попробуй · Спробуй"
+    ],
+    "correct": "Попробуй · Спробуй",
+    "rule": "have a go — попробуй (разг.). · have a go — спробуй (розм.)."
+  },
+  {
+    "id": "a2_097",
+    "level": "A2",
+    "rand": 0.2833690175320953,
+    "type": "fill_blank",
+    "task": "How much price · How much price",
+    "question": "___ does this jacket cost? I want to buy it.",
+    "options": [
+      "How often",
+      "How long",
+      "How much",
+      "How many"
+    ],
+    "correct": "How much",
+    "rule": "How much — цена. · How much — ціна."
+  },
+  {
+    "id": "a2_098",
+    "level": "A2",
+    "rand": 0.47293001250363886,
+    "type": "quiz_logic",
+    "task": "Вечеринка · Вечірка",
+    "question": "A: \"Would you like to come to my party?\" — B:",
+    "options": [
+      "I like parties.",
+      "I'm coming now.",
+      "I'd love to, thanks!",
+      "No, I don't go."
+    ],
+    "correct": "I'd love to, thanks!",
+    "rule": "Принятие приглашения. · Прийняття запрошення."
+  },
+  {
+    "id": "a2_099",
+    "level": "A2",
+    "rand": 0.8746418105438352,
+    "type": "fill_blank",
+    "task": "Christmas Day · Christmas Day",
+    "question": "We always go to our grandparents' house ___ Christmas Day.",
+    "options": [
+      "in",
+      "by",
+      "on",
+      "at"
+    ],
+    "correct": "on",
+    "rule": "on Christmas Day (конкретный день). · on Christmas Day (конкретний день)."
+  },
+  {
+    "id": "a2_100",
+    "level": "A2",
+    "rand": 0.3060807988513261,
+    "type": "translate_meaning",
+    "task": "It's up to you · It's up to you",
+    "question": "What does \"It's up to you\" mean?",
+    "options": [
+      "Смотри вверх · Дивись угору",
+      "Ты опаздываешь · Ти спізнюєшся",
+      "Над тобой нависло · Нависло над тобою",
+      "Решать тебе · Вирішувати тобі"
+    ],
+    "correct": "Решать тебе · Вирішувати тобі",
+    "rule": "it's up to you — твой выбор. · it's up to you — твій вибір."
+  },
+  {
+    "id": "a2_101",
+    "level": "A2",
+    "rand": 0.1625308385118842,
+    "type": "choose_phrasal",
+    "task": "Нарядиться · Нарядитися",
+    "question": "Which verb means \"to put on formal or party clothes\"?",
+    "options": [
+      "get on",
+      "dress up",
+      "put on",
+      "try on"
+    ],
+    "correct": "dress up",
+    "rule": "dress up — нарядиться. · dress up — нарядитися."
+  },
+  {
+    "id": "a2_102",
+    "level": "A2",
+    "rand": 0.034204666037112474,
+    "type": "fill_blank",
+    "task": "more expensive · more expensive",
+    "question": "This laptop is ___ than my old one.",
+    "options": [
+      "more expensive",
+      "expensiver",
+      "most expensive",
+      "expensive"
+    ],
+    "correct": "more expensive",
+    "rule": "Длинное прилагательное — more expensive. · Довгий прикметник — more expensive."
+  },
+  {
+    "id": "a2_103",
+    "level": "A2",
+    "rand": 0.1648214792367071,
+    "type": "fill_blank",
+    "task": "little time · little time",
+    "question": "I'm very busy. I have ___ free time today.",
+    "options": [
+      "few",
+      "many",
+      "much",
+      "little"
+    ],
+    "correct": "little",
+    "rule": "little + неисчисляемое (мало). · little + незлічуване (мало)."
+  },
+  {
+    "id": "a2_104",
+    "level": "A2",
+    "rand": 0.5115694834385067,
+    "type": "quiz_logic",
+    "task": "Длительность рейса · Тривалість рейсу",
+    "question": "A: \"How long does the flight take?\" — B:",
+    "options": [
+      "Twice a week.",
+      "About three hours.",
+      "It's expensive.",
+      "At 10 o'clock."
+    ],
+    "correct": "About three hours.",
+    "rule": "How long — длительность. · How long — тривалість."
+  },
+  {
+    "id": "a2_105",
+    "level": "A2",
+    "rand": 0.7463032016530633,
+    "type": "fill_blank",
+    "task": "in the morning · in the morning",
+    "question": "I usually go to the gym ___ the morning before work.",
+    "options": [
+      "by",
+      "at",
+      "in",
+      "on"
+    ],
+    "correct": "in",
+    "rule": "in the morning. · in the morning."
+  },
+  {
+    "id": "a2_106",
+    "level": "A2",
+    "rand": 0.09204933466389775,
+    "type": "complete_phrasal",
+    "task": "Свет · Світло",
+    "question": "It's dark in here. Can you switch ___ the light?",
+    "options": [
+      "up",
+      "on",
+      "at",
+      "in"
+    ],
+    "correct": "on",
+    "rule": "switch on — включить. · switch on — увімкнути."
+  },
+  {
+    "id": "a2_107",
+    "level": "A2",
+    "rand": 0.6683899739291519,
+    "type": "find_error",
+    "task": "good / well · good / well",
+    "question": "Which sentence is grammatically WRONG?",
+    "options": [
+      "He speaks English very good.",
+      "His English is very good.",
+      "He is a good speaker.",
+      "He speaks English very well."
+    ],
+    "correct": "He speaks English very good.",
+    "rule": "Глагол speak — наречие well, не прилагательное good. · Дієслово speak — прислівник well, не прикметник good."
+  }
+]

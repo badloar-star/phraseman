@@ -71,3 +71,6 @@ export function addDays(date: Date, days: number): Date {
   result.setDate(result.getDate() + days);
   return result;
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

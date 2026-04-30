@@ -918,7 +918,525 @@ const L4_TRAPS: readonly PhraseErrorTraps[] = [];
 const L5_TRAPS: readonly PhraseErrorTraps[] = [];
 const L6_TRAPS: readonly PhraseErrorTraps[] = [];
 const L7_TRAPS: readonly PhraseErrorTraps[] = [];
-const L8_TRAPS: readonly PhraseErrorTraps[] = [];
+const L8_TRAPS: readonly PhraseErrorTraps[] = [
+  // 0: "I work on Monday"
+  {
+    phraseIndex: 0,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С днями недели всегда используется on: on Monday, on Friday.' },
+    ],
+    generalRule: 'Логика этой фразы строится по шагам: сначала тот, кто действует (I), затем само действие (work), и в конце — время через предлог on и название дня.',
+    generalRule_UA: 'Логіка цієї фрази будується по кроках: спочатку той, хто діє (I), потім сама дія (work), і в кінці — час через прийменник on та назву дня.',
+    traps: []
+  },
+  // 1: "She leaves at eight o'clock"
+  {
+    phraseIndex: 1,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Для точного времени по часам — at: at eight o\'clock.' },
+      { wordIndex: 4, hint: 'o\'clock — показатель конкретного часа. Не пропускайте его!' },
+    ],
+    generalRule: 'Представьте формулу: персонаж (She), затем действие в нужной форме (leaves), и завершаем точным временем, используя связку at и o\'clock.',
+    generalRule_UA: 'Уявіть формулу: персонаж (She), потім дія у потрібній формі (leaves), і завершуємо точним часом, використовуючи зв\'язку at та o\'clock.',
+    traps: []
+  },
+  // 2: "We rest in July"
+  {
+    phraseIndex: 2,
+    wordTraps: [
+      { wordIndex: 2, hint: 'С месяцами — in: in July, in January. Мы «внутри» этого периода.' },
+    ],
+    generalRule: 'Последовательность слов здесь такова: мы (We), затем то, что мы делаем (rest), и в конце указываем месяц через предлог «в» (in).',
+    generalRule_UA: 'Послідовність слів тут така: ми (We), потім те, що ми робимо (rest), і в кінці вказуємо місяць через прийменник «в» (in).',
+    traps: []
+  },
+  // 3: "He pays on the weekend"
+  {
+    phraseIndex: 3,
+    wordTraps: [
+      { wordIndex: 2, hint: 'on the weekend / on weekends — предлог on для выходных (в курсе — американский стандарт).' },
+      { wordIndex: 3, hint: 'Артикль the: on the weekend — устойчивое сочетание.' },
+    ],
+    generalRule: 'Структура предложения: сначала тот, кто платит (He), затем действие (pays), и время через on the weekend (или on weekends).',
+    generalRule_UA: 'Структура речення: спочатку той, хто платить (He), потім дія (pays), і час через on the weekend (або on weekends).',
+    traps: []
+  },
+  // 4: "They call in the morning"
+  {
+    phraseIndex: 4,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Части суток с the: in the morning, in the evening, in the afternoon.' },
+      { wordIndex: 3, hint: 'Не забудьте артикль «the» перед morning!' },
+    ],
+    generalRule: 'Чтобы мысль была ясной, соблюдайте порядок: сначала они (They), затем действие (call), и в конце временной период (in the morning).',
+    generalRule_UA: 'Щоб думка була ясною, дотримуйтесь порядку: спочатку вони (They), потім дія (call), і в кінці часовий період (in the morning).',
+    traps: []
+  },
+  // 5: "He has a meeting at noon"
+  {
+    phraseIndex: 5,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Noon (полдень) — конкретный момент, поэтому at: at noon.' },
+    ],
+    generalRule: 'Схема построения такая: персонаж (He), факт наличия встречи (has a meeting) и точный момент времени через предлог at.',
+    generalRule_UA: 'Схема побудови така: персонаж (He), факт наявності зустрічі (has a meeting) і точний момент часу через прийменник at.',
+    traps: []
+  },
+  // 6: "You pay cash on Friday"
+  {
+    phraseIndex: 6,
+    wordTraps: [
+      { wordIndex: 3, hint: 'С любым днем недели — on: on Friday, on Monday, on Sunday.' },
+    ],
+    generalRule: 'Мы строим фразу по цепочке: кто (You), что делает (pay), чем именно (cash) и когда это происходит (on Friday).',
+    generalRule_UA: 'Ми будуємо фразу за ланцюжком: хто (You), що робить (pay), чим саме (cash) і коли це відбувається (on Friday).',
+    traps: []
+  },
+  // 7: "The shop closes at midnight"
+  {
+    phraseIndex: 7,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Midnight — точный момент времени, поэтому at: at midnight.' },
+    ],
+    generalRule: 'Чтобы всё прозвучало верно, сначала назовите объект (The shop), затем действие (closes) и завершите фразу точным временем.',
+    generalRule_UA: 'Щоб усе прозвучало правильно, спочатку назвіть об\'єкт (The shop), потім дію (closes) і завершіть фразу точним часом.',
+    traps: []
+  },
+  // 8: "We travel in winter"
+  {
+    phraseIndex: 8,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Времена года — in: in winter, in summer, in spring, in autumn.' },
+    ],
+    generalRule: 'Логика утверждения проста: мы (We), затем наше занятие (travel) и указание времени года через предлог «в» (in).',
+    generalRule_UA: 'Логіка твердження проста: ми (We), потім наше заняття (travel) і вказівка пори року через прийменник «в» (in).',
+    traps: []
+  },
+  // 9: "They walk in the evening"
+  {
+    phraseIndex: 9,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Части суток требуют in the: in the evening, in the morning.' },
+      { wordIndex: 3, hint: 'Артикль «the» обязателен: in the evening, а не in evening.' },
+    ],
+    generalRule: 'Структура фразы строится последовательно: действующие лица (They), само действие (walk) и временной отрезок в конце.',
+    generalRule_UA: 'Структура фрази будується послідовно: дійові особи (They), сама дія (walk) і часовий відрізок у кінці.',
+    traps: []
+  },
+  // 10: "I drink coffee at noon"
+  {
+    phraseIndex: 10,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Noon — точная точка дня. Всегда at noon, как at midnight.' },
+    ],
+    generalRule: 'Ритм предложения таков: вы (I), затем ваше действие (drink coffee), и в конце — точное время встречи с напитком.',
+    generalRule_UA: 'Ритм речення такий: ви (I), потім ваша дія (drink coffee), і в кінці — точний час зустрічі з напоєм.',
+    traps: []
+  },
+  // 11: "The train arrives at seven PM"
+  {
+    phraseIndex: 11,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Точное время — at: at seven PM, at nine thirty, at midnight.' },
+      { wordIndex: 5, hint: 'PM = после полудня (Post Meridiem). Противоположность — AM.' },
+    ],
+    generalRule: 'Сначала мы называем транспорт (The train), затем действие (arrives) и завершаем фразу временем с обязательным предлогом-указателем.',
+    generalRule_UA: 'Спочатку ми називаємо транспорт (The train), потім дію (arrives) і завершуємо фразу часом з обов\'язковим прийменником-покажчиком.',
+    traps: []
+  },
+  // 12: "We do sport on Tuesdays"
+  {
+    phraseIndex: 12,
+    wordTraps: [
+      { wordIndex: 3, hint: 'С днями недели — on. Tuesdays (с -s) = каждый вторник.' },
+    ],
+    generalRule: 'Формула этой фразы: группа людей (We), активность (do sport) и день недели с соответствующим предлогом.',
+    generalRule_UA: 'Формула цієї фрази: група людей (We), активність (do sport) і день тижня з відповідним прийменником.',
+    traps: []
+  },
+  // 13: "She checks mail at night"
+  {
+    phraseIndex: 13,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Исключение: ночь = at night (не in the night). Запомните!' },
+    ],
+    generalRule: 'Шаги просты: персонаж (She), действие (checks mail) и время суток, которое мы выделяем предлогом at.',
+    generalRule_UA: 'Кроки прості: персонаж (She), дія (checks mail) і час доби, який ми виділяємо прийменником at.',
+    traps: []
+  },
+  // 14: "They relax in August"
+  {
+    phraseIndex: 14,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Месяцы — всегда in: in August, in July, in January.' },
+    ],
+    generalRule: 'Сначала указываем тех, о ком речь (They), затем их состояние (relax) и период в календаре через предлог «в» (in).',
+    generalRule_UA: 'Спочатку вказуємо тих, про кого мова (They), потім їхній стан (relax) і період у календарі через прийменник «в» (in).',
+    traps: []
+  },
+  // 15: "I book a hotel in June"
+  {
+    phraseIndex: 15,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Месяцы — in: in June, in December, in March. Мы внутри периода.' },
+    ],
+    generalRule: 'Цепочка утверждения строится так: я (I), действие по заказу (book a hotel) и временная рамка в конце.',
+    generalRule_UA: 'Ланцюжок твердження будується так: я (I), дія із замовлення (book a hotel) і часова рамка в кінці.',
+    traps: []
+  },
+  // 16: "We meet at nine thirty"
+  {
+    phraseIndex: 16,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Точное время (часы + минуты) — at: at nine thirty, at ten fifteen.' },
+    ],
+    generalRule: 'Логика проста: называем нас (We), само событие (meet) и точные цифры времени с предлогом-маркером.',
+    generalRule_UA: 'Логіка проста: називаємо нас (We), саму подію (meet) і точні цифри часу з прийменником-маркером.',
+    traps: []
+  },
+  // 17: "She works on Thursdays"
+  {
+    phraseIndex: 17,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Дни недели — on. Thursdays (с -s) = каждый четверг.' },
+    ],
+    generalRule: 'Схема построения: кто (She), её занятость (works) и конкретные дни в календаре с предлогом on.',
+    generalRule_UA: 'Схема побудови: хто (She), її зайнятість (works) і конкретні дні в календарі з прийменником on.',
+    traps: []
+  },
+  // 18: "They order food in the evening"
+  {
+    phraseIndex: 18,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Части суток: in the evening, in the morning, in the afternoon.' },
+      { wordIndex: 4, hint: 'Артикль «the» обязателен: in the evening.' },
+    ],
+    generalRule: 'Чтобы мысль была логичной, сначала скажите, кто действует (They), затем что они делают (order food) и в конце добавьте время.',
+    generalRule_UA: 'Щоб думка була логічною, спочатку скажіть, хто діє (They), потім що вони роблять (order food) і в кінці додайте час.',
+    traps: []
+  },
+  // 19: "He has a vacation in spring"
+  {
+    phraseIndex: 19,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Сезоны — in: in spring, in summer, in autumn, in winter.' },
+    ],
+    generalRule: 'Формула фразы проста: на первом месте персонаж (He), затем его обладание отпуском (has a vacation) и сезон в конце.',
+    generalRule_UA: 'Формула фрази проста: на першому місці персонаж (He), потім його володіння відпусткою (has a vacation) і сезон у кінці.',
+    traps: []
+  },
+  // 20: "I come home at midnight"
+  {
+    phraseIndex: 20,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Midnight — точный момент. Как at noon, at six o\'clock.' },
+    ],
+    generalRule: 'Структура этой мысли такова: сначала тот, кто совершает действие (I), само действие (come), затем направление (home) и в конце — время через предлог at.',
+    generalRule_UA: 'Структура цієї думки така: спочатку той, хто виконує дію (I), сама дія (come), потім напрямок (home) і в кінці — час через прийменник at.',
+    traps: []
+  },
+  // 21: "The train departs at ten fifteen"
+  {
+    phraseIndex: 21,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Точное время с минутами — at: at ten fifteen, at nine thirty.' },
+    ],
+    generalRule: 'Представьте это как схему: главный объект (The train), его действие (departs) и точное время с предлогом-указателем в конце.',
+    generalRule_UA: 'Уявіть це як схему: головний об\'єкт (The train), його дія (departs) і точний час із прийменником-покажчиком у кінці.',
+    traps: []
+  },
+  // 22: "We walk in the park on Sundays"
+  {
+    phraseIndex: 22,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Место действия — in: walk in the park. Предлог in указывает, что мы внутри/в рамках пространства.' },
+      { wordIndex: 3, hint: 'Обязательно с артиклем: in the park, а не in park.' },
+      { wordIndex: 5, hint: 'Дни недели — on. Sundays (с -s) = каждое воскресенье, регулярное действие.' },
+    ],
+    generalRule: 'Фраза строится по схеме: кто (We) + действие (walk) + где (in the park) + когда (on Sundays). Место идёт перед временем.',
+    generalRule_UA: 'Фраза будується за схемою: хто (We) + дія (walk) + де (in the park) + коли (on Sundays). Місце йде перед часом.',
+    traps: []
+  },
+  // 23: "She has breakfast in the morning"
+  {
+    phraseIndex: 23,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Части суток — in the: in the morning, in the evening.' },
+      { wordIndex: 4, hint: '«the» обязательно: in the morning, а не in morning.' },
+    ],
+    generalRule: 'Чтобы составить эту фразу, следуйте порядку: персонаж (She), действие (has breakfast) и временной отрезок через предлог in.',
+    generalRule_UA: 'Щоб скласти цю фразу, дотримуйтесь порядку: персонаж (She), дія (has breakfast) і часовий відрізок через прийменник in.',
+    traps: []
+  },
+  // 24: "They shop on Saturday"
+  {
+    phraseIndex: 24,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Дни недели — on: on Saturday, on Monday, on Friday.' },
+    ],
+    generalRule: 'Схема предложения: на первом месте те, кто действует (They), затем само занятие (shop) и в конце — день недели с предлогом on.',
+    generalRule_UA: 'Схема речення: на першому місці ті, хто діє (They), потім саме заняття (shop) і в кінці — день тижня з прийменником on.',
+    traps: []
+  },
+  // 25: "I order a taxi at six o'clock"
+  {
+    phraseIndex: 25,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Точный час — at: at six o\'clock. o\'clock = ровно час.' },
+    ],
+    generalRule: 'Формула фразы строится последовательно: кто (I), что делает (order a taxi) и в какой момент (at six o\'clock).',
+    generalRule_UA: 'Формула фрази будується послідовно: хто (I), що робить (order a taxi) і в який момент (at six o\'clock).',
+    traps: []
+  },
+  // 26: "We have lunch at one PM"
+  {
+    phraseIndex: 26,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Точное время — at: at one PM, at seven AM.' },
+      { wordIndex: 5, hint: 'PM = после полудня. AM = до полудня.' },
+    ],
+    generalRule: 'Чтобы всё прозвучало правильно, сначала назовите нас (We), затем действие (have lunch) и точное время с предлогом-маркером.',
+    generalRule_UA: 'Щоб усе прозвучало правильно, спочатку назвіть нас (We), потім дію (have lunch) і точний час із прийменником-покажчиком.',
+    traps: []
+  },
+  // 27: "She visits the gym on Wednesdays"
+  {
+    phraseIndex: 27,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Дни недели — on. Wednesdays (с -s) = каждую среду.' },
+    ],
+    generalRule: 'Логическая цепочка такова: героиня (She), её действие (visits the gym) и регулярный день недели через предлог on.',
+    generalRule_UA: 'Логічний ланцюжок такий: героїня (She), її дія (visits the gym) і регулярний день тижня через прийменник on.',
+    traps: []
+  },
+  // 28: "They watch the news in the evening"
+  {
+    phraseIndex: 28,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Части суток — in the: in the evening, не at the evening.' },
+      { wordIndex: 4, hint: 'Артикль «the» обязателен: in the evening.' },
+    ],
+    generalRule: 'Структура здесь простая: в начале те, о ком говорим (They), затем их привычка (watch news) и временной блок в конце.',
+    generalRule_UA: 'Структура тут проста: на початку ті, про кого говоримо (They), потім їхня звичка (watch news) і часовий блок у кінці.',
+    traps: []
+  },
+  // 29: "He has a day off on Saturday"
+  {
+    phraseIndex: 29,
+    wordTraps: [
+      { wordIndex: 5, hint: 'Дни недели — on: on Saturday, on Sunday.' },
+    ],
+    generalRule: 'Мы строим предложение по шагам: сначала персонаж (He), факт наличия выходного (has a day off) и день недели с предлогом on.',
+    generalRule_UA: 'Ми будуємо речення за кроками: спочатку персонаж (He), факт наявності вихідного (has a day off) і день тижня з прийменником on.',
+    traps: []
+  },
+  // 30: "I have a break at two o'clock"
+  {
+    phraseIndex: 30,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Точный час — at: at two o\'clock, at noon, at midnight.' },
+    ],
+    generalRule: 'Схема этого утверждения: я (I), наличие перерыва (have a break) и точное время, обозначенное предлогом at.',
+    generalRule_UA: 'Схема цього твердження: я (I), наявність перерви (have a break) і точний час, позначений прийменником at.',
+    traps: []
+  },
+  // 31: "We pay rent in January"
+  {
+    phraseIndex: 31,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Месяцы — in: in January, in August, in October.' },
+    ],
+    generalRule: 'Логика фразы: действующие лица (We), действие (pay rent) и название месяца через предлог «в» (in).',
+    generalRule_UA: 'Логіка фрази: дійові особи (We), дія (pay rent) і назва місяця через прийменник «в» (in).',
+    traps: []
+  },
+  // 32: "She finishes work at five PM"
+  {
+    phraseIndex: 32,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Точное время — at: at five PM, at seven AM.' },
+      { wordIndex: 5, hint: 'PM = вечера (после полудня). AM = утра (до полудня).' },
+    ],
+    generalRule: 'Представьте последовательность: кто (She), её действие (finishes work) и точный момент окончания через предлог at.',
+    generalRule_UA: 'Уявіть послідовність: хто (She), її дія (finishes work) і точний момент закінчення через прийменник at.',
+    traps: []
+  },
+  // 33: "They meet on weekends"
+  {
+    phraseIndex: 33,
+    wordTraps: [
+      { wordIndex: 2, hint: 'В американском английском используем on weekends для регулярных действий по выходным.' },
+    ],
+    generalRule: 'Сначала мы называем группу людей (They), затем их действие (meet) и завершаем указанием на регулярные выходные через on weekends.',
+    generalRule_UA: 'Спочатку ми називаємо групу людей (They), потім їхню дію (meet) і завершуємо вказівкою на регулярні вихідні через on weekends.',
+    traps: []
+  },
+  // 34: "He has a birthday in October"
+  {
+    phraseIndex: 34,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Месяцы — in: in October, in December, in June.' },
+    ],
+    generalRule: 'Мы строим фразу так: главный герой (He), факт наличия события (has a birthday) и месяц через предлог «в» (in).',
+    generalRule_UA: 'Ми будуємо фразу так: головний герой (He), факт наявності події (has a birthday) і місяць через прийменник «в» (in).',
+    traps: []
+  },
+  // 35: "I book a table in the evening"
+  {
+    phraseIndex: 35,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Части суток — in the: in the evening, in the morning.' },
+      { wordIndex: 5, hint: 'Артикль «the» обязателен: in the evening.' },
+    ],
+    generalRule: 'Чтобы мысль была ясной, соблюдайте ритм: я (I), само действие (book a table) и временной период в конце.',
+    generalRule_UA: 'Щоб думка була ясною, дотримуйтесь ритму: я (I), сама дія (book a table) і часовий період у кінці.',
+    traps: []
+  },
+  // 36: "Does she have time on Friday"
+  {
+    phraseIndex: 36,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос — вспомогательный глагол Does впереди: Does she...?' },
+      { wordIndex: 4, hint: 'Дни недели — on: on Friday, on Monday.' },
+    ],
+    generalRule: 'В вопросе сначала идет помощник (Does), затем персонаж (she), действие (have time) и в конце день недели с предлогом on.',
+    generalRule_UA: 'У запитанні спочатку йде помічник (Does), потім персонаж (she), дія (have time) і в кінці день тижня з прийменником on.',
+    traps: []
+  },
+  // 37: "They have dinner at seven o'clock"
+  {
+    phraseIndex: 37,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Точный час — at: at seven o\'clock, at midnight.' },
+    ],
+    generalRule: 'Шаги для построения фразы: те, о ком говорим (They), их действие (have dinner) и точное время в конце.',
+    generalRule_UA: 'Кроки для побудови фрази: ті, про кого говоримо (They), їхня дія (have dinner) і точний час у кінці.',
+    traps: []
+  },
+  // 38: "We travel in May"
+  {
+    phraseIndex: 38,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Месяцы — in: in May, in July, in September.' },
+    ],
+    generalRule: 'Логическая формула: на первом месте те, кто едет (We), затем действие (travel) и временной отрезок через предлог «в» (in).',
+    generalRule_UA: 'Логічна формула: на першому місці ті, хто їде (We), потім дія (travel) і часовий відрізок через прийменник «в» (in).',
+    traps: []
+  },
+  // 39: "He checks documents at night"
+  {
+    phraseIndex: 39,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Ночь — исключение: at night (не in the night). Запомните!' },
+    ],
+    generalRule: 'Последовательность слов: главный герой (He), его работа с бумагами (checks documents) и период времени через предлог at.',
+    generalRule_UA: 'Послідовність слів: головний герой (He), його робота з паперами (checks documents) і період часу через прийменник at.',
+    traps: []
+  },
+  // 40: "I buy tickets in March"
+  {
+    phraseIndex: 40,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Месяцы — in: in March, in May, in January.' },
+    ],
+    generalRule: 'В английском утверждении слова выстраиваются в строгом порядке: сначала тот, кто совершает покупку (I), затем само действие (buy tickets) и в конце — время через предлог in.',
+    generalRule_UA: 'В англійському твердженні слова вишиковуються в суворому порядку: спочатку той, хто здійснює покупку (I), потім сама дія (buy tickets) і в кінці — час через прийменник in.',
+    traps: []
+  },
+  // 41: "She calls parents on weekends"
+  {
+    phraseIndex: 41,
+    wordTraps: [
+      { wordIndex: 3, hint: 'В американском английском используем on weekends для повторяющегося действия.' },
+    ],
+    generalRule: 'Логика построения проста: на первом месте героиня (She), далее её действие (calls parents) и в самом конце указание времени через предлог at.',
+    generalRule_UA: 'Логіка побудови проста: на першому місці героїня (She), далі її дія (calls parents) і в самому кінці вказівка часу через прийменник at.',
+    traps: []
+  },
+  // 42: "We drink tea in the afternoon"
+  {
+    phraseIndex: 42,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Части суток — in the: in the afternoon, in the morning, in the evening.' },
+      { wordIndex: 4, hint: 'Артикль «the» обязателен: in the afternoon.' },
+    ],
+    generalRule: 'Чтобы предложение звучало верно, следуйте формуле: действующие лица (We), затем действие (drink tea) и завершающий временной блок.',
+    generalRule_UA: 'Щоб речення звучало правильно, дотримуйтесь формули: дійові особи (We), потім дія (drink tea) і завершальний часовий блок.',
+    traps: []
+  },
+  // 43: "Does he have work in September"
+  {
+    phraseIndex: 43,
+    wordTraps: [
+      { wordIndex: 0, hint: 'Вопрос — Does впереди: Does he...? (не Is he...?)' },
+      { wordIndex: 4, hint: 'Месяцы — in: in September, in August, in March.' },
+    ],
+    generalRule: 'В вопросительной конструкции сначала идет помощник (Does), затем главный герой (he), действие (have work) и временной отрезок с предлогом in.',
+    generalRule_UA: 'У питальній конструкції спочатку йде помічник (Does), потім головний герой (he), дія (have work) і часовий відрізок із прийменником in.',
+    traps: []
+  },
+  // 44: "They finish the project at midnight"
+  {
+    phraseIndex: 44,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Midnight — точный момент, поэтому at: at midnight, at noon.' },
+    ],
+    generalRule: 'Последовательность слов в этой фразе такова: сначала исполнители (They), затем их действие (finish the project) и точное время в конце.',
+    generalRule_UA: 'Послідовність слів у цій фразі така: спочатку виконавці (They), потім їхня дія (finish the project) і точний час у кінці.',
+    traps: []
+  },
+  // 45: "I check tickets at midnight"
+  {
+    phraseIndex: 45,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Midnight — точный момент: at midnight. Как at noon, at six o\'clock.' },
+    ],
+    generalRule: 'Формула успеха проста: называем себя (I), затем действие (check tickets) и добавляем временной маркер с предлогом at.',
+    generalRule_UA: 'Формула успіху проста: називаємо себе (I), потім дію (check tickets) і додаємо часовий маркер із прийменником at.',
+    traps: []
+  },
+  // 46: "The train arrives at seven AM"
+  {
+    phraseIndex: 46,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Точное время — at: at seven AM, at nine thirty.' },
+      { wordIndex: 5, hint: 'AM = Ante Meridiem = до полудня. Противоположность PM.' },
+    ],
+    generalRule: 'Шаги построения мысли: предмет (The train), действие (arrives) и точное время с обязательным предлогом-помощником.',
+    generalRule_UA: 'Кроки побудови думки: предмет (The train), дія (arrives) і точний час з обов\'язковим прийменником-помічником.',
+    traps: []
+  },
+  // 47: "We order pizza on Saturdays"
+  {
+    phraseIndex: 47,
+    wordTraps: [
+      { wordIndex: 3, hint: 'Дни недели — on. Saturdays (с -s) = каждую субботу.' },
+    ],
+    generalRule: 'Ритм фразы таков: сначала мы (We), затем наше действие (order pizza) и регулярный день недели с предлогом on.',
+    generalRule_UA: 'Ритм фрази такий: спочатку ми (We), потім наша дія (order pizza) і регулярний день тижня з прийменником on.',
+    traps: []
+  },
+  // 48: "She has a meeting in December"
+  {
+    phraseIndex: 48,
+    wordTraps: [
+      { wordIndex: 4, hint: 'Месяцы — in: in December, in June, in October.' },
+    ],
+    generalRule: 'Структура предложения проста: на первом месте персонаж (She), затем факт наличия встречи (has a meeting) и месяц с предлогом in.',
+    generalRule_UA: 'Структура речення проста: на першому місці персонаж (She), потім факт наявності зустрічі (has a meeting) і місяць із прийменником in.',
+    traps: []
+  },
+  // 49: "They rest in April"
+  {
+    phraseIndex: 49,
+    wordTraps: [
+      { wordIndex: 2, hint: 'Месяцы — in: in April, in July, in August.' },
+    ],
+    generalRule: 'Чтобы выразить эту мысль, следуйте порядку: действующие лица (They), затем их состояние (rest) и название месяца через предлог in.',
+    generalRule_UA: 'Щоб висловити цю думку, дотримуйтесь порядку: дійові особи (They), потім їхній стан (rest) і назва місяця через прийменник in.',
+    traps: []
+  },
+];
 
 export const TRAPS_1_8: LessonErrorTrapsMap = {
   1: L1_TRAPS,
@@ -930,3 +1448,6 @@ export const TRAPS_1_8: LessonErrorTrapsMap = {
   7: L7_TRAPS,
   8: L8_TRAPS,
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

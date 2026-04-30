@@ -37,7 +37,7 @@ const GIFS: Record<number, any> = {
   32: require('../assets/images/levels/32.png'),
   33: require('../assets/images/levels/33.png'),
   34: require('../assets/images/levels/34.png'),
-  // 35: require('../assets/images/levels/35.png'), // MISSING FILE - fallback to 34
+  35: require('../assets/images/levels/35.png'),
   36: require('../assets/images/levels/36.png'),
   37: require('../assets/images/levels/37.png'),
   38: require('../assets/images/levels/38.png'),
@@ -59,9 +59,14 @@ interface Props {
   level: number;
   size?: number;
   height?: number;
+  /**
+   * Анимация бейджа (много `autoplay` на одном экране сильно грузит CPU/GPU).
+   * Для длинных списков (карта уровней) передавайте false почти везде.
+   */
+  autoplay?: boolean;
 }
 
-export default function LevelBadge({ level, size = 40, height }: Props) {
+export default function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true }: Props) {
   const clamped = Math.max(1, Math.min(50, level));
   const source = GIFS[clamped] ?? GIFS[1];
   return (
@@ -69,7 +74,7 @@ export default function LevelBadge({ level, size = 40, height }: Props) {
       source={source}
       style={{ width: size, height: height ?? size, borderRadius: size * 0.08 }}
       contentFit={height ? 'fill' : 'contain'}
-      autoplay
+      autoplay={autoplayEnabled}
     />
   );
 }

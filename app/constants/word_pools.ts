@@ -70,7 +70,7 @@ export const WORD_POOLS_L1 = {
                 'message','messages','number','numbers','habit','habits',
                 'interview','interviews','event','events','reason','reasons',
                 'issue','issues','system','systems','data','software',
-                'programme','programs','program','programmes',
+                'program','programs',
                 'rule','rules','method','methods','subject','subjects',
                 'fact','facts','detail','details','point','points',
                 'topic','topics','level','levels','type','types',
@@ -84,7 +84,7 @@ export const WORD_POOLS_L1 = {
   adjectives: ['tired','busy','ready','young','old','smart','tall','short','free','happy','right','wrong',
                 'good','great','easy','hard','new','big','small','long','fast','slow','early','late',
                 'important','serious','comfortable','expensive','cheap','modern','popular','beautiful',
-                'experienced','favourite','favorite','kind','lovely','wonderful','excellent','brilliant','professional','friendly','creative','skilled','qualified','terrible','awful','amazing','perfect','typical','natural','special','similar','different','straight','complex','obvious','confident','patient','polite','rude','strict','gentle','generous','honest','clever','brave','calm','quiet','loud','plain','sharp','raw','rare','pure','soft','rough','tough','deep','wide','narrow','thick','thin','light','dark','clear','bright','smooth','flat',
+                'experienced','favorite','kind','lovely','wonderful','excellent','brilliant','professional','friendly','creative','skilled','qualified','terrible','awful','amazing','perfect','typical','natural','special','similar','different','straight','complex','obvious','confident','patient','polite','rude','strict','gentle','generous','honest','clever','brave','calm','quiet','loud','plain','sharp','raw','rare','pure','soft','rough','tough','deep','wide','narrow','thick','thin','light','dark','clear','bright','smooth','flat',
                 'difficult','latest','recent','weekly','daily','monthly','annual','necessary',
                 'local','national','international','global','main','major','current',
                 'high','low','full','real','actual','various','common','general',
@@ -154,8 +154,11 @@ export const WORD_POOLS_L1 = {
                 'restaurant','restaurants','bank','banks','shop','shops','market','markets',
                 'park','parks','station','stations','airport','airports','museum','museums',
                 'cafe','cafes','gym','gyms','beach','beaches','garden','gardens',
-                'kitchen','bedroom','bathroom','classroom','library','theatre','cinema',
+                'kitchen','bedroom','bathroom','classroom','library','theater','cinema',
                 'city','cities','country','countries','home','house','houses','room','rooms'],
 } as const;
 
 export type WordPoolKey = keyof typeof WORD_POOLS_L1;
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

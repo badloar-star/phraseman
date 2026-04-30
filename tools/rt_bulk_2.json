@@ -1,0 +1,102 @@
+[
+  {
+    "en": "A cut direct",
+    "transcription": "/ə ˈkʌt dɪˈrɛkt/",
+    "ru": "Полный публичный снобизм: в зале The Ton вас делают «невидимыми»",
+    "uk": "Повна публічна зневага: у залі The Ton вдають, ніби вас «не існує»",
+    "literalRu": "Прямой, резкий разрез; удар в лоб",
+    "literalUk": "Прямий, різкий «розріз»; удар в обличчя",
+    "explanationRu": "В публичных плетнях Regency это сильнее слова: chaperon тут бессилен, The Ton и Whistledown пишут кровью репутации, кто «мёртв в ton»; извинение в письме ничего не весит, пока almanac бала не перечеркнул публичную линию. Холод, не острота — шутка.",
+    "explanationUk": "У публічних плітках Regency це сильніше за слова: chaperon безсилий, The Ton і Whistledown пишуть кров'ю репутації, хто «мертвий у ton»; вибачення в листі нічого не важать, ледь almanac бала не перекреслив публічну лінію. Холод, не дотеп."
+  },
+  {
+    "en": "A morning call",
+    "transcription": "/ə ˈmɔːrnɪŋ ˈkɔːl/",
+    "ru": "Утренний визит по almanac'у визитов: чай, приём, «кто вовремя»",
+    "uk": "Ранковий візит за almanac'ом: чай, прийом, «хто вчасно»",
+    "literalRu": "Утренний (утренний) визов / визит",
+    "literalUk": "Ранковий візит; «дзвінок»",
+    "explanationRu": "Не про завтрак вдвоём, а про публичный протокол: The Ton, chaperon, Whistledown, линия визитов; бала ещё нет, а репутация уже public, если almanac поставил пропуск. Опоздание — line, не приват.",
+    "explanationUk": "Не про сніданок вдвох, а про публічний протокол: The Ton, chaperon, Whistledown, лінія візитів; бала ще нема, а репутація вже публічна, якщо almanac поставив пропуск. Запізнення — лінія, не приват."
+  },
+  {
+    "en": "A drawing room",
+    "transcription": "/ə ˈdrɔːɪŋ ˈruːm/",
+    "ru": "Салон приёма, публичная сцена до бала; не мастерская",
+    "uk": "Салон прийомів, публічна сцена перед балом; не ательє",
+    "literalRu": "Комната рисования; у историков — приемная",
+    "literalUk": "Кімната для креслення; далі — зала прийому",
+    "explanationRu": "В Regency это antechamber almanac'а: The Ton, chaperon, Whistledown, line манер; шёпот в углу не держит, пока almanac в salone прочитан как публичный vellum, не дневник. Витрина, не эскиз.",
+    "explanationUk": "У Regency це antechamber almanac'а: The Ton, chaperon, Whistledown, лінія манер; шепіт у кутку не тримає, ледь almanac у салоні публічно прочитаний, не щоденник. Вітрина, не ескіз."
+  },
+  {
+    "en": "To be at home",
+    "transcription": "/tuː bi æt ˈhoʊm/",
+    "ru": "Принимать гостей в «at home day» almanac'а The Ton'а",
+    "uk": "Приймати в «at home day» almanac'а The Ton",
+    "literalRu": "Находиться / быть дома",
+    "literalUk": "Бути вдома, перебувати",
+    "explanationRu": "The Ton, не private «сидя дома»: almanac, chaperon, Whistledown, line, где at home — публичная витрина; перед балом line визитов, кто в ton, кто вне, пока almanac не поставит звёздочку. Дом тут = сцена.",
+    "explanationUk": "The Ton, не private «сидячи вдома»: almanac, chaperon, Whistledown, лінія, де at home — публічна вітрина; перед балом лінія візитів, хто в ton, хто поза ним, ледь almanac поставив зірочку. Дім тут — сцена."
+  },
+  {
+    "en": "The Ton",
+    "transcription": "/ðə ˈtʌn/",
+    "ru": "Высший публичный круг «света», линия этикета Regency",
+    "uk": "Вищий публічний круг «світлого тону», лінія етикету",
+    "literalRu": "Тонна; игра: «ton» = «ton» (тонкое общество)",
+    "literalUk": "Тонна вага; гра: «ton» і «тонке товариство»",
+    "explanationRu": "Не вес, а almanac «светлой компании»: The Ton, chaperon, Whistledown, бал, line — кто в ton, кто вне; шёпот Whistledown'а, если almanac не public vellum, — тогда The Ton, не дневник, пишет ton.",
+    "explanationUk": "Не вага, а almanac «світлої компанії»: The Ton, chaperon, Whistledown, бал, лінія — хто в ton, хто поза; шепіт Whistledown'а, ледь almanac не vellum'ний — тоді The Ton, не щоденник, пише ton."
+  },
+  {
+    "en": "A high flier",
+    "transcription": "/ə ˈhaɪ ˈflaɪɚ/",
+    "ru": "Смелый, громогласный «сокол» The Ton'а, public риск",
+    "uk": "Сміливий, гримастий «сокіл» The Ton, публічний ризик",
+    "literalRu": "Высоко летающий (лётная метафора)",
+    "literalUk": "Той, хто нібито б'є / летить дуже високо (метафора)",
+    "explanationRu": "The Ton читает line, не private скромность: chaperon, Whistledown, бал, almanac, где high flier — публичный риск; whispers в бумаге не снимают, пока almanac не public star, The Ton, а не private осторожность. Ставка на репутации.",
+    "explanationUk": "The Ton читає public ризик, не private скромність: chaperon, Whistledown, бал, almanac, де high flier — публічна ставка; шепіт у паперах не знімає, ледь almanac public star, The Ton, а не private обережність."
+  },
+  {
+    "en": "A confirmed bachelor",
+    "transcription": "/ə kənˈfɜːrmd ˈbætʃələr/",
+    "ru": "«Подтверждённый» холостяк, line almanac'а: ton или private дом",
+    "uk": "«Стало підтверджений» холостяк, лінія almanac: ton чи private дім",
+    "literalRu": "Устойчиво/окончательно подтверждённый бакалавр",
+    "literalUk": "Стало підтверджений (живе) як бакалавр, без шлюбу",
+    "explanationRu": "The Ton, не private увлечение: almanac, chaperon, Whistledown, line, где «confirmed» — vellum'ная public запись, не настроение; балы смеются, ледь almanac не дал public звезду — тогда whispers, не vellum'ная линия бала, решают ton.",
+    "explanationUk": "The Ton, а не private хобі: almanac, chaperon, Whistledown, лінія, де «confirmed» — vellum'ний public запис, не настрій; бали сміються, ледь almanac не дав public зірки — тоді шепіт, а не vellum'на лінія бала, визначає ton."
+  },
+  {
+    "en": "A good match",
+    "transcription": "/ə ˈɡʊd ˈmætʃ/",
+    "ru": "Союз, публично записанный The Ton'ом, almanac'ом как «удача»",
+    "uk": "Союз, публічно занесений almanac'ом як удача",
+    "literalRu": "Удачное сочетание, удачная пара",
+    "literalUk": "Вдале поєднання, вдала пара",
+    "explanationRu": "The Ton, chaperon, бал, line: good match — vellum'ная public строка, не только личное письмо; almanac, Whistledown, The Ton'а, public line, не private шёпот — сделка ton'а, не только утеха в спальне.",
+    "explanationUk": "The Ton, chaperon, бал, line: good match — vellum'на public ряд, не лише приватне листування; almanac, Whistledown, The Ton, public line, не private шепіт — угода ton'а, не лише втіха в спальні."
+  },
+  {
+    "en": "A matchmaking mother",
+    "transcription": "/ə ˈmætʃˌmeɪkɪŋ ˈmʌðɚ/",
+    "ru": "Мать-сватовка, almanac сделок The Ton'а",
+    "uk": "Мати-сваха, almanac угод The Ton'а",
+    "literalRu": "Матушка, что сватает (своднит пары)",
+    "literalUk": "Матір, що веде свадьбу, зводить пари",
+    "explanationRu": "The Ton, бал, almanac, chaperon, Whistledown, line, где public «мамин» план; private шёпот, ледь almanac vellum'ная public звезда, The Ton'а, не private чаепитие — line диловой мамы, не пустой шёпот.",
+    "explanationUk": "The Ton, бал, almanac, chaperon, Whistledown, лінія, де public «мамин» план; private шепіт, ледь almanac vellum'на public зірка, The Ton'а, не private чаювання — лінія ділової мами, не пустий шепіт."
+  },
+  {
+    "en": "A desirable parti",
+    "transcription": "/ə dɪˈzaɪrəbəl ˌpɑːrˈtiː/",
+    "ru": "Жених, которого almanac The Ton'а рисует vellum'ной public звездой (фр. parti)",
+    "uk": "Наречений, якого almanac The Ton малює vellum'ною зіркою (фр. parti)",
+    "literalRu": "Желанный жених-кандидат, «партия» (фр. parti)",
+    "literalUk": "Бажаний кандидат, «партія» (фр. parti)",
+    "explanationRu": "The Ton, almanac, chaperon, Whistledown, бал, line, где public desirable — vellum'ная public звезда, не private шёпот, ледь almanac, The Ton'а, не private чаепитие, public line, а не лишь лесть. Сделка ton'а, не только шёпот в ухо.",
+    "explanationUk": "The Ton, almanac, chaperon, Whistledown, бал, лінія, де public desirable — vellum'на public зірка, не private шепіт, ледь almanac, The Ton'а, не private чай, public line, а не лише лестощі. Угода ton'а, а не лише шепіт на вухо."
+  }
+]

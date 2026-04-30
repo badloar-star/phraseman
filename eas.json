@@ -7,19 +7,29 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
+      "channel": "development",
       "android": {
         "buildType": "apk"
       }
     },
     "preview": {
       "distribution": "internal",
+      "channel": "preview",
       "android": {
         "buildType": "apk"
       }
     },
     "production": {
+      "channel": "production",
+      "env": {
+        "EXPO_PUBLIC_STORE_RELEASE": "1"
+      },
       "android": {
-        "buildType": "app-bundle"
+        "buildType": "app-bundle",
+        "image": "latest"
+      },
+      "ios": {
+        "simulator": false
       }
     }
   },

@@ -1,0 +1,2023 @@
+# ===== Урок 9: Урок 9: There is / There are / Урок 9: There is / There are =====
+
+L9/lesson9_phrase_1
+  EN: There is a bed in my room
+  RU: В моей комнате есть кровать
+  UK: У моїй кімнаті є ліжко
+
+L9/lesson9_phrase_2
+  EN: There are some keys in the bag
+  RU: В сумке есть несколько ключей
+  UK: У сумці є кілька ключів
+
+L9/lesson9_phrase_3
+  EN: Is there a big park in this city?
+  RU: В этом городе есть большой парк?
+  UK: У цьому місті є великий парк?
+
+L9/lesson9_phrase_4
+  EN: There are many documents on the table
+  RU: На столе много документов
+  UK: На столі багато документів
+
+L9/lesson9_phrase_5
+  EN: There is no milk in the fridge
+  RU: В холодильнике нет молока
+  UK: У холодильнику немає молока
+
+L9/lesson9_phrase_6
+  EN: There is an elevator in this building
+  RU: В этом здании есть лифт
+  UK: У цій будівлі є ліфт
+
+L9/lesson9_phrase_7
+  EN: There are many cars on the street
+  RU: На улице много машин
+  UK: На вулиці багато машин
+
+L9/lesson9_phrase_8
+  EN: Is there a pharmacy at the airport?
+  RU: В аэропорту есть аптека?
+  UK: В аеропорту є аптека?
+
+L9/lesson9_phrase_9
+  EN: There are no apples in the kitchen
+  RU: На кухне нет яблок
+  UK: На кухні немає яблук
+
+L9/lesson9_phrase_10
+  EN: There is a towel in the bathroom
+  RU: В ванной есть полотенце
+  UK: У ванній є рушник
+
+L9/lesson9_phrase_11
+  EN: There is a clock on the wall
+  RU: На стене есть часы
+  UK: На стіні є годинник
+
+L9/lesson9_phrase_12
+  EN: There is not any sugar in your coffee
+  RU: В твоем кофе нет сахара
+  UK: У твоїй каві немає цукру
+
+L9/lesson9_phrase_13
+  EN: Are there new printers in the office?
+  RU: В офисе есть новые принтеры?
+  UK: В офісі є нові принтери?
+
+L9/lesson9_phrase_14
+  EN: There is an important book on the shelf
+  RU: На полке есть важная книга
+  UK: На полиці є важлива книга
+
+L9/lesson9_phrase_15
+  EN: There are good pharmacies in our district
+  RU: В нашем районе есть хорошие аптеки
+  UK: У нашому районі є хороші аптеки
+
+L9/lesson9_phrase_16
+  EN: There is no toy in his car
+  RU: В его машине нет игрушки
+  UK: У його машині немає іграшки
+
+L9/lesson9_phrase_17
+  EN: Are there many trees on our street?
+  RU: На нашей улице много деревьев?
+  UK: На нашій вулиці багато дерев?
+
+L9/lesson9_phrase_18
+  EN: There is ice in her glass
+  RU: В её стакане есть лёд
+  UK: У її склянці є лід
+
+L9/lesson9_phrase_19
+  EN: There are some photos on my wall
+  RU: На моей стене есть несколько фотографий
+  UK: На моїй стіні є кілька фотографій
+
+L9/lesson9_phrase_20
+  EN: Is there a swimming pool in their garden?
+  RU: В их саду есть бассейн?
+  UK: У їхньому саду є басейн?
+
+L9/lesson9_phrase_21
+  EN: There is a phone charger in my suitcase
+  RU: В моем чемодане есть зарядка для телефона
+  UK: У моїй валізі є зарядка для телефону
+
+L9/lesson9_phrase_22
+  EN: There are not any vegetables on your plate
+  RU: На твоей тарелке нет овощей
+  UK: На твоїй тарілці немає овочів
+
+L9/lesson9_phrase_23
+  EN: There is a big TV in our living room
+  RU: В нашей гостиной есть большой телевизор
+  UK: У нашій вітальні є великий телевізор
+
+L9/lesson9_phrase_24
+  EN: There is important information in her letter
+  RU: В её письме есть важная информация
+  UK: У її листі є важлива інформація
+
+L9/lesson9_phrase_25
+  EN: Are there new windows in their apartment?
+  RU: В их квартире есть новые окна?
+  UK: У їхній квартирі є нові вікна?
+
+L9/lesson9_phrase_26
+  EN: There is a coffee machine in my office
+  RU: В моем офисе есть кофемашина
+  UK: У моєму офісі є кавомашина
+
+L9/lesson9_phrase_27
+  EN: There are some pens on your desk
+  RU: На твоем столе есть несколько ручек
+  UK: На твоєму столі є кілька ручок
+
+L9/lesson9_phrase_28
+  EN: There are many quiet places in our library
+  RU: В нашей библиотеке много тихих мест
+  UK: У нашій бібліотеці багато тихих місць
+
+L9/lesson9_phrase_29
+  EN: There is not any cash in her wallet
+  RU: В её кошельке нет наличных
+  UK: У її гаманці немає готівки
+
+L9/lesson9_phrase_30
+  EN: There are good desserts on their menu
+  RU: В их меню есть хорошие десерты
+  UK: У їхньому меню є хороші десерти
+
+L9/lesson9_phrase_31
+  EN: Is there a mirror in my bedroom?
+  RU: В моей спальне есть зеркало?
+  UK: У моїй спальні є дзеркало?
+
+L9/lesson9_phrase_32
+  EN: There are some cheap cafes in your street
+  RU: На твоей улице есть несколько дешевых кафе
+  UK: На твоїй вулиці є кілька дешевих кафе
+
+L9/lesson9_phrase_33
+  EN: There is no gym in our hotel
+  RU: В нашем отеле нет спортзала
+  UK: У нашому готелі немає спортзалу
+
+L9/lesson9_phrase_34
+  EN: There are important tasks on her list
+  RU: В её списке есть важные задачи
+  UK: У її списку є важливі завдання
+
+L9/lesson9_phrase_35
+  EN: There is old furniture in their apartment
+  RU: В их квартире есть старая мебель
+  UK: У їхній квартирі є старі меблі
+
+L9/lesson9_phrase_36
+  EN: Is there a big supermarket in my district?
+  RU: В моем районе есть большой супермаркет?
+  UK: У моєму районі є великий супермаркет?
+
+L9/lesson9_phrase_37
+  EN: There are many stars in the sky
+  RU: На небе много звёзд
+  UK: На небі багато зірок
+
+L9/lesson9_phrase_38
+  EN: There is a big window in our classroom
+  RU: В нашем классе есть большое окно
+  UK: У нашому класі є велике вікно
+
+L9/lesson9_phrase_39
+  EN: There are no clean towels in her kitchen
+  RU: На её кухне нет чистых полотенец
+  UK: На її кухні немає чистих рушників
+
+L9/lesson9_phrase_40
+  EN: Is there a famous museum in their city?
+  RU: В их городе есть знаменитый музей?
+  UK: У їхньому місті є відомий музей?
+
+L9/lesson9_phrase_41
+  EN: There is not a note in my pocket
+  RU: В моем кармане нет записки
+  UK: У моїй кишені немає записки
+
+L9/lesson9_phrase_42
+  EN: There are some mistakes in your order
+  RU: В твоем заказе есть несколько ошибок
+  UK: У твоєму замовленні є кілька помилок
+
+L9/lesson9_phrase_43
+  EN: Are there many students in our group?
+  RU: В нашей группе много студентов?
+  UK: У нашій групі багато студентів?
+
+L9/lesson9_phrase_44
+  EN: There is a useful map in her bag
+  RU: В её сумке есть полезная карта
+  UK: У її сумці є корисна карта
+
+L9/lesson9_phrase_45
+  EN: There is a good film on TV
+  RU: По телевизору есть хороший фильм
+  UK: По телевізору є хороший фільм
+
+L9/lesson9_phrase_46
+  EN: There is a quiet garden in my house
+  RU: В моем доме есть тихий сад
+  UK: У моєму будинку є тихий сад
+
+L9/lesson9_phrase_47
+  EN: There are not any questions in your message
+  RU: В твоем сообщении нет вопросов
+  UK: У твоєму повідомленні немає запитань
+
+L9/lesson9_phrase_48
+  EN: There are some magazines on the shelf
+  RU: На полке есть несколько журналов
+  UK: На полиці є кілька журналів
+
+L9/lesson9_phrase_49
+  EN: There are no important keys on her desk
+  RU: На её столе нет важных ключей
+  UK: На її столі немає важливих ключів
+
+L9/lesson9_phrase_50
+  EN: Are there beautiful mountains in their country?
+  RU: В их стране есть красивые горы?
+  UK: У їхній країні є красиві гори?
+
+
+# ===== Урок 10: Урок 10: Модальный глагол Can / Урок 10: Модальне дієслово Can =====
+
+L10/lesson10_phrase_1
+  EN: I can translate this document.
+  RU: Я могу перевести этот документ.
+  UK: Я можу перекласти цей документ.
+
+L10/lesson10_phrase_2
+  EN: Can you sign these papers today?
+  RU: Вы можете подписать эти бумаги сегодня?
+  UK: Ви можете підписати ці папери сьогодні?
+
+L10/lesson10_phrase_3
+  EN: He cannot fix my computer right now.
+  RU: Он не может починить мой компьютер прямо сейчас.
+  UK: Він не може полагодити мій комп'ютер прямо зараз.
+
+L10/lesson10_phrase_4
+  EN: We must buy groceries today.
+  RU: Мы должны купить продукты сегодня.
+  UK: Ми повинні купити продукти сьогодні.
+
+L10/lesson10_phrase_5
+  EN: Must she check her email now?
+  RU: Она должна проверить свой имейл сейчас?
+  UK: Вона повинна перевірити свою пошту зараз?
+
+L10/lesson10_phrase_6
+  EN: They must not enter this room.
+  RU: Им нельзя входить в эту комнату.
+  UK: Їм не можна заходити в цю кімнату.
+
+L10/lesson10_phrase_7
+  EN: You should call a doctor.
+  RU: Вам следует вызвать врача.
+  UK: Вам слід викликати лікаря.
+
+L10/lesson10_phrase_8
+  EN: Should we save energy at home?
+  RU: Нам следует экономить энергию дома?
+  UK: Нам слід економити енергію вдома?
+
+L10/lesson10_phrase_9
+  EN: He should not drive so fast.
+  RU: Ему не следует ехать так быстро.
+  UK: Йому не слід їхати так швидко.
+
+L10/lesson10_phrase_10
+  EN: I have to finish this report.
+  RU: Я должен закончить этот отчёт.
+  UK: Я повинен закінчити цей звіт.
+
+L10/lesson10_phrase_11
+  EN: Do you have to wear a mask here?
+  RU: Вам нужно носить маску здесь?
+  UK: Вам потрібно носити маску тут?
+
+L10/lesson10_phrase_12
+  EN: She does not have to come early.
+  RU: Ей не нужно приходить рано.
+  UK: Їй не потрібно приходити рано.
+
+L10/lesson10_phrase_13
+  EN: We could meet at the station.
+  RU: Мы могли бы встретиться на станции.
+  UK: Ми могли б зустрітися на станції.
+
+L10/lesson10_phrase_14
+  EN: Could you help me with this task?
+  RU: Вы могли бы помочь мне с этим заданием?
+  UK: Ви могли б допомогти мені з цим завданням?
+
+L10/lesson10_phrase_15
+  EN: They could not open the file.
+  RU: Они не смогли открыть файл.
+  UK: Вони не змогли відкрити файл.
+
+L10/lesson10_phrase_16
+  EN: You may use my password.
+  RU: Вы можете использовать мой пароль.
+  UK: Ви можете використати мій пароль.
+
+L10/lesson10_phrase_17
+  EN: May I ask a question?
+  RU: Можно мне задать вопрос?
+  UK: Можна мені поставити запитання?
+
+L10/lesson10_phrase_18
+  EN: He may not park here.
+  RU: Ему нельзя парковаться здесь.
+  UK: Йому не можна паркуватися тут.
+
+L10/lesson10_phrase_19
+  EN: She might join our meeting tomorrow.
+  RU: Она может присоединиться к нашей встрече завтра.
+  UK: Вона може приєднатися до нашої зустрічі завтра.
+
+L10/lesson10_phrase_20
+  EN: Might they arrive late tonight?
+  RU: Они могут приехать поздно сегодня вечером?
+  UK: Вони можуть приїхати пізно сьогодні ввечері?
+
+L10/lesson10_phrase_21
+  EN: We might not finish on time.
+  RU: Мы можем не закончить вовремя.
+  UK: Ми можемо не закінчити вчасно.
+
+L10/lesson10_phrase_22
+  EN: I would choose this option.
+  RU: Я бы выбрал этот вариант.
+  UK: Я б обрав цей варіант.
+
+L10/lesson10_phrase_23
+  EN: Would you print these tickets for me?
+  RU: Вы бы распечатали эти билеты для меня?
+  UK: Ви б роздрукували ці квитки для мене?
+
+L10/lesson10_phrase_24
+  EN: He would not change his decision.
+  RU: Он бы не изменил своё решение.
+  UK: Він би не змінив своє рішення.
+
+L10/lesson10_phrase_25
+  EN: They will organize this holiday.
+  RU: Они организуют этот праздник.
+  UK: Вони організують це свято.
+
+L10/lesson10_phrase_26
+  EN: Will you return these books tomorrow?
+  RU: Вы вернёте эти книги завтра?
+  UK: Ви повернете ці книги завтра?
+
+L10/lesson10_phrase_27
+  EN: We will not move the meeting today.
+  RU: Мы не будем переносить встречу сегодня.
+  UK: Ми не будемо переносити зустріч сьогодні.
+
+L10/lesson10_phrase_28
+  EN: You need to check this address.
+  RU: Вам нужно проверить этот адрес.
+  UK: Вам потрібно перевірити цю адресу.
+
+L10/lesson10_phrase_29
+  EN: Do I need to bring my passport?
+  RU: Мне нужно взять с собой паспорт?
+  UK: Мені потрібно взяти із собою паспорт?
+
+L10/lesson10_phrase_30
+  EN: She does not need to buy a new phone.
+  RU: Ей не нужно покупать новый телефон.
+  UK: Їй не потрібно купувати новий телефон.
+
+L10/lesson10_phrase_31
+  EN: He is able to repair your bicycle.
+  RU: Он способен починить ваш велосипед.
+  UK: Він здатний полагодити ваш велосипед.
+
+L10/lesson10_phrase_32
+  EN: Are you able to meet us at noon?
+  RU: Вы сможете встретить нас в полдень?
+  UK: Ви зможете зустріти нас опівдні?
+
+L10/lesson10_phrase_33
+  EN: They are not able to access the system.
+  RU: Они не могут получить доступ к системе.
+  UK: Вони не можуть отримати доступ до системи.
+
+L10/lesson10_phrase_34
+  EN: We can discuss this project tomorrow.
+  RU: Мы можем обсудить этот проект завтра.
+  UK: Ми можемо обговорити цей проєкт завтра.
+
+L10/lesson10_phrase_35
+  EN: Can she drive a truck?
+  RU: Она умеет водить грузовик?
+  UK: Вона вміє водити вантажівку?
+
+L10/lesson10_phrase_36
+  EN: I cannot find your message.
+  RU: Я не могу найти ваше сообщение.
+  UK: Я не можу знайти ваше повідомлення.
+
+L10/lesson10_phrase_37
+  EN: You must keep these documents in a safe.
+  RU: Вы должны хранить эти документы в сейфе.
+  UK: Ви повинні зберігати ці документи в сейфі.
+
+L10/lesson10_phrase_38
+  EN: Must we close the window now?
+  RU: Мы должны закрыть окно сейчас?
+  UK: Ми повинні закрити вікно зараз?
+
+L10/lesson10_phrase_39
+  EN: He must not share this password.
+  RU: Он не должен делиться этим паролем.
+  UK: Він не повинен ділитися цим паролем.
+
+L10/lesson10_phrase_40
+  EN: She should study every day.
+  RU: Ей следует учиться каждый день.
+  UK: Їй слід вчитися щодня.
+
+L10/lesson10_phrase_41
+  EN: Should they call a taxi now?
+  RU: Им следует вызвать такси сейчас?
+  UK: Їм слід викликати таксі зараз?
+
+L10/lesson10_phrase_42
+  EN: We should not ignore this rule.
+  RU: Нам не следует игнорировать это правило.
+  UK: Нам не слід ігнорувати це правило.
+
+L10/lesson10_phrase_43
+  EN: I have to pay rent every month.
+  RU: Я должен платить аренду каждый месяц.
+  UK: Я повинен платити оренду щомісяця.
+
+L10/lesson10_phrase_44
+  EN: Does he have to attend the meeting?
+  RU: Ему нужно присутствовать на встрече?
+  UK: Йому потрібно бути присутнім на зустрічі?
+
+L10/lesson10_phrase_45
+  EN: You do not have to wait downstairs.
+  RU: Вам не нужно ждать внизу.
+  UK: Вам не потрібно чекати внизу.
+
+L10/lesson10_phrase_46
+  EN: They may discuss this plan later.
+  RU: Они могут обсудить этот план позже.
+  UK: Вони можуть обговорити цей план пізніше.
+
+L10/lesson10_phrase_47
+  EN: Might we book this room tonight?
+  RU: Мы можем забронировать этот номер сегодня вечером?
+  UK: Ми можемо забронювати цей номер сьогодні ввечері?
+
+L10/lesson10_phrase_48
+  EN: She may not use this device at work.
+  RU: Ей нельзя использовать это устройство на работе.
+  UK: Їй не можна використовувати цей пристрій на роботі.
+
+L10/lesson10_phrase_49
+  EN: We will send this email tonight.
+  RU: Мы отправим этот имейл сегодня вечером.
+  UK: Ми надішлемо цей лист сьогодні ввечері.
+
+L10/lesson10_phrase_50
+  EN: Will he be able to print the photo?
+  RU: Он сможет распечатать это фото?
+  UK: Він зможе роздрукувати це фото?
+
+
+# ===== Урок 11: Урок 11: Past Simple (Правильные глаголы) / Урок 11: Past Simple (Правильні дієслова) =====
+
+L11/lesson11_phrase_1
+  EN: I booked this table two hours ago
+  RU: Я забронировал этот столик два часа назад
+  UK: Я забронював цей столик дві години тому
+
+L11/lesson11_phrase_2
+  EN: She cooked a good dinner yesterday evening
+  RU: Она вчера вечером приготовила хороший ужин
+  UK: Вона вчора ввечері приготувала хорошу вечерю
+
+L11/lesson11_phrase_3
+  EN: We visited our friends last week
+  RU: Мы навестили наших друзей на прошлой неделе
+  UK: Ми минулого тижня відвідали наших друзів
+
+L11/lesson11_phrase_4
+  EN: They painted that wall three days ago
+  RU: Они покрасили ту стену три дня назад
+  UK: Вони три дні тому пофарбували ту стіну
+
+L11/lesson11_phrase_5
+  EN: You opened a new window this morning
+  RU: Вы открыли новое окно сегодня утром
+  UK: Ви цього ранку відкрили нове вікно
+
+L11/lesson11_phrase_6
+  EN: They checked their tickets yesterday evening
+  RU: Они вчера вечером проверили свои билеты
+  UK: Вони вчора ввечері перевірили свої квитки
+
+L11/lesson11_phrase_7
+  EN: You parked the car here ten minutes ago
+  RU: Вы припарковали машину здесь десять минут назад
+  UK: Ви припаркували машину тут десять хвилин тому
+
+L11/lesson11_phrase_8
+  EN: We discussed this project last Monday
+  RU: Мы обсудили этот проект в прошлый понедельник
+  UK: Ми обговорили цей проєкт минулого понеділка
+
+L11/lesson11_phrase_9
+  EN: I cleaned my shoes this morning
+  RU: Я почистил свою обувь сегодня утром
+  UK: Я цього ранку почистив своє взуття
+
+L11/lesson11_phrase_10
+  EN: He deleted that file two hours ago
+  RU: Он удалил тот файл два часа назад
+  UK: Він дві години тому видалив той файл
+
+L11/lesson11_phrase_11
+  EN: She confirmed our order yesterday evening
+  RU: Она вчера вечером подтвердила наш заказ
+  UK: Вона вчора ввечері підтвердила наше замовлення
+
+L11/lesson11_phrase_12
+  EN: We uploaded these photos last week
+  RU: Мы загрузили эти фотографии на прошлой неделе
+  UK: Ми минулого тижня завантажили ці фотографії
+
+L11/lesson11_phrase_13
+  EN: They finished this report two hours ago
+  RU: Они закончили этот отчет два часа назад
+  UK: Вони дві години тому закінчили цей звіт
+
+L11/lesson11_phrase_14
+  EN: I charged your laptop last Saturday
+  RU: Я подзарядил твой ноутбук в прошлую субботу
+  UK: Я минулої суботи підзарядив твій ноутбук
+
+L11/lesson11_phrase_15
+  EN: You saved this document five minutes ago
+  RU: Вы пять минут назад сохранили этот документ
+  UK: Ви п'ять хвилин тому зберегли цей документ
+
+L11/lesson11_phrase_16
+  EN: She ironed her shirt two hours ago
+  RU: Она погладила свою рубашку два часа назад
+  UK: Вона дві години тому попрасувала свою сорочку
+
+L11/lesson11_phrase_17
+  EN: We delivered that parcel on time yesterday
+  RU: Мы вчера доставили ту посылку вовремя
+  UK: Ми вчора доставили ту посилку вчасно
+
+L11/lesson11_phrase_18
+  EN: They rented this apartment last month
+  RU: Они арендовали эту квартиру в прошлом месяце
+  UK: Вони минулого місяця орендували цю квартиру
+
+L11/lesson11_phrase_19
+  EN: I deleted that message yesterday evening
+  RU: Я вчера вечером удалил то сообщение
+  UK: Я вчора ввечері видалив те повідомлення
+
+L11/lesson11_phrase_20
+  EN: You ordered this item three days ago
+  RU: Вы заказали этот товар три дня назад
+  UK: Ви три дні тому замовили цей товар
+
+L11/lesson11_phrase_21
+  EN: She washed those dirty dishes yesterday evening
+  RU: Она вчера вечером вымыла ту грязную посуду
+  UK: Вона вчора ввечері помила той брудний посуд
+
+L11/lesson11_phrase_22
+  EN: We painted these shelves last week
+  RU: Мы покрасили эти полки на прошлой неделе
+  UK: Ми минулого тижня пофарбували ці полиці
+
+L11/lesson11_phrase_23
+  EN: They canceled that meeting two hours ago
+  RU: Они отменили ту встречу два часа назад
+  UK: Вони скасували ту зустріч дві години тому
+
+L11/lesson11_phrase_24
+  EN: I fixed my old printer this morning
+  RU: Я сегодня утром починил свой старый принтер
+  UK: Я сьогодні вранці полагодив свій старий принтер
+
+L11/lesson11_phrase_25
+  EN: You attended that lecture last Thursday
+  RU: Вы посетили ту лекцию в прошлый четверг
+  UK: Ви минулого четверга відвідали ту лекцію
+
+L11/lesson11_phrase_26
+  EN: They packed these suitcases yesterday evening
+  RU: Они вчера вечером упаковали эти чемоданы
+  UK: Вони вчора ввечері спакували ці валізи
+
+L11/lesson11_phrase_27
+  EN: We booked this hotel last week
+  RU: Мы забронировали этот отель на прошлой неделе
+  UK: Ми минулого тижня забронювали цей готель
+
+L11/lesson11_phrase_28
+  EN: He turned off his computer three hours ago
+  RU: Он выключил свой компьютер три часа назад
+  UK: Він три години тому вимкнув свій комп'ютер
+
+L11/lesson11_phrase_29
+  EN: I missed a call this morning
+  RU: Я пропустил звонок сегодня утром
+  UK: Я пропустив дзвінок сьогодні вранці
+
+L11/lesson11_phrase_30
+  EN: You changed this password last Friday
+  RU: Вы изменили этот пароль в прошлую пятницу
+  UK: Ви минулої п'ятниці змінили цей пароль
+
+L11/lesson11_phrase_31
+  EN: She helped her sister yesterday evening
+  RU: Она вчера вечером помогла своей сестре
+  UK: Вона вчора ввечері допомогла своїй сестрі
+
+L11/lesson11_phrase_32
+  EN: We watched that movie last week
+  RU: Мы посмотрели тот фильм на прошлой неделе
+  UK: Ми минулого тижня подивилися той фільм
+
+L11/lesson11_phrase_33
+  EN: They prepared a present two hours ago
+  RU: Они подготовили подарок два часа назад
+  UK: Вони підготували подарунок дві години тому
+
+L11/lesson11_phrase_34
+  EN: I printed this document this morning
+  RU: Я сегодня утром распечатал этот документ
+  UK: Я сьогодні вранці роздрукував цей документ
+
+L11/lesson11_phrase_35
+  EN: You called your doctor last Monday
+  RU: Вы позвонили своему врачу в прошлый понедельник
+  UK: Ви минулого понеділка подзвонили своєму лікарю
+
+L11/lesson11_phrase_36
+  EN: They helped that old man yesterday evening
+  RU: Они вчера вечером помогли тому старому мужчине
+  UK: Вони вчора ввечері допомогли тому старому чоловікові
+
+L11/lesson11_phrase_37
+  EN: You rented this white car last month
+  RU: Вы арендовали эту белую машину в прошлом месяце
+  UK: Ви минулого місяця орендували цю білу машину
+
+L11/lesson11_phrase_38
+  EN: We finished that difficult work two hours ago
+  RU: Мы закончили ту сложную работу два часа назад
+  UK: Ми дві години тому закінчили ту складну роботу
+
+L11/lesson11_phrase_39
+  EN: I locked the door this morning
+  RU: Я запер дверь сегодня утром
+  UK: Я зачинив двері сьогодні вранці
+
+L11/lesson11_phrase_40
+  EN: She mailed a card three days ago
+  RU: Она отправила открытку три дня назад
+  UK: Вона відправила листівку три дні тому
+
+L11/lesson11_phrase_41
+  EN: We closed the shop yesterday evening
+  RU: Мы вчера вечером закрыли магазин
+  UK: Ми вчора ввечері закрили магазин
+
+L11/lesson11_phrase_42
+  EN: I called my friend this morning
+  RU: Я позвонил своему другу сегодня утром
+  UK: Я зателефонував своєму другу сьогодні вранці
+
+L11/lesson11_phrase_43
+  EN: They moved that table two hours ago
+  RU: Они передвинули тот стол два часа назад
+  UK: Вони пересунули той стіл дві години тому
+
+L11/lesson11_phrase_44
+  EN: She visited that old woman last month
+  RU: Она навестила ту старую женщину в прошлом месяце
+  UK: Вона минулого місяця відвідала ту стару жінку
+
+L11/lesson11_phrase_45
+  EN: You returned this book last Tuesday
+  RU: Вы вернули эту книгу в прошлый вторник
+  UK: Ви повернули цю книгу в минулий вівторок
+
+L11/lesson11_phrase_46
+  EN: She brushed her long hair two hours ago
+  RU: Она расчесала свои длинные волосы два часа назад
+  UK: Вона дві години тому розчесала своє довге волосся
+
+L11/lesson11_phrase_47
+  EN: We changed the batteries yesterday evening
+  RU: Мы вчера вечером заменили батарейки
+  UK: Ми вчора ввечері замінили батарейки
+
+L11/lesson11_phrase_48
+  EN: They ordered pizza three days ago
+  RU: Они заказали пиццу три дня назад
+  UK: Вони замовили піцу три дні тому
+
+L11/lesson11_phrase_49
+  EN: I watered the plants last Sunday
+  RU: Я полил растения в прошлое воскресенье
+  UK: Я поливав рослини в минулу неділю
+
+L11/lesson11_phrase_50
+  EN: You answered that email yesterday
+  RU: Вы вчера ответили на тот имейл
+  UK: Ви вчора відповіли на той електронний лист
+
+
+# ===== Урок 12: Урок 12: Past Simple (Неправильные глаголы) / Урок 12: Past Simple (Неправильні дієслова) =====
+
+L12/lesson12_phrase_1
+  EN: I bought this fresh bread yesterday
+  RU: Я вчера купил этот свежий хлеб
+  UK: Я вчора купив цей свіжий хліб
+
+L12/lesson12_phrase_2
+  EN: She drank her hot coffee three hours ago
+  RU: Она выпила свой горячий кофе три часа назад
+  UK: Вона три години тому випила свою гарячу каву
+
+L12/lesson12_phrase_3
+  EN: We found your keys this morning
+  RU: Мы сегодня утром нашли твои ключи
+  UK: Ми сьогодні вранці знайшли твої ключі
+
+L12/lesson12_phrase_4
+  EN: They sold that old boat last month
+  RU: Они продали ту старую лодку в прошлом месяце
+  UK: Вони минулого місяця продали той старий човен
+
+L12/lesson12_phrase_5
+  EN: You sent that important parcel yesterday
+  RU: Вы вчера отправили ту важную посылку
+  UK: Ви вчора відправили ту важливу посилку
+
+L12/lesson12_phrase_6
+  EN: They came home late yesterday evening
+  RU: Они вчера вечером пришли домой поздно
+  UK: Вони вчора ввечері прийшли додому пізно
+
+L12/lesson12_phrase_7
+  EN: You saw that old photo three days ago
+  RU: Вы увидели ту старую фотографию три дня назад
+  UK: Ви три дні тому побачили ту стару фотографію
+
+L12/lesson12_phrase_8
+  EN: We built this new fence last Friday
+  RU: Мы построили этот новый забор в прошлую пятницу
+  UK: Ми минулої п'ятниці побудували цей новий паркан
+
+L12/lesson12_phrase_9
+  EN: I wrote that long letter this morning
+  RU: Я написал то длинное письмо сегодня утром
+  UK: Я цього ранку написав того довгого листа
+
+L12/lesson12_phrase_10
+  EN: She brought your blue bag two hours ago
+  RU: Она принесла твою синюю сумку два часа назад
+  UK: Вона дві години тому принесла твою синю сумку
+
+L12/lesson12_phrase_11
+  EN: He bought those new headphones yesterday
+  RU: Он вчера купил те новые наушники
+  UK: Він вчора купив ті нові навушники
+
+L12/lesson12_phrase_12
+  EN: We went to that new gym last week
+  RU: Мы на прошлой неделе пошли в тот новый спортзал
+  UK: Ми минулого тижня пішли до того нового спортзалу
+
+L12/lesson12_phrase_13
+  EN: I put your phone on the table two hours ago
+  RU: Я положил твой телефон на стол два часа назад
+  UK: Я поклав твій телефон на стіл дві години тому
+
+L12/lesson12_phrase_14
+  EN: They gave me that useful advice last month
+  RU: Они в прошлом месяце дали мне тот полезный совет
+  UK: Вони минулого місяця дали мені ту корисну пораду
+
+L12/lesson12_phrase_15
+  EN: You drank that cold juice this morning
+  RU: Вы сегодня утром выпили тот холодный сок
+  UK: Ви сьогодні вранці випили той холодний сік
+
+L12/lesson12_phrase_16
+  EN: She forgot her new umbrella three hours ago
+  RU: Она забыла свой новый зонт три часа назад
+  UK: Вона три години тому забула свою нову парасольку
+
+L12/lesson12_phrase_17
+  EN: We heard that strange noise yesterday evening
+  RU: Мы вчера вечером услышали тот странный шум
+  UK: Ми вчора ввечері почули той дивний шум
+
+L12/lesson12_phrase_18
+  EN: They spent all their money last month
+  RU: Они в прошлом месяце потратили все свои деньги
+  UK: Вони минулого місяця витратили всі свої гроші
+
+L12/lesson12_phrase_19
+  EN: I chose that red apple this morning
+  RU: Я выбрал то красное яблоко сегодня утром
+  UK: Я вибрав те червоне яблуко сьогодні вранці
+
+L12/lesson12_phrase_20
+  EN: You read that interesting article last Saturday
+  RU: Вы прочитали ту интересную статью в прошлую субботу
+  UK: Ви минулої суботи прочитали ту цікаву статтю
+
+L12/lesson12_phrase_21
+  EN: She lost her old wallet yesterday
+  RU: Она вчера потеряла свой старый кошелек
+  UK: Вона вчора загубила свій старий гаманець
+
+L12/lesson12_phrase_22
+  EN: We kept that comfortable bed last week
+  RU: Мы оставили ту удобную кровать на прошлой неделе
+  UK: Ми залишили те зручне ліжко минулого тижня
+
+L12/lesson12_phrase_23
+  EN: They understood that difficult task two hours ago
+  RU: Они поняли ту сложную задачу два часа назад
+  UK: Вони дві години тому зрозуміли ту складну задачу
+
+L12/lesson12_phrase_24
+  EN: I wore that warm jacket this morning
+  RU: Я сегодня утром надел ту теплую куртку
+  UK: Я сьогодні вранці одягнув ту теплу куртку
+
+L12/lesson12_phrase_25
+  EN: You told me that funny story last Thursday
+  RU: Вы рассказали мне ту забавную историю в прошлый четверг
+  UK: Ви минулого четверга розповіли мені ту кумедну історію
+
+L12/lesson12_phrase_26
+  EN: They left that noisy city yesterday evening
+  RU: Они вчера вечером покинули тот шумный город
+  UK: Вони вчора ввечері покинули те шумне місто
+
+L12/lesson12_phrase_27
+  EN: We met your new neighbor last week
+  RU: Мы на прошлой неделе встретили твоего нового соседа
+  UK: Ми минулого тижня зустріли твого нового сусіда
+
+L12/lesson12_phrase_28
+  EN: He slept on that soft sofa three hours ago
+  RU: Он три часа назад поспал на том мягком диване
+  UK: Він три години тому поспав на тому м'якому дивані
+
+L12/lesson12_phrase_29
+  EN: I got those fresh vegetables this morning
+  RU: Я сегодня утром достал те свежие овощи
+  UK: Я сьогодні вранці дістав ті свіжі овочі
+
+L12/lesson12_phrase_30
+  EN: You lost that important key last Monday
+  RU: Вы потеряли тот важный ключ в прошлый понедельник
+  UK: Ви минулого понеділка загубили той важливий ключ
+
+L12/lesson12_phrase_31
+  EN: She made that warm breakfast this morning
+  RU: Она сегодня утром приготовила тот тёплый завтрак
+  UK: Вона сьогодні вранці приготувала той теплий сніданок
+
+L12/lesson12_phrase_32
+  EN: We drank that warm tea yesterday evening
+  RU: Мы вчера вечером выпили тот теплый чай
+  UK: Ми вчора ввечері випили той теплий чай
+
+L12/lesson12_phrase_33
+  EN: They brought that heavy box two hours ago
+  RU: Они принесли тот тяжелый ящик два часа назад
+  UK: Вони дві години тому принесли той важкий ящик
+
+L12/lesson12_phrase_34
+  EN: I found that lost passport this morning
+  RU: Я сегодня утром нашел тот потерянный паспорт
+  UK: Я сьогодні вранці знайшов той загублений паспорт
+
+L12/lesson12_phrase_35
+  EN: You bought that beautiful picture last Wednesday
+  RU: Вы купили ту красивую картину в прошлую среду
+  UK: Ви минулої середи купили ту красиву картину
+
+L12/lesson12_phrase_36
+  EN: She left those important documents at home this morning
+  RU: Она сегодня утром оставила те важные документы дома
+  UK: Вона сьогодні вранці залишила ті важливі документи вдома
+
+L12/lesson12_phrase_37
+  EN: We felt very tired yesterday evening
+  RU: Мы вчера вечером чувствовали себя очень уставшими
+  UK: Ми вчора ввечері почувалися дуже втомленими
+
+L12/lesson12_phrase_38
+  EN: They built that wooden bridge last Friday
+  RU: Они построили тот деревянный мост в прошлую пятницу
+  UK: Вони минулої п'ятниці побудували той дерев'яний міст
+
+L12/lesson12_phrase_39
+  EN: I met my old friend this morning
+  RU: Я сегодня утром встретил своего старого друга
+  UK: Я сьогодні вранці зустрів свого старого друга
+
+L12/lesson12_phrase_40
+  EN: You said those right words three hours ago
+  RU: Вы три часа назад сказали те правильные слова
+  UK: Ви три години тому сказали ті правильні слова
+
+L12/lesson12_phrase_41
+  EN: We knew that old song yesterday evening
+  RU: Мы вчера вечером знали ту старую песню
+  UK: Ми вчора ввечері знали ту стару пісню
+
+L12/lesson12_phrase_42
+  EN: She found those lost gloves three days ago
+  RU: Она нашла те потерянные перчатки три дня назад
+  UK: Вона три дні тому знайшла ті загублені рукавички
+
+L12/lesson12_phrase_43
+  EN: They took that fresh juice this morning
+  RU: Они взяли тот свежий сок сегодня утром
+  UK: Вони взяли той свіжий сік сьогодні вранці
+
+L12/lesson12_phrase_44
+  EN: I brought those heavy bags two hours ago
+  RU: Я принес те тяжелые сумки два часа назад
+  UK: Я дві години тому приніс ті важкі сумки
+
+L12/lesson12_phrase_45
+  EN: You understood that important topic last Thursday
+  RU: Вы поняли ту важную тему в прошлый четверг
+  UK: Ви минулого четверга зрозуміли ту важливу тему
+
+L12/lesson12_phrase_46
+  EN: She gave that useful key to our new neighbor yesterday evening
+  RU: Она вчера вечером дала тот полезный ключ нашему новому соседу
+  UK: Вона вчора ввечері дала той корисний ключ нашому новому сусідові
+
+L12/lesson12_phrase_47
+  EN: We saw that rare bird in our garden this morning
+  RU: Мы сегодня утром увидели ту редкую птицу в нашем саду
+  UK: Ми сьогодні вранці побачили того рідкісного птаха у нашому саду
+
+L12/lesson12_phrase_48
+  EN: They ate those sweet fruits three hours ago
+  RU: Они съели те сладкие фрукты три часа назад
+  UK: Вони три години тому з'їли ті солодкі фрукти
+
+L12/lesson12_phrase_49
+  EN: I sent you that short text last Saturday
+  RU: Я в прошлую субботу прислал тебе тот короткий текст
+  UK: Я минулої суботи надіслав тобі той короткий текст
+
+L12/lesson12_phrase_50
+  EN: You forgot that old umbrella on that blue bus yesterday evening
+  RU: Вы вчера вечером забыли тот старый зонт в том синем автобусе
+  UK: Ви вчора ввечері забули ту стару парасольку в тому синьому автобусі
+
+
+# ===== Урок 13: Урок 13: Future Simple (will) / Урок 13: Future Simple (will) =====
+
+L13/lesson13_phrase_1
+  EN: Will I call you tomorrow morning?
+  RU: Я позвоню тебе завтра утром?
+  UK: Чи я зателефоную тобі завтра вранці?
+
+L13/lesson13_phrase_2
+  EN: She will not help us next week.
+  RU: Она не поможет нам на следующей неделе.
+  UK: Вона не допоможе нам наступного тижня.
+
+L13/lesson13_phrase_3
+  EN: Will we meet this new doctor soon?
+  RU: Мы скоро встретим этого нового врача?
+  UK: Чи ми скоро зустрінемо цього нового лікаря?
+
+L13/lesson13_phrase_4
+  EN: They will not buy that old house next year.
+  RU: Они не купят тот старый дом в следующем году.
+  UK: Вони не куплять той старий будинок наступного року.
+
+L13/lesson13_phrase_5
+  EN: Will you bring those important documents later?
+  RU: Вы принесёте те важные документы позже?
+  UK: Чи ви принесете ті важливі документи пізніше?
+
+L13/lesson13_phrase_6
+  EN: He will not send that long message in ten minutes.
+  RU: Он не отправит то длинное сообщение через десять минут.
+  UK: Він не надішле те довге повідомлення через десять хвилин.
+
+L13/lesson13_phrase_7
+  EN: Will we cook a fresh soup soon?
+  RU: Мы скоро приготовим свежий суп?
+  UK: Чи ми скоро приготуємо свіжий суп?
+
+L13/lesson13_phrase_8
+  EN: She will not wear that blue dress tomorrow evening.
+  RU: Она не наденет то синее платье завтра вечером.
+  UK: Вона не одягне ту синю сукню завтра ввечері.
+
+L13/lesson13_phrase_9
+  EN: Will they understand this simple truth soon?
+  RU: Они скоро поймут эту простую истину?
+  UK: Чи вони скоро зрозуміють цю просту істину?
+
+L13/lesson13_phrase_10
+  EN: You will not read that interesting book next week.
+  RU: Вы не прочитаете ту интересную книгу на следующей неделе.
+  UK: Ви не прочитаєте ту цікаву книгу наступного тижня.
+
+L13/lesson13_phrase_11
+  EN: Will she write that short report this evening?
+  RU: Она сегодня вечером напишет тот короткий отчёт?
+  UK: Чи вона сьогодні ввечері напише той короткий звіт?
+
+L13/lesson13_phrase_12
+  EN: We will not see that famous bridge soon.
+  RU: Мы скоро не увидим тот знаменитый мост.
+  UK: Ми скоро не побачимо той відомий міст.
+
+L13/lesson13_phrase_13
+  EN: Will they sell that old car next month?
+  RU: Они в следующем месяце продадут ту старую машину?
+  UK: Чи вони наступного місяця продадуть ту стару машину?
+
+L13/lesson13_phrase_14
+  EN: I will not take those fresh fruits tomorrow.
+  RU: Я завтра не возьму те свежие фрукты.
+  UK: Я завтра не візьму ті свіжі фрукти.
+
+L13/lesson13_phrase_15
+  EN: Will you drink that hot coffee later today?
+  RU: Вы сегодня позже выпьете тот горячий кофе?
+  UK: Чи ви сьогодні пізніше вип\'єте ту гарячу каву?
+
+L13/lesson13_phrase_16
+  EN: She will not find that quiet place tomorrow afternoon.
+  RU: Она завтра днем не найдёт то тихое место.
+  UK: Вона завтра вдень не знайде те тихе місце.
+
+L13/lesson13_phrase_17
+  EN: Will we eat that fresh salad later today?
+  RU: Мы сегодня позже съедим тот свежий салат?
+  UK: Чи ми сьогодні пізніше з\'їмо той свіжий салат?
+
+L13/lesson13_phrase_18
+  EN: They will not build that new shopping center soon.
+  RU: Они скоро не построят тот новый торговый центр.
+  UK: Вони скоро не побудують той новий торговий центр.
+
+L13/lesson13_phrase_19
+  EN: Will I lose much time here next week?
+  RU: Я на следующей неделе потеряю много времени здесь?
+  UK: Чи я наступного тижня втрачу багато часу тут?
+
+L13/lesson13_phrase_20
+  EN: You will not hear that pleasant news in two hours.
+  RU: Вы через два часа не услышите ту приятную новость.
+  UK: Ви через дві години не почуєте ту приємну новину.
+
+L13/lesson13_phrase_21
+  EN: Will she prepare that healthy breakfast tomorrow afternoon?
+  RU: Она завтра днём приготовит тот полезный завтрак?
+  UK: Чи вона завтра вдень приготує той корисний сніданок?
+
+L13/lesson13_phrase_22
+  EN: We will not choose those comfortable armchairs soon.
+  RU: Мы скоро не выберем те удобные кресла.
+  UK: Ми скоро не виберемо ті зручні крісла.
+
+L13/lesson13_phrase_23
+  EN: Will they meet that famous artist next year?
+  RU: Они в следующем году встретят того известного артиста?
+  UK: Чи вони наступного року зустрінуть того відомого артиста?
+
+L13/lesson13_phrase_24
+  EN: I will not wear that warm hat later today.
+  RU: Я сегодня позже не надену ту теплую шапку.
+  UK: Я сьогодні пізніше не одягну ту теплу шапку.
+
+L13/lesson13_phrase_25
+  EN: Will you forget that boring story in a week?
+  RU: Вы через неделю забудете ту скучную историю?
+  UK: Чи ви через тиждень забудете ту нудну історію?
+
+L13/lesson13_phrase_26
+  EN: She will not read that fresh newspaper tomorrow morning.
+  RU: Она завтра утром не прочитает ту свежую газету.
+  UK: Вона завтра вранці не прочитає ту свіжу газету.
+
+L13/lesson13_phrase_27
+  EN: Will we find those golden keys soon?
+  RU: Мы скоро найдём те золотые ключи?
+  UK: Чи ми скоро знайдемо ті золоті ключі?
+
+L13/lesson13_phrase_28
+  EN: They will not get that new computer in two days.
+  RU: Они через два дня не получат тот новый компьютер.
+  UK: Вони через два дні не отримають той новий комп\'ютер.
+
+L13/lesson13_phrase_29
+  EN: Will I send that important order later today?
+  RU: Я сегодня позже отправлю тот важный заказ?
+  UK: Чи я сьогодні пізніше відправлю те важливе замовлення?
+
+L13/lesson13_phrase_30
+  EN: You will not tell that long story next Tuesday.
+  RU: Вы в следующий вторник не расскажете ту длинную историю.
+  UK: Ви наступного вівторка не розкажете ту довгу історію.
+
+L13/lesson13_phrase_31
+  EN: Will she show those new photos next week?
+  RU: Она на следующей неделе покажет те новые фотографии?
+  UK: Чи вона наступного тижня покаже ті нові фотографії?
+
+L13/lesson13_phrase_32
+  EN: We will not buy that cheap ticket tomorrow evening.
+  RU: Мы завтра вечером не купим тот дешевый билет.
+  UK: Ми завтра ввечері не купимо той дешевий квиток.
+
+L13/lesson13_phrase_33
+  EN: Will they bring that cold water in an hour?
+  RU: Они через час принесут ту холодную воду?
+  UK: Чи вони через годину принесуть ту холодну воду?
+
+L13/lesson13_phrase_34
+  EN: I will not blow up that big balloon later today.
+  RU: Я сегодня позже не надую тот большой шар.
+  UK: Я сьогодні пізніше не надую ту велику повітряну кулю.
+
+L13/lesson13_phrase_35
+  EN: You will understand that important reason soon.
+  RU: Вы скоро поймете ту важную причину.
+  UK: Ви скоро зрозумієте ту важливу причину.
+
+L13/lesson13_phrase_36
+  EN: She will cut that tasty cake this evening.
+  RU: Она сегодня вечером разрежет тот вкусный торт.
+  UK: Вона сьогодні ввечері розріже той смачний торт.
+
+L13/lesson13_phrase_37
+  EN: We will know that secret information soon.
+  RU: Мы скоро узнаем ту секретную информацию.
+  UK: Ми скоро дізнаємося ту секретну інформацію.
+
+L13/lesson13_phrase_38
+  EN: They will call that new manager next month.
+  RU: Они позвонят тому новому менеджеру в следующем месяце.
+  UK: Вони зателефонують тому новому менеджеру наступного місяця.
+
+L13/lesson13_phrase_39
+  EN: I will put those leather shoes here later today.
+  RU: Я сегодня позже положу те кожаные туфли сюда.
+  UK: Я сьогодні пізніше покладу те шкіряне взуття сюди.
+
+L13/lesson13_phrase_40
+  EN: You will feel that pleasant coolness in three hours.
+  RU: Вы через три часа почувствуете ту приятную прохладу.
+  UK: Ви через три години відчуєте ту приємну прохолоду.
+
+L13/lesson13_phrase_41
+  EN: We will leave that old key here tomorrow morning.
+  RU: Мы завтра утром оставим тот старый ключ здесь.
+  UK: Ми завтра вранці залишимо той старий ключ тут.
+
+L13/lesson13_phrase_42
+  EN: She will sing that beautiful song later today.
+  RU: Она сегодня позже споет ту красивую песню.
+  UK: Вона сьогодні пізніше заспіває ту красиву пісню.
+
+L13/lesson13_phrase_43
+  EN: They will close that heavy door in five minutes.
+  RU: Они закроют ту тяжелую дверь через пять минут.
+  UK: Вони закриють ті важкі двері через п\'ять хвилин.
+
+L13/lesson13_phrase_44
+  EN: I will get that official card next Monday.
+  RU: Я в следующий понедельник получу ту официальную карту.
+  UK: Я наступного понеділка отримаю ту офіційну картку.
+
+L13/lesson13_phrase_45
+  EN: You will lose that extra money soon.
+  RU: Вы скоро потеряете те лишние деньги.
+  UK: Ви скоро втратите ті зайві гроші.
+
+L13/lesson13_phrase_46
+  EN: She will choose that beautiful gift for her mother soon.
+  RU: Она скоро выберет тот красивый подарок для своей матери.
+  UK: Вона скоро вибере той гарний подарунок для своєї матері.
+
+L13/lesson13_phrase_47
+  EN: We will discuss those important details here tomorrow afternoon.
+  RU: Мы завтра днем обсудим те важные детали здесь.
+  UK: Ми завтра вдень обговоримо ті важливі деталі тут.
+
+L13/lesson13_phrase_48
+  EN: They will paint that new wall later today.
+  RU: Они сегодня позже покрасят ту новую стену.
+  UK: Вони сьогодні пізніше пофарбують ту нову стіну.
+
+L13/lesson13_phrase_49
+  EN: I will find that fresh bread in that shop next Wednesday.
+  RU: Я в следующую среду найду тот свежий хлеб в том магазине.
+  UK: Я наступної середи знайду той свіжий хліб у тому магазині.
+
+L13/lesson13_phrase_50
+  EN: You will see that simple scheme in an hour.
+  RU: Вы через час увидите ту простую схему.
+  UK: Ви через годину побачите ту просту схему.
+
+
+# ===== Урок 14: Урок 14: Степени сравнения прилагательных / Урок 14: Ступені порівняння прикметників =====
+
+L14/lesson14_phrase_1
+  EN: This new movie is much more interesting.
+  RU: Этот новый фильм намного интереснее.
+  UK: Цей новий фільм набагато цікавіший.
+
+L14/lesson14_phrase_2
+  EN: She looks happier today.
+  RU: Она сегодня выглядит счастливее.
+  UK: Вона сьогодні виглядає щасливішою.
+
+L14/lesson14_phrase_3
+  EN: We got the cheapest ticket.
+  RU: Мы взяли самый дешевый билет.
+  UK: Ми взяли найдешевший квиток.
+
+L14/lesson14_phrase_4
+  EN: That old house is the tallest here.
+  RU: Тот старый дом самый высокий здесь.
+  UK: Той старий будинок найвищий тут.
+
+L14/lesson14_phrase_5
+  EN: You chose a more expensive car.
+  RU: Вы выбрали более дорогую машину.
+  UK: Ви вибрали дорожчу машину.
+
+L14/lesson14_phrase_6
+  EN: That old computer is much slower.
+  RU: Тот старый компьютер намного медленнее.
+  UK: Той старий комп'ютер набагато повільніший.
+
+L14/lesson14_phrase_7
+  EN: We found the shortest way.
+  RU: Мы нашли самый короткий путь.
+  UK: Ми знайшли найкоротший шлях.
+
+L14/lesson14_phrase_8
+  EN: She got more comfortable shoes today.
+  RU: Она сегодня взяла более удобную обувь.
+  UK: Вона сьогодні взяла зручніше взуття.
+
+L14/lesson14_phrase_9
+  EN: They chose the biggest table.
+  RU: Они выбрали самый большой стол.
+  UK: Вони вибрали найбільший стіл.
+
+L14/lesson14_phrase_10
+  EN: I feel much better today.
+  RU: Я сегодня чувствую себя намного лучше.
+  UK: Я сьогодні почуваюся набагато краще.
+
+L14/lesson14_phrase_11
+  EN: She chose the most beautiful dress today.
+  RU: Она сегодня выбрала самое красивое платье.
+  UK: Вона сьогодні вибрала найкрасивішу сукню.
+
+L14/lesson14_phrase_12
+  EN: We bought a stronger flashlight today.
+  RU: Мы сегодня купили более сильный фонарик.
+  UK: Ми сьогодні купили сильніший ліхтарик.
+
+L14/lesson14_phrase_13
+  EN: They found the safest place here.
+  RU: Они нашли самое безопасное место здесь.
+  UK: Вони знайшли найбезпечніше місце тут.
+
+L14/lesson14_phrase_14
+  EN: I prepared a spicier sauce today.
+  RU: Я сегодня приготовил более острый соус.
+  UK: Я сьогодні приготував гостріший соус.
+
+L14/lesson14_phrase_15
+  EN: You brought the heaviest box.
+  RU: Вы принесли самую тяжелую коробку.
+  UK: Ви принесли найважчу коробку.
+
+L14/lesson14_phrase_16
+  EN: She found a cheaper shop today.
+  RU: Она сегодня нашла более дешевый магазин.
+  UK: Вона сьогодні знайшла дешевший магазин.
+
+L14/lesson14_phrase_17
+  EN: We chose the fastest computer.
+  RU: Мы выбрали самый быстрый компьютер.
+  UK: Ми вибрали найшвидший комп'ютер.
+
+L14/lesson14_phrase_18
+  EN: They brought a lighter bag.
+  RU: Они принесли более легкую сумку.
+  UK: Вони принесли легшу сумку.
+
+L14/lesson14_phrase_19
+  EN: I got the freshest fish today.
+  RU: Я сегодня взял самую свежую рыбу.
+  UK: Я сьогодні взяв найсвіжішу рибу.
+
+L14/lesson14_phrase_20
+  EN: You look more serious today.
+  RU: Вы сегодня выглядите серьёзнее.
+  UK: Ви сьогодні виглядаєте серйознішим.
+
+L14/lesson14_phrase_21
+  EN: She brought riper apples today.
+  RU: Она сегодня принесла более спелые яблоки.
+  UK: Вона сьогодні принесла стигліші яблука.
+
+L14/lesson14_phrase_22
+  EN: We chose the quietest room here.
+  RU: Мы выбрали самую тихую комнату здесь.
+  UK: Ми вибрали найтихішу кімнату тут.
+
+L14/lesson14_phrase_23
+  EN: They found a more interesting job today.
+  RU: Они сегодня нашли более интересную работу.
+  UK: Вони сьогодні знайшли цікавішу роботу.
+
+L14/lesson14_phrase_24
+  EN: I made the softest bread today.
+  RU: Я сегодня приготовил самый мягкий хлеб.
+  UK: Я сьогодні приготував найм'якший хліб.
+
+L14/lesson14_phrase_25
+  EN: You chose a brighter color today.
+  RU: Вы сегодня выбрали более яркий цвет.
+  UK: Ви сьогодні вибрали яскравіший колір.
+
+L14/lesson14_phrase_26
+  EN: She found a thinner notebook today.
+  RU: Она сегодня нашла более тонкую тетрадь.
+  UK: Вона сьогодні знайшла тонший зошит.
+
+L14/lesson14_phrase_27
+  EN: We walked the shorter path home today.
+  RU: Мы сегодня шли домой по более короткой тропинке.
+  UK: Ми сьогодні йшли додому коротшою стежкою.
+
+L14/lesson14_phrase_28
+  EN: They liked a wider bed today.
+  RU: Им сегодня понравилась более широкая кровать.
+  UK: Їм сьогодні сподобалось ширше ліжко.
+
+L14/lesson14_phrase_29
+  EN: I brought the coldest water today.
+  RU: Я сегодня принес самую холодную воду.
+  UK: Я сьогодні приніс найхолоднішу воду.
+
+L14/lesson14_phrase_30
+  EN: You saw a deeper lake today.
+  RU: Вы сегодня увидели более глубокое озеро.
+  UK: Ви сьогодні побачили глибше озеро.
+
+L14/lesson14_phrase_31
+  EN: She brought juicier pears today.
+  RU: Она сегодня принесла более сочные груши.
+  UK: Вона сьогодні принесла соковитіші груші.
+
+L14/lesson14_phrase_32
+  EN: We booked the cheapest hotel today.
+  RU: Мы сегодня забронировали самый дешевый отель.
+  UK: Ми сьогодні забронювали найдешевший готель.
+
+L14/lesson14_phrase_33
+  EN: They found a quieter beach today.
+  RU: Они сегодня нашли более тихий пляж.
+  UK: Вони сьогодні знайшли тихіший пляж.
+
+L14/lesson14_phrase_34
+  EN: I tried the hottest mustard today.
+  RU: Я сегодня попробовал самую острую горчицу.
+  UK: Я сьогодні спробував найгострішу гірчицю.
+
+L14/lesson14_phrase_35
+  EN: You brought a more bitter chocolate today.
+  RU: Вы сегодня принесли более горький шоколад.
+  UK: Ви сьогодні принесли гіркіший шоколад.
+
+L14/lesson14_phrase_36
+  EN: She tried a more comfortable armchair today.
+  RU: Она сегодня попробовала более удобное кресло.
+  UK: Вона сьогодні спробувала зручніше крісло.
+
+L14/lesson14_phrase_37
+  EN: We brought the tastiest soup today.
+  RU: Мы сегодня принесли самый вкусный суп.
+  UK: Ми сьогодні принесли найсмачніший суп.
+
+L14/lesson14_phrase_38
+  EN: They chose a darker suit today.
+  RU: Они сегодня выбрали более темный костюм.
+  UK: Вони сьогодні вибрали темніший костюм.
+
+L14/lesson14_phrase_39
+  EN: I found the saltiest snacks in that new shop today.
+  RU: Я сегодня нашел самые соленые закуски в том новом магазине.
+  UK: Я сьогодні знайшов найсолоніші снеки в тому новому магазині.
+
+L14/lesson14_phrase_40
+  EN: You found a narrower passage today.
+  RU: Вы сегодня нашли более узкий проход.
+  UK: Ви сьогодні знайшли вужчий прохід.
+
+L14/lesson14_phrase_41
+  EN: She brought sweeter grapes today.
+  RU: Она сегодня принесла более сладкий виноград.
+  UK: Вона сьогодні принесла солодший виноград.
+
+L14/lesson14_phrase_42
+  EN: We found the shortest road to that old bridge today.
+  RU: Мы сегодня нашли самую короткую дорогу к тому старому мосту.
+  UK: Ми сьогодні знайшли найкоротшу дорогу до того старого мосту.
+
+L14/lesson14_phrase_43
+  EN: They chose a brighter lantern for that dark yard today.
+  RU: Они сегодня выбрали более яркий фонарь для того темного двора.
+  UK: Вони сьогодні вибрали яскравіший ліхтар для того темного двору.
+
+L14/lesson14_phrase_44
+  EN: I got the freshest juice in that small shop today.
+  RU: Я сегодня взял самый свежий сок в том маленьком магазине.
+  UK: Я сьогодні взяв найсвіжіший сік у тому маленькому магазині.
+
+L14/lesson14_phrase_45
+  EN: You found a deeper place in that clean river today.
+  RU: Вы сегодня нашли более глубокое место в той чистой реке.
+  UK: Ви сьогодні знайшли глибше місце в тій чистій річці.
+
+L14/lesson14_phrase_46
+  EN: She found a softer pillow for that big bed today.
+  RU: Она сегодня нашла более мягкую подушку для той большой кровати.
+  UK: Вона сьогодні знайшла м'якшу подушку для того великого ліжка.
+
+L14/lesson14_phrase_47
+  EN: We took the lightest suitcase for that long way today.
+  RU: Мы сегодня взяли самый лёгкий чемодан для того долгого пути.
+  UK: Ми сьогодні взяли найлегшу валізу для того довгого шляху.
+
+L14/lesson14_phrase_48
+  EN: They bought a wider mirror for that bright bathroom today.
+  RU: Они сегодня купили более широкое зеркало для той светлой ванной.
+  UK: Вони сьогодні купили ширше дзеркало для тієї світлої ванної.
+
+L14/lesson14_phrase_49
+  EN: I brought the heaviest bag into that small apartment today.
+  RU: Я сегодня принес самую тяжелую сумку в ту маленькую квартиру.
+  UK: Я сьогодні приніс найважчу сумку в ту маленьку квартиру.
+
+L14/lesson14_phrase_50
+  EN: You found a sweeter orange in that large basket today.
+  RU: Вы сегодня нашли более сладкий апельсин в той большой корзине.
+  UK: Ви сьогодні знайшли солодший апельсин у тому великому кошику.
+
+
+# ===== Урок 15: Урок 15: Притяжательные местоимения / Урок 15: Присвійні займенники =====
+
+L15/lesson15_phrase_1
+  EN: Is that big black umbrella mine?
+  RU: Тот большой чёрный зонт — мой?
+  UK: Та велика чорна парасоля — моя?
+
+L15/lesson15_phrase_2
+  EN: Those new leather gloves are hers.
+  RU: Те новые кожаные перчатки — её.
+  UK: Ті нові шкіряні рукавички — її.
+
+L15/lesson15_phrase_3
+  EN: Is this empty glass yours?
+  RU: Этот пустой стакан — ваш?
+  UK: Ця порожня склянка — ваша?
+
+L15/lesson15_phrase_4
+  EN: That old broken chair is not his.
+  RU: Тот старый сломанный стул — не его.
+  UK: Той старий зламаний стілець — не його.
+
+L15/lesson15_phrase_5
+  EN: This bright cozy house is ours.
+  RU: Этот светлый уютный дом — наш.
+  UK: Цей світлий затишний будинок — наш.
+
+L15/lesson15_phrase_6
+  EN: Are these modern office buildings theirs?
+  RU: Эти современные офисные здания — их?
+  UK: Ці сучасні офісні будівлі — їхні?
+
+L15/lesson15_phrase_7
+  EN: That silver key on the table is mine.
+  RU: Тот серебряный ключ на столе — мой.
+  UK: Той срібний ключ на столі — мій.
+
+L15/lesson15_phrase_8
+  EN: Are these important documents in the folder yours?
+  RU: Эти важные документы в папке — ваши?
+  UK: Ці важливі документи в папці — ваші?
+
+L15/lesson15_phrase_9
+  EN: Those ripe red tomatoes are hers.
+  RU: Те спелые красные томаты — её.
+  UK: Ті стиглі червоні томати — її.
+
+L15/lesson15_phrase_10
+  EN: That small white envelope is his.
+  RU: Тот маленький белый конверт — его.
+  UK: Той маленький білий конверт — його.
+
+L15/lesson15_phrase_11
+  EN: This empty plastic container is mine.
+  RU: Этот пустой пластиковый контейнер — мой.
+  UK: Цей порожній пластиковий контейнер — мій.
+
+L15/lesson15_phrase_12
+  EN: Are those expensive wireless headphones yours?
+  RU: Те дорогие беспроводные наушники — ваши?
+  UK: Ті дорогі бездротові навушники — ваші?
+
+L15/lesson15_phrase_13
+  EN: That broken wooden fence is ours.
+  RU: Тот сломанный деревянный забор — наш.
+  UK: Той зламаний дерев\'яний паркан — наш.
+
+L15/lesson15_phrase_14
+  EN: These clean towels in the bathroom are hers.
+  RU: Эти чистые полотенца в ванной — её.
+  UK: Ці чисті рушники у ванній — її.
+
+L15/lesson15_phrase_15
+  EN: That old leather wallet is his.
+  RU: Тот старый кожаный кошелек — его.
+  UK: Той старий шкіряний гаманець — його.
+
+L15/lesson15_phrase_16
+  EN: Those soft woolen blankets are not theirs.
+  RU: Те мягкие шерстяные одеяла — не их.
+  UK: Ті м'які вовняні ковдри — не їхні.
+
+L15/lesson15_phrase_17
+  EN: Is that reliable steel lock mine?
+  RU: Тот надежный стальной замок — мой?
+  UK: Той надійний сталевий замок — мій?
+
+L15/lesson15_phrase_18
+  EN: These useful tools in the box are yours.
+  RU: Эти полезные инструменты в коробке — ваши.
+  UK: Ці корисні інструменти в коробці — ваші.
+
+L15/lesson15_phrase_19
+  EN: Those salty crunchy nuts are hers.
+  RU: Те соленые хрустящие орехи — её.
+  UK: Ті солоні хрусткі горіхи — її.
+
+L15/lesson15_phrase_20
+  EN: That heavy metal hammer is his.
+  RU: Тот тяжелый металлический молоток — его.
+  UK: Той важкий металевий молоток — його.
+
+L15/lesson15_phrase_21
+  EN: That bitter black coffee is mine.
+  RU: Тот горький черный кофе — мой.
+  UK: Та гірка чорна кава — моя.
+
+L15/lesson15_phrase_22
+  EN: These sharp kitchen knives are yours.
+  RU: Эти острые кухонные ножи — ваши.
+  UK: Ці гострі кухонні ножі — ваші.
+
+L15/lesson15_phrase_23
+  EN: Is that comfortable leather sofa ours?
+  RU: Тот удобный кожаный диван — наш?
+  UK: Той зручний шкіряний диван — наш?
+
+L15/lesson15_phrase_24
+  EN: Those long silk ribbons are hers.
+  RU: Те длинные шелковые ленты — её.
+  UK: Ті довгі шовкові стрічки — її.
+
+L15/lesson15_phrase_25
+  EN: That dirty plastic bag is not his.
+  RU: Тот грязный пластиковый пакет — не его.
+  UK: Той брудний пластиковий пакет — не його.
+
+L15/lesson15_phrase_26
+  EN: Those modern unmanned drones are theirs.
+  RU: Те современные беспилотные дроны — их.
+  UK: Ті сучасні безпілотні дрони — їхні.
+
+L15/lesson15_phrase_27
+  EN: That reliable account password is mine.
+  RU: Тот надежный пароль от аккаунта — мой.
+  UK: Той надійний пароль від акаунта — мій.
+
+L15/lesson15_phrase_28
+  EN: These fresh bread crumbs on the floor are yours.
+  RU: Эти свежие хлебные крошки на полу — ваши.
+  UK: Ці свіжі хлібні крихти на підлозі — ваші.
+
+L15/lesson15_phrase_29
+  EN: Those beautiful wall clocks are hers.
+  RU: Те красивые настенные часы — её.
+  UK: Ті красиві настінні годинники — її.
+
+L15/lesson15_phrase_30
+  EN: That sharp metal hook is his.
+  RU: Тот острый металлический крючок — его.
+  UK: Той гострий металевий гачок — його.
+
+L15/lesson15_phrase_31
+  EN: Is this powerful external battery mine?
+  RU: Этот мощный внешний аккумулятор — мой?
+  UK: Ця потужна зовнішня батарея — моя?
+
+L15/lesson15_phrase_32
+  EN: Those leather driving licenses are yours.
+  RU: Те кожаные водительские права — ваши.
+  UK: Ті шкіряні водійські права — ваші.
+
+L15/lesson15_phrase_33
+  EN: That strong unpleasant smell is not ours.
+  RU: Тот сильный неприятный запах — не наш.
+  UK: Той сильний неприємний запах — не наш.
+
+L15/lesson15_phrase_34
+  EN: These thin golden rings are hers.
+  RU: Эти тонкие золотые кольца — её.
+  UK: Ці тонкі золоті каблучки — її.
+
+L15/lesson15_phrase_35
+  EN: That old dusty attic is his.
+  RU: Тот старый пыльный чердак — его.
+  UK: Те старе запилене горище — його.
+
+L15/lesson15_phrase_36
+  EN: These bright curtains in the living room are theirs.
+  RU: Эти яркие шторы в гостиной — их.
+  UK: Ці яскраві штори у вітальні — їхні.
+
+L15/lesson15_phrase_37
+  EN: That spicy soy sauce is mine.
+  RU: Тот острый соевый соус — мой.
+  UK: Той гострий соєвий соус — мій.
+
+L15/lesson15_phrase_38
+  EN: These spare car keys are yours.
+  RU: Эти запасные ключи от машины — ваши.
+  UK: Ці запасні ключі від машини — ваші.
+
+L15/lesson15_phrase_39
+  EN: Those beautiful leather boots are hers.
+  RU: Те красивые кожаные сапоги — её.
+  UK: Ті красиві шкіряні чоботи — її.
+
+L15/lesson15_phrase_40
+  EN: That small round rug is his.
+  RU: Тот маленький круглый коврик — его.
+  UK: Той маленький круглий килимок — його.
+
+L15/lesson15_phrase_41
+  EN: Is that reliable Wi-Fi password mine?
+  RU: Тот надёжный пароль Wi-Fi — мой?
+  UK: Той надійний пароль Wi-Fi — мій?
+
+L15/lesson15_phrase_42
+  EN: These fresh oat cookies are yours.
+  RU: Эти свежие овсяные печенья — ваши.
+  UK: Ці свіжі вівсяні печива — ваші.
+
+L15/lesson15_phrase_43
+  EN: That broken plastic umbrella is ours.
+  RU: Тот сломанный пластиковый зонт — наш.
+  UK: Та зламана пластикова парасоля — наша.
+
+L15/lesson15_phrase_44
+  EN: Those beautiful silk scarves are hers.
+  RU: Те красивые шелковые платки — её.
+  UK: Ті красиві шовкові хустки — її.
+
+L15/lesson15_phrase_45
+  EN: That old woolen sweater is not his.
+  RU: Тот старый шерстяной свитер — не его.
+  UK: Той старий вовняний светр — не його.
+
+L15/lesson15_phrase_46
+  EN: Those modern wireless mice are theirs.
+  RU: Те современные беспроводные мышки — их.
+  UK: Ті сучасні бездротові мишки — їхні.
+
+L15/lesson15_phrase_47
+  EN: Is that comfortable leather backpack mine?
+  RU: Тот удобный кожаный рюкзак — мой?
+  UK: Той зручний шкіряний рюкзак — мій?
+
+L15/lesson15_phrase_48
+  EN: These useful paper maps are yours.
+  RU: Эти полезные бумажные карты — ваши.
+  UK: Ці корисні паперові карти — ваші.
+
+L15/lesson15_phrase_49
+  EN: Those ripe yellow bananas are hers.
+  RU: Те спелые желтые бананы — её.
+  UK: Ті стиглі жовті банани — її.
+
+L15/lesson15_phrase_50
+  EN: That old iron key is his.
+  RU: Тот старый железный ключ — его.
+  UK: Той старий залізний ключ — його.
+
+
+# ===== Урок 16: Урок 16: Фразовые глаголы / Урок 16: Фразові дієслова =====
+
+L16/lesson16_phrase_1
+  EN: Do I usually wake up early in this bright room?
+  RU: Я обычно просыпаюсь рано в этой светлой комнате?
+  UK: Я зазвичай прокидаюся рано в цій світлій кімнаті?
+
+L16/lesson16_phrase_2
+  EN: You do not always put on that warm winter coat.
+  RU: Ты не всегда надеваешь то теплое зимнее пальто.
+  UK: Ти не завжди одягаєш те тепле зимове пальто.
+
+L16/lesson16_phrase_3
+  EN: Does he often look for his lost keys here?
+  RU: Он часто ищет здесь свои потерянные ключи?
+  UK: Він часто шукає тут свої загублені ключі?
+
+L16/lesson16_phrase_4
+  EN: She takes off these uncomfortable shoes at home.
+  RU: Она снимает эти неудобные туфли дома.
+  UK: Вона знімає ці незручні туфлі вдома.
+
+L16/lesson16_phrase_5
+  EN: We do not go back to that old city.
+  RU: Мы не возвращаемся в тот старый город.
+  UK: Ми не повертаємося до того старого міста.
+
+L16/lesson16_phrase_6
+  EN: Do they sometimes get into that empty taxi?
+  RU: Они иногда садятся в то пустое такси?
+  UK: Вони іноді сідають у те порожнє таксі?
+
+L16/lesson16_phrase_7
+  EN: I rarely get out of this old building at night.
+  RU: Я редко выхожу из этого старого здания ночью.
+  UK: Я рідко виходжу з цієї старої будівлі вночі.
+
+L16/lesson16_phrase_8
+  EN: Do you often turn on that bright light in the evening?
+  RU: Ты часто включаешь тот яркий свет вечером?
+  UK: Ти часто вмикаєш те яскраве світло ввечері?
+
+L16/lesson16_phrase_9
+  EN: She does not always turn off this noisy computer on time.
+  RU: Она не всегда выключает этот шумный компьютер вовремя.
+  UK: Вона не завжди вимикає цей гучний комп'ютер вчасно.
+
+L16/lesson16_phrase_10
+  EN: Do we usually get up from this soft sofa quickly?
+  RU: Мы обычно быстро встаем с этого мягкого дивана?
+  UK: Ми зазвичай швидко встаємо з цього м'якого дивана?
+
+L16/lesson16_phrase_11
+  EN: That reliable guard always looks after this entrance.
+  RU: Тот надежный охранник всегда присматривает за этим входом.
+  UK: Той надійний охоронець завжди наглядає за цим входом.
+
+L16/lesson16_phrase_12
+  EN: We do not throw away these old paper magazines.
+  RU: Мы не выбрасываем эти старые бумажные журналы.
+  UK: Ми не викидаємо ці старі паперові журнали.
+
+L16/lesson16_phrase_13
+  EN: Those polite people often give out these free leaflets.
+  RU: Те вежливые люди часто раздают эти бесплатные листовки.
+  UK: Ті ввічливі люди часто роздають ці безкоштовні листівки.
+
+L16/lesson16_phrase_14
+  EN: Do you sometimes try on those leather jackets here?
+  RU: Ты иногда примеряешь здесь те кожаные куртки?
+  UK: Ти іноді приміряєш тут ті шкіряні куртки?
+
+L16/lesson16_phrase_15
+  EN: He always quickly fills in that important data.
+  RU: Он всегда быстро записывает (вписывает) те важные данные.
+  UK: Він завжди швидко записує ті важливі дані.
+
+L16/lesson16_phrase_16
+  EN: She sometimes drops in that cozy shop on the way.
+  RU: Она иногда заходит в тот уютный магазин по пути.
+  UK: Вона іноді заходить у той затишний магазин по дорозі.
+
+L16/lesson16_phrase_17
+  EN: Do we usually give back those boring books to the library?
+  RU: Мы обычно возвращаем те скучные книги в библиотеку?
+  UK: Ми зазвичай повертаємо ті нудні книги до бібліотеки?
+
+L16/lesson16_phrase_18
+  EN: You do not always take away these dirty plates quickly.
+  RU: Ты не всегда быстро убираешь эти грязные тарелки.
+  UK: Ти не завжди швидко прибираєш ці брудні тарілки.
+
+L16/lesson16_phrase_19
+  EN: They often go away from that noisy company early.
+  RU: Они часто уходят из той шумной компании рано.
+  UK: Вони часто йдуть з тієї шумної компанії рано.
+
+L16/lesson16_phrase_20
+  EN: I rarely find out these important addresses myself.
+  RU: Я редко нахожу (выясняю) эти важные адреса сам.
+  UK: Я рідко дізнаюся ці важливі адреси сам.
+
+L16/lesson16_phrase_21
+  EN: Do you always sit down in those comfortable armchairs quickly?
+  RU: Ты всегда быстро садишься в те удобные кресла?
+  UK: Ти завжди швидко сідаєш у ті зручні крісла?
+
+L16/lesson16_phrase_22
+  EN: This kind neighbor sometimes looks after my small garden.
+  RU: Этот добрый сосед иногда присматривает за моим маленьким садом.
+  UK: Цей добрий сусід іноді доглядає за моїм маленьким садом.
+
+L16/lesson16_phrase_23
+  EN: We seldom call back those polite clients on time.
+  RU: Мы редко перезваниваем тем вежливым клиентам вовремя.
+  UK: Ми рідко передзвонюємо тим ввічливим клієнтам вчасно.
+
+L16/lesson16_phrase_24
+  EN: Do they often clean up this dirty kitchen together?
+  RU: Они часто убирают эту грязную кухню вместе?
+  UK: Вони часто прибирають цю брудну кухню разом?
+
+L16/lesson16_phrase_25
+  EN: I do not usually wake up in this quiet village early.
+  RU: Я обычно не просыпаюсь рано в этой тихой деревне.
+  UK: Я зазвичай не прокидаюся рано в цьому тихому селі.
+
+L16/lesson16_phrase_26
+  EN: That polite waiter often brings out those delicious dishes.
+  RU: Тот вежливый официант часто приносит (подает) те вкусные блюда.
+  UK: Той ввічливий офіціант часто приносить ті смачні страви.
+
+L16/lesson16_phrase_27
+  EN: Do we usually see off those noisy guests late?
+  RU: Мы обычно провожаем тех шумных гостей поздно?
+  UK: Ми зазвичай проводжаємо тих гучних гостей пізно?
+
+L16/lesson16_phrase_28
+  EN: You rarely pull on these new protective gloves in the garden.
+  RU: Ты редко надеваешь эти новые защитные перчатки в саду.
+  UK: Ти рідко надягаєш ці нові захисні рукавички в саду.
+
+L16/lesson16_phrase_29
+  EN: She sometimes pulls off that heavy backpack at the stop.
+  RU: Она иногда снимает тот тяжелый рюкзак на остановке.
+  UK: Вона іноді знімає той важкий рюкзак на зупинці.
+
+L16/lesson16_phrase_30
+  EN: Do they often get back to this small cozy apartment in the evening?
+  RU: Они часто возвращаются в эту маленькую уютную квартиру вечером?
+  UK: Вони часто повертаються до цієї маленької затишної квартири ввечері?
+
+L16/lesson16_phrase_31
+  EN: That experienced master usually deals with those technical problems.
+  RU: Тот опытный мастер обычно разбирается с теми техническими проблемами.
+  UK: Той досвідчений майстер зазвичай має справу з тими технічними проблемами.
+
+L16/lesson16_phrase_32
+  EN: We sometimes look in at that new cafe around the corner.
+  RU: Мы иногда заходим (заглядываем) в то новое кафе за углом.
+  UK: Ми іноді заглядаємо в те нове кафе за рогом.
+
+L16/lesson16_phrase_33
+  EN: Do you often hang up that wet clothing on the balcony?
+  RU: Ты часто вешаешь ту мокрую одежду на балкон?
+  UK: Ти часто вішаєш той мокрий одяг на балкон?
+
+L16/lesson16_phrase_34
+  EN: She always sits down on this soft chair by the window.
+  RU: Она всегда присаживается (садится) на этот мягкий стул у окна.
+  UK: Вона завжди сідає на цей м\'який стілець біля вікна.
+
+L16/lesson16_phrase_35
+  EN: They do not go on with that boring work without a break.
+  RU: Они не продолжают ту скучную работу без перерыва.
+  UK: Вони не продовжують ту нудну роботу без перерви.
+
+L16/lesson16_phrase_36
+  EN: That polite courier usually hands over these important parcels personally.
+  RU: Тот вежливый курьер обычно передает (вручает) эти важные посылки лично.
+  UK: Той ввічливий кур\'єр зазвичай передає ці важливі посилки особисто.
+
+L16/lesson16_phrase_37
+  EN: We seldom come across those rare old coins in the forest.
+  RU: Мы редко натыкаемся на (встречаем) те редкие старые монеты в лесу.
+  UK: Ми рідко натрапляємо на ті рідкісні старі монети в лісі.
+
+L16/lesson16_phrase_38
+  EN: You always put away this sharp knife into the cupboard.
+  RU: Ты всегда убираешь (прячешь) этот острый нож в шкаф.
+  UK: Ти завжди ховаєш цей гострий ніж у шафу.
+
+L16/lesson16_phrase_39
+  EN: Does she sometimes pick up these ripe red apples on the grass?
+  RU: Она иногда подбирает эти спелые красные яблоки на траве?
+  UK: Вона іноді підбирає ці стиглі червоні яблука на траві?
+
+L16/lesson16_phrase_40
+  EN: They often find out those new secret rules together.
+  RU: Они часто выясняют (узнают) те новые секретные правила вместе.
+  UK: Вони часто дізнаються ті нові секретні правила разом.
+
+L16/lesson16_phrase_41
+  EN: We usually see off those polite colleagues to this entrance.
+  RU: Мы обычно провожаем тех вежливых коллег до этого входа.
+  UK: Ми зазвичай проводжаємо тих ввічливих колег до цього входу.
+
+L16/lesson16_phrase_42
+  EN: You do not always clear away that dirty tableware into the empty sink.
+  RU: Ты не всегда убираешь эту грязную посуду в эту пустую мойку.
+  UK: Ти не завжди прибираєш цей брудний посуд у цю порожню мийку.
+
+L16/lesson16_phrase_43
+  EN: He sometimes puts on those warm woolen socks at home.
+  RU: Он иногда надевает те теплые шерстяные носки дома.
+  UK: Він іноді надягає ті теплі вовняні шкарпетки вдома.
+
+L16/lesson16_phrase_44
+  EN: Does she often look for that necessary information in these old folders?
+  RU: Она часто ищет ту необходимую информацию в этих старых папках?
+  UK: Вона часто шукає ту необхідну інформацію в цих старих папках?
+
+L16/lesson16_phrase_45
+  EN: I rarely go back to this quiet green park in the afternoon.
+  RU: Я редко возвращаюсь в этот тихий зеленый парк днем.
+  UK: Я рідко повертаюся в цей тихий зелений парк удень.
+
+L16/lesson16_phrase_46
+  EN: That honest person does not always give back this found money to the owner.
+  RU: Тот честный человек не всегда возвращает эти найденные деньги владельцу.
+  UK: Та чесна людина не завжди повертає ці знайдені гроші власнику.
+
+L16/lesson16_phrase_47
+  EN: We sometimes get out of this stuffy office together.
+  RU: Мы иногда выходим из этого душного офиса вместе.
+  UK: Ми іноді виходимо з цього задушливого офісу разом.
+
+L16/lesson16_phrase_48
+  EN: Do you often turn on this modern coffee machine in the kitchen?
+  RU: Ты часто включаешь эту современную кофемашину на кухне?
+  UK: Ти часто вмикаєш цю сучасну кавомашину на кухні?
+
+L16/lesson16_phrase_49
+  EN: She rarely finds out that correct password herself.
+  RU: Она редко находит (выясняет) тот правильный пароль сама.
+  UK: Вона рідко дізнається той правильний пароль сама.
+
+L16/lesson16_phrase_50
+  EN: They do not usually clean up those empty plastic bottles here.
+  RU: Они обычно не убирают здесь те пустые пластиковые бутылки.
+  UK: Вони зазвичай не прибирають тут ті порожні пластикові пляшки.
+

@@ -1,0 +1,52 @@
+# Development tools not needed for build
+node_modules
+
+# Scripts and docs
+scripts/
+docs/
+graphify-out/
+.obsidian/
+.hive-mind/
+.claude-flow/
+.claude/
+
+# Test files
+tests/
+
+# Misc scripts in root
+*.py
+add_lesson*.js
+fix_*.js
+gen_*.js
+ins_*.js
+center_*.py
+
+# Markdown docs (not CLAUDE.md)
+ROADMAP*.md
+PHRASEMEN_IMPLEMENTATION.md
+DAILY_PHRASE*.md
+ENERGY_SYSTEM*.md
+VARIABLE_REWARD*.md
+DISTRACTOR_RESEARCH.md
+COMPLETION_CHECKLIST.md
+XP_TESTER*.md
+SYSTEM_HINTS_DEMO.md
+
+# Secrets
+service-account.json
+service-account*.json
+
+# Git
+.git/
+
+# Large files not needed for build
+graphify-out/
+*.map
+*.log
+
+# Local builds
+android/app/build/
+ios/build/
+
+# Let EAS regenerate android/ via expo prebuild for clean dependency resolution
+android/

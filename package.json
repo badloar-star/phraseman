@@ -1,17 +1,54 @@
 {
   "name": "phraseman",
   "main": "expo-router/entry",
-  "version": "1.1.0",
+  "version": "1.5.22",
   "scripts": {
     "start": "expo start",
+    "start:emu": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-android-emulator.ps1",
+    "metro:dev": "cross-env CI=false expo start --dev-client --lan --port 8081",
+    "metro:localhost": "cross-env CI=false expo start --dev-client --localhost --port 8081",
+    "android:dev-localhost": "powershell -ExecutionPolicy Bypass -File ./scripts/adb-open-dev-localhost.ps1",
+    "android:dev-emulator": "powershell -ExecutionPolicy Bypass -File ./scripts/adb-open-dev-emulator.ps1",
+    "app": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-android-emulator.ps1",
+    "kill:dev": "npx kill-port 8081 8082 8083 8084 8085 8086 8087 8088 8089 8090 19000 19001",
+    "start:emu:clear": "powershell -ExecutionPolicy Bypass -File ./scripts/dev-android-emulator.ps1 -Clear",
+    "emu": "powershell -ExecutionPolicy Bypass -File ./scripts/start-android-emulator.ps1",
+    "emu:gpu-host": "powershell -ExecutionPolicy Bypass -File ./scripts/start-android-emulator.ps1 -GpuMode host",
+    "expo:clear": "cross-env CI=false expo start --clear --dev-client --localhost",
     "reset-project": "node ./scripts/reset-project.js",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
+    "android": "npx kill-port 8081 8082 8083 8084 8085 8086 8087 8088 && cross-env JAVA_HOME=\"C:\\Program Files\\Android\\Android Studio\\jbr\" expo run:android",
+    "dev": "npx kill-port 8081 8082 8083 8084 8085 8086 8087 8088 && cross-env JAVA_HOME=\"C:\\Program Files\\Android\\Android Studio\\jbr\" ANDROID_HOME=\"C:\\Users\\badlo\\AppData\\Local\\Android\\Sdk\" expo run:android",
+    "ios": "expo run:ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "test": "jest --testPathPattern=tests/",
-    "test:watch": "jest --testPathPattern=tests/ --watch",
-    "test:coverage": "jest --testPathPattern=tests/ --coverage"
+    "test": "jest --testPathPattern=tests/ --no-cache",
+    "test:watch": "jest --testPathPattern=tests/ --watch --no-cache",
+    "test:coverage": "jest --testPathPattern=tests/ --coverage",
+    "maestro:smoke": "powershell -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/smoke",
+    "maestro:regression": "powershell -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/regression",
+    "maestro:regression:strict": "powershell -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/regression_strict",
+    "maestro:dev": "powershell -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/dev_only",
+    "maestro:modules": "powershell -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/modules",
+    "maestro:capture-screens": "powershell -ExecutionPolicy Bypass -File ./scripts/capture_maestro_precondition_screens.ps1",
+    "firestore:rules": "firebase deploy --only firestore:rules",
+    "admin:serve": "npx --yes serve admin -l 4173",
+    "vq:peaky": "node tools/run_victoria_qa_pack.mjs",
+    "vq:marketplace": "node tools/victoria_marketplace_phrase_qa.mjs",
+    "img:opt-png": "node ./scripts/optimize-pngs.mjs",
+    "admin:set-claim": "node ./scripts/set_admin_claim.mjs",
+    "legal:sync": "node ./scripts/sync-legal-html.mjs",
+    "eas:update:dev": "eas update --channel development",
+    "eas:update:preview": "eas update --channel preview",
+    "eas:update:production": "eas update --channel production",
+    "lesson:qa": "npx tsx tools/lesson_qa/run.ts",
+    "lesson:words-es-gen": "node ./scripts/generate-lesson-word-es-google.mjs",
+    "lesson:qa:summary": "npx tsx tools/lesson_qa/run.ts --summary",
+    "lesson:qa:ame": "node ./scripts/qa-ame-only.mjs",
+    "audit:content": "node ./scripts/audit_vocab_and_distractors.mjs",
+    "audit:lessons": "node ./scripts/audit_lessons_1_27.mjs",
+    "audit:translations": "node ./scripts/audit_translations_1_32.mjs",
+    "audit:correct-presence": "npx tsx ./scripts/audit_correct_word_presence.ts",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
@@ -19,14 +56,22 @@
     "@react-native-community/slider": "5.0.1",
     "@react-native-firebase/analytics": "^21.14.0",
     "@react-native-firebase/app": "^21.14.0",
+    "@react-native-firebase/app-check": "^21.14.0",
+    "@react-native-firebase/auth": "^21.14.0",
     "@react-native-firebase/crashlytics": "^21.14.0",
+    "@react-native-firebase/firestore": "^21.14.0",
+    "@react-native-firebase/functions": "^21.14.0",
+    "@react-native-google-signin/google-signin": "^16.1.2",
     "@react-navigation/bottom-tabs": "^7.4.0",
     "@react-navigation/elements": "^2.6.3",
     "@react-navigation/native": "^7.1.8",
-    "@shopify/react-native-skia": "2.2.12",
     "expo": "~54.0.33",
+    "expo-apple-authentication": "~8.0.8",
+    "expo-build-properties": "~1.0.10",
     "expo-constants": "~18.0.13",
     "expo-crypto": "~15.0.8",
+    "expo-dev-client": "~6.0.20",
+    "expo-file-system": "~19.0.22",
     "expo-font": "~14.0.11",
     "expo-haptics": "~15.0.8",
     "expo-image": "~3.0.11",
@@ -34,18 +79,21 @@
     "expo-linking": "~8.0.11",
     "expo-notifications": "~0.32.16",
     "expo-router": "~6.0.23",
+    "expo-secure-store": "~15.0.8",
+    "expo-sharing": "~14.0.8",
     "expo-speech": "~14.0.8",
-    "expo-speech-recognition": "^3.1.1",
     "expo-splash-screen": "~31.0.13",
     "expo-status-bar": "~3.0.9",
-    "expo-store-review": "^55.0.9",
+    "expo-store-review": "~9.0.9",
     "expo-symbols": "~1.0.8",
     "expo-system-ui": "~6.0.9",
+    "expo-updates": "~29.0.17",
     "expo-web-browser": "~15.0.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "react-native": "0.81.5",
     "react-native-gesture-handler": "~2.28.0",
+    "react-native-play-install-referrer": "^1.1.9",
     "react-native-purchases": "^9.14.0",
     "react-native-reanimated": "~4.1.1",
     "react-native-safe-area-context": "~5.6.0",
@@ -57,10 +105,16 @@
   "devDependencies": {
     "@types/jest": "^29.5.14",
     "@types/react": "~19.1.0",
+    "an-array-of-english-words": "^2.0.0",
+    "cross-env": "^10.1.0",
     "eslint": "^9.25.0",
     "eslint-config-expo": "~10.0.0",
+    "firebase-admin": "^13.8.0",
     "jest": "^29.7.0",
+    "patch-package": "^8.0.1",
+    "sharp": "^0.34.5",
     "ts-jest": "^29.4.6",
+    "tsx": "^4.20.0",
     "typescript": "~5.9.2"
   },
   "jest": {
@@ -71,7 +125,13 @@
     ],
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/$1",
-      "\\.(png|jpg|jpeg|gif|svg|webp)$": "<rootDir>/tests/__mocks__/fileMock.js"
+      "\\.(png|jpg|jpeg|gif|svg|webp)$": "<rootDir>/tests/__mocks__/fileMock.js",
+      "^expo-constants$": "<rootDir>/tests/__mocks__/expo-constants.js",
+      "^expo-secure-store$": "<rootDir>/tests/__mocks__/expo-secure-store.js",
+      "^expo-crypto$": "<rootDir>/tests/__mocks__/expo-crypto.js",
+      "^react-native$": "<rootDir>/tests/__mocks__/react-native.js",
+      "^@react-native-firebase/firestore$": "<rootDir>/tests/__mocks__/react-native-firebase-firestore.js",
+      "^react-native-purchases$": "<rootDir>/tests/__mocks__/react-native-purchases.js"
     },
     "transform": {
       "^.+\\.tsx?$": [
@@ -99,7 +159,16 @@
         "functions": 80,
         "lines": 80
       }
-    }
+    },
+    "forceExit": true,
+    "maxWorkers": 1
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "install": {
+      "exclude": [
+        "@react-native-async-storage/async-storage"
+      ]
+    }
+  }
 }

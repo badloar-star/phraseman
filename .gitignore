@@ -45,3 +45,82 @@ app/phrasemen_example.ts
 # generated native folders
 /ios
 /android
+service-account*.json
+
+# Build artifacts
+*.apk
+*.aab
+*.ipa
+
+# Generated/cache
+graphify-out/
+.firebase/
+__pycache__/
+*.pyc
+
+# Lesson pipeline staging (prepare → apply)
+
+# Tooling / session noise (not app source)
+.claude-flow/
+
+# Local clone for syncing legal pages to gh-pages repo phraseman-privacy (never commit)
+.cache-phraseman-privacy/
+
+# Local logs, dumps, and export noise
+*.log
+.tmp_*
+build_view.err
+maestro-*-junit.xml
+l4_cards_dump.txt
+dist-export-audit/
+firebase-debug.log
+**/firebase-debug.log
+eas_start.log
+build_view.json
+check_l2_words.py
+read_l3*.py
+
+# Backup files (от .bak до .orig) — никогда не нужны в репо
+*.bak
+*.bak.*
+*.backup
+
+# Дев-дампы и одноразовые extract/check скрипты в docs/reports
+# (любой файл в docs/reports, начинающийся с подчёркивания — рабочий мусор)
+docs/reports/_*
+docs/reports/lesson_dumps/
+
+# Диагностические скрипты Cloud Functions (запускаются вручную, не должны коммититься)
+functions/scripts/diag_*
+
+# Accidental paste / scratch filenames at repository root.
+# Большинство — артефакты PowerShell когда `>` уехал в имя файла из тела команды.
+# Правило: ЛЮБОЙ файл в корне со скобками () {} [] или с одинокой цифрой/буквой = мусор.
+/*[()\[\]{}]*
+/0
+/1
+/2
+/3
+/4
+/5
+/6
+/7
+/8
+/9
+/40
+/200
+/a
+/B
+/b
+/e.uid
+/e.key
+/p.lesson
+/x.id
+/void
+/null
+/nul
+/RANGE_EXPAND_MS
+/maestro-smoke-junit.xml
+/maestro-strict-junit.xml
+/checkText*
+/a.startsWith*

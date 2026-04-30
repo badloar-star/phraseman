@@ -1,0 +1,4 @@
+# Квизы: быстрый вход с главной и экран выбора уровня (полный сценарий в smoke).
+appId: app.phraseman
+---
+- runFlow: ../../smoke/nav_quizzes_level_select_and_back.yaml

@@ -1,12 +1,19 @@
 import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { T, type Lang, triLang } from '../constants/i18n';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
+
+function L(lang: Lang, ru: string, uk: string, es: string): string {
+  if (lang === 'uk') return uk;
+  if (lang === 'es') return es;
+  return ru;
+}
 
 function TableHeader({ cols, t, f }: { cols: string[]; t: any; f: any }) {
   return (
@@ -65,16 +72,18 @@ function Table({ label, headers, rows, t, f, firstBold }: {
 type HintContent = {
   titleRU: string;
   titleUK: string;
-  render: (t: any, isUK: boolean, f: any) => React.ReactNode;
+  titleES: string;
+  render: (t: any, lang: Lang, f: any) => React.ReactNode;
 };
 
 const HINTS: Record<number, HintContent> = {
   1: {
     titleRU: 'To Be — am / is / are',
     titleUK: 'To Be — am / is / are',
-    render: (t, isUK, f) => [
+    titleES: 'To be — am / is / are',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Підмет':'Подлежащее', isUK?'Ствердження':'Утверждение', isUK?'Заперечення':'Отрицание', isUK?'Питання':'Вопрос']}
+        headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
           ['I',    "I am / I'm",       "I'm not",      'Am I?'    ],
           ['You',  "You are / You're", "You aren't",   'Are you?' ],
@@ -90,10 +99,11 @@ const HINTS: Record<number, HintContent> = {
   2: {
     titleRU: 'To Be — отрицание и вопросы',
     titleUK: 'To Be — заперечення і питання',
-    render: (t, isUK, f) => [
+    titleES: 'To be — negación y preguntas',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        label={isUK ? 'Заперечення (не є)' : 'Отрицание (не является)'}
-        headers={[isUK?'Підмет':'Подлежащее', isUK?'Повна форма':'Полная форма', isUK?'Скорочення':'Сокращение']}
+        label={L(lang,'Отрицание (нет «являться» у глагола)','Заперечення (не є)','Negación')}
+        headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Полная форма','Повна форма','Forma completa'), L(lang,'Сокращение','Скорочення','Forma corta')]}
         rows={[
           ['I',         'I am not',     "I'm not"    ],
           ['He/She/It', 'He is not',    "He isn't"   ],
@@ -101,8 +111,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK ? 'Питання та короткі відповіді' : 'Вопросы и краткие ответы'}
-        headers={[isUK?'Питання':'Вопрос', isUK?'Так':'Да', isUK?'Ні':'Нет']}
+        label={L(lang,'Вопросы и краткие ответы','Питання та короткі відповіді','Preguntas y respuestas breves')}
+        headers={[L(lang,'Вопрос','Питання','Pregunta'), L(lang,'Да','Так','Sí'), L(lang,'Нет','Ні','No')]}
         rows={[
           ['Am I right?',      'Yes, you are.',  "No, you aren't."  ],
           ['Is he a doctor?',  'Yes, he is.',    "No, he isn't."    ],
@@ -114,19 +124,25 @@ const HINTS: Record<number, HintContent> = {
   3: {
     titleRU: 'Present Simple — утверждение',
     titleUK: 'Present Simple — ствердження',
-    render: (t, isUK, f) => [
+    titleES: 'Present Simple — afirmación',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
         label="I / You / We / They"
-        headers={[isUK?'Дієслово':'Глагол', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[['work','I work every day.'],['go','We go to school.'],['study','They study English.'],['like','You like coffee.']]}
       />,
       <Table key="t2" t={t} f={f} firstBold
         label="He / She / It → +s / +es"
-        headers={[isUK?'Правило':'Правило', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={[L(lang,'Правило','Правило','Regla'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['Більшість + s',        'work → works, read → reads'    ],
           ['-o/-sh/-ch/-x + es',   'go → goes, watch → watches'    ],
           ['Приголосна + y → ies', 'study → studies, fly → flies'  ],
+          ['have → has',           'She has a car.'                ],
+        ] : lang === 'es' ? [
+          ['Mayoría + -s',         'work → works, read → reads'    ],
+          ['Termin. en -o/-sh/-ch/-x + -es','go → goes, watch → watches'],
+          ['Consonante + y → -ies','study → studies, fly → flies'  ],
           ['have → has',           'She has a car.'                ],
         ] : [
           ['Большинство + s',      'work → works, read → reads'    ],
@@ -140,17 +156,18 @@ const HINTS: Record<number, HintContent> = {
   4: {
     titleRU: 'Present Simple — отрицание и вопрос',
     titleUK: 'Present Simple — заперечення і питання',
-    render: (t, isUK, f) => [
+    titleES: 'Present Simple — negación e interrogación',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Підмет':'Подлежащее', isUK?'Заперечення':'Отрицание', isUK?'Питання':'Вопрос']}
+        headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
           ['I / You / We / They', "don't + V",   'Do + ... + V?'  ],
           ['He / She / It',       "doesn't + V", 'Does + ... + V?'],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Приклади':'Примеры'}
-        headers={[isUK?'Ствердження':'Утверждение', isUK?'Заперечення':'Отрицание']}
+        label={L(lang,'Примеры','Приклади','Ejemplos')}
+        headers={[L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación')]}
         rows={[
           ['I work here.',       "I don't work here."    ],
           ['She reads books.',   "She doesn't read."     ],
@@ -162,18 +179,19 @@ const HINTS: Record<number, HintContent> = {
   5: {
     titleRU: 'Present Simple — вопросы',
     titleUK: 'Present Simple — питання',
-    render: (t, isUK, f) => [
+    titleES: 'Present Simple — preguntas',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        label={isUK?'Загальні питання':'Общие вопросы'}
-        headers={[isUK?'Підмет':'Подлежащее', isUK?'Питання':'Вопрос', isUK?'Відповідь':'Ответ']}
+        label={L(lang,'Общие вопросы','Загальні питання','Preguntas generales')}
+        headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Вопрос','Питання','Pregunta'), L(lang,'Ответ','Відповідь','Respuesta')]}
         rows={[
-          ['I / You / We', 'Do you work?',   "Yes, I do. / No, I don't."        ],
-          ['He / She',     'Does she work?', "Yes, she does. / No, she doesn't."],
+          ['I / You / We / They', 'Do you work?',   "Yes, I do. / No, I don't."        ],
+          ['He / She / It',       'Does she work?', "Yes, she does. / No, she doesn't."],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Спеціальні питання (Wh-)':'Специальные вопросы (Wh-)'}
-        headers={['Wh-', isUK?'Приклад':'Пример']}
+        label={L(lang,'Специальные вопросы (Wh-)','Спеціальні питання (Wh-)','Preguntas Wh-')}
+        headers={['Wh-', L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['What',  'What do you do?'     ],
           ['Where', 'Where does she live?'],
@@ -187,10 +205,11 @@ const HINTS: Record<number, HintContent> = {
   6: {
     titleRU: 'Специальные вопросы',
     titleUK: 'Спеціальні питання',
-    render: (t, isUK, f) => [
+    titleES: 'Preguntas Wh-',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={['Wh-', isUK?'Значення':'Значение', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={['Wh-', L(lang,'Значение','Значення','Significado'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['What',  'Що / Який',    'What do you want?'       ],
           ['Who',   'Хто',          'Who lives here?'         ],
           ['Where', 'Де / Куди',    'Where are you going?'    ],
@@ -199,6 +218,15 @@ const HINTS: Record<number, HintContent> = {
           ['How',   'Як',           'How do you feel?'        ],
           ['Which', 'Який (вибір)', 'Which book do you like?' ],
           ['Whose', 'Чий',          'Whose bag is this?'      ],
+        ] : lang === 'es' ? [
+          ['What',  'qué / cuál',   'What do you want?'       ],
+          ['Who',   'quién',        'Who lives here?'         ],
+          ['Where', 'dónde / adónde','Where are you going?'    ],
+          ['When',  'cuándo',       'When does it start?'     ],
+          ['Why',   'por qué',      'Why are you late?'       ],
+          ['How',   'cómo',         'How do you feel?'        ],
+          ['Which', 'cuál (opción)','Which book do you like?' ],
+          ['Whose', 'de quién',     'Whose bag is this?'      ],
         ] : [
           ['What',  'Что / Какой',  'What do you want?'       ],
           ['Who',   'Кто',          'Who lives here?'         ],
@@ -210,22 +238,35 @@ const HINTS: Record<number, HintContent> = {
           ['Whose', 'Чей',          'Whose bag is this?'      ],
         ]}
       />,
+      <Table key="t2" t={t} f={f} firstBold
+        label={L(lang,'Формула специального вопроса','Формула спеціального питання','Estructura de la pregunta Wh-')}
+        headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Формула','Формула','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={[
+          ['I / You / We / They',
+            lang === 'uk' ? 'Wh- + do + підмет + дієслово?' : lang === 'es' ? 'Wh- + do + sujeto + verbo?' : 'Wh- + do + подлежащее + глагол?',
+            'Where do you live?'  ],
+          ['He / She / It',
+            lang === 'uk' ? 'Wh- + does + підмет + дієслово?' : lang === 'es' ? 'Wh- + does + sujeto + verbo?' : 'Wh- + does + подлежащее + глагол?',
+            'Where does he work?' ],
+        ]}
+      />,
     ],
   },
   7: {
     titleRU: 'To Have — иметь',
     titleUK: 'To Have — мати',
-    render: (t, isUK, f) => [
+    titleES: 'To have — tener',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Підмет':'Подлежащее', isUK?'Ствердження':'Утверждение', isUK?'Заперечення':'Отрицание', isUK?'Питання':'Вопрос']}
+        headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
           ['I / You / We / They', 'have', "don't have",   'Do ... have?'  ],
           ['He / She / It',       'has',  "doesn't have", 'Does ... have?'],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Приклади':'Примеры'}
-        headers={[isUK?'Речення':'Предложение']}
+        label={L(lang,'Примеры','Приклади','Ejemplos')}
+        headers={[L(lang,'Предложение','Речення','Oración')]}
         rows={[
           ['I have a car.'],['She has two cats.'],["He doesn't have a phone."],
           ['Do you have a pen?'],['Does she have time?'],
@@ -236,17 +277,22 @@ const HINTS: Record<number, HintContent> = {
   8: {
     titleRU: 'Предлоги времени: at / in / on',
     titleUK: 'Прийменники часу: at / in / on',
-    render: (t, isUK, f) => [
+    titleES: 'Preposiciones de tiempo: at / in / on',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Прийменник':'Предлог', isUK?'Вживається з':'Употребляется с', isUK?'Приклади':'Примеры']}
-        rows={isUK ? [
+        headers={[L(lang,'Предлог','Прийменник','Preposición'), L(lang,'Употребляется с','Вживається з','Va con'), L(lang,'Примеры','Приклади','Ejemplos')]}
+        rows={lang === 'uk' ? [
           ['AT', 'Точний час, полудень, ніч',    'at 7:00, at noon, at night'       ],
           ['IN', 'Місяць, рік, сезон, час доби', 'in May, in 2024, in the morning'  ],
-          ['ON', 'День тижня, дата, свято',       'on Monday, on 5th March'          ],
+          ['ON', 'День тижня, дата, вихідні',     'on Monday, on weekends, on 5 March' ],
+        ] : lang === 'es' ? [
+          ['AT', 'Hora puntual, mediodía, noche','at 7:00, at noon, at night'       ],
+          ['IN', 'Mes, año, estación, momento del día','in May, in 2024, in the morning'],
+          ['ON', 'Día de la semana, fecha, fines de semana','on Monday, on weekends, on 5 March'],
         ] : [
           ['AT', 'Точное время, полдень, ночь',  'at 7:00, at noon, at night'       ],
           ['IN', 'Месяц, год, сезон, часть дня', 'in May, in 2024, in the morning'  ],
-          ['ON', 'День недели, дата, праздник',   'on Monday, on 5th March'          ],
+          ['ON', 'День недели, дата, выходные',   'on Monday, on weekends, on 5 March' ],
         ]}
       />,
     ],
@@ -254,18 +300,19 @@ const HINTS: Record<number, HintContent> = {
   9: {
     titleRU: 'There is / There are',
     titleUK: 'There is / There are',
-    render: (t, isUK, f) => [
+    titleES: 'There is / There are',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Число':'Число', isUK?'Ствердження':'Утверждение', isUK?'Заперечення':'Отрицание', isUK?'Питання':'Вопрос']}
+        headers={[L(lang,'Число','Число','Número'), L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
-          [isUK?'Одн.':'Ед.ч.', 'There is a book.',  "There isn't a book.",   'Is there a book?'  ],
-          [isUK?'Мн.':'Мн.ч.',  'There are chairs.', "There aren't chairs.",  'Are there chairs?' ],
+          [L(lang,'Ед.ч.','Одн.','Sing.'), 'There is a book.',  "There isn't a book.",   'Is there a book?'  ],
+          [L(lang,'Мн.ч.','Мн.','Plur.'),  'There are chairs.', "There aren't chairs.",  'Are there chairs?' ],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Прийменники місця':'Предлоги места'}
-        headers={[isUK?'Прийменник':'Предлог', isUK?'Значення':'Значение', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Предлоги места','Прийменники місця','Preposiciones de lugar')}
+        headers={[L(lang,'Предлог','Прийменник','Prep.'), L(lang,'Значение','Значення','Significado'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['in',          'всередині',  'The cat is in the box.'          ],
           ['on',          'на',         'The book is on the table.'       ],
           ['under',       'під',        'The bag is under the desk.'      ],
@@ -274,6 +321,15 @@ const HINTS: Record<number, HintContent> = {
           ['behind',      'позаду',     'The park is behind us.'          ],
           ['in front of', 'перед',      'The car is in front of the house.'],
           ['opposite',    'навпроти',   'The bank is opposite the school.'],
+        ] : lang === 'es' ? [
+          ['in',          'dentro de',  'The cat is in the box.'          ],
+          ['on',          'encima de',  'The book is on the table.'       ],
+          ['under',       'debajo de',  'The bag is under the desk.'      ],
+          ['next to',     'junto a',    'She sits next to me.'            ],
+          ['between',     'entre',      'He stands between us.'           ],
+          ['behind',      'detrás de',  'The park is behind us.'          ],
+          ['in front of', 'delante de', 'The car is in front of the house.'],
+          ['opposite',    'frente a',   'The bank is opposite the school.'],
         ] : [
           ['in',          'внутри',     'The cat is in the box.'          ],
           ['on',          'на',         'The book is on the table.'       ],
@@ -290,10 +346,11 @@ const HINTS: Record<number, HintContent> = {
   10: {
     titleRU: 'Модальные глаголы',
     titleUK: 'Модальні дієслова',
-    render: (t, isUK, f) => [
+    titleES: 'Verbos modales',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Дієслово':'Глагол', isUK?'Значення':'Значение', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Значение','Значення','Significado'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['can',     'вміти / мати змогу',   'I can swim.'             ],
           ["can't",   'не вміти / не можна',  "You can't park here."    ],
           ['must',    'мусити (внутрішня потреба)',   'I must finish this.'     ],
@@ -302,6 +359,15 @@ const HINTS: Record<number, HintContent> = {
           ['may',     'можна (дозвіл)',               'May I come in?'          ],
           ['might',   'можливо (невпевненість)',      'It might rain today.'    ],
           ['have to', 'мусити (зовнішня необхідність)', 'I have to work tomorrow.'],
+        ] : lang === 'es' ? [
+          ['can',     'poder / saber',          'I can swim.'             ],
+          ["can't",   'no poder / prohibición', "You can't park here."    ],
+          ['must',    'obligación (fuerte)',    'I must finish this.'     ],
+          ["mustn't", 'prohibición terminante', "You mustn't smoke here." ],
+          ['should',  'aconsejar / conviene',   'You should sleep more.'  ],
+          ['may',     'permiso',                'May I come in?'          ],
+          ['might',   'quizá / posibilidad débil','It might rain today.' ],
+          ['have to', 'tener que',              'I have to work tomorrow.'],
         ] : [
           ['can',     'уметь / мочь',         'I can swim.'             ],
           ["can't",   'не уметь / нельзя',    "You can't park here."    ],
@@ -318,9 +384,10 @@ const HINTS: Record<number, HintContent> = {
   11: {
     titleRU: 'Past Simple — правильные глаголы',
     titleUK: 'Past Simple — правильні дієслова',
-    render: (t, isUK, f) => [
+    titleES: 'Past Simple — verbos regulares',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'Subject + V-ed',       'She worked yesterday.' ],
           ['−', "Subject + didn't + V", "She didn't work."      ],
@@ -328,13 +395,18 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Правила написання':'Правила написания'}
-        headers={[isUK?'Правило':'Правило', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Правила написания','Правила написання','Reglas ortográficas')}
+        headers={[L(lang,'Правило','Правило','Regla'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['Більшість + ed',         'work → worked, play → played'   ],
           ['Закінч. на -e',          'like → liked, live → lived'     ],
           ['Приголосна + y → ied',   'study → studied, cry → cried'   ],
           ['CVC → подвоїти',         'stop → stopped, plan → planned' ],
+        ] : lang === 'es' ? [
+          ['Mayoría + -ed',          'work → worked, play → played'   ],
+          ['Termin. en -e',          'like → liked, live → lived'     ],
+          ['Consonante + y → -ied', 'study → studied, cry → cried'    ],
+          ['CVC → doble consonante','stop → stopped, plan → planned'],
         ] : [
           ['Большинство + ed',       'work → worked, play → played'   ],
           ['Оканч. на -e',           'like → liked, live → lived'     ],
@@ -347,9 +419,10 @@ const HINTS: Record<number, HintContent> = {
   12: {
     titleRU: 'Past Simple — неправильные глаголы',
     titleUK: 'Past Simple — неправильні дієслова',
-    render: (t, isUK, f) => [
+    titleES: 'Past Simple — verbos irregulares',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'Subject + V2',          'He went home.'   ],
           ['−', "Subject + didn't + V1", "He didn't go."   ],
@@ -357,9 +430,9 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Часті дієслова':'Частые глаголы'}
-        headers={['V1', 'V2', isUK?'Значення':'Значение']}
-        rows={isUK ? [
+        label={L(lang,'Частые глаголы','Часті дієслова','Verbos frecuentes')}
+        headers={['V1', 'V2', L(lang,'Значение','Значення','Significado')]}
+        rows={lang === 'uk' ? [
           ['go',    'went',   'іти / їхати'],
           ['come',  'came',   'приходити'  ],
           ['see',   'saw',    'бачити'     ],
@@ -370,6 +443,17 @@ const HINTS: Record<number, HintContent> = {
           ['know',  'knew',   'знати'      ],
           ['think', 'thought','думати'     ],
           ['buy',   'bought', 'купувати'   ],
+        ] : lang === 'es' ? [
+          ['go',    'went',   'ir'         ],
+          ['come',  'came',   'venir'      ],
+          ['see',   'saw',    'ver'        ],
+          ['get',   'got',    'conseguir'  ],
+          ['have',  'had',    'tener'      ],
+          ['say',   'said',   'decir'      ],
+          ['take',  'took',   'tomar'      ],
+          ['know',  'knew',   'saber'      ],
+          ['think', 'thought','pensar'     ],
+          ['buy',   'bought', 'comprar'    ],
         ] : [
           ['go',    'went',   'идти / ехать'],
           ['come',  'came',   'приходить'   ],
@@ -388,24 +472,30 @@ const HINTS: Record<number, HintContent> = {
   13: {
     titleRU: 'Future Simple — will',
     titleUK: 'Future Simple — will',
-    render: (t, isUK, f) => [
+    titleES: 'Future Simple — will',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+',                  'Subject + will + V',  'I will call you.'      ],
           ['−',                  "Subject + won't + V", "She won't be late."    ],
           ['?',                  'Will + subj + V?',    'Will you help me?'     ],
-          [isUK?'Скор.':'Сокр.', "I'll / You'll",       "I'll do it tomorrow."  ],
+          [L(lang,'Сокр.','Скор.','Contr.'), "I'll / You'll",       "I'll do it tomorrow."  ],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Коли вживати':'Когда использовать'}
-        headers={[isUK?'Ситуація':'Ситуация', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Когда использовать','Коли вживать','Cuándo usarlo')}
+        headers={[L(lang,'Ситуация','Ситуація','Uso'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['Рішення зараз',          "It's cold — I'll close the window."],
           ['Обіцянка',               "I'll help you tomorrow."           ],
           ['Передбачення (думаю)',    'I think it will rain.'             ],
           ['Прохання / пропозиція',  'Will you open the door?'           ],
+        ] : lang === 'es' ? [
+          ['Decisión al momento',    "It's cold — I'll close the window."],
+          ['Promesa',               "I'll help you tomorrow."           ],
+          ['Predicción (suposición)','I think it will rain.'             ],
+          ['Petición / oferta',     'Will you open the door?'           ],
         ] : [
           ['Решение прямо сейчас',   "It's cold — I'll close the window."],
           ['Обещание',               "I'll help you tomorrow."           ],
@@ -418,10 +508,11 @@ const HINTS: Record<number, HintContent> = {
   14: {
     titleRU: 'Степени сравнения',
     titleUK: 'Ступені порівняння',
-    render: (t, isUK, f) => [
+    titleES: 'Grados de comparación',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        label={isUK?'Короткі прикметники':'Короткие прилагательные'}
-        headers={[isUK?'Звичайне':'Обычное', isUK?'Порівняльне':'Сравнит.', isUK?'Найвищий':'Превосх.']}
+        label={L(lang,'Короткие прилагательные','Короткі прикметники','Adjetivos cortos')}
+        headers={[L(lang,'Обычное','Звичайне','Positivo'), L(lang,'Сравнит.','Порівняльне','Comparativo'), L(lang,'Превосх.','Найвищий','Superlativo')]}
         rows={[
           ['old',  'older',   'the oldest'  ],
           ['tall', 'taller',  'the tallest' ],
@@ -431,8 +522,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Довгі прикметники':'Длинные прилагательные'}
-        headers={[isUK?'Звичайне':'Обычное', isUK?'Порівняльне':'Сравнит.', isUK?'Найвищий':'Превосх.']}
+        label={L(lang,'Длинные прилагательные','Довгі прикметники','Adjetivos largos')}
+        headers={[L(lang,'Обычное','Звичайне','Positivo'), L(lang,'Сравнит.','Порівняльне','Comparativo'), L(lang,'Превосх.','Найвищий','Superlativo')]}
         rows={[
           ['beautiful',   'more beautiful',   'the most beautiful'  ],
           ['expensive',   'more expensive',   'the most expensive'  ],
@@ -440,8 +531,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t3" t={t} f={f} firstBold
-        label={isUK?'Винятки':'Исключения'}
-        headers={[isUK?'Звичайне':'Обычное', isUK?'Порівняльне':'Сравнит.', isUK?'Найвищий':'Превосх.']}
+        label={L(lang,'Исключения','Винятки','Irregulares')}
+        headers={[L(lang,'Обычное','Звичайне','Positivo'), L(lang,'Сравнит.','Порівняльне','Comparativo'), L(lang,'Превосх.','Найвищий','Superlativo')]}
         rows={[
           ['good', 'better',  'the best'    ],
           ['bad',  'worse',   'the worst'   ],
@@ -454,9 +545,10 @@ const HINTS: Record<number, HintContent> = {
   15: {
     titleRU: 'Притяжательные местоимения',
     titleUK: 'Присвійні займенники',
-    render: (t, isUK, f) => [
+    titleES: 'Pronombres y adjetivos posesivos',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Особа':'Лицо', isUK?'Перед іменником':'Перед сущ.', isUK?'Самостійно':'Самостоятельно', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Лицо','Особа','Persona'), L(lang,'Перед сущ.','Перед іменником','Antes del sust.'), L(lang,'Самостоятельно','Самостійно','Apartados'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['I',    'my',    'mine',   "This is my bag. — It's mine."    ],
           ['You',  'your',  'yours',  "It's yours."                     ],
@@ -472,10 +564,11 @@ const HINTS: Record<number, HintContent> = {
   16: {
     titleRU: 'Фразовые глаголы',
     titleUK: 'Фразові дієслова',
-    render: (t, isUK, f) => [
+    titleES: 'Verbos frasales (phrasal verbs)',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Дієслово':'Глагол', isUK?'Значення':'Значение', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Значение','Значення','Significado'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['get up',    'вставати',          'I get up at 7.'              ],
           ['turn on',   'вмикати',           'Turn on the light.'          ],
           ['turn off',  'вимикати',          'Turn off the TV.'            ],
@@ -486,6 +579,17 @@ const HINTS: Record<number, HintContent> = {
           ['put on',    'одягати',           'Put on your coat.'           ],
           ['take off',  'знімати / злітати', 'Take off your shoes.'        ],
           ['go on',     'продовжувати',      'Go on, please.'              ],
+        ] : lang === 'es' ? [
+          ['get up',    'levantarse',        'I get up at 7.'              ],
+          ['turn on',   'encender',          'Turn on the light.'          ],
+          ['turn off',  'apagar',            'Turn off the TV.'            ],
+          ['look for',  'buscar',            "I'm looking for my keys."    ],
+          ['give up',   'rendirse / dejar',  "Don't give up!"              ],
+          ['find out',  'averiguar',         'I found out the truth.'      ],
+          ['come back', 'volver',             'Come back soon.'             ],
+          ['put on',    'ponerse (ropa)',    'Put on your coat.'           ],
+          ['take off',  'quitarse / despegar','Take off your shoes.'       ],
+          ['go on',     'continuar',         'Go on, please.'              ],
         ] : [
           ['get up',    'вставать',          'I get up at 7.'              ],
           ['turn on',   'включать',          'Turn on the light.'          ],
@@ -504,9 +608,10 @@ const HINTS: Record<number, HintContent> = {
   17: {
     titleRU: 'Present Continuous',
     titleUK: 'Present Continuous',
-    render: (t, isUK, f) => [
+    titleES: 'Present Continuous',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'am/is/are + V-ing',         "She's working now."    ],
           ['−', "am/is/are + not + V-ing",   "He isn't sleeping."    ],
@@ -514,13 +619,18 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Правила написання -ing':'Правила написания -ing'}
-        headers={[isUK?'Правило':'Правило', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Правила написания -ing','Правила написання -ing','Reglas de -ing')}
+        headers={[L(lang,'Правило','Правило','Regla'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['Більшість + ing',          'work → working, read → reading' ],
           ['На -e → прибрати e',       'come → coming, write → writing' ],
           ['CVC (коротка) → подвоїти', 'run → running, sit → sitting'   ],
           ['На -ie → ying',            'lie → lying, die → dying'       ],
+        ] : lang === 'es' ? [
+          ['Mayoría + -ing',           'work → working, read → reading' ],
+          ['En -e → quitar -e',        'come → coming, write → writing' ],
+          ['CVC corta → consonante doble','run → running, sit → sitting'],
+          ['En -ie → -ying',           'lie → lying, die → dying'       ],
         ] : [
           ['Большинство + ing',        'work → working, read → reading' ],
           ['На -e → убрать e',         'come → coming, write → writing' ],
@@ -533,14 +643,20 @@ const HINTS: Record<number, HintContent> = {
   18: {
     titleRU: 'Повелительное наклонение',
     titleUK: 'Наказовий спосіб',
-    render: (t, isUK, f) => [
+    titleES: 'Modo imperativo',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклади':'Примеры']}
-        rows={isUK ? [
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Примеры','Приклади','Ejemplos')]}
+        rows={lang === 'uk' ? [
           ['Наказ +',   'V (основна форма)', 'Come here! Open the door!'     ],
           ['Наказ −',   "Don't + V",         "Don't run! Don't be late!"     ],
           ["Let's",     "Let's + V",         "Let's go! Let's start."        ],
           ['Ввічливо',  'Please + V',        'Please sit down.'              ],
+        ] : lang === 'es' ? [
+          ['Afirmativo','forma base (you)', 'Come here! Open the door!'     ],
+          ['Negativo',  "Don't + V",       "Don't run! Don't be late!"     ],
+          ["Let's",     "Let's + V",       "Let's go! Let's start."        ],
+          ['Cortesía',  'Please + V',      'Please sit down.'              ],
         ] : [
           ['Команда +', 'V (основная форма)','Come here! Open the door!'     ],
           ['Команда −', "Don't + V",         "Don't run! Don't be late!"     ],
@@ -553,10 +669,11 @@ const HINTS: Record<number, HintContent> = {
   19: {
     titleRU: 'Предлоги места',
     titleUK: 'Прийменники місця',
-    render: (t, isUK, f) => [
+    titleES: 'Preposiciones de lugar',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Прийменник':'Предлог', isUK?'Значення':'Значение', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={[L(lang,'Предлог','Прийменник','Prep.'), L(lang,'Значение','Значення','Significado'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['in',          'всередині',    'The keys are in the bag.'          ],
           ['on',          'на поверхні',  'The phone is on the table.'        ],
           ['under',       'під',          'The cat is under the chair.'       ],
@@ -567,6 +684,17 @@ const HINTS: Record<number, HintContent> = {
           ['in front of', 'перед',        'The car is in front of the house.' ],
           ['opposite',    'навпроти',     'The school is opposite the park.'  ],
           ['at',          'біля / на',    "I'm at the station."               ],
+        ] : lang === 'es' ? [
+          ['in',          'dentro de',    'The keys are in the bag.'          ],
+          ['on',          'sobre',        'The phone is on the table.'        ],
+          ['under',       'debajo de',    'The cat is under the chair.'       ],
+          ['above',       'por encima de','The lamp is above the desk.'       ],
+          ['next to',     'junto a',      'She sits next to the window.'      ],
+          ['between',     'entre',        'The shop is between the two cafes.'],
+          ['behind',      'detrás de',    'He is standing behind the door.'   ],
+          ['in front of', 'delante de',   'The car is in front of the house.' ],
+          ['opposite',    'enfrente de',  'The school is opposite the park.'  ],
+          ['at',          'en',           "I'm at the station."               ],
         ] : [
           ['in',          'внутри',       'The keys are in the bag.'          ],
           ['on',          'на',           'The phone is on the table.'        ],
@@ -585,14 +713,20 @@ const HINTS: Record<number, HintContent> = {
   20: {
     titleRU: 'Артикли: a / an / the / —',
     titleUK: 'Артиклі: a / an / the / —',
-    render: (t, isUK, f) => [
+    titleES: 'Artículos: a / an / the / —',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Артикль':'Артикль', isUK?'Коли вживати':'Когда использовать', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={[L(lang,'Артикль','Артикль','Art.'), L(lang,'Когда использовать','Коли вживати','Cuándo'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['a',   'Перед приголосним звуком, вперше',    'I saw a dog.'         ],
           ['an',  'Перед голосним звуком, вперше',       'She has an umbrella.' ],
           ['the', 'Конкретний / вже відомий предмет',    'The dog was big.'     ],
           ['—',   'Власні назви, мови, спорт, їжа',      'I play tennis.'       ],
+        ] : lang === 'es' ? [
+          ['a',   'Sonido consonántico (primera vez)',   'I saw a dog.'         ],
+          ['an',  'Sonido vocálico (primera vez)',        'She has an umbrella.' ],
+          ['the', 'Ya conocido o único posible',         'The dog was big.'     ],
+          ['—',   'Nombres propios, deportes (genéricos)','I play tennis.'      ],
         ] : [
           ['a',   'Перед согл. звуком, впервые',         'I saw a dog.'         ],
           ['an',  'Перед гласным звуком, впервые',       'She has an umbrella.' ],
@@ -601,14 +735,20 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Без артикля':'Без артикля'}
-        headers={[isUK?'Правило':'Правило', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Без артикля','Без артикля','Sin artículo')}
+        headers={[L(lang,'Правило','Правило','Regla'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['Власні назви',           'London, Ukraine, Mary'        ],
           ['Мови та національності',  'English, French, Ukrainian'   ],
           ['Спорт та ігри',          'football, chess, tennis'      ],
           ['Їжа в загальному',       'I like coffee.'               ],
           ['Транспорт після by',     'by car, by bus, by train'     ],
+        ] : lang === 'es' ? [
+          ['Nombres propios y países','London, Ukraine, Mary'       ],
+          ['Idiomas y gentilicios',    'English, French, Ukrainian' ],
+          ['Deportes y juegos',      'football, chess, tennis'      ],
+          ['Comidas en genérico',    'I like coffee.'               ],
+          ['Transporte con by',       'by car, by bus, by train'     ],
         ] : [
           ['Имена и география',      'London, Ukraine, Mary'        ],
           ['Языки и национальности',  'English, French, Ukrainian'   ],
@@ -622,9 +762,10 @@ const HINTS: Record<number, HintContent> = {
   21: {
     titleRU: 'Неопределённые местоимения',
     titleUK: 'Неозначені займенники',
-    render: (t, isUK, f) => [
+    titleES: 'Pronombres indefinidos',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Корінь':'Корень', isUK?'Особа':'Лицо', isUK?'Предмет':'Предмет', isUK?'Місце':'Место']}
+        headers={[L(lang,'Корень','Корінь','Raíz'), L(lang,'Лицо','Особа','Personas'), L(lang,'Предмет','Предмет','Cosas'), L(lang,'Место','Місце','Lugar')]}
         rows={[
           ['some-',  'somebody / someone',  'something',  'somewhere' ],
           ['any-',   'anybody / anyone',    'anything',   'anywhere'  ],
@@ -633,13 +774,18 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Коли вживати':'Когда использовать'}
-        headers={[isUK?'Займенник':'Местоимение', isUK?'Вживання':'Употребление', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Когда использовать','Коли вживати','Cuándo usar')}
+        headers={[L(lang,'Местоимение','Займенник','Forma'), L(lang,'Употребление','Вживання','Uso'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['some-', 'Ствердні речення, прохання', 'Someone called you.'    ],
           ['any-',  'Питання і заперечення',      "Is anyone there?"       ],
           ['no-',   'Заперечний зміст',           'Nobody came.'           ],
           ['every-','Всі без винятку',             'Everyone was happy.'    ],
+        ] : lang === 'es' ? [
+          ['some-', 'Afirmativas / ofertas',      'Someone called you.'    ],
+          ['any-',  'Interrogativas / negativas', "Is anyone there?"       ],
+          ['no-',   'Sentido negativo',           'Nobody came.'           ],
+          ['every-','Todos sin excepción',       'Everyone was happy.'    ],
         ] : [
           ['some-', 'Утверждения, просьбы',   'Someone called you.'         ],
           ['any-',  'Вопросы и отрицания',    "Is anyone there?"            ],
@@ -652,10 +798,11 @@ const HINTS: Record<number, HintContent> = {
   22: {
     titleRU: 'Герундий (-ing)',
     titleUK: 'Герундій (-ing)',
-    render: (t, isUK, f) => [
+    titleES: 'Gerundio (-ing)',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        label={isUK?'Після цих слів — Герундій (-ing)':'После этих слов — Герундий (-ing)'}
-        headers={[isUK?'Дієслово':'Глагол', isUK?'Приклад':'Пример']}
+        label={L(lang,'После этих слов — Герундий (-ing)','Після цих слів — Герундій (-ing)','Tras estos verbos — gerundio (-ing)')}
+        headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['enjoy',   'She enjoys reading.'           ],
           ['like',    'I like swimming.'              ],
@@ -668,8 +815,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Після цих слів — Інфінітив (to + V)':'После этих слов — Инфинитив (to + V)'}
-        headers={[isUK?'Дієслово':'Глагол', isUK?'Приклад':'Пример']}
+        label={L(lang,'После этих слов — Инфинитив (to + V)','Після цих слів — Інфінітив (to + V)','Tras estos verbos — infinitivo (to + V)')}
+        headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['want',   'I want to go.'      ],
           ['need',   'She needs to rest.' ],
@@ -684,9 +831,10 @@ const HINTS: Record<number, HintContent> = {
   23: {
     titleRU: 'Passive Voice',
     titleUK: 'Passive Voice',
-    render: (t, isUK, f) => [
+    titleES: 'Voz pasiva (Passive Voice)',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Час':'Время', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Время','Час','Tiempo'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['Present Simple',   'am/is/are + V3',        'English is spoken here.'    ],
           ['Past Simple',      'was/were + V3',          'The letter was written.'    ],
@@ -696,8 +844,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Активний → Пасивний':'Активный → Пассивный'}
-        headers={[isUK?'Активний':'Активный', isUK?'Пасивний':'Пассивный']}
+        label={L(lang,'Активный → Пассивный','Активний → Пасивний','Activa → pasiva')}
+        headers={[L(lang,'Активный','Активний','Activa'), L(lang,'Пассивный','Пасивний','Pasiva')]}
         rows={[
           ['She wrote the letter.',  'The letter was written by her.' ],
           ['They built this house.', 'This house was built by them.'  ],
@@ -709,9 +857,10 @@ const HINTS: Record<number, HintContent> = {
   24: {
     titleRU: 'Present Perfect',
     titleUK: 'Present Perfect',
-    render: (t, isUK, f) => [
+    titleES: 'Present Perfect',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'have/has + V3',        'I have seen this film.'       ],
           ['−', "haven't/hasn't + V3",  "She hasn't called yet."       ],
@@ -719,9 +868,9 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Ключові слова':'Ключевые слова'}
-        headers={[isUK?'Слово':'Слово', isUK?'Значення':'Значение', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Ключевые слова','Ключові слова','Marcadores')}
+        headers={[L(lang,'Слово','Слово','Palabra'), L(lang,'Значение','Значення','Sentido'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['ever',   'коли-небудь',   'Have you ever tried sushi?'    ],
           ['never',  'ніколи',        "I've never been to Japan."     ],
           ['already','вже',           "She's already finished."       ],
@@ -729,6 +878,14 @@ const HINTS: Record<number, HintContent> = {
           ['just',   'щойно',         "He's just arrived."            ],
           ['for',    'протягом',      "I've lived here for 5 years."  ],
           ['since',  'з (часу)',      "She's worked here since 2020." ],
+        ] : lang === 'es' ? [
+          ['ever',   'alguna vez',    'Have you ever tried sushi?'    ],
+          ['never',  'nunca',         "I've never been to Japan."     ],
+          ['already','ya',            "She's already finished."       ],
+          ['yet',    'ya / ¿aún?',    "Have you eaten yet?"           ],
+          ['just',   'recién',        "He's just arrived."            ],
+          ['for',    'durante',       "I've lived here for 5 years."  ],
+          ['since',  'desde',         "She's worked here since 2020." ],
         ] : [
           ['ever',   'когда-нибудь',  'Have you ever tried sushi?'    ],
           ['never',  'никогда',       "I've never been to Japan."     ],
@@ -744,9 +901,10 @@ const HINTS: Record<number, HintContent> = {
   25: {
     titleRU: 'Past Continuous',
     titleUK: 'Past Continuous',
-    render: (t, isUK, f) => [
+    titleES: 'Past Continuous',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'was/were + V-ing',         'She was working at 8pm.'       ],
           ['−', "wasn't/weren't + V-ing",   "He wasn't sleeping."           ],
@@ -754,12 +912,16 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Коли вживати':'Когда использовать'}
-        headers={[isUK?'Ситуація':'Ситуация', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Когда использовать','Коли вживати','Cuándo usar')}
+        headers={[L(lang,'Ситуация','Ситуація','Uso'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['Дія тривала в певний момент',    'At 9pm I was reading.'              ],
           ['Дія перервалась (when)',          'I was reading when she called.'     ],
           ['Дві паралельні дії (while)',      'While he cooked, she was cleaning.' ],
+        ] : lang === 'es' ? [
+          ['Acción en curso en un momento', 'At 9pm I was reading.'              ],
+          ['Interrupción (when)',           'I was reading when she called.'     ],
+          ['Dos paralelas (while)',         'While he cooked, she was cleaning.' ],
         ] : [
           ['Действие длилось в момент',      'At 9pm I was reading.'              ],
           ['Действие прервалось (when)',      'I was reading when she called.'     ],
@@ -771,14 +933,20 @@ const HINTS: Record<number, HintContent> = {
   26: {
     titleRU: 'Условные предложения',
     titleUK: 'Умовні речення',
-    render: (t, isUK, f) => [
+    titleES: 'Oraciones condicionales',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Тип':'Тип', isUK?'If-частина':'If-часть', isUK?'Результат':'Результат', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={[L(lang,'Тип','Тип','Tipo'), L(lang,'If-часть','If-частина','Parte en if'), L(lang,'Результат','Результат','Resultado'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['0 (факт)',       'Present Simple', 'Present Simple', 'If you heat water, it boils.'            ],
           ['1 (реальне)',    'Present Simple', 'will + V',       'If it rains, I will stay home.'          ],
           ['2 (нереальне)',  'Past Simple',    'would + V',      "If I had money, I'd travel."             ],
           ['3 (минуле)',     'Past Perfect',   'would have + V3','If she had studied, she would have passed.'],
+        ] : lang === 'es' ? [
+          ['0 (hecho)',      'Present Simple', 'Present Simple', 'If you heat water, it boils.'            ],
+          ['1 (real)',       'Present Simple', 'will + V',       'If it rains, I will stay home.'          ],
+          ['2 (irreal)',     'Past Simple',    'would + V',      "If I had money, I'd travel."             ],
+          ['3 (pasado)',     'Past Perfect',   'would have + V3','If she had studied, she would have passed.'],
         ] : [
           ['0 (факт)',       'Present Simple', 'Present Simple', 'If you heat water, it boils.'            ],
           ['1 (реальное)',   'Present Simple', 'will + V',       'If it rains, I will stay home.'          ],
@@ -791,10 +959,11 @@ const HINTS: Record<number, HintContent> = {
   27: {
     titleRU: 'Косвенная речь',
     titleUK: 'Непряма мова',
-    render: (t, isUK, f) => [
+    titleES: 'Estilo indirecto',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        label={isUK?'Зміщення часів':'Сдвиг времён'}
-        headers={[isUK?'Пряма мова':'Прямая речь', isUK?'Непряма мова':'Косвенная речь']}
+        label={L(lang,'Сдвиг времён','Зміщення часів','Retroceso de tiempos')}
+        headers={[L(lang,'Прямая речь','Пряма мова','Directo'), L(lang,'Косвенная речь','Непряма мова','Indirecto')]}
         rows={[
           ['Present Simple',     '→  Past Simple'    ],
           ['Present Continuous', '→  Past Continuous'],
@@ -805,8 +974,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Приклади':'Примеры'}
-        headers={[isUK?'Пряма':'Прямая', isUK?'Непряма':'Косвенная']}
+        label={L(lang,'Примеры','Приклади','Ejemplos')}
+        headers={[L(lang,'Прямая','Пряма','Directo'), L(lang,'Косвенная','Непряма','Indirecto')]}
         rows={[
           ['"I am tired."',       'He said he was tired.'         ],
           ['"I will call you."',  'She said she would call me.'   ],
@@ -819,9 +988,10 @@ const HINTS: Record<number, HintContent> = {
   28: {
     titleRU: 'Возвратные местоимения',
     titleUK: 'Зворотні займенники',
-    render: (t, isUK, f) => [
+    titleES: 'Pronombres reflexivos',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Підмет':'Подлежащее', isUK?'Зворотне':'Возвратное', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Возвратное','Зворотне','Reflexivo'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['I',    'myself',     'I hurt myself.'            ],
           ['You',  'yourself',   'Did you enjoy yourself?'   ],
@@ -838,9 +1008,10 @@ const HINTS: Record<number, HintContent> = {
   29: {
     titleRU: 'Used to',
     titleUK: 'Used to',
-    render: (t, isUK, f) => [
+    titleES: 'Used to',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Форма':'Форма', isUK?'Структура':'Структура', isUK?'Приклад':'Пример']}
+        headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'used to + V',        'I used to play football.'          ],
           ['−', "didn't use to + V",  "She didn't use to drink coffee."   ],
@@ -848,12 +1019,16 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Порівняння конструкцій':'Сравнение конструкций'}
-        headers={[isUK?'Конструкція':'Конструкция', isUK?'Значення':'Значение', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        label={L(lang,'Сравнение конструкций','Порівняння конструкцій','Otras construcciones')}
+        headers={[L(lang,'Конструкция','Конструкція','Forma'), L(lang,'Значение','Значення','Sentido'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['used to + V',      'Звичка в минулому',    'I used to smoke.'            ],
           ['be used to + -ing','Звичний до чогось',    "I'm used to waking up early."],
           ['get used to + -ing','Звикати до чогось',   "I'm getting used to the cold."],
+        ] : lang === 'es' ? [
+          ['used to + V',      'hábito en el pasado',  'I used to smoke.'            ],
+          ['be used to + -ing','estar acostumbrado a', "I'm used to waking up early."],
+          ['get used to + -ing','acostumbrarse a',      "I'm getting used to the cold."],
         ] : [
           ['used to + V',      'Привычка в прошлом',   'I used to smoke.'            ],
           ['be used to + -ing','Привыкший к чему-то',  "I'm used to waking up early."],
@@ -865,16 +1040,24 @@ const HINTS: Record<number, HintContent> = {
   30: {
     titleRU: 'Relative Clauses',
     titleUK: 'Relative Clauses',
-    render: (t, isUK, f) => [
+    titleES: 'Oraciones de relativo',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        headers={[isUK?'Слово':'Слово', isUK?'Для чого':'Для чего', isUK?'Приклад':'Пример']}
-        rows={isUK ? [
+        headers={[L(lang,'Слово','Слово','Palabra'), L(lang,'Для чего','Для чого','Sirve para'), L(lang,'Пример','Приклад','Ejemplo')]}
+        rows={lang === 'uk' ? [
           ['who',   'людей',                 'The man who called is my friend.'  ],
           ['which', 'предметів і тварин',    'The book which I read was great.'  ],
           ['that',  'людей або предметів',   'The car that she drives is red.'   ],
           ['whose', 'присвійне',             'The girl whose bag was stolen...'  ],
           ['where', 'місця',                 'The city where I was born.'        ],
           ['when',  'часу',                  'The day when we met.'              ],
+        ] : lang === 'es' ? [
+          ['who',   'personas',              'The man who called is my friend.'  ],
+          ['which', 'cosas / animales',      'The book which I read was great.'  ],
+          ['that',  'personas o cosas',      'The car that she drives is red.'   ],
+          ['whose', 'posesivo',               'The girl whose bag was stolen...' ],
+          ['where', 'lugares',                'The city where I was born.'       ],
+          ['when',  'momentos',              'The day when we met.'             ],
         ] : [
           ['who',   'людей',                 'The man who called is my friend.'  ],
           ['which', 'предметов и животных',  'The book which I read was great.'  ],
@@ -889,10 +1072,11 @@ const HINTS: Record<number, HintContent> = {
   31: {
     titleRU: 'Complex Object',
     titleUK: 'Complex Object',
-    render: (t, isUK, f) => [
+    titleES: 'Objeto directo + infinitivo',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        label={isUK?'Дієслово + об\'єкт + to + V':'Глагол + объект + to + V'}
-        headers={[isUK?'Дієслово':'Глагол', isUK?'Приклад':'Пример']}
+        label={L(lang,'Глагол + объект + to + V','Дієслово + об\'єкт + to + V','Verbo + complemento + to + V')}
+        headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['want',   'I want you to stay.'         ],
           ['expect', 'She expects him to call.'    ],
@@ -903,8 +1087,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Дієслово + об\'єкт + V (без to)':'Глагол + объект + V (без to)'}
-        headers={[isUK?'Дієслово':'Глагол', isUK?'Приклад':'Пример']}
+        label={L(lang,'Глагол + объект + V (без to)','Дієслово + об\'єкт + V (без to)','Verbo + complemento + V (sin to)')}
+        headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['make',  'She made me laugh.'           ],
           ['let',   'Let him speak.'               ],
@@ -918,10 +1102,11 @@ const HINTS: Record<number, HintContent> = {
   32: {
     titleRU: 'Повторение всех тем',
     titleUK: 'Повторення всіх тем',
-    render: (t, isUK, f) => [
+    titleES: 'Repaso de todos los temas',
+    render: (t, lang, f) => [
       <Table key="t1" t={t} f={f} firstBold
-        label={isUK?'Часи — огляд':'Времена — обзор'}
-        headers={[isUK?'Час':'Время', isUK?'Приклад':'Пример', isUK?'Ключові слова':'Ключевые слова']}
+        label={L(lang,'Времена — обзор','Часи — огляд','Tiempo verbal — panorama')}
+        headers={[L(lang,'Время','Час','Tiempo'), L(lang,'Пример','Приклад','Ejemplo'), L(lang,'Ключевые слова','Ключові слова','Marcadores')]}
         rows={[
           ['Present Simple',     'She works.',       'always, every day'      ],
           ['Present Continuous', "She's working.",   'now, at the moment'     ],
@@ -932,8 +1117,8 @@ const HINTS: Record<number, HintContent> = {
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
-        label={isUK?'Важливі конструкції':'Важные конструкции'}
-        headers={[isUK?'Конструкція':'Конструкция', isUK?'Приклад':'Пример']}
+        label={L(lang,'Важные конструкции','Важливі конструкції','Estructuras clave')}
+        headers={[L(lang,'Конструкция','Конструкція','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['can / could',          'I can swim. She could drive.'   ],
           ['must / have to',       'I must go. You have to work.'   ],
@@ -954,35 +1139,40 @@ export default function HintScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { theme: t , f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
   const lessonId = parseInt(id || '1', 10);
   const hint = HINTS[lessonId] || HINTS[1];
 
+  const hintSubtitle = triLang(lang, {
+    ru: `${T.ru.lessonN(lessonId)} · Шпаргалка`,
+    uk: `${T.uk.lessonN(lessonId)} · Швидка довідка`,
+    es: `${T.es.lessonN(lessonId)} · Guía rápida`,
+  });
+  const hintTitle = triLang(lang, { ru: hint.titleRU, uk: hint.titleUK, es: hint.titleES });
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
       <ContentWrap>
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-        <TouchableOpacity onPress={() => router.back()} style={{ marginRight: 12 }}>
+        <TouchableOpacity onPress={() => { if (router.canGoBack()) router.back(); else router.replace('/'); }} style={{ marginRight: 12 }}>
           <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textMuted, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.7 }}>
-            {isUK ? `Урок ${lessonId} · Шпаргалка` : `Урок ${lessonId} · Шпаргалка`}
+            {hintSubtitle}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-            {isUK ? hint.titleUK : hint.titleRU}
+            {hintTitle}
           </Text>
         </View>
       </View>
       <ScrollView contentContainerStyle={{ padding: 16, paddingBottom: 40 }} showsVerticalScrollIndicator={false}>
-        {hint.render(t, isUK, f)}
+        {hint.render(t, lang, f)}
         <TouchableOpacity
           style={{ backgroundColor: t.bgSurface, borderRadius: 14, padding: 16, alignItems: 'center', marginTop: 8 }}
-          onPress={() => router.back()}
+          onPress={() => { if (router.canGoBack()) router.back(); else router.replace('/'); }}
         >
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-            {isUK ? 'Закрити' : 'Закрыть'}
+            {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -991,7 +1181,3 @@ export default function HintScreen() {
     </ScreenGradient>
   );
 }
-
-const styles = StyleSheet.create({
-  cell: { paddingVertical: 9, paddingHorizontal: 8, justifyContent: 'center' },
-});

@@ -1,0 +1,1602 @@
+[
+  {
+    "id": "lesson1_phrase_1",
+    "english": "I am here"
+  },
+  {
+    "id": "lesson1_phrase_2",
+    "english": "You are ready"
+  },
+  {
+    "id": "lesson1_phrase_3",
+    "english": "He is busy"
+  },
+  {
+    "id": "lesson1_phrase_4",
+    "english": "She is at home"
+  },
+  {
+    "id": "lesson1_phrase_5",
+    "english": "We are together"
+  },
+  {
+    "id": "lesson1_phrase_6",
+    "english": "They are happy"
+  },
+  {
+    "id": "lesson1_phrase_7",
+    "english": "It is important"
+  },
+  {
+    "id": "lesson1_phrase_8",
+    "english": "I am okay"
+  },
+  {
+    "id": "lesson1_phrase_9",
+    "english": "You are right"
+  },
+  {
+    "id": "lesson1_phrase_10",
+    "english": "We are safe"
+  },
+  {
+    "id": "lesson1_phrase_11",
+    "english": "He is sick"
+  },
+  {
+    "id": "lesson1_phrase_12",
+    "english": "It is cheap"
+  },
+  {
+    "id": "lesson1_phrase_13",
+    "english": "We are friends"
+  },
+  {
+    "id": "lesson1_phrase_14",
+    "english": "She is upset"
+  },
+  {
+    "id": "lesson1_phrase_15",
+    "english": "You are late"
+  },
+  {
+    "id": "lesson1_phrase_16",
+    "english": "I am at work"
+  },
+  {
+    "id": "lesson1_phrase_17",
+    "english": "We are on our way"
+  },
+  {
+    "id": "lesson1_phrase_18",
+    "english": "They are in the car"
+  },
+  {
+    "id": "lesson1_phrase_19",
+    "english": "She is on vacation"
+  },
+  {
+    "id": "lesson1_phrase_20",
+    "english": "It is free"
+  },
+  {
+    "id": "lesson1_phrase_21",
+    "english": "I am in line"
+  },
+  {
+    "id": "lesson1_phrase_22",
+    "english": "We are in the elevator"
+  },
+  {
+    "id": "lesson1_phrase_23",
+    "english": "He is in the kitchen"
+  },
+  {
+    "id": "lesson1_phrase_24",
+    "english": "You are very kind"
+  },
+  {
+    "id": "lesson1_phrase_25",
+    "english": "It is urgent"
+  },
+  {
+    "id": "lesson1_phrase_26",
+    "english": "I am shocked"
+  },
+  {
+    "id": "lesson1_phrase_27",
+    "english": "We are in a taxi"
+  },
+  {
+    "id": "lesson1_phrase_28",
+    "english": "She is married"
+  },
+  {
+    "id": "lesson1_phrase_29",
+    "english": "You are fine"
+  },
+  {
+    "id": "lesson1_phrase_30",
+    "english": "They are outside"
+  },
+  {
+    "id": "lesson1_phrase_31",
+    "english": "I am at the airport"
+  },
+  {
+    "id": "lesson1_phrase_32",
+    "english": "We are on the train"
+  },
+  {
+    "id": "lesson1_phrase_33",
+    "english": "He is in the bathroom"
+  },
+  {
+    "id": "lesson1_phrase_34",
+    "english": "She is smart"
+  },
+  {
+    "id": "lesson1_phrase_35",
+    "english": "She is at the store"
+  },
+  {
+    "id": "lesson1_phrase_36",
+    "english": "I am in the gym"
+  },
+  {
+    "id": "lesson1_phrase_37",
+    "english": "We are on the bus"
+  },
+  {
+    "id": "lesson1_phrase_38",
+    "english": "It is near here"
+  },
+  {
+    "id": "lesson1_phrase_39",
+    "english": "They are tired"
+  },
+  {
+    "id": "lesson1_phrase_40",
+    "english": "You are on the list"
+  },
+  {
+    "id": "lesson1_phrase_41",
+    "english": "I am at the pharmacy"
+  },
+  {
+    "id": "lesson1_phrase_42",
+    "english": "She is at the hotel"
+  },
+  {
+    "id": "lesson1_phrase_43",
+    "english": "We are abroad"
+  },
+  {
+    "id": "lesson1_phrase_44",
+    "english": "They are hungry"
+  },
+  {
+    "id": "lesson1_phrase_45",
+    "english": "It is broken"
+  },
+  {
+    "id": "lesson1_phrase_46",
+    "english": "He is angry"
+  },
+  {
+    "id": "lesson1_phrase_47",
+    "english": "They are in the taxi"
+  },
+  {
+    "id": "lesson1_phrase_48",
+    "english": "He is at school"
+  },
+  {
+    "id": "lesson1_phrase_49",
+    "english": "It is empty"
+  },
+  {
+    "id": "lesson1_phrase_50",
+    "english": "She is nervous"
+  },
+  {
+    "id": "lesson2_phrase_1",
+    "english": "I am not hungry"
+  },
+  {
+    "id": "lesson2_phrase_2",
+    "english": "Are you sure?"
+  },
+  {
+    "id": "lesson2_phrase_3",
+    "english": "He is not here"
+  },
+  {
+    "id": "lesson2_phrase_4",
+    "english": "Is it expensive?"
+  },
+  {
+    "id": "lesson2_phrase_5",
+    "english": "We are not ready"
+  },
+  {
+    "id": "lesson2_phrase_6",
+    "english": "They are not at home"
+  },
+  {
+    "id": "lesson2_phrase_7",
+    "english": "Is she a doctor?"
+  },
+  {
+    "id": "lesson2_phrase_8",
+    "english": "It is not scary"
+  },
+  {
+    "id": "lesson2_phrase_9",
+    "english": "Are you busy?"
+  },
+  {
+    "id": "lesson2_phrase_10",
+    "english": "I am not alone"
+  },
+  {
+    "id": "lesson2_phrase_11",
+    "english": "We are not in danger"
+  },
+  {
+    "id": "lesson2_phrase_12",
+    "english": "Is he angry?"
+  },
+  {
+    "id": "lesson2_phrase_13",
+    "english": "He is not at work"
+  },
+  {
+    "id": "lesson2_phrase_14",
+    "english": "She is not married"
+  },
+  {
+    "id": "lesson2_phrase_15",
+    "english": "Is it open?"
+  },
+  {
+    "id": "lesson2_phrase_16",
+    "english": "You are not on the list"
+  },
+  {
+    "id": "lesson2_phrase_17",
+    "english": "Is it free?"
+  },
+  {
+    "id": "lesson2_phrase_18",
+    "english": "They are not busy"
+  },
+  {
+    "id": "lesson2_phrase_19",
+    "english": "Am I not right?"
+  },
+  {
+    "id": "lesson2_phrase_20",
+    "english": "She is not at the store"
+  },
+  {
+    "id": "lesson2_phrase_21",
+    "english": "It is not a joke"
+  },
+  {
+    "id": "lesson2_phrase_22",
+    "english": "Are you okay?"
+  },
+  {
+    "id": "lesson2_phrase_23",
+    "english": "He is not hungry"
+  },
+  {
+    "id": "lesson2_phrase_24",
+    "english": "Is she in the taxi?"
+  },
+  {
+    "id": "lesson2_phrase_25",
+    "english": "We are not at school"
+  },
+  {
+    "id": "lesson2_phrase_26",
+    "english": "I am not afraid"
+  },
+  {
+    "id": "lesson2_phrase_27",
+    "english": "Are they here?"
+  },
+  {
+    "id": "lesson2_phrase_28",
+    "english": "She is not angry"
+  },
+  {
+    "id": "lesson2_phrase_29",
+    "english": "Is it far?"
+  },
+  {
+    "id": "lesson2_phrase_30",
+    "english": "We are not enemies"
+  },
+  {
+    "id": "lesson2_phrase_31",
+    "english": "Are you not wrong?"
+  },
+  {
+    "id": "lesson2_phrase_32",
+    "english": "Is he at the office?"
+  },
+  {
+    "id": "lesson2_phrase_33",
+    "english": "I am not in the mood"
+  },
+  {
+    "id": "lesson2_phrase_34",
+    "english": "Is it true?"
+  },
+  {
+    "id": "lesson2_phrase_35",
+    "english": "We are not in a trap"
+  },
+  {
+    "id": "lesson2_phrase_36",
+    "english": "They are not ready"
+  },
+  {
+    "id": "lesson2_phrase_37",
+    "english": "It is not important"
+  },
+  {
+    "id": "lesson2_phrase_38",
+    "english": "Are you on the way?"
+  },
+  {
+    "id": "lesson2_phrase_39",
+    "english": "She is not sick"
+  },
+  {
+    "id": "lesson2_phrase_40",
+    "english": "I am not in the car"
+  },
+  {
+    "id": "lesson2_phrase_41",
+    "english": "We are not guilty"
+  },
+  {
+    "id": "lesson2_phrase_42",
+    "english": "Is he in the elevator?"
+  },
+  {
+    "id": "lesson2_phrase_43",
+    "english": "It is not dangerous"
+  },
+  {
+    "id": "lesson2_phrase_44",
+    "english": "Are you in the building?"
+  },
+  {
+    "id": "lesson2_phrase_45",
+    "english": "I am not mean"
+  },
+  {
+    "id": "lesson2_phrase_46",
+    "english": "She is not at the park"
+  },
+  {
+    "id": "lesson2_phrase_47",
+    "english": "Are we not on the list?"
+  },
+  {
+    "id": "lesson2_phrase_48",
+    "english": "It is not serious"
+  },
+  {
+    "id": "lesson2_phrase_49",
+    "english": "They are not together"
+  },
+  {
+    "id": "lesson2_phrase_50",
+    "english": "You are not right"
+  },
+  {
+    "id": "lesson3_phrase_1",
+    "english": "I work here"
+  },
+  {
+    "id": "lesson3_phrase_2",
+    "english": "You understand me"
+  },
+  {
+    "id": "lesson3_phrase_3",
+    "english": "He lives in London"
+  },
+  {
+    "id": "lesson3_phrase_4",
+    "english": "We drink coffee"
+  },
+  {
+    "id": "lesson3_phrase_5",
+    "english": "She speaks English"
+  },
+  {
+    "id": "lesson3_phrase_6",
+    "english": "They watch the news"
+  },
+  {
+    "id": "lesson3_phrase_7",
+    "english": "It helps people"
+  },
+  {
+    "id": "lesson3_phrase_8",
+    "english": "You know the answer"
+  },
+  {
+    "id": "lesson3_phrase_9",
+    "english": "He eats meat"
+  },
+  {
+    "id": "lesson3_phrase_10",
+    "english": "I believe you"
+  },
+  {
+    "id": "lesson3_phrase_11",
+    "english": "She loves music"
+  },
+  {
+    "id": "lesson3_phrase_12",
+    "english": "We buy food"
+  },
+  {
+    "id": "lesson3_phrase_13",
+    "english": "It costs a dollar"
+  },
+  {
+    "id": "lesson3_phrase_14",
+    "english": "They live here"
+  },
+  {
+    "id": "lesson3_phrase_15",
+    "english": "You read books"
+  },
+  {
+    "id": "lesson3_phrase_16",
+    "english": "I come home late"
+  },
+  {
+    "id": "lesson3_phrase_17",
+    "english": "He writes letters"
+  },
+  {
+    "id": "lesson3_phrase_18",
+    "english": "We listen to music"
+  },
+  {
+    "id": "lesson3_phrase_19",
+    "english": "She washes the dishes"
+  },
+  {
+    "id": "lesson3_phrase_20",
+    "english": "They drive a car"
+  },
+  {
+    "id": "lesson3_phrase_21",
+    "english": "You deserve it"
+  },
+  {
+    "id": "lesson3_phrase_22",
+    "english": "He often calls"
+  },
+  {
+    "id": "lesson3_phrase_23",
+    "english": "She cooks dinner"
+  },
+  {
+    "id": "lesson3_phrase_24",
+    "english": "I feel pain"
+  },
+  {
+    "id": "lesson3_phrase_25",
+    "english": "We promise help"
+  },
+  {
+    "id": "lesson3_phrase_26",
+    "english": "They travel often"
+  },
+  {
+    "id": "lesson3_phrase_27",
+    "english": "It seems strange"
+  },
+  {
+    "id": "lesson3_phrase_28",
+    "english": "We value time"
+  },
+  {
+    "id": "lesson3_phrase_29",
+    "english": "She teaches math"
+  },
+  {
+    "id": "lesson3_phrase_30",
+    "english": "You forget keys"
+  },
+  {
+    "id": "lesson3_phrase_31",
+    "english": "I remember this password"
+  },
+  {
+    "id": "lesson3_phrase_32",
+    "english": "He wears glasses"
+  },
+  {
+    "id": "lesson3_phrase_33",
+    "english": "We order pizza"
+  },
+  {
+    "id": "lesson3_phrase_34",
+    "english": "She uses the internet"
+  },
+  {
+    "id": "lesson3_phrase_35",
+    "english": "They work here"
+  },
+  {
+    "id": "lesson3_phrase_36",
+    "english": "You deserve rest"
+  },
+  {
+    "id": "lesson3_phrase_37",
+    "english": "They often call"
+  },
+  {
+    "id": "lesson3_phrase_38",
+    "english": "She teaches music"
+  },
+  {
+    "id": "lesson3_phrase_39",
+    "english": "We accept terms"
+  },
+  {
+    "id": "lesson3_phrase_40",
+    "english": "It takes time"
+  },
+  {
+    "id": "lesson3_phrase_41",
+    "english": "I understand the problem"
+  },
+  {
+    "id": "lesson3_phrase_42",
+    "english": "You look great"
+  },
+  {
+    "id": "lesson3_phrase_43",
+    "english": "He drinks tea"
+  },
+  {
+    "id": "lesson3_phrase_44",
+    "english": "She knows the address"
+  },
+  {
+    "id": "lesson3_phrase_45",
+    "english": "We wait here"
+  },
+  {
+    "id": "lesson3_phrase_46",
+    "english": "They come on time"
+  },
+  {
+    "id": "lesson3_phrase_47",
+    "english": "It sounds good"
+  },
+  {
+    "id": "lesson3_phrase_48",
+    "english": "We order a taxi"
+  },
+  {
+    "id": "lesson3_phrase_49",
+    "english": "He remembers me"
+  },
+  {
+    "id": "lesson3_phrase_50",
+    "english": "You help friends"
+  },
+  {
+    "id": "lesson4_phrase_1",
+    "english": "I do not drink milk"
+  },
+  {
+    "id": "lesson4_phrase_2",
+    "english": "You do not listen"
+  },
+  {
+    "id": "lesson4_phrase_3",
+    "english": "He does not smoke"
+  },
+  {
+    "id": "lesson4_phrase_4",
+    "english": "She does not eat sugar"
+  },
+  {
+    "id": "lesson4_phrase_5",
+    "english": "We do not understand"
+  },
+  {
+    "id": "lesson4_phrase_6",
+    "english": "They do not live here"
+  },
+  {
+    "id": "lesson4_phrase_7",
+    "english": "It does not work"
+  },
+  {
+    "id": "lesson4_phrase_8",
+    "english": "You do not know the address"
+  },
+  {
+    "id": "lesson4_phrase_9",
+    "english": "He does not eat meat"
+  },
+  {
+    "id": "lesson4_phrase_10",
+    "english": "I do not remember the number"
+  },
+  {
+    "id": "lesson4_phrase_11",
+    "english": "We do not buy it"
+  },
+  {
+    "id": "lesson4_phrase_12",
+    "english": "She does not drink coffee"
+  },
+  {
+    "id": "lesson4_phrase_13",
+    "english": "You do not use a password"
+  },
+  {
+    "id": "lesson4_phrase_14",
+    "english": "He does not see the problem"
+  },
+  {
+    "id": "lesson4_phrase_15",
+    "english": "They do not wear masks"
+  },
+  {
+    "id": "lesson4_phrase_16",
+    "english": "I do not eat spicy food"
+  },
+  {
+    "id": "lesson4_phrase_17",
+    "english": "We do not pay cash"
+  },
+  {
+    "id": "lesson4_phrase_18",
+    "english": "She does not like risk"
+  },
+  {
+    "id": "lesson4_phrase_19",
+    "english": "They do not sell tickets"
+  },
+  {
+    "id": "lesson4_phrase_20",
+    "english": "You do not understand rules"
+  },
+  {
+    "id": "lesson4_phrase_21",
+    "english": "He does not drive a bus"
+  },
+  {
+    "id": "lesson4_phrase_22",
+    "english": "We do not lose hope"
+  },
+  {
+    "id": "lesson4_phrase_23",
+    "english": "She does not change her opinion"
+  },
+  {
+    "id": "lesson4_phrase_24",
+    "english": "I do not feel fear"
+  },
+  {
+    "id": "lesson4_phrase_25",
+    "english": "They do not spend money"
+  },
+  {
+    "id": "lesson4_phrase_26",
+    "english": "You do not listen to advice"
+  },
+  {
+    "id": "lesson4_phrase_27",
+    "english": "He does not forget details"
+  },
+  {
+    "id": "lesson4_phrase_28",
+    "english": "We do not believe ads"
+  },
+  {
+    "id": "lesson4_phrase_29",
+    "english": "She does not cook breakfast"
+  },
+  {
+    "id": "lesson4_phrase_30",
+    "english": "I do not break the law"
+  },
+  {
+    "id": "lesson4_phrase_31",
+    "english": "They do not trust strangers"
+  },
+  {
+    "id": "lesson4_phrase_32",
+    "english": "We do not waste time"
+  },
+  {
+    "id": "lesson4_phrase_33",
+    "english": "She does not read the news"
+  },
+  {
+    "id": "lesson4_phrase_34",
+    "english": "You do not wear a tie"
+  },
+  {
+    "id": "lesson4_phrase_35",
+    "english": "He does not take money"
+  },
+  {
+    "id": "lesson4_phrase_36",
+    "english": "We do not share secrets"
+  },
+  {
+    "id": "lesson4_phrase_37",
+    "english": "She does not close the window"
+  },
+  {
+    "id": "lesson4_phrase_38",
+    "english": "They do not drink wine"
+  },
+  {
+    "id": "lesson4_phrase_39",
+    "english": "You do not pay a fine"
+  },
+  {
+    "id": "lesson4_phrase_40",
+    "english": "He does not ask for help"
+  },
+  {
+    "id": "lesson4_phrase_41",
+    "english": "I do not carry cash"
+  },
+  {
+    "id": "lesson4_phrase_42",
+    "english": "She does not send messages"
+  },
+  {
+    "id": "lesson4_phrase_43",
+    "english": "We do not watch TV"
+  },
+  {
+    "id": "lesson4_phrase_44",
+    "english": "They do not use a map"
+  },
+  {
+    "id": "lesson4_phrase_45",
+    "english": "You do not check the list"
+  },
+  {
+    "id": "lesson4_phrase_46",
+    "english": "I do not need help"
+  },
+  {
+    "id": "lesson4_phrase_47",
+    "english": "He does not own a car"
+  },
+  {
+    "id": "lesson4_phrase_48",
+    "english": "We do not skip breakfast"
+  },
+  {
+    "id": "lesson4_phrase_49",
+    "english": "She does not drink alcohol"
+  },
+  {
+    "id": "lesson4_phrase_50",
+    "english": "They do not lose keys"
+  },
+  {
+    "id": "lesson5_phrase_1",
+    "english": "Do you drink coffee?"
+  },
+  {
+    "id": "lesson5_phrase_2",
+    "english": "Does he live here?"
+  },
+  {
+    "id": "lesson5_phrase_3",
+    "english": "Do we work tomorrow?"
+  },
+  {
+    "id": "lesson5_phrase_4",
+    "english": "Does she understand English?"
+  },
+  {
+    "id": "lesson5_phrase_5",
+    "english": "Do they know the password?"
+  },
+  {
+    "id": "lesson5_phrase_6",
+    "english": "Do I write correctly?"
+  },
+  {
+    "id": "lesson5_phrase_7",
+    "english": "Does it cost much?"
+  },
+  {
+    "id": "lesson5_phrase_8",
+    "english": "Do you travel often?"
+  },
+  {
+    "id": "lesson5_phrase_9",
+    "english": "Does he drink tea?"
+  },
+  {
+    "id": "lesson5_phrase_10",
+    "english": "Do we use this code?"
+  },
+  {
+    "id": "lesson5_phrase_11",
+    "english": "Does she wear a mask?"
+  },
+  {
+    "id": "lesson5_phrase_12",
+    "english": "Do they sell tickets?"
+  },
+  {
+    "id": "lesson5_phrase_13",
+    "english": "Do I look tired?"
+  },
+  {
+    "id": "lesson5_phrase_14",
+    "english": "Do you remember the address?"
+  },
+  {
+    "id": "lesson5_phrase_15",
+    "english": "Does he buy food?"
+  },
+  {
+    "id": "lesson5_phrase_16",
+    "english": "Do we pay cash?"
+  },
+  {
+    "id": "lesson5_phrase_17",
+    "english": "Do they smoke here?"
+  },
+  {
+    "id": "lesson5_phrase_18",
+    "english": "Does she eat meat?"
+  },
+  {
+    "id": "lesson5_phrase_19",
+    "english": "Do you hear a noise?"
+  },
+  {
+    "id": "lesson5_phrase_20",
+    "english": "Does he call often?"
+  },
+  {
+    "id": "lesson5_phrase_21",
+    "english": "Do I sing well?"
+  },
+  {
+    "id": "lesson5_phrase_22",
+    "english": "Do we order pizza?"
+  },
+  {
+    "id": "lesson5_phrase_23",
+    "english": "Does she believe in luck?"
+  },
+  {
+    "id": "lesson5_phrase_24",
+    "english": "Do they speak English?"
+  },
+  {
+    "id": "lesson5_phrase_25",
+    "english": "Do you understand the risk?"
+  },
+  {
+    "id": "lesson5_phrase_26",
+    "english": "Does he drive a car?"
+  },
+  {
+    "id": "lesson5_phrase_27",
+    "english": "Do we lose money?"
+  },
+  {
+    "id": "lesson5_phrase_28",
+    "english": "Does she read books?"
+  },
+  {
+    "id": "lesson5_phrase_29",
+    "english": "Do they help people?"
+  },
+  {
+    "id": "lesson5_phrase_30",
+    "english": "Do you feel cold?"
+  },
+  {
+    "id": "lesson5_phrase_31",
+    "english": "Do you change the password often?"
+  },
+  {
+    "id": "lesson5_phrase_32",
+    "english": "Does he know the price?"
+  },
+  {
+    "id": "lesson5_phrase_33",
+    "english": "Do we book a table?"
+  },
+  {
+    "id": "lesson5_phrase_34",
+    "english": "Does she need a doctor?"
+  },
+  {
+    "id": "lesson5_phrase_35",
+    "english": "Do they accept credit cards?"
+  },
+  {
+    "id": "lesson5_phrase_36",
+    "english": "Do we go inside?"
+  },
+  {
+    "id": "lesson5_phrase_37",
+    "english": "Does she feel pain?"
+  },
+  {
+    "id": "lesson5_phrase_38",
+    "english": "Do they know the answer?"
+  },
+  {
+    "id": "lesson5_phrase_39",
+    "english": "Do I look good?"
+  },
+  {
+    "id": "lesson5_phrase_40",
+    "english": "Do you wear glasses?"
+  },
+  {
+    "id": "lesson5_phrase_41",
+    "english": "Do you understand the rules?"
+  },
+  {
+    "id": "lesson5_phrase_42",
+    "english": "Does he often forget keys?"
+  },
+  {
+    "id": "lesson5_phrase_43",
+    "english": "Do we pay taxes?"
+  },
+  {
+    "id": "lesson5_phrase_44",
+    "english": "Does she look for a job?"
+  },
+  {
+    "id": "lesson5_phrase_45",
+    "english": "Do they sell vegetables?"
+  },
+  {
+    "id": "lesson5_phrase_46",
+    "english": "Do I sleep enough?"
+  },
+  {
+    "id": "lesson5_phrase_47",
+    "english": "Do we book a room?"
+  },
+  {
+    "id": "lesson5_phrase_48",
+    "english": "Does he find mistakes?"
+  },
+  {
+    "id": "lesson5_phrase_49",
+    "english": "Does she often cook dinner?"
+  },
+  {
+    "id": "lesson5_phrase_50",
+    "english": "Do they hear us?"
+  },
+  {
+    "id": "lesson6_phrase_1",
+    "english": "Where do you live?"
+  },
+  {
+    "id": "lesson6_phrase_2",
+    "english": "What does he eat?"
+  },
+  {
+    "id": "lesson6_phrase_3",
+    "english": "When do we start?"
+  },
+  {
+    "id": "lesson6_phrase_4",
+    "english": "Why does she cry?"
+  },
+  {
+    "id": "lesson6_phrase_5",
+    "english": "How do they work?"
+  },
+  {
+    "id": "lesson6_phrase_6",
+    "english": "How much does it cost?"
+  },
+  {
+    "id": "lesson6_phrase_7",
+    "english": "What do you drink?"
+  },
+  {
+    "id": "lesson6_phrase_8",
+    "english": "Where do they buy tickets?"
+  },
+  {
+    "id": "lesson6_phrase_9",
+    "english": "When does she call?"
+  },
+  {
+    "id": "lesson6_phrase_10",
+    "english": "Why do we wait?"
+  },
+  {
+    "id": "lesson6_phrase_11",
+    "english": "How do you get home?"
+  },
+  {
+    "id": "lesson6_phrase_12",
+    "english": "Where does he go?"
+  },
+  {
+    "id": "lesson6_phrase_13",
+    "english": "What do we read?"
+  },
+  {
+    "id": "lesson6_phrase_14",
+    "english": "When does she usually come?"
+  },
+  {
+    "id": "lesson6_phrase_15",
+    "english": "Why do they close the door?"
+  },
+  {
+    "id": "lesson6_phrase_16",
+    "english": "What do you usually buy?"
+  },
+  {
+    "id": "lesson6_phrase_17",
+    "english": "Where does he work?"
+  },
+  {
+    "id": "lesson6_phrase_18",
+    "english": "Why do we pay now?"
+  },
+  {
+    "id": "lesson6_phrase_19",
+    "english": "How does she open the window?"
+  },
+  {
+    "id": "lesson6_phrase_20",
+    "english": "When do they come home?"
+  },
+  {
+    "id": "lesson6_phrase_21",
+    "english": "What do I sign?"
+  },
+  {
+    "id": "lesson6_phrase_22",
+    "english": "Where do we send the report?"
+  },
+  {
+    "id": "lesson6_phrase_23",
+    "english": "How does he do it?"
+  },
+  {
+    "id": "lesson6_phrase_24",
+    "english": "Why does she want to leave?"
+  },
+  {
+    "id": "lesson6_phrase_25",
+    "english": "When do they finish work?"
+  },
+  {
+    "id": "lesson6_phrase_26",
+    "english": "What do you see?"
+  },
+  {
+    "id": "lesson6_phrase_27",
+    "english": "Where does he keep keys?"
+  },
+  {
+    "id": "lesson6_phrase_28",
+    "english": "How do we find the exit?"
+  },
+  {
+    "id": "lesson6_phrase_29",
+    "english": "Why does she carry this bag?"
+  },
+  {
+    "id": "lesson6_phrase_30",
+    "english": "When do they open the shop?"
+  },
+  {
+    "id": "lesson6_phrase_31",
+    "english": "Where do we meet guests?"
+  },
+  {
+    "id": "lesson6_phrase_32",
+    "english": "What does she usually cook?"
+  },
+  {
+    "id": "lesson6_phrase_33",
+    "english": "Why do they ask for help?"
+  },
+  {
+    "id": "lesson6_phrase_34",
+    "english": "When does he check his mail?"
+  },
+  {
+    "id": "lesson6_phrase_35",
+    "english": "How do you find it?"
+  },
+  {
+    "id": "lesson6_phrase_36",
+    "english": "What do you usually wear?"
+  },
+  {
+    "id": "lesson6_phrase_37",
+    "english": "Where does he buy groceries?"
+  },
+  {
+    "id": "lesson6_phrase_38",
+    "english": "How do we book it?"
+  },
+  {
+    "id": "lesson6_phrase_39",
+    "english": "Why does she speak slowly?"
+  },
+  {
+    "id": "lesson6_phrase_40",
+    "english": "When do they start the meeting?"
+  },
+  {
+    "id": "lesson6_phrase_41",
+    "english": "What do you usually watch?"
+  },
+  {
+    "id": "lesson6_phrase_42",
+    "english": "Where do we put luggage?"
+  },
+  {
+    "id": "lesson6_phrase_43",
+    "english": "How does he find the way?"
+  },
+  {
+    "id": "lesson6_phrase_44",
+    "english": "Why does she close the window?"
+  },
+  {
+    "id": "lesson6_phrase_45",
+    "english": "When do they eat dinner?"
+  },
+  {
+    "id": "lesson6_phrase_46",
+    "english": "What do you usually order?"
+  },
+  {
+    "id": "lesson6_phrase_47",
+    "english": "Where does she put the bag?"
+  },
+  {
+    "id": "lesson6_phrase_48",
+    "english": "How do we check the bill?"
+  },
+  {
+    "id": "lesson6_phrase_49",
+    "english": "Why does she always help?"
+  },
+  {
+    "id": "lesson6_phrase_50",
+    "english": "When do they close the café?"
+  },
+  {
+    "id": "lesson7_phrase_1",
+    "english": "I have insurance"
+  },
+  {
+    "id": "lesson7_phrase_2",
+    "english": "He has a driver's license"
+  },
+  {
+    "id": "lesson7_phrase_3",
+    "english": "We have free time"
+  },
+  {
+    "id": "lesson7_phrase_4",
+    "english": "She has an allergy"
+  },
+  {
+    "id": "lesson7_phrase_5",
+    "english": "Do they have a reservation?"
+  },
+  {
+    "id": "lesson7_phrase_6",
+    "english": "I have a lighter"
+  },
+  {
+    "id": "lesson7_phrase_7",
+    "english": "He has a pass"
+  },
+  {
+    "id": "lesson7_phrase_8",
+    "english": "I have cash"
+  },
+  {
+    "id": "lesson7_phrase_9",
+    "english": "Does she have a tablet?"
+  },
+  {
+    "id": "lesson7_phrase_10",
+    "english": "We have change"
+  },
+  {
+    "id": "lesson7_phrase_11",
+    "english": "They do not have chargers"
+  },
+  {
+    "id": "lesson7_phrase_12",
+    "english": "Do I have a passport?"
+  },
+  {
+    "id": "lesson7_phrase_13",
+    "english": "She has the menu"
+  },
+  {
+    "id": "lesson7_phrase_14",
+    "english": "Does he have a device?"
+  },
+  {
+    "id": "lesson7_phrase_15",
+    "english": "They have a discount"
+  },
+  {
+    "id": "lesson7_phrase_16",
+    "english": "I have a city map"
+  },
+  {
+    "id": "lesson7_phrase_17",
+    "english": "Does she have an umbrella?"
+  },
+  {
+    "id": "lesson7_phrase_18",
+    "english": "We have Wi-Fi"
+  },
+  {
+    "id": "lesson7_phrase_19",
+    "english": "He has a headache"
+  },
+  {
+    "id": "lesson7_phrase_20",
+    "english": "Do they have hotel bookings?"
+  },
+  {
+    "id": "lesson7_phrase_21",
+    "english": "I have a spare key"
+  },
+  {
+    "id": "lesson7_phrase_22",
+    "english": "She has an appetite"
+  },
+  {
+    "id": "lesson7_phrase_23",
+    "english": "Does he have an international passport?"
+  },
+  {
+    "id": "lesson7_phrase_24",
+    "english": "They do not have a question"
+  },
+  {
+    "id": "lesson7_phrase_25",
+    "english": "I have a phone charger"
+  },
+  {
+    "id": "lesson7_phrase_26",
+    "english": "She has my address"
+  },
+  {
+    "id": "lesson7_phrase_27",
+    "english": "He does not have a pen"
+  },
+  {
+    "id": "lesson7_phrase_28",
+    "english": "We have a lunch break"
+  },
+  {
+    "id": "lesson7_phrase_29",
+    "english": "Do they have return tickets?"
+  },
+  {
+    "id": "lesson7_phrase_30",
+    "english": "I have a nut allergy"
+  },
+  {
+    "id": "lesson7_phrase_31",
+    "english": "She has a ticket confirmation"
+  },
+  {
+    "id": "lesson7_phrase_32",
+    "english": "Does he have a power bank?"
+  },
+  {
+    "id": "lesson7_phrase_33",
+    "english": "They do not have documents"
+  },
+  {
+    "id": "lesson7_phrase_34",
+    "english": "I do not have this issue"
+  },
+  {
+    "id": "lesson7_phrase_35",
+    "english": "She has a suitcase"
+  },
+  {
+    "id": "lesson7_phrase_36",
+    "english": "He has a bicycle"
+  },
+  {
+    "id": "lesson7_phrase_37",
+    "english": "We have cash with us"
+  },
+  {
+    "id": "lesson7_phrase_38",
+    "english": "They have the reservation number"
+  },
+  {
+    "id": "lesson7_phrase_39",
+    "english": "I do not have a lighter"
+  },
+  {
+    "id": "lesson7_phrase_40",
+    "english": "She has a dog"
+  },
+  {
+    "id": "lesson7_phrase_41",
+    "english": "He has a backpack"
+  },
+  {
+    "id": "lesson7_phrase_42",
+    "english": "We do not have time for lunch"
+  },
+  {
+    "id": "lesson7_phrase_43",
+    "english": "Do they have a plan?"
+  },
+  {
+    "id": "lesson7_phrase_44",
+    "english": "I have a question about the policy"
+  },
+  {
+    "id": "lesson7_phrase_45",
+    "english": "She has a discount with us"
+  },
+  {
+    "id": "lesson7_phrase_46",
+    "english": "He does not have his passport"
+  },
+  {
+    "id": "lesson7_phrase_47",
+    "english": "We have all the documents needed"
+  },
+  {
+    "id": "lesson7_phrase_48",
+    "english": "They have a city guide and a map"
+  },
+  {
+    "id": "lesson7_phrase_49",
+    "english": "I do not have time for coffee"
+  },
+  {
+    "id": "lesson7_phrase_50",
+    "english": "She has good news"
+  },
+  {
+    "id": "lesson8_phrase_1",
+    "english": "I work on Monday"
+  },
+  {
+    "id": "lesson8_phrase_2",
+    "english": "She leaves at eight o'clock"
+  },
+  {
+    "id": "lesson8_phrase_3",
+    "english": "We rest in July"
+  },
+  {
+    "id": "lesson8_phrase_4",
+    "english": "He pays on the weekend"
+  },
+  {
+    "id": "lesson8_phrase_5",
+    "english": "They call in the morning"
+  },
+  {
+    "id": "lesson8_phrase_6",
+    "english": "He has a meeting at noon"
+  },
+  {
+    "id": "lesson8_phrase_7",
+    "english": "You pay cash on Friday"
+  },
+  {
+    "id": "lesson8_phrase_8",
+    "english": "The shop closes at midnight"
+  },
+  {
+    "id": "lesson8_phrase_9",
+    "english": "We travel in winter"
+  },
+  {
+    "id": "lesson8_phrase_10",
+    "english": "They walk in the evening"
+  },
+  {
+    "id": "lesson8_phrase_11",
+    "english": "I start work at nine"
+  },
+  {
+    "id": "lesson8_phrase_12",
+    "english": "The train arrives at seven PM"
+  },
+  {
+    "id": "lesson8_phrase_13",
+    "english": "We do sport on Tuesdays"
+  },
+  {
+    "id": "lesson8_phrase_14",
+    "english": "She checks mail at night"
+  },
+  {
+    "id": "lesson8_phrase_15",
+    "english": "They relax in August"
+  },
+  {
+    "id": "lesson8_phrase_16",
+    "english": "I book a hotel in June"
+  },
+  {
+    "id": "lesson8_phrase_17",
+    "english": "We meet at nine thirty"
+  },
+  {
+    "id": "lesson8_phrase_18",
+    "english": "She works on Thursdays"
+  },
+  {
+    "id": "lesson8_phrase_19",
+    "english": "They order food in the evening"
+  },
+  {
+    "id": "lesson8_phrase_20",
+    "english": "He has a vacation in spring"
+  },
+  {
+    "id": "lesson8_phrase_21",
+    "english": "I come home at midnight"
+  },
+  {
+    "id": "lesson8_phrase_22",
+    "english": "The train departs at ten fifteen"
+  },
+  {
+    "id": "lesson8_phrase_23",
+    "english": "We walk in the park on Sundays"
+  },
+  {
+    "id": "lesson8_phrase_24",
+    "english": "She has breakfast in the morning"
+  },
+  {
+    "id": "lesson8_phrase_25",
+    "english": "They shop on Saturday"
+  },
+  {
+    "id": "lesson8_phrase_26",
+    "english": "We have class on Tuesdays"
+  },
+  {
+    "id": "lesson8_phrase_27",
+    "english": "We have lunch at one PM"
+  },
+  {
+    "id": "lesson8_phrase_28",
+    "english": "She visits the gym on Wednesdays"
+  },
+  {
+    "id": "lesson8_phrase_29",
+    "english": "They have dinner at eight"
+  },
+  {
+    "id": "lesson8_phrase_30",
+    "english": "He has a day off on Saturday"
+  },
+  {
+    "id": "lesson8_phrase_31",
+    "english": "He takes a shower at eight o'clock"
+  },
+  {
+    "id": "lesson8_phrase_32",
+    "english": "We pay rent in January"
+  },
+  {
+    "id": "lesson8_phrase_33",
+    "english": "She finishes work at five PM"
+  },
+  {
+    "id": "lesson8_phrase_34",
+    "english": "They meet on weekends"
+  },
+  {
+    "id": "lesson8_phrase_35",
+    "english": "He has a birthday in October"
+  },
+  {
+    "id": "lesson8_phrase_36",
+    "english": "I listen to music at six"
+  },
+  {
+    "id": "lesson8_phrase_37",
+    "english": "Does she have time on Friday?"
+  },
+  {
+    "id": "lesson8_phrase_38",
+    "english": "She runs in the park in summer"
+  },
+  {
+    "id": "lesson8_phrase_39",
+    "english": "We travel in May"
+  },
+  {
+    "id": "lesson8_phrase_40",
+    "english": "He checks documents at night"
+  },
+  {
+    "id": "lesson8_phrase_41",
+    "english": "I buy tickets in March"
+  },
+  {
+    "id": "lesson8_phrase_42",
+    "english": "She calls her mother on Mondays"
+  },
+  {
+    "id": "lesson8_phrase_43",
+    "english": "We drink tea in the afternoon"
+  },
+  {
+    "id": "lesson8_phrase_44",
+    "english": "Does he have work in September?"
+  },
+  {
+    "id": "lesson8_phrase_45",
+    "english": "They arrive on Thursday"
+  },
+  {
+    "id": "lesson8_phrase_46",
+    "english": "I wake up at seven"
+  },
+  {
+    "id": "lesson8_phrase_47",
+    "english": "The bus arrives at two PM"
+  },
+  {
+    "id": "lesson8_phrase_48",
+    "english": "We order pizza on Saturdays"
+  },
+  {
+    "id": "lesson8_phrase_49",
+    "english": "She has a meeting in December"
+  },
+  {
+    "id": "lesson8_phrase_50",
+    "english": "They read books in January"
+  }
+]

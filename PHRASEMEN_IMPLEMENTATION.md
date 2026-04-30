@@ -197,24 +197,28 @@ AsyncStorage ключ: `'phrasemen_state'`
 ### Использование в компоненте дневной задачи
 
 ```typescript
-import { rewardPhrasemenForTask } from '@/app/phrasemen_integration';
+import { claimTaskWithReward, getTaskById } from '@/app/daily_tasks';
+import { registerXP } from '@/app/xp_manager';
 
-export function DailyTaskItem({ task, onClaimed }: Props) {
+export function DailyTaskItem({ task, userName, lang, onClaimed }: Props) {
   async function handleClaim() {
-    // Отметить задачу как выполненную
-    await claimTask(task.id);
+    const t = getTaskById(task.id);
+    if (!t) return;
 
-    // Выдать фразмены
-    await rewardPhrasemenForTask(task.id);
+    const { claimed, awardedXp } = await claimTaskWithReward(task.id, async () => {
+      const r = await registerXP(t.xp, 'daily_task_reward', userName, lang);
+      return r.finalDelta;
+    });
 
-    // Обновить UI
-    onClaimed?.(task.id);
+    if (claimed) {
+      onClaimed?.(task.id, awardedXp);
+    }
   }
 
   return (
     <TouchableOpacity onPress={handleClaim}>
       <Text>{task.titleRU}</Text>
-      <Text>XP: {task.xp} | ⭐: {task.phrasemenReward}</Text>
+      <Text>XP: {task.xp}</Text>
     </TouchableOpacity>
   );
 }

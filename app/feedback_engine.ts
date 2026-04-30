@@ -44,7 +44,7 @@ export const findAllExplanations = (
     const correctWords = normalizeForComparison(correctAnswer).split(/\s+/);
 
     const hints: string[] = [];
-    const errorWords: Array<{ wordIndex: number; userWord: string; correctWord: string; hint: string }> = [];
+    const errorWords: { wordIndex: number; userWord: string; correctWord: string; hint: string }[] = [];
 
     for (const wt of errorTraps.wordTraps) {
       const correct = correctWords[wt.wordIndex] ?? '';
@@ -118,3 +118,6 @@ export const findContextualExplanation = (
 ): FeedbackResult | null => {
   return findAllExplanations(userInput, '', errorTraps, quizMode);
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

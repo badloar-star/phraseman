@@ -1,0 +1,1324 @@
+{
+  "generatedAt": "2026-04-23T16:29:28.793Z",
+  "duplicateGroups": 33,
+  "highConfidence": [
+    {
+      "id": "ghkv2HhiHlPI3wph6gaTDEvZuf62",
+      "name": "Valya",
+      "xp": 16872,
+      "version": "?",
+      "updatedAt": 1776885238753,
+      "keepId": "07a2d5a4-f670-4bc9-b3c2-6b7987f96072",
+      "keepXp": 19992,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "VlxpRvM48uRj0OnpJOYQSmL1ddm2",
+      "name": "Svetlana",
+      "xp": 22026,
+      "version": "1.5.2",
+      "updatedAt": 1776941986077,
+      "keepId": "09e56714-1377-4b8c-89e0-c804b965a454",
+      "keepXp": 22262,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "U8MIteeJZRhqmek46qcJW4eYA1n2",
+      "name": "Людмила",
+      "xp": 2410,
+      "version": "1.5.2",
+      "updatedAt": 1776956674611,
+      "keepId": "0a05f9c3-269d-4e44-8594-363a454931b0",
+      "keepXp": 2494,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "9HL5rReHWHRTEULq6VJKioSiJ4G3",
+      "name": "Andrei",
+      "xp": 93,
+      "version": "1.5.2",
+      "updatedAt": 1776853336393,
+      "keepId": "0fdf307f-3486-4cfd-8289-830d4a264700",
+      "keepXp": 98,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "ZO7nTr3fFyfa1VDViMXVTXmarcE3",
+      "name": "Nadine",
+      "xp": 1766,
+      "version": "1.5.2",
+      "updatedAt": 1776939762453,
+      "keepId": "1d0b5dc9-8567-4483-b412-ce019d64e7e8",
+      "keepXp": 1766,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "bt7nLPNT8xMrnpbbOqMz54xo12E3",
+      "name": "Sergei",
+      "xp": 783,
+      "version": "1.5.2",
+      "updatedAt": 1776940267593,
+      "keepId": "200fefd0-6a6d-4f72-9a9a-1002160b5fd5",
+      "keepXp": 783,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "9Sg1DFmV6ZfUoBC2b9oBIzP5ha53",
+      "name": "Sergei",
+      "xp": 733,
+      "version": "1.5.2",
+      "updatedAt": 1776940257203,
+      "keepId": "200fefd0-6a6d-4f72-9a9a-1002160b5fd5",
+      "keepXp": 783,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "qQJuI0BctdTd9LQDvcPwsWacWzs2",
+      "name": "Sergei",
+      "xp": 733,
+      "version": "1.5.2",
+      "updatedAt": 1776940257203,
+      "keepId": "200fefd0-6a6d-4f72-9a9a-1002160b5fd5",
+      "keepXp": 783,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "yRQEP8mxCfNzxKnX7hox6ryQlFO2",
+      "name": "Hanna",
+      "xp": 186,
+      "version": "1.5.2",
+      "updatedAt": 1776944368172,
+      "keepId": "22872586-6e4d-498a-93c4-af99f2d6d942",
+      "keepXp": 186,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "GQy3vIoKMCfkBxwSeT0p4E3unP63",
+      "name": "Вячеслав",
+      "xp": 1700,
+      "version": "1.5.2",
+      "updatedAt": 1776943774738,
+      "keepId": "2733e5fb-98de-48e6-925c-e0e22687b27b",
+      "keepXp": 1765,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "ung5Ne7tO9fMd0jLKYxidhfOEG12",
+      "name": "АЛЕКСАНДР",
+      "xp": 45132,
+      "version": "1.5.2",
+      "updatedAt": 1776939193297,
+      "keepId": "2b0ca24d-74e8-4fd9-8c04-7343a29085d8",
+      "keepXp": 46797,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "Tw865Xi0MTeFPQ3a15y5iDJcNJ12",
+      "name": "Александр",
+      "xp": 99,
+      "version": "1.5.2",
+      "updatedAt": 1776940127778,
+      "keepId": "2b0ca24d-74e8-4fd9-8c04-7343a29085d8",
+      "keepXp": 46797,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "cmyTjuNiniNOJSAaZwdaj41ntIy1",
+      "name": "feihuana",
+      "xp": 1264,
+      "version": "1.5.2",
+      "updatedAt": 1776944440450,
+      "keepId": "2cf50558-1de5-4439-9ff2-6f749a6b3cde",
+      "keepXp": 1264,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "8maCvKpKnEZSXyjpa5cn4VE3pox1",
+      "name": "feihuana",
+      "xp": 632,
+      "version": "1.5.2",
+      "updatedAt": 1776944439889,
+      "keepId": "2cf50558-1de5-4439-9ff2-6f749a6b3cde",
+      "keepXp": 1264,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "XrBDre9EHvTfMWc4F5hOI058RlD3",
+      "name": "Anastasia",
+      "xp": 8004,
+      "version": "1.5.2",
+      "updatedAt": 1776941239004,
+      "keepId": "2ed3976f-0691-41da-bb95-e7886b3d60da",
+      "keepXp": 8004,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "vG4FL8q5JScNMjeX3PN4fjnFiX23",
+      "name": "Vladimir",
+      "xp": 18829,
+      "version": "1.5.2",
+      "updatedAt": 1776943714980,
+      "keepId": "2f2922fb-b66f-4b87-80b9-bd45221766f4",
+      "keepXp": 21138,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "fmPT5x8LceQqGQxJnpJQb3v5J0B2",
+      "name": "Mezhirina",
+      "xp": 28650,
+      "version": "1.5.2",
+      "updatedAt": 1776952716533,
+      "keepId": "320c1433-f9e9-4f8b-bfe5-f74aac5c32e6",
+      "keepXp": 29626,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "3s2RNNOXFpXXAU4HgdxivHkq0j53",
+      "name": "Сергей",
+      "xp": 18248,
+      "version": "1.5.2",
+      "updatedAt": 1776811326420,
+      "keepId": "d5ef4d93-4cb3-4023-871d-98a18ee367fa",
+      "keepXp": 18290,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "MGRy4eEzRdWWbT6xgBzznHN49w62",
+      "name": "Макс",
+      "xp": 5408,
+      "version": "1.5.2",
+      "updatedAt": 1776937607642,
+      "keepId": "466a67cc-07d5-4e6e-9f96-7853f6486cef",
+      "keepXp": 5996,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "4T6IyBuIvGMxyX9A2euOXuwHo6m2",
+      "name": "Aleksandr",
+      "xp": 7155,
+      "version": "1.5.2",
+      "updatedAt": 1776923827635,
+      "keepId": "eefa8393-4094-405f-9bdd-0ad5e21b72e8",
+      "keepXp": 9423,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "BbP01EPtuBRPuBSNcV8Fz7EGPh13",
+      "name": "Urri",
+      "xp": 4926,
+      "version": "1.5.2",
+      "updatedAt": 1776956098023,
+      "keepId": "4e73bcb4-88a1-4eed-a03a-4386d6cafb03",
+      "keepXp": 4998,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "ex4Q5kceRkcFQmiS3pfvxMdp9eB2",
+      "name": "Franssuaza",
+      "xp": 13717,
+      "version": "1.5.2",
+      "updatedAt": 1776950446543,
+      "keepId": "653851ce-fd84-4855-873c-d80a4806a6af",
+      "keepXp": 13717,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "zWv55Tw9PYMV73qApfQYCtNlaZM2",
+      "name": "Андрій",
+      "xp": 95,
+      "version": "1.5.2",
+      "updatedAt": 1776929763123,
+      "keepId": "797eea5d-a1f0-44db-a358-e8e75caebc61",
+      "keepXp": 95,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "hGmob8b01wgEHsPpw7ugUUVFuUK2",
+      "name": "Ева",
+      "xp": 25966,
+      "version": "1.5.2",
+      "updatedAt": 1776936210829,
+      "keepId": "7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4",
+      "keepXp": 28378,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "8TOjboGZ9sbDEGAHhQ7ivm4jH1z1",
+      "name": "Yaivan50",
+      "xp": 19935,
+      "version": "1.5.2",
+      "updatedAt": 1776938702543,
+      "keepId": "a114eacb-184d-43aa-8275-6f21094949db",
+      "keepXp": 20174,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "zoeLzBZkp2alhpuEMarvYRM0f9A3",
+      "name": "Alex",
+      "xp": 73686,
+      "version": "1.5.2",
+      "updatedAt": 1776935983598,
+      "keepId": "faac289d-6b94-4b1b-ad7d-fe7ff29f68c7",
+      "keepXp": 73811,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "SBLKaoK7RLRYUrnV8B2Ns5Y5mNA3",
+      "name": "Alex",
+      "xp": 4738,
+      "version": "1.5.2",
+      "updatedAt": 1776946626719,
+      "keepId": "faac289d-6b94-4b1b-ad7d-fe7ff29f68c7",
+      "keepXp": 73811,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "B03CzkV8NQRzugj2uxOGEVNIjxE2",
+      "name": "Alex",
+      "xp": 4738,
+      "version": "1.5.2",
+      "updatedAt": 1776939558454,
+      "keepId": "faac289d-6b94-4b1b-ad7d-fe7ff29f68c7",
+      "keepXp": 73811,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "RPCTY9U1xjaM29swbmyPgBVTi7z2",
+      "name": "Nami",
+      "xp": 9386,
+      "version": "1.5.2",
+      "updatedAt": 1776933236850,
+      "keepId": "ffdd255d-601e-4e4f-bbb5-a59037760392",
+      "keepXp": 9912,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "TmqKTeeCioPVUuYpR57OAXXSGSl2",
+      "name": "Yana",
+      "xp": 8238,
+      "version": "1.5.2",
+      "updatedAt": 1776939937467,
+      "keepId": "b27b8bf5-163a-453d-bb11-bc2c9510fae9",
+      "keepXp": 9572,
+      "confidence": 1,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "qd7HDx1soMPTqsRNISsFwr9ySvw1",
+      "name": "Garik",
+      "xp": 7434,
+      "version": "1.5.2",
+      "updatedAt": 1776939769297,
+      "keepId": "c41f166b-4f0d-45e8-8664-45bdfea66025",
+      "keepXp": 7613,
+      "confidence": 0.9,
+      "reasons": [
+        "uuid-v4 keep vs auth-like dupe",
+        "keep xp >= dupe xp",
+        "keep app version is newer",
+        "keep updatedAt is newer"
+      ]
+    }
+  ],
+  "whitelisted": [],
+  "ambiguous": [
+    {
+      "id": "0784a6c9-1a7f-416f-8e9e-4d0a56f6a337",
+      "name": "Lena",
+      "xp": 15,
+      "version": "1.5.13",
+      "updatedAt": 1776934693132,
+      "keepId": "67dfecf0-9cba-4b6f-b5ae-df602572b653",
+      "keepXp": 15967,
+      "confidence": 0.25,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "xp gap >= 500"
+      ]
+    },
+    {
+      "id": "2cdf1f84-3222-4d20-9a5e-b51006e0d284",
+      "name": "Александр",
+      "xp": 0,
+      "version": "1.5.14",
+      "updatedAt": 1776942691415,
+      "keepId": "2b0ca24d-74e8-4fd9-8c04-7343a29085d8",
+      "keepXp": 46797,
+      "confidence": 0.3,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "86e82225-4529-4e6f-a469-e902cbc0a2ad",
+      "name": "Андрій",
+      "xp": 76,
+      "version": "1.5.14",
+      "updatedAt": 1776951890204,
+      "keepId": "797eea5d-a1f0-44db-a358-e8e75caebc61",
+      "keepXp": 95,
+      "confidence": 0.15,
+      "reasons": [
+        "keep xp >= dupe xp"
+      ]
+    },
+    {
+      "id": "Qy15Vk2VTSVtgP0c60xowpbLrqv2",
+      "name": "Олеся",
+      "xp": 1834,
+      "version": "1.5.2",
+      "updatedAt": 1776939209782,
+      "keepId": "AT86EXvfHocWTmz1lfcMaNmw2Tf1",
+      "keepXp": 1834,
+      "confidence": 0.2,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "dcdcef3b-6b7c-458f-9a35-3e6258850ed2",
+      "name": "Alex",
+      "xp": 5718,
+      "version": "1.5.14",
+      "updatedAt": 1776951504589,
+      "keepId": "faac289d-6b94-4b1b-ad7d-fe7ff29f68c7",
+      "keepXp": 73811,
+      "confidence": 0.3,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "FE7kKh4UXET3AXdgiieHPWoBZZG3",
+      "name": "Nickolay",
+      "xp": 10,
+      "version": "1.5.2",
+      "updatedAt": 1776955326881,
+      "keepId": "woSItfj1jma483jbR3d413o3jm72",
+      "keepXp": 10,
+      "confidence": 0.2,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "KmsJntpNzdcpEYrAZbd8YfEQy8w1",
+      "name": "Olhama",
+      "xp": 1932,
+      "version": "1.5.2",
+      "updatedAt": 1776953790340,
+      "keepId": "KDyP9ydZ0vMyn4gBga8yttPSmc73",
+      "keepXp": 1932,
+      "confidence": 0.2,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "KhyYKoJM2agb2nHo7OsFwrx6zRQ2",
+      "name": "Liliana",
+      "xp": 5192,
+      "version": "1.5.2",
+      "updatedAt": 1776956736449,
+      "keepId": "e81QCcFYATTfmUDMQyl3yxfYCqj2",
+      "keepXp": 6555,
+      "confidence": 0.3,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "xp gap >= 500",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "m9m5Iaam63gNRDr7HUHtAkc5FWp1",
+      "name": "Олександр",
+      "xp": 87,
+      "version": "1.5.2",
+      "updatedAt": 1776939605625,
+      "keepId": "TT7V0Xiq4iXOnCqnIOmqqXs45sh1",
+      "keepXp": 87,
+      "confidence": 0.2,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "p1hvdQ1VpAbkMxmihoRtC8cwcR52",
+      "name": "Olga",
+      "xp": 1312,
+      "version": "1.5.2",
+      "updatedAt": 1776940585049,
+      "keepId": "ZGlPJ21qyJXBTTP8PMJxyqGHldK2",
+      "keepXp": 1362,
+      "confidence": 0.2,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "keep updatedAt is newer"
+      ]
+    },
+    {
+      "id": "i0Rlngh885dgCYRzqx9ZFA7I9H63",
+      "name": "Виталий",
+      "xp": 17,
+      "version": "1.5.2",
+      "updatedAt": 1776939180886,
+      "keepId": "a7vBGbTq3xZncdOlyCi4XdRgLLE3",
+      "keepXp": 2066,
+      "confidence": 0.25,
+      "reasons": [
+        "keep xp >= dupe xp",
+        "xp gap >= 500"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "Lena",
+      "size": 2,
+      "keep": {
+        "id": "67dfecf0-9cba-4b6f-b5ae-df602572b653",
+        "xp": 15967,
+        "version": "1.5.12",
+        "updatedAt": 1776923044218
+      },
+      "dupes": [
+        {
+          "id": "0784a6c9-1a7f-416f-8e9e-4d0a56f6a337",
+          "xp": 15,
+          "version": "1.5.13",
+          "updatedAt": 1776934693132
+        }
+      ]
+    },
+    {
+      "name": "Valya",
+      "size": 2,
+      "keep": {
+        "id": "07a2d5a4-f670-4bc9-b3c2-6b7987f96072",
+        "xp": 19992,
+        "version": "1.5.14",
+        "updatedAt": 1776960764555
+      },
+      "dupes": [
+        {
+          "id": "ghkv2HhiHlPI3wph6gaTDEvZuf62",
+          "xp": 16872,
+          "version": "?",
+          "updatedAt": 1776885238753
+        }
+      ]
+    },
+    {
+      "name": "Svetlana",
+      "size": 2,
+      "keep": {
+        "id": "09e56714-1377-4b8c-89e0-c804b965a454",
+        "xp": 22262,
+        "version": "1.5.14",
+        "updatedAt": 1776950155939
+      },
+      "dupes": [
+        {
+          "id": "VlxpRvM48uRj0OnpJOYQSmL1ddm2",
+          "xp": 22026,
+          "version": "1.5.2",
+          "updatedAt": 1776941986077
+        }
+      ]
+    },
+    {
+      "name": "Людмила",
+      "size": 2,
+      "keep": {
+        "id": "0a05f9c3-269d-4e44-8594-363a454931b0",
+        "xp": 2494,
+        "version": "1.5.14",
+        "updatedAt": 1776956960443
+      },
+      "dupes": [
+        {
+          "id": "U8MIteeJZRhqmek46qcJW4eYA1n2",
+          "xp": 2410,
+          "version": "1.5.2",
+          "updatedAt": 1776956674611
+        }
+      ]
+    },
+    {
+      "name": "Andrei",
+      "size": 2,
+      "keep": {
+        "id": "0fdf307f-3486-4cfd-8289-830d4a264700",
+        "xp": 98,
+        "version": "1.5.14",
+        "updatedAt": 1776940023781
+      },
+      "dupes": [
+        {
+          "id": "9HL5rReHWHRTEULq6VJKioSiJ4G3",
+          "xp": 93,
+          "version": "1.5.2",
+          "updatedAt": 1776853336393
+        }
+      ]
+    },
+    {
+      "name": "Nadine",
+      "size": 2,
+      "keep": {
+        "id": "1d0b5dc9-8567-4483-b412-ce019d64e7e8",
+        "xp": 1766,
+        "version": "1.5.14",
+        "updatedAt": 1776939849177
+      },
+      "dupes": [
+        {
+          "id": "ZO7nTr3fFyfa1VDViMXVTXmarcE3",
+          "xp": 1766,
+          "version": "1.5.2",
+          "updatedAt": 1776939762453
+        }
+      ]
+    },
+    {
+      "name": "Sergei",
+      "size": 4,
+      "keep": {
+        "id": "200fefd0-6a6d-4f72-9a9a-1002160b5fd5",
+        "xp": 783,
+        "version": "1.5.14",
+        "updatedAt": 1776940291086
+      },
+      "dupes": [
+        {
+          "id": "bt7nLPNT8xMrnpbbOqMz54xo12E3",
+          "xp": 783,
+          "version": "1.5.2",
+          "updatedAt": 1776940267593
+        },
+        {
+          "id": "9Sg1DFmV6ZfUoBC2b9oBIzP5ha53",
+          "xp": 733,
+          "version": "1.5.2",
+          "updatedAt": 1776940257203
+        },
+        {
+          "id": "qQJuI0BctdTd9LQDvcPwsWacWzs2",
+          "xp": 733,
+          "version": "1.5.2",
+          "updatedAt": 1776940257203
+        }
+      ]
+    },
+    {
+      "name": "Hanna",
+      "size": 2,
+      "keep": {
+        "id": "22872586-6e4d-498a-93c4-af99f2d6d942",
+        "xp": 186,
+        "version": "1.5.14",
+        "updatedAt": 1776944415766
+      },
+      "dupes": [
+        {
+          "id": "yRQEP8mxCfNzxKnX7hox6ryQlFO2",
+          "xp": 186,
+          "version": "1.5.2",
+          "updatedAt": 1776944368172
+        }
+      ]
+    },
+    {
+      "name": "Вячеслав",
+      "size": 2,
+      "keep": {
+        "id": "2733e5fb-98de-48e6-925c-e0e22687b27b",
+        "xp": 1765,
+        "version": "1.5.14",
+        "updatedAt": 1776953759739
+      },
+      "dupes": [
+        {
+          "id": "GQy3vIoKMCfkBxwSeT0p4E3unP63",
+          "xp": 1700,
+          "version": "1.5.2",
+          "updatedAt": 1776943774738
+        }
+      ]
+    },
+    {
+      "name": "АЛЕКСАНДР",
+      "size": 4,
+      "keep": {
+        "id": "2b0ca24d-74e8-4fd9-8c04-7343a29085d8",
+        "xp": 46797,
+        "version": "1.5.14",
+        "updatedAt": 1776956262082
+      },
+      "dupes": [
+        {
+          "id": "ung5Ne7tO9fMd0jLKYxidhfOEG12",
+          "xp": 45132,
+          "version": "1.5.2",
+          "updatedAt": 1776939193297
+        },
+        {
+          "id": "Tw865Xi0MTeFPQ3a15y5iDJcNJ12",
+          "xp": 99,
+          "version": "1.5.2",
+          "updatedAt": 1776940127778
+        },
+        {
+          "id": "2cdf1f84-3222-4d20-9a5e-b51006e0d284",
+          "xp": 0,
+          "version": "1.5.14",
+          "updatedAt": 1776942691415
+        }
+      ]
+    },
+    {
+      "name": "feihuana",
+      "size": 3,
+      "keep": {
+        "id": "2cf50558-1de5-4439-9ff2-6f749a6b3cde",
+        "xp": 1264,
+        "version": "1.5.14",
+        "updatedAt": 1776944491050
+      },
+      "dupes": [
+        {
+          "id": "cmyTjuNiniNOJSAaZwdaj41ntIy1",
+          "xp": 1264,
+          "version": "1.5.2",
+          "updatedAt": 1776944440450
+        },
+        {
+          "id": "8maCvKpKnEZSXyjpa5cn4VE3pox1",
+          "xp": 632,
+          "version": "1.5.2",
+          "updatedAt": 1776944439889
+        }
+      ]
+    },
+    {
+      "name": "Anastasia",
+      "size": 2,
+      "keep": {
+        "id": "2ed3976f-0691-41da-bb95-e7886b3d60da",
+        "xp": 8004,
+        "version": "1.5.14",
+        "updatedAt": 1776941287457
+      },
+      "dupes": [
+        {
+          "id": "XrBDre9EHvTfMWc4F5hOI058RlD3",
+          "xp": 8004,
+          "version": "1.5.2",
+          "updatedAt": 1776941239004
+        }
+      ]
+    },
+    {
+      "name": "Vladimir",
+      "size": 2,
+      "keep": {
+        "id": "2f2922fb-b66f-4b87-80b9-bd45221766f4",
+        "xp": 21138,
+        "version": "1.5.14",
+        "updatedAt": 1776958307252
+      },
+      "dupes": [
+        {
+          "id": "vG4FL8q5JScNMjeX3PN4fjnFiX23",
+          "xp": 18829,
+          "version": "1.5.2",
+          "updatedAt": 1776943714980
+        }
+      ]
+    },
+    {
+      "name": "Mezhirina",
+      "size": 2,
+      "keep": {
+        "id": "320c1433-f9e9-4f8b-bfe5-f74aac5c32e6",
+        "xp": 29626,
+        "version": "1.5.14",
+        "updatedAt": 1776953442967
+      },
+      "dupes": [
+        {
+          "id": "fmPT5x8LceQqGQxJnpJQb3v5J0B2",
+          "xp": 28650,
+          "version": "1.5.2",
+          "updatedAt": 1776952716533
+        }
+      ]
+    },
+    {
+      "name": "Сергей",
+      "size": 2,
+      "keep": {
+        "id": "d5ef4d93-4cb3-4023-871d-98a18ee367fa",
+        "xp": 18290,
+        "version": "1.5.14",
+        "updatedAt": 1776940599993
+      },
+      "dupes": [
+        {
+          "id": "3s2RNNOXFpXXAU4HgdxivHkq0j53",
+          "xp": 18248,
+          "version": "1.5.2",
+          "updatedAt": 1776811326420
+        }
+      ]
+    },
+    {
+      "name": "Макс",
+      "size": 2,
+      "keep": {
+        "id": "466a67cc-07d5-4e6e-9f96-7853f6486cef",
+        "xp": 5996,
+        "version": "1.5.14",
+        "updatedAt": 1776958754518
+      },
+      "dupes": [
+        {
+          "id": "MGRy4eEzRdWWbT6xgBzznHN49w62",
+          "xp": 5408,
+          "version": "1.5.2",
+          "updatedAt": 1776937607642
+        }
+      ]
+    },
+    {
+      "name": "Aleksandr",
+      "size": 2,
+      "keep": {
+        "id": "eefa8393-4094-405f-9bdd-0ad5e21b72e8",
+        "xp": 9423,
+        "version": "1.5.14",
+        "updatedAt": 1776953293315
+      },
+      "dupes": [
+        {
+          "id": "4T6IyBuIvGMxyX9A2euOXuwHo6m2",
+          "xp": 7155,
+          "version": "1.5.2",
+          "updatedAt": 1776923827635
+        }
+      ]
+    },
+    {
+      "name": "Urri",
+      "size": 2,
+      "keep": {
+        "id": "4e73bcb4-88a1-4eed-a03a-4386d6cafb03",
+        "xp": 4998,
+        "version": "1.5.14",
+        "updatedAt": 1776956308366
+      },
+      "dupes": [
+        {
+          "id": "BbP01EPtuBRPuBSNcV8Fz7EGPh13",
+          "xp": 4926,
+          "version": "1.5.2",
+          "updatedAt": 1776956098023
+        }
+      ]
+    },
+    {
+      "name": "Franssuaza",
+      "size": 2,
+      "keep": {
+        "id": "653851ce-fd84-4855-873c-d80a4806a6af",
+        "xp": 13717,
+        "version": "1.5.14",
+        "updatedAt": 1776950480942
+      },
+      "dupes": [
+        {
+          "id": "ex4Q5kceRkcFQmiS3pfvxMdp9eB2",
+          "xp": 13717,
+          "version": "1.5.2",
+          "updatedAt": 1776950446543
+        }
+      ]
+    },
+    {
+      "name": "Андрій",
+      "size": 3,
+      "keep": {
+        "id": "797eea5d-a1f0-44db-a358-e8e75caebc61",
+        "xp": 95,
+        "version": "1.5.12",
+        "updatedAt": 1776929787145
+      },
+      "dupes": [
+        {
+          "id": "zWv55Tw9PYMV73qApfQYCtNlaZM2",
+          "xp": 95,
+          "version": "1.5.2",
+          "updatedAt": 1776929763123
+        },
+        {
+          "id": "86e82225-4529-4e6f-a469-e902cbc0a2ad",
+          "xp": 76,
+          "version": "1.5.14",
+          "updatedAt": 1776951890204
+        }
+      ]
+    },
+    {
+      "name": "Ева",
+      "size": 2,
+      "keep": {
+        "id": "7a0d45b9-ca53-4d51-8c4a-3e4db8fd85e4",
+        "xp": 28378,
+        "version": "1.5.14",
+        "updatedAt": 1776961363522
+      },
+      "dupes": [
+        {
+          "id": "hGmob8b01wgEHsPpw7ugUUVFuUK2",
+          "xp": 25966,
+          "version": "1.5.2",
+          "updatedAt": 1776936210829
+        }
+      ]
+    },
+    {
+      "name": "Yaivan50",
+      "size": 2,
+      "keep": {
+        "id": "a114eacb-184d-43aa-8275-6f21094949db",
+        "xp": 20174,
+        "version": "1.5.14",
+        "updatedAt": 1776956314741
+      },
+      "dupes": [
+        {
+          "id": "8TOjboGZ9sbDEGAHhQ7ivm4jH1z1",
+          "xp": 19935,
+          "version": "1.5.2",
+          "updatedAt": 1776938702543
+        }
+      ]
+    },
+    {
+      "name": "Олеся",
+      "size": 2,
+      "keep": {
+        "id": "AT86EXvfHocWTmz1lfcMaNmw2Tf1",
+        "xp": 1834,
+        "version": "1.5.2",
+        "updatedAt": 1776939210636
+      },
+      "dupes": [
+        {
+          "id": "Qy15Vk2VTSVtgP0c60xowpbLrqv2",
+          "xp": 1834,
+          "version": "1.5.2",
+          "updatedAt": 1776939209782
+        }
+      ]
+    },
+    {
+      "name": "Alex",
+      "size": 5,
+      "keep": {
+        "id": "faac289d-6b94-4b1b-ad7d-fe7ff29f68c7",
+        "xp": 73811,
+        "version": "1.5.13",
+        "updatedAt": 1776955759169
+      },
+      "dupes": [
+        {
+          "id": "zoeLzBZkp2alhpuEMarvYRM0f9A3",
+          "xp": 73686,
+          "version": "1.5.2",
+          "updatedAt": 1776935983598
+        },
+        {
+          "id": "dcdcef3b-6b7c-458f-9a35-3e6258850ed2",
+          "xp": 5718,
+          "version": "1.5.14",
+          "updatedAt": 1776951504589
+        },
+        {
+          "id": "SBLKaoK7RLRYUrnV8B2Ns5Y5mNA3",
+          "xp": 4738,
+          "version": "1.5.2",
+          "updatedAt": 1776946626719
+        },
+        {
+          "id": "B03CzkV8NQRzugj2uxOGEVNIjxE2",
+          "xp": 4738,
+          "version": "1.5.2",
+          "updatedAt": 1776939558454
+        }
+      ]
+    },
+    {
+      "name": "Nickolay",
+      "size": 2,
+      "keep": {
+        "id": "woSItfj1jma483jbR3d413o3jm72",
+        "xp": 10,
+        "version": "1.5.2",
+        "updatedAt": 1776955330105
+      },
+      "dupes": [
+        {
+          "id": "FE7kKh4UXET3AXdgiieHPWoBZZG3",
+          "xp": 10,
+          "version": "1.5.2",
+          "updatedAt": 1776955326881
+        }
+      ]
+    },
+    {
+      "name": "Olhama",
+      "size": 2,
+      "keep": {
+        "id": "KDyP9ydZ0vMyn4gBga8yttPSmc73",
+        "xp": 1932,
+        "version": "1.5.2",
+        "updatedAt": 1776953791079
+      },
+      "dupes": [
+        {
+          "id": "KmsJntpNzdcpEYrAZbd8YfEQy8w1",
+          "xp": 1932,
+          "version": "1.5.2",
+          "updatedAt": 1776953790340
+        }
+      ]
+    },
+    {
+      "name": "Liliana",
+      "size": 2,
+      "keep": {
+        "id": "e81QCcFYATTfmUDMQyl3yxfYCqj2",
+        "xp": 6555,
+        "version": "1.5.2",
+        "updatedAt": 1776958130906
+      },
+      "dupes": [
+        {
+          "id": "KhyYKoJM2agb2nHo7OsFwrx6zRQ2",
+          "xp": 5192,
+          "version": "1.5.2",
+          "updatedAt": 1776956736449
+        }
+      ]
+    },
+    {
+      "name": "Nami",
+      "size": 2,
+      "keep": {
+        "id": "ffdd255d-601e-4e4f-bbb5-a59037760392",
+        "xp": 9912,
+        "version": "1.5.13",
+        "updatedAt": 1776948304918
+      },
+      "dupes": [
+        {
+          "id": "RPCTY9U1xjaM29swbmyPgBVTi7z2",
+          "xp": 9386,
+          "version": "1.5.2",
+          "updatedAt": 1776933236850
+        }
+      ]
+    },
+    {
+      "name": "Олександр",
+      "size": 2,
+      "keep": {
+        "id": "TT7V0Xiq4iXOnCqnIOmqqXs45sh1",
+        "xp": 87,
+        "version": "1.5.2",
+        "updatedAt": 1776939606049
+      },
+      "dupes": [
+        {
+          "id": "m9m5Iaam63gNRDr7HUHtAkc5FWp1",
+          "xp": 87,
+          "version": "1.5.2",
+          "updatedAt": 1776939605625
+        }
+      ]
+    },
+    {
+      "name": "Yana",
+      "size": 2,
+      "keep": {
+        "id": "b27b8bf5-163a-453d-bb11-bc2c9510fae9",
+        "xp": 9572,
+        "version": "1.5.14",
+        "updatedAt": 1776956064364
+      },
+      "dupes": [
+        {
+          "id": "TmqKTeeCioPVUuYpR57OAXXSGSl2",
+          "xp": 8238,
+          "version": "1.5.2",
+          "updatedAt": 1776939937467
+        }
+      ]
+    },
+    {
+      "name": "Olga",
+      "size": 2,
+      "keep": {
+        "id": "ZGlPJ21qyJXBTTP8PMJxyqGHldK2",
+        "xp": 1362,
+        "version": "1.5.2",
+        "updatedAt": 1776940596838
+      },
+      "dupes": [
+        {
+          "id": "p1hvdQ1VpAbkMxmihoRtC8cwcR52",
+          "xp": 1312,
+          "version": "1.5.2",
+          "updatedAt": 1776940585049
+        }
+      ]
+    },
+    {
+      "name": "Виталий",
+      "size": 2,
+      "keep": {
+        "id": "a7vBGbTq3xZncdOlyCi4XdRgLLE3",
+        "xp": 2066,
+        "version": "1.5.2",
+        "updatedAt": 1776757341345
+      },
+      "dupes": [
+        {
+          "id": "i0Rlngh885dgCYRzqx9ZFA7I9H63",
+          "xp": 17,
+          "version": "1.5.2",
+          "updatedAt": 1776939180886
+        }
+      ]
+    },
+    {
+      "name": "Garik",
+      "size": 2,
+      "keep": {
+        "id": "c41f166b-4f0d-45e8-8664-45bdfea66025",
+        "xp": 7613,
+        "version": "1.5.14",
+        "updatedAt": 1776958327644
+      },
+      "dupes": [
+        {
+          "id": "qd7HDx1soMPTqsRNISsFwr9ySvw1",
+          "xp": 7434,
+          "version": "1.5.2",
+          "updatedAt": 1776939769297
+        }
+      ]
+    }
+  ]
+}

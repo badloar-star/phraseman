@@ -1,0 +1,4 @@
+appId: app.phraseman
+---
+- runFlow: ../smoke/premium_purchase_updates_energy_and_gates.yaml
+- runFlow: ../smoke/settings_delete_account_recovery.yaml

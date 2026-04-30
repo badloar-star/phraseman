@@ -215,17 +215,25 @@ export default function Header() {
 ### Пример: Получение награды за задачу
 
 ```typescript
-import { rewardPhrasemenForTask } from '@/app/phrasemen_integration';
-import { claimTask } from '@/app/daily_tasks';
+import { claimTaskWithReward, getTaskById } from '@/app/daily_tasks';
+import { registerXP } from '@/app/xp_manager';
 
-export async function handleTaskClaim(taskId: string) {
-  // Отметить задачу как выполненную
-  await claimTask(taskId);
+export async function handleTaskClaim(
+  taskId: string,
+  userName: string,
+  lang: 'ru' | 'uk',
+) {
+  const task = getTaskById(taskId);
+  if (!task) return;
 
-  // Выдать награду в фразменах
-  await rewardPhrasemenForTask(taskId);
+  const { claimed, awardedXp } = await claimTaskWithReward(taskId, async () => {
+    const r = await registerXP(task.xp, 'daily_task_reward', userName, lang);
+    return r.finalDelta;
+  });
 
-  // Обновить UI...
+  if (claimed) {
+    // Обновить UI (фактический XP с множителями — awardedXp)
+  }
 }
 ```
 

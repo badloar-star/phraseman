@@ -1,0 +1,25 @@
+# Хаб карточек: плитки категорий (testID flashcards-hub-tile-*).
+appId: app.phraseman
+---
+- runFlow: ../../_shared/boot_to_home.yaml
+- scrollUntilVisible:
+    element:
+      id: "home-quick-flashcards"
+    direction: DOWN
+    timeout: 25000
+    speed: 80
+    visibilityPercentage: 50
+- tapOn:
+    id: "home-quick-flashcards"
+- extendedWaitUntil:
+    visible:
+      id: "flashcards-hub-tile-saved"
+    timeout: 25000
+- assertVisible:
+    id: "flashcards-hub-tile-custom"
+- tapOn:
+    id: "flashcards-header-back"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 20000

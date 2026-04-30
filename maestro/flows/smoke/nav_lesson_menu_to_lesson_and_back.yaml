@@ -1,0 +1,66 @@
+# Уроки → меню урока 1 → старт урока → назад в меню → назад к списку уроков.
+# Ловит replace/push стека (меню не должно «обновляться» вместо выхода со стека).
+appId: app.phraseman
+---
+- launchApp
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "tab-home"
+    timeout: 90000
+- tapOn:
+    id: "tab-home"
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 45000
+- tapOn:
+    id: "tab-index"
+# TabSlider сдвигает экраны через transform — дождаться пружины, иначе Maestro не видит строку.
+- waitForAnimationToEnd:
+    timeout: 5000
+- scrollUntilVisible:
+    element:
+      id: "lessons-row-1"
+    direction: DOWN
+    timeout: 30000
+    speed: 60
+    visibilityPercentage: 25
+- tapOn:
+    id: "lessons-row-1"
+- extendedWaitUntil:
+    visible:
+      id: "lesson-menu-back"
+    timeout: 20000
+- tapOn:
+    id: "lesson-menu-primary"
+# Уроки 1–8 со словарём: после тапа может открыться Alert с советом
+- runFlow:
+    when:
+      visible: "Совет"
+    commands:
+      - tapOn: "Начать урок"
+- runFlow:
+    when:
+      visible: "Порада"
+    commands:
+      - tapOn: "Почати урок"
+- extendedWaitUntil:
+    visible:
+      id: "lesson1-header-back"
+    timeout: 20000
+- tapOn:
+    id: "lesson1-header-back"
+- extendedWaitUntil:
+    visible:
+      id: "lesson-menu-back"
+    timeout: 15000
+- tapOn:
+    id: "lesson-menu-back"
+- extendedWaitUntil:
+    visible:
+      id: "lessons-row-1"
+    timeout: 15000

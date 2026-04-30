@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 export const DebugLogger = {
   error: (context: string, error: unknown, severity: 'critical' | 'warning' = 'warning') => {
@@ -18,11 +19,15 @@ export const DebugLogger = {
   },
 
   warn: (context: string, message: string) => {
-    console.warn(`[WARN] ${context}: ${message}`);
+    if (isDevRuntime) {
+      console.warn(`[WARN] ${context}: ${message}`);
+    }
   },
 
   info: (context: string, message: string) => {
-    console.log(`[INFO] ${context}: ${message}`);
+    if (isDevRuntime) {
+      console.log(`[INFO] ${context}: ${message}`);
+    }
   },
 
   clearOldLogs: async (daysOld: number = 7) => {
@@ -38,3 +43,6 @@ export const DebugLogger = {
     }
   },
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

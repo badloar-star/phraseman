@@ -1,0 +1,7 @@
+{
+  "file": "c:/appsprojects/phraseman/app/firestore_leagues.ts",
+  "session": "dca4eba4",
+  "index": 5,
+  "old_string": "// ── Загрузить участников группы ──────────────────────────────────────────────",
+  "new_string": "// ── Тихая регистрация в группу при старте приложения ────────────────────────\n// Вызывается из _layout.tsx чтобы каждый пользователь попал в league_groups\n// даже если он никогда не открывал экран клубов.\nexport async function registerInLeagueGroupSilently(): Promise<void> {\n  if (!CLOUD_SYNC_ENABLED) return;\n  try {\n    const [[, nameRaw], [, xpRaw], [, leagueRaw], [, weekPtsRaw]] =\n      await AsyncStorage.multiGet(['user_name', 'user_total_xp', 'league_state_v3', 'week_points_v2']);\n\n    const name = (nameRaw ?? '').trim();\n    if (!name) return;\n\n    const leagueState = leagueRaw ? JSON.parse(leagueRaw) : null;\n    const leagueId: number = leagueState?.leagueId ?? 0;\n    const weekId: string   = leagueState?.weekId ?? '';\n    if (!weekId) return;\n\n    let weekPoints = 0;\n    try {\n      const wpData = weekPtsRaw ? JSON.parse(weekPtsRaw) : null;\n      if (wpData?.weekKey === weekId.replace('-', '').replace('W', '')) {\n        weekPoints = wpData.points ?? 0;\n      }\n    } catch {}\n\n    await getOrCreateLeagueGroup(weekId, leagueId, name, weekPoints);\n  } catch {}\n}\n\n// ── Загрузить участников группы ──────────────────────────────────────────────"
+}

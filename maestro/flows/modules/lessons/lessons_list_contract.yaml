@@ -1,0 +1,17 @@
+# Уроки: список + первая строка (TabSlider + скролл).
+appId: app.phraseman
+---
+- runFlow: ../../_shared/boot_to_home.yaml
+- tapOn:
+    id: "tab-index"
+- waitForAnimationToEnd:
+    timeout: 5000
+- scrollUntilVisible:
+    element:
+      id: "lessons-row-1"
+    direction: DOWN
+    timeout: 35000
+    speed: 60
+    visibilityPercentage: 25
+- assertVisible:
+    id: "lessons-row-1"

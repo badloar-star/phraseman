@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/lesson_irregular_verbs.tsx",
+  "session": "327644f1",
+  "op_index": 5,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "  const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || [];",
+  "new_string": "  const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || [];\n  const allVerbsFlat: IrregularVerb[] = Object.values(IRREGULAR_VERBS_BY_LESSON).flat();"
+}

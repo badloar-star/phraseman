@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/(tabs)/home.tsx",
+  "session": "33b61ac9",
+  "op_index": 1,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "import { trackFeatureOpened } from '../user_stats';",
+  "new_string": "import { trackFeatureOpened } from '../user_stats';\nimport { useDuelRank } from '../../hooks/use-duel-rank';"
+}

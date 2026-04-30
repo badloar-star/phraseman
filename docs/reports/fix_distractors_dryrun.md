@@ -1,0 +1,81 @@
+# Smart fix distractors — DRY RUN — 2026-04-28T19:42:22.884Z
+
+Файлов отсканировано: 4, слов: 13629
+Найдено fake: 11512, заменено: 11512, оставлено как было: 10324
+
+## Примеры замен
+- correct «abroad»
+  - было: ["board","broad","bread","ableed","road"]
+  - стало: ["board","broad","bread","abroads","road"]
+- correct «empty»
+  - было: ["entry","enemy","empty.","emptys","enjoy"]
+  - стало: ["entry","enemy","emptying.","empties","enjoy"]
+- correct «doctor»
+  - было: ["factor","rector","sector","actor","1985ed","1985er","1985ly","Iceing","Leiden","Leting","Lisbon","Louvre"]
+  - стало: ["factor","rector","sector","actor","doctors","doctored","doctoring","donor","door","dolor","word","Louvre"]
+- correct «angry»
+  - было: ["hungry","anger","angle","ankle","1985s","Iceed","Iceer","Icely","Iting","Leted","Leter","Letly"]
+  - стало: ["hungry","anger","angle","ankle","angries","angrier","angriest","annoy","any","entry","pantry","bury"]
+- correct «work»
+  - было: ["Weer","Wely","wade","wail","wait"]
+  - стало: ["Weer","works","wade","wail","wait"]
+- correct «open»
+  - было: ["oven","obey","over","even","oper"]
+  - стало: ["oven","obey","over","even","opens"]
+- correct «the»
+  - было: ["TVs","tan","tap","tar","tax"]
+  - стало: ["a","tan","tap","tar","tax"]
+- correct «store»
+  - было: ["Sheed","Sheer","Shely","Somes","sable"]
+  - стало: ["stores","Sheer","stored","storing","sable"]
+- correct «okay»
+  - было: ["obey","away","only","Ices","Iing","Ited","Iter","Itly","Lets","Lyon","No,1"]
+  - стало: ["obey","away","only","Ices","okays","okayed","okaying","clay","Lets","gray","oat"]
+- correct «taxi»
+  - было: ["tax","text","wax","taxis","Ices","Iing","Ited","Iter","Itly","Lets","Lyon","No,1"]
+  - стало: ["tax","text","wax","taxis","Ices","taxies","taxied","taxiing","axe","Lets","tab","fax"]
+- correct «afraid»
+  - было: ["afar","afield","ahead","afoot","1985ed","1985er","1985ly","Iceing","Leiden","Leting","Lisbon","Louvre"]
+  - стало: ["afar","afield","ahead","afoot","agreed","laid","award","again","brand","rapid","avoid","Louvre"]
+- correct «elevator»
+  - было: ["alligator","generator","narrator","liberator","Mondayed","Mondayer","Mondayly","Nobody's","Please,1","Please,2","Please,x","Sunday-s"]
+  - стало: ["alligator","generator","narrator","liberator","elevators","elevate","delegator","operator","elevatory","levator","elector","elevated"]
+- correct «London»
+  - было: ["Lyon","Lisbon","Leiden","Louvre","Lincoln"]
+  - стало: ["Paris","Berlin","Moscow","Louvre","Kyiv"]
+- correct «coffee»
+  - было: ["coffees","cafe","toffee","coffe","copy"]
+  - стало: ["coffees","cafe","toffee","coffer","copy"]
+- correct «She»
+  - было: ["her","he","they","shee","the"]
+  - стало: ["her","he","they","I","the"]
+- correct «English»
+  - было: ["inglish","englich","englsh","angle","1985ing","Lincoln","Someing","Theired","Theirer","Theirly","They're","Wi-Fied"]
+  - стало: ["Spanish","French","German","angle","Italian","Russian","Polish","Greek","Turkish","Chinese","They're","Japanese"]
+- correct «news»
+  - было: ["new","knew","mews","newes","views"]
+  - стало: ["new","knew","mews","newses","views"]
+- correct «people»
+  - было: ["peoples","pepole","poeple","peeple","purple"]
+  - стало: ["peoples","peopled","peopling","pole","purple"]
+- correct «answer»
+  - было: ["answers","answered","anser","answar","dancer"]
+  - стало: ["answers","answered","answering","answerer","dancer"]
+- correct «She»
+  - было: ["he","her","they","see","shee"]
+  - стало: ["he","her","they","see","I"]
+- correct «music»
+  - было: ["musics","musick","mystic","musical","mistic"]
+  - стало: ["musics","musick","mystic","musical","mesic"]
+- correct «food»
+  - было: ["foot","good","flood","fod","mood"]
+  - стало: ["foot","good","flood","foods","mood"]
+- correct «dollar»
+  - было: ["dollars","doller","dolor","collar","dollas"]
+  - стало: ["dollars","dollared","dolor","collar","polar"]
+- correct «letters»
+  - было: ["letter","litters","betters","lotters","leters"]
+  - стало: ["letter","litters","betters","lotters","liters"]
+- correct «dishes»
+  - было: ["dish","wishes","fishes","dishs","dashes"]
+  - стало: ["dish","wishes","fishes","dashes","dives"]

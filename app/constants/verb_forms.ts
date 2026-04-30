@@ -34,7 +34,7 @@ export const VERB_FORM_GROUPS: string[][] = [
   ['close','closes','closed','closing','is closing','was closing','has closed','will close'],
   ['watch','watches','watched','watching','is watching','was watching','has watched','will watch'],
   ['listen','listens','listened','listening','is listening','was listening','has listened','will listen'],
-  ['travel','travels','travelled','travelling','is travelling','was travelling','has travelled','will travel'],
+  ['travel','travels','traveled','traveling','is traveling','was traveling','has traveled','will travel'],
   ['visit','visits','visited','visiting','is visiting','was visiting','has visited','will visit'],
   ['move','moves','moved','moving','is moving','was moving','has moved','will move'],
   ['live','lives','lived','living','is living','was living','has lived','will live'],
@@ -137,3 +137,6 @@ export const CONTRACTION_MAP: Record<string, [string, string]> = {
   "they'd":   ["they",  "would"],
   "let's":    ["let",   "us"],
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

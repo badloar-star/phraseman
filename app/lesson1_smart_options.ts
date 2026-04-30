@@ -4,6 +4,20 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import { L1_PHRASE_STRUCTURES, getDistractorsForWord } from './lesson1_distractor_logic';
+import { phraseWordRowsForStudyTarget } from './phrase_target_utils';
+import type { StudyTargetLang } from './study_target_lang_dev';
+
+/** Заполнение до 6 вариантов при нехватке уникальных дистракторов (режим ES). */
+const SPANISH_FALLBACK_POOL = [
+  'aquí', 'ahora', 'bien', 'casa', 'cosa', 'día', 'vez', 'año', 'modo', 'caso',
+  'parte', 'vida', 'hombre', 'mujer', 'tiempo', 'trabajo', 'mundo', 'noche',
+  'hoy', 'mañana', 'ayer', 'siempre', 'nunca', 'mucho', 'poco',
+  'muy', 'solo', 'también', 'pero', 'porque', 'donde', 'cuando',
+  'voy', 'vas', 'va', 'vamos', 'tengo', 'tienes', 'tiene', 'hago', 'hace',
+  'soy', 'eres', 'es', 'somos', 'son', 'estoy', 'estás', 'está', 'están',
+  'hay', 'puedo', 'puede', 'debe', 'quiere', 'grande', 'pequeño', 'bueno', 'nuevo',
+  'el', 'la', 'los', 'las', 'un', 'una', 'su', 'sus', 'esto', 'eso', 'así', 'algo',
+].filter((w, i, a) => a.indexOf(w) === i);
 
 const shuffle = <T>(arr: T[]): T[] => {
   const a = [...arr];
@@ -35,7 +49,7 @@ const WORD_POOLS_L1 = {
                 'travel','visit','move','speak','spoke','break','broke','pass','prepare','arrive','leave',
                 'stay','see','saw','say','said','use','used','try','want','like','need','stop','call',
                 'exercise','exercises','exercised','negotiate','negotiates','negotiated',
-                'manage','manages','managed','practise','practises','practised','practice','practices','practiced',
+                'manage','manages','managed','practice','practices','practiced',
                 'attend','attends','attended','develop','develops','developed',
                 'solve','solves','solved','cook','cooks','cooked',
                 'prefer','prefers','preferred','offer','offers','offered',
@@ -83,7 +97,7 @@ const WORD_POOLS_L1 = {
                 'message','messages','number','numbers','habit','habits',
                 'interview','interviews','event','events','reason','reasons',
                 'issue','issues','system','systems','data','software',
-                'programme','programs','program','programmes',
+                'program','programs','project','programming',
                 'rule','rules','method','methods','subject','subjects',
                 'fact','facts','detail','details','point','points',
                 'topic','topics','level','levels','type','types',
@@ -97,7 +111,7 @@ const WORD_POOLS_L1 = {
   adjectives: ['tired','busy','ready','young','old','smart','tall','short','free','happy','right','wrong',
                 'good','great','easy','hard','new','big','small','long','fast','slow','early','late',
                 'important','serious','comfortable','expensive','cheap','modern','popular','beautiful',
-                'experienced','favourite','favorite','kind','lovely','wonderful','excellent','brilliant','professional','friendly','creative','skilled','qualified','terrible','awful','amazing','perfect','typical','natural','special','similar','different','straight','complex','obvious','confident','patient','polite','rude','strict','gentle','generous','honest','clever','brave','calm','quiet','loud','plain','sharp','raw','rare','pure','soft','rough','tough','deep','wide','narrow','thick','thin','light','dark','clear','bright','smooth','flat',
+                'experienced','favorite','kind','lovely','wonderful','excellent','brilliant','professional','friendly','creative','skilled','qualified','terrible','awful','amazing','perfect','typical','natural','special','similar','different','straight','complex','obvious','confident','patient','polite','rude','strict','gentle','generous','honest','clever','brave','calm','quiet','loud','plain','sharp','raw','rare','pure','soft','rough','tough','deep','wide','narrow','thick','thin','light','dark','clear','bright','smooth','flat',
                 'difficult','latest','recent','weekly','daily','monthly','annual','necessary',
                 'local','national','international','global','main','major','current',
                 'high','low','full','real','actual','various','common','general',
@@ -179,7 +193,7 @@ const WORD_POOLS_L1 = {
                 'restaurant','restaurants','bank','banks','shop','shops','market','markets',
                 'park','parks','station','stations','airport','airports','museum','museums',
                 'cafe','cafes','gym','gyms','beach','beaches','garden','gardens',
-                'kitchen','bedroom','bathroom','classroom','library','theatre','cinema',
+                'kitchen','bedroom','bathroom','classroom','library','theater','cinema',
                 'city','cities','country','countries','home','house','houses','room','rooms'],
 };
 
@@ -209,6 +223,7 @@ const CONTRACTION_MAP: Record<string, [string, string]> = {
   "that's":   ["that",  "is"],
   "there's":  ["there", "is"],
   "what's":   ["what",  "is"],
+  "who's":    ["who",   "is"],
   "he's":     ["he",    "is"],
   "she's":    ["she",   "is"],
   "I'm":      ["I",     "am"],
@@ -226,6 +241,7 @@ const CONTRACTION_MAP: Record<string, [string, string]> = {
   "she'll":   ["she",   "will"],
   "we'll":    ["we",    "will"],
   "they'll":  ["they",  "will"],
+  "it'll":    ["it",    "will"],
   "you'd":    ["you",   "would"],
   "he'd":     ["he",    "would"],
   "she'd":    ["she",   "would"],
@@ -306,7 +322,7 @@ const VERB_FORM_GROUPS: string[][] = [
   ['close','closes','closed','closing','is closing','was closing','has closed','will close'],
   ['watch','watches','watched','watching','is watching','was watching','has watched','will watch'],
   ['listen','listens','listened','listening','is listening','was listening','has listened','will listen'],
-  ['travel','travels','travelled','travelling','is travelling','was travelling','has travelled','will travel'],
+  ['travel','travels','traveled','traveling','is traveling','was traveling','has traveled','will travel'],
   ['visit','visits','visited','visiting','is visiting','was visiting','has visited','will visit'],
   ['move','moves','moved','moving','is moving','was moving','has moved','will move'],
   ['live','lives','lived','living','is living','was living','has lived','will live'],
@@ -452,81 +468,132 @@ const EXPANSION_TO_CONTRACTION: Record<string, Record<string, string>> = {
   'are':    { 'not': "aren't" },
   'was':    { 'not': "wasn't" },
   'were':   { 'not': "weren't" },
-  'I':      { 'am': "I'm", 'have': "I've", 'will': "I'll", 'would': "I'd" },
-  'it':     { 'is': "it's" },
-  'he':     { 'is': "he's" },
-  'she':    { 'is': "she's" },
+  // Pronouns — all lowercase so case-insensitive lookup works
+  'i':      { 'am': "I'm", 'have': "I've", 'will': "I'll", 'would': "I'd" },
+  'you':    { 'are': "you're", 'have': "you've", 'will': "you'll", 'would': "you'd" },
+  'we':     { 'are': "we're", 'have': "we've", 'will': "we'll", 'would': "we'd" },
+  'they':   { 'are': "they're", 'have': "they've", 'will': "they'll", 'would': "they'd" },
+  'he':     { 'is': "he's", 'will': "he'll", 'would': "he'd" },
+  'she':    { 'is': "she's", 'will': "she'll", 'would': "she'd" },
+  'it':     { 'is': "it's", 'will': "it'll" },
+  'there':  { 'is': "there's" },
+  'that':   { 'is': "that's" },
+  'what':   { 'is': "what's" },
+  'who':    { 'is': "who's" },
+  'must':   { 'not': "mustn't" },
+  'need':   { 'not': "needn't" },
+  'might':  { 'not': "mightn't" },
+  'let':    { 'us': "let's" },
 };
 
+// Case-insensitive lookup: "You" → "you", "I" → "i", "He" → "he", etc.
 export const getContractionFor = (word: string, nextWord: string): string | null =>
-  EXPANSION_TO_CONTRACTION[word]?.[nextWord?.toLowerCase()] ?? null;
+  EXPANSION_TO_CONTRACTION[word.toLowerCase()]?.[nextWord?.toLowerCase()] ?? null;
 
-const getPerWordDistracts = (phrase: any, wordIndex: number = 0): string[] => {
-  // NEW format: phrase has .words array with explicit distractors
-  if (phrase && phrase.words && phrase.words[wordIndex]) {
-    const wordData = phrase.words[wordIndex];
-    const currentCorrect = wordData.correct;
+/** Always returns 6 shuffled options; guarantees `correct` is present when non-empty. */
+function finalizeOptionRow(choices: string[], correct: string | undefined | null): string[] {
+  const c = typeof correct === 'string' ? correct.trim() : '';
+  const deduped: string[] = [];
+  const seen = new Set<string>();
+  for (const w of choices) {
+    if (w == null || String(w).trim() === '') continue;
+    const s = String(w);
+    const k = s.toLowerCase();
+    if (seen.has(k)) continue;
+    seen.add(k);
+    deduped.push(s);
+  }
+  if (c && !deduped.some((w) => w.toLowerCase() === c.toLowerCase())) {
+    deduped.unshift(c);
+  }
+  const trimmed = deduped.slice(0, 6);
+  return shuffle(trimmed);
+}
 
-    // Sliding window: pull distractors from next word too (like competitor)
-    const nextWordData = phrase.words[wordIndex + 1];
-    if (nextWordData) {
-      const nextCorrect = nextWordData.correct;
+const getPerWordDistracts = (
+  phrase: any,
+  wordIndex: number = 0,
+  studyTarget: StudyTargetLang = 'en',
+): string[] => {
+  const rows = phrase ? phraseWordRowsForStudyTarget(phrase, studyTarget) : [];
+  const wordData = rows[wordIndex];
+  if (!wordData) return [];
 
-      // Check if current+next form a contraction pair — offer contraction as alternative
-      const contraction = getContractionFor(currentCorrect, nextCorrect);
+  const currentCorrect = wordData.correct ?? wordData.text;
+  if (!currentCorrect || String(currentCorrect).trim() === '') {
+    return [];
+  }
+  const currentDistractors = (wordData.distractors ?? []).slice(0, 5);
 
-      const seen = new Set<string>([currentCorrect.toLowerCase()]);
-      if (contraction) seen.add(contraction.toLowerCase());
+  const fallbackPool =
+    studyTarget === 'es'
+      ? SPANISH_FALLBACK_POOL.filter((w: string) => !w.includes(' '))
+      : [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives].filter(
+          (w: string) => !w.includes(' '),
+        );
 
-      const pickUnique = (pool: string[], count: number): string[] => {
-        const result: string[] = [];
-        for (const w of shuffle([...pool])) {
-          if (result.length >= count) break;
-          if (!seen.has(w.toLowerCase())) { seen.add(w.toLowerCase()); result.push(w); }
-        }
-        return result;
-      };
+  // Sliding window: pull distractors from next word too (like competitor)
+  const nextWordData = rows[wordIndex + 1];
+  if (nextWordData) {
+    const nextCorrect = nextWordData.correct ?? nextWordData.text ?? '';
 
-      const fromCurrent = pickUnique(wordData.distractors, contraction ? 2 : 3);
-      const fromNext = pickUnique(
-        nextWordData.distractors.filter((d: string) => d !== nextCorrect),
-        2,
-      );
+    // Check if current+next form a contraction pair — offer contraction as alternative
+    const contraction = getContractionFor(currentCorrect, nextCorrect);
 
-      const extras = contraction ? [contraction] : [];
-      const combined = [currentCorrect, ...fromCurrent, ...fromNext, ...extras];
-      if (combined.length < 6) {
-        const fallback = [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives]
-          .filter(w => !w.includes(' ') && !seen.has(w.toLowerCase()));
-        for (const w of shuffle(fallback)) {
-          if (combined.length >= 6) break;
+    const seen = new Set<string>([currentCorrect.toLowerCase()]);
+    if (nextCorrect) seen.add(String(nextCorrect).toLowerCase());
+    if (contraction) seen.add(contraction.toLowerCase());
+
+    const pickUnique = (pool: string[], count: number): string[] => {
+      const result: string[] = [];
+      for (const w of shuffle([...pool])) {
+        if (result.length >= count) break;
+        if (!seen.has(w.toLowerCase())) {
           seen.add(w.toLowerCase());
-          combined.push(w);
+          result.push(w);
         }
       }
-      return shuffle(combined.slice(0, 6));
-    }
+      return result;
+    };
 
-    // Last word or no next word: show exactly 6, deduplicated
-    const seenLast = new Set<string>([currentCorrect.toLowerCase()]);
-    const uniqueDistractors = wordData.distractors.filter(
-      (d: string) => { const k = d.toLowerCase(); if (seenLast.has(k)) return false; seenLast.add(k); return true; }
+    const fromCurrent = pickUnique(currentDistractors, contraction ? 2 : 3);
+    const nextDistractors = (nextWordData.distractors ?? []).slice(0, 5);
+    const fromNext = pickUnique(
+      nextDistractors.filter((d: string) => d !== nextCorrect),
+      2,
     );
-    const result = [currentCorrect, ...uniqueDistractors];
-    if (result.length < 6) {
-      const fallback = [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives]
-        .filter(w => !w.includes(' ') && !seenLast.has(w.toLowerCase()));
+
+    const extras = contraction ? [contraction] : [];
+    const combined = [currentCorrect, ...fromCurrent, ...fromNext, ...extras];
+    if (combined.length < 6) {
+      const fallback = fallbackPool.filter((w: string) => !seen.has(w.toLowerCase()));
       for (const w of shuffle(fallback)) {
-        if (result.length >= 6) break;
-        seenLast.add(w.toLowerCase());
-        result.push(w);
+        if (combined.length >= 6) break;
+        seen.add(w.toLowerCase());
+        combined.push(w);
       }
     }
-    return shuffle(result.slice(0, 6));
+    return finalizeOptionRow(combined.slice(0, 6), currentCorrect);
   }
 
-  // Fallback for old format (shouldn't happen with new lesson data)
-  return [];
+  // Last word or no next word: show exactly 6, deduplicated
+  const seenLast = new Set<string>([String(currentCorrect).toLowerCase()]);
+  const uniqueDistractors = currentDistractors.filter((d: string) => {
+    const k = d.toLowerCase();
+    if (seenLast.has(k)) return false;
+    seenLast.add(k);
+    return true;
+  });
+  const result = [currentCorrect, ...uniqueDistractors];
+  if (result.length < 6) {
+    const fallback = fallbackPool.filter((w: string) => !seenLast.has(w.toLowerCase()));
+    for (const w of shuffle(fallback)) {
+      if (result.length >= 6) break;
+      seenLast.add(w.toLowerCase());
+      result.push(w);
+    }
+  }
+  return finalizeOptionRow(result.slice(0, 6), currentCorrect);
 };
 
 const makeSmartOptionsL1 = (english: string, wordIndex: number = 0): string[] => {
@@ -699,8 +766,6 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'partners':     ['colleagues','clients','employees','consultants','associates'],
     'colleague':    ['partner','employee','client','assistant','member'],
     'colleagues':   ['partners','employees','clients','assistants','members'],
-    'neighbour':    ['colleague','friend','partner','guest','visitor'],
-    'neighbours':   ['colleagues','friends','partners','guests','visitors'],
     'neighbor':     ['colleague','friend','partner','guest','visitor'],
     'neighbors':    ['colleagues','friends','partners','guests','visitors'],
     'client':       ['customer','partner','visitor','colleague','user'],
@@ -735,7 +800,6 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'senior':       ['junior','lead','chief','head','principal'],
     'right':        ['wrong','correct','exact','proper','suitable'],
     'big':          ['small','large','huge','wide','massive'],
-    'favourite':    ['best','main','top','preferred','special'],
     'favorite':     ['best','main','top','preferred','special'],
     // ── L1 PROFESSIONS — ручные дистракторы ──────────────────────────────
     'engineer':     ['programmer','architect','developer','technician','consultant'],
@@ -872,7 +936,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'data':          ['information','figures','numbers','statistics','records'],
     'product':       ['service','solution','item','offering','package'],
     'products':      ['services','solutions','items','offerings','packages'],
-    'training':      ['course','programme','workshop','seminar','session'],
+    'training':      ['course','program','workshop','seminar','session'],
     'mistake':       ['error','issue','problem','fault','failure'],
     'mistakes':      ['errors','issues','problems','faults','failures'],
     'proposal':      ['offer','plan','draft','suggestion','application'],
@@ -883,7 +947,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'ideas':         ['suggestions','proposals','thoughts','options','approaches'],
     'metrics':       ['indicators','figures','statistics','targets','benchmarks'],
     'wall':          ['door','window','floor','ceiling','desk'],
-    'office':        ['building','workplace','department','centre','studio'],
+    'office':        ['building','workplace','department','center','studio'],
     'priority':      ['goal','objective','target','task','requirement'],
     'priorities':    ['goals','objectives','targets','tasks','requirements'],
     'approach':      ['method','strategy','technique','style','solution'],
@@ -1025,7 +1089,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'girl':          ['woman','lady','student','colleague','assistant'],
     'bag':           ['case','folder','briefcase','box','package'],
     'entrance':      ['exit','reception','lobby','door','gate'],
-    'film':          ['movie','show','programme','series','video'],
+    'film':          ['movie','show','program','series','video'],
     'restaurant':    ['cafe','hotel','club','bar','venue'],
     'year':          ['month','week','day','period','decade'],
     'reason':        ['cause','purpose','point','factor','basis'],
@@ -1038,7 +1102,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'technologies':  ['systems','solutions','methods','tools','platforms'],
     'word':          ['sentence','phrase','question','answer','message'],
     'words':         ['sentences','phrases','questions','answers','messages'],
-    'sister':        ['brother','colleague','friend','partner','neighbour'],
+    'sister':        ['brother','colleague','friend','partner','neighbor'],
     'obstacle':      ['problem','challenge','barrier','difficulty','issue'],
     'obstacles':     ['problems','challenges','barriers','difficulties','issues'],
     'career':        ['work','profession','field','industry','position'],
@@ -1125,11 +1189,10 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'requiring':     ['suggesting','allowing','preventing','enabling','offering'],
     'demolish':      ['rebuild','renovate','close','sell','abandon'],
     'demolished':    ['rebuilt','renovated','closed','sold','abandoned'],
-    'realise':       ['notice','discover','confirm','decide','accept'],
+    'realize':       ['notice','discover','confirm','decide','accept'],
     'realises':      ['notices','discovers','confirms','decides','accepts'],
     'realised':      ['noticed','discovered','confirmed','decided','accepted'],
     'realising':     ['noticing','discovering','confirming','deciding','accepting'],
-    'realize':       ['notice','discover','confirm','decide','accept'],
     'realizes':      ['notices','discovers','confirms','decides','accepts'],
     'realized':      ['noticed','discovered','confirmed','decided','accepted'],
     'realizing':     ['noticing','discovering','confirming','deciding','accepting'],
@@ -1402,12 +1465,12 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'warning':       ['advising','reminding','informing','alerting','cautioning'],
     'return':        ['stay','leave','continue','transfer','proceed'],
     'returns':       ['stays','leaves','continues','transfers','proceeds'],
-    'returned':      ['departed','escaped','relocated','travelled','left'],
+    'returned':      ['departed','escaped','relocated','traveled','left'],
     'returning':     ['staying','leaving','continuing','transferring','proceeding'],
-    'notice':        ['see','observe','find','realise','discover'],
-    'notices':       ['sees','observes','finds','realises','discovers'],
-    'noticed':       ['saw','observed','found','realised','discovered'],
-    'noticing':      ['seeing','observing','finding','realising','discovering'],
+    'notice':        ['see','observe','find','realize','discover'],
+    'notices':       ['sees','observes','finds','realizes','discovers'],
+    'noticed':       ['saw','observed','found','realized','discovered'],
+    'noticing':      ['seeing','observing','finding','realizing','discovering'],
     'insist':        ['claim','demand','argue','state','maintain'],
     'insists':       ['claims','demands','argues','states','maintains'],
     'insisted':      ['claimed','demanded','argued','stated','maintained'],
@@ -1488,7 +1551,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'hiring':        ['recruiting','appointing','employing','finding','attracting'],
     'exercise':      ['train','study','practise','run','work'],
     'exercises':     ['trains','practises','rests','walks','studies'],
-    'exercised':     ['trained','practised','rested','walked','studied'],
+    'exercised':     ['trained','practiced','rested','walked','studied'],
     'exercising':    ['training','practising','resting','walking','studying'],
     'press':         ['push','pull','touch','click','hold'],
     'presses':       ['pushes','pulls','touches','clicks','holds'],
@@ -1547,7 +1610,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'succeeding':    ['failing','achieving','managing','delivering','performing'],
     'train':         ['practice','prepare','exercise','develop','study'],
     'trains':        ['practises','prepares','exercises','develops','studies'],
-    'trained':       ['practised','prepared','exercised','developed','studied'],
+    'trained':       ['practiced','prepared','exercised','developed','studied'],
     // ── L25 NOUNS — ручные дистракторы ──────────────────────────────────
     'noon':          ['midnight','evening','morning','dawn','dusk'],
     'attention':     ['focus','interest','effort','time','energy'],
@@ -1607,8 +1670,8 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'repeating':     ['saying','mentioning','confirming','stressing','restating'],
     'head':          ['move','travel','walk','drive','proceed'],
     'heads':         ['moves','travels','walks','drives','proceeds'],
-    'headed':        ['moved','travelled','walked','drove','proceeded'],
-    'heading':       ['moving','travelling','walking','driving','proceeding'],
+    'headed':        ['moved','traveled','walked','drove','proceeded'],
+    'heading':       ['moving','traveling','walking','driving','proceeding'],
     'install':       ['update','remove','download','configure','upgrade'],
     'installs':      ['updates','removes','downloads','configures','upgrades'],
     'installed':     ['updated','removed','downloaded','configured','upgraded'],
@@ -1925,7 +1988,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'liking':        ['loving','enjoying','hating','preferring','minding'],
     'practise':      ['train','study','review','test','improve'],
     'practises':     ['trains','studies','reviews','tests','improves'],
-    'practised':     ['trained','studied','reviewed','tested','improved'],
+    'practiced':     ['trained','studied','reviewed','tested','improved'],
     'practising':    ['training','studying','reviewing','testing','improving'],
     'mind':          ['care','like','want','accept','prefer'],
     'minds':         ['cares','likes','wants','accepts','prefers'],
@@ -1973,7 +2036,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'having':        ['making','taking','getting','using','keeping'],
     'starting':      ['finishing','leaving','returning','moving','changing'],
     'speaking':      ['working','writing','sitting','thinking','listening'],
-    'travelling':    ['working','studying','living','moving','staying'],
+    'traveling':     ['working','studying','living','moving','staying'],
     'trying':        ['doing','making','taking','working','starting'],
     'rushing':       ['working','moving','finishing','leaving','waiting'],
     'stealing':      ['taking','using','copying','removing','accessing'],
@@ -2053,7 +2116,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'compares':      ['matches','connects','relates','links','meets'],
     'compared':      ['matched','connected','related','linked','met'],
     'comparing':     ['matching','connecting','relating','linking','meeting'],
-    'understand':    ['know','find','see','check','realise'],
+    'understand':    ['know','find','see','check','realize'],
     'understands':   ['knows','finds','sees','checks','realises'],
     'understood':    ['knew','found','saw','checked','realised'],
     'understanding': ['knowing','finding','seeing','checking','realising'],
@@ -2113,15 +2176,15 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'shining':       ['rising','standing','moving','falling','glowing'],
     'play':          ['use','try','practise','study','learn'],
     'plays':         ['uses','tries','practises','studies','learns'],
-    'played':        ['used','tried','practised','studied','learnt'],
+    'played':        ['used','tried','practiced','studied','learned'],
     'recommend':     ['suggest','choose','give','need','use'],
     'recommends':    ['suggests','chooses','gives','needs','uses'],
     'recommended':   ['suggested','chosen','given','needed','used'],
     'recommending':  ['suggesting','choosing','giving','needing','using'],
     'revolve':       ['move','orbit','travel','turn','rotate'],
     'revolves':      ['moves','orbits','travels','turns','rotates'],
-    'revolved':      ['moved','orbited','travelled','turned','rotated'],
-    'revolving':     ['moving','orbiting','travelling','turning','rotating'],
+    'revolved':      ['moved','orbited','traveled','turned','rotated'],
+    'revolving':     ['moving','orbiting','traveling','turning','rotating'],
     'graduate':      ['finish','complete','leave','attend','study'],
     'graduates':     ['finishes','completes','leaves','attends','studies'],
     'graduated':     ['finished','completed','left','attended','studied'],
@@ -2144,8 +2207,8 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'buying':        ['getting','finding','ordering','choosing','picking'],
     'arrive':        ['come','leave','return','travel','move'],
     'arrives':       ['comes','leaves','returns','travels','moves'],
-    'arrived':       ['came','left','returned','travelled','started'],
-    'arriving':      ['coming','leaving','returning','travelling','moving'],
+    'arrived':       ['came','left','returned','traveled','started'],
+    'arriving':      ['coming','leaving','returning','traveling','moving'],
     // ── L19 PREPOSITIONS OF PLACE — ручные дистракторы ──────────────────
     'behind':        ['beside','opposite','above','below','across'],
     'above':         ['below','behind','beside','under','opposite'],
@@ -2178,7 +2241,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'lifts':         ['stairs','doors','corridors','exits','windows'],
     'cabinet':       ['drawer','shelf','cupboard','box','table'],
     'cabinets':      ['drawers','shelves','cupboards','boxes','tables'],
-    'station':       ['airport','office','building','centre','branch'],
+    'station':       ['airport','office','building','center','branch'],
     'stations':      ['airports','offices','buildings','centres','branches'],
     'armchair':      ['chair','sofa','couch','desk','stool'],
     'armchairs':     ['chairs','sofas','couches','desks','stools'],
@@ -2535,7 +2598,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'hour':          ['day','week','minute','month','moment'],
     'hours':         ['days','weeks','minutes','months','moments'],
     // ── L11 PAST SIMPLE (REGULAR -ED) — ручные дистракторы ──────────────
-    'visited':       ['toured','explored','attended','inspected','travelled'],
+    'visited':       ['toured','explored','attended','inspected','traveled'],
     'watched':       ['read','checked','listened','attended','monitored'],
     'wanted':        ['needed','decided','planned','hoped','expected'],
     'worked':        ['studied','trained','lived','helped','stayed'],
@@ -2555,9 +2618,8 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'planned':       ['organised','prepared','arranged','scheduled','confirmed'],
     // ── L11 NOUNS — ручные дистракторы ──────────────────────────────────
     'tennis':        ['football','basketball','golf','volleyball','swimming'],
-    'course':        ['class','programme','training','workshop','seminar'],
+    'course':        ['class','program','training','workshop','seminar'],
     'form':          ['document','report','template','request','sheet'],
-    'programme':     ['course','project','plan','initiative','scheme'],
     'seminar':       ['workshop','conference','training','session','class'],
     'file':          ['document','folder','report','record','attachment'],
     'task':          ['job','project','activity','assignment','duty'],
@@ -2577,7 +2639,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     // ── L10 NOUNS — ручные дистракторы ──────────────────────────────────
     'doctor':        ['manager','consultant','specialist','adviser','expert'],
     'language':      ['skill','subject','course','tool','area'],
-    'languages':     ['skills','subjects','courses','areas','programmes'],
+    'languages':     ['skills','subjects','courses','areas','programs'],
     'option':        ['choice','answer','solution','decision','approach'],
     'options':       ['choices','answers','solutions','decisions','approaches'],
     // ── L10 ADJECTIVES — ручные дистракторы ─────────────────────────────
@@ -2600,7 +2662,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'error':         ['mistake','problem','issue','fault','defect'],
     'slot':          ['time','space','date','period','opening'],
     'slots':         ['times','spaces','dates','periods','openings'],
-    'school':        ['college','university','academy','institute','centre'],
+    'school':        ['college','university','academy','institute','center'],
     'schools':       ['colleges','universities','academies','institutes','centres'],
     'competition':   ['demand','pressure','growth','activity','challenge'],
     // ── L9 ADJECTIVES / ADVERBS — ручные дистракторы ────────────────────
@@ -2619,7 +2681,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     // ── L8 NOUNS — ручные дистракторы ────────────────────────────────────
     'neighbourhood': ['area','district','location','community','zone'],
     'class':         ['lesson','course','session','workshop','group'],
-    'shop':          ['store','office','centre','market','building'],
+    'shop':          ['store','office','center','market','building'],
     'afternoon':     ['morning','evening','night','weekend','midday'],
     'evening':       ['morning','afternoon','night','day','weekend'],
     'weekdays':      ['weekends','mornings','evenings','weeks','days'],
@@ -2637,7 +2699,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'have':          ['get','make','take','need','own'],
     'has':           ['gets','makes','takes','needs','owns'],
     // ── L7 NOUNS — ручные дистракторы ────────────────────────────────────
-    'brother':       ['sister','colleague','friend','partner','neighbour'],
+    'brother':       ['sister','colleague','friend','partner','neighbor'],
     'brothers':      ['sisters','colleagues','friends','partners','children'],
     'card':          ['document','form','pass','permit','note'],
     'degree':        ['certificate','diploma','qualification','licence','title'],
@@ -2680,11 +2742,11 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     'position':      ['role','title','post','level','grade'],
     'news':          ['information','update','announcement','report','notice'],
     'people':        ['employees','members','colleagues','customers','users'],
-    'app':           ['tool','software','system','programme','platform'],
+    'app':           ['tool','software','system','program','platform'],
     'newspaper':     ['magazine','article','report','document','book'],
     'newspapers':    ['magazines','articles','reports','documents','books'],
     'marketing':     ['sales','finance','operations','management','communications'],
-    'podcasts':      ['programmes','series','videos','interviews','shows'],
+    'podcasts':      ['programs','series','videos','interviews','shows'],
     // ── L6 ADJECTIVES / ADVERBS — ручные дистракторы ────────────────────
     'long':          ['short','quick','busy','slow','much'],
     'far':           ['near','close','distant','away','abroad'],
@@ -2725,10 +2787,10 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     // ── L4 / L3 NOUNS — ручные дистракторы ──────────────────────────────
     'summer':        ['winter','spring','autumn','year','season'],
     'groceries':     ['supplies','goods','products','food','items'],
-    'supermarket':   ['shop','store','market','centre','outlet'],
+    'supermarket':   ['shop','store','market','center','outlet'],
     'Europe':        ['Asia','America','London','market','region'],
     'blog':          ['website','article','magazine','report','newsletter'],
-    'centre':        ['office','building','area','hub','location'],
+    'center':        ['office','building','area','hub','location'],
     'Sunday':        ['Monday','Saturday','Tuesday','Wednesday','Thursday'],
     'Sundays':       ['Mondays','Saturdays','Tuesdays','Wednesdays','Thursdays'],
     'Fridays':       ['Mondays','Saturdays','Tuesdays','Wednesdays','Thursdays'],
@@ -2865,3 +2927,6 @@ export {
     makeExpansionOptions, makeSmartOptions, makeSmartOptionsL1, tokenizePhrase
 };
 
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

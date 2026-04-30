@@ -3,6 +3,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { Lang } from '../constants/i18n';
 
 export interface NotificationSchedule {
   type: 'phrase_of_day' | 'streak_reminder' | 'streak_warning';
@@ -34,12 +35,20 @@ export const areNotificationsEnabled = async (): Promise<boolean> => {
   }
 };
 
-export const getPhraseOfDayText = (englishPhrase: string) => ({
-  title: 'Фраза дня ✨',
+export const getPhraseOfDayText = (englishPhrase: string, lang: Lang = 'ru') => ({
+  title: lang === 'uk' ? 'Фраза дня ✨' : lang === 'es' ? 'Frase del día ✨' : 'Фраза дня ✨',
   body: englishPhrase,
 });
 
-export const getStreakReminderText = (streakDays: number, lang: 'ru' | 'uk') => ({
-  title: `${lang === 'uk' ? 'Твоя серія' : 'Твой стрик'}: ${streakDays} ${lang === 'uk' ? 'днів' : 'дней'} 🔥`,
-  body: lang === 'uk' ? 'Займайся сьогодні!' : 'Займись сегодня!',
+export const getStreakReminderText = (streakDays: number, lang: Lang) => ({
+  title:
+    lang === 'uk'
+      ? `Твоя серія: ${streakDays} днів 🔥`
+      : lang === 'es'
+        ? `Tu racha: ${streakDays} días 🔥`
+        : `Твой стрик: ${streakDays} дней 🔥`,
+  body: lang === 'uk' ? 'Займайся сьогодні!' : lang === 'es' ? '¡Practica hoy!' : 'Займись сегодня!',
 });
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

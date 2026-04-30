@@ -5,8 +5,8 @@
  *  - Пользователь пропустил РОВНО один день (lastActive = 2 дня назад)
  *    и нет активной заморозки.
  *  - Открывает приложение → home.tsx обнаруживает eligibility, показывает карточку.
- *  - Пользователь должен завершить 2 урока сегодня.
- *  - После 2-го урока стрик «починен» — updateStreakOnActivity() его не обнулит.
+ *  - Пользователь должен завершить 1 урок сегодня.
+ *  - После 1-го урока стрик «починен» — updateStreakOnActivity() его не обнулит.
  *
  * Storage key: 'streak_repair_v1'
  */
@@ -17,7 +17,7 @@ export interface RepairState {
   eligibleDate:  string | null;   // YYYY-MM-DD когда стала доступна починка
   repairDate:    string | null;   // YYYY-MM-DD когда начата починка (= today)
   lessonsToday:  number;          // сколько уроков завершено в repair day
-  repaired:      boolean;         // починка выполнена (2+ уроков)
+  repaired:      boolean;         // починка выполнена (1+ уроков)
 }
 
 const KEY = 'streak_repair_v1';
@@ -80,8 +80,15 @@ export const isRepairEligible = async (): Promise<boolean> => {
 };
 
 /**
- * Вызывать после завершения каждого урока (из lesson_complete.tsx).
- * Возвращает { nowRepaired: true } если 2-й урок только что завершён.
+ * Вызывать при любой активности с XP (из xp_manager.ts).
+ * Возвращает { nowRepaired: true } если стрик только что починен.
+ */
+export const recordActivityForRepair = async (): Promise<{ nowRepaired: boolean }> => {
+  return recordLessonForRepair();
+};
+
+/**
+ * @deprecated используй recordActivityForRepair
  */
 export const recordLessonForRepair = async (): Promise<{ nowRepaired: boolean }> => {
   try {
@@ -98,8 +105,8 @@ export const recordLessonForRepair = async (): Promise<{ nowRepaired: boolean }>
       repaired:     false,
     };
 
-    // 2 урока = починка готова
-    if (updated.lessonsToday >= 2) {
+    // 1 урок = починка готова
+    if (updated.lessonsToday >= 1) {
       updated.repaired = true;
       await save(updated);
       return { nowRepaired: true };

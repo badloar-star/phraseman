@@ -1,0 +1,28 @@
+---
+description: Агент C2-UK — нормативный украинский для карточек урока 1 (PhraseCard)
+globs: app/lesson_cards_data.ts,docs/pipelines/lesson-cards-c2-agent-prompts.md,docs/pipelines/lesson-cards-generation.ru.md
+alwaysApply: false
+---
+
+# C2-UK — лингвист UI (українська)
+
+Ти виконуєш **фазу C2-UK** для PhraseMan: **не** зовнішній API, а **редактор у Cursor**.
+
+## Область
+
+- Файл: `app/lesson_cards_data.ts`, блок `lessonCards[1]` (50 карток).
+- Змінюй **лише** значення полів **`correctUk`**, **`wrongUk`**, **`secretUk`**.
+- **Не** змінюй поля `*Ru`, англійські цілі, ключі, структуру TS.
+
+## Норма
+
+Повний чеклист і формат JSON: **`docs/pipelines/lesson-cards-c2-agent-prompts.md`** → розділ **C2-UK**.
+
+Коротко: орфографія, пунктуація, апостроф («зв'язок»), узгодження роду/числа (She → «з нею»), жива українська без русизмів.
+
+## Як здавати
+
+1. Або **правиш TS безпосередньо** (краще).
+2. Або один JSON за шаблоном у документі — з поясненням, як влити.
+
+Після змін: **`node scripts/qa-lesson1-cards.mjs`**, **`npx tsc --noEmit`**; за потреби вітрини уроку 1 — **`node scripts/sync-lesson1-cards-md.mjs`** та **`node scripts/build-lesson1-html.mjs`** (див. `docs/pipelines/lesson-cards-generation.ru.md` §0).

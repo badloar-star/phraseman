@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/duel_lobby.tsx",
+  "session": "33b61ac9",
+  "op_index": 12,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "export default function DuelLobbyScreen() {\n  const router = useRouter();\n  const { theme: t, f } = useTheme();\n  const { spendOne, isUnlimited, energy } = useEnergy();\n  const [size, setSize] = useState<SessionSize>(2);\n  const [userId, setUserId] = useState<string>('');\n  const [phase, setPhase] = useState<LobbyPhase>('idle');",
+  "new_string": "export default function DuelLobbyScreen() {\n  const router = useRouter();\n  const { theme: t, f } = useTheme();\n  const { spendOne, isUnlimited, energy } = useEnergy();\n  const [size, setSize] = useState<SessionSize>(2);\n  const [userId, setUserId] = useState<string>('');\n  const [phase, setPhase] = useState<LobbyPhase>('idle');\n  const myRank = useDuelRank();"
+}

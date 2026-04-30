@@ -31,6 +31,9 @@ interface PremiumCardProps {
   active?:      boolean;
   disabled?:    boolean;
   borderRadius?: number;
+  testID?: string;
+  accessibilityLabel?: string;
+  accessible?: boolean;
 }
 
 export default function PremiumCard({
@@ -43,6 +46,9 @@ export default function PremiumCard({
   active = false,
   disabled = false,
   borderRadius = 16,
+  testID,
+  accessibilityLabel,
+  accessible,
 }: PremiumCardProps) {
   const { theme: t, themeMode } = useTheme();
 
@@ -87,6 +93,9 @@ export default function PremiumCard({
     };
     return (
       <TouchableOpacity
+        testID={testID}
+        accessibilityLabel={accessibilityLabel}
+        accessible={accessible !== undefined ? accessible : !!(testID || accessibilityLabel)}
         style={outerStyle}
         onPress={handlePress}
         activeOpacity={activeOpacity}

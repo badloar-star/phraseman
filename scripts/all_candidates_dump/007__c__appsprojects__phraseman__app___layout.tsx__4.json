@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/_layout.tsx",
+  "session": "33b61ac9",
+  "op_index": 4,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "  useEffect(() => {\n    if (!showOnboarding && pendingRoute) {\n      const t = setTimeout(() => {\n        router.replace(pendingRoute as any);\n        setPendingRoute(null);\n      }, 50);\n      return () => clearTimeout(t);\n    }\n  }, [showOnboarding, pendingRoute]);",
+  "new_string": "  useEffect(() => {\n    if (!showOnboarding && pendingRoute) {\n      const t = setTimeout(() => {\n        router.replace(pendingRoute as any);\n        setPendingRoute(null);\n      }, 50);\n      return () => clearTimeout(t);\n    }\n  }, [showOnboarding, pendingRoute]);\n\n  // Обработка входящих deeplink-ов (дуэльные приглашения)\n  useEffect(() => {\n    const handleUrl = (url: string) => {\n      // https://badloar-star.github.io/phraseman/duel/ROOMID\n      // или phraseman://duel/ROOMID\n      const match = url.match(/\\/duel\\/([A-Z0-9]+)/i);\n      if (match) {\n        const roomId = match[1];\n        router.push({ pathname: '/duel_join' as any, params: { roomId } });\n      }\n    };\n    Linking.getInitialURL().then(url => { if (url) handleUrl(url); });\n    const sub = Linking.addEventListener('url', ({ url }) => handleUrl(url));\n    return () => sub.remove();\n  }, []);"
+}

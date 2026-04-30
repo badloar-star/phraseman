@@ -7,9 +7,9 @@
  * - Исчезает через 2 сек или при тапе
  */
 
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
-import * as Haptics from 'expo-haptics';
+import { hapticMediumImpact } from '../hooks/use-haptics';
 import * as Speech from 'expo-speech';
 
 export interface BonusXPCardProps {
@@ -30,7 +30,7 @@ export default function BonusXPCard({
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
   const dismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const playBonusSound = () => {
+  const playBonusSound = useCallback(() => {
     // Позитивный звук: быстрые пиксели (звучит весело и энергично)
     try {
       Speech.speak('', {
@@ -39,9 +39,9 @@ export default function BonusXPCard({
         pitch: 1,
       });
     } catch {}
-  };
+  }, []);
 
-  const dismissCard = () => {
+  const dismissCard = useCallback(() => {
     if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current);
 
     Animated.parallel([
@@ -58,9 +58,9 @@ export default function BonusXPCard({
     ]).start(() => {
       onDismiss();
     });
-  };
+  }, [onDismiss, opacityAnim, scaleAnim]);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+   
   useEffect(() => {
     // Входящая анимация: слайд вверх + масштаб
     Animated.parallel([
@@ -87,7 +87,7 @@ export default function BonusXPCard({
     playBonusSound();
 
     // Хаптика
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
+    void hapticMediumImpact();
 
     // Автоисчезновение через duration
     dismissTimerRef.current = setTimeout(() => {
@@ -97,7 +97,7 @@ export default function BonusXPCard({
     return () => {
       if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current);
     };
-  }, [duration]);
+  }, [dismissCard, duration, opacityAnim, playBonusSound, scaleAnim, slideAnim]);
 
   const getTierColor = () => {
     if (bonusXP <= 10) return '#4ADE80'; // Зелёный (мало)

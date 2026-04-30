@@ -1,0 +1,77 @@
+import json, sys, io, os
+from pathlib import Path
+from collections import defaultdict
+
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+
+SESSIONS_DIR = Path("C:/Users/badlo/.claude/projects/c--appsprojects-phraseman")
+TARGET = [
+    "66d17b80-d929-4f73-ac0a-617069bb7062.jsonl",
+    "fa8a53f6-4276-4a25-88c5-6b8bde5879ef.jsonl",
+    "f03ded42-448c-40fe-bd13-aa58f6b76f79.jsonl",
+    "560c3309-c253-4584-9b47-f73b75269a20.jsonl",
+    "0506cde2-bb1e-484c-9395-b86120e16785.jsonl",
+    "dca4eba4-ee3e-4fc2-909f-a01dd5ac39f2.jsonl",
+    "a9f317e2-3dc7-4488-a9b1-cd2a18e30949.jsonl",
+    "75ec9482-b8e9-4d08-bf11-e37170764462.jsonl",
+    "ab6ff238-b065-42fe-804f-427246de0afe.jsonl",
+    "1483959d-c857-4eb1-bbb5-d72b3ccfc8fa.jsonl",
+    "327644f1-bedc-47de-9962-1a0629f5c1ab.jsonl",
+    "a813499c-f63c-46c8-93d3-68e174bb43ec.jsonl",
+    "1eb4d6e8-d2b7-47a5-b8af-c09c0d72e323.jsonl",
+    "3deb5db8-7027-4c65-a62a-ffdfaace6032.jsonl",
+    "33b61ac9-be2a-48c1-8b77-a622c75b2e17.jsonl",
+    "282891be-7286-4fa7-9487-97048a02ecfa.jsonl",
+    "b8657361-68b4-494f-b52d-5ba461e74e47.jsonl",
+]
+SKIP = ['root-access', 'settings.json', '/Users/badlo/.claude']
+
+edits_per_file = defaultdict(list)
+for name in TARGET:
+    jf = SESSIONS_DIR / name
+    if not jf.exists(): continue
+    with open(jf, encoding='utf-8', errors='ignore') as f:
+        for line in f:
+            try: obj = json.loads(line.strip())
+            except: continue
+            msg = obj.get('message', {})
+            if msg.get('role') != 'assistant': continue
+            for block in msg.get('content', []):
+                if not isinstance(block, dict): continue
+                if block.get('type') != 'tool_use' or block.get('name') != 'Edit': continue
+                inp = block.get('input', {})
+                fp = inp.get('file_path', '').replace('\\', '/')
+                old = inp.get('old_string', '')
+                new = inp.get('new_string', '')
+                if not fp or not old: continue
+                skip = any(s in fp for s in SKIP)
+                if skip: continue
+                if 'phraseman' not in fp.lower(): continue
+                edits_per_file[fp].append((old, new, name[:8]))
+
+out_dir = Path("c:/appsprojects/phraseman/scripts/missing_edits_dump")
+out_dir.mkdir(exist_ok=True)
+
+idx = 0
+for fp, edits in sorted(edits_per_file.items()):
+    if not os.path.exists(fp):
+        continue
+    with open(fp, encoding='utf-8', errors='ignore') as f:
+        content = f.read()
+    for i, (old, new, sess) in enumerate(edits):
+        if old in content and new not in content:
+            # Unapplied edit - dump it fully
+            idx += 1
+            safe_name = fp.replace('/', '__').replace(':', '')
+            dump_file = out_dir / f"{idx:03d}__{safe_name}__{i}.json"
+            with open(dump_file, 'w', encoding='utf-8') as df:
+                json.dump({
+                    'file': fp,
+                    'session': sess,
+                    'index': i,
+                    'old_string': old,
+                    'new_string': new,
+                }, df, ensure_ascii=False, indent=2)
+            print(f"[{idx}] {fp} (op #{i}, sess={sess})")
+
+print(f"\nTotal unapplied edits: {idx}")

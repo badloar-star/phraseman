@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Phraseman — макеты share-карточек (1080×1080)</title>
+  <style>
+    :root {
+      --bg: #0c1218;
+      --card: #141c24;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #3b82f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", system-ui, sans-serif;
+      line-height: 1.5;
+      padding: 2rem 1.5rem 3rem;
+    }
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin: 0 0 0.5rem;
+    }
+    p.lead {
+      color: var(--muted);
+      font-size: 0.95rem;
+      max-width: 42rem;
+      margin: 0 0 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+    }
+    figure {
+      margin: 0;
+      background: var(--card);
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.15);
+      padding: 1rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+    }
+    figcaption {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+    figcaption strong {
+      color: var(--text);
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+    .frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #000;
+    }
+    .frame img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+    .note {
+      margin-top: 2.5rem;
+      padding: 1rem 1.25rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(59, 130, 246, 0.08);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 42rem;
+    }
+    code {
+      font-size: 0.85em;
+      color: #93c5fd;
+    }
+  </style>
+</head>
+<body>
+  <h1>Phraseman — макеты share-карточек</h1>
+  <p class="lead">
+    Статичные SVG 1080×1080: то же визуальное направление, что и в приложении (React Native SVG).
+    Открой этот файл в браузере: двойной клик по <code>preview.html</code> или перетащи в Chrome / Edge / Firefox.
+  </p>
+
+  <div class="grid">
+    <figure>
+      <div class="frame">
+        <img src="preview-streak.svg" width="1080" height="1080" alt="Превью: карточка стрика" />
+      </div>
+      <figcaption>
+        <strong>Стрик</strong>
+        Файл: <code>preview-streak.svg</code> · пример: 30 дней подряд
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <img src="preview-quiz.svg" width="1080" height="1080" alt="Превью: карточка квиза" />
+      </div>
+      <figcaption>
+        <strong>Квиз</strong>
+        Файл: <code>preview-quiz.svg</code> · пример: 7/10, 70%, ранг «Хорошо!»
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <img src="preview-exam.svg" width="1080" height="1080" alt="Превью: карточка экзамена" />
+      </div>
+      <figcaption>
+        <strong>Экзамен Лингмана</strong>
+        Файл: <code>preview-exam.svg</code> · пример: 46/50, 92%
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <img src="preview-lesson.svg" width="1080" height="1080" alt="Превью: карточка урока" />
+      </div>
+      <figcaption>
+        <strong>Урок</strong>
+        Файл: <code>preview-lesson.svg</code> · пример: урок 5, 4.5★, A2, «Блестяще!»
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <img src="preview-achievement.svg" width="1080" height="1080" alt="Превью: карточка достижения" />
+      </div>
+      <figcaption>
+        <strong>Достижение</strong>
+        Файл: <code>preview-achievement.svg</code> · <code>AchievementShareCardSvg</code> · пример: «Огненная серия»
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <img src="preview-arena.svg" width="1080" height="1080" alt="Превью: приглашение в дуэль" />
+      </div>
+      <figcaption>
+        <strong>Арена</strong>
+        Файл: <code>preview-arena.svg</code> · <code>ArenaInviteShareCardSvg</code> · ссылка с комнатой только в тексте шаринга
+      </figcaption>
+    </figure>
+    <figure>
+      <div class="frame">
+        <img src="preview-celebration.svg" width="1080" height="1080" alt="Превью: праздничная карточка" />
+      </div>
+      <figcaption>
+        <strong>Событие после урока</strong>
+        Файл: <code>preview-celebration.svg</code> · <code>CelebrationShareCardSvg</code> · медаль / разблок / зачёт / Лингман
+      </figcaption>
+    </figure>
+  </div>
+
+  <p class="note">
+    Статичные макеты совпадают по сетке и градиентам с <code>components/share_cards/*.tsx</code> (экспорт PNG идёт из тех же визуальных идей). Текст/эмодзи в приложении могут отличаться (язык, длина заголовка).
+  </p>
+</body>
+</html>

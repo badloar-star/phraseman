@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/flashcards.tsx",
+  "session": "a9f317e2",
+  "op_index": 6,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "        {/* Flip all button */}\n        {filteredCards.length > 0 && (",
+  "new_string": "        {/* Add card button — custom category only */}\n        {activeCat === 'custom' && (\n          <TouchableOpacity\n            onPress={() => { setDraftEN(''); setDraftTR(''); setEditingId(null); setCreateStep('front'); createFlipAnim.setValue(0); setMode('create'); }}\n            activeOpacity={0.8}\n            style={{\n              marginHorizontal: 16, marginTop: 10, marginBottom: 4,\n              paddingVertical: 14, paddingHorizontal: 20,\n              borderRadius: 14, backgroundColor: t.accent,\n              flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,\n            }}\n          >\n            <Ionicons name=\"add-circle-outline\" size={20} color={t.correctText} />\n            <Text style={{ fontSize: f.body, fontWeight: '700', color: t.correctText }}>\n              {lang === 'uk' ? 'Додати картку' : 'Добавить карточку'}\n            </Text>\n          </TouchableOpacity>\n        )}\n\n        {/* Flip all button */}\n        {filteredCards.length > 0 && ("
+}

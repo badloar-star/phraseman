@@ -1,0 +1,2023 @@
+# ===== Урок 17: Урок 17: Present Continuous / Урок 17: Present Continuous =====
+
+L17/lesson17_phrase_1
+  EN: Am I cooking this delicious dinner in the kitchen right now?
+  RU: Я готовлю этот вкусный ужин на кухне прямо сейчас?
+  UK: Я готую цю смачну вечерю на кухні прямо зараз?
+
+L17/lesson17_phrase_2
+  EN: You are not reading that interesting article in the newspaper.
+  RU: Ты не читаешь ту интересную статью в газете.
+  UK: Ти не читаєш ту цікаву статтю в газеті.
+
+L17/lesson17_phrase_3
+  EN: Is he repairing his old bicycle in the garage?
+  RU: Он ремонтирует свой старый велосипед в гараже?
+  UK: Він ремонтує свій старий велосипед у гаражі?
+
+L17/lesson17_phrase_4
+  EN: She is not writing this important email to her boss.
+  RU: Она не пишет этот важный имейл своему начальнику.
+  UK: Вона не пише цей важливий імейл своєму керівнику.
+
+L17/lesson17_phrase_5
+  EN: Are we watching that new show on TV?
+  RU: Мы смотрим то новое шоу по телевизору?
+  UK: Ми дивимося те нове шоу по телебаченню?
+
+L17/lesson17_phrase_6
+  EN: This talented artist is not painting that huge picture.
+  RU: Этот талантливый художник не рисует ту огромную картину.
+  UK: Цей талановитий художник не малює ту величезну картину.
+
+L17/lesson17_phrase_7
+  EN: Are those hardworking builders building this modern building?
+  RU: Те трудолюбивые строители строят это современное здание?
+  UK: Ті працьовиті будівельники будують цю сучасну будівлю?
+
+L17/lesson17_phrase_8
+  EN: My elder brother is not washing that dirty car outside.
+  RU: Мой старший брат не моет ту грязную машину на улице.
+  UK: Мій старший брат не миє ту брудну машину надворі.
+
+L17/lesson17_phrase_9
+  EN: These little children are not playing happily in this green garden.
+  RU: Эти маленькие дети не играют весело в этом зеленом саду.
+  UK: Ці маленькі діти не грають весело в цьому зеленому саду.
+
+L17/lesson17_phrase_10
+  EN: Is our new manager discussing those important conditions?
+  RU: Наш новый менеджер обсуждает те важные условия?
+  UK: Наш новий менеджер обговорює ті важливі умови?
+
+L17/lesson17_phrase_11
+  EN: You are not ordering those fresh vegetables through this app.
+  RU: Ты не заказываешь те свежие овощи через это приложение.
+  UK: Ти не замовляєш ті свіжі овочі через цей застосунок.
+
+L17/lesson17_phrase_12
+  EN: Is that polite receptionist checking your booking?
+  RU: Тот вежливый администратор проверяет твое бронирование?
+  UK: Той ввічливий адміністратор перевіряє твоє бронювання?
+
+L17/lesson17_phrase_13
+  EN: We are not discussing this complex project in the bright office.
+  RU: Мы не обсуждаем этот сложный проект в светлом офисе.
+  UK: Ми не обговорюємо цей складний проєкт у світлому офісі.
+
+L17/lesson17_phrase_14
+  EN: She is not trying on that long silk skirt in the shop.
+  RU: Она не примеряет ту длинную шелковую юбку в магазине.
+  UK: Вона не приміряє ту довгу шовкову спідницю в магазині.
+
+L17/lesson17_phrase_15
+  EN: Are they translating that difficult article for this client?
+  RU: Они переводят ту сложную статью для этого клиента?
+  UK: Вони перекладають ту складну статтю для цього клієнта?
+
+L17/lesson17_phrase_16
+  EN: That experienced driver is not parking this long truck by that warehouse.
+  RU: Тот опытный водитель не паркует этот длинный грузовик у того склада.
+  UK: Той досвідчений водій не паркує цю довгу вантажівку біля того складу.
+
+L17/lesson17_phrase_17
+  EN: We are not packing those fragile gifts into this big box.
+  RU: Мы не упаковываем те хрупкие подарки в эту большую коробку.
+  UK: Ми не пакуємо ті крихкі подарунки в цю велику коробку.
+
+L17/lesson17_phrase_18
+  EN: Are you hanging that beautiful picture on this bright wall?
+  RU: Ты вешаешь ту красивую картину на эту светлую стену?
+  UK: Ти вішаєш ту красиву картину на цю світлу стіну?
+
+L17/lesson17_phrase_19
+  EN: She is watering those bright flowers in this small pot.
+  RU: Она в данный момент поливает те яркие цветы в этом маленьком горшке.
+  UK: Вона в даний момент поливає ті яскраві квіти в цьому маленькому горщику.
+
+L17/lesson17_phrase_20
+  EN: Are they looking for that lost bag in this huge airport?
+  RU: Они ищут ту потерянную сумку в этом огромном аэропорту?
+  UK: Вони шукають ту загублену сумку в цьому величезному аеропорту?
+
+L17/lesson17_phrase_21
+  EN: That attentive waiter is bringing that hot apple pie.
+  RU: Тот внимательный официант сейчас приносит тот горячий яблочный пирог.
+  UK: Той уважний офіціант зараз приносить той гарячий яблучний пиріг.
+
+L17/lesson17_phrase_22
+  EN: You are choosing this comfortable leather sofa in the furniture center.
+  RU: Вы сейчас выбираете этот удобный кожаный диван в мебельном центре.
+  UK: Ви зараз обираєте цей зручний шкіряний диван у меблевому центрі.
+
+L17/lesson17_phrase_23
+  EN: Is our main engineer checking those solar panels on the roof?
+  RU: Наш главный инженер проверяет те солнечные панели на крыше?
+  UK: Наш головний інженер перевіряє ті сонячні панелі на даху?
+
+L17/lesson17_phrase_24
+  EN: She is pouring that cold orange juice into this glass tumbler.
+  RU: Она сейчас наливает тот холодный апельсиновый сок в этот стеклянный стакан.
+  UK: Вона зараз наливає той холодний апельсиновий сік у цю скляну склянку.
+
+L17/lesson17_phrase_25
+  EN: My friends are booking that cozy apartment through this website.
+  RU: Мои друзья сейчас бронируют ту уютную квартиру через этот сайт.
+  UK: Мої друзі зараз бронюють ту затишну квартиру через цей сайт.
+
+L17/lesson17_phrase_26
+  EN: That strong worker is carrying those heavy tools into this workshop.
+  RU: Тот сильный рабочий сейчас несет те тяжелые инструменты в эту мастерскую.
+  UK: Той сильний робітник зараз несе ті важкі інструменти в цю майстерню.
+
+L17/lesson17_phrase_27
+  EN: Are you listening to that classical music through these wireless headphones?
+  RU: Ты слушаешь ту классическую музыку через эти беспроводные наушники?
+  UK: Ти слухаєш ту класичну музику через ці бездротові навушники?
+
+L17/lesson17_phrase_28
+  EN: This talented chef is cutting those juicy tomatoes for that salad.
+  RU: Этот талантливый повар сейчас режет те сочные томаты для того салата.
+  UK: Цей талановитий кухар зараз ріже ті соковиті томати для того салату.
+
+L17/lesson17_phrase_29
+  EN: Our experienced guide is showing that ancient church to this tourist group.
+  RU: Наш опытный гид сейчас показывает ту старинную церковь этой туристической группе.
+  UK: Наш досвідчений гід зараз показує ту старовинну церкву цій туристичній групі.
+
+L17/lesson17_phrase_30
+  EN: My sister is trying on those stylish dark glasses in front of this mirror.
+  RU: Моя сестра сейчас примеряет те стильные темные очки перед этим зеркалом.
+  UK: Моя сестра зараз приміряє ті стильні темні окуляри перед цим дзеркалом.
+
+L17/lesson17_phrase_31
+  EN: Is that polite courier delivering this urgent order to the address?
+  RU: Тот вежливый курьер доставляет этот срочный заказ по адресу?
+  UK: Той ввічливий кур'єр доставляє це термінове замовлення за адресою?
+
+L17/lesson17_phrase_32
+  EN: We are crossing that busy street at the pedestrian crossing.
+  RU: Мы сейчас переходим ту оживленную улицу по пешеходному переходу.
+  UK: Ми зараз переходимо ту жваву вулицю по пішохідному переходу.
+
+L17/lesson17_phrase_33
+  EN: You are signing that important contract in this quiet study.
+  RU: Вы сейчас подписываете тот важный контракт в этом тихом кабинете.
+  UK: Ви зараз підписуєте той важливий контракт у цьому тихому кабінеті.
+
+L17/lesson17_phrase_34
+  EN: My best friend is throwing that red coin into this fountain.
+  RU: Мой лучший друг сейчас бросает ту красную монету в этот фонтан.
+  UK: Мій найкращий друг зараз кидає ту червону монету в цей фонтан.
+
+L17/lesson17_phrase_35
+  EN: Is she choosing that ripe strawberry at this local market?
+  RU: Она выбирает ту спелую клубнику на этом местном рынке?
+  UK: Вона обирає ту стиглу полуницю на цьому місцевому ринку?
+
+L17/lesson17_phrase_36
+  EN: That polite waiter is setting that round table in the corner of the restaurant.
+  RU: Тот вежливый официант сейчас накрывает тот круглый стол в углу ресторана.
+  UK: Той ввічливий офіціант зараз накриває той круглий стіл у кутку ресторану.
+
+L17/lesson17_phrase_37
+  EN: We are hanging that new shelf on this brick wall.
+  RU: Мы сейчас вешаем ту новую полку на эту кирпичную стену.
+  UK: Ми зараз вішаємо ту нову полицю на цю цегляну стіну.
+
+L17/lesson17_phrase_38
+  EN: You are packing those fragile glasses into that soft paper.
+  RU: Вы в данный момент упаковываете те хрупкие бокалы в ту мягкую бумагу.
+  UK: Ви в цей момент пакуєте ті крихкі келихи в той м\'який папір.
+
+L17/lesson17_phrase_39
+  EN: Those skillful gardeners are trimming that tall bush behind this house.
+  RU: Те умелые садовники сейчас подрезают тот высокий куст за этим домом.
+  UK: Ті вмілі садівники зараз підрізають той високий кущ за цим будинком.
+
+L17/lesson17_phrase_40
+  EN: Our new neighbor is cleaning that deep pool in his backyard.
+  RU: Наш новый сосед сейчас чистит тот глубокий бассейн в своем заднем дворе.
+  UK: Наш новий сусід зараз чистить той глибокий басейн у своєму задньому дворі.
+
+L17/lesson17_phrase_41
+  EN: Is that reliable mechanic fixing that old engine in this garage?
+  RU: Тот надежный механик чинит тот старый двигатель в этом гараже?
+  UK: Той надійний механік ремонтує той старий двигун у цьому гаражі?
+
+L17/lesson17_phrase_42
+  EN: You are slicing those sweet pears for this homemade dessert.
+  RU: Вы сейчас нарезаете те сладкие груши для этого домашнего десерта.
+  UK: Ви зараз нарізаєте ті солодкі груші для цього домашнього десерту.
+
+L17/lesson17_phrase_43
+  EN: Our younger daughter is drawing that beautiful castle on this white sheet.
+  RU: Наша младшая дочь сейчас рисует тот красивый замок на этом белом листе.
+  UK: Наша молодша донька зараз малює той красивий замок на цьому білому аркуші.
+
+L17/lesson17_phrase_44
+  EN: She is brewing that strong black tea in this porcelain teapot.
+  RU: Она сейчас заваривает тот крепкий черный чай в этом фарфоровом чайнике.
+  UK: Вона зараз заварює той міцний чорний чай у цьому порцеляновому чайнику.
+
+L17/lesson17_phrase_45
+  EN: They are discussing that new vacancy in this modern office at present.
+  RU: Они обсуждают ту новую вакансию в этом современном офисе в данный момент.
+  UK: Вони обговорюють ту нову вакансію в цьому сучасному офісі в цей момент.
+
+L17/lesson17_phrase_46
+  EN: That polite consultant is explaining those new rules in this bright hall.
+  RU: Тот вежливый консультант сейчас объясняет те новые правила в этом светлом зале.
+  UK: Той ввічливий консультант зараз пояснює ті нові правила в цьому світлому залі.
+
+L17/lesson17_phrase_47
+  EN: We are checking those important documents through this secure service.
+  RU: Мы сейчас проверяем те важные документы через этот безопасный сервис.
+  UK: Ми зараз перевіряємо ті важливі документи через цей безпечний сервіс.
+
+L17/lesson17_phrase_48
+  EN: You are buying those ripe vegetables at this farmers market.
+  RU: Вы сейчас покупаете те спелые овощи на этом фермерском рынке.
+  UK: Ви зараз купуєте ті стиглі овочі на цьому фермерському ринку.
+
+L17/lesson17_phrase_49
+  EN: Is that talented architect creating this unique design for that building?
+  RU: Тот талантливый архитектор создает этот уникальный дизайн для того здания?
+  UK: Той талановитий архітектор створює цей унікальний дизайн для тієї будівлі?
+
+L17/lesson17_phrase_50
+  EN: She is booking that convenient car through this reliable website.
+  RU: Она сейчас бронирует ту удобную машину через этот надежный сайт.
+  UK: Вона зараз бронює ту зручну машину через цей надійний сайт.
+
+
+# ===== Урок 18: Урок 18: Повелительное наклонение / Урок 18: Наказовий спосіб =====
+
+L18/lesson18_phrase_1
+  EN: Can you pass that sharp knife to this young chef?
+  RU: Ты можешь передать тот острый нож этому молодому повару?
+  UK: Ти можеш передати той гострий ніж цьому молодому кухарю?
+
+L18/lesson18_phrase_2
+  EN: Do not press that red button on this old panel.
+  RU: Не нажимай ту красную кнопку на этой старой панели.
+  UK: Не натискай ту червону кнопку на цій старій панелі.
+
+L18/lesson18_phrase_3
+  EN: Can you pour that fresh orange juice into this clean glass?
+  RU: Ты можешь налить тот свежий апельсиновый сок в этот чистый стакан?
+  UK: Ти можеш налити той свіжий апельсиновий сік у цей чистий стакан?
+
+L18/lesson18_phrase_4
+  EN: Can you put those leather gloves into that empty drawer?
+  RU: Ты можешь положить те кожаные перчатки в тот пустой ящик?
+  UK: Ти можеш покласти ті шкіряні рукавички в ту порожню шухляду?
+
+L18/lesson18_phrase_5
+  EN: Let us discuss this new plan in that quiet office.
+  RU: Давайте обсудим этот новый план в том тихом офисе.
+  UK: Давайте обговоримо цей новий план в тому тихому офісі.
+
+L18/lesson18_phrase_6
+  EN: Can you check that important information on this official page?
+  RU: Ты можешь проверить ту важную информацию на этой официальной странице?
+  UK: Ти можеш перевірити ту важливу інформацію на цій офіційній сторінці?
+
+L18/lesson18_phrase_7
+  EN: Do not leave your heavy bags in that narrow corridor.
+  RU: Не оставляй свои тяжёлые сумки в том узком коридоре.
+  UK: Не залишай свої важкі сумки в тому вузькому коридорі.
+
+L18/lesson18_phrase_8
+  EN: Can you bring those new documents into that bright study?
+  RU: Ты можешь принести те новые документы в тот светлый кабинет?
+  UK: Ти можеш принести ті нові документи в той світлий кабінет?
+
+L18/lesson18_phrase_9
+  EN: Let us buy that convenient map in this small shop.
+  RU: Давайте купим ту удобную карту в этом маленьком магазине.
+  UK: Давайте купимо ту зручну карту в цьому маленькому магазині.
+
+L18/lesson18_phrase_10
+  EN: Do not close that big window in this stuffy room.
+  RU: Не закрывай то большое окно в этой душной комнате.
+  UK: Не закривай те велике вікно в цій задушливій кімнаті.
+
+L18/lesson18_phrase_11
+  EN: Can you cut that hard cheese with these sharp tools for that snack?
+  RU: Ты можешь нарезать тот твердый сыр этими острыми инструментами для того перекуса?
+  UK: Ти можеш нарізати той твердий сир цими гострими інструментами для того перекусу?
+
+L18/lesson18_phrase_12
+  EN: Do not forget those leather shoes in this old box under that bed.
+  RU: Не забудь те кожаные туфли в этой старой коробке под той кроватью.
+  UK: Не забудь ті шкіряні туфлі в цій старій коробці під тим ліжком.
+
+L18/lesson18_phrase_13
+  EN: Let us meet that important delegation at those main gates now.
+  RU: Давайте встретим ту важную делегацию у тех главных ворот сейчас.
+  UK: Давайте зустрінемо ту важливу делегацію біля тих головних воріт зараз.
+
+L18/lesson18_phrase_14
+  EN: Can you send that detailed report to that strict manager via that mail?
+  RU: Ты можешь отправить тот подробный отчет тому строгому менеджеру по той почте?
+  UK: Ти можеш надіслати той детальний звіт тому суворому менеджеру тією поштою?
+
+L18/lesson18_phrase_15
+  EN: Do not park that big car in front of this private exit.
+  RU: Не паркуй ту большую машину перед этим частным выходом.
+  UK: Не паркуй ту велику машину перед цим приватним виходом.
+
+L18/lesson18_phrase_16
+  EN: Hang that winter coat in this wooden wardrobe right now.
+  RU: Повесь то зимнее пальто в этот деревянный шкаф прямо сейчас.
+  UK: Повісь те зимове пальто в цю дерев\'яну шафу прямо зараз.
+
+L18/lesson18_phrase_17
+  EN: Do not drink that cold water from that plastic cup.
+  RU: Не пей ту холодную воду из того пластикового стакана.
+  UK: Не пий ту холодну воду з того пластикового стакана.
+
+L18/lesson18_phrase_18
+  EN: Can you take those fresh newspapers from that round table?
+  RU: Ты можешь взять те свежие газеты с того круглого стола?
+  UK: Ти можеш взяти ті свіжі газети з того круглого столу?
+
+L18/lesson18_phrase_19
+  EN: Let us choose those comfortable armchairs for our new living room.
+  RU: Давайте выберем те удобные кресла для нашей новой гостиной.
+  UK: Давайте виберемо ті зручні крісла для нашої нової вітальні.
+
+L18/lesson18_phrase_20
+  EN: Do not push that heavy door in this narrow passage.
+  RU: Не толкай ту тяжёлую дверь в этом узком проходе.
+  UK: Не штовхай ті важкі двері в цьому вузькому проході.
+
+L18/lesson18_phrase_21
+  EN: Can you show those secret blueprints to that experienced engineer in this workshop?
+  RU: Ты можешь показать те секретные чертежи тому опытному инженеру в этой мастерской?
+  UK: Ти можеш показати ті секретні креслення тому досвідченому інженеру в цій майстерні?
+
+L18/lesson18_phrase_22
+  EN: Do not put that hot kettle on this plastic surface.
+  RU: Не ставь тот горячий чайник на эту пластиковую поверхность.
+  UK: Не став той гарячий чайник на цю пластикову поверхню.
+
+L18/lesson18_phrase_23
+  EN: Let us invite that famous artist to this charity event.
+  RU: Давайте пригласим того известного художника на это благотворительное мероприятие.
+  UK: Давайте запросимо того відомого художника на цей благодійний захід.
+
+L18/lesson18_phrase_24
+  EN: Can you pass that heavy hammer to that strong worker in those blue overalls?
+  RU: Ты можешь передать тот тяжелый молоток тому сильному рабочему в том синем комбинезоне?
+  UK: Ти можеш передати той важкий молоток тому сильному працівнику в тому синьому комбінезоні?
+
+L18/lesson18_phrase_25
+  EN: Do not read those other letters on this desk.
+  RU: Не читай те другие письма на этом столе.
+  UK: Не читай ті інші листи на цьому столі.
+
+L18/lesson18_phrase_26
+  EN: Leave those extra keys on that small shelf in our hallway.
+  RU: Оставь те лишние ключи на той маленькой полке в нашем коридоре.
+  UK: Залиш ті зайві ключі на тій маленькій полиці в нашому коридорі.
+
+L18/lesson18_phrase_27
+  EN: Do not feed that stray dog in this public park.
+  RU: Не корми ту бездомную собаку в этом общественном парке.
+  UK: Не годуй того бездомного пса в цьому громадському парку.
+
+L18/lesson18_phrase_28
+  EN: Let us build this strong fence around that big garden.
+  RU: Давайте построим этот прочный забор вокруг того большого сада.
+  UK: Давайте побудуємо цей міцний паркан навколо того великого саду.
+
+L18/lesson18_phrase_29
+  EN: Take a photo of that bright sunset with this new camera.
+  RU: Сфотографируй тот яркий закат этой новой камерой.
+  UK: Сфотографуй той яскравий захід сонця цією новою камерою.
+
+L18/lesson18_phrase_30
+  EN: Do not lose those important tickets on that long journey.
+  RU: Не теряй те важные билеты в той долгой поездке.
+  UK: Не втрачай ті важливі квитки в тій довгій подорожі.
+
+L18/lesson18_phrase_31
+  EN: Please, reserve that cozy table for our important dinner in this restaurant.
+  RU: Пожалуйста, зарезервируй тот уютный стол для нашего важного ужина в этом ресторане.
+  UK: Будь ласка, зарезервуй той затишний стіл для нашої важливої вечері в цьому ресторані.
+
+L18/lesson18_phrase_32
+  EN: Do not touch that broken lock on that old wicket.
+  RU: Не трогай тот сломанный замок на той старой калитке.
+  UK: Не чіпай той зламаний замок на тій старій хвіртці.
+
+L18/lesson18_phrase_33
+  EN: Let us hide those expensive gifts under that big fir-tree.
+  RU: Давайте спрячем те дорогие подарки под той большой елью.
+  UK: Давайте сховаємо ті дорогі подарунки під тією великою ялинкою.
+
+L18/lesson18_phrase_34
+  EN: Write those short messages to that polite neighbor via this new messenger.
+  RU: Напиши те короткие сообщения тому вежливому соседу через этот новый мессенджер.
+  UK: Напиши ті короткі повідомлення тому ввічливому сусіду через цей новий месенджер.
+
+L18/lesson18_phrase_35
+  EN: Do not throw that empty bottle onto this clean sidewalk.
+  RU: Не бросай ту пустую бутылку на этот чистый тротуар.
+  UK: Не кидай ту порожню пляшку на цей чистий тротуар.
+
+L18/lesson18_phrase_36
+  EN: Please, confirm that important booking via that official link.
+  RU: Пожалуйста, подтверди то важное бронирование по той официальной ссылке.
+  UK: Будь ласка, підтвердь те важливе бронювання за тим офіційним посиланням.
+
+L18/lesson18_phrase_37
+  EN: Do not eat those sour berries in that thick forest.
+  RU: Не ешь те кислые ягоды в том густом лесу.
+  UK: Не їж ті кислі ягоди в тому густому лісі.
+
+L18/lesson18_phrase_38
+  EN: Let us discuss those new terms in that bright conference-hall.
+  RU: Давайте обсудим те новые условия в том светлом конференц-зале.
+  UK: Давайте обговоримо ті нові умови в тому світлому конференц-залі.
+
+L18/lesson18_phrase_39
+  EN: Turn off that noisy computer after this long shift.
+  RU: Выключи тот шумный компьютер после этой долгой смены.
+  UK: Вимкни той шумний комп\'ютер після цієї довгої зміни.
+
+L18/lesson18_phrase_40
+  EN: Do not open that heavy parcel without that sharp knife.
+  RU: Не открывай ту тяжёлую посылку без того острого ножа.
+  UK: Не відкривай ту важку посилку без того гострого ножа.
+
+L18/lesson18_phrase_41
+  EN: Repair those broken watches with those precise tools.
+  RU: Почини те сломанные часы теми точными инструментами.
+  UK: Почини ті зламані годинники тими точними інструментами.
+
+L18/lesson18_phrase_42
+  EN: Do not spend your last money on that useless thing.
+  RU: Не трать свои последние деньги на ту бесполезную вещь.
+  UK: Не витрачай свої останні гроші на ту марну річ.
+
+L18/lesson18_phrase_43
+  EN: Let us move this heavy furniture into that spacious bedroom.
+  RU: Давайте перенесём эту тяжёлую мебель в ту просторную спальню.
+  UK: Давайте перенесемо цю важку мебель в ту просторну спальню.
+
+L18/lesson18_phrase_44
+  EN: Save this important file onto that external flash-drive.
+  RU: Сохрани этот важный файл на ту внешнюю флешку.
+  UK: Збережи цей важливий файл на ту зовнішню флешку.
+
+L18/lesson18_phrase_45
+  EN: Do not order that spicy food in this cheap cafe.
+  RU: Не заказывай ту острую еду в этом дешёвом кафе.
+  UK: Не замовляй ту гостру їжу в цьому дешевому кафе.
+
+L18/lesson18_phrase_46
+  EN: Please, clean that leather sofa with this special agent in that living room.
+  RU: Пожалуйста, почисти тот кожаный диван этим специальным средством в той гостиной.
+  UK: Будь ласка, почисти той шкіряний диван цим спеціальним засобом у тій вітальні.
+
+L18/lesson18_phrase_47
+  EN: Do not leave that sharp axe near those small children in this backyard.
+  RU: Не оставляй тот острый топор рядом с теми маленькими детьми на этом заднем дворе.
+  UK: Не залишай ту гостру сокиру поруч з тими маленькими дітьми на цьому задньому дворі.
+
+L18/lesson18_phrase_48
+  EN: Let us turn off those bright lamps in this empty corridor.
+  RU: Давайте выключим те яркие лампы в этом пустом коридоре.
+  UK: Давайте вимкнемо ті яскраві лампи в цьому порожньому коридорі.
+
+L18/lesson18_phrase_49
+  EN: Cook that tasty pie for that large family in this kitchen.
+  RU: Приготовь тот вкусный пирог для той большой семьи в этой кухне.
+  UK: Приготуй той смачний пиріг для тієї великої сім\'ї на цій кухні.
+
+L18/lesson18_phrase_50
+  EN: Do not break that fragile shelf in that narrow cupboard.
+  RU: Не сломай ту хрупкую полку в том узком шкафу.
+  UK: Не зламай ту крихку полицю в тій вузькій шафі.
+
+
+# ===== Урок 19: Урок 19: Предлоги места / Урок 19: Прийменники місця =====
+
+L19/lesson19_phrase_1
+  EN: Does that gray cat sleep on that soft pillow in this corner?
+  RU: Тот серый кот спит на той мягкой подушке в этом углу?
+  UK: Той сірий кіт спить на тій м'якій подушці в цьому кутку?
+
+L19/lesson19_phrase_2
+  EN: Put those fresh fruits in that wicker basket above this table.
+  RU: Положи те свежие фрукты в ту плетеную корзину над этим столом.
+  UK: Поклади ті свіжі фрукти в той плетений кошик над цим столом.
+
+L19/lesson19_phrase_3
+  EN: Is our new office between that bank and that cafe?
+  RU: Наш новый офис находится между тем банком и тем кафе?
+  UK: Наш новий офіс знаходиться між тим банком і тим кафе?
+
+L19/lesson19_phrase_4
+  EN: Do your leather gloves lie under that wooden armchair?
+  RU: Твои кожаные перчатки лежат под тем деревянным креслом?
+  UK: Твої шкіряні рукавички лежать під тим дерев'яним кріслом?
+
+L19/lesson19_phrase_5
+  EN: Their big dog always waits behind that black door.
+  RU: Их большая собака всегда ждет за той черной дверью.
+  UK: Їхня велика собака завжди чекає позаду тих чорних дверей.
+
+L19/lesson19_phrase_6
+  EN: My dear sister stands near that tall mirror now.
+  RU: Моя дорогая сестра сейчас стоит около того высокого зеркала.
+  UK: Моя дорога сестра зараз стоїть біля того високого дзеркала.
+
+L19/lesson19_phrase_7
+  EN: Those important documents lie inside that leather briefcase.
+  RU: Те важные документы лежат внутри того кожаного портфеля.
+  UK: Ті важливі документи лежать всередині того шкіряного портфеля.
+
+L19/lesson19_phrase_8
+  EN: Do you see that bright poster opposite this big pharmacy?
+  RU: Ты видишь тот яркий плакат напротив этой большой аптеки?
+  UK: Ти бачиш той яскравий плакат навпроти цієї великої аптеки?
+
+L19/lesson19_phrase_9
+  EN: Is our small village among those green hills?
+  RU: Наша маленькая деревня находится среди тех зеленых холмов?
+  UK: Наше маленьке село знаходиться серед тих зелених пагорбів?
+
+L19/lesson19_phrase_10
+  EN: Does his new motorcycle stand in front of that old garage?
+  RU: Его новый мотоцикл стоит перед тем старым гаражом?
+  UK: Його новий мотоцикл стоїть перед тим старим гаражем?
+
+L19/lesson19_phrase_11
+  EN: Our white cat often hides behind that wide curtain.
+  RU: Наша белая кошка часто прячется за тем широким занавесом.
+  UK: Наша біла кішка часто ховається за тією широкою завісою.
+
+L19/lesson19_phrase_12
+  EN: Does your new towel hang on that metal hook above that sink?
+  RU: Твое новое полотенце висит на том металлическом крючке над той раковиной?
+  UK: Твій новий рушник висить на тому металевому гачку над тією раковиною?
+
+L19/lesson19_phrase_13
+  EN: Those useful tools lie inside this wooden box.
+  RU: Те полезные инструменты лежат внутри этого деревянного ящика.
+  UK: Ті корисні інструменти лежать всередині цієї дерев\'яної скриньки.
+
+L19/lesson19_phrase_14
+  EN: Does their small boat sail along that sandy shore?
+  RU: Их маленькая лодка плывет вдоль того песчаного берега?
+  UK: Їхній маленький човен пливе вздовж того піщаного берега?
+
+L19/lesson19_phrase_15
+  EN: My old friends sit around that round campfire.
+  RU: Мои старые друзья сейчас сидят вокруг того круглого костра.
+  UK: Мої старі друзі зараз сидять навколо того круглого багаття.
+
+L19/lesson19_phrase_16
+  EN: That polite courier stands at that main entrance to this building.
+  RU: Тот вежливый курьер сейчас стоит у того главного входа в это здание.
+  UK: Той ввічливий кур\'єр зараз стоїть біля того головного входу в цю будівлю.
+
+L19/lesson19_phrase_17
+  EN: Do not put those heavy boxes under those metal stairs.
+  RU: Не ставь те тяжелые коробки под те металлические ступени.
+  UK: Не клади ті важкі коробки під ті металеві сходи.
+
+L19/lesson19_phrase_18
+  EN: Is your new apartment right above that noisy market?
+  RU: Твоя новая квартира находится прямо над тем шумным рынком?
+  UK: Твоя нова квартира знаходиться прямо над тим шумним ринком?
+
+L19/lesson19_phrase_19
+  EN: We do not see that old lighthouse on that small island.
+  RU: Мы не видим тот старый маяк на том маленьком острове.
+  UK: Ми не бачимо той старий маяк на тому маленькому острові.
+
+L19/lesson19_phrase_20
+  EN: Her red bag lies between those two armchairs.
+  RU: Ее красная сумка сейчас лежит между теми двумя креслами.
+  UK: Її червона сумка зараз лежить між тими двома кріслами.
+
+L19/lesson19_phrase_21
+  EN: Does that old oak grow right opposite this low brick house?
+  RU: Тот старый дуб растет прямо напротив этого низкого кирпичного дома?
+  UK: Той старий дуб росте просто навпроти цього низького цегляного будинку?
+
+L19/lesson19_phrase_22
+  EN: Your dirty shoes stand outside that wooden door.
+  RU: Ваша грязная обувь сейчас стоит снаружи той деревянной двери.
+  UK: Ваше брудне взуття зараз стоїть зовні біля тих дерев\'яних дверей.
+
+L19/lesson19_phrase_23
+  EN: Does their small son often play among those tall trees?
+  RU: Их маленький сын часто играет среди тех высоких деревьев?
+  UK: Їхній маленький син часто грає серед тих високих дерев?
+
+L19/lesson19_phrase_24
+  EN: Hang that soft scarf on that free hook behind that door.
+  RU: Повесь тот мягкий шарф на тот свободный крючок за той дверью.
+  UK: Повісь той м\'який шарф на той вільний гачок за тими дверима.
+
+L19/lesson19_phrase_25
+  EN: Do we see that beautiful rainbow above that blue sea?
+  RU: Мы видим ту красивую радугу над тем синим морем?
+  UK: Ми бачимо ту красиву веселку над тим синім морем?
+
+L19/lesson19_phrase_26
+  EN: That experienced master works inside that tight basement.
+  RU: Тот опытный мастер сейчас работает внутри того тесного подвала.
+  UK: Той досвідчений майстер зараз працює всередині того тісного підвалу.
+
+L19/lesson19_phrase_27
+  EN: Do not leave this dirty bicycle in front of that main entrance.
+  RU: Не оставляй этот грязный велосипед перед тем парадным входом.
+  UK: Не залишай цей брудний велосипед перед тим парадним входом.
+
+L19/lesson19_phrase_28
+  EN: Hang those long curtains opposite that large window in this room.
+  RU: Повесь те длинные занавески напротив того большого окна в этой комнате.
+  UK: Повісь ті довгі фіранки навпроти того великого вікна в цій кімнаті.
+
+L19/lesson19_phrase_29
+  EN: Does our old garage stand between that brick fence and that shed?
+  RU: Наш старый гараж стоит между тем кирпичным забором и тем сараем?
+  UK: Наш старий гараж стоїть між тим цегляним парканом і тим сараєм?
+
+L19/lesson19_phrase_30
+  EN: Your new sneakers lie under that low bench.
+  RU: Твои новые кроссовки сейчас лежат под той низкой скамейкой.
+  UK: Твої нові кросівки зараз лежать під тією низькою лавкою.
+
+L19/lesson19_phrase_31
+  EN: That tall waiter stands between those two empty tables.
+  RU: Тот высокий официант сейчас стоит между теми двумя пустыми столами.
+  UK: Той високий офіціант зараз стоїть між тими двома порожніми столами.
+
+L19/lesson19_phrase_32
+  EN: Put those ripe vegetables inside that modern fridge.
+  RU: Положи те спелые овощи внутрь того современного холодильника.
+  UK: Поклади ті стиглі овочі всередину того сучасного холодильника.
+
+L19/lesson19_phrase_33
+  EN: Do we see that bright sign above that old bookstore?
+  RU: Мы видим ту яркую вывеску над тем старым книжным магазином?
+  UK: Ми бачимо ту яскраву вивіску над тим старим книжковим магазином?
+
+L19/lesson19_phrase_34
+  EN: Does her new leather wallet lie among those paper bags?
+  RU: Ее новый кожаный кошелек лежит среди тех бумажных пакетов?
+  UK: Її новий шкіряний гаманець лежить серед тих паперових пакетів?
+
+L19/lesson19_phrase_35
+  EN: Do not stand right behind that dangerous construction-site.
+  RU: Не стой прямо за той опасной строительной площадкой.
+  UK: Не стій прямо за тим небезпечним будівельним майданчиком.
+
+L19/lesson19_phrase_36
+  EN: That sad musician plays that old guitar under that wooden bridge.
+  RU: Тот грустный музыкант сейчас играет на той старой гитаре под тем деревянным мостом.
+  UK: Той сумний музикант зараз грає на тій старій гітарі під тим дерев\'яним мостом.
+
+L19/lesson19_phrase_37
+  EN: Put these important keys onto that top shelf opposite that front door.
+  RU: Положи эти важные ключи на ту верхнюю полку напротив той входной двери.
+  UK: Поклади ці важливі ключі на ту верхню полицю навпроти тих вхідних дверей.
+
+L19/lesson19_phrase_38
+  EN: Your small dog always sleeps right in front of that warm fireplace.
+  RU: Ваша маленькая собака всегда спит прямо перед тем теплым камином.
+  UK: Ваша маленька собака завжди спить прямо перед тим теплим каміном.
+
+L19/lesson19_phrase_39
+  EN: Their new bright ball lies among those thorny bushes.
+  RU: Их новый яркий мяч сейчас лежит среди тех колючих кустов.
+  UK: Їхній новий яскравий м\'яч зараз лежить серед тих колючих кущів.
+
+L19/lesson19_phrase_40
+  EN: Let us find that secret path between those two thick forests.
+  RU: Давайте найдем ту секретную тропинку между теми двумя густыми лесами.
+  UK: Давайте знайдемо ту таємну стежку між тими двома густими лісами.
+
+L19/lesson19_phrase_41
+  EN: My small niece hides under that round dining table.
+  RU: Моя маленькая племянница сейчас прячется под тем круглым обеденным столом.
+  UK: Моя маленька племінниця зараз ховається під тим круглим обіднім столом.
+
+L19/lesson19_phrase_42
+  EN: Put those heavy tools inside that metal box under those stairs.
+  RU: Положи те тяжелые инструменты внутрь того металлического ящика под теми ступенями.
+  UK: Поклади ті важкі інструменти всередину того металевого ящика під тими сходами.
+
+L19/lesson19_phrase_43
+  EN: Our old boat sails along that rocky shore slowly.
+  RU: Наша старая лодка сейчас медленно плывет вдоль того скалистого берега.
+  UK: Наш старий човен зараз повільно пливе вздовж того скелястого берега.
+
+L19/lesson19_phrase_44
+  EN: Your new friends sit around that big campfire on that beach.
+  RU: Ваши новые друзья сейчас сидят вокруг того большого костра на том пляже.
+  UK: Ваші нові друзі зараз сидять навколо того великого багаття на тому пляжі.
+
+L19/lesson19_phrase_45
+  EN: That experienced driver parks this truck opposite that narrow lane.
+  RU: Тот опытный водитель сейчас паркует этот грузовик напротив того узкого переулка.
+  UK: Той досвідчений водій зараз паркує цю вантажівку навпроти того вузького провулку.
+
+L19/lesson19_phrase_46
+  EN: That old chess set does not lie inside that dark wooden cupboard.
+  RU: Тот старый шахматный набор не лежит внутри того темного деревянного шкафа.
+  UK: Той старий шаховий набір не лежить усередині тієї темної дерев'яної шафи.
+
+L19/lesson19_phrase_47
+  EN: Our brave cat often jumps over that low stone fence.
+  RU: Наш смелый кот часто прыгает через тот низкий каменный забор.
+  UK: Наш сміливий кіт часто стрибає через той низький кам\'яний паркан.
+
+L19/lesson19_phrase_48
+  EN: Your new gold watch hangs above that small mirror.
+  RU: Твои новые золотые часы висят над тем маленьким зеркалом.
+  UK: Твій новий золотий годинник висить над тим маленьким дзеркалом.
+
+L19/lesson19_phrase_49
+  EN: We see those white clouds right under that bright sun.
+  RU: Мы видим те белые облака прямо под тем ярким солнцем.
+  UK: Ми бачимо ті білі хмари прямо під тим яскравим сонцем.
+
+L19/lesson19_phrase_50
+  EN: Their little baby sleeps between those two soft blankets now.
+  RU: Их маленький ребенок сейчас спит между теми двумя мягкими одеялами.
+  UK: Їхня маленька дитина зараз спить між тими двома м\'якими ковдрами.
+
+
+# ===== Урок 20: Урок 20: Артикли / Урок 20: Артиклі =====
+
+L20/l20p1
+  EN: I bought a new - phone in that - small - shop.
+  RU: Я купил новый телефон в том маленьком магазине.
+  UK: Я купив новий телефон у тому маленькому магазині.
+
+L20/l20p2
+  EN: Do you see an enormous - eagle on that - high - rock?
+  RU: Ты видишь огромного орла на той высокой скале?
+  UK: Ти бачиш величезного орла на тій високій скелі?
+
+L20/l20p3
+  EN: We usually drink - hot - coffee without - any - sugar.
+  RU: Мы обычно пьем горячий кофе без всякого сахара.
+  UK: Ми зазвичай п'ємо гарячу каву без жодного цукру.
+
+L20/l20p4
+  EN: He - always - leaves an empty - plate on this - kitchen - table.
+  RU: Он всегда оставляет пустую тарелку на этом кухонном столе.
+  UK: Він завжди залишає порожню тарілку на цьому кухонному столі.
+
+L20/l20p5
+  EN: She found an old - map in that - leather - bag.
+  RU: Она нашла старую карту в той кожаной сумке.
+  UK: Вона знайшла стару карту в тій шкіряній сумці.
+
+L20/l20p6
+  EN: It ate a whole - apple in that - quiet - garden.
+  RU: Оно съело целое яблоко в том тихом саду.
+  UK: Воно з'їло ціле яблуко в тому тихому саду.
+
+L20/l20p7
+  EN: Someone left an important - document on this - old - printer.
+  RU: Кто-то оставил важный документ на этом старом принтере.
+  UK: Хтось залишив важливий документ на цьому старому принтері.
+
+L20/l20p8
+  EN: Every - student got a free - ticket to that - new - exhibition.
+  RU: Каждый студент получил бесплатный билет на ту новую выставку.
+  UK: Кожен студент отримав безкоштовний квиток на ту нову виставку.
+
+L20/l20p9
+  EN: They built a modern - office in this - business - district.
+  RU: Они построили современный офис в этом деловом районе.
+  UK: Вони побудували сучасний офіс у цьому діловому районі.
+
+L20/l20p10
+  EN: Nobody saw a black - cat in that - dark - corridor.
+  RU: Никто не видел черную кошку в том темном коридоре.
+  UK: Ніхто не бачив чорну кішку в тому темному коридорі.
+
+L20/l20p11
+  EN: Did - anyone hear a strange - noise in that - empty - corridor?
+  RU: Кто-нибудь слышал странный шум в том пустом коридоре?
+  UK: Хто-небудь чув дивний шум у тому порожньому коридорі?
+
+L20/l20p12
+  EN: We found a golden - ring on this - old - floor.
+  RU: Мы нашли золотое кольцо на этом старом полу.
+  UK: Ми знайшли золоту каблучку на цій старій підлозі.
+
+L20/l20p13
+  EN: Everyone brought - healthy - food to that - big - party.
+  RU: Все принесли полезную еду на ту большую вечеринку.
+  UK: Усі принесли корисну їжу на ту велику вечірку.
+
+L20/l20p14
+  EN: Somebody dropped an expensive - wallet in this - narrow - elevator.
+  RU: Кто-то уронил дорогой кошелёк в этом узком лифте.
+  UK: Хтось впустив дорогий гаманець у цьому вузькому ліфті.
+
+L20/l20p15
+  EN: Did you see an interesting - advertisement on that - wide - street?
+  RU: Вы видели интересную рекламу на той широкой улице?
+  UK: Ви бачили цікаву рекламу на тій широкій вулиці?
+
+L20/l20p16
+  EN: Somebody's - children found a little - kitten under that - wooden - porch.
+  RU: Чьи-то дети нашли маленького котёнка под тем деревянным крыльцом.
+  UK: Чиїсь діти знайшли маленьке кошеня під тим дерев'яним ганком.
+
+L20/l20p17
+  EN: Nobody took an extra - key in that - front - room.
+  RU: Никто не взял запасной ключ в той передней комнате.
+  UK: Ніхто не взяв запасний ключ у тій передній кімнаті.
+
+L20/l20p18
+  EN: She always wears a bright - scarf in this - cold - weather.
+  RU: Она всегда носит яркий шарф в эту холодную погоду.
+  UK: Вона завжди носить яскравий шарф у цю холодну погоду.
+
+L20/l20p19
+  EN: We bought - fresh - bread in that - local - shop.
+  RU: Мы купили свежий хлеб в том местном магазине.
+  UK: Ми купили свіжий хліб у тому місцевому магазині.
+
+L20/l20p20
+  EN: Did anyone book a single - room in this - expensive - hotel?
+  RU: Кто-нибудь забронировал одноместный номер в этом дорогом отеле?
+  UK: Хто-небудь забронював одномісний номер у цьому дорогому готелі?
+
+L20/l20p21
+  EN: Someone left an open - window in that - empty - library.
+  RU: Кто-то оставил открытое окно в той пустой библиотеке.
+  UK: Хтось залишив відкрите вікно в тій порожній бібліотеці.
+
+L20/l20p22
+  EN: Every - engineer wears a safety - helmet on this - noisy - construction - site.
+  RU: Каждый инженер носит защитный шлем на этой шумной стройке.
+  UK: Кожен інженер носить захисний шолом на цьому шумному будівництві.
+
+L20/l20p23
+  EN: Did anyone see an enormous - shark in that - deep - ocean?
+  RU: Кто-нибудь видел огромную акулу в том глубоком океане?
+  UK: Хто-небудь бачив величезну акулу в тому глибокому океані?
+
+L20/l20p24
+  EN: All - employees received an official - letter from that - new - director.
+  RU: Все сотрудники получили официальное письмо от того нового директора.
+  UK: Усі співробітники отримали офіційний лист від того нового директора.
+
+L20/l20p25
+  EN: Nobody brought an extra - blanket to that - cold - cabin.
+  RU: Никто не принёс лишнее одеяло в ту холодную хижину.
+  UK: Ніхто не приніс зайву ковдру у ту холодну хатину.
+
+L20/l20p26
+  EN: Somebody's - neighbors planted an unusual - tree behind that - brick - fence.
+  RU: Чьи-то соседи посадили необычное дерево за тем кирпичным забором.
+  UK: Чиїсь сусіди посадили незвичайне дерево за тим цегляним парканом.
+
+L20/l20p27
+  EN: Nobody found an old - coin in that - deep - hole.
+  RU: Никто не нашел старую монету в той глубокой яме.
+  UK: Ніхто не знайшов стару монету в тій глибокій ямі.
+
+L20/l20p28
+  EN: She made a huge - cake for that - children's - party.
+  RU: Она приготовила огромный торт для того детского праздника.
+  UK: Вона приготувала величезний торт для того дитячого свята.
+
+L20/l20p29
+  EN: Did you see a bright - rainbow over that - blue - lake?
+  RU: Вы видели яркую радугу над тем синим озером?
+  UK: Ви бачили яскраву веселку над тим синім озером?
+
+L20/l20p30
+  EN: We rented a small - van for this - long - trip.
+  RU: Мы арендовали маленький фургон для этой длинной поездки.
+  UK: Ми орендували маленький фургон для цієї довгої поїздки.
+
+L20/l20p31
+  EN: Did - anyone leave a dirty - cup on that - office - desk?
+  RU: Кто-нибудь оставил грязную чашку на том офисном столе?
+  UK: Хто-небудь залишив брудну чашку на тому офісному столі?
+
+L20/l20p32
+  EN: We saw an amazing - bird in this - thick - forest.
+  RU: Мы увидели удивительную птицу в этом густом лесу.
+  UK: Ми побачили дивовижного птаха в цьому густому лісі.
+
+L20/l20p33
+  EN: Every - guest brought a little - plant to that - new - apartment.
+  RU: Каждый гость принёс маленькое растение в ту новую квартиру.
+  UK: Кожен гість приніс маленьку рослину в ту нову квартиру.
+
+L20/l20p34
+  EN: Somebody dropped a heavy - hammer on this - concrete - floor.
+  RU: Кто-то уронил тяжёлый молоток на этот бетонный пол.
+  UK: Хтось впустив важкий молоток на цю бетонну підлогу.
+
+L20/l20p35
+  EN: Did you find a cheap - ticket to that - sunny - country?
+  RU: Вы нашли дешёвый билет в ту солнечную страну?
+  UK: Ви знайшли дешевий квиток у ту сонячну країну?
+
+L20/l20p36
+  EN: Someone sent an anonymous - message to that - old - computer.
+  RU: Кто-то прислал анонимное сообщение на тот старый компьютер.
+  UK: Хтось надіслав анонімне повідомлення на той старий комп'ютер.
+
+L20/l20p37
+  EN: Every - morning - I eat an orange on this - sunny - balcony.
+  RU: Каждое утро я ем апельсин на этом солнечном балконе.
+  UK: Щоранку я їм апельсин на цьому сонячному балконі.
+
+L20/l20p38
+  EN: Nobody took an umbrella on that - rainy - day.
+  RU: Никто не взял зонтик в тот дождливый день.
+  UK: Ніхто не взяв парасольку в той дощовий день.
+
+L20/l20p39
+  EN: We found an empty - bottle on that - sandy - beach.
+  RU: Мы нашли пустую бутылку на том песчаном пляже.
+  UK: Ми знайшли порожню пляшку на тому піщаному пляжі.
+
+L20/l20p40
+  EN: Did you see an enormous - ship in this - small - port?
+  RU: Вы видели огромный корабль в этом маленьком порту?
+  UK: Ви бачили величезний корабель у цьому маленькому порту?
+
+L20/l20p41
+  EN: Did - anyone hear an interesting - story about that - old - tower?
+  RU: Кто-нибудь слышал интересную историю про ту старую башню?
+  UK: Хто-небудь чув цікаву історію про ту стару вежу?
+
+L20/l20p42
+  EN: Everyone brought a hot - pizza to that - small - studio.
+  RU: Все принесли горячую пиццу в ту маленькую студию.
+  UK: Усі принесли гарячу піцу в ту маленьку студію.
+
+L20/l20p43
+  EN: Somebody bought an expensive - dress in this - new - boutique.
+  RU: Кто-то купил дорогое платье в этом новом бутике.
+  UK: Хтось купив дорогу сукню в цьому новому бутику.
+
+L20/l20p44
+  EN: We found a lost - passport on that - dirty - sidewalk.
+  RU: Мы нашли потерянный паспорт на том грязном тротуаре.
+  UK: Ми знайшли загублений паспорт на тому брудному тротуарі.
+
+L20/l20p45
+  EN: Did you see an excellent - movie in this - old - cinema?
+  RU: Вы видели отличный фильм в этом старом кинотеатре?
+  UK: Ви бачили чудовий фільм у цьому старому кінотеатрі?
+
+L20/l20p46
+  EN: - Somebody left an important - document in that - leather - briefcase.
+  RU: Кто-то оставил важный документ в том кожаном портфеле.
+  UK: Хтось залишив важливий документ у тому шкіряному портфелі.
+
+L20/l20p47
+  EN: Every - student wrote a short - essay on this - clean - paper.
+  RU: Каждый студент написал короткое эссе на этой чистой бумаге.
+  UK: Кожен студент написав коротке есе на цьому чистому папері.
+
+L20/l20p48
+  EN: - We bought an unusual - souvenir in that - small - kiosk.
+  RU: Мы купили необычный сувенир в том маленьком киоске.
+  UK: Ми купили незвичайний сувенір у тому маленькому кіоску.
+
+L20/l20p49
+  EN: - Nobody saw an orange - backpack on that - long - bench.
+  RU: Никто не видел оранжевый рюкзак на той длинной скамейке.
+  UK: Ніхто не бачив помаранчевий рюкзак на тій довгій лавці.
+
+L20/l20p50
+  EN: Did - you eat a delicious - lunch in that - Italian - restaurant?
+  RU: Вы съели вкусный обед в том итальянском ресторане?
+  UK: Ви з'їли смачний обід у тому італійському ресторані?
+
+
+# ===== Урок 21: Урок 21: Неопределённые местоимения / Урок 21: Неозначені займенники =====
+
+L21/l21p1
+  EN: Somebody knocked on my door late at night.
+  RU: Кто-то постучал в мою дверь поздно ночью.
+  UK: Хтось постукав у мої двері пізно вночі.
+
+L21/l21p2
+  EN: No one knows this secret code.
+  RU: Никто не знает этот секретный код.
+  UK: Ніхто не знає цей секретний код.
+
+L21/l21p3
+  EN: Everyone brought their laptops to the meeting.
+  RU: Все принесли свои ноутбуки на встречу.
+  UK: Усі принесли свої ноутбуки на зустріч.
+
+L21/l21p4
+  EN: I found something interesting in your garden.
+  RU: Я нашел что-то интересное в твоем саду.
+  UK: Я знайшов щось цікаве у твоєму саду.
+
+L21/l21p5
+  EN: Did you see anyone in that empty office?
+  RU: Ты видел кого-нибудь в том пустом офисе?
+  UK: Ти бачив кого-небудь у тому порожньому офісі?
+
+L21/l21p6
+  EN: Somebody left this message for you on the table.
+  RU: Кто-то оставил это сообщение для тебя на столе.
+  UK: Хтось залишив це повідомлення для тебе на столі.
+
+L21/l21p7
+  EN: We heard nothing about that incident.
+  RU: Мы ничего не слышали о том происшествии.
+  UK: Ми нічого не чули про ту подію.
+
+L21/l21p8
+  EN: Everyone wants to know the truth about this situation.
+  RU: Каждый хочет знать правду об этой ситуации.
+  UK: Кожен хоче знати правду про цю ситуацію.
+
+L21/l21p9
+  EN: Did you find anything useful in that old book?
+  RU: Вы нашли что-нибудь полезное в той старой книге?
+  UK: Ви знайшли що-небудь корисне в тій старій книзі?
+
+L21/l21p10
+  EN: Nobody came to that important lecture yesterday.
+  RU: Никто не пришел на ту важную лекцию вчера.
+  UK: Ніхто не прийшов на ту важливу лекцію вчора.
+
+L21/l21p11
+  EN: Someone stole my leather bag in that mall.
+  RU: Кто-то украл мою кожаную сумку в том торговом центре.
+  UK: Хтось украв мою шкіряну сумку в тому торговому центрі.
+
+L21/l21p12
+  EN: No one believed that strange ghost story.
+  RU: Никто не поверил той странной истории о привидениях.
+  UK: Ніхто не повірив тій дивній історії про привидів.
+
+L21/l21p13
+  EN: Everything changed after that short phone conversation.
+  RU: Всё изменилось после того короткого телефонного разговора.
+  UK: Все змінилося після тієї короткої телефонної розмови.
+
+L21/l21p14
+  EN: Did you bring anything tasty for our holiday lunch?
+  RU: Ты принес что-нибудь вкусное для нашего праздничного обеда?
+  UK: Ти приніс що-небудь смачне для нашого святкового обіду?
+
+L21/l21p15
+  EN: Somebody hid those important documents in the old safe.
+  RU: Кто-то спрятал те важные документы в старом сейфе.
+  UK: Хтось сховав ті важливі документи в старому сейфі.
+
+L21/l21p16
+  EN: Someone spilled coffee on your new white dress.
+  RU: Кто-то пролил кофе на твое новое белое платье.
+  UK: Хтось пролив каву на твою нову білу сукню.
+
+L21/l21p17
+  EN: Nobody answered that strange phone call.
+  RU: Никто не ответил на тот странный телефонный звонок.
+  UK: Ніхто не відповів на той дивний телефонний дзвінок.
+
+L21/l21p18
+  EN: Everybody understood that difficult task after explanation.
+  RU: Все поняли ту трудную задачу после объяснения.
+  UK: Усі зрозуміли ту складну задачу після пояснення.
+
+L21/l21p19
+  EN: Did you notice anything unusual in that old garden?
+  RU: Вы заметили что-нибудь необычное в том старом саду?
+  UK: Ви помітили що-небудь незвичайне в тому старому саду?
+
+L21/l21p20
+  EN: Somebody put those heavy boxes on the fragile shelf.
+  RU: Кто-то положил те тяжелые коробки на хрупкую полку.
+  UK: Хтось поклав ті важкі коробки на тендітну полицю.
+
+L21/l21p21
+  EN: Someone sent this anonymous letter yesterday morning.
+  RU: Кто-то прислал это анонимное письмо вчера утром.
+  UK: Хтось надіслав цей анонімний лист учора вранці.
+
+L21/l21p22
+  EN: No one opened that heavy door because of strong wind.
+  RU: Никто не открыл ту тяжелую дверь из-за сильного ветра.
+  UK: Ніхто не відчинив ті важкі двері через сильний вітер.
+
+L21/l21p23
+  EN: Everything seems different after this long trip.
+  RU: Всё кажется другим после этой долгой поездки.
+  UK: Все здається іншим після цієї довгої поїздки.
+
+L21/l21p24
+  EN: Did you hear anything about that new law?
+  RU: Вы слышали что-нибудь про тот новый закон?
+  UK: Ви чули що-небудь про той новий закон?
+
+L21/l21p25
+  EN: Somebody forgot these sunglasses on that metal bench.
+  RU: Кто-то забыл эти темные очки на той металлической скамейке.
+  UK: Хтось забув ці темні окуляри на тій металевій лавці.
+
+L21/l21p26
+  EN: Someone stole that silver spoon during formal dinner.
+  RU: Кто-то украл ту серебряную ложку во время торжественного ужина.
+  UK: Хтось украв ту срібну ложку під час урочистої вечері.
+
+L21/l21p27
+  EN: Nobody saw that old gray car in the parking lot.
+  RU: Никто не видел тот старый серый автомобиль на парковке.
+  UK: Ніхто не бачив той старий сірий автомобіль на парковці.
+
+L21/l21p28
+  EN: Everything seems possible on this beautiful sunny day.
+  RU: Всё кажется возможным в этот прекрасный солнечный день.
+  UK: Все здається можливим у цей прекрасний сонячний день.
+
+L21/l21p29
+  EN: Did you buy anything useful for this new kitchen?
+  RU: Ты купил что-нибудь полезное для этой новой кухни?
+  UK: Ти купив що-небудь корисне для цієї нової кухні?
+
+L21/l21p30
+  EN: Somebody put that wet clothing into this big basket.
+  RU: Кто-то положил ту мокрую одежду в эту большую корзину.
+  UK: Хтось поклав той мокрий одяг у цей великий кошик.
+
+L21/l21p31
+  EN: No one opened this old window because of the strong wind.
+  RU: Никто не открыл это старое окно из-за сильного ветра.
+  UK: Ніхто не відчинив це старе вікно через сильний вітер.
+
+L21/l21p32
+  EN: Everyone understood that difficult task after your explanation.
+  RU: Все поняли ту трудную задачу после твоего объяснения.
+  UK: Усі зрозуміли ту складну задачу після твого пояснення.
+
+L21/l21p33
+  EN: Did you bring anything tasty for our small party?
+  RU: Ты принес что-нибудь вкусное для нашей маленькой вечеринки?
+  UK: Ти приніс що-небудь смачне для нашої маленької вечірки?
+
+L21/l21p34
+  EN: Somebody hid that important key under the mat.
+  RU: Кто-то спрятал тот важный ключ под ковриком.
+  UK: Хтось сховав той важливий ключ під килимком.
+
+L21/l21p35
+  EN: We saw nothing in that dark cave yesterday.
+  RU: Мы ничего не увидели в той темной пещере вчера.
+  UK: Ми нічого не побачили в тій темній печері вчора.
+
+L21/l21p36
+  EN: Someone spilled fruit juice on this light carpet.
+  RU: Кто-то пролил фруктовый сок на этот светлый ковер.
+  UK: Хтось пролив фруктовий сік на цей світлий килим.
+
+L21/l21p37
+  EN: Nobody recognized that famous singer in sunglasses.
+  RU: Никто не узнал ту знаменитую певицу в темных очках.
+  UK: Ніхто не впізнав ту знамениту співачку в темних окулярах.
+
+L21/l21p38
+  EN: Everyone felt tired after that long walk.
+  RU: Каждый чувствовал себя уставшим после той длинной прогулки.
+  UK: Кожен почувався втомленим після тієї довгої прогулянки.
+
+L21/l21p39
+  EN: Did you see anyone near that abandoned building?
+  RU: Вы видели кого-нибудь возле того заброшенного здания?
+  UK: Ви бачили кого-небудь біля тієї покинутої будівлі?
+
+L21/l21p40
+  EN: Somebody left these dirty dishes in the kitchen sink.
+  RU: Кто-то оставил эти грязные тарелки в кухонной раковине.
+  UK: Хтось залишив ці брудні тарілки в кухонній раковині.
+
+L21/l21p41
+  EN: Someone stole my leather jacket in this crowded bar.
+  RU: Кто-то украл мою кожаную куртку в этом переполненном баре.
+  UK: Хтось украв мою шкіряну куртку в цьому переповненому барі.
+
+L21/l21p42
+  EN: No one believed that strange excuse during the meeting.
+  RU: Никто не поверил тому странному оправданию во время собрания.
+  UK: Ніхто не повірив тому дивному виправданню під час зборів.
+
+L21/l21p43
+  EN: Everything changed after that short official visit.
+  RU: Всё изменилось после того короткого официального визита.
+  UK: Все змінилося після того короткого офіційного візиту.
+
+L21/l21p44
+  EN: Did you find anything useful in that old workshop?
+  RU: Вы нашли что-нибудь полезное в той старой мастерской?
+  UK: Ви знайшли що-небудь корисне в тій старій майстерні?
+
+L21/l21p45
+  EN: Somebody hid those secret documents under the wooden stairs.
+  RU: Кто-то спрятал те секретные документы под этой деревянной лестницей.
+  UK: Хтось сховав ті секретні документи під цими дерев'яними сходами.
+
+L21/l21p46
+  EN: Someone left that sharp knife on this wooden kitchen table.
+  RU: Кто-то оставил тот острый нож на этом деревянном кухонном столе.
+  UK: Хтось залишив той гострий ніж на цьому дерев'яному кухонному столі.
+
+L21/l21p47
+  EN: Nobody heard that loud noise in this narrow street.
+  RU: Никто не слышал тот громкий шум на этой узкой улице.
+  UK: Ніхто не чув той гучний шум на цій вузькій вулиці.
+
+L21/l21p48
+  EN: Everybody brought their favorite snacks to that countryside party.
+  RU: Каждый принес свои любимые закуски на ту загородную вечеринку.
+  UK: Кожен приніс свої улюблені закуски на ту заміську вечірку.
+
+L21/l21p49
+  EN: Did you find anything valuable in that abandoned old basement?
+  RU: Вы нашли что-нибудь ценное в том заброшенном старом подвале?
+  UK: Ви знайшли що-небудь цінне в тому покинутому старому підвалі?
+
+L21/l21p50
+  EN: Someone hid that gold coin inside this small iron box.
+  RU: Кто-то спрятал ту золотую монету внутри этой маленькой железной коробки.
+  UK: Хтось сховав ту золоту монету всередині цієї маленької залізної коробки.
+
+
+# ===== Урок 22: Урок 22: Герундий / Урок 22: Герундій =====
+
+L22/lesson22_phrase_1
+  EN: Swimming in the cold ocean is very refreshing.
+  RU: Плавание в холодном океане очень бодрит.
+  UK: Плавання в холодному океані дуже бадьорить.
+
+L22/lesson22_phrase_2
+  EN: Did she finish writing that long technical report?
+  RU: Она закончила писать тот длинный технический отчет?
+  UK: Вона закінчила писати той довгий технічний звіт?
+
+L22/lesson22_phrase_3
+  EN: My brother does not enjoy cooking spicy food.
+  RU: Мой брат не любит готовить острую еду.
+  UK: Мій брат не любить готувати гостру їжу.
+
+L22/lesson22_phrase_4
+  EN: Learning foreign languages opens new opportunities.
+  RU: Изучение иностранных языков открывает новые возможности.
+  UK: Вивчення іноземних мов відкриває нові можливості.
+
+L22/lesson22_phrase_5
+  EN: Do you prefer traveling by train or plane?
+  RU: Вы предпочитаете путешествовать на поезде или самолете?
+  UK: Ви надаєте перевагу подорожам потягом чи літаком?
+
+L22/lesson22_phrase_6
+  EN: Reading this new article helps me understand modern economy.
+  RU: Чтение этой новой статьи помогает мне понять современную экономику.
+  UK: Читання цієї нової статті допомагає мені зрозуміти сучасну економіку.
+
+L22/lesson22_phrase_7
+  EN: They did not stop discussing that old problem at the meeting.
+  RU: Они не перестали обсуждать ту старую проблему на встрече.
+  UK: Вони не припинили обговорювати ту стару проблему на зустрічі.
+
+L22/lesson22_phrase_8
+  EN: Riding a bicycle in the park is his favorite activity.
+  RU: Езда на велосипеде в парке — его любимое занятие.
+  UK: Їзда на велосипеді в парку — його улюблене заняття.
+
+L22/lesson22_phrase_9
+  EN: Did our manager suggest rescheduling that important meeting?
+  RU: Наш менеджер предложил перенести ту важную встречу?
+  UK: Наш менеджер запропонував перенести ту важливу зустріч?
+
+L22/lesson22_phrase_10
+  EN: We do not avoid buying cheap plastic toys for children.
+  RU: Мы не избегаем покупки дешевых пластиковых игрушек для детей.
+  UK: Ми не уникаємо купівлі дешевих пластикових іграшок для дітей.
+
+L22/lesson22_phrase_11
+  EN: Painting these bright landscapes requires great patience.
+  RU: Рисование этих ярких пейзажей требует большого терпения.
+  UK: Малювання цих яскравих пейзажів потребує великого терпіння.
+
+L22/lesson22_phrase_12
+  EN: He keeps ignoring my messages for some reason.
+  RU: Он продолжает игнорировать мои сообщения по какой-то причине.
+  UK: Він продовжує ігнорувати мої повідомлення з якоїсь причини.
+
+L22/lesson22_phrase_13
+  EN: Is your hobby collecting rare old coins?
+  RU: Ваше хобби — коллекционирование редких старых монет?
+  UK: Ваше хобі — колекціонування рідкісних старих монет?
+
+L22/lesson22_phrase_14
+  EN: She does not imagine life without dancing on stage.
+  RU: Она не представляет жизнь без танцев на сцене.
+  UK: Вона не уявляє життя без танців на сцені.
+
+L22/lesson22_phrase_15
+  EN: Cleaning this huge apartment takes the whole day.
+  RU: Уборка этой огромной квартиры занимает целый день.
+  UK: Прибирання цієї величезної квартири займає цілий день.
+
+L22/lesson22_phrase_16
+  EN: Waiting for public transport takes too much time in the morning.
+  RU: Ожидание общественного транспорта отнимает слишком много времени утром.
+  UK: Очікування громадського транспорту забирає занадто багато часу вранці.
+
+L22/lesson22_phrase_17
+  EN: Does your offer include visiting that historical museum?
+  RU: Ваше предложение включает посещение того исторического музея?
+  UK: Ваша пропозиція включає відвідування того історичного музею?
+
+L22/lesson22_phrase_18
+  EN: They dislike walking in this noisy shopping mall.
+  RU: Им не нравится гулять в этом шумном торговом центре.
+  UK: Їм не подобається гуляти в цьому шумному торговому центрі.
+
+L22/lesson22_phrase_19
+  EN: Checking all these important documents is a boring job.
+  RU: Проверка всех этих важных документов — скучная работа.
+  UK: Перевірка всіх цих важливих документів — нудна робота.
+
+L22/lesson22_phrase_20
+  EN: We appreciate having this reliable equipment in our laboratory.
+  RU: Мы ценим наличие этого надежного оборудования в нашей лаборатории.
+  UK: Ми цінуємо наявність цього надійного обладнання в нашій лабораторії.
+
+L22/lesson22_phrase_21
+  EN: Smoking in this public place is strictly forbidden.
+  RU: Курение в этом общественном месте строго запрещено.
+  UK: Куріння в цьому громадському місці суворо заборонено.
+
+L22/lesson22_phrase_22
+  EN: Someone suggested ordering that large pizza with mushrooms.
+  RU: Кто-то предложил заказать ту большую пиццу с грибами.
+  UK: Хтось запропонував замовити ту велику піцу з грибами.
+
+L22/lesson22_phrase_23
+  EN: Is your hobby collecting these old rare stamps?
+  RU: Ваше хобби — коллекционирование этих старых редких марок?
+  UK: Ваше хобі — колекціонування цих старих рідкісних марок?
+
+L22/lesson22_phrase_24
+  EN: She does not like photographing these wild animals in the forest.
+  RU: Она не любит фотографировать этих диких животных в лесу.
+  UK: Вона не любить фотографувати цих диких тварин у лісі.
+
+L22/lesson22_phrase_25
+  EN: Studying this complex topic requires much free time.
+  RU: Изучение этой сложной темы требует много свободного времени.
+  UK: Вивчення цієї складної теми потребує багато вільного часу.
+
+L22/lesson22_phrase_26
+  EN: Listening to this classical album relaxes my stressed mind.
+  RU: Прослушивание этого классического альбома расслабляет мой напряженный ум.
+  UK: Прослуховування цього класичного альбому розслабляє мій напружений розум.
+
+L22/lesson22_phrase_27
+  EN: Did someone finish translating that complex legal contract?
+  RU: Кто-то закончил переводить тот сложный юридический контракт?
+  UK: Хтось закінчив перекладати той складний юридичний контракт?
+
+L22/lesson22_phrase_28
+  EN: Do you hate waiting in those long lines at the airport?
+  RU: Вы ненавидите ждать в тех длинных очередях в аэропорту?
+  UK: Ви ненавидите чекати в тих довгих чергах в аеропорту?
+
+L22/lesson22_phrase_29
+  EN: She mentioned selling that old family house.
+  RU: Она упомянула о продаже того старого семейного дома.
+  UK: Вона згадала про продаж того старого сімейного будинку.
+
+L22/lesson22_phrase_30
+  EN: Visiting this annual conference is a great idea for our team.
+  RU: Посещение этой ежегодной конференции — отличная идея для нашей команды.
+  UK: Відвідування цієї щорічної конференції — чудова ідея для нашої команди.
+
+L22/lesson22_phrase_31
+  EN: Did our director suggest holding a charity auction next month?
+  RU: Наш директор предложил провести благотворительный аукцион в следующем месяце?
+  UK: Наш директор запропонував провести благодійний аукціон наступного місяця?
+
+L22/lesson22_phrase_32
+  EN: We appreciate receiving honest feedback from our loyal clients.
+  RU: Мы ценим честную обратную связь от наших лояльных клиентов.
+  UK: Ми цінуємо чесний зворотний зв'язок від наших лояльних клієнтів.
+
+L22/lesson22_phrase_33
+  EN: She mentioned attending that international science conference.
+  RU: Она упомянула о посещении той международной научной конференции.
+  UK: Вона згадала про відвідування тієї міжнародної наукової конференції.
+
+L22/lesson22_phrase_34
+  EN: Studying these ancient artifacts helps us understand old cultures.
+  RU: Изучение этих древних артефактов помогает нам понять старые культуры.
+  UK: Вивчення цих стародавніх артефактів допомагає нам зрозуміти давні культури.
+
+L22/lesson22_phrase_35
+  EN: They consider moving to a warm sunny country in future.
+  RU: Они рассматривают переезд в теплую солнечную страну в будущем.
+  UK: Вони розглядають переїзд до теплої сонячної країни в майбутньому.
+
+L22/lesson22_phrase_36
+  EN: Talking to an experienced lawyer calmed the worried client.
+  RU: Разговор с опытным юристом успокоил обеспокоенного клиента.
+  UK: Розмова з досвідченим юристом заспокоїла стурбованого клієнта.
+
+L22/lesson22_phrase_37
+  EN: Nobody likes waiting for long in rainy cold weather.
+  RU: Никто не любит долго ждать в дождливую холодную погоду.
+  UK: Ніхто не любить довго чекати в дощову холодну погоду.
+
+L22/lesson22_phrase_38
+  EN: Every morning jogging in the park gives her positive energy.
+  RU: Ежедневная утренняя пробежка в парке дает ей положительную энергию.
+  UK: Щоранковий біг у парку дає їй позитивну енергію.
+
+L22/lesson22_phrase_39
+  EN: Did our technician finish repairing that complex old mechanism?
+  RU: Наш техник закончил ремонтировать тот сложный старый механизм?
+  UK: Наш технік закінчив ремонтувати той складний старий механізм?
+
+L22/lesson22_phrase_40
+  EN: We always avoid using harmful chemicals in our products.
+  RU: Мы всегда избегаем использования вредных химикатов в нашей продукции.
+  UK: Ми завжди уникаємо використання шкідливих хімікатів у нашій продукції.
+
+L22/lesson22_phrase_41
+  EN: Discussing this international contract requires full attention.
+  RU: Обсуждение этого международного контракта требует полного внимания.
+  UK: Обговорення цього міжнародного контракту вимагає повної уваги.
+
+L22/lesson22_phrase_42
+  EN: Someone mentioned booking a cozy apartment in the city center.
+  RU: Кто-то упомянул о бронировании уютной квартиры в центре города.
+  UK: Хтось згадав про бронювання затишної квартири в центрі міста.
+
+L22/lesson22_phrase_43
+  EN: They do not dislike working in this noisy open studio every day.
+  RU: Они не имеют ничего против работы в этой шумной открытой студии каждый день.
+  UK: Вони не мають нічого проти роботи в цій шумній відкритій студії щодня.
+
+L22/lesson22_phrase_44
+  EN: Did our team suggest buying modern furniture for the new office?
+  RU: Наша команда предложила купить современную мебель для нового офиса?
+  UK: Наша команда запропонувала купити сучасні меблі для нового офісу?
+
+L22/lesson22_phrase_45
+  EN: This project includes visiting that large industrial plant.
+  RU: Этот проект включает посещение того большого промышленного завода.
+  UK: Цей проект включає відвідування того великого промислового заводу.
+
+L22/lesson22_phrase_46
+  EN: Walking along this picturesque river bank is so enjoyable.
+  RU: Прогулка вдоль этого живописного берега реки так приятна.
+  UK: Прогулянка вздовж цього мальовничого берега річки така приємна.
+
+L22/lesson22_phrase_47
+  EN: Nobody suggested changing that strict long-term schedule.
+  RU: Никто не предлагал менять тот строгий долгосрочный график.
+  UK: Ніхто не пропонував змінювати той суворий довгостроковий графік.
+
+L22/lesson22_phrase_48
+  EN: I hate spending money on useless and expensive souvenirs.
+  RU: Я ненавижу тратить деньги на бесполезные и дорогие сувениры.
+  UK: Я ненавиджу витрачати гроші на непотрібні та дорогі сувеніри.
+
+L22/lesson22_phrase_49
+  EN: Her main job is teaching talented young students every day.
+  RU: Её главная работа — обучение талантливых молодых студентов каждый день.
+  UK: Її головна робота — навчання талановитих молодих студентів щодня.
+
+L22/lesson22_phrase_50
+  EN: Do you consider visiting that old beautiful mountain castle?
+  RU: Вы рассматриваете возможность посещения того старого красивого горного замка?
+  UK: Ви розглядаєте можливість відвідування того старого красивого гірського замку?
+
+
+# ===== Урок 23: Урок 23: Страдательный залог (Passive Voice) / Урок 23: Пасивний стан (Passive Voice) =====
+
+L23/lesson23_phrase_1
+  EN: This fresh food is cooked by a chef every evening.
+  RU: Эта свежая еда готовится шеф-поваром каждый вечер.
+  UK: Ця свіжа їжа готується шеф-кухарем щовечора.
+
+L23/lesson23_phrase_2
+  EN: Is my old computer often fixed by your brother?
+  RU: Мой старый компьютер часто чинится твоим братом?
+  UK: Мій старий комп'ютер часто ремонтується твоїм братом?
+
+L23/lesson23_phrase_3
+  EN: Those important letters are not sent by our secretaries on time.
+  RU: Те важные письма не отправляются нашими секретарями вовремя.
+  UK: Ті важливі листи не надсилаються нашими секретарями вчасно.
+
+L23/lesson23_phrase_4
+  EN: Is her new book read by many people in this city?
+  RU: Ее новую книгу читают многие люди в этом городе?
+  UK: Її нову книгу читають багато людей у цьому місті?
+
+L23/lesson23_phrase_5
+  EN: Our bills are not paid by them at the end of every month.
+  RU: Наши счета не оплачиваются ими в конце каждого месяца.
+  UK: Наші рахунки не оплачуються ними наприкінці кожного місяця.
+
+L23/lesson23_phrase_6
+  EN: Is this cozy office cleaned by them every morning?
+  RU: Этот уютный офис убирается ими каждое утро?
+  UK: Цей затишний офіс прибирається ними щоранку?
+
+L23/lesson23_phrase_7
+  EN: Those new rules are not often discussed by your management.
+  RU: Те новые правила не часто обсуждаются вашим руководством.
+  UK: Ті нові правила не часто обговорюються вашим керівництвом.
+
+L23/lesson23_phrase_8
+  EN: Is my luggage checked by security at the airport?
+  RU: Мой багаж проверяется службой безопасности в аэропорту?
+  UK: Мій багаж перевіряється службою безпеки в аеропорту?
+
+L23/lesson23_phrase_9
+  EN: These beautiful flowers are not watered by the gardener thrice a week.
+  RU: Эти красивые цветы не поливаются садовником трижды в неделю.
+  UK: Ці красиві квіти не поливаються садівником тричі на тиждень.
+
+L23/lesson23_phrase_10
+  EN: Is that difficult exercise always explained by our teacher?
+  RU: То сложное упражнение всегда объясняется нашим учителем?
+  UK: Та складна вправа завжди пояснюється нашим учителем?
+
+L23/lesson23_phrase_11
+  EN: This tasty dinner is usually made by my mother on Sundays.
+  RU: Этот вкусный ужин обычно готовится моей матерью по воскресеньям.
+  UK: Ця смачна вечеря зазвичай готується моєю мамою по неділях.
+
+L23/lesson23_phrase_12
+  EN: Your personal data is always protected by this reliable system.
+  RU: Ваши личные данные всегда защищаются этой надежной системой.
+  UK: Ваші особисті дані завжди захищаються цією надійною системою.
+
+L23/lesson23_phrase_13
+  EN: Is that door locked No it is open to all employees.
+  RU: Та дверь заперта? Нет, она открыта для всех сотрудников.
+  UK: Ті двері зачинені? Ні, вони відкриті для всіх співробітників.
+
+L23/lesson23_phrase_14
+  EN: Our daily reports are written by them in English.
+  RU: Наши ежедневные отчеты пишутся ими на английском языке.
+  UK: Наші щоденні звіти пишуться ними англійською мовою.
+
+L23/lesson23_phrase_15
+  EN: Is that old bridge often visited by many tourists in summer?
+  RU: Тот старый мост часто посещается многими туристами летом?
+  UK: Той старий міст часто відвідується багатьма туристами влітку?
+
+L23/lesson23_phrase_16
+  EN: Those fresh vegetables are not brought by someone from a local shop.
+  RU: Те свежие овощи не приносятся кем-то из местного магазина.
+  UK: Ті свіжі овочі не приносяться кимось із місцевого магазину.
+
+L23/lesson23_phrase_17
+  EN: This old legend is told by them every winter.
+  RU: Эта старая легенда рассказывается ими каждой зимой.
+  UK: Ця стара легенда розповідається ними щозими.
+
+L23/lesson23_phrase_18
+  EN: That empty glass is filled by her with cold water.
+  RU: Тот пустой стакан наполняется ею холодной водой.
+  UK: Та порожня склянка наповнюється нею холодною водою.
+
+L23/lesson23_phrase_19
+  EN: Are we often invited by you to those business meetings?
+  RU: Мы часто приглашены тобой на те деловые встречи?
+  UK: Ми часто запрошені тобою на ті ділові зустрічі?
+
+L23/lesson23_phrase_20
+  EN: Our new password is changed by someone in the office periodically.
+  RU: Наш новый пароль периодически меняется кем-то в офисе.
+  UK: Наш новий пароль періодично змінюється кимось в офісі.
+
+L23/lesson23_phrase_21
+  EN: The letter was written yesterday.
+  RU: Письмо было написано вчера.
+  UK: Лист був написаний вчора.
+
+L23/lesson23_phrase_22
+  EN: The window was broken by a ball.
+  RU: Окно было разбито мячом.
+  UK: Вікно було розбите м\'ячем.
+
+L23/lesson23_phrase_23
+  EN: Was the film directed by a famous filmmaker?
+  RU: Фильм был снят известным режиссером?
+  UK: Фільм був знятий відомим режисером?
+
+L23/lesson23_phrase_24
+  EN: The cake was eaten by the children.
+  RU: Торт был съеден детьми.
+  UK: Торт був з\'їдений дітьми.
+
+L23/lesson23_phrase_25
+  EN: The letter was not sent this morning.
+  RU: Письмо не было отправлено этим утром.
+  UK: Лист не був надісланий цього ранку.
+
+L23/lesson23_phrase_26
+  EN: The road was repaired last year.
+  RU: Дорога была отремонтирована в прошлом году.
+  UK: Дорогу відремонтували торік.
+
+L23/lesson23_phrase_27
+  EN: Was the house built in 1985?
+  RU: Дом был построен в 1985 году?
+  UK: Будинок був побудований у 1985 році?
+
+L23/lesson23_phrase_28
+  EN: The photos were taken by a professional.
+  RU: Фотографии были сделаны профессионалом.
+  UK: Фотографії були зроблені професіоналом.
+
+L23/lesson23_phrase_29
+  EN: The prizes were given to the winners.
+  RU: Призы были вручены победителям.
+  UK: Призи були вручені переможцям.
+
+L23/lesson23_phrase_30
+  EN: The story was told by an old man.
+  RU: История была рассказана стариком.
+  UK: Історія була розказана старим чоловіком.
+
+L23/lesson23_phrase_31
+  EN: Must the report be finished today?
+  RU: Отчет должен быть завершен сегодня?
+  UK: Звіт має бути завершений сьогодні?
+
+L23/lesson23_phrase_32
+  EN: This rule can be learned easily.
+  RU: Это правило можно легко выучить.
+  UK: Це правило можна легко вивчити.
+
+L23/lesson23_phrase_33
+  EN: The problem should be solved quickly.
+  RU: Проблема должна быть решена быстро.
+  UK: Проблему слід вирішити швидко.
+
+L23/lesson23_phrase_34
+  EN: This document must be signed by the manager.
+  RU: Этот документ должен быть подписан менеджером.
+  UK: Цей документ має бути підписаний менеджером.
+
+L23/lesson23_phrase_35
+  EN: These files cannot be deleted now.
+  RU: Эти файлы не могут быть удалены сейчас.
+  UK: Ці файли не можуть бути видалені зараз.
+
+L23/lesson23_phrase_36
+  EN: The road is being repaired.
+  RU: Дорога ремонтируется прямо сейчас.
+  UK: Дорога зараз ремонтується.
+
+L23/lesson23_phrase_37
+  EN: Is the new bridge being built?
+  RU: Новый мост строится?
+  UK: Новий міст будується?
+
+L23/lesson23_phrase_38
+  EN: The documents are being checked.
+  RU: Документы проверяются.
+  UK: Документи перевіряються.
+
+L23/lesson23_phrase_39
+  EN: The patients are being treated.
+  RU: Пациентов лечат.
+  UK: Пацієнтів лікують.
+
+L23/lesson23_phrase_40
+  EN: The room is being cleaned now.
+  RU: Комната убирается сейчас.
+  UK: Кімната прибирається зараз.
+
+L23/lesson23_phrase_41
+  EN: That modern computer is used by me for work daily.
+  RU: Тот современный компьютер используется мною для работы ежедневно.
+  UK: Той сучасний комп\'ютер використовується мною для роботи щодня.
+
+L23/lesson23_phrase_42
+  EN: This old bicycle is not fixed by him in the garage.
+  RU: Этот старый велосипед не чинится им в гараже.
+  UK: Цей старий велосипед не ремонтується ним у гаражі.
+
+L23/lesson23_phrase_43
+  EN: We are invited by them to every party in this house.
+  RU: Мы приглашены ими на каждую вечеринку в этом доме.
+  UK: Ми запрошені ними на кожну вечірку в цьому будинку.
+
+L23/lesson23_phrase_44
+  EN: Is that interesting video often watched by you on weekends?
+  RU: То интересное видео часто просматривается тобой по выходным?
+  UK: Те цікаве відео часто переглядається тобою на вихідних?
+
+L23/lesson23_phrase_45
+  EN: Our daily plan is always discussed by her with colleagues.
+  RU: Наш ежедневный план всегда обсуждается ею с коллегами.
+  UK: Наш щоденний план завжди обговорюється нею з колегами.
+
+L23/lesson23_phrase_46
+  EN: Those old photos are always kept by them in that small box.
+  RU: Те старые фотографии всегда хранятся ими в той маленькой коробке.
+  UK: Ті старі фотографії завжди зберігаються ними в тій маленькій коробці.
+
+L23/lesson23_phrase_47
+  EN: Your fresh mail is brought by that young postman every morning.
+  RU: Ваша свежая почта приносится тем молодым почтальоном каждое утро.
+  UK: Ваша свіжа пошта приноситься тим молодим листоношею щоранку.
+
+L23/lesson23_phrase_48
+  EN: That complex password is forgotten by me very often.
+  RU: Тот сложный пароль забывается мною очень часто.
+  UK: Той складний пароль забувається мною дуже часто.
+
+L23/lesson23_phrase_49
+  EN: Our new ideas are supported by you at every meeting.
+  RU: Наши новые идеи поддерживаются вами на каждом собрании.
+  UK: Наші нові ідеї підтримуються вами на кожних зборах.
+
+L23/lesson23_phrase_50
+  EN: That empty bottle is thrown by someone into a special bin.
+  RU: Та пустая бутылка выбрасывается кем-то в специальную корзину.
+  UK: Та порожня пляшка викидається кимось у спеціальний кошик.
+
+
+# ===== Урок 24: Урок 24: Present Perfect / Урок 24: Present Perfect =====
+
+L24/lesson24_phrase_1
+  EN: I have just found my old passport in this drawer.
+  RU: Я только что нашел свой старый паспорт в этом ящике.
+  UK: Я щойно знайшов свій старий паспорт у цій шухляді.
+
+L24/lesson24_phrase_2
+  EN: She has already cooked a tasty dinner for the whole family.
+  RU: Она уже приготовила вкусный ужин для всей семьи.
+  UK: Вона вже приготувала смачну вечерю для всієї родини.
+
+L24/lesson24_phrase_3
+  EN: We have not seen that new movie at the cinema yet.
+  RU: Мы еще не видели тот новый фильм в кинотеатре.
+  UK: Ми ще не бачили той новий фільм у кінотеатрі.
+
+L24/lesson24_phrase_4
+  EN: Have you ever tasted this traditional dish?
+  RU: Ты когда-нибудь пробовал это традиционное блюдо?
+  UK: Ти коли-небудь куштував цю традиційну страву?
+
+L24/lesson24_phrase_5
+  EN: He has just sent that important report to our manager.
+  RU: Он только что отправил тот важный отчет нашему менеджеру.
+  UK: Він щойно відправив той важливий звіт нашому менеджеру.
+
+L24/lesson24_phrase_6
+  EN: My friends have just bought tickets for this concert.
+  RU: Мои друзья только что купили билеты на этот концерт.
+  UK: Мої друзі щойно купили квитки на цей концерт.
+
+L24/lesson24_phrase_7
+  EN: This student has never made such a stupid mistake before.
+  RU: Этот студент никогда раньше не делал такой глупой ошибки.
+  UK: Цей студент ніколи раніше не робив такої дурної помилки.
+
+L24/lesson24_phrase_8
+  EN: Have you already written your review about this new application?
+  RU: Вы уже написали свой отзыв об этом новом приложении?
+  UK: Ви вже написали свій відгук про цей новий додаток?
+
+L24/lesson24_phrase_9
+  EN: Someone has left their wet bag on that leather sofa.
+  RU: Кто-то оставил свою мокрую сумку на том кожаном диване.
+  UK: Хтось залишив свою мокру сумку на тому шкіряному дивані.
+
+L24/lesson24_phrase_10
+  EN: They have not finished this important project for our client yet.
+  RU: Они еще не закончили этот важный проект для нашего клиента.
+  UK: Вони ще не закінчили цей важливий проект для нашого клієнта.
+
+L24/lesson24_phrase_11
+  EN: She has just lost her golden keys somewhere in this huge park.
+  RU: Она только что потеряла свои золотые ключи где-то в этом огромном парке.
+  UK: Вона щойно загубила свої золоті ключі десь у цьому величезному парку.
+
+L24/lesson24_phrase_12
+  EN: We have already booked that cozy room for our summer vacation.
+  RU: Мы уже забронировали тот уютный номер для нашего летнего отпуска.
+  UK: Ми вже забронювали той затишний номер для нашої літньої відпустки.
+
+L24/lesson24_phrase_13
+  EN: I have not read that interesting article about new technologies yet.
+  RU: Я еще не прочитал ту интересную статью о новых технологиях.
+  UK: Я ще не прочитав ту цікаву статтю про нові технології.
+
+L24/lesson24_phrase_14
+  EN: Have you ever seen these wild animals in their natural environment?
+  RU: Ты когда-нибудь видел этих диких животных в их естественной среде?
+  UK: Ти коли-небудь бачив цих диких тварин у їхньому природному середовищі?
+
+L24/lesson24_phrase_15
+  EN: He has already repaired that old roof of our country house.
+  RU: Он уже отремонтировал ту старую крышу нашего загородного дома.
+  UK: Він вже відремонтував той старий дах нашого заміського будинку.
+
+L24/lesson24_phrase_16
+  EN: We have just discussed these important details with our new lawyer.
+  RU: Мы только что обсудили эти важные детали с нашим новым юристом.
+  UK: Ми щойно обговорили ці важливі деталі з нашим новим юристом.
+
+L24/lesson24_phrase_17
+  EN: Someone has just drunk my cold orange juice in the kitchen.
+  RU: Кто-то только что выпил мой холодный апельсиновый сок на кухне.
+  UK: Хтось щойно випив мій холодний апельсиновий сік на кухні.
+
+L24/lesson24_phrase_18
+  EN: She has not received those official documents from her company yet.
+  RU: Она еще не получила те официальные документы от своей компании.
+  UK: Вона ще не отримала ті офіційні документи від своєї компанії.
+
+L24/lesson24_phrase_19
+  EN: Have you ever heard this beautiful classical music live?
+  RU: Ты когда-нибудь слышал эту прекрасную классическую музыку вживую?
+  UK: Ти коли-небудь чув цю прекрасну класичну музику наживо?
+
+L24/lesson24_phrase_20
+  EN: They have just built a new modern bridge across that river.
+  RU: Они только что построили новый современный мост через ту реку.
+  UK: Вони щойно побудували новий сучасний міст через ту річку.
+
+L24/lesson24_phrase_21
+  EN: My sister has just sent me this funny video from her vacation.
+  RU: Моя сестра только что прислала мне это смешное видео из своего отпуска.
+  UK: Моя сестра щойно надіслала мені це смішне відео зі своєї відпустки.
+
+L24/lesson24_phrase_22
+  EN: This experienced doctor has already checked the results of your blood tests.
+  RU: Этот опытный врач уже проверил результаты ваших анализов крови.
+  UK: Цей досвідчений лікар вже перевірив результати ваших аналізів крові.
+
+L24/lesson24_phrase_23
+  EN: We have not chosen a suitable gift for their anniversary yet.
+  RU: Мы еще не выбрали подходящий подарок на их годовщину.
+  UK: Ми ще не обрали відповідний подарунок на їхню річницю.
+
+L24/lesson24_phrase_24
+  EN: Have you ever lost your mobile phone in a foreign city?
+  RU: Ты когда-нибудь терял свой мобильный телефон в чужом городе?
+  UK: Ти коли-небудь втрачав свій мобільний телефон у чужому місті?
+
+L24/lesson24_phrase_25
+  EN: That talented chef has just created a new recipe for this salad.
+  RU: Тот талантливый шеф только что создал новый рецепт для этого салата.
+  UK: Той талановитий шеф щойно створив новий рецепт для цього салату.
+
+L24/lesson24_phrase_26
+  EN: That polite waiter has just brought our hot order.
+  RU: Тот вежливый официант только что принес наш горячий заказ.
+  UK: Той ввічливий офіціант щойно приніс наше гаряче замовлення.
+
+L24/lesson24_phrase_27
+  EN: My parents have never been to this exotic country before.
+  RU: Мои родители никогда не были в этой экзотической стране раньше.
+  UK: Мої батьки ніколи не були в цій екзотичній країні раніше.
+
+L24/lesson24_phrase_28
+  EN: Someone has already stolen that expensive painting from the local gallery.
+  RU: Кто-то уже украл ту дорогую картину из местной галереи.
+  UK: Хтось уже вкрав ту дорогу картину з місцевої галереї.
+
+L24/lesson24_phrase_29
+  EN: She has not heard the latest news about her friend yet.
+  RU: Она еще не слышала последние новости о своей подруге.
+  UK: Вона ще не чула останні новини про свою подругу.
+
+L24/lesson24_phrase_30
+  EN: Have you ever driven this powerful sports car yourself?
+  RU: Вы когда-нибудь водили этот мощный спортивный автомобиль самостоятельно?
+  UK: Ви коли-небудь водили цей потужний спортивний автомобіль самостійно?
+
+L24/lesson24_phrase_31
+  EN: That attentive manager has just confirmed our important meeting in London.
+  RU: Тот внимательный менеджер только что подтвердил нашу важную встречу в Лондоне.
+  UK: Той уважний менеджер щойно підтвердив нашу важливу зустріч у Лондоні.
+
+L24/lesson24_phrase_32
+  EN: We have already visited that ancient castle during our short trip.
+  RU: Мы уже посетили тот старинный замок во время нашего короткого путешествия.
+  UK: Ми вже відвідали той старовинний замок під час нашої короткої подорожі.
+
+L24/lesson24_phrase_33
+  EN: She has not chosen her new dress for that grand party yet.
+  RU: Она еще не выбрала свое новое платье для той грандиозной вечеринки.
+  UK: Вона ще не обрала свою нову сукню для тієї грандіозної вечірки.
+
+L24/lesson24_phrase_34
+  EN: Have you ever met this famous actor in real life?
+  RU: Вы когда-нибудь встречали этого известного актера в реальной жизни?
+  UK: Ви коли-небудь зустрічали цього відомого актора в реальному житті?
+
+L24/lesson24_phrase_35
+  EN: They have just found that secret information on your personal computer.
+  RU: Они только что нашли ту секретную информацию на вашем личном компьютере.
+  UK: Вони щойно знайшли ту секретну інформацію на вашому особистому комп'ютері.
+
+L24/lesson24_phrase_36
+  EN: This polite neighbor has just lent me his new ladder.
+  RU: Этот вежливый сосед только что одолжил мне свою новую лестницу.
+  UK: Цей ввічливий сусід щойно позичив мені свою нову драбину.
+
+L24/lesson24_phrase_37
+  EN: We have already sent our official invitation to that conference.
+  RU: Мы уже отправили наше официальное приглашение на ту конференцию.
+  UK: Ми вже надіслали наше офіційне запрошення на ту конференцію.
+
+L24/lesson24_phrase_38
+  EN: Someone has not closed that massive oak door to our garden yet.
+  RU: Кто-то еще не закрыл ту массивную дубовую дверь в наш сад.
+  UK: Хтось ще не зачинив ті масивні дубові двері в наш сад.
+
+L24/lesson24_phrase_39
+  EN: Have you ever tasted this spicy sauce in that Mexican restaurant?
+  RU: Ты когда-нибудь пробовал этот острый соус в том мексиканском ресторане?
+  UK: Ти коли-небудь куштував цей гострий соус у тому мексиканському ресторані?
+
+L24/lesson24_phrase_40
+  EN: My aunt has just baked that delicious apple pie for us.
+  RU: Моя тетя только что испекла тот вкусный яблочный пирог для нас.
+  UK: Моя тітка щойно спекла той смачний яблучний пиріг для нас.
+
+L24/lesson24_phrase_41
+  EN: My colleague has just won this prestigious grant for scientific research.
+  RU: Мой коллега только что выиграл этот престижный грант на научное исследование.
+  UK: Мій колега щойно виграв цей престижний грант на наукове дослідження.
+
+L24/lesson24_phrase_42
+  EN: We have already discussed those technical problems with your chief engineer.
+  RU: Мы уже обсудили те технические проблемы с вашим главным инженером.
+  UK: Ми вже обговорили ті технічні проблеми з вашим головним інженером.
+
+L24/lesson24_phrase_43
+  EN: She has not sold that old furniture from her empty apartment yet.
+  RU: Она еще не продала ту старую мебель из своей пустой квартиры.
+  UK: Вона ще не продала ті старі меблі зі своєї порожньої квартири.
+
+L24/lesson24_phrase_44
+  EN: Have you ever written such a long article for this famous magazine?
+  RU: Ты когда-нибудь писал такую длинную статью для этого известного журнала?
+  UK: Ти коли-небудь писав таку довгу статтю для цього відомого журналу?
+
+L24/lesson24_phrase_45
+  EN: Our director has just signed this new contract with international partners.
+  RU: Наш директор только что подписал этот новый контракт с международными партнерами.
+  UK: Наш директор щойно підписав цей новий контракт із міжнародними партнерами.
+
+L24/lesson24_phrase_46
+  EN: That experienced mechanic has just repaired my old engine.
+  RU: Тот опытный механик только что починил мой старый двигатель.
+  UK: Той досвідчений механік щойно відремонтував мій старий двигун.
+
+L24/lesson24_phrase_47
+  EN: We have already booked this cozy room in the city center.
+  RU: Мы уже забронировали этот уютный номер в центре города.
+  UK: Ми вже забронювали цей затишний номер у центрі міста.
+
+L24/lesson24_phrase_48
+  EN: Someone has not explained these complex rules to our new employee yet.
+  RU: Кто-то еще не объяснил эти сложные правила нашему новому сотруднику.
+  UK: Хтось ще не пояснив ці складні правила нашому новому співробітнику.
+
+L24/lesson24_phrase_49
+  EN: Have you ever seen such a rare natural phenomenon in the mountains?
+  RU: Ты когда-нибудь видел такое редкое природное явление в горах?
+  UK: Ти коли-небудь бачив таке рідкісне природне явище в горах?
+
+L24/lesson24_phrase_50
+  EN: That security guard has just checked your personal belongings at the entrance.
+  RU: Тот охранник только что проверил ваши личные вещи у входа.
+  UK: Той охоронець щойно перевірив ваші особисті речі біля входу.
+

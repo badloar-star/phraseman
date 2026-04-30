@@ -1,0 +1,205 @@
+=== MORNING SESSIONS ANALYSIS (18 Apr 09:05-12:55) ===
+
+Sessions analyzed: 8
+Total Edit ops: 39
+Total Write ops (unique files): 1
+
+--- EDIT OPERATIONS ---
+
+[001] [dca4eba4] app\cloud_sync.ts
+      Status: cannot apply (cannot_apply)
+      Old:     // Синхронизируем leaderboard с актуальными данными\n    
+
+[002] [dca4eba4] app\firestore_leagues.ts
+      Status: already applied
+      Old:     // Сохраняем groupId в профиле пользователя\n    await db
+
+[003] [dca4eba4] firebase.json
+      Status: APPLIED
+      Old:   "firestore": {\n    "rules": "firestore.rules"\n  },
+
+[004] [dca4eba4] app\firestore_leagues.ts
+      Status: already applied
+      Old:   try {\n    // Сначала пробуем league_groups (пользователи, 
+
+[005] [dca4eba4] app\firestore_leagues.ts
+      Status: already applied
+      Old:     // Ищем незаполненную группу того же уровня на этой неде
+
+[006] [dca4eba4] app\firestore_leagues.ts
+      Status: already applied
+      Old:         memberCount: (groupsSnap.docs[0].data().memberCount 
+
+[007] [dca4eba4] app\firestore_leagues.ts
+      Status: APPLIED
+      Old: import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';\ni
+
+[008] [dca4eba4] app\firestore_leagues.ts
+      Status: APPLIED
+      Old: // ── Загрузить участников группы ──────────────────────────
+
+[009] [dca4eba4] app\_layout.tsx
+      Status: APPLIED
+      Old: import { ensureAnonUser, migrateLocalProgressToCloud, restor
+
+[010] [dca4eba4] app\_layout.tsx
+      Status: APPLIED
+      Old: import { ensureAnonUser, migrateLocalProgressToCloud, restor
+
+[011] [dca4eba4] app\_layout.tsx
+      Status: cannot apply (cannot_apply)
+      Old:         ensureAnonUser().then(() => {\n          restoreFromC
+
+[012] [dca4eba4] app\firestore_leagues.ts
+      Status: APPLIED
+      Old:     let weekPoints = 0;\n    try {\n      const wpData = weekP
+
+[013] [dca4eba4] app\firestore_leagues.ts
+      Status: already applied
+      Old:     // Фолбэк: ищем игроков по leagueId прямо в leaderboard\n
+
+[014] [dca4eba4] app\firestore_leagues.ts
+      Status: APPLIED
+      Old: export async function registerInLeagueGroupSilently(): Promi
+
+[015] [dca4eba4] app\firestore_leagues.ts
+      Status: APPLIED
+      Old: export async function registerInLeagueGroupSilently(isPremiu
+
+[016] [dca4eba4] app\firestore_leagues.ts
+      Status: APPLIED
+      Old:     const [[, nameRaw], [, leagueRaw], [, weekPtsRaw], [, pr
+
+[017] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:   { id: 'connectors',  icon: 'git-network-outline',         
+
+[018] [a9f317e2] app/flashcards.tsx
+      Status: cannot apply (cannot_apply)
+      Old:           <View style={{ flexDirection:'row', justifyContent
+
+[019] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:         <View style={st.centerState}>\n          <Ionicons na
+
+[020] [a9f317e2] app/flashcards.tsx
+      Status: cannot apply (cannot_apply)
+      Old:   // ── Create / Edit mode ─────────────────────────────────
+
+[021] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:   // ── Create / Edit mode ─────────────────────────────────
+
+[022] [a9f317e2] app/flashcards.tsx
+      Status: cannot apply (cannot_apply)
+      Old:             {activeCat === 'custom' && (\n              <Touc
+
+[023] [a9f317e2] app/flashcards.tsx
+      Status: APPLIED
+      Old:         {/* Flip all button */}\n        {filteredCards.lengt
+
+[024] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:             {savedBtnsVisible && filterOptions.length > 0 &&
+
+[025] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:     if (leavingSaved) {\n      // Animate filter out\n      An
+
+[026] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:       if (enteringSaved) {\n        filterBtnX.setValue(120);
+
+[027] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:             {savedBtnsVisible && activeCat !== 'custom' && f
+
+[028] [a9f317e2] app/flashcards.tsx
+      Status: already applied
+      Old:                 </View>\n              </Animated.View>\n     
+
+[029] [ab6ff238] app\firestore_leaderboard.ts
+      Status: cannot apply (cannot_apply)
+      Old: export async function isNameAvailable(name: string): Promise
+
+[030] [327644f1] app\lesson_data_1_8.ts
+      Status: cannot apply (cannot_apply)
+      Old:       { text: 'credit', correct: 'credit', distractors: ['de
+
+[031] [327644f1] app\lesson_data_1_8.ts
+      Status: already applied
+      Old:       { text: 'credit', correct: 'credit', distractors: ['de
+
+[032] [327644f1] app\lesson_irregular_verbs.tsx
+      Status: cannot apply (cannot_apply)
+      Old: const DISTRACTOR_POOL = ['went', 'gone', 'did', 'done', 'was
+
+[033] [327644f1] app\lesson_irregular_verbs.tsx
+      Status: already applied
+      Old: // Returns 4 options: correct + 3 distractors.\n// Priority: 
+
+[034] [327644f1] app\lesson_irregular_verbs.tsx
+      Status: cannot apply (cannot_apply)
+      Old:     setOptions(make4Options(correct, verb, verbs));
+
+[035] [327644f1] app\lesson_irregular_verbs.tsx
+      Status: already applied
+      Old: function LearnTab({ verbs, lang, initCounts, onUpdate, onRes
+
+[036] [327644f1] app\lesson_irregular_verbs.tsx
+      Status: already applied
+      Old:     setOptions(make4Options(correct, verb, verbs, form));
+
+[037] [327644f1] app\lesson_irregular_verbs.tsx
+      Status: APPLIED
+      Old:   const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || []
+
+[038] [327644f1] app\lesson_irregular_verbs.tsx
+      Status: already applied
+      Old:               ? <LearnTab\n                  key={learnTabKey
+
+[039] [1eb4d6e8] app/lesson_data_9_16.ts
+      Status: already applied
+      Old:     english: 'She cleaned vegetables for the salad yesterday
+
+
+--- WRITE OPERATIONS (unique files, last session wins) ---
+
+[W] [dca4eba4] firestore.indexes.json
+    Status: already applied
+
+
+=== SUMMARY ===
+
+EDIT ops total:          39
+  Applied now:           11
+  Already applied:       19
+  Cannot apply:          9
+  File missing:          0
+
+WRITE ops (unique files): 1
+  Applied now:           0
+  Already applied:       1
+
+--- FILES CHANGED (5) ---
+
+  firebase.json:
+    - EDIT applied:   "firestore": {\n    "rules": "firestore.rules"\n  },...
+
+  app\firestore_leagues.ts:
+    - EDIT applied: import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';\ni...
+    - EDIT applied: // ── Загрузить участников группы ──────────────────────────...
+    - EDIT applied:     let weekPoints = 0;\n    try {\n      const wpData = weekP...
+    - EDIT applied: export async function registerInLeagueGroupSilently(): Promi...
+    - EDIT applied: export async function registerInLeagueGroupSilently(isPremiu...
+    - EDIT applied:     const [[, nameRaw], [, leagueRaw], [, weekPtsRaw], [, pr...
+
+  app\_layout.tsx:
+    - EDIT applied: import { ensureAnonUser, migrateLocalProgressToCloud, restor...
+    - EDIT applied: import { ensureAnonUser, migrateLocalProgressToCloud, restor...
+
+  app/flashcards.tsx:
+    - EDIT applied:         {/* Flip all button */}\n        {filteredCards.lengt...
+
+  app\lesson_irregular_verbs.tsx:
+    - EDIT applied:   const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || []...

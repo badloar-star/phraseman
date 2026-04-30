@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080" fill="none">
+  <defs>
+    <linearGradient id="arBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0a1f28"/>
+      <stop offset="45%" stop-color="#06141b"/>
+      <stop offset="100%" stop-color="#020a0e"/>
+    </linearGradient>
+    <radialGradient id="arGlow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#ef4444" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#06141b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="arBar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#d4a017"/>
+    </linearGradient>
+    <linearGradient id="arFlameOut" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fb923c"/>
+      <stop offset="100%" stop-color="#c2410c"/>
+    </linearGradient>
+    <linearGradient id="arFlameIn" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#fef9c3"/>
+      <stop offset="100%" stop-color="#fbbf24"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1080" height="1080" fill="url(#arBg)"/>
+  <rect width="1080" height="1080" fill="url(#arGlow)"/>
+
+  <g opacity="0.07" stroke="#7ab8cc" stroke-width="1">
+    <path d="M0 180 H1080 M0 360 H1080 M0 540 H1080 M0 720 H1080 M0 900 H1080"/>
+    <path d="M180 0 V1080 M360 0 V1080 M540 0 V1080 M720 0 V1080 M900 0 V1080"/>
+  </g>
+
+  <text x="540" y="110" text-anchor="middle" fill="#8aa8b4" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="28" font-weight="600" letter-spacing="0.2em">PHRASEMAN</text>
+  <text x="540" y="200" text-anchor="middle" fill="#f87171" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="44" font-weight="800">&#1040;&#1088;&#1077;&#1085;&#1072;</text>
+
+  <text x="540" y="320" text-anchor="middle" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="100">&#9876;&#65039;</text>
+  <text x="540" y="440" text-anchor="middle" fill="#94a3b8" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="36" font-weight="600">&#1044;&#1091;&#1101;&#1083;&#1100; &#1089; &#1076;&#1088;&#1091;&#1075;&#1086;&#1084;</text>
+
+  <svg x="414" y="618" width="252" height="252" viewBox="0 0 512 512" preserveAspectRatio="xMidYMid meet" role="img" aria-label="flame">
+    <path fill="url(#arFlameOut)" d="M394.23,197.56a300.43,300.43,0,0,0-53.37-90C301.2,61.65,249.05,32,208,32a16,16,0,0,0-15.48,20c13.87,53-14.88,97.07-45.31,143.72C122,234.36,96,274.27,96,320c0,88.22,71.78,160,160,160s160-71.78,160-160C416,276.7,408.68,235.51,394.23,197.56Z"/>
+    <path fill="url(#arFlameIn)" d="M288.33,418.69C278,429.69,265.05,432,256,432s-22-2.31-32.33-13.31S208,390.24,208,368c0-25.14,8.82-44.28,17.34-62.78,4.95-10.74,10-21.67,13-33.37a8,8,0,0,1,12.49-4.51A126.48,126.48,0,0,1,275,292c18.17,24,29,52.42,29,76C304,390.24,298.58,407.77,288.33,418.69Z"/>
+  </svg>
+
+  <rect x="120" y="990" width="840" height="3" rx="1.5" fill="url(#arBar)" opacity="0.5"/>
+  <text x="540" y="1038" text-anchor="middle" fill="#5c7a86" font-family="Segoe UI, Roboto, Arial, Helvetica, sans-serif" font-size="24" font-weight="500">&#1059;&#1095;&#1080; &#1072;&#1085;&#1075;&#1083;&#1080;&#1081;&#1089;&#1082;&#1080;&#1081; &#1082;&#1072;&#1078;&#1076;&#1099;&#1081; &#1076;&#1077;&#1085;&#1100;</text>
+</svg>

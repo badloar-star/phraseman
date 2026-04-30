@@ -590,23 +590,25 @@ interface ShopItem {
 ### Полный цикл: Задача → Награда → Покупка
 
 ```typescript
-import { rewardPhrasemenForTask, buyEnergy, getPhrasemenBalance } from '@/app/phrasemen_integration';
-import { claimTask } from '@/app/daily_tasks';
+import { claimTaskWithReward, getTaskById } from '@/app/daily_tasks';
+import { registerXP } from '@/app/xp_manager';
 
-async function completeTaskAndBuyEnergy(taskId: string) {
-  // 1. Пользователь выполнил задачу
-  await claimTask(taskId);
+/** Забрать награду за ежедневное задание (XP начисляется только при успешном grant). */
+async function claimDailyTaskXp(
+  taskId: string,
+  userName: string,
+  lang: 'ru' | 'uk',
+) {
+  const task = getTaskById(taskId);
+  if (!task) return;
 
-  // 2. Выдаём фразмены
-  await rewardPhrasemenForTask(taskId);
-  const balance = await getPhrasemenBalance();
-  console.log(`Баланс: ${balance}`);
+  const { claimed, awardedXp } = await claimTaskWithReward(taskId, async () => {
+    const r = await registerXP(task.xp, 'daily_task_reward', userName, lang);
+    return r.finalDelta;
+  });
 
-  // 3. Пользователь покупает энергию
-  const success = await buyEnergy(5);
-
-  if (success) {
-    console.log('Энергия куплена');
+  if (claimed) {
+    console.log(`Начислено XP: ${awardedXp}`);
   }
 }
 ```

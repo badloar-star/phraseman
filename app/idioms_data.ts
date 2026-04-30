@@ -1776,3 +1776,6 @@ export const IDIOMS: Idiom[] = [
     text_uk: '❤️ Лід зберігає речі — і ідеї теж! Put something on ice означає тимчасово відкласти план або проект, але не відмовлятися від нього назовсім. Як заморозити торт, щоб з\'їсти його пізніше. «We\'re putting the project on ice until next year» — проект заморожується, але не вмирає. Іноді пауза — це найкраще, що можна зробити. Головне — не забути розморозити у потрібний момент!',
   },
 ];
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

@@ -46,38 +46,42 @@ export default function CircularProgress({
         }} />
 
         {/* 2. Left colored fill — sweeps CW 6→9→12 (active after 50%) */}
-        <View style={{
-          position: 'absolute', left: 0, top: 0,
-          width: h, height: size, overflow: 'hidden',
-        }}>
+        {clamped > 50 && (
           <View style={{
             position: 'absolute', left: 0, top: 0,
-            width: h, height: size,
-            backgroundColor: color,
-            transform: [
-              { translateX: h / 2 },
-              { rotate: `${leftFillRot}deg` },
-              { translateX: -(h / 2) },
-            ],
-          }} />
-        </View>
+            width: h, height: size, overflow: 'hidden',
+          }}>
+            <View style={{
+              position: 'absolute', left: 0, top: 0,
+              width: h, height: size,
+              backgroundColor: color,
+              transform: [
+                { translateX: h / 2 },
+                { rotate: `${leftFillRot}deg` },
+                { translateX: -(h / 2) },
+              ],
+            }} />
+          </View>
+        )}
 
         {/* 3. Right colored fill — sweeps CW 12→3→6 */}
-        <View style={{
-          position: 'absolute', left: h, top: 0,
-          width: h, height: size, overflow: 'hidden',
-        }}>
+        {clamped > 0 && (
           <View style={{
-            position: 'absolute', left: 0, top: 0,
-            width: h, height: size,
-            backgroundColor: color,
-            transform: [
-              { translateX: -(h / 2) },
-              { rotate: `${rightFillRot}deg` },
-              { translateX: h / 2 },
-            ],
-          }} />
-        </View>
+            position: 'absolute', left: h, top: 0,
+            width: h, height: size, overflow: 'hidden',
+          }}>
+            <View style={{
+              position: 'absolute', left: 0, top: 0,
+              width: h, height: size,
+              backgroundColor: color,
+              transform: [
+                { translateX: -(h / 2) },
+                { rotate: `${rightFillRot}deg` },
+                { translateX: h / 2 },
+              ],
+            }} />
+          </View>
+        )}
 
         {/* 4. Inner hole — creates the ring */}
         <View style={{

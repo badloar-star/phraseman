@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/(tabs)/hall_of_fame.tsx",
+  "session": "b8657361",
+  "op_index": 11,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "  const [profilePlayer, setProfile] = useState<HoFPlayerInfo | null>(null);",
+  "new_string": "  const [profilePlayer, setProfile] = useState<HoFPlayerInfo | null>(null);\n  const [refreshing, setRefreshing] = useState(false);"
+}

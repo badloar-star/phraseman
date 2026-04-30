@@ -1,0 +1,21 @@
+# Настройки: экран, профиль, зона удаления аккаунта (без нажатия «удалить»).
+appId: app.phraseman
+---
+- runFlow: ../../_shared/boot_to_home.yaml
+- tapOn:
+    id: "tab-settings"
+- extendedWaitUntil:
+    visible:
+      id: "screen-settings"
+    timeout: 30000
+- assertVisible:
+    id: "settings-profile-row"
+- scrollUntilVisible:
+    element:
+      id: "settings-delete-account"
+    direction: DOWN
+    timeout: 25000
+    speed: 70
+    visibilityPercentage: 30
+- assertVisible:
+    id: "settings-delete-account"

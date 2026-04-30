@@ -56,52 +56,6 @@ export interface PhraseStructure {
   tokens: TokenDefinition[];
 }
 
-// Helper: Get appropriate distractors for a position
-function getDistractorsForPosition(
-  category: string,
-  correctWord: string,
-  context: string // 'I' | 'he' | 'she' | 'we' | 'they' | 'it' | 'this'
-): string[] {
-  const pools = L1_SEMANTIC_POOLS;
-  let basePool: string[] = [];
-
-  if (category === 'pronoun') {
-    basePool = pools.pronouns_subject;
-  } else if (category === 'toBe') {
-    // Smart: show appropriate form based on subject pronoun
-    if (context === 'I') {
-      basePool = ['is', 'are', 'was', 'were']; // Not 'am'
-    } else if (['he', 'she', 'it'].includes(context)) {
-      basePool = ['am', 'are', 'was', 'were']; // Not 'is'
-    } else if (['we', 'they'].includes(context)) {
-      basePool = ['am', 'is', 'was', 'were']; // Not 'are'
-    } else {
-      basePool = pools.toBe_present;
-    }
-  } else if (category === 'article') {
-    basePool = pools.articles;
-  } else if (category === 'determiner') {
-    basePool = pools.determiners;
-  } else if (category === 'possessive') {
-    basePool = pools.possessives;
-  } else if (category === 'adjective') {
-    basePool = pools.adjectives_A1;
-  } else if (category === 'profession') {
-    basePool = pools.professions_singular;
-  } else if (category === 'profession_plural') {
-    basePool = pools.professions_plural;
-  } else if (category === 'noun_object') {
-    basePool = pools.nouns_objects;
-  } else if (category === 'preposition') {
-    basePool = pools.prepositions;
-  } else if (category === 'intensifier') {
-    basePool = pools.intensifiers;
-  }
-
-  // Remove correct word and return as distractors
-  return basePool.filter(w => w.toLowerCase() !== correctWord.toLowerCase());
-}
-
 // ════════════════════════════════════════════════════════════════════════════════════
 // LESSON 1 PHRASE STRUCTURES (50 phrases)
 // ════════════════════════════════════════════════════════════════════════════════════
@@ -590,15 +544,15 @@ export const L1_PHRASE_STRUCTURES: PhraseStructure[] = [
       { position: 3, word: 'Canada', category: 'noun_object', distractorPool: [] },
     ]
   },
-  // 44: "It is my favourite book"
+  // 44: "It is my favorite book"
   {
     phraseIndex: 44,
-    phrase: 'It is my favourite book',
+    phrase: 'It is my favorite book',
     tokens: [
       { position: 0, word: 'It', category: 'pronoun', distractorPool: [] },
       { position: 1, word: 'is', category: 'toBe', distractorPool: [] },
       { position: 2, word: 'my', category: 'possessive', distractorPool: [] },
-      { position: 3, word: 'favourite', category: 'adjective', distractorPool: [] },
+      { position: 3, word: 'favorite', category: 'adjective', distractorPool: [] },
       { position: 4, word: 'book', category: 'noun_object', distractorPool: [] },
     ]
   },
@@ -739,3 +693,6 @@ export function getDistractorsForWord(
 
   return distractors.length >= 5 ? distractors : distractors;
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

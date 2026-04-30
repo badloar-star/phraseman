@@ -69,3 +69,6 @@ export const TRAPS_9_16: LessonErrorTrapsMap = {
   15: L15_TRAPS,
   16: L16_TRAPS,
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

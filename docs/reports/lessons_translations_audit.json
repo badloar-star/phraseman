@@ -1,0 +1,1557 @@
+{
+  "flat": 1600,
+  "issues": [
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_3",
+      "en": "He lives in London",
+      "ru": "Он живет в Лондоне",
+      "uk": "Він живе в Лондоні",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_3",
+      "en": "He lives in London",
+      "ru": "Он живет в Лондоне",
+      "uk": "Він живе в Лондоні",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_5",
+      "en": "She speaks English",
+      "ru": "Она говорит по-английски",
+      "uk": "Вона говорить англійською",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_5",
+      "en": "She speaks English",
+      "ru": "Она говорит по-английски",
+      "uk": "Вона говорить англійською",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_7",
+      "en": "It helps people",
+      "ru": "Это помогает людям",
+      "uk": "Це допомагає людям",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_7",
+      "en": "It helps people",
+      "ru": "Это помогает людям",
+      "uk": "Це допомагає людям",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_9",
+      "en": "He eats meat",
+      "ru": "Он ест мясо",
+      "uk": "Він їсть м'ясо",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_9",
+      "en": "He eats meat",
+      "ru": "Он ест мясо",
+      "uk": "Він їсть м'ясо",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_11",
+      "en": "She loves music",
+      "ru": "Она любит музыку",
+      "uk": "Вона любить музику",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_11",
+      "en": "She loves music",
+      "ru": "Она любит музыку",
+      "uk": "Вона любить музику",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_13",
+      "en": "It costs a dollar",
+      "ru": "Это стоит доллар",
+      "uk": "Це коштує долар",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_13",
+      "en": "It costs a dollar",
+      "ru": "Это стоит доллар",
+      "uk": "Це коштує долар",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_17",
+      "en": "He writes letters",
+      "ru": "Он пишет письма",
+      "uk": "Він пише листи",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_17",
+      "en": "He writes letters",
+      "ru": "Он пишет письма",
+      "uk": "Він пише листи",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_19",
+      "en": "She washes the dishes",
+      "ru": "Она моет посуду",
+      "uk": "Вона миє посуд",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_22",
+      "en": "He often calls",
+      "ru": "Он часто звонит",
+      "uk": "Він часто телефонує",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_23",
+      "en": "She cooks dinner",
+      "ru": "Она готовит ужин",
+      "uk": "Вона готує вечерю",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_23",
+      "en": "She cooks dinner",
+      "ru": "Она готовит ужин",
+      "uk": "Вона готує вечерю",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_27",
+      "en": "It seems strange",
+      "ru": "Это кажется странным",
+      "uk": "Це здається дивним",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_27",
+      "en": "It seems strange",
+      "ru": "Это кажется странным",
+      "uk": "Це здається дивним",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_32",
+      "en": "He wears glasses",
+      "ru": "Он носит очки",
+      "uk": "Він носить окуляри",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_32",
+      "en": "He wears glasses",
+      "ru": "Он носит очки",
+      "uk": "Він носить окуляри",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_34",
+      "en": "She uses the internet",
+      "ru": "Она пользуется интернетом",
+      "uk": "Вона користується інтернетом",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_38",
+      "en": "She teaches music",
+      "ru": "Она преподает музыку",
+      "uk": "Вона викладає музику",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_40",
+      "en": "It takes time",
+      "ru": "Это требует времени",
+      "uk": "Це потребує часу",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_40",
+      "en": "It takes time",
+      "ru": "Это требует времени",
+      "uk": "Це потребує часу",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_43",
+      "en": "He drinks tea",
+      "ru": "Он пьет чай",
+      "uk": "Він п'є чай",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_43",
+      "en": "He drinks tea",
+      "ru": "Он пьет чай",
+      "uk": "Він п'є чай",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_44",
+      "en": "She knows the address",
+      "ru": "Она знает адрес",
+      "uk": "Вона знає адресу",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_44",
+      "en": "She knows the address",
+      "ru": "Она знает адрес",
+      "uk": "Вона знає адресу",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_47",
+      "en": "It sounds good",
+      "ru": "Это звучит хорошо",
+      "uk": "Це звучить добре",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_47",
+      "en": "It sounds good",
+      "ru": "Это звучит хорошо",
+      "uk": "Це звучить добре",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 3,
+      "id": "lesson3_phrase_49",
+      "en": "He remembers me",
+      "ru": "Он помнит меня",
+      "uk": "Він пам'ятає мене",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 3,
+      "id": "lesson3_phrase_49",
+      "en": "He remembers me",
+      "ru": "Он помнит меня",
+      "uk": "Він пам'ятає мене",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 4,
+      "id": "lesson4_phrase_27",
+      "en": "He does not forget details",
+      "ru": "Он не забывает детали",
+      "uk": "Він не забуває деталі",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 4,
+      "id": "lesson4_phrase_27",
+      "en": "He does not forget details",
+      "ru": "Он не забывает детали",
+      "uk": "Він не забуває деталі",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 4,
+      "id": "lesson4_phrase_42",
+      "en": "She does not send messages",
+      "ru": "Она не отправляет сообщения",
+      "uk": "Вона не надсилає повідомлення",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 4,
+      "id": "lesson4_phrase_42",
+      "en": "She does not send messages",
+      "ru": "Она не отправляет сообщения",
+      "uk": "Вона не надсилає повідомлення",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 5,
+      "id": "lesson5_phrase_28",
+      "en": "Does she read books?",
+      "ru": "Она читает книги?",
+      "uk": "Вона читає книги?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 5,
+      "id": "lesson5_phrase_28",
+      "en": "Does she read books?",
+      "ru": "Она читает книги?",
+      "uk": "Вона читає книги?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 5,
+      "id": "lesson5_phrase_42",
+      "en": "Does he often forget keys?",
+      "ru": "Он часто забывает ключи?",
+      "uk": "Він часто забуває ключі?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 5,
+      "id": "lesson5_phrase_42",
+      "en": "Does he often forget keys?",
+      "ru": "Он часто забывает ключи?",
+      "uk": "Він часто забуває ключі?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 5,
+      "id": "lesson5_phrase_48",
+      "en": "Does he find mistakes?",
+      "ru": "Он находит ошибки?",
+      "uk": "Він знаходить помилки?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 6,
+      "id": "lesson6_phrase_27",
+      "en": "Where does he keep keys?",
+      "ru": "Где он хранит ключи?",
+      "uk": "Де він зберігає ключі?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 6,
+      "id": "lesson6_phrase_27",
+      "en": "Where does he keep keys?",
+      "ru": "Где он хранит ключи?",
+      "uk": "Де він зберігає ключі?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 6,
+      "id": "lesson6_phrase_37",
+      "en": "Where does he buy groceries?",
+      "ru": "Где он покупает продукты?",
+      "uk": "Де він купує продукти?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 6,
+      "id": "lesson6_phrase_37",
+      "en": "Where does he buy groceries?",
+      "ru": "Где он покупает продукты?",
+      "uk": "Де він купує продукти?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 6,
+      "id": "lesson6_phrase_49",
+      "en": "Why does she always help?",
+      "ru": "Почему она всегда помогает?",
+      "uk": "Чому вона завжди допомагає?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 7,
+      "id": "lesson7_phrase_20",
+      "en": "Do they have hotel bookings?",
+      "ru": "У них есть бронирования отелей?",
+      "uk": "У них є бронювання в готелях?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 7,
+      "id": "lesson7_phrase_26",
+      "en": "She has my address",
+      "ru": "У нее есть мой адрес",
+      "uk": "Вона має мою адресу",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 7,
+      "id": "lesson7_phrase_26",
+      "en": "She has my address",
+      "ru": "У нее есть мой адрес",
+      "uk": "Вона має мою адресу",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_2",
+      "en": "She leaves at eight o'clock",
+      "ru": "Она уходит в восемь часов",
+      "uk": "Вона йде о восьмій годині",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 8,
+      "id": "lesson8_phrase_8",
+      "en": "The shop closes at midnight",
+      "ru": "Магазин закрывается в полночь",
+      "uk": "Магазин зачиняється опівночі",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_8",
+      "en": "The shop closes at midnight",
+      "ru": "Магазин закрывается в полночь",
+      "uk": "Магазин зачиняється опівночі",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_12",
+      "en": "The train arrives at seven PM",
+      "ru": "Поезд прибывает в семь часов вечера",
+      "uk": "Поїзд прибуває о сьомій годині вечора",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 8,
+      "id": "lesson8_phrase_14",
+      "en": "She checks mail at night",
+      "ru": "Она проверяет почту ночью",
+      "uk": "Вона перевіряє пошту вночі",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_14",
+      "en": "She checks mail at night",
+      "ru": "Она проверяет почту ночью",
+      "uk": "Вона перевіряє пошту вночі",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 8,
+      "id": "lesson8_phrase_18",
+      "en": "She works on Thursdays",
+      "ru": "Она работает по четвергам",
+      "uk": "Вона працює щочетверга",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_18",
+      "en": "She works on Thursdays",
+      "ru": "Она работает по четвергам",
+      "uk": "Вона працює щочетверга",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 8,
+      "id": "lesson8_phrase_26",
+      "en": "We have class on Tuesdays",
+      "ru": "У нас занятие по вторникам",
+      "uk": "У нас заняття щовівторка",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_26",
+      "en": "We have class on Tuesdays",
+      "ru": "У нас занятие по вторникам",
+      "uk": "У нас заняття щовівторка",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 8,
+      "id": "lesson8_phrase_28",
+      "en": "She visits the gym on Wednesdays",
+      "ru": "Она посещает спортзал по средам",
+      "uk": "Вона відвідує спортзал щосереди",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_31",
+      "en": "He takes a shower at eight o'clock",
+      "ru": "Он принимает душ в восемь часов",
+      "uk": "Він приймає душ о восьмій годині",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 8,
+      "id": "lesson8_phrase_38",
+      "en": "She runs in the park in summer",
+      "ru": "Она бегает в парке летом",
+      "uk": "Вона бігає у парку влітку",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_38",
+      "en": "She runs in the park in summer",
+      "ru": "Она бегает в парке летом",
+      "uk": "Вона бігає у парку влітку",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 8,
+      "id": "lesson8_phrase_40",
+      "en": "He checks documents at night",
+      "ru": "Он проверяет документы ночью",
+      "uk": "Він перевіряє документи вночі",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_40",
+      "en": "He checks documents at night",
+      "ru": "Он проверяет документы ночью",
+      "uk": "Він перевіряє документи вночі",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 8,
+      "id": "lesson8_phrase_47",
+      "en": "The bus arrives at two PM",
+      "ru": "Автобус прибывает в два часа дня",
+      "uk": "Автобус прибуває о другій годині дня",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_4",
+      "en": "There are many documents on the table",
+      "ru": "На столе много документов",
+      "uk": "На столі багато документів",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_7",
+      "en": "There are many cars on the street",
+      "ru": "На улице много машин",
+      "uk": "На вулиці багато машин",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_9",
+      "en": "There are no apples in the kitchen",
+      "ru": "На кухне нет яблок",
+      "uk": "На кухні немає яблук",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 9,
+      "id": "lesson9_phrase_9",
+      "en": "There are no apples in the kitchen",
+      "ru": "На кухне нет яблок",
+      "uk": "На кухні немає яблук",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 9,
+      "id": "lesson9_phrase_13",
+      "en": "Are there new printers in the office?",
+      "ru": "В офисе есть новые принтеры?",
+      "uk": "В офісі є нові принтери?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 9,
+      "id": "lesson9_phrase_15",
+      "en": "There are good pharmacies in our district",
+      "ru": "В нашем районе есть хорошие аптеки",
+      "uk": "У нашому районі є хороші аптеки",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_17",
+      "en": "Are there many trees on our street?",
+      "ru": "На нашей улице много деревьев?",
+      "uk": "На нашій вулиці багато дерев?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_22",
+      "en": "There are not any vegetables on your plate",
+      "ru": "На твоей тарелке нет овощей",
+      "uk": "На твоїй тарілці немає овочів",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_37",
+      "en": "There are many stars in the sky",
+      "ru": "На небе много звёзд",
+      "uk": "На небі багато зірок",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_43",
+      "en": "Are there many students in our group?",
+      "ru": "В нашей группе много студентов?",
+      "uk": "У нашій групі багато студентів?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 9,
+      "id": "lesson9_phrase_47",
+      "en": "There are not any questions in your message",
+      "ru": "В твоем сообщении нет вопросов",
+      "uk": "У твоєму повідомленні немає запитань",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 9,
+      "id": "lesson9_phrase_47",
+      "en": "There are not any questions in your message",
+      "ru": "В твоем сообщении нет вопросов",
+      "uk": "У твоєму повідомленні немає запитань",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 10,
+      "id": "lesson10_phrase_45",
+      "en": "You do not have to wait downstairs.",
+      "ru": "Вам не нужно ждать внизу.",
+      "uk": "Вам не потрібно чекати внизу.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 10,
+      "id": "lesson10_phrase_45",
+      "en": "You do not have to wait downstairs.",
+      "ru": "Вам не нужно ждать внизу.",
+      "uk": "Вам не потрібно чекати внизу.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 11,
+      "id": "lesson11_phrase_9",
+      "en": "I cleaned my shoes this morning",
+      "ru": "Я почистил свою обувь сегодня утром",
+      "uk": "Я цього ранку почистив своє взуття",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 13,
+      "id": "lesson13_phrase_39",
+      "en": "I will put those leather shoes here later today.",
+      "ru": "Я сегодня позже положу те кожаные туфли сюда.",
+      "uk": "Я сьогодні пізніше покладу те шкіряне взуття сюди.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 14,
+      "id": "lesson14_phrase_8",
+      "en": "She got more comfortable shoes today.",
+      "ru": "Она сегодня взяла более удобную обувь.",
+      "uk": "Вона сьогодні взяла зручніше взуття.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 14,
+      "id": "lesson14_phrase_21",
+      "en": "She brought riper apples today.",
+      "ru": "Она сегодня принесла более спелые яблоки.",
+      "uk": "Вона сьогодні принесла стигліші яблука.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 14,
+      "id": "lesson14_phrase_39",
+      "en": "I found the saltiest snacks in that new shop today.",
+      "ru": "Я сегодня нашел самые соленые закуски в том новом магазине.",
+      "uk": "Я сьогодні знайшов найсолоніші снеки в тому новому магазині.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 15,
+      "id": "lesson15_phrase_3",
+      "en": "Is this empty glass yours?",
+      "ru": "Этот пустой стакан — ваш?",
+      "uk": "Ця порожня склянка — ваша?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 15,
+      "id": "lesson15_phrase_3",
+      "en": "Is this empty glass yours?",
+      "ru": "Этот пустой стакан — ваш?",
+      "uk": "Ця порожня склянка — ваша?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 15,
+      "id": "lesson15_phrase_5",
+      "en": "This bright cozy house is ours.",
+      "ru": "Этот светлый уютный дом — наш.",
+      "uk": "Цей світлий затишний будинок — наш.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 15,
+      "id": "lesson15_phrase_5",
+      "en": "This bright cozy house is ours.",
+      "ru": "Этот светлый уютный дом — наш.",
+      "uk": "Цей світлий затишний будинок — наш.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 15,
+      "id": "lesson15_phrase_13",
+      "en": "That broken wooden fence is ours.",
+      "ru": "Тот сломанный деревянный забор — наш.",
+      "uk": "Той зламаний дерев\\'яний паркан — наш.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 15,
+      "id": "lesson15_phrase_13",
+      "en": "That broken wooden fence is ours.",
+      "ru": "Тот сломанный деревянный забор — наш.",
+      "uk": "Той зламаний дерев\\'яний паркан — наш.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 15,
+      "id": "lesson15_phrase_23",
+      "en": "Is that comfortable leather sofa ours?",
+      "ru": "Тот удобный кожаный диван — наш?",
+      "uk": "Той зручний шкіряний диван — наш?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 15,
+      "id": "lesson15_phrase_23",
+      "en": "Is that comfortable leather sofa ours?",
+      "ru": "Тот удобный кожаный диван — наш?",
+      "uk": "Той зручний шкіряний диван — наш?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 15,
+      "id": "lesson15_phrase_33",
+      "en": "That strong unpleasant smell is not ours.",
+      "ru": "Тот сильный неприятный запах — не наш.",
+      "uk": "Той сильний неприємний запах — не наш.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 15,
+      "id": "lesson15_phrase_33",
+      "en": "That strong unpleasant smell is not ours.",
+      "ru": "Тот сильный неприятный запах — не наш.",
+      "uk": "Той сильний неприємний запах — не наш.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 15,
+      "id": "lesson15_phrase_43",
+      "en": "That broken plastic umbrella is ours.",
+      "ru": "Тот сломанный пластиковый зонт — наш.",
+      "uk": "Та зламана пластикова парасоля — наша.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 16,
+      "id": "lesson16_phrase_2",
+      "en": "You do not always put on that warm winter coat.",
+      "ru": "Ты не всегда надеваешь то теплое зимнее пальто.",
+      "uk": "Ти не завжди одягаєш те тепле зимове пальто.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 16,
+      "id": "lesson16_phrase_3",
+      "en": "Does he often look for his lost keys here?",
+      "ru": "Он часто ищет здесь свои потерянные ключи?",
+      "uk": "Він часто шукає тут свої загублені ключі?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 16,
+      "id": "lesson16_phrase_11",
+      "en": "That reliable guard always looks after this entrance.",
+      "ru": "Тот надежный охранник всегда присматривает за этим входом.",
+      "uk": "Той надійний охоронець завжди наглядає за цим входом.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 16,
+      "id": "lesson16_phrase_16",
+      "en": "She sometimes drops in that cozy shop on the way.",
+      "ru": "Она иногда заходит в тот уютный магазин по пути.",
+      "uk": "Вона іноді заходить у той затишний магазин по дорозі.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 16,
+      "id": "lesson16_phrase_16",
+      "en": "She sometimes drops in that cozy shop on the way.",
+      "ru": "Она иногда заходит в тот уютный магазин по пути.",
+      "uk": "Вона іноді заходить у той затишний магазин по дорозі.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 16,
+      "id": "lesson16_phrase_29",
+      "en": "She sometimes pulls off that heavy backpack at the stop.",
+      "ru": "Она иногда снимает тот тяжелый рюкзак на остановке.",
+      "uk": "Вона іноді знімає той важкий рюкзак на зупинці.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 18,
+      "id": "lesson18_phrase_7",
+      "en": "Do not leave your heavy bags in that narrow corridor.",
+      "ru": "Не оставляй свои тяжёлые сумки в том узком коридоре.",
+      "uk": "Не залишай свої важкі сумки в тому вузькому коридорі.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 18,
+      "id": "lesson18_phrase_7",
+      "en": "Do not leave your heavy bags in that narrow corridor.",
+      "ru": "Не оставляй свои тяжёлые сумки в том узком коридоре.",
+      "uk": "Не залишай свої важкі сумки в тому вузькому коридорі.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 18,
+      "id": "lesson18_phrase_24",
+      "en": "Can you pass that heavy hammer to that strong worker in those blue overalls?",
+      "ru": "Ты можешь передать тот тяжелый молоток тому сильному рабочему в том синем комбинезоне?",
+      "uk": "Ти можеш передати той важкий молоток тому сильному працівнику в тому синьому комбінезоні?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 19,
+      "id": "lesson19_phrase_9",
+      "en": "Is our small village among those green hills?",
+      "ru": "Наша маленькая деревня находится среди тех зеленых холмов?",
+      "uk": "Наше маленьке село знаходиться серед тих зелених пагорбів?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 19,
+      "id": "lesson19_phrase_22",
+      "en": "Your dirty shoes stand outside that wooden door.",
+      "ru": "Ваша грязная обувь сейчас стоит снаружи той деревянной двери.",
+      "uk": "Ваше брудне взуття зараз стоїть зовні біля тих дерев\\'яних дверей.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 19,
+      "id": "lesson19_phrase_38",
+      "en": "Your small dog always sleeps right in front of that warm fireplace.",
+      "ru": "Ваша маленькая собака всегда спит прямо перед тем теплым камином.",
+      "uk": "Ваша маленька собака завжди спить прямо перед тим теплим каміном.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 19,
+      "id": "lesson19_phrase_41",
+      "en": "My small niece hides under that round dining table.",
+      "ru": "Моя маленькая племянница сейчас прячется под тем круглым обеденным столом.",
+      "uk": "Моя маленька племінниця зараз ховається під тим круглим обіднім столом.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 19,
+      "id": "lesson19_phrase_43",
+      "en": "Our old boat sails along that rocky shore slowly.",
+      "ru": "Наша старая лодка сейчас медленно плывет вдоль того скалистого берега.",
+      "uk": "Наш старий човен зараз повільно пливе вздовж того скелястого берега.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 19,
+      "id": "lesson19_phrase_43",
+      "en": "Our old boat sails along that rocky shore slowly.",
+      "ru": "Наша старая лодка сейчас медленно плывет вдоль того скалистого берега.",
+      "uk": "Наш старий човен зараз повільно пливе вздовж того скелястого берега.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 19,
+      "id": "lesson19_phrase_45",
+      "en": "That experienced driver parks this truck opposite that narrow lane.",
+      "ru": "Тот опытный водитель сейчас паркует этот грузовик напротив того узкого переулка.",
+      "uk": "Той досвідчений водій зараз паркує цю вантажівку навпроти того вузького провулку.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 19,
+      "id": "lesson19_phrase_47",
+      "en": "Our brave cat often jumps over that low stone fence.",
+      "ru": "Наш смелый кот часто прыгает через тот низкий каменный забор.",
+      "uk": "Наш сміливий кіт часто стрибає через той низький кам\\'яний паркан.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 20,
+      "id": "l20p4",
+      "en": "He - always - leaves an empty - plate on this - kitchen - table.",
+      "ru": "Он всегда оставляет пустую тарелку на этом кухонном столе.",
+      "uk": "Він завжди залишає порожню тарілку на цьому кухонному столі.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 20,
+      "id": "l20p22",
+      "en": "Every - engineer wears a safety - helmet on this - noisy - construction - site.",
+      "ru": "Каждый инженер носит защитный шлем на этой шумной стройке.",
+      "uk": "Кожен інженер носить захисний шолом на цьому шумному будівництві.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 20,
+      "id": "l20p22",
+      "en": "Every - engineer wears a safety - helmet on this - noisy - construction - site.",
+      "ru": "Каждый инженер носит защитный шлем на этой шумной стройке.",
+      "uk": "Кожен інженер носить захисний шолом на цьому шумному будівництві.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 21,
+      "id": "l21p2",
+      "en": "No one knows this secret code.",
+      "ru": "Никто не знает этот секретный код.",
+      "uk": "Ніхто не знає цей секретний код.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 21,
+      "id": "l21p2",
+      "en": "No one knows this secret code.",
+      "ru": "Никто не знает этот секретный код.",
+      "uk": "Ніхто не знає цей секретний код.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 21,
+      "id": "l21p3",
+      "en": "Everyone brought their laptops to the meeting.",
+      "ru": "Все принесли свои ноутбуки на встречу.",
+      "uk": "Усі принесли свої ноутбуки на зустріч.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 21,
+      "id": "l21p8",
+      "en": "Everyone wants to know the truth about this situation.",
+      "ru": "Каждый хочет знать правду об этой ситуации.",
+      "uk": "Кожен хоче знати правду про цю ситуацію.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 21,
+      "id": "l21p23",
+      "en": "Everything seems different after this long trip.",
+      "ru": "Всё кажется другим после этой долгой поездки.",
+      "uk": "Все здається іншим після цієї довгої поїздки.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 21,
+      "id": "l21p28",
+      "en": "Everything seems possible on this beautiful sunny day.",
+      "ru": "Всё кажется возможным в этот прекрасный солнечный день.",
+      "uk": "Все здається можливим у цей прекрасний сонячний день.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 21,
+      "id": "l21p37",
+      "en": "Nobody recognized that famous singer in sunglasses.",
+      "ru": "Никто не узнал ту знаменитую певицу в темных очках.",
+      "uk": "Ніхто не впізнав ту знамениту співачку в темних окулярах.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 21,
+      "id": "l21p48",
+      "en": "Everybody brought their favorite snacks to that countryside party.",
+      "ru": "Каждый принес свои любимые закуски на ту загородную вечеринку.",
+      "uk": "Кожен приніс свої улюблені закуски на ту заміську вечірку.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 22,
+      "id": "lesson22_phrase_15",
+      "en": "Cleaning this huge apartment takes the whole day.",
+      "ru": "Уборка этой огромной квартиры занимает целый день.",
+      "uk": "Прибирання цієї величезної квартири займає цілий день.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 22,
+      "id": "lesson22_phrase_16",
+      "en": "Waiting for public transport takes too much time in the morning.",
+      "ru": "Ожидание общественного транспорта отнимает слишком много времени утром.",
+      "uk": "Очікування громадського транспорту забирає занадто багато часу вранці.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 22,
+      "id": "lesson22_phrase_22",
+      "en": "Someone suggested ordering that large pizza with mushrooms.",
+      "ru": "Кто-то предложил заказать ту большую пиццу с грибами.",
+      "uk": "Хтось запропонував замовити ту велику піцу з грибами.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 22,
+      "id": "lesson22_phrase_24",
+      "en": "She does not like photographing these wild animals in the forest.",
+      "ru": "Она не любит фотографировать этих диких животных в лесу.",
+      "uk": "Вона не любить фотографувати цих диких тварин у лісі.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 22,
+      "id": "lesson22_phrase_26",
+      "en": "Listening to this classical album relaxes my stressed mind.",
+      "ru": "Прослушивание этого классического альбома расслабляет мой напряженный ум.",
+      "uk": "Прослуховування цього класичного альбому розслабляє мій напружений розум.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 22,
+      "id": "lesson22_phrase_26",
+      "en": "Listening to this classical album relaxes my stressed mind.",
+      "ru": "Прослушивание этого классического альбома расслабляет мой напряженный ум.",
+      "uk": "Прослуховування цього класичного альбому розслабляє мій напружений розум.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 22,
+      "id": "lesson22_phrase_37",
+      "en": "Nobody likes waiting for long in rainy cold weather.",
+      "ru": "Никто не любит долго ждать в дождливую холодную погоду.",
+      "uk": "Ніхто не любить довго чекати в дощову холодну погоду.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 22,
+      "id": "lesson22_phrase_37",
+      "en": "Nobody likes waiting for long in rainy cold weather.",
+      "ru": "Никто не любит долго ждать в дождливую холодную погоду.",
+      "uk": "Ніхто не любить довго чекати в дощову холодну погоду.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 22,
+      "id": "lesson22_phrase_41",
+      "en": "Discussing this international contract requires full attention.",
+      "ru": "Обсуждение этого международного контракта требует полного внимания.",
+      "uk": "Обговорення цього міжнародного контракту вимагає повної уваги.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 22,
+      "id": "lesson22_phrase_48",
+      "en": "I hate spending money on useless and expensive souvenirs.",
+      "ru": "Я ненавижу тратить деньги на бесполезные и дорогие сувениры.",
+      "uk": "Я ненавиджу витрачати гроші на непотрібні та дорогі сувеніри.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 23,
+      "id": "lesson23_phrase_10",
+      "en": "Is that difficult exercise always explained by our teacher?",
+      "ru": "То сложное упражнение всегда объясняется нашим учителем?",
+      "uk": "Та складна вправа завжди пояснюється нашим учителем?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 23,
+      "id": "lesson23_phrase_15",
+      "en": "Is that old bridge often visited by many tourists in summer?",
+      "ru": "Тот старый мост часто посещается многими туристами летом?",
+      "uk": "Той старий міст часто відвідується багатьма туристами влітку?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 23,
+      "id": "lesson23_phrase_28",
+      "en": "The photos were taken by a professional.",
+      "ru": "Фотографии были сделаны профессионалом.",
+      "uk": "Фотографії були зроблені професіоналом.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 23,
+      "id": "lesson23_phrase_28",
+      "en": "The photos were taken by a professional.",
+      "ru": "Фотографии были сделаны профессионалом.",
+      "uk": "Фотографії були зроблені професіоналом.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 23,
+      "id": "lesson23_phrase_29",
+      "en": "The prizes were given to the winners.",
+      "ru": "Призы были вручены победителям.",
+      "uk": "Призи були вручені переможцям.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 23,
+      "id": "lesson23_phrase_38",
+      "en": "The documents are being checked.",
+      "ru": "Документы проверяются.",
+      "uk": "Документи перевіряються.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 23,
+      "id": "lesson23_phrase_38",
+      "en": "The documents are being checked.",
+      "ru": "Документы проверяются.",
+      "uk": "Документи перевіряються.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 23,
+      "id": "lesson23_phrase_39",
+      "en": "The patients are being treated.",
+      "ru": "Пациентов лечат.",
+      "uk": "Пацієнтів лікують.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 24,
+      "id": "lesson24_phrase_22",
+      "en": "This experienced doctor has already checked the results of your blood tests.",
+      "ru": "Этот опытный врач уже проверил результаты ваших анализов крови.",
+      "uk": "Цей досвідчений лікар вже перевірив результати ваших аналізів крові.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 24,
+      "id": "lesson24_phrase_49",
+      "en": "Have you ever seen such a rare natural phenomenon in the mountains?",
+      "ru": "Ты когда-нибудь видел такое редкое природное явление в горах?",
+      "uk": "Ти коли-небудь бачив таке рідкісне природне явище в горах?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 25,
+      "id": "l25p10",
+      "en": "She was not translating that technical article for four hours.",
+      "ru": "Она не переводила ту техническую статью в течение четырех часов.",
+      "uk": "Вона не перекладала ту технічну статтю протягом чотирьох годин.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 25,
+      "id": "l25p11",
+      "en": "Our experienced engineer was checking this complex system for two hours.",
+      "ru": "Наш опытный инженер проверял эту сложную систему в течение двух часов.",
+      "uk": "Наш досвідчений інженер перевіряв цю складну систему протягом двох годин.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 26,
+      "id": "lesson26_phrase_3",
+      "en": "Will this water heat up quickly if she presses that red button?",
+      "ru": "Эта вода нагреется быстро, если она нажмёт ту красную кнопку?",
+      "uk": "Ця вода нагріється швидко, якщо вона натисне ту червону кнопку?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 26,
+      "id": "lesson26_phrase_6",
+      "en": "If that reliable courier comes on time, I will send this urgent packet.",
+      "ru": "Если тот надёжный курьер придёт вовремя, я отправлю этот срочный пакет.",
+      "uk": "Якщо той надійний кур'єр прийде вчасно, я відправлю цей терміновий пакет.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 26,
+      "id": "lesson26_phrase_13",
+      "en": "Will she know the truth if she reads that old letter today?",
+      "ru": "Она узнает правду, если прочитает то старое письмо сегодня?",
+      "uk": "Вона дізнається правду, якщо прочитає той старий лист сьогодні?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 26,
+      "id": "lesson26_phrase_29",
+      "en": "Paper always burns if someone brings this open fire too close to it.",
+      "ru": "Бумага всегда горит, если кто-то подносит открытый огонь слишком близко к ней.",
+      "uk": "Папір завжди горить, якщо хтось підносить відкритий вогонь надто близько до нього.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 26,
+      "id": "lesson26_phrase_34",
+      "en": "Wood always floats if someone throws this light object into deep river.",
+      "ru": "Дерево всегда плавает, если кто-то бросает этот лёгкий предмет в глубокую реку.",
+      "uk": "Дерево завжди плаває, якщо хтось кидає цей легкий предмет у глибоку річку.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 26,
+      "id": "lesson26_phrase_42",
+      "en": "You will not find that cozy coffee shop if you do not turn right at those crossroads.",
+      "ru": "Ты не найдёшь ту уютную кофейню, если не повернёшь направо на том перекрёстке.",
+      "uk": "Ти не знайдеш ту затишну кав'ярню, якщо не повернеш праворуч на тому перехресті.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 26,
+      "id": "lesson26_phrase_43",
+      "en": "Will he know that secret password if he reads this short message now?",
+      "ru": "Он узнает тот секретный пароль, если прочитает это короткое сообщение сейчас?",
+      "uk": "Він дізнається той секретний пароль, якщо прочитає це коротке повідомлення зараз?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 26,
+      "id": "lesson26_phrase_43",
+      "en": "Will he know that secret password if he reads this short message now?",
+      "ru": "Он узнает тот секретный пароль, если прочитает это короткое сообщение сейчас?",
+      "uk": "Він дізнається той секретний пароль, якщо прочитає це коротке повідомлення зараз?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 26,
+      "id": "lesson26_phrase_48",
+      "en": "Will she bring that important parcel if she gets your official permission tomorrow?",
+      "ru": "Она принесёт ту важную посылку, если получит твоё официальное разрешение завтра?",
+      "uk": "Вона принесе ту важливу посилку, якщо отримає твій офіційний дозвіл завтра?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 28,
+      "id": "lesson28_phrase_1",
+      "en": "I often cook this healthy breakfast myself in the mornings.",
+      "ru": "Я часто сам готовлю этот полезный завтрак по утрам.",
+      "uk": "Я часто сам готую цей корисний сніданок уранці.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 28,
+      "id": "lesson28_phrase_11",
+      "en": "Should you be proud of yourselves after finishing this challenging marathon?",
+      "ru": "Стоит ли вам гордиться собой после завершения этого сложного марафона?",
+      "uk": "Чи варто вам пишатися собою після завершення цього складного марафону?",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 28,
+      "id": "lesson28_phrase_11",
+      "en": "Should you be proud of yourselves after finishing this challenging marathon?",
+      "ru": "Стоит ли вам гордиться собой после завершения этого сложного марафона?",
+      "uk": "Чи варто вам пишатися собою після завершення цього складного марафону?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 28,
+      "id": "lesson28_phrase_14",
+      "en": "She often asks herself why she chose this tough profession.",
+      "ru": "Она часто спрашивает себя, почему она выбрала эту трудную профессию.",
+      "uk": "Вона часто запитує себе, чому вона обрала цю важку професію.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 28,
+      "id": "lesson28_phrase_31",
+      "en": "That successful businessman often reminds himself to stay modest.",
+      "ru": "Тот успешный бизнесмен часто напоминает себе оставаться скромным.",
+      "uk": "Той успішний бізнесмен часто нагадує собі залишатися скромним.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 28,
+      "id": "lesson28_phrase_31",
+      "en": "That successful businessman often reminds himself to stay modest.",
+      "ru": "Тот успешный бизнесмен часто напоминает себе оставаться скромным.",
+      "uk": "Той успішний бізнесмен часто нагадує собі залишатися скромним.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 28,
+      "id": "lesson28_phrase_33",
+      "en": "She often asks herself why she made that strange decision.",
+      "ru": "Она часто спрашивает себя, почему приняла то странное решение.",
+      "uk": "Вона часто запитує себе, чому прийняла те дивне рішення.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 28,
+      "id": "lesson28_phrase_33",
+      "en": "She often asks herself why she made that strange decision.",
+      "ru": "Она часто спрашивает себя, почему приняла то странное решение.",
+      "uk": "Вона часто запитує себе, чому прийняла те дивне рішення.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 28,
+      "id": "lesson28_phrase_43",
+      "en": "That proud man often praises himself for that successful career.",
+      "ru": "Тот гордый человек часто хвалит себя за ту успешную карьеру.",
+      "uk": "Той гордий чоловік часто хвалить себе за ту успішну кар'єру.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 28,
+      "id": "lesson28_phrase_43",
+      "en": "That proud man often praises himself for that successful career.",
+      "ru": "Тот гордый человек часто хвалит себя за ту успешную карьеру.",
+      "uk": "Той гордий чоловік часто хвалить себе за ту успішну кар'єру.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 29,
+      "id": "lesson29_phrase_8",
+      "en": "Did you use to trust those strange people without any serious doubts?",
+      "ru": "Бывало, ты доверял тем странным людям без каких-либо серьезных сомнений?",
+      "uk": "Чи раніше довіряв ти тим дивним людям без будь-яких серйозних сумнівів?",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 30,
+      "id": "lesson30_phrase_41",
+      "en": "I know that polite student who always helps those foreign classmates with that difficult homework.",
+      "ru": "Я знаю того вежливого студента, который всегда помогает тем иностранным одноклассникам с тем трудным домашним заданием.",
+      "uk": "Я знаю того ввічливого студента, який завжди допомагає тим іноземним однокласникам із тим важким домашнім завданням.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 32,
+      "id": "lesson32_phrase_26",
+      "en": "That experienced surgeon is the very specialist whose steady hands this young patient relies on.",
+      "ru": "Тот опытный хирург — именно тот специалист, на чьи твердые руки полагается этот юный пациент.",
+      "uk": "Той досвідчений хірург — саме той фахівець, на чиї тверді руки покладається цей юний пацієнт.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_RU",
+      "lesson": 32,
+      "id": "lesson32_phrase_40",
+      "en": "This old fence is the very obstacle which that nimble thief plans to climb over.",
+      "ru": "Этот старый забор — то самое препятствие, через которое тот ловкий вор планирует перелезть.",
+      "uk": "Цей старий паркан — та сама перешкода, через яку той спритний злодій планує перелізти.",
+      "msg": "EN, похоже, во множественном числе — проверьте RU"
+    },
+    {
+      "kind": "NUMBER_HINT_UK",
+      "lesson": 32,
+      "id": "lesson32_phrase_40",
+      "en": "This old fence is the very obstacle which that nimble thief plans to climb over.",
+      "ru": "Этот старый забор — то самое препятствие, через которое тот ловкий вор планирует перелезть.",
+      "uk": "Цей старий паркан — та сама перешкода, через яку той спритний злодій планує перелізти.",
+      "msg": "EN, похоже, во множественном числе — проверьте UK"
+    }
+  ],
+  "byKind": {
+    "NUMBER_HINT_RU": 81,
+    "NUMBER_HINT_UK": 91
+  }
+}

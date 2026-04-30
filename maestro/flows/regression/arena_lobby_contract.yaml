@@ -1,0 +1,4 @@
+appId: app.phraseman
+---
+- runFlow: ../smoke/arena_matchmaking_to_results.yaml
+- runFlow: ../smoke/arena_invite_accept_flow.yaml

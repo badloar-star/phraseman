@@ -1,0 +1,150 @@
+[
+  {
+    "name": "XP -> Leaderboard -> Hall",
+    "nodes": [
+      "app/xp_manager.ts",
+      "app/firestore_leaderboard.ts",
+      "app/(tabs)/hall_of_fame.tsx"
+    ],
+    "edges": [
+      {
+        "from": "app/xp_manager.ts",
+        "to": "app/firestore_leaderboard.ts",
+        "observedInCallGraph": true
+      },
+      {
+        "from": "app/firestore_leaderboard.ts",
+        "to": "app/(tabs)/hall_of_fame.tsx",
+        "observedInCallGraph": false
+      }
+    ]
+  },
+  {
+    "name": "Premium -> Energy -> Gates",
+    "nodes": [
+      "app/revenuecat_init.ts",
+      "app/premium_guard.ts",
+      "components/PremiumContext.tsx",
+      "components/EnergyContext.tsx",
+      "app/premium_modal.tsx"
+    ],
+    "edges": [
+      {
+        "from": "app/revenuecat_init.ts",
+        "to": "app/premium_guard.ts",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "app/premium_guard.ts",
+        "to": "components/PremiumContext.tsx",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "components/PremiumContext.tsx",
+        "to": "components/EnergyContext.tsx",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "components/EnergyContext.tsx",
+        "to": "app/premium_modal.tsx",
+        "observedInCallGraph": false
+      }
+    ]
+  },
+  {
+    "name": "Arena full game flow",
+    "nodes": [
+      "app/arena_lobby.tsx",
+      "contexts/MatchmakingContext.tsx",
+      "app/services/arena_db.ts",
+      "hooks/use-arena-session.ts",
+      "app/arena_game.tsx",
+      "app/arena_results.tsx",
+      "app/arena_rating.tsx"
+    ],
+    "edges": [
+      {
+        "from": "app/arena_lobby.tsx",
+        "to": "contexts/MatchmakingContext.tsx",
+        "observedInCallGraph": true
+      },
+      {
+        "from": "contexts/MatchmakingContext.tsx",
+        "to": "app/services/arena_db.ts",
+        "observedInCallGraph": true
+      },
+      {
+        "from": "app/services/arena_db.ts",
+        "to": "hooks/use-arena-session.ts",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "hooks/use-arena-session.ts",
+        "to": "app/arena_game.tsx",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "app/arena_game.tsx",
+        "to": "app/arena_results.tsx",
+        "observedInCallGraph": true
+      },
+      {
+        "from": "app/arena_results.tsx",
+        "to": "app/arena_rating.tsx",
+        "observedInCallGraph": false
+      }
+    ]
+  },
+  {
+    "name": "Cloud sync user/progress",
+    "nodes": [
+      "app/cloud_sync.ts",
+      "app/stable_id.ts",
+      "app/firestore_leaderboard.ts",
+      "functions/src/sync_leaderboard.ts"
+    ],
+    "edges": [
+      {
+        "from": "app/cloud_sync.ts",
+        "to": "app/stable_id.ts",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "app/stable_id.ts",
+        "to": "app/firestore_leaderboard.ts",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "app/firestore_leaderboard.ts",
+        "to": "functions/src/sync_leaderboard.ts",
+        "observedInCallGraph": false
+      }
+    ]
+  },
+  {
+    "name": "Root bootstrap and routing",
+    "nodes": [
+      "app/_layout.tsx",
+      "app/(tabs)/_layout.tsx",
+      "app/(tabs)/home.tsx",
+      "app/(tabs)/settings.tsx"
+    ],
+    "edges": [
+      {
+        "from": "app/_layout.tsx",
+        "to": "app/(tabs)/_layout.tsx",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "app/(tabs)/_layout.tsx",
+        "to": "app/(tabs)/home.tsx",
+        "observedInCallGraph": false
+      },
+      {
+        "from": "app/(tabs)/home.tsx",
+        "to": "app/(tabs)/settings.tsx",
+        "observedInCallGraph": false
+      }
+    ]
+  }
+]

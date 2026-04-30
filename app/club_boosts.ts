@@ -5,6 +5,9 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
+import { activateGroupBoost, getCachedGroupBoosts, invalidateGroupBoostsCache } from './firestore_boosts';
+import { emitAppEvent } from './events';
+import type { Lang } from '../constants/i18n';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TYPES & INTERFACES
@@ -14,12 +17,14 @@ export interface BoostDef {
   id: string; // 'xp_2x_1h', 'xp_1_5x_2h', 'energy_plus_1'
   nameRU: string;
   nameUK: string;
+  nameES: string;
   descRU: string;
   descUK: string;
+  descES: string;
   multiplier?: number; // для XP бустов (2.0, 1.5)
   durationMs: number; // длительность в миллисекундах
   cost: number; // стоимость
-  costCurrency: 'phrasemen' | 'xp'; // валюта стоимости
+  costCurrency: 'xp' | 'shards'; // валюта стоимости
   icon: string;
   type: 'xp' | 'energy'; // тип буста
 }
@@ -45,14 +50,16 @@ export interface BoostHistory {
 export const CLUB_BOOSTS: BoostDef[] = [
   {
     id: 'xp_2x_2h_250xp',
-    nameRU: '×2 Опыт на 2 часа',
-    nameUK: '×2 Досвід на 2 години',
-    descRU: 'Все члены клуба получают ×2 XP в течение 2 часов',
-    descUK: 'Всі члени клубу отримують ×2 XP протягом 2 годин',
+    nameRU: '+100% Опыта на 2 часа',
+    nameUK: '+100% Досвіду на 2 години',
+    nameES: '+100 % XP durante 2 horas',
+    descRU: 'Все члены клуба получают +100% XP в течение 2 часов',
+    descUK: 'Всі члени клубу отримують +100% XP протягом 2 годин',
+    descES: 'Todos los miembros del club obtienen +100 % XP durante 2 horas',
     multiplier: 2.0,
     durationMs: 2 * 60 * 60 * 1000, // 2 часа
-    cost: 250,
-    costCurrency: 'xp',
+    cost: 25,
+    costCurrency: 'shards',
     icon: '⚡',
     type: 'xp',
   },
@@ -100,6 +107,21 @@ export async function getActiveBoosts(): Promise<ActiveBoost[]> {
         ACTIVE_BOOSTS_KEY,
         JSON.stringify(remaining)
       );
+    }
+
+    // Мержим с групповыми бустами из Firestore (кэшируются 5 минут).
+    // Важно: если Firestore недоступен, НЕ теряем локальные бусты.
+    try {
+      const groupBoosts = await getCachedGroupBoosts();
+      const localIds = new Set(active.map(b => b.id));
+      for (const gb of groupBoosts) {
+        // Добавляем только те что не активированы локально самим игроком
+        if (!localIds.has(gb.id)) {
+          active.push(gb);
+        }
+      }
+    } catch (groupError) {
+      DebugLogger.error('club_boosts.ts:getActiveBoosts(group)', groupError, 'warning');
     }
 
     return active;
@@ -214,6 +236,16 @@ export async function activateBoost(
       cost,
     });
     await AsyncStorage.setItem(BOOSTS_HISTORY_KEY, JSON.stringify(history));
+
+    // Пушим буст в Firestore — чтобы вся группа получила его (fire-and-forget)
+    const newBoost: ActiveBoost = {
+      id: boostId,
+      activatedBy: playerName,
+      activatedAt: now,
+      durationMs: boostDef.durationMs,
+    };
+    activateGroupBoost(newBoost).then(() => invalidateGroupBoostsCache()).catch(() => {});
+    emitAppEvent('xp_changed');
 
     return true;
   } catch (error) {
@@ -336,6 +368,29 @@ export function formatBoostTimeRemainingUK(boost: ActiveBoost): string {
   }
 }
 
+/** Оставшееся время буста для языка интерфейса (RU / UK / ES). */
+export function formatBoostTimeRemainingForLang(boost: ActiveBoost, lang: Lang): string {
+  if (lang === 'uk') return formatBoostTimeRemainingUK(boost);
+  if (lang === 'es') {
+    const ms = getBoostTimeRemaining(boost);
+    if (ms <= 0) return 'Terminado';
+    const totalSeconds = Math.floor(ms / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    if (hours > 0) return `${hours} h ${minutes} min`;
+    if (minutes > 0) return `${minutes} min ${seconds} s`;
+    return `${seconds} s`;
+  }
+  return formatBoostTimeRemaining(boost);
+}
+
+export function boostNameForLang(def: BoostDef, lang: Lang): string {
+  if (lang === 'uk') return def.nameUK;
+  if (lang === 'es') return def.nameES;
+  return def.nameRU;
+}
+
 // ═══════════════════════════════════════════════════════════════════════════
 // BOOST DEFINITION HELPERS
 // ═══════════════════════════════════════════════════════════════════════════
@@ -350,13 +405,41 @@ export function getBoostDef(boostId: string): BoostDef | undefined {
 export function getBoostNotification(
   boostId: string,
   playerName: string,
-  isUK: boolean
+  lang: Lang
 ): string {
   const boost = getBoostDef(boostId);
   if (!boost) return '';
 
-  const name = isUK ? boost.nameUK : boost.nameRU;
-  return `🎉 ${playerName} ${isUK ? 'активував' : 'активировал'} ${name}`;
+  const name = boostNameForLang(boost, lang);
+  if (lang === 'uk') return `🎉 ${playerName} активував ${name}`;
+  if (lang === 'es') return `🎉 ${playerName} ha activado ${name}`;
+  return `🎉 ${playerName} активировал ${name}`;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// GIFT: бесплатная активация буста (редкий подарок уровня)
+// ═══════════════════════════════════════════════════════════════════════════
+
+const CLUB_GIFT_FREE_BOOST_KEY = 'club_gift_free_boost_v1';
+
+export async function hasClubGiftFreeBoostFromLevel(): Promise<boolean> {
+  try {
+    return (await AsyncStorage.getItem(CLUB_GIFT_FREE_BOOST_KEY)) === '1';
+  } catch {
+    return false;
+  }
+}
+
+export async function grantClubGiftFreeBoostFromLevel(): Promise<void> {
+  try {
+    await AsyncStorage.setItem(CLUB_GIFT_FREE_BOOST_KEY, '1');
+  } catch { /* empty */ }
+}
+
+export async function clearClubGiftFreeBoostFromLevel(): Promise<void> {
+  try {
+    await AsyncStorage.removeItem(CLUB_GIFT_FREE_BOOST_KEY);
+  } catch { /* empty */ }
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -379,3 +462,6 @@ export async function clearBoostHistory(): Promise<void> {
     DebugLogger.error('club_boosts.ts:clearBoostHistory', error, 'warning');
   }
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

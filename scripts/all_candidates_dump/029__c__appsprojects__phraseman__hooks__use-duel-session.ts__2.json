@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/hooks/use-duel-session.ts",
+  "session": "33b61ac9",
+  "op_index": 2,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "    } else if (session.state === 'reveal') {\n      setPhase('reveal');\n      clearQuestionTimer();\n      clearBotTimers();",
+  "new_string": "    } else if (session.state === 'reveal') {\n      setPhase('reveal');\n      clearQuestionTimer();\n      clearBotTimers();\n      // Для бот-сессий автоматически переходим к следующему вопросу\n      if (session.botIds.length > 0) {\n        revealTimerRef.current = setTimeout(() => advanceSession(session), REVEAL_DURATION_MS);\n      }"
+}

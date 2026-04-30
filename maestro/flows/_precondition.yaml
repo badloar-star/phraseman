@@ -1,0 +1,19 @@
+appId: app.phraseman
+---
+- runFlow:
+    when:
+      visible: "Понятно, буду искать!"
+    commands:
+      - tapOn: "Понятно, буду искать!"
+
+- runFlow:
+    when:
+      visible: "Зрозуміло, шукатиму!"
+    commands:
+      - tapOn: "Зрозуміло, шукатиму!"
+
+- runFlow:
+    when:
+      visible: "(Начнём первый урок\\?|Почнемо перший урок\\?)"
+    commands:
+      - tapOn: "(Позже|Пізніше)"

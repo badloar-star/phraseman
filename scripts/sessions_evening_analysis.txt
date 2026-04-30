@@ -1,0 +1,80 @@
+======================================================================
+SESSION ANALYSIS REPORT - 17-18 Apr 2026
+Sessions analyzed:
+  - fa8a53f6-4276-4a25-88c5-6b8bde5879ef.jsonl
+  - f03ded42-448c-40fe-bd13-aa58f6b76f79.jsonl
+  - 560c3309-c253-4584-9b47-f73b75269a20.jsonl
+  - 0506cde2-bb1e-484c-9395-b86120e16785.jsonl
+======================================================================
+
+Session fa8a53f6-4276-4a25-88c5-6b8bde5879ef.jsonl: 8 operations found
+Session f03ded42-448c-40fe-bd13-aa58f6b76f79.jsonl: 0 operations found
+Session 560c3309-c253-4584-9b47-f73b75269a20.jsonl: 0 operations found
+Session 0506cde2-bb1e-484c-9395-b86120e16785.jsonl: 3 operations found
+
+Total operations extracted: 11
+
+Project file operations: 7
+Skipped (non-project): 4
+
+======================================================================
+PROCESSING OPERATIONS
+======================================================================
+
+[1] Write | c:/appsprojects/phraseman/docs/HOME_DEPENDENCIES.md
+     Session: fa8a53f6-4276-4a25-88c5-6b8bde5879ef.jsonl
+     Content preview: # Карта зависимостей home.tsx\n\nГлавный экран `app/(tabs)/home.tsx` (825 строк) — центральный хаб при...
+     STATUS: ALREADY_IDENTICAL
+
+[2] Write | c:/appsprojects/phraseman/docs/FLASHCARDS_RULES.md
+     Session: fa8a53f6-4276-4a25-88c5-6b8bde5879ef.jsonl
+     Content preview: # flashcards.tsx — Критические правила\n\n## 1. Перевод (translation fallback)\n```ts\n// ВСЕГДА fallbac...
+     STATUS: ALREADY_IDENTICAL
+
+[3] Write | c:/appsprojects/phraseman/docs/PREMIUM_MODAL_RULES.md
+     Session: fa8a53f6-4276-4a25-88c5-6b8bde5879ef.jsonl
+     Content preview: # premium_modal.tsx — Критические правила\n\n## showSuccess() — НЕ ЛОМАТЬ\n1. Вызывает `reloadEnergy()`...
+     STATUS: ALREADY_IDENTICAL
+
+[4] Write | c:/appsprojects/phraseman/CLAUDE.md
+     Session: fa8a53f6-4276-4a25-88c5-6b8bde5879ef.jsonl
+     Content preview: # PhraseMan\n\nReact Native + Expo + TypeScript. Мобильное приложение для изучения английских фразовых...
+     STATUS: ALREADY_IDENTICAL
+
+[5] Edit | c:/appsprojects/phraseman/app/lesson_words.tsx
+     Session: 0506cde2-bb1e-484c-9395-b86120e16785.jsonl
+     OLD:   1: [\n    { en: 'here', ru: 'Здесь', uk: 'Тут', pos: 'adverbs' },\n    { en: 're...
+     NEW:   1: [\n    { en: 'I', ru: 'Я', uk: 'Я', pos: 'pronouns' },\n    { en: 'you', ru: ...
+     STATUS: ALREADY_APPLIED
+
+[6] Edit | c:/appsprojects/phraseman/app/lesson_words.tsx
+     Session: 0506cde2-bb1e-484c-9395-b86120e16785.jsonl
+     OLD:   useEffect(() => {\n    AsyncStorage.getItem(storageKey + '_words').then(v => {\n...
+     NEW:   useEffect(() => {\n    AsyncStorage.getItem(storageKey + '_words').then(v => {\n...
+     STATUS: ALREADY_APPLIED
+
+[7] Edit | c:/appsprojects/phraseman/app/lesson_menu.tsx
+     Session: 0506cde2-bb1e-484c-9395-b86120e16785.jsonl
+     OLD:     AsyncStorage.getItem(`lesson${lessonId}_words`).then(saved => {\n      try {\n...
+     NEW:     AsyncStorage.getItem(`lesson${lessonId}_words`).then(saved => {\n      try {\n...
+     STATUS: ALREADY_APPLIED
+
+======================================================================
+SUMMARY
+======================================================================
+Applied:      0
+Already done: 7
+Cannot apply: 0
+Other:        0
+
+
+ALREADY_APPLIED (3):
+  [Edit] c:/appsprojects/phraseman/app/lesson_words.tsx
+  [Edit] c:/appsprojects/phraseman/app/lesson_words.tsx
+  [Edit] c:/appsprojects/phraseman/app/lesson_menu.tsx
+
+ALREADY_IDENTICAL (4):
+  [Write] c:/appsprojects/phraseman/docs/HOME_DEPENDENCIES.md
+  [Write] c:/appsprojects/phraseman/docs/FLASHCARDS_RULES.md
+  [Write] c:/appsprojects/phraseman/docs/PREMIUM_MODAL_RULES.md
+  [Write] c:/appsprojects/phraseman/CLAUDE.md

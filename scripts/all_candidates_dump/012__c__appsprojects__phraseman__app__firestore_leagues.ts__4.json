@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/firestore_leagues.ts",
+  "session": "dca4eba4",
+  "op_index": 4,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';\nimport { ensureAnonUser } from './cloud_sync';\nimport { GroupMember } from './league_engine';",
+  "new_string": "import AsyncStorage from '@react-native-async-storage/async-storage';\nimport { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';\nimport { ensureAnonUser } from './cloud_sync';\nimport { GroupMember } from './league_engine';"
+}

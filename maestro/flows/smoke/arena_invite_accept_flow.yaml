@@ -1,0 +1,6 @@
+appId: app.phraseman
+---
+- launchApp
+- runFlow: ../_dismiss_bug_hunt.yaml
+- tapOn:
+    point: "70%,95%"

@@ -2,27 +2,56 @@
   "expo": {
     "name": "Phraseman",
     "slug": "phraseman",
-    "version": "1.3.2",
+    "version": "1.5.22",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "enabled": true,
+      "url": "https://u.expo.dev/e6235200-f736-4f96-ab81-09354d945ba8",
+      "checkAutomatically": "ON_LOAD"
+    },
     "android": {
       "package": "app.phraseman",
       "googleServicesFile": "./google-services.json",
-      "versionCode": 22,
+      "versionCode": 53,
+      "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
+        "foregroundImage": "./assets/images/icon.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "badloar-star.github.io",
+              "pathPrefix": "/phraseman/duel"
+            },
+            {
+              "scheme": "https",
+              "host": "badloar-star.github.io",
+              "pathPrefix": "/phraseman/invite"
+            }
+          ],
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
+        }
+      ],
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "softwareKeyboardLayoutMode": "pan",
+      "softwareKeyboardLayoutMode": "resize",
       "permissions": [
-        "android.permission.RECORD_AUDIO",
         "android.permission.INTERNET",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE",
@@ -32,11 +61,12 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "6",
+      "buildNumber": "53",
       "supportsTablet": false,
+      "usesAppleSignIn": true,
+      "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
-        "NSSpeechRecognitionUsageDescription": "Phraseman uses speech recognition to check your English pronunciation during lessons. Your voice is processed on-device and not stored.",
-        "NSMicrophoneUsageDescription": "Phraseman uses the microphone to listen to your spoken English answers during pronunciation practice in lessons."
+        "ITSAppUsesNonExemptEncryption": false
       }
     },
     "web": {
@@ -51,9 +81,9 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#06141B",
+          "backgroundColor": "#000000",
           "dark": {
-            "backgroundColor": "#06141B"
+            "backgroundColor": "#000000"
           }
         }
       ],
@@ -64,13 +94,45 @@
           "color": "#06141B"
         }
       ],
-      "expo-speech-recognition",
       "@react-native-firebase/app",
-      "@react-native-firebase/crashlytics"
+      "@react-native-firebase/crashlytics",
+      "./plugins/withIosFirebaseCrashlyticsUpload",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static",
+            "buildReactNativeFromSource": true,
+            "forceStaticLinking": [
+              "RNFBApp",
+              "RNFBAnalytics",
+              "RNFBAppCheck",
+              "RNFBAuth",
+              "RNFBCrashlytics",
+              "RNFBFirestore",
+              "RNFBFunctions"
+            ]
+          },
+          "android": {
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "useLegacyPackaging": true,
+            "minSdkVersion": 24,
+            "lintOptions": {
+              "abortOnError": false
+            },
+            "extraProguardRules": "-keep class expo.modules.kotlin.** { *; }\n-keep class expo.modules.imagepicker.** { *; }\n-keep class expo.modules.applepayauthentication.** { *; }\n-keep class expo.modules.applesignin.** { *; }\n-keep class com.google.android.gms.auth.api.signin.** { *; }\n-keep class com.google.android.gms.common.api.** { *; }\n-keep class com.google.firebase.auth.** { *; }\n-keep class com.googlesignin.** { *; }\n-dontwarn expo.modules.kotlin.**\n-dontwarn expo.modules.imagepicker.**"
+          }
+        }
+      ],
+      "expo-secure-store",
+      "expo-apple-authentication",
+      "@react-native-google-signin/google-signin",
+      "./plugins/withAndroidBackupRules"
     ],
     "experiments": {
       "typedRoutes": true,
-      "reactCompiler": true
+      "reactCompiler": false
     },
     "extra": {
       "router": {},

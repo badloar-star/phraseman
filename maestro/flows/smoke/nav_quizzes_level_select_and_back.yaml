@@ -1,0 +1,33 @@
+# Открыть квиз с главной → экран выбора уровня → назад на главную.
+# Ловит регрессии навигации (в т.ч. когда goHome из TabContext — no-op вне табов).
+appId: app.phraseman
+---
+- launchApp
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "tab-home"
+    timeout: 90000
+- tapOn:
+    id: "tab-home"
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 45000
+- tapOn:
+    id: "home-quick-quizzes"
+- extendedWaitUntil:
+    visible:
+      id: "quiz-level-select-back"
+    timeout: 20000
+- assertVisible:
+    id: "quiz-level-select-back"
+- tapOn:
+    id: "quiz-level-select-back"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 15000

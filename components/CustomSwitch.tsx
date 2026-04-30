@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { TouchableOpacity, Animated, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { useTheme } from './ThemeContext';
 
 // Точные размеры как у нативного iOS Switch
@@ -16,7 +16,7 @@ interface Props {
 }
 
 export default function CustomSwitch({ value, onValueChange, disabled = false }: Props) {
-  const { theme: t, isDark } = useTheme();
+  const { theme: t } = useTheme();
 
   const thumbX  = useRef(new Animated.Value(value ? MAX_X : 0)).current;
   const progress = useRef(new Animated.Value(value ? 1 : 0)).current;
@@ -26,16 +26,16 @@ export default function CustomSwitch({ value, onValueChange, disabled = false }:
       Animated.spring(thumbX, {
         toValue: value ? MAX_X : 0,
         useNativeDriver: true,
-        friction: 8,
-        tension: 100,
+        friction: 7,
+        tension: 140,
       }),
       Animated.timing(progress, {
         toValue: value ? 1 : 0,
-        duration: 180,
+        duration: 110,
         useNativeDriver: false,
       }),
     ]).start();
-  }, [value]);
+  }, [value, progress, thumbX]);
 
   // Выкл: цвет bgSurface из темы (подходит и тёмной и светлой)
   // Вкл: зелёный
@@ -90,4 +90,4 @@ const s = StyleSheet.create({
     elevation:       3,
   },
 });
-
+

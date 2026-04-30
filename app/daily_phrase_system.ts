@@ -32,6 +32,22 @@ const idiomForDay = (): Idiom => {
   return IDIOMS[idx];
 };
 
+/** Sync phrase for first paint; matches idiomForDay() / cloud logic without I/O. */
+export function getTodayPhraseSync(): DailyPhrase {
+  const idiom = idiomForDay();
+  const today = new Date().toISOString().split('T')[0];
+  return {
+    english: idiom.english,
+    literal: idiom.literal,
+    meaning: idiom.meaning,
+    text: idiom.text,
+    literal_uk: idiom.literal_uk,
+    meaning_uk: idiom.meaning_uk,
+    text_uk: idiom.text_uk,
+    date: today,
+  };
+}
+
 export const getTodayPhrase = async (): Promise<DailyPhrase> => {
   const today = new Date().toISOString().split('T')[0];
   try {
@@ -72,3 +88,6 @@ const getDefaultPhrase = (): DailyPhrase => {
     date: new Date().toISOString().split('T')[0],
   };
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

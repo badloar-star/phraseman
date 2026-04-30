@@ -1,0 +1,70 @@
+﻿===== TOKEN COUNT AUDIT (lessons 1-32) =====
+
+Per-lesson summary (CRITICAL count mismatches):
+  L1=0/50, L2=0/50, L3=0/50, L4=0/50, L5=0/50, L6=0/50, L7=0/50, L8=0/50, L9=0/50, L10=0/50, L11=0/50, L12=0/50, L13=0/50, L14=0/50, L15=0/50, L16=0/50, L17=0/50, L18=0/50, L19=0/50, L20=0/50, L21=0/50, L22=0/50, L23=0/50, L24=0/50, L25=0/50, L26=0/50, L27=0/50, L28=0/50, L29=0/50, L30=0/50, L31=0/50, L32=0/50
+  TOTAL: 0 CRITICAL / 1600 phrases
+
+
+=== CRITICAL words.length != english.split(" ").length: 0 ===
+
+=== CRITICAL english has double spaces / leading-trailing whitespace: 0 ===
+
+=== CRITICAL empty word.text or word.correct: 0 ===
+
+=== WARN words.text != english token (real text mismatch): 0 ===
+
+=== INFO punctuation-only mismatches (trailing ?/./, etc.): 880 ===
+  L2 id=lesson2_phrase_2 english="Are you sure?" mm=[2] "sure?"<>"sure"
+  L2 id=lesson2_phrase_4 english="Is it expensive?" mm=[2] "expensive?"<>"expensive"
+  L2 id=lesson2_phrase_7 english="Is she a doctor?" mm=[3] "doctor?"<>"doctor"
+  L2 id=lesson2_phrase_9 english="Are you busy?" mm=[2] "busy?"<>"busy"
+  L2 id=lesson2_phrase_12 english="Is he angry?" mm=[2] "angry?"<>"angry"
+  L2 id=lesson2_phrase_15 english="Is it open?" mm=[2] "open?"<>"open"
+  L2 id=lesson2_phrase_17 english="Is it free?" mm=[2] "free?"<>"free"
+  L2 id=lesson2_phrase_19 english="Am I not right?" mm=[3] "right?"<>"right"
+  L2 id=lesson2_phrase_22 english="Are you okay?" mm=[2] "okay?"<>"okay"
+  L2 id=lesson2_phrase_24 english="Is she in the taxi?" mm=[4] "taxi?"<>"taxi"
+  L2 id=lesson2_phrase_27 english="Are they here?" mm=[2] "here?"<>"here"
+  L2 id=lesson2_phrase_29 english="Is it far?" mm=[2] "far?"<>"far"
+  L2 id=lesson2_phrase_31 english="Are you not wrong?" mm=[3] "wrong?"<>"wrong"
+  L2 id=lesson2_phrase_32 english="Is he at the office?" mm=[4] "office?"<>"office"
+  L2 id=lesson2_phrase_34 english="Is it true?" mm=[2] "true?"<>"true"
+  L2 id=lesson2_phrase_38 english="Are you on the way?" mm=[4] "way?"<>"way"
+  L2 id=lesson2_phrase_42 english="Is he in the elevator?" mm=[4] "elevator?"<>"elevator"
+  L2 id=lesson2_phrase_44 english="Are you in the building?" mm=[4] "building?"<>"building"
+  L2 id=lesson2_phrase_47 english="Are we not on the list?" mm=[5] "list?"<>"list"
+  L5 id=lesson5_phrase_1 english="Do you drink coffee?" mm=[3] "coffee?"<>"coffee"
+  L5 id=lesson5_phrase_2 english="Does he live here?" mm=[3] "here?"<>"here"
+  L5 id=lesson5_phrase_3 english="Do we work tomorrow?" mm=[3] "tomorrow?"<>"tomorrow"
+  L5 id=lesson5_phrase_4 english="Does she understand English?" mm=[3] "English?"<>"English"
+  L5 id=lesson5_phrase_5 english="Do they know the password?" mm=[4] "password?"<>"password"
+  L5 id=lesson5_phrase_6 english="Do I write correctly?" mm=[3] "correctly?"<>"correctly"
+  L5 id=lesson5_phrase_7 english="Does it cost much?" mm=[3] "much?"<>"much"
+  L5 id=lesson5_phrase_8 english="Do you travel often?" mm=[3] "often?"<>"often"
+  L5 id=lesson5_phrase_9 english="Does he drink tea?" mm=[3] "tea?"<>"tea"
+  L5 id=lesson5_phrase_10 english="Do we use this code?" mm=[4] "code?"<>"code"
+  L5 id=lesson5_phrase_11 english="Does she wear a mask?" mm=[4] "mask?"<>"mask"
+  ... and 850 more
+
+=== INFO zero-article positions (text="-", auto-filled): 50 ===
+  L20 id=l20p1 zeroIdx=[4, 8, 10] english="I bought a new - phone in that - small - shop."
+  L20 id=l20p2 zeroIdx=[5, 9, 11] english="Do you see an enormous - eagle on that - high - rock?"
+  L20 id=l20p3 zeroIdx=[3, 5, 8, 10] english="We usually drink - hot - coffee without - any - sugar."
+  L20 id=l20p4 zeroIdx=[1, 3, 7, 11, 13] english="He - always - leaves an empty - plate on this - kitchen - table."
+  L20 id=l20p5 zeroIdx=[4, 8, 10] english="She found an old - map in that - leather - bag."
+  L20 id=l20p6 zeroIdx=[4, 8, 10] english="It ate a whole - apple in that - quiet - garden."
+  L20 id=l20p7 zeroIdx=[4, 8, 10] english="Someone left an important - document on this - old - printer."
+  L20 id=l20p8 zeroIdx=[1, 6, 10, 12] english="Every - student got a free - ticket to that - new - exhibition."
+  L20 id=l20p9 zeroIdx=[4, 8, 10] english="They built a modern - office in this - business - district."
+  L20 id=l20p10 zeroIdx=[4, 8, 10] english="Nobody saw a black - cat in that - dark - corridor."
+  L20 id=l20p11 zeroIdx=[1, 6, 10, 12] english="Did - anyone hear a strange - noise in that - empty - corridor?"
+  L20 id=l20p12 zeroIdx=[4, 8, 10] english="We found a golden - ring on this - old - floor."
+  L20 id=l20p13 zeroIdx=[2, 4, 8, 10] english="Everyone brought - healthy - food to that - big - party."
+  L20 id=l20p14 zeroIdx=[4, 8, 10] english="Somebody dropped an expensive - wallet in this - narrow - lift."
+  L20 id=l20p15 zeroIdx=[5, 9, 11] english="Did you see an interesting - advertisement on that - wide - street?"
+  L20 id=l20p16 zeroIdx=[1, 6, 10, 12] english="Somebody's - children found a little - kitten under that - wooden - porch."
+  L20 id=l20p17 zeroIdx=[4, 8, 10] english="Nobody took an extra - key in that - front - room."
+  L20 id=l20p18 zeroIdx=[5, 9, 11] english="She always wears a bright - scarf in this - cold - weather."
+  L20 id=l20p19 zeroIdx=[2, 4, 8, 10] english="We bought - fresh - bread in that - local - shop."
+  L20 id=l20p20 zeroIdx=[5, 9, 11] english="Did anyone book a single - room in this - expensive - hotel?"
+  ... and 30 more

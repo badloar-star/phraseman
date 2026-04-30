@@ -1,0 +1,194 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Organization {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  users     User[]
+  bankConnections BankConnection[]
+  subscriptions SubscriptionDetected[]
+  wasteFindings WasteFinding[]
+  savingsEntries SavingsLedger[]
+  detectionRuns DetectionRun[]
+}
+
+/** Append-only history of detector executions with coarse quality counters. */
+model DetectionRun {
+  id                           String   @id @default(cuid())
+  organizationId               String
+  startedAt                    DateTime
+  finishedAt                   DateTime
+  durationMs                   Int
+  success                      Boolean  @default(true)
+  errorMessage                 String?
+  incremental                  Boolean
+  fullReset                    Boolean
+  scannedTransactions          Int
+  candidateCount               Int
+  avgCandidateConfidence       Float
+  detectedSubscriptions        Int
+  generatedFindings            Int
+  generatedDuplicateFindings   Int
+  removedStaleSubscriptions    Int
+  clearedTransientFindings     Int
+  organization                 Organization @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+  @@index([organizationId, finishedAt])
+}
+
+model User {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  role           String
+  organizationId String
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  createdAt      DateTime @default(now())
+  ownedFindings  WasteFinding[] @relation("FindingOwner")
+  ownedSubscriptions SubscriptionDetected[] @relation("SubscriptionOwner")
+}
+
+model BankConnection {
+  id             String   @id @default(cuid())
+  organizationId String
+  provider       String
+  externalRef    String
+  status         String
+  createdAt      DateTime @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  accounts       BankAccount[]
+  webhookIngestions WebhookIngestion[]
+
+  @@unique([organizationId, provider, externalRef])
+}
+
+/** One row per first-seen webhook delivery; replays return the same outcome without re-inserting. */
+model WebhookIngestion {
+  id               String   @id @default(cuid())
+  bankConnectionId String
+  /** `idemp:<key>` from header, or `payload:<sha256>` of canonical body hash. */
+  lookupKey        String
+  payloadHash      String
+  insertedCount    Int
+  transactionCount Int
+  createdAt        DateTime @default(now())
+  bankConnection     BankConnection @relation(fields: [bankConnectionId], references: [id], onDelete: Cascade)
+
+  @@unique([bankConnectionId, lookupKey])
+}
+
+model BankAccount {
+  id                String   @id @default(cuid())
+  bankConnectionId  String
+  externalAccountId String
+  currency          String
+  name              String?
+  createdAt         DateTime @default(now())
+  bankConnection    BankConnection @relation(fields: [bankConnectionId], references: [id])
+  rawTransactions   TransactionRaw[]
+
+  @@unique([bankConnectionId, externalAccountId])
+}
+
+model TransactionRaw {
+  id            String   @id @default(cuid())
+  bankAccountId String
+  externalTxId  String
+  bookedAt      DateTime
+  amount        Decimal  @db.Decimal(14, 2)
+  currency      String
+  merchantText  String
+  rawPayload    Json
+  createdAt     DateTime @default(now())
+  bankAccount   BankAccount @relation(fields: [bankAccountId], references: [id])
+  normalized    TransactionNormalized?
+
+  @@unique([bankAccountId, externalTxId])
+}
+
+model Merchant {
+  id              String   @id @default(cuid())
+  canonicalName   String   @unique
+  category        String
+  createdAt       DateTime @default(now())
+  aliases         MerchantAlias[]
+  normalizedTx    TransactionNormalized[]
+  subscriptions   SubscriptionDetected[]
+}
+
+model MerchantAlias {
+  id         String   @id @default(cuid())
+  merchantId String
+  alias      String   @unique
+  confidence Float
+  merchant   Merchant @relation(fields: [merchantId], references: [id])
+}
+
+model TransactionNormalized {
+  id               String   @id @default(cuid())
+  transactionRawId String   @unique
+  merchantId       String?
+  normalizedText   String
+  isSoftware       Boolean
+  confidence       Float
+  createdAt        DateTime @default(now())
+  transactionRaw   TransactionRaw @relation(fields: [transactionRawId], references: [id])
+  merchant         Merchant? @relation(fields: [merchantId], references: [id])
+}
+
+model SubscriptionDetected {
+  id             String   @id @default(cuid())
+  organizationId String
+  /** Stable key from detector grouping, e.g. normalized merchant + currency. */
+  detectionKey   String
+  merchantId     String?
+  /** Finance / app owner for this recurring line item. */
+  ownerUserId    String?
+  billingCycle   String
+  avgAmount      Decimal  @db.Decimal(14, 2)
+  currency       String
+  confidence     Float
+  status         String
+  createdAt      DateTime @default(now())
+  organization   Organization @relation(fields: [organizationId], references: [id])
+  merchant       Merchant? @relation(fields: [merchantId], references: [id])
+  owner          User? @relation("SubscriptionOwner", fields: [ownerUserId], references: [id])
+  wasteFindings  WasteFinding[]
+
+  @@unique([organizationId, detectionKey])
+}
+
+model WasteFinding {
+  id                     String   @id @default(cuid())
+  organizationId         String
+  subscriptionId         String?
+  type                   String
+  title                  String
+  estimatedMonthlySaving Decimal  @db.Decimal(14, 2)
+  confidence             Float
+  status                 String
+  ownerUserId            String?
+  createdAt              DateTime @default(now())
+  organization           Organization @relation(fields: [organizationId], references: [id])
+  subscription           SubscriptionDetected? @relation(fields: [subscriptionId], references: [id])
+  owner                  User? @relation("FindingOwner", fields: [ownerUserId], references: [id])
+  savingsEntries         SavingsLedger[]
+}
+
+model SavingsLedger {
+  id               String   @id @default(cuid())
+  organizationId   String
+  wasteFindingId   String
+  estimatedMonthly Decimal  @db.Decimal(14, 2)
+  confirmedMonthly Decimal? @db.Decimal(14, 2)
+  realizedAt       DateTime?
+  createdAt        DateTime @default(now())
+  organization     Organization @relation(fields: [organizationId], references: [id])
+  wasteFinding     WasteFinding @relation(fields: [wasteFindingId], references: [id])
+}

@@ -1,24 +1,446 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PhraseMan — Учи английский играя</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – Phraseman by Knowly</title>
   <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --text: #e8eaf0;
+      --text-secondary: #9196a8;
+      --accent: #5b7fff;
+      --warning: #f0a020;
+      --radius: 10px;
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f0f13; color: #fff; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; text-align: center; }
-    .logo { font-size: 64px; margin-bottom: 16px; }
-    h1 { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
-    p { color: #888; font-size: 16px; margin-bottom: 32px; line-height: 1.5; }
-    .btn { display: inline-block; background: #6c47ff; color: #fff; text-decoration: none; padding: 16px 32px; border-radius: 14px; font-size: 17px; font-weight: 700; margin: 8px; }
-    .btn.secondary { background: #1a1a24; border: 1px solid #2a2a3a; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    .container { max-width: 760px; margin: 0 auto; padding: 40px 24px 80px; }
+    header { margin-bottom: 48px; border-bottom: 1px solid var(--border); padding-bottom: 32px; }
+    header h1 { font-size: 2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+    header .meta { color: var(--text-secondary); font-size: 0.9rem; }
+    header .app-name { color: var(--accent); font-weight: 700; }
+
+    h2 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin: 36px 0 10px; }
+    h3 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 20px 0 6px; }
+    p { color: var(--text-secondary); margin-bottom: 12px; }
+    ul, ol { color: var(--text-secondary); padding-left: 22px; margin-bottom: 12px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .highlight-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--warning);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .highlight-box p { margin: 0; }
+    .highlight-box strong { color: var(--warning); }
+
+    .public-data-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid #ff6b6b;
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .public-data-box p { margin: 0; color: var(--text-secondary); }
+    .public-data-box strong { color: #ff6b6b; }
+
+    .section { margin-bottom: 8px; }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 60px 0 40px;
+    }
+
+    .localized {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-top: 40px;
+    }
+    .localized h2 { font-size: 1rem; color: var(--text-secondary); margin: 0 0 8px; font-weight: 700; }
+    .localized p, .localized li { color: var(--text-secondary); font-size: 0.85rem; }
+    .localized .lang-section { margin-bottom: 28px; }
+    .localized .lang-section:last-child { margin-bottom: 0; }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f5f6fa;
+        --surface: #ffffff;
+        --border: #e0e3ed;
+        --text: #1a1d27;
+        --text-secondary: #5a5f73;
+      }
+    }
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.5rem; }
+      .container { padding: 24px 16px 60px; }
+    }
   </style>
 </head>
 <body>
-  <div class="logo">📚</div>
-  <h1>PhraseMan</h1>
-  <p>Учи английские фразовые глаголы<br>через квизы, дуэли и достижения</p>
-  <a href="https://play.google.com/store/apps/details?id=app.phraseman" class="btn">🤖 Скачать для Android</a>
-  <a href="#" class="btn secondary">🍎 App Store — скоро</a>
+<div class="container">
+  <header>
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      Application: <span class="app-name">Phraseman</span> &nbsp;|&nbsp;
+      Developer: <span class="app-name">Knowly</span> &nbsp;|&nbsp;
+      Last updated: <strong>April 22, 2026</strong>
+    </p>
+  </header>
+
+  <!-- ══════════════════════════════════════════ 1 ══ -->
+  <div class="section">
+    <h2>1. Introduction</h2>
+    <p>
+      Phraseman ("App", "we", "us", "our") is an English language learning application developed
+      and operated by <strong>Knowly</strong>. This Privacy Policy explains how we collect, use,
+      disclose, and safeguard your personal information when you use our App, available on the
+      Apple App Store and Google Play Store.
+    </p>
+    <p>
+      By downloading or using the App you agree to the practices described in this Policy.
+      If you do not agree, please do not use the App.
+    </p>
+    <p>
+      This Policy applies to all users worldwide and specifically addresses the requirements of
+      the <strong>General Data Protection Regulation (GDPR)</strong>,
+      the <strong>California Consumer Privacy Act (CCPA/CPRA)</strong>, and
+      the <strong>Children's Online Privacy Protection Act (COPPA)</strong>.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 2 ══ -->
+  <div class="section">
+    <h2>2. Who We Are &amp; Contact Information</h2>
+    <p>
+      <strong>Developer / Data Controller:</strong> Knowly<br />
+      <strong>Country of establishment:</strong> Ukraine<br />
+      <strong>Support &amp; privacy requests:</strong>
+      <a href="mailto:support.phraseman@gmail.com">support.phraseman@gmail.com</a>
+    </p>
+    <p>
+      For all GDPR Article 27 inquiries, data subject requests, or COPPA parental requests,
+      contact us at the e-mail above. We will respond within 30 days.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 3 ══ -->
+  <div class="section">
+    <h2>3. Age &amp; Parental Consent</h2>
+    <div class="highlight-box">
+      <p>
+        Phraseman is available to users of all ages on the App Store and Google Play.
+        The App does not require registration and does not knowingly collect personal data from children.
+        The only data visible to other users is a chosen nickname and in-app progress (see §4).
+        If you are a parent or guardian and have concerns about your child's data, contact us at
+        <a href="mailto:support.phraseman@gmail.com">support.phraseman@gmail.com</a>
+        and we will delete any associated cloud data within 30 days.
+      </p>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 4 ══ -->
+  <div class="section">
+    <h2>4. Data We Collect</h2>
+
+    <h3>4.1 Data Stored Locally on Your Device</h3>
+    <p>The following data is stored exclusively on your device using AsyncStorage and is not transmitted to our servers unless you participate in cloud-synced features (see §4.2):</p>
+    <ul>
+      <li>Learning progress, lesson completion status</li>
+      <li>XP (experience points), level, streak count</li>
+      <li>Achievements, flashcard collection</li>
+      <li>App settings (theme, language preference, font size)</li>
+      <li>Daily tasks progress</li>
+    </ul>
+
+    <h3>4.2 Data Synced to Cloud (Firebase / Firestore)</h3>
+    <p>
+      The App uses <strong>Firebase Anonymous Authentication</strong> (Google LLC). No email
+      address, phone number, or registration is required. Firebase assigns an anonymous user ID
+      to your device session. The following data may be stored in our Firestore cloud database:
+    </p>
+
+    <div class="public-data-box">
+      <p>
+        <strong>PUBLIC DATA — visible to other users of the App:</strong>
+        Your chosen nickname (username), XP score, streak count, league tier, and avatar
+        selection are displayed in the <strong>global leaderboard</strong> and
+        <strong>club/league groups</strong>. By choosing a nickname, you consent to this
+        data being publicly visible within the App.
+      </p>
+    </div>
+
+    <ul>
+      <li><strong>Leaderboard entry:</strong> Nickname, XP, streak, league, avatar — <em>publicly visible</em></li>
+      <li><strong>League &amp; club data:</strong> Group membership, weekly points, club boosts participation — <em>visible to club members</em></li>
+      <li><strong>Anonymous user ID:</strong> Firebase-assigned token (not linked to any personal identity)</li>
+      <li><strong>Cloud sync metadata:</strong> Last sync timestamp, app version</li>
+    </ul>
+
+    <h3>4.3 Text-to-Speech Audio</h3>
+    <p>
+      The App uses the device's built-in <strong>Text-to-Speech (TTS) engine</strong> (via expo-speech)
+      to pronounce English phrases and example sentences. Audio is generated entirely on your device.
+      No text or audio data is transmitted to external servers for this purpose.
+    </p>
+
+    <h3>4.4 Subscription &amp; Purchase Data (RevenueCat)</h3>
+    <p>
+      Subscription management is handled by <strong>RevenueCat, Inc.</strong>
+      RevenueCat receives your device's app store receipt, an anonymous app user ID,
+      and subscription status to verify and manage your premium access.
+      RevenueCat does not receive your payment card information.
+      All billing is processed directly by Apple (App Store) or Google (Google Play).
+      See <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a>.
+    </p>
+
+    <h3>4.5 Analytics &amp; Crash Reporting</h3>
+    <p>
+      We may use Firebase Analytics (Google LLC) and Expo's error reporting to collect
+      aggregated, anonymized usage statistics (e.g., which screens are visited, crash logs).
+      This data does not identify you personally and is used solely to improve the App.
+    </p>
+
+    <h3>4.6 Data We Do NOT Collect</h3>
+    <ul>
+      <li>Name, email address, phone number, or any registration credentials</li>
+      <li>Precise geolocation</li>
+      <li>Payment card or banking information</li>
+      <li>Contacts, photos, or any data outside the App</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 5 ══ -->
+  <div class="section">
+    <h2>5. Legal Basis for Processing (GDPR)</h2>
+    <p>For users in the European Economic Area (EEA), United Kingdom, and Switzerland, we process personal data under the following legal bases:</p>
+    <ul>
+      <li><strong>Consent (Art. 6(1)(a) GDPR):</strong> Participation in the public leaderboard</li>
+      <li><strong>Contractual necessity (Art. 6(1)(b) GDPR):</strong> Processing needed to provide subscription services</li>
+      <li><strong>Legitimate interests (Art. 6(1)(f) GDPR):</strong> App security, fraud prevention, aggregate analytics</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 6 ══ -->
+  <div class="section">
+    <h2>6. How We Use Your Data</h2>
+    <ul>
+      <li>Provide, maintain, and improve the App's core functionality</li>
+      <li>Display your progress and rank in the leaderboard and club features</li>
+      <li>Verify premium subscription status</li>
+      <li>Generate on-device audio pronunciations via Text-to-Speech</li>
+      <li>Diagnose and fix technical problems</li>
+      <li>Comply with legal obligations</li>
+    </ul>
+    <p>We do <strong>not</strong> sell your personal data to third parties. We do not use your data for targeted advertising.</p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 7 ══ -->
+  <div class="section">
+    <h2>7. Third-Party Services</h2>
+    <p>The App integrates the following third-party services, each with its own privacy policy:</p>
+    <ul>
+      <li>
+        <strong>Google Firebase (Authentication, Firestore, Analytics)</strong> — Google LLC<br />
+        <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>
+      </li>
+      <li>
+        <strong>RevenueCat</strong> — Subscription management<br />
+        <a href="https://www.revenuecat.com/privacy" target="_blank">revenuecat.com/privacy</a>
+      </li>
+      <li>
+        <strong>Expo (by Expo Inc.)</strong> — App framework and runtime<br />
+        <a href="https://expo.dev/privacy" target="_blank">expo.dev/privacy</a>
+      </li>
+      <li>
+        <strong>Apple App Store</strong> — iOS distribution and billing<br />
+        <a href="https://www.apple.com/legal/privacy/" target="_blank">apple.com/legal/privacy</a>
+      </li>
+      <li>
+        <strong>Google Play Store</strong> — Android distribution and billing<br />
+        <a href="https://policies.google.com/privacy" target="_blank">policies.google.com/privacy</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 8 ══ -->
+  <div class="section">
+    <h2>8. Data Retention</h2>
+    <ul>
+      <li><strong>Local device data:</strong> Retained until you uninstall the App or clear App data</li>
+      <li><strong>Firestore cloud data:</strong> Retained while your anonymous session is active; deleted upon a verified deletion request or after 24 months of inactivity</li>
+      <li><strong>Firebase anonymous user ID:</strong> Deleted within 90 days of a deletion request</li>
+      <li><strong>RevenueCat subscription data:</strong> Retained per RevenueCat's policy (typically 5 years for billing compliance)</li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 9 ══ -->
+  <div class="section">
+    <h2>9. Your Rights</h2>
+
+    <h3>9.1 Rights Under GDPR (EEA / UK Users)</h3>
+    <ul>
+      <li><strong>Right to access</strong> — Request a copy of data we hold about you</li>
+      <li><strong>Right to rectification</strong> — Request correction of inaccurate data</li>
+      <li><strong>Right to erasure ("right to be forgotten")</strong> — Request deletion of your data</li>
+      <li><strong>Right to restrict processing</strong> — Request we limit how we use your data</li>
+      <li><strong>Right to data portability</strong> — Receive your data in a portable format</li>
+      <li><strong>Right to object</strong> — Object to processing based on legitimate interests</li>
+      <li><strong>Right to withdraw consent</strong> — Withdraw consent at any time (e.g., opt out of the public leaderboard)</li>
+    </ul>
+
+    <h3>9.2 Rights Under CCPA (California Residents)</h3>
+    <p>California residents have the right to:</p>
+    <ul>
+      <li>Know what personal information is collected and how it is used</li>
+      <li>Request deletion of personal information</li>
+      <li>Opt out of the sale of personal information (we do not sell personal information)</li>
+      <li>Non-discrimination for exercising privacy rights</li>
+    </ul>
+
+    <h3>9.3 How to Exercise Your Rights</h3>
+    <p>
+      Email <a href="mailto:support.phraseman@gmail.com">support.phraseman@gmail.com</a>
+      with the subject line "Privacy Request". Include a description of your request.
+      Because the App uses anonymous authentication, please include your nickname and
+      approximate date you started using the App to help us locate your data.
+      We will respond within <strong>30 days</strong>.
+    </p>
+
+    <h3>9.4 Data Deletion</h3>
+    <p>
+      To delete all your cloud data: email us at
+      <a href="mailto:support.phraseman@gmail.com">support.phraseman@gmail.com</a>
+      with the subject "Delete My Data". To delete local data, uninstall the App from your device.
+      Deleting the App does not automatically delete cloud data (leaderboard entries, etc.).
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 10 ══ -->
+  <div class="section">
+    <h2>10. Data Security</h2>
+    <p>
+      We implement industry-standard technical and organizational measures to protect your data,
+      including Firebase security rules, encrypted data transmission (TLS/HTTPS), and
+      anonymized identifiers. However, <strong>no method of transmission over the Internet or
+      electronic storage is 100% secure</strong>. We cannot guarantee absolute security and
+      disclaim liability for unauthorized access beyond our reasonable control.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 11 ══ -->
+  <div class="section">
+    <h2>11. International Data Transfers</h2>
+    <p>
+      Your data may be transferred to and processed in countries outside your country of
+      residence, including the United States, where our third-party service providers
+      (Google, OpenAI, RevenueCat) are headquartered. These transfers are conducted
+      under appropriate safeguards, including Standard Contractual Clauses (SCCs)
+      where required by GDPR.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 12 ══ -->
+  <div class="section">
+    <h2>12. Subscriptions &amp; Billing Privacy</h2>
+    <p>
+      Premium subscriptions (monthly and annual, auto-renewable) are billed through the
+      Apple App Store or Google Play Store. Knowly does not process payments directly and
+      has no access to your payment card details, bank account information, or billing address.
+      All billing data is governed by Apple's or Google's privacy policies respectively.
+      RevenueCat receives only receipt validation data to confirm your subscription status.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 13 ══ -->
+  <div class="section">
+    <h2>13. Cookies &amp; Tracking</h2>
+    <p>
+      The App is a native mobile application and does not use browser cookies.
+      Firebase and RevenueCat SDKs may use device identifiers (such as the Advertising ID)
+      for analytics purposes. You may limit ad tracking through your device's privacy settings
+      (iOS: Settings &gt; Privacy &amp; Security &gt; Tracking;
+       Android: Settings &gt; Privacy &gt; Ads).
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 14 ══ -->
+  <div class="section">
+    <h2>14. Changes to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. When we make material changes,
+      we will update the "Last updated" date at the top of this page and, where appropriate,
+      provide in-app notification. Continued use of the App after changes constitutes
+      acceptance of the revised Policy.
+    </p>
+  </div>
+
+  <!-- ══════════════════════════════════════════ 15 ══ -->
+  <div class="section">
+    <h2>15. Supervisory Authority</h2>
+    <p>
+      If you are in the EEA and believe we have not adequately addressed your privacy concerns,
+      you have the right to lodge a complaint with your local data protection supervisory authority.
+    </p>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- ══════════════════ LOCALIZED SUMMARIES ══════════════════ -->
+  <div class="localized">
+    <p style="color: var(--text-secondary); font-size: 0.8rem; margin-bottom: 24px;">
+      The following are condensed summaries in Russian and Ukrainian for informational purposes only.
+      The English text above is the legally binding version.
+    </p>
+
+    <div class="lang-section">
+      <h2>Русский — Краткое изложение политики конфиденциальности</h2>
+      <p>
+        Приложение <strong>Phraseman</strong> от Knowly собирает минимум данных. Регистрация не требуется —
+        используется анонимная авторизация Firebase. Данные прогресса, XP, стрики и достижения
+        хранятся локально на устройстве. В облаке (Firestore) хранятся: ник, XP, уровень лиги
+        и аватар для <strong>публичного</strong> рейтинга (видны другим пользователям).
+        Озвучка фраз выполняется встроенным голосовым движком устройства — аудио не передаётся на серверы.
+        Подписки обрабатываются через App Store / Google Play и RevenueCat.
+        Мы не продаём ваши данные. Приложение доступно для пользователей всех возрастов.
+        Для удаления данных или запросов: <a href="mailto:support.phraseman@gmail.com">support.phraseman@gmail.com</a>.
+        Обновлено: 22 апреля 2026 г.
+      </p>
+    </div>
+
+    <div class="lang-section">
+      <h2>Українська — Короткий виклад політики конфіденційності</h2>
+      <p>
+        Застосунок <strong>Phraseman</strong> від Knowly збирає мінімум даних. Реєстрація не потрібна —
+        використовується анонімна авторизація Firebase. Дані прогресу, XP, стріки та досягнення
+        зберігаються локально на пристрої. У хмарі (Firestore) зберігаються: нікнейм, XP, рівень
+        ліги та аватар для <strong>публічного</strong> рейтингу (видно іншим користувачам).
+        Озвучення фраз виконується вбудованим голосовим движком пристрою — аудіо не передається на сервери.
+        Підписки обробляються через App Store / Google Play та RevenueCat.
+        Ми не продаємо ваші дані. Застосунок доступний для користувачів будь-якого віку.
+        Для видалення даних або запитів: <a href="mailto:support.phraseman@gmail.com">support.phraseman@gmail.com</a>.
+        Оновлено: 22 квітня 2026 р.
+      </p>
+    </div>
+  </div>
+
+</div>
+
 </body>
 </html>

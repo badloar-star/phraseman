@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/league_screen.tsx",
+  "session": "b8657361",
+  "op_index": 1,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "  const [loading, setLoading]           = useState(true);",
+  "new_string": "  const [loading, setLoading]           = useState(true);\n  const [refreshing, setRefreshing]     = useState(false);"
+}

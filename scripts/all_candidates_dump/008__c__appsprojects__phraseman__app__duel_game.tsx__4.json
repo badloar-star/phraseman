@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/duel_game.tsx",
+  "session": "33b61ac9",
+  "op_index": 4,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "  const handleAnswer = async (option: string) => {\n    if (hasAnswered) return;\n    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);\n    await submitMyAnswer(option);\n  };",
+  "new_string": "  const handleAnswer = async (option: string) => {\n    if (hasAnswered) return;\n    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);\n    await submitMyAnswer(option);\n  };\n\n  const handleExit = () => {\n    Alert.alert(\n      'Выйти из дуэли?',\n      'Прогресс будет потерян.',\n      [\n        { text: 'Остаться', style: 'cancel' },\n        { text: 'Выйти', style: 'destructive', onPress: () => router.replace('/(tabs)/home') },\n      ]\n    );\n  };"
+}

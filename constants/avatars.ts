@@ -2,6 +2,8 @@
 // Firebase-ready: все данные сериализуем через JSON
 // AsyncStorage keys: 'user_avatar' (emoji), 'user_frame' (frame id)
 
+import type { Lang } from './i18n';
+
 export type FrameAnimation =
   | 'plain'
   | 'sprout'        // lvl3:  дышащее кольцо + тихая волна
@@ -35,6 +37,7 @@ export interface FrameDef {
   id: string;
   nameRU: string;
   nameUK: string;
+  nameES: string;
   color: string;
   color2: string;
   animation: FrameAnimation;
@@ -43,9 +46,11 @@ export interface FrameDef {
   unlockAchievementId?: string;
   unlockAchievementNameRU?: string;
   unlockAchievementNameUK?: string;
+  unlockAchievementNameES?: string;
   unlockClubId?: number;
   unlockClubNameRU?: string;
   unlockClubNameUK?: string;
+  unlockClubNameES?: string;
 }
 
 export interface AvatarDef {
@@ -89,6 +94,7 @@ export const AVATARS: AvatarDef[] = [
   { image: require('../assets/images/levels/32.png'), unlockLevel: 32 },
   { image: require('../assets/images/levels/33.png'), unlockLevel: 33 },
   { image: require('../assets/images/levels/34.png'), unlockLevel: 34 },
+  { image: require('../assets/images/levels/35.png'), unlockLevel: 35 },
   { image: require('../assets/images/levels/36.png'), unlockLevel: 36 },
   { image: require('../assets/images/levels/37.png'), unlockLevel: 37 },
   { image: require('../assets/images/levels/38.png'), unlockLevel: 38 },
@@ -110,103 +116,103 @@ export const AVATARS: AvatarDef[] = [
 export const FRAMES: FrameDef[] = [
   {
     id: 'plain',
-    nameRU: 'Простая',       nameUK: 'Проста',
+    nameRU: 'Простая',       nameUK: 'Проста', nameES: 'Sencilla',
     color: '#888888',        color2: '#555555',
     animation: 'plain',      unlockLevel: 1,
   },
   {
     id: 'sprout',
-    nameRU: 'Росток',        nameUK: 'Паросток',
+    nameRU: 'Росток',        nameUK: 'Паросток', nameES: 'Brote',
     color: '#47C870',        color2: '#1a7a3a',
     animation: 'sprout',     unlockLevel: 3,
   },
   {
     id: 'arc',
-    nameRU: 'Дуга',          nameUK: 'Дуга',
+    nameRU: 'Дуга',          nameUK: 'Дуга', nameES: 'Arco',
     color: '#E8320A',        color2: '#FFD700',
     animation: 'arc',        unlockLevel: 7,
   },
   {
     id: 'ice',
-    nameRU: 'Лёд',           nameUK: 'Лід',
+    nameRU: 'Лёд',           nameUK: 'Лід', nameES: 'Hielo',
     color: '#7DD8F8',        color2: '#0288D1',
     animation: 'ice',        unlockLevel: 10,
   },
   {
     id: 'plasma',
-    nameRU: 'Плазма',        nameUK: 'Плазма',
+    nameRU: 'Плазма',        nameUK: 'Плазма', nameES: 'Plasma',
     color: '#FFD700',        color2: '#FFA500',
     animation: 'plasma',     unlockLevel: 13,
   },
   {
     id: 'magnet',
-    nameRU: 'Магнетизм',     nameUK: 'Магнетизм',
+    nameRU: 'Магнетизм',     nameUK: 'Магнетизм', nameES: 'Magnetismo',
     color: '#00C8FF',        color2: '#0055DD',
     animation: 'magnet',     unlockLevel: 16,
   },
   {
     id: 'vortex',
-    nameRU: 'Вихрь',         nameUK: 'Вихор',
+    nameRU: 'Вихрь',         nameUK: 'Вихор', nameES: 'Vórtice',
     color: '#B044FF',        color2: '#7B2FBE',
     animation: 'vortex',     unlockLevel: 20,
   },
   {
     id: 'dna',
-    nameRU: 'Пульсар',       nameUK: 'Пульсар',
+    nameRU: 'Пульсар',       nameUK: 'Пульсар', nameES: 'Púlsar',
     color: '#00DDFF',        color2: '#AA44FF',
     animation: 'pulsar',     unlockLevel: 23,
   },
   {
     id: 'runes',
-    nameRU: 'Руны',          nameUK: 'Руни',
+    nameRU: 'Руны',          nameUK: 'Руни', nameES: 'Runas',
     color: '#BB66FF',        color2: '#7722CC',
     animation: 'runes',      unlockLevel: 26,
   },
   {
     id: 'gold_crown',
-    nameRU: 'Золотой атом',  nameUK: 'Золотий атом',
+    nameRU: 'Золотой атом',  nameUK: 'Золотий атом', nameES: 'Átomo dorado',
     color: '#FFD700',        color2: '#FF8C00',
     animation: 'atom',       unlockLevel: 30,
   },
   {
     id: 'web',
-    nameRU: 'Паутина',       nameUK: 'Павутина',
+    nameRU: 'Паутина',       nameUK: 'Павутина', nameES: 'Telaraña',
     color: '#A855F7',        color2: '#6D28D9',
     animation: 'web',        unlockLevel: 33,
   },
   {
     id: 'hex',
-    nameRU: 'Гексагон',      nameUK: 'Гексагон',
+    nameRU: 'Гексагон',      nameUK: 'Гексагон', nameES: 'Hexágono',
     color: '#FF4500',        color2: '#8B1A00',
     animation: 'hex',        unlockLevel: 36,
   },
   {
     id: 'geometry',
-    nameRU: 'Геометрия',     nameUK: 'Геометрія',
+    nameRU: 'Геометрия',     nameUK: 'Геометрія', nameES: 'Geometría',
     color: '#B9F2FF',        color2: '#0097A7',
     animation: 'geometry',   unlockLevel: 40,
   },
   {
     id: 'neural',
-    nameRU: 'Нейросеть',     nameUK: 'Нейромережа',
+    nameRU: 'Нейросеть',     nameUK: 'Нейромережа', nameES: 'Red neuronal',
     color: '#00FF88',        color2: '#00CC66',
     animation: 'neural',     unlockLevel: 43,
   },
   {
     id: 'aurora_star',
-    nameRU: 'Аврора',        nameUK: 'Аврора',
+    nameRU: 'Аврора',        nameUK: 'Аврора', nameES: 'Aurora',
     color: '#00BFA5',        color2: '#7B1FA2',
     animation: 'aurora_star', unlockLevel: 46,
   },
   {
     id: 'crystal',
-    nameRU: 'Кристалл',      nameUK: 'Кристал',
+    nameRU: 'Кристалл',      nameUK: 'Кристал', nameES: 'Cristal',
     color: '#E0F7FA',        color2: '#0097A7',
     animation: 'crystal',    unlockLevel: 48,
   },
   {
     id: 'legendary',
-    nameRU: '✦ Абсолют',     nameUK: '✦ Абсолют',
+    nameRU: '✦ Абсолют',     nameUK: '✦ Абсолют', nameES: '✦ Absoluto',
     color: '#FFFFFF',        color2: '#FFD700',
     animation: 'solar_cycle', unlockLevel: 50,
   },
@@ -214,163 +220,187 @@ export const FRAMES: FrameDef[] = [
   // ── Рамки за достижения ───────────────────────────────────────────────────
   {
     id: 'ach_streak365',
-    nameRU: 'Хранитель года',   nameUK: 'Охоронець року',
+    nameRU: 'Хранитель года',   nameUK: 'Охоронець року', nameES: 'Guardián del año',
     color: '#FF8C00',           color2: '#FFD700',
     animation: 'solar_cycle',   unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'streak_365',
     unlockAchievementNameRU: 'Целый год',
     unlockAchievementNameUK: 'Цілий рік',
+    unlockAchievementNameES: 'Un año entero',
   },
   {
     id: 'ach_streak500',
-    nameRU: '500 дней',         nameUK: '500 днів',
+    nameRU: '500 дней',         nameUK: '500 днів', nameES: '500 días',
     color: '#FFD700',           color2: '#FF4500',
     animation: 'double_square', unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'streak_500',
     unlockAchievementNameRU: '500 дней',
     unlockAchievementNameUK: '500 днів',
+    unlockAchievementNameES: '500 días',
   },
   {
     id: 'ach_lesson_absolute',
-    nameRU: 'Абсолют',          nameUK: 'Абсолют',
+    nameRU: 'Абсолют',          nameUK: 'Абсолют', nameES: 'Perfección',
     color: '#F0F8FF',           color2: '#7BBCDC',
     animation: 'crystal',       unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'lesson_all_perfect',
     unlockAchievementNameRU: 'Абсолют',
     unlockAchievementNameUK: 'Абсолют',
+    unlockAchievementNameES: 'Perfección absoluta',
   },
   {
     id: 'ach_combo100',
-    nameRU: 'Непобедимый',      nameUK: 'Непереможний',
+    nameRU: 'Непобедимый',      nameUK: 'Непереможний', nameES: 'Invencible',
     color: '#FF1060',           color2: '#AA0033',
     animation: 'arc_red',       unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'combo_100',
     unlockAchievementNameRU: 'Непобедимый',
     unlockAchievementNameUK: 'Непереможний',
+    unlockAchievementNameES: 'Invencible',
   },
   {
     id: 'ach_xp100k',
-    nameRU: 'XP Легенда',       nameUK: 'XP Легенда',
+    nameRU: 'XP Легенда',       nameUK: 'XP Легенда', nameES: 'Leyenda de XP',
     color: '#FFD700',           color2: '#E040FB',
     animation: 'aurora_star',   unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'xp_100000',
     unlockAchievementNameRU: 'Легенда',
     unlockAchievementNameUK: 'Легенда',
+    unlockAchievementNameES: 'Leyenda',
   },
   {
     id: 'ach_quiz_god',
-    nameRU: 'Квиз-Бог',         nameUK: 'Квіз-Бог',
+    nameRU: 'Квиз-Бог',         nameUK: 'Квіз-Бог', nameES: 'As del cuestionario',
     color: '#A855F7',           color2: '#E879F9',
     animation: 'neural',        unlockLevel: 0,
     unlockType: 'achievement',
     unlockAchievementId: 'quiz_triple_perfect',
     unlockAchievementNameRU: 'Трижды идеал',
     unlockAchievementNameUK: 'Тричі ідеал',
+    unlockAchievementNameES: 'Triple perfecto',
   },
 
   // ── Клубные рамки ─────────────────────────────────────────────────────────
   {
     id: 'club_initiator',
-    nameRU: 'Инициатор',        nameUK: 'Ініціатор',
+    nameRU: 'Инициатор',        nameUK: 'Ініціатор', nameES: 'Iniciador',
     color: '#7B9BB5',           color2: '#4A6B85',
     animation: 'sprout',        unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 0,
     unlockClubNameRU: 'Клуб Инициаторов', unlockClubNameUK: 'Клуб Ініціаторів',
+    unlockClubNameES: 'Cobre',
   },
   {
     id: 'club_adept',
-    nameRU: 'Адепт',            nameUK: 'Адепт',
+    nameRU: 'Адепт',            nameUK: 'Адепт', nameES: 'Adepto',
     color: '#5BA88B',           color2: '#2E7A5F',
     animation: 'arc',           unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 1,
     unlockClubNameRU: 'Клуб Адептов', unlockClubNameUK: 'Клуб Адептів',
+    unlockClubNameES: 'Bronce',
   },
   {
     id: 'club_seeker',
-    nameRU: 'Искатель',         nameUK: 'Шукач',
+    nameRU: 'Искатель',         nameUK: 'Шукач', nameES: 'Buscador',
     color: '#4A90D9',           color2: '#1A6AAA',
     animation: 'pulsar',        unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 2,
     unlockClubNameRU: 'Клуб Искателей', unlockClubNameUK: 'Клуб Шукачів',
+    unlockClubNameES: 'Plata',
   },
   {
     id: 'club_practitioner',
-    nameRU: 'Практик',          nameUK: 'Практик',
+    nameRU: 'Практик',          nameUK: 'Практик', nameES: 'Practicante',
     color: '#7BA84A',           color2: '#4A7020',
     animation: 'web',           unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 3,
     unlockClubNameRU: 'Клуб Практиков', unlockClubNameUK: 'Клуб Практиків',
+    unlockClubNameES: 'Oro',
   },
   {
     id: 'club_analyst',
-    nameRU: 'Аналитик',         nameUK: 'Аналітик',
+    nameRU: 'Аналитик',         nameUK: 'Аналітик', nameES: 'Analista',
     color: '#C8A84A',           color2: '#8A6800',
     animation: 'geometry',      unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 4,
     unlockClubNameRU: 'Клуб Аналитиков', unlockClubNameUK: 'Клуб Аналітиків',
+    unlockClubNameES: 'Platino',
   },
   {
     id: 'club_erudite',
-    nameRU: 'Эрудит',           nameUK: 'Ерудит',
+    nameRU: 'Эрудит',           nameUK: 'Ерудит', nameES: 'Erudito',
     color: '#CD7F32',           color2: '#7A3D00',
     animation: 'hex',           unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 5,
     unlockClubNameRU: 'Клуб Эрудитов', unlockClubNameUK: 'Клуб Ерудитів',
+    unlockClubNameES: 'Esmeralda',
   },
   {
     id: 'club_connoisseur',
-    nameRU: 'Знаток',           nameUK: 'Знавець',
+    nameRU: 'Знаток',           nameUK: 'Знавець', nameES: 'Conocedor',
     color: '#4A90D9',           color2: '#1A4A80',
     animation: 'dna',           unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 6,
     unlockClubNameRU: 'Клуб Знатоков', unlockClubNameUK: 'Клуб Знавців',
+    unlockClubNameES: 'Zafiro',
   },
   {
     id: 'club_expert',
-    nameRU: 'Эксперт',          nameUK: 'Експерт',
+    nameRU: 'Эксперт',          nameUK: 'Експерт', nameES: 'Experto',
     color: '#9B59B6',           color2: '#5B0090',
     animation: 'double_dna',    unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 7,
     unlockClubNameRU: 'Клуб Экспертов', unlockClubNameUK: 'Клуб Експертів',
+    unlockClubNameES: 'Rubí',
   },
   {
     id: 'club_magister',
-    nameRU: 'Магистр',          nameUK: 'Магістр',
+    nameRU: 'Магистр',          nameUK: 'Магістр', nameES: 'Magíster',
     color: '#C8D4DC',           color2: '#6A7E8E',
     animation: 'double_square', unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 8,
     unlockClubNameRU: 'Клуб Магистров', unlockClubNameUK: 'Клуб Магістрів',
+    unlockClubNameES: 'Diamante',
   },
   {
     id: 'club_thinker',
-    nameRU: 'Мыслитель',        nameUK: 'Мислитель',
+    nameRU: 'Мыслитель',        nameUK: 'Мислитель', nameES: 'Pensador',
     color: '#E87E30',           color2: '#8A3A00',
     animation: 'triple_tri',    unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 9,
     unlockClubNameRU: 'Клуб Мыслителей', unlockClubNameUK: 'Клуб Мислителів',
+    unlockClubNameES: 'Diamante negro',
   },
   {
     id: 'club_master',
-    nameRU: 'Мастер',           nameUK: 'Майстер',
+    nameRU: 'Мастер',           nameUK: 'Майстер', nameES: 'Maestro',
     color: '#D4A017',           color2: '#7A4A00',
     animation: 'aurora_star',   unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 10,
     unlockClubNameRU: 'Клуб Мастеров', unlockClubNameUK: 'Клуб Майстрів',
+    unlockClubNameES: 'Éter',
   },
   {
     id: 'club_professor',
-    nameRU: 'Профессор',        nameUK: 'Професор',
+    nameRU: 'Профессор',        nameUK: 'Професор', nameES: 'Profesor',
     color: '#FFD700',           color2: '#FF8C00',
     animation: 'triple_dna',    unlockLevel: 0,
     unlockType: 'club',         unlockClubId: 11,
     unlockClubNameRU: 'Клуб Профессоров', unlockClubNameUK: 'Клуб Професорів',
+    unlockClubNameES: 'Liga suprema',
   },
 ];
+
+export const frameNameForLang = (fr: FrameDef, lang: Lang): string => {
+  if (lang === 'uk') return fr.nameUK;
+  if (lang === 'es') return fr.nameES;
+  return fr.nameRU;
+};
 
 // ── Хелперы ────────────────────────────────────────────────────────────────────
 export const getFrameById = (id: string): FrameDef =>

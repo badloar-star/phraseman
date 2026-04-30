@@ -1,24 +1,27 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Haptics from 'expo-haptics';
+import { hapticError, hapticLightImpact, hapticMediumImpact, hapticSuccess } from '../hooks/use-haptics';
+import { useAudio } from '../hooks/use-audio';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
-import * as Speech from 'expo-speech';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { triLang, type Lang } from '../constants/i18n';
 import PremiumCard from '../components/PremiumCard';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
+import XpGainBadge from '../components/XpGainBadge';
 import { checkAchievements } from './achievements';
-import { updateTaskProgress } from './daily_tasks';
-import { ChoiceStyle, DIALOGS, DialogScenario3, GlossaryEntry, getDialogById } from './dialogs_data';
+import { ChoiceStyle, DIALOGS, DialogChoice3, DialogEnding3, DialogScenario3, GlossaryEntry, getDialogById } from './dialogs_data';
 import { loadSettings } from './settings_edu';
 import { registerXP } from './xp_manager';
+import ReportErrorButton from '../components/ReportErrorButton';
 
-const NPC_SPEECH_OPTS = { language: 'en-US', rate: 0.9, pitch: 1.0 };
+const NPC_SPEECH_RATE = 0.9;
+const NPC_SPEECH_PITCH = 1.0;
 const TYPEWRITER_MS = 25;           // 25ms/char as per spec
 const LONG_PRESS_MS = 400;          // flip trigger
 const CARDS_STAGGER_MS = 70;        // delay between each card spring-in
@@ -39,6 +42,178 @@ const STYLE_COLOR: Record<ChoiceStyle, string> = {
   awkward: '#E06060',
 };
 
+// ── ES copy (escenarios sin campos ES en dialogs_data) ────────────────────────
+const DIALOG_META_ES: Record<string, { title: string; role: string; goal: string; gameOver: string; setting: string }> = {
+  dinner_001: {
+    title: 'Cena en casa de un amigo',
+    role: 'Has ido a cenar a casa de un amigo. Su hermana Sarah te recibe en la puerta.',
+    goal: 'Dar una buena impresión',
+    gameOver: 'Creo que debo mirar la cocina… con permiso.',
+    setting: 'Una probadita de hospitalidad — Brighton, casa particular',
+  },
+};
+
+const GLOSSARY_ES: Record<string, { explanation: string; context?: string }> = {
+  'make it': {
+    explanation: 'poder venir o asistir (a un plan)',
+    context: 'Se usa cuando alguien consigue acudir pese a los compromisos',
+  },
+  'make yourself at home': {
+    explanation: 'siéntete como en casa',
+    context: 'Fórmula habitual del anfitrión para que el invitado se relaje',
+  },
+  'home-cooked': {
+    explanation: 'casero / hecho en casa',
+    context: 'Opuesto a comida de restaurante o ultraprocesada',
+  },
+  experimental: {
+    explanation: 'atrevido / de prueba',
+    context: 'Con comida: «estoy probando una receta nueva, no me juzgues»',
+  },
+  heavenly: {
+    explanation: 'divino (riquísimo)',
+    context: 'Halago muy fuerte, más intenso que «delicious»',
+  },
+  'healthy appetite': {
+    explanation: 'buen apetito',
+    context: 'Forma educada de decir que disfruta la comida',
+  },
+  'second helping': {
+    explanation: 'repetir / una segunda ración',
+    context: 'Pedir repetir es un gran halago a la anfitriona en cultura británica',
+  },
+  yummy: {
+    explanation: 'riquísimo / para chuparse los dedos',
+    context: 'Palabra cercana y sincera para elogiar la comida',
+  },
+  resist: {
+    explanation: 'resistirse',
+    context: '«I can\'t resist»: es tan bueno que no puedes decir que no',
+  },
+};
+
+const CHOICE_CARD_ES: Record<string, { line: string; impact: string }> = {
+  'Thank you! You have a lovely home. Water is fine for me.': {
+    line: '¡Gracias! Tienes una casa preciosa. Para mí, con agua basta.',
+    impact: '¡Buen arranque! Sarah sonríe.',
+  },
+  'Yes, I am here. Give me some juice if you have it, please.': {
+    line: 'Sí, aquí estoy. Si tienes, un zumo, por favor.',
+    impact: 'Neutral. Sin más.',
+  },
+  'I am late because of the traffic. I will take any alcohol.': {
+    line: 'Llegué tarde por el tráfico. Cualquier bebida con alcohol me vale.',
+    impact: 'Sarah está un poco desconcertada. Ve con cuidado.',
+  },
+  "I love trying new things! I'm sure it tastes heavenly.": {
+    line: '¡Me encanta probar cosas nuevas! Seguro que está riquísimo.',
+    impact: '¡Sarah está encantada! Nota tu sinceridad.',
+  },
+  'I like home food. I hope it is not very spicy for me.': {
+    line: 'Me gusta la comida casera. Espero que no pique demasiado.',
+    impact: 'Sarah asiente. Todo bien.',
+  },
+  'I usually eat in restaurants. I hope I will like your cooking.': {
+    line: 'Suelo comer en restaurantes. Espero que me guste lo que has cocinado.',
+    impact: 'Momento incómodo. Sarah disimula.',
+  },
+  "It's so yummy, I can't resist! Just a small portion, please.": {
+    line: '¡Está tan rico que no me puedo resistir! Solo una porción pequeña, por favor.',
+    impact: '¡Sarah brilla! Pedir repetir es el mejor halago al cocinero.',
+  },
+  'Yes, I want more. Please give me one more plate of this food.': {
+    line: 'Sí, quiero más. ¿Me sirves otro plato de esto, por favor?',
+    impact: 'Correcto, pero un poco rígido. Sarah está contenta.',
+  },
+  'I am very full. My stomach hurts a bit. No more food, thanks.': {
+    line: 'He comido demasiado. Me duele un poco el estómago. No más, gracias.',
+    impact: 'Quejarse del cuerpo en la mesa es tabú en el protocolo británico.',
+  },
+};
+
+const DINNER_ENDINGS_ES: Record<string, { title: string; story: string }> = {
+  '70-100': {
+    title: 'El invitado perfecto',
+    story:
+      'Te han acogido de verdad como «uno más». Sarah disfruta tu naturalidad: elogiaste su cocina (¡heavenly!), pediste repetir y sonaste auténtico. Antes de irte te da la receta del plato «experimental» y te invita al brunch del domingo en familia.',
+  },
+  '40-69': {
+    title: 'El desconocido educado',
+    story:
+      'La cena pasó sin incidentes, pero fría. Fuiste muy correcto, pero tus frases sonaban a manual. Sarah valoró el esfuerzo, pero notó distancia. Os despedisteis con cortesía. Consejo: no temas palabras con carga emotiva — yummy, lovely, heavenly. Te hacen sonar más vivo ante un nativo.',
+  },
+  '0-39': {
+    title: 'El desastre social',
+    story:
+      'La velada terminó demasiado pronto. Tu retraso y las quejas físicas en la mesa crisparon el ambiente. Lo de que «solo comes en restaurantes» sonó a crítica velada a la cocina de Sarah. Ella mencionó un dolor de cabeza y cerró la cena a los 40 minutos. Recuerda: quejas personales de salud y comparar la comida casera con un restaurante son tabú en el protocolo británico.',
+  },
+};
+
+function dialogTitle(lang: Lang, d: DialogScenario3): string {
+  if (lang === 'es') return DIALOG_META_ES[d.id]?.title ?? d.titleRU;
+  return lang === 'uk' ? d.titleUK : d.titleRU;
+}
+
+function dialogRole(lang: Lang, d: DialogScenario3): string | undefined {
+  const ru = d.roleRU;
+  const uk = d.roleUK;
+  if (lang === 'es') return DIALOG_META_ES[d.id]?.role ?? ru;
+  return lang === 'uk' ? uk : ru;
+}
+
+function dialogGoal(lang: Lang, d: DialogScenario3): string | undefined {
+  const ru = d.goalRU;
+  const uk = d.goalUK;
+  if (lang === 'es') return DIALOG_META_ES[d.id]?.goal ?? ru;
+  return lang === 'uk' ? uk : ru;
+}
+
+function dialogGameOverLine(lang: Lang, d: DialogScenario3): string {
+  if (lang === 'es') return DIALOG_META_ES[d.id]?.gameOver ?? d.gameOverRU;
+  return lang === 'uk' ? d.gameOverUK : d.gameOverRU;
+}
+
+function dialogSetting(lang: Lang, d: DialogScenario3): string {
+  if (lang === 'es') return DIALOG_META_ES[d.id]?.setting ?? d.setting;
+  return d.setting;
+}
+
+function glossaryExplanation(lang: Lang, g: GlossaryEntry): string {
+  const es = GLOSSARY_ES[g.phrase]?.explanation;
+  return triLang(lang, { ru: g.explanationRU, uk: g.explanationUK, es: es ?? g.explanationRU });
+}
+
+function glossaryContext(lang: Lang, g: GlossaryEntry): string | undefined {
+  const es = GLOSSARY_ES[g.phrase]?.context;
+  const ru = g.contextRU;
+  const uk = g.contextUK;
+  if (lang === 'es') return es ?? ru;
+  return lang === 'uk' ? uk : ru;
+}
+
+function choiceCardLine(lang: Lang, choice: DialogChoice3): string {
+  const ru = choice.textRU ?? choice.impactRU ?? '';
+  const uk = choice.textUK ?? choice.impactUK ?? '';
+  const es = CHOICE_CARD_ES[choice.textEN]?.line ?? ru;
+  return triLang(lang, { ru, uk, es });
+}
+
+function choiceImpactLine(lang: Lang, choice: DialogChoice3): string {
+  const es = CHOICE_CARD_ES[choice.textEN]?.impact ?? choice.impactRU;
+  return triLang(lang, { ru: choice.impactRU, uk: choice.impactUK, es });
+}
+
+function endingLocalized(lang: Lang, _dialogId: string, e: DialogEnding3): { title: string; story: string } {
+  if (lang === 'es') {
+    const tier = DINNER_ENDINGS_ES[`${e.minScore}-${e.maxScore}`];
+    if (tier) return tier;
+  }
+  return {
+    title: lang === 'uk' ? e.titleUK : e.titleRU,
+    story: lang === 'uk' ? e.storyUK : e.storyRU,
+  };
+}
+
 // ── Segmented Progress Dots ───────────────────────────────────────────────────
 function SegmentedProgress({ total, current }: { total: number; current: number }) {
   const pulseAnim = useRef(new Animated.Value(1)).current;
@@ -52,7 +227,7 @@ function SegmentedProgress({ total, current }: { total: number; current: number 
     );
     loop.start();
     return () => loop.stop();
-  }, [current]);
+  }, [current, pulseAnim]);
 
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 6 }}>
@@ -103,7 +278,7 @@ function RelationshipScale({ value, lastDelta, version }: { value: number; lastD
         Animated.timing(shakeX, { toValue: 0, duration: 40, useNativeDriver: true }),
       ]).start();
     }
-  }, [version]);
+  }, [version, lastDelta, flashOpacity, shakeX]);
 
   const clamped = Math.max(0, Math.min(100, value));
   const filled = Math.round(clamped / 20);
@@ -134,7 +309,6 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
-  const isUK = lang === 'uk';
   const [completed, setCompleted] = useState<string[]>([]);
   const [scores, setScores] = useState<Record<string, number>>({});
 
@@ -157,10 +331,14 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
           </TouchableOpacity>
           <View style={{ flex: 1 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}>
-              {isUK ? 'Діалоги' : 'Диалоги'}
+              {triLang(lang, { ru: 'Диалоги', uk: 'Діалоги', es: 'Diálogos' })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
-              {isUK ? 'Відпрацюй соціальні навички' : 'Отработай социальные навыки'}
+              {triLang(lang, {
+                ru: 'Отработай социальные навыки',
+                uk: 'Відпрацюй соціальні навички',
+                es: 'Practica habilidades sociales',
+              })}
             </Text>
           </View>
         </View>
@@ -169,13 +347,27 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingTop: 80, paddingHorizontal: 32 }}>
               <Text style={{ fontSize: 48, marginBottom: 20 }}>🚧</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center', marginBottom: 12 }}>
-                {isUK ? 'Так, тут поки що нічого немає, я знаю.' : 'Да, тут пока ничего нет, я знаю.'}
+                {triLang(lang, {
+                  ru: 'Диалоги временно недоступны',
+                  uk: 'Діалоги тимчасово недоступні',
+                  es: 'Los diálogos no están disponibles por ahora',
+                })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 22 }}>
-                {isUK
-                  ? 'Я над цим працюю. Незабаром тут з\'явиться багато цікавих ситуацій і крутих механік — але поки що лише цей текст.'
-                  : 'Я над этим работаю. Скоро здесь появится много интересных ситуаций и крутых механик — но пока только этот текст.'}
+                {triLang(lang, {
+                  ru: 'Попробуй открыть раздел чуть позже или вернись на главную.',
+                  uk: 'Спробуй відкрити розділ трохи пізніше або повернись на головну.',
+                  es: 'Vuelve a intentarlo más tarde o regresa al inicio.',
+                })}
               </Text>
+              <TouchableOpacity
+                onPress={() => router.replace('/(tabs)/home' as any)}
+                style={{ marginTop: 20, paddingHorizontal: 14, paddingVertical: 8 }}
+              >
+                <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
+                  {triLang(lang, { ru: 'Вернуться на главную', uk: 'Повернутися на головну', es: 'Volver al inicio' })}
+                </Text>
+              </TouchableOpacity>
             </View>
           )}
           {DIALOGS.map(dialog => {
@@ -196,8 +388,8 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
                     <Text style={{ fontSize: 28 }}>{dialog.emoji}</Text>
                   </View>
                   <View style={{ flex: 1 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{isUK ? dialog.titleUK : dialog.titleRU}</Text>
-                    <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }} numberOfLines={1}>{dialog.setting}</Text>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{dialogTitle(lang, dialog)}</Text>
+                    <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }} numberOfLines={1}>{dialogSetting(lang, dialog)}</Text>
                     <View style={{ flexDirection: 'row', gap: 8, marginTop: 6, alignItems: 'center' }}>
                       <Text style={{ color: '#F5A623', fontSize: f.caption, fontWeight: '600' }}>+{Math.max(...dialog.endings.map(e => e.xpReward))} XP</Text>
                     </View>
@@ -219,7 +411,6 @@ function DialogList({ onSelect }: { onSelect: (id: string) => void }) {
 function RoleCard({ dialog, onStart, onBack }: { dialog: DialogScenario3; onStart: () => void; onBack: () => void }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#152019' }}>
@@ -233,18 +424,18 @@ function RoleCard({ dialog, onStart, onBack }: { dialog: DialogScenario3; onStar
           <ScrollView contentContainerStyle={{ paddingHorizontal: 24, paddingBottom: 32, alignItems: 'center' }}>
             <Text style={{ fontSize: 72, textAlign: 'center', marginTop: 16, marginBottom: 20 }}>{dialog.emoji}</Text>
             <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 20 }}>
-              {(isUK ? dialog.goalUK : dialog.goalRU) ? (
+              {dialogGoal(lang, dialog) ? (
                 <View style={{ borderRadius: 20, paddingHorizontal: 12, paddingVertical: 4, borderWidth: 1, borderColor: 'rgba(255,255,255,0.18)', backgroundColor: 'rgba(255,255,255,0.06)' }}>
-                  <Text style={{ color: '#F0F7F2', fontSize: 12 }}>🎯 {isUK ? dialog.goalUK : dialog.goalRU}</Text>
+                  <Text style={{ color: '#F0F7F2', fontSize: 12 }}>🎯 {dialogGoal(lang, dialog)}</Text>
                 </View>
               ) : null}
             </View>
             <Text style={{ color: '#F0F7F2', fontSize: 16, fontWeight: '700', textAlign: 'center', lineHeight: 24, marginBottom: 10 }} numberOfLines={2}>
-              {dialog.setting}
+              {dialogSetting(lang, dialog)}
             </Text>
-            {(isUK ? dialog.roleUK : dialog.roleRU) ? (
+            {dialogRole(lang, dialog) ? (
               <Text style={{ color: t.textSecond, fontSize: 13, textAlign: 'center', lineHeight: 20, marginBottom: 20 }} numberOfLines={3}>
-                {isUK ? dialog.roleUK : dialog.roleRU}
+                {dialogRole(lang, dialog)}
               </Text>
             ) : null}
             <TouchableOpacity
@@ -252,7 +443,7 @@ function RoleCard({ dialog, onStart, onBack }: { dialog: DialogScenario3; onStar
               style={{ backgroundColor: '#47C870', borderRadius: 16, height: 52, alignItems: 'center', justifyContent: 'center', width: '100%' }}
             >
               <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
-                {isUK ? 'Почати' : 'Начать'}
+                {triLang(lang, { ru: 'Начать', uk: 'Почати', es: 'Empezar' })}
               </Text>
             </TouchableOpacity>
           </ScrollView>
@@ -266,7 +457,6 @@ function RoleCard({ dialog, onStart, onBack }: { dialog: DialogScenario3; onStar
 function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () => void }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
   const [expanded, setExpanded] = useState<string | null>(null);
   const scaleAnims = useRef<Record<string, Animated.Value>>({}).current;
   const [pulseIdx, setPulseIdx] = useState<number>(-1);
@@ -290,7 +480,7 @@ function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: (
     );
     loop.start();
     return () => loop.stop();
-  }, []);
+  }, [dialog.glossary.length, pulseAnim]);
 
   const handleTileTap = (phrase: string) => {
     if (!pulseSeen.current) {
@@ -320,7 +510,7 @@ function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: (
             <Ionicons name="arrow-back" size={22} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-            {isUK ? 'Глосарій' : 'Глоссарий'}
+            {triLang(lang, { ru: 'Глоссарий', uk: 'Глосарій', es: 'Glosario' })}
           </Text>
         </View>
         <ScrollView contentContainerStyle={{ padding: 8 }}>
@@ -336,7 +526,7 @@ function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: (
                   <Animated.View key={item.phrase} style={{ transform: [{ scale }], margin: 4 }}>
                     <TouchableOpacity onPress={() => handleTileTap(item.phrase)} activeOpacity={0.85} style={{ backgroundColor: t.bgCard, borderRadius: 12, padding: 12, borderWidth: 1, borderColor: t.accent }}>
                       <Text style={{ color: t.textPrimary, fontSize: 14, fontWeight: '700', marginBottom: 6 }}>{item.phrase}</Text>
-                      <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: 20 }}>{isUK ? item.explanationUK : item.explanationRU}</Text>
+                      <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: 20 }}>{glossaryExplanation(lang, item)}</Text>
                     </TouchableOpacity>
                   </Animated.View>
                 );
@@ -351,7 +541,7 @@ function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: (
                       {([item, itemB] as const).map((tile, pairPos) => {
                         const tileIdx = pairPos === 0 ? idxA : idxB;
                         const tileScale = getScale(tile.phrase);
-                        const expl = isUK ? tile.explanationUK : tile.explanationRU;
+                        const expl = glossaryExplanation(lang, tile);
                         const preview = expl.split(' ').slice(0, 3).join(' ');
                         const inner = (
                           <Animated.View key={tile.phrase} style={{ flex: 1, transform: [{ scale: tileScale }], margin: 4 }}>
@@ -370,7 +560,7 @@ function GlossaryScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: (
                   );
                   i += 2;
                 } else {
-                  const expl = isUK ? item.explanationUK : item.explanationRU;
+                  const expl = glossaryExplanation(lang, item);
                   const preview = expl.split(' ').slice(0, 3).join(' ');
                   const tileScale = getScale(item.phrase);
                   const inner = (
@@ -415,7 +605,7 @@ function GlossaryWord({ entry, isHint, onTap }: { entry: GlossaryEntry; isHint: 
     const delay = Math.floor(Math.random() * 3000);
     const t = setTimeout(() => loop.start(), delay);
     return () => { clearTimeout(t); loop.stop(); };
-  }, []);
+  }, [underlineH]);
 
   return (
     <Text onPress={onTap}>
@@ -490,6 +680,7 @@ interface FlipCardProps {
 }
 
 function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabled, onTap, onFlip, entryAnim, theme: t, f, showHoldHint }: FlipCardProps) {
+  const { lang } = useLang();
   const flipAnim = useRef(new Animated.Value(0)).current;
   const pressScale = useRef(new Animated.Value(1)).current;
   const isFlippedRef = useRef(false);
@@ -512,7 +703,7 @@ function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabl
       Animated.timing(holdHintOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start();
     }, 1200);
     return () => { clearTimeout(t); pulse.stop(); };
-  }, [showHoldHint]);
+  }, [showHoldHint, holdHintOpacity, holdHintScale]);
 
   useEffect(() => () => { if (autoFlipBackRef.current) clearTimeout(autoFlipBackRef.current); }, []);
 
@@ -532,7 +723,7 @@ function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabl
     if (isDisabled || isFlippedRef.current) return;
     isFlippedRef.current = true;
     onFlip();
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    void hapticMediumImpact();
     // Spring physics with slight overshoot
     Animated.spring(flipAnim, { toValue: 1, tension: 70, friction: 5, useNativeDriver: true }).start();
     // Auto flip-back after 2s
@@ -582,7 +773,7 @@ function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabl
           <Animated.View style={{ position: 'absolute', top: 6, right: 8, opacity: holdHintOpacity, transform: [{ scale: holdHintScale }], zIndex: 10 }}>
             <View style={{ backgroundColor: 'rgba(43,112,201,0.85)', borderRadius: 10, paddingHorizontal: 7, paddingVertical: 3, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
               <Text style={{ fontSize: 11 }}>👆</Text>
-              <Text style={{ color: '#fff', fontSize: 10, fontWeight: '700' }}>Hold</Text>
+              <Text style={{ color: '#fff', fontSize: 10, fontWeight: '700' }}>{triLang(lang, { ru: 'Удерживай', uk: 'Утримуй', es: 'Mantén pulsado' })}</Text>
             </View>
           </Animated.View>
         )}
@@ -616,7 +807,9 @@ function FlipCard({ textEN, textTranslation, isSelected, selectedColor, isDisabl
 function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () => void }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
+  const insets = useSafeAreaInsets();
+  const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const [speechRate, setSpeechRate] = useState(NPC_SPEECH_RATE);
 
   const [stepIdx, setStepIdx] = useState(0);
   const [connection, setConnection] = useState(50);
@@ -680,11 +873,15 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
     AsyncStorage.getItem('user_name').then(n => { if (n && isMounted.current) setUserName(n); });
     AsyncStorage.getItem('dialogs_tutorial_done').then(v => { if (!v && isMounted.current) setIsFirstVisit(true); });
     loadSettings().then(s => {
-      if (isMounted.current) { setVoiceOut(s.voiceOut ?? true); setHaptics(s.haptics); }
+      if (isMounted.current) {
+        setVoiceOut(s.voiceOut ?? true);
+        setHaptics(s.haptics);
+        setSpeechRate(s.speechRate ?? NPC_SPEECH_RATE);
+      }
     });
     return () => {
       isMounted.current = false;
-      Speech.stop();
+      stopAudio();
       if (typewriterRef.current) clearInterval(typewriterRef.current);
     };
   }, []);
@@ -727,8 +924,8 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
       // Sync audio: start TTS together with typewriter
       if (voiceOut) {
         setIsAudioPlaying(true);
-        Speech.speak(fullText, {
-          ...NPC_SPEECH_OPTS,
+        speakAudio(fullText, speechRate, {
+          pitch: NPC_SPEECH_PITCH,
           onDone: () => { if (isMounted.current) setIsAudioPlaying(false); },
           onStopped: () => { if (isMounted.current) setIsAudioPlaying(false); },
           onError: () => { if (isMounted.current) setIsAudioPlaying(false); },
@@ -765,8 +962,11 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
       clearTimeout(twStart);
       if (typewriterRef.current) { clearInterval(typewriterRef.current); typewriterRef.current = null; }
       if (cardsRevealRef.current) { clearTimeout(cardsRevealRef.current); cardsRevealRef.current = null; }
+      // Halt any ongoing TTS to prevent overlap with the next step's utterance.
+      stopAudio();
     };
-  }, [stepIdx, userName]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [stepIdx, userName, currentStep, phase, voiceOut, speechRate]);
 
   // ── Hint wave (highlight random glossary word every 5s) ──
   useEffect(() => {
@@ -790,7 +990,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
       if (hintIntervalRef.current) { clearInterval(hintIntervalRef.current); hintIntervalRef.current = null; }
       setActiveHintPhrase('');
     };
-  }, [stepIdx, isTyping, phase]);
+  }, [stepIdx, isTyping, phase, currentStep, dialog.glossary]);
 
   const revealCards = () => {
     setCardsReady(true);
@@ -817,7 +1017,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
     setTooltip(entry);
     if (isFirstVisit) { setIsFirstVisit(false); AsyncStorage.setItem('dialogs_tutorial_done', '1'); }
     Animated.spring(tooltipAnim, { toValue: 1, useNativeDriver: true, tension: 160, friction: 8 }).start();
-    if (haptics) Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    if (haptics) void hapticLightImpact();
   };
 
   const hideTooltip = () => {
@@ -859,7 +1059,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
 
     const originalIdx = choiceOrder[visualPos];
     const choice = currentStep.choices[originalIdx];
-    Speech.stop();
+    stopAudio();
     setChosenIdx(visualPos);
     setPhase('feedback');
 
@@ -880,16 +1080,22 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
     setSocialScores(newScores);
 
     if (haptics) {
-      if (choice.style === 'casual') Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-      else if (choice.style === 'awkward') Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
-      else Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (choice.style === 'casual') void hapticSuccess();
+      else if (choice.style === 'awkward') void hapticError();
+      else void hapticLightImpact();
     }
 
-    if (voiceOut) Speech.speak(choice.textEN, { language: 'en-US', rate: 1.0, pitch: 1.0 });
+    if (voiceOut) {
+      speakAudio(choice.textEN, speechRate, { pitch: NPC_SPEECH_PITCH });
+    }
 
     if (newConnection <= 0) {
       setPhase('gameover');
-      if (voiceOut) setTimeout(() => Speech.speak(dialog.gameOverEN, NPC_SPEECH_OPTS), 600);
+      if (voiceOut) {
+        setTimeout(() => {
+          speakAudio(dialog.gameOverEN, speechRate, { pitch: NPC_SPEECH_PITCH });
+        }, 600);
+      }
       return;
     }
     // No auto-advance — user presses Continue manually
@@ -898,7 +1104,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
   const finishDialog = async (scores: number[]) => {
     if (!isMounted.current) return;
     setPhase('result');
-    Speech.stop();
+    stopAudio();
     const regularScores = scores.slice(0, scores.length - 1);
     const finalDelta = scores[scores.length - 1] ?? 0;
     const avg = regularScores.length > 0
@@ -925,11 +1131,11 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
 
     const adjustedXP = Math.max(1, (ending?.xpReward ?? 0) - hintCount * HINT_XP_PENALTY);
     if (adjustedXP > 0) {
-      const name = await AsyncStorage.getItem('user_name');
-      if (name) try { await registerXP(adjustedXP, 'dialog_complete', name, lang); } catch {}
+      AsyncStorage.getItem('user_name').then(name => {
+        if (name) registerXP(adjustedXP, 'dialog_complete', name, lang).catch(() => {});
+      }).catch(() => {});
     }
     checkAchievements({ type: 'dialog', totalCompleted: list.length, totalDialogs: DIALOGS.length }).catch(() => {});
-    await updateTaskProgress('daily_active', 1);
   };
 
   const saveAllWords = async () => {
@@ -979,6 +1185,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
     const ending = dialog.endings.find(e => finalScore >= e.minScore && finalScore <= e.maxScore)
       ?? dialog.endings[dialog.endings.length - 1];
     const adjustedXP = Math.max(1, (ending?.xpReward ?? 0) - hintCount * HINT_XP_PENALTY);
+    const endingLoc = ending ? endingLocalized(lang, dialog.id, ending) : { title: '', story: '' };
 
     return (
       <ScreenGradient>
@@ -988,18 +1195,18 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             {/* Badge */}
             <Text style={{ fontSize: 72, marginTop: 8 }}>{ending?.icon ?? '🏆'}</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>
-              {isUK ? ending?.titleUK : ending?.titleRU}
+              {endingLoc.title}
             </Text>
             <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.border, width: '100%' }}>
               <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 24, textAlign: 'center' }}>
-                {isUK ? ending?.storyUK : ending?.storyRU}
+                {endingLoc.story}
               </Text>
             </View>
 
             {/* XP */}
             {adjustedXP > 0 && (
               <View style={{ backgroundColor: '#F5A62322', borderRadius: 14, paddingHorizontal: 24, paddingVertical: 10, borderWidth: 1, borderColor: '#F5A62366' }}>
-                <Text style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '800' }}>+{adjustedXP} XP</Text>
+                <XpGainBadge amount={adjustedXP} visible={true} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '800' }} />
               </View>
             )}
 
@@ -1007,29 +1214,37 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             {tappedWords.length > 0 && (
               <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border, width: '100%', gap: 10 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 4 }}>
-                  {isUK ? '📚 Вивчені слова' : '📚 Изученные слова'}
+                  {triLang(lang, {
+                    ru: '📚 Изученные слова',
+                    uk: '📚 Вивчені слова',
+                    es: '📚 Palabras del glosario',
+                  })}
                 </Text>
                 {tappedWords.map(w => (
                   <View key={w.phrase} style={{ flexDirection: 'row', gap: 10, alignItems: 'flex-start' }}>
-                    <TouchableOpacity onPress={() => Speech.speak(w.phrase, NPC_SPEECH_OPTS)} style={{ marginTop: 2 }}>
+                    <TouchableOpacity onPress={() => speakAudio(w.phrase, speechRate, { pitch: NPC_SPEECH_PITCH })} style={{ marginTop: 2 }}>
                       <Ionicons name="volume-medium-outline" size={14} color={t.accent} />
                     </TouchableOpacity>
                     <View style={{ flex: 1 }}>
                       <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>{w.phrase}</Text>
                       <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
-                        {isUK ? w.explanationUK : w.explanationRU}
+                        {glossaryExplanation(lang, w)}
                       </Text>
                     </View>
                   </View>
                 ))}
                 <TouchableOpacity
                   onPress={saveAllWords}
-                  style={{ marginTop: 6, backgroundColor: wordsSaved ? '#47C870' : t.accent + '22', borderRadius: 10, paddingVertical: 9, alignItems: 'center', borderWidth: 1, borderColor: wordsSaved ? '#47C870' : t.accent + '55' }}
+                  style={{ marginTop: 6, backgroundColor: wordsSaved ? t.correct : t.accent + '22', borderRadius: 10, paddingVertical: 9, alignItems: 'center', borderWidth: 1, borderColor: wordsSaved ? t.correct : t.accent + '55' }}
                 >
-                  <Text style={{ color: wordsSaved ? '#fff' : t.accent, fontSize: f.sub, fontWeight: '700' }}>
+                  <Text style={{ color: wordsSaved ? t.correctText : t.accent, fontSize: f.sub, fontWeight: '700' }}>
                     {wordsSaved
-                      ? (isUK ? '✓ Збережено' : '✓ Сохранено')
-                      : (isUK ? 'Додати всі в словник' : 'Добавить всё в словарь')}
+                      ? triLang(lang, { ru: '✓ Сохранено', uk: '✓ Збережено', es: '✓ Guardado' })
+                      : triLang(lang, {
+                          ru: 'Добавить всё в словарь',
+                          uk: 'Додати всі в словник',
+                          es: 'Guardar todo en el glosario',
+                        })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -1041,7 +1256,11 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
               style={{ backgroundColor: 'rgba(255,255,255,0.07)', borderRadius: 14, paddingHorizontal: 20, paddingVertical: 12, borderWidth: 0.5, borderColor: 'rgba(255,255,255,0.12)', width: '100%', alignItems: 'center' }}
             >
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
-                {isUK ? '🔄 Спробувати інший шлях' : '🔄 Попробовать другой путь'}
+                {triLang(lang, {
+                  ru: '🔄 Попробовать другой путь',
+                  uk: '🔄 Спробувати інший шлях',
+                  es: '🔄 Probar otro camino',
+                })}
               </Text>
             </TouchableOpacity>
 
@@ -1052,7 +1271,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             >
               <Ionicons name="book-outline" size={20} color={t.textSecond} />
               <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
-                {isUK ? 'Глосарій' : 'Глоссарий'}
+                {triLang(lang, { ru: 'Глоссарий', uk: 'Глосарій', es: 'Glosario' })}
               </Text>
             </TouchableOpacity>
 
@@ -1062,7 +1281,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
               style={{ backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 40, paddingVertical: 14, alignItems: 'center', width: '100%' }}
             >
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {isUK ? 'Назад до діалогів' : 'Назад к диалогам'}
+                {triLang(lang, { ru: 'Назад к диалогам', uk: 'Назад до діалогів', es: 'Volver a los diálogos' })}
               </Text>
             </TouchableOpacity>
             <View style={{ height: 20 }} />
@@ -1082,12 +1301,16 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32, gap: 20 }}>
             <Text style={{ fontSize: 72 }}>💔</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-              {isUK ? 'Зв\'язок втрачено' : 'Связь потеряна'}
+              {triLang(lang, {
+                ru: 'Связь потеряна',
+                uk: 'Зв\'язок втрачено',
+                es: 'Se rompió el vínculo',
+              })}
             </Text>
             <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.border }}>
               <Text style={{ color: t.textGhost, fontSize: f.sub, fontStyle: 'italic', textAlign: 'center', marginBottom: 8 }}>{dialog.npcName}:</Text>
               <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, textAlign: 'center', fontStyle: 'italic' }}>
-                "{isUK ? dialog.gameOverUK : dialog.gameOverRU}"
+                {`"${dialogGameOverLine(lang, dialog)}"`}
               </Text>
             </View>
             <TouchableOpacity
@@ -1095,11 +1318,11 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
               style={{ backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 40, paddingVertical: 14 }}
             >
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {isUK ? 'Спробувати знову' : 'Попробовать снова'}
+                {triLang(lang, { ru: 'Попробовать снова', uk: 'Спробувати знову', es: 'Intentar de nuevo' })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={onBack}>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>{isUK ? 'Вийти' : 'Выйти'}</Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub }}>{triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir' })}</Text>
             </TouchableOpacity>
           </View>
         </ContentWrap>
@@ -1139,7 +1362,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             {renderNPCText(
               displayedText,
               isTyping ? [] : dialog.glossary,
-              isUK,
+              false,
               showTooltip,
               { color: '#F0F7F2', fontSize: 17, lineHeight: 26 },
               activeHintPhrase,
@@ -1148,13 +1371,13 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
               <TouchableOpacity
                 onPress={() => {
                   if (isAudioPlaying) {
-                    Speech.stop();
+                    stopAudio();
                     setIsAudioPlaying(false);
                   } else {
                     const txt = currentStep.npcTextEN.replace(/\[Name\]/gi, userName || 'you');
                     setIsAudioPlaying(true);
-                    Speech.speak(txt, {
-                      ...NPC_SPEECH_OPTS,
+                    speakAudio(txt, speechRate, {
+                      pitch: NPC_SPEECH_PITCH,
                       onDone: () => { if (isMounted.current) setIsAudioPlaying(false); },
                       onStopped: () => { if (isMounted.current) setIsAudioPlaying(false); },
                       onError: () => { if (isMounted.current) setIsAudioPlaying(false); },
@@ -1173,7 +1396,11 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             )}
             {isTyping && (
               <Text style={{ color: 'rgba(255,255,255,0.18)', fontSize: 11, marginTop: 8, alignSelf: 'flex-end' }}>
-                {isUK ? 'Торкніться, щоб пропустити' : 'Нажми, чтобы пропустить'}
+                {triLang(lang, {
+                  ru: 'Нажми, чтобы пропустить',
+                  uk: 'Торкніться, щоб пропустити',
+                  es: 'Toca para omitir',
+                })}
               </Text>
             )}
           </View>
@@ -1187,19 +1414,30 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             {(() => {
               const originalIdx = choiceOrder[chosenIdx];
               const choice = currentStep.choices[originalIdx];
-              const translation = isUK ? (choice.textUK ?? choice.impactUK ?? '') : (choice.textRU ?? choice.impactRU ?? '');
+              const translation = choiceCardLine(lang, choice);
+              const impactLine = choiceImpactLine(lang, choice);
               return (
                 <View style={{ backgroundColor: STYLE_COLOR[choice.style] + '22', borderRadius: 14, borderWidth: 1.5, borderColor: STYLE_COLOR[choice.style] + '88', padding: 14, gap: 4 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', lineHeight: 22 }}>{choice.textEN}</Text>
                   {translation ? <Text style={{ color: t.textSecond, fontSize: f.sub, fontStyle: 'italic' }}>{translation}</Text> : null}
-                  {(isUK ? choice.impactUK : choice.impactRU) ? (
+                  {impactLine ? (
                     <Text style={{ color: STYLE_COLOR[choice.style], fontSize: f.caption, marginTop: 4 }}>
-                      {isUK ? choice.impactUK : choice.impactRU}
+                      {impactLine}
                     </Text>
                   ) : null}
                 </View>
               );
             })()}
+            <ReportErrorButton
+              screen="dialogs"
+              dataId={`dialog_${dialog.id}_step_${stepIdx}_choice_${choiceOrder[chosenIdx ?? 0]}`}
+              dataText={[
+                `NPC: ${currentStep?.npcTextEN ?? ''}`,
+                `Выбрано: ${currentStep?.choices[choiceOrder[chosenIdx ?? 0]]?.textEN ?? ''}`,
+                `Все варианты: ${choiceOrder.map(i => currentStep?.choices[i]?.textEN ?? '').join(' | ')}`,
+              ].join('\n')}
+              style={{ alignSelf: 'flex-end' }}
+            />
             {/* Continue button */}
             <TouchableOpacity
               onPress={() => {
@@ -1209,7 +1447,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
               style={{ backgroundColor: t.accent, borderRadius: 16, paddingVertical: 16, alignItems: 'center' }}
             >
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {isUK ? 'Далі →' : 'Далее →'}
+                {triLang(lang, { ru: 'Далее →', uk: 'Далі →', es: 'Siguiente →' })}
               </Text>
             </TouchableOpacity>
           </View>
@@ -1217,9 +1455,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
           <View style={{ height: 264, paddingHorizontal: 16, marginBottom: 20, gap: 8 }}>
             {choiceOrder.map((originalIdx, visualPos) => {
               const choice = currentStep.choices[originalIdx];
-              const translation = isUK
-                ? (choice.textUK ?? choice.impactUK ?? '')
-                : (choice.textRU ?? choice.impactRU ?? '');
+              const translation = choiceCardLine(lang, choice);
               return (
                 <FlipCard
                   key={`${stepIdx}-${visualPos}`}
@@ -1251,7 +1487,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
           <Animated.View
             style={{
               position: 'absolute',
-              bottom: 160,
+              bottom: Math.max(160, insets.bottom + 140),
               left: 20,
               right: 20,
               backgroundColor: 'rgba(22,32,28,0.96)',
@@ -1269,18 +1505,18 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             {/* Word + speaker */}
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 6 }}>
               <Text style={{ color: '#F0F7F2', fontSize: 17, fontWeight: '800', flex: 1 }}>{tooltip.phrase}</Text>
-              <TouchableOpacity onPress={() => Speech.speak(tooltip.phrase, NPC_SPEECH_OPTS)} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
+              <TouchableOpacity onPress={() => speakAudio(tooltip.phrase, speechRate, { pitch: NPC_SPEECH_PITCH })} hitSlop={{ top: 8, right: 8, bottom: 8, left: 8 }}>
                 <Ionicons name="volume-medium-outline" size={20} color="#7EC8E3" />
               </TouchableOpacity>
             </View>
             {/* Translation */}
             <Text style={{ color: 'rgba(255,255,255,0.65)', fontSize: 14, lineHeight: 20, marginBottom: 4 }}>
-              {isUK ? tooltip.explanationUK : tooltip.explanationRU}
+              {glossaryExplanation(lang, tooltip)}
             </Text>
             {/* Micro-context */}
-            {(isUK ? tooltip.contextUK : tooltip.contextRU) ? (
+            {glossaryContext(lang, tooltip) ? (
               <Text style={{ color: '#7EC8E3', fontSize: 12, fontStyle: 'italic', marginBottom: 6 }}>
-                {isUK ? tooltip.contextUK : tooltip.contextRU}
+                {glossaryContext(lang, tooltip)}
               </Text>
             ) : null}
             {/* Save button (bookmark) */}
@@ -1293,7 +1529,7 @@ function GameScreen({ dialog, onBack }: { dialog: DialogScenario3; onBack: () =>
             >
               <Ionicons name="bookmark-outline" size={15} color="#7EC8E3" />
               <Text style={{ color: '#7EC8E3', fontSize: 13, fontWeight: '700' }}>
-                {isUK ? 'Зберегти слово' : 'Сохранить слово'}
+                {triLang(lang, { ru: 'Сохранить слово', uk: 'Зберегти слово', es: 'Guardar término' })}
               </Text>
             </TouchableOpacity>
           </Animated.View>

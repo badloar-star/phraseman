@@ -1,5 +1,5 @@
-// Все тексты интерфейса на двух языках
-export type Lang = 'ru' | 'uk';
+// Все тексты интерфейса (RU/UK — прод; ES — включается в dev, см. ENABLE_SPANISH_LOCALE)
+export type Lang = 'ru' | 'uk' | 'es';
 
 export const T = {
   ru: {
@@ -20,6 +20,8 @@ export const T = {
     lessonDescription:'Описание урока',
 
     // Урок
+    noArticle:  'без артикля',
+
     oops:       'Ой, ошибся',
     hint:       'Подсказка',
     help:       'Помощь',
@@ -50,7 +52,7 @@ export const T = {
     noPlayers:    'Пока никого нет.\nПройди квиз и займи место!',
     rank:         'Место',
     player:       'Игрок',
-    points:       'Очки',
+    points:       'Опыт',
 
     // Настройки
     settings:       'Настройки',
@@ -67,7 +69,7 @@ export const T = {
     speedHint:      'Отпусти ползунок — прозвучит пример',
     slow:           'Медленно',
     fast:           'Быстро',
-    feedback:       'Предложение или замечание',
+    feedback:       'Идеи и предложения',
     helpMenu:       'Помощь',
 
     // Онбординг
@@ -134,6 +136,8 @@ export const T = {
     learnVerbs:       'Вчити форми дієслів',
     lessonDescription:'Опис уроку',
 
+    noArticle:  'без артикля',
+
     oops:       'Ой, помилився',
     hint:       'Підказка',
     help:       'Допомога',
@@ -177,7 +181,7 @@ export const T = {
     speedHint:      'Відпусти повзунок — прозвучить приклад',
     slow:           'Повільно',
     fast:           'Швидко',
-    feedback:       'Пропозиція або зауваження',
+    feedback:       'Ідеї й пропозиції',
     helpMenu:       'Допомога',
 
     chooseLanguage: 'Оберіть мову',
@@ -218,7 +222,7 @@ export const T = {
     daysEstimate:    (days: number) => `~${days} днів`,
     lessonsCount:    (count: number) => `${count} уроків у твоєму темпі`,
     hoursPerWeek:    (hours: number) => `~${hours} годин на тиждень навчання`,
-    reachTargetBy:   (date: string) => `Ти досягнеш цільового рівня к ${date}`,
+    reachTargetBy:   (date: string) => `Ти досягнеш цільового рівня до ${date}`,
 
     // Онбординг: нагадування
     preferredTime:   'Коли зазвичай вільний?',
@@ -229,6 +233,134 @@ export const T = {
     onboardingComplete: 'Ти завершив онбординг',
     step:            (n: number, total: number) => `${n} з ${total} кроків`,
   },
+  es: {
+    tabLessons:   'Lecciones',
+    tabQuizzes:   'Cuestionarios',
+    tabHallFame:  'Salón de la fama',
+    tabSettings:  'Ajustes',
+
+    lessonN:      (n: number) => `Lección ${n}`,
+    locked:       'No disponible',
+
+    continueLesson:   'Continuar la lección',
+    learnWords:       'Aprender palabras nuevas',
+    learnVerbs:       'Aprender las formas verbales',
+    lessonDescription:'Descripción de la lección',
+
+    noArticle:  'sin artículo',
+
+    oops:       'Uy, me equivoqué',
+    hint:       'Pista',
+    help:       'Ayuda',
+    oral:       'En voz alta',
+    next:       'Siguiente',
+    typeAnswer: 'Escribe tu respuesta...',
+
+    selectLevel:  'Elige el nivel',
+    easy:         'Fácil',
+    medium:       'Medio',
+    hard:         'Difícil',
+    quizDone:     '¡Cuestionario terminado!',
+    playAgain:    'Intentar de nuevo',
+    selectLevel2: 'Elegir otro nivel',
+    fixErrors:    'Corrige los errores',
+    correct:      'bien',
+    reviewDone:   '¡Todos los errores corregidos!',
+
+    training:     'Práctica',
+    wordList:     'Lista de palabras',
+    allLearned:   '¡Has aprendido todas las palabras!',
+    wordsInLesson:(n: number) => `${n} palabras en esta lección`,
+
+    hallOfFame:   'Salón de la fama',
+    noPlayers:    'Aún no hay nadie.\n¡Haz un cuestionario y sube en la clasificación!',
+    rank:         'Puesto',
+    player:       'Jugador',
+    points:       'Puntos de experiencia',
+
+    settings:       'Ajustes',
+    learningSettings:'Ajustes del aprendizaje',
+    autoCheck:      'Comprobación automática',
+    autoCheckSub:   'Comprobar al escribir la última palabra',
+    voiceOut:       'Leer respuestas en voz alta',
+    voiceOutSub:    'La app reproduce la frase después de responder',
+    autoAdvance:    'Siguiente automático',
+    autoAdvanceSub: 'Pasar a la siguiente pregunta si la respuesta es correcta',
+    hardMode:       'Modo teclado',
+    hardModeSub:    'Escribir la frase completa con el teclado',
+    speed:          'Velocidad de la voz',
+    speedHint:      'Suelta el control deslizante para escuchar un ejemplo',
+    slow:           'Lenta',
+    fast:           'Rápida',
+    feedback:       'Comentarios e ideas',
+    helpMenu:       'Ayuda',
+
+    chooseLanguage: 'Elige el idioma',
+    enterName:      'Escribe tu nombre o apodo',
+    namePlaceholder:'Tu nombre...',
+    continueBtn:    'Continuar',
+    nameRequired:   'Escribe tu nombre para continuar',
+
+    whyLearnEnglish: '¿Para qué estudias inglés?',
+    goalTourism:     'el turismo',
+    goalWork:        'el trabajo',
+    goalEmigration:  'la emigración',
+    goalHobby:       'el ocio',
+
+    hoursPerDay:     '¿Cuánto tiempo al día?',
+    min5:            '5 minutos',
+    min15:           '15 minutos',
+    min30:           '30 minutos',
+    min60:           '60+ minutos',
+
+    currentLevel:    '¿Cuál es tu nivel ahora mismo?',
+    levelA1:         'Principiante (empiezo de cero o casi)',
+    levelA2:         'Elemental (léxico básico; lectura con apoyo)',
+    levelB1:         'Intermedio (mantengo conversaciones sencillas)',
+    levelB2:         'Intermedio alto (comprendo audio auténtico con contexto)',
+
+    personalPlan:    'Tu plan personal',
+    planForGoal:     (goal: string) => `Objetivo: mejorar tu inglés para ${goal}`,
+    planIntensity:   (min: number) => `Intensidad: ${min} minutos al día`,
+    yourForecast:    'Tu proyección:',
+    currentLevelLabel: 'Nivel actual:',
+    targetLevelLabel: 'Nivel objetivo:',
+    timeTillGoal:    'Tiempo hasta el objetivo:',
+    daysEstimate:    (days: number) => `~${days} días`,
+    lessonsCount:    (count: number) => `${count} lecciones a este ritmo`,
+    hoursPerWeek:    (hours: number) => `~${hours} h semanales de estudio`,
+    reachTargetBy:   (date: string) => `Prevemos que alcanzarás el nivel objetivo hacia el ${date}`,
+
+    preferredTime:   '¿A qué hora sueles tener un rato libre?',
+    setNotifications: 'Avísame cada día a las {time}',
+
+    congratulations: '¡Felicidades!',
+    onboardingComplete: 'Has completado la configuración inicial',
+    step:            (n: number, total: number) => `${n} de ${total} pasos`,
+  },
 } as const;
 
 export type Strings = typeof T['ru'];
+
+/** Интерфейс (RU / UK / ES в прод-пакетах). */
+export function triLang(lang: Lang, txt: { ru: string; uk: string; es: string }): string {
+  if (lang === 'uk') return txt.uk;
+  if (lang === 'es') return txt.es;
+  return txt.ru;
+}
+
+/** Ключ строк в `T` для текущего языка интерфейса (RU / UK / ES). */
+export function legacyRuUk(lang: Lang): 'ru' | 'uk' | 'es' {
+  if (lang === 'uk') return 'uk';
+  if (lang === 'es') return 'es';
+  return 'ru';
+}
+
+/** Пакеты UI с полными строками RU / UK / ES (магазин осколков, paywall и т.д.). */
+export type UiBundleLang = 'ru' | 'uk' | 'es';
+
+export function bundleLang(lang: Lang): UiBundleLang {
+  if (lang === 'uk') return 'uk';
+  if (lang === 'es') return 'es';
+  return 'ru';
+}

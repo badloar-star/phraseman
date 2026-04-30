@@ -1,0 +1,94 @@
+[
+  {
+    "heading": "Terms of Use — Phraseman by Knowly",
+    "body": "Last updated: April 30, 2026\n\nBy downloading, installing, or using the Phraseman app (\"App\") developed by Knowly (\"we\", \"us\"), you (\"User\") agree to be bound by these Terms of Use (\"Terms\"). If you do not agree, do not use the App."
+  },
+  {
+    "heading": "1. Age Requirement",
+    "body": "The App is available to users of all ages. Parents or guardians are responsible for supervising use of the App by minors."
+  },
+  {
+    "heading": "2. License",
+    "body": "Knowly grants you a limited, non-exclusive, non-transferable, revocable license to install and use the App on your device solely for personal, non-commercial educational purposes.\n\nYou may NOT:\n• Copy, modify, distribute, or sell the App\n• Reverse engineer or decompile the App\n• Use the App to develop a competing product\n• Transfer your license to any other person"
+  },
+  {
+    "heading": "3. Optional Sign-In & Anonymous Use",
+    "body": "You may use the App without creating a separate Knowly username/password. By default the App uses Firebase Anonymous Authentication so cloud features can run with a device session.\n\nOptionally, you may sign in with Google or Apple to save and restore learning progress across devices or after reinstalling the App. When you do so, you authorize Firebase and Knowly to process identifiers and profile fields provided by that sign-in method (including your email address if the provider shares it), as described in our Privacy Policy. You must comply with Google's and Apple's applicable terms when using those sign-in methods.\n\nIf you do not use the same sign-in method on a new device or after reinstalling, local data and recovery of cloud-linked progress may be limited or unavailable."
+  },
+  {
+    "heading": "4. Nickname & Public Leaderboard",
+    "body": "When you participate in the leaderboard or weekly club system, you choose a public nickname. By doing so, you agree that your nickname, XP, streak, club tier, and avatar are PUBLICLY VISIBLE to all App users.\n\nYour nickname must not contain offensive, hateful, discriminatory, obscene, or impersonating content. Knowly may remove or modify any nickname violating these Terms without notice."
+  },
+  {
+    "heading": "5. Prohibited Conduct",
+    "body": "You agree not to:\n• Use the App for any unlawful purpose\n• Cheat, exploit bugs, or use bots to manipulate leaderboard rankings\n• Attempt to gain unauthorized access to App systems\n• Harass, abuse, or threaten other users\n• Post content infringing third-party intellectual property rights\n• Attempt to reverse engineer subscription verification\n• Submit Community Packs (see below) that are unlawful, hateful, sexually explicit involving minors, malware instructions, spam, or that impersonate others\n• Circumvent or manipulate in-app purchases of Community Packs or Shards balances"
+  },
+  {
+    "heading": "6. Subscriptions & Billing",
+    "body": "The App offers premium features via auto-renewable monthly and annual subscriptions, with a free trial period available.\n\nBilling is managed through the Apple App Store or Google Play. Your subscription renews automatically unless cancelled at least 24 hours before the end of the current period.\n\nRevenueCat, Inc. is used to verify subscription status. Knowly does not receive your payment card details.\n\nTo cancel:\n• Apple: Settings → [your name] → Subscriptions\n• Google: Play Store → Subscriptions"
+  },
+  {
+    "heading": "7. Refund Policy",
+    "body": "All subscription fees are non-refundable except as required by applicable law or by Apple's / Google's policies.\n\nRefund requests:\n• Apple: reportaproblem.apple.com\n• Google: Play Store Help → Refunds\n\nKnowly does not process refunds directly. EU users who activate premium features waive the 14-day right of withdrawal upon immediate service commencement."
+  },
+  {
+    "heading": "8. Free Trial",
+    "body": "If a free trial is offered, you will not be charged during the trial. If you do not cancel before the trial ends, you will be automatically charged at the applicable subscription rate. You can cancel at any time during the trial without charge."
+  },
+  {
+    "heading": "9. Text-to-Speech Audio",
+    "body": "The App uses your device's built-in Text-to-Speech engine (expo-speech) to pronounce English phrases and example sentences. Audio is generated entirely on your device — no audio data is sent to external servers.\n\nAudio content is provided for educational purposes only. Knowly does not warrant its accuracy or suitability for professional language assessment or certification."
+  },
+  {
+    "heading": "10. Intellectual Property",
+    "body": "All content in the App — lessons, phrasal verb explanations, idiom descriptions, exercises, graphics, audio, and gamification systems — is owned by Knowly or its licensors and protected by copyright and other intellectual property laws.\n\nYou may not reproduce, redistribute, or commercially exploit any App content without our express written permission.\n\n\"Phraseman\" and \"Knowly\" are trade names of the developer."
+  },
+  {
+    "heading": "11. Disclaimer of Warranties",
+    "body": "THE APP IS PROVIDED \"AS IS\" AND \"AS AVAILABLE\" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.\n\nKNOWLY DOES NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE. THE APP IS PROVIDED FOR EDUCATIONAL PURPOSES ONLY AND KNOWLY MAKES NO GUARANTEES REGARDING LANGUAGE LEARNING OUTCOMES."
+  },
+  {
+    "heading": "12. Limitation of Liability",
+    "body": "TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, KNOWLY SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOSS OF PROFITS, DATA, OR GOODWILL.\n\nKNOWLY'S TOTAL LIABILITY SHALL NOT EXCEED THE GREATER OF: (A) THE AMOUNT YOU PAID TO KNOWLY IN THE PRECEDING 12 MONTHS, OR (B) USD $100.\n\nSOME JURISDICTIONS DO NOT ALLOW THESE LIMITATIONS, SO THEY MAY NOT FULLY APPLY TO YOU."
+  },
+  {
+    "heading": "13. Indemnification",
+    "body": "You agree to defend, indemnify, and hold harmless Knowly and its officers, employees, and partners from any claims, damages, or costs (including attorneys' fees) arising from: (a) your violation of these Terms; (b) your use of the App; (c) your chosen nickname or any content you submit; (d) your violation of any applicable law; or (e) any Community Pack you submit (including alleged infringement or unlawful content)."
+  },
+  {
+    "heading": "14. Third-Party Services",
+    "body": "The App integrates Google Firebase, RevenueCat, and Expo. Your use of these services is subject to their own terms and privacy policies. Knowly is not responsible for third-party service practices."
+  },
+  {
+    "heading": "15. Governing Law",
+    "body": "These Terms are governed by the laws of Ukraine. However, mandatory consumer protection laws of your country of residence also apply.\n\nEU users retain all rights under EU consumer protection law. California residents have additional rights under California law."
+  },
+  {
+    "heading": "16. Dispute Resolution",
+    "body": "Before filing any legal claim, contact us at support.phraseman@gmail.com and attempt informal resolution for at least 30 days.\n\nUnresolved disputes shall be submitted to the competent courts of Ukraine. EU users may also bring proceedings before courts of their EU member state or use the EU Online Dispute Resolution platform at ec.europa.eu/consumers/odr."
+  },
+  {
+    "heading": "17. Termination",
+    "body": "Knowly may suspend or terminate your access to the App at any time without notice for violations of these Terms. Upon termination, your license is revoked and cloud data may be deleted. Provisions relating to intellectual property, disclaimers, limitations of liability, indemnity, governing law, and dispute resolution (Sections 10–18) survive termination, together with Sections 19–22 where applicable.\n\nYou may stop using the App at any time. To request cloud data deletion, email support.phraseman@gmail.com."
+  },
+  {
+    "heading": "18. Apple App Store Notice",
+    "body": "If you download the App from Apple's App Store: these Terms are between you and Knowly only, not Apple. Apple has no obligation to provide maintenance or support. Apple is not responsible for any claims relating to the App. Apple is a third-party beneficiary of these Terms."
+  },
+  {
+    "heading": "19. Community flashcard packs (UGC marketplace)",
+    "body": "The App may allow you to create and submit flashcard sets (\"Community Packs\") for moderation and, if approved, publication in an in-app catalog. Other users may access a Community Pack by spending in-app virtual currency (\"Shards\") as described in Section 20.\n\nBy submitting a Community Pack you represent that you have the rights to the text you provide, that it does not infringe third-party intellectual property or privacy rights, and that it complies with applicable law and our moderation standards. Knowly may refuse, remove, unpublish, or edit catalog metadata for any Community Pack at its discretion. Knowly does not guarantee publication, sales volume, or revenue.\n\nPurchases of Community Packs are processed through Knowly's backend (e.g. Firebase Cloud Functions); you must not attempt to falsify ownership, balances, or transactions. Features such as ratings or seller notifications may be added; material changes will be reflected in these Terms or in-app notices where practicable."
+  },
+  {
+    "heading": "20. Virtual currency (Shards)",
+    "body": "\"Shards\" are an in-app virtual balance used for certain gamification and marketplace features (including Community Packs where enabled). Shards have no real-world monetary value, are not a currency, stored-value instrument, electronic money, or deposit, cannot be exchanged for cash, bank transfer, cryptocurrency, or goods or services outside the App, and are not transferable except as expressly implemented within the App.\n\nEarning and spending rules, prices, and any platform fee retained on Community Pack sales are defined by the App and may change over time. Shards confer only the limited right to use in-app features as permitted by Knowly."
+  },
+  {
+    "heading": "21. Changes to Terms",
+    "body": "We may update these Terms at any time. Material changes will be reflected in the \"Last updated\" date and may include in-app notification. Continued use after changes constitutes acceptance."
+  },
+  {
+    "heading": "22. Contact",
+    "body": "Knowly — Phraseman\nEmail: support.phraseman@gmail.com\n\nFor questions, support, or legal notices, contact us at the address above."
+  }
+]

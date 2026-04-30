@@ -1,0 +1,41 @@
+{
+  "items": [
+    {
+      "lessonId": 31,
+      "phraseId": "lesson31_phrase_47",
+      "correct": "finish",
+      "distractor": "Finnish",
+      "distractorIndex": 2,
+      "allDistractors": [
+        "finite",
+        "finished",
+        "Finnish",
+        "fisher",
+        "fish"
+      ]
+    }
+  ],
+  "uniqFake": [
+    {
+      "fake": "Finnish",
+      "correct": "finish",
+      "count": 1,
+      "suggestions": [
+        "fikish",
+        "finis",
+        "linish",
+        "minish",
+        "winish",
+        "finished",
+        "finisher",
+        "finishes"
+      ],
+      "contexts": [
+        {
+          "lessonId": 31,
+          "phraseId": "lesson31_phrase_47"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/_layout.tsx",
+  "session": "dca4eba4",
+  "op_index": 0,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "import { ensureAnonUser, migrateLocalProgressToCloud, restoreFromCloud, syncToCloud } from './cloud_sync';",
+  "new_string": "import { ensureAnonUser, migrateLocalProgressToCloud, restoreFromCloud, syncToCloud } from './cloud_sync';\nimport { registerInLeagueGroupSilently } from './firestore_leagues';"
+}

@@ -36,18 +36,26 @@ export default function Header() {
 ### 2. Выдать фразмены за выполненную задачу
 
 ```tsx
-import { rewardPhrasemenForTask } from '@/app/phrasemen_integration';
-import { claimTask } from '@/app/daily_tasks';
+import { claimTaskWithReward, getTaskById } from '@/app/daily_tasks';
+import { registerXP } from '@/app/xp_manager';
 
-export async function handleClaimTask(taskId: string) {
-  // 1. Отметить задачу как выполненную
-  await claimTask(taskId);
+export async function handleClaimTask(
+  taskId: string,
+  userName: string,
+  lang: 'ru' | 'uk',
+) {
+  const task = getTaskById(taskId);
+  if (!task) return;
 
-  // 2. Выдать фразмены
-  await rewardPhrasemenForTask(taskId);
+  // XP начисляется только если grant прошёл успешно (атомарно с claim)
+  const { claimed, awardedXp } = await claimTaskWithReward(taskId, async () => {
+    const r = await registerXP(task.xp, 'daily_task_reward', userName, lang);
+    return r.finalDelta;
+  });
 
-  // 3. Обновить UI (показать сообщение об получении)
-  toast.success('Получено 15 ⭐');
+  if (claimed) {
+    toast.success(`+${awardedXp} XP`);
+  }
 }
 ```
 

@@ -16,20 +16,26 @@
  * edgeToEdgeEnabled: true is set in app.json (which we have).
  */
 
-import { useWindowDimensions, Platform } from 'react-native';
+import { Dimensions, useWindowDimensions, Platform } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import {
+  BP_LARGE_TABLET,
+  BP_TABLET,
+  computeUiScale,
+} from '../constants/layout-scale';
 
-// ─── Breakpoints ─────────────────────────────────────────────────────────────
-export const BP_TABLET       = 600;
-export const BP_LARGE_TABLET = 840;
+export { BP_LARGE_TABLET, BP_TABLET } from '../constants/layout-scale';
 
 // ─── Hook ────────────────────────────────────────────────────────────────────
 export function useScreen() {
   const { width, height } = useWindowDimensions();
   const insets = useSafeAreaInsets();
 
-  const isTablet      = width >= BP_TABLET;
-  const isLargeTablet = width >= BP_LARGE_TABLET;
+  /** Вузька сторона — однакова логіка портрет/альбом; не плутаємо телефон у landscape з планшетом */
+  const narrow = Math.min(width, height);
+  const isTablet      = narrow >= BP_TABLET;
+  const isLargeTablet = narrow >= BP_LARGE_TABLET;
+  const uiScale       = computeUiScale(width, height);
 
   // ── Content constraints ───────────────────────────────────────────────────
   // The max-width of a scrollable content column.
@@ -40,17 +46,19 @@ export function useScreen() {
                      640;
 
   // ── Horizontal padding ────────────────────────────────────────────────────
-  const hPad: number =
-    isLargeTablet ? 24 :
-    isTablet       ? 20 :
-                     16;
+  const hPad: number = Math.max(
+    12,
+    Math.round((isLargeTablet ? 24 : isTablet ? 20 : 16) * uiScale),
+  );
 
   // ── Tab bar height ────────────────────────────────────────────────────────
   // Slightly taller on larger screens for better touch targets.
-  const tabBarHeight: number =
-    isLargeTablet ? 70 :
-    isTablet       ? 64 :
-    Platform.OS === 'ios' ? 60 : 56;
+  const tabBarHeight: number = Math.max(
+    52,
+    Math.round(
+      (isLargeTablet ? 70 : isTablet ? 64 : Platform.OS === 'ios' ? 60 : 56) * uiScale,
+    ),
+  );
 
   // ── Bottom inset (navigation bar / home indicator) ────────────────────────
   // useSafeAreaInsets().bottom handles:
@@ -77,21 +85,19 @@ export function useScreen() {
   // ── Spacing scale ─────────────────────────────────────────────────────────
   // Used for gap, margin, padding multipliers where needed.
   const spacingScale: number =
-    isLargeTablet ? 1.25 :
-    isTablet       ? 1.10 :
-                     1.0;
+    (isLargeTablet ? 1.25 : isTablet ? 1.10 : 1.0) * uiScale;
 
   // ── Device-level font scale ───────────────────────────────────────────────
   // This is the BASE multiplier for all UI text on large-screen devices.
   // It stacks with the user's chosen font size in ThemeContext.
   const deviceFontScale: number =
-    isLargeTablet ? 1.20 :
-    isTablet       ? 1.10 :
-                     1.0;
+    (isLargeTablet ? 1.20 : isTablet ? 1.10 : 1.0) * uiScale;
 
   return {
     width,
     height,
+    narrow,
+    uiScale,
     isTablet,
     isLargeTablet,
     contentMaxW,
@@ -106,12 +112,8 @@ export function useScreen() {
   } as const;
 }
 
-// ─── Standalone helpers (no hook, for static values) ─────────────────────────
-
-import { Dimensions } from 'react-native';
-
 /** Static check at module load time (does not update on orientation change) */
 export function isTabletDevice(): boolean {
   const { width, height } = Dimensions.get('window');
-  return Math.max(width, height) >= BP_TABLET;
+  return Math.min(width, height) >= BP_TABLET;
 }

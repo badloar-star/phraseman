@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app/(tabs)/hall_of_fame.tsx",
+  "session": "b8657361",
+  "op_index": 15,
+  "status": "UNAPPLIED",
+  "old_string": "import { Animated, FlatList, Modal, Pressable, RefreshControl, Text, TouchableOpacity, View } from 'react-native';",
+  "new_string": "import { Animated, FlatList, Modal, Pressable, RefreshControl, ScrollView, Text, TouchableOpacity, View } from 'react-native';"
+}

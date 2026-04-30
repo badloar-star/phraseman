@@ -14,8 +14,26 @@ export function PersonalPlanCard({ profile, lang }: PersonalPlanCardProps) {
   }
 
   const isUK = lang === 'uk';
+  const isES = lang === 'es';
   const targetLabel = TARGET_LEVEL_LABELS[profile.targetLevel];
   const targetDate = new Date(profile.estimatedTargetDate);
+
+  const title =
+    isES ? 'Tu plan' : isUK ? 'Твій план' : 'Твой план';
+  const subtitleConnector =
+    isES ? 'en' : isUK ? 'за' : 'через';
+  const daysWord =
+    isES ? 'días' : isUK ? 'днів' : 'дней';
+  const labelGoal =
+    isES ? 'Objetivo:' : isUK ? 'Ціль:' : 'Цель:';
+  const labelReach =
+    isES ? 'Fecha prevista:' : isUK ? 'Досягнути:' : 'Достичь:';
+  const labelIntensity =
+    isES ? 'Intensidad:' : isUK ? 'Інтенсивність:' : 'Интенсивность:';
+  const minPerDay =
+    isES ? 'min/día' : isUK ? 'хв/день' : 'мин/день';
+
+  const locale = isES ? 'es-ES' : isUK ? 'uk-UA' : 'ru-RU';
 
   return (
     <View style={styles.container}>
@@ -23,10 +41,10 @@ export function PersonalPlanCard({ profile, lang }: PersonalPlanCardProps) {
         <Text style={styles.emoji}>🎯</Text>
         <View style={{ flex: 1 }}>
           <Text style={styles.title}>
-            {isUK ? 'Твій план' : 'Твой план'}
+            {title}
           </Text>
           <Text style={styles.subtitle}>
-            {targetLabel.short} • {isUK ? 'за' : 'через'} {profile.estimatedDaysToTarget} {isUK ? 'днів' : 'дней'}
+            {targetLabel.short} • {subtitleConnector} {profile.estimatedDaysToTarget} {daysWord}
           </Text>
         </View>
       </View>
@@ -34,7 +52,7 @@ export function PersonalPlanCard({ profile, lang }: PersonalPlanCardProps) {
       <View style={styles.content}>
         <View style={styles.row}>
           <Text style={styles.label}>
-            {isUK ? 'Ціль:' : 'Цель:'}
+            {labelGoal}
           </Text>
           <Text style={styles.value}>
             {targetLabel.full}
@@ -43,10 +61,10 @@ export function PersonalPlanCard({ profile, lang }: PersonalPlanCardProps) {
 
         <View style={styles.row}>
           <Text style={styles.label}>
-            {isUK ? 'Досягнути:' : 'Достичь:'}
+            {labelReach}
           </Text>
           <Text style={styles.value}>
-            {targetDate.toLocaleDateString(isUK ? 'uk-UA' : 'ru-RU', {
+            {targetDate.toLocaleDateString(locale, {
               month: 'short',
               year: 'numeric',
             })}
@@ -55,10 +73,10 @@ export function PersonalPlanCard({ profile, lang }: PersonalPlanCardProps) {
 
         <View style={styles.row}>
           <Text style={styles.label}>
-            {isUK ? 'Інтенсивність:' : 'Интенсивность:'}
+            {labelIntensity}
           </Text>
           <Text style={styles.value}>
-            {profile.minutesPerDay} {isUK ? 'хв/день' : 'мин/день'}
+            {profile.minutesPerDay} {minPerDay}
           </Text>
         </View>
       </View>

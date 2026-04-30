@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/app.json",
+  "session": "33b61ac9",
+  "op_index": 1,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "      \"edgeToEdgeEnabled\": true,",
+  "new_string": "      \"intentFilters\": [\n        {\n          \"action\": \"VIEW\",\n          \"autoVerify\": true,\n          \"data\": [\n            { \"scheme\": \"https\", \"host\": \"badloar-star.github.io\", \"pathPrefix\": \"/phraseman/duel\" }\n          ],\n          \"category\": [\"BROWSABLE\", \"DEFAULT\"]\n        }\n      ],\n      \"edgeToEdgeEnabled\": true,"
+}

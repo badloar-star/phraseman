@@ -1,7 +1,9 @@
-import React, { useEffect, useState, memo } from 'react';
+﻿import React, { useEffect, useState, memo, useCallback, useRef } from 'react';
 import {
-  View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Pressable, Share, Image,
+  View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Pressable, Image,
+  InteractionManager,
 } from 'react-native';
+import Svg from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,8 +12,25 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
-import { ALL_ACHIEVEMENTS, loadAchievementStates, Achievement, AchievementState } from './achievements';
+import {
+  ALL_ACHIEVEMENTS,
+  loadAchievementStates,
+  Achievement,
+  AchievementState,
+  claimAchievementShardReward,
+  hasPendingShardReward,
+  achievementNameForLang,
+  achievementDescForLang,
+} from './achievements';
+import { triLang, type Lang } from '../constants/i18n';
+import { hapticSuccess } from '../hooks/use-haptics';
 import { STORE_URL } from './config';
+import { oskolokImageForPackShards } from './oskolok';
+import type { ShareCardLang } from '../components/share_cards/streakCardCopy';
+import AchievementShareCardSvg from '../components/share_cards/AchievementShareCardSvg';
+import { shareCardFromSvgRef } from '../components/share_cards/shareCardPng';
+import { buildAchievementShareMessage } from './achievement_share';
+import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 
 const { width: SW } = Dimensions.get('window');
 const COLS = 4;
@@ -153,7 +172,7 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   dialog_first:        require('../assets/images/levels/sobesednik.png'),
   dialog_all:          require('../assets/images/levels/master dialogov.png'),
   flashcards_session:  require('../assets/images/levels/kartzhnik.png'),
-  league_1:            require('../assets/images/levels/v clube.png'),
+  league_1:            require('../assets/images/levels/club icon base forest.png'),
   league_3:            require('../assets/images/levels/erudit.png'),
   league_5:            require('../assets/images/levels/professor.png'),
   gem_a1_ruby:         require('../assets/images/levels/rubin.png'),
@@ -268,8 +287,104 @@ const CAT_LABEL_UK: Record<string, string> = {
   streak: 'Ланцюжок', lessons: 'Уроки', xp: 'Досвід',
   quiz: 'Квізи', combo: 'Серії', special: 'Особливі', medal: 'Медалі',
 };
+const CAT_LABEL_ES: Record<string, string> = {
+  streak: 'Racha', lessons: 'Lecciones', xp: 'Experiencia',
+  quiz: 'Cuestionarios', combo: 'Series', special: 'Especiales', medal: 'Medallas',
+};
 
 const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special', 'medal'] as const;
+
+type GridCellProps = {
+  a: Achievement;
+  state: AchievementState | undefined;
+  stats: AchievementStats;
+  color: string;
+  fallbackCatIcon: string;
+  lang: Lang;
+  t: any;
+  f: any;
+  shieldW: number;
+  shieldOuter: number;
+  onSelect: (achievement: Achievement) => void;
+};
+
+const AchievementGridCell = memo(function AchievementGridCell({
+  a,
+  state,
+  stats,
+  color,
+  fallbackCatIcon,
+  lang,
+  t,
+  f,
+  shieldW,
+  shieldOuter,
+  onSelect,
+}: GridCellProps) {
+  const unlocked = !!state?.unlockedAt;
+  const isLocked = !unlocked && !!a.secret;
+  const inProgress = !unlocked && !a.secret;
+  const iconName = ACHIEVEMENT_ICON[a.id] ?? fallbackCatIcon;
+  const prog = inProgress ? getAchievementProgress(a.id, stats) : null;
+  const progPct = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
+
+  return (
+    <TouchableOpacity
+      onPress={() => onSelect(a)}
+      activeOpacity={0.8}
+      style={{ alignItems: 'center', width: shieldOuter, gap: 5 }}
+    >
+      <View style={{ position: 'relative' }}>
+        {unlocked && hasPendingShardReward(state) && (
+          <View
+            style={{
+              position: 'absolute',
+              top: -4,
+              right: -2,
+              zIndex: 4,
+              minWidth: 20,
+              height: 20,
+              borderRadius: 10,
+              backgroundColor: t.correct,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderWidth: 1.5,
+              borderColor: t.bgCard,
+              paddingHorizontal: 3,
+            }}
+          >
+            <Text style={{ fontSize: 11, fontWeight: '900', color: t.correctText }}>+1</Text>
+          </View>
+        )}
+        <BadgeShield
+          unlocked={unlocked}
+          inProgress={inProgress}
+          color={color}
+          iconName={iconName}
+          size={shieldW}
+          maskBg={t.bgPrimary}
+          achievementId={a.id}
+        />
+      </View>
+
+      {inProgress && prog && prog[1] > 0 && progPct > 0 && (
+        <View style={{ width: shieldW * 0.8, height: 3, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
+          <View style={{ height: 3, width: `${progPct}%` as any, backgroundColor: color, borderRadius: 2 }} />
+        </View>
+      )}
+
+      {!isLocked && (
+        <Text
+          style={{ color: unlocked ? t.textPrimary : t.textGhost, fontSize: f.label, textAlign: 'center' }}
+          numberOfLines={2}
+          maxFontSizeMultiplier={1}
+        >
+          {achievementNameForLang(a, lang)}
+        </Text>
+      )}
+    </TouchableOpacity>
+  );
+});
 
 // ── Щит-значок с PNG фоном ────────────────────────────────────────────────────
 function BadgeShieldInner({
@@ -278,13 +393,17 @@ function BadgeShieldInner({
   unlocked: boolean; inProgress: boolean; color: string;
   iconName: string; size: number; maskBg?: string; achievementId?: string;
 }) {
+  const { isDark, theme: t } = useTheme();
   const W      = size;
   const BODY_H = Math.round(W * 0.88);
   const ICON   = Math.round(W * 0.42);
 
   const isLocked  = !unlocked && !inProgress;
-  const tintColor = isLocked ? '#383838' : inProgress ? color + '55' : color;
-  const iconColor = isLocked ? '#383838' : inProgress ? color + 'BB' : '#fff';
+  // В светлых темах заблокированный щит — светло-серый, иконка чуть темнее
+  const lockedTint  = isDark ? '#383838' : '#B0B0C0';
+  const lockedIcon  = isDark ? '#383838' : '#FFFFFF';
+  const tintColor = isLocked ? lockedTint : inProgress ? color + (isDark ? '55' : '88') : color;
+  const iconColor = isLocked ? lockedIcon : inProgress ? color + (isDark ? 'BB' : 'CC') : '#fff';
   const specificImage = achievementId ? ACHIEVEMENT_IMAGE[achievementId] : null;
   const levelLabel = achievementId ? GEM_LEVEL_LABEL[achievementId] : null;
 
@@ -303,7 +422,7 @@ function BadgeShieldInner({
             borderRadius: 4, paddingHorizontal: 4, paddingVertical: 1,
           }}>
             <Text style={{
-              color: isLocked ? '#666' : inProgress ? '#aaa' : '#FFD700',
+              color: isLocked ? '#666' : inProgress ? '#aaa' : t.gold,
               fontSize: Math.max(8, Math.round(W * 0.22)),
               fontWeight: '900',
               letterSpacing: 0.5,
@@ -339,20 +458,35 @@ export const BadgeShield = memo(BadgeShieldInner);
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, isUK, t, f, onClose,
+  achievement, state, stats, t, f, onClose, onShardClaimed,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
   stats: AchievementStats;
-  isUK: boolean;
   t: any; f: any;
   onClose: () => void;
+  onShardClaimed: (achievementId: string) => void;
 }) {
+  const [claiming, setClaiming] = useState(false);
+  const [shareSvgMounted, setShareSvgMounted] = useState(false);
+  const achShareRef = useRef<InstanceType<typeof Svg> | null>(null);
+  const { lang } = useLang();
+  const achCardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY
+    ? 'ru'
+    : lang === 'uk'
+      ? 'uk'
+      : lang === 'es'
+        ? 'es'
+        : 'ru';
+  useEffect(() => {
+    setShareSvgMounted(false);
+  }, [achievement.id]);
   const unlocked = !!state?.unlockedAt;
+  const pendingShard = hasPendingShardReward(state);
   const color    = CAT_COLOR[achievement.category] ?? '#888';
   const iconName = ACHIEVEMENT_ICON[achievement.id] ?? 'star';
-  const name     = isUK ? achievement.nameUk : achievement.nameRu;
-  const desc     = isUK ? achievement.descUk : achievement.descRu;
+  const name     = achievementNameForLang(achievement, lang);
+  const desc     = achievementDescForLang(achievement, lang);
   const prog     = !unlocked && !achievement.secret
     ? getAchievementProgress(achievement.id, stats)
     : null;
@@ -360,14 +494,28 @@ function AchievementModal({
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
-    return d.toLocaleDateString(isUK ? 'uk-UA' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+    return d.toLocaleDateString(lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
   };
 
   return (
     <Modal transparent animationType="fade" onRequestClose={onClose}>
       <Pressable style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'center', alignItems: 'center', padding: 24 }} onPress={onClose}>
         <Pressable onPress={e => e.stopPropagation()}>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 24, alignItems: 'center', width: SW - 48, gap: 12 }}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 24, alignItems: 'center', width: SW - 48, gap: 12, position: 'relative' }}>
+            {unlocked && shareSvgMounted && (
+              <View
+                pointerEvents="none"
+                collapsable={false}
+                style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, zIndex: -1, overflow: 'hidden' }}
+              >
+                <AchievementShareCardSvg
+                  ref={achShareRef}
+                  title={name}
+                  lang={achCardLang}
+                  layoutSize={1080}
+                />
+              </View>
+            )}
             {/* Shield */}
             <BadgeShield
               unlocked={unlocked}
@@ -381,20 +529,80 @@ function AchievementModal({
 
             {/* Name */}
             <Text style={{ color: unlocked ? color : t.textMuted, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 4 }}>
-              {unlocked || !achievement.secret ? name : (isUK ? 'Секретне досягнення' : 'Секретное достижение')}
+              {unlocked || !achievement.secret ? name : triLang(lang, {
+                ru: 'Секретное достижение',
+                uk: 'Секретне досягнення',
+                es: 'Logro secreto',
+              })}
             </Text>
 
             {/* Description */}
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22 }}>
-              {unlocked || !achievement.secret ? desc : (isUK ? 'Розблокуй, щоб дізнатись' : 'Разблокируй, чтобы узнать')}
+              {unlocked || !achievement.secret ? desc : triLang(lang, {
+                ru: 'Разблокируй, чтобы узнать',
+                uk: 'Розблокуй, щоб дізнатись',
+                es: 'Desbloquéalo para descubrirlo',
+              })}
             </Text>
 
             {/* Date unlocked */}
             {unlocked && state?.unlockedAt && (
               <View style={{ backgroundColor: color + '22', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 6 }}>
                 <Text style={{ color, fontSize: f.sub, fontWeight: '700' }}>
-                  {isUK ? 'Отримано' : 'Получено'} {formatDate(state.unlockedAt)}
+                  {triLang(lang, { ru: 'Получено', uk: 'Отримано', es: 'Obtenido' })} {formatDate(state.unlockedAt)}
                 </Text>
+              </View>
+            )}
+
+            {/* +1 осколок — выдача вручную */}
+            {unlocked && (
+              <View style={{
+                width: '100%',
+                backgroundColor: pendingShard ? t.correct + '18' : t.bgSurface2,
+                borderRadius: 14,
+                padding: 14,
+                alignItems: 'center',
+                gap: 10,
+                borderWidth: pendingShard ? 1 : 0,
+                borderColor: pendingShard ? t.correct + '55' : 'transparent',
+              }}>
+                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Осколок', uk: 'Осколок', es: 'Fragmento' })} />
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                  {triLang(lang, { ru: '+1 осколок знаний', uk: '+1 осколок знань', es: '+1 fragmento de conocimiento' })}
+                </Text>
+                {pendingShard ? (
+                  <TouchableOpacity
+                    disabled={claiming}
+                    onPress={async () => {
+                      if (claiming) return;
+                      setClaiming(true);
+                      try {
+                        const ok = await claimAchievementShardReward(achievement.id);
+                        if (ok) {
+                          void hapticSuccess();
+                          onShardClaimed(achievement.id);
+                        }
+                      } finally {
+                        setClaiming(false);
+                      }
+                    }}
+                    style={{
+                      backgroundColor: t.correct,
+                      borderRadius: 12,
+                      paddingVertical: 12,
+                      paddingHorizontal: 28,
+                      opacity: claiming ? 0.7 : 1,
+                    }}
+                  >
+                    <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
+                      {triLang(lang, { ru: 'Получить', uk: 'Забрати', es: 'Reclamar' })}
+                    </Text>
+                  </TouchableOpacity>
+                ) : (
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
+                    {triLang(lang, { ru: 'Осколок получен', uk: 'Осколок отримано', es: 'Fragmento reclamado' })}
+                  </Text>
+                )}
               </View>
             )}
 
@@ -407,7 +615,7 @@ function AchievementModal({
                 <Text style={{ color: t.textGhost, fontSize: f.sub, textAlign: 'center' }}>
                   {prog[0]} / {prog[1]}
                   {prog[1] - prog[0] > 0 && progPct > 0 && (
-                    `  ·  ${isUK ? 'ще' : 'ещё'} ${prog[1] - prog[0]}`
+                    `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', es: 'faltan' })} ${prog[1] - prog[0]}`
                   )}
                 </Text>
               </View>
@@ -415,20 +623,24 @@ function AchievementModal({
 
             {/* Share (only for unlocked) */}
             {unlocked && (
+              <>
               <TouchableOpacity
-                style={{ flexDirection:'row', alignItems:'center', gap:6 }}
+                style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4 }}
                 onPress={async () => {
-                  const msg = isUK
-                    ? `Здобув досягнення «${name}» у Phraseman! 🏅\n${STORE_URL}`
-                    : `Получил достижение «${name}» в Phraseman! 🏅\n${STORE_URL}`;
-                  try { await Share.share({ message: msg }); } catch {}
+                  if (!shareSvgMounted) setShareSvgMounted(true);
+                  await new Promise<void>((resolve) => {
+                    InteractionManager.runAfterInteractions(() => resolve());
+                  });
+                  const msg = buildAchievementShareMessage(lang, name, STORE_URL);
+                  await shareCardFromSvgRef(achShareRef, { fileNamePrefix: 'phraseman-achievement', textFallback: msg });
                 }}
               >
                 <Ionicons name="share-outline" size={16} color={t.textSecond}/>
                 <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                  {isUK ? 'Поділитися' : 'Поделиться'}
+                  {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
                 </Text>
               </TouchableOpacity>
+              </>
             )}
 
             {/* Close */}
@@ -437,7 +649,7 @@ function AchievementModal({
               style={{ backgroundColor: t.bgSurface2, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 32, marginTop: 4 }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {isUK ? 'Закрити' : 'Закрыть'}
+                {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
               </Text>
             </TouchableOpacity>
           </View>
@@ -452,7 +664,6 @@ export default function AchievementsScreen() {
   const router          = useRouter();
   const { theme: t, f } = useTheme();
   const { lang }        = useLang();
-  const isUK = lang === 'uk';
 
   const [states, setStates]   = useState<AchievementState[]>([]);
   const [stats, setStats]     = useState<AchievementStats>({ streak:0, loginDays:0, lessons:0, perfectLessons:0, xp:0 });
@@ -460,7 +671,18 @@ export default function AchievementsScreen() {
 
   useEffect(() => {
     loadAchievementStates().then(setStates);
-    loadAchievementStats().then(setStats);
+    const interaction = InteractionManager.runAfterInteractions(() => {
+      loadAchievementStats().then(setStats);
+    });
+    return () => interaction.cancel();
+  }, []);
+
+  const onSelectAchievement = useCallback((a: Achievement) => {
+    setSelected(a);
+  }, []);
+
+  const onShardClaimedUpdate = useCallback((achievementId: string) => {
+    setStates(prev => prev.map(s => (s.id === achievementId ? { ...s, shardClaimed: true } : s)));
   }, []);
 
   const stateMap      = new Map(states.map(s => [s.id, s]));
@@ -479,10 +701,10 @@ export default function AchievementsScreen() {
           </TouchableOpacity>
           <View style={{ flex: 1, marginLeft: 8 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-              {isUK ? 'Досягнення' : 'Достижения'}
+              {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', es: 'Logros' })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-              {unlockedCount} / {total} {isUK ? 'розблоковано' : 'разблокировано'}
+              {unlockedCount} / {total} {triLang(lang, { ru: 'разблокировано', uk: 'розблоковано', es: 'desbloqueados' })}
             </Text>
           </View>
           <View style={{ backgroundColor: t.bgCard, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 5 }}>
@@ -497,11 +719,18 @@ export default function AchievementsScreen() {
           <View style={{ height: 3, width: `${unlockedCount / total * 100}%` as any, backgroundColor: t.textSecond, borderRadius: 2 }} />
         </View>
 
-        <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 24 }} showsVerticalScrollIndicator={false} removeClippedSubviews={true}>
+        {/*
+          removeClippedSubviews на ScrollView — известный баг Fabric (New Arch):
+          IllegalStateException "The specified child already has a parent" при
+          откреплении/прикреплении дочерних view во время скролла. Оптимизация
+          работает только для VirtualizedList семейства, на ScrollView она
+          молча ломается. Не возвращать. Ref: Crashlytics 1.5.18.
+        */}
+        <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 24 }} showsVerticalScrollIndicator={false}>
           {CATEGORIES.map(cat => {
             const color    = CAT_COLOR[cat];
             const catIcon  = CAT_ICON[cat];
-            const label    = isUK ? CAT_LABEL_UK[cat] : CAT_LABEL_RU[cat];
+            const label    = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat] });
             const catAchs  = ALL_ACHIEVEMENTS.filter(a => a.category === cat);
             const catUnlocked = catAchs.filter(a => stateMap.get(a.id)?.unlockedAt).length;
 
@@ -522,52 +751,22 @@ export default function AchievementsScreen() {
 
                 {/* Сетка щитов */}
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
-                  {catAchs.map(a => {
-                    const state    = stateMap.get(a.id);
-                    const unlocked = !!state?.unlockedAt;
-                    const isLocked = !unlocked && (a.secret || false);
-                    const inProgress = !unlocked && !a.secret;
-                    const iconName = ACHIEVEMENT_ICON[a.id] ?? catIcon;
-                    const prog = inProgress ? getAchievementProgress(a.id, stats) : null;
-                    const progPct = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
-
-                    return (
-                      <TouchableOpacity
-                        key={a.id}
-                        onPress={() => setSelected(a)}
-                        activeOpacity={0.8}
-                        style={{ alignItems: 'center', width: SHIELD_OUTER, gap: 5 }}
-                      >
-                        <BadgeShield
-                          unlocked={unlocked}
-                          inProgress={inProgress}
-                          color={color}
-                          iconName={iconName}
-                          size={SHIELD_W}
-                          maskBg={t.bgPrimary}
-                          achievementId={a.id}
-                        />
-
-                        {/* Mini progress bar под щитом */}
-                        {inProgress && prog && prog[1] > 0 && progPct > 0 && (
-                          <View style={{ width: SHIELD_W * 0.8, height: 3, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
-                            <View style={{ height: 3, width: `${progPct}%` as any, backgroundColor: color, borderRadius: 2 }} />
-                          </View>
-                        )}
-
-                        {/* Название */}
-                        {!isLocked && (
-                          <Text
-                            style={{ color: unlocked ? t.textPrimary : t.textGhost, fontSize: 10, textAlign: 'center' }}
-                            numberOfLines={2}
-                            maxFontSizeMultiplier={1}
-                          >
-                            {isUK ? a.nameUk : a.nameRu}
-                          </Text>
-                        )}
-                      </TouchableOpacity>
-                    );
-                  })}
+                  {catAchs.map(a => (
+                    <AchievementGridCell
+                      key={a.id}
+                      a={a}
+                      state={stateMap.get(a.id)}
+                      stats={stats}
+                      color={color}
+                      fallbackCatIcon={catIcon}
+                      lang={lang}
+                      t={t}
+                      f={f}
+                      shieldW={SHIELD_W}
+                      shieldOuter={SHIELD_OUTER}
+                      onSelect={onSelectAchievement}
+                    />
+                  ))}
                 </View>
               </View>
             );
@@ -582,9 +781,9 @@ export default function AchievementsScreen() {
           achievement={selected}
           state={stateMap.get(selected.id)}
           stats={stats}
-          isUK={isUK}
           t={t} f={f}
           onClose={() => setSelected(null)}
+          onShardClaimed={onShardClaimedUpdate}
         />
       )}
     </SafeAreaView>

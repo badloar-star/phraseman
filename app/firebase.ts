@@ -70,8 +70,75 @@ export function logPremiumPurchased(productId: string) {
   logEvent('premium_purchased', { product_id: productId });
 }
 
+export function logShardsPurchased(productId: string, shards: number) {
+  logEvent('shards_purchased', { product_id: productId, shards });
+}
+
+export function logCardPackPurchasedShards(packId: string, priceShards: number) {
+  logEvent('card_pack_purchased_shards', { pack_id: packId, price_shards: priceShards });
+}
+
+export function logPaywallView(context: string) {
+  logEvent('paywall_view', { context });
+}
+
+export function logPaywallPlanSelect(context: string, plan: string) {
+  logEvent('paywall_plan_select', { context, plan });
+}
+
+export function logPaywallCtaClick(context: string, plan: string) {
+  logEvent('paywall_cta_click', { context, plan });
+}
+
+export function logPaywallContinueFree(context: string) {
+  logEvent('paywall_continue_free', { context });
+}
+
+export function logPaywallClose(context: string) {
+  logEvent('paywall_close', { context });
+}
+
 // ── Flashcard events ──────────────────────────────────────────────────────────
 
 export function logFlashcardAdded() {
   logEvent('flashcard_added');
 }
+
+// ── Subscription cancel survey ────────────────────────────────────────────────
+
+export function logCancelSurvey(reason: string) {
+  logEvent('subscription_cancel_survey', { reason });
+}
+
+// ── Lesson drop-off ───────────────────────────────────────────────────────────
+
+export function logLessonAbandoned(lessonId: number, phraseIndex: number, totalPhrases: number) {
+  logEvent('lesson_abandoned', { lesson_id: lessonId, phrase_index: phraseIndex, total: totalPhrases });
+}
+
+// ── Answer accuracy ───────────────────────────────────────────────────────────
+
+export function logLessonAnswer(lessonId: number, isCorrect: boolean) {
+  logEvent('lesson_answer', { lesson_id: lessonId, correct: isCorrect ? 1 : 0 });
+}
+
+// ── Energy limit ──────────────────────────────────────────────────────────────
+
+export function logEnergyLimitHit(screen: string) {
+  logEvent('energy_limit_hit', { screen });
+}
+
+// ── Quiz level chosen ─────────────────────────────────────────────────────────
+
+export function logQuizLevelSelected(level: string) {
+  logEvent('quiz_level_selected', { level });
+}
+
+// ── Feature opened ────────────────────────────────────────────────────────────
+
+export function logFeatureOpened(feature: string) {
+  logEvent('feature_opened', { feature });
+}
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

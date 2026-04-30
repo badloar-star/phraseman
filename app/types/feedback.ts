@@ -42,3 +42,6 @@ export interface FeedbackResult {
   /** Информация об ошибочных словах для визуальной привязки */
   readonly errorWords?: readonly ErrorWordInfo[];
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

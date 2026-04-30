@@ -1,0 +1,33 @@
+diff --git a/node_modules/react-native/src/private/animated/createAnimatedPropsHook.js b/node_modules/react-native/src/private/animated/createAnimatedPropsHook.js
+index 90772e8..96b7295 100644
+--- a/node_modules/react-native/src/private/animated/createAnimatedPropsHook.js
++++ b/node_modules/react-native/src/private/animated/createAnimatedPropsHook.js
+@@ -89,12 +89,22 @@ export default function createAnimatedPropsHook(
+       };
+     });
+ 
+-    // NOTE: This feature flag must be evaluated inside the hook because this
+-    // module factory can be evaluated much sooner, before overrides are set.
+-    const useAnimatedPropsLifecycle =
+-      ReactNativeFeatureFlags.scheduleAnimatedCleanupInMicrotask()
+-        ? useAnimatedPropsLifecycleWithCleanupInMicrotask
+-        : useAnimatedPropsLifecycleWithPrevNodeRef;
++    // PHRASEMAN PATCH (RN 0.81 + Fabric + legacy Animated):
++    // Force synchronous detach via useAnimatedPropsLifecycleWithPrevNodeRef
++    // (i.e. behave as if `scheduleAnimatedCleanupInMicrotask` were false).
++    //
++    // With the default microtask-deferred cleanup, `__detach()` runs AFTER the
++    // React commit phase. Under Fabric this means the view tag has often already
++    // been invalidated by the time `disconnectAnimatedNodeFromView` reaches
++    // native, raising JSApplicationIllegalArgumentException
++    // ("Animated node ... does not exist or is not connected to view").
++    //
++    // The synchronous path runs `__detach()` inside `useInsertionEffect` cleanup,
++    // i.e. DURING commit, before Fabric tears the host view down, so the native
++    // disconnect call always sees a live view tag. Override is unreachable from
++    // app code (the JS-only feature-flags API is one-shot and RN itself reads
++    // other flags during bootstrap, which throws), so we hard-pin the safe path.
++    const useAnimatedPropsLifecycle = useAnimatedPropsLifecycleWithPrevNodeRef;
+ 
+     useAnimatedPropsLifecycle(node);
+ 

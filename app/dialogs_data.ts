@@ -72,8 +72,8 @@ export interface DialogScenario3 {
   steps: DialogStep3[];
   glossary: GlossaryEntry[];
   endings: DialogEnding3[];
-  words?: Array<{ en: string; ru: string; uk: string; }>;
-  verbs?: Array<{ en: string; ru: string; uk: string; base?: string; past?: string; pp?: string; }>;
+  words?: { en: string; ru: string; uk: string; }[];
+  verbs?: { en: string; ru: string; uk: string; base?: string; past?: string; pp?: string; }[];
 }
 
 // ============================================
@@ -325,3 +325,6 @@ export const DIALOGS: DialogScenario3[] = [
 export function getDialogById(id: string): DialogScenario3 | undefined {
   return DIALOGS.find(d => d.id === id);
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

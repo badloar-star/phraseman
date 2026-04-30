@@ -1,0 +1,14 @@
+# Зал славы: таб + шапка колонок (строки лидерборда зависят от данных).
+appId: app.phraseman
+---
+- runFlow: ../../_shared/boot_to_home.yaml
+- tapOn:
+    id: "tab-hall_of_fame"
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-hall-of-fame"
+    timeout: 30000
+- assertVisible:
+    id: "hall-columns-header"

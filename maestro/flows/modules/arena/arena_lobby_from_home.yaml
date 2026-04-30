@@ -1,0 +1,14 @@
+# Главная → блок «Арена» → лобби (CTA матчмейкинга на месте).
+appId: app.phraseman
+---
+- runFlow: ../../_shared/boot_to_home.yaml
+- tapOn:
+    id: "home-open-arena"
+- extendedWaitUntil:
+    visible:
+      id: "screen-arena-lobby"
+    timeout: 35000
+- assertVisible:
+    id: "arena-find-match"
+- assertVisible:
+    id: "arena-play-with-friend"

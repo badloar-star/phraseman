@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/hooks/use-duel-session.ts",
+  "session": "33b61ac9",
+  "op_index": 5,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "  const botTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);\n  const questionTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);\n  const revealTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);\n  const countdownTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);",
+  "new_string": "  const botTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);\n  const questionTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);\n  const revealTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);\n  const countdownTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);\n  // Если боты ещё не запланированы (вопросы не успели загрузиться), сохраняем задачу\n  const pendingBotRef = useRef<{ session: DuelSession; questionId: string } | null>(null);"
+}

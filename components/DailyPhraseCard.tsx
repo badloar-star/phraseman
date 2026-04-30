@@ -1,57 +1,54 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, ActivityIndicator, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
+import { triLang } from '../constants/i18n';
 import { Ionicons } from '@expo/vector-icons';
+import { updateMultipleTaskProgress } from '../app/daily_tasks';
+import { getTodayPhrase, getTodayPhraseSync, DailyPhrase } from '../app/daily_phrase_system';
+import AddToFlashcard from './AddToFlashcard';
 
 const DAILY_PHRASE_IMAGES: Record<string, any> = {
-  dark: require('../assets/images/levels/dayly phrase forest.png'),
-  neon: require('../assets/images/levels/dayly phrase neon.png'),
-  gold: require('../assets/images/levels/dayly phrase coral.png'),
+  dark:   require('../assets/images/levels/dayly phrase forest.png'),
+  neon:   require('../assets/images/levels/dayly phrase neon.png'),
+  gold:   require('../assets/images/levels/dayly phrase coral.png'),
+  ocean:  require('../assets/images/levels/dayly phrase ocean.png'),
+  sakura: require('../assets/images/levels/dayly phrase sacura.png'),
 };
-import { getTodayPhrase, DailyPhrase } from '../app/daily_phrase_system';
-import AddToFlashcard from './AddToFlashcard';
 
 interface Props {
   userLevel?: number;
 }
 
-export default function DailyPhraseCard({ userLevel }: Props) {
+export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
   const { theme: t, f, themeMode } = useTheme();
-  const { s, lang } = useLang();
-  const [phrase, setPhrase] = useState<DailyPhrase | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { lang } = useLang();
+  const [phrase, setPhrase] = useState<DailyPhrase>(() => getTodayPhraseSync());
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const phraseOfDay = await getTodayPhrase();
-        if (phraseOfDay) setPhrase(phraseOfDay);
-      } catch (e) {
-        // phrase stays null, loading screen shown
-      } finally {
-        setLoading(false);
-      }
-    })();
+    void getTodayPhrase().then(p => { if (p) setPhrase(p); }).catch(() => {});
   }, []);
 
-  if (loading || !phrase) {
-    return (
-      <View style={[styles.container, { backgroundColor: t.bgCard }]}>
-        <ActivityIndicator color={t.textPrimary} />
-      </View>
-    );
+  if (!phrase) {
+    return <View style={[styles.container, { backgroundColor: t.bgCard }]} />;
   }
 
-  const labelLiteral = lang === 'uk' ? 'Дослівно' : 'Дословно';
-  const labelMeaning = lang === 'uk' ? 'Що означає' : 'Что значит';
+  const labelLiteral = triLang(lang, { uk: 'Дослівно', ru: 'Дословно', es: 'Traducción literal' });
+  const labelMeaning = triLang(lang, { uk: 'Що означає', ru: 'Что значит', es: 'Significado' });
+  // Контент идиом: для es пока подставляем RU-поля (см. idioms_data — без полей *_es).
   const phraseLiteral = lang === 'uk' ? phrase.literal_uk : phrase.literal;
   const phraseMeaning = lang === 'uk' ? phrase.meaning_uk : phrase.meaning;
   const phraseText = lang === 'uk' ? phrase.text_uk : phrase.text;
 
   return (
-    <TouchableOpacity onPress={() => setExpanded(!expanded)} activeOpacity={0.9}>
+    <TouchableOpacity onPress={() => {
+      const opening = !expanded;
+      setExpanded(opening);
+      if (opening) {
+        updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }]).catch(() => {});
+      }
+    }} activeOpacity={0.9}>
       <View style={[styles.container, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
         {/* Decorative background dots */}
         <View style={[styles.decorDot, { backgroundColor: t.accent + '15', top: -20, right: -20 }]} />
@@ -63,7 +60,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
             <Image source={DAILY_PHRASE_IMAGES[themeMode]} style={{ width: 36, height: 36 }} resizeMode="contain" />
           </View>
           <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>ФРАЗА ДНЯ</Text>
+            <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>{triLang(lang, { uk: 'ВИСЛІВ ДНЯ', ru: 'ФРАЗА ДНЯ', es: 'FRASE DEL DÍA' })}</Text>
           </View>
           <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.accent} />
         </View>
@@ -73,7 +70,7 @@ export default function DailyPhraseCard({ userLevel }: Props) {
 
         {/* English phrase */}
         <Text style={[styles.englishText, { color: t.textPrimary, fontSize: f.body }]}>
-          "{phrase.english}"
+          {`"${phrase.english}"`}
         </Text>
 
         {/* Expanded content */}
@@ -118,6 +115,12 @@ export default function DailyPhraseCard({ userLevel }: Props) {
                 source="daily_phrase"
                 sourceId={phrase.date}
                 size={22}
+                literalRu={phrase.literal}
+                literalUk={phrase.literal_uk}
+                explanationRu={phrase.meaning}
+                explanationUk={phrase.meaning_uk}
+                exampleRu={phrase.text}
+                exampleUk={phrase.text_uk}
               />
             </View>
           </View>

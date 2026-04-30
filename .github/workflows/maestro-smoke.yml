@@ -1,0 +1,94 @@
+name: Maestro Quality Gates
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  detect-critical-changes:
+    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    outputs:
+      run_maestro: ${{ steps.filter.outputs.critical }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: filter
+        uses: dorny/paths-filter@v3
+        with:
+          filters: |
+            critical:
+              - 'app/_layout.tsx'
+              - 'app/xp_manager.ts'
+              - 'app/premium_guard.ts'
+              - 'components/EnergyContext.tsx'
+              - 'app/arena_*'
+              - 'app/firestore_*'
+
+  maestro-smoke-regression:
+    needs: detect-critical-changes
+    if: |
+      (github.event_name == 'pull_request' && needs.detect-critical-changes.outputs.run_maestro == 'true') ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Maestro CLI
+        run: curl -Ls "https://get.maestro.mobile.dev" | bash
+
+      - name: Add Maestro to PATH
+        run: echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+
+      - name: Run smoke suite
+        run: npm run maestro:smoke
+
+      - name: Run regression suite
+        run: npm run maestro:regression
+
+  maestro-regression-strict:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Maestro CLI
+        run: curl -Ls "https://get.maestro.mobile.dev" | bash
+
+      - name: Add Maestro to PATH
+        run: echo "$HOME/.maestro/bin" >> $GITHUB_PATH
+
+      - name: Run strict regression suite
+        run: npm run maestro:regression:strict

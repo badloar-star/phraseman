@@ -1,0 +1,193 @@
+Files with unapplied edits: 18
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/_layout.tsx
+UNAPPLIED OPS: 3
+
+  [1] session=dca4eba4
+  OLD: "import { ensureAnonUser, migrateLocalProgressToCloud, restoreFromCloud, syncToCloud } from './cloud_sync';"
+  NEW: "import { ensureAnonUser, migrateLocalProgressToCloud, restoreFromCloud, syncToCloud } from './cloud_sync';\nimport { registerInLeagueGroupSilently } from './firestore_leagues';"
+
+  [2] session=dca4eba4
+  OLD: "import { ensureAnonUser, migrateLocalProgressToCloud, restoreFromCloud, syncToCloud } from './cloud_sync';"
+  NEW: "import { ensureAnonUser, migrateLocalProgressToCloud, restoreFromCloud, syncToCloud } from './cloud_sync';\nimport { registerInLeagueGroupSilently } from './firestore_leagues';"
+
+  [3] session=33b61ac9
+  OLD: '  useEffect(() => {\n    if (!showOnboarding && pendingRoute) {\n      const t = setTimeout(() => {\n        router.replace(pendingRoute as any);\n        setPendingRoute(null);\n      }, 50);\n      return'
+  NEW: '  useEffect(() => {\n    if (!showOnboarding && pendingRoute) {\n      const t = setTimeout(() => {\n        router.replace(pendingRoute as any);\n        setPendingRoute(null);\n      }, 50);\n      return'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/streak_stats.tsx
+UNAPPLIED OPS: 3
+
+  [1] session=33b61ac9
+  OLD: "import { hapticTap } from '../hooks/use-haptics';"
+  NEW: "import { hapticTap } from '../hooks/use-haptics';\nimport { useDuelRank } from '../hooks/use-duel-rank';"
+
+  [2] session=33b61ac9
+  OLD: '  const { isPremium }                            = usePremium();'
+  NEW: '  const { isPremium }                            = usePremium();\n  const duelRank                                 = useDuelRank();'
+
+  [3] session=33b61ac9
+  OLD: '        {/* ── ПАРИ НА СТРИК ─────────────────────────────────────────────────── */}\n        <WagerCard isUK={isUK} t={t} f={f} totalStreak={totalStreak} />'
+  NEW: "        {/* ── РЕЙТИНГ ДУЭЛЕЙ ────────────────────────────────────────────────── */}\n        <TouchableOpacity\n          activeOpacity={0.82}\n          onPress={() => router.push('/duel_rating' as any"
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/(tabs)/hall_of_fame.tsx
+UNAPPLIED OPS: 2
+
+  [1] session=b8657361
+  OLD: '  const [profilePlayer, setProfile] = useState<HoFPlayerInfo | null>(null);'
+  NEW: '  const [profilePlayer, setProfile] = useState<HoFPlayerInfo | null>(null);\n  const [refreshing, setRefreshing] = useState(false);'
+
+  [2] session=b8657361
+  OLD: "import { Animated, FlatList, Modal, Pressable, RefreshControl, Text, TouchableOpacity, View } from 'react-native';"
+  NEW: "import { Animated, FlatList, Modal, Pressable, RefreshControl, ScrollView, Text, TouchableOpacity, View } from 'react-native';"
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/duel_results.tsx
+UNAPPLIED OPS: 2
+
+  [1] session=33b61ac9
+  OLD: 'export default function DuelResultsScreen() {'
+  NEW: '// ── Анимированная звёздочка ────────────────────────────────────────────────────\nfunction AnimStar({ delay, isGain, color }: { delay: number; isGain: boolean; color: string }) {\n  const scale = useR'
+
+  [2] session=33b61ac9
+  OLD: '  useEffect(() => {\n    if (players.length > 0) {\n      Animated.parallel([\n        Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, tension: 60 }),\n        Animated.timing(opacityAnim,'
+  NEW: '  useEffect(() => {\n    if (players.length > 0) {\n      Animated.parallel([\n        Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, tension: 60 }),\n        Animated.timing(opacityAnim,'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/firestore_leagues.ts
+UNAPPLIED OPS: 2
+
+  [1] session=dca4eba4
+  OLD: "import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';\nimport { ensureAnonUser } from './cloud_sync';\nimport { GroupMember } from './league_engine';"
+  NEW: "import AsyncStorage from '@react-native-async-storage/async-storage';\nimport { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';\nimport { ensureAnonUser } from './cloud_sync';\nimport { GroupMember } f"
+
+  [2] session=dca4eba4
+  OLD: '// ── Загрузить участников группы ──────────────────────────────────────────────'
+  NEW: '// ── Тихая регистрация в группу при старте приложения ────────────────────────\n// Вызывается из _layout.tsx чтобы каждый пользователь попал в league_groups\n// даже если он никогда не открывал экран к'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/services/duel_db.ts
+UNAPPLIED OPS: 2
+
+  [1] session=33b61ac9
+  OLD: "export function rankToQuestionLevel(tier: RankTier): string {\n  const map: Record<RankTier, string> = {\n    bronze: 'A1',\n    silver: 'A1',\n    gold: 'A2',\n    platinum: 'A2',\n    diamond: 'B1',\n    m"
+  NEW: "export function rankToQuestionLevel(tier: RankTier): string {\n  const map: Record<RankTier, string> = {\n    bronze: 'A1',\n    silver: 'A1',\n    gold: 'A2',\n    platinum: 'A2',\n    diamond: 'B1',\n    m"
+
+  [2] session=33b61ac9
+  OLD: '  DuelProfile, DuelSession, SessionPlayer,\n  DuelRoom, MatchmakingEntry, DuelQuestion,\n  Rank, RankTier,'
+  NEW: '  DuelProfile, DuelSession, SessionPlayer,\n  DuelRoom, MatchmakingEntry, DuelQuestion,\n  Rank, RankTier, SessionSize,'
+
+============================================================
+FILE: c:/appsprojects/phraseman/firebase.json
+UNAPPLIED OPS: 2
+
+  [1] session=dca4eba4
+  OLD: '  "firestore": {\n    "rules": "firestore.rules"\n  },'
+  NEW: '  "firestore": {\n    "rules": "firestore.rules",\n    "indexes": "firestore.indexes.json"\n  },'
+
+  [2] session=33b61ac9
+  OLD: '  "hosting": {'
+  NEW: '  "firestore": {\n    "rules": "firestore.rules"\n  },\n  "hosting": {'
+
+============================================================
+FILE: c:/appsprojects/phraseman/functions/src/index.ts
+UNAPPLIED OPS: 2
+
+  [1] session=33b61ac9
+  OLD: "import { runMatchmaking } from './matchmaking';"
+  NEW: "import { runMatchmaking } from './matchmaking';\nimport { syncLeaderboardFromUsers } from './sync_leaderboard';"
+
+  [2] session=33b61ac9
+  OLD: '// ─── Matchmaking ─────────────────────────────────────────────────────────────'
+  NEW: "// ─── Leaderboard sync ────────────────────────────────────────────────────────\n\nexport const syncLeaderboardCron = functions.scheduler.onSchedule(\n  { schedule: 'every 2 hours', timeZone: 'UTC' },\n "
+
+============================================================
+FILE: c:/appsprojects/phraseman/hooks/use-audio.ts
+UNAPPLIED OPS: 2
+
+  [1] session=b8657361
+  OLD: "const soundCache: Record<string, import('expo-av').Audio.Sound> = {};"
+  NEW: "const soundCache: Record<string, import('expo-av').Audio.Sound> = {};\nlet audioModeSet = false;\n\nasync function ensureAudioMode() {\n  if (!Audio || audioModeSet) return;\n  try {\n    await Audio.setAud"
+
+  [2] session=b8657361
+  OLD: '    if (Audio && audioIndex[text]) {'
+  NEW: '    await ensureAudioMode();\n    if (Audio && audioIndex[text]) {'
+
+============================================================
+FILE: c:/appsprojects/phraseman/hooks/use-duel-session.ts
+UNAPPLIED OPS: 2
+
+  [1] session=33b61ac9
+  OLD: "    } else if (session.state === 'reveal') {\n      setPhase('reveal');\n      clearQuestionTimer();\n      clearBotTimers();"
+  NEW: "    } else if (session.state === 'reveal') {\n      setPhase('reveal');\n      clearQuestionTimer();\n      clearBotTimers();\n      // Для бот-сессий автоматически переходим к следующему вопросу\n      if"
+
+  [2] session=33b61ac9
+  OLD: '  const botTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);\n  const questionTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);\n  const revealTimerRef = useRef<ReturnType<typeof se'
+  NEW: '  const botTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);\n  const questionTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);\n  const revealTimerRef = useRef<ReturnType<typeof se'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app.json
+UNAPPLIED OPS: 1
+
+  [1] session=33b61ac9
+  OLD: '      "edgeToEdgeEnabled": true,'
+  NEW: '      "intentFilters": [\n        {\n          "action": "VIEW",\n          "autoVerify": true,\n          "data": [\n            { "scheme": "https", "host": "badloar-star.github.io", "pathPrefix": "/phra'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/(tabs)/home.tsx
+UNAPPLIED OPS: 1
+
+  [1] session=33b61ac9
+  OLD: "import { trackFeatureOpened } from '../user_stats';"
+  NEW: "import { trackFeatureOpened } from '../user_stats';\nimport { useDuelRank } from '../../hooks/use-duel-rank';"
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/duel_game.tsx
+UNAPPLIED OPS: 1
+
+  [1] session=33b61ac9
+  OLD: '  const handleAnswer = async (option: string) => {\n    if (hasAnswered) return;\n    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);\n    await submitMyAnswer(option);\n  };'
+  NEW: '  const handleAnswer = async (option: string) => {\n    if (hasAnswered) return;\n    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);\n    await submitMyAnswer(option);\n  };\n\n  const handl'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/duel_lobby.tsx
+UNAPPLIED OPS: 1
+
+  [1] session=33b61ac9
+  OLD: 'export default function DuelLobbyScreen() {\n  const router = useRouter();\n  const { theme: t, f } = useTheme();\n  const { spendOne, isUnlimited, energy } = useEnergy();\n  const [size, setSize] = useSt'
+  NEW: 'export default function DuelLobbyScreen() {\n  const router = useRouter();\n  const { theme: t, f } = useTheme();\n  const { spendOne, isUnlimited, energy } = useEnergy();\n  const [size, setSize] = useSt'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/flashcards.tsx
+UNAPPLIED OPS: 1
+
+  [1] session=a9f317e2
+  OLD: '        {/* Flip all button */}\n        {filteredCards.length > 0 && ('
+  NEW: "        {/* Add card button — custom category only */}\n        {activeCat === 'custom' && (\n          <TouchableOpacity\n            onPress={() => { setDraftEN(''); setDraftTR(''); setEditingId(null);"
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/league_engine.ts
+UNAPPLIED OPS: 1
+
+  [1] session=33b61ac9
+  OLD: "import AsyncStorage from '@react-native-async-storage/async-storage';\nimport { loadWeekLeaderboard, getMyWeekPoints } from './hall_of_fame_utils';\nimport { getOrCreateLeagueGroup, updateMyGroupPoints "
+  NEW: "import AsyncStorage from '@react-native-async-storage/async-storage';\nimport { loadWeekLeaderboard, getMyWeekPoints } from './hall_of_fame_utils';\nimport { getOrCreateLeagueGroup, updateMyGroupPoints "
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/league_screen.tsx
+UNAPPLIED OPS: 1
+
+  [1] session=b8657361
+  OLD: '  const [loading, setLoading]           = useState(true);'
+  NEW: '  const [loading, setLoading]           = useState(true);\n  const [refreshing, setRefreshing]     = useState(false);'
+
+============================================================
+FILE: c:/appsprojects/phraseman/app/lesson_irregular_verbs.tsx
+UNAPPLIED OPS: 1
+
+  [1] session=327644f1
+  OLD: '  const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || [];'
+  NEW: '  const allVerbs = IRREGULAR_VERBS_BY_LESSON[lessonId] || [];\n  const allVerbsFlat: IrregularVerb[] = Object.values(IRREGULAR_VERBS_BY_LESSON).flat();'

@@ -3,8 +3,6 @@
  * ACTIVE RECALL — Модуль интервального повторения для неправильных ответов
  * ═══════════════════════════════════════════════════════════════════════════
  *
- * СТАТУС: STANDALONE — не подключён к приложению. Ожидает одобрения.
- *
  * Цель:
  *   Запоминать фразы, которые пользователь вводит НЕПРАВИЛЬНО в уроках,
  *   и предлагать их для повторения в последующие дни по алгоритму SM-2
@@ -17,10 +15,11 @@
  *   • easeFactor ∈ [1.3 … 2.5], начинается с 2.5
  *   • interval начинается с 1 дня, потом 3, потом easeFactor × предыдущий
  *
- * Интеграция (когда получишь одобрение):
- *   1. В lesson1.tsx при неправильном ответе: recordMistake(phrase, lessonId, correct)
- *   2. На главном экране или в отдельном разделе: getDueItems() → показать карточки
- *   3. После ответа пользователя: markReviewed(phrase, gotCorrect)
+ * Интеграция:
+ *   1. recordMistake из урока, квиза, арены и т.д.
+ *   2. Бейдж на главной: countDueItemsToday() — без записи в storage
+ *   3. Сессия /review: getDueItems(limit, { commitSessionOverflow: true })
+ *   4. markReviewed после ответа в сессии
  *
  * Хранилище: AsyncStorage под ключом 'active_recall_items'
  * ═══════════════════════════════════════════════════════════════════════════
@@ -30,6 +29,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
+/** Откуда запись попала в очередь (старые данные без поля = урок). */
+export type MistakeSource = 'lesson' | 'quiz' | 'arena' | 'diagnostic' | 'exam';
+
 export interface RecallItem {
   /** Неправильно введённая/пропущенная фраза (английская часть) */
   phrase:        string;
@@ -37,8 +39,12 @@ export interface RecallItem {
   correctAnswer: string;
   /** Правильный перевод/вариант — украинский (опционально) */
   correctAnswerUK?: string;
+  /** Подсказка для локали es (опционально) */
+  correctAnswerES?: string;
   /** ID урока, откуда взята фраза */
   lessonId:      number;
+  /** Источник ошибки (для подписи на экране повторения) */
+  source?:       MistakeSource;
   /** Счётчик суммарных ошибок по этой фразе */
   errorCount:    number;
   /** Кол-во правильных повторений подряд (для SM-2) */
@@ -84,15 +90,65 @@ function todayStart(): number {
   return d.getTime();
 }
 
+function endOfTodayMs(): number {
+  return todayStart() + MS_PER_DAY - 1;
+}
+
+function countDueInList(items: RecallItem[]): number {
+  const end = endOfTodayMs();
+  return items.filter(i => i.nextDue <= end).length;
+}
+
+/**
+ * Сколько фраз просрочено на сегодня (nextDue ≤ конец календарного дня).
+ * Без записи в AsyncStorage — для бейджа на главной и табе.
+ */
+export async function countDueItemsToday(): Promise<number> {
+  const items = await loadItems();
+  return countDueInList(items);
+}
+
+// ─── Миграции: таблица исправлений неверных фраз ─────────────────────────────
+// Ключ — старая (неверная) фраза, значение — исправленная.
+// Добавляй сюда новые записи при обнаружении ошибок в lesson_data_*.ts.
+const PHRASE_CORRECTIONS: Record<string, string> = {
+  'Our bills are paid by them at end of every month.':
+    'Our bills are paid by them at the end of every month.',
+  'That important document is signed by them at end of every year.':
+    'That important document is signed by them at the end of every year.',
+  'The train arrives at seven AM':
+    'The train arrives at seven fifteen AM',
+};
+
 // ─── Загрузка / сохранение ───────────────────────────────────────────────────
 
 async function loadItems(): Promise<RecallItem[]> {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as RecallItem[]) : [];
+    if (!raw) return [];
+    const items = JSON.parse(raw) as RecallItem[];
+    return applyCorrections(items);
   } catch {
     return [];
   }
+}
+
+/** Исправляет устаревшие фразы в хранилище (однократно при загрузке). */
+function applyCorrections(items: RecallItem[]): RecallItem[] {
+  let changed = false;
+  const fixed = items.map(item => {
+    const correct = PHRASE_CORRECTIONS[item.phrase];
+    if (correct) {
+      changed = true;
+      return { ...item, phrase: correct };
+    }
+    return item;
+  });
+  // Сохраняем асинхронно только если были изменения
+  if (changed) {
+    AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(fixed)).catch(() => {});
+  }
+  return fixed;
 }
 
 async function saveItems(items: RecallItem[]): Promise<void> {
@@ -112,12 +168,15 @@ async function saveItems(items: RecallItem[]): Promise<void> {
  * @param correctAnswer    Правильный перевод — русский
  * @param lessonId         Номер урока (1–32)
  * @param correctAnswerUK  Правильный перевод — украинский (опционально)
+ * @param correctAnswerES  Подсказка на испанском (опционально)
  */
 export async function recordMistake(
   phrase:           string,
   correctAnswer:    string,
   lessonId:         number,
   correctAnswerUK?: string,
+  source:           MistakeSource = 'lesson',
+  correctAnswerES?: string,
 ): Promise<void> {
   const raw = await loadItems();
 
@@ -144,8 +203,12 @@ export async function recordMistake(
       existing.easeFactor - 0.2,
     );
     existing.lastReviewed = Date.now();
-    // Обновляем переводы если переданы
+    // Актуализируем подсказки и урок/источник
+    if (correctAnswer) existing.correctAnswer = correctAnswer;
     if (correctAnswerUK) existing.correctAnswerUK = correctAnswerUK;
+    if (correctAnswerES) existing.correctAnswerES = correctAnswerES;
+    existing.lessonId  = lessonId;
+    existing.source      = source;
     // Следующее повторение — через 1 день
     existing.nextDue      = daysFromNow(1);
   } else {
@@ -154,7 +217,9 @@ export async function recordMistake(
       phrase,
       correctAnswer,
       correctAnswerUK,
+      correctAnswerES,
       lessonId,
+      source,
       errorCount:  1,
       repetitions: 0,
       interval:    1,
@@ -169,27 +234,34 @@ export async function recordMistake(
   await saveItems(items);
 }
 
+export type GetDueItemsOptions = {
+  /**
+   * true — оформить сессию: «лишние» сегодняшние просрочки переносятся на завтра (защита от перегруза).
+   * Вызывайте так только при входе в /review. По умолчанию false (без записи в storage).
+   */
+  commitSessionOverflow?: boolean;
+};
+
 /**
- * Получить фразы, которые нужно повторить сегодня (nextDue ≤ сегодня + конец дня).
- *
- * Приоритет: сначала самые трудные (errorCount DESC), затем самые просроченные (nextDue ASC).
- * По умолчанию лимит = SESSION_LIMIT (7) — не перегружаем пользователя.
- *
- * @param limit Максимальное количество фраз (по умолчанию SESSION_LIMIT)
- * @returns Список фраз для повторения
+ * Фразы к повторению сегодня (nextDue ≤ конец дня), с сортировкой по приоритету.
+ * Перегруз (commitSessionOverflow) — только при старте сессии в review.tsx.
  */
-export async function getDueItems(limit = SESSION_LIMIT): Promise<RecallItem[]> {
+export async function getDueItems(
+  limit = SESSION_LIMIT,
+  options?: GetDueItemsOptions,
+): Promise<RecallItem[]> {
   const items = await loadItems();
-  const endOfToday = todayStart() + MS_PER_DAY - 1;
+  const endOfToday = endOfTodayMs();
+  const commit = options?.commitSessionOverflow === true;
 
   const due = items
     .filter(i => i.nextDue <= endOfToday)
     .sort((a, b) => b.errorCount - a.errorCount || a.nextDue - b.nextDue);
 
   const selected = due.slice(0, limit);
-  const overflow = due.slice(limit); // остаток сегодняшних — переносим на завтра
+  const overflow = due.slice(limit);
 
-  if (overflow.length > 0) {
+  if (overflow.length > 0 && commit) {
     const tomorrow = daysFromNow(1);
     const selectedSet = new Set(selected.map(i => i.phrase));
     for (const item of items) {
@@ -291,8 +363,7 @@ export async function getStats(): Promise<{
   hardestPhrases: RecallItem[];
 }> {
   const items       = await loadItems();
-  const endOfToday  = todayStart() + MS_PER_DAY - 1;
-  const dueTodayCount  = items.filter(i => i.nextDue <= endOfToday).length;
+  const dueTodayCount  = countDueInList(items);
   const learnedCount   = items.filter(i => i.repetitions >= 5).length;
   // Самые трудные фразы — те, у которых больше всего ошибок
   const hardestPhrases = [...items]
@@ -317,6 +388,138 @@ export async function getItemsByLesson(lessonId: number): Promise<RecallItem[]> 
     .sort((a, b) => b.errorCount - a.errorCount);
 }
 
+// ── Запись из арены, зачёта, диагностики (агрегируется в той же очереди SRS) ─
+
+/** Английская цель для повторения по вопросу арены (часто вставка в пропуск). */
+export function buildArenaEnglishPhrase(q: {
+  question: string;
+  correct: string;
+  task?: string;
+}): string {
+  const qu = (q.question || '').trim();
+  if (/___+/.test(qu)) {
+    return qu.replace(/___+/, q.correct).replace(/\s+/g, ' ').trim();
+  }
+  return (q.correct || '').trim();
+}
+
+/** Подсказка на «лице» карточки: правило с кириллицей или формулировка задания. */
+export function buildArenaHintRU(q: {
+  rule?: string;
+  task?: string;
+  question: string;
+}): string {
+  const rule = (q.rule || '').trim();
+  if (/[а-яёіїєґА-ЯЁІЇЄґ]/.test(rule)) return rule;
+  const stem = (q.question || '').replace(/___+/, '…');
+  return [q.task, stem].filter(Boolean).join(' — ') || stem || (q.task ?? '');
+}
+
+export async function recordMistakeFromArena(q: {
+  question: string;
+  correct: string;
+  task?: string;
+  rule?: string;
+}): Promise<void> {
+  const phrase = buildArenaEnglishPhrase(q);
+  if (!phrase) return;
+  await recordMistake(phrase, buildArenaHintRU(q), 0, undefined, 'arena');
+}
+
+/** Собранное предложение для зачёта уровня (пропуск или целое MC). */
+export function buildLevelExamEnglish(q: {
+  q: string;
+  opts: string[];
+  correct: number;
+  type?: string;
+}): string {
+  if (!q?.opts?.length) return '';
+  const c = q.opts[q.correct];
+  if (!c) return '';
+  if (q.q.includes('___')) return q.q.replace('___', c).replace(/\s+/g, ' ').trim();
+  return c.trim();
+}
+
+export function buildLevelExamHintPair(q: {
+  topic: string;
+  topicUK: string;
+  q: string;
+}): { ru: string; uk: string } {
+  return {
+    ru: `${q.topic} · ${q.q}`,
+    uk: `${q.topicUK} · ${q.q}`,
+  };
+}
+
+/** Формат вопроса диагностики (без импорта diagnostic_test). */
+export type DiagnosticMistakeQ = {
+  phrase: string;
+  hintRU: string;
+  hintUK: string;
+  opts: string[];
+  correct: number;
+  type?: 'fill' | 'build' | 'choice4' | 'type' | 'match';
+  words?: string[];
+  answer?: string;
+};
+
+export function buildDiagnosticEnglishPhrase(q: DiagnosticMistakeQ): string | null {
+  if (q.type === 'match') return null;
+  if (q.type === 'build' && q.answer) return q.answer.trim();
+  if (q.type === 'type' && q.answer) {
+    if (q.phrase.includes('___')) return q.phrase.replace('___', q.answer).replace(/\s+/g, ' ').trim();
+    return q.answer.trim();
+  }
+  if (!q.opts?.length) return null;
+  const c = q.opts[q.correct];
+  if (!c) return null;
+  if (q.phrase.includes('___')) return q.phrase.replace('___', c).replace(/\s+/g, ' ').trim();
+  return null;
+}
+
+export async function recordMistakeFromDiagnostic(q: DiagnosticMistakeQ): Promise<void> {
+  const phrase = buildDiagnosticEnglishPhrase(q);
+  if (!phrase) return;
+  await recordMistake(phrase, q.hintRU, 0, q.hintUK, 'diagnostic');
+}
+
+/**
+ * Только для проверки UI (маршрут admin_review_test): записать 7 фраз, «срочно» в очереди повторения.
+ * `lessonId` = 99 зарезервирован под такие сиды: старые тест-фразы с lessonId 99 удаляются.
+ * С высоким errorCount записи попадают в сессию раньше обычных.
+ */
+const ADMIN_BENCH_LESSON_ID = 99;
+const ADMIN_TEST_BENCH: { phrase: string; correctAnswer: string; correctAnswerUK: string }[] = [
+  { phrase: 'He is in the kitchen', correctAnswer: 'Он на кухне', correctAnswerUK: 'Він на кухні' },
+  { phrase: 'She went to the store', correctAnswer: 'Она пошла в магазин', correctAnswerUK: 'Вона пішла в магазин' },
+  { phrase: 'We will call you tomorrow', correctAnswer: 'Мы позвоним тебе завтра', correctAnswerUK: 'Ми подзвонимо тобі завтра' },
+  { phrase: 'I have never been there', correctAnswer: 'Я никогда не был там', correctAnswerUK: 'Я ніколи не був там' },
+  { phrase: 'They are waiting for us', correctAnswer: 'Они ждут нас', correctAnswerUK: 'Вони чекають на нас' },
+  { phrase: 'Could you help me please', correctAnswer: 'Не могли бы вы мне помочь', correctAnswerUK: 'Не могли б ви мені допомогти' },
+  { phrase: 'The weather is nice today', correctAnswer: 'Сегодня хорошая погода', correctAnswerUK: 'Сьогодні гарна погода' },
+];
+
+export async function seedAdminTestReviewSession(): Promise<void> {
+  const existing = await loadItems();
+  const rest = existing.filter(i => i.lessonId !== ADMIN_BENCH_LESSON_ID);
+  const t0 = todayStart() - 1; // наступило «сегодня» для getDueItems
+  const now = Date.now();
+  const seeded: RecallItem[] = ADMIN_TEST_BENCH.map(t => ({
+    phrase: t.phrase,
+    correctAnswer: t.correctAnswer,
+    correctAnswerUK: t.correctAnswerUK,
+    lessonId: ADMIN_BENCH_LESSON_ID,
+    errorCount: 9_000,
+    repetitions: 0,
+    interval: 1,
+    easeFactor: INITIAL_EASE_FACTOR,
+    createdAt: now,
+    lastReviewed: now - 1,
+    nextDue: t0,
+  }));
+  await saveItems([...rest, ...seeded]);
+}
+
 // ─── Хелпер для интеграции с lesson1.tsx (вызывается при checkAnswer) ────────
 //
 // Пример использования в lesson1.tsx:
@@ -333,3 +536,6 @@ export async function getItemsByLesson(lessonId: number): Promise<RecallItem[]> 
 //   }
 //
 // ─────────────────────────────────────────────────────────────────────────────
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

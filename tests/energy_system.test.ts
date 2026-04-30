@@ -20,6 +20,11 @@ describe('Energy System', () => {
   });
 
   afterEach(() => {
+    try {
+      jest.runOnlyPendingTimers();
+    } catch {
+      // ignore if no fake timers pending
+    }
     jest.useRealTimers();
   });
 
@@ -54,6 +59,10 @@ describe('Energy System', () => {
         lastRecoveryTime: Date.now(),
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
+      (AsyncStorage.multiGet as jest.Mock).mockResolvedValue([
+        ['premium_active', 'false'],
+        ['premium_expiry', '0'],
+      ]);
       (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
 
       const result = await spendEnergy(1);
@@ -134,10 +143,10 @@ describe('Energy System', () => {
   });
 
   describe('checkAndRecover', () => {
-    it('should recover energy after 2 hours', async () => {
+    it('should recover energy after 30 minutes', async () => {
       const currentState: EnergyState = {
         current: 2,
-        lastRecoveryTime: Date.now() - 2 * 60 * 60 * 1000, // 2 hours ago
+        lastRecoveryTime: Date.now() - 30 * 60 * 1000, // 30 min ago = 1 cycle
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
       (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
@@ -147,10 +156,10 @@ describe('Energy System', () => {
       expect(result.current).toBe(3);
     });
 
-    it('should not recover energy before 2 hours', async () => {
+    it('should not recover energy before 30 minutes', async () => {
       const currentState: EnergyState = {
         current: 2,
-        lastRecoveryTime: Date.now() - 1 * 60 * 60 * 1000, // 1 hour ago
+        lastRecoveryTime: Date.now() - 10 * 60 * 1000, // 10 min ago = 0 cycles
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
 

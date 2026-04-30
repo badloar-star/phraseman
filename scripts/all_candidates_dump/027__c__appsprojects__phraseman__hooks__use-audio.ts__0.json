@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/hooks/use-audio.ts",
+  "session": "b8657361",
+  "op_index": 0,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "const soundCache: Record<string, import('expo-av').Audio.Sound> = {};",
+  "new_string": "const soundCache: Record<string, import('expo-av').Audio.Sound> = {};\nlet audioModeSet = false;\n\nasync function ensureAudioMode() {\n  if (!Audio || audioModeSet) return;\n  try {\n    await Audio.setAudioModeAsync({\n      playsInSilentModeIOS: true,\n      staysActiveInBackground: false,\n    });\n    audioModeSet = true;\n  } catch {}\n}"
+}

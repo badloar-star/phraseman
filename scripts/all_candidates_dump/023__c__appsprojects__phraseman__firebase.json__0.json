@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/firebase.json",
+  "session": "dca4eba4",
+  "op_index": 0,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "  \"firestore\": {\n    \"rules\": \"firestore.rules\"\n  },",
+  "new_string": "  \"firestore\": {\n    \"rules\": \"firestore.rules\",\n    \"indexes\": \"firestore.indexes.json\"\n  },"
+}

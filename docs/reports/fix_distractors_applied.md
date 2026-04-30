@@ -1,0 +1,81 @@
+# Smart fix distractors — APPLIED — 2026-04-29T09:54:25.582Z
+
+Файлов отсканировано: 4, слов: 13714
+Найдено fake: 53, заменено: 53, оставлено как было: 13662
+
+## Примеры замен
+- correct «am?»
+  - было: ["pm?","is?","are?","be?","in?"]
+  - стало: ["is?","are?","was?","be?","in?"]
+- correct «am?»
+  - было: ["pm?","is?","are?","be?","in?"]
+  - стало: ["is?","are?","was?","be?","in?"]
+- correct «am.»
+  - было: ["pm.","is.","are.","be.","in."]
+  - стало: ["is.","are.","was.","be.","in."]
+- correct «am.»
+  - было: ["pm.","is.","are.","be.","in."]
+  - стало: ["is.","are.","was.","be.","in."]
+- correct «am.»
+  - было: ["pm.","is.","are.","be.","in."]
+  - стало: ["is.","are.","was.","be.","in."]
+- correct «am?»
+  - было: ["pm?","is?","are?","be?","in?"]
+  - стало: ["is?","are?","was?","be?","in?"]
+- correct «am.»
+  - было: ["pm.","is.","are.","be.","in."]
+  - стало: ["is.","are.","was.","be.","in."]
+- correct «am.»
+  - было: ["pm.","is.","are.","be.","in."]
+  - стало: ["is.","are.","was.","be.","in."]
+- correct «heavy»
+  - было: ["heaven","heart","health","heard","heavy-ly"]
+  - стало: ["heaven","heart","health","heard","heavies"]
+- correct «good»
+  - было: ["goods","gold","god","glad","good-ly"]
+  - стало: ["goods","gold","god","glad","goodly"]
+- correct «light»
+  - было: ["lights","night","right","light-ly","fight"]
+  - стало: ["lights","night","right","lighted","fight"]
+- correct «English»
+  - было: ["england","engine","enjoy","enough","entry"]
+  - стало: ["Spanish","engine","enjoy","enough","entry"]
+- correct «Magnet»
+  - было: ["magic","manage","market","magent","bold"]
+  - стало: ["magic","manage","market","Magnets","bold"]
+- correct «cozy»
+  - было: ["crazy","city","copy","cost","cozy-ly"]
+  - стало: ["crazy","city","copy","cost","cozying"]
+- correct «right»
+  - было: ["light","night","write","bright","right-ly"]
+  - стало: ["light","night","write","bright","rights"]
+- correct «short»
+  - было: ["shorts","shirt","sort","sport","short-ly"]
+  - стало: ["shorts","shirt","sort","sport","shorted"]
+- correct «hot»
+  - было: ["hat","hit","host","hole","hot-ly"]
+  - стало: ["hat","hit","host","hole","hots"]
+- correct «warm»
+  - было: ["worm","war","ward","warn","warm-ly"]
+  - стало: ["worm","war","ward","warn","warms"]
+- correct «hot»
+  - было: ["hat","hit","host","hole","hot-ly"]
+  - стало: ["hat","hit","host","hole","hots"]
+- correct «bird»
+  - было: ["birth","board","beard","coat","birdy"]
+  - стало: ["birth","board","beard","coat","birds"]
+- correct «strict»
+  - было: ["street","straight","stick","strike","strict-ly"]
+  - стало: ["street","straight","stick","strike","stricter"]
+- correct «twice»
+  - было: ["rough","twin","twice-ly","twelve","twenty"]
+  - стало: ["rough","twin","mice","twelve","twenty"]
+- correct «heavy»
+  - было: ["heaven","health","heart","heavy-ly","ready"]
+  - стало: ["heaven","health","heart","heavies","ready"]
+- correct «serious»
+  - было: ["series","search","service","several","serious-ly"]
+  - стало: ["series","search","service","several","seriously"]
+- correct «cold»
+  - было: ["could","cloud","gold","old","cold-ly"]
+  - стало: ["could","cloud","gold","old","colds"]

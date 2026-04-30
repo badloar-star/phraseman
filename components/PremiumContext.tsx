@@ -1,6 +1,9 @@
 import React, { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { AppState, DeviceEventEmitter } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { AppState } from 'react-native';
 import { getVerifiedPremiumStatus, invalidatePremiumCache } from '../app/premium_guard';
+import { FORCE_PREMIUM } from '../app/config';
+import { onAppEvent } from '../app/events';
 
 interface PremiumContextValue {
   isPremium: boolean;
@@ -17,16 +20,25 @@ export function usePremium(): PremiumContextValue {
 }
 
 export function PremiumProvider({ children }: { children: React.ReactNode }) {
-  const [isPremium, setIsPremium] = useState(false);
+  const [isPremium, setIsPremium] = useState(FORCE_PREMIUM);
   const backgroundedAtRef = React.useRef<number | null>(null);
 
   const reload = useCallback(async () => {
+    if (FORCE_PREMIUM) { setIsPremium(true); return; }
     const status = await getVerifiedPremiumStatus();
     setIsPremium(status);
   }, []);
 
-  // Load on mount
-  useEffect(() => { reload(); }, [reload]);
+  // Load on mount; if FORCE_PREMIUM — сбрасываем все флаги отмены премиума
+  useEffect(() => {
+    if (FORCE_PREMIUM) {
+      AsyncStorage.multiSet([
+        ['premium_active', 'true'],
+        ['tester_no_premium', 'false'],
+      ]).catch(() => {});
+    }
+    reload();
+  }, [reload]);
 
   // Reload when app comes to foreground — only invalidate cache if background > 5 min
   useEffect(() => {
@@ -49,7 +61,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
   // Instant update on purchase — set true immediately, reload only syncs cache
   useEffect(() => {
-    const sub = DeviceEventEmitter.addListener('premium_activated', () => {
+    const sub = onAppEvent('premium_activated', () => {
       setIsPremium(true);
       invalidatePremiumCache();
       // Sync cache in background — but don't let it override our true state
@@ -59,14 +71,15 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     return () => sub.remove();
   }, [reload]);
 
-  // Instant update on cancellation/expiry
+  // Instant update on cancellation/expiry / тестер «Снять премиум»
   useEffect(() => {
-    const sub = DeviceEventEmitter.addListener('premium_deactivated', () => {
+    const sub = onAppEvent('premium_deactivated', () => {
       setIsPremium(false);
       invalidatePremiumCache();
+      void reload();
     });
     return () => sub.remove();
-  }, []);
+  }, [reload]);
 
   return (
     <PremiumContext.Provider value={{ isPremium, reload }}>

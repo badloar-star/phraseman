@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  View, Text, TouchableOpacity, ScrollView, Alert, Dimensions,
+  View, Text, TouchableOpacity, ScrollView, Dimensions,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -10,10 +10,15 @@ import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { getLevelFromXP } from '../constants/theme';
-import { FRAMES, FrameDef, getBestAvatarForLevel, getBestFrameForLevel, getUnlockedFrames } from '../constants/avatars';
+import {
+  FRAMES, FrameDef, frameNameForLang, getBestAvatarForLevel, getBestFrameForLevel, getUnlockedFrames,
+} from '../constants/avatars';
+import { triLang } from '../constants/i18n';
+import type { Lang } from '../constants/i18n';
 import { loadAchievementStates } from './achievements';
 import AnimatedFrame from '../components/AnimatedFrame';
 import { hapticTap } from '../hooks/use-haptics';
+import { emitAppEvent } from './events';
 
 const { width: SW } = Dimensions.get('window');
 const COLS     = 4;
@@ -21,19 +26,19 @@ const CELL_GAP = 10;
 const SIDE_PAD = 16;
 const CELL_W   = Math.floor((SW - SIDE_PAD * 2 - CELL_GAP * (COLS - 1)) / COLS);
 
-const FRAME_BODY_H = Math.round(CELL_W * 1.0);
-const FRAME_TIP_H  = Math.round(CELL_W * 0.26);
+const FRAME_BODY_H = Math.round(CELL_W * 1.1);
 const CORNER       = Math.round(CELL_W * 0.20);
 
 // ── Ячейка рамки (настоящий AnimatedFrame внутри) ────────────────────────────
 function FrameCell({
-  frameId, color, nameUK, nameRU, unlockLevel, isSelected, isLocked, isUK, onPress, emoji,
+  frameId, color, name, unlockLevel, isSelected, isLocked, onPress, emoji,
 }: {
-  frameId: string; color: string; nameUK: string; nameRU: string;
+  frameId: string; color: string; name: string;
   unlockLevel: number; isSelected: boolean; isLocked: boolean;
-  isUK: boolean; onPress: () => void; emoji?: string;
+  onPress: () => void; emoji?: string;
 }) {
-  const bodyBg = isLocked ? '#181818' : color + '22';
+  const { theme: t, isDark, f } = useTheme();
+  const bodyBg = isLocked ? (isDark ? '#181818' : t.bgSurface2) : color + '22';
   const frameSize = Math.round(CELL_W * 0.58);
 
   return (
@@ -41,8 +46,7 @@ function FrameCell({
       <View style={{
         width: CELL_W, height: FRAME_BODY_H,
         backgroundColor: bodyBg,
-        borderTopLeftRadius: CORNER,
-        borderTopRightRadius: CORNER,
+        borderRadius: CORNER,
         alignItems: 'center',
         justifyContent: 'center',
         borderWidth: isSelected ? 2 : 0,
@@ -54,19 +58,11 @@ function FrameCell({
           <AnimatedFrame emoji={emoji || '🐣'} frameId={frameId} size={frameSize} />
         )}
       </View>
-      {/* V-кончик */}
-      <View style={{
-        width: 0, height: 0,
-        borderLeftWidth: CELL_W / 2, borderRightWidth: CELL_W / 2,
-        borderTopWidth: FRAME_TIP_H,
-        borderLeftColor: 'transparent', borderRightColor: 'transparent',
-        borderTopColor: bodyBg,
-      }} />
-      <Text style={{ color: isSelected ? color : isLocked ? '#3A3A3A' : '#888', fontSize: 9, textAlign: 'center', marginTop: 4, fontWeight: '600' }}
+      <Text style={{ color: isSelected ? color : t.textPrimary, fontSize: f.sub, textAlign: 'center', marginTop: 4, fontWeight: '600' }}
             numberOfLines={1} maxFontSizeMultiplier={1}>
-        {isUK ? nameUK : nameRU}
+        {name}
       </Text>
-      <Text style={{ color: isLocked ? '#2A2A2A' : '#555', fontSize: 8, fontWeight: '700' }} maxFontSizeMultiplier={1}>
+      <Text style={{ color: isDark ? t.textGhost : t.textMuted, fontSize: f.label, fontWeight: '700' }} maxFontSizeMultiplier={1}>
         Lv.{unlockLevel}
       </Text>
     </TouchableOpacity>
@@ -75,10 +71,10 @@ function FrameCell({
 
 type TabId = 'level' | 'achievement' | 'club';
 
-const TABS: { id: TabId; icon: string; labelRU: string; labelUK: string }[] = [
-  { id: 'level',       icon: '⭐',  labelRU: 'Уровень',      labelUK: 'Рівень' },
-  { id: 'achievement', icon: '🏅',  labelRU: 'Достижения',   labelUK: 'Досягнення' },
-  { id: 'club',        icon: '🏛',  labelRU: 'Клуб',         labelUK: 'Клуб' },
+const TABS: { id: TabId; icon: string; labelRU: string; labelUK: string; labelES: string }[] = [
+  { id: 'level',       icon: '⭐',  labelRU: 'Уровень',      labelUK: 'Рівень', labelES: 'Nivel' },
+  { id: 'achievement', icon: '🏅',  labelRU: 'Достижения',   labelUK: 'Досягнення', labelES: 'Logros' },
+  { id: 'club',        icon: '🏛',  labelRU: 'Клуб',         labelUK: 'Клуб', labelES: 'Club' },
 ];
 
 // ── Главный экран ─────────────────────────────────────────────────────────────
@@ -87,7 +83,6 @@ export default function AvatarSelect() {
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
 
   const [level, setLevel]       = useState(1);
   const [selEmoji, setSelEmoji] = useState('🐣');
@@ -137,31 +132,34 @@ export default function AvatarSelect() {
     return false;
   };
 
-  const getLockedAlert = (fr: FrameDef): { title: string; message: string } => {
+  const getLockedFrameToast = (
+    fr: FrameDef,
+  ): { messageRu: string; messageUk: string; messageEs: string } => {
     const type = fr.unlockType ?? 'level';
     if (type === 'achievement') {
-      const achName = isUK ? (fr.unlockAchievementNameUK ?? '') : (fr.unlockAchievementNameRU ?? '');
+      const achRu = fr.unlockAchievementNameRU ?? '';
+      const achUk = fr.unlockAchievementNameUK ?? '';
+      const achEs = fr.unlockAchievementNameES ?? achRu;
       return {
-        title:   isUK ? `🏅 Досягнення потрібне` : `🏅 Нужно достижение`,
-        message: isUK
-          ? `Відкрий досягнення «${achName}», щоб розблокувати цю рамку`
-          : `Открой достижение «${achName}», чтобы разблокировать эту рамку`,
+        messageRu: `🏅 Нужно достижение\nОткрой достижение «${achRu}», чтобы разблокировать эту рамку`,
+        messageUk: `🏅 Потрібне досягнення\nВідкрий досягнення «${achUk}», щоб розблокувати цю рамку`,
+        messageEs: `🏅 Hace falta un logro\nConsigue «${achEs}» en la pantalla de logros para desbloquear este marco.`,
       };
     }
     if (type === 'club') {
-      const clubName = isUK ? (fr.unlockClubNameUK ?? '') : (fr.unlockClubNameRU ?? '');
+      const clubRu = fr.unlockClubNameRU ?? '';
+      const clubUk = fr.unlockClubNameUK ?? '';
+      const clubEs = fr.unlockClubNameES ?? clubRu;
       return {
-        title:   isUK ? `🏛 Лише для членів клубу` : `🏛 Только для членов клуба`,
-        message: isUK
-          ? `Ця рамка доступна лише членам «${clubName}». Потрапи до цього клубу, щоб використовувати її!`
-          : `Эта рамка доступна только членам «${clubName}». Попади в этот клуб, чтобы использовать её!`,
+        messageRu: `🏛 Только для членов клуба\nЭта рамка доступна только членам «${clubRu}». Попади в этот клуб, чтобы использовать её!`,
+        messageUk: `🏛 Лише для членів клубу\nЦя рамка доступна лише членам «${clubUk}». Потрапи до цього клубу, щоб використовувати її!`,
+        messageEs: `🏛 Solo para miembros del club\n«${clubEs}»: entra en este club en la temporada para usar el marco.`,
       };
     }
     return {
-      title:   isUK ? `🔒 Рівень ${fr.unlockLevel}` : `🔒 Уровень ${fr.unlockLevel}`,
-      message: isUK
-        ? `Ця рамка відкриється на рівні ${fr.unlockLevel}`
-        : `Эта рамка откроется на уровне ${fr.unlockLevel}`,
+      messageRu: `🔒 Уровень ${fr.unlockLevel}\nЭта рамка откроется на уровне ${fr.unlockLevel}`,
+      messageUk: `🔒 Рівень ${fr.unlockLevel}\nЦя рамка відкриється на рівні ${fr.unlockLevel}`,
+      messageEs: `🔒 Nivel ${fr.unlockLevel}\nEste marco se desbloquea al llegar al nivel ${fr.unlockLevel}.`,
     };
   };
 
@@ -183,7 +181,7 @@ export default function AvatarSelect() {
           <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
         </TouchableOpacity>
         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-          {isUK ? 'Рамка' : 'Рамка'}
+          {triLang(lang, { ru: 'Рамка', uk: 'Рамка', es: 'Marco' })}
         </Text>
       </View>
 
@@ -191,7 +189,7 @@ export default function AvatarSelect() {
       <View style={{ alignItems: 'center', paddingVertical: 16 }}>
         <AnimatedFrame key={selFrame} emoji={selEmoji} frameId={selFrame} size={72} />
         <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 6 }}>
-          {isUK ? `Рівень ${level}` : `Уровень ${level}`}
+          {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}` })}
         </Text>
       </View>
 
@@ -204,12 +202,10 @@ export default function AvatarSelect() {
                 key={fr.id}
                 frameId={fr.id}
                 color={fr.color}
-                nameUK={fr.nameUK}
-                nameRU={fr.nameRU}
+                name={frameNameForLang(fr, lang as Lang)}
                 unlockLevel={fr.unlockLevel}
                 isSelected={fr.id === selFrame}
                 isLocked={false}
-                isUK={isUK}
                 emoji={selEmoji}
                 onPress={() => { hapticTap(); selectFrame(fr.id); }}
               />
@@ -219,16 +215,14 @@ export default function AvatarSelect() {
                 key={fr.id}
                 frameId={fr.id}
                 color={fr.color}
-                nameUK={fr.nameUK}
-                nameRU={fr.nameRU}
+                name={frameNameForLang(fr, lang as Lang)}
                 unlockLevel={fr.unlockLevel}
                 isSelected={false}
                 isLocked={true}
-                isUK={isUK}
                 onPress={() => {
                   hapticTap();
-                  const { title, message } = getLockedAlert(fr);
-                  Alert.alert(title, message);
+                  const { messageRu, messageUk, messageEs } = getLockedFrameToast(fr);
+                  emitAppEvent('action_toast', { type: 'info', messageRu, messageUk, messageEs });
                 }}
               />
             )),
@@ -252,9 +246,9 @@ export default function AvatarSelect() {
                 {active && (
                   <View style={{ position: 'absolute', top: 0, left: '25%', right: '25%', height: 2, borderRadius: 1, backgroundColor: t.textPrimary }} />
                 )}
-                <Text style={{ fontSize: 28 }}>{tab.icon}</Text>
-                <Text style={{ fontSize: 10, color, fontWeight: active ? '600' : '400', letterSpacing: 0.1 }} numberOfLines={1}>
-                  {isUK ? tab.labelUK : tab.labelRU}
+                <Text style={{ fontSize: f.numLg }}>{tab.icon}</Text>
+                <Text style={{ fontSize: f.label, color, fontWeight: active ? '600' : '400', letterSpacing: 0.1 }} numberOfLines={1}>
+                  {triLang(lang, { ru: tab.labelRU, uk: tab.labelUK, es: tab.labelES })}
                 </Text>
               </TouchableOpacity>
             );

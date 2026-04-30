@@ -1,9 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { checkAchievements } from './achievements';
+import { logStreakExtended, logStreakLost } from './firebase';
+import { updateMyGroupPoints } from './firestore_leagues';
 import { wasRepairedToday } from './streak_repair';
 import { checkWagerProgress } from './streak_wager';
+import { sendStreakWarning } from './notifications';
 
-export const LEVEL_BASE: Record<string, number> = { easy: 1, medium: 2, hard: 3 };
+export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
 export const streakMultiplier = (s: number): number =>
   s >= 30 ? 1.8 : s >= 14 ? 1.6 : s >= 7 ? 1.4 : s >= 3 ? 1.2 : 1;
@@ -12,13 +15,30 @@ export const pointsForAnswer = (level: string, streak: number): number =>
   Math.round(LEVEL_BASE[level] * streakMultiplier(streak) * 10) / 10;
 
 // ── Leaderboard (накопительный за всё время) ─────────────────────────────────
-export interface LeaderEntry { name: string; points: number; lang: string; avatar?: string; }
+export interface LeaderEntry { name: string; points: number; lang: string; avatar?: string; uid?: string; }
 export const LEADERBOARD_KEY = 'leaderboard';
 
 export const loadLeaderboard = async (): Promise<LeaderEntry[]> => {
   try {
     const s = await AsyncStorage.getItem(LEADERBOARD_KEY);
-    return s ? JSON.parse(s) : [];
+    if (!s) return [];
+    const parsed = JSON.parse(s);
+    if (!Array.isArray(parsed)) return [];
+    const arr: LeaderEntry[] = parsed;
+    // Deduplicate: merge entries with same name (case-insensitive)
+    const seen = new Map<string, LeaderEntry>();
+    for (const e of arr) {
+      if (!e || typeof e.name !== 'string') continue;
+      const key = e.name.trim().toLowerCase();
+      const existing = seen.get(key);
+      if (existing) {
+        existing.points += e.points;
+        if (e.avatar) existing.avatar = e.avatar;
+      } else {
+        seen.set(key, { ...e, name: e.name.trim() });
+      }
+    }
+    return Array.from(seen.values()).sort((a, b) => b.points - a.points);
   } catch { return []; }
 };
 
@@ -33,7 +53,9 @@ export const WEEK_BOARD_KEY = 'week_leaderboard';
 export const loadWeekLeaderboard = async (): Promise<WeekEntry[]> => {
   try {
     const s = await AsyncStorage.getItem(WEEK_BOARD_KEY);
-    return s ? JSON.parse(s) : [];
+    if (!s) return [];
+    const parsed = JSON.parse(s);
+    return Array.isArray(parsed) ? parsed : [];
   } catch { return []; }
 };
 
@@ -102,6 +124,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
     } else if (lastActive === yesterdayStr) {
       // Активны вчера — продолжаем стрик
       streak += 1;
+      logStreakExtended(streak);
     } else if (lastActive === null || lastActive < yesterdayStr) {
       // Пропустили день — проверяем заморозку / починку стрика
       const dayBefore = new Date();
@@ -124,8 +147,34 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       else if (lastActive === null) {
         streak = 1;
       }
-      // 4. Стрик потерян
+      // 4. Chain Shield активен — защищает от потери стрика
+      else if (lastActive && lastActive >= dayBeforeStr) {
+        const csRaw = await AsyncStorage.getItem('chain_shield');
+        if (csRaw) {
+          const cs = JSON.parse(csRaw) as { daysLeft: number; grantedAt: string };
+          if (cs.daysLeft > 0) {
+            const newDaysLeft = cs.daysLeft - 1;
+            if (newDaysLeft <= 0) {
+              await AsyncStorage.removeItem('chain_shield');
+            } else {
+              await AsyncStorage.setItem('chain_shield', JSON.stringify({ ...cs, daysLeft: newDaysLeft }));
+            }
+            // streak не меняем — щит спас
+          } else {
+            logStreakLost(streak);
+            AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(streak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+            streak = 1;
+          }
+        } else {
+          logStreakLost(streak);
+          AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(streak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+          streak = 1;
+        }
+      }
+      // 5. Стрик потерян
       else {
+        logStreakLost(streak);
+        AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(streak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
         streak = 1;
       }
     }
@@ -172,7 +221,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
  *
  * 1. leaderboard      — накопительный за всё время
  * 2. week_points_v2   — только за текущую неделю (авто-сброс)
- * 3. week_leaderboard — рейтинг за текущую неделю (для лиги)
+ * 3. week_leaderboard — рейтинг за текущую неделю (для клуба недели)
  * 4. daily_stats      — для графика статистики (опыт за день)
  * 5. streak           — стрик дней подряд + week_days_done
  */
@@ -186,13 +235,15 @@ export const addOrUpdateScore = async (
   if (!name || delta === 0) return;
 
   // ── 1. Leaderboard (накопительный) ──────────────────────────────────────
+  const canonicalName = name.trim();
   const board = await loadLeaderboard();
-  const idx = board.findIndex(e => e.name === name);
+  const idx = board.findIndex(e => e.name.trim().toLowerCase() === canonicalName.toLowerCase());
   if (idx >= 0) {
     board[idx].points += delta;
+    board[idx].name = canonicalName; // normalize in place
     if (avatar) board[idx].avatar = avatar;
   } else {
-    board.push({ name, points: delta, lang, avatar });
+    board.push({ name: canonicalName, points: delta, lang, avatar });
   }
   board.sort((a, b) => b.points - a.points);
   await saveLeaderboard(board);
@@ -231,11 +282,12 @@ export const addOrUpdateScore = async (
       await AsyncStorage.setItem('week_board_meta', JSON.stringify({ weekKey: currentWeekKey }));
     }
 
-    const wi = weekBoard.findIndex(e => e.name === name);
+    const wi = weekBoard.findIndex(e => e.name.trim().toLowerCase() === canonicalName.toLowerCase());
     if (wi >= 0) {
       weekBoard[wi].points += delta;
+      weekBoard[wi].name = canonicalName;
     } else {
-      weekBoard.push({ name, points: delta, lang });
+      weekBoard.push({ name: canonicalName, points: delta, lang });
     }
     weekBoard.sort((a, b) => b.points - a.points);
     await saveWeekLeaderboard(weekBoard);
@@ -260,6 +312,13 @@ export const addOrUpdateScore = async (
   // ── 5. Стрик и week_days_done — только при положительном начислении ────────
   if (delta > 0) {
     await updateStreakOnActivity();
+  }
+
+  // ── 6. Синхронизируем клуб недели (fire-and-forget)
+  // leaderboard теперь обновляется только через syncToCloud в xp_manager.ts
+  // чтобы избежать race condition (pushMyScore читала старый XP до обновления)
+  if (delta > 0) {
+    updateMyGroupPoints(newWeekPts).catch(() => {});
   }
 
 };

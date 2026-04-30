@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Animated } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { openTreasureChest, canOpenTreasureChest, getTreasureChestState } from '../app/variable_reward_system';
+import { openTreasureChest, canOpenTreasureChest } from '../app/variable_reward_system';
 import { registerXP } from '../app/xp_manager';
+import { emitAppEvent } from '../app/events';
+import XpGainBadge from './XpGainBadge';
 
 interface Props {
   onBonusXPEarned?: (bonusXP: number) => void;
@@ -16,6 +18,7 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const isUK = lang === 'uk';
+  const isES = lang === 'es';
 
   const [canOpen, setCanOpen] = useState(false);
   const [isOpening, setIsOpening] = useState(false);
@@ -78,10 +81,15 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
             AsyncStorage.getItem('app_lang'),
           ]);
           if (nameRaw) {
-            await registerXP(result.bonusXP, 'bonus_chest', nameRaw, (langRaw === 'uk' ? 'uk' : 'ru'));
+            await registerXP(
+              result.bonusXP,
+              'bonus_chest',
+              nameRaw,
+              langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru',
+            );
           }
           onBonusXPEarned?.(result.bonusXP);
-        } catch (e) {
+        } catch {
         }
       }
 
@@ -107,14 +115,12 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
       });
     } else {
       // Already opened or invalid attempt
-      const message = isPremium
-        ? (isUK ? 'Ви вже відкрили максимум сундуків сьогодні' : 'Вы уже открыли максимум сундуков сегодня')
-        : (isUK ? 'Повертайтеся завтра для нового сундука' : 'Возвращайтесь завтра для нового сундука');
-
-      Alert.alert(
-        isUK ? 'Сундук закритий' : 'Сундук закрыт',
-        message
-      );
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: `Сундук закрыт. ${isPremium ? 'Вы уже открыли максимум сундуков сегодня' : 'Возвращайтесь завтра для нового сундука'}`,
+        messageUk: `Сундук закритий. ${isPremium ? 'Ви вже відкрили максимум сундуків сьогодні' : 'Повертайтеся завтра для нового сундука'}`,
+        messageEs: `Cofre cerrado. ${isPremium ? 'Ya has abierto todos los cofres permitidos hoy' : 'Vuelve mañana por otro cofre'}`,
+      });
 
       // Reset animations
       Animated.timing(lidRotation, {
@@ -137,7 +143,7 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
       {/* Title */}
       <View style={styles.header}>
         <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>
-          {isUK ? '💎 СКАРБ ДНЯ' : '💎 КЛАД ДНЯ'}
+          {isUK ? '💎 СКАРБ ДНЯ' : isES ? '💎 COFRE DEL DÍA' : '💎 КЛАД ДНЯ'}
         </Text>
       </View>
 
@@ -190,16 +196,20 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
             },
           ]}
         >
-          <Text style={[styles.bonusText, { color: bonusXPResult > 0 ? t.correct : t.textMuted }]}>
-            {bonusXPResult > 0 ? '+' : ''}{bonusXPResult} XP
-          </Text>
+          {bonusXPResult > 0 ? (
+            <XpGainBadge amount={bonusXPResult} visible={showBonusDisplay} style={{ fontSize: f.h2 + 6 }} />
+          ) : (
+            <Text style={[styles.bonusText, { color: t.textMuted, fontSize: f.h2 + 6 }]}>
+              {bonusXPResult} XP
+            </Text>
+          )}
           {bonusXPResult > 0 && (
-            <Text style={[styles.bonusLabel, { color: t.correct }]}>
+            <Text style={[styles.bonusLabel, { color: t.correct, fontSize: f.label }]}>
               {bonusXPResult <= 10
-                ? (isUK ? '🎁 Малий приз' : '🎁 Малый приз')
+                ? (isUK ? '🎁 Малий приз' : isES ? '🎁 Premio pequeño' : '🎁 Малый приз')
                 : bonusXPResult <= 20
-                  ? (isUK ? '🎊 Середній приз' : '🎊 Средний приз')
-                  : (isUK ? '🏆 Великий приз!' : '🏆 Большой приз!')}
+                  ? (isUK ? '🎊 Середній приз' : isES ? '🎊 Premio medio' : '🎊 Средний приз')
+                  : (isUK ? '🏆 Великий приз!' : isES ? '🏆 ¡Gran premio!' : '🏆 Большой приз!')}
             </Text>
           )}
         </Animated.View>
@@ -209,8 +219,12 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
       {!canOpen && (
         <View style={styles.info}>
           <Ionicons name="checkmark-circle" size={16} color={t.correct} />
-          <Text style={[styles.infoText, { color: t.textMuted }]}>
-            {isUK ? 'Відкрито сьогодні. Повертайтесь завтра!' : 'Открыто сегодня. Вернитесь завтра!'}
+          <Text style={[styles.infoText, { color: t.textMuted, fontSize: f.label }]}>
+            {isUK
+              ? 'Відкрито сьогодні. Повертайтесь завтра!'
+              : isES
+                ? 'Ya lo abriste hoy. ¡Vuelve mañana!'
+                : 'Открыто сегодня. Вернитесь завтра!'}
           </Text>
         </View>
       )}
@@ -218,8 +232,12 @@ export default function DailyTreasureChest({ onBonusXPEarned, isPremium = false 
       {canOpen && (
         <View style={styles.info}>
           <Ionicons name="sparkles" size={16} color={t.accent} />
-          <Text style={[styles.infoText, { color: t.accent }]}>
-            {isUK ? 'Натисніть щоб отримати бонус XP' : 'Нажмите чтобы получить бонус XP'}
+          <Text style={[styles.infoText, { color: t.accent, fontSize: f.label }]}>
+            {isUK
+              ? 'Натисніть щоб отримати бонус XP'
+              : isES
+                ? 'Toca para ganar XP extra'
+                : 'Нажмите чтобы получить бонус XP'}
           </Text>
         </View>
       )}

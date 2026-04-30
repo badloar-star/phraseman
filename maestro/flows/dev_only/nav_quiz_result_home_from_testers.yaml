@@ -1,0 +1,49 @@
+# Только __DEV__ или DEV_MODE=true в app/config.ts: «Админ панель» видна.
+# Экран результата квиза → «На главную» (без 10 вопросов).
+# Триггер: Настройки → Админ панель → «Maestro: квиз — экран результата».
+appId: app.phraseman
+---
+- launchApp
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- tapOn:
+    id: "tab-home"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 25000
+- tapOn:
+    id: "tab-settings"
+- extendedWaitUntil:
+    visible:
+      id: "screen-settings"
+    timeout: 20000
+- scrollUntilVisible:
+    element:
+      id: "settings-open-testers"
+    direction: DOWN
+    timeout: 25000
+    speed: 80
+    visibilityPercentage: 40
+- extendedWaitUntil:
+    visible:
+      id: "settings-open-testers"
+    timeout: 10000
+- tapOn:
+    id: "settings-open-testers"
+- extendedWaitUntil:
+    visible:
+      id: "testers-quiz-e2e-results"
+    timeout: 20000
+- tapOn:
+    id: "testers-quiz-e2e-results"
+- extendedWaitUntil:
+    visible:
+      id: "quiz-result-go-home"
+    timeout: 25000
+- tapOn:
+    id: "quiz-result-go-home"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 20000

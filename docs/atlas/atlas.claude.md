@@ -1,0 +1,283 @@
+# PhraseMan Code Atlas (for Claude)
+
+This file is generated from source and intended to be loaded as working context.
+
+## Quick Stats
+- Total code files indexed: 227
+- Route files: 147
+- Exported symbols: 506
+- Functions detected: 4182
+- Internal import edges: 928
+- Call graph edges: 5027
+- AsyncStorage keys: 92
+- Firestore paths: 23
+- Event names: 2
+
+## Entry Points
+- `app/_layout.tsx`
+- `app/(tabs)/_layout.tsx`
+- `functions/src/index.ts`
+
+## Routes (detected)
+- `/_layout` <- `app/_layout.tsx`
+- `/(tabs)` <- `app/(tabs)/_layout.tsx`
+- `/arena` <- `app/(tabs)/arena.tsx`
+- `/hall_of_fame` <- `app/(tabs)/hall_of_fame.tsx`
+- `/home` <- `app/(tabs)/home.tsx`
+- `/(tabs)` <- `app/(tabs)/index.tsx`
+- `/quizzes` <- `app/(tabs)/quizzes.tsx`
+- `/settings` <- `app/(tabs)/settings.tsx`
+- `/achievements_screen` <- `app/achievements_screen.tsx`
+- `/achievements` <- `app/achievements.ts`
+- `/active_recall` <- `app/active_recall.ts`
+- `/analytics` <- `app/analytics.ts`
+- `/arena_daily_limit` <- `app/arena_daily_limit.ts`
+- `/arena_game` <- `app/arena_game.tsx`
+- `/arena_join` <- `app/arena_join.tsx`
+- `/arena_lobby` <- `app/arena_lobby.tsx`
+- `/arena_rating` <- `app/arena_rating.tsx`
+- `/arena_results` <- `app/arena_results.tsx`
+- `/audio_debug` <- `app/audio_debug.tsx`
+- `/avatar_select` <- `app/avatar_select.tsx`
+- `/beta_testers` <- `app/beta_testers.tsx`
+- `/cloud_sync` <- `app/cloud_sync.ts`
+- `/club_boosts` <- `app/club_boosts.ts`
+- `/components/RankChangeModal` <- `app/components/RankChangeModal.tsx`
+- `/config` <- `app/config.ts`
+- `/constants/verb_forms` <- `app/constants/verb_forms.ts`
+- `/constants/word_pools` <- `app/constants/word_pools.ts`
+- `/daily_phrase_system` <- `app/daily_phrase_system.ts`
+- `/daily_tasks_screen` <- `app/daily_tasks_screen.tsx`
+- `/daily_tasks` <- `app/daily_tasks.ts`
+- `/debug-logger` <- `app/debug-logger.ts`
+- `/diagnostic_test` <- `app/diagnostic_test.tsx`
+- `/dialog_vocab` <- `app/dialog_vocab.tsx`
+- `/dialogs_data` <- `app/dialogs_data.ts`
+- `/dialogs` <- `app/dialogs.tsx`
+- `/energy_system` <- `app/energy_system.ts`
+- `/error_report` <- `app/error_report.ts`
+- `/error_traps/error_traps_1_8` <- `app/error_traps/error_traps_1_8.ts`
+- `/error_traps/error_traps_17_24` <- `app/error_traps/error_traps_17_24.ts`
+- `/error_traps/error_traps_25_32` <- `app/error_traps/error_traps_25_32.ts`
+- `/error_traps/error_traps_9_16` <- `app/error_traps/error_traps_9_16.ts`
+- `/error_traps` <- `app/error_traps/index.ts`
+- `/events` <- `app/events.ts`
+- `/exam` <- `app/exam.tsx`
+- `/feedback_engine` <- `app/feedback_engine.ts`
+- `/firebase` <- `app/firebase.ts`
+- `/firestore_boosts` <- `app/firestore_boosts.ts`
+- `/firestore_leaderboard` <- `app/firestore_leaderboard.ts`
+- `/firestore_leagues` <- `app/firestore_leagues.ts`
+- `/flashcards_collection` <- `app/flashcards_collection.tsx`
+- `/flashcards_market_dev` <- `app/flashcards_market_dev.tsx`
+- `/flashcards` <- `app/flashcards.tsx`
+- `/flashcards/constants` <- `app/flashcards/constants.ts`
+- `/flashcards/FlashcardListItem` <- `app/flashcards/FlashcardListItem.tsx`
+- `/flashcards/FlashcardsCategoryBar` <- `app/flashcards/FlashcardsCategoryBar.tsx`
+- `/flashcards/FlashcardsCategoryHub` <- `app/flashcards/FlashcardsCategoryHub.tsx`
+- `/flashcards/FlashcardsCategoryTiles` <- `app/flashcards/FlashcardsCategoryTiles.tsx`
+- `/flashcards/FlashcardsFilterDropdown` <- `app/flashcards/FlashcardsFilterDropdown.tsx`
+- `/flashcards/marketplace` <- `app/flashcards/marketplace.ts`
+- `/flashcards/selectors` <- `app/flashcards/selectors.ts`
+- `/flashcards/storage` <- `app/flashcards/storage.ts`
+- `/flashcards/system-cards` <- `app/flashcards/system-cards.ts`
+- `/flashcards/types` <- `app/flashcards/types.ts`
+- `/hall_of_fame_utils` <- `app/hall_of_fame_utils.ts`
+- `/help_faq` <- `app/help_faq.tsx`
+- `/hint` <- `app/hint.tsx`
+- `/idioms_data` <- `app/idioms_data.ts`
+- `/image_preload` <- `app/image_preload.ts`
+- `/irregular_verbs_data` <- `app/irregular_verbs_data.ts`
+- `/league_engine` <- `app/league_engine.ts`
+- `/league_screen` <- `app/league_screen.tsx`
+- `/LeagueResultModal` <- `app/LeagueResultModal.tsx`
+- `/lesson_cards_data` <- `app/lesson_cards_data.ts`
+- `/lesson_complete` <- `app/lesson_complete.tsx`
+- `/lesson_data_1_8` <- `app/lesson_data_1_8.ts`
+- `/lesson_data_17_24` <- `app/lesson_data_17_24.ts`
+- `/lesson_data_25_32` <- `app/lesson_data_25_32.ts`
+- `/lesson_data_9_16` <- `app/lesson_data_9_16.ts`
+- `/lesson_data_all` <- `app/lesson_data_all.ts`
+- `/lesson_data_types` <- `app/lesson_data_types.ts`
+- `/lesson_help` <- `app/lesson_help.tsx`
+- `/lesson_intro_screens` <- `app/lesson_intro_screens.tsx`
+- `/lesson_irregular_verbs` <- `app/lesson_irregular_verbs.tsx`
+- `/lesson_lock_system` <- `app/lesson_lock_system.ts`
+- `/lesson_menu` <- `app/lesson_menu.tsx`
+- `/lesson_verbs` <- `app/lesson_verbs.tsx`
+- `/lesson_words` <- `app/lesson_words.tsx`
+- `/lesson1_distractor_logic` <- `app/lesson1_distractor_logic.ts`
+- `/lesson1_energy` <- `app/lesson1_energy.ts`
+- `/lesson1_smart_options` <- `app/lesson1_smart_options.ts`
+- `/lesson1` <- `app/lesson1.tsx`
+- `/level_exam` <- `app/level_exam.tsx`
+- `/level_gift_system` <- `app/level_gift_system.ts`
+- `/medal_utils` <- `app/medal_utils.ts`
+- `/modal` <- `app/modal.tsx`
+- `/notifications` <- `app/notifications.ts`
+- `/perf-monitor` <- `app/perf-monitor.ts`
+- `/premium_guard` <- `app/premium_guard.ts`
+- `/premium_modal` <- `app/premium_modal.tsx`
+- `/privacy_screen` <- `app/privacy_screen.tsx`
+- `/progress_map` <- `app/progress_map.tsx`
+- `/push_notifications` <- `app/push_notifications.ts`
+- `/quiz_data` <- `app/quiz_data.ts`
+- `/quizzes_screen` <- `app/quizzes_screen.tsx`
+- `/quizzes` <- `app/quizzes.tsx`
+- `/quizzes/constants` <- `app/quizzes/constants.ts`
+- `/quizzes/diff` <- `app/quizzes/diff.ts`
+- `/quizzes/progression` <- `app/quizzes/progression.ts`
+- `/quizzes/result_view` <- `app/quizzes/result_view.tsx`
+- `/quizzes/results` <- `app/quizzes/results.ts`
+- `/quizzes/session` <- `app/quizzes/session.ts`
+- `/quizzes/ui` <- `app/quizzes/ui.tsx`
+- `/referral_system` <- `app/referral_system.ts`
+- `/revenuecat_init` <- `app/revenuecat_init.ts`
+- `/review_utils` <- `app/review_utils.ts`
+- `/review` <- `app/review.tsx`
+- `/services/arena_db` <- `app/services/arena_db.ts`
+- `/services/arena_invites` <- `app/services/arena_invites.ts`
+- `/settings_edu` <- `app/settings_edu.tsx`
+- `/settings_notifications` <- `app/settings_notifications.tsx`
+
+## Global Events
+- `daily_task_completed`
+- `energy_reload`
+
+## AsyncStorage Keys
+- `${...}`
+- `achievements_v1`
+- `anon_id`
+- `app_font_size`
+- `app_lang`
+- `app_language`
+- `app_theme`
+- `app_version`
+- `bug_hunt_shown`
+- `chain_shield`
+- `cloud_migration_v1`
+- `comeback_active`
+- `comeback_pending`
+- `daily_stats`
+- `daily_treasure_state`
+- `device_platform`
+- `diagnostic_last`
+- `dialogs_completed`
+- `dialogs_scores`
+- `dialogs_tutorial_done`
+- `energy_onboarding_shown`
+- `energy_state`
+- `flashcard_anim_pending`
+- `flashcard_delete_hint_seen`
+- `gift_xp_multiplier`
+- `global_lb_cache`
+- `had_premium_ever`
+- `haptics_tap`
+- `hard_tip_dismissed`
+- `install_date`
+- `irregular_verbs_global`
+- `is_premium`
+- `last_active_date`
+- `last_known_league_rank`
+- `last_opened_lesson`
+- `leaderboard`
+- `leaderboard_cache_v1`
+- `league_result_pending`
+- `league_state_v3`
+- `lesson${...}`
+- `lesson1_progress`
+- `lesson1_words`
+- `lesson_streak`
+- `lessons_completed_count`
+- `level_exam_${...}`
+- `login_bonus_pending`
+- `login_bonus_v1`
+- `monthly_recap_scheduled`
+- `notif_settings_v2`
+- `notification_hour`
+- `notification_minute`
+- `notifications_enabled`
+- `onboarding_done`
+- `onboarding_step`
+- `open_diagnostic`
+- `pending_level_up_queue`
+- `per_day_notif_ids`
+- `phrase_notif_scheduled`
+- `placement_level`
+- `premium_active`
+- `premium_free_freeze_used`
+- `quiz_hard_count`
+- `quiz_nav_level`
+- `saved_glossary_words`
+- `shards_balance`
+- `streak_count`
+- `streak_freeze`
+- `streak_last_shown`
+- `streak_paywall_shown`
+- `streak_warning_scheduled`
+- `tester_energy_disabled`
+- `tester_no_limits`
+- `tester_no_premium`
+- `trial_used`
+- `unlocked_lessons`
+- `user_frame`
+- `user_lang`
+- `user_name`
+- `user_phrasm`
+- `user_prev_xp`
+- `user_profile`
+- `user_total_xp`
+- `week_board_meta`
+- `week_days_done`
+- `week_days_week_key`
+- `week_leaderboard`
+- `week_points`
+- `week_points_migrated_v1`
+- `week_points_v2`
+- `weekly_pb_v1`
+- `weekly_recap_scheduled`
+- `xp_migration_v2`
+
+## Firestore Collections/Paths
+- `${...}`
+- `arena_invites`
+- `arena_profiles`
+- `arena_questions`
+- `arena_rooms`
+- `arena_session_results`
+- `arena_sessions`
+- `banned_users`
+- `boosts`
+- `card_packs`
+- `daily_tasks_all_${...}`
+- `error_reports`
+- `leaderboard`
+- `league_groups`
+- `match_history`
+- `matchmaking_queue`
+- `session_players`
+- `shard_log`
+- `shard_rewards`
+- `user_invite_state`
+- `user_reports`
+- `user_warnings`
+- `users`
+
+## Call Graph Coverage
+- Edge sample count: 300
+- Heuristic: imported symbol matching + local/global symbol lookup
+- Full graph: `docs/atlas/atlas.full.json` -> `callGraph`
+
+## Critical Paths
+- **XP -> Leaderboard -> Hall**: `app/xp_manager.ts` -> `app/firestore_leaderboard.ts` -> `app/(tabs)/hall_of_fame.tsx`
+- **Premium -> Energy -> Gates**: `app/revenuecat_init.ts` -> `app/premium_guard.ts` -> `components/PremiumContext.tsx` -> `components/EnergyContext.tsx` -> `app/premium_modal.tsx`
+- **Arena full game flow**: `app/arena_lobby.tsx` -> `contexts/MatchmakingContext.tsx` -> `app/services/arena_db.ts` -> `hooks/use-arena-session.ts` -> `app/arena_game.tsx` -> `app/arena_results.tsx` -> `app/arena_rating.tsx`
+- **Cloud sync user/progress**: `app/cloud_sync.ts` -> `app/stable_id.ts` -> `app/firestore_leaderboard.ts` -> `functions/src/sync_leaderboard.ts`
+- **Root bootstrap and routing**: `app/_layout.tsx` -> `app/(tabs)/_layout.tsx` -> `app/(tabs)/home.tsx` -> `app/(tabs)/settings.tsx`
+
+## Recommended Claude Context Bundle
+Load these files first:
+- `docs/MASTER_MAP.md`
+- `docs/atlas/atlas.claude.md` (this file)
+- `docs/atlas/atlas.full.json` (complete machine graph)
+- `docs/atlas/atlas.critical.md` (high-signal chains)

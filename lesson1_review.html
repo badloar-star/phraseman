@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Урок 1 — Полный обзор</title>
+<style>
+  body { font-family: Arial, sans-serif; font-size: 13px; background: #1a1a2e; color: #e0e0e0; margin: 0; padding: 20px; }
+  h1 { color: #fff; text-align: center; border-bottom: 2px solid #444; padding-bottom: 10px; }
+  .legend { background: #2a2a3e; border: 1px solid #555; border-radius: 6px; padding: 10px 16px; margin-bottom: 20px; display: flex; gap: 20px; align-items: center; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .dot-changed { background: #ffd600; color: #000; padding: 2px 7px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+  .dot-correct { background: #2e7d32; color: #fff; padding: 2px 7px; border-radius: 4px; font-size: 12px; }
+  .dot-distractor { background: #333; color: #ccc; padding: 2px 7px; border-radius: 4px; font-size: 12px; border: 1px solid #555; }
+  .phrase-block { background: #16213e; border: 1px solid #0f3460; border-radius: 8px; margin-bottom: 18px; padding: 14px 18px; }
+  .phrase-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+  .phrase-num { background: #0f3460; color: #e2b96b; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; flex-shrink: 0; }
+  .phrase-en { font-size: 17px; font-weight: bold; color: #fff; }
+  .phrase-ru { color: #aaa; font-size: 13px; }
+  .phrase-uk { color: #888; font-size: 12px; }
+  .words-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+  .words-table th { background: #0f3460; color: #aac8ff; padding: 5px 8px; text-align: left; font-size: 11px; font-weight: normal; }
+  .words-table td { padding: 5px 8px; border-bottom: 1px solid #1e3050; vertical-align: top; }
+  .word-text { font-weight: bold; color: #e2b96b; font-size: 14px; }
+  .correct-tag { background: #1b5e20; color: #a5d6a7; padding: 2px 8px; border-radius: 4px; font-size: 12px; display: inline-block; }
+  .category-tag { background: #263238; color: #80cbc4; padding: 1px 6px; border-radius: 3px; font-size: 11px; margin-left: 6px; }
+  .distractors-list { display: flex; flex-wrap: wrap; gap: 5px; }
+  .d-normal { background: #1e2a3a; color: #ccc; padding: 2px 8px; border-radius: 4px; font-size: 12px; border: 1px solid #2e4060; }
+  .d-changed { background: #ffd600; color: #000; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+  .cards-section { margin-top: 10px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+  .card { border-radius: 5px; padding: 8px 10px; font-size: 11.5px; line-height: 1.5; }
+  .card-correct { background: #1b3a1b; border-left: 3px solid #4caf50; }
+  .card-wrong { background: #3a1b1b; border-left: 3px solid #f44336; }
+  .card-secret { background: #1b2a3a; border-left: 3px solid #2196f3; }
+  .card-label { font-size: 10px; font-weight: bold; text-transform: uppercase; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .card-correct .card-label { color: #81c784; }
+  .card-wrong .card-label { color: #e57373; }
+  .card-secret .card-label { color: #64b5f6; }
+  @media (max-width: 800px) { .cards-section { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<h1>Урок 1 — Полный обзор данных</h1>
+<div class="legend">
+  <strong>Легенда:</strong>
+  <div class="legend-item"><span class="dot-changed">слово</span> = заменено (было другое)</div>
+  <div class="legend-item"><span class="dot-correct">correct</span> = правильный ответ</div>
+  <div class="legend-item"><span class="dot-distractor">слово</span> = дистрактор (не изменялся)</div>
+</div>
+
+<div id="phrases"></div>
+
+<script>
+const phrases = [
+  {n:1, en:"I am here", ru:"Я здесь", uk:"Я тут",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","mine","eye","hi"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","been","being"], ch:[]},
+    {t:"here", c:"here", cat:"adverb", d:["hear","her","there","where","hair"], ch:[]},
+   ],
+   card:{cor:"Именно так: с «я» в настоящем времени дружит только am — ты поймал эту пару без ошибки.",
+         wr:"Представь мини-сцену: кто говорит (I), затем как он себя чувствует или где он — и только потом связка. Часто путают именно второй шаг: после I нужен am, не is и не are.",
+         sec:"Here и hear для уха почти близнецы: первое — «здесь», второе — «слышать». В чате голосовые часто спасают смысл."}},
+  {n:2, en:"You are ready", ru:"Ты готов", uk:"Ти готовий",
+   words:[
+    {t:"You", c:"You", cat:"pronoun", d:["your","yew","yours","youth","yoke"], ch:["yew","yoke"]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"ready", c:"ready", cat:"adjective", d:["read","red","road","real","already"], ch:[]},
+   ],
+   card:{cor:"Красиво: ты держишь пару You + are — это как правильно подобрать обувь к наряду, только для грамматики.",
+         wr:"Не беда, если споткнулся: с «ты/вы» в таких фразах почти всегда are. Подумай, кого ты описываешь — одного человека перед собой или группу? Связка всё равно are.",
+         sec:"You в английском не раскрывает число: и «ты», и «вы» — одно слово. Контекст решает, кто перед тобой."}},
+  {n:3, en:"He is busy", ru:"Он занят", uk:"Він зайнятий",
+   words:[
+    {t:"He", c:"He", cat:"pronoun", d:["his","him","hers","hey","hi"], ch:["hers"]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"busy", c:"busy", cat:"adjective", d:["bus","business","bossy","buy","easy"], ch:[]},
+   ],
+   card:{cor:"Да, ты поставил is рядом с He — это классическое «он есть каким-то»: именно так английский описывает состояние.",
+         wr:"Логическая цепочка: кто в центре (he/she/it) — туда тянется is; кто «мы/вы/они» — туда are. Если поставил are с he, просто переложи роли: один человек → is.",
+         sec:"Busy когда-то было «занятый делом» буквально как муравейник; сейчас это просто «не свободен»."}},
+  {n:4, en:"She is at home", ru:"Она дома", uk:"Вона вдома",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["her","see","sea","shy","show"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","in","it","if"], ch:[]},
+    {t:"at", c:"at", cat:"preposition", d:["on","in","by","to","of"], ch:[]},
+    {t:"home", c:"home", cat:"noun", d:["house","hope","hole","horse","ham"], ch:[]},
+   ],
+   card:{cor:"Ты собрал at home без лишнего the — это как не надевать пальто в гостях, когда все и так понимают: «дома».",
+         wr:"Если хочется «разложить по полочкам»: сначала кто (She), потом связка is, потом место. at home — устойчивый кусок; артикль the между ними только мешает.",
+         sec:"«Дома» в английском чаще at home, а не in the home — так короче и естественнее."}},
+  {n:5, en:"We are together", ru:"Мы вместе", uk:"Ми разом",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","west","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"together", c:"together", cat:"adverb", d:["weather","tomorrow","gather","today","tougher"], ch:["tougher"]},
+   ],
+   card:{cor:"Словно маленький хор: We + are — и все поют одну ноту «мы вместе». Ты попал в тональность.",
+         wr:"Представь фотографию: кто в кадре (We), что с ними происходит (are), и одним словом настроение (together). Если связка «не легла», чаще всего спотыкаются на are после we.",
+         sec:"Together когда-то было «в одном месте собранные»; сейчас это просто «рядом по смыслу»."}},
+  {n:6, en:"They are here", ru:"Они здесь", uk:"Вони тут",
+   words:[
+    {t:"They", c:"They", cat:"pronoun", d:["them","their","there","this","that"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","air","arm","art"], ch:[]},
+    {t:"here", c:"here", cat:"adverb", d:["hear","her","heir","hair","there"], ch:[]},
+   ],
+   card:{cor:"Отлично: They + are — ты не дал «они» сбиться на is, а это частая ловушка.",
+         wr:"Давай как в титрах фильма: слева роли (They), по центру глагол-связка (are), справа сцена (here). Если в центре is — перечитай строку: «они» почти всегда тянут are.",
+         sec:"They годится и для людей, и для вещей: «они сломались» — тоже they."}},
+  {n:7, en:"It is important", ru:"Это важно", uk:"Це важливо",
+   words:[
+    {t:"It", c:"It", cat:"pronoun", d:["its","eat","in","at","if"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"important", c:"important", cat:"adjective", d:["import","improve","imagine","impact","impose"], ch:[]},
+   ],
+   card:{cor:"Ты поймал главное: про «это» важно говорить It is, а не рваться сразу к существительному без связки.",
+         wr:"Мысленно нарисуй табличку: It / This / That — и рядом is, если речь о состоянии или оценке. Если связка пропала, фраза звучит как заголовок без глагола.",
+         sec:"Important пришло из латинского importare — «вносить внутрь»; важное как будто заносят в середину внимания."}},
+  {n:8, en:"I am okay", ru:"Я в порядке", uk:"Я в порядку",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","eye","high","mine"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","being","been"], ch:[]},
+    {t:"okay", c:"okay", cat:"adjective", d:["oak","key","obey","ocean","only"], ch:[]},
+   ],
+   card:{cor:"Ты собрал спокойное «со мной всё нормально» — и связка am на месте, как якорь.",
+         wr:"Если чувствуешь, что фраза «рвётся», проверь только одно: после I в настоящем почти всегда am. Остальные слова подождут.",
+         sec:"Okay пишут и OK — оба варианта живые; в мессенджерах чаще короткое OK."}},
+  {n:9, en:"You are right", ru:"Вы правы", uk:"Ви праві",
+   words:[
+    {t:"You", c:"You", cat:"pronoun", d:["your","yew","youth","year","yore"], ch:["yew","yore"]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"right", c:"right", cat:"adjective", d:["write","light","night","bright","ride"], ch:[]},
+   ],
+   card:{cor:"Да: You are right — ты признал собеседнику правоту грамматически правильно, без лишней драмы.",
+         wr:"Представь, что ты ставишь галочку в форме: кому галочка (You), какое действие «быть правым» (are right). Если вылезло is, это часто «я перепутал местоимение».",
+         sec:"Right в быту чаще «верный», а на дороге — «правый»; контекст решает, обидеться ли машине."}},
+  {n:10, en:"We are safe", ru:"Мы в безопасности", uk:"Ми в безпеці",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","why","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"safe", c:"safe", cat:"adjective", d:["save","soft","self","side","salt"], ch:[]},
+   ],
+   card:{cor:"Ты дал людям статус «мы в безопасности» — и are стоит там, где ему и положено после We.",
+         wr:"Логика как у светофора: We → зелёный are → дальше состояние (safe). Если застрял на is, вспомни: is — ближе к he/she/it.",
+         sec:"Safe как существительное — ещё и сейф в банке; как прилагательное — «цел и невредим»."}},
+  {n:11, en:"He is sick", ru:"Он болен", uk:"Він хворий",
+   words:[
+    {t:"He", c:"He", cat:"pronoun", d:["his","him","hers","hey","hi"], ch:["hers"]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"sick", c:"sick", cat:"adjective", d:["silk","sock","suck","sink","slim"], ch:[]},
+   ],
+   card:{cor:"Ты аккуратно описал чужое состояние: he + is — как положить руку на плечо и сказать «он не в форме», но по-английски.",
+         wr:"Если связка «прыгает», чаще всего путают he с they. Нарисуй в голове одного человека — и рядом is, как маленький знак «он».",
+         sec:"Sick в разговоре чаще «болен», а sick of — уже «сыт по горло»; не перепутай смысл."}},
+  {n:12, en:"It is cheap", ru:"Это дешево", uk:"Це дешево",
+   words:[
+    {t:"It", c:"It", cat:"pronoun", d:["its","eat","in","at","if"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"cheap", c:"cheap", cat:"adjective", d:["chip","check","chess","chief","chop"], ch:[]},
+   ],
+   card:{cor:"Да: It is cheap — коротко, как ценник в магазине, и грамматика не спорит с логикой.",
+         wr:"Давай как рецепт: «что оцениваем» (It), «чем оно является» (is), «как по цене» (cheap). Если пропала связка, фраза превращается в список слов.",
+         sec:"Cheap родственно «торговать» (chapman → cheap); дешёвое как будто «уступили на рынке»."}},
+  {n:13, en:"We are here", ru:"Мы здесь", uk:"Ми тут",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","why","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"here", c:"here", cat:"adverb", d:["hear","her","heir","hair","there"], ch:[]},
+   ],
+   card:{cor:"Мы здесь — и ты поставил are после We так, будто это общий ритм группы.",
+         wr:"Если звучит «ломко», проверь только роль: мы/вы/они почти всегда тянут are. Остальное — уже про here и смысл.",
+         sec:"Here в письме часто спасают от путаницы с there — одна буква t меняет полушарие карты."}},
+  {n:14, en:"She is upset", ru:"Она расстроена", uk:"Вона засмучена",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["sea","see","shy","shell","show"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","in","it","if"], ch:[]},
+    {t:"upset", c:"upset", cat:"adjective", d:["update","upper","upward","useful","upbeat"], ch:["upbeat"]},
+   ],
+   card:{cor:"Ты передал настроение: she is upset — мягко и по правилам, без лишних слов.",
+         wr:"Представь, что ты снимаешь статус в соцсети: кто (She), что с ним (is), какое эмоциональное состояние (upset). Связка is здесь — как фильтр «сейчас так».",
+         sec:"Upset буквально «перевернутый вверх дном»; как настроение — «взволнован, расстроен»."}},
+  {n:15, en:"You are late", ru:"Вы опаздываете", uk:"Ви запізнюєтеся",
+   words:[
+    {t:"You", c:"You", cat:"pronoun", d:["your","yew","youth","year","yore"], ch:["yew","youth","year","yore"]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"late", c:"late", cat:"adjective", d:["let","light","last","lake","lady"], ch:[]},
+   ],
+   card:{cor:"Ты поймал вежливое «вы опаздываете» — You are late звучит как спокойное напоминание, не как крик.",
+         wr:"Если опоздал на связку: вспомни, что «ты/вы» в таких коротких статусах почти всегда are. Late подождёт — оно про время, не про грамматику.",
+         sec:"Late родственно «полдник» (lātus в сторону задержки) — слово про сдвиг во времени."}},
+  {n:16, en:"I am at work", ru:"Я на работе", uk:"Я на роботі",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","mine","eye","hi"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","been","being"], ch:[]},
+    {t:"at", c:"at", cat:"preposition", d:["to","in","on","of","by"], ch:[]},
+    {t:"work", c:"work", cat:"noun", d:["word","walk","week","wake","world"], ch:[]},
+   ],
+   card:{cor:"I am at work — как короткий статус в мессенджере: «на месте, на смене», и ты собрал его грамотно.",
+         wr:"Мысленно раздели «где я» и «какая связка»: после I почти всегда am, а место at work — целый кусок без the.",
+         sec:"«На работе» устойчиво at work; in the work звучало бы как «внутри труда», почти философия."}},
+  {n:17, en:"We are on our way", ru:"Мы уже в пути", uk:"Ми вже в дорозі",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","why","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"on", c:"on", cat:"preposition", d:["in","at","of","to","by"], ch:[]},
+    {t:"our", c:"our", cat:"pronoun", d:["their","your","my","we","us"], ch:[]},
+    {t:"way", c:"way", cat:"noun", d:["wait","weight","why","away","wave"], ch:[]},
+   ],
+   card:{cor:"We are on our way — ты попал в живую дорожную фразу: «мы уже в пути», с нашим путём внутри.",
+         wr:"Если путаешься в on our way: это не «в пути» одним словом, а «на нашей дороге» образно. Сначала мы (We), потом are, потом целиком on our way.",
+         sec:"В чатах пишут OTW (on the way) — сокращение, которое спасает, когда руки заняты рулём."}},
+  {n:18, en:"They are in the car", ru:"Они в машине", uk:"Вони в машині",
+   words:[
+    {t:"They", c:"They", cat:"pronoun", d:["them","their","there","this","that"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","air","arm","art"], ch:[]},
+    {t:"in", c:"in", cat:"preposition", d:["on","at","of","to","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["then","than","that","this","thus"], ch:[]},
+    {t:"car", c:"car", cat:"noun", d:["cat","can","care","card","case"], ch:[]},
+   ],
+   card:{cor:"They are in the car — ты посадил «их» внутрь машины: in + the car звучит как закрытая дверь кабины.",
+         wr:"Логика как у парковки: кто (They), где находятся (are in), в каком объекте (the car). Если вылезло on вместо in, представь: внутри салона — почти всегда in.",
+         sec:"Американцы чаще car, британцы иногда motor — но in the car понимают везде."}},
+  {n:19, en:"She is on holiday", ru:"Она в отпуске", uk:"Вона у відпустці",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["sea","see","shy","shell","show"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","in","it","if"], ch:[]},
+    {t:"on", c:"on", cat:"preposition", d:["in","at","of","to","by"], ch:[]},
+    {t:"holiday", c:"holiday", cat:"noun", d:["holy","hollow","holly","holder","holidaying"], ch:[]},
+   ],
+   card:{cor:"She is on holiday — ты попал в британский отпуск одной фразой; связка is держит «она сейчас в режиме отдыха».",
+         wr:"Если хочется «разложить»: кто отдыхает (She), что с ней происходит (is), в каком режиме (on holiday). Путают чаще предлог: on holiday — устойчивый кусок, как билет.",
+         sec:"В США чаще on vacation, в UK — on holiday; смысл один, паспорт разный."}},
+  {n:20, en:"It is free", ru:"Это бесплатно", uk:"Це безкоштовно",
+   words:[
+    {t:"It", c:"It", cat:"pronoun", d:["its","eat","in","at","if"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"free", c:"free", cat:"adjective", d:["tree","fry","feel","fire","four"], ch:[]},
+   ],
+   card:{cor:"It is free — коротко и ясно: «это бесплатно», и ты не дал it потерять связку is.",
+         wr:"Думай как про ценник: что оцениваем (It), какая характеристика (is free). Если пропал is, английский не понимает, *чем* «это» является.",
+         sec:"Free ещё и «свободен» (место свободно); в кафе спросят Is this seat free?"}},
+  {n:21, en:"I am in line", ru:"Я в очереди", uk:"Я в черзі",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","eye","high","mine"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","being","been"], ch:[]},
+    {t:"in", c:"in", cat:"preposition", d:["on","at","of","to","by"], ch:[]},
+    {t:"line", c:"line", cat:"noun", d:["lane","lion","lie","life","light"], ch:[]},
+   ],
+   card:{cor:"I am in line — ты попал в живую очередь: без лишнего the, как в реальной жизни у кассы.",
+         wr:"Частая ловушка — *in the line*: так почти не говорят про очередь. Представь нитку людей: ты in line, без артикля между тобой и словом line.",
+         sec:"В Британии чаще скажут in a queue — тот же смысл, другая картинка."}},
+  {n:22, en:"We are in the elevator", ru:"Мы в лифте", uk:"Ми в ліфті",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","why","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"in", c:"in", cat:"preposition", d:["out","for","with","from","about"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["these","those","through","though","thought"], ch:[]},
+    {t:"elevator", c:"elevator", cat:"noun", d:["elephant","element","electric","elevate","eleven"], ch:[]},
+   ],
+   card:{cor:"We are in the elevator — ты запер героев в кабине: in the elevator, как в коробке с кнопками.",
+         wr:"Если металл «не сходится», проверь предлог и артикль: мы *внутри* конкретного лифта — in the, а не on the.",
+         sec:"В США elevator, в UK чаще lift — оба слова едут в одной шахте."}},
+  {n:23, en:"He is in the kitchen", ru:"Он на кухне", uk:"Він на кухні",
+   words:[
+    {t:"He", c:"He", cat:"pronoun", d:["hi","his","her","here","hey"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"in", c:"in", cat:"preposition", d:["up","down","near","far","back"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["they","their","there","them","then"], ch:[]},
+    {t:"kitchen", c:"kitchen", cat:"noun", d:["chicken","kitten","kicker","cotton","fatten"], ch:["cotton","fatten"]},
+   ],
+   card:{cor:"He is in the kitchen — спокойный бытовой кадр: он на кухне, и is стоит как надпись на двери.",
+         wr:"Если «он» оказался без is, фраза рушится: сначала подумай «кто», потом «где он сейчас» — и только потом комната.",
+         sec:"Kitchen и chicken для уха похожи — внимательнее в диктанте."}},
+  {n:24, en:"You are very kind", ru:"Ты очень добрый", uk:"Ти дуже добрий",
+   words:[
+    {t:"You", c:"You", cat:"pronoun", d:["your","yew","youth","year","yore"], ch:["yew","yore"]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"very", c:"very", cat:"adverb", d:["vary","every","valley","view","victory"], ch:[]},
+    {t:"kind", c:"kind", cat:"adjective", d:["king","kids","kiss","kill","mind"], ch:[]},
+   ],
+   card:{cor:"You are very kind — ты не выбросил very: комплимент остался тёплым, не сухим.",
+         wr:"Если комплимент «облегчился», часто пропали very или are. Верни усилитель very — он как сахар в чае: мало, но чувствуется.",
+         sec:"Kind от старого «род, природа» — добрый как «по природе мягкий»."}},
+  {n:25, en:"It is urgent", ru:"Это срочно", uk:"Це терміново",
+   words:[
+    {t:"It", c:"It", cat:"pronoun", d:["its","eat","in","at","if"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"urgent", c:"urgent", cat:"adjective", d:["agent","urban","uncle","until","useful"], ch:[]},
+   ],
+   card:{cor:"It is urgent — как красная плашка в интерфейсе: коротко, страшно важно, и грамматика не спорит.",
+         wr:"Если срочность «не доехала», проверь связку: без is фраза звучит как заголовок без глагола. Сначала it, потом is, потом urgent.",
+         sec:"Urgent от латинского urgere — «толкать, давить»; срочное как будто толкает в спину."}},
+  {n:26, en:"I am shocked", ru:"Я в шоке", uk:"Я в шоці",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","mine","eye","hi"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","been","being"], ch:[]},
+    {t:"shocked", c:"shocked", cat:"adjective", d:["shock","shake","shark","short","sharp"], ch:[]},
+   ],
+   card:{cor:"I am shocked — ты передал эмоцию без мелодрамы: коротко, честно, с am на месте.",
+         wr:"Если шок «не приклеился», чаще всего выпала связка. Подумай: «я сейчас в состоянии» — это почти всегда I am + прилагательное.",
+         sec:"Shock пришёл из удара молнии в старых языках — буквально «ударило током»."}},
+  {n:27, en:"We are in a taxi", ru:"Мы в такси", uk:"Ми в таксі",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","west","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"in", c:"in", cat:"preposition", d:["on","at","of","to","by"], ch:[]},
+    {t:"a", c:"a", cat:"article", d:["an","the","and","as","at"], ch:[]},
+    {t:"taxi", c:"taxi", cat:"noun", d:["tax","text","task","axis","take"], ch:[]},
+   ],
+   card:{cor:"We are in a taxi — ты выбрал «любое такси», не конкретную машину из фильма: a здесь уместен.",
+         wr:"Если хочется the, спроси себя: мы уже говорили про эту машину? Если нет — чаще a taxi, как «один из потока жёлтых».",
+         sec:"Таксисту в Лондоне махают cab; в приложении — taxi; оба живые."}},
+  {n:28, en:"She is married", ru:"Она замужем", uk:"Вона заміжня",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["her","see","sea","shy","show"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","it","if","in"], ch:[]},
+    {t:"married", c:"married", cat:"adjective", d:["marry","marriage","mirror","merry","market"], ch:[]},
+   ],
+   card:{cor:"She is married — спокойный статус, не драма: is держит «сейчас в этом состоянии».",
+         wr:"Если фраза звучит как новость из сериала без связки, верни is между she и married — это клей между ролью и состоянием.",
+         sec:"Married ближе к «в браке / замужем», marry — глагол «жениться»; не путай с merry «весёлый»."}},
+  {n:29, en:"You are safe", ru:"Ты в безопасности", uk:"Ти в безпеці",
+   words:[
+    {t:"You", c:"You", cat:"pronoun", d:["your","yew","yours","youth","yore"], ch:["yew","yore"]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"safe", c:"safe", cat:"adjective", d:["save","salt","self","soft","side"], ch:[]},
+   ],
+   card:{cor:"You are safe — как обнимание словами: ты цел, и английский это сказал ровно.",
+         wr:"Если «ты» потерял are, фраза превращается в ярлык без глагола. Сначала адресат (You), потом «что с ним» (are safe).",
+         sec:"Safe and sound — устойчивое «цел и невредим», часто в письмах после дороги."}},
+  {n:30, en:"They are outside", ru:"Они на улице", uk:"Вони на вулиці",
+   words:[
+    {t:"They", c:"They", cat:"pronoun", d:["them","their","there","those","these"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","air","arm","art"], ch:[]},
+    {t:"outside", c:"outside", cat:"adverb", d:["out","side","inside","outfit","outdoor"], ch:[]},
+   ],
+   card:{cor:"They are outside — как выглянуть в окно: «они на улице», и are держит компанию из they.",
+         wr:"Если «они» без are, английский не понимает, *как* они outside. Подумай о паре they + are как о дружной паре на качелях.",
+         sec:"Outside иногда и существительное «наружка»; здесь — наречие «снаружи»."}},
+  {n:31, en:"I am at the airport", ru:"Я в аэропорту", uk:"Я в аеропорту",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","mine","eye","hi"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","been","being"], ch:[]},
+    {t:"at", c:"at", cat:"preposition", d:["to","in","on","of","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["then","than","that","this","thus"], ch:[]},
+    {t:"airport", c:"airport", cat:"noun", d:["airplane","air","port","support","report"], ch:[]},
+   ],
+   card:{cor:"I am at the airport — как статус в путешествии: ты на месте сбора, и am не потерялся в суматохе.",
+         wr:"Если «я» без am, фраза не взлетает. Сначала кто летит (I), потом связка, потом at the airport — целый адрес.",
+         sec:"Airport — буквально «воздушная гавань»: air + port."}},
+  {n:32, en:"We are on the train", ru:"Мы в поезде", uk:"Ми в поїзді",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","west","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"on", c:"on", cat:"preposition", d:["in","at","of","to","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["those","these","through","though","thought"], ch:[]},
+    {t:"train", c:"train", cat:"noun", d:["rain","brain","travel","trail","training"], ch:[]},
+   ],
+   card:{cor:"We are on the train — ты посадил группу в вагон: on the train, как будто на крыше пола вагона стоите.",
+         wr:"Если путаешь in и on: поезд — как длинная полка; мы *на* поезде как на платформе движения, поэтому on чаще, чем in.",
+         sec:"В объявлениях слышишь mind the gap — между поездом и платформой; on the train — уже внутри поезда образно «на линии»."}},
+  {n:33, en:"He is in the bathroom", ru:"Он в ванной", uk:"Він у ванній",
+   words:[
+    {t:"He", c:"He", cat:"pronoun", d:["his","him","hers","hey","hi"], ch:["hers"]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"in", c:"in", cat:"preposition", d:["up","down","near","far","back"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["they","their","there","them","then"], ch:[]},
+    {t:"bathroom", c:"bathroom", cat:"noun", d:["bedroom","bath","room","board","broom"], ch:[]},
+   ],
+   card:{cor:"He is in the bathroom — бытовой кадр без лишнего: он в ванной, is держит дверь закрытой смыслом.",
+         wr:"Если «он» без is, сцена размыта. Подумай: кто → как связано с местом → комната. in the bathroom — целый блок.",
+         sec:"Bathroom в UK чаще «ванная комната», в US иногда restroom в публичных местах — но he is in the bathroom дома звучит естественно."}},
+  {n:34, en:"She is right", ru:"Она права", uk:"Вона права",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["her","hew","the","shy","see"], ch:["hew"]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","in","if"], ch:["as"]},
+    {t:"right", c:"right", cat:"adjective", d:["write","light","night","bright","ride"], ch:[]},
+   ],
+   card:{cor:"She is right — короткий вердикт: «она права», и ты не перепутал is с are.",
+         wr:"Если вылезло are, чаще всего глаз ускользнул с she. Один человек в фокусе — почти всегда is.",
+         sec:"She is right ≠ she has right — второе не говорят; «иметь право» по-другому."}},
+  {n:35, en:"She is at the shop", ru:"Она в магазине", uk:"Вона в магазині",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["her","see","sea","shy","show"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","in","it","if"], ch:[]},
+    {t:"at", c:"at", cat:"preposition", d:["to","in","on","of","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["those","these","through","though","thought"], ch:[]},
+    {t:"shop", c:"shop", cat:"noun", d:["ship","stop","sheep","shore","sharp"], ch:["shore"]},
+   ],
+   card:{cor:"She is at the shop — спокойная сцена: она в магазине, at the shop как адрес без лишней драмы.",
+         wr:"Если «она» без is, английский не понимает, *находится* ли она там или *идёт*. Связка — маленький глагол-якорь.",
+         sec:"В UK shop в быту, в US чаще store — оба варианта вежливы к месту."}},
+  {n:36, en:"I am in the gym", ru:"Я в спортзале", uk:"Я у спортзалі",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","eye","high","mine"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","being","been"], ch:[]},
+    {t:"in", c:"in", cat:"preposition", d:["on","at","of","to","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["then","than","that","this","thus"], ch:[]},
+    {t:"gym", c:"gym", cat:"noun", d:["game","gum","gem","guy","gymnasium"], ch:[]},
+   ],
+   card:{cor:"I am in the gym — как чекин в зале: ты внутри здания, in the gym цельно.",
+         wr:"Если «я» без am, статус не читается. Сначала I am, потом in the gym — как пропуск и турникет.",
+         sec:"Gymnasium когда-то было учебным залом в Греции; gym — короткая скороговорка."}},
+  {n:37, en:"We are on the bus", ru:"Мы в автобусе", uk:"Ми в автобусі",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","west","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"on", c:"on", cat:"preposition", d:["in","at","of","to","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["those","these","through","though","thought"], ch:[]},
+    {t:"bus", c:"bus", cat:"noun", d:["boss","base","busy","buy","bust"], ch:[]},
+   ],
+   card:{cor:"We are on the bus — ты поставил группу «на борту» автобуса: on the bus как сиденье под ногами.",
+         wr:"Если хочется in the bus, английский иногда понимает, но on звучит привычнее для общественного транспорта — как «на маршруте».",
+         sec:"Bus от латинского omnibus — «для всех»; автобус изначально «для толпы»."}},
+  {n:38, en:"It is near here", ru:"Это рядом", uk:"Це поруч",
+   words:[
+    {t:"It", c:"It", cat:"pronoun", d:["its","eat","in","at","if"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"near", c:"near", cat:"adverb", d:["next","neat","nearly","narrow","night"], ch:[]},
+    {t:"here", c:"here", cat:"adverb", d:["hear","her","herd","where","hair"], ch:["herd"]},
+   ],
+   card:{cor:"It is near here — ты сложил near и here без драмы: «это рядом», как указать рукой по карте.",
+         wr:"Если связка пропала, «оно» не цепляется к near. Сначала it is, потом near here — как шаги на тропинке.",
+         sec:"Here часто в паре with there — как две кнопки «сюда / туда»."}},
+  {n:39, en:"They are desperate", ru:"Они в отчаянии", uk:"Вони у розпачі",
+   words:[
+    {t:"They", c:"They", cat:"pronoun", d:["them","their","there","those","these"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","air","arm","art"], ch:[]},
+    {t:"desperate", c:"desperate", cat:"adjective", d:["deep","desert","depend","despite","depart"], ch:[]},
+   ],
+   card:{cor:"They are desperate — тяжёлое «они в отчаянии», и ты не сломал are после they.",
+         wr:"Если эмоция «висит в воздухе», проверь связку: they почти всегда тянут are, даже когда новость грустная.",
+         sec:"Desperate от латинского de sperare — «без надежды»; буквально «без-надёжный»."}},
+  {n:40, en:"You are on the list", ru:"Вы в списке", uk:"Ви у списку",
+   words:[
+    {t:"You", c:"You", cat:"pronoun", d:["your","yew","yours","youth","yore"], ch:["yew","yore"]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"on", c:"on", cat:"preposition", d:["in","at","of","to","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["then","than","that","this","thus"], ch:[]},
+    {t:"list", c:"list", cat:"noun", d:["lost","last","least","listen","light"], ch:[]},
+   ],
+   card:{cor:"You are on the list — как приглашение, которое уже записали: ты в списке, и are стоит уверенно.",
+         wr:"Если «ты» без are, приглашение не читается. Подумай о паре You are как о печати на конверте.",
+         sec:"On the list звучит и в кино про киллеров, и в жизни про вечеринку — контекст спасает."}},
+  {n:41, en:"I am at the pharmacy", ru:"Я в аптеке", uk:"Я в аптеці",
+   words:[
+    {t:"I", c:"I", cat:"pronoun", d:["me","my","eye","hi","mine"], ch:[]},
+    {t:"am", c:"am", cat:"to-be", d:["is","are","be","been","being"], ch:[]},
+    {t:"at", c:"at", cat:"preposition", d:["to","in","on","of","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["then","than","that","this","thus"], ch:[]},
+    {t:"pharmacy", c:"pharmacy", cat:"noun", d:["farmer","factory","phone","physics","primary"], ch:[]},
+   ],
+   card:{cor:"I am at the pharmacy — как короткое «я у стойки»: ты на месте лекарств, и am не потерялся.",
+         wr:"Если «я» без am, фраза звучит как вывеска без глагола. Сначала I am, потом at the pharmacy — как адрес из двух частей.",
+         sec:"Pharmacy от греческого pharmakon — «лекарство»; то же корень, что у фармацевта."}},
+  {n:42, en:"She is at the airport", ru:"Она в аэропорту", uk:"Вона в аеропорту",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["her","see","sea","shy","show"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","it","if","in"], ch:[]},
+    {t:"at", c:"at", cat:"preposition", d:["to","in","on","of","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["those","these","through","though","thought"], ch:[]},
+    {t:"airport", c:"airport", cat:"noun", d:["airplane","air","port","support","report"], ch:[]},
+   ],
+   card:{cor:"She is at the airport — спокойный транспортный кадр: она в аэропорту, is держит «сейчас там».",
+         wr:"Если «она» без is, мы не понимаем, *находится* ли она или *летит*. Связка — маленький глагол, который всё объясняет.",
+         sec:"В аэропорту чаще at the airport; in the airport реже, как «внутри здания» в официальном стиле."}},
+  {n:43, en:"We are abroad", ru:"Мы за границей", uk:"Ми за кордоном",
+   words:[
+    {t:"We", c:"We", cat:"pronoun", d:["way","us","our","west","wet"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"abroad", c:"abroad", cat:"adverb", d:["board","broad","about","above","road"], ch:[]},
+   ],
+   card:{cor:"We are abroad — одним словом «за границей»: ты собрал короткий отпуск без лишних предлогов.",
+         wr:"Если хочется добавить «in», чаще всего abroad уже достаточно — это наречие-место само по себе. Проверь пару We are.",
+         sec:"Abroad буквально «на широкой дороге» (a- + road); отсюда «вдали от дома»."}},
+  {n:44, en:"They are safe", ru:"Они в безопасности", uk:"Вони в безпеці",
+   words:[
+    {t:"They", c:"They", cat:"pronoun", d:["them","their","there","those","these"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","air","arm"], ch:[]},
+    {t:"safe", c:"safe", cat:"adjective", d:["save","salt","self","soft","side"], ch:[]},
+   ],
+   card:{cor:"They are safe — облегчение в одной строке: с ними всё в порядке, и are не сбился с they.",
+         wr:"Если «они» без are, новость звучит как заголовок без глагола. Подумай: they + are — почти неразлучны в таких статусах.",
+         sec:"Safe and sound снова в тему — «целы и невредимы», часто после тревоги."}},
+  {n:45, en:"It is broken", ru:"Это сломано", uk:"Це зламано",
+   words:[
+    {t:"It", c:"It", cat:"pronoun", d:["its","eat","in","at","if"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"broken", c:"broken", cat:"adjective", d:["break","broke","brake","broth","brown"], ch:["broth","brown"]},
+   ],
+   card:{cor:"It is broken — холодновато, но честно: вещь не работает, и ты не забыл is.",
+         wr:"Если «это» без is, жалоба не цепляется к broken. Сначала it is, потом broken — как наклейка «неисправно».",
+         sec:"Broken — причастие от break; «сломано» как результат действия, а не ругательство."}},
+  {n:46, en:"He is shocked", ru:"Он в шоке", uk:"Він в шоці",
+   words:[
+    {t:"He", c:"He", cat:"pronoun", d:["her","hey","the","we","hers"], ch:["hers"]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","in","if"], ch:["as"]},
+    {t:"shocked", c:"shocked", cat:"adjective", d:["shock","shark","shake","short","sharp"], ch:[]},
+   ],
+   card:{cor:"He is shocked — ты передал удар новостью: он в шоке, is держит «сейчас так».",
+         wr:"Если «он» без is, эмоция «висит». Подумай о маленьком мостике he is между человеком и состоянием.",
+         sec:"Shock в технике — тот же корень: внезапный удар током или новостью."}},
+  {n:47, en:"They are in the taxi", ru:"Они в такси", uk:"Вони в таксі",
+   words:[
+    {t:"They", c:"They", cat:"pronoun", d:["them","their","there","those","these"], ch:[]},
+    {t:"are", c:"are", cat:"to-be", d:["am","is","art","age","ate"], ch:[]},
+    {t:"in", c:"in", cat:"preposition", d:["on","at","of","to","by"], ch:[]},
+    {t:"the", c:"the", cat:"article", d:["then","than","that","this","thus"], ch:[]},
+    {t:"taxi", c:"taxi", cat:"noun", d:["tax","text","task","axis","take"], ch:[]},
+   ],
+   card:{cor:"They are in the taxi — ты выбрал **the**: как про ту самую машину, о которой уже шла речь или которая стоит у выхода.",
+         wr:"Если путаешься между **a** и **the**: a taxi — «какая-то из потока», the taxi — «эта конкретная». В уроке сейчас задание на the — держи курс на определённость.",
+         sec:"В разговоре cab = taxi; в сериалах чаще «jump in the cab»."}},
+  {n:48, en:"He is outside", ru:"Он на улице", uk:"Він на вулиці",
+   words:[
+    {t:"He", c:"He", cat:"pronoun", d:["hi","his","her","here","hey"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","it","if","in"], ch:[]},
+    {t:"outside", c:"outside", cat:"adverb", d:["out","side","inside","outdoor","outfit"], ch:[]},
+   ],
+   card:{cor:"He is outside — как взгляд в окно: он снаружи, is не дал фразе упасть в простыню слов.",
+         wr:"Если «он» без is, непонятно, *находится* ли он outside или *называется* outside. Связка — маленький глагол-спасатель.",
+         sec:"Outside как существительное — «наружка» у дома; здесь наречие «снаружи»."}},
+  {n:49, en:"It is empty", ru:"Это пусто", uk:"Це порожнє",
+   words:[
+    {t:"It", c:"It", cat:"pronoun", d:["its","eat","in","at","if"], ch:[]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","if","in"], ch:["as"]},
+    {t:"empty", c:"empty", cat:"adjective", d:["entry","enemy","early","every","enjoy"], ch:[]},
+   ],
+   card:{cor:"It is empty — коротко и ясно: «пусто», и is держит пустоту как раму.",
+         wr:"Если «это» без is, ощущение пустоты не приклеивается. Сначала it is, потом empty — как два удара по барабану.",
+         sec:"Empty и zero разные: empty — «ничего внутри», zero — «ноль на шкале»."}},
+  {n:50, en:"She is desperate", ru:"Она в отчаянии", uk:"Вона у розпачі",
+   words:[
+    {t:"She", c:"She", cat:"pronoun", d:["her","hew","the","shy","see"], ch:["hew"]},
+    {t:"is", c:"is", cat:"to-be", d:["am","are","as","in","if"], ch:["as"]},
+    {t:"desperate", c:"desperate", cat:"adjective", d:["deep","desert","depend","despite","depart"], ch:[]},
+   ],
+   card:{cor:"She is desperate — тяжёлый финал урока: она в отчаянии, и ты не сломал is после she.",
+         wr:"Если фраза «рвётся», чаще всего выпала связка. Подумай: she is — мостик к состоянию, без него остаётся только крик словами.",
+         sec:"Desperate ближе к «отчаянный», а hopeless — к «безнадёжный»; оттенок разный."}},
+];
+
+const container = document.getElementById('phrases');
+phrases.forEach(p => {
+  const changed = p.words.some(w => w.ch.length > 0);
+  const block = document.createElement('div');
+  block.className = 'phrase-block';
+  if (changed) block.style.borderColor = '#776000';
+
+  let wordsHtml = `<table class="words-table">
+    <tr><th>Слово</th><th>Correct</th><th>Category</th><th>Дистракторы</th></tr>`;
+  p.words.forEach(w => {
+    const dList = w.d.map(d => {
+      const cls = w.ch.includes(d) ? 'd-changed' : 'd-normal';
+      return `<span class="${cls}">${d}</span>`;
+    }).join(' ');
+    wordsHtml += `<tr>
+      <td><span class="word-text">${w.t}</span></td>
+      <td><span class="correct-tag">${w.c}</span></td>
+      <td><span class="category-tag">${w.cat}</span></td>
+      <td><div class="distractors-list">${dList}</div></td>
+    </tr>`;
+  });
+  wordsHtml += '</table>';
+
+  block.innerHTML = `
+    <div class="phrase-header">
+      <div class="phrase-num">${p.n}</div>
+      <div class="phrase-en">${p.en}</div>
+      <div class="phrase-ru">${p.ru}</div>
+      <div class="phrase-uk">/ ${p.uk}</div>
+      ${changed ? '<span style="background:#ffd600;color:#000;font-size:11px;padding:2px 8px;border-radius:4px;font-weight:bold;">✎ изменено</span>' : ''}
+    </div>
+    ${wordsHtml}
+    <div class="cards-section">
+      <div class="card card-correct"><div class="card-label">✓ Правильно</div>${p.card.cor}</div>
+      <div class="card card-wrong"><div class="card-label">✗ Неправильно</div>${p.card.wr}</div>
+      <div class="card card-secret"><div class="card-label">★ Секрет</div>${p.card.sec}</div>
+    </div>`;
+  container.appendChild(block);
+});
+</script>
+</body>
+</html>

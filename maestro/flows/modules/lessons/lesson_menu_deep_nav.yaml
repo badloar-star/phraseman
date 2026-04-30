@@ -1,0 +1,4 @@
+# Уроки: меню урока 1 → старт → назад (полный сценарий в smoke).
+appId: app.phraseman
+---
+- runFlow: ../../smoke/nav_lesson_menu_to_lesson_and_back.yaml

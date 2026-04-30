@@ -1,0 +1,2023 @@
+# ===== Урок 1: Урок 1: Местоимения и глагол To Be / Урок 1: Займенники й дієслово To Be =====
+
+L1/lesson1_phrase_1
+  EN: I am here
+  RU: Я здесь
+  UK: Я тут
+
+L1/lesson1_phrase_2
+  EN: You are ready
+  RU: Ты готов
+  UK: Ти готовий
+
+L1/lesson1_phrase_3
+  EN: He is busy
+  RU: Он занят
+  UK: Він зайнятий
+
+L1/lesson1_phrase_4
+  EN: She is at home
+  RU: Она дома
+  UK: Вона вдома
+
+L1/lesson1_phrase_5
+  EN: We are together
+  RU: Мы вместе
+  UK: Ми разом
+
+L1/lesson1_phrase_6
+  EN: They are happy
+  RU: Они счастливы
+  UK: Вони щасливі
+
+L1/lesson1_phrase_7
+  EN: It is important
+  RU: Это важно
+  UK: Це важливо
+
+L1/lesson1_phrase_8
+  EN: I am okay
+  RU: Я в порядке
+  UK: Я в порядку
+
+L1/lesson1_phrase_9
+  EN: You are right
+  RU: Вы правы
+  UK: Ви праві
+
+L1/lesson1_phrase_10
+  EN: We are safe
+  RU: Мы в безопасности
+  UK: Ми в безпеці
+
+L1/lesson1_phrase_11
+  EN: He is sick
+  RU: Он болен
+  UK: Він хворий
+
+L1/lesson1_phrase_12
+  EN: It is cheap
+  RU: Это дешево
+  UK: Це дешево
+
+L1/lesson1_phrase_13
+  EN: We are friends
+  RU: Мы друзья
+  UK: Ми друзі
+
+L1/lesson1_phrase_14
+  EN: She is upset
+  RU: Она расстроена
+  UK: Вона засмучена
+
+L1/lesson1_phrase_15
+  EN: You are late
+  RU: Вы опаздываете
+  UK: Ви запізнюєтеся
+
+L1/lesson1_phrase_16
+  EN: I am at work
+  RU: Я на работе
+  UK: Я на роботі
+
+L1/lesson1_phrase_17
+  EN: We are on our way
+  RU: Мы уже в пути
+  UK: Ми вже в дорозі
+
+L1/lesson1_phrase_18
+  EN: They are in the car
+  RU: Они в машине
+  UK: Вони в машині
+
+L1/lesson1_phrase_19
+  EN: She is on vacation
+  RU: Она в отпуске
+  UK: Вона у відпустці
+
+L1/lesson1_phrase_20
+  EN: It is free
+  RU: Это бесплатно
+  UK: Це безкоштовно
+
+L1/lesson1_phrase_21
+  EN: I am in line
+  RU: Я в очереди
+  UK: Я в черзі
+
+L1/lesson1_phrase_22
+  EN: We are in the elevator
+  RU: Мы в лифте
+  UK: Ми в ліфті
+
+L1/lesson1_phrase_23
+  EN: He is in the kitchen
+  RU: Он на кухне
+  UK: Він на кухні
+
+L1/lesson1_phrase_24
+  EN: You are very kind
+  RU: Ты очень добрый
+  UK: Ти дуже добрий
+
+L1/lesson1_phrase_25
+  EN: It is urgent
+  RU: Это срочно
+  UK: Це терміново
+
+L1/lesson1_phrase_26
+  EN: I am shocked
+  RU: Я в шоке
+  UK: Я в шоці
+
+L1/lesson1_phrase_27
+  EN: We are in a taxi
+  RU: Мы в такси
+  UK: Ми в таксі
+
+L1/lesson1_phrase_28
+  EN: She is married
+  RU: Она замужем
+  UK: Вона заміжня
+
+L1/lesson1_phrase_29
+  EN: You are fine
+  RU: Ты в порядке
+  UK: Ти в порядку
+
+L1/lesson1_phrase_30
+  EN: They are outside
+  RU: Они на улице
+  UK: Вони на вулиці
+
+L1/lesson1_phrase_31
+  EN: I am at the airport
+  RU: Я в аэропорту
+  UK: Я в аеропорту
+
+L1/lesson1_phrase_32
+  EN: We are on the train
+  RU: Мы в поезде
+  UK: Ми в поїзді
+
+L1/lesson1_phrase_33
+  EN: He is in the bathroom
+  RU: Он в ванной
+  UK: Він у ванній
+
+L1/lesson1_phrase_34
+  EN: She is smart
+  RU: Она умная
+  UK: Вона розумна
+
+L1/lesson1_phrase_35
+  EN: She is at the store
+  RU: Она в магазине
+  UK: Вона в магазині
+
+L1/lesson1_phrase_36
+  EN: I am in the gym
+  RU: Я в спортзале
+  UK: Я у спортзалі
+
+L1/lesson1_phrase_37
+  EN: We are on the bus
+  RU: Мы в автобусе
+  UK: Ми в автобусі
+
+L1/lesson1_phrase_38
+  EN: It is near here
+  RU: Это рядом
+  UK: Це поруч
+
+L1/lesson1_phrase_39
+  EN: They are tired
+  RU: Они устали
+  UK: Вони втомлені
+
+L1/lesson1_phrase_40
+  EN: You are on the list
+  RU: Вы в списке
+  UK: Ви у списку
+
+L1/lesson1_phrase_41
+  EN: I am at the pharmacy
+  RU: Я в аптеке
+  UK: Я в аптеці
+
+L1/lesson1_phrase_42
+  EN: She is at the hotel
+  RU: Она в отеле
+  UK: Вона в готелі
+
+L1/lesson1_phrase_43
+  EN: We are abroad
+  RU: Мы за границей
+  UK: Ми за кордоном
+
+L1/lesson1_phrase_44
+  EN: They are hungry
+  RU: Они голодны
+  UK: Вони голодні
+
+L1/lesson1_phrase_45
+  EN: It is broken
+  RU: Это сломано
+  UK: Це зламано
+
+L1/lesson1_phrase_46
+  EN: He is angry
+  RU: Он злой
+  UK: Він злий
+
+L1/lesson1_phrase_47
+  EN: They are in the taxi
+  RU: Они в такси
+  UK: Вони в таксі
+
+L1/lesson1_phrase_48
+  EN: He is at school
+  RU: Он в школе
+  UK: Він у школі
+
+L1/lesson1_phrase_49
+  EN: It is empty
+  RU: Это пусто
+  UK: Це порожнє
+
+L1/lesson1_phrase_50
+  EN: She is nervous
+  RU: Она нервничает
+  UK: Вона нервує
+
+
+# ===== Урок 2: Урок 2: Отрицание и вопросы (To Be) / Урок 2: Заперечення й питання (To Be) =====
+
+L2/lesson2_phrase_1
+  EN: I am not hungry
+  RU: Я не голоден
+  UK: Я не голодний
+
+L2/lesson2_phrase_2
+  EN: Are you sure?
+  RU: Ты уверен?
+  UK: Ти впевнений?
+
+L2/lesson2_phrase_3
+  EN: He is not here
+  RU: Он не здесь
+  UK: Він не тут
+
+L2/lesson2_phrase_4
+  EN: Is it expensive?
+  RU: Это дорого?
+  UK: Це дорого?
+
+L2/lesson2_phrase_5
+  EN: We are not ready
+  RU: Мы не готовы
+  UK: Ми не готові
+
+L2/lesson2_phrase_6
+  EN: They are not at home
+  RU: Их нет дома
+  UK: Їх немає вдома
+
+L2/lesson2_phrase_7
+  EN: Is she a doctor?
+  RU: Она врач?
+  UK: Вона лікар?
+
+L2/lesson2_phrase_8
+  EN: It is not scary
+  RU: Это не страшно
+  UK: Це не страшно
+
+L2/lesson2_phrase_9
+  EN: Are you busy?
+  RU: Ты занят?
+  UK: Ти зайнятий?
+
+L2/lesson2_phrase_10
+  EN: I am not alone
+  RU: Я не один
+  UK: Я не один
+
+L2/lesson2_phrase_11
+  EN: We are not in danger
+  RU: Мы не в опасности
+  UK: Ми не в небезпеці
+
+L2/lesson2_phrase_12
+  EN: Is he angry?
+  RU: Он злой?
+  UK: Він злий?
+
+L2/lesson2_phrase_13
+  EN: He is not at work
+  RU: Он не на работе
+  UK: Він не на роботі
+
+L2/lesson2_phrase_14
+  EN: She is not married
+  RU: Она не замужем
+  UK: Вона не одружена
+
+L2/lesson2_phrase_15
+  EN: Is it open?
+  RU: Это открыто?
+  UK: Це відкрито?
+
+L2/lesson2_phrase_16
+  EN: You are not on the list
+  RU: Тебя нет в списке
+  UK: Тебе немає в списку
+
+L2/lesson2_phrase_17
+  EN: Is it free?
+  RU: Это бесплатно?
+  UK: Це безкоштовно?
+
+L2/lesson2_phrase_18
+  EN: They are not busy
+  RU: Они не заняты
+  UK: Вони не зайняті
+
+L2/lesson2_phrase_19
+  EN: Am I not right?
+  RU: Разве я не прав?
+  UK: Хіба я не правий?
+
+L2/lesson2_phrase_20
+  EN: She is not at the store
+  RU: Она не в магазине
+  UK: Вона не в магазині
+
+L2/lesson2_phrase_21
+  EN: It is not a joke
+  RU: Это не шутка
+  UK: Це не жарт
+
+L2/lesson2_phrase_22
+  EN: Are you okay?
+  RU: Ты в порядке?
+  UK: Ти в порядку?
+
+L2/lesson2_phrase_23
+  EN: He is not hungry
+  RU: Он не голоден
+  UK: Він не голодний
+
+L2/lesson2_phrase_24
+  EN: Is she in the taxi?
+  RU: Она в такси?
+  UK: Вона в таксі?
+
+L2/lesson2_phrase_25
+  EN: We are not at school
+  RU: Мы не в школе
+  UK: Ми не в школі
+
+L2/lesson2_phrase_26
+  EN: I am not afraid
+  RU: Я не боюсь
+  UK: Я не боюся
+
+L2/lesson2_phrase_27
+  EN: Are they here?
+  RU: Они здесь?
+  UK: Вони тут?
+
+L2/lesson2_phrase_28
+  EN: She is not angry
+  RU: Она не злится
+  UK: Вона не злиться
+
+L2/lesson2_phrase_29
+  EN: Is it far?
+  RU: Это далеко?
+  UK: Це далеко?
+
+L2/lesson2_phrase_30
+  EN: We are not enemies
+  RU: Мы не враги
+  UK: Ми не вороги
+
+L2/lesson2_phrase_31
+  EN: Are you not wrong?
+  RU: Разве ты не ошибаешься?
+  UK: Хіба ти не помиляєшся?
+
+L2/lesson2_phrase_32
+  EN: Is he at the office?
+  RU: Он в офисе?
+  UK: Він в офісі?
+
+L2/lesson2_phrase_33
+  EN: I am not in the mood
+  RU: Я не в настроении
+  UK: Я не в настрої
+
+L2/lesson2_phrase_34
+  EN: Is it true?
+  RU: Это правда?
+  UK: Це правда?
+
+L2/lesson2_phrase_35
+  EN: We are not in a trap
+  RU: Мы не в ловушке
+  UK: Ми не в пастці
+
+L2/lesson2_phrase_36
+  EN: They are not ready
+  RU: Они не готовы
+  UK: Вони не готові
+
+L2/lesson2_phrase_37
+  EN: It is not important
+  RU: Это не важно
+  UK: Це не важливо
+
+L2/lesson2_phrase_38
+  EN: Are you on the way?
+  RU: Ты в пути?
+  UK: Ти в дорозі?
+
+L2/lesson2_phrase_39
+  EN: She is not sick
+  RU: Она не больна
+  UK: Вона не хвора
+
+L2/lesson2_phrase_40
+  EN: I am not in the car
+  RU: Я не в машине
+  UK: Я не в машині
+
+L2/lesson2_phrase_41
+  EN: We are not guilty
+  RU: Мы не виноваты
+  UK: Ми не винні
+
+L2/lesson2_phrase_42
+  EN: Is he in the elevator?
+  RU: Он в лифте?
+  UK: Він в ліфті?
+
+L2/lesson2_phrase_43
+  EN: It is not dangerous
+  RU: Это не опасно
+  UK: Це не небезпечно
+
+L2/lesson2_phrase_44
+  EN: Are you in the building?
+  RU: Ты в здании?
+  UK: Ти в будівлі?
+
+L2/lesson2_phrase_45
+  EN: I am not mean
+  RU: Я не злой
+  UK: Я не злий
+
+L2/lesson2_phrase_46
+  EN: She is not at the park
+  RU: Она не в парке
+  UK: Вона не в парку
+
+L2/lesson2_phrase_47
+  EN: Are we not on the list?
+  RU: Разве нас нет в списке?
+  UK: Хіба нас немає в списку?
+
+L2/lesson2_phrase_48
+  EN: It is not serious
+  RU: Это не серьёзно
+  UK: Це не серйозно
+
+L2/lesson2_phrase_49
+  EN: They are not together
+  RU: Они не вместе
+  UK: Вони не разом
+
+L2/lesson2_phrase_50
+  EN: You are not right
+  RU: Ты не прав
+  UK: Ти не правий
+
+
+# ===== Урок 3: Урок 3: Present Simple: Утверждение / Урок 3: Present Simple: Твердження =====
+
+L3/lesson3_phrase_1
+  EN: I work here
+  RU: Я работаю здесь
+  UK: Я працюю тут
+
+L3/lesson3_phrase_2
+  EN: You understand me
+  RU: Ты понимаешь меня
+  UK: Ти розумієш мене
+
+L3/lesson3_phrase_3
+  EN: He lives in London
+  RU: Он живет в Лондоне
+  UK: Він живе в Лондоні
+
+L3/lesson3_phrase_4
+  EN: We drink coffee
+  RU: Мы пьем кофе
+  UK: Ми п'ємо каву
+
+L3/lesson3_phrase_5
+  EN: She speaks English
+  RU: Она говорит по-английски
+  UK: Вона говорить англійською
+
+L3/lesson3_phrase_6
+  EN: They watch the news
+  RU: Они смотрят новости
+  UK: Вони дивляться новини
+
+L3/lesson3_phrase_7
+  EN: It helps people
+  RU: Это помогает людям
+  UK: Це допомагає людям
+
+L3/lesson3_phrase_8
+  EN: You know the answer
+  RU: Вы знаете ответ
+  UK: Ви знаєте відповідь
+
+L3/lesson3_phrase_9
+  EN: He eats meat
+  RU: Он ест мясо
+  UK: Він їсть м'ясо
+
+L3/lesson3_phrase_10
+  EN: I believe you
+  RU: Я верю вам
+  UK: Я вірю вам
+
+L3/lesson3_phrase_11
+  EN: She loves music
+  RU: Она любит музыку
+  UK: Вона любить музику
+
+L3/lesson3_phrase_12
+  EN: We buy food
+  RU: Мы покупаем еду
+  UK: Ми купуємо їжу
+
+L3/lesson3_phrase_13
+  EN: It costs a dollar
+  RU: Это стоит доллар
+  UK: Це коштує долар
+
+L3/lesson3_phrase_14
+  EN: They live here
+  RU: Они живут здесь
+  UK: Вони живуть тут
+
+L3/lesson3_phrase_15
+  EN: You read books
+  RU: Вы читаете книги
+  UK: Ви читаєте книги
+
+L3/lesson3_phrase_16
+  EN: I come home late
+  RU: Я прихожу домой поздно
+  UK: Я приходжу додому пізно
+
+L3/lesson3_phrase_17
+  EN: He writes letters
+  RU: Он пишет письма
+  UK: Він пише листи
+
+L3/lesson3_phrase_18
+  EN: We listen to music
+  RU: Мы слушаем музыку
+  UK: Ми слухаємо музику
+
+L3/lesson3_phrase_19
+  EN: She washes the dishes
+  RU: Она моет посуду
+  UK: Вона миє посуд
+
+L3/lesson3_phrase_20
+  EN: They drive a car
+  RU: Они водят машину
+  UK: Вони водять машину
+
+L3/lesson3_phrase_21
+  EN: You deserve it
+  RU: Вы заслуживаете это
+  UK: Ви заслуговуєте на це
+
+L3/lesson3_phrase_22
+  EN: He often calls
+  RU: Он часто звонит
+  UK: Він часто телефонує
+
+L3/lesson3_phrase_23
+  EN: She cooks dinner
+  RU: Она готовит ужин
+  UK: Вона готує вечерю
+
+L3/lesson3_phrase_24
+  EN: I feel pain
+  RU: Я чувствую боль
+  UK: Я відчуваю біль
+
+L3/lesson3_phrase_25
+  EN: We promise help
+  RU: Мы обещаем помощь
+  UK: Ми обіцяємо допомогу
+
+L3/lesson3_phrase_26
+  EN: They travel often
+  RU: Они часто путешествуют
+  UK: Вони часто подорожують
+
+L3/lesson3_phrase_27
+  EN: It seems strange
+  RU: Это кажется странным
+  UK: Це здається дивним
+
+L3/lesson3_phrase_28
+  EN: We value time
+  RU: Мы ценим время
+  UK: Ми цінуємо час
+
+L3/lesson3_phrase_29
+  EN: She teaches math
+  RU: Она преподает математику
+  UK: Вона викладає математику
+
+L3/lesson3_phrase_30
+  EN: You forget keys
+  RU: Вы забываете ключи
+  UK: Ви забуваєте ключі
+
+L3/lesson3_phrase_31
+  EN: I remember this password
+  RU: Я помню этот пароль
+  UK: Я пам'ятаю цей пароль
+
+L3/lesson3_phrase_32
+  EN: He wears glasses
+  RU: Он носит очки
+  UK: Він носить окуляри
+
+L3/lesson3_phrase_33
+  EN: We order pizza
+  RU: Мы заказываем пиццу
+  UK: Ми замовляємо піцу
+
+L3/lesson3_phrase_34
+  EN: She uses the internet
+  RU: Она пользуется интернетом
+  UK: Вона користується інтернетом
+
+L3/lesson3_phrase_35
+  EN: They work here
+  RU: Они работают здесь
+  UK: Вони працюють тут
+
+L3/lesson3_phrase_36
+  EN: You deserve rest
+  RU: Вы заслуживаете отдыха
+  UK: Ви заслуговуєте на відпочинок
+
+L3/lesson3_phrase_37
+  EN: They often call
+  RU: Они часто звонят
+  UK: Вони часто телефонують
+
+L3/lesson3_phrase_38
+  EN: She teaches music
+  RU: Она преподает музыку
+  UK: Вона викладає музику
+
+L3/lesson3_phrase_39
+  EN: We accept terms
+  RU: Мы соглашаемся с условиями
+  UK: Ми погоджуємося з умовами
+
+L3/lesson3_phrase_40
+  EN: It takes time
+  RU: Это требует времени
+  UK: Це потребує часу
+
+L3/lesson3_phrase_41
+  EN: I understand the problem
+  RU: Я понимаю проблему
+  UK: Я розумію проблему
+
+L3/lesson3_phrase_42
+  EN: You look great
+  RU: Вы выглядите отлично
+  UK: Ви виглядаєте чудово
+
+L3/lesson3_phrase_43
+  EN: He drinks tea
+  RU: Он пьет чай
+  UK: Він п'є чай
+
+L3/lesson3_phrase_44
+  EN: She knows the address
+  RU: Она знает адрес
+  UK: Вона знає адресу
+
+L3/lesson3_phrase_45
+  EN: We wait here
+  RU: Мы ждем здесь
+  UK: Ми чекаємо тут
+
+L3/lesson3_phrase_46
+  EN: They come on time
+  RU: Они приходят вовремя
+  UK: Вони приходять вчасно
+
+L3/lesson3_phrase_47
+  EN: It sounds good
+  RU: Это звучит хорошо
+  UK: Це звучить добре
+
+L3/lesson3_phrase_48
+  EN: We order a taxi
+  RU: Мы заказываем такси
+  UK: Ми замовляємо таксі
+
+L3/lesson3_phrase_49
+  EN: He remembers me
+  RU: Он помнит меня
+  UK: Він пам'ятає мене
+
+L3/lesson3_phrase_50
+  EN: You help friends
+  RU: Вы помогаете друзьям
+  UK: Ви допомагаєте друзям
+
+
+# ===== Урок 4: Урок 4: Present Simple: Отрицание / Урок 4: Present Simple: Заперечення =====
+
+L4/lesson4_phrase_1
+  EN: I do not drink milk
+  RU: Я не пью молоко
+  UK: Я не п'ю молоко
+
+L4/lesson4_phrase_2
+  EN: You do not listen
+  RU: Ты не слушаешь
+  UK: Ти не слухаєш
+
+L4/lesson4_phrase_3
+  EN: He does not smoke
+  RU: Он не курит
+  UK: Він не курить
+
+L4/lesson4_phrase_4
+  EN: She does not eat sugar
+  RU: Она не ест сахар
+  UK: Вона не їсть цукор
+
+L4/lesson4_phrase_5
+  EN: We do not understand
+  RU: Мы не понимаем
+  UK: Ми не розуміємо
+
+L4/lesson4_phrase_6
+  EN: They do not live here
+  RU: Они не живут здесь
+  UK: Вони не живуть тут
+
+L4/lesson4_phrase_7
+  EN: It does not work
+  RU: Это не работает
+  UK: Це не працює
+
+L4/lesson4_phrase_8
+  EN: You do not know the address
+  RU: Вы не знаете адрес
+  UK: Ви не знаєте адресу
+
+L4/lesson4_phrase_9
+  EN: He does not eat meat
+  RU: Он не ест мясо
+  UK: Він не їсть м'ясо
+
+L4/lesson4_phrase_10
+  EN: I do not remember the number
+  RU: Я не помню номер
+  UK: Я не пам'ятаю номер
+
+L4/lesson4_phrase_11
+  EN: We do not buy it
+  RU: Мы не покупаем это
+  UK: Ми не купуємо це
+
+L4/lesson4_phrase_12
+  EN: She does not drink coffee
+  RU: Она не пьет кофе
+  UK: Вона не п'є каву
+
+L4/lesson4_phrase_13
+  EN: You do not use a password
+  RU: Вы не используете пароль
+  UK: Ви не використовуєте пароль
+
+L4/lesson4_phrase_14
+  EN: He does not see the problem
+  RU: Он не видит проблему
+  UK: Він не бачить проблему
+
+L4/lesson4_phrase_15
+  EN: They do not wear masks
+  RU: Они не носят маски
+  UK: Вони не носять маски
+
+L4/lesson4_phrase_16
+  EN: I do not eat spicy food
+  RU: Я не ем острое
+  UK: Я не їм гостре
+
+L4/lesson4_phrase_17
+  EN: We do not pay cash
+  RU: Мы не платим наличными
+  UK: Ми не платимо готівкою
+
+L4/lesson4_phrase_18
+  EN: She does not like risk
+  RU: Она не любит риск
+  UK: Вона не любить ризик
+
+L4/lesson4_phrase_19
+  EN: They do not sell tickets
+  RU: Они не продают билеты
+  UK: Вони не продають квитки
+
+L4/lesson4_phrase_20
+  EN: You do not understand rules
+  RU: Вы не понимаете правила
+  UK: Ви не розумієте правила
+
+L4/lesson4_phrase_21
+  EN: He does not drive a bus
+  RU: Он не водит автобус
+  UK: Він не водить автобус
+
+L4/lesson4_phrase_22
+  EN: We do not lose hope
+  RU: Мы не теряем надежду
+  UK: Ми не втрачаємо надію
+
+L4/lesson4_phrase_23
+  EN: She does not change her opinion
+  RU: Она не меняет своё мнение
+  UK: Вона не змінює свою думку
+
+L4/lesson4_phrase_24
+  EN: I do not feel fear
+  RU: Я не чувствую страх
+  UK: Я не відчуваю страху
+
+L4/lesson4_phrase_25
+  EN: They do not spend money
+  RU: Они не тратят деньги
+  UK: Вони не витрачають гроші
+
+L4/lesson4_phrase_26
+  EN: You do not listen to advice
+  RU: Вы не слушаете советы
+  UK: Ви не слухаєте порад
+
+L4/lesson4_phrase_27
+  EN: He does not forget details
+  RU: Он не забывает детали
+  UK: Він не забуває деталі
+
+L4/lesson4_phrase_28
+  EN: We do not believe ads
+  RU: Мы не верим рекламе
+  UK: Ми не віримо рекламі
+
+L4/lesson4_phrase_29
+  EN: She does not cook breakfast
+  RU: Она не готовит завтрак
+  UK: Вона не готує сніданок
+
+L4/lesson4_phrase_30
+  EN: I do not break the law
+  RU: Я не нарушаю закон
+  UK: Я не порушую закон
+
+L4/lesson4_phrase_31
+  EN: They do not trust strangers
+  RU: Они не доверяют незнакомцам
+  UK: Вони не довіряють незнайомцям
+
+L4/lesson4_phrase_32
+  EN: We do not waste time
+  RU: Мы не тратим время зря
+  UK: Ми не марнуємо час
+
+L4/lesson4_phrase_33
+  EN: She does not read the news
+  RU: Она не читает новости
+  UK: Вона не читає новини
+
+L4/lesson4_phrase_34
+  EN: You do not wear a tie
+  RU: Вы не носите галстук
+  UK: Ви не носите краватку
+
+L4/lesson4_phrase_35
+  EN: He does not take money
+  RU: Он не берет деньги
+  UK: Він не бере гроші
+
+L4/lesson4_phrase_36
+  EN: We do not share secrets
+  RU: Мы не делимся секретами
+  UK: Ми не діляємося секретами
+
+L4/lesson4_phrase_37
+  EN: She does not close the window
+  RU: Она не закрывает окно
+  UK: Вона не зачиняє вікно
+
+L4/lesson4_phrase_38
+  EN: They do not drink wine
+  RU: Они не пьют вино
+  UK: Вони не п'ють вино
+
+L4/lesson4_phrase_39
+  EN: You do not pay a fine
+  RU: Вы не платите штраф
+  UK: Ви не платите штраф
+
+L4/lesson4_phrase_40
+  EN: He does not ask for help
+  RU: Он не просит помощи
+  UK: Він не просить допомоги
+
+L4/lesson4_phrase_41
+  EN: I do not carry cash
+  RU: Я не ношу наличные
+  UK: Я не ношу готівку
+
+L4/lesson4_phrase_42
+  EN: She does not send messages
+  RU: Она не отправляет сообщения
+  UK: Вона не надсилає повідомлення
+
+L4/lesson4_phrase_43
+  EN: We do not watch TV
+  RU: Мы не смотрим телевизор
+  UK: Ми не дивимося телевізор
+
+L4/lesson4_phrase_44
+  EN: They do not use a map
+  RU: Они не используют карту
+  UK: Вони не використовують карту
+
+L4/lesson4_phrase_45
+  EN: You do not check the list
+  RU: Вы не проверяете список
+  UK: Ви не перевіряєте список
+
+L4/lesson4_phrase_46
+  EN: I do not need help
+  RU: Я не нуждаюсь в помощи
+  UK: Я не потребую допомоги
+
+L4/lesson4_phrase_47
+  EN: He does not own a car
+  RU: Он не имеет машины
+  UK: Він не має машини
+
+L4/lesson4_phrase_48
+  EN: We do not skip breakfast
+  RU: Мы не пропускаем завтрак
+  UK: Ми не пропускаємо сніданок
+
+L4/lesson4_phrase_49
+  EN: She does not drink alcohol
+  RU: Она не пьет алкоголь
+  UK: Вона не п'є алкоголь
+
+L4/lesson4_phrase_50
+  EN: They do not lose keys
+  RU: Они не теряют ключи
+  UK: Вони не втрачають ключі
+
+
+# ===== Урок 5: Урок 5: Present Simple: Вопросы / Урок 5: Present Simple: Питання =====
+
+L5/lesson5_phrase_1
+  EN: Do you drink coffee?
+  RU: Ты пьешь кофе?
+  UK: Ти п'єш каву?
+
+L5/lesson5_phrase_2
+  EN: Does he live here?
+  RU: Он живет здесь?
+  UK: Він живе тут?
+
+L5/lesson5_phrase_3
+  EN: Do we work tomorrow?
+  RU: Мы работаем завтра?
+  UK: Ми працюємо завтра?
+
+L5/lesson5_phrase_4
+  EN: Does she understand English?
+  RU: Она понимает английский?
+  UK: Вона розуміє англійську?
+
+L5/lesson5_phrase_5
+  EN: Do they know the password?
+  RU: Они знают пароль?
+  UK: Вони знають пароль?
+
+L5/lesson5_phrase_6
+  EN: Do I write correctly?
+  RU: Я правильно пишу?
+  UK: Я правильно пишу?
+
+L5/lesson5_phrase_7
+  EN: Does it cost much?
+  RU: Это стоит дорого?
+  UK: Це коштує дорого?
+
+L5/lesson5_phrase_8
+  EN: Do you travel often?
+  RU: Вы часто путешествуете?
+  UK: Ви часто подорожуєте?
+
+L5/lesson5_phrase_9
+  EN: Does he drink tea?
+  RU: Он пьет чай?
+  UK: Він п'є чай?
+
+L5/lesson5_phrase_10
+  EN: Do we use this code?
+  RU: Мы используем этот код?
+  UK: Ми використовуємо цей код?
+
+L5/lesson5_phrase_11
+  EN: Does she wear a mask?
+  RU: Она носит маску?
+  UK: Вона носить маску?
+
+L5/lesson5_phrase_12
+  EN: Do they sell tickets?
+  RU: Они продают билеты?
+  UK: Вони продають квитки?
+
+L5/lesson5_phrase_13
+  EN: Do I look tired?
+  RU: Я выгляжу усталым?
+  UK: Я виглядаю втомленим?
+
+L5/lesson5_phrase_14
+  EN: Do you remember the address?
+  RU: Ты помнишь адрес?
+  UK: Ти пам'ятаєш адресу?
+
+L5/lesson5_phrase_15
+  EN: Does he buy food?
+  RU: Он покупает еду?
+  UK: Він купує їжу?
+
+L5/lesson5_phrase_16
+  EN: Do we pay cash?
+  RU: Мы платим наличными?
+  UK: Ми платимо готівкою?
+
+L5/lesson5_phrase_17
+  EN: Do they smoke here?
+  RU: Они курят здесь?
+  UK: Вони курять тут?
+
+L5/lesson5_phrase_18
+  EN: Does she eat meat?
+  RU: Она ест мясо?
+  UK: Вона їсть м'ясо?
+
+L5/lesson5_phrase_19
+  EN: Do you hear a noise?
+  RU: Вы слышите шум?
+  UK: Ви чуєте шум?
+
+L5/lesson5_phrase_20
+  EN: Does he call often?
+  RU: Он часто звонит?
+  UK: Він часто телефонує?
+
+L5/lesson5_phrase_21
+  EN: Do I sing well?
+  RU: Я хорошо пою?
+  UK: Я добре співаю?
+
+L5/lesson5_phrase_22
+  EN: Do we order pizza?
+  RU: Мы заказываем пиццу?
+  UK: Ми замовляємо піцу?
+
+L5/lesson5_phrase_23
+  EN: Does she believe in luck?
+  RU: Она верит в удачу?
+  UK: Вона вірить у вдачу?
+
+L5/lesson5_phrase_24
+  EN: Do they speak English?
+  RU: Они говорят по-английски?
+  UK: Вони говорять англійською?
+
+L5/lesson5_phrase_25
+  EN: Do you understand the risk?
+  RU: Вы понимаете риск?
+  UK: Ви розумієте ризик?
+
+L5/lesson5_phrase_26
+  EN: Does he drive a car?
+  RU: Он водит машину?
+  UK: Він водить машину?
+
+L5/lesson5_phrase_27
+  EN: Do we lose money?
+  RU: Мы теряем деньги?
+  UK: Ми втрачаємо гроші?
+
+L5/lesson5_phrase_28
+  EN: Does she read books?
+  RU: Она читает книги?
+  UK: Вона читає книги?
+
+L5/lesson5_phrase_29
+  EN: Do they help people?
+  RU: Они помогают людям?
+  UK: Вони допомагають людям?
+
+L5/lesson5_phrase_30
+  EN: Do you feel cold?
+  RU: Тебе холодно?
+  UK: Тобі холодно?
+
+L5/lesson5_phrase_31
+  EN: Do you change the password often?
+  RU: Вы часто меняете пароль?
+  UK: Ви часто змінюєте пароль?
+
+L5/lesson5_phrase_32
+  EN: Does he know the price?
+  RU: Он знает цену?
+  UK: Він знає ціну?
+
+L5/lesson5_phrase_33
+  EN: Do we book a table?
+  RU: Мы бронируем столик?
+  UK: Ми бронюємо столик?
+
+L5/lesson5_phrase_34
+  EN: Does she need a doctor?
+  RU: Ей нужен врач?
+  UK: Їй потрібен лікар?
+
+L5/lesson5_phrase_35
+  EN: Do they accept credit cards?
+  RU: Они принимают кредитные карты?
+  UK: Вони приймають кредитні картки?
+
+L5/lesson5_phrase_36
+  EN: Do we go inside?
+  RU: Мы заходим внутрь?
+  UK: Ми заходимо всередину?
+
+L5/lesson5_phrase_37
+  EN: Does she feel pain?
+  RU: Она чувствует боль?
+  UK: Вона відчуває біль?
+
+L5/lesson5_phrase_38
+  EN: Do they know the answer?
+  RU: Они знают ответ?
+  UK: Вони знають відповідь?
+
+L5/lesson5_phrase_39
+  EN: Do I look good?
+  RU: Я выгляжу хорошо?
+  UK: Я виглядаю добре?
+
+L5/lesson5_phrase_40
+  EN: Do you wear glasses?
+  RU: Ты носишь очки?
+  UK: Ти носиш окуляри?
+
+L5/lesson5_phrase_41
+  EN: Do you understand the rules?
+  RU: Вы понимаете правила?
+  UK: Ви розумієте правила?
+
+L5/lesson5_phrase_42
+  EN: Does he often forget keys?
+  RU: Он часто забывает ключи?
+  UK: Він часто забуває ключі?
+
+L5/lesson5_phrase_43
+  EN: Do we pay taxes?
+  RU: Мы платим налоги?
+  UK: Ми платимо податки?
+
+L5/lesson5_phrase_44
+  EN: Does she look for a job?
+  RU: Она ищет работу?
+  UK: Вона шукає роботу?
+
+L5/lesson5_phrase_45
+  EN: Do they sell vegetables?
+  RU: Они продают овощи?
+  UK: Вони продають овочі?
+
+L5/lesson5_phrase_46
+  EN: Do I sleep enough?
+  RU: Я достаточно сплю?
+  UK: Чи я достатньо сплю?
+
+L5/lesson5_phrase_47
+  EN: Do we book a room?
+  RU: Мы бронируем номер?
+  UK: Ми бронюємо номер?
+
+L5/lesson5_phrase_48
+  EN: Does he find mistakes?
+  RU: Он находит ошибки?
+  UK: Він знаходить помилки?
+
+L5/lesson5_phrase_49
+  EN: Does she often cook dinner?
+  RU: Она часто готовит ужин?
+  UK: Вона часто готує вечерю?
+
+L5/lesson5_phrase_50
+  EN: Do they hear us?
+  RU: Они слышат нас?
+  UK: Вони чують нас?
+
+
+# ===== Урок 6: Урок 6: Специальные вопросы / Урок 6: Спеціальні питання =====
+
+L6/lesson6_phrase_1
+  EN: Where do you live?
+  RU: Где ты живешь?
+  UK: Де ти живеш?
+
+L6/lesson6_phrase_2
+  EN: What does he eat?
+  RU: Что он ест?
+  UK: Що він їсть?
+
+L6/lesson6_phrase_3
+  EN: When do we start?
+  RU: Когда мы начинаем?
+  UK: Коли ми починаємо?
+
+L6/lesson6_phrase_4
+  EN: Why does she cry?
+  RU: Почему она плачет?
+  UK: Чому вона плаче?
+
+L6/lesson6_phrase_5
+  EN: How do they work?
+  RU: Как они работают?
+  UK: Як вони працюють?
+
+L6/lesson6_phrase_6
+  EN: How much does it cost?
+  RU: Сколько это стоит?
+  UK: Скільки це коштує?
+
+L6/lesson6_phrase_7
+  EN: What do you drink?
+  RU: Что ты пьешь?
+  UK: Що ти п'єш?
+
+L6/lesson6_phrase_8
+  EN: Where do they buy tickets?
+  RU: Где они покупают билеты?
+  UK: Де вони купують квитки?
+
+L6/lesson6_phrase_9
+  EN: When does she call?
+  RU: Когда она звонит?
+  UK: Коли вона телефонує?
+
+L6/lesson6_phrase_10
+  EN: Why do we wait?
+  RU: Почему мы ждем?
+  UK: Чому ми чекаємо?
+
+L6/lesson6_phrase_11
+  EN: How do you get home?
+  RU: Как ты добираешься домой?
+  UK: Як ти дістаєшся додому?
+
+L6/lesson6_phrase_12
+  EN: Where does he go?
+  RU: Куда он идет?
+  UK: Куди він йде?
+
+L6/lesson6_phrase_13
+  EN: What do we read?
+  RU: Что мы читаем?
+  UK: Що ми читаємо?
+
+L6/lesson6_phrase_14
+  EN: When does she usually come?
+  RU: Когда она обычно приходит?
+  UK: Коли вона зазвичай приходить?
+
+L6/lesson6_phrase_15
+  EN: Why do they close the door?
+  RU: Почему они закрывают дверь?
+  UK: Чому вони зачиняють двері?
+
+L6/lesson6_phrase_16
+  EN: What do you usually buy?
+  RU: Что ты обычно покупаешь?
+  UK: Що ти зазвичай купуєш?
+
+L6/lesson6_phrase_17
+  EN: Where does he work?
+  RU: Где он работает?
+  UK: Де він працює?
+
+L6/lesson6_phrase_18
+  EN: Why do we pay now?
+  RU: Почему мы платим сейчас?
+  UK: Чому ми платимо зараз?
+
+L6/lesson6_phrase_19
+  EN: How does she open the window?
+  RU: Как она открывает окно?
+  UK: Як вона відчиняє вікно?
+
+L6/lesson6_phrase_20
+  EN: When do they come home?
+  RU: Когда они приходят домой?
+  UK: Коли вони приходять додому?
+
+L6/lesson6_phrase_21
+  EN: What do I sign?
+  RU: Что я подписываю?
+  UK: Що я підписую?
+
+L6/lesson6_phrase_22
+  EN: Where do we send the report?
+  RU: Куда мы отправляем отчет?
+  UK: Куди ми відправляємо звіт?
+
+L6/lesson6_phrase_23
+  EN: How does he do it?
+  RU: Как он это делает?
+  UK: Як він це робить?
+
+L6/lesson6_phrase_24
+  EN: Why does she want to leave?
+  RU: Почему она хочет уйти?
+  UK: Чому вона хоче піти?
+
+L6/lesson6_phrase_25
+  EN: When do they finish work?
+  RU: Когда они заканчивают работу?
+  UK: Коли вони закінчують роботу?
+
+L6/lesson6_phrase_26
+  EN: What do you see?
+  RU: Что ты видишь?
+  UK: Що ти бачиш?
+
+L6/lesson6_phrase_27
+  EN: Where does he keep keys?
+  RU: Где он хранит ключи?
+  UK: Де він зберігає ключі?
+
+L6/lesson6_phrase_28
+  EN: How do we find the exit?
+  RU: Как мы находим выход?
+  UK: Як ми знаходимо вихід?
+
+L6/lesson6_phrase_29
+  EN: Why does she carry this bag?
+  RU: Почему она носит эту сумку?
+  UK: Чому вона носить цю сумку?
+
+L6/lesson6_phrase_30
+  EN: When do they open the shop?
+  RU: Когда они открывают магазин?
+  UK: Коли вони відкривають магазин?
+
+L6/lesson6_phrase_31
+  EN: Where do we meet guests?
+  RU: Где мы встречаем гостей?
+  UK: Де ми зустрічаємо гостей?
+
+L6/lesson6_phrase_32
+  EN: What does she usually cook?
+  RU: Что она обычно готовит?
+  UK: Що вона зазвичай готує?
+
+L6/lesson6_phrase_33
+  EN: Why do they ask for help?
+  RU: Почему они просят помощи?
+  UK: Чому вони просять допомоги?
+
+L6/lesson6_phrase_34
+  EN: When does he check his mail?
+  RU: Когда он проверяет свою почту?
+  UK: Коли він перевіряє свою пошту?
+
+L6/lesson6_phrase_35
+  EN: How do you find it?
+  RU: Как ты это находишь?
+  UK: Як ти це знаходиш?
+
+L6/lesson6_phrase_36
+  EN: What do you usually wear?
+  RU: Что ты обычно носишь?
+  UK: Що ти зазвичай носиш?
+
+L6/lesson6_phrase_37
+  EN: Where does he buy groceries?
+  RU: Где он покупает продукты?
+  UK: Де він купує продукти?
+
+L6/lesson6_phrase_38
+  EN: How do we book it?
+  RU: Как мы бронируем это?
+  UK: Як ми бронюємо це?
+
+L6/lesson6_phrase_39
+  EN: Why does she speak slowly?
+  RU: Почему она говорит медленно?
+  UK: Чому вона говорить повільно?
+
+L6/lesson6_phrase_40
+  EN: When do they start the meeting?
+  RU: Когда они начинают встречу?
+  UK: Коли вони починають зустріч?
+
+L6/lesson6_phrase_41
+  EN: What do you usually watch?
+  RU: Что ты обычно смотришь?
+  UK: Що ти зазвичай дивишся?
+
+L6/lesson6_phrase_42
+  EN: Where do we put luggage?
+  RU: Куда мы кладем багаж?
+  UK: Куди ми кладемо багаж?
+
+L6/lesson6_phrase_43
+  EN: How does he find the way?
+  RU: Как он находит дорогу?
+  UK: Як він знаходить дорогу?
+
+L6/lesson6_phrase_44
+  EN: Why does she close the window?
+  RU: Почему она закрывает окно?
+  UK: Чому вона зачиняє вікно?
+
+L6/lesson6_phrase_45
+  EN: When do they eat dinner?
+  RU: Когда они едят ужин?
+  UK: Коли вони їдять вечерю?
+
+L6/lesson6_phrase_46
+  EN: What do you usually order?
+  RU: Что ты обычно заказываешь?
+  UK: Що ти зазвичай замовляєш?
+
+L6/lesson6_phrase_47
+  EN: Where does she put the bag?
+  RU: Куда она кладет сумку?
+  UK: Куди вона кладе сумку?
+
+L6/lesson6_phrase_48
+  EN: How do we check the bill?
+  RU: Как мы проверяем счет?
+  UK: Як ми перевіряємо рахунок?
+
+L6/lesson6_phrase_49
+  EN: Why does she always help?
+  RU: Почему она всегда помогает?
+  UK: Чому вона завжди допомагає?
+
+L6/lesson6_phrase_50
+  EN: When do they close the café?
+  RU: Когда они закрывают кафе?
+  UK: Коли вони зачиняють кафе?
+
+
+# ===== Урок 7: Урок 7: Глагол To Have (Иметь) / Урок 7: Дієслово To Have (Мати) =====
+
+L7/lesson7_phrase_1
+  EN: I have insurance
+  RU: У меня есть страховка
+  UK: Я маю страховку
+
+L7/lesson7_phrase_2
+  EN: He has a driver's license
+  RU: У него есть водительские права
+  UK: Він має посвідчення водія
+
+L7/lesson7_phrase_3
+  EN: We have free time
+  RU: У нас есть свободное время
+  UK: Ми маємо вільний час
+
+L7/lesson7_phrase_4
+  EN: She has an allergy
+  RU: У нее есть аллергия
+  UK: Вона має алергію
+
+L7/lesson7_phrase_5
+  EN: Do they have a reservation?
+  RU: У них есть бронирование?
+  UK: У них є бронювання?
+
+L7/lesson7_phrase_6
+  EN: I have a lighter
+  RU: У меня есть зажигалка
+  UK: Я маю запальничку
+
+L7/lesson7_phrase_7
+  EN: He has a pass
+  RU: У него есть пропуск
+  UK: Він має пропуск
+
+L7/lesson7_phrase_8
+  EN: I have cash
+  RU: У меня есть наличные
+  UK: Я маю готівку
+
+L7/lesson7_phrase_9
+  EN: Does she have a tablet?
+  RU: У нее есть планшет?
+  UK: У неї є планшет?
+
+L7/lesson7_phrase_10
+  EN: We have change
+  RU: У нас есть сдача
+  UK: Ми маємо здачу
+
+L7/lesson7_phrase_11
+  EN: They do not have chargers
+  RU: У них нет зарядных устройств
+  UK: Вони не мають зарядних пристроїв
+
+L7/lesson7_phrase_12
+  EN: Do I have a passport?
+  RU: У меня есть паспорт?
+  UK: У мене є паспорт?
+
+L7/lesson7_phrase_13
+  EN: She has the menu
+  RU: У нее есть меню
+  UK: Вона має меню
+
+L7/lesson7_phrase_14
+  EN: Does he have a device?
+  RU: У него есть устройство?
+  UK: У нього є пристрій?
+
+L7/lesson7_phrase_15
+  EN: They have a discount
+  RU: У них есть скидка
+  UK: Вони мають знижку
+
+L7/lesson7_phrase_16
+  EN: I have a city map
+  RU: У меня есть городская карта
+  UK: Я маю карту міста
+
+L7/lesson7_phrase_17
+  EN: Does she have an umbrella?
+  RU: У нее есть зонт?
+  UK: У неї є парасоля?
+
+L7/lesson7_phrase_18
+  EN: We have Wi-Fi
+  RU: У нас есть Wi-Fi
+  UK: Ми маємо Wi-Fi
+
+L7/lesson7_phrase_19
+  EN: He has a headache
+  RU: У него болит голова
+  UK: У нього болить голова
+
+L7/lesson7_phrase_20
+  EN: Do they have hotel bookings?
+  RU: У них есть бронирования отелей?
+  UK: У них є бронювання в готелях?
+
+L7/lesson7_phrase_21
+  EN: I have a spare key
+  RU: У меня есть запасной ключ
+  UK: Я маю запасний ключ
+
+L7/lesson7_phrase_22
+  EN: She has an appetite
+  RU: У нее есть аппетит
+  UK: Вона має апетит
+
+L7/lesson7_phrase_23
+  EN: Does he have an international passport?
+  RU: У него есть международный паспорт?
+  UK: У нього є міжнародний паспорт?
+
+L7/lesson7_phrase_24
+  EN: They do not have a question
+  RU: У них нет вопроса
+  UK: Вони не мають питання
+
+L7/lesson7_phrase_25
+  EN: I have a phone charger
+  RU: У меня есть зарядное устройство для телефона
+  UK: Я маю зарядний пристрій для телефону
+
+L7/lesson7_phrase_26
+  EN: She has my address
+  RU: У нее есть мой адрес
+  UK: Вона має мою адресу
+
+L7/lesson7_phrase_27
+  EN: He does not have a pen
+  RU: У него нет ручки
+  UK: У нього немає ручки
+
+L7/lesson7_phrase_28
+  EN: We have a lunch break
+  RU: У нас есть обеденный перерыв
+  UK: Ми маємо обідню перерву
+
+L7/lesson7_phrase_29
+  EN: Do they have return tickets?
+  RU: У них есть обратные билеты?
+  UK: Вони мають зворотні квитки?
+
+L7/lesson7_phrase_30
+  EN: I have a nut allergy
+  RU: У меня есть аллергия на орехи
+  UK: Я маю алергію на горіхи
+
+L7/lesson7_phrase_31
+  EN: She has a ticket confirmation
+  RU: У нее есть подтверждение билета
+  UK: Вона має підтвердження квитка
+
+L7/lesson7_phrase_32
+  EN: Does he have a power bank?
+  RU: У него есть портативный аккумулятор?
+  UK: У нього є портативна батарея?
+
+L7/lesson7_phrase_33
+  EN: They do not have documents
+  RU: У них нет документов
+  UK: Вони не мають документів
+
+L7/lesson7_phrase_34
+  EN: I do not have this issue
+  RU: У меня нет этой проблемы
+  UK: У мене немає цієї проблеми
+
+L7/lesson7_phrase_35
+  EN: She has a suitcase
+  RU: У нее есть чемодан
+  UK: У неї є валіза
+
+L7/lesson7_phrase_36
+  EN: He has a bicycle
+  RU: У него есть велосипед
+  UK: У нього є велосипед
+
+L7/lesson7_phrase_37
+  EN: We have cash with us
+  RU: У нас есть наличные с собой
+  UK: Ми маємо готівку з собою
+
+L7/lesson7_phrase_38
+  EN: They have the reservation number
+  RU: У них есть номер бронирования
+  UK: Вони мають номер бронювання
+
+L7/lesson7_phrase_39
+  EN: I do not have a lighter
+  RU: У меня нет зажигалки
+  UK: Я не маю запальнички
+
+L7/lesson7_phrase_40
+  EN: She has a dog
+  RU: У нее есть собака
+  UK: У неї є собака
+
+L7/lesson7_phrase_41
+  EN: He has a backpack
+  RU: У него есть рюкзак
+  UK: У нього є рюкзак
+
+L7/lesson7_phrase_42
+  EN: We do not have time for lunch
+  RU: У нас нет времени на обед
+  UK: Ми не маємо часу на обід
+
+L7/lesson7_phrase_43
+  EN: Do they have a plan?
+  RU: У них есть план?
+  UK: У них є план?
+
+L7/lesson7_phrase_44
+  EN: I have a question about the policy
+  RU: У меня есть вопрос по правилам
+  UK: У мене є питання щодо правил
+
+L7/lesson7_phrase_45
+  EN: She has a discount with us
+  RU: У неё есть скидка у нас
+  UK: У неї є знижка у нас
+
+L7/lesson7_phrase_46
+  EN: He does not have his passport
+  RU: У него нет паспорта
+  UK: У нього немає паспорта
+
+L7/lesson7_phrase_47
+  EN: We have all the documents needed
+  RU: У нас есть все необходимые документы
+  UK: Ми маємо всі необхідні документи
+
+L7/lesson7_phrase_48
+  EN: They have a city guide and a map
+  RU: У них есть путеводитель по городу и карта
+  UK: Вони мають путівник по місту і карту
+
+L7/lesson7_phrase_49
+  EN: I do not have time for coffee
+  RU: У меня нет времени на кофе
+  UK: Я не маю часу на каву
+
+L7/lesson7_phrase_50
+  EN: She has good news
+  RU: У нее есть хорошие новости
+  UK: У неї є гарні новини
+
+
+# ===== Урок 8: Урок 8: Предлоги времени / Урок 8: Прийменники часу =====
+
+L8/lesson8_phrase_1
+  EN: I work on Monday
+  RU: Я работаю в понедельник
+  UK: Я працюю в понеділок
+
+L8/lesson8_phrase_2
+  EN: She leaves at eight o'clock
+  RU: Она уходит в восемь часов
+  UK: Вона йде о восьмій годині
+
+L8/lesson8_phrase_3
+  EN: We rest in July
+  RU: Мы отдыхаем в июле
+  UK: Ми відпочиваємо в липні
+
+L8/lesson8_phrase_4
+  EN: He pays on weekends
+  RU: Он платит в выходные
+  UK: Він платить у вихідні
+
+L8/lesson8_phrase_5
+  EN: They call in the morning
+  RU: Они звонят утром
+  UK: Вони дзвонять вранці
+
+L8/lesson8_phrase_6
+  EN: He has a meeting at noon
+  RU: У него встреча в полдень
+  UK: У нього зустріч опівдні
+
+L8/lesson8_phrase_7
+  EN: You pay cash on Friday
+  RU: Вы платите наличными в пятницу
+  UK: Ви платите готівкою в п'ятницю
+
+L8/lesson8_phrase_8
+  EN: The shop closes at midnight
+  RU: Магазин закрывается в полночь
+  UK: Магазин зачиняється опівночі
+
+L8/lesson8_phrase_9
+  EN: We travel in winter
+  RU: Мы путешествуем зимой
+  UK: Ми подорожуємо взимку
+
+L8/lesson8_phrase_10
+  EN: They walk in the evening
+  RU: Они гуляют вечером
+  UK: Вони гуляють ввечері
+
+L8/lesson8_phrase_11
+  EN: I start work at nine
+  RU: Я начинаю работу в девять
+  UK: Я починаю роботу о дев'ятій
+
+L8/lesson8_phrase_12
+  EN: The train arrives at seven PM
+  RU: Поезд прибывает в семь часов вечера
+  UK: Поїзд прибуває о сьомій годині вечора
+
+L8/lesson8_phrase_13
+  EN: We do sport on Tuesdays
+  RU: Мы занимаемся спортом по вторникам
+  UK: Ми займаємося спортом щовівторка
+
+L8/lesson8_phrase_14
+  EN: She checks mail at night
+  RU: Она проверяет почту ночью
+  UK: Вона перевіряє пошту вночі
+
+L8/lesson8_phrase_15
+  EN: They relax in August
+  RU: Они отдыхают в августе
+  UK: Вони відпочивають у серпні
+
+L8/lesson8_phrase_16
+  EN: I book a hotel in June
+  RU: Я бронирую отель в июне
+  UK: Я бронюю готель у червні
+
+L8/lesson8_phrase_17
+  EN: We meet at nine thirty
+  RU: Мы встречаемся в девять тридцать
+  UK: Ми зустрічаємося о дев'ятій тридцять
+
+L8/lesson8_phrase_18
+  EN: She works on Thursdays
+  RU: Она работает по четвергам
+  UK: Вона працює щочетверга
+
+L8/lesson8_phrase_19
+  EN: They order food in the evening
+  RU: Они заказывают еду вечером
+  UK: Вони замовляють їжу ввечері
+
+L8/lesson8_phrase_20
+  EN: He has a vacation in spring
+  RU: У него отпуск весной
+  UK: У нього відпустка навесні
+
+L8/lesson8_phrase_21
+  EN: I come home at midnight
+  RU: Я прихожу домой в полночь
+  UK: Я приходжу додому опівночі
+
+L8/lesson8_phrase_22
+  EN: The train departs at ten fifteen
+  RU: Поезд отправляется в десять пятнадцать
+  UK: Поїзд відправляється о десятій п'ятнадцять
+
+L8/lesson8_phrase_23
+  EN: We walk in the park on Sundays
+  RU: Мы гуляем в парке по воскресеньям
+  UK: Ми гуляємо в парку щонеділі
+
+L8/lesson8_phrase_24
+  EN: She has breakfast in the morning
+  RU: Она завтракает утром
+  UK: Вона снідає вранці
+
+L8/lesson8_phrase_25
+  EN: They shop on Saturday
+  RU: Они делают покупки в субботу
+  UK: Вони роблять покупки в суботу
+
+L8/lesson8_phrase_26
+  EN: We have class on Tuesdays
+  RU: У нас занятие по вторникам
+  UK: У нас заняття щовівторка
+
+L8/lesson8_phrase_27
+  EN: We have lunch at one PM
+  RU: Мы обедаем в час дня
+  UK: Ми обідаємо о першій годині дня
+
+L8/lesson8_phrase_28
+  EN: She visits the gym on Wednesdays
+  RU: Она посещает спортзал по средам
+  UK: Вона відвідує спортзал щосереди
+
+L8/lesson8_phrase_29
+  EN: They have dinner at eight
+  RU: Они ужинают в восемь
+  UK: Вони вечеряють о восьмій
+
+L8/lesson8_phrase_30
+  EN: He has a day off on Saturday
+  RU: У него выходной в субботу
+  UK: У нього вихідний у суботу
+
+L8/lesson8_phrase_31
+  EN: He takes a shower at eight o'clock
+  RU: Он принимает душ в восемь часов
+  UK: Він приймає душ о восьмій годині
+
+L8/lesson8_phrase_32
+  EN: We pay rent in January
+  RU: Мы платим за аренду в январе
+  UK: Ми платимо за оренду в січні
+
+L8/lesson8_phrase_33
+  EN: She finishes work at five PM
+  RU: Она заканчивает работу в пять вечера
+  UK: Вона закінчує роботу о п'ятій вечора
+
+L8/lesson8_phrase_34
+  EN: They meet on weekends
+  RU: Они встречаются в выходные
+  UK: Вони зустрічаються у вихідні
+
+L8/lesson8_phrase_35
+  EN: He has a birthday in October
+  RU: У него день рождения в октябре
+  UK: У нього день народження в жовтні
+
+L8/lesson8_phrase_36
+  EN: I listen to music at six
+  RU: Я слушаю музыку в шесть
+  UK: Я слухаю музику о шостій
+
+L8/lesson8_phrase_37
+  EN: Does she have time on Friday?
+  RU: У нее есть время в пятницу?
+  UK: У неї є час у п'ятницю?
+
+L8/lesson8_phrase_38
+  EN: She runs in the park in summer
+  RU: Она бегает в парке летом
+  UK: Вона бігає у парку влітку
+
+L8/lesson8_phrase_39
+  EN: We travel in May
+  RU: Мы путешествуем в мае
+  UK: Ми подорожуємо в травні
+
+L8/lesson8_phrase_40
+  EN: He checks documents at night
+  RU: Он проверяет документы ночью
+  UK: Він перевіряє документи вночі
+
+L8/lesson8_phrase_41
+  EN: I buy tickets in March
+  RU: Я покупаю билеты в марте
+  UK: Я купую квитки в березні
+
+L8/lesson8_phrase_42
+  EN: She calls her mother on Mondays
+  RU: Она звонит маме по понедельникам
+  UK: Вона дзвонить мамі щопонеділка
+
+L8/lesson8_phrase_43
+  EN: We drink tea in the afternoon
+  RU: Мы пьем чай днем
+  UK: Ми п'ємо чай вдень
+
+L8/lesson8_phrase_44
+  EN: Does he have work in September?
+  RU: У него есть работа в сентябре?
+  UK: У нього є робота у вересні?
+
+L8/lesson8_phrase_45
+  EN: They arrive on Thursday
+  RU: Они приезжают в четверг
+  UK: Вони приїжджають у четвер
+
+L8/lesson8_phrase_46
+  EN: I wake up at seven
+  RU: Я просыпаюсь в семь
+  UK: Я прокидаюся о сьомій
+
+L8/lesson8_phrase_47
+  EN: The bus arrives at two PM
+  RU: Автобус прибывает в два часа дня
+  UK: Автобус прибуває о другій годині дня
+
+L8/lesson8_phrase_48
+  EN: We order pizza on Saturdays
+  RU: Мы заказываем пиццу по субботам
+  UK: Ми замовляємо піцу щосуботи
+
+L8/lesson8_phrase_49
+  EN: She has a meeting in December
+  RU: У нее есть встреча в декабре
+  UK: У неї є зустріч у грудні
+
+L8/lesson8_phrase_50
+  EN: They read books in January
+  RU: Они читают книги в январе
+  UK: Вони читають книги у січні
+

@@ -7,4 +7,12 @@ module.exports = defineConfig([
   {
     ignores: ['dist/*'],
   },
+  {
+    /** eslint-plugin-import parses imports with espree unless told otherwise → false positives on .ts/.tsx deps */
+    settings: {
+      'import/parsers': {
+        '@typescript-eslint/parser': ['.ts', '.tsx'],
+      },
+    },
+  },
 ]);

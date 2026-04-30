@@ -1,0 +1,28 @@
+{
+  "name": "subscription-recovery",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Subscription Recovery & Optimization",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace api\" \"npm run dev --workspace web\"",
+    "dev:api": "npm run dev --workspace api",
+    "dev:web": "npm run dev --workspace web",
+    "build": "npm run build --workspace api && npm run build --workspace web",
+    "test": "npm run test --workspace api",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev --name init",
+    "seed": "tsx prisma/seed.ts",
+    "db:up": "docker compose up -d",
+    "db:down": "docker compose down -v",
+    "smoke": "node scripts/smoke.cjs"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "prisma": "^6.7.0",
+    "tsx": "^4.20.6"
+  }
+}

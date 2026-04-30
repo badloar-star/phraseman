@@ -1,0 +1,62 @@
+[
+  {
+    "heading": "Privacy Policy — Phraseman by Knowly",
+    "body": "Last updated: April 30, 2026\n\nThis Privacy Policy explains how Knowly (\"we\", \"us\") collects, uses, and protects your information when you use the Phraseman app, available on the App Store and Google Play. By using the App you agree to this Policy."
+  },
+  {
+    "heading": "1. Age & Parental Consent",
+    "body": "Phraseman is available to users of all ages on the App Store and Google Play. Full registration with Knowly is not required; optional sign-in with Google or Apple is available to save progress across devices (see Section 3). We do not knowingly collect personal data from children beyond what is needed to operate the App. Data visible to other users is described in Section 3 (public leaderboard fields). If you are a parent or guardian and have concerns about your child's data, contact us at support.phraseman@gmail.com and we will delete any associated cloud data within 30 days."
+  },
+  {
+    "heading": "2. Data Stored on Your Device",
+    "body": "Your learning progress, XP, streak, achievements, flashcard collection, daily tasks progress, and app settings are stored locally on your device using AsyncStorage. This data is not transmitted to our servers unless you use cloud-synced features. If you create or buy Community Packs, related text and purchase flags may also be stored in the cloud as described in Section 3a."
+  },
+  {
+    "heading": "3. Cloud Data — Firebase Firestore",
+    "body": "The App uses Google Firebase Authentication.\n\nDefault (anonymous) mode: Firebase assigns an anonymous user ID to your device so leaderboard, clubs, and sync can work without you entering an email or password.\n\nOptional sign-in (Google or Apple): If you choose to save progress across devices or restore after reinstalling, you may sign in with Google or Apple. Firebase processes authentication with that provider. Knowly may receive and store: your email address (if the provider shares it), display name (if shared), a stable provider user identifier, platform (iOS/Android), and timestamps — for example in authentication linking records and your user profile — solely to operate cloud save, identity linking, and fraud prevention. Google and Apple handle sign-in under their own terms and privacy policies.\n\n⚠ PUBLIC DATA: Your chosen nickname, XP, streak, club tier, and avatar are stored in our Firestore database and are PUBLICLY VISIBLE to all users of the App in the global leaderboard and weekly club groups.\n\nCloud data is retained until you request deletion or after 24 months of inactivity."
+  },
+  {
+    "heading": "3a. Community packs — content you create or purchase",
+    "body": "If you use Community Packs (user-submitted flashcard sets), we process and store in Firebase (Firestore / Cloud Functions): titles and descriptions you enter, card text (English and translations you provide), your stable user identifier (anonymous Firebase user until you link Google or Apple; afterward tied to that linked account), submission and moderation status, listing and pricing metadata, purchase records (buyer id and pack id), and related audit fields.\n\nIf a pack is published, its text may be visible to other users in the in-app catalog and to users who spend in-app \"Shards\" to access it. Shards are a virtual in-app balance — see our Terms of Use; they are not money and cannot be withdrawn as cash.\n\nModeration decisions are logged on our systems. We do not sell Community Pack text as a separate product to third parties. Aggregated statistics (e.g. sales counts) may be stored for the feature to function."
+  },
+  {
+    "heading": "4. Text-to-Speech Audio",
+    "body": "The App uses your device's built-in Text-to-Speech engine (expo-speech) to pronounce English phrases and example sentences. Audio is generated entirely on your device. No text or audio data is transmitted to external servers."
+  },
+  {
+    "heading": "5. Subscriptions — RevenueCat",
+    "body": "Premium subscriptions (monthly and annual, auto-renewable) are billed through the Apple App Store or Google Play. RevenueCat, Inc. verifies your subscription status using an anonymous app user ID and device receipt. Knowly does not receive your payment card details. See revenuecat.com/privacy."
+  },
+  {
+    "heading": "6. Analytics",
+    "body": "We may collect aggregated, anonymized usage data (screen visits, crash logs) via Firebase Analytics. This data does not identify you personally and is used only to improve the App."
+  },
+  {
+    "heading": "7. Personal Data We Collect",
+    "body": "• Unless you use optional Google or Apple sign-in: Knowly does not ask you for an email address or password for its own account system.\n• When you sign in with Google or Apple: your email address and display name may be received from that provider and stored as described in Section 3.\n• Knowly does not collect your phone number for account purposes.\n• No precise geolocation collected by Knowly.\n• No payment card or banking information received by Knowly (payments go through Apple, Google, and RevenueCat).\n• No contacts or photos from your device unless you explicitly enter content in the App."
+  },
+  {
+    "heading": "8. Third-Party Services",
+    "body": "• Google Firebase (Auth, Firestore, Analytics) — policies.google.com/privacy\n• RevenueCat (subscriptions) — revenuecat.com/privacy\n• Expo — expo.dev/privacy\n• Apple App Store / Google Play — apple.com/legal/privacy, policies.google.com/privacy"
+  },
+  {
+    "heading": "9. Your Rights (GDPR / CCPA)",
+    "body": "You have the right to access, correct, or delete your data; restrict or object to processing; and data portability. California residents may request information about data collection and opt out of any sale (we do not sell data).\n\nTo exercise your rights, email: support.phraseman@gmail.com with subject \"Privacy Request\". We respond within 30 days."
+  },
+  {
+    "heading": "10. Data Deletion",
+    "body": "To delete local data: uninstall the App from your device.\n\nTo delete cloud data (leaderboard entries, progress sync, linked Google/Apple sign-in metadata we hold in our backend): email support.phraseman@gmail.com with subject \"Delete My Data\". Cloud data will be deleted within 90 days. You may also use provider account controls (Google/Apple) to revoke app access; revoking access does not automatically delete records already stored — contact us if you need a full deletion."
+  },
+  {
+    "heading": "11. Security",
+    "body": "We implement industry-standard security measures including Firebase security rules and encrypted TLS/HTTPS transmission. However, no system is 100% secure. We cannot guarantee absolute protection from unauthorized access."
+  },
+  {
+    "heading": "12. Changes to This Policy",
+    "body": "We may update this Policy from time to time. Material changes will be reflected in the \"Last updated\" date and may include in-app notification. Continued use of the App after changes constitutes acceptance."
+  },
+  {
+    "heading": "13. Contact",
+    "body": "Knowly — Phraseman\nEmail: support.phraseman@gmail.com\n\nFor GDPR data subject requests, COPPA parental requests, or any privacy concerns, please contact us at the address above."
+  }
+]

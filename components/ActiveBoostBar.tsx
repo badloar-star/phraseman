@@ -3,15 +3,16 @@
  * Отображает прогресс активного буста с оставшимся временем
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
+import { triLang, type Lang } from '../constants/i18n';
 import {
   getActiveBoosts,
-  formatBoostTimeRemaining,
-  formatBoostTimeRemainingUK,
+  formatBoostTimeRemainingForLang,
   getBoostDef,
+  boostNameForLang,
   ActiveBoost,
 } from '../app/club_boosts';
 
@@ -22,12 +23,24 @@ interface ActiveBoostBarProps {
 export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
 
   const [activeBoosts, setActiveBoosts] = useState<ActiveBoost[]>([]);
   const [timeRemaining, setTimeRemaining] = useState<{ [key: string]: string }>(
     {}
   );
+
+  const updateTimeRemaining = useCallback((boosts: ActiveBoost[]) => {
+    const timeMap: { [key: string]: string } = {};
+
+    for (let i = 0; i < boosts.length; i++) {
+      const boost = boosts[i];
+      const key = `${boost.id}_${i}`;
+      const formatted = formatBoostTimeRemainingForLang(boost, lang as Lang);
+      timeMap[key] = formatted;
+    }
+
+    setTimeRemaining(timeMap);
+  }, [lang]);
 
   // Загружаем активные бустеры
   useEffect(() => {
@@ -38,7 +51,7 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
     };
 
     load();
-  }, []);
+  }, [updateTimeRemaining]);
 
   // Обновляем оставшееся время каждую секунду
   useEffect(() => {
@@ -47,22 +60,7 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [activeBoosts]);
-
-  const updateTimeRemaining = (boosts: ActiveBoost[]) => {
-    const timeMap: { [key: string]: string } = {};
-
-    for (let i = 0; i < boosts.length; i++) {
-      const boost = boosts[i];
-      const key = `${boost.id}_${i}`;
-      const formatted = isUK
-        ? formatBoostTimeRemainingUK(boost)
-        : formatBoostTimeRemaining(boost);
-      timeMap[key] = formatted;
-    }
-
-    setTimeRemaining(timeMap);
-  };
+  }, [activeBoosts, updateTimeRemaining]);
 
   if (activeBoosts.length === 0) {
     return null;
@@ -77,9 +75,6 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
   const timeStr = timeRemaining[key] || '';
 
   // Extract multiplier from boost name
-  const multiplierMatch = boostDef.nameRU.match(/×(\d+)/);
-  const multiplier = multiplierMatch ? multiplierMatch[1] : '1';
-
   return (
     <View
       style={[
@@ -90,7 +85,7 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
     >
       {/* Icon and name with multiplier */}
       <View style={{ flexDirection: 'row', alignItems: 'center', flex: 1 }}>
-        <Text style={{ fontSize: 20, marginRight: 10 }}>
+        <Text style={{ fontSize: f.numMd, marginRight: 10 }}>
           {boostDef.icon}
         </Text>
 
@@ -103,7 +98,7 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
                 fontSize: f.sub,
               }}
             >
-              {isUK ? boostDef.nameUK : boostDef.nameRU}
+              {boostNameForLang(boostDef, lang as Lang)}
             </Text>
             {activeBoosts.length > 1 && (
               <View style={{ backgroundColor: t.accent + '44', paddingHorizontal: 6, paddingVertical: 2, borderRadius: 6 }}>
@@ -119,10 +114,19 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
               fontSize: f.caption,
             }}
           >
-            {isUK ? 'Активував' : 'Активировал'}: {primaryBoost.activatedBy}
+            {triLang(lang as Lang, {
+              ru: 'Активировал',
+              uk: 'Активував',
+              es: 'Activado por',
+            })}
+            : {primaryBoost.activatedBy}
             {activeBoosts.length > 1 && (
               <Text style={{ color: t.accent }}>
-                {isUK ? ` (ще ${activeBoosts.length - 1})` : ` (еще ${activeBoosts.length - 1})`}
+                {triLang(lang as Lang, {
+                  ru: ` (еще ${activeBoosts.length - 1})`,
+                  uk: ` (ще ${activeBoosts.length - 1})`,
+                  es: ` (+${activeBoosts.length - 1})`,
+                })}
               </Text>
             )}
           </Text>

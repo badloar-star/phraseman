@@ -1,0 +1,301 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helpers ───────────────────────────────────────────────────────────────
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
+    }
+
+    // Custom claim: set via scripts/set_admin_claim.mjs (Firebase Admin SDK)
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    // ── Referral: запись только CF; чтение — панель admin (custom claim admin) ─
+    match /referral_codes/{code} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+    match /referral_owners/{id} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+    match /referral_attributions/{id} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    // ── User data ─────────────────────────────────────────────────────────────
+    // ВНИМАНИЕ: read/write для любого request.auth != null (приложение + анонимы).
+    // Сужение по владельцу — отдельная миграция (stableId → auth uid).
+    // Модерация/бан/репорты: только isAdmin() (см. admin/index.html, email+claim).
+    match /users/{userId} {
+      allow read, write: if request.auth != null;
+
+      // UGC: события продажи наборов — только Cloud Functions (Admin SDK).
+      match /community_seller_inbox/{eventId} {
+        allow read, write: if false;
+      }
+
+      match /shard_log/{logId} {
+        allow read, create: if request.auth != null;
+        allow update, delete: if false;
+      }
+
+      match /reward_claims/{claimId} {
+        allow read, create: if request.auth != null;
+        allow update, delete: if false;
+      }
+
+      match /shard_rewards/{rewardId} {
+        allow read:   if request.auth != null;
+        allow update: if request.auth != null && request.resource.data.seen == true;
+        allow create: if request.auth != null;
+        allow delete: if false;
+      }
+    }
+
+    // ── Arena profiles ────────────────────────────────────────────────────────
+    match /arena_profiles/{userId} {
+      allow read:  if request.auth != null;
+      allow write: if isOwner(userId);
+
+      // История матчей: пишет только Cloud Function (Admin); клиент только читает.
+      // Без отдельного match подколлекция по умолчанию запрещена → экран рейтинга падал с PERMISSION_DENIED.
+      match /match_history/{matchId} {
+        allow read: if request.auth != null;
+        allow write, update, delete: if false;
+      }
+    }
+
+    // ── Leaderboard ───────────────────────────────────────────────────────────
+    match /leaderboard/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // ── Banned users ─────────────────────────────────────────────────────────
+    match /banned_users/{docId} {
+      allow read:  if request.auth != null;
+      allow write: if isAdmin();
+    }
+
+    // ── User warnings ─────────────────────────────────────────────────────────
+    match /user_warnings/{docId} {
+      allow read:   if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ── User reports (жалобы на других пользователей) ────────────────────────
+    match /user_reports/{docId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ── Community pack reports (UGC content moderation, Apple Guideline 1.2) ──
+    // Любой авторизованный юзер может пожаловаться на community-пак;
+    // читать/модерировать — только admin (через admin/index.html → custom claim).
+    match /community_pack_reports/{docId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ── Error reports (баг-репорты) ───────────────────────────────────────────
+    match /error_reports/{docId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ── User suggestions (идеи / предложения из настроек) ───────────────────────
+    match /user_suggestions/{docId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ── Глобальные одноразовые модалки (админ-рассылка для всех пользователей) ──
+    match /global_broadcast_modals/{docId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ── Arena sessions ────────────────────────────────────────────────────────
+    match /arena_sessions/{sessionId} {
+      allow read: if request.auth != null;
+      // Клієнт: форфейт (finished + forfeitedBy) як раніше; поля pre-match оновлює лише CF.
+      // Реванш: участник матча может писать в rematchOffer (status — только client-side accept/decline/cancel/expired,
+      // создание pending тоже допустимо).
+      allow update: if request.auth != null
+        && resource.data.playerIds.hasAny([request.auth.uid])
+        && request.resource.data.diff(resource.data).affectedKeys()
+           .hasOnly(['state', 'questionStartedAt', 'currentQuestionIndex', 'forfeitedBy', 'rematchOffer']);
+    }
+
+    // ── Session players ───────────────────────────────────────────────────────
+    // Создание только Cloud Functions (Admin SDK); клиент — update ответов.
+    match /session_players/{docId} {
+      allow read:   if request.auth != null;
+      allow create: if false;
+      allow update: if request.auth != null
+        && resource.data.playerId == request.auth.uid
+        && request.resource.data.diff(resource.data).affectedKeys()
+           .hasOnly(['answers', 'lastSeen', 'lobbyChoice'])
+        && (!('lobbyChoice' in request.resource.data) || request.resource.data.lobbyChoice in ['none', 'accept', 'decline']);
+    }
+
+    // ── Arena rooms (friend invite flow) ──────────────────────────────────────
+    match /arena_rooms/{roomId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.hostId == request.auth.uid;
+      allow update: if request.auth != null
+        && (
+          resource.data.hostId == request.auth.uid
+          || request.resource.data.guestId == request.auth.uid
+        )
+        && request.resource.data.diff(resource.data).affectedKeys()
+           .hasOnly(['guestId', 'guestName', 'status', 'sessionId']);
+    }
+
+    // ── Arena invites (legacy friend-invite docs) ──────────────────────────────
+    // Разрешаем только смену статуса и только участникам инвайта.
+    match /arena_invites/{inviteId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null
+        && request.resource.data.fromUid == request.auth.uid;
+      allow update: if request.auth != null
+        && (resource.data.fromUid in [request.auth.uid]
+        || resource.data.toUid in [request.auth.uid])
+        && request.resource.data.diff(resource.data).affectedKeys()
+           .hasOnly(['status']);
+      allow delete: if false;
+    }
+
+    // ── Arena computed per-user match results ────────────────────────────────
+    match /arena_session_results/{resultId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // ── Matchmaking queue ─────────────────────────────────────────────────────
+    // Только поля очереди: без sessionId/matchedAt (их пишет только CF).
+    // Документ: matchmaking_queue/{userId} — id совпадает с userId.
+    function matchmakingQueueDocOk(entryId) {
+      let d = request.resource.data;
+      return d.userId is string
+        && d.userId == request.auth.uid
+        && entryId == d.userId
+        // RN/JS шлёт часто double; как joinedAt — принимаем int | float.
+        && (d.size is int || d.size is float)
+        && (d.size == 2 || d.size == 4)
+        // Клиент (RN/JS) часто шлёт millis как number/double — строгий is int ломал join.
+        && (d.joinedAt is int || d.joinedAt is float)
+        && d.joinedAt > 0
+        && d.joinedAt < 10000000000000
+        && d.rankTier is string
+        && d.keys().hasOnly([
+          'userId', 'rankTier', 'size', 'joinedAt',
+          'rankIndex', 'searchRange', 'expoPushToken', 'displayName'
+        ])
+        && (!('rankIndex' in d) || ((d.rankIndex is int || d.rankIndex is float) && d.rankIndex >= 0 && d.rankIndex <= 23))
+        && (!('searchRange' in d) || ((d.searchRange is int || d.searchRange is float) && d.searchRange >= 1 && d.searchRange <= 8))
+        && (!('expoPushToken' in d) || d.expoPushToken is string)
+        && (!('displayName' in d) || d.displayName is string);
+    }
+
+    match /matchmaking_queue/{entryId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && matchmakingQueueDocOk(entryId);
+      allow update: if request.auth != null
+        && resource.data.userId == request.auth.uid
+        && matchmakingQueueDocOk(entryId);
+      allow delete: if request.auth != null && resource.data.userId == request.auth.uid;
+    }
+
+    match /arena_questions/{qId} {
+      allow read:  if request.auth != null;
+      allow write: if false;
+    }
+
+    // ── Name index (unique nickname reservation) ───────────────────────────────
+    match /name_index/{nameKey} {
+      allow read:  if request.auth != null;
+      allow write: if request.auth != null;
+    }
+
+    // ── League / clubs (недельные мини-группы) ────────────────────────────────
+    // Клиент: как leaderboard — вошедшие пользователи. Админка index.html: список групп.
+    match /league_groups/{groupId} {
+      allow read, write: if request.auth != null;
+    }
+
+    // ── Auth links (Google/Apple → stable_id mapping) ─────────────────────────
+    // Doc id = providerUid (Google sub / Apple sub).
+    // Используется при логине на новом устройстве: query auth_links/{providerUid}
+    // чтобы восстановить stable_id и подтянуть прогресс.
+    match /auth_links/{providerUid} {
+      // Read нужен любому авторизованному клиенту, чтобы сделать lookup при login.
+      // providerUid сам по себе не PII (opaque sub).
+      allow read: if request.auth != null;
+
+      // Create: при первом login. Документ должен ссылаться на providerUid из id
+      // и содержать stable_id текущего юзера + provider.
+      allow create: if request.auth != null
+        && request.resource.data.providerUid == providerUid
+        && request.resource.data.stable_id is string
+        && request.resource.data.stable_id.size() > 0
+        && request.resource.data.provider in ['google', 'apple'];
+
+      // Update: при relogin или swap аккаунта. Меняем только белый список полей.
+      // providerUid менять нельзя.
+      allow update: if request.auth != null
+        && resource.data.providerUid == providerUid
+        && request.resource.data.providerUid == providerUid
+        && request.resource.data.diff(resource.data).affectedKeys()
+           .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform']);
+
+      // Delete: только админ (через панель) или Cloud Function для revocation.
+      allow delete: if isAdmin();
+    }
+
+    // Агрегаты для UI (счётчик очереди арены — пишет только Cloud Function)
+    match /app_meta/{docId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    // ── Admin audit log ───────────────────────────────────────────────────────
+    match /admin_log/{docId} {
+      allow read, create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    // ── Community (UGC) packs — запись только через Cloud Functions ───────────
+    match /community_packs/{packId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /community_pack_submissions/{submissionId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+
+    match /community_pack_drafts/{draftId} {
+      allow read, write: if false;
+    }
+
+    match /community_pack_purchases/{purchaseId} {
+      allow read, write: if false;
+    }
+
+    match /community_pack_ratings/{ratingId} {
+      allow read, write: if false;
+    }
+
+    // ── CATCH-ALL ─────────────────────────────────────────────────────────────
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "agent": "victoria-vq-orchestrator",
+  "generatedAt": "2026-04-25T18:33:59.378Z",
+  "gitShort": "58be16e",
+  "vq0_machine_audit": {
+    "allPass_integrity": true,
+    "allPass_enUsSkim": true,
+    "perPack": [
+      {
+        "packId": "official_speaking_survival_chunks",
+        "file": "official_speaking_survival_chunks.json",
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "usageTemplateRisk": "OK",
+        "blockers": {
+          "duplicateIds": 0,
+          "countMismatch": false,
+          "emptyEn": 0,
+          "missingTranscription": 0,
+          "emptyExplanations": {
+            "ru": 0,
+            "uk": 0
+          }
+        }
+      },
+      {
+        "packId": "official_office_remote_english",
+        "file": "official_office_remote_english.json",
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "usageTemplateRisk": "OK",
+        "blockers": {
+          "duplicateIds": 0,
+          "countMismatch": false,
+          "emptyEn": 0,
+          "missingTranscription": 0,
+          "emptyExplanations": {
+            "ru": 0,
+            "uk": 0
+          }
+        }
+      },
+      {
+        "packId": "official_elegant_comebacks",
+        "file": "official_elegant_comebacks.json",
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "usageTemplateRisk": "OK",
+        "blockers": {
+          "duplicateIds": 0,
+          "countMismatch": false,
+          "emptyEn": 0,
+          "missingTranscription": 0,
+          "emptyExplanations": {
+            "ru": 0,
+            "uk": 0
+          }
+        }
+      },
+      {
+        "packId": "official_modern_abbrev_en",
+        "file": "official_modern_abbrev_en.json",
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "usageTemplateRisk": "OK",
+        "blockers": {
+          "duplicateIds": 0,
+          "countMismatch": false,
+          "emptyEn": 0,
+          "missingTranscription": 0,
+          "emptyExplanations": {
+            "ru": 0,
+            "uk": 0
+          }
+        }
+      },
+      {
+        "packId": "official_small_talk_en",
+        "file": "official_small_talk_en.json",
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "usageTemplateRisk": "OK",
+        "blockers": {
+          "duplicateIds": 0,
+          "countMismatch": false,
+          "emptyEn": 0,
+          "missingTranscription": 0,
+          "emptyExplanations": {
+            "ru": 0,
+            "uk": 0
+          }
+        }
+      }
+    ]
+  },
+  "vq1_semantic_ru_uk": {
+    "status": "SKIPPED — требуется LLM по docs/pipelines/victoria-qa/vq1-semantic-en-ru-uk.md"
+  },
+  "vq2_register_level": {
+    "missingRegister": 0,
+    "missingLevel": 0,
+    "details": {
+      "missingRegister": [],
+      "missingLevel": []
+    }
+  },
+  "vq3_examples": {
+    "emptyExampleEn": 0,
+    "emptyExampleRu": 0,
+    "emptyExampleUk": 0,
+    "details": {
+      "emptyExampleEn": [],
+      "emptyExampleRu": [],
+      "emptyExampleUk": []
+    }
+  },
+  "vq4_literal_explanation": {
+    "exactLiteralEqualsExplanation": 43,
+    "reviewRecommended": true,
+    "details": {
+      "exactDuplicate": [
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_017",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_018",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_019",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_020",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_021",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_022",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_023",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_024",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_025",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_026",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_027",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_028",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_030",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_031",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_032",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_033",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_034",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_035",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_036",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_037",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_038",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_039",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_040",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_041",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_042",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_043",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_044",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_045",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_046",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_047",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_048",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_049",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_050",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_051",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_052",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_053",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_054",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_055",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_056",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_057",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_058",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_059",
+          "field": "ru"
+        },
+        {
+          "packId": "official_elegant_comebacks",
+          "id": "elc_060",
+          "field": "ru"
+        }
+      ]
+    }
+  },
+  "vq5_transcription": {
+    "perPack": {
+      "official_speaking_survival_chunks": {
+        "missingTranscription": 0
+      },
+      "official_office_remote_english": {
+        "missingTranscription": 0
+      },
+      "official_elegant_comebacks": {
+        "missingTranscription": 0
+      },
+      "official_modern_abbrev_en": {
+        "missingTranscription": 0
+      },
+      "official_small_talk_en": {
+        "missingTranscription": 0
+      }
+    }
+  },
+  "vq6_usage_note_vs_explanation": {
+    "highOverlapRu": 0,
+    "highOverlapUk": 0,
+    "details": {
+      "highOverlapRu": [],
+      "highOverlapUk": []
+    }
+  },
+  "vq7_pack_meta": [
+    {
+      "packId": "official_speaking_survival_chunks",
+      "titleRuEmpty": false,
+      "titleUkEmpty": false,
+      "descRuEmpty": false,
+      "descUkEmpty": false,
+      "category": "daily",
+      "targetLevel": "A2-B2",
+      "countMismatch": false
+    },
+    {
+      "packId": "official_office_remote_english",
+      "titleRuEmpty": false,
+      "titleUkEmpty": false,
+      "descRuEmpty": false,
+      "descUkEmpty": false,
+      "category": "business",
+      "countMismatch": false
+    },
+    {
+      "packId": "official_elegant_comebacks",
+      "titleRuEmpty": false,
+      "titleUkEmpty": false,
+      "descRuEmpty": false,
+      "descUkEmpty": false,
+      "category": "daily",
+      "targetLevel": "B1-B2",
+      "countMismatch": false
+    },
+    {
+      "packId": "official_modern_abbrev_en",
+      "titleRuEmpty": false,
+      "titleUkEmpty": false,
+      "descRuEmpty": false,
+      "descUkEmpty": false,
+      "category": "slang",
+      "targetLevel": "B1-B2",
+      "countMismatch": false
+    },
+    {
+      "packId": "official_small_talk_en",
+      "titleRuEmpty": false,
+      "titleUkEmpty": false,
+      "descRuEmpty": false,
+      "descUkEmpty": false,
+      "category": "daily",
+      "targetLevel": "A2-B2",
+      "countMismatch": false
+    }
+  ],
+  "vq8_cross_pack_duplicates": {
+    "byFullString": 0,
+    "byAbbrevHead": 0,
+    "details": {
+      "byFullString": [],
+      "byAbbrevHead": []
+    }
+  },
+  "vq9_arbiter_ru_uk": {
+    "status": "SKIPPED — после VQ1, docs/pipelines/victoria-qa/vq9-arbiter-ru-uk.md"
+  },
+  "llm_recommended": {
+    "vq1_semantic": "docs/pipelines/victoria-qa/vq1-semantic-en-ru-uk.md",
+    "vq5_ipa_fine": "docs/pipelines/victoria-qa/vq5-transcription-ipa.md",
+    "vq7_collection": "docs/pipelines/victoria-qa/vq7-pack-integrity.md",
+    "vq9_arbiter": "docs/pipelines/victoria-qa/vq9-arbiter-ru-uk.md"
+  },
+  "passSummary": {
+    "vq0_ok": true,
+    "vq2_ok": true,
+    "vq3_ok": true,
+    "vq4_ok": true,
+    "vq5_ok": true,
+    "vq6_ok": true,
+    "vq7_ok": true,
+    "vq8_ok": true
+  }
+}

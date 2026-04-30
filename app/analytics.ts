@@ -108,3 +108,6 @@ export const flushAnalytics = async (): Promise<void> => {
     await clearEventQueue();
   } catch {}
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

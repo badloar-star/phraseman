@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/hooks/use-audio.ts",
+  "session": "b8657361",
+  "op_index": 1,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "    if (Audio && audioIndex[text]) {",
+  "new_string": "    await ensureAudioMode();\n    if (Audio && audioIndex[text]) {"
+}

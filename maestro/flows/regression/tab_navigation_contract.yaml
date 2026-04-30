@@ -1,0 +1,3 @@
+appId: app.phraseman
+---
+- runFlow: ../smoke/xp_gain_updates_home_hall.yaml

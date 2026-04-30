@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/functions/src/index.ts",
+  "session": "33b61ac9",
+  "op_index": 2,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "// ─── Matchmaking ─────────────────────────────────────────────────────────────",
+  "new_string": "// ─── Leaderboard sync ────────────────────────────────────────────────────────\n\nexport const syncLeaderboardCron = functions.scheduler.onSchedule(\n  { schedule: 'every 2 hours', timeZone: 'UTC' },\n  async () => { await syncLeaderboardFromUsers(); }\n);\n\n// ─── Matchmaking ─────────────────────────────────────────────────────────────"
+}

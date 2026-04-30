@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
+import { getVerifiedPremiumStatus } from './premium_guard';
 
 export interface EnergyState {
   current: number;
@@ -80,10 +81,8 @@ export async function checkAndRecover(): Promise<EnergyState> {
  */
 export async function spendEnergy(amount: number = ENERGY_PER_LESSON): Promise<boolean> {
   try {
-    // Премиум: энергия не тратится (проверяем active + срок действия)
-    const [[, premiumRaw], [, expiryRaw]] = await AsyncStorage.multiGet(['premium_active', 'premium_expiry']);
-    const expiry = parseInt(expiryRaw || '0');
-    const isPremium = premiumRaw === 'true' && (expiry === 0 || expiry > Date.now());
+    // Премиум: энергия не тратится (единая верифицированная проверка)
+    const isPremium = await getVerifiedPremiumStatus();
     if (isPremium) return true;
 
     // Тестерский режим: энергия не тратится
@@ -189,3 +188,6 @@ export function formatTimeUntilRecovery(ms: number): string {
   }
   return `${minutes}м`;
 }
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

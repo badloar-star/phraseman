@@ -1,0 +1,16 @@
+{
+  "generatedAt": "2026-04-24T14:28:03.813Z",
+  "source": "app\\lesson_cards_data.ts",
+  "lesson": 1,
+  "cards": 50,
+  "errors": [],
+  "warnings": [],
+  "summary": {
+    "errorCount": 0,
+    "warningCount": 0,
+    "docPhases": [
+      "A–D см. docs/pipelines/lesson-cards-generation.ru.md",
+      "C2 — ручная лингвистика (этот скрипт её не подменяет)"
+    ]
+  }
+}

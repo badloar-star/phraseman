@@ -6,10 +6,14 @@ import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { triLang } from '../constants/i18n';
+import { lessonNamesForLang } from '../constants/lessons';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
+import XpGainBadge from '../components/XpGainBadge';
 import { updateTaskProgress } from './daily_tasks';
-import { registerXP } from './xp_manager';
+import { registerXP, getCurrentMultiplier } from './xp_manager';
+import ReportErrorButton from '../components/ReportErrorButton';
 
 // ─── UI компоненты ────────────────────────────────────────────────────────────
 
@@ -57,35 +61,200 @@ function Tip({ text, t, f }: { text: string; t: any; f: any }) {
 }
 
 // Таблица: массив строк, каждая строка — массив ячеек
+const COL_MIN_W = 110;
+
 function Table({ rows, t }: { rows: string[][]; t: any; f?: any }) {
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const [containerW, setContainerW] = useState(0);
+
   if (!rows.length) return null;
   const header = rows[0];
   const body = rows.slice(1);
+  const numCols = header.length;
+  const contentW = numCols * COL_MIN_W;
+  const canScroll = containerW > 0 && contentW > containerW;
+
+  // thumb width proportional, min 32px
+  const thumbW = canScroll ? Math.max(32, (containerW / contentW) * containerW) : 0;
+  const trackW = containerW - 8; // 4px padding each side
+  const thumbTranslate = canScroll
+    ? scrollX.interpolate({ inputRange: [0, contentW - containerW], outputRange: [0, trackW - thumbW], extrapolate: 'clamp' })
+    : new Animated.Value(0);
+
   return (
-    <View style={{ borderRadius: 10, borderWidth: 0.5, borderColor: t.border, marginVertical: 10, overflow: 'hidden' }}>
-      {/* Заголовок */}
-      <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface }}>
-        {header.map((cell, i) => (
-          <View key={i} style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: i < header.length - 1 ? 0.5 : 0, borderRightColor: t.border }}>
-            <Text style={{ color: t.textPrimary, fontSize: 12, fontWeight: '700' }} maxFontSizeMultiplier={1}>{cell}</Text>
-          </View>
-        ))}
-      </View>
-      {/* Строки */}
-      {body.map((row, ri) => (
-        <View key={ri} style={{ flexDirection: 'row', backgroundColor: ri % 2 === 0 ? t.bgCard : t.bgSurface, borderTopWidth: 0.5, borderTopColor: t.border }}>
-          {row.map((cell, ci) => (
-            <View key={ci} style={{ flex: 1, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: ci < row.length - 1 ? 0.5 : 0, borderRightColor: t.border }}>
-              <Text style={{ color: t.textSecond, fontSize: 11, lineHeight: 17 }} maxFontSizeMultiplier={1}>{cell}</Text>
+    <View
+      style={{ marginVertical: 10 }}
+      onLayout={e => setContainerW(e.nativeEvent.layout.width)}
+    >
+      <View style={{ borderRadius: 10, borderWidth: 0.5, borderColor: t.border, overflow: 'hidden' }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          scrollEventThrottle={16}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], { useNativeDriver: false })}
+        >
+          <View style={{ minWidth: contentW }}>
+            {/* Заголовок */}
+            <View style={{ flexDirection: 'row', backgroundColor: t.bgSurface }}>
+              {header.map((cell, i) => (
+                <View key={i} style={{ width: COL_MIN_W, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: i < numCols - 1 ? 0.5 : 0, borderRightColor: t.border }}>
+                  <Text style={{ color: t.textPrimary, fontSize: 12, fontWeight: '700' }} maxFontSizeMultiplier={1}>{cell}</Text>
+                </View>
+              ))}
             </View>
-          ))}
+            {/* Строки */}
+            {body.map((row, ri) => (
+              <View key={ri} style={{ flexDirection: 'row', backgroundColor: ri % 2 === 0 ? t.bgCard : t.bgSurface, borderTopWidth: 0.5, borderTopColor: t.border }}>
+                {row.map((cell, ci) => (
+                  <View key={ci} style={{ width: COL_MIN_W, paddingHorizontal: 8, paddingVertical: 10, borderRightWidth: ci < row.length - 1 ? 0.5 : 0, borderRightColor: t.border }}>
+                    <Text style={{ color: t.textSecond, fontSize: 11, lineHeight: 17 }} maxFontSizeMultiplier={1}>{cell}</Text>
+                  </View>
+                ))}
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
+
+      {/* Кастомный индикатор горизонтального скролла */}
+      {canScroll && (
+        <View style={{ height: 4, marginTop: 4, marginHorizontal: 4, backgroundColor: t.border, borderRadius: 2, overflow: 'hidden' }}>
+          <Animated.View style={{ height: 4, width: thumbW, borderRadius: 2, backgroundColor: '#4A90E2', transform: [{ translateX: thumbTranslate }] }} />
         </View>
-      ))}
+      )}
     </View>
   );
 }
 
 // ─── Контент уроков ───────────────────────────────────────────────────────────
+
+/** Урок 1 — To Be (утверждения): полная теория на испанском. */
+function renderLesson1TheoryEs(t: any, f: any): React.ReactNode[] {
+  return [
+    <Section key="s1" t={t} f={f} title="1. Por qué no basta con decir «I here»" />,
+    <Body
+      key="b1a"
+      t={t}
+      f={f}
+      text="En español dices con naturalidad «Estoy aquí»: el verbo (estar, ser…) suele ir explícito. En inglés también necesitas am, is o are cuando expresas estado, lugar o cualidad sobre alguien o algo."
+    />,
+    <Body
+      key="b1b"
+      t={t}
+      f={f}
+      text="Si en inglés faltan am, is o are donde gramaticalmente los pide la frase, el enunciado suena incompleto o incorrecto."
+    />,
+    <Body
+      key="b1c"
+      t={t}
+      f={f}
+      text="Piensa en am, is y are como el pegamento entre el sujeto y lo que afirmas (adjetivo, lugar…). Sin ellos la oración pierde forma."
+    />,
+    <Warn
+      key="w1"
+      t={t}
+      f={f}
+      text="❌ «I here» → ✅ «I am here». Sin am, is o are la oración no es correcta en inglés."
+    />,
+
+    <Section key="s2" t={t} f={f} title="2. Tres formas: am, is, are" />,
+    <Body key="b2a" t={t} f={f} text="«To be» cambia de forma según la persona gramatical sobre la que hablas." />,
+    <Table
+      key="t1"
+      t={t}
+      f={f}
+      rows={[
+        ['Pronombre', 'Forma', 'Ejemplo'],
+        ['I', 'am', 'I am here'],
+        ['He / She / It', 'is', 'He is busy / She is at home'],
+        ['You / We / They', 'are', 'You are ready / We are safe'],
+      ]}
+    />,
+    <Body key="b2b" t={t} f={f} text="Con I solo am. Nunca is ni are." />,
+    <Example key="e1" t={t} f={f} eng="I am here" rus="Estoy aquí" />,
+    <Example key="e2" t={t} f={f} eng="I am okay" rus="Estoy bien" />,
+    <Example key="e3" t={t} f={f} eng="I am at work" rus="Estoy en el trabajo" />,
+    <Body key="b2c" t={t} f={f} text="Con he, she o it solo is." />,
+    <Example key="e4" t={t} f={f} eng="He is busy" rus="Él está ocupado" />,
+    <Example key="e5" t={t} f={f} eng="She is at home" rus="Ella está en casa" />,
+    <Example key="e6" t={t} f={f} eng="It is important" rus="Es importante" />,
+    <Body key="b2d" t={t} f={f} text="Con you, we o they solo are." />,
+    <Example key="e7" t={t} f={f} eng="You are ready" rus="Estás listo (tú, informal)" />,
+    <Example key="e8" t={t} f={f} eng="We are safe" rus="Estamos a salvo" />,
+    <Example key="e9" t={t} f={f} eng="They are here" rus="Están aquí" />,
+
+    <Section key="s3" t={t} f={f} title="3. Contracciones" />,
+    <Body
+      key="b3a"
+      t={t}
+      f={f}
+      text="En el inglés coloquial, am, is y are suelen ir en forma contraída (I'm, she's…); así suena más natural."
+    />,
+    <Table
+      key="t2"
+      t={t}
+      f={f}
+      rows={[
+        ['Forma completa', 'Contracción'],
+        ['I am', "I'm"],
+        ['He is', "He's"],
+        ['She is', "She's"],
+        ['It is', "It's"],
+        ['You are', "You're"],
+        ['We are', "We're"],
+        ['They are', "They're"],
+      ]}
+    />,
+    <Tip
+      key="tip1"
+      t={t}
+      f={f}
+      text="El apóstrofo marca la letra que «desapareció»: I'm = I am, He's = He is."
+    />,
+
+    <Section key="s4" t={t} f={f} title="4. Lo que puede ir después de «to be»" />,
+    <Body key="b4a" t={t} f={f} text="Opción 1 — adjetivo: describe estado o cualidad." />,
+    <Example key="e10" t={t} f={f} eng="He is busy" rus="Él está ocupado" />,
+    <Example key="e11" t={t} f={f} eng="She is upset" rus="Ella está molesta / enfadada" />,
+    <Body key="b4b" t={t} f={f} text="Opción 2 — adverbio de lugar: here, home, outside…" />,
+    <Example key="e12" t={t} f={f} eng="I am here" rus="Estoy aquí" />,
+    <Example key="e13" t={t} f={f} eng="They are outside" rus="Están fuera" />,
+    <Body key="b4c" t={t} f={f} text="Opción 3 — preposición + nombre o lugar típico: at, in, on + nombre." />,
+    <Table
+      key="t3"
+      t={t}
+      f={f}
+      rows={[
+        ['Preposición', 'Ideas que cubre', 'Ejemplo'],
+        ['at', 'punto / edificio o actividad (trabajo, aeropuerto)', 'at work / at the airport'],
+        ['in', 'interior cerrado', 'in the car / in a taxi'],
+        ['on', 'trayecto o medio de transporte', 'on our way / on the train'],
+      ]}
+    />,
+    <Example key="e14" t={t} f={f} eng="I am at work" rus="Estoy en el trabajo" />,
+    <Example key="e15" t={t} f={f} eng="They are in the car" rus="Están en el coche / el auto" />,
+    <Example key="e16" t={t} f={f} eng="We are on our way" rus="Ya vamos / vamos en camino" />,
+    <Example key="e17" t={t} f={f} eng="I am in line" rus="Estoy en la cola (también: haciendo cola)" />,
+    <Example key="e18" t={t} f={f} eng="It is near here" rus="Está cerca de aquí" />,
+    <Tip
+      key="tip_transport"
+      t={t}
+      f={f}
+      text="«in a taxi»: taxi genérico o ir en taxi. «in the taxi»: el taxi concreto del que ya hablabas."
+    />,
+
+    <Section key="s5" t={t} f={f} title="5. Errores frecuentes" />,
+    <Warn key="w2" t={t} f={f} text="❌ «He am busy» → ✅ «He is busy». Con he, she o it solo is." />,
+    <Warn key="w3" t={t} f={f} text="❌ «They is here» → ✅ «They are here». Con they, we o you solo are." />,
+    <Warn key="w4" t={t} f={f} text="❌ «I are okay» → ✅ «I am okay». Con I solo am, siempre." />,
+    <Tip
+      key="tip2"
+      t={t}
+      f={f}
+      text="I → am. He / she / it → is. You / we / they → are."
+    />,
+  ];
+}
 
 type TheoryContent = {
   titleRU: string;
@@ -147,12 +316,15 @@ const THEORY: Record<number, TheoryContent> = {
     <Table key="t3" t={t} f={f} rows={[
       [isUK ? 'Прийменник' : 'Предлог', isUK ? 'Коли' : 'Когда', isUK ? 'Приклад' : 'Пример'],
       ['at', isUK ? 'точка, будівля' : 'точка, здание', 'at work / at the airport'],
-      ['in', isUK ? 'всередині' : 'внутри', 'in the car / in the taxi'],
-      ['on', isUK ? 'транспорт, шлях' : 'транспорт, путь', 'on the way / on the train'],
+      ['in', isUK ? 'всередині' : 'внутри', 'in the car / in a taxi'],
+      ['on', isUK ? 'транспорт, шлях' : 'транспорт, путь', 'on our way / on the train'],
     ]} />,
     <Example key="e14" t={t} f={f} eng="I am at work" rus={isUK ? 'Я на роботі' : 'Я на работе'} />,
     <Example key="e15" t={t} f={f} eng="They are in the car" rus={isUK ? 'Вони в машині' : 'Они в машине'} />,
-    <Example key="e16" t={t} f={f} eng="We are on the way" rus={isUK ? 'Ми в дорозі' : 'Мы в пути'} />,
+    <Example key="e16" t={t} f={f} eng="We are on our way" rus={isUK ? 'Ми вже в дорозі' : 'Мы уже в пути'} />,
+    <Example key="e17" t={t} f={f} eng="I am in line" rus={isUK ? 'Я в черзі' : 'Я в очереди'} />,
+    <Example key="e18" t={t} f={f} eng="It is near here" rus={isUK ? 'Це поруч' : 'Это рядом'} />,
+    <Tip key="tip_transport" t={t} f={f} text={isUK ? 'in a taxi = у будь-якому таксі; in the taxi = у конкретному таксі, про яке вже йдеться.' : 'in a taxi = в любом такси; in the taxi = в конкретном такси, о котором уже говорили.'} />,
 
     <Section key="s5" t={t} f={f} title={isUK ? '5. Часті помилки' : '5. Частые ошибки'} />,
     <Warn key="w2" t={t} f={f} text={isUK ? '❌ «He am busy» → ✅ «He is busy». З he/she/it — тільки is.' : '❌ «He am busy» → ✅ «He is busy». С he/she/it — только is.'} />,
@@ -235,14 +407,14 @@ const THEORY: Record<number, TheoryContent> = {
     <Example key="e3" t={t} f={f} eng="They live here" rus={isUK ? 'Вони тут живуть (постійно)' : 'Они здесь живут (постоянно)'} />,
 
     <Section key="s2" t={t} f={f} title={isUK ? '2. Форма з I / You / We / They' : '2. Форма с I / You / We / They'} />,
-    <Body key="b2a" t={t} f={f} text={isUK ? 'З I, You, We, They — глагол стоїть у базовій формі. Нічого не змінюється.' : 'С I, You, We, They — глагол стоит в базовой форме. Ничего не меняется.'} />,
+    <Body key="b2a" t={t} f={f} text={isUK ? 'З I, You, We, They — дієслово стоїть у базовій формі. Нічого не змінюється.' : 'С I, You, We, They — глагол стоит в базовой форме. Ничего не меняется.'} />,
     <Example key="e4" t={t} f={f} eng="I work here" rus={isUK ? 'Я тут працюю' : 'Я здесь работаю'} />,
     <Example key="e5" t={t} f={f} eng="You understand me" rus={isUK ? 'Ти мене розумієш' : 'Ты меня понимаешь'} />,
     <Example key="e6" t={t} f={f} eng="We drink coffee" rus={isUK ? 'Ми п\'ємо каву' : 'Мы пьем кофе'} />,
     <Example key="e7" t={t} f={f} eng="They watch the news" rus={isUK ? 'Вони дивляться новини' : 'Они смотрят новости'} />,
 
     <Section key="s3" t={t} f={f} title={isUK ? '3. Форма з He / She / It — додаємо -s' : '3. Форма с He / She / It — добавляем -s'} />,
-    <Body key="b3a" t={t} f={f} text={isUK ? 'З He, She, It — до глагола додається -s або -es. Це головне правило Present Simple, яке найчастіше забувають.' : 'С He, She, It — к глаголу добавляется -s или -es. Это главное правило Present Simple, которое чаще всего забывают.'} />,
+    <Body key="b3a" t={t} f={f} text={isUK ? 'З He, She, It — до дієслова додається -s або -es. Це головне правило Present Simple, яке найчастіше забувають.' : 'С He, She, It — к глаголу добавляется -s или -es. Это главное правило Present Simple, которое чаще всего забывают.'} />,
     <Example key="e8" t={t} f={f} eng="He lives in London" rus={isUK ? 'Він живе в Лондоні' : 'Он живет в Лондоне'} />,
     <Example key="e9" t={t} f={f} eng="She speaks English" rus={isUK ? 'Вона розмовляє англійською' : 'Она говорит по-английски'} />,
     <Example key="e10" t={t} f={f} eng="It costs a dollar" rus={isUK ? 'Це коштує долар' : 'Это стоит доллар'} />,
@@ -315,21 +487,21 @@ const THEORY: Record<number, TheoryContent> = {
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Як побудувати заперечення' : '1. Как построить отрицание'} />,
-    <Body key="b1a" t={t} f={f} text={isUK ? 'Для заперечення у Present Simple використовуємо do not (don\'t) або does not (doesn\'t). Самостійно глагол НЕ змінюємо — він стоїть у базовій формі.' : 'Для отрицания в Present Simple используем do not (don\'t) или does not (doesn\'t). Сам глагол НЕ меняем — он стоит в базовой форме.'} />,
-    <Body key="b1b" t={t} f={f} text={isUK ? 'З I / You / We / They → don\'t + глагол.' : 'С I / You / We / They → don\'t + глагол.'} />,
+    <Body key="b1a" t={t} f={f} text={isUK ? 'Для заперечення у Present Simple використовуємо do not (don\'t) або does not (doesn\'t). Самостійно дієслово НЕ змінюємо — воно стоїть у базовій формі.' : 'Для отрицания в Present Simple используем do not (don\'t) или does not (doesn\'t). Сам глагол НЕ меняем — он стоит в базовой форме.'} />,
+    <Body key="b1b" t={t} f={f} text={isUK ? 'Підмет I, you, we, they: don\'t + дієслово.' : 'Подлежащее I, you, we, they: don\'t + глагол.'} />,
     <Example key="e1" t={t} f={f} eng="I do not drink milk" rus={isUK ? 'Я не п\'ю молоко' : 'Я не пью молоко'} />,
     <Example key="e2" t={t} f={f} eng="You do not listen" rus={isUK ? 'Ти не слухаєш' : 'Ты не слушаешь'} />,
     <Example key="e3" t={t} f={f} eng="We do not understand" rus={isUK ? 'Ми не розуміємо' : 'Мы не понимаем'} />,
     <Example key="e4" t={t} f={f} eng="They do not live here" rus={isUK ? 'Вони тут не живуть' : 'Они здесь не живут'} />,
-    <Body key="b1c" t={t} f={f} text={isUK ? 'З He / She / It → doesn\'t + глагол. Зверни увагу: -s вже є у doesn\'t, тому глагол без -s.' : 'С He / She / It → doesn\'t + глагол. Важно: -s уже есть в doesn\'t, поэтому глагол без -s.'} />,
+    <Body key="b1c" t={t} f={f} text={isUK ? 'Підмет he, she, it: doesn\'t + дієслово. Зверни увагу: -s вже є в doesn\'t, тож дієслово без -s.' : 'Подлежащее he, she, it: doesn\'t + глагол. Важно: -s уже есть в doesn\'t, поэтому глагол без -s.'} />,
     <Example key="e5" t={t} f={f} eng="He does not smoke" rus={isUK ? 'Він не курить' : 'Он не курит'} />,
     <Example key="e6" t={t} f={f} eng="She does not eat sugar" rus={isUK ? 'Вона не їсть цукор' : 'Она не ест сахар'} />,
     <Example key="e7" t={t} f={f} eng="It does not work" rus={isUK ? 'Це не працює' : 'Это не работает'} />,
 
     <Section key="s2" t={t} f={f} title={isUK ? '2. Головна пастка' : '2. Главная ловушка'} />,
-    <Body key="b2a" t={t} f={f} text={isUK ? 'Коли є doesn\'t — глагол повертається до базової форми. Без -s, без -es.' : 'Когда есть doesn\'t — глагол возвращается к базовой форме. Без -s, без -es.'} />,
+    <Body key="b2a" t={t} f={f} text={isUK ? 'Коли є doesn\'t — дієслово повертається до базової форми. Без -s, без -es.' : 'Когда есть doesn\'t — глагол возвращается к базовой форме. Без -s, без -es.'} />,
     <Warn key="w1" t={t} f={f} text={isUK ? '❌ «She doesn\'t eats sugar» → ✅ «She doesn\'t eat sugar». -s вже в doesn\'t.' : '❌ «She doesn\'t eats sugar» → ✅ «She doesn\'t eat sugar». -s уже в doesn\'t.'} />,
-    <Warn key="w2" t={t} f={f} text={isUK ? '❌ «He don\'t smoke» → ✅ «He doesn\'t smoke». З he/she/it — doesn\'t, не don\'t.' : '❌ «He don\'t smoke» → ✅ «He doesn\'t smoke». С he/she/it — doesn\'t, не don\'t.'} />,
+    <Warn key="w2" t={t} f={f} text={isUK ? '❌ «He don\'t smoke» → ✅ «He doesn\'t smoke». Для he, she, it — doesn\'t, не don\'t.' : '❌ «He don\'t smoke» → ✅ «He doesn\'t smoke». Для he, she, it пиши doesn\'t, а не don\'t.'} />,
 
     <Section key="s3" t={t} f={f} title={isUK ? '3. Таблиця' : '3. Таблица'} />,
     <Table key="t1" t={t} f={f} rows={[
@@ -337,7 +509,7 @@ const THEORY: Record<number, TheoryContent> = {
       ['I / You / We / They', "don't + V", "I don't drink milk"],
       ['He / She / It', "doesn't + V", "She doesn't eat sugar"],
     ]} />,
-    <Tip key="tip1" t={t} f={f} text={isUK ? 'Лайфхак: doesn\'t = does + not. «Does» вже містить -s за he/she/it, тому глагол чистий.' : 'Лайфхак: doesn\'t = does + not. «Does» уже содержит -s за he/she/it, поэтому глагол чистый.'} />,
+    <Tip key="tip1" t={t} f={f} text={isUK ? 'Лайфхак: doesn\'t = does + not. «Does» вже містить -s за he/she/it, тому дієслово чисте.' : 'Лайфхак: doesn\'t = does + not. «Does» уже содержит -s за he/she/it, поэтому глагол чистый.'} />,
   ],
 },
 
@@ -349,11 +521,11 @@ const THEORY: Record<number, TheoryContent> = {
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Як побудувати питання' : '1. Как построить вопрос'} />,
     <Body key="b1a" t={t} f={f} text={isUK ? 'У Present Simple питання будується за допомогою Do або Does на початку. Саме дієслово стоїть у базовій формі.' : 'В Present Simple вопрос строится с помощью Do или Does в начале. Само действие стоит в базовой форме.'} />,
-    <Body key="b1b" t={t} f={f} text={isUK ? 'З I / You / We / They → Do + підмет + глагол?' : 'С I / You / We / They → Do + подлежащее + глагол?'} />,
+    <Body key="b1b" t={t} f={f} text={isUK ? 'З I / You / We / They → Do + підмет + дієслово?' : 'С I / You / We / They → Do + подлежащее + глагол?'} />,
     <Example key="e1" t={t} f={f} eng="Do you drink coffee?" rus={isUK ? 'Ти п\'єш каву?' : 'Ты пьёшь кофе?'} />,
     <Example key="e2" t={t} f={f} eng="Do we work tomorrow?" rus={isUK ? 'Ми завтра працюємо?' : 'Мы работаем завтра?'} />,
     <Example key="e3" t={t} f={f} eng="Do they know the password?" rus={isUK ? 'Вони знають пароль?' : 'Они знают пароль?'} />,
-    <Body key="b1c" t={t} f={f} text={isUK ? 'З He / She / It → Does + підмет + глагол? Глагол — без -s.' : 'С He / She / It → Does + подлежащее + глагол? Глагол — без -s.'} />,
+    <Body key="b1c" t={t} f={f} text={isUK ? 'З He / She / It → Does + підмет + дієслово? Дієслово — без -s.' : 'С He / She / It → Does + подлежащее + глагол? Глагол — без -s.'} />,
     <Example key="e4" t={t} f={f} eng="Does he live here?" rus={isUK ? 'Він тут живе?' : 'Он здесь живет?'} />,
     <Example key="e5" t={t} f={f} eng="Does she understand English?" rus={isUK ? 'Вона розуміє англійську?' : 'Она понимает английский?'} />,
     <Example key="e6" t={t} f={f} eng="Does it cost much?" rus={isUK ? 'Це коштує багато?' : 'Это стоит много?'} />,
@@ -382,8 +554,8 @@ const THEORY: Record<number, TheoryContent> = {
   render: (t, isUK, f) => [
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Питальні слова + Do/Does' : '1. Вопросительные слова + Do/Does'} />,
-    <Body key="b1a" t={t} f={f} text={isUK ? 'Щоб спитати «де», «коли», «чому» тощо — ставимо питальне слово на перше місце, а потім Do/Does + підмет + глагол.' : 'Чтобы спросить «где», «когда», «почему» — ставим вопросительное слово на первое место, а потом Do/Does + подлежащее + глагол.'} />,
-    <Body key="b1b" t={t} f={f} text={isUK ? 'Схема: Питальне слово + do/does + підмет + глагол?' : 'Схема: Вопросительное слово + do/does + подлежащее + глагол?'} />,
+    <Body key="b1a" t={t} f={f} text={isUK ? 'Щоб спитати «де», «коли», «чому» тощо — ставимо питальне слово на перше місце, а потім Do/Does + підмет + дієслово.' : 'Чтобы спросить «где», «когда», «почему» — ставим вопросительное слово на первое место, а потом Do/Does + подлежащее + глагол.'} />,
+    <Body key="b1b" t={t} f={f} text={isUK ? 'Схема: Питальне слово + do/does + підмет + дієслово?' : 'Схема: Вопросительное слово + do/does + подлежащее + глагол?'} />,
     <Table key="t1" t={t} f={f} rows={[
       [isUK ? 'Слово' : 'Слово', isUK ? 'Значення' : 'Значение', isUK ? 'Приклад' : 'Пример'],
       ['Where', isUK ? 'де / куди' : 'где / куда', 'Where do you live?'],
@@ -461,13 +633,13 @@ const THEORY: Record<number, TheoryContent> = {
     <Section key="s4" t={t} f={f} title={isUK ? '4. ON — дні тижня і конкретні дати' : '4. ON — дни недели и конкретные даты'} />,
     <Body key="b4a" t={t} f={f} text={isUK ? 'on — для днів тижня і конкретних дат.' : 'on — для дней недели и конкретных дат.'} />,
     <Example key="e8" t={t} f={f} eng="I work on Monday" rus={isUK ? 'Я працюю в понеділок' : 'Я работаю в понедельник'} />,
-    <Example key="e9" t={t} f={f} eng="He pays at the weekend" rus={isUK ? 'Він платить у вихідні' : 'Он платит в выходные'} />,
+    <Example key="e9" t={t} f={f} eng="He pays on the weekend" rus={isUK ? 'Він платить у вихідні' : 'Он платит в выходные'} />,
     <Example key="e10" t={t} f={f} eng="We do sport on Tuesdays" rus={isUK ? 'Ми займаємось спортом по вівторках' : 'Мы занимаемся спортом по вторникам'} />,
     <Table key="t1" t={t} f={f} rows={[
       [isUK ? 'Прийменник' : 'Предлог', isUK ? 'Коли використовувати' : 'Когда использовать', isUK ? 'Приклад' : 'Пример'],
       ['at', isUK ? 'точний час, noon, midnight, night' : 'точное время, noon, midnight, night', 'at 8, at noon'],
       ['in', isUK ? 'місяць, сезон, рік, ранок/вечір' : 'месяц, сезон, год, утро/вечер', 'in July, in winter, in the morning'],
-      ['on', isUK ? 'день тижня, дата' : 'день недели, дата', 'on Monday, on Fridays'],
+      ['on', isUK ? 'день тижня, дата, вихідні' : 'день недели, дата, выходные', 'on Monday, on the weekend'],
     ]} />,
     <Warn key="w1" t={t} f={f} text={isUK ? '❌ «in Monday» / «at July» → ✅ «on Monday» / «in July». Запам\'ятай: on для днів, in для місяців.' : '❌ «in Monday» / «at July» → ✅ «on Monday» / «in July». Запомни: on для дней, in для месяцев.'} />,
   ],
@@ -485,7 +657,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Example key="e1" t={t} f={f} eng="There is a bed in my room" rus={isUK ? 'У моїй кімнаті є ліжко' : 'В моей комнате есть кровать'} />,
     <Example key="e2" t={t} f={f} eng="There are some keys in the bag" rus={isUK ? 'У сумці є якісь ключі' : 'В сумке есть ключи'} />,
     <Example key="e3" t={t} f={f} eng="There is a pharmacy at the airport" rus={isUK ? 'В аеропорту є аптека' : 'В аэропорту есть аптека'} />,
-    <Example key="e4" t={t} f={f} eng="There are many cars in the street" rus={isUK ? 'На вулиці багато машин' : 'На улице много машин'} />,
+    <Example key="e4" t={t} f={f} eng="There are many cars on the street" rus={isUK ? 'На вулиці багато машин' : 'На улице много машин'} />,
 
     <Section key="s2" t={t} f={f} title={isUK ? '2. Some і Many / Much' : '2. Some и Many / Much'} />,
     <Body key="b2a" t={t} f={f} text={isUK ? 'some — «кілька, деякі» (стверджувальні речення). many — «багато» для лічильних предметів. much — «багато» для нелічильних.' : 'some — «несколько, некоторые» (утвердительные). many — «много» для счётных предметов. much — «много» для несчётных.'} />,
@@ -796,7 +968,7 @@ const THEORY: Record<number, TheoryContent> = {
       ['near', isUK ? 'біля' : 'рядом, около', 'near that tall mirror'],
       ['inside', isUK ? 'всередині (акцент)' : 'внутри (акцент)', 'inside that leather briefcase'],
     ]} />,
-    <Example key="e1" t={t} f={f} eng="That grey cat sleeps on that soft pillow in this corner" rus={isUK ? 'Той сірий кіт спить на тій м\'якій подушці в цьому кутку' : 'Тот серый кот спит на той мягкой подушке в этом углу'} />,
+    <Example key="e1" t={t} f={f} eng="That gray cat sleeps on that soft pillow in this corner" rus={isUK ? 'Той сірий кіт спить на тій м\'якій подушці в цьому кутку' : 'Тот серый кот спит на той мягкой подушке в этом углу'} />,
     <Example key="e2" t={t} f={f} eng="Those important documents lie inside that leather briefcase" rus={isUK ? 'Ті важливі документи лежать всередині того шкіряного портфеля' : 'Те важные документы лежат внутри того кожаного портфеля'} />,
     <Example key="e3" t={t} f={f} eng="Our new office is between that bank and that cafe" rus={isUK ? 'Наш новий офіс знаходиться між тим банком і тим кафе' : 'Наш новый офис находится между тем банком и тем кафе'} />,
     <Warn key="w1" t={t} f={f} text={isUK ? 'between — між ДВОМА речами. among — серед ТРЬОХ і більше. Не плутай.' : 'between — между ДВУМЯ вещами. among — среди ТРЁХ и более. Не путай.'} />,
@@ -867,9 +1039,9 @@ const THEORY: Record<number, TheoryContent> = {
 
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що таке герундій' : '1. Что такое герундий'} />,
     <Body key="b1a" t={t} f={f} text={isUK ? 'Герундій — це коли дієслово з -ing стає іменником. Воно може бути підметом речення або стояти після певних дієслів.' : 'Герундий — это когда глагол с -ing становится существительным. Он может быть подлежащим предложения или стоять после определённых глаголов.'} />,
-    <Example key="e1" t={t} f={f} eng="Swimming in cold ocean is very refreshing" rus={isUK ? 'Плавання в холодному океані дуже бадьорить' : 'Плавание в холодном океане очень бодрит'} />,
+    <Example key="e1" t={t} f={f} eng="Swimming in the cold ocean is very refreshing" rus={isUK ? 'Плавання в холодному океані дуже бадьорить' : 'Плавание в холодном океане очень бодрит'} />,
     <Example key="e2" t={t} f={f} eng="Learning foreign languages opens new opportunities" rus={isUK ? 'Вивчення іноземних мов відкриває нові можливості' : 'Изучение иностранных языков открывает новые возможности'} />,
-    <Example key="e3" t={t} f={f} eng="Riding bicycle in the park is his favorite activity" rus={isUK ? 'Їзда на велосипеді в парку — його улюблене заняття' : 'Езда на велосипеде в парке — его любимое занятие'} />,
+    <Example key="e3" t={t} f={f} eng="Riding a bicycle in the park is his favorite activity" rus={isUK ? 'Їзда на велосипеді в парку — його улюблене заняття' : 'Езда на велосипеде в парке — его любимое занятие'} />,
 
     <Section key="s2" t={t} f={f} title={isUK ? '2. Дієслова після яких завжди -ing' : '2. Глаголы после которых всегда -ing'} />,
     <Body key="b2a" t={t} f={f} text={isUK ? 'Після цих дієслів не можна вживати to-infinitive — тільки герундій.' : 'После этих глаголов нельзя использовать to-infinitive — только герундий.'} />,
@@ -881,7 +1053,7 @@ const THEORY: Record<number, TheoryContent> = {
       ['avoid', isUK ? 'уникати' : 'избегать', 'We avoid buying cheap toys'],
       ['suggest', isUK ? 'пропонувати' : 'предлагать', 'Our manager suggested rescheduling'],
       ['keep', isUK ? 'продовжувати' : 'продолжать', 'He keeps ignoring my messages'],
-      ['prefer', isUK ? 'надавати перевагу' : 'предпочитать', 'Do you prefer travelling by train?'],
+      ['prefer', isUK ? 'надавати перевагу' : 'предпочитать', 'Do you prefer traveling by train?'],
     ]} />,
     <Warn key="w1" t={t} f={f} text={isUK ? '❌ «She finished to write» → ✅ «She finished writing». Після finish — тільки -ing.' : '❌ «She finished to write» → ✅ «She finished writing». После finish — только -ing.'} />,
     <Warn key="w2" t={t} f={f} text={isUK ? '❌ «I enjoy to swim» → ✅ «I enjoy swimming». Після enjoy — тільки -ing.' : '❌ «I enjoy to swim» → ✅ «I enjoy swimming». После enjoy — только -ing.'} />,
@@ -961,7 +1133,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Body key="b1b" t={t} f={f} text={isUK ? 'Формула: was / were + дієслово-ing. Was — з I/He/She/It. Were — з You/We/They.' : 'Формула: was / were + глагол-ing. Was — с I/He/She/It. Were — с You/We/They.'} />,
     <Example key="e1" t={t} f={f} eng="I was listening to that important lecture at ten o'clock" rus={isUK ? 'Я слухав ту важливу лекцію о десятій годині' : 'Я слушал ту важную лекцию в десять часов'} />,
     <Example key="e2" t={t} f={f} eng="She was not cooking that spicy dinner at midnight" rus={isUK ? 'Вона не готувала ту гостру вечерю опівночі' : 'Она не готовила тот острый ужин в полночь'} />,
-    <Example key="e3" t={t} f={f} eng="Were you still repairing your old bicycle in garage yesterday at noon?" rus={isUK ? 'Ти все ще ремонтував свій старий велосипед у гаражі вчора опівдні?' : 'Ты всё ещё чинил свой старый велосипед в гараже вчера в полдень?'} />,
+    <Example key="e3" t={t} f={f} eng="Were you still repairing your old bicycle in the garage yesterday at noon?" rus={isUK ? 'Ти все ще ремонтував свій старий велосипед у гаражі вчора опівдні?' : 'Ты всё ещё чинил свой старый велосипед в гараже вчера в полдень?'} />,
 
     <Section key="s2" t={t} f={f} title={isUK ? '2. Маркери Past Continuous' : '2. Маркеры Past Continuous'} />,
     <Body key="b2a" t={t} f={f} text={isUK ? 'at noon / at midnight / at ten o\'clock — у конкретний момент. all morning / all evening / during / whole — весь цей час.' : 'at noon / at midnight / at ten o\'clock — в конкретный момент. all morning / all evening / during / whole — всё это время.'} />,
@@ -993,12 +1165,12 @@ const THEORY: Record<number, TheoryContent> = {
     <Section key="s2" t={t} f={f} title={isUK ? '2. Тип 0 — закони природи і факти' : '2. Тип 0 — законы природы и факты'} />,
     <Body key="b2a" t={t} f={f} text={isUK ? 'Тип 0: If + Present Simple → Present Simple. Це завжди правда, без винятків. If можна замінити на when.' : 'Тип 0: If + Present Simple → Present Simple. Это всегда правда, без исключений. If можно заменить на when.'} />,
     <Example key="e1" t={t} f={f} eng="Iron always melts if someone heats it to high temperature" rus={isUK ? 'Залізо завжди плавиться якщо його нагріти до високої температури' : 'Железо всегда плавится если его нагреть до высокой температуры'} />,
-    <Example key="e2" t={t} f={f} eng="Ice always turns into water if someone leaves it in warm place" rus={isUK ? 'Лід завжди перетворюється на воду якщо залишити його в теплому місці' : 'Лёд всегда превращается в воду если оставить его в тёплом месте'} />,
+    <Example key="e2" t={t} f={f} eng="Ice always turns into water if someone leaves it in a warm place" rus={isUK ? 'Лід завжди перетворюється на воду якщо залишити його в теплому місці' : 'Лёд всегда превращается в воду если оставить его в тёплом месте'} />,
     <Example key="e3" t={t} f={f} eng="Paper always burns if someone brings this open fire too close to it" rus={isUK ? 'Папір завжди горить якщо піднести до нього відкритий вогонь' : 'Бумага всегда горит если поднести к ней открытый огонь'} />,
 
     <Section key="s3" t={t} f={f} title={isUK ? '3. Тип 1 — реальне майбутнє' : '3. Тип 1 — реальное будущее'} />,
     <Body key="b3a" t={t} f={f} text={isUK ? 'Тип 1: If + Present Simple → will + дієслово. Це конкретна ситуація — реальна умова і реальний результат у майбутньому.' : 'Тип 1: If + Present Simple → will + глагол. Это конкретная ситуация — реальное условие и реальный результат в будущем.'} />,
-    <Example key="e4" t={t} f={f} eng="If this experienced specialist signs contract, we will get new profit" rus={isUK ? 'Якщо цей досвідчений фахівець підпише контракт, ми отримаємо новий прибуток' : 'Если этот опытный специалист подпишет контракт, мы получим новую прибыль'} />,
+    <Example key="e4" t={t} f={f} eng="If this experienced specialist signs the contract, we will get profit" rus={isUK ? 'Якщо цей досвідчений фахівець підпише контракт, ми отримаємо прибуток' : 'Если этот опытный специалист подпишет контракт, мы получим прибыль'} />,
     <Example key="e5" t={t} f={f} eng="If that reliable courier comes on time, I will send this urgent packet" rus={isUK ? 'Якщо той надійний кур\'єр прийде вчасно, я відправлю цей терміновий пакет' : 'Если тот надёжный курьер придёт вовремя, я отправлю этот срочный пакет'} />,
 
     <Section key="s4" t={t} f={f} title={isUK ? '4. Головна пастка: після IF — ніколи не will' : '4. Главная ловушка: после IF — никогда не will'} />,
@@ -1159,18 +1331,18 @@ const THEORY: Record<number, TheoryContent> = {
     <Body key="b2a" t={t} f={f} text={isUK ? 'Схема: дієслово + особа + to + базова форма.' : 'Схема: глагол + лицо + to + базовая форма.'} />,
     <Table key="t1" t={t} f={f} rows={[
       [isUK ? 'Дієслово' : 'Глагол', isUK ? 'Приклад' : 'Пример'],
-      ['want', 'I want you to check that annual financial report'],
-      ['expect', 'She expects him to sign that important legal contract'],
-      ['ask', 'We asked that polite waiter to bring that additional menu'],
+      ['want', 'I do not want you to check that annual financial report immediately'],
+      ['expect', 'Does she expect him to sign that important legal contract tomorrow?'],
+      ['ask', 'Did we ask that polite waiter to bring that additional menu?'],
       ['tell', 'She told him to finish the report'],
-      ['would like', 'We would like this talented designer to prepare those new layouts'],
-      ['allow', 'They let that foreign tourist visit that closed historical archive'],
+      ['would like', 'We would like this reliable supplier to deliver those necessary construction materials'],
+      ['allow', 'They let that foreign delegation inspect that modern chemical laboratory'],
     ]} />,
 
     <Section key="s3" t={t} f={f} title={isUK ? '3. MAKE і LET — без to' : '3. MAKE и LET — без to'} />,
     <Body key="b3a" t={t} f={f} text={isUK ? 'make і let — особливі. Після них базова форма БЕЗ to. make = примусити, let = дозволити.' : 'make и let — особые. После них базовая форма БЕЗ to. make = заставить, let = позволить.'} />,
     <Example key="e1" t={t} f={f} eng="They made that inexperienced driver pay that huge fine" rus={isUK ? 'Вони змусили того недосвідченого водія заплатити той величезний штраф' : 'Они заставили того неопытного водителя заплатить тот огромный штраф'} />,
-    <Example key="e2" t={t} f={f} eng="They let that foreign tourist visit that closed historical archive" rus={isUK ? 'Вони дозволили тому іноземному туристу відвідати той закритий історичний архів' : 'Они позволили тому иностранному туристу посетить тот закрытый исторический архив'} />,
+    <Example key="e2" t={t} f={f} eng="They let that foreign delegation inspect that modern chemical laboratory" rus={isUK ? 'Вони дозволили тій іноземній делегації оглянути ту сучасну хімічну лабораторію' : 'Они позволили той иностранной делегации осмотреть ту современную химическую лабораторию'} />,
 
     <Section key="s4" t={t} f={f} title={isUK ? '4. Дієслова сприйняття — see, hear, notice, feel' : '4. Глаголы восприятия — see, hear, notice, feel'} />,
     <Body key="b4a" t={t} f={f} text={isUK ? 'Після see, hear, notice, feel — базова форма без to (або -ing якщо підкреслюємо процес).' : 'После see, hear, notice, feel — базовая форма без to (или -ing если подчёркиваем процесс).'} />,
@@ -1227,15 +1399,24 @@ export default function LessonHelp() {
   const lessonId = Number(rawId || rawLessonId) || 1;
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const theoryTitleEs =
+    lessonId >= 1 && lessonId <= 32
+      ? lessonNamesForLang('es')[lessonId - 1] ?? `Lección ${lessonId}`
+      : `Lección ${lessonId}`;
   const isUK = lang === 'uk';
   const [xpClaimed, setXpClaimed] = useState(false);
   const [xpShown, setXpShown] = useState(false);
+  const [earnedXP, setEarnedXP] = useState(0);
+  const [previewXP, setPreviewXP] = useState(25);
   const xpAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     updateTaskProgress('open_theory', 1).catch(() => {});
     const key = `theory_xp_claimed_${lessonId}`;
     AsyncStorage.getItem(key).then(v => { if (v === '1') setXpClaimed(true); }).catch(() => {});
+    getCurrentMultiplier().then(m => {
+      setPreviewXP(Math.round(25 * m));
+    }).catch(() => {});
   }, [lessonId]);
 
   const handleClaimXP = async () => {
@@ -1243,15 +1424,30 @@ export default function LessonHelp() {
     const key = `theory_xp_claimed_${lessonId}`;
     await AsyncStorage.setItem(key, '1');
     setXpClaimed(true);
+    // Показываем previewXP сразу, потом обновим на реальный finalDelta
+    setEarnedXP(previewXP);
     const userName = await AsyncStorage.getItem('user_name') ?? '';
-    await registerXP(25, 'vocabulary_learned', userName, lang, lessonId).catch(() => {});
-    setXpShown(true);
-    xpAnim.setValue(0);
-    Animated.sequence([
-      Animated.timing(xpAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
-      Animated.delay(1500),
-      Animated.timing(xpAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
-    ]).start(() => setXpShown(false));
+    registerXP(25, 'vocabulary_learned', userName, lang, lessonId)
+      .then(result => {
+        setEarnedXP(result.finalDelta);
+        setXpShown(true);
+        xpAnim.setValue(0);
+        Animated.sequence([
+          Animated.timing(xpAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
+          Animated.delay(1500),
+          Animated.timing(xpAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
+        ]).start(() => setXpShown(false));
+      })
+      .catch(() => {
+        // Показать с previewXP если registerXP упал
+        setXpShown(true);
+        xpAnim.setValue(0);
+        Animated.sequence([
+          Animated.timing(xpAnim, { toValue: 1, duration: 300, useNativeDriver: true }),
+          Animated.delay(1500),
+          Animated.timing(xpAnim, { toValue: 0, duration: 300, useNativeDriver: true }),
+        ]).start(() => setXpShown(false));
+      });
   };
 
   const theory = THEORY[lessonId];
@@ -1274,10 +1470,27 @@ export default function LessonHelp() {
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
           <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
-            {isUK ? `Урок ${lessonId} — Теорія` : `Урок ${lessonId} — Теория`}
+            {triLang(lang, {
+              uk: `Урок ${lessonId} — Теорія`,
+              ru: `Урок ${lessonId} — Теория`,
+              es: `Lección ${lessonId} — Teoría`,
+            })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
-            {theory ? (isUK ? theory.titleUK : theory.titleRU) : (isUK ? `Урок ${lessonId}` : `Урок ${lessonId}`)}
+            {theory
+              ? triLang(lang, { uk: theory.titleUK, ru: theory.titleRU, es: theoryTitleEs })
+              : triLang(lang, {
+                  uk: `Урок ${lessonId}`,
+                  ru: `Урок ${lessonId}`,
+                  es: `Lección ${lessonId}`,
+                })}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+            {triLang(lang, {
+              uk: 'Коротко: правило + приклади + 25 XP',
+              ru: 'Коротко: правило + примеры + 25 XP',
+              es: 'Resumen: regla + ejemplos + 25 XP',
+            })}
           </Text>
         </View>
       </View>
@@ -1285,17 +1498,36 @@ export default function LessonHelp() {
       {/* Content */}
       <ScrollView
         contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
-        showsVerticalScrollIndicator={false}
+        showsVerticalScrollIndicator={true}
       >
+        {lang === 'es' && theory && lessonId !== 1 ? (
+          <Warn
+            t={t}
+            f={f}
+            text="La teoría detallada está, por ahora, solo en ruso o en ucraniano; los ejemplos en inglés no cambian. Poco a poco añadiremos estas explicaciones también en español."
+          />
+        ) : null}
         {theory ? (
-          theory.render(t, isUK, f)
+          lessonId === 1 && lang === 'es' ? renderLesson1TheoryEs(t, f) : theory.render(t, isUK, f)
         ) : (
-          <Body key="fallback" t={t} f={f} text={
-            isUK
-              ? `Теорія для уроку ${lessonId} незабаром з\'явиться. Продовжуй практикуватись!`
-              : `Теория для урока ${lessonId} скоро появится. Продолжай практиковаться!`
-          } />
+          <Body
+            key="fallback"
+            t={t}
+            f={f}
+            text={triLang(lang, {
+              uk: `Теорія для уроку ${lessonId} незабаром з'явиться. Продовжуй практикуватись!`,
+              ru: `Теория для урока ${lessonId} скоро появится. Продолжай практиковаться!`,
+              es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
+            })}
+          />
         )}
+
+        <ReportErrorButton
+          screen="theory"
+          dataId={`theory_lesson_${lessonId}`}
+          dataText={`Теория урока ${lessonId}`}
+          style={{ alignSelf: 'flex-end', marginTop: 16 }}
+        />
 
         {/* XP reward button at the bottom of theory */}
         <View style={{ marginTop: 32, marginBottom: 8, alignItems: 'center' }}>
@@ -1317,21 +1549,26 @@ export default function LessonHelp() {
             <Ionicons name={xpClaimed ? 'checkmark-circle' : 'star'} size={22} color="#fff" />
             <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
               {xpClaimed
-                ? (isUK ? 'XP отримано' : 'XP получено')
-                : (isUK ? 'Отримати 25 XP' : 'Получить 25 XP')}
+                ? triLang(lang, {
+                    uk: `XP отримано (+${earnedXP})`,
+                    ru: `XP получено (+${earnedXP})`,
+                    es: `Has obtenido +${earnedXP} XP`,
+                  })
+                : triLang(lang, {
+                    uk: `Отримати ${previewXP} XP`,
+                    ru: `Получить ${previewXP} XP`,
+                    es: `Reclamar ${previewXP} XP`,
+                  })}
             </Text>
           </TouchableOpacity>
           {xpShown && (
-            <Animated.Text style={{
+            <Animated.View style={{
               marginTop: 10,
-              color: '#F5A623',
-              fontSize: f.h2,
-              fontWeight: '700',
               opacity: xpAnim,
               transform: [{ translateY: xpAnim.interpolate({ inputRange: [0, 1], outputRange: [10, 0] }) }],
             }}>
-              +25 XP
-            </Animated.Text>
+              <XpGainBadge amount={earnedXP} visible={xpShown} style={{ color: '#F5A623', fontSize: f.h2, fontWeight: '700' }} />
+            </Animated.View>
           )}
         </View>
       </ScrollView>

@@ -1,0 +1,7 @@
+# Один раз прогоняет тот же сетап, что и падающие smoke: баг-хант + _precondition.
+# Без assert на tab-home — чтобы снять скрин «как есть» в момент, где дальше тест ждёт tab-home.
+appId: app.phraseman
+---
+- launchApp
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml

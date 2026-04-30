@@ -1,0 +1,8 @@
+{
+  "file": "c:/appsprojects/phraseman/functions/src/index.ts",
+  "session": "33b61ac9",
+  "op_index": 1,
+  "status": "NEW_ALSO_PRESENT",
+  "old_string": "import { runMatchmaking } from './matchmaking';",
+  "new_string": "import { runMatchmaking } from './matchmaking';\nimport { syncLeaderboardFromUsers } from './sync_leaderboard';"
+}

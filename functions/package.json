@@ -1,0 +1,26 @@
+{
+  "name": "phraseman-functions",
+  "version": "1.0.0",
+  "engines": {
+    "node": "20"
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "deploy": "npm run build && firebase deploy --only functions",
+    "deploy:safe": "npm run build && firebase deploy --only \"functions:onAnswerSubmitted,functions:onArenaSessionFinished,functions:onArenaRematchAccepted,functions:onMatchmakingWrite,functions:matchmakingCron,functions:onArenaRoomMatched,functions:onSessionCountdown,functions:onSessionGetReady,functions:onSessionPlayerLobby,functions:syncLeaderboardCron,functions:questionTimeout,functions:communitySubmitPackForReview,functions:communityModerateSubmission,functions:communityAdminModeratePack,functions:communityFetchPackCardsIfAccessible,functions:communityPurchasePack,functions:communityListSellerInbox,functions:communityMarkSellerInboxSeen,functions:communityGetPackRatingSummary,functions:communitySubmitPackRating,functions:referralEnsureMyCode,functions:referralApply,functions:referralOnUserProgressUpdated,functions:adminGrantReward\"",
+    "test": "jest --no-coverage"
+  },
+  "dependencies": {
+    "firebase-admin": "^12.7.0",
+    "firebase-functions": "^7.2.5"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^20.0.0",
+    "jest": "^30.3.0",
+    "ts-jest": "^29.4.9",
+    "typescript": "^5.0.0"
+  }
+}

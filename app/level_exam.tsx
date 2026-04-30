@@ -1,16 +1,22 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Alert, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { checkAchievements } from './achievements';
-import { saveExamProgress, getExamMedalTier, type MedalTier } from './medal_utils';
+import { saveExamProgress, type MedalTier } from './medal_utils';
+import { unlockLesson } from './lesson_lock_system';
+import { addShards, awardOneTime } from './shards_system';
+import { usePremium } from '../components/PremiumContext';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import { buildLevelExamEnglish, buildLevelExamHintPair, recordMistake } from './active_recall';
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.png'),
@@ -24,6 +30,7 @@ interface LevelQ {
   lessonNum: number;
   topic:   string;
   topicUK: string;
+  topicES: string;
   q:       string;
   opts:    string[];
   correct: number;
@@ -33,144 +40,144 @@ interface LevelQ {
 // 3 вопроса per lesson (первые 3 из pool = fill-типы, они лучше всего подходят)
 const QUESTION_POOL: LevelQ[] = [
   // L1
-  {lessonNum:1,topic:'To Be',topicUK:'To Be',q:'She ___ a teacher.',opts:['am','is','are','be'],correct:1},
-  {lessonNum:1,topic:'To Be',topicUK:'To Be',q:'We ___ at home now.',opts:['is','am','are','be'],correct:2},
-  {lessonNum:1,topic:'To Be',topicUK:'To Be',q:'I ___ not tired.',opts:['is','are','am','be'],correct:2},
+  {lessonNum:1,topic:'To Be',topicUK:'To Be',topicES:'El verbo to be',q:'She ___ a teacher.',opts:['am','is','are','be'],correct:1},
+  {lessonNum:1,topic:'To Be',topicUK:'To Be',topicES:'El verbo to be',q:'We ___ at home now.',opts:['is','am','are','be'],correct:2},
+  {lessonNum:1,topic:'To Be',topicUK:'To Be',topicES:'El verbo to be',q:'I ___ not tired.',opts:['is','are','am','be'],correct:2},
   // L2
-  {lessonNum:2,topic:'Отрицание To Be',topicUK:'Заперечення To Be',q:'They ___ not here.',opts:['is','am','are','be'],correct:2},
-  {lessonNum:2,topic:'Отрицание To Be',topicUK:'Заперечення To Be',q:'She ___ not ready yet.',opts:['is','am','are','be'],correct:0},
-  {lessonNum:2,topic:'Отрицание To Be',topicUK:'Заперечення To Be',q:'Which sentence is correct?',opts:['I am not ready.','She are not happy.','He am not here.','We is not late.'],correct:0,type:'choice4'},
+  {lessonNum:2,topic:'Отрицание To Be',topicUK:'Заперечення To Be',topicES:'Negación con to be',q:'They ___ not here.',opts:['is','am','are','be'],correct:2},
+  {lessonNum:2,topic:'Отрицание To Be',topicUK:'Заперечення To Be',topicES:'Negación con to be',q:'She ___ not ready yet.',opts:['is','am','are','be'],correct:0},
+  {lessonNum:2,topic:'Отрицание To Be',topicUK:'Заперечення To Be',topicES:'Negación con to be',q:'Which sentence is correct?',opts:['I am not ready.','She are not happy.','He am not here.','We is not late.'],correct:0,type:'choice4'},
   // L3
-  {lessonNum:3,topic:'Present Simple — утверждение',topicUK:'Present Simple — ствердження',q:'He ___ every day.',opts:['work','works','worked','working'],correct:1},
-  {lessonNum:3,topic:'Present Simple — утверждение',topicUK:'Present Simple — ствердження',q:'She ___ English.',opts:['speak','speaks','spoke','speaking'],correct:1},
-  {lessonNum:3,topic:'Present Simple — утверждение',topicUK:'Present Simple — ствердження',q:'They ___ in London.',opts:['live','lives','lived','living'],correct:0},
+  {lessonNum:3,topic:'Present Simple — утверждение',topicUK:'Present Simple — ствердження',topicES:'Present Simple: afirmativo',q:'He ___ every day.',opts:['work','works','worked','working'],correct:1},
+  {lessonNum:3,topic:'Present Simple — утверждение',topicUK:'Present Simple — ствердження',topicES:'Present Simple: afirmativo',q:'She ___ English.',opts:['speak','speaks','spoke','speaking'],correct:1},
+  {lessonNum:3,topic:'Present Simple — утверждение',topicUK:'Present Simple — ствердження',topicES:'Present Simple: afirmativo',q:'They ___ in London.',opts:['live','lives','lived','living'],correct:0},
   // L4
-  {lessonNum:4,topic:'Present Simple — отрицание',topicUK:'Present Simple — заперечення',q:'She ___ not understand.',opts:['do','does','did','doing'],correct:1},
-  {lessonNum:4,topic:'Present Simple — отрицание',topicUK:'Present Simple — заперечення',q:'He ___ not smoke.',opts:['do','does','did','doing'],correct:1},
-  {lessonNum:4,topic:'Present Simple — отрицание',topicUK:'Present Simple — заперечення',q:'They ___ not know the answer.',opts:['does','do','did','doing'],correct:1},
+  {lessonNum:4,topic:'Present Simple — отрицание',topicUK:'Present Simple — заперечення',topicES:'Present Simple: negación',q:'She ___ not understand.',opts:['do','does','did','doing'],correct:1},
+  {lessonNum:4,topic:'Present Simple — отрицание',topicUK:'Present Simple — заперечення',topicES:'Present Simple: negación',q:'He ___ not smoke.',opts:['do','does','did','doing'],correct:1},
+  {lessonNum:4,topic:'Present Simple — отрицание',topicUK:'Present Simple — заперечення',topicES:'Present Simple: negación',q:'They ___ not know the answer.',opts:['does','do','did','doing'],correct:1},
   // L5
-  {lessonNum:5,topic:'Present Simple — вопросы',topicUK:'Present Simple — питання',q:'___ you speak English?',opts:['Do','Does','Did','Are'],correct:0},
-  {lessonNum:5,topic:'Present Simple — вопросы',topicUK:'Present Simple — питання',q:'___ she like music?',opts:['Do','Does','Did','Is'],correct:1},
-  {lessonNum:5,topic:'Present Simple — вопросы',topicUK:'Present Simple — питання',q:'___ they play football?',opts:['Do','Does','Did','Are'],correct:0},
+  {lessonNum:5,topic:'Present Simple — вопросы',topicUK:'Present Simple — питання',topicES:'Present Simple: preguntas',q:'___ you speak English?',opts:['Do','Does','Did','Are'],correct:0},
+  {lessonNum:5,topic:'Present Simple — вопросы',topicUK:'Present Simple — питання',topicES:'Present Simple: preguntas',q:'___ she like music?',opts:['Do','Does','Did','Is'],correct:1},
+  {lessonNum:5,topic:'Present Simple — вопросы',topicUK:'Present Simple — питання',topicES:'Present Simple: preguntas',q:'___ they play football?',opts:['Do','Does','Did','Are'],correct:0},
   // L6
-  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',q:'___ do you live?',opts:['What','Where','Who','When'],correct:1},
-  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',q:'___ are you?',opts:['Where','How','What','Who'],correct:1},
-  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',q:'___ time is it?',opts:['Where','Who','What','When'],correct:2},
+  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',topicES:'Preguntas con wh-',q:'___ do you live?',opts:['What','Where','Who','When'],correct:1},
+  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',topicES:'Preguntas con wh-',q:'___ are you?',opts:['Where','How','What','Who'],correct:1},
+  {lessonNum:6,topic:'Специальные вопросы',topicUK:'Спеціальні питання',topicES:'Preguntas con wh-',q:'___ time is it?',opts:['Where','Who','What','When'],correct:2},
   // L7
-  {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',q:'I ___ a car.',opts:['has','have','had','having'],correct:1},
-  {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',q:'She ___ two children.',opts:['have','has','had','having'],correct:1},
-  {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',q:'Do they ___ a car?',opts:['has','have','had','having'],correct:1},
+  {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',topicES:'El verbo to have',q:'I ___ a car.',opts:['has','have','had','having'],correct:1},
+  {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',topicES:'El verbo to have',q:'She ___ two children.',opts:['have','has','had','having'],correct:1},
+  {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',topicES:'El verbo to have',q:'Do they ___ a car?',opts:['has','have','had','having'],correct:1},
   // L8
-  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',q:"I wake up ___ 7 o'clock.",opts:['in','on','at','by'],correct:2},
-  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',q:'She was born ___ Monday.',opts:['in','on','at','by'],correct:1},
-  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',q:'He was born ___ 1990.',opts:['in','on','at','by'],correct:0},
+  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',topicES:'Preposiciones de tiempo',q:"I wake up ___ 7 o'clock.",opts:['in','on','at','by'],correct:2},
+  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',topicES:'Preposiciones de tiempo',q:'She was born ___ Monday.',opts:['in','on','at','by'],correct:1},
+  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',topicES:'Preposiciones de tiempo',q:'He was born ___ 1990.',opts:['in','on','at','by'],correct:0},
   // L9
-  {lessonNum:9,topic:'There is / There are',topicUK:'There is / There are',q:'There ___ a book on the table.',opts:['are','am','is','be'],correct:2},
-  {lessonNum:9,topic:'There is / There are',topicUK:'There is / There are',q:'There ___ many people here.',opts:['is','am','are','be'],correct:2},
-  {lessonNum:9,topic:'There is / There are',topicUK:'There is / There are',q:'There ___ no milk in the fridge.',opts:['are','am','is','be'],correct:2},
+  {lessonNum:9,topic:'There is / There are',topicUK:'There is / There are',topicES:'There is / There are',q:'There ___ a book on the table.',opts:['are','am','is','be'],correct:2},
+  {lessonNum:9,topic:'There is / There are',topicUK:'There is / There are',topicES:'There is / There are',q:'There ___ many people here.',opts:['is','am','are','be'],correct:2},
+  {lessonNum:9,topic:'There is / There are',topicUK:'There is / There are',topicES:'There is / There are',q:'There ___ no milk in the fridge.',opts:['are','am','is','be'],correct:2},
   // L10
-  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',q:'You ___ speak louder.',opts:['can','could','should','must'],correct:2},
-  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',q:'She ___ swim very well.',opts:['can','should','must','shall'],correct:0},
-  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',q:'You ___ not park here.',opts:['must','can','could','should'],correct:0},
+  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',topicES:'Verbos modales',q:'You ___ speak louder.',opts:['can','could','should','must'],correct:2},
+  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',topicES:'Verbos modales',q:'She ___ swim very well.',opts:['can','should','must','shall'],correct:0},
+  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',topicES:'Verbos modales',q:'You ___ not park here.',opts:['must','can','could','should'],correct:0},
   // L11
-  {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',q:'She ___ the letter yesterday.',opts:['send','sends','sent','sending'],correct:2},
-  {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',q:'They ___ football last week.',opts:['play','plays','played','playing'],correct:2},
-  {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',q:'I ___ him yesterday.',opts:['call','calls','called','calling'],correct:2},
+  {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',topicES:'Past Simple: regulares',q:'She ___ the letter yesterday.',opts:['send','sends','sent','sending'],correct:2},
+  {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',topicES:'Past Simple: regulares',q:'They ___ football last week.',opts:['play','plays','played','playing'],correct:2},
+  {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',topicES:'Past Simple: regulares',q:'I ___ him yesterday.',opts:['call','calls','called','calling'],correct:2},
   // L12
-  {lessonNum:12,topic:'Past Simple — неправильные',topicUK:'Past Simple — неправильні',q:'He ___ to London last year.',opts:['go','goes','went','gone'],correct:2},
-  {lessonNum:12,topic:'Past Simple — неправильные',topicUK:'Past Simple — неправильні',q:'They ___ a lot of money.',opts:['spend','spends','spent','spending'],correct:2},
-  {lessonNum:12,topic:'Past Simple — неправильные',topicUK:'Past Simple — неправильні',q:'She ___ the book last week.',opts:['read','reads','readed','reading'],correct:0},
+  {lessonNum:12,topic:'Past Simple — неправильные',topicUK:'Past Simple — неправильні',topicES:'Past Simple: irregulares',q:'He ___ to London last year.',opts:['go','goes','went','gone'],correct:2},
+  {lessonNum:12,topic:'Past Simple — неправильные',topicUK:'Past Simple — неправильні',topicES:'Past Simple: irregulares',q:'They ___ a lot of money.',opts:['spend','spends','spent','spending'],correct:2},
+  {lessonNum:12,topic:'Past Simple — неправильные',topicUK:'Past Simple — неправильні',topicES:'Past Simple: irregulares',q:'She ___ the book last week.',opts:['read','reads','readed','reading'],correct:0},
   // L13
-  {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',q:'She ___ come tomorrow.',opts:['will','would','is going','shall be'],correct:0},
-  {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',q:'I ___ not be late.',opts:['will','shall','would','am'],correct:0},
-  {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',q:'It ___ rain tomorrow.',opts:['will','would','shall','is'],correct:0},
+  {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',topicES:'Future Simple (will)',q:'She ___ come tomorrow.',opts:['will','would','is going','shall be'],correct:0},
+  {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',topicES:'Future Simple (will)',q:'I ___ not be late.',opts:['will','shall','would','am'],correct:0},
+  {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',topicES:'Future Simple (will)',q:'It ___ rain tomorrow.',opts:['will','would','shall','is'],correct:0},
   // L14
-  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',q:"This is ___ book I've read.",opts:['good','better','the best','best'],correct:2},
-  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',q:'She is ___ than her sister.',opts:['tall','taller','tallest','most tall'],correct:1},
-  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',q:'This test is ___ than the last one.',opts:['hard','harder','hardest','more hard'],correct:1},
+  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',topicES:'Grados de comparación',q:"This is ___ book I've read.",opts:['good','better','the best','best'],correct:2},
+  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',topicES:'Grados de comparación',q:'She is ___ than her sister.',opts:['tall','taller','tallest','most tall'],correct:1},
+  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',topicES:'Grados de comparación',q:'This test is ___ than the last one.',opts:['hard','harder','hardest','more hard'],correct:1},
   // L15
-  {lessonNum:15,topic:'Притяжательные местоимения',topicUK:'Присвійні займенники',q:'This is ___ bag.',opts:['her','hers','she','herself'],correct:0},
-  {lessonNum:15,topic:'Притяжательные местоимения',topicUK:'Присвійні займенники',q:'Is this pen ___?',opts:['your','yours','you','yourself'],correct:1},
-  {lessonNum:15,topic:'Притяжательные местоимения',topicUK:'Присвійні займенники',q:'These are ___ books.',opts:['their','theirs','they','themselves'],correct:0},
+  {lessonNum:15,topic:'Притяжательные местоимения',topicUK:'Присвійні займенники',topicES:'Pronombres y adjetivos posesivos',q:'This is ___ bag.',opts:['her','hers','she','herself'],correct:0},
+  {lessonNum:15,topic:'Притяжательные местоимения',topicUK:'Присвійні займенники',topicES:'Pronombres y adjetivos posesivos',q:'Is this pen ___?',opts:['your','yours','you','yourself'],correct:1},
+  {lessonNum:15,topic:'Притяжательные местоимения',topicUK:'Присвійні займенники',topicES:'Pronombres y adjetivos posesivos',q:'These are ___ books.',opts:['their','theirs','they','themselves'],correct:0},
   // L16
-  {lessonNum:16,topic:'Фразовые глаголы',topicUK:'Фразові дієслова',q:'Please ___ the light.',opts:['turn on','turn up','turn in','turn out'],correct:0},
-  {lessonNum:16,topic:'Фразовые глаголы',topicUK:'Фразові дієслова',q:'She ___ smoking last year.',opts:['gave up','give up','gives up','given up'],correct:0},
-  {lessonNum:16,topic:'Фразовые глаголы',topicUK:'Фразові дієслова',q:'Could you ___ the TV?',opts:['turn off','turn down','put off','turn in'],correct:0},
+  {lessonNum:16,topic:'Фразовые глаголы',topicUK:'Фразові дієслова',topicES:'Verbos frasales',q:'Please ___ the light.',opts:['turn on','turn up','turn in','turn out'],correct:0},
+  {lessonNum:16,topic:'Фразовые глаголы',topicUK:'Фразові дієслова',topicES:'Verbos frasales',q:'She ___ smoking last year.',opts:['gave up','give up','gives up','given up'],correct:0},
+  {lessonNum:16,topic:'Фразовые глаголы',topicUK:'Фразові дієслова',topicES:'Verbos frasales',q:'I am going to bed. Could you ___ the TV?',opts:['turn off','turn out','put off','turn in'],correct:0},
   // L17
-  {lessonNum:17,topic:'Present Continuous',topicUK:'Present Continuous',q:'She ___ now.',opts:['study','studies','is studying','studied'],correct:2},
-  {lessonNum:17,topic:'Present Continuous',topicUK:'Present Continuous',q:'They ___ football right now.',opts:['play','plays','are playing','played'],correct:2},
-  {lessonNum:17,topic:'Present Continuous',topicUK:'Present Continuous',q:'I ___ dinner at the moment.',opts:['cook','cooks','am cooking','cooked'],correct:2},
+  {lessonNum:17,topic:'Present Continuous',topicUK:'Present Continuous',topicES:'Present Continuous',q:'She ___ now.',opts:['study','studies','is studying','studied'],correct:2},
+  {lessonNum:17,topic:'Present Continuous',topicUK:'Present Continuous',topicES:'Present Continuous',q:'They ___ football right now.',opts:['play','plays','are playing','played'],correct:2},
+  {lessonNum:17,topic:'Present Continuous',topicUK:'Present Continuous',topicES:'Present Continuous',q:'I ___ dinner at the moment.',opts:['cook','cooks','am cooking','cooked'],correct:2},
   // L18
-  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',q:'___ quiet, please.',opts:['Be','Is','Are','Being'],correct:0},
-  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',q:"Don't ___ late.",opts:['be','is','are','being'],correct:0},
-  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',q:'___ the window, please.',opts:['Open','Opens','Opening','Opened'],correct:0},
+  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',topicES:'Imperativo',q:'___ quiet, please.',opts:['Be','Is','Are','Being'],correct:0},
+  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',topicES:'Imperativo',q:"Don't ___ late.",opts:['be','is','are','being'],correct:0},
+  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',topicES:'Imperativo',q:'___ the window, please.',opts:['Open','Opens','Opening','Opened'],correct:0},
   // L19
-  {lessonNum:19,topic:'Предлоги места',topicUK:'Прийменники місця',q:'The cat is ___ the table.',opts:['in','on','under','between'],correct:1},
-  {lessonNum:19,topic:'Предлоги места',topicUK:'Прийменники місця',q:'The book is ___ the bag.',opts:['on','in','at','between'],correct:1},
-  {lessonNum:19,topic:'Предлоги места',topicUK:'Прийменники місця',q:'She lives ___ London.',opts:['on','at','in','by'],correct:2},
+  {lessonNum:19,topic:'Предлоги места',topicUK:'Прийменники місця',topicES:'Preposiciones de lugar',q:'The cat is ___ the table.',opts:['in','on','under','between'],correct:1},
+  {lessonNum:19,topic:'Предлоги места',topicUK:'Прийменники місця',topicES:'Preposiciones de lugar',q:'The book is ___ the bag.',opts:['on','in','at','between'],correct:1},
+  {lessonNum:19,topic:'Предлоги места',topicUK:'Прийменники місця',topicES:'Preposiciones de lugar',q:'She lives ___ London.',opts:['on','at','in','by'],correct:2},
   // L20
-  {lessonNum:20,topic:'Артикли (a/an/the)',topicUK:'Артиклі (a/an/the)',q:'She is ___ doctor.',opts:['a','an','the','—'],correct:0},
-  {lessonNum:20,topic:'Артикли (a/an/the)',topicUK:'Артиклі (a/an/the)',q:'I am ___ engineer.',opts:['a','an','the','—'],correct:1},
-  {lessonNum:20,topic:'Артикли (a/an/the)',topicUK:'Артиклі (a/an/the)',q:'She loves ___ sun.',opts:['a','an','the','—'],correct:2},
+  {lessonNum:20,topic:'Артикли (a/an/the)',topicUK:'Артиклі (a/an/the)',topicES:'Artículos (a/an/the)',q:'She is ___ doctor.',opts:['a','an','the','—'],correct:0},
+  {lessonNum:20,topic:'Артикли (a/an/the)',topicUK:'Артиклі (a/an/the)',topicES:'Artículos (a/an/the)',q:'I am ___ engineer.',opts:['a','an','the','—'],correct:1},
+  {lessonNum:20,topic:'Артикли (a/an/the)',topicUK:'Артиклі (a/an/the)',topicES:'Artículos (a/an/the)',q:'She loves ___ sun.',opts:['a','an','the','—'],correct:2},
   // L21
-  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',q:'There is ___ in the room.',opts:['somebody','anybody','nobody','everybody'],correct:0},
-  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',q:'Is there ___ here?',opts:['someone','anyone','no one','everyone'],correct:1},
-  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',q:"I don't have ___ money.",opts:['some','any','no','every'],correct:1},
+  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',topicES:'Pronombres indefinidos',q:'I heard a noise. There must be ___ outside.',opts:['somebody','anybody','nobody','everybody'],correct:0},
+  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',topicES:'Pronombres indefinidos',q:'Is there ___ who can help me?',opts:['somewhere','anyone','no one','everyone'],correct:1},
+  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',topicES:'Pronombres indefinidos',q:"I don't have ___ money.",opts:['some','any','no','every'],correct:1},
   // L22
-  {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',q:'She enjoys ___.',opts:['dance','dances','dancing','to dance'],correct:2},
-  {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',q:'He avoids ___ the problem.',opts:['discuss','discussed','discussing','to discuss'],correct:2},
-  {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',q:'They finished ___ dinner.',opts:['cook','cooks','cooking','to cook'],correct:2},
+  {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',topicES:'Gerundio (-ing)',q:'She enjoys ___.',opts:['dance','dances','dancing','to dance'],correct:2},
+  {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',topicES:'Gerundio (-ing)',q:'He avoids ___ the problem.',opts:['discuss','discussed','discussing','to discuss'],correct:2},
+  {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',topicES:'Gerundio (-ing)',q:'They finished ___ dinner.',opts:['cook','cooks','cooking','to cook'],correct:2},
   // L23
-  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',q:'The letter ___ by her.',opts:['wrote','is written','was written','had written'],correct:2},
-  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',q:'Cars ___ made in factories.',opts:['is','am','are','were'],correct:2},
-  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',q:'The report ___ submitted by Friday.',opts:['must be','must have','should','is going'],correct:0},
+  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',topicES:'Voz pasiva',q:'The letter ___ by her.',opts:['wrote','is written','was written','had written'],correct:2},
+  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',topicES:'Voz pasiva',q:'Cars ___ made in factories.',opts:['is','am','are','were'],correct:2},
+  {lessonNum:23,topic:'Passive Voice',topicUK:'Passive Voice',topicES:'Voz pasiva',q:'The report ___ submitted by Friday.',opts:['must be','must have','should','is going'],correct:0},
   // L24
-  {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',q:"I ___ never been to Paris.",opts:['have','has','had','was'],correct:0},
-  {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',q:'She ___ just finished.',opts:['have','has','had','is'],correct:1},
-  {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',q:'Have you ever ___ sushi?',opts:['eat','ate','eating','eaten'],correct:3},
+  {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',topicES:'Present Perfect',q:"I ___ never been to Paris.",opts:['have','has','had','was'],correct:0},
+  {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',topicES:'Present Perfect',q:'She ___ just finished.',opts:['have','has','had','is'],correct:1},
+  {lessonNum:24,topic:'Present Perfect',topicUK:'Present Perfect',topicES:'Present Perfect',q:'Have you ever ___ sushi?',opts:['eat','ate','eating','eaten'],correct:3},
   // L25
-  {lessonNum:25,topic:'Past Continuous',topicUK:'Past Continuous',q:'She ___ when I called.',opts:['sleep','slept','was sleeping','has slept'],correct:2},
-  {lessonNum:25,topic:'Past Continuous',topicUK:'Past Continuous',q:'They ___ TV at 8 pm.',opts:['watch','watched','were watching','have watched'],correct:2},
-  {lessonNum:25,topic:'Past Continuous',topicUK:'Past Continuous',q:'I ___ when the phone rang.',opts:['work','worked','was working','am working'],correct:2},
+  {lessonNum:25,topic:'Past Continuous',topicUK:'Past Continuous',topicES:'Past Continuous',q:'She ___ when I called.',opts:['sleep','slept','was sleeping','has slept'],correct:2},
+  {lessonNum:25,topic:'Past Continuous',topicUK:'Past Continuous',topicES:'Past Continuous',q:'They ___ TV at 8 pm.',opts:['watch','watched','were watching','have watched'],correct:2},
+  {lessonNum:25,topic:'Past Continuous',topicUK:'Past Continuous',topicES:'Past Continuous',q:'I ___ when the phone rang.',opts:['work','worked','was working','am working'],correct:2},
   // L26
-  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',q:'If it rains, I ___ stay home.',opts:['will','would','shall','should'],correct:0},
-  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',q:'If I ___ rich, I would travel.',opts:['am','was','were','be'],correct:2},
-  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',q:'If she had tried, she ___ passed.',opts:['will have','would have','had','did'],correct:1},
+  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',topicES:'Oraciones condicionales (if)',q:'If it rains, I ___ stay home.',opts:['will','would','shall','should'],correct:0},
+  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',topicES:'Oraciones condicionales (if)',q:'If I ___ rich, I would travel.',opts:['am','was','were','be'],correct:2},
+  {lessonNum:26,topic:'Условные предложения (if)',topicUK:'Умовні речення (if)',topicES:'Oraciones condicionales (if)',q:'If she had tried, she ___ passed.',opts:['will have','would have','had','did'],correct:1},
   // L27
-  {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',q:'He said he ___ tired.',opts:['is','was','were','be'],correct:1},
-  {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',q:'She told me she ___ leave.',opts:['will','would','shall','should'],correct:1},
-  {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',q:'He asked where I ___.',opts:['live','lived','living','lives'],correct:1},
+  {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',topicES:'Estilo indirecto',q:'He said he ___ tired.',opts:['is','was','were','be'],correct:1},
+  {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',topicES:'Estilo indirecto',q:'She told me she ___ leave.',opts:['will','would','shall','should'],correct:1},
+  {lessonNum:27,topic:'Косвенная речь',topicUK:'Непряма мова',topicES:'Estilo indirecto',q:'He asked where I ___.',opts:['live','lived','living','lives'],correct:1},
   // L28
-  {lessonNum:28,topic:'Возвратные местоимения',topicUK:'Зворотні займенники',q:'She did it ___.',opts:['her','herself','hers','she'],correct:1},
-  {lessonNum:28,topic:'Возвратные местоимения',topicUK:'Зворотні займенники',q:'He hurt ___ playing football.',opts:['him','himself','his','he'],correct:1},
-  {lessonNum:28,topic:'Возвратные местоимения',topicUK:'Зворотні займенники',q:'They enjoyed ___ at the party.',opts:['them','themselves','their','they'],correct:1},
+  {lessonNum:28,topic:'Возвратные местоимения',topicUK:'Зворотні займенники',topicES:'Pronombres reflexivos',q:'She did it ___.',opts:['her','herself','hers','she'],correct:1},
+  {lessonNum:28,topic:'Возвратные местоимения',topicUK:'Зворотні займенники',topicES:'Pronombres reflexivos',q:'He hurt ___ playing football.',opts:['him','himself','his','he'],correct:1},
+  {lessonNum:28,topic:'Возвратные местоимения',topicUK:'Зворотні займенники',topicES:'Pronombres reflexivos',q:'They enjoyed ___ at the party.',opts:['them','themselves','their','they'],correct:1},
   // L29
-  {lessonNum:29,topic:'Used to',topicUK:'Used to',q:'I ___ play football as a kid.',opts:['used to','use to','am used to','was used to'],correct:0},
-  {lessonNum:29,topic:'Used to',topicUK:'Used to',q:'She ___ live in Paris.',opts:['used to','use to','is used to','uses to'],correct:0},
-  {lessonNum:29,topic:'Used to',topicUK:'Used to',q:'He is ___ waking up early.',opts:['use to','used to','used','get used to'],correct:1},
+  {lessonNum:29,topic:'Used to',topicUK:'Used to',topicES:'Used to',q:'I ___ play football as a kid.',opts:['used to','use to','am used to','was used to'],correct:0},
+  {lessonNum:29,topic:'Used to',topicUK:'Used to',topicES:'Used to',q:'She ___ live in Paris.',opts:['used to','use to','is used to','uses to'],correct:0},
+  {lessonNum:29,topic:'Used to',topicUK:'Used to',topicES:'Used to',q:'He is ___ waking up early.',opts:['use to','used to','used','get used to'],correct:1},
   // L30
-  {lessonNum:30,topic:'Relative Clauses',topicUK:'Relative Clauses',q:'The man ___ called is my friend.',opts:['who','which','whose','whom'],correct:0},
-  {lessonNum:30,topic:'Relative Clauses',topicUK:'Relative Clauses',q:'The book ___ I read was great.',opts:['who','which','whose','whom'],correct:1},
-  {lessonNum:30,topic:'Relative Clauses',topicUK:'Relative Clauses',q:"The girl ___ mother is a doctor studies here.",opts:['who','which','whose','whom'],correct:2},
+  {lessonNum:30,topic:'Relative Clauses',topicUK:'Relative Clauses',topicES:'Oraciones relativas',q:'The man ___ called is my friend.',opts:['who','which','whose','whom'],correct:0},
+  {lessonNum:30,topic:'Relative Clauses',topicUK:'Relative Clauses',topicES:'Oraciones relativas',q:'The book ___ I read was great.',opts:['who','which','whose','whom'],correct:1},
+  {lessonNum:30,topic:'Relative Clauses',topicUK:'Relative Clauses',topicES:'Oraciones relativas',q:"The girl ___ mother is a doctor studies here.",opts:['who','which','whose','whom'],correct:2},
   // L31
-  {lessonNum:31,topic:'Complex Object',topicUK:'Complex Object',q:'I want you ___ this.',opts:['do','doing','to do','done'],correct:2},
-  {lessonNum:31,topic:'Complex Object',topicUK:'Complex Object',q:'She expects him ___ on time.',opts:['arrive','arriving','to arrive','arrived'],correct:2},
-  {lessonNum:31,topic:'Complex Object',topicUK:'Complex Object',q:'I heard her ___ a song.',opts:['sing','singing','to sing','sang'],correct:1},
+  {lessonNum:31,topic:'Complex Object',topicUK:'Complex Object',topicES:'Construcciones con objeto e infinitivo',q:'I want you ___ this.',opts:['do','doing','to do','done'],correct:2},
+  {lessonNum:31,topic:'Complex Object',topicUK:'Complex Object',topicES:'Construcciones con objeto e infinitivo',q:'She expects him ___ on time.',opts:['arrive','arriving','to arrive','arrived'],correct:2},
+  {lessonNum:31,topic:'Complex Object',topicUK:'Complex Object',topicES:'Construcciones con objeto e infinitivo',q:'I heard her ___ a song.',opts:['sing','singing','to sing','sang'],correct:1},
   // L32
-  {lessonNum:32,topic:'Повторение всех тем',topicUK:'Повторення всіх тем',q:'She ___ not have come so early.',opts:['should','shall','would','will'],correct:0},
-  {lessonNum:32,topic:'Повторение всех тем',topicUK:'Повторення всіх тем',q:'By the time she arrived, he ___ left.',opts:['left','has left','had left','was leaving'],correct:2},
-  {lessonNum:32,topic:'Повторение всех тем',topicUK:'Повторення всіх тем',q:'If you had come, you ___ her.',opts:['meet','met','would have met','had met'],correct:2},
+  {lessonNum:32,topic:'Повторение всех тем',topicUK:'Повторення всіх тем',topicES:'Repaso general',q:'She ___ not have come so early.',opts:['should','shall','would','will'],correct:0},
+  {lessonNum:32,topic:'Повторение всех тем',topicUK:'Повторення всіх тем',topicES:'Repaso general',q:'By the time she arrived, he ___.',opts:['left','has left','had left','was leaving'],correct:2},
+  {lessonNum:32,topic:'Повторение всех тем',topicUK:'Повторення всіх тем',topicES:'Repaso general',q:'If you had come, you ___ her.',opts:['meet','met','would have met','had met'],correct:2},
 ];
 
 const LEVEL_RANGES: Record<string, [number, number]> = {
   A1: [1, 8], A2: [9, 18], B1: [19, 28], B2: [29, 32],
 };
 
-const LEVEL_LABELS: Record<string, { ru: string; uk: string }> = {
-  A1: { ru: 'Зачёт A1', uk: 'Залік A1' },
-  A2: { ru: 'Зачёт A2', uk: 'Залік A2' },
-  B1: { ru: 'Зачёт B1', uk: 'Залік B1' },
-  B2: { ru: 'Зачёт B2', uk: 'Залік B2' },
+const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
+  A1: { ru: 'Зачёт A1', uk: 'Залік A1', es: 'Examen de nivel A1' },
+  A2: { ru: 'Зачёт A2', uk: 'Залік A2', es: 'Examen de nivel A2' },
+  B1: { ru: 'Зачёт B1', uk: 'Залік B1', es: 'Examen de nivel B1' },
+  B2: { ru: 'Зачёт B2', uk: 'Залік B2', es: 'Examen de nivel B2' },
 };
 
 const PASS_PCT = 70; // минимум % для сдачи
@@ -180,7 +187,7 @@ export default function LevelExam() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const isUK = lang === 'uk';
+  const { isPremium } = usePremium();
   const { level } = useLocalSearchParams<{ level: string }>();
   const validLevels = ['A1', 'A2', 'B1', 'B2'];
   const lvl = validLevels.includes(level) ? level : 'A1';
@@ -192,13 +199,16 @@ export default function LevelExam() {
   const [examMedalTier, setExamMedalTier] = useState<MedalTier>('none');
   const [examPassCount, setExamPassCount] = useState(0);
   const [medalImproved, setMedalImproved] = useState(false);
+  const [exitExamConfirm, setExitExamConfirm] = useState(false);
 
   const questions = useMemo(() => {
     const [from, to] = LEVEL_RANGES[lvl] ?? [1, 8];
     return QUESTION_POOL.filter(q => q.lessonNum >= from && q.lessonNum <= to);
   }, [lvl]);
 
-  const title = LEVEL_LABELS[lvl]?.[isUK ? 'uk' : 'ru'] ?? `Зачёт ${lvl}`;
+  const title = LEVEL_LABELS[lvl]
+    ? triLang(lang, LEVEL_LABELS[lvl])
+    : triLang(lang, { ru: `Зачёт ${lvl}`, uk: `Залік ${lvl}`, es: `Examen de nivel ${lvl}` });
   const total = questions.length;
   const q = idx < questions.length ? questions[idx] : undefined;
   const chosen = choices[idx] ?? null;
@@ -213,6 +223,16 @@ export default function LevelExam() {
   const handlePick = (ci: number) => {
     if (chosen !== null) return;
     hapticTap();
+    if (q && ci !== q.correct) {
+      const hints = buildLevelExamHintPair(q);
+      void recordMistake(
+        buildLevelExamEnglish(q),
+        hints.ru,
+        q.lessonNum,
+        hints.uk,
+        'exam',
+      );
+    }
     setChoices(prev => { const n = [...prev]; n[idx] = ci; return n; });
     setShowAnswer(true);
   };
@@ -224,19 +244,24 @@ export default function LevelExam() {
   };
 
   const finishExam = async () => {
-    const correct = choices.filter((c, i) => c !== null && c === questions[i].correct).length;
-    let pct = Math.round(correct / total * 100);
-
-    // Если включен режим "Без ограничений", даём 100% автоматически
+    const correct = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
+    const pct = Math.round(correct / total * 100);
+    // Без ограничений: засчитываем сдачу и открытия, но % и награды «за идеал» — по фактическому счёту
     const noLimits = await AsyncStorage.getItem('tester_no_limits');
-    if (noLimits === 'true') {
-      pct = 100;
-    }
-
-    const passed = pct >= PASS_PCT;
+    const passed = noLimits === 'true' || pct >= PASS_PCT;
     try {
       await AsyncStorage.setItem(`level_exam_${lvl}_pct`, String(pct));
       await AsyncStorage.setItem(`level_exam_${lvl}_passed`, passed ? '1' : '0');
+      // При сдаче зачёта открываем первый урок следующего уровня (A1→9, B1→25)
+      if (passed) {
+        // A1 → 9 (первый A2); A2 → 19 (первый B1, только для премиум);
+        // B1 → 29 (первый B2). Пограничные открываются ТОЛЬКО через сдачу зачёта.
+        const nextLevelFirst: Record<string, number> = { A1: 9, B1: 29, ...(isPremium ? { A2: 19 } : {}) };
+        const firstLesson = nextLevelFirst[lvl];
+        if (firstLesson) await unlockLesson(firstLesson);
+        addShards('lesson_quiz_passed').catch(() => {});
+      }
+      if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});
       const { newTier, prevTier, newPassCount } = await saveExamProgress(lvl, pct);
       setExamMedalTier(newTier);
       setExamPassCount(newPassCount);
@@ -250,7 +275,7 @@ export default function LevelExam() {
     setPhase('result');
   };
 
-  const correctCount = choices.filter((c, i) => c !== null && c === questions[i].correct).length;
+  const correctCount = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
   const pct = total > 0 ? Math.round(correctCount / total * 100) : 0;
   const passed = pct >= PASS_PCT;
 
@@ -272,17 +297,19 @@ export default function LevelExam() {
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>{title}</Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22 }}>
-              {isUK
-                ? `${total} питань — по 3 з кожного уроку рівня ${lvl}.`
-                : `${total} вопросов — по 3 из каждого урока уровня ${lvl}.`}
+              {triLang(lang, {
+                ru: `${total} вопросов по темам уроков ${lvl}: грамматика, лексика и навыки из блоков «Теория» и «Словарь». Порог зачёта: ${PASS_PCT}%.`,
+                uk: `${total} питань за темами уроків ${lvl}: граматика, лексика й навички з «Теорії» та «Словника». Поріг заліку: ${PASS_PCT}%.`,
+                es: `${total} preguntas del nivel ${lvl}: gramática, léxico y destrezas de «Teoría» y «Vocabulario». Para aprobar hace falta al menos ${PASS_PCT} %.`,
+              })}
             </Text>
           </View>
 
           <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 0.5, borderColor: t.border, padding: 16, gap: 10 }}>
             {[
-              { icon: 'help-circle-outline' as const, text: isUK ? `${total} питань` : `${total} вопросов` },
-              { icon: 'medal-outline' as const, text: isUK ? 'Набери 90%+ щоб отримати золото' : 'Набери 90%+ чтобы получить золото' },
-              { icon: 'refresh-outline' as const, text: isUK ? 'Можна проходити кілька разів' : 'Можно проходить несколько раз' },
+              { icon: 'help-circle-outline' as const, text: triLang(lang, { ru: `${total} вопросов по программе`, uk: `${total} питань за програмою`, es: `${total} preguntas del programa` }) },
+              { icon: 'medal-outline' as const, text: triLang(lang, { ru: `Золото — от ${90}% (бронза/серебро при проходном ${PASS_PCT}%)`, uk: `Золото — від ${90}% (бронза/срібло при прохідному ${PASS_PCT}%)`, es: `Oro desde ${90} % (bronce/plata con el ${PASS_PCT} % exigido)` }) },
+              { icon: 'refresh-outline' as const, text: triLang(lang, { ru: 'Можно пересдавать без ограничений', uk: 'Можна пересдавати без обмежень', es: 'Puedes repetir sin límite de intentos' }) },
             ].map((item, i) => (
               <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Ionicons name={item.icon} size={20} color={t.accent} />
@@ -296,7 +323,7 @@ export default function LevelExam() {
             style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginTop: 8 }}
           >
             <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-              {isUK ? 'Почати залік' : 'Начать зачёт'}
+              {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', es: 'Empezar' })}
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -307,7 +334,9 @@ export default function LevelExam() {
 
   // ── RESULT ───────────────────────────────────────────────────────────────────
   if (phase === 'result') {
-    const wrongItems = questions.map((q, i) => ({ q, chosen: choices[i], correct: q.correct })).filter(x => x.chosen !== x.correct);
+    const wrongItems = questions
+      .map((qu, i) => ({ q: qu, chosen: choices[i] ?? null, correct: qu?.correct ?? -1 }))
+      .filter(x => x.q && x.chosen !== x.correct);
     return (
       <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
@@ -334,17 +363,27 @@ export default function LevelExam() {
               )}
               {medalImproved && (
                 <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700', marginTop: 4 }}>
-                  {examMedalTier === 'gold' ? (isUK ? '🥇 Золото!' : '🥇 Золото!') :
-                   examMedalTier === 'silver' ? (isUK ? '🥈 Нова медаль!' : '🥈 Новая медаль!') :
-                   (isUK ? '🥉 Нова медаль!' : '🥉 Новая медаль!')}
+                  {examMedalTier === 'gold'
+                    ? triLang(lang, { ru: '🥇 Золото!', uk: '🥇 Золото!', es: '🥇 ¡Oro!' })
+                    : examMedalTier === 'silver'
+                      ? triLang(lang, { ru: '🥈 Новая медаль!', uk: '🥈 Нова медаль!', es: '🥈 ¡Nueva medalla!' })
+                      : triLang(lang, { ru: '🥉 Новая медаль!', uk: '🥉 Нова медаль!', es: '🥉 ¡Nueva medalla!' })}
                 </Text>
               )}
               <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800' }}>{pct}%</Text>
               <Text style={{ color: t.textMuted, fontSize: f.body }}>
-                {isUK ? `${correctCount} з ${total} правильно` : `${correctCount} из ${total} правильно`}
+                {triLang(lang, {
+                  ru: `${correctCount} из ${total} правильно`,
+                  uk: `${correctCount} з ${total} правильно`,
+                  es: `${correctCount} de ${total} acertadas`,
+                })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {isUK ? `Спроба №${examPassCount}` : `Попытка №${examPassCount}`}
+                {triLang(lang, {
+                  ru: `Попытка №${examPassCount}`,
+                  uk: `Спроба №${examPassCount}`,
+                  es: `Intento n.º ${examPassCount}`,
+                })}
               </Text>
             </View>
 
@@ -353,26 +392,46 @@ export default function LevelExam() {
               <View style={{ height: '100%', width: `${pct}%` as any, backgroundColor: passed ? t.correct : t.wrong, borderRadius: 4 }} />
             </View>
 
+            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginTop: 12, paddingHorizontal: 8 }}>
+              {!passed
+                ? triLang(lang, {
+                    ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по ошибкам.`,
+                    uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за помилками.`,
+                    es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
+                  })
+                : pct >= 90
+                  ? triLang(lang, {
+                      ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы удерживать планку.',
+                      uk: 'Чудово за темами рівня — закріплюй слабкі уроки, щоб тримати планку.',
+                      es: 'Muy bien por temas del nivel: refuerza lecciones flojas para mantener el ritmo.',
+                    })
+                  : triLang(lang, {
+                      ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
+                      uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
+                      es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
+                    })}
+            </Text>
+
             {/* Ошибки */}
             {wrongItems.length > 0 && (
               <View style={{ gap: 8 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                  {isUK ? 'Помилки:' : 'Ошибки:'}
+                  {triLang(lang, { ru: 'Ошибки:', uk: 'Помилки:', es: 'Errores:' })}
                 </Text>
                 {wrongItems.map((item, i) => (
                   <View key={i} style={{ backgroundColor: t.bgCard, borderRadius: 12, borderWidth: 0.5, borderColor: t.border, padding: 14, gap: 6 }}>
                     <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
-                      {isUK ? item.q.topicUK : item.q.topic}
+                      {triLang(lang, { ru: item.q.topic ?? '', uk: item.q.topicUK ?? '', es: item.q.topicES ?? '' })}
                     </Text>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body }}>{item.q.q}</Text>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body }}>{item.q.q ?? ''}</Text>
                     <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}>
-                      {item.chosen !== null && (
+                      {item.chosen !== null && item.chosen !== undefined && (
                         <Text style={{ color: t.wrong, fontSize: f.sub }}>
-                          ✗ {item.q.opts[item.chosen]}
+                          ✗ {item.q.opts?.[item.chosen] ?? '—'}
                         </Text>
                       )}
                       <Text style={{ color: t.correct, fontSize: f.sub }}>
-                        ✓ {item.q.opts[item.correct]}
+                        ✓ {item.q.opts?.[item.correct] ?? '—'}
                       </Text>
                     </View>
                   </View>
@@ -386,7 +445,7 @@ export default function LevelExam() {
               style={{ backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 0.5, borderColor: t.border, paddingVertical: 14, alignItems: 'center' }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {isUK ? 'Спробувати ще раз' : 'Попробовать ещё раз'}
+                {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo' })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -394,7 +453,7 @@ export default function LevelExam() {
               style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, alignItems: 'center' }}
             >
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {isUK ? 'До уроків' : 'К урокам'}
+                {triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Volver a las lecciones' })}
               </Text>
             </TouchableOpacity>
           </ScrollView>
@@ -408,9 +467,6 @@ export default function LevelExam() {
   if (!q) return null;
 
   const progressPct = Math.round((idx + 1) / total * 100);
-  const isCorrect = chosen !== null && chosen === q.correct;
-  const isWrong   = chosen !== null && chosen !== q.correct;
-
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
@@ -419,14 +475,7 @@ export default function LevelExam() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
           <TouchableOpacity onPress={() => {
             hapticTap();
-            Alert.alert(
-              isUK ? 'Вийти?' : 'Выйти?',
-              isUK ? 'Прогрес заліку буде втрачено' : 'Прогресс зачёта будет потерян',
-              [
-                { text: isUK ? 'Скасувати' : 'Отмена', style: 'cancel' },
-                { text: isUK ? 'Вийти' : 'Выйти', style: 'destructive', onPress: () => router.back() },
-              ]
-            );
+            setExitExamConfirm(true);
           }}>
             <Ionicons name="close" size={26} color={t.textPrimary} />
           </TouchableOpacity>
@@ -443,7 +492,7 @@ export default function LevelExam() {
         <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }} bounces={false}>
           {/* Топик */}
           <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-            {isUK ? q.topicUK : q.topic} · {isUK ? 'Урок' : 'Урок'} {q.lessonNum}
+            {triLang(lang, { ru: q.topic, uk: q.topicUK, es: q.topicES })} · {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} {q.lessonNum}
           </Text>
 
           {/* Вопрос */}
@@ -453,7 +502,7 @@ export default function LevelExam() {
 
           {/* Варианты ответов */}
           <View style={{ gap: 10 }}>
-            {q.opts.map((opt, ci) => {
+            {(q.opts ?? []).map((opt, ci) => {
               const isChosen  = chosen === ci;
               const isOptCorrect = ci === q.correct;
               let bg = t.bgCard;
@@ -488,12 +537,31 @@ export default function LevelExam() {
               style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginTop: 4 }}
             >
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {idx + 1 < total ? (isUK ? 'Далі →' : 'Далее →') : (isUK ? 'Завершити' : 'Завершить')}
+                {idx + 1 < total
+                  ? triLang(lang, { ru: 'Далее →', uk: 'Далі →', es: 'Siguiente →' })
+                  : triLang(lang, { ru: 'Завершить', uk: 'Завершити', es: 'Terminar' })}
               </Text>
             </TouchableOpacity>
           )}
         </ScrollView>
       </ContentWrap>
+      <ThemedConfirmModal
+        visible={exitExamConfirm}
+        title={triLang(lang, { ru: 'Выйти?', uk: 'Вийти?', es: '¿Salir del examen?' })}
+        message={triLang(lang, {
+          ru: 'Прогресс зачёта будет потерян',
+          uk: 'Прогрес заліку буде втрачено',
+          es: 'Perderás el progreso de este examen.',
+        })}
+        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
+        confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir' })}
+        onCancel={() => setExitExamConfirm(false)}
+        onConfirm={() => {
+          setExitExamConfirm(false);
+          router.back();
+        }}
+        confirmVariant="accent"
+      />
     </SafeAreaView>
     </ScreenGradient>
   );

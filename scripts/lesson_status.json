@@ -1,0 +1,67 @@
+{
+  "approved": [],
+  "in_progress": null,
+  "session_log": [
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    },
+    {
+      "ts": "2026-04-24 16:42",
+      "action": "SESSION_START",
+      "details": "approved=[]"
+    }
+  ],
+  "lesson_notes": {},
+  "decisions": {},
+  "cumulative_vocab": [],
+  "cumulative_irreg": [],
+  "alpha": {
+    "mode": "safe",
+    "in_progress_lesson": null,
+    "stage": "idle",
+    "pending": {},
+    "history": [],
+    "last_snapshot": null
+  },
+  "meta": {
+    "version": 1,
+    "created": "2026-04-24"
+  }
+}

@@ -1,0 +1,19 @@
+# Общий вход: холодный старт → таб «Главная» и стабильный экран home.
+# Подключать через runFlow из maestro/flows/modules/** (не запускать папку _shared отдельно).
+# Координатный тап по зоне таб «Главная» — не зависит от testID (на части билдов id табов вне иерархии).
+appId: app.phraseman
+---
+- stopApp
+- launchApp
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- waitForAnimationToEnd:
+    timeout: 10000
+- tapOn:
+    point: "10%,95%"
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 120000

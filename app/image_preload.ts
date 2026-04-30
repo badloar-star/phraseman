@@ -7,18 +7,18 @@ import { Image } from 'react-native';
 // asset registry without triggering the "No suitable URL request handler for (null)" error.
 
 const CLUB_IMAGES = [
-  require('../assets/images/levels/club_initiators.png'),
-  require('../assets/images/levels/club_adepts.png'),
-  require('../assets/images/levels/club_seekers.png'),
-  require('../assets/images/levels/club_practitioners.png'),
-  require('../assets/images/levels/club_analysts.png'),
-  require('../assets/images/levels/club_erudites.png'),
-  require('../assets/images/levels/club_connoisseurs.png'),
-  require('../assets/images/levels/club_experts.png'),
-  require('../assets/images/levels/club_magistri.png'),
-  require('../assets/images/levels/club_thinkers.png'),
-  require('../assets/images/levels/club_masters.png'),
-  require('../assets/images/levels/club_professors.png'),
+  require('../assets/images/levels/club icon base forest.png'),
+  require('../assets/images/levels/club base ocean.png'),
+  require('../assets/images/levels/club base corak.png'),
+  require('../assets/images/levels/club base sacura.png'),
+  require('../assets/images/levels/club base neon.png'),
+  require('../assets/images/levels/club icon base forest.png'),
+  require('../assets/images/levels/club base ocean.png'),
+  require('../assets/images/levels/club base corak.png'),
+  require('../assets/images/levels/club base sacura.png'),
+  require('../assets/images/levels/club base neon.png'),
+  require('../assets/images/levels/club icon base forest.png'),
+  require('../assets/images/levels/club base neon.png'),
 ];
 
 const MEDAL_IMAGES = [
@@ -54,3 +54,6 @@ export const preloadImages = async () => {
     // Silently fail - preloading is entirely optional
   }
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

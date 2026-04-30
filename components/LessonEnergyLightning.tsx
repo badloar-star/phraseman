@@ -1,9 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Pressable } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { useLang } from './LangContext';
 import EnergyIcon from './EnergyIcon';
 import { useEnergy } from './EnergyContext';
 import { getTimeUntilNextRecovery, formatTimeUntilRecovery } from '../app/energy_system';
+import EnergyRefillShardModal from './EnergyRefillShardModal';
+import { triLang } from '../constants/i18n';
+import { BRAND_SHARDS_ES } from '../constants/terms_es';
+import { hapticTap } from '../hooks/use-haptics';
 
 const PREMIUM_BLUE = '#4FC3F7';
 
@@ -20,9 +25,18 @@ interface Props {
  */
 export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shouldShake = false }: Props) {
   const { theme: t, themeMode } = useTheme();
+  const { lang } = useLang();
   const { isUnlimited } = useEnergy();
-  const filledTint = isUnlimited ? PREMIUM_BLUE : undefined;
-  const filledColor = isUnlimited ? PREMIUM_BLUE : t.gold;
+  const energyLongPressHint = triLang(lang, {
+    ru: 'Долгое нажатие — восстановить энергию за осколки',
+    uk: 'Довге натискання — відновити енергію за осколки',
+    es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,
+  });
+  const [refillModal, setRefillModal] = useState(false);
+  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  const premiumTint = isUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : undefined;
+  const filledTint = premiumTint;
+  const filledColor = isUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : t.gold;
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
 
   // Update timer every second when energy is not at max
@@ -48,6 +62,14 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
   return (
     <View style={styles.container}>
       {/* Horizontal energy icons with slight overlap */}
+      <Pressable
+        onLongPress={() => {
+          hapticTap();
+          setRefillModal(true);
+        }}
+        delayLongPress={480}
+        accessibilityHint={energyLongPressHint}
+      >
       <View style={styles.stackContainer}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
           <View key={i} style={{ marginLeft: i > 0 ? -8 : 0 }}>
@@ -59,10 +81,12 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
               shouldShake={shouldShake}
               themeMode={themeMode}
               tintColor={i < energyCount ? filledTint : undefined}
+              isPremium={isUnlimited}
             />
           </View>
         ))}
       </View>
+      </Pressable>
 
       {/* Recovery timer (shown only when energy < max) */}
       {!isUnlimited && energyCount < maxEnergy && timeUntilNextEnergy && (
@@ -72,6 +96,7 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
           </Text>
         </View>
       )}
+      <EnergyRefillShardModal visible={refillModal} onClose={() => setRefillModal(false)} />
     </View>
   );
 }

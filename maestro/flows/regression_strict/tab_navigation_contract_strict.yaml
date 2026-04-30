@@ -1,0 +1,4 @@
+appId: app.phraseman
+---
+- runFlow: ../smoke/xp_gain_updates_home_hall.yaml
+- runFlow: ../smoke/onboarding_to_first_lesson.yaml

@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { Lang } from '../constants/i18n';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
@@ -38,7 +39,7 @@ export const getCorrectNeededForNextTier = (score: number): number => {
 };
 
 // Подсказка «ещё N для X» для lesson_menu
-export const getNextMedalHint = (score: number, lang: 'ru' | 'uk'): string | null => {
+export const getNextMedalHint = (score: number, lang: Lang): string | null => {
   const tier = getMedalTier(score);
   if (tier === 'gold') return null;
   const need = getCorrectNeededForNextTier(score);
@@ -47,6 +48,11 @@ export const getNextMedalHint = (score: number, lang: 'ru' | 'uk'): string | nul
     if (tier === 'silver') return `Ще ${need} правильних → Золото`;
     if (tier === 'bronze') return `Ще ${need} правильних → Срібло`;
     return `${need} правильних → Бронза`;
+  }
+  if (lang === 'es') {
+    if (tier === 'silver') return `${need} correctas más → Oro`;
+    if (tier === 'bronze') return `${need} correctas más → Plata`;
+    return `${need} correctas más → Bronce`;
   }
   if (tier === 'silver') return `Ещё ${need} правильных → Золото`;
   if (tier === 'bronze') return `Ещё ${need} правильных → Серебро`;
@@ -182,7 +188,8 @@ export const saveExamProgress = async (
     const prevBest  = parseInt(bestRaw[1] ?? '0') || 0;
     const prevPass  = parseInt(passRaw[1] ?? '0') || 0;
     const newBest   = Math.max(prevBest, pct);
-    const newPass   = prevPass + 1;
+    // Рубин/изумруд/бриллиант на карточке зачёта — только за идеальные (100%) прохождения
+    const newPass   = prevPass + (pct === 100 ? 1 : 0);
     await AsyncStorage.multiSet([
       [`level_exam_${lvl}_best_pct`,    String(newBest)],
       [`level_exam_${lvl}_pass_count`,  String(newPass)],
@@ -223,10 +230,14 @@ export const MEDAL_DOT_COLOR: Record<string, string> = {
 // Returns list of earned dot keys for a lesson
 export const getEarnedDots = (medalTier: MedalTier, passCount: number): string[] => {
   const dots: string[] = [];
-  if (medalTier !== 'none') dots.push(medalTier);
-  if (passCount >= 4)      dots.push('diamond');
-  else if (passCount >= 3) dots.push('emerald');
-  else if (passCount >= 2) dots.push('ruby');
+  // Все медали по счёту — накопительно (бронза → серебро → золото)
+  if (medalTier === 'bronze' || medalTier === 'silver' || medalTier === 'gold') dots.push('bronze');
+  if (medalTier === 'silver' || medalTier === 'gold') dots.push('silver');
+  if (medalTier === 'gold') dots.push('gold');
+  // Медали за повторные прохождения — накопительно
+  if (passCount >= 2) dots.push('ruby');
+  if (passCount >= 3) dots.push('emerald');
+  if (passCount >= 4) dots.push('diamond');
   return dots;
 };
 
@@ -237,13 +248,17 @@ export const getProgressCellColor = (
   t: { correct: string; wrong: string; accent: string; bgSurface2: string },
   isCurrentCell: boolean,
 ): string => {
-  if (isCurrentCell) return t.accent;
+  // Текущая ячейка (под стрелкой) — белая, чтобы не путаться с зелёным "правильно"
+  if (isCurrentCell) return 'rgba(255,255,255,0.85)';
   if (status === 'wrong') return t.wrong;
   if (status === 'correct' || status === 'replay_correct') {
     if (passCount >= 4) return '#4FC3F7';  // diamond blue
     if (passCount >= 3) return '#50C878';  // emerald green
     if (passCount >= 2) return '#E53935';  // ruby red
-    return t.correct;                      // first pass green
+    return t.correct;                      // first pass — цвет темы
   }
   return t.bgSurface2;
 };
+
+/* expo-router route shim: keeps utility module from warning when discovered as route */
+export default function __RouteShim() { return null; }

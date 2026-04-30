@@ -1,10 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Haptics from 'expo-haptics';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import * as Speech from 'expo-speech';
-import React, { useEffect, useRef, useState } from 'react';
+import { useAudio } from '../hooks/use-audio';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  Animated,
   Dimensions,
   FlatList, ScrollView,
   Text, TouchableOpacity,
@@ -14,9 +14,13 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AddToFlashcard from '../components/AddToFlashcard';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
-import ScreenGradient from '../components/ScreenGradient'; // Import registerXP
+import ScreenGradient from '../components/ScreenGradient';
+import { triLang, type Lang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
-import { hapticTap } from '../hooks/use-haptics';
+import { useEnergy } from '../components/EnergyContext';
+import LessonEnergyLightning from '../components/LessonEnergyLightning';
+import NoEnergyModal from '../components/NoEnergyModal';
+import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { loadSettings } from './settings_edu';
 import { registerXP } from './xp_manager';
@@ -26,104 +30,113 @@ const width = Math.min(_SW, 640);
 const POINTS_PER_VERB = 3;
 const REQUIRED = 3;
 
+type VerbTuple = readonly [string, string, string, string, string, string];
+
+function verbTranslation(lang: Lang, v: VerbTuple): string {
+  if (lang === 'uk') return v[4];
+  if (lang === 'es') return v[5];
+  return v[3];
+}
+
 // ТОЛЬКО НЕПРАВИЛЬНЫЕ ГЛАГОЛЫ, встречающиеся впервые в данном уроке.
 // Если в уроке нет новых неправильных глаголов — раздела нет.
-const VERBS_BY_LESSON: Record<number, [string,string,string,string,string][]> = {
+// Кортежи: англ., Past, PP, RU, UK, ES (глосса для носителя испанского).
+const VERBS_BY_LESSON: Record<number, VerbTuple[]> = {
   1: [
-    ['be',         'was/were',   'been',        'быть',                 'бути'],
-    ['have',       'had',        'had',         'иметь',                'мати'],
-    ['do',         'did',        'done',        'делать',               'робити'],
-    ['go',         'went',       'gone',        'идти / ехать',         'іти / їхати'],
-    ['see',        'saw',        'seen',        'видеть',               'бачити'],
-    ['say',        'said',       'said',        'говорить / сказать',   'казати / сказати'],
+    ['be',         'was/were',   'been',        'быть',                 'бути',           'ser / estar'],
+    ['have',       'had',        'had',         'иметь',                'мати',           'tener'],
+    ['do',         'did',        'done',        'делать',               'робити',         'hacer'],
+    ['go',         'went',       'gone',        'идти / ехать',         'іти / їхати',    'ir'],
+    ['see',        'saw',        'seen',        'видеть',               'бачити',         'ver'],
+    ['say',        'said',       'said',        'говорить / сказать',   'казати / сказати', 'decir'],
   ],
   2: [
-    ['get',        'got',        'got/gotten',  'получать',             'отримувати'],
-    ['make',       'made',       'made',        'делать / создавать',   'робити / створювати'],
+    ['get',        'got',        'got/gotten',  'получать',             'отримувати',     'conseguir / obtener'],
+    ['make',       'made',       'made',        'делать / создавать',   'робити / створювати', 'hacer'],
   ],
   3: [
-    ['know',       'knew',       'known',       'знать',                'знати'],
-    ['think',      'thought',    'thought',     'думать',               'думати'],
-    ['take',       'took',       'taken',       'брать',                'брати'],
-    ['come',       'came',       'come',        'приходить',            'приходити'],
-    ['buy',        'bought',     'bought',      'покупать',             'купувати'],
-    ['understand', 'understood', 'understood',  'понимать',             'розуміти'],
+    ['know',       'knew',       'known',       'знать',                'знати',          'saber / conocer'],
+    ['think',      'thought',    'thought',     'думать',               'думати',         'pensar'],
+    ['take',       'took',       'taken',       'брать',                'брати',          'tomar'],
+    ['come',       'came',       'come',        'приходить',            'приходити',      'venir'],
+    ['buy',        'bought',     'bought',      'покупать',             'купувати',       'comprar'],
+    ['understand', 'understood', 'understood',  'понимать',             'розуміти',       'entender'],
   ],
   6: [
-    ['find',       'found',      'found',       'находить',             'знаходити'],
-    ['lose',       'lost',       'lost',        'терять',               'губити'],
-    ['mean',       'meant',      'meant',       'означать',             'означати'],
-    ['cost',       'cost',       'cost',        'стоить',               'коштувати'],
+    ['find',       'found',      'found',       'находить',             'знаходити',      'encontrar'],
+    ['lose',       'lost',       'lost',        'терять',               'губити',         'perder'],
+    ['mean',       'meant',      'meant',       'означать',             'означати',       'significar'],
+    ['cost',       'cost',       'cost',        'стоить',               'коштувати',      'costar'],
   ],
   7: [
-    ['sell',       'sold',       'sold',        'продавать',            'продавати'],
-    ['keep',       'kept',       'kept',        'хранить / держать',    'тримати'],
-    ['give',       'gave',       'given',       'давать',               'давати'],
+    ['sell',       'sold',       'sold',        'продавать',            'продавати',      'vender'],
+    ['keep',       'kept',       'kept',        'хранить / держать',    'тримати',        'guardar / mantener'],
+    ['give',       'gave',       'given',       'давать',               'давати',         'dar'],
   ],
   8: [
-    ['leave',      'left',       'left',        'уходить / уезжать',    'іти / виїжджати'],
-    ['begin',      'began',      'begun',       'начинать',             'починати'],
+    ['leave',      'left',       'left',        'уходить / уезжать',    'іти / виїжджати', 'irse'],
+    ['begin',      'began',      'begun',       'начинать',             'починати',       'empezar / comenzar'],
   ],
   9: [
-    ['stand',      'stood',      'stood',       'стоять',               'стояти'],
+    ['stand',      'stood',      'stood',       'стоять',               'стояти',         'estar de pie'],
   ],
   10: [
-    ['speak',      'spoke',      'spoken',      'говорить (на языке)',  'говорити (мовою)'],
-    ['read',       'read',       'read',        'читать',               'читати'],
-    ['write',      'wrote',      'written',     'писать',               'писати'],
-    ['hear',       'heard',      'heard',       'слышать',              'чути'],
+    ['speak',      'spoke',      'spoken',      'говорить (на языке)',  'говорити (мовою)', 'hablar (un idioma)'],
+    ['read',       'read',       'read',        'читать',               'читати',         'leer'],
+    ['write',      'wrote',      'written',     'писать',               'писати',         'escribir'],
+    ['hear',       'heard',      'heard',       'слышать',              'чути',           'oír / escuchar'],
   ],
   12: [
-    ['run',        'ran',        'run',         'бежать',               'бігти'],
-    ['eat',        'ate',        'eaten',       'есть (кушать)',         'їсти'],
+    ['run',        'ran',        'run',         'бежать',               'бігти',          'correr'],
+    ['eat',        'ate',        'eaten',       'есть (кушать)',         'їсти',           'comer'],
   ],
   14: [
-    ['grow',       'grew',       'grown',       'расти',                'рости'],
-    ['become',     'became',     'become',      'становиться',          'ставати'],
-    ['feel',       'felt',       'felt',        'чувствовать',          'відчувати'],
+    ['grow',       'grew',       'grown',       'расти',                'рости',          'crecer'],
+    ['become',     'became',     'become',      'становиться',          'ставати',        'convertirse / llegar a ser'],
+    ['feel',       'felt',       'felt',        'чувствовать',          'відчувати',      'sentir'],
   ],
   15: [
-    ['forget',     'forgot',     'forgotten',   'забывать',             'забувати'],
-    ['meet',       'met',        'met',         'встречать',            'зустрічати'],
-    ['learn',      'learnt',     'learnt',      'учить / узнавать',     'вчити / дізнаватися'],
-    ['teach',      'taught',     'taught',      'учить (кого-то)',      'навчати'],
+    ['forget',     'forgot',     'forgotten',   'забывать',             'забувати',       'olvidar'],
+    ['meet',       'met',        'met',         'встречать',            'зустрічати',     'conocer / encontrarse'],
+    ['learn',      'learned',    'learned',     'учить / узнавать',     'вчити / дізнаватися', 'aprender / enterarse'],
+    ['teach',      'taught',     'taught',      'учить (кого-то)',      'навчати',        'enseñar'],
   ],
   16: [
-    ['put',        'put',        'put',         'класть / ставить',     'класти / ставити'],
-    ['set',        'set',        'set',         'устанавливать',        'встановлювати'],
-    ['break',      'broke',      'broken',      'ломать',               'ламати'],
+    ['put',        'put',        'put',         'класть / ставить',     'класти / ставити', 'poner'],
+    ['set',        'set',        'set',         'устанавливать',        'встановлювати',  'colocar / establecer'],
+    ['break',      'broke',      'broken',      'ломать',               'ламати',         'romper'],
   ],
   17: [
-    ['sing',       'sang',       'sung',        'петь',                 'співати'],
-    ['drive',      'drove',      'driven',      'водить (машину)',       'водити'],
+    ['sing',       'sang',       'sung',        'петь',                 'співати',        'cantar'],
+    ['drive',      'drove',      'driven',      'водить (машину)',       'водити',         'conducir'],
   ],
   18: [
-    ['choose',     'chose',      'chosen',      'выбирать',             'вибирати'],
+    ['choose',     'chose',      'chosen',      'выбирать',             'вибирати',       'elegir'],
   ],
   19: [
-    ['hang',       'hung',       'hung',        'вешать',               'вішати'],
+    ['hang',       'hung',       'hung',        'вешать',               'вішати',         'colgar'],
   ],
   21: [
-    ['bring',      'brought',    'brought',     'приносить',            'приносити'],
+    ['bring',      'brought',    'brought',     'приносить',            'приносити',      'traer'],
   ],
   23: [
-    ['build',      'built',      'built',       'строить',              'будувати'],
+    ['build',      'built',      'built',       'строить',              'будувати',       'construir'],
   ],
   25: [
-    ['sleep',      'slept',      'slept',       'спать',                'спати'],
+    ['sleep',      'slept',      'slept',       'спать',                'спати',          'dormir'],
   ],
   26: [
-    ['win',        'won',        'won',         'побеждать / выигрывать', 'перемагати'],
+    ['win',        'won',        'won',         'побеждать / выигрывать', 'перемагати',   'ganar'],
   ],
   27: [
-    ['tell',       'told',       'told',        'говорить (кому-то)',   'говорити (комусь)'],
+    ['tell',       'told',       'told',        'говорить (кому-то)',   'говорити (комусь)', 'decir (a alguien)'],
   ],
   28: [
-    ['hurt',       'hurt',       'hurt',        'причинять боль',       'заподіювати біль'],
-    ['cut',        'cut',        'cut',         'резать / порезаться',  'різати / порізатися'],
+    ['hurt',       'hurt',       'hurt',        'причинять боль',       'заподіювати біль', 'hacer daño / lastimar'],
+    ['cut',        'cut',        'cut',         'резать / порезаться',  'різати / порізатися', 'cortar / cortarse'],
   ],
   29: [
-    ['drink',      'drank',      'drunk',       'пить',                 'пити'],
+    ['drink',      'drank',      'drunk',       'пить',                 'пити',           'beber'],
   ],
 };
 
@@ -157,7 +170,7 @@ type Step = 'past' | 'pp';
 
 function makeVerbOptions(
   correct: string,
-  allVerbs: [string,string,string,string,string][],
+  allVerbs: VerbTuple[],
   colIdx: number
 ): string[] {
   const lessonPool = fisherYates(
@@ -178,24 +191,24 @@ function makeVerbOptions(
 }
 
 interface VerbCard {
-  verb: [string,string,string,string,string];
+  verb: VerbTuple;
   step: Step;
   options: string[];
   correctCount: number;
 }
 
 function buildVerbCard(
-  verb: [string,string,string,string,string],
+  verb: VerbTuple,
   step: Step,
   correctCount: number,
-  allVerbs: [string,string,string,string,string][]
+  allVerbs: VerbTuple[]
 ): VerbCard {
   const colIdx = step === 'past' ? 1 : 2;
   return { verb, step, options: makeVerbOptions(verb[colIdx], allVerbs, colIdx), correctCount };
 }
 
 function buildQueue(
-  verbs: [string,string,string,string,string][],
+  verbs: VerbTuple[],
   counts: Record<string, number>,
   pendingPP: Set<string> = new Set(),
 ): VerbCard[] {
@@ -219,14 +232,14 @@ function buildQueue(
 
 // ── СПИСОК ──────────────────────────────────────────────────────────────────
 function VerbList({ verbs, learnedVerbs, learnedVerbCounts, speechRate }: {
-  verbs: [string,string,string,string,string][];
+  verbs: VerbTuple[];
   learnedVerbs: string[];
   learnedVerbCounts: Record<string,number>;
   speechRate: number;
 }) {
   const { theme: t, f } = useTheme();
-  const { lang } = useLang();
-  const isUK = lang === 'uk';
+  const { s, lang } = useLang();
+  const vs = s.verbs;
 
   return (
     <FlatList
@@ -237,9 +250,21 @@ function VerbList({ verbs, learnedVerbs, learnedVerbCounts, speechRate }: {
         const verbCount = learnedVerbCounts[item[0]] ?? 0;
         const learned = verbCount >= REQUIRED;
         return (
-          <View style={{ paddingHorizontal: 16, paddingVertical: 12, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 4 }}>
-              <View style={{ width: 22, height: 22, borderRadius: 11, borderWidth: 1.5, borderColor: verbCount > 0 ? t.correct : t.border, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', marginRight: 10, overflow: 'hidden', flexShrink: 0 }}>
+          <View style={{ borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+            <ScrollView
+              horizontal
+              nestedScrollEnabled
+              keyboardShouldPersistTaps="handled"
+              showsHorizontalScrollIndicator
+              contentContainerStyle={{
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                paddingHorizontal: 16,
+                paddingVertical: 12,
+                gap: 14,
+              }}
+            >
+              <View style={{ width: 22, height: 22, borderRadius: 11, borderWidth: 1.5, borderColor: verbCount > 0 ? t.correct : t.border, backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center', overflow: 'hidden', flexShrink: 0, marginTop: 2 }}>
                 {learned
                   ? <Ionicons name="checkmark" size={12} color={t.correct} />
                   : verbCount > 0
@@ -247,20 +272,24 @@ function VerbList({ verbs, learnedVerbs, learnedVerbCounts, speechRate }: {
                     : null
                 }
               </View>
-              <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '700', flex: 1 }}>{item[0]}</Text>
-              <AddToFlashcard en={`${item[0]} / ${item[1]} / ${item[2]}`} ru={item[3]} uk={item[4]} source="verb" />
-            </View>
-            <View style={{ flexDirection: 'row', marginLeft: 32, gap: 16 }}>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textMuted, fontSize: 11, marginBottom: 1 }}>Past</Text>
-                <Text style={{ color: t.textPrimary, fontWeight: '600', fontSize: 14 }} numberOfLines={1}>{item[1]}</Text>
+              <View style={{ flexShrink: 0 }}>
+                <Text style={{ color: t.textSecond, fontSize: f.bodyLg, fontWeight: '700' }}>{item[0]}</Text>
               </View>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textMuted, fontSize: 11, marginBottom: 1 }}>PP</Text>
-                <Text style={{ color: t.textPrimary, fontWeight: '600', fontSize: 14 }} numberOfLines={1}>{item[2]}</Text>
+              <View style={{ flexShrink: 0 }}>
+                <Text style={{ color: t.textMuted, fontSize: 11, marginBottom: 1 }}>{vs.past}</Text>
+                <Text style={{ color: t.textPrimary, fontWeight: '600', fontSize: 14 }}>{item[1]}</Text>
               </View>
-            </View>
-            <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 3, marginLeft: 32 }}>{isUK ? item[4] : item[3]}</Text>
+              <View style={{ flexShrink: 0 }}>
+                <Text style={{ color: t.textMuted, fontSize: 11, marginBottom: 1 }}>{vs.pp}</Text>
+                <Text style={{ color: t.textPrimary, fontWeight: '600', fontSize: 14 }}>{item[2]}</Text>
+              </View>
+              <View style={{ flexShrink: 0, paddingRight: 8 }}>
+                <Text style={{ color: t.textMuted, fontSize: 13 }}>{verbTranslation(lang, item)}</Text>
+              </View>
+              <View style={{ flexShrink: 0 }}>
+                <AddToFlashcard en={`${item[0]} / ${item[1]} / ${item[2]}`} ru={item[3]} uk={item[4]} source="verb" />
+              </View>
+            </ScrollView>
           </View>
         );
       }}
@@ -269,18 +298,47 @@ function VerbList({ verbs, learnedVerbs, learnedVerbCounts, speechRate }: {
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountUpdate }: {
-  verbs: [string,string,string,string,string][];
+function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountUpdate, storageHydrated }: {
+  verbs: VerbTuple[];
   storageKey: string;
   initialCounts: Record<string,number>;
   initialPendingPP: Set<string>;
   onCountUpdate: (verb: string, count: number) => void;
+  /** After AsyncStorage merge — rebuild queue once so progress matches disk */
+  storageHydrated: boolean;
 }) {
+  const { speak: speakAudio, stop: stopAudio } = useAudio();
+  useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t } = useTheme();
   const { s, lang } = useLang();
   const router = useRouter();
   const vs = s.verbs;
-  const isUK = lang === 'uk';
+
+  const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, formattedTime: recoveryTimeText, spendOne } = useEnergy();
+  const currentEnergyRef = useRef(currentEnergy);
+  const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
+  const spendOneRef = useRef(spendOne);
+  const energyFormattedTimeRef = useRef(recoveryTimeText);
+  useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
+  useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
+  useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
+  useEffect(() => { energyFormattedTimeRef.current = recoveryTimeText; }, [recoveryTimeText]);
+
+  const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
+  const toastAnim = useRef(new Animated.Value(0)).current;
+  const showEnergyEmptyFeedbackRef = useRef<() => void>(() => {});
+  const showEnergyEmptyFeedback = useCallback(() => {
+    setShowNoEnergyModal(true);
+    toastAnim.setValue(0);
+    Animated.timing(toastAnim, { toValue: 1, duration: 300, useNativeDriver: true }).start();
+    setTimeout(() => {
+      Animated.timing(toastAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
+        setShowNoEnergyModal(false);
+        router.back();
+      });
+    }, 2500);
+  }, [toastAnim, router]);
+  useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
   const [queue,      setQueue]      = useState<VerbCard[]>(() => buildQueue(verbs, initialCounts, initialPendingPP));
   const [qIdx,       setQIdx]       = useState(0);
@@ -289,8 +347,18 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
   const [learnedCnt, setLearnedCnt] = useState(() =>
     Math.min(Object.values(initialCounts).filter(c => c >= REQUIRED).length, verbs.length)
   );
+  const appliedStorageRef = useRef(false);
+  useEffect(() => {
+    if (!storageHydrated || appliedStorageRef.current) return;
+    appliedStorageRef.current = true;
+    const next = buildQueue(verbs, initialCounts, initialPendingPP);
+    setQueue(next);
+    setLearnedCnt(Math.min(Object.values(initialCounts).filter(c => c >= REQUIRED).length, verbs.length));
+    setQIdx(0);
+    setChosen(null);
+    locked.current = false;
+  }, [storageHydrated, verbs, initialCounts, initialPendingPP]);
   const [totalPts,   setTotalPts]   = useState(0);
-  const [allDone,    setAllDone]    = useState(false);
   const [userName,   setUserName]   = useState('');
   const [voiceOut,   setVoiceOut]   = useState(true);
   const [hapticsOn,  setHapticsOn]  = useState(true);
@@ -305,10 +373,15 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
   const current: VerbCard | undefined = queue[qIdx % Math.max(queue.length, 1)];
   React.useEffect(() => {
     if (current) setDotCount(current.correctCount);
-  }, [current?.verb[0], current?.correctCount]);
+  }, [current]);
 
   const handleChoice = (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
+    // Блокируем если энергия кончилась
+    if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0) {
+      showEnergyEmptyFeedbackRef.current();
+      return;
+    }
     locked.current = true;
 
     setChosen(opt);
@@ -316,10 +389,10 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
     const isRight = opt === correctAnswer;
 
     if (!isRight && hapticsOn) {
-      try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
+      void hapticError();
     }
     if (isRight && voiceOut) {
-      Speech.speak(current.step === 'past' ? current.verb[1] : current.verb[2], { language: 'en-US' });
+      speakAudio(current.step === 'past' ? current.verb[1] : current.verb[2]);
     }
 
     setTimeout(async () => {
@@ -350,6 +423,16 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
           setQIdx(nextIdx);
           setChosen(null);
           locked.current = false;
+
+          // Тратим энергию при ошибке
+          if (!testerEnergyDisabledRef.current) {
+            const energyBefore = currentEnergyRef.current;
+            spendOneRef.current().then(success => {
+              if (success && energyBefore === 1) {
+                setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 800);
+              }
+            }).catch(() => {});
+          }
         }
       } else {
         // PP шаг завершён (любой исход) — убираем из pendingPP
@@ -369,13 +452,16 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
             AsyncStorage.getItem(storageKey + '_verbs').then(saved => {
               const data = saved ? JSON.parse(saved) : {};
               const counts: Record<string,number> = Array.isArray(data) ? {} : data;
-              counts[current.verb[0]] = REQUIRED;
-              AsyncStorage.setItem(storageKey + '_verbs', JSON.stringify(counts));
-              onCountUpdate(current.verb[0], REQUIRED);
+              // Only write if new value is higher — protects progress during replay sessions
+              if ((counts[current.verb[0]] ?? 0) < REQUIRED) {
+                counts[current.verb[0]] = REQUIRED;
+                AsyncStorage.setItem(storageKey + '_verbs', JSON.stringify(counts));
+                onCountUpdate(current.verb[0], REQUIRED);
+              }
             });
 
             if (userName) {
-              try { await registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang); } catch {}
+              registerXP(POINTS_PER_VERB, 'verb_learned', userName, lang).catch(() => {});
               updateMultipleTaskProgress([{ type: 'verb_learned' }, { type: 'daily_active' }]);
               setTotalPts(p => p + POINTS_PER_VERB);
             }
@@ -387,7 +473,6 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
               if (newQueue.length === 0) {
                 setLearnedCnt(newLearned);
                 setQueue(newQueue);
-                setAllDone(true);
                 setChosen(null);
                 locked.current = false;
                 return;
@@ -407,9 +492,12 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
             AsyncStorage.getItem(storageKey + '_verbs').then(saved => {
               const data = saved ? JSON.parse(saved) : {};
               const counts: Record<string,number> = Array.isArray(data) ? {} : data;
-              counts[current.verb[0]] = newCount;
-              AsyncStorage.setItem(storageKey + '_verbs', JSON.stringify(counts));
-              onCountUpdate(current.verb[0], newCount);
+              // Only write if new value is higher — protects progress during replay sessions
+              if ((counts[current.verb[0]] ?? 0) < newCount) {
+                counts[current.verb[0]] = newCount;
+                AsyncStorage.setItem(storageKey + '_verbs', JSON.stringify(counts));
+                onCountUpdate(current.verb[0], newCount);
+              }
             });
             const updated = buildVerbCard(current.verb, 'past', newCount, verbs);
             newQueue.splice(pos, 1);
@@ -430,6 +518,16 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
           const nextIdx = pos >= newQueue.length ? 0 : pos;
           setQueue(newQueue);
           setQIdx(nextIdx);
+
+          // Тратим энергию при ошибке
+          if (!testerEnergyDisabledRef.current) {
+            const energyBefore = currentEnergyRef.current;
+            spendOneRef.current().then(success => {
+              if (success && energyBefore === 1) {
+                setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 800);
+              }
+            }).catch(() => {});
+          }
         }
 
         setChosen(null);
@@ -438,40 +536,48 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
     }, 900);
   };
 
-  if (allDone || queue.length === 0) return (
+  if (queue.length === 0) return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 30 }}>
       <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, justifyContent: 'center', alignItems: 'center' }}>
         <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
       </View>
       <Text style={{ color: t.textPrimary, fontSize: 22, fontWeight: '700' }}>
-        {isUK ? 'Все вивчено!' : 'Все выучено!'}
+        {triLang(lang, {
+          ru: 'Все выучено!',
+          uk: 'Все вивчено!',
+          es: '¡Has aprendido todas las formas!',
+        })}
       </Text>
       <Text style={{ color: t.textMuted, fontSize: 15 }}>
-        {isUK ? `Вивчено: ${verbs.length} / ${verbs.length}` : `Выучено: ${verbs.length} / ${verbs.length}`}
+        {triLang(lang, {
+          ru: `Выучено: ${verbs.length} / ${verbs.length}`,
+          uk: `Вивчено: ${verbs.length} / ${verbs.length}`,
+          es: `Aprendidos: ${verbs.length} / ${verbs.length}`,
+        })}
       </Text>
       {totalPts > 0 && (
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, backgroundColor: t.correctBg, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}>
           <Ionicons name="star" size={16} color={t.correct} />
-          <Text style={{ color: t.correct, fontSize: 16, fontWeight: '700' }}>
-            +{totalPts} {isUK ? 'досвіду' : 'опыта'}
-          </Text>
+          <Text style={{ color: t.correct, fontSize: 16, fontWeight: '700' }}>{s.words.plusPoints(totalPts)}</Text>
         </View>
       )}
       <TouchableOpacity
-        style={{ borderWidth: 1.5, borderColor: t.textSecond, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 10 }}
+        style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 10 }}
         onPress={() => {
           setQueue(buildQueue(verbs, {}));
-          setQIdx(0); setChosen(null); setLearnedCnt(0); setTotalPts(0); setAllDone(false);
+          setQIdx(0); setChosen(null); setLearnedCnt(0); setTotalPts(0);
           locked.current = false;
         }}
       >
-        <Text style={{ color: t.textSecond, fontSize: 17, fontWeight: '600' }}>{vs.repeat}</Text>
+        <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '600' }}>{vs.repeat}</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14 }}
         onPress={() => { hapticTap(); router.back(); }}
       >
-        <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '700' }}>{isUK ? '← До уроку' : '← К уроку'}</Text>
+        <Text style={{ color: t.correctText, fontSize: 17, fontWeight: '700' }}>
+          {triLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← Volver a la lección' })}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -479,19 +585,17 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
   if (!current) return null;
 
   const correctAnswer = current.step === 'past' ? current.verb[1] : current.verb[2];
-  const translation   = isUK ? current.verb[4] : current.verb[3];
+  const translation   = verbTranslation(lang, current.verb);
 
-  const stepLabel = current.step === 'past'
-    ? (isUK ? 'Минулий час від:' : 'Прошедшее время от:')
-    : (isUK ? 'Третя форма від:'  : 'Третья форма от:');
-
-  const pastHintLabel = isUK ? 'Минулий час: ' : 'Прошедшее время: ';
+  const stepLabel = current.step === 'past' ? vs.guessPast : vs.guessPP;
+  const pastHintLabel = `${vs.past}: `;
 
   return (
+    <View style={{ flex: 1 }}>
     <ScrollView
       contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 20, paddingBottom: 30, alignItems: 'center' }}
       keyboardShouldPersistTaps="handled"
-      showsVerticalScrollIndicator={false}
+      showsVerticalScrollIndicator={true}
     >
 
       {/* 3 кружка */}
@@ -549,7 +653,11 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
       <View style={{ width: width - 40, marginTop: 20 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 6 }}>
           <Text style={{ color: t.textMuted, fontSize: 12 }}>
-            {isUK ? `Вивчено: ${Math.min(learnedCnt, verbs.length)} / ${verbs.length}` : `Выучено: ${Math.min(learnedCnt, verbs.length)} / ${verbs.length}`}
+            {triLang(lang, {
+              ru: `Выучено: ${Math.min(learnedCnt, verbs.length)} / ${verbs.length}`,
+              uk: `Вивчено: ${Math.min(learnedCnt, verbs.length)} / ${verbs.length}`,
+              es: `Aprendidos: ${Math.min(learnedCnt, verbs.length)} / ${verbs.length}`,
+            })}
           </Text>
           <Text style={{ color: learnedCnt > 0 ? t.correct : t.textMuted, fontSize: 12, fontWeight: '600' }}>
             {Math.min(Math.round(learnedCnt / verbs.length * 100), 100)}%
@@ -561,14 +669,39 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
       </View>
 
     </ScrollView>
+
+    {/* No energy toast */}
+    {showNoEnergyModal && (
+      <Animated.View pointerEvents="none" style={{ position:'absolute', bottom:30, left:20, right:20, opacity:toastAnim, transform:[{translateY:toastAnim.interpolate({inputRange:[0,1],outputRange:[20,0]})}], zIndex:999 }}>
+        <View style={{ backgroundColor:t.bgCard, borderRadius:16, padding:14, flexDirection:'row', alignItems:'center', gap:10, shadowColor:'#000', shadowOffset:{width:0,height:4}, shadowOpacity:0.25, shadowRadius:10, elevation:10, borderWidth:1, borderColor:t.wrong+'55' }}>
+          <Text style={{ fontSize:22 }}>⚡</Text>
+          <View style={{ flex:1 }}>
+            <Text style={{ color:t.textPrimary, fontSize:15, fontWeight:'700' }}>
+              {triLang(lang, { ru: 'Энергия закончилась', uk: 'Енергія закінчилась', es: 'Sin energía' })}
+            </Text>
+            {!!energyFormattedTimeRef.current && (
+              <Text style={{ color:t.textSecond, fontSize:12, marginTop:2 }}>
+                {lang === 'es'
+                  ? `Se recuperará en ${energyFormattedTimeRef.current}`
+                  : lang === 'uk'
+                    ? `Відновиться через ${energyFormattedTimeRef.current}`
+                    : `Восстановится через ${energyFormattedTimeRef.current}`}
+              </Text>
+            )}
+          </View>
+        </View>
+      </Animated.View>
+    )}
+    </View>
   );
 }
 
 // ── ROOT ──────────────────────────────────────────────────────────────────────
 export default function LessonVerbs() {
   const router = useRouter();
-  const { theme: t } = useTheme();
+  const { theme: t, f } = useTheme();
   const { s } = useLang();
+  const { energy, maxEnergy, isUnlimited: energyUnlimited } = useEnergy();
   const { id } = useLocalSearchParams<{ id: string }>();
   const lessonId = parseInt(id || '1', 10);
   const verbs = VERBS_BY_LESSON[lessonId] || VERBS_BY_LESSON[1];
@@ -576,14 +709,25 @@ export default function LessonVerbs() {
   const vs = s.verbs;
   const storageKey = `lesson${lessonId}`;
 
+  const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
   const [mode,         setMode]         = useState<Mode>('train');
+  /** Без энергии — вкладка «Список»; уроки только с тренировкой — модалка при открытии */
+  useEffect(() => {
+    if (energyUnlimited || energy > 0) {
+      setNoEnergyModalOpen(false);
+      return;
+    }
+    if (hasIrregular) setMode('list');
+    else setNoEnergyModalOpen(true);
+  }, [energyUnlimited, energy, hasIrregular]);
   const [learnedVerbCounts, setLearnedVerbCounts] = useState<Record<string,number>>({});
   const learnedVerbs = Object.keys(learnedVerbCounts).filter(k => learnedVerbCounts[k] >= REQUIRED);
   const [pendingPP, setPendingPP] = useState<Set<string>>(new Set());
-  const [listSpeechRate, setListSpeechRate] = useState(1.0);
-  const [loaded, setLoaded] = useState(false);
+  const [listSpeechRate, setListSpeechRate] = useState(0.9);
+  const [storageHydrated, setStorageHydrated] = useState(false);
 
   useEffect(() => {
+    setStorageHydrated(false);
     Promise.all([
       AsyncStorage.getItem(storageKey + '_verbs'),
       AsyncStorage.getItem(storageKey + '_verbs_pending'),
@@ -602,8 +746,8 @@ export default function LessonVerbs() {
       if (vp) {
         try { setPendingPP(new Set(JSON.parse(vp))); } catch {}
       }
-      setListSpeechRate(cfg.speechRate ?? 1.0);
-      setLoaded(true);
+      setListSpeechRate(cfg.speechRate ?? 0.9);
+      setStorageHydrated(true);
     });
   }, [storageKey]);
 
@@ -616,20 +760,21 @@ export default function LessonVerbs() {
           <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
         </TouchableOpacity>
         <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '600' }}>{vs.title(lessonId)}</Text>
-        <View style={{ width: 28 }} />
+        <LessonEnergyLightning energyCount={energy} maxEnergy={maxEnergy} shouldShake={false} />
       </View>
 
       <View style={{ flex: 1 }}>
-        {loaded && (mode === 'train'
+        {mode === 'train'
           ? <Training
+            key={storageKey}
             verbs={verbs}
             storageKey={storageKey}
+            storageHydrated={storageHydrated}
             initialCounts={learnedVerbCounts}
             initialPendingPP={pendingPP}
             onCountUpdate={(verb, count) => setLearnedVerbCounts(prev => ({ ...prev, [verb]: count }))}
           />
-          : <VerbList verbs={verbs} learnedVerbs={learnedVerbs} learnedVerbCounts={learnedVerbCounts} speechRate={listSpeechRate} />
-        )}
+          : <VerbList verbs={verbs} learnedVerbs={learnedVerbs} learnedVerbCounts={learnedVerbCounts} speechRate={listSpeechRate} />}
       </View>
 
       <View style={{ flexDirection: 'row', borderTopWidth: 0.5, borderTopColor: t.border }}>
@@ -642,7 +787,15 @@ export default function LessonVerbs() {
           return (
             <TouchableOpacity key={key}
               style={{ flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 14, gap: 8, borderTopWidth: isActive ? 2 : 0, borderTopColor: t.textSecond }}
-              onPress={() => setMode(key)}
+              onPress={() => {
+                if (key === 'train') {
+                  if (!energyUnlimited && energy <= 0) {
+                    setNoEnergyModalOpen(true);
+                    return;
+                  }
+                }
+                setMode(key);
+              }}
             >
               <Ionicons name={icon as any} size={20} color={isActive ? t.textSecond : t.textGhost} />
               <Text style={{ color: isActive ? t.textSecond : t.textGhost, fontSize: 14, fontWeight: '500' }}>{label}</Text>
@@ -651,6 +804,8 @@ export default function LessonVerbs() {
         })}
       </View>
       </ContentWrap>
+
+      <NoEnergyModal visible={noEnergyModalOpen} onClose={() => setNoEnergyModalOpen(false)} />
       </ScreenGradient>
     </SafeAreaView>
   );

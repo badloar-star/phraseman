@@ -1,0 +1,119 @@
+{
+  "agent": "victoria-vq-machine",
+  "packFilter": "official_peaky_blinders_en",
+  "generatedAt": "2026-04-26T07:23:45.993Z",
+  "sourceFile": "official_peaky_blinders_en.json",
+  "sourcePath": "C:/appsprojects/phraseman/app/flashcards/bundles/official_peaky_blinders_en.json",
+  "gitShort": "58be16e",
+  "vq0_machine_audit": {
+    "allPass_integrity": true,
+    "allPass_enUsSkim": true,
+    "perPack": [
+      {
+        "packId": "official_peaky_blinders_en",
+        "file": "official_peaky_blinders_en.json",
+        "gEnVariantScan": "PASS (no common GB spellings in en+exampleEn)",
+        "usageTemplateRisk": "N/A (no usageNote* fields in pack)",
+        "blockers": {
+          "duplicateIds": 0,
+          "countMismatch": false,
+          "emptyEn": 0,
+          "missingTranscription": 0,
+          "emptyExplanations": {
+            "ru": 0,
+            "uk": 0
+          }
+        },
+        "enGbDetails": []
+      }
+    ]
+  },
+  "vq1_semantic_ru_uk": {
+    "status": "SKIPPED — LLM: docs/pipelines/victoria-qa/vq1-semantic-en-ru-uk.md"
+  },
+  "vq2_register_level": {
+    "missingRegister": 0,
+    "missingLevel": 0,
+    "hasRegisterColumn": false,
+    "hasLevelColumn": false,
+    "details": {
+      "missingRegister": [],
+      "missingLevel": [],
+      "note": "If no card sets register/level, the pack is treated as phrase-only; VQ2 passes (N/A)."
+    }
+  },
+  "vq3_examples": {
+    "emptyExampleEn": 0,
+    "emptyExampleRu": 0,
+    "emptyExampleUk": 0,
+    "details": {
+      "emptyExampleEn": [],
+      "emptyExampleRu": [],
+      "emptyExampleUk": [],
+      "note": "If example* keys absent, counts are 0 (OK for phrase-only collection)."
+    }
+  },
+  "vq4_literal_explanation": {
+    "exactLiteralEqualsExplanation": 0,
+    "reviewRecommended": false,
+    "details": {
+      "exactDuplicate": []
+    }
+  },
+  "vq5_transcription": {
+    "perPack": {
+      "official_peaky_blinders_en": {
+        "missingTranscription": 0,
+        "cardIdsIfMissing": []
+      }
+    }
+  },
+  "vq6_usage_note_vs_explanation": {
+    "highOverlapRu": 0,
+    "highOverlapUk": 0,
+    "details": {
+      "ru": [],
+      "uk": []
+    }
+  },
+  "vq7_pack_meta": [
+    {
+      "packId": "official_peaky_blinders_en",
+      "titleRuEmpty": false,
+      "titleUkEmpty": false,
+      "descRuEmpty": false,
+      "descUkEmpty": false,
+      "category": "slang",
+      "countMismatch": false,
+      "cardCountDeclared": 30,
+      "cardCountActual": 30
+    }
+  ],
+  "vq8_cross_pack_duplicates": {
+    "byFullStringWithinPack": 0,
+    "byAbbrevHead": 0,
+    "details": {
+      "duplicateEn": []
+    }
+  },
+  "vq9_arbiter_ru_uk": {
+    "status": "SKIPPED — LLM after VQ1, docs/pipelines/victoria-qa/vq9-arbiter-ru-uk.md"
+  },
+  "llm_recommended": {
+    "vq1_semantic": "docs/pipelines/victoria-qa/vq1-semantic-en-ru-uk.md",
+    "vq2_register": "docs/pipelines/victoria-qa/vq2-register-level-en.md",
+    "vq5_ipa_fine": "docs/pipelines/victoria-qa/vq5-transcription-ipa.md",
+    "vq7_collection": "docs/pipelines/victoria-qa/vq7-pack-integrity.md",
+    "vq9_arbiter": "docs/pipelines/victoria-qa/vq9-arbiter-ru-uk.md"
+  },
+  "passSummary": {
+    "vq0_ok": true,
+    "vq2_ok": true,
+    "vq3_ok": true,
+    "vq4_ok": true,
+    "vq5_ok": true,
+    "vq6_ok": true,
+    "vq7_ok": true,
+    "vq8_ok": true
+  }
+}

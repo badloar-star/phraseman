@@ -1,21 +1,28 @@
-/**
- * Learn more about light and dark modes:
- * https://docs.expo.dev/guides/color-schemes/
- */
-
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { useTheme } from '@/components/ThemeContext';
 
 export function useThemeColor(
   props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
+  colorName: 'text' | 'background' | 'icon' | 'tabIconDefault' | 'tabIconSelected'
 ): string {
-  const theme = useColorScheme() ?? 'light';
-  const colorFromProps = props[theme];
+  const { theme } = useTheme();
+  const colorFromProps = props.dark ?? props.light;
 
   if (colorFromProps) {
     return colorFromProps;
-  } else {
-    return Colors[theme][colorName] as string;
+  }
+
+  switch (colorName) {
+    case 'text':
+      return theme.textPrimary;
+    case 'background':
+      return theme.bgPrimary;
+    case 'icon':
+      return theme.textSecond;
+    case 'tabIconDefault':
+      return theme.textMuted;
+    case 'tabIconSelected':
+      return theme.accent;
+    default:
+      return theme.textPrimary;
   }
 }

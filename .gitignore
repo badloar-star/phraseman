@@ -65,6 +65,7 @@ __pycache__/
 
 # Local clone for syncing legal pages to gh-pages repo phraseman-privacy (never commit)
 .cache-phraseman-privacy/
+.phraseman-privacy-deploy/
 
 # Local logs, dumps, and export noise
 *.log

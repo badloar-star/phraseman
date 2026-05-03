@@ -1,8 +1,9 @@
 # Development tools not needed for build
 node_modules
 
-# Scripts and docs
-scripts/
+# Scripts and docs (не выгружать весь scripts/, но гейт для EAS production обязан быть в архиве)
+scripts/*
+!scripts/eas_production_version_gate.mjs
 docs/
 graphify-out/
 .obsidian/

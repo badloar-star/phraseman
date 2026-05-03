@@ -23,6 +23,13 @@
 - SEC-01, SEC-02, SEC-03, SEC-04, SEC-05, SEC-06 (Firestore rules)
 - TEST-01, TEST-06 (unit tests for code generation + cron)
 
+**Plans:** 3 plans
+
+Plans:
+- [ ] 01-PLAN.md — Friend code generation + Firestore storage with canonical UID and transactional uniqueness (FRIEND-04, FRIEND-05, TEST-01, SEC-06)
+- [ ] 02-PLAN.md — Weekly XP client tracking + Cloud Function reset cron Monday 00:00 UTC (XP-01..04, TEST-06)
+- [ ] 03-PLAN.md — Firestore security rules for friends/friend_requests/friend_code_index (SEC-01..06)
+
 **Success Criteria:**
 1. New user gets a unique 6-char friend code auto-generated on first relevant action; verified no two users share a code (Cloud Function or transaction-based check).
 2. `weekly_xp` field exists on all user progress documents and is incremented in lockstep with total xp on every XP gain.

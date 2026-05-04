@@ -5,8 +5,8 @@
 ## Current Status
 
 - **Milestone:** v1.0 — Friends MVP
-- **Active phase:** None yet (planning)
-- **Next action:** `/gsd:plan-phase 1` — plan Phase 1 (Foundation)
+- **Active phase:** Phase 2 (Phase 1 complete)
+- **Next action:** `/gsd:plan-phase 2` — plan Phase 2 (Friend Requests & Friends List Screen)
 
 ## Project Snapshot
 
@@ -32,9 +32,9 @@
 
 | Phase | Status | Plans | Notes |
 |-------|--------|-------|-------|
-| 1 — Foundation | not started | — | Friend codes, weekly xp, security rules, Cloud Function cron |
+| 1 — Foundation | complete | 3/3 | Friend codes, weekly xp, security rules, Cloud Function cron. Commits: a10a66e, 620e4ab, d0d9b03 |
 | 2 — Requests & Friends List | not started | — | UI screen + request lifecycle |
 | 3 — HoF & Arena Integration | not started | — | Friends HoF + arena lobby friends list |
 
 ---
-*Last updated: 2026-05-03 after initialization*
+*Last updated: 2026-05-04 after Phase 1 execution*

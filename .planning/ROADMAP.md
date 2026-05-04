@@ -26,9 +26,9 @@
 **Plans:** 3 plans
 
 Plans:
-- [ ] 01-PLAN.md — Friend code generation + Firestore storage with canonical UID and transactional uniqueness (FRIEND-04, FRIEND-05, TEST-01, SEC-06)
-- [ ] 02-PLAN.md — Weekly XP client tracking + Cloud Function reset cron Monday 00:00 UTC (XP-01..04, TEST-06)
-- [ ] 03-PLAN.md — Firestore security rules for friends/friend_requests/friend_code_index (SEC-01..06)
+- [x] 01-PLAN.md — Friend code generation + Firestore storage with canonical UID and transactional uniqueness (FRIEND-04, FRIEND-05, TEST-01, SEC-06)
+- [x] 02-PLAN.md — Weekly XP client tracking + Cloud Function reset cron Monday 00:00 UTC (XP-01..04, TEST-06)
+- [x] 03-PLAN.md — Firestore security rules for friends/friend_requests/friend_code_index (SEC-01..06)
 
 **Success Criteria:**
 1. New user gets a unique 6-char friend code auto-generated on first relevant action; verified no two users share a code (Cloud Function or transaction-based check).

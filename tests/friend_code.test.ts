@@ -1,0 +1,278 @@
+// Tests for friend_code.ts — pure utility, no Firestore, no AsyncStorage.
+
+import {
+  FRIEND_CODE_ALPHABET,
+  FRIEND_CODE_LENGTH,
+  generateRandomCode,
+  isValidFriendCode,
+} from '../app/friend_code';
+
+// ── Plan 01 Task 1: Alphabet, length, generation, validation ──────────────────
+
+test('FRIEND_CODE_ALPHABET is exactly the expected Crockford base32 string', () => {
+  expect(FRIEND_CODE_ALPHABET).toBe('ABCDEFGHJKMNPQRSTUVWXYZ23456789');
+  expect(FRIEND_CODE_ALPHABET.length).toBeGreaterThanOrEqual(30);
+});
+
+test('FRIEND_CODE_ALPHABET contains no forbidden char 0 (zero)', () => {
+  expect(FRIEND_CODE_ALPHABET).not.toContain('0');
+});
+
+test('FRIEND_CODE_ALPHABET contains no forbidden char O (oh)', () => {
+  expect(FRIEND_CODE_ALPHABET).not.toContain('O');
+});
+
+test('FRIEND_CODE_ALPHABET contains no forbidden char 1 (one)', () => {
+  expect(FRIEND_CODE_ALPHABET).not.toContain('1');
+});
+
+test('FRIEND_CODE_ALPHABET contains no forbidden char I (eye)', () => {
+  expect(FRIEND_CODE_ALPHABET).not.toContain('I');
+});
+
+test('FRIEND_CODE_ALPHABET contains no forbidden char L (el)', () => {
+  expect(FRIEND_CODE_ALPHABET).not.toContain('L');
+});
+
+test('FRIEND_CODE_LENGTH equals 6', () => {
+  expect(FRIEND_CODE_LENGTH).toBe(6);
+});
+
+test('generateRandomCode() returns a string of length 6', () => {
+  const code = generateRandomCode();
+  expect(typeof code).toBe('string');
+  expect(code.length).toBe(6);
+});
+
+test('generateRandomCode() only uses chars from FRIEND_CODE_ALPHABET (1000 samples)', () => {
+  const alphabetSet = new Set(FRIEND_CODE_ALPHABET.split(''));
+  for (let i = 0; i < 1000; i++) {
+    const code = generateRandomCode();
+    for (const ch of code) {
+      expect(alphabetSet.has(ch)).toBe(true);
+    }
+  }
+});
+
+test('isValidFriendCode returns true for a valid 6-char code', () => {
+  expect(isValidFriendCode('ABC234')).toBe(true);
+});
+
+test('isValidFriendCode returns false for length 5', () => {
+  expect(isValidFriendCode('ABC23')).toBe(false);
+});
+
+test('isValidFriendCode returns false for length 7', () => {
+  expect(isValidFriendCode('ABC2340')).toBe(false);
+});
+
+test('isValidFriendCode returns false for code containing forbidden O', () => {
+  expect(isValidFriendCode('ABC23O')).toBe(false);
+});
+
+test('isValidFriendCode returns false for code containing forbidden 0 (zero)', () => {
+  expect(isValidFriendCode('ABC230')).toBe(false);
+});
+
+test('isValidFriendCode returns false for code containing forbidden L', () => {
+  expect(isValidFriendCode('ABC23L')).toBe(false);
+});
+
+test('isValidFriendCode returns false for lowercase input', () => {
+  expect(isValidFriendCode('abc234')).toBe(false);
+});
+
+test('isValidFriendCode returns false for empty string', () => {
+  expect(isValidFriendCode('')).toBe(false);
+});
+
+test('isValidFriendCode returns false for null (defensive)', () => {
+  expect(isValidFriendCode(null as unknown as string)).toBe(false);
+});
+
+// ── Plan 01 Task 2: firestore_friends.ts integration tests ────────────────────
+
+// Shared in-memory Firestore mock state — reset before each test.
+let mockDocs: Map<string, Record<string, unknown>>;
+let mockBannedUids: Set<string>;
+let canonicalUidOverride: string | null = 'test-uid-abc';
+let transactionCollisionCodes: Set<string>;
+
+const buildFakeRef = (collection: string, docId: string) => ({
+  collection,
+  docId,
+  _path: `${collection}/${docId}`,
+});
+
+const buildFakeDb = () => ({
+  collection: (col: string) => ({
+    doc: (docId: string) => {
+      const ref = buildFakeRef(col, docId);
+      return {
+        ...ref,
+        get: async () => {
+          const key = `${col}/${docId}`;
+          const data = mockDocs.get(key);
+          return {
+            exists: data !== undefined,
+            data: () => data,
+          };
+        },
+      };
+    },
+  }),
+  runTransaction: async (fn: (tx: unknown) => Promise<void>) => {
+    const ops: Array<() => void> = [];
+    const tx = {
+      get: async (ref: ReturnType<typeof buildFakeRef>) => {
+        const key = ref._path;
+        // Check collision codes first (simulate CODE_TAKEN scenario).
+        if (transactionCollisionCodes.has(ref.docId)) {
+          return { exists: true, data: () => ({ uid: 'other-uid' }) };
+        }
+        const data = mockDocs.get(key);
+        return { exists: data !== undefined, data: () => data };
+      },
+      set: (ref: ReturnType<typeof buildFakeRef>, data: Record<string, unknown>, opts?: { merge?: boolean }) => {
+        const key = ref._path;
+        ops.push(() => {
+          if (opts?.merge) {
+            const existing = mockDocs.get(key) ?? {};
+            mockDocs.set(key, deepMerge(existing, data));
+          } else {
+            mockDocs.set(key, data);
+          }
+        });
+      },
+    };
+    await fn(tx);
+    ops.forEach(op => op());
+  },
+});
+
+function deepMerge(
+  target: Record<string, unknown>,
+  source: Record<string, unknown>,
+): Record<string, unknown> {
+  const result = { ...target };
+  for (const key of Object.keys(source)) {
+    const sv = source[key];
+    const tv = target[key];
+    if (
+      sv !== null && typeof sv === 'object' && !Array.isArray(sv) &&
+      tv !== null && typeof tv === 'object' && !Array.isArray(tv)
+    ) {
+      result[key] = deepMerge(tv as Record<string, unknown>, sv as Record<string, unknown>);
+    } else {
+      result[key] = sv;
+    }
+  }
+  return result;
+}
+
+jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
+jest.mock('../app/user_id_policy', () => ({
+  getCanonicalUserId: jest.fn(async () => canonicalUidOverride),
+}));
+jest.mock('@react-native-firebase/firestore', () => ({
+  default: jest.fn(() => buildFakeDb()),
+}));
+
+beforeEach(() => {
+  jest.resetModules();
+  mockDocs = new Map();
+  mockBannedUids = new Set();
+  transactionCollisionCodes = new Set();
+  canonicalUidOverride = 'test-uid-abc';
+
+  // Re-apply mocks after resetModules.
+  jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
+  jest.mock('../app/user_id_policy', () => ({
+    getCanonicalUserId: jest.fn(async () => canonicalUidOverride),
+  }));
+  jest.mock('@react-native-firebase/firestore', () => ({
+    default: jest.fn(() => buildFakeDb()),
+  }));
+});
+
+test('Test H: FRIEND_CODE_INDEX_COLLECTION equals friend_code_index', async () => {
+  const { FRIEND_CODE_INDEX_COLLECTION } = require('../app/firestore_friends');
+  expect(FRIEND_CODE_INDEX_COLLECTION).toBe('friend_code_index');
+});
+
+test('Test A: ensureMyFriendCode returns existing code without writing when progress.friend_code exists', async () => {
+  // Seed existing code for this user.
+  mockDocs.set('users/test-uid-abc', { progress: { friend_code: 'ABCD23' } });
+  const { ensureMyFriendCode } = require('../app/firestore_friends');
+  const result = await ensureMyFriendCode();
+  expect(result).toBe('ABCD23');
+  // Confirm no new code was written to friend_code_index.
+  const indexKeys = [...mockDocs.keys()].filter(k => k.startsWith('friend_code_index/'));
+  expect(indexKeys).toHaveLength(0);
+});
+
+test('Test B: ensureMyFriendCode generates and stores new 6-char code when none exists', async () => {
+  const { ensureMyFriendCode, FRIEND_CODE_INDEX_COLLECTION } = require('../app/firestore_friends');
+  const code = await ensureMyFriendCode();
+  expect(typeof code).toBe('string');
+  expect(code!.length).toBe(6);
+  // Code written to friend_code_index.
+  const indexDoc = mockDocs.get(`${FRIEND_CODE_INDEX_COLLECTION}/${code}`);
+  expect(indexDoc).toBeDefined();
+  expect(indexDoc?.uid).toBe('test-uid-abc');
+  // Code written to users/{uid}.progress.friend_code.
+  const userDoc = mockDocs.get('users/test-uid-abc');
+  expect((userDoc?.progress as Record<string, unknown>)?.friend_code).toBe(code);
+});
+
+test('Test C: ensureMyFriendCode retries on collision and succeeds with second code', async () => {
+  // Pre-generate the first code that will be tried, mark it as taken.
+  // We intercept generateRandomCode to return a known sequence.
+  const { generateRandomCode: realGenerate } = require('../app/friend_code');
+  let callCount = 0;
+  jest.spyOn(require('../app/friend_code'), 'generateRandomCode').mockImplementation(() => {
+    callCount++;
+    const code = callCount === 1 ? 'TAKEN2' : realGenerate();
+    return code;
+  });
+  transactionCollisionCodes.add('TAKEN2');
+
+  const { ensureMyFriendCode } = require('../app/firestore_friends');
+  const code = await ensureMyFriendCode();
+  expect(code).not.toBeNull();
+  expect(code).not.toBe('TAKEN2');
+  expect(callCount).toBeGreaterThanOrEqual(2);
+});
+
+test('Test D: ensureMyFriendCode returns null when canonical UID is null', async () => {
+  canonicalUidOverride = null;
+  jest.mock('../app/user_id_policy', () => ({
+    getCanonicalUserId: jest.fn(async () => null),
+  }));
+  const { ensureMyFriendCode } = require('../app/firestore_friends');
+  const result = await ensureMyFriendCode();
+  expect(result).toBeNull();
+});
+
+test('Test E: lookupUserByFriendCode returns uid when code exists in index', async () => {
+  mockDocs.set('friend_code_index/ABCD23', { uid: 'target-uid-xyz' });
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('ABCD23');
+  expect(result).toEqual({ uid: 'target-uid-xyz' });
+});
+
+test('Test F: lookupUserByFriendCode returns null when target user is banned', async () => {
+  mockDocs.set('friend_code_index/ABCD23', { uid: 'banned-uid-999' });
+  mockDocs.set('banned_users/banned-uid-999', { reason: 'spam' });
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('ABCD23');
+  expect(result).toBeNull();
+});
+
+test('Test G: lookupUserByFriendCode returns null for invalid code without Firestore call', async () => {
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('invalid');
+  expect(result).toBeNull();
+  // No Firestore docs touched.
+  expect(mockDocs.size).toBe(0);
+});

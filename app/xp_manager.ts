@@ -17,6 +17,7 @@ import { getTitleString } from '../constants/titles';
 import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
+import { addWeeklyXp } from './weekly_xp';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -182,6 +183,12 @@ export const registerXP = async (
     const currentTotal = parseInt(totalXPRaw || '0');
     const newTotal = Math.max(0, currentTotal + finalDelta);
     await AsyncStorage.setItem('user_total_xp', String(newTotal));
+    // XP-01: Track weekly XP in lockstep with total XP. addWeeklyXp internally
+    // ignores delta <= 0 and self-heals stale week period. Synced to Firestore
+    // via SYNC_KEYS in cloud_sync.ts → users/{canonicalUid}.progress.weekly_xp.
+    if (finalDelta > 0) {
+      await addWeeklyXp(finalDelta);
+    }
 
     // 3.1. Уведомляем все подписчики о смене XP
     if (finalDelta > 0) {
@@ -236,6 +243,9 @@ export const registerXP = async (
     // checkAchievements → registerXP('achievement_reward') → checkAchievements → ...
     if (finalDelta > 0 && source !== 'achievement_reward' && source !== 'level_up_bonus') {
       await checkAchievements({ type: 'xp', totalXP: newTotal });
+    }
+    if (finalDelta > 0 && source === 'wager_win') {
+      await checkAchievements({ type: 'wager_win' });
     }
 
     // Синхронизируем прогресс в облако (fire-and-forget)

@@ -15,12 +15,18 @@ import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks
 import {
   clearArenaAuthUidCache, getCanonicalUserId, getAuthUserId,
 } from './user_id_policy';
+import { processAdminGrantForCelebration } from './premium_celebration_state';
+import { invalidatePremiumCache } from './premium_guard';
 
 // ── Ключи AsyncStorage которые синхронизируются с облаком ────────────────────
-const SYNC_KEYS = [
+// Экспорт: тот же набор должен учитываться при сбросе локали после merge аккаунта (auth_provider).
+export const SYNC_KEYS = [
   // ── Идентичность и базовый прогресс ────────────────────────────────────────
   'user_total_xp',
   'user_prev_xp',
+  // XP-01: Weekly XP tracking — synced so users/{uid}.progress.weekly_xp matches device.
+  'weekly_xp',
+  'weekly_xp_period_start',
   'user_name',
   'user_avatar',
   'user_frame',
@@ -43,6 +49,8 @@ const SYNC_KEYS = [
   // functions/src/sync_leaderboard.ts (читает progress.week_points_v2).
   'week_points_v2',
   'daily_tasks_progress',
+  /** Опыт по дням (график статистики) — без синка теряется на новом устройстве. */
+  'daily_stats',
 
   // ── Премиум и его плюшки (без них юзер теряет купленные/активные бенефиты) ─
   'premium_plan',
@@ -93,16 +101,32 @@ const SYNC_KEYS = [
   'shards_arena_wins_total',
 
   // ── UI / поведение ─────────────────────────────────────────────────────────
-  'app_theme',
-  'app_font_size',
-  'haptics_tap',
+  // app_theme / app_font_size / haptics_tap — только локально на устройстве (см. wipeLocalAccountData KEEP).
+  // Синк с облаком ломал тему: при restore облако перетирало выбор пользователя старым progress.
   'user_settings',
   'placement_level',
+  /** Последний результат диагностики (дата/балл); уровень дублируется в placement_level. */
+  'diagnostic_last',
   'device_platform',
   'app_version',
   'user_stats_v1',
   'xp_migration_v2',
   'week_points_migrated_v1',
+
+  // ── Время в приложении (foreground) — график «Время в приложении» ─────────
+  'phraseman_foreground_usage_ms_v1',
+  'phraseman_foreground_daily_ms_v1',
+
+  // ── Блок «Весь путь» / метрики статистики (локально накапливаются) ─────────
+  'lifetime_quiz_easy_v1',
+  'lifetime_quiz_medium_v1',
+  'lifetime_quiz_hard_v1',
+  'lifetime_quiz_counters_migrated_v1',
+  'lifetime_daily_tasks_claimed_v1',
+  'shards_lifetime_earned_v1',
+  'shards_lifetime_spent_v1',
+  /** Легаси-счётчик сложных квизов (миграция в lifetime_quiz_hard_v1). */
+  'quiz_hard_count',
 
   // ── Уроки 1..32 (per-lesson) ───────────────────────────────────────────────
   // КРИТИЧНО: lesson{N}_best_score нужен для медалек уроков и для гейта зачёта
@@ -110,13 +134,19 @@ const SYNC_KEYS = [
   // Без синка на новом устройстве у юзера откроются все уроки (через unlocked_lessons),
   // но звёзды/медали будут пустые и зачёт сдать он не сможет.
   // pass_count — счётчик количества прохождений для статистики и медалек.
-  // Тяжёлые ключи (lesson{N}_progress / _listening_progress — массивы ответов
-  // 50 шт. на урок) НЕ синкаем, чтобы не раздувать payload syncToCloud.
+  // progress / listening / words — чтобы фразы и словарь переживали смену устройства
+  // (payload ~десятки–сотни KB; в пределах лимита Firestore merge).
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_best_score`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_pass_count`),
+  ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`),
+  ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_listening_progress`),
+  ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_words`),
 ] as const;
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
+/** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
+const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
+const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
 const SYNC_DEBOUNCE_MS = 5 * 60_000;
 const SYNC_HEARTBEAT_MS = 60 * 60_000;
 const ACTIVITY_STAMP_INTERVAL_MS = 45 * 60_000;
@@ -126,6 +156,16 @@ let syncInFlight: Promise<void> | null = null;
 let pendingSync = false;
 let lastSuccessfulSyncAt = 0;
 let lastActivityStampAt = 0;
+
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  const deadline = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error(`forceSyncToCloud:${label}`)), ms);
+  });
+  return Promise.race([promise, deadline]).finally(() => {
+    if (timeoutId !== undefined) clearTimeout(timeoutId);
+  });
+}
 
 // ── Lazy getters — грузятся только если пакеты установлены ───────────────────
 const getAuth = () => {
@@ -328,6 +368,15 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
   }
   const cloudData: Record<string, string | null> = (root.progress ?? {}) as Record<string, string | null>;
+  const cloudHasPremiumAdminState =
+    cloudData['premium_plan'] !== undefined ||
+    cloudData['admin_premium_override'] !== undefined ||
+    cloudData['premium_expiry'] !== undefined;
+
+  // Premium granted by admin via admin/index.html: progress.premium_admin_grant_at — unix ms строка.
+  // Если timestamp новее нашего last seen marker — поднимает pending для PremiumCelebrationModal.
+  // Срабатывает один раз на каждый grant (повторная выдача ставит новый ts → снова сработает).
+  void processAdminGrantForCelebration(cloudData['premium_admin_grant_at']);
 
   const localXPRaw = await AsyncStorage.getItem('user_total_xp');
   const localXP = parseInt(localXPRaw ?? '0') || 0;
@@ -358,6 +407,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     }
     if (stickyPairs.length > 0) {
       await AsyncStorage.multiSet(stickyPairs);
+      if (cloudHasPremiumAdminState) invalidatePremiumCache();
       await reconcileRestoredDayDailyStorageIfNeeded(restoredDailyTasksToLocal);
       await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify({ ...cloudData })).catch(() => {});
       return true;
@@ -382,6 +432,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   }
   if (pairs.length > 0) {
     await AsyncStorage.multiSet(pairs);
+    if (cloudHasPremiumAdminState) invalidatePremiumCache();
   }
   if (fullRestoreDaily) {
     await reconcileRestoredDayDailyStorageIfNeeded(true);
@@ -452,7 +503,13 @@ export async function forceSyncToCloud(): Promise<boolean> {
     }
     // Дожидаемся завершения текущего синка (если он в полёте), затем запускаем свой.
     if (syncInFlight) {
-      try { await syncInFlight; } catch {}
+      try {
+        await withTimeout(syncInFlight, FORCE_SYNC_WAIT_INFLIGHT_MS, 'wait_inflight');
+      } catch {
+        pendingSync = false;
+        if (__DEV__) console.warn('[cloud_sync] forceSyncToCloud: inflight sync timeout');
+        return false;
+      }
     }
     // doSyncToCloud глотает ошибки внутри, так что обернём напрямую без try-catch фасада:
     // повторим логику записи минимально-инвазивно, ловя ошибки явно.
@@ -471,14 +528,18 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
     const shouldSendCreatedAt = !createdAtSynced;
-    await docRef.set(
-      {
-        progress: data,
-        updatedAt: now,
-        last_active_at: now,
-        ...(shouldSendCreatedAt ? { created_at: now } : {}),
-      },
-      { merge: true },
+    await withTimeout(
+      docRef.set(
+        {
+          progress: data,
+          updatedAt: now,
+          last_active_at: now,
+          ...(shouldSendCreatedAt ? { created_at: now } : {}),
+        },
+        { merge: true },
+      ),
+      FORCE_SYNC_FIRESTORE_WRITE_MS,
+      'firestore_set',
     );
     lastSuccessfulSyncAt = now;
     lastActivityStampAt = now;
@@ -490,6 +551,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
     return true;
   } catch (e) {
     if (__DEV__) console.warn('[cloud_sync] forceSyncToCloud failed', e);
+    pendingSync = false;
     return false;
   }
 }
@@ -506,11 +568,7 @@ export async function wipeLocalAccountData(): Promise<void> {
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
     'daily_tasks_progress',
-    // Per-lesson (32 × 5)
-    ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_best_score`),
-    ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_pass_count`),
-    ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`),
-    ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_listening_progress`),
+    // intro_shown не в SYNC_KEYS (локальный UX), при смене аккаунта сбрасываем
     ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`),
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
@@ -529,7 +587,6 @@ export async function wipeLocalAccountData(): Promise<void> {
     'bug_hunt_shown', 'flashcard_anim_pending', 'flashcard_delete_hint_seen',
     'energy_state', 'energy_onboarding_shown',
     'daily_treasure_state', 'install_date',
-    'dialogs_completed', 'dialogs_scores', 'dialogs_tutorial_done',
     'login_bonus_v1', 'last_opened_lesson',
     'diagnostic_last',
   ]);

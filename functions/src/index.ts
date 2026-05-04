@@ -10,6 +10,8 @@ const { runMatchmaking, tryMatchForUser, publishMatchmakingSearchingCount } = re
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { syncLeaderboardFromUsers } = require('./sync_leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { resetWeeklyXp } = require('./reset_weekly_xp');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame') as {
@@ -19,6 +21,27 @@ const { processLobbyAfterChoice } = require('./arena_pregame') as {
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 const LEVELS = ['I', 'II', 'III'] as const;
 const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'] as const;
+
+// Placeholder display names, которые клиент ставит, если у юзера нет user_name в AsyncStorage
+// (см. app/arena_lobby.tsx defaultPlayerName). Если приходит такое имя — НЕ перетираем уже
+// сохранённое в arena_profiles, чтобы локализационные default'ы не маскировали нормальный ник.
+const PLACEHOLDER_NAMES: ReadonlySet<string> = new Set([
+  'Игрок',
+  'Гравець',
+  'Jugador',
+  'Player',
+  'Соперник',
+  'Суперник',
+  'Opponent',
+]);
+
+function pickIncomingDisplayName(raw: string | null | undefined): string | null {
+  const dn = String(raw ?? '').trim();
+  if (!dn) return null;
+  if (PLACEHOLDER_NAMES.has(dn)) return null;
+  // Защита от излишне длинных значений (firestore.rules ограничивает 120, но дублируем).
+  return dn.slice(0, 120);
+}
 
 async function pickArenaQuestions(count: number): Promise<string[]> {
   const db = admin.firestore();
@@ -40,6 +63,14 @@ async function pickArenaQuestions(count: number): Promise<string[]> {
 export const syncLeaderboardCron = functions.scheduler.onSchedule(
   { schedule: 'every 2 hours', timeZone: 'UTC' },
   async () => { await syncLeaderboardFromUsers(); }
+);
+
+// ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
+// Runs every Monday 00:00 UTC. Zeroes progress.weekly_xp for ALL users without
+// touching progress.user_total_xp. Cron expression '0 0 * * 1' = at 00:00 on Monday.
+export const resetWeeklyXpCron = functions.scheduler.onSchedule(
+  { schedule: '0 0 * * 1', timeZone: 'UTC' },
+  async () => { await resetWeeklyXp(); }
 );
 
 // ─── Matchmaking: instant trigger on queue write ──────────────────────────────
@@ -125,7 +156,7 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         questionStartedAt: null,
         questionTimeoutMs: 40_000,
         createdAt: tPrivate,
-        acceptDeadlineAt: tPrivate + 45_000,
+        acceptDeadlineAt: tPrivate + 15_000,
       });
 
       tx.set(hostPlayerRef, {
@@ -405,9 +436,13 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
 
         if (!profileSnap.exists) {
           newStars = won ? 1 : 0;
+          // При создании профиля кладём pickIncomingDisplayName, иначе fallback на первое
+          // непустое имя, чтобы избежать пустых записей. Placeholder-фолбэк ('Игрок') —
+          // последняя страховка, его перетрёт следующий матч с нормальным ником.
+          const initialDn = pickIncomingDisplayName(p.displayName) ?? (p.displayName?.trim() || 'Игрок');
           tx.set(profileRef, {
             userId: uid,
-            displayName: p.displayName ?? 'Игрок',
+            displayName: initialDn,
             avatarId: '1',
             rank: { tier: 'bronze', level: 'I', stars: newStars },
             xp: xpDelta,
@@ -484,8 +519,9 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
 
           // displayName обновляем, если из сессии пришло осмысленное имя — иначе при первом матче
           // ставился дефолтный «Игрок» и больше не менялся даже после смены ника пользователем.
-          const incomingDn = (p.displayName ?? '').trim();
-          const dnPatch = incomingDn && incomingDn !== 'Игрок' ? { displayName: incomingDn } : {};
+          // Фильтр локализованных placeholder-ов на RU/UK/ES — см. PLACEHOLDER_NAMES выше.
+          const incomingDn = pickIncomingDisplayName(p.displayName);
+          const dnPatch = incomingDn ? { displayName: incomingDn } : {};
 
           tx.update(profileRef, {
             'rank.tier': newTier,
@@ -690,3 +726,5 @@ export { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated } fr
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
+
+export { phraseContentRatingSubmit, phraseContentRatingGetState } from './phrase_content_rating';

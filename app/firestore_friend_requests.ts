@@ -109,6 +109,12 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   const db = getFirestore();
   if (!db) throw new Error('acceptFriendRequest: Firestore unavailable');
 
+  const firebaseAuthUid = getAuthUserId();
+  if (!firebaseAuthUid) throw new Error('acceptFriendRequest: Firebase auth uid unavailable');
+
+  // Ensure firebaseAuthUid is written so canonicalUserMatchesAuth passes for the mirror write.
+  await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
+
   // Commit the status update first so the batch can satisfy security rules.
   await db
     .collection('users')

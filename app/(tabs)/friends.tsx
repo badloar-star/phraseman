@@ -959,7 +959,12 @@ export default function FriendsTabScreen() {
               <RequestRow
                 key={req.fromUid}
                 profile={profiles[req.fromUid] ?? placeholderFriendProfile(req.fromUid)}
-                onAccept={() => { hapticTap(); void acceptFriendRequest(req.fromUid); }}
+                onAccept={() => {
+                  hapticTap();
+                  acceptFriendRequest(req.fromUid).catch(() => {
+                    showFeedback(L('Ошибка при принятии. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar'));
+                  });
+                }}
                 onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
                 lang={lang}
                 t={t}

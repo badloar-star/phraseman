@@ -1,7 +1,8 @@
-﻿import React, { useEffect, useState, memo, useCallback, useRef } from 'react';
+﻿import React, { useEffect, useState, memo, useCallback, useRef, useMemo } from 'react';
 import {
-  View, Text, ScrollView, TouchableOpacity, Modal, Dimensions, Pressable, Image,
+  View, Text, SectionList, TouchableOpacity, Modal, Dimensions, Pressable, Image,
   InteractionManager,
+  type SectionListRenderItemInfo,
 } from 'react-native';
 import Svg from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -24,7 +25,8 @@ import {
 } from './achievements';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess } from '../hooks/use-haptics';
-import { STORE_URL } from './config';
+import { STORE_URL, DEV_MODE } from './config';
+import { usePremium } from '../components/PremiumContext';
 import { oskolokImageForPackShards } from './oskolok';
 import type { ShareCardLang } from '../components/share_cards/streakCardCopy';
 import AchievementShareCardSvg from '../components/share_cards/AchievementShareCardSvg';
@@ -99,6 +101,21 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
   return null;
 }
 
+/** Квизы Medium/Hard без Premium недоступны — эти ачивки открываются с подпиской. */
+const PREMIUM_QUIZ_ACHIEVEMENT_IDS = new Set([
+  'quiz_medium',
+  'quiz_hard',
+  'quiz_all_levels',
+  'quiz_perfect_medium',
+  'quiz_perfect',
+  'quiz_triple_perfect',
+  'quiz_speed_demon',
+]);
+
+export function achievementNeedsPremiumQuiz(id: string): boolean {
+  return PREMIUM_QUIZ_ACHIEVEMENT_IDS.has(id);
+}
+
 // Лейбл уровня для медалей (gem_*)
 const GEM_LEVEL_LABEL: Record<string, string> = {
   gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1',
@@ -109,84 +126,79 @@ const GEM_LEVEL_LABEL: Record<string, string> = {
 
 // ── PNG-изображения для каждого достижения ───────────────────────────────────
 export const ACHIEVEMENT_IMAGE: Record<string, any> = {
-  streak_3:            require('../assets/images/levels/pervie tri.png'),
-  streak_7:            require('../assets/images/levels/odna nedelya.png'),
-  streak_14:           require('../assets/images/levels/dve nedeli.png'),
-  streak_30:           require('../assets/images/levels/mesyac v strou.png'),
-  streak_60:           require('../assets/images/levels/dva mesyaca.png'),
-  streak_100:          require('../assets/images/levels/sto dney.png'),
-  streak_200:          require('../assets/images/levels/200 dney.png'),
-  streak_365:          require('../assets/images/levels/tseliy god.png'),
-  streak_500:          require('../assets/images/levels/500 dney.png'),
-  streak_repair:       require('../assets/images/levels/fenix.png'),
-  perfect_week:        require('../assets/images/levels/idealnaya nedelya.png'),
-  lesson_1:            require('../assets/images/levels/perviy shag.png'),
-  lesson_3:            require('../assets/images/levels/tri uroka.png'),
-  lesson_5:            require('../assets/images/levels/5 urokov.png'),
-  lesson_10:           require('../assets/images/levels/10 urokov.png'),
-  lesson_15:           require('../assets/images/levels/15 urokov.png'),
-  lesson_20:           require('../assets/images/levels/dvadtsyaty 20 urokov.png'),
-  lesson_all:          require('../assets/images/levels/polniy kurs.png'),
-  lesson_perfect:      require('../assets/images/levels/ni odnoy oshibky.png'),
-  lesson_perfect3:     require('../assets/images/levels/3 idealnych uroka.png'),
-  lesson_all_perfect:  require('../assets/images/levels/absolut.png'),
-  xp_100:              require('../assets/images/levels/pervaya sotnya.png'),
-  xp_250:              require('../assets/images/levels/250 opita.png'),
-  xp_500:              require('../assets/images/levels/500 opita.png'),
-  xp_1000:             require('../assets/images/levels/tosyachnic.png'),
-  xp_2500:             require('../assets/images/levels/2500 opyta.png'),
-  xp_5000:             require('../assets/images/levels/5 tisyach opita.png'),
-  xp_10000:            require('../assets/images/levels/10 tisyach opita.png'),
-  xp_20000:            require('../assets/images/levels/20 tisyach opita.png'),
-  xp_50000:            require('../assets/images/levels/pol sotny tisyach opita.png'),
-  xp_100000:           require('../assets/images/levels/legenda.png'),
-  wager_win:           require('../assets/images/levels/risknul pobedil.png'),
-  personal_best:       require('../assets/images/levels/luchsaya nedelya.png'),
-  quiz_first:          require('../assets/images/levels/perviy kviz.png'),
-  quiz_medium:         require('../assets/images/levels/sredniy uroven.png'),
-  quiz_hard:           require('../assets/images/levels/prinyal vyzov.png'),
-  quiz_all_levels:     require('../assets/images/levels/polniy nabor.png'),
-  quiz_perfect_easy:   require('../assets/images/levels/legky odeal.png'),
-  quiz_perfect:        require('../assets/images/levels/zhelezny nervy.png'),
-  quiz_perfect_medium: require('../assets/images/levels/metky strelok.png'),
-  quiz_triple_perfect: require('../assets/images/levels/trizhdy ideal.png'),
-  quiz_speed_demon:    require('../assets/images/levels/skorostboy.png'),
-  combo_3:             require('../assets/images/levels/v potoke.png'),
-  combo_10:            require('../assets/images/levels/sniper.png'),
-  combo_20:            require('../assets/images/levels/nesokrushimiy.png'),
-  combo_50:            require('../assets/images/levels/mashina.png'),
-  combo_100:           require('../assets/images/levels/nepobedimiy.png'),
-  daily_task_first:    require('../assets/images/levels/pervoe zadanie.png'),
-  all_daily:           require('../assets/images/levels/vse za den.png'),
-  login_7:             require('../assets/images/levels/verny uchenic.png'),
-  login_14:            require('../assets/images/levels/2 nedely (osobie).png'),
-  login_30:            require('../assets/images/levels/mesyac v prilozhenii.png'),
-  login_60:            require('../assets/images/levels/2 mesyaca v prilozhenii.png'),
-  login_365:           require('../assets/images/levels/tseliy god v prilozhenii.png'),
-  comeback:            require('../assets/images/levels/vozvrashenie korolya.png'),
-  diagnosis:           require('../assets/images/levels/diagnoz postavlen.png'),
-  night_owl:           require('../assets/images/levels/nochnoy filin.png'),
-  early_bird:          require('../assets/images/levels/nabbiy podiem.png'),
-  exam_first:          require('../assets/images/levels/ekzamenator.png'),
-  exam_ace:            require('../assets/images/levels/otlychink.png'),
-  dialog_first:        require('../assets/images/levels/sobesednik.png'),
-  dialog_all:          require('../assets/images/levels/master dialogov.png'),
-  flashcards_session:  require('../assets/images/levels/kartzhnik.png'),
-  league_1:            require('../assets/images/levels/club icon base forest.png'),
-  league_3:            require('../assets/images/levels/erudit.png'),
-  league_5:            require('../assets/images/levels/professor.png'),
-  gem_a1_ruby:         require('../assets/images/levels/rubin.png'),
-  gem_a1_emerald:      require('../assets/images/levels/izumrud.png'),
-  gem_a1_diamond:      require('../assets/images/levels/almaz.png'),
-  gem_a2_ruby:         require('../assets/images/levels/rubin.png'),
-  gem_a2_emerald:      require('../assets/images/levels/izumrud.png'),
-  gem_a2_diamond:      require('../assets/images/levels/almaz.png'),
-  gem_b1_ruby:         require('../assets/images/levels/rubin.png'),
-  gem_b1_emerald:      require('../assets/images/levels/izumrud.png'),
-  gem_b1_diamond:      require('../assets/images/levels/almaz.png'),
-  gem_b2_ruby:         require('../assets/images/levels/rubin.png'),
-  gem_b2_emerald:      require('../assets/images/levels/izumrud.png'),
-  gem_b2_diamond:      require('../assets/images/levels/almaz.png'),
+  streak_3:            require('../assets/images/levels/pervie tri.webp'),
+  streak_7:            require('../assets/images/levels/odna nedelya.webp'),
+  streak_14:           require('../assets/images/levels/dve nedeli.webp'),
+  streak_30:           require('../assets/images/levels/mesyac v strou.webp'),
+  streak_60:           require('../assets/images/levels/dva mesyaca.webp'),
+  streak_100:          require('../assets/images/levels/sto dney.webp'),
+  streak_200:          require('../assets/images/levels/200 dney.webp'),
+  streak_365:          require('../assets/images/levels/tseliy god.webp'),
+  streak_500:          require('../assets/images/levels/500 dney.webp'),
+  streak_repair:       require('../assets/images/levels/fenix.webp'),
+  perfect_week:        require('../assets/images/levels/idealnaya nedelya.webp'),
+  lesson_1:            require('../assets/images/levels/perviy shag.webp'),
+  lesson_3:            require('../assets/images/levels/tri uroka.webp'),
+  lesson_5:            require('../assets/images/levels/5 urokov.webp'),
+  lesson_10:           require('../assets/images/levels/10 urokov.webp'),
+  lesson_15:           require('../assets/images/levels/15 urokov.webp'),
+  lesson_20:           require('../assets/images/levels/dvadtsyaty 20 urokov.webp'),
+  lesson_all:          require('../assets/images/levels/polniy kurs.webp'),
+  lesson_perfect:      require('../assets/images/levels/ni odnoy oshibky.webp'),
+  lesson_perfect3:     require('../assets/images/levels/3 idealnych uroka.webp'),
+  lesson_all_perfect:  require('../assets/images/levels/absolut.webp'),
+  xp_100:              require('../assets/images/levels/pervaya sotnya.webp'),
+  xp_250:              require('../assets/images/levels/250 opita.webp'),
+  xp_500:              require('../assets/images/levels/500 opita.webp'),
+  xp_1000:             require('../assets/images/levels/tosyachnic.webp'),
+  xp_2500:             require('../assets/images/levels/2500 opyta.webp'),
+  xp_5000:             require('../assets/images/levels/5 tisyach opita.webp'),
+  xp_10000:            require('../assets/images/levels/10 tisyach opita.webp'),
+  xp_20000:            require('../assets/images/levels/20 tisyach opita.webp'),
+  xp_50000:            require('../assets/images/levels/pol sotny tisyach opita.webp'),
+  xp_100000:           require('../assets/images/levels/legenda.webp'),
+  wager_win:           require('../assets/images/levels/risknul pobedil.webp'),
+  personal_best:       require('../assets/images/levels/luchsaya nedelya.webp'),
+  quiz_first:          require('../assets/images/levels/perviy kviz.webp'),
+  quiz_medium:         require('../assets/images/levels/sredniy uroven.webp'),
+  quiz_hard:           require('../assets/images/levels/prinyal vyzov.webp'),
+  quiz_all_levels:     require('../assets/images/levels/polniy nabor.webp'),
+  quiz_perfect_easy:   require('../assets/images/levels/legky odeal.webp'),
+  quiz_perfect:        require('../assets/images/levels/zhelezny nervy.webp'),
+  quiz_perfect_medium: require('../assets/images/levels/metky strelok.webp'),
+  quiz_triple_perfect: require('../assets/images/levels/trizhdy ideal.webp'),
+  quiz_speed_demon:    require('../assets/images/levels/skorostboy.webp'),
+  combo_3:             require('../assets/images/levels/v potoke.webp'),
+  combo_10:            require('../assets/images/levels/sniper.webp'),
+  combo_20:            require('../assets/images/levels/nesokrushimiy.webp'),
+  combo_50:            require('../assets/images/levels/mashina.webp'),
+  combo_100:           require('../assets/images/levels/nepobedimiy.webp'),
+  daily_task_first:    require('../assets/images/levels/pervoe zadanie.webp'),
+  all_daily:           require('../assets/images/levels/vse za den.webp'),
+  login_7:             require('../assets/images/levels/verny uchenic.webp'),
+  login_14:            require('../assets/images/levels/2 nedely (osobie).webp'),
+  login_30:            require('../assets/images/levels/mesyac v prilozhenii.webp'),
+  login_60:            require('../assets/images/levels/2 mesyaca v prilozhenii.webp'),
+  login_365:           require('../assets/images/levels/tseliy god v prilozhenii.webp'),
+  comeback:            require('../assets/images/levels/vozvrashenie korolya.webp'),
+  diagnosis:           require('../assets/images/levels/diagnoz postavlen.webp'),
+  night_owl:           require('../assets/images/levels/nochnoy filin.webp'),
+  early_bird:          require('../assets/images/levels/nabbiy podiem.webp'),
+  exam_first:          require('../assets/images/levels/ekzamenator.webp'),
+  exam_ace:            require('../assets/images/levels/otlychink.webp'),
+  flashcards_session:  require('../assets/images/levels/kartzhnik.webp'),
+  gem_a1_ruby:         require('../assets/images/levels/rubin.webp'),
+  gem_a1_emerald:      require('../assets/images/levels/izumrud.webp'),
+  gem_a1_diamond:      require('../assets/images/levels/almaz.webp'),
+  gem_a2_ruby:         require('../assets/images/levels/rubin.webp'),
+  gem_a2_emerald:      require('../assets/images/levels/izumrud.webp'),
+  gem_a2_diamond:      require('../assets/images/levels/almaz.webp'),
+  gem_b1_ruby:         require('../assets/images/levels/rubin.webp'),
+  gem_b1_emerald:      require('../assets/images/levels/izumrud.webp'),
+  gem_b1_diamond:      require('../assets/images/levels/almaz.webp'),
+  gem_b2_ruby:         require('../assets/images/levels/rubin.webp'),
+  gem_b2_emerald:      require('../assets/images/levels/izumrud.webp'),
+  gem_b2_diamond:      require('../assets/images/levels/almaz.webp'),
 };
 
 // ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
@@ -212,8 +224,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   lesson_perfect:     'checkmark-done',
   lesson_perfect3:    'checkmark-done-circle',
   lesson_all_perfect: 'ribbon',
-  dialog_first:       'chatbubble',
-  dialog_all:         'chatbubbles',
   xp_100:             'flash-outline',
   xp_250:             'flash',
   xp_500:             'flash',
@@ -235,10 +245,6 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   quiz_perfect_medium: 'radio-button-on',
   quiz_triple_perfect: 'star',
   quiz_speed_demon:    'flash',
-  league_1:            'people',
-  league_3:            'library',
-  league_5:            'trophy',
-  club_all:            'crown',
   combo_3:            'git-merge',
   combo_10:           'radio-button-on',
   combo_20:           'shield',
@@ -294,6 +300,18 @@ const CAT_LABEL_ES: Record<string, string> = {
 
 const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special', 'medal'] as const;
 
+type AchievementGridRow = { rowKey: string; items: Achievement[] };
+
+type AchievementListSection = {
+  key: string;
+  title: string;
+  color: string;
+  catIcon: string;
+  catUnlocked: number;
+  catTotal: number;
+  data: AchievementGridRow[];
+};
+
 type GridCellProps = {
   a: Achievement;
   state: AchievementState | undefined;
@@ -303,9 +321,13 @@ type GridCellProps = {
   lang: Lang;
   t: any;
   f: any;
+  isDark: boolean;
+  gold: string;
   shieldW: number;
   shieldOuter: number;
   onSelect: (achievement: Achievement) => void;
+  /** Показать метку Premium (квизы средний/сложный только по подписке). */
+  showPremiumQuizGate: boolean;
 };
 
 const AchievementGridCell = memo(function AchievementGridCell({
@@ -317,9 +339,12 @@ const AchievementGridCell = memo(function AchievementGridCell({
   lang,
   t,
   f,
+  isDark,
+  gold,
   shieldW,
   shieldOuter,
   onSelect,
+  showPremiumQuizGate,
 }: GridCellProps) {
   const unlocked = !!state?.unlockedAt;
   const isLocked = !unlocked && !!a.secret;
@@ -332,9 +357,46 @@ const AchievementGridCell = memo(function AchievementGridCell({
     <TouchableOpacity
       onPress={() => onSelect(a)}
       activeOpacity={0.8}
-      style={{ alignItems: 'center', width: shieldOuter, gap: 5 }}
+      style={{
+        alignItems: 'center',
+        width: shieldOuter,
+        gap: 5,
+        paddingBottom: showPremiumQuizGate ? 12 : 0,
+      }}
     >
       <View style={{ position: 'relative' }}>
+        {showPremiumQuizGate && (
+          <View
+            pointerEvents="none"
+            style={{
+              position: 'absolute',
+              bottom: -2,
+              left: 0,
+              right: 0,
+              alignItems: 'center',
+              zIndex: 5,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 3,
+                paddingHorizontal: 6,
+                paddingVertical: 2,
+                borderRadius: 6,
+                backgroundColor: isDark ? '#6D28D9EE' : '#7C3AED',
+                borderWidth: 1,
+                borderColor: isDark ? '#A78BFA55' : '#FFFFFF66',
+              }}
+            >
+              <Ionicons name="diamond" size={9} color="#FDE68A" />
+              <Text style={{ fontSize: 9, fontWeight: '800', color: '#FEF3C7' }} maxFontSizeMultiplier={1.1}>
+                {triLang(lang, { ru: 'Премиум', uk: 'Преміум', es: 'Premium' })}
+              </Text>
+            </View>
+          </View>
+        )}
         {unlocked && hasPendingShardReward(state) && (
           <View
             style={{
@@ -364,6 +426,8 @@ const AchievementGridCell = memo(function AchievementGridCell({
           size={shieldW}
           maskBg={t.bgPrimary}
           achievementId={a.id}
+          isDark={isDark}
+          gold={gold}
         />
       </View>
 
@@ -389,11 +453,14 @@ const AchievementGridCell = memo(function AchievementGridCell({
 // ── Щит-значок с PNG фоном ────────────────────────────────────────────────────
 function BadgeShieldInner({
   unlocked, inProgress, color, iconName, size, achievementId,
+  isDark,
+  gold,
 }: {
   unlocked: boolean; inProgress: boolean; color: string;
   iconName: string; size: number; maskBg?: string; achievementId?: string;
+  isDark: boolean;
+  gold: string;
 }) {
-  const { isDark, theme: t } = useTheme();
   const W      = size;
   const BODY_H = Math.round(W * 0.88);
   const ICON   = Math.round(W * 0.42);
@@ -422,7 +489,7 @@ function BadgeShieldInner({
             borderRadius: 4, paddingHorizontal: 4, paddingVertical: 1,
           }}>
             <Text style={{
-              color: isLocked ? '#666' : inProgress ? '#aaa' : t.gold,
+              color: isLocked ? '#666' : inProgress ? '#aaa' : gold,
               fontSize: Math.max(8, Math.round(W * 0.22)),
               fontWeight: '900',
               letterSpacing: 0.5,
@@ -439,7 +506,7 @@ function BadgeShieldInner({
       <View style={{ width: W, height: BODY_H, alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
         {/* PNG изображение щита, окрашенное в цвет достижения */}
         <Image
-          source={require('../assets/images/levels/achivement.png')}
+          source={require('../assets/images/levels/achivement.webp')}
           style={{ width: W, height: BODY_H, tintColor }}
           resizeMode="contain"
         />
@@ -458,15 +525,18 @@ export const BadgeShield = memo(BadgeShieldInner);
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, t, f, onClose, onShardClaimed,
+  achievement, state, stats, t, f, isDark, onClose, onShardClaimed, isPremium,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
   stats: AchievementStats;
   t: any; f: any;
+  isDark: boolean;
   onClose: () => void;
   onShardClaimed: (achievementId: string) => void;
+  isPremium: boolean;
 }) {
+  const router = useRouter();
   const [claiming, setClaiming] = useState(false);
   const [shareSvgMounted, setShareSvgMounted] = useState(false);
   const achShareRef = useRef<InstanceType<typeof Svg> | null>(null);
@@ -491,6 +561,12 @@ function AchievementModal({
     ? getAchievementProgress(achievement.id, stats)
     : null;
   const progPct  = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
+
+  const showPremiumQuizCta =
+    !unlocked &&
+    achievementNeedsPremiumQuiz(achievement.id) &&
+    !isPremium &&
+    !DEV_MODE;
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
@@ -525,6 +601,8 @@ function AchievementModal({
               size={72}
               maskBg={t.bgCard}
               achievementId={achievement.id}
+              isDark={isDark}
+              gold={t.gold}
             />
 
             {/* Name */}
@@ -544,6 +622,42 @@ function AchievementModal({
                 es: 'Desbloquéalo para descubrirlo',
               })}
             </Text>
+
+            {showPremiumQuizCta && (
+              <View style={{
+                width: '100%',
+                backgroundColor: (isDark ? '#6D28D9' : '#7C3AED') + '22',
+                borderRadius: 14,
+                padding: 14,
+                gap: 10,
+                borderWidth: 1,
+                borderColor: (isDark ? '#A78BFA' : '#7C3AED') + '44',
+              }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
+                  {triLang(lang, {
+                    ru: 'Нужен Premium: уровни Medium и Hard в квизах открываются по подписке.',
+                    uk: 'Потрібен Premium: рівні Medium і Hard у квізах відкриваються за підпискою.',
+                    es: 'Requiere Premium: los niveles Medium y Hard del cuestionario están en la suscripción.',
+                  })}
+                </Text>
+                <TouchableOpacity
+                  onPress={() => {
+                    onClose();
+                    router.push({ pathname: '/premium_modal', params: { context: 'quiz_level' } } as any);
+                  }}
+                  style={{
+                    backgroundColor: isDark ? '#6D28D9' : '#7C3AED',
+                    borderRadius: 12,
+                    paddingVertical: 12,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{ color: '#FEF3C7', fontSize: f.body, fontWeight: '800' }}>
+                    {triLang(lang, { ru: 'Оформить Premium', uk: 'Оформити Premium', es: 'Conseguir Premium' })}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
 
             {/* Date unlocked */}
             {unlocked && state?.unlockedAt && (
@@ -662,8 +776,11 @@ function AchievementModal({
 // ── Главный экран ─────────────────────────────────────────────────────────────
 export default function AchievementsScreen() {
   const router          = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, isDark } = useTheme();
   const { lang }        = useLang();
+  const { isPremium }   = usePremium();
+  const gold            = t.gold;
+  const premiumQuizHintDisabled = isPremium || DEV_MODE;
 
   const [states, setStates]   = useState<AchievementState[]>([]);
   const [stats, setStats]     = useState<AchievementStats>({ streak:0, loginDays:0, lessons:0, perfectLessons:0, xp:0 });
@@ -685,7 +802,80 @@ export default function AchievementsScreen() {
     setStates(prev => prev.map(s => (s.id === achievementId ? { ...s, shardClaimed: true } : s)));
   }, []);
 
-  const stateMap      = new Map(states.map(s => [s.id, s]));
+  const stateMap = useMemo(() => new Map(states.map(s => [s.id, s])), [states]);
+
+  const achievementSections = useMemo((): AchievementListSection[] => {
+    return CATEGORIES.map(cat => {
+      const color = CAT_COLOR[cat];
+      const catIcon = CAT_ICON[cat];
+      const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat] });
+      const catAchs = ALL_ACHIEVEMENTS.filter(a => a.category === cat);
+      const catUnlocked = catAchs.filter(a => stateMap.get(a.id)?.unlockedAt).length;
+      const rows: AchievementGridRow[] = [];
+      for (let i = 0; i < catAchs.length; i += COLS) {
+        const chunk = catAchs.slice(i, i + COLS);
+        rows.push({ rowKey: `${cat}-${i}`, items: chunk });
+      }
+      return {
+        key: cat,
+        title,
+        color,
+        catIcon,
+        catUnlocked,
+        catTotal: catAchs.length,
+        data: rows,
+      };
+    });
+  }, [lang, stateMap]);
+
+  const renderSectionHeader = useCallback(
+    ({ section }: { section: AchievementListSection }) => (
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+        <View style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: section.color + '22', alignItems: 'center', justifyContent: 'center' }}>
+          <Ionicons name={section.catIcon as any} size={15} color={section.color} />
+        </View>
+        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+          {section.title}
+        </Text>
+        <Text style={{ color: t.textGhost, fontSize: f.sub }}>
+          {section.catUnlocked}/{section.catTotal}
+        </Text>
+      </View>
+    ),
+    [f.body, f.sub, t.textGhost, t.textPrimary],
+  );
+
+  const renderAchievementRow = useCallback(
+    ({ item, section }: SectionListRenderItemInfo<AchievementGridRow> & { section: AchievementListSection }) => (
+      <View style={{ flexDirection: 'row', gap: 10 }}>
+        {item.items.map(a => (
+          <AchievementGridCell
+            key={a.id}
+            a={a}
+            state={stateMap.get(a.id)}
+            stats={stats}
+            color={section.color}
+            fallbackCatIcon={section.catIcon}
+            lang={lang}
+            t={t}
+            f={f}
+            isDark={isDark}
+            gold={gold}
+            shieldW={SHIELD_W}
+            shieldOuter={SHIELD_OUTER}
+            onSelect={onSelectAchievement}
+            showPremiumQuizGate={
+              !premiumQuizHintDisabled &&
+              !stateMap.get(a.id)?.unlockedAt &&
+              achievementNeedsPremiumQuiz(a.id)
+            }
+          />
+        ))}
+      </View>
+    ),
+    [f, gold, isDark, lang, onSelectAchievement, premiumQuizHintDisabled, stateMap, stats, t],
+  );
+
   const unlockedCount = states.filter(s => s.unlockedAt !== null).length;
   const total         = ALL_ACHIEVEMENTS.length;
 
@@ -719,59 +909,53 @@ export default function AchievementsScreen() {
           <View style={{ height: 3, width: `${unlockedCount / total * 100}%` as any, backgroundColor: t.textSecond, borderRadius: 2 }} />
         </View>
 
+        {/* Friends HoF entry — HOF-01 */}
+        <TouchableOpacity
+          onPress={() => router.push('/friends_hof_screen' as any)}
+          activeOpacity={0.75}
+          style={{
+            marginHorizontal: 16,
+            marginBottom: 16,
+            backgroundColor: t.bgCard,
+            borderRadius: 14,
+            paddingHorizontal: 16,
+            paddingVertical: 12,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 10,
+          }}
+        >
+          <Ionicons name="people" size={22} color={t.textSecond} />
+          <View style={{ flex: 1 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+              {triLang(lang, { ru: 'Зал славы друзей', uk: 'Зал слави друзів', es: 'Salón de la Fama de amigos' })}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+              {triLang(lang, { ru: 'Рейтинг среди друзей', uk: 'Рейтинг серед друзів', es: 'Ranking entre amigos' })}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
+        </TouchableOpacity>
+
         {/*
-          removeClippedSubviews на ScrollView — известный баг Fabric (New Arch):
-          IllegalStateException "The specified child already has a parent" при
-          откреплении/прикреплении дочерних view во время скролла. Оптимизация
-          работает только для VirtualizedList семейства, на ScrollView она
-          молча ломается. Не возвращать. Ref: Crashlytics 1.5.18.
+          Сетка через SectionList: виртуализация строк (4 ачивки в ряд), без
+          монтирования всех ~79 щитов сразу. removeClippedSubviews безопасен для
+          VirtualizedList; на обычном ScrollView на Fabric был краш (Crashlytics 1.5.18).
         */}
-        <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 24 }} showsVerticalScrollIndicator={false}>
-          {CATEGORIES.map(cat => {
-            const color    = CAT_COLOR[cat];
-            const catIcon  = CAT_ICON[cat];
-            const label    = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat] });
-            const catAchs  = ALL_ACHIEVEMENTS.filter(a => a.category === cat);
-            const catUnlocked = catAchs.filter(a => stateMap.get(a.id)?.unlockedAt).length;
-
-            return (
-              <View key={cat}>
-                {/* Заголовок категории */}
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-                  <View style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: color + '22', alignItems: 'center', justifyContent: 'center' }}>
-                    <Ionicons name={catIcon as any} size={15} color={color} />
-                  </View>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                    {label}
-                  </Text>
-                  <Text style={{ color: t.textGhost, fontSize: f.sub }}>
-                    {catUnlocked}/{catAchs.length}
-                  </Text>
-                </View>
-
-                {/* Сетка щитов */}
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
-                  {catAchs.map(a => (
-                    <AchievementGridCell
-                      key={a.id}
-                      a={a}
-                      state={stateMap.get(a.id)}
-                      stats={stats}
-                      color={color}
-                      fallbackCatIcon={catIcon}
-                      lang={lang}
-                      t={t}
-                      f={f}
-                      shieldW={SHIELD_W}
-                      shieldOuter={SHIELD_OUTER}
-                      onSelect={onSelectAchievement}
-                    />
-                  ))}
-                </View>
-              </View>
-            );
-          })}
-        </ScrollView>
+        <SectionList<AchievementGridRow, AchievementListSection>
+          sections={achievementSections}
+          keyExtractor={item => item.rowKey}
+          renderItem={renderAchievementRow}
+          renderSectionHeader={renderSectionHeader}
+          SectionSeparatorComponent={() => <View style={{ height: 24 }} />}
+          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40 }}
+          showsVerticalScrollIndicator={false}
+          removeClippedSubviews
+          initialNumToRender={8}
+          maxToRenderPerBatch={10}
+          windowSize={8}
+          stickySectionHeadersEnabled={false}
+        />
 
       </ContentWrap>
 
@@ -782,8 +966,10 @@ export default function AchievementsScreen() {
           state={stateMap.get(selected.id)}
           stats={stats}
           t={t} f={f}
+          isDark={isDark}
           onClose={() => setSelected(null)}
           onShardClaimed={onShardClaimedUpdate}
+          isPremium={isPremium}
         />
       )}
     </SafeAreaView>

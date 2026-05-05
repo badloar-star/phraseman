@@ -1,12 +1,25 @@
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: Friends MVP
+status: Complete
+last_updated: "2026-05-05T09:15:00.000Z"
+progress:
+  total_phases: 3
+  completed_phases: 3
+  total_plans: 7
+  completed_plans: 7
+---
+
 # Phraseman State
 
 **Last updated:** 2026-05-05
 
 ## Current Status
 
-- **Milestone:** v1.0 — Friends MVP
-- **Active phase:** Phase 3 (Phase 2 complete — all plans done)
-- **Next action:** Execute Phase 3 — Friends Hall of Fame + Arena integration
+- **Milestone:** v1.0 — Friends MVP — **COMPLETE**
+- **All 3 phases done, all 7 plans executed**
+- **Next action:** Deploy / QA pass on device
 
 ## Project Snapshot
 
@@ -34,7 +47,15 @@
 |-------|--------|-------|-------|
 | 1 — Foundation | complete | 3/3 | Friend codes, weekly xp, security rules, Cloud Function cron. Commits: a10a66e, 620e4ab, d0d9b03 |
 | 2 — Requests & Friends List | complete | 2/2 done | Plan 01 complete 2026-05-05. Plan 02 complete 2026-05-05. Commits: 4851be8, 474f6dd, 38eda49, 0212a12. |
-| 3 — HoF & Arena Integration | not started | — | Friends HoF + arena lobby friends list |
+| 3 — HoF & Arena Integration | complete | 2/2 | Plan 01 complete 2026-05-05. Plan 02 complete 2026-05-05. Commits: 3bcf201, 87ba4de, 3b0be3d. |
+
+## Decisions Log (Phase 3)
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+| 2026-05-05 | AvatarView prop is `avatar` (not `avatarId`) | TypeScript check caught this; same fix in both Plan 01 and Plan 02. |
+| 2026-05-05 | ROW_HEIGHT = 64 for getItemLayout in HoF FlatList | Deterministic scroll-to-own-row (HOF-07); must match actual row render height. |
+| 2026-05-05 | Loop variable `friend` (not `f`) in arena friends map | `f` is the font-scale object from useTheme(); renaming avoids shadowing. |
 
 ## Decisions Log (Phase 2 Plan 02)
 
@@ -53,4 +74,4 @@
 | 2026-05-05 | friends create rule: get() check for accepted request | Enables client-side two-step accept without Cloud Function; security rules gate on existing accepted request doc. |
 
 ---
-*Last updated: 2026-05-05 after Phase 2 Plan 02 execution — Phase 2 complete*
+*Last updated: 2026-05-05 after Phase 3 execution — milestone v1.0 Friends MVP complete*

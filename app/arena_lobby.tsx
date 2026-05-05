@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
-  ActivityIndicator, Image, Animated, Platform, Share,
+  ActivityIndicator, Image, Animated, Easing, Platform, Share, ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
@@ -29,14 +29,21 @@ import {
   getDailyArenaPlaysLeft,
   incrementDailyArenaPlay,
 } from './arena_daily_limit';
-import { emitAppEvent } from './events';
+import { emitAppEvent, onAppEvent } from './events';
 import { logEvent } from './firebase';
 import { useTabNav } from './TabContext';
 import { useScreen } from '../hooks/use-screen';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { arenaToasts } from '../constants/arena_i18n';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import {
+  ARENA_LOBBY_ACCEPT_MS,
+  ARENA_PLAY_AGAIN_BOT_MAX_MS,
+  ARENA_PLAY_AGAIN_BOT_MIN_MS,
+  CLOUD_SYNC_ENABLED,
+  ENABLE_ARENA_RANKED_WAGER,
+  IS_EXPO_GO,
+} from './config';
 import type { ArenaSession, LobbyChoice } from './types/arena';
 import {
   setSessionLobbyChoice,
@@ -45,6 +52,46 @@ import {
   subscribeSessionPlayers,
 } from './services/arena_db';
 import { buildFriendInviteSharePayload } from './arena_duel_share';
+import {
+  ARENA_RANKED_WAGER_STAKES,
+  clearPendingArenaRankedWager,
+  getPendingArenaRankedWager,
+  setPendingArenaRankedWager,
+  type ArenaRankedPendingWager,
+  type ArenaRankedWagerStake,
+} from './arena_match_wager';
+import { getShardsBalance } from './shards_system';
+import { oskolokImageForPackShards } from './oskolok';
+import { subscribeToFriends, type FriendEntry } from './firestore_friend_requests';
+import { getBestAvatarForLevel } from '../constants/avatars';
+import { getLevelFromXP } from '../constants/theme';
+import AvatarView from '../components/AvatarView';
+
+/** Підказка idle «скільки шукають у мережі» (день 1–7, ніч 1–2): спільний кеш, оновлення ~1 хв. */
+const IDLE_QUEUE_HINT_TTL_MS = 60 * 1000;
+type IdleQueueHintCache = { value: number; at: number; night: boolean };
+let idleQueueHintCache: IdleQueueHintCache | null = null;
+
+/** 20:00–08:00 за локальним часом пристрою — показуємо не більше 2 «у пошуку». */
+function isNightArenaIdleQueueHint(): boolean {
+  const h = new Date().getHours();
+  return h >= 20 || h < 8;
+}
+
+function getOrRefreshIdleQueueHintCount(): number {
+  const now = Date.now();
+  const night = isNightArenaIdleQueueHint();
+  const staleByTime = !idleQueueHintCache || now - idleQueueHintCache.at >= IDLE_QUEUE_HINT_TTL_MS;
+  const staleByDaySegment = !!idleQueueHintCache && idleQueueHintCache.night !== night;
+  if (!idleQueueHintCache || staleByTime || staleByDaySegment) {
+    idleQueueHintCache = {
+      value: night ? Math.floor(Math.random() * 2) + 1 : Math.floor(Math.random() * 7) + 1,
+      at: now,
+      night,
+    };
+  }
+  return idleQueueHintCache.value;
+}
 
 function formatElapsed(ms: number): string {
   const s = Math.floor(ms / 1000);
@@ -92,7 +139,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   const { width: windowW, contentMaxW } = useScreen();
   const router = useRouter();
   const { goHome } = useTabNav();
-  const { autoSearch } = useLocalSearchParams<{ autoSearch?: string }>();
+  const { autoSearch, playAgainTs } = useLocalSearchParams<{ autoSearch?: string; playAgainTs?: string }>();
   const { theme: t, f, themeMode } = useTheme();
   const screenTitleColor = (themeMode === 'sakura' || themeMode === 'ocean')
     ? (themeMode === 'ocean' ? 'rgba(240,252,255,0.95)' : 'rgba(255,248,252,0.95)')
@@ -114,6 +161,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     status, sessionId, elapsedMs, searchStartedAt,
     startSearching, cancelSearching, stopSearchTimer, updateQueueWithPushToken,
     setLobbyActive, markMatchHandled, clearFoundMatch,
+    resumeSearchAfterLobbyAbort, forgetSearchResumeSnapshot,
   } = useMatchmakingContext();
   const [arenaLimitModal, setArenaLimitModal] = useState<ArenaLimitMode | null>(null);
   const [noEnergyModal, setNoEnergyModal] = useState(false);
@@ -124,6 +172,19 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   const [friendShared, setFriendShared] = useState(false);
   /** Скільки в пошуку зараз (агрегат app_meta, оновлює Cloud Function; не скануємо matchmaking_queue). */
   const [rawSearchingTotal, setRawSearchingTotal] = useState(0);
+  /** Підказка «скільки шукають матч» у idle: день 1–7, ніч 20:00–08:00 — 1–2; не частіше ніж раз на хвилину. */
+  const [idleQueueHintDisplayCount, setIdleQueueHintDisplayCount] = useState(getOrRefreshIdleQueueHintCount);
+  /** Ставка осколками на следующий рейтинг-матч (только «Найти матч» / бот из очереди). */
+  const [rankedWagerPending, setRankedWagerPending] = useState<ArenaRankedPendingWager | null>(null);
+  const [shardsBalanceUi, setShardsBalanceUi] = useState<number | null>(null);
+  const [arenaFriends, setArenaFriends] = useState<FriendEntry[]>([]);
+  const [arenaFriendProfiles, setArenaFriendProfiles] = useState<
+    Record<string, { name: string; totalXp: number }>
+  >({});
+  const [arenaFriendHint, setArenaFriendHint] = useState(false);
+  const [lobbyAcceptDeadlineAt, setLobbyAcceptDeadlineAt] = useState<number | null>(null);
+  const lobbyAcceptBarAnim = useRef(new Animated.Value(1)).current;
+  const lobbyAcceptBarAnimRunRef = useRef<Animated.CompositeAnimation | null>(null);
   const friendUnsubRef = useRef<(() => void) | null>(null);
   const friendMatchNavRef = useRef(false);
   const pendingMatchChargeRef = useRef(false);
@@ -132,7 +193,10 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   /** Идемпотентность тоста/cancel при abort одной и той же ranked-сессии из лобби */
   const matchLobbyAbortHandledRef = useRef<string | null>(null);
 
-  const handleFindMatch = useCallback(async (uidOverride?: string) => {
+  const handleFindMatch = useCallback(async (
+    uidOverride?: string,
+    opts?: { playAgain?: boolean },
+  ) => {
     if (findMatchInFlightRef.current) return;
     findMatchInFlightRef.current = true;
     try {
@@ -160,13 +224,28 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
       logEvent('arena_search_started', {
         rank_idx: myRank.rankIndex,
         is_unlimited: isUnlimited ? 1 : 0,
+        play_again_flow: opts?.playAgain ? 1 : 0,
       });
       setPhase('searching');
       const myName = (await AsyncStorage.getItem('user_name')) ?? defaultPlayerName;
       // Счётчик поиска считается в MatchmakingContext — startSearching() должен вызваться сразу;
       // expo-notifications (разрешения + getExpoPushTokenAsync) может отвечать долго или зависать, из‑за этого
       // раньше phase был «searching», а таймер не стартовал (0:00). Токен — фоновым дозапросом.
-      const joined = await startSearching(uid, myRank.tier, myRank.level, size, undefined, myName);
+      const span = ARENA_PLAY_AGAIN_BOT_MAX_MS - ARENA_PLAY_AGAIN_BOT_MIN_MS;
+      const playAgainMs =
+        ARENA_PLAY_AGAIN_BOT_MIN_MS + Math.floor(Math.random() * (span + 1));
+      const searchOpts = opts?.playAgain
+        ? { humanSearchWindowMs: playAgainMs }
+        : undefined;
+      const joined = await startSearching(
+        uid,
+        myRank.tier,
+        myRank.level,
+        size,
+        undefined,
+        myName,
+        searchOpts,
+      );
       if (!joined) {
         pendingMatchChargeRef.current = false;
         setPhase('idle');
@@ -199,41 +278,81 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     if (isTab) return;
     const timer = setTimeout(() => {
       if (autoSearch === '1') {
-        router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1' } });
+        router.replace({
+          pathname: '/(tabs)/arena' as any,
+          params: { autoSearch: '1', ...(playAgainTs ? { playAgainTs } : {}) },
+        });
       } else {
         router.replace('/(tabs)/arena' as any);
       }
     }, 0);
     return () => clearTimeout(timer);
-  }, [isTab, autoSearch, router]);
+  }, [isTab, autoSearch, playAgainTs, router]);
 
   useEffect(() => {
-    ensureArenaAuthUid().then(uid => {
+    ensureArenaAuthUid().then((uid) => {
       if (uid) {
         setUserId(uid);
-        if (autoSearch === '1') handleFindMatch(uid);
+        if (autoSearch === '1') void handleFindMatch(uid, { playAgain: true });
       }
     });
     (async () => {
       setDailyCount(await getDailyArenaCount());
       setDailyMax(await getDailyArenaMaxToday());
     })();
-  }, [autoSearch, handleFindMatch]);
+  }, [autoSearch, playAgainTs, handleFindMatch]);
+
+  const refreshRankedWagerUi = useCallback(async () => {
+    if (!ENABLE_ARENA_RANKED_WAGER) {
+      setRankedWagerPending(null);
+      setShardsBalanceUi(null);
+      return;
+    }
+    try {
+      const [w, bal] = await Promise.all([getPendingArenaRankedWager(), getShardsBalance()]);
+      setRankedWagerPending(w);
+      setShardsBalanceUi(bal);
+    } catch {
+      setShardsBalanceUi(null);
+    }
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
+      setIdleQueueHintDisplayCount(getOrRefreshIdleQueueHintCount());
+      void refreshRankedWagerUi();
       (async () => {
         setDailyCount(await getDailyArenaCount());
         setDailyMax(await getDailyArenaMaxToday());
       })();
-    }, []),
+    }, [refreshRankedWagerUi]),
   );
+
+  useEffect(() => {
+    if (!ENABLE_ARENA_RANKED_WAGER) return undefined;
+    const sub = onAppEvent('shards_balance_updated', () => {
+      void refreshRankedWagerUi();
+    });
+    return () => sub.remove();
+  }, [refreshRankedWagerUi]);
+
+  useEffect(() => {
+    if (phase !== 'idle') return;
+    const id = setInterval(() => {
+      setIdleQueueHintDisplayCount(getOrRefreshIdleQueueHintCount());
+    }, IDLE_QUEUE_HINT_TTL_MS);
+    return () => clearInterval(id);
+  }, [phase]);
 
   // Register lobby as active so MatchFoundToast is suppressed while we're here
   useEffect(() => {
     setLobbyActive(true);
     return () => setLobbyActive(false);
   }, [setLobbyActive]);
+
+  useEffect(() => {
+    matchLobbyAbortHandledRef.current = null;
+  }, [sessionId]);
 
   /** Глобальный статус поиска (в т.ч. после перезапуска) → локальная фаза лобби. */
   useEffect(() => {
@@ -264,6 +383,30 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     if (status === 'found' && sessionId) setPhase('match_found');
     if (status === 'idle' && phase === 'match_found') setPhase('idle');
   }, [status, sessionId, phase]);
+
+  /**
+   * Бот-матч без документа arena_sessions: те же 15 с на «Принять», полоска и авто-выход из очереди.
+   */
+  useEffect(() => {
+    if (status !== 'found' || !sessionId || !isBotSession(sessionId)) return;
+    const sid = sessionId;
+    setLobbyAcceptDeadlineAt(Date.now() + ARENA_LOBBY_ACCEPT_MS);
+    const t = setTimeout(() => {
+      if (sessionIdRef.current !== sid) return;
+      pendingMatchChargeRef.current = false;
+      setLobbyAcceptDeadlineAt(null);
+      void (async () => {
+        await cancelSearching();
+        setPhase('idle');
+        logEvent('arena_match_lobby_abort', { reason: 'accept_timeout' });
+        await resumeSearchAfterLobbyAbort();
+      })();
+    }, ARENA_LOBBY_ACCEPT_MS + 80);
+    return () => {
+      clearTimeout(t);
+      if (sessionIdRef.current === sid) setLobbyAcceptDeadlineAt(null);
+    };
+  }, [status, sessionId, cancelSearching, resumeSearchAfterLobbyAbort]);
 
   /**
    * В лобби «соперник найден» раньше не слушали arena_sessions: при accept_timeout / decline
@@ -302,22 +445,19 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     };
 
     const finishAbortedMatch = (reason: ArenaSession['abortReason']) => {
-      if (matchLobbyAbortHandledRef.current === sid) return;
+      if (matchLobbyAbortHandledRef.current === sid) {
+        matchLobbyAbortHandledRef.current = null;
+        return;
+      }
+      if (sessionIdRef.current !== sid) return;
       matchLobbyAbortHandledRef.current = sid;
       clearDeclineTimer();
       void (async () => {
         pendingMatchChargeRef.current = false;
         await cancelSearching();
         setPhase('idle');
-        if (reason === 'accept_timeout') {
-          emitAppEvent('action_toast', {
-            type: 'info',
-            messageRu: 'Время на принятие матча истекло. Можно снова искать соперника.',
-            messageUk: 'Час на прийняття матчу вичерпано. Можна знову шукати суперника.',
-            messageEs:
-              'Se acabó el tiempo para aceptar. Puedes buscar otro rival desde la Arena.',
-          });
-        } else {
+        setLobbyAcceptDeadlineAt(null);
+        if (reason !== 'accept_timeout') {
           emitAppEvent('action_toast', {
             type: 'info',
             messageRu: 'Матч отменён (соперник отказался или вышел).',
@@ -326,6 +466,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
           });
         }
         logEvent('arena_match_lobby_abort', { reason: reason ?? 'unknown' });
+        await resumeSearchAfterLobbyAbort();
       })();
     };
 
@@ -337,6 +478,11 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
     const unSubSession = subscribeSession(sid, (session) => {
       sessionRef.current = session;
+      if (session.state === 'acceptance' && typeof session.acceptDeadlineAt === 'number') {
+        setLobbyAcceptDeadlineAt(session.acceptDeadlineAt);
+      } else {
+        setLobbyAcceptDeadlineAt(null);
+      }
       if (session.state === 'aborted') {
         finishAbortedMatch(session.abortReason);
         return;
@@ -346,10 +492,11 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
     return () => {
       clearDeclineTimer();
+      setLobbyAcceptDeadlineAt(null);
       unSubPlayers();
       unSubSession();
     };
-  }, [status, sessionId, userId, cancelSearching]);
+  }, [status, sessionId, userId, cancelSearching, resumeSearchAfterLobbyAbort]);
 
   const goToGameAfterAccept = useCallback(() => {
     markMatchHandled();
@@ -367,14 +514,17 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
   const handleMatchFoundDecline = useCallback(async () => {
     hapticTap();
+    if (sessionId) matchLobbyAbortHandledRef.current = sessionId;
     pendingMatchChargeRef.current = false;
+    setLobbyAcceptDeadlineAt(null);
     if (sessionId && !isBotSession(sessionId) && CLOUD_SYNC_ENABLED && userId) {
       await setSessionLobbyChoice(sessionId, userId, 'decline').catch(() => {});
     }
     await cancelSearching();
     setPhase('idle');
     logEvent('arena_match_declined', {});
-  }, [sessionId, userId, cancelSearching]);
+    void resumeSearchAfterLobbyAbort();
+  }, [sessionId, userId, cancelSearching, resumeSearchAfterLobbyAbort]);
 
   const handleMatchFoundAccept = useCallback(async () => {
     if (!sessionId || !userId) return;
@@ -521,6 +671,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
   const handleCancelSearch = async () => {
     hapticTap();
+    forgetSearchResumeSnapshot();
     pendingMatchChargeRef.current = false;
     const cancelledMs = searchStartedAt > 0 ? (Date.now() - searchStartedAt) : elapsedMs;
     await cancelSearching();
@@ -534,6 +685,49 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
    * глобального лічильника, якщо status залип searching (покаже 0, хоча в мережі шукають).
    */
   const inSearchFlow = phase === 'searching' || phase === 'match_found';
+  const countsAsInQueue = phase === 'searching' || phase === 'match_found';
+
+  const handleRankedWagerSelect = useCallback(async (stake: ArenaRankedWagerStake) => {
+    if (!ENABLE_ARENA_RANKED_WAGER || inSearchFlow) return;
+    hapticTap();
+    const cur = await getPendingArenaRankedWager();
+    if (cur?.stake === stake) {
+      await clearPendingArenaRankedWager();
+      setRankedWagerPending(null);
+      logEvent('arena_ranked_wager_cleared', { stake });
+      emitAppEvent('action_toast', {
+        type: 'info',
+        messageRu: 'Ставка на следующий матч снята.',
+        messageUk: 'Ставку на наступний матч знято.',
+        messageEs: 'Apuesta para la próxima partida cancelada.',
+      });
+      return;
+    }
+    const bal = await getShardsBalance();
+    if (bal < stake) {
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: `Нужно минимум ${stake} осколков.`,
+        messageUk: `Потрібно щонайменше ${stake} осколків.`,
+        messageEs: `Necesitas al menos ${stake} fragmentos.`,
+      });
+      router.push({
+        pathname: '/shards_shop' as any,
+        params: { need: String(Math.max(0, stake - bal)), source: 'arena_ranked_wager' },
+      });
+      return;
+    }
+    await setPendingArenaRankedWager(stake);
+    await refreshRankedWagerUi();
+    const payout = stake * 3;
+    logEvent('arena_ranked_wager_set', { stake, payout });
+    emitAppEvent('action_toast', {
+      type: 'success',
+      messageRu: `Ставка на матч: ${stake} → при победе +${payout} осколков. Поражение: −${stake}. Ничья: без потерь.`,
+      messageUk: `Ставка на матч: ${stake} → при перемозі +${payout} осколків. Поразка: −${stake}. Нічия: без втрат.`,
+      messageEs: `Apuesta: ${stake} → si ganas +${payout} fragmentos. Si pierdes: −${stake}. Empate: sin cambio.`,
+    });
+  }, [inSearchFlow, refreshRankedWagerUi, router]);
   const showMatchFound = status === 'found' && !!sessionId;
   const showQueuePanel =
     (status === 'searching' && (phase === 'searching' || phase === 'idle'))
@@ -575,11 +769,38 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     return () => { clearTimeout(t0); };
   }, [showMatchFound, sessionId, morph]);
 
+  useEffect(() => {
+    lobbyAcceptBarAnimRunRef.current?.stop?.();
+    lobbyAcceptBarAnimRunRef.current = null;
+    if (!showMatchFound || !lobbyAcceptDeadlineAt) {
+      lobbyAcceptBarAnim.setValue(1);
+      return;
+    }
+    const msLeft = Math.max(0, lobbyAcceptDeadlineAt - Date.now());
+    const startFrac = Math.max(0, Math.min(1, msLeft / ARENA_LOBBY_ACCEPT_MS));
+    lobbyAcceptBarAnim.setValue(startFrac);
+    if (msLeft <= 0) return;
+    const anim = Animated.timing(lobbyAcceptBarAnim, {
+      toValue: 0,
+      duration: msLeft,
+      easing: Easing.linear,
+      useNativeDriver: true,
+    });
+    lobbyAcceptBarAnimRunRef.current = anim;
+    anim.start(() => {
+      lobbyAcceptBarAnimRunRef.current = null;
+    });
+    return () => {
+      anim.stop();
+      lobbyAcceptBarAnimRunRef.current = null;
+    };
+  }, [showMatchFound, lobbyAcceptDeadlineAt, sessionId, lobbyAcceptBarAnim]);
+
   const queueOthersCount = useMemo(() => {
     const total = Math.max(0, rawSearchingTotal);
-    if (inSearchFlow && userId) return Math.max(0, total - 1);
+    if (countsAsInQueue && userId) return Math.max(0, total - 1);
     return total;
-  }, [rawSearchingTotal, inSearchFlow, userId]);
+  }, [rawSearchingTotal, countsAsInQueue, userId]);
 
   useEffect(() => {
     if (!userId || IS_EXPO_GO || !CLOUD_SYNC_ENABLED) {
@@ -588,6 +809,41 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     }
     return subscribeMatchmakingSearchingTotal(setRawSearchingTotal);
   }, [userId]);
+
+  useEffect(() => {
+    const unsub = subscribeToFriends(setArenaFriends, () => setArenaFriends([]));
+    return () => unsub();
+  }, []);
+
+  useEffect(() => {
+    if (arenaFriends.length === 0) return;
+    const db = (() => {
+      if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+      try { return require('@react-native-firebase/firestore').default(); } catch { return null; }
+    })();
+    if (!db) return;
+    let cancelled = false;
+    void Promise.all(
+      arenaFriends.map(async f => {
+        try {
+          const snap = await db.collection('users').doc(f.uid).get();
+          if (!snap.exists) return null;
+          const data = snap.data() ?? {};
+          return {
+            uid: f.uid,
+            name: (data.displayName as string) || (data.progress?.displayName as string) || 'Игрок',
+            totalXp: parseInt((data.progress?.user_total_xp as string) ?? '0') || 0,
+          };
+        } catch { return null; }
+      })
+    ).then(results => {
+      if (cancelled) return;
+      const map: Record<string, { name: string; totalXp: number }> = {};
+      for (const r of results) if (r) map[r.uid] = r;
+      setArenaFriendProfiles(map);
+    });
+    return () => { cancelled = true; };
+  }, [arenaFriends]);
 
   const othersInQueueBadge =
     queueOthersCount > 0 ? (
@@ -622,7 +878,9 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     <ScreenGradient>
       <SafeAreaView
         style={{ flex: 1, backgroundColor: 'transparent' }}
-        edges={isTab ? ['top'] : ['top', 'bottom']}
+        /* В режиме таба верхний inset уже даёт (tabs)/_layout (paddingTop: insets.top).
+           Дублирование SafeArea top на iOS давало лишний отступ и дёрганье при появлении EnergyBar/очереди. */
+        edges={isTab ? [] : ['top', 'bottom']}
       >
       {/* Шапка */}
       <View style={styles.header}>
@@ -656,13 +914,18 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
         >
           <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
         </TouchableOpacity>
-        <Text
-          testID="screen-arena-lobby"
-          accessibilityLabel="qa-screen-arena-lobby"
-          style={[styles.title, { color: screenTitleColor, fontSize: f.h2 + 6, fontWeight: '700' }]}
-        >
-          {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
-        </Text>
+        <View style={styles.titleWrap}>
+          <Text
+            testID="screen-arena-lobby"
+            accessibilityLabel="qa-screen-arena-lobby"
+            style={[styles.titleText, { color: screenTitleColor, fontSize: f.h2 + 6, fontWeight: '700' }]}
+            numberOfLines={1}
+            adjustsFontSizeToFit
+            minimumFontScale={0.75}
+          >
+            {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
+          </Text>
+        </View>
         <View style={styles.headerRight}>
           {!isUnlimited && <EnergyBar size={16} />}
           <TouchableOpacity
@@ -698,8 +961,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             в отдельном слоте с зарезервированным minHeight. */}
         <View style={styles.infoZone} pointerEvents="box-none">
           {!showQueuePanel && (
-            // Текстовая подсказка — одна строка, фиксированной высоты,
-            // не прыгает при асинхронном приходе queueOthersCount из Firestore.
+            // Підказка «хто шукає матч»: день 1–7, ніч 20:00–08:00 — 1–2; оновлення ~1 хв (див. getOrRefreshIdleQueueHintCount).
             // Бейдж намеренно убран из idle: он дублировал эту строку и дёргал layout.
             <Text
               style={[
@@ -709,12 +971,12 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
               numberOfLines={1}
             >
               {triLang(lang, {
-                uk: `Зараз у пошуку в мережі: ${queueOthersCount}`,
-                ru: `Сейчас в сети ищут матч: ${queueOthersCount}`,
+                uk: `Зараз у пошуку в мережі: ${idleQueueHintDisplayCount}`,
+                ru: `Сейчас в сети ищут матч: ${idleQueueHintDisplayCount}`,
                 es:
-                  queueOthersCount === 1
+                  idleQueueHintDisplayCount === 1
                     ? 'Hay 1 jugador buscando partida'
-                    : `Hay ${queueOthersCount} jugadores buscando partida`,
+                    : `Hay ${idleQueueHintDisplayCount} jugadores buscando partida`,
               })}
             </Text>
           )}
@@ -764,6 +1026,26 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                 <Text style={[styles.queueSub, { color: screenMuted, fontSize: f.caption }]}>
                   {triLang(lang, { uk: 'До 10 хв', ru: 'До 10 мин', es: 'Máximo 10 minutos' })}
                 </Text>
+                {ENABLE_ARENA_RANKED_WAGER && rankedWagerPending && (
+                  <Text
+                    style={[
+                      styles.queueSub,
+                      {
+                        color: t.gold ?? t.accent,
+                        fontSize: f.caption,
+                        fontWeight: '700',
+                        marginTop: 2,
+                        textAlign: 'center',
+                      },
+                    ]}
+                  >
+                    {triLang(lang, {
+                      ru: `💎 Ставка: ${rankedWagerPending.stake} → до +${rankedWagerPending.winPayout}`,
+                      uk: `💎 Ставка: ${rankedWagerPending.stake} → до +${rankedWagerPending.winPayout}`,
+                      es: `💎 Apuesta: ${rankedWagerPending.stake} → hasta +${rankedWagerPending.winPayout}`,
+                    })}
+                  </Text>
+                )}
                 <Text style={[styles.queueCountdown, { color: t.accent }]}>
                   {formatRemainSearch(remainSearchMs)}
                 </Text>
@@ -784,6 +1066,23 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                   </Text>
                 )}
               </View>
+
+              {showMatchFound && sessionId && lobbyAcceptDeadlineAt != null && (
+                <View style={{ width: layoutW, alignSelf: 'center', marginBottom: 8, marginTop: 2 }} accessibilityRole="timer">
+                  <View style={{ height: 4, borderRadius: 2, backgroundColor: `${t.border}99`, overflow: 'hidden' }}>
+                    <Animated.View
+                      style={{
+                        height: '100%',
+                        width: '100%',
+                        backgroundColor: t.accent,
+                        borderRadius: 2,
+                        transform: [{ scaleX: lobbyAcceptBarAnim }],
+                        transformOrigin: 'left',
+                      }}
+                    />
+                  </View>
+                </View>
+              )}
 
               <View style={styles.queueActionMorphRow}>
                 <Animated.View style={[styles.queueBtnSlot, { width: leftW, overflow: 'hidden' }]}>
@@ -838,6 +1137,71 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             </>
           ) : (
             <>
+              {ENABLE_ARENA_RANKED_WAGER && !friendRoomId && (
+                <View
+                  style={[
+                    styles.rankedWagerCard,
+                    {
+                      width: layoutW,
+                      alignSelf: 'center',
+                      borderColor: `${t.border}99`,
+                      backgroundColor: 'rgba(255,255,255,0.07)',
+                    },
+                  ]}
+                >
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                    <Text style={[styles.rankedWagerTitle, { color: screenTitleColor, fontSize: f.sub }]}>
+                      {triLang(lang, {
+                        ru: 'Ставка на следующий матч',
+                        uk: 'Ставка на наступний матч',
+                        es: 'Apuesta en la próxima partida',
+                      })}
+                    </Text>
+                    {shardsBalanceUi != null && (
+                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                        <Image
+                          source={oskolokImageForPackShards(Math.min(99, shardsBalanceUi))}
+                          style={{ width: 18, height: 18 }}
+                          resizeMode="contain"
+                        />
+                        <Text style={{ color: screenMuted, fontSize: f.caption, fontWeight: '700' }}>{shardsBalanceUi}</Text>
+                      </View>
+                    )}
+                  </View>
+                  <Text style={[styles.rankedWagerHint, { color: screenMuted, fontSize: f.caption - 1 }]}>
+                    {triLang(lang, {
+                      ru: 'Победа: выплата ×3 к ставке вместо обычных +1. Поражение: −ставка. Ничья: без списания.',
+                      uk: 'Перемога: виплата ×3 до ставки замість звичайних +1. Поразка: −ставка. Нічия: без списання.',
+                      es: 'Victoria: pago ×3 en vez del +1 habitual. Derrota: −apuesta. Empate: sin cambio.',
+                    })}
+                  </Text>
+                  <View style={styles.rankedWagerChipsRow}>
+                    {ARENA_RANKED_WAGER_STAKES.map((st) => {
+                      const selected = rankedWagerPending?.stake === st;
+                      return (
+                        <TouchableOpacity
+                          key={st}
+                          activeOpacity={0.85}
+                          onPress={() => void handleRankedWagerSelect(st)}
+                          style={[
+                            styles.rankedWagerChip,
+                            {
+                              borderColor: selected ? t.accent : t.border,
+                              backgroundColor: selected ? `${t.accent}28` : 'rgba(255,255,255,0.04)',
+                            },
+                          ]}
+                        >
+                          <Text style={{ color: screenTitleColor, fontWeight: '800', fontSize: f.body }}>{st}</Text>
+                          <Text style={{ color: screenMuted, fontSize: f.caption - 2, marginTop: 2 }}>
+                            →{st * 3}
+                          </Text>
+                        </TouchableOpacity>
+                      );
+                    })}
+                  </View>
+                </View>
+              )}
+
               <TouchableOpacity testID="arena-find-match" accessibilityLabel="qa-arena-find-match" accessible={true} onPress={() => { hapticTap(); handleFindMatch(); }} activeOpacity={0.85}>
                 <LinearGradient
                   colors={[t.accent, t.accent + 'BB']}
@@ -918,6 +1282,75 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                 </>
               )}
 
+              {/* Arena friends invite list — ARENA-01..04 */}
+              {!inSearchFlow && (
+                <View style={{ marginTop: 12 }}>
+                  <Text style={{ color: screenMuted, fontSize: f.sub, marginBottom: 8, textAlign: 'center' }}>
+                    {triLang(lang, { ru: 'Пригласить друга', uk: 'Запросити друга', es: 'Invitar amigo' })}
+                  </Text>
+                  {arenaFriendHint && (
+                    <Text style={{ color: screenMuted, fontSize: f.sub, textAlign: 'center', marginBottom: 6 }}>
+                      {triLang(lang, {
+                        ru: 'Нажмите «Поделиться ссылкой» выше',
+                        uk: 'Натисніть «Поділитися посиланням» вище',
+                        es: 'Pulsa «Compartir enlace» arriba',
+                      })}
+                    </Text>
+                  )}
+                  {arenaFriends.length === 0 ? (
+                    <Text style={{ color: screenMuted, fontSize: f.sub, textAlign: 'center', opacity: 0.6 }}>
+                      {triLang(lang, {
+                        ru: 'Добавьте друзей по коду в настройках',
+                        uk: 'Додайте друзів за кодом у налаштуваннях',
+                        es: 'Añade amigos por código en ajustes',
+                      })}
+                    </Text>
+                  ) : (
+                    <ScrollView
+                      horizontal
+                      showsHorizontalScrollIndicator={false}
+                      contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }}
+                    >
+                      {arenaFriends.map(friend => {
+                        const profile = arenaFriendProfiles[friend.uid];
+                        const totalXp = profile?.totalXp ?? 0;
+                        const level = getLevelFromXP(totalXp);
+                        const avatarId = String(getBestAvatarForLevel(level));
+                        const name = profile?.name ?? '…';
+                        return (
+                          <TouchableOpacity
+                            key={friend.uid}
+                            onPress={() => {
+                              hapticTap();
+                              if (friendRoomId) {
+                                void handleFriendShare();
+                              } else {
+                                void handlePlayWithFriend();
+                                setArenaFriendHint(true);
+                                setTimeout(() => setArenaFriendHint(false), 2500);
+                              }
+                            }}
+                            activeOpacity={0.7}
+                            style={{ alignItems: 'center', gap: 4, minWidth: 56 }}
+                          >
+                            <AvatarView avatar={avatarId} size={44} />
+                            <Text
+                              numberOfLines={1}
+                              style={{ color: t.textPrimary, fontSize: f.sub, maxWidth: 60 }}
+                            >
+                              {name}
+                            </Text>
+                            <Text style={{ color: screenMuted, fontSize: f.sub }}>
+                              Lv {level}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </ScrollView>
+                  )}
+                </View>
+              )}
+
             </>
           )}
         </View>
@@ -980,8 +1413,10 @@ const styles = StyleSheet.create({
     minHeight: 60,
   },
   backBtn: { marginRight: 12 },
-  title: { flex: 1 },
-  headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8 },
+  /** flex:1 на самом Text между узкой кнопкой и широким headerRight сжимал ширину до ~0 на телефонах → буквы столбиком (iOS). */
+  titleWrap: { flex: 1, minWidth: 0, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 4 },
+  titleText: { textAlign: 'center', width: '100%' },
+  headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 },
   rankBadge: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
     borderRadius: 10, borderWidth: 1, paddingHorizontal: 10, paddingVertical: 5,
@@ -1052,6 +1487,33 @@ const styles = StyleSheet.create({
   premiumUnlimitedText: {
     fontWeight: '700',
     textAlign: 'center',
+  },
+
+  rankedWagerCard: {
+    borderRadius: 16,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 12,
+    gap: 8,
+  },
+  rankedWagerTitle: { fontWeight: '800' },
+  rankedWagerHint: { lineHeight: 18 },
+  rankedWagerChipsRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginTop: 4,
+    justifyContent: 'space-between',
+  },
+  rankedWagerChip: {
+    flexGrow: 1,
+    flexBasis: '20%',
+    minWidth: 64,
+    borderRadius: 12,
+    borderWidth: 1.5,
+    paddingVertical: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   searchingLabel: { fontWeight: '500' },

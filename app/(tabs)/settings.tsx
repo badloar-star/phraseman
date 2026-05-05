@@ -19,7 +19,13 @@ import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import EnergyBar from '../../components/EnergyBar';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
-import { DEV_MODE, ENABLE_DEV_STUDY_TARGET_LANG, IS_STORE_RELEASE } from '../config';
+import {
+  DEV_MODE,
+  ENABLE_DEV_STUDY_TARGET_LANG,
+  IS_STORE_RELEASE,
+  KNOWLY_LEGAL_PRIVACY_URL,
+  KNOWLY_LEGAL_TERMS_URL,
+} from '../config';
 import {
   emitDevStudyTargetChanged,
   getDevStudyTargetLang,
@@ -577,12 +583,6 @@ export default function SettingsMain() {
 
 <SectionTitle title={L('Ещё', 'Ще', 'Más')} />
         <Row
-          icon="people-outline"
-          label={L('Друзья', 'Друзі', 'Amigos')}
-          sub={L('Коды, заявки, список друзей', 'Коди, заявки, список друзів', 'Códigos, solicitudes, amigos')}
-          onPress={() => { doHaptic(); router.push('/friends_screen' as any); }}
-        />
-        <Row
           icon="person-add-outline"
           label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo')}
           sub={L('Бонусы вам обоим', 'Бонуси вам обом', 'Recompensas para ambos')}
@@ -689,12 +689,22 @@ export default function SettingsMain() {
         {/* Подвал */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
           <View style={{ flexDirection:'row', gap:16, marginBottom:20 }}>
-            <TouchableOpacity onPress={() => router.push('/privacy_screen' as any)}>
+            <TouchableOpacity
+              onPress={() => {
+                doHaptic();
+                void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL);
+              }}
+            >
               <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
                 Privacy Policy
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.push('/terms_screen' as any)}>
+            <TouchableOpacity
+              onPress={() => {
+                doHaptic();
+                void Linking.openURL(KNOWLY_LEGAL_TERMS_URL);
+              }}
+            >
               <Text style={{ color:screenGhost, fontSize:f.caption, textDecorationLine:'underline' }}>
                 Terms of Use
               </Text>

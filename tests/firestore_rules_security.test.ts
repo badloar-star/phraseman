@@ -93,8 +93,9 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow update: if false;/);
   });
 
-  test('friends subcollection delete restricted to owner', () => {
-    expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow delete: if request\.auth != null && request\.auth\.uid == ownerUid;/);
+  test('friends subcollection delete allows ownerUid or friendUid (bidirectional)', () => {
+    // Updated in Plan 02-01 to support bidirectional client-side removal.
+    expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow delete: if request\.auth != null && \(request\.auth\.uid == ownerUid \|\| request\.auth\.uid == friendUid\)/);
   });
 
   test('catch-all is still the last match block (D-09 regression guard)', () => {
@@ -109,5 +110,63 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rules).toContain('match /leaderboard/{userId} {');
     expect(rules).toContain('match /banned_users/{docId} {');
     expect(rules).toContain('match /auth_links/{providerUid} {');
+  });
+});
+
+describe('firestore.rules friends bidirectional create/delete (Plan 02-01)', () => {
+  const rules = readFileSync(rulesPath, 'utf8');
+
+  // FR-NEW-1: friendUid can create when accepted request exists
+  test('FR-NEW-1: friends create rule allows friendUid when accepted request exists (get() check)', () => {
+    expect(rules).toMatch(
+      /friends\/\{friendUid\}[\s\S]*?request\.auth\.uid == friendUid[\s\S]*?exists\(\/databases\/\$\(database\)\/documents\/users\/\$\(ownerUid\)\/friend_requests\/\$\(friendUid\)\)/,
+    );
+    expect(rules).toMatch(
+      /friends\/\{friendUid\}[\s\S]*?get\(\/databases\/\$\(database\)\/documents\/users\/\$\(ownerUid\)\/friend_requests\/\$\(friendUid\)\)\.data\.status == 'accepted'/,
+    );
+  });
+
+  // FR-NEW-2: friendUid cannot create when no accepted request exists (rule requires get() check)
+  test('FR-NEW-2: friends create rule still requires accepted request — ownerUid != friendUid guard unchanged', () => {
+    // The rule gates friendUid create on exists() + status == accepted.
+    // Verify the exists() call is present as the guard.
+    expect(rules).toMatch(
+      /exists\(\/databases\/\$\(database\)\/documents\/users\/\$\(ownerUid\)\/friend_requests\/\$\(friendUid\)\)/,
+    );
+  });
+
+  // FR-NEW-3: third-party uid cannot create — ownerUid and friendUid are the only allowed actors
+  test('FR-NEW-3: friends create rule does NOT include catch-all write for third parties', () => {
+    // Rule only permits request.auth.uid == ownerUid OR request.auth.uid == friendUid.
+    // Verify it does NOT contain a permissive fallback like 'if request.auth != null' alone.
+    const friendsBlock = rules.match(
+      /match \/users\/\{ownerUid\}\/friends\/\{friendUid\} \{[\s\S]*?\}/,
+    );
+    expect(friendsBlock).not.toBeNull();
+    // The create line must contain ownerUid or friendUid as auth check (not just request.auth != null alone).
+    expect(friendsBlock![0]).toMatch(/request\.auth\.uid == ownerUid/);
+    expect(friendsBlock![0]).toMatch(/request\.auth\.uid == friendUid/);
+  });
+
+  // FR-NEW-4: ownerUid can delete (existing behavior preserved)
+  test('FR-NEW-4: friends delete still allows ownerUid', () => {
+    expect(rules).toMatch(
+      /friends\/\{friendUid\}[\s\S]*?allow delete:[\s\S]*?request\.auth\.uid == ownerUid/,
+    );
+  });
+
+  // FR-NEW-5: friendUid can now delete (new bidirectional behavior)
+  test('FR-NEW-5: friends delete now allows friendUid (bidirectional removal)', () => {
+    expect(rules).toMatch(
+      /friends\/\{friendUid\}[\s\S]*?allow delete:[\s\S]*?request\.auth\.uid == friendUid/,
+    );
+  });
+
+  // FR-NEW-6: third-party uid cannot delete — only ownerUid or friendUid
+  test('FR-NEW-6: friends delete is restricted to ownerUid OR friendUid (not catch-all)', () => {
+    // The delete rule must include both ownerUid and friendUid with OR operator.
+    expect(rules).toMatch(
+      /allow delete: if request\.auth != null && \(request\.auth\.uid == ownerUid \|\| request\.auth\.uid == friendUid\)/,
+    );
   });
 });

@@ -184,7 +184,7 @@ export async function deleteFriend(friendUid: string): Promise<void> {
  * Вызывать перед подпиской на friend_requests и при фокусе вкладки «Друзья».
  */
 export async function ensureFriendRequestViewerAuthLink(): Promise<void> {
-  const myUid = await getCanonicalUserId();
+  const myUid = await ensureAnonUser();
   if (!myUid) return;
   const firebaseAuthUid = getAuthUserId();
   if (!firebaseAuthUid) return;

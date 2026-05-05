@@ -32,6 +32,7 @@ import {
 } from '../firestore_friend_requests';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
+import { ensureAnonUser } from '../cloud_sync';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportErrorButton from '../../components/ReportErrorButton';
@@ -85,6 +86,7 @@ async function fetchFriendProfile(uid: string): Promise<FriendProfile> {
   try {
     const db = getDb();
     if (!db) return fallback;
+    await ensureAnonUser();
     const snap = await db.collection('users').doc(uid).get();
     if (!snap.exists) return fallback;
     const d: Record<string, unknown> = snap.data() ?? {};
@@ -110,7 +112,7 @@ async function fetchFriendProfile(uid: string): Promise<FriendProfile> {
 async function fetchMyProfile() {
   try {
     const db = getDb();
-    const myUid = await getCanonicalUserId();
+    const myUid = await ensureAnonUser();
     if (!db || !myUid) return null;
     const snap = await db.collection('users').doc(myUid).get();
     if (!snap.exists) return null;
@@ -548,7 +550,7 @@ export default function FriendsTabScreen() {
     let unsubRequests: () => void = () => {};
 
     void (async () => {
-      const uid = await getCanonicalUserId();
+      const uid = await ensureAnonUser();
       if (!uid) {
         if (!cancelled) {
           setFriends([]);
@@ -669,7 +671,7 @@ export default function FriendsTabScreen() {
         return;
       }
       const codeUpper = codeInput.toUpperCase();
-      const myUid = await getCanonicalUserId();
+      const myUid = await ensureAnonUser();
       const isSelf =
         (myCode != null && codeUpper === myCode.toUpperCase()) ||
         (myUid != null && result.uid === myUid);

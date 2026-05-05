@@ -1,12 +1,12 @@
 # Phraseman State
 
-**Last updated:** 2026-05-03
+**Last updated:** 2026-05-05
 
 ## Current Status
 
 - **Milestone:** v1.0 — Friends MVP
-- **Active phase:** Phase 2 (Phase 1 complete)
-- **Next action:** `/gsd:plan-phase 2` — plan Phase 2 (Friend Requests & Friends List Screen)
+- **Active phase:** Phase 2 (Plan 01 complete, Plan 02 next)
+- **Next action:** Execute Phase 2 Plan 02 — friends_screen UI + settings entry
 
 ## Project Snapshot
 
@@ -33,8 +33,16 @@
 | Phase | Status | Plans | Notes |
 |-------|--------|-------|-------|
 | 1 — Foundation | complete | 3/3 | Friend codes, weekly xp, security rules, Cloud Function cron. Commits: a10a66e, 620e4ab, d0d9b03 |
-| 2 — Requests & Friends List | not started | — | UI screen + request lifecycle |
+| 2 — Requests & Friends List | in_progress | 1/2 done | Plan 01 complete 2026-05-05. Commits: 4851be8, 474f6dd. Wave 2 (Plan 02): friends_screen UI + settings entry — next. |
 | 3 — HoF & Arena Integration | not started | — | Friends HoF + arena lobby friends list |
 
+## Decisions Log (Phase 2 Plan 01)
+
+| Date | Decision | Rationale |
+|------|----------|-----------|
+| 2026-05-05 | declineFriendRequest deletes doc (not update to 'declined') | Avoids stale declined docs blocking future re-requests; cleaner Firestore state. |
+| 2026-05-05 | acceptFriendRequest: separate status update write before batch | Security rules must see status='accepted' for the reverse friend entry create to be permitted. |
+| 2026-05-05 | friends create rule: get() check for accepted request | Enables client-side two-step accept without Cloud Function; security rules gate on existing accepted request doc. |
+
 ---
-*Last updated: 2026-05-04 after Phase 1 execution*
+*Last updated: 2026-05-05 after Phase 2 Plan 01 execution*

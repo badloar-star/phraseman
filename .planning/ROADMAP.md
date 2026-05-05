@@ -1,6 +1,6 @@
 # Phraseman Roadmap
 
-**Last updated:** 2026-05-03
+**Last updated:** 2026-05-05
 **Current milestone:** v1.0 — Friends MVP
 **Granularity:** Coarse (3 phases)
 
@@ -30,6 +30,7 @@ Plans:
 - [x] 02-PLAN.md — Weekly XP client tracking + Cloud Function reset cron Monday 00:00 UTC (XP-01..04, TEST-06)
 - [x] 03-PLAN.md — Firestore security rules for friends/friend_requests/friend_code_index (SEC-01..06)
 
+
 **Success Criteria:**
 1. New user gets a unique 6-char friend code auto-generated on first relevant action; verified no two users share a code (Cloud Function or transaction-based check).
 2. `weekly_xp` field exists on all user progress documents and is incremented in lockstep with total xp on every XP gain.
@@ -49,6 +50,12 @@ Plans:
 - REQ-01, REQ-02, REQ-03, REQ-04, REQ-05, REQ-06, REQ-07 (request lifecycle)
 - LIST-01, LIST-02, LIST-03, LIST-04, LIST-05, LIST-06, LIST-07, LIST-08, LIST-09 (Friends screen)
 - TEST-02, TEST-03, TEST-05 (request state machine + atomic accept + ban filter)
+
+**Plans:** 2 plans
+
+Plans:
+- [x] 01-PLAN.md — Firestore friend request operations (send/accept/decline/delete) + security rules update + unit tests (REQ-01..07, TEST-02, TEST-03, TEST-05) — complete 2026-05-05
+- [ ] 02-PLAN.md — Friends screen UI + Settings entry (FRIEND-01..03, FRIEND-06..08, LIST-01..09)
 
 **Success Criteria:**
 1. User can navigate to Friends screen from a discoverable entry point and see own friend code with copy + share buttons.

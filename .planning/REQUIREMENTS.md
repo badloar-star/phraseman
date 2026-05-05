@@ -18,13 +18,13 @@
 - [ ] **FRIEND-08**: System rejects friend lookup if entered code matches own code (toast: "Это ваш собственный код")
 
 #### REQ — Friend Requests
-- [ ] **REQ-01**: User can send friend request by entering valid friend code; creates `users/{targetUid}/friend_requests/{senderUid}` document with status `pending`
-- [ ] **REQ-02**: User can view incoming friend requests list on Friends screen with sender's nick + avatar + level
-- [ ] **REQ-03**: User can accept incoming friend request → both `users/{A}/friends/{B}` and `users/{B}/friends/{A}` are created (atomic via Cloud Function or batch write); request document is deleted
-- [ ] **REQ-04**: User can decline incoming friend request → request document status set to `declined` (kept for 24h to prevent spam re-sends), then deleted by Cloud Function cleanup
-- [ ] **REQ-05**: User cannot send a duplicate friend request to the same target while one is `pending` (client-side and server-side guard)
-- [ ] **REQ-06**: User cannot send friend request to someone who is already in their friends list (client-side check, server-side guard)
-- [ ] **REQ-07**: User receives no friend request notification in v1.0 (notifications are out of scope) — they see pending requests only when they open Friends screen
+- [x] **REQ-01**: User can send friend request by entering valid friend code; creates `users/{targetUid}/friend_requests/{senderUid}` document with status `pending`
+- [x] **REQ-02**: User can view incoming friend requests list on Friends screen with sender's nick + avatar + level
+- [x] **REQ-03**: User can accept incoming friend request → both `users/{A}/friends/{B}` and `users/{B}/friends/{A}` are created (atomic via Cloud Function or batch write); request document is deleted
+- [x] **REQ-04**: User can decline incoming friend request → request document status set to `declined` (kept for 24h to prevent spam re-sends), then deleted by Cloud Function cleanup
+- [x] **REQ-05**: User cannot send a duplicate friend request to the same target while one is `pending` (client-side and server-side guard)
+- [x] **REQ-06**: User cannot send friend request to someone who is already in their friends list (client-side check, server-side guard)
+- [x] **REQ-07**: User receives no friend request notification in v1.0 (notifications are out of scope) — they see pending requests only when they open Friends screen
 
 #### LIST — Friends List Screen
 - [ ] **LIST-01**: User can open Friends screen from a discoverable entry point (Settings → Друзья, OR new nav location TBD in design)
@@ -68,10 +68,10 @@
 
 #### TEST — Testing & Verification
 - [ ] **TEST-01**: Unit tests for friend code generation (alphabet, length, no forbidden chars, collision retry)
-- [ ] **TEST-02**: Unit tests for friend request state machine (send → pending → accept/decline → friends/cleanup)
-- [ ] **TEST-03**: Integration test for accept-flow creating both mirror documents atomically
+- [x] **TEST-02**: Unit tests for friend request state machine (send → pending → accept/decline → friends/cleanup)
+- [x] **TEST-03**: Integration test for accept-flow creating both mirror documents atomically
 - [ ] **TEST-04**: Integration test for friends HoF weekly toggle data integrity
-- [ ] **TEST-05**: Test that banned user is filtered out from friend lookup, friends list, and HoF
+- [x] **TEST-05**: Test that banned user is filtered out from friend lookup, friends list, and HoF
 - [ ] **TEST-06**: Cloud Function test: `resetWeeklyXpCron` zeroes weekly_xp for sample users without affecting total xp
 
 ### Differentiators (deferred to v1.1+)

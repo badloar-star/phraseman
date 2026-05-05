@@ -122,29 +122,37 @@ export default function FriendsScreen() {
   // ── Real-time subscriptions ────────────────────────────────────────────────
 
   useEffect(() => {
+    const markFriendsDone = () => {
+      if (!friendsFiredRef.current) {
+        friendsFiredRef.current = true;
+        if (requestsFiredRef.current) setIsLoading(false);
+      }
+    };
     const unsub = subscribeToFriends(
-      (data) => {
-        setFriends(data);
-        if (!friendsFiredRef.current) {
-          friendsFiredRef.current = true;
-          if (requestsFiredRef.current) setIsLoading(false);
-        }
-      },
+      (data) => { setFriends(data); markFriendsDone(); },
+      () => { markFriendsDone(); },
     );
     return () => unsub();
   }, []);
 
   useEffect(() => {
+    const markRequestsDone = () => {
+      if (!requestsFiredRef.current) {
+        requestsFiredRef.current = true;
+        if (friendsFiredRef.current) setIsLoading(false);
+      }
+    };
     const unsub = subscribeToIncomingRequests(
-      (data) => {
-        setRequests(data);
-        if (!requestsFiredRef.current) {
-          requestsFiredRef.current = true;
-          if (friendsFiredRef.current) setIsLoading(false);
-        }
-      },
+      (data) => { setRequests(data); markRequestsDone(); },
+      () => { markRequestsDone(); },
     );
     return () => unsub();
+  }, []);
+
+  // Fallback: if subscriptions don't fire within 5s (e.g. no network), stop spinner
+  useEffect(() => {
+    const t = setTimeout(() => setIsLoading(false), 5000);
+    return () => clearTimeout(t);
   }, []);
 
   // ── Fetch missing profiles when friends/requests change ───────────────────

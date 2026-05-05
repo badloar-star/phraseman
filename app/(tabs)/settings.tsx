@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, TouchableOpacity,
-  TextInput, Alert, Modal, ScrollView, DeviceEventEmitter,
+  TextInput, Modal, ScrollView, DeviceEventEmitter,
   Platform, KeyboardAvoidingView, ActivityIndicator,
   Linking,
 } from 'react-native';
@@ -19,7 +19,7 @@ import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
 import EnergyBar from '../../components/EnergyBar';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
-import { DEV_MODE, ENABLE_DEV_STUDY_TARGET_LANG, FORCE_PREMIUM } from '../config';
+import { DEV_MODE, ENABLE_DEV_STUDY_TARGET_LANG, IS_STORE_RELEASE } from '../config';
 import {
   emitDevStudyTargetChanged,
   getDevStudyTargetLang,
@@ -27,9 +27,10 @@ import {
   type StudyTargetLang,
 } from '../study_target_lang_dev';
 import { triLang, type Lang } from '../../constants/i18n';
-import { BRAND_SHARDS_ES } from '../../constants/terms_es';
 import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, deleteAccountAndWipe, type LinkedAuth } from '../auth_provider';
 import { isNameAvailable, reserveName } from '../firestore_leaderboard';
+import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
+import { navigateAfterModalClose } from '../safe_modal_navigation';
 
 export default function SettingsMain() {
   const router = useRouter();
@@ -48,17 +49,36 @@ export default function SettingsMain() {
     ? (themeMode === 'ocean' ? 'rgba(240,252,255,0.95)' : 'rgba(255,248,252,0.95)')
     : t.textPrimary;
   const screenMuted = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(200,230,255,0.78)' : 'rgba(255,210,230,0.75)')
+    ? (themeMode === 'ocean' ? 'rgba(220,240,255,0.88)' : 'rgba(255,220,235,0.85)')
     : t.textMuted;
   const screenSecond = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(180,235,255,0.9)' : 'rgba(255,205,225,0.9)')
+    ? (themeMode === 'ocean' ? 'rgba(200,238,255,0.95)' : 'rgba(255,215,232,0.92)')
     : t.textSecond;
   const screenGhost = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(180,220,250,0.55)' : 'rgba(255,200,220,0.55)')
+    ? (themeMode === 'ocean' ? 'rgba(210,235,255,0.72)' : 'rgba(255,215,230,0.68)')
     : t.textGhost;
   const screenBorder = isGradientLight
     ? (themeMode === 'ocean' ? 'rgba(200,230,255,0.18)' : 'rgba(255,200,220,0.18)')
     : t.border;
+  /**
+   * Чипы на градиенте (Океан/Сакура): `t.bgCard` — светлая плитка → текст только тёмный (`t.textPrimary`).
+   * Выбранное состояние: не `correctBg` (полупрозрачный «просвечивает» градиент) — плотная заливка + белый текст.
+   */
+  const chipSurfaceOff = t.bgCard;
+  const chipTextOff = isGradientLight ? t.textPrimary : screenPrimary;
+  /** Плотная заливка: сакура — яркая магента (#B0105C на тёмном фоне почти сливалась с белым при грязном рендере / субпиксели). */
+  const chipSurfaceOn = isGradientLight
+    ? (themeMode === 'ocean' ? '#0A6CB5' : '#E5126E')
+    : t.correctBg;
+  const chipTextOn = isGradientLight ? '#FFFFFF' : t.correct;
+  const chipBorderOn = isGradientLight ? chipSurfaceOn : t.correct;
+  /** Плашка Premium на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
+  const premiumActiveSurface = isGradientLight ? t.bgCard : t.correctBg;
+  const premiumActiveTitle = isGradientLight ? t.textPrimary : t.correct;
+  const premiumActiveSub = isGradientLight ? t.textMuted : t.textSecond;
+  const premiumActiveIcon = isGradientLight ? t.accent : t.correct;
+  /** Обводка неактивного чипа на градиенте — чтобы светлая плитка не «терялась» в фоне. */
+  const chipBorderOff = isGradientLight ? 'rgba(255,255,255,0.42)' : screenBorder;
   const [notifEnabled, setNotifEnabled] = React.useState(false);
   const [notifHour,    setNotifHour]    = React.useState(19);
 
@@ -71,6 +91,12 @@ export default function SettingsMain() {
 
   const { lang, s } = useLang();
   const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
+  const showInfoAlert = React.useCallback(
+    (title: string, message: string) => {
+      void enqueueThemedBlockingInfoAlert(title || L('Сообщение', 'Повідомлення', 'Message'), message, 'OK');
+    },
+    [lang],
+  );
   const deleteConfirmWord = L('УДАЛИТЬ', 'ВИДАЛИТИ', 'ELIMINAR');
 
   const LANG_NATIVE: Record<Lang, string> = {
@@ -93,7 +119,8 @@ export default function SettingsMain() {
     }
   };
   const scrollRef = useRef<any>(null);
-  const { activeIdx } = useTabNav();
+  const { activeIdx, focusTick } = useTabNav();
+  const SETTINGS_TAB_IDX = 3;
 
   useEffect(() => {
     if (activeIdx === 4 && scrollRef.current) {
@@ -108,10 +135,8 @@ export default function SettingsMain() {
   const [newName, setNewName]     = useState('');
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteConfirmInput, setDeleteConfirmInput] = useState('');
-  const [devThanksModal, setDevThanksModal] = useState(false);
-  const { isPremium } = usePremium();
+  const { isPremium, trialEligible } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
-  const [isDevPlatinum, setIsDevPlatinum] = useState(false);
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
   const [authReady, setAuthReady] = useState(false);
@@ -124,21 +149,6 @@ export default function SettingsMain() {
    *   'wiping'      — крутится спиннер: forced sync + signOut + wipe
    */
   const [switchAccountStage, setSwitchAccountStage] = useState<'idle' | 'confirm' | 'wiping'>('idle');
-
-  // DEV: по умолчанию включён "Платинум Премиум", если тестер не выключил явно
-  const reloadDevPlatinum = () => {
-    if (!__DEV__ && !DEV_MODE) return;
-    AsyncStorage.getItem('tester_no_premium').then(val => {
-      setIsDevPlatinum(val !== 'true');
-    });
-  };
-
-  useEffect(() => {
-    reloadDevPlatinum();
-    const sub1 = DeviceEventEmitter.addListener('premium_deactivated', reloadDevPlatinum);
-    const sub2 = DeviceEventEmitter.addListener('premium_activated', reloadDevPlatinum);
-    return () => { sub1.remove(); sub2.remove(); };
-  }, []);
 
   const [hapticTap,  setHapticTap]   = useState(true);
   const [studyTarget, setStudyTarget] = useState<StudyTargetLang>('en');
@@ -198,6 +208,23 @@ export default function SettingsMain() {
     return () => { alive = false; sub.remove(); };
   }, []);
 
+  /** Повтор при открытии «Настройки»: Firestore раньше мог не ответить, а вкладка кэширована. */
+  useEffect(() => {
+    if (activeIdx !== SETTINGS_TAB_IDX) return;
+    let cancelled = false;
+    void (async () => {
+      try {
+        const info = await getLinkedAuthInfo();
+        if (!cancelled) setLinkedAuth(info);
+      } catch {
+        if (!cancelled) setLinkedAuth(null);
+      } finally {
+        if (!cancelled) setAuthReady(true);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [activeIdx, focusTick]);
+
   const BAD_WORDS = ['хуй','піздець','пизда','блядь','бляд','ёбан','єбан','єбать','ебать','ебал','залупа','мудак','мудила','сука','пидор','пидар','хуйня','піздюк','нахуй','нахій','сучка','мразь','тварь','ублюдок','ёб','йоб','fuck','shit','bitch','cunt','dick','ass','asshole','faggot','nigger','bastard'];
   const containsBadWord = (s: string) => {
     const low = s.toLowerCase();
@@ -206,26 +233,26 @@ export default function SettingsMain() {
 
   const saveName = async () => {
     const trimmed = newName.trim();
-    if (!trimmed) { Alert.alert('', L('Введите имя', "Введіть ім'я", 'Escribe un nombre o apodo')); return; }
-    if (trimmed.length < 2) { Alert.alert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres')); return; }
-    if (trimmed.length > 20) { Alert.alert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres')); return; }
-    if (containsBadWord(trimmed)) { Alert.alert('', L('Недопустимое имя', "Недопустиме ім'я", 'Nombre no válido')); return; }
+    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім'я", 'Escribe un nombre o apodo')); return; }
+    if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres')); return; }
+    if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres')); return; }
+    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім'я", 'Nombre no válido')); return; }
 
     // Быстрая read-only проверка (UI feedback) + атомарная резервация (транзакция)
     const available = await isNameAvailable(trimmed);
     if (!available) {
-      Alert.alert('', L('Это имя уже занято. Выберите другое.', "Це ім'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
+      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
       return;
     }
 
     const oldName = userName;
     const reservation = await reserveName(trimmed, oldName);
     if (reservation === 'taken') {
-      Alert.alert('', L('Это имя уже занято. Выберите другое.', "Це ім'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
+      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
       return;
     }
     if (reservation !== 'ok') {
-      Alert.alert(
+      showInfoAlert(
         '',
         L(
           'Не удалось проверить уникальность имени. Попробуйте ещё раз.',
@@ -383,11 +410,11 @@ export default function SettingsMain() {
                       paddingVertical: 10,
                       borderRadius: 12,
                       borderWidth: active ? 2 : 0.5,
-                      borderColor: active ? t.accent : screenBorder,
-                      backgroundColor: active ? t.correctBg : t.bgCard,
+                      borderColor: active ? (isGradientLight ? chipSurfaceOn : t.accent) : chipBorderOff,
+                      backgroundColor: active ? chipSurfaceOn : chipSurfaceOff,
                     }}
                   >
-                    <Text style={{ color: active ? t.correct : screenPrimary, fontSize: f.body, fontWeight: active ? '800' : '600' }}>
+                    <Text style={{ color: active ? chipTextOn : chipTextOff, fontSize: f.body, fontWeight: active ? '800' : '600' }}>
                       {label}
                     </Text>
                   </TouchableOpacity>
@@ -505,16 +532,16 @@ export default function SettingsMain() {
                   paddingVertical: 10,
                   borderRadius: 10,
                   borderWidth: fontSize === sz ? 2 : 0.5,
-                  borderColor: fontSize === sz ? t.correct : t.border,
-                  backgroundColor: fontSize === sz ? t.correctBg : t.bgCard,
+                  borderColor: fontSize === sz ? chipBorderOn : (isGradientLight ? chipBorderOff : t.border),
+                  backgroundColor: fontSize === sz ? chipSurfaceOn : chipSurfaceOff,
                 }}
               >
                 <Text style={{
                   fontSize: sz === 'small' ? 12 : sz === 'medium' ? 14 : sz === 'large' ? 17 : 20,
                   fontWeight: '700',
-                  color: fontSize === sz ? t.correct : t.textSecond,
+                  color: fontSize === sz ? chipTextOn : t.textSecond,
                 }}>A</Text>
-                <Text numberOfLines={1} style={{ fontSize: f.label, color: fontSize === sz ? t.correct : t.textMuted, marginTop: 4, textAlign: 'center' }}>
+                <Text numberOfLines={1} style={{ fontSize: f.label, color: fontSize === sz ? chipTextOn : t.textMuted, marginTop: 4, textAlign: 'center' }}>
                   {L(
                     sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                     sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
@@ -550,6 +577,12 @@ export default function SettingsMain() {
 
 <SectionTitle title={L('Ещё', 'Ще', 'Más')} />
         <Row
+          icon="people-outline"
+          label={L('Друзья', 'Друзі', 'Amigos')}
+          sub={L('Коды, заявки, список друзей', 'Коди, заявки, список друзів', 'Códigos, solicitudes, amigos')}
+          onPress={() => { doHaptic(); router.push('/friends_screen' as any); }}
+        />
+        <Row
           icon="person-add-outline"
           label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo')}
           sub={L('Бонусы вам обоим', 'Бонуси вам обом', 'Recompensas para ambos')}
@@ -559,11 +592,6 @@ export default function SettingsMain() {
         <Row
           icon="mail-outline"
           label={L('Идеи и предложения', 'Ідеї й пропозиції', 'Comentarios e ideas')}
-          sub={L(
-            'До +100 осколков, если идея зайдёт',
-            'До +100 осколків, якщо ідею приймемо',
-            `Hasta +100 ${BRAND_SHARDS_ES.toLowerCase()} si incorporamos tu idea`,
-          )}
           onPress={() => router.push('/suggestion_screen' as any)}
         />
         <Row
@@ -579,44 +607,35 @@ export default function SettingsMain() {
         />
         {/* "Частые вопросы" удалён — дублирует раздел "Помощь / FAQ" выше */}
         <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta')} onPress={() => router.push('/beta_testers' as any)} />
-        {(__DEV__ || DEV_MODE) && (
+        {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && (
           <Row
             icon="shield-outline"
             label={L('Админ панель', 'Адмін панель', 'Panel de administración')}
             onPress={() => router.push('/settings_testers' as any)}
           />
         )}
-        {/* Premium */}
-        {((__DEV__ || DEV_MODE) && isDevPlatinum) || FORCE_PREMIUM ? (
+        {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat */}
+        {isPremium ? (
           <TouchableOpacity
-            style={{ flexDirection: 'row', alignItems: 'center', margin: 20, backgroundColor: 'rgba(120,0,180,0.18)', borderRadius: 14, padding: 16, borderWidth: 1.5, borderColor: '#9B30FF' }}
-            onPress={() => { doHaptic(); setDevThanksModal(true); }}
-            activeOpacity={0.85}
-          >
-            <Ionicons name="diamond" size={26} color="#9B30FF" style={{ marginRight: 14 }} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: '#C060FF', fontSize: f.bodyLg, fontWeight: '800' }}>
-                ПЛАТИНУМ ПРЕМИУМ ✓
-              </Text>
-              <Text style={{ color: '#A070D0', fontSize: f.caption, marginTop: 2 }}>
-                {L('DEV-режим · все функции открыты', 'DEV-режим · всі функції відкрито', 'Modo DEV · todas las funciones desbloqueadas')}
-              </Text>
-            </View>
-            <Ionicons name="chevron-forward" size={18} color="#9B30FF" />
-          </TouchableOpacity>
-        ) : isPremium ? (
-          <>
-          <TouchableOpacity
-            style={{ flexDirection: 'row', alignItems: 'center', margin: 20, backgroundColor: t.correctBg, borderRadius: 14, padding: 16, borderWidth: 1, borderColor: t.correct }}
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              margin: 20,
+              backgroundColor: premiumActiveSurface,
+              borderRadius: 14,
+              padding: 16,
+              borderWidth: 1,
+              borderColor: t.correct,
+            }}
             onPress={() => router.push({ pathname: '/premium_modal', params: { manage: '1' } } as any)}
             activeOpacity={0.85}
           >
-            <Ionicons name="diamond" size={26} color={t.correct} style={{ marginRight: 14 }} />
+            <Ionicons name="diamond" size={26} color={premiumActiveIcon} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
-              <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '800' }}>
+              <Text style={{ color: premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
                 Premium {L('активирован', 'активовано', 'activo')} ✓
               </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.caption, marginTop: 2 }}>
+              <Text style={{ color: premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
                 {premiumPlan === 'yearly'
                   ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual')
                   : premiumPlan === 'monthly'
@@ -624,9 +643,8 @@ export default function SettingsMain() {
                     : L('Подписка активна', 'Підписка активна', 'Suscripción activa')}
               </Text>
             </View>
-            <Ionicons name="chevron-forward" size={18} color={t.correct} />
+            <Ionicons name="chevron-forward" size={18} color={premiumActiveIcon} />
           </TouchableOpacity>
-          </>
         ) : (
           <TouchableOpacity
             style={{ flexDirection: 'row', alignItems: 'center', margin: 20, backgroundColor: t.bgCard, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: t.border }}
@@ -635,9 +653,15 @@ export default function SettingsMain() {
           >
             <Ionicons name="diamond-outline" size={26} color={t.textSecond} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>Premium</Text>
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                {trialEligible
+                  ? L('Попробуй Premium бесплатно', 'Спробуй Premium безкоштовно', 'Prueba Premium gratis')
+                  : 'Premium'}
+              </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                {L('7 дней бесплатно · месячный или годовой план', '7 днів безкоштовно · місячний або річний план', '7 días gratis · plan mensual o anual')}
+                {trialEligible
+                  ? L('7 дней бесплатно · месячный или годовой план', '7 днів безкоштовно · місячний або річний план', '7 días gratis · plan mensual o anual')
+                  : L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual')}
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
@@ -727,8 +751,10 @@ export default function SettingsMain() {
               <TouchableOpacity
                 activeOpacity={0.8}
                 onPress={() => {
-                  setAccountModalVisible(false);
-                  setSwitchAccountStage('confirm');
+                  navigateAfterModalClose(
+                    () => setAccountModalVisible(false),
+                    () => setSwitchAccountStage('confirm'),
+                  );
                 }}
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
@@ -787,7 +813,7 @@ export default function SettingsMain() {
                   const res = await signOutAndWipeForAccountSwitch();
                   setSwitchAccountStage('idle');
                   if (!res.ok) {
-                    Alert.alert(
+                    showInfoAlert(
                       L('Не удалось выйти', 'Не вдалося вийти', 'No se pudo cerrar sesión'),
                       res.reason === 'sync_failed'
                         ? L(
@@ -824,41 +850,6 @@ export default function SettingsMain() {
             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
               {L('Не закрывай приложение', 'Не закривай застосунок', 'No cierres la app')}
             </Text>
-          </View>
-        </View>
-      </Modal>
-
-      {/* Модал благодарности тестеру (DEV Platinum) */}
-      <Modal visible={devThanksModal} transparent animationType="fade" onRequestClose={() => setDevThanksModal(false)}>
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
-          <View style={{ width: '100%', maxWidth: 360, backgroundColor: 'rgba(30,0,60,0.98)', borderRadius: 24, padding: 28, borderWidth: 1.5, borderColor: '#9B30FF', alignItems: 'center' }}>
-            <Text style={{ fontSize: 52, marginBottom: 12 }}>💜</Text>
-            <Text style={{ color: '#C060FF', fontSize: f.h2 + 2, fontWeight: '800', textAlign: 'center', marginBottom: 16 }}>
-              {L('Спасибо за помощь!', 'Дякуємо за допомогу!', '¡Gracias por tu ayuda!')}
-            </Text>
-            <Text style={{ color: '#D090FF', fontSize: f.body, textAlign: 'center', lineHeight: 24, marginBottom: 12 }}>
-              {L(
-                'Ты — часть команды, которая делает Phraseman лучше.\nТвоё участие в тестировании бесценно для нас.',
-                'Ти — частина команди, яка робить Phraseman кращим.\nТвоя участь у тестуванні безцінна для нас.',
-                'Formas parte del equipo que mejora Phraseman.\nTu ayuda como probador beta es muy valiosa para nosotros.',
-              )}
-            </Text>
-            <Text style={{ color: '#A070CC', fontSize: f.caption, textAlign: 'center', lineHeight: 20, marginBottom: 24 }}>
-              {L(
-                'Как бета-тестер ты имеешь полный доступ ко всем функциям.\nСпасибо, что тратишь своё время на улучшение приложения! 🚀',
-                'Як бета-тестер ти маєш повний доступ до всіх функцій.\nДякуємо, що витрачаєш свій час на покращення застосунку! 🚀',
-                'Como probador beta tienes acceso completo a todas las funciones.\n¡Gracias por dedicar tu tiempo a mejorar la app! 🚀',
-              )}
-            </Text>
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={{ backgroundColor: '#7B20CF', borderRadius: 14, paddingVertical: 14, paddingHorizontal: 48, width: '100%', alignItems: 'center' }}
-              onPress={() => { doHaptic(); setDevThanksModal(false); }}
-            >
-              <Text style={{ color: '#fff', fontSize: f.bodyLg, fontWeight: '700' }}>
-                {L('Закрыть', 'Закрити', 'Cerrar')}
-              </Text>
-            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -986,14 +977,15 @@ export default function SettingsMain() {
                   // с активными синками — мы уже после signOut'а.
                   const res = await deleteAccountAndWipe();
                   if (!res.ok) {
-                    Alert.alert(L('Ошибка', 'Помилка', 'Error'), L('Не удалось удалить данные.', 'Не вдалося видалити дані.', 'No se pudieron eliminar los datos.'));
+                    showInfoAlert(L('Ошибка', 'Помилка', 'Error'), L('Не удалось удалить данные.', 'Не вдалося видалити дані.', 'No se pudieron eliminar los datos.'));
                     return;
                   }
-                  Alert.alert(
+                  await enqueueThemedBlockingInfoAlert(
                     L('Аккаунт удалён', 'Акаунт видалено', 'Cuenta eliminada'),
                     L('Все ваши данные были удалены.', 'Всі ваші дані було видалено.', 'Se han eliminado todos tus datos.'),
-                    [{ text: 'OK', onPress: () => { DeviceEventEmitter.emit('account_deleted'); } }]
+                    'OK',
                   );
+                  DeviceEventEmitter.emit('account_deleted');
                 }}
               >
                 <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
@@ -1008,5 +1000,3 @@ export default function SettingsMain() {
     </ScreenGradient>
   );
 }
-
-

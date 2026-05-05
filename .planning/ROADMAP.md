@@ -55,7 +55,7 @@ Plans:
 
 Plans:
 - [x] 01-PLAN.md — Firestore friend request operations (send/accept/decline/delete) + security rules update + unit tests (REQ-01..07, TEST-02, TEST-03, TEST-05) — complete 2026-05-05
-- [ ] 02-PLAN.md — Friends screen UI + Settings entry (FRIEND-01..03, FRIEND-06..08, LIST-01..09)
+- [x] 02-PLAN.md — Friends screen UI + Settings entry (FRIEND-01..03, FRIEND-06..08, LIST-01..09) — complete 2026-05-05
 
 **Success Criteria:**
 1. User can navigate to Friends screen from a discoverable entry point and see own friend code with copy + share buttons.

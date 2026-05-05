@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity, TextInput, ScrollView,
-  ActivityIndicator, Alert, Share, Keyboard, FlatList,
+  ActivityIndicator, Alert, Share, Keyboard,
 } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -13,7 +13,6 @@ import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
-import ContentWrap from '../../components/ContentWrap';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import { getLevelFromXP, getXPProgress } from '../../constants/theme';
 import { triLang } from '../../constants/i18n';
@@ -564,12 +563,16 @@ export default function FriendsTabScreen() {
     });
   };
 
+  const [addPanelOpen, setAddPanelOpen] = useState(false);
+
   // ── Derived ────────────────────────────────────────────────────────────────
 
   const sortedFriends = [...friends]
-    .map(f => profiles[f.uid])
+    .map(fr => profiles[fr.uid])
     .filter(Boolean)
     .sort((a, b) => (b?.totalXp ?? 0) - (a?.totalXp ?? 0)) as FriendProfile[];
+
+  const PX = 16;
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
@@ -578,37 +581,64 @@ export default function FriendsTabScreen() {
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
-        contentContainerStyle={{ paddingBottom: 32 }}
+        contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX }}
       >
-        <ContentWrap>
 
-          {/* Header */}
-          <View style={{ paddingTop: 8, paddingBottom: 20 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5 }}>
-              {L('Друзья', 'Друзі', 'Amigos')}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
-              {sortedFriends.length > 0
-                ? L(`${sortedFriends.length} ${sortedFriends.length === 1 ? 'друг' : 'друзей'}`, `${sortedFriends.length} друзів`, `${sortedFriends.length} amigos`)
-                : L('Добавляйте друзей и соревнуйтесь', 'Додавайте друзів і змагайтеся', 'Añade amigos y compite')
-              }
-            </Text>
-          </View>
+        {/* Header */}
+        <View style={{ paddingTop: 8, paddingBottom: 20 }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5 }}>
+            {L('Друзья', 'Друзі', 'Amigos')}
+          </Text>
+          <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
+            {sortedFriends.length > 0
+              ? L(`${sortedFriends.length} ${sortedFriends.length === 1 ? 'друг' : 'друзей'}`, `${sortedFriends.length} друзів`, `${sortedFriends.length} amigos`)
+              : L('Добавляйте друзей и соревнуйтесь', 'Додавайте друзів і змагайтеся', 'Añade amigos y compite')
+            }
+          </Text>
+        </View>
 
-          {/* My code */}
-          <CodeCard
-            code={myCode} onCopy={handleCopy} onShare={handleShare}
-            copied={copied} lang={lang} t={t} f={f}
+        {/* My code */}
+        <CodeCard
+          code={myCode} onCopy={handleCopy} onShare={handleShare}
+          copied={copied} lang={lang} t={t} f={f}
+        />
+
+        {/* Add friend button → expands panel */}
+        <TouchableOpacity
+          onPress={() => { hapticTap(); setAddPanelOpen(v => !v); setFoundUser(null); setSearchError(null); setCodeInput(''); }}
+          activeOpacity={0.8}
+          style={{
+            backgroundColor: addPanelOpen ? t.bgCard : t.accent,
+            borderRadius: 16, paddingVertical: 14, paddingHorizontal: 18,
+            flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
+            gap: 8, marginBottom: addPanelOpen ? 0 : 24,
+            borderWidth: addPanelOpen ? 0.5 : 0,
+            borderColor: addPanelOpen ? t.border : 'transparent',
+            borderBottomLeftRadius: addPanelOpen ? 0 : 16,
+            borderBottomRightRadius: addPanelOpen ? 0 : 16,
+          }}
+        >
+          <Ionicons
+            name={addPanelOpen ? 'close' : 'person-add'}
+            size={18}
+            color={addPanelOpen ? t.textMuted : '#fff'}
           />
+          <Text style={{ color: addPanelOpen ? t.textMuted : '#fff', fontSize: f.body, fontWeight: '700' }}>
+            {addPanelOpen
+              ? L('Отмена', 'Скасувати', 'Cancelar')
+              : L('Добавить друга', 'Додати друга', 'Agregar amigo')
+            }
+          </Text>
+        </TouchableOpacity>
 
-          {/* Search */}
+        {/* Expandable add panel */}
+        {addPanelOpen && (
           <View style={{
-            backgroundColor: t.bgCard, borderRadius: 20, padding: 16,
-            borderWidth: 0.5, borderColor: t.border, marginBottom: 24, gap: 12,
+            backgroundColor: t.bgCard, borderRadius: 16,
+            borderTopLeftRadius: 0, borderTopRightRadius: 0,
+            padding: 16, marginBottom: 24, gap: 12,
+            borderWidth: 0.5, borderTopWidth: 0, borderColor: t.border,
           }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-              {L('Найти друга по коду', 'Знайти друга за кодом', 'Buscar amigo por código')}
-            </Text>
             <View style={{ flexDirection: 'row', gap: 10 }}>
               <TextInput
                 style={{
@@ -622,6 +652,7 @@ export default function FriendsTabScreen() {
                 maxLength={6}
                 autoCapitalize="characters"
                 autoCorrect={false}
+                autoFocus
                 value={codeInput}
                 onChangeText={v => {
                   setCodeInput(v.toUpperCase().replace(/[^ABCDEFGHJKMNPQRSTUVWXYZ23456789]/g, ''));
@@ -668,83 +699,83 @@ export default function FriendsTabScreen() {
               </View>
             )}
           </View>
+        )}
 
-          {/* Incoming requests */}
-          {requests.length > 0 && (
-            <>
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-                <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-                  {L('Заявки', 'Заявки', 'Solicitudes')}
-                </Text>
-                <View style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
-                  <Text style={{ color: '#fff', fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
+        {/* Incoming requests */}
+        {requests.length > 0 && (
+          <>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
+                {L('Заявки', 'Заявки', 'Solicitudes')}
+              </Text>
+              <View style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
+                <Text style={{ color: '#fff', fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
+              </View>
+            </View>
+            {requests.map(req => {
+              const profile = profiles[req.fromUid];
+              if (!profile) return (
+                <View key={req.fromUid} style={{ height: 70, backgroundColor: t.bgCard, borderRadius: 16, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
+                  <ActivityIndicator size="small" color={t.accent} />
                 </View>
-              </View>
-              {requests.map(req => {
-                const profile = profiles[req.fromUid];
-                if (!profile) return (
-                  <View key={req.fromUid} style={{ height: 70, backgroundColor: t.bgCard, borderRadius: 16, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-                    <ActivityIndicator size="small" color={t.accent} />
-                  </View>
-                );
-                return (
-                  <RequestRow
-                    key={req.fromUid} profile={profile}
-                    onAccept={() => { hapticTap(); void acceptFriendRequest(req.fromUid); }}
-                    onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
-                    t={t} f={f}
-                  />
-                );
-              })}
-            </>
-          )}
+              );
+              return (
+                <RequestRow
+                  key={req.fromUid} profile={profile}
+                  onAccept={() => { hapticTap(); void acceptFriendRequest(req.fromUid); }}
+                  onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
+                  t={t} f={f}
+                />
+              );
+            })}
+          </>
+        )}
 
-          {/* Friends list */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
-            <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
-              {L('Друзья', 'Друзі', 'Amigos')}
+        {/* Friends list */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
+          <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
+            {L('Друзья', 'Друзі', 'Amigos')}
+          </Text>
+          {sortedFriends.length > 0 && (
+            <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+              {L('по XP', 'за XP', 'por XP')}
             </Text>
-            {sortedFriends.length > 0 && (
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {L('по XP за всё время', 'за XP за весь час', 'por XP total')}
-              </Text>
-            )}
-          </View>
-
-          {isLoading ? (
-            <View style={{ paddingVertical: 40, alignItems: 'center' }}>
-              <ActivityIndicator size="large" color={t.accent} />
-            </View>
-          ) : sortedFriends.length === 0 ? (
-            <View style={{
-              backgroundColor: t.bgCard, borderRadius: 20, padding: 32,
-              alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: t.border,
-            }}>
-              <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
-                <Ionicons name="people-outline" size={28} color={t.textMuted} />
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                {L('Пока нет друзей', 'Поки немає друзів', 'Sin amigos aún')}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 20 }}>
-                {L('Поделитесь своим кодом или введите код друга выше', 'Поділіться своїм кодом або введіть код друга вище', 'Comparte tu código o ingresa el de un amigo arriba')}
-              </Text>
-            </View>
-          ) : (
-            sortedFriends.map((profile, i) => (
-              <FriendRow
-                key={profile.uid}
-                profile={profile}
-                myWeekly={myWeeklyXp}
-                rank={i + 1}
-                onPress={() => openProfile(profile)}
-                onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
-                lang={lang} t={t} f={f}
-              />
-            ))
           )}
+        </View>
 
-        </ContentWrap>
+        {isLoading ? (
+          <View style={{ paddingVertical: 40, alignItems: 'center' }}>
+            <ActivityIndicator size="large" color={t.accent} />
+          </View>
+        ) : sortedFriends.length === 0 ? (
+          <View style={{
+            backgroundColor: t.bgCard, borderRadius: 20, padding: 32,
+            alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: t.border,
+          }}>
+            <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
+              <Ionicons name="people-outline" size={28} color={t.textMuted} />
+            </View>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+              {L('Пока нет друзей', 'Поки немає друзів', 'Sin amigos aún')}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 20 }}>
+              {L('Нажмите «Добавить друга» и введите код', 'Натисніть «Додати друга» і введіть код', 'Pulsa «Agregar amigo» e ingresa el código')}
+            </Text>
+          </View>
+        ) : (
+          sortedFriends.map((profile, i) => (
+            <FriendRow
+              key={profile.uid}
+              profile={profile}
+              myWeekly={myWeeklyXp}
+              rank={i + 1}
+              onPress={() => openProfile(profile)}
+              onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
+              lang={lang} t={t} f={f}
+            />
+          ))
+        )}
+
       </ScrollView>
 
       <UnifiedPlayerModal

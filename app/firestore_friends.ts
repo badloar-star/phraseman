@@ -1,6 +1,9 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { generateRandomCode, isValidFriendCode } from './friend_code';
+
+const FRIEND_CODE_CACHE_KEY = 'friend_code_local_v1';
 
 /** Firestore collection name for code → uid reverse index. Indexed by code (doc id). */
 export const FRIEND_CODE_INDEX_COLLECTION = 'friend_code_index';
@@ -35,17 +38,27 @@ const getFirestore = () => {
  * the canonical UID returned here as the document key.
  */
 export async function ensureMyFriendCode(): Promise<string | null> {
+  // Fast path: return from local cache immediately (no network, no auth needed).
+  const cached = await AsyncStorage.getItem(FRIEND_CODE_CACHE_KEY);
+  if (cached && isValidFriendCode(cached)) return cached;
+
   const uid = await getCanonicalUserId();
   if (!uid) return null;
 
   const db = getFirestore();
   if (!db) return null;
 
-  // Idempotent fast path: return existing code if already provisioned.
-  const userSnap = await db.collection('users').doc(uid).get();
-  const existingCode = userSnap.data?.()?.progress?.friend_code;
-  if (typeof existingCode === 'string' && isValidFriendCode(existingCode)) {
-    return existingCode;
+  // Check Firestore — code may exist from a previous install or other device.
+  try {
+    const userSnap = await db.collection('users').doc(uid).get();
+    const existingCode = userSnap.data?.()?.progress?.friend_code;
+    if (typeof existingCode === 'string' && isValidFriendCode(existingCode)) {
+      await AsyncStorage.setItem(FRIEND_CODE_CACHE_KEY, existingCode);
+      return existingCode;
+    }
+  } catch {
+    // Auth not ready yet — will retry next time screen mounts.
+    return null;
   }
 
   // Generate and transactionally reserve a unique code.
@@ -63,14 +76,15 @@ export async function ensureMyFriendCode(): Promise<string | null> {
           { merge: true },
         );
       });
+      await AsyncStorage.setItem(FRIEND_CODE_CACHE_KEY, code);
       return code;
     } catch (err) {
       if (err instanceof Error && err.message === 'CODE_TAKEN') continue;
-      throw err;
+      return null;
     }
   }
 
-  throw new Error('FRIEND_CODE_GENERATION_EXHAUSTED');
+  return null;
 }
 
 /**

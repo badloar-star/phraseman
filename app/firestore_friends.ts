@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
+import { ensureAnonUser } from './cloud_sync';
 import { generateRandomCode, isValidFriendCode } from './friend_code';
 
 const FRIEND_CODE_CACHE_KEY = 'friend_code_local_v1';
@@ -38,11 +39,13 @@ const getFirestore = () => {
  * the canonical UID returned here as the document key.
  */
 export async function ensureMyFriendCode(): Promise<string | null> {
-  // Fast path: return from local cache immediately (no network, no auth needed).
+  // Instant path: return from local cache (no network, no auth wait needed).
   const cached = await AsyncStorage.getItem(FRIEND_CODE_CACHE_KEY);
   if (cached && isValidFriendCode(cached)) return cached;
 
-  const uid = await getCanonicalUserId();
+  // Wait for Firebase Auth to be ready before any Firestore write.
+  // ensureAnonUser() calls signInAnonymously if needed — prevents PERMISSION_DENIED.
+  const uid = await ensureAnonUser();
   if (!uid) return null;
 
   const db = getFirestore();
@@ -57,7 +60,6 @@ export async function ensureMyFriendCode(): Promise<string | null> {
       return existingCode;
     }
   } catch {
-    // Auth not ready yet — will retry next time screen mounts.
     return null;
   }
 

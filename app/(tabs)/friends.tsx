@@ -26,6 +26,7 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTabNav } from '../TabContext';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -355,7 +356,9 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f }: {
           </View>
         </>
       ) : (
-        <ActivityIndicator size="small" color={t.accent} />
+        <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+          {triLang(lang as any, { ru: 'Генерируем код…', uk: 'Генеруємо код…', es: 'Generando código…' })}
+        </Text>
       )}
     </View>
   );
@@ -367,6 +370,7 @@ export default function FriendsTabScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { isPremium } = usePremium();
+  const { goHome } = useTabNav();
   const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
 
   const [myCode, setMyCode] = useState<string | null>(null);
@@ -400,12 +404,30 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     let cancelled = false;
-    void ensureMyFriendCode().then(code => { if (!cancelled) setMyCode(code); });
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+
+    const loadCode = () => {
+      void ensureMyFriendCode().then(code => {
+        if (cancelled) return;
+        if (code) {
+          setMyCode(code);
+        } else {
+          // Auth not ready yet — retry after 2s until we get a code
+          retryTimer = setTimeout(loadCode, 2000);
+        }
+      });
+    };
+
+    loadCode();
     void fetchMyProfile().then(p => { if (!cancelled && p) setMyProfile(p); });
     void AsyncStorage.getItem('weekly_xp').then(v => {
       if (!cancelled) setMyWeeklyXp(parseInt(v ?? '0') || 0);
     });
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+      if (retryTimer) clearTimeout(retryTimer);
+    };
   }, []);
 
   // ── Real-time subscriptions ────────────────────────────────────────────────
@@ -584,17 +606,40 @@ export default function FriendsTabScreen() {
         contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX }}
       >
 
-        {/* Header */}
-        <View style={{ paddingTop: 8, paddingBottom: 20 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5 }}>
-            {L('Друзья', 'Друзі', 'Amigos')}
-          </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
-            {sortedFriends.length > 0
-              ? L(`${sortedFriends.length} ${sortedFriends.length === 1 ? 'друг' : 'друзей'}`, `${sortedFriends.length} друзів`, `${sortedFriends.length} amigos`)
-              : L('Добавляйте друзей и соревнуйтесь', 'Додавайте друзів і змагайтеся', 'Añade amigos y compite')
-            }
-          </Text>
+        {/* Header — стрелка «назад» как на вкладке «Уроки» → главная */}
+        <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingTop: 8, paddingBottom: 20 }}>
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel={L('На главную', 'На головну', 'Inicio')}
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 18,
+              backgroundColor: t.bgCard,
+              borderWidth: 0.5,
+              borderColor: t.border,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginRight: 12,
+              marginTop: 4,
+              flexShrink: 0,
+            }}
+            onPress={() => { hapticTap(); goHome(); }}
+            activeOpacity={0.85}
+          >
+            <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+          </TouchableOpacity>
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5 }}>
+              {L('Друзья', 'Друзі', 'Amigos')}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
+              {sortedFriends.length > 0
+                ? L(`${sortedFriends.length} ${sortedFriends.length === 1 ? 'друг' : 'друзей'}`, `${sortedFriends.length} друзів`, `${sortedFriends.length} amigos`)
+                : L('Добавляйте друзей и соревнуйтесь', 'Додавайте друзів і змагайтеся', 'Añade amigos y compite')
+              }
+            </Text>
+          </View>
         </View>
 
         {/* My code */}

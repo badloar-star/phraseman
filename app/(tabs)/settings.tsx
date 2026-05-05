@@ -10,6 +10,7 @@ import { useTabNav } from '../TabContext';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme, FontSize, FONT_SIZE_LABELS, FONT_SCALE } from '../../components/ThemeContext';
+import ReportErrorButton from '../../components/ReportErrorButton';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
@@ -126,10 +127,10 @@ export default function SettingsMain() {
   };
   const scrollRef = useRef<any>(null);
   const { activeIdx, focusTick } = useTabNav();
-  const SETTINGS_TAB_IDX = 3;
+  const SETTINGS_TAB_IDX = 4;
 
   useEffect(() => {
-    if (activeIdx === 4 && scrollRef.current) {
+    if (activeIdx === SETTINGS_TAB_IDX && scrollRef.current) {
       scrollRef.current.scrollTo({ y: 0, animated: false });
     }
   }, [activeIdx]);
@@ -336,8 +337,8 @@ export default function SettingsMain() {
     try {
       const { CLOUD_SYNC_ENABLED, IS_EXPO_GO } = await import('../config');
       if (CLOUD_SYNC_ENABLED && !IS_EXPO_GO) {
-        const { ensureAnonUser } = await import('../cloud_sync');
-        const uid = await ensureAnonUser();
+        const { ensureArenaAuthUid } = await import('../user_id_policy');
+        const uid = await ensureArenaAuthUid();
         if (uid) {
           const firestore = (await import('@react-native-firebase/firestore')).default;
           await firestore()
@@ -718,6 +719,17 @@ export default function SettingsMain() {
               by Professor Lingman
             </Text>
           </TouchableOpacity>
+          <View style={{ alignItems: 'center', marginTop: 16 }}>
+            <ReportErrorButton
+              screen="settings_tab"
+              dataId="settings_main"
+              dataText={triLang(lang, {
+                ru: 'Настройки',
+                uk: 'Налаштування',
+                es: 'Ajustes',
+              })}
+            />
+          </View>
         </View>
 
       </ScrollView>

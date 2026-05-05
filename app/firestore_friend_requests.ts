@@ -1,5 +1,6 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getCanonicalUserId } from './user_id_policy';
+import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
+import { ensureAnonUser } from './cloud_sync';
 
 // ── Types ──────────────────────────────────────────────────────────────────
 
@@ -46,7 +47,7 @@ const getFirestore = () => {
  * Writes: users/{toUid}/friend_requests/{myUid} = { status: 'pending', createdAt }
  */
 export async function sendFriendRequest(toUid: string): Promise<SendRequestResult> {
-  const myUid = await getCanonicalUserId();
+  const myUid = await ensureAnonUser();
   if (!myUid) return 'error';
 
   if (toUid === myUid) return 'self';
@@ -55,6 +56,10 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
   if (!db) return 'error';
 
   try {
+    const firebaseAuthUid = getAuthUserId();
+    if (firebaseAuthUid) {
+      await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
+    }
     // Check whether we are already friends.
     const friendsSnap = await db
       .collection('users')
@@ -98,7 +103,7 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
  * Step 2: Batch-create both friendship entries atomically.
  */
 export async function acceptFriendRequest(fromUid: string): Promise<void> {
-  const myUid = await getCanonicalUserId();
+  const myUid = await ensureAnonUser();
   if (!myUid) throw new Error('acceptFriendRequest: canonical UID unavailable');
 
   const db = getFirestore();
@@ -137,7 +142,7 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
  * avoids stale declined docs that would block future re-requests.
  */
 export async function declineFriendRequest(fromUid: string): Promise<void> {
-  const myUid = await getCanonicalUserId();
+  const myUid = await ensureAnonUser();
   if (!myUid) return;
 
   const db = getFirestore();
@@ -159,7 +164,7 @@ export async function declineFriendRequest(fromUid: string): Promise<void> {
  * Deletes users/{myUid}/friends/{friendUid} AND users/{friendUid}/friends/{myUid}.
  */
 export async function deleteFriend(friendUid: string): Promise<void> {
-  const myUid = await getCanonicalUserId();
+  const myUid = await ensureAnonUser();
   if (!myUid) return;
 
   const db = getFirestore();
@@ -171,6 +176,25 @@ export async function deleteFriend(friendUid: string): Promise<void> {
   batch.delete(db.collection('users').doc(friendUid).collection('friends').doc(myUid));
 
   await batch.commit();
+}
+
+/**
+ * Записывает firebaseAuthUid в users/{stableId}, чтобы правило canonicalUserMatchesAuth
+ * разрешило читать входящие заявки (auth.uid часто ≠ stableId).
+ * Вызывать перед подпиской на friend_requests и при фокусе вкладки «Друзья».
+ */
+export async function ensureFriendRequestViewerAuthLink(): Promise<void> {
+  const myUid = await getCanonicalUserId();
+  if (!myUid) return;
+  const firebaseAuthUid = getAuthUserId();
+  if (!firebaseAuthUid) return;
+  const db = getFirestore();
+  if (!db) return;
+  try {
+    await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
+  } catch {
+    /* ignore */
+  }
 }
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────
@@ -187,88 +211,110 @@ export function subscribeToFriends(
   callback: (friends: FriendEntry[]) => void,
   onError?: (err: Error) => void,
 ): () => void {
-  let unsubscribe: () => void = () => {};
+  let cancelled = false;
+  let unsubscribe: (() => void) | null = null;
 
-  getCanonicalUserId().then(myUid => {
-    if (!myUid) {
-      callback([]);
-      return;
-    }
-    const db = getFirestore();
-    if (!db) {
-      callback([]);
-      return;
-    }
-    unsubscribe = db
-      .collection('users')
-      .doc(myUid)
-      .collection('friends')
-      .onSnapshot(
-        (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
-          const friends: FriendEntry[] = snap.docs.map(doc => ({
-            uid: doc.id,
-            createdAt: (doc.data().createdAt as number) ?? 0,
-          }));
-          callback(friends);
-        },
-        (err: Error) => {
-          onError?.(err);
-        },
-      );
-  }).catch((err: unknown) => {
-    onError?.(err instanceof Error ? err : new Error(String(err)));
-  });
+  ensureAnonUser()
+    .then(myUid => {
+      if (cancelled) return;
+      if (!myUid) {
+        callback([]);
+        return;
+      }
+      const db = getFirestore();
+      if (!db) {
+        callback([]);
+        return;
+      }
+      unsubscribe = db
+        .collection('users')
+        .doc(myUid)
+        .collection('friends')
+        .onSnapshot(
+          (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
+            if (cancelled) return;
+            const friends: FriendEntry[] = snap.docs.map(doc => ({
+              uid: doc.id,
+              createdAt: (doc.data().createdAt as number) ?? 0,
+            }));
+            callback(friends);
+          },
+          (err: Error) => {
+            onError?.(err);
+          },
+        );
+    })
+    .catch((err: unknown) => {
+      onError?.(err instanceof Error ? err : new Error(String(err)));
+    });
 
-  return () => unsubscribe();
+  return () => {
+    cancelled = true;
+    unsubscribe?.();
+  };
 }
 
 // ── subscribeToIncomingRequests ────────────────────────────────────────────
 
 /**
- * Real-time listener for incoming friend requests with status == 'pending'.
- *
- * Returns an unsubscribe function. The callback receives the array of
- * FriendRequestEntry on every snapshot update.
+ * Real-time listener for входящих заявок со статусом pending.
+ * Слушает всю подколлекцию и фильтрует на клиенте — без query по полю status
+ * (меньше сюрпризов с индексами; документы «accepted» просто отбрасываются).
  */
 export function subscribeToIncomingRequests(
   callback: (requests: FriendRequestEntry[]) => void,
   onError?: (err: Error) => void,
 ): () => void {
-  let unsubscribe: () => void = () => {};
+  let cancelled = false;
+  let unsubscribe: (() => void) | null = null;
 
-  getCanonicalUserId().then(myUid => {
-    if (!myUid) {
-      callback([]);
-      return;
-    }
-    const db = getFirestore();
-    if (!db) {
-      callback([]);
-      return;
-    }
-    unsubscribe = db
-      .collection('users')
-      .doc(myUid)
-      .collection('friend_requests')
-      .where('status', '==', 'pending')
-      .onSnapshot(
-        (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
-          const requests: FriendRequestEntry[] = snap.docs.map(doc => ({
-            fromUid: doc.id,
-            status: 'pending' as const,
-            createdAt: (doc.data().createdAt as number) ?? 0,
-          }));
-          callback(requests);
-        },
-        (err: Error) => {
-          onError?.(err);
-        },
-      );
-  }).catch((err: unknown) => {
-    onError?.(err instanceof Error ? err : new Error(String(err)));
-  });
+  ensureAnonUser()
+    .then(myUid => {
+      if (cancelled) return;
+      if (!myUid) {
+        callback([]);
+        return;
+      }
+      const db = getFirestore();
+      if (!db) {
+        callback([]);
+        return;
+      }
+      unsubscribe = db
+        .collection('users')
+        .doc(myUid)
+        .collection('friend_requests')
+        .onSnapshot(
+          (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
+            if (cancelled) return;
+            const requests: FriendRequestEntry[] = snap.docs
+              .map(doc => {
+                const data = doc.data();
+                const st = data.status as string | undefined;
+                return {
+                  fromUid: doc.id,
+                  status: 'pending' as const,
+                  createdAt: (data.createdAt as number) ?? 0,
+                  _rawStatus: st,
+                };
+              })
+              .filter(r => r._rawStatus === 'pending' || r._rawStatus === undefined)
+              .map(({ fromUid, status, createdAt }) => ({ fromUid, status, createdAt }));
+            callback(requests);
+          },
+          (err: Error) => {
+            onError?.(err);
+          },
+        );
+    })
+    .catch((err: unknown) => {
+      onError?.(err instanceof Error ? err : new Error(String(err)));
+    });
 
-  return () => unsubscribe();
+  return () => {
+    cancelled = true;
+    unsubscribe?.();
+  };
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

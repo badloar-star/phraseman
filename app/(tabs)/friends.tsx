@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useFocusEffect } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput, ScrollView,
-  ActivityIndicator, Alert, Share, Keyboard,
+  ActivityIndicator, Share, Keyboard, StyleSheet,
 } from 'react-native';
 import * as Clipboard from 'expo-clipboard';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
@@ -13,19 +13,28 @@ import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
+import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import { getLevelFromXP, getXPProgress } from '../../constants/theme';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
-import { ensureMyFriendCode, lookupUserByFriendCode } from '../firestore_friends';
+import { ensureMyInviteCodeForFriends, lookupUserByFriendCode } from '../firestore_friends';
 import {
-  sendFriendRequest, acceptFriendRequest, declineFriendRequest, deleteFriend,
-  subscribeToFriends, subscribeToIncomingRequests,
-  type FriendEntry, type FriendRequestEntry,
+  sendFriendRequest,
+  acceptFriendRequest,
+  declineFriendRequest,
+  deleteFriend,
+  subscribeToFriends,
+  subscribeToIncomingRequests,
+  ensureFriendRequestViewerAuthLink,
+  type FriendEntry,
+  type FriendRequestEntry,
 } from '../firestore_friend_requests';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
+import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ReportErrorButton from '../../components/ReportErrorButton';
 import { useTabNav } from '../TabContext';
 
 // ── Types ─────────────────────────────────────────────────────────────────────
@@ -41,6 +50,9 @@ interface FriendProfile {
   frame: string;
 }
 
+/** Локальный снимок вкладки «Друзья» для мгновенного показа до ответа облака. */
+const FRIENDS_TAB_SWR_CACHE_KEY = 'friends_tab_swr_v1';
+
 // ── Firestore accessor ────────────────────────────────────────────────────────
 
 const getDb = () => {
@@ -51,6 +63,19 @@ const getDb = () => {
 };
 
 // ── Profile fetch ─────────────────────────────────────────────────────────────
+
+function placeholderFriendProfile(uid: string): FriendProfile {
+  return {
+    uid,
+    name: '…',
+    totalXp: 0,
+    weeklyXp: 0,
+    streak: 0,
+    isPremium: false,
+    avatar: String(getBestAvatarForLevel(1)),
+    frame: String(getBestFrameForLevel(1)),
+  };
+}
 
 async function fetchFriendProfile(uid: string): Promise<FriendProfile> {
   const fallback: FriendProfile = {
@@ -71,7 +96,13 @@ async function fetchFriendProfile(uid: string): Promise<FriendProfile> {
     const level = getLevelFromXP(totalXp);
     const avatar = String(getBestAvatarForLevel(level));
     const frame = String(getBestFrameForLevel(level));
-    const name = (d.displayName as string) || (p.displayName as string) || 'Игрок';
+    const linked = (d.linkedAuth as Record<string, unknown> | undefined) ?? {};
+    const nameRaw =
+      (d.displayName as string) ||
+      (p.displayName as string) ||
+      (p.user_name as string) ||
+      (typeof linked.displayName === 'string' ? linked.displayName : '');
+    const name = nameRaw.trim() || 'Игрок';
     return { uid, name, totalXp, weeklyXp, streak, isPremium, avatar, frame };
   } catch { return fallback; }
 }
@@ -202,39 +233,58 @@ function FriendRow({
 
 // ── Request row ───────────────────────────────────────────────────────────────
 
-function RequestRow({ profile, onAccept, onDecline, t, f }: {
-  profile: FriendProfile; onAccept: () => void; onDecline: () => void; t: any; f: any;
+function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
+  profile: FriendProfile;
+  onAccept: () => void;
+  onDecline: () => void;
+  lang: string;
+  t: any;
+  f: any;
 }) {
+  const B = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
   return (
     <View style={{
       flexDirection: 'row', alignItems: 'center',
       backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 10,
-      borderWidth: 1, borderColor: t.accent + '44', gap: 12,
+      borderWidth: 0.5, borderColor: t.border, gap: 12,
     }}>
-      <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={40} maskColor={t.bgCard}>
-        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={40} />
+      <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={44} maskColor={t.bgCard}>
+        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} />
       </PremiumAvatarHalo>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, minWidth: 0 }}>
         {profile.isPremium
           ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
-          : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }} numberOfLines={1}>{profile.name}</Text>
+          : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
         }
-        <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 1 }}>
-          Lv {getLevelFromXP(profile.totalXp)} • {profile.totalXp.toLocaleString()} XP
-        </Text>
+        <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
+        {profile.streak > 0 && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2, marginTop: 2 }}>
+            <Text style={{ fontSize: 12 }}>🔥</Text>
+            <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
+          </View>
+        )}
       </View>
-      <View style={{ flexDirection: 'row', gap: 8 }}>
+      <View style={{ gap: 8, alignSelf: 'center' }}>
         <TouchableOpacity
           onPress={onAccept}
-          style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8 }}
+          style={{ backgroundColor: t.accent, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, minWidth: 96, alignItems: 'center' }}
         >
-          <Ionicons name="checkmark" size={18} color="#fff" />
+          <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>{B('Принять', 'Прийняти', 'Aceptar')}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={onDecline}
-          style={{ backgroundColor: t.bgSurface, borderRadius: 10, paddingHorizontal: 14, paddingVertical: 8, borderWidth: 0.5, borderColor: t.border }}
+          style={{
+            backgroundColor: t.bgSurface,
+            borderRadius: 10,
+            paddingVertical: 8,
+            paddingHorizontal: 12,
+            minWidth: 96,
+            alignItems: 'center',
+            borderWidth: 0.5,
+            borderColor: t.border,
+          }}
         >
-          <Ionicons name="close" size={18} color={t.textMuted} />
+          <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700' }}>{B('Отклонить', 'Відхилити', 'Rechazar')}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -286,10 +336,10 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
         }}
       >
         {isAdding
-          ? <ActivityIndicator size="small" color="#fff" />
-          : <Ionicons name="person-add" size={18} color="#fff" />
+          ? <ActivityIndicator size="small" color={t.correctText} />
+          : <Ionicons name="person-add" size={18} color={t.correctText} />
         }
-        <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '800' }}>
+        <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
           {triLang(lang as any, { ru: 'Добавить в друзья', uk: 'Додати в друзі', es: 'Agregar amigo' })}
         </Text>
       </TouchableOpacity>
@@ -299,15 +349,34 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
 
 // ── Code card ─────────────────────────────────────────────────────────────────
 
-function CodeCard({ code, onCopy, onShare, copied, lang, t, f }: {
+function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standalone', loadError, onRetryLoad }: {
   code: string | null; onCopy: () => void; onShare: () => void;
   copied: boolean; lang: string; t: any; f: any;
+  /** standalone — отдельная карточка; underButton — примыкает снизу к кнопке; inSheet — внутри выпадающей панели (плоские низ/верх для стыковки). */
+  layout?: 'standalone' | 'underButton' | 'inSheet';
+  loadError?: boolean;
+  onRetryLoad?: () => void;
 }) {
+  const under = layout === 'underButton';
+  const inSheet = layout === 'inSheet';
+  const topFlat = under || inSheet;
+  const bottomFlat = inSheet;
+  const marginBottom = layout === 'standalone' ? 24 : under ? 24 : 0;
+
   return (
     <View style={{
-      backgroundColor: t.bgCard, borderRadius: 20, padding: 20,
-      alignItems: 'center', gap: 14, borderWidth: 0.5, borderColor: t.border,
-      marginBottom: 24,
+      backgroundColor: t.bgCard,
+      borderRadius: 20,
+      borderTopLeftRadius: topFlat ? 0 : 20,
+      borderTopRightRadius: topFlat ? 0 : 20,
+      borderBottomLeftRadius: bottomFlat ? 0 : 20,
+      borderBottomRightRadius: bottomFlat ? 0 : 20,
+      padding: 20,
+      alignItems: 'center', gap: 14,
+      borderWidth: inSheet ? 0 : 0.5,
+      borderBottomWidth: inSheet ? StyleSheet.hairlineWidth : 0.5,
+      borderColor: t.border,
+      marginBottom,
     }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         <Ionicons name="qr-code-outline" size={18} color={t.textSecond} />
@@ -355,9 +424,37 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f }: {
             </TouchableOpacity>
           </View>
         </>
+      ) : loadError ? (
+        <View style={{ alignItems: 'center', gap: 10, alignSelf: 'stretch' }}>
+          <Text style={{ color: '#FF9F0A', fontSize: f.sub, textAlign: 'center', fontWeight: '600' }}>
+            {triLang(lang as any, {
+              ru: 'Не удалось получить код. Проверьте сеть и попробуйте снова.',
+              uk: 'Не вдалося отримати код. Перевірте мережу й спробуйте ще.',
+              es: 'No se pudo obtener el código. Comprueba la red e inténtalo de nuevo.',
+            })}
+          </Text>
+          {onRetryLoad && (
+            <TouchableOpacity
+              onPress={onRetryLoad}
+              style={{
+                backgroundColor: t.accent,
+                borderRadius: 12,
+                paddingVertical: 10,
+                paddingHorizontal: 20,
+              }}
+            >
+              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
+                {triLang(lang as any, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar' })}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
       ) : (
-        <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-          {triLang(lang as any, { ru: 'Генерируем код…', uk: 'Генеруємо код…', es: 'Generando código…' })}
+        <Text style={{
+          fontSize: 36, fontWeight: '900', letterSpacing: 8,
+          color: t.textMuted, fontVariant: ['tabular-nums'],
+        }}>
+          ······
         </Text>
       )}
     </View>
@@ -373,7 +470,9 @@ export default function FriendsTabScreen() {
   const { goHome } = useTabNav();
   const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
 
+  /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
+  const [friendCodeLoadError, setFriendCodeLoadError] = useState(false);
   const [myWeeklyXp, setMyWeeklyXp] = useState(0);
   const [myProfile, setMyProfile] = useState<{
     name: string; avatar: string; frame: string; totalXP: number; streak: number | null;
@@ -393,72 +492,135 @@ export default function FriendsTabScreen() {
   const [friends, setFriends] = useState<FriendEntry[]>([]);
   const [requests, setRequests] = useState<FriendRequestEntry[]>([]);
   const [profiles, setProfiles] = useState<Record<string, FriendProfile>>({});
-  const [isLoading, setIsLoading] = useState(true);
-
-  const friendsFiredRef = useRef(false);
-  const requestsFiredRef = useRef(false);
 
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
+  const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
+
+  const mountedRef = useRef(true);
+
+  const syncMyInviteCode = useCallback(async () => {
+    // Retry up to 5 times with 3s delay — Auth may not be ready immediately on cold launch.
+    for (let attempt = 0; attempt < 5; attempt++) {
+      const code = await ensureMyInviteCodeForFriends('');
+      if (!mountedRef.current) return;
+      if (code) {
+        setMyCode(code);
+        setFriendCodeLoadError(false);
+        return;
+      }
+      if (attempt < 4) {
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        if (!mountedRef.current) return;
+      }
+    }
+    setFriendCodeLoadError(true);
+  }, []);
+
+  const retryFriendCode = useCallback(() => {
+    hapticTap();
+    setFriendCodeLoadError(false);
+    void syncMyInviteCode();
+  }, [syncMyInviteCode]);
 
   // ── My code + my data ──────────────────────────────────────────────────────
 
   useEffect(() => {
-    let cancelled = false;
-    let retryTimer: ReturnType<typeof setTimeout> | null = null;
-
-    const loadCode = () => {
-      void ensureMyFriendCode().then(code => {
-        if (cancelled) return;
-        if (code) {
-          setMyCode(code);
-        } else {
-          // Auth not ready yet — retry after 2s until we get a code
-          retryTimer = setTimeout(loadCode, 2000);
-        }
-      });
-    };
-
-    loadCode();
-    void fetchMyProfile().then(p => { if (!cancelled && p) setMyProfile(p); });
+    mountedRef.current = true;
+    void syncMyInviteCode();
+    void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
     void AsyncStorage.getItem('weekly_xp').then(v => {
-      if (!cancelled) setMyWeeklyXp(parseInt(v ?? '0') || 0);
+      if (mountedRef.current) setMyWeeklyXp(parseInt(v ?? '0') || 0);
     });
+    return () => { mountedRef.current = false; };
+  }, [syncMyInviteCode]);
+
+  useFocusEffect(
+    useCallback(() => {
+      void ensureFriendRequestViewerAuthLink();
+    }, []),
+  );
+
+  // ── Кеш с устройства → подписки (сначала старый снимок, потом тихое обновление из облака) ──
+
+  useEffect(() => {
+    let cancelled = false;
+    let unsubFriends: () => void = () => {};
+    let unsubRequests: () => void = () => {};
+
+    void (async () => {
+      const uid = await getCanonicalUserId();
+      if (!uid) {
+        if (!cancelled) {
+          setFriends([]);
+          setRequests([]);
+        }
+        return;
+      }
+
+      try {
+        const raw = await AsyncStorage.getItem(FRIENDS_TAB_SWR_CACHE_KEY);
+        if (raw && !cancelled) {
+          const parsed = JSON.parse(raw) as {
+            canonicalUid?: string;
+            friends?: FriendEntry[];
+            requests?: FriendRequestEntry[];
+            profiles?: Record<string, FriendProfile>;
+          };
+          if (parsed.canonicalUid === uid) {
+            if (Array.isArray(parsed.friends)) setFriends(parsed.friends);
+            if (Array.isArray(parsed.requests)) setRequests(parsed.requests);
+            if (parsed.profiles && typeof parsed.profiles === 'object') setProfiles(parsed.profiles);
+          }
+        }
+      } catch {
+        /* ignore */
+      }
+
+      if (cancelled) return;
+
+      await ensureFriendRequestViewerAuthLink();
+      if (cancelled) return;
+
+      unsubFriends = subscribeToFriends(
+        data => { if (!cancelled) setFriends(data); },
+        () => {},
+      );
+      unsubRequests = subscribeToIncomingRequests(
+        data => { if (!cancelled) setRequests(data); },
+        () => {},
+      );
+    })();
 
     return () => {
       cancelled = true;
-      if (retryTimer) clearTimeout(retryTimer);
+      unsubFriends();
+      unsubRequests();
     };
   }, []);
 
-  // ── Real-time subscriptions ────────────────────────────────────────────────
-
   useEffect(() => {
-    const done = () => {
-      if (!friendsFiredRef.current) {
-        friendsFiredRef.current = true;
-        if (requestsFiredRef.current) setIsLoading(false);
-      }
-    };
-    const unsub = subscribeToFriends(data => { setFriends(data); done(); }, () => done());
-    return () => unsub();
-  }, []);
-
-  useEffect(() => {
-    const done = () => {
-      if (!requestsFiredRef.current) {
-        requestsFiredRef.current = true;
-        if (friendsFiredRef.current) setIsLoading(false);
-      }
-    };
-    const unsub = subscribeToIncomingRequests(data => { setRequests(data); done(); }, () => done());
-    return () => unsub();
-  }, []);
-
-  // Fallback spinner timeout
-  useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 5000);
+    const timer = setTimeout(() => {
+      void (async () => {
+        try {
+          const uid = await getCanonicalUserId();
+          if (!uid) return;
+          await AsyncStorage.setItem(
+            FRIENDS_TAB_SWR_CACHE_KEY,
+            JSON.stringify({
+              canonicalUid: uid,
+              friends,
+              requests,
+              profiles,
+              savedAt: Date.now(),
+            }),
+          );
+        } catch {
+          /* ignore */
+        }
+      })();
+    }, 450);
     return () => clearTimeout(timer);
-  }, []);
+  }, [friends, requests, profiles]);
 
   // ── Profile loading ────────────────────────────────────────────────────────
 
@@ -506,6 +668,15 @@ export default function FriendsTabScreen() {
         setSearchError(L('Пользователь с таким кодом не найден', 'Користувача з таким кодом не знайдено', 'No se encontró usuario con ese código'));
         return;
       }
+      const codeUpper = codeInput.toUpperCase();
+      const myUid = await getCanonicalUserId();
+      const isSelf =
+        (myCode != null && codeUpper === myCode.toUpperCase()) ||
+        (myUid != null && result.uid === myUid);
+      if (isSelf) {
+        setSearchError(randomSelfFriendCodeMessage(L));
+        return;
+      }
       const profile = await fetchFriendProfile(result.uid);
       setFoundUser(profile);
     } finally {
@@ -531,7 +702,7 @@ export default function FriendsTabScreen() {
         showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Solicitud ya enviada'));
       } else if (result === 'self') {
         setFoundUser(null);
-        showFeedback(L('Это ваш код', 'Це ваш код', 'Es tu código'));
+        showFeedback(randomSelfFriendCodeMessage(L));
       } else {
         showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
       }
@@ -559,14 +730,7 @@ export default function FriendsTabScreen() {
 
   const handleDeleteConfirm = (uid: string, name: string) => {
     hapticTap();
-    Alert.alert(
-      L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?'),
-      name,
-      [
-        { text: L('Отмена', 'Скасувати', 'Cancelar'), style: 'cancel' },
-        { text: L('Удалить', 'Видалити', 'Eliminar'), style: 'destructive', onPress: () => void deleteFriend(uid) },
-      ],
-    );
+    setDeleteTarget({ uid, name });
   };
 
   const openProfile = (profile: FriendProfile) => {
@@ -589,25 +753,32 @@ export default function FriendsTabScreen() {
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
-  const sortedFriends = [...friends]
-    .map(fr => profiles[fr.uid])
-    .filter(Boolean)
-    .sort((a, b) => (b?.totalXp ?? 0) - (a?.totalXp ?? 0)) as FriendProfile[];
+  const sortedFriends = useMemo(
+    () =>
+      [...friends]
+        .map(fr => profiles[fr.uid] ?? placeholderFriendProfile(fr.uid))
+        .sort((a, b) => b.totalXp - a.totalXp),
+    [friends, profiles],
+  );
 
   const PX = 16;
+  /** Кнопка «назад» не должна центрироваться по блоку заголовок+подпись — при переносе подписи на 2 строки она «прыгала» вниз. Выравниваем по первой строке заголовка. */
+  const friendsTitleFs = typeof f.h1 === 'number' ? f.h1 : 28;
+  const friendsTitleLineH = Math.round(friendsTitleFs * 1.2);
+  const friendsBackBtnMarginTop = Math.max(0, Math.round((friendsTitleLineH - 36) / 2));
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <SafeAreaView style={{ flex: 1 }} edges={['top']}>
+    <View style={{ flex: 1 }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX }}
       >
 
-        {/* Header — стрелка «назад» как на вкладке «Уроки» → главная */}
-        <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingTop: 8, paddingBottom: 20 }}>
+        {/* Header — back по центру только строки заголовка (не всего столбца с подписью) */}
+        <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingTop: 12, paddingBottom: 6, marginBottom: 14 }}>
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel={L('На главную', 'На головну', 'Inicio')}
@@ -621,7 +792,7 @@ export default function FriendsTabScreen() {
               justifyContent: 'center',
               alignItems: 'center',
               marginRight: 12,
-              marginTop: 4,
+              marginTop: friendsBackBtnMarginTop,
               flexShrink: 0,
             }}
             onPress={() => { hapticTap(); goHome(); }}
@@ -629,11 +800,20 @@ export default function FriendsTabScreen() {
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TouchableOpacity>
-          <View style={{ flex: 1, minWidth: 0 }}>
+          <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5 }}>
               {L('Друзья', 'Друзі', 'Amigos')}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
+            <Text
+              style={{
+                color: t.textMuted,
+                fontSize: f.sub,
+                marginTop: 2,
+                lineHeight: Math.round((typeof f.sub === 'number' ? f.sub : 14) * 1.35),
+                minHeight: Math.round((typeof f.sub === 'number' ? f.sub : 14) * 1.35) * 2,
+              }}
+              numberOfLines={2}
+            >
               {sortedFriends.length > 0
                 ? L(`${sortedFriends.length} ${sortedFriends.length === 1 ? 'друг' : 'друзей'}`, `${sortedFriends.length} друзів`, `${sortedFriends.length} amigos`)
                 : L('Добавляйте друзей и соревнуйтесь', 'Додавайте друзів і змагайтеся', 'Añade amigos y compite')
@@ -642,13 +822,7 @@ export default function FriendsTabScreen() {
           </View>
         </View>
 
-        {/* My code */}
-        <CodeCard
-          code={myCode} onCopy={handleCopy} onShare={handleShare}
-          copied={copied} lang={lang} t={t} f={f}
-        />
-
-        {/* Add friend button → expands panel */}
+        {/* Add friend button — сверху; «Мой код» под ней / внутри той же выпадающей панели */}
         <TouchableOpacity
           onPress={() => { hapticTap(); setAddPanelOpen(v => !v); setFoundUser(null); setSearchError(null); setCodeInput(''); }}
           activeOpacity={0.8}
@@ -656,19 +830,19 @@ export default function FriendsTabScreen() {
             backgroundColor: addPanelOpen ? t.bgCard : t.accent,
             borderRadius: 16, paddingVertical: 14, paddingHorizontal: 18,
             flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-            gap: 8, marginBottom: addPanelOpen ? 0 : 24,
+            gap: 8, marginBottom: 0,
             borderWidth: addPanelOpen ? 0.5 : 0,
             borderColor: addPanelOpen ? t.border : 'transparent',
-            borderBottomLeftRadius: addPanelOpen ? 0 : 16,
-            borderBottomRightRadius: addPanelOpen ? 0 : 16,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
           }}
         >
           <Ionicons
             name={addPanelOpen ? 'close' : 'person-add'}
             size={18}
-            color={addPanelOpen ? t.textMuted : '#fff'}
+            color={addPanelOpen ? t.textMuted : t.correctText}
           />
-          <Text style={{ color: addPanelOpen ? t.textMuted : '#fff', fontSize: f.body, fontWeight: '700' }}>
+          <Text style={{ color: addPanelOpen ? t.textMuted : t.correctText, fontSize: f.body, fontWeight: '700' }}>
             {addPanelOpen
               ? L('Отмена', 'Скасувати', 'Cancelar')
               : L('Добавить друга', 'Додати друга', 'Agregar amigo')
@@ -676,14 +850,36 @@ export default function FriendsTabScreen() {
           </Text>
         </TouchableOpacity>
 
-        {/* Expandable add panel */}
+        {!addPanelOpen && (
+          <CodeCard
+            code={myCode} onCopy={handleCopy} onShare={handleShare}
+            copied={copied} lang={lang} t={t} f={f}
+            layout="underButton"
+            loadError={friendCodeLoadError}
+            onRetryLoad={retryFriendCode}
+          />
+        )}
+
+        {/* Expandable add panel: мой код + поле ввода */}
         {addPanelOpen && (
           <View style={{
-            backgroundColor: t.bgCard, borderRadius: 16,
-            borderTopLeftRadius: 0, borderTopRightRadius: 0,
-            padding: 16, marginBottom: 24, gap: 12,
-            borderWidth: 0.5, borderTopWidth: 0, borderColor: t.border,
+            backgroundColor: t.bgCard,
+            borderBottomLeftRadius: 16,
+            borderBottomRightRadius: 16,
+            marginBottom: 24,
+            borderWidth: 0.5,
+            borderTopWidth: 0,
+            borderColor: t.border,
+            overflow: 'hidden',
           }}>
+            <CodeCard
+              code={myCode} onCopy={handleCopy} onShare={handleShare}
+              copied={copied} lang={lang} t={t} f={f}
+              layout="inSheet"
+              loadError={friendCodeLoadError}
+              onRetryLoad={retryFriendCode}
+            />
+            <View style={{ padding: 16, paddingTop: 12, gap: 12 }}>
             <View style={{ flexDirection: 'row', gap: 10 }}>
               <TextInput
                 style={{
@@ -692,12 +888,11 @@ export default function FriendsTabScreen() {
                   fontSize: 20, fontWeight: '800', color: t.textPrimary,
                   letterSpacing: 4, borderWidth: 0.5, borderColor: t.border,
                 }}
-                placeholder="XXXXXX"
+                placeholder=""
                 placeholderTextColor={t.textMuted}
                 maxLength={6}
                 autoCapitalize="characters"
                 autoCorrect={false}
-                autoFocus
                 value={codeInput}
                 onChangeText={v => {
                   setCodeInput(v.toUpperCase().replace(/[^ABCDEFGHJKMNPQRSTUVWXYZ23456789]/g, ''));
@@ -717,8 +912,8 @@ export default function FriendsTabScreen() {
                 }}
               >
                 {isSearching
-                  ? <ActivityIndicator size="small" color={codeInput.length === 6 ? '#fff' : t.textMuted} />
-                  : <Ionicons name="search" size={22} color={codeInput.length === 6 ? '#fff' : t.textMuted} />
+                  ? <ActivityIndicator size="small" color={codeInput.length === 6 ? t.correctText : t.textMuted} />
+                  : <Ionicons name="search" size={22} color={codeInput.length === 6 ? t.correctText : t.textMuted} />
                 }
               </TouchableOpacity>
             </View>
@@ -743,36 +938,32 @@ export default function FriendsTabScreen() {
                 <Text style={{ color: '#34C759', fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
               </View>
             )}
+            </View>
           </View>
         )}
 
-        {/* Incoming requests */}
+        {/* Активные входящие заявки — над списком друзей */}
         {requests.length > 0 && (
           <>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12, marginTop: 8 }}>
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-                {L('Заявки', 'Заявки', 'Solicitudes')}
+                {L('Активные заявки', 'Активні заявки', 'Solicitudes activas')}
               </Text>
               <View style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
-                <Text style={{ color: '#fff', fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
+                <Text style={{ color: t.correctText, fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
               </View>
             </View>
-            {requests.map(req => {
-              const profile = profiles[req.fromUid];
-              if (!profile) return (
-                <View key={req.fromUid} style={{ height: 70, backgroundColor: t.bgCard, borderRadius: 16, marginBottom: 10, justifyContent: 'center', alignItems: 'center' }}>
-                  <ActivityIndicator size="small" color={t.accent} />
-                </View>
-              );
-              return (
-                <RequestRow
-                  key={req.fromUid} profile={profile}
-                  onAccept={() => { hapticTap(); void acceptFriendRequest(req.fromUid); }}
-                  onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
-                  t={t} f={f}
-                />
-              );
-            })}
+            {requests.map(req => (
+              <RequestRow
+                key={req.fromUid}
+                profile={profiles[req.fromUid] ?? placeholderFriendProfile(req.fromUid)}
+                onAccept={() => { hapticTap(); void acceptFriendRequest(req.fromUid); }}
+                onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
+                lang={lang}
+                t={t}
+                f={f}
+              />
+            ))}
           </>
         )}
 
@@ -788,11 +979,7 @@ export default function FriendsTabScreen() {
           )}
         </View>
 
-        {isLoading ? (
-          <View style={{ paddingVertical: 40, alignItems: 'center' }}>
-            <ActivityIndicator size="large" color={t.accent} />
-          </View>
-        ) : sortedFriends.length === 0 ? (
+        {sortedFriends.length === 0 ? (
           <View style={{
             backgroundColor: t.bgCard, borderRadius: 20, padding: 32,
             alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: t.border,
@@ -821,6 +1008,14 @@ export default function FriendsTabScreen() {
           ))
         )}
 
+        <View style={{ alignItems: 'center', paddingVertical: 16 }}>
+          <ReportErrorButton
+            screen="friends_tab"
+            dataId="friends_tab_main"
+            dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos')}
+          />
+        </View>
+
       </ScrollView>
 
       <UnifiedPlayerModal
@@ -834,6 +1029,20 @@ export default function FriendsTabScreen() {
         }}
         onClose={() => setSelectedPlayer(null)}
       />
-    </SafeAreaView>
+      <ThemedConfirmModal
+        visible={deleteTarget !== null}
+        title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?')}
+        message={deleteTarget?.name ?? ''}
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
+        confirmLabel={L('Удалить', 'Видалити', 'Eliminar')}
+        confirmVariant="default"
+        onCancel={() => setDeleteTarget(null)}
+        onConfirm={() => {
+          const target = deleteTarget;
+          setDeleteTarget(null);
+          if (target) void deleteFriend(target.uid);
+        }}
+      />
+    </View>
   );
 }

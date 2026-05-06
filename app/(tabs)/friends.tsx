@@ -145,8 +145,8 @@ function WeeklyBadge({ myWeekly, friendWeekly, lang }: {
   const color = ahead ? '#34C759' : '#FF6B6B';
   const icon = ahead ? 'trending-up' : 'trending-down';
   const label = ahead
-    ? triLang(lang as any, { ru: `+${diff} на этой неделе`, uk: `+${diff} цього тижня`, es: `+${diff} esta semana` })
-    : triLang(lang as any, { ru: `${diff} на этой неделе`, uk: `${diff} цього тижня`, es: `${diff} esta semana` });
+    ? triLang(lang as any, { ru: `+${diff} XP на этой неделе`, uk: `+${diff} XP цього тижня`, es: `+${diff} XP esta semana` })
+    : triLang(lang as any, { ru: `отстаёшь на ${Math.abs(diff)} XP`, uk: `відстаєш на ${Math.abs(diff)} XP`, es: `atrás por ${Math.abs(diff)} XP` });
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 2 }}>
       <Ionicons name={icon as any} size={11} color={color} />

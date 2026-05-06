@@ -1,5 +1,5 @@
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getAuthUserId, getCanonicalUserId } from './user_id_policy';
+import { getAuthUserId } from './user_id_policy';
 import { ensureAnonUser } from './cloud_sync';
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -87,7 +87,8 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
       .set({ status: 'pending', createdAt: Date.now() });
 
     return 'sent';
-  } catch {
+  } catch (e) {
+    console.warn('[sendFriendRequest] error', String(e));
     return 'error';
   }
 }
@@ -110,6 +111,7 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   if (!db) throw new Error('acceptFriendRequest: Firestore unavailable');
 
   const firebaseAuthUid = getAuthUserId();
+  console.log('[acceptFriendRequest] myUid=', myUid, 'fromUid=', fromUid, 'authUid=', firebaseAuthUid);
   if (!firebaseAuthUid) throw new Error('acceptFriendRequest: Firebase auth uid unavailable');
 
   // Ensure firebaseAuthUid is written so canonicalUserMatchesAuth passes for the mirror write.
@@ -137,6 +139,7 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
   );
 
   await batch.commit();
+  console.log('[acceptFriendRequest] batch committed OK');
 }
 
 // ── declineFriendRequest ───────────────────────────────────────────────────

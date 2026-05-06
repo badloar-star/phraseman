@@ -18,7 +18,7 @@ import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/ava
 import { getLevelFromXP, getXPProgress } from '../../constants/theme';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
-import { ensureMyInviteCodeForFriends, lookupUserByFriendCode } from '../firestore_friends';
+import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, readCachedMyInviteCodeForFriends } from '../firestore_friends';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -528,6 +528,10 @@ export default function FriendsTabScreen() {
 
   useEffect(() => {
     mountedRef.current = true;
+    // Show cached code immediately (no loading state), then verify/refresh in background.
+    void readCachedMyInviteCodeForFriends().then(cached => {
+      if (mountedRef.current && cached) setMyCode(cached);
+    });
     void syncMyInviteCode();
     void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
     void AsyncStorage.getItem('weekly_xp').then(v => {
@@ -549,16 +553,8 @@ export default function FriendsTabScreen() {
     let unsubFriends: () => void = () => {};
     let unsubRequests: () => void = () => {};
 
+    // 1. Читаем кеш немедленно — не ждём Auth, uid нужен только для проверки canonicalUid.
     void (async () => {
-      const uid = await ensureAnonUser();
-      if (!uid) {
-        if (!cancelled) {
-          setFriends([]);
-          setRequests([]);
-        }
-        return;
-      }
-
       try {
         const raw = await AsyncStorage.getItem(FRIENDS_TAB_SWR_CACHE_KEY);
         if (raw && !cancelled) {
@@ -568,16 +564,20 @@ export default function FriendsTabScreen() {
             requests?: FriendRequestEntry[];
             profiles?: Record<string, FriendProfile>;
           };
-          if (parsed.canonicalUid === uid) {
-            if (Array.isArray(parsed.friends)) setFriends(parsed.friends);
-            if (Array.isArray(parsed.requests)) setRequests(parsed.requests);
-            if (parsed.profiles && typeof parsed.profiles === 'object') setProfiles(parsed.profiles);
-          }
+          // Показываем кеш без проверки uid — если uid не совпадёт, Firestore-подписка перезапишет.
+          if (Array.isArray(parsed.friends)) setFriends(parsed.friends);
+          if (Array.isArray(parsed.requests)) setRequests(parsed.requests);
+          if (parsed.profiles && typeof parsed.profiles === 'object') setProfiles(parsed.profiles);
         }
       } catch {
         /* ignore */
       }
+    })();
 
+    // 2. Параллельно ждём Auth и запускаем live-подписки.
+    void (async () => {
+      const uid = await ensureAnonUser();
+      if (!uid) return;
       if (cancelled) return;
 
       await ensureFriendRequestViewerAuthLink();

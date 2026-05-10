@@ -8,38 +8,31 @@ import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { useLang } from './LangContext';
 import { hapticSoftImpact, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
+import { ARENA_LOBBY_ACCEPT_MS, CLOUD_SYNC_ENABLED } from '../app/config';
+import { setSessionLobbyChoice } from '../app/services/arena_db';
 
 const { width: SCREEN_W } = Dimensions.get('window');
-const AUTO_DISMISS_MS = 20_000;
-const TOAST_ALLOWED_PATHS = new Set([
-  '/',
-  '/(tabs)',
-  '/(tabs)/home',
-  '/(tabs)/index',
-  '/(tabs)/quizzes',
-  '/(tabs)/arena',
-  '/(tabs)/settings',
-  '/hall_of_fame_screen',
-  '/home',
-  // Stack screens: превью из админки тестеров
-  '/settings_testers',
-  '/beta_testers',
-]);
+
+/** Не показывать тост поверх «боевого» флоу арены; на остальных экранах — можно (табы, уроки, друзья, …). */
+const MATCH_FOUND_TOAST_PATH_BLOCKLIST = [
+  'arena_lobby',
+  'arena_game',
+  'arena_join',
+  'arena_results',
+  'arena_rating',
+] as const;
 
 function isMatchFoundToastPathAllowed(pathname: string | null | undefined): boolean {
   if (typeof pathname !== 'string' || pathname.length === 0) return false;
-  if (TOAST_ALLOWED_PATHS.has(pathname)) return true;
-  // expo-router: группы и вложенность, напр. /(stack)/settings_testers
-  if (pathname.includes('settings_testers') || pathname.includes('beta_testers')) return true;
-  // Уроки / арена / квизы — разные группы в стеке
-  if (pathname.includes('/lessons') || pathname.includes('lesson')) return true;
-  // Не показываем в боевых аренных экранах (lobby/game/results/join/rating):
-  // там навигацией рулит сам arena-флоу и тост визуально мешает.
-  return false;
+  const lower = pathname.toLowerCase();
+  for (const frag of MATCH_FOUND_TOAST_PATH_BLOCKLIST) {
+    if (lower.includes(frag)) return false;
+  }
+  return true;
 }
 
 export default function MatchFoundToast() {
-  const { status, sessionId, userId, isMatchHandled, isLobbyActive, markMatchHandled } = useMatchmakingContext();
+  const { status, sessionId, userId, isMatchHandled, isLobbyActive, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort } = useMatchmakingContext();
   const pathname = usePathname();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -50,14 +43,20 @@ export default function MatchFoundToast() {
   const dotPulse   = useRef(new Animated.Value(0)).current;
   const swordTilt  = useRef(new Animated.Value(0)).current;
   const sheen      = useRef(new Animated.Value(0)).current;
-  const timerRef   = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const acceptExpireTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const toastAcceptEndsAtRef = useRef(0);
+  const toastAcceptBarAnim = useRef(new Animated.Value(1)).current;
+  const toastAcceptBarAnimRunRef = useRef<Animated.CompositeAnimation | null>(null);
   const loopsRef   = useRef<{ stop: () => void }[]>([]);
+  /** Тост реально в «показан»-состоянии (не вызываем slideOut из else на каждом тике эффекта — это давало sync-колбэки анимации → setState во время useInsertionEffect). */
+  const toastActiveRef = useRef(false);
   /** rAF-id отложенного старта slideIn-анимаций под Fabric:
    *  без отсрочки connectAnimatedNodeToView вызывается раньше commit'а маунта
    *  и кидает JSApplicationIllegalArgumentException. */
   const slideInRafRef = useRef<number | null>(null);
 
   const slideIn = () => {
+    toastActiveRef.current = true;
     setVisible(true);
     hapticSoftImpact();
 
@@ -66,6 +65,9 @@ export default function MatchFoundToast() {
      *  даём Fabric закоммитить <Animated.View>. */
     slideInRafRef.current = requestAnimationFrame(() => {
       slideInRafRef.current = null;
+      // Вынести старт нативных анимаций из того же микротика, что и commit стилей (LinearGradient / RN),
+      // иначе на Fabric иногда цепляется «useInsertionEffect must not schedule updates».
+      queueMicrotask(() => {
       Animated.spring(translateY, {
         toValue: 0,
         useNativeDriver: true,
@@ -113,7 +115,18 @@ export default function MatchFoundToast() {
       );
       sheenLoop.start();
       loopsRef.current.push(sheenLoop);
+      });
     });
+  };
+
+  const clearAcceptSchedule = () => {
+    if (acceptExpireTimerRef.current) {
+      clearTimeout(acceptExpireTimerRef.current);
+      acceptExpireTimerRef.current = null;
+    }
+    toastAcceptBarAnimRunRef.current?.stop?.();
+    toastAcceptBarAnimRunRef.current = null;
+    toastAcceptBarAnim.setValue(1);
   };
 
   const stopLoops = () => {
@@ -122,15 +135,26 @@ export default function MatchFoundToast() {
   };
 
   const slideOut = (cb?: () => void) => {
-    if (timerRef.current) { clearTimeout(timerRef.current); timerRef.current = null; }
+    clearAcceptSchedule();
     if (slideInRafRef.current != null) {
       cancelAnimationFrame(slideInRafRef.current);
       slideInRafRef.current = null;
     }
     stopLoops();
+    const done = () => {
+      toastActiveRef.current = false;
+      queueMicrotask(() => {
+        setVisible(false);
+        cb?.();
+      });
+    };
+    if (!toastActiveRef.current) {
+      done();
+      return;
+    }
     Animated.timing(translateY, {
       toValue: -160, duration: MOTION_DURATION.slow, useNativeDriver: true,
-    }).start(() => { setVisible(false); cb?.(); });
+    }).start(() => done());
   };
 
   useEffect(() => {
@@ -139,24 +163,55 @@ export default function MatchFoundToast() {
     // Only show on explicit safe routes. Lobby and arena flows handle navigation themselves.
     if (status === 'found' && !isMatchHandled && !isLobbyActive && isAllowedPath) {
       slideIn();
-      timerRef.current = setTimeout(() => slideOut(), AUTO_DISMISS_MS);
-    } else {
+      toastAcceptEndsAtRef.current = Date.now() + ARENA_LOBBY_ACCEPT_MS;
+      toastAcceptBarAnim.setValue(1);
+      const barAnim = Animated.timing(toastAcceptBarAnim, {
+        toValue: 0,
+        duration: ARENA_LOBBY_ACCEPT_MS,
+        easing: Easing.linear,
+        useNativeDriver: true,
+      });
+      toastAcceptBarAnimRunRef.current = barAnim;
+      barAnim.start(() => {
+        toastAcceptBarAnimRunRef.current = null;
+      });
+      acceptExpireTimerRef.current = setTimeout(() => {
+        acceptExpireTimerRef.current = null;
+        void (async () => {
+          const sid = sessionId;
+          const uid = userId;
+          if (
+            sid && uid && CLOUD_SYNC_ENABLED
+            && !sid.startsWith('bot_')
+            && !sid.startsWith('preview_match_')
+            && !sid.startsWith('dev_test')
+          ) {
+            await setSessionLobbyChoice(sid, uid, 'decline').catch(() => {});
+          }
+          markMatchHandled();
+          clearAcceptSchedule();
+          slideOut();
+          await cancelSearching();
+          await resumeSearchAfterLobbyAbort();
+        })();
+      }, ARENA_LOBBY_ACCEPT_MS);
+    } else if (toastActiveRef.current) {
       slideOut();
     }
     return () => {
-      if (timerRef.current) clearTimeout(timerRef.current);
+      clearAcceptSchedule();
       if (slideInRafRef.current != null) {
         cancelAnimationFrame(slideInRafRef.current);
         slideInRafRef.current = null;
       }
       stopLoops();
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [status, isMatchHandled, isLobbyActive, pathname]);
+  }, [status, isMatchHandled, isLobbyActive, pathname, sessionId, userId, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort]);
 
   const handlePress = () => {
     if (!sessionId || !userId) return;
     hapticTap();
+    clearAcceptSchedule();
     markMatchHandled();
     slideOut(() => {
       router.push({
@@ -187,6 +242,21 @@ export default function MatchFoundToast() {
           },
         ]}
       >
+        <View style={styles.acceptBarWrap} pointerEvents="none">
+          <View style={[styles.acceptBarTrack, { backgroundColor: `${t.border}99` }]}>
+            <Animated.View
+              style={[
+                styles.acceptBarFill,
+                {
+                  width: '100%',
+                  backgroundColor: t.accent,
+                  transform: [{ scaleX: toastAcceptBarAnim }],
+                  transformOrigin: 'left',
+                },
+              ]}
+            />
+          </View>
+        </View>
         {/* Внутренний градиент свечения */}
         <LinearGradient
           colors={[t.accent + '22', 'transparent']}
@@ -300,6 +370,24 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.4, shadowRadius: 14, elevation: 10,
     overflow: 'hidden',
+  },
+  acceptBarWrap: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    paddingHorizontal: 10,
+    paddingTop: 8,
+    zIndex: 2,
+  },
+  acceptBarTrack: {
+    height: 3,
+    borderRadius: 2,
+    overflow: 'hidden',
+  },
+  acceptBarFill: {
+    height: '100%',
+    borderRadius: 2,
   },
   iconWrap: {
     width: 38, height: 38,

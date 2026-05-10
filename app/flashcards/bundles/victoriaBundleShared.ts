@@ -18,6 +18,11 @@ export function derivePackCodeName(packId: string): string {
     official_wild_west_en: 'Wild West',
     official_royal_tea_en: 'Royal Tea',
     official_peaky_blinders_en: 'Peaky Blinders',
+    official_prep_in_en: 'Preposition IN',
+    official_prep_on_en: 'Preposition ON',
+    official_prep_at_en: 'Preposition AT',
+    official_prep_to_en: 'Preposition TO',
+    official_prep_by_en: 'Preposition BY',
   };
   if (known[packId]) return known[packId];
   const stripped = packId

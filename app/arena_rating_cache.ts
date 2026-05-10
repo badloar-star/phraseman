@@ -17,6 +17,17 @@ import {
 
 export const ARENA_RATING_SCREEN_CACHE_KEY = 'arena_rating_screen_cache_v1';
 
+/** Последний известный профиль арены в памяти — для мгновенного бейджа ранга в лобби до чтения AsyncStorage. */
+let arenaLobbyProfileMemory: ArenaProfile | null = null;
+
+export function rememberArenaLobbyProfile(profile: ArenaProfile | null): void {
+  arenaLobbyProfileMemory = profile;
+}
+
+export function getRememberedArenaLobbyProfile(): ArenaProfile | null {
+  return arenaLobbyProfileMemory;
+}
+
 type MatchRecord = {
   id: string;
   createdAt: number;
@@ -136,6 +147,7 @@ export async function fetchAndCacheArenaRating(): Promise<{
       JSON.stringify({ profile, history, ts: Date.now() }),
     );
   } catch {}
+  if (profile) rememberArenaLobbyProfile(profile);
   return { profile, history };
 }
 

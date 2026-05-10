@@ -1,5 +1,5 @@
 /**
- * Alias `LESSON_*_INTRO_SCREENS` для `lesson_data_*` — тот же контент, что EXTRA_INTRO (español L2).
+ * Alias `LESSON_*_INTRO_SCREENS` для `lesson_data_*` — тот же контент, что EXTRA_INTRO (EN).
  */
 export {
   LESSON_17_INTRO_EXTRA as LESSON_17_INTRO_SCREENS,
@@ -18,7 +18,7 @@ export {
   LESSON_30_INTRO_EXTRA as LESSON_30_INTRO_SCREENS,
   LESSON_31_INTRO_EXTRA as LESSON_31_INTRO_SCREENS,
   LESSON_32_INTRO_EXTRA as LESSON_32_INTRO_SCREENS,
-} from './lesson_intro_screens_es_l2';
+} from './lesson_intro_screens_17_32';
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() {

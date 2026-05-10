@@ -31,7 +31,6 @@ const getFirestore = () => {
  *   "quiz_easy_run_out_of"       → grep "run out of" в quiz_data.ts
  *   "flashcard_give_up"          → grep "give up" в flashcards
  *   "exam_lesson_3_q5"           → exam lesson 3, вопрос 5
- *   "dialog_job_interview_step_3" → dialog id + step index
  *   "theory_lesson_7"            → lesson_help.tsx, lessonId=7
  *   "review_she_insisted"        → grep phrase в active_recall data
  */
@@ -47,6 +46,21 @@ export interface ErrorReportPayload {
 }
 
 export type ErrorReportResult = 'sent' | 'throttled' | 'invalid_comment';
+
+/**
+ * Стабильный `dataId` для упражнения «собери фразу» в уроке (`lesson_N_phrase_K`).
+ * Совпадает с суффиксом `phrase.id`, если он в формате `lesson{N}_phrase_{K}`.
+ */
+export function lessonPhraseReportDataId(
+  lessonId: number,
+  phrase: { id?: string | null } | null | undefined,
+  realPhraseIdx: number,
+): string {
+  const raw = phrase?.id != null ? String(phrase.id).trim() : '';
+  const m = raw.match(/^lesson(\d+)_phrase_(\d+)$/i);
+  if (m) return `lesson_${m[1]}_phrase_${m[2]}`;
+  return `lesson_${lessonId}_phrase_${realPhraseIdx + 1}`;
+}
 
 export async function collectMetadata(userName: string, lang: string) {
   const { width, height } = Dimensions.get('window');
@@ -177,7 +191,8 @@ export const submitErrorReport = async (
   }
 
   await AsyncStorage.setItem(THROTTLE_KEY, String(now));
-  await registerXP(10, 'achievement_reward', userName, lang);
+  /** Маленький бонус за отправку — не await: иначе общая очередь registerXP может навсегда держать «Отправка…». */
+  void registerXP(10, 'achievement_reward', userName, lang).catch(() => {});
 
   return 'sent';
 };

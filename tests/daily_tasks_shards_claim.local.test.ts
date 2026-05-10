@@ -29,7 +29,7 @@ describe('claimDailyTasksAllShardsReward (local / Expo Go)', () => {
     mockStorage.shards_balance = '2';
     await expect(claimDailyTasksAllShardsReward('2026-04-24')).resolves.toBe(true);
     await expect(claimDailyTasksAllShardsReward('2026-04-24')).resolves.toBe(false);
-    expect(mockStorage.shards_balance).toBe('3');
+    expect(mockStorage.shards_balance).toBe('5');
     expect(mockStorage['daily_tasks_all_shards_2026-04-24']).toBe('1');
   });
 

@@ -149,7 +149,7 @@ export default function EnergyBar({ size = 20 }: Props) {
       </View>
       </Pressable>
       {!isUnlimited && energy < maxEnergy && !!formattedTime && (
-        <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
+        <Text style={{ color: isLightTheme ? t.heroTextMuted : t.textMuted, fontSize: f.label, marginTop: 2 }}>
           {formattedTime}
         </Text>
       )}

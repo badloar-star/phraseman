@@ -3,10 +3,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import type { FlashcardMarketPack, FlashcardPackCategory } from '../flashcards/marketplace';
 import { derivePackCodeName } from '../flashcards/marketplace';
 import type { CardItem } from '../flashcards/types';
-import {
-  COMMUNITY_PACKS_COLLECTION,
-  COMMUNITY_PACK_PRICE_SHARDS_MIN,
-} from './schema';
+import { COMMUNITY_PACKS_COLLECTION, COMMUNITY_PACK_PRICE_SHARDS } from './schema';
 import { callCommunityFetchPackCardsIfAccessible, isCommunityPacksCloudEnabled } from './functionsClient';
 import { getCanonicalUserId } from '../user_id_policy';
 import { UGC_CARD_THEME_DEFAULT_ID } from './ugcCardThemePresets';
@@ -56,7 +53,7 @@ export function mapCommunityPackDocToMarket(
     descriptionEs: String(data.descriptionEs ?? ''),
     category: cat,
     cardCount: Math.max(0, num(data.cardCount)),
-    priceShards: Math.max(0, num(data.priceShards)),
+    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     ratingAvg: Math.max(0, Math.min(5, num(data.ratingAvg))),
     ratingCount: Math.max(0, num(data.ratingCount)),
     salesCount: Math.max(0, num(data.salesCount)),
@@ -147,11 +144,10 @@ export async function fetchCommunityPackForAuthorEdit(
         uk: String(c.uk ?? '').trim(),
       };
     });
-    const price = Math.floor(Number(d.priceShards));
     return {
       title: String(d.titleRu ?? d.titleUk ?? '').trim(),
       description: String(d.descriptionRu ?? d.descriptionUk ?? '').trim(),
-      priceShards: Number.isFinite(price) ? price : COMMUNITY_PACK_PRICE_SHARDS_MIN,
+      priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cardThemeKey: String(d.cardThemeKey ?? UGC_CARD_THEME_DEFAULT_ID).trim() || UGC_CARD_THEME_DEFAULT_ID,
       cards,
     };

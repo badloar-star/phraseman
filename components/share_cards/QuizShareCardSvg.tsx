@@ -107,15 +107,7 @@ const QuizShareCardSvg = memo(
         </Text>
         <Text
           x={540}
-          y={280}
-          textAnchor="middle"
-          fontSize={100}
-        >
-          {cardRank.icon}
-        </Text>
-        <Text
-          x={540}
-          y={440}
+          y={360}
           textAnchor="middle"
           fill="url(#qcNum)"
           fontFamily="System"
@@ -126,7 +118,7 @@ const QuizShareCardSvg = memo(
         </Text>
         <Text
           x={540}
-          y={510}
+          y={430}
           textAnchor="middle"
           fill="#94a3b8"
           fontFamily="System"
@@ -137,7 +129,7 @@ const QuizShareCardSvg = memo(
         </Text>
         <Text
           x={540}
-          y={600}
+          y={520}
           textAnchor="middle"
           fill="#fb923c"
           fontFamily="System"

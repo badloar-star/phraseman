@@ -1098,7 +1098,7 @@ const L8_TRAPS: readonly PhraseErrorTraps[] = [
   {
     phraseIndex: 17,
     wordTraps: [
-      { wordIndex: 2, hint: 'Дни недели — on. Thursdays (с -s) = каждый четверг.' },
+      { wordIndex: 2, hint: 'Дни недели — on. Thursdays (с -s): по-русски «по четвергам» (= каждый четвер).' },
     ],
     generalRule: 'Схема построения: кто (She), её занятость (works) и конкретные дни в календаре с предлогом on.',
     generalRule_UA: 'Схема побудови: хто (She), її зайнятість (works) і конкретні дні в календарі з прийменником on.',

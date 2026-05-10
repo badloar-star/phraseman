@@ -27,11 +27,13 @@ import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
 import { ThemeMode } from '../constants/theme';
-import { isCorrectAnswer, normalize } from '../constants/contractions';
-import { MOTION_SCALE } from '../constants/motion';
+import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
+import { bumpStatsDaily } from './stats_daily_breakdown';
 import { registerXP } from './xp_manager';
+import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 // [SRS] Модуль интервального повторения (active_recall.ts).
 // recordMistake() вызывается при каждом неверном ответе в уроке.
 // Фраза попадает в AsyncStorage ('active_recall_items') с алгоритмом SM-2:
@@ -42,24 +44,26 @@ import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import { hapticTap } from '../hooks/use-haptics';
 import { recordMistake } from './active_recall';
+import { logMistake } from './mistake_log';
+import { recordPhraseMistake } from './trainer_store';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy } from '../components/EnergyContext';
 import { getLessonData, getLessonEncouragementScreens, getLessonIntroScreens } from './lesson_data_all';
 import { phraseAnswerAlternatives, phraseAnswerDisplayLine, phraseCanonicalAnswer, phrasePrimarySurface, phraseWordRowsForStudyTarget, ttsLocaleForStudyTarget } from './phrase_target_utils';
+import { spanishLessonUiStringsActive, spanishStudyActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import LessonIntroScreens from './lesson_intro_screens';
 import { getMedalTier, getProgressCellColor, loadMedalInfo } from './medal_utils';
 import type { MedalTier } from './medal_utils';
 
-import { grammarHintLine, lessonEnergyMessages, phraseCardFace as pickPhraseCardFace } from './lesson_locale_utils';
+import { grammarHintLine } from './lesson_locale_utils';
 import {
   getContractionFor,
   getPerWordDistracts,
   getPhraseWords, lookupContraction,
   makeExpansionOptions,
 } from './lesson1_smart_options';
-import { emitAppEvent } from './events';
 import { tryUnlockNextLesson } from './lesson_lock_system';
 import {
   getInitialOrderAndCell,
@@ -68,8 +72,11 @@ import {
   touchLessonScreenPrimed,
 } from './lesson_screen_bootstrap';
 import { getBonusHintsToday } from './level_gift_system';
-import { getPhraseCard } from './lesson_cards_data';
+import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
+import PhraseContentStars from '../components/PhraseContentStars';
+import MedalToast from '../components/MedalToast';
+import NoEnergyModal from '../components/NoEnergyModal';
 
 const GRAMMAR_HINTS = [
   {
@@ -118,12 +125,29 @@ const isZeroArticlePosition = (phraseWords: string[], idx: number): boolean =>
 
 // Returns the canonical word token list for a phrase (language depends on learnTarget).
 const getPhraseTokens = (phrase: any, studyTarget: StudyTargetLang): string[] => {
+  if (!phrase) return [];
   const rows = phraseWordRowsForStudyTarget(phrase, studyTarget);
   if (rows.length > 0) {
     return rows.map((w: any) => w.correct ?? w.text);
   }
   return getPhraseWords(phrase?.english ?? '');
 };
+
+/** Word-bank phrase is ready to grade (all slots filled or early match on an accepted alternative). */
+function isPhraseAssemblyComplete(
+  phrase: any,
+  studyTarget: StudyTargetLang,
+  selectedWords: string[],
+  phraseWordIdx: number,
+): boolean {
+  if (!phrase) return false;
+  const tokens = getPhraseTokens(phrase, studyTarget);
+  const assembled = selectedWords.join(' ');
+  const canon = phraseCanonicalAnswer(phrase, studyTarget);
+  const alts = phraseAnswerAlternatives(phrase, studyTarget);
+  if (isCorrectAnswer(assembled, canon, alts)) return true;
+  return phraseWordIdx >= tokens.length;
+}
 
 // Safe wrapper: if getPerWordDistracts returns [] (phraseWordIdx out of bounds),
 // fall back to the last valid position so buttons never disappear mid-phrase.
@@ -162,27 +186,33 @@ let tapHintShownThisSession = false;
 const TOTAL = 50;
 const SETTINGS_KEY = 'user_settings';
 
+function syncLessonIntroShownFlagNow(): void {
+  void import('./cloud_sync')
+    .then((m) => m.syncToCloud({ forceNow: true }))
+    .catch(() => {});
+}
+
 interface Settings {
   speechRate: number; voiceOut: boolean;
   autoAdvance: boolean; hardMode: boolean; autoCheck: boolean; haptics: boolean;
-  showHints: boolean;
 }
 const DEFAULT_SETTINGS: Settings = {
   speechRate: 0.9, voiceOut: true, autoAdvance: false,
-  hardMode: false, autoCheck: false, haptics: true, showHints: true,
+  hardMode: false, autoCheck: false, haptics: true,
 };
 
 
 // ── Гексагональный прогресс-индикатор ────────────────────────────────────────
 // LessonHexProgress is now imported from components/LessonHexProgress.tsx
 
-// ── Модалка "Конец цикла урока" — показывается один раз за всю жизнь ──────────
+// ── Модалка "Конец цикла урока" ───────────────────────────────────────────────
 export const CYCLE_END_SHOWN_KEY = 'lesson_cycle_end_intro_shown';
 
-function LessonCycleEndModal({ visible, hasErrors, lang, t, f, onClose }: {
+function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onClose }: {
   visible: boolean;
   hasErrors: boolean;
   lang: Lang;
+  studyTarget: StudyTargetLang;
   t: any;
   f: any;
   onClose: () => void;
@@ -205,7 +235,7 @@ function LessonCycleEndModal({ visible, hasErrors, lang, t, f, onClose }: {
   if (!visible) return null;
 
   const isUK = lang === 'uk';
-  const isES = lang === 'es';
+  const isES = spanishLessonUiStringsActive(lang, studyTarget);
   const title = isES ? '🎉 ¡Has cerrado todo el ciclo!' : isUK ? '🎉 Ти пройшов увесь урок!' : '🎉 Ты прошёл весь урок!';
   const subtitle = isES
     ? 'Puedes seguir todas las vueltas que quieras; cada nueva ronda afianza mejor tu resultado.'
@@ -263,72 +293,6 @@ function LessonCycleEndModal({ visible, hasErrors, lang, t, f, onClose }: {
   );
 }
 
-// ── Золотая кнопка Премиум (для модала об окончании энергии) ─────────────────
-function PremiumGoldButton({ lang, f, router, onDismiss }: { lang: Lang; f: any; router: any; onDismiss: () => void }) {
-  const pulseAnim = useRef(new Animated.Value(1)).current;
-  const sparkleAnim = useRef(new Animated.Value(0)).current;
-  const pulseLoopRef = useRef<Animated.CompositeAnimation | null>(null);
-  const sparkleLoopRef = useRef<Animated.CompositeAnimation | null>(null);
-
-  useEffect(() => {
-    pulseLoopRef.current = Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulseAnim, { toValue: MOTION_SCALE.nudge, duration: 720, useNativeDriver: true }),
-        Animated.timing(pulseAnim, { toValue: 1.0, duration: 720, useNativeDriver: true }),
-      ])
-    );
-    pulseLoopRef.current.start();
-    sparkleLoopRef.current = Animated.loop(
-      Animated.sequence([
-        Animated.timing(sparkleAnim, { toValue: 1, duration: 1200, useNativeDriver: true }),
-        Animated.timing(sparkleAnim, { toValue: 0, duration: 1200, useNativeDriver: true }),
-      ])
-    );
-    sparkleLoopRef.current.start();
-    return () => {
-      pulseLoopRef.current?.stop();
-      sparkleLoopRef.current?.stop();
-      pulseAnim.stopAnimation();
-      sparkleAnim.stopAnimation();
-    };
-  }, [pulseAnim, sparkleAnim]);
-
-  const sparkleOpacity1 = sparkleAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0.3, 1, 0.3] });
-  const sparkleOpacity2 = sparkleAnim.interpolate({ inputRange: [0, 0.5, 1], outputRange: [1, 0.3, 1] });
-
-  return (
-    <Animated.View style={{ transform: [{ scale: pulseAnim }], width: '100%', marginTop: 2 }}>
-      <TouchableOpacity
-        onPress={() => { onDismiss(); router.push({ pathname: '/premium_modal', params: { context: 'no_energy' } } as any); }}
-        activeOpacity={0.85}
-        style={{
-          borderRadius: 14,
-          paddingVertical: 14,
-          paddingHorizontal: 20,
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#B8860B',
-          borderWidth: 1.5,
-          borderColor: '#FFD700',
-          shadowColor: '#FFD700',
-          shadowOffset: { width: 0, height: 0 },
-          shadowOpacity: 0.8,
-          shadowRadius: 10,
-          elevation: 8,
-          flexDirection: 'row',
-          gap: 6,
-        }}
-      >
-        <Animated.Text style={{ fontSize: 14, opacity: sparkleOpacity1 }}>✨</Animated.Text>
-        <Text style={{ color: '#FFFFFF', fontSize: f.body, fontWeight: '800', letterSpacing: 0.5 }}>
-          {lang === 'uk' ? '👑 Отримати Преміум' : lang === 'es' ? '👑 Conseguir Premium' : '👑 Получить Премиум'}
-        </Text>
-        <Animated.Text style={{ fontSize: 14, opacity: sparkleOpacity2 }}>✨</Animated.Text>
-      </TouchableOpacity>
-    </Animated.View>
-  );
-}
-
 /**
  * LessonContent: Renders the lesson UI (intro screens, encouragement, or main lesson).
  * Extracted as separate component to ensure SafeAreaView receives exactly ONE child.
@@ -381,12 +345,7 @@ interface LessonContentProps {
   setEmptyTapFlash: (val: boolean) => void;
   shouldShake: boolean;
   setShouldShake: (val: boolean) => void;
-  showNoEnergyModal: boolean;
-  setShowNoEnergyModal: (val: boolean) => void;
-  energyMsg: string;
-  onDismissEnergyModal: () => void;
   recoveryTimeText: string;
-  energyFormattedTime: string;
   setFailedTapCount: (val: number | ((prev: number) => number)) => void;
   checkAnswer: (answer: string) => Promise<void>;
   contrExpanded: string[] | null;
@@ -455,12 +414,7 @@ const LessonContent = React.memo(function LessonContent({
   setEmptyTapFlash,
   shouldShake,
   setShouldShake,
-  showNoEnergyModal,
-  setShowNoEnergyModal,
-  energyMsg,
-  onDismissEnergyModal,
   recoveryTimeText,
-  energyFormattedTime,
   setFailedTapCount,
   checkAnswer,
   contrExpanded,
@@ -481,6 +435,7 @@ const LessonContent = React.memo(function LessonContent({
   onHeaderBack,
 }: LessonContentProps) {
   const { speak: speakAudio } = useAudio();
+  const effectiveOs = useEffectivePlatformOS();
   const { width: screenW, height: screenH } = useWindowDimensions();
 
 
@@ -496,6 +451,40 @@ const LessonContent = React.memo(function LessonContent({
   const selectedAnswer = selectedWords.join(' ');
   const gradeTarget = phrase ? phraseCanonicalAnswer(phrase, studyTarget) : '';
   const gradeAlts = phrase ? phraseAnswerAlternatives(phrase, studyTarget) : undefined;
+  const currentCorrectWord = phraseTokens[phraseWordIdx] ?? null;
+  const currentNextCorrectWord = phraseTokens[phraseWordIdx + 1] ?? null;
+  const currentValidContraction = currentCorrectWord && currentNextCorrectWord
+    ? getContractionFor(currentCorrectWord, currentNextCorrectWord)
+    : null;
+  const wordOptionItems = useMemo(() => {
+    const expansionCorrect = contrExpanded !== null && contrExpanded.length > 0
+      ? contrExpanded[0]
+      : null;
+    return shuffled.map((word, i) => {
+      const strippedRaw = stripMarkers(word);
+      const stripped = strippedRaw.toLowerCase();
+      const isCorrectOption = contrExpanded !== null
+        ? expansionCorrect != null && stripped === expansionCorrect.toLowerCase()
+        : currentCorrectWord != null && (
+          stripped === currentCorrectWord.toLowerCase() ||
+          (currentValidContraction != null && stripped === currentValidContraction.toLowerCase())
+        );
+      const displayText = (() => {
+        if (strippedRaw === '') return s.lesson.noArticle;
+        const cap = currentCorrectWord !== null && /^[A-Z]/.test(currentCorrectWord);
+        if (cap) return strippedRaw.charAt(0).toUpperCase() + strippedRaw.slice(1);
+        return strippedRaw === 'I' ? 'I' : strippedRaw.toLowerCase();
+      })();
+      return {
+        word,
+        index: i,
+        isCorrectOption,
+        shouldShowHint: showToBeHint && cellIndex < 2 && isCorrectOption,
+        isDimmed: dimmedWords.has(word),
+        displayText,
+      };
+    });
+  }, [shuffled, contrExpanded, currentCorrectWord, currentValidContraction, showToBeHint, cellIndex, dimmedWords, s.lesson.noArticle]);
   const selectedAnswerMatchesAlternative = Boolean(
     gradeAlts?.length && isCorrectAnswer(selectedAnswer, gradeTarget, gradeAlts)
   );
@@ -516,7 +505,7 @@ const LessonContent = React.memo(function LessonContent({
         if (seen) continue;
         await AsyncStorage.setItem(hint.key, '1');
       }
-      const text = grammarHintLine(lang, hint);
+      const text = grammarHintLine(lang, hint, studyTarget);
       Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
         setGrammarHintText(text);
         Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
@@ -526,7 +515,7 @@ const LessonContent = React.memo(function LessonContent({
       });
       return;
     }
-  }, [lessonId, lang]);
+  }, [lessonId, lang, studyTarget]);
 
   const hideGrammarHint = useCallback(() => {
     if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
@@ -559,7 +548,7 @@ const LessonContent = React.memo(function LessonContent({
   if (showIntroScreens) {
     return (
       <LessonIntroScreens
-        introScreens={getLessonIntroScreens(lessonId)}
+        introScreens={getLessonIntroScreens(lessonId, studyTarget)}
         lessonId={lessonId}
         onComplete={onIntroDone}
       />
@@ -577,21 +566,60 @@ const LessonContent = React.memo(function LessonContent({
 
   return (
     <>
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      {/* ХЕДЕР */}
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 15, paddingVertical: 12 }}>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : undefined}>
+      {/* ХЕДЕР — flex + minWidth:0 + wrap, иначе на узких экранах правый блок вылезает за край */}
+      <View
+        style={{
+          width: '100%',
+          flexDirection: 'row',
+          alignItems: 'center',
+          paddingHorizontal: isSmallScreen ? 10 : 15,
+          paddingVertical: 12,
+          gap: 6,
+        }}
+      >
         {/* Кнопка назад совмещена с названием урока — как на скриншоте */}
         <TouchableOpacity
+          testID="lesson1-header-back"
           onPress={onHeaderBack}
-          style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 20, paddingHorizontal: 12, paddingVertical: 7, borderWidth: 0.5, borderColor: t.border }}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 4,
+            flexShrink: 1,
+            minWidth: 0,
+            maxWidth: '44%',
+            backgroundColor: t.bgCard,
+            borderRadius: 20,
+            paddingHorizontal: isSmallScreen ? 8 : 12,
+            paddingVertical: 7,
+            borderWidth: 0.5,
+            borderColor: t.border,
+          }}
         >
           <Ionicons name="chevron-back" size={18} color={t.textPrimary} />
-          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={{ color: t.textPrimary, fontSize: isSmallScreen ? f.body : f.bodyLg, fontWeight: '600', flexShrink: 1 }}
+          >
             {triLang(lang, { uk: 'Урок', ru: 'Урок', es: 'Lección' })} {lessonId}
           </Text>
         </TouchableOpacity>
         {/* Right side: energy icons + combo badge + stats */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: isSmallScreen ? 4 : 8 }}>
+        <View
+          style={{
+            flex: 1,
+            minWidth: 0,
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            flexWrap: 'wrap',
+            alignContent: 'flex-end',
+            rowGap: 4,
+            columnGap: isSmallScreen ? 4 : 8,
+          }}
+        >
           {/* Energy icons at top */}
           <View style={{ paddingVertical: 8 }}>
             <LessonEnergyLightning energyCount={currentEnergy} maxEnergy={currentMaxEnergy} shouldShake={shouldShake} />
@@ -603,8 +631,19 @@ const LessonContent = React.memo(function LessonContent({
               <Text style={{ color: '#fff', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label }}>+{comboCount >= 5 ? '200' : '100'}%</Text>
             </View>
           )}
-          {/* Stats row — XP toast floats absolutely over it to avoid pushing stats off-screen */}
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: isSmallScreen ? 4 : 6 }}>
+          {/* Stats row — XP toast floats absolutely; row wrap + shrink so ●wrong не режется у края */}
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              justifyContent: 'flex-end',
+              flexShrink: 1,
+              minWidth: 0,
+              gap: isSmallScreen ? 4 : 6,
+              position: 'relative',
+            }}
+          >
             {xpToastVisible && (
               <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: (themeMode === 'ocean' || themeMode === 'sakura') ? '#92400E' : '#F5A623', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
                 +{xpToastAmount} XP
@@ -619,20 +658,32 @@ const LessonContent = React.memo(function LessonContent({
 
       {/* ОСНОВНАЯ ЗОНА */}
       <ScrollView
+        testID="lesson1-scroll"
         style={{ flex: 1 }}
         contentContainerStyle={{ paddingHorizontal: 20, paddingTop: 10, paddingBottom: status === 'result' ? 100 : 8 }}
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        <Pressable onPress={handleBgTap} style={{ width: '100%' }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{(lang === 'uk' ? (phrase?.ukrainian || phrase?.russian) : lang === 'es' ? (phrase?.spanish ?? phrase?.russian) : phrase?.russian) || triLang(lang, { ru: 'Загрузка...', uk: 'Завантаження...', es: 'Cargando...' })}</Text>
+        {/* На экране «ответ» не вешаем «тап = дальше» на блок перевода — иначе жест отменяет отложенный TTS (80 мс) и кажется, что «нет звука». */}
+        <Pressable onPress={status === 'result' ? undefined : handleBgTap} style={{ width: '100%' }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{(() => {
+            if (!phrase) return triLang(lang, { ru: 'Загрузка...', uk: 'Завантаження...', es: 'Cargando...' });
+            if (lang === 'uk') return (phrase.ukrainian || phrase.russian);
+            if (spanishStudyActive(studyTarget)) {
+              if (lang === 'es') return (phrase.spanish ?? phrase.russian);
+              return phrase.russian;
+            }
+            if (lang === 'es') return (phrase.russian || phrase.ukrainian || phrase.english);
+            return phrase.russian;
+          })()}</Text>
 
-          <View style={{ minHeight: 60, borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
+          <View style={{ minHeight: 60, alignSelf: 'stretch', alignItems: 'center', borderBottomWidth: 1, borderBottomColor: emptyTapFlash ? '#F5A623' : t.border, marginBottom: compact ? 12 : 20, justifyContent: 'center', backgroundColor: emptyTapFlash ? 'rgba(245,166,35,0.08)' : 'transparent', borderRadius: emptyTapFlash ? 8 : 0 } as any}>
             {settings.hardMode ? (
               /* Keep TextInput always mounted in hardMode — prevents keyboard slide animation between questions */
               <TextInput
+                testID="lesson1-typed-input"
                 ref={textInputRef}
-                style={{ color: t.textSecond, fontSize: f.h1, padding: 0, minHeight: 40, opacity: status === 'playing' ? 1 : 0 }}
+                style={{ color: t.textSecond, fontSize: f.h1, padding: 0, minHeight: 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
                 value={typedText}
                 onChangeText={setTypedText}
                 onSubmitEditing={handleTypedSubmit}
@@ -645,7 +696,7 @@ const LessonContent = React.memo(function LessonContent({
                 editable={status === 'playing'}
               />
             ) : (
-              <Text style={{ color: t.textSecond, fontSize: f.h1 }}>
+              <Text style={{ color: t.textSecond, fontSize: f.h1, width: '100%', textAlign: 'center' }}>
                 {selectedWords.length > 0
                   ? (() => {
                       const cleaned = selectedWords.map(w => stripMarkers(w)).filter(w => w.length > 0);
@@ -677,12 +728,10 @@ const LessonContent = React.memo(function LessonContent({
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
                     {(() => {
                       const userAnswer = settings.hardMode ? typedText : selectedWords.join(' ');
-                      // Normalize contractions, then strip «»/«-» article markers and filter empty tokens
-                      const expandedWords = normalize(userAnswer).split(/\s+/).map(stripMarkers).filter(w => w.length > 0);
-                      // Same treatment for correct answer
-                      const correctWords = normalize(phraseCanonicalAnswer(phrase, studyTarget))
+                      // Same pipeline as isCorrectAnswer / phraseCanonicalAnswer (per-token punct strip)
+                      const expandedWords = normalizeLessonAssemblyAnswer(userAnswer).split(/\s+/).filter(w => w.length > 0);
+                      const correctWords = normalizeLessonAssemblyAnswer(phraseCanonicalAnswer(phrase, studyTarget))
                         .split(/\s+/)
-                        .map(stripMarkers)
                         .filter(w => w.length > 0);
                       return expandedWords.map((word, i) => {
                         const correctWord = correctWords[i];
@@ -702,11 +751,11 @@ const LessonContent = React.memo(function LessonContent({
                 </View>
               )}
               <TouchableOpacity activeOpacity={0.75} onPress={() => { hapticTap(); speakAudio(phrasePrimarySurface(phrase, studyTarget), settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) }); }} style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Text style={{ color: t.correct, fontSize: f.h1, flex: 1 }}>
+                <Text style={{ color: t.correct, fontSize: f.h1, flex: 1, textAlign: 'left' }}>
                   {phraseAnswerDisplayLine(phrase, studyTarget, lang)}
                 </Text>
                 <AddToFlashcard
-                  en={phrase.english}
+                  en={phraseAnswerDisplayLine(phrase, studyTarget, lang)}
                   ru={phrase.russian}
                   uk={phrase.ukrainian || phrase.russian}
                   source="lesson" sourceId={String(lessonId)}
@@ -715,70 +764,24 @@ const LessonContent = React.memo(function LessonContent({
 
               <ReportErrorButton
                 screen={`lesson_${lessonId}`}
-                dataId={
-                  phrase?.id != null && String(phrase.id).trim() !== ''
-                    ? String(phrase.id)
-                    : `lesson_${lessonId}_phrase_${realPhraseIdx + 1}`
-                }
+                dataId={lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)}
                 dataText={[
-                  `EN: ${phrase.english}`,
+                  `EN: ${phraseAnswerDisplayLine(phrase, studyTarget, lang)}`,
                   `RU: ${phrase.russian ?? ''}`,
                   phrase.ukrainian ? `UK: ${phrase.ukrainian}` : '',
-                  phrase.spanish ? `ES: ${phrase.spanish}` : '',
+                  spanishSurfacesEnabled(lang, studyTarget) && phrase.spanish ? `ES: ${phrase.spanish}` : '',
                 ].filter(Boolean).join('\n')}
                 style={{ alignSelf: 'flex-end', marginTop: 4 }}
               />
 
-              {(() => {
-                const phraseIdx = realPhraseIdx + 1;
-                const card = getPhraseCard(lessonId, phraseIdx);
-                const hasCard =
-                  card &&
-                  (card.correctRu || card.correctUk || (card as { correctEs?: string }).correctEs) &&
-                  settings.showHints;
-                if (hasCard) {
-                  const { main: mainText, secret: secretText } = pickPhraseCardFace(lang, card, wasWrong);
-                  return (
-                    <View style={{ marginTop: 20 }}>
-                      <View style={{
-                        backgroundColor: wasWrong
-                          ? (themeMode === 'ocean' || themeMode === 'sakura' ? '#FFD6D6' : 'rgba(255,107,107,0.12)')
-                          : (themeMode === 'ocean' || themeMode === 'sakura' ? '#C8F5D8' : 'rgba(74,222,128,0.12)'),
-                        borderRadius: 14,
-                        padding: 16,
-                        marginBottom: 12,
-                        borderLeftWidth: 4,
-                        borderLeftColor: wasWrong ? '#E53935' : '#2E7D32',
-                      }}>
-                        <Text style={{ color: (themeMode === 'ocean' || themeMode === 'sakura') ? (wasWrong ? '#B71C1C' : '#1B5E20') : (wasWrong ? '#ff6b6b' : '#4ade80'), fontSize: f.body, lineHeight: f.body * 1.6, fontWeight: '500' }}>
-                          {mainText}
-                        </Text>
-                      </View>
-                      <View style={{
-                        backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? '#FFF3C4' : 'rgba(212,160,23,0.10)',
-                        borderRadius: 14,
-                        padding: 16,
-                        borderLeftWidth: 4,
-                        borderLeftColor: '#F59E0B',
-                      }}>
-                        <Text style={{ color: (themeMode === 'ocean' || themeMode === 'sakura') ? '#92400E' : '#D4A017', fontSize: f.body, lineHeight: f.body * 1.6, fontWeight: '500' }}>
-                          {secretText}
-                        </Text>
-                      </View>
-                    </View>
-                  );
-                }
-                return (
-                  <TouchableOpacity
-                    style={{ alignSelf: 'center', marginTop: 36 }}
-                    onPress={() => speakAudio(phrasePrimarySurface(phrase, studyTarget), settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) })}
-                  >
-                    <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: t.correct, justifyContent: 'center', alignItems: 'center' }}>
-                      <Ionicons name="volume-high" size={42} color={t.correctText} />
-                    </View>
-                  </TouchableOpacity>
-                );
-              })()}
+              <TouchableOpacity
+                style={{ alignSelf: 'center', marginTop: 36 }}
+                onPress={() => speakAudio(phrasePrimarySurface(phrase, studyTarget), settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) })}
+              >
+                <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: t.correct, justifyContent: 'center', alignItems: 'center' }}>
+                  <Ionicons name="volume-high" size={42} color={t.correctText} />
+                </View>
+              </TouchableOpacity>
 
             </Animated.View>
           )}
@@ -800,6 +803,29 @@ const LessonContent = React.memo(function LessonContent({
           </Animated.View>
         )}
 
+        {status === 'playing' && phrase && (
+          <PhraseContentStars
+            scope="lesson_practice"
+            itemId={`L${lessonId}_ph_${String(phrase.id)}`}
+            labelSnippet={String(phrase.russian ?? '').slice(0, 200)}
+            style={{ marginHorizontal: 20, marginBottom: 10 }}
+          />
+        )}
+
+        {status === 'playing' && phrase && (
+          <ReportErrorButton
+            screen={`lesson_${lessonId}`}
+            dataId={lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)}
+            dataText={[
+              `EN: ${phraseAnswerDisplayLine(phrase, studyTarget, lang)}`,
+              `RU: ${phrase.russian ?? ''}`,
+              phrase.ukrainian ? `UK: ${phrase.ukrainian}` : '',
+              spanishSurfacesEnabled(lang, studyTarget) && phrase.spanish ? `ES: ${phrase.spanish}` : '',
+            ].filter(Boolean).join('\n')}
+            style={{ alignSelf: 'flex-end', marginHorizontal: 20, marginBottom: 6 }}
+          />
+        )}
+
         {/* КНОПКИ СЛОВ — снаружи ScrollView, тап по любому месту работает */}
         {status === 'playing' && !settings.hardMode && (
           <Pressable
@@ -807,27 +833,7 @@ const LessonContent = React.memo(function LessonContent({
             style={{ paddingHorizontal: 20, paddingTop: 4, paddingBottom: 4 }}
           >
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between' }} pointerEvents="box-none">
-              {shuffled.map((word, i) => {
-                const phraseWordsList = phrase ? getPhraseTokens(phrase, studyTarget) : [];
-                const correctWord = phraseWordsList[phraseWordIdx] ?? null;
-                const nextCorrectWord = phraseWordsList[phraseWordIdx + 1] ?? null;
-                const validContraction = correctWord && nextCorrectWord
-                  ? getContractionFor(correctWord, nextCorrectWord)
-                  : null;
-                const stripped = stripMarkers(word).toLowerCase();
-                // In expansion mode (user picked "do" when expected "don't"), correct token = contrExpanded[0]
-                const expansionCorrect = contrExpanded !== null && contrExpanded.length > 0
-                  ? contrExpanded[0]
-                  : null;
-                const isCorrectOption = contrExpanded !== null
-                  ? expansionCorrect != null && stripped === expansionCorrect.toLowerCase()
-                  : correctWord != null && (
-                    stripped === correctWord.toLowerCase() ||
-                    (validContraction != null && stripped === validContraction.toLowerCase())
-                  );
-                const shouldShowHint = showToBeHint && cellIndex < 2 && isCorrectOption;
-                const isDimmed = dimmedWords.has(word);
-
+              {wordOptionItems.map(({ word, index: i, isCorrectOption, shouldShowHint, isDimmed, displayText }) => {
                 return (
                   <Animated.View
                     key={`${phrase?.id ?? 'phrase'}-${phraseWordIdx}-${word}-${i}`}
@@ -837,10 +843,10 @@ const LessonContent = React.memo(function LessonContent({
                     opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
                     <TouchableOpacity
+                      testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
                       style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
                       onPress={() => {
                         if (isDimmed) return;
-                        hapticTap();
                         if (showTapHint) setShowTapHint(false);
                         if (settings.hardMode) {
                           // В hardMode нажатие на кнопку вставляет слово в текстовое поле
@@ -851,10 +857,11 @@ const LessonContent = React.memo(function LessonContent({
                         } else {
                           handleWordPress(word);
                         }
+                        requestAnimationFrame(() => { void hapticTap(); });
                       }}
                       activeOpacity={isDimmed ? 1 : 0.7}
                     >
-                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{(() => { const w = stripMarkers(word); if (w === '') return s.lesson.noArticle; const cap = correctWord !== null && /^[A-Z]/.test(correctWord); return cap ? w.charAt(0).toUpperCase() + w.slice(1) : (w === 'I' ? 'I' : w.toLowerCase()); })()}</Text>
+                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
                     </TouchableOpacity>
                   </Animated.View>
                 );
@@ -913,6 +920,7 @@ const LessonContent = React.memo(function LessonContent({
               const canUse = hintsLeft > 0 && status === 'playing' && dimmedWords.size === 0;
               return (
                 <TouchableOpacity
+                  testID="lesson1-fifty-fifty"
                   style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
                   onPress={() => {
                     if (!canUse) return;
@@ -933,13 +941,14 @@ const LessonContent = React.memo(function LessonContent({
           )}
 
           {/* Theory Button */}
-          <TouchableOpacity style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
+          <TouchableOpacity testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
             <Ionicons name="book-outline" size={26} color={t.textSecond} />
             <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
           </TouchableOpacity>
 
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}
           <TouchableOpacity
+            testID={status === 'result' ? 'lesson1-next' : 'lesson1-undo'}
             style={{ flex: 1, alignItems: 'center', opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
             onPress={() => {
               hapticTap();
@@ -969,6 +978,7 @@ const LessonContent = React.memo(function LessonContent({
           {/* Check Button - видна только когда все слова введены и autoCheck выключен */}
           {canManuallyCheckAnswer && (
             <TouchableOpacity
+              testID="lesson1-check"
               style={{ flex: 1, alignItems: 'center' }}
               onPress={() => {
                 if (!canManuallyCheckAnswer) return;
@@ -982,63 +992,13 @@ const LessonContent = React.memo(function LessonContent({
           )}
         </View>
 
-        {/* No Energy Modal — блокирующий экран с кнопкой */}
-        {showNoEnergyModal && (
-          <View style={{
-            position: 'absolute',
-            top: 0, left: 0, right: 0, bottom: 0,
-            zIndex: 9999,
-            backgroundColor: 'rgba(0,0,0,0.72)',
-            justifyContent: 'center',
-            alignItems: 'center',
-            padding: 28,
-          }}>
-            <View style={{
-              backgroundColor: t.bgCard,
-              borderRadius: 22,
-              padding: 28,
-              width: '100%',
-              alignItems: 'center',
-              gap: 14,
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 8 },
-              shadowOpacity: 0.35,
-              shadowRadius: 20,
-              elevation: 20,
-            }}>
-              <Text style={{ fontSize: 44 }}>⚡</Text>
-              <Text style={{ color: t.textPrimary, fontSize: f.title ?? 18, fontWeight: '700', textAlign: 'center' }}>
-                {lang === 'uk' ? 'Енергія закінчилась' : lang === 'es' ? 'Se acabó la energía' : 'Энергия закончилась'}
-              </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center', lineHeight: 22 }}>
-                {energyMsg}
-              </Text>
-              <TouchableOpacity
-                onPress={onDismissEnergyModal}
-                style={{
-                  backgroundColor: t.accent ?? '#7C3AED',
-                  borderRadius: 14,
-                  paddingVertical: 14,
-                  paddingHorizontal: 40,
-                  marginTop: 6,
-                }}
-              >
-                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-                  {lang === 'uk' ? 'Зрозуміло' : lang === 'es' ? 'Entendido' : 'Понятно'}
-                </Text>
-              </TouchableOpacity>
-              <PremiumGoldButton lang={lang} f={f} router={router} onDismiss={onDismissEnergyModal} />
-            </View>
-          </View>
-        )}
-
         {__DEV__ && (
           <TouchableOpacity
             style={{ position: 'absolute', bottom: 90, right: 12, backgroundColor: 'rgba(40,40,40,0.85)', borderRadius: 8, paddingHorizontal: 10, paddingVertical: 6, zIndex: 999 }}
             onPress={() => {
               const hint = GRAMMAR_HINTS[0];
               if (grammarHintTimerRef.current) clearTimeout(grammarHintTimerRef.current);
-              const text = grammarHintLine(lang, hint);
+              const text = grammarHintLine(lang, hint, studyTarget);
               Animated.timing(grammarHintAnim, { toValue: 0, duration: 100, useNativeDriver: true }).start(() => {
                 setGrammarHintText(text);
                 Animated.timing(grammarHintAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
@@ -1064,33 +1024,39 @@ export default function LessonScreen() {
   const router = useRouter();
   const { height: windowH, width: windowW } = useWindowDimensions();
   const compact = windowH < 780;
-  const isSmallScreen = windowW < 380; // dynamic — recalculates on orientation change and accounts for safe area
+  const isSmallScreen = windowW < 400; // compact header/spacing on narrow widths (lesson top bar used to clip past ~380)
   const { theme: t , f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const studyTargetRef = useRef(studyTarget);
   studyTargetRef.current = studyTarget;
-  const { id, from } = useLocalSearchParams<{ id: string; from?: string }>();
-  const lessonId = parseInt(id || '1', 10);
+  // iOS / expo-router: query params may arrive as string[] — strict `from === 'lesson_menu'` must not break.
+  const { id: idParam, from: fromParam } = useLocalSearchParams<{ id?: string | string[]; from?: string | string[] }>();
+  const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
+  const from = Array.isArray(fromParam) ? fromParam[0] : fromParam;
+  const lessonId = parseInt(id, 10) || 1;
   const LESSON_KEY = `lesson${lessonId}_progress`;
   const CELL_KEY   = `lesson${lessonId}_cellIndex`;
   const ORDER_KEY  = `lesson${lessonId}_phraseOrder`;
+  const ERROR_REPLAY_QUEUE_KEY   = `lesson${lessonId}_errorReplayQueue`;
+  const ERROR_REPLAY_SINCE_KEY   = `lesson${lessonId}_errorReplaySince`;
+  const ERROR_REPLAY_OVERRIDE_KEY = `lesson${lessonId}_errorReplayOverride`;
 
   // Фильтруем только фразы с .words — словарные слова (без .words) не показываем в режиме кнопок
   const LESSON_DATA = getLessonData(lessonId).filter(p => p.words && p.words.length > 0);
   // Если в уроке меньше 50 фраз — не повторяем. effectiveTotal = реальное кол-во фраз.
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
   const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonId, LESSON_DATA.length, effectiveTotal);
-  const { energy: currentEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, formattedTime: energyFormattedTime, spendOne } = useEnergy();
+  const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, spendOne, energyReady } = useEnergy();
   // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
   const currentEnergyRef = useRef(currentEnergy);
+  const bonusEnergyRef = useRef(bonusEnergy);
   const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
   const spendOneRef = useRef(spendOne);
-  const energyFormattedTimeRef = useRef(energyFormattedTime);
   useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
+  useEffect(() => { bonusEnergyRef.current = bonusEnergy; }, [bonusEnergy]);
   useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
   useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
-  useEffect(() => { energyFormattedTimeRef.current = energyFormattedTime; }, [energyFormattedTime]);
 
   // cellIndex — позиция в прогресс-баре (0..49), двигается строго по кругу
   const [cellIndex,    setCellIndex]    = useState(initialStartCell);
@@ -1128,12 +1094,6 @@ export default function LessonScreen() {
   const [showToBeHint, setShowToBeHint] = useState(false);
   // No energy modal after 3 failed taps
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
-  // Та же идея, что NoEnergyModal: встроенная «энергия 0» → не дублировать тутором на главной
-  useEffect(() => {
-    if (!showNoEnergyModal) return;
-    void AsyncStorage.setItem('energy_onboarding_shown', '1');
-    emitAppEvent('bug_hunt_eligible_check');
-  }, [showNoEnergyModal]);
   const [failedTapCount, setFailedTapCount] = useState(0);
   const [recoveryTimeText, setRecoveryTimeText] = useState('');
   const [showCycleEndModal, setShowCycleEndModal] = useState(false);
@@ -1164,6 +1124,19 @@ export default function LessonScreen() {
   const errorQueueRef          = useRef<number[]>([]); // cellIndex ячеек где была ошибка
   const questionsSinceErrorRef = useRef(0);            // сколько вопросов прошло после добавления в очередь
   const [overridePhraseCell, setOverridePhraseCell] = useState<number | null>(null); // если задан — показываем эту фразу вместо текущей
+  const overridePhraseCellRef = useRef<number | null>(null);
+  useEffect(() => { overridePhraseCellRef.current = overridePhraseCell; }, [overridePhraseCell]);
+
+  const persistErrorReplayToStorage = useCallback((overrideForStore?: number | null) => {
+    const q = errorQueueRef.current;
+    const s = questionsSinceErrorRef.current;
+    const o = overrideForStore !== undefined ? overrideForStore : overridePhraseCellRef.current;
+    void AsyncStorage.multiSet([
+      [ERROR_REPLAY_QUEUE_KEY, JSON.stringify(q)],
+      [ERROR_REPLAY_SINCE_KEY, String(s)],
+      [ERROR_REPLAY_OVERRIDE_KEY, o === null ? 'null' : String(o)],
+    ]).catch(() => {});
+  }, [ERROR_REPLAY_QUEUE_KEY, ERROR_REPLAY_OVERRIDE_KEY, ERROR_REPLAY_SINCE_KEY]);
   const [replaySolvedCorrectly, setReplaySolvedCorrectly] = useState(false); // ошибка только что исправлена — стрелка зеленеет
 
   // [SHUFFLE] Перемешанный порядок фраз внутри урока. Инициализируется один раз при загрузке.
@@ -1298,8 +1271,7 @@ export default function LessonScreen() {
     }
   }, [cellIndex, overridePhraseCell, studyTarget, status]);
 
-  // Блокирующий модал при пустой энергии
-  const [energyMsg, setEnergyMsg] = useState('');
+  // Блокирующий модал при пустой энергии — общий `NoEnergyModal` (осколки + Premium с градиентом)
   const isShowingEnergyFeedbackRef = useRef(false);
   const showEnergyEmptyFeedbackRef = useRef<() => void>(() => {});
   const showEnergyEmptyFeedback = useCallback(() => {
@@ -1307,13 +1279,10 @@ export default function LessonScreen() {
     isShowingEnergyFeedbackRef.current = true;
     setShouldShake(true);
     setTimeout(() => setShouldShake(false), 800);
-    const messages = lessonEnergyMessages(lang);
-    const msg = messages[Math.floor(Math.random() * messages.length)];
-    setEnergyMsg(msg.replace('{time}', energyFormattedTimeRef.current || '...'));
     logEnergyLimitHit('lesson');
     trackEnergyHit().catch(() => {});
     setShowNoEnergyModal(true);
-  }, [lang, setShouldShake, setShowNoEnergyModal]);
+  }, [setShouldShake, setShowNoEnergyModal]);
   /**
    * Выход с урока. Не используем replace('/lesson_menu'): при canGoBack() === false
    * replace подменяет только верхний экран, и под ним снова оказывается тот же lesson_menu —
@@ -1341,7 +1310,10 @@ export default function LessonScreen() {
     if (router.canGoBack()) {
       router.back();
     } else {
-      router.replace('/(tabs)/home');
+      // Стек пуст (например, deeplink или router.replace без истории) — возвращаемся на главную,
+      // а не на /lesson_menu: иначе lesson_menu тоже окажется без истории, и его «назад»
+      // не сработает (юзер застрянет, как в сценарии после онбординга).
+      router.replace('/(tabs)/home' as any);
     }
   }, [router, from, lessonId]);
 
@@ -1351,35 +1323,48 @@ export default function LessonScreen() {
     navigateUpFromLessonScreen();
   }, [lessonId, cellIndex, navigateUpFromLessonScreen]);
 
+  const resetNoEnergyModal = useCallback(() => {
+    setShowNoEnergyModal(false);
+    isShowingEnergyFeedbackRef.current = false;
+  }, []);
+
+  const dismissEnergyModal = useCallback(() => {
+    resetNoEnergyModal();
+    navigateUpFromLessonScreen();
+  }, [navigateUpFromLessonScreen, resetNoEnergyModal]);
+
   // Android: системный «Назад» = тот же выход, что и кнопка (без дублей в стеке).
   useEffect(() => {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (showNoEnergyModal) {
-        setShowNoEnergyModal(false);
-        isShowingEnergyFeedbackRef.current = false;
+        resetNoEnergyModal();
         return true;
       }
       handleLessonHeaderBack();
       return true;
     });
     return () => sub.remove();
-  }, [showNoEnergyModal, handleLessonHeaderBack]);
+  }, [showNoEnergyModal, handleLessonHeaderBack, resetNoEnergyModal]);
 
-  const dismissEnergyModal = useCallback(() => {
-    setShowNoEnergyModal(false);
-    isShowingEnergyFeedbackRef.current = false;
-    navigateUpFromLessonScreen();
-  }, [navigateUpFromLessonScreen, setShowNoEnergyModal]);
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
   // Проверяем энергию при входе — сразу, без задержки
+  const entryEnergyGateLessonRef = useRef<number | null>(null);
+  useFocusEffect(
+    useCallback(() => {
+      entryEnergyGateLessonRef.current = null;
+    }, [lessonId])
+  );
+
   useEffect(() => {
-    if (currentEnergy === 0 && !testerEnergyDisabled) {
-      showEnergyEmptyFeedback();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    if (!energyReady) return;
+    if (testerEnergyDisabled) return;
+    if (currentEnergy > 0 || bonusEnergy > 0) return;
+    if (entryEnergyGateLessonRef.current === lessonId) return;
+    entryEnergyGateLessonRef.current = lessonId;
+    showEnergyEmptyFeedback();
+  }, [energyReady, lessonId, currentEnergy, bonusEnergy, testerEnergyDisabled, showEnergyEmptyFeedback]);
 
   const loadData = async () => {
     if (!isLessonScreenPrimedThisSession(lessonId, LESSON_DATA.length, effectiveTotal)) {
@@ -1394,7 +1379,9 @@ export default function LessonScreen() {
       // данные урока продолжают грузиться параллельно — к моменту тапа «Начать»
       // всё уже готово.
       const introShownRaw = await AsyncStorage.getItem(`lesson${lessonId}_intro_shown`);
-      if (!introShownRaw && getLessonIntroScreens(lessonId).length > 0) {
+      if (!introShownRaw && getLessonIntroScreens(lessonId, studyTargetRef.current).length > 0) {
+        await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true').catch(() => {});
+        syncLessonIntroShownFlagNow();
         setShowIntroScreens(true);
         setLessonHydrated(true); // снимаем спиннер — рендерим интро поверх
       }
@@ -1405,11 +1392,14 @@ export default function LessonScreen() {
       // energy state comes from EnergyContext — no local load needed
 
       loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
-      const [sp, ss, ci, savedOrder] = await Promise.all([
+      const [sp, ss, ci, savedOrder, errQRaw, errSinceRaw, errOvRaw] = await Promise.all([
         AsyncStorage.getItem(LESSON_KEY),
         AsyncStorage.getItem(SETTINGS_KEY),
         AsyncStorage.getItem(CELL_KEY),
         AsyncStorage.getItem(ORDER_KEY),
+        AsyncStorage.getItem(ERROR_REPLAY_QUEUE_KEY),
+        AsyncStorage.getItem(ERROR_REPLAY_SINCE_KEY),
+        AsyncStorage.getItem(ERROR_REPLAY_OVERRIDE_KEY),
       ]);
 
       let restoredProgress = new Array(effectiveTotal).fill('empty');
@@ -1419,6 +1409,51 @@ export default function LessonScreen() {
       }
       setProgress(restoredProgress);
 
+      // Очередь «повтори ошибку через один» — только в памяти → терялась после модалки энергии / remount.
+      let restoredOverrideForUi: number | null = null;
+      if (!sp) {
+        errorQueueRef.current = [];
+        questionsSinceErrorRef.current = 0;
+        setOverridePhraseCell(null);
+        void AsyncStorage.multiRemove([
+          ERROR_REPLAY_QUEUE_KEY,
+          ERROR_REPLAY_SINCE_KEY,
+          ERROR_REPLAY_OVERRIDE_KEY,
+        ]).catch(() => {});
+      } else {
+        let restoredErrQueue: number[] = [];
+        if (errQRaw) {
+          try {
+            const parsed = JSON.parse(errQRaw) as unknown;
+            if (Array.isArray(parsed)) {
+              restoredErrQueue = parsed.filter(
+                (x): x is number =>
+                  typeof x === 'number' && Number.isFinite(x) && x >= 0 && x < effectiveTotal,
+              );
+            }
+          } catch { /* keep empty */ }
+        }
+        let restoredSince = 0;
+        if (errSinceRaw != null && errSinceRaw !== '') {
+          const n = parseInt(errSinceRaw, 10);
+          if (Number.isFinite(n) && n >= 0) restoredSince = Math.min(n, 1000);
+        }
+        let restoredOverride: number | null = null;
+        if (errOvRaw != null && errOvRaw !== '' && errOvRaw !== 'null') {
+          const o = parseInt(errOvRaw, 10);
+          if (Number.isFinite(o) && o >= 0 && o < effectiveTotal) restoredOverride = o;
+        }
+        errorQueueRef.current = restoredErrQueue;
+        questionsSinceErrorRef.current = restoredSince;
+        if (restoredOverride !== null) {
+          const stCell = restoredProgress[restoredOverride];
+          const inQ = restoredErrQueue.includes(restoredOverride);
+          if (!inQ && stCell !== 'wrong') restoredOverride = null;
+        }
+        restoredOverrideForUi = restoredOverride;
+        setOverridePhraseCell(restoredOverride);
+      }
+
       // Синхронизируем prevMedalTierRef с реальным тиром восстановленного прогресса,
       // чтобы useEffect не показывал тост при открытии урока
       const restoredCorrect = restoredProgress.filter(p => p === 'correct' || p === 'replay_correct').length;
@@ -1427,6 +1462,7 @@ export default function LessonScreen() {
 
       // Режим повтора: если все ячейки уже correct — крутим по кругу без автозавершения
       sessionAnswerCount.current = 0;
+      isCompletingRef.current = false;
       isReplayRef.current = restoredProgress.every(x => x === 'correct');
 
       // Восстанавливаем позицию строго из CELL_KEY — каждый индикатор = конкретная фраза
@@ -1472,14 +1508,16 @@ export default function LessonScreen() {
 
       // Перемешиваем слова для стартовой фразы (с пропуском ведущих «-» позиций)
       const order = phraseOrderRef.current;
+      const phraseCellBoot = restoredOverrideForUi !== null ? restoredOverrideForUi : startCell;
       const startPhrase = order.length > 0
-        ? LESSON_DATA[order[startCell % order.length]]
-        : LESSON_DATA[startCell % LESSON_DATA.length];
+        ? LESSON_DATA[order[phraseCellBoot] ?? order[phraseCellBoot % order.length]]
+        : LESSON_DATA[phraseCellBoot % LESSON_DATA.length];
       {
-        const spWords = getPhraseTokens(startPhrase);
+        const st = studyTargetRef.current;
+        const spWords = getPhraseTokens(startPhrase, st);
         let spIdx = 0;
         while (spIdx < spWords.length && isZeroArticlePosition(spWords, spIdx)) spIdx++;
-        setShuffled(spIdx < spWords.length ? safeGetDistracts(startPhrase, spIdx) : []);
+        setShuffled(spIdx < spWords.length ? safeGetDistracts(startPhrase, spIdx, st) : []);
       }
 
       if (ss) {
@@ -1507,7 +1545,8 @@ export default function LessonScreen() {
       setBonusHints(bonus);
 
       // (проверка энергии при входе — в отдельном useEffect ниже)
-    } catch {
+    } catch (e) {
+      void trackFeatureError('lesson', 'hydrate', e, { lessonId }, 'lesson1');
     } finally {
       setLessonHydrated(true);
     }
@@ -1518,12 +1557,22 @@ export default function LessonScreen() {
   const checkAnswer = useCallback(async (answer: string) => {
     if (!phrase) return;
     // Блокируем ответ если энергия закончилась
-    if (currentEnergyRef.current === 0 && !testerEnergyDisabledRef.current) {
+    if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0 && bonusEnergyRef.current <= 0) {
+      void trackFeatureBlocked('lesson', 'answer', 'no_energy', { lessonId, cellIndex }, 'lesson1');
       showEnergyEmptyFeedbackRef.current();
       return;
     }
-    const isRight = isCorrectAnswer(answer, phrase.english, phrase.alternatives);
+    const st = studyTargetRef.current;
+    const expected = phraseCanonicalAnswer(phrase, st);
+    const answerAlts = phraseAnswerAlternatives(phrase, st);
+    const isRight = isCorrectAnswer(answer, expected, answerAlts);
     logLessonAnswer(lessonId, isRight);
+    void trackActivity('lesson:answer_result', {
+      feature: 'lesson',
+      screen: 'lesson1',
+      result: isRight ? 'success' : 'blocked',
+      tags: { lessonId, cellIndex, isRight, replay: overridePhraseCell !== null },
+    });
     trackAnswer(isRight).catch(() => {});
     if (isRight && !differentLessonTrackedRef.current) {
       differentLessonTrackedRef.current = true;
@@ -1551,6 +1600,7 @@ export default function LessonScreen() {
     // Определяем реальную ячейку прогресса: при replay ошибки обновляем ячейку из очереди, не текущую
     const progressCell = overridePhraseCell ?? cellIndex;
     if (isRight) {
+      const prevPhraseCellState = progress[progressCell];
       if (overridePhraseCell !== null) {
         // Правильный ответ в режиме replay → убираем из очереди, ячейка зеленеет
         errorQueueRef.current = errorQueueRef.current.filter(c => c !== overridePhraseCell);
@@ -1561,6 +1611,10 @@ export default function LessonScreen() {
       const stillPendingReplay = overridePhraseCell === null && errorQueueRef.current.includes(progressCell);
       np[progressCell] = stillPendingReplay ? 'wrong'
         : (isReplayRef.current ? 'replay_correct' : 'correct');
+      if (!stillPendingReplay) {
+        const wasLearned = prevPhraseCellState === 'correct' || prevPhraseCellState === 'replay_correct';
+        if (!wasLearned) void bumpStatsDaily('phrases_learned', 1);
+      }
     } else {
       // Ошибка всегда перезаписывает ячейку красной (даже если была зелёной)
       np[progressCell] = 'wrong';
@@ -1582,20 +1636,37 @@ export default function LessonScreen() {
         correctStreakRef.current = 0;
       }
       // [SRS] Записываем ошибку в хранилище интервального повторения.
-      // phrase.english — ключ (английская фраза, будет показана как ответ в review.tsx).
+      // phraseCanonicalAnswer(...) — ключ как при проверке (совпадает со слотами words).
       // phrase.russian — подсказка (русский/украинский перевод, будет показан на лицевой стороне карточки).
       // lessonId — для фильтрации по уроку (getItemsByLesson) и отображения метки на карточке.
       // Если фраза уже есть в базе — errorCount++, interval сбрасывается к 1 дню.
       // Если фраза новая — добавляется с nextDue = завтра.
       {
+        const stRm = studyTargetRef.current;
         recordMistake(
-          phrase.english,
+          phraseCanonicalAnswer(phrase, stRm),
           phrase.russian,
           lessonId,
           phrase.ukrainian,
           'lesson',
-          phrase.spanish,
+          spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
         );
+        // Аналитический лог ошибки (mistake_log.ts)
+        logMistake(phraseCanonicalAnswer(phrase, stRm), lessonId, 'lesson', 'wrong_pick');
+        // Тренер: записываем фразу с errorWord (слово на котором ошибся)
+        {
+          const canonKey = phraseCanonicalAnswer(phrase, stRm);
+          const correctTokens = canonKey.toLowerCase().split(/\s+/);
+          const userTokens = selectedWords.map(w => w.toLowerCase());
+          const errWord = correctTokens.find(t => !userTokens.includes(t)) ?? correctTokens[0];
+          void recordPhraseMistake(
+            canonKey,
+            phrase.russian,
+            phrase.ukrainian ?? phrase.russian,
+            lessonId,
+            errWord,
+          );
+        }
       }
     }
 
@@ -1660,11 +1731,11 @@ export default function LessonScreen() {
       }
 
       // При ОШИБКЕ: тратим энергию через контекст (используем refs — нет stale closure)
-      if (currentEnergyRef.current > 0 && !testerEnergyDisabledRef.current) {
+      if ((currentEnergyRef.current > 0 || bonusEnergyRef.current > 0) && !testerEnergyDisabledRef.current) {
         spendOneRef.current().then(success => {
           if (success) {
             updateMultipleTaskProgress([{ type: 'energy_spend', increment: 1 }]).catch(() => {});
-            if (currentEnergyRef.current === 0) {
+            if (currentEnergyRef.current === 0 && bonusEnergyRef.current === 0) {
               setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 1000);
             }
           }
@@ -1674,6 +1745,7 @@ export default function LessonScreen() {
 
     setWasWrong(!isRight);
     setProgress(np);
+    persistErrorReplayToStorage();
 
     if (!isRight && settings.haptics) {
       try { Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error); } catch {}
@@ -1703,17 +1775,29 @@ export default function LessonScreen() {
     void AsyncStorage.setItem(CELL_KEY, String(nextCell)).catch(() => {});
     touchLessonScreenPrimed(lessonId, { cell: nextCell, order: phraseOrderRef.current, progress: np });
 
-    // Проверяем завершение урока
-    // В режиме повтора требуем минимум TOTAL ответов в сессии,
-    // чтобы не сразу закрыться если все ячейки изначально были correct
-    if (sessionAnswerCount.current >= effectiveTotal) {
+    // Проверяем завершение урока: только когда юзер дошёл до конца круга (nextCell === 0)
+    // и ответил минимум на effectiveTotal вопросов в сессии.
+    // Исключаем replay-ответы — при них cellIndex не двигается вперёд по кругу.
+    if (nextCell === 0 && overridePhraseCell === null && sessionAnswerCount.current >= effectiveTotal) {
+      void trackFeatureStart('lesson', 'complete', { lessonId, effectiveTotal }, 'lesson1');
       sessionAnswerCount.current = 0; // сброс для следующего повтора
       isReplayRef.current = true;
       isCompletingRef.current = true;
-      // Сбрасываем сохранённый порядок — следующий проход получит новый shuffle
-      phraseOrderRef.current = [];
-      AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
+      // НЕ сбрасываем phraseOrderRef здесь: пока экран «результат» виден ~1.5 с, phrase =
+      // getPhraseForCell(cellIndex) ещё должен использовать тот же shuffle — иначе русский/
+      // эталон EN перескакивают на LESSON_DATA[cell], а selectedWords остаются от реальной фразы.
       setTimeout(async () => {
+        const resetShuffleForNextPass = () => {
+          phraseOrderRef.current = [];
+          AsyncStorage.removeItem(ORDER_KEY).catch(() => {});
+          errorQueueRef.current = [];
+          questionsSinceErrorRef.current = 0;
+          void AsyncStorage.multiRemove([
+            ERROR_REPLAY_QUEUE_KEY,
+            ERROR_REPLAY_SINCE_KEY,
+            ERROR_REPLAY_OVERRIDE_KEY,
+          ]).catch(() => {});
+        };
         try {
         // Получаем финальную оценку урока перед переходом на lesson_complete
         const correct = np.filter(x => x === 'correct' || x === 'replay_correct').length;
@@ -1739,24 +1823,28 @@ export default function LessonScreen() {
         }
 
         logLessonComplete(lessonId);
+        void trackFeatureSuccess('lesson', 'complete', {
+          lessonId,
+          finalScore,
+          didUnlock,
+          correct,
+          effectiveTotal,
+        }, 'lesson1');
         updateMultipleTaskProgress([{ type: 'lesson_complete', increment: 1 }]).catch(() => {});
 
-        const navigate = () =>
+        const navigate = () => {
+          resetShuffleForNextPass();
           router.replace({ pathname: '/lesson_complete', params: { id: lessonId, unlocked: didUnlock ? '1' : '0' } });
+        };
 
-        // Показываем модалку "конец цикла" один раз за всю жизнь игрока
-        const alreadyShown = await AsyncStorage.getItem(CYCLE_END_SHOWN_KEY);
-        if (!alreadyShown) {
-          await AsyncStorage.setItem(CYCLE_END_SHOWN_KEY, '1');
-          const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
-          cycleEndCallbackRef.current = navigate;
-          setCycleEndHasErrors(hasErrors);
-          setShowCycleEndModal(true);
-        } else {
-          navigate();
-        }
-        } catch {
+        const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
+        cycleEndCallbackRef.current = navigate;
+        setCycleEndHasErrors(hasErrors);
+        setShowCycleEndModal(true);
+        } catch (e) {
+          void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
+          resetShuffleForNextPass();
           router.replace({ pathname: '/lesson_complete', params: { id: String(lessonId), unlocked: '0' } });
         }
       }, 1500);
@@ -1766,7 +1854,7 @@ export default function LessonScreen() {
     if (settings.autoAdvance && isRight) {
       autoTimer.current = setTimeout(() => goNext(np), 4000);
     }
-  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell]);
+  }, [progress, cellIndex, phrase, settings, fadeAnim, lessonId, overridePhraseCell, lang, persistErrorReplayToStorage]);
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
@@ -1796,12 +1884,14 @@ export default function LessonScreen() {
 
     setOverridePhraseCell(replayCell);
     setReplaySolvedCorrectly(false); // сбрасываем зелёный флаг — стрелка возвращается на текущую позицию
+    persistErrorReplayToStorage(replayCell);
 
     // Фраза для следующей позиции (с учётом replay и shuffle)
     const phraseCell = replayCell ?? nextCell;
     const nextPhrase = getPhraseForCell(phraseCell);
     {
-      const npWords = getPhraseTokens(nextPhrase);
+      const st = studyTargetRef.current;
+      const npWords = getPhraseTokens(nextPhrase, st);
       let npIdx = 0;
       const npSel: string[] = [];
       while (npIdx < npWords.length && isZeroArticlePosition(npWords, npIdx)) {
@@ -1812,13 +1902,13 @@ export default function LessonScreen() {
         setSelectedWords(npSel);
         setPhraseWordIdx(npIdx);
       }
-      setShuffled(npIdx < npWords.length ? safeGetDistracts(nextPhrase, npIdx) : []);
+      setShuffled(npIdx < npWords.length ? safeGetDistracts(nextPhrase, npIdx, st) : []);
     }
 
     // Сохраняем позицию
     try { await AsyncStorage.setItem(CELL_KEY, String(nextCell)); } catch {}
     touchLessonScreenPrimed(lessonId, { cell: nextCell, order: phraseOrderRef.current, progress });
-  }, [cellIndex, progress, fadeAnim, LESSON_DATA, stopAudio]);
+  }, [cellIndex, progress, fadeAnim, LESSON_DATA, stopAudio, persistErrorReplayToStorage]);
 
   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
   // Energy is only spent on mistakes — no gate here, users can always attempt answers
@@ -1826,7 +1916,7 @@ export default function LessonScreen() {
     if (status === 'result') return;
     if (showNoEnergyModal) return;
 
-    const phraseWords = getPhraseTokens(phrase);
+    const phraseWords = getPhraseTokens(phrase, studyTargetRef.current);
     const totalPhraseWords = phraseWords.length;
     const next = [...selectedWords, word];
 
@@ -1856,7 +1946,7 @@ export default function LessonScreen() {
           setShuffled([]);
           if (settings.autoCheck) checkAnswer(newSel.join(' '));
         } else {
-          setShuffled(safeGetDistracts(phrase, newIdx));
+          setShuffled(safeGetDistracts(phrase, newIdx, studyTargetRef.current));
         }
       } else {
         setSelectedWords(next);
@@ -1893,7 +1983,7 @@ export default function LessonScreen() {
         setShuffled([]);
         if (settings.autoCheck) checkAnswer(skipSel.join(' '));
       } else {
-        setShuffled(safeGetDistracts(phrase, skipIdx));
+        setShuffled(safeGetDistracts(phrase, skipIdx, studyTargetRef.current));
       }
       return;
     }
@@ -1906,7 +1996,10 @@ export default function LessonScreen() {
 
     // Early completion: assembled answer already matches an alternative (e.g. optional word skipped)
     const assembled = newSel.join(' ');
-    if (phrase?.alternatives && isCorrectAnswer(assembled, phrase.english, phrase.alternatives)) {
+    const stEarly = studyTargetRef.current;
+    const canonEarly = phrase ? phraseCanonicalAnswer(phrase, stEarly) : '';
+    const altsEarly = phrase ? phraseAnswerAlternatives(phrase, stEarly) : undefined;
+    if (altsEarly?.length && phrase && isCorrectAnswer(assembled, canonEarly, altsEarly)) {
       setShuffled([]);
       if (settings.autoCheck) checkAnswer(assembled);
       return;
@@ -1916,7 +2009,7 @@ export default function LessonScreen() {
       setShuffled([]);
       if (settings.autoCheck) checkAnswer(newSel.join(' '));
     } else {
-      setShuffled(safeGetDistracts(phrase, newIdx));
+      setShuffled(safeGetDistracts(phrase, newIdx, studyTargetRef.current));
     }
   }, [status, currentEnergy, testerNoLimits, testerEnergyDisabled, selectedWords, phrase, phraseWordIdx, contrExpanded, settings.autoCheck, checkAnswer]);
 
@@ -1937,7 +2030,7 @@ export default function LessonScreen() {
         // In expansion mode: undo the first expansion token picked, exit expansion mode
         setSelectedWords((p: string[]) => p.slice(0, -1));
         setContrExpanded(null);
-        setShuffled(safeGetDistracts(phrase, phraseWordIdx));
+        setShuffled(safeGetDistracts(phrase, phraseWordIdx, studyTargetRef.current));
         return;
       }
       // Normal undo: pop last word + any trailing auto-skipped '-' tokens, decrement phraseWordIdx.
@@ -1952,7 +2045,7 @@ export default function LessonScreen() {
       const newSelected = selectedWords.slice(0, -totalPopCount);
       // Get the last MANUALLY selected word (before auto-skipped tokens)
       const lastWord = selectedWords[selectedWords.length - 1 - autoSkipCount] ?? '';
-      const phraseWordsForUndo = getPhraseTokens(phrase);
+      const phraseWordsForUndo = getPhraseTokens(phrase, studyTargetRef.current);
       // When checking for 2-word contraction, look at positions before any auto-skips
       const baseIdx = phraseWordIdx - autoSkipCount;
       const twoWordContr = baseIdx >= 2
@@ -1965,7 +2058,7 @@ export default function LessonScreen() {
       // Check if last remaining word is expansion[0] of the contraction at newPhraseIdx
       // (happens when undoing the last expansion token, e.g. undoing "not" after "do")
       if (newSelected.length > 0) {
-        const phraseWords = getPhraseTokens(phrase);
+        const phraseWords = getPhraseTokens(phrase, studyTargetRef.current);
         const origWord = phraseWords[newPhraseIdx];
         const prevContr = lookupContraction(origWord ?? '');
         if (prevContr && newSelected[newSelected.length - 1].toLowerCase() === prevContr[0].toLowerCase()) {
@@ -1975,7 +2068,7 @@ export default function LessonScreen() {
           return;
         }
       }
-      setShuffled(safeGetDistracts(phrase, newPhraseIdx));
+      setShuffled(safeGetDistracts(phrase, newPhraseIdx, studyTargetRef.current));
     }
   }, [status, settings.hardMode, typedText, selectedWords, contrExpanded, phrase, phraseWordIdx]);
 
@@ -2030,7 +2123,8 @@ export default function LessonScreen() {
   const handleBgTap = useCallback(() => {
     if (showNoEnergyModal) return;
     if (settings.hardMode) return; // hard mode — нет тапа по фону, только клавиатура
-    if (status === 'result') { goNext(); return; } // тап на результате → следующая фраза
+    // На экране ответа переход только кнопкой «Далі» в футере — иначе тап отменяет отложенный TTS (см. Pressable над переводом).
+    if (status === 'result') return;
     // Скрываем хинт при первом тапе
     if (showTapHint) setShowTapHint(false);
     if (selectedWords.length === 0) {
@@ -2038,15 +2132,20 @@ export default function LessonScreen() {
       setEmptyTapFlash(true);
       setTimeout(() => setEmptyTapFlash(false), 700);
     } else {
-      // ≥1 слово — сразу проверяем (неполный ответ = неправильный)
+      // Не оцениваем неполную фразу по тапу фона — иначе ложные ошибки при промахе мимо чипов
+      if (!isPhraseAssemblyComplete(phrase, studyTarget, selectedWords, phraseWordIdx)) {
+        setEmptyTapFlash(true);
+        setTimeout(() => setEmptyTapFlash(false), 700);
+        return;
+      }
       checkAnswer(selectedWords.join(' '));
     }
-  }, [status, settings.hardMode, showTapHint, selectedWords, goNext, checkAnswer]);
+  }, [status, settings.hardMode, showTapHint, selectedWords, phrase, studyTarget, phraseWordIdx, checkAnswer]);
 
   const handleFiftyFifty = useCallback(() => {
     if (fiftyFiftyUsedToday >= 3 + bonusHints || !phrase) return;
 
-    const phraseWordsList = getPhraseTokens(phrase);
+    const phraseWordsList = getPhraseTokens(phrase, studyTargetRef.current);
     const correctWord = phraseWordsList[phraseWordIdx] ?? null;
     const nextCorrectWord = phraseWordsList[phraseWordIdx + 1] ?? null;
     const validContraction = correctWord && nextCorrectWord
@@ -2093,7 +2192,8 @@ export default function LessonScreen() {
             showIntroScreens={showIntroScreens}
             setShowIntroScreens={setShowIntroScreens}
             onIntroDone={async () => {
-              await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true');
+              await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true').catch(() => {});
+              syncLessonIntroShownFlagNow();
               setShowIntroScreens(false);
             }}
             lessonId={lessonId}
@@ -2139,12 +2239,7 @@ export default function LessonScreen() {
             setEmptyTapFlash={setEmptyTapFlash}
             shouldShake={shouldShake}
             setShouldShake={setShouldShake}
-            showNoEnergyModal={showNoEnergyModal}
-            setShowNoEnergyModal={setShowNoEnergyModal}
-            energyMsg={energyMsg}
-            onDismissEnergyModal={dismissEnergyModal}
             recoveryTimeText={recoveryTimeText}
-            energyFormattedTime={energyFormattedTime}
             setFailedTapCount={setFailedTapCount}
             checkAnswer={checkAnswer}
             contrExpanded={contrExpanded}
@@ -2167,86 +2262,32 @@ export default function LessonScreen() {
           )}
         </SafeAreaView>
 
-        {/* ── Medal tier toast ── */}
-        {medalToast && (() => {
-          const { tier, promoted } = medalToast;
-          const isLight = themeMode === 'ocean' || themeMode === 'sakura';
-          const MEDAL_COLORS: Record<MedalTier, string> = {
-            none:   isLight ? '#555'     : '#888',
-            bronze: isLight ? '#7B3F00'  : '#CD7F32',
-            silver: isLight ? '#3A3A3A'  : '#A8A9AD',
-            gold:   t.gold,   // всегда тематический: тёмный на светлых, яркий на тёмных
-          };
-          const MEDAL_EMOJI: Record<MedalTier, string> = {
-            none: '',
-            bronze: '🥉',
-            silver: '🥈',
-            gold:   '🥇',
-          };
-          const LABELS_RU: Record<MedalTier, { up: string; upSub: string; down: string; downSub: string }> = {
-            none:   { up: '', upSub: '', down: '', downSub: '' },
-            bronze: { up: 'Есть Бронза!', upSub: 'Так держать — продолжай!', down: 'Оценка упала...', downSub: 'Ещё пара верных ответов' },
-            silver: { up: 'Уже Серебро!', upSub: 'Отличный результат!', down: 'Соскользнул до Бронзы', downSub: 'Давай — вернём Серебро!' },
-            gold:   { up: 'Золото! Идеально!', upSub: 'Урок пройден на отлично!', down: 'Слетело Золото...', downSub: 'Нужен ещё один круг' },
-          };
-          const LABELS_UK: Record<MedalTier, { up: string; upSub: string; down: string; downSub: string }> = {
-            none:   { up: '', upSub: '', down: '', downSub: '' },
-            bronze: { up: 'Є Бронза!', upSub: 'Так тримати — продовжуй!', down: 'Оцінка впала...', downSub: 'Ще пара вірних відповідей' },
-            silver: { up: 'Вже Срібло!', upSub: 'Чудовий результат!', down: 'Злетів до Бронзи', downSub: 'Давай — повернемо Срібло!' },
-            gold:   { up: 'Золото! Ідеально!', upSub: 'Урок пройдено на відмінно!', down: 'Злетіло Золото...', downSub: 'Потрібне ще одне коло' },
-          };
-          const LABELS_ES: Record<MedalTier, { up: string; upSub: string; down: string; downSub: string }> = {
-            none:   { up: '', upSub: '', down: '', downSub: '' },
-            bronze: { up: '¡Bronce!', upSub: 'Sigue así.', down: 'Bajaste de nivel…', downSub: 'Un par de aciertos más' },
-            silver: { up: '¡Plata!', upSub: 'Muy bien.', down: 'Pasaste a bronce', downSub: 'Vamos por la plata otra vez' },
-            gold:   { up: '¡Oro!', upSub: 'Lección excelente.', down: 'Perdiste el oro…', downSub: 'Hace falta otra ronda' },
-          };
-          const color  = MEDAL_COLORS[tier];
-          const emoji  = MEDAL_EMOJI[tier];
-          const labels =
-            lang === 'uk' ? LABELS_UK[tier] : lang === 'es' ? LABELS_ES[tier] : LABELS_RU[tier];
-          const title  = promoted ? labels.up   : labels.down;
-          const sub    = promoted ? labels.upSub : labels.downSub;
-          return (
-            <Animated.View
-              pointerEvents="none"
-              style={{
-                position: 'absolute', bottom: 120, left: 24, right: 24,
-                opacity: medalToastAnim,
-                transform: [
-                  { translateY: medalToastAnim.interpolate({ inputRange: [0, 1], outputRange: [20, 0] }) },
-                  { scale: medalToastAnim.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }) },
-                ],
-                backgroundColor: t.bgCard,
-                borderRadius: 20,
-                paddingHorizontal: 20,
-                paddingVertical: 14,
-                flexDirection: 'row',
-                alignItems: 'center',
-                gap: 14,
-                borderWidth: 2,
-                borderColor: color + '99',
-                shadowColor: color,
-                shadowOpacity: 0.4,
-                shadowRadius: 12,
-                elevation: 12,
-              }}
-            >
-              <Text style={{ fontSize: 36 }}>{emoji}</Text>
-              <View style={{ flex: 1 }}>
-                <Text style={{ color, fontSize: 17, fontWeight: '900', marginBottom: 2 }}>{title}</Text>
-                <Text style={{ color: t.textMuted, fontSize: 13, fontWeight: '500' }}>{sub}</Text>
-              </View>
-            </Animated.View>
-          );
-        })()}
-        {/* ────────────────────── */}
+        {/* ── Medal tier toast (premium) ── */}
+        {medalToast && (
+          <MedalToast
+            tier={medalToast.tier}
+            promoted={medalToast.promoted}
+            anim={medalToastAnim}
+            bg={t.bgCard}
+            isLightTheme={themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight'}
+            lang={lang}
+            spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}
+          />
+        )}
+        {/* ────────────────────────────── */}
       </ScreenGradient>
     </TouchableWithoutFeedback>
+    <NoEnergyModal
+      visible={showNoEnergyModal}
+      onClose={resetNoEnergyModal}
+      onGotIt={dismissEnergyModal}
+      paywallContext="no_energy"
+    />
     <LessonCycleEndModal
       visible={showCycleEndModal}
       hasErrors={cycleEndHasErrors}
       lang={lang}
+      studyTarget={studyTarget}
       t={t}
       f={f}
       onClose={() => {

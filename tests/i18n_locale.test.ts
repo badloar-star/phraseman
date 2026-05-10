@@ -1,3 +1,8 @@
+jest.mock('../app/config', () => ({
+  ...jest.requireActual<typeof import('../app/config')>('../app/config'),
+  ENABLE_SPANISH_LOCALE: true,
+}));
+
 import { bundleLang, triLang } from '../constants/i18n';
 import { lessonNamesForLang } from '../constants/lessons';
 import { buildCelebrationShareBody } from '../app/celebration_share_messages';

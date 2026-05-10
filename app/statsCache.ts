@@ -3,7 +3,7 @@
  *
  * Call `preloadStats()` on the Home screen focus so that by the time the
  * user navigates to streak_stats.tsx the data is already ready.
- * streak_stats.tsx reads `getStatsCache()` to initialise its useState values,
+ * streak_stats.tsx reads `getStatsCache()` to initialise useState values,
  * preventing any visible loading flash.
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -26,8 +26,6 @@ export interface StatsPreloadData {
   shardsBalance: number;
   totalXP: number;
   weekPoints: number;
-  lessonsCompleted: number;
-  lessonsProgressPct: number;
   hadPremiumEver: boolean;
   /** Синхрон с `LeagueState.leagueId` (индекс лиги, число) */
   engineLeagueId: number | null;
@@ -50,8 +48,6 @@ const DEFAULT_CACHE: StatsPreloadData = {
   shardsBalance: 0,
   totalXP: 0,
   weekPoints: 0,
-  lessonsCompleted: 0,
-  lessonsProgressPct: 0,
   hadPremiumEver: false,
   engineLeagueId: null,
   myName: '',
@@ -144,19 +140,6 @@ export async function preloadStats(): Promise<void> {
       }
     }
 
-    const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
-    const lessonResults = await AsyncStorage.multiGet(lessonKeys);
-    let completedCount = 0;
-    let totalCorrectAll = 0;
-    for (const [, val] of lessonResults) {
-      if (val) {
-        const p: string[] = JSON.parse(val);
-        const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-        totalCorrectAll += correct;
-        if (correct >= 45) completedCount++;
-      }
-    }
-
     _cache = {
       totalStreak: parseInt(streakVal || '0') || 0,
       freezeActive: freezeIsActive,
@@ -170,8 +153,6 @@ export async function preloadStats(): Promise<void> {
       shardsBalance,
       totalXP: parseInt(xpStored || '0') || 0,
       weekPoints: wp,
-      lessonsCompleted: completedCount,
-      lessonsProgressPct: Math.min(100, Math.round(totalCorrectAll / (32 * 50) * 100)),
       hadPremiumEver: hadPrem === '1',
       // leagueId 0 (Медь) is valid — do not use || null
       engineLeagueId: ls != null ? ls.leagueId : null,

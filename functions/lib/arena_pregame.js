@@ -79,6 +79,12 @@ async function processLobbyAfterChoice(sessionId) {
         }
         if (allAccepted && pids.length > 0) {
             const now = Date.now();
+            if (session.type === 'private' || session.type === 'rematch') {
+                tx.update(sessionRef, {
+                    state: 'countdown',
+                });
+                return;
+            }
             tx.update(sessionRef, {
                 state: 'get_ready',
                 getReadyEndsAt: now + 2500,

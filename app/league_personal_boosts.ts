@@ -76,6 +76,9 @@ export const buyAndActivateLeagueBoost = async (
 
   const created = await activateLeagueBoost(id);
   if (!created) return { ok: false, reason: 'storage_error' };
+  void import('./firestore_leagues')
+    .then((m) => m.syncMyLeagueMemberBoostToCloud())
+    .catch(() => {});
   return { ok: true };
 };
 

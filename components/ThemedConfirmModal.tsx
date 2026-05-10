@@ -15,6 +15,7 @@ type Props = {
   onConfirm: () => void;
   /** Accent confirm button (e.g. go to shop) */
   confirmVariant?: 'default' | 'accent';
+  testIDPrefix?: string;
 };
 
 export default function ThemedConfirmModal({
@@ -27,6 +28,7 @@ export default function ThemedConfirmModal({
   onCancel,
   onConfirm,
   confirmVariant = 'accent',
+  testIDPrefix,
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const dim =
@@ -47,6 +49,7 @@ export default function ThemedConfirmModal({
         }}
       >
         <View
+          testID={testIDPrefix ? `${testIDPrefix}-modal` : undefined}
           style={{
             backgroundColor: t.bgCard,
             borderRadius: 16,
@@ -76,6 +79,7 @@ export default function ThemedConfirmModal({
               narrow columns and awkward wraps for long localized labels. */}
           <View style={{ flexDirection: 'column', gap: 10 }}>
             <TouchableOpacity
+              testID={testIDPrefix ? `${testIDPrefix}-cancel` : undefined}
               onPress={() => {
                 hapticTap();
                 onCancel();
@@ -95,6 +99,7 @@ export default function ThemedConfirmModal({
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              testID={testIDPrefix ? `${testIDPrefix}-confirm` : undefined}
               onPress={() => {
                 hapticTap();
                 onConfirm();

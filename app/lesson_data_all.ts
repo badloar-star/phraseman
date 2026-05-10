@@ -10,19 +10,21 @@ import {
   LESSON_3_INTRO_SCREENS, LESSON_3_ENCOURAGEMENT_SCREENS, LESSON_3_PHRASES,
   LESSON_4_INTRO_SCREENS, LESSON_4_VOCABULARY, LESSON_4_IRREGULAR_VERBS, LESSON_4_PHRASES,
   LESSON_5_INTRO_SCREENS, LESSON_5_ENCOURAGEMENT_SCREENS, LESSON_5_PHRASES,
+  LESSON_5_VOCABULARY, LESSON_5_IRREGULAR_VERBS,
   LESSON_6_INTRO_SCREENS, LESSON_6_ENCOURAGEMENT_SCREENS, LESSON_6_PHRASES,
   LESSON_6_VOCABULARY, LESSON_6_IRREGULAR_VERBS,
   LESSON_7_INTRO_SCREENS, LESSON_7_ENCOURAGEMENT_SCREENS, LESSON_7_PHRASES,
   LESSON_7_VOCABULARY, LESSON_7_IRREGULAR_VERBS,
   LESSON_8_INTRO_SCREENS, LESSON_8_PHRASES,
+  LESSON_8_VOCABULARY, LESSON_8_IRREGULAR_VERBS,
 } from './lesson_data_1_8';
 
 // === Lessons 9-16 ===
 import {
-  LESSON_9_INTRO_SCREENS, LESSON_9_PHRASES,
-  LESSON_10_INTRO_SCREENS, LESSON_10_PHRASES,
-  LESSON_11_INTRO_SCREENS, LESSON_11_PHRASES,
-  LESSON_12_INTRO_SCREENS, LESSON_12_PHRASES,
+  LESSON_9_INTRO_SCREENS, LESSON_9_PHRASES, LESSON_9_VOCABULARY, LESSON_9_IRREGULAR_VERBS,
+  LESSON_10_INTRO_SCREENS, LESSON_10_PHRASES, LESSON_10_VOCABULARY, LESSON_10_IRREGULAR_VERBS,
+  LESSON_11_INTRO_SCREENS, LESSON_11_PHRASES, LESSON_11_VOCABULARY, LESSON_11_IRREGULAR_VERBS,
+  LESSON_12_INTRO_SCREENS, LESSON_12_PHRASES, LESSON_12_VOCABULARY, LESSON_12_IRREGULAR_VERBS,
   LESSON_13_INTRO_SCREENS, LESSON_13_PHRASES,
   LESSON_14_INTRO_SCREENS, LESSON_14_PHRASES,
   LESSON_15_INTRO_SCREENS, LESSON_15_PHRASES,
@@ -62,7 +64,31 @@ import {
 } from './lesson_data_25_32';
 
 import { EXTRA_INTRO_SCREENS } from './lesson_intro_screens_9_32';
-import { LESSON_NAMES_ES } from '../constants/lessons';
+import {
+  LESSON_1_INTRO_SCREENS as LESSON_1_INTRO_ES_L2,
+  LESSON_2_INTRO_SCREENS as LESSON_2_INTRO_ES_L2,
+  LESSON_3_INTRO_SCREENS as LESSON_3_INTRO_ES_L2,
+  LESSON_4_INTRO_SCREENS as LESSON_4_INTRO_ES_L2,
+  LESSON_5_INTRO_SCREENS as LESSON_5_INTRO_ES_L2,
+  LESSON_6_INTRO_SCREENS as LESSON_6_INTRO_ES_L2,
+  LESSON_7_INTRO_SCREENS as LESSON_7_INTRO_ES_L2,
+  LESSON_8_INTRO_SCREENS as LESSON_8_INTRO_ES_L2,
+} from './lesson_intro_screens_es_l2';
+import { spanishStudyActive } from './spanish_content_gate';
+import type { StudyTargetLang } from './study_target_lang_dev';
+import { LESSON_NAMES_ES, LESSON_NAMES_RU, LESSON_NAMES_UK } from '../constants/lessons';
+
+/** Теория 1–8 для dev-режима «учим испанский» (слайды es L2). */
+const INTRO_SCREENS_ES_L2_1_8: Record<number, LessonIntroScreen[]> = {
+  1: LESSON_1_INTRO_ES_L2,
+  2: LESSON_2_INTRO_ES_L2,
+  3: LESSON_3_INTRO_ES_L2,
+  4: LESSON_4_INTRO_ES_L2,
+  5: LESSON_5_INTRO_ES_L2,
+  6: LESSON_6_INTRO_ES_L2,
+  7: LESSON_7_INTRO_ES_L2,
+  8: LESSON_8_INTRO_ES_L2,
+};
 
 export type { LessonWord, LessonPhrase, LessonIntroScreen, LessonData } from './lesson_data_types';
 
@@ -73,40 +99,56 @@ function esLessonTitle(id: number): string {
   return t;
 }
 
-// === ALL_LESSONS ===
+function ruLessonTitle(id: number): string {
+  const t = LESSON_NAMES_RU[id - 1];
+  if (t === undefined) throw new Error(`ruLessonTitle: invalid lesson id ${id}`);
+  return t;
+}
+
+function ukLessonTitle(id: number): string {
+  const t = LESSON_NAMES_UK[id - 1];
+  if (t === undefined) throw new Error(`ukLessonTitle: invalid lesson id ${id}`);
+  return t;
+}
+
+function lessonTitles(id: number) {
+  return { titleRU: ruLessonTitle(id), titleUK: ukLessonTitle(id), titleES: esLessonTitle(id) };
+}
+
+// === ALL_LESSONS === (совпадает с упражнениями и LESSON_NAMES_*)
 export const ALL_LESSONS = [
-  { id: 1, titleRU: 'Местоимения и глагол To Be', titleUK: 'Займенники і дієслово To Be', titleES: esLessonTitle(1), introScreens: LESSON_1_INTRO_SCREENS, phrases: LESSON_1_PHRASES },
-  { id: 2, titleRU: 'Семья', titleUK: 'Сім\'я', titleES: esLessonTitle(2), introScreens: LESSON_2_INTRO_SCREENS, phrases: LESSON_2_PHRASES },
-  { id: 3, titleRU: 'Работа', titleUK: 'Робота', titleES: esLessonTitle(3), introScreens: LESSON_3_INTRO_SCREENS, phrases: LESSON_3_PHRASES },
-  { id: 4, titleRU: 'Еда', titleUK: 'Їжа', titleES: esLessonTitle(4), introScreens: LESSON_4_INTRO_SCREENS, phrases: LESSON_4_PHRASES },
-  { id: 5, titleRU: 'Здоровье', titleUK: 'Здоров\'я', titleES: esLessonTitle(5), introScreens: LESSON_5_INTRO_SCREENS, phrases: LESSON_5_PHRASES },
-  { id: 6, titleRU: 'Покупки', titleUK: 'Покупки', titleES: esLessonTitle(6), introScreens: LESSON_6_INTRO_SCREENS, phrases: LESSON_6_PHRASES },
-  { id: 7, titleRU: 'Путешествия', titleUK: 'Подорожі', titleES: esLessonTitle(7), introScreens: LESSON_7_INTRO_SCREENS, phrases: LESSON_7_PHRASES },
-  { id: 8, titleRU: 'Спорт', titleUK: 'Спорт', titleES: esLessonTitle(8), introScreens: LESSON_8_INTRO_SCREENS, phrases: LESSON_8_PHRASES },
-  { id: 9, titleRU: 'Музыка', titleUK: 'Музика', titleES: esLessonTitle(9), introScreens: LESSON_9_INTRO_SCREENS, phrases: LESSON_9_PHRASES },
-  { id: 10, titleRU: 'Технология', titleUK: 'Технологія', titleES: esLessonTitle(10), introScreens: LESSON_10_INTRO_SCREENS, phrases: LESSON_10_PHRASES },
-  { id: 11, titleRU: 'Животные', titleUK: 'Тварини', titleES: esLessonTitle(11), introScreens: LESSON_11_INTRO_SCREENS, phrases: LESSON_11_PHRASES },
-  { id: 12, titleRU: 'Природа', titleUK: 'Природа', titleES: esLessonTitle(12), introScreens: LESSON_12_INTRO_SCREENS, phrases: LESSON_12_PHRASES },
-  { id: 13, titleRU: 'Эмоции', titleUK: 'Емоції', titleES: esLessonTitle(13), introScreens: LESSON_13_INTRO_SCREENS, phrases: LESSON_13_PHRASES },
-  { id: 14, titleRU: 'Описание людей', titleUK: 'Опис людей', titleES: esLessonTitle(14), introScreens: LESSON_14_INTRO_SCREENS, phrases: LESSON_14_PHRASES },
-  { id: 15, titleRU: 'Мода', titleUK: 'Мода', titleES: esLessonTitle(15), introScreens: LESSON_15_INTRO_SCREENS, phrases: LESSON_15_PHRASES },
-  { id: 16, titleRU: 'Дом', titleUK: 'Дім', titleES: esLessonTitle(16), introScreens: LESSON_16_INTRO_SCREENS, phrases: LESSON_16_PHRASES },
-  { id: 17, titleRU: 'Предлоги времени', titleUK: 'Прийменники часу', titleES: esLessonTitle(17), introScreens: LESSON_17_INTRO_SCREENS, phrases: LESSON_17_PHRASES },
-  { id: 18, titleRU: 'Повелительное наклонение', titleUK: 'Наказовий спосіб', titleES: esLessonTitle(18), introScreens: LESSON_18_INTRO_SCREENS, phrases: LESSON_18_PHRASES },
-  { id: 19, titleRU: 'Предлоги места', titleUK: 'Прийменники місця', titleES: esLessonTitle(19), introScreens: LESSON_19_INTRO_SCREENS, phrases: LESSON_19_PHRASES },
-  { id: 20, titleRU: 'Артикли: a / an / the / —', titleUK: 'Артиклі: a / an / the / —', titleES: esLessonTitle(20), introScreens: LESSON_20_INTRO_SCREENS, phrases: LESSON_20_PHRASES },
-  { id: 21, titleRU: 'Неопределённые местоимения', titleUK: 'Неозначені займенники', titleES: esLessonTitle(21), introScreens: LESSON_21_INTRO_SCREENS, phrases: LESSON_21_PHRASES },
-  { id: 22, titleRU: 'Герундий (-ing)', titleUK: 'Герундій (-ing)', titleES: esLessonTitle(22), introScreens: LESSON_22_INTRO_SCREENS, phrases: LESSON_22_PHRASES },
-  { id: 23, titleRU: 'Passive Voice', titleUK: 'Passive Voice', titleES: esLessonTitle(23), introScreens: LESSON_23_INTRO_SCREENS, phrases: LESSON_23_PHRASES },
-  { id: 24, titleRU: 'Present Perfect', titleUK: 'Present Perfect', titleES: esLessonTitle(24), introScreens: [], phrases: LESSON_24_PHRASES },
-  { id: 25, titleRU: 'Past Continuous', titleUK: 'Past Continuous', titleES: esLessonTitle(25), introScreens: LESSON_25_INTRO_SCREENS, phrases: LESSON_25_PHRASES },
-  { id: 26, titleRU: 'Урок 26: Условные предложения (Zero / First)', titleUK: 'Урок 26: Умовні речення (Zero / First)', titleES: esLessonTitle(26), introScreens: LESSON_26_INTRO_SCREENS, phrases: LESSON_26_PHRASES },
-  { id: 27, titleRU: 'Урок 27: Косвенная речь', titleUK: 'Урок 27: Непряма мова', titleES: esLessonTitle(27), introScreens: LESSON_27_INTRO_SCREENS, phrases: LESSON_27_PHRASES },
-  { id: 28, titleRU: 'Урок 28: Возвратные местоимения', titleUK: 'Урок 28: Зворотні займенники', titleES: esLessonTitle(28), introScreens: LESSON_28_INTRO_SCREENS, phrases: LESSON_28_PHRASES },
-  { id: 29, titleRU: 'Урок 29: Used to (привычки в прошлом)', titleUK: 'Урок 29: Used to (звички в минулому)', titleES: esLessonTitle(29), introScreens: LESSON_29_INTRO_SCREENS, phrases: LESSON_29_PHRASES },
-  { id: 30, titleRU: 'Урок 30: Относительные предложения', titleUK: 'Урок 30: Відносні речення', titleES: esLessonTitle(30), introScreens: LESSON_30_INTRO_SCREENS, phrases: LESSON_30_PHRASES },
-  { id: 31, titleRU: 'Урок 31: Сложное дополнение', titleUK: 'Урок 31: Складний додаток', titleES: esLessonTitle(31), introScreens: LESSON_31_INTRO_SCREENS, phrases: LESSON_31_PHRASES },
-  { id: 32, titleRU: 'Урок 32: Финальный обзор', titleUK: 'Урок 32: Фінальний огляд', titleES: esLessonTitle(32), introScreens: LESSON_32_INTRO_SCREENS, phrases: LESSON_32_PHRASES },
+  { id: 1, ...lessonTitles(1), introScreens: LESSON_1_INTRO_SCREENS, phrases: LESSON_1_PHRASES },
+  { id: 2, ...lessonTitles(2), introScreens: LESSON_2_INTRO_SCREENS, phrases: LESSON_2_PHRASES },
+  { id: 3, ...lessonTitles(3), introScreens: LESSON_3_INTRO_SCREENS, phrases: LESSON_3_PHRASES },
+  { id: 4, ...lessonTitles(4), introScreens: LESSON_4_INTRO_SCREENS, phrases: LESSON_4_PHRASES },
+  { id: 5, ...lessonTitles(5), introScreens: LESSON_5_INTRO_SCREENS, phrases: LESSON_5_PHRASES },
+  { id: 6, ...lessonTitles(6), introScreens: LESSON_6_INTRO_SCREENS, phrases: LESSON_6_PHRASES },
+  { id: 7, ...lessonTitles(7), introScreens: LESSON_7_INTRO_SCREENS, phrases: LESSON_7_PHRASES },
+  { id: 8, ...lessonTitles(8), introScreens: LESSON_8_INTRO_SCREENS, phrases: LESSON_8_PHRASES },
+  { id: 9, ...lessonTitles(9), introScreens: LESSON_9_INTRO_SCREENS, phrases: LESSON_9_PHRASES },
+  { id: 10, ...lessonTitles(10), introScreens: LESSON_10_INTRO_SCREENS, phrases: LESSON_10_PHRASES },
+  { id: 11, ...lessonTitles(11), introScreens: LESSON_11_INTRO_SCREENS, phrases: LESSON_11_PHRASES },
+  { id: 12, ...lessonTitles(12), introScreens: LESSON_12_INTRO_SCREENS, phrases: LESSON_12_PHRASES },
+  { id: 13, ...lessonTitles(13), introScreens: LESSON_13_INTRO_SCREENS, phrases: LESSON_13_PHRASES },
+  { id: 14, ...lessonTitles(14), introScreens: LESSON_14_INTRO_SCREENS, phrases: LESSON_14_PHRASES },
+  { id: 15, ...lessonTitles(15), introScreens: LESSON_15_INTRO_SCREENS, phrases: LESSON_15_PHRASES },
+  { id: 16, ...lessonTitles(16), introScreens: LESSON_16_INTRO_SCREENS, phrases: LESSON_16_PHRASES },
+  { id: 17, ...lessonTitles(17), introScreens: LESSON_17_INTRO_SCREENS, phrases: LESSON_17_PHRASES },
+  { id: 18, ...lessonTitles(18), introScreens: LESSON_18_INTRO_SCREENS, phrases: LESSON_18_PHRASES },
+  { id: 19, ...lessonTitles(19), introScreens: LESSON_19_INTRO_SCREENS, phrases: LESSON_19_PHRASES },
+  { id: 20, ...lessonTitles(20), introScreens: LESSON_20_INTRO_SCREENS, phrases: LESSON_20_PHRASES },
+  { id: 21, ...lessonTitles(21), introScreens: LESSON_21_INTRO_SCREENS, phrases: LESSON_21_PHRASES },
+  { id: 22, ...lessonTitles(22), introScreens: LESSON_22_INTRO_SCREENS, phrases: LESSON_22_PHRASES },
+  { id: 23, ...lessonTitles(23), introScreens: LESSON_23_INTRO_SCREENS, phrases: LESSON_23_PHRASES },
+  { id: 24, ...lessonTitles(24), introScreens: [], phrases: LESSON_24_PHRASES },
+  { id: 25, ...lessonTitles(25), introScreens: LESSON_25_INTRO_SCREENS, phrases: LESSON_25_PHRASES },
+  { id: 26, ...lessonTitles(26), introScreens: LESSON_26_INTRO_SCREENS, phrases: LESSON_26_PHRASES },
+  { id: 27, ...lessonTitles(27), introScreens: LESSON_27_INTRO_SCREENS, phrases: LESSON_27_PHRASES },
+  { id: 28, ...lessonTitles(28), introScreens: LESSON_28_INTRO_SCREENS, phrases: LESSON_28_PHRASES },
+  { id: 29, ...lessonTitles(29), introScreens: LESSON_29_INTRO_SCREENS, phrases: LESSON_29_PHRASES },
+  { id: 30, ...lessonTitles(30), introScreens: LESSON_30_INTRO_SCREENS, phrases: LESSON_30_PHRASES },
+  { id: 31, ...lessonTitles(31), introScreens: LESSON_31_INTRO_SCREENS, phrases: LESSON_31_PHRASES },
+  { id: 32, ...lessonTitles(32), introScreens: LESSON_32_INTRO_SCREENS, phrases: LESSON_32_PHRASES },
 ];
 
 // === LESSON_DATA ===
@@ -120,7 +162,7 @@ export const LESSON_DATA: Record<number, LessonData> = {
   7: { id: 7, titleRU: 'Урок 7: Глагол To Have (Иметь)', titleUK: 'Урок 7: Дієслово To Have (Мати)', titleES: esLessonTitle(7), introScreens: LESSON_7_INTRO_SCREENS, phrases: LESSON_7_PHRASES },
   8: { id: 8, titleRU: 'Урок 8: Предлоги времени', titleUK: 'Урок 8: Прийменники часу', titleES: esLessonTitle(8), introScreens: LESSON_8_INTRO_SCREENS, phrases: LESSON_8_PHRASES },
   9: { id: 9, titleRU: 'Урок 9: There is / There are', titleUK: 'Урок 9: There is / There are', titleES: esLessonTitle(9), introScreens: LESSON_9_INTRO_SCREENS, phrases: LESSON_9_PHRASES },
-  10: { id: 10, titleRU: 'Урок 10: Модальный глагол Can', titleUK: 'Урок 10: Модальне дієслово Can', titleES: esLessonTitle(10), introScreens: LESSON_10_INTRO_SCREENS, phrases: LESSON_10_PHRASES },
+  10: { id: 10, titleRU: `Урок 10: ${LESSON_NAMES_RU[9]}`, titleUK: `Урок 10: ${LESSON_NAMES_UK[9]}`, titleES: esLessonTitle(10), introScreens: LESSON_10_INTRO_SCREENS, phrases: LESSON_10_PHRASES },
   11: { id: 11, titleRU: 'Урок 11: Past Simple (Правильные глаголы)', titleUK: 'Урок 11: Past Simple (Правильні дієслова)', titleES: esLessonTitle(11), introScreens: LESSON_11_INTRO_SCREENS, phrases: LESSON_11_PHRASES },
   12: { id: 12, titleRU: 'Урок 12: Past Simple (Неправильные глаголы)', titleUK: 'Урок 12: Past Simple (Неправильні дієслова)', titleES: esLessonTitle(12), introScreens: LESSON_12_INTRO_SCREENS, phrases: LESSON_12_PHRASES },
   13: { id: 13, titleRU: 'Урок 13: Future Simple (will)', titleUK: 'Урок 13: Future Simple (will)', titleES: esLessonTitle(13), introScreens: LESSON_13_INTRO_SCREENS, phrases: LESSON_13_PHRASES },
@@ -139,7 +181,7 @@ export const LESSON_DATA: Record<number, LessonData> = {
   26: { id: 26, titleRU: 'Урок 26: Условные предложения', titleUK: 'Урок 26: Умовні речення', titleES: esLessonTitle(26), introScreens: LESSON_26_INTRO_SCREENS ?? [], phrases: LESSON_26_PHRASES },
   27: { id: 27, titleRU: 'Урок 27: Косвенная речь', titleUK: 'Урок 27: Непряма мова', titleES: esLessonTitle(27), introScreens: LESSON_27_INTRO_SCREENS ?? [], phrases: LESSON_27_PHRASES },
   28: { id: 28, titleRU: 'Урок 28: Возвратные местоимения', titleUK: 'Урок 28: Зворотні займенники', titleES: esLessonTitle(28), introScreens: LESSON_28_INTRO_SCREENS ?? [], phrases: LESSON_28_PHRASES },
-  29: { id: 29, titleRU: 'Урок 29: Used to (привычки в прошлом)', titleUK: 'Урок 29: Used to (звички в минулому)', titleES: esLessonTitle(29), introScreens: LESSON_29_INTRO_SCREENS ?? [], phrases: LESSON_29_PHRASES },
+  29: { id: 29, titleRU: 'Урок 29: Used to (привычки в прошлом)', titleUK: 'Урок 29: Used to (звички з минулого)', titleES: esLessonTitle(29), introScreens: LESSON_29_INTRO_SCREENS ?? [], phrases: LESSON_29_PHRASES },
   30: { id: 30, titleRU: 'Урок 30: Относительные предложения', titleUK: 'Урок 30: Відносні речення', titleES: esLessonTitle(30), introScreens: LESSON_30_INTRO_SCREENS ?? [], phrases: LESSON_30_PHRASES },
   31: { id: 31, titleRU: 'Урок 31: Сложное дополнение', titleUK: 'Урок 31: Складний додаток', titleES: esLessonTitle(31), introScreens: LESSON_31_INTRO_SCREENS ?? [], phrases: LESSON_31_PHRASES },
   32: { id: 32, titleRU: 'Урок 32: Финальный обзор', titleUK: 'Урок 32: Фінальний огляд', titleES: esLessonTitle(32), introScreens: LESSON_32_INTRO_SCREENS ?? [], phrases: LESSON_32_PHRASES },
@@ -206,9 +248,16 @@ function placeholderIntroScreensForLesson(lessonId: number): LessonIntroScreen[]
   ];
 }
 
-export function getLessonIntroScreens(lessonId: number): LessonIntroScreen[] {
+export function getLessonIntroScreens(
+  lessonId: number,
+  studyTarget: StudyTargetLang = 'en',
+): LessonIntroScreen[] {
   const extra = EXTRA_INTRO_SCREENS[lessonId];
   if (extra && extra.length > 0) return extra;
+  if (lessonId >= 1 && lessonId <= 8 && spanishStudyActive(studyTarget)) {
+    const esL2 = INTRO_SCREENS_ES_L2_1_8[lessonId];
+    if (esL2?.length) return esL2;
+  }
   const primary = LESSON_DATA[lessonId]?.introScreens;
   if (primary && primary.length > 0) return primary;
   return placeholderIntroScreensForLesson(lessonId);
@@ -224,8 +273,14 @@ export function getLessonEncouragementScreens(lessonId: number): LessonIntroScre
 // === Lesson Vocabularies ===
 export const LESSON_VOCABULARIES: Record<number, typeof LESSON_4_VOCABULARY> = {
   4: LESSON_4_VOCABULARY,
+  5: LESSON_5_VOCABULARY,
   6: LESSON_6_VOCABULARY,
   7: LESSON_7_VOCABULARY,
+  8: LESSON_8_VOCABULARY,
+  9: LESSON_9_VOCABULARY,
+  10: LESSON_10_VOCABULARY,
+  11: LESSON_11_VOCABULARY,
+  12: LESSON_12_VOCABULARY,
   17: LESSON_17_VOCABULARY,
   18: LESSON_18_VOCABULARY,
   19: LESSON_19_VOCABULARY,
@@ -247,8 +302,14 @@ export const LESSON_VOCABULARIES: Record<number, typeof LESSON_4_VOCABULARY> = {
 // === Lesson Irregular Verbs ===
 export const LESSON_IRREGULAR_VERBS: Record<number, any[]> = {
   4: LESSON_4_IRREGULAR_VERBS,
+  5: LESSON_5_IRREGULAR_VERBS,
   6: LESSON_6_IRREGULAR_VERBS,
   7: LESSON_7_IRREGULAR_VERBS,
+  8: LESSON_8_IRREGULAR_VERBS,
+  9: LESSON_9_IRREGULAR_VERBS,
+  10: LESSON_10_IRREGULAR_VERBS,
+  11: LESSON_11_IRREGULAR_VERBS,
+  12: LESSON_12_IRREGULAR_VERBS,
   17: LESSON_17_IRREGULAR_VERBS,
   18: LESSON_18_IRREGULAR_VERBS,
   19: LESSON_19_IRREGULAR_VERBS,

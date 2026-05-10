@@ -4,6 +4,7 @@ import type { FlashcardMarketPack } from './marketplace';
 import type { Lang } from '../../constants/i18n';
 import { purchaseCardPackWithShards, redeemPackGiftVoucher } from './cardPackShardPurchase';
 import { isPackCeremoniallyOpened } from './openedPacksTracker';
+import { navigateAfterModalClose } from '../safe_modal_navigation';
 
 type Routerish = { push: (h: any) => void };
 
@@ -25,12 +26,22 @@ export function useCardPackShardPaywall(args: {
   onAfterPurchase: () => void | Promise<void>;
   onPurchaseStart?: (packId: string) => void;
   onPurchaseEnd?: () => void;
+  onCommunityPackHiddenOnDevice?: () => void;
 }): {
   openPaywall: (pack: FlashcardMarketPack) => void;
   closePaywall: () => void;
   CardPackPaywallModalEl: React.ReactNode;
 } {
-  const { balance, hasVoucher = false, lang, router, onAfterPurchase, onPurchaseStart, onPurchaseEnd } = args;
+  const {
+    balance,
+    hasVoucher = false,
+    lang,
+    router,
+    onAfterPurchase,
+    onPurchaseStart,
+    onPurchaseEnd,
+    onCommunityPackHiddenOnDevice,
+  } = args;
   const [paywall, setPaywall] = useState<{ pack: FlashcardMarketPack; mode: 'confirm' | 'insufficient' | 'voucher' } | null>(null);
   const [purchasing, setPurchasing] = useState(false);
   const paywallRef = useRef(paywall);
@@ -68,12 +79,17 @@ export function useCardPackShardPaywall(args: {
           ? await redeemPackGiftVoucher(pw.pack)
           : await purchaseCardPackWithShards(pw.pack);
       if (r === 'ok') {
-        await onAfterPurchase();
-        setPaywall(null);
+        /** Не await: `shards_shop` тягне Firestore у `loadCardMarket` — зависший `.get()` вічно тримає «Подождите…». */
+        void Promise.resolve(onAfterPurchase()).catch(() => {});
         // Hearthstone-стайл: показуємо церемонію відкриття лише першого разу
         const alreadyOpened = await isPackCeremoniallyOpened(pw.pack.id);
         if (!alreadyOpened) {
-          router.push({ pathname: '/pack_opening', params: { packId: pw.pack.id } });
+          navigateAfterModalClose(
+            () => setPaywall(null),
+            () => router.push({ pathname: '/pack_opening', params: { packId: pw.pack.id } }),
+          );
+        } else {
+          setPaywall(null);
         }
       }
     } finally {
@@ -83,8 +99,10 @@ export function useCardPackShardPaywall(args: {
   }, [onAfterPurchase, onPurchaseStart, onPurchaseEnd, router]);
 
   const onGoToShards = useCallback(() => {
-    router.push({ pathname: '/shards_shop', params: { tab: 'catalog', source: 'card_pack_insufficient' } });
-    setPaywall(null);
+    navigateAfterModalClose(
+      () => setPaywall(null),
+      () => router.push({ pathname: '/shards_shop', params: { tab: 'catalog', source: 'card_pack_insufficient' } }),
+    );
   }, [router]);
 
   const CardPackPaywallModalEl =
@@ -99,6 +117,7 @@ export function useCardPackShardPaywall(args: {
         onClose={closePaywall}
         onConfirmPurchase={onConfirmPurchase}
         onGoToShards={onGoToShards}
+        onCommunityPackHiddenOnDevice={onCommunityPackHiddenOnDevice}
       />
     ) : null;
 

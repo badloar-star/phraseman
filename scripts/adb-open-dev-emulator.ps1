@@ -1,5 +1,5 @@
 param([string]$Serial = "")
-# Opens dev-client with http://10.0.2.2:8081 (emulator -> host). Use: npm run metro:dev (Metro --lan).
+# Эмулятор → Metro: http://127.0.0.1:8081 + adb reverse tcp:8081 (см. npm run metro:emu).
 $ErrorActionPreference = "Stop"
 $adb = Join-Path $env:LOCALAPPDATA "Android\Sdk\platform-tools\adb.exe"
 if (-not (Test-Path $adb) -and $env:ANDROID_HOME) {
@@ -10,25 +10,32 @@ if (-not (Test-Path $adb)) {
   exit 1
 }
 
-$emuSerial = $Serial.Trim()
-if (-not $emuSerial) {
+$emuSerialTrim = $Serial.Trim()
+$serials = [System.Collections.ArrayList]::new()
+if ($emuSerialTrim) {
+  [void]$serials.Add($emuSerialTrim)
+}
+else {
   foreach ($ln in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
     if ($ln -match '^(emulator-\d+)\s+device\s*$') {
-      $emuSerial = $Matches[1]
-      break
+      [void]$serials.Add($Matches[1])
     }
   }
 }
-if (-not $emuSerial) {
+if ($serials.Count -lt 1) {
   Write-Host "No emulator in device state."
   exit 1
 }
 
-Write-Host "Serial: $emuSerial | URL http://10.0.2.2:8081 | Metro: npm run metro:dev"
+foreach ($emuSerial in ($serials | Select-Object -Unique)) {
+  Write-Host "Serial: $emuSerial | URL http://127.0.0.1:8081 (adb reverse) | Metro: npm run metro:emu"
 
-$devHttp = "http://10.0.2.2:8081"
-$enc = [Uri]::EscapeDataString($devHttp)
-$pkg = "app.phraseman"
-$deep = "exp+phraseman://expo-development-client/?url=$enc"
+  & $adb "-s", $emuSerial, "reverse", "tcp:8081", "tcp:8081" | Out-Null
 
-& $adb "-s", $emuSerial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep, "-p", $pkg
+  $devHttp = "http://127.0.0.1:8081"
+  $enc = [Uri]::EscapeDataString($devHttp)
+  $pkg = "app.phraseman"
+  $deep = "exp+phraseman://expo-development-client/?url=$enc"
+
+  & $adb "-s", $emuSerial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep, "-p", $pkg
+}

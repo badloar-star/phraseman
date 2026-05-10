@@ -4,7 +4,7 @@ import { TabProvider } from './TabContext';
 
 export default function QuizzesStandaloneScreen() {
   return (
-    <TabProvider activeIdx={2} onTabChange={() => {}} focusTick={0}>
+    <TabProvider activeIdx={2} onTabChange={() => {}} onSwipeStart={() => {}} onSwipeComplete={() => {}} focusTick={0}>
       <QuizzesScreen />
     </TabProvider>
   );

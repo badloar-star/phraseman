@@ -1,0 +1,409 @@
+﻿=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson17_phrase_7
+EN: My elder brother is not washing that dirty car outside.
+RU: ╨ó╨╡ ╤é╤Ç╤â╨┤╨╛╨╗╤Ä╨▒╨╕╨▓╤ï╨╡ ╤ü╤é╤Ç╨╛╨╕╤é╨╡╨╗╨╕ ╤ü╤é╤Ç╨╛╤Å╤é ╤ì╤é╨╛ ╤ü╨╛╨▓╤Ç╨╡╨╝╨╡╨╜╨╜╨╛╨╡ ╨╖╨┤╨░╨╜╨╕╨╡?
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson17_phrase_11
+EN: Is that polite receptionist checking your booking?
+RU: ╨ó╤ï ╨╜╨╡ ╨╖╨░╨║╨░╨╖╤ï╨▓╨░╨╡╤ê╤î ╤é╨╡ ╤ü╨▓╨╡╨╢╨╕╨╡ ╨╛╨▓╨╛╤ë╨╕ ╤ç╨╡╤Ç╨╡╨╖ ╤ì╤é╨╛ ╨┐╤Ç╨╕╨╗╨╛╨╢╨╡╨╜╨╕╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson17_phrase_17
+EN: Are you hanging that beautiful picture on this bright wall?
+RU: ╨£╤ï ╨╜╨╡ ╤â╨┐╨░╨║╨╛╨▓╤ï╨▓╨░╨╡╨╝ ╤é╨╡ ╤à╤Ç╤â╨┐╨║╨╕╨╡ ╨┐╨╛╨┤╨░╤Ç╨║╨╕ ╨▓ ╤ì╤é╤â ╨▒╨╛╨╗╤î╤ê╤â╤Ä ╨║╨╛╤Ç╨╛╨▒╨║╤â.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson17_phrase_19
+EN: Are they looking for that lost bag in this huge airport?
+RU: ╨₧╨╜╨░ ╨▓ ╨┤╨░╨╜╨╜╤ï╨╣ ╨╝╨╛╨╝╨╡╨╜╤é ╨┐╨╛╨╗╨╕╨▓╨░╨╡╤é ╤é╨╡ ╤Å╤Ç╨║╨╕╨╡ ╤å╨▓╨╡╤é╤ï ╨▓ ╤ì╤é╨╛╨╝ ╨╝╨░╨╗╨╡╨╜╤î╨║╨╛╨╝ ╨│╨╛╤Ç╤ê╨║╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson17_phrase_23
+EN: She is pouring that cold orange juice into this glass tumbler.
+RU: ╨¥╨░╤ê ╨│╨╗╨░╨▓╨╜╤ï╨╣ ╨╕╨╜╨╢╨╡╨╜╨╡╤Ç ╨┐╤Ç╨╛╨▓╨╡╤Ç╤Å╨╡╤é ╤é╨╡ ╤ü╨╛╨╗╨╜╨╡╤ç╨╜╤ï╨╡ ╨┐╨░╨╜╨╡╨╗╨╕ ╨╜╨░ ╨║╤Ç╤ï╤ê╨╡?
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson17_phrase_39
+EN: Our new neighbor is cleaning that deep pool in his backyard.
+RU: ╨ó╨╡ ╤â╨╝╨╡╨╗╤ï╨╡ ╤ü╨░╨┤╨╛╨▓╨╜╨╕╨║╨╕ ╤ü╨╡╨╣╤ç╨░╤ü ╨┐╨╛╨┤╤Ç╨╡╨╖╨░╤Ä╤é ╤é╨╛╤é ╨▓╤ï╤ü╨╛╨║╨╕╨╣ ╨║╤â╤ü╤é ╨╖╨░ ╤ì╤é╨╕╨╝ ╨┤╨╛╨╝╨╛╨╝.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson18_phrase_19
+EN: Do not push that heavy door in this narrow passage.
+RU: ╨ö╨░╨▓╨░╨╣╤é╨╡ ╨▓╤ï╨▒╨╡╤Ç╨╡╨╝ ╤é╨╡ ╤â╨┤╨╛╨▒╨╜╤ï╨╡ ╨║╤Ç╨╡╤ü╨╗╨░ ╨┤╨╗╤Å ╨╜╨░╤ê╨╡╨╣ ╨╜╨╛╨▓╨╛╨╣ ╨│╨╛╤ü╤é╨╕╨╜╨╛╨╣.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson18_phrase_21
+EN: Do not put that hot kettle on this plastic surface.
+RU: ╨ó╤ï ╨╝╨╛╨╢╨╡╤ê╤î ╨┐╨╛╨║╨░╨╖╨░╤é╤î ╤é╨╡ ╤ü╨╡╨║╤Ç╨╡╤é╨╜╤ï╨╡ ╤ç╨╡╤Ç╤é╨╡╨╢╨╕ ╤é╨╛╨╝╤â ╨╛╨┐╤ï╤é╨╜╨╛╨╝╤â ╨╕╨╜╨╢╨╡╨╜╨╡╤Ç╤â ╨▓ ╤ì╤é╨╛╨╣ ╨╝╨░╤ü╤é╨╡╤Ç╤ü╨║╨╛╨╣?
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson18_phrase_41
+EN: Do not spend your last money on that useless thing.
+RU: ╨ƒ╨╛╤ç╨╕╨╜╨╕ ╤é╨╡ ╤ü╨╗╨╛╨╝╨░╨╜╨╜╤ï╨╡ ╤ç╨░╤ü╤ï ╤é╨╡╨╝╨╕ ╤é╨╛╤ç╨╜╤ï╨╝╨╕ ╨╕╨╜╤ü╤é╤Ç╤â╨╝╨╡╨╜╤é╨░╨╝╨╕.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson19_phrase_7
+EN: Do you see that bright poster opposite this big pharmacy?
+RU: ╨ó╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï ╨╗╨╡╨╢╨░╤é ╨▓╨╜╤â╤é╤Ç╨╕ ╤é╨╛╨│╨╛ ╨║╨╛╨╢╨░╨╜╨╛╨│╨╛ ╨┐╨╛╤Ç╤é╤ä╨╡╨╗╤Å.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson19_phrase_13
+EN: Does their small boat sail along that sandy shore?
+RU: ╨ó╨╡ ╨┐╨╛╨╗╨╡╨╖╨╜╤ï╨╡ ╨╕╨╜╤ü╤é╤Ç╤â╨╝╨╡╨╜╤é╤ï ╨╗╨╡╨╢╨░╤é ╨▓╨╜╤â╤é╤Ç╨╕ ╤ì╤é╨╛╨│╨╛ ╨┤╨╡╤Ç╨╡╨▓╤Å╨╜╨╜╨╛╨│╨╛ ╤Å╤ë╨╕╨║╨░.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson19_phrase_17
+EN: Is your new apartment right above that noisy market?
+RU: ╨¥╨╡ ╤ü╤é╨░╨▓╤î ╤é╨╡ ╤é╤Å╨╢╨╡╨╗╤ï╨╡ ╨║╨╛╤Ç╨╛╨▒╨║╨╕ ╨┐╨╛╨┤ ╤é╨╡ ╨╝╨╡╤é╨░╨╗╨╗╨╕╤ç╨╡╤ü╨║╨╕╨╡ ╤ü╤é╤â╨┐╨╡╨╜╨╕.
+
+=== RU_sg_EN_pl :: lesson_data_17_24.ts id=lesson19_phrase_19
+EN: Her red bag lies between those two armchairs.
+RU: ╨£╤ï ╨╜╨╡ ╨▓╨╕╨┤╨╕╨╝ ╤é╨╛╤é ╤ü╤é╨░╤Ç╤ï╨╣ ╨╝╨░╤Å╨║ ╨╜╨░ ╤é╨╛╨╝ ╨╝╨░╨╗╨╡╨╜╤î╨║╨╛╨╝ ╨╛╤ü╤é╤Ç╨╛╨▓╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson19_phrase_37
+EN: Your small dog always sleeps right in front of that warm fireplace.
+RU: ╨ƒ╨╛╨╗╨╛╨╢╨╕ ╤ì╤é╨╕ ╨▓╨░╨╢╨╜╤ï╨╡ ╨║╨╗╤Ä╤ç╨╕ ╨╜╨░ ╤é╤â ╨▓╨╡╤Ç╤à╨╜╤Ä╤Ä ╨┐╨╛╨╗╨║╤â ╨╜╨░╨┐╤Ç╨╛╤é╨╕╨▓ ╤é╨╛╨╣ ╨▓╤à╨╛╨┤╨╜╨╛╨╣ ╨┤╨▓╨╡╤Ç╨╕.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson23_phrase_3
+EN: Is her new book read by many people in this city?
+RU: ╨ó╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┐╨╕╤ü╤î╨╝╨░ ╨╜╨╡ ╨╛╤é╨┐╤Ç╨░╨▓╨╗╤Å╤Ä╤é╤ü╤Å ╨╜╨░╤ê╨╕╨╝╨╕ ╤ü╨╡╨║╤Ç╨╡╤é╨░╤Ç╤Å╨╝╨╕ ╨▓╨╛╨▓╤Ç╨╡╨╝╤Å.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=lesson23_phrase_9
+EN: Is that difficult exercise always explained by our teacher?
+RU: ╨¡╤é╨╕ ╨║╤Ç╨░╤ü╨╕╨▓╤ï╨╡ ╤å╨▓╨╡╤é╤ï ╨╜╨╡ ╨┐╨╛╨╗╨╕╨▓╨░╤Ä╤é╤ü╤Å ╤ü╨░╨┤╨╛╨▓╨╜╨╕╨║╨╛╨╝ ╤é╤Ç╨╕╨╢╨┤╤ï ╨▓ ╨╜╨╡╨┤╨╡╨╗╤Ä.
+
+=== RU_sg_EN_pl :: lesson_data_17_24.ts id=lesson23_phrase_15
+EN: Those fresh vegetables are not brought by someone from a local shop.
+RU: ╨ó╨╛╤é ╤ü╤é╨░╤Ç╤ï╨╣ ╨╝╨╛╤ü╤é ╤ç╨░╤ü╤é╨╛ ╨┐╨╛╤ü╨╡╤ë╨░╨╡╤é╤ü╤Å ╨╝╨╜╨╛╨│╨╕╨╝╨╕ ╤é╤â╤Ç╨╕╤ü╤é╨░╨╝╨╕ ╨╗╨╡╤é╨╛╨╝?
+
+=== RU_sg_EN_pl :: lesson_data_17_24.ts id=lesson24_phrase_17
+EN: She has not received those official documents from her company yet.
+RU: ╨Ü╤é╨╛-╤é╨╛ ╤é╨╛╨╗╤î╨║╨╛ ╤ç╤é╨╛ ╨▓╤ï╨┐╨╕╨╗ ╨╝╨╛╨╣ ╤à╨╛╨╗╨╛╨┤╨╜╤ï╨╣ ╨░╨┐╨╡╨╗╤î╤ü╨╕╨╜╨╛╨▓╤ï╨╣ ╤ü╨╛╨║ ╨╜╨░ ╨║╤â╤à╨╜╨╡.
+
+=== RU_sg_EN_pl :: lesson_data_17_24.ts id=lesson24_phrase_41
+EN: We have already discussed those technical problems with your chief engineer.
+RU: ╨£╨╛╨╣ ╨║╨╛╨╗╨╗╨╡╨│╨░ ╤é╨╛╨╗╤î╨║╨╛ ╤ç╤é╨╛ ╨▓╤ï╨╕╨│╤Ç╨░╨╗ ╤ì╤é╨╛╤é ╨┐╤Ç╨╡╤ü╤é╨╕╨╢╨╜╤ï╨╣ ╨│╤Ç╨░╨╜╤é ╨╜╨░ ╨╜╨░╤â╤ç╨╜╨╛╨╡ ╨╕╤ü╤ü╨╗╨╡╨┤╨╛╨▓╨░╨╜╨╕╨╡.
+
+=== RU_sg_EN_pl :: lesson_data_17_24.ts id=lesson24_phrase_47
+EN: Someone has not explained these complex rules to our new employee yet.
+RU: ╨£╤ï ╤â╨╢╨╡ ╨╖╨░╨▒╤Ç╨╛╨╜╨╕╤Ç╨╛╨▓╨░╨╗╨╕ ╤ì╤é╨╛╤é ╤â╤Ä╤é╨╜╤ï╨╣ ╨╜╨╛╨╝╨╡╤Ç ╨▓ ╤å╨╡╨╜╤é╤Ç╨╡ ╨│╨╛╤Ç╨╛╨┤╨░.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=l21p25
+EN: Someone stole that silver spoon during formal dinner.
+RU: ╨Ü╤é╨╛-╤é╨╛ ╨╖╨░╨▒╤ï╨╗ ╤ì╤é╨╕ ╤é╨╡╨╝╨╜╤ï╨╡ ╨╛╤ç╨║╨╕ ╨╜╨░ ╤é╨╛╨╣ ╨╝╨╡╤é╨░╨╗╨╗╨╕╤ç╨╡╤ü╨║╨╛╨╣ ╤ü╨║╨░╨╝╨╡╨╣╨║╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_17_24.ts id=l21p45
+EN: Someone left that sharp knife on this wooden kitchen table.
+RU: ╨Ü╤é╨╛-╤é╨╛ ╤ü╨┐╤Ç╤Å╤é╨░╨╗ ╤é╨╡ ╤ü╨╡╨║╤Ç╨╡╤é╨╜╤ï╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï ╨┐╨╛╨┤ ╤ì╤é╨╛╨╣ ╨┤╨╡╤Ç╨╡╨▓╤Å╨╜╨╜╨╛╨╣ ╨╗╨╡╤ü╤é╨╜╨╕╤å╨╡╨╣.
+
+=== RU_sg_EN_pl :: lesson_data_17_24.ts id=lesson22_phrase_27
+EN: Do you hate waiting in those long lines at the airport?
+RU: ╨Ü╤é╨╛-╤é╨╛ ╨╖╨░╨║╨╛╨╜╤ç╨╕╨╗ ╨┐╨╡╤Ç╨╡╨▓╨╛╨┤╨╕╤é╤î ╤é╨╛╤é ╤ü╨╗╨╛╨╢╨╜╤ï╨╣ ╤Ä╤Ç╨╕╨┤╨╕╤ç╨╡╤ü╨║╨╕╨╣ ╨║╨╛╨╜╤é╤Ç╨░╨║╤é?
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson32_phrase_10
+EN: If you had heard that important news earlier, you would not have made that stupid mistake.
+RU: ╨ò╤ü╨╗╨╕ ╨▒╤ï ╨▓╤ï ╤â╤ü╨╗╤ï╤ê╨░╨╗╨╕ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨╜╨╛╨▓╨╛╤ü╤é╨╕ ╤Ç╨░╨╜╤î╤ê╨╡, ╨▓╤ï ╨▒╤ï ╨╜╨╡ ╤ü╨╛╨▓╨╡╤Ç╤ê╨╕╨╗╨╕ ╤é╤â ╨│╨╗╤â╨┐╤â╤Ä ╨╛╤ê╨╕╨▒╨║╤â.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=l25p7
+EN: Were you waiting for that international delegation at the airport today at seven am?
+RU: ╨£╨╛╨╕ ╨║╨╛╨╗╨╗╨╡╨│╨╕ ╨╜╨╡ ╨┐╨╛╨┤╨┐╨╕╤ü╤ï╨▓╨░╨╗╨╕ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï ╨▓╤ç╨╡╤Ç╨░ ╨▓ ╨┤╨▓╨░ ╤ç╨░╤ü╨░.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=l25p13
+EN: Someone was shouting loudly in that neighboring yard at three am.
+RU: ╨Æ╤ï ╨╛╨▒╤ü╤â╨╢╨┤╨░╨╗╨╕ ╤é╨╡ ╤ä╨╕╨╜╨░╨╜╤ü╨╛╨▓╤ï╨╡ ╨╛╤é╤ç╨╡╤é╤ï ╤ü╨╡╨│╨╛╨┤╨╜╤Å ╨▓ ╨┤╨╡╨▓╤Å╤é╤î ╤ç╨░╤ü╨╛╨▓ ╤â╤é╤Ç╨░?
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=l25p15
+EN: That polite waiter was bringing our main order for ten minutes.
+RU: ╨£╨╛╤Å ╤ü╨╡╤ü╤é╤Ç╨░ ╨╜╨╡ ╨┐╨╛╨║╤â╨┐╨░╨╗╨░ ╤ì╤é╨╕ ╤ü╨▓╨╡╨╢╨╕╨╡ ╨╛╨▓╨╛╤ë╨╕ ╨▓ ╤é╨╛ ╨▓╤Ç╨╡╨╝╤Å.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=l25p33
+EN: Some animal was scratching loudly at that wooden door all night.
+RU: ╨Æ╤ï ╨╖╨░╨║╨░╨╖╤ï╨▓╨░╨╗╨╕ ╤ì╤é╨╕ ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤é╨╡╨╗╤î╨╜╤ï╨╡ ╤â╤ü╨╗╤â╨│╨╕ ╤ü╨╡╨│╨╛╨┤╨╜╤Å ╨▓ ╤ü╨╡╨╝╤î ╤â╤é╤Ç╨░?
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=l25p35
+EN: That polite consultant was choosing a suitable tariff plan for us all morning.
+RU: ╨₧╨╜╨░ ╨╜╨╡ ╤â╨┤╨░╨╗╤Å╨╗╨░ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╤ä╨░╨╣╨╗╤ï ╨╜╨░ ╤ü╨▓╨╛╨╡╨╝ ╤Ç╨░╨▒╨╛╤ç╨╡╨╝ ╨║╨╛╨╝╨┐╤î╤Ä╤é╨╡╤Ç╨╡ ╨▓ ╨┐╨╛╨╗╨┤╨╡╨╜╤î.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=l25p37
+EN: Were you discussing that serious problem with equipment yesterday at four o
+RU: ╨£╨╛╨╕ ╤Ç╨╛╨┤╤ü╤é╨▓╨╡╨╜╨╜╨╕╨║╨╕ ╨╜╨╡ ╨▒╤Ç╨╛╨╜╨╕╤Ç╨╛╨▓╨░╨╗╨╕ ╤é╨╡ ╨┤╨╛╤Ç╨╛╨│╨╕╨╡ ╨▒╨╕╨╗╨╡╤é╤ï ╤ü╨╡╨│╨╛╨┤╨╜╤Å ╨▓ ╨┐╨╛╨╗╨┤╨╡╨╜╤î.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson26_phrase_7
+EN: Will this new plan be successful if we change strategy?
+RU: ╨£╨╛╨╕ ╨╕╨╜╨╛╤ü╤é╤Ç╨░╨╜╨╜╤ï╨╡ ╨┐╨░╤Ç╤é╨╜╤æ╤Ç╤ï ╨╜╨╡ ╨┐╨╛╨┤╨┐╨╕╤ê╤â╤é ╤é╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï, ╨╡╤ü╨╗╨╕ ╨╜╨░╨╣╨┤╤â╤é ╨╛╤ê╨╕╨▒╨║╤â.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson26_phrase_11
+EN: You will not get that discount if you do not show your membership card.
+RU: ╨ò╤ü╨╗╨╕ ╤ì╤é╨╛╤é ╨╛╨┐╤ï╤é╨╜╤ï╨╣ ╨╝╨╡╨╜╨╡╨┤╨╢╨╡╤Ç ╨┐╤Ç╨╛╨▓╨╡╤Ç╨╕╤é ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╤å╨╕╤ä╤Ç╤ï, ╨╝╤ï ╨╜╨░╨╣╨┤╤æ╨╝ ╤Ç╨╡╤ê╨╡╨╜╨╕╨╡.
+
+=== RU_sg_EN_pl :: lesson_data_25_32.ts id=lesson26_phrase_13
+EN: My laptop always overheats if someone closes those vents.
+RU: ╨₧╨╜╨░ ╤â╨╖╨╜╨░╨╡╤é ╨┐╤Ç╨░╨▓╨┤╤â, ╨╡╤ü╨╗╨╕ ╨┐╤Ç╨╛╤ç╨╕╤é╨░╨╡╤é ╤é╨╛ ╤ü╤é╨░╤Ç╨╛╨╡ ╨┐╨╕╤ü╤î╨╝╨╛ ╤ü╨╡╨│╨╛╨┤╨╜╤Å?
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson26_phrase_17
+EN: Will she buy that modern furniture if you offer a good discount?
+RU: ╨£╤ï ╨╜╨╡ ╨┐╨╛╨╗╤â╤ç╨╕╨╝ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╤Ç╨╡╨╖╤â╨╗╤î╤é╨░╤é╤ï, ╨╡╤ü╨╗╨╕ ╨╛╨╜╨╕ ╨╜╨╡ ╤ü╨╛╨▒╨╡╤Ç╤â╤é ╨▓╤ü╨╡ ╨┤╨░╨╜╨╜╤ï╨╡ ╤ü╨╡╨│╨╛╨┤╨╜╤Å.
+
+=== RU_sg_EN_pl :: lesson_data_25_32.ts id=lesson26_phrase_19
+EN: It will not happen if they do not change these old rules now.
+RU: ╨á╨░╤ü╤é╨╡╨╜╨╕╤Å ╨▓╤ü╨╡╨│╨┤╨░ ╨┐╨╛╨│╨╕╨▒╨░╤Ä╤é, ╨╡╤ü╨╗╨╕ ╨║╤é╨╛-╤é╨╛ ╨╜╨╡ ╨┐╨╛╨╗╨╕╨▓╨░╨╡╤é ╨╕╤à ╨┤╨╛╨╗╨│╨╛╨╡ ╨▓╤Ç╨╡╨╝╤Å.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson26_phrase_27
+EN: Will she accept that profitable offer if you reduce this high price?
+RU: ╨£╤ï ╨╜╨╡ ╨╜╨░╨╣╨┤╤æ╨╝ ╤é╨╡ ╤ü╨║╤Ç╤ï╤é╤ï╨╡ ╨╛╤ê╨╕╨▒╨║╨╕, ╨╡╤ü╨╗╨╕ ╨╛╨╜╨╕ ╨╜╨╡ ╨╖╨░╨┐╤â╤ü╤é╤Å╤é ╤ì╤é╨╛╤é ╨┤╨╡╤é╨░╨╗╤î╨╜╤ï╨╣ ╤é╨╡╤ü╤é ╤ü╨╡╨╣╤ç╨░╤ü.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson26_phrase_47
+EN: Will she bring that important parcel if she gets your official permission tomorrow?
+RU: ╨£╤ï ╨╜╨╡ ╤Ç╨░╤ü╤ê╨╕╤Ç╨╕╨╝ ╤ì╤é╨╛╤é ╨╝╨░╨╗╤ï╨╣ ╨▒╨╕╨╖╨╜╨╡╤ü, ╨╡╤ü╨╗╨╕ ╤é╤ï ╨╜╨╡ ╨▓╨╗╨╛╨╢╨╕╤ê╤î ╤é╨╡ ╨┤╨╛╨┐╨╛╨╗╨╜╨╕╤é╨╡╨╗╤î╨╜╤ï╨╡ ╤ü╤Ç╨╡╨┤╤ü╤é╨▓╨░.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson28_phrase_13
+EN: She often asks herself why she chose this tough profession.
+RU: ╨£╤ï ╨▓╤ü╨╡╨│╨┤╨░ ╨╜╨░╨┐╨╛╨╝╨╕╨╜╨░╨╡╨╝ ╤ü╨╡╨▒╨╡ ╨┐╤Ç╨╛╨▓╨╡╤Ç╨╕╤é╤î ╤ì╤é╨╕ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï ╤ü╨╜╨╛╨▓╨░.
+
+=== RU_sg_EN_pl :: lesson_data_25_32.ts id=lesson28_phrase_17
+EN: She often praises herself for these excellent results in her studies.
+RU: ╨ó╨╛╤é ╨╝╨░╨╗╨╡╨╜╤î╨║╨╕╨╣ ╤Ç╨╡╨▒╨╡╨╜╨╛╨║ ╤â╨╢╨╡ ╨╜╨░╤â╤ç╨╕╨╗╤ü╤Å ╨╛╨┤╨╡╨▓╨░╤é╤î╤ü╤Å ╤ü╨░╨╝╨╛╤ü╤é╨╛╤Å╤é╨╡╨╗╤î╨╜╨╛.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson28_phrase_47
+EN: That lazy boy does not do this difficult homework by himself.
+RU: ╨£╤ï ╨┤╨╛╨╗╨╢╨╜╤ï ╨┐╨╛╨╖╨▓╨╛╨╗╤Å╤é╤î ╤ü╨╡╨▒╨╡ ╤Ç╨░╤ü╤ü╨╗╨░╨▒╨╗╤Å╤é╤î╤ü╤Å ╨▓ ╤é╨╡ ╤é╨╡╨┐╨╗╤ï╨╡ ╨╗╨╡╤é╨╜╨╕╨╡ ╨▓╤ï╤à╨╛╨┤╨╜╤ï╨╡.
+
+=== RU_sg_EN_pl :: lesson_data_25_32.ts id=lesson29_phrase_1
+EN: Did you use to read those classical novels every free minute in childhood?
+RU: ╨á╨░╨╜╤î╤ê╨╡ ╤Å ╨╢╨╕╨╗ ╨▓ ╤é╨╛╨╝ ╤é╨╕╤à╨╛╨╝ ╨┐╤Ç╨╕╨│╨╛╤Ç╨╛╨┤╨╡, ╨┐╤Ç╨╡╨╢╨┤╨╡ ╤ç╨╡╨╝ ╨┐╨╡╤Ç╨╡╨╡╤à╨░╤é╤î ╨▓ ╤ì╤é╨╛╤é ╤ê╤â╨╝╨╜╤ï╨╣ ╨╝╨╡╨│╨░╨┐╨╛╨╗╨╕╤ü.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson29_phrase_9
+EN: Did you use to wake up at that early time for that quiet morning meditation?
+RU: ╨á╨░╨╜╤î╤ê╨╡ ╤é╨╛╤é ╤é╨░╨╗╨░╨╜╤é╨╗╨╕╨▓╤ï╨╣ ╨░╤Ç╤à╨╕╤é╨╡╨║╤é╨╛╤Ç ╨╜╨╕╨║╨╛╨│╨┤╨░ ╨╜╨╡ ╨┐╤Ç╨╛╨╡╨║╤é╨╕╤Ç╨╛╨▓╨░╨╗ ╤é╨╡ ╤â╨╜╨╕╨║╨░╨╗╤î╨╜╤ï╨╡ ╨╖╨┤╨░╨╜╨╕╤Å ╤ü╨░╨╝╨╛╤ü╤é╨╛╤Å╤é╨╡╨╗╤î╨╜╨╛.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson29_phrase_21
+EN: I used to forget that important password for that work email.
+RU: ╨á╨░╨╜╤î╤ê╨╡ ╤é╨╡ ╨╝╨╡╤ü╤é╨╜╤ï╨╡ ╤ä╨╡╤Ç╨╝╨╡╤Ç╤ï ╨▓╤ï╤Ç╨░╤ë╨╕╨▓╨░╨╗╨╕ ╤é╨╡ ╨╛╤Ç╨│╨░╨╜╨╕╤ç╨╡╤ü╨║╨╕╨╡ ╨╛╨▓╨╛╤ë╨╕ ╨╜╨░ ╤é╨╛╨╝ ╨┐╨╗╨╛╨┤╨╛╤Ç╨╛╨┤╨╜╨╛╨╝ ╨┐╨╛╨╗╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson29_phrase_31
+EN: My old grandfather used to catch that big fish in that deep river.
+RU: ╨á╨░╨╜╤î╤ê╨╡ ╤é╨╛╤é ╤ü╤é╤Ç╨╛╨│╨╕╨╣ ╨┐╤Ç╨╛╤ä╨╡╤ü╤ü╨╛╤Ç ╨╛╨▒╤è╤Å╤ü╨╜╤Å╨╗ ╤é╨╡ ╤ü╨╗╨╛╨╢╨╜╤ï╨╡ ╤é╨╡╨╛╤Ç╨╕╨╕ ╨▓ ╤é╨╛╨╝ ╨╛╨│╤Ç╨╛╨╝╨╜╨╛╨╝ ╨╖╨░╨╗╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson29_phrase_49
+EN: I used to doubt that final victory before that decisive moment.
+RU: ╨á╨░╨╜╤î╤ê╨╡ ╤é╤ï ╨╖╨░╨╝╨╡╤ç╨░╨╗ ╤é╨╡ ╤é╨╛╨╜╨║╨╕╨╡ ╨┤╨╡╤é╨░╨╗╨╕ ╨▓ ╤é╨╡╤à ╨║╨╗╨░╤ü╤ü╨╕╤ç╨╡╤ü╨║╨╕╤à ╨║╨░╤Ç╤é╨╕╨╜╨░╤à.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson30_phrase_3
+EN: You did not meet that experienced guide whose knowledge impressed that tourist group.
+RU: ╨₧╨╜╨░ ╨┐╨╛╤é╨╡╤Ç╤Å╨╗╨░ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï, ╨║╨╛╤é╨╛╤Ç╤ï╨╡ ╨╗╨╡╨╢╨░╨╗╨╕ ╨╜╨░ ╤é╨╛╨╝ ╤Ç╨░╨▒╨╛╤ç╨╡╨╝ ╤ü╤é╨╛╨╗╨╡?
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson30_phrase_9
+EN: We did not watch that documentary film that explains that complex scientific problem.
+RU: ╨₧╨╜╨╕ ╨╜╨╡ ╨┐╨╛╤ü╨╡╤é╨╕╨╗╨╕ ╤é╨╛╤é ╤Ç╨╡╤ü╤é╨╛╤Ç╨░╨╜, ╨│╨┤╨╡ ╤é╨╡ ╨┐╤Ç╨╛╤ä╨╡╤ü╤ü╨╕╨╛╨╜╨░╨╗╤î╨╜╤ï╨╡ ╨┐╨╛╨▓╨░╤Ç╨░ ╨│╨╛╤é╨╛╨▓╤Å╤é ╤é╨╡ ╨╕╨╖╤ï╤ü╨║╨░╨╜╨╜╤ï╨╡ ╨┤╨╡╤ü╨╡╤Ç╤é╤ï.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson30_phrase_13
+EN: She found that gold chain which that little girl lost yesterday.
+RU: ╨» ╨╜╨╡ ╤ç╨╕╤é╨░╨╗ ╤é╤â ╨╜╨░╤â╤ç╨╜╤â╤Ä ╤ü╤é╨░╤é╤î╤Ä, ╨║╨╛╤é╨╛╤Ç╨░╤Å ╨╛╨┐╨╕╤ü╤ï╨▓╨░╨╡╤é ╤é╨╡ ╨┐╨╛╤ü╨╗╨╡╨┤╨╜╨╕╨╡ ╤é╨╡╤à╨╜╨╛╨╗╨╛╨│╨╕╤ç╨╡╤ü╨║╨╕╨╡ ╨┤╨╛╤ü╤é╨╕╨╢╨╡╨╜╨╕╤Å.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson30_phrase_17
+EN: She found that lost bag whose contents belonged to that elderly woman.
+RU: ╨£╤ï ╨┐╨╛╤ü╨╡╤é╨╕╨╗╨╕ ╤é╤â ╤ü╨╛╨▓╤Ç╨╡╨╝╨╡╨╜╨╜╤â╤Ä ╨│╨░╨╗╨╡╤Ç╨╡╤Ä, ╨│╨┤╨╡ ╤é╨╡ ╤é╨░╨╗╨░╨╜╤é╨╗╨╕╨▓╤ï╨╡ ╤à╤â╨┤╨╛╨╢╨╜╨╕╨║╨╕ ╨▓╤ï╤ü╤é╨░╨▓╨╗╤Å╨╗╨╕ ╤é╨╡ ╨░╨▒╤ü╤é╤Ç╨░╨║╤é╨╜╤ï╨╡ ╨┐╨╛╨╗╨╛╤é╨╜╨░.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson31_phrase_9
+EN: We saw that bright lightning strike that lonely tree on that hill.
+RU: ╨₧╨╜╨╕ ╤ü╨╗╤ï╤ê╨░╨╗╨╕, ╨║╨░╨║ ╤é╨╡ ╤Ç╨░╤ü╤ü╨╡╤Ç╨╢╨╡╨╜╨╜╤ï╨╡ ╨┐╤Ç╨╛╤é╨╡╤ü╤é╤â╤Ä╤ë╨╕╨╡ ╨▓╤ï╨║╤Ç╨╕╨║╨╕╨▓╨░╨╗╨╕ ╤é╨╡ ╨│╤Ç╨╛╨╝╨║╨╕╨╡ ╨┐╨╛╨╗╨╕╤é╨╕╤ç╨╡╤ü╨║╨╕╨╡ ╨╗╨╛╨╖╤â╨╜╨│╨╕.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson31_phrase_15
+EN: They let that foreign delegation inspect that modern chemical laboratory.
+RU: ╨£╤ï ╨▒╤ï ╤à╨╛╤é╨╡╨╗╨╕, ╤ç╤é╨╛╨▒╤ï ╤ì╤é╨╛╤é ╨╜╨░╨┤╨╡╨╢╨╜╤ï╨╣ ╨┐╨╛╤ü╤é╨░╨▓╤ë╨╕╨║ ╨┤╨╛╤ü╤é╨░╨▓╨╕╨╗ ╤é╨╡ ╨╜╨╡╨╛╨▒╤à╨╛╨┤╨╕╨╝╤ï╨╡ ╤ü╤é╤Ç╨╛╨╕╤é╨╡╨╗╤î╨╜╤ï╨╡ ╨╝╨░╤é╨╡╤Ç╨╕╨░╨╗╤ï.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson32_phrase_1
+EN: That talented woman whose innovative idea we discussed is that very expert whom we need.
+RU: ╨» ╨╜╨╡ ╨┐╤Ç╨╕╨▓╤ï╨║ ╨║ ╤é╨╛╨╝╤â, ╤ç╤é╨╛ ╨╝╨╛╨╣ ╤ü╤é╤Ç╨╛╨│╨╕╨╣ ╨▒╨╛╤ü╤ü ╨╖╨░╤ü╤é╨░╨▓╨╗╤Å╨╡╤é ╨╜╨░╤ü ╨┐╨╡╤Ç╨╡╨┤╨╡╨╗╤ï╨▓╨░╤é╤î ╤é╨╡ ╨╜╤â╨┤╨╜╤ï╨╡ ╨╡╨╢╨╡╨╝╨╡╤ü╤Å╤ç╨╜╤ï╨╡ ╨╛╤é╤ç╨╡╤é╤ï.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson32_phrase_9
+EN: If you had heard that important news earlier, you would not have made that stupid mistake.
+RU: ╨₧╨╜╨╕ ╨┐╨╛╨╖╨▓╨╛╨╗╨╕╨╗╨╕ ╤é╨╛╨╝╤â ╨╕╨╜╨╛╤ü╤é╤Ç╨░╨╜╨╜╨╛╨╝╤â ╨┐╤Ç╨╡╨┤╤ü╤é╨░╨▓╨╕╤é╨╡╨╗╤Ä ╨╛╤ü╨╝╨╛╤é╤Ç╨╡╤é╤î ╤é╨╛╤é ╨╜╨╛╨▓╤ï╨╣ ╤ü╨║╨╗╨░╨┤, ╨│╨┤╨╡ ╤à╤Ç╨░╨╜╤Å╤é╤ü╤Å ╤ì╤é╨╕ ╤ü╨╡╨║╤Ç╨╡╤é╨╜╤ï╨╡ ╤é╨╛╨▓╨░╤Ç╤ï.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson32_phrase_11
+EN: That experienced detective is the only person whose professional opinion my frightened client trusts.
+RU: ╨¥╨░╤ü ╤é╨╛╨╗╤î╨║╨╛ ╤ç╤é╨╛ ╨┐╤Ç╨╛╨╕╨╜╤ä╨╛╤Ç╨╝╨╕╤Ç╨╛╨▓╨░╨╗╨╕, ╤ç╤é╨╛ ╤é╨╡ ╨╢╨╕╨╖╨╜╨╡╨╜╨╜╨╛ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï ╨▒╤ï╨╗╨╕ ╤ü╨╗╤â╤ç╨░╨╣╨╜╨╛ ╤â╨╜╨╕╤ç╤é╨╛╨╢╨╡╨╜╤ï ╤é╨╡╨╝ ╨╜╨╛╨▓╤ï╨╝ ╤ü╤é╨░╨╢╨╡╤Ç╨╛╨╝.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson32_phrase_19
+EN: They did not expect that expert specialist to refuse to fix that critical system error.
+RU: ╨» ╤ç╤â╨▓╤ü╤é╨▓╤â╤Ä, ╤ç╤é╨╛ ╤é╨╡ ╤ü╨╗╨╛╨╢╨╜╤ï╨╡ ╨┐╨╗╨░╨╜╤ï ΓÇö ╤é╨░ ╤ü╨░╨╝╨░╤Å ╤ü╤é╤Ç╨░╤é╨╡╨│╨╕╤Å, ╤ü ╨║╨╛╤é╨╛╤Ç╨╛╨╣ ╨╜╨░╤ê╨╡ ╤Ç╤â╨║╨╛╨▓╨╛╨┤╤ü╤é╨▓╨╛ ╨┤╨╛╨╗╨╢╨╜╨╛ ╤ü╨╛╨│╨╗╨░╤ü╨╕╤é╤î╤ü╤Å.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson32_phrase_27
+EN: She would be extremely grateful if you did not mention that personal issue before that large audience.
+RU: ╨£╤ï ╤ü╨╗╤ï╤ê╨░╨╗╨╕, ╨║╨░╨║ ╤é╨╡ ╤Ç╨░╤ü╤ü╨╡╤Ç╨╢╨╡╨╜╨╜╤ï╨╡ ╨║╨╗╨╕╨╡╨╜╤é╤ï ╨╢╨░╨╗╨╛╨▓╨░╨╗╨╕╤ü╤î ╨╜╨░ ╤é╨╛╤é ╤â╨╢╨░╤ü╨╜╤ï╨╣ ╤ü╨╡╤Ç╨▓╨╕╤ü ╨▓ ╤é╨╛╨╝ ╨╜╨╛╨▓╨╛╨╝ ╤Ç╨╡╤ü╤é╨╛╤Ç╨░╨╜╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_25_32.ts id=lesson32_phrase_33
+EN: If you had not missed that vital lecture, you would have understood that complex scientific theory.
+RU: ╨» ╨╜╨╕╨║╨╛╨│╨┤╨░ ╨╜╨╡ ╨╛╨╢╨╕╨┤╨░╨╗, ╤ç╤é╨╛ ╤é╨╛╤é ╤ü╤é╨░╤Ç╤ï╨╣ ╤ç╨╡╤Ç╨┤╨░╨║ ╤ü╨║╤Ç╤ï╨▓╨░╨╡╤é ╤é╨╡ ╤å╨╡╨╜╨╜╤ï╨╡ ╨░╨╜╤é╨╕╨║╨▓╨░╤Ç╨╜╤ï╨╡ ╨▓╨╡╤ë╨╕.
+
+=== RU_sg_EN_pl :: lesson_data_25_32.ts id=lesson32_phrase_43
+EN: She has never seen her little son talk so politely to those unknown people.
+RU: ╨£╤ï ╨│╨░╤Ç╨░╨╜╤é╨╕╤Ç╤â╨╡╨╝, ╤ç╤é╨╛ ╤é╨░ ╨┐╨╛╨▓╤Ç╨╡╨╢╨┤╨╡╨╜╨╜╨░╤Å ╨┐╨╛╤ü╤ï╨╗╨║╨░ ╨▒╤â╨┤╨╡╤é ╨┤╨╛╤ü╤é╨░╨▓╨╗╨╡╨╜╨░ ╨▓ ╤é╨╛╤é ╨╛╤é╨┤╨░╨╗╨╡╨╜╨╜╤ï╨╣ ╤Ç╨╡╨│╨╕╨╛╨╜ ╨╖╨░╨▓╤é╤Ç╨░.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_45
+EN: You will lose that extra money soon.
+RU: ╨Æ╤ï ╤ü╨║╨╛╤Ç╨╛ ╨┐╨╛╤é╨╡╤Ç╤Å╨╡╤é╨╡ ╤é╨╡ ╨╗╨╕╤ê╨╜╨╕╨╡ ╨┤╨╡╨╜╤î╨│╨╕.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson16_phrase_15
+EN: He always quickly fills in that important data.
+RU: ╨₧╨╜ ╨▓╤ü╨╡╨│╨┤╨░ ╨▒╤ï╤ü╤é╤Ç╨╛ ╨╖╨░╨┐╨╕╤ü╤ï╨▓╨░╨╡╤é (╨▓╨┐╨╕╤ü╤ï╨▓╨░╨╡╤é) ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨░╨╜╨╜╤ï╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson16_phrase_46
+EN: That honest person does not always give back this found money to the owner.
+RU: ╨ó╨╛╤é ╤ç╨╡╤ü╤é╨╜╤ï╨╣ ╤ç╨╡╨╗╨╛╨▓╨╡╨║ ╨╜╨╡ ╨▓╤ü╨╡╨│╨┤╨░ ╨▓╨╛╨╖╨▓╤Ç╨░╤ë╨░╨╡╤é ╤ì╤é╨╕ ╨╜╨░╨╣╨┤╨╡╨╜╨╜╤ï╨╡ ╨┤╨╡╨╜╤î╨│╨╕ ╨▓╨╗╨░╨┤╨╡╨╗╤î╤å╤â.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson10_phrase_1
+EN: Can you sign these papers today?
+RU: ╨» ╨╝╨╛╨│╤â ╨┐╨╡╤Ç╨╡╨▓╨╡╤ü╤é╨╕ ╤ì╤é╨╛╤é ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson10_phrase_25
+EN: Will you return these books tomorrow?
+RU: ╨₧╨╜╨╕ ╨╛╤Ç╨│╨░╨╜╨╕╨╖╤â╤Ä╤é ╤ì╤é╨╛╤é ╨┐╤Ç╨░╨╖╨┤╨╜╨╕╨║.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson12_phrase_11
+EN: We went to that new gym last week
+RU: ╨₧╨╜ ╨▓╤ç╨╡╤Ç╨░ ╨║╤â╨┐╨╕╨╗ ╤é╨╡ ╨╜╨╛╨▓╤ï╨╡ ╨╜╨░╤â╤ê╨╜╨╕╨║╨╕
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson12_phrase_29
+EN: You lost that important key last Monday
+RU: ╨» ╤ü╨╡╨│╨╛╨┤╨╜╤Å ╤â╤é╤Ç╨╛╨╝ ╨┤╨╛╤ü╤é╨░╨╗ ╤é╨╡ ╤ü╨▓╨╡╨╢╨╕╨╡ ╨╛╨▓╨╛╤ë╨╕
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson12_phrase_43
+EN: I brought those heavy bags two hours ago
+RU: ╨₧╨╜╨╕ ╨▓╨╖╤Å╨╗╨╕ ╤é╨╛╤é ╤ü╨▓╨╡╨╢╨╕╨╣ ╤ü╨╛╨║ ╤ü╨╡╨│╨╛╨┤╨╜╤Å ╤â╤é╤Ç╨╛╨╝
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_5
+EN: He will not send that long message in ten minutes.
+RU: ╨Æ╤ï ╨┐╤Ç╨╕╨╜╨╡╤ü╤æ╤é╨╡ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨╛╨║╤â╨╝╨╡╨╜╤é╤ï ╨┐╨╛╨╖╨╢╨╡?
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_21
+EN: We will not choose those comfortable armchairs soon.
+RU: ╨₧╨╜╨░ ╨╖╨░╨▓╤é╤Ç╨░ ╨┤╨╜╤æ╨╝ ╨┐╤Ç╨╕╨│╨╛╤é╨╛╨▓╨╕╤é ╤é╨╛╤é ╨┐╨╛╨╗╨╡╨╖╨╜╤ï╨╣ ╨╖╨░╨▓╤é╤Ç╨░╨║?
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_27
+EN: They will not get that new computer in two days.
+RU: ╨£╤ï ╤ü╨║╨╛╤Ç╨╛ ╨╜╨░╨╣╨┤╤æ╨╝ ╤é╨╡ ╨╖╨╛╨╗╨╛╤é╤ï╨╡ ╨║╨╗╤Ä╤ç╨╕?
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_31
+EN: We will not buy that cheap ticket tomorrow evening.
+RU: ╨₧╨╜╨░ ╨╜╨░ ╤ü╨╗╨╡╨┤╤â╤Ä╤ë╨╡╨╣ ╨╜╨╡╨┤╨╡╨╗╨╡ ╨┐╨╛╨║╨░╨╢╨╡╤é ╤é╨╡ ╨╜╨╛╨▓╤ï╨╡ ╤ä╨╛╤é╨╛╨│╤Ç╨░╤ä╨╕╨╕?
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_39
+EN: You will feel that pleasant coolness in three hours.
+RU: ╨» ╤ü╨╡╨│╨╛╨┤╨╜╤Å ╨┐╨╛╨╖╨╢╨╡ ╨┐╨╛╨╗╨╛╨╢╤â ╤é╨╡ ╨║╨╛╨╢╨░╨╜╤ï╨╡ ╤é╤â╤ä╨╗╨╕ ╤ü╤Ä╨┤╨░.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_45
+EN: She will choose that beautiful gift for her mother soon.
+RU: ╨Æ╤ï ╤ü╨║╨╛╤Ç╨╛ ╨┐╨╛╤é╨╡╤Ç╤Å╨╡╤é╨╡ ╤é╨╡ ╨╗╨╕╤ê╨╜╨╕╨╡ ╨┤╨╡╨╜╤î╨│╨╕.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson13_phrase_47
+EN: They will paint that new wall later today.
+RU: ╨£╤ï ╨╖╨░╨▓╤é╤Ç╨░ ╨┤╨╜╨╡╨╝ ╨╛╨▒╤ü╤â╨┤╨╕╨╝ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨╡╤é╨░╨╗╨╕ ╨╖╨┤╨╡╤ü╤î.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_1
+EN: Those new leather gloves are hers.
+RU: ╨ó╨╛╤é ╨▒╨╛╨╗╤î╤ê╨╛╨╣ ╤ç╤æ╤Ç╨╜╤ï╨╣ ╨╖╨╛╨╜╤é ΓÇö ╨╝╨╛╨╣?
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_5
+EN: Are these modern office buildings theirs?
+RU: ╨¡╤é╨╛╤é ╤ü╨▓╨╡╤é╨╗╤ï╨╣ ╤â╤Ä╤é╨╜╤ï╨╣ ╨┤╨╛╨╝ ΓÇö ╨╜╨░╤ê.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_7
+EN: Are these important documents in the folder yours?
+RU: ╨ó╨╛╤é ╤ü╨╡╤Ç╨╡╨▒╤Ç╤Å╨╜╤ï╨╣ ╨║╨╗╤Ä╤ç ╨╜╨░ ╤ü╤é╨╛╨╗╨╡ ΓÇö ╨╝╨╛╨╣.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_9
+EN: That small white envelope is his.
+RU: ╨ó╨╡ ╤ü╨┐╨╡╨╗╤ï╨╡ ╨║╤Ç╨░╤ü╨╜╤ï╨╡ ╤é╨╛╨╝╨░╤é╤ï ΓÇö ╨╡╤æ.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_11
+EN: Are those expensive wireless headphones yours?
+RU: ╨¡╤é╨╛╤é ╨┐╤â╤ü╤é╨╛╨╣ ╨┐╨╗╨░╤ü╤é╨╕╨║╨╛╨▓╤ï╨╣ ╨║╨╛╨╜╤é╨╡╨╣╨╜╨╡╤Ç ΓÇö ╨╝╨╛╨╣.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_13
+EN: These clean towels in the bathroom are hers.
+RU: ╨ó╨╛╤é ╤ü╨╗╨╛╨╝╨░╨╜╨╜╤ï╨╣ ╨┤╨╡╤Ç╨╡╨▓╤Å╨╜╨╜╤ï╨╣ ╨╖╨░╨▒╨╛╤Ç ΓÇö ╨╜╨░╤ê.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_15
+EN: Those soft woolen blankets are not theirs.
+RU: ╨ó╨╛╤é ╤ü╤é╨░╤Ç╤ï╨╣ ╨║╨╛╨╢╨░╨╜╤ï╨╣ ╨║╨╛╤ê╨╡╨╗╨╡╨║ ΓÇö ╨╡╨│╨╛.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_17
+EN: These useful tools in the box are yours.
+RU: ╨ó╨╛╤é ╨╜╨░╨┤╨╡╨╢╨╜╤ï╨╣ ╤ü╤é╨░╨╗╤î╨╜╨╛╨╣ ╨╖╨░╨╝╨╛╨║ ΓÇö ╨╝╨╛╨╣?
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_19
+EN: That heavy metal hammer is his.
+RU: ╨ó╨╡ ╤ü╨╛╨╗╨╡╨╜╤ï╨╡ ╤à╤Ç╤â╤ü╤é╤Å╤ë╨╕╨╡ ╨╛╤Ç╨╡╤à╨╕ ΓÇö ╨╡╤æ.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_21
+EN: These sharp kitchen knives are yours.
+RU: ╨ó╨╛╤é ╨│╨╛╤Ç╤î╨║╨╕╨╣ ╤ç╨╡╤Ç╨╜╤ï╨╣ ╨║╨╛╤ä╨╡ ΓÇö ╨╝╨╛╨╣.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_23
+EN: Those long silk ribbons are hers.
+RU: ╨ó╨╛╤é ╤â╨┤╨╛╨▒╨╜╤ï╨╣ ╨║╨╛╨╢╨░╨╜╤ï╨╣ ╨┤╨╕╨▓╨░╨╜ ΓÇö ╨╜╨░╤ê?
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_25
+EN: Those modern unmanned drones are theirs.
+RU: ╨ó╨╛╤é ╨│╤Ç╤Å╨╖╨╜╤ï╨╣ ╨┐╨╗╨░╤ü╤é╨╕╨║╨╛╨▓╤ï╨╣ ╨┐╨░╨║╨╡╤é ΓÇö ╨╜╨╡ ╨╡╨│╨╛.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_27
+EN: These fresh bread crumbs on the floor are yours.
+RU: ╨ó╨╛╤é ╨╜╨░╨┤╨╡╨╢╨╜╤ï╨╣ ╨┐╨░╤Ç╨╛╨╗╤î ╨╛╤é ╨░╨║╨║╨░╤â╨╜╤é╨░ ΓÇö ╨╝╨╛╨╣.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_29
+EN: That sharp metal hook is his.
+RU: ╨ó╨╡ ╨║╤Ç╨░╤ü╨╕╨▓╤ï╨╡ ╨╜╨░╤ü╤é╨╡╨╜╨╜╤ï╨╡ ╤ç╨░╤ü╤ï ΓÇö ╨╡╤æ.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_31
+EN: Those leather driving licenses are yours.
+RU: ╨¡╤é╨╛╤é ╨╝╨╛╤ë╨╜╤ï╨╣ ╨▓╨╜╨╡╤ê╨╜╨╕╨╣ ╨░╨║╨║╤â╨╝╤â╨╗╤Å╤é╨╛╤Ç ΓÇö ╨╝╨╛╨╣?
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_33
+EN: These thin golden rings are hers.
+RU: ╨ó╨╛╤é ╤ü╨╕╨╗╤î╨╜╤ï╨╣ ╨╜╨╡╨┐╤Ç╨╕╤Å╤é╨╜╤ï╨╣ ╨╖╨░╨┐╨░╤à ΓÇö ╨╜╨╡ ╨╜╨░╤ê.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_35
+EN: These bright curtains in the living room are theirs.
+RU: ╨ó╨╛╤é ╤ü╤é╨░╤Ç╤ï╨╣ ╨┐╤ï╨╗╤î╨╜╤ï╨╣ ╤ç╨╡╤Ç╨┤╨░╨║ ΓÇö ╨╡╨│╨╛.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_37
+EN: These spare car keys are yours.
+RU: ╨ó╨╛╤é ╨╛╤ü╤é╤Ç╤ï╨╣ ╤ü╨╛╨╡╨▓╤ï╨╣ ╤ü╨╛╤â╤ü ΓÇö ╨╝╨╛╨╣.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_39
+EN: That small round rug is his.
+RU: ╨ó╨╡ ╨║╤Ç╨░╤ü╨╕╨▓╤ï╨╡ ╨║╨╛╨╢╨░╨╜╤ï╨╡ ╤ü╨░╨┐╨╛╨│╨╕ ΓÇö ╨╡╤æ.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_41
+EN: These fresh oat cookies are yours.
+RU: ╨ó╨╛╤é ╨╜╨░╨┤╤æ╨╢╨╜╤ï╨╣ ╨┐╨░╤Ç╨╛╨╗╤î Wi-Fi ΓÇö ╨╝╨╛╨╣?
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_43
+EN: Those beautiful silk scarves are hers.
+RU: ╨ó╨╛╤é ╤ü╨╗╨╛╨╝╨░╨╜╨╜╤ï╨╣ ╨┐╨╗╨░╤ü╤é╨╕╨║╨╛╨▓╤ï╨╣ ╨╖╨╛╨╜╤é ΓÇö ╨╜╨░╤ê.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_45
+EN: Those modern wireless mice are theirs.
+RU: ╨ó╨╛╤é ╤ü╤é╨░╤Ç╤ï╨╣ ╤ê╨╡╤Ç╤ü╤é╤Å╨╜╨╛╨╣ ╤ü╨▓╨╕╤é╨╡╤Ç ΓÇö ╨╜╨╡ ╨╡╨│╨╛.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_47
+EN: These useful paper maps are yours.
+RU: ╨ó╨╛╤é ╤â╨┤╨╛╨▒╨╜╤ï╨╣ ╨║╨╛╨╢╨░╨╜╤ï╨╣ ╤Ç╤Ä╨║╨╖╨░╨║ ΓÇö ╨╝╨╛╨╣?
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson15_phrase_49
+EN: That old iron key is his.
+RU: ╨ó╨╡ ╤ü╨┐╨╡╨╗╤ï╨╡ ╨╢╨╡╨╗╤é╤ï╨╡ ╨▒╨░╨╜╨░╨╜╤ï ΓÇö ╨╡╤æ.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson16_phrase_11
+EN: We do not throw away these old paper magazines.
+RU: ╨ó╨╛╤é ╨╜╨░╨┤╨╡╨╢╨╜╤ï╨╣ ╨╛╤à╤Ç╨░╨╜╨╜╨╕╨║ ╨▓╤ü╨╡╨│╨┤╨░ ╨┐╤Ç╨╕╤ü╨╝╨░╤é╤Ç╨╕╨▓╨░╨╡╤é ╨╖╨░ ╤ì╤é╨╕╨╝ ╨▓╤à╨╛╨┤╨╛╨╝.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson16_phrase_15
+EN: She sometimes drops into that cozy shop on the way.
+RU: ╨₧╨╜ ╨▓╤ü╨╡╨│╨┤╨░ ╨▒╤ï╤ü╤é╤Ç╨╛ ╨╖╨░╨┐╨╕╤ü╤ï╨▓╨░╨╡╤é (╨▓╨┐╨╕╤ü╤ï╨▓╨░╨╡╤é) ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨░╨╜╨╜╤ï╨╡.
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson16_phrase_21
+EN: This kind neighbor sometimes looks after my small garden.
+RU: ╨ó╤ï ╨▓╤ü╨╡╨│╨┤╨░ ╨▒╤ï╤ü╤é╤Ç╨╛ ╤ü╨░╨┤╨╕╤ê╤î╤ü╤Å ╨▓ ╤é╨╡ ╤â╨┤╨╛╨▒╨╜╤ï╨╡ ╨║╤Ç╨╡╤ü╨╗╨░?
+
+=== RU_pl_EN_sg :: lesson_data_9_16_phrases_es.gen.ts id=lesson16_phrase_37
+EN: You always put away this sharp knife into the cupboard.
+RU: ╨£╤ï ╤Ç╨╡╨┤╨║╨╛ ╨╜╨░╤é╤ï╨║╨░╨╡╨╝╤ü╤Å ╨╜╨░ (╨▓╤ü╤é╤Ç╨╡╤ç╨░╨╡╨╝) ╤é╨╡ ╤Ç╨╡╨┤╨║╨╕╨╡ ╤ü╤é╨░╤Ç╤ï╨╡ ╨╝╨╛╨╜╨╡╤é╤ï ╨▓ ╨╗╨╡╤ü╤â.
+
+=== RU_sg_EN_pl :: lesson_data_9_16_phrases_es.gen.ts id=lesson16_phrase_49
+EN: They do not usually clean up those empty plastic bottles here.
+RU: ╨₧╨╜╨░ ╤Ç╨╡╨┤╨║╨╛ ╨╜╨░╤à╨╛╨┤╨╕╤é (╨▓╤ï╤Å╤ü╨╜╤Å╨╡╤é) ╤é╨╛╤é ╨┐╤Ç╨░╨▓╨╕╨╗╤î╨╜╤ï╨╣ ╨┐╨░╤Ç╨╛╨╗╤î ╤ü╨░╨╝╨░.
+
+TOTAL unique: 102

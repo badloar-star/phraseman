@@ -2,9 +2,9 @@
 export type Level = 'easy' | 'medium' | 'hard';
 
 export const LEVEL_IMAGES: Record<string, number> = {
-  easy: require('../../assets/images/levels/easy.png'),
-  medium: require('../../assets/images/levels/medium.png'),
-  hard: require('../../assets/images/levels/hard.png'),
+  easy: require('../../assets/images/levels/easy.webp'),
+  medium: require('../../assets/images/levels/medium.webp'),
+  hard: require('../../assets/images/levels/hard.webp'),
 };
 
 // Card palette by theme and level.
@@ -29,6 +29,16 @@ export const THEME_PALETTES: Record<string, Record<Level, { gradA: string; gradB
     medium: { gradA: '#2D0E12', gradB: '#0E0508', accent: '#E8735A' },
     hard: { gradA: '#002D2A', gradB: '#000E0D', accent: '#00B8A9' },
   },
+  ocean: {
+    easy: { gradA: '#0C2840', gradB: '#1A6FA0', accent: '#30C0FF' },
+    medium: { gradA: '#081830', gradB: '#0E5090', accent: '#00B0F0' },
+    hard: { gradA: '#040C20', gradB: '#083868', accent: '#00D8FF' },
+  },
+  sakura: {
+    easy: { gradA: '#4A1A2E', gradB: '#A02050', accent: '#E01870' },
+    medium: { gradA: '#3A1425', gradB: '#802050', accent: '#E01870' },
+    hard: { gradA: '#2A0C18', gradB: '#601040', accent: '#FF2D6A' },
+  },
 };
 
 // DEPRECATED: Use theme.textPrimary and theme.textMuted directly.
@@ -37,6 +47,8 @@ export const THEME_TEXT: Record<string, { primary: string; secondary: string }> 
   light: { primary: '#0F172A', secondary: 'rgba(15,23,42,0.6)' },
   neon: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   gold: { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
+  ocean: { primary: 'rgba(240,252,255,0.96)', secondary: 'rgba(200,230,255,0.78)' },
+  sakura: { primary: 'rgba(255,248,252,0.96)', secondary: 'rgba(255,210,230,0.78)' },
 };
 
 export const LEVEL_CONFIG = {

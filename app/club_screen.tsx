@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Pressable, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, Pressable, Image } from 'react-native';
 import * as Haptics from 'expo-haptics';
 import InGameToast from '../components/InGameToast';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
@@ -20,11 +20,13 @@ import {
   CLUB_DESC_ES,
   GroupMember, LeagueState, LeagueResult,
   checkLeagueOnAppOpen,
+  clearPendingResult,
   getWeekId,
   loadLeagueState,
+  loadPendingResult,
   invalidateLeagueGroupCache,
 } from './league_engine';
-import { checkAchievements } from './achievements';
+import LeagueResultModal from './LeagueResultModal';
 import { logLeaguePromoted } from './firebase';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getTitleString } from '../constants/titles';
@@ -56,6 +58,17 @@ import { oskolokImageForPackShards } from './oskolok';
 // fetchGroupForUser возвращал только пользователя из-за PERMISSION_DENIED.
 const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
 const CLUB_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
+
+/** Локальный календарный день — для «первый заход в лигу за день». */
+const LEAGUE_PROMO_HINT_DAY_KEY = 'league_promo_hint_seen_calendar_day_v1';
+
+function localCalendarDayKey(): string {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
+}
 
 function leagueTag(lang: Lang, tagRU: string, tagUK: string): string {
   const es = tagRU.replace(/^Бонус:\s*/i, 'Bonificación: ');
@@ -154,22 +167,74 @@ export default function ClubScreen() {
   } | null>(null);
   const [activeLeagueBoost, setActiveLeagueBoost] = useState<LeaguePersonalBoostState | null>(null);
   const [activeLeagueBoostTime, setActiveLeagueBoostTime] = useState('');
-  const myRowAnim = useRef(new Animated.Value(0)).current;
+  const [pendingLeagueResult, setPendingLeagueResult] = useState<LeagueResult | null>(null);
+  const dismissedLeagueResultThisSessionRef = useRef<boolean>(false);
   const railScrollX = useRef(new Animated.Value(0)).current;
-  const ROW_HEIGHT_CLUB = 60;
-  const leagueRailRef = useRef<ScrollView | null>(null);
   const [leagueRailWidth, setLeagueRailWidth] = useState(0);
   const LEAGUE_ITEM_SIZE = 104;
   const LEAGUE_ITEM_GAP = 14;
   const LEAGUE_ITEM_FULL = LEAGUE_ITEM_SIZE + LEAGUE_ITEM_GAP;
+  const leagueRailRef = useRef<ScrollView | null>(null);
   const lastSnapLeagueRef = useRef<number | null>(null);
   const [railSideInset, setRailSideInset] = useState(12);
+  /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
+  const ROW_HEIGHT_CLUB = 60;
+  const myRowAnim = useRef(new Animated.Value(0)).current;
+
+  /** Подсказка про топ‑5: только первый раз за календарный день при открытии вкладки лиги. */
+  const [leaguePromoHintVisible, setLeaguePromoHintVisible] = useState(false);
 
   const isMountedRef = useRef(true);
 
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
+      void (async () => {
+        const today = localCalendarDayKey();
+        const stored = await AsyncStorage.getItem(LEAGUE_PROMO_HINT_DAY_KEY);
+        if (cancelled || !isMountedRef.current) return;
+        if (stored === today) {
+          setLeaguePromoHintVisible(false);
+        } else {
+          setLeaguePromoHintVisible(true);
+          await AsyncStorage.setItem(LEAGUE_PROMO_HINT_DAY_KEY, today);
+        }
+      })();
+      return () => {
+        cancelled = true;
+      };
+    }, []),
+  );
+
   const LEAGUE_LOAD_TIMEOUT_MS = 22_000;
 
+  useEffect(() => {
+    if (!rankDelta) {
+      myRowAnim.stopAnimation();
+      myRowAnim.setValue(0);
+      return;
+    }
+    const d = rankDelta.delta;
+    const startOffset = d * ROW_HEIGHT_CLUB;
+    myRowAnim.stopAnimation();
+    myRowAnim.setValue(startOffset);
+    Animated.timing(myRowAnim, {
+      toValue: 0,
+      duration: 900,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [rankDelta, ROW_HEIGHT_CLUB, myRowAnim]);
+
   const loadData = useCallback(async (opts?: { forceRemote?: boolean }) => {
+    const maybeShowPending = (result: LeagueResult | null) => {
+      if (!result) return;
+      if (dismissedLeagueResultThisSessionRef.current) {
+        void clearPendingResult();
+        return;
+      }
+      if (isMountedRef.current) setPendingLeagueResult(result);
+    };
     const applyLeagueOpen = (
       state: LeagueState,
       result: LeagueResult | null,
@@ -179,11 +244,14 @@ export default function ClubScreen() {
       setMyLeagueId(state.leagueId);
       setSelectedLeagueId(state.leagueId);
       if (result?.promoted) {
-        checkAchievements({ type: 'league_promoted', newLeagueId: state.leagueId }).catch(() => {});
         const promotedLeague = LEAGUES.find(l => l.id === state.leagueId);
         if (promotedLeague) logLeaguePromoted(promotedLeague.nameRU);
       }
       setGroup(state.group);
+      // Если пришёл свежий результат недели (после смены ISO-недели) — показываем модалку
+      // прямо здесь. Раньше модалка жила только на home.tsx, поэтому захождение в Лиги
+      // в понедельник не давало анимацию.
+      if (result) maybeShowPending(result);
       if (!fromRemote) return;
       // Считаем delta только когда данные пришли из Firestore (не кеш).
       const sorted = [...state.group].sort((a, b) => b.points - a.points);
@@ -196,16 +264,6 @@ export default function ClubScreen() {
         const delta = computeRankDelta(prev, newRank, ctxKey, sorted.map(s => s.name));
         if (delta && isMountedRef.current) {
           setRankDelta(delta);
-          // Анимация моей строки: стартует со старой Y, плывёт в 0.
-          // delta>0 = поднялся → старая позиция была НИЖЕ (translateY > 0), едем вверх к 0.
-          // delta<0 = опустился → старая позиция была ВЫШЕ (translateY < 0), едем вниз к 0.
-          const startOffset = delta.delta * ROW_HEIGHT_CLUB;
-          myRowAnim.setValue(startOffset);
-          Animated.timing(myRowAnim, {
-            toValue: 0,
-            duration: 700,
-            useNativeDriver: true,
-          }).start();
         }
         await savePrevRank(KEY_CLUB_PREV_RANK, { rank: newRank, contextKey: ctxKey, ts: Date.now() });
       })();
@@ -213,15 +271,19 @@ export default function ClubScreen() {
 
     try {
       // ── Фаза 1: мгновенно читаем локальный кеш ──────────────────────────────
-      const [name, frame, phrasm, xp, canonicalUid, cachedLeague] = await Promise.all([
+      const [name, frame, phrasm, xp, canonicalUid, cachedLeague, cachedPending] = await Promise.all([
         AsyncStorage.getItem('user_name'),
         AsyncStorage.getItem('user_frame'),
         AsyncStorage.getItem('user_phrasm'),
         AsyncStorage.getItem('user_total_xp'),
         getCanonicalUserId(),
         loadLeagueState(),
+        loadPendingResult(),
       ]);
       if (!isMountedRef.current) return;
+      // Если на этом устройстве уже был сохранён pending (например, home.tsx посчитал
+      // итоги недели, но юзер закрыл приложение до закрытия модалки) — показываем здесь.
+      if (cachedPending) maybeShowPending(cachedPending);
 
       const xpNum = parseInt(xp || '0', 10);
       const anonLevel = getXPProgress(xpNum).level;
@@ -248,9 +310,14 @@ export default function ClubScreen() {
       }
 
       // ── Фаза 2: сетевой апдейт не чаще 6 часов (или по force) ───────────────
+      // ВАЖНО: 6h-троттл должен бить только Firestore-refetch группы, а не проверку
+      // смены ISO-недели. Иначе после полуночи понедельника (новая неделя) пользователь
+      // может зайти в Лиги и не увидеть LeagueResultModal, если последний refresh был <6h.
       const lastRemoteAtRaw = await AsyncStorage.getItem(CLUB_REMOTE_REFRESH_AT_KEY);
       const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
-      const shouldRefreshRemote = !!opts?.forceRemote || (Date.now() - lastRemoteAt >= CLUB_REMOTE_REFRESH_MS);
+      const within6h = (Date.now() - lastRemoteAt < CLUB_REMOTE_REFRESH_MS);
+      const weekChanged = !!cachedLeague && cachedLeague.weekId !== getWeekId();
+      const shouldRefreshRemote = !!opts?.forceRemote || !within6h || weekChanged;
       if (!shouldRefreshRemote) return;
       invalidateLeagueGroupCache();
       const wp = await getMyWeekPoints();
@@ -633,22 +700,24 @@ export default function ClubScreen() {
           </Animated.ScrollView>
         </View>
 
-        <Text style={{ color:t.textMuted, fontSize: f.label, textTransform:'uppercase', letterSpacing:0.8, marginTop:4 }}>
+        <Text style={{ color:t.textMuted, fontSize: f.label, textTransform:'uppercase', letterSpacing:0.8, marginTop:4, marginBottom: leaguePromoHintVisible ? 0 : 8 }}>
           {triLang(lang, {
             ru: 'Участники твоей лиги',
             uk: 'Учасники твоєї ліги',
             es: 'Compañeros de tu liga',
           })}
         </Text>
-        <Text style={{ color:t.textSecond, fontSize: f.caption, marginTop:-2, marginBottom:2 }}>
+        {leaguePromoHintVisible ? (
+        <Text style={{ color:t.textSecond, fontSize: f.caption, marginTop:-2, marginBottom:8, lineHeight: Math.round(f.caption * 1.35), fontWeight:'800' }}>
           {triLang(lang, {
-            ru: 'На этой неделе ты соревнуешься именно с этими участниками своей лиги.',
-            uk: 'Цього тижня ти змагаєшся саме з цими учасниками у своїй лізі.',
-            es: 'Esta semana compites con estos jugadores en tu liga.',
+            ru: 'Чтобы перейти в следующую лигу, к концу недели нужно войти в топ‑5 по опыту, набранному за эту неделю.',
+            uk: 'Щоб перейти в наступну лігу, до кінця тижня потрібно потрапити в топ‑5 за досвідом, зібраним за цей тиждень.',
+            es: 'Para subir de liga, al final de la semana debes estar entre los 5 primeros por experiencia ganada en esa semana.',
           })}
         </Text>
+        ) : null}
 
-        <View style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}>
+        <View style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'visible' }}>
           {sortedGroup.length === 0 ? (
             <Text style={{ color:t.textGhost, fontSize: f.sub, padding:16, textAlign:'center' }}>
               {triLang(lang, {
@@ -671,13 +740,11 @@ export default function ClubScreen() {
                   ? 'rgba(255, 59, 48, 0.09)'
                   : 'transparent';
               const rowMask = rowBg === 'transparent' ? t.bgCard : rowBg;
-              const rowTransform = p.isMe ? [{ translateY: myRowAnim }] : undefined;
-              const rowZ = p.isMe ? 5 : 0;
-              return (
-              <Animated.View
-                key={p.uid || `${p.name}-${i}`}
-                style={{ transform: rowTransform, zIndex: rowZ, elevation: rowZ }}
-              >
+              const boostMult = p.leagueBoostMultiplier;
+              const boostUntil = p.leagueBoostExpiresAt ?? 0;
+              const showLeagueBoost =
+                typeof boostMult === 'number' && boostMult > 1 && boostUntil > Date.now();
+              const rowInner = (
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => setProfile({
@@ -719,14 +786,37 @@ export default function ClubScreen() {
                     </Text>
                   )}
                 </View>
-                <View style={{ flexDirection:'row', alignItems:'center', gap:3 }}>
+                <View style={{ flexDirection:'row', alignItems:'center', gap:5, flexShrink: 0 }}>
+                  {showLeagueBoost && (
+                    <Text style={{ fontSize: 12, fontWeight: '800', color: '#f472b6' }}>
+                      ×{boostMult}⚡
+                    </Text>
+                  )}
                   <Ionicons name="star" size={11} color={i < 3 ? t.gold : t.textMuted} />
                   <Text style={{ color: i < 3 ? t.gold : t.textMuted, fontSize: f.body, fontWeight:'600' }}>
                     {p.points}
                   </Text>
                 </View>
               </TouchableOpacity>
-              </Animated.View>
+              );
+              return (
+              <View
+                key={p.uid || `${p.name}-${i}`}
+              >
+                {p.isMe ? (
+                  <Animated.View
+                    style={{
+                      transform: [{ translateY: myRowAnim }],
+                      zIndex: 5,
+                      elevation: 5,
+                    }}
+                  >
+                    {rowInner}
+                  </Animated.View>
+                ) : (
+                  rowInner
+                )}
+              </View>
             );
             })
           )}
@@ -896,6 +986,20 @@ export default function ClubScreen() {
       </Modal>
 
       <InGameToast message={toast} onHide={() => setToast(null)} type="error" />
+
+      {pendingLeagueResult && (
+        <LeagueResultModal
+          visible={true}
+          result={pendingLeagueResult}
+          onClose={() => {
+            // СИНХРОННО ставим оба гарда до любого await — иначе параллельный focus-loadData
+            // успеет регенерировать pending и модалка вылетит снова.
+            dismissedLeagueResultThisSessionRef.current = true;
+            setPendingLeagueResult(null);
+            void clearPendingResult();
+          }}
+        />
+      )}
     </SafeAreaView>
     </ScreenGradient>
   );

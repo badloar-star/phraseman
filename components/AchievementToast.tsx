@@ -9,6 +9,7 @@ import { useAchievement } from './AchievementContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { markAchievementsNotified } from '../app/achievements';
+import { playAchievementUnlockSound } from '../app/achievement_modal_sound';
 import { ACHIEVEMENT_ICON, ACHIEVEMENT_IMAGE, CAT_COLOR, BadgeShield } from '../app/achievements_screen';
 import { STORE_URL } from '../app/config';
 import { buildAchievementShareMessage } from '../app/achievement_share';
@@ -30,7 +31,7 @@ const { width: SW } = Dimensions.get('window');
  */
 export default function AchievementToast() {
   const { currentToast, dismissCurrent } = useAchievement();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, isDark } = useTheme();
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const toastAchShareRef = useRef<InstanceType<typeof Svg> | null>(null);
@@ -135,6 +136,7 @@ export default function AchievementToast() {
 
       // Вибрация
       hapticSuccess();
+      void playAchievementUnlockSound(currentToast.category);
 
       // Пометить как notified
       markAchievementsNotified([currentToast.id]);
@@ -305,6 +307,8 @@ export default function AchievementToast() {
                   iconName={iconName}
                   size={88}
                   achievementId={displayedToast.id}
+                  isDark={isDark}
+                  gold={t.gold}
                 />
 
                 <Text style={[s.modalName, { color, fontSize: f.h2 }]}>

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Modal, View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions,
-  ActivityIndicator, Easing,
+  ActivityIndicator, Easing, Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,6 +19,8 @@ import { emitAppEvent } from '../app/events';
 import { hapticTap, hapticWarning, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import PremiumGoldButton from './PremiumGoldButton';
+import { navigateAfterModalClose } from '../app/safe_modal_navigation';
+import { oskolokImageForPackShards } from '../app/oskolok';
 
 export type ArenaLimitMode = 'matchmaking' | 'invite';
 
@@ -135,14 +137,15 @@ export default function ArenaLimitModal({
     try {
       const bal = await getShardsBalance();
       if (bal < ARENA_MATCHES_SHARD_REFILL_COST) {
-        onClose();
-        router.push({
-          pathname: '/shards_shop',
-          params: {
-            need: String(Math.max(0, ARENA_MATCHES_SHARD_REFILL_COST - bal)),
-            source: 'arena_limit_modal',
-          },
-        } as any);
+        navigateAfterModalClose(onClose, () => {
+          router.push({
+            pathname: '/shards_shop',
+            params: {
+              need: String(Math.max(0, ARENA_MATCHES_SHARD_REFILL_COST - bal)),
+              source: 'arena_limit_modal',
+            },
+          } as any);
+        });
         return;
       }
       const spent = await spendShards(ARENA_MATCHES_SHARD_REFILL_COST, 'arena_plays_refill');
@@ -283,7 +286,15 @@ export default function ArenaLimitModal({
               : 'С Premium — безлимитные матчи каждый день'}
         </Text>
 
-        <PremiumGoldButton f={f} paywallContext="arena" />
+        <PremiumGoldButton
+          f={f}
+          paywallContext="arena"
+          onPress={() => {
+            navigateAfterModalClose(onClose, () => {
+              router.push({ pathname: '/premium_modal', params: { context: 'arena' } } as any);
+            });
+          }}
+        />
 
         {showShardRefill && (
           <TouchableOpacity
@@ -304,11 +315,16 @@ export default function ArenaLimitModal({
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: '100%' }}>
                 <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
                   {isUK
-                    ? `Відновити ${ARENA_MATCHES_SHARD_REFILL_SLOTS} спроб · ${ARENA_MATCHES_SHARD_REFILL_COST}`
+                    ? `Відновити ${ARENA_MATCHES_SHARD_REFILL_SLOTS} спроб за ${ARENA_MATCHES_SHARD_REFILL_COST} осколків`
                     : isES
-                      ? `Recuperar ${ARENA_MATCHES_SHARD_REFILL_SLOTS} duelos · ${ARENA_MATCHES_SHARD_REFILL_COST}`
-                      : `Восстановить ${ARENA_MATCHES_SHARD_REFILL_SLOTS} попыток · ${ARENA_MATCHES_SHARD_REFILL_COST}`}
+                      ? `Recuperar ${ARENA_MATCHES_SHARD_REFILL_SLOTS} duelos por ${ARENA_MATCHES_SHARD_REFILL_COST} fragmentos`
+                      : `Восстановить ${ARENA_MATCHES_SHARD_REFILL_SLOTS} попыток за ${ARENA_MATCHES_SHARD_REFILL_COST} осколков`}
                 </Text>
+                <Image
+                  source={oskolokImageForPackShards(ARENA_MATCHES_SHARD_REFILL_COST)}
+                  style={{ width: 26, height: 26 }}
+                  resizeMode="contain"
+                />
               </View>
             )}
           </TouchableOpacity>

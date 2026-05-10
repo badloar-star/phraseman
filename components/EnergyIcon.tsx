@@ -3,13 +3,13 @@ import { Animated, Easing, Image } from 'react-native';
 import { ThemeMode } from '../constants/theme';
 
 const ENERGY_IMAGES: Partial<Record<ThemeMode, any>> = {
-  dark:   require('../assets/images/levels/ENERGY FOREST.png'),
-  neon:   require('../assets/images/levels/ENERGY NEON.png'),
-  gold:   require('../assets/images/levels/ENERGY CORAL.png'),
-  ocean:  require('../assets/images/levels/ENERGY FOREST.png'),
-  sakura: require('../assets/images/levels/ENERGY CORAL.png'),
-  minimalDark: require('../assets/images/levels/ENERGY FOREST.png'),
-  minimalLight: require('../assets/images/levels/ENERGY CORAL.png'),
+  dark:   require('../assets/images/levels/ENERGY FOREST.webp'),
+  neon:   require('../assets/images/levels/ENERGY NEON.webp'),
+  gold:   require('../assets/images/levels/ENERGY CORAL.webp'),
+  ocean:  require('../assets/images/levels/ENERGY FOREST.webp'),
+  sakura: require('../assets/images/levels/ENERGY CORAL.webp'),
+  minimalDark: require('../assets/images/levels/ENERGY FOREST.webp'),
+  minimalLight: require('../assets/images/levels/ENERGY CORAL.webp'),
 };
 
 interface EnergyIconProps {
@@ -64,9 +64,9 @@ export default function EnergyIcon({
     }
   }, [shouldShake, shakeAnim]);
 
-  const fallbackEnergyImage = require('../assets/images/levels/ENERGY FOREST.png');
+  const fallbackEnergyImage = require('../assets/images/levels/ENERGY FOREST.webp');
   const energyImage = isPremium
-    ? require('../assets/images/levels/PREMIUM ENERGY.png')
+    ? require('../assets/images/levels/PREMIUM ENERGY.webp')
     : (themeMode ? ENERGY_IMAGES[themeMode] : undefined) ?? fallbackEnergyImage;
 
   // Compute tint for light themes where default PNG colors are hard to see

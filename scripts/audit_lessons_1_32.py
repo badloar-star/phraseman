@@ -1,4 +1,4 @@
-"""Cross-check lesson phrase counts vs lesson_cards_data for lessons 1-32."""
+"""Audit lesson phrase counts in lesson_data files (lessons 1–32)."""
 import re
 from pathlib import Path
 
@@ -15,7 +15,6 @@ def extract_phrase_blocks(text: str) -> dict[int, tuple[str, str]]:
     ):
         n = int(m.group(2))
         name = m.group(1)
-        # Position after the opening `[` of the array; match its closing `]`
         i = m.end() - 1
         assert text[i] == "[", f"expected [ at {i}"
         depth = 1
@@ -40,54 +39,6 @@ def count_phrases_in_block(block: str) -> int:
     return len(re.findall(r"\benglish:", block))
 
 
-def count_cards_per_lesson() -> dict[int, int | str]:
-    path = APP / "lesson_cards_data.ts"
-    text = path.read_text(encoding="utf-8")
-    if "export const lessonCards" not in text:
-        return {}
-    m = re.search(r"export const lessonCards:[^=]+=\s*\{", text)
-    if not m:
-        return {}
-    start = m.end() - 1
-    depth = 0
-    i = start
-    while i < len(text):
-        c = text[i]
-        if c == "{":
-            depth += 1
-        elif c == "}":
-            depth -= 1
-            if depth == 0:
-                blob = text[start : i + 1]
-                break
-        i += 1
-    else:
-        return {}
-
-    out: dict[int, int | str] = {}
-    for L in range(1, 33):
-        mm = re.search(rf"^  {L}: \{{", blob, re.M)
-        if not mm:
-            out[L] = "no lesson key"
-            continue
-        a = mm.start()
-        if L < 32:
-            mm2 = re.search(rf"^  {L + 1}: \{{", blob[mm.end() :], re.M)
-            chunk = blob[a : a + mm.end() + mm2.start()] if mm2 else blob[a:]
-        else:
-            chunk = blob[a:]
-        keys = [int(x) for x in re.findall(r"^    (\d+): \{\s*$", chunk, re.M)]
-        if not keys:
-            out[L] = 0
-            continue
-        mx, mn = max(keys), min(keys)
-        if mn != 1 or len(set(keys)) != mx:
-            out[L] = f"non-contiguous keys {mn}..{mx} (count {len(set(keys))})"
-        else:
-            out[L] = mx
-    return out
-
-
 def main() -> None:
     files = [
         APP / "lesson_data_1_8.ts",
@@ -104,31 +55,23 @@ def main() -> None:
             c = count_phrases_in_block(block)
             phrases[n] = {"file": fp.name, "const": name, "phrases": c}
 
-    cards = count_cards_per_lesson()
-
-    print("=== Сверка: число фраз (lesson_data) vs карточек (lesson_cards_data) ===\n")
+    print("=== Фразы по lesson_data (уроки 1–32) ===\n")
     issues: list[str] = []
     for L in range(1, 33):
         p = phrases.get(L, {})
         pc = p.get("phrases", -1)
-        cc = cards.get(L, -1)
-        if isinstance(cc, str):
-            issues.append(f"Урок {L}: карточки — {cc}")
-            row = f"{L:2d}  фраз: {pc:3d}  карточек: {cc!s}  ({p.get('file', '?')})"
+        if pc < 0:
+            issues.append(f"Урок {L}: нет блока LESSON_*_PHRASES")
+            print(f"{L:2d}  фраз: ???  MISSING     {p.get('file', '')}")
         else:
-            ok = pc == cc
-            mark = "OK" if ok else "РАСХОЖДЕНИЕ"
-            if not ok:
-                issues.append(f"Урок {L}: фраз {pc}, карточек {cc}")
-            row = f"{L:2d}  фраз: {pc:3d}  карточек: {cc:3d}  {mark:12s}  {p.get('file', 'MISSING')}"
-        print(row)
+            print(f"{L:2d}  фраз: {pc:3d}              {p.get('file', '?')}")
 
     if issues:
         print("\n--- Проблемы ---")
         for x in issues:
             print(" -", x)
     else:
-        print("\nВсе 32 урока: количество фраз и карточек совпадает.")
+        print("\nВсе 32 урока найдены в файлах lesson_data.")
 
 
 if __name__ == "__main__":

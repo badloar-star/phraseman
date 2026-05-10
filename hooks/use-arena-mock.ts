@@ -50,11 +50,16 @@ interface UseDuelMockResult {
   getReadyEndsAt: number | undefined;
   abortReason: ArenaSession['abortReason'];
   myLobbyChoice: 'accept' | 'decline' | undefined;
+  sessionType: ArenaSession['type'] | undefined;
 }
 
 const QUESTION_TIME_MS = 40_000;
 const REVEAL_TIME_MS = 1_500;
 const COUNTDOWN_FROM = 3;
+
+// В дев-сборке — 1 вопрос, чтобы быстро тестировать сохранение результатов.
+// __DEV__ = true только в development builds (Expo dev-client / Metro), в production = false.
+const MOCK_QUESTIONS_PER_MATCH: number = __DEV__ ? 1 : QUESTIONS_PER_MATCH;
 
 const FALLBACK_MOCK_QUESTIONS: ArenaQuestion[] = [
   {
@@ -102,7 +107,27 @@ async function fetchMockQuestions(): Promise<ArenaQuestion[]> {
     ...snapB.docs.map(d => d.data() as ArenaQuestion),
   ];
 
-  return shuffleArray(all).slice(0, QUESTIONS_PER_MATCH);
+  return shuffleArray(all).slice(0, MOCK_QUESTIONS_PER_MATCH);
+}
+
+const MAX_MOCK_TIEBREAK_EXTRA = 25;
+
+async function fetchOneMoreMockQuestion(excludeIds: Set<string>): Promise<ArenaQuestion | null> {
+  const pivot = Math.random();
+  const col = firestore().collection('arena_questions');
+  const [snapA, snapB] = await Promise.all([
+    col.where('level', '==', 'A1').where('rand', '>=', pivot).orderBy('rand').limit(80).get(),
+    col.where('level', '==', 'A1').where('rand', '<', pivot).orderBy('rand').limit(80).get(),
+  ]);
+  const all = [
+    ...snapA.docs.map((d) => ({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id ?? d.id })),
+    ...snapB.docs.map((d) => ({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id ?? d.id })),
+  ];
+  for (const q of shuffleArray(all)) {
+    const id = q.id ?? '';
+    if (id && !excludeIds.has(id)) return q;
+  }
+  return null;
 }
 
 function withTimeout<T>(promise: Promise<T>, ms: number, onTimeout: () => T): Promise<T> {
@@ -137,7 +162,9 @@ export function useDuelMock(
   const [hasAnswered, setHasAnswered] = useState(false);
   const [scores, setScores] = useState<Record<string, number>>({ [userId]: 0, bot1: 0 });
   const [botAnswered, setBotAnswered] = useState(false);
-  const [mockBotDisplayName, setMockBotDisplayName] = useState<string | undefined>(undefined);
+  /** Сразу задаём ник — иначе при быстрой сдаче до гидрации языка в результаты уходило пустое имя. */
+  const [mockBotDisplayName, setMockBotDisplayName] = useState(() =>
+    (lang === 'es' ? pickRandomBotNameEs() : pickRandomBotName()));
 
   useEffect(() => {
     if (!langHydrated) return;
@@ -156,6 +183,7 @@ export function useDuelMock(
   const lastShownSecRef = useRef<number | null>(null);
   const qIndexRef = useRef(0);
   const questionsRef = useRef<ArenaQuestion[]>([]);
+  const scoresRef = useRef(scores);
   const startedRef = useRef(false);
   const botCorrectStreakRef = useRef(0);
   const botFirstCorrectDoneRef = useRef(false);
@@ -164,6 +192,7 @@ export function useDuelMock(
   useEffect(() => { botAnsweredRef.current = botAnswered; }, [botAnswered]);
   useEffect(() => { qIndexRef.current = qIndex; }, [qIndex]);
   useEffect(() => { questionsRef.current = questions; }, [questions]);
+  useEffect(() => { scoresRef.current = scores; }, [scores]);
 
   useEffect(() => {
     void (async () => {
@@ -258,9 +287,8 @@ export function useDuelMock(
     setPhase('reveal');
     const id = setTimeout(() => {
       const next = idx + 1;
-      if (next >= questionsRef.current.length) {
-        setPhase('finished');
-      } else {
+      const qs = questionsRef.current;
+      if (next < qs.length) {
         setQIndex(next);
         setMyAnswer(null);
         hasAnsweredRef.current = false;
@@ -269,7 +297,35 @@ export function useDuelMock(
         setPhase('question');
         startQuestionTimer();
         scheduleBotAnswer(next, () => goToReveal(next));
+        return;
       }
+      const my = scoresRef.current[userId] ?? 0;
+      const bot = scoresRef.current.bot1 ?? 0;
+      const canTiebreak =
+        my === bot
+        && qs.length >= MOCK_QUESTIONS_PER_MATCH
+        && qs.length < MOCK_QUESTIONS_PER_MATCH + MAX_MOCK_TIEBREAK_EXTRA;
+      if (!canTiebreak) {
+        setPhase('finished');
+        return;
+      }
+      void fetchOneMoreMockQuestion(new Set(qs.map((q) => q.id))).then((extra) => {
+        if (!extra) {
+          setPhase('finished');
+          return;
+        }
+        const merged = [...questionsRef.current, extra];
+        questionsRef.current = merged;
+        setQuestions(merged);
+        setQIndex(next);
+        setMyAnswer(null);
+        hasAnsweredRef.current = false;
+        setHasAnswered(false);
+        setTimeLeft(QUESTION_TIME_MS);
+        setPhase('question');
+        startQuestionTimer();
+        scheduleBotAnswer(next, () => goToReveal(next));
+      });
     }, REVEAL_TIME_MS);
     timers.current.push(id);
   }, [startQuestionTimer, scheduleBotAnswer]);
@@ -380,5 +436,6 @@ export function useDuelMock(
     getReadyEndsAt: undefined,
     abortReason: undefined,
     myLobbyChoice: undefined,
+    sessionType: undefined,
   } satisfies UseDuelMockResult;
 }

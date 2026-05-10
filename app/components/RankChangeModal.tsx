@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useModalBackdropFade } from '../../hooks/useModalBackdropFade';
-import { getRankImage } from '../../hooks/use-arena-rank';
+import { getRankImage, getRankImageDisplayScale } from '../../hooks/use-arena-rank';
+import type { RankTier } from '../types/arena';
 import { hapticSuccess, hapticTap, hapticWarning } from '../../hooks/use-haptics';
 import { useLang } from '../../components/LangContext';
 import { triLang } from '../../constants/i18n';
@@ -236,8 +237,8 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
     ? [tierColor, '#FFFFFFAA', tierColor]
     : ['#FF6B6B', '#7A1A1A', '#FF6B6B'];
   const heroGradient: [string, string] = promoted
-    ? [tierColor + '38', 'transparent']
-    : ['rgba(255,69,58,0.22)', 'transparent'];
+    ? [tierColor + '38', 'rgba(0,0,0,0)']
+    : ['rgba(255,69,58,0.22)', 'rgba(0,0,0,0)'];
   const ctaGradient: [string, string] = promoted
     ? [tierColor, tierColor + 'CC']
     : ['#6E6E6E', '#3F3F3F'];
@@ -347,12 +348,12 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
         />
         <Animated.View pointerEvents="none" style={[StyleSheet.absoluteFill, { opacity: backdropOpacity }]}>
           <LinearGradient
-            colors={[haloColor + '33', 'transparent']}
+            colors={[haloColor + '33', 'rgba(0,0,0,0)']}
             start={{ x: 0.5, y: 0 }} end={{ x: 0.5, y: 0.7 }}
             style={StyleSheet.absoluteFill}
           />
           <LinearGradient
-            colors={['transparent', haloColor + '14']}
+            colors={['rgba(0,0,0,0)', haloColor + '14']}
             start={{ x: 0.5, y: 0.5 }} end={{ x: 0.5, y: 1 }}
             style={StyleSheet.absoluteFill}
           />
@@ -428,7 +429,26 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
                       ],
                     }}>
                       {rankImage ? (
-                        <Image source={rankImage} style={s.rankImg} resizeMode="contain" />
+                        <View
+                          style={{
+                            width: 130,
+                            height: 130,
+                            overflow: 'hidden',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}
+                        >
+                          <Image
+                            source={rankImage}
+                            style={[
+                              s.rankImg,
+                              {
+                                transform: [{ scale: getRankImageDisplayScale(tier as RankTier, level) }],
+                              },
+                            ]}
+                            resizeMode="contain"
+                          />
+                        </View>
                       ) : (
                         <Text style={s.fallbackEmoji}>{promoted ? '🏆' : '📉'}</Text>
                       )}

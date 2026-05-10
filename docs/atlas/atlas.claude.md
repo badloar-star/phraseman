@@ -51,9 +51,6 @@ This file is generated from source and intended to be loaded as working context.
 - `/daily_tasks` <- `app/daily_tasks.ts`
 - `/debug-logger` <- `app/debug-logger.ts`
 - `/diagnostic_test` <- `app/diagnostic_test.tsx`
-- `/dialog_vocab` <- `app/dialog_vocab.tsx`
-- `/dialogs_data` <- `app/dialogs_data.ts`
-- `/dialogs` <- `app/dialogs.tsx`
 - `/energy_system` <- `app/energy_system.ts`
 - `/error_report` <- `app/error_report.ts`
 - `/error_traps/error_traps_1_8` <- `app/error_traps/error_traps_1_8.ts`

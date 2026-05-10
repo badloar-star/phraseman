@@ -57,6 +57,7 @@ const GAME = {
   },
   forfeitConfirm: { ru: 'Сдаться', uk: 'Здатися', es: 'Rendirse' },
   forfeitContinue: { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar' },
+  duelReactPicker: { ru: 'Реакция', uk: 'Реакція', es: 'Reacción' },
 } as const;
 
 export type ArenaGameStrKey = keyof typeof GAME;
@@ -111,7 +112,7 @@ export function arenaScoreboardYou(lang: Lang): string {
 export const arenaToasts = {
   matchAbortedDecline: {
     messageRu: 'Матч отменён: один из игроков отказался.',
-    messageUk: 'Матч скасовано: одна з гравців відмовилася.',
+    messageUk: 'Матч скасовано: один із гравців відмовився.',
     messageEs: 'Partida cancelada: un jugador rechazó la partida.',
   },
   matchAbortedTimeout: {
@@ -151,5 +152,22 @@ export const arenaToasts = {
     messageUk: 'Не вдалося увійти в чергу. Спробуй ще раз.',
     messageEs: 'No se ha podido entrar en la cola. Inténtalo de nuevo.',
   },
+  duelReactSendFail: {
+    messageRu: 'Не удалось отправить реакцию. Проверь сеть.',
+    messageUk: 'Не вдалося надіслати реакцію. Перевір мережу.',
+    messageEs: 'No se ha podido enviar la reacción. Comprueba la conexión.',
+  },
 } as const;
+
+/** Тост: игрок с именем `displayName` прислал эмодзи-реакцию (ник без слова «соперник»). */
+export function arenaOpponentReactToast(displayName: string, emoji: string) {
+  const who = displayName.replace(/\s+/g, ' ').trim() || '—';
+  const line = `${who}: ${emoji}`;
+  return {
+    type: 'info' as const,
+    messageRu: line,
+    messageUk: line,
+    messageEs: line,
+  };
+}
 

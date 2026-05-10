@@ -148,26 +148,26 @@ export const LESSON_4_INTRO_SCREENS: LessonIntroScreen[] = [
 export const LESSON_5_INTRO_SCREENS: LessonIntroScreen[] = [
   {
     kind: "why",
-    textRU: "Без вопросов да/нет ты не проверяешь факты: «Ты живёшь здесь?», «У вас есть время?». Испанец ждёт инверсию или чёткую интонацию — иначе фраза звучит как утверждение.",
-    textUK: "Питання так/ні перевіряють факти: «ти живеш тут?». У SP очікують інверсію або підняття тону.",
-    textES: "Las preguntas de sí/no confirman datos: ¿Vives aquí? Sin entonación o sin orden interrogativo suena afirmación.",
+    textRU: "В этом уроке — вопросы Present Simple с do/does в английском. На испанском да/нет обычно без вспомогательного: один спряжённый глагол и интонация или порядок слов — иначе фраза звучит как утверждение.",
+    textUK: "У цьому уроці — питання Present Simple з do/does англійською. Іспанською так/ні без допоміжного do: одне дієслово, інтонація або порядок слів — інакше речення звучить як ствердження.",
+    textES: "En inglés, do/does abren la pregunta; en español basta un verbo en forma interrogativa (entonación o orden), sin «do/does».",
   },
   {
     kind: "how",
-    textRU: "Два рабочих пути: ¿ + та же порядок что в утверждении + ? с повышением тона (разговорная Испания и ЛатАм), или инверсия sujeto-verbo: ¿Hablas español? / ¿Tú hablas español? На письме всегда ¿ … ?.",
-    textUK: "Або інтонація на тій самій послідовності, або інверсія підмет-присудок; у тексті — ¿ … ?.",
-    textES: "Orden de palabras igual que en afirmación + entonación, o inversión sujeto-verbo; escribe ¿ … ?.",
+    textRU: "В английском: Do you…? / Does he…? + глагол без -s после does. В испанском параллель: ¿ + порядок как в утверждении + ? с интонацией, или инверсия sujeto-verbo (¿Hablas español?). На письме в español всегда ¿ … ?.",
+    textUK: "Англійською: Do you…? / Does he…? + дієслово без -s після does. Іспанською: той самий порядок слів + інтонація або інверсія підмет–присудок; у тексті — ¿ … ?.",
+    textES: "EN: Do/Does + sujeto + verbo base. ES: entonación o inversión; escribe ¿ … ?.",
     examples: [
       { en: "Do you speak Spanish?", trRU: "Ты говоришь по-испански?", trUK: "Ти говориш іспанською?", trES: "¿Hablas español?" },
-      { en: "Are they at home?", trRU: "Они дома?", trUK: "Вони вдома?", trES: "¿Están en casa?" },
+      { en: "Do they work today?", trRU: "Они работают сегодня?", trUK: "Вони працюють сьогодні?", trES: "¿Trabajan hoy?" },
       { en: "Does he work here?", trRU: "Он здесь работает?", trUK: "Він тут працює?", trES: "¿Él trabaja aquí?" },
     ],
   },
   {
     kind: "trap",
-    textRU: "Не калькируй английское вспомогательное do/does: в испанском спрягается один главный глагол. Неверно *¿Do tú hablas?* — только ¿Hablas (tú)?.",
-    textUK: "Не перенось англійський do/does: іспанською лише одне спряжене дієслово в питанні.",
-    textES: "No importes do/does del inglés: basta un verbo flexionado en la pregunta.",
+    textRU: "Не калькируй английское do/does в испанский: там один спряжённый глагол. Неверно *¿Do tú hablas?* — только ¿Hablas (tú)?.",
+    textUK: "Не перенось англійський do/does на іспанську: там одне спряжене дієслово. Неправильно *¿Do tú hablas?* — лише ¿Hablas (tú)?.",
+    textES: "No calques do/does: en español solo un verbo flexionado (¿Hablas?, no *¿Do tú hablas?*).",
   },
 ];
 
@@ -278,26 +278,41 @@ export const LESSON_9_INTRO_SCREENS: LessonIntroScreen[] = [
 export const LESSON_10_INTRO_SCREENS: LessonIntroScreen[] = [
   {
     kind: "why",
-    textRU: "Способности и долженствование по-испански передают poder, deber, querer + инфинитив без частицы «to»: puedo ayudarte, debo irme.",
-    textUK: "Здатність і необхідність — poder / deber / querer + інфінітив без to.",
-    textES: "Modalidad básica: poder, deber, querer + infinitivo.",
+    textRU:
+      "Модальные слова в английском (can, could, may, might, must, shall, should, will, would) задают умение, долг, разрешение, вероятность, совет, будущее. После них — глагол без to. В уроке также have to и need to: to там часть конструкции.",
+    textUK:
+      "Англійські модалі (can, could, may, might, must, shall, should, will, would) задають відтінок змісту; після них — дієслово без to. Окремо have to та need to.",
+    textES:
+      "Los modales ingleses van + infinitivo sin «to». En la lección también hay have to y need to (el «to» pertenece a la perífrasis).",
   },
   {
     kind: "how",
-    textRU: "Модальный глагол спрягается, второй идёт в инфинитиве: Puedo hablar / Debes estudiar / Quiero comer. Отрицание перед модальным: No puedo venir.",
-    textUK: "Спрягається модальне, друге — інфінітив; заперечення перед модальним.",
-    textES: "Verbo modal conjugado + infinitivo; negación delante del modal.",
+    textRU:
+      "can — умение; could — мягче или про прошлое; may / might — разрешение или возможность (might слабее); must — долг, must not — запрет; shall — предложение (Shall we…?); should — совет; will — будущее; would — вежливость или условие. have to / need to — внешняя необходимость.",
+    textUK:
+      "can, could, may, might, must, shall, should, will, would — див. повний список у «Теорії» (en); have to / need to — окремий обов’язок.",
+    textES:
+      "Resumen: can/could/may/might/must/shall/should/will/would + base verbal; have to / need to para deberes externos.",
     examples: [
-      { en: "I can help you.", trRU: "Я могу тебе помочь.", trUK: "Я можу тобі допомогти.", trES: "Puedo ayudarte." },
-      { en: "You should rest.", trRU: "Тебе следует отдохнуть.", trUK: "Тобі варто відпочити.", trES: "Debes descansar." },
-      { en: "I want to leave.", trRU: "Я хочу уйти.", trUK: "Я хочу піти.", trES: "Quiero irme." },
+      { en: "I can translate this document.", trRU: "Я могу перевести этот документ.", trUK: "Я можу перекласти цей документ.", trES: "Puedo traducir este documento." },
+      { en: "Could you help me with this task?", trRU: "Вы могли бы помочь мне с этим заданием?", trUK: "Ви могли б допомогти мені з цим завданням?", trES: "¿Podrías ayudarme con esta tarea?" },
+      { en: "May I ask a question?", trRU: "Можно мне задать вопрос?", trUK: "Можна мені поставити запитання?", trES: "¿Puedo hacer una pregunta?" },
+      { en: "She might join our meeting tomorrow.", trRU: "Она может присоединиться к нашей встрече завтра.", trUK: "Вона може приєднатися до нашої зустрічі завтра.", trES: "Quizá se una a nuestra reunión mañana." },
+      { en: "We must buy groceries today.", trRU: "Мы должны купить продукты сегодня.", trUK: "Ми повинні купити продукти сьогодні.", trES: "Tenemos que comprar comida hoy." },
+      { en: "Shall we start the meeting now?", trRU: "Начнём встречу сейчас?", trUK: "Почнемо зустріч зараз?", trES: "¿Empezamos la reunión ahora?" },
+      { en: "You should call a doctor.", trRU: "Вам следует вызвать врача.", trUK: "Вам слід викликати лікаря.", trES: "Deberías llamar a un médico." },
+      { en: "They will organize this holiday.", trRU: "Они организуют этот праздник.", trUK: "Вони організують це свято.", trES: "Organizarán esta fiesta." },
+      { en: "I would choose this option.", trRU: "Я бы выбрал этот вариант.", trUK: "Я б обрав цей варіант.", trES: "Elegiría esta opción." },
     ],
   },
   {
     kind: "trap",
-    textRU: "Не вставляй «a» перед голым инфинитивом после модальных как во французском: *puedo a hablar* неверно — Puedo hablar.",
-    textUK: "Без зайвої a перед інфінітивом після poder/deber/querer.",
-    textES: "No insertes a antes del infinitivo tras poder/deber/querer.",
+    textRU:
+      "Не ставь to после настоящих модальных (*must to go* ✗). must not (запрет) ≠ don't have to (не обязан). После модального второй глагол без -s: *she can goes* ✗.",
+    textUK:
+      "Не *must to go*. must not ≠ don't have to. Не *she can goes*. У have to / need to — to обов’язкове.",
+    textES:
+      "Sin «to» tras modal puro. must not ≠ don't have to. Verbo en base tras el modal. Con have to/need to el «to» sí va.",
   },
 ];
 

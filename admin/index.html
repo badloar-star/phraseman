@@ -4,24 +4,99 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta name="phraseman-admin-build" content="2026-04-30-v17-reports-copy-row" />
+  <meta name="phraseman-admin-build" content="2026-05-09-login-popup-fix" />
   <title>PhraseMan Admin</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f13; color: #e0e0e0; min-height: 100vh; }
+    /* === MATRIX THEME VARIABLES === */
+    body {
+      --acc: #ff0033;            /* solid accent (used for borders/glow) */
+      --acc-soft: #ff4d6d;       /* lighter accent for text/active tab */
+      --acc-rgb: 255, 0, 51;     /* rgba components */
+      --bg-deep-1: #0c0000;
+      --bg-deep-2: #050000;
+      --bg-deep-3: #000000;
+      --panel-bg: rgba(8, 0, 0, 0.94);
+      --panel-border: rgba(var(--acc-rgb), 0.35);
+    }
+    body[data-theme="green"]  { --acc: #00ff66; --acc-soft: #6cffa1; --acc-rgb: 0,255,102;  --bg-deep-1:#000c05; --bg-deep-2:#000604; --bg-deep-3:#000000; --panel-bg: rgba(0,8,3,0.94); }
+    body[data-theme="blue"]   { --acc: #00b3ff; --acc-soft: #6cd6ff; --acc-rgb: 0,179,255;  --bg-deep-1:#00060c; --bg-deep-2:#000308; --bg-deep-3:#000000; --panel-bg: rgba(0,4,8,0.94); }
+    body[data-theme="yellow"] { --acc: #ffd400; --acc-soft: #ffe96b; --acc-rgb: 255,212,0;  --bg-deep-1:#0c0a00; --bg-deep-2:#060500; --bg-deep-3:#000000; --panel-bg: rgba(8,6,0,0.94); }
+    body[data-theme="purple"] { --acc: #b266ff; --acc-soft: #d6a8ff; --acc-rgb: 178,102,255;--bg-deep-1:#080010; --bg-deep-2:#040008; --bg-deep-3:#000000; --panel-bg: rgba(6,0,12,0.95); }
 
-    header { background: #1a1a24; border-bottom: 1px solid #2a2a3a; padding: 14px 24px; display: flex; align-items: center; gap: 12px; }
-    header h1 { font-size: 18px; font-weight: 700; color: #fff; }
+    html, body { background: transparent; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #e8e0e0; min-height: 100vh;
+      background:
+        radial-gradient(ellipse at center, var(--bg-deep-1) 0%, var(--bg-deep-2) 55%, var(--bg-deep-3) 100%) fixed;
+    }
+    /* Single global matrix canvas — sits behind everything */
+    #matrix-rain {
+      position: fixed; inset: 0; width: 100vw; height: 100vh;
+      display: block; z-index: 0; pointer-events: none;
+      filter: drop-shadow(0 0 4px var(--acc));
+    }
+    /* Dimmer overlay over the matrix canvas — keeps animation visible but mutes it
+       so foreground content (text, tables, badges) reads cleanly. */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background:
+        radial-gradient(ellipse at center, rgba(var(--acc-rgb),0.05) 0%, rgba(0,0,0,0) 65%),
+        linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.75) 100%);
+    }
+    /* All UI sits above canvas + overlay */
+    header, .tabs, .users-tab, .analytics, .reports-tab, .admin-login-screen, .admin-app, .stats, .toolbar, .table-wrap, #detail-overlay, .umodal-overlay, #pr-detail-overlay, .toast { position: relative; z-index: 2; }
+    /* Solid backdrop under content tabs so matrix doesn't bleed through tables/cards */
+    .users-tab.active, .analytics.active, .reports-tab.active { background: linear-gradient(180deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.86) 100%); }
+
+    header {
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--panel-border);
+      padding: 14px 24px; display: flex; align-items: center; gap: 12px;
+      backdrop-filter: blur(4px);
+      box-shadow: 0 0 20px rgba(var(--acc-rgb), 0.15);
+    }
+    header h1 {
+      font-size: 18px; font-weight: 700; color: var(--acc-soft);
+      font-family: 'Courier New', 'Consolas', monospace;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(var(--acc-rgb), 0.6);
+    }
     .header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
-    #status-text { font-size: 13px; color: #888; }
-    button { background: #6c47ff; color: #fff; border: none; border-radius: 8px; padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer; }
-    button:hover { background: #7c5cff; }
+    #status-text { font-size: 13px; color: var(--acc-soft); font-family: 'Courier New', monospace; opacity: 0.85; }
+
+    /* Theme switcher dots */
+    .theme-switcher { display: inline-flex; gap: 6px; padding: 4px 8px; background: rgba(0,0,0,0.45); border: 1px solid var(--panel-border); border-radius: 999px; align-items: center; }
+    .theme-switcher .label { font-size: 10px; color: var(--acc-soft); font-family: 'Courier New', monospace; opacity: 0.7; padding: 0 4px 0 2px; letter-spacing: 0.06em; text-transform: uppercase; }
+    .theme-dot {
+      width: 18px; height: 18px; border-radius: 50%; cursor: pointer;
+      border: 2px solid rgba(255,255,255,0.15); padding: 0; outline: none;
+      box-shadow: 0 0 6px currentColor;
+      transition: transform 0.12s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+    .theme-dot:hover { transform: scale(1.15); }
+    .theme-dot.active { border-color: #fff; box-shadow: 0 0 10px currentColor, 0 0 18px currentColor; transform: scale(1.1); }
+    .theme-dot[data-theme="red"]    { background: #ff0033; color: #ff0033; }
+    .theme-dot[data-theme="green"]  { background: #00ff66; color: #00ff66; }
+    .theme-dot[data-theme="blue"]   { background: #00b3ff; color: #00b3ff; }
+    .theme-dot[data-theme="yellow"] { background: #ffd400; color: #ffd400; }
+    .theme-dot[data-theme="purple"] { background: #b266ff; color: #b266ff; }
+
+    button { background: rgba(var(--acc-rgb), 0.18); color: var(--acc-soft); border: 1px solid var(--panel-border); border-radius: 8px; padding: 7px 16px; font-size: 13px; font-weight: 600; cursor: pointer; transition: background 0.15s, box-shadow 0.15s; }
+    button:hover { background: rgba(var(--acc-rgb), 0.32); box-shadow: 0 0 12px rgba(var(--acc-rgb), 0.5); }
 
     /* Tabs */
-    .tabs { display: flex; gap: 2px; padding: 0 24px; background: #1a1a24; border-bottom: 1px solid #2a2a3a; }
-    .tab { padding: 12px 20px; font-size: 13px; color: #888; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; }
-    .tab:hover { color: #ccc; }
-    .tab.active { color: #a78bfa; border-bottom-color: #6c47ff; font-weight: 600; }
+    .tabs {
+      display: flex; flex-wrap: wrap; gap: 2px; row-gap: 6px; padding: 8px 24px;
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--panel-border);
+      backdrop-filter: blur(4px);
+    }
+    .tab { padding: 12px 20px; font-size: 13px; color: #ccc; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.15s; font-family: 'Courier New', monospace; opacity: 0.7; }
+    .tab:hover { color: #fff; opacity: 1; }
+    .tab.active { color: var(--acc-soft); border-bottom-color: var(--acc); font-weight: 700; opacity: 1; text-shadow: 0 0 6px rgba(var(--acc-rgb), 0.6); }
+    .tab-n-badge { display: inline-block; min-width: 17px; text-align: center; border-radius: 10px; padding: 1px 6px; font-size: 10px; font-weight: 800; vertical-align: middle; line-height: 1.25; margin-left: 3px; }
     tr.club-league-row.is-selected { background: rgba(108, 71, 255, 0.1) !important; }
     tr.club-league-row:hover { background: rgba(255,255,255,0.03); }
     @media (max-width: 900px) { #clubs-wrap { grid-template-columns: 1fr !important; } }
@@ -75,6 +150,7 @@
     /* Reports tab */
     .reports-tab { display: none; padding: 20px 24px; }
     .reports-tab.active { display: block; }
+    #pr-table tbody td { white-space: normal; vertical-align: top; }
     .reports-toolbar { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-bottom: 18px; }
     .report-card { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; display: flex; gap: 16px; align-items: flex-start; cursor: default; transition: border-color 0.15s; }
     .report-card:hover { border-color: #6c47ff55; }
@@ -324,37 +400,264 @@
     .toast.warn { border-color:#7c3f00; background:#2a1a00; color:#fbbf24; }
     @keyframes toastIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
 
-    .admin-login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #0f0f13; padding: 24px; }
-    .admin-login-form { width: 100%; max-width: 380px; background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 14px; padding: 28px; }
-    .admin-login-form code { color: #a78bfa; font-size: 12px; }
-    .admin-login-err { color: #f87171; font-size: 13px; margin: 0 0 14px; }
-    .admin-login-google {
-      width: 100%; margin-top: 0; padding: 10px 14px; font-size: 14px; font-weight: 600;
-      background: #fff; color: #1f1f1f; border: 1px solid #dadce0; border-radius: 8px;
-      cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px;
+    .admin-login-screen {
+      position: relative; z-index: 10000; isolation: isolate;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 24px;
     }
-    .admin-login-google:hover { background: #f8f9fa; border-color: #c4c7c5; }
+    .admin-login-form {
+      position: relative; z-index: 3;
+      width: 100%; max-width: 420px;
+      background: linear-gradient(180deg, var(--panel-bg) 0%, rgba(0,0,0,0.92) 100%);
+      border: 1px solid rgba(var(--acc-rgb), 0.55);
+      border-radius: 16px; padding: 32px 30px;
+      box-shadow:
+        0 0 0 1px rgba(var(--acc-rgb), 0.12),
+        0 0 28px rgba(var(--acc-rgb), 0.45),
+        0 0 90px rgba(var(--acc-rgb), 0.28),
+        inset 0 0 22px rgba(var(--acc-rgb), 0.08);
+      backdrop-filter: blur(2px);
+      animation: cardPulse 3.4s ease-in-out infinite;
+      font-family: 'Courier New', 'Consolas', monospace;
+      color: #ffd9d9;
+    }
+    @keyframes cardPulse {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(var(--acc-rgb), 0.12), 0 0 22px rgba(var(--acc-rgb), 0.35), 0 0 80px rgba(var(--acc-rgb), 0.22), inset 0 0 22px rgba(var(--acc-rgb), 0.08); }
+      50%      { box-shadow: 0 0 0 1px rgba(var(--acc-rgb), 0.18), 0 0 36px rgba(var(--acc-rgb), 0.6),  0 0 110px rgba(var(--acc-rgb), 0.4),  inset 0 0 30px rgba(var(--acc-rgb), 0.14); }
+    }
+    .admin-login-form h2 {
+      font-family: 'Courier New', 'Consolas', monospace !important;
+      font-size: 22px !important; font-weight: 700;
+      color: var(--acc-soft) !important; letter-spacing: 0.08em; text-transform: uppercase;
+      text-shadow: 0 0 8px rgba(var(--acc-rgb), 0.7), 0 0 20px rgba(var(--acc-rgb), 0.45);
+      margin: 0 0 14px !important;
+    }
+    .admin-login-form h2::before { content: '> '; color: var(--acc-soft); opacity: 0.85; }
+    .admin-login-form h2::after  { content: '_'; color: var(--acc-soft); opacity: 0.85; animation: caret 1s steps(2) infinite; margin-left: 2px; }
+    @keyframes caret { 50% { opacity: 0; } }
+    .admin-login-form > p {
+      font-family: 'Courier New', 'Consolas', monospace !important;
+      font-size: 12px !important; color: #e0c8c8 !important; line-height: 1.55 !important;
+      margin: 0 0 18px !important;
+    }
+    .admin-login-form code {
+      color: var(--acc-soft) !important; background: rgba(var(--acc-rgb), 0.1);
+      padding: 1px 6px; border-radius: 4px; font-size: 11px !important;
+      border: 1px solid rgba(var(--acc-rgb), 0.25);
+    }
+    .admin-login-form strong { color: var(--acc-soft); }
+    .admin-login-err {
+      color: var(--acc-soft) !important; font-size: 12px !important; margin: 0 0 16px !important;
+      font-family: 'Courier New', 'Consolas', monospace;
+      background: rgba(var(--acc-rgb), 0.18); border: 1px solid rgba(var(--acc-rgb), 0.45);
+      border-left: 3px solid var(--acc);
+      padding: 10px 12px; border-radius: 6px; line-height: 1.5;
+      text-shadow: 0 0 6px rgba(var(--acc-rgb), 0.45);
+    }
+    .admin-login-err::before { content: '⚠ ACCESS DENIED — '; font-weight: 700; color: var(--acc-soft); letter-spacing: 0.06em; }
+    .admin-login-google {
+      position: relative; width: 100%; margin-top: 6px; padding: 12px 14px;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.06em;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%); color: #1a0008;
+      border: 1px solid var(--acc); border-radius: 10px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      box-shadow: 0 0 14px rgba(var(--acc-rgb), 0.35), inset 0 0 0 1px rgba(255,255,255,0.6);
+      transition: transform 0.12s ease, box-shadow 0.18s ease, background 0.18s ease;
+      text-transform: uppercase;
+    }
+    .admin-login-google:hover {
+      background: linear-gradient(180deg, #ffffff 0%, #fff0f3 100%);
+      box-shadow: 0 0 26px rgba(var(--acc-rgb), 0.7), 0 0 60px rgba(var(--acc-rgb), 0.35), inset 0 0 0 1px var(--acc);
+      transform: translateY(-1px);
+    }
+    .admin-login-google:active { transform: translateY(0); box-shadow: 0 0 14px rgba(var(--acc-rgb), 0.5); }
     .admin-login-google svg { flex-shrink: 0; }
+
+    /* === Panels inside admin-app become semi-transparent so matrix shows === */
+    .stat-card, .reports-toolbar { backdrop-filter: blur(3px); }
+    .stat-card { background: var(--panel-bg) !important; border: 1px solid var(--panel-border) !important; box-shadow: 0 0 12px rgba(var(--acc-rgb), 0.12); }
+    .stat-card .label { color: var(--acc-soft); opacity: 0.75; }
+    .stat-card .value { color: #fff; text-shadow: 0 0 6px rgba(var(--acc-rgb), 0.4); }
+    thead { background: var(--panel-bg) !important; backdrop-filter: blur(3px); }
+    th { color: var(--acc-soft) !important; opacity: 0.85; border-bottom: 1px solid var(--panel-border) !important; }
+    td { border-bottom: 1px solid rgba(var(--acc-rgb), 0.08) !important; }
+    tr:hover td { background: rgba(var(--acc-rgb), 0.06) !important; }
+    input[type="text"], input[type="search"], input[type="number"], select, textarea {
+      background: rgba(0,0,0,0.45) !important;
+      border: 1px solid var(--panel-border) !important;
+      color: #fff !important;
+    }
+    input[type="text"]:focus, input[type="search"]:focus, select:focus, textarea:focus {
+      border-color: var(--acc) !important; box-shadow: 0 0 8px rgba(var(--acc-rgb), 0.4) !important; outline: none !important;
+    }
   </style>
 </head>
 <body>
 
+<canvas id="matrix-rain" aria-hidden="true"></canvas>
+
 <div id="admin-login" class="admin-login-screen">
   <div class="admin-login-form" id="admin-login-card">
-    <h2 style="margin:0 0 8px;font-size:20px">PhraseMan Admin</h2>
-    <p style="font-size:13px;color:#888;margin:0 0 18px;line-height:1.45">Вход <strong>только через Google</strong>. Первому аккаунту выдай <code>admin: true</code> один раз: <code>node scripts/set_admin_claim.mjs</code> (email или <code>--uid</code>). Страница: <strong>http://localhost</strong> или хост (не <code>file://</code>).</p>
+    <h2>PhraseMan Admin</h2>
+    <p>Вход <strong>только через Google</strong>. Первому аккаунту выдай <code>admin: true</code> один раз: <code>node scripts/set_admin_claim.mjs</code> (email или <code>--uid</code>). Открывайте админку с хоста (<strong>localhost</strong> или <code>*.web.app</code>), не через <code>file://</code>.</p>
+    <p style="font-size:12px;color:#fca5a5;margin-top:-6px"><strong>Обязательно</strong> откройте <code style="color:#fecaca">https://phraseman-ea0b3.web.app</code> — это буквы <strong>e</strong> и <strong>a</strong> (<code>ea</code>). Адрес с <code>aa</code> — другой сайт: вход с нашим Firebase не сработает.</p>
     <p id="admin-login-err" class="admin-login-err" style="display:none"></p>
-    <button type="button" class="admin-login-google" id="admin-signin-google" title="Войти через Google">
+    <button type="button" class="admin-login-google" id="admin-signin-google" title="Войти через Google"
+      onclick="if(typeof window._pmAdminGoogleSignIn==='function'){window._pmAdminGoogleSignIn();}else{var e=document.getElementById('admin-login-err');if(e){e.style.display='block';e.textContent='Страница ещё грузится (Firebase). Подождите 2–3 с и нажмите снова.';}}">
       <svg width="18" height="18" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.21 38.18 48 31.75 48 24c0-0.19-.01-0.37-0.02-0.55z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
       Войти с Google
     </button>
+    <div class="theme-switcher" style="margin-top:18px;justify-content:center;width:fit-content;margin-left:auto;margin-right:auto" title="Цвет матрицы">
+      <span class="label">MATRIX</span>
+      <button type="button" class="theme-dot" data-theme="red"    aria-label="Red"   title="Red"></button>
+      <button type="button" class="theme-dot" data-theme="green"  aria-label="Green" title="Green"></button>
+      <button type="button" class="theme-dot" data-theme="blue"   aria-label="Blue"  title="Blue"></button>
+      <button type="button" class="theme-dot" data-theme="yellow" aria-label="Yellow" title="Yellow"></button>
+      <button type="button" class="theme-dot" data-theme="purple" aria-label="Purple" title="Purple"></button>
+    </div>
   </div>
 </div>
+
+<script>
+  // ===== Theme switcher (matrix color) =====
+  (function setupThemeSwitcher() {
+    const STORAGE_KEY = 'phraseman_admin_matrix_theme';
+    const VALID = new Set(['red','green','blue','yellow','purple']);
+    function getTheme() {
+      let t;
+      try { t = localStorage.getItem(STORAGE_KEY); } catch { t = null; }
+      return VALID.has(t) ? t : 'red';
+    }
+    function applyTheme(name) {
+      const t = VALID.has(name) ? name : 'red';
+      document.body.dataset.theme = t;
+      try { localStorage.setItem(STORAGE_KEY, t); } catch {}
+      document.querySelectorAll('.theme-dot').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.theme === t);
+      });
+      // notify matrix to repaint with new color
+      window.dispatchEvent(new CustomEvent('matrix-theme-changed', { detail: { theme: t } }));
+    }
+    // Apply persisted theme ASAP
+    applyTheme(getTheme());
+    // Wire all dot buttons (incl. those in login + header)
+    document.addEventListener('click', (e) => {
+      const dot = e.target.closest && e.target.closest('.theme-dot');
+      if (!dot) return;
+      e.preventDefault();
+      applyTheme(dot.dataset.theme);
+    });
+    window.setMatrixTheme = applyTheme;
+  })();
+
+  // ===== Matrix Rain (themed) — global background, always running =====
+  (function setupMatrixRain() {
+    const canvas = document.getElementById('matrix-rain');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const GLYPHS = 'ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝ0123456789ADMINPHRASEMAN<>/\\|*+-=?!{}[]'.split('');
+    const FONT_SIZE = 16;
+    let drops = [];
+
+    // colors — refreshed on theme change
+    let trailFade = 'rgba(0,0,0,0.12)';
+    let headColor = '#ffffff';
+    let bodyColor = 'rgba(255,255,255,0.85)';
+    let glowColor = '#ffffff';
+
+    function readThemeColors() {
+      const cs = getComputedStyle(document.body);
+      const rgb = (cs.getPropertyValue('--acc-rgb') || '255,0,51').trim();
+      const accent = (cs.getPropertyValue('--acc') || '#ff0033').trim();
+      // bright head ≈ accent washed with white
+      const [r, g, b] = rgb.split(',').map(n => parseInt(n.trim(), 10) || 0);
+      const lift = (v) => Math.min(255, Math.round(v + (255 - v) * 0.75));
+      headColor = `rgb(${lift(r)}, ${lift(g)}, ${lift(b)})`;
+      bodyColor = `rgba(${r}, ${g}, ${b}, 0.85)`;
+      glowColor = accent;
+      // trail fade — near-black wash. Higher alpha => faster decay => calmer, dimmer rain.
+      const dark = (v) => Math.round(v * 0.03);
+      trailFade = `rgba(${dark(r)}, ${dark(g)}, ${dark(b)}, 0.28)`;
+    }
+
+    function resize() {
+      const dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+      const w = window.innerWidth;
+      const h = window.innerHeight;
+      canvas.width = Math.floor(w * dpr);
+      canvas.height = Math.floor(h * dpr);
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const cols = Math.ceil(w / FONT_SIZE);
+      // preserve existing drops where possible
+      if (drops.length !== cols) {
+        drops = new Array(cols).fill(0).map(() => Math.random() * -h / FONT_SIZE);
+      }
+    }
+
+    function draw() {
+      const w = canvas.clientWidth;
+      const h = canvas.clientHeight;
+      ctx.fillStyle = trailFade;
+      ctx.fillRect(0, 0, w, h);
+      ctx.font = FONT_SIZE + "px 'Courier New', monospace";
+      for (let i = 0; i < drops.length; i++) {
+        const text = GLYPHS[(Math.random() * GLYPHS.length) | 0];
+        const x = i * FONT_SIZE;
+        const y = drops[i] * FONT_SIZE;
+        // bright head
+        ctx.fillStyle = headColor;
+        ctx.shadowColor = glowColor;
+        ctx.shadowBlur = 8;
+        ctx.fillText(text, x, y);
+        // dimmer trail char above
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = bodyColor;
+        ctx.fillText(text, x, y - FONT_SIZE);
+        if (y > h && Math.random() > 0.975) drops[i] = 0;
+        drops[i] += 1;
+      }
+      requestAnimationFrame(draw);
+    }
+
+    readThemeColors();
+    resize();
+    // initial wash so first frames don't show blank
+    ctx.fillStyle = trailFade;
+    ctx.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+    requestAnimationFrame(draw);
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('matrix-theme-changed', () => { readThemeColors(); });
+  })();
+</script>
 
 <div id="admin-app" class="admin-app" style="display:none">
 
 <!-- DETAIL OVERLAY -->
 <div id="detail-overlay" onclick="closeDetail()" style="display:none;position:fixed;inset:0;background:#00000066;z-index:99"></div>
+
+<!-- PHRASE RATINGS: вне вкладки — иначе оверлей не показывается пока родитель с display:none -->
+<div id="pr-detail-overlay" onclick="if(event.target===this)window.closePhraseRatingDetail()"
+  style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:12000;align-items:center;justify-content:center;padding:16px;overflow:auto">
+  <div onclick="event.stopPropagation()" style="background:#161620;border:1px solid #2a2a3a;border-radius:14px;max-width:640px;width:100%;max-height:85vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)">
+    <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid #2a2a3a">
+      <div style="min-width:0">
+        <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px">Оценка контента</div>
+        <div id="pr-d-topic" style="font-size:15px;font-weight:700;color:#e0e0e0;line-height:1.35"></div>
+      </div>
+      <button type="button" onclick="window.closePhraseRatingDetail()" style="flex-shrink:0;background:#2a2a3a;border:1px solid #3a3a4a;color:#ccc;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px;line-height:1">✕</button>
+    </div>
+    <div style="padding:16px 18px 20px;font-size:13px;color:#ccc;line-height:1.55">
+      <div style="font-size:11px;color:#6b7280;margin-bottom:6px">Текст из приложения (подпись статистики)</div>
+      <div id="pr-d-label" style="white-space:pre-wrap;word-break:break-word;background:#101018;border-radius:10px;padding:12px 14px;color:#e5e5e5;margin-bottom:16px"></div>
+      <div style="font-size:11px;color:#6b7280;margin-bottom:6px">Технический id</div>
+      <div id="pr-d-itemid" style="font-family:monospace;font-size:11px;word-break:break-all;color:#a78bfa;margin-bottom:14px"></div>
+      <div id="pr-d-hints" style="font-size:12px;color:#9ca3af"></div>
+    </div>
+  </div>
+</div>
 
 <!-- UNIVERSAL INPUT MODAL -->
 <div class="umodal-overlay" id="umodal-overlay">
@@ -421,6 +724,14 @@
   <div style="font-size:22px">📚</div>
   <h1>PhraseMan Admin</h1>
   <div class="header-right">
+    <div class="theme-switcher" title="Цвет матрицы">
+      <span class="label">MX</span>
+      <button type="button" class="theme-dot" data-theme="red"    aria-label="Red matrix"   title="Red"></button>
+      <button type="button" class="theme-dot" data-theme="green"  aria-label="Green matrix" title="Green"></button>
+      <button type="button" class="theme-dot" data-theme="blue"   aria-label="Blue matrix"  title="Blue"></button>
+      <button type="button" class="theme-dot" data-theme="yellow" aria-label="Yellow matrix" title="Yellow"></button>
+      <button type="button" class="theme-dot" data-theme="purple" aria-label="Purple matrix" title="Purple"></button>
+    </div>
     <span id="status-text">Загрузка...</span>
     <input type="text" id="uid-lookup" placeholder="UID → Enter" style="width:200px;font-size:12px;padding:5px 10px" title="Введите UID и нажмите Enter для быстрого открытия профиля" />
     <button onclick="loadUsersLite()">↻ Легко</button>
@@ -433,6 +744,8 @@
   <div class="tab active" onclick="switchTab('users')">👥 Пользователи</div>
   <div class="tab" onclick="switchTab('analytics')">📊 Аналитика</div>
   <div class="tab" onclick="switchTab('reports')">🚩 Репорты</div>
+  <div class="tab" onclick="switchTab('website-inbox')">💬 Суппорт (сайт)</div>
+  <div class="tab" onclick="switchTab('phrase-ratings')">⭐ Оценки контента</div>
   <div class="tab" onclick="switchTab('suggestions')">💡 Предложения</div>
   <div class="tab" onclick="switchTab('user-reports')">🔴 Жалобы на юзеров</div>
   <div class="tab" onclick="switchTab('ban-list')">🚫 Бан-лист</div>
@@ -447,6 +760,7 @@
   <div class="tab" onclick="switchTab('arena-ranks')">🏟 Арена · Топ</div>
   <div class="tab" onclick="switchTab('arena-live')">⚔️ Арена · Live</div>
   <div class="tab" onclick="switchTab('referrals')">🎁 Рефералы</div>
+  <div class="tab" onclick="switchTab('app-health')">App Health</div>
 </div>
 
 <div id="stats-bar" style="display:none">
@@ -466,11 +780,12 @@
 <div id="tab-users" class="users-tab active">
   <div class="toolbar">
     <input type="text" id="search" placeholder="🔍 Поиск по имени или UID..." oninput="renderTable()">
-    <select id="sort-by" onchange="window._sortBy=this.value;window._sortDir=-1;renderTable()">
+    <select id="sort-by" onchange="window._sortBy=this.value;window._sortDir=(this.value==='xp'||this.value==='version'?1:-1);renderTable()">
       <option value="xp">По XP</option>
       <option value="name">По имени</option>
       <option value="streak">По streak</option>
       <option value="lessons">По урокам</option>
+      <option value="version">По версии</option>
       <option value="updated">По дате</option>
     </select>
     <select id="f-lang" onchange="renderTable()">
@@ -527,7 +842,7 @@
           <th>Тема</th>
           <th>Язык</th>
           <th>Платформа</th>
-          <th onclick="setSort('version')">Версия</th>
+          <th onclick="setSort('version')" title="Сортировка по номеру версии приложения (семантическое сравнение)">Версия</th>
           <th>Уровень знаний</th>
           <th>Premium</th>
           <th>📧 Email</th>
@@ -558,6 +873,7 @@
       <option value="lesson_words">Слова</option>
       <option value="lesson_irregular_verbs">Глаголы</option>
       <option value="review">Active Recall</option>
+      <option value="arena_results_review">Арена (разбор вопросов)</option>
       <option value="exam">Экзамен</option>
       <option value="dialogs">Диалоги</option>
       <option value="theory">Теория</option>
@@ -639,6 +955,30 @@
     <span class="reports-count" id="sg-count"></span>
   </div>
   <div id="sg-list"><div class="reports-empty">⏳ Загрузка предложений...</div></div>
+</div>
+
+<!-- WEBSITE CONTACT INBOX → раздел «Суппорт»: форма на knowlyapps.com/contact/ -->
+<div id="tab-website-inbox" class="reports-tab">
+  <div style="padding:4px 24px 0;max-width:980px">
+    <h2 style="margin:0 0 8px;font-size:22px;font-weight:800;color:#fafafa;letter-spacing:-0.02em">Суппорт · сайт Knowly</h2>
+    <p style="margin:0 0 16px;font-size:14px;color:#9ca3af;line-height:1.55">
+      Сюда попадают сообщения с публичной страницы <strong style="color:#e5e7eb">«Связь и отзывы»</strong> (контактная форма на сайте студии). Отвечайте автору на указанный email или отмечайте обращение прочитанным после обработки.
+    </p>
+  </div>
+  <div class="reports-toolbar">
+    <button type="button" onclick="loadWebsiteInbox(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
+    <select id="wi-filter-status" onchange="filterWebsiteInbox()">
+      <option value="new">Новые</option>
+      <option value="read">Прочитанные</option>
+      <option value="">Все</option>
+    </select>
+    <span class="reports-count" id="wi-count"></span>
+  </div>
+  <p style="padding:0 24px 12px;font-size:12px;color:#64748b;max-width:960px;line-height:1.55">
+    Техническое: коллекция <code style="color:#818cf8">website_contact_inbox</code>, запись через функцию <code style="color:#818cf8">submitWebsiteContact</code>.
+    Дубликат на почту — при параметре <code style="color:#64748b">RESEND_API_KEY</code> в конфиге функции.
+  </p>
+  <div id="wi-list"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
 </div>
 
 <!-- USER REPORTS TAB -->
@@ -787,6 +1127,41 @@
   <div id="audit-list"><div class="reports-empty">⏳ Загрузка...</div></div>
 </div>
 
+<!-- APP HEALTH TAB -->
+<div id="tab-app-health" class="reports-tab">
+  <div class="reports-toolbar">
+    <select id="ah-period" onchange="loadAppHealth(true)">
+      <option value="1">Last 1h</option>
+      <option value="6">Last 6h</option>
+      <option value="24" selected>Last 24h</option>
+      <option value="168">Last 7d</option>
+    </select>
+    <select id="ah-severity" onchange="filterAppHealth()">
+      <option value="">All severity</option>
+      <option value="critical">critical</option>
+      <option value="warning">warning</option>
+      <option value="info">info</option>
+    </select>
+    <select id="ah-feature" onchange="filterAppHealth()">
+      <option value="">All features</option>
+    </select>
+    <input id="ah-search" type="text" placeholder="context / message / uid" oninput="filterAppHealth()" style="width:240px">
+    <button onclick="loadAppHealth(true)">Refresh</button>
+    <button onclick="copyAppHealthForAI()">Copy AI report</button>
+    <button onclick="copyAppHealthRaw()">Copy raw JSON</button>
+    <span class="reports-count" id="ah-count"></span>
+  </div>
+  <div class="stats" id="ah-kpis" style="margin-bottom:12px"></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;margin:8px 0 10px 0">
+    <div style="font-weight:800;color:#ddd">Recent Activity</div>
+    <span class="reports-count" id="ah-activity-count"></span>
+  </div>
+  <div id="ah-activity-list"><div class="reports-empty">Recent activity will load with App Health.</div></div>
+  <div style="height:14px"></div>
+  <div style="font-weight:800;color:#ddd;margin:8px 0 10px 0">Health Events</div>
+  <div id="ah-list"><div class="reports-empty">Open App Health to load diagnostics.</div></div>
+</div>
+
 <!-- OPS LOG TAB -->
 <div id="tab-ops-log" class="reports-tab">
   <div class="reports-toolbar">
@@ -850,8 +1225,9 @@
   </div>
   <div id="cp-panel-pack-reports" style="display:none">
     <p style="padding:0 24px 14px;font-size:13px;color:#888;line-height:1.5">
-      Репорты из приложения (кнопка «Пожаловаться на набор»): коллекция <code style="color:#a78bfa">community_pack_reports</code>.
-      Создаётся из <code>submitPackReport</code> в <code>app/user_report.ts</code>. Только просмотр и пометка «просмотрено».
+      Репорты из приложения (кнопка «Пожаловаться на набор»): коллекция <code style="color:#a78bfa">community_pack_reports</code>
+      (в документе нет текста карточек — только <code>packId</code> и метаданные). Создаётся из <code>submitPackReport</code> в <code>app/user_report.ts</code>.
+      Контент смотрите кнопкой «Открыть карточки» — читается документ <code style="color:#a78bfa">community_packs/{packId}</code>. Пометка «просмотрено».
     </p>
     <div class="reports-toolbar" style="padding:0 24px 12px;flex-wrap:wrap;gap:10px">
       <select id="cpr-filter-status" onchange="filterCommunityPackReports()" style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px">
@@ -1020,6 +1396,57 @@
   <div id="ref-aggregates" style="padding:0 24px 32px;max-width:1200px"></div>
 </div>
 
+<!-- PHRASE CONTENT RATINGS -->
+<div id="tab-phrase-ratings" class="reports-tab">
+  <div class="reports-toolbar" style="flex-wrap:wrap;align-items:center;gap:12px">
+    <button type="button" onclick="loadPhraseRatings(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
+    <select id="pr-filter-scope" onchange="renderPhraseRatingsTable()"
+      style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;font-size:13px">
+      <option value="">Все типы</option>
+      <option value="lesson_practice">Практика урока (фразы)</option>
+      <option value="lesson_theory">Теория или интро урока</option>
+      <option value="dictionary_word">Словарь</option>
+      <option value="irregular_verb_drill">Дрилл: неправ. глаголы</option>
+      <option value="preposition_drill">Дрилл: предлоги</option>
+      <option value="quiz">Квиз (по уровню сложности)</option>
+      <option value="exam">Экзамен / диагностика</option>
+    </select>
+    <input type="text" id="pr-search" placeholder="🔍 itemId, подпись…" oninput="renderPhraseRatingsTable()"
+      style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:260px;font-size:13px" />
+    <span class="reports-count" id="pr-status"></span>
+  </div>
+  <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
+    Агрегаты коллекции <code style="color:#a78bfa">phrase_content_rating_stats</code>. Подпись и счётчики привязаны к <strong>тексту</strong>: после правки фразы (тот же <code>itemId</code>) приложение при открытии карточки подтягивает новый текст через <code>phraseContentRatingGetState</code> и <strong>обнуляет ★</strong>; новые оценки идут в <code>phraseContentRatingSubmit</code>.
+    Один документ = одна сущность по <code>itemId</code>. В колонке графика: сверху <strong>цветная полоска</strong> (красный / жёлтый / зелёный = 1★ / 2★ / 3★), снизу числа и проценты по каждой ступени.
+    Строка с подсветкой и меткой ⚠ — если в <strong>какой-либо</strong> графе набралось <strong>≥15</strong> (для проверки); список: сначала такие строки, внутри групп по убыванию «Всего».
+    Нажмите строку — откроется текст из приложения (поле подписи + расшифровка <code>itemId</code>).
+  </p>
+  <div id="pr-loading" class="loading" style="display:none;padding:0 24px">⏳ Загрузка…</div>
+  <div id="pr-error" class="error" style="display:none;padding:0 24px 16px"></div>
+  <div class="table-wrap" style="padding:0 24px 32px">
+    <table id="pr-table" style="display:none;width:100%;min-width:720px">
+      <thead>
+        <tr>
+          <th>Тема / источник</th>
+          <th>itemId</th>
+          <th>Подпись</th>
+          <th style="min-width:220px;text-align:left;font-weight:600">График долей</th>
+          <th style="text-align:right">Всего</th>
+          <th>Обновлено</th>
+        </tr>
+      </thead>
+      <tbody id="pr-tbody"></tbody>
+    </table>
+    <div id="pr-empty" class="reports-empty" style="display:none">Нет данных — сначала появятся оценки из приложения.</div>
+  </div>
+</div>
+
+<script>
+(function() {
+  // Problem Coach removed from web admin — use dev settings in the app instead
+})();
+</script>
+
 <!-- ANALYTICS TAB -->
 <div id="tab-analytics" class="analytics">
   <div class="reports-toolbar" style="padding:0 0 12px 0">
@@ -1067,6 +1494,16 @@
     <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">📈 Retention (по дате регистрации)</div>
     <div id="a-retention-content"></div>
   </div>
+
+  <!-- Percentile thresholds card -->
+  <div style="margin-bottom:16px">
+    <div style="font-size:10px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px">🎯 Перцентильные пороги (leaderboard_stats/global)</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+      <button onclick="openPercentilePreview()" style="background:#0f2a1a;border:1px solid #14532d;color:#4ade80;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600">🎯 Просмотр порогов</button>
+      <span id="lbstats-summary" style="font-size:12px;color:#555">— не загружено</span>
+    </div>
+  </div>
+
   <div class="analytics-grid" id="analytics-grid">
     <div class="loading">Загрузите пользователей сначала</div>
   </div>
@@ -1089,7 +1526,7 @@
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
   import { getFirestore, collection, getDocs, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-  import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+  import { getAuth, onAuthStateChanged, signInWithPopup, signInWithRedirect, getRedirectResult, GoogleAuthProvider, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
   import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js';
 
   // Arena rank config (mirrors app/types/arena.ts)
@@ -1137,24 +1574,50 @@
   function startAdminApp() {
     if (_adminAppStarted) return;
     _adminAppStarted = true;
-    const initTab = window.location.hash.replace('#','') || 'users';
+    const initTabRaw = (window.location.hash.slice(1).replace(/^\/+/, '').split(/[/?]/)[0] || 'users');
+    const initTab = initTabRaw === 'support' ? 'website-inbox' : initTabRaw;
     if (typeof window.switchTab === 'function') window.switchTab(initTab);
     if (typeof window.loadUsers === 'function') void window.loadUsers();
     void updateTabBadges();
+    if (!window._adminBadgeTicker) {
+      window._adminBadgeTicker = setInterval(() => { void updateTabBadges(); }, 120000);
+    }
   }
 
   const _googleProvider = new GoogleAuthProvider();
   _googleProvider.setCustomParameters({ prompt: 'select_account' });
-  document.getElementById('admin-signin-google')?.addEventListener('click', async () => {
+
+  getRedirectResult(auth)
+    .then(() => {})
+    .catch((e) => {
+      if (e?.code && e.code !== 'auth/operation-not-allowed') console.warn('admin getRedirectResult', e);
+    });
+
+  async function handleAdminGoogleSignIn() {
     setLoginError('');
     try {
       await signInWithPopup(auth, _googleProvider);
     } catch (err) {
       const c = err?.code;
       if (c === 'auth/popup-closed-by-user' || c === 'auth/cancelled-popup-request') return;
+      const tryRedirect =
+        c === 'auth/popup-blocked' ||
+        c === 'auth/operation-not-supported-in-this-environment' ||
+        c === 'auth/internal-error';
+      if (tryRedirect) {
+        try {
+          await signInWithRedirect(auth, _googleProvider);
+          return;
+        } catch (e2) {
+          setLoginError((e2?.message || String(e2)) + ' Разрешите всплывающие окна для сайта или добавьте домен в Firebase → Authentication → Authorized domains.');
+          return;
+        }
+      }
       setLoginError(err?.message || String(err));
     }
-  });
+  }
+
+  window._pmAdminGoogleSignIn = handleAdminGoogleSignIn;
 
   window.adminSignOut = function adminSignOut() {
     setLoginError('');
@@ -1165,6 +1628,10 @@
   onAuthStateChanged(auth, async (user) => {
     if (!user) {
       _adminAppStarted = false;
+      if (window._adminBadgeTicker) {
+        clearInterval(window._adminBadgeTicker);
+        window._adminBadgeTicker = null;
+      }
       adminLoginEl && (adminLoginEl.style.display = 'flex');
       adminAppEl && (adminAppEl.style.display = 'none');
       return;
@@ -1197,7 +1664,7 @@
 
   window._users = [];
   window._sortBy = 'xp';
-  window._sortDir = -1;
+  window._sortDir = 1; /* по XP: сначала больше опыта (как в таблице лидеров) */
 
   const LESSON_NAMES = [
     'Местоимения и To Be',       // 1
@@ -1258,13 +1725,37 @@
   }
   function avatarImg(avatarIndexOrName, size) {
     const sz = size||32;
+    const raw = String(avatarIndexOrName || '');
+    const custom = raw.match(/^custom:(custom-\d{2}):([a-z0-9_-]+)(?::(black|white))?$/i);
+    if (custom) {
+      const gradients = {
+        aurora: ['#02E4C0', '#0EA5E9', '#7C3AED'],
+        ember: ['#FF4D3D', '#FF8A1F', '#FACC15'],
+        cosmic: ['#7C3AED', '#EC4899', '#F97316'],
+        forest: ['#14532D', '#22C55E', '#A3E635'],
+        lagoon: ['#06B6D4', '#2563EB', '#14B8A6'],
+        citrine: ['#FDE047', '#FB7185', '#F97316'],
+        royal: ['#312E81', '#7C3AED', '#F0ABFC'],
+        mintglass: ['#A7F3D0', '#38BDF8', '#6366F1'],
+        ruby: ['#FB7185', '#BE123C', '#581C87'],
+        magma: ['#111827', '#DC2626', '#F97316'],
+        volt: ['#D9F99D', '#22C55E', '#0EA5E9'],
+        noirgold: ['#111827', '#B45309', '#FDE68A'],
+        sakura: ['#F9A8D4', '#F472B6', '#FB7185'],
+      };
+      const colors = gradients[custom[2]] || gradients.aurora;
+      const pad = Math.max(2, Math.round(sz * 0.08));
+      const inner = Math.max(1, sz - pad * 2);
+      const inkFilter = custom[3] === 'white' ? 'filter:brightness(0) invert(1);' : 'filter:brightness(0);';
+      return `<span style="width:${sz}px;height:${sz}px;display:inline-flex;align-items:center;justify-content:center;clip-path:polygon(50% 3%,93% 26%,93% 74%,50% 97%,7% 74%,7% 26%);background:linear-gradient(135deg,${colors[0]},${colors[1]} 52%,${colors[2]});"><img src="avatars/${custom[1]}-logo.webp" width="${Math.round(inner * 0.9)}" height="${Math.round(inner * 0.9)}" style="object-fit:contain;${inkFilter}"></span>`;
+    }
     // If it's a numeric string or number (1-50), use the real avatar PNG
     const idx = parseInt(avatarIndexOrName, 10);
     if (!isNaN(idx) && idx >= 1 && idx <= 50) {
-      return `<img src="avatars/${idx}.png" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
+      return `<img src="avatars/${idx}.webp" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
     }
     // Fallback: show level 1 avatar for unknown values
-    return `<img src="avatars/1.png" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
+    return `<img src="avatars/1.webp" width="${sz}" height="${sz}" style="border-radius:50%;object-fit:cover;background:#6c47ff33">`;
   }
   function fdate(ts) { if(!ts) return '—'; const d=new Date(ts); return d.toLocaleDateString('ru-RU',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }
   function tryJson(s,def) { try { const v=typeof s==='string'?JSON.parse(s||'null'):s; return v??def; } catch { return def; } }
@@ -1757,6 +2248,367 @@
     } finally {
       if (loading) loading.style.display = 'none';
       if (table) table.style.display = 'table';
+    }
+  };
+
+  window._phraseRatingsLoaded = false;
+  window._phraseRatingsRows = [];
+
+  function prRatingTimeMs(raw) {
+    if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+    if (raw && typeof raw.toMillis === 'function') return raw.toMillis();
+    if (raw && typeof raw.seconds === 'number') return raw.seconds * 1000;
+    return 0;
+  }
+
+  const PR_RATING_ALERT_MIN = 15;
+
+  function phraseRatingNeedsReview(r) {
+    return r.count1 >= PR_RATING_ALERT_MIN || r.count2 >= PR_RATING_ALERT_MIN || r.count3 >= PR_RATING_ALERT_MIN;
+  }
+
+  /** Сверху цветная полоска-доля ответов, снизу три блока с числами и % (без слипшихся «★» и цифр). */
+  function phraseRatingBarHtml(c1, c2, c3) {
+    const t = c1 + c2 + c3;
+    if (!t) {
+      return '<span style="color:#64748b;font-size:12px">Нет ответов</span>';
+    }
+    const pct = (n) => Math.round((100 * n) / t);
+    const hitNote = 'Порог модерации ≥' + PR_RATING_ALERT_MIN;
+    const seg = (n, color, titleRu) => {
+      const hit = n >= PR_RATING_ALERT_MIN;
+      return (
+        '<div title="' +
+        escapeHtml(titleRu) +
+        ': ' +
+        n +
+        ' (' +
+        pct(n) +
+        '%)' +
+        (hit ? ' · ' + hitNote : '') +
+        '" style="flex:' +
+        Math.max(n, 0.001) +
+        ' 1 0;min-width:' +
+        (n ? '4px' : '0') +
+        ';background:' +
+        color +
+        ';box-shadow:' +
+        (hit ? 'inset 0 0 0 2px rgba(255,255,255,0.35)' : 'none') +
+        '"></div>'
+      );
+    };
+    const card = (n, p, shortLabel, edgeColor, titleHint) => {
+      const hit = n >= PR_RATING_ALERT_MIN;
+      return (
+        '<div title="' +
+        escapeHtml(titleHint) +
+        (hit ? ' · ' + hitNote : '') +
+        '" style="background:#18181f;border-radius:8px;padding:8px 10px;border-left:4px solid ' +
+        edgeColor +
+        ';min-width:0">' +
+        '<div style="font-size:10px;color:#94a3b8;line-height:1.3;margin-bottom:4px">' +
+        escapeHtml(shortLabel) +
+        '</div>' +
+        '<div style="font-size:15px;font-weight:' +
+        (hit ? '800' : '700') +
+        ';color:' +
+        (hit ? '#fef08a' : '#f8fafc') +
+        ';font-variant-numeric:tabular-nums;letter-spacing:0.03em">' +
+        n +
+        '<span style="font-size:12px;font-weight:500;color:#64748b;margin-left:8px">' +
+        p +
+        '%</span></div></div>'
+      );
+    };
+    return (
+      '<div style="min-width:200px">' +
+      '<div style="font-size:10px;color:#71717a;margin:0 0 6px 0">Доля ответов по строке</div>' +
+      '<div style="display:flex;height:16px;border-radius:8px;overflow:hidden;background:#2a2a36;border:1px solid #3f3f4f">' +
+      seg(c1, '#dc2626', 'Низкая оценка (1★)') +
+      seg(c2, '#ca8a04', 'Средняя оценка (2★)') +
+      seg(c3, '#16a34a', 'Высокая оценка (3★)') +
+      '</div>' +
+      '<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px">' +
+      card(c1, pct(c1), 'Низкая · 1★', '#ef4444', 'Низкая (1 звезда)') +
+      card(c2, pct(c2), 'Средняя · 2★', '#eab308', 'Средняя (2 звезды)') +
+      card(c3, pct(c3), 'Высокая · 3★', '#22c55e', 'Высокая (3 звезды)') +
+      '</div></div>'
+    );
+  }
+
+  window.loadPhraseRatings = async function loadPhraseRatings(force) {
+    if (!force && window._phraseRatingsLoaded) return;
+    const st = document.getElementById('pr-status');
+    const loading = document.getElementById('pr-loading');
+    const errEl = document.getElementById('pr-error');
+    const table = document.getElementById('pr-table');
+    const empty = document.getElementById('pr-empty');
+    if (st) st.textContent = 'Загрузка…';
+    if (loading) loading.style.display = 'block';
+    if (errEl) {
+      errEl.style.display = 'none';
+      errEl.textContent = '';
+    }
+    if (force) window._phraseRatingsLoaded = false;
+    try {
+      const col = collection(db, 'phrase_content_rating_stats');
+      const qy = query(col, orderBy('updatedAt', 'desc'), limit(800));
+      const snap = await getDocs(qy);
+      window._phraseRatingsRows = snap.docs.map((d) => {
+        const x = d.data() || {};
+        const c1 = Number(x.count1) || 0;
+        const c2 = Number(x.count2) || 0;
+        const c3 = Number(x.count3) || 0;
+        return {
+          id: d.id,
+          scope: String(x.scope || ''),
+          itemId: String(x.itemId || ''),
+          label: String(x.label || ''),
+          count1: c1,
+          count2: c2,
+          count3: c3,
+          total: c1 + c2 + c3,
+          updatedAtMs: prRatingTimeMs(x.updatedAt),
+        };
+      });
+      window._phraseRatingsLoaded = true;
+      window.renderPhraseRatingsTable();
+    } catch (e) {
+      if (errEl) {
+        errEl.style.display = 'block';
+        errEl.textContent = 'Ошибка: ' + (e && e.message ? e.message : String(e));
+      }
+      window._phraseRatingsRows = [];
+      window.renderPhraseRatingsTable();
+    } finally {
+      if (loading) loading.style.display = 'none';
+    }
+  };
+
+  function prSlugToPhrase(slug) {
+    if (!slug) return '';
+    return String(slug).replace(/_/g, ' ').trim();
+  }
+
+  function prQuizLevelRu(level) {
+    const m = {
+      easy: 'Легко (A1–A2)',
+      medium: 'Средне (B1–B2)',
+      hard: 'Сложно (C1–C2)',
+    };
+    return m[level] || level;
+  }
+
+  /** Короткая строка для колонки таблицы + HTML подсказок для модалки */
+  function phraseRatingTopicParts(scope, itemId) {
+    const id = String(itemId || '');
+    const lines = [];
+    let topicShort = '';
+
+    if (scope === 'quiz') {
+      const mm = id.match(/^quiz_(easy|medium|hard)_L(\d+)_(.+)$/);
+      if (mm) {
+        topicShort = `Квиз · ${prQuizLevelRu(mm[1])} · ур. №${mm[2]}`;
+        lines.push(`Уровень квиза в приложении: <strong>${escapeHtml(prQuizLevelRu(mm[1]))}</strong> (см. вкладки «Легко / Средне / Сложно»).`);
+        lines.push(`Вопрос привязан к уроку №${escapeHtml(mm[2])} (<code>lessonNum</code> в данных квиза).`);
+        lines.push(
+          `Текст выбранного ответа в задании (в id пробелы заменены на «_»): «${escapeHtml(prSlugToPhrase(mm[3]))}».`,
+        );
+      } else {
+        topicShort = 'Квиз';
+        lines.push('Ожидаемый формат id: <code>quiz_{easy|medium|hard}_L{номер}_{ответ}</code>.');
+      }
+      return { topicShort, topicDetailHtml: lines.join('<br/>') };
+    }
+
+    if (scope === 'lesson_practice') {
+      const mm = id.match(/^L(\d+)_ph_(.+)$/);
+      if (mm) {
+        topicShort = `Практика · урок №${mm[1]} · карточка`;
+        lines.push(`Экран прохождения урока с фразами (типичный файл <code>lesson1.tsx</code> и аналоги).`);
+        lines.push(`Внутренний id строки упражнения: <code style="color:#a78bfa">${escapeHtml(mm[2])}</code>.`);
+      } else {
+        topicShort = 'Практика урока';
+        lines.push('Обычно id вида <code>L{N}_ph_{id&nbsp;фразы}</code>.');
+      }
+      return { topicShort, topicDetailHtml: lines.join('<br/>') };
+    }
+
+    if (scope === 'lesson_theory') {
+      const mm = id.match(/^L(\d+)_(intro|theory)$/);
+      if (mm && mm[2] === 'intro') {
+        topicShort = `Интро · урок №${mm[1]}`;
+        lines.push(
+          `Вступительный экран перед практикой (<code>lesson_intro_screens.tsx</code>): не то же самое, что текст теории в справке.`,
+        );
+      } else if (mm && mm[2] === 'theory') {
+        topicShort = `Теория (справка) · урок №${mm[1]}`;
+        lines.push(`Страница теории из помощи по уроку (<code>lesson_help.tsx</code>). Заголовок часто совпадает с подписью в таблице.`);
+        lines.push(
+          `Если подпись выглядит как «Урок N — теория» без заголовка темы — возможно, это <strong>старая</strong> запись: раньше интро тоже использовало суффикс <code>_theory</code>.`,
+        );
+      } else if (/^L\d+_theory$/i.test(id)) {
+        const lm = id.match(/^L(\d+)_theory$/i);
+        topicShort = lm ? `Теория/интро · урок №${lm[1]} (старый id)` : 'Теория/интро';
+        lines.push(
+          `Суффикс <code>_theory</code> раньше совпадал у интро и теории. Новые оценки интро идут с id <code>L${lm ? lm[1] : 'N'}_intro</code>.`,
+        );
+      } else {
+        topicShort = 'Теория / интро';
+        lines.push('Ожидаемые суффиксы: <code>_intro</code> (экран перед уроком) или <code>_theory</code> (справка).');
+      }
+      return { topicShort, topicDetailHtml: lines.join('<br/>') };
+    }
+
+    if (scope === 'preposition_drill') {
+      const mm = id.match(/^L(\d+)_prep_(.+)$/);
+      topicShort = mm ? `Предлоги · урок №${mm[1]}` : 'Дрилл предлогов';
+      lines.push(`Экран предлогов к уроку (<code>preposition_drill.tsx</code>).`);
+      if (mm) lines.push(`Ключ задания в пакете урока: <code>${escapeHtml(mm[2])}</code>.`);
+      return { topicShort, topicDetailHtml: lines.join('<br/>') };
+    }
+
+    if (scope === 'irregular_verb_drill') {
+      const mm = id.match(/^L(\d+)_irv_(.+)$/);
+      topicShort = mm ? `Глаголы · урок №${mm[1]}` : 'Неправильные глаголы';
+      lines.push(`Дрилл форм глагола (<code>lesson_irregular_verbs.tsx</code>).`);
+      if (mm) lines.push(`Часть id после префикса: «${escapeHtml(prSlugToPhrase(mm[2]))}».`);
+      return { topicShort, topicDetailHtml: lines.join('<br/>') };
+    }
+
+    if (scope === 'exam') {
+      if (id.startsWith('diag_')) {
+        topicShort = 'Диагностический тест';
+        lines.push(`Экран входной диагностики (<code>diagnostic_test.tsx</code>).`);
+        if (id.startsWith('diag_build_')) {
+          lines.push(`Сборка фразы; нормализованный ответ в id: «${escapeHtml(prSlugToPhrase(id.slice(11)))}».`);
+        } else {
+          lines.push('Формат: <code>diag_{тип}_{фраза}_c{индекс}_{уровень}</code>.');
+        }
+      } else {
+        const mm = id.match(/^exam_L(\d+)_(\d+)_(.+)$/);
+        topicShort = mm ? `Экзамен · тема ур. №${mm[1]}` : 'Экзамен Lingman';
+        lines.push(`Экран <code>exam.tsx</code>.`);
+        if (mm) {
+          lines.push(`Урок-контекст вопроса: №${escapeHtml(mm[1])}, индекс верного варианта: ${escapeHtml(mm[2])}.`);
+          lines.push(`Формулировка (нормализованная): «${escapeHtml(prSlugToPhrase(mm[3]))}».`);
+        }
+      }
+      return { topicShort, topicDetailHtml: lines.join('<br/>') };
+    }
+
+    if (scope === 'dictionary_word') {
+      topicShort = 'Словарь';
+      lines.push('Карточка слова (scope <code>dictionary_word</code>). Уточняйте по <code>itemId</code> в коде экрана словаря.');
+      return { topicShort, topicDetailHtml: lines.join('<br/>') };
+    }
+
+    topicShort = scope || '—';
+    lines.push(`Неизвестный scope: <code>${escapeHtml(scope)}</code>`);
+    return { topicShort, topicDetailHtml: lines.join('<br/>') };
+  }
+
+  window.closePhraseRatingDetail = function closePhraseRatingDetail() {
+    const el = document.getElementById('pr-detail-overlay');
+    if (el) el.style.display = 'none';
+  };
+
+  window.openPhraseRatingDetail = function openPhraseRatingDetail(idx) {
+    const rows = window._phraseRatingsVisibleRows || [];
+    const r = rows[idx];
+    if (!r) return;
+    const overlay = document.getElementById('pr-detail-overlay');
+    const topicEl = document.getElementById('pr-d-topic');
+    const labelEl = document.getElementById('pr-d-label');
+    const itemEl = document.getElementById('pr-d-itemid');
+    const hintsEl = document.getElementById('pr-d-hints');
+    if (!overlay || !topicEl || !labelEl || !itemEl || !hintsEl) return;
+    const parts = phraseRatingTopicParts(r.scope, r.itemId);
+    topicEl.textContent = parts.topicShort;
+    labelEl.textContent = r.label.trim() ? r.label : '(нет подписи — запись до сохранения текста или без snippet)';
+    itemEl.textContent = r.itemId;
+    hintsEl.innerHTML =
+      '<strong style="color:#d4d4d8">Откуда в приложении</strong><div style="margin-top:8px">' +
+      parts.topicDetailHtml +
+      '</div>';
+    overlay.style.display = 'flex';
+  };
+
+  /** Inline onclick в строках таблицы ненадёжен с type="module"; только делегирование. */
+  function bindPhraseRatingsRowClicksOnce() {
+    const tbody = document.getElementById('pr-tbody');
+    if (!tbody || tbody.dataset.prClickBound === '1') return;
+    tbody.dataset.prClickBound = '1';
+    tbody.addEventListener('click', (ev) => {
+      const tr = ev.target.closest('tr[data-pr-i]');
+      if (!tr) return;
+      const idx = parseInt(tr.getAttribute('data-pr-i'), 10);
+      if (!Number.isFinite(idx)) return;
+      window.openPhraseRatingDetail(idx);
+    });
+  }
+  bindPhraseRatingsRowClicksOnce();
+
+  window.renderPhraseRatingsTable = function renderPhraseRatingsTable() {
+    const tbody = document.getElementById('pr-tbody');
+    const table = document.getElementById('pr-table');
+    const empty = document.getElementById('pr-empty');
+    const st = document.getElementById('pr-status');
+    if (!tbody || !table || !empty) return;
+    const scopeF =
+      document.getElementById('pr-filter-scope')?.value ?? '';
+    const qNeedle = (document.getElementById('pr-search')?.value ?? '').trim().toLowerCase();
+    let rows = window._phraseRatingsRows || [];
+    const baseCnt = rows.length;
+    if (scopeF) rows = rows.filter((r) => r.scope === scopeF);
+    if (qNeedle) {
+      rows = rows.filter(
+        (r) =>
+          r.itemId.toLowerCase().includes(qNeedle) ||
+          r.label.toLowerCase().includes(qNeedle) ||
+          r.scope.toLowerCase().includes(qNeedle) ||
+          phraseRatingTopicParts(r.scope, r.itemId).topicShort.toLowerCase().includes(qNeedle),
+      );
+    }
+    rows = rows.slice().sort((a, b) => {
+      const ra = phraseRatingNeedsReview(a);
+      const rb = phraseRatingNeedsReview(b);
+      if (ra !== rb) {
+        if (ra) return -1;
+        return 1;
+      }
+      return b.total - a.total;
+    });
+    window._phraseRatingsVisibleRows = rows;
+    tbody.innerHTML = rows
+      .map((r, i) => {
+        const ts = r.updatedAtMs;
+        const dt = ts ? new Date(ts).toISOString().replace('T', ' ').slice(0, 19) : '—';
+        const topicShort = phraseRatingTopicParts(r.scope, r.itemId).topicShort;
+        const alert = phraseRatingNeedsReview(r);
+        const rowBg = alert ? 'linear-gradient(90deg, rgba(220,38,38,0.18) 0%, rgba(26,26,36,0.95) 14px)' : 'transparent';
+        const rowBorder = alert ? '2px solid rgba(248,113,113,0.55)' : '1px solid transparent';
+        const warn = alert
+          ? `<span style="display:inline-block;margin-right:6px;font-size:13px;vertical-align:middle" title="В одной из граф ≥${PR_RATING_ALERT_MIN} оценок">⚠</span>`
+          : '';
+        return `<tr style="vertical-align:top;cursor:pointer;background:${rowBg};box-shadow:${alert ? 'inset 3px 0 0 #f87171' : 'none'};border-bottom:1px solid #2a2a3a;outline:${rowBorder};outline-offset:-1px" data-pr-i="${i}" title="Нажмите — полный текст и расшифровка">
+          <td style="font-size:12px;color:#c4b5fd;line-height:1.35;max-width:280px;word-break:break-word">${warn}${escapeHtml(topicShort)}</td>
+          <td style="font-size:11px;font-family:monospace;color:#bbb;max-width:220px;word-break:break-all">${escapeHtml(r.itemId)}</td>
+          <td style="font-size:12px;color:#ddd;max-width:280px">${escapeHtml(r.label || '—')}</td>
+          <td style="padding-top:10px;padding-bottom:10px">${phraseRatingBarHtml(r.count1, r.count2, r.count3)}</td>
+          <td style="text-align:right;font-weight:800;font-size:14px;color:${alert ? '#fde68a' : '#e5e5e5'}">${r.total}</td>
+          <td style="white-space:nowrap;font-size:11px;color:#888">${escapeHtml(dt)}</td>
+        </tr>`;
+      })
+      .join('');
+    const vis = rows.length > 0;
+    table.style.display = vis ? 'table' : 'none';
+    empty.style.display = vis ? 'none' : 'block';
+    if (st && window._phraseRatingsLoaded) {
+      const need = rows.filter(phraseRatingNeedsReview).length;
+      st.textContent =
+        `Записей в базе: ${baseCnt} · показано: ${rows.length}` +
+        (need ? ` · ⚠ на проверку (≥${PR_RATING_ALERT_MIN} в графе): ${need}` : '');
     }
   };
 
@@ -2505,7 +3357,9 @@
   }
 
   window.setSort = function(f) {
-    if(window._sortBy===f) window._sortDir*=-1; else { window._sortBy=f; window._sortDir=-1; }
+    if(window._sortBy===f) window._sortDir*=-1; else { window._sortBy=f; window._sortDir=(f==='xp'||f==='version'?1:-1); }
+    const selSort=document.getElementById('sort-by');
+    if(selSort && ['xp','name','streak','lessons','updated','version'].includes(f)) selSort.value=f;
     renderTable();
   };
 
@@ -2514,7 +3368,7 @@
     const sb=window._sortBy;
     // sync select to current sort state
     const selSort=document.getElementById('sort-by');
-    if(['xp','name','streak','lessons','updated'].includes(sb)) selSort.value=sb;
+    if(['xp','name','streak','lessons','updated','version'].includes(sb)) selSort.value=sb;
     const fl=document.getElementById('f-lang').value;
     const fp=document.getElementById('f-prem').value;
     const ft=document.getElementById('f-theme').value;
@@ -2551,7 +3405,26 @@
       if(sb==='streak') return d*(b.streak-a.streak);
       if(sb==='lessons') return d*(b.lessons.length-a.lessons.length);
       if(sb==='updated') return d*(b.updatedAt-a.updatedAt);
-      if(sb==='version') { const semver = v => (v||'').split('.').map(n=>parseInt(n)||0); const [a1,a2,a3]=semver(a.appVersion); const [b1,b2,b3]=semver(b.appVersion); return d*((b1-a1)||((b2-a2)||((b3-a3)))); }
+      if(sb==='version') {
+        const parseSem = (v) => {
+          if (v == null || v === '' || v === '—') return null;
+          const p = String(v).trim().split('.').map(n => parseInt(n, 10));
+          return p.some(x => Number.isNaN(x)) ? null : p;
+        };
+        const pa = parseSem(a.appVersion), pb = parseSem(b.appVersion);
+        let diff = 0;
+        if (pa === null && pb === null) diff = 0;
+        else if (pa === null) diff = 1;
+        else if (pb === null) diff = -1;
+        else {
+          const n = Math.max(pa.length, pb.length);
+          for (let i = 0; i < n; i++) {
+            const da = pa[i] || 0, db = pb[i] || 0;
+            if (da !== db) { diff = db - da; break; }
+          }
+        }
+        return d * diff;
+      }
       if(sb==='shards') return d*(b.shards-a.shards);
       return 0;
     });
@@ -2600,10 +3473,9 @@
       if(u.settings.hardMode) settingsBits.push('💀');
       if(u.settings.autoCheck) settingsBits.push('✅');
       if(u.settings.voiceOut) settingsBits.push('🔊');
-      if(u.settings.showHints!==false) settingsBits.push('💡');
       const safeName = escapeHtml(u.name);
       return `<tr onclick="openDetail('${u.uid}')" ${u.banned?'style="opacity:0.5"':''}>
-        <td><div class="name-cell"><div class="avatar" style="overflow:hidden;padding:0">${avatarImg(lvl(u.xp),32)}</div><div><div class="name">${safeName}${u.banned?' <span class="pill pill-red" style="font-size:10px">🚫</span>':''}</div><div class="uid-small">${u.uid.substring(0,14)}…</div></div></div></td>
+        <td><div class="name-cell"><div class="avatar" style="overflow:hidden;padding:0">${avatarImg(u.avatar || lvl(u.xp),32)}</div><div><div class="name">${safeName}${u.banned?' <span class="pill pill-red" style="font-size:10px">🚫</span>':''}</div><div class="uid-small">${u.uid.substring(0,14)}…</div></div></div></td>
         <td><div class="xp-bar-wrap"><span class="level-badge">Lvl ${lvl(u.xp)}</span><div><div class="xp-bar"><div class="xp-bar-fill" style="width:${pct(u.xp)}%"></div></div><span style="font-size:11px;color:#888">${u.xp.toLocaleString()} XP</span></div></div></td>
         <td>🔥 ${u.streak}</td>
         <td>${u.lessons.length}/${LESSON_NAMES.length}</td>
@@ -3041,6 +3913,8 @@
           updateData['progress.admin_premium_override'] = isGranting ? 'true' : 'false';
           if (isGranting) {
             updateData['progress.premium_expiry'] = '0';
+            // Triggers PremiumCelebrationModal в клиенте: cloud_sync сравнит с premium_celebration_seen_v1.
+            updateData['progress.premium_admin_grant_at'] = String(Date.now());
           } else {
             updateData['progress.premium_expiry'] = deleteField();
           }
@@ -3113,6 +3987,9 @@
       const oldEx = String(u.raw.premium_expiry || '');
       let plan = 'annual';
       let expiryStr = '0';
+      // Timestamp выдачи. cloud_sync сравнивает его с premium_celebration_seen_v1
+      // и если новее — поднимает PremiumCelebrationModal на следующем mount home.tsx.
+      const grantAt = String(Date.now());
       if (spec.kind === 'forever') {
         plan = 'annual';
         expiryStr = '0';
@@ -3120,6 +3997,7 @@
           'progress.premium_plan': plan,
           'progress.admin_premium_override': 'true',
           'progress.premium_expiry': '0',
+          'progress.premium_admin_grant_at': grantAt,
         });
       } else {
         plan = 'admin_grant';
@@ -3131,6 +4009,7 @@
           'progress.premium_plan': plan,
           'progress.admin_premium_override': 'true',
           'progress.premium_expiry': expiryStr,
+          'progress.premium_admin_grant_at': grantAt,
         });
       }
       u.raw.premium_plan = plan;
@@ -3222,7 +4101,7 @@
   window.openDetail = function(uid) {
     const u = window._users.find(x=>x.uid===uid);
     if(!u) return;
-    document.getElementById('d-name').innerHTML = avatarImg(lvl(u.xp),28)+' '+escapeHtml(u.name);
+    document.getElementById('d-name').innerHTML = avatarImg(u.avatar || lvl(u.xp),28)+' '+escapeHtml(u.name);
     document.getElementById('d-uid').textContent = u.uid;
     const isPrem = u.premium && u.premium !== 'null';
     const premEx = u.premiumExpiry != null ? u.premiumExpiry : (parseInt(String(u.raw?.premium_expiry || '0'), 10) || 0);
@@ -3334,7 +4213,6 @@
         <div class="drow"><span class="k">Hard Mode</span><span class="v">${u.settings.hardMode?'<span class="pill pill-red">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Auto Check</span><span class="v">${u.settings.autoCheck?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Voice Out</span><span class="v">${u.settings.voiceOut!==false?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
-        <div class="drow"><span class="k">Show Hints</span><span class="v">${u.settings.showHints!==false?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Auto Advance</span><span class="v">${u.settings.autoAdvance?'<span class="pill pill-green">Вкл</span>':'<span class="pill pill-gray">Выкл</span>'}</span></div>
         <div class="drow"><span class="k">Speech Rate</span><span class="v">${u.settings.speechRate||1.0}x</span></div>
         <div class="drow"><span class="k">Font Size</span><span class="v">${u.fontSize||'medium'}</span></div>
@@ -3364,6 +4242,7 @@
           <button data-action="ach-view" data-uid="${u.uid}" style="background:#1a2a1a;border:1px solid #2a4a2a;color:#86efac">🏆 Ачивки</button>
           <button data-action="ach-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить ачивки</button>
           <button data-action="daily-reset" data-uid="${u.uid}" style="background:#3b1a1a;border:1px solid #7f1d1d;color:#fca5a5">↺ Сбросить дейлики</button>
+          <button data-action="user-analytics" data-uid="${u.uid}" style="background:#0f1f2e;border:1px solid #1e4a6e;color:#38bdf8">📊 Аналитика дней</button>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button data-action="warn" data-uid="${u.uid}" style="background:#2a1a00;color:#fbbf24;border:1px solid #7c3f00">⚠️ Предупреждение</button>
@@ -3411,17 +4290,20 @@
   };
 
   window.switchTab = function(tab) {
-    const validTabs = ['users','analytics','reports','suggestions','user-reports','ban-list','premium','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','clubs','arena-ranks','arena-live','referrals'];
+    const validTabs = ['users','analytics','app-health','reports','suggestions','website-inbox','user-reports','ban-list','premium','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','clubs','arena-ranks','arena-live','referrals','phrase-ratings'];
     if (!validTabs.includes(tab)) tab = 'users';
-    window.location.hash = '#' + tab;
+    window.location.hash = '#' + (tab === 'website-inbox' ? 'support' : tab);
     document.querySelectorAll('.tab').forEach(t => {
       const tabId = t.getAttribute('onclick').match(/'([^']+)'/)?.[1];
       t.classList.toggle('active', tabId === tab);
     });
     document.getElementById('tab-users').classList.toggle('active',tab==='users');
     document.getElementById('tab-analytics').classList.toggle('active',tab==='analytics');
+    document.getElementById('tab-app-health').classList.toggle('active',tab==='app-health');
     document.getElementById('tab-reports').classList.toggle('active',tab==='reports');
     document.getElementById('tab-suggestions').classList.toggle('active',tab==='suggestions');
+    const wiTabInbox = document.getElementById('tab-website-inbox');
+    if (wiTabInbox) wiTabInbox.classList.toggle('active', tab === 'website-inbox');
     document.getElementById('tab-user-reports').classList.toggle('active',tab==='user-reports');
     document.getElementById('tab-archive').classList.toggle('active',tab==='archive');
     document.getElementById('tab-audit').classList.toggle('active',tab==='audit');
@@ -3432,12 +4314,18 @@
     if (arRanksTab) arRanksTab.classList.toggle('active', tab === 'arena-ranks');
     const refTab = document.getElementById('tab-referrals');
     if (refTab) refTab.classList.toggle('active', tab === 'referrals');
+    const prTab = document.getElementById('tab-phrase-ratings');
+    if (prTab) prTab.classList.toggle('active', tab === 'phrase-ratings');
     const banTab = document.getElementById('tab-ban-list');
     if (banTab) banTab.classList.toggle('active', tab === 'ban-list');
     const premTab = document.getElementById('tab-premium');
     if (premTab) premTab.classList.toggle('active', tab === 'premium');
     const ugcTab = document.getElementById('tab-ugc-purchases');
     if (ugcTab) ugcTab.classList.toggle('active', tab === 'ugc-purchases');
+    const cpTabEl = document.getElementById('tab-card-packs');
+    if (cpTabEl) cpTabEl.classList.toggle('active', tab === 'card-packs');
+    const arenaLiveTabEl = document.getElementById('tab-arena-live');
+    if (arenaLiveTabEl) arenaLiveTabEl.classList.toggle('active', tab === 'arena-live');
     const sb = document.getElementById('stats-bar');
     if (sb) {
       if (tab === 'users' && window._users && window._users.length) sb.style.display = 'block';
@@ -3446,9 +4334,13 @@
     if(tab==='reports' && !window._reportsLoaded) loadReports();
     if(tab==='reports' && typeof window.loadGlobalBroadcastStatus === 'function') window.loadGlobalBroadcastStatus();
     if(tab==='suggestions' && !window._suggestionsLoaded) loadSuggestions();
+    if (tab === 'website-inbox' && !window._websiteInboxLoaded && typeof window.loadWebsiteInbox === 'function') {
+      void window.loadWebsiteInbox(false);
+    }
     if(tab==='user-reports' && !window._userReportsLoaded) loadUserReports();
     if(tab==='archive' && !window._archiveLoaded) loadArchive();
     if(tab==='audit' && !window._auditLoaded) loadAuditLog();
+    if(tab==='app-health' && !window._appHealthLoaded) loadAppHealth();
     if(tab==='ops-log' && !window._opsLoaded) loadOpsLog();
     if (tab === 'community-packs' && typeof window.setCommunityPacksSubtab === 'function') {
       window.setCommunityPacksSubtab(window._cpSubTab || 'queue');
@@ -3461,6 +4353,9 @@
     }
     if (tab === 'referrals' && !window._referralsLoaded && typeof window.loadReferralsData === 'function') {
       void window.loadReferralsData(false);
+    }
+    if (tab === 'phrase-ratings' && !window._phraseRatingsLoaded && typeof window.loadPhraseRatings === 'function') {
+      void window.loadPhraseRatings(false);
     }
     if (tab === 'ban-list' && !window._banListLoaded && typeof window.loadBanList === 'function') {
       void window.loadBanList(false);
@@ -3477,6 +4372,10 @@
     if (tab === 'card-packs' && !window._cardPacksLoaded && typeof window.loadCardPacks === 'function') {
       void window.loadCardPacks(false);
     }
+    try {
+      if (typeof markAdminTabSeenForBadges === 'function') markAdminTabSeenForBadges(tab);
+    } catch (_) { /* noop */ }
+    void updateTabBadges();
   };
 
   // ── COMMUNITY PACKS (UGC moderation) ─────────────────────────────────────────
@@ -3573,7 +4472,9 @@
     listEl.innerHTML = rows.map(r => {
       const reasonLabel = escapeHtml(CPR_REASON_LABELS[r.reason] || r.reason || '—');
       const title = escapeHtml(r.packTitle || '—');
-      const pid = escapeHtml(String(r.packId || '—'));
+      const packIdRaw = String(r.packId || '').trim();
+      const pid = escapeHtml(packIdRaw || '—');
+      const packIdAttr = packIdRaw.replace(/"/g, '');
       const repName = escapeHtml(r.reporterName || '?');
       const repUidRaw = String(r.reporterUid || '');
       const repUidShort = escapeHtml(repUidRaw.length > 14 ? '…' + repUidRaw.slice(-12) : repUidRaw);
@@ -3590,6 +4491,9 @@
           <div class="rc-left" style="flex:1;min-width:0">
             <div style="font-weight:700;color:#fff;font-size:15px">${title}</div>
             <div style="font-size:11px;color:#888;font-family:monospace;margin-top:4px">packId: ${pid} · автор stableId: ${author}</div>
+            ${packIdAttr ? `<div style="margin-top:10px">
+              <button type="button" class="cpr-open-pack-btn" data-cpr-pack-id="${escapeHtml(packIdAttr)}" style="background:#2a2a4a;border:1px solid #6c47ff;color:#e9e4ff;border-radius:6px;padding:6px 12px;font-size:12px;cursor:pointer;font-weight:600">👁 Открыть карточки набора</button>
+            </div>` : ''}
             <div style="margin-top:8px"><span class="report-cat-badge cat-other">${reasonLabel}</span>
               <span style="color:#888;font-size:11px;margin-left:8px">${st}</span></div>
             ${comment ? `<div class="report-comment" style="margin-top:8px">${comment}</div>` : ''}
@@ -3602,6 +4506,12 @@
         </div>`;
     }).join('');
 
+    listEl.querySelectorAll('button.cpr-open-pack-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const pid = btn.getAttribute('data-cpr-pack-id');
+        if (pid) void window.openCpPackPreviewByPackId(pid);
+      });
+    });
     listEl.querySelectorAll('button.cpr-done-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const id = btn.getAttribute('data-cpr-id');
@@ -3812,6 +4722,39 @@
       row.id,
     );
   }
+
+  /** Жалобы на наборы: загрузка карточек напрямую из community_packs (репорт не хранит cards[]). */
+  window.openCpPackPreviewByPackId = async function openCpPackPreviewByPackId(packIdRaw) {
+    const packId = String(packIdRaw || '').trim();
+    if (!packId) {
+      showToast('Нет packId в жалобе', 'warn');
+      return;
+    }
+    try {
+      const snap = await getDoc(doc(db, 'community_packs', packId));
+      if (!snap.exists()) {
+        showToast(
+          'Документ community_packs/' + packId + ' не найден (набор удалён или id неверный). При необходимости ищите в консоли Firebase.',
+          'warn',
+        );
+        return;
+      }
+      const row = { id: snap.id, ...snap.data() };
+      openCpPackPreviewFromPayload(
+        {
+          cards: row.cards,
+          cardThemeKey: row.cardThemeKey,
+          titleRu: row.titleRu,
+          titleUk: row.titleUk,
+          title: row.titleRu || row.titleUk,
+          priceShards: row.priceShards,
+        },
+        row.id,
+      );
+    } catch (e) {
+      showToast('Ошибка загрузки набора: ' + (e.message || e), 'err');
+    }
+  };
 
   document.getElementById('cp-pack-preview-backdrop')?.addEventListener('click', closeCpPackPreview);
   document.getElementById('cp-pack-preview-close')?.addEventListener('click', closeCpPackPreview);
@@ -4190,9 +5133,54 @@
       .catch(()=> { showToast('Не удалось скопировать: ' + text.slice(0,40), 'warn'); });
   });
 
+  /** Репорты: клики по «Пофикшено» / «Удалить» — делегирование на document (надёжнее, чем только #reports-list; target может быть текстовый узел внутри кнопки). */
+  (function wireErrorReportCardActions() {
+    if (window._errorReportActionsWired) return;
+    window._errorReportActionsWired = true;
+    document.addEventListener('click', (e) => {
+      const list = document.getElementById('reports-list');
+      const t = e.target;
+      const el = t && t.nodeType === 1 ? t : (t && t.parentElement) || null;
+      if (!list || !el || !list.contains(el)) return;
+      const fixedBtn = el.closest('.btn-fixed');
+      if (fixedBtn) {
+        const raw = fixedBtn.getAttribute('data-report-id');
+        if (!raw) return;
+        e.preventDefault();
+        try {
+          const id = decodeURIComponent(raw);
+          if (id && typeof window.markFixed === 'function') void window.markFixed(id, fixedBtn);
+        } catch (_) {
+          showToast('Некорректный id репорта', 'err');
+        }
+        return;
+      }
+      const delBtn = el.closest('.btn-delete');
+      if (delBtn && delBtn.hasAttribute('data-report-id')) {
+        const raw = delBtn.getAttribute('data-report-id');
+        if (!raw) return;
+        e.preventDefault();
+        try {
+          const id = decodeURIComponent(raw);
+          if (id && typeof window.deleteReport === 'function') void window.deleteReport(id, delBtn);
+        } catch (_) {
+          showToast('Некорректный id репорта', 'err');
+        }
+      }
+    });
+  })();
+
   function renderReports(reports) {
     const list = document.getElementById('reports-list');
-    document.getElementById('reports-count').textContent = `${reports.length} репортов`;
+    const totalLoaded = _allReports.length;
+    const filtered = reports.length;
+    const elCnt = document.getElementById('reports-count');
+    if (elCnt) {
+      elCnt.textContent =
+        totalLoaded === filtered
+          ? `${filtered} репортов (загружено с сервера, до 500)`
+          : `${filtered} по фильтру из ${totalLoaded} загруженных (макс. 500 с сервера)`;
+    }
     if (!reports.length) {
       list.innerHTML = '<div class="reports-empty">🎉 Репортов нет — всё чисто!</div>';
       return;
@@ -4279,8 +5267,8 @@
             ${isFixed && r.fixedAt ? `<div style="font-size:10px;color:#4ade80;margin-top:2px">✅ ${formatReportDate(r.fixedAt)}</div>` : ''}
             <div style="font-size:10px;color:#444;margin-top:4px">${r.deviceModel ? '🆕 full meta' : r.dataId ? '🆕 new' : '📦 legacy'}</div>
             <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap;justify-content:flex-end">
-              <button type="button" class="btn-fixed${isFixed ? ' active' : ''}" onclick="markFixed(${JSON.stringify(r.id)}, this)">${isFixed ? '↩ Открыть' : '✅ Пофикшено'}</button>
-              <button type="button" class="btn-delete" onclick="deleteReport(${JSON.stringify(r.id)}, this)">🗑 Удалить</button>
+              <button type="button" class="btn-fixed${isFixed ? ' active' : ''}" data-report-id="${encodeURIComponent(String(r.id))}">${isFixed ? '↩ Открыть' : '✅ Пофикшено'}</button>
+              <button type="button" class="btn-delete" data-report-id="${encodeURIComponent(String(r.id))}">🗑 Удалить</button>
             </div>
           </div>
         </div>`;
@@ -4306,7 +5294,14 @@
     const status = document.getElementById('r-filter-status').value;
     const sort = document.getElementById('r-sort').value;
     let filtered = [..._allReports];
-    if (screen) filtered = filtered.filter(r => (r.screen||'').includes(screen));
+    if (screen) {
+      const rs = (r) => String(r.screen || '');
+      if (screen === 'review') {
+        filtered = filtered.filter(r => rs(r) === 'review');
+      } else {
+        filtered = filtered.filter(r => rs(r).includes(screen));
+      }
+    }
     if (cat) filtered = filtered.filter(r => (r.category || extractCategory(r.context)) === cat);
     if (status === 'open') filtered = filtered.filter(r => r.status !== 'fixed' && r.status !== 'archived');
     if (status === 'fixed') filtered = filtered.filter(r => r.status === 'fixed');
@@ -4401,7 +5396,8 @@
       if (uid && uid !== 'unknown' && uid !== 'test_uid_abc123') {
         const userRef = doc(db, 'users', uid);
         try {
-          await updateDoc(userRef, { shards: increment(1) });
+          // updateDoc падает, если users/{uid} ещё нет (часто anon/stable id в репорте). setDoc+merge+increment создаёт/обновляет.
+          await setDoc(userRef, { shards: increment(1) }, { merge: true });
           await addDoc(collection(db, 'users', uid, 'shard_rewards'), {
             reason: 'bug_fixed',
             dataId: report.dataId ?? '',
@@ -4418,7 +5414,7 @@
           report.shardRewardApplied = true;
           rewardApplied = true;
         } catch (e) {
-          if (!silent) showToast('⚠️ Статус обновлён, но награда не доставлена (UID mismatch)', 'warn');
+          if (!silent) showToast('⚠️ Статус «пофикшено», но награда не записана: ' + (e.message || e) + (e.code ? ' [' + e.code + ']' : ''), 'warn');
           await updateDoc(doc(db, 'error_reports', id), {
             rewardError: 'reward_delivery_failed',
             rewardErrorAt: new Date().toISOString(),
@@ -4435,7 +5431,7 @@
       if (report.shardRewardApplied && uid && uid !== 'unknown' && uid !== 'test_uid_abc123') {
         const userRef = doc(db, 'users', uid);
         try {
-          await updateDoc(userRef, { shards: increment(-1) });
+          await setDoc(userRef, { shards: increment(-1) }, { merge: true });
           await updateDoc(doc(db, 'error_reports', id), { shardRewardApplied: false }).catch(() => {});
           report.shardRewardApplied = false;
           rewardApplied = true;
@@ -4456,16 +5452,27 @@
       _allReports = _allReports.filter(r => r.id !== id);
       filterReports();
       showToast('🗑️ Репорт удалён');
+      void updateTabBadges();
     } catch(e) { showToast('Ошибка удаления: ' + e.message, 'err'); }
   };
 
   window.markFixed = async function(id, btn) {
     const report = _allReports.find(r => r.id === id);
-    if (!report) return;
+    if (!report) {
+      showToast('Репорт не найден. Нажмите «Обновить».', 'warn');
+      return;
+    }
     const newStatus = report.status === 'fixed' ? 'open' : 'fixed';
     try {
       const { rewardApplied } = await applyReportStatusFix(report, newStatus, { silent: false });
       filterReports();
+      void updateTabBadges();
+      if (newStatus === 'fixed') {
+        if (rewardApplied) showToast('✅ Пофикшено · +1 осколок записан в Firestore (users/' + String(report.uid).slice(0, 8) + '…)', 'ok');
+        else showToast('✅ Статус «пофикшено» · награда не выдана (нет uid или uid тестовый)', 'warn');
+      } else {
+        showToast('↩ Репорт снова открыт', 'ok');
+      }
       logAction('mark_fixed', report.uid || 'unknown', { reportId: id, newStatus, rewardApplied });
     } catch(e) { showToast('Ошибка обновления: ' + e.message, 'err'); }
   };
@@ -4496,6 +5503,7 @@
         }
       }
       filterReports();
+      void updateTabBadges();
       showToast(errN ? `✅ Обработано: ${okN}, ошибок: ${errN}` : `✅ Пофикшено: ${okN}`);
       logAction('mark_fixed_bulk', 'admin', { count: okN, errors: errN, filteredCount: openList.length });
     } finally {
@@ -4767,13 +5775,17 @@
         query(collection(db, 'error_reports'), orderBy('createdAt', 'desc'), limit(500))
       );
       _allReports = [];
-      snap.forEach(doc => _allReports.push({ id: doc.id, ...doc.data() }));
+      snap.forEach((doc) => _allReports.push({ ...doc.data(), id: doc.id }));
       _allReports.sort((a, b) => (b.createdAt || '').localeCompare(a.createdAt || ''));
       if (_allReports.length === 0) {
+        const ec = document.getElementById('reports-count');
+        if (ec) ec.textContent = '0 репортов';
         list.innerHTML = '<div class="reports-empty">📭 Репортов пока нет — коллекция пустая.<br><small style="color:#555">Пользователи ещё не нажимали "Сообщить о проблеме" или нужен EAS Build</small></div>';
+        void updateTabBadges();
         return;
       }
       filterReports();
+      void updateTabBadges();
     } catch(e) {
       list.innerHTML = `<div class="reports-empty">❌ Ошибка: ${escapeHtml(e.message)}<br><small style="color:#555">${escapeHtml(e.code || '')}</small><br><br><button type="button" onclick="loadReports()" style="margin-top:8px">🔄 Повторить</button></div>`;
       console.error('loadReports error:', e);
@@ -5090,12 +6102,11 @@
     };
 
     // Settings
-    const sets = {hardMode:0,autoCheck:0,voiceOut:0,showHints:0,autoAdvance:0};
+    const sets = {hardMode:0,autoCheck:0,voiceOut:0,autoAdvance:0};
     users.forEach(u => {
       if(u.settings.hardMode) sets.hardMode++;
       if(u.settings.autoCheck) sets.autoCheck++;
       if(u.settings.voiceOut) sets.voiceOut++;
-      if(u.settings.showHints!==false) sets.showHints++;
       if(u.settings.autoAdvance) sets.autoAdvance++;
     });
 
@@ -5394,7 +6405,7 @@
       </div>
       <div class="chart-card">
         <h3>⚙️ Настройки (из ${n} польз.)</h3>
-        ${barChart({'Hard Mode':sets.hardMode,'Auto Check':sets.autoCheck,'Voice Out':sets.voiceOut,'Show Hints':sets.showHints,'Auto Advance':sets.autoAdvance},n,'#a78bfa')}
+        ${barChart({'Hard Mode':sets.hardMode,'Auto Check':sets.autoCheck,'Voice Out':sets.voiceOut,'Auto Advance':sets.autoAdvance},n,'#a78bfa')}
       </div>
       <div class="chart-card">
         <h3>🏆 Достижения открыто</h3>
@@ -5875,6 +6886,132 @@
     });
   };
 
+  // ── WEBSITE CONTACT INBOX (public site) ─────────────────────────────────────
+  let _allWebsiteInbox = [];
+
+  window.loadWebsiteInbox = async function (force) {
+    window._websiteInboxLoaded = true;
+    const list = document.getElementById('wi-list');
+    if (list) list.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
+    try {
+      const snap = await getDocs(
+        query(collection(db, 'website_contact_inbox'), orderBy('createdAt', 'desc'), limit(200)),
+      );
+      _allWebsiteInbox = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      filterWebsiteInbox();
+      updateTabBadges();
+    } catch (e) {
+      if (list) list.innerHTML = '<div class="reports-empty">❌ ' + escapeHtml(e.message || String(e)) + '</div>';
+    }
+  };
+
+  window.filterWebsiteInbox = function () {
+    const sel = document.getElementById('wi-filter-status');
+    const status = sel ? sel.value : '';
+    let arr = _allWebsiteInbox;
+    if (status) arr = arr.filter((r) => (r.status || 'new') === status);
+    renderWebsiteInbox(arr);
+  };
+
+  function wiFmtDate(x) {
+    if (!x) return '—';
+    if (typeof x.toDate === 'function') {
+      try {
+        return x.toDate().toISOString().slice(0, 19).replace('T', ' ');
+      } catch (_) { /* noop */ }
+    }
+    if (typeof x === 'string') return x.slice(0, 19);
+    return '—';
+  }
+
+  function escapeWiText(t) {
+    return String(t || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function renderWebsiteInbox(rows) {
+    const list = document.getElementById('wi-list');
+    const cntEl = document.getElementById('wi-count');
+    if (cntEl) cntEl.textContent = rows.length + ' записей';
+    if (!list) return;
+    if (!rows.length) {
+      list.innerHTML = '<div class="reports-empty">Пусто</div>';
+      return;
+    }
+    window._wiMap = {};
+    rows.forEach(function (r) { window._wiMap[r.id] = r; });
+    list.innerHTML = rows
+      .map(function (r) {
+        var st = r.status || 'new';
+        var stColor = st === 'read' ? '#9ca3af' : '#38bdf8';
+        var date = wiFmtDate(r.createdAt);
+        var body = escapeWiText(r.message || '');
+        var email = escapeWiText(r.email || '');
+        var name = escapeWiText(r.name || '');
+        var topic = escapeWiText(r.topic || '');
+        var pageUrl = escapeWiText(r.pageUrl || '');
+        var btn =
+          st === 'new'
+            ? '<button data-wiid="' +
+              r.id +
+              '" data-wiact="read" style="background:#1a2a3a;border:1px solid #334155;color:#e2e8f0;border-radius:6px;padding:6px 14px;font-size:12px;cursor:pointer">✓ Прочитано</button>'
+            : '<span style="font-size:12px;color:#666">Статус: ' + st + '</span>';
+        return (
+          '<div class="report-card" style="border-left:3px solid ' +
+          stColor +
+          '">' +
+          '<div class="rc-left" style="min-width:0">' +
+          '<div style="color:#fff;font-weight:700;font-size:15px;margin-bottom:6px">💬 Суппорт · ' +
+          (topic || '—') +
+          '</div>' +
+          '<div style="font-size:12px;color:#888;margin-bottom:10px">' +
+          '<b>' +
+          (name || '—') +
+          '</b> · <a href="mailto:' +
+          email +
+          '" style="color:#a78bfa">' +
+          email +
+          '</a></div>' +
+          '<div style="font-size:11px;color:#666;margin-bottom:10px">📅 ' +
+          date +
+          (pageUrl ? ' · <span style="word-break:break-all">' + pageUrl + '</span>' : '') +
+          '</div>' +
+          '<div style="white-space:pre-wrap;font-size:14px;color:#e0e0e0;line-height:1.45;background:#111;padding:12px;border-radius:10px;border:1px solid #2a2a3a">' +
+          body +
+          '</div>' +
+          '<div style="margin-top:10px">' +
+          btn +
+          '</div></div>' +
+          '<div class="rc-right" style="font-size:11px;color:#666;text-align:right">' +
+          '<span style="color:' +
+          stColor +
+          ';font-weight:700">' +
+          st +
+          '</span></div></div>'
+        );
+      })
+      .join('');
+    list.querySelectorAll('button[data-wiact]').forEach(function (btn) {
+      btn.addEventListener('click', async function () {
+        var id = btn.dataset.wiid;
+        var act = btn.dataset.wiact;
+        if (act !== 'read' || !id) return;
+        btn.disabled = true;
+        try {
+          await updateDoc(doc(db, 'website_contact_inbox', id), {
+            status: 'read',
+            readAt: new Date().toISOString(),
+          });
+          showToast('Отмечено прочитанным');
+          await window.loadWebsiteInbox(true);
+          updateTabBadges();
+        } catch (e) {
+          showToast('❌ ' + e.message, 'err');
+          btn.disabled = false;
+        }
+      });
+    });
+  }
+
   // ── ARCHIVE ───────────────────────────────────────────────────────────────────
   let _archiveAll = [];
 
@@ -6110,6 +7247,237 @@
   };
 
   // ── Ops Log (cheap, Claude-friendly) ─────────────────────────────────────────
+  // App Health: production diagnostics from app_errors.
+  let _appHealthAll = [];
+  let _appHealthFiltered = [];
+  let _appActivityAll = [];
+  let _appHealthLoadedAt = 0;
+
+  function ahStatus(rows) {
+    const crit = rows.filter(r => r.severity === 'critical').length;
+    const warn = rows.filter(r => r.severity === 'warning').length;
+    const users = new Set(rows.map(r => r.uid).filter(Boolean)).size;
+    if (crit > 0 || users >= 10) return { label: 'RED', color: '#f87171', text: 'Critical errors or broad impact' };
+    if (warn >= 5 || users >= 3) return { label: 'YELLOW', color: '#fbbf24', text: 'Repeated warnings need review' };
+    return { label: 'GREEN', color: '#4ade80', text: 'No active app-health signal' };
+  }
+
+  function renderAppHealthKpis(rows) {
+    const st = ahStatus(rows);
+    const crit = rows.filter(r => r.severity === 'critical').length;
+    const warn = rows.filter(r => r.severity === 'warning').length;
+    const users = new Set(rows.map(r => r.uid).filter(Boolean)).size;
+    const byFp = {};
+    rows.forEach(r => { byFp[r.fingerprint || r.context] = (byFp[r.fingerprint || r.context] || 0) + 1; });
+    const topCount = Object.values(byFp).reduce((m, v) => Math.max(m, v), 0);
+    const kpi = (label, value, color, sub) =>
+      `<div class="stat-card" style="padding:10px 12px;min-width:140px;border-color:#2a2a3a">
+        <div class="label">${label}</div>
+        <div class="value" style="font-size:20px;color:${color || '#fff'}">${value}</div>
+        ${sub ? `<div class="sub">${escapeHtml(sub)}</div>` : ''}
+      </div>`;
+    document.getElementById('ah-kpis').innerHTML = [
+      kpi('Status', st.label, st.color, st.text),
+      kpi('Critical', crit, '#f87171'),
+      kpi('Warnings', warn, '#fbbf24'),
+      kpi('Affected users', users, '#60a5fa'),
+      kpi('Top repeat', topCount, '#a78bfa'),
+    ].join('');
+  }
+
+  function updateAppHealthFeatureFilter(rows) {
+    const sel = document.getElementById('ah-feature');
+    const old = sel.value;
+    const features = Array.from(new Set(rows.map(r => r.feature || 'app'))).sort();
+    sel.innerHTML = '<option value="">All features</option>' + features.map(f => `<option value="${escapeHtml(f)}">${escapeHtml(f)}</option>`).join('');
+    if (features.includes(old)) sel.value = old;
+  }
+
+  function renderAppActivity(rows) {
+    const list = document.getElementById('ah-activity-list');
+    const count = document.getElementById('ah-activity-count');
+    if (!list || !count) return;
+    count.textContent = `${rows.length} activity rows`;
+    if (!rows.length) {
+      list.innerHTML = '<div class="reports-empty">No activity events for this period.</div>';
+      return;
+    }
+    list.innerHTML = rows.slice(0, 80).map(r => {
+      const color = r.result === 'error' ? '#f87171' : (r.result === 'blocked' ? '#fbbf24' : (r.result === 'success' ? '#4ade80' : '#60a5fa'));
+      const ts = (r.createdAt || '').replace('T', ' ').slice(0, 19);
+      const uid = r.uid ? String(r.uid).slice(0, 10) + '...' : '-';
+      const tags = r.tags ? Object.entries(r.tags).slice(0, 8).map(([k, v]) => `<span style="color:#666">${escapeHtml(k)}:</span> ${escapeHtml(String(v))}`).join(' &nbsp; ') : '';
+      return `<div class="report-card" style="padding:12px 14px;min-height:auto;background:#12121a">
+        <div class="rc-left">
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:5px">
+            <span style="font-weight:800;color:${color}">${escapeHtml(r.result || 'info')}</span>
+            <span style="color:#ddd">${escapeHtml(r.action || '?')}</span>
+            <span style="margin-left:auto;color:#555;font-size:11px">${escapeHtml(ts)}</span>
+          </div>
+          <div style="font-size:12px;color:#aaa;margin-bottom:4px">
+            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.screen || '-')} - ${escapeHtml(r.platform || '?')} - uid <span style="font-family:monospace">${escapeHtml(uid)}</span>
+          </div>
+          ${tags ? `<div style="font-size:12px;color:#888">${tags}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  window.loadAppHealth = async function(force = false) {
+    window._appHealthLoaded = true;
+    const list = document.getElementById('ah-list');
+    list.innerHTML = '<div class="reports-empty">Loading App Health...</div>';
+    try {
+      if (!force && _appHealthAll.length && Date.now() - _appHealthLoadedAt < 60_000) {
+        filterAppHealth();
+        return;
+      }
+      const hours = parseInt(document.getElementById('ah-period').value || '24', 10);
+      const since = new Date(Date.now() - hours * 60 * 60 * 1000).toISOString();
+      const [snap, activitySnap] = await Promise.all([
+        getDocs(query(collection(db, 'app_errors'), orderBy('createdAt', 'desc'), limit(500))),
+        getDocs(query(collection(db, 'app_activity'), orderBy('createdAt', 'desc'), limit(500))).catch(() => ({ docs: [] })),
+      ]);
+      _appHealthAll = snap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .filter(r => !r.createdAt || String(r.createdAt) >= since);
+      _appActivityAll = activitySnap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .filter(r => !r.createdAt || String(r.createdAt) >= since);
+      _appHealthLoadedAt = Date.now();
+      updateAppHealthFeatureFilter(_appHealthAll);
+      filterAppHealth();
+    } catch (e) {
+      list.innerHTML = `<div class="reports-empty">Failed to load App Health: ${escapeHtml(e.message || String(e))}</div>`;
+    }
+  };
+
+  window.filterAppHealth = function() {
+    const sev = document.getElementById('ah-severity').value;
+    const feature = document.getElementById('ah-feature').value;
+    const q = (document.getElementById('ah-search').value || '').trim().toLowerCase();
+    let rows = _appHealthAll.slice();
+    if (sev) rows = rows.filter(r => r.severity === sev);
+    if (feature) rows = rows.filter(r => (r.feature || 'app') === feature);
+    if (q) {
+      rows = rows.filter(r => [
+        r.context, r.message, r.uid, r.userName, r.appVersion, r.platform, r.fingerprint,
+      ].some(v => String(v || '').toLowerCase().includes(q)));
+    }
+    _appHealthFiltered = rows;
+    renderAppHealthKpis(rows);
+    renderAppActivity(_appActivityAll.filter(r => {
+      if (feature && (r.feature || 'app') !== feature) return false;
+      if (!q) return true;
+      return [r.action, r.feature, r.screen, r.uid, r.userName, r.appVersion, r.platform, r.result]
+        .some(v => String(v || '').toLowerCase().includes(q));
+    }));
+    document.getElementById('ah-count').textContent = `${rows.length} rows`;
+    const list = document.getElementById('ah-list');
+    if (!rows.length) {
+      list.innerHTML = '<div class="reports-empty">No app-health events for this filter.</div>';
+      return;
+    }
+    list.innerHTML = rows.slice(0, 250).map(r => {
+      const color = r.severity === 'critical' ? '#f87171' : (r.severity === 'warning' ? '#fbbf24' : '#60a5fa');
+      const ts = (r.createdAt || '').replace('T', ' ').slice(0, 19);
+      const uid = r.uid ? String(r.uid).slice(0, 10) + '...' : '-';
+      const tags = r.tags ? Object.entries(r.tags).slice(0, 6).map(([k, v]) => `<span style="color:#666">${escapeHtml(k)}:</span> ${escapeHtml(String(v))}`).join(' &nbsp; ') : '';
+      return `<div class="report-card">
+        <div class="rc-left">
+          <div style="display:flex;gap:8px;align-items:center;margin-bottom:6px">
+            <span style="font-weight:800;color:${color}">${escapeHtml(r.severity || '?')}</span>
+            <span style="color:#ddd">${escapeHtml(r.context || '?')}</span>
+            <span style="margin-left:auto;color:#555;font-size:11px">${escapeHtml(ts)}</span>
+          </div>
+          <div style="font-size:12px;color:#aaa;margin-bottom:5px">
+            ${escapeHtml(r.feature || 'app')} - ${escapeHtml(r.platform || '?')} - v${escapeHtml(r.appVersion || '?')} - uid <span style="font-family:monospace">${escapeHtml(uid)}</span>
+          </div>
+          <div style="font-size:13px;color:#ddd;margin-bottom:5px">${escapeHtml(r.message || '')}</div>
+          ${tags ? `<div style="font-size:12px;color:#888">${tags}</div>` : ''}
+        </div>
+        <div style="display:flex;gap:6px;align-items:flex-start">
+          <button onclick="markAppHealthStatus('${r.id}','reviewed')" style="font-size:11px;padding:6px 8px">Reviewed</button>
+          <button onclick="markAppHealthStatus('${r.id}','fixed')" style="font-size:11px;padding:6px 8px;background:#16351f;color:#86efac">Fixed</button>
+        </div>
+      </div>`;
+    }).join('');
+  };
+
+  window.markAppHealthStatus = async function(id, status) {
+    try {
+      await updateDoc(doc(db, 'app_errors', id), {
+        status,
+        reviewedAt: new Date().toISOString(),
+        reviewedBy: auth.currentUser?.email || null,
+      });
+      const row = _appHealthAll.find(r => r.id === id);
+      if (row) row.status = status;
+      showToast(`App Health marked ${status}`);
+      filterAppHealth();
+    } catch (e) {
+      showToast(`Failed: ${e.message || e}`, 'err');
+    }
+  };
+
+  function buildAppHealthReport(rows) {
+    const byKey = {};
+    rows.forEach(r => {
+      const key = r.fingerprint || `${r.context}|${r.message}`;
+      if (!byKey[key]) byKey[key] = { count: 0, users: new Set(), sample: r, versions: new Set(), platforms: new Set() };
+      byKey[key].count += 1;
+      if (r.uid) byKey[key].users.add(r.uid);
+      if (r.appVersion) byKey[key].versions.add(r.appVersion);
+      if (r.platform) byKey[key].platforms.add(r.platform);
+    });
+    const groups = Object.values(byKey).sort((a, b) => b.count - a.count).slice(0, 20);
+    const st = ahStatus(rows);
+    const header = [
+      '# Phraseman App Health Report',
+      `Generated: ${new Date().toISOString()}`,
+      `Status: ${st.label} - ${st.text}`,
+      `Rows: ${rows.length}`,
+      `Critical: ${rows.filter(r => r.severity === 'critical').length}`,
+      `Warnings: ${rows.filter(r => r.severity === 'warning').length}`,
+      `Affected users: ${new Set(rows.map(r => r.uid).filter(Boolean)).size}`,
+      '',
+      '## Top grouped issues',
+    ];
+    const body = groups.map((g, i) => {
+      const r = g.sample;
+      return [
+        `${i + 1}. ${r.severity || '?'} ${r.context || '?'}`,
+        `   count: ${g.count}; users: ${g.users.size}; feature: ${r.feature || 'app'}; platforms: ${Array.from(g.platforms).join(',') || '?'}; versions: ${Array.from(g.versions).join(',') || '?'}`,
+        `   message: ${r.message || ''}`,
+        `   sample id: ${r.id}; uid: ${r.uid || '?'}; createdAt: ${r.createdAt || '?'}`,
+        r.stack ? `   stack: ${String(r.stack).split('\n').slice(0, 8).join(' | ')}` : '',
+      ].filter(Boolean).join('\n');
+    });
+    return [...header, ...body].join('\n');
+  }
+
+  window.copyAppHealthForAI = async function() {
+    const rows = (_appHealthFiltered.length ? _appHealthFiltered : _appHealthAll).slice(0, 250);
+    if (!rows.length) { showToast('No App Health rows to copy', 'warn'); return; }
+    try {
+      await navigator.clipboard.writeText(buildAppHealthReport(rows));
+      showToast('App Health AI report copied');
+    } catch {
+      showToast('Copy failed', 'err');
+    }
+  };
+
+  window.copyAppHealthRaw = async function() {
+    const rows = (_appHealthFiltered.length ? _appHealthFiltered : _appHealthAll).slice(0, 250);
+    if (!rows.length) { showToast('No App Health rows to copy', 'warn'); return; }
+    try {
+      await navigator.clipboard.writeText(JSON.stringify(rows, null, 2));
+      showToast('App Health raw JSON copied');
+    } catch {
+      showToast('Copy failed', 'err');
+    }
+  };
+
   let _opsAll = [];
   let _opsFiltered = [];
   let _opsCacheAt = 0;
@@ -6252,37 +7620,279 @@
     }
   };
 
-  // ── Tab badges (count of new/open items) ─────────────────────────────────────
-  async function updateTabBadges() {
+  // ── Tab badges: число «нового» после последнего захода на вкладку (localStorage) ─
+  var ADMIN_TAB_SEEN_KEY = 'phraseman_admin_tab_seen_v6';
+  var ADMIN_TAB_SEEN_BOOT_KEY = 'phraseman_admin_tab_seen_boot_v6';
+  var ADMIN_TAB_KEYS_ALL = ['users','analytics','app-health','reports','suggestions','website-inbox','user-reports','ban-list','premium','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','clubs','arena-ranks','arena-live','referrals','phrase-ratings'];
+  var ADMIN_TAB_BASE_HTML = {
+    users: '👥 Пользователи',
+    analytics: '📊 Аналитика',
+    reports: '🚩 Репорты',
+    'phrase-ratings': '⭐ Оценки контента',
+    suggestions: '💡 Предложения',
+    'website-inbox': '💬 Суппорт (сайт)',
+    'user-reports': '🔴 Жалобы на юзеров',
+    'ban-list': '🚫 Бан-лист',
+    premium: '👑 Премиум',
+    'ugc-purchases': '🛒 Покупки UGC',
+    archive: '📦 Архив',
+    audit: '🔐 Аудит лог',
+    'ops-log': '🧭 Ops лог',
+    'community-packs': '🧩 Community',
+    'card-packs': '📦 Card packs',
+    clubs: '🏅 Лиги',
+    'arena-ranks': '🏟 Арена · Топ',
+    'arena-live': '⚔️ Арена · Live',
+    referrals: '🎁 Рефералы',
+  };
+
+  function adminSeenParseMs(v) {
+    if (v == null) return 0;
+    if (typeof v === 'number' && Number.isFinite(v)) return v > 9e15 ? Math.floor(v / 1e6) : v;
+    if (typeof v === 'object' && v !== null && typeof v.toMillis === 'function') {
+      try { return v.toMillis(); } catch (_) { /* noop */ }
+    }
+    const s = typeof v === 'string' ? Date.parse(v) : NaN;
+    return Number.isFinite(s) ? s : 0;
+  }
+
+  function adminGetSeenMap() {
+    try { return JSON.parse(localStorage.getItem(ADMIN_TAB_SEEN_KEY) || '{}'); } catch { return {}; }
+  }
+
+  function adminSaveSeenMap(m) {
+    try { localStorage.setItem(ADMIN_TAB_SEEN_KEY, JSON.stringify(m)); } catch (_) { /* noop */ }
+  }
+
+  function adminEnsureSeenBoot() {
     try {
-      const [urSnap, erSnap, sgSnap, cprSnap] = await Promise.all([
-        getDocs(query(collection(db, 'user_reports'),  where('status','==','new'), limit(99))),
-        // Lightweight sample to avoid large read bursts in admin badge refresh.
-        getDocs(query(collection(db, 'error_reports'), limit(80))),
-        getDocs(query(collection(db, 'user_suggestions'), where('status','==','new'), limit(99))),
-        getDocs(query(collection(db, 'community_pack_reports'), where('status','==','new'), limit(99))),
-      ]);
-      const erActive = erSnap.docs.filter(d => d.data().status !== 'fixed' && d.data().status !== 'archived');
-      document.querySelectorAll('.tab').forEach(t => {
-        const onclick = t.getAttribute('onclick')||'';
-        if (onclick.includes("'user-reports'")) {
-          const cnt = urSnap.size;
-          t.innerHTML = `🔴 Жалобы${cnt>0?` <span style="background:#f87171;color:#fff;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700">${cnt}</span>`:''}`;
-        }
-        if (onclick.includes("'reports'")) {
-          const cnt = erActive.length;
-          t.innerHTML = `🚩 Репорты${cnt>0?` <span style="background:#fbbf24;color:#000;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700">${cnt}</span>`:''}`;
-        }
-        if (onclick.includes("'community-packs'")) {
-          const cnt = cprSnap.size;
-          t.innerHTML = `🧩 Community${cnt>0?` <span style="background:#fbbf24;color:#000;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700">${cnt}</span>`:''}`;
-        }
-        if (onclick.includes("'suggestions'")) {
-          const cnt = sgSnap.size;
-          t.innerHTML = `💡 Предложения${cnt>0?` <span style="background:#4ade80;color:#000;border-radius:10px;padding:1px 6px;font-size:10px;font-weight:700">${cnt}</span>`:''}`;
+      if (!localStorage.getItem(ADMIN_TAB_SEEN_BOOT_KEY)) localStorage.setItem(ADMIN_TAB_SEEN_BOOT_KEY, '1');
+      const m = adminGetSeenMap();
+      let changed = false;
+      const t = Date.now();
+      ADMIN_TAB_KEYS_ALL.forEach((k) => {
+        if (m[k] == null) {
+          m[k] = t;
+          changed = true;
         }
       });
-    } catch { /* ignore */ }
+      if (changed) adminSaveSeenMap(m);
+    } catch (_) { /* noop */ }
+  }
+
+  function markAdminTabSeenForBadges(tab) {
+    adminEnsureSeenBoot();
+    try {
+      const m = adminGetSeenMap();
+      m[tab] = Date.now();
+      adminSaveSeenMap(m);
+    } catch (_) { /* noop */ }
+  }
+
+  function adminCountTsAfterSnap(docs, getTsFromData, seenMs) {
+    const cut = Number(seenMs);
+    if (!Number.isFinite(cut) || cut <= 0) return 0;
+    let n = 0;
+    for (let i = 0; i < docs.length; i++) {
+      const d = docs[i];
+      const data = typeof d.data === 'function' ? d.data() : d;
+      const ts = adminSeenParseMs(getTsFromData(data));
+      if (ts > seenMs) n++;
+    }
+    return n;
+  }
+
+  function adminApplyTabBadge(tabKey, cnt, badgeBg, badgeFg) {
+    const base = ADMIN_TAB_BASE_HTML[tabKey] || tabKey;
+    const fg = badgeFg || '#000';
+    const bg = badgeBg || '#fbbf24';
+    document.querySelectorAll('.tab').forEach((t) => {
+      const oc = t.getAttribute('onclick') || '';
+      if (!oc.includes("'" + tabKey + "'")) return;
+      const badge =
+        cnt > 0
+          ? '<span class="tab-n-badge" style="background:' + bg + ';color:' + fg + '">' + (cnt > 99 ? '99+' : cnt) + '</span>'
+          : '';
+      t.innerHTML = base + (badge ? ' ' + badge : '');
+    });
+  }
+
+  async function updateTabBadges() {
+    if (!auth?.currentUser) return;
+    adminEnsureSeenBoot();
+    const seen = adminGetSeenMap();
+    const s = (k) => Number(seen[k]) || 0;
+
+    const safeGet = async (name, fn) => {
+      try {
+        return await fn();
+      } catch (e) {
+        console.warn('[admin badges]', name, e?.message || e);
+        return { docs: [] };
+      }
+    };
+
+    try {
+      const [
+        urSnap,
+        erSnap,
+        sgSnap,
+        webInboxSnap,
+        cprSnap,
+        cpPendingSnap,
+        prSnap,
+        banSnap,
+        ugcSnap,
+        auditSnap,
+        adminOpsSnap,
+        erOpsSnap,
+        urOpsSnap,
+        cardSnap,
+        refSnap,
+        alQsnap,
+        alSsnap,
+        alRsnap,
+        apSnap,
+      ] = await Promise.all([
+        safeGet('user_reports_new', () =>
+          getDocs(query(collection(db, 'user_reports'), where('status', '==', 'new'), limit(99)))),
+        safeGet('error_reports', () =>
+          getDocs(query(collection(db, 'error_reports'), orderBy('createdAt', 'desc'), limit(500)))),
+        safeGet('user_suggestions', () =>
+          getDocs(query(collection(db, 'user_suggestions'), where('status', '==', 'new'), limit(99)))),
+        safeGet('website_inbox_new', () =>
+          getDocs(query(collection(db, 'website_contact_inbox'), where('status', '==', 'new'), limit(99)))),
+        safeGet('cpr_new', () =>
+          getDocs(query(collection(db, 'community_pack_reports'), where('status', '==', 'new'), limit(99)))),
+        safeGet('cp_pending', () =>
+          getDocs(
+            query(
+              collection(db, 'community_pack_submissions'),
+              where('status', '==', 'pending'),
+              orderBy('submittedAt', 'desc'),
+              limit(120),
+            ),
+          )),
+        safeGet('phrase_stats', () =>
+          getDocs(query(collection(db, 'phrase_content_rating_stats'), orderBy('updatedAt', 'desc'), limit(400)))),
+        safeGet('banned_users', () => getDocs(collection(db, 'banned_users'))),
+        safeGet('ugc_purchases', () =>
+          getDocs(query(collection(db, 'community_pack_purchases'), orderBy('createdAt', 'desc'), limit(200)))),
+        safeGet('admin_log', () =>
+          getDocs(query(collection(db, 'admin_log'), orderBy('ts', 'desc'), limit(160)))),
+        safeGet('admin_log_ops', () =>
+          getDocs(query(collection(db, 'admin_log'), orderBy('ts', 'desc'), limit(100)))),
+        safeGet('er_ops', () =>
+          getDocs(query(collection(db, 'error_reports'), orderBy('createdAt', 'desc'), limit(65)))),
+        safeGet('ur_ops', () =>
+          getDocs(query(collection(db, 'user_reports'), orderBy('createdAt', 'desc'), limit(65)))),
+        safeGet('card_packs', () =>
+          getDocs(query(collection(db, 'card_packs'), limit(350)))),
+        safeGet('referrals_attr', () =>
+          getDocs(query(collection(db, 'referral_attributions'), orderBy('createdAt', 'desc'), limit(150)))),
+        safeGet('al_queue', () => getDocs(query(collection(db, 'matchmaking_queue'), limit(220)))),
+        safeGet('al_sessions', () => getDocs(query(collection(db, 'arena_sessions'), limit(320)))),
+        safeGet('al_rooms', () => getDocs(query(collection(db, 'arena_rooms'), limit(180)))),
+        safeGet('arena_profiles', () => getDocs(query(collection(db, 'arena_profiles'), limit(400)))),
+      ]);
+
+      const erActive = erSnap.docs.filter(
+        (d) => {
+          const st = (d.data() && d.data().status) || '';
+          return st !== 'fixed' && st !== 'archived';
+        },
+      );
+
+      const cntUrOpen = typeof urSnap.size === 'number' ? urSnap.size : urSnap.docs.length;
+      const cntSgNew = typeof sgSnap.size === 'number' ? sgSnap.size : sgSnap.docs.length;
+      const cntWebInboxNew =
+        typeof webInboxSnap.size === 'number' ? webInboxSnap.size : webInboxSnap.docs.length;
+      const cntCprNew = typeof cprSnap.size === 'number' ? cprSnap.size : cprSnap.docs.length;
+
+      const cntPhraseNew = adminCountTsAfterSnap(
+        prSnap.docs,
+        (x) => x.updatedAt,
+        s('phrase-ratings'),
+      );
+      const cntBanNew = adminCountTsAfterSnap(
+        banSnap.docs,
+        (x) => x.bannedAt,
+        s('ban-list'),
+      );
+      const cntUgcNew = adminCountTsAfterSnap(
+        ugcSnap.docs,
+        (x) => x.createdAt,
+        s('ugc-purchases'),
+      );
+      const cntAuditNew = adminCountTsAfterSnap(auditSnap.docs, (x) => x.ts, s('audit'));
+      const opsSeen = s('ops-log');
+      const cntOpsNew =
+        adminCountTsAfterSnap(adminOpsSnap.docs, (x) => x.ts, opsSeen) +
+        adminCountTsAfterSnap(erOpsSnap.docs, (x) => x.createdAt, opsSeen) +
+        adminCountTsAfterSnap(urOpsSnap.docs, (x) => x.createdAt, opsSeen);
+
+      const cntCardNew = adminCountTsAfterSnap(cardSnap.docs, (x) => x.updatedAt, s('card-packs'));
+      const cntRefNew = adminCountTsAfterSnap(refSnap.docs, (x) => x.createdAt, s('referrals'));
+
+      const cpSeen = s('community-packs');
+      const cntCpQueueNew = adminCountTsAfterSnap(
+        cpPendingSnap.docs,
+        (x) => x.submittedAt || x.updatedAt || x.createdAt,
+        cpSeen,
+      );
+      const cntCommunity = cntCprNew + cntCpQueueNew;
+
+      let cntArenaLive = 0;
+      const alSeen = s('arena-live');
+      const fin = new Set(['finished', 'aborted']);
+      alQsnap.docs.forEach((d) => {
+        const x = d.data() || {};
+        if (!x.sessionId && adminSeenParseMs(x.joinedAt) > alSeen) cntArenaLive++;
+      });
+      alSsnap.docs.forEach((d) => {
+        const x = d.data() || {};
+        if (!fin.has(x.state) && adminSeenParseMs(x.createdAt) > alSeen) cntArenaLive++;
+      });
+      alRsnap.docs.forEach((d) => {
+        const x = d.data() || {};
+        if (x.status === 'waiting' && adminSeenParseMs(x.createdAt) > alSeen) cntArenaLive++;
+      });
+
+      const cntArenaProfNew = adminCountTsAfterSnap(
+        apSnap.docs,
+        (x) => x.updatedAt,
+        s('arena-ranks'),
+      );
+
+      const usersSample = window._users && window._users.length
+        ? window._users.slice(0, 400)
+        : [];
+      const cntUsersMeta = usersSample.filter((u) => {
+        const raw = u.raw || {};
+        const ca = raw.createdAt || u.createdAt;
+        return ca && adminSeenParseMs(ca) > s('users');
+      }).length;
+
+      Object.keys(ADMIN_TAB_BASE_HTML).forEach((k) => adminApplyTabBadge(k, 0, '#fbbf24', '#000'));
+
+      adminApplyTabBadge('user-reports', cntUrOpen, '#f87171', '#fff');
+      adminApplyTabBadge('reports', erActive.length, '#fbbf24', '#000');
+      adminApplyTabBadge('suggestions', cntSgNew, '#4ade80', '#000');
+      adminApplyTabBadge('website-inbox', cntWebInboxNew, '#38bdf8', '#0f0f13');
+      adminApplyTabBadge('community-packs', cntCommunity, '#fbbf24', '#000');
+      adminApplyTabBadge('phrase-ratings', cntPhraseNew, '#a78bfa', '#0f0f13');
+      adminApplyTabBadge('ban-list', cntBanNew, '#f87171', '#fff');
+      adminApplyTabBadge('ugc-purchases', cntUgcNew, '#34d399', '#000');
+      adminApplyTabBadge('audit', cntAuditNew, '#c084fc', '#0f0f13');
+      adminApplyTabBadge('ops-log', cntOpsNew, '#38bdf8', '#0f0f13');
+      adminApplyTabBadge('card-packs', cntCardNew, '#fbbf24', '#000');
+      adminApplyTabBadge('referrals', cntRefNew, '#f472b6', '#0f0f13');
+      adminApplyTabBadge('arena-live', cntArenaLive, '#818cf8', '#0f0f13');
+      adminApplyTabBadge('arena-ranks', cntArenaProfNew, '#a78bfa', '#0f0f13');
+      adminApplyTabBadge('users', cntUsersMeta, '#60a5fa', '#0f0f13');
+    } catch (e) {
+      console.warn('updateTabBadges', e);
+    }
   }
 
   // ── Duplicates panel ─────────────────────────────────────────────────────────
@@ -7208,13 +8818,45 @@
 
   // ── ARENA LIVE TAB ───────────────────────────────────────────────────────────
   let _arenaLive = { queue: [], sessions: [], rooms: [], metaCount: 0 };
-  const ARENA_STUCK_MS = 5 * 60_000; // 5 минут — порог «зависшее»
+  const ARENA_STUCK_MS      = 5  * 60_000; // 5 мин  — порог «зависшее» (подсветка)
+  const ARENA_STALE_QUEUE_MS = 30 * 60_000; // 30 мин — автоудаление из очереди
+  const ARENA_STALE_ROOM_MS  = 30 * 60_000; // 30 мин — автоудаление комнаты
+  const ARENA_STALE_SES_MS   = 60 * 60_000; // 1 час  — автофорс-финиш сессии
+
+  async function _alAutoCleanup(adminEmail) {
+    const now = Date.now();
+    const staleQueue    = _arenaLive.queue.filter(q => { const t = Number(q.joinedAt)||0; return t && (now - t) > ARENA_STALE_QUEUE_MS; });
+    const staleRooms    = _arenaLive.rooms.filter(r => { const t = Number(r.createdAt)||0; return t && (now - t) > ARENA_STALE_ROOM_MS; });
+    const staleSessions = _arenaLive.sessions.filter(s => {
+      const t = Number(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt) || 0;
+      return t && (now - t) > ARENA_STALE_SES_MS;
+    });
+    if (!staleQueue.length && !staleRooms.length && !staleSessions.length) return 0;
+    await Promise.all([
+      ...staleQueue.map(q => deleteDoc(doc(db, 'matchmaking_queue', q.id))
+        .then(() => logAction('arena_queue_delete', q.id, { auto: true })).catch(() => {})),
+      ...staleRooms.map(r => deleteDoc(doc(db, 'arena_rooms', r.id))
+        .then(() => logAction('arena_room_delete', r.id, { auto: true })).catch(() => {})),
+      ...staleSessions.map(s => updateDoc(doc(db, 'arena_sessions', s.id), {
+          state: 'finished', abortedByAdmin: true,
+          adminAbortedBy: adminEmail, adminAbortedAt: new Date().toISOString(),
+        }).then(() => logAction('arena_force_finish', s.id, { auto: true, previousState: s.state })).catch(() => {})),
+    ]);
+    const dQ = new Set(staleQueue.map(q => q.id));
+    const dR = new Set(staleRooms.map(r => r.id));
+    const dS = new Set(staleSessions.map(s => s.id));
+    _arenaLive.queue    = _arenaLive.queue.filter(q => !dQ.has(q.id));
+    _arenaLive.rooms    = _arenaLive.rooms.filter(r => !dR.has(r.id));
+    _arenaLive.sessions = _arenaLive.sessions.filter(s => !dS.has(s.id));
+    return staleQueue.length + staleRooms.length + staleSessions.length;
+  }
 
   window.loadArenaLive = async function loadArenaLive(force) {
     if (!force && window._arenaLiveLoaded) return;
     const content = document.getElementById('al-content');
     content.innerHTML = '<div class="reports-empty">⏳ Загрузка...</div>';
     try {
+      const adminEmail = (auth?.currentUser?.email) || '';
       const [queueSnap, sessionsSnap, roomsSnap, metaSnap] = await Promise.all([
         getDocs(query(collection(db, 'matchmaking_queue'), limit(200))),
         getDocs(query(collection(db, 'arena_sessions'), limit(300))),
@@ -7229,8 +8871,10 @@
         .map(d => ({ id: d.id, ...(d.data() || {}) }))
         .filter(r => r.status === 'waiting');
       _arenaLive.metaCount = metaSnap?.exists?.() ? (metaSnap.data()?.count ?? 0) : 0;
+      const cleaned = await _alAutoCleanup(adminEmail);
       window._arenaLiveLoaded = true;
       renderArenaLive();
+      if (cleaned > 0) showToast(`🧹 Автоочистка: удалено ${cleaned} устаревших записей`);
     } catch (e) {
       content.innerHTML = `<div class="reports-empty">❌ ${escapeHtml(e.message)}</div>`;
     }
@@ -7418,7 +9062,329 @@
     } catch (e) { showToast('Ошибка: ' + e.message, 'err'); }
   };
 
+  window.alCleanupAllStuck = async function alCleanupAllStuck() {
+    const stuckQueue    = _arenaLive.queue.filter(q => _alIsStuck(q.joinedAt));
+    const stuckSessions = _arenaLive.sessions.filter(s => _alIsStuck(s.questionStartedAt || s.getReadyStartedAt || s.acceptDeadlineAt || s.createdAt));
+    const stuckRooms    = _arenaLive.rooms.filter(r => _alIsStuck(r.createdAt));
+    const total = stuckQueue.length + stuckSessions.length + stuckRooms.length;
+    if (total === 0) { showToast('Нет зависших для очистки'); return; }
+    const ok = await showConfirmModal({
+      title: '🧹 Очистить все зависшие?',
+      desc: `Будет удалено:\n• ${stuckQueue.length} записей очереди\n• ${stuckSessions.length} сессий (Force-finish)\n• ${stuckRooms.length} комнат\n\nТолько объекты старше 5 минут.`,
+      confirmLabel: `Очистить ${total}`, danger: true,
+    });
+    if (!ok) return;
+    const adminEmail = (auth?.currentUser?.email) || '';
+    let errors = 0;
+    await Promise.all([
+      ...stuckQueue.map(q => deleteDoc(doc(db, 'matchmaking_queue', q.id))
+        .then(() => { logAction('arena_queue_delete', q.id, { bulk: true }); })
+        .catch(() => { errors++; })),
+      ...stuckRooms.map(r => deleteDoc(doc(db, 'arena_rooms', r.id))
+        .then(() => { logAction('arena_room_delete', r.id, { bulk: true }); })
+        .catch(() => { errors++; })),
+      ...stuckSessions.map(s => updateDoc(doc(db, 'arena_sessions', s.id), {
+          state: 'finished', abortedByAdmin: true,
+          adminAbortedBy: adminEmail, adminAbortedAt: new Date().toISOString(),
+        })
+        .then(() => { logAction('arena_force_finish', s.id, { bulk: true, previousState: s.state }); })
+        .catch(() => { errors++; })),
+    ]);
+    const deletedQIds = new Set(stuckQueue.map(q => q.id));
+    const deletedRIds = new Set(stuckRooms.map(r => r.id));
+    const deletedSIds = new Set(stuckSessions.map(s => s.id));
+    _arenaLive.queue    = _arenaLive.queue.filter(q => !deletedQIds.has(q.id));
+    _arenaLive.rooms    = _arenaLive.rooms.filter(r => !deletedRIds.has(r.id));
+    _arenaLive.sessions = _arenaLive.sessions.filter(s => !deletedSIds.has(s.id));
+    renderArenaLive();
+    showToast(errors ? `🧹 Готово, ошибок: ${errors}` : `🧹 Очищено ${total} объектов`);
+  };
+
+  // ── User daily analytics modal ────────────────────────────────────────────
+  window.openUserAnalytics = async function openUserAnalytics(uid, userName) {
+    const overlay = document.getElementById('user-analytics-overlay');
+    const title   = document.getElementById('ua-title');
+    const body    = document.getElementById('ua-body');
+    title.textContent = '📊 Аналитика: ' + (userName || uid);
+    body.innerHTML = '<div style="color:#888;padding:20px 0;text-align:center">Загрузка…</div>';
+    overlay.style.display = 'flex';
+
+    try {
+      // users/{uid}.progress содержит все SYNC_KEYS; leaderboard/{uid} — daily7xp/daily7time_ms
+      const [userSnap, lbSnap] = await Promise.all([
+        getDoc(doc(db, 'users', uid)),
+        getDoc(doc(db, 'leaderboard', uid)),
+      ]);
+      const progress = (userSnap.exists() ? userSnap.data()?.progress : null) || {};
+      const lb = lbSnap.exists() ? lbSnap.data() : {};
+
+      // daily_stats: { "YYYY-MM-DD": number | { points, streak } }
+      let dailyStats = {};
+      try { dailyStats = JSON.parse(progress.daily_stats || '{}'); } catch {}
+
+      // foreground daily ms: { "YYYY-MM-DD": number }
+      let fgDaily = {};
+      try { fgDaily = JSON.parse(progress.phraseman_foreground_daily_ms_v1 || '{}'); } catch {}
+
+      const daily7xp = typeof lb.daily7xp === 'number' ? lb.daily7xp : null;
+      const daily7ms = typeof lb.daily7time_ms === 'number' ? lb.daily7time_ms : null;
+      const updatedAt = lb.dailyAnalyticsUpdatedAt ? fdate(lb.dailyAnalyticsUpdatedAt) : '—';
+
+      // Build last 30 days
+      const days30 = [];
+      for (let i = 29; i >= 0; i--) {
+        const d = new Date(); d.setDate(d.getDate() - i);
+        const k = d.toISOString().split('T')[0];
+        const val = dailyStats[k];
+        const xp = (val === null || val === undefined) ? 0 : (typeof val === 'number' ? val : (typeof val?.points === 'number' ? val.points : 0));
+        const ms = fgDaily[k] || 0;
+        days30.push({ k, xp, ms });
+      }
+
+      const maxXp = Math.max(1, ...days30.map(d => d.xp));
+      const maxMs = Math.max(1, ...days30.map(d => d.ms));
+
+      const barXp = days30.map(d => {
+        const h = d.xp > 0 ? Math.max(4, Math.round((d.xp / maxXp) * 80)) : 2;
+        const color = d.xp > 0 ? '#a78bfa' : '#2a2a3a';
+        const label = d.k.slice(5);
+        return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;min-width:0" title="${d.k}: ${d.xp} XP">
+          <div style="font-size:9px;color:#666;writing-mode:initial">${d.xp > 0 ? d.xp : ''}</div>
+          <div style="height:${h}px;width:10px;background:${color};border-radius:2px;margin-top:auto"></div>
+          <div style="font-size:8px;color:#555;transform:rotate(-45deg);transform-origin:top center;white-space:nowrap;margin-top:4px">${label}</div>
+        </div>`;
+      }).join('');
+
+      const barMs = days30.map(d => {
+        const h = d.ms > 0 ? Math.max(4, Math.round((d.ms / maxMs) * 80)) : 2;
+        const color = d.ms > 0 ? '#38bdf8' : '#2a2a3a';
+        const label = d.k.slice(5);
+        const minVal = d.ms > 0 ? (Math.floor(d.ms / 60000) + 'м') : '';
+        return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;min-width:0" title="${d.k}: ${Math.floor(d.ms/60000)}м">
+          <div style="font-size:9px;color:#666">${minVal}</div>
+          <div style="height:${h}px;width:10px;background:${color};border-radius:2px;margin-top:auto"></div>
+          <div style="font-size:8px;color:#555;transform:rotate(-45deg);transform-origin:top center;white-space:nowrap;margin-top:4px">${label}</div>
+        </div>`;
+      }).join('');
+
+      const fmt7 = (v) => v !== null ? String(v) : '—';
+      const fmtMs = (ms) => {
+        if (ms === null) return '—';
+        const m = Math.floor(ms / 60000);
+        const h = Math.floor(m / 60), rm = m % 60;
+        return h > 0 ? `${h}ч ${rm}м` : `${m}м`;
+      };
+
+      // --- Перцентили из leaderboard_stats/global ---
+      let lbStats = null;
+      try {
+        const lbStatsSnap = await getDoc(doc(db, 'leaderboard_stats', 'global'));
+        if (lbStatsSnap.exists()) lbStats = lbStatsSnap.data();
+      } catch {}
+
+      function lookupPct(thresholds, val) {
+        if (!thresholds || thresholds.length === 0 || !val || val <= 0) return null;
+        let r = 0;
+        for (let i = 0; i < thresholds.length; i++) {
+          if (val > (thresholds[i] ?? 0)) r = i + 1; else break;
+        }
+        return r;
+      }
+
+      const lbDoc = lbSnap.exists() ? lbSnap.data() : {};
+      const userXp = typeof lbDoc.points === 'number' ? lbDoc.points : null;
+      const userStreak = typeof lbDoc.streak === 'number' ? lbDoc.streak : null;
+      const userWeekXp = typeof lbDoc.weekPoints === 'number' ? lbDoc.weekPoints : null;
+
+      const pctXp       = lbStats ? lookupPct(lbStats.xpThresholds, userXp) : null;
+      const pctStreak   = lbStats ? lookupPct(lbStats.streakThresholds, userStreak) : null;
+      const pctWeekXp   = lbStats ? lookupPct(lbStats.weekXpThresholds, userWeekXp) : null;
+      const pctD7xp     = lbStats ? lookupPct(lbStats.daily7xpThresholds, daily7xp) : null;
+      const pctD7time   = lbStats ? lookupPct(lbStats.daily7timeMsThresholds, daily7ms) : null;
+      const totalUsers  = lbStats ? lbStats.totalUsers : 0;
+
+      function pctBadge(pct, label, color) {
+        if (pct === null) return `<div style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px;padding:10px 12px;text-align:center">
+          <div style="font-size:10px;color:#555;margin-bottom:2px">${label}</div>
+          <div style="font-size:18px;font-weight:700;color:#444">—</div></div>`;
+        const top = 100 - pct;
+        return `<div style="background:#1a1a24;border:1px solid ${color}44;border-radius:10px;padding:10px 12px;text-align:center">
+          <div style="font-size:10px;color:#888;margin-bottom:2px">${label}</div>
+          <div style="font-size:20px;font-weight:700;color:${color}">Топ ${top}%</div>
+          <div style="font-size:10px;color:#666;margin-top:1px">обогнал ${pct}%</div></div>`;
+      }
+
+      const pctSection = lbStats ? `
+        <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;margin-top:4px">📊 Перцентили (из ${totalUsers} польз.)</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px">
+          ${pctBadge(pctXp,     'XP всего',       '#ffd700')}
+          ${pctBadge(pctStreak, 'Стрик',          '#f97316')}
+          ${pctBadge(pctWeekXp, 'XP неделя',      '#34d399')}
+          ${pctBadge(pctD7xp,   'XP 7 дней',      '#a78bfa')}
+          ${pctBadge(pctD7time, 'Время 7 дней',   '#38bdf8')}
+        </div>` : `<div style="font-size:11px;color:#555;margin-bottom:12px">Перцентили: нет данных leaderboard_stats/global</div>`;
+
+      body.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px">
+          <div style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:11px;color:#888;margin-bottom:4px">7 дней XP</div>
+            <div style="font-size:22px;font-weight:700;color:#a78bfa">${fmt7(daily7xp)}</div>
+          </div>
+          <div style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:11px;color:#888;margin-bottom:4px">7 дней время</div>
+            <div style="font-size:22px;font-weight:700;color:#38bdf8">${fmtMs(daily7ms)}</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#555;margin-bottom:12px">Синк аналитики: ${updatedAt}</div>
+        ${pctSection}
+        <div style="font-size:12px;color:#aaa;margin-bottom:8px;font-weight:600">XP за 30 дней</div>
+        <div style="display:flex;align-items:flex-end;gap:1px;height:110px;overflow:hidden;padding-bottom:28px;margin-bottom:16px;border-bottom:1px solid #2a2a3a">
+          ${barXp}
+        </div>
+        <div style="font-size:12px;color:#aaa;margin-bottom:8px;font-weight:600">Время в приложении (мин) за 30 дней</div>
+        <div style="display:flex;align-items:flex-end;gap:1px;height:110px;overflow:hidden;padding-bottom:28px;margin-bottom:8px">
+          ${barMs}
+        </div>
+      `;
+    } catch (e) {
+      body.innerHTML = `<div style="color:#f87171;padding:20px">Ошибка загрузки: ${escapeHtml(String(e?.message || e))}</div>`;
+    }
+  };
+
+  window.closeUserAnalytics = function() {
+    document.getElementById('user-analytics-overlay').style.display = 'none';
+  };
+
+  // ── Перцентильные пороги ─────────────────────────────────────────────────
+  window.openPercentilePreview = async function() {
+    const overlay = document.getElementById('pct-preview-overlay');
+    const body = document.getElementById('pct-preview-body');
+    overlay.style.display = 'flex';
+    body.innerHTML = '<div style="color:#888;padding:20px 0;text-align:center">Загрузка…</div>';
+
+    try {
+      const snap = await getDoc(doc(db, 'leaderboard_stats', 'global'));
+      if (!snap.exists()) {
+        body.innerHTML = '<div style="color:#f87171;padding:20px">Документ leaderboard_stats/global не найден. Задеплойте computeLeaderboardStatsCron и дождитесь первого запуска.</div>';
+        return;
+      }
+      const d = snap.data();
+      const updAt = d.updatedAt ? new Date(d.updatedAt).toLocaleString('ru') : '—';
+
+      function pctRow(label, thresholds, fmtFn) {
+        if (!thresholds || thresholds.length < 99) return '';
+        const fmt = fmtFn || (v => Math.round(v).toLocaleString('ru'));
+        const p10 = fmt(thresholds[9]);
+        const p25 = fmt(thresholds[24]);
+        const p50 = fmt(thresholds[49]);
+        const p75 = fmt(thresholds[74]);
+        const p90 = fmt(thresholds[89]);
+        const p99 = fmt(thresholds[98]);
+        return `<tr>
+          <td style="padding:7px 10px;color:#aaa;font-weight:600">${label}</td>
+          <td style="padding:7px 8px;color:#64748b;text-align:right">${p10}</td>
+          <td style="padding:7px 8px;color:#94a3b8;text-align:right">${p25}</td>
+          <td style="padding:7px 8px;color:#38bdf8;text-align:right;font-weight:700">${p50}</td>
+          <td style="padding:7px 8px;color:#a78bfa;text-align:right">${p75}</td>
+          <td style="padding:7px 8px;color:#34d399;text-align:right">${p90}</td>
+          <td style="padding:7px 8px;color:#ffd700;text-align:right;font-weight:700">${p99}</td>
+        </tr>`;
+      }
+
+      const fmtMs = v => {
+        const m = Math.floor(v / 60000);
+        return m >= 60 ? `${Math.floor(m/60)}ч ${m%60}м` : `${m}м`;
+      };
+
+      // Update summary badge in analytics tab
+      const summary = document.getElementById('lbstats-summary');
+      if (summary) summary.textContent = `Пользователей: ${d.totalUsers} · Обновлено: ${updAt}`;
+
+      body.innerHTML = `
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px">
+          <div style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:10px;color:#888">Пользователей в базе</div>
+            <div style="font-size:24px;font-weight:700;color:#38bdf8;margin-top:4px">${(d.totalUsers||0).toLocaleString('ru')}</div>
+          </div>
+          <div style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:10px;color:#888">Обновлено</div>
+            <div style="font-size:13px;font-weight:600;color:#aaa;margin-top:4px">${updAt}</div>
+          </div>
+          <div style="background:#1a1a24;border:1px solid #14532d;border-radius:10px;padding:12px;text-align:center">
+            <div style="font-size:10px;color:#888">Cron</div>
+            <div style="font-size:13px;font-weight:600;color:#4ade80;margin-top:4px">каждый час</div>
+          </div>
+        </div>
+
+        <div style="font-size:11px;color:#555;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:10px">Пороги по перцентилям (что нужно иметь чтобы обогнать N%)</div>
+        <div style="overflow-x:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <thead>
+            <tr style="border-bottom:1px solid #2a2a3a">
+              <th style="padding:7px 10px;text-align:left;color:#555;font-weight:600">Метрика</th>
+              <th style="padding:7px 8px;text-align:right;color:#64748b">p10</th>
+              <th style="padding:7px 8px;text-align:right;color:#94a3b8">p25</th>
+              <th style="padding:7px 8px;text-align:right;color:#38bdf8">p50 медиана</th>
+              <th style="padding:7px 8px;text-align:right;color:#a78bfa">p75</th>
+              <th style="padding:7px 8px;text-align:right;color:#34d399">p90</th>
+              <th style="padding:7px 8px;text-align:right;color:#ffd700">p99</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${pctRow('XP всего', d.xpThresholds)}
+            ${pctRow('Стрик (дни)', d.streakThresholds)}
+            ${pctRow('XP неделя', d.weekXpThresholds)}
+            ${pctRow('XP 7 дней', d.daily7xpThresholds)}
+            ${pctRow('Время 7 дней', d.daily7timeMsThresholds, fmtMs)}
+            ${pctRow('Арена XP', d.arenaXpThresholds)}
+          </tbody>
+        </table>
+        </div>
+
+        <div style="margin-top:18px;padding:12px;background:#1a1a24;border:1px solid #2a2a3a;border-radius:10px">
+          <div style="font-size:11px;color:#555;margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px">Как читать таблицу</div>
+          <div style="font-size:12px;color:#888;line-height:1.6">
+            <b style="color:#38bdf8">p50 (медиана)</b> — половина пользователей ниже этого значения.<br>
+            <b style="color:#ffd700">p99</b> — нужно иметь больше этого числа чтобы войти в топ 1%.<br>
+            Баннеры в приложении показываются когда пользователь обогнал ≥ 10%.
+          </div>
+        </div>
+      `;
+    } catch (e) {
+      body.innerHTML = `<div style="color:#f87171;padding:20px">Ошибка: ${escapeHtml(String(e?.message || e))}</div>`;
+    }
+  };
+
+  window.closePercentilePreview = function() {
+    document.getElementById('pct-preview-overlay').style.display = 'none';
+  };
+
   // init: onAuthStateChanged + startAdminApp
 </script>
+
+<!-- Percentile thresholds preview modal -->
+<div id="pct-preview-overlay" onclick="if(event.target===this)closePercentilePreview()"
+  style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:20000;justify-content:center;align-items:center;padding:16px">
+  <div onclick="event.stopPropagation()" style="background:#161620;border:1px solid #2a2a3a;border-radius:16px;max-width:760px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,0.6)">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #2a2a3a;position:sticky;top:0;background:#161620;z-index:1">
+      <div style="font-size:15px;font-weight:700;color:#4ade80">🎯 Перцентильные пороги — leaderboard_stats/global</div>
+      <button type="button" onclick="closePercentilePreview()" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#ccc;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px;line-height:1">✕</button>
+    </div>
+    <div id="pct-preview-body" style="padding:18px 18px 22px"></div>
+  </div>
+</div>
+
+<!-- User analytics modal -->
+<div id="user-analytics-overlay" onclick="if(event.target===this)closeUserAnalytics()"
+  style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:20000;justify-content:center;align-items:center;padding:16px">
+  <div onclick="event.stopPropagation()" style="background:#161620;border:1px solid #2a2a3a;border-radius:16px;max-width:680px;width:100%;max-height:88vh;overflow:auto;box-shadow:0 20px 60px rgba(0,0,0,0.6)">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid #2a2a3a;position:sticky;top:0;background:#161620;z-index:1">
+      <div id="ua-title" style="font-size:15px;font-weight:700;color:#e0e0e0"></div>
+      <button type="button" onclick="closeUserAnalytics()" style="background:#2a2a3a;border:1px solid #3a3a4a;color:#ccc;border-radius:8px;width:36px;height:36px;cursor:pointer;font-size:16px;line-height:1">✕</button>
+    </div>
+    <div id="ua-body" style="padding:18px 18px 22px"></div>
+  </div>
+</div>
+
 </body>
 </html>

@@ -51,8 +51,8 @@ const LISTING_ADMIN_REVISION = 'admin_revision_required';
 const LISTING_ADMIN_REMOVED = 'admin_removed';
 const CARD_MIN = 10;
 const CARD_MAX = 50;
-const PRICE_MIN = 20;
-const PRICE_MAX = 300;
+/** Фиксированная цена UGC-набора (осколки). Клиент не может задать другую — подменяем здесь. */
+const UGC_PACK_PRICE_SHARDS = 10;
 /** Базис 10_000 = 100 %. Часть цены не передаётся автору (остаётся в экономике приложения). */
 const PLATFORM_FEE_BPS = 1500;
 const UGC_CARD_THEME_KEYS = new Set([
@@ -84,10 +84,6 @@ function normalizeSubmissionPayload(raw) {
     if (n < CARD_MIN || n > CARD_MAX) {
         throw new https_1.HttpsError('invalid-argument', `Cards must be ${CARD_MIN}–${CARD_MAX}`);
     }
-    const price = Math.floor(Number(raw.priceShards));
-    if (!Number.isFinite(price) || price < PRICE_MIN || price > PRICE_MAX) {
-        throw new https_1.HttpsError('invalid-argument', `priceShards must be ${PRICE_MIN}–${PRICE_MAX}`);
-    }
     for (const c of raw.cards) {
         if (!c?.id || !String(c.en).trim() || !String(c.ru).trim()) {
             throw new https_1.HttpsError('invalid-argument', 'Each card needs id, en, ru');
@@ -102,7 +98,7 @@ function normalizeSubmissionPayload(raw) {
         titleUk: titleSingle,
         descriptionRu: descSingle,
         descriptionUk: descSingle,
-        priceShards: price,
+        priceShards: UGC_PACK_PRICE_SHARDS,
         cards: raw.cards,
         cardThemeKey,
     };
@@ -537,10 +533,7 @@ exports.communityPurchasePack = (0, https_1.onCall)(async (request) => {
         if (authorStableId === buyerStableId) {
             throw new https_1.HttpsError('failed-precondition', 'Cannot buy your own pack');
         }
-        const price = Math.floor(Number(pack.priceShards));
-        if (!Number.isFinite(price) || price < PRICE_MIN || price > PRICE_MAX) {
-            throw new https_1.HttpsError('failed-precondition', 'Invalid pack price');
-        }
+        const price = UGC_PACK_PRICE_SHARDS;
         if (purSnap.exists) {
             return { alreadyOwned: true, priceShards: price };
         }

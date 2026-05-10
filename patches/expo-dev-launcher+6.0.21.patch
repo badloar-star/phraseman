@@ -1,0 +1,56 @@
+diff --git a/node_modules/expo-dev-launcher/android/src/debug/java/expo/modules/devlauncher/DevLauncherController.kt b/node_modules/expo-dev-launcher/android/src/debug/java/expo/modules/devlauncher/DevLauncherController.kt
+index 2bcd6ba..dfb8121 100644
+--- a/node_modules/expo-dev-launcher/android/src/debug/java/expo/modules/devlauncher/DevLauncherController.kt
++++ b/node_modules/expo-dev-launcher/android/src/debug/java/expo/modules/devlauncher/DevLauncherController.kt
+@@ -120,6 +120,19 @@
+     return url.host.equals("u.expo.dev") || url.host.equals("staging-u.expo.dev")
+   }
+ 
++  /**
++   * Phraseman dev: `adb reverse tcp:8081` maps emulator 127.0.0.1:8081 to host Metro. Rewriting loopback
++   * to 10.0.2.2 breaks that path and often hangs on Windows; keep recent URLs unchanged.
++   */
++  private fun rewriteLoopbackDevServerUrlForEmulator(url: String): String {
++    return url
++  }
++
++  private fun devLauncherUriForPackagerUrl(launcherSchemePrefix: String, packagerUrl: String): Uri {
++    val encoded = Uri.encode(packagerUrl)
++    return "$launcherSchemePrefix://expo-development-client/?url=$encoded".toUri()
++  }
++
+   override fun onRequestRelaunch() {
+     val latestLoadedApp = latestLoadedApp ?: return
+     coroutineScope.launch {
+@@ -277,15 +290,30 @@
+       val shouldTryToLaunchLastOpenedBundle = getMetadataValue(context, "DEV_CLIENT_TRY_TO_LAUNCH_LAST_BUNDLE", "true").toBoolean()
+       val lastOpenedApp = recentlyOpedAppsRegistry.getMostRecentApp()
+       if (shouldTryToLaunchLastOpenedBundle && lastOpenedApp != null) {
++        val rewrittenUrl = rewriteLoopbackDevServerUrlForEmulator(lastOpenedApp.url)
+         coroutineScope.launch {
+           try {
+-            loadApp(lastOpenedApp.url.toUri(), activityToBeInvalidated)
++            loadApp(rewrittenUrl.toUri(), activityToBeInvalidated)
+           } catch (_: Throwable) {
+             navigateToLauncher()
+           }
+         }
+         return true
+       }
++
++      val fallbackPackager = getMetadataValue(context, "DEV_CLIENT_FALLBACK_PACKAGER_URL", "")
++      val fallbackScheme = getMetadataValue(context, "DEV_CLIENT_FALLBACK_LAUNCHER_SCHEME", "")
++      if (fallbackPackager.isNotEmpty() && fallbackScheme.isNotEmpty()) {
++        coroutineScope.launch {
++          try {
++            loadApp(devLauncherUriForPackagerUrl(fallbackScheme, fallbackPackager), activityToBeInvalidated)
++          } catch (_: Throwable) {
++            navigateToLauncher()
++          }
++        }
++        return true
++      }
++
+       return handleExternalIntent(it)
+     }
+ 

@@ -39,11 +39,16 @@ interface UseArenaSessionResult {
   getReadyEndsAt: number | undefined;
   abortReason: ArenaSession['abortReason'];
   myLobbyChoice: SessionPlayer['lobbyChoice'];
+  sessionType: ArenaSession['type'] | undefined;
 }
 
 const COUNTDOWN_SECONDS = 3;
-/** После старта вопроса ждём столько, прежде чем считать соперника «не вышел на связь» (без сетевых get). Шире старого ~15 с, чтобы не форфитить на медленной сети. */
-const OPPONENT_ABSENT_GRACE_MS = 35_000;
+/** После старта вопроса ждём столько, прежде чем считать соперника «не вышел на связь» (без сетевых get).
+ * Должно быть > questionTimeoutMs (40 с) + Firestore latency. Иначе при нормальном завершении раунда
+ * оба клиента могут ошибочно считать друг друга «ушедшим» (lastSeen < qStart из-за clock skew). */
+const OPPONENT_ABSENT_GRACE_MS = 55_000;
+/** Допуск на расхождение часов клиента и сервера (сервер пишет questionStartedAt, клиент пишет lastSeen). */
+const CLOCK_SKEW_TOLERANCE_MS = 5_000;
 
 export function useArenaSession(
   sessionId: string,
@@ -172,7 +177,7 @@ export function useArenaSession(
       if (!opponent) return;
       const ls = (opponent as SessionPlayer & { lastSeen?: number }).lastSeen;
       if (typeof ls !== 'number') return;
-      if (ls >= qStart) return;
+      if (ls >= qStart - CLOCK_SKEW_TOLERANCE_MS) return;
 
       clearInterval(id);
       setOpponentForfeited(true);
@@ -360,5 +365,6 @@ export function useArenaSession(
     getReadyEndsAt: session?.getReadyEndsAt,
     abortReason: session?.abortReason,
     myLobbyChoice: me?.lobbyChoice,
+    sessionType: session?.type,
   };
 }

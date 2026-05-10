@@ -25,11 +25,12 @@ import PlayerProfileModal, { PlayerInfo } from '../components/PlayerProfileModal
 import ReportUserModal from '../components/ReportUserModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
-import { getRankImage, useArenaRank } from '../hooks/use-arena-rank';
+import { getRankImage, getRankImageDisplayScale, useArenaRank } from '../hooks/use-arena-rank';
 import { hapticTap } from '../hooks/use-haptics';
 import { logFeatureOpened } from './firebase';
 import { trackFeatureOpened } from './user_stats';
 import { ensureAnonUser } from './cloud_sync';
+import { ensureArenaAuthUid } from './user_id_policy';
 import type { RankTier } from './types/arena';
 import {
   loadArenaTop100,
@@ -40,7 +41,8 @@ import {
   fetchMyArenaRank,
   getCachedMyArenaRank,
 } from './arena_leaderboard_fetch';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, DEV_MODE } from './config';
+import { computeAllPercentiles } from './leaderboard_stats';
 
 const ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY = 'arena_top100_manual_cooldown_until_v1';
 
@@ -101,12 +103,14 @@ export default function ArenaLeaderboardScreen() {
   const [manualRefreshCooldownUntil, setManualRefreshCooldownUntil] = useState(0);
   const [nowTs, setNowTs] = useState(() => Date.now());
   const [myUid, setMyUid] = useState<string | null>(null);
+  const [myStableUid, setMyStableUid] = useState<string | null>(null);
   const [myName, setMyName] = useState('');
   const [myTotalXp, setMyTotalXp] = useState(0);
   const [myAvatar, setMyAvatar] = useState('');
   const [myFrame, setMyFrame] = useState('');
   const [myArenaPlace, setMyArenaPlace] = useState<number | null>(null);
   const [myArenaPlaceLoading, setMyArenaPlaceLoading] = useState(false);
+  const [arenaXpPercentile, setArenaXpPercentile] = useState<number | null>(null);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
   const [reportTarget, setReportTarget] = useState<{ uid: string; name: string } | null>(null);
 
@@ -116,7 +120,8 @@ export default function ArenaLeaderboardScreen() {
   }, []);
 
   useEffect(() => {
-    void ensureAnonUser().then(setMyUid);
+    void ensureArenaAuthUid().then(setMyUid);
+    void ensureAnonUser().then(setMyStableUid);
     (async () => {
       const [n, xp, av, fr] = await AsyncStorage.multiGet([
         'user_name',
@@ -142,8 +147,16 @@ export default function ArenaLeaderboardScreen() {
   // запросы для тех, кто и так попал в видимую сотню.
   useEffect(() => {
     if (loading) return;
-    if (!myArena || (myArena.games ?? 0) < 1) return;
-    if (myUid && rows.some((r) => r.uid === myUid)) return;
+    if (!myArena || (myArena.games ?? 0) < 1) {
+      setMyArenaPlaceLoading(false);
+      return;
+    }
+    if (myUid && rows.some((r) => r.uid === myUid)) {
+      const me = rows.find((r) => r.uid === myUid);
+      if (me) setMyArenaPlace(me.place);
+      setMyArenaPlaceLoading(false);
+      return;
+    }
     let cancelled = false;
     setMyArenaPlaceLoading(true);
     fetchMyArenaRank()
@@ -156,8 +169,22 @@ export default function ArenaLeaderboardScreen() {
       });
     return () => {
       cancelled = true;
+      // Иначе при смене зависимостей до ответа Firestore спиннер «залипает» навсегда:
+      // предыдущий fetch в finally не гасит loading из‑за cancelled, а новый прогон
+      // может выйти по ранним return без сброса.
+      setMyArenaPlaceLoading(false);
     };
   }, [loading, myArena, myUid, rows]);
+
+  useEffect(() => {
+    // В dev-режиме используем mock-xp если реального нет
+    const arenaXp = (myArena?.xp ?? 0) > 0 ? myArena!.xp : (__DEV__ || DEV_MODE) ? 800 : 0;
+    if (arenaXp <= 0) return;
+    if (!(__DEV__ || DEV_MODE) && (myArena?.games ?? 0) < 1) return;
+    computeAllPercentiles({ myXp: 0, myStreak: 0, myWeekXp: 0, myDaily7xp: 0, myDaily7timeMs: 0, myArenaXp: arenaXp })
+      .then((p) => { if (p.arenaXp !== null && p.arenaXp >= 10) setArenaXpPercentile(p.arenaXp); })
+      .catch(() => {});
+  }, [myArena]);
 
   useEffect(() => {
     AsyncStorage.getItem(ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY)
@@ -195,7 +222,7 @@ export default function ArenaLeaderboardScreen() {
     try {
       await AsyncStorage.multiRemove([ARENA_TOP100_CACHE_KEY, ARENA_REMOTE_REFRESH_AT_KEY]);
       await reloadBoard({ forceRemote: true });
-      const next = Date.now() + ARENA_REMOTE_REFRESH_MS;
+      const next = Date.now() + 5 * 60 * 1000; // 5 мин cooldown на ручной refresh
       setManualRefreshCooldownUntil(next);
       await AsyncStorage.setItem(ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY, String(next));
     } finally {
@@ -372,11 +399,13 @@ export default function ArenaLeaderboardScreen() {
                   ) : null
                 }
                 renderItem={({ item }) => {
-                  const isMe = myUid ? item.uid === myUid : false;
+                  const isMe =
+                    (!!myUid && item.uid === myUid) ||
+                    (!!myStableUid && item.friendUid === myStableUid);
                   const isTop3 = item.place <= 3;
                   const totalXp = item.totalXp;
                   const lvl = getLevelFromXP(totalXp);
-                  const rowAvatar = String(getBestAvatarForLevel(lvl));
+                  const rowAvatar = String(item.avatarEmoji?.trim() || getBestAvatarForLevel(lvl));
                   const duelLabel = rankLabelByLang(item.tier, item.levelRoman, lang);
                   const rankImg = getRankImage(item.tier, item.levelRoman);
 
@@ -392,6 +421,7 @@ export default function ArenaLeaderboardScreen() {
                           streak: null,
                           leagueId: undefined,
                           uid: item.uid,
+                          friendUid: item.friendUid ?? '',
                           isPremium: item.isPremium,
                         });
                       }}
@@ -450,7 +480,25 @@ export default function ArenaLeaderboardScreen() {
                           {`${triLang(lang, { uk: 'Місце', ru: 'Место', es: 'Puesto' })} ${item.place} · ${duelLabel} · ${triLang(lang, { uk: 'рів.', ru: 'ур.', es: 'nv.' })} ${lvl}`}
                         </Text>
                       </View>
-                      <Image source={rankImg} style={{ width: 44, height: 44 }} resizeMode="contain" />
+                      <View
+                        style={{
+                          width: 44,
+                          height: 44,
+                          overflow: 'hidden',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Image
+                          source={rankImg}
+                          resizeMode="contain"
+                          style={{
+                            width: 44,
+                            height: 44,
+                            transform: [{ scale: getRankImageDisplayScale(item.tier, item.levelRoman) }],
+                          }}
+                        />
+                      </View>
                     </Pressable>
                   );
                 }}
@@ -531,9 +579,36 @@ export default function ArenaLeaderboardScreen() {
                         {myDuelLabel}
                       </Text>
                     )}
+                    {arenaXpPercentile !== null && (
+                      <Text numberOfLines={1} style={{ color: '#F59E0B', fontSize: f.label - 1, marginTop: 2, fontWeight: '700' }}>
+                        {triLang(lang, {
+                          ru: `Топ ${100 - arenaXpPercentile}% в арене`,
+                          uk: `Топ ${100 - arenaXpPercentile}% в арені`,
+                          es: `Top ${100 - arenaXpPercentile}% en arena`,
+                        })}
+                      </Text>
+                    )}
                   </View>
-                  {myRankImg ? (
-                    <Image source={myRankImg} style={{ width: 40, height: 40 }} resizeMode="contain" />
+                  {myRankImg && myArena ? (
+                    <View
+                      style={{
+                        width: 40,
+                        height: 40,
+                        overflow: 'hidden',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Image
+                        source={myRankImg}
+                        resizeMode="contain"
+                        style={{
+                          width: 40,
+                          height: 40,
+                          transform: [{ scale: getRankImageDisplayScale(myArena.tier, myArena.level) }],
+                        }}
+                      />
+                    </View>
                   ) : null}
                 </View>
               </View>

@@ -13,7 +13,7 @@ const TOP3_EMOJI = ['🥇', '🥈', '🥉'];
 
 interface Props {
   visible: boolean;
-  mode: 'club' | 'hof';
+  mode: 'club';
   /** prev_rank - new_rank. >0 поднялся, <0 опустился. */
   delta: number;
   onClose: () => void;
@@ -41,28 +41,14 @@ const FAKE_PARTICIPANTS_CLUB: FakeRow[] = [
   { name: 'Маша',  points: 1300, totalXp: 3500 },
 ];
 
-const FAKE_PARTICIPANTS_HOF: FakeRow[] = [
-  { name: 'Pro_Master', points: 142000, totalXp: 142000 },
-  { name: 'Linguist',   points: 128500, totalXp: 128500, isPremium: true },
-  { name: 'WordKing',   points: 110200, totalXp: 110200 },
-  { name: 'Phraseman',  points:  98700, totalXp: 98700 },
-  { name: 'EnglishGuru',points:  87400, totalXp: 87400 },
-  { name: 'Vocab_Pro',  points:  75200, totalXp: 75200, isPremium: true },
-  { name: 'Daily_Win',  points:  64100, totalXp: 64100 },
-  { name: 'IdiomLover', points:  53000, totalXp: 53000 },
-  { name: 'NightOwl',   points:  42500, totalXp: 42500 },
-  { name: 'Streak50',   points:  31800, totalXp: 31800 },
-];
-
 const ROW_HEIGHT_CLUB = 60;
-const ROW_HEIGHT_HOF  = 64;
 const MY_INDEX = 4;
 
-function buildSorted(mode: 'club' | 'hof', lang: Lang): { rows: FakeRow[]; myRank: number } {
-  const base = mode === 'club' ? FAKE_PARTICIPANTS_CLUB : FAKE_PARTICIPANTS_HOF;
+function buildSorted(lang: Lang): { rows: FakeRow[]; myRank: number } {
+  const base = FAKE_PARTICIPANTS_CLUB;
   const myReference = base[MY_INDEX];
   const myPts = myReference.points + 1;
-  const myXp = mode === 'club' ? 12000 : myReference.totalXp + 1;
+  const myXp = 12000;
   const list: FakeRow[] = [];
   for (let i = 0; i < base.length; i++) {
     if (i === MY_INDEX) {
@@ -85,9 +71,9 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
   const myAnim = useRef(new Animated.Value(0)).current;
   const bannerKeyRef = useRef(0);
 
-  const ROW_HEIGHT = mode === 'club' ? ROW_HEIGHT_CLUB : ROW_HEIGHT_HOF;
+  const ROW_HEIGHT = ROW_HEIGHT_CLUB;
 
-  const { rows, myRank } = useMemo(() => buildSorted(mode, lang), [mode, lang]);
+  const { rows, myRank } = useMemo(() => buildSorted(lang), [lang]);
 
   useEffect(() => {
     if (!visible) return;
@@ -113,17 +99,11 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
 
   const sampleLeague = LEAGUES[0]; // Медь — для preview шапки клуба
 
-  const headerTitle = mode === 'club'
-    ? triLang(lang, {
-        ru: 'Тест: Лига недели',
-        uk: 'Тест: Ліга тижня',
-        es: 'Prueba: Liga de la semana',
-      })
-    : triLang(lang, {
-        ru: 'Тест: Зал славы',
-        uk: 'Тест: Зала слави',
-        es: 'Prueba: Salón de la fama',
-      });
+  const headerTitle = triLang(lang, {
+    ru: 'Тест: Лига недели',
+    uk: 'Тест: Ліга тижня',
+    es: 'Prueba: Liga de la semana',
+  });
 
   const renderClubRow = (row: FakeRow, i: number) => {
     const isMe = !!row.isMe;
@@ -174,60 +154,6 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
     );
   };
 
-  const renderHofRow = (row: FakeRow, i: number) => {
-    const isMe = !!row.isMe;
-    const isTop3 = i < 3;
-    const rowAvatar = String(getBestAvatarForLevel(getLevelFromXP(row.totalXp)));
-    return (
-      <Animated.View
-        key={`${row.name}-${i}`}
-        style={{
-          transform: isMe ? [{ translateY: myAnim }] : undefined,
-          zIndex: isMe ? 5 : 0,
-          elevation: isMe ? 5 : 0,
-        }}
-      >
-        <View
-          style={{
-            flexDirection: 'row', alignItems: 'center',
-            paddingHorizontal: 16, paddingVertical: 14,
-            borderBottomWidth: 0.5, borderBottomColor: t.border,
-            backgroundColor: isMe ? accentBg : t.bgCard,
-          }}
-        >
-          <Text style={{
-            width: 36, fontSize: isTop3 ? 16 : 14,
-            color: isTop3 ? goldColor : t.textPrimary,
-            textAlign: 'center',
-            fontWeight: isTop3 ? '700' : '400',
-          }}>
-            {i + 1}
-          </Text>
-          <View style={{ marginRight: 10 }}>
-            <AvatarView avatar={rowAvatar} totalXP={row.totalXp} size={36} />
-          </View>
-          <Text
-            numberOfLines={1}
-            style={{
-              flex: 1,
-              fontSize: isTop3 ? 17 : 15,
-              color: t.textPrimary,
-              fontWeight: isMe || isTop3 ? '700' : '600',
-            }}
-          >
-            {row.name}{isMe ? triLang(lang, { uk: ' (ти)', ru: ' (ты)', es: ' (tú)' }) : ''}
-          </Text>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <Ionicons name="star" size={12} color={t.textSecond} />
-            <Text style={{ color: t.textSecond, fontSize: isTop3 ? 17 : 14, fontWeight: '600' }}>
-              {row.points}
-            </Text>
-          </View>
-        </View>
-      </Animated.View>
-    );
-  };
-
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose} statusBarTranslucent>
       <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.78)', justifyContent: 'center', padding: 8 }}>
@@ -266,8 +192,7 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
               onClose={() => {}}
             />
 
-            {mode === 'club' && (
-              <View style={{
+            <View style={{
                 backgroundColor: t.bgSurface, borderRadius: 16, padding: 14,
                 borderWidth: 0.5, borderColor: t.border,
                 flexDirection: 'row', alignItems: 'center', gap: 12,
@@ -292,37 +217,21 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
                   </Text>
                 </View>
               </View>
-            )}
-
-            {mode === 'hof' && (
-              <View style={{
-                flexDirection: 'row', paddingHorizontal: 20, paddingVertical: 6,
-                borderBottomWidth: 0.5, borderBottomColor: t.border,
-              }}>
-                <Text style={{ width: 44, color: t.textGhost, fontSize: f.label, fontWeight: '600' }}>#</Text>
-                <Text style={{ flex: 1, color: t.textGhost, fontSize: f.label, fontWeight: '600' }}>
-                  {triLang(lang, { ru: 'Участник', uk: 'Учасник', es: 'Participante' })}
-                </Text>
-                <Text style={{ color: t.textGhost, fontSize: f.label, fontWeight: '600' }}>
-                  {triLang(lang, { ru: 'Опыт', uk: 'Досвід', es: 'Experiencia' })}
-                </Text>
-              </View>
-            )}
 
             <View style={{
-              borderRadius: mode === 'club' ? 16 : 0,
+              borderRadius: 16,
               overflow: 'hidden',
-              borderWidth: mode === 'club' ? 0.5 : 0,
+              borderWidth: 0.5,
               borderColor: t.border,
             }}>
-              {rows.map((row, i) => mode === 'club' ? renderClubRow(row, i) : renderHofRow(row, i))}
+              {rows.map((row, i) => renderClubRow(row, i))}
             </View>
 
             <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center', paddingHorizontal: 8 }}>
               {triLang(lang, {
-                ru: '🧪 Тестовое окно. Реальные клубы и зал славы не меняются.',
-                uk: '🧪 Тестове вікно. Реальні клуби та зала слави не змінюються.',
-                es: '🧪 Ventana de prueba. Los clubes y el salón de la fama reales no cambian.',
+                ru: '🧪 Тестовое окно. Реальные клубы не меняются.',
+                uk: '🧪 Тестове вікно. Реальні клуби не змінюються.',
+                es: '🧪 Ventana de prueba. Los clubes reales no cambian.',
               })}
             </Text>
           </ScrollView>

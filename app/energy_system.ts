@@ -9,7 +9,7 @@ export interface EnergyState {
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 const MAX_ENERGY = 5;
-const RECOVERY_INTERVAL_MS = 30 * 60 * 1000; // 30 минут в миллисекундах
+const RECOVERY_INTERVAL_MS = 10 * 60 * 1000; // 10 минут в миллисекундах
 const ENERGY_PER_LESSON = 1;
 
 const DEFAULT_STATE: EnergyState = {
@@ -176,17 +176,21 @@ export async function getTimeUntilNextRecovery(): Promise<number> {
 }
 
 /**
- * Форматировать время до восстановления в читаемый формат (e.g., "1ч 30м").
+ * Форматировать время до восстановления в читаемый формат (e.g., "1ч 30м 0с", "45с").
  */
 export function formatTimeUntilRecovery(ms: number): string {
-  const totalSeconds = Math.floor(ms / 1000);
+  const totalSeconds = Math.max(0, Math.floor(ms / 1000));
   const hours = Math.floor(totalSeconds / 3600);
   const minutes = Math.floor((totalSeconds % 3600) / 60);
+  const seconds = totalSeconds % 60;
 
   if (hours > 0) {
-    return `${hours}ч ${minutes}м`;
+    return `${hours}ч ${minutes}м ${seconds}с`;
   }
-  return `${minutes}м`;
+  if (minutes > 0) {
+    return `${minutes}м ${seconds}с`;
+  }
+  return `${seconds}с`;
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

@@ -1,6 +1,8 @@
 import type { Lang } from '../constants/i18n';
 import type { LessonPhrase, LessonWord } from './lesson_data_types';
 import type { StudyTargetLang } from './study_target_lang_dev';
+import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
+import { spanishStudyActive } from './spanish_content_gate';
 
 const stripMarkers = (word: string): string => {
   const stripped = word
@@ -17,12 +19,20 @@ export function cleanPhraseForDisplay(surface: string): string {
   return surface.split(' ').map(stripMarkers).filter(w => w.length > 0).join(' ');
 }
 
+/**
+ * English line from lesson/active recall storage: spaced chunk markers (` … - … `) collapse to normal prose.
+ * Hyphenated compounds (`fir-tree`, `Wi-Fi`) stay intact — только токены, равные «-», отбрасываются как в сборке слов урока.
+ */
+export function englishRecallSurface(surface: string): string {
+  return cleanPhraseForDisplay(surface.replace(/\s+/g, ' ').trim());
+}
+
 /** Слоты токенов для режима изучения: ES → `words` (L2), EN → `wordsEn` при двойном наборе. */
 export function phraseWordRowsForStudyTarget(
   phrase: LessonPhrase,
   studyTarget: StudyTargetLang,
 ): LessonWord[] {
-  if (studyTarget === 'es') {
+  if (ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es') {
     return phrase.words?.length ? phrase.words : [];
   }
   if (phrase.wordsEn?.length) return phrase.wordsEn;
@@ -45,9 +55,18 @@ export function phraseCanonicalAnswer(phrase: LessonPhrase, studyTarget: StudyTa
 
 /** Текст цели: английская фраза или испанский перевод (если выбрано изучение ES и spanish заполнен). */
 export function phrasePrimarySurface(phrase: LessonPhrase, studyTarget: StudyTargetLang): string {
-  if (studyTarget === 'es') {
+  if (ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es') {
     const s = phrase.spanish?.trim();
     if (s) return s;
+  }
+  const rows = phraseWordRowsForStudyTarget(phrase, studyTarget);
+  if (rows.length > 0) {
+    let s = phraseCanonicalAnswer(phrase, studyTarget);
+    const ref = phrase.english.trim();
+    if (ref.endsWith('.') && !/[.?!]$/.test(s)) s += '.';
+    if (ref.endsWith('?') && !/[.?!]$/.test(s)) s += '?';
+    if (ref.endsWith('!') && !/[.?!]$/.test(s)) s += '!';
+    return s;
   }
   return phrase.english;
 }
@@ -56,7 +75,7 @@ export function phraseAnswerAlternatives(
   phrase: LessonPhrase,
   studyTarget: StudyTargetLang,
 ): string[] | undefined {
-  if (studyTarget === 'es') {
+  if (ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es') {
     return phrase.alternativesEs;
   }
   return phrase.alternatives;
@@ -70,17 +89,23 @@ export function phraseAnswerDisplayLine(
   studyTarget: StudyTargetLang,
   uiLang: Lang,
 ): string {
-  const useEsSurface = studyTarget === 'es' && !!phrase.spanish?.trim();
-  const clean = useEsSurface
-    ? cleanPhraseForDisplay(phrasePrimarySurface(phrase, studyTarget))
-    : cleanPhraseForDisplay(phrase.english);
+  const useEsSurface =
+    spanishStudyActive(studyTarget) && !!phrase.spanish?.trim();
+  // Для EN показываем склейку слотов (`words`), как при проверке ответа — иначе при расхождении
+  // `english` и слотов пользователь видит одну формулировку, а проверку проходит другая.
+  const rawSurface = useEsSurface
+    ? phrasePrimarySurface(phrase, studyTarget)
+    : phraseWordRowsForStudyTarget(phrase, studyTarget).length > 0
+      ? phraseCanonicalAnswer(phrase, studyTarget)
+      : phrase.english;
+  const clean = cleanPhraseForDisplay(rawSurface);
   if (/[.?!]$/.test(clean)) return clean;
-  const punctSrc =
-    studyTarget === 'es'
-      ? (phrase.spanish ?? phrase.english)
-      : uiLang === 'es'
-        ? (phrase.spanish ?? phrase.russian)
-        : phrase.russian;
+  let punctSrc: string | undefined;
+  if (spanishStudyActive(studyTarget)) {
+    punctSrc = phrase.spanish ?? phrase.english;
+  } else {
+    punctSrc = uiLang === 'uk' ? (phrase.ukrainian ?? phrase.russian) : phrase.russian;
+  }
   if (punctSrc?.endsWith('?')) return clean + '?';
   if (punctSrc?.endsWith('!')) return clean + '!';
   if (punctSrc?.endsWith('.')) return clean + '.';
@@ -88,7 +113,7 @@ export function phraseAnswerDisplayLine(
 }
 
 export function ttsLocaleForStudyTarget(studyTarget: StudyTargetLang): 'en-US' | 'es-ES' {
-  return studyTarget === 'es' ? 'es-ES' : 'en-US';
+  return ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es' ? 'es-ES' : 'en-US';
 }
 
 export default function __PhraseTargetUtilsRouteShim() {

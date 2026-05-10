@@ -77,6 +77,13 @@ export default class ErrorBoundary extends React.Component<Props, State> {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       const fb = require('../app/firebase');
       fb?.recordError?.(error, errorInfo.componentStack ?? 'render');
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const health = require('../app/app_health');
+      health?.logAppCritical?.('react:error_boundary', error, {
+        feature: 'react',
+        screen: 'root',
+        tags: { componentStack: (errorInfo.componentStack ?? '').slice(0, 500) },
+      });
     } catch {}
   }
 

@@ -27,6 +27,8 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { englishRecallSurface } from './phrase_target_utils';
+
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
 /** Откуда запись попала в очередь (старые данные без поля = урок). */
@@ -77,6 +79,32 @@ const MAX_ITEMS = 300;
 const AUTO_DELETE_DAYS = 60;
 
 // ─── Утилиты ─────────────────────────────────────────────────────────────────
+
+/** Ключ AsyncStorage для EN-фразы: без chunk-маркеров ` — `/` - ` как в тексте lesson 20. */
+function recallPhraseKey(phrase: string): string {
+  return englishRecallSurface(phrase);
+}
+
+/** Если после нормализации оказались дубликаты, объединяем — консервативный SM-2. */
+function mergeDuplicateRecallItems(a: RecallItem, b: RecallItem): RecallItem {
+  const newer = a.lastReviewed >= b.lastReviewed ? a : b;
+  const older = newer === a ? b : a;
+  return {
+    phrase: newer.phrase,
+    correctAnswer: newer.correctAnswer || older.correctAnswer,
+    correctAnswerUK: newer.correctAnswerUK ?? older.correctAnswerUK,
+    correctAnswerES: newer.correctAnswerES ?? older.correctAnswerES,
+    lessonId: newer.lessonId,
+    source: newer.source ?? older.source,
+    errorCount: Math.max(a.errorCount, b.errorCount),
+    repetitions: Math.min(a.repetitions, b.repetitions),
+    interval: Math.min(a.interval, b.interval),
+    easeFactor: Math.min(a.easeFactor, b.easeFactor),
+    createdAt: Math.min(a.createdAt, b.createdAt),
+    lastReviewed: Math.max(a.lastReviewed, b.lastReviewed),
+    nextDue: Math.min(a.nextDue, b.nextDue),
+  };
+}
 
 const MS_PER_DAY = 24 * 60 * 60 * 1000;
 
@@ -136,7 +164,13 @@ async function loadItems(): Promise<RecallItem[]> {
 /** Исправляет устаревшие фразы в хранилище (однократно при загрузке). */
 function applyCorrections(items: RecallItem[]): RecallItem[] {
   let changed = false;
-  const fixed = items.map(item => {
+
+  const withoutArena = items.filter((i) => i.source !== 'arena');
+  if (withoutArena.length !== items.length) {
+    changed = true;
+  }
+
+  const afterTable = withoutArena.map(item => {
     const correct = PHRASE_CORRECTIONS[item.phrase];
     if (correct) {
       changed = true;
@@ -144,7 +178,25 @@ function applyCorrections(items: RecallItem[]): RecallItem[] {
     }
     return item;
   });
-  // Сохраняем асинхронно только если были изменения
+
+  const normalized = afterTable.map(item => {
+    const key = recallPhraseKey(item.phrase);
+    if (key !== item.phrase) changed = true;
+    return { ...item, phrase: key };
+  });
+
+  const byPhrase = new Map<string, RecallItem>();
+  for (const item of normalized) {
+    const prev = byPhrase.get(item.phrase);
+    if (!prev) {
+      byPhrase.set(item.phrase, item);
+    } else {
+      changed = true;
+      byPhrase.set(item.phrase, mergeDuplicateRecallItems(prev, item));
+    }
+  }
+
+  const fixed = Array.from(byPhrase.values());
   if (changed) {
     AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(fixed)).catch(() => {});
   }
@@ -180,6 +232,8 @@ export async function recordMistake(
 ): Promise<void> {
   const raw = await loadItems();
 
+  const phraseKey = recallPhraseKey(phrase);
+
   // Авто-удаление: фразы, которые не показывались AUTO_DELETE_DAYS дней
   const cutoff = Date.now() - AUTO_DELETE_DAYS * MS_PER_DAY;
   let items = raw.filter(i => i.lastReviewed >= cutoff);
@@ -191,7 +245,7 @@ export async function recordMistake(
       .slice(0, MAX_ITEMS - 1);
   }
 
-  const existing = items.find(i => i.phrase === phrase);
+  const existing = items.find(i => i.phrase === phraseKey);
 
   if (existing) {
     // Фраза уже есть — увеличиваем счётчик, снижаем easeFactor, сбрасываем интервал
@@ -214,7 +268,7 @@ export async function recordMistake(
   } else {
     // Новая фраза
     const newItem: RecallItem = {
-      phrase,
+      phrase: phraseKey,
       correctAnswer,
       correctAnswerUK,
       correctAnswerES,
@@ -233,6 +287,18 @@ export async function recordMistake(
 
   await saveItems(items);
 }
+
+/** Режимы Тренера — влияют на фильтрацию/сортировку getTrainerItems. */
+export type TrainerMode =
+  | 'due'        // Срочные: nextDue ≤ сегодня — стандартный SRS (Free)
+  | 'fresh'      // Свежие: добавлены за последние 7 дней (Free)
+  | 'weak'       // Слабые места: easeFactor ≤ 1.7 (Premium)
+  | 'hard'       // Сложные: errorCount ≥ 3 (Premium)
+  | 'smart_mix'  // Smart Mix: 40% due + 30% weak + 30% fresh (Premium)
+  | 'by_topic'   // По теме: filter by lessonId (Premium)
+  | 'mistakes';  // По ошибкам: топ фраз из mistake_log за 30 дней (Premium)
+
+export const TRAINER_PREMIUM_MODES: TrainerMode[] = ['weak', 'hard', 'smart_mix', 'by_topic', 'mistakes'];
 
 export type GetDueItemsOptions = {
   /**
@@ -273,6 +339,165 @@ export async function getDueItems(
   }
 
   return selected;
+}
+
+const FRESH_WINDOW_MS = 7 * 24 * 60 * 60 * 1000; // 7 дней
+const WEAK_EASE_THRESHOLD = 1.7;
+const HARD_ERROR_THRESHOLD = 3;
+
+/**
+ * Получить фразы для конкретного режима Тренера.
+ *
+ * @param mode     Режим Тренера (TrainerMode)
+ * @param limit    Максимум фраз в сессии (default SESSION_LIMIT)
+ * @param lessonId Только для mode='by_topic' — ID урока для фильтрации
+ * @param category Для mode='mistakes' — фильтровать только фразы этой грамматической категории
+ */
+export async function getTrainerItems(
+  mode: TrainerMode = 'due',
+  limit = SESSION_LIMIT,
+  lessonId?: number,
+  category?: string,
+): Promise<RecallItem[]> {
+  const all = await loadItems();
+  const endOfToday = endOfTodayMs();
+  const now = Date.now();
+
+  switch (mode) {
+    case 'due': {
+      const due = all
+        .filter((i) => i.nextDue <= endOfToday)
+        .sort((a, b) => b.errorCount - a.errorCount || a.nextDue - b.nextDue);
+      return due.slice(0, limit);
+    }
+    case 'fresh': {
+      const freshWindow = now - FRESH_WINDOW_MS;
+      const fresh = all
+        .filter((i) => i.createdAt >= freshWindow && i.repetitions < 3)
+        .sort((a, b) => b.createdAt - a.createdAt);
+      return fresh.slice(0, limit);
+    }
+    case 'weak': {
+      const weak = all
+        .filter((i) => i.easeFactor <= WEAK_EASE_THRESHOLD)
+        .sort((a, b) => a.easeFactor - b.easeFactor);
+      return weak.slice(0, limit);
+    }
+    case 'hard': {
+      const hard = all
+        .filter((i) => i.errorCount >= HARD_ERROR_THRESHOLD)
+        .sort((a, b) => b.errorCount - a.errorCount);
+      return hard.slice(0, limit);
+    }
+    case 'smart_mix': {
+      const dueItems = all.filter((i) => i.nextDue <= endOfToday).sort((a, b) => b.errorCount - a.errorCount);
+      const weakItems = all.filter((i) => i.easeFactor <= WEAK_EASE_THRESHOLD && i.nextDue > endOfToday).sort((a, b) => a.easeFactor - b.easeFactor);
+      const freshWindow = now - FRESH_WINDOW_MS;
+      const freshItems = all.filter((i) => i.createdAt >= freshWindow && i.repetitions < 3 && i.nextDue > endOfToday).sort((a, b) => b.createdAt - a.createdAt);
+      const duePart = Math.ceil(limit * 0.4);
+      const weakPart = Math.ceil(limit * 0.3);
+      const freshPart = limit - duePart - weakPart;
+      const usedPhrases = new Set<string>();
+      const pick = (source: RecallItem[], n: number): RecallItem[] => {
+        const result: RecallItem[] = [];
+        for (const item of source) {
+          if (result.length >= n) break;
+          if (!usedPhrases.has(item.phrase)) {
+            result.push(item);
+            usedPhrases.add(item.phrase);
+          }
+        }
+        return result;
+      };
+      const mixed = [
+        ...pick(dueItems, duePart),
+        ...pick(weakItems, weakPart),
+        ...pick(freshItems, freshPart),
+      ];
+      // Если не набрали limit (нехватка в каком-то сегменте) — добираем из due
+      const remaining = limit - mixed.length;
+      if (remaining > 0) {
+        const extra = pick(dueItems, remaining);
+        mixed.push(...extra);
+      }
+      return mixed.slice(0, limit);
+    }
+    case 'by_topic': {
+      if (!Number.isFinite(lessonId) || !lessonId) return getDueItems(limit);
+      const byTopic = all
+        .filter((i) => i.lessonId === lessonId)
+        .sort((a, b) => b.errorCount - a.errorCount || a.nextDue - b.nextDue);
+      return byTopic.slice(0, limit);
+    }
+    case 'mistakes': {
+      // Фразы из mistake_log (топ по ошибкам за 30 дней), отсортированные по частоте.
+      // Если фраза есть в SRS-базе — берём её оттуда (чтобы SM-2 метрики сохранялись).
+      // Если нет в базе — пропускаем (фраза ещё не добавлена в повторение).
+      const { getWeakPhrases } = await import('./mistake_log');
+      const weakPhrases = await getWeakPhrases(limit * 4, 1);
+      const byPhrase = new Map(all.map((i) => [i.phrase.toLowerCase(), i]));
+
+      // Если передана категория — фильтруем фразы по грамматической категории через phraseIndex
+      let categoryFilter: ((phrase: string) => boolean) | null = null;
+      if (category) {
+        const { getPhraseCategories } = await import('./phrase_analytics');
+        categoryFilter = (phrase: string) => {
+          const cats = getPhraseCategories(phrase);
+          return cats.includes(category as any);
+        };
+      }
+
+      const result: RecallItem[] = [];
+      for (const phrase of weakPhrases) {
+        if (result.length >= limit) break;
+        if (categoryFilter && !categoryFilter(phrase)) continue;
+        const item = byPhrase.get(phrase.toLowerCase());
+        if (item) result.push(item);
+      }
+      // Если мало фраз — добираем слабые SRS-фразы (с фильтром по категории если нужно)
+      if (result.length < limit) {
+        const usedPhrases = new Set(result.map((i) => i.phrase.toLowerCase()));
+        const extra = all
+          .filter((i) => {
+            if (usedPhrases.has(i.phrase.toLowerCase())) return false;
+            if (i.easeFactor > WEAK_EASE_THRESHOLD) return false;
+            if (categoryFilter && !categoryFilter(i.phrase)) return false;
+            return true;
+          })
+          .sort((a, b) => a.easeFactor - b.easeFactor)
+          .slice(0, limit - result.length);
+        result.push(...extra);
+      }
+      return result;
+    }
+    default:
+      return getDueItems(limit);
+  }
+}
+
+/**
+ * Количество фраз доступных в каждом режиме Тренера (для главного экрана-хаба).
+ * Не мутирует storage.
+ */
+export async function getTrainerModeCounts(): Promise<Record<TrainerMode, number>> {
+  const all = await loadItems();
+  const endOfToday = endOfTodayMs();
+  const now = Date.now();
+  const freshWindow = now - FRESH_WINDOW_MS;
+
+  const due    = all.filter((i) => i.nextDue <= endOfToday).length;
+  const fresh  = all.filter((i) => i.createdAt >= freshWindow && i.repetitions < 3).length;
+  const weak   = all.filter((i) => i.easeFactor <= WEAK_EASE_THRESHOLD).length;
+  const hard   = all.filter((i) => i.errorCount >= HARD_ERROR_THRESHOLD).length;
+  const smart  = Math.min(SESSION_LIMIT, Math.max(due, weak, fresh));
+  const topic  = all.length;
+
+  const { getWeakPhrases } = await import('./mistake_log');
+  const weakFromLog = await getWeakPhrases(SESSION_LIMIT * 2, 2);
+  const byPhrase = new Map(all.map((i) => [i.phrase.toLowerCase(), i]));
+  const mistakesCount = weakFromLog.filter((p) => byPhrase.has(p.toLowerCase())).length;
+
+  return { due, fresh, weak, hard, smart_mix: smart, by_topic: topic, mistakes: mistakesCount };
 }
 
 /**
@@ -421,9 +646,8 @@ export async function recordMistakeFromArena(q: {
   task?: string;
   rule?: string;
 }): Promise<void> {
-  const phrase = buildArenaEnglishPhrase(q);
-  if (!phrase) return;
-  await recordMistake(phrase, buildArenaHintRU(q), 0, undefined, 'arena');
+  void q;
+  // Арена не пополняет очередь active recall — отдельный прогресс и награды.
 }
 
 /** Собранное предложение для зачёта уровня (пропуск или целое MC). */

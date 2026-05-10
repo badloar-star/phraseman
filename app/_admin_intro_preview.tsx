@@ -26,6 +26,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { emitAppEvent } from './events';
@@ -174,6 +175,7 @@ export default function AdminIntroPreview() {
   const router = useRouter();
   const { f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
 
   const [previewLessonId, setPreviewLessonId] = useState<number | null>(null);
   const [tiles, setTiles] = useState<LessonTileMeta[]>([]);
@@ -195,7 +197,7 @@ export default function AdminIntroPreview() {
       shownMap.set(LESSON_IDS[idx], val === 'true' || val === '1');
     });
     const next: LessonTileMeta[] = LESSON_IDS.map((id) => {
-      const blocks = getLessonIntroScreens(id);
+      const blocks = getLessonIntroScreens(id, studyTarget);
       return {
         id,
         level: levelOf(id),
@@ -210,7 +212,7 @@ export default function AdminIntroPreview() {
 
   useEffect(() => {
     void loadMeta();
-  }, []);
+  }, [studyTarget]);
 
   const handleOpenPreview = (id: number) => {
     hapticTap();
@@ -404,7 +406,7 @@ export default function AdminIntroPreview() {
         {previewLessonId !== null && (
           <View style={{ flex: 1 }}>
             <LessonIntroScreens
-              introScreens={getLessonIntroScreens(previewLessonId)}
+              introScreens={getLessonIntroScreens(previewLessonId, studyTarget)}
               lessonId={previewLessonId}
               onComplete={handleClosePreview}
             />

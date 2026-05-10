@@ -5,6 +5,8 @@ import { updateMyGroupPoints } from './firestore_leagues';
 import { wasRepairedToday } from './streak_repair';
 import { checkWagerProgress } from './streak_wager';
 import { sendStreakWarning } from './notifications';
+import { markStreakLost } from './streak_revive';
+import { incrementStreakLostCount } from './paywall_personalization';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -104,7 +106,7 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
   } catch {}
 };
 
-// ── Обновить стрик и week_days_done при активности ───────────────────────────
+// ── Обновить цепочку (дней подряд) и week_days_done при активности ───────────────────────────
 // Вызывать при ЛЮБОМ начислении опыта
 export const updateStreakOnActivity = async (): Promise<number> => {
   try {
@@ -120,13 +122,13 @@ export const updateStreakOnActivity = async (): Promise<number> => {
     let streak = parseInt(await AsyncStorage.getItem('streak_count') || '0');
 
     if (lastActive === today) {
-      // Уже активны сегодня — стрик не меняем
+      // Уже активны сегодня — цепочку не меняем
     } else if (lastActive === yesterdayStr) {
-      // Активны вчера — продолжаем стрик
+      // Активны вчера — продолжаем цепочку
       streak += 1;
       logStreakExtended(streak);
     } else if (lastActive === null || lastActive < yesterdayStr) {
-      // Пропустили день — проверяем заморозку / починку стрика
+      // Пропустили день — проверяем заморозку / починку цепочки
       const dayBefore = new Date();
       dayBefore.setDate(dayBefore.getDate() - 2);
       const dayBeforeStr = dayBefore.toISOString().split('T')[0];
@@ -139,7 +141,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
         await AsyncStorage.setItem('streak_freeze', JSON.stringify({ ...freeze, active: false }));
         // streak не меняем — заморозка спасла
       }
-      // 2. Стрик починен сегодня (2 урока выполнено)
+      // 2. Цепочка починена сегодня (2 урока выполнено)
       else if (lastActive && lastActive >= dayBeforeStr && await wasRepairedToday()) {
         // streak не меняем — починка спасла
       }
@@ -147,7 +149,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       else if (lastActive === null) {
         streak = 1;
       }
-      // 4. Chain Shield активен — защищает от потери стрика
+      // 4. Chain Shield активен — защищает от потери цепочки
       else if (lastActive && lastActive >= dayBeforeStr) {
         const csRaw = await AsyncStorage.getItem('chain_shield');
         if (csRaw) {
@@ -161,29 +163,38 @@ export const updateStreakOnActivity = async (): Promise<number> => {
             }
             // streak не меняем — щит спас
           } else {
-            logStreakLost(streak);
-            AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(streak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+            const prevStreak = streak;
+            logStreakLost(prevStreak);
+            AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+            void markStreakLost(prevStreak);
+            incrementStreakLostCount();
             streak = 1;
           }
         } else {
-          logStreakLost(streak);
-          AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(streak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+          const prevStreak = streak;
+          logStreakLost(prevStreak);
+          AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+          void markStreakLost(prevStreak);
+          incrementStreakLostCount();
           streak = 1;
         }
       }
-      // 5. Стрик потерян
+      // 5. Цепочка потеряна
       else {
-        logStreakLost(streak);
-        AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(streak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+        const prevStreak = streak;
+        logStreakLost(prevStreak);
+        AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+        void markStreakLost(prevStreak);
+        incrementStreakLostCount();
         streak = 1;
       }
     }
 
-    // Сохраняем стрик
+    // Сохраняем цепочку
     await AsyncStorage.setItem('streak_count', String(streak));
     await AsyncStorage.setItem(lastActiveKey, today);
 
-    // Достижения по стрику + пари (только при реальном изменении — не в firstLoads)
+    // Достижения по цепочке + пари (только при реальном изменении — не в firstLoads)
     if (lastActive !== today) {
       checkAchievements({ type: 'streak', streak }).catch(() => {});
       checkWagerProgress(streak).catch(() => {});
@@ -223,7 +234,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
  * 2. week_points_v2   — только за текущую неделю (авто-сброс)
  * 3. week_leaderboard — рейтинг за текущую неделю (для клуба недели)
  * 4. daily_stats      — для графика статистики (опыт за день)
- * 5. streak           — стрик дней подряд + week_days_done
+ * 5. streak           — цепочка дней подряд + week_days_done
  */
 export const addOrUpdateScore = async (
   name: string,
@@ -233,6 +244,18 @@ export const addOrUpdateScore = async (
 ) => {
   // Разрешаем отрицательный опыт для списания ставок (wagers)
   if (!name || delta === 0) return;
+
+  // DEV-ONLY: трейс источника XP. Помогает отлаживать "12 опыта на этой неделе"
+  // в начале новой недели — ловим какой кодпуть начислил и со стэком вызовов.
+  if (__DEV__) {
+    try {
+      const stack = (new Error().stack || '').split('\n').slice(2, 7).join('\n');
+      // eslint-disable-next-line no-console
+      console.log(
+        `[addOrUpdateScore] +${delta} XP for "${name}" (lang=${lang}, weekKey=${getWeekKey(new Date())})\n${stack}`,
+      );
+    } catch {}
+  }
 
   // ── 1. Leaderboard (накопительный) ──────────────────────────────────────
   const canonicalName = name.trim();
@@ -255,9 +278,19 @@ export const addOrUpdateScore = async (
     const wpRaw = await AsyncStorage.getItem('week_points_v2');
     let wpData: { weekKey: string; points: number };
 
+    const PB_KEY = 'week_xp_peak_best_v1';
+
     if (wpRaw) {
       wpData = JSON.parse(wpRaw);
       if (wpData.weekKey !== currentWeekKey) {
+        const finalizedWeekXp = wpData.points;
+        const prevPeakRoll = parseInt((await AsyncStorage.getItem(PB_KEY)) || '0', 10) || 0;
+        if (finalizedWeekXp > prevPeakRoll) {
+          await AsyncStorage.setItem(PB_KEY, String(finalizedWeekXp));
+          if (prevPeakRoll > 0) {
+            checkAchievements({ type: 'personal_best' }).catch(() => {});
+          }
+        }
         wpData = { weekKey: currentWeekKey, points: 0 };
       }
     } else {
@@ -268,6 +301,14 @@ export const addOrUpdateScore = async (
     newWeekPts = wpData.points;
     await AsyncStorage.setItem('week_points_v2', JSON.stringify(wpData));
     await AsyncStorage.setItem('week_points', String(wpData.points));
+
+    const prevPeak = parseInt((await AsyncStorage.getItem(PB_KEY)) || '0', 10) || 0;
+    if (wpData.points > prevPeak) {
+      await AsyncStorage.setItem(PB_KEY, String(wpData.points));
+      if (prevPeak > 0) {
+        checkAchievements({ type: 'personal_best' }).catch(() => {});
+      }
+    }
   } catch {}
 
   // ── 3. week_leaderboard ──────────────────────────────────────────────────
@@ -309,7 +350,7 @@ export const addOrUpdateScore = async (
     await AsyncStorage.setItem('daily_stats', JSON.stringify(stats));
   } catch {}
 
-  // ── 5. Стрик и week_days_done — только при положительном начислении ────────
+  // ── 5. Цепочка и week_days_done — только при положительном начислении ────────
   if (delta > 0) {
     await updateStreakOnActivity();
   }
@@ -324,11 +365,11 @@ export const addOrUpdateScore = async (
 };
 
 /**
- * Проверяет, потеряет ли пользователь стрик при следующей активности.
+ * Проверяет, потеряет ли пользователь цепочку при следующей активности.
  * Вызывается из home.tsx при загрузке — НЕ изменяет storage.
  *
  * Возвращает { willLose: true } когда:
- *  - был стрик > 1
+ *  - была цепочка > 1
  *  - пропущен ровно 1 день (заморозка ещё может помочь)
  *  - заморозка не активна
  *  - не premium
@@ -344,7 +385,7 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
     const dayBeforeStr = dayBefore.toISOString().split('T')[0];
 
     const lastActive = await AsyncStorage.getItem('last_active_date');
-    // Уже активен сегодня или вчера — стрик в порядке
+    // Уже активен сегодня или вчера — цепочка в порядке
     if (!lastActive || lastActive === today || lastActive >= yesterdayStr) {
       return { willLose: false, streakBefore: 0 };
     }
@@ -359,7 +400,7 @@ export const checkStreakLossPending = async (): Promise<{ willLose: boolean; str
     const freezeRaw = await AsyncStorage.getItem('streak_freeze');
     const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
     const todayStr = new Date().toISOString().split('T')[0];
-    // Заморозка уже активна сегодня — стрик будет сохранён автоматически
+    // Заморозка уже активна сегодня — цепочка сохранится автоматически
     if (freeze?.active && freeze?.date === todayStr) return { willLose: false, streakBefore: streak };
 
     return { willLose: true, streakBefore: streak };

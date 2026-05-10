@@ -35,10 +35,8 @@ export const COMMUNITY_SELLER_INBOX_SUBCOLLECTION = 'community_seller_inbox';
 export const COMMUNITY_PACK_CARD_COUNT_MIN = 10;
 export const COMMUNITY_PACK_CARD_COUNT_MAX = 50;
 
-/** Цена в осколках (внутриигровая, без фиата). */
-export const COMMUNITY_PACK_PRICE_SHARDS_MIN = 20;
-/** Максимум цены UGC-набора (осколки), шаг в UI — 10. */
-export const COMMUNITY_PACK_PRICE_SHARDS_MAX = 300;
+/** Фиксированная цена UGC-набора в осколках (единая для всех наборов от людей). */
+export const COMMUNITY_PACK_PRICE_SHARDS = 10;
 
 /** Доля «платформы» в осколках: базисные пункты (10000 = 100%). Например 1500 = 15% остаётся в экономике приложения (сжигание). */
 export const COMMUNITY_PACK_PLATFORM_FEE_BPS = 1500;
@@ -87,7 +85,7 @@ export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload):
   const n = p.cards?.length ?? 0;
   if (n < COMMUNITY_PACK_CARD_COUNT_MIN || n > COMMUNITY_PACK_CARD_COUNT_MAX) return 'card_count';
   const price = Math.floor(Number(p.priceShards));
-  if (!Number.isFinite(price) || price < COMMUNITY_PACK_PRICE_SHARDS_MIN || price > COMMUNITY_PACK_PRICE_SHARDS_MAX) {
+  if (!Number.isFinite(price) || price !== COMMUNITY_PACK_PRICE_SHARDS) {
     return 'price';
   }
   for (const c of p.cards) {
@@ -107,7 +105,7 @@ export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayl
     titleUk: title,
     descriptionRu: description,
     descriptionUk: description,
-    priceShards: Math.floor(Number(p.priceShards)),
+    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     cards: p.cards,
     cardThemeKey: String(p.cardThemeKey ?? '').trim() || undefined,
   };

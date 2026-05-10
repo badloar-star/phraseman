@@ -21,6 +21,26 @@ import { triLang } from '../constants/i18n';
 import { ERROR_REPORT_COMMENT_MIN_LEN, submitErrorReport } from '../app/error_report';
 import XpGainBadge from './XpGainBadge';
 
+/** Экраны с общим набором категорий (не урок/квиз). */
+const GENERAL_APP_SCREEN_IDS = new Set([
+  'home',
+  'arena_lobby',
+  'arena_game',
+  'daily_tasks',
+  'flashcards_collection',
+  'flashcards_hub',
+  'trainer',
+  'progress_map',
+  'streak_stats',
+  'achievements',
+  'community_pack_create',
+  'friends_tab',
+  'shards_shop',
+  'settings_tab',
+  'lessons_tab',
+  'premium_modal',
+]);
+
 interface Props {
   screen: string;
   /** машинно-читаемый ключ для поиска в коде: "lesson_5_phrase_42", "irregular_verb_go" */
@@ -41,6 +61,15 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
     { key: 'translation',   label: 'Неточный перевод|Неточний переклад|Traducción inexacta' },
     { key: 'audio',         label: 'Проблема с аудио|Проблема з аудіо|Problema con el audio' },
     { key: 'hint',          label: 'Неверная подсказка к уроку|Неправильна підказка до уроку|Pista equivocada en la lección' },
+    { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
+    { key: 'other',         label: 'Другое|Інше|Otro' },
+  ],
+  /** Разбор вопросов Арены после матча (см. arena_results). */
+  arena_results_review: [
+    { key: 'wrong_answer',  label: 'Неверный правильный ответ|Неправильна правильна відповідь|La opción marcada como correcta es errónea' },
+    { key: 'all_wrong',     label: 'Все варианты неправильные|Усі варіанти неправильні|Todas las opciones son incorrectas' },
+    { key: 'typo',          label: 'Опечатка / ошибка в тексте|Друкарська помилка / помилка в тексті|Error ortográfico o en el texto' },
+    { key: 'translation',   label: 'Неточный перевод|Неточний переклад|Traducción inexacta' },
     { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
     { key: 'other',         label: 'Другое|Інше|Otro' },
   ],
@@ -70,6 +99,7 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
     { key: 'wrong_answer',  label: 'Неверный правильный ответ|Неправильна правильна відповідь|La opción marcada como correcta es errónea' },
     { key: 'typo',          label: 'Опечатка / ошибка в тексте|Друкарська помилка / помилка в тексті|Error ortográfico o en el texto' },
     { key: 'translation',   label: 'Неточный перевод|Неточний переклад|Traducción inexacta' },
+    { key: 'hint',          label: 'Сбивает подсказка / формулировка|Плутає підказка / формулювання|La pista o el enunciado confunden' },
     { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
     { key: 'other',         label: 'Другое|Інше|Otro' },
   ],
@@ -86,13 +116,6 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
     { key: 'translation',   label: 'Неточный перевод|Неточний переклад|Traducción inexacta' },
     { key: 'other',         label: 'Другое|Інше|Otro' },
   ],
-  dialogs: [
-    { key: 'typo',          label: 'Ошибка в тексте реплики|Помилка в тексті репліки|Error en el texto de la réplica' },
-    { key: 'translation',   label: 'Неточный перевод|Неточний переклад|Traducción inexacta' },
-    { key: 'logic_bug',     label: 'Логика диалога сломана|Логіка діалогу зламана|La lógica del diálogo no encaja' },
-    { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
-    { key: 'other',         label: 'Другое|Інше|Otro' },
-  ],
   theory: [
     { key: 'explanation',   label: 'Ошибка в объяснении|Помилка в поясненні|Fallo en la explicación' },
     { key: 'typo',          label: 'Опечатка в тексте|Друкарська помилка в тексті|Error ortográfico en el texto' },
@@ -107,13 +130,37 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
     { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
     { key: 'other',         label: 'Другое|Інше|Otro' },
   ],
+  /** Вкладки и экраны без привязки к одному заданию. */
+  general: [
+    { key: 'ui_bug',           label: 'Криво отображается интерфейс|Криво відображається інтерфейс|La interfaz se ve mal o tapa contenido' },
+    { key: 'broken_action',    label: 'Не срабатывает кнопка или переход|Не спрацьовує кнопка чи перехід|No responde un botón o una pantalla' },
+    { key: 'progress_rewards', label: 'Прогресс, опыт или награды|Прогрес, досвід чи нагороди|Progreso, XP o recompensas' },
+    { key: 'payment_premium', label: 'Подписка, покупка или осколки|Підписка, покупка чи уламки|Suscripción, compra u oskolki' },
+    { key: 'content_wrong',    label: 'Неверный текст или картинка на экране|Невірний текст чи зображення|Texto o imagen incorrectos en pantalla' },
+    { key: 'other',            label: 'Другое|Інше|Otro' },
+  ],
+  level_exam: [
+    { key: 'wrong_answer',  label: 'Неверный правильный ответ|Неправильна правильна відповідь|La opción marcada como correcta es errónea' },
+    { key: 'all_wrong',     label: 'Все варианты неправильные|Усі варіанти неправильні|Todas las opciones son incorrectas' },
+    { key: 'typo',          label: 'Опечатка / ошибка в тексте|Друкарська помилка / помилка в тексті|Error ortográfico o en el texto' },
+    { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
+    { key: 'other',         label: 'Другое|Інше|Otro' },
+  ],
 };
 
 function getCategoriesForScreen(screen: string) {
+  if (GENERAL_APP_SCREEN_IDS.has(screen)) {
+    return SCREEN_CATEGORIES.general;
+  }
+  if (screen === 'level_exam') {
+    return SCREEN_CATEGORIES.level_exam;
+  }
   if (screen.startsWith('lesson_') && !screen.includes('words') && !screen.includes('irregular')) {
     return SCREEN_CATEGORIES.lesson;
   }
-  for (const key of Object.keys(SCREEN_CATEGORIES)) {
+  // Longer keys first so `lesson_words` / `lesson_irregular_verbs` are not swallowed by `lesson`.
+  const keys = Object.keys(SCREEN_CATEGORIES).sort((a, b) => b.length - a.length);
+  for (const key of keys) {
     if (screen.includes(key)) return SCREEN_CATEGORIES[key];
   }
   return SCREEN_CATEGORIES.lesson;

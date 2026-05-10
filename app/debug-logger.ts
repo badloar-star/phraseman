@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { logAppError } from './app_health';
 const isDevRuntime = typeof __DEV__ !== 'undefined' && !!__DEV__;
 
 export const DebugLogger = {
@@ -16,6 +17,12 @@ export const DebugLogger = {
       stack: errorStack,
       severity,
     })).catch(err => console.error('Failed to log:', err));
+
+    void logAppError(context, error, {
+      severity,
+      feature: context.split(':')[0]?.replace(/\.(ts|tsx)$/i, '') || 'app',
+      writeToFirestore: severity === 'critical',
+    });
   },
 
   warn: (context: string, message: string) => {

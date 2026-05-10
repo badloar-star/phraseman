@@ -3362,21 +3362,21 @@
   {
     "lesson": 10,
     "id": "lesson10_phrase_31",
-    "en": "He is able to repair your bicycle.",
-    "ru": "Он способен починить ваш велосипед.",
-    "uk": "Він здатний полагодити ваш велосипед."
+    "en": "He can repair your bicycle.",
+    "ru": "Он может починить ваш велосипед.",
+    "uk": "Він може полагодити ваш велосипед."
   },
   {
     "lesson": 10,
     "id": "lesson10_phrase_32",
-    "en": "Are you able to meet us at noon?",
-    "ru": "Вы сможете встретить нас в полдень?",
-    "uk": "Ви зможете зустріти нас опівдні?"
+    "en": "Can you meet us at noon?",
+    "ru": "Вы можете встретить нас в полдень?",
+    "uk": "Ви можете зустріти нас опівдні?"
   },
   {
     "lesson": 10,
     "id": "lesson10_phrase_33",
-    "en": "They are not able to access the system.",
+    "en": "They cannot access the system.",
     "ru": "Они не могут получить доступ к системе.",
     "uk": "Вони не можуть отримати доступ до системи."
   },
@@ -3467,7 +3467,7 @@
   {
     "lesson": 10,
     "id": "lesson10_phrase_46",
-    "en": "They may discuss this plan later.",
+    "en": "They can discuss this plan later.",
     "ru": "Они могут обсудить этот план позже.",
     "uk": "Вони можуть обговорити цей план пізніше."
   },
@@ -3488,14 +3488,14 @@
   {
     "lesson": 10,
     "id": "lesson10_phrase_49",
-    "en": "We will send this email tonight.",
-    "ru": "Мы отправим этот имейл сегодня вечером.",
-    "uk": "Ми надішлемо цей лист сьогодні ввечері."
+    "en": "Shall we start the meeting now?",
+    "ru": "Начнём встречу сейчас?",
+    "uk": "Почнемо зустріч зараз?"
   },
   {
     "lesson": 10,
     "id": "lesson10_phrase_50",
-    "en": "Will he be able to print the photo?",
+    "en": "Will he be able to print this photo?",
     "ru": "Он сможет распечатать это фото?",
     "uk": "Він зможе роздрукувати це фото?"
   },
@@ -4790,9 +4790,9 @@
   {
     "lesson": 14,
     "id": "lesson14_phrase_35",
-    "en": "You brought a more bitter chocolate today.",
-    "ru": "Вы сегодня принесли более горький шоколад.",
-    "uk": "Ви сьогодні принесли гіркіший шоколад."
+    "en": "You brought fresher bread today.",
+    "ru": "Вы сегодня принесли более свежий хлеб.",
+    "uk": "Ви сьогодні принесли свіжіший хліб."
   },
   {
     "lesson": 14,
@@ -9067,7 +9067,7 @@
   {
     "lesson": 26,
     "id": "lesson26_phrase_46",
-    "en": "If this talented designer creates that unique logo, company will attract new customers.",
+    "en": "If this talented designer creates that unique logo, the company will attract new customers.",
     "ru": "Если этот талантливый дизайнер создаст тот уникальный логотип, компания привлечёт новых клиентов.",
     "uk": "Якщо цей талановитий дизайнер створить той унікальний логотип, компанія залучить нових клієнтів."
   },
@@ -9494,7 +9494,7 @@
   {
     "lesson": 28,
     "id": "lesson28_phrase_7",
-    "en": "You did not make yourselves at home in that cold office.",
+    "en": "You did not make yourself at home in that cold office.",
     "ru": "Вы не чувствовали себя как дома в том холодном офисе.",
     "uk": "Ви не почувалися як удома в тому холодному офісі."
   },
@@ -9522,7 +9522,7 @@
   {
     "lesson": 28,
     "id": "lesson28_phrase_11",
-    "en": "Should you be proud of yourselves after finishing this challenging marathon?",
+    "en": "Should you be proud of yourself after finishing this challenging marathon?",
     "ru": "Стоит ли вам гордиться собой после завершения этого сложного марафона?",
     "uk": "Чи варто вам пишатися собою після завершення цього складного марафону?"
   },
@@ -9557,7 +9557,7 @@
   {
     "lesson": 28,
     "id": "lesson28_phrase_16",
-    "en": "Can you easily hurt yourselves with that old tool in the garage?",
+    "en": "Can you easily hurt yourself with that old tool in the garage?",
     "ru": "Вы можете легко пораниться тем старым инструментом в гараже?",
     "uk": "Ви можете легко поранитися тим старим інструментом у гаражі?"
   },
@@ -9578,7 +9578,7 @@
   {
     "lesson": 28,
     "id": "lesson28_phrase_19",
-    "en": "Have you prepared yourselves well for that very important interview?",
+    "en": "Have you prepared yourself well for that very important interview?",
     "ru": "Вы хорошо подготовились к тому очень важному собеседованию?",
     "uk": "Ви добре підготувалися до тієї дуже важливої співбесіди?"
   },
@@ -9592,7 +9592,7 @@
   {
     "lesson": 28,
     "id": "lesson28_phrase_21",
-    "en": "You must be able to protect yourselves in this digital world.",
+    "en": "You must be able to protect yourself in this digital world.",
     "ru": "Вы должны уметь защитить себя в этом цифровом мире.",
     "uk": "Ви повинні вміти захистити себе в цьому цифровому світі."
   },
@@ -9655,7 +9655,7 @@
   {
     "lesson": 28,
     "id": "lesson28_phrase_30",
-    "en": "Must you present yourselves to that strict committee?",
+    "en": "Must you present yourself to that strict committee?",
     "ru": "Должны ли вы представиться тому строгому комитету?",
     "uk": "Чи мусите ви представитися тому суворому комітету?"
   },
@@ -9725,7 +9725,7 @@
   {
     "lesson": 28,
     "id": "lesson28_phrase_40",
-    "en": "Must you control yourselves during those long public speeches?",
+    "en": "Must you control yourself during those long public speeches?",
     "ru": "Вы должны контролировать себя во время тех длинных публичных выступлений?",
     "uk": "Чи мусите ви контролювати себе під час тих довгих публічних виступів?"
   },

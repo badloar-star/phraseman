@@ -1,0 +1,80 @@
+appId: app.phraseman
+---
+- runFlow: ../../_dismiss_bug_hunt.yaml
+- runFlow: ../../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "tab-home"
+    timeout: 90000
+- tapOn:
+    id: "tab-home"
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 45000
+- tapOn:
+    id: "tab-index"
+- waitForAnimationToEnd:
+    timeout: 5000
+- scrollUntilVisible:
+    element:
+      id: "lessons-row-1"
+    direction: DOWN
+    timeout: 30000
+    speed: 60
+    visibilityPercentage: 25
+- tapOn:
+    id: "lessons-row-1"
+- extendedWaitUntil:
+    visible:
+      id: "lesson-menu-back"
+    timeout: 30000
+- tapOn:
+    id: "lesson-menu-words"
+- extendedWaitUntil:
+    visible:
+      id: "lesson-words-header-back"
+    timeout: 30000
+- assertVisible:
+    id: "lesson-words-tab-train"
+- tapOn:
+    id: "lesson-words-tab-train"
+
+# Variant: one wrong pick should not block the trainer; then complete every word.
+- runFlow:
+    when:
+      visible:
+        id: "lesson-words-option-0"
+    commands:
+      - tapOn:
+          id: "lesson-words-option-0"
+- repeat:
+    times: 240
+    commands:
+      - runFlow:
+          when:
+            visible:
+              id: "lesson-words-option-correct"
+          commands:
+            - tapOn:
+                id: "lesson-words-option-correct"
+      - waitForAnimationToEnd:
+          timeout: 700
+      - runFlow:
+          when:
+            visible:
+              id: "lesson-words-complete"
+          commands:
+            - assertVisible:
+                id: "lesson-words-complete"
+
+- extendedWaitUntil:
+    visible:
+      id: "lesson-words-complete"
+    timeout: 45000
+- assertVisible:
+    id: "lesson-words-repeat"
+- assertVisible:
+    id: "lesson-words-complete-back"

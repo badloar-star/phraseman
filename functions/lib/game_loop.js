@@ -38,9 +38,15 @@ exports.advanceSession = advanceSession;
 exports.startSessionCountdown = startSessionCountdown;
 exports.onQuestionTimeout = onQuestionTimeout;
 const admin = __importStar(require("firebase-admin"));
+const matchmaking_1 = require("./matchmaking");
+const types_1 = require("./types");
 const db = admin.firestore();
 const REVEAL_DURATION_MS = 700;
 const COUNTDOWN_DURATION_MS = 3000;
+/** Після цього числа основних питань перевіряємо нічию й можливий тай-брейк. */
+const BASE_MATCH_QUESTIONS = 10;
+/** Максимум додаткових питань при рівному рахунку (1v1). */
+const MAX_TIEBREAK_EXTRA_QUESTIONS = 25;
 // Триггер: когда session_player обновляет answers — проверяем можно ли двигаться
 async function onPlayerAnswered(sessionId, questionId) {
     const sessionRef = db.collection('arena_sessions').doc(sessionId);
@@ -75,26 +81,76 @@ async function onPlayerAnswered(sessionId, questionId) {
 }
 async function advanceSession(sessionId) {
     const sessionRef = db.collection('arena_sessions').doc(sessionId);
-    await db.runTransaction(async (tx) => {
+    const tiebreak = await db.runTransaction(async (tx) => {
         const snap = await tx.get(sessionRef);
         if (!snap.exists)
-            return;
+            return null;
         const session = snap.data();
         if (session.state !== 'reveal')
-            return;
+            return null;
         const nextIndex = session.currentQuestionIndex + 1;
-        if (nextIndex >= session.questions.length) {
-            // Матч завершён
-            tx.update(sessionRef, { state: 'finished' });
-        }
-        else {
-            // Следующий вопрос
+        if (nextIndex < session.questions.length) {
             tx.update(sessionRef, {
                 state: 'question',
                 currentQuestionIndex: nextIndex,
                 questionStartedAt: Date.now(),
             });
+            return null;
         }
+        // Закінчились питання в масиві — або фініш, або тай-брейк при нічії (лише 1v1).
+        const playerIds = session.playerIds ?? [];
+        if (playerIds.length !== 2) {
+            tx.update(sessionRef, { state: 'finished' });
+            return null;
+        }
+        const playerSnaps = await Promise.all(playerIds.map((pid) => tx.get(db.collection('session_players').doc(`${sessionId}_${pid}`))));
+        const players = playerSnaps.filter((s) => s.exists).map((s) => s.data());
+        if (players.length !== 2) {
+            tx.update(sessionRef, { state: 'finished' });
+            return null;
+        }
+        const s0 = Number(players[0].score) || 0;
+        const s1 = Number(players[1].score) || 0;
+        const tied = s0 === s1;
+        const canTiebreak = tied
+            && session.questions.length >= BASE_MATCH_QUESTIONS
+            && session.questions.length < BASE_MATCH_QUESTIONS + MAX_TIEBREAK_EXTRA_QUESTIONS;
+        if (!canTiebreak) {
+            tx.update(sessionRef, { state: 'finished' });
+            return null;
+        }
+        return {
+            curIdx: session.currentQuestionIndex,
+            qLen: session.questions.length,
+            rankTier: session.rankTier,
+            exclude: [...session.questions],
+        };
+    });
+    if (!tiebreak)
+        return;
+    const level = types_1.RANK_TO_QUESTION_LEVEL[tiebreak.rankTier] ?? 'A1';
+    const newId = await (0, matchmaking_1.pickOneQuestionExcluding)(level, new Set(tiebreak.exclude));
+    if (!newId) {
+        await sessionRef.update({ state: 'finished' });
+        return;
+    }
+    await db.runTransaction(async (tx) => {
+        const snap = await tx.get(sessionRef);
+        if (!snap.exists)
+            return;
+        const s = snap.data();
+        if (s.state !== 'reveal')
+            return;
+        if (s.currentQuestionIndex !== tiebreak.curIdx)
+            return;
+        if (s.questions.length !== tiebreak.qLen)
+            return;
+        tx.update(sessionRef, {
+            questions: [...s.questions, newId],
+            state: 'question',
+            currentQuestionIndex: tiebreak.curIdx + 1,
+            questionStartedAt: Date.now(),
+        });
     });
 }
 // Запускается когда сессия переходит в countdown → через 3 сек ставим question

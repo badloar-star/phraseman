@@ -20,9 +20,14 @@ export function getWarmShardsPackagesMap(): Record<string, PurchasesPackage> | n
   return warmPackageMap;
 }
 
+function mapHasShardProduct(map: Record<string, PurchasesPackage>, productId: string): boolean {
+  if (map[productId]) return true;
+  return Object.keys(map).some((k) => k.startsWith(`${productId}:`));
+}
+
 export function isCompleteShardsPackageMap(map: Record<string, PurchasesPackage> | null | undefined): boolean {
   if (!map || Object.keys(map).length === 0) return false;
-  return SHARDS_PACKS.every((p) => !!map[p.productId]);
+  return SHARDS_PACKS.every((p) => mapHasShardProduct(map, p.productId));
 }
 
 export type ShardsPriceCache = Record<
@@ -49,6 +54,13 @@ export function buildShardsPackageMap(offerings: PurchasesOfferings): Record<str
   for (const p of allPackages) {
     const id = p.product.identifier;
     if (!map[id]) map[id] = p;
+    // Google Play / RC иногда отдают идентификатор с суффиксом базового плана (`id:base`).
+    // Каталог приложения использует короткий SKU из Play Console без суффикса.
+    const colon = id.indexOf(':');
+    if (colon > 0) {
+      const base = id.slice(0, colon);
+      if (base && !map[base]) map[base] = p;
+    }
   }
   return map;
 }
@@ -72,11 +84,17 @@ export async function saveShardsPriceCacheFromPackages(map: Record<string, Purch
     for (const p of Object.values(map)) {
       const pr = p.product;
       const id = pr.identifier;
-      prices[id] = {
+      const entry = {
         priceString: pr.priceString,
         price: pr.price,
         currencyCode: pr.currencyCode,
       };
+      prices[id] = entry;
+      const colon = id.indexOf(':');
+      if (colon > 0) {
+        const base = id.slice(0, colon);
+        if (base && prices[base] == null) prices[base] = entry;
+      }
     }
     warmPriceCache = prices;
     await AsyncStorage.setItem(

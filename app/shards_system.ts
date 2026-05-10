@@ -9,26 +9,33 @@ import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
 import { getCanonicalUserId } from './user_id_policy';
 import { emitAppEvent } from './events';
+import { bumpLifetimeShardsEarned, bumpLifetimeShardsSpent } from './lifetime_profile_stats';
 
 export type ShardSpendReason =
   | 'buy_energy'     // −N осколков, N = число слотов энергии (max 5–10)
-  | 'streak_freeze'  // -X Заморозка стрика
+  | 'streak_freeze'  // -X Заморозка цепочки
+  | 'streak_revive'  // -X Восстановление потерянной цепочки (≤24ч после обнуления)
   | 'wager_bet'      // -X Ставка в турнире
+  | 'arena_match_wager_loss' // -X Проигрыш ставки на рейтинг-матч арены
   | 'card_pack'      // -X Набор карточек за осколки
   | 'arena_plays_refill' // -5 Восстановление дневных слотов рейтинг-матчей арены
-  | 'league_boost'; // -X Персональный буст лиги
+  | 'league_boost'   // -X Персональный буст лиги
+  | 'daily_task_reroll' // -3 Замена дневного задания (1 раз в сутки)
+  | 'custom_avatar'
+  | 'custom_avatar_restyle'
+  | 'lesson_replay';     // −(BASE+5*n) Перепройти урок (Mastery; premium = бесплатно)
 
 export type ShardSource =
   | 'lesson_first'          // +1 Первое прохождение урока
   | 'lesson_perfect'        // +2 Идеальный урок (0 ошибок)
   | 'lesson_quiz_passed'    // +1 Зачёт в уроке
   | 'lesson_completed'      // +1 Урок полностью завершён
-  | 'streak_7'              // +3 Каждые 7 дней стрика
-  | 'streak_30'             // +5 Каждые 30 дней стрика
+  | 'streak_7'              // +3 Каждые 7 дней цепочки
+  | 'streak_30'             // +5 Каждые 30 дней цепочки
   | 'arena_win'             // +1 Победа в Арене
   | 'arena_10_wins'         // +1 Каждые 10 побед в Арене
   | 'arena_rank_up_streak'  // +1 Повышение ранга при серии 3+ побед (только новый пик)
-  | 'daily_tasks_all'       // +1 Все 3 дневных задачи
+  | 'daily_tasks_all'       // +3 Все 3 дневных задания (кнопка «Забрать» на экране заданий)
   | 'topic_completed'       // +3 Все уроки темы (разово)
   | 'league_1st'            // +3 1-е место в лиге
   | 'league_2nd'            // +2 2-е место в лиге
@@ -50,7 +57,7 @@ export const SHARD_REWARDS: Record<ShardSource, number> = {
   arena_win: 1,
   arena_10_wins: 1,
   arena_rank_up_streak: 1,
-  daily_tasks_all: 1,
+  daily_tasks_all: 3,
   topic_completed: 3,
   league_1st: 3,
   league_2nd: 2,
@@ -150,6 +157,7 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
       return next;
     });
     setShardsBalanceMemory(newBalance);
+    void bumpLifetimeShardsEarned(amount);
     await syncShardsToCloud(newBalance);
     logShardTransaction('earn', amount, source, newBalance);
     emitAppEvent('shards_balance_updated', { balance: newBalance });
@@ -165,13 +173,25 @@ export const addShards = async (source: ShardSource, opts?: AddShardOpts): Promi
 
 const REWARD_CLAIMS_COLLECTION = 'reward_claims';
 
+/** Ключ AsyncStorage / маркер: награда «3 осколка за все дневные» за календарный день уже забрана. */
+export const dailyTasksAllShardsRewardStorageKey = (dayKey: string) => `daily_tasks_all_shards_${dayKey}`;
+
+export const isDailyTasksAllShardsRewardClaimedForDay = async (dayKey: string): Promise<boolean> => {
+  try {
+    const v = await AsyncStorage.getItem(dailyTasksAllShardsRewardStorageKey(dayKey));
+    return v === '1';
+  } catch {
+    return false;
+  }
+};
+
 /**
- * +1 осколок за выполнение всех 3 ежедневных заданий за день.
+ * +3 осколка за выполнение всех 3 ежедневных заданий за день (ручной «Забрать» на экране заданий).
  * При включённом облаке: одна Firestore-транзакция (маркер + баланс) — без дублей между устройствами.
  * Иначе: локальный ключ AsyncStorage + addShards (как раньше).
  */
 export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<boolean> => {
-  const rewardKey = `daily_tasks_all_shards_${dayKey}`;
+  const rewardKey = dailyTasksAllShardsRewardStorageKey(dayKey);
   const amount = SHARD_REWARDS.daily_tasks_all;
   if (!Number.isFinite(amount) || amount <= 0) return false;
 
@@ -230,8 +250,9 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
       return false;
     }
 
+    // После успешной Firestore-транзакции обязаны записать локально: ранний return внутри lock
+    // (если ключ уже есть) оставлял облако с новым балансом, а модалка всё равно шла по emit ниже.
     await withStorageLock(async () => {
-      if (await AsyncStorage.getItem(rewardKey)) return;
       await AsyncStorage.multiSet([
         [STORAGE_KEY, String(newBalance)],
         [rewardKey, '1'],
@@ -239,6 +260,7 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
     });
 
     setShardsBalanceMemory(newBalance);
+    void bumpLifetimeShardsEarned(amount);
     logShardTransaction('earn', amount, 'daily_tasks_all', newBalance);
     emitAppEvent('shards_balance_updated', { balance: newBalance });
     emitAppEvent('shards_earned', { amount, reasonKey: 'daily_tasks_all' });
@@ -249,6 +271,14 @@ export const claimDailyTasksAllShardsReward = async (dayKey: string): Promise<bo
   }
 };
 
+export type SpendShardsOptions = {
+  /**
+   * Записать локально и сразу вернуть управление UI; синхронизация shards в Firestore — в фоне.
+   * Нужно для покупки наборов без «Подождите…», если облако подвисает.
+   */
+  skipServerAwait?: boolean;
+};
+
 export type AddShardsRawOptions = {
   /**
    * Показать глобальную анимацию/модалку shards_earned.
@@ -257,6 +287,11 @@ export type AddShardsRawOptions = {
   showEarnModal?: boolean;
   /** Подпись в shard_earn_ui, если showEarnModal */
   earnModalKey?: string;
+  /**
+   * DEV / магазин bypass: записать локально и обновить UI сразу, без ожидания Firestore.
+   * Синхронизация уходит в фон (`void`).
+   */
+  skipServerAwait?: boolean;
 };
 
 // ── Добавить произвольное количество осколков ─────────────────────────────
@@ -275,8 +310,17 @@ export const addShardsRaw = async (
       return next;
     });
     setShardsBalanceMemory(newBalance);
-    await syncShardsToCloud(newBalance);
-    logShardTransaction('earn', amount, logReason, newBalance);
+    void bumpLifetimeShardsEarned(amount);
+    const runServerWrites = (): void => {
+      void syncShardsToCloud(newBalance);
+      void logShardTransaction('earn', amount, logReason, newBalance);
+    };
+    if (options?.skipServerAwait) {
+      runServerWrites();
+    } else {
+      await syncShardsToCloud(newBalance);
+      logShardTransaction('earn', amount, logReason, newBalance);
+    }
     emitAppEvent('shards_balance_updated', { balance: newBalance });
     if (options?.showEarnModal) {
       const k = options.earnModalKey ?? logReason ?? 'generic_raw';
@@ -290,7 +334,11 @@ export const addShardsRaw = async (
 };
 
 // ── Потратить осколки (возвращает true если успешно) ──────────────────────
-export const spendShards = async (amount: number, reason: ShardSpendReason = 'buy_energy'): Promise<boolean> => {
+export const spendShards = async (
+  amount: number,
+  reason: ShardSpendReason = 'buy_energy',
+  options?: SpendShardsOptions,
+): Promise<boolean> => {
   try {
     if (!Number.isFinite(amount) || amount <= 0) return false;
     const newBalance = await withStorageLock(async () => {
@@ -302,8 +350,17 @@ export const spendShards = async (amount: number, reason: ShardSpendReason = 'bu
     });
     if (newBalance < 0) return false;
     setShardsBalanceMemory(newBalance);
-    await syncShardsToCloud(newBalance);
-    logShardTransaction('spend', amount, reason, newBalance);
+    void bumpLifetimeShardsSpent(amount);
+    const runServerWrites = (): void => {
+      void syncShardsToCloud(newBalance);
+      void logShardTransaction('spend', amount, reason, newBalance);
+    };
+    if (options?.skipServerAwait) {
+      runServerWrites();
+    } else {
+      await syncShardsToCloud(newBalance);
+      logShardTransaction('spend', amount, reason, newBalance);
+    }
     emitAppEvent('shards_balance_updated', { balance: newBalance });
     return true;
   } catch {
@@ -339,6 +396,7 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
     });
     if (result.awarded > 0 && result.balance !== null) {
       setShardsBalanceMemory(result.balance);
+      void bumpLifetimeShardsEarned(amount);
       await syncShardsToCloud(result.balance);
       logShardTransaction('earn', amount, source, result.balance);
       emitAppEvent('shards_balance_updated', { balance: result.balance });
@@ -350,14 +408,29 @@ export const awardOneTime = async (source: 'exam_excellent' | 'diagnostic_test')
   }
 };
 
+export type OnArenaWinOpts = {
+  /**
+   * Вместо стандартного +1 за победу в арене — начислить это число (ставка на матч: выплата S×2).
+   * Бонус «каждые 10 побед» и счётчик побед считаются как раньше.
+   */
+  baseWinShardsOverride?: number;
+};
+
 // ── Арена: каждые 10 побед (модалку показывает arena_results одним событием) ─
-export const onArenaWin = async (): Promise<{ shards: number; milestoneBonus: number }> => {
-  const winShards = await addShards('arena_win', { suppressEarnEvent: true });
+export const onArenaWin = async (opts?: OnArenaWinOpts): Promise<{ shards: number; milestoneBonus: number }> => {
+  const override = opts?.baseWinShardsOverride;
+  let winShards = 0;
+  if (override != null && Number.isFinite(override) && override > 0) {
+    winShards = await addShardsRaw(Math.floor(override), 'arena_match_wager_win');
+  } else {
+    winShards = await addShards('arena_win', { suppressEarnEvent: true });
+  }
   try {
     const raw = await AsyncStorage.getItem(ARENA_WINS_KEY);
     const wins = (raw ? parseInt(raw, 10) : 0) + 1;
     await AsyncStorage.setItem(ARENA_WINS_KEY, String(wins));
-    if (wins % 10 === 0) {
+    // Бонус «каждые 10 побед» только без ставки на матч (при ставке — одна выплата по коэффициенту).
+    if (override == null && wins % 10 === 0) {
       const bonus = await addShards('arena_10_wins', { suppressEarnEvent: true });
       return { shards: winShards, milestoneBonus: bonus };
     }
@@ -365,7 +438,7 @@ export const onArenaWin = async (): Promise<{ shards: number; milestoneBonus: nu
   return { shards: winShards, milestoneBonus: 0 };
 };
 
-// ── Стрик: кратность 7 / 30 (модалку шлёт home после этого) ───────────────
+// ── Цепочка: кратность 7 / 30 (модалку шлёт home после этого) ───────────────
 export const onStreakUpdated = async (
   streak: number,
 ): Promise<{ amount: number; reasonKey: 'streak_7' | 'streak_30' | null }> => {

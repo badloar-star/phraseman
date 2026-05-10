@@ -16,11 +16,22 @@ export default function InGameToast({ message, onHide, duration = 3000, type = '
   useEffect(() => {
     if (!message) return;
     anim.setValue(0);
-    Animated.sequence([
+    let cancelled = false;
+    const seq = Animated.sequence([
       Animated.timing(anim, { toValue: 1, duration: 250, useNativeDriver: true }),
       Animated.delay(duration),
       Animated.timing(anim, { toValue: 0, duration: 250, useNativeDriver: true }),
-    ]).start(() => onHide());
+    ]);
+    seq.start(({ finished }) => {
+      if (!finished || cancelled) return;
+      queueMicrotask(() => {
+        onHide();
+      });
+    });
+    return () => {
+      cancelled = true;
+      seq.stop();
+    };
   }, [message, anim, duration, onHide]);
 
   if (!message) return null;
@@ -47,14 +58,14 @@ const styles = StyleSheet.create({
     top: 60,
     left: 24,
     right: 24,
-    zIndex: 999,
+    zIndex: 999999,
     borderRadius: 16,
     borderWidth: 1,
     paddingVertical: 14,
     paddingHorizontal: 20,
     shadowColor: '#000',
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 6,
+    shadowOpacity: 0.25,
+    shadowRadius: 10,
+    elevation: 28,
   },
 });

@@ -108,9 +108,9 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
     case 'xp_boost_2x_48h':
       return { icon: '🚀', labelRu: 'x2 XP на 48 часов', labelUk: 'x2 XP на 48 годин', labelEs: 'x2 XP durante 48 horas' };
     case 'chain_shield_1':
-      return { icon: '🛡️', labelRu: 'Щит стрика на 1 день', labelUk: 'Щит стріку на 1 день', labelEs: 'Escudo de racha: 1 día' };
+      return { icon: '🛡️', labelRu: 'Щит цепочки на 1 день', labelUk: 'Щит стріку на 1 день', labelEs: 'Escudo de racha: 1 día' };
     case 'chain_shield_3':
-      return { icon: '🛡️', labelRu: 'Щит стрика на 3 дня', labelUk: 'Щит стріку на 3 дні', labelEs: 'Escudo de racha: 3 días' };
+      return { icon: '🛡️', labelRu: 'Щит цепочки на 3 дня', labelUk: 'Щит стріку на 3 дні', labelEs: 'Escudo de racha: 3 días' };
     case 'club_boost_free':
       return { icon: '👥', labelRu: 'Бесплатный клубный буст', labelUk: 'Безкоштовний клубний буст', labelEs: 'Impulso de club gratuito' };
     case 'arena_extra_5':

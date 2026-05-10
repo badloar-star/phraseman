@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, type ViewSt
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
+import { usePremium } from './PremiumContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -10,20 +11,36 @@ type Props = {
   f: { body: number };
   /** Контекст для premium_modal (аналитика / персонализация). */
   paywallContext?: string;
+  onPress?: () => void;
+  /** Если задан — вместо стандартных «Получить Premium» / trial-текстов. */
+  customLabel?: string;
   /** Доп. стили оболочки (напр. `marginTop`). */
   shellStyle?: ViewStyle;
+  /** Скругление (в модалках обычно «таблетка» побольше). */
+  cornerRadius?: number;
 };
 
-/** Золотой градиент + медленный перелив (shine) для CTA Premium — один стиль с NoEnergyModal. */
-export default function PremiumGoldButton({ f, paywallContext = 'no_energy', shellStyle }: Props) {
+/** Золотой градиент + медленный перелив (shine) для CTA Premium — один стиль с NoEnergyModal.
+ *  Текст автоматически переключается на «Попробуй Premium бесплатно», если для пользователя
+ *  реально доступна intro-фаза (см. PremiumContext.trialEligible). */
+export default function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
   const router = useRouter();
   const { lang } = useLang();
+  const { trialEligible } = usePremium();
   const shineX = useRef(new Animated.Value(0)).current;
-  const label = triLang(lang, {
-    ru: 'Получить Премиум',
-    uk: 'Отримати Premium',
-    es: 'Obtener Premium',
-  });
+  const label =
+    customLabel?.trim() ||
+    (trialEligible
+      ? triLang(lang, {
+          ru: 'Попробуй Premium бесплатно',
+          uk: 'Спробуй Premium безкоштовно',
+          es: 'Prueba Premium gratis',
+        })
+      : triLang(lang, {
+          ru: 'Получить Премиум',
+          uk: 'Отримати Premium',
+          es: 'Obtener Premium',
+        }));
 
   useEffect(() => {
     const sweepMs = 5600;
@@ -54,7 +71,7 @@ export default function PremiumGoldButton({ f, paywallContext = 'no_energy', she
   });
 
   return (
-    <View style={[styles.premiumBtnShell, shellStyle]}>
+    <View style={[styles.premiumBtnShell, { borderRadius: cornerRadius }, shellStyle]}>
       <LinearGradient
         colors={['#5C4818', '#9A7B1A', '#D4AF37', '#F0D060', '#D4AF37', '#8A6B12']}
         locations={[0, 0.22, 0.45, 0.55, 0.78, 1]}
@@ -80,6 +97,10 @@ export default function PremiumGoldButton({ f, paywallContext = 'no_energy', she
       <TouchableOpacity
         onPress={() => {
           hapticTap();
+          if (onPress) {
+            onPress();
+            return;
+          }
           router.push({ pathname: '/premium_modal', params: { context: paywallContext } } as any);
         }}
         activeOpacity={0.88}
@@ -90,6 +111,8 @@ export default function PremiumGoldButton({ f, paywallContext = 'no_energy', she
           style={[
             styles.goldBtnText,
             {
+              flex: 1,
+              textAlign: 'center',
               color: '#1a1206',
               fontSize: f.body,
               textShadowColor: 'rgba(255,248,220,0.55)',
@@ -97,12 +120,13 @@ export default function PremiumGoldButton({ f, paywallContext = 'no_energy', she
               textShadowRadius: 2,
             },
           ]}
+          numberOfLines={2}
         >
           👑 {label}
         </Text>
         <Text style={{ fontSize: 14 }}>✨</Text>
       </TouchableOpacity>
-      <View pointerEvents="none" style={[styles.premiumRim, { borderColor: 'rgba(255, 220, 140, 0.45)' }]} />
+      <View pointerEvents="none" style={[styles.premiumRim, { borderColor: 'rgba(255, 220, 140, 0.45)', borderRadius: cornerRadius }]} />
     </View>
   );
 }
@@ -111,7 +135,6 @@ const styles = StyleSheet.create({
   premiumBtnShell: {
     alignSelf: 'stretch',
     width: '100%',
-    borderRadius: 14,
     overflow: 'hidden',
     minHeight: 50,
     shadowColor: '#B8860B',
@@ -130,7 +153,6 @@ const styles = StyleSheet.create({
   },
   premiumRim: {
     ...StyleSheet.absoluteFillObject,
-    borderRadius: 14,
     borderWidth: 1,
     zIndex: 3,
   },

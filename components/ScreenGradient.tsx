@@ -69,6 +69,9 @@ const BG_GRADIENTS: Record<string, string[]> = {
   minimalDark: ['#202225', '#17181B', '#111214'],
 };
 
+/** Те же стопы, что у полного фона приложения — для интро-слоёв без дублирования палитры. */
+export const SCREEN_BG_GRADIENT_STOPS: Record<string, string[]> = BG_GRADIENTS;
+
 function Orb({ x, y, r, color, opacity, delay }: {
   x: number; y: number; r: number; color: string; opacity: number; delay: number;
 }) {
@@ -109,17 +112,21 @@ interface Props {
   /** Медленный «сдвиг глубины» фона при входе на главный экран (только визуальная мелочь) */
   entranceOffsetY?: Animated.Value;
   /**
+   * Фиксированный translateY для слоя фона (таб-оболочка).
+   * Число + обычный View вместо Animated.Value — иначе орбы с native-driver на родителе Animated.View дают рывки при JS-layout таб-слайдера.
+   */
+  staticParallaxY?: number;
+  /**
    * Модалка / полноэкранный слой поверх экрана, где уже есть родительский ScreenGradient:
    * без этого флага isNested даёт только transparent View (для табов), и фон модалки остаётся белым.
    */
   forceFullBleed?: boolean;
 }
 
-function ScreenGradient({ children, style, entranceOffsetY, forceFullBleed }: Props) {
+function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, forceFullBleed }: Props) {
   const { theme: t, themeMode } = useTheme();
   const isNested = useContext(GradientActiveCtx);
   const defaultEntranceY = useRef(new Animated.Value(0)).current;
-  const parallaxY = entranceOffsetY ?? defaultEntranceY;
 
   // Вложенный: табы уже рисуют один ScreenGradient в (tabs)/_layout — здесь только контент, фон «протекает».
   if (isNested && !forceFullBleed) {
@@ -129,41 +136,61 @@ function ScreenGradient({ children, style, entranceOffsetY, forceFullBleed }: Pr
   const orbs = ORBS[themeMode] ?? ORBS.dark;
   const gradColors = BG_GRADIENTS[themeMode] ?? [t.bgGradient[0], t.bgGradient[1]];
 
+  const staticY = staticParallaxY;
+  const animatedY =
+    staticParallaxY === undefined ? (entranceOffsetY ?? defaultEntranceY) : undefined;
+
   const bgLayerStyle: ViewStyle = {
     ...StyleSheet.absoluteFillObject,
-    transform: [{ translateY: parallaxY }],
+    ...(staticY !== undefined
+      ? { transform: [{ translateY: staticY }] }
+      : animatedY !== undefined
+        ? { transform: [{ translateY: animatedY }] }
+        : {}),
   };
+
+  const bgInner = (
+    <>
+      <LinearGradient
+        colors={gradColors as any}
+        start={{ x: 0.3, y: 0 }}
+        end={{ x: 0.7, y: 1 }}
+        style={StyleSheet.absoluteFill}
+      />
+      <View pointerEvents="none" style={[StyleSheet.absoluteFill, { overflow: 'visible' }]}>
+        {orbs.map((o, i) => (
+          <Orb key={i} {...o} delay={i} />
+        ))}
+        <View style={{
+          position: 'absolute', top: 0, right: -80,
+          width: 220, height: 220, borderRadius: 110,
+          backgroundColor: themeMode === 'ocean' || themeMode === 'sakura'
+            ? 'rgba(255,255,255,0.08)'
+            : `${t.accent}18`,
+          transform: [{ rotate: '30deg' }, { scaleX: 2.2 }],
+        }} />
+        <LinearGradient
+          colors={['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.08)']}
+          start={{ x: 0.5, y: 0.5 }}
+          end={{ x: 0.5, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+      </View>
+    </>
+  );
 
   return (
     <GradientActiveCtx.Provider value={true}>
       <View style={[{ flex: 1, backgroundColor: t.bgPrimary, overflow: 'visible' }, style]}>
-        <Animated.View pointerEvents="none" style={bgLayerStyle}>
-          <LinearGradient
-            colors={gradColors as any}
-            start={{ x: 0.3, y: 0 }}
-            end={{ x: 0.7, y: 1 }}
-            style={StyleSheet.absoluteFill}
-          />
-          <View pointerEvents="none" style={[StyleSheet.absoluteFill, { overflow: 'visible' }]}>
-            {orbs.map((o, i) => (
-              <Orb key={i} {...o} delay={i} />
-            ))}
-            <View style={{
-              position: 'absolute', top: 0, right: -80,
-              width: 220, height: 220, borderRadius: 110,
-              backgroundColor: themeMode === 'ocean' || themeMode === 'sakura'
-                ? 'rgba(255,255,255,0.08)'
-                : `${t.accent}18`,
-              transform: [{ rotate: '30deg' }, { scaleX: 2.2 }],
-            }} />
-            <LinearGradient
-              colors={['rgba(0,0,0,0.00)', 'rgba(0,0,0,0.08)']}
-              start={{ x: 0.5, y: 0.5 }}
-              end={{ x: 0.5, y: 1 }}
-              style={StyleSheet.absoluteFill}
-            />
+        {staticY !== undefined ? (
+          <View pointerEvents="none" collapsable={false} style={bgLayerStyle}>
+            {bgInner}
           </View>
-        </Animated.View>
+        ) : (
+          <Animated.View pointerEvents="none" collapsable={false} style={bgLayerStyle}>
+            {bgInner}
+          </Animated.View>
+        )}
         {children}
       </View>
     </GradientActiveCtx.Provider>

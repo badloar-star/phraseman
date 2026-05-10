@@ -4,6 +4,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import { L1_PHRASE_STRUCTURES, getDistractorsForWord } from './lesson1_distractor_logic';
+import { ENABLE_DEV_STUDY_TARGET_LANG } from './config';
 import { phraseWordRowsForStudyTarget } from './phrase_target_utils';
 import type { StudyTargetLang } from './study_target_lang_dev';
 
@@ -525,11 +526,21 @@ const getPerWordDistracts = (
   }
   const currentDistractors = (wordData.distractors ?? []).slice(0, 5);
 
+  const enSurface = String(phrase?.english ?? '').trim();
+  const blockLoudAsDistractorForStrangeNoise =
+    /\bstrange\s+noise\b/i.test(enSurface) &&
+    !(ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es');
+  const isConfusingVolumeDistractor = (w: string): boolean => {
+    if (!blockLoudAsDistractorForStrangeNoise) return false;
+    const k = w.toLowerCase();
+    return k === 'loud' || k === 'louder' || k === 'noisy';
+  };
+
   const fallbackPool =
-    studyTarget === 'es'
+    ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es'
       ? SPANISH_FALLBACK_POOL.filter((w: string) => !w.includes(' '))
       : [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives].filter(
-          (w: string) => !w.includes(' '),
+          (w: string) => !w.includes(' ') && !isConfusingVolumeDistractor(w),
         );
 
   // Sliding window: pull distractors from next word too (like competitor)
@@ -548,6 +559,7 @@ const getPerWordDistracts = (
       const result: string[] = [];
       for (const w of shuffle([...pool])) {
         if (result.length >= count) break;
+        if (isConfusingVolumeDistractor(w)) continue;
         if (!seen.has(w.toLowerCase())) {
           seen.add(w.toLowerCase());
           result.push(w);
@@ -566,7 +578,9 @@ const getPerWordDistracts = (
     const extras = contraction ? [contraction] : [];
     const combined = [currentCorrect, ...fromCurrent, ...fromNext, ...extras];
     if (combined.length < 6) {
-      const fallback = fallbackPool.filter((w: string) => !seen.has(w.toLowerCase()));
+      const fallback = fallbackPool.filter(
+        (w: string) => !seen.has(w.toLowerCase()) && !isConfusingVolumeDistractor(w),
+      );
       for (const w of shuffle(fallback)) {
         if (combined.length >= 6) break;
         seen.add(w.toLowerCase());
@@ -579,6 +593,7 @@ const getPerWordDistracts = (
   // Last word or no next word: show exactly 6, deduplicated
   const seenLast = new Set<string>([String(currentCorrect).toLowerCase()]);
   const uniqueDistractors = currentDistractors.filter((d: string) => {
+    if (isConfusingVolumeDistractor(d)) return false;
     const k = d.toLowerCase();
     if (seenLast.has(k)) return false;
     seenLast.add(k);
@@ -586,7 +601,9 @@ const getPerWordDistracts = (
   });
   const result = [currentCorrect, ...uniqueDistractors];
   if (result.length < 6) {
-    const fallback = fallbackPool.filter((w: string) => !seenLast.has(w.toLowerCase()));
+    const fallback = fallbackPool.filter(
+      (w: string) => !seenLast.has(w.toLowerCase()) && !isConfusingVolumeDistractor(w),
+    );
     for (const w of shuffle(fallback)) {
       if (result.length >= 6) break;
       seenLast.add(w.toLowerCase());

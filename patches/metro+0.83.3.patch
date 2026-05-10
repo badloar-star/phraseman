@@ -1,0 +1,14 @@
+diff --git a/node_modules/metro/src/Server/MultipartResponse.js b/node_modules/metro/src/Server/MultipartResponse.js
+index 777e28d..38048c1 100644
+--- a/node_modules/metro/src/Server/MultipartResponse.js
++++ b/node_modules/metro/src/Server/MultipartResponse.js
+@@ -28,9 +28,6 @@ class MultipartResponse {
+     res.writeHead(200, {
+       "Content-Type": `multipart/mixed; boundary="${BOUNDARY}"`,
+     });
+-    res.write(
+-      "If you are seeing this, your client does not support multipart response",
+-    );
+   }
+   writeChunk(headers, data, isLast = false) {
+     if (this.res.finished) {

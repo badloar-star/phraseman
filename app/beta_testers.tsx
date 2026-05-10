@@ -1,7 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
+import Constants from 'expo-constants';
 import { useRouter } from 'expo-router';
-import React, { useState } from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useLayoutEffect, useMemo, useState } from 'react';
+import { Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BETA_TESTERS } from '../constants/beta_testers_roll';
 import { useLang } from '../components/LangContext';
@@ -15,6 +16,29 @@ export default function BetaTesters() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  /** Раздел только для Android-сборки; на iOS не показываем и не оставляем «пустой» стек. */
+  useLayoutEffect(() => {
+    if (Platform.OS !== 'android') {
+      router.replace('/(tabs)/settings' as any);
+    }
+  }, [router]);
+
+  const versionLabel = useMemo(() => {
+    const v =
+      Constants.expoConfig?.version
+      ?? Constants.nativeApplicationVersion
+      ?? Constants.nativeAppVersion
+      ?? '';
+    const build = Constants.nativeBuildVersion ?? '';
+    if (!v && !build) return '';
+    if (v && build) return `${v} (${build})`;
+    return v || `build ${build}`;
+  }, []);
+
+  if (Platform.OS !== 'android') {
+    return null;
+  }
 
   return (
     <ScreenGradient>
@@ -35,7 +59,7 @@ export default function BetaTesters() {
           </View>
         </View>
 
-        <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 8, paddingBottom: 40 }}>
+        <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingTop: 8, paddingBottom: 16 }}>
           {BETA_TESTERS.map((tester, index) => {
             const isExpanded = expanded === tester.name;
             const isLast = index === BETA_TESTERS.length - 1;
@@ -74,6 +98,18 @@ export default function BetaTesters() {
             );
           })}
         </ScrollView>
+
+        {versionLabel !== '' && (
+          <View style={{ paddingHorizontal: 20, paddingTop: 8, paddingBottom: 10 }} pointerEvents="box-none">
+            <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: `Версия ${versionLabel}`,
+                uk: `Версія ${versionLabel}`,
+                es: `Versión ${versionLabel}`,
+              })}
+            </Text>
+          </View>
+        )}
       </SafeAreaView>
 
     </ScreenGradient>

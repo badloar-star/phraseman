@@ -310,7 +310,7 @@
   - RU: Я часто сам готовлю этот полезный завтрак по утрам.
   - UK: Я часто сам готую цей корисний сніданок уранці.
 - **L28** `lesson28_phrase_11` — EN, похоже, во множественном числе — проверьте RU
-  - EN: Should you be proud of yourselves after finishing this challenging marathon?
+  - EN: Should you be proud of yourself after finishing this challenging marathon?
   - RU: Стоит ли вам гордиться собой после завершения этого сложного марафона?
   - UK: Чи варто вам пишатися собою після завершення цього складного марафону?
 - **L28** `lesson28_phrase_31` — EN, похоже, во множественном числе — проверьте RU
@@ -668,7 +668,7 @@
   - RU: Он узнает тот секретный пароль, если прочитает это короткое сообщение сейчас?
   - UK: Він дізнається той секретний пароль, якщо прочитає це коротке повідомлення зараз?
 - **L28** `lesson28_phrase_11` — EN, похоже, во множественном числе — проверьте UK
-  - EN: Should you be proud of yourselves after finishing this challenging marathon?
+  - EN: Should you be proud of yourself after finishing this challenging marathon?
   - RU: Стоит ли вам гордиться собой после завершения этого сложного марафона?
   - UK: Чи варто вам пишатися собою після завершення цього складного марафону?
 - **L28** `lesson28_phrase_14` — EN, похоже, во множественном числе — проверьте UK

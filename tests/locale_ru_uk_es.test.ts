@@ -22,6 +22,11 @@ jest.mock('expo-store-review', () => ({
   requestReview: jest.fn(async () => {}),
 }));
 
+jest.mock('../app/config', () => ({
+  ...jest.requireActual<typeof import('../app/config')>('../app/config'),
+  ENABLE_SPANISH_LOCALE: true,
+}));
+
 import { actionToastTri } from '../app/events';
 import { getReviewVariant } from '../app/review_utils';
 import {

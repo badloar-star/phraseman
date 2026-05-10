@@ -1,10 +1,11 @@
 ﻿import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
+import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
-  KeyboardAvoidingView, Platform,
+  Image,
+  KeyboardAvoidingView,
   ScrollView,
   Text,
   TextInput,
@@ -26,11 +27,27 @@ import { shuffle } from './utils_shuffle';
 import { isCorrectAnswer } from '../constants/contractions';
 import { registerXP } from './xp_manager';
 import { recordMistakeFromDiagnostic } from './active_recall';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
+import ClozeGapText from '../components/ClozeGapText';
+import PhraseContentStars from '../components/PhraseContentStars';
 import { triLang } from '../constants/i18n';
+import type { ThemeMode } from '../constants/theme';
+import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
+import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 
 const TIMER_SEC = 30;
+
+function examMenuImage(themeMode: ThemeMode) {
+  return themeMode === 'minimalLight' ? require('../assets/images/levels/exam grafit.webp')
+    : themeMode === 'minimalDark' ? require('../assets/images/levels/exam fog.webp')
+    : themeMode === 'ocean'  ? require('../assets/images/levels/exam ocean.webp')
+    : themeMode === 'sakura' ? require('../assets/images/levels/exam sacura.webp')
+    : themeMode === 'gold'   ? require('../assets/images/levels/exam coral.webp')
+    : themeMode === 'neon'   ? require('../assets/images/levels/exam neon.webp')
+    :                          require('../assets/images/levels/examen forest.webp');
+}
 
 /** Encabezado del tipo «build»: mismo texto en pantalla y en reportes. */
 const DIAGNOSTIC_BUILD_HEADER = {
@@ -62,6 +79,15 @@ interface Question {
   type?:   QType;
   words?:  string[];
   answer?: string;
+}
+
+/** Стабильный id для агрегации оценок (не зависит от порядка после shuffle). */
+function diagnosticContentRatingItemId(q: Question): string {
+  const typ = q.type ?? 'choice4';
+  if (q.type === 'build' && q.answer) {
+    return `diag_build_${q.answer.replace(/\s+/g, '_').slice(0, 150)}`;
+  }
+  return `diag_${typ}_${q.phrase.replace(/\s+/g, '_').slice(0, 120)}_c${q.correct}_${q.level}`;
 }
 
 const POOL: Question[] = [
@@ -392,9 +418,10 @@ type Phase = 'intro' | 'quiz' | 'result';
 
 export default function DiagnosticTest() {
   const router = useRouter();
+  const effectiveOs = useEffectivePlatformOS();
   const params = useLocalSearchParams();
   const isFromOnboarding = params.fromOnboarding === '1';
-  const { theme: t , f } = useTheme();
+  const { theme: t , f, themeMode } = useTheme();
   const { lang, s } = useLang();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
@@ -415,10 +442,18 @@ export default function DiagnosticTest() {
   const [prevResult,  setPrev]     = useState<{ score: number; level: string; date: string } | null>(null);
   const [hapticsOn,   setHapticsOn]= useState(true);
   const [autoAdvance, setAutoAdvance]= useState(false);
+  const [examLessonsDone, setExamLessonsDone] = useState(0);
+  const [examReadiness, setExamReadiness] = useState<ExamReadinessSnapshot>({
+    percent: 0,
+    currentLesson: 1,
+    phrasesLearnedTotal: 0,
+    wrongInActiveScope: 0,
+  });
 
   const locked      = useRef(false);
   const inputRef    = useRef<any>(null);
   const handleSkipRef = useRef<() => void>(() => {});
+  const handleTimeUpRef = useRef<() => void>(() => {});
   const timerAnim   = useRef(new Animated.Value(1)).current;
   const timerRef    = useRef<ReturnType<typeof setInterval> | null>(null);
   const timeUpFired = useRef(false);
@@ -427,9 +462,11 @@ export default function DiagnosticTest() {
 
   const tryStartDiagnosticQuiz = async () => {
     hapticTap();
+    void trackFeatureStart('diagnostic', 'start', { total: questions.length }, 'diagnostic_test');
     if (!isUnlimited) {
       const ok = await spendOne();
       if (!ok) {
+        void trackFeatureBlocked('diagnostic', 'start', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);
         return;
       }
@@ -440,9 +477,11 @@ export default function DiagnosticTest() {
 
   const tryRestartDiagnosticQuiz = async () => {
     hapticTap();
+    void trackFeatureStart('diagnostic', 'restart', { total: questions.length }, 'diagnostic_test');
     if (!isUnlimited) {
       const ok = await spendOne();
       if (!ok) {
+        void trackFeatureBlocked('diagnostic', 'restart', 'no_energy', { total: questions.length }, 'diagnostic_test');
         setNoEnergy(true);
         return;
       }
@@ -456,14 +495,68 @@ export default function DiagnosticTest() {
     locked.current = false;
   };
 
+  const loadDiagnosticLast = useCallback(async () => {
+    try {
+      const v = await AsyncStorage.getItem('diagnostic_last');
+      if (!v) {
+        setPrev(null);
+        return;
+      }
+      const parsed = JSON.parse(v) as { score?: unknown; level?: unknown; date?: unknown };
+      if (
+        typeof parsed.score === 'number' &&
+        typeof parsed.level === 'string' &&
+        typeof parsed.date === 'string'
+      ) {
+        setPrev({ score: parsed.score, level: parsed.level, date: parsed.date });
+      } else {
+        setPrev(null);
+      }
+    } catch {
+      setPrev(null);
+    }
+  }, []);
+
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
-    AsyncStorage.getItem('diagnostic_last').then(v => { if (v) setPrev(JSON.parse(v)); });
+    void loadDiagnosticLast();
     loadSettings().then(s => {
       setHapticsOn(s.haptics);
       setAutoAdvance(s.autoAdvance ?? false);
     });
+  }, [loadDiagnosticLast]);
+
+  const loadExamLessonsDone = useCallback(async () => {
+    const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
+    const lessonEntries = await AsyncStorage.multiGet(lessonKeys);
+    let done = 0;
+    for (const [, saved] of lessonEntries) {
+      if (!saved) continue;
+      try {
+        const p: string[] = JSON.parse(saved);
+        const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
+        if (correct >= EXAM_LESSON_DONE_THRESHOLD) done++;
+      } catch { /* skip corrupt */ }
+    }
+    setExamLessonsDone(done);
   }, []);
+
+  const loadExamReadiness = useCallback(async () => {
+    try {
+      const snap = await loadExamReadinessSnapshot();
+      setExamReadiness(snap);
+    } catch {
+      /* keep previous */
+    }
+  }, []);
+
+  useFocusEffect(
+    useCallback(() => {
+      void loadExamLessonsDone();
+      void loadDiagnosticLast();
+      void loadExamReadiness();
+    }, [loadExamLessonsDone, loadDiagnosticLast, loadExamReadiness]),
+  );
 
   useEffect(() => {
     if (phase !== 'quiz') return;
@@ -485,7 +578,7 @@ export default function DiagnosticTest() {
           timerRef.current = null;
           if (!timeUpFired.current) {
             timeUpFired.current = true;
-            handleSkipRef.current();
+            handleTimeUpRef.current();
           }
           return 0;
         }
@@ -498,14 +591,22 @@ export default function DiagnosticTest() {
   const advance = (newScore: number) => {
     if (idx + 1 >= questions.length) {
       const res = getResult(newScore, questions, answersRef.current);
-      AsyncStorage.setItem('diagnostic_last', JSON.stringify({
-        score: newScore, level: res.level,
+      const lastPayload = {
+        score: newScore,
+        level: res.level,
         date: new Date().toLocaleDateString(isES ? 'es-ES' : isUK ? 'uk-UA' : 'ru-RU'),
-      }));
-      AsyncStorage.setItem('placement_level', res.level);
+      };
+      void AsyncStorage.setItem('diagnostic_last', JSON.stringify(lastPayload));
+      setPrev(lastPayload);
+      void AsyncStorage.setItem('placement_level', res.level);
       checkAchievements({ type: 'diagnosis' }).catch(() => {});
       updateMultipleTaskProgress([{ type: 'diagnostic_complete', increment: 1 }]).catch(() => {});
       awardOneTime('diagnostic_test').catch(() => {});
+      void trackFeatureSuccess('diagnostic', 'complete', {
+        score: newScore,
+        total: questions.length,
+        level: res.level,
+      }, 'diagnostic_test');
       setPhase('result');
     } else {
       setIdx(i => i + 1);
@@ -524,6 +625,18 @@ export default function DiagnosticTest() {
     timerAnim.stopAnimation();
   };
 
+  /** Время вышло: без выбора варианта и без показа правильного ответа — сразу дальше, как неверно. */
+  const handleTimeUp = () => {
+    if (locked.current || chosen !== null || typeSubmitted || buildSubmitted) return;
+    locked.current = true;
+    stopQuestionTimer();
+    answersRef.current = [...answersRef.current, false];
+    const qq = questions[idx];
+    if (qq) void recordMistakeFromDiagnostic(qq);
+    if (hapticsOn) void hapticError();
+    advance(score);
+  };
+
   const handleSkip = () => {
     if (locked.current || chosen !== null || typeSubmitted || buildSubmitted) return;
     locked.current = true;
@@ -535,6 +648,7 @@ export default function DiagnosticTest() {
     setTimeout(() => advance(score), 900);
   };
   handleSkipRef.current = handleSkip;
+  handleTimeUpRef.current = handleTimeUp;
 
   const handleAnswer = (ci: number) => {
     if (locked.current || chosen !== null) return;
@@ -660,53 +774,155 @@ export default function DiagnosticTest() {
           </TouchableOpacity>
         )}
         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: isFromOnboarding ? 0 : 8 }}>
-          {s.diagnostic.subtitle}
+          {s.diagnostic.start}
         </Text>
       </View>
       <ScrollView contentContainerStyle={{ padding: 24 }}>
-        <View style={{ alignItems: 'center', marginBottom: 32 }}>
-          <View style={{ width: 90, height: 90, borderRadius: 45, backgroundColor: t.bgCard, borderWidth: 1.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginBottom: 20 }}>
-            <Ionicons name="analytics-outline" size={40} color={t.textSecond} />
-          </View>
-          <Text style={{ color: t.textPrimary, fontSize: f.numMd + 6, fontWeight: '700', textAlign: 'center' }} adjustsFontSizeToFit numberOfLines={1}>
-            {s.diagnostic.title}
-          </Text>
-          <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center', marginTop: 10, lineHeight: 24 }}>
-            {s.diagnostic.desc}
-          </Text>
-        </View>
-
-
         {prevResult && (
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border, marginVertical: 16 }}>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border, marginBottom: 20, width: '100%' }}>
             <Text style={{ color: t.textSecond, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 8 }}>
               {s.diagnostic.prevResult}
             </Text>
-            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={1}>
+            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={2}>
               {prevResult.level} — {(LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])[
                 isES ? 'es' : isUK ? 'uk' : 'ru'
               ]}
             </Text>
+            <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 10 }}>
+              {s.diagnostic.correct}: {prevResult.score} / {questions.length}
+            </Text>
             <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 4 }}>
-              {prevResult.score} / 20 · {prevResult.date}
+              {triLang(lang, { ru: 'Дата', uk: 'Дата', es: 'Fecha' })}: {prevResult.date}
             </Text>
           </View>
         )}
 
+        <View
+          style={{
+            backgroundColor: t.bgCard,
+            borderRadius: 16,
+            padding: 16,
+            borderWidth: 0.5,
+            borderColor: t.border,
+            marginBottom: 20,
+            width: '100%',
+          }}
+        >
+          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+            {s.diagnostic.examReadinessTitle}
+          </Text>
+          <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 12, gap: 6 }}>
+            <Text style={{ color: t.accent, fontSize: f.numLg + 10, fontWeight: '800' }}>{examReadiness.percent}</Text>
+            <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '700' }}>%</Text>
+          </View>
+          <View
+            style={{
+              width: '100%',
+              height: 8,
+              backgroundColor: t.bgSurface2,
+              borderRadius: 4,
+              marginTop: 12,
+              overflow: 'hidden',
+            }}
+          >
+            <View
+              style={{
+                width: `${examReadiness.percent}%` as `${number}%`,
+                height: '100%',
+                backgroundColor: t.correct,
+                borderRadius: 4,
+              }}
+            />
+          </View>
+        </View>
+
         <TouchableOpacity
-          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, marginTop: 8 }}
+          style={{
+            backgroundColor: t.bgSurface,
+            borderRadius: 16,
+            paddingVertical: 14,
+            paddingHorizontal: 16,
+            borderWidth: 0.5,
+            borderColor: t.border,
+            marginTop: 0,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 14,
+          }}
+          onPress={() => { hapticTap(); router.push('/exam'); }}
+          activeOpacity={0.85}
+        >
+          <Image source={examMenuImage(themeMode)} style={{ width: 56, height: 56 }} resizeMode="contain" />
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{s.home.examBtn}</Text>
+            <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
+              {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones' })}
+            </Text>
+            <View style={{ width: '100%', height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, marginTop: 8, overflow: 'hidden' }}>
+              <View
+                style={{
+                  width: `${Math.round((examLessonsDone / 32) * 100)}%` as `${number}%`,
+                  height: '100%',
+                  backgroundColor: t.correct,
+                  borderRadius: 2,
+                }}
+              />
+            </View>
+          </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 20, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, marginTop: 12 }}
           onPress={() => { void tryStartDiagnosticQuiz(); }}
           activeOpacity={0.85}
         >
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-            {s.diagnostic.start}
+          <Text
+            style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}
+            numberOfLines={2}
+            adjustsFontSizeToFit
+            minimumFontScale={0.85}
+          >
+            {s.diagnostic.startTest}
           </Text>
         </TouchableOpacity>
+
         {!isUnlimited && (
           <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginTop: 10 }}>
-            {triLang(lang, { ru: '1 ⚡ за старт', uk: '1 ⚡ за початок', es: '1 ⚡ al empezar' })}
+            {triLang(lang, {
+              ru: '1 ⚡ за старт диагностики',
+              uk: '1 ⚡ за початок діагностики',
+              es: '1 ⚡ al empezar el test de nivel',
+            })}
           </Text>
         )}
+
+        <View
+          style={{
+            backgroundColor: t.bgCard,
+            borderRadius: 16,
+            padding: 16,
+            borderWidth: 0.5,
+            borderColor: t.border,
+            marginTop: 20,
+            width: '100%',
+          }}
+        >
+          <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+            {s.diagnostic.currentEnglishLevelTitle}
+          </Text>
+          {prevResult ? (
+            <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700', marginTop: 12, lineHeight: 26 }} adjustsFontSizeToFit numberOfLines={3}>
+              {prevResult.level} — {(LEVEL_RESULTS.find(r => r.level === prevResult.level) ?? LEVEL_RESULTS[0])[
+                isES ? 'es' : isUK ? 'uk' : 'ru'
+              ]}
+            </Text>
+          ) : (
+            <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: 'bold', marginTop: 10, lineHeight: 24 }}>
+              {s.diagnostic.currentEnglishLevelHintBeforeTest}
+            </Text>
+          )}
+        </View>
+
       </ScrollView>
       </ContentWrap>
     </SafeAreaView>
@@ -750,34 +966,6 @@ export default function DiagnosticTest() {
           )}
         </View>
 
-        {/* Блок открытых уроков */}
-        <View style={{ backgroundColor: t.correctBg, borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.correct, width: '100%', marginBottom: 16 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 10 }}>
-            <Ionicons name="lock-open-outline" size={20} color={t.correct} />
-            <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '700' }}>
-              {s.diagnostic.unlockedTitle}
-            </Text>
-          </View>
-          <Text style={{ color: t.textPrimary, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
-            {(() => {
-              const lv = result.level;
-              const rangeRU = lv === 'A1' ? 'Уроки 1–8 (уровень A1)' : lv === 'A2' ? 'Уроки 1–16 (уровни A1–A2)' : lv === 'B1' ? 'Уроки 1–24 (уровни A1–B1)' : 'Все 32 урока (уровни A1–B2+)';
-              const rangeUK = lv === 'A1' ? 'Уроки 1–8 (рівень A1)' : lv === 'A2' ? 'Уроки 1–16 (рівні A1–A2)' : lv === 'B1' ? 'Уроки 1–24 (рівні A1–B1)' : 'Усі 32 уроки (рівні A1–B2+)';
-              const rangeES = lv === 'A1'
-                ? 'Lecciones 1–8 (nivel A1)'
-                : lv === 'A2'
-                  ? 'Lecciones 1–16 (niveles A1–A2)'
-                  : lv === 'B1'
-                    ? 'Lecciones 1–24 (niveles A1–B1)'
-                    : 'Las 32 lecciones (niveles A1–B2+)';
-              return isES ? rangeES : isUK ? rangeUK : rangeRU;
-            })()}
-          </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: 22 }}>
-            {s.diagnostic.unlockedRec}
-          </Text>
-        </View>
-
         <TouchableOpacity
           style={{ backgroundColor: t.bgSurface, borderRadius: 16, padding: 16, alignItems: 'center', width: '100%', marginBottom: 12, borderWidth: 0.5, borderColor: t.border }}
           onPress={() => { void tryRestartDiagnosticQuiz(); }}
@@ -805,7 +993,7 @@ export default function DiagnosticTest() {
 
   return (
     <ScreenGradient>
-    <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+    <KeyboardAvoidingView style={{ flex: 1 }} behavior={effectiveOs === 'ios' ? 'padding' : undefined}>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
@@ -880,9 +1068,21 @@ export default function DiagnosticTest() {
             </Text>
           )}
 
-          <Text style={{ color: t.textPrimary, fontSize: f.numMd + 6, fontWeight: '500', lineHeight: 36, marginBottom: 20 }}>
-            {q.type === 'build' ? triLang(lang, { ru: q.hintRU, uk: q.hintUK, es: q.hintES }) : q.phrase}
-          </Text>
+          <ClozeGapText
+            text={q.type === 'build' ? triLang(lang, { ru: q.hintRU, uk: q.hintUK, es: q.hintES }) : q.phrase}
+            style={{ color: t.textPrimary, fontSize: f.numMd + 6, fontWeight: '500', lineHeight: 36, marginBottom: 12 }}
+          />
+          <PhraseContentStars
+            scope="exam"
+            itemId={diagnosticContentRatingItemId(q)}
+            labelSnippet={
+              q.type === 'build'
+                ? (q.answer?.trim() || triLang(lang, { ru: q.hintRU, uk: q.hintUK, es: q.hintES }))
+                : q.phrase
+            }
+            ratingTarget={q.type === 'match' ? 'word' : 'phrase'}
+            style={{ marginBottom: 16, alignSelf: 'center' }}
+          />
           </View>
 
           <View style={{ paddingBottom: 16 }}>

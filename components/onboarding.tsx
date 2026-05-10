@@ -3,6 +3,8 @@ import {
   View, Text, StyleSheet, TouchableOpacity,
   TextInput, KeyboardAvoidingView, ScrollView,
   Animated, BackHandler, Keyboard,
+  Platform,
+  ActivityIndicator,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -25,14 +27,23 @@ import {
 import { scheduleDailyReminder } from '../app/notifications';
 import { reserveName } from '../app/firestore_leaderboard';
 import { emitAppEvent } from '../app/events';
+import { validateProfileName } from '../app/settings/profile_name_service';
+import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
 import {
   signInWithProvider,
   isAppleSignInAvailable,
   isGoogleSignInAvailable,
   AUTH_PROMPT_SHOWN_KEY,
+  APPLE_ANDROID_MISSING_SERVICE_ID,
   type AuthProviderId,
 } from '../app/auth_provider';
 import { GoogleSignInButton, AppleSignInButton } from './AuthProviderButtons';
+
+const AppInfoDialog = {
+  alert(title: string, message: string) {
+    void enqueueThemedBlockingInfoAlert(title, message, 'OK');
+  },
+};
 
 interface Props {
   onDone: () => void;
@@ -92,6 +103,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   const btnFade    = useRef(new Animated.Value(0)).current;
   const [lang]       = useState<Lang>(detectLang);
   const [name, setName]       = useState('');
+  const [nameBusy, setNameBusy] = useState(false);
+  const [nameFieldError, setNameFieldError] = useState<string | null>(null);
+  const [keyboardPad, setKeyboardPad] = useState(0);
   // Дефолтные значения — экраны выбора удалены, профиль сохраняется с базовыми настройками
   const goal: LearningGoal       = 'hobby';
   const minutesPerDay: MinutesPerDay = 15;
@@ -171,6 +185,20 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   }, [step, screenFade]);
 
   useEffect(() => {
+    if (step !== 'name') {
+      setKeyboardPad(0);
+      return;
+    }
+    const evShow = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const evHide = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+    const show = Keyboard.addListener(evShow, (e) => {
+      setKeyboardPad(e.endCoordinates?.height ?? 0);
+    });
+    const hide = Keyboard.addListener(evHide, () => setKeyboardPad(0));
+    return () => { show.remove(); hide.remove(); };
+  }, [step]);
+
+  useEffect(() => {
     if (step !== 'streak') return;
     milestoneAnims.forEach(a => a.setValue(0));
     Animated.stagger(150, milestoneAnims.map(a =>
@@ -224,74 +252,91 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   };
 
   const handleNameDone = async () => {
+    if (nameBusy) return;
+    setNameFieldError(null);
     const trimmed = name.trim();
     if (!trimmed) {
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: 'Введите имя чтобы продолжить',
-        messageUk: 'Введіть ім\'я щоб продовжити',
-        messageEs: 'Escribe tu nombre para continuar',
-      });
+      setNameFieldError(pick('Введите имя чтобы продолжить', 'Введіть ім\'я щоб продовжити', 'Escribe tu nombre para continuar'));
       return;
     }
     if (trimmed.length < 2) {
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: 'Минимум 2 символа',
-        messageUk: 'Мінімум 2 символи',
-        messageEs: 'Mínimo 2 caracteres',
-      });
+      setNameFieldError(pick('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres'));
       return;
     }
     if (trimmed.length > 20) {
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: 'Максимум 20 символов',
-        messageUk: 'Максимум 20 символів',
-        messageEs: 'Máximo 20 caracteres',
-      });
+      setNameFieldError(pick('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres'));
+      return;
+    }
+    const prof = validateProfileName(trimmed);
+    if (prof === 'profanity') {
+      setNameFieldError(pick(
+        'Это имя не подходит — выберите другое.',
+        'Це імʼя не підходить — оберіть інше.',
+        'Este nombre no es adecuado; prueba con otro.',
+      ));
       return;
     }
 
+    setNameBusy(true);
     const result = await reserveName(trimmed, '');
     if (result === 'taken') {
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: 'Имя занято. Такой никнейм уже есть в рейтинге.',
-        messageUk: "Ім'я зайняте. Такий нікнейм вже є в рейтингу.",
-        messageEs: 'Ese nombre ya está en uso. Prueba con otro.',
-      });
+      setNameBusy(false);
+      setNameFieldError(pick(
+        'Это имя уже занято — придумай другой ник.',
+        'Це імʼя вже зайняте — вигадай інший нік.',
+        'Este nombre ya está en uso; prueba con otro.',
+      ));
+      return;
+    }
+    if (result === 'error') {
+      setNameBusy(false);
+      setNameFieldError(pick(
+        'Не удалось проверить имя. Проверь интернет и попробуй ещё раз.',
+        'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
+        'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
+      ));
       return;
     }
 
-    await AsyncStorage.multiSet([
-      ['app_lang', lang],
-      ['user_name', trimmed],
-    ]);
-    void import('../app/firestore_leagues')
-      .then((m) => m.registerInLeagueGroupSilently())
-      .catch(() => {});
-    Keyboard.dismiss();
-    goToStep('streak');
+    try {
+      await AsyncStorage.multiSet([
+        ['app_lang', lang],
+        ['user_name', trimmed],
+      ]);
+      await import('../app/firestore_leagues')
+        .then((m) => m.registerInLeagueGroupSilently())
+        .catch(() => {});
+      Keyboard.dismiss();
+      goToStep('streak');
+    } finally {
+      setNameBusy(false);
+    }
   };
 
   const handleSkipName = async () => {
-    let autoName = generateAutoName();
-    // retry до 5 раз чтобы найти свободный ник
-    for (let i = 0; i < 5; i++) {
-      const result = await reserveName(autoName, '');
-      if (result !== 'taken') break;
-      autoName = generateAutoName();
+    if (nameBusy) return;
+    setNameFieldError(null);
+    setNameBusy(true);
+    try {
+      let autoName = generateAutoName();
+      // retry до 5 раз чтобы найти свободный ник
+      for (let i = 0; i < 5; i++) {
+        const result = await reserveName(autoName, '');
+        if (result !== 'taken') break;
+        autoName = generateAutoName();
+      }
+      await AsyncStorage.multiSet([
+        ['app_lang', lang],
+        ['user_name', autoName],
+      ]);
+      await import('../app/firestore_leagues')
+        .then((m) => m.registerInLeagueGroupSilently())
+        .catch(() => {});
+      Keyboard.dismiss();
+      goToStep('streak');
+    } finally {
+      setNameBusy(false);
     }
-    await AsyncStorage.multiSet([
-      ['app_lang', lang],
-      ['user_name', autoName],
-    ]);
-    void import('../app/firestore_leagues')
-      .then((m) => m.registerInLeagueGroupSilently())
-      .catch(() => {});
-    Keyboard.dismiss();
-    goToStep('streak');
   };
 
 
@@ -320,14 +365,17 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
     await AsyncStorage.setItem('user_profile', JSON.stringify(profile));
 
-    // Generate referral code for the user
-    try {
-      await generateReferralCode(name);
-    } catch {
-    }
+    // Рефкод в облаке — в фоне, без блокировки кнопки «Позже» / входа
+    void generateReferralCode(name).catch(() => {});
   };
 
+  // Гард от повторного завершения онбординга при двойном тапе на «Позже»/auth-кнопках.
+  // Без него onDone() мог дёрнуться дважды → setTimeout в _layout повторно открывал
+  // модалку «Начнём первый урок?» уже после нажатия «Поехали».
+  const finishingRef = useRef(false);
   const handleFinishOnboarding = async () => {
+    if (finishingRef.current) return;
+    finishingRef.current = true;
     await saveUserProfile();
     await AsyncStorage.setItem('onboarding_done', '1');
     await AsyncStorage.removeItem('onboarding_step');
@@ -728,7 +776,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               <Animated.View style={{ marginTop: 4, opacity: btnFade, transform: [{ translateY: btnSlide }] }}>
                 <Text style={{ color: demo2Correct ? DARK.accent : '#FF8888', fontSize: 15, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
                   {demo2Correct
-                    ? pick('🎉 Отлично! Всё правильно!', '🎉 Відмінно! Всі правильно!', '🎉 ¡Genial! ¡Todo correcto!')
+                    ? pick('🎉 Отлично! Всё правильно!', '🎉 Відмінно! Усе вірно!', '🎉 ¡Genial! ¡Todo correcto!')
                     : `${pick('✅ Правильно: ', '✅ Правильно: ', '✅ Correcto: ')}${demo2Answer.join(' ')}`}
                 </Text>
                 <TouchableOpacity
@@ -767,9 +815,20 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       <SafeAreaView style={styles.container}>
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
-        <KeyboardAvoidingView style={{ flex: 1 }} behavior="padding" keyboardVerticalOffset={0}>
+        <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          keyboardVerticalOffset={Platform.OS === 'ios' ? 8 : 0}
+        >
           <ScrollView
-            contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30, paddingVertical: 24 }}
+            contentContainerStyle={{
+              flexGrow: 1,
+              justifyContent: 'center',
+              alignItems: 'center',
+              paddingHorizontal: 30,
+              paddingVertical: 24,
+              paddingBottom: 24 + keyboardPad,
+            }}
             keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
           >
@@ -784,24 +843,53 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                 'Para que en la tabla no figure «Héroe desconocido» 😅',
               )}
             </Text>
+            {nameFieldError ? (
+              <Text
+                style={{
+                  color: '#FF8A8A',
+                  fontSize: 14,
+                  fontWeight: '600',
+                  textAlign: 'center',
+                  lineHeight: 20,
+                  marginBottom: 10,
+                  width: '100%',
+                }}
+              >
+                {nameFieldError}
+              </Text>
+            ) : null}
             <TextInput
               style={styles.input}
               value={name}
-              onChangeText={setName}
+              onChangeText={(t) => {
+                setName(t);
+                if (nameFieldError) setNameFieldError(null);
+              }}
               placeholder={pick('Ваше имя...', 'Ваше ім\'я...', 'Tu nombre...')}
               placeholderTextColor={DARK.textGhost}
               autoFocus
               maxLength={20}
+              editable={!nameBusy}
               returnKeyType="done"
               onSubmitEditing={handleNameDone}
             />
-            <TouchableOpacity style={styles.continueBtn} onPress={handleNameDone} activeOpacity={0.85}>
-              <Text style={styles.continueBtnText}>{pick('Продолжить', 'Продовжити', 'Continuar')}</Text>
+            <TouchableOpacity
+              style={[styles.continueBtn, nameBusy && { opacity: 0.75 }]}
+              onPress={handleNameDone}
+              activeOpacity={0.85}
+              disabled={nameBusy}
+            >
+              {nameBusy ? (
+                <ActivityIndicator color="#0d1b2a" />
+              ) : (
+                <Text style={styles.continueBtnText}>{pick('Продолжить', 'Продовжити', 'Continuar')}</Text>
+              )}
             </TouchableOpacity>
             <TouchableOpacity
               style={{ width: '100%', borderWidth: 1.5, borderColor: DARK.borderHighlight, borderRadius: 12, paddingVertical: 16, alignItems: 'center', marginTop: 12 }}
               onPress={handleSkipName}
               activeOpacity={0.8}
+              disabled={nameBusy}
             >
               <Text style={{ color: DARK.textGhost, fontSize: 15, fontWeight: '500' }}>
                 {pick(
@@ -931,6 +1019,7 @@ function AuthOnboardingStep({
   const [googleAvail, setGoogleAvail] = useState(false);
   const [appleAvail, setAppleAvail] = useState(false);
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
+  const [authBusy, setAuthBusy] = useState(false);
 
   useEffect(() => {
     isGoogleSignInAvailable().then(setGoogleAvail).catch(() => setGoogleAvail(false));
@@ -942,9 +1031,36 @@ function AuthOnboardingStep({
     try {
       const result = await signInWithProvider(provider);
       setLoadingProvider(null);
-      if (result.result === 'cancelled') return;
+      if (result.result === 'cancelled') {
+        AppInfoDialog.alert(
+          authPick('Вход не завершён', 'Вхід не завершено', 'Acceso sin terminar'),
+          authPick(
+            'Окно входа закрылось. Можно пропустить шаг или нажать кнопку ещё раз.',
+            'Вікно входу закрилось. Можна пропустити крок або натиснути ще раз.',
+            'Se cerró la ventana de acceso. Puedes omitir el paso o intentar otra vez.',
+          ),
+        );
+        return;
+      }
       if (result.result === 'error') {
-        // Тихо игнорируем — не блокируем онбординг при сбое сети.
+        if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
+          AppInfoDialog.alert(
+            authPick('Apple на Android', 'Apple на Android', 'Apple en Android'),
+            authPick(
+              'Задай в сборке EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID (Services ID) и return URL в Apple Developer (часто phraseman://apple-auth).',
+              'Задай у збірці EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID (Services ID) і return URL у Apple Developer (часто phraseman://apple-auth).',
+              'Configura EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID (Services ID) y el return URL en Apple Developer (a menudo phraseman://apple-auth).',
+            ),
+          );
+          return;
+        }
+        // Не блокируем онбординг, но в проде иначе «тап — тишина».
+        AppInfoDialog.alert(
+          authPick('Не удалось войти', 'Не вдалося увійти', 'No se pudo iniciar sesión'),
+          result.error
+            ? `${authPick('Код:', 'Код:', 'Código:')} ${result.error}`
+            : authPick('Попробуй позже или пропусти шаг.', 'Спробуй пізніше або пропусти крок.', 'Inténtalo más tarde u omite el paso.'),
+        );
         return;
       }
       // Помечаем что промпт показывали — чтобы lesson_complete не показал повторно.
@@ -956,9 +1072,16 @@ function AuthOnboardingStep({
   };
 
   const handleLater = async () => {
-    // Не помечаем AUTH_PROMPT_SHOWN_KEY — пусть модалка появится после урока 1.
-    await onComplete();
+    if (authBusy || loadingProvider) return;
+    setAuthBusy(true);
+    try {
+      await onComplete();
+    } finally {
+      setAuthBusy(false);
+    }
   };
+
+  const interactionLocked = loadingProvider !== null || authBusy;
 
   return (
     <SafeAreaView style={styles.container}>
@@ -982,7 +1105,7 @@ function AuthOnboardingStep({
               <GoogleSignInButton
                 onPress={() => handleSignIn('google')}
                 loading={loadingProvider === 'google'}
-                disabled={loadingProvider !== null}
+                disabled={interactionLocked}
                 label={authPick('Войти через Google', 'Війти з Google', 'Continuar con Google')}
                 variant="light"
               />
@@ -992,7 +1115,7 @@ function AuthOnboardingStep({
                 <AppleSignInButton
                   onPress={() => handleSignIn('apple')}
                   loading={loadingProvider === 'apple'}
-                  disabled={loadingProvider !== null}
+                  disabled={interactionLocked}
                   label={authPick('Войти через Apple', 'Війти з Apple', 'Continuar con Apple')}
                 />
               </View>
@@ -1011,13 +1134,17 @@ function AuthOnboardingStep({
 
           <TouchableOpacity
             onPress={handleLater}
-            disabled={loadingProvider !== null}
+            disabled={interactionLocked}
             style={{ paddingVertical: 14, marginTop: 8 }}
             activeOpacity={0.7}
           >
-            <Text style={{ color: DARK.textMuted, fontSize: 15, fontWeight: '500', textAlign: 'center' }}>
-              {authPick('Позже', 'Пізніше', 'Más tarde')}
-            </Text>
+            {authBusy ? (
+              <ActivityIndicator color={DARK.textMuted} />
+            ) : (
+              <Text style={{ color: DARK.textMuted, fontSize: 15, fontWeight: '500', textAlign: 'center' }}>
+                {authPick('Позже', 'Пізніше', 'Más tarde')}
+              </Text>
+            )}
           </TouchableOpacity>
 
           <Text style={{ color: DARK.textGhost ?? '#666', fontSize: 11, textAlign: 'center', lineHeight: 16, marginTop: 12, paddingHorizontal: 12 }}>

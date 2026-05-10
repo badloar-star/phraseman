@@ -42,6 +42,12 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
       const frame = progress['user_frame'] ?? progress['user_avatar_frame'] ?? null;
       const streak = parseInt(progress['streak_count'] ?? '0') || null;
 
+      const root = doc.data() ?? {};
+      const firebaseAuthUid =
+        typeof root.firebaseAuthUid === 'string' && root.firebaseAuthUid.trim().length > 0
+          ? root.firebaseAuthUid.trim()
+          : null;
+
       // Недельные очки
       let weekPoints = 0;
       try {
@@ -74,6 +80,7 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
         frame,
         streak,
         leagueId,
+        ...(firebaseAuthUid ? { firebaseAuthUid } : {}),
         isBot: false,
         syncVersion: 2,
         updatedAt: Date.now(),

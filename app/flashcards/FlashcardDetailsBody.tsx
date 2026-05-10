@@ -40,6 +40,11 @@ type Props = {
 };
 
 const LITERAL_LABEL: Record<FlashcardContentLang, string> = { ru: 'Дословно', uk: 'Дослівно', es: 'Literal' };
+const CONTEXT_LABEL: Record<FlashcardContentLang, string> = {
+  ru: 'Контекст',
+  uk: 'Контекст',
+  es: 'Contexto',
+};
 
 /**
  * Розгорнуті деталі: дослівний переклад (поля literal*) — окрема секція з міткою; пояснення/контекст/нотатка — далі в блоці з рейкою.
@@ -95,19 +100,39 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
     lang,
   ]);
 
+  /** Довгий текст із «фрази дня» тощо — зберігається в example*, раніше не показувався у панелі деталей. */
+  const exampleText = useMemo(() => {
+    const raw =
+      lang === 'uk'
+        ? item.exampleUk ?? item.exampleRu ?? item.exampleEn
+        : lang === 'es'
+          ? item.exampleEs ?? item.exampleUk ?? item.exampleRu ?? item.exampleEn
+          : item.exampleRu ?? item.exampleUk ?? item.exampleEn;
+    const trimmed = raw?.trim() ?? '';
+    return trimmed.length > 0 ? trimmed : null;
+  }, [lang, item.exampleEn, item.exampleEs, item.exampleRu, item.exampleUk]);
+
   const reportDataText = useMemo(() => {
     const bits: string[] = [`EN: ${item.en}`];
     if (literalText) bits.push(`${LITERAL_LABEL[lang]}: ${literalText}`);
     if (bodyText) bits.push(bodyText);
+    if (exampleText) bits.push(`${CONTEXT_LABEL[lang]}:\n${exampleText}`);
     return bits.join('\n\n');
-  }, [item.en, literalText, bodyText, lang]);
+  }, [item.en, literalText, bodyText, exampleText, lang]);
 
-  if (!literalText && !bodyText) return null;
+  const hideReportFlag = item.categoryId === 'custom';
+
+  if (!literalText && !bodyText && !exampleText) return null;
 
   return (
     <View style={ss.body}>
       {literalText && (
-        <View style={[ss.block, bodyText ? ss.blockWithLiteral : ss.blockLast]}>
+        <View
+          style={[
+            ss.block,
+            !bodyText && !exampleText ? ss.blockLast : ss.blockWithLiteral,
+          ]}
+        >
           <Text
             maxFontSizeMultiplier={1.35}
             style={{
@@ -136,7 +161,7 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
         </View>
       )}
       {bodyText && (
-        <View style={[ss.block, ss.blockLast, ss.descBlockWrap]}>
+        <View style={[ss.block, exampleText ? undefined : ss.blockLast, ss.descBlockWrap]}>
           <View style={[ss.blockRail, { borderLeftColor: `${t.textMuted}66` }]}>
             <Text
               maxFontSizeMultiplier={1.35}
@@ -150,20 +175,67 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
               {bodyText}
             </Text>
           </View>
-          <ReportErrorButton
-            variant="icon-flag"
-            screen="flashcards"
-            dataId={`flashcard_detail_${item.id}`}
-            dataText={reportDataText}
-            style={ss.flagCorner}
-            accessibilityLabel={
-              lang === 'uk'
-                ? 'Повідомити про помилку в описі картки'
-                : lang === 'es'
-                  ? 'Informar de un error en la nota de la tarjeta'
-                  : 'Сообщить об ошибке в описании карточки'
-            }
-          />
+          {!hideReportFlag && (
+            <ReportErrorButton
+              variant="icon-flag"
+              screen="flashcards"
+              dataId={`flashcard_detail_${item.id}`}
+              dataText={reportDataText}
+              style={ss.flagCorner}
+              accessibilityLabel={
+                lang === 'uk'
+                  ? 'Повідомити про помилку в описі картки'
+                  : lang === 'es'
+                    ? 'Informar de un error en la nota de la tarjeta'
+                    : 'Сообщить об ошибке в описании карточки'
+              }
+            />
+          )}
+        </View>
+      )}
+      {exampleText && (
+        <View style={[ss.block, ss.blockLast, bodyText ? { paddingTop: 4 } : undefined, ss.descBlockWrap]}>
+          <Text
+            maxFontSizeMultiplier={1.35}
+            style={{
+              color: t.textSecond,
+              fontSize: f.sub,
+              lineHeight: Math.round(f.sub * 1.35),
+              fontWeight: '700',
+              marginBottom: 6,
+            }}
+          >
+            {CONTEXT_LABEL[lang]}:
+          </Text>
+          <View style={[ss.blockRail, { borderLeftColor: `${t.accent}55` }]}>
+            <Text
+              maxFontSizeMultiplier={1.35}
+              style={{
+                color: t.textMuted,
+                fontSize: f.body,
+                lineHeight: Math.round(f.body * 1.5),
+                fontStyle: 'italic',
+              }}
+            >
+              {exampleText}
+            </Text>
+          </View>
+          {!hideReportFlag && !bodyText && (
+            <ReportErrorButton
+              variant="icon-flag"
+              screen="flashcards"
+              dataId={`flashcard_detail_${item.id}`}
+              dataText={reportDataText}
+              style={ss.flagCorner}
+              accessibilityLabel={
+                lang === 'uk'
+                  ? 'Повідомити про помилку в описі картки'
+                  : lang === 'es'
+                    ? 'Informar de un error en la nota de la tarjeta'
+                    : 'Сообщить об ошибке в описании карточки'
+              }
+            />
+          )}
         </View>
       )}
     </View>

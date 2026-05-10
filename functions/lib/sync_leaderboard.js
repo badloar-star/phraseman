@@ -74,6 +74,10 @@ async function syncLeaderboardFromUsers() {
             const avatar = String(levelFromXP);
             const frame = progress['user_frame'] ?? progress['user_avatar_frame'] ?? null;
             const streak = parseInt(progress['streak_count'] ?? '0') || null;
+            const root = doc.data() ?? {};
+            const firebaseAuthUid = typeof root.firebaseAuthUid === 'string' && root.firebaseAuthUid.trim().length > 0
+                ? root.firebaseAuthUid.trim()
+                : null;
             // Недельные очки
             let weekPoints = 0;
             try {
@@ -106,6 +110,7 @@ async function syncLeaderboardFromUsers() {
                 frame,
                 streak,
                 leagueId,
+                ...(firebaseAuthUid ? { firebaseAuthUid } : {}),
                 isBot: false,
                 syncVersion: 2,
                 updatedAt: Date.now(),

@@ -23,6 +23,11 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import type { FirebaseFirestoreTypes } from '@react-native-firebase/firestore';
+import Constants from 'expo-constants';
+import * as Crypto from 'expo-crypto';
+import * as Linking from 'expo-linking';
+import * as WebBrowser from 'expo-web-browser';
 import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getStableId, setStableId, clearStableId } from './stable_id';
@@ -34,10 +39,23 @@ import {
   wipeLocalAccountData,
   deleteCloudData,
   resetAnonAuthCacheForSignOut,
+  SYNC_KEYS,
 } from './cloud_sync';
-import { reserveName, deleteMyLeaderboardEntry } from './firestore_leaderboard';
+import { reserveName, deleteMyLeaderboardEntry, deleteMyNameReservation } from './firestore_leaderboard';
 import { loadShardsFromCloud } from './shards_system';
 import { logEvent, recordError } from './firebase';
+import { logAppCritical } from './app_health';
+
+WebBrowser.maybeCompleteAuthSession();
+
+/** Подстрока в `SignInResult.error` при нажатии Apple на Android без EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID. */
+export const APPLE_ANDROID_MISSING_SERVICE_ID = 'apple_android_missing_service_id';
+
+function readExpoExtraString(key: string): string | undefined {
+  const extra = Constants.expoConfig?.extra as Record<string, unknown> | undefined;
+  const v = extra?.[key];
+  return typeof v === 'string' && v.trim() ? v.trim() : undefined;
+}
 
 function scheduleReferralApplyAfterLink(): void {
   if (!CLOUD_SYNC_ENABLED) return;
@@ -122,6 +140,50 @@ const getAppleAuth = () => {
   }
 };
 
+/** Services ID (Identifier) из Apple Developer → Sign in with Apple (для web/Android), тот же что в Firebase Auth → Apple. */
+function getAppleAndroidServiceId(): string | null {
+  const v =
+    process.env.EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID?.trim() ||
+    readExpoExtraString('EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID');
+  return v || null;
+}
+
+/** Должен совпадать с Return URL у этого Services ID. По умолчанию — deep link приложения. */
+function getAppleAndroidRedirectUri(): string {
+  const fromEnv =
+    process.env.EXPO_PUBLIC_APPLE_ANDROID_REDIRECT_URI?.trim() ||
+    readExpoExtraString('EXPO_PUBLIC_APPLE_ANDROID_REDIRECT_URI');
+  if (fromEnv) return fromEnv;
+  return Linking.createURL('apple-auth');
+}
+
+function parseAppleOAuthRedirectUrl(url: string): { idToken?: string; error?: string; state?: string; userJson?: string } {
+  try {
+    const hashIdx = url.indexOf('#');
+    if (hashIdx >= 0) {
+      const frag = new URLSearchParams(url.slice(hashIdx + 1));
+      const idToken = frag.get('id_token') ?? undefined;
+      const error = frag.get('error') ?? undefined;
+      const state = frag.get('state') ?? undefined;
+      const userJson = frag.get('user') ?? undefined;
+      if (idToken || error || state) return { idToken, error, state, userJson };
+    }
+    const qIdx = url.indexOf('?');
+    if (qIdx >= 0) {
+      const q = new URLSearchParams(url.slice(qIdx + 1));
+      return {
+        idToken: q.get('id_token') ?? undefined,
+        error: q.get('error') ?? undefined,
+        state: q.get('state') ?? undefined,
+        userJson: q.get('user') ?? undefined,
+      };
+    }
+  } catch {
+    /* ignore */
+  }
+  return {};
+}
+
 // ── Configuration ─────────────────────────────────────────────────────────────
 
 let _googleConfigured = false;
@@ -159,16 +221,25 @@ function configureGoogleSignin(): boolean {
 
 /**
  * Доступен ли Apple Sign-In на текущем устройстве.
- * Apple sign-in только на iOS, физическом устройстве с iCloud.
+ * • iOS: нативный Sign in with Apple (доступность с iOS / симулятор — см. isAvailableAsync).
+ * • Android: кнопка видна при облачной сборке; OAuth в Custom Tabs требует
+ *   EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID и return URL в Apple Developer (см. getAppleAndroidRedirectUri).
  */
 export async function isAppleSignInAvailable(): Promise<boolean> {
-  const mod = getAppleAuth();
-  if (!mod) return false;
-  try {
-    return await mod.isAvailableAsync();
-  } catch {
-    return false;
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return false;
+  if (Platform.OS === 'ios') {
+    const mod = getAppleAuth();
+    if (!mod) return false;
+    try {
+      return await mod.isAvailableAsync();
+    } catch {
+      return false;
+    }
   }
+  if (Platform.OS === 'android') {
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -191,6 +262,58 @@ export async function isGoogleSignInAvailable(): Promise<boolean> {
   return true;
 }
 
+/** Чтение users/{stableId} не должно блокировать настройки бесконечно при «зависшем» клиенте Firestore. */
+const LINKED_AUTH_FIRESTORE_TIMEOUT_MS = 12_000;
+
+function coerceFirebaseMetaTime(raw: unknown, fallback: number): number {
+  if (raw == null) return fallback;
+  if (typeof raw === 'number' && Number.isFinite(raw)) return raw;
+  const s = String(raw);
+  const n = Number(s);
+  if (Number.isFinite(n) && n > 1e11) return n;
+  const d = Date.parse(s);
+  if (Number.isFinite(d)) return d;
+  return fallback;
+}
+
+/** Запасной источник, если Firestore медленный/упал: локальная сессия уже знает Google/Apple. */
+function getLinkedAuthFromCurrentUser(): LinkedAuth | null {
+  const auth = getAuth();
+  const u = auth?.currentUser;
+  if (!u || u.isAnonymous) return null;
+  const providers = u.providerData ?? [];
+  let authProv: AuthProviderId | null = null;
+  let providerUid = '';
+  for (const p of providers) {
+    if (p.providerId === 'google.com') {
+      authProv = 'google';
+      providerUid = p.uid || u.uid;
+      break;
+    }
+    if (p.providerId === 'apple.com') {
+      authProv = 'apple';
+      providerUid = p.uid || u.uid;
+      break;
+    }
+  }
+  if (!authProv || !providerUid) return null;
+  const now = Date.now();
+  const meta = u.metadata;
+  const lastSignInAt = coerceFirebaseMetaTime(meta?.lastSignInTime, now);
+  const linkedAt = coerceFirebaseMetaTime(meta?.creationTime, lastSignInAt);
+  const devicePlatform: LinkedAuth['devicePlatform'] =
+    Platform.OS === 'ios' ? 'ios' : Platform.OS === 'android' ? 'android' : 'web';
+  return {
+    provider: authProv,
+    providerUid,
+    email: u.email ?? null,
+    displayName: u.displayName ?? null,
+    linkedAt,
+    lastSignInAt,
+    devicePlatform,
+  };
+}
+
 /**
  * Текущая привязка к провайдеру для залогиненного юзера.
  * Returns null если юзер ещё анонимный.
@@ -199,15 +322,25 @@ export async function getLinkedAuthInfo(): Promise<LinkedAuth | null> {
   if (!CLOUD_SYNC_ENABLED) return null;
   const db = getFirestore();
   if (!db) return null;
+  const fromAuth = (): LinkedAuth | null => getLinkedAuthFromCurrentUser();
   try {
     const stableId = await getStableId();
-    const doc = await db.collection('users').doc(stableId).get();
-    if (!doc.exists) return null;
+    const doc = await withTimeout<FirebaseFirestoreTypes.DocumentSnapshot>(
+      db.collection('users').doc(stableId).get(),
+      LINKED_AUTH_FIRESTORE_TIMEOUT_MS,
+      'linked_auth_users_doc',
+    ).catch((e: unknown) => {
+      if (__DEV__) console.warn('[auth_provider] getLinkedAuthInfo Firestore timeout/error → auth fallback', e);
+      return null;
+    });
+    if (doc == null) return fromAuth();
+    if (!doc.exists) return fromAuth();
     const linked = doc.data()?.linkedAuth as LinkedAuth | undefined;
-    return linked ?? null;
+    if (linked?.provider) return linked;
+    return fromAuth();
   } catch (e) {
     if (__DEV__) console.warn('[auth_provider] getLinkedAuthInfo failed', e);
-    return null;
+    return fromAuth();
   }
 }
 
@@ -264,20 +397,29 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
   }
 
   let res: any;
-  try {
-    if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn()...');
-    res = await withTimeout(mod.GoogleSignin.signIn(), GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
-    if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn returned', JSON.stringify({
-      type: res?.type,
-      hasData: !!(res?.data ?? res),
-    }));
-  } catch (e: any) {
-    if (e?.code === 'SIGN_IN_CANCELLED' || e?.code === '-5' || e?.code === '12501') {
-      if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: cancelled by user (error code)');
-      return { cancelled: true };
+  for (let attempt = 0; attempt <= 1; attempt++) {
+    try {
+      if (__DEV__) console.log(`[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn() attempt=${attempt}`);
+      res = await withTimeout(mod.GoogleSignin.signIn(), GOOGLE_SIGNIN_TIMEOUT_MS, 'native_signin');
+      if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: GoogleSignin.signIn returned', JSON.stringify({
+        type: res?.type,
+        hasData: !!(res?.data ?? res),
+      }));
+      break;
+    } catch (e: any) {
+      if (e?.code === 'SIGN_IN_CANCELLED' || e?.code === '-5' || e?.code === '12501') {
+        if (__DEV__) console.log('[auth_provider] runGoogleNativeSignIn: cancelled by user (error code)');
+        return { cancelled: true };
+      }
+      const isTimeout = e?.message?.startsWith('timeout_native_signin');
+      if (isTimeout && attempt === 0) {
+        if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: timeout on attempt 0, signOut + retry');
+        try { await mod.GoogleSignin.signOut(); } catch { /* ignore */ }
+        continue;
+      }
+      if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: signIn threw', e);
+      throw e;
     }
-    if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: signIn threw', e);
-    throw e;
   }
 
   // v13+ возвращает { type: 'success', data: {...} } / { type: 'cancelled' }; v12 — плоский объект.
@@ -310,7 +452,8 @@ async function runAppleNativeSignIn(): Promise<NativeAuthCredential | { cancelle
   const mod = getAppleAuth();
   if (!mod) throw new Error('apple_auth_module_unavailable');
 
-  // expo-apple-authentication: requestedScopes
+  // Без nonce: меньше расхождений с проверкой JWT в Firebase (nonce mismatch / 17094).
+  // Достаточно identityToken для AppleAuthProvider.credential(idToken).
   let credential: any;
   try {
     credential = await mod.signInAsync({
@@ -339,11 +482,115 @@ async function runAppleNativeSignIn(): Promise<NativeAuthCredential | { cancelle
   };
 }
 
+const APPLE_OAUTH_TIMEOUT_MS = 120_000;
+
+/**
+ * Sign in with Apple на Android: Apple ID в браузере → id_token в redirect fragment → Firebase.
+ * Требует EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID и тот же return URL в Apple Developer + Firebase (Apple provider).
+ */
+async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { cancelled: true }> {
+  const serviceId = getAppleAndroidServiceId();
+  if (!serviceId) {
+    throw new Error(APPLE_ANDROID_MISSING_SERVICE_ID);
+  }
+
+  const redirectUri = getAppleAndroidRedirectUri();
+  const rawBytes = await Crypto.getRandomBytesAsync(16);
+  const rawNonce = Array.from(rawBytes, b => b.toString(16).padStart(2, '0')).join('');
+
+  const hashedNonce = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    rawNonce,
+    { encoding: Crypto.CryptoEncoding.HEX },
+  );
+
+  const stateBytes = await Crypto.getRandomBytesAsync(16);
+  const oauthState = Array.from(stateBytes, b => b.toString(16).padStart(2, '0')).join('');
+
+  const params = new URLSearchParams({
+    client_id: serviceId,
+    redirect_uri: redirectUri,
+    response_type: 'id_token',
+    scope: 'name email',
+    response_mode: 'fragment',
+    state: oauthState,
+    nonce: hashedNonce,
+  });
+  const authUrl = `https://appleid.apple.com/auth/authorize?${params.toString()}`;
+
+  const session = await withTimeout(
+    WebBrowser.openAuthSessionAsync(authUrl, redirectUri),
+    APPLE_OAUTH_TIMEOUT_MS,
+    'apple_oauth_session',
+  );
+
+  if (session.type === 'cancel' || session.type === 'dismiss') {
+    return { cancelled: true };
+  }
+  if (session.type !== 'success' || !session.url) {
+    throw new Error(`apple_oauth_${session.type}`);
+  }
+
+  const parsed = parseAppleOAuthRedirectUrl(session.url);
+  if (parsed.state && parsed.state !== oauthState) {
+    throw new Error('apple_oauth_state_mismatch');
+  }
+  if (parsed.error) {
+    const err = parsed.error;
+    if (err === 'user_cancelled_authorize' || err === 'access_denied') {
+      return { cancelled: true };
+    }
+    throw new Error(`apple_oauth_${err}`);
+  }
+
+  const idToken = parsed.idToken;
+  if (!idToken) throw new Error('apple_signin_no_id_token');
+
+  let email: string | null = null;
+  let displayName: string | null = null;
+  try {
+    const parts = idToken.split('.');
+    if (parts[1]) {
+      const pad = '='.repeat((4 - (parts[1].length % 4)) % 4);
+      const b64 = parts[1].replace(/-/g, '+').replace(/_/g, '/') + pad;
+      const json = typeof atob === 'function' ? atob(b64) : '';
+      const payload = JSON.parse(json) as { email?: string };
+      if (typeof payload.email === 'string') email = payload.email;
+    }
+  } catch {
+    /* ignore JWT parse */
+  }
+  if (parsed.userJson) {
+    try {
+      const userObj = JSON.parse(decodeURIComponent(parsed.userJson)) as {
+        name?: { firstName?: string; lastName?: string };
+      };
+      const n = userObj?.name;
+      if (n && (n.firstName || n.lastName)) {
+        displayName = `${n.firstName ?? ''} ${n.lastName ?? ''}`.trim() || null;
+      }
+    } catch {
+      /* ignore */
+    }
+  }
+
+  return {
+    idToken,
+    email,
+    displayName,
+    appleNonce: rawNonce,
+  };
+}
+
 /** Crashlytics: прод-диагностика sign-in без logcat */
 function captureAuthSignInFailure(provider: AuthProviderId, stage: string, detail: string): void {
   try {
     const d = detail.replace(/\s+/g, ' ').slice(0, 280);
     recordError(new Error(`auth_signin:${provider}:${stage}:${d}`), 'auth_signin');
+    void logAppCritical('auth:signin_failure', new Error(d), {
+      feature: 'auth',
+      tags: { provider, stage },
+    });
   } catch {
     /* ignore */
   }
@@ -368,10 +615,16 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     return { result: 'error', error: 'firebase_unavailable' };
   }
 
-  // 1. Native sign-in
+  // 1. Native / OAuth sign-in
   let cred: NativeAuthCredential | { cancelled: true };
   try {
-    cred = provider === 'google' ? await runGoogleNativeSignIn() : await runAppleNativeSignIn();
+    if (provider === 'google') {
+      cred = await runGoogleNativeSignIn();
+    } else if (Platform.OS === 'android') {
+      cred = await runAppleAndroidOAuthSignIn();
+    } else {
+      cred = await runAppleNativeSignIn();
+    }
   } catch (e: any) {
     if (__DEV__) console.warn('[auth_provider] native sign-in failed', e);
     const code = e?.code ? String(e.code) : '';
@@ -396,7 +649,9 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
     const credential =
       provider === 'google'
         ? authMod.default.GoogleAuthProvider.credential(cred.idToken)
-        : authMod.default.AppleAuthProvider.credential(cred.idToken);
+        : cred.appleNonce
+          ? authMod.default.AppleAuthProvider.credential(cred.idToken, cred.appleNonce)
+          : authMod.default.AppleAuthProvider.credential(cred.idToken);
     const userCredential = await auth.signInWithCredential(credential);
     const fbUser = userCredential?.user ?? auth.currentUser;
     firebaseProviderUid = fbUser?.uid ?? '';
@@ -628,53 +883,23 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
       // Сразу синкаем текущий локальный прогресс в облако
       // (на случай если local чуть-чуть свежее — после swap данные не пропадут).
       // syncToCloud у нас пишет в users/{currentLocalStableId} — это корректно ДО swap.
-      await syncToCloud();
+      // Здесь нельзя оставлять обычный debounce: дальше мы меняем stable_id и чистим локальные
+      // progress-ключи, поэтому свежий локальный прогресс должен быть отправлен прямо сейчас.
+      await syncToCloud({ forceNow: true });
 
       // Подменяем stable_id локально
       await setStableId(outcome.remoteStableId);
 
       // Чистим локальные progress-ключи, чтобы restoreFromCloud записал данные нового аккаунта.
-      // Берём список из cloud_sync.SYNC_KEYS косвенно — проще сразу удалить набор known progress keys.
-      // Должен соответствовать SYNC_KEYS в cloud_sync.ts (плюс legacy/служебные).
-      // Если ключ есть в SYNC_KEYS, но НЕТ здесь — после свапа stable_id в локалке
-      // могут остаться обрывки прошлого аккаунта.
+      // SYNC_KEYS — единый источник правды (cloud_sync); плюс локальные/legacy, которых нет в кортеже.
+      const introKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`);
       const progressKeys = [
-        // identity / progress
-        'user_total_xp', 'user_prev_xp', 'user_name', 'user_avatar', 'user_frame',
-        'streak_count', 'streak_last_date',
-        'unlocked_lessons', 'flashcards', 'achievements_v1', 'achievements_state',
-        'active_recall_items',
-        'onboarding_done', 'lang', 'app_lang',
-        // league
-        'league_state_v3', 'week_leaderboard', 'week_points_v2', 'week_points',
-        'daily_tasks_progress',
-        // premium / streak protection
-        'premium_plan', 'admin_premium_override', 'premium_expiry', 'had_premium_ever',
-        'streak_freeze', 'premium_free_freeze_used',
-        'chain_shield', 'gift_xp_multiplier',
-        // level exams
-        'level_exam_A1_passed', 'level_exam_A2_passed', 'level_exam_B1_passed', 'level_exam_B2_passed',
-        'level_exam_A1_pct', 'level_exam_A2_pct', 'level_exam_B1_pct', 'level_exam_B2_pct',
-        'level_exam_A1_best_pct', 'level_exam_A2_best_pct', 'level_exam_B1_best_pct', 'level_exam_B2_best_pct',
-        'level_exam_A1_pass_count', 'level_exam_A2_pass_count', 'level_exam_B1_pass_count', 'level_exam_B2_pass_count',
-        // flashcards user library + purchases
-        'custom_flashcards_v2', 'flashcards_progress_v1', 'flashcards_owned_packs_v1',
-        'community_owned_pack_ids_v1', 'irregular_verbs_global',
-        // shards (баланс) и его служебные
-        'shards_balance', 'shards_one_time_events', 'shards_arena_wins_total', 'shards_admin_override_applied_at',
-        // UI / behavior
-        'app_theme', 'app_font_size', 'haptics_tap',
-        'user_settings', 'placement_level',
-        'user_stats_v1', 'xp_migration_v2', 'week_points_migrated_v1',
-        // sync bookkeeping
-        'cloud_last_sync_snapshot_v1', 'cloud_created_at_synced_v1', 'cloud_migration_v1',
-        // per-lesson progress (32 урока × 5 ключей = 160) — чтобы не оставались
-        // звёзды/прогресс прежнего аккаунта на устройстве после свапа.
-        ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_best_score`),
-        ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_pass_count`),
-        ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`),
-        ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_listening_progress`),
-        ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`),
+        ...SYNC_KEYS,
+        'achievements_v1',
+        'week_points',
+        'shards_balance',
+        'shards_admin_override_applied_at',
+        ...introKeys,
       ];
       await AsyncStorage.multiRemove(progressKeys);
 
@@ -983,16 +1208,19 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
  *     Google после удаления аккаунта вис в "loading" навсегда.
  *
  * Шаги:
- *   1. deleteMyLeaderboardEntry() — сносим запись из глобального лидерборда.
- *   2. deleteCloudData() — удаляем users/{stable_id} (+ дублирующий по authUid)
+ *   1. deleteMyNameReservation() — освобождаем ник в name_index/{nameLower}.
+ *      ОБЯЗАТЕЛЬНО до шагов 2-3, иначе и leaderboard, и users/{uid} уже удалены,
+ *      и узнать nameLower будет неоткуда (а локальный AsyncStorage очистится в шаге 5).
+ *   2. deleteMyLeaderboardEntry() — сносим запись из глобального лидерборда.
+ *   3. deleteCloudData() — удаляем users/{stable_id} (+ дублирующий по authUid)
  *      и пытаемся удалить Firebase Auth юзера (currentUser.delete()).
  *      ВАЖНО: auth_links/{providerUid} тут НЕ удаляется (rules не позволяют),
  *      но он становится "orphan" и лечится в signInWithProvider при ре-логине
  *      (см. ветку !remoteUserSnap.exists в транзакции выше).
- *   3. signOutCurrentProvider() — Google revoke + Firebase signOut.
- *   4. wipeLocalAccountData() + AsyncStorage.clear() — сносим локальный кеш.
- *   5. clearStableId() — сносим UUID из SecureStore + AsyncStorage + памяти.
- *   6. ensureAnonUser() — поднимаем чистую анонимную сессию + новый stable_id.
+ *   4. signOutCurrentProvider() — Google revoke + Firebase signOut.
+ *   5. wipeLocalAccountData() + AsyncStorage.clear() — сносим локальный кеш.
+ *   6. clearStableId() — сносим UUID из SecureStore + AsyncStorage + памяти.
+ *   7. ensureAnonUser() — поднимаем чистую анонимную сессию + новый stable_id.
  *
  * После этого вход через Google = поведение "первый запуск на новом устройстве":
  * созданный ранее auth_links/{providerUid} будет починен (см. signInWithProvider).
@@ -1002,7 +1230,18 @@ export type DeleteAccountResult =
   | { ok: false; reason: string };
 
 export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
-  // 1. Удаляем облачные данные. Без сети это просто упадёт молча (catch внутри),
+  // 1. ОСВОБОЖДАЕМ НИК. Должно идти ДО deleteMyLeaderboardEntry/deleteCloudData,
+  //    иначе оба источника nameLower (leaderboard/{uid} + users/{uid}) будут уже
+  //    стёрты, а локальный AsyncStorage.user_name очистится в шаге 5. Без этого
+  //    при следующем онбординге тот же ник вернёт 'taken' (документ name_index/{nl}
+  //    остался с привязкой к старому uid).
+  try {
+    await deleteMyNameReservation();
+  } catch (e) {
+    if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: name reservation delete failed', e);
+  }
+
+  // 2. Удаляем облачные данные. Без сети это просто упадёт молча (catch внутри),
   //    локальный wipe всё равно выполняем — иначе юзер останется в зомби-состоянии.
   try {
     await deleteMyLeaderboardEntry();

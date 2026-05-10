@@ -17,7 +17,7 @@
 //   • Не дисмиссили в последние 7 дней (auth_save_banner_dismissed_at).
 //
 // Поведение:
-//   • При тапе "Войти" — открывает RegistrationPromptModal (context='home_banner').
+//   • При тапе «Привязать» — открывает RegistrationPromptModal (context='home_banner').
 //   • При тапе "×" — ставит timestamp дисмисса; через 7 дней снова появится.
 //   • После успешного логина (event 'auth_provider_linked') — мгновенно скрывается.
 // ════════════════════════════════════════════════════════════════════════════
@@ -120,75 +120,92 @@ export default function SaveProgressBanner() {
         innerStyle={{
           paddingHorizontal: 14,
           paddingVertical: 12,
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: 12,
+          flexDirection: 'column',
+          gap: 10,
         }}
       >
         <View
           style={{
-            width: 40,
-            height: 40,
-            borderRadius: 20,
-            backgroundColor: t.correct + '22',
-            alignItems: 'center',
-            justifyContent: 'center',
+            flexDirection: 'row',
+            alignItems: 'flex-start',
+            gap: 12,
           }}
         >
-          <Ionicons name="cloud-upload-outline" size={22} color={t.correct} />
-        </View>
-
-        <View style={{ flex: 1 }}>
-          <Text
+          <View
             style={{
-              color: t.textPrimary,
-              fontSize: f.body,
-              fontWeight: '700',
-              marginBottom: 2,
+              width: 40,
+              height: 40,
+              borderRadius: 20,
+              backgroundColor: t.correct + '22',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
             }}
-            numberOfLines={1}
           >
-            {triLang(lang, {
-              ru: 'Сохрани свой прогресс',
-              uk: 'Збережи свій прогрес',
-              es: 'Guarda tu progreso',
-            })}
-          </Text>
-          <Text
-            style={{ color: t.textMuted, fontSize: f.caption, lineHeight: 16 }}
-            numberOfLines={2}
+            <Ionicons name="cloud-upload-outline" size={22} color={t.correct} />
+          </View>
+
+          <View style={{ flex: 1, minWidth: 0 }}>
+            <Text
+              style={{
+                color: t.textPrimary,
+                fontSize: f.h3,
+                fontWeight: '800',
+                letterSpacing: -0.2,
+                paddingTop: 2,
+              }}
+            >
+              {triLang(lang, {
+                ru: 'Сохрани свой прогресс',
+                uk: 'Збережи свій прогрес',
+                es: 'Guarda tu progreso',
+              })}
+            </Text>
+          </View>
+
+          <TouchableOpacity
+            activeOpacity={0.8}
+            onPress={handleSignInPress}
+            style={{
+              paddingHorizontal: 12,
+              paddingVertical: 8,
+              borderRadius: 10,
+              backgroundColor: t.correct,
+              flexShrink: 0,
+            }}
           >
-            {triLang(lang, {
-              ru: 'Войди через Google или Apple — и прогресс не потеряется при смене телефона или переустановке.',
-              uk: 'Увійди через Google або Apple — і прогрес не загубиться при зміні телефону чи перевстановленні.',
-              es: 'Entra con Google o Apple para no perder tu progreso al cambiar de móvil o reinstalar.',
-            })}
-          </Text>
+            <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '800' }}>
+              {triLang(lang, { ru: 'Привязать', uk: 'Привʼязати', es: 'Vincular' })}
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={handleDismiss}
+            hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
+            style={{ marginLeft: -4, padding: 4, flexShrink: 0 }}
+          >
+            <Ionicons name="close" size={18} color={t.textMuted} />
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity
-          activeOpacity={0.8}
-          onPress={handleSignInPress}
+        <Text
           style={{
-            paddingHorizontal: 12,
-            paddingVertical: 8,
-            borderRadius: 10,
-            backgroundColor: t.correct,
+            color: t.textMuted,
+            fontSize: f.sub,
+            lineHeight: Math.round(f.sub * 1.35),
+            fontWeight: '600',
           }}
         >
-          <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '800' }}>
-            {triLang(lang, { ru: 'Войти', uk: 'Увійти', es: 'Entrar' })}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={handleDismiss}
-          hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
-          style={{ marginLeft: -4, padding: 4 }}
-        >
-          <Ionicons name="close" size={18} color={t.textMuted} />
-        </TouchableOpacity>
+          {triLang(lang, {
+            ru:
+              'Привяжи аккаунт — и твои уроки, XP, серия и достижения останутся в безопасности. Даже если телефон внезапно решит уйти в отпуск.',
+            uk:
+              "Прив'яжи акаунт — і твої уроки, XP, серія та досягнення будуть у безпеці. Навіть якщо телефон раптом вирішить піти у відпустку.",
+            es:
+              'Vincula tu cuenta: tus lecciones, XP, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
+          })}
+        </Text>
       </PremiumCard>
 
       <RegistrationPromptModal

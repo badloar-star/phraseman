@@ -9,9 +9,18 @@ const serviceAccount = require('../service-account.json');
 initializeApp({ credential: cert(serviceAccount) });
 const db = getFirestore();
 
-const questions = JSON.parse(readFileSync('./assets/arena_questions_a1.json', 'utf8'));
+const BANKS = [
+  './assets/arena_questions_a1.json',
+  './assets/arena_questions_a2.json',
+  './assets/arena_questions_b1.json',
+  './assets/arena_questions_b2.json',
+];
 
-console.log(`Uploading ${questions.length} A1 questions to Firestore...`);
+const questions = BANKS.flatMap((rel) => JSON.parse(readFileSync(rel, 'utf8')));
+
+console.log(
+  `Uploading ${questions.length} arena questions (${BANKS.length} banks: A1/A2/B1/B2) to Firestore...`,
+);
 
 const BATCH_SIZE = 500;
 let uploaded = 0;

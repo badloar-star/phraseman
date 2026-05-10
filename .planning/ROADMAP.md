@@ -76,6 +76,12 @@ Plans:
 - ARENA-01, ARENA-02, ARENA-03, ARENA-04 (Arena lobby friends list)
 - TEST-04 (HoF weekly toggle data integrity)
 
+**Plans:** 2 plans
+
+Plans:
+- [ ] 01-PLAN.md — Friends HoF screen + achievements entry + sortAndRankHoF helpers + TEST-04 unit tests (HOF-01..07, TEST-04)
+- [ ] 02-PLAN.md — Arena lobby friends list below invite button (ARENA-01..04)
+
 **Success Criteria:**
 1. User can open Friends HoF from "Путь героя" and see ranked list of self + all friends.
 2. Toggle "Всё время / Эта неделя" switches data source between total xp and weekly_xp; user's row is highlighted; banned users excluded.

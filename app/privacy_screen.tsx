@@ -1,18 +1,28 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React from 'react';
-import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import React, { useMemo } from 'react';
+import { Linking, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
+import { triLang } from '../constants/i18n';
+import { KNOWLY_LEGAL_PRIVACY_URL } from './config';
+import { hapticTap } from '../hooks/use-haptics';
 import PRIVACY_POLICY_EN from '../legal/privacy_policy_en.json';
+import PRIVACY_POLICY_EN_IOS from '../legal/privacy_policy_en_ios.json';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 
 type PolicySection = { heading: string; body: string };
 
-const PRIVACY_EN = PRIVACY_POLICY_EN as PolicySection[];
-
 export default function PrivacyScreen() {
   const router = useRouter();
+  const effectiveOs = useEffectivePlatformOS();
+  const PRIVACY_EN = useMemo(
+    () => (effectiveOs === 'ios' ? PRIVACY_POLICY_EN_IOS : PRIVACY_POLICY_EN) as PolicySection[],
+    [effectiveOs],
+  );
   const { theme: t, f } = useTheme();
+  const { lang } = useLang();
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }}>
@@ -27,6 +37,21 @@ export default function PrivacyScreen() {
         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', flex: 1 }} numberOfLines={1}>
           Privacy Policy
         </Text>
+        <TouchableOpacity
+          onPress={() => {
+            hapticTap();
+            void Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL);
+          }}
+          style={{ padding: 6 }}
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, {
+            ru: 'Открыть политику на сайте Knowly',
+            uk: 'Відкрити політику на сайті Knowly',
+            es: 'Abrir la política en knowlyapps.com',
+          })}
+        >
+          <Ionicons name="open-outline" size={24} color={t.textSecond} />
+        </TouchableOpacity>
       </View>
       <ScrollView contentContainerStyle={{ padding: 20, paddingBottom: 60 }}>
         {PRIVACY_EN.map((s, i) => (

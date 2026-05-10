@@ -138,15 +138,16 @@ describe('useAudio guard', () => {
     expect(call[1].onDone).toBe(onDone);
   });
 
-  it('omits pitch field entirely when caller did not provide it', () => {
+  it('uses pitch 1 and volume 1 when caller did not customize pitch (stable TTS loudness)', () => {
     refIdx = 0;
     const { speak } = useAudio();
     speak('no pitch', 0.9);
     jest.advanceTimersByTime(SETTLE_MS);
     const call = speakMock.mock.calls[0];
-    // Must NOT pass `pitch: undefined` — некоторые Android TTS-движки трактуют
-    // undefined как 0 и дают chipmunk/«ускоренный» эффект.
-    expect(Object.prototype.hasOwnProperty.call(call[1], 'pitch')).toBe(false);
+    // Явные pitch/volume вместо опущенного поля: Android не должен получить `pitch: undefined`
+    // (некоторые движки дают артефакт), плюс одинаковый уровень между фразами.
+    expect(call[1].pitch).toBe(1);
+    expect(call[1].volume).toBe(1);
   });
 
   it('falls back to user settings snapshot when no rate is supplied', () => {
@@ -165,5 +166,33 @@ describe('useAudio guard', () => {
       // Восстанавливаем дефолт, чтобы не протекало в другие кейсы.
       applyUserSettingsNow({ ...DEFAULT_SETTINGS });
     });
+  });
+});
+
+describe('inferExpoSpeechLanguage', () => {
+  const {
+    inferExpoSpeechLanguage,
+    speechLocaleToShortLabel,
+  } = require('../hooks/use-audio');
+
+  it('uses ru-RU for common Cyrillic on the flashcard front', () => {
+    expect(inferExpoSpeechLanguage('Говно')).toBe('ru-RU');
+  });
+
+  it('uses uk-UA when Ukrainian-specific letters are present', () => {
+    expect(inferExpoSpeechLanguage('Привіт')).toBe('uk-UA');
+  });
+
+  it('defaults Latin script to en-US without a UI hint', () => {
+    expect(inferExpoSpeechLanguage('Be a dark horse')).toBe('en-US');
+  });
+
+  it('uses es-ES for Latin back text when hint is es', () => {
+    expect(inferExpoSpeechLanguage('salir bien', 'es')).toBe('es-ES');
+  });
+
+  it('maps BCP-47 tags to short UI badges', () => {
+    expect(speechLocaleToShortLabel('ru-RU')).toBe('RU');
+    expect(speechLocaleToShortLabel('en-US')).toBe('EN');
   });
 });

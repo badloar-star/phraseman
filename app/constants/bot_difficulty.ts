@@ -50,7 +50,7 @@ export function sampleBotDelayMs(profile: BotProfile): number {
 
 /**
  * Решить, ответит ли бот правильно на этот вопрос.
- * Простой Бернулли-сэмпл, без памяти стрика. Достаточно для раннего этапа.
+ * Простой Бернулли-сэмпл, без памяти победной серии. Достаточно для раннего этапа.
  */
 export function rollBotIsCorrect(profile: BotProfile): boolean {
   return Math.random() < profile.accuracy;

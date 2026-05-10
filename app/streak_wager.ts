@@ -1,5 +1,5 @@
 /**
- * Streak Wager — пари на стрик.
+ * Streak Wager — пари на цепочку дней подряд.
  * Ставка = осколки 💎. Выигрыш = осколки + XP (половина от старого).
  *
  * Тиры:
@@ -17,6 +17,24 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { registerXP } from './xp_manager';
 import { spendShards, addShardsRaw } from './shards_system';
+import { trackActivity } from './app_activity';
+
+function logWagerHealth(
+  context: string,
+  error: unknown,
+  tags: Record<string, string | number | boolean | null | undefined> = {},
+) {
+  void import('./app_health')
+    .then(({ logAppWarning }) =>
+      logAppWarning(context, error, {
+        feature: 'streak_wager',
+        screen: 'streak_stats',
+        writeToFirestore: true,
+        tags,
+      }),
+    )
+    .catch(() => {});
+}
 
 const WAGER_DISCOUNT_KEY = 'wager_discount';
 /** Преміум: безкоштовна перша ставка після level-up, раз на календарний місяць */
@@ -93,14 +111,49 @@ export async function tryGrantPremiumMonthlyWagerFromLevelUp(): Promise<void> {
  */
 export const placeWager = async (currentStreak: number, tierIdx: number = 0): Promise<boolean> => {
   try {
-    if (!Number.isFinite(tierIdx) || tierIdx < 0 || tierIdx >= WAGER_TIERS.length) return false;
-    if (!Number.isFinite(currentStreak) || currentStreak < 0) return false;
+    await trackActivity('streak_wager:place_start', {
+      feature: 'streak_wager',
+      screen: 'streak_stats',
+      result: 'start',
+      tags: { currentStreak, tierIdx },
+    });
+    if (!Number.isFinite(tierIdx) || tierIdx < 0 || tierIdx >= WAGER_TIERS.length) {
+      await trackActivity('streak_wager:place_blocked', {
+        feature: 'streak_wager',
+        screen: 'streak_stats',
+        result: 'blocked',
+        tags: { reason: 'invalid_tier', currentStreak, tierIdx },
+      });
+      logWagerHealth('streak_wager:place_invalid_tier', new Error('Invalid wager tier'), { currentStreak, tierIdx });
+      return false;
+    }
+    if (!Number.isFinite(currentStreak) || currentStreak < 0) {
+      await trackActivity('streak_wager:place_blocked', {
+        feature: 'streak_wager',
+        screen: 'streak_stats',
+        result: 'blocked',
+        tags: { reason: 'invalid_streak', currentStreak, tierIdx },
+      });
+      logWagerHealth('streak_wager:place_invalid_streak', new Error('Invalid current streak'), { currentStreak, tierIdx });
+      return false;
+    }
 
     const existing = await loadWager();
-    if (existing?.active) return false;
+    if (existing?.active) {
+      await trackActivity('streak_wager:place_blocked', {
+        feature: 'streak_wager',
+        screen: 'streak_stats',
+        result: 'blocked',
+        tags: { reason: 'already_active', activeTierIdx: existing.tierIdx, currentStreak, tierIdx },
+      });
+      return false;
+    }
 
     const tier = WAGER_TIERS[tierIdx];
-    if (!tier) return false;
+    if (!tier) {
+      logWagerHealth('streak_wager:place_missing_tier', new Error('Wager tier missing'), { currentStreak, tierIdx });
+      return false;
+    }
 
     const discRaw = await AsyncStorage.getItem(WAGER_DISCOUNT_KEY);
     const hasDisc = discRaw === '0.25';
@@ -117,7 +170,22 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       await AsyncStorage.removeItem(PREM_WAGER_TOKEN_KEY);
     } else {
       const spent = await spendShards(toSpend, 'wager_bet');
-      if (!spent) return false;
+      if (!spent) {
+        await trackActivity('streak_wager:place_blocked', {
+          feature: 'streak_wager',
+          screen: 'streak_stats',
+          result: 'blocked',
+          tags: { reason: 'insufficient_shards_or_spend_failed', tierIdx, toSpend, hasDisc, premiumFree },
+        });
+        logWagerHealth('streak_wager:spend_failed', new Error('spendShards returned false'), {
+          currentStreak,
+          tierIdx,
+          toSpend,
+          hasDisc,
+          premiumFree,
+        });
+        return false;
+      }
     }
     if (hasDisc) {
       await AsyncStorage.removeItem(WAGER_DISCOUNT_KEY);
@@ -137,8 +205,23 @@ export const placeWager = async (currentStreak: number, tierIdx: number = 0): Pr
       result:        'pending',
     };
     await saveWager(wager);
+    await trackActivity('streak_wager:place_success', {
+      feature: 'streak_wager',
+      screen: 'streak_stats',
+      result: 'success',
+      tags: { currentStreak, tierIdx, betShards: tier.betShards, toSpend, hasDisc, premiumFree },
+    });
     return true;
-  } catch { return false; }
+  } catch (e) {
+    logWagerHealth('streak_wager:place_failed', e, { currentStreak, tierIdx });
+    await trackActivity('streak_wager:place_error', {
+      feature: 'streak_wager',
+      screen: 'streak_stats',
+      result: 'error',
+      tags: { currentStreak, tierIdx, error: e instanceof Error ? e.message : String(e) },
+    });
+    return false;
+  }
 };
 
 /**

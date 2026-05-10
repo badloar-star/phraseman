@@ -20,6 +20,7 @@ import {
   removeFlashcardByEnglish,
   Flashcard,
 } from '../hooks/use-flashcards';
+import { bumpStatsDaily } from '../app/stats_daily_breakdown';
 
 interface Props {
   en: string;
@@ -156,6 +157,7 @@ export default function AddToFlashcard({
               register, level,
             });
             if (result === 'added') {
+              void bumpStatsDaily('flashcards_saved', 1);
               logFlashcardAdded();
               const updates: { type: Parameters<typeof updateMultipleTaskProgress>[0][0]['type']; increment: number }[] = [
                 { type: 'flashcard_save', increment: 1 },

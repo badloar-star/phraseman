@@ -1,6 +1,6 @@
 /**
- * Гарантирует качество локали **es** для экранов интро: минимум 3 слайда,
- * поля titleES/textES и trES для примеров в блоках how.
+ * Экраны интро: минимум 3 слайда, titleES/textES; у примеров перевод для ES —
+ * отдельный trES или fallback на trRU (как в типах и в UI).
  */
 import { getLessonIntroScreens, LESSON_DATA } from '../app/lesson_data_all';
 import { EXTRA_INTRO_SCREENS } from '../app/lesson_intro_screens_9_32';
@@ -14,8 +14,10 @@ function assertScreenSpanishComplete(screen: LessonIntroScreen, _lessonId: numbe
   const examples = screen.examples;
   if (!examples?.length) return;
   examples.forEach((ex) => {
-    expect(typeof ex.trES).toBe('string');
-    expect((ex.trES as string).trim().length).toBeGreaterThan(0);
+    // trES опционален (см. LessonIntroExample); в UI для es — trES ?? trRU
+    const tr = (ex.trES ?? ex.trRU) as string;
+    expect(typeof tr).toBe('string');
+    expect(tr.trim().length).toBeGreaterThan(0);
   });
 }
 

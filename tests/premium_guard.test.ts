@@ -64,6 +64,28 @@ test('returns true for admin override without RevenueCat call', async () => {
   expect(getCustomerInfo).not.toHaveBeenCalled();
 });
 
+test('admin_grant plan without admin_premium_override still counts as premium (legacy cloud)', async () => {
+  asyncStore.premium_plan = 'admin_grant';
+  asyncStore.premium_expiry = '0';
+  const { getVerifiedPremiumStatus } = require('../app/premium_guard');
+  const result = await getVerifiedPremiumStatus();
+  expect(result).toBe(true);
+  expect(getCustomerInfo).not.toHaveBeenCalled();
+});
+
+test('admin_grant ignored when admin explicitly revoked (override false)', async () => {
+  asyncStore.admin_premium_override = 'false';
+  asyncStore.premium_plan = 'admin_grant';
+  asyncStore.premium_expiry = '0';
+  getCustomerInfo.mockResolvedValue({
+    entitlements: { active: {} },
+    activeSubscriptions: [],
+  });
+  const { getVerifiedPremiumStatus } = require('../app/premium_guard');
+  const result = await getVerifiedPremiumStatus();
+  expect(result).toBe(false);
+});
+
 test('admin timed grant expires: clears AsyncStorage keys and returns false', async () => {
   asyncStore.admin_premium_override = 'true';
   asyncStore.premium_plan = 'admin_grant';

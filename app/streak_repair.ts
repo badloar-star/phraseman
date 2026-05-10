@@ -1,12 +1,12 @@
 /**
- * Streak Repair — механика "починки стрика".
+ * Streak Repair — механика «починки цепочки» (дней подряд).
  *
  * Как работает:
  *  - Пользователь пропустил РОВНО один день (lastActive = 2 дня назад)
  *    и нет активной заморозки.
  *  - Открывает приложение → home.tsx обнаруживает eligibility, показывает карточку.
  *  - Пользователь должен завершить 1 урок сегодня.
- *  - После 1-го урока стрик «починен» — updateStreakOnActivity() его не обнулит.
+ *  - После 1-го урока цепочка «починена» — updateStreakOnActivity() её не обнуляет.
  *
  * Storage key: 'streak_repair_v1'
  */
@@ -41,10 +41,10 @@ const save = async (state: RepairState) => {
 };
 
 /**
- * Проверяет, может ли пользователь починить стрик сегодня.
- * Стрик починки возможен если:
+ * Проверяет, может ли пользователь починить цепочку сегодня.
+ * Починка возможна если:
  *  - пропущен ровно 1 день (lastActive === позавчера)
- *  - стрик > 1
+ *  - длина цепочки > 1
  *  - заморозка не активна
  *  - ещё не починен сегодня
  */
@@ -69,7 +69,7 @@ export const isRepairEligible = async (): Promise<boolean> => {
     if (lastActive < dayBeforeStr) return false;                 // пропустил 2+ дней
 
     const streak = parseInt(streakRaw ?? '0');
-    if (isNaN(streak) || streak <= 1) return false;             // стрик уже 0-1
+    if (isNaN(streak) || streak <= 1) return false;             // цепочка уже 0–1
 
     const freeze = freezeRaw ? JSON.parse(freezeRaw) : null;
     if (freeze?.active) return false;                            // заморозка спасёт сама
@@ -81,7 +81,7 @@ export const isRepairEligible = async (): Promise<boolean> => {
 
 /**
  * Вызывать при любой активности с XP (из xp_manager.ts).
- * Возвращает { nowRepaired: true } если стрик только что починен.
+ * Возвращает { nowRepaired: true } если цепочку только что починили.
  */
 export const recordActivityForRepair = async (): Promise<{ nowRepaired: boolean }> => {
   return recordLessonForRepair();
@@ -118,8 +118,8 @@ export const recordLessonForRepair = async (): Promise<{ nowRepaired: boolean }>
 };
 
 /**
- * Вызывается из updateStreakOnActivity() чтобы проверить, спасти ли стрик.
- * Если сегодня стрик починен — возвращает true и заморозка не нужна.
+ * Вызывается из updateStreakOnActivity() чтобы проверить, спасти ли цепочку.
+ * Если сегодня цепочку починили — возвращает true и заморозка не нужна.
  */
 export const wasRepairedToday = async (): Promise<boolean> => {
   try {

@@ -37,5 +37,24 @@ export function isValidFriendCode(code: unknown): boolean {
   return FRIEND_CODE_REGEX.test(code);
 }
 
+/**
+ * Реферальные коды на сервере (functions/src/referral.ts) допускают «L»;
+ * дружеский алфавит — нет. Для поля «введи код» принимаем оба варианта.
+ */
+const REFERRAL_CODE_ALPHABET = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+const REFERRAL_CODE_REGEX = new RegExp(`^[${REFERRAL_CODE_ALPHABET}]{${FRIEND_CODE_LENGTH}}$`);
+const INVITE_CODE_INPUT_REGEX = new RegExp(`[^${REFERRAL_CODE_ALPHABET}]`, 'g');
+
+export function normalizeInviteCodeInput(code: unknown): string {
+  if (typeof code !== 'string') return '';
+  return code.trim().toUpperCase().replace(INVITE_CODE_INPUT_REGEX, '').slice(0, FRIEND_CODE_LENGTH);
+}
+
+export function isValidInviteCodeLookup(code: unknown): boolean {
+  if (typeof code !== 'string') return false;
+  const u = normalizeInviteCodeInput(code);
+  return FRIEND_CODE_REGEX.test(u) || REFERRAL_CODE_REGEX.test(u);
+}
+
 /* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

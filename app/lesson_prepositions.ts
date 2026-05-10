@@ -1,4 +1,4 @@
-import { LessonPrepositionPack, PrepositionKind } from './lesson_data_types';
+import { LessonPrepositionPack, PrepositionKind, LessonPhrase, LessonWord } from './lesson_data_types';
 import { getLessonData } from './lesson_data_all';
 import { explainPrepositionChoice } from './preposition_explanations';
 
@@ -18,11 +18,18 @@ function normalizeWord(text: string): string {
   return String(text || '').trim().toLowerCase();
 }
 
+/** Слоты, согласованные с `phrase.english`: для L2 (es) уроков 9–16 предлоги размечены в `wordsEn`, а `words` — испанская сборка. */
+function enSlotsForPrepositionDrill(phrase: LessonPhrase): LessonWord[] {
+  const en = phrase.wordsEn;
+  if (en && en.length > 0) return en;
+  return phrase.words ?? [];
+}
+
 function buildLessonPrepositions(lessonId: number): string[] {
   const seenCurrent = new Set<string>();
   const result: string[] = [];
   for (const phrase of getLessonData(lessonId)) {
-    for (const word of phrase.words ?? []) {
+    for (const word of enSlotsForPrepositionDrill(phrase)) {
       if ((word.category || '').toLowerCase() !== 'preposition') continue;
       const value = normalizeWord(word.correct || word.text);
       if (!value || seenCurrent.has(value)) continue;
@@ -73,22 +80,81 @@ function deterministicShuffle<T>(arr: T[], seed: string): T[] {
   return out;
 }
 
+// Words that require AT (exact clock time / fixed time points)
+const AT_WORDS = new Set([
+  'eight', 'nine', 'ten', 'eleven', 'twelve', 'one', 'two', 'three', 'four', 'five', 'six', 'seven',
+  'noon', 'midnight', 'night', 'dawn', 'dusk', 'lunchtime', 'dinnertime',
+]);
+
+// Words that require ON (days of week, weekends, dates)
+const ON_WORDS = new Set([
+  'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday',
+  'mondays', 'tuesdays', 'wednesdays', 'thursdays', 'fridays', 'saturdays', 'sundays',
+  'weekends', 'weekend', 'weekday', 'weekdays',
+]);
+
+// Words that require IN (months, seasons, parts of day)
+const IN_WORDS = new Set([
+  'january', 'february', 'march', 'april', 'may', 'june',
+  'july', 'august', 'september', 'october', 'november', 'december',
+  'winter', 'spring', 'summer', 'autumn', 'fall',
+  'morning', 'afternoon', 'evening',
+]);
+
+/**
+ * Given the English sentence and the correct preposition, return 3 distractors
+ * that are guaranteed to be grammatically WRONG in this specific context.
+ *
+ * Strategy: look at the word(s) after the blank to classify the slot, then
+ * return the other two time prepositions (at/on/in) that don't fit that slot.
+ * Fall back to a safe pool only when context is ambiguous.
+ */
+function pickFalsePrepDistractors(correct: string, seed: string, sentence: string): string[] {
+  const c = normalizeWord(correct);
+
+  // Extract word immediately after the preposition in the sentence
+  const words = sentence.toLowerCase().replace(/[.,!?]/g, '').split(/\s+/);
+  const prepIdx = words.indexOf(c);
+  const wordAfter = prepIdx >= 0 ? (words[prepIdx + 1] ?? '') : '';
+  const wordAfter2 = prepIdx >= 0 ? (words[prepIdx + 2] ?? '') : '';
+
+  let slotType: 'at' | 'on' | 'in' | 'unknown' = 'unknown';
+  if (AT_WORDS.has(wordAfter)) slotType = 'at';
+  else if (ON_WORDS.has(wordAfter)) slotType = 'on';
+  else if (IN_WORDS.has(wordAfter)) slotType = 'in';
+  else if (wordAfter === 'the' && IN_WORDS.has(wordAfter2)) slotType = 'in'; // "in the morning"
+
+  // The two wrong time prepositions for this slot
+  const TIME_PREPS: ('at' | 'on' | 'in')[] = ['at', 'on', 'in'];
+  const wrongTimePreps = TIME_PREPS.filter(p => p !== c);
+
+  if (slotType !== 'unknown') {
+    // Two wrong time prepositions + 'by' which never fits these time slots
+    const thirdDistractor = c !== 'by' ? 'by' : 'per';
+    return deterministicShuffle([...wrongTimePreps, thirdDistractor], `${seed}|ctx`).slice(0, 3);
+  }
+
+  // Fallback
+  const thirdDistractor = c !== 'by' ? 'by' : 'per';
+  return deterministicShuffle([...wrongTimePreps, thirdDistractor], `${seed}|fallback`).slice(0, 3);
+}
+
 function buildItemsForLesson(lessonId: number, lessonPrepositions: Set<string>) {
   // collect ALL valid items in source order, then re-order so brand-new
   // prepositions come first; cap at ITEM_CAP after sorting
   const all: LessonPrepositionPack['items'] = [];
   let idx = 1;
   for (const phrase of getLessonData(lessonId)) {
-    for (const word of phrase.words ?? []) {
+    for (const word of enSlotsForPrepositionDrill(phrase)) {
       if ((word.category || '').toLowerCase() !== 'preposition') continue;
       const answer = normalizeWord(word.correct || word.text);
       if (!lessonPrepositions.has(answer)) continue;
       const template = phrase.english.replace(new RegExp(`\\b${answer}\\b`, 'i'), '__');
-      const rawOptions = [answer, ...(word.distractors || []).map(normalizeWord)]
-        .filter(Boolean)
-        .slice(0, 4);
+      const itemId = `l${lessonId}-p${idx}`;
+      const falsePreps = pickFalsePrepDistractors(answer, `${itemId}|${template}`, phrase.english);
+      const rawOptions = [answer, ...falsePreps].filter(Boolean);
       if (!template.includes('__') || rawOptions.length < 2) continue;
-      const itemId = `l${lessonId}-p${idx++}`;
+      idx += 1;
       const options = deterministicShuffle(rawOptions, `${itemId}|${template}|${answer}`);
       const explanation = explainPrepositionChoice(answer, phrase.english);
       all.push({

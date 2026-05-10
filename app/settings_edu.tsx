@@ -59,7 +59,6 @@ export default function SettingsEdu() {
     { key:'autoAdvance', label:'Автопереход после ответа', labelUK:'Автоперехід після відповіді', labelES:'Siguiente automático', sub:'Автоматически переходить к следующему заданию при правильном ответе', subUK:'Автоматично переходити до наступного завдання при правильній відповіді', subES:'Pasas a la siguiente pregunta cuando aciertas.' },
     { key:'hardMode',    label:'Ввод с клавиатуры',        labelUK:'Введення з клавіатури',  labelES:'Escribir con el teclado', sub:'Вводить ответ вручную вместо выбора слов (работает и в квизах)',          subUK:'Вводити відповідь вручну замість вибору слів (працює і в квізах)', subES:'Escribir la respuesta completa con el teclado (también en cuestionarios).' },
     { key:'haptics',    label:'Вибрация при ошибке',    labelUK:'Вібрація при помилці',   labelES:'Vibración al fallar', sub:'Тактильный сигнал при неправильном ответе',                              subUK:'Тактильний сигнал при неправильній відповіді', subES:'Pequeño aviso háptico si la respuesta es incorrecta.' },
-    { key:'showHints',  label:'Подсказки после ответа', labelUK:'Підказки після відповіді', labelES:'Pistas después de responder', sub:'Показывать карточки с объяснением после каждого ответа',                subUK:'Показувати картки з поясненням після кожної відповіді', subES:'Mostrar tarjetas con explicación tras cada respuesta.' },
   ];
 
   return (

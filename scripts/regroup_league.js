@@ -1,13 +1,13 @@
 // Исправляет ситуацию когда пользователи остались без groupId после dedup:
 // - находит все leaderboard/{uid} без groupId на текущей неделе
 // - находит solo-группы (1 участник) созданные после нового билда
-// - объединяет всех в группы по 20
+// - объединяет всех в группы по 30
 
 const admin = require('firebase-admin');
 if (!admin.apps.length) admin.initializeApp({ credential: admin.credential.cert(require('../service-account.json')) });
 const db = admin.firestore();
 
-const GROUP_SIZE = 20;
+const GROUP_SIZE = 30;
 
 // Текущая неделя — ISO week
 function getWeekId(date = new Date()) {

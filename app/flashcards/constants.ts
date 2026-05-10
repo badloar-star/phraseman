@@ -68,7 +68,7 @@ export const STR = {
 };
 
 export const CATEGORIES: Category[] = [
-  { id: 'saved',      icon: 'bookmark-outline',             labelRU: 'Сохр.',     labelUK: 'Збер.',     labelES: 'Guard.',    fullLabelRU: 'Сохранённые',  fullLabelUK: 'Збережені',   fullLabelES: 'Guardadas' },
+  { id: 'saved',      icon: 'bookmark-outline',             labelRU: 'Сохранённые', labelUK: 'Збережені', labelES: 'Guardadas', fullLabelRU: 'Сохранённые', fullLabelUK: 'Збережені', fullLabelES: 'Guardadas' },
   { id: 'emotions',   icon: 'heart-outline',               labelRU: 'Эмоции',    labelUK: 'Емоції',    labelES: 'Emoc.',     fullLabelRU: 'Эмоции',       fullLabelUK: 'Емоції',      fullLabelES: 'Emociones' },
   { id: 'fillers',    icon: 'chatbubble-ellipses-outline',  labelRU: 'Филлеры',   labelUK: 'Філери',    labelES: 'Mulet.',    fullLabelRU: 'Филлеры',      fullLabelUK: 'Філери',      fullLabelES: 'Muletillas' },
   { id: 'reactions',  icon: 'flash-outline',                labelRU: 'Реакции',   labelUK: 'Реакції',   labelES: 'Reacc.',    fullLabelRU: 'Реакции',      fullLabelUK: 'Реакції',     fullLabelES: 'Reacciones' },

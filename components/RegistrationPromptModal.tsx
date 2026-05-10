@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet, Platform, Alert } from 'react-native';
+import { Modal, View, Text, Pressable, StyleSheet, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -25,6 +25,7 @@ import {
   isAppleSignInAvailable,
   isGoogleSignInAvailable,
   AUTH_PROMPT_SHOWN_KEY,
+  APPLE_ANDROID_MISSING_SERVICE_ID,
   type SignInResult,
   type AuthProviderId,
 } from '../app/auth_provider';
@@ -61,13 +62,19 @@ export default function RegistrationPromptModal({
   const [appleAvail, setAppleAvail] = useState(false);
   const [googleAvail, setGoogleAvail] = useState(false);
   const [loadingProvider, setLoadingProvider] = useState<AuthProviderId | null>(null);
+  const [inlineError, setInlineError] = useState<string | null>(null);
 
   useEffect(() => {
     if (!visible) return;
+    setInlineError(null);
     isAppleSignInAvailable().then(setAppleAvail);
     isGoogleSignInAvailable().then(setGoogleAvail);
     logEvent('auth_prompt_view', { context });
   }, [visible, context]);
+
+  const showInlineError = useCallback((title: string, message: string) => {
+    setInlineError(`${title}\n${message}`);
+  }, []);
 
   const headerEmoji = context === 'lesson1' ? '🛡️' : context === 'onboarding' ? '🚀' : '🔐';
 
@@ -136,25 +143,49 @@ export default function RegistrationPromptModal({
         if (__DEV__) console.log('[RegistrationPromptModal] signInWithProvider returned', result);
 
         if (result.result === 'cancelled') {
-          // В DEV-режиме обязательно сообщаем юзеру что произошло — иначе
-          // картина «тапнул → ничего не случилось» выглядит как баг приложения,
-          // хотя по факту это либо отмена в native picker'е, либо native-модуль
-          // вернул `cancelled` без UI (бывает после revoke consent у Google).
+          // В TestFlight/проде раньше молчали — выглядело как «кнопка сломана».
           if (__DEV__) {
-            Alert.alert(
+            const gpsLine =
+              Platform.OS === 'android'
+                ? '• Google Play Services вернул PSerror.\n'
+                : '';
+            showInlineError(
               'DEBUG: cancelled',
               'Native sign-in вернул `cancelled`. Возможные причины:\n\n' +
               '• Юзер закрыл picker.\n' +
-              '• Google Play Services вернул PSerror.\n' +
+              gpsLine +
               '• На устройстве нет Google аккаунта.\n' +
               '• webClientId / SHA-1 неверный — modal автозакрылся.\n\n' +
               'Попробуй "Сбросить и войти заново" внизу.',
             );
+          } else {
+            showInlineError(
+              triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', es: 'Acceso sin terminar' }),
+              triLang(lang, {
+                ru: 'Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или попробуй другой способ.',
+                uk: 'Вікно входу закрилось без вибору акаунта. Натисни кнопку ще раз або спробуй інший спосіб.',
+                es: 'Se cerró el acceso sin elegir cuenta. Toca de nuevo o prueba otro método.',
+              }),
+            );
           }
-          return; // юзер закрыл native picker, оставляем модалку открытой
+          return;
         }
         if (result.result === 'error') {
           if (__DEV__) console.warn('[RegistrationPromptModal] sign-in error', result.error);
+          if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
+            showInlineError(
+              triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', es: 'Apple en Android' }),
+              triLang(lang, {
+                ru:
+                  'Для входа через Apple на Android в сборке должен быть задан Services ID (переменная EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID в EAS / .env). В Apple Developer добавь тот же return URL, что у приложения (часто phraseman://apple-auth).',
+                uk:
+                  'Для входу через Apple на Android у збірці має бути заданий Services ID (змінна EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID у EAS / .env). У Apple Developer додай той самий return URL, що й у застосунку (часто phraseman://apple-auth).',
+                es:
+                  'Para entrar con Apple en Android hace falta el Services ID en la build (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID en EAS / .env). En Apple Developer añade el mismo return URL que usa la app (a menudo phraseman://apple-auth).',
+              }),
+            );
+            return;
+          }
           const baseMsg = triLang(lang, {
             ru: 'Не получилось войти. Попробуй позже.',
             uk: 'Не вдалося увійти. Спробуй пізніше.',
@@ -168,7 +199,7 @@ export default function RegistrationPromptModal({
           const detailedMsg = result.error
             ? `${baseMsg}\n\n${triLang(lang, { ru: 'Код:', uk: 'Код:', es: 'Código:' })} ${result.error}`
             : baseMsg;
-          Alert.alert(
+          showInlineError(
             triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error' }),
             detailedMsg,
           );
@@ -182,13 +213,20 @@ export default function RegistrationPromptModal({
         onClose();
       } catch (e: any) {
         setLoadingProvider(null);
-        if (__DEV__) {
-          console.warn('[RegistrationPromptModal] unexpected error', e);
-          Alert.alert('DEBUG: throw', String(e?.message ?? e));
-        }
+        if (__DEV__) console.warn('[RegistrationPromptModal] unexpected error', e);
+        // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
+        const detail = String(e?.message ?? e ?? 'unknown');
+        showInlineError(
+          triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error' }),
+          `${triLang(lang, {
+            ru: 'Что-то пошло не так при входе.',
+            uk: 'Щось пішло не так під час входу.',
+            es: 'Algo salió mal al iniciar sesión.',
+          })}\n\n${detail.slice(0, 200)}`,
+        );
       }
     },
-    [context, lang, onClose, onSignedIn],
+    [context, lang, onClose, onSignedIn, showInlineError],
   );
 
   // Аварийная кнопка для DEV: полный wipe identity-state (Keychain stable_id +
@@ -202,7 +240,7 @@ export default function RegistrationPromptModal({
       try { await signOutCurrentProvider(); } catch { /* ignore */ }
       try { await clearStableId(); } catch { /* ignore */ }
       try { await ensureAnonUser(); } catch { /* ignore */ }
-      Alert.alert(
+      showInlineError(
         'Сброс выполнен',
         'Identity-state очищен. Теперь нажми "Войти через Google" — должен появиться picker аккаунтов.',
       );
@@ -247,7 +285,7 @@ export default function RegistrationPromptModal({
                 variant="light"
               />
             )}
-            {appleAvail && Platform.OS === 'ios' && (
+            {appleAvail && (
               <View style={{ marginTop: googleAvail ? 12 : 0 }}>
                 <AppleSignInButton
                   onPress={() => handleSignIn('apple')}
@@ -266,6 +304,12 @@ export default function RegistrationPromptModal({
                 uk: 'Жоден провайдер не доступний на цьому пристрої.',
                 es: 'Ningún método de entrada está disponible en este dispositivo.',
               })}
+            </Text>
+          )}
+
+          {!!inlineError && (
+            <Text style={[styles.errorNote, { color: t.wrong, fontSize: f.caption }]}>
+              {inlineError}
             </Text>
           )}
 

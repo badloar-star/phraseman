@@ -12,12 +12,13 @@ import {
 } from '../app/services/arena_db';
 import {
   MatchmakingEntry, RankTier, SessionSize,
-  rankToIndex, RANK_LEVELS,
+  rankToIndex, RANK_LEVELS, RANK_TIERS,
 } from '../app/types/arena';
 import {
   BOT_FALLBACK_ENABLED, BOT_FALLBACK_MAX_MS, BOT_FALLBACK_MIN_MS, IS_EXPO_GO,
 } from '../app/config';
 import { emitAppEvent } from '../app/events';
+import { playArenaMatchFoundSound } from '../app/arena_match_found_sound';
 import { arenaToasts } from '../constants/arena_i18n';
 
 export type MatchmakingStatus = 'idle' | 'searching' | 'found' | 'timeout' | 'error';
@@ -36,7 +37,10 @@ interface MatchmakingContextValue {
     size: SessionSize,
     expoPushToken?: string,
     displayName?: string,
+    options?: { humanSearchWindowMs?: number; preserveQueueStartedAtMs?: number },
   ) => Promise<boolean>;
+  /** Если задан — столько ждём живого соперника до бота («Ещё раз»); экран лобби тот же, что при обычном поиске. */
+  humanSearchWindowMs: number | null;
   cancelSearching: () => Promise<void>;
   isLobbyActive: boolean;
   setLobbyActive: (v: boolean) => void;
@@ -49,7 +53,10 @@ interface MatchmakingContextValue {
   clearFoundMatch: () => void;
   /** Дополняет запись в очереди push-токеном после `startSearching` (не блокирует старт таймера). */
   updateQueueWithPushToken: (expoPushToken: string) => Promise<void>;
-  /** Админка: тост «соперник найден» без реального матча в Firestore. */
+  /** Повторно встать в очередь после отклонения / таймаута принятия (те же ранг и имя, без «Ещё раз»-окна). */
+  resumeSearchAfterLobbyAbort: () => Promise<void>;
+  /** Сбросить снимок (например при отмене поиска кнопкой «Отмена» в очереди). */
+  forgetSearchResumeSnapshot: () => void;
   showMatchFoundForTesterPreview: () => void;
 }
 
@@ -60,6 +67,7 @@ const MatchmakingCtx = createContext<MatchmakingContextValue>({
   elapsedMs: 0,
   searchStartedAt: 0,
   startSearching: async () => true,
+  humanSearchWindowMs: null,
   cancelSearching: async () => {},
   isLobbyActive: false,
   setLobbyActive: () => {},
@@ -69,6 +77,8 @@ const MatchmakingCtx = createContext<MatchmakingContextValue>({
   clearFoundMatch: () => {},
   updateQueueWithPushToken: async () => {},
   showMatchFoundForTesterPreview: () => {},
+  resumeSearchAfterLobbyAbort: async () => {},
+  forgetSearchResumeSnapshot: () => {},
 });
 
 /** 10 мин поиска — UI обратного отсчёта и таймаут клиента (сервер чистит stale отдельно). */
@@ -86,7 +96,8 @@ const MATCHMAKING_RESUME_KEY = 'arena_matchmaking_resume_v1';
  * Бот-фолбэк: случайная задержка [BOT_FALLBACK_MIN_MS..BOT_FALLBACK_MAX_MS];
  * в production не стартуем бота, пока в очереди есть другие живые игроки
  * (приоритет матча через CF). `bot_*` sessionId — мок-дуэль в `arena_game`.
- * В `__DEV__` — короткий путь 3с без проверки очереди.
+ * Окно `humanSearchWindowMs` («Ещё раз»): ровно N мс на живого соперника, без откладывания из‑за очереди, потом бот.
+ * В `__DEV__` — короткий путь 3с без проверки очереди (кроме режима humanSearchWindowMs).
  */
 const DEV_QUICK_MATCH_MS = 3_000;
 const BOT_OTHERS_RECHECK_MIN_MS = 2_000;
@@ -106,6 +117,42 @@ type ResumePayload = {
   displayName?: string;
 };
 
+type SearchResumeSnapshot = {
+  userId: string;
+  rankTier: RankTier;
+  rankLevel: string;
+  size: SessionSize;
+  displayName?: string;
+};
+
+/** Обратное к rankToIndex — для автопродолжения поиска, если снимок resume потерян. */
+function rankIndexToTierLevel(rankIndex: number): { rankTier: RankTier; rankLevel: string } {
+  const ti = Math.max(0, Math.min(RANK_TIERS.length - 1, Math.floor(rankIndex / 3)));
+  const li = Math.max(0, Math.min(RANK_LEVELS.length - 1, rankIndex % 3));
+  return { rankTier: RANK_TIERS[ti], rankLevel: RANK_LEVELS[li] };
+}
+
+function buildResumeSnapshotFromEntry(e: MatchmakingEntry): SearchResumeSnapshot | null {
+  if (!e.userId) return null;
+  if (typeof e.rankIndex === 'number') {
+    const { rankTier, rankLevel } = rankIndexToTierLevel(e.rankIndex);
+    return {
+      userId: e.userId,
+      rankTier,
+      rankLevel,
+      size: e.size,
+      ...(e.displayName ? { displayName: e.displayName } : {}),
+    };
+  }
+  return {
+    userId: e.userId,
+    rankTier: e.rankTier,
+    rankLevel: 'I',
+    size: e.size,
+    ...(e.displayName ? { displayName: e.displayName } : {}),
+  };
+}
+
 async function clearMatchmakingResume(): Promise<void> {
   try {
     await AsyncStorage.removeItem(MATCHMAKING_RESUME_KEY);
@@ -121,6 +168,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
   const [isLobbyActive, setLobbyActive] = useState(false);
   const [isMatchHandled, setIsMatchHandled] = useState(false);
   const markMatchHandled = useCallback(() => { setIsMatchHandled(true); }, []);
+  const [humanSearchWindowMs, setHumanSearchWindowMs] = useState<number | null>(null);
 
   const userIdRef        = useRef<string>('');
   const timerRef         = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -131,6 +179,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
   const rangeExpandedRef = useRef(false);
   const entryRef         = useRef<MatchmakingEntry | null>(null);
   const devBotMatchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** >0: после «Ещё раз» — не откладывать бота из‑за других в очереди, ровно столько мс на живого. */
+  const forceBotAfterMsRef = useRef<number | null>(null);
 
   const clearDevBotMatchTimeout = useCallback(() => {
     if (devBotMatchTimeoutRef.current) {
@@ -139,9 +189,24 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     }
   }, []);
 
+  /** Последний успешный join — для автопродолжения поиска после отказа от матча. */
+  const searchResumeSnapshotRef = useRef<SearchResumeSnapshot | null>(null);
+  const resumeSearchLockRef = useRef(false);
+  const matchFoundSoundSidRef = useRef<string | null>(null);
+
   useEffect(() => {
     statusRef.current = status;
   }, [status]);
+
+  useEffect(() => {
+    if (status !== 'found' || !sessionId) {
+      if (status !== 'found') matchFoundSoundSidRef.current = null;
+      return;
+    }
+    if (matchFoundSoundSidRef.current === sessionId) return;
+    matchFoundSoundSidRef.current = sessionId;
+    void playArenaMatchFoundSound();
+  }, [status, sessionId]);
 
   const endQueueSubscription = useCallback(() => {
     unsubRef.current?.();
@@ -152,6 +217,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
 
   const cleanup = useCallback(() => {
     clearDevBotMatchTimeout();
+    forceBotAfterMsRef.current = null;
+    setHumanSearchWindowMs(null);
     endQueueSubscription();
     if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
     setSearchStartedAt(0);
@@ -171,6 +238,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     setSessionId(null);
     setElapsedMs(0);
     setSearchStartedAt(0);
+    startTimeRef.current = 0;
   }, []);
 
   const updateQueueWithPushToken = useCallback(async (expoPushToken: string) => {
@@ -191,6 +259,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     size: SessionSize,
     expoPushToken?: string,
     displayName?: string,
+    options?: { humanSearchWindowMs?: number; preserveQueueStartedAtMs?: number },
   ) => {
     // already searching — ignore duplicate calls
     if (timerRef.current !== null) return true;
@@ -204,29 +273,44 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       return false;
     }
 
+    const winMs = options?.humanSearchWindowMs;
+    const hasHumanPriorityWindow = typeof winMs === 'number' && winMs > 0;
+    forceBotAfterMsRef.current = hasHumanPriorityWindow ? winMs : null;
+    setHumanSearchWindowMs(hasHumanPriorityWindow ? winMs : null);
+
     userIdRef.current        = uid;
-    rangeExpandedRef.current = false;
     setIsMatchHandled(false);
-    const t0 = Date.now();
-    startTimeRef.current   = t0;
+    const now = Date.now();
+    const preserveT0 = options?.preserveQueueStartedAtMs;
+    const usePreserved =
+      typeof preserveT0 === 'number' &&
+      preserveT0 > 0 &&
+      now - preserveT0 >= 0 &&
+      now - preserveT0 < SEARCH_TIMEOUT_MS;
+    const t0 = usePreserved ? preserveT0 : now;
+    startTimeRef.current = t0;
     setSearchStartedAt(t0);
+    const elapsedAlready = now - t0;
+    rangeExpandedRef.current = elapsedAlready >= RANGE_EXPAND_MS;
+    const initialSearchRange = rangeExpandedRef.current ? EXPANDED_RANGE : INITIAL_RANGE;
 
     const rankIndex = rankToIndex(rankTier, rankLevel as (typeof RANK_LEVELS)[number]);
     const entry: MatchmakingEntry = {
       userId: uid, rankTier, size,
-      joinedAt: startTimeRef.current,
+      joinedAt: usePreserved ? now : t0,
       rankIndex,
-      searchRange: INITIAL_RANGE,
+      searchRange: initialSearchRange,
       ...(expoPushToken ? { expoPushToken } : {}),
       ...(displayName ? { displayName } : {}),
     };
     entryRef.current = entry;
 
     setStatus('searching');
-    setElapsedMs(0);
+    setElapsedMs(Math.max(0, elapsedAlready));
     setSessionId(null);
 
-    // Interval: elapsed + range expand + 10m timeout. При `found` лобби вызывает stopSearchTimer перед навигацией.
+    // Interval: elapsed + range expand + 10m timeout. При переході в `found` обовʼязково гасимо інтервал
+    // (інакше `timerRef !== null` і наступний `startSearching()` тихо no-op із return true — кнопка «Не реагує»).
     timerRef.current = setInterval(() => {
       const elapsed = Date.now() - startTimeRef.current;
       setElapsedMs(elapsed);
@@ -271,6 +355,13 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
         ...(displayName ? { displayName } : {}),
       };
       await AsyncStorage.setItem(MATCHMAKING_RESUME_KEY, JSON.stringify(resume));
+      searchResumeSnapshotRef.current = {
+        userId: uid,
+        rankTier,
+        rankLevel,
+        size,
+        ...(displayName ? { displayName } : {}),
+      };
     } catch {
       // PERMISSION_DENIED / network error — раньше глоталось тихо и юзер 10 минут смотрел на пустой таймер.
       cleanup();
@@ -285,7 +376,10 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
 
     const onMatchFound = (foundSessionId: string) => {
       clearDevBotMatchTimeout();
+      forceBotAfterMsRef.current = null;
+      setHumanSearchWindowMs(null);
       void clearMatchmakingResume();
+      stopSearchTimer();
       endQueueSubscription();
       setSessionId(foundSessionId);
       setStatus('found');
@@ -303,6 +397,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       devBotMatchTimeoutRef.current = null;
       if (statusRef.current !== 'searching') return;
       const deferForLivePlayers =
+        forceBotAfterMsRef.current == null &&
         !__DEV__ && BOT_FALLBACK_ENABLED && queueOthersCountRef.current > 0;
       if (deferForLivePlayers) {
         const span = BOT_OTHERS_RECHECK_MAX_MS - BOT_OTHERS_RECHECK_MIN_MS;
@@ -313,14 +408,19 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       void clearMatchmakingResume();
       endQueueSubscription();
       void leaveMatchmakingQueue(uid);
+      forceBotAfterMsRef.current = null;
+      setHumanSearchWindowMs(null);
+      stopSearchTimer();
       setSessionId(`bot_${uid}_${Date.now()}`);
       setStatus('found');
     };
 
-    // Бот-фолбэк: __DEV__ — 3с без проверки очереди; prod — 1с…2мин, но не пока есть другие в matchmaking.
-    const botDelay = __DEV__
-      ? DEV_QUICK_MATCH_MS
-      : (BOT_FALLBACK_ENABLED ? pickBotFallbackDelayMs() : null);
+    // «Ещё раз»: ровно humanSearchWindowMs на живого; иначе __DEV__ 3с или случайная задержка prod.
+    const botDelay = hasHumanPriorityWindow
+      ? winMs
+      : __DEV__
+        ? DEV_QUICK_MATCH_MS
+        : (BOT_FALLBACK_ENABLED ? pickBotFallbackDelayMs() : null);
     if (botDelay !== null) {
       clearDevBotMatchTimeout();
       devBotMatchTimeoutRef.current = setTimeout(tryFireBotMatch, botDelay);
@@ -333,7 +433,39 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       leaveMatchmakingQueue(uid).catch(() => {});
     }
     return true;
-  }, [cleanup, endQueueSubscription, clearDevBotMatchTimeout]);
+  }, [cleanup, clearDevBotMatchTimeout, endQueueSubscription, stopSearchTimer]);
+
+  const forgetSearchResumeSnapshot = useCallback(() => {
+    searchResumeSnapshotRef.current = null;
+    startTimeRef.current = 0;
+  }, []);
+
+  const resumeSearchAfterLobbyAbort = useCallback(async () => {
+    if (resumeSearchLockRef.current) return;
+    let snap: SearchResumeSnapshot | null = searchResumeSnapshotRef.current;
+    if (!snap) {
+      const e = entryRef.current;
+      if (e) snap = buildResumeSnapshotFromEntry(e);
+    }
+    if (!snap) return;
+    resumeSearchLockRef.current = true;
+    try {
+      const { userId: u, rankTier: rt, rankLevel: rl, size: sz, displayName: dn } = snap;
+      setIsMatchHandled(false);
+      setStatus('idle');
+      setSessionId(null);
+      const tPreserve = startTimeRef.current;
+      const resumeOpts =
+        tPreserve > 0 && Date.now() - tPreserve < SEARCH_TIMEOUT_MS
+          ? { preserveQueueStartedAtMs: tPreserve }
+          : undefined;
+      await startSearching(u, rt, rl, sz, undefined, dn, resumeOpts);
+    } finally {
+      setTimeout(() => {
+        resumeSearchLockRef.current = false;
+      }, 700);
+    }
+  }, [startSearching]);
 
   /** После перезапуска приложения: очередь в Firestore ещё жива — поднимаем таймер и подписку. */
   useEffect(() => {
@@ -397,6 +529,13 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
         setStatus('searching');
         setElapsedMs(Date.now() - t0);
         setSessionId(null);
+        searchResumeSnapshotRef.current = {
+          userId,
+          rankTier: (d.rankTier ?? rankTier) as RankTier,
+          rankLevel,
+          size: (d.size ?? size) as SessionSize,
+          ...((d.displayName ?? displayName) ? { displayName: (d.displayName ?? displayName) as string } : {}),
+        };
 
         timerRef.current = setInterval(() => {
           const el = Date.now() - startTimeRef.current;
@@ -431,7 +570,10 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
 
         const onMatchFoundResume = (foundSessionId: string) => {
           clearDevBotMatchTimeout();
+          forceBotAfterMsRef.current = null;
+          setHumanSearchWindowMs(null);
           void clearMatchmakingResume();
+          stopSearchTimer();
           endQueueSubscription();
           setSessionId(foundSessionId);
           setStatus('found');
@@ -449,6 +591,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
           devBotMatchTimeoutRef.current = null;
           if (statusRef.current !== 'searching') return;
           const deferForLivePlayers =
+            forceBotAfterMsRef.current == null &&
             !__DEV__ && BOT_FALLBACK_ENABLED && queueOthersCountRef.current > 0;
           if (deferForLivePlayers) {
             const span = BOT_OTHERS_RECHECK_MAX_MS - BOT_OTHERS_RECHECK_MIN_MS;
@@ -459,6 +602,9 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
           void clearMatchmakingResume();
           endQueueSubscription();
           void leaveMatchmakingQueue(userId);
+          forceBotAfterMsRef.current = null;
+          setHumanSearchWindowMs(null);
+          stopSearchTimer();
           setSessionId(`bot_${userId}_${Date.now()}`);
           setStatus('found');
         };
@@ -513,6 +659,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       userId: userIdRef.current || null,
       elapsedMs,
       searchStartedAt,
+      humanSearchWindowMs,
       startSearching, cancelSearching,
       isLobbyActive, setLobbyActive,
       markMatchHandled, isMatchHandled,
@@ -520,6 +667,8 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
       clearFoundMatch,
       updateQueueWithPushToken,
       showMatchFoundForTesterPreview,
+      resumeSearchAfterLobbyAbort,
+      forgetSearchResumeSnapshot,
     }}>
       {children}
     </MatchmakingCtx.Provider>

@@ -55,16 +55,19 @@ const out = [];
 let skipped = 0;
 
 for (const q of raw) {
-  const k = norm(q.question);
-  if (!k) {
+  const base = norm(q.question);
+  if (!base) {
     skipped++;
     continue;
   }
+  const optKey = Array.isArray(q.options)
+    ? [...q.options].map((o) => norm(o)).sort().join('|')
+    : '';
+  const k = `${base}||${optKey}`;
   if (seen.has(k)) {
     skipped++;
     continue;
   }
-  seen.add(k);
   if (!Array.isArray(q.options) || q.options.length !== 4) {
     console.error('skip bad options:', q.question?.slice(0, 60));
     skipped++;
@@ -75,7 +78,8 @@ for (const q of raw) {
     skipped++;
     continue;
   }
-  const options = shuffleOptions(q.options, k);
+  seen.add(k);
+  const options = shuffleOptions(q.options, base);
   out.push({
     id: `a2_${String(out.length + 1).padStart(3, '0')}`,
     level: 'A2',

@@ -2,7 +2,9 @@
  * Level-Up Gift System — подарок при повышении уровня.
  *
  * F2P — расширенный пул: осколки, энергия до полуночи, арена, бесплатный буст клуба, пари-скидка, …
- * Premium — отдельный пул: крупные осколки + редко проба набора 48ч (без «лишней» энергии).
+ * Premium — отдельный пул: крупные осколки + редко проба набора 48ч + с низким шансом
+ *   постоянное открытие одного из пяти фирменных наборов (Negotiator, Dark Logic, Wild West,
+ *   Royal Tea, Peaky Blinders), без повторов того же набора из этой дорожки.
  *
  * Обычный уровень: 60% common / 30% rare / 10% epic.
  * Круг (10,20,30,40,50): только rare/epic 60%/40%.
@@ -15,7 +17,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { triLang, type Lang } from '../constants/i18n';
 import { addArenaPlaysBonusForToday } from './arena_daily_limit';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
-import { primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
+import {
+  OFFICIAL_DARK_LOGIC_EN_ID,
+  OFFICIAL_NEGOTIATOR_EN_ID,
+  OFFICIAL_PEAKY_BLINDERS_EN_ID,
+  OFFICIAL_ROYAL_TEA_EN_ID,
+  OFFICIAL_WILD_WEST_EN_ID,
+} from './flashcards/bundles/packIds';
+import { addOwnedPackId, loadOwnedPackIds, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
 import { addShards, addShardsRaw } from './shards_system';
 import { registerXP } from './xp_manager';
@@ -209,6 +218,113 @@ const GIFT_PREMIUM: GiftDef[] = [
   },
 ];
 
+/**
+ * Премиум-подарки уровня: навсегда открыть один из пяти встроенных наборов.
+ * В бою `rollPremiumLevelGiftForUser` — только низкая вероятность + без повтора того же набора.
+ */
+export const PREMIUM_LEVEL_GIFT_UNLOCK_PACK_IDS: readonly string[] = [
+  OFFICIAL_NEGOTIATOR_EN_ID,
+  OFFICIAL_DARK_LOGIC_EN_ID,
+  OFFICIAL_WILD_WEST_EN_ID,
+  OFFICIAL_ROYAL_TEA_EN_ID,
+  OFFICIAL_PEAKY_BLINDERS_EN_ID,
+];
+
+const PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS: GiftDef[] = [
+  {
+    id: 'prem_level_unlock_negotiator',
+    rarity: 'epic',
+    icon: '🎁',
+    weight: 1,
+    titleRU: 'Набор «Negotiator»',
+    titleUK: 'Набір «Negotiator»',
+    titleES: 'Pack «Negotiator»',
+    descRU: 'Полный набор добавлен к твоим карточкам — навсегда.',
+    descUK: 'Повний набір додано до твоїх карток — назавжди.',
+    descES: 'Todo el contenido ya está entre tus mazos, para siempre.',
+  },
+  {
+    id: 'prem_level_unlock_dark_logic',
+    rarity: 'epic',
+    icon: '🎁',
+    weight: 1,
+    titleRU: 'Набор «Dark Logic»',
+    titleUK: 'Набір «Dark Logic»',
+    titleES: 'Pack «Dark Logic»',
+    descRU: 'Полный набор добавлен к твоим карточкам — навсегда.',
+    descUK: 'Повний набір додано до твоїх карток — назавжди.',
+    descES: 'Todo el contenido ya está entre tus mazos, para siempre.',
+  },
+  {
+    id: 'prem_level_unlock_wild_west',
+    rarity: 'epic',
+    icon: '🎁',
+    weight: 1,
+    titleRU: 'Набор «Wild West»',
+    titleUK: 'Набір «Wild West»',
+    titleES: 'Pack «Wild West»',
+    descRU: 'Полный набор добавлен к твоим карточкам — навсегда.',
+    descUK: 'Повний набір додано до твоїх карток — назавжди.',
+    descES: 'Todo el contenido ya está entre tus mazos, para siempre.',
+  },
+  {
+    id: 'prem_level_unlock_royal_tea',
+    rarity: 'epic',
+    icon: '🎁',
+    weight: 1,
+    titleRU: 'Набор «Royal Tea»',
+    titleUK: 'Набір «Royal Tea»',
+    titleES: 'Pack «Royal Tea»',
+    descRU: 'Полный набор добавлен к твоим карточкам — навсегда.',
+    descUK: 'Повний набір додано до твоїх карток — назавжди.',
+    descES: 'Todo el contenido ya está entre tus mazos, para siempre.',
+  },
+  {
+    id: 'prem_level_unlock_peaky_blinders',
+    rarity: 'epic',
+    icon: '🎁',
+    weight: 1,
+    titleRU: 'Набор «Peaky Blinders»',
+    titleUK: 'Набір «Peaky Blinders»',
+    titleES: 'Pack «Peaky Blinders»',
+    descRU: 'Полный набор добавлен к твоим карточкам — навсегда.',
+    descUK: 'Повний набір додано до твоїх карток — назавжди.',
+    descES: 'Todo el contenido ya está entre tus mazos, para siempre.',
+  },
+];
+
+/** gift id → официальный id набора во встроенном магазине */
+const PREMIUM_LEVEL_GIFT_ID_TO_PACK: Record<string, string> = {
+  prem_level_unlock_negotiator: OFFICIAL_NEGOTIATOR_EN_ID,
+  prem_level_unlock_dark_logic: OFFICIAL_DARK_LOGIC_EN_ID,
+  prem_level_unlock_wild_west: OFFICIAL_WILD_WEST_EN_ID,
+  prem_level_unlock_royal_tea: OFFICIAL_ROYAL_TEA_EN_ID,
+  prem_level_unlock_peaky_blinders: OFFICIAL_PEAKY_BLINDERS_EN_ID,
+};
+
+/** Вероятность премиум-сундука уровня отдать один из редких подарков-наборов (если ещё есть подходящие). */
+export const PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE = 0.08;
+
+const PREMIUM_PACK_UNLOCK_GIFT_RECEIVED_KEY = 'level_premium_pack_unlock_gifts_v1';
+
+async function loadPremiumPackUnlockGiftReceivedIds(): Promise<Set<string>> {
+  try {
+    const raw = await AsyncStorage.getItem(PREMIUM_PACK_UNLOCK_GIFT_RECEIVED_KEY);
+    if (!raw) return new Set();
+    const a = JSON.parse(raw) as unknown;
+    if (!Array.isArray(a)) return new Set();
+    return new Set(a.filter((x): x is string => typeof x === 'string'));
+  } catch {
+    return new Set();
+  }
+}
+
+async function pushPremiumPackUnlockGiftReceivedPackId(packId: string): Promise<void> {
+  const cur = await loadPremiumPackUnlockGiftReceivedIds();
+  cur.add(packId);
+  await AsyncStorage.setItem(PREMIUM_PACK_UNLOCK_GIFT_RECEIVED_KEY, JSON.stringify([...cur]));
+}
+
 const ROUND_LEVELS = new Set([10, 20, 30, 40, 50]);
 const GIFT_HISTORY_KEY = 'level_gift_last_ids_v1';
 const WAGER_DISCOUNT_KEY = 'wager_discount';
@@ -284,8 +400,26 @@ export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSaf
   return g;
 }
 
-/** Второй сундук — только GIFT_PREMIUM; пишет историю. */
+/** Второй сундук — GIFT_PREMIUM + с шансом `PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE` навсегда один из пяти наборов (без повтора). */
 export async function rollPremiumLevelGiftForUser(level: number): Promise<GiftDef> {
+  const owned = await loadOwnedPackIds();
+  const granted = await loadPremiumPackUnlockGiftReceivedIds();
+
+  const eligiblePackGifts = PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS.filter((g) => {
+    const packId = PREMIUM_LEVEL_GIFT_ID_TO_PACK[g.id];
+    if (!packId) return false;
+    if (owned.includes(packId)) return false;
+    if (granted.has(packId)) return false;
+    return true;
+  });
+
+  const tryPack = eligiblePackGifts.length > 0 && Math.random() < PREMIUM_LEVEL_PACK_GIFT_DROP_CHANCE;
+  if (tryPack) {
+    const g = eligiblePackGifts[Math.floor(Math.random() * eligiblePackGifts.length)]!;
+    await pushGiftHistory(g.id);
+    return g;
+  }
+
   const g = weightedPick(GIFT_PREMIUM, level);
   await pushGiftHistory(g.id);
   return g;
@@ -477,6 +611,18 @@ export const applyGift = async (
         await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
         break;
       }
+      case 'prem_level_unlock_negotiator':
+      case 'prem_level_unlock_dark_logic':
+      case 'prem_level_unlock_wild_west':
+      case 'prem_level_unlock_royal_tea':
+      case 'prem_level_unlock_peaky_blinders': {
+        const packIdGift = PREMIUM_LEVEL_GIFT_ID_TO_PACK[id];
+        if (!packIdGift) break;
+        await addOwnedPackId(packIdGift);
+        await pushPremiumPackUnlockGiftReceivedPackId(packIdGift);
+        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
+        break;
+      }
       default:
         return { success: false };
     }
@@ -492,7 +638,7 @@ export function isEnergyBonusGiftId(gid: string | undefined): boolean {
 /**
  * Сколько осколков выдаёт подарок (0 = не осколочный).
  * Единый источник правды для UI: чтобы не рисовать 💎-эмодзи там, где должна быть
- * кучка осколков из `assets/images/levels/OSKOLOK*.png`.
+ * кучка осколков из `assets/images/levels/OSKOLOK*.webp`.
  */
 export function giftShardAmount(gid: string | undefined): number {
   if (!gid) return 0;
@@ -507,7 +653,7 @@ export function giftShardAmount(gid: string | undefined): number {
   }
 }
 
-export const ALL_LEVEL_GIFT_DEFS: GiftDef[] = [...GIFT_F2P, ...GIFT_PREMIUM];
+export const ALL_LEVEL_GIFT_DEFS: GiftDef[] = [...GIFT_F2P, ...GIFT_PREMIUM, ...PREMIUM_LEVEL_GIFT_PACK_UNLOCK_DEFS];
 
 export { GIFT_F2P as GIFT_POOL, WAGER_DISCOUNT_KEY };
 export default {};

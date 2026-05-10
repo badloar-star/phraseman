@@ -2,7 +2,7 @@
   "expo": {
     "name": "Phraseman",
     "slug": "phraseman",
-    "version": "1.5.22",
+    "version": "1.5.30",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -18,8 +18,9 @@
     },
     "android": {
       "package": "app.phraseman",
+      "usesCleartextTraffic": true,
       "googleServicesFile": "./google-services.json",
-      "versionCode": 54,
+      "versionCode": 67,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -61,7 +62,7 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "54",
+      "buildNumber": "67",
       "supportsTablet": false,
       "usesAppleSignIn": true,
       "googleServicesFile": "./GoogleService-Info.plist",
@@ -129,6 +130,8 @@
       "expo-apple-authentication",
       "@react-native-google-signin/google-signin",
       "./plugins/withAndroidBackupRules",
+      "./plugins/withAndroidDevCleartext",
+      "./plugins/withAndroidDevServer127",
       "./plugins/withIosFirebaseEarlyConfigure"
     ],
     "experiments": {

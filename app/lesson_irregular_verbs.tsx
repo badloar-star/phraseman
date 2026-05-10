@@ -29,8 +29,12 @@ import { loadSettings } from './settings_edu';
 import { IRREGULAR_VERBS_BY_LESSON, IrregularVerb } from './irregular_verbs_data';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
+import { playActivityCompletionModalSound } from './activity_complete_sound';
+import FlatTopHexFill from '../components/FlatTopHexFill';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AddToFlashcard from '../components/AddToFlashcard';
+import PhraseContentStars from '../components/PhraseContentStars';
+import { recordWordMistake, activateWordForTrainer } from './trainer_store';
 
 export { IRREGULAR_VERB_COUNT_BY_LESSON, LESSONS_WITH_IRREGULAR_VERBS } from './irregular_verbs_data';
 
@@ -43,15 +47,10 @@ export const GLOBAL_IRREGULAR_KEY = 'irregular_verbs_global';
 // ── Mini hexagon ──────────────────────────────────────────────────────────────
 function MiniHex({ filled, size = 16 }: { filled: boolean; size?: number }) {
   const { theme: t } = useTheme();
-  const w = size; const h = w * 0.866; const tip = w / 4; const mid = w / 2;
+  const w = size;
+  const h = w * 0.866;
   const c = filled ? t.correct : t.bgSurface2;
-  return (
-    <View style={{ flexDirection: 'row', width: w, height: h }}>
-      <View style={{ width: 0, height: 0, borderTopWidth: h/2, borderBottomWidth: h/2, borderRightWidth: tip, borderTopColor:'transparent', borderBottomColor:'transparent', borderRightColor: c, marginRight: -1 }} />
-      <View style={{ width: mid + 2, height: h, backgroundColor: c }} />
-      <View style={{ width: 0, height: 0, borderTopWidth: h/2, borderBottomWidth: h/2, borderLeftWidth: tip, borderTopColor:'transparent', borderBottomColor:'transparent', borderLeftColor: c, marginLeft: -1 }} />
-    </View>
-  );
+  return <FlatTopHexFill width={w} height={h} fill={c} />;
 }
 
 // ── Learn Tab (One-form-at-a-time tap mechanic) ────────────────────────────────
@@ -294,6 +293,8 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const [phase, setPhase] = useState<'answering' | 'feedback'>('answering');
   const [feedbackCorrect, setFeedbackCorrect] = useState(true);
   const hadErrorThisVerb = useRef(false);
+  // Счётчик ошибок на глагол для тренера (порог: 2 ошибки → активация)
+  const verbMistakeCountRef = useRef<Record<string, number>>({});
 
   const xpTranslateY = useRef(new Animated.Value(40)).current;
   const xpOpacity = useRef(new Animated.Value(0)).current;
@@ -326,6 +327,11 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     AsyncStorage.getItem('user_name').then(n => { if (n) setUserName(n); });
     loadSettings().then(s => setSpeechRate(s.speechRate ?? 0.9));
   }, []);
+
+  useEffect(() => {
+    if (!allDone) return;
+    void playActivityCompletionModalSound();
+  }, [allDone]);
 
   const buildStep = useCallback((verb: IrregularVerb, stepIdx: number) => {
     const form = FORM_SEQ[stepIdx];
@@ -399,6 +405,17 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
     } else {
       void hapticError();
       hadErrorThisVerb.current = true;
+
+      // Тренер: считаем ошибки на глагол; при 2-й — активируем в очереди
+      const vKey = verb.base;
+      const prevVerbCount = verbMistakeCountRef.current[vKey] ?? 0;
+      const newVerbCount = prevVerbCount + 1;
+      verbMistakeCountRef.current[vKey] = newVerbCount;
+      if (newVerbCount === 2) {
+        void activateWordForTrainer(vKey, verb.ru, verb.uk, lessonId ?? 0);
+      } else {
+        void recordWordMistake(vKey, verb.ru, verb.uk, lessonId ?? 0);
+      }
 
       // Тратим энергию при ошибке
       if (!testerEnergyDisabledRef.current) {
@@ -626,6 +643,13 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         </View>
       </View>
 
+      <PhraseContentStars
+        scope="irregular_verb_drill"
+        itemId={`L${lessonId ?? 0}_irv_${verb.base}_${form}`}
+        labelSnippet={irregularVerbTranslation(verb, lang)}
+        style={{ paddingVertical: 8 }}
+      />
+
       {/* ── Bottom buttons (sticky, thumb zone) ── */}
       <View style={{
         paddingHorizontal: 16, paddingBottom: 20, paddingTop: 12,
@@ -713,9 +737,7 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, speechRate,
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const scrollX = useRef(new Animated.Value(0)).current;
   const [containerW, setContainerW] = useState(0);
-  const [tooltip, setTooltip] = useState<string | null>(null);
   const sv = stringsForLang(lang).verbs;
-  const tapCloseHint = stringsForLang(lang).words.listTapToClose;
   const canScroll = containerW > 0 && TABLE_W > containerW;
   const thumbW = canScroll ? Math.max(40, (containerW / TABLE_W) * (containerW - 32)) : 0;
   const trackW = containerW - 32;
@@ -773,9 +795,9 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, speechRate,
                 >
                   <Text style={{ color: t.textSecond, fontSize: f.body, flexShrink: 0 }}>{verb.pp}</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setTooltip(irregularVerbTranslation(verb, lang))} activeOpacity={0.7} style={{ width: COL.tr }}>
+                <View style={{ width: COL.tr }}>
                   <Text style={{ color: t.textMuted, fontSize: f.sub, flexShrink: 0 }}>{irregularVerbTranslation(verb, lang)}</Text>
-                </TouchableOpacity>
+                </View>
                 <View style={{ width: COL.save, alignItems: 'center', justifyContent: 'center' }}>
                   <AddToFlashcard
                     en={`${verb.base} / ${verb.past} / ${verb.pp}`}
@@ -809,18 +831,6 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, speechRate,
         style={{ alignSelf: 'flex-end', marginHorizontal: 16, marginTop: 8 }}
       />
 
-      {tooltip !== null && (
-        <TouchableOpacity
-          activeOpacity={1}
-          onPress={() => setTooltip(null)}
-          style={{ position:'absolute', top:0, left:0, right:0, bottom:0, zIndex:99 }}
-        >
-          <View style={{ position:'absolute', top:40, left:16, right:16, backgroundColor:t.bgCard, borderRadius:12, paddingHorizontal:16, paddingVertical:12, elevation:12, shadowColor:'#000', shadowOffset:{width:0,height:4}, shadowOpacity:0.25, shadowRadius:8, borderWidth:1, borderColor:t.border }}>
-            <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, lineHeight:22 }}>{tooltip}</Text>
-            <Text style={{ color:t.textMuted, fontSize:f.sub, marginTop:4 }}>{tapCloseHint}</Text>
-          </View>
-        </TouchableOpacity>
-      )}
     </View>
   );
 }

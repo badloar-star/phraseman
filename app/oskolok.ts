@@ -4,11 +4,11 @@ import type { ImageSourcePropType } from 'react-native';
  * Единая точка для картинок осколков: «OSKOLOK.png» в assets и кучки для паков 80 / 180 / 420.
  * Снаружи используй только `oskolokImageForPackShards` — не импортируй сырой PNG.
  */
-const OSKOLOK_SINGLE: ImageSourcePropType = require('../assets/images/levels/OSKOLOK.png');
+const OSKOLOK_SINGLE: ImageSourcePropType = require('../assets/images/levels/OSKOLOK.webp');
 
-const OSKOLOK_80: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 80.png');
-const OSKOLOK_180: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 180.png');
-const OSKOLOK_420: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 420.png');
+const OSKOLOK_80: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 80.webp');
+const OSKOLOK_180: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 180.webp');
+const OSKOLOK_420: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 420.webp');
 
 /**
  * Картинка «кучки» осколков по величине суммы (не по номиналу пакета в магазине).

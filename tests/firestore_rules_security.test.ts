@@ -1,3 +1,12 @@
+/**
+ * Снимок формулировок firestore.rules (regex / ожидаемые подстроки).
+ *
+ * ВАЖНО ДЛЯ СБОРОК / РЕЛИЗОВ (2026):
+ * Правила в облаке могли быть осознанно изменены под продукт; этот файл тогда «красный»,
+ * хотя доступ для пользователей корректен. Не подгоняйте правила вслепую под тест —
+ * сначала осознанная проверка безопасности; тест обновлять только когда формулировка
+ * в rules стабильна и согласована.
+ */
 import { readFileSync } from 'fs';
 import path from 'path';
 
@@ -24,6 +33,11 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('allow read, write: if false;');
   });
 
+  test('app diagnostics collections allow client create and admin read', () => {
+    expect(rules).toMatch(/match \/app_errors\/\{docId\} \{[\s\S]*?allow create: if request\.auth != null;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
+    expect(rules).toMatch(/match \/app_activity\/\{docId\} \{[\s\S]*?allow create: if request\.auth != null;[\s\S]*?allow read, update, delete: if isAdmin\(\);/);
+  });
+
   test('arena_rooms updates are field-restricted', () => {
     expect(rules).toContain('match /arena_rooms/{roomId} {');
     expect(rules).toContain(".hasOnly(['guestId', 'guestName', 'status', 'sessionId']);");
@@ -32,6 +46,13 @@ describe('firestore.rules security baseline', () => {
   test('arena_invites allows only status updates from participants', () => {
     expect(rules).toContain('match /arena_invites/{inviteId} {');
     expect(rules).toContain(".hasOnly(['status']);");
+    expect(rules).toContain('canonicalUserMatchesAuth(resource.data.friendStableUid)');
+  });
+
+  test('friend activity my_events has owner writes and authenticated reads', () => {
+    expect(rules).toContain('match /users/{userId}/my_events/{eventId} {');
+    expect(rules).toMatch(/my_events\/\{eventId\} \{[\s\S]*?allow read: if request\.auth != null;/);
+    expect(rules).toMatch(/my_events\/\{eventId\} \{[\s\S]*?allow create, update, delete: if canonicalUserMatchesAuth\(userId\);/);
   });
 });
 
@@ -51,13 +72,13 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rules).toMatch(/match \/friend_code_index\/\{code\} \{[\s\S]*?allow update: if false;[\s\S]*?allow delete: if false;/);
   });
 
-  test('friend_requests create requires senderUid == request.auth.uid (anti-impersonation)', () => {
+  test('friend_requests create requires senderUid to match the signed-in canonical user (anti-impersonation)', () => {
     expect(rules).toContain('match /users/{targetUid}/friend_requests/{senderUid} {');
-    expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?senderUid == request\.auth\.uid/);
+    expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?canonicalUserMatchesAuth\(senderUid\)/);
   });
 
   test('friend_requests create checks banned_users (SEC-05)', () => {
-    expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?!exists\(\/databases\/\$\(database\)\/documents\/banned_users\/\$\(request\.auth\.uid\)\)/);
+    expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?!exists\(\/databases\/\$\(database\)\/documents\/banned_users\/\$\(senderUid\)\)/);
   });
 
   test('friend_requests create requires status == pending', () => {
@@ -77,12 +98,12 @@ describe('firestore.rules friend system (Phase 1)', () => {
   });
 
   test('friend_requests delete restricted to target', () => {
-    expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?allow delete: if request\.auth != null && request\.auth\.uid == targetUid;/);
+    expect(rules).toMatch(/friend_requests\/\{senderUid\}[\s\S]*?allow delete: if canonicalUserMatchesAuth\(targetUid\) \|\| canonicalUserMatchesAuth\(senderUid\);/);
   });
 
-  test('friends subcollection rule exists with owner-only create', () => {
+  test('friends subcollection rule exists with canonical owner create', () => {
     expect(rules).toContain('match /users/{ownerUid}/friends/{friendUid} {');
-    expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow create: if request\.auth != null[\s\S]*?request\.auth\.uid == ownerUid/);
+    expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow create: if request\.auth != null[\s\S]*?canonicalUserMatchesAuth\(ownerUid\)/);
   });
 
   test('friends subcollection forbids self-friending', () => {
@@ -95,7 +116,7 @@ describe('firestore.rules friend system (Phase 1)', () => {
 
   test('friends subcollection delete allows ownerUid or friendUid (bidirectional)', () => {
     // Updated in Plan 02-01 to support bidirectional client-side removal.
-    expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow delete: if request\.auth != null && \(request\.auth\.uid == ownerUid \|\| request\.auth\.uid == friendUid\)/);
+    expect(rules).toMatch(/friends\/\{friendUid\}[\s\S]*?allow delete: if canonicalUserMatchesAuth\(ownerUid\) \|\| canonicalUserMatchesAuth\(friendUid\);/);
   });
 
   test('catch-all is still the last match block (D-09 regression guard)', () => {
@@ -119,10 +140,10 @@ describe('firestore.rules friends bidirectional create/delete (Plan 02-01)', () 
   // FR-NEW-1: friendUid can create when accepted request exists
   test('FR-NEW-1: friends create rule allows friendUid when accepted request exists (get() check)', () => {
     expect(rules).toMatch(
-      /friends\/\{friendUid\}[\s\S]*?request\.auth\.uid == friendUid[\s\S]*?exists\(\/databases\/\$\(database\)\/documents\/users\/\$\(ownerUid\)\/friend_requests\/\$\(friendUid\)\)/,
+      /friends\/\{friendUid\}[\s\S]*?canonicalUserMatchesAuth\(friendUid\)[\s\S]*?exists\(\/databases\/\$\(database\)\/documents\/users\/\$\(friendUid\)\/friend_requests\/\$\(ownerUid\)\)/,
     );
     expect(rules).toMatch(
-      /friends\/\{friendUid\}[\s\S]*?get\(\/databases\/\$\(database\)\/documents\/users\/\$\(ownerUid\)\/friend_requests\/\$\(friendUid\)\)\.data\.status == 'accepted'/,
+      /friends\/\{friendUid\}[\s\S]*?get\(\/databases\/\$\(database\)\/documents\/users\/\$\(friendUid\)\/friend_requests\/\$\(ownerUid\)\)\.data\.status in \['pending', 'accepted'\]/,
     );
   });
 
@@ -131,34 +152,34 @@ describe('firestore.rules friends bidirectional create/delete (Plan 02-01)', () 
     // The rule gates friendUid create on exists() + status == accepted.
     // Verify the exists() call is present as the guard.
     expect(rules).toMatch(
-      /exists\(\/databases\/\$\(database\)\/documents\/users\/\$\(ownerUid\)\/friend_requests\/\$\(friendUid\)\)/,
+      /exists\(\/databases\/\$\(database\)\/documents\/users\/\$\(friendUid\)\/friend_requests\/\$\(ownerUid\)\)/,
     );
   });
 
   // FR-NEW-3: third-party uid cannot create — ownerUid and friendUid are the only allowed actors
   test('FR-NEW-3: friends create rule does NOT include catch-all write for third parties', () => {
-    // Rule only permits request.auth.uid == ownerUid OR request.auth.uid == friendUid.
+    // Rule only permits the canonical ownerUid OR canonical friendUid.
     // Verify it does NOT contain a permissive fallback like 'if request.auth != null' alone.
     const friendsBlock = rules.match(
       /match \/users\/\{ownerUid\}\/friends\/\{friendUid\} \{[\s\S]*?\}/,
     );
     expect(friendsBlock).not.toBeNull();
     // The create line must contain ownerUid or friendUid as auth check (not just request.auth != null alone).
-    expect(friendsBlock![0]).toMatch(/request\.auth\.uid == ownerUid/);
-    expect(friendsBlock![0]).toMatch(/request\.auth\.uid == friendUid/);
+    expect(friendsBlock![0]).toMatch(/canonicalUserMatchesAuth\(ownerUid\)/);
+    expect(friendsBlock![0]).toMatch(/canonicalUserMatchesAuth\(friendUid\)/);
   });
 
   // FR-NEW-4: ownerUid can delete (existing behavior preserved)
   test('FR-NEW-4: friends delete still allows ownerUid', () => {
     expect(rules).toMatch(
-      /friends\/\{friendUid\}[\s\S]*?allow delete:[\s\S]*?request\.auth\.uid == ownerUid/,
+      /friends\/\{friendUid\}[\s\S]*?allow delete:[\s\S]*?canonicalUserMatchesAuth\(ownerUid\)/,
     );
   });
 
   // FR-NEW-5: friendUid can now delete (new bidirectional behavior)
   test('FR-NEW-5: friends delete now allows friendUid (bidirectional removal)', () => {
     expect(rules).toMatch(
-      /friends\/\{friendUid\}[\s\S]*?allow delete:[\s\S]*?request\.auth\.uid == friendUid/,
+      /friends\/\{friendUid\}[\s\S]*?allow delete:[\s\S]*?canonicalUserMatchesAuth\(friendUid\)/,
     );
   });
 
@@ -166,7 +187,7 @@ describe('firestore.rules friends bidirectional create/delete (Plan 02-01)', () 
   test('FR-NEW-6: friends delete is restricted to ownerUid OR friendUid (not catch-all)', () => {
     // The delete rule must include both ownerUid and friendUid with OR operator.
     expect(rules).toMatch(
-      /allow delete: if request\.auth != null && \(request\.auth\.uid == ownerUid \|\| request\.auth\.uid == friendUid\)/,
+      /allow delete: if canonicalUserMatchesAuth\(ownerUid\) \|\| canonicalUserMatchesAuth\(friendUid\);/,
     );
   });
 });

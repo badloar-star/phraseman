@@ -1,9 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity,
   TextInput, Modal, ScrollView, DeviceEventEmitter,
-  Platform, KeyboardAvoidingView, ActivityIndicator,
+  ActivityIndicator,
   Linking,
+  Platform,
+  Keyboard,
+  InteractionManager,
+  Pressable,
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTabNav } from '../TabContext';
@@ -34,13 +38,15 @@ import {
   type StudyTargetLang,
 } from '../study_target_lang_dev';
 import { triLang, type Lang } from '../../constants/i18n';
-import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, deleteAccountAndWipe, type LinkedAuth } from '../auth_provider';
+import { getLinkedAuthInfo, signOutAndWipeForAccountSwitch, type LinkedAuth } from '../auth_provider';
 import { isNameAvailable, reserveName } from '../firestore_leaderboard';
 import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
+import { useEffectivePlatformOS } from '../platform_ui_preview';
 
 export default function SettingsMain() {
   const router = useRouter();
+  const effectiveOs = useEffectivePlatformOS();
   const { theme: t, isDark, themeMode, fontSize, setFontSize, f } = useTheme();
   /**
    * Ocean / Sakura — это «светлые карточки на тёмном цветном фоне». Темы
@@ -104,8 +110,18 @@ export default function SettingsMain() {
     },
     [lang],
   );
-  const deleteConfirmWord = L('УДАЛИТЬ', 'ВИДАЛИТИ', 'ELIMINAR');
 
+  /**
+   * Закрыть модалку имени после снятия фокуса с клавиатуры и завершения нативной анимации Modal —
+   * иначе на Android/iOS возможен «слой-призрак», который ест тапы (фон анимируется, скролл мёртв).
+   */
+  const closeNameModal = useCallback(() => {
+    Keyboard.dismiss();
+    const delay = Platform.OS === 'android' ? 220 : 160;
+    InteractionManager.runAfterInteractions(() => {
+      setTimeout(() => setNameModal(false), delay);
+    });
+  }, []);
   const LANG_NATIVE: Record<Lang, string> = {
     ru: 'Русский',
     uk: 'Українська',
@@ -140,8 +156,6 @@ export default function SettingsMain() {
   const [nameReady, setNameReady] = useState(false);
   const [nameModal, setNameModal] = useState(false);
   const [newName, setNewName]     = useState('');
-  const [deleteModal, setDeleteModal] = useState(false);
-  const [deleteConfirmInput, setDeleteConfirmInput] = useState('');
   const { isPremium, trialEligible } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
@@ -351,7 +365,7 @@ export default function SettingsMain() {
       DebugLogger.error('settings.tsx:renameName:arenaProfile', error, 'warning');
     }
 
-    setNameModal(false);
+    closeNameModal();
   };
 
   const Row = ({ icon, label, sub, onPress, right, danger }: {
@@ -583,12 +597,14 @@ export default function SettingsMain() {
 
 
 <SectionTitle title={L('Ещё', 'Ще', 'Más')} />
-        <Row
-          icon="person-add-outline"
-          label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo')}
-          sub={L('Бонусы вам обоим', 'Бонуси вам обом', 'Recompensas para ambos')}
-          onPress={() => { doHaptic(); router.push('/settings_invite_friend' as any); }}
-        />
+        {Platform.OS !== 'ios' && (
+          <Row
+            icon="person-add-outline"
+            label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo')}
+            sub={L('Бонусы вам обоим', 'Бонуси вам обом', 'Recompensas para ambos')}
+            onPress={() => { doHaptic(); router.push('/settings_invite_friend' as any); }}
+          />
+        )}
         <Row icon="help-circle-outline" label={L('Помощь / FAQ', 'Допомога / FAQ', 'Ayuda / FAQ')} sub={L('Ответы на частые вопросы', 'Відповіді на часті запитання', 'Respuestas a preguntas frecuentes')} onPress={() => { doHaptic(); router.push('/help_faq' as any); }} />
         <Row
           icon="mail-outline"
@@ -607,7 +623,9 @@ export default function SettingsMain() {
           }}
         />
         {/* "Частые вопросы" удалён — дублирует раздел "Помощь / FAQ" выше */}
-        <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta')} onPress={() => router.push('/beta_testers' as any)} />
+        {effectiveOs === 'android' && (
+          <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta')} onPress={() => router.push('/beta_testers' as any)} />
+        )}
         {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && (
           <Row
             icon="shield-outline"
@@ -668,24 +686,6 @@ export default function SettingsMain() {
             <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
           </TouchableOpacity>
         )}
-
-        {/* Удалить аккаунт */}
-        <View style={{ marginHorizontal: 20, marginTop: 32, marginBottom: 8 }}>
-          <TouchableOpacity
-            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', paddingVertical: 14, borderRadius: 12, borderWidth: 1, borderColor: t.wrong + '60' }}
-            onPress={() => {
-              doHaptic();
-              setDeleteConfirmInput('');
-              setDeleteModal(true);
-            }}
-            activeOpacity={0.7}
-          >
-            <Ionicons name="trash-outline" size={18} color={t.wrong} style={{ marginRight: 8 }} />
-            <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '500' }}>
-              {L('Удалить аккаунт', 'Видалити акаунт', 'Eliminar cuenta')}
-            </Text>
-          </TouchableOpacity>
-        </View>
 
         {/* Подвал */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
@@ -877,9 +877,18 @@ export default function SettingsMain() {
       </Modal>
 
       {/* Модал имени */}
-      <Modal visible={nameModal} transparent animationType="fade">
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}>
-          <View style={{ width: '80%', backgroundColor: t.bgCard, borderRadius: 16, padding: 24 }}>
+      <Modal
+        visible={nameModal}
+        transparent
+        animationType="fade"
+        onRequestClose={closeNameModal}
+      >
+        <Pressable
+          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
+          onPress={closeNameModal}
+        >
+          <Pressable onPress={(e) => e.stopPropagation()}>
+            <View style={{ width: '80%', minWidth: 280, backgroundColor: t.bgCard, borderRadius: 16, padding: 24 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
               {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre')}
             </Text>
@@ -892,131 +901,19 @@ export default function SettingsMain() {
               autoFocus maxLength={20}
               returnKeyType="done"
               onSubmitEditing={saveName}
+              blurOnSubmit
             />
             <View style={{ flexDirection: 'row', gap: 12 }}>
-              <TouchableOpacity activeOpacity={0.7} style={{ flex: 1, padding: 12, borderRadius: 10, borderWidth: 1, borderColor: t.border, alignItems: 'center' }} onPress={() => { doHaptic(); setNameModal(false); }}>
+              <TouchableOpacity activeOpacity={0.7} style={{ flex: 1, padding: 12, borderRadius: 10, borderWidth: 1, borderColor: t.border, alignItems: 'center' }} onPress={() => { doHaptic(); closeNameModal(); }}>
                 <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1} adjustsFontSizeToFit>{L('Отмена', 'Скасувати', 'Cancelar')}</Text>
               </TouchableOpacity>
-              <TouchableOpacity activeOpacity={0.8} style={{ flex: 1, padding: 12, borderRadius: 10, backgroundColor: t.bgSurface, alignItems: 'center' }} onPress={() => { doHaptic(); saveName(); }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>{L('Сохранить', 'Зберегти', 'Guardar')}</Text>
+              <TouchableOpacity activeOpacity={0.8} style={{ flex: 1, padding: 12, borderRadius: 10, backgroundColor: t.accent, borderWidth: 1, borderColor: t.accent, alignItems: 'center' }} onPress={() => { doHaptic(); void saveName(); }}>
+                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>{L('Сохранить', 'Зберегти', 'Guardar')}</Text>
               </TouchableOpacity>
             </View>
-          </View>
-        </View>
-      </Modal>
-
-      {/* Модал подтверждения удаления аккаунта */}
-      <Modal visible={deleteModal} transparent animationType="fade" onRequestClose={() => setDeleteModal(false)}>
-        <KeyboardAvoidingView
-          style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center' }}
-          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        >
-          <View style={{ width: '85%', backgroundColor: t.bgCard, borderRadius: 16, padding: 24 }}>
-            <Text style={{ color: t.wrong, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
-              {L('Удалить аккаунт?', 'Видалити акаунт?', '¿Eliminar cuenta?')}
-            </Text>
-            <Text style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 12, lineHeight: 20 }}>
-              {L('Будет безвозвратно удалено:', 'Буде безповоротно видалено:', 'Se eliminará de forma permanente:')}
-            </Text>
-            {[
-              L('📊 Весь XP и уровень', '📊 Весь XP та рівень', '📊 Todo el XP y el nivel'),
-              L('🔥 Стрик и серия', '🔥 Стрік та серія', '🔥 Racha y días seguidos'),
-              L('📚 Прогресс по всем урокам', '📚 Прогрес по всіх уроках', '📚 Progreso en todas las lecciones'),
-              L('🃏 Сохранённые карточки', '🃏 Збережені картки', '🃏 Tarjetas guardadas'),
-              L('🏆 Все достижения и медали', '🏆 Всі досягнення та медалі', '🏆 Logros y medallas'),
-              L('🌍 Позиция в лиге и клубе', '🌍 Позиція у лізі та клубі', '🌍 Puesto en la liga y en el club'),
-              L('⚙️ Все настройки', '⚙️ Всі налаштування', '⚙️ Todos los ajustes'),
-            ].map((item, i) => (
-              <Text key={i} style={{ color: t.textSecond, fontSize: f.caption, marginBottom: 4, lineHeight: 20 }}>
-                {item}
-              </Text>
-            ))}
-            <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '600', marginTop: 10, marginBottom: 16, lineHeight: 20 }}>
-              {L(
-                '⚠️ Удаление аккаунта не отменяет подписку автоматически.',
-                '⚠️ Видалення акаунта не скасовує підписку автоматично.',
-                '⚠️ Eliminar la cuenta no cancela la suscripción automáticamente.',
-              )}
-            </Text>
-            <Text style={{ color: t.textPrimary, fontSize: f.caption, marginBottom: 8 }}>
-              {L(
-                'Введите "УДАЛИТЬ" для подтверждения:',
-                'Введіть "ВИДАЛИТИ" для підтвердження:',
-                'Escribe «ELIMINAR» para confirmar:',
-              )}
-            </Text>
-            <TextInput
-              style={{
-                backgroundColor: t.bgPrimary,
-                color: t.textPrimary,
-                fontSize: f.body,
-                padding: 12,
-                borderRadius: 10,
-                borderWidth: 1,
-                borderColor: t.border,
-                marginBottom: 20,
-                outlineStyle: 'none' as any,
-              }}
-              value={deleteConfirmInput}
-              onChangeText={setDeleteConfirmInput}
-              placeholder={deleteConfirmWord}
-              placeholderTextColor={t.textGhost}
-              autoCapitalize="characters"
-              autoCorrect={false}
-              autoFocus={false}
-              maxLength={12}
-            />
-            <View style={{ flexDirection: 'row', gap: 12 }}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={{ flex: 1, padding: 12, borderRadius: 10, borderWidth: 1, borderColor: t.border, alignItems: 'center' }}
-                onPress={() => { doHaptic(); setDeleteModal(false); setDeleteConfirmInput(''); }}
-              >
-                <Text style={{ color: t.textMuted, fontSize: f.body }}>{L('Отмена', 'Скасувати', 'Cancelar')}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                disabled={deleteConfirmInput !== deleteConfirmWord}
-                activeOpacity={0.7}
-                style={{
-                  flex: 1, padding: 12, borderRadius: 10, alignItems: 'center',
-                  backgroundColor: deleteConfirmInput === deleteConfirmWord ? t.wrong : t.bgSurface,
-                  opacity: deleteConfirmInput === deleteConfirmWord ? 1 : 0.35,
-                }}
-                onPress={async () => {
-                  doHaptic();
-                  setDeleteModal(false);
-                  setDeleteConfirmInput('');
-                  // ВАЖНО: используем единый flow deleteAccountAndWipe (auth_provider.ts).
-                  // Старая последовательность (deleteCloudData → AsyncStorage.clear) НЕ:
-                  //   • сбрасывала stable_id в Keychain/SecureStore + in-memory cache
-                  //     → следующий getStableId() возвращал старый UUID;
-                  //   • не делала Google revoke + Firebase signOut + ensureAnonUser
-                  //     → ре-логин через Google (после force sign-out из админки) висел
-                  //     в loading-state навсегда из-за orphan auth_links/{providerUid}.
-                  // Сам orphan-link дополнительно лечится в signInWithProvider
-                  // (ветка !remoteUserSnap.exists), так что повторный логин уйдёт в created_new.
-                  // withStorageLock здесь избыточен: deleteAccountAndWipe не конкурирует
-                  // с активными синками — мы уже после signOut'а.
-                  const res = await deleteAccountAndWipe();
-                  if (!res.ok) {
-                    showInfoAlert(L('Ошибка', 'Помилка', 'Error'), L('Не удалось удалить данные.', 'Не вдалося видалити дані.', 'No se pudieron eliminar los datos.'));
-                    return;
-                  }
-                  await enqueueThemedBlockingInfoAlert(
-                    L('Аккаунт удалён', 'Акаунт видалено', 'Cuenta eliminada'),
-                    L('Все ваши данные были удалены.', 'Всі ваші дані було видалено.', 'Se han eliminado todos tus datos.'),
-                    'OK',
-                  );
-                  DeviceEventEmitter.emit('account_deleted');
-                }}
-              >
-                <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
-                  {L('Удалить', 'Видалити', 'Eliminar')}
-                </Text>
-              </TouchableOpacity>
             </View>
-          </View>
-        </KeyboardAvoidingView>
+          </Pressable>
+        </Pressable>
       </Modal>
 
     </ScreenGradient>

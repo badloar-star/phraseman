@@ -36,10 +36,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.runMatchmaking = runMatchmaking;
 exports.publishMatchmakingSearchingCount = publishMatchmakingSearchingCount;
 exports.tryMatchForUser = tryMatchForUser;
+exports.pickOneQuestionExcluding = pickOneQuestionExcluding;
 const admin = __importStar(require("firebase-admin"));
 const types_1 = require("./types");
 const arena_pregame_1 = require("./arena_pregame");
+const arena_cleanup_1 = require("./arena_cleanup");
 const db = admin.firestore();
+// Must match constants/theme.ts getLevelFromXP formula
+const _XP_BASE = 250;
+const _XP_EXP_INV = 1 / 1.82;
+const _MAX_LEVEL = 50;
+function getLevelFromXP(xp) {
+    if (xp <= 0)
+        return 1;
+    return Math.min(_MAX_LEVEL, Math.floor(Math.pow(xp / _XP_BASE, _XP_EXP_INV)) + 1);
+}
 /** Публичный агрегат для UI лобби: live-док, обновляется на каждом изменении очереди (CF). */
 const APP_META_MATCHMAKING = 'app_meta/matchmaking_searching';
 const RANKED_QUESTIONS_PER_MATCH = 10;
@@ -47,6 +58,8 @@ const QUESTION_TIMEOUT_MS = 40000;
 const STALE_ENTRY_MS = 15 * 60 * 1000; // remove entries older than 15 min
 /** Клиент должен сам удалить queue сразу после match; иначе cron убирает через 2 мин (см. matchedAt) */
 const MATCHED_QUEUE_TTL_MS = 2 * 60 * 1000;
+/** Документ с sessionId, но без matchedAt (legacy / сбой) — удаляем строку очереди по давности joinedAt */
+const MATCHED_QUEUE_NO_MATCHED_AT_MS = 10 * 60 * 1000;
 function queueUserId(e) {
     const u = e.userId;
     if (typeof u === 'string' && u.length > 0)
@@ -104,6 +117,12 @@ async function runMatchmaking() {
     catch {
         // non-fatal
     }
+    try {
+        await (0, arena_cleanup_1.cleanupStaleArenaSessions)();
+    }
+    catch (e) {
+        console.error('cleanupStaleArenaSessions', e);
+    }
 }
 /** Сколько записей в matchmaking_queue ещё без sessionId (реально в поиске). */
 async function publishMatchmakingSearchingCount() {
@@ -116,7 +135,7 @@ async function publishMatchmakingSearchingCount() {
     }
     await db.doc(APP_META_MATCHMAKING).set({ searchingCount: n, updatedAt: Date.now() }, { merge: true });
 }
-/** Документы с sessionId не попадают в stale-чистку; убираем, если клиент не удалил запись. */
+/** Документы с sessionId не попадают в stale-чистку по joinedAt; убираем по matchedAt или legacy без timestamp. */
 async function cleanupOrphanedMatchedQueueEntries(now) {
     const snap = await db.collection('matchmaking_queue').get();
     if (snap.empty)
@@ -127,13 +146,20 @@ async function cleanupOrphanedMatchedQueueEntries(now) {
         const d = doc.data();
         if (!d.sessionId)
             continue;
-        if (d.matchedAt == null)
-            continue; // старые документы без matchedAt — вручную в консоли или перезапись при новом матче
-        if (now - d.matchedAt > MATCHED_QUEUE_TTL_MS) {
+        const joinedAt = typeof d.joinedAt === 'number' ? d.joinedAt : 0;
+        if (d.matchedAt != null) {
+            if (now - d.matchedAt > MATCHED_QUEUE_TTL_MS) {
+                batch.delete(doc.ref);
+                n++;
+                if (n >= 450)
+                    break;
+            }
+        }
+        else if (joinedAt > 0 && now - joinedAt > MATCHED_QUEUE_NO_MATCHED_AT_MS) {
             batch.delete(doc.ref);
             n++;
             if (n >= 450)
-                break; // лимит batch
+                break;
         }
     }
     if (n > 0)
@@ -244,8 +270,16 @@ async function createSession(players, size) {
         questionStartedAt: null,
         questionTimeoutMs: QUESTION_TIMEOUT_MS,
         createdAt: now,
-        acceptDeadlineAt: now + 45000,
+        acceptDeadlineAt: now + 15000,
     };
+    // Read XP to compute avatarLevel for each player
+    const userSnaps = await Promise.all(playersNorm.map(p => db.collection('users').doc(p.userId).get().catch(() => null)));
+    const avatarLevelByUid = new Map();
+    for (let i = 0; i < playersNorm.length; i++) {
+        const d = userSnaps[i]?.data();
+        const xp = parseInt(d?.progress?.user_total_xp ?? '0') || 0;
+        avatarLevelByUid.set(playersNorm[i].userId, getLevelFromXP(xp));
+    }
     const matchedAt = Date.now();
     // Use transaction to prevent double-matching race conditions
     await db.runTransaction(async (tx) => {
@@ -264,6 +298,7 @@ async function createSession(players, size) {
                 sessionId,
                 playerId: player.userId,
                 displayName: player.displayName ?? 'Игрок',
+                avatarLevel: avatarLevelByUid.get(player.userId) ?? 1,
                 score: 0,
                 answers: [],
                 lobbyChoice: 'none',
@@ -332,6 +367,37 @@ async function pickQuestions(level, count) {
         throw new Error(`Insufficient arena_questions for level ${level} (need ${count}, got ${out.length})`);
     }
     return out;
+}
+/**
+ * Один додатковий id для тай-брейку (нічия після основних 10 питань).
+ * Повертає null, якщо в банку не знайшлося варіанта поза exclude.
+ */
+async function pickOneQuestionExcluding(level, exclude) {
+    const pivot = Math.random();
+    const limit = 48;
+    const [snapA, snapB] = await Promise.all([
+        db.collection('arena_questions')
+            .where('level', '==', level)
+            .where('rand', '>=', pivot)
+            .orderBy('rand')
+            .limit(limit)
+            .get(),
+        db.collection('arena_questions')
+            .where('level', '==', level)
+            .where('rand', '<', pivot)
+            .orderBy('rand')
+            .limit(limit)
+            .get(),
+    ]);
+    const pooled = shuffleArray([
+        ...snapA.docs.map((d) => d.id),
+        ...snapB.docs.map((d) => d.id),
+    ]);
+    for (const id of pooled) {
+        if (!exclude.has(id))
+            return id;
+    }
+    return null;
 }
 // ─── Trusted rank from arena_profiles (client queue fields are not authoritative) ─
 function isRankTier(s) {

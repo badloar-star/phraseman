@@ -9,11 +9,11 @@ import { getTodayPhrase, getTodayPhraseSync, DailyPhrase } from '../app/daily_ph
 import AddToFlashcard from './AddToFlashcard';
 
 const DAILY_PHRASE_IMAGES: Record<string, any> = {
-  dark:   require('../assets/images/levels/dayly phrase forest.png'),
-  neon:   require('../assets/images/levels/dayly phrase neon.png'),
-  gold:   require('../assets/images/levels/dayly phrase coral.png'),
-  ocean:  require('../assets/images/levels/dayly phrase ocean.png'),
-  sakura: require('../assets/images/levels/dayly phrase sacura.png'),
+  dark:   require('../assets/images/levels/dayly phrase forest.webp'),
+  neon:   require('../assets/images/levels/dayly phrase neon.webp'),
+  gold:   require('../assets/images/levels/dayly phrase coral.webp'),
+  ocean:  require('../assets/images/levels/dayly phrase ocean.webp'),
+  sakura: require('../assets/images/levels/dayly phrase sacura.webp'),
 };
 
 interface Props {

@@ -20,9 +20,32 @@ import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_SCALE } from '../constants/motion';
-import type { LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
+import type { LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
+import type { StudyTargetLang } from './study_target_lang_dev';
+import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import PhraseContentStars from '../components/PhraseContentStars';
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
+
+/** В режиме «учим ES» первая строка — испанская цель (trES), не английский мост (en). */
+function lessonIntroExampleLines(
+  ex: LessonIntroExample,
+  lang: Lang,
+  studyTarget: StudyTargetLang,
+): { primary: string; secondary: string } {
+  const primary = spanishStudyActive(studyTarget) && ex.trES ? ex.trES : ex.en;
+  let secondary =
+    lang === 'uk'
+      ? ex.trUK
+      : spanishLessonUiStringsActive(lang, studyTarget)
+        ? (ex.trES ?? ex.trRU)
+        : ex.trRU;
+  if (primary === secondary && ex.en !== primary) {
+    secondary = ex.en;
+  }
+  return { primary, secondary };
+}
 
 interface LessonIntroScreensProps {
   introScreens: LessonIntroScreen[];
@@ -34,6 +57,12 @@ const FADE_DURATION_MS = 1400; // длинный плавный фейд
 const SLIDE_DURATION_MS = 1500; // длинный «дрейф» снизу
 const SLIDE_DISTANCE_PX = 44; // путь slide-up — больше воздуха
 const AUTO_SCROLL_DELAY_MS = 520; // даём блоку доехать до конца, потом скроллим
+/** Нижний отступ кнопки «Начать урок» (совпадает с инлайн `bottom` у CTA). */
+const INTRO_CTA_BOTTOM_OFFSET = 22;
+/** Примерная высота CTA + зазор: звёзды не должны заезжать на эту зону во время анимации кнопки. */
+const INTRO_CTA_ZONE_PX = 88;
+/** Звёзды показываем только после всех карточек — и сразу над полосой кнопки. */
+const INTRO_STARS_ABOVE_CTA_PX = INTRO_CTA_BOTTOM_OFFSET + INTRO_CTA_ZONE_PX;
 const KIND_BY_INDEX: LessonIntroBlockKind[] = ['why', 'how', 'tip'];
 
 /**
@@ -113,6 +142,7 @@ interface IntroBlockCardProps {
   data: LessonIntroScreen;
   visible: boolean;
   lang: Lang;
+  studyTarget: StudyTargetLang;
   t: any;
   themeMode: any;
   f: any;
@@ -125,6 +155,7 @@ function IntroBlockCard({
   data,
   visible,
   lang,
+  studyTarget,
   t,
   themeMode,
   f,
@@ -141,12 +172,12 @@ function IntroBlockCard({
   const isLight = themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight';
 
   const defaultTitle =
-    lang === 'uk' ? km.defaultTitleUK : lang === 'es' ? km.defaultTitleES : km.defaultTitleRU;
+    lang === 'uk' ? km.defaultTitleUK : spanishLessonUiStringsActive(lang, studyTarget) ? km.defaultTitleES : km.defaultTitleRU;
   const localizedTitle =
-    lang === 'uk' ? data.titleUK : lang === 'es' ? data.titleES : data.titleRU;
+    lang === 'uk' ? data.titleUK : spanishLessonUiStringsActive(lang, studyTarget) ? data.titleES : data.titleRU;
   const title = localizedTitle ?? defaultTitle;
   const text =
-    lang === 'uk' ? data.textUK : lang === 'es' ? (data.textES ?? data.textRU) : data.textRU;
+    lang === 'uk' ? data.textUK : spanishLessonUiStringsActive(lang, studyTarget) ? (data.textES ?? data.textRU) : data.textRU;
 
   useEffect(() => {
     if (!visible) return;
@@ -288,7 +319,9 @@ function IntroBlockCard({
           {/* Опциональные примеры */}
           {!!data.examples?.length && (
             <View style={[styles.exampleBox, { borderColor: `${accent}33`, backgroundColor: isLight ? '#FFFFFF80' : '#00000022' }]}>
-              {data.examples.map((ex, i) => (
+              {data.examples.map((ex, i) => {
+                const { primary, secondary } = lessonIntroExampleLines(ex, lang, studyTarget);
+                return (
                 <View key={i} style={[styles.exampleRow, i > 0 && { marginTop: 6 }]}>
                   <Text
                     style={[
@@ -296,7 +329,7 @@ function IntroBlockCard({
                       { color: t.correct, fontSize: f.body },
                     ]}
                   >
-                    {ex.en}
+                    {primary}
                   </Text>
                   <Text
                     style={[
@@ -304,10 +337,11 @@ function IntroBlockCard({
                       { color: t.textMuted, fontSize: f.sub },
                     ]}
                   >
-                    {lang === 'uk' ? ex.trUK : lang === 'es' ? (ex.trES ?? ex.trRU) : ex.trRU}
+                    {secondary}
                   </Text>
                 </View>
-              ))}
+                );
+              })}
             </View>
           )}
         </View>
@@ -323,6 +357,7 @@ export default function LessonIntroScreens({
 }: LessonIntroScreensProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const insets = useSafeAreaInsets();
   const isLight = themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight';
 
@@ -532,6 +567,7 @@ export default function LessonIntroScreens({
           </View>
 
           <TouchableOpacity
+            testID="lesson-intro-skip"
             onPress={handleSkip}
             hitSlop={{ top: 14, right: 14, bottom: 14, left: 14 }}
             style={[styles.skipBtn, { backgroundColor: t.bgCard, borderColor: t.borderHighlight }]}
@@ -574,6 +610,7 @@ export default function LessonIntroScreens({
                   data={block}
                   visible={i < revealedCount}
                   lang={lang}
+                  studyTarget={studyTarget}
                   t={t}
                   themeMode={themeMode}
                   f={f}
@@ -611,10 +648,32 @@ export default function LessonIntroScreens({
               {/* Доп. отступ снизу, чтобы под кнопкой CTA не упирался последний блок.
                   Растёт вместе с safe-area inset, чтобы на Android с 3-кнопочной навигацией
                   последняя карточка не оказывалась под CTA. */}
-              <View style={{ height: 130 + insets.bottom }} />
+              <View style={{ height: (allRevealed ? 175 : 130) + insets.bottom }} />
             </Pressable>
           </ScrollView>
         </Animated.View>
+
+        {allRevealed ? (
+          <View
+            pointerEvents="box-none"
+            style={{
+              position: 'absolute',
+              alignSelf: 'center',
+              bottom: INTRO_STARS_ABOVE_CTA_PX + insets.bottom,
+              zIndex: 10,
+            }}
+          >
+            <PhraseContentStars
+              scope="lesson_theory"
+              itemId={`L${lessonId}_intro`}
+              labelSnippet={triLang(lang, {
+                ru: `Урок ${lessonId} — интро (экран перед уроком)`,
+                uk: `Урок ${lessonId} — інтро (початковий екран)`,
+                es: `Lección ${lessonId} — intro (pantalla previa)`,
+              })}
+            />
+          </View>
+        ) : null}
 
         {/* CTA «Начать урок» — фиксирован снизу, появляется когда все блоки раскрыты.
             bottom учитывает safe-area inset, иначе кнопка налезает на Android-навигацию
@@ -624,14 +683,16 @@ export default function LessonIntroScreens({
           style={[
             styles.ctaWrap,
             {
-              bottom: 22 + insets.bottom,
+              bottom: INTRO_CTA_BOTTOM_OFFSET + insets.bottom,
               opacity: fadeBtn,
               transform: [{ scale: btnScale }],
+              zIndex: 20,
+              elevation: 14,
             },
           ]}
         >
           <Animated.View style={{ transform: [{ scale: btnPulse }] }}>
-            <TouchableOpacity activeOpacity={0.88} onPress={handleStart}>
+            <TouchableOpacity testID="lesson-intro-start" activeOpacity={0.88} onPress={handleStart}>
               <LinearGradient
                 colors={[`${t.accent}`, `${t.correct}`]}
                 start={{ x: 0, y: 0 }}

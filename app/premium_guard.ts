@@ -18,6 +18,16 @@ export function invalidatePremiumCache(): void {
 }
 
 /**
+ * StoreKit/Google has just confirmed a purchase or restore locally.
+ * RevenueCat sandbox can lag for a few seconds, so this gives the local
+ * premium flag the same bounded grace window as a fresh RC confirmation.
+ */
+export async function markPremiumStoreSeenNow(): Promise<void> {
+  await AsyncStorage.setItem(RC_LAST_SEEN_KEY, String(Date.now()));
+  invalidatePremiumCache();
+}
+
+/**
  * Verifies premium status: tries RevenueCat first, falls back to
  * local AsyncStorage with expiry check. Updates AsyncStorage to reflect
  * the verified status so other code stays in sync.
@@ -46,9 +56,19 @@ export async function getVerifiedPremiumStatus(): Promise<boolean> {
   const plan     = pairs.find(p => p[0] === 'premium_plan')?.[1];
   const expiry   = parseInt(pairs.find(p => p[0] === 'premium_expiry')?.[1] || '0');
   const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
+  const adminExplicitRevoked =
+    adminOverride === 'false' && (!plan || plan === 'null' || plan === '');
+
+  // Admin-granted premium: skip RevenueCat entirely (time-limited via premium_expiry).
+  // Исторически в облаке оставались только progress.premium_plan = 'admin_grant' без
+  // admin_premium_override — бейдж мог показывать admin_grant, а getVerifiedPremiumStatus
+  // уходил в RevenueCat и давал false. План 'admin_grant' не продаётся в магазине: доверяем
+  // ему как админ-выдаче, пока явно не отозвали (admin_premium_override === 'false').
+  const adminPremiumByPlan =
+    plan === 'admin_grant' && adminOverride !== 'false';
 
   // Admin-granted premium: skip RevenueCat entirely (time-limited via premium_expiry)
-  if (adminOverride === 'true' && plan && plan !== 'null' && plan !== '') {
+  if ((adminOverride === 'true' || adminPremiumByPlan) && plan && plan !== 'null' && plan !== '') {
     if (expiry > 0 && expiry < Date.now()) {
       await AsyncStorage.multiSet([
         ['premium_active', 'false'],
@@ -106,6 +126,10 @@ export async function getVerifiedPremiumStatus(): Promise<boolean> {
   }
 
   // Expo Go or RC unavailable: trust AsyncStorage with expiry validation
+  if (adminExplicitRevoked) {
+    await AsyncStorage.setItem('premium_active', 'false');
+    return cache(false);
+  }
   if (active !== 'true') return cache(false);
   if (expiry > 0 && expiry < Date.now()) {
     await AsyncStorage.setItem('premium_active', 'false');

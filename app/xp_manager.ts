@@ -13,6 +13,8 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import { recordActivityForRepair } from './streak_repair';
 import { getLevelFromXP, TOTAL_XP_FOR_LEVEL } from '../constants/theme';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
+import { isCustomAvatarValue } from '../constants/custom_avatars';
+import { writeFriendEvent } from './firestore_friend_activity';
 import { getTitleString } from '../constants/titles';
 import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
@@ -140,7 +142,7 @@ export const registerXP = async (
       // А) Клуб: XP-буст + уровень клуба недели (один множитель в UI и при начислении)
       const clubM = await getCombinedClubMultiplier();
 
-      // Б) Множитель за стрик (x2, x3, x5)
+      // Б) Множитель за длину цепочки (x2, x3, x5)
       const streakRaw = await AsyncStorage.getItem('streak_count');
       const streakM = streakMultiplier(parseInt(streakRaw || '0'));
 
@@ -175,7 +177,7 @@ export const registerXP = async (
     }
 
     // 2. Обновляем основные структуры данных через hall_of_fame_utils
-    // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и стрик
+    // Это обновит: leaderboard, week_leaderboard, week_points_v2, daily_stats и цепочку
     await addOrUpdateScore(resolvedName, finalDelta, lang);
 
     // 3. Обновляем глобальный счетчик user_total_xp (XP никогда не уходит в минус)
@@ -204,7 +206,8 @@ export const registerXP = async (
         const newLvl  = getLevelFromXP(newTotal);
         if (newLvl > prevLvl) {
           // Обновляем аватар и рамку по финальному уровню
-          const newAv = getBestAvatarForLevel(newLvl);
+          const currentAvatar = await AsyncStorage.getItem('user_avatar');
+          const newAv = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(newLvl);
           const newFr = getBestFrameForLevel(newLvl);
           // Читаем текущую очередь и добавляем ВСЕ промежуточные уровни
           const queueRaw = await AsyncStorage.getItem('pending_level_up_queue');
@@ -222,13 +225,15 @@ export const registerXP = async (
           emitAppEvent('level_up_pending');
           emitAppEvent('energy_reload'); // перезагружаем энергию после level-up
           emitAppEvent('xp_changed');    // обновляем UI в home.tsx
+          // Лента друзей: клиент (тестеры/registerXP) + CF после синка — один doc id level_up_{lvl}
+          writeFriendEvent('level_up', { level: newLvl }).catch(() => {});
         } else {
           await AsyncStorage.setItem('user_prev_xp', String(newTotal));
         }
       }
     }
 
-    // 4. Стрик-ремонт: любая активность с XP чинит стрик
+    // 4. Ремонт цепочки: любая активность с XP восстанавливает цепочку
     if (isEarnedXP && finalDelta > 0) {
       recordActivityForRepair().catch(() => {});
     }
@@ -269,7 +274,7 @@ export const registerXP = async (
         newTotal,
         weekPoints,
         lang,
-        String(getLevelFromXP(newTotal)),
+        String((await AsyncStorage.getItem('user_avatar').catch(() => null)) || getLevelFromXP(newTotal)),
         streakVal,
         leagueId,
         frameId ?? undefined,

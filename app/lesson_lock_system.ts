@@ -221,13 +221,13 @@ export const recomputeEarnedUnlocks = async (): Promise<void> => {
  *   • Урок 30..32 — открыт если предыдущий ★2.5+ И урок 29 открыт.
  *
  * Что НЕ делает:
- *   • НЕ учитывает placement_level (это runtime-логика в (tabs)/index.tsx и
+ *   • НЕ учитывает placement_level (это runtime-логика в (tabs)/lessons.tsx и
  *     lesson_menu, не должна попадать в persisted unlocked_lessons).
  *   • НЕ учитывает tester_no_limits / DEV_MODE (это runtime override).
  *   • НЕ учитывает had_premium_ever (после lapse премиума урок 19 закрывается).
  *
  * Также проставляет минимальный best_score=2.5 предыдущему уроку, если он 0,
- * чтобы новая UI-формула в (tabs)/index.tsx не закрывала уже открытые уроки.
+ * чтобы новая UI-формула в (tabs)/lessons.tsx не закрывала уже открытые уроки.
  *
  * Идемпотентно: помечаем флагом `lesson_unlock_repair_v3` и больше не запускаем.
  */
@@ -258,12 +258,16 @@ export const repairLessonUnlocksAfterRestore = async (): Promise<void> => {
     const a2Passed = map['level_exam_A2_passed'] === '1';
     const b1Passed = map['level_exam_B1_passed'] === '1';
     const adminOv = map['admin_premium_override'] === 'true';
+    const adminRevoked = map['admin_premium_override'] === 'false';
     const planStr = String(map['premium_plan'] || '').trim();
+    const planLower = planStr.toLowerCase();
     const ex = parseInt(map['premium_expiry'] || '0', 10) || 0;
+    // Согласовано с premium_guard: plan admin_grant без override (старый облако-снимок).
+    const adminGrantPlan = planLower === 'admin_grant' && !adminRevoked;
     const adminGrantOk =
-      adminOv &&
+      (adminOv || adminGrantPlan) &&
       !!planStr &&
-      planStr.toLowerCase() !== 'null' &&
+      planLower !== 'null' &&
       (ex === 0 || ex > Date.now());
     const isPremiumNow = map['premium_active'] === 'true' || adminGrantOk;
 

@@ -1,3 +1,8 @@
+jest.mock('../app/config', () => ({
+  ...jest.requireActual<typeof import('../app/config')>('../app/config'),
+  ENABLE_SPANISH_LOCALE: true,
+}));
+
 import { legacyRuUk, bundleLang } from '../constants/i18n';
 
 describe('i18n helpers', () => {

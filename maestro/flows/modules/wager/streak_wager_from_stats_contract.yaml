@@ -1,0 +1,30 @@
+# Assumes the current screen is Streak Stats. Places tier 0 if no active wager exists.
+appId: app.phraseman
+---
+- scrollUntilVisible:
+    element:
+      id: "wager-open"
+    direction: DOWN
+    timeout: 30000
+    speed: 80
+    visibilityPercentage: 40
+- tapOn:
+    id: "wager-open"
+- extendedWaitUntil:
+    visible:
+      id: "wager-modal"
+    timeout: 15000
+- tapOn:
+    id: "wager-tier-0"
+- tapOn:
+    id: "wager-place"
+- extendedWaitUntil:
+    visible:
+      id: "wager-confirm-confirm"
+    timeout: 15000
+- tapOn:
+    id: "wager-confirm-confirm"
+- extendedWaitUntil:
+    visible:
+      id: "wager-active-card"
+    timeout: 30000

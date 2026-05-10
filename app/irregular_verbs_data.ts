@@ -8,13 +8,6 @@ export interface IrregularVerb {
 
 // Irregular Verbs by Lesson
 export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
-  1: [
-    { base: 'be', past: 'was/were', pp: 'been', ru: 'Быть', uk: 'Бути' },
-    { base: 'break', past: 'broke', pp: 'broken', ru: 'Ломать', uk: 'Ламати' },
-  ],
-  2: [
-    { base: 'build', past: 'built', pp: 'built', ru: 'Строить', uk: 'Будувати' },
-  ],
   3: [
     { base: 'drink', past: 'drank', pp: 'drunk', ru: 'Пить', uk: 'Пити' },
     { base: 'speak', past: 'spoke', pp: 'spoken', ru: 'Говорить', uk: 'Говорити' },
@@ -65,17 +58,53 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
   9: [
   ],
   10: [
-    { base: 'show', past: 'showed', pp: 'shown', ru: 'Показывать', uk: 'Показувати' },
-    { base: 'choose', past: 'chose', pp: 'chosen', ru: 'Выбирать', uk: 'Вибирати' },
-    { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити' },
+    { base: 'go', past: 'went', pp: 'gone', ru: 'Идти; ехать', uk: 'Іти; їхати' },
+    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
+    { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
+    { base: 'drive', past: 'drove', pp: 'driven', ru: 'Водить', uk: 'Водити' },
   ],
   11: [
   ],
   12: [
-    { base: 'make', past: 'made', pp: 'made', ru: 'Создавать / готовить', uk: 'Створювати / готувати' },
+    { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
+    { base: 'drink', past: 'drank', pp: 'drunk', ru: 'Пить', uk: 'Пити' },
+    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
+    { base: 'sell', past: 'sold', pp: 'sold', ru: 'Продавать', uk: 'Продавати' },
+    { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Надсилати' },
+    { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити' },
+    { base: 'see', past: 'saw', pp: 'seen', ru: 'Видеть', uk: 'Бачити' },
+    { base: 'build', past: 'built', pp: 'built', ru: 'Строить', uk: 'Будувати' },
+    { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
+    { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити' },
+    { base: 'go', past: 'went', pp: 'gone', ru: 'Идти; ехать', uk: 'Іти; їхати' },
+    { base: 'put', past: 'put', pp: 'put', ru: 'Класть', uk: 'Класти' },
     { base: 'give', past: 'gave', pp: 'given', ru: 'Давать', uk: 'Давати' },
-    { base: 'tell', past: 'told', pp: 'told', ru: 'Рассказывать', uk: 'Розповідати' },
+    { base: 'eat', past: 'ate', pp: 'eaten', ru: 'Есть', uk: 'Їсти' },
+    { base: 'take', past: 'took', pp: 'taken', ru: 'Брать', uk: 'Брати' },
+    { base: 'make', past: 'made', pp: 'made', ru: 'Делать; готовить', uk: 'Робити; готувати' },
+    { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
+    { base: 'get', past: 'got', pp: 'gotten', ru: 'Получать', uk: 'Отримувати' },
+    { base: 'lose', past: 'lost', pp: 'lost', ru: 'Терять', uk: 'Губити' },
+    { base: 'leave', past: 'left', pp: 'left', ru: 'Уходить; оставлять', uk: 'Іти; залишати' },
+    { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Відчувати' },
+    { base: 'meet', past: 'met', pp: 'met', ru: 'Встречать', uk: 'Зустрічати' },
+    { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
+    { base: 'speak', past: 'spoke', pp: 'spoken', ru: 'Говорить', uk: 'Говорити' },
+    { base: 'know', past: 'knew', pp: 'known', ru: 'Знать', uk: 'Знати' },
+    { base: 'think', past: 'thought', pp: 'thought', ru: 'Думать', uk: 'Думати' },
     { base: 'say', past: 'said', pp: 'said', ru: 'Сказать', uk: 'Сказати' },
+    { base: 'pay', past: 'paid', pp: 'paid', ru: 'Платить', uk: 'Платити' },
+    { base: 'run', past: 'ran', pp: 'run', ru: 'Бегать', uk: 'Бігати' },
+    { base: 'sleep', past: 'slept', pp: 'slept', ru: 'Спать', uk: 'Спати' },
+    { base: 'sit', past: 'sat', pp: 'sat', ru: 'Сидеть', uk: 'Сидіти' },
+    { base: 'stand', past: 'stood', pp: 'stood', ru: 'Стоять', uk: 'Стояти' },
+    { base: 'wear', past: 'wore', pp: 'worn', ru: 'Носить', uk: 'Носити' },
+    { base: 'drive', past: 'drove', pp: 'driven', ru: 'Водить', uk: 'Водити' },
+    { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
+    { base: 'have', past: 'had', pp: 'had', ru: 'Иметь; было', uk: 'Мати; було' },
+    { base: 'tell', past: 'told', pp: 'told', ru: 'Рассказывать; говорить', uk: 'Розповідати; говорити' },
+    { base: 'forget', past: 'forgot', pp: 'forgotten', ru: 'Забывать', uk: 'Забувати' },
+    { base: 'choose', past: 'chose', pp: 'chosen', ru: 'Выбирать', uk: 'Вибирати' },
   ],
   13: [
     { base: 'cut', past: 'cut', pp: 'cut', ru: 'Резать', uk: 'Різати' },
@@ -137,7 +166,7 @@ export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
   23: [
   ],
   24: [
-    { base: 'lend', past: 'lent', pp: 'lent', ru: 'Одалживать', uk: 'Позичати' },
+    { base: 'lend', past: 'lent', pp: 'lent', ru: 'Одолживать', uk: 'Позичати' },
     { base: 'win', past: 'won', pp: 'won', ru: 'Выигрывать', uk: 'Вигравати' },
   ],
   25: [

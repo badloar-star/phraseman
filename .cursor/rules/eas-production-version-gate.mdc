@@ -1,0 +1,27 @@
+---
+description: EAS production — обязательный bump версии и номеров сборки; иначе сборка не проходит (eas-build-post-install)
+alwaysApply: true
+---
+
+# EAS Build `production`: версия и номера сборки
+
+## Обязательное правило
+
+Перед **`eas build` с профилем `production`** (и перед любыми изменениями, которые ведут к такому билду) в корневом **`app.json`** → `expo` нужно обновить **все три** поля относительно **дефолтной ветки** в git (по очереди ищется `origin/main`, `main`, `origin/master`, `master` — см. скрипт):
+
+1. **`version`** — пользовательская версия (не должна совпадать с baseline на main).
+2. **`android.versionCode`** — целое, **строго больше**, чем в baseline.
+3. **`ios.buildNumber`** — строка с числом, числовое значение **строго больше**, чем в baseline.
+
+Источник baseline и проверка зашиты в `scripts/eas_production_version_gate.mjs`: на EAS при `EAS_BUILD_PROFILE=production` скрипт запускается из npm lifecycle **`eas-build-post-install`** и **прерывает сборку** с кодом 1, если условия не выполнены.
+
+## Где править
+
+- `app.json` → `expo.version`, `expo.android.versionCode`, `expo.ios.buildNumber`  
+- `package.json` поле **`version`** держите в синке с `expo.version` (как сейчас в проекте).
+
+## Заметки
+
+- В **`eas.json`** для production на iOS **нет** `autoIncrement` — номер сборки iOS берётся из **`app.json`** → `expo.ios.buildNumber` (держите его в синке с Android `versionCode`, если так заведено в проекте).
+- Локально без `EAS_BUILD_PROFILE=production` скрипт **ничего не делает** — проверить вручную:  
+  `cross-env EAS_BUILD_PROFILE=production node scripts/eas_production_version_gate.mjs`

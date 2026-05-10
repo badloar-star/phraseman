@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import {
@@ -955,6 +956,19 @@ export default function AchievementsScreen() {
           maxToRenderPerBatch={10}
           windowSize={8}
           stickySectionHeadersEnabled={false}
+          ListFooterComponent={(
+            <View style={{ alignItems: 'center', paddingVertical: 20 }}>
+              <ReportErrorButton
+                screen="achievements"
+                dataId="achievements_grid"
+                dataText={triLang(lang, {
+                  ru: 'Достижения',
+                  uk: 'Досягнення',
+                  es: 'Logros',
+                })}
+              />
+            </View>
+          )}
         />
 
       </ContentWrap>

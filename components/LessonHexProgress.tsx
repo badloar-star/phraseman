@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import FlatTopHexFill from './FlatTopHexFill';
 
 // ── Flat-top hex perimeter: starts at LEFT vertex, goes clockwise (down first) ─
 // Flat-top vertices: 0°=RIGHT, 60°=LR, 120°=LL, 180°=LEFT, 240°=UL, 300°=UR
@@ -55,34 +56,20 @@ export default function LessonHexProgress({
   // flat-top: width = HEX_W, height = HEX_W * 0.866, tips = HEX_W/4
   const HEX_W  = OUTER * 0.72;
   const innerH = HEX_W * 0.866;
-  const tipW   = HEX_W / 4;
-  const midW   = HEX_W / 2;  // tip + mid + tip = HEX_W/4 + HEX_W/2 + HEX_W/4 = HEX_W
 
   return (
     <View style={{ width: OUTER, height: OUTER, alignItems: 'center', justifyContent: 'center' }}>
 
-      {/* Inner flat-top hexagon background */}
-      <View style={{
-        position: 'absolute',
-        left: cx - HEX_W / 2,
-        top:  cy - innerH / 2,
-        flexDirection: 'row',
-        width: HEX_W,
-        height: innerH,
-      }}>
-        {/* Left tip */}
-        <View style={{ width: 0, height: 0,
-          borderTopWidth: innerH / 2, borderBottomWidth: innerH / 2, borderRightWidth: tipW,
-          borderTopColor: 'transparent', borderBottomColor: 'transparent', borderRightColor: t.bgCard,
-        }} />
-        {/* Center rectangle */}
-        <View style={{ width: midW, height: innerH, backgroundColor: t.bgCard }} />
-        {/* Right tip */}
-        <View style={{ width: 0, height: 0,
-          borderTopWidth: innerH / 2, borderBottomWidth: innerH / 2, borderLeftWidth: tipW,
-          borderTopColor: 'transparent', borderBottomColor: 'transparent', borderLeftColor: t.bgCard,
-        }} />
-      </View>
+      <FlatTopHexFill
+        width={HEX_W}
+        height={innerH}
+        fill={t.bgCard}
+        style={{
+          position: 'absolute',
+          left: cx - HEX_W / 2,
+          top:  cy - innerH / 2,
+        }}
+      />
 
       {/* Hexagonal ring of 50 segments */}
       {Array.from({ length: total }, (_, i) => {

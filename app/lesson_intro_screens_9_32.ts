@@ -1,8 +1,8 @@
 /**
  * Intro-screens for lessons 9–32.
  *
- * Уроки 9–16: español L2 в `lesson_intro_screens_es_l2.ts` (PROMPT-005).
- * Уроки 17–32: реэкспорт из того же модуля через `lesson_intro_screens_17_32.ts`.
+ * Уроки 9–16: английский как цель — `lesson_intro_screens_en_9_16.ts`.
+ * Уроки 17–32: английский курс — `lesson_intro_screens_en_17_32.ts`.
  *
  * Подключается через `getLessonIntroScreens` в lesson_data_all.ts.
  *
@@ -21,7 +21,7 @@ import {
   LESSON_14_INTRO_SCREENS,
   LESSON_15_INTRO_SCREENS,
   LESSON_16_INTRO_SCREENS,
-} from './lesson_intro_screens_es_l2';
+} from './lesson_intro_screens_en_9_16';
 import {
   LESSON_17_INTRO_EXTRA,
   LESSON_18_INTRO_EXTRA,

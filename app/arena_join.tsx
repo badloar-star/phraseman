@@ -3,13 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'rea
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
-import { ensureArenaAuthUid } from './user_id_policy';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { triLang } from '../constants/i18n';
 import { useEnergy } from '../components/EnergyContext';
 import { useLang } from '../components/LangContext';
-import { logEvent } from './firebase';
+import { joinArenaFriendRoomAsGuest } from './arena_friend_room_guest';
 
 type RoomStatus = 'loading' | 'waiting' | 'not_found' | 'expired' | 'joining';
 
@@ -45,72 +43,27 @@ export default function DuelJoinScreen() {
 
   const handleJoin = async () => {
     setStatus('joining');
-    try {
-      const uid = await ensureArenaAuthUid();
-      const name = (await AsyncStorage.getItem('user_name')) ?? defaultPlayerName();
-      // eslint-disable-next-line @typescript-eslint/no-require-imports
-      const db = require('@react-native-firebase/firestore').default();
-
-      const roomDoc = await db.collection('arena_rooms').doc(roomId).get();
-      if (!roomDoc.exists) { setStatus('not_found'); return; }
-      // Клиент больше не создает arena_sessions/session_players:
-      // серверный trigger onArenaRoomMatched делает это авторитетно.
-      await db.collection('arena_rooms').doc(roomId).update({
-        guestId: uid,
-        guestName: name,
-        status: 'matched',
+    const dn = defaultPlayerName();
+    const res = await joinArenaFriendRoomAsGuest(String(roomId), {
+      defaultPlayerName: dn,
+      spendOne,
+      isUnlimited,
+    });
+    if (res.ok) {
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: 'Матч готов. Удачи!',
+        messageUk: 'Матч готовий. Успіхів!',
+        messageEs: '¡La partida está lista! ¡Mucha suerte!',
       });
-
-      // Ждем sessionId через realtime-подписку (без polling-цикла)
-      const foundSessionId = await new Promise<string | null>((resolve) => {
-        let resolved = false;
-        const unsub = db.collection('arena_rooms').doc(roomId).onSnapshot((snap: any) => {
-          if (resolved || !snap?.exists) return;
-          const data = snap.data();
-          if (data?.sessionId) {
-            resolved = true;
-            unsub();
-            resolve(data.sessionId);
-          }
-        }, () => {
-          if (!resolved) {
-            resolved = true;
-            unsub();
-            resolve(null);
-          }
-        });
-        setTimeout(() => {
-          if (!resolved) {
-            resolved = true;
-            unsub();
-            resolve(null);
-          }
-        }, 12_000);
-      });
-      if (foundSessionId) {
-        if (!isUnlimited) {
-          const ok = await spendOne();
-          if (!ok) {
-            emitAppEvent('action_toast', {
-              type: 'error',
-              messageRu: 'Недостаточно энергии для входа в матч.',
-              messageUk: 'Недостатньо енергії для входу в матч.',
-              messageEs: 'No tienes suficiente energía para unirte a la partida.',
-            });
-            setStatus('waiting');
-            return;
-          }
-          logEvent('arena_match_charged', { mode: 'friend', role: 'guest' });
-        }
-        emitAppEvent('action_toast', {
-          type: 'success',
-          messageRu: 'Матч готов. Удачи!',
-          messageUk: 'Матч готовий. Успіхів!',
-          messageEs: '¡La partida está lista! ¡Mucha suerte!',
-        });
-        router.replace({ pathname: '/arena_game' as any, params: { sessionId: foundSessionId, userId: uid } });
-        return;
-      }
+      router.replace({ pathname: '/arena_game' as any, params: { sessionId: res.sessionId, userId: res.uid } });
+      return;
+    }
+    if (res.code === 'no_energy') {
+      setStatus('waiting');
+      return;
+    }
+    if (res.code === 'session_timeout') {
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Соперник не подтвердил вход вовремя.',
@@ -118,15 +71,15 @@ export default function DuelJoinScreen() {
         messageEs: 'Tu rival no confirmó a tiempo.',
       });
       setStatus('not_found');
-    } catch {
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: 'Не удалось присоединиться к комнате.',
-        messageUk: 'Не вдалося приєднатися до кімнати.',
-        messageEs: 'No ha sido posible unirte a la sala. Inténtalo de nuevo.',
-      });
-      setStatus('not_found');
+      return;
     }
+    emitAppEvent('action_toast', {
+      type: 'error',
+      messageRu: 'Не удалось присоединиться к комнате.',
+      messageUk: 'Не вдалося приєднатися до кімнати.',
+      messageEs: 'No ha sido posible unirte a la sala. Inténtalo de nuevo.',
+    });
+    setStatus('not_found');
   };
 
   return (

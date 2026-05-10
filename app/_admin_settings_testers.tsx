@@ -4,9 +4,9 @@ import { withStorageLock } from './storage_mutex';
 import { useRouter } from 'expo-router';
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  Alert,
   Animated,
   Dimensions,
+  Platform,
   ScrollView,
   Switch,
   Text, TouchableOpacity,
@@ -28,6 +28,7 @@ import RankChangeTestModal from '../components/RankChangeTestModal';
 import ClubResultModal from '../components/ClubResultModal';
 import { registerXP } from './xp_manager';
 import { useAchievement } from '../components/AchievementContext';
+import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
 import { invalidatePremiumCache } from './premium_guard';
 import { getTrialStatusLineForTesters, resetTrialCooldownForTesting } from './premium_trial_eligibility';
 import { recomputeEarnedUnlocks } from './lesson_lock_system';
@@ -57,7 +58,10 @@ import UpdateModal from '../components/UpdateModal';
 import ReleaseWaveBonusModal from '../components/ReleaseWaveBonusModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import CertificatePreviewAdminModal from '../components/CertificatePreviewAdminModal';
+import MedalToast from '../components/MedalToast';
+import type { MedalTier } from './medal_utils';
 import { DEV_MODE, STORE_URL } from './config';
+import { setPlatformUiPreviewMode, usePlatformUiPreviewMode } from './platform_ui_preview';
 import { getAppReleaseBuildId } from './app_build_id';
 import {
   getActiveReleaseWaveVersion,
@@ -70,6 +74,31 @@ import { QUIZ_E2E_OPEN_RESULTS_KEY } from './quizzes/constants';
 import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { seedAdminTestReviewSession } from './active_recall';
 import { requestNotificationPermissionWithFallback } from './notifications';
+import PremiumCelebrationModal from '../components/PremiumCelebrationModal';
+import MasteryReplayModal from '../components/MasteryReplayModal';
+import AfterLesson5PushModal from '../components/AfterLesson5PushModal';
+import StreakReviveModal from '../components/StreakReviveModal';
+import { markCelebrationPending } from './premium_celebration_state';
+import { markStreakLost, getReviveOffer, type StreakReviveOffer } from './streak_revive';
+import {
+  ENERGY_ZERO_COUNT_KEY, STREAK_LOST_COUNT_KEY, HARD_PAYWALL_BLOCKS_KEY,
+  collectPaywallStats, pickPaywallTags,
+  incrementEnergyZeroCount, incrementStreakLostCount, incrementHardPaywallBlock,
+} from './paywall_personalization';
+import {
+  DAILY_FREE_SESSION_KEY,
+} from './trainer_session';
+import { getTopMistakePhrases, clearMistakeLog, logMistake } from './mistake_log';
+import type { TrainerMode } from './active_recall';
+import { checkCoachToastNeeded, type CoachToastDecision } from './coach_toast_trigger';
+import CoachToast from '../components/CoachToast';
+import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderboard_stats';
+
+const AppInfoDialog = {
+  alert(title: string, message: string) {
+    void enqueueThemedBlockingInfoAlert(title, message, 'OK');
+  },
+};
 
 const CYCLE_END_SHOWN_KEY = 'lesson_cycle_end_intro_shown';
 
@@ -143,7 +172,7 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     params: { context: 'no_energy' },
   },
   {
-    label: '🔥 Стрик под угрозой (7 дн.)',
+    label: '🔥 Цепочка под угрозой (7 дн.)',
     sub: 'Параметр streak, подсветка ряда',
     params: { context: 'streak', streak: '7' },
   },
@@ -183,11 +212,6 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     params: { context: 'theme' },
   },
   {
-    label: '🏆 Зал славы',
-    sub: 'Текст для таба лидеров (если ведёшь с сюда)',
-    params: { context: 'hall_of_fame' },
-  },
-  {
     label: '👑 Клубы / лига',
     sub: 'Текст для бустов и клуба',
     params: { context: 'club' },
@@ -196,6 +220,36 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     label: '💎 Базовый (generic)',
     sub: 'Старт без context — дефолт',
     params: { context: 'generic' },
+  },
+  {
+    label: '👑 After-lesson-5 push',
+    sub: 'Пейволл показывается из soft-push после 5 урока',
+    params: { context: 'after_lesson5', source: 'admin_preview' },
+  },
+  {
+    label: '🔁 Mastery — повтор урока',
+    sub: 'Премиум за безлимит повторов',
+    params: { context: 'mastery', lesson: '7' },
+  },
+  {
+    label: '📊 Stats — аналитика',
+    sub: 'Открывается тапом по blur на streak_stats',
+    params: { context: 'stats' },
+  },
+  {
+    label: '🌡️ Heatmap года',
+    sub: 'Премиум-аналитика 365 дней',
+    params: { context: 'heatmap' },
+  },
+  {
+    label: '🎯 Mistake patterns',
+    sub: 'Где юзер чаще ошибается',
+    params: { context: 'patterns' },
+  },
+  {
+    label: '🥇 Percentiles',
+    sub: 'Сравнение с другими (only-positive)',
+    params: { context: 'percentiles' },
   },
 ];
 
@@ -274,8 +328,10 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight';
+  const platformUiPreview = usePlatformUiPreviewMode();
 
   /** У продакшн-збірці пункт у меню прихований; без цього екран лишався доступним через deep link. */
   useEffect(() => {
@@ -327,8 +383,14 @@ export default function SettingsTestersFunctions() {
     releaseWaveBonus: false,
   });
 
+  // Preview-флаги для новых soft-monetization модалок (Phase 02 plan 01).
+  const [softMonetizationPreview, setSoftMonetizationPreview] = useState<
+    null | 'celebration' | 'mastery' | 'after_lesson5' | 'streak_revive'
+  >(null);
+  const [previewReviveOffer, setPreviewReviveOffer] = useState<StreakReviveOffer | null>(null);
+
   const [rankModal, setRankModal] = useState<{ promoted: boolean; tier: string; level: string } | null>(null);
-  const [rankTest, setRankTest] = useState<{ mode: 'club' | 'hof'; delta: number } | null>(null);
+  const [rankTest, setRankTest] = useState<{ mode: 'club'; delta: number } | null>(null);
   const [rankTestTier, setRankTestTier] = useState('bronze');
   const [rankTestLevel, setRankTestLevel] = useState('I');
   const TIERS_LIST = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'];
@@ -337,11 +399,66 @@ export default function SettingsTestersFunctions() {
 
   const [openSection, setOpenSection] = useState<string | null>('premium_modals');
   const [trialCooldownStatusLine, setTrialCooldownStatusLine] = useState('…');
+
+  // ── Превью премиальных тостов медалей (Bronze / Silver / Gold × up/down)
+  const [medalPreview, setMedalPreview] = useState<{ tier: MedalTier; promoted: boolean } | null>(null);
+  const medalPreviewAnim = useRef(new Animated.Value(0)).current;
+  const showMedalPreview = (tier: MedalTier, promoted: boolean) => {
+    doHaptic();
+    setMedalPreview({ tier, promoted });
+    medalPreviewAnim.setValue(0);
+    Animated.sequence([
+      Animated.spring(medalPreviewAnim, { toValue: 1, useNativeDriver: true, friction: 6 }),
+      Animated.delay(2200),
+      Animated.timing(medalPreviewAnim, { toValue: 0, duration: 350, useNativeDriver: true }),
+    ]).start(() => setMedalPreview(null));
+  };
   const [modalUnlockAll, setModalUnlockAll] = useState(false);
   const [modalPremiumStrip, setModalPremiumStrip] = useState(false);
   const [modalResetAll, setModalResetAll] = useState(false);
   const [modalResetStats, setModalResetStats] = useState(false);
   const [authPromptDevOpen, setAuthPromptDevOpen] = useState(false);
+
+  // ── Персонализация пейволла (Plan 02) ──────────────────────────────────────
+  const [paywallCounters, setPaywallCounters] = useState<{
+    energy: number; streak: number; hard: number;
+  } | null>(null);
+  const [paywallTagsPreview, setPaywallTagsPreview] = useState<string[] | null>(null);
+
+  const loadPaywallCounters = async () => {
+    const [e, s, h] = await AsyncStorage.multiGet([
+      ENERGY_ZERO_COUNT_KEY, STREAK_LOST_COUNT_KEY, HARD_PAYWALL_BLOCKS_KEY,
+    ]);
+    setPaywallCounters({
+      energy: parseInt(e[1] ?? '0', 10) || 0,
+      streak: parseInt(s[1] ?? '0', 10) || 0,
+      hard: parseInt(h[1] ?? '0', 10) || 0,
+    });
+    const stats = await collectPaywallStats();
+    const tags = pickPaywallTags(stats);
+    setPaywallTagsPreview(tags.map(tag => `${tag.emoji} ${tag.ru}`));
+  };
+
+  // ── Problem Coach Toast ──────────────────────────────────────────────────
+  const [coachToastPreview, setCoachToastPreview] = useState<CoachToastDecision | null>(null);
+
+  // ── Тренер (Plan 03) ───────────────────────────────────────────────────────
+  const [mistakeLogPreview, setMistakeLogPreview] = useState<
+    { phrase: string; count: number }[] | null
+  >(null);
+  const [freeSessionsLeft, setFreeSessionsLeft] = useState<number | null>(null);
+
+  const loadTrainerDebugState = async () => {
+    const raw = await AsyncStorage.getItem(DAILY_FREE_SESSION_KEY);
+    if (!raw) { setFreeSessionsLeft(1); }
+    else {
+      const d = JSON.parse(raw) as { date: string; count: number };
+      const today = new Date().toISOString().split('T')[0];
+      setFreeSessionsLeft(d.date === today ? Math.max(0, 1 - d.count) : 1);
+    }
+    const top = await getTopMistakePhrases(10);
+    setMistakeLogPreview(top);
+  };
   const { showMatchFoundForTesterPreview } = useMatchmakingContext();
 
   const shardRewardPreview: ShardReward[] = [{
@@ -603,7 +720,7 @@ export default function SettingsTestersFunctions() {
   // ── Тест rank-change анимации в изолированном модальном окне ─────────────
   // Никаких записей в AsyncStorage, ничего на реальные клубы и зал славы не влияет.
   // Просто открывает Modal с фейковым списком и проигрывает анимацию + баннер.
-  const openRankTest = (mode: 'club' | 'hof', delta: number) => {
+  const openRankTest = (mode: 'club', delta: number) => {
     doHaptic();
     setRankTest({ mode, delta });
   };
@@ -962,6 +1079,55 @@ export default function SettingsTestersFunctions() {
             </TouchableOpacity>
           </View>
 
+          {/* ── 0. Превью платформы (QA) ── */}
+          <AccordionSection
+            id="platform_ui_preview"
+            icon="phone-portrait-outline"
+            title="Превью: Android / iOS"
+            badge={3}
+            open={openSection === 'platform_ui_preview'}
+            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
+          >
+            <View style={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8 }}>
+              <Text style={{ color: '#FF8080', fontSize: f.caption, lineHeight: f.caption * 1.45 }}>
+                Сейчас:{' '}
+                {platformUiPreview === 'real'
+                  ? `как на устройстве (${Platform.OS})`
+                  : platformUiPreview === 'ios'
+                    ? 'принудительно как iOS'
+                    : 'принудительно как Android'}
+                . Меняет ветки интерфейса и тексты (не заменяет нативные API).
+              </Text>
+            </View>
+            <ButtonRow
+              icon="logo-android"
+              label="Показывать как Android"
+              sub="Ветки UI и формулировки под Google Play"
+              onPress={() => void setPlatformUiPreviewMode('android')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="logo-apple"
+              label="Показывать как iOS"
+              sub="Ветки UI и формулировки под App Store"
+              onPress={() => void setPlatformUiPreviewMode('ios')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="refresh-circle-outline"
+              label="Сброс: как на устройстве"
+              sub="Убрать подмену ОС"
+              onPress={() => void setPlatformUiPreviewMode('real')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+          </AccordionSection>
+
           {/* ── 1. СОСТОЯНИЕ АККАУНТА ── */}
           <AccordionSection id="account" icon="settings-outline" title="Состояние аккаунта" badge={3}
             open={openSection === 'account'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
@@ -1011,6 +1177,27 @@ export default function SettingsTestersFunctions() {
                 setModalPremiumStrip(true);
               }}
             />
+            <ButtonRow
+              icon="refresh-circle-outline"
+              label="Mastery: уроки «завершены» (Перепройти)"
+              sub="Ставит lesson_finished_once для 1–32. Перепройти видно только без премиума — выключи «Без ограничений» или включи «Снять премиум»"
+              t={t} f={f} doHaptic={doHaptic}
+              onPress={async () => {
+                doHaptic();
+                const pairs: [string, string][] = Array.from({ length: 32 }, (_, i) => [
+                  `lesson_finished_once_v1_${i + 1}`,
+                  '1',
+                ]);
+                await AsyncStorage.multiSet(pairs);
+                AppInfoDialog.alert(
+                  'OK',
+                  'Флаги lesson_finished_once выставлены для уроков 1–32.\n\n'
+                    + 'Кнопка «Перепройти» не показывается, если приложение считает тебя премиумом '
+                    + '(режим «Без ограничений», dev-сборка без «Снять премиум»). '
+                    + 'Для проверки: Снять премиум или выключить Без ограничений, затем открыть меню урока.',
+                );
+              }}
+            />
           </AccordionSection>
 
           {/* ── 1.5 AUTH (Google / Apple) ── */}
@@ -1031,7 +1218,7 @@ export default function SettingsTestersFunctions() {
               onPress={async () => {
                 doHaptic();
                 await AsyncStorage.removeItem(AUTH_PROMPT_SHOWN_KEY);
-                Alert.alert('OK', 'auth_prompt_shown_v1 удалён');
+                AppInfoDialog.alert('OK', 'auth_prompt_shown_v1 удалён');
               }}
             />
             <ButtonRow
@@ -1043,27 +1230,30 @@ export default function SettingsTestersFunctions() {
                 doHaptic();
                 const avail = await isGoogleSignInAvailable();
                 if (!avail) {
-                  Alert.alert('Google недоступен', 'Проверь EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID и Play Services');
+                  AppInfoDialog.alert('Google недоступен', 'Проверь EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID и Play Services');
                   return;
                 }
                 const r = await signInWithProvider('google');
-                Alert.alert('Google sign-in result', JSON.stringify(r, null, 2));
+                AppInfoDialog.alert('Google sign-in result', JSON.stringify(r, null, 2));
               }}
             />
             <ButtonRow
               icon="logo-apple"
               label="Test Apple sign-in"
-              sub="Только iOS, физическое устройство"
+              sub="iOS: нативно · Android: браузер + EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID"
               t={t} f={f} doHaptic={doHaptic}
               onPress={async () => {
                 doHaptic();
                 const avail = await isAppleSignInAvailable();
                 if (!avail) {
-                  Alert.alert('Apple недоступен', 'Apple sign-in только на iOS-устройстве с iCloud');
+                  AppInfoDialog.alert(
+                    'Apple недоступен',
+                    'Expo Go / без облака, или на iOS Sign in with Apple выключен для этого устройства.',
+                  );
                   return;
                 }
                 const r = await signInWithProvider('apple');
-                Alert.alert('Apple sign-in result', JSON.stringify(r, null, 2));
+                AppInfoDialog.alert('Apple sign-in result', JSON.stringify(r, null, 2));
               }}
             />
             <ButtonRow
@@ -1074,7 +1264,7 @@ export default function SettingsTestersFunctions() {
               onPress={async () => {
                 doHaptic();
                 const link = await getLinkedAuthInfo();
-                Alert.alert('linkedAuth', link ? JSON.stringify(link, null, 2) : 'null (не залогинен)');
+                AppInfoDialog.alert('linkedAuth', link ? JSON.stringify(link, null, 2) : 'null (не залогинен)');
               }}
             />
             <ButtonRow
@@ -1086,7 +1276,7 @@ export default function SettingsTestersFunctions() {
               onPress={async () => {
                 doHaptic();
                 await signOutCurrentProvider();
-                Alert.alert('OK', 'Sign out выполнен');
+                AppInfoDialog.alert('OK', 'Sign out выполнен');
               }}
             />
           </AccordionSection>
@@ -1270,6 +1460,560 @@ export default function SettingsTestersFunctions() {
             ))}
           </AccordionSection>
 
+          {/* ── 4b. SOFT MONETIZATION (Phase 02) ── */}
+          <AccordionSection
+            id="soft_monetization"
+            icon="sparkles-outline"
+            title="Soft Monetization — новые модалки"
+            badge={5}
+            open={openSection === 'soft_monetization'}
+            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
+          >
+            <ButtonRow
+              icon="trophy-outline"
+              label="👑 Premium celebration (5 сек анимация)"
+              sub="Particle-spiral, корона, 6 замочков unlock, golden CTA. Без реальной IAP."
+              onPress={() => setSoftMonetizationPreview('celebration')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="refresh-circle-outline"
+              label="🔁 Mastery replay confirm"
+              sub="Перепройти за осколки / Premium / Отмена (цена: база +5 за каждый повтор)"
+              onPress={() => setSoftMonetizationPreview('mastery')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="rocket-outline"
+              label="🚀 After-lesson-5 push"
+              sub="Soft-push после первого финиша lesson 5 (стат + 7-day trial CTA)"
+              onPress={() => setSoftMonetizationPreview('after_lesson5')}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="flame-outline"
+              label="🔥 Streak revive (24ч окно)"
+              sub="Mock-оффер на цепочку 47 дней — посмотреть UI и формулу 35💎"
+              onPress={async () => {
+                doHaptic();
+                // Симулируем потерю цепочки в 47 дней — markStreakLost создаёт оффер
+                await markStreakLost(47);
+                const offer = await getReviveOffer();
+                setPreviewReviveOffer(offer);
+                setSoftMonetizationPreview('streak_revive');
+              }}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="bar-chart-outline"
+              label="📊 Stats blur (для !premium)"
+              sub="Открыть streak_stats — посмотреть как выглядит для free"
+              onPress={() => router.push('/streak_stats' as any)}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="key-outline"
+              label="🔓 ФОРС: pending celebration на следующий mount home"
+              sub="Имитация admin-grant — выйди из настроек и зайди на home"
+              onPress={async () => {
+                doHaptic();
+                await markCelebrationPending();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'pending выставлен — открой главный экран',
+                  uk: 'pending виставлено — відкрий головний екран',
+                  es: 'pending activado — abre la pantalla principal',
+                }));
+              }}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+          </AccordionSection>
+
+          {/* ── 4c. ПЕРСОНАЛИЗАЦИЯ ПЕЙВОЛЛА (Plan 02) ── */}
+          <AccordionSection
+            id="paywall_personalization"
+            icon="person-outline"
+            title="Персонализация пейволла (Plan 02)"
+            badge={3}
+            open={openSection === 'paywall_personalization'}
+            onToggle={(id) => {
+              setOpenSection(openSection === id ? null : id);
+              if (openSection !== id) void loadPaywallCounters();
+            }}
+          >
+            <ButtonRow
+              icon="refresh-circle-outline"
+              label="🔄 Загрузить/обновить счётчики"
+              sub="Читает из AsyncStorage: energy_zero, streak_lost, hard_blocks"
+              onPress={() => { doHaptic(); void loadPaywallCounters(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            {paywallCounters !== null && (
+              <View style={{ paddingHorizontal: 16, paddingVertical: 10, gap: 4 }}>
+                <Text style={{ color: '#FFE07A', fontSize: 12, fontWeight: '700', marginBottom: 4 }}>
+                  Текущие значения:
+                </Text>
+                <Text style={{ color: '#FFB0B0', fontSize: 12 }}>
+                  ⚡ Нет энергии: <Text style={{ color: '#fff', fontWeight: '700' }}>{paywallCounters.energy}</Text>
+                  {'  '}🔥 Цепочка потеряна: <Text style={{ color: '#fff', fontWeight: '700' }}>{paywallCounters.streak}</Text>
+                  {'  '}💜 Hard-блоки: <Text style={{ color: '#fff', fontWeight: '700' }}>{paywallCounters.hard}</Text>
+                </Text>
+                {paywallTagsPreview && paywallTagsPreview.length > 0 && (
+                  <Text style={{ color: '#FF8080', fontSize: 11, marginTop: 4 }}>
+                    Теги: {paywallTagsPreview.join(' · ')}
+                  </Text>
+                )}
+              </View>
+            )}
+            <ButtonRow
+              icon="flash-outline"
+              label="⚡ +1 energy_zero"
+              sub="incrementEnergyZeroCount → обнови счётчики"
+              onPress={() => { doHaptic(); incrementEnergyZeroCount(); setTimeout(() => void loadPaywallCounters(), 50); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="flame-outline"
+              label="🔥 +1 streak_lost"
+              sub="incrementStreakLostCount → обнови счётчики"
+              onPress={() => { doHaptic(); incrementStreakLostCount(); setTimeout(() => void loadPaywallCounters(), 50); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="lock-closed-outline"
+              label="💜 +1 hard_paywall_block"
+              sub="incrementHardPaywallBlock → обнови счётчики"
+              onPress={() => { doHaptic(); incrementHardPaywallBlock(); setTimeout(() => void loadPaywallCounters(), 50); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trash-outline"
+              label="🗑 Сбросить все счётчики"
+              sub="multiRemove energy_zero + streak_lost + hard_blocks"
+              danger
+              onPress={async () => {
+                doHaptic();
+                await AsyncStorage.multiRemove([
+                  ENERGY_ZERO_COUNT_KEY, STREAK_LOST_COUNT_KEY, HARD_PAYWALL_BLOCKS_KEY,
+                ]);
+                await loadPaywallCounters();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'Счётчики пейволла сброшены',
+                  uk: 'Лічильники пейволу скинуті',
+                  es: 'Contadores del paywall restablecidos',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="card-outline"
+              label="🎯 Открыть пейволл с персонализацией"
+              sub="premium_modal с реальными тегами из данных"
+              onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', _force_trial_ui: '1' } } as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+          </AccordionSection>
+
+          {/* ── 4d. ТРЕНЕР (Plan 03) ── */}
+          <AccordionSection
+            id="trainer_debug"
+            icon="barbell-outline"
+            title="Тренер — режимы и лог ошибок (Plan 03)"
+            badge={6}
+            open={openSection === 'trainer_debug'}
+            onToggle={(id) => {
+              setOpenSection(openSection === id ? null : id);
+              if (openSection !== id) void loadTrainerDebugState();
+            }}
+          >
+            <ButtonRow
+              icon="refresh-circle-outline"
+              label="🔄 Обновить состояние тренера"
+              sub="Сессии сегодня + топ ошибок"
+              onPress={() => { doHaptic(); void loadTrainerDebugState(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            {freeSessionsLeft !== null && (
+              <View style={{ paddingHorizontal: 16, paddingVertical: 8 }}>
+                <Text style={{ color: '#FFB0B0', fontSize: 12 }}>
+                  Бесплатных сессий сегодня:{' '}
+                  <Text style={{ color: freeSessionsLeft > 0 ? '#22C55E' : '#FF4444', fontWeight: '700' }}>
+                    {freeSessionsLeft}
+                  </Text>
+                </Text>
+              </View>
+            )}
+            {mistakeLogPreview !== null && (
+              <View style={{ paddingHorizontal: 16, paddingBottom: 8 }}>
+                <Text style={{ color: '#FFE07A', fontSize: 11, fontWeight: '700', marginBottom: 4 }}>
+                  Топ ошибок ({mistakeLogPreview.length}):
+                </Text>
+                {mistakeLogPreview.length === 0 ? (
+                  <Text style={{ color: '#FF8080', fontSize: 11 }}>Лог пуст</Text>
+                ) : (
+                  mistakeLogPreview.slice(0, 5).map(m => (
+                    <Text key={m.phrase} style={{ color: '#FFB0B0', fontSize: 11 }}>
+                      {m.phrase} — {m.count}×
+                    </Text>
+                  ))
+                )}
+              </View>
+            )}
+            <ButtonRow
+              icon="navigate-outline"
+              label="🏋 Открыть Тренер (hub)"
+              sub="Переход на /trainer"
+              onPress={() => router.push('/trainer' as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="add-circle-outline"
+              label="🧪 Засеять 15 ошибок (тест weak/hard)"
+              sub="pick up ×5, let down ×3, burn out ×2, set off ×5 — в лог"
+              onPress={async () => {
+                doHaptic();
+                const seed: Array<[string, number, string]> = [
+                  ['pick up', 5, 'quiz'], ['pick up', 5, 'lesson'], ['pick up', 5, 'quiz'],
+                  ['pick up', 5, 'lesson'], ['pick up', 5, 'quiz'],
+                  ['let down', 3, 'lesson'], ['let down', 3, 'quiz'], ['let down', 3, 'lesson'],
+                  ['burn out', 7, 'quiz'], ['burn out', 7, 'lesson'],
+                  ['set off', 2, 'lesson'], ['set off', 2, 'quiz'], ['set off', 2, 'lesson'],
+                  ['set off', 2, 'quiz'], ['set off', 2, 'lesson'],
+                ];
+                for (const [phrase, lessonId, mode] of seed) {
+                  logMistake(phrase, lessonId, mode as 'lesson' | 'quiz', 'wrong_pick');
+                  await new Promise<void>(r => setTimeout(r, 15));
+                }
+                await loadTrainerDebugState();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: '15 записей добавлено в лог ошибок',
+                  uk: '15 записів додано в лог помилок',
+                  es: '15 entradas añadidas al log de errores',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trash-outline"
+              label="🗑 Очистить лог ошибок"
+              sub="clearMistakeLog() → AsyncStorage"
+              danger
+              onPress={async () => {
+                doHaptic();
+                await clearMistakeLog();
+                await loadTrainerDebugState();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'Лог ошибок очищен',
+                  uk: 'Лог помилок очищено',
+                  es: 'Log de errores limpiado',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="refresh-outline"
+              label="♻️ Сбросить дневной лимит сессий"
+              sub="Удалить trainer_free_session_v1 — даёт 1 бесплатную сессию снова"
+              onPress={async () => {
+                doHaptic();
+                await AsyncStorage.removeItem(DAILY_FREE_SESSION_KEY);
+                await loadTrainerDebugState();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'Лимит сессий сброшен — 1 сессия доступна',
+                  uk: 'Ліміт сесій скинуто — 1 сесія доступна',
+                  es: 'Límite de sesiones restablecido — 1 sesión disponible',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            {/* 6 режимов тренера */}
+            <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
+              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+                6 режимов тренера:
+              </Text>
+            </View>
+            {([
+              { mode: 'due' as TrainerMode, label: '📅 Due — повторение сегодня', free: true },
+              { mode: 'fresh' as TrainerMode, label: '🌱 Fresh — новые фразы', free: true },
+              { mode: 'weak' as TrainerMode, label: '📉 Weak — слабые (easeFactor ≤ 1.7)', free: false },
+              { mode: 'hard' as TrainerMode, label: '💪 Hard — ошибки ≥ 3×', free: false },
+              { mode: 'smart_mix' as TrainerMode, label: '🤖 Smart Mix — авто-выбор', free: false },
+              { mode: 'by_topic' as TrainerMode, label: '📚 By Topic — урок 5', free: false },
+            ]).map(({ mode, label, free }) => (
+              <ButtonRow
+                key={mode}
+                icon={free ? 'play-outline' : 'diamond-outline'}
+                label={label}
+                sub={free ? 'Бесплатный режим' : 'Premium режим (TRAINER_PREMIUM_MODES)'}
+                onPress={() => {
+                  const params: Record<string, string> = { trainerMode: mode };
+                  if (mode === 'by_topic') params.lessonId = '5';
+                  router.push({ pathname: '/review', params } as any);
+                }}
+                t={t} f={f} doHaptic={doHaptic}
+              />
+            ))}
+          </AccordionSection>
+
+          {/* ── 4e. АНАЛИТИКА ОШИБОК (Plan 04) ── */}
+          <AccordionSection
+            id="phrase_analytics_debug"
+            icon="analytics-outline"
+            title="Аналитика ошибок — категории слов (Plan 04)"
+            badge={8}
+            open={openSection === 'phrase_analytics_debug'}
+            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
+          >
+            <ButtonRow
+              icon="open-outline"
+              label="📊 Открыть экран аналитики"
+              sub="phrase_analytics_screen → /phrase_analytics_screen"
+              onPress={() => {
+                doHaptic();
+                router.push('/phrase_analytics_screen' as any);
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            {/* Mock-данные для тестирования перцентилей */}
+            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
+              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+                Mock-данные (без Firestore):
+              </Text>
+            </View>
+            <ButtonRow
+              icon="flask-outline"
+              label="💉 Инжектировать mock-перцентили"
+              sub="Устанавливает fake thresholds → все блоки перцентилей станут видны"
+              onPress={() => {
+                doHaptic();
+                injectMockLeaderboardStats();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'Mock-данные установлены — открой streak_stats или home',
+                  uk: 'Mock-дані встановлено — відкрий streak_stats або home',
+                  es: 'Mock inyectado — abre streak_stats o home',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trash-outline"
+              label="🗑 Сбросить mock (вернуть реальные данные)"
+              sub="clearMockLeaderboardStats() → следующий запрос пойдёт в Firestore"
+              onPress={() => {
+                doHaptic();
+                clearMockLeaderboardStats();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'Mock сброшен — перцентили снова из Firestore',
+                  uk: 'Mock скинуто',
+                  es: 'Mock borrado',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+
+            {/* Навигация к местам отображения перцентилей */}
+            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
+              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+                Где показываются перцентили:
+              </Text>
+            </View>
+            <ButtonRow
+              icon="stats-chart-outline"
+              label="1. streak_stats — цепочка + XP + время"
+              sub="5 блоков перцентилей (инжектирует mock автоматически)"
+              onPress={() => {
+                doHaptic();
+                injectMockLeaderboardStats();
+                router.push('/streak_stats' as any);
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="home-outline"
+              label="2. home.tsx — мини-бейдж XP"
+              sub="«Топ X% по опыту» под именем (только Premium; инжект mock)"
+              onPress={() => {
+                doHaptic();
+                injectMockLeaderboardStats();
+                router.push('/(tabs)/home' as any);
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trophy-outline"
+              label="3. arena_leaderboard — рейтинг арены"
+              sub="«Топ X% в арене» под своей строкой (инжект mock)"
+              onPress={() => {
+                doHaptic();
+                injectMockLeaderboardStats();
+                router.push('/arena_leaderboard' as any);
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="people-outline"
+              label="4. LeagueResultModal — % группы"
+              sub="Открыть через секцию «Лиги» → симулировать итог → увидеть «Топ X% группы»"
+              onPress={() => {
+                doHaptic();
+                setOpenSection('league');
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            {/* Problem Coach экран */}
+            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
+              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+                Problem Coach — экран тренировки:
+              </Text>
+            </View>
+            {(
+              [
+                { cat: 'article',          emoji: '📘', label: 'Артикли' },
+                { cat: 'preposition',      emoji: '📍', label: 'Предлоги' },
+                { cat: 'verb',             emoji: '⚡', label: 'Глаголы' },
+                { cat: 'modal',            emoji: '🎛️', label: 'Модальные глаголы' },
+                { cat: 'to-be',            emoji: '🔵', label: 'To be' },
+                { cat: 'phrasal_particle', emoji: '🌀', label: 'Фразовые глаголы' },
+                { cat: 'noun',             emoji: '📦', label: 'Существительные' },
+                { cat: 'adjective',        emoji: '🎨', label: 'Прилагательные' },
+                { cat: 'adverb',           emoji: '💨', label: 'Наречия' },
+                { cat: 'pronoun',          emoji: '👤', label: 'Местоимения' },
+                { cat: 'conjunction',      emoji: '🔗', label: 'Союзы' },
+                { cat: 'other',            emoji: '🗂️', label: 'Разное' },
+              ] as { cat: string; emoji: string; label: string }[]
+            ).map(({ cat, emoji, label }) => (
+              <ButtonRow
+                key={cat}
+                icon="school-outline"
+                label={`${emoji} ${label}`}
+                sub={`/problem_coach?category=${cat}`}
+                onPress={() => {
+                  doHaptic();
+                  router.push((`/problem_coach?category=${cat}`) as any);
+                }}
+                t={t} f={f} doHaptic={doHaptic}
+              />
+            ))}
+            {/* CoachToast превью */}
+            <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
+              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+                Problem Coach Toast:
+              </Text>
+            </View>
+            <ButtonRow
+              icon="school-outline"
+              label="Тост: «Разобрать тему — Глаголы»"
+              sub="CoachToast → после сессии при 2+ ошибок одной категории"
+              onPress={() => {
+                doHaptic();
+                setCoachToastPreview({
+                  show: true,
+                  category: 'verb',
+                  labelRu: 'Глаголы',
+                  labelUk: 'Дієслова',
+                  labelEs: 'Verbos',
+                  mistakeCount: 3,
+                });
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="school-outline"
+              label="Тост: «Разобрать тему — Артикли»"
+              sub="Ещё один пример — article"
+              onPress={() => {
+                doHaptic();
+                setCoachToastPreview({
+                  show: true,
+                  category: 'article',
+                  labelRu: 'Артикли',
+                  labelUk: 'Артиклі',
+                  labelEs: 'Artículos',
+                  mistakeCount: 2,
+                });
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="flask-outline"
+              label="Тест тоста из реальных ошибок лога"
+              sub="checkCoachToastNeeded() по топ фразам в логе"
+              onPress={async () => {
+                doHaptic();
+                const top = await getTopMistakePhrases(20);
+                const decision = checkCoachToastNeeded(top.map(m => m.phrase));
+                if (decision.show) {
+                  setCoachToastPreview(decision);
+                } else {
+                  AppInfoDialog.alert('CoachToast', 'Нет доминирующей категории (нужно ≥2 ошибок одной категории). Засей лог сначала.');
+                }
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="flask-outline"
+              label="🌱 Засеять лог ошибок (15 записей)"
+              sub="Нужно чтобы аналитика не была пустой"
+              onPress={async () => {
+                doHaptic();
+                const testPhrases = [
+                  { phrase: 'I am here', lessonId: 1 },
+                  { phrase: 'She is at home', lessonId: 1 },
+                  { phrase: 'We are ready', lessonId: 1 },
+                  { phrase: 'He is not busy', lessonId: 2 },
+                  { phrase: 'They are not tired', lessonId: 2 },
+                  { phrase: 'I work every day', lessonId: 3 },
+                  { phrase: 'She works here', lessonId: 3 },
+                  { phrase: 'We play football', lessonId: 3 },
+                  { phrase: 'He does not work', lessonId: 4 },
+                  { phrase: 'I have a car', lessonId: 7 },
+                  { phrase: 'The book is on the table', lessonId: 19 },
+                  { phrase: 'She can swim well', lessonId: 10 },
+                  { phrase: 'I am reading a book', lessonId: 17 },
+                  { phrase: 'They have already done it', lessonId: 24 },
+                  { phrase: 'If I were rich', lessonId: 26 },
+                ];
+                for (const { phrase, lessonId } of testPhrases) {
+                  logMistake(phrase, lessonId, 'lesson', 'wrong_pick');
+                  await new Promise((r) => setTimeout(r, 5));
+                }
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: '15 записей добавлено в лог → открой аналитику',
+                  uk: '15 записів додано → відкрий аналітику',
+                  es: '15 entradas añadidas → abre la analítica',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trash-outline"
+              label="🗑 Очистить лог (аналитика → пустая)"
+              sub="clearMistakeLog() + invalidatePhraseIndex()"
+              danger
+              onPress={async () => {
+                doHaptic();
+                await clearMistakeLog();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'Лог очищен — аналитика пустая',
+                  uk: 'Лог очищено',
+                  es: 'Log limpiado',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+          </AccordionSection>
+
           {/* ── 5. ТОСТЫ И НОТИФИКАЦИИ ── */}
           <AccordionSection id="toasts" icon="notifications-outline" title="Тосты и нотификации" badge={ALL_ACHIEVEMENTS.slice(0, 5).length + 1}
             open={openSection === 'toasts'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
@@ -1283,6 +2027,41 @@ export default function SettingsTestersFunctions() {
             <ButtonRow icon="star-outline" label="🏅 Тост — streak_7"
               sub="Показать тост с наградой"
               onPress={() => { const a = ALL_ACHIEVEMENTS.find(a => a.id === 'streak_7') ?? ALL_ACHIEVEMENTS[0]; if (a) showAchievement(a); }}
+              t={t} f={f} doHaptic={doHaptic} />
+          </AccordionSection>
+
+          {/* ── 5b. МЕДАЛЬНЫЕ ТОСТЫ (premium MedalToast) ── */}
+          <AccordionSection id="medal_toasts" icon="ribbon-outline" title="Тосты медалей (premium)" badge={6}
+            open={openSection === 'medal_toasts'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <ButtonRow icon="trending-up-outline"
+              label="🥉 Бронза получена"
+              sub="MedalToast • bronze • promoted=true"
+              onPress={() => showMedalPreview('bronze', true)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="trending-down-outline"
+              label="🥉 Бронза потеряна"
+              sub="MedalToast • bronze • promoted=false"
+              onPress={() => showMedalPreview('bronze', false)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="trending-up-outline"
+              label="🥈 Серебро получено"
+              sub="MedalToast • silver • promoted=true"
+              onPress={() => showMedalPreview('silver', true)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="trending-down-outline"
+              label="🥈 Серебро потеряно"
+              sub="MedalToast • silver • promoted=false"
+              onPress={() => showMedalPreview('silver', false)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="trending-up-outline"
+              label="🥇 Золото получено"
+              sub="MedalToast • gold • promoted=true"
+              onPress={() => showMedalPreview('gold', true)}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="trending-down-outline"
+              label="🥇 Золото потеряно"
+              sub="MedalToast • gold • promoted=false"
+              onPress={() => showMedalPreview('gold', false)}
               t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
@@ -1323,7 +2102,7 @@ export default function SettingsTestersFunctions() {
               { source: 'lesson_first' as const, label: '+1 Первый урок', reason: 'Первое прохождение урока' },
               { source: 'lesson_perfect' as const, label: '+2 Идеальный урок', reason: 'Идеальный урок (0 ошибок)' },
               { source: 'arena_win' as const, label: '+1 Победа в арене', reason: 'Победа в Арене' },
-              { source: 'streak_7' as const, label: '+3 Стрик 7 дней', reason: '7-дневный стрик' },
+              { source: 'streak_7' as const, label: '+3 Цепочка 7 дней', reason: '7 дней цепочки подряд' },
               { source: 'topic_completed' as const, label: '+3 Тема завершена', reason: 'Все уроки темы пройдены' },
             ]).map(item => (
               <ButtonRow key={item.source} icon="diamond-outline" label={item.label} sub={item.reason}
@@ -1608,7 +2387,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 9.5 ЛИГИ / ЗАЛ СЛАВЫ — ПОВЫШЕНИЯ/ПОНИЖЕНИЯ (изолированный тест) ── */}
-          <AccordionSection id="rank_change_test" icon="trending-up-outline" title="🏆 Лиги / зал славы — повышения/понижения" badge={8}
+          <AccordionSection id="rank_change_test" icon="trending-up-outline" title="🏆 Лиги — повышения/понижения" badge={4}
             open={openSection === 'rank_change_test'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow
               icon="rocket-outline"
@@ -1637,34 +2416,6 @@ export default function SettingsTestersFunctions() {
               sub="Жёлтый банер + анимация вниз"
               t={t} f={f} doHaptic={doHaptic}
               onPress={() => openRankTest('club', -3)}
-            />
-            <ButtonRow
-              icon="rocket-outline"
-              label="Зал славы: +1 место"
-              sub="Тестовое окно с фейковым top-10"
-              t={t} f={f} doHaptic={doHaptic}
-              onPress={() => openRankTest('hof', 1)}
-            />
-            <ButtonRow
-              icon="rocket-outline"
-              label="Зал славы: +5 мест (подъём)"
-              sub="Большой скачок вверх"
-              t={t} f={f} doHaptic={doHaptic}
-              onPress={() => openRankTest('hof', 5)}
-            />
-            <ButtonRow
-              icon="trending-down-outline"
-              label="Зал славы: −1 место"
-              sub="Жёлтый банер"
-              t={t} f={f} doHaptic={doHaptic}
-              onPress={() => openRankTest('hof', -1)}
-            />
-            <ButtonRow
-              icon="trending-down-outline"
-              label="Зал славы: −4 места"
-              sub="Жёлтый банер + анимация вниз"
-              t={t} f={f} doHaptic={doHaptic}
-              onPress={() => openRankTest('hof', -4)}
             />
           </AccordionSection>
 
@@ -1699,7 +2450,7 @@ export default function SettingsTestersFunctions() {
             })}
             sub={triLang(lang, {
               uk: 'Скинути стрік та інші статистики',
-              ru: 'Сбросить стрик и другую статистику',
+              ru: 'Сбросить цепочку и другую статистику',
               es: 'Elimina la racha y el resto de estadísticas guardadas',
             })}
             danger
@@ -1921,7 +2672,7 @@ export default function SettingsTestersFunctions() {
         })}
         message={triLang(lang, {
           uk: 'Це видалить стрік, щоденну статистику та інші досягнення. Це не можна скасувати!',
-          ru: 'Это удалит стрик, ежедневную статистику и другие достижения. Это нельзя отменить!',
+          ru: 'Это удалит цепочку дней, ежедневную статистику и другие достижения. Это нельзя отменить!',
           es: 'Eliminará la racha, las estadísticas diarias y otros logros relacionados. ¡No se puede deshacer!',
         })}
         cancelLabel={triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar' })}
@@ -1941,6 +2692,56 @@ export default function SettingsTestersFunctions() {
         subtitle="Тестовый запуск регистрационного потока. На production этот текст не показывается."
         onClose={() => setAuthPromptDevOpen(false)}
       />
+
+      {/* ── Превью премиум-тоста медалей ── */}
+      {medalPreview && (
+        <MedalToast
+          tier={medalPreview.tier}
+          promoted={medalPreview.promoted}
+          anim={medalPreviewAnim}
+          bg={t.bgCard}
+          isLightTheme={isLightTheme}
+          lang={lang}
+          spanishUiActive={lang === 'es'}
+        />
+      )}
+
+      {/* ─── Soft Monetization preview modals (admin only) ─── */}
+      <PremiumCelebrationModal
+        visible={softMonetizationPreview === 'celebration'}
+        onClose={() => setSoftMonetizationPreview(null)}
+      />
+      <MasteryReplayModal
+        visible={softMonetizationPreview === 'mastery'}
+        lessonId={7}
+        isPremium={false}
+        onClose={() => setSoftMonetizationPreview(null)}
+      />
+      <AfterLesson5PushModal
+        visible={softMonetizationPreview === 'after_lesson5'}
+        stats={{ phrasesLearned: 312, streak: 5, level: 4 }}
+        onClose={() => setSoftMonetizationPreview(null)}
+      />
+      <StreakReviveModal
+        visible={softMonetizationPreview === 'streak_revive'}
+        offer={previewReviveOffer}
+        onClose={() => {
+          setSoftMonetizationPreview(null);
+          setPreviewReviveOffer(null);
+        }}
+      />
+
+      {/* ── Превью Problem Coach Toast ── */}
+      {coachToastPreview?.show && (
+        <CoachToast
+          category={coachToastPreview.category}
+          labelRu={coachToastPreview.labelRu}
+          labelUk={coachToastPreview.labelUk}
+          labelEs={coachToastPreview.labelEs}
+          mistakeCount={coachToastPreview.mistakeCount}
+          onDismiss={() => setCoachToastPreview(null)}
+        />
+      )}
     </View>
   );
 }

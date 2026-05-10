@@ -103,12 +103,12 @@ function main() {
   const dateMatch = firstTerms.match(/Last updated:\s*([^\n]+)/i);
   const dateStr = dateMatch ? dateMatch[1].trim() : '';
 
-  const metaTerms = `Application: <span class="app-name">Phraseman</span> &nbsp;|&nbsp; Developer: <span class="app-name">Knowly</span> &nbsp;|&nbsp; <strong>${escapeHtml(dateStr)}</strong> — same text as in the Phraseman app (English).`;
+  const metaTerms = `Application: <span class="app-name">Phraseman</span> &nbsp;|&nbsp; Developer: <span class="app-name">Knowly</span> &nbsp;|&nbsp; Last updated: <strong>${escapeHtml(dateStr)}</strong>.`;
 
   const firstPriv = privacy[0]?.body?.split('\n\n')[0] || '';
   const d2 = firstPriv.match(/Last updated:\s*([^\n]+)/i);
   const dateStr2 = d2 ? d2[1].trim() : '';
-  const metaPriv = `Application: <span class="app-name">Phraseman</span> &nbsp;|&nbsp; Developer: <span class="app-name">Knowly</span> &nbsp;|&nbsp; <strong>${escapeHtml(dateStr2)}</strong> — same text as in the Phraseman app (English).`;
+  const metaPriv = `Application: <span class="app-name">Phraseman</span> &nbsp;|&nbsp; Developer: <span class="app-name">Knowly</span> &nbsp;|&nbsp; Last updated: <strong>${escapeHtml(dateStr2)}</strong>.`;
 
   fs.writeFileSync(
     path.join(ROOT, 'terms.html'),

@@ -35,6 +35,23 @@ const getFirestore = () => {
   }
 };
 
+function logFriendsHealth(
+  context: string,
+  error: unknown,
+  tags: Record<string, string | number | boolean | null | undefined> = {},
+) {
+  void import('./app_health')
+    .then(({ logAppWarning }) =>
+      logAppWarning(context, error, {
+        feature: 'friends',
+        screen: 'friends',
+        writeToFirestore: true,
+        tags,
+      }),
+    )
+    .catch(() => {});
+}
+
 // ── sendFriendRequest ──────────────────────────────────────────────────────
 
 /**
@@ -48,35 +65,89 @@ const getFirestore = () => {
  */
 export async function sendFriendRequest(toUid: string): Promise<SendRequestResult> {
   const myUid = await ensureAnonUser();
-  if (!myUid) return 'error';
+  if (!myUid) {
+    logFriendsHealth('friends:send_request_no_canonical_uid', new Error('canonical uid unavailable'), {
+      action: 'send_friend_request',
+      targetUid: toUid,
+    });
+    return 'error';
+  }
 
   if (toUid === myUid) return 'self';
 
   const db = getFirestore();
-  if (!db) return 'error';
+  if (!db) {
+    logFriendsHealth('friends:send_request_firestore_unavailable', new Error('Firestore unavailable'), {
+      action: 'send_friend_request',
+      targetUid: toUid,
+    });
+    return 'error';
+  }
 
   try {
-    const firebaseAuthUid = getAuthUserId();
+    // Auth must be linked before Firestore writes — security rules check firebaseAuthUid.
+    let firebaseAuthUid = getAuthUserId();
+    if (!firebaseAuthUid) {
+      for (let i = 0; i < 3; i++) {
+        await new Promise(r => setTimeout(r, 800));
+        firebaseAuthUid = getAuthUserId();
+        if (firebaseAuthUid) break;
+      }
+    }
+    if (!firebaseAuthUid) {
+      logFriendsHealth('friends:send_request_auth_uid_missing', new Error('Firebase auth uid unavailable after retry'), {
+        action: 'send_friend_request',
+        myUid,
+        targetUid: toUid,
+      });
+    }
     if (firebaseAuthUid) {
       await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
     }
-    // Check whether we are already friends.
-    const friendsSnap = await db
-      .collection('users')
-      .doc(myUid)
-      .collection('friends')
-      .doc(toUid)
-      .get();
-    if (friendsSnap.exists) return 'already_friends';
+    // Читаем friends и request параллельно — быстрее.
+    const [friendsSnap, reqSnap] = await Promise.all([
+      db.collection('users').doc(myUid).collection('friends').doc(toUid).get(),
+      db.collection('users').doc(toUid).collection('friend_requests').doc(myUid).get(),
+    ]);
 
-    // Check whether a pending request is already outstanding.
-    const reqSnap = await db
-      .collection('users')
-      .doc(toUid)
-      .collection('friend_requests')
-      .doc(myUid)
-      .get();
-    if (reqSnap.exists && reqSnap.data?.()?.status === 'pending') return 'already_sent';
+    // Если documents дружбы существуют — это могут быть мусорные остатки от неполного deleteFriend.
+    // Проверяем обе стороны: если friends/{toUid} есть, но friends/{myUid} у toUid нет — это мусор, чистим.
+    if (friendsSnap.exists) {
+      const reverseFriendSnap = await db
+        .collection('users').doc(toUid).collection('friends').doc(myUid).get();
+      if (reverseFriendSnap.exists) {
+        // Оба документа есть — реально друзья.
+        return 'already_friends';
+      }
+      // Односторонний мусор от неполного удаления — чистим и продолжаем.
+      await db.collection('users').doc(myUid).collection('friends').doc(toUid).delete();
+    }
+
+    if (reqSnap.exists) {
+      const reqStatus = reqSnap.data?.()?.status as string | undefined;
+      if (reqStatus === 'pending') {
+        // Pending request already exists — could be a real pending OR a stale one left
+        // after deleteFriend (batch couldn't delete the other user's request due to security rules).
+        // Check if they're actually friends: if not, the pending doc is stale garbage — overwrite it.
+        const [myFriendSnap, theirFriendSnap] = await Promise.all([
+          db.collection('users').doc(myUid).collection('friends').doc(toUid).get(),
+          db.collection('users').doc(toUid).collection('friends').doc(myUid).get(),
+        ]);
+        if (myFriendSnap.exists || theirFriendSnap.exists) {
+          // One or both friend docs exist alongside a pending request — stale state,
+          // clean own side and fall through to re-send.
+          if (myFriendSnap.exists) {
+            await db.collection('users').doc(myUid).collection('friends').doc(toUid).delete();
+          }
+          // Overwrite the stale pending request below (fall through).
+        } else {
+          // No friend docs on either side and request is pending — genuinely already sent.
+          return 'already_sent';
+        }
+      }
+      // Non-pending doc (accepted/declined remnant) or stale pending after deleteFriend — overwrite.
+      await db.collection('users').doc(toUid).collection('friend_requests').doc(myUid).delete();
+    }
 
     // Write the pending request.
     await db
@@ -89,6 +160,11 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
     return 'sent';
   } catch (e) {
     console.warn('[sendFriendRequest] error', String(e));
+    logFriendsHealth('friends:send_request_failed', e, {
+      action: 'send_friend_request',
+      myUid,
+      targetUid: toUid,
+    });
     return 'error';
   }
 }
@@ -98,34 +174,35 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
 /**
  * Accept an incoming friend request from fromUid.
  *
- * Step 1: Update request status → 'accepted' (separate write BEFORE batch so
- *   security rules see status='accepted' when the batch attempts to create the
- *   reverse friend entry users/{fromUid}/friends/{myUid}).
- * Step 2: Batch-create both friendship entries atomically.
+ * Batch-create both friendship entries and delete the request atomically.
+ * Security rules validate the reverse write against the existing pending request.
  */
 export async function acceptFriendRequest(fromUid: string): Promise<void> {
   const myUid = await ensureAnonUser();
-  if (!myUid) throw new Error('acceptFriendRequest: canonical UID unavailable');
+  if (!myUid) {
+    const err = new Error('acceptFriendRequest: canonical UID unavailable');
+    logFriendsHealth('friends:accept_request_no_canonical_uid', err, { action: 'accept_friend_request', fromUid });
+    throw err;
+  }
 
   const db = getFirestore();
-  if (!db) throw new Error('acceptFriendRequest: Firestore unavailable');
+  if (!db) {
+    const err = new Error('acceptFriendRequest: Firestore unavailable');
+    logFriendsHealth('friends:accept_request_firestore_unavailable', err, { action: 'accept_friend_request', myUid, fromUid });
+    throw err;
+  }
 
   const firebaseAuthUid = getAuthUserId();
-  console.log('[acceptFriendRequest] myUid=', myUid, 'fromUid=', fromUid, 'authUid=', firebaseAuthUid);
-  if (!firebaseAuthUid) throw new Error('acceptFriendRequest: Firebase auth uid unavailable');
+  if (!firebaseAuthUid) {
+    const err = new Error('acceptFriendRequest: Firebase auth uid unavailable');
+    logFriendsHealth('friends:accept_request_auth_uid_missing', err, { action: 'accept_friend_request', myUid, fromUid });
+    throw err;
+  }
 
   // Ensure firebaseAuthUid is written so canonicalUserMatchesAuth passes for the mirror write.
   await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
 
-  // Commit the status update first so the batch can satisfy security rules.
-  await db
-    .collection('users')
-    .doc(myUid)
-    .collection('friend_requests')
-    .doc(fromUid)
-    .update({ status: 'accepted', updatedAt: Date.now() });
-
-  // Now batch-create both friend entries.
+  // Batch: create both friend entries + delete the request doc.
   const batch = db.batch();
   const now = Date.now();
 
@@ -137,9 +214,15 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
     db.collection('users').doc(fromUid).collection('friends').doc(myUid),
     { createdAt: now },
   );
+  // Удаляем request-документ после принятия — иначе он висит вечно и может блокировать повторные заявки.
+  batch.delete(db.collection('users').doc(myUid).collection('friend_requests').doc(fromUid));
 
-  await batch.commit();
-  console.log('[acceptFriendRequest] batch committed OK');
+  try {
+    await batch.commit();
+  } catch (e) {
+    logFriendsHealth('friends:accept_request_failed', e, { action: 'accept_friend_request', myUid, fromUid });
+    throw e;
+  }
 }
 
 // ── declineFriendRequest ───────────────────────────────────────────────────
@@ -152,17 +235,35 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
  */
 export async function declineFriendRequest(fromUid: string): Promise<void> {
   const myUid = await ensureAnonUser();
-  if (!myUid) return;
+  if (!myUid) {
+    logFriendsHealth('friends:decline_request_no_canonical_uid', new Error('canonical uid unavailable'), {
+      action: 'decline_friend_request',
+      fromUid,
+    });
+    return;
+  }
 
   const db = getFirestore();
-  if (!db) return;
+  if (!db) {
+    logFriendsHealth('friends:decline_request_firestore_unavailable', new Error('Firestore unavailable'), {
+      action: 'decline_friend_request',
+      myUid,
+      fromUid,
+    });
+    return;
+  }
 
-  await db
-    .collection('users')
-    .doc(myUid)
-    .collection('friend_requests')
-    .doc(fromUid)
-    .delete();
+  try {
+    await db
+      .collection('users')
+      .doc(myUid)
+      .collection('friend_requests')
+      .doc(fromUid)
+      .delete();
+  } catch (e) {
+    logFriendsHealth('friends:decline_request_failed', e, { action: 'decline_friend_request', myUid, fromUid });
+    throw e;
+  }
 }
 
 // ── deleteFriend ───────────────────────────────────────────────────────────
@@ -174,17 +275,38 @@ export async function declineFriendRequest(fromUid: string): Promise<void> {
  */
 export async function deleteFriend(friendUid: string): Promise<void> {
   const myUid = await ensureAnonUser();
-  if (!myUid) return;
+  if (!myUid) {
+    logFriendsHealth('friends:delete_friend_no_canonical_uid', new Error('canonical uid unavailable'), {
+      action: 'delete_friend',
+      friendUid,
+    });
+    return;
+  }
 
   const db = getFirestore();
-  if (!db) return;
+  if (!db) {
+    logFriendsHealth('friends:delete_friend_firestore_unavailable', new Error('Firestore unavailable'), {
+      action: 'delete_friend',
+      myUid,
+      friendUid,
+    });
+    return;
+  }
 
   const batch = db.batch();
 
   batch.delete(db.collection('users').doc(myUid).collection('friends').doc(friendUid));
   batch.delete(db.collection('users').doc(friendUid).collection('friends').doc(myUid));
+  // Only delete own request doc — security rules forbid deleting the other user's subcollection.
+  // Stale request on their side is handled by sendFriendRequest on next add attempt.
+  batch.delete(db.collection('users').doc(myUid).collection('friend_requests').doc(friendUid));
 
-  await batch.commit();
+  try {
+    await batch.commit();
+  } catch (e) {
+    logFriendsHealth('friends:delete_friend_failed', e, { action: 'delete_friend', myUid, friendUid });
+    throw e;
+  }
 }
 
 /**
@@ -195,29 +317,41 @@ export async function deleteFriend(friendUid: string): Promise<void> {
 export async function ensureFriendRequestViewerAuthLink(): Promise<void> {
   const myUid = await ensureAnonUser();
   if (!myUid) return;
-  const firebaseAuthUid = getAuthUserId();
+  // Auth может ещё не быть готов — ретраим до 3 раз с интервалом 800мс.
+  let firebaseAuthUid = getAuthUserId();
+  if (!firebaseAuthUid) {
+    for (let i = 0; i < 3; i++) {
+      await new Promise(r => setTimeout(r, 800));
+      firebaseAuthUid = getAuthUserId();
+      if (firebaseAuthUid) break;
+    }
+  }
   if (!firebaseAuthUid) return;
   const db = getFirestore();
   if (!db) return;
   try {
     await db.collection('users').doc(myUid).set({ firebaseAuthUid }, { merge: true });
-  } catch {
-    /* ignore */
+  } catch (e) {
+    logFriendsHealth('friends:auth_link_failed', e, { action: 'ensure_friend_auth_link' });
   }
 }
 
 // ── subscribeToFriends ─────────────────────────────────────────────────────
+
+/** Второй аргумент `subscribeToFriends`: снимок с устройства до ответа сервера (`fromCache: true`). */
+export type SubscribeFriendsSnapshotMeta = { fromCache: boolean };
 
 /**
  * Real-time listener for the current user's friends collection.
  *
  * Returns an unsubscribe function. The callback receives the full array of
  * FriendEntry on every snapshot update.
+ * `meta.fromCache === true` — данные только с локального кеша Firestore (первый колбэк может быть пустым, затем придёт сервер).
  * If UID is unavailable (Expo Go, CLOUD_SYNC_ENABLED=false), callback([])
  * is called immediately and a no-op unsubscribe is returned.
  */
 export function subscribeToFriends(
-  callback: (friends: FriendEntry[]) => void,
+  callback: (friends: FriendEntry[], meta?: SubscribeFriendsSnapshotMeta) => void,
   onError?: (err: Error) => void,
 ): () => void {
   let cancelled = false;
@@ -227,12 +361,12 @@ export function subscribeToFriends(
     .then(myUid => {
       if (cancelled) return;
       if (!myUid) {
-        callback([]);
+        callback([], { fromCache: false });
         return;
       }
       const db = getFirestore();
       if (!db) {
-        callback([]);
+        callback([], { fromCache: false });
         return;
       }
       unsubscribe = db
@@ -240,20 +374,26 @@ export function subscribeToFriends(
         .doc(myUid)
         .collection('friends')
         .onSnapshot(
-          (snap: { docs: Array<{ id: string; data: () => Record<string, unknown> }> }) => {
+          (snap: {
+            docs: Array<{ id: string; data: () => Record<string, unknown> }>;
+            metadata?: { fromCache?: boolean };
+          }) => {
             if (cancelled) return;
+            const fromCache = snap.metadata?.fromCache === true;
             const friends: FriendEntry[] = snap.docs.map(doc => ({
               uid: doc.id,
               createdAt: (doc.data().createdAt as number) ?? 0,
             }));
-            callback(friends);
+            callback(friends, { fromCache });
           },
           (err: Error) => {
+            logFriendsHealth('friends:subscribe_friends_failed', err, { action: 'subscribe_friends' });
             onError?.(err);
           },
         );
     })
     .catch((err: unknown) => {
+      logFriendsHealth('friends:subscribe_friends_setup_failed', err, { action: 'subscribe_friends' });
       onError?.(err instanceof Error ? err : new Error(String(err)));
     });
 
@@ -312,11 +452,13 @@ export function subscribeToIncomingRequests(
             callback(requests);
           },
           (err: Error) => {
+            logFriendsHealth('friends:subscribe_incoming_requests_failed', err, { action: 'subscribe_incoming_requests' });
             onError?.(err);
           },
         );
     })
     .catch((err: unknown) => {
+      logFriendsHealth('friends:subscribe_incoming_requests_setup_failed', err, { action: 'subscribe_incoming_requests' });
       onError?.(err instanceof Error ? err : new Error(String(err)));
     });
 
@@ -324,6 +466,65 @@ export function subscribeToIncomingRequests(
     cancelled = true;
     unsubscribe?.();
   };
+}
+
+// ── cleanupStaleFriendData ─────────────────────────────────────────────────
+
+/**
+ * Удаляет мусорные данные которые могли остаться после неполных операций:
+ * - accepted request-документы (должны были удалиться при acceptFriendRequest)
+ * - Односторонние friends-документы (должны были удалиться при deleteFriend)
+ * Вызывается один раз при открытии вкладки. Fire-and-forget.
+ */
+export async function cleanupStaleFriendData(): Promise<void> {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  try {
+    const myUid = await ensureAnonUser();
+    if (!myUid) return;
+    const db = getFirestore();
+    if (!db) return;
+
+    const batch = db.batch();
+    let batchCount = 0;
+    const BATCH_MAX = 400;
+
+    // 1. Удаляем accepted request-документы (мусор от accept без cleanup).
+    const reqSnap = await db
+      .collection('users').doc(myUid).collection('friend_requests').get();
+    for (const doc of reqSnap.docs as Array<{ id: string; data: () => Record<string, unknown>; ref: unknown }>) {
+      if (batchCount >= BATCH_MAX) break;
+      const st = doc.data().status as string | undefined;
+      if (st === 'accepted') {
+        batch.delete(doc.ref);
+        batchCount++;
+      }
+    }
+
+    // 2. Проверяем односторонние friends-документы (есть у меня, нет у друга).
+    // Лимит до 20 reverse-reads за один запуск — защита от N reads при большом списке.
+    const friendsSnap = await db
+      .collection('users').doc(myUid).collection('friends').get();
+    const friendDocs = friendsSnap.docs as Array<{ id: string; ref: unknown }>;
+    const toCheck = friendDocs.slice(0, 20);
+    const reverseSnaps = await Promise.all(
+      toCheck.map(doc =>
+        db.collection('users').doc(doc.id).collection('friends').doc(myUid).get(),
+      ),
+    );
+    for (let i = 0; i < toCheck.length; i++) {
+      if (batchCount >= BATCH_MAX) break;
+      if (!reverseSnaps[i].exists) {
+        batch.delete(toCheck[i].ref);
+        batchCount++;
+      }
+    }
+
+    if (batchCount > 0) {
+      await batch.commit();
+    }
+  } catch {
+    /* ignore — cleanup is best-effort */
+  }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

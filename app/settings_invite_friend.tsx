@@ -1,9 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   ActivityIndicator,
-  Alert,
   Platform,
   ScrollView,
   Share,
@@ -11,7 +10,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -20,6 +19,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { STORE_URL } from './config';
 import { isReferralCloudEnabled } from './referral_cloud';
 import { buildCloudReferralInviteShare } from './referral_invite_share';
+import { updateMultipleTaskProgress } from './daily_tasks';
+import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 
 const REFEREE_BONUS = 15;
 const REFERRER_BONUS = 20;
@@ -35,6 +37,9 @@ const COPY = {
     step1Body: 'Поделись приглашением в любом мессенджере. Друг сможет перейти по ссылке и установить Phraseman.',
     step2Title: 'Друг пройдёт первый урок',
     step2Body: 'Ему нужно установить Phraseman по твоей ссылке и закончить урок 1 минимум на бронзу.',
+    step2TitleIos: 'Друг вводит ваш код',
+    step2BodyIos:
+      'Во вкладке «Друзья» он вводит ваш персональный код. Дальше — закончить урок 1 минимум на бронзу.',
     step3Title: 'Прилетят бонусы — обоим',
     step3Body: `Тебе +${REFERRER_BONUS} осколков знаний, другу +${REFEREE_BONUS}. Зачисляются автоматически, как только урок засчитан.`,
     smallPrint: `Бонусы начисляются один раз за каждого нового друга. В месяц можно получить награду максимум за ${MONTHLY_LIMIT} приглашений.`,
@@ -52,6 +57,9 @@ const COPY = {
     step1Body: 'Поділись запрошенням у будь-якому месенджері. Друг зможе перейти за посиланням і встановити Phraseman.',
     step2Title: 'Друг пройде перший урок',
     step2Body: 'Йому треба встановити Phraseman за твоїм посиланням і закінчити урок 1 щонайменше на бронзу.',
+    step2TitleIos: 'Друг вводить твій код',
+    step2BodyIos:
+      'У вкладці «Друзі» він вводить твій персональний код. Далі — закінчити урок 1 щонайменше на бронзу.',
     step3Title: 'Прилетять бонуси — обом',
     step3Body: `Тобі +${REFERRER_BONUS} уламків знань, другу +${REFEREE_BONUS}. Нараховуються автоматично, щойно урок зараховано.`,
     smallPrint: `Бонуси нараховуються один раз за кожного нового друга. На місяць можна отримати нагороду максимум за ${MONTHLY_LIMIT} запрошень.`,
@@ -72,6 +80,9 @@ const COPY = {
     step2Title: 'Tu amigo completa la lección 1',
     step2Body:
       'Debe instalar Phraseman desde tu enlace y terminar la lección 1 con al menos bronce.',
+    step2TitleIos: 'Tu amigo introduce tu código',
+    step2BodyIos:
+      'En «Amigos» puede introducir tu código personal. Luego debe terminar la lección 1 con al menos bronce.',
     step3Title: 'Bonificación para ambos',
     step3Body: `Tú +${REFERRER_BONUS} fragmentos de conocimiento, tu amigo +${REFEREE_BONUS}. Se abonan automáticamente en cuanto la lección queda completada.`,
     smallPrint: `La bonificación se concede una vez por cada amigo nuevo. Cada mes, como máximo ${MONTHLY_LIMIT} invitaciones con recompensa.`,
@@ -105,6 +116,12 @@ const FALLBACK_BODIES_UK = [
   `Хочеш заробляти більше? Вчи англійську! Phraseman — найкайфовіший спосіб це зробити. Перевірено! 📈✨ ${STORE_URL}`,
 ];
 
+/** Не считаем задание «Пригласи друга», если пользователь закрыл системный Share без отправки (iOS). */
+function shouldCountInviteShare(result: { action?: string } | undefined): boolean {
+  if (result == null) return true;
+  return result.action !== Share.dismissedAction;
+}
+
 const FALLBACK_BODIES_ES = [
   `Deja los memes un rato y ven a estudiar inglés con Phraseman. Conmigo al menos entenderás por qué ríen en el original 🔥 ${STORE_URL}`,
   `Probé Phraseman: entrenamiento para el cerebro, sin drama. ¡Únete y practicamos en inglés! 🧠🚀 ${STORE_URL}`,
@@ -118,8 +135,13 @@ const FALLBACK_BODIES_ES = [
 
 export default function SettingsInviteFriend() {
   const router = useRouter();
+  const effectiveOs = useEffectivePlatformOS();
   const { theme: t, f } = useTheme();
+
   const { lang } = useLang();
+  const insets = useSafeAreaInsets();
+  const bottomPad =
+    Math.max(insets.bottom, effectiveOs === 'ios' ? 10 : 28) + 8;
   const copyLang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const tx = COPY[copyLang];
 
@@ -134,25 +156,43 @@ export default function SettingsInviteFriend() {
         const pool =
           lang === 'uk' ? FALLBACK_BODIES_UK : lang === 'es' ? FALLBACK_BODIES_ES : FALLBACK_BODIES_RU;
         const msg = pool[Math.floor(Math.random() * pool.length)];
-        await Share.share({ message: msg });
+        const r = await Share.share({ message: msg });
+        if (shouldCountInviteShare(r)) {
+          void updateMultipleTaskProgress([{ type: 'invite_friend', increment: 1 }]).catch(() => {});
+        }
         return;
       }
       const userName = (await AsyncStorage.getItem('user_name')) || 'User';
       const share = await buildCloudReferralInviteShare({ lang, userName });
       if (!share) {
-        Alert.alert(tx.needAuthTitle, tx.needAuth);
+        await enqueueThemedBlockingInfoAlert(tx.needAuthTitle, tx.needAuth, 'OK');
         return;
       }
       const message =
         share.url && !share.message.includes(share.url)
           ? `${share.message}\n${share.url}`
           : share.message;
-      await Share.share({ message, url: share.url });
+      const r = await Share.share({ message, url: share.url });
+      if (shouldCountInviteShare(r)) {
+        void updateMultipleTaskProgress([{ type: 'invite_friend', increment: 1 }]).catch(() => {});
+      }
     } catch {
     } finally {
       setBusy(false);
     }
   }, [busy, lang, tx.needAuth, tx.needAuthTitle]);
+
+  const isIos = effectiveOs === 'ios';
+  const scrollBottomPad = (isIos ? 28 : 100) + Math.max(insets.bottom, 16);
+
+  useEffect(() => {
+    if (Platform.OS !== 'ios') return;
+    router.replace('/(tabs)/friends' as any);
+  }, [router]);
+
+  if (Platform.OS === 'ios') {
+    return null;
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'left', 'right']}>
@@ -185,7 +225,7 @@ export default function SettingsInviteFriend() {
         </View>
 
         <ScrollView
-          contentContainerStyle={{ padding: 20, paddingBottom: 140 }}
+          contentContainerStyle={{ padding: 20, paddingBottom: scrollBottomPad }}
           showsVerticalScrollIndicator={false}
         >
           <View style={{ alignItems: 'center', marginTop: 6, marginBottom: 18 }}>
@@ -253,26 +293,30 @@ export default function SettingsInviteFriend() {
               marginBottom: 18,
             }}
           >
+            {!isIos && (
+              <>
+                <Step
+                  n={1}
+                  title={tx.step1Title}
+                  body={tx.step1Body}
+                  icon="paper-plane-outline"
+                  t={t}
+                  f={f}
+                />
+                <Divider color={t.border} />
+              </>
+            )}
             <Step
-              n={1}
-              title={tx.step1Title}
-              body={tx.step1Body}
-              icon="paper-plane-outline"
-              t={t}
-              f={f}
-            />
-            <Divider color={t.border} />
-            <Step
-              n={2}
-              title={tx.step2Title}
-              body={tx.step2Body}
+              n={isIos ? 1 : 2}
+              title={isIos ? tx.step2TitleIos : tx.step2Title}
+              body={isIos ? tx.step2BodyIos : tx.step2Body}
               icon="school-outline"
               t={t}
               f={f}
             />
             <Divider color={t.border} />
             <Step
-              n={3}
+              n={isIos ? 2 : 3}
               title={tx.step3Title}
               body={tx.step3Body}
               icon="diamond-outline"
@@ -313,44 +357,46 @@ export default function SettingsInviteFriend() {
           </View>
         </ScrollView>
 
-        <View
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            bottom: 0,
-            paddingHorizontal: 20,
-            paddingTop: 12,
-            paddingBottom: Platform.OS === 'ios' ? 28 : 18,
-            backgroundColor: t.bgPrimary,
-            borderTopWidth: 0.5,
-            borderTopColor: t.border,
-          }}
-        >
-          <TouchableOpacity
-            onPress={onSendInvite}
-            disabled={busy}
-            activeOpacity={0.85}
+        {!isIos && (
+          <View
             style={{
-              backgroundColor: busy ? t.textGhost : t.correct,
-              borderRadius: 16,
-              paddingVertical: 16,
-              alignItems: 'center',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              gap: 10,
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              paddingHorizontal: 20,
+              paddingTop: 12,
+              paddingBottom: bottomPad,
+              backgroundColor: t.bgPrimary,
+              borderTopWidth: 0.5,
+              borderTopColor: t.border,
             }}
           >
-            {busy ? (
-              <ActivityIndicator color={t.correctText} />
-            ) : (
-              <Ionicons name="share-social" size={20} color={t.correctText} />
-            )}
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-              {busy ? tx.preparing : tx.cta}
-            </Text>
-          </TouchableOpacity>
-        </View>
+            <TouchableOpacity
+              onPress={onSendInvite}
+              disabled={busy}
+              activeOpacity={0.85}
+              style={{
+                backgroundColor: busy ? t.textGhost : t.correct,
+                borderRadius: 16,
+                paddingVertical: 16,
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                gap: 10,
+              }}
+            >
+              {busy ? (
+                <ActivityIndicator color={t.correctText} />
+              ) : (
+                <Ionicons name="share-social" size={20} color={t.correctText} />
+              )}
+              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
+                {busy ? tx.preparing : tx.cta}
+              </Text>
+            </TouchableOpacity>
+          </View>
+        )}
       </ScreenGradient>
     </SafeAreaView>
   );

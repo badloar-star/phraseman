@@ -31,26 +31,43 @@ const GOLD_STOPS_SKETCH: { offset: string; color: string }[] = [
  *  Ширина SVG = реально измеренной ширине RN <Text> с теми же параметрами,
  *  чтобы длинные/широкие ники (Gamma7816, заглавные, цифры) не обрезались. */
 export default function PremiumGoldUserName({ text, fontSize }: Props) {
-  const { themeMode } = useTheme();
-  const isSketch = themeMode === 'minimalLight';
-  const gradientStops = isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS;
+  const { themeMode, theme } = useTheme();
+  const [measuredW, setMeasuredW] = useState(0);
   const display = text || '...';
   const lineHeight = Math.ceil(fontSize * 1.28);
-
-  const [measuredW, setMeasuredW] = useState(0);
 
   const fallbackW = useMemo(
     () => Math.max(Math.ceil(display.length * fontSize * 0.7), 56),
     [display, fontSize],
   );
-  const safetyPad = Math.ceil(fontSize * 0.18);
-  const w = (measuredW > 0 ? Math.ceil(measuredW) : fallbackW) + safetyPad;
-  const h = lineHeight;
-
   const gradientId = useMemo(() => {
     const hash = Math.abs((display + fontSize).split('').reduce((acc, ch) => ((acc * 31) + ch.charCodeAt(0)) | 0, 7));
     return `premiumGold_${hash}`;
   }, [display, fontSize]);
+
+  /** Тёмно-бирюзовый / винный фон экрана — золотой градиент почти не виден, оставляем светлый контрастный текст */
+  if (themeMode === 'ocean' || themeMode === 'sakura') {
+    return (
+      <Text
+        style={{
+          marginTop: 2,
+          color: theme.heroTextPrimary,
+          fontSize,
+          lineHeight,
+          fontWeight: '700',
+        }}
+        numberOfLines={1}
+      >
+        {display}
+      </Text>
+    );
+  }
+
+  const isSketch = themeMode === 'minimalLight';
+  const gradientStops = isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS;
+  const safetyPad = Math.ceil(fontSize * 0.18);
+  const w = (measuredW > 0 ? Math.ceil(measuredW) : fallbackW) + safetyPad;
+  const h = lineHeight;
   const textY = fontSize * 0.82;
 
   const onMeasure = (e: LayoutChangeEvent) => {

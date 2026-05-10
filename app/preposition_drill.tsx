@@ -3,7 +3,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Animated, Easing, InteractionManager, Platform, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Easing, InteractionManager, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { useAudio } from '../hooks/use-audio';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
@@ -11,13 +11,17 @@ import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
-import LessonEnergyLightning from '../components/LessonEnergyLightning';
+import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ReportErrorButton from '../components/ReportErrorButton';
+import ClozeGapText from '../components/ClozeGapText';
+import PhraseContentStars from '../components/PhraseContentStars';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { getLessonPrepositionPack } from './lesson_prepositions';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
+import { playActivityCompletionModalSound } from './activity_complete_sound';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
@@ -29,6 +33,7 @@ type PrepositionProgress = {
 
 export default function PrepositionDrillScreen() {
   const router = useRouter();
+  const effectiveOs = useEffectivePlatformOS();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const lessonId = parseInt(id || '0', 10) || 0;
   const { lang } = useLang();
@@ -70,38 +75,36 @@ export default function PrepositionDrillScreen() {
   //     (даём отрисовать "Неверно" + объяснение);
   //   • при закрытии модала, если энергия так и не восстановилась
   //     (через осколки или премиум) — выходим из тренажёра.
-  const { energy, maxEnergy, isUnlimited: energyUnlimited, spendOne } = useEnergy();
+  const { energy, bonusEnergy, isUnlimited: energyUnlimited, spendOne, energyReady } = useEnergy();
   const energyRef = useRef(energy);
   const energyUnlimitedRef = useRef(energyUnlimited);
+  const bonusEnergyRef = useRef(bonusEnergy);
   const spendOneRef = useRef(spendOne);
   useEffect(() => { energyRef.current = energy; }, [energy]);
   useEffect(() => { energyUnlimitedRef.current = energyUnlimited; }, [energyUnlimited]);
+  useEffect(() => { bonusEnergyRef.current = bonusEnergy; }, [bonusEnergy]);
   useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
 
   const [noEnergyModalOpen, setNoEnergyModalOpen] = useState(false);
-  // Не открываем модал на самом первом рендере, пока EnergyContext не подгрузил
-  // реальное значение из AsyncStorage (он стартует с MAX_ENERGY=5 placeholder'ом).
-  const energyLoadedRef = useRef(false);
+  /** Совпадает с spendOne(): база + подарочная очередь. */
+  const totalPlayEnergy = (): number =>
+    energyUnlimitedRef.current ? Number.POSITIVE_INFINITY : energyRef.current + bonusEnergyRef.current;
+
+  // Открываем модал только после реальной загрузки из AsyncStorage (не placeholder MAX_ENERGY).
   useEffect(() => {
-    const t = setTimeout(() => { energyLoadedRef.current = true; }, 80);
-    return () => clearTimeout(t);
-  }, []);
-  // Открываем модал, если на входе энергия 0 и нет премиума.
-  useEffect(() => {
-    if (!energyLoadedRef.current) return;
+    if (!energyReady) return;
     if (energyUnlimited) return;
-    if (energy <= 0) setNoEnergyModalOpen(true);
-  }, [energy, energyUnlimited]);
-  // Авто-закрытие модала, когда энергия восстановилась (осколки/премиум).
+    if (energy + bonusEnergy <= 0) setNoEnergyModalOpen(true);
+  }, [energyReady, energy, bonusEnergy, energyUnlimited]);
+
   useEffect(() => {
-    if (energyUnlimited || energy > 0) setNoEnergyModalOpen(false);
-  }, [energyUnlimited, energy]);
+    if (energyUnlimited || energy + bonusEnergy > 0) setNoEnergyModalOpen(false);
+  }, [energyUnlimited, energy, bonusEnergy]);
 
   const onCloseEnergyModal = useCallback(() => {
     setNoEnergyModalOpen(false);
-    // Если юзер закрыл модал, но энергию так и не восстановил и премиум не
-    // купил — оставлять его на тренажёре нет смысла: вернётся к меню урока.
-    if (!energyUnlimitedRef.current && energyRef.current <= 0) {
+    // Закрыли модал без пополнения — выходим, иначе остаёмся без права списания.
+    if (!energyUnlimitedRef.current && energyRef.current + bonusEnergyRef.current <= 0) {
       router.back();
     }
   }, [router]);
@@ -194,6 +197,11 @@ export default function PrepositionDrillScreen() {
     })();
   }, [done, reviewMode, total, wrongIds.length, lessonId, lang]);
 
+  useEffect(() => {
+    if (!done) return;
+    void playActivityCompletionModalSound();
+  }, [done]);
+
   const speakSentenceEn = useCallback((template: string, prep: string) => {
     const line = template.replace(/__/g, prep).replace(/\s+/g, ' ').trim();
     if (!line) return;
@@ -202,7 +210,7 @@ export default function PrepositionDrillScreen() {
     });
   }, [speakAudio]);
 
-  /** Після відповіді блок «Неверно» + «Дальше» нижче вьюпорту — прокручуємо (особливо Android + навбар). */
+  /** Після відповіді пояснення може займати екран — докручуємо вниз до «Дальше», зірок і репорта (Android). */
   useEffect(() => {
     if (selected === null || !item) return;
     const t1 = setTimeout(() => scrollRef.current?.scrollToEnd({ animated: true }), 160);
@@ -218,6 +226,7 @@ export default function PrepositionDrillScreen() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
+          <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
               <TouchableOpacity
                 onPress={() => { hapticTap(); router.back(); }}
@@ -235,6 +244,7 @@ export default function PrepositionDrillScreen() {
                 })}
               </Text>
             </View>
+          </View>
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -255,6 +265,10 @@ export default function PrepositionDrillScreen() {
 
   const onAnswer = (option: string) => {
     if (selected) return;
+    if (!energyUnlimitedRef.current && totalPlayEnergy() <= 0) {
+      setNoEnergyModalOpen(true);
+      return;
+    }
     const ok = option === item.correct;
     setSelected(option);
     setIsCorrect(ok);
@@ -281,15 +295,16 @@ export default function PrepositionDrillScreen() {
       setWrongIds(nextWrong);
       saveProgress(nextAnswered, nextWrong);
 
-      // Энергия: тратим 1 единицу за ошибку. Премиум не тратит. Если до спенда
-      // была 1 — после спенда упадём в 0 → показываем NoEnergyModal с задержкой,
-      // чтобы успело отрисоваться "Неверно" + объяснение (см. lesson_words.tsx).
+      // Энергия: тратим 1 единицу за ошибку (сначала бонусная, см. EnergyContext).
+      // Модал — когда суммарно нечего было тратить к концу (не только «была база ровно 1»).
       if (!energyUnlimitedRef.current) {
-        const energyBefore = energyRef.current;
+        const totalBefore = energyRef.current + bonusEnergyRef.current;
         spendOneRef.current().then(success => {
-          if (success && energyBefore === 1) {
-            setTimeout(() => setNoEnergyModalOpen(true), 800);
-          }
+          if (!success) return;
+          setTimeout(() => {
+            const totalAfter = energyRef.current + bonusEnergyRef.current;
+            if (totalBefore > 0 && totalAfter <= 0) setNoEnergyModalOpen(true);
+          }, 800);
         }).catch(() => {});
       }
     }
@@ -321,12 +336,36 @@ export default function PrepositionDrillScreen() {
   };
 
   const scrollBottomPad =
-    insets.bottom + ds.spacing.xl + (Platform.OS === 'android' ? ds.spacing.lg + 8 : ds.spacing.sm);
+    insets.bottom + ds.spacing.xl + (effectiveOs === 'android' ? ds.spacing.lg + 8 : ds.spacing.sm);
+
+  /** Один слот `__` в шаблоне; после ответа показываем правильное слово в тексте (= item.correct), чтобы текст совпадал с блоком «Верно» и меньше ловить баги обрезки Android у `__`. */
+  const renderSentenceCard = () => {
+    if (!item) return null;
+    const tpl = item.sentenceTemplate;
+    const lh = Math.round(f.h2 * 1.35);
+    const baseStyle = { color: t.textPrimary, fontSize: f.h2, fontWeight: '700' as const, lineHeight: lh };
+    if (selected === null || !tpl.includes('__')) {
+      return <ClozeGapText text={tpl} style={baseStyle} />;
+    }
+    const [before, ...rest] = tpl.split('__');
+    const after = rest.join('__'); // если в шаблоне когда-нибудь окажется больше одного маркера
+    const fill = (
+      <Text style={{ ...baseStyle, fontWeight: '800', color: t.correct }}>{item.correct}</Text>
+    );
+    return (
+      <Text style={baseStyle}>
+        {before}
+        {fill}
+        {after}
+      </Text>
+    );
+  };
 
   return (
     <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }} edges={['top', 'left', 'right', 'bottom']}>
         <ContentWrap>
+        <View style={{ flex: 1, paddingHorizontal: ds.spacing.lg }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingVertical: 14 }}>
             <TouchableOpacity
               onPress={() => { hapticTap(); router.back(); }}
@@ -335,7 +374,7 @@ export default function PrepositionDrillScreen() {
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{title}</Text>
-            <LessonEnergyLightning energyCount={energy} maxEnergy={maxEnergy} shouldShake={false} />
+            <EnergyBar size={20} />
           </View>
 
           <View style={{ backgroundColor: t.bgCard, borderRadius: 14, padding: 14, borderWidth: 1, borderColor: t.border, marginBottom: 12 }}>
@@ -351,31 +390,44 @@ export default function PrepositionDrillScreen() {
                 keyboardShouldPersistTaps="handled"
                 nestedScrollEnabled
                 showsVerticalScrollIndicator
+                removeClippedSubviews={effectiveOs === 'android' ? false : undefined}
               >
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginBottom: 8 }}>
                 {triLang(lang, { uk: 'Завдання', ru: 'Задание', es: 'Ejercicio' })} {itemIdx + 1}/{total}
               </Text>
 
-              <View style={{ backgroundColor: t.bgCard, borderRadius: ds.radius.lg, borderWidth: 1, borderColor: t.border, padding: ds.spacing.md, marginBottom: ds.spacing.md }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', lineHeight: Math.round(f.h2 * 1.35) }}>
-                  {item.sentenceTemplate}
-                </Text>
+              <View
+                style={{
+                  backgroundColor: t.bgCard,
+                  borderRadius: ds.radius.lg,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                  padding: ds.spacing.md,
+                  marginBottom: ds.spacing.md,
+                  ...(effectiveOs === 'android' ? { elevation: 2 } : {}),
+                }}
+              >
+                {renderSentenceCard()}
               </View>
 
-              {item.options.map(opt => {
+              {item.options.map((opt, optIdx) => {
                 const isSel = selected === opt;
                 const showCorrect = selected !== null && opt === item.correct;
                 const bg = showCorrect ? 'rgba(21,128,61,0.2)' : isSel ? 'rgba(185,28,28,0.2)' : t.bgCard;
                 const border = showCorrect ? '#15803D' : isSel ? '#B91C1C' : t.border;
                 return (
-                  <TouchableOpacity
-                    key={opt}
-                    onPress={() => onAnswer(opt)}
-                    disabled={selected !== null}
-                    style={{ backgroundColor: bg, borderColor: border, borderWidth: 1, borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+                  <View
+                    key={`${item.id}:${optIdx}:${opt}`}
+                    collapsable={effectiveOs === 'android' ? false : undefined}
                   >
+                    <TouchableOpacity
+                      onPress={() => onAnswer(opt)}
+                      disabled={selected !== null}
+                      style={{ backgroundColor: bg, borderColor: border, borderWidth: 1, borderRadius: 12, paddingVertical: 12, alignItems: 'center', marginBottom: 10 }}
+                    >
                     <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{opt}</Text>
                   </TouchableOpacity>
+                  </View>
                 );
               })}
 
@@ -404,6 +456,13 @@ export default function PrepositionDrillScreen() {
                 </View>
               )}
 
+              <PhraseContentStars
+                scope="preposition_drill"
+                itemId={`L${lessonId}_prep_${item.id}`}
+                labelSnippet={item.sentenceTemplate}
+                style={{ marginTop: ds.spacing.sm, marginBottom: ds.spacing.sm }}
+              />
+
               {/* Кнопка репорта — в конце прокрутки */}
               <ReportErrorButton
                 screen="lesson_prepositions"
@@ -428,32 +487,6 @@ export default function PrepositionDrillScreen() {
                 style={{ alignSelf: 'center', marginTop: ds.spacing.md, marginBottom: ds.spacing.sm }}
               />
               </ScrollView>
-
-              {selected !== null && (
-                <View
-                  style={{
-                    paddingTop: ds.spacing.sm,
-                    paddingBottom: Math.max(insets.bottom, ds.spacing.sm),
-                    backgroundColor: t.bgPrimary,
-                    borderTopWidth: 1,
-                    borderTopColor: t.border,
-                  }}
-                >
-                  <TouchableOpacity
-                    onPress={goNext}
-                    style={{
-                      backgroundColor: '#2E7D52',
-                      borderRadius: ds.radius.md,
-                      paddingVertical: ds.spacing.md,
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Text style={{ color: '#fff', fontWeight: '700', fontSize: f.body }}>
-                      {triLang(lang, { uk: 'Далі →', ru: 'Дальше →', es: 'Siguiente →' })}
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              )}
             </View>
           ) : (
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', gap: 16, padding: 20 }}>
@@ -504,7 +537,7 @@ export default function PrepositionDrillScreen() {
                   style={{ backgroundColor: t.bgSurface, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 14, borderWidth: 1, borderColor: t.border }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                    {triLang(lang, { uk: 'Повторити помилки', ru: 'Повторить ошибки', es: 'Repasar errores' })}
+                    {triLang(lang, { uk: 'Виправити помилки', ru: 'Исправить ошибки', es: 'Corregir errores' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -532,6 +565,7 @@ export default function PrepositionDrillScreen() {
               </Text>
             </Animated.View>
           )}
+        </View>
         </ContentWrap>
 
         <NoEnergyModal visible={noEnergyModalOpen} onClose={onCloseEnergyModal} />

@@ -867,10 +867,10 @@
 - [specific] to: We must believe in ourselves to achieve this ambitious goal.
   RU: "To" перед глаголом "achieve" - инфинитивная частица, а не предлог места. Конструкция "to achieve" означает цель или соединяет два действия.
 
-- [specific] at: You did not make yourselves at home in that cold office.
+- [specific] at: You did not make yourself at home in that cold office.
   RU: "At home" - фиксированное сочетание для значения "дома". Для такого места-точки используем "at", а не "in" или "on".
 
-- [context] in: You did not make yourselves at home in that cold office.
+- [context] in: You did not make yourself at home in that cold office.
   RU: С помещениями и закрытыми пространствами всегда "in": "in that cold office". У комнаты, здания или зала есть стены - человек находится внутри них.
 
 - [context] around: Did they build that wooden fence around their garden themselves?

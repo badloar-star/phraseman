@@ -26,7 +26,7 @@ import Reanimated, {
 } from 'react-native-reanimated';
 import { triLang } from '../../constants/i18n';
 import type { Lang } from '../../constants/i18n';
-import type { Theme } from '../../constants/theme';
+import type { Theme, ThemeMode } from '../../constants/theme';
 import { categoriesForFlashcardsHub } from './constants';
 import { packHubCodeName, packTitleForInterface, packCategoryIonIcon, type FlashcardMarketPack } from './marketplace';
 import { useCardPackShardPaywall } from './useCardPackShardPaywall';
@@ -37,7 +37,12 @@ import { stageOwnedPackCardsForNavigation } from '../flashcards_collection';
 import { hasMeaningfulCommunityPackCreateDraft } from '../community_packs/communityPackDraftStorage';
 import { stageCommunityPackCardsForNavigation } from '../community_packs/staging';
 import { bundledPackTilePng } from './packMarketplaceIcons';
+import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
+import ReportPackModal from '../../components/ReportPackModal';
+import { hideCommunityPackOnDevice, loadHiddenCommunityPackIds } from '../community_packs/communityPackHiddenStorage';
+import { getEffectivePlatformOS } from '../platform_ui_preview';
+import { hapticTap } from '../../hooks/use-haptics';
 
 const ReanimatedPressable = Reanimated.createAnimatedComponent(Pressable);
 
@@ -54,6 +59,8 @@ type Props = {
   ownedCommunityPackIds?: string[];
   /** Stable id автора — кнопка «редагувати» на своїх UGC. */
   hubAuthorStableId?: string | null;
+  /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
+  themeMode: ThemeMode;
 };
 
 const COLS = 3;
@@ -72,10 +79,11 @@ const enteringForIndex = (i: number) =>
 const SPRING_CFG = { damping: 16, stiffness: 420, mass: 0.35 } as const;
 
 function shadowForTile(t: Theme, kind: 'base' | 'owned' | 'shop'): ViewStyle {
-  if (Platform.OS === 'web') {
+  const os = getEffectivePlatformOS();
+  if (os === 'web') {
     return {};
   }
-  if (Platform.OS === 'android') {
+  if (os === 'android') {
     return { elevation: kind === 'base' ? 3 : 4 };
   }
   if (kind === 'shop') {
@@ -106,6 +114,7 @@ type HubTileShellProps = {
   testID: string;
   a11y: string;
   onPress: () => void;
+  onLongPress?: () => void;
   disabled?: boolean;
   reduceMotion: boolean;
   width: number;
@@ -113,7 +122,7 @@ type HubTileShellProps = {
 };
 
 /** Пружина на нажатии — як у в polished apps (scale ~0,96). */
-function HubTileShell({ testID, a11y, onPress, disabled, reduceMotion, width, children }: HubTileShellProps) {
+function HubTileShell({ testID, a11y, onPress, onLongPress, disabled, reduceMotion, width, children }: HubTileShellProps) {
   const s = useSharedValue(1);
   const aStyle = useAnimatedStyle(() => ({ transform: [{ scale: s.value }] }));
 
@@ -123,6 +132,8 @@ function HubTileShell({ testID, a11y, onPress, disabled, reduceMotion, width, ch
       accessibilityLabel={a11y}
       accessible
       onPress={onPress}
+      onLongPress={onLongPress}
+      delayLongPress={onLongPress ? 420 : undefined}
       disabled={disabled}
       onPressIn={() => {
         if (reduceMotion) {
@@ -164,6 +175,7 @@ function UnownedMarketPackCard({
   cardShadow,
   reduceMotion,
 }: UnownedCardProps) {
+  const pfOs = getEffectivePlatformOS();
   const ctaScale = useSharedValue(1);
 
   useEffect(() => {
@@ -233,15 +245,16 @@ function UnownedMarketPackCard({
             borderColor: t.border,
             alignItems: 'center',
             justifyContent: 'center',
-            ...Platform.select({
-              ios: {
-                shadowColor: '#000',
-                shadowOffset: { width: 0, height: 1 },
-                shadowOpacity: 0.35,
-                shadowRadius: 2,
-              },
-              android: { elevation: 2 },
-            }),
+            ...(pfOs === 'ios'
+              ? {
+                  shadowColor: '#000',
+                  shadowOffset: { width: 0, height: 1 },
+                  shadowOpacity: 0.35,
+                  shadowRadius: 2,
+                }
+              : pfOs === 'android'
+                ? { elevation: 2 }
+                : {}),
           }}
         >
           <Ionicons name="lock-closed" size={12} color={t.textSecond} style={{ opacity: 0.9 }} />
@@ -268,24 +281,35 @@ function UnownedMarketPackCard({
               position: 'absolute',
               right: 8,
               bottom: 8,
+              zIndex: 10,
+              ...pfOs === 'ios'
+                ? {
+                    shadowColor: '#000',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.45,
+                    shadowRadius: 4,
+                  }
+                : pfOs === 'android'
+                  ? { elevation: 8 }
+                  : {},
             },
           ]}
         >
           <LinearGradient
-            colors={['rgba(24,34,58,0.95)', 'rgba(33,48,80,0.92)']}
+            colors={['rgba(24,34,58,0.98)', 'rgba(33,48,80,0.96)']}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={{
               borderRadius: 12,
               borderWidth: 1,
-              borderColor: `${t.accent}55`,
+              borderColor: 'rgba(255,255,255,0.22)',
               paddingVertical: 5,
               paddingHorizontal: 8,
             }}
           >
             <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 4 }}>
               <Image source={oskolokImageForPackShards(pack.priceShards)} style={{ width: 12, height: 12 }} contentFit="contain" />
-              <Text style={{ fontSize: 11, fontWeight: '800', color: t.textSecond, letterSpacing: 0.2 }}>
+              <Text style={{ fontSize: 11, fontWeight: '800', color: '#F1F5F9', letterSpacing: 0.2 }}>
                 {pack.priceShards}
               </Text>
             </View>
@@ -315,6 +339,7 @@ export default function FlashcardsCategoryHub({
   communityPacks = [],
   ownedCommunityPackIds = [],
   hubAuthorStableId = null,
+  themeMode,
 }: Props) {
   const router = useRouter();
   const [buyingPackId, setBuyingPackId] = useState<string | null>(null);
@@ -322,6 +347,14 @@ export default function FlashcardsCategoryHub({
   const [hubPackSegment, setHubPackSegment] = useState<'mine' | 'community'>('mine');
   const [hasUnfinishedPackDraft, setHasUnfinishedPackDraft] = useState(false);
   const [discardDraftForNewOpen, setDiscardDraftForNewOpen] = useState(false);
+  const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());
+  const [ugcReportHintPackId, setUgcReportHintPackId] = useState<string | null>(null);
+  const [reportModalPack, setReportModalPack] = useState<FlashcardMarketPack | null>(null);
+
+  const refreshHiddenCommunityPacks = useCallback(async () => {
+    const ids = await loadHiddenCommunityPackIds();
+    setHiddenCommunityPackIds(new Set(ids));
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -330,10 +363,11 @@ export default function FlashcardsCategoryHub({
         const ok = await hasMeaningfulCommunityPackCreateDraft();
         if (!cancelled) setHasUnfinishedPackDraft(ok);
       })();
+      void refreshHiddenCommunityPacks();
       return () => {
         cancelled = true;
       };
-    }, []),
+    }, [refreshHiddenCommunityPacks]),
   );
 
   const { openPaywall, CardPackPaywallModalEl } = useCardPackShardPaywall({
@@ -343,6 +377,7 @@ export default function FlashcardsCategoryHub({
     onAfterPurchase: onMarketRefresh,
     onPurchaseStart: (id) => setBuyingPackId(id),
     onPurchaseEnd: () => setBuyingPackId(null),
+    onCommunityPackHiddenOnDevice: refreshHiddenCommunityPacks,
   });
   const { width: winW } = useWindowDimensions();
   const tileW = useMemo(() => {
@@ -357,6 +392,25 @@ export default function FlashcardsCategoryHub({
   const labelSize = Math.max(9, Math.min(11, Math.floor(tileW * 0.11)));
 
   const hubCategories = useMemo(() => categoriesForFlashcardsHub(), []);
+
+  const isGradientSurface = themeMode === 'ocean' || themeMode === 'sakura';
+  /** Підписи під плитками рендеряться на градієнті — `t.textPrimary` там тьмяний (як у налаштуваннях). */
+  const hubLabelPrimary = isGradientSurface
+    ? (themeMode === 'ocean' ? 'rgba(246,252,255,0.98)' : 'rgba(255,250,252,0.98)')
+    : t.textPrimary;
+  const hubLabelMuted = isGradientSurface
+    ? (themeMode === 'ocean' ? 'rgba(215,236,255,0.88)' : 'rgba(255,215,232,0.86)')
+    : t.textMuted;
+  const hubLabelAccent = isGradientSurface
+    ? (themeMode === 'ocean' ? 'rgba(200,236,255,0.95)' : 'rgba(255,200,228,0.95)')
+    : t.accent;
+  const tabOnBg = isGradientSurface ? t.bgCard : `${t.accent}22`;
+  const tabOnText = isGradientSurface ? t.textPrimary : t.accent;
+  const tabOffBg = isGradientSurface ? 'rgba(255,255,255,0.16)' : t.bgSurface;
+  const tabOffText = isGradientSurface
+    ? (themeMode === 'ocean' ? 'rgba(235,248,255,0.94)' : 'rgba(255,236,245,0.94)')
+    : t.textSecond;
+  const tabOffBorder = isGradientSurface ? 'rgba(255,255,255,0.38)' : t.border;
 
   /**
    * Куплений UGC, авторський набір, або UGC id у спільному `ownedPackIds` (легасі/гілка без isCommunityUgc).
@@ -374,15 +428,23 @@ export default function FlashcardsCategoryHub({
     [marketPacks, communityPacks, ownedPackIds, isCommunityPackMine],
   );
 
-  /** Вкладка «Мои»: сохраняем порядок каталога, после покупки меняется только статус плитки. */
-  const mineMergedPacks = useMemo(() => {
-    const catalogOrdered = [...marketPacks];
-    const catalogIds = new Set(catalogOrdered.map((p) => p.id));
+  /**
+   * Вкладка «Мои»: без витрины платных официальных наборов — только то, что уже в «Моїх» (`ownedPackIds`).
+   * Подари: ваучер активується в paywall → `redeemPackGiftVoucher` додає id в owned — тоді плитка зʼявляється тут.
+   */
+  const mineTabPacksOnlyOwned = useMemo(() => {
+    const catalogOwnedOrdered = marketPacks.filter((p) => ownedPackIds.includes(p.id));
+    const catalogIds = new Set(marketPacks.map((p) => p.id));
     const extraOwnedCommunity = communityPacks.filter(
       (p) => isCommunityPackMine(p) && !catalogIds.has(p.id),
     );
-    return [...catalogOrdered, ...extraOwnedCommunity];
-  }, [marketPacks, communityPacks, isCommunityPackMine]);
+    return [...catalogOwnedOrdered, ...extraOwnedCommunity];
+  }, [marketPacks, communityPacks, ownedPackIds, isCommunityPackMine]);
+
+  const visibleCommunityPacks = useMemo(
+    () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id)),
+    [communityPacks, hiddenCommunityPackIds],
+  );
 
   const isPackInMineOwned = useCallback((p: FlashcardMarketPack) => mineOwnedPacks.some((m) => m.id === p.id), [mineOwnedPacks]);
 
@@ -397,6 +459,7 @@ export default function FlashcardsCategoryHub({
   }, []);
 
   const openOwnedPack = async (pack: FlashcardMarketPack) => {
+    setUgcReportHintPackId(null);
     if (pack.isCommunityUgc) {
       const ok = await stageCommunityPackCardsForNavigation(pack.id);
       if (!ok) {
@@ -419,6 +482,7 @@ export default function FlashcardsCategoryHub({
   const onLockedPackPress = useCallback(
     (pack: FlashcardMarketPack) => {
       if (buyingPackId) return;
+      setUgcReportHintPackId(null);
       openPaywall(pack);
     },
     [buyingPackId, openPaywall],
@@ -430,7 +494,7 @@ export default function FlashcardsCategoryHub({
     fontSize: labelSize,
     fontWeight: '600' as const,
     letterSpacing: 0.15,
-    color: owned ? t.textMuted : t.textPrimary,
+    color: owned ? hubLabelMuted : hubLabelPrimary,
     textAlign: 'center' as const,
     lineHeight: labelSize + 2,
   });
@@ -440,16 +504,21 @@ export default function FlashcardsCategoryHub({
     fontSize: labelSize,
     fontWeight: '600' as const,
     letterSpacing: 0.15,
-    color: owned ? t.accent : t.textPrimary,
+    color: owned ? hubLabelAccent : hubLabelPrimary,
     textAlign: 'center' as const,
     lineHeight: labelSize + 2,
   });
 
   const hubBarW = winW - H_PAD * 2;
 
-  const renderPackTiles = (packList: FlashcardMarketPack[], ownedFn: (pack: FlashcardMarketPack) => boolean) =>
+  const renderPackTiles = (
+    packList: FlashcardMarketPack[],
+    ownedFn: (pack: FlashcardMarketPack) => boolean,
+    ugcCommunityCatalog = false,
+  ) =>
     packList.map((pack) => {
       const owned = ownedFn(pack);
+      const showUgcReportShortcut = ugcCommunityCatalog && !!pack.isCommunityUgc && !owned;
       const displayTitle = packTitleForInterface(pack, lang);
       const hubCode = packHubCodeName(pack);
       /** UGC: під плиткою показуємо назву набору, а не id / похідний codeName. */
@@ -478,6 +547,14 @@ export default function FlashcardsCategoryHub({
             reduceMotion={reduceMotion}
             disabled={!owned && !!buyingPackId}
             onPress={() => (owned ? void openOwnedPack(pack) : onLockedPackPress(pack))}
+            onLongPress={
+              showUgcReportShortcut
+                ? () => {
+                    void hapticTap();
+                    setUgcReportHintPackId((cur) => (cur === pack.id ? null : pack.id));
+                  }
+                : undefined
+            }
           >
             <View style={{ width: tileW, position: 'relative', opacity: dimWhileOtherBuying ? 0.55 : 1 }}>
               {owned ? (
@@ -509,7 +586,7 @@ export default function FlashcardsCategoryHub({
                   t={t}
                   tileW={tileW}
                   pack={pack}
-                  iconSize={packTileIconSize}
+                  iconSize={Math.min(packTileIconSize, Math.floor(tileW * 0.76))}
                   ion={ion}
                   packPng={packPng}
                   cardShadow={cardShadow}
@@ -518,6 +595,65 @@ export default function FlashcardsCategoryHub({
               )}
             </View>
           </HubTileShell>
+          {showUgcReportShortcut && ugcReportHintPackId === pack.id ? (
+            <View style={{ marginTop: 4, width: '100%' }}>
+              <TouchableOpacity
+                onPress={() => {
+                  void hapticTap();
+                  setReportModalPack(pack);
+                  setUgcReportHintPackId(null);
+                }}
+                style={{ paddingVertical: 4, width: '100%' }}
+                hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
+              >
+                <Text
+                  style={{
+                    color: t.wrong,
+                    fontSize: Math.max(9, labelSize),
+                    fontWeight: '800',
+                    textAlign: 'center',
+                    textDecorationLine: 'underline',
+                  }}
+                >
+                  {triLang(lang, {
+                    ru: 'Пожаловаться на набор',
+                    uk: 'Поскаржитися на набір',
+                    es: 'Reportar el pack',
+                  })}
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={async () => {
+                  void hapticTap();
+                  setUgcReportHintPackId(null);
+                  try {
+                    await hideCommunityPackOnDevice(pack.id);
+                    await refreshHiddenCommunityPacks();
+                  } catch {
+                    // no-op: AsyncStorage unavailable
+                  }
+                }}
+                style={{ paddingVertical: 4, width: '100%' }}
+                hitSlop={{ top: 6, bottom: 6, left: 8, right: 8 }}
+              >
+                <Text
+                  style={{
+                    color: isGradientSurface ? hubLabelMuted : t.textMuted,
+                    fontSize: Math.max(9, labelSize),
+                    fontWeight: '800',
+                    textAlign: 'center',
+                    textDecorationLine: 'underline',
+                  }}
+                >
+                  {triLang(lang, {
+                    ru: 'Не показывать мне',
+                    uk: 'Не показувати мені',
+                    es: 'No mostrarme',
+                  })}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : null}
           {showAuthorEdit ? (
             <TouchableOpacity
               onPress={() =>
@@ -541,12 +677,12 @@ export default function FlashcardsCategoryHub({
             {packTileLabel}
           </Text>
           {pack.isPendingUpdateReview ? (
-            <Text style={{ fontSize: 9, color: t.accent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
+            <Text style={{ fontSize: 9, color: isGradientSurface ? hubLabelAccent : t.accent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
               {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación' })}
             </Text>
           ) : null}
           {pack.isCommunityUgc && pack.ratingCount > 0 ? (
-            <Text style={{ fontSize: 9, color: t.textMuted, marginTop: 2, textAlign: 'center', fontWeight: '700' }}>
+            <Text style={{ fontSize: 9, color: isGradientSurface ? hubLabelMuted : t.textMuted, marginTop: 2, textAlign: 'center', fontWeight: '700' }}>
               ★ {pack.ratingAvg.toFixed(1)} ({pack.ratingCount})
             </Text>
           ) : null}
@@ -613,36 +749,54 @@ export default function FlashcardsCategoryHub({
       }}
     >
       <TouchableOpacity
-        onPress={() => setHubPackSegment('mine')}
+        onPress={() => {
+          setUgcReportHintPackId(null);
+          setHubPackSegment('mine');
+        }}
         style={{
+          flex: 1,
+          minWidth: 0,
+          alignItems: 'center',
+          justifyContent: 'center',
           paddingVertical: 8,
-          paddingHorizontal: 14,
+          paddingHorizontal: 10,
           borderRadius: 12,
           borderWidth: 1,
-          borderColor: hubPackSegment === 'mine' ? t.accent : t.border,
-          backgroundColor: hubPackSegment === 'mine' ? `${t.accent}22` : t.bgSurface,
+          borderColor: hubPackSegment === 'mine' ? t.accent : tabOffBorder,
+          backgroundColor: hubPackSegment === 'mine' ? tabOnBg : tabOffBg,
         }}
       >
-        <Text style={{ color: hubPackSegment === 'mine' ? t.accent : t.textSecond, fontWeight: '800', fontSize: labelSize + 1 }}>
+        <Text style={{ color: hubPackSegment === 'mine' ? tabOnText : tabOffText, fontWeight: '800', fontSize: labelSize + 1 }} numberOfLines={1}>
           {triLang(lang, { ru: 'Мои', uk: 'Мої', es: 'Mis' })}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => setHubPackSegment('community')}
+        onPress={() => {
+          setUgcReportHintPackId(null);
+          setHubPackSegment('community');
+        }}
         style={{
+          flex: 1,
+          minWidth: 0,
+          alignItems: 'center',
+          justifyContent: 'center',
           paddingVertical: 8,
-          paddingHorizontal: 14,
+          paddingHorizontal: 10,
           borderRadius: 12,
           borderWidth: 1,
-          borderColor: hubPackSegment === 'community' ? t.accent : t.border,
-          backgroundColor: hubPackSegment === 'community' ? `${t.accent}22` : t.bgSurface,
+          borderColor: hubPackSegment === 'community' ? t.accent : tabOffBorder,
+          backgroundColor: hubPackSegment === 'community' ? tabOnBg : tabOffBg,
         }}
       >
         <Text
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={0.85}
           style={{
-            color: hubPackSegment === 'community' ? t.accent : t.textSecond,
+            color: hubPackSegment === 'community' ? tabOnText : tabOffText,
             fontWeight: '800',
             fontSize: labelSize + 1,
+            textAlign: 'center',
           }}
         >
           {triLang(lang, { ru: 'Сообщество', uk: 'Спільнота', es: 'Comunidad' })}
@@ -667,7 +821,7 @@ export default function FlashcardsCategoryHub({
             }}
           >
             {renderHubCategoryTiles()}
-            {renderPackTiles(mineMergedPacks, isPackInMineOwned)}
+            {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
           </View>
         ) : (
           <View style={{ width: hubBarW }}>
@@ -682,7 +836,7 @@ export default function FlashcardsCategoryHub({
                   borderRadius: 14,
                   borderWidth: 1.5,
                   borderColor: t.accent,
-                  backgroundColor: `${t.accent}1A`,
+                  backgroundColor: isGradientSurface ? t.bgCard : `${t.accent}1A`,
                   flexDirection: 'row',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -690,7 +844,7 @@ export default function FlashcardsCategoryHub({
                 }}
               >
                 <Ionicons name="document-text-outline" size={20} color={t.accent} />
-                <Text style={{ color: t.accent, fontWeight: '800', fontSize: labelSize + 2 }}>
+                <Text style={{ color: isGradientSurface ? t.textPrimary : t.accent, fontWeight: '800', fontSize: labelSize + 2 }}>
                   {triLang(lang, {
                     ru: 'Продолжить создание набора',
                     uk: 'Продовжити створення набору',
@@ -721,17 +875,19 @@ export default function FlashcardsCategoryHub({
                 {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack' })}
               </Text>
             </TouchableOpacity>
-            {communityPacks.length === 0 ? (
-              <Text style={{ color: t.textMuted, fontSize: labelSize + 2, marginBottom: 8 }}>
-                {triLang(lang, {
-                  ru: 'Здесь появятся наборы после публикации и модерации.',
-                  uk: 'Тут з\'являться набори після публікації та модерації.',
-                  es: 'Aquí verás packs tras publicarlos y moderarlos.',
-                })}
-              </Text>
+            {visibleCommunityPacks.length === 0 ? (
+              communityPacks.length === 0 ? (
+                <Text style={{ color: isGradientSurface ? hubLabelMuted : t.textMuted, fontSize: labelSize + 2, marginBottom: 8 }}>
+                  {triLang(lang, {
+                    ru: 'Здесь появятся наборы после публикации и модерации.',
+                    uk: 'Тут з\'являться набори після публікації та модерації.',
+                    es: 'Aquí verás packs tras publicarlos y moderarlos.',
+                  })}
+                </Text>
+              ) : null
             ) : (
               <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: GAP }}>
-                {renderPackTiles(communityPacks, isCommunityPackMine)}
+                {renderPackTiles(visibleCommunityPacks, isCommunityPackMine, true)}
               </View>
             )}
           </View>
@@ -746,9 +902,20 @@ export default function FlashcardsCategoryHub({
           }}
         >
           {renderHubCategoryTiles()}
-          {renderPackTiles(marketPacks, (p) => ownedPackIds.includes(p.id))}
+          {renderPackTiles(marketPacks, (p) => ownedPackIds.includes(p.id), false)}
         </View>
       )}
+      <View style={{ alignItems: 'center', marginTop: 12, marginBottom: 8, width: '100%' }}>
+        <ReportErrorButton
+          screen="flashcards_hub"
+          dataId="flashcards_hub_main"
+          dataText={triLang(lang, {
+            ru: 'Карточки: категории и пакеты',
+            uk: 'Картки: категорії та пакети',
+            es: 'Tarjetas: categorías y packs',
+          })}
+        />
+      </View>
       <ThemedConfirmModal
         visible={discardDraftForNewOpen}
         title={triLang(lang, { ru: 'Новый набор', uk: 'Новий набір', es: 'Nuevo pack' })}
@@ -770,6 +937,17 @@ export default function FlashcardsCategoryHub({
           router.push({ pathname: '/community_pack_create', params: { fresh: '1' } } as any);
         }}
       />
+      {reportModalPack ? (
+        <ReportPackModal
+          visible
+          packId={reportModalPack.id}
+          packTitle={packTitleForInterface(reportModalPack, lang)}
+          authorStableId={reportModalPack.authorStableId ?? null}
+          lang={lang}
+          onClose={() => setReportModalPack(null)}
+          onPackHiddenOnDevice={refreshHiddenCommunityPacks}
+        />
+      ) : null}
       {CardPackPaywallModalEl}
     </View>
   );

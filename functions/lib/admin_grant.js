@@ -45,8 +45,7 @@ exports.adminGrantReward = void 0;
  *
  * Доступ: request.auth.token.admin === true (custom claim, ставится скриптом scripts/set_admin_claim.js).
  *
- * Эффект: запись в users/{uid}/shard_rewards/{auto} + поля юзера. Приложение покажет ShardRewardModal
- * c reason='admin_grant' (см. app/_layout.tsx checkShardRewardsFn whitelist).
+ * Эффект: запись в users/{uid}/shard_rewards/{auto} + поля юзера (аудит/история; стартовая модалка снята).
  */
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
@@ -135,7 +134,7 @@ exports.adminGrantReward = (0, https_1.onCall)({ region: REGION }, async (reques
                 existingDays = 0;
             }
             updates['chain_shield'] = JSON.stringify({ daysLeft: existingDays + days, grantedAt: today });
-            humanLabel = `🛡️ Щит стрика / ${days}д`;
+            humanLabel = `🛡️ Щит цепочки / ${days}д`;
         }
         if (type === 'arena_extra_5') {
             const today = todayStrUtc();

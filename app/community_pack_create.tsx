@@ -1,6 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
 import auth from '@react-native-firebase/auth';
-import { Image } from 'expo-image';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
@@ -9,7 +8,6 @@ import {
   Dimensions,
   Keyboard,
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -22,6 +20,7 @@ import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang } from '../constants/i18n';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { useTheme } from '../components/ThemeContext';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
@@ -30,8 +29,7 @@ import { getCommunityUgcPackPaywallTheme } from './flashcards/cardPackPaywallThe
 import {
   COMMUNITY_PACK_CARD_COUNT_MAX,
   COMMUNITY_PACK_CARD_COUNT_MIN,
-  COMMUNITY_PACK_PRICE_SHARDS_MAX,
-  COMMUNITY_PACK_PRICE_SHARDS_MIN,
+  COMMUNITY_PACK_PRICE_SHARDS,
   buildCommunityPackPayloadForCloud,
   validateCommunityPackPayload,
   type CommunityPackSubmissionPayload,
@@ -52,18 +50,11 @@ import {
   type UgcCardThemeId,
 } from './community_packs/ugcCardThemePresets';
 import { useAudio } from '../hooks/use-audio';
-import { oskolokImageForPackShards } from './oskolok';
 import { getCanonicalUserId } from './user_id_policy';
-import { textInputSystemEditMenuProps } from './textInputSystemMenuProps';
+import { useEffectivePlatformOS } from './platform_ui_preview';
+import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
 
 type Row = { id: string; en: string; ru: string; uk: string };
-
-const PRICE_STEP = 10;
-
-function clampPrice(n: number): number {
-  const x = Math.round(n / PRICE_STEP) * PRICE_STEP;
-  return Math.min(COMMUNITY_PACK_PRICE_SHARDS_MAX, Math.max(COMMUNITY_PACK_PRICE_SHARDS_MIN, x));
-}
 
 function communityPackValidationToast(
   err: string,
@@ -91,9 +82,9 @@ function communityPackValidationToast(
       };
     case 'price':
       return {
-        messageRu: 'Проверьте цену в допустимом диапазоне.',
-        messageUk: 'Перевірте ціну в допустимому діапазоні.',
-        messageEs: 'Revisa que el precio esté en el rango permitido.',
+        messageRu: 'Что-то пошло не так с отправкой набора — попробуйте ещё раз.',
+        messageUk: 'Щось пішло не так з надсиланням набору — спробуйте ще раз.',
+        messageEs: 'Algo salió mal al enviar el pack — inténtalo otra vez.',
       };
     case 'card_fields':
       return {
@@ -111,6 +102,7 @@ function communityPackValidationToast(
 }
 
 export default function CommunityPackCreateScreen() {
+  const effectiveOs = useEffectivePlatformOS();
   const router = useRouter();
   const params = useLocalSearchParams<{ packId?: string; fresh?: string }>();
   const editPackId = typeof params.packId === 'string' ? params.packId.trim() : '';
@@ -124,7 +116,6 @@ export default function CommunityPackCreateScreen() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [priceShards, setPriceShards] = useState(COMMUNITY_PACK_PRICE_SHARDS_MIN);
   const [themeIdx, setThemeIdx] = useState(0);
   const [rows, setRows] = useState<Row[]>([]);
   const [busy, setBusy] = useState(false);
@@ -133,6 +124,7 @@ export default function CommunityPackCreateScreen() {
   const [draftEn, setDraftEn] = useState('');
   const [draftRu, setDraftRu] = useState('');
   const [draftNote, setDraftNote] = useState('');
+  const [editingIdx, setEditingIdx] = useState<number | null>(null);
   /** Extra bottom padding so ScrollView can scroll past the keyboard. */
   const [keyboardBottomInset, setKeyboardBottomInset] = useState(0);
   const [clearDraftModalOpen, setClearDraftModalOpen] = useState(false);
@@ -147,6 +139,7 @@ export default function CommunityPackCreateScreen() {
   const draftEnInputRef = useRef<TextInput>(null);
   const draftRuInputRef = useRef<TextInput>(null);
   const draftNoteInputRef = useRef<TextInput>(null);
+  const draftPanelRef = useRef<View>(null);
 
   const canUse = CLOUD_SYNC_ENABLED && !IS_EXPO_GO && isCommunityPacksCloudEnabled();
   const isEditMode = !!editPackId;
@@ -192,18 +185,18 @@ export default function CommunityPackCreateScreen() {
     (inputRef: React.RefObject<TextInput | null>) => () => {
       lastFocusedInputRef.current = inputRef;
       scrollFocusedInputIntoView(inputRef);
-      if (Platform.OS === 'android') {
+      if (effectiveOs === 'android') {
         requestAnimationFrame(() => scrollFocusedInputIntoView(inputRef));
         setTimeout(() => scrollFocusedInputIntoView(inputRef), 120);
         setTimeout(() => scrollFocusedInputIntoView(inputRef), 320);
       }
     },
-    [scrollFocusedInputIntoView],
+    [scrollFocusedInputIntoView, effectiveOs],
   );
 
   useEffect(() => {
-    const showEvent = Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
-    const hideEvent = Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
+    const showEvent = effectiveOs === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow';
+    const hideEvent = effectiveOs === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide';
     const show = Keyboard.addListener(showEvent, (e) => {
       kbHeightRef.current = e.endCoordinates.height;
       setKeyboardBottomInset(e.endCoordinates.height);
@@ -221,7 +214,7 @@ export default function CommunityPackCreateScreen() {
       show.remove();
       hide.remove();
     };
-  }, [scrollFocusedInputIntoView]);
+  }, [scrollFocusedInputIntoView, effectiveOs]);
 
   useEffect(() => {
     if (!canUse) return;
@@ -243,7 +236,6 @@ export default function CommunityPackCreateScreen() {
       }
       setTitle(snap.title);
       setDescription(snap.description);
-      setPriceShards(clampPrice(snap.priceShards));
       const ti = UGC_CARD_THEME_IDS.indexOf(snap.cardThemeKey as UgcCardThemeId);
       setThemeIdx(ti >= 0 ? ti : 0);
       setRows(
@@ -277,7 +269,6 @@ export default function CommunityPackCreateScreen() {
       if (d) {
         setTitle(d.title);
         setDescription(d.description);
-        setPriceShards(clampPrice(d.priceShards));
         setThemeIdx(d.themeIdx);
         setRows(d.rows.map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })));
         setAddCardFormOpen(d.addCardFormOpen);
@@ -294,11 +285,12 @@ export default function CommunityPackCreateScreen() {
 
   useEffect(() => {
     if (!draftHydrated || isEditMode || !canUse) return;
+    if (editingIdx != null) return;
     const tmr = setTimeout(() => {
       void saveCommunityPackCreateDraft({
         title,
         description,
-        priceShards,
+        priceShards: COMMUNITY_PACK_PRICE_SHARDS,
         themeIdx,
         rows,
         addCardFormOpen,
@@ -312,9 +304,9 @@ export default function CommunityPackCreateScreen() {
     draftHydrated,
     isEditMode,
     canUse,
+    editingIdx,
     title,
     description,
-    priceShards,
     themeIdx,
     rows,
     addCardFormOpen,
@@ -327,10 +319,11 @@ export default function CommunityPackCreateScreen() {
     if (!draftHydrated || isEditMode || !canUse) return;
     const sub = AppState.addEventListener('change', (s) => {
       if (s === 'background' || s === 'inactive') {
+        if (editingIdx != null) return;
         void saveCommunityPackCreateDraft({
           title,
           description,
-          priceShards,
+          priceShards: COMMUNITY_PACK_PRICE_SHARDS,
           themeIdx,
           rows,
           addCardFormOpen,
@@ -345,9 +338,9 @@ export default function CommunityPackCreateScreen() {
     draftHydrated,
     isEditMode,
     canUse,
+    editingIdx,
     title,
     description,
-    priceShards,
     themeIdx,
     rows,
     addCardFormOpen,
@@ -364,7 +357,39 @@ export default function CommunityPackCreateScreen() {
     });
   }, []);
 
+  const editRow = useCallback(
+    (idx: number) => {
+      Keyboard.dismiss();
+      const row = rows[idx];
+      if (!row) return;
+      setDraftEn(row.en);
+      setDraftRu(row.ru);
+      setDraftNote(row.uk);
+      setAddCardFormOpen(true);
+      setEditingIdx(idx);
+    },
+    [rows],
+  );
+
+  useEffect(() => {
+    if (editingIdx == null) return;
+    const timer = setTimeout(() => {
+      const panel = draftPanelRef.current;
+      const scroll = scrollViewRef.current;
+      if (!panel || !scroll) return;
+      panel.measureInWindow((_ix, iy) => {
+        const desiredTopOffset = 96;
+        if (iy > desiredTopOffset) {
+          const delta = iy - desiredTopOffset;
+          scroll.scrollTo({ y: Math.max(0, scrollYRef.current + delta), animated: true });
+        }
+      });
+    }, 80);
+    return () => clearTimeout(timer);
+  }, [editingIdx]);
+
   const draftValid = draftEn.trim().length > 0 && draftRu.trim().length > 0;
+  const isEditingCard = editingIdx != null;
 
   const saveDraftCard = useCallback(() => {
     Keyboard.dismiss();
@@ -379,17 +404,26 @@ export default function CommunityPackCreateScreen() {
       });
       return;
     }
-    setRows((r) => {
-      if (r.length >= 50) return r;
-      const note = draftNote.trim();
-      const next = [...r, { id: `c${r.length + 1}`, en, ru, uk: note }];
-      return next.map((row, i) => ({ ...row, id: `c${i + 1}` }));
-    });
+    const note = draftNote.trim();
+    if (editingIdx != null) {
+      setRows((r) =>
+        r.map((row, i) =>
+          i === editingIdx ? { ...row, en, ru, uk: note } : row,
+        ),
+      );
+    } else {
+      setRows((r) => {
+        if (r.length >= 50) return r;
+        const next = [...r, { id: `c${r.length + 1}`, en, ru, uk: note }];
+        return next.map((row, i) => ({ ...row, id: `c${i + 1}` }));
+      });
+    }
     setDraftEn('');
     setDraftRu('');
     setDraftNote('');
     setAddCardFormOpen(false);
-  }, [draftEn, draftRu, draftNote]);
+    setEditingIdx(null);
+  }, [draftEn, draftRu, draftNote, editingIdx]);
 
   const cancelDraftCard = useCallback(() => {
     Keyboard.dismiss();
@@ -397,6 +431,7 @@ export default function CommunityPackCreateScreen() {
     setDraftRu('');
     setDraftNote('');
     setAddCardFormOpen(false);
+    setEditingIdx(null);
   }, []);
 
   const localDraftLooksMeaningful = useMemo(
@@ -405,7 +440,7 @@ export default function CommunityPackCreateScreen() {
         v: 1,
         title,
         description,
-        priceShards,
+        priceShards: COMMUNITY_PACK_PRICE_SHARDS,
         themeIdx,
         rows,
         addCardFormOpen,
@@ -413,7 +448,7 @@ export default function CommunityPackCreateScreen() {
         draftRu,
         draftNote,
       }),
-    [title, description, priceShards, themeIdx, rows, addCardFormOpen, draftEn, draftRu, draftNote],
+    [title, description, themeIdx, rows, addCardFormOpen, draftEn, draftRu, draftNote],
   );
 
   const performClearLocalDraft = useCallback(() => {
@@ -421,7 +456,6 @@ export default function CommunityPackCreateScreen() {
     void clearCommunityPackCreateDraft();
     setTitle('');
     setDescription('');
-    setPriceShards(COMMUNITY_PACK_PRICE_SHARDS_MIN);
     setThemeIdx(0);
     setRows([]);
     setAddCardFormOpen(false);
@@ -444,12 +478,12 @@ export default function CommunityPackCreateScreen() {
     const p: CommunityPackSubmissionPayload = {
       title: title.trim(),
       description: description.trim(),
-      priceShards,
+      priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cards,
       cardThemeKey: themeKey,
     };
     return p;
-  }, [title, description, priceShards, rows, themeKey]);
+  }, [title, description, rows, themeKey]);
 
   const runSubmit = useCallback(
     async (updatePackId?: string) => {
@@ -596,14 +630,12 @@ export default function CommunityPackCreateScreen() {
     );
   }
 
-  const priceHint = L('Цена', 'Ціна', 'Precio');
-
   return (
     <ScreenGradient>
       <SafeAreaView style={[styles.safe, { backgroundColor: 'transparent' }]} edges={['top', 'left', 'right']}>
         <KeyboardAvoidingView
           style={{ flex: 1 }}
-          behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+          behavior={effectiveOs === 'ios' ? 'padding' : undefined}
           keyboardVerticalOffset={64}
         >
           <View style={[styles.headerRow, { borderBottomColor: t.border }]}>
@@ -628,7 +660,7 @@ export default function CommunityPackCreateScreen() {
             ref={scrollViewRef}
             style={{ flex: 1 }}
             keyboardShouldPersistTaps="handled"
-            keyboardDismissMode={Platform.OS === 'ios' ? 'interactive' : 'on-drag'}
+            keyboardDismissMode={effectiveOs === 'ios' ? 'interactive' : 'on-drag'}
             onScroll={(e) => {
               scrollYRef.current = e.nativeEvent.contentOffset.y;
             }}
@@ -672,7 +704,7 @@ export default function CommunityPackCreateScreen() {
               <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título')} *</Text>
               <TextInput
                 ref={titleInputRef}
-                {...textInputSystemEditMenuProps}
+                {...getTextInputSystemEditMenuProps()}
                 value={title}
                 onChangeText={setTitle}
                 onFocus={bindScrollOnFocus(titleInputRef)}
@@ -683,7 +715,7 @@ export default function CommunityPackCreateScreen() {
               <Text style={labelStyle(t)}>{L('Описание', 'Опис', 'Descripción')} *</Text>
               <TextInput
                 ref={descriptionInputRef}
-                {...textInputSystemEditMenuProps}
+                {...getTextInputSystemEditMenuProps()}
                 value={description}
                 onChangeText={setDescription}
                 onFocus={bindScrollOnFocus(descriptionInputRef)}
@@ -692,40 +724,6 @@ export default function CommunityPackCreateScreen() {
                 multiline
                 style={[fieldInputStyle(t), { minHeight: 88, textAlignVertical: 'top' }]}
               />
-
-              <Text style={labelStyle(t)}>{priceHint}</Text>
-              <View style={[styles.stepperPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.stepperRow}>
-                  <TouchableOpacity
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      setPriceShards((p) => clampPrice(p - PRICE_STEP));
-                    }}
-                    disabled={priceShards <= COMMUNITY_PACK_PRICE_SHARDS_MIN}
-                    style={styles.stepperHit}
-                  >
-                    <Ionicons name="chevron-back" size={28} color={priceShards <= COMMUNITY_PACK_PRICE_SHARDS_MIN ? t.textGhost : t.accent} />
-                  </TouchableOpacity>
-                  <View style={styles.priceStepperValueRow}>
-                    <Image
-                      source={oskolokImageForPackShards(priceShards)}
-                      style={styles.priceShardIcon}
-                      contentFit="contain"
-                    />
-                    <Text style={[styles.stepperVal, { color: t.textPrimary }]}>{priceShards}</Text>
-                  </View>
-                  <TouchableOpacity
-                    onPress={() => {
-                      Keyboard.dismiss();
-                      setPriceShards((p) => clampPrice(p + PRICE_STEP));
-                    }}
-                    disabled={priceShards >= COMMUNITY_PACK_PRICE_SHARDS_MAX}
-                    style={styles.stepperHit}
-                  >
-                    <Ionicons name="chevron-forward" size={28} color={priceShards >= COMMUNITY_PACK_PRICE_SHARDS_MAX ? t.textGhost : t.accent} />
-                  </TouchableOpacity>
-                </View>
-              </View>
 
               <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Color de las tarjetas')}</Text>
               <View style={[styles.stepperPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
@@ -759,7 +757,7 @@ export default function CommunityPackCreateScreen() {
                   Keyboard.dismiss();
                   setAddCardFormOpen(true);
                 }}
-                disabled={rows.length >= 50}
+                disabled={rows.length >= 50 || isEditingCard}
                 style={{
                   marginTop: 20,
                   paddingVertical: 14,
@@ -768,7 +766,7 @@ export default function CommunityPackCreateScreen() {
                   borderWidth: 1,
                   borderColor: t.accent,
                   alignItems: 'center',
-                  opacity: rows.length >= 50 ? 0.45 : 1,
+                  opacity: rows.length >= 50 || isEditingCard ? 0.45 : 1,
                 }}
               >
                 <Text style={{ color: t.accent, fontWeight: '800', fontSize: f.body }}>
@@ -777,13 +775,18 @@ export default function CommunityPackCreateScreen() {
               </TouchableOpacity>
 
               {addCardFormOpen ? (
-                <View style={[styles.draftCardPanel, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
-                  <Text style={[draftLabelStyle(t), { marginTop: 0 }]}>
+                <View ref={draftPanelRef} style={[styles.draftCardPanel, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
+                    {isEditingCard
+                      ? L('Редактирование карточки', 'Редагування картки', 'Editar tarjeta')
+                      : L('Новая карточка', 'Нова картка', 'Nueva tarjeta')}
+                  </Text>
+                  <Text style={[draftLabelStyle(t), { marginTop: 8 }]}>
                     {L('АНГЛИЙСКАЯ СТОРОНА', 'АНГЛІЙСЬКА СТОРОНА', 'LADO EN INGLÉS')}
                   </Text>
                   <TextInput
                     ref={draftEnInputRef}
-                    {...textInputSystemEditMenuProps}
+                    {...getTextInputSystemEditMenuProps()}
                     value={draftEn}
                     onChangeText={setDraftEn}
                     onFocus={bindScrollOnFocus(draftEnInputRef)}
@@ -794,7 +797,7 @@ export default function CommunityPackCreateScreen() {
                   <Text style={draftLabelStyle(t)}>{L('ПЕРЕВОД', 'ПЕРЕКЛАД', 'TRADUCCIÓN')}</Text>
                   <TextInput
                     ref={draftRuInputRef}
-                    {...textInputSystemEditMenuProps}
+                    {...getTextInputSystemEditMenuProps()}
                     value={draftRu}
                     onChangeText={setDraftRu}
                     onFocus={bindScrollOnFocus(draftRuInputRef)}
@@ -807,7 +810,7 @@ export default function CommunityPackCreateScreen() {
                   </Text>
                   <TextInput
                     ref={draftNoteInputRef}
-                    {...textInputSystemEditMenuProps}
+                    {...getTextInputSystemEditMenuProps()}
                     value={draftNote}
                     onChangeText={setDraftNote}
                     onFocus={bindScrollOnFocus(draftNoteInputRef)}
@@ -854,7 +857,9 @@ export default function CommunityPackCreateScreen() {
                     >
                       <Ionicons name="checkmark-circle" size={22} color={t.correctText} />
                       <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
-                        {triLang(lang, { ru: 'Сохранить', uk: 'Зберегти', es: 'Guardar' })}
+                        {isEditingCard
+                          ? L('Обновить', 'Оновити', 'Actualizar')
+                          : L('Сохранить', 'Зберегти', 'Guardar')}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -874,8 +879,11 @@ export default function CommunityPackCreateScreen() {
                   frontGradient={cardChrome.frontGradient}
                   backGradient={cardChrome.backGradient}
                   borderAccent={cardChrome.borderAccent}
-                  canRemove
+                  canRemove={!isEditingCard}
                   onRemove={() => removeRow(idx)}
+                  canEdit={!isEditingCard}
+                  onEdit={() => editRow(idx)}
+                  editing={editingIdx === idx}
                   onSpeakEn={speakAudio}
                 />
               ))}
@@ -909,6 +917,13 @@ export default function CommunityPackCreateScreen() {
                   </Text>
                 )}
               </TouchableOpacity>
+              <View style={{ alignItems: 'center', marginTop: 16 }}>
+                <ReportErrorButton
+                  screen="community_pack_create"
+                  dataId="community_pack_editor"
+                  dataText={L('Создание набора', 'Створення набору', 'Crear pack')}
+                />
+              </View>
               </View>
             </ContentWrap>
           </ScrollView>
@@ -994,7 +1009,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: StyleSheet.hairlineWidth,
   },
   headerTitle: { flex: 1, textAlign: 'center', fontWeight: '700' },
-  /** Округлая «плашка» вокруг степпера цены / темы карточек. */
+  /** Округлая «плашка» вокруг степпера темы карточек. */
   stepperPanel: {
     marginTop: 8,
     paddingVertical: 12,
@@ -1016,14 +1031,5 @@ const styles = StyleSheet.create({
     borderWidth: 1,
   },
   stepperHit: { padding: 8, minWidth: 48, alignItems: 'center' },
-  /** Число цены + иконка осколков по центру степпера. */
-  priceStepperValueRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    minWidth: 100,
-  },
-  priceShardIcon: { width: 24, height: 24 },
   stepperVal: { fontSize: 22, fontWeight: '800', minWidth: 0, textAlign: 'center' },
 });

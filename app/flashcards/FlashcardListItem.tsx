@@ -2,8 +2,9 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { hapticLightImpact, hapticMediumImpact } from '../../hooks/use-haptics';
 import { DEV_MODE, IS_BETA_TESTER } from '../config';
+import { useEffectivePlatformOS } from '../platform_ui_preview';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { Animated, Easing, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
+import { Animated, Easing, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions, type LayoutChangeEvent } from 'react-native';
 import Reanimated, {
   cancelAnimation,
   Easing as REasing,
@@ -15,6 +16,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import type { Theme } from '../../constants/theme';
+import { inferExpoSpeechLanguage, speechLocaleToShortLabel, type SpeakOpts } from '../../hooks/use-audio';
 import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
@@ -82,7 +84,7 @@ type Props = {
   onOpenDelete: (cardId: string) => void;
   onCloseDelete: () => void;
   onDeleteCard: (item: CardItem, itemIdx: number) => void;
-  onSpeak: (text: string) => void;
+  onSpeak: (text: string, opts?: SpeakOpts) => void;
   /** Fires when the user starts opening details (resets list “escort” state). */
   onDetailsOpenAnimStarted?: (info: { itemId: string; itemIndex: number }) => void;
   /** Fires when details are fully open (after split spring) so the list can scroll the row into view. */
@@ -139,6 +141,7 @@ function FlashcardListItemImpl({
   isRowInFocus = true,
   chevronHintDelayMs = 0,
 }: Props) {
+  const effectiveOs = useEffectivePlatformOS();
   const tr = resolveFlashcardBackText(item, lang);
   const srcBadgeColor = SOURCE_COLORS[item.source ?? 'lesson'] ?? '#4A90D9';
   const srcLabel = item.source ? sourceLabels[item.source] : null;
@@ -417,6 +420,29 @@ function FlashcardListItemImpl({
     };
   }, [hasDetails, detailsExpanded, hintY, item.id, chevronHintDelayMs]);
 
+  const voiceTextFront = isModernAbbrevCard
+    ? (parsedAbbrevEn.rest || item.en)
+    : item.en;
+  const voiceTextBack = tr;
+
+  const frontSpeakLocale = useMemo(
+    () => inferExpoSpeechLanguage(voiceTextFront),
+    [voiceTextFront],
+  );
+  const backSpeakLocale = useMemo(
+    () => inferExpoSpeechLanguage(voiceTextBack, lang),
+    [voiceTextBack, lang],
+  );
+  const frontLangBadge = speechLocaleToShortLabel(frontSpeakLocale);
+  const backLangBadge = speechLocaleToShortLabel(backSpeakLocale);
+
+  const speakFront = useCallback(() => {
+    onSpeak(voiceTextFront, { language: frontSpeakLocale });
+  }, [frontSpeakLocale, onSpeak, voiceTextFront]);
+  const speakBack = useCallback(() => {
+    onSpeak(voiceTextBack, { language: backSpeakLocale });
+  }, [backSpeakLocale, onSpeak, voiceTextBack]);
+
   if (isLocked) {
     return (
       <TouchableOpacity
@@ -445,11 +471,6 @@ function FlashcardListItemImpl({
   const overlayOpacity = getOverlayAnim(item.id);
   const delAnim = getDeleteAnim(item.id);
   const overlayBtnScale = overlayOpacity.interpolate({ inputRange: [0, 0.6, 1], outputRange: [0.7, 1.05, 1] });
-
-  const voiceTextFront = isModernAbbrevCard
-    ? (parsedAbbrevEn.rest || item.en)
-    : item.en;
-  const voiceTextBack = tr;
 
   return (
     <Animated.View
@@ -557,7 +578,7 @@ function FlashcardListItemImpl({
                       }
                 }
               >
-                EN
+                {frontLangBadge}
               </Text>
               {showDevPackCornerBadge && (
                 <View
@@ -732,7 +753,7 @@ function FlashcardListItemImpl({
                       }
                 }
               >
-                {lang === 'uk' ? 'UK' : lang === 'es' ? 'ES' : 'RU'}
+                {backLangBadge}
               </Text>
               {showDevPackCornerBadge && (
                 <View
@@ -832,7 +853,7 @@ function FlashcardListItemImpl({
                   }}
                 >
                   <TouchableOpacity
-                    onPress={() => onSpeak(voiceTextFront)}
+                    onPress={speakFront}
                     accessibilityRole="button"
                     accessibilityLabel={voiceLabel}
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
@@ -860,7 +881,7 @@ function FlashcardListItemImpl({
                   }}
                 >
                   <TouchableOpacity
-                    onPress={() => onSpeak(voiceTextBack)}
+                    onPress={speakBack}
                     accessibilityRole="button"
                     accessibilityLabel={voiceLabel}
                     hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
@@ -882,7 +903,7 @@ function FlashcardListItemImpl({
             ) : (
               <Animated.View style={{ opacity: cFrontOp }}>
                 <TouchableOpacity
-                  onPress={() => onSpeak(voiceTextFront)}
+                  onPress={speakFront}
                   accessibilityRole="button"
                   accessibilityLabel={voiceLabel}
                   hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
@@ -949,7 +970,7 @@ function FlashcardListItemImpl({
         {hasDetails && detailsPanelMounted && (
           <Reanimated.View
             collapsable={false}
-            renderToHardwareTextureAndroid={Platform.OS === 'android'}
+            renderToHardwareTextureAndroid={effectiveOs === 'android'}
             style={[
               {
                 backgroundColor: t.bgSurface,

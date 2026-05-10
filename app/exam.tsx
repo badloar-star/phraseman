@@ -19,6 +19,8 @@ import XpGainBadge from '../components/XpGainBadge';
 import { registerXP } from './xp_manager';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
+import ClozeGapText from '../components/ClozeGapText';
+import PhraseContentStars from '../components/PhraseContentStars';
 import { checkAchievements } from './achievements';
 import { DEV_MODE, STORE_URL } from './config';
 import { shuffle } from './utils_shuffle';
@@ -41,6 +43,7 @@ import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { bundleLang, triLang } from '../constants/i18n';
 import type { ShareCardLang } from '../components/share_cards/streakCardCopy';
 import { examTopicForLang } from './exam_locale';
+import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 const LINGMAN_EXAM_ENERGY = 8;
@@ -461,13 +464,16 @@ export default function ExamScreen() {
   };
 
   const startExam = async () => {
+    void trackFeatureStart('exam', 'start', { questions: questions.length }, 'exam');
     if (!isUnlimited) {
       if (energy + bonusEnergy < LINGMAN_EXAM_ENERGY) {
+        void trackFeatureBlocked('exam', 'start', 'no_energy', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
         setNoEnergy(true);
         return;
       }
       const ok = await spendAmount(LINGMAN_EXAM_ENERGY);
       if (!ok) {
+        void trackFeatureBlocked('exam', 'start', 'energy_spend_failed', { energy, bonusEnergy, required: LINGMAN_EXAM_ENERGY }, 'exam');
         setNoEnergy(true);
         return;
       }
@@ -480,8 +486,9 @@ export default function ExamScreen() {
   };
 
   const submitExam = async () => {
-    const s = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
-    const p = questions.length > 0 ? Math.round(s / questions.length * 100) : 0;
+    try {
+      const s = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
+      const p = questions.length > 0 ? Math.round(s / questions.length * 100) : 0;
     // XP: 10000 за золото (≥90%), иначе 50 + бонус за %
     const xp = p >= 90 ? 10000 : 50 + Math.round(p / 2);
     if (p >= 90) awardOneTime('exam_excellent').catch(() => {});
@@ -518,7 +525,18 @@ export default function ExamScreen() {
       setCertNamePrefill(storedName);
       setNameModalVisible(true);
     }
-    setPhase('result');
+      void trackFeatureSuccess('exam', 'complete', {
+        score: s,
+        total: questions.length,
+        pct: p,
+        xp,
+        certificate: p >= LINGMAN_CERT_MIN_PCT,
+      }, 'exam');
+      setPhase('result');
+    } catch (e) {
+      void trackFeatureError('exam', 'complete', e, { answered: choices.filter(c => c !== null).length, total: questions.length }, 'exam');
+      setPhase('result');
+    }
   };
 
   const handleSaveName = async (name: string) => {
@@ -667,7 +685,7 @@ export default function ExamScreen() {
             <Ionicons name="ribbon-outline" size={40} color={t.textSecond}/>
           </View>
           <Text style={{color:t.textPrimary,fontSize:f.numMd+6,fontWeight:'700',textAlign:'center'}}>
-            {t3('Итог по программе', 'Підсумок за програмою', 'Balance del programa')}
+            {t3('Что будет на экзамене', 'Що буде на іспиті', 'Qué incluye el examen')}
           </Text>
           <Text style={{color:t.textMuted,fontSize:f.body,textAlign:'center',marginTop:8,lineHeight:22}}>
             {t3(
@@ -1299,7 +1317,14 @@ export default function ExamScreen() {
             🔍 {t3('Исправь ошибку', 'Виправ помилку', 'Corrige el error')}
           </Text>
         )}
-        <Text style={{color:t.textPrimary,fontSize:f.h2+4,fontWeight:'500',lineHeight:32,marginBottom:20}}>{q.q}</Text>
+        <ClozeGapText text={q.q} style={{color:t.textPrimary,fontSize:f.h2+4,fontWeight:'500',lineHeight:32,marginBottom:20}} />
+
+        <PhraseContentStars
+          scope="exam"
+          itemId={`exam_L${q.lessonNum}_${String(q.correct)}_${q.q.replace(/\s+/g, '_').slice(0, 100)}`}
+          labelSnippet={q.q}
+          style={{ marginBottom: 16 }}
+        />
 
         {(q.opts ?? []).map((opt,ci)=>{
           let bg=t.bgCard, border=t.border, tc=t.textPrimary;

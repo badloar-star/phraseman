@@ -1,10 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, DEV_MODE, IS_BETA_TESTER, IS_EXPO_GO } from './config';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import { usePremium } from '../components/PremiumContext';
-import { useAudio } from '../hooks/use-audio';
+import { useAudio, inferExpoSpeechLanguage, speechLocaleToShortLabel } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
     Animated,
@@ -26,6 +27,8 @@ import {
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
@@ -33,7 +36,6 @@ import { getCardPackPaywallTheme, getCommunityUgcPackPaywallTheme } from './flas
 import { Flashcard, loadFlashcards, removeFlashcard, saveFlashcards } from '../hooks/use-flashcards';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { getTranscription } from './transcription';
-import ReportErrorButton from '../components/ReportErrorButton';
 import { actionToastTri, emitAppEvent } from './events';
 import { CATEGORIES, STR } from './flashcards/constants';
 import { SYSTEM_CARDS } from './flashcards/system-cards';
@@ -79,6 +81,8 @@ import {
 import CommunityPackRatingBar from './community_packs/CommunityPackRatingBar';
 import { isCommunityPacksCloudEnabled } from './community_packs/functionsClient';
 import { getCanonicalUserId } from './user_id_policy';
+import { flashcardContentLang } from './spanish_content_gate';
+import { checkAchievements } from './achievements';
 
 /** Монотонний фліп (timing замість spring) + різке opacity — без «моргання» біля 0.5. */
 const FLASHCARD_FLIP_DURATION_MS = 280;
@@ -181,11 +185,14 @@ export function stageOwnedPackCardsForNavigation(packId: string): void {
 // ─── Main screen ──────────────────────────────────────────────────────────────
 export default function FlashcardsScreen() {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
+  const effectiveOs = useEffectivePlatformOS();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, isDark, themeMode, statusBarLight, uiScale } = useTheme();
   const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const strLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
   const router   = useRouter();
   const params   = useLocalSearchParams<{ cat?: string; pack?: string }>();
   const routeCat = useMemo(() => normalizeRouteCategory(params.cat), [params.cat]);
@@ -218,8 +225,13 @@ export default function FlashcardsScreen() {
     return { CARD_H: cardH, PEEK: peek };
   }, [screenH, insets.top, insets.bottom, uiScale]);
   const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
-  const exitToHome = useCallback(() => {
-    router.replace('/(tabs)/home' as any);
+  /** На хаб карток (або pop у стеку), а не на головне меню — зручніше при відкритті з підбірки / набору. */
+  const leaveCollection = useCallback(() => {
+    if (typeof router.canGoBack === 'function' && router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/flashcards' as any);
+    }
   }, [router]);
 
   // ── State ──────────────────────────────────────────────────────────────────
@@ -242,14 +254,6 @@ export default function FlashcardsScreen() {
   useEffect(() => {
     if (routeCat) setActiveCat(routeCat);
   }, [routeCat]);
-  useEffect(() => {
-    if (Platform.OS !== 'android') return;
-    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      exitToHome();
-      return true;
-    });
-    return () => sub.remove();
-  }, [exitToHome]);
   const [activeFilter, setActiveFilter]   = useState<string>('all');
   const [filterOpen, setFilterOpen]       = useState(false);
   const [savedCards, setSavedCards]   = useState<CardItem[]>(_savedCardsCache ?? []);
@@ -281,6 +285,8 @@ export default function FlashcardsScreen() {
   );
   const [loadError, setLoadError]     = useState(false);
   const sessionDoneRef                = useRef(false); // achievement fired once per session
+  /** Просмотренные id из словаря flashcards_v1 — для ачивки «все карточки за сессию». */
+  const flashAchievementSeenRef      = useRef<Set<string>>(new Set());
   const pendingRestoreRef             = useRef<{ cat: CategoryId; idx: number } | null>(null);
   // Create / Edit / Practice mode
   const [mode, setMode]               = useState<'view' | 'create' | 'edit' | 'practice'>('view');
@@ -300,12 +306,36 @@ export default function FlashcardsScreen() {
   // Tracks last rendered index in scroll listener to fire focusAnim on every card change
   const scrollIndexRef   = useRef(0);
   const [scrollViewH, setScrollViewH] = useState(0);
-  const viewabilityConfig = useMemo(() => ({ itemVisiblePercentThreshold: 45 }), []);
-  const onViewableItemsChanged = useCallback(({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    const top = viewableItems[0];
-    if (top?.index == null) return;
-    scrollIndexRef.current = top.index;
-    setIndex(top.index);
+  /** Задание дня «пролистать карточки»: не дублировать одну и ту же карточку за сессию (скролл + переворот). */
+  const flashcardDailyViewCountedRef = useRef<Set<string>>(new Set());
+  useEffect(() => () => { flashcardDailyViewCountedRef.current.clear(); }, []);
+
+  const registerFlashcardViewed = useCallback((cardIds: string[]) => {
+    const set = flashcardDailyViewCountedRef.current;
+    let n = 0;
+    for (const id of cardIds) {
+      if (!id || set.has(id)) continue;
+      set.add(id);
+      n += 1;
+    }
+    if (n > 0) {
+      updateMultipleTaskProgress([{ type: 'flashcard_view', increment: n }]).catch(() => {});
+    }
+    for (const id of cardIds) {
+      if (id) flashAchievementSeenRef.current.add(id);
+    }
+    if (!sessionDoneRef.current && cardIds.length > 0) {
+      loadFlashcards()
+        .then((all) => {
+          if (all.length === 0) return;
+          const seen = flashAchievementSeenRef.current;
+          if (all.every((c) => seen.has(c.id))) {
+            sessionDoneRef.current = true;
+            checkAchievements({ type: 'flashcards_session' }).catch(() => {});
+          }
+        })
+        .catch(() => {});
+    }
   }, []);
 
   // Practice state
@@ -350,6 +380,22 @@ export default function FlashcardsScreen() {
     () => applyCardFilter(cards, activeFilter),
     [cards, activeFilter],
   );
+
+  const viewabilityConfig = useMemo(() => ({ itemVisiblePercentThreshold: 45 }), []);
+  const onViewableItemsChanged = useCallback(({ viewableItems }: { viewableItems: ViewToken[] }) => {
+    const top = viewableItems[0];
+    if (top?.index != null) {
+      scrollIndexRef.current = top.index;
+      setIndex(top.index);
+    }
+    const ids: string[] = [];
+    for (const token of viewableItems) {
+      if (!token.isViewable || token.index == null) continue;
+      const card = filteredCards[token.index];
+      if (card?.id) ids.push(card.id);
+    }
+    registerFlashcardViewed(ids);
+  }, [filteredCards, registerFlashcardViewed]);
 
   /** Куплені набори (`sourceId` = `DEV:…`) — без CTA «додати свою картку». */
   const allowAddCustomCard = useMemo(() => {
@@ -689,6 +735,8 @@ export default function FlashcardsScreen() {
 
   useFocusEffect(
     useCallback(() => {
+      sessionDoneRef.current = false;
+      flashAchievementSeenRef.current.clear();
       let cancelled = false;
       const run = () => {
         if (!cancelled) void loadAll();
@@ -939,12 +987,14 @@ export default function FlashcardsScreen() {
       easing: flashcardFlipEasing,
       useNativeDriver: true,
     }).start();
-    // Трекинг: только при переворачивании (не возврате)
+    // Трекинг: только при переворачивании (не возврате). flashcard_view — один раз на карточку за сессию (как при скролле).
     if (!isNowFlipped) {
-      updateMultipleTaskProgress([
-        { type: 'flashcard_flip', increment: 1 },
-        { type: 'flashcard_view', increment: 1 },
-      ]).catch(() => {});
+      const set = flashcardDailyViewCountedRef.current;
+      const isNewView = !set.has(cardId);
+      if (isNewView) set.add(cardId);
+      const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [{ type: 'flashcard_flip', increment: 1 }];
+      if (isNewView) updates.push({ type: 'flashcard_view', increment: 1 });
+      updateMultipleTaskProgress(updates).catch(() => {});
     }
   }, [getCardFlipAnim]);
 
@@ -1003,9 +1053,6 @@ export default function FlashcardsScreen() {
     },
     [packDeeplink],
   );
-
-  // Reset session-done flag when category or cards change
-  useEffect(() => { sessionDoneRef.current = false; }, [activeCat, cards.length]);
 
   // ── Scroll to card when category switches ─────────────────────────────────
   useEffect(() => {
@@ -1066,12 +1113,33 @@ export default function FlashcardsScreen() {
     }
   };
 
-  const cancelCreate = () => {
+  const cancelCreate = useCallback(() => {
     setMode('view');
     setCreateStep('front');
     setDraftDescription('');
     createFlipAnim.setValue(0);
-  };
+  }, []);
+
+  useEffect(() => {
+    if (Platform.OS !== 'android') return;
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      if (filterOpen) {
+        setFilterOpen(false);
+        return true;
+      }
+      if (mode === 'practice') {
+        setMode('view');
+        return true;
+      }
+      if (mode === 'create' || mode === 'edit') {
+        cancelCreate();
+        return true;
+      }
+      leaveCollection();
+      return true;
+    });
+    return () => sub.remove();
+  }, [mode, filterOpen, leaveCollection, cancelCreate]);
 
   // ── Practice ───────────────────────────────────────────────────────────────
   const startPractice = () => {
@@ -1087,7 +1155,7 @@ export default function FlashcardsScreen() {
     if (practiceStatus !== 'idle' || practiceQueue.length === 0) return;
     const card = practiceQueue[0];
     const answer = practiceInput.trim().toLowerCase();
-    const correct = resolveFlashcardBackText(card, strLang).trim().toLowerCase();
+    const correct = resolveFlashcardBackText(card, cardContentLang).trim().toLowerCase();
     setPracticeStatus(answer === correct ? 'correct' : 'wrong');
   };
 
@@ -1112,7 +1180,7 @@ export default function FlashcardsScreen() {
       <ScreenGradient>
       <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
-        <KeyboardAvoidingView style={{ flex:1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
 
           {/* Header */}
           <View style={[st.header, { borderBottomColor: t.border }]}>
@@ -1238,7 +1306,9 @@ export default function FlashcardsScreen() {
   // ── Practice mode ──────────────────────────────────────────────────────────
   if (mode === 'practice') {
     const practiceCard = practiceQueue[0] ?? null;
-    const practiceTr = practiceCard ? resolveFlashcardBackText(practiceCard, strLang) : '';
+    const practiceTr = practiceCard ? resolveFlashcardBackText(practiceCard, cardContentLang) : '';
+    const practiceFrontLocale = practiceCard ? inferExpoSpeechLanguage(practiceCard.en) : 'en-US';
+    const practiceFrontBadge = speechLocaleToShortLabel(practiceFrontLocale);
     const totalPr = customCards.length;
 
     if (practiceQueue.length === 0) {
@@ -1292,7 +1362,7 @@ export default function FlashcardsScreen() {
       <ScreenGradient>
       <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
         <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
-        <KeyboardAvoidingView style={{ flex:1 }} behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
         <ContentWrap>
           <View style={[st.header, { borderBottomColor: t.border }]}>
             <TouchableOpacity onPress={() => setMode('view')} style={{ width: 40 }}>
@@ -1314,12 +1384,12 @@ export default function FlashcardsScreen() {
               borderWidth: practiceStatus !== 'idle' ? 2 : 1,
               position: 'relative',
             }]}>
-              <Text style={{ color: t.textGhost, fontSize:11, fontWeight:'800', letterSpacing:1.5, marginBottom:12 }}>EN</Text>
+              <Text style={{ color: t.textGhost, fontSize:11, fontWeight:'800', letterSpacing:1.5, marginBottom:12 }}>{practiceFrontBadge}</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h1+4, fontWeight:'700', textAlign:'center' }}>
                 {practiceCard!.en}
               </Text>
               <TouchableOpacity
-                onPress={() => speakAudio(practiceCard!.en)}
+                onPress={() => speakAudio(practiceCard!.en, undefined, { language: practiceFrontLocale })}
                 hitSlop={{ top:8, bottom:8, left:8, right:8 }}
                 style={{ marginTop: 12 }}
               >
@@ -1332,18 +1402,6 @@ export default function FlashcardsScreen() {
               )}
             </View>
           </View>
-
-          {practiceCard && (
-            <ReportErrorButton
-              screen="flashcards"
-              dataId={`flashcard_${practiceCard.en.replace(/\s+/g,'_')}`}
-              dataText={[
-                `EN: ${practiceCard.en}`,
-                `RU/UK: ${practiceTr}`,
-              ].join('\n')}
-              style={{ alignSelf: 'flex-end', paddingHorizontal: 16 }}
-            />
-          )}
 
           {/* Input */}
           <View style={{ paddingHorizontal: 16, marginTop: 12 }}>
@@ -1398,7 +1456,7 @@ export default function FlashcardsScreen() {
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
       <ContentWrap>
         <View style={[st.header, { borderBottomColor: t.border }]}>
-          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={exitToHome} style={{ width: 40 }}>
+          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text
@@ -1418,14 +1476,14 @@ export default function FlashcardsScreen() {
           <Text style={{ color: t.textMuted, fontSize: f.body, textAlign:'center', marginTop: 6 }}>{s.emptySub}</Text>
           {activeCat !== 'custom' && (
             <TouchableOpacity
-              onPress={() => router.replace('/(tabs)/home' as any)}
+              onPress={leaveCollection}
               style={{ marginTop: 14, paddingHorizontal: 12, paddingVertical: 8 }}
             >
               <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
                 {triLang(lang, {
-                  ru: 'Вернуться на главную',
-                  uk: 'Повернутися на головну',
-                  es: 'Volver al inicio',
+                  ru: 'К выбору категорий',
+                  uk: 'До вибору категорій',
+                  es: 'Volver al menú de cartas',
                 })}
               </Text>
             </TouchableOpacity>
@@ -1504,7 +1562,7 @@ export default function FlashcardsScreen() {
 
         {/* Header */}
         <View style={[st.header, { borderBottomColor: t.border }]}>
-          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={exitToHome} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
+          <TouchableOpacity testID="flashcards-header-back" accessibilityLabel="qa-flashcards-header-back" accessible onPress={leaveCollection} style={{ width: 40 }} hitSlop={{ top:12,bottom:12,left:12,right:12 }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text
@@ -1717,7 +1775,7 @@ export default function FlashcardsScreen() {
               <FlashcardListItem
                 item={item}
                 itemIdx={itemIdx}
-                lang={strLang}
+                lang={cardContentLang}
                 activeCat={activeCat}
                 isPremium={isPremium}
                 deletingId={deletingId}
@@ -1749,7 +1807,7 @@ export default function FlashcardsScreen() {
                 onOpenDelete={(cardId) => setLongPressedId(cardId)}
                 onCloseDelete={() => setLongPressedId(null)}
                 onDeleteCard={handleDeleteCard}
-                onSpeak={speakAudio}
+                onSpeak={(text, opts) => speakAudio(text, undefined, opts)}
                 onDetailsOpenAnimStarted={onDetailsOpenAnimStarted}
                 onDetailsScrollSettled={onDetailsScrollSettled}
                 setListItemRowRef={setListItemRowRef}
@@ -1807,6 +1865,19 @@ export default function FlashcardsScreen() {
             if (detailsEscortProgrammaticRef.current) return;
             detailsEscortUserDragRef.current = true;
           }}
+          ListFooterComponent={(
+            <View style={{ alignItems: 'center', paddingVertical: 24 }}>
+              <ReportErrorButton
+                screen="flashcards_collection"
+                dataId={`flashcards_${activeCat}`}
+                dataText={triLang(lang, {
+                  ru: `Карточки · ${activeCat}`,
+                  uk: `Картки · ${activeCat}`,
+                  es: `Tarjetas · ${activeCat}`,
+                })}
+              />
+            </View>
+          )}
         />
         </View>
           );

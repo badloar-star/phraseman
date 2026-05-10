@@ -81,7 +81,11 @@ export function cardHasDetails(card: CardItem): boolean {
     card.usageNoteEs ||
     card.literalRu ||
     card.literalUk ||
-    card.literalEs
+    card.literalEs ||
+    card.exampleEn?.trim() ||
+    card.exampleRu?.trim() ||
+    card.exampleUk?.trim() ||
+    card.exampleEs?.trim()
   );
 }
 

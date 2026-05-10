@@ -298,7 +298,7 @@ function VerbList({ verbs, learnedVerbs, learnedVerbCounts, speechRate }: {
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
-function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountUpdate, storageHydrated }: {
+function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountUpdate, storageHydrated, onNoEnergy }: {
   verbs: VerbTuple[];
   storageKey: string;
   initialCounts: Record<string,number>;
@@ -306,6 +306,7 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
   onCountUpdate: (verb: string, count: number) => void;
   /** After AsyncStorage merge — rebuild queue once so progress matches disk */
   storageHydrated: boolean;
+  onNoEnergy: () => void;
 }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
@@ -314,31 +315,15 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
   const router = useRouter();
   const vs = s.verbs;
 
-  const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, formattedTime: recoveryTimeText, spendOne } = useEnergy();
+  const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, spendOne } = useEnergy();
   const currentEnergyRef = useRef(currentEnergy);
   const testerEnergyDisabledRef = useRef(testerEnergyDisabled);
   const spendOneRef = useRef(spendOne);
-  const energyFormattedTimeRef = useRef(recoveryTimeText);
+  const onNoEnergyRef = useRef(onNoEnergy);
   useEffect(() => { currentEnergyRef.current = currentEnergy; }, [currentEnergy]);
   useEffect(() => { testerEnergyDisabledRef.current = testerEnergyDisabled; }, [testerEnergyDisabled]);
   useEffect(() => { spendOneRef.current = spendOne; }, [spendOne]);
-  useEffect(() => { energyFormattedTimeRef.current = recoveryTimeText; }, [recoveryTimeText]);
-
-  const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
-  const toastAnim = useRef(new Animated.Value(0)).current;
-  const showEnergyEmptyFeedbackRef = useRef<() => void>(() => {});
-  const showEnergyEmptyFeedback = useCallback(() => {
-    setShowNoEnergyModal(true);
-    toastAnim.setValue(0);
-    Animated.timing(toastAnim, { toValue: 1, duration: 300, useNativeDriver: true }).start();
-    setTimeout(() => {
-      Animated.timing(toastAnim, { toValue: 0, duration: 250, useNativeDriver: true }).start(() => {
-        setShowNoEnergyModal(false);
-        router.back();
-      });
-    }, 2500);
-  }, [toastAnim, router]);
-  useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
+  useEffect(() => { onNoEnergyRef.current = onNoEnergy; }, [onNoEnergy]);
 
   const [queue,      setQueue]      = useState<VerbCard[]>(() => buildQueue(verbs, initialCounts, initialPendingPP));
   const [qIdx,       setQIdx]       = useState(0);
@@ -379,7 +364,7 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
     if (locked.current || chosen !== null || !current) return;
     // Блокируем если энергия кончилась
     if (!testerEnergyDisabledRef.current && currentEnergyRef.current <= 0) {
-      showEnergyEmptyFeedbackRef.current();
+      onNoEnergyRef.current();
       return;
     }
     locked.current = true;
@@ -429,7 +414,7 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
             const energyBefore = currentEnergyRef.current;
             spendOneRef.current().then(success => {
               if (success && energyBefore === 1) {
-                setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 800);
+                setTimeout(() => { onNoEnergyRef.current(); }, 800);
               }
             }).catch(() => {});
           }
@@ -524,7 +509,7 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
             const energyBefore = currentEnergyRef.current;
             spendOneRef.current().then(success => {
               if (success && energyBefore === 1) {
-                setTimeout(() => { showEnergyEmptyFeedbackRef.current(); }, 800);
+                setTimeout(() => { onNoEnergyRef.current(); }, 800);
               }
             }).catch(() => {});
           }
@@ -669,29 +654,6 @@ function Training({ verbs, storageKey, initialCounts, initialPendingPP, onCountU
       </View>
 
     </ScrollView>
-
-    {/* No energy toast */}
-    {showNoEnergyModal && (
-      <Animated.View pointerEvents="none" style={{ position:'absolute', bottom:30, left:20, right:20, opacity:toastAnim, transform:[{translateY:toastAnim.interpolate({inputRange:[0,1],outputRange:[20,0]})}], zIndex:999 }}>
-        <View style={{ backgroundColor:t.bgCard, borderRadius:16, padding:14, flexDirection:'row', alignItems:'center', gap:10, shadowColor:'#000', shadowOffset:{width:0,height:4}, shadowOpacity:0.25, shadowRadius:10, elevation:10, borderWidth:1, borderColor:t.wrong+'55' }}>
-          <Text style={{ fontSize:22 }}>⚡</Text>
-          <View style={{ flex:1 }}>
-            <Text style={{ color:t.textPrimary, fontSize:15, fontWeight:'700' }}>
-              {triLang(lang, { ru: 'Энергия закончилась', uk: 'Енергія закінчилась', es: 'Sin energía' })}
-            </Text>
-            {!!energyFormattedTimeRef.current && (
-              <Text style={{ color:t.textSecond, fontSize:12, marginTop:2 }}>
-                {lang === 'es'
-                  ? `Se recuperará en ${energyFormattedTimeRef.current}`
-                  : lang === 'uk'
-                    ? `Відновиться через ${energyFormattedTimeRef.current}`
-                    : `Восстановится через ${energyFormattedTimeRef.current}`}
-              </Text>
-            )}
-          </View>
-        </View>
-      </Animated.View>
-    )}
     </View>
   );
 }
@@ -773,6 +735,7 @@ export default function LessonVerbs() {
             initialCounts={learnedVerbCounts}
             initialPendingPP={pendingPP}
             onCountUpdate={(verb, count) => setLearnedVerbCounts(prev => ({ ...prev, [verb]: count }))}
+            onNoEnergy={() => setNoEnergyModalOpen(true)}
           />
           : <VerbList verbs={verbs} learnedVerbs={learnedVerbs} learnedVerbCounts={learnedVerbCounts} speechRate={listSpeechRate} />}
       </View>

@@ -20,6 +20,8 @@ import { ensureAnonUser } from './cloud_sync';
 import { GroupMember, getWeekId } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { loadActiveLeagueBoost } from './league_personal_boosts';
+import { emitAppEvent } from './events';
 
 // Дебаунс для updateMyGroupPoints — не чаще 1 раза в 8 сек
 let _groupPtsTimer: ReturnType<typeof setTimeout> | null = null;
@@ -34,7 +36,8 @@ const getFirestore = () => {
 };
 
 const COL_LB = 'leaderboard';
-const GROUP_SIZE = 20;
+const GROUP_SIZE = 30;
+const LEAGUE_STATE_V3_KEY = 'league_state_v3';
 /** Сколько league_groups максимум читаем на неделю+клуб, чтобы не создавать сольные группы из-за .limit(100) */
 const BROAD_GROUP_QUERY_LIMIT = 500;
 
@@ -334,6 +337,12 @@ export async function getOrCreateLeagueGroup(
   const memberStreak   = streakRaw  ? parseInt(streakRaw, 10) : 0;
   const memberTotalXp  = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
 
+  const boost = await loadActiveLeagueBoost();
+  const boostFields =
+    boost && Date.now() < boost.expiresAt
+      ? { leagueBoostMultiplier: boost.multiplier, leagueBoostExpiresAt: boost.expiresAt }
+      : {};
+
   const memberData = {
     name:      myName,
     points:    myWeekPoints,
@@ -343,6 +352,7 @@ export async function getOrCreateLeagueGroup(
     isPremium: memberPremium,
     streak:    memberStreak,
     totalXp:   memberTotalXp,
+    ...boostFields,
   };
 
   try {
@@ -470,7 +480,7 @@ export async function getOrCreateLeagueGroup(
 export async function fetchLeagueTopMembers(
   weekId: string,
   leagueId: number,
-  limit = 20,
+  limit = 30,
 ): Promise<GroupMember[]> {
   if (!CLOUD_SYNC_ENABLED) return [];
   const db = getFirestore();
@@ -632,7 +642,24 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
       weekPoints = wpData?.points ?? 0;
     } catch {}
 
-    await getOrCreateLeagueGroup(weekId, leagueId, name, weekPoints);
+    const group = await getOrCreateLeagueGroup(weekId, leagueId, name, weekPoints);
+    // Первый запуск: пока в multiGet не было league_state_v3, сохраняем снимок группы из облака,
+    // чтобы на Главной сразу был виден клуб с другими игроками (без захода на экран клуба).
+    const hadLocalLeague = !!(leagueRaw && String(leagueRaw).trim());
+    if (group && group.length > 0 && !hadLocalLeague) {
+      try {
+        const db = getFirestore();
+        const uid = await ensureAnonUser();
+        if (!db || !uid) return;
+        const lb = await db.collection(COL_LB).doc(uid).get();
+        const lid = normLeagueIdData(lb.exists ? lb.data()?.leagueId : undefined, leagueId);
+        await AsyncStorage.setItem(
+          LEAGUE_STATE_V3_KEY,
+          JSON.stringify({ leagueId: lid, weekId, group }),
+        );
+        emitAppEvent('league_local_state_updated');
+      } catch {}
+    }
   } catch {}
 }
 
@@ -644,17 +671,24 @@ function mapLeagueMembersToGroupList(
   myWeekPoints: number,
 ): GroupMember[] {
   return Object.entries(members)
-    .map(([key, m]) => ({
-      name: m.name,
-      points: key === myUid ? myWeekPoints : (m.points ?? 0),
-      isMe: key === myUid,
-      uid: key,
-      isPremium: m.isPremium ?? false,
-      avatar: m.avatar ?? undefined,
-      frame: m.frame ?? undefined,
-      streak: m.streak ?? undefined,
-      totalXp: m.totalXp ?? undefined,
-    } as GroupMember))
+    .map(([key, m]) => {
+      const mult = m.leagueBoostMultiplier;
+      const until = typeof m.leagueBoostExpiresAt === 'number' ? m.leagueBoostExpiresAt : 0;
+      const boostLive = typeof mult === 'number' && mult > 1 && until > Date.now();
+      return {
+        name: m.name,
+        points: key === myUid ? myWeekPoints : (m.points ?? 0),
+        isMe: key === myUid,
+        uid: key,
+        isPremium: m.isPremium ?? false,
+        avatar: m.avatar ?? undefined,
+        frame: m.frame ?? undefined,
+        streak: m.streak ?? undefined,
+        totalXp: m.totalXp ?? undefined,
+        leagueBoostMultiplier: boostLive ? mult : undefined,
+        leagueBoostExpiresAt: boostLive ? until : undefined,
+      } as GroupMember;
+    })
     .sort((a, b) => b.points - a.points);
 }
 
@@ -759,6 +793,45 @@ export function subscribeToLeagueGroupMembers(
     r.g?.();
     r.lb?.();
   };
+}
+
+/** Пушит личный буст (×2/×3) в league_groups.members.{uid} — другие участники видят модификатор. */
+export async function syncMyLeagueMemberBoostToCloud(): Promise<void> {
+  if (!CLOUD_SYNC_ENABLED) return;
+  const db = getFirestore();
+  if (!db) return;
+  const uid = await ensureAnonUser();
+  if (!uid) return;
+  let FieldValue: { delete: () => unknown };
+  try {
+    FieldValue = require('@react-native-firebase/firestore').default.FieldValue;
+  } catch {
+    return;
+  }
+  const boost = await loadActiveLeagueBoost();
+  let groupId: string | undefined;
+  try {
+    const lb = await db.collection(COL_LB).doc(uid).get();
+    groupId = lb.exists ? (lb.data()?.groupId as string | undefined) : undefined;
+  } catch {
+    return;
+  }
+  if (!groupId) return;
+  const pathMult = `members.${uid}.leagueBoostMultiplier`;
+  const pathUntil = `members.${uid}.leagueBoostExpiresAt`;
+  try {
+    if (!boost || Date.now() >= boost.expiresAt) {
+      await db.collection('league_groups').doc(groupId).update({
+        [pathMult]: FieldValue.delete(),
+        [pathUntil]: FieldValue.delete(),
+      });
+    } else {
+      await db.collection('league_groups').doc(groupId).update({
+        [pathMult]: boost.multiplier,
+        [pathUntil]: boost.expiresAt,
+      });
+    }
+  } catch { /* empty */ }
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

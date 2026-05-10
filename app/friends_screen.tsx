@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -6,22 +6,22 @@ import {
   TextInput,
   ScrollView,
   ActivityIndicator,
-  Alert,
   Clipboard,
   Share,
   StyleSheet,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import AvatarView from '../components/AvatarView';
+import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
-import { ensureMyFriendCode, lookupUserByFriendCode } from './firestore_friends';
+import { ensureMyInviteCodeForFriends, lookupUserByFriendCode } from './firestore_friends';
 import {
   sendFriendRequest,
   acceptFriendRequest,
@@ -29,12 +29,16 @@ import {
   deleteFriend,
   subscribeToFriends,
   subscribeToIncomingRequests,
+  ensureFriendRequestViewerAuthLink,
   type FriendEntry,
   type FriendRequestEntry,
 } from './firestore_friend_requests';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+import { getCanonicalUserId } from './user_id_policy';
+import { randomSelfFriendCodeMessage } from './friends_self_code_messages';
 import { triLang } from '../constants/i18n';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
+import { trackActivity } from './app_activity';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -66,9 +70,12 @@ async function fetchUserProfile(uid: string): Promise<UserProfile> {
     if (!snap.exists) return { uid, name: 'Игрок', xp: 0 };
     const data: Record<string, unknown> = snap.data() ?? {};
     const progress = (data.progress as Record<string, unknown>) ?? {};
+    const linked = (data.linkedAuth as Record<string, unknown> | undefined) ?? {};
     const name =
       (data.displayName as string) ||
       (progress.displayName as string) ||
+      (progress.user_name as string) ||
+      (typeof linked.displayName === 'string' ? linked.displayName : '') ||
       'Игрок';
     const xp =
       parseInt((progress.user_total_xp as string) ?? '0') || 0;
@@ -100,6 +107,7 @@ export default function FriendsScreen() {
   const [requests, setRequests] = useState<FriendRequestEntry[]>([]);
 
   const [profileCache, setProfileCache] = useState<Record<string, UserProfile>>({});
+  const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
 
   // Track whether both subscriptions have fired at least once
   const friendsFiredRef = useRef(false);
@@ -113,40 +121,60 @@ export default function FriendsScreen() {
 
   useEffect(() => {
     let cancelled = false;
-    void ensureMyFriendCode().then(code => {
-      if (!cancelled) setMyCode(code);
-    });
-    return () => { cancelled = true; };
+    void (async () => {
+      const code = await ensureMyInviteCodeForFriends('');
+      if (!cancelled && code) setMyCode(code);
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  // ── Real-time subscriptions ────────────────────────────────────────────────
+  useFocusEffect(
+    useCallback(() => {
+      void ensureFriendRequestViewerAuthLink();
+    }, []),
+  );
+
+  // ── Real-time subscriptions (после связки auth ↔ stableId в Firestore) ──
 
   useEffect(() => {
-    const markFriendsDone = () => {
-      if (!friendsFiredRef.current) {
-        friendsFiredRef.current = true;
-        if (requestsFiredRef.current) setIsLoading(false);
-      }
-    };
-    const unsub = subscribeToFriends(
-      (data) => { setFriends(data); markFriendsDone(); },
-      () => { markFriendsDone(); },
-    );
-    return () => unsub();
-  }, []);
+    let cancelled = false;
+    let unsubFriends: () => void = () => {};
+    let unsubReq: () => void = () => {};
 
-  useEffect(() => {
-    const markRequestsDone = () => {
-      if (!requestsFiredRef.current) {
-        requestsFiredRef.current = true;
-        if (friendsFiredRef.current) setIsLoading(false);
-      }
+    void (async () => {
+      await ensureFriendRequestViewerAuthLink();
+      if (cancelled) return;
+
+      const markFriendsDone = () => {
+        if (!friendsFiredRef.current) {
+          friendsFiredRef.current = true;
+          if (requestsFiredRef.current) setIsLoading(false);
+        }
+      };
+      const markRequestsDone = () => {
+        if (!requestsFiredRef.current) {
+          requestsFiredRef.current = true;
+          if (friendsFiredRef.current) setIsLoading(false);
+        }
+      };
+
+      unsubFriends = subscribeToFriends(
+        (data) => { if (!cancelled) { setFriends(data); markFriendsDone(); } },
+        () => { markFriendsDone(); },
+      );
+      unsubReq = subscribeToIncomingRequests(
+        (data) => { if (!cancelled) { setRequests(data); markRequestsDone(); } },
+        () => { markRequestsDone(); },
+      );
+    })();
+
+    return () => {
+      cancelled = true;
+      unsubFriends();
+      unsubReq();
     };
-    const unsub = subscribeToIncomingRequests(
-      (data) => { setRequests(data); markRequestsDone(); },
-      () => { markRequestsDone(); },
-    );
-    return () => unsub();
   }, []);
 
   // Fallback: if subscriptions don't fire within 5s (e.g. no network), stop spinner
@@ -195,12 +223,45 @@ export default function FriendsScreen() {
     doHaptic();
     setIsAdding(true);
     try {
+      const codeNorm = codeInput.toUpperCase();
+      await trackActivity('friends:add_by_code_start', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'start',
+        tags: { codeLength: codeNorm.length },
+      });
       const lookup = await lookupUserByFriendCode(codeInput);
       if (!lookup) {
+        await trackActivity('friends:add_by_code_result', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'blocked',
+          tags: { reason: 'not_found', codeLength: codeNorm.length },
+        });
         showFeedback(L('Пользователь не найден', 'Користувача не знайдено', 'Usuario no encontrado'));
         return;
       }
+      const myUid = await getCanonicalUserId();
+      const isSelf =
+        (myCode != null && codeNorm === myCode.toUpperCase()) ||
+        (myUid != null && lookup.uid === myUid);
+      if (isSelf) {
+        await trackActivity('friends:add_by_code_result', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'blocked',
+          tags: { reason: 'self_code', targetUid: lookup.uid },
+        });
+        showFeedback(randomSelfFriendCodeMessage(L));
+        return;
+      }
       const result = await sendFriendRequest(lookup.uid);
+      await trackActivity('friends:add_by_code_result', {
+        feature: 'friends',
+        screen: 'friends',
+        result: result === 'sent' ? 'success' : result === 'error' ? 'error' : 'blocked',
+        tags: { targetUid: lookup.uid, requestResult: result },
+      });
       if (result === 'sent') {
         showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!'));
         setCodeInput('');
@@ -209,10 +270,28 @@ export default function FriendsScreen() {
       } else if (result === 'already_friends') {
         showFeedback(L('Вы уже друзья', 'Ви вже друзі', 'Ya son amigos'));
       } else if (result === 'self') {
-        showFeedback(L('Это ваш код', 'Це ваш код', 'Es tu código'));
+        showFeedback(randomSelfFriendCodeMessage(L));
       } else {
         showFeedback(L('Пользователь не найден', 'Користувача не знайдено', 'Usuario no encontrado'));
       }
+    } catch (e) {
+      void import('./app_health')
+        .then(({ logAppWarning }) =>
+          logAppWarning('friends:add_by_code_ui_failed', e, {
+            feature: 'friends',
+            screen: 'friends',
+            writeToFirestore: true,
+            tags: { codeLength: codeInput.length },
+          }),
+        )
+        .catch(() => {});
+      await trackActivity('friends:add_by_code_error', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'error',
+        tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
+      });
+      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
     } finally {
       setIsAdding(false);
     }
@@ -250,18 +329,7 @@ export default function FriendsScreen() {
 
   const handleDeleteConfirm = (uid: string, name: string) => {
     doHaptic();
-    Alert.alert(
-      L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?'),
-      name,
-      [
-        { text: L('Отмена', 'Скасувати', 'Cancelar'), style: 'cancel' },
-        {
-          text: L('Удалить', 'Видалити', 'Eliminar'),
-          style: 'destructive',
-          onPress: () => void deleteFriend(uid),
-        },
-      ],
-    );
+    setDeleteTarget({ uid, name });
   };
 
   // ── Derived data ──────────────────────────────────────────────────────────
@@ -365,7 +433,7 @@ export default function FriendsScreen() {
     addButtonText: {
       fontSize: 15,
       fontWeight: '700',
-      color: '#fff',
+      color: t.correctText,
     },
     feedbackText: {
       fontSize: 13,
@@ -412,7 +480,7 @@ export default function FriendsScreen() {
     acceptBtnText: {
       fontSize: 13,
       fontWeight: '600',
-      color: '#fff',
+      color: t.correctText,
     },
     declineBtn: {
       backgroundColor: t.bgSurface,
@@ -605,7 +673,7 @@ export default function FriendsScreen() {
                 disabled={codeInput.length !== 6 || isAdding}
               >
                 {isAdding ? (
-                  <ActivityIndicator size="small" color="#fff" />
+                  <ActivityIndicator size="small" color={t.correctText} />
                 ) : (
                   <Text style={styles.addButtonText}>
                     {L('Добавить', 'Додати', 'Añadir')}
@@ -617,17 +685,15 @@ export default function FriendsScreen() {
               <Text style={styles.feedbackText}>{addFeedback}</Text>
             ) : null}
 
-            {/* ── Section 3: Incoming Requests ─────────────────────────── */}
-            <Text style={styles.sectionTitle}>
-              {L('Входящие заявки', 'Вхідні заявки', 'Solicitudes')}
-            </Text>
-            {requests.length === 0 ? (
-              <Text style={styles.emptyText}>
-                {L('Нет входящих заявок', 'Немає вхідних заявок', 'Sin solicitudes')}
-              </Text>
-            ) : (
-              requests.map(renderRequest)
-            )}
+            {/* ── Активные входящие заявки (только если есть) ─────────── */}
+            {requests.length > 0 ? (
+              <>
+                <Text style={styles.sectionTitle}>
+                  {L('Активные заявки', 'Активні заявки', 'Solicitudes activas')}
+                </Text>
+                {requests.map(renderRequest)}
+              </>
+            ) : null}
 
             {/* ── Section 4: My Friends ────────────────────────────────── */}
             <Text style={styles.sectionTitle}>
@@ -648,6 +714,20 @@ export default function FriendsScreen() {
             <View style={styles.bottomPad} />
           </ContentWrap>
         </ScrollView>
+        <ThemedConfirmModal
+          visible={deleteTarget !== null}
+          title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?')}
+          message={deleteTarget?.name ?? ''}
+          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
+          confirmLabel={L('Удалить', 'Видалити', 'Eliminar')}
+          confirmVariant="default"
+          onCancel={() => setDeleteTarget(null)}
+          onConfirm={() => {
+            const target = deleteTarget;
+            setDeleteTarget(null);
+            if (target) void deleteFriend(target.uid);
+          }}
+        />
       </SafeAreaView>
     </ScreenGradient>
   );

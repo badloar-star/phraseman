@@ -4,6 +4,7 @@ import { useWindowDimensions } from 'react-native';
 import { DARK, NEON, GOLD, LIGHT_OCEAN, LIGHT_SAKURA, MINIMAL_DARK, MINIMAL_LIGHT, Theme, ThemeMode } from '../constants/theme';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE } from '../app/config';
+import { getVerifiedPremiumStatus } from '../app/premium_guard';
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
 // Duolingo использует ~16px для основного текста, ~14px для вторичного
@@ -162,16 +163,18 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
 
   useEffect(() => {
-    Promise.all([
-      AsyncStorage.getItem('app_theme'),
-      AsyncStorage.getItem('app_font_size'),
-      AsyncStorage.getItem('premium_active'),
-    ]).then(([themeVal, fontVal, premiumVal]) => {
-      const isPremium = premiumVal === 'true';
+    let cancelled = false;
+    (async () => {
+      const pairs = await AsyncStorage.multiGet(['app_theme', 'app_font_size']);
+      const themeStr = pairs[0]?.[1] ?? null;
+      const fontStr = pairs[1]?.[1] ?? null;
+      // Тот же смысл, что PremiumProvider: не опираться только на raw premium_active (RC/грейс/оверрайды).
+      const isPremium = await getVerifiedPremiumStatus();
+      if (cancelled) return;
       const valid =
-        themeVal === 'neon' || themeVal === 'dark' || themeVal === 'gold' || themeVal === 'ocean' || themeVal === 'sakura' || themeVal === 'minimalLight' || themeVal === 'minimalDark';
+        themeStr === 'neon' || themeStr === 'dark' || themeStr === 'gold' || themeStr === 'ocean' || themeStr === 'sakura' || themeStr === 'minimalLight' || themeStr === 'minimalDark';
       if (valid) {
-        const t = themeVal as ThemeMode;
+        const t = themeStr as ThemeMode;
         if (!isPremium && !DEV_MODE && PREMIUM_ONLY_THEMES.includes(t)) {
           setThemeModeState('minimalDark');
           void AsyncStorage.setItem('app_theme', 'minimalDark');
@@ -183,8 +186,11 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
         setThemeModeState(fallback);
         void AsyncStorage.setItem('app_theme', fallback);
       }
-      if (fontVal && fontVal in FONT_SCALE) setFontSizeState(fontVal as FontSize);
-    });
+      if (fontStr && fontStr in FONT_SCALE) setFontSizeState(fontStr as FontSize);
+    })();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const setThemeMode = useCallback((m: ThemeMode) => {

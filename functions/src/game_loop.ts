@@ -1,10 +1,15 @@
 import * as admin from 'firebase-admin';
-import { DuelSession, SessionPlayer } from './types';
+import { pickOneQuestionExcluding } from './matchmaking';
+import { DuelSession, RANK_TO_QUESTION_LEVEL, SessionPlayer } from './types';
 
 const db = admin.firestore();
 
 const REVEAL_DURATION_MS = 700;
 const COUNTDOWN_DURATION_MS = 3000;
+/** Після цього числа основних питань перевіряємо нічию й можливий тай-брейк. */
+const BASE_MATCH_QUESTIONS = 10;
+/** Максимум додаткових питань при рівному рахунку (1v1). */
+const MAX_TIEBREAK_EXTRA_QUESTIONS = 25;
 
 // Триггер: когда session_player обновляет answers — проверяем можно ли двигаться
 export async function onPlayerAnswered(
@@ -52,29 +57,94 @@ export async function onPlayerAnswered(
   await advanceSession(sessionId);
 }
 
+type TiebreakMeta = {
+  curIdx: number;
+  qLen: number;
+  rankTier: keyof typeof RANK_TO_QUESTION_LEVEL;
+  exclude: string[];
+};
+
 export async function advanceSession(sessionId: string): Promise<void> {
   const sessionRef = db.collection('arena_sessions').doc(sessionId);
 
-  await db.runTransaction(async (tx: admin.firestore.Transaction) => {
+  const tiebreak = await db.runTransaction(async (tx: admin.firestore.Transaction) => {
     const snap = await tx.get(sessionRef);
-    if (!snap.exists) return;
+    if (!snap.exists) return null;
 
     const session = snap.data() as DuelSession;
-    if (session.state !== 'reveal') return;
+    if (session.state !== 'reveal') return null;
 
     const nextIndex = session.currentQuestionIndex + 1;
 
-    if (nextIndex >= session.questions.length) {
-      // Матч завершён
-      tx.update(sessionRef, { state: 'finished' });
-    } else {
-      // Следующий вопрос
+    if (nextIndex < session.questions.length) {
       tx.update(sessionRef, {
         state: 'question',
         currentQuestionIndex: nextIndex,
         questionStartedAt: Date.now(),
       });
+      return null;
     }
+
+    // Закінчились питання в масиві — або фініш, або тай-брейк при нічії (лише 1v1).
+    const playerIds = session.playerIds ?? [];
+    if (playerIds.length !== 2) {
+      tx.update(sessionRef, { state: 'finished' });
+      return null;
+    }
+
+    const playerSnaps = await Promise.all(
+      playerIds.map((pid) => tx.get(db.collection('session_players').doc(`${sessionId}_${pid}`))),
+    );
+    const players = playerSnaps.filter((s) => s.exists).map((s) => s.data() as SessionPlayer);
+    if (players.length !== 2) {
+      tx.update(sessionRef, { state: 'finished' });
+      return null;
+    }
+
+    const s0 = Number(players[0].score) || 0;
+    const s1 = Number(players[1].score) || 0;
+    const tied = s0 === s1;
+    const canTiebreak =
+      tied
+      && session.questions.length >= BASE_MATCH_QUESTIONS
+      && session.questions.length < BASE_MATCH_QUESTIONS + MAX_TIEBREAK_EXTRA_QUESTIONS;
+
+    if (!canTiebreak) {
+      tx.update(sessionRef, { state: 'finished' });
+      return null;
+    }
+
+    return {
+      curIdx: session.currentQuestionIndex,
+      qLen: session.questions.length,
+      rankTier: session.rankTier,
+      exclude: [...session.questions],
+    } satisfies TiebreakMeta;
+  });
+
+  if (!tiebreak) return;
+
+  const level = RANK_TO_QUESTION_LEVEL[tiebreak.rankTier] ?? 'A1';
+  const newId = await pickOneQuestionExcluding(level, new Set(tiebreak.exclude));
+  if (!newId) {
+    await sessionRef.update({ state: 'finished' });
+    return;
+  }
+
+  await db.runTransaction(async (tx: admin.firestore.Transaction) => {
+    const snap = await tx.get(sessionRef);
+    if (!snap.exists) return;
+    const s = snap.data() as DuelSession;
+    if (s.state !== 'reveal') return;
+    if (s.currentQuestionIndex !== tiebreak.curIdx) return;
+    if (s.questions.length !== tiebreak.qLen) return;
+
+    tx.update(sessionRef, {
+      questions: [...s.questions, newId],
+      state: 'question',
+      currentQuestionIndex: tiebreak.curIdx + 1,
+      questionStartedAt: Date.now(),
+    });
   });
 }
 

@@ -1,0 +1,29 @@
+{
+  "decks": [
+    {
+      "pool": "A1",
+      "rel": "assets/arena_questions_a1.json",
+      "cards": 387,
+      "issues": []
+    },
+    {
+      "pool": "A2",
+      "rel": "assets/arena_questions_a2.json",
+      "cards": 688,
+      "issues": []
+    },
+    {
+      "pool": "B1",
+      "rel": "assets/arena_questions_b1.json",
+      "cards": 1022,
+      "issues": []
+    },
+    {
+      "pool": "B2",
+      "rel": "assets/arena_questions_b2.json",
+      "cards": 2245,
+      "issues": []
+    }
+  ],
+  "summary": {}
+}

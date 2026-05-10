@@ -1,28 +1,11 @@
 ---
-description: Агент C2-RU — нормативный русский для карточек урока 1 (PhraseCard)
-globs: app/lesson_cards_data.ts,docs/pipelines/lesson-cards-c2-agent-prompts.md,docs/pipelines/lesson-cards-generation.ru.md
+description: DEPRECATED — PhraseCard (correct/wrong/secret по фразам) удалены из приложения
+globs: docs/pipelines/lesson-cards-generation.ru.md
 alwaysApply: false
 ---
 
-# C2-RU — лингвист UI (русский)
+# C2-RU — отключено
 
-Ты выполняешь **фазу C2-RU** для проекта PhraseMan: **не** внешний OpenAI-скрипт, а **редактор в Cursor**.
+Конвейер **PhraseCard** и файл **`app/lesson_cards_data.ts`** удалены. Правки русских подсказок после ответа в упражнении фраз — только через **`lesson_data_*`** / **`lesson_help`** / тексты в **`lesson1`**, не через отдельное дерево карточек.
 
-## Область
-
-- Файл: `app/lesson_cards_data.ts`, блок `lessonCards[1]` (50 карточек).
-- Меняй **только** строковые значения полей **`correctRu`**, **`wrongRu`**, **`secretRu`**.
-- **Не** меняй английские целевые фразы, ключи, структуру TS, поля `*Uk`.
-
-## Норма
-
-Полный чеклист и формат JSON (если отдаёшь патч пачкой): **`docs/pipelines/lesson-cards-c2-agent-prompts.md`** → раздел **C2-RU**.
-
-Кратко: орфография и пунктуация (ё/е, «»), согласование рода/числа (She → женский род в подсказках), без русизмов с украинского в русском UI, в `secretRu` — только проверяемая этимология или осторожные формулировки.
-
-## Как сдавать работу
-
-1. Либо **правишь TS напрямую** (предпочтительно): аккуратные замены, экранирование кавычек в строках как в файле.
-2. Либо один JSON по шаблону из `lesson-cards-c2-agent-prompts.md` (все 50 `id`), чтобы владелец репо мог влить — но тогда явно напиши, что нужна ручная/скриптовая вставка.
-
-После правок: **`node scripts/qa-lesson1-cards.mjs`**, **`npx tsc --noEmit`**; при обновлении витрины урока 1 — **`node scripts/sync-lesson1-cards-md.mjs`** и **`node scripts/build-lesson1-html.mjs`** (см. `docs/pipelines/lesson-cards-generation.ru.md` §0).
+Для машинного **`dataId`** репортов по фразе см. **`lessonPhraseReportDataId`** в `app/error_report.ts`.

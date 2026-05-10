@@ -1,6 +1,8 @@
 // ─── ПАЛИТРА ────────────────────────────────────────────────────────────────
 // Тёмная: Deep Forest Green (Duolingo-style) | Светлая: Warm Sage (Duolingo-style)
 
+import { Platform } from 'react-native';
+
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка
   bgPrimary:   '#07100A',
@@ -13,6 +15,9 @@ export const DARK = {
   textSecond:  '#58CC89',
   textMuted:   '#8AB49A',
   textGhost:   '#506A5C',
+  /** Подписи на тёмном градиенте экрана (хедер). У «гибридных» тем — см. ocean/sakura. */
+  heroTextPrimary: '#F0F7F2',
+  heroTextMuted:   '#8AB49A',
   // Разделители
   border:      'rgba(255,255,255,0.07)',
   borderLight: '#1D2D23',
@@ -59,6 +64,8 @@ export const NEON = {
   textSecond:  '#C8FF00',
   textMuted:   '#A8A8A8',
   textGhost:   '#606060',
+  heroTextPrimary: '#F0F0F0',
+  heroTextMuted:   '#A8A8A8',
   // Разделители
   border:      'rgba(200,255,0,0.12)',
   borderLight: '#202020',
@@ -102,6 +109,8 @@ export const GOLD = {
   textSecond:  '#FF6464',   // коралловый
   textMuted:   '#9898B8',
   textGhost:   '#5A5A7A',
+  heroTextPrimary: '#FFFFFF',
+  heroTextMuted:   '#9898B8',
   border:      'rgba(255,100,100,0.15)',
   borderLight: '#1E1E3C',
   correct:     '#4A90FF',   // синий — правильные ответы
@@ -141,6 +150,9 @@ export const LIGHT_OCEAN = {
   textSecond:  '#003D5C',
   textMuted:   '#1A3344',
   textGhost:   '#4A5E6E',
+  /** Тёмный фон экрана; в хедере — светлый текст */
+  heroTextPrimary: '#EAF6FF',
+  heroTextMuted:   'rgba(190, 224, 248, 0.92)',
   // Разделители
   border:      'rgba(80,200,255,0.28)',
   borderLight: '#1A3048',
@@ -152,7 +164,7 @@ export const LIGHT_OCEAN = {
   // XP / Уровень
   gold:        '#8B5E00',
   goldBg:      'rgba(139,94,0,0.14)',
-  textOnGold:  '#FFFFFF',
+  textOnGold:  '#1A0F06',
   // Прогресс / активный
   accent:      '#0076C0',
   accentBg:    'rgba(0,118,192,0.12)',
@@ -168,7 +180,7 @@ export const LIGHT_OCEAN = {
   cardShadow:  'rgba(0,40,80,0.32)',
   glow:        'rgba(0,180,255,0.24)',
   cardGradient: ['#FFFFFF', '#40C0F0'] as [string, string],
-  bgGradient:   ['#0A3A5C', '#0A1C2E', '#040810'] as unknown as [string, string],
+  bgGradient:   ['#135A82', '#0E2840', '#081828'] as unknown as [string, string],
 };
 
 // ─── LIGHT SAKURA ────────────────────────────────────────────────────────────
@@ -184,6 +196,8 @@ export const LIGHT_SAKURA = {
   textSecond:  '#5C0A32',
   textMuted:   '#3D242E',
   textGhost:   '#5C4A52',
+  heroTextPrimary: '#FFF5F9',
+  heroTextMuted:   'rgba(255, 214, 228, 0.92)',
   // Разделители
   border:      'rgba(255,160,200,0.28)',
   borderLight: '#3A1A28',
@@ -195,7 +209,7 @@ export const LIGHT_SAKURA = {
   // XP / Уровень
   gold:        '#8B5E00',
   goldBg:      'rgba(139,94,0,0.14)',
-  textOnGold:  '#FFFFFF',
+  textOnGold:  '#1A0F06',
   // Прогресс / активный
   accent:      '#C0006A',
   accentBg:    'rgba(192,0,106,0.12)',
@@ -229,6 +243,8 @@ export const MINIMAL_LIGHT = {
   textSecond:  '#2F3440',
   textMuted:   '#5C5A55',
   textGhost:   '#8A857A',
+  heroTextPrimary: '#1C1B1A',
+  heroTextMuted:   '#5C5A55',
   border:      'rgba(40,37,32,0.14)',
   borderLight: '#D6CCB8',
   correct:     '#3B4A6B',
@@ -263,6 +279,8 @@ export const MINIMAL_DARK = {
   textSecond:  '#6EA8FF',
   textMuted:   '#A7ABB3',
   textGhost:   '#747A84',
+  heroTextPrimary: '#F5F5F5',
+  heroTextMuted:   '#A7ABB3',
   border:      'rgba(255,255,255,0.14)',
   borderLight: '#3A3D44',
   correct:     '#6EA8FF',
@@ -290,6 +308,32 @@ export const MINIMAL_DARK = {
 export type ThemeMode = 'dark' | 'neon' | 'gold' | 'ocean' | 'sakura' | 'minimalLight' | 'minimalDark';
 export type Theme = typeof DARK;
 
+/**
+ * Текст прямо на тёмном градиенте экрана (не на светлой карточке).
+ * У ocean/sakura `textPrimary` / `textMuted` заточены под плитки — на фоне их не видно.
+ */
+export function screenTextOnGradient(theme: Theme, themeMode: ThemeMode): {
+  primary: string;
+  second: string;
+  muted: string;
+  ghost: string;
+} {
+  if (themeMode === 'ocean' || themeMode === 'sakura') {
+    return {
+      primary: theme.heroTextPrimary,
+      second: theme.heroTextMuted,
+      muted: theme.heroTextMuted,
+      ghost: themeMode === 'ocean' ? 'rgba(210, 236, 255, 0.52)' : 'rgba(255, 218, 232, 0.55)',
+    };
+  }
+  return {
+    primary: theme.textPrimary,
+    second: theme.textSecond,
+    muted: theme.textMuted,
+    ghost: theme.textGhost,
+  };
+}
+
 // Убеждаемся, что все темы соответствуют одному типу (compile-time check)
 const _checkNEON:   Theme = NEON         as any;
 const _checkGOLD:   Theme = GOLD         as any;
@@ -310,13 +354,12 @@ export const STRINGS = {
     home:      'Главная',
     lessons:   'Уроки',
     quizzes:   'Квизы',
-    hallFame:  'Зал славы',
     settings:  'Настройки',
   },
   home: {
     greeting:     (name: string) => `Привет, ${name}`,
     sub:          'Продолжим сегодня?',
-    streakLabel:  'Стрик',
+    streakLabel:  'Цепочка',
     streakDays:   'дней подряд',
     continueBtn:  'Продолжить',
     startBtn:     'Начать',
@@ -377,14 +420,6 @@ export const STRINGS = {
     help:       'Помощь',
     premium:    'Premium',
   },
-  hallFame: {
-    title:     'Зал славы',
-    empty:     'Пока никого нет.\nПройди квиз и займи место!',
-    rank:      'Место',
-    player:    'Игрок',
-    points:    'Опыт',
-    weekReset: 'Сброс в воскресенье',
-  },
   leagues: [
     { name: 'Искатель',    min: 0,    color: '#3D5445' },
     { name: 'Знаток',      min: 100,  color: '#7A9484' },
@@ -397,9 +432,9 @@ export const STRINGS = {
     title:    'Premium',
     subtitle: 'Полный доступ ко всем материалам',
     trial:    '7 дней бесплатно',
-    price:    '€3.99 / месяц · €23.99 / год',
+    price:    'Месячная или годовая — точная сумма в App Store / Google Play',
     cta:      'Начать 7 дней бесплатно',
-    ctaSub:   'Оформить на год — €23.99',
+    ctaSub:   'Оформить годовую подписку',
     locked:   'Без Premium ты теряешь доступ\nк 31 уроку и квизам',
     legal:    'Отмена в любое время в настройках App Store / Google Play.',
     freeCont: 'Продолжить бесплатно (Урок 1)',
@@ -418,6 +453,20 @@ export const STRINGS = {
     nameError:   'Введите имя чтобы продолжить',
   },
 };
+
+(() => {
+  const p = STRINGS.premium;
+  if (Platform.OS === 'ios') {
+    p.price = 'Месячная или годовая — точная сумма в App Store.';
+    p.legal = 'Отмена в любое время в настройках App Store (Подписки).';
+  } else if (Platform.OS === 'android') {
+    p.price = 'Месячная или годовая — точная сумма в Google Play.';
+    p.legal = 'Отмена в любое время в настройках Google Play (Подписки).';
+  } else {
+    p.price = 'Месячная или годовая — точная сумма в магазине приложений.';
+    p.legal = 'Отмена в любое время в разделе подписок магазина приложений.';
+  }
+})();
 
 export const getLeague = (points: number) => {
   const leagues = [...STRINGS.leagues].reverse();

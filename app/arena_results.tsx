@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Image, View, Text, TouchableOpacity, StyleSheet, Animated, ScrollView, Modal, Pressable } from 'react-native';
+import { Image, View, Text, TouchableOpacity, StyleSheet, Animated, Easing, ScrollView, Modal, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -9,22 +9,62 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
 import { subscribeSessionPlayers, subscribeSession, createRematchOffer, setRematchStatus } from './services/arena_db';
-import { ArenaSession, RematchOffer, REMATCH_TTL_MS, SessionPlayer } from './types/arena';
+import { ArenaSession, RematchOffer, REMATCH_TTL_MS, SessionPlayer, type RankTier } from './types/arena';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { getAvatarImageByIndex } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { onArenaWin, addShards, loadShardsFromCloud } from './shards_system';
+import { resolveRankedArenaWagerForMatchOutcome } from './arena_match_wager';
 import { canShowReview, markReviewPrompted, markReviewRated, requestNativeReview, getReviewVariant, ReviewVariant } from './review_utils';
 import { logEvent } from './firebase';
 import firestore from '@react-native-firebase/firestore';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {
+  persistBotArenaMatchWithRetries,
+  flushPendingBotArenaMatch,
+  buildBotMatchDisplayResult,
+  startSilentArenaPersistLoop,
+} from './arena_bot_profile_write';
 import { emitAppEvent } from './events';
+import { bumpStatsDaily } from './stats_daily_breakdown';
 import { oskolokImageForPackShards } from './oskolok';
-import { getRankImage } from '../hooks/use-arena-rank';
+import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank';
+import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { triLang, type Lang } from '../constants/i18n';
 import { arenaBilingualFirst } from '../constants/arena_i18n';
+import { pickRandomBotName, pickRandomBotNameEs } from './constants/bot_names';
+import ReportErrorButton from '../components/ReportErrorButton';
+import { writeFriendEvent } from './firestore_friend_activity';
 
-const LEVELS = ['I', 'II', 'III'];
-const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'];
+type ArenaReviewItem = {
+  question: string;
+  options: string[];
+  correct: string;
+  myAnswer: string | null;
+  rule: string;
+  questionId?: string;
+  level?: string;
+  type?: string;
+};
+
+function buildArenaReviewReportText(item: ArenaReviewItem, idx: number): string {
+  const myLine =
+    item.myAnswer == null || item.myAnswer === ''
+      ? '(нет ответа / не успел)'
+      : item.myAnswer;
+  return [
+    item.questionId ? `id: ${item.questionId}` : `вопрос в матче: ${idx + 1}`,
+    item.level ? `уровень: ${item.level}` : '',
+    item.type ? `тип: ${item.type}` : '',
+    `вопрос: ${item.question}`,
+    `варианты: ${item.options.join(' | ')}`,
+    `верно: ${item.correct}`,
+    `мой ответ: ${myLine}`,
+    item.rule ? `правило: ${item.rule}` : '',
+  ]
+    .filter(Boolean)
+    .join('\n');
+}
 
 // ── Одна звезда (слот) ─────────────────────────────────────────────────────────
 function StarSlot({ filled, animateIn, animateOut, delay, accentColor }: {
@@ -81,15 +121,21 @@ function StarDisplay({ oldStars, newStars, accentColor, ready, rankChanged = fal
   ready: boolean;
   rankChanged?: boolean;
 }) {
-  // On rank-up the star counter resets by design, but it should not look like "loss".
-  const gained = newStars > oldStars;
-  const lost = newStars < oldStars && !rankChanged;
+  // При ранг-апе newStars сбрасывается в 0 (earned 3rd → rank up).
+  // Показываем промежуточный «заполненный» слот (oldStars+1=3), чтобы
+  // 3-я звезда анимировалась ДО того как экран покажет новый ранг с 0 звёзд.
+  // При демоуне (0→2 нижнего ранга) rankChanged=true, promoted=false — shows loss.
+  const isRankUp = rankChanged && newStars < oldStars;
+  const displayNewStars = isRankUp ? Math.min(3, oldStars + 1) : newStars;
+
+  const gained = displayNewStars > oldStars;
+  const lost = !isRankUp && newStars < oldStars && !rankChanged;
   const changedIdx = gained ? oldStars : (lost ? oldStars - 1 : -1);
 
   return (
     <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 4 }}>
       {[0, 1, 2].map(i => {
-        const isFilled = ready ? (gained ? i < newStars : i < newStars) : i < oldStars;
+        const isFilled = ready ? i < displayNewStars : i < oldStars;
         const animIn = ready && gained && i === changedIdx;
         const animOut = ready && lost && i === changedIdx;
         return (
@@ -111,13 +157,25 @@ function StarDisplay({ oldStars, newStars, accentColor, ready, rankChanged = fal
 // ── Главный экран ──────────────────────────────────────────────────────────────
 export default function DuelResultsScreen() {
   const {
-    sessionId, userId, forfeited, opponentForfeited,
-    mockMyScore, mockOppScore, mockOppName,
-    mockMyCorrect, mockMyTotal,
-    mockBonusSpeed, mockBonusStreak, mockBonusFirst, mockBonusOutspeed,
+    sessionId,
+    userId,
+    rankedArena: rankedArenaParam,
+    forfeited,
+    opponentForfeited,
+    mockMyScore,
+    mockOppScore,
+    mockOppName,
+    mockMyCorrect,
+    mockMyTotal,
+    mockBonusSpeed,
+    mockBonusStreak,
+    mockBonusFirst,
+    mockBonusOutspeed,
     mockReviewData,
   } = useLocalSearchParams<{
     sessionId: string; userId: string;
+    /** «1» = рейтинг из лобби (Найти матч / бот из очереди); ставка осколками только здесь */
+    rankedArena?: string;
     forfeited?: string; opponentForfeited?: string;
     mockMyScore?: string; mockOppScore?: string; mockOppName?: string;
     mockMyCorrect?: string; mockMyTotal?: string;
@@ -126,6 +184,9 @@ export default function DuelResultsScreen() {
     mockReviewData?: string;
   }>();
   const isMockSession = sessionId?.startsWith('bot_');
+  const isRankedArenaSession = (rankedArenaParam ?? '0') === '1';
+  // Дружеский матч (type=private) — без звёзд рейтинга и без осколков за победу
+  const isFriendMatch = !isMockSession && !isRankedArenaSession;
   const isForfeited = forfeited === '1';
   const isOpponentForfeited = opponentForfeited === '1';
   const router = useRouter();
@@ -150,6 +211,8 @@ export default function DuelResultsScreen() {
     newLevel: string;
   } | null>(null);
   const [shardsEarned, setShardsEarned] = useState(0);
+  /** Проигрыш со ставкой: списание уже в resolveRankedArenaWager — только UI/анимация. */
+  const [shardsLostWager, setShardsLostWager] = useState(0);
   const [showReview, setShowReview] = useState(false);
   const [showRatingModal, setShowRatingModal] = useState(false);
   const [ratingVariant, setRatingVariant] = useState<ReviewVariant | null>(null);
@@ -157,11 +220,17 @@ export default function DuelResultsScreen() {
   const [isDrawServer, setIsDrawServer] = useState<boolean>(false);
   const [resultCardW, setResultCardW] = useState(0);
   const [resultCardH, setResultCardH] = useState(0);
+  // Координаты строки-контейнера наград относительно resultCard. Нужны чтобы
+  // перевести onLayout-координаты rewardItem (относительно `rewards` View) в
+  // resultCard-координаты — именно в них работает translateX/translateY полётной анимации.
+  const [rewardsOffset, setRewardsOffset] = useState<{ x: number; y: number } | null>(null);
   const [xpRewardTarget, setXpRewardTarget] = useState<{ x: number; y: number } | null>(null);
   const [shardRewardTarget, setShardRewardTarget] = useState<{ x: number; y: number } | null>(null);
+  const [shardLossRewardTarget, setShardLossRewardTarget] = useState<{ x: number; y: number } | null>(null);
   const [showXpReward, setShowXpReward] = useState(false);
   const [showShardReward, setShowShardReward] = useState(false);
-  const [flyKind, setFlyKind] = useState<'xp' | 'shard' | null>(null);
+  const [showShardLoss, setShowShardLoss] = useState(false);
+  const [flyKind, setFlyKind] = useState<'xp' | 'shard' | 'shard_loss' | null>(null);
   const [session, setSession] = useState<ArenaSession | null>(null);
   const [rematchSecsLeft, setRematchSecsLeft] = useState<number | null>(null);
   const rematchTimeoutToastRef = useRef(false);
@@ -171,18 +240,36 @@ export default function DuelResultsScreen() {
   const taskProgressHandledRef = useRef(false);
   const serverResultAppliedRef = useRef(false);
   const mockArenaRewardsRef = useRef(false);
+  /** Стабильный ник бота, если в URL не передали mockOppName (старые билды / крайние случаи). */
+  const mockOppNameFallbackRef = useRef<string | null>(null);
   const DRAW_XP = 30;
 
-  const applyTaskProgressOnce = useCallback((won: boolean) => {
-    if (taskProgressHandledRef.current) return;
-    taskProgressHandledRef.current = true;
-    const updates: { type: import('./daily_tasks').TaskType; increment?: number }[] = [{ type: 'arena_play', increment: 1 }];
-    if (won) updates.push({ type: 'arena_win', increment: 1 });
-    updateMultipleTaskProgress(updates).catch(() => {});
+  const arenaDailyOutcomeRecordedRef = useRef(false);
+
+  useEffect(() => {
+    arenaDailyOutcomeRecordedRef.current = false;
+  }, [sessionId]);
+
+  const recordArenaDailyOutcome = useCallback((isDraw: boolean, won: boolean) => {
+    if (arenaDailyOutcomeRecordedRef.current) return;
+    arenaDailyOutcomeRecordedRef.current = true;
+    if (isDraw) return;
+    if (won) void bumpStatsDaily('arena_wins', 1);
+    else void bumpStatsDaily('arena_losses', 1);
   }, []);
 
-  type ReviewItem = { question: string; options: string[]; correct: string; myAnswer: string | null; rule: string };
-  const reviewItems: ReviewItem[] = (() => {
+  const applyTaskProgressOnce = useCallback((won: boolean, opts?: { rankPromoted?: boolean }) => {
+    if (taskProgressHandledRef.current) return;
+    taskProgressHandledRef.current = true;
+    // Ежедневные задания «в Арене» считают все обычные матчи Арены, включая ботов; дружеские матчи не считаются.
+    if (isFriendMatch) return;
+    const updates: { type: import('./daily_tasks').TaskType; increment?: number }[] = [{ type: 'arena_play', increment: 1 }];
+    if (won) updates.push({ type: 'arena_win', increment: 1 });
+    if (opts?.rankPromoted) updates.push({ type: 'arena_rank_promoted', increment: 1 });
+    updateMultipleTaskProgress(updates, { pvpArenaMatchFinished: { won } }).catch(() => {});
+  }, [isFriendMatch]);
+
+  const reviewItems: ArenaReviewItem[] = (() => {
     try { return mockReviewData ? JSON.parse(mockReviewData) : []; } catch {
       emitAppEvent('action_toast', {
         type: 'error',
@@ -201,25 +288,34 @@ export default function DuelResultsScreen() {
   const flyScale = useRef(new Animated.Value(0.2)).current;
   const flyOpacity = useRef(new Animated.Value(0)).current;
   const rewardsAnimPlayedRef = useRef(false);
-  /** Осколки начисляются async (onArenaWin); без этого XP-анимация «занимает» слот и шард не показывают. */
+  /** Осколки приходят после onArenaWin(); без этого XP-анимация «занимает» слот и шард не показывают. */
   const shardFlyStartedRef = useRef(false);
-  const rankShieldScale = useRef(new Animated.Value(0.2)).current;
-  const rankShieldY = useRef(new Animated.Value(0)).current;
-  const rankShieldX = useRef(new Animated.Value(0)).current;
-  const rankShieldOpacity = useRef(new Animated.Value(0)).current;
-  const rankImpact = useRef(new Animated.Value(1)).current;
+  /** Полёт осколка при проигрыше со ставкой. */
+  const lossShardFlyStartedRef = useRef(false);
+  const lossShardAnimPlayedRef = useRef(false);
 
   useEffect(() => {
     if (isMockSession) {
+      const trimmed = mockOppName && String(mockOppName).trim();
+      if (trimmed) mockOppNameFallbackRef.current = trimmed;
+      else if (!mockOppNameFallbackRef.current) {
+        mockOppNameFallbackRef.current = lang === 'es' ? pickRandomBotNameEs() : pickRandomBotName();
+      }
+      const oppDisplay = trimmed || mockOppNameFallbackRef.current || pickRandomBotName();
       setPlayers([
         { sessionId, playerId: userId, score: Number(mockMyScore ?? 0), answers: [], displayName: triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú' }) },
-        { sessionId, playerId: 'bot1', score: Number(mockOppScore ?? 0), answers: [], displayName: mockOppName ?? 'Opponent' },
+        { sessionId, playerId: 'bot1', score: Number(mockOppScore ?? 0), answers: [], displayName: oppDisplay },
       ]);
       return;
     }
     const unsub = subscribeSessionPlayers(sessionId, setPlayers);
     return unsub;
   }, [isMockSession, mockMyScore, mockOppName, mockOppScore, sessionId, userId, lang]);
+
+  useEffect(() => {
+    if (!userId || !isMockSession) return;
+    void flushPendingBotArenaMatch(userId);
+  }, [userId, isMockSession]);
 
   // Подписка на саму сессию — нужна для rematchOffer
   useEffect(() => {
@@ -380,6 +476,7 @@ export default function DuelResultsScreen() {
           newTier?: string;
           newLevel?: string;
           rankChanged?: boolean;
+          /** Повышение ранга (лига вверх или уровень вверх в той же лиге), не понижение */
           promoted?: boolean;
           rankUpStreakShardAwarded?: boolean;
         };
@@ -394,6 +491,9 @@ export default function DuelResultsScreen() {
           newLevel: data.newLevel ?? 'I',
           rankChanged: !!data.rankChanged,
         });
+        // 200ms (было 900ms) — server-path тоже не должен заставлять пользователя ждать
+        // секунду перед анимацией звёзд. Сама StarSlot.animateIn уже имеет внутренний
+        // delay 400ms, чего достаточно для визуальной паузы.
         setTimeout(() => {
           setStarsReady(true);
           if (data.rankChanged) {
@@ -405,14 +505,33 @@ export default function DuelResultsScreen() {
               newLevel: data.newLevel ?? 'I',
             }), 700);
           }
-        }, 900);
+        }, 200);
 
-        if (!rewardsHandledRef.current && data.won && !data.isDraw) {
+        // Дружеский матч: без осколков за победу, без ставок, без изменения рейтинговых звёзд
+        const wagerOpts = isFriendMatch
+          ? { wagerLossStake: 0, baseWinShardsOverride: 0 }
+          : await resolveRankedArenaWagerForMatchOutcome({
+              rankedArenaParam: isRankedArenaSession,
+              sessionId,
+              won: !!data.won,
+              isDraw: !!data.isDraw,
+            });
+
+        if (!isFriendMatch && !data.isDraw && !data.won && wagerOpts.wagerLossStake) {
+          setShardsLostWager(wagerOpts.wagerLossStake);
+        }
+
+        if (!isFriendMatch && !rewardsHandledRef.current && data.won && !data.isDraw) {
           rewardsHandledRef.current = true;
-          const { shards, milestoneBonus } = await onArenaWin();
+          const { shards, milestoneBonus } = await onArenaWin(
+            wagerOpts.baseWinShardsOverride != null && wagerOpts.baseWinShardsOverride > 0
+              ? { baseWinShardsOverride: wagerOpts.baseWinShardsOverride }
+              : undefined,
+          );
           let total = shards + milestoneBonus;
-          // Победа в арене всегда должна давать минимум +1 осколок.
-          total = Math.max(1, total);
+          if (wagerOpts.baseWinShardsOverride == null) {
+            total = Math.max(1, total);
+          }
           let rankBonus = 0;
           if (data.rankUpStreakShardAwarded) {
             rankBonus = await addShards('arena_rank_up_streak', { suppressEarnEvent: true });
@@ -430,7 +549,17 @@ export default function DuelResultsScreen() {
           }
         }
 
-        applyTaskProgressOnce(!!data.won);
+        const drawSrv = !!data.isDraw;
+        if (typeof data.won === 'boolean' || drawSrv) {
+          recordArenaDailyOutcome(drawSrv, !!data.won);
+        }
+
+        applyTaskProgressOnce(!!data.won, { rankPromoted: !!data.promoted });
+
+        if (data.rankChanged && data.newTier) {
+          const eventType = data.promoted ? 'arena_rank_up' : 'arena_rank_down';
+          writeFriendEvent(eventType, { rank: String(data.newTier) }).catch(() => {});
+        }
 
         setResultSaved(true);
         logEvent('arena_result_loaded_from_server', { won: data.won ? 1 : 0 });
@@ -448,7 +577,7 @@ export default function DuelResultsScreen() {
         });
       }
     });
-  }, [applyTaskProgressOnce, isMockSession, sessionId, userId, lang]);
+  }, [applyTaskProgressOnce, isMockSession, isRankedArenaSession, recordArenaDailyOutcome, sessionId, userId, lang]);
 
   const saveMatchResult = useCallback(async (uid: string, won: boolean, isLast: boolean, total: number, isDraw: boolean = false) => {
     if (!isMockSession) return;
@@ -456,117 +585,75 @@ export default function DuelResultsScreen() {
     const myScore = players.find(p => p.playerId === uid)?.score ?? 0;
     const oppPlayer = players.find(p => p.playerId !== uid);
     const oppScore = oppPlayer?.score ?? 0;
-    const oppName = oppPlayer?.displayName ?? 'Bot';
+    const oppName = oppPlayer?.displayName?.trim()
+      || (lang === 'es' ? pickRandomBotNameEs() : pickRandomBotName());
 
-    // Транзакция в arena_profiles: повторяет логику серверного gameLoop (см.
-    // functions/src/index.ts — звёзды/level/tier/winStreak/stats/xp). Бот-матчи
-    // считаются в рейтинг (см. CLAUDE.md → раздел про арену), но НЕ создают
-    // arena_sessions: матч-история живёт только в подколлекции профиля.
-    let oldStars = 0, newStars = 0;
-    let oldTier = 'bronze', newTier = 'bronze';
-    let oldLevel = 'I', newLevel = 'I';
+    // Транзакция в arena_profiles: см. arena_bot_profile_write (ретраи + очередь при сбое).
+    let oldStars = 0;
+    let newStars = 0;
+    let oldTier = 'bronze';
+    let newTier = 'bronze';
+    let oldLevel = 'I';
+    let newLevel = 'I';
     let rankChanged = false;
     let promoted = false;
+
+    // Тянем ник из AsyncStorage (источник истины для арены — см. arena_lobby.tsx);
+    // если пусто — оставим undefined, сервер тогда не перетрёт уже сохранённое имя.
+    let myName: string | undefined;
     try {
-      await firestore().runTransaction(async (tx) => {
-        const profileRef = firestore().collection('arena_profiles').doc(uid);
-        const profileSnap = await tx.get(profileRef);
-        const data = profileSnap.exists
-          ? (profileSnap.data() as {
-              rank?: { stars?: number; tier?: string; level?: string };
-              xp?: number;
-              stats?: {
-                matchesPlayed?: number; matchesWon?: number; totalScore?: number;
-                winStreak?: number; bestWinStreak?: number;
-              };
-            })
-          : {};
-        oldStars = data.rank?.stars ?? 0;
-        oldTier = data.rank?.tier ?? 'bronze';
-        oldLevel = data.rank?.level ?? 'I';
-        const curStreak = data.stats?.winStreak ?? 0;
-        const bestStreak = data.stats?.bestWinStreak ?? 0;
+      const stored = await AsyncStorage.getItem('user_name');
+      if (stored && stored.trim()) myName = stored.trim();
+    } catch { /* ignore */ }
 
-        newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
-        newTier = oldTier;
-        newLevel = oldLevel;
-
-        if (newStars >= 3) {
-          newStars = 0;
-          const li = LEVELS.indexOf(oldLevel);
-          if (li < LEVELS.length - 1 && li >= 0) {
-            newLevel = LEVELS[li + 1];
-          } else {
-            newLevel = LEVELS[0];
-            const ti = TIERS.indexOf(oldTier);
-            if (ti < TIERS.length - 1 && ti >= 0) newTier = TIERS[ti + 1];
-          }
-        } else if (newStars < 0) {
-          newStars = 2;
-          const li = LEVELS.indexOf(oldLevel);
-          if (li > 0) {
-            newLevel = LEVELS[li - 1];
-          } else {
-            const ti = TIERS.indexOf(oldTier);
-            if (ti > 0) {
-              newTier = TIERS[ti - 1];
-              newLevel = LEVELS[LEVELS.length - 1];
-            } else {
-              newStars = 0;
-            }
-          }
-        }
-
-        rankChanged = newTier !== oldTier || newLevel !== oldLevel;
-        promoted = rankChanged && (
-          TIERS.indexOf(newTier) > TIERS.indexOf(oldTier)
-          || (newTier === oldTier && LEVELS.indexOf(newLevel) > LEVELS.indexOf(oldLevel))
-        );
-        const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
-
-        const profileUpdate = {
-          'rank.tier': newTier,
-          'rank.level': newLevel,
-          'rank.stars': newStars,
-          xp: (data.xp ?? 0) + xpDelta,
-          'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-          'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-          'stats.totalScore': (data.stats?.totalScore ?? 0) + myScore,
-          'stats.winStreak': newStreak,
-          'stats.bestWinStreak': Math.max(bestStreak, newStreak),
-          updatedAt: Date.now(),
-        };
-        if (profileSnap.exists) tx.update(profileRef, profileUpdate);
-        else tx.set(profileRef, profileUpdate, { merge: true });
-
-        const historyRef = profileRef.collection('match_history').doc(sessionId);
-        tx.set(historyRef, {
-          createdAt: Date.now(),
-          sessionId,
-          won,
-          isDraw,
-          myScore,
-          oppScore,
-          oppName,
-          oppIsBot: true,
-          xpGained: xpDelta,
-          starsChange: newStars - oldStars,
-          rankBefore: { tier: oldTier, level: oldLevel, stars: oldStars },
-          rankAfter: { tier: newTier, level: newLevel, stars: newStars },
-        }, { merge: true });
-      });
-    } catch {
-      // Сеть/permissions — продолжаем UI с локальной анимацией, но звёзды не сохранятся.
-      // Это лучше чем падение экрана; следующий матч повторит попытку записи в профиль.
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: 'Не удалось синхронизировать рейтинг с облаком — попробуй позже.',
-        messageUk: 'Не вдалося синхронізувати рейтинг із хмарою — спробуй пізніше.',
-        messageEs: 'No se ha podido sincronizar tu clasificación con la nube. Inténtalo más tarde.',
-      });
+    const botArgs = {
+      sessionId,
+      uid,
+      won,
+      isLast,
+      isDraw,
+      myScore,
+      oppScore,
+      oppName,
+      ...(myName ? { myName } : {}),
+    };
+    const { ok, result } = await persistBotArenaMatchWithRetries(botArgs);
+    let profileRank: { stars?: number; tier?: string; level?: string } | undefined;
+    if (result) {
+      ({
+        oldStars,
+        newStars,
+        oldTier,
+        newTier,
+        oldLevel,
+        newLevel,
+        rankChanged,
+        promoted,
+      } = result);
+      setXpGainedServer(result.xpDelta);
+    } else {
+      setXpGainedServer(xpDelta);
+      try {
+        const snap = await firestore().collection('arena_profiles').doc(uid).get();
+        const d = snap.exists ? (snap.data() as { rank?: { stars?: number; tier?: string; level?: string } }) : undefined;
+        profileRank = d?.rank;
+      } catch { /* empty */ }
+      const display = buildBotMatchDisplayResult(botArgs, profileRank);
+      ({
+        oldStars,
+        newStars,
+        oldTier,
+        newTier,
+        oldLevel,
+        newLevel,
+        rankChanged,
+        promoted,
+      } = display);
+    }
+    if (!ok) {
+      startSilentArenaPersistLoop(botArgs);
     }
 
-    setXpGainedServer(xpDelta);
     setIsDrawServer(isDraw);
     setStarInfo({
       oldStars,
@@ -577,6 +664,9 @@ export default function DuelResultsScreen() {
       newLevel,
       rankChanged,
     });
+    // 150ms — минимум, чтобы успел отрендериться initial state (filled=oldStars), и
+    // дальше StarSlot подхватит animateIn. Раньше было 400ms — суммарно с retry-loop
+    // транзакции звёздочки появлялись с большой задержкой, теперь намного быстрее.
     setTimeout(() => {
       setStarsReady(true);
       if (rankChanged) {
@@ -588,22 +678,23 @@ export default function DuelResultsScreen() {
           newLevel,
         }), 700);
       }
-    }, 400);
+    }, 150);
     logEvent('arena_match_bot_result', {
       won: won ? 1 : 0,
       rank_changed: rankChanged ? 1 : 0,
       is_draw: isDraw ? 1 : 0,
       stars_change: newStars - oldStars,
-      xp_gained: xpDelta,
+      xp_gained: result?.xpDelta ?? xpDelta,
     });
-  }, [isMockSession, players, sessionId]);
+  }, [isMockSession, lang, players, sessionId]);
 
   useEffect(() => {
     if (!isForfeited || resultSaved || !userId || !isMockSession) return;
     saveMatchResult(userId, false, true, 2);
     applyTaskProgressOnce(false);
+    recordArenaDailyOutcome(false, false);
     setResultSaved(true);
-  }, [applyTaskProgressOnce, isForfeited, isMockSession, resultSaved, saveMatchResult, userId]);
+  }, [applyTaskProgressOnce, isForfeited, isMockSession, recordArenaDailyOutcome, resultSaved, saveMatchResult, userId]);
 
   useEffect(() => {
     if (isForfeited || players.length === 0 || resultSaved || !userId || !isMockSession) return;
@@ -619,8 +710,9 @@ export default function DuelResultsScreen() {
     const isLast = !isDraw && !isOpponentForfeited && myScore === lastScore && myScore !== topScore;
     saveMatchResult(userId, isWin, isLast, players.length, isDraw);
     applyTaskProgressOnce(isWin);
+    recordArenaDailyOutcome(isDraw, isWin);
     setResultSaved(true);
-  }, [applyTaskProgressOnce, isForfeited, isMockSession, isOpponentForfeited, players, resultSaved, saveMatchResult, userId]);
+  }, [applyTaskProgressOnce, isForfeited, isMockSession, isOpponentForfeited, players, recordArenaDailyOutcome, resultSaved, saveMatchResult, userId]);
 
   const sorted = [...players].sort((a, b) => b.score - a.score);
   const me = players.find(p => p.playerId === userId);
@@ -642,8 +734,8 @@ export default function DuelResultsScreen() {
     ? (isForfeited ? 0 : (isDraw ? DRAW_XP : (isWinner ? 50 : 15)))
     : (xpGainedServer ?? 0);
 
-  // При ничьей звёзды не меняются — анимация не нужна.
-  const showStars = !isDraw && starInfo !== null && (starInfo.newStars !== starInfo.oldStars || starsReady);
+  // При ничьей звёзды не меняются — анимация не нужна. Дружеский матч — звёзды не меняются.
+  const showStars = !isFriendMatch && !isDraw && starInfo !== null && (starInfo.newStars !== starInfo.oldStars || starsReady);
   // Если проигрыш и 0 звёзд было — нет анимации; ничья — тоже без анимации.
   const noStarAnim = isDraw || (starInfo && !isWinner && starInfo.oldStars === 0);
 
@@ -663,85 +755,98 @@ export default function DuelResultsScreen() {
 
   useEffect(() => {
     if (!isMockSession || !resultSaved) return;
-    if (isForfeited) return;
-    if (!isWinner) return;
     if (mockArenaRewardsRef.current) return;
     mockArenaRewardsRef.current = true;
-    (async () => {
-      const { shards, milestoneBonus } = await onArenaWin();
-      const total = Math.max(1, shards + milestoneBonus);
+    void (async () => {
+      const won = !isForfeited && !isDraw && isWinner;
+      const drawOutcome = !isForfeited && isDraw;
+      const wagerOpts = await resolveRankedArenaWagerForMatchOutcome({
+        rankedArenaParam: isRankedArenaSession,
+        sessionId,
+        won,
+        isDraw: drawOutcome,
+      });
+      if (!drawOutcome && !won && wagerOpts.wagerLossStake) {
+        setShardsLostWager(wagerOpts.wagerLossStake);
+      }
+      if (!won) return;
+      const { shards, milestoneBonus } = await onArenaWin(
+        wagerOpts.baseWinShardsOverride != null
+          ? { baseWinShardsOverride: wagerOpts.baseWinShardsOverride }
+          : undefined,
+      );
+      let total = shards + milestoneBonus;
+      if (wagerOpts.baseWinShardsOverride == null) {
+        total = Math.max(1, total);
+      }
       if (total > 0) {
         setShardsEarned(total);
       }
     })().catch(() => {});
-  }, [isMockSession, resultSaved, isForfeited, isWinner, lang]);
+  }, [isDraw, isForfeited, isMockSession, isRankedArenaSession, isWinner, resultSaved, sessionId]);
 
   useEffect(() => {
     rewardsAnimPlayedRef.current = false;
     shardFlyStartedRef.current = false;
+    lossShardAnimPlayedRef.current = false;
+    lossShardFlyStartedRef.current = false;
     setShowXpReward(false);
     setShowShardReward(false);
+    setShowShardLoss(false);
     setFlyKind(null);
-  }, [sessionId, isWinner]);
+    setShardsLostWager(0);
+    setShardsEarned(0);
+  }, [sessionId]);
 
-  useEffect(() => {
-    if (!rankCinematic || !resultCardW || !resultCardH) return;
-    rankShieldScale.setValue(rankCinematic.promoted ? 0.18 : 0.24);
-    rankShieldOpacity.setValue(0);
-    rankShieldY.setValue(-resultCardH * 0.18);
-    rankShieldX.setValue(0);
-    rankImpact.setValue(1);
-    const finalX = resultCardW * 0.29;
-    const finalY = -resultCardH * 0.22;
-    Animated.sequence([
-      Animated.parallel([
-        Animated.timing(rankShieldOpacity, { toValue: 1, duration: 180, useNativeDriver: true }),
-        Animated.spring(rankShieldScale, {
-          toValue: rankCinematic.promoted ? 1.18 : 1.08,
-          friction: rankCinematic.promoted ? 5 : 7,
-          tension: rankCinematic.promoted ? 120 : 90,
-          useNativeDriver: true,
-        }),
-      ]),
-      Animated.parallel([
-        Animated.timing(rankShieldX, { toValue: finalX, duration: rankCinematic.promoted ? 520 : 620, useNativeDriver: true }),
-        Animated.timing(rankShieldY, { toValue: finalY, duration: rankCinematic.promoted ? 520 : 620, useNativeDriver: true }),
-        Animated.timing(rankShieldScale, { toValue: 0.46, duration: rankCinematic.promoted ? 520 : 620, useNativeDriver: true }),
-      ]),
-      Animated.sequence([
-        Animated.timing(rankImpact, { toValue: 1.08, duration: 110, useNativeDriver: true }),
-        Animated.timing(rankImpact, { toValue: 1, duration: 180, useNativeDriver: true }),
-      ]),
-    ]).start(() => {
-      setTimeout(() => setRankCinematic(null), 600);
-    });
-  }, [rankCinematic, rankImpact, rankShieldOpacity, rankShieldScale, rankShieldX, rankShieldY, resultCardH, resultCardW]);
 
   useEffect(() => {
     if (!isWinner) return;
     if (!resultCardW || !resultCardH || !xpRewardTarget) return;
     if (shardsEarned > 0 && !shardRewardTarget) return;
+    if (!rewardsOffset) return;
 
     const tokenHalf = 38;
-    const startX = resultCardW / 2 - tokenHalf;
-    const startY = resultCardH * 0.38 - tokenHalf;
+    // Старт — прямо над целевым слотом (на 70px выше). Чип летит ВНИЗ в свой слот —
+    // визуально читается как «появилась награда». Раньше startX/Y были по центру
+    // карточки на ~38% высоты — это приходилось на «Победа/740» и улетало вверх,
+    // потому что target.y (rewardItem onLayout) — относительно `rewards` View, без
+    // прибавки rewardsOffset.y он становился ~13 → translateY от 122 до -25 (вверх).
+    const FLY_START_OFFSET_ABOVE_SLOT = 70;
+
+    // Цель в координатах resultCard. onLayout у rewardItem отдаёт координаты ОТНОСИТЕЛЬНО
+    // родителя `rewards` — обязательно прибавить rewardsOffset.
+    const toCardCoords = (target: { x: number; y: number }) => ({
+      x: rewardsOffset.x + target.x,
+      y: rewardsOffset.y + target.y,
+    });
 
     const runFly = (kind: 'xp' | 'shard', target: { x: number; y: number }, done: () => void) => {
+      const t = toCardCoords(target);
+      const startX = t.x - tokenHalf;
+      const startY = t.y - tokenHalf - FLY_START_OFFSET_ABOVE_SLOT;
       flyX.setValue(startX);
       flyY.setValue(startY);
-      flyScale.setValue(0.2);
+      flyScale.setValue(0.25);
       flyOpacity.setValue(0);
       setFlyKind(kind);
       Animated.sequence([
+        // 1 кадр (~16 мс) ожидания: гарантирует что flyOpacity.setValue(0) и flyX/flyY.setValue(...)
+        // применились на нативном потоке ДО того как элемент станет виден. Без этого
+        // setValue и React-ре-рендер могут прийти в разном порядке → flash на стартовой позиции.
+        Animated.delay(16),
         Animated.parallel([
-          Animated.timing(flyOpacity, { toValue: 1, duration: 220, useNativeDriver: true }),
-          Animated.spring(flyScale, { toValue: 1.12, tension: 120, friction: 7, useNativeDriver: true }),
+          Animated.timing(flyOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
+          Animated.timing(flyScale, {
+            toValue: 1,
+            duration: 240,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+          }),
         ]),
-        Animated.spring(flyScale, { toValue: 1, tension: 110, friction: 8, useNativeDriver: true }),
-        Animated.delay(120),
+        Animated.delay(90),
         Animated.parallel([
-          Animated.timing(flyX, { toValue: target.x - tokenHalf, duration: 520, useNativeDriver: true }),
-          Animated.timing(flyY, { toValue: target.y - tokenHalf, duration: 520, useNativeDriver: true }),
+          Animated.timing(flyX, { toValue: t.x - tokenHalf, duration: 520, useNativeDriver: true }),
+          Animated.timing(flyY, { toValue: t.y - tokenHalf, duration: 520, useNativeDriver: true }),
           Animated.timing(flyScale, { toValue: 0.34, duration: 520, useNativeDriver: true }),
           Animated.timing(flyOpacity, { toValue: 0.1, duration: 520, useNativeDriver: true }),
         ]),
@@ -782,7 +887,73 @@ export default function DuelResultsScreen() {
     });
   }, [
     flyOpacity, flyScale, flyX, flyY, isWinner, resultCardH, resultCardW,
-    shardRewardTarget, shardsEarned, showShardReward, showXpReward, xpRewardTarget,
+    rewardsOffset, shardRewardTarget, shardsEarned, showShardReward, showXpReward, xpRewardTarget,
+  ]);
+
+  /** Полёт осколка при проигрыше со ставкой (знак «−»). */
+  useEffect(() => {
+    if (isWinner || isDraw || isForfeited) return;
+    if (shardsLostWager <= 0 || !resultSaved) return;
+    if (!resultCardW || !resultCardH || !rewardsOffset || !shardLossRewardTarget) return;
+    if (lossShardAnimPlayedRef.current) return;
+
+    const tokenHalf = 38;
+    const FLY_START_OFFSET_ABOVE_SLOT = 70;
+    const toCardCoords = (target: { x: number; y: number }) => ({
+      x: rewardsOffset.x + target.x,
+      y: rewardsOffset.y + target.y,
+    });
+
+    const runLossFly = (target: { x: number; y: number }, done: () => void) => {
+      const t = toCardCoords(target);
+      const startX = t.x - tokenHalf;
+      const startY = t.y - tokenHalf - FLY_START_OFFSET_ABOVE_SLOT;
+      flyX.setValue(startX);
+      flyY.setValue(startY);
+      flyScale.setValue(0.25);
+      flyOpacity.setValue(0);
+      setFlyKind('shard_loss');
+      Animated.sequence([
+        Animated.delay(16),
+        Animated.parallel([
+          Animated.timing(flyOpacity, { toValue: 1, duration: 200, useNativeDriver: true }),
+          Animated.timing(flyScale, {
+            toValue: 1,
+            duration: 240,
+            easing: Easing.out(Easing.cubic),
+            useNativeDriver: true,
+          }),
+        ]),
+        Animated.delay(90),
+        Animated.parallel([
+          Animated.timing(flyX, { toValue: t.x - tokenHalf, duration: 520, useNativeDriver: true }),
+          Animated.timing(flyY, { toValue: t.y - tokenHalf, duration: 520, useNativeDriver: true }),
+          Animated.timing(flyScale, { toValue: 0.34, duration: 520, useNativeDriver: true }),
+          Animated.timing(flyOpacity, { toValue: 0.1, duration: 520, useNativeDriver: true }),
+        ]),
+      ]).start(done);
+    };
+
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      if (cancelled) return;
+      if (lossShardAnimPlayedRef.current) return;
+      lossShardAnimPlayedRef.current = true;
+      lossShardFlyStartedRef.current = true;
+      runLossFly(shardLossRewardTarget, () => {
+        setShowShardLoss(true);
+        setFlyKind(null);
+        lossShardFlyStartedRef.current = false;
+      });
+    }, 450);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [
+    flyOpacity, flyScale, flyX, flyY,
+    isWinner, isDraw, isForfeited, shardsLostWager, resultSaved,
+    resultCardH, resultCardW, rewardsOffset, shardLossRewardTarget,
   ]);
 
   /** Если полёт осколка сорвался — не оставляем награду с opacity 0 при ненулевом shardsEarned. */
@@ -791,6 +962,13 @@ export default function DuelResultsScreen() {
     const id = setTimeout(() => setShowShardReward(true), 2800);
     return () => clearTimeout(id);
   }, [isWinner, shardsEarned, showShardReward]);
+
+  useEffect(() => {
+    if (isWinner || isDraw || isForfeited) return;
+    if (shardsLostWager <= 0 || showShardLoss) return;
+    const id = setTimeout(() => setShowShardLoss(true), 3200);
+    return () => clearTimeout(id);
+  }, [isWinner, isDraw, isForfeited, shardsLostWager, showShardLoss]);
 
   useEffect(() => {
     // Real matches should use server-computed result, but this keeps UX resilient
@@ -808,6 +986,7 @@ export default function DuelResultsScreen() {
       setXpGainedServer(fallbackXp);
       setIsDrawServer(isDraw);
       applyTaskProgressOnce(isWinner);
+      recordArenaDailyOutcome(isDraw, isWinner);
       setResultSaved(true);
 
       if (!isDraw) {
@@ -828,12 +1007,45 @@ export default function DuelResultsScreen() {
       if (isWinner && !rewardsHandledRef.current) {
         rewardsHandledRef.current = true;
         (async () => {
-          const { shards, milestoneBonus } = await onArenaWin();
-          const total = Math.max(1, shards + milestoneBonus);
+          const wagerOpts = await resolveRankedArenaWagerForMatchOutcome({
+            rankedArenaParam: isRankedArenaSession,
+            sessionId,
+            won: true,
+            isDraw: false,
+          });
+          const { shards, milestoneBonus } = await onArenaWin(
+            wagerOpts.baseWinShardsOverride != null
+              ? { baseWinShardsOverride: wagerOpts.baseWinShardsOverride }
+              : undefined,
+          );
+          let total = shards + milestoneBonus;
+          if (wagerOpts.baseWinShardsOverride == null) {
+            total = Math.max(1, total);
+          }
           if (total > 0) {
             setShardsEarned(total);
           }
         })().catch(() => {});
+      }
+
+      if (!isWinner && !isDraw) {
+        void (async () => {
+          const wo = await resolveRankedArenaWagerForMatchOutcome({
+            rankedArenaParam: isRankedArenaSession,
+            sessionId,
+            won: false,
+            isDraw: false,
+          });
+          if (wo.wagerLossStake) setShardsLostWager(wo.wagerLossStake);
+        })().catch(() => {});
+      }
+      if (isDraw && !rewardsHandledRef.current) {
+        void resolveRankedArenaWagerForMatchOutcome({
+          rankedArenaParam: isRankedArenaSession,
+          sessionId,
+          won: false,
+          isDraw: true,
+        });
       }
 
       logEvent('arena_result_fallback_applied', {
@@ -843,7 +1055,19 @@ export default function DuelResultsScreen() {
     }, 2200);
 
     return () => clearTimeout(fallbackTimer);
-  }, [applyTaskProgressOnce, isDraw, isForfeited, isMockSession, isWinner, lang, players.length, starInfo]);
+  }, [
+    applyTaskProgressOnce,
+    isDraw,
+    isForfeited,
+    isMockSession,
+    isRankedArenaSession,
+    isWinner,
+    lang,
+    players.length,
+    recordArenaDailyOutcome,
+    sessionId,
+    starInfo,
+  ]);
 
   return (
     <ScreenGradient>
@@ -880,20 +1104,28 @@ export default function DuelResultsScreen() {
               {triLang(lang, { ru: 'очков', uk: 'очок', es: 'puntos' })}
             </Text>
 
-            <View style={[styles.rewards, { borderTopColor: t.border }]}>
-              <View
-                style={[styles.rewardItem, { opacity: showXpReward ? 1 : 0 }]}
-                onLayout={(e) => {
-                  const { x, y, width, height } = e.nativeEvent.layout;
-                  setXpRewardTarget({
-                    x: x + width / 2,
-                    y: y + height / 2,
-                  });
-                }}
-              >
-                <Text style={{ fontSize: 20 }}>⚡</Text>
-                <XpGainBadge amount={xpGained} visible={true} style={{ color: t.gold, fontSize: f.body, fontWeight: '700' }} />
-              </View>
+            <View
+              style={[styles.rewards, { borderTopColor: t.border }]}
+              onLayout={(e) => {
+                const { x, y } = e.nativeEvent.layout;
+                setRewardsOffset({ x, y });
+              }}
+            >
+              {(isWinner || (resultSaved && !isForfeited)) && (
+                <View
+                  style={[styles.rewardItem, { opacity: isWinner ? (showXpReward ? 1 : 0) : 1 }]}
+                  onLayout={(e) => {
+                    const { x, y, width, height } = e.nativeEvent.layout;
+                    setXpRewardTarget({
+                      x: x + width / 2,
+                      y: y + height / 2,
+                    });
+                  }}
+                >
+                  <Text style={{ fontSize: 20 }}>⚡</Text>
+                  <XpGainBadge amount={xpGained} visible={true} style={{ color: t.gold, fontSize: f.body, fontWeight: '700' }} />
+                </View>
+              )}
               {shardsEarned > 0 && (
                 <View
                   style={[styles.rewardItem, { opacity: showShardReward ? 1 : 0 }]}
@@ -913,6 +1145,28 @@ export default function DuelResultsScreen() {
                       : lang === 'uk'
                         ? (shardsEarned === 1 ? 'осколок' : shardsEarned < 5 ? 'осколки' : 'осколків')
                         : (shardsEarned === 1 ? 'осколок' : shardsEarned < 5 ? 'осколка' : 'осколков')}
+                  </Text>
+                </View>
+              )}
+              {shardsLostWager > 0 && resultSaved && (
+                <View
+                  style={[styles.rewardItem, { opacity: showShardLoss ? 1 : 0 }]}
+                  onLayout={(e) => {
+                    const { x, y, width, height } = e.nativeEvent.layout;
+                    setShardLossRewardTarget({
+                      x: x + width / 2,
+                      y: y + height / 2,
+                    });
+                  }}
+                >
+                  <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 22, height: 22 }} resizeMode="contain" />
+                  <Text style={[{ color: '#F87171', fontSize: f.body, fontWeight: '700' }]}>
+                    −{shardsLostWager}{' '}
+                    {lang === 'es'
+                      ? (shardsLostWager === 1 ? 'fragmento' : 'fragmentos')
+                      : lang === 'uk'
+                        ? (shardsLostWager === 1 ? 'осколок' : shardsLostWager < 5 ? 'осколки' : 'осколків')
+                        : (shardsLostWager === 1 ? 'осколок' : shardsLostWager < 5 ? 'осколка' : 'осколков')}
                   </Text>
                 </View>
               )}
@@ -943,58 +1197,53 @@ export default function DuelResultsScreen() {
                 style={[
                   styles.shardFlyOverlay,
                   {
-                    opacity: flyOpacity,
                     transform: [
                       { translateX: flyX },
                       { translateY: flyY },
-                      { scale: flyScale },
                     ],
                   },
                 ]}
               >
-                {flyKind === 'xp' ? (
-                  <View style={styles.flyXpChip}>
-                    <Text style={{ fontSize: 30 }}>⚡</Text>
-                    <Text style={styles.flyXpText}>+{xpGained} XP</Text>
-                  </View>
-                ) : (
-                  <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 76, height: 76 }} resizeMode="contain" />
-                )}
+                <Animated.View
+                  style={{
+                    opacity: flyOpacity,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    transform: [{ scale: flyScale }],
+                  }}
+                >
+                  {flyKind === 'xp' ? (
+                    <View style={styles.flyXpChip}>
+                      <Text style={{ fontSize: 30 }}>⚡</Text>
+                      <Text style={styles.flyXpText}>+{xpGained} XP</Text>
+                    </View>
+                  ) : flyKind === 'shard_loss' ? (
+                    <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+                      <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 76, height: 76 }} resizeMode="contain" />
+                      <Text style={{ color: '#F87171', fontWeight: '900', fontSize: 22, marginTop: 6 }}>−{shardsLostWager}</Text>
+                    </View>
+                  ) : (
+                    <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 76, height: 76 }} resizeMode="contain" />
+                  )}
+                </Animated.View>
               </Animated.View>
             )}
 
             {!!starInfo && (
-              <Animated.View style={[styles.rankDock, { transform: [{ scale: rankImpact }] }]}>
+              <View style={[styles.rankDock, { overflow: 'hidden' }]}>
                 <Image
-                  source={getRankImage((starInfo.newTier as any), starInfo.newLevel)}
-                  style={styles.rankDockImage}
+                  source={getRankImage((starInfo.newTier as RankTier), starInfo.newLevel)}
+                  style={[
+                    styles.rankDockImage,
+                    {
+                      transform: [{ scale: getRankImageDisplayScale((starInfo.newTier as RankTier), starInfo.newLevel) }],
+                    },
+                  ]}
                   resizeMode="contain"
                 />
-              </Animated.View>
+              </View>
             )}
 
-            {!!rankCinematic && (
-              <Animated.View
-                pointerEvents="none"
-                style={[
-                  styles.rankCinematicShield,
-                  {
-                    opacity: rankShieldOpacity,
-                    transform: [
-                      { translateX: rankShieldX },
-                      { translateY: rankShieldY },
-                      { scale: rankShieldScale },
-                    ],
-                  },
-                ]}
-              >
-                <Image
-                  source={getRankImage((rankCinematic.newTier as any), rankCinematic.newLevel)}
-                  style={styles.rankCinematicImage}
-                  resizeMode="contain"
-                />
-              </Animated.View>
-            )}
           </LinearGradient>
         </Animated.View>
 
@@ -1016,7 +1265,7 @@ export default function DuelResultsScreen() {
               >
                 <Text style={styles.medal}>{medal}</Text>
                 {(() => {
-                  const lvl = p.avatarLevel ?? (isMe ? getLevelFromXP(p.score) : 1);
+                  const lvl = p.avatarLevel ?? 1;
                   const img = getAvatarImageByIndex(lvl);
                   return img
                     ? <Image source={img} style={{ width: 28, height: 28 }} resizeMode="contain" />
@@ -1024,27 +1273,32 @@ export default function DuelResultsScreen() {
                 })()}
                 <Text style={[styles.playerName, {
                   color: isMe ? t.accent : t.textPrimary,
-                  fontSize: f.body, flex: 1,
+                  fontSize: f.body,
                 }]} numberOfLines={1}>
                   {p.displayName ?? (isMe ? triLang(lang, { ru: 'Я', uk: 'Я', es: 'Yo' }) : triLang(lang, { ru: `Игрок ${idx + 1}`, uk: `Гравець ${idx + 1}`, es: `Jugador ${idx + 1}` }))}
                 </Text>
-                <Text style={[styles.playerFinalScore, { color: t.textPrimary, fontSize: f.body }]}>
-                  {p.score}
-                </Text>
-                {(() => {
-                  const correct = isMe && isMockSession
-                    ? Number(mockMyCorrect ?? 0)
-                    : p.answers.filter((a: { isCorrect: boolean }) => a.isCorrect).length;
-                  const total = isMe && isMockSession
-                    ? Number(mockMyTotal ?? 0)
-                    : p.answers.length;
-                  if (total === 0) return null;
-                  return (
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption }]}>
-                      {correct}/{total} ✓
-                    </Text>
-                  );
-                })()}
+                <View style={styles.leaderboardScoreCol}>
+                  <Text style={[styles.playerFinalScore, { color: t.textPrimary, fontSize: f.body }]}>
+                    {p.score}
+                  </Text>
+                  {(() => {
+                    const correct = isMe && isMockSession
+                      ? Number(mockMyCorrect ?? 0)
+                      : p.answers.filter((a: { isCorrect: boolean }) => a.isCorrect).length;
+                    const total = isMe && isMockSession
+                      ? Number(mockMyTotal ?? 0)
+                      : p.answers.length;
+                    if (total === 0) return null;
+                    return (
+                      <Text
+                        style={[{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }]}
+                        numberOfLines={1}
+                      >
+                        {correct}/{total} ✓
+                      </Text>
+                    );
+                  })()}
+                </View>
               </View>
             );
           })}
@@ -1083,64 +1337,64 @@ export default function DuelResultsScreen() {
               </Text>
               <View style={styles.breakdown}>
                 <View style={styles.breakdownRow}>
-                  <Text style={[{ color: t.textMuted, fontSize: f.caption }]}>
+                  <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
                     {triLang(lang, { ru: '✓ Правильных ответов', uk: '✓ Правильних відповідей', es: '✓ Respuestas correctas' })}
                   </Text>
-                  <Text style={[{ color: t.correct, fontSize: f.caption, fontWeight: '700' }]}>+{myCorrect * 100}</Text>
+                  <Text style={[{ color: t.correct, fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{myCorrect * 100}</Text>
                 </View>
                 {bSpeed > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption }]}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
                       {triLang(lang, {
                         ru: '⚡ Бонус за скорость',
                         uk: '⚡ Бонус за швидкість',
                         es: '⚡ Bonificación por velocidad',
                       })}
                     </Text>
-                    <Text style={[{ color: t.gold, fontSize: f.caption, fontWeight: '700' }]}>+{bSpeed}</Text>
+                    <Text style={[{ color: t.gold, fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bSpeed}</Text>
                   </View>
                 )}
                 {bFirst > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption }]}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
                       {triLang(lang, {
                         ru: '🎯 Первый правильный',
                         uk: '🎯 Перша правильна',
                         es: '🎯 Primer acierto',
                       })}
                     </Text>
-                    <Text style={[{ color: '#A78BFA', fontSize: f.caption, fontWeight: '700' }]}>+{bFirst}</Text>
+                    <Text style={[{ color: '#A78BFA', fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bFirst}</Text>
                   </View>
                 )}
                 {bStreak > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption }]}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
                       {triLang(lang, {
                         ru: '🔥 Серия подряд',
                         uk: '🔥 Серія поспіль',
                         es: '🔥 Racha de aciertos',
                       })}
                     </Text>
-                    <Text style={[{ color: '#F97316', fontSize: f.caption, fontWeight: '700' }]}>+{bStreak}</Text>
+                    <Text style={[{ color: '#F97316', fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bStreak}</Text>
                   </View>
                 )}
                 {bOutspeed > 0 && (
                   <View style={styles.breakdownRow}>
-                    <Text style={[{ color: t.textMuted, fontSize: f.caption }]}>
+                    <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
                       {triLang(lang, {
                         ru: '💥 Быстрый ответ (≤10с)',
                         uk: '💥 Швидка відповідь (≤10 с)',
                         es: '💥 Respuesta muy rápida (≤10 s)',
                       })}
                     </Text>
-                    <Text style={[{ color: '#38BDF8', fontSize: f.caption, fontWeight: '700' }]}>+{bOutspeed}</Text>
+                    <Text style={[{ color: '#38BDF8', fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bOutspeed}</Text>
                   </View>
                 )}
                 <View style={[styles.breakdownRow, { borderTopWidth: 1, borderTopColor: t.border, marginTop: 4, paddingTop: 8 }]}>
-                  <Text style={[{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }]}>
+                  <Text style={[{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flexShrink: 0 }]}>
                     {triLang(lang, { ru: 'Итого', uk: 'Разом', es: 'Total' })}
                   </Text>
-                  <Text style={[{ color: t.accent, fontSize: f.body, fontWeight: '900' }]}>{me?.score ?? 0}</Text>
+                  <Text style={[{ color: t.accent, fontSize: f.body, fontWeight: '900', flexShrink: 0 }]}>{me?.score ?? 0}</Text>
                 </View>
               </View>
             </View>
@@ -1213,7 +1467,7 @@ export default function DuelResultsScreen() {
 
           {!rematchPending && (
             isMockSession ? (
-              <TouchableOpacity onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1' } })} activeOpacity={0.85}>
+              <TouchableOpacity onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1', playAgainTs: String(Date.now()) } })} activeOpacity={0.85}>
                 <LinearGradient
                   colors={[t.accent, t.accent + 'BB']}
                   style={styles.rematchBtn}
@@ -1239,7 +1493,7 @@ export default function DuelResultsScreen() {
                 </LinearGradient>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1' } })} activeOpacity={0.85}>
+              <TouchableOpacity onPress={() => router.replace({ pathname: '/(tabs)/arena' as any, params: { autoSearch: '1', playAgainTs: String(Date.now()) } })} activeOpacity={0.85}>
                 <LinearGradient
                   colors={[t.accent, t.accent + 'BB']}
                   style={styles.rematchBtn}
@@ -1322,9 +1576,22 @@ export default function DuelResultsScreen() {
               const isRight = item.myAnswer === item.correct;
               return (
                 <View key={idx} style={[styles.reviewCard, { backgroundColor: t.bgCard, borderColor: isRight ? t.correct : t.wrong }]}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 8 }}>
-                    {idx + 1}. {item.question}
-                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'flex-start', justifyContent: 'space-between', gap: 8, marginBottom: 8 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}>
+                      {idx + 1}. {item.question}
+                    </Text>
+                    <ReportErrorButton
+                      variant="icon-flag"
+                      screen="arena_results_review"
+                      dataId={item.questionId ? `arena_q_${item.questionId}` : `arena_q_slot_${idx}`}
+                      dataText={buildArenaReviewReportText(item, idx)}
+                      accessibilityLabel={triLang(lang, {
+                        ru: 'Сообщить об ошибке в этом вопросе Арены',
+                        uk: 'Повідомити про помилку в цьому питанні Арени',
+                        es: 'Informar de un fallo en esta pregunta de la Arena',
+                      })}
+                    />
+                  </View>
                   {item.options.map((opt, oi) => {
                     const isCorrectOpt = opt === item.correct;
                     const isMyWrong = opt === item.myAnswer && !isCorrectOpt;
@@ -1358,6 +1625,17 @@ export default function DuelResultsScreen() {
           f={f}
           lang={lang}
           onClose={() => setShowRatingModal(false)}
+        />
+      )}
+
+      {!!rankCinematic && (
+        <RankChangeModal
+          visible={true}
+          promoted={rankCinematic.promoted}
+          tier={rankCinematic.newTier}
+          level={rankCinematic.newLevel}
+          accentColor={TIER_COLORS[rankCinematic.newTier] ?? t.accent}
+          onClose={() => setRankCinematic(null)}
         />
       )}
     </ScreenGradient>
@@ -1505,25 +1783,48 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginBottom: 28, lineHeight: f.body * 1.5 }}>
                 {variant.subtitle}
               </Text>
-              <View style={{ flexDirection: 'row', gap: 12, width: '100%' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: 12, width: '100%' }}>
                 <TouchableOpacity
-                  style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 14, padding: 16, alignItems: 'center', borderWidth: 0.5, borderColor: t.border }}
+                  style={{
+                    flex: 1,
+                    minHeight: 52,
+                    backgroundColor: t.bgSurface,
+                    borderRadius: 14,
+                    paddingVertical: 14,
+                    paddingHorizontal: 12,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderWidth: 0.5,
+                    borderColor: t.border,
+                  }}
                   onPress={handleNo}
                   activeOpacity={0.85}
                 >
-                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>{variant.btnNo}</Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>{variant.btnNo}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={{ flex: 1, borderRadius: 14, overflow: 'hidden' }}
+                  style={{ flex: 1, borderRadius: 14, overflow: 'hidden', minHeight: 52 }}
                   onPress={handleYes}
                   activeOpacity={0.88}
                 >
                   <LinearGradient
                     colors={[t.correct, t.correct + 'BB']}
                     start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                    style={{ padding: 16, alignItems: 'center' }}
+                    style={{
+                      flex: 1,
+                      minHeight: 52,
+                      paddingVertical: 14,
+                      paddingHorizontal: 12,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
                   >
-                    <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>{variant.btnYes} ⭐</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                      <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800', flexShrink: 1 }} numberOfLines={2}>
+                        {variant.btnYes}
+                      </Text>
+                      <Text style={{ fontSize: 16, lineHeight: 20 }}>⭐</Text>
+                    </View>
                   </LinearGradient>
                 </TouchableOpacity>
               </View>
@@ -1616,11 +1917,11 @@ const styles = StyleSheet.create({
   myScore: { fontWeight: '900', lineHeight: 52 },
   myScoreLabel: { marginTop: -4 },
   rewards: {
-    flexDirection: 'row', gap: 24, marginTop: 16,
-    paddingTop: 16, borderTopWidth: 1, width: '100%',
+    flexDirection: 'row', flexWrap: 'wrap', gap: 16, rowGap: 12, marginTop: 16,
+    paddingTop: 16, paddingHorizontal: 8, paddingBottom: 4, borderTopWidth: 1, width: '100%',
     justifyContent: 'center', alignItems: 'center',
   },
-  rewardItem: { flexDirection: 'row', alignItems: 'center', gap: 6 },
+  rewardItem: { flexDirection: 'row', alignItems: 'center', gap: 6, maxWidth: '100%' },
   rankDock: {
     position: 'absolute',
     right: 14,
@@ -1638,35 +1939,25 @@ const styles = StyleSheet.create({
     width: 46,
     height: 46,
   },
-  rankCinematicShield: {
-    position: 'absolute',
-    left: 0,
-    top: 0,
-    width: 180,
-    height: 180,
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 7,
-  },
-  rankCinematicImage: {
-    width: 180,
-    height: 180,
-  },
-
   leaderboard: { borderRadius: 20, borderWidth: 1, overflow: 'hidden' },
   leaderboardTitle: {
     paddingHorizontal: 16, paddingVertical: 10, fontWeight: '600', textTransform: 'uppercase',
   },
   leaderboardRow: {
-    flexDirection: 'row', alignItems: 'center', gap: 10,
-    paddingHorizontal: 16, paddingVertical: 12, borderTopWidth: 1,
+    flexDirection: 'row', alignItems: 'center', gap: 8,
+    paddingHorizontal: 14, paddingVertical: 12, borderTopWidth: 1,
+    minWidth: 0,
   },
   breakdown: { paddingHorizontal: 16, paddingBottom: 12, gap: 6 },
-  breakdownRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  breakdownRow: {
+    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center',
+    gap: 8, minWidth: 0,
+  },
   reviewCard: { borderRadius: 16, borderWidth: 1.5, padding: 14 },
   medal: { fontSize: 18, width: 28, textAlign: 'center' },
-  playerName: { fontWeight: '600' },
+  playerName: { fontWeight: '600', flex: 1, flexShrink: 1, minWidth: 0 },
   playerFinalScore: { fontWeight: '800' },
+  leaderboardScoreCol: { alignItems: 'flex-end', flexShrink: 0, marginLeft: 4 },
 
   actions: { gap: 10 },
   rematchBtn: {

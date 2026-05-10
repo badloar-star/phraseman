@@ -54,8 +54,7 @@ export type QuestionType =
   | 'translate_meaning'
   | 'fill_blank'
   | 'find_error'
-  | 'choose_phrasal'
-  | 'quiz_logic';
+  | 'choose_phrasal';
 
 export const QUESTION_TYPE_ICONS: Record<QuestionType, string> = {
   translate: '🔤',
@@ -67,7 +66,6 @@ export const QUESTION_TYPE_ICONS: Record<QuestionType, string> = {
   fill_blank: '✏️',
   find_error: '🛠️',
   choose_phrasal: '🧩',
-  quiz_logic: '🧠',
 };
 
 export interface ArenaQuestion {
@@ -126,7 +124,7 @@ export interface ArenaSession {
   acceptDeadlineAt?: number;
   getReadyEndsAt?: number;
   getReadyStartedAt?: number;
-  abortReason?: 'decline' | 'accept_timeout';
+  abortReason?: 'decline' | 'accept_timeout' | 'stale_cleanup';
   abortedAt?: number;
   rematchOffer?: RematchOffer;
 }
@@ -143,6 +141,9 @@ export interface SessionPlayer {
   score: number;
   answers: SessionAnswer[];
   lobbyChoice?: LobbyChoice;
+  /** Реакция сопернику в дуэли (эмодзи из белого списка). */
+  arenaReactEmoji?: string;
+  arenaReactAt?: number;
 }
 
 export interface SessionAnswer {
@@ -171,6 +172,14 @@ export interface ArenaProfile {
   xp: number;
   stats: ArenaStats;
   updatedAt: number;
+  /** Снимок очков из уроков для топа арены (может писать клиент или CF). */
+  courseTotalXp?: number;
+  courseAvatar?: string | null;
+  courseFrame?: string | null;
+  courseIsPremium?: boolean;
+  courseDisplayAt?: number;
+  /** Тот же id, что users/{id} / лидерборд — для слияния дублей arena_profiles по разным Auth uid. */
+  mirrorStableId?: string | null;
 }
 
 export interface ArenaStats {

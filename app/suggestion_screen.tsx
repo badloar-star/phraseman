@@ -5,7 +5,6 @@ import {
   ActivityIndicator,
   Keyboard,
   KeyboardAvoidingView,
-  Platform,
   ScrollView,
   Text,
   TextInput,
@@ -20,14 +19,16 @@ import { hapticTap } from '../hooks/use-haptics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
 import { submitUserSuggestion } from './user_suggestion_submit';
-import { textInputSystemEditMenuProps } from './textInputSystemMenuProps';
+import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 
 const COPY = {
   ru: {
     title: 'Идея для Phraseman',
-    hintLead: 'Опишите коротко и по делу — так проще принять идею в работу.',
-    hintBonus: 'Если идея зайдёт — +100 осколков знаний.',
-    placeholder: 'Например: добавьте тёмную тему в тренажёре…',
+    hintLead:
+      'Чем яснее формулировка, тем проще нам понять ценность идеи и решить, брать ли её в работу.',
+    hintBonus: 'Удачная идея может принести до +100 осколков знаний.',
+    placeholder: 'Что улучшить и какую задачу это решит…',
     send: 'Отправить',
     sending: 'Отправка…',
     empty: 'Введите текст сообщения.',
@@ -37,9 +38,10 @@ const COPY = {
   },
   uk: {
     title: 'Ідея для Phraseman',
-    hintLead: 'Опишіть коротко й по суті — так легше взяти ідею в роботу.',
-    hintBonus: 'Якщо ідея сподобається — +100 осколків знань.',
-    placeholder: 'Наприклад: додайте темну тему в тренажері…',
+    hintLead:
+      'Чим чіткіше формулювання, тим легше нам зрозуміти цінність ідеї й вирішити, чи брати її в роботу.',
+    hintBonus: 'Вдалий задум може принести до +100 осколків знань.',
+    placeholder: 'Що покращити й яку задачу це вирішить…',
     send: 'Надіслати',
     sending: 'Надсилання…',
     empty: 'Введіть текст повідомлення.',
@@ -49,9 +51,10 @@ const COPY = {
   },
   es: {
     title: 'Idea para Phraseman',
-    hintLead: 'Descríbela en pocas palabras y ve al grano: así es más fácil que el equipo la tenga en cuenta.',
-    hintBonus: 'Si encaja, puede haber hasta +100 fragmentos de conocimiento.',
-    placeholder: 'Por ejemplo: modo oscuro en el entrenador…',
+    hintLead:
+      'Cuanto más clara sea la formulación, más fácil nos resulta entender el valor de la idea y decidir si la incorporamos al trabajo.',
+    hintBonus: 'Una idea acertada puede suponer hasta +100 fragmentos de conocimiento.',
+    placeholder: 'Qué mejorar y qué problema resolvería…',
     send: 'Enviar',
     sending: 'Enviando…',
     empty: 'Escribe un mensaje.',
@@ -62,6 +65,7 @@ const COPY = {
 };
 
 export default function SuggestionScreen() {
+  const effectiveOs = useEffectivePlatformOS();
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -75,25 +79,25 @@ export default function SuggestionScreen() {
 
   useEffect(() => {
     const show = Keyboard.addListener(
-      Platform.OS === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
+      effectiveOs === 'ios' ? 'keyboardWillShow' : 'keyboardDidShow',
       (e) => setKeyboardPad(e.endCoordinates.height),
     );
     const hide = Keyboard.addListener(
-      Platform.OS === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
+      effectiveOs === 'ios' ? 'keyboardWillHide' : 'keyboardDidHide',
       () => setKeyboardPad(0),
     );
     return () => {
       show.remove();
       hide.remove();
     };
-  }, []);
+  }, [effectiveOs]);
 
   const scrollInputIntoView = useCallback(() => {
-    const delay = Platform.OS === 'ios' ? 220 : 120;
+    const delay = effectiveOs === 'ios' ? 220 : 120;
     setTimeout(() => {
       scrollRef.current?.scrollToEnd({ animated: true });
     }, delay);
-  }, []);
+  }, [effectiveOs]);
 
   useEffect(() => {
     if (keyboardPad <= 0) return;
@@ -153,8 +157,8 @@ export default function SuggestionScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'left', 'right']}>
       <KeyboardAvoidingView
         style={{ flex: 1 }}
-        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
-        keyboardVerticalOffset={Platform.OS === 'ios' ? 2 : 0}
+        behavior={effectiveOs === 'ios' ? 'padding' : undefined}
+        keyboardVerticalOffset={effectiveOs === 'ios' ? 2 : 0}
       >
         <View
           style={{
@@ -217,7 +221,7 @@ export default function SuggestionScreen() {
           </View>
 
           <TextInput
-            {...textInputSystemEditMenuProps}
+            {...getTextInputSystemEditMenuProps()}
             value={body}
             onChangeText={setBody}
             onFocus={scrollInputIntoView}

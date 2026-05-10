@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { Fragment, useMemo, useRef, useState } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -11,15 +11,52 @@ import PremiumCard from '../components/PremiumCard';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AccordionChevronIonicons from '../components/AccordionChevronIonicons';
 import { configureAccordionLayout } from '../constants/layoutAnimation';
+import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { useAccordionAnswerReveal } from '../hooks/useAccordionFaqStyle';
+import type { PlatformOSType } from 'react-native';
+import { useEffectivePlatformOS } from './platform_ui_preview';
+import DeleteAccountConfirmModal from '../components/DeleteAccountConfirmModal';
 
 type FaqItemData = {
   icon: string;
   section: string;
   question: string;
   answer: string;
+  /** После текста показать кнопку «Удалить аккаунт» (общий модал с подтверждением). */
+  showDeleteAccount?: boolean;
 };
+
+/** Подставляется в HelpFaq через faqCancelPaidSub (превью Android/iOS из админки). */
+const FAQ_CANCEL_PLACEHOLDER = '%%FAQ_CANCEL_PAID_SUB%%';
+
+function faqCancelPaidSub(lang: 'ru' | 'uk' | 'es', os: PlatformOSType): string {
+  if (lang === 'ru') {
+    if (os === 'ios') {
+      return 'Отмена платной подписки не делается автоматически — при необходимости отмените её вручную в App Store (Подписки).';
+    }
+    if (os === 'android') {
+      return 'Отмена платной подписки не делается автоматически — при необходимости отмените её вручную в Google Play (Подписки).';
+    }
+    return 'Отмена платной подписки не делается автоматически — отмените её в разделе подписок магазина приложений.';
+  }
+  if (lang === 'uk') {
+    if (os === 'ios') {
+      return 'Платну підписку не скасовується автоматично — за потреби скасуйте її самостійно в App Store (Підписки).';
+    }
+    if (os === 'android') {
+      return 'Платну підписку не скасовується автоматично — за потреби скасуйте її самостійно в Google Play (Підписки).';
+    }
+    return 'Платну підписку не скасовується автоматично — скасуйте її в розділі підписок магазину застосунків.';
+  }
+  if (os === 'ios') {
+    return 'No se cancela la suscripción pagada automáticamente — debes hacerlo en Ajustes → Apple ID → Suscripciones si la tienes activa.';
+  }
+  if (os === 'android') {
+    return 'No se cancela la suscripción pagada automáticamente — debes hacerlo en Google Play → Suscripciones si la tienes activa.';
+  }
+  return 'No se cancela la suscripción pagada automáticamente — cancélala en la sección de suscripciones de la tienda de apps.';
+}
 
 const FAQ_RU: FaqItemData[] = [
   {
@@ -30,7 +67,7 @@ const FAQ_RU: FaqItemData[] = [
 
 Пока отвечаешь верно, энергия не тратится. Каждый промах стоит 1 заряд.
 
-Как восстановиться: 1 заряд возвращается за 30 минут. Если подождать, можно продолжить урок с того же места.
+Как восстановиться: 1 заряд возвращается за 10 минут. Если подождать, можно продолжить урок с того же места.
 
 Если нужно без пауз: в Премиуме энергия безлимитная, и можно тренироваться без ожидания.`,
   },
@@ -94,6 +131,17 @@ const FAQ_RU: FaqItemData[] = [
 
 Чем точнее шаги, тем быстрее мы воспроизведем баг и исправим его.`,
   },
+  {
+    icon: '🗑️',
+    section: 'Поддержка',
+    question: 'Как мне удалить мой аккаунт?',
+    answer: `Это необратимо: пропадёт весь прогресс и настройки в приложении на этом аккаунте.
+
+${FAQ_CANCEL_PLACEHOLDER}
+
+Чтобы удалить аккаунт здесь: нажми «Удалить аккаунт» ниже и введи слово-подтверждение в окне.`,
+    showDeleteAccount: true,
+  },
 ];
 
 const FAQ_UK: FaqItemData[] = [
@@ -105,7 +153,7 @@ const FAQ_UK: FaqItemData[] = [
 
 Поки відповідаєш правильно, енергія не витрачається. Кожен промах коштує 1 заряд.
 
-Як відновитися: 1 заряд повертається за 30 хвилин. Якщо зачекати, можна продовжити урок з того ж місця.
+Як відновитися: 1 заряд повертається за 10 хвилин. Якщо зачекати, можна продовжити урок з того ж місця.
 
 Якщо потрібно без пауз: у Преміумі енергія безлімітна, і можна тренуватися без очікування.`,
   },
@@ -169,6 +217,17 @@ const FAQ_UK: FaqItemData[] = [
 
 Чим точніші кроки, тим швидше ми відтворимо баг і виправимо його.`,
   },
+  {
+    icon: '🗑️',
+    section: 'Підтримка',
+    question: 'Як мені видалити мій акаунт?',
+    answer: `Це безповоротно: зникнуть прогрес і налаштування в застосунку для цього акаунта.
+
+${FAQ_CANCEL_PLACEHOLDER}
+
+Щоб видалити акаунт тут: натисни «Видалити акаунт» нижче й введи слово-підтвердження у вікні.`,
+    showDeleteAccount: true,
+  },
 ];
 
 const FAQ_ES: FaqItemData[] = [
@@ -180,7 +239,7 @@ const FAQ_ES: FaqItemData[] = [
 
 Si aciertas, no se gasta; cada fallo consume 1 carga.
 
-Recuperación: recuperas 1 carga cada 30 minutos. Si esperas, puedes seguir la lección donde la dejaste.
+Recuperación: recuperas 1 carga cada 10 minutos. Si esperas, puedes seguir la lección donde la dejaste.
 
 Sin esperas: con Premium la energía es ilimitada y practicas al momento.`,
   },
@@ -244,6 +303,17 @@ En el comentario, en pocas líneas: qué pulsaste, qué esperabas y qué pasó.
 
 Cuanto más claro sea el paso a paso, antes podremos reproducir el fallo y corregirlo.`,
   },
+  {
+    icon: '🗑️',
+    section: 'Soporte',
+    question: '¿Cómo elimino mi cuenta?',
+    answer: `Es irreversible: se borrará todo el progreso y los ajustes de la cuenta en la app.
+
+${FAQ_CANCEL_PLACEHOLDER}
+
+Para borrar aquí: toca «Eliminar cuenta» abajo y escribe la palabra de confirmación.`,
+    showDeleteAccount: true,
+  },
 ];
 
 function FaqItem({
@@ -252,14 +322,18 @@ function FaqItem({
   f,
   isOpen,
   onToggle,
+  onOpenDeleteAccount,
 }: {
   item: FaqItemData;
   t: any;
   f: any;
   isOpen: boolean;
   onToggle: () => void;
+  onOpenDeleteAccount?: () => void;
 }) {
+  const { lang } = useLang();
   const { answerOpacity, answerTranslateY } = useAccordionAnswerReveal(isOpen);
+  const deleteLabel = triLang(lang, { ru: 'Удалить аккаунт', uk: 'Видалити акаунт', es: 'Eliminar cuenta' });
 
   return (
     <PremiumCard level={2} style={{ marginBottom: 10 }} innerStyle={{ padding: 0 }}>
@@ -288,6 +362,28 @@ function FaqItem({
           <Text style={{ fontSize: f.sub, color: t.textSecond, lineHeight: f.sub * 1.7, marginTop: 14 }}>
             {item.answer}
           </Text>
+          {item.showDeleteAccount && onOpenDeleteAccount ? (
+            <TouchableOpacity
+              onPress={() => {
+                void hapticTap();
+                onOpenDeleteAccount();
+              }}
+              activeOpacity={0.7}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                marginTop: 16,
+                paddingVertical: 14,
+                borderRadius: 12,
+                borderWidth: 1,
+                borderColor: (t.wrong as string) + '60',
+              }}
+            >
+              <Ionicons name="trash-outline" size={18} color={t.wrong} style={{ marginRight: 8 }} />
+              <Text style={{ color: t.wrong, fontSize: f.body, fontWeight: '500' }}>{deleteLabel}</Text>
+            </TouchableOpacity>
+          ) : null}
         </Animated.View>
       )}
     </PremiumCard>
@@ -298,9 +394,20 @@ export default function HelpFaq() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const effectiveOs = useEffectivePlatformOS();
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
   const isUK = lang === 'uk';
   const isES = lang === 'es';
-  const items = isUK ? FAQ_UK : isES ? FAQ_ES : FAQ_RU;
+  const items = useMemo(() => {
+    const base = isUK ? FAQ_UK : isES ? FAQ_ES : FAQ_RU;
+    const langKey: 'ru' | 'uk' | 'es' = isUK ? 'uk' : isES ? 'es' : 'ru';
+    const cancel = faqCancelPaidSub(langKey, effectiveOs);
+    return base.map((item) =>
+      item.answer.includes(FAQ_CANCEL_PLACEHOLDER)
+        ? { ...item, answer: item.answer.replace(FAQ_CANCEL_PLACEHOLDER, cancel) }
+        : item
+    );
+  }, [isUK, isES, effectiveOs]);
   const sections = Array.from(new Set(items.map(i => i.section)));
   const [openItemId, setOpenItemId] = useState<string | null>(null);
   const scrollRef = useRef<ScrollView | null>(null);
@@ -316,9 +423,10 @@ export default function HelpFaq() {
     setOpenItemId(itemId);
     const y = itemYRef.current[itemId];
     if (typeof y === 'number') {
+      // After LayoutAnimation (see MOTION_DURATION.slow), remeasure so scroll target matches final layout.
       setTimeout(() => {
-        scrollRef.current?.scrollTo({ y: Math.max(0, y - 10), animated: true });
-      }, 140);
+        scrollRef.current?.scrollTo({ y: Math.max(0, y - 12), animated: true });
+      }, 360);
     }
   };
 
@@ -345,48 +453,70 @@ export default function HelpFaq() {
             contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
             showsVerticalScrollIndicator={false}
           >
-            <Text style={{ fontSize: f.sub, color: t.textMuted, marginBottom: 16, lineHeight: f.sub * 1.5 }}>
-              {isUK
-                ? 'Натисни на запитання, щоб побачити відповідь'
-                : isES
-                  ? 'Toca una pregunta para ver la respuesta'
-                  : 'Нажми на вопрос, чтобы увидеть ответ'}
-            </Text>
+            {/*
+              Single column parent so onLayout layout.y is offset from scroll content top.
+              Previously each item was inside a per-section View, so y was relative to the section
+              (small values) and scrollTo jumped toward the top of the list.
+            */}
+            <View>
+              <Text style={{ fontSize: f.sub, color: t.textMuted, marginBottom: 16, lineHeight: f.sub * 1.5 }}>
+                {isUK
+                  ? 'Натисни на запитання, щоб побачити відповідь'
+                  : isES
+                    ? 'Toca una pregunta para ver la respuesta'
+                    : 'Нажми на вопрос, чтобы увидеть ответ'}
+              </Text>
 
-            {sections.map((section) => (
-              <View key={section} style={{ marginBottom: 6 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 10 }}>
-                  {section}
-                </Text>
-                {items
-                  .filter(item => item.section === section)
-                  .map((item, i) => (
-                    <View
-                      key={`${section}-${i}`}
-                      onLayout={(e) => {
-                        itemYRef.current[`${section}-${i}`] = e.nativeEvent.layout.y;
-                      }}
-                    >
-                      <FaqItem
-                        item={item}
-                        t={t}
-                        f={f}
-                        isOpen={openItemId === `${section}-${i}`}
-                        onToggle={() => handleToggleItem(`${section}-${i}`)}
-                      />
-                    </View>
-                  ))}
-              </View>
-            ))}
+              {sections.map((section, sectionIndex) => (
+                <Fragment key={section}>
+                  <Text
+                    style={{
+                      color: t.textPrimary,
+                      fontSize: f.body,
+                      fontWeight: '700',
+                      marginBottom: 10,
+                      marginTop: sectionIndex === 0 ? 0 : 14,
+                    }}
+                  >
+                    {section}
+                  </Text>
+                  {items
+                    .filter(item => item.section === section)
+                    .map((item, i) => (
+                      <View
+                        key={`${section}-${i}`}
+                        onLayout={(e) => {
+                          itemYRef.current[`${section}-${i}`] = e.nativeEvent.layout.y;
+                        }}
+                      >
+                        <FaqItem
+                          item={item}
+                          t={t}
+                          f={f}
+                          isOpen={openItemId === `${section}-${i}`}
+                          onToggle={() => handleToggleItem(`${section}-${i}`)}
+                          onOpenDeleteAccount={
+                            item.showDeleteAccount ? () => setDeleteModalVisible(true) : undefined
+                          }
+                        />
+                      </View>
+                    ))}
+                </Fragment>
+              ))}
 
-            <ReportErrorButton
-              screen="faq"
-              dataId="faq_content"
-              dataText={isUK ? 'Розділ FAQ' : isES ? 'Ayuda · FAQ' : 'Раздел FAQ'}
-              style={{ alignSelf: 'center', marginTop: 16 }}
-            />
+              <ReportErrorButton
+                screen="faq"
+                dataId="faq_content"
+                dataText={isUK ? 'Розділ FAQ' : isES ? 'Ayuda · FAQ' : 'Раздел FAQ'}
+                style={{ alignSelf: 'center', marginTop: 16 }}
+              />
+            </View>
           </ScrollView>
         </ContentWrap>
+        <DeleteAccountConfirmModal
+          visible={deleteModalVisible}
+          onRequestClose={() => setDeleteModalVisible(false)}
+        />
       </SafeAreaView>
     </ScreenGradient>
   );

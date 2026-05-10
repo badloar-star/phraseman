@@ -87,6 +87,9 @@ describe('daily_tasks claim + completion events', () => {
     const grant = jest.fn().mockResolvedValue(42);
     await expect(DailyTasks.claimTaskWithReward('da1', grant)).resolves.toEqual({ claimed: true, awardedXp: 42 });
     expect(grant).toHaveBeenCalledTimes(1);
+    // Регрессия: после успешного клейма экран должен получить событие
+    // (раньше его не эмитили — карточка зависала с "Забрать" при клейме из глобального тоста).
+    expect(emitAppEvent).toHaveBeenCalledWith('daily_task_reward_claimed', { taskId: 'da1' });
 
     const after = JSON.parse(mockStorage[key] || '[]');
     const da1 = after.find((p: { taskId: string }) => p.taskId === 'da1');
@@ -126,6 +129,22 @@ describe('daily_tasks claim + completion events', () => {
     const grant = jest.fn().mockResolvedValue(10);
     await expect(DailyTasks.claimTaskWithReward('da1', grant)).resolves.toEqual({ claimed: false, awardedXp: 0 });
     expect(grant).not.toHaveBeenCalled();
+  });
+
+  it('claimTaskWithReward uses tasksForClaim so UI list matches storage even if getTodayTasksSafe diverges', async () => {
+    const key = `daily_tasks_${FIXED_DAY}`;
+    mockStorage[key] = JSON.stringify([
+      { taskId: 'da1', current: 1, completed: true, claimed: false },
+      { taskId: 'ta9', current: 0, completed: false, claimed: false },
+      { taskId: 'cs6', current: 0, completed: false, claimed: false },
+    ]);
+    getTodayTasksSafeSpy.mockResolvedValue([]);
+    const grant = jest.fn().mockResolvedValue(11);
+    await expect(
+      DailyTasks.claimTaskWithReward('da1', grant, { tasksForClaim: stubTasks }),
+    ).resolves.toEqual({ claimed: true, awardedXp: 11 });
+    expect(grant).toHaveBeenCalledTimes(1);
+    getTodayTasksSafeSpy.mockResolvedValue(stubTasks);
   });
 
   it('countClaimedForTaskList ignores claimed rows for ids not in the current list', () => {
@@ -171,5 +190,63 @@ describe('daily_tasks claim + completion events', () => {
     const progress = await DailyTasks.loadTodayProgress();
     const da1 = progress.find(p => p.taskId === 'da1');
     expect(da1?.completed).toBe(true);
+  });
+
+  it('updateMultipleTaskProgress counts arena bot-style outcomes for plays, wins and combo tasks', async () => {
+    const arenaTasks: DailyTask[] = [
+      {
+        id: 'ap1',
+        type: 'arena_play',
+        icon: 'a',
+        target: 1,
+        xp: 10,
+        titleRU: 't',
+        titleUK: 't',
+        descRU: 'd',
+        descUK: 'd',
+      },
+      {
+        id: 'aw1',
+        type: 'arena_win',
+        icon: 'w',
+        target: 1,
+        xp: 10,
+        titleRU: 't',
+        titleUK: 't',
+        descRU: 'd',
+        descUK: 'd',
+      },
+      {
+        id: 'ac1',
+        type: 'arena_plays_wins_combo',
+        icon: 'c',
+        target: 2,
+        xp: 10,
+        titleRU: 't',
+        titleUK: 't',
+        descRU: 'd',
+        descUK: 'd',
+        arenaCombo: { minPlays: 2, minWins: 1 },
+      },
+    ];
+    getTodayTasksSafeSpy.mockResolvedValue(arenaTasks);
+
+    await DailyTasks.updateMultipleTaskProgress(
+      [
+        { type: 'arena_play', increment: 1 },
+        { type: 'arena_win', increment: 1 },
+      ],
+      { pvpArenaMatchFinished: { won: true } },
+    );
+
+    const progress = await DailyTasks.loadTodayProgress(arenaTasks);
+    expect(progress.find(p => p.taskId === 'ap1')).toMatchObject({ current: 1, completed: true });
+    expect(progress.find(p => p.taskId === 'aw1')).toMatchObject({ current: 1, completed: true });
+    expect(progress.find(p => p.taskId === 'ac1')).toMatchObject({
+      current: 1,
+      comboPlays: 1,
+      comboWins: 1,
+      completed: false,
+    });
   });
 });

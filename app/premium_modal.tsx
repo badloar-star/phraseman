@@ -13,13 +13,18 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useEnergy } from '../components/EnergyContext';
 import ContentWrap from '../components/ContentWrap';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
-import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
-import { getVerifiedPremiumStatus, invalidatePremiumCache } from './premium_guard';
+import { DEV_IAP_BYPASS, IS_EXPO_GO, KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from './config';
+import { initRevenueCat, resolvePremiumPackages } from './revenuecat_init';
+import { getVerifiedPremiumStatus, invalidatePremiumCache, markPremiumStoreSeenNow } from './premium_guard';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 import {
   getTrialReofferBlockedByCooldown,
   markSubscriptionOrTrialFlowConsumedNow,
 } from './premium_trial_eligibility';
+import { storeProductHasTrialIntro } from './premium_trial_signal';
+import { getStorePromoPricing } from './premium_store_promo_display';
 import { unlockLesson } from './lesson_lock_system';
 import {
   logPremiumPurchased,
@@ -32,9 +37,20 @@ import {
   logPaywallClose,
 } from './firebase';
 import { emitAppEvent } from './events';
+import { markCelebrationPending } from './premium_celebration_state';
+import { collectPaywallStats, pickPaywallTags, type PersonalizedTag } from './paywall_personalization';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { triLang, type Lang } from '../constants/i18n';
+
+/** Только непустая строка из стора — без выдуманных сумм. */
+function storePriceTrim(raw: string | undefined | null): string {
+  if (typeof raw !== 'string') return '';
+  return raw.trim();
+}
+
+/** Плейсхолдер, пока StoreKit/RevenueCat не отдали цену. */
+const PRICE_PENDING = '\u2026';
 
 type Plan = 'monthly' | 'yearly';
 type PremiumContext =
@@ -48,8 +64,20 @@ type PremiumContext =
   | 'flashcard_limit'
   | 'streak'
   | 'theme'
-  | 'hall_of_fame'
   | 'club'
+  /** Trainer premium modes paywall. */
+  | 'trainer'
+  /** Trainer daily session limit reached. */
+  | 'trainer_limit'
+  /** Soft push после первого завершения lesson 5: предложить trial. */
+  | 'after_lesson5'
+  /** Mastery — повторное прохождение урока за осколки либо безлимит на Premium. */
+  | 'mastery'
+  /** Стат-экран: heatmap, mistake patterns, percentiles за blur'ом. */
+  | 'stats'
+  | 'heatmap'
+  | 'patterns'
+  | 'percentiles'
   | 'generic';
 type PaywallCopy = {
   titleRu: string;
@@ -66,26 +94,6 @@ const normalizePlan = (raw: string | null | undefined): Plan | null => {
   if (p === 'monthly') return 'monthly';
   if (p === 'yearly' || p === 'annual') return 'yearly';
   return null;
-};
-
-const resolvePremiumPackages = (
-  availablePackages: PurchasesPackage[],
-): { monthly?: PurchasesPackage; yearly?: PurchasesPackage } => {
-  const byType = (needle: string) =>
-    availablePackages.find((p: any) => String(p?.packageType || '').toUpperCase() === needle);
-  const byId = (rx: RegExp) => availablePackages.find((p) => rx.test(p.product.identifier));
-
-  const monthly =
-    byType('MONTHLY') ??
-    byType('$RC_MONTHLY') ??
-    byId(/month|monthly|1.?month/i);
-  const yearly =
-    byType('ANNUAL') ??
-    byType('$RC_ANNUAL') ??
-    byType('YEARLY') ??
-    byId(/year|yearly|annual|12.?month/i);
-
-  return { monthly, yearly };
 };
 
 const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
@@ -171,14 +179,6 @@ const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
     subtitleUk: 'З Premium застосунок стає твоїм: більше залучення, вища регулярність занять.',
     subtitleEs: 'Con Premium la app se siente tuya: más implicación y más constancia en cada sesión.',
   },
-  hall_of_fame: {
-    titleRu: 'Соревнуйся и держи темп',
-    titleUk: 'Змагайся та тримай темп',
-    titleEs: 'Compite y mantén el ritmo',
-    subtitleRu: 'Премиум-режимы усиливают мотивацию и помогают удерживать ежедневный ритм обучения.',
-    subtitleUk: 'Преміум-режими підсилюють мотивацію й допомагають утримувати щоденний ритм навчання.',
-    subtitleEs: 'Los modos premium refuerzan la motivación y ayudan a mantener estudios cada día.',
-  },
   club: {
     titleRu: 'Усиль прогресс через клубы и бонусы',
     titleUk: 'Підсиль прогрес через клуби та бонуси',
@@ -186,6 +186,70 @@ const PAYWALL_COPY: Record<PremiumContext, PaywallCopy> = {
     subtitleRu: 'Соревнуйся, набирай больше XP и не выпадай из ритма.',
     subtitleUk: 'Змагайся, набирай більше XP і не випадай з ритму.',
     subtitleEs: 'Compite, suma más XP y no pierdas el ritmo.',
+  },
+  trainer: {
+    titleRu: 'Тренер — персональный план повторения',
+    titleUk: 'Тренер — персональний план повторення',
+    titleEs: 'Entrenador — tu plan de repaso personal',
+    subtitleRu: 'Слабые места, Smart Mix, По теме, Сложные — 4 режима работают только на Premium. Без лимита сессий.',
+    subtitleUk: 'Слабкі місця, Smart Mix, За темою, Складні — 4 режими лише для Premium. Без ліміту сесій.',
+    subtitleEs: 'Débiles, Smart Mix, Por tema, Difíciles — 4 modos solo para Premium. Sin límite de sesiones.',
+  },
+  trainer_limit: {
+    titleRu: 'Сессия Тренера использована',
+    titleUk: 'Сесію Тренера використано',
+    titleEs: 'Sesión del Entrenador usada',
+    subtitleRu: 'Free: 1 сессия в сутки. Premium: безлимит повторений в любых режимах.',
+    subtitleUk: 'Free: 1 сесія на добу. Premium: безліміт повторень у будь-яких режимах.',
+    subtitleEs: 'Free: 1 sesión al día. Premium: repeticiones ilimitadas en todos los modos.',
+  },
+  after_lesson5: {
+    titleRu: 'Ты прошёл 5 уроков. Не сбавляй темп.',
+    titleUk: 'Ти пройшов 5 уроків. Не сповільнюйся.',
+    titleEs: 'Has completado 5 lecciones. No aflojes.',
+    subtitleRu: 'Premium даёт безлимит энергии, mastery-повторы, тренер слабых мест и аналитику. 7 дней бесплатно — без обязательств.',
+    subtitleUk: 'Premium відкриває безліміт енергії, mastery-повтори, тренер слабких місць і аналітику. 7 днів безкоштовно — без зобовʼязань.',
+    subtitleEs: 'Premium te da energía ilimitada, repeticiones mastery, entrenador de puntos débiles y analítica. 7 días gratis sin compromiso.',
+  },
+  mastery: {
+    titleRu: 'Перепроходи уроки без ограничений',
+    titleUk: 'Перепрохід уроків без обмежень',
+    titleEs: 'Repite lecciones sin límites',
+    subtitleRu: 'С Premium любой пройденный урок открыт для повтора — без списания осколков (в том числе когда цена росла бы за каждый проход).',
+    subtitleUk: 'З Premium будь-який пройдений урок відкрито для повтору — без списання осколків, навіть якщо для free ціна зростає.',
+    subtitleEs: 'Con Premium repites cualquier lección completada sin gastar fragmentos (aunque sin premium el precio sube en cada repetición).',
+  },
+  stats: {
+    titleRu: 'Аналитика прогресса — для Premium',
+    titleUk: 'Аналітика прогресу — для Premium',
+    titleEs: 'Analítica del progreso — Premium',
+    subtitleRu: 'Карта активности за год, паттерны ошибок, сравнение с другими учениками. Видишь чёткую картину своего роста.',
+    subtitleUk: 'Карта активності за рік, патерни помилок, порівняння з іншими учнями. Бачиш чітку картину свого зростання.',
+    subtitleEs: 'Mapa anual de actividad, patrones de error y comparación. Ves tu progreso con total claridad.',
+  },
+  heatmap: {
+    titleRu: 'Карта активности — для Premium',
+    titleUk: 'Карта активності — для Premium',
+    titleEs: 'Mapa de actividad — Premium',
+    subtitleRu: '365 дней занятий на одном экране — увидь свои сильные и слабые периоды.',
+    subtitleUk: '365 днів занять на одному екрані — побач свої сильні й слабкі періоди.',
+    subtitleEs: '365 días de estudio en una sola vista: encuentra tus mejores y peores semanas.',
+  },
+  patterns: {
+    titleRu: 'Паттерны твоих ошибок',
+    titleUk: 'Патерни твоїх помилок',
+    titleEs: 'Patrones de tus errores',
+    subtitleRu: 'Узнай в каких темах и фразах ты ошибаешься чаще всего — и тренируй именно их.',
+    subtitleUk: 'Дізнайся в яких темах і фразах ти помиляєшся найчастіше — і тренуй саме їх.',
+    subtitleEs: 'Descubre los temas y frases donde más fallas y entrena justo lo que importa.',
+  },
+  percentiles: {
+    titleRu: 'Сравнение с другими — для Premium',
+    titleUk: 'Порівняння з іншими — для Premium',
+    titleEs: 'Comparación con otros — Premium',
+    subtitleRu: 'Видь куда ты в топе среди всех учеников. Без дизморали — только то, в чём ты крут.',
+    subtitleUk: 'Бач куди ти в топі серед усіх учнів. Без дизморалі — лише те, в чому ти крутий.',
+    subtitleEs: 'Mira dónde destacas frente a otros estudiantes. Solo lo positivo, sin desmotivar.',
   },
   generic: {
     titleRu: 'Учись быстрее с Premium',
@@ -222,6 +286,7 @@ const savePremiumLocally = async (plan: Plan) => {
     ['premium_active',  'true'],
     ['tester_no_premium', 'false'],  // сброс тест-флага при реальной покупке
   ]);
+  await markPremiumStoreSeenNow();
   invalidatePremiumCache();
 };
 
@@ -336,15 +401,9 @@ function getHero(
     case 'streak':
       return {
         emoji: '🔥',
-        titleRu: streakDays > 0
-          ? `Стрик ${streakDays} ${streakDays === 1 ? 'день' : streakDays < 5 ? 'дня' : 'дней'} под угрозой!`
-          : copy.titleRu,
-        titleUk: streakDays > 0
-          ? `Стрік ${streakDays} ${streakDays === 1 ? 'день' : 'днів'} під загрозою!`
-          : copy.titleUk,
-        titleEs: streakDays > 0
-          ? `¡Racha de ${streakDays} ${streakDays === 1 ? 'día' : 'días'} en juego!`
-          : copy.titleEs,
+        titleRu: copy.titleRu,
+        titleUk: copy.titleUk,
+        titleEs: copy.titleEs,
         subtitleRu: copy.subtitleRu,
         subtitleUk: copy.subtitleUk,
         subtitleEs: copy.subtitleEs,
@@ -361,7 +420,7 @@ function getHero(
         subtitleEs: copy.subtitleEs,
         highlightRow: 3,
       };
-    case 'hall_of_fame':
+    case 'club':
       return {
         emoji: '🏆',
         titleRu: copy.titleRu,
@@ -372,9 +431,46 @@ function getHero(
         subtitleEs: copy.subtitleEs,
         highlightRow: -1,
       };
-    case 'club':
+    case 'trainer':
+    case 'trainer_limit':
       return {
-        emoji: '🏆',
+        emoji: '🧠',
+        titleRu: copy.titleRu,
+        titleUk: copy.titleUk,
+        titleEs: copy.titleEs,
+        subtitleRu: copy.subtitleRu,
+        subtitleUk: copy.subtitleUk,
+        subtitleEs: copy.subtitleEs,
+        highlightRow: -1,
+      };
+    case 'after_lesson5':
+      return {
+        emoji: '👑',
+        titleRu: copy.titleRu,
+        titleUk: copy.titleUk,
+        titleEs: copy.titleEs,
+        subtitleRu: copy.subtitleRu,
+        subtitleUk: copy.subtitleUk,
+        subtitleEs: copy.subtitleEs,
+        highlightRow: 0,
+      };
+    case 'mastery':
+      return {
+        emoji: '🔁',
+        titleRu: copy.titleRu,
+        titleUk: copy.titleUk,
+        titleEs: copy.titleEs,
+        subtitleRu: copy.subtitleRu,
+        subtitleUk: copy.subtitleUk,
+        subtitleEs: copy.subtitleEs,
+        highlightRow: -1,
+      };
+    case 'stats':
+    case 'heatmap':
+    case 'patterns':
+    case 'percentiles':
+      return {
+        emoji: '📊',
         titleRu: copy.titleRu,
         titleUk: copy.titleUk,
         titleEs: copy.titleEs,
@@ -448,11 +544,6 @@ const CONTEXT_BENEFITS: Record<PremiumContext, { ru: string; uk: string; es: str
     { ru: 'Выше вовлеченность в обучение', uk: 'Вища залученість у навчання', es: 'Mayor compromiso al estudiar' },
     { ru: 'Комфортнее заниматься регулярно', uk: 'Комфортніше займатися регулярно', es: 'Sesiones más cómodas y rutinarias' },
   ],
-  hall_of_fame: [
-    { ru: 'Соревновательный драйв и мотивация', uk: 'Змагальний драйв і мотивація', es: 'Competición que refuerza la motivación' },
-    { ru: 'Больше смысла в ежедневном темпе', uk: 'Більше сенсу у щоденному темпі', es: 'Más sentido a tu rutina diaria' },
-    { ru: 'Прогресс заметен быстрее', uk: 'Прогрес помітний швидше', es: 'Notas el progreso antes' },
-  ],
   club: [
     { ru: 'Клубы и XP-бусты для ускорения', uk: 'Клуби та XP-бусти для прискорення', es: 'Clubs y bonus de XP para acelerar' },
     { ru: 'Больше пользы с каждой сессии', uk: 'Більше користі з кожної сесії', es: 'Sacas más de cada sesión' },
@@ -463,33 +554,235 @@ const CONTEXT_BENEFITS: Record<PremiumContext, { ru: string; uk: string; es: str
     { ru: 'Стабильный темп и результат', uk: 'Стабільний темп і результат', es: 'Ritmo estable y resultado' },
     { ru: 'Премиум-опции сразу после активации', uk: 'Преміум-опції одразу після активації', es: 'Funciones Premium al instante' },
   ],
+  trainer: [
+    { ru: 'Слабые места: фразы с наибольшим числом ошибок', uk: 'Слабкі місця: фрази з найбільшою кількістю помилок', es: 'Puntos débiles: frases con más errores' },
+    { ru: 'Smart Mix: алгоритм строит идеальный набор', uk: 'Smart Mix: алгоритм будує ідеальний набір', es: 'Smart Mix: el algoritmo crea el conjunto ideal' },
+    { ru: 'Без лимита сессий в день', uk: 'Без ліміту сесій на день', es: 'Sin límite diario de sesiones' },
+    { ru: 'По теме: повтор конкретного урока', uk: 'За темою: повтор конкретного уроку', es: 'Por tema: repaso de una lección específica' },
+  ],
+  trainer_limit: [
+    { ru: 'Безлимит сессий Тренера', uk: 'Безліміт сесій Тренера', es: 'Sesiones ilimitadas del Entrenador' },
+    { ru: 'Все 6 режимов без ограничений', uk: 'Всі 6 режимів без обмежень', es: 'Los 6 modos sin restricciones' },
+    { ru: 'Смарт-повтор когда хочешь', uk: 'Смарт-повтор коли хочеш', es: 'Repaso inteligente cuando quieras' },
+  ],
+  after_lesson5: [
+    { ru: 'Безлимит энергии — учись когда хочешь', uk: 'Безліміт енергії — навчайся коли хочеш', es: 'Energía ilimitada cuando quieras' },
+    { ru: 'Повтор любого урока — неограниченно', uk: 'Повтор будь-якого уроку — необмежено', es: 'Repite cualquier lección sin límites' },
+    { ru: 'Тренер слабых мест и аналитика прогресса', uk: 'Тренер слабких місць і аналітика прогресу', es: 'Entrenador de puntos débiles y analítica' },
+    { ru: 'Сложные квизы и расширенные задания', uk: 'Складні квізи та розширені завдання', es: 'Quizzes difíciles y tareas avanzadas' },
+  ],
+  mastery: [
+    { ru: 'Безлимит повторов любого урока', uk: 'Безліміт повторів будь-якого уроку', es: 'Repeticiones ilimitadas de lecciones' },
+    { ru: 'Не тратишь осколки на перепрохождения уроков', uk: 'Не витрачаєш осколки на перепроходження уроків', es: 'No gastas fragmentos al repetir lecciones' },
+    { ru: 'Тренируй до идеального результата без давления', uk: 'Тренуй до ідеального результату без тиску', es: 'Entrena hasta perfeccionar sin presión' },
+  ],
+  stats: [
+    { ru: 'Карта активности: все 365 дней', uk: 'Карта активності: всі 365 днів', es: 'Mapa de actividad: los 365 días' },
+    { ru: 'Паттерны ошибок и слабые темы', uk: 'Патерни помилок і слабкі теми', es: 'Patrones de errores y temas débiles' },
+    { ru: 'Сравнение с другими — где ты в топе', uk: 'Порівняння з іншими — де ти в топі', es: 'Comparación con otros: tu top' },
+  ],
+  heatmap: [
+    { ru: '365 дней активности — увидь своё постоянство', uk: '365 днів активності — побач свою сталість', es: '365 días: ve tu constancia' },
+    { ru: 'Лучшие и худшие периоды на одном экране', uk: 'Кращі та гірші періоди на одному екрані', es: 'Mejores y peores semanas a la vista' },
+    { ru: 'Понимаешь свой ритм обучения', uk: 'Розумієш свій ритм навчання', es: 'Entiendes tu ritmo real' },
+  ],
+  patterns: [
+    { ru: 'Точки роста: где ошибаешься чаще всего', uk: 'Точки росту: де помиляєшся найчастіше', es: 'Puntos de crecimiento concretos' },
+    { ru: 'Конкретные темы и фразы для отработки', uk: 'Конкретні теми та фрази для відпрацювання', es: 'Temas y frases específicos a entrenar' },
+    { ru: 'Тренируй именно слабое — без распыления', uk: 'Тренуй саме слабке — без розпорошення', es: 'Entrena lo importante, no todo a la vez' },
+  ],
+  percentiles: [
+    { ru: 'Видь свой ранг среди всех учеников', uk: 'Бач свій ранг серед усіх учнів', es: 'Mira tu rango entre estudiantes' },
+    { ru: 'Только позитивные сравнения — мотивация', uk: 'Лише позитивні порівняння — мотивація', es: 'Solo comparaciones positivas: motivación' },
+    { ru: 'Вижу когда я в топе и где расти дальше', uk: 'Бачу коли я в топі та де рости далі', es: 'Sabes en qué destacas y dónde crecer' },
+  ],
 };
 
-/** Сравнение free → Premium: копия синхронизирована с логикой (уроки 19+, квизы: лише easy, картки index≥20, енергія 30 хв/од.) */
-const PAYWALL_COMPARISON_COPY = {
-  lessonsFreeRu: 'A1–A2, уроки 1–18',
-  lessonsFreeUk: 'A1–A2, уроки 1–18',
-  lessonsFreeEs: 'A1–A2, lecciones 1–18',
-  premiumBenefitRu: 'Безлимитно',
-  premiumBenefitUk: 'Безлімітно',
-  premiumBenefitEs: 'Ilimitado',
-  quizFreeRu: 'Только уровень Easy',
-  quizFreeUk: 'Лише рівень Easy',
-  quizFreeEs: 'Solo nivel Fácil',
-  cardsFreeRu: 'До 20 сохранённых',
-  cardsFreeUk: 'До 20 збережених',
-  cardsFreeEs: 'Hasta 20 guardadas',
-  energyFreeRu: '+1 ⚡ ~30 мин',
-  energyFreeUk: '+1 ⚡ ~30 хв',
-  energyFreeEs: '+1 ⚡ ~30 min',
-} as const;
+/** Подсветка правой колонки на пейволле (контраст на тёмном фоне карточки). */
+const PAYWALL_COMPARISON_PREMIUM_COLOR = '#6EA8FF';
+
+/** Сравнение free → Premium на пейволле (копии синхронизируй с реальными ограничениями в коде). */
+type PaywallComparisonRow = {
+  emoji: string;
+  titleRu: string;
+  titleUk: string;
+  titleEs: string;
+  freeRu: string;
+  freeUk: string;
+  freeEs: string;
+  premRu: string;
+  premUk: string;
+  premEs: string;
+  /** Вторая строка премиум-текста (напр. аналитика). */
+  premRu2?: string;
+  premUk2?: string;
+  premEs2?: string;
+};
+
+const PAYWALL_COMPARISON_ROWS: readonly PaywallComparisonRow[] = [
+  {
+    emoji: '📚',
+    titleRu: 'Уроки',
+    titleUk: 'Уроки',
+    titleEs: 'Lecciones',
+    freeRu: 'A1–A2, уроки 1–18',
+    freeUk: 'A1–A2, уроки 1–18',
+    freeEs: 'A1–A2, lecciones 1–18',
+    premRu: 'Разблокированы уровни B1 и B2',
+    premUk: 'Розблоковані рівні B1 і B2',
+    premEs: 'Desbloqueas niveles B1 y B2',
+  },
+  {
+    emoji: '⚡',
+    titleRu: 'Квизы',
+    titleUk: 'Квізи',
+    titleEs: 'Quizzes',
+    freeRu: 'Только уровень Easy',
+    freeUk: 'Лише рівень Easy',
+    freeEs: 'Solo nivel Fácil',
+    premRu: 'Все уровни',
+    premUk: 'Усі рівні',
+    premEs: 'Todos los niveles',
+  },
+  {
+    emoji: '🃏',
+    titleRu: 'Карточки',
+    titleUk: 'Картки',
+    titleEs: 'Tarjetas',
+    freeRu: 'До 20 сохранённых',
+    freeUk: 'До 20 збережених',
+    freeEs: 'Hasta 20 guardadas',
+    premRu: 'Без ограничений',
+    premUk: 'Без обмежень',
+    premEs: 'Sin límites',
+  },
+  {
+    emoji: '🔋',
+    titleRu: 'Энергия',
+    titleUk: 'Енергія',
+    titleEs: 'Energía',
+    freeRu: '+1 ⚡ ~30 мин',
+    freeUk: '+1 ⚡ ~30 хв',
+    freeEs: '+1 ⚡ ~30 min',
+    premRu: 'Не заканчивается',
+    premUk: 'Не закінчується',
+    premEs: 'No se agota',
+  },
+  {
+    emoji: '⚔️',
+    titleRu: 'Арена',
+    titleUk: 'Арена',
+    titleEs: 'Arena',
+    freeRu: 'Лимит матчей в день и ⚡ за вход',
+    freeUk: 'Ліміт матчів на день і ⚡ за вхід',
+    freeEs: 'Tope diario y ⚡ por partida',
+    premRu: 'Безлимит',
+    premUk: 'Безліміт',
+    premEs: 'Ilimitada',
+  },
+  {
+    emoji: '📊',
+    titleRu: 'Аналитика',
+    titleUk: 'Аналітика',
+    titleEs: 'Analítica',
+    freeRu: 'Недоступна в бесплатном режиме',
+    freeUk: 'Недоступна у безкоштовному режимі',
+    freeEs: 'No disponible en modo gratis',
+    premRu: 'Детальная персонализированная',
+    premUk: 'Детальна персоналізована',
+    premEs: 'Analítica personalizada',
+    premRu2: 'аналитика',
+    premUk2: 'аналітика',
+    premEs2: 'detallada',
+  },
+  {
+    emoji: '🔁',
+    titleRu: 'Повторы уроков',
+    titleUk: 'Повтори уроків',
+    titleEs: 'Repetir lecciones',
+    freeRu: 'За осколки при повторе',
+    freeUk: 'За осколки за повтор',
+    freeEs: 'Con fragmentos por repetición',
+    premRu: 'Без ограничений',
+    premUk: 'Без обмежень',
+    premEs: 'Sin límites',
+  },
+  {
+    emoji: '🎨',
+    titleRu: 'Темы интерфейса',
+    titleUk: 'Теми інтерфейсу',
+    titleEs: 'Temas de interfaz',
+    freeRu: 'Только базовые темы',
+    freeUk: 'Лише базові теми',
+    freeEs: 'Solo temas básicos',
+    premRu: 'Все темы оформления',
+    premUk: 'Усі теми оформлення',
+    premEs: 'Todos los temas visuales',
+  },
+  {
+    emoji: '🏆',
+    titleRu: 'Лидерборды',
+    titleUk: 'Лідерборди',
+    titleEs: 'Clasificaciones',
+    freeRu: 'Обычное имя в списках',
+    freeUk: 'Звичайне імʼя в списках',
+    freeEs: 'Nombre estándar en listas',
+    premRu: 'Золотое имя в лидербордах',
+    premUk: 'Золоте імʼя в лідербордах',
+    premEs: 'Nombre dorado en rankings',
+  },
+];
+
+/** Экран «Управление Premium» (из настроек): напоминание, что уже включено */
+const MANAGE_VIEW_PREMIUM_BENEFITS: { ru: string; uk: string; es: string }[] = [
+  {
+    ru: 'Энергия без лимита — уроки, квизы, экзамен и остальной контент без ожидания ⚡',
+    uk: 'Енергія без ліміту — уроки, квізи, іспит і весь контент без очікування ⚡',
+    es: 'Energía ilimitada: lecciones, quizzes, examen y el resto del contenido sin esperas ⚡',
+  },
+  {
+    ru: 'Арена — без дневного потолка матчей и без расхода энергии на рейтинговые игры.',
+    uk: 'Арена — без денної межі матчів і без витрати енергії на рейтингові ігри.',
+    es: 'Arena: sin techo diario de partidas y sin gastar energía en partidas clasificatorias.',
+  },
+  {
+    ru: 'Уроки — блок B1/B2, плюс можно идти в уроки с 19-го без обязательного экзамена A2.',
+    uk: 'Уроки — блок B1/B2, плюс можна йти в уроки з 19-го без обовʼязкового іспиту A2.',
+    es: 'Lecciones: bloques B1/B2 y puedes entrar desde la 19 sin el examen A2 obligatorio.',
+  },
+  {
+    ru: 'Квизы — Medium и Hard, не только Easy.',
+    uk: 'Квізи — Medium і Hard, не лише Easy.',
+    es: 'Quizzes: Medium y Hard, no solo Fácil.',
+  },
+  {
+    ru: 'Карточки — неограниченное количество сохранённых карточек.',
+    uk: 'Картки — необмежена кількість збережених карток.',
+    es: 'Tarjetas: colección guardada sin límite.',
+  },
+  {
+    ru: 'Серия — заморозка, у Premium есть первая бесплатная перед оплатой осколками.',
+    uk: 'Серія — заморозка, у Premium є перша безкоштовна перед оплатою осколками.',
+    es: 'Racha: congelación; con Premium la primera es gratis antes de pagar con fragmentos.',
+  },
+  {
+    ru: 'Темы — Форест, Неон, Корал, Океан, Сакура.',
+    uk: 'Теми — Форест, Неон, Корал, Океан, Сакура.',
+    es: 'Temas: Forest, Neón, Coral, Océano, Sakura.',
+  },
+  {
+    ru: 'Профиль — имя с премиальной подсветкой на главной и в лидербордах.',
+    uk: 'Профіль — імʼя з преміальною підсвіткою на головній і в лідербордах.',
+    es: 'Perfil: nombre resaltado en inicio y en clasificaciones.',
+  },
+];
 
 function getPersonalValueLine(ctx: PremiumContext, streakDays: number, lessonsDone: number, savedCards: number, lang: Lang): string {
   if (ctx === 'streak' && streakDays > 0) {
     return triLang(lang, {
-      ru: `Сейчас у тебя стрик ${streakDays} дн. Premium поможет его удержать.`,
-      uk: `Зараз у тебе стрік ${streakDays} дн. Premium допоможе його втримати.`,
-      es: `Tienes una racha de ${streakDays} ${streakDays === 1 ? 'día' : 'días'}. Premium te ayudará a mantenerla.`,
+      ru: `Сейчас у тебя серия ${streakDays} дн. Premium даёт заморозку и спокойнее ритм без пауз.`,
+      uk: `Зараз у тебе серія ${streakDays} дн. Premium дає заморозку і спокійніший ритм без пауз.`,
+      es: `Llevas ${streakDays} ${streakDays === 1 ? 'día' : 'días'} de racha. Premium añade protección y más constancia.`,
     });
   }
   if (ctx === 'lesson_b1') {
@@ -522,75 +815,9 @@ const formatDate = (ts: number, lang: string) =>
   );
 
 /**
- * Есть ли у StoreProduct бесплатная фаза (триал), по данным магазина/RC.
- * Сброс `trial_last_consumed_at` в AsyncStorage влияет только на копию, но не
- * на то, отдаст ли Google/Apple данному аккаунту триал (уже использовали — фазы не будет).
+ * `storeProductHasTrialIntro` импортирован из `./premium_trial_signal` — общая логика
+ * с PremiumContext / PremiumGoldButton (CTA «Попробуй Premium бесплатно»).
  */
-function isZeroPriceMicros(micros: unknown): boolean {
-  if (micros === 0) return true;
-  if (typeof micros === 'string' && (micros === '0' || parseInt(micros, 10) === 0)) return true;
-  return false;
-}
-
-function pricingPhaseIsFree(phase: { price?: { amountMicros?: number; priceAmountMicros?: number } } | null | undefined): boolean {
-  if (!phase?.price) return false;
-  const p = phase.price;
-  if (isZeroPriceMicros(p.amountMicros)) return true;
-  if (p.amountMicros == null && isZeroPriceMicros(p.priceAmountMicros)) return true;
-  return false;
-}
-
-function subscriptionOptionHasFreeTrial(o: {
-  freePhase?: unknown;
-  phases?: { price?: { amountMicros?: number } }[];
-  pricingPhases?: { price?: { amountMicros?: number; priceAmountMicros?: number } }[];
-}): boolean {
-  if (o.freePhase != null) return true;
-  if (o.phases?.some(ph => pricingPhaseIsFree(ph) || isZeroPriceMicros(ph?.price?.amountMicros))) return true;
-  if (o.pricingPhases?.some(pricingPhaseIsFree)) return true;
-  return false;
-}
-
-function storeProductHasTrialIntro(product: PurchasesPackage['product'] | undefined): boolean {
-  if (!product) return false;
-  const p = product as any;
-
-  // iOS: introductory offer / free trial в introPrice
-  if (p.introPrice != null) {
-    const ip = p.introPrice;
-    if (ip.price === 0 || ip.price === 0.0) return true;
-    if (typeof ip.price === 'number' && Math.abs(ip.price) < 1e-9) return true;
-    if (typeof ip.priceString === 'string') {
-      const normalized = ip.priceString.replace(/[^\d.,-]/g, '').replace(/,/g, '.');
-      const n = parseFloat(normalized);
-      if (!Number.isNaN(n) && n === 0) return true;
-    }
-  }
-
-  for (const key of ['defaultOption', 'defaultSubscriptionOption'] as const) {
-    const opt = p[key];
-    if (opt && subscriptionOptionHasFreeTrial(opt)) return true;
-  }
-
-  const opts = p.subscriptionOptions;
-  if (Array.isArray(opts) && opts.some((o: any) => subscriptionOptionHasFreeTrial(o))) {
-    return true;
-  }
-
-  if (__DEV__ && !p.__trialLogged) {
-    p.__trialLogged = true;
-    try {
-      console.log('[RC] storeProductHasTrial intro check', p.identifier, {
-        hasSubOpts: Array.isArray(opts) ? opts.length : 0,
-        introPrice: p.introPrice,
-        defaultOption: !!p.defaultOption,
-        keys: Object.keys(p).filter(k => k.includes('ption') || k === 'introPrice' || k === 'subscriptionOptions'),
-      });
-    } catch { /* noop */ }
-  }
-
-  return false;
-}
 
 // ── Список открываемых фич для celebrate-модалки ──────────────────────────────
 const UNLOCK_ITEMS: { icon: string; textRu: string; textUk: string; textEs: string }[] = [
@@ -599,13 +826,14 @@ const UNLOCK_ITEMS: { icon: string; textRu: string; textUk: string; textEs: stri
   { icon: '🧠', textRu: 'Квиз Средний',             textUk: 'Квіз Середній',        textEs: 'Quiz medio' },
   { icon: '💜', textRu: 'Квиз Сложный',             textUk: 'Квіз Складний',        textEs: 'Quiz difícil' },
   { icon: '🎨', textRu: 'Кастомные темы',          textUk: 'Кастомні теми',       textEs: 'Temas personalizados' },
-  { icon: '❄️', textRu: 'Заморозка стрика',         textUk: 'Заморозка стріку',     textEs: 'Protección de racha' },
+  { icon: '❄️', textRu: 'Заморозка цепочки',         textUk: 'Заморозка стріку',     textEs: 'Protección de racha' },
   { icon: '📚', textRu: 'Безлимитные карточки',    textUk: 'Безліміт карток',      textEs: 'Tarjetas ilimitadas' },
 ];
 
 // ── Компонент ─────────────────────────────────────────────────────────────────
 export default function PremiumModal() {
   const router = useRouter();
+  const effectiveOs = useEffectivePlatformOS();
   const insets = useSafeAreaInsets();
   const goBack = () => {
     if (router.canGoBack()) router.back();
@@ -617,15 +845,22 @@ export default function PremiumModal() {
     lessons_done?: string;
     saved?: string;
     level?: string;
+    manage?: string;
     _preview_success?: string;
     _force_trial_ui?: string;
   }>();
+  const manageRaw = params.manage;
+  /** Стабильный флаг без зависимости от нового объекта params на каждом ререндере */
+  const openManageFromSettings =
+    manageRaw === '1' || (Array.isArray(manageRaw) && manageRaw[0] === '1');
   /** Admin-only QA: форсит показ trial-UI (золотая лента + «Бесплатно» в карточках)
       даже когда магазин не вернул intro phase. Проставляется ТОЛЬКО из admin-панели,
       пользователь без deep-link доступа сам его не передаст. */
   const forceTrialUI = params._force_trial_ui === '1';
 
-  const ctx = (params.context ?? 'generic') as PremiumContext;
+  const ctx = (
+    params.context === 'hall_of_fame' ? 'generic' : (params.context ?? 'generic')
+  ) as PremiumContext;
   /** Один `paywall_plan_select` на пару (context, plan) за открытие экрана — без дублей карточка + CTA. */
   const lastPaywallPlanSelectLoggedRef = useRef<Plan | null>(null);
   const logPaywallPlanSelectDeduped = useCallback((plan: Plan) => {
@@ -656,7 +891,7 @@ export default function PremiumModal() {
   const [trialReofferBlocked, setTrialReofferBlocked] = useState(false);
 
   // manage-view state
-  type ViewMode = 'purchase' | 'manage' | 'change_plan' | 'success';
+  type ViewMode = 'purchase' | 'manage' | 'success';
   const [viewMode,    setViewMode]   = useState<ViewMode>('purchase');
   const [activePlan,  setActivePlan]  = useState<Plan | null>(null);
   const [isAdminGrantedPremium, setIsAdminGrantedPremium] = useState(false);
@@ -847,49 +1082,86 @@ export default function PremiumModal() {
     if (params._preview_success === '1') setViewMode('success');
   }, [params._preview_success]);
 
-  // Открыт с плашки «управление подпиской» (settings): только если в хранилище есть активный план
+  /** Открытие с «Настроек»: без `[params]` в deps — объект params у роутера часто новый каждый кадр → эффект крутился бы снова и сбрасывал дату. */
   useEffect(() => {
-    if ((params as any).manage === '1') {
-      // Сначала manage как «загрузка»; без валидного плана сбрасываем в purchase (иначе пейвол при viewMode=manage && !activePlan)
+    if (!openManageFromSettings) return;
+
+    let cancelled = false;
+
+    const run = async () => {
       setViewMode('manage');
-      resolveCurrentPremiumState().then(({ isPremium, plan, expiry, isAdmin }) => {
-        if (!isPremium || !plan) {
+      try {
+        const { isPremium, plan, expiry, isAdmin } = await resolveCurrentPremiumState();
+
+        if (cancelled) return;
+
+        if (!isPremium) {
           setViewMode('purchase');
           return;
         }
+        const effectivePlan = plan ?? 'yearly';
         setIsAdminGrantedPremium(isAdmin);
-        setActivePlan(plan);
-        setExpiryTs(expiry);
+        setActivePlan(effectivePlan);
+        setExpiryTs(prev => (expiry > 0 ? expiry : prev));
         setViewMode('manage');
-        if (!isAdmin && !expiry && !IS_EXPO_GO && !DEV_IAP_BYPASS) {
-          Purchases.getCustomerInfo()
-            .then(info => {
-              const entitlement = info.entitlements.active['premium'];
-              if (entitlement?.expirationDate) {
-                setExpiryTs(new Date(entitlement.expirationDate).getTime());
-              }
-            })
-            .catch(() => {});
+
+        const hasExpiryHint = expiry > 0;
+
+        if (!isAdmin && !hasExpiryHint && !IS_EXPO_GO && !DEV_IAP_BYPASS) {
+          try {
+            const info = await Purchases.getCustomerInfo();
+            if (cancelled) return;
+            const entitlement = info.entitlements.active['premium'];
+            if (entitlement?.expirationDate) {
+              setExpiryTs(new Date(entitlement.expirationDate).getTime());
+            }
+          } catch {
+            /* noop */
+          }
         }
-      }).catch(() => {
-        setViewMode('purchase');
-      });
-    }
-  }, [params, resolveCurrentPremiumState]);
+      } catch {
+        if (!cancelled) setViewMode('purchase');
+      }
+    };
+
+    void run();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [openManageFromSettings, resolveCurrentPremiumState]);
 
   const hero = getHero(ctx, streakDays, lessonsDone, savedCards);
   const benefits = CONTEXT_BENEFITS[ctx] ?? CONTEXT_BENEFITS.generic;
   const personalValueLine = getPersonalValueLine(ctx, streakDays, lessonsDone, savedCards, lang as Lang);
 
+  // Персонализированные теги: top-3 «болевых» строки, загружаются асинхронно.
+  // Показываем pill-карточки выше hero-блока чтобы юзер увидел «зеркало своего опыта»
+  // до стандартного рекламного pitch.
+  const [personalizedTags, setPersonalizedTags] = React.useState<PersonalizedTag[]>([]);
+  React.useEffect(() => {
+    void collectPaywallStats().then((stats) => {
+      setPersonalizedTags(pickPaywallTags(stats, 3));
+    });
+  }, []);
+
   useEffect(() => {
     getTrialReofferBlockedByCooldown().then(setTrialReofferBlocked);
-    resolveCurrentPremiumState().then(({ isPremium, plan, expiry, isAdmin }) => {
-      if (isPremium && plan) {
-        setIsAdminGrantedPremium(isAdmin);
-        setActivePlan(plan); setExpiryTs(expiry); setViewMode('manage');
-      }
-    }).catch(() => {});
-  }, [resolveCurrentPremiumState]);
+
+    /** С manage=1 не трогаем — отдельный эффект, иначе двойная гидрация и моргание. */
+    if (openManageFromSettings) return;
+
+    resolveCurrentPremiumState()
+      .then(({ isPremium, plan, expiry, isAdmin }) => {
+        if (isPremium && plan) {
+          setIsAdminGrantedPremium(isAdmin);
+          setActivePlan(plan);
+          setExpiryTs(prev => (expiry > 0 ? expiry : prev));
+          setViewMode('manage');
+        }
+      })
+      .catch(() => {});
+  }, [resolveCurrentPremiumState, openManageFromSettings]);
 
   useFocusEffect(
     useCallback(() => {
@@ -950,6 +1222,17 @@ export default function PremiumModal() {
       purchasingRef.current = false;
       return;
     }
+    await initRevenueCat();
+    if (!(await Purchases.isConfigured())) {
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Платежи временно недоступны. Откройте приложение через пару секунд и попробуйте снова.',
+        messageUk: 'Платежі тимчасово недоступні. Зачекайте кілька секунд і спробуйте знову.',
+        messageEs: 'Pagos no disponibles por ahora. Espera unos segundos e inténtalo de nuevo.',
+      });
+      purchasingRef.current = false;
+      return;
+    }
     let pkg = plan === 'yearly' ? packages.yearly : packages.monthly;
     if (!pkg) {
       // Fallback: пользователь мог нажать CTA раньше, чем завершился initial getOfferings.
@@ -974,13 +1257,16 @@ export default function PremiumModal() {
     }
     setPurchasing(true);
     try {
-      // На Android для free trial нужно явно выбрать subscriptionOption с триальной фазой
+      // Android: для free trial иногда нужно явно выбрать subscriptionOption с триальной фазой.
+      // iOS: introductory offer применяет система — только purchasePackage; purchaseSubscriptionOption
+      // здесь может не открыть лист оплаты (см. RC docs: iOS subscription offers).
       if (__DEV__) console.log('[RC] subscriptionOptions:', JSON.stringify(pkg.product.subscriptionOptions?.map(o => ({ id: o.id, freePhase: o.freePhase }))));
-      const trialOption = !trialReofferBlocked
-        ? pkg.product.subscriptionOptions?.find(o =>
-            o.freePhase != null || (o as any).phases?.some((ph: { periodDuration?: string; price?: { amountMicros: number } }) => ph.price?.amountMicros === 0)
-          )
-        : undefined;
+      const trialOption =
+        Platform.OS === 'android' && !trialReofferBlocked
+          ? pkg.product.subscriptionOptions?.find(o =>
+              o.freePhase != null || (o as any).phases?.some((ph: { periodDuration?: string; price?: { amountMicros: number } }) => ph.price?.amountMicros === 0)
+            )
+          : undefined;
       if (__DEV__) console.log('[RC] trialOption found:', trialOption?.id ?? 'none');
 
       const { customerInfo } = trialOption
@@ -995,8 +1281,38 @@ export default function PremiumModal() {
       // Локальная отметка: 90 д. без копии «7 дней» (магазин отдельно решает про intro).
       await markSubscriptionOrTrialFlowConsumedNow();
       await activateFreezeIfNeeded();
+      // Подняли pending для PremiumCelebrationModal — на следующем mount home.tsx
+      // юзер увидит celebration с замочками и короной.
+      void markCelebrationPending();
       showSuccess();
     } catch (e: any) {
+      const msg = String(e?.message ?? e ?? '');
+      const code = String(e?.code ?? '');
+      const alreadyOwned =
+        /already.*(subscribed|purchased|owned)|currently subscribed|product.*already/i.test(msg) ||
+        /product.*already|purchase.*not.*allowed|already/i.test(code);
+
+      if (alreadyOwned) {
+        try {
+          const info = await Purchases.restorePurchases();
+          const isActive =
+            Object.keys(info.entitlements.active).length > 0 ||
+            info.activeSubscriptions.length > 0;
+          if (isActive) {
+            const restoredPlan: Plan =
+              info.activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : plan;
+            await savePremiumLocally(restoredPlan);
+            await markSubscriptionOrTrialFlowConsumedNow();
+            await activateFreezeIfNeeded();
+            void markCelebrationPending();
+            showSuccess();
+            return;
+          }
+        } catch {
+          // Fall through to the visible error below.
+        }
+      }
+
       if (!e.userCancelled) {
         emitAppEvent('action_toast', {
           type: 'error',
@@ -1022,6 +1338,9 @@ export default function PremiumModal() {
         const plan: Plan = info.activeSubscriptions.some(s => /year|annual|12.?month/i.test(s)) ? 'yearly' : 'monthly';
         await savePremiumLocally(plan);
         await markSubscriptionOrTrialFlowConsumedNow();
+        // Restore = первый раз на этом устройстве (или после reset) — celebration уместна,
+        // чтобы юзер видел что premium «активирован» и понимал что разблокировано.
+        void markCelebrationPending();
         emitAppEvent('premium_activated');
         reloadEnergy();
         emitAppEvent('action_toast', {
@@ -1204,8 +1523,8 @@ export default function PremiumModal() {
   // ── Manage view ─────────────────────────────────────────────────────────────
   if (viewMode === 'manage' && activePlan) {
     const amount = activePlan === 'yearly'
-      ? (packages.yearly?.product.priceString ?? '€23.99')
-      : (packages.monthly?.product.priceString ?? '€3.99');
+      ? (storePriceTrim(packages.yearly?.product.priceString) || PRICE_PENDING)
+      : (storePriceTrim(packages.monthly?.product.priceString) || PRICE_PENDING);
     const period = activePlan === 'yearly'
       ? L('год', 'рік', 'año')
       : L('месяц', 'місяць', 'mes');
@@ -1235,16 +1554,31 @@ export default function PremiumModal() {
                   </View>
                 </View>
                 {!cancelled && (
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 12, borderTopWidth: 0.5, borderTopColor: t.border }}>
+                  <View style={{ paddingTop: 12, borderTopWidth: 0.5, borderTopColor: t.border, gap: 16 }}>
                     <View>
-                      <Text style={{ color: t.textMuted, fontSize: f.label }}>{L('Следующий платёж', 'Наступний платіж', 'Próximo pago')}</Text>
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 2 }}>
-                        {expiryTs > 0 ? formatDate(expiryTs, lang) : 'App Store / Google Play'}
+                      <Text style={{ color: t.textMuted, fontSize: f.label }}>
+                        {L('Следующий платёж', 'Наступний платіж', 'Próximo pago')}
+                      </Text>
+                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 4 }}>
+                        {expiryTs > 0 ? formatDate(expiryTs, lang) : '—'}
+                      </Text>
+                      <Text style={{ color: t.textMuted, fontSize: 12, marginTop: 6, lineHeight: 17 }}>
+                        {effectiveOs === 'ios'
+                          ? L('Точную дату списания смотри в App Store', 'Точну дату списання дивись в App Store', 'La fecha exacta del cargo está en App Store')
+                          : effectiveOs === 'android'
+                            ? L('Точную дату списания смотри в Google Play', 'Точну дату списання дивись у Google Play', 'La fecha exacta del cargo está en Google Play')
+                            : L('Точную дату списания смотри в магазине приложений', 'Точну дату списання дивись у магазині застосунків', 'La fecha exacta del cargo está en la tienda de apps')}
                       </Text>
                     </View>
-                    <View style={{ alignItems: 'flex-end' }}>
-                      <Text style={{ color: t.textMuted, fontSize: f.label }}>{L('Сумма', 'Сума', 'Importe')}</Text>
-                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 2 }}>{amount} / {period}</Text>
+                    <View>
+                      <Text style={{ color: t.textMuted, fontSize: f.label }}>
+                        {L('Сумма', 'Сума', 'Importe')}
+                      </Text>
+                      <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', marginTop: 4 }} numberOfLines={2}>
+                        {amount}
+                        {' / '}
+                        {period}
+                      </Text>
                     </View>
                   </View>
                 )}
@@ -1259,10 +1593,33 @@ export default function PremiumModal() {
                 )}
               </View>
 
+              <View
+                style={{
+                  backgroundColor: t.bgCard,
+                  borderRadius: 16,
+                  padding: 18,
+                  borderWidth: 0.5,
+                  borderColor: t.border,
+                  gap: 14,
+                }}
+              >
+                <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                  {L('Что у тебя уже включено', 'Що в тебе вже включено', 'Lo que ya tienes incluido')}
+                </Text>
+                {MANAGE_VIEW_PREMIUM_BENEFITS.map((row, idx) => (
+                  <View key={idx} style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 12 }}>
+                    <Ionicons name="checkmark-circle" size={22} color={t.correct} style={{ marginTop: 1 }} />
+                    <Text style={{ flex: 1, color: t.textSecond, fontSize: f.body, lineHeight: 22 }}>
+                      {L(row.ru, row.uk, row.es)}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+
               {!cancelled && !isAdminGrantedPremium && (
                 <TouchableOpacity
                   style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 18, borderWidth: 0.5, borderColor: t.border, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
-                  onPress={() => { hapticTap(); setViewMode('change_plan'); }}
+                  onPress={() => { hapticTap(); openManageWithToast(); }}
                   activeOpacity={0.8}
                 >
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
@@ -1285,7 +1642,11 @@ export default function PremiumModal() {
               )}
 
               <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', marginTop: 4 }}>
-                {L('Подписка управляется через App Store / Google Play', 'Підписка управляється через App Store / Google Play', 'La suscripción se gestiona en App Store / Google Play')}
+                {effectiveOs === 'ios'
+                  ? L('Подписка управляется через App Store', 'Підписка управляється через App Store', 'La suscripción se gestiona en App Store')
+                  : effectiveOs === 'android'
+                    ? L('Подписка управляется через Google Play', 'Підписка управляється через Google Play', 'La suscripción se gestiona en Google Play')
+                    : L('Подписка управляется через магазин приложений', 'Підписка управляється через магазин застосунків', 'La suscripción se gestiona en la tienda de apps')}
               </Text>
               {isAdminGrantedPremium && (
                 <Text style={{ color: t.textSecond, fontSize: f.label, textAlign: 'center', marginTop: 2 }}>
@@ -1343,62 +1704,6 @@ export default function PremiumModal() {
             </View>
           </View>
         </Modal>
-      </ScreenGradient>
-    );
-  }
-
-  // ── Change plan view ─────────────────────────────────────────────────────────
-  if (viewMode === 'change_plan' && activePlan) {
-    const otherPlan: Plan = activePlan === 'yearly' ? 'monthly' : 'yearly';
-    return (
-      <ScreenGradient>
-        <SafeAreaView style={{ flex: 1 }}>
-          <ContentWrap>
-            <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-              <TouchableOpacity onPress={() => { hapticTap(); setViewMode('manage'); }}>
-                <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-              </TouchableOpacity>
-              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 8 }}>{L('Сменить план', 'Змінити план', 'Cambiar plan')}</Text>
-            </View>
-            <View style={{ padding: 20, gap: 12 }}>
-              {([activePlan, otherPlan] as Plan[]).map(plan => {
-                const isCurrent = plan === activePlan;
-                return (
-                  <TouchableOpacity
-                    key={plan}
-                    style={{ borderRadius: 16, padding: 18, borderWidth: isCurrent ? 2 : 1, borderColor: isCurrent ? t.correct : t.border, backgroundColor: isCurrent ? t.bgSurface : t.bgCard }}
-                    onPress={() => {
-                      hapticTap();
-                      if (isCurrent) return;
-                      openManageWithToast();
-                    }}
-                    activeOpacity={isCurrent ? 1 : 0.8}
-                  >
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                      <View>
-                        <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                          {plan === 'yearly' ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual') : L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual')}
-                        </Text>
-                        {isCurrent
-                          ? <Text style={{ color: t.correct, fontSize: f.sub, marginTop: 3, fontWeight: '600' }}>{L('✓ Текущий план', '✓ Поточний план', '✓ Plan actual')}</Text>
-                          : <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3 }}>{L('Изменить через Google Play', 'Змінити через Google Play', 'Cambiar en Google Play')}</Text>
-                        }
-                      </View>
-                      <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>{plan === 'yearly' ? (packages.yearly?.product.priceString ?? '€23.99') : (packages.monthly?.product.priceString ?? '€3.99')}</Text>
-                    </View>
-                  </TouchableOpacity>
-                );
-              })}
-              <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: f.sub * 1.5 }}>
-                {L(
-                  'Для смены плана ты будешь перенаправлен в Google Play',
-                  'Для зміни плану тебе буде перенаправлено до Google Play',
-                  'Para cambiar de plan se te redirigirá a Google Play',
-                )}
-              </Text>
-            </View>
-          </ContentWrap>
-        </SafeAreaView>
       </ScreenGradient>
     );
   }
@@ -1473,6 +1778,76 @@ export default function PremiumModal() {
                 >
                   {L('Без списания сейчас • Отмена в любой момент', 'Без списання зараз • Скасування в будь-який час', 'Sin cargo ahora • Cancela cuando quieras')}
                 </Text>
+              </View>
+            )}
+
+            {(() => {
+              const yPro = getStorePromoPricing(packages.yearly?.product);
+              const mPro = getStorePromoPricing(packages.monthly?.product);
+              if (!yPro && !mPro) return null;
+              const maxPct = Math.max(yPro?.discountPercent ?? 0, mPro?.discountPercent ?? 0);
+              const iosBanner = effectiveOs === 'ios';
+              return (
+                <View
+                  style={{
+                    marginBottom: 16,
+                    borderRadius: 14,
+                    paddingVertical: 12,
+                    paddingHorizontal: 14,
+                    backgroundColor: t.bgCard,
+                    borderWidth: 1,
+                    borderColor: t.correct + '55',
+                  }}
+                >
+                  <Text style={{ color: t.correct, fontSize: f.caption, fontWeight: '800', marginBottom: 6 }}>
+                    {iosBanner
+                      ? L('✨ Спеццена App Store', '✨ Спецціна App Store', '✨ Precio especial App Store')
+                      : L('✨ Спеццена Google Play', '✨ Спецціна Google Play', '✨ Precio especial Google Play')}
+                  </Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.label, lineHeight: 18 }}>
+                    {iosBanner
+                      ? L(
+                          `На твоём аккаунте действует промо-период: первые платежи дешевле (до −${maxPct}%). Зачёркнутая сумма на карточках — обычная цена после промо; точные этапы списания смотри в окне оплаты.`,
+                          `На твоєму акаунті діє промо-період: перші платежі дешевші (до −${maxPct}%). Закреслена сума на картках — звичайна ціна після промо; точні етапи дивись у вікні оплати.`,
+                          `Hay una promo activa en tu cuenta: los primeros pagos son más baratos (hasta −${maxPct}%). El precio tachado es el estándar tras la promo; los cargos exactos están en la pantalla de pago.`,
+                        )
+                      : L(
+                          `На твоём аккаунте действует промо-период Google Play: первые платежи дешевле (до −${maxPct}%). Зачёркнутая сумма на карточках — обычная цена после промо; точные этапы списания смотри в окне оплаты.`,
+                          `На твоєму акаунті діє промо-період Google Play: перші платежі дешевші (до −${maxPct}%). Закреслена сума на картках — звичайна ціна після промо; точні етапи дивись у вікні оплати.`,
+                          `Google Play tiene una promo en tu cuenta: los primeros pagos son más baratos (hasta −${maxPct}%). El precio tachado es el estándar tras la promo; los cargos exactos están en la pantalla de pago.`,
+                        )}
+                  </Text>
+                </View>
+              );
+            })()}
+
+            {/* БЛОК 0: Персонализированные теги — «зеркало опыта» юзера */}
+            {personalizedTags.length > 0 && (
+              <View style={{ marginBottom: 16, gap: 8 }}>
+                <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '600', textAlign: 'center', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 2 }}>
+                  {L('Почему Premium тебе нужен', 'Чому Premium тобі потрібен', 'Por qué necesitas Premium')}
+                </Text>
+                {personalizedTags.map((tag) => (
+                  <View
+                    key={tag.key}
+                    style={{
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                      gap: 10,
+                      backgroundColor: t.bgCard,
+                      borderRadius: 14,
+                      borderWidth: 1,
+                      borderColor: t.border,
+                      paddingVertical: 10,
+                      paddingHorizontal: 14,
+                    }}
+                  >
+                    <Text style={{ fontSize: 22, width: 30, textAlign: 'center' }}>{tag.emoji}</Text>
+                    <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.body, fontWeight: '600', lineHeight: f.body * 1.45 }}>
+                      {L(tag.ru, tag.uk, tag.es)}
+                    </Text>
+                  </View>
+                ))}
               </View>
             )}
 
@@ -1582,40 +1957,51 @@ export default function PremiumModal() {
               >
                 {L('Что меняется с Premium', 'Що змінюється з Premium', 'Qué cambia con Premium')}
               </Text>
-              {([
-                { emoji: '📚', titleRu: 'Уроки', titleUk: 'Уроки', titleEs: 'Lecciones', fRu: PAYWALL_COMPARISON_COPY.lessonsFreeRu, fUk: PAYWALL_COMPARISON_COPY.lessonsFreeUk, fEs: PAYWALL_COMPARISON_COPY.lessonsFreeEs },
-                { emoji: '⚡', titleRu: 'Квизы', titleUk: 'Квізи', titleEs: 'Quizzes', fRu: PAYWALL_COMPARISON_COPY.quizFreeRu, fUk: PAYWALL_COMPARISON_COPY.quizFreeUk, fEs: PAYWALL_COMPARISON_COPY.quizFreeEs },
-                { emoji: '🃏', titleRu: 'Карточки', titleUk: 'Картки', titleEs: 'Tarjetas', fRu: PAYWALL_COMPARISON_COPY.cardsFreeRu, fUk: PAYWALL_COMPARISON_COPY.cardsFreeUk, fEs: PAYWALL_COMPARISON_COPY.cardsFreeEs },
-                { emoji: '🔋', titleRu: 'Энергия', titleUk: 'Енергія', titleEs: 'Energía', fRu: PAYWALL_COMPARISON_COPY.energyFreeRu, fUk: PAYWALL_COMPARISON_COPY.energyFreeUk, fEs: PAYWALL_COMPARISON_COPY.energyFreeEs },
-              ] as const).map((row, idx, arr) => {
-                const freeL = L(row.fRu, row.fUk, row.fEs);
-                const premL = L(
-                  PAYWALL_COMPARISON_COPY.premiumBenefitRu,
-                  PAYWALL_COMPARISON_COPY.premiumBenefitUk,
-                  PAYWALL_COMPARISON_COPY.premiumBenefitEs,
-                );
+              {PAYWALL_COMPARISON_ROWS.map((row, idx, arr) => {
+                const freeL = L(row.freeRu, row.freeUk, row.freeEs);
                 const title = L(row.titleRu, row.titleUk, row.titleEs);
+                const prem1 = L(row.premRu, row.premUk, row.premEs);
+                const hasPrem2 = row.premRu2 != null && row.premUk2 != null && row.premEs2 != null;
+                const prem2 = hasPrem2 ? L(row.premRu2!, row.premUk2!, row.premEs2!) : '';
+                const premTextStyle = {
+                  color: PAYWALL_COMPARISON_PREMIUM_COLOR,
+                  fontSize: 10,
+                  lineHeight: 13,
+                  fontWeight: '800' as const,
+                  textAlign: 'right' as const,
+                };
                 return (
                   <View
                     key={row.titleRu}
                     style={{
                       flexDirection: 'row',
                       alignItems: 'center',
-                      paddingVertical: 7,
+                      paddingVertical: 8,
                       borderBottomWidth: idx < arr.length - 1 ? StyleSheet.hairlineWidth : 0,
                       borderBottomColor: t.border,
                     }}
                   >
-                    <Text style={{ fontSize: 16, width: 26, textAlign: 'center' }}>{row.emoji}</Text>
-                    <View style={{ flex: 1, minWidth: 0, paddingLeft: 4, paddingRight: 6 }}>
+                    <Text style={{ width: 28, fontSize: 17, textAlign: 'center' }}>{row.emoji}</Text>
+                    <View style={{ flex: 1, minWidth: 0, paddingRight: 6 }}>
                       <Text numberOfLines={1} style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>{title}</Text>
-                      <Text numberOfLines={2} style={{ color: t.textGhost, fontSize: 10, lineHeight: 13, marginTop: 1 }}>{freeL}</Text>
+                      <Text numberOfLines={2} style={{ color: t.textGhost, fontSize: 10, lineHeight: 13, marginTop: 2 }}>{freeL}</Text>
                     </View>
-                    <Ionicons name="arrow-forward" size={13} color={t.textMuted} style={{ marginRight: 4 }} />
-                    <View style={{ maxWidth: '38%' }}>
-                      <Text numberOfLines={2} style={{ color: t.textSecond, fontSize: 10, lineHeight: 13, fontWeight: '800', textAlign: 'right' }}>
-                        {premL}
-                      </Text>
+                    <View style={{ paddingHorizontal: 4, justifyContent: 'center' }}>
+                      <Ionicons name="arrow-forward" size={13} color={t.textMuted} />
+                    </View>
+                    <View
+                      style={{
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        width: '32%',
+                        maxWidth: 136,
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Text style={premTextStyle}>{prem1}</Text>
+                      {hasPrem2 ? (
+                        <Text style={[premTextStyle, { marginTop: 1 }]}>{prem2}</Text>
+                      ) : null}
                     </View>
                   </View>
                 );
@@ -1626,7 +2012,7 @@ export default function PremiumModal() {
               <View style={{ flexDirection: 'row', alignItems: 'center', paddingVertical: 4, gap: 8 }}>
                 <Ionicons name="snow-outline" size={20} color="#64B4FF" />
                 <View style={{ flex: 1, minWidth: 0 }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>{L('Заморозка стрика', 'Заморозка стріку', 'Protección de racha')}</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '800' }}>{L('Заморозка цепочки', 'Заморозка стріку', 'Protección de racha')}</Text>
                   <Text style={{ color: t.textGhost, fontSize: 10, lineHeight: 13, marginTop: 1 }} numberOfLines={2}>
                     {L('Серия не сгорит при пропуске дня', 'Захисти серію — навіть якщо пропустив день', 'Protege tu racha aunque te saltes un día')}
                   </Text>
@@ -1679,19 +2065,31 @@ export default function PremiumModal() {
               </Animated.View>
               {(() => {
                 const yearlyHasTrial = forceTrialUI || (!trialReofferBlocked && storeProductHasTrialIntro(packages.yearly?.product));
-                const priceStr = packages.yearly?.product.priceString ?? '€23.99';
+                const yearlyPromo = getStorePromoPricing(packages.yearly?.product);
+                const priceStr =
+                  yearlyPromo?.promoPriceString ?? storePriceTrim(packages.yearly?.product.priceString);
                 const periodLabel = L('/ год', '/ рік', '/ año');
                 return (
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <View style={{ flex: 1, paddingRight: 8 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                    <View style={{ flex: 1, minWidth: 0, paddingRight: 4 }}>
+                      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={2}>
                         {L('Годовая подписка', 'Річна підписка', 'Suscripción anual')}
                       </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
-                        {L('Экономия 50% по сравнению с месячным', 'Економія 50% порівняно з місячним', 'Ahorra un 50 % frente al plan mensual')}
+                      <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }} numberOfLines={3}>
+                        {yearlyPromo
+                          ? L(
+                              `Акция магазина: −${yearlyPromo.discountPercent}% на промо-период. Потом обычная цена ${yearlyPromo.standardPriceString}.`,
+                              `Акція магазину: −${yearlyPromo.discountPercent}% на промо-період. Потім звичайна ціна ${yearlyPromo.standardPriceString}.`,
+                              `Promo de la tienda: −${yearlyPromo.discountPercent}% en el período inicial. Después el precio habitual ${yearlyPromo.standardPriceString}.`,
+                            )
+                          : L(
+                              'Экономия 50% по сравнению с месячным',
+                              'Економія 50% порівняно з місячним',
+                              'Ahorra un 50 % frente al plan mensual',
+                            )}
                       </Text>
                     </View>
-                    <View style={{ alignItems: 'flex-end', maxWidth: '46%' }}>
+                    <View style={{ alignItems: 'flex-end', maxWidth: '44%', minWidth: 92 }}>
                       {yearlyHasTrial ? (
                         <>
                           {/* Главный якорь — триал. Цена ниже мелким, но ЧИТАЕМЫМ цветом —
@@ -1699,19 +2097,55 @@ export default function PremiumModal() {
                           <Text style={{ color: t.correct, fontSize: f.numMd, fontWeight: '900', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
                             {L('Бесплатно', 'Безкоштовно', 'Gratis')}
                           </Text>
-                          <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', marginTop: 1, textAlign: 'right' }}>
+                           <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', marginTop: 1, textAlign: 'right' }} numberOfLines={1}>
                             {L('на 7 дней', 'на 7 днів', 'durante 7 días')}
                           </Text>
                           <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 5, textAlign: 'right' }} numberOfLines={2}>
-                            {L(`затем ${priceStr} ${periodLabel}`, `потім ${priceStr} ${periodLabel}`, `luego ${priceStr} ${periodLabel}`)}
+                            {priceStr
+                              ? L(`затем ${priceStr} ${periodLabel}`, `потім ${priceStr} ${periodLabel}`, `luego ${priceStr} ${periodLabel}`)
+                              : L('затем — цена на экране оплаты', 'потім — ціна на екрані оплати', 'luego — precio en la pantalla de pago')}
+                          </Text>
+                          {yearlyPromo ? (
+                            <Text style={{ color: t.textGhost, fontSize: 10, marginTop: 4, textAlign: 'right' }} numberOfLines={2}>
+                              {L(
+                                `После промо — полная цена ${yearlyPromo.standardPriceString}`,
+                                `Після промо — повна ціна ${yearlyPromo.standardPriceString}`,
+                                `Tras la promo — precio estándar ${yearlyPromo.standardPriceString}`,
+                              )}
+                            </Text>
+                          ) : null}
+                        </>
+                      ) : yearlyPromo ? (
+                        <>
+                          <Text style={{ color: '#7FD89A', fontSize: f.label, fontWeight: '900', textAlign: 'right' }} numberOfLines={1}>
+                            {L(`−${yearlyPromo.discountPercent}%`, `−${yearlyPromo.discountPercent}%`, `−${yearlyPromo.discountPercent}%`)}
+                          </Text>
+                          <Text
+                            style={{
+                              color: t.textGhost,
+                              fontSize: f.caption,
+                              fontWeight: '600',
+                              textAlign: 'right',
+                              marginTop: 2,
+                              textDecorationLine: 'line-through',
+                            }}
+                            numberOfLines={1}
+                          >
+                            {yearlyPromo.standardPriceString}
+                          </Text>
+                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right', marginTop: 2 }} adjustsFontSizeToFit numberOfLines={1}>
+                            {yearlyPromo.promoPriceString}
+                          </Text>
+                          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'right', marginTop: 2 }} numberOfLines={1}>
+                            {periodLabel}
                           </Text>
                         </>
                       ) : (
                         <>
-                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>
-                            {priceStr}
+                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
+                            {priceStr || PRICE_PENDING}
                           </Text>
-                          <Text style={{ color: t.textMuted, fontSize: f.caption }}>
+                          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>
                             {periodLabel}
                           </Text>
                         </>
@@ -1723,7 +2157,7 @@ export default function PremiumModal() {
               {selected === 'yearly' && (
                 <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <Ionicons name="checkmark-circle" size={16} color={t.correct} />
-                  <Text style={{ color: t.correct, fontSize: f.caption, fontWeight: '700' }}>
+                  <Text style={{ flex: 1, minWidth: 0, color: t.correct, fontSize: f.caption, fontWeight: '700' }} numberOfLines={2}>
                     {L('Выбран самый выгодный план', 'Обрано найвигідніший план', 'Plan más rentable seleccionado')}
                   </Text>
                 </View>
@@ -1754,37 +2188,83 @@ export default function PremiumModal() {
             >
               {(() => {
                 const monthlyHasTrial = forceTrialUI || (!trialReofferBlocked && storeProductHasTrialIntro(packages.monthly?.product));
-                const priceStr = packages.monthly?.product.priceString ?? '€3.99';
+                const monthlyPromo = getStorePromoPricing(packages.monthly?.product);
+                const priceStr =
+                  monthlyPromo?.promoPriceString ?? storePriceTrim(packages.monthly?.product.priceString);
                 const periodLabel = L('/ месяц', '/ місяць', '/mes');
                 return (
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <View style={{ flex: 1, paddingRight: 8 }}>
-                      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+                    <View style={{ flex: 1, minWidth: 0, paddingRight: 4 }}>
+                      <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }} numberOfLines={2}>
                         {L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual')}
                       </Text>
-                      <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3 }}>
-                        {L('☕ Как одна чашка кофе в месяц', '☕ Як одна чашка кави на місяць', '☕ Como un café al mes')}
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 3 }} numberOfLines={3}>
+                        {monthlyPromo
+                          ? L(
+                              `Акция магазина: −${monthlyPromo.discountPercent}% на промо-период. Потом обычная цена ${monthlyPromo.standardPriceString}.`,
+                              `Акція магазину: −${monthlyPromo.discountPercent}% на промо-період. Потім звичайна ціна ${monthlyPromo.standardPriceString}.`,
+                              `Promo de la tienda: −${monthlyPromo.discountPercent}% en el período inicial. Después el precio habitual ${monthlyPromo.standardPriceString}.`,
+                            )
+                          : L(
+                              '☕ Как одна чашка кофе в месяц',
+                              '☕ Як одна чашка кави на місяць',
+                              '☕ Como un café al mes',
+                            )}
                       </Text>
                     </View>
-                    <View style={{ alignItems: 'flex-end', maxWidth: '46%' }}>
+                    <View style={{ alignItems: 'flex-end', maxWidth: '44%', minWidth: 92 }}>
                       {monthlyHasTrial ? (
                         <>
                           <Text style={{ color: t.correct, fontSize: f.numMd, fontWeight: '900', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
                             {L('Бесплатно', 'Безкоштовно', 'Gratis')}
                           </Text>
-                          <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', marginTop: 1, textAlign: 'right' }}>
+                          <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '700', marginTop: 1, textAlign: 'right' }} numberOfLines={1}>
                             {L('на 7 дней', 'на 7 днів', 'durante 7 días')}
                           </Text>
                           <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 5, textAlign: 'right' }} numberOfLines={2}>
-                            {L(`затем ${priceStr} / месяц`, `потім ${priceStr} / місяць`, `luego ${priceStr} / mes`)}
+                            {priceStr
+                              ? L(`затем ${priceStr} / месяц`, `потім ${priceStr} / місяць`, `luego ${priceStr} / mes`)
+                              : L('затем — цена на экране оплаты', 'потім — ціна на екрані оплати', 'luego — precio en la pantalla de pago')}
                           </Text>
+                          {monthlyPromo ? (
+                            <Text style={{ color: t.textGhost, fontSize: 10, marginTop: 4, textAlign: 'right' }} numberOfLines={2}>
+                              {L(
+                                `После промо — полная цена ${monthlyPromo.standardPriceString}`,
+                                `Після промо — повна ціна ${monthlyPromo.standardPriceString}`,
+                                `Tras la promo — precio estándar ${monthlyPromo.standardPriceString}`,
+                              )}
+                            </Text>
+                          ) : null}
+                        </>
+                      ) : monthlyPromo ? (
+                        <>
+                          <Text style={{ color: '#7FD89A', fontSize: f.label, fontWeight: '900', textAlign: 'right' }} numberOfLines={1}>
+                            {L(`−${monthlyPromo.discountPercent}%`, `−${monthlyPromo.discountPercent}%`, `−${monthlyPromo.discountPercent}%`)}
+                          </Text>
+                          <Text
+                            style={{
+                              color: t.textGhost,
+                              fontSize: f.caption,
+                              fontWeight: '600',
+                              textAlign: 'right',
+                              marginTop: 2,
+                              textDecorationLine: 'line-through',
+                            }}
+                            numberOfLines={1}
+                          >
+                            {monthlyPromo.standardPriceString}
+                          </Text>
+                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right', marginTop: 2 }} adjustsFontSizeToFit numberOfLines={1}>
+                            {monthlyPromo.promoPriceString}
+                          </Text>
+                          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'right', marginTop: 2 }} numberOfLines={1}>{periodLabel}</Text>
                         </>
                       ) : (
                         <>
-                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800' }}>
-                            {priceStr}
+                          <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '800', textAlign: 'right' }} adjustsFontSizeToFit numberOfLines={1}>
+                            {priceStr || PRICE_PENDING}
                           </Text>
-                          <Text style={{ color: t.textMuted, fontSize: f.caption }}>{periodLabel}</Text>
+                          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'right' }} numberOfLines={1}>{periodLabel}</Text>
                         </>
                       )}
                     </View>
@@ -1794,7 +2274,7 @@ export default function PremiumModal() {
               {selected === 'monthly' && (
                 <View style={{ marginTop: 10, flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                   <Ionicons name="checkmark-circle" size={16} color={t.correct} />
-                  <Text style={{ color: t.correct, fontSize: f.caption, fontWeight: '700' }}>
+                  <Text style={{ flex: 1, minWidth: 0, color: t.correct, fontSize: f.caption, fontWeight: '700' }} numberOfLines={2}>
                     {L('Выбран гибкий ежемесячный план', 'Обрано гнучкий щомісячний план', 'Plan mensual flexible')}
                   </Text>
                 </View>
@@ -1805,16 +2285,24 @@ export default function PremiumModal() {
             {(() => {
               const selectedPkg = selected === 'yearly' ? packages.yearly : packages.monthly;
               const hasTrial = forceTrialUI || (!trialReofferBlocked && storeProductHasTrialIntro(selectedPkg?.product));
-              const priceStr = selectedPkg?.product.priceString ?? (selected === 'yearly' ? '€23.99' : '€3.99');
+              const ctaPromo = getStorePromoPricing(selectedPkg?.product);
+              const ctaPrice =
+                ctaPromo?.promoPriceString ?? storePriceTrim(selectedPkg?.product.priceString);
               const periodStr = selected === 'yearly'
                 ? L('/год', '/рік', '/año')
                 : L('/мес', '/міс', '/mes');
               const ctaLabel = hasTrial
-                ? L(
-                    `🚀 7 дней бесплатно — затем ${priceStr}${periodStr}`,
-                    `🚀 7 днів безкоштовно — потім ${priceStr}${periodStr}`,
-                    `🚀 7 días gratis — luego ${priceStr}${periodStr}`,
-                  )
+                ? (ctaPrice
+                    ? L(
+                        `🚀 7 дней бесплатно — затем ${ctaPrice}${periodStr}`,
+                        `🚀 7 днів безкоштовно — потім ${ctaPrice}${periodStr}`,
+                        `🚀 7 días gratis — luego ${ctaPrice}${periodStr}`,
+                      )
+                    : L(
+                        '🚀 7 дней бесплатно — затем цена на экране оплаты',
+                        '🚀 7 днів безкоштовно — далі ціна на екрані оплати',
+                        '🚀 7 días gratis — luego el precio en la pantalla de pago',
+                      ))
                 : selected === 'yearly'
                   ? L('🚀 Получить Premium', '🚀 Отримати Premium', '🚀 Obtener Premium')
                   : L('🚀 Оформить месячную подписку', '🚀 Оформити місячну підписку', '🚀 Contratar suscripción mensual');
@@ -1886,20 +2374,20 @@ export default function PremiumModal() {
               }}
             >
               <Text style={{ color: t.textGhost, fontSize: f.body, textDecorationLine: 'underline' }}>
-                {ctx === 'streak'
-                  ? L('Нет, спасибо — стрик сгорит', 'Ні, дякую — стрік згорить', 'No, gracias: perderás la racha')
-                  : L('Продолжить бесплатно', 'Продовжити безкоштовно', 'Continuar gratis')}
+                {L('Продолжить бесплатно', 'Продовжити безкоштовно', 'Continuar gratis')}
               </Text>
             </TouchableOpacity>
 
             {(() => {
               const selectedPkgFooter = selected === 'yearly' ? packages.yearly : packages.monthly;
+              const footerPromo = getStorePromoPricing(selectedPkgFooter?.product);
               const footerHasTrial =
                 forceTrialUI ||
                 (!trialReofferBlocked && storeProductHasTrialIntro(selectedPkgFooter?.product));
               const footerPrice =
-                selectedPkgFooter?.product.priceString ??
-                (selected === 'yearly' ? '€23.99' : '€3.99');
+                footerPromo?.promoPriceString ??
+                (storePriceTrim(selectedPkgFooter?.product?.priceString) ||
+                  PRICE_PENDING);
               const footerPeriodUk =
                 selected === 'yearly'
                   ? 'річну підписку PhraseMan Premium'
@@ -1912,7 +2400,7 @@ export default function PremiumModal() {
                 selected === 'yearly'
                   ? 'suscripción anual PhraseMan Premium'
                   : 'suscripción mensual PhraseMan Premium';
-              const ios = Platform.OS === 'ios';
+              const ios = effectiveOs === 'ios';
 
               const trialUk = ios
                 ? `Якщо для цього плану доступні 7 днів без оплати: після закінчення пробного періоду з вашого Apple ID буде списано ${footerPrice} за обраний термін, якщо ви не скасуєте принаймні за 24 години до його закінчення (Налаштування → Apple ID → Підписки).`
@@ -2006,6 +2494,29 @@ export default function PremiumModal() {
                       {L(trialRu, trialUk, trialEs)}
                     </Text>
                   ) : null}
+                  {footerPromo ? (
+                    <Text
+                      style={{
+                        color: t.textGhost,
+                        fontSize: f.label,
+                        textAlign: 'center',
+                        lineHeight: 18,
+                        marginTop: footerHasTrial ? 10 : 8,
+                      }}
+                    >
+                      {ios
+                        ? L(
+                            `Промо App Store: первые платежи дешевле примерно на ${footerPromo.discountPercent}% от полной цены. После промо действует стандартная цена ${footerPromo.standardPriceString} — точные этапы списания смотри в окне оплаты.`,
+                            `Промо App Store: перші платежі дешевші приблизно на ${footerPromo.discountPercent}% від повної ціни. Після промо діє стандартна ціна ${footerPromo.standardPriceString} — точні етапи дивись у вікні оплати.`,
+                            `Promo App Store: los primeros pagos son ~${footerPromo.discountPercent}% más baratos que el precio completo. Tras la promo aplica ${footerPromo.standardPriceString}; los cargos exactos están en la pantalla de pago.`,
+                          )
+                        : L(
+                            `Промо Google Play: первые платежи дешевле примерно на ${footerPromo.discountPercent}% от полной цены. После промо действует стандартная цена ${footerPromo.standardPriceString} — точные этапы списания смотри в окне оплаты.`,
+                            `Промо Google Play: перші платежі дешевші приблизно на ${footerPromo.discountPercent}% від повної ціни. Після промо діє стандартна ціна ${footerPromo.standardPriceString} — точні етапи дивись у вікні оплати.`,
+                            `Promo Google Play: los primeros pagos son ~${footerPromo.discountPercent}% más baratos que el precio completo. Tras la promo aplica ${footerPromo.standardPriceString}; los cargos exactos están en la pantalla de pago.`,
+                          )}
+                    </Text>
+                  ) : null}
                   <Text
                     style={{
                       color: t.textGhost,
@@ -2025,17 +2536,28 @@ export default function PremiumModal() {
               );
             })()}
             <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 14, marginBottom: 4 }}>
-              <TouchableOpacity onPress={() => { hapticTap(); Linking.openURL('https://badloar-star.github.io/phraseman-privacy/'); }}>
+              <TouchableOpacity onPress={() => { hapticTap(); Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL); }}>
                 <Text style={{ color: t.textGhost, fontSize: f.label, textDecorationLine: 'underline' }}>
                   Privacy Policy
                 </Text>
               </TouchableOpacity>
               <Text style={{ color: t.textGhost, fontSize: f.label }}>·</Text>
-              <TouchableOpacity onPress={() => { hapticTap(); Linking.openURL('https://badloar-star.github.io/phraseman-privacy/terms.html'); }}>
+              <TouchableOpacity onPress={() => { hapticTap(); Linking.openURL(KNOWLY_LEGAL_TERMS_URL); }}>
                 <Text style={{ color: t.textGhost, fontSize: f.label, textDecorationLine: 'underline' }}>
                   Terms of Use
                 </Text>
               </TouchableOpacity>
+            </View>
+            <View style={{ alignItems: 'center', marginTop: 12, marginBottom: 8 }}>
+              <ReportErrorButton
+                screen="premium_modal"
+                dataId="premium_offer"
+                dataText={triLang(lang, {
+                  ru: 'Экран Premium',
+                  uk: 'Екран Premium',
+                  es: 'Pantalla Premium',
+                })}
+              />
             </View>
           </ScrollView>
         </ContentWrap>

@@ -1,5 +1,5 @@
 /**
- * Локализованые подписи для экрана статистики / стрика (RU / UK / ES).
+ * Локализованые подписи для экрана статистики / цепочки дней (RU / UK / ES).
  */
 
 import type { Lang } from './i18n';
@@ -36,7 +36,7 @@ export function streakWeekRowShort(lang: Lang): readonly string[] {
   return STREAK_WEEK_ROW_RU;
 }
 
-/** Подпись срока тира ставки на стрик (индекс 0..5 по WAGER_TIERS). */
+/** Подпись срока тира ставки на цепочку (индекс 0..5 по WAGER_TIERS). */
 export function streakWagerTierDaysLabel(lang: Lang, tierIdx: number): string {
   const i = Math.max(0, Math.min(5, Math.floor(tierIdx))) as StreakWagerTierIndex;
   if (lang === 'uk') return STREAK_WAGER_TIER_DAYS_UK[i];

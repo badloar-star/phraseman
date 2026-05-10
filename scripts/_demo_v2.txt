@@ -1,0 +1,16 @@
+﻿lesson_data_25_32.ts	lesson32_phrase_10
+  EN: If you had heard that important news earlier, you would not have made that stupid mistake.
+  RU: ╨ò╤ü╨╗╨╕ ╨▒╤ï ╨▓╤ï ╤â╤ü╨╗╤ï╤ê╨░╨╗╨╕ ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨╜╨╛╨▓╨╛╤ü╤é╨╕ ╤Ç╨░╨╜╤î╤ê╨╡, ╨▓╤ï ╨▒╤ï ╨╜╨╡ ╤ü╨╛╨▓╨╡╤Ç╤ê╨╕╨╗╨╕ ╤é╤â ╨│╨╗╤â╨┐╤â╤Ä ╨╛╤ê╨╕╨▒╨║╤â.
+
+lesson_data_9_16_phrases_es.gen.ts	lesson13_phrase_45
+  EN: You will lose that extra money soon.
+  RU: ╨Æ╤ï ╤ü╨║╨╛╤Ç╨╛ ╨┐╨╛╤é╨╡╤Ç╤Å╨╡╤é╨╡ ╤é╨╡ ╨╗╨╕╤ê╨╜╨╕╨╡ ╨┤╨╡╨╜╤î╨│╨╕.
+
+lesson_data_9_16_phrases_es.gen.ts	lesson16_phrase_15
+  EN: He always quickly fills in that important data.
+  RU: ╨₧╨╜ ╨▓╤ü╨╡╨│╨┤╨░ ╨▒╤ï╤ü╤é╤Ç╨╛ ╨╖╨░╨┐╨╕╤ü╤ï╨▓╨░╨╡╤é (╨▓╨┐╨╕╤ü╤ï╨▓╨░╨╡╤é) ╤é╨╡ ╨▓╨░╨╢╨╜╤ï╨╡ ╨┤╨░╨╜╨╜╤ï╨╡.
+
+lesson_data_9_16_phrases_es.gen.ts	lesson16_phrase_46
+  EN: That honest person does not always give back this found money to the owner.
+  RU: ╨ó╨╛╤é ╤ç╨╡╤ü╤é╨╜╤ï╨╣ ╤ç╨╡╨╗╨╛╨▓╨╡╨║ ╨╜╨╡ ╨▓╤ü╨╡╨│╨┤╨░ ╨▓╨╛╨╖╨▓╤Ç╨░╤ë╨░╨╡╤é ╤ì╤é╨╕ ╨╜╨░╨╣╨┤╨╡╨╜╨╜╤ï╨╡ ╨┤╨╡╨╜╤î╨│╨╕ ╨▓╨╗╨░╨┤╨╡╨╗╤î╤å╤â.
+

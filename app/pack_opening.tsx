@@ -16,6 +16,7 @@ import {
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import { getVolumetricShadow, useTheme } from '../components/ThemeContext';
 import { hapticSoftImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { triLang, type Lang } from '../constants/i18n';
@@ -36,12 +37,7 @@ import { fetchCommunityPackCards, fetchCommunityPackMeta } from './community_pac
 import { bundledPackTilePng } from './flashcards/packMarketplaceIcons';
 import type { CardItem } from './flashcards/types';
 import { resolveFlashcardBackText, type FlashcardContentLang } from './flashcards/types';
-
-function flashLang(l: Lang): FlashcardContentLang {
-  if (l === 'uk') return 'uk';
-  if (l === 'es') return 'es';
-  return 'ru';
-}
+import { flashcardContentLang } from './spanish_content_gate';
 
 const { width: WIN_W, height: WIN_H } = Dimensions.get('window');
 
@@ -128,6 +124,7 @@ interface FlippableCardProps {
   flipped: boolean;
   onFlip: (index: number) => void;
   lang: Lang;
+  cardLang: FlashcardContentLang;
 }
 
 function FlippableCard({
@@ -140,6 +137,7 @@ function FlippableCard({
   flipped,
   onFlip,
   lang,
+  cardLang,
 }: FlippableCardProps) {
   const { theme: t, themeMode, f } = useTheme();
   const rotate = useRef(new Animated.Value(0)).current;
@@ -296,7 +294,7 @@ function FlippableCard({
             style={[styles.cardRU, { color: t.textSecond, fontSize: f.body }]}
             numberOfLines={3}
           >
-            {resolveFlashcardBackText(card, flashLang(lang))}
+            {resolveFlashcardBackText(card, cardLang)}
           </Text>
         </Animated.View>
       </View>
@@ -315,6 +313,7 @@ const GRID_GAP = 12;
 export default function PackOpeningScreen() {
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const params = useLocalSearchParams<{ packId?: string }>();
@@ -327,6 +326,9 @@ export default function PackOpeningScreen() {
   const [error, setError] = useState<string | null>(null);
   const [revealAll, setRevealAll] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+
+  const packUiLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const cardContentLang = useMemo(() => flashcardContentLang(lang, studyTarget), [lang, studyTarget]);
 
   useEffect(() => {
     const onBackPress = () => {
@@ -476,7 +478,7 @@ export default function PackOpeningScreen() {
     );
   }
 
-  const title = packTitleForInterface(pack, flashLang(lang));
+  const title = packTitleForInterface(pack, packUiLang);
 
   return (
     <View style={{ flex: 1, backgroundColor: t.bgPrimary }}>
@@ -550,6 +552,7 @@ export default function PackOpeningScreen() {
               flipped={flippedSet.has(idx)}
               onFlip={onFlipOne}
               lang={lang}
+              cardLang={cardContentLang}
             />
           ))}
         </View>

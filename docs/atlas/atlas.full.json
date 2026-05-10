@@ -44738,177 +44738,177 @@
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/lesson ocean.png'"
+          "arg0": "'../../assets/images/levels/lesson ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/lesson sacura.png'"
+          "arg0": "'../../assets/images/levels/lesson sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/lesson coral.png'"
+          "arg0": "'../../assets/images/levels/lesson coral.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/lesson neon.png'"
+          "arg0": "'../../assets/images/levels/lesson neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/lesson forest.png'"
+          "arg0": "'../../assets/images/levels/lesson forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/quizes ocean.png'"
+          "arg0": "'../../assets/images/levels/quizes ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/quizes sacura.png'"
+          "arg0": "'../../assets/images/levels/quizes sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/quizes coral.png'"
+          "arg0": "'../../assets/images/levels/quizes coral.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/quizes neon.png'"
+          "arg0": "'../../assets/images/levels/quizes neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/quizes forest.png'"
+          "arg0": "'../../assets/images/levels/quizes forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/cards ocean.png'"
+          "arg0": "'../../assets/images/levels/cards ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/cards sacura.png'"
+          "arg0": "'../../assets/images/levels/cards sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/cards coral.png'"
+          "arg0": "'../../assets/images/levels/cards coral.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/cards neon.png'"
+          "arg0": "'../../assets/images/levels/cards neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/cards forest.png'"
+          "arg0": "'../../assets/images/levels/cards forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/day tasks ocean.png'"
+          "arg0": "'../../assets/images/levels/day tasks ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/day tasks sacura.png'"
+          "arg0": "'../../assets/images/levels/day tasks sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/day tasks coral.png'"
+          "arg0": "'../../assets/images/levels/day tasks coral.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/day tasks neon.png'"
+          "arg0": "'../../assets/images/levels/day tasks neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/day tasks forest.png'"
+          "arg0": "'../../assets/images/levels/day tasks forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/test ocean.png'"
+          "arg0": "'../../assets/images/levels/test ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/test sacura.png'"
+          "arg0": "'../../assets/images/levels/test sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/test coral.png'"
+          "arg0": "'../../assets/images/levels/test coral.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/test neon.png'"
+          "arg0": "'../../assets/images/levels/test neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/test forest.png'"
+          "arg0": "'../../assets/images/levels/test forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/exam ocean.png'"
+          "arg0": "'../../assets/images/levels/exam ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/exam sacura.png'"
+          "arg0": "'../../assets/images/levels/exam sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/exam coral.png'"
+          "arg0": "'../../assets/images/levels/exam coral.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/exam neon.png'"
+          "arg0": "'../../assets/images/levels/exam neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/examen forest.png'"
+          "arg0": "'../../assets/images/levels/examen forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/hero map ocean.png'"
+          "arg0": "'../../assets/images/levels/hero map ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/hero map sacura.png'"
+          "arg0": "'../../assets/images/levels/hero map sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/hero map coarl.png'"
+          "arg0": "'../../assets/images/levels/hero map coarl.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/hero man neon.png'"
+          "arg0": "'../../assets/images/levels/hero man neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/her man foret.png'"
+          "arg0": "'../../assets/images/levels/her man foret.webp'"
         },
         {
           "fromFunction": "HomeScreen",
@@ -44918,7 +44918,7 @@
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/OSKOLOK.png'"
+          "arg0": "'../../assets/images/levels/OSKOLOK.webp'"
         },
         {
           "fromFunction": "HomeScreen",
@@ -45043,7 +45043,7 @@
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/ARENA ICON.png'"
+          "arg0": "'../../assets/images/levels/ARENA ICON.webp'"
         },
         {
           "fromFunction": "HomeScreen",
@@ -45053,27 +45053,27 @@
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/active recall ocean.png'"
+          "arg0": "'../../assets/images/levels/active recall ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/active recall sacura.png'"
+          "arg0": "'../../assets/images/levels/active recall sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/active recall coral.png'"
+          "arg0": "'../../assets/images/levels/active recall coral.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/active recall neon.png'"
+          "arg0": "'../../assets/images/levels/active recall neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/active recall forest.png'"
+          "arg0": "'../../assets/images/levels/active recall forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
@@ -45123,27 +45123,27 @@
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/club base ocean.png'"
+          "arg0": "'../../assets/images/levels/club base ocean.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/club base sacura.png'"
+          "arg0": "'../../assets/images/levels/club base sacura.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/club base corak.png'"
+          "arg0": "'../../assets/images/levels/club base corak.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/club base neon.png'"
+          "arg0": "'../../assets/images/levels/club base neon.webp'"
         },
         {
           "fromFunction": "HomeScreen",
           "callee": "require",
-          "arg0": "'../../assets/images/levels/club icon base forest.png'"
+          "arg0": "'../../assets/images/levels/club icon base forest.webp'"
         },
         {
           "fromFunction": "HomeScreen",
@@ -45637,32 +45637,32 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/bronza.png'"
+          "arg0": "'../../assets/images/levels/bronza.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/serebro.png'"
+          "arg0": "'../../assets/images/levels/serebro.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/zoloto.png'"
+          "arg0": "'../../assets/images/levels/zoloto.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/rubin.png'"
+          "arg0": "'../../assets/images/levels/rubin.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/izumrud.png'"
+          "arg0": "'../../assets/images/levels/izumrud.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/almaz.png'"
+          "arg0": "'../../assets/images/levels/almaz.webp'"
         },
         {
           "fromFunction": "MedalDots",
@@ -46831,17 +46831,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/easy.png'"
+          "arg0": "'../../assets/images/levels/easy.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/medium.png'"
+          "arg0": "'../../assets/images/levels/medium.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/hard.png'"
+          "arg0": "'../../assets/images/levels/hard.webp'"
         },
         {
           "fromFunction": null,
@@ -49818,347 +49818,347 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/pervie tri.png'"
+          "arg0": "'../assets/images/levels/pervie tri.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/odna nedelya.png'"
+          "arg0": "'../assets/images/levels/odna nedelya.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dve nedeli.png'"
+          "arg0": "'../assets/images/levels/dve nedeli.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/mesyac v strou.png'"
+          "arg0": "'../assets/images/levels/mesyac v strou.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dva mesyaca.png'"
+          "arg0": "'../assets/images/levels/dva mesyaca.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/sto dney.png'"
+          "arg0": "'../assets/images/levels/sto dney.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/200 dney.png'"
+          "arg0": "'../assets/images/levels/200 dney.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/tseliy god.png'"
+          "arg0": "'../assets/images/levels/tseliy god.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/500 dney.png'"
+          "arg0": "'../assets/images/levels/500 dney.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/fenix.png'"
+          "arg0": "'../assets/images/levels/fenix.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/idealnaya nedelya.png'"
+          "arg0": "'../assets/images/levels/idealnaya nedelya.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/perviy shag.png'"
+          "arg0": "'../assets/images/levels/perviy shag.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/tri uroka.png'"
+          "arg0": "'../assets/images/levels/tri uroka.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/5 urokov.png'"
+          "arg0": "'../assets/images/levels/5 urokov.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/10 urokov.png'"
+          "arg0": "'../assets/images/levels/10 urokov.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/15 urokov.png'"
+          "arg0": "'../assets/images/levels/15 urokov.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dvadtsyaty 20 urokov.png'"
+          "arg0": "'../assets/images/levels/dvadtsyaty 20 urokov.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/polniy kurs.png'"
+          "arg0": "'../assets/images/levels/polniy kurs.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ni odnoy oshibky.png'"
+          "arg0": "'../assets/images/levels/ni odnoy oshibky.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/3 idealnych uroka.png'"
+          "arg0": "'../assets/images/levels/3 idealnych uroka.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/absolut.png'"
+          "arg0": "'../assets/images/levels/absolut.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/pervaya sotnya.png'"
+          "arg0": "'../assets/images/levels/pervaya sotnya.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/250 opita.png'"
+          "arg0": "'../assets/images/levels/250 opita.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/500 opita.png'"
+          "arg0": "'../assets/images/levels/500 opita.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/tosyachnic.png'"
+          "arg0": "'../assets/images/levels/tosyachnic.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/2500 opyta.png'"
+          "arg0": "'../assets/images/levels/2500 opyta.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/5 tisyach opita.png'"
+          "arg0": "'../assets/images/levels/5 tisyach opita.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/10 tisyach opita.png'"
+          "arg0": "'../assets/images/levels/10 tisyach opita.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/20 tisyach opita.png'"
+          "arg0": "'../assets/images/levels/20 tisyach opita.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/pol sotny tisyach opita.png'"
+          "arg0": "'../assets/images/levels/pol sotny tisyach opita.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/legenda.png'"
+          "arg0": "'../assets/images/levels/legenda.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/risknul pobedil.png'"
+          "arg0": "'../assets/images/levels/risknul pobedil.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/luchsaya nedelya.png'"
+          "arg0": "'../assets/images/levels/luchsaya nedelya.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/perviy kviz.png'"
+          "arg0": "'../assets/images/levels/perviy kviz.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/sredniy uroven.png'"
+          "arg0": "'../assets/images/levels/sredniy uroven.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/prinyal vyzov.png'"
+          "arg0": "'../assets/images/levels/prinyal vyzov.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/polniy nabor.png'"
+          "arg0": "'../assets/images/levels/polniy nabor.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/legky odeal.png'"
+          "arg0": "'../assets/images/levels/legky odeal.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/zhelezny nervy.png'"
+          "arg0": "'../assets/images/levels/zhelezny nervy.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/metky strelok.png'"
+          "arg0": "'../assets/images/levels/metky strelok.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/trizhdy ideal.png'"
+          "arg0": "'../assets/images/levels/trizhdy ideal.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/skorostboy.png'"
+          "arg0": "'../assets/images/levels/skorostboy.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/v potoke.png'"
+          "arg0": "'../assets/images/levels/v potoke.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/sniper.png'"
+          "arg0": "'../assets/images/levels/sniper.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/nesokrushimiy.png'"
+          "arg0": "'../assets/images/levels/nesokrushimiy.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/mashina.png'"
+          "arg0": "'../assets/images/levels/mashina.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/nepobedimiy.png'"
+          "arg0": "'../assets/images/levels/nepobedimiy.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/pervoe zadanie.png'"
+          "arg0": "'../assets/images/levels/pervoe zadanie.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/vse za den.png'"
+          "arg0": "'../assets/images/levels/vse za den.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/verny uchenic.png'"
+          "arg0": "'../assets/images/levels/verny uchenic.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/2 nedely (osobie).png'"
+          "arg0": "'../assets/images/levels/2 nedely (osobie).webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/mesyac v prilozhenii.png'"
+          "arg0": "'../assets/images/levels/mesyac v prilozhenii.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/2 mesyaca v prilozhenii.png'"
+          "arg0": "'../assets/images/levels/2 mesyaca v prilozhenii.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/tseliy god v prilozhenii.png'"
+          "arg0": "'../assets/images/levels/tseliy god v prilozhenii.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/vozvrashenie korolya.png'"
+          "arg0": "'../assets/images/levels/vozvrashenie korolya.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/diagnoz postavlen.png'"
+          "arg0": "'../assets/images/levels/diagnoz postavlen.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/nochnoy filin.png'"
+          "arg0": "'../assets/images/levels/nochnoy filin.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/nabbiy podiem.png'"
+          "arg0": "'../assets/images/levels/nabbiy podiem.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ekzamenator.png'"
+          "arg0": "'../assets/images/levels/ekzamenator.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/otlychink.png'"
+          "arg0": "'../assets/images/levels/otlychink.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/sobesednik.png'"
+          "arg0": "'../assets/images/levels/sobesednik.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/master dialogov.png'"
+          "arg0": "'../assets/images/levels/master dialogov.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/kartzhnik.png'"
+          "arg0": "'../assets/images/levels/kartzhnik.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/v clube.png'"
+          "arg0": "'../assets/images/levels/v clube.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/erudit.png'"
+          "arg0": "'../assets/images/levels/erudit.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/professor.png'"
+          "arg0": "'../assets/images/levels/professor.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/rubin.png'"
+          "arg0": "'../assets/images/levels/rubin.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/izumrud.png'"
+          "arg0": "'../assets/images/levels/izumrud.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/almaz.png'"
+          "arg0": "'../assets/images/levels/almaz.webp'"
         },
         {
           "fromFunction": "BadgeShieldInner",
@@ -50188,7 +50188,7 @@
         {
           "fromFunction": "BadgeShieldInner",
           "callee": "require",
-          "arg0": "'../assets/images/levels/achivement.png'"
+          "arg0": "'../assets/images/levels/achivement.webp'"
         },
         {
           "fromFunction": null,
@@ -54018,7 +54018,7 @@
         {
           "fromFunction": "DuelRatingScreen",
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA ICON.png'"
+          "arg0": "'../assets/images/levels/ARENA ICON.webp'"
         },
         {
           "fromFunction": "DuelRatingScreen",
@@ -54857,7 +54857,7 @@
         {
           "fromFunction": "DuelResultsScreen",
           "callee": "require",
-          "arg0": "'../assets/images/levels/OSKOLOK.png'"
+          "arg0": "'../assets/images/levels/OSKOLOK.webp'"
         },
         {
           "fromFunction": "DuelResultsScreen",
@@ -68731,7 +68731,7 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/OSKOLOK.png'"
+          "arg0": "'../../assets/images/levels/OSKOLOK.webp'"
         },
         {
           "fromFunction": "FlashcardsCategoryHub",
@@ -70931,92 +70931,92 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_initiators.png'"
+          "arg0": "'../assets/images/levels/club_initiators.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_adepts.png'"
+          "arg0": "'../assets/images/levels/club_adepts.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_seekers.png'"
+          "arg0": "'../assets/images/levels/club_seekers.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_practitioners.png'"
+          "arg0": "'../assets/images/levels/club_practitioners.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_analysts.png'"
+          "arg0": "'../assets/images/levels/club_analysts.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_erudites.png'"
+          "arg0": "'../assets/images/levels/club_erudites.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_connoisseurs.png'"
+          "arg0": "'../assets/images/levels/club_connoisseurs.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_experts.png'"
+          "arg0": "'../assets/images/levels/club_experts.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_magistri.png'"
+          "arg0": "'../assets/images/levels/club_magistri.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_thinkers.png'"
+          "arg0": "'../assets/images/levels/club_thinkers.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_masters.png'"
+          "arg0": "'../assets/images/levels/club_masters.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/club_professors.png'"
+          "arg0": "'../assets/images/levels/club_professors.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/bronza.png'"
+          "arg0": "'../assets/images/levels/bronza.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/serebro.png'"
+          "arg0": "'../assets/images/levels/serebro.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/zoloto.png'"
+          "arg0": "'../assets/images/levels/zoloto.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/rubin.png'"
+          "arg0": "'../assets/images/levels/rubin.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/izumrud.png'"
+          "arg0": "'../assets/images/levels/izumrud.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/almaz.png'"
+          "arg0": "'../assets/images/levels/almaz.webp'"
         },
         {
           "fromFunction": null,
@@ -71164,62 +71164,62 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_initiators.png\""
+          "arg0": "\"../assets/images/levels/club_initiators.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_adepts.png\""
+          "arg0": "\"../assets/images/levels/club_adepts.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_seekers.png\""
+          "arg0": "\"../assets/images/levels/club_seekers.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_practitioners.png\""
+          "arg0": "\"../assets/images/levels/club_practitioners.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_analysts.png\""
+          "arg0": "\"../assets/images/levels/club_analysts.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_erudites.png\""
+          "arg0": "\"../assets/images/levels/club_erudites.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_connoisseurs.png\""
+          "arg0": "\"../assets/images/levels/club_connoisseurs.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_experts.png\""
+          "arg0": "\"../assets/images/levels/club_experts.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_magistri.png\""
+          "arg0": "\"../assets/images/levels/club_magistri.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_thinkers.png\""
+          "arg0": "\"../assets/images/levels/club_thinkers.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_masters.png\""
+          "arg0": "\"../assets/images/levels/club_masters.webp\""
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "\"../assets/images/levels/club_professors.png\""
+          "arg0": "\"../assets/images/levels/club_professors.webp\""
         },
         {
           "fromFunction": null,
@@ -71929,17 +71929,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/HALLFIRST PLACE.png'"
+          "arg0": "'../assets/images/levels/HALLFIRST PLACE.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/HALL SECOND PLACE.png'"
+          "arg0": "'../assets/images/levels/HALL SECOND PLACE.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/HALL THIRD PLACE.png'"
+          "arg0": "'../assets/images/levels/HALL THIRD PLACE.webp'"
         },
         {
           "fromFunction": "ClubIcon",
@@ -72654,17 +72654,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/HALLFIRST PLACE.png'"
+          "arg0": "'../assets/images/levels/HALLFIRST PLACE.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/HALL SECOND PLACE.png'"
+          "arg0": "'../assets/images/levels/HALL SECOND PLACE.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/HALL THIRD PLACE.png'"
+          "arg0": "'../assets/images/levels/HALL THIRD PLACE.webp'"
         },
         {
           "fromFunction": "ConfettiPiece",
@@ -73420,17 +73420,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/bronza.png'"
+          "arg0": "'../assets/images/levels/bronza.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/serebro.png'"
+          "arg0": "'../assets/images/levels/serebro.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/zoloto.png'"
+          "arg0": "'../assets/images/levels/zoloto.webp'"
         },
         {
           "fromFunction": "ReviewModal",
@@ -73555,17 +73555,17 @@
         {
           "fromFunction": "AchievementNotifModal",
           "callee": "require",
-          "arg0": "'../assets/images/levels/bronza.png'"
+          "arg0": "'../assets/images/levels/bronza.webp'"
         },
         {
           "fromFunction": "AchievementNotifModal",
           "callee": "require",
-          "arg0": "'../assets/images/levels/serebro.png'"
+          "arg0": "'../assets/images/levels/serebro.webp'"
         },
         {
           "fromFunction": "AchievementNotifModal",
           "callee": "require",
-          "arg0": "'../assets/images/levels/zoloto.png'"
+          "arg0": "'../assets/images/levels/zoloto.webp'"
         },
         {
           "fromFunction": "AchievementNotifModal",
@@ -77936,32 +77936,32 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/bronza.png'"
+          "arg0": "'../assets/images/levels/bronza.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/serebro.png'"
+          "arg0": "'../assets/images/levels/serebro.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/zoloto.png'"
+          "arg0": "'../assets/images/levels/zoloto.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/rubin.png'"
+          "arg0": "'../assets/images/levels/rubin.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/izumrud.png'"
+          "arg0": "'../assets/images/levels/izumrud.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/almaz.png'"
+          "arg0": "'../assets/images/levels/almaz.webp'"
         },
         {
           "fromFunction": "LessonMenu",
@@ -85942,17 +85942,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/bronza.png'"
+          "arg0": "'../assets/images/levels/bronza.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/serebro.png'"
+          "arg0": "'../assets/images/levels/serebro.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/zoloto.png'"
+          "arg0": "'../assets/images/levels/zoloto.webp'"
         },
         {
           "fromFunction": "LevelExam",
@@ -89402,7 +89402,7 @@
         {
           "fromFunction": "PremiumModal",
           "callee": "require",
-          "arg0": "'../assets/images/levels/club icon base forest.png'"
+          "arg0": "'../assets/images/levels/club icon base forest.webp'"
         },
         {
           "fromFunction": "PremiumModal",
@@ -89821,17 +89821,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/GIF COMMON.png'"
+          "arg0": "'../assets/images/levels/GIF COMMON.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/GIFT RARE.png'"
+          "arg0": "'../assets/images/levels/GIFT RARE.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/GIFT EPIC.png'"
+          "arg0": "'../assets/images/levels/GIFT EPIC.webp'"
         },
         {
           "fromFunction": "ProgressMapScreen",
@@ -92203,17 +92203,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/easy.png'"
+          "arg0": "'../../assets/images/levels/easy.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/medium.png'"
+          "arg0": "'../../assets/images/levels/medium.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../../assets/images/levels/hard.png'"
+          "arg0": "'../../assets/images/levels/hard.webp'"
         }
       ]
     },
@@ -98387,7 +98387,7 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/OSKOLOK.png'"
+          "arg0": "'../assets/images/levels/OSKOLOK.webp'"
         },
         {
           "fromFunction": "savingsVsStarterFromStore",
@@ -101408,7 +101408,7 @@
         {
           "fromFunction": "StreakStats",
           "callee": "require",
-          "arg0": "'../assets/images/levels/OSKOLOK.png'"
+          "arg0": "'../assets/images/levels/OSKOLOK.webp'"
         },
         {
           "fromFunction": "StreakStats",
@@ -107081,27 +107081,27 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dayly phrase forest.png'"
+          "arg0": "'../assets/images/levels/dayly phrase forest.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dayly phrase neon.png'"
+          "arg0": "'../assets/images/levels/dayly phrase neon.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dayly phrase coral.png'"
+          "arg0": "'../assets/images/levels/dayly phrase coral.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dayly phrase ocean.png'"
+          "arg0": "'../assets/images/levels/dayly phrase ocean.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/dayly phrase sacura.png'"
+          "arg0": "'../assets/images/levels/dayly phrase sacura.webp'"
         },
         {
           "fromFunction": "DailyPhraseCard",
@@ -108720,17 +108720,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ENERGY FOREST.png'"
+          "arg0": "'../assets/images/levels/ENERGY FOREST.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ENERGY NEON.png'"
+          "arg0": "'../assets/images/levels/ENERGY NEON.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ENERGY CORAL.png'"
+          "arg0": "'../assets/images/levels/ENERGY CORAL.webp'"
         },
         {
           "fromFunction": "EnergyIcon",
@@ -108785,12 +108785,12 @@
         {
           "fromFunction": "EnergyIcon",
           "callee": "require",
-          "arg0": "'../assets/images/levels/PREMIUM ENERGY.png'"
+          "arg0": "'../assets/images/levels/PREMIUM ENERGY.webp'"
         },
         {
           "fromFunction": "EnergyIcon",
           "callee": "require",
-          "arg0": "'../assets/images/levels/energy.png'"
+          "arg0": "'../assets/images/levels/energy.webp'"
         },
         {
           "fromFunction": "EnergyIcon",
@@ -109514,252 +109514,252 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/1.png'"
+          "arg0": "'../assets/images/levels/1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/2.png'"
+          "arg0": "'../assets/images/levels/2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/3.png'"
+          "arg0": "'../assets/images/levels/3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/4.png'"
+          "arg0": "'../assets/images/levels/4.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/5.png'"
+          "arg0": "'../assets/images/levels/5.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/6.png'"
+          "arg0": "'../assets/images/levels/6.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/7.png'"
+          "arg0": "'../assets/images/levels/7.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/8.png'"
+          "arg0": "'../assets/images/levels/8.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/9.png'"
+          "arg0": "'../assets/images/levels/9.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/10.png'"
+          "arg0": "'../assets/images/levels/10.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/11.png'"
+          "arg0": "'../assets/images/levels/11.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/12.png'"
+          "arg0": "'../assets/images/levels/12.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/13.png'"
+          "arg0": "'../assets/images/levels/13.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/14.png'"
+          "arg0": "'../assets/images/levels/14.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/15.png'"
+          "arg0": "'../assets/images/levels/15.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/16.png'"
+          "arg0": "'../assets/images/levels/16.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/17.png'"
+          "arg0": "'../assets/images/levels/17.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/18.png'"
+          "arg0": "'../assets/images/levels/18.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/19.png'"
+          "arg0": "'../assets/images/levels/19.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/20.png'"
+          "arg0": "'../assets/images/levels/20.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/21.png'"
+          "arg0": "'../assets/images/levels/21.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/22.png'"
+          "arg0": "'../assets/images/levels/22.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/23.png'"
+          "arg0": "'../assets/images/levels/23.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/24.png'"
+          "arg0": "'../assets/images/levels/24.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/25.png'"
+          "arg0": "'../assets/images/levels/25.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/26.png'"
+          "arg0": "'../assets/images/levels/26.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/27.png'"
+          "arg0": "'../assets/images/levels/27.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/28.png'"
+          "arg0": "'../assets/images/levels/28.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/29.png'"
+          "arg0": "'../assets/images/levels/29.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/30.png'"
+          "arg0": "'../assets/images/levels/30.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/31.png'"
+          "arg0": "'../assets/images/levels/31.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/32.png'"
+          "arg0": "'../assets/images/levels/32.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/33.png'"
+          "arg0": "'../assets/images/levels/33.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/34.png'"
+          "arg0": "'../assets/images/levels/34.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/35.png'"
+          "arg0": "'../assets/images/levels/35.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/36.png'"
+          "arg0": "'../assets/images/levels/36.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/37.png'"
+          "arg0": "'../assets/images/levels/37.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/38.png'"
+          "arg0": "'../assets/images/levels/38.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/39.png'"
+          "arg0": "'../assets/images/levels/39.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/40.png'"
+          "arg0": "'../assets/images/levels/40.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/41.png'"
+          "arg0": "'../assets/images/levels/41.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/42.png'"
+          "arg0": "'../assets/images/levels/42.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/43.png'"
+          "arg0": "'../assets/images/levels/43.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/44.png'"
+          "arg0": "'../assets/images/levels/44.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/45.png'"
+          "arg0": "'../assets/images/levels/45.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/46.png'"
+          "arg0": "'../assets/images/levels/46.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/47.png'"
+          "arg0": "'../assets/images/levels/47.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/48.png'"
+          "arg0": "'../assets/images/levels/48.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/49.png'"
+          "arg0": "'../assets/images/levels/49.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/50.png'"
+          "arg0": "'../assets/images/levels/50.webp'"
         },
         {
           "fromFunction": "LevelBadge",
@@ -109933,17 +109933,17 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/GIF COMMON.png'"
+          "arg0": "'../assets/images/levels/GIF COMMON.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/GIFT RARE.png'"
+          "arg0": "'../assets/images/levels/GIFT RARE.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/GIFT EPIC.png'"
+          "arg0": "'../assets/images/levels/GIFT EPIC.webp'"
         },
         {
           "fromFunction": null,
@@ -113998,7 +113998,7 @@
         {
           "fromFunction": "ShardRewardModal",
           "callee": "require",
-          "arg0": "'../assets/images/levels/OSKOLOK.png'"
+          "arg0": "'../assets/images/levels/OSKOLOK.webp'"
         },
         {
           "fromFunction": "ShardRewardModal",
@@ -114239,7 +114239,7 @@
         {
           "fromFunction": "ShardsEarnedModal",
           "callee": "require",
-          "arg0": "'../assets/images/levels/OSKOLOK.png'"
+          "arg0": "'../assets/images/levels/OSKOLOK.webp'"
         }
       ]
     },
@@ -118701,122 +118701,122 @@
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA BRONZ 1.png'"
+          "arg0": "'../assets/images/levels/ARENA BRONZ 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA BRONZ 2.png'"
+          "arg0": "'../assets/images/levels/ARENA BRONZ 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA BRONZ 3.png'"
+          "arg0": "'../assets/images/levels/ARENA BRONZ 3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA SILVER 1.png'"
+          "arg0": "'../assets/images/levels/ARENA SILVER 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA SILVER 2.png'"
+          "arg0": "'../assets/images/levels/ARENA SILVER 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA SILVER 3.png'"
+          "arg0": "'../assets/images/levels/ARENA SILVER 3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA GOLD 1.png'"
+          "arg0": "'../assets/images/levels/ARENA GOLD 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA GOLD 2.png'"
+          "arg0": "'../assets/images/levels/ARENA GOLD 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA GOLD 3.png'"
+          "arg0": "'../assets/images/levels/ARENA GOLD 3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA PLATINUM 1.png'"
+          "arg0": "'../assets/images/levels/ARENA PLATINUM 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA PLATINUM 2.png'"
+          "arg0": "'../assets/images/levels/ARENA PLATINUM 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA PLATINUM 3.png'"
+          "arg0": "'../assets/images/levels/ARENA PLATINUM 3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA ALMAZ 1.png'"
+          "arg0": "'../assets/images/levels/ARENA ALMAZ 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA ALMAZ 2.png'"
+          "arg0": "'../assets/images/levels/ARENA ALMAZ 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA ALMAZ 3.png'"
+          "arg0": "'../assets/images/levels/ARENA ALMAZ 3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA MASTER 1.png'"
+          "arg0": "'../assets/images/levels/ARENA MASTER 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA MASTER 2.png'"
+          "arg0": "'../assets/images/levels/ARENA MASTER 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA MASTER 3.png'"
+          "arg0": "'../assets/images/levels/ARENA MASTER 3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA GRAND 1.png'"
+          "arg0": "'../assets/images/levels/ARENA GRAND 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA GRAN 2.png'"
+          "arg0": "'../assets/images/levels/ARENA GRAN 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA GRAND 3.png'"
+          "arg0": "'../assets/images/levels/ARENA GRAND 3.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA LEGEND 1.png'"
+          "arg0": "'../assets/images/levels/ARENA LEGEND 1.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA LEGEND 2.png'"
+          "arg0": "'../assets/images/levels/ARENA LEGEND 2.webp'"
         },
         {
           "fromFunction": null,
           "callee": "require",
-          "arg0": "'../assets/images/levels/ARENA LEGEND 3.png'"
+          "arg0": "'../assets/images/levels/ARENA LEGEND 3.webp'"
         },
         {
           "fromFunction": "useArenaRank",

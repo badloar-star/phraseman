@@ -20,6 +20,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
@@ -32,11 +33,11 @@ import { getXPProgress, getMaxEnergyForLevel } from '../constants/theme';
 import { TITLES } from '../constants/titles';
 
 const CHEST_IMAGES: Record<string, any> = {
-  common: require('../assets/images/levels/GIF_COMMON.png'),
-  rare:   require('../assets/images/levels/GIFT_RARE.png'),
-  epic:   require('../assets/images/levels/GIFT_EPIC.png'),
+  common: require('../assets/images/levels/GIF_COMMON.webp'),
+  rare:   require('../assets/images/levels/GIFT_RARE.webp'),
+  epic:   require('../assets/images/levels/GIFT_EPIC.webp'),
 };
-const PREMIUM_CHEST_SM = require('../assets/images/levels/GIFT_PREMIUM.png');
+const PREMIUM_CHEST_SM = require('../assets/images/levels/GIFT_PREMIUM.webp');
 
 interface MilestoneInfo {
   level: number;
@@ -495,58 +496,6 @@ export default function ProgressMapScreen() {
             </View>
           </View>
 
-          <View style={{ paddingHorizontal: 16, paddingBottom: 10, flexDirection: 'row', gap: 8 }}>
-            <TouchableOpacity
-              activeOpacity={0.82}
-              onPress={() => router.push('/hall_of_fame_screen')}
-              style={{
-                flex: 1,
-                backgroundColor: t.bgSurface,
-                borderRadius: 12,
-                borderWidth: 1.2,
-                borderColor: `${t.accent}55`,
-                paddingHorizontal: 12,
-                paddingVertical: 10,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 8,
-              }}
-            >
-              <View style={{ width: 20, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name="trophy-outline" size={18} color={t.textPrimary} />
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Зал славы', uk: 'Зал слави', es: 'Salón de la fama' })}
-              </Text>
-            </TouchableOpacity>
-            {/* «Клубы» feature удалён — кнопка убрана. */}
-            <TouchableOpacity
-              activeOpacity={0.82}
-              onPress={() => router.push('/club_screen')}
-              style={{
-                flex: 1,
-                backgroundColor: t.bgSurface,
-                borderRadius: 12,
-                borderWidth: 1.2,
-                borderColor: `${t.accent}55`,
-                paddingHorizontal: 12,
-                paddingVertical: 10,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 8,
-              }}
-            >
-              <View style={{ width: 20, alignItems: 'center', justifyContent: 'center' }}>
-                <Ionicons name="shield-outline" size={18} color={t.textPrimary} />
-              </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga' })}
-              </Text>
-            </TouchableOpacity>
-          </View>
-
           <FlatList
             ref={scrollRef}
             data={levels}
@@ -573,6 +522,19 @@ export default function ProgressMapScreen() {
                 }
               }, 80);
             }}
+            ListFooterComponent={(
+              <View style={{ alignItems: 'center', paddingVertical: 20 }}>
+                <ReportErrorButton
+                  screen="progress_map"
+                  dataId="progress_map_levels"
+                  dataText={triLang(lang, {
+                    ru: 'Карта прогресса',
+                    uk: 'Карта прогресу',
+                    es: 'Mapa de progreso',
+                  })}
+                />
+              </View>
+            )}
           />
         </SafeAreaView>
       </ScreenGradient>

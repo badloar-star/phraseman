@@ -24,9 +24,9 @@ import { useEnergy } from './EnergyContext';
 import { useTheme } from './ThemeContext';
 
 const GIFT_IMAGES: Record<string, number> = {
-  common: require('../assets/images/levels/GIF_COMMON.png'),
-  rare:   require('../assets/images/levels/GIFT_RARE.png'),
-  epic:   require('../assets/images/levels/GIFT_EPIC.png'),
+  common: require('../assets/images/levels/GIF_COMMON.webp'),
+  rare:   require('../assets/images/levels/GIFT_RARE.webp'),
+  epic:   require('../assets/images/levels/GIFT_EPIC.webp'),
 };
 
 interface Props {

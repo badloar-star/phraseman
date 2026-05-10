@@ -1,3 +1,4 @@
+import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
 import {
   ActivityIndicator,
@@ -22,6 +23,8 @@ import {
 import { getShardsBalance } from '../app/shards_system';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { emitAppEvent } from '../app/events';
+import { navigateAfterModalClose } from '../app/safe_modal_navigation';
+import { SHARD_MODAL_FRAME_COLORS } from '../constants/shard_modal_chrome';
 
 type Props = {
   visible: boolean;
@@ -64,11 +67,12 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
       if (r.reason === 'insufficient_shards') {
         const bal = await getShardsBalance();
         const need = Math.max(0, cost - bal);
-        onClose();
-        router.push({
-          pathname: '/shards_shop',
-          params: { need: String(need), source: 'energy_refill_modal' },
-        } as any);
+        navigateAfterModalClose(onClose, () => {
+          router.push({
+            pathname: '/shards_shop',
+            params: { need: String(need), source: 'energy_refill_modal' },
+          } as any);
+        });
         return;
       }
       if (r.reason === 'already_full' || r.reason === 'unlimited') {
@@ -118,12 +122,21 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
           }}
         />
         <View style={styles.cardWrap} pointerEvents="box-none">
-          <View style={[styles.card, { backgroundColor: t.bgCard }]}>
-            <Text style={styles.emoji}>⚡</Text>
-            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
-            <Text style={[styles.subtitle, { color: t.textSecond, fontSize: f.body, textAlign: 'center' }]}>
-              {bodyHint}
-            </Text>
+          <LinearGradient
+            colors={[...SHARD_MODAL_FRAME_COLORS]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.cardFrame}
+          >
+            <View style={[styles.card, { backgroundColor: t.bgCard }]}>
+              <Text style={[styles.kicker, { color: t.gold }]}>
+                {isUK ? 'ЕНЕРГІЯ' : isES ? 'ENERGÍA' : 'ЭНЕРГИЯ'}
+              </Text>
+              <Text style={styles.emoji}>⚡</Text>
+              <Text style={[styles.title, { color: t.textPrimary, fontSize: Math.round(f.h2 * 1.08) }]}>{title}</Text>
+              <Text style={[styles.subtitle, { color: t.textMuted, fontSize: f.body, textAlign: 'center' }]}>
+                {bodyHint}
+              </Text>
 
             {!isUnlimited && (
               <View style={styles.priceRow}>
@@ -172,12 +185,13 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
                 hapticTap();
                 onClose();
               }}
-              style={[styles.btnGhost, { borderColor: t.border }]}
+              style={[styles.btnGhost, { borderColor: t.gold + '40' }]}
               disabled={busy}
             >
               <Text style={[styles.btnGhostText, { color: t.textPrimary, fontSize: f.body }]}>{closeLabel}</Text>
             </TouchableOpacity>
-          </View>
+            </View>
+          </LinearGradient>
         </View>
       </View>
     </Modal>
@@ -199,20 +213,32 @@ const styles = StyleSheet.create({
     maxWidth: 360,
     zIndex: 1,
   },
+  cardFrame: {
+    borderRadius: 26,
+    padding: 2.5,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 14 },
+    shadowOpacity: 0.45,
+    shadowRadius: 28,
+    elevation: 24,
+  },
   card: {
-    borderRadius: 22,
+    borderRadius: 23.5,
     padding: 26,
     width: '100%',
     alignItems: 'center',
-    gap: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.35,
-    shadowRadius: 20,
-    elevation: 20,
+    gap: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.06)',
   },
-  emoji: { fontSize: 40 },
-  title: { fontWeight: '800', textAlign: 'center' },
+  kicker: {
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 2.8,
+    textAlign: 'center',
+  },
+  emoji: { fontSize: 36, marginTop: 2 },
+  title: { fontWeight: '900', textAlign: 'center', letterSpacing: -0.2 },
   subtitle: { lineHeight: 22 },
   priceRow: {
     flexDirection: 'row',
@@ -221,14 +247,14 @@ const styles = StyleSheet.create({
     marginTop: 4,
     marginBottom: 4,
   },
-  priceNum: { fontSize: 28, fontWeight: '900' },
+  priceNum: { fontSize: 30, fontWeight: '900', letterSpacing: -0.5 },
   btnGhost: {
     alignSelf: 'stretch',
-    borderRadius: 14,
-    borderWidth: 1,
-    paddingVertical: 13,
+    borderRadius: 16,
+    borderWidth: 1.5,
+    paddingVertical: 14,
     alignItems: 'center',
-    marginTop: 2,
+    marginTop: 4,
   },
   btnGhostText: { fontWeight: '700' },
   btnPrimary: {

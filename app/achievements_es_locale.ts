@@ -1,99 +1,320 @@
 /**
  * Nombres y descripciones de logros en español (interfaz es).
- * Mantener claves = id en ALL_ACHIEVEMENTS.
+ * Mantener claves = id en ALL_ACHIEVEMENTS (achievements.ts).
+ * Misma lógica que ru/uk: racha de XP ≠ cadena de inicios de sesión.
  */
 export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> = {
-  streak_3: { nameEs: 'Los primeros tres', descEs: 'Practica 3 días seguidos sin saltarte ninguno.' },
-  streak_7: { nameEs: 'Una semana', descEs: 'Entra todos los días durante 7 días seguidos.' },
-  streak_14: { nameEs: 'Dos semanas', descEs: 'Entra todos los días durante 14 días seguidos.' },
-  streak_30: { nameEs: 'Un mes activo', descEs: 'Entra todos los días durante 30 días seguidos.' },
-  streak_60: { nameEs: 'Dos meses', descEs: 'Entra todos los días durante 60 días seguidos.' },
-  streak_100: { nameEs: 'Cien días', descEs: 'Entra todos los días durante 100 días seguidos.' },
-  streak_200: { nameEs: 'Doscientos días', descEs: 'Entra todos los días durante 200 días seguidos.' },
-  streak_365: { nameEs: 'Un año entero', descEs: 'Entra todos los días durante un año: 365 días seguidos.' },
-  streak_500: { nameEs: '500 días', descEs: 'Entra todos los días durante 500 días seguidos.' },
-  streak_repair: { nameEs: 'Fénix', descEs: 'Recupera una racha perdida con la reparación.' },
-  perfect_week: { nameEs: 'Semana perfecta', descEs: 'Practica los 7 días de una misma semana sin faltar.' },
+  streak_3: {
+    nameEs: 'Los primeros tres',
+    descEs: 'Tres días seguidos ganando XP en la app (racha de actividad).',
+  },
+  streak_7: {
+    nameEs: 'Una semana',
+    descEs:
+      '7 días seguidos con XP; congelación, reparación o escudo pueden salvar la racha.',
+  },
+  streak_14: {
+    nameEs: 'Dos semanas',
+    descEs: '14 días seguidos con XP; no es lo mismo que la cadena de inicios de sesión.',
+  },
+  streak_30: {
+    nameEs: 'Un mes en marcha',
+    descEs: '30 días seguidos ganando al menos una vez XP al día.',
+  },
+  streak_60: {
+    nameEs: 'Dos meses',
+    descEs: '60 días seguidos manteniendo la racha de actividad.',
+  },
+  streak_100: {
+    nameEs: 'Cien días',
+    descEs: '100 días seguidos sin “días vacíos” en la cuenta de la racha.',
+  },
+  streak_200: {
+    nameEs: 'Doscientos días',
+    descEs: '200 días seguidos con XP diario.',
+  },
+  streak_365: {
+    nameEs: 'Un año entero',
+    descEs: '365 días seguidos como en el contador de racha.',
+  },
+  streak_500: {
+    nameEs: '500 días',
+    descEs: '500 días seguidos con XP: constancia poco frecuente.',
+  },
+  streak_repair: {
+    nameEs: 'Fénix',
+    descEs:
+      'Usa la reparación cuando falte solo un día y termina una lección ese mismo día.',
+  },
+  perfect_week: {
+    nameEs: 'Semana perfecta',
+    descEs: 'Gana XP cada día de lunes a domingo de la misma semana calendario.',
+  },
 
-  lesson_1: { nameEs: 'Primer paso', descEs: 'Termina la primera lección.' },
-  lesson_3: { nameEs: 'Tres lecciones', descEs: 'Termina 3 lecciones.' },
-  lesson_5: { nameEs: 'Cinco lecciones', descEs: 'Termina 5 lecciones.' },
-  lesson_10: { nameEs: 'Diez lecciones', descEs: 'Termina 10 lecciones.' },
-  lesson_15: { nameEs: 'Quince', descEs: 'Termina 15 lecciones.' },
-  lesson_20: { nameEs: 'Veinte lecciones', descEs: 'Termina 20 lecciones.' },
-  lesson_all: { nameEs: 'Curso completo', descEs: 'Termina las 32 lecciones del curso.' },
-  lesson_perfect: { nameEs: 'Sin un error', descEs: 'Completa cualquier lección sin fallar ni una vez.' },
-  lesson_perfect3: { nameEs: 'Tres a la primera', descEs: 'Completa 3 lecciones distintas sin errores.' },
-  lesson_all_perfect: { nameEs: 'Perfección absoluta', descEs: 'Completa las 32 lecciones del curso sin ningún error.' },
+  lesson_1: {
+    nameEs: 'Primer paso',
+    descEs: 'Termina una lección: cuenta con ≥45 respuestas correctas.',
+  },
+  lesson_3: {
+    nameEs: 'Tres lecciones',
+    descEs: 'Tres lecciones distintas con el progreso completo dado por alto.',
+  },
+  lesson_5: {
+    nameEs: 'Cinco lecciones',
+    descEs: 'Cinco lecciones dadas por completas según las reglas de la app.',
+  },
+  lesson_10: {
+    nameEs: 'Diez lecciones',
+    descEs: 'Diez lecciones con crédito en tu expediente.',
+  },
+  lesson_15: {
+    nameEs: 'Quince',
+    descEs: '15 lecciones completadas según las reglas de la app.',
+  },
+  lesson_20: {
+    nameEs: 'Veinte lecciones',
+    descEs: '20 lecciones con crédito completo.',
+  },
+  lesson_all: {
+    nameEs: 'Curso completo',
+    descEs: 'Las 32 lecciones al menos una vez con crédito.',
+  },
+  lesson_perfect: {
+    nameEs: 'Sin un error',
+    descEs:
+      'Completa una lección sin respuestas marcadas como error y con ≥45 correctas.',
+  },
+  lesson_perfect3: {
+    nameEs: 'Tres a la primera',
+    descEs: 'Tres lecciones distintas sin ningún error registrado.',
+  },
+  lesson_all_perfect: {
+    nameEs: 'Perfección absoluta',
+    descEs: 'Las 32 lecciones perfectas: sin error en ninguna.',
+  },
 
-  xp_100: { nameEs: 'La primera centena', descEs: 'Alcanza 100 XP en total.' },
-  xp_250: { nameEs: '250 XP', descEs: 'Alcanza 250 XP en total.' },
-  xp_500: { nameEs: 'Quinientos', descEs: 'Alcanza 500 XP en total.' },
-  xp_1000: { nameEs: 'En el millar', descEs: 'Alcanza 1.000 XP en total.' },
-  xp_2500: { nameEs: '2.500 XP', descEs: 'Alcanza 2.500 XP en total.' },
-  xp_5000: { nameEs: 'Cinco mil', descEs: 'Alcanza 5.000 XP en total.' },
-  xp_10000: { nameEs: 'Diez mil', descEs: 'Alcanza 10.000 XP en total.' },
-  xp_20000: { nameEs: 'Veinte mil', descEs: 'Alcanza 20.000 XP en total.' },
-  xp_50000: { nameEs: 'Cincuenta mil', descEs: 'Alcanza 50.000 XP en total.' },
-  xp_100000: { nameEs: 'Leyenda', descEs: 'Alcanza 100.000 XP en total.' },
-  wager_win: { nameEs: 'Quien arriesga, gana', descEs: 'Haz una apuesta sobre tu racha y complétala sin romperla.' },
-  personal_best: { nameEs: 'Mejor semana', descEs: 'Supera tu récord personal de XP en una semana.' },
+  xp_100: {
+    nameEs: 'La primera centena',
+    descEs: 'Acumula 100 XP en el total general.',
+  },
+  xp_250: {
+    nameEs: '250 XP',
+    descEs: '250 XP en total (da igual el origen).',
+  },
+  xp_500: {
+    nameEs: 'Quinientos',
+    descEs: '500 XP en el contador total.',
+  },
+  xp_1000: {
+    nameEs: 'En el millar',
+    descEs: '1.000 XP en total.',
+  },
+  xp_2500: {
+    nameEs: '2.500 XP',
+    descEs: '2.500 XP en total.',
+  },
+  xp_5000: {
+    nameEs: 'Cinco mil',
+    descEs: '5.000 XP en total.',
+  },
+  xp_10000: {
+    nameEs: 'Diez mil',
+    descEs: '10.000 XP en total.',
+  },
+  xp_20000: {
+    nameEs: 'Veinte mil',
+    descEs: '20.000 XP en total.',
+  },
+  xp_50000: {
+    nameEs: 'Cincuenta mil',
+    descEs: '50.000 XP en total.',
+  },
+  xp_100000: {
+    nameEs: 'Leyenda',
+    descEs: '100.000 XP en total.',
+  },
+  wager_win: {
+    nameEs: 'Quien arriesga, gana',
+    descEs:
+      'Gana la apuesta a la racha: mantén la serie hasta el plazo sin caer por debajo del nivel del día de la apuesta.',
+  },
+  personal_best: {
+    nameEs: 'Mejor semana',
+    descEs:
+      'Supera tu récord de puntos XP en una semana calendario.',
+  },
 
-  quiz_first: { nameEs: 'Primer cuestionario', descEs: 'Completa cualquier cuestionario al menos una vez.' },
-  quiz_medium: { nameEs: 'Nivel medio', descEs: 'Completa un cuestionario en nivel Medio.' },
-  quiz_hard: { nameEs: 'Reto aceptado', descEs: 'Completa un cuestionario en nivel Difícil.' },
-  quiz_all_levels: { nameEs: 'Todos los niveles', descEs: 'Completa cuestionarios en los tres niveles: Fácil, Medio y Difícil.' },
-  quiz_perfect_easy: { nameEs: 'Fácil perfecto', descEs: 'Completa un cuestionario Fácil sin errores.' },
-  quiz_perfect: { nameEs: 'Nervios de acero', descEs: 'Completa un cuestionario Difícil sin errores.' },
-  quiz_perfect_medium: { nameEs: 'Tiro certero', descEs: 'Completa un cuestionario Medio sin errores.' },
-  quiz_triple_perfect: { nameEs: 'Triple perfecto', descEs: 'Completa los tres niveles de cuestionario sin errores.' },
-  quiz_speed_demon: { nameEs: 'Velocidad', descEs: 'Completa 5 cuestionarios en nivel Difícil.' },
+  quiz_first: {
+    nameEs: 'Primer cuestionario',
+    descEs: 'Termina cualquier cuestionario al menos una vez (cualquier nivel).',
+  },
+  quiz_medium: {
+    nameEs: 'Nivel medio',
+    descEs: 'Lleva hasta el final un cuestionario en nivel Medium.',
+  },
+  quiz_hard: {
+    nameEs: 'Reto aceptado',
+    descEs: 'Completa un cuestionario en nivel Hard de principio a fin.',
+  },
+  quiz_all_levels: {
+    nameEs: 'Todos los niveles',
+    descEs: 'Al menos una vez Easy, Medium y Hard (tres sesiones distintas).',
+  },
+  quiz_perfect_easy: {
+    nameEs: 'Fácil perfecto',
+    descEs: 'Cuestionario Easy: todas las respuestas de esa sesión correctas.',
+  },
+  quiz_perfect: {
+    nameEs: 'Nervios de acero',
+    descEs: 'Cuestionario Hard sin ningún error en esa sesión.',
+  },
+  quiz_perfect_medium: {
+    nameEs: 'Tiro certero',
+    descEs: 'Cuestionario Medium: todas las respuestas de la sesión correctas.',
+  },
+  quiz_triple_perfect: {
+    nameEs: 'Triple perfecto',
+    descEs: 'Easy, Medium y Hard perfectos: un cuestionario impecable por nivel.',
+  },
+  quiz_speed_demon: {
+    nameEs: 'Velocidad',
+    descEs: 'Cinco veces termina por completo un cuestionario Hard (contador en la app).',
+  },
 
-  combo_3: { nameEs: 'En racha', descEs: 'Acierta 3 veces seguidas en una lección o cuestionario.' },
-  combo_10: { nameEs: 'Francotirador', descEs: 'Acierta 10 veces seguidas sin fallar.' },
-  combo_20: { nameEs: 'Inquebrantable', descEs: 'Acierta 20 veces seguidas sin un solo error.' },
-  combo_50: { nameEs: 'Máquina', descEs: 'Acierta 50 veces seguidas sin errores.' },
-  combo_100: { nameEs: 'Invencible', descEs: 'Acierta 100 veces seguidas sin errores.' },
-  daily_task_first: { nameEs: 'Primera tarea', descEs: 'Completa cualquier tarea del día.' },
-  all_daily: { nameEs: 'Día completo', descEs: 'Completa las tres tareas del día en un mismo día.' },
+  combo_3: {
+    nameEs: 'En racha',
+    descEs: '3 aciertos seguidos en clase o en el cuestionario.',
+  },
+  combo_10: {
+    nameEs: 'Francotirador',
+    descEs: '10 aciertos seguidos en pasos de lección o en cuestionario.',
+  },
+  combo_20: {
+    nameEs: 'Inquebrantable',
+    descEs: '20 respuestas correctas seguidas sin fallar.',
+  },
+  combo_50: {
+    nameEs: 'Máquina',
+    descEs: '50 aciertos seguidos en una misma racha.',
+  },
+  combo_100: {
+    nameEs: 'Invencible',
+    descEs: '100 aciertos seguidos en una misma racha.',
+  },
+  daily_task_first: {
+    nameEs: 'Primera tarea',
+    descEs: 'Completa una de las tareas diarias en la pantalla de tareas.',
+  },
+  all_daily: {
+    nameEs: 'Día completo',
+    descEs: 'En un mismo día calendario, las tres tareas diarias hechas.',
+  },
 
-  login_7: { nameEs: 'Alumno fiel', descEs: 'Abre la app 7 días seguidos.' },
-  login_14: { nameEs: 'Dos semanas', descEs: 'Abre la app 14 días seguidos.' },
-  login_30: { nameEs: 'Un mes en la app', descEs: 'Abre la app 30 días seguidos.' },
-  login_60: { nameEs: 'Dos meses', descEs: 'Abre la app 60 días seguidos.' },
-  login_365: { nameEs: 'Un año presente', descEs: 'Abre la app 365 días seguidos.' },
-  comeback: { nameEs: 'El retorno', descEs: 'Vuelve a la app después de una pausa larga.' },
-  diagnosis: { nameEs: 'Diagnóstico hecho', descEs: 'Haz el test de nivel para evaluar tu nivel.' },
-  night_owl: { nameEs: 'Búho nocturno', descEs: 'Practica en la app después de las 23:00.' },
-  early_bird: { nameEs: 'Madrugador', descEs: 'Practica en la app antes de las 7:00.' },
+  login_7: {
+    nameEs: 'Alumno fiel',
+    descEs: '7 días seguidos abriendo la app (cadena de inicio de sesión).',
+  },
+  login_14: {
+    nameEs: 'Dos semanas',
+    descEs: '14 días seguidos abriendo la app.',
+  },
+  login_30: {
+    nameEs: 'Un mes en la app',
+    descEs: '30 días seguidos con al menos una visita al día.',
+  },
+  login_60: {
+    nameEs: 'Dos meses',
+    descEs: '60 días seguidos entrando cada día.',
+  },
+  login_365: {
+    nameEs: 'Un año presente',
+    descEs: '365 días seguidos con inicio de sesión diario.',
+  },
+  comeback: {
+    nameEs: 'El retorno',
+    descEs:
+      'Vuelve tras ~7 o más días sin actividad: se activa el bono de vuelta.',
+  },
+  diagnosis: {
+    nameEs: 'Diagnóstico hecho',
+    descEs: 'Completa hasta el final el test de nivel.',
+  },
+  night_owl: {
+    nameEs: 'Búho nocturno',
+    descEs: 'Gana XP en la app entre las 23:00 y las 5:00 (hora local).',
+  },
+  early_bird: {
+    nameEs: 'Madrugador',
+    descEs: 'Gana XP entre las 5:00 y las 7:00 (hora local).',
+  },
 
-  gem_a1_ruby: { nameEs: 'A1 Rubí', descEs: 'Todas las lecciones A1 completadas dos veces.' },
-  gem_a1_emerald: { nameEs: 'A1 Esmeralda', descEs: 'Todas las lecciones A1 completadas tres veces.' },
-  gem_a1_diamond: { nameEs: 'A1 Diamante', descEs: 'Todas las lecciones A1 completadas 4 veces.' },
-  gem_a2_ruby: { nameEs: 'A2 Rubí', descEs: 'Todas las lecciones A2 completadas dos veces.' },
-  gem_a2_emerald: { nameEs: 'A2 Esmeralda', descEs: 'Todas las lecciones A2 completadas tres veces.' },
-  gem_a2_diamond: { nameEs: 'A2 Diamante', descEs: 'Todas las lecciones A2 completadas 4 veces.' },
-  gem_b1_ruby: { nameEs: 'B1 Rubí', descEs: 'Todas las lecciones B1 completadas dos veces.' },
-  gem_b1_emerald: { nameEs: 'B1 Esmeralda', descEs: 'Todas las lecciones B1 completadas tres veces.' },
-  gem_b1_diamond: { nameEs: 'B1 Diamante', descEs: 'Todas las lecciones B1 completadas 4 veces.' },
-  gem_b2_ruby: { nameEs: 'B2 Rubí', descEs: 'Todas las lecciones B2 completadas dos veces.' },
-  gem_b2_emerald: { nameEs: 'B2 Esmeralda', descEs: 'Todas las lecciones B2 completadas tres veces.' },
-  gem_b2_diamond: { nameEs: 'B2 Diamante', descEs: 'Todas las lecciones B2 completadas 4 veces.' },
+  gem_a1_ruby: {
+    nameEs: 'A1 Rubí',
+    descEs: 'Lecciones 1–8: cada una completada al menos 2 veces (crédito).',
+  },
+  gem_a1_emerald: {
+    nameEs: 'A1 Esmeralda',
+    descEs: 'Lecciones 1–8: mínimo 3 pasadas por lección.',
+  },
+  gem_a1_diamond: {
+    nameEs: 'A1 Diamante',
+    descEs: 'Lecciones 1–8: mínimo 4 pasadas por lección.',
+  },
+  gem_a2_ruby: {
+    nameEs: 'A2 Rubí',
+    descEs: 'Lecciones 9–16: mínimo 2 pasadas completas cada una.',
+  },
+  gem_a2_emerald: {
+    nameEs: 'A2 Esmeralda',
+    descEs: 'Lecciones 9–16: mínimo 3 pasadas por lección.',
+  },
+  gem_a2_diamond: {
+    nameEs: 'A2 Diamante',
+    descEs: 'Lecciones 9–16: mínimo 4 pasadas por lección.',
+  },
+  gem_b1_ruby: {
+    nameEs: 'B1 Rubí',
+    descEs: 'Lecciones 17–24: cada una con ≥2 pasadas.',
+  },
+  gem_b1_emerald: {
+    nameEs: 'B1 Esmeralda',
+    descEs: 'Lecciones 17–24: ≥3 pasadas por lección.',
+  },
+  gem_b1_diamond: {
+    nameEs: 'B1 Diamante',
+    descEs: 'Lecciones 17–24: ≥4 pasadas por lección.',
+  },
+  gem_b2_ruby: {
+    nameEs: 'B2 Rubí',
+    descEs: 'Lecciones 25–32: cada una con ≥2 créditos completos.',
+  },
+  gem_b2_emerald: {
+    nameEs: 'B2 Esmeralda',
+    descEs: 'Lecciones 25–32: ≥3 pasadas cada una.',
+  },
+  gem_b2_diamond: {
+    nameEs: 'B2 Diamante',
+    descEs: 'Lecciones 25–32: ≥4 pasadas por lección.',
+  },
 
-  exam_first: { nameEs: 'Examen rendido', descEs: 'Haz el examen final de cualquier lección.' },
-  exam_ace: { nameEs: 'Sobresaliente', descEs: 'Obtén 90 % o más en un examen final.' },
+  exam_first: {
+    nameEs: 'Examen rendido',
+    descEs: 'Presenta el examen final de una lección al menos una vez.',
+  },
+  exam_ace: {
+    nameEs: 'Sobresaliente',
+    descEs: 'Consigue al menos 90 % en el examen de lección.',
+  },
 
-  dialog_first: { nameEs: 'Interlocutor', descEs: 'Completa tu primer diálogo en inglés.' },
-  dialog_all: { nameEs: 'Maestro del diálogo', descEs: 'Completa los 20 diálogos.' },
-
-  flashcards_session: { nameEs: 'Mazo revisado', descEs: 'Repasa todas las tarjetas guardadas en una sola sesión.' },
-
-  league_1: { nameEs: 'En el club', descEs: 'Gana suficiente XP para entrar en el primer club.' },
-  league_3: { nameEs: 'Erudito', descEs: 'Alcanza el Club de los Eruditos (6.º nivel).' },
-  league_5: { nameEs: 'Profesor', descEs: 'Alcanza el Club de los Profesores, el más alto.' },
+  flashcards_session: {
+    nameEs: 'Todas en una visita',
+    descEs:
+      'En una sola visita a la colección, revisa cada tarjeta guardada (flashcards).',
+  },
 
   gem_all_complete: {
-    nameEs: 'Coleccionista de medallas [SECRET]',
-    descEs: 'Consigue todas las medallas doradas (gem_*_diamond).',
+    nameEs: 'Coleccionista de medallas',
+    descEs:
+      'Reúne la medalla superior (diamante) en los cuatro bloques A1, A2, B1 y B2.',
   },
 };

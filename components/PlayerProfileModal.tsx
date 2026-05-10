@@ -10,17 +10,26 @@
  */
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
-  Animated, Easing, Image, InteractionManager, Modal, Pressable, Text, View,
+  ActivityIndicator,
+  Animated,
+  Easing,
+  Image,
+  InteractionManager,
+  Modal,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
 } from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
-import AnimatedFrame from './AnimatedFrame';
+import AvatarView from './AvatarView';
 import PremiumAvatarHalo from './PremiumAvatarHalo';
 import { premiumMemberNameStyle } from './premiumMemberStyles';
-import { getAvatarImageByIndex, getBestAvatarForLevel, getBestFrameForLevel } from '../constants/avatars';
+import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
 import { triLang, type Lang } from '../constants/i18n';
@@ -28,6 +37,12 @@ import { CLUBS, clubTierShortName } from '../app/league_engine';
 import { arenaTierLabel } from '../app/arena_rating';
 import type { RankTier } from '../app/types/arena';
 import { getCurrentMultiplierBreakdown, MultiplierBreakdown, normalizeArenaMultipliersFirestore } from '../app/xp_manager';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../app/config';
+import { deleteFriend, sendFriendRequest, subscribeToFriends } from '../app/firestore_friend_requests';
+import { invalidateFriendsActivityCache } from '../app/firestore_friend_activity';
+import { hapticTap } from '../hooks/use-haptics';
+import InGameToast from './InGameToast';
+import ThemedConfirmModal from './ThemedConfirmModal';
 
 export interface PlayerInfo {
   name: string;
@@ -40,6 +55,7 @@ export interface PlayerInfo {
   streak?: number | null;
   leagueId?: number;
   uid?: string;
+  friendUid?: string;
   isPremium?: boolean;
 }
 
@@ -73,6 +89,7 @@ type BodyProps = {
   onBackdropPress: () => void;
   duelRank: { tier: string; level: string; xp: number } | null;
   multipliers: MultiplierBreakdown | null;
+  onFriendRequestToast: (message: string, toastType?: 'error' | 'info') => void;
 };
 
 function PlayerProfileModalBody({
@@ -85,11 +102,15 @@ function PlayerProfileModalBody({
   onBackdropPress,
   duelRank,
   multipliers,
+  onFriendRequestToast,
 }: BodyProps) {
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
   const { isPremium: myIsPremium } = usePremium();
   const isMe = player.isMe;
+  const [friendRequestBusy, setFriendRequestBusy] = useState(false);
+  const [friendUids, setFriendUids] = useState<Set<string>>(() => new Set());
+  const [removeFriendConfirmOpen, setRemoveFriendConfirmOpen] = useState(false);
   const needsRemoteTotalXp = !isMe && !!player.uid && resolvedTotalXp === null && player.totalXp === undefined;
   const totalXp = isMe ? myInfo.totalXP : (resolvedTotalXp ?? player.totalXp ?? null);
   const safeTotalXp = totalXp ?? 0;
@@ -98,18 +119,121 @@ function PlayerProfileModalBody({
   const level = getLevelFromXP(safeTotalXp);
   const streak = isMe ? (myInfo.streak ?? null) : (player.streak ?? null);
   const avatarStr = isMe
-    ? String(getBestAvatarForLevel(level))
+    ? (myInfo.avatar || String(getBestAvatarForLevel(level)))
     : (player.avatar ? String(player.avatar) : String(getBestAvatarForLevel(level)));
-  const frameId   = isMe ? myInfo.frame  : (player.frame  || getBestFrameForLevel(level).id);
-  const avatarImage = getAvatarImageByIndex(parseInt(avatarStr));
   const leagueIdx = isMe
     ? (myInfo.leagueId ?? 0)
     : (player.leagueId ?? 0);
   const club = CLUBS[Math.max(0, Math.min(leagueIdx, CLUBS.length - 1))];
   const showPremium = isMe ? myIsPremium : (player.isPremium ?? false);
   const shimmerOpacity = shimmerAnim.interpolate({ inputRange: [0, 1], outputRange: [0.7, 1] });
+  const friendRequestTargetUid = player.friendUid !== undefined ? player.friendUid : player.uid;
+
+  const showAddFriend =
+    !isMe &&
+    !!friendRequestTargetUid &&
+    CLOUD_SYNC_ENABLED &&
+    !IS_EXPO_GO;
+  const isAlreadyFriend = !!friendRequestTargetUid && friendUids.has(friendRequestTargetUid);
+
+  useEffect(() => {
+    setFriendRequestBusy(false);
+    setRemoveFriendConfirmOpen(false);
+  }, [player.uid, player.friendUid]);
+
+  useEffect(() => {
+    if (!showAddFriend) {
+      setFriendUids(new Set());
+      return;
+    }
+    return subscribeToFriends((rows) => {
+      setFriendUids(new Set(rows.map((row) => row.uid)));
+    });
+  }, [showAddFriend]);
+
+  const handleAddFriendPress = useCallback(async () => {
+    if (!friendRequestTargetUid || friendRequestBusy) return;
+    setFriendRequestBusy(true);
+    try {
+      const result = await sendFriendRequest(friendRequestTargetUid);
+      if (result === 'sent') {
+        void invalidateFriendsActivityCache();
+        onFriendRequestToast(
+          triLang(lang as Lang, { ru: 'Заявка отправлена!', uk: 'Заявку надіслано!', es: '¡Solicitud enviada!' }),
+          'info',
+        );
+      } else if (result === 'already_friends') {
+        onFriendRequestToast(
+          triLang(lang as Lang, { ru: 'Вы уже друзья', uk: 'Ви вже друзі', es: 'Ya son amigos' }),
+          'info',
+        );
+      } else if (result === 'already_sent') {
+        onFriendRequestToast(
+          triLang(lang as Lang, { ru: 'Заявка уже отправлена', uk: 'Заявку вже надіслано', es: 'Solicitud ya enviada' }),
+          'info',
+        );
+      } else if (result === 'self') {
+        onFriendRequestToast(
+          triLang(lang as Lang, { ru: 'Это ваш профиль', uk: 'Це ваш профіль', es: 'Es tu perfil' }),
+          'info',
+        );
+      } else {
+        onFriendRequestToast(
+          triLang(lang as Lang, {
+            ru: 'Не удалось отправить. Попробуйте позже',
+            uk: 'Не вдалося надіслати. Спробуйте пізніше',
+            es: 'No se pudo enviar. Inténtalo más tarde',
+          }),
+          'error',
+        );
+      }
+    } finally {
+      setFriendRequestBusy(false);
+    }
+  }, [friendRequestTargetUid, friendRequestBusy, lang, onFriendRequestToast]);
+
+  const handleFriendButtonPress = useCallback(() => {
+    if (!friendRequestTargetUid || friendRequestBusy) return;
+    hapticTap();
+    if (isAlreadyFriend) {
+      setRemoveFriendConfirmOpen(true);
+      return;
+    }
+    void handleAddFriendPress();
+  }, [friendRequestTargetUid, friendRequestBusy, isAlreadyFriend, handleAddFriendPress]);
+
+  const handleRemoveFriendConfirm = useCallback(() => {
+    if (!friendRequestTargetUid || friendRequestBusy) return;
+    setRemoveFriendConfirmOpen(false);
+    setFriendRequestBusy(true);
+    deleteFriend(friendRequestTargetUid)
+      .then(() => {
+        setFriendUids((prev) => {
+          const next = new Set(prev);
+          next.delete(friendRequestTargetUid);
+          return next;
+        });
+        void invalidateFriendsActivityCache();
+        onFriendRequestToast(
+          triLang(lang as Lang, { ru: 'Друг удалён', uk: 'Друга видалено', es: 'Amigo eliminado' }),
+          'info',
+        );
+      })
+      .catch(() => {
+        onFriendRequestToast(
+          triLang(lang as Lang, {
+            ru: 'Ошибка удаления. Попробуйте ещё раз',
+            uk: 'Помилка видалення. Спробуйте ще раз',
+            es: 'Error al eliminar. Inténtalo de nuevo',
+          }),
+          'error',
+        );
+      })
+      .finally(() => setFriendRequestBusy(false));
+  }, [friendRequestTargetUid, friendRequestBusy, lang, onFriendRequestToast]);
 
   return (
+    <>
     <Animated.View
       style={{
         flex: 1,
@@ -151,24 +275,69 @@ function PlayerProfileModalBody({
             <Ionicons name="star" size={13} color={t.correctText} />
           </Animated.View>
         )}
-        <View style={{ alignItems: 'center', marginBottom: 18 }}>
-          <PremiumAvatarHalo enabled={showPremium} avatarSize={76} maskColor={t.bgCard}>
-            <AnimatedFrame image={avatarImage} emoji={avatarStr} frameId={frameId} size={76} />
-          </PremiumAvatarHalo>
-          <Text style={premiumMemberNameStyle(
-            { fontSize: f.h2, fontWeight: '700', color: t.textPrimary, marginTop: 10 },
-            showPremium,
-            themeMode,
-          )}>
-            {player.name}{isMe ? triLang(lang as Lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' }) : ''}
-          </Text>
-          <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '600', marginTop: 2 }}>
-            {needsRemoteTotalXp ? '...' : getTitleString(level, lang)}
-          </Text>
+        <View style={{ marginBottom: 18 }}>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-start' }}>
+            <View style={{ width: 44 }} />
+            <View style={{ flex: 1, alignItems: 'center', minWidth: 0 }}>
+              <PremiumAvatarHalo enabled={showPremium} avatarSize={76} maskColor={t.bgCard}>
+                <AvatarView avatar={avatarStr} totalXP={safeTotalXp} size={76} />
+              </PremiumAvatarHalo>
+              <Text style={premiumMemberNameStyle(
+                { fontSize: f.h2, fontWeight: '700', color: t.textPrimary, marginTop: 10 },
+                showPremium,
+                themeMode,
+              )}>
+                {player.name}{isMe ? triLang(lang as Lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' }) : ''}
+              </Text>
+              <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '600', marginTop: 2 }}>
+                {needsRemoteTotalXp ? '...' : getTitleString(level, lang)}
+              </Text>
+            </View>
+            <View style={{ width: 44, alignItems: 'center', justifyContent: 'flex-start', minHeight: 76 }}>
+              {showAddFriend ? (
+                <Pressable
+                  onPress={handleFriendButtonPress}
+                  disabled={friendRequestBusy}
+                  style={{
+                    width: 44,
+                    height: 44,
+                    borderRadius: 22,
+                    backgroundColor: t.bgSurface,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: isAlreadyFriend ? (t.wrong ?? t.border) : t.border,
+                    opacity: friendRequestBusy ? 0.55 : 1,
+                  }}
+                  accessibilityRole="button"
+                  accessibilityLabel={triLang(lang as Lang, {
+                    ru: 'Добавить в друзья',
+                    uk: 'Додати до друзів',
+                    es: 'Añadir amigo',
+                  })}
+                >
+                  {friendRequestBusy ? (
+                    <ActivityIndicator size="small" color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent} />
+                  ) : (
+                    <Ionicons
+                      name={isAlreadyFriend ? 'person-remove-outline' : 'person-add-outline'}
+                      size={22}
+                      color={isAlreadyFriend ? (t.wrong ?? t.accent) : t.accent}
+                    />
+                  )}
+                </Pressable>
+              ) : null}
+            </View>
+          </View>
         </View>
         <View style={{ flexDirection: 'row', gap: 10, marginBottom: 10 }}>
-          <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 14, padding: 14, alignItems: 'center' }}>
-            <Text style={{ fontSize: f.numMd, fontWeight: '700', color: t.gold }}>
+          <View style={{ flex: 1, minWidth: 0, backgroundColor: t.bgSurface, borderRadius: 14, padding: 14, alignItems: 'center' }}>
+            <Text
+              style={{ fontSize: f.numMd, fontWeight: '700', color: t.gold, maxWidth: '100%' }}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.52}
+            >
               {needsRemoteTotalXp ? '...' : xp.toLocaleString()}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
@@ -239,7 +408,7 @@ function PlayerProfileModalBody({
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
                   <Text style={{ fontSize: 13 }}>🔥</Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                    {triLang(lang as Lang, { ru: 'Стрик', uk: 'Стрік', es: 'Racha' })} ×{multipliers.streakM.toFixed(1)}
+                    {triLang(lang as Lang, { ru: 'Цепочка', uk: 'Стрік', es: 'Racha' })} ×{multipliers.streakM.toFixed(1)}
                   </Text>
                 </View>
               )}
@@ -290,6 +459,17 @@ function PlayerProfileModalBody({
         )}
       </Animated.View>
     </Animated.View>
+    <ThemedConfirmModal
+      visible={removeFriendConfirmOpen}
+      title={triLang(lang as Lang, { ru: 'Удалить друга?', uk: 'Видалити друга?', es: '¿Eliminar amigo?' })}
+      message={player.name}
+      cancelLabel={triLang(lang as Lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
+      confirmLabel={triLang(lang as Lang, { ru: 'Удалить', uk: 'Видалити', es: 'Eliminar' })}
+      confirmVariant="default"
+      onCancel={() => setRemoveFriendConfirmOpen(false)}
+      onConfirm={handleRemoveFriendConfirm}
+    />
+    </>
   );
 }
 
@@ -301,6 +481,8 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
   const [duelRank, setDuelRank] = useState<{ tier: string; level: string; xp: number } | null>(null);
   const [multipliers, setMultipliers] = useState<MultiplierBreakdown | null>(null);
   const [resolvedTotalXp, setResolvedTotalXp] = useState<number | null>(null);
+  const [friendToast, setFriendToast] = useState<string | null>(null);
+  const [friendToastType, setFriendToastType] = useState<'error' | 'info'>('info');
 
   // Только `player` с родителя — никакого «снимка» после onClose. Иначе на Android
   // прозрачный Modal с visible=true оставался невидимым перехватчиком касаний.
@@ -329,7 +511,13 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     setDuelRank(null);
     setMultipliers(null);
     setResolvedTotalXp(null);
+    setFriendToast(null);
   }, [player, slideAnim, fadeAnim]);
+
+  const showFriendRequestToast = useCallback((message: string, toastType: 'error' | 'info' = 'info') => {
+    setFriendToastType(toastType);
+    setFriendToast(message);
+  }, []);
 
   // Открытие: анимация; данные — после interactions.
   useEffect(() => {
@@ -405,6 +593,10 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
     onClose();
   }, [onClose]);
 
+  const clearFriendToast = useCallback(() => {
+    setFriendToast(null);
+  }, []);
+
   return (
     <Modal
       visible={modalOpen}
@@ -415,20 +607,34 @@ function PlayerProfileModal({ player, myInfo, onClose }: Props) {
       statusBarTranslucent
     >
       {player && (
-        <PlayerProfileModalBody
-          player={player}
-          myInfo={myInfo}
-          resolvedTotalXp={resolvedTotalXp}
-          slideAnim={slideAnim}
-          fadeAnim={fadeAnim}
-          shimmerAnim={shimmerAnim}
-          onBackdropPress={handleClose}
-          duelRank={duelRank}
-          multipliers={multipliers}
-        />
+        <View style={styles.modalFill} pointerEvents="box-none">
+          <PlayerProfileModalBody
+            player={player}
+            myInfo={myInfo}
+            resolvedTotalXp={resolvedTotalXp}
+            slideAnim={slideAnim}
+            fadeAnim={fadeAnim}
+            shimmerAnim={shimmerAnim}
+            onBackdropPress={handleClose}
+            duelRank={duelRank}
+            multipliers={multipliers}
+            onFriendRequestToast={showFriendRequestToast}
+          />
+          <InGameToast
+            message={friendToast}
+            type={friendToastType}
+            onHide={clearFriendToast}
+          />
+        </View>
       )}
     </Modal>
   );
 }
+
+const styles = StyleSheet.create({
+  modalFill: {
+    flex: 1,
+  },
+});
 
 export default PlayerProfileModal;

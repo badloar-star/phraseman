@@ -8,9 +8,9 @@ const OVERLAY_GAP = 8;
 const MIN_BOTTOM_INSET = 12;
 
 /** Короткие пути табов (синхрон с TAB_PATH_SUFFIXES в app/(tabs)/_layout). */
-const SHORT_TAB_PATHS = new Set(['/home', '/index', '/arena', '/settings']);
+const SHORT_TAB_PATHS = new Set(['/home', '/lessons', '/arena', '/settings']);
 
-const TAB_PATH_SUFFIXES = ['/home', '/index', '/arena', '/settings'] as const;
+const TAB_PATH_SUFFIXES = ['/home', '/lessons', '/arena', '/settings'] as const;
 
 function normalizePathname(pathname: string | null | undefined): string {
   if (!pathname) return '';

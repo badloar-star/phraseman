@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
 import * as StoreReview from 'expo-store-review';
 import type { Lang } from '../constants/i18n';
+import { getEffectivePlatformOS } from './platform_ui_preview';
 
 const KEY_LAST_PROMPTED = 'review_prompted_at';
 const KEY_SESSIONS      = 'app_session_count';
@@ -20,8 +20,6 @@ export interface ReviewVariant {
   btnYes: string;
   btnNo: string;
 }
-
-const STORE_NAME = Platform.OS === 'ios' ? 'App Store' : 'Google Play';
 
 type Loc3 = { ru: string; uk: string; es: string };
 
@@ -86,9 +84,9 @@ const CONTEXTUAL: Record<'perfect_lesson' | 'arena_win', {
       es: '¡Victoria! El último desafío',
     },
     subtitle: {
-      ru: `Ты только что разгромил соперника. Осталось победить ${STORE_NAME} — поставь нам 5 звёзд.`,
-      uk: `Ти щойно здолав суперника. Залишилося перемогти ${STORE_NAME} — постав 5 зірок.`,
-      es: `Acabas de ganarle a tu rival. Solo queda un último paso en ${STORE_NAME}: déjanos 5 estrellas.`,
+      ru: '',
+      uk: '',
+      es: '',
     },
     btnYes: {
       ru: 'Победить!',
@@ -187,7 +185,23 @@ export const getReviewVariant = async (
   lang: Lang = 'ru'
 ): Promise<ReviewVariant> => {
   if (context === 'perfect_lesson') return localizeVariant(CONTEXTUAL.perfect_lesson, lang);
-  if (context === 'arena_win') return localizeVariant(CONTEXTUAL.arena_win, lang);
+  if (context === 'arena_win') {
+    const sn = getEffectivePlatformOS() === 'ios' ? 'App Store' : 'Google Play';
+    return localizeVariant(
+      {
+        emoji: CONTEXTUAL.arena_win.emoji,
+        title: CONTEXTUAL.arena_win.title,
+        subtitle: {
+          ru: `Ты только что разгромил соперника. Осталось победить ${sn} — поставь нам 5 звёзд.`,
+          uk: `Ти щойно здолав суперника. Залишилося перемогти ${sn} — постав 5 зірок.`,
+          es: `Acabas de ganarle a tu rival. Solo queda un último paso en ${sn}: déjanos 5 estrellas.`,
+        },
+        btnYes: CONTEXTUAL.arena_win.btnYes,
+        btnNo: CONTEXTUAL.arena_win.btnNo,
+      },
+      lang,
+    );
+  }
   const raw = await AsyncStorage.getItem(KEY_SHOW_COUNT).catch(() => null);
   const idx = (parseInt(raw || '0')) % GENERAL_VARIANTS.length;
   return localizeVariant(GENERAL_VARIANTS[idx], lang);

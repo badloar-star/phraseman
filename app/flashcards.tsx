@@ -28,7 +28,9 @@ import { getShardsBalance } from './shards_system';
 
 export default function FlashcardsHubScreen() {
   const router = useRouter();
-  const { theme: t, f, isDark, statusBarLight } = useTheme();
+  const { theme: t, f, isDark, statusBarLight, themeMode } = useTheme();
+  const onColoredGradient = themeMode === 'ocean' || themeMode === 'sakura';
+  const gradHeaderInk = themeMode === 'ocean' ? 'rgba(246,252,255,0.98)' : 'rgba(255,250,252,0.98)';
   const { lang } = useLang();
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const insets = useSafeAreaInsets();
@@ -44,8 +46,12 @@ export default function FlashcardsHubScreen() {
   const [shardBalance, setShardBalance] = useState(0);
 
   const cloudCommunityEnabled = CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
-  const exitToHome = useCallback(() => {
-    router.replace('/(tabs)/home' as any);
+  const leaveFlashcardsHub = useCallback(() => {
+    if (typeof router.canGoBack === 'function' && router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace('/(tabs)/home' as any);
+    }
   }, [router]);
 
   /** Throttle Firestore-запросов: повторный focus не должен пересохранять list при беглом переключении. */
@@ -63,27 +69,9 @@ export default function FlashcardsHubScreen() {
 
   const loadHubMarket = useCallback(async (opts?: { force?: boolean }) => {
     const now = Date.now();
-    /** 30s throttle: повторный focus не лезет в Firestore — экран мгновенный, без мигания. */
-    if (!opts?.force && now - lastHubLoadAtRef.current < 30_000) return;
-    lastHubLoadAtRef.current = now;
 
-    const [packsRes, ownedRes, commPubRes, commOwnedRes, balRes] = await Promise.allSettled([
-      loadMarketplacePacks(),
-      loadAccessiblePackIds(),
-      cloudCommunityEnabled ? loadPublishedCommunityMarketPacks() : Promise.resolve([] as FlashcardMarketPack[]),
-      cloudCommunityEnabled ? loadCommunityOwnedPackIds() : Promise.resolve([] as string[]),
-      getShardsBalance(),
-    ]);
-    const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : fallbackBundledMarketPacks();
-    const packs = packsRaw.length > 0 ? packsRaw : fallbackBundledMarketPacks();
-    const owned = ownedRes.status === 'fulfilled' ? ownedRes.value : [];
-    const bal = balRes.status === 'fulfilled' ? balRes.value : 0;
-
-    const nextMarketFp = computeMarketFp(packs);
-    if (nextMarketFp !== marketFpRef.current) {
-      marketFpRef.current = nextMarketFp;
-      setMarketPacks(packs);
-    }
+    /** Всегда перечитываем локально купленное и баланс — магазин пишет AsyncStorage до перезахода. */
+    const [owned, bal] = await Promise.all([loadAccessiblePackIds(), getShardsBalance()]);
     const nextOwnedFp = [...owned].sort().join('|');
     if (nextOwnedFp !== ownedFpRef.current) {
       ownedFpRef.current = nextOwnedFp;
@@ -91,14 +79,35 @@ export default function FlashcardsHubScreen() {
     }
     setShardBalance((prev) => (prev === bal ? prev : bal));
 
+    let commOwned: string[] = [];
     if (cloudCommunityEnabled) {
-      const published = commPubRes.status === 'fulfilled' ? commPubRes.value : [];
-      const commOwned = commOwnedRes.status === 'fulfilled' ? commOwnedRes.value : [];
+      commOwned = await loadCommunityOwnedPackIds().catch(() => [] as string[]);
       const nextCommOwnedFp = [...commOwned].sort().join('|');
       if (nextCommOwnedFp !== commOwnedFpRef.current) {
         commOwnedFpRef.current = nextCommOwnedFp;
         setOwnedCommunityPackIds(commOwned);
       }
+    }
+
+    /** 30s throttle только для Firestore/каталога — блокировки снимаются без ожидания окна. */
+    if (!opts?.force && now - lastHubLoadAtRef.current < 30_000) return;
+    lastHubLoadAtRef.current = now;
+
+    const [packsRes, commPubRes] = await Promise.allSettled([
+      loadMarketplacePacks(),
+      cloudCommunityEnabled ? loadPublishedCommunityMarketPacks() : Promise.resolve([] as FlashcardMarketPack[]),
+    ]);
+    const packsRaw = packsRes.status === 'fulfilled' ? packsRes.value : fallbackBundledMarketPacks();
+    const packs = packsRaw.length > 0 ? packsRaw : fallbackBundledMarketPacks();
+
+    const nextMarketFp = computeMarketFp(packs);
+    if (nextMarketFp !== marketFpRef.current) {
+      marketFpRef.current = nextMarketFp;
+      setMarketPacks(packs);
+    }
+
+    if (cloudCommunityEnabled) {
+      const published = commPubRes.status === 'fulfilled' ? commPubRes.value : [];
       const sid = await getCanonicalUserId().catch(() => null);
       setHubAuthorStableId((prev) => (prev === sid ? prev : sid));
       const pendingAuthor = sid ? await loadAuthorCommunityPacksPendingUpdate(sid).catch(() => []) : [];
@@ -145,11 +154,11 @@ export default function FlashcardsHubScreen() {
   useEffect(() => {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
-      exitToHome();
+      leaveFlashcardsHub();
       return true;
     });
     return () => sub.remove();
-  }, [exitToHome]);
+  }, [leaveFlashcardsHub]);
 
   return (
     <ScreenGradient>
@@ -163,11 +172,11 @@ export default function FlashcardsHubScreen() {
             testID="flashcards-header-back"
             accessibilityLabel="qa-flashcards-header-back"
             accessible
-            onPress={exitToHome}
+            onPress={leaveFlashcardsHub}
             style={{ width: 40 }}
             hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
           >
-            <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+            <Ionicons name="arrow-back" size={24} color={onColoredGradient ? gradHeaderInk : t.textPrimary} />
           </TouchableOpacity>
           <View style={{ flex: 1 }} />
           {isDevMarketEnabled ? (
@@ -182,12 +191,12 @@ export default function FlashcardsHubScreen() {
                 paddingVertical: 5,
                 borderRadius: 10,
                 borderWidth: 1,
-                borderColor: `${t.accent}66`,
-                backgroundColor: `${t.accent}1A`,
+                borderColor: onColoredGradient ? 'rgba(255,255,255,0.45)' : `${t.accent}66`,
+                backgroundColor: onColoredGradient ? 'rgba(255,255,255,0.18)' : `${t.accent}1A`,
               }}
             >
-              <Ionicons name="flask-outline" size={12} color={t.accent} />
-              <Text style={{ fontSize: f.caption, color: t.accent, fontWeight: '700' }}>DEV</Text>
+              <Ionicons name="flask-outline" size={12} color={onColoredGradient ? gradHeaderInk : t.accent} />
+              <Text style={{ fontSize: f.caption, color: onColoredGradient ? gradHeaderInk : t.accent, fontWeight: '700' }}>DEV</Text>
             </TouchableOpacity>
           ) : (
             <View style={{ width: 40 }} />
@@ -209,6 +218,7 @@ export default function FlashcardsHubScreen() {
             <FlashcardsCategoryHub
               lang={hubCategoryLang}
               t={t}
+              themeMode={themeMode}
               marketPacks={marketPacks}
               ownedPackIds={ownedPackIds}
               shardBalance={shardBalance}

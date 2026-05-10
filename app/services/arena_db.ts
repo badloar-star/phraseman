@@ -4,6 +4,7 @@ import {
   ArenaRoom, MatchmakingEntry, ArenaQuestion,
   RankTier, RematchStatus, REMATCH_TTL_MS,
 } from '../types/arena';
+import { isArenaDuelReactionEmoji } from '../../constants/arena_duel_reaction_emojis';
 
 // ─── Коллекции ────────────────────────────────────────────────────────────────
 //
@@ -126,6 +127,22 @@ export async function setSessionLobbyChoice(
 ): Promise<void> {
   const docId = `${sessionId}_${playerId}`;
   await col.sessionPlayers().doc(docId).update({ lobbyChoice: choice });
+}
+
+/** Реакция эмодзи сопернику в дуэли (поля читает клиент соперника по snapshot). */
+export async function sendArenaDuelReact(
+  sessionId: string,
+  playerId: string,
+  emoji: string,
+): Promise<void> {
+  if (!isArenaDuelReactionEmoji(emoji)) {
+    throw new Error('sendArenaDuelReact: emoji not in whitelist');
+  }
+  const docId = `${sessionId}_${playerId}`;
+  await col.sessionPlayers().doc(docId).update({
+    arenaReactEmoji: emoji,
+    arenaReactAt: Date.now(),
+  });
 }
 
 // ─── Rematch ───────────────────────────────────────────────────────────────────

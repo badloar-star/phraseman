@@ -530,6 +530,7 @@ export const LESSON_PREP_SEGMENT_03: LessonPrepositionPack[] = [
         'de|para|en|sin|con',
         'Agente causativo abstracto contextual español estándar único contextual cerrado aquí macro-span razones físicas contextual español estándar.',
         'Його захищають етичні підстави як причинний агент абстрактний prototípico español estándar único contextual cerrado aquí macro-span ético físico contextual español estándar.',
+        'Agente causativo abstracto contextual español estándar.',
       ],
     ],
   ),

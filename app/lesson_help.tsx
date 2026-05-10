@@ -1,7 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
@@ -14,27 +14,35 @@ import XpGainBadge from '../components/XpGainBadge';
 import { updateTaskProgress } from './daily_tasks';
 import { registerXP, getCurrentMultiplier } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
+import PhraseContentStars from '../components/PhraseContentStars';
+import { screenTextOnGradient } from '../constants/theme';
 
 // ─── UI компоненты ────────────────────────────────────────────────────────────
 
 function Section({ title, t, f }: { title: string; t: any; f: any }) {
+  const { themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   return (
-    <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginTop: 22, marginBottom: 8, borderBottomWidth: 0.5, borderBottomColor: t.border, paddingBottom: 6 }}>
+    <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginTop: 22, marginBottom: 8, borderBottomWidth: 0.5, borderBottomColor: t.border, paddingBottom: 6 }}>
       {title}
     </Text>
   );
 }
 
 function Body({ text, t, f }: { text: string; t: any; f: any }) {
-  return <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 24, marginBottom: 8 }} maxFontSizeMultiplier={1.2}>{text}</Text>;
+  const { themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  return <Text style={{ color: sx.second, fontSize: f.body, lineHeight: 24, marginBottom: 8 }} maxFontSizeMultiplier={1.2}>{text}</Text>;
 }
 
 function Example({ eng, rus, t, f }: { eng: string; rus: string; t: any; f: any }) {
+  const { themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   return (
     <View style={{ marginLeft: 12, marginBottom: 5 }}>
       <Text style={{ fontSize: f.body, lineHeight: 22 }} maxFontSizeMultiplier={1.2}>
-        <Text style={{ color: t.textPrimary, fontWeight: '600' }}>{eng}</Text>
-        <Text style={{ color: t.textMuted, fontSize: f.sub }}>{'  — ' + rus}</Text>
+        <Text style={{ color: sx.primary, fontWeight: '600' }}>{eng}</Text>
+        <Text style={{ color: sx.muted, fontSize: f.sub }}>{'  — ' + rus}</Text>
       </Text>
     </View>
   );
@@ -228,12 +236,12 @@ function renderLesson1TheoryEs(t: any, f: any): React.ReactNode[] {
         ['Preposición', 'Ideas que cubre', 'Ejemplo'],
         ['at', 'punto / edificio o actividad (trabajo, aeropuerto)', 'at work / at the airport'],
         ['in', 'interior cerrado', 'in the car / in a taxi'],
-        ['on', 'trayecto o medio de transporte', 'on our way / on the train'],
+        ['on', 'trayecto o medio de transporte', 'on the train / on the bus'],
       ]}
     />,
     <Example key="e14" t={t} f={f} eng="I am at work" rus="Estoy en el trabajo" />,
     <Example key="e15" t={t} f={f} eng="They are in the car" rus="Están en el coche / el auto" />,
-    <Example key="e16" t={t} f={f} eng="We are on our way" rus="Ya vamos / vamos en camino" />,
+    <Example key="e16" t={t} f={f} eng="We are on the train" rus="Estamos en el tren" />,
     <Example key="e17" t={t} f={f} eng="I am in line" rus="Estoy en la cola (también: haciendo cola)" />,
     <Example key="e18" t={t} f={f} eng="It is near here" rus="Está cerca de aquí" />,
     <Tip
@@ -317,11 +325,11 @@ const THEORY: Record<number, TheoryContent> = {
       [isUK ? 'Прийменник' : 'Предлог', isUK ? 'Коли' : 'Когда', isUK ? 'Приклад' : 'Пример'],
       ['at', isUK ? 'точка, будівля' : 'точка, здание', 'at work / at the airport'],
       ['in', isUK ? 'всередині' : 'внутри', 'in the car / in a taxi'],
-      ['on', isUK ? 'транспорт, шлях' : 'транспорт, путь', 'on our way / on the train'],
+      ['on', isUK ? 'транспорт, шлях' : 'транспорт, путь', 'on the train / on the bus'],
     ]} />,
     <Example key="e14" t={t} f={f} eng="I am at work" rus={isUK ? 'Я на роботі' : 'Я на работе'} />,
     <Example key="e15" t={t} f={f} eng="They are in the car" rus={isUK ? 'Вони в машині' : 'Они в машине'} />,
-    <Example key="e16" t={t} f={f} eng="We are on our way" rus={isUK ? 'Ми вже в дорозі' : 'Мы уже в пути'} />,
+    <Example key="e16" t={t} f={f} eng="We are on the train" rus={isUK ? 'Ми в потязі' : 'Мы в поезде'} />,
     <Example key="e17" t={t} f={f} eng="I am in line" rus={isUK ? 'Я в черзі' : 'Я в очереди'} />,
     <Example key="e18" t={t} f={f} eng="It is near here" rus={isUK ? 'Це поруч' : 'Это рядом'} />,
     <Tip key="tip_transport" t={t} f={f} text={isUK ? 'in a taxi = у будь-якому таксі; in the taxi = у конкретному таксі, про яке вже йдеться.' : 'in a taxi = в любом такси; in the taxi = в конкретном такси, о котором уже говорили.'} />,
@@ -361,7 +369,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Example key="e10" t={t} f={f} eng="Are they here?" rus={isUK ? 'Вони тут?' : 'Они здесь?'} />,
 
     <Section key="s3" t={t} f={f} title={isUK ? '3. Питання з not — «хіба не»' : '3. Вопрос с not — «разве не»'} />,
-    <Body key="b3a" t={t} f={f} text={isUK ? 'Іноді питання звучить як «Хіба я не правий?» — це Am I not...? або Are we not...? Not стоїть після підмета.' : 'Иногда вопрос звучит как «Разве я не прав?» — это Am I not...? или Are we not...? Not стоит после подлежащего.'} />,
+    <Body key="b3a" t={t} f={f} text={isUK ? 'Іноді питання звучить як «Хіба я не правий?» чи «Хіба нас немає у списку?» — це Am I not...? або Are we not...?: дійсно not стоїть після підмета, це нормально саме з I та we. З you/he/she/it той самий зміст у розмові майже завжди кажуть коротше: Aren\'t you...?, Isn\'t she...? (частка not «злилася» з am/is/are у формі на -n\'t). Повна форма Are you not...? теж можлива, але звучить офіційніше й рідше.' : 'Иногда вопрос звучит как «Разве я не прав?» или «Разве нас нет в списке?» — это Am I not...? или Are we not...?: здесь not действительно стоит после подлежащего, так говорят чаще всего с I и we. С you/he/she/it тот же смысл в разговоре почти всегда выражают короче: Aren\'t you...?, Isn\'t she...? (частица not «склеена» с am/is/are в форме на -n\'t). Полная форма Are you not...? тоже возможна, но звучит официальнее и реже.'} />,
     <Example key="e11" t={t} f={f} eng="Am I not right?" rus={isUK ? 'Хіба я не правий?' : 'Разве я не прав?'} />,
     <Example key="e12" t={t} f={f} eng="Are we not on the list?" rus={isUK ? 'Хіба нас немає у списку?' : 'Разве нас нет в списке?'} />,
 
@@ -389,7 +397,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Tip key="tip_in" t={t} f={f} text={isUK ? 'in danger, in trouble, in a hurry — запам\'ятай ці три вирази одразу. Вони дуже поширені.' : 'in danger, in trouble, in a hurry — запомни эти три выражения сразу. Они очень распространены.'} />,
 
     <Section key="s7" t={t} f={f} title={isUK ? '7. Часті помилки' : '7. Частые ошибки'} />,
-    <Warn key="w2" t={t} f={f} text={isUK ? '❌ «Are you not sure?» (в розмові звучить незграбно) → ✅ «Aren\'t you sure?» — так природніше.' : '❌ «Are you not sure?» (в разговоре звучит тяжело) → ✅ «Aren\'t you sure?» — так естественнее.'} />,
+    <Warn key="w2" t={t} f={f} text={isUK ? '«Are you not sure?» не є «помилкою правила», але в розмові звучить незграбно — природніше «Aren\'t you sure?». Це доповнює п. 3: там — Am I not / Are we not з not після підмета; з you/he/she/it краще n\'t.' : '«Are you not sure?» не является «ошибкой правила», но в разговоре звучит тяжеловато — естественнее «Aren\'t you sure?». Это дополняет п. 3: там — Am I not / Are we not с not после подлежащего; с you/he/she/it удобнее n\'t.'} />,
     <Warn key="w3" t={t} f={f} text={isUK ? '❌ «Is it not dangerous» без знака питання — завжди став «?» наприкінці питання.' : '❌ «Is it not dangerous» без знака вопроса — всегда ставь «?» в конце вопроса.'} />,
   ],
 },
@@ -528,7 +536,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Body key="b1c" t={t} f={f} text={isUK ? 'З He / She / It → Does + підмет + дієслово? Дієслово — без -s.' : 'С He / She / It → Does + подлежащее + глагол? Глагол — без -s.'} />,
     <Example key="e4" t={t} f={f} eng="Does he live here?" rus={isUK ? 'Він тут живе?' : 'Он здесь живет?'} />,
     <Example key="e5" t={t} f={f} eng="Does she understand English?" rus={isUK ? 'Вона розуміє англійську?' : 'Она понимает английский?'} />,
-    <Example key="e6" t={t} f={f} eng="Does it cost much?" rus={isUK ? 'Це коштує багато?' : 'Это стоит много?'} />,
+    <Example key="e6" t={t} f={f} eng="Does it cost much?" rus={isUK ? 'Це коштує дорого?' : 'Это стоит дорого?'} />,
     <Warn key="w1" t={t} f={f} text={isUK ? '❌ «Does he lives here?» → ✅ «Does he live here?». Після Does — базова форма без -s.' : '❌ «Does he lives here?» → ✅ «Does he live here?». После Does — базовая форма без -s.'} />,
 
     <Section key="s2" t={t} f={f} title={isUK ? '2. Короткі відповіді' : '2. Краткие ответы'} />,
@@ -1016,7 +1024,7 @@ const THEORY: Record<number, TheoryContent> = {
     <Section key="s3" t={t} f={f} title={isUK ? '3. NOBODY / NO ONE — ніхто' : '3. NOBODY / NO ONE — никто'} />,
     <Body key="b3a" t={t} f={f} text={isUK ? 'Важливо: nobody/nothing самі по собі несуть заперечення — дієслово залишається стверджувальним.' : 'Важно: nobody/nothing сами по себе несут отрицание — глагол остаётся утвердительным.'} />,
     <Example key="e3" t={t} f={f} eng="No one knows this secret code" rus={isUK ? 'Ніхто не знає цей секретний код' : 'Никто не знает этот секретный код'} />,
-    <Example key="e4" t={t} f={f} eng="We heard nothing about that incident" rus={isUK ? 'Ми нічого не чули про ту подію' : 'Мы ничего не слышали об этом инциденте'} />,
+    <Example key="e4" t={t} f={f} eng="We heard nothing about that incident" rus={isUK ? 'Ми нічого не чули про той інцидент' : 'Мы ничего не слышали о том инциденте'} />,
     <Warn key="w1" t={t} f={f} text={isUK ? '❌ «Nobody didn\'t come» → ✅ «Nobody came». Nobody = заперечення. Не подвоюй його.' : '❌ «Nobody didn\'t come» → ✅ «Nobody came». Nobody = отрицание. Не удваивай его.'} />,
 
     <Section key="s4" t={t} f={f} title={isUK ? '4. EVERYBODY / EVERYONE — всі' : '4. EVERYBODY / EVERYONE — все'} />,
@@ -1371,11 +1379,11 @@ const THEORY: Record<number, TheoryContent> = {
     <Section key="s2" t={t} f={f} title={isUK ? '2. Умовні 2 типу — нереальне' : '2. Условные 2 типа — нереальное'} />,
     <Body key="b2a" t={t} f={f} text={isUK ? 'Тип 2: If + Past Simple → would + базова форма. Умова нереальна або малоймовірна.' : 'Тип 2: If + Past Simple → would + базовая форма. Условие нереально или маловероятно.'} />,
     <Example key="e3" t={t} f={f} eng="If she had that necessary equipment, she would finish that important work on time" rus={isUK ? 'Якби вона мала те необхідне обладнання, вона б закінчила ту важливу роботу вчасно' : 'Если бы у неё было то необходимое оборудование, она бы закончила ту важную работу вовремя'} />,
-    <Example key="e4" t={t} f={f} eng="If you had heard that important news earlier, you would not have made that stupid mistake" rus={isUK ? 'Якби ти почув ті важливі новини раніше, ти б не зробив тієї дурної помилки' : 'Если бы ты услышал те важные новости раньше, ты бы не сделал той глупой ошибки'} />,
+    <Example key="e4" t={t} f={f} eng="If you had heard those important news earlier, you would not have made that stupid mistake" rus={isUK ? 'Якби ти почув ті важливі новини раніше, ти б не зробив тієї дурної помилки' : 'Если бы ты услышал те важные новости раньше, ты бы не сделал той глупой ошибки'} />,
 
     <Section key="s3" t={t} f={f} title={isUK ? '3. Present Perfect Passive' : '3. Present Perfect Passive'} />,
     <Body key="b3a" t={t} f={f} text={isUK ? 'Формула: have/has + been + V3. Пасивний стан у Present Perfect.' : 'Формула: have/has + been + V3. Пассивный залог в Present Perfect.'} />,
-    <Example key="e5" t={t} f={f} eng="We were told that this complex legal problem was solved by that experienced lawyer" rus={isUK ? 'Нам сказали що та складна юридична проблема була вирішена тим досвідченим юристом' : 'Нам сказали что та сложная юридическая проблема была решена тем опытным юристом'} />,
+    <Example key="e5" t={t} f={f} eng="We were told that this complex legal problem was solved by that experienced lawyer" rus={isUK ? 'Нам сказали що ця складна юридична проблема була вирішена тим досвідченим юристом' : 'Нам сказали что эта сложная юридическая проблема была решена тем опытным юристом'} />,
 
     <Section key="s4" t={t} f={f} title={isUK ? '4. Дієслова сприйняття в складних реченнях' : '4. Глаголы восприятия в сложных предложениях'} />,
     <Example key="e6" t={t} f={f} eng="Have you ever seen that rare bird build that unusual nest on that steep cliff?" rus={isUK ? 'Ти коли-небудь бачив як та рідкісна пташка будує те незвичне гніздо на тій крутій скелі?' : 'Ты когда-нибудь видел как та редкая птица строит то необычное гнездо на той крутой скале?'} />,
@@ -1397,7 +1405,8 @@ export default function LessonHelp() {
   const rawId = Array.isArray(id) ? id[0] : id;
   const rawLessonId = Array.isArray(lessonIdParam) ? lessonIdParam[0] : lessonIdParam;
   const lessonId = Number(rawId || rawLessonId) || 1;
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const theoryTitleEs =
     lessonId >= 1 && lessonId <= 32
@@ -1466,17 +1475,17 @@ export default function LessonHelp() {
         borderBottomColor: t.border,
       }}>
         <TouchableOpacity onPress={() => router.back()} style={{ marginRight: 12, padding: 4 }}>
-          <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+          <Ionicons name="arrow-back" size={24} color={sx.primary} />
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
-          <Text style={{ color: t.textMuted, fontSize: f.caption }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
+          <Text style={{ color: sx.muted, fontSize: f.caption }} numberOfLines={1} maxFontSizeMultiplier={1.2}>
             {triLang(lang, {
               uk: `Урок ${lessonId} — Теорія`,
               ru: `Урок ${lessonId} — Теория`,
               es: `Lección ${lessonId} — Teoría`,
             })}
           </Text>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
             {theory
               ? triLang(lang, { uk: theory.titleUK, ru: theory.titleRU, es: theoryTitleEs })
               : triLang(lang, {
@@ -1485,7 +1494,7 @@ export default function LessonHelp() {
                   es: `Lección ${lessonId}`,
                 })}
           </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
+          <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
             {triLang(lang, {
               uk: 'Коротко: правило + приклади + 25 XP',
               ru: 'Коротко: правило + примеры + 25 XP',
@@ -1527,6 +1536,21 @@ export default function LessonHelp() {
           dataId={`theory_lesson_${lessonId}`}
           dataText={`Теория урока ${lessonId}`}
           style={{ alignSelf: 'flex-end', marginTop: 16 }}
+        />
+
+        <PhraseContentStars
+          scope="lesson_theory"
+          itemId={`L${lessonId}_theory`}
+          labelSnippet={
+            theory
+              ? triLang(lang, { ru: theory.titleRU, uk: theory.titleUK, es: theoryTitleEs })
+              : triLang(lang, {
+                  uk: `Урок ${lessonId}`,
+                  ru: `Урок ${lessonId}`,
+                  es: theoryTitleEs,
+                })
+          }
+          style={{ marginTop: 20, alignSelf: 'center' }}
         />
 
         {/* XP reward button at the bottom of theory */}

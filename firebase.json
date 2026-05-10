@@ -3,23 +3,49 @@
     "rules": "firestore.rules",
     "indexes": "firestore.indexes.json"
   },
-  "hosting": {
-    "public": "admin",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "headers": [
-      {
-        "source": "**",
-        "headers": [
-          { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate, max-age=0" },
-          { "key": "Pragma", "value": "no-cache" }
-        ]
-      }
-    ]
-  },
+  "hosting": [
+    {
+      "target": "admin",
+      "public": "admin",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            { "key": "Cache-Control", "value": "no-cache, no-store, must-revalidate, max-age=0" },
+            { "key": "Pragma", "value": "no-cache" }
+          ]
+        }
+      ]
+    },
+    {
+      "target": "knowlywww",
+      "public": "knowly-www",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "redirects": [
+        { "source": "/phrase/legal/privacy", "destination": "/legal/privacy/", "type": 301 },
+        { "source": "/phrase/legal/privacy/**", "destination": "/legal/privacy/", "type": 301 },
+        { "source": "/phrase/legal/terms", "destination": "/legal/terms/", "type": 301 },
+        { "source": "/phrase/legal/terms/**", "destination": "/legal/terms/", "type": 301 }
+      ],
+      "headers": [
+        {
+          "source": "**",
+          "headers": [
+            { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+          ]
+        }
+      ]
+    }
+  ],
   "functions": {
     "source": "functions",
     "runtime": "nodejs20"

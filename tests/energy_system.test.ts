@@ -126,19 +126,28 @@ describe('Energy System', () => {
     it('should format time correctly', () => {
       const ms = 90 * 60 * 1000; // 90 minutes
       const formatted = formatTimeUntilRecovery(ms);
-      expect(formatted).toBe('1ч 30м');
+      expect(formatted).toBe('1ч 30м 0с');
     });
 
-    it('should format minutes only', () => {
+    it('should format minutes and seconds', () => {
       const ms = 30 * 60 * 1000; // 30 minutes
       const formatted = formatTimeUntilRecovery(ms);
-      expect(formatted).toBe('30м');
+      expect(formatted).toBe('30м 0с');
     });
 
-    it('should format hours only', () => {
+    it('should format hours with minutes and seconds', () => {
       const ms = 2 * 60 * 60 * 1000; // 2 hours
       const formatted = formatTimeUntilRecovery(ms);
-      expect(formatted).toBe('2ч 0м');
+      expect(formatted).toBe('2ч 0м 0с');
+    });
+
+    it('should format sub-minute as seconds only', () => {
+      expect(formatTimeUntilRecovery(45 * 1000)).toBe('45с');
+      expect(formatTimeUntilRecovery(59 * 1000)).toBe('59с');
+    });
+
+    it('should format minute with trailing seconds', () => {
+      expect(formatTimeUntilRecovery(90 * 1000)).toBe('1м 30с');
     });
   });
 

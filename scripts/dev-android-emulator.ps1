@@ -129,25 +129,26 @@ try {
   npx --yes kill-port 8081 2>$null | Out-Null
 } catch { }
 
-# Emulator reaches host Metro via 10.0.2.2:8081 — Expo must use --lan (bind 0.0.0.0), not --localhost.
-$emuSerialLaunch = $null
+# Эмулятор → Metro: http://127.0.0.1:8081 + adb reverse на каждый запущенный AVD (10.0.2.2 на Windows часто висит со вторым эмулятором).
+$emuSerialLaunchList = [System.Collections.ArrayList]::new()
 foreach ($ln in @( & $adb devices 2>&1 | ForEach-Object { "$_" } )) {
   if ($ln -match '^(emulator-\d+)\s+device\s*$') {
-    $emuSerialLaunch = $Matches[1]
-    break
+    [void]$emuSerialLaunchList.Add($Matches[1])
   }
 }
 
 $launchDevJob = $null
-if ($emuSerialLaunch) {
-  Write-Host ('Emulator {0}: opening bundle URL http://10.0.2.2:8081 (Metro --lan).' -f $emuSerialLaunch)
+if ($emuSerialLaunchList.Count -gt 0) {
+  Write-Host ('Emulators {0}: opening bundle URL http://127.0.0.1:8081 (adb reverse, Metro --lan).' -f ($emuSerialLaunchList -join ', '))
   $adbArg = $adb
-  $serArg = $emuSerialLaunch
+  # PowerShell serialization: строка с разделителем надёжнее, чем [string[]] в -ArgumentList.
+  $serArg = (($emuSerialLaunchList | Select-Object -Unique | ForEach-Object { "$_" }) -join '|')
   $launchDevJob = Start-Job -ArgumentList @($adbArg, $serArg) -ScriptBlock {
-    param($adbPath, $serial)
+    param($adbPath, $serialListJoined)
     $ErrorActionPreference = "Continue"
+    $serials = $serialListJoined -split '\|' | ForEach-Object { $_.Trim() } | Where-Object { $_ }
     $pkg = "app.phraseman"
-    $devHttp = "http://10.0.2.2:8081"
+    $devHttp = "http://127.0.0.1:8081"
     $enc = [Uri]::EscapeDataString($devHttp)
     $deep1 = "phraseman://expo-development-client/?url=$enc"
     $deep2 = "exp+phraseman://expo-development-client/?url=$enc"
@@ -169,19 +170,24 @@ if ($emuSerialLaunch) {
       return
     }
 
-    for ($r = 0; $r -lt 3; $r++) {
-      & $adbPath "-s", $serial, "reverse", "tcp:8081", "tcp:8081" 2>&1 | Out-Null
-      Start-Sleep -Milliseconds 400
-    }
+    foreach ($serial in $serials) {
+      for ($r = 0; $r -lt 3; $r++) {
+        & $adbPath "-s", $serial, "reverse", "tcp:8081", "tcp:8081" 2>&1 | Out-Null
+        Start-Sleep -Milliseconds 400
+      }
 
-    & $adbPath "-s", $serial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep1, "-p", $pkg 2>&1 | Out-Null
-    Start-Sleep -Milliseconds 400
-    & $adbPath "-s", $serial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep2, "-p", $pkg 2>&1 | Out-Null
-    Write-Output "Opened dev launcher (10.0.2.2:8081)."
+      & $adbPath "-s", $serial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep1, "-p", $pkg 2>&1 | Out-Null
+      Start-Sleep -Milliseconds 400
+      & $adbPath "-s", $serial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep2, "-p", $pkg 2>&1 | Out-Null
+      Write-Output "Opened dev launcher $serial (127.0.0.1:8081 + reverse)."
+    }
   }
 }
 
 Remove-Item Env:REACT_NATIVE_PACKAGER_HOSTNAME -ErrorAction SilentlyContinue
+
+# Совпадает с npm run android / dev — при следующем native prebuild без «подмены из облака» в конфиге.
+$env:EXPO_PUBLIC_DISABLE_EXPO_UPDATES = '1'
 
 $expoArgs = @('start', '--dev-client', '--lan', '--port', '8081')
 if ($Clear) { $expoArgs += '--clear' }

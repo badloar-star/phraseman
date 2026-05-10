@@ -183,7 +183,7 @@ const canUseNotifications = async (requestIfNeeded: boolean): Promise<boolean> =
 
 // ── Мотивационные сообщения ──────────────────────────────────────────────────
 const MESSAGES_RU = [
-  { title: '🔥 Стрик ждёт тебя!',        body: 'Не прерывай серию — 5 минут в день изменят всё' },
+  { title: '🔥 Цепочка ждёт тебя!',        body: 'Не прерывай серию — 5 минут в день изменят всё' },
   { title: '📚 Время для English',         body: 'Один урок сегодня — уверенность на всю жизнь' },
   { title: '⭐ Обгони соперника!',          body: 'Кто-то обошёл тебя в лиге. Ответный ход?' },
   { title: '🎯 Ежедневная цель',           body: 'Осталось совсем немного до завершения заданий!' },
@@ -194,9 +194,9 @@ const MESSAGES_RU = [
 const MESSAGES_UK = [
   { title: '🔥 Стрік чекає тебе!',         body: 'Не переривай серію — 5 хвилин на день змінять все' },
   { title: '📚 Час для English',            body: 'Один урок сьогодні — впевненість на все життя' },
-  { title: '⭐ Обжени суперника!',           body: 'Хтось обійшов тебе в лізі. Час дати відповідь?' },
+  { title: '⭐ Виперед суперника!',          body: 'Хтось обійшов тебе в лізі. Час дати відповідь?' },
   { title: '🎯 Щоденна ціль',              body: 'Залишилось зовсім небагато до завершення завдань!' },
-  { title: '💪 Не зупиняйся!',             body: 'Ти вже стільки пройшов. Продовж сьогодні' },
+  { title: '💪 Не зупиняйся!',             body: 'Ти вже стільки пройшов. Продовжуй сьогодні' },
   { title: '🧠 Повтори вчорашнє',          body: 'Найкращий час для повторення — зараз' },
 ];
 
@@ -297,20 +297,20 @@ export const cancelAllNotifications = async (): Promise<void> => {
   await cancelAllScheduledLocalNotifications(N);
 };
 
-// ── Уведомление о потере стрика ───────────────────────────────────────────────
+// ── Уведомление о потере цепочки ───────────────────────────────────────────────
 export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Promise<void> => {
   try {
     const N = await getNotifications();
     if (!N) return;
 
     // НЕ запрашиваем разрешение здесь: streak warning не должен поднимать
-    // системный диалог push в произвольный момент (потеря стрика).
+    // системный диалог push в произвольный момент (потеря цепочки).
     // Запрос разрешения идёт только через NotificationPermissionModal по условиям из _layout.tsx.
     const hasPermission = await canUseNotifications(false);
     if (!hasPermission) return;
 
     const _p = <T,>(a: T[]) => a[Math.floor(Math.random() * a.length)];
-    const ruTitle = [`🔥 Стрик ${streak} дней под угрозой!`, `⚠️ Твой стрик ${streak} дней может исчезнуть сегодня!`, `😱 ${streak} дней в опасности — зайди сейчас!`, `🚨 Не сломай серию из ${streak} дней!`];
+    const ruTitle = [`🔥 Цепочка ${streak} дней под угрозой!`, `⚠️ Твоя цепочка ${streak} дней может исчезнуть сегодня!`, `😱 ${streak} дней подряд в опасности — зайди сейчас!`, `🚨 Не сломай серию из ${streak} дней!`];
     const ukTitle = [`🔥 Стрік ${streak} днів під загрозою!`, `⚠️ Твій стрік ${streak} днів може зникнути сьогодні!`, `😱 ${streak} днів у небезпеці — зайди зараз!`, `🚨 Не зламай серію з ${streak} днів!`];
     const esTitle = [
       `🔥 ¡Tu racha de ${streak} días puede romperse!`,
@@ -319,7 +319,7 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
       `🚨 No pierdas una racha de ${streak} días`,
     ];
     const _title = pickNotif(lang, _p(ruTitle), _p(ukTitle), _p(esTitle));
-    const ruBody = ['Ещё несколько часов и серия прервётся. Зайди сейчас!', 'Один урок — и стрик сохранён. Ты можешь это! 💪', 'Не дай огню погаснуть! Один урок решает всё 🔥', '5 минут — и серия жива. Не останавливайся!'];
+    const ruBody = ['Ещё несколько часов и серия прервётся. Зайди сейчас!', 'Один урок — и цепочка сохранена. Ты можешь это! 💪', 'Не дай огню погаснуть! Один урок решает всё 🔥', '5 минут — и серия жива. Не останавливайся!'];
     const ukBody = ['Ще кілька годин і серія зірветься. Зайди зараз!', 'Один урок — і стрік збережено. Ти можеш це зробити! 💪', 'Не дай вогню згаснути! Один урок вирішує все 🔥', '5 хвилин — і серія жива. Не зупиняйся!'];
     const esBody = [
       'En unas horas se cortará la racha; entra cuando puedas.',
@@ -337,7 +337,7 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
 
 // ── D+1 персональное уведомление после первого урока ─────────────────────────
 // Вызывается в lesson_complete после lessonId === 1
-// Планирует уведомление на следующий день в 20:00 с точным кол-вом выученных фраз и стриком
+// Планирует уведомление на следующий день в 20:00 с точным числом фраз и дней цепочки подряд
 export const scheduleD1PersonalizedReminder = async (
   phrasesLearned: number,
   streak: number,
@@ -361,13 +361,13 @@ export const scheduleD1PersonalizedReminder = async (
       streak > 0
         ? pickNotif(
             lang,
-            `Стрик ${streak} ${streak === 1 ? 'день' : streak < 5 ? 'дня' : 'дней'}. Сегодня +${phrasesLearned} — и ты уже не остановишься!`,
+            `Цепочка ${streak} ${streak === 1 ? 'день' : streak < 5 ? 'дня' : 'дней'}. Сегодня +${phrasesLearned} — и ты уже не остановишься!`,
             `Стрік ${streak} ${streak === 1 ? 'день' : 'дні'}. Сьогодні +${phrasesLearned} — і ти вже не зупинишся!`,
             `Racha de ${streak} ${streak === 1 ? 'día' : 'días'}. Si hoy sumas ${phrasesLearned} más, no habrá quien te pare.`,
           )
         : pickNotif(
             lang,
-            `Ещё ${phrasesLearned} сегодня — и стрик начнётся! Не останавливайся 💪`,
+            `Ещё ${phrasesLearned} сегодня — и цепочка начнётся! Не останавливайся 💪`,
             `Ще ${phrasesLearned} сьогодні — і стрік почнеться! Не зупиняйся 💪`,
             `${phrasesLearned} frases más hoy y arrancas una racha nueva. ¡Sigue! 💪`,
           );
@@ -550,9 +550,9 @@ export const scheduleNotifications = async (
   }
 };
 
-// ── Авто-предупреждение о потере стрика (планируется на вечер текущего дня) ──
-// Вызывается при старте приложения, если стрик > 0 и урок сегодня ещё не пройден.
-// Персонализированные сообщения в зависимости от длины стрика.
+// ── Авто-предупреждение о потере цепочки (планируется на вечер текущего дня) ──
+// Вызывается при старте приложения, если цепочка > 0 и урок сегодня ещё не пройден.
+// Персонализированные сообщения в зависимости от длины цепочки.
 export const scheduleStreakWarningIfNeeded = async (
   lang: Lang = 'ru',
   opts: { requestPermission?: boolean } = {}
@@ -565,7 +565,7 @@ export const scheduleStreakWarningIfNeeded = async (
 
     const today = new Date().toISOString().split('T')[0];
 
-    // Проверяем: стрик > 0 и урок сегодня ещё не выполнен
+    // Проверяем: цепочка > 0 и урок сегодня ещё не выполнен
     const [streakRaw, lastActiveRaw, notifEnabledRaw] = await Promise.all([
       AsyncStorage.getItem('streak_count'),
       AsyncStorage.getItem('last_active_date'),
@@ -596,7 +596,7 @@ export const scheduleStreakWarningIfNeeded = async (
 
     const secondsUntil = Math.floor((warn.getTime() - now.getTime()) / 1000);
 
-    // Персонализированные сообщения в зависимости от длины стрика
+    // Персонализированные сообщения в зависимости от длины цепочки
     let title: string;
     let body: string;
 
@@ -605,9 +605,9 @@ export const scheduleStreakWarningIfNeeded = async (
       title = pickNotif(
         lang,
         _ps([
-          `🚨 Невероятный стрик ${streak} дней под угрозой!`,
+          `🚨 Невероятная цепочка из ${streak} дней под угрозой!`,
           `😱 ${streak} дней — и всё может исчезнуть сегодня!`,
-          `🏆 Стрик-легенда ${streak} дней в опасности!`,
+          `🏆 Легендарная цепочка ${streak} дней в опасности!`,
           `⚡ Не дай погаснуть ${streak}-дневной серии!`,
         ]),
         _ps([
@@ -629,7 +629,7 @@ export const scheduleStreakWarningIfNeeded = async (
           `Твой результат на грани! Один урок — и серия спасена 🔥`,
           `Столько усилий! Не останавливайся — один урок решает всё 💪`,
           `${streak} дней труда — не дай им исчезнуть! Зайди сейчас 🚀`,
-          `Ты почти легенда. Один урок — и стрик живой! ⭐`,
+          `Ты почти легенда. Один урок — и цепочка жива! ⭐`,
         ]),
         _ps([
           `Твій результат на межі! Один урок — і серія спасена 🔥`,
@@ -648,10 +648,10 @@ export const scheduleStreakWarningIfNeeded = async (
       title = pickNotif(
         lang,
         _ps([
-          `🔥 Твой стрик ${streak} дней в опасности!`,
-          `⚠️ ${streak} дней под угрозой — действуй!`,
+          `🔥 Твоя цепочка ${streak} дней в опасности!`,
+          `⚠️ ${streak} дней подряд под угрозой — действуй!`,
           `😤 Не сдавай ${streak}-дневную серию!`,
-          `🎯 Стрик ${streak} дней ждёт тебя сегодня!`,
+          `🎯 Цепочка из ${streak} дней ждёт тебя сегодня!`,
         ]),
         _ps([
           `🔥 Твій стрік ${streak} днів у небезпеці!`,
@@ -671,7 +671,7 @@ export const scheduleStreakWarningIfNeeded = async (
         _ps([
           `Не теряй накопленное! Один урок — и всё сохранено 💪`,
           `7+ дней усилий — не останавливайся сейчас! 🔥`,
-          `Твой стрик заслуживает продолжения. Один урок — и ты молодец! ⭐`,
+          `Твоя цепочка заслуживает продолжения. Один урок — и ты молодец! ⭐`,
           `Зайди на 5 минут — и серия жива! 🚀`,
         ]),
         _ps([
@@ -691,9 +691,9 @@ export const scheduleStreakWarningIfNeeded = async (
       title = pickNotif(
         lang,
         _ps([
-          `🔥 Стрик ${streak} дней — не прерывай сегодня!`,
+          `🔥 Цепочка ${streak} дней — не прерывай сегодня!`,
           `💪 ${streak} дней подряд — не останавливайся!`,
-          `📚 Один урок — и стрик сохранён!`,
+          `📚 Один урок — и цепочка сохранена!`,
           `⚡ Не пропусти сегодняшний урок!`,
         ]),
         _ps([
@@ -713,7 +713,7 @@ export const scheduleStreakWarningIfNeeded = async (
         lang,
         _ps([
           `Ещё есть время! Один урок сохранит серию.`,
-          `Начни — и уже через 5 минут стрик будет сохранён! 🎯`,
+          `Начни — и уже через 5 минут цепочка будет сохранена! 🎯`,
           `Маленький шаг сегодня — большой результат завтра 🚀`,
           `Не давай привычке сломаться — зайди и сделай урок! 💪`,
         ]),
@@ -781,10 +781,10 @@ export const scheduleWeeklyRecapNotification = async (
     const body = pickNotif(
       lang,
       _pw([
-        `Стрик: ${streak} 🔥 · Всего XP: ${totalXP} ⭐ — так держать!`,
+        `Цепочка: ${streak} 🔥 · Всего XP: ${totalXP} ⭐ — так держать!`,
         `Ты сделал ${streak} дней подряд! XP: ${totalXP} ⭐ Продолжай в том же духе! 💪`,
-        `${totalXP} XP за неделю — ты движешься к цели! 🚀 Стрик: ${streak} 🔥`,
-        `Невероятная неделя! Стрик ${streak} дней · ${totalXP} XP. Молодец! 🎯`,
+        `${totalXP} XP за неделю — ты движешься к цели! 🚀 Цепочка: ${streak} 🔥`,
+        `Невероятная неделя! Цепочка ${streak} дней · ${totalXP} XP. Молодец! 🎯`,
       ]),
       _pw([
         `Стрік: ${streak} 🔥 · Всього XP: ${totalXP} ⭐ — так тримати!`,
@@ -841,7 +841,7 @@ export const scheduleMonthlyRecapNotification = async (
     const title = pickNotif(lang, '🏆 Твой месяц в цифрах', '🏆 Твій місяць у цифрах', '🏆 Tu mes en cifras');
     const body = pickNotif(
       lang,
-      `Уроков: ${lessons} · Стрик: ${streak} 🔥 · XP: ${totalXP} ⭐`,
+      `Уроков: ${lessons} · Цепочка: ${streak} 🔥 · XP: ${totalXP} ⭐`,
       `Уроків: ${lessons} · Стрік: ${streak} 🔥 · XP: ${totalXP} ⭐`,
       `Lecciones: ${lessons} · Racha: ${streak} 🔥 · XP: ${totalXP} ⭐`,
     );
@@ -1035,7 +1035,7 @@ export const setupNotificationTapHandler = (
           break;
         case 'weekly_recap':
         case 'monthly_recap':
-          router.push('/hall_of_fame_screen');
+          navTabHome();
           break;
         default:
           navTabHome();

@@ -12,7 +12,6 @@ export const DEFAULT_SETTINGS = {
   autoAdvance: false,
   haptics: true,
   immediateCheck: false,
-  showHints: true,
 };
 
 export type UserSettings = typeof DEFAULT_SETTINGS;
@@ -27,7 +26,9 @@ export function normalizeSpeechRate(value: unknown): number {
 }
 
 function normalizeSettings(raw: Partial<UserSettings> | null | undefined): UserSettings {
-  const merged = { ...DEFAULT_SETTINGS, ...(raw ?? {}) } as UserSettings;
+  const base = { ...(raw ?? {}) } as Record<string, unknown>;
+  delete base.showHints;
+  const merged = { ...DEFAULT_SETTINGS, ...base } as UserSettings;
   return {
     ...merged,
     speechRate: normalizeSpeechRate((raw as any)?.speechRate ?? merged.speechRate),

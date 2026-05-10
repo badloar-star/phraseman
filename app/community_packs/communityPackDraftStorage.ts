@@ -1,9 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {
-  COMMUNITY_PACK_CARD_COUNT_MAX,
-  COMMUNITY_PACK_PRICE_SHARDS_MAX,
-  COMMUNITY_PACK_PRICE_SHARDS_MIN,
-} from './schema';
+import { COMMUNITY_PACK_CARD_COUNT_MAX, COMMUNITY_PACK_PRICE_SHARDS } from './schema';
 import { UGC_CARD_THEME_IDS } from './ugcCardThemePresets';
 
 const STORAGE_KEY = 'community_pack_create_draft_v1';
@@ -14,6 +10,7 @@ export type CommunityPackCreateDraftV1 = {
   v: 1;
   title: string;
   description: string;
+  /** Всегда `COMMUNITY_PACK_PRICE_SHARDS`; поле сохраняется для совместимости черновиков. */
   priceShards: number;
   themeIdx: number;
   rows: CommunityPackCreateDraftRow[];
@@ -22,12 +19,6 @@ export type CommunityPackCreateDraftV1 = {
   draftRu: string;
   draftNote: string;
 };
-
-function clampPriceShards(n: number): number {
-  const step = 10;
-  const x = Math.round(n / step) * step;
-  return Math.min(COMMUNITY_PACK_PRICE_SHARDS_MAX, Math.max(COMMUNITY_PACK_PRICE_SHARDS_MIN, x));
-}
 
 function clampThemeIdx(i: number): number {
   const n = UGC_CARD_THEME_IDS.length;
@@ -51,7 +42,6 @@ export function communityPackCreateDraftIsMeaningful(d: CommunityPackCreateDraft
     d.rows.length > 0 ||
     d.title.trim().length > 0 ||
     d.description.trim().length > 0 ||
-    d.priceShards !== COMMUNITY_PACK_PRICE_SHARDS_MIN ||
     d.themeIdx !== 0 ||
     d.addCardFormOpen ||
     d.draftEn.trim().length > 0 ||
@@ -76,7 +66,7 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       v: 1,
       title: typeof o.title === 'string' ? o.title : '',
       description: typeof o.description === 'string' ? o.description : '',
-      priceShards: clampPriceShards(typeof o.priceShards === 'number' ? o.priceShards : COMMUNITY_PACK_PRICE_SHARDS_MIN),
+      priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       themeIdx: clampThemeIdx(typeof o.themeIdx === 'number' ? o.themeIdx : 0),
       rows,
       addCardFormOpen: o.addCardFormOpen === true,
@@ -108,7 +98,7 @@ export async function saveCommunityPackCreateDraft(d: Omit<CommunityPackCreateDr
     v: 1,
     title: d.title,
     description: d.description,
-    priceShards: clampPriceShards(d.priceShards),
+    priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     themeIdx: clampThemeIdx(d.themeIdx),
     rows: d.rows.slice(0, COMMUNITY_PACK_CARD_COUNT_MAX).map((r, i) => ({ ...r, id: r.id || `c${i + 1}` })),
     addCardFormOpen: d.addCardFormOpen,

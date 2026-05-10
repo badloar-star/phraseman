@@ -25,10 +25,8 @@ export interface RankDelta {
 }
 
 const CLUB_PREV_RANK_KEY = 'club_rank_prev_v1';
-const HOF_PREV_RANK_KEY  = 'hof_rank_prev_v1';
 
 export const KEY_CLUB_PREV_RANK = CLUB_PREV_RANK_KEY;
-export const KEY_HOF_PREV_RANK  = HOF_PREV_RANK_KEY;
 
 export async function loadPrevRank(storageKey: string): Promise<PrevRank | null> {
   try {

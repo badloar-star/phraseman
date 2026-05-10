@@ -12,6 +12,8 @@ const { syncLeaderboardFromUsers } = require('./sync_leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { resetWeeklyXp } = require('./reset_weekly_xp');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame') as {
@@ -19,8 +21,119 @@ const { processLobbyAfterChoice } = require('./arena_pregame') as {
 };
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
+
+// Must match constants/theme.ts getLevelFromXP formula
+const _XP_BASE = 250;
+const _XP_EXP_INV = 1 / 1.82;
+const _MAX_LEVEL = 50;
+function getLevelFromXPLocal(xp: number): number {
+  if (xp <= 0) return 1;
+  return Math.min(_MAX_LEVEL, Math.floor(Math.pow(xp / _XP_BASE, _XP_EXP_INV)) + 1);
+}
 const LEVELS = ['I', 'II', 'III'] as const;
 const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'] as const;
+
+type ArenaCourseLbExtra = {
+  points: number;
+  frame?: string;
+  isPremium: boolean;
+  avatarEmoji?: string;
+};
+
+function progressTotalXpCf(progress: Record<string, unknown> | undefined): number {
+  const raw = progress?.user_total_xp;
+  const n = typeof raw === 'number' ? raw : typeof raw === 'string' ? parseInt(raw, 10) || 0 : 0;
+  return n > 0 ? n : 0;
+}
+
+function mergeArenaCourseExtras(a: ArenaCourseLbExtra | undefined, b: ArenaCourseLbExtra): ArenaCourseLbExtra {
+  if (!a) return b;
+  if (b.points > a.points) {
+    return {
+      points: b.points,
+      frame: b.frame ?? a.frame,
+      isPremium: a.isPremium || b.isPremium,
+      avatarEmoji: b.avatarEmoji ?? a.avatarEmoji,
+    };
+  }
+  if (a.points > b.points) {
+    return {
+      points: a.points,
+      frame: a.frame ?? b.frame,
+      isPremium: a.isPremium || b.isPremium,
+      avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
+    };
+  }
+  return {
+    points: a.points,
+    frame: a.frame ?? b.frame,
+    isPremium: a.isPremium || b.isPremium,
+    avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
+  };
+}
+
+function parseLeaderboardDocCf(data: FirebaseFirestore.DocumentData | undefined): ArenaCourseLbExtra | null {
+  if (!data) return null;
+  const points = typeof data.points === 'number' ? data.points : 0;
+  const frame = typeof data.frame === 'string' && data.frame.trim() ? data.frame.trim() : undefined;
+  const avatarEmoji = typeof data.avatar === 'string' && data.avatar.trim() ? data.avatar.trim() : undefined;
+  return { points, frame, isPremium: !!data.isPremium, avatarEmoji };
+}
+
+/** После матча: копируем очки уроков на arena_profiles для корректного топа у всех клиентов. */
+async function enrichArenaCourseDisplay(db: FirebaseFirestore.Firestore, authUid: string): Promise<void> {
+  let mirrorStableId: string | null = null;
+  try {
+    const qSnap = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
+    if (!qSnap.empty) mirrorStableId = qSnap.docs[0].id;
+    else {
+      const udir = await db.collection('users').doc(authUid).get();
+      if (udir.exists) mirrorStableId = authUid;
+    }
+  } catch {
+    /* ignore */
+  }
+
+  let best: ArenaCourseLbExtra = { points: 0, isPremium: false };
+
+  const absorbStableId = async (stableId: string) => {
+    const udoc = await db.collection('users').doc(stableId).get();
+    let xp = 0;
+    if (udoc.exists) {
+      const progress = udoc.data()?.progress as Record<string, unknown> | undefined;
+      xp = progressTotalXpCf(progress);
+    }
+    const lbSnap = await db.collection('leaderboard').doc(stableId).get();
+    const fromLb = lbSnap.exists ? parseLeaderboardDocCf(lbSnap.data()) : null;
+    const chunk = mergeArenaCourseExtras(
+      { points: xp, isPremium: false },
+      fromLb ?? { points: 0, isPremium: false },
+    );
+    best = mergeArenaCourseExtras(best, chunk);
+  };
+
+  const toAbsorb = new Set<string>([authUid]);
+  if (mirrorStableId) toAbsorb.add(mirrorStableId);
+  for (const id of toAbsorb) {
+    await absorbStableId(id);
+  }
+
+  if (best.points <= 0 && !best.isPremium && !best.frame && !best.avatarEmoji && !mirrorStableId) return;
+
+  const hasCourse = best.points > 0 || best.isPremium || !!best.frame || !!best.avatarEmoji;
+  await db.collection('arena_profiles').doc(authUid).set({
+    ...(hasCourse
+      ? {
+        courseTotalXp: best.points,
+        courseAvatar: best.avatarEmoji ?? null,
+        courseFrame: best.frame ?? null,
+        courseIsPremium: best.isPremium,
+      }
+      : {}),
+    courseDisplayAt: Date.now(),
+    ...(mirrorStableId ? { mirrorStableId } : {}),
+  }, { merge: true });
+}
 
 // Placeholder display names, которые клиент ставит, если у юзера нет user_name в AsyncStorage
 // (см. app/arena_lobby.tsx defaultPlayerName). Если приходит такое имя — НЕ перетираем уже
@@ -63,6 +176,14 @@ async function pickArenaQuestions(count: number): Promise<string[]> {
 export const syncLeaderboardCron = functions.scheduler.onSchedule(
   { schedule: 'every 2 hours', timeZone: 'UTC' },
   async () => { await syncLeaderboardFromUsers(); }
+);
+
+// ─── Leaderboard percentile stats cron ──────────────────────────────────────
+// Runs every hour. Computes p1-p99 thresholds for XP/streak/time/arena
+// and writes them to leaderboard_stats/global for all clients to read.
+export const computeLeaderboardStatsCron = functions.scheduler.onSchedule(
+  { schedule: 'every 1 hours', timeZone: 'UTC' },
+  async () => { await computeLeaderboardStats(); }
 );
 
 // ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
@@ -128,6 +249,16 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
     const questions = await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT);
     const tPrivate = Date.now();
 
+    // Read XP for both players to record avatarLevel in session_players
+    const [hostUserSnap, guestUserSnap] = await Promise.all([
+      db.collection('users').doc(after.hostId).get().catch(() => null),
+      db.collection('users').doc(after.guestId).get().catch(() => null),
+    ]);
+    const hostXp = parseInt(((hostUserSnap?.data() as Record<string, Record<string, string>> | undefined)?.progress?.user_total_xp) ?? '0') || 0;
+    const guestXp = parseInt(((guestUserSnap?.data() as Record<string, Record<string, string>> | undefined)?.progress?.user_total_xp) ?? '0') || 0;
+    const hostLevel = getLevelFromXPLocal(hostXp);
+    const guestLevel = getLevelFromXPLocal(guestXp);
+
     await db.runTransaction(async (tx) => {
       const roomSnap = await tx.get(roomRef);
       const sessionSnap = await tx.get(sessionRef);
@@ -148,7 +279,7 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         id: roomId,
         type: 'private',
         size: 2,
-        state: 'acceptance',
+        state: 'countdown',
         rankTier: 'bronze',
         playerIds: [room.hostId, room.guestId],
         questions,
@@ -156,25 +287,26 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         questionStartedAt: null,
         questionTimeoutMs: 40_000,
         createdAt: tPrivate,
-        acceptDeadlineAt: tPrivate + 15_000,
       });
 
       tx.set(hostPlayerRef, {
         sessionId: roomId,
         playerId: room.hostId,
         displayName: room.hostName ?? 'Игрок',
+        avatarLevel: hostLevel,
         score: 0,
         answers: [],
-        lobbyChoice: 'none',
+        lobbyChoice: 'accept',
       }, { merge: true });
 
       tx.set(guestPlayerRef, {
         sessionId: roomId,
         playerId: room.guestId,
         displayName: room.guestName ?? 'Игрок',
+        avatarLevel: guestLevel,
         score: 0,
         answers: [],
-        lobbyChoice: 'none',
+        lobbyChoice: 'accept',
       }, { merge: true });
 
       tx.update(roomRef, { sessionId: roomId });
@@ -341,8 +473,11 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
       const freshData = freshSession.data() as {
         resultProcessedAt?: number;
         forfeitedBy?: string;
+        type?: string;
       } | undefined;
       if (!freshSession.exists || freshData?.resultProcessedAt) return;
+
+      const isFriendDuel = freshData?.type === 'private' || freshData?.type === 'rematch';
 
       const forfeitedUid = typeof freshData?.forfeitedBy === 'string' && freshData.forfeitedBy.trim()
         ? freshData.forfeitedBy.trim()
@@ -435,7 +570,7 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
         let promoted = false;
 
         if (!profileSnap.exists) {
-          newStars = won ? 1 : 0;
+          newStars = (!isFriendDuel && won) ? 1 : 0;
           // При создании профиля кладём pickIncomingDisplayName, иначе fallback на первое
           // непустое имя, чтобы избежать пустых записей. Placeholder-фолбэк ('Игрок') —
           // последняя страховка, его перетрёт следующий матч с нормальным ником.
@@ -447,11 +582,11 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
             rank: { tier: 'bronze', level: 'I', stars: newStars },
             xp: xpDelta,
             stats: {
-              matchesPlayed: 1,
-              matchesWon: won ? 1 : 0,
-              totalScore: p.score ?? 0,
-              winStreak: won ? 1 : 0,
-              bestWinStreak: won ? 1 : 0,
+              matchesPlayed: isFriendDuel ? 0 : 1,
+              matchesWon: !isFriendDuel && won ? 1 : 0,
+              totalScore: isFriendDuel ? 0 : (p.score ?? 0),
+              winStreak: !isFriendDuel && won ? 1 : 0,
+              bestWinStreak: !isFriendDuel && won ? 1 : 0,
             },
             updatedAt: Date.now(),
           }, { merge: true });
@@ -474,73 +609,91 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
           const curStreak = data.stats?.winStreak ?? 0;
           const bestStreak = data.stats?.bestWinStreak ?? 0;
 
-          // Ничья — звёзды и ранг не меняются.
-          newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
-          newTier = oldTier;
-          newLevel = oldLevel;
+          if (isFriendDuel) {
+            // Дружеский матч: звёзды и ранг не меняются, серия побед не трогается
+            newStars = oldStars;
+            newTier = oldTier;
+            newLevel = oldLevel;
+            rankChanged = false;
+            promoted = false;
 
-          if (newStars >= 3) {
-            newStars = 0;
-            const li = LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]);
-            if (li < LEVELS.length - 1 && li >= 0) {
-              newLevel = LEVELS[li + 1];
-            } else {
-              newLevel = LEVELS[0];
-              const ti = TIERS.indexOf(oldTier as (typeof TIERS)[number]);
-              if (ti < TIERS.length - 1 && ti >= 0) newTier = TIERS[ti + 1];
-            }
-          } else if (newStars < 0) {
-            newStars = 2;
-            const li = LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]);
-            if (li > 0) {
-              newLevel = LEVELS[li - 1];
-            } else {
-              const ti = TIERS.indexOf(oldTier as (typeof TIERS)[number]);
-              if (ti > 0) {
-                newTier = TIERS[ti - 1];
-                newLevel = LEVELS[LEVELS.length - 1];
+            const incomingDn = pickIncomingDisplayName(p.displayName);
+            const dnPatch = incomingDn ? { displayName: incomingDn } : {};
+            tx.update(profileRef, {
+              xp: (data.xp ?? 0) + xpDelta,
+              ...dnPatch,
+              updatedAt: Date.now(),
+            });
+          } else {
+            // Ничья — звёзды и ранг не меняются.
+            newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
+            newTier = oldTier;
+            newLevel = oldLevel;
+
+            if (newStars >= 3) {
+              newStars = 0;
+              const li = LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]);
+              if (li < LEVELS.length - 1 && li >= 0) {
+                newLevel = LEVELS[li + 1];
               } else {
-                newStars = 0;
+                newLevel = LEVELS[0];
+                const ti = TIERS.indexOf(oldTier as (typeof TIERS)[number]);
+                if (ti < TIERS.length - 1 && ti >= 0) newTier = TIERS[ti + 1];
+              }
+            } else if (newStars < 0) {
+              newStars = 2;
+              const li = LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]);
+              if (li > 0) {
+                newLevel = LEVELS[li - 1];
+              } else {
+                const ti = TIERS.indexOf(oldTier as (typeof TIERS)[number]);
+                if (ti > 0) {
+                  newTier = TIERS[ti - 1];
+                  newLevel = LEVELS[LEVELS.length - 1];
+                } else {
+                  newStars = 0;
+                }
               }
             }
+
+            rankChanged = newTier !== oldTier || newLevel !== oldLevel;
+            promoted = rankChanged && (
+              TIERS.indexOf(newTier as (typeof TIERS)[number]) > TIERS.indexOf(oldTier as (typeof TIERS)[number])
+              || (newTier === oldTier && LEVELS.indexOf(newLevel as (typeof LEVELS)[number]) > LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]))
+            );
+            // Ничья сохраняет победную серию (не удлиняет её). Поражение — обнуляет.
+            const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
+            const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+            const lastStreakShardAt = data.lastStreakShardAt ?? 0;
+            const streakShardReady = Date.now() - lastStreakShardAt > STREAK_SHARD_COOLDOWN_MS;
+            const rankUpStreakShardAwarded = promoted && newStreak >= 3 && streakShardReady;
+
+            // displayName обновляем, если из сессии пришло осмысленное имя — иначе при первом матче
+            // ставился дефолтный «Игрок» и больше не менялся даже после смены ника пользователем.
+            // Фильтр локализованных placeholder-ов на RU/UK/ES — см. PLACEHOLDER_NAMES выше.
+            const incomingDn = pickIncomingDisplayName(p.displayName);
+            const dnPatch = incomingDn ? { displayName: incomingDn } : {};
+
+            tx.update(profileRef, {
+              'rank.tier': newTier,
+              'rank.level': newLevel,
+              'rank.stars': newStars,
+              xp: (data.xp ?? 0) + xpDelta,
+              'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
+              'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
+              'stats.totalScore': (data.stats?.totalScore ?? 0) + (p.score ?? 0),
+              'stats.winStreak': newStreak,
+              'stats.bestWinStreak': Math.max(bestStreak, newStreak),
+              ...dnPatch,
+              ...(rankUpStreakShardAwarded ? { lastStreakShardAt: Date.now() } : {}),
+              updatedAt: Date.now(),
+            });
           }
-
-          rankChanged = newTier !== oldTier || newLevel !== oldLevel;
-          promoted = rankChanged && (
-            TIERS.indexOf(newTier as (typeof TIERS)[number]) > TIERS.indexOf(oldTier as (typeof TIERS)[number])
-            || (newTier === oldTier && LEVELS.indexOf(newLevel as (typeof LEVELS)[number]) > LEVELS.indexOf(oldLevel as (typeof LEVELS)[number]))
-          );
-          // Ничья сохраняет винстрик (но не увеличивает его). Поражение — обнуляет.
-          const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
-          const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
-          const lastStreakShardAt = data.lastStreakShardAt ?? 0;
-          const streakShardReady = Date.now() - lastStreakShardAt > STREAK_SHARD_COOLDOWN_MS;
-          const rankUpStreakShardAwarded = promoted && newStreak >= 3 && streakShardReady;
-
-          // displayName обновляем, если из сессии пришло осмысленное имя — иначе при первом матче
-          // ставился дефолтный «Игрок» и больше не менялся даже после смены ника пользователем.
-          // Фильтр локализованных placeholder-ов на RU/UK/ES — см. PLACEHOLDER_NAMES выше.
-          const incomingDn = pickIncomingDisplayName(p.displayName);
-          const dnPatch = incomingDn ? { displayName: incomingDn } : {};
-
-          tx.update(profileRef, {
-            'rank.tier': newTier,
-            'rank.level': newLevel,
-            'rank.stars': newStars,
-            xp: (data.xp ?? 0) + xpDelta,
-            'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-            'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-            'stats.totalScore': (data.stats?.totalScore ?? 0) + (p.score ?? 0),
-            'stats.winStreak': newStreak,
-            'stats.bestWinStreak': Math.max(bestStreak, newStreak),
-            ...dnPatch,
-            ...(rankUpStreakShardAwarded ? { lastStreakShardAt: Date.now() } : {}),
-            updatedAt: Date.now(),
-          });
         }
 
-        const historyRef = profileRef.collection('match_history').doc(sessionId);
-        tx.set(historyRef, {
+        if (!isFriendDuel) {
+          const historyRef = profileRef.collection('match_history').doc(sessionId);
+          tx.set(historyRef, {
           createdAt: Date.now(),
           sessionId,
           won,
@@ -552,7 +705,8 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
           starsChange: newStars - oldStars,
           rankBefore: { tier: oldTier, level: oldLevel, stars: oldStars },
           rankAfter: { tier: newTier, level: newLevel, stars: newStars },
-        }, { merge: true });
+          }, { merge: true });
+        }
 
         const resultRef = db.collection('arena_session_results').doc(`${sessionId}_${uid}`);
         tx.set(resultRef, {
@@ -585,6 +739,15 @@ export const onArenaSessionFinished = functions.firestore.onDocumentUpdated(
 
       tx.update(sessionRef, sessionUpdate);
     });
+
+    const finishIds = Array.isArray(after.playerIds) ? after.playerIds.filter(Boolean) as string[] : [];
+    try {
+      if (finishIds.length > 0) {
+        await Promise.all(finishIds.map((uid) => enrichArenaCourseDisplay(db, uid)));
+      }
+    } catch (e) {
+      console.warn('enrichArenaCourseDisplay', e);
+    }
   }
 );
 
@@ -722,9 +885,13 @@ export {
   communitySubmitPackRating,
 } from './community_packs';
 
+export { mirrorFriendActivityOnUserWrite } from './friend_activity_mirror';
+
 export { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated } from './referral';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
 
 export { phraseContentRatingSubmit, phraseContentRatingGetState } from './phrase_content_rating';
+
+export { submitWebsiteContact } from './website_contact';

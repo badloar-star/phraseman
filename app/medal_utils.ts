@@ -23,7 +23,7 @@ export const CEFR_RANGES: Record<string, [number, number]> = {
 
 export const getMedalTier = (score: number): MedalTier => {
   if (score >= 5.0) return 'gold';
-  if (score >= 3.5) return 'silver';
+  if (score >= 4.5) return 'silver';
   if (score >= 2.5) return 'bronze';
   return 'none';
 };
@@ -34,9 +34,35 @@ export const getCorrectNeededForNextTier = (score: number): number => {
   const tier = getMedalTier(score);
   if (tier === 'gold')   return 0;
   if (tier === 'silver') return Math.ceil(50 - current);       // нужно 50/50
-  if (tier === 'bronze') return Math.ceil(35 - current);       // нужно 35 для Silver
+  if (tier === 'bronze') return Math.ceil(45 - current);       // нужно 45/50 для Silver
   return Math.ceil(25 - current);                              // нужно 25 для Bronze
 };
+
+/** RU: «1 верный ответ» / «2 верных ответа» / «5 верных ответов» (не «1 правильных»). */
+function ruVerneOtvetyPhrase(need: number): string {
+  const n = Math.floor(need);
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return `${n} верный ответ`;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return `${n} верных ответа`;
+  return `${n} верных ответов`;
+}
+
+/** UK: «1 вірна відповідь» / «2 вірні відповіді» / «5 вірних відповідей». */
+function ukVirniVidpovidiPhrase(need: number): string {
+  const n = Math.floor(need);
+  const m10 = n % 10;
+  const m100 = n % 100;
+  if (m10 === 1 && m100 !== 11) return `${n} вірна відповідь`;
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return `${n} вірні відповіді`;
+  return `${n} вірних відповідей`;
+}
+
+/** ES: «1 respuesta correcta más» / «N respuestas correctas más». */
+function esRespuestasCorrectasPhrase(need: number): string {
+  const n = Math.floor(need);
+  return n === 1 ? '1 respuesta correcta más' : `${n} respuestas correctas más`;
+}
 
 // Подсказка «ещё N для X» для lesson_menu
 export const getNextMedalHint = (score: number, lang: Lang): string | null => {
@@ -45,18 +71,21 @@ export const getNextMedalHint = (score: number, lang: Lang): string | null => {
   const need = getCorrectNeededForNextTier(score);
   if (need <= 0) return null;
   if (lang === 'uk') {
-    if (tier === 'silver') return `Ще ${need} правильних → Золото`;
-    if (tier === 'bronze') return `Ще ${need} правильних → Срібло`;
-    return `${need} правильних → Бронза`;
+    const p = ukVirniVidpovidiPhrase(need);
+    if (tier === 'silver') return `Ще ${p} → Золото`;
+    if (tier === 'bronze') return `Ще ${p} → Срібло`;
+    return `Ще ${p} → Бронза`;
   }
   if (lang === 'es') {
-    if (tier === 'silver') return `${need} correctas más → Oro`;
-    if (tier === 'bronze') return `${need} correctas más → Plata`;
-    return `${need} correctas más → Bronce`;
+    const p = esRespuestasCorrectasPhrase(need);
+    if (tier === 'silver') return `${p} → Oro`;
+    if (tier === 'bronze') return `${p} → Plata`;
+    return `${p} → Bronce`;
   }
-  if (tier === 'silver') return `Ещё ${need} правильных → Золото`;
-  if (tier === 'bronze') return `Ещё ${need} правильных → Серебро`;
-  return `${need} правильных → Бронза`;
+  const p = ruVerneOtvetyPhrase(need);
+  if (tier === 'silver') return `Ещё ${p} → Золото`;
+  if (tier === 'bronze') return `Ещё ${p} → Серебро`;
+  return `Ещё ${p} → Бронза`;
 };
 
 // ─── AsyncStorage helpers ─────────────────────────────────────────────────────
@@ -95,15 +124,16 @@ export const saveMedalProgress = async (
     const newPass   = prevPass + 1;
     const newTier   = getMedalTier(newBest);
 
-    // Проверяем завершённость: урок считается пройдённым если ≥45 ответов правильные
+    // Save best score for lesson medal/unlock state. Count a pass only for strong 45+/50 runs.
     const correct = progressArr.filter(x => x === 'correct' || x === 'replay_correct').length;
+    const writes: [string, string][] = [
+      [`lesson${lessonId}_best_score`, String(newBest)],
+    ];
     if (correct >= 45) {
-      await AsyncStorage.multiSet([
-        [`lesson${lessonId}_best_score`, String(newBest)],
-        [`lesson${lessonId}_pass_count`, String(newPass)],
-      ]);
-      invalidateMedalsCache();
+      writes.push([`lesson${lessonId}_pass_count`, String(newPass)]);
     }
+    await AsyncStorage.multiSet(writes);
+    invalidateMedalsCache();
 
     return { newTier, prevTier, isNewBest };
   } catch {

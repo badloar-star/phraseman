@@ -3,20 +3,17 @@
  * REVIEW SCREEN — Экран интервального повторения (SRS-сессия)
  * ═══════════════════════════════════════════════════════════════════════════
  *
- * Механика: пользователь собирает английскую фразу из плиток-слов.
- * Никаких кнопок «Знал/Не знал» — правильность определяется автоматически
- * через isCorrectAnswer() (та же функция что в lesson1.tsx и quizzes.tsx).
+ * Три живых формата:
+ *   • Банк слов — только слова этой фразы, тап по порядку (без лишних плиток).
+ *   • Смысл — видно по-английски, выбери верный перевод из 4.
+ *   • Вспоминание — видно перевод, набери всю фразу на английском.
  *
  * Откуда берутся данные:
  *   lesson1.tsx → checkAnswer() → recordMistake(phrase.english, phrase.russian, lessonId)
  *   → active_recall.ts сохраняет фразу в AsyncStorage ('active_recall_items')
  *   → getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }) — сессия + перенос перегруза на завтра
  *
- * Плитки:
- *   Слова правильной фразы (перемешаны) + 3 случайных дистрактора из DISTRACTOR_POOL.
- *   Пользователь тапает плитку снизу → она переходит в зону ответа.
- *   Тапает слово в зоне ответа → возвращается вниз.
- *   Когда выбрано нужное кол-во слов — автоматическая проверка.
+ * Свайп по карточке с переводом — переключение фразы сессии до ответа.
  *
  * После проверки:
  *   Правильно → зелёный фидбэк → markReviewed(true) → XP (registerXP, review_answer) → «Далее» вручную
@@ -30,13 +27,15 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   AppState, AppStateStatus, Animated, Dimensions, Easing as SlideEasing, ScrollView,
   StyleSheet,
-  Text, TouchableOpacity,
+  Text, TextInput, TouchableOpacity,
   View,
+  type NativeScrollEvent,
+  type NativeSyntheticEvent,
 } from 'react-native';
 import Reanimated, {
   Easing,
@@ -51,28 +50,45 @@ import Reanimated, {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { triLang, type Lang } from '../constants/i18n';
 import { useLang } from '../components/LangContext';
+import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import XpGainBadge from '../components/XpGainBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
-import { getDueItems, markReviewed, RecallItem, removeItem, SESSION_LIMIT } from './active_recall';
+import {
+  getDueItems, markReviewed, RecallItem, removeItem, SESSION_LIMIT,
+  getTrainerItems, type TrainerMode,
+} from './active_recall';
+import { logMistake } from './mistake_log';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { registerXP } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
 import {
+  buildMeaningOptions,
   evaluateRecallAnswer,
+  meaningChoiceIsCorrect,
   pickReviewMode,
   ReviewMode,
+  shuffleWordBankTiles,
+  tokenizeRecallPhrase,
+  type WordBankTile,
 } from './review_evaluator';
+import { spanishLessonUiStringsActive, spanishSurfacesEnabled } from './spanish_content_gate';
+import type { StudyTargetLang } from './study_target_lang_dev';
+import { englishRecallSurface } from './phrase_target_utils';
+import { checkCoachToastNeeded, type CoachToastDecision } from './coach_toast_trigger';
+import CoachToast from '../components/CoachToast';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
 const CONTENT_W = Math.min(SCREEN_W, 640);
+/** Одна страница свайпа подсказки (padding по 16 px у родительского ScrollView). */
+const CUE_PAGER_PAGE_W = SCREEN_W - 32;
 const REVIEW_BURN_HINT_SHOWN_KEY = 'review_burn_hint_shown_v1';
 
-/** Подсказка-перевод на карточке повторения (es / uk / ru). */
-function recallTranslationHint(item: RecallItem, lang: Lang): string {
-  if (lang === 'es') return item.correctAnswerES ?? item.correctAnswer;
+/** Подсказка на карточке: ES только при изучении ES + UI es (dev). */
+function recallTranslationHint(item: RecallItem, lang: Lang, studyTarget: StudyTargetLang): string {
+  if (spanishLessonUiStringsActive(lang, studyTarget)) return item.correctAnswerES ?? item.correctAnswer;
   if (lang === 'uk' && item.correctAnswerUK) return item.correctAnswerUK;
   return item.correctAnswer;
 }
@@ -108,42 +124,29 @@ function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
   });
 }
 
-// ─── Дистракторы ─────────────────────────────────────────────────────────────
-// Слова, которые добавляются к правильным словам фразы чтобы усложнить задание.
-// Выбираются только те, которых нет в самой фразе.
-const DISTRACTOR_POOL = [
-  'have','has','had','been','was','were','is','are',
-  'would','could','should','might','will','can',
-  'not','never','just','still','already','yet',
-  'very','really','quite','much','more','some',
-  'about','after','before','since','until','because',
-  'but','and','or','so','then','there','here',
-];
-
-// ─── Типы ─────────────────────────────────────────────────────────────────────
-// Tile — одна плитка-слово. id нужен как React key когда одно слово встречается дважды.
-type Tile   = { word: string; id: number };
-type Status = 'playing' | 'result';
-
-// ─── Генератор плиток ─────────────────────────────────────────────────────────
-// Разбивает фразу на слова, добавляет 3 дистрактора, перемешивает всё.
-// Возвращает плитки + количество слов в правильном ответе (для auto-check).
-function makeTiles(phrase: string): { tiles: Tile[]; wordCount: number } {
-  const clean = phrase.replace(/[.?!,;]+$/, '').trim();
-  const words  = clean.split(/\s+/);
-  const phraseSet = new Set(words.map(w => w.toLowerCase()));
-
-  const distractors = DISTRACTOR_POOL
-    .filter(d => !phraseSet.has(d.toLowerCase()))
-    .sort(() => Math.random() - 0.5)
-    .slice(0, 3);
-
-  const all = [...words, ...distractors].sort(() => Math.random() - 0.5);
-  return {
-    tiles:     all.map((word, i) => ({ word, id: i })),
-    wordCount: words.length,
-  };
+function recallCueInstruction(mode: ReviewMode, lang: Lang): string {
+  if (mode === 'word_bank') {
+    return triLang(lang, {
+      ru: 'Соберите фразу: жмите слова по порядку',
+      uk: 'Зберіть фразу: натискайте слова по порядку',
+      es: 'Forma la frase: toca las palabras en orden',
+    });
+  }
+  if (mode === 'meaning_match') {
+    return triLang(lang, {
+      ru: 'Что это значит? Выберите перевод',
+      uk: 'Що це значить? Оберіть переклад',
+      es: '¿Qué significa? Elige la traducción',
+    });
+  }
+  return triLang(lang, {
+    ru: 'Вспомните и напишите по-английски',
+    uk: 'Згадайте і напишіть англійською',
+    es: 'Recuerda y escribe en inglés',
+  });
 }
+
+type Status = 'playing' | 'result';
 
 /** Выезд / въезд карточки: симметричный timing, без длинного хвоста у spring. */
 const SLIDE_OUT_MS = 175;
@@ -461,6 +464,12 @@ export default function ReviewScreen() {
   const router  = useRouter();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const { studyTarget } = useStudyTarget();
+  // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
+  const params = useLocalSearchParams<{ trainerMode?: string; lessonId?: string; category?: string }>();
+  const trainerMode = (params.trainerMode ?? 'due') as TrainerMode;
+  const trainerLessonId = params.lessonId ? parseInt(params.lessonId, 10) : undefined;
+  const trainerCategory = params.category;
 
   // Данные сессии
   const [items,   setItems]   = useState<RecallItem[]>([]);
@@ -470,12 +479,16 @@ export default function ReviewScreen() {
   const [correct,   setCorrect]   = useState(0);
   const [wrong,     setWrong]     = useState(0);
   const [totalXP,   setTotalXP]   = useState(0);
+  const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
+  const wrongPhrasesRef = useRef<string[]>([]);
 
-  // Состояние плиток текущей карточки
-  const [tiles,     setTiles]     = useState<Tile[]>([]);    // доступные (внизу)
-  const [selected,  setSelected]  = useState<Tile[]>([]);    // выбранные (зона ответа)
-  const [wordCount, setWordCount] = useState(0);             // кол-во слов правильного ответа
-  const [mode, setMode]           = useState<ReviewMode>('build');
+  // Состояние текущей карточки (без плиточной сборки)
+  const [mode, setMode]           = useState<ReviewMode>('word_bank');
+  const [bankTiles, setBankTiles] = useState<WordBankTile[]>([]);
+  const [nextSlot, setNextSlot]   = useState(0);
+  const [meaningOptions, setMeaningOptions] = useState<string[]>([]);
+  const [typeText, setTypeText]   = useState('');
+  const [pickedChoice, setPickedChoice] = useState<string | null>(null);
   const [status,    setStatus]    = useState<Status>('playing');
   const [wasCorrect,  setWasCorrect]  = useState(false);
   const [canBurn,     setCanBurn]     = useState(false);  // кнопка "сжечь" (правильно за 20с)
@@ -494,17 +507,56 @@ export default function ReviewScreen() {
   const checkingRef   = useRef(false);                          // защита от двойного вызова checkAnswer
   const userNameRef   = useRef<string | null>(null);             // кэш имени пользователя
   const recallSessionTracked = useRef(false);                   // recall_session засчитывается один раз за сессию
+  const cuePagerRef = useRef<ScrollView | null>(null);
+  /** После свайпа пользователем — не дёргаем scrollTo из useEffect (уже на месте). */
+  const cuePagerSkipSyncScroll = useRef(false);
+  const swipeHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [swipeCueHintVisible, setSwipeCueHintVisible] = useState(false);
 
-  // Инициализирует плитки для конкретной карточки
+  const swipeCueHintEligible =
+    !loading && items.length > 1 && status === 'playing' && !burning;
+
+  useEffect(() => {
+    if (!swipeCueHintEligible) {
+      if (swipeHintTimerRef.current) {
+        clearTimeout(swipeHintTimerRef.current);
+        swipeHintTimerRef.current = null;
+      }
+      return;
+    }
+    setSwipeCueHintVisible(true);
+    swipeHintTimerRef.current = setTimeout(() => {
+      setSwipeCueHintVisible(false);
+      swipeHintTimerRef.current = null;
+    }, 4000);
+    return () => {
+      if (swipeHintTimerRef.current) {
+        clearTimeout(swipeHintTimerRef.current);
+        swipeHintTimerRef.current = null;
+      }
+    };
+  }, [swipeCueHintEligible]);
+
+  // Инициализирует задание для карточки (пропуск / выбор / ввод)
   const loadCard = useCallback((item: RecallItem, itemIndex: number, poolItems: RecallItem[]) => {
     checkingRef.current = false;
-    const nextMode = pickReviewMode(item.errorCount, itemIndex);
+    const nextMode = pickReviewMode(params.trainerMode, itemIndex, item.phrase);
     setMode(nextMode);
-    void poolItems;
-    const { tiles: newTiles, wordCount: wc } = makeTiles(item.phrase);
-    setTiles(newTiles);
-    setSelected([]);
-    setWordCount(wc);
+    setPickedChoice(null);
+    setTypeText('');
+    const poolTrans = poolItems.map(it => recallTranslationHint(it, lang, studyTarget));
+    const correctTrans = recallTranslationHint(item, lang, studyTarget);
+    if (nextMode === 'word_bank') {
+      setBankTiles(shuffleWordBankTiles(item.phrase));
+      setNextSlot(0);
+      setMeaningOptions([]);
+    } else if (nextMode === 'meaning_match') {
+      setBankTiles([]);
+      setMeaningOptions(buildMeaningOptions(correctTrans, poolTrans));
+    } else {
+      setBankTiles([]);
+      setMeaningOptions([]);
+    }
     setStatus('playing');
     setWasCorrect(false);
     setCanBurn(false);
@@ -513,7 +565,7 @@ export default function ReviewScreen() {
     burnTextOp.setValue(1);
     burnCardScale.setValue(1);
     cardStartTime.current = Date.now();
-  }, [resultAnim, burnTextOp, burnCardScale]);
+  }, [params.trainerMode, lang, studyTarget, resultAnim, burnTextOp, burnCardScale]);
 
   // Загружаем фразы для повторения сегодня (один раз при монтировании)
   useEffect(() => {
@@ -521,7 +573,12 @@ export default function ReviewScreen() {
     AsyncStorage.getItem(REVIEW_BURN_HINT_SHOWN_KEY)
       .then(v => setBurnHintSeen(v === '1'))
       .catch(() => setBurnHintSeen(true));
-    getDueItems(SESSION_LIMIT, { commitSessionOverflow: true }).then(due => {
+    // Когда запускаем из trainer.tsx с trainerMode — используем getTrainerItems.
+    // Стандартный /review без params грузит «due» с commitSessionOverflow.
+    const itemsPromise = params.trainerMode
+      ? getTrainerItems(trainerMode, SESSION_LIMIT, trainerLessonId, trainerCategory)
+      : getDueItems(SESSION_LIMIT, { commitSessionOverflow: true });
+    itemsPromise.then(due => {
       setItems(due);
       setLoading(false);
       if (due.length > 0) loadCard(due[0], 0, due);
@@ -531,7 +588,7 @@ export default function ReviewScreen() {
       const timer = timerRef.current;
       if (timer) clearTimeout(timer);
     };
-  }, [loadCard]);
+  }, [loadCard, params.trainerMode, trainerLessonId, trainerCategory, trainerMode]);
 
   const shouldShowBurnHint = status === 'result' && canBurn && !burnHintSeen;
 
@@ -561,6 +618,19 @@ export default function ReviewScreen() {
     }
   }, [loading, items, index, loadCard]);
 
+  useEffect(() => {
+    if (loading || items.length === 0) return;
+    if (cuePagerSkipSyncScroll.current) {
+      cuePagerSkipSyncScroll.current = false;
+      return;
+    }
+    const clamped = Math.max(0, Math.min(index, items.length - 1));
+    const x = clamped * CUE_PAGER_PAGE_W;
+    requestAnimationFrame(() => {
+      cuePagerRef.current?.scrollTo({ x, animated: false });
+    });
+  }, [loading, items.length, index]);
+
   // Сбрасываем анимацию и состояние карточки при возврате из фона —
   // это исправляет зависание кнопок и некорректное отображение после свернувшего приложения
   useEffect(() => {
@@ -574,60 +644,52 @@ export default function ReviewScreen() {
     return () => sub.remove();
   }, [slideAnim]);
 
-  // Пользователь тапнул плитку снизу → переносим в зону ответа
-  const moveTile = (tile: Tile) => {
-    if (status !== 'playing') return;
-    hapticTap();
-    const newSelected = [...selected, tile];
-    setTiles(prev => prev.filter(t => t.id !== tile.id));
-    setSelected(newSelected);
-    // Auto-check: как только выбрано нужное кол-во слов — сразу проверяем
-    if (newSelected.length === wordCount) {
-      checkAnswer(newSelected.map(t => t.word).join(' '));
-    }
-  };
+  const onCuePagerMomentumEnd = useCallback(
+    (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+      if (items.length <= 1) return;
+      if (status !== 'playing' || burning) return;
+      const page = Math.round(e.nativeEvent.contentOffset.x / CUE_PAGER_PAGE_W);
+      const clamped = Math.max(0, Math.min(page, items.length - 1));
+      if (clamped === index) return;
+      hapticTap();
+      cuePagerSkipSyncScroll.current = true;
+      setIndex(clamped);
+      loadCard(items[clamped]!, clamped, items);
+    },
+    [items, index, status, burning, loadCard],
+  );
 
-  // Пользователь тапнул слово в зоне ответа → возвращаем вниз
-  const moveTileBack = (tile: Tile) => {
-    if (status !== 'playing') return;
-    hapticTap();
-    setSelected(prev => prev.filter(s => s.id !== tile.id));
-    setTiles(prev => [...prev, tile]);
-  };
-
-  // Проверка ответа — вызывается автоматически когда выбрано wordCount слов.
-  // isCorrectAnswer() обрабатывает сокращения (don't = do not) и регистр.
-  const checkAnswer = useCallback(async (userAnswer: string) => {
+  const finishCard = useCallback((ok: boolean, userPick: string | null) => {
     if (checkingRef.current) return;
     checkingRef.current = true;
-
     const item = items[index];
     if (!item) {
       checkingRef.current = false;
       return;
     }
-    const { ok } = evaluateRecallAnswer(userAnswer, item.phrase);
-
+    setPickedChoice(userPick);
     setWasCorrect(ok);
     setStatus('result');
 
     if (ok) void hapticSuccess();
     else void hapticError();
 
-    // Плавное появление блока с правильным ответом (если ошиблись)
     Animated.spring(resultAnim, { toValue: 1, useNativeDriver: true, friction: 8 }).start();
 
-    // Считаем ответ немедленно — до async операций, чтобы не пропустить при ошибке
     if (ok) {
       setCorrect(c => c + 1);
     } else {
       setWrong(w => w + 1);
     }
 
-    // Обновляем SM-2 и XP асинхронно (fire-and-forget) — ошибки здесь не должны влиять на счёт
     markReviewed(item.phrase, ok).catch(() => {});
+    if (!ok) {
+      if (trainerMode !== 'mistakes') {
+        logMistake(item.phrase, item.lessonId, 'trainer', 'wrong_pick');
+      }
+      wrongPhrasesRef.current.push(item.phrase);
+    }
 
-    // recall_session — засчитывается при первом любом ответе (правильном или нет)
     if (!recallSessionTracked.current) {
       recallSessionTracked.current = true;
       updateMultipleTaskProgress([{ type: 'recall_session', increment: 1 }]).catch(() => {});
@@ -641,13 +703,49 @@ export default function ReviewScreen() {
           setTotalXP(prev => prev + result.finalDelta);
         }).catch(() => { setTotalXP(prev => prev + 5); });
       }
-      // recall_answers — каждый правильный ответ
       updateMultipleTaskProgress([{ type: 'recall_answers', increment: 1 }]).catch(() => {});
     }
 
     checkingRef.current = false;
-    // Показываем кнопку "Далее" — пользователь переходит вручную
-  }, [items, index, lang, resultAnim]);
+  }, [items, index, lang, resultAnim, trainerMode]);
+
+  const onWordBankTap = useCallback((tile: WordBankTile) => {
+    if (status !== 'playing' || burning) return;
+    const item = items[index];
+    if (!item) return;
+    const n = tokenizeRecallPhrase(item.phrase).length;
+    if (tile.slot !== nextSlot) {
+      hapticTap();
+      finishCard(false, tile.text);
+      return;
+    }
+    hapticTap();
+    if (nextSlot + 1 >= n) {
+      finishCard(true, null);
+    } else {
+      setNextSlot(s => s + 1);
+      setBankTiles(prev => prev.filter(t => t.slot !== tile.slot));
+    }
+  }, [status, burning, items, index, nextSlot, finishCard]);
+
+  const onMeaningPick = useCallback((choice: string) => {
+    if (status !== 'playing' || burning) return;
+    hapticTap();
+    const item = items[index];
+    if (!item) return;
+    const correct = recallTranslationHint(item, lang, studyTarget);
+    const ok = meaningChoiceIsCorrect(choice, correct);
+    finishCard(ok, choice);
+  }, [status, burning, items, index, lang, studyTarget, finishCard]);
+
+  const onSubmitTyped = useCallback(() => {
+    if (status !== 'playing' || burning || mode !== 'recall_type') return;
+    hapticTap();
+    const item = items[index];
+    if (!item) return;
+    const { ok } = evaluateRecallAnswer(typeText, item.phrase);
+    finishCard(ok, typeText.trim() || null);
+  }, [status, burning, mode, items, index, typeText, finishCard]);
 
   /** Общий слайд влево → смена контента → spring в ноль (и для «Далее», и после сжигания). */
   const runSlideToNext = useCallback((
@@ -733,6 +831,9 @@ export default function ReviewScreen() {
     if (wrong === 0 && correct >= 5) {
       updateMultipleTaskProgress([{ type: 'recall_perfect', increment: 1 }]).catch(() => {});
     }
+    // Проверяем нужен ли тост Problem Coach
+    const decision = checkCoachToastNeeded(wrongPhrasesRef.current);
+    if (decision.show) setCoachToast(decision);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done]);
 
@@ -871,6 +972,16 @@ export default function ReviewScreen() {
           </TouchableOpacity>
         </View>
       </SafeAreaView>
+      {coachToast?.show && (
+        <CoachToast
+          category={coachToast.category}
+          labelRu={coachToast.labelRu}
+          labelUk={coachToast.labelUk}
+          labelEs={coachToast.labelEs}
+          mistakeCount={coachToast.mistakeCount}
+          onDismiss={() => setCoachToast(null)}
+        />
+      )}
       </ScreenGradient>
     );
   }
@@ -898,8 +1009,24 @@ export default function ReviewScreen() {
       </ScreenGradient>
     );
   }
-  const answerBorderColor = status === 'result' ? (wasCorrect ? t.correct : t.wrong) : t.border;
-  const answerBg          = status === 'result' ? (wasCorrect ? t.correctBg : t.wrongBg) : t.bgSurface;
+  const typeBorderColor = status === 'result' ? (wasCorrect ? t.correct : t.wrong) : t.border;
+  const typeBg          = status === 'result' ? (wasCorrect ? t.correctBg : t.wrongBg) : t.bgSurface;
+
+  const correctTrans = recallTranslationHint(item, lang, studyTarget);
+  const mcOptionStyle = (opt: string) => {
+    if (status !== 'result' || pickedChoice == null) {
+      return { bg: t.bgCard, border: t.border, color: t.textPrimary, opacity: 1 as number };
+    }
+    const isAnswer = meaningChoiceIsCorrect(opt, correctTrans);
+    const isUser = opt.trim().toLowerCase() === (pickedChoice ?? '').trim().toLowerCase();
+    if (isAnswer) {
+      return { bg: t.correctBg, border: t.correct, color: t.correct, opacity: 1 as number };
+    }
+    if (isUser && !wasCorrect) {
+      return { bg: t.wrongBg, border: t.wrong, color: t.wrong, opacity: 1 as number };
+    }
+    return { bg: t.bgSurface, border: t.border, color: t.textMuted, opacity: 0.45 as number };
+  };
 
   return (
     <ScreenGradient>
@@ -942,103 +1069,188 @@ export default function ReviewScreen() {
         <Animated.View style={{ transform: [{ translateX: slideAnim }] }}>
 
 
-          {/* Карточка с переводом — то что нужно составить */}
-          <Animated.View
-            onLayout={e => setCardLayout({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height })}
-            style={{
-              backgroundColor: t.bgCard,
-              borderRadius: 20,
-              padding: 28,
-              minHeight: 110,
-              justifyContent: 'center',
-              alignItems: 'center',
-              borderWidth: 0.5,
-              borderColor: t.border,
-              marginBottom: 20,
-              transform: [{ scale: burnCardScale }],
-            }}
-          >
-            <Animated.View style={{ opacity: burnTextOp, zIndex: 1, alignItems: 'center' }}>
-              <Text style={{ color: t.textMuted, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
-                {triLang(lang, { ru: 'Составьте фразу', uk: 'Складіть фразу', es: 'Forma la frase' })}
-              </Text>
-              <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700', textAlign: 'center', lineHeight: 30 }}>
-                {recallTranslationHint(item, lang)}
-              </Text>
-            </Animated.View>
-            {burning && (
-              <BurnCardEffect width={cardLayout.width} height={cardLayout.height} borderRadius={20} />
-            )}
-          </Animated.View>
-
-          {/* ── Зона ответа ─────────────────────────────────────────────────
-              Выбранные плитки. Тап → возвращает плитку вниз (только в playing).
-              Цвет рамки и фона меняется при result: зелёный/красный.           */}
-          <View style={{
-            minHeight: 56,
-            borderWidth: 1.5,
-            borderColor: answerBorderColor,
-            backgroundColor: answerBg,
-            borderRadius: 16,
-            padding: 12,
-            flexDirection: 'row',
-            flexWrap: 'wrap',
-            gap: 8,
-            marginBottom: 12,
-          }}>
-            {mode === 'build' && (
-              <>
-                {selected.length === 0 && status === 'playing' && (
-                  <Text style={{ color: t.textGhost, fontSize: f.body, alignSelf: 'center' }}>
-                    {triLang(lang, {
-                      ru: 'Здесь появятся слова...',
-                      uk: 'Тут з\'являться слова...',
-                      es: 'Las palabras aparecerán aquí...',
-                    })}
-                  </Text>
-                )}
-                {selected.map(tile => (
-                  <TouchableOpacity
-                    key={tile.id}
-                    onPress={() => moveTileBack(tile)}
-                    activeOpacity={0.7}
+          {/* Карточки подсказок: горизонтальный свайп = выбор фразы сессии (до ответа). */}
+          <View style={{ marginBottom: 20 }}>
+            <ScrollView
+              ref={cuePagerRef}
+              horizontal
+              pagingEnabled
+              nestedScrollEnabled
+              showsHorizontalScrollIndicator={false}
+              scrollEnabled={status === 'playing' && !burning && items.length > 1}
+              decelerationRate="fast"
+              keyboardShouldPersistTaps="handled"
+              onMomentumScrollEnd={onCuePagerMomentumEnd}
+            >
+              {items.map((it, i) => {
+                const pageMode = pickReviewMode(params.trainerMode, i, it.phrase);
+                return (
+                <View
+                  key={`cue-${it.lessonId}-${englishRecallSurface(it.phrase)}-${i}`}
+                  style={{ width: CUE_PAGER_PAGE_W }}
+                >
+                  <Animated.View
+                    onLayout={
+                      i === index
+                        ? e =>
+                            setCardLayout({
+                              width: e.nativeEvent.layout.width,
+                              height: e.nativeEvent.layout.height,
+                            })
+                        : undefined
+                    }
                     style={{
-                      backgroundColor: status === 'result'
-                        ? (wasCorrect ? t.correctBg : t.wrongBg)
-                        : t.bgSurface,
-                      borderRadius: 10,
-                      paddingHorizontal: 14,
-                      paddingVertical: 9,
-                      borderWidth: 1,
-                      borderColor: status === 'result'
-                        ? (wasCorrect ? t.correct : t.wrong)
-                        : t.border,
+                      backgroundColor: t.bgCard,
+                      borderRadius: 20,
+                      padding: 28,
+                      minHeight: 110,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      borderWidth: 0.5,
+                      borderColor: t.border,
+                      overflow: 'hidden',
+                      ...(i === index ? { transform: [{ scale: burnCardScale }] } : {}),
                     }}
                   >
-                    <Text style={{
-                      color: status === 'result'
-                        ? (wasCorrect ? t.correct : t.wrong)
-                        : t.textPrimary,
-                      fontSize: f.body,
-                      fontWeight: '500',
-                    }}>
-                      {tile.word}
-                    </Text>
-                  </TouchableOpacity>
-                ))}
-              </>
+                    <Animated.View style={{ opacity: i === index ? burnTextOp : 1, zIndex: 1, alignItems: 'center' }}>
+                      <Text style={{ color: t.textMuted, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
+                        {recallCueInstruction(pageMode, lang)}
+                      </Text>
+                      <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700', textAlign: 'center', lineHeight: 30 }}>
+                        {pageMode === 'meaning_match'
+                          ? englishRecallSurface(it.phrase)
+                          : recallTranslationHint(it, lang, studyTarget)}
+                      </Text>
+                    </Animated.View>
+                    {i === index && burning && (
+                      <BurnCardEffect width={cardLayout.width} height={cardLayout.height} borderRadius={20} />
+                    )}
+                  </Animated.View>
+                </View>
+              );
+              })}
+            </ScrollView>
+            {swipeCueHintEligible && swipeCueHintVisible && (
+              <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center', marginTop: 8 }}>
+                {triLang(lang, {
+                  ru: 'Свайпните карточку влево или вправо, чтобы выбрать другую фразу',
+                  uk: 'Свайніть картку вліво або вправо, щоб обрати іншу фразу',
+                  es: 'Desliza la tarjeta para elegir otra frase',
+                })}
+              </Text>
             )}
           </View>
+
+          {/* Задание: банк слов / выбор перевода / ввод */}
+          {mode === 'word_bank' && bankTiles.length > 0 && (
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, marginBottom: 16, justifyContent: 'center' }}>
+              {bankTiles.map(tile => (
+                <TouchableOpacity
+                  key={`wb-${tile.slot}`}
+                  onPress={() => onWordBankTap(tile)}
+                  disabled={status !== 'playing'}
+                  activeOpacity={0.85}
+                  style={{
+                    backgroundColor: t.bgCard,
+                    borderRadius: 14,
+                    paddingVertical: 12,
+                    paddingHorizontal: 16,
+                    borderWidth: 1.5,
+                    borderColor: t.border,
+                    opacity: status === 'playing' ? 1 : 0.4,
+                  }}
+                >
+                  <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                    {tile.text}
+                  </Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+          )}
+
+          {mode === 'meaning_match' && meaningOptions.length > 0 && (
+            <View style={{ gap: 10, marginBottom: 16 }}>
+              {meaningOptions.map((opt, j) => {
+                const st = mcOptionStyle(opt);
+                return (
+                  <TouchableOpacity
+                    key={`mean-${j}-${opt.slice(0, 20)}`}
+                    onPress={() => onMeaningPick(opt)}
+                    disabled={status !== 'playing'}
+                    activeOpacity={0.85}
+                    style={{
+                      backgroundColor: st.bg,
+                      borderRadius: 14,
+                      paddingVertical: 12,
+                      paddingHorizontal: 14,
+                      borderWidth: 1.5,
+                      borderColor: st.border,
+                      opacity: st.opacity,
+                    }}
+                  >
+                    <Text style={{ color: st.color, fontSize: f.body, fontWeight: '600', textAlign: 'left', lineHeight: 22 }}>
+                      {opt}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          )}
+
+          {mode === 'recall_type' && (
+            <View style={{ marginBottom: 16 }}>
+              <TextInput
+                value={typeText}
+                onChangeText={setTypeText}
+                editable={status === 'playing'}
+                placeholder={triLang(lang, { ru: 'Введите ответ…', uk: 'Введіть відповідь…', es: 'Escribe la respuesta…' })}
+                placeholderTextColor={t.textGhost}
+                autoCapitalize="sentences"
+                autoCorrect={false}
+                returnKeyType="done"
+                onSubmitEditing={onSubmitTyped}
+                style={{
+                  borderWidth: 1.5,
+                  borderColor: typeBorderColor,
+                  backgroundColor: typeBg,
+                  borderRadius: 14,
+                  paddingHorizontal: 16,
+                  paddingVertical: 14,
+                  fontSize: f.bodyLg,
+                  color: t.textPrimary,
+                  marginBottom: 12,
+                }}
+              />
+              {status === 'playing' && (
+                <TouchableOpacity
+                  onPress={onSubmitTyped}
+                  activeOpacity={0.88}
+                  style={{
+                    backgroundColor: t.accent,
+                    borderRadius: 14,
+                    paddingVertical: 14,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
+                    {triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })}
+                  </Text>
+                </TouchableOpacity>
+              )}
+            </View>
+          )}
 
           {item && (
             <ReportErrorButton
               screen="review"
-              dataId={`review_${item.phrase.replace(/\s+/g,'_').slice(0,40)}`}
+              dataId={`review_${englishRecallSurface(item.phrase).replace(/\s+/g,'_').slice(0,40)}`}
               dataText={[
-                `EN: ${item.phrase}`,
+                `EN: ${englishRecallSurface(item.phrase)}`,
                 `RU: ${item.correctAnswer}`,
                 item.correctAnswerUK ? `UK: ${item.correctAnswerUK}` : '',
-                item.correctAnswerES ? `ES: ${item.correctAnswerES}` : '',
+                item.correctAnswerES && spanishSurfacesEnabled(lang, studyTarget)
+                  ? `ES: ${item.correctAnswerES}`
+                  : '',
                 `Урок: ${item.lessonId}`,
               ].filter(Boolean).join('\n')}
               style={{ alignSelf: 'flex-end', marginBottom: 4 }}
@@ -1063,35 +1275,9 @@ export default function ReviewScreen() {
                 })}
               </Text>
               <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '600' }}>
-                {item.phrase}
+                {englishRecallSurface(item.phrase)}
               </Text>
             </Animated.View>
-          )}
-
-          {mode === 'build' && (
-            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginTop: 8 }}>
-              {tiles.map(tile => (
-                <TouchableOpacity
-                  key={tile.id}
-                  onPress={() => moveTile(tile)}
-                  activeOpacity={0.7}
-                  disabled={status === 'result'}
-                  style={{
-                    backgroundColor: t.bgCard,
-                    borderRadius: 10,
-                    paddingHorizontal: 16,
-                    paddingVertical: 11,
-                    borderWidth: 1,
-                    borderColor: t.border,
-                    opacity: status === 'result' ? 0.35 : 1,
-                  }}
-                >
-                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '500' }}>
-                    {tile.word}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
           )}
 
         </Animated.View>

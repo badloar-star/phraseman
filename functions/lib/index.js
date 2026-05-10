@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.adminGrantReward = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.communitySubmitPackRating = exports.communityGetPackRatingSummary = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.syncLeaderboardCron = void 0;
+exports.submitWebsiteContact = exports.phraseContentRatingGetState = exports.phraseContentRatingSubmit = exports.adminGrantReward = exports.referralOnUserProgressUpdated = exports.referralApply = exports.referralEnsureMyCode = exports.mirrorFriendActivityOnUserWrite = exports.communitySubmitPackRating = exports.communityGetPackRatingSummary = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = exports.questionTimeout = exports.onArenaRematchAccepted = exports.onArenaSessionFinished = exports.onAnswerSubmitted = exports.onSessionCountdown = exports.onSessionPlayerLobby = exports.onSessionGetReady = exports.onArenaRoomMatched = exports.matchmakingCron = exports.onMatchmakingWrite = exports.resetWeeklyXpCron = exports.computeLeaderboardStatsCron = exports.syncLeaderboardCron = void 0;
 const admin = __importStar(require("firebase-admin"));
 const functions = __importStar(require("firebase-functions/v2"));
 const arena_scoring_1 = require("./arena_scoring");
@@ -44,12 +44,136 @@ const { runMatchmaking, tryMatchForUser, publishMatchmakingSearchingCount } = re
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { syncLeaderboardFromUsers } = require('./sync_leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { resetWeeklyXp } = require('./reset_weekly_xp');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { computeLeaderboardStats } = require('./compute_leaderboard_stats');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('./game_loop');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { processLobbyAfterChoice } = require('./arena_pregame');
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
+// Must match constants/theme.ts getLevelFromXP formula
+const _XP_BASE = 250;
+const _XP_EXP_INV = 1 / 1.82;
+const _MAX_LEVEL = 50;
+function getLevelFromXPLocal(xp) {
+    if (xp <= 0)
+        return 1;
+    return Math.min(_MAX_LEVEL, Math.floor(Math.pow(xp / _XP_BASE, _XP_EXP_INV)) + 1);
+}
 const LEVELS = ['I', 'II', 'III'];
 const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'grandmaster', 'legend'];
+function progressTotalXpCf(progress) {
+    const raw = progress?.user_total_xp;
+    const n = typeof raw === 'number' ? raw : typeof raw === 'string' ? parseInt(raw, 10) || 0 : 0;
+    return n > 0 ? n : 0;
+}
+function mergeArenaCourseExtras(a, b) {
+    if (!a)
+        return b;
+    if (b.points > a.points) {
+        return {
+            points: b.points,
+            frame: b.frame ?? a.frame,
+            isPremium: a.isPremium || b.isPremium,
+            avatarEmoji: b.avatarEmoji ?? a.avatarEmoji,
+        };
+    }
+    if (a.points > b.points) {
+        return {
+            points: a.points,
+            frame: a.frame ?? b.frame,
+            isPremium: a.isPremium || b.isPremium,
+            avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
+        };
+    }
+    return {
+        points: a.points,
+        frame: a.frame ?? b.frame,
+        isPremium: a.isPremium || b.isPremium,
+        avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
+    };
+}
+function parseLeaderboardDocCf(data) {
+    if (!data)
+        return null;
+    const points = typeof data.points === 'number' ? data.points : 0;
+    const frame = typeof data.frame === 'string' && data.frame.trim() ? data.frame.trim() : undefined;
+    const avatarEmoji = typeof data.avatar === 'string' && data.avatar.trim() ? data.avatar.trim() : undefined;
+    return { points, frame, isPremium: !!data.isPremium, avatarEmoji };
+}
+/** После матча: копируем очки уроков на arena_profiles для корректного топа у всех клиентов. */
+async function enrichArenaCourseDisplay(db, authUid) {
+    let mirrorStableId = null;
+    try {
+        const qSnap = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
+        if (!qSnap.empty)
+            mirrorStableId = qSnap.docs[0].id;
+        else {
+            const udir = await db.collection('users').doc(authUid).get();
+            if (udir.exists)
+                mirrorStableId = authUid;
+        }
+    }
+    catch {
+        /* ignore */
+    }
+    let best = { points: 0, isPremium: false };
+    const absorbStableId = async (stableId) => {
+        const udoc = await db.collection('users').doc(stableId).get();
+        let xp = 0;
+        if (udoc.exists) {
+            const progress = udoc.data()?.progress;
+            xp = progressTotalXpCf(progress);
+        }
+        const lbSnap = await db.collection('leaderboard').doc(stableId).get();
+        const fromLb = lbSnap.exists ? parseLeaderboardDocCf(lbSnap.data()) : null;
+        const chunk = mergeArenaCourseExtras({ points: xp, isPremium: false }, fromLb ?? { points: 0, isPremium: false });
+        best = mergeArenaCourseExtras(best, chunk);
+    };
+    const toAbsorb = new Set([authUid]);
+    if (mirrorStableId)
+        toAbsorb.add(mirrorStableId);
+    for (const id of toAbsorb) {
+        await absorbStableId(id);
+    }
+    if (best.points <= 0 && !best.isPremium && !best.frame && !best.avatarEmoji && !mirrorStableId)
+        return;
+    const hasCourse = best.points > 0 || best.isPremium || !!best.frame || !!best.avatarEmoji;
+    await db.collection('arena_profiles').doc(authUid).set({
+        ...(hasCourse
+            ? {
+                courseTotalXp: best.points,
+                courseAvatar: best.avatarEmoji ?? null,
+                courseFrame: best.frame ?? null,
+                courseIsPremium: best.isPremium,
+            }
+            : {}),
+        courseDisplayAt: Date.now(),
+        ...(mirrorStableId ? { mirrorStableId } : {}),
+    }, { merge: true });
+}
+// Placeholder display names, которые клиент ставит, если у юзера нет user_name в AsyncStorage
+// (см. app/arena_lobby.tsx defaultPlayerName). Если приходит такое имя — НЕ перетираем уже
+// сохранённое в arena_profiles, чтобы локализационные default'ы не маскировали нормальный ник.
+const PLACEHOLDER_NAMES = new Set([
+    'Игрок',
+    'Гравець',
+    'Jugador',
+    'Player',
+    'Соперник',
+    'Суперник',
+    'Opponent',
+]);
+function pickIncomingDisplayName(raw) {
+    const dn = String(raw ?? '').trim();
+    if (!dn)
+        return null;
+    if (PLACEHOLDER_NAMES.has(dn))
+        return null;
+    // Защита от излишне длинных значений (firestore.rules ограничивает 120, но дублируем).
+    return dn.slice(0, 120);
+}
 async function pickArenaQuestions(count) {
     const db = admin.firestore();
     const snap = await db.collection('arena_questions').limit(Math.max(count * 3, count)).get();
@@ -67,6 +191,14 @@ async function pickArenaQuestions(count) {
 }
 // ─── Leaderboard sync ────────────────────────────────────────────────────────
 exports.syncLeaderboardCron = functions.scheduler.onSchedule({ schedule: 'every 2 hours', timeZone: 'UTC' }, async () => { await syncLeaderboardFromUsers(); });
+// ─── Leaderboard percentile stats cron ──────────────────────────────────────
+// Runs every hour. Computes p1-p99 thresholds for XP/streak/time/arena
+// and writes them to leaderboard_stats/global for all clients to read.
+exports.computeLeaderboardStatsCron = functions.scheduler.onSchedule({ schedule: 'every 1 hours', timeZone: 'UTC' }, async () => { await computeLeaderboardStats(); });
+// ─── Weekly XP reset cron (XP-02) ────────────────────────────────────────────
+// Runs every Monday 00:00 UTC. Zeroes progress.weekly_xp for ALL users without
+// touching progress.user_total_xp. Cron expression '0 0 * * 1' = at 00:00 on Monday.
+exports.resetWeeklyXpCron = functions.scheduler.onSchedule({ schedule: '0 0 * * 1', timeZone: 'UTC' }, async () => { await resetWeeklyXp(); });
 // ─── Matchmaking: instant trigger on queue write ──────────────────────────────
 exports.onMatchmakingWrite = functions.firestore.onDocumentWritten('matchmaking_queue/{userId}', async (event) => {
     // tryMatch, потім один publish — клієнт тягне `app_meta/matchmaking_searching` (колекція
@@ -115,6 +247,15 @@ exports.onArenaRoomMatched = functions.firestore.onDocumentUpdated('arena_rooms/
     const guestPlayerRef = db.collection('session_players').doc(`${roomId}_${after.guestId}`);
     const questions = await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT);
     const tPrivate = Date.now();
+    // Read XP for both players to record avatarLevel in session_players
+    const [hostUserSnap, guestUserSnap] = await Promise.all([
+        db.collection('users').doc(after.hostId).get().catch(() => null),
+        db.collection('users').doc(after.guestId).get().catch(() => null),
+    ]);
+    const hostXp = parseInt((hostUserSnap?.data()?.progress?.user_total_xp) ?? '0') || 0;
+    const guestXp = parseInt((guestUserSnap?.data()?.progress?.user_total_xp) ?? '0') || 0;
+    const hostLevel = getLevelFromXPLocal(hostXp);
+    const guestLevel = getLevelFromXPLocal(guestXp);
     await db.runTransaction(async (tx) => {
         const roomSnap = await tx.get(roomRef);
         const sessionSnap = await tx.get(sessionRef);
@@ -129,7 +270,7 @@ exports.onArenaRoomMatched = functions.firestore.onDocumentUpdated('arena_rooms/
             id: roomId,
             type: 'private',
             size: 2,
-            state: 'acceptance',
+            state: 'countdown',
             rankTier: 'bronze',
             playerIds: [room.hostId, room.guestId],
             questions,
@@ -137,23 +278,24 @@ exports.onArenaRoomMatched = functions.firestore.onDocumentUpdated('arena_rooms/
             questionStartedAt: null,
             questionTimeoutMs: 40000,
             createdAt: tPrivate,
-            acceptDeadlineAt: tPrivate + 45000,
         });
         tx.set(hostPlayerRef, {
             sessionId: roomId,
             playerId: room.hostId,
             displayName: room.hostName ?? 'Игрок',
+            avatarLevel: hostLevel,
             score: 0,
             answers: [],
-            lobbyChoice: 'none',
+            lobbyChoice: 'accept',
         }, { merge: true });
         tx.set(guestPlayerRef, {
             sessionId: roomId,
             playerId: room.guestId,
             displayName: room.guestName ?? 'Игрок',
+            avatarLevel: guestLevel,
             score: 0,
             answers: [],
-            lobbyChoice: 'none',
+            lobbyChoice: 'accept',
         }, { merge: true });
         tx.update(roomRef, { sessionId: roomId });
     });
@@ -285,6 +427,7 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
         const freshData = freshSession.data();
         if (!freshSession.exists || freshData?.resultProcessedAt)
             return;
+        const isFriendDuel = freshData?.type === 'private' || freshData?.type === 'rematch';
         const forfeitedUid = typeof freshData?.forfeitedBy === 'string' && freshData.forfeitedBy.trim()
             ? freshData.forfeitedBy.trim()
             : '';
@@ -372,19 +515,23 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
             let rankChanged = false;
             let promoted = false;
             if (!profileSnap.exists) {
-                newStars = won ? 1 : 0;
+                newStars = (!isFriendDuel && won) ? 1 : 0;
+                // При создании профиля кладём pickIncomingDisplayName, иначе fallback на первое
+                // непустое имя, чтобы избежать пустых записей. Placeholder-фолбэк ('Игрок') —
+                // последняя страховка, его перетрёт следующий матч с нормальным ником.
+                const initialDn = pickIncomingDisplayName(p.displayName) ?? (p.displayName?.trim() || 'Игрок');
                 tx.set(profileRef, {
                     userId: uid,
-                    displayName: p.displayName ?? 'Игрок',
+                    displayName: initialDn,
                     avatarId: '1',
                     rank: { tier: 'bronze', level: 'I', stars: newStars },
                     xp: xpDelta,
                     stats: {
-                        matchesPlayed: 1,
-                        matchesWon: won ? 1 : 0,
-                        totalScore: p.score ?? 0,
-                        winStreak: won ? 1 : 0,
-                        bestWinStreak: won ? 1 : 0,
+                        matchesPlayed: isFriendDuel ? 0 : 1,
+                        matchesWon: !isFriendDuel && won ? 1 : 0,
+                        totalScore: isFriendDuel ? 0 : (p.score ?? 0),
+                        winStreak: !isFriendDuel && won ? 1 : 0,
+                        bestWinStreak: !isFriendDuel && won ? 1 : 0,
                     },
                     updatedAt: Date.now(),
                 }, { merge: true });
@@ -396,82 +543,102 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
                 oldLevel = data.rank?.level ?? 'I';
                 const curStreak = data.stats?.winStreak ?? 0;
                 const bestStreak = data.stats?.bestWinStreak ?? 0;
-                // Ничья — звёзды и ранг не меняются.
-                newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
-                newTier = oldTier;
-                newLevel = oldLevel;
-                if (newStars >= 3) {
-                    newStars = 0;
-                    const li = LEVELS.indexOf(oldLevel);
-                    if (li < LEVELS.length - 1 && li >= 0) {
-                        newLevel = LEVELS[li + 1];
-                    }
-                    else {
-                        newLevel = LEVELS[0];
-                        const ti = TIERS.indexOf(oldTier);
-                        if (ti < TIERS.length - 1 && ti >= 0)
-                            newTier = TIERS[ti + 1];
-                    }
+                if (isFriendDuel) {
+                    // Дружеский матч: звёзды и ранг не меняются, серия побед не трогается
+                    newStars = oldStars;
+                    newTier = oldTier;
+                    newLevel = oldLevel;
+                    rankChanged = false;
+                    promoted = false;
+                    const incomingDn = pickIncomingDisplayName(p.displayName);
+                    const dnPatch = incomingDn ? { displayName: incomingDn } : {};
+                    tx.update(profileRef, {
+                        xp: (data.xp ?? 0) + xpDelta,
+                        ...dnPatch,
+                        updatedAt: Date.now(),
+                    });
                 }
-                else if (newStars < 0) {
-                    newStars = 2;
-                    const li = LEVELS.indexOf(oldLevel);
-                    if (li > 0) {
-                        newLevel = LEVELS[li - 1];
-                    }
-                    else {
-                        const ti = TIERS.indexOf(oldTier);
-                        if (ti > 0) {
-                            newTier = TIERS[ti - 1];
-                            newLevel = LEVELS[LEVELS.length - 1];
+                else {
+                    // Ничья — звёзды и ранг не меняются.
+                    newStars = isDraw ? oldStars : oldStars + (won ? 1 : isLast ? -1 : 0);
+                    newTier = oldTier;
+                    newLevel = oldLevel;
+                    if (newStars >= 3) {
+                        newStars = 0;
+                        const li = LEVELS.indexOf(oldLevel);
+                        if (li < LEVELS.length - 1 && li >= 0) {
+                            newLevel = LEVELS[li + 1];
                         }
                         else {
-                            newStars = 0;
+                            newLevel = LEVELS[0];
+                            const ti = TIERS.indexOf(oldTier);
+                            if (ti < TIERS.length - 1 && ti >= 0)
+                                newTier = TIERS[ti + 1];
                         }
                     }
+                    else if (newStars < 0) {
+                        newStars = 2;
+                        const li = LEVELS.indexOf(oldLevel);
+                        if (li > 0) {
+                            newLevel = LEVELS[li - 1];
+                        }
+                        else {
+                            const ti = TIERS.indexOf(oldTier);
+                            if (ti > 0) {
+                                newTier = TIERS[ti - 1];
+                                newLevel = LEVELS[LEVELS.length - 1];
+                            }
+                            else {
+                                newStars = 0;
+                            }
+                        }
+                    }
+                    rankChanged = newTier !== oldTier || newLevel !== oldLevel;
+                    promoted = rankChanged && (TIERS.indexOf(newTier) > TIERS.indexOf(oldTier)
+                        || (newTier === oldTier && LEVELS.indexOf(newLevel) > LEVELS.indexOf(oldLevel)));
+                    // Ничья сохраняет победную серию (не удлиняет её). Поражение — обнуляет.
+                    const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
+                    const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
+                    const lastStreakShardAt = data.lastStreakShardAt ?? 0;
+                    const streakShardReady = Date.now() - lastStreakShardAt > STREAK_SHARD_COOLDOWN_MS;
+                    const rankUpStreakShardAwarded = promoted && newStreak >= 3 && streakShardReady;
+                    // displayName обновляем, если из сессии пришло осмысленное имя — иначе при первом матче
+                    // ставился дефолтный «Игрок» и больше не менялся даже после смены ника пользователем.
+                    // Фильтр локализованных placeholder-ов на RU/UK/ES — см. PLACEHOLDER_NAMES выше.
+                    const incomingDn = pickIncomingDisplayName(p.displayName);
+                    const dnPatch = incomingDn ? { displayName: incomingDn } : {};
+                    tx.update(profileRef, {
+                        'rank.tier': newTier,
+                        'rank.level': newLevel,
+                        'rank.stars': newStars,
+                        xp: (data.xp ?? 0) + xpDelta,
+                        'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
+                        'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
+                        'stats.totalScore': (data.stats?.totalScore ?? 0) + (p.score ?? 0),
+                        'stats.winStreak': newStreak,
+                        'stats.bestWinStreak': Math.max(bestStreak, newStreak),
+                        ...dnPatch,
+                        ...(rankUpStreakShardAwarded ? { lastStreakShardAt: Date.now() } : {}),
+                        updatedAt: Date.now(),
+                    });
                 }
-                rankChanged = newTier !== oldTier || newLevel !== oldLevel;
-                promoted = rankChanged && (TIERS.indexOf(newTier) > TIERS.indexOf(oldTier)
-                    || (newTier === oldTier && LEVELS.indexOf(newLevel) > LEVELS.indexOf(oldLevel)));
-                // Ничья сохраняет винстрик (но не увеличивает его). Поражение — обнуляет.
-                const newStreak = won ? curStreak + 1 : isDraw ? curStreak : 0;
-                const STREAK_SHARD_COOLDOWN_MS = 24 * 60 * 60 * 1000;
-                const lastStreakShardAt = data.lastStreakShardAt ?? 0;
-                const streakShardReady = Date.now() - lastStreakShardAt > STREAK_SHARD_COOLDOWN_MS;
-                const rankUpStreakShardAwarded = promoted && newStreak >= 3 && streakShardReady;
-                // displayName обновляем, если из сессии пришло осмысленное имя — иначе при первом матче
-                // ставился дефолтный «Игрок» и больше не менялся даже после смены ника пользователем.
-                const incomingDn = (p.displayName ?? '').trim();
-                const dnPatch = incomingDn && incomingDn !== 'Игрок' ? { displayName: incomingDn } : {};
-                tx.update(profileRef, {
-                    'rank.tier': newTier,
-                    'rank.level': newLevel,
-                    'rank.stars': newStars,
-                    xp: (data.xp ?? 0) + xpDelta,
-                    'stats.matchesPlayed': (data.stats?.matchesPlayed ?? 0) + 1,
-                    'stats.matchesWon': (data.stats?.matchesWon ?? 0) + (won ? 1 : 0),
-                    'stats.totalScore': (data.stats?.totalScore ?? 0) + (p.score ?? 0),
-                    'stats.winStreak': newStreak,
-                    'stats.bestWinStreak': Math.max(bestStreak, newStreak),
-                    ...dnPatch,
-                    ...(rankUpStreakShardAwarded ? { lastStreakShardAt: Date.now() } : {}),
-                    updatedAt: Date.now(),
-                });
             }
-            const historyRef = profileRef.collection('match_history').doc(sessionId);
-            tx.set(historyRef, {
-                createdAt: Date.now(),
-                sessionId,
-                won,
-                isDraw,
-                myScore: p.score ?? 0,
-                oppScore: sorted.find((x) => x.playerId !== uid)?.score ?? 0,
-                oppName: sorted.find((x) => x.playerId !== uid)?.displayName ?? 'Соперник',
-                xpGained: xpDelta,
-                starsChange: newStars - oldStars,
-                rankBefore: { tier: oldTier, level: oldLevel, stars: oldStars },
-                rankAfter: { tier: newTier, level: newLevel, stars: newStars },
-            }, { merge: true });
+            if (!isFriendDuel) {
+                const historyRef = profileRef.collection('match_history').doc(sessionId);
+                tx.set(historyRef, {
+                    createdAt: Date.now(),
+                    sessionId,
+                    won,
+                    isDraw,
+                    myScore: p.score ?? 0,
+                    oppScore: sorted.find((x) => x.playerId !== uid)?.score ?? 0,
+                    oppName: sorted.find((x) => x.playerId !== uid)?.displayName ?? 'Соперник',
+                    xpGained: xpDelta,
+                    starsChange: newStars - oldStars,
+                    rankBefore: { tier: oldTier, level: oldLevel, stars: oldStars },
+                    rankAfter: { tier: newTier, level: newLevel, stars: newStars },
+                }, { merge: true });
+            }
             const resultRef = db.collection('arena_session_results').doc(`${sessionId}_${uid}`);
             tx.set(resultRef, {
                 sessionId,
@@ -503,6 +670,15 @@ exports.onArenaSessionFinished = functions.firestore.onDocumentUpdated('arena_se
         }
         tx.update(sessionRef, sessionUpdate);
     });
+    const finishIds = Array.isArray(after.playerIds) ? after.playerIds.filter(Boolean) : [];
+    try {
+        if (finishIds.length > 0) {
+            await Promise.all(finishIds.map((uid) => enrichArenaCourseDisplay(db, uid)));
+        }
+    }
+    catch (e) {
+        console.warn('enrichArenaCourseDisplay', e);
+    }
 });
 // ─── Rematch: создать новую сессию когда оппонент принял предложение ──────────
 exports.onArenaRematchAccepted = functions.firestore.onDocumentUpdated('arena_sessions/{sessionId}', async (event) => {
@@ -625,6 +801,8 @@ Object.defineProperty(exports, "communityListSellerInbox", { enumerable: true, g
 Object.defineProperty(exports, "communityMarkSellerInboxSeen", { enumerable: true, get: function () { return community_packs_1.communityMarkSellerInboxSeen; } });
 Object.defineProperty(exports, "communityGetPackRatingSummary", { enumerable: true, get: function () { return community_packs_1.communityGetPackRatingSummary; } });
 Object.defineProperty(exports, "communitySubmitPackRating", { enumerable: true, get: function () { return community_packs_1.communitySubmitPackRating; } });
+var friend_activity_mirror_1 = require("./friend_activity_mirror");
+Object.defineProperty(exports, "mirrorFriendActivityOnUserWrite", { enumerable: true, get: function () { return friend_activity_mirror_1.mirrorFriendActivityOnUserWrite; } });
 var referral_1 = require("./referral");
 Object.defineProperty(exports, "referralEnsureMyCode", { enumerable: true, get: function () { return referral_1.referralEnsureMyCode; } });
 Object.defineProperty(exports, "referralApply", { enumerable: true, get: function () { return referral_1.referralApply; } });
@@ -632,4 +810,9 @@ Object.defineProperty(exports, "referralOnUserProgressUpdated", { enumerable: tr
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 var admin_grant_1 = require("./admin_grant");
 Object.defineProperty(exports, "adminGrantReward", { enumerable: true, get: function () { return admin_grant_1.adminGrantReward; } });
+var phrase_content_rating_1 = require("./phrase_content_rating");
+Object.defineProperty(exports, "phraseContentRatingSubmit", { enumerable: true, get: function () { return phrase_content_rating_1.phraseContentRatingSubmit; } });
+Object.defineProperty(exports, "phraseContentRatingGetState", { enumerable: true, get: function () { return phrase_content_rating_1.phraseContentRatingGetState; } });
+var website_contact_1 = require("./website_contact");
+Object.defineProperty(exports, "submitWebsiteContact", { enumerable: true, get: function () { return website_contact_1.submitWebsiteContact; } });
 //# sourceMappingURL=index.js.map

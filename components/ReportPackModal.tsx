@@ -23,6 +23,7 @@ import {
   View,
 } from 'react-native';
 import { useTheme } from './ThemeContext';
+import { hideCommunityPackOnDevice } from '../app/community_packs/communityPackHiddenStorage';
 import { submitPackReport, type PackReportReason } from '../app/user_report';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -34,6 +35,8 @@ interface Props {
   authorStableId?: string | null;
   lang: Lang;
   onClose: () => void;
+  /** Після приховування набору на цьому пристрої (оновити список у батьківському екрані). */
+  onPackHiddenOnDevice?: () => void;
 }
 
 const REASONS_RU: { id: PackReportReason; label: string; sub: string }[] = [
@@ -70,6 +73,7 @@ export default function ReportPackModal({
   authorStableId,
   lang,
   onClose,
+  onPackHiddenOnDevice,
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
   const reasons = lang === 'uk' ? REASONS_UK : lang === 'es' ? REASONS_ES : REASONS_RU;
@@ -79,6 +83,7 @@ export default function ReportPackModal({
   const [loading, setLoading]   = useState(false);
   const [done, setDone]         = useState(false);
   const [throttled, setThrottled] = useState(false);
+  const [hiding, setHiding]     = useState(false);
 
   const reset = () => {
     setSelected(null);
@@ -86,6 +91,7 @@ export default function ReportPackModal({
     setLoading(false);
     setDone(false);
     setThrottled(false);
+    setHiding(false);
   };
 
   const handleClose = () => {
@@ -113,10 +119,6 @@ export default function ReportPackModal({
       }
       setDone(true);
       hapticSuccess();
-      setTimeout(() => {
-        reset();
-        onClose();
-      }, 1600);
     } catch {
       setLoading(false);
       hapticError();
@@ -151,18 +153,78 @@ export default function ReportPackModal({
             }}
           >
             {done ? (
-              <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                <Text style={{ fontSize: 56, marginBottom: 8 }}>✅</Text>
+              <View style={{ alignItems: 'stretch', paddingVertical: 8 }}>
+                <Text style={{ fontSize: 48, marginBottom: 6, textAlign: 'center' }}>✅</Text>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
                   {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', es: 'Denuncia enviada' })}
                 </Text>
-                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8, textAlign: 'center' }}>
+                <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
                   {triLang(lang, {
-                    uk: 'Дякуємо. Ми розглянемо протягом 24 годин.',
-                    ru: 'Спасибо. Мы рассмотрим в течение 24 часов.',
-                    es: 'Gracias. La revisaremos en un plazo de 24 horas.',
+                    uk: 'Ваша скарга збережена. Ми розглянемо її найближчим часом. Дякуємо, що допомагаєте зробити каталог безпечнішим.',
+                    ru: 'Ваша жалоба сохранена. Мы рассмотрим её в ближайшее время. Спасибо, что помогаете сделать каталог безопаснее.',
+                    es: 'Tu reporte quedó registrado. Lo revisaremos pronto. Gracias por ayudar a mantener el catálogo seguro.',
                   })}
                 </Text>
+                <TouchableOpacity
+                  disabled={hiding}
+                  onPress={async () => {
+                    try {
+                      hapticTap();
+                      setHiding(true);
+                      await hideCommunityPackOnDevice(packId);
+                      onPackHiddenOnDevice?.();
+                      hapticSuccess();
+                      handleClose();
+                    } catch {
+                      hapticError();
+                      setHiding(false);
+                    }
+                  }}
+                  style={{
+                    marginTop: 16,
+                    backgroundColor: t.bgSurface,
+                    borderColor: t.border,
+                    borderWidth: 1,
+                    borderRadius: 12,
+                    paddingVertical: 14,
+                    paddingHorizontal: 12,
+                    alignItems: 'center',
+                    opacity: hiding ? 0.6 : 1,
+                  }}
+                >
+                  {hiding ? (
+                    <ActivityIndicator color={t.textPrimary} />
+                  ) : (
+                    <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, textAlign: 'center' }}>
+                      {triLang(lang, {
+                        uk: 'Не показувати мені цей набір',
+                        ru: 'Не показывать мне этот набор',
+                        es: 'No volver a mostrarme este pack',
+                      })}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+                <Text style={{ color: t.textGhost, fontSize: 11, marginTop: 8, textAlign: 'center' }}>
+                  {triLang(lang, {
+                    uk: 'Лише на цьому пристрої. Можна скинути, перевстановивши застосунок.',
+                    ru: 'Только на этом устройстве. Сброс при удалении приложения.',
+                    es: 'Solo en este dispositivo. Se restablece si borras la app.',
+                  })}
+                </Text>
+                <TouchableOpacity
+                  onPress={handleClose}
+                  style={{
+                    marginTop: 12,
+                    backgroundColor: t.accent,
+                    borderRadius: 12,
+                    paddingVertical: 14,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Text style={{ color: t.correctText, fontWeight: '800' }}>
+                    {triLang(lang, { uk: 'Закрити', ru: 'Закрыть', es: 'Cerrar' })}
+                  </Text>
+                </TouchableOpacity>
               </View>
             ) : throttled ? (
               <View style={{ alignItems: 'center', paddingVertical: 16 }}>

@@ -17,7 +17,7 @@ import {
   LESSON_14_PHRASES,
   LESSON_15_PHRASES,
   LESSON_16_PHRASES,
-} from '../app/lesson_data_9_16.ts';
+} from '../app/lesson_data_9_16';
 
 const __dir = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dir, '..', 'app', 'lesson_data_9_16_phrases_es.gen.ts');

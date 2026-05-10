@@ -55,6 +55,9 @@ export async function markUpdateSeen(): Promise<void> {
 // AppContent в _layout.tsx показывает UpdateModal на основе этого результата.
 export async function checkForUpdate(): Promise<UpdateInfo | null> {
   try {
+    // В dev-сборке versionCode недоступен → пропускаем проверку
+    if (__DEV__) return null;
+
     const url = typeof UPDATE_CHECK_URL === 'string' ? UPDATE_CHECK_URL.trim() : '';
     if (!url || url.includes('YOUR_GITHUB_USERNAME')) return null;
 

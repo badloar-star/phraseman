@@ -201,14 +201,16 @@ export const toAmE = (lowercased: string): string => {
 
 /**
  * Нормализует текст:
- * 1. Заменяет curly apostrophes (\u2019 \u2018) и другие unicode-апострофы на прямой '
- * 2. Раскрывает все сокращения
+ * 1. NFKC (полноширинные A–Z / . ! ? и т.д. → обычные ASCII-символы)
+ * 2. Заменяет curly apostrophes (\u2019 \u2018) и другие unicode-апострофы на прямой '
  * 3. Приводит к нижнему регистру
- * 4. Убирает пунктуацию в конце
- * 5. Убирает лишние пробелы
+ * 4. Унифицирует длинное/короткое тире к ASCII `-`
+ * 5. Убирает пунктуацию и пробелы в конце (в т.ч. … и :)
+ * 6. Раскрывает все сокращения
+ * 7. Убирает лишние пробелы
  */
 export const normalize = (text: string): string => {
-  let result = text.trim();
+  let result = text.trim().normalize('NFKC');
 
   // Нормализация апострофов: любой символ из диапазонов одиночных кавычек, диакритики и модификаторов → прямой апостроф
   // Диапазоны: \u0060-\u0060 (backtick), \u00B4 (acute), \u02B0-\u02FF (modifier letters), \u0300-\u036F (combining diacritics),
@@ -216,7 +218,16 @@ export const normalize = (text: string): string => {
   result = result.replace(/[\u0060\u00B4\u02B0-\u02FF\u0300-\u036F\u2018-\u201F\u2032-\u2037\u275B-\u275E\uFF07]/g, "'");
 
   result = result.toLowerCase();
-  result = result.replace(/[.!?,;]+$/, '').trim();
+  // Тире/минус Unicode → ASCII (иначе «word—other» ≠ «word-other» при сравнении)
+  result = result.replace(/[\u2013\u2014\u2212]/g, '-');
+  // Многоточие как один символ или как три точки — снимаем вместе с прочим концом предложения
+  result = result.replace(/\u2026/g, '...');
+  // Снимаем хвостовую пунктуацию/пробелы итеративно: «profit. » → «profit»
+  for (let i = 0; i < 8; i++) {
+    const next = result.replace(/[.!?,;:…\s]+$/u, '').trim();
+    if (next === result) break;
+    result = next;
+  }
 
   for (const [pattern, replacement] of PAIRS) {
     result = result.replace(pattern, replacement);
@@ -228,11 +239,42 @@ export const normalize = (text: string): string => {
   return result.replace(/\s+/g, ' ').trim().toLowerCase();
 };
 
+/**
+ * Per-token punctuation / article-marker stripping — must stay aligned with
+ * `stripMarkers` in app/lesson1.tsx and app/phrase_target_utils.ts (phraseCanonicalAnswer).
+ * Used before `normalize()` so commas attached to lesson word chips (e.g. "Please,") match
+ * canonical answers built from stripped tokens ("Please").
+ */
+const stripMarkersWord = (word: string): string => {
+  const stripped = word
+    .replace(/^\/|\/$/g, '')
+    .replace(/«-»/g, '')
+    .replace(/[«»]/g, '')
+    .replace(/[.!?,;]+$/, '')
+    .trim();
+  return stripped === '-' ? '' : stripped;
+};
+
+/**
+ * Lesson/quiz phrase assembly: split on whitespace, strip trailing punct per token,
+ * rejoin, then apply full `normalize()` (contractions, BrE→AmE, etc.).
+ * Keeps grading aligned with per-token diff UI in lesson1.
+ */
+export const normalizeLessonAssemblyAnswer = (text: string): string => {
+  const rejoined = text
+    .trim()
+    .split(/\s+/)
+    .map(stripMarkersWord)
+    .filter((w) => w.length > 0)
+    .join(' ');
+  return normalize(rejoined);
+};
+
 export const isCorrectAnswer = (userAnswer: string, correctAnswer: string, alternatives?: string[]): boolean => {
-  const norm = normalize(userAnswer);
-  if (norm === normalize(correctAnswer)) return true;
+  const norm = normalizeLessonAssemblyAnswer(userAnswer);
+  if (norm === normalizeLessonAssemblyAnswer(correctAnswer)) return true;
   if (alternatives) {
-    return alternatives.some(alt => norm === normalize(alt));
+    return alternatives.some(alt => norm === normalizeLessonAssemblyAnswer(alt));
   }
   return false;
 };

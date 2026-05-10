@@ -1,42 +1,40 @@
-import React, { createContext, useContext, useCallback, useMemo, useRef } from 'react';
-import { Animated } from 'react-native';
-import { HOME_ENTRANCE } from '../constants/motion';
+import React, { createContext, useContext, useCallback, useMemo } from 'react';
 
 interface TabCtx {
   activeIdx: number;
   goToTab: (idx: number) => void;
   goHome: () => void;
   focusTick: number;
-  /** Общий Animated для фона Main — драйв анимации на главной + один ScreenGradient в (tabs)/_layout */
-  homeBgParallax: Animated.Value;
+  onSwipeStart: (idx: number) => void;
+  onSwipeComplete: (idx: number) => void;
 }
-
-const DUMMY_HOME_BG_PARALLAX = new Animated.Value(0);
 
 const TabContext = createContext<TabCtx>({
   activeIdx: 0,
   goToTab: () => {},
   goHome: () => {},
   focusTick: 0,
-  homeBgParallax: DUMMY_HOME_BG_PARALLAX,
+  onSwipeStart: () => {},
+  onSwipeComplete: () => {},
 });
 
 export const useTabNav = () => useContext(TabContext);
 
-export const TAB_KEYS = ['home', 'index', 'arena', 'settings'];
+export const TAB_KEYS = ['home', 'lessons', 'arena', 'settings'];
 
-export function TabProvider({ children, activeIdx, onTabChange, focusTick }: {
+export function TabProvider({ children, activeIdx, onTabChange, onSwipeStart, onSwipeComplete, focusTick }: {
   children: React.ReactNode;
   activeIdx: number;
   onTabChange: (idx: number) => void;
+  onSwipeStart: (idx: number) => void;
+  onSwipeComplete: (idx: number) => void;
   focusTick: number;
 }) {
-  const homeBgParallax = useRef(new Animated.Value(HOME_ENTRANCE.bgDriftPx)).current;
   const goToTab = useCallback((idx: number) => onTabChange(idx), [onTabChange]);
   const goHome  = useCallback(() => onTabChange(0), [onTabChange]);
   const value = useMemo(
-    () => ({ activeIdx, goToTab, goHome, focusTick, homeBgParallax }),
-    [activeIdx, goToTab, goHome, focusTick, homeBgParallax],
+    () => ({ activeIdx, goToTab, goHome, focusTick, onSwipeStart, onSwipeComplete }),
+    [activeIdx, goToTab, goHome, focusTick, onSwipeStart, onSwipeComplete],
   );
   return <TabContext.Provider value={value}>{children}</TabContext.Provider>;
 }

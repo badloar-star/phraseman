@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { useFocusEffect } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput, ScrollView,
-  ActivityIndicator, Share, Keyboard, StyleSheet,
+  ActivityIndicator, Share, Keyboard, StyleSheet, Modal,
 } from 'react-native';
+import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from 'react-native-safe-area-context';
 import * as Clipboard from 'expo-clipboard';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
@@ -18,6 +19,7 @@ import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/ava
 import { getLevelFromXP, getXPProgress } from '../../constants/theme';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import { normalizeInviteCodeInput } from '../friend_code';
 import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, readCachedMyInviteCodeForFriends } from '../firestore_friends';
 import {
   sendFriendRequest,
@@ -27,6 +29,7 @@ import {
   subscribeToFriends,
   subscribeToIncomingRequests,
   ensureFriendRequestViewerAuthLink,
+  cleanupStaleFriendData,
   type FriendEntry,
   type FriendRequestEntry,
 } from '../firestore_friend_requests';
@@ -34,9 +37,24 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
+import {
+  startFriendsTabSwrPrime,
+  peekFriendsTabSwrWarm,
+  memoryUpsertFriendsTabSwr,
+  peekProfilesCache,
+  upsertProfilesCache,
+  FRIENDS_TAB_SWR_CACHE_KEY,
+  FRIEND_PROFILES_CACHE_KEY,
+  type FriendsProfileCacheEntry,
+} from '../friends_tab_swr_warm';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useTabNav } from '../TabContext';
+import { fetchFriendsActivityFeed, invalidateFriendsActivityCache, type FriendEvent } from '../firestore_friend_activity';
+import { trackActivity } from '../app_activity';
+
+// Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
+startFriendsTabSwrPrime();
 
 // ── Types ─────────────────────────────────────────────────────────────────────
 
@@ -51,8 +69,13 @@ interface FriendProfile {
   frame: string;
 }
 
-/** Локальный снимок вкладки «Друзья» для мгновенного показа до ответа облака. */
-const FRIENDS_TAB_SWR_CACHE_KEY = 'friends_tab_swr_v1';
+const PROFILE_TTL_MS = 30 * 1000;
+
+type ProfileCacheEntry = FriendsProfileCacheEntry;
+
+async function writeProfilesCache(cache: Record<string, ProfileCacheEntry>): Promise<void> {
+  try { await AsyncStorage.setItem(FRIEND_PROFILES_CACHE_KEY, JSON.stringify(cache)); } catch { /* ignore */ }
+}
 
 // ── Firestore accessor ────────────────────────────────────────────────────────
 
@@ -78,17 +101,15 @@ function placeholderFriendProfile(uid: string): FriendProfile {
   };
 }
 
-async function fetchFriendProfile(uid: string): Promise<FriendProfile> {
-  const fallback: FriendProfile = {
-    uid, name: 'Игрок', totalXp: 0, weeklyXp: 0, streak: 0, isPremium: false,
-    avatar: String(getBestAvatarForLevel(1)), frame: String(getBestFrameForLevel(1)),
-  };
+async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfile | null> {
   try {
     const db = getDb();
-    if (!db) return fallback;
-    await ensureAnonUser();
+    if (!db) return null;
     const snap = await db.collection('users').doc(uid).get();
-    if (!snap.exists) return fallback;
+    if (!snap.exists) {
+      console.warn('[friendProfile] doc missing for uid:', uid);
+      return null;
+    }
     const d: Record<string, unknown> = snap.data() ?? {};
     const p = (d.progress as Record<string, unknown>) ?? {};
     const totalXp = parseInt((p.user_total_xp as string) ?? '0') || 0;
@@ -96,17 +117,79 @@ async function fetchFriendProfile(uid: string): Promise<FriendProfile> {
     const streak = parseInt((p.streak_count as string) ?? '0') || 0;
     const isPremium = (p.premium_plan as string) === 'monthly' || (p.premium_plan as string) === 'annual';
     const level = getLevelFromXP(totalXp);
-    const avatar = String(getBestAvatarForLevel(level));
-    const frame = String(getBestFrameForLevel(level));
+    const avatarRaw = typeof p.user_avatar === 'string' ? p.user_avatar.trim() : '';
+    const frameRaw = typeof p.user_avatar_frame === 'string'
+      ? p.user_avatar_frame.trim()
+      : (typeof p.user_frame === 'string' ? p.user_frame.trim() : '');
     const linked = (d.linkedAuth as Record<string, unknown> | undefined) ?? {};
     const nameRaw =
       (d.displayName as string) ||
+      (d.name as string) ||
       (p.displayName as string) ||
+      (p.display_name as string) ||
       (p.user_name as string) ||
-      (typeof linked.displayName === 'string' ? linked.displayName : '');
-    const name = nameRaw.trim() || 'Игрок';
-    return { uid, name, totalXp, weeklyXp, streak, isPremium, avatar, frame };
-  } catch { return fallback; }
+      (typeof linked.displayName === 'string' ? linked.displayName : '') ||
+      (typeof linked.name === 'string' ? linked.name : '');
+    console.warn('[friendProfile] uid:', uid, 'name:', JSON.stringify(nameRaw), 'xp:', totalXp, 'progressKeys:', Object.keys(p));
+    return {
+      uid,
+      name: nameRaw.trim() || 'Игрок',
+      totalXp, weeklyXp, streak, isPremium,
+      avatar: avatarRaw || String(getBestAvatarForLevel(level)),
+      frame: frameRaw || String(getBestFrameForLevel(level)),
+    };
+  } catch (e) {
+    console.warn('[friendProfile] error for uid:', uid, String(e));
+    return null;
+  }
+}
+
+/**
+ * Загружает профили для списка uid.
+ * - Из кеша (TTL 5 мин) — мгновенно без Firestore.
+ * - Просроченные или отсутствующие — из Firestore, результат кешируется.
+ * Возвращает Map uid→профиль; отсутствующие в Firestore не включаются.
+ */
+async function loadProfiles(
+  uids: string[],
+  existingCache: Record<string, ProfileCacheEntry>,
+): Promise<{ fresh: Record<string, FriendProfile>; updatedCache: Record<string, ProfileCacheEntry> }> {
+  const now = Date.now();
+  const result: Record<string, FriendProfile> = {};
+  const updatedCache = { ...existingCache };
+  const toFetch: string[] = [];
+
+  for (const uid of uids) {
+    const entry = existingCache[uid];
+    if (entry) {
+      // Сразу показываем последний сохранённый профиль (даже если TTL вышел); обновление — в фоне.
+      result[uid] = entry.profile;
+      if (now - entry.fetchedAt >= PROFILE_TTL_MS) toFetch.push(uid);
+    } else {
+      toFetch.push(uid);
+    }
+  }
+
+  if (toFetch.length > 0) {
+    // Убеждаемся что Auth готов один раз перед параллельными запросами.
+    await ensureAnonUser();
+    const fetched = await Promise.all(toFetch.map(fetchFriendProfileFromFirestore));
+    const newEntries: Record<string, ProfileCacheEntry> = {};
+    for (let i = 0; i < toFetch.length; i++) {
+      const profile = fetched[i];
+      if (profile) {
+        result[toFetch[i]] = profile;
+        const entry: ProfileCacheEntry = { profile, fetchedAt: now };
+        updatedCache[toFetch[i]] = entry;
+        newEntries[toFetch[i]] = entry;
+      }
+    }
+    // Обновляем модульный кеш сразу — переживает ремаунты компонента.
+    if (Object.keys(newEntries).length > 0) upsertProfilesCache(newEntries);
+    void writeProfilesCache(updatedCache);
+  }
+
+  return { fresh: result, updatedCache };
 }
 
 async function fetchMyProfile() {
@@ -122,10 +205,14 @@ async function fetchMyProfile() {
     const streak = parseInt((p.streak_count as string) ?? '0') || 0;
     const isPremium = (p.premium_plan as string) === 'monthly' || (p.premium_plan as string) === 'annual';
     const level = getLevelFromXP(totalXp);
+    const avatarRaw = typeof p.user_avatar === 'string' ? p.user_avatar.trim() : '';
+    const frameRaw = typeof p.user_avatar_frame === 'string'
+      ? p.user_avatar_frame.trim()
+      : (typeof p.user_frame === 'string' ? p.user_frame.trim() : '');
     return {
-      name: (d.displayName as string) || (p.displayName as string) || 'Я',
-      avatar: String(getBestAvatarForLevel(level)),
-      frame: String(getBestFrameForLevel(level)),
+      name: (d.displayName as string) || (p.displayName as string) || (p.user_name as string) || 'Я',
+      avatar: avatarRaw || String(getBestAvatarForLevel(level)),
+      frame: frameRaw || String(getBestFrameForLevel(level)),
       totalXP: totalXp,
       streak: streak ?? null,
       isPremium,
@@ -133,10 +220,27 @@ async function fetchMyProfile() {
   } catch { return null; }
 }
 
+/** Коротко: 11324 → 11.3k, 1 200 000 → 1.2M — чтобы строка на карточке не расползалась. */
+function formatCompactWeeklyXpDiff(absDiff: number): string {
+  const a = Math.abs(Math.round(absDiff));
+  if (a >= 1_000_000) {
+    const v = a / 1_000_000;
+    const s = v >= 10 ? String(Math.round(v)) : String(Math.round(v * 10) / 10).replace(/\.0$/, '');
+    return `${s}M`;
+  }
+  if (a >= 1000) {
+    const v = a / 1000;
+    const s = v >= 100 ? String(Math.round(v)) : String(Math.round(v * 10) / 10).replace(/\.0$/, '');
+    return `${s}k`;
+  }
+  return String(a);
+}
+
 // ── Weekly comparison badge ───────────────────────────────────────────────────
 
-function WeeklyBadge({ myWeekly, friendWeekly, lang }: {
+function WeeklyBadge({ myWeekly, friendWeekly, lang, textMuted }: {
   myWeekly: number; friendWeekly: number; lang: string;
+  textMuted: string;
 }) {
   if (myWeekly === 0 && friendWeekly === 0) return null;
   const diff = myWeekly - friendWeekly;
@@ -144,13 +248,43 @@ function WeeklyBadge({ myWeekly, friendWeekly, lang }: {
   const ahead = diff > 0;
   const color = ahead ? '#34C759' : '#FF6B6B';
   const icon = ahead ? 'trending-up' : 'trending-down';
-  const label = ahead
-    ? triLang(lang as any, { ru: `+${diff} XP на этой неделе`, uk: `+${diff} XP цього тижня`, es: `+${diff} XP esta semana` })
-    : triLang(lang as any, { ru: `отстаёшь на ${Math.abs(diff)} XP`, uk: `відстаєш на ${Math.abs(diff)} XP`, es: `atrás por ${Math.abs(diff)} XP` });
+  const compact = formatCompactWeeklyXpDiff(diff);
+  const sign = ahead ? '+' : '−';
+  const tail = ahead
+    ? triLang(lang as any, { ru: 'впереди', uk: 'попереду', es: 'adelante' })
+    : triLang(lang as any, { ru: 'отстаёшь', uk: 'відстаєш', es: 'atrás' });
+  const weekTag = triLang(lang as any, { ru: 'нед', uk: 'тиж', es: 'sem' });
+  const accessibilityLabel = ahead
+    ? triLang(lang as any, {
+        ru: `По неделе ты впереди на ${diff} XP`,
+        uk: `За тиждень ти попереду на ${diff} XP`,
+        es: `Esta semana llevas ${diff} XP más que este amigo`,
+      })
+    : triLang(lang as any, {
+        ru: `По неделе ты отстаёшь на ${Math.abs(diff)} XP`,
+        uk: `За тиждень ти відстаєш на ${Math.abs(diff)} XP`,
+        es: `Esta semana este amigo lleva ${Math.abs(diff)} XP más que tú`,
+      });
+
   return (
-    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 2 }}>
+    <View
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole="text"
+      style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 4, marginTop: 2, maxWidth: '100%' }}
+    >
       <Ionicons name={icon as any} size={11} color={color} />
-      <Text style={{ fontSize: 11, color, fontWeight: '600' }}>{label}</Text>
+      <Text style={{ fontSize: 11, color, fontWeight: '700' }} numberOfLines={1}>
+        {sign}
+        {compact}
+      </Text>
+      <Text style={{ fontSize: 10, color: textMuted, fontWeight: '600', opacity: 0.85 }} numberOfLines={1}>
+        {'XP · '}
+        {weekTag}
+        {' · '}
+      </Text>
+      <Text style={{ fontSize: 11, color, fontWeight: '600' }} numberOfLines={1}>
+        {tail}
+      </Text>
     </View>
   );
 }
@@ -179,10 +313,10 @@ function FriendRow({
   onPress: () => void; onDelete: () => void;
   lang: string; t: any; f: any;
 }) {
-  const level = getLevelFromXP(profile.totalXp);
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
   return (
     <TouchableOpacity
+      testID={`friend-row-${profile.uid}`}
       activeOpacity={0.75}
       onPress={onPress}
       style={{
@@ -205,24 +339,17 @@ function FriendRow({
           : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
         }
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
-        <WeeklyBadge myWeekly={myWeekly} friendWeekly={profile.weeklyXp} lang={lang} />
+        <WeeklyBadge myWeekly={myWeekly} friendWeekly={profile.weeklyXp} lang={lang} textMuted={t.textMuted} />
       </View>
-      <View style={{ alignItems: 'flex-end', gap: 4 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-          {profile.streak > 0 && (
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
-              <Text style={{ fontSize: 13 }}>🔥</Text>
-              <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
-            </View>
-          )}
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
-          <Ionicons name="star" size={11} color={t.gold} />
-          <Text style={{ color: t.gold, fontSize: f.sub, fontWeight: '700' }}>
-            {profile.totalXp.toLocaleString()}
-          </Text>
-        </View>
+      <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0 }}>
+        {profile.streak > 0 && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 2 }}>
+            <Text style={{ fontSize: 13 }}>🔥</Text>
+            <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
+          </View>
+        )}
         <TouchableOpacity
+          testID={`friend-delete-${profile.uid}`}
           onPress={onDelete}
           hitSlop={{ top: 8, bottom: 8, left: 12, right: 12 }}
         >
@@ -245,7 +372,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
 }) {
   const B = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
   return (
-    <View style={{
+    <View testID={`friend-request-row-${profile.uid}`} style={{
       flexDirection: 'row', alignItems: 'center',
       backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 10,
       borderWidth: 0.5, borderColor: t.border, gap: 12,
@@ -268,12 +395,14 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
       </View>
       <View style={{ gap: 8, alignSelf: 'center' }}>
         <TouchableOpacity
+          testID={`friend-request-accept-${profile.uid}`}
           onPress={onAccept}
           style={{ backgroundColor: t.accent, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, minWidth: 96, alignItems: 'center' }}
         >
           <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>{B('Принять', 'Прийняти', 'Aceptar')}</Text>
         </TouchableOpacity>
         <TouchableOpacity
+          testID={`friend-request-decline-${profile.uid}`}
           onPress={onDecline}
           style={{
             backgroundColor: t.bgSurface,
@@ -301,7 +430,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
 }) {
   const level = getLevelFromXP(profile.totalXp);
   return (
-    <View style={{
+    <View testID="friends-found-user-card" style={{
       backgroundColor: t.bgCard, borderRadius: 20, padding: 20, marginTop: 12,
       borderWidth: 1, borderColor: t.accent + '55', gap: 16,
       shadowColor: t.accent, shadowOpacity: 0.15, shadowRadius: 12, shadowOffset: { width: 0, height: 4 },
@@ -329,6 +458,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
         </TouchableOpacity>
       </View>
       <TouchableOpacity
+        testID="friends-add-found"
         onPress={onAdd}
         disabled={isAdding}
         style={{
@@ -366,7 +496,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
   const marginBottom = layout === 'standalone' ? 24 : under ? 24 : 0;
 
   return (
-    <View style={{
+    <View testID="friends-my-code-card" style={{
       backgroundColor: t.bgCard,
       borderRadius: 20,
       borderTopLeftRadius: topFlat ? 0 : 20,
@@ -388,7 +518,9 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
       </View>
       {code ? (
         <>
-          <Text style={{
+          <Text
+            testID="friends-my-code-text"
+            style={{
             fontSize: 36, fontWeight: '900', letterSpacing: 8,
             color: t.textPrimary, fontVariant: ['tabular-nums'],
           }}>
@@ -396,6 +528,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
           </Text>
           <View style={{ flexDirection: 'row', gap: 10 }}>
             <TouchableOpacity
+              testID="friends-copy-code"
               onPress={onCopy}
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
@@ -412,6 +545,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              testID="friends-share-code"
               onPress={onShare}
               style={{
                 flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
@@ -437,6 +571,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
           </Text>
           {onRetryLoad && (
             <TouchableOpacity
+              testID="friends-retry-code"
               onPress={onRetryLoad}
               style={{
                 backgroundColor: t.accent,
@@ -460,6 +595,290 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
         </Text>
       )}
     </View>
+  );
+}
+
+// ── Activity feed helpers ─────────────────────────────────────────────────────
+
+function formatEventTime(ts: number, lang: string): string {
+  const diff = Date.now() - ts;
+  const min = Math.floor(diff / 60000);
+  const hrs = Math.floor(diff / 3600000);
+  const days = Math.floor(diff / 86400000);
+  if (min < 2) return triLang(lang as any, { ru: 'только что', uk: 'щойно', es: 'ahora mismo' });
+  if (min < 60) return triLang(lang as any, { ru: `${min} мин назад`, uk: `${min} хв тому`, es: `hace ${min} min` });
+  if (hrs < 24) return triLang(lang as any, { ru: `${hrs} ч назад`, uk: `${hrs} год тому`, es: `hace ${hrs} h` });
+  if (days < 7) return triLang(lang as any, { ru: `${days} дн назад`, uk: `${days} дн тому`, es: `hace ${days} días` });
+  return new Date(ts).toLocaleDateString(lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'ru-RU', { day: 'numeric', month: 'short' });
+}
+
+function eventText(event: FriendEvent, friendName: string, lang: string): string {
+  const n = friendName;
+  const p = event.payload;
+  const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+  switch (event.type) {
+    case 'level_up':
+      return L(`${n} достиг уровня ${p.level}`, `${n} досяг рівня ${p.level}`, `${n} alcanzó el nivel ${p.level}`);
+    case 'lesson_complete': {
+      const lvlMap: Record<string, string> = { easy: L('лёгкий', 'легкий', 'fácil'), medium: L('средний', 'середній', 'medio'), hard: L('сложный', 'складний', 'difícil') };
+      const lvlName = lvlMap[String(p.level)] ?? String(p.level);
+      return L(`${n} прошёл урок (${lvlName})`, `${n} пройшов урок (${lvlName})`, `${n} completó la lección (${lvlName})`);
+    }
+    case 'achievement':
+      return L(`${n} получил достижение ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} отримав досягнення ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueó logro ${p.icon ?? '🏆'} «${p.nameRu}»`);
+    case 'streak_milestone':
+      return L(`${n} держит серию ${p.days} дней подряд 🔥`, `${n} тримає серію ${p.days} днів поспіль 🔥`, `${n} lleva ${p.days} días seguidos 🔥`);
+    case 'arena_rank_up':
+      return L(`${n} поднялся до ранга «${p.rank}» на арене ⚔️`, `${n} піднявся до рангу «${p.rank}» на арені ⚔️`, `${n} subió al rango «${p.rank}» en la arena ⚔️`);
+    case 'arena_rank_down':
+      return L(`${n} потерял ранг на арене`, `${n} втратив ранг на арені`, `${n} bajó de rango en la arena`);
+    default:
+      return `${n} — ${event.type}`;
+  }
+}
+
+function eventIcon(type: FriendEvent['type']): string {
+  switch (type) {
+    case 'level_up': return 'trending-up';
+    case 'lesson_complete': return 'book-outline';
+    case 'achievement': return 'trophy-outline';
+    case 'streak_milestone': return 'flame-outline';
+    case 'arena_rank_up': return 'arrow-up-circle-outline';
+    case 'arena_rank_down': return 'arrow-down-circle-outline';
+    default: return 'ellipse-outline';
+  }
+}
+
+function eventIconColor(type: FriendEvent['type'], accent: string): string {
+  switch (type) {
+    case 'level_up': return '#34C759';
+    case 'lesson_complete': return accent;
+    case 'achievement': return '#FFD700';
+    case 'streak_milestone': return '#FF9500';
+    case 'arena_rank_up': return '#34C759';
+    case 'arena_rank_down': return '#FF6B6B';
+    default: return accent;
+  }
+}
+
+// ── Activity tab ──────────────────────────────────────────────────────────────
+
+function ActivityTab({
+  friendUids, profiles, lang, t, f,
+}: {
+  friendUids: string[];
+  profiles: Record<string, FriendProfile>;
+  lang: string; t: any; f: any;
+}) {
+  const [events, setEvents] = useState<FriendEvent[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+  const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+
+  const load = useCallback(async (force = false) => {
+    if (friendUids.length === 0) { setEvents([]); return; }
+    if (force) setRefreshing(true); else setLoading(true);
+    const result = await fetchFriendsActivityFeed(friendUids, force);
+    setEvents(result);
+    if (force) setRefreshing(false); else setLoading(false);
+  }, [friendUids]);
+
+  // Без force кэш ленты (30 мин) долго показывает пустоту после событий у друзей.
+  useEffect(() => { void load(true); }, [load]);
+
+  if (friendUids.length === 0) {
+    return (
+      <View style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
+        <Ionicons name="people-outline" size={40} color={t.textMuted} />
+        <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+          {L('Добавьте друзей, чтобы видеть их активность', 'Додайте друзів, щоб бачити їхню активність', 'Agrega amigos para ver su actividad')}
+        </Text>
+      </View>
+    );
+  }
+
+  if (loading) {
+    return <ActivityIndicator color={t.accent} style={{ marginTop: 40 }} />;
+  }
+
+  if (events.length === 0) {
+    return (
+      <View style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
+        <Ionicons name="pulse-outline" size={40} color={t.textMuted} />
+        <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+          {L('Пока нет активности', 'Поки немає активності', 'Sin actividad aún')}
+        </Text>
+        <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center' }}>
+          {L('Здесь появятся достижения и прогресс ваших друзей', 'Тут з\'являться досягнення та прогрес ваших друзів', 'Aquí aparecerán logros y progreso de tus amigos')}
+        </Text>
+      </View>
+    );
+  }
+
+  return (
+    <>
+      <TouchableOpacity
+        onPress={() => { hapticTap(); void load(true); }}
+        style={{ flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-end', marginBottom: 12 }}
+        activeOpacity={0.7}
+      >
+        {refreshing
+          ? <ActivityIndicator size="small" color={t.textMuted} />
+          : <Ionicons name="refresh-outline" size={16} color={t.textMuted} />
+        }
+        <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+          {L('Обновить', 'Оновити', 'Actualizar')}
+        </Text>
+      </TouchableOpacity>
+      {events.map(event => {
+        const profile = profiles[event.uid];
+        const name = profile?.name ?? L('Друг', 'Друг', 'Amigo');
+        const color = eventIconColor(event.type, t.accent);
+        return (
+          <View
+            key={event.id}
+            style={{
+              flexDirection: 'row', alignItems: 'flex-start', gap: 12,
+              backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 10,
+              borderWidth: 0.5, borderColor: t.border,
+            }}
+          >
+            <View style={{
+              width: 36, height: 36, borderRadius: 18,
+              backgroundColor: color + '22',
+              justifyContent: 'center', alignItems: 'center', flexShrink: 0,
+            }}>
+              <Ionicons name={eventIcon(event.type) as any} size={18} color={color} />
+            </View>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600', lineHeight: 20 }}>
+                {eventText(event, name, lang)}
+              </Text>
+              <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 4 }}>
+                {formatEventTime(event.ts, lang)}
+              </Text>
+            </View>
+          </View>
+        );
+      })}
+    </>
+  );
+}
+
+// ── Add Friend Modal ──────────────────────────────────────────────────────────
+
+function AddFriendModal({
+  visible, onClose, myCode, onCopy, onShare, copied,
+  codeInput, setCodeInput, isSearching, foundUser, searchError,
+  isAdding, addFeedback, onSearch, onAddFound, onCloseFoundUser,
+  loadError, onRetryLoad, lang, t, f,
+}: {
+  visible: boolean; onClose: () => void;
+  myCode: string | null; onCopy: () => void; onShare: () => void; copied: boolean;
+  codeInput: string; setCodeInput: (v: string) => void;
+  isSearching: boolean; foundUser: FriendProfile | null; searchError: string | null;
+  isAdding: boolean; addFeedback: string | null;
+  onSearch: () => void; onAddFound: () => void; onCloseFoundUser: () => void;
+  loadError: boolean; onRetryLoad: () => void;
+  lang: string; t: any; f: any;
+}) {
+  const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+  return (
+    <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
+      <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'right', 'bottom', 'left']}>
+        <View style={{ flex: 1 }}>
+          {/* Header */}
+          <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
+            <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
+              {L('Добавить друга', 'Додати друга', 'Agregar amigo')}
+            </Text>
+            <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
+              <Ionicons name="close" size={26} color={t.textMuted} />
+            </TouchableOpacity>
+          </View>
+
+          <ScrollView
+            keyboardShouldPersistTaps="handled"
+            contentContainerStyle={{ padding: 20, gap: 16 }}
+          >
+            {/* My code */}
+            <CodeCard
+              code={myCode} onCopy={onCopy} onShare={onShare}
+              copied={copied} lang={lang} t={t} f={f}
+              layout="standalone"
+              loadError={loadError}
+              onRetryLoad={onRetryLoad}
+            />
+
+            {/* Search */}
+            <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
+              {L('Введите код друга', 'Введіть код друга', 'Ingresa el código del amigo')}
+            </Text>
+            <View style={{ flexDirection: 'row', gap: 10 }}>
+            <TextInput
+                testID="friends-code-input"
+                style={{
+                  flex: 1, backgroundColor: t.bgSurface, borderRadius: 12,
+                  paddingHorizontal: 16, paddingVertical: 13,
+                  fontSize: 20, fontWeight: '800', color: t.textPrimary,
+                  letterSpacing: 4, borderWidth: 0.5, borderColor: t.border,
+                }}
+                placeholder=""
+                placeholderTextColor={t.textMuted}
+                maxLength={6}
+                autoCapitalize="characters"
+                autoCorrect={false}
+                value={codeInput}
+                onChangeText={v => {
+                  setCodeInput(normalizeInviteCodeInput(v));
+                  onCloseFoundUser();
+                }}
+                onSubmitEditing={onSearch}
+              />
+              <TouchableOpacity
+                testID="friends-search"
+                onPress={onSearch}
+                disabled={codeInput.length !== 6 || isSearching}
+                style={{
+                  backgroundColor: codeInput.length === 6 ? t.accent : t.bgSurface,
+                  borderRadius: 12, paddingHorizontal: 18, justifyContent: 'center', alignItems: 'center',
+                  borderWidth: 0.5, borderColor: codeInput.length === 6 ? t.accent : t.border,
+                  opacity: isSearching ? 0.6 : 1,
+                }}
+              >
+                {isSearching
+                  ? <ActivityIndicator size="small" color={codeInput.length === 6 ? t.correctText : t.textMuted} />
+                  : <Ionicons name="search" size={22} color={codeInput.length === 6 ? t.correctText : t.textMuted} />
+                }
+              </TouchableOpacity>
+            </View>
+
+            {searchError && (
+              <View testID="friends-search-error" style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <Ionicons name="alert-circle-outline" size={16} color="#FF6B6B" />
+                <Text style={{ color: '#FF6B6B', fontSize: f.sub }}>{searchError}</Text>
+              </View>
+            )}
+
+            {foundUser && (
+              <FoundUserCard
+                profile={foundUser} onAdd={onAddFound} onClose={onCloseFoundUser}
+                isAdding={isAdding} lang={lang} t={t} f={f}
+              />
+            )}
+
+            {addFeedback && (
+              <View testID="friends-add-feedback" style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                <Ionicons name="checkmark-circle-outline" size={16} color="#34C759" />
+                <Text style={{ color: '#34C759', fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
+              </View>
+            )}
+          </ScrollView>
+        </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
+    </Modal>
   );
 }
 
@@ -491,14 +910,38 @@ export default function FriendsTabScreen() {
   const copyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const feedbackTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const [friends, setFriends] = useState<FriendEntry[]>([]);
-  const [requests, setRequests] = useState<FriendRequestEntry[]>([]);
-  const [profiles, setProfiles] = useState<Record<string, FriendProfile>>({});
+  const [friends, setFriends] = useState<FriendEntry[]>(() => peekFriendsTabSwrWarm()?.friends ?? []);
+  const [requests, setRequests] = useState<FriendRequestEntry[]>(() => peekFriendsTabSwrWarm()?.requests ?? []);
+  const [profiles, setProfiles] = useState<Record<string, FriendProfile>>(() => {
+    // Модульный кеш переживает ремаунты — показываем мгновенно без async.
+    const modCache = peekProfilesCache();
+    const base: Record<string, FriendProfile> = {};
+    for (const [uid, e] of Object.entries(modCache)) base[uid] = e.profile as FriendProfile;
+    // Дополняем warm SWR profiles если modCache пустой (первый старт).
+    const w = peekFriendsTabSwrWarm();
+    if (w?.profiles) {
+      for (const [uid, p] of Object.entries(w.profiles)) {
+        if (!base[uid]) base[uid] = p as FriendProfile;
+      }
+    }
+    return base;
+  });
 
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
 
   const mountedRef = useRef(true);
+  /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
+  const swrHadFriendsRef = useRef(false);
+  /** После сверки с диском / uid; до этого не показываем финальный «нет друзей». */
+  const [friendsCacheReady, setFriendsCacheReady] = useState(() => peekFriendsTabSwrWarm() != null);
+  /** Можно показывать пустой список как финальный (кеш пустой или уже пришёл надёжный снимок / таймаут). */
+  const [friendsLiveResolved, setFriendsLiveResolved] = useState(() => {
+    const w = peekFriendsTabSwrWarm();
+    return w != null && w.friends.length === 0;
+  });
+  /** Локальный кеш профилей с TTL — инициализируется из модульного peekProfilesCache() (переживает ремаунты). */
+  const profilesCacheRef = useRef<Record<string, ProfileCacheEntry>>(peekProfilesCache());
 
   const syncMyInviteCode = useCallback(async () => {
     // Retry up to 5 times with 3s delay — Auth may not be ready immediately on cold launch.
@@ -537,6 +980,20 @@ export default function FriendsTabScreen() {
     void AsyncStorage.getItem('weekly_xp').then(v => {
       if (mountedRef.current) setMyWeeklyXp(parseInt(v ?? '0') || 0);
     });
+    // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
+    void startFriendsTabSwrPrime().then(() => {
+      if (!mountedRef.current) return;
+      const fresh = peekProfilesCache();
+      profilesCacheRef.current = { ...fresh };
+      setProfiles(prev => {
+        const next = { ...prev };
+        for (const [uid, e] of Object.entries(fresh)) {
+          if (!next[uid]) next[uid] = e.profile as FriendProfile;
+        }
+        return next;
+      });
+    });
+    void cleanupStaleFriendData();
     return () => { mountedRef.current = false; };
   }, [syncMyInviteCode]);
 
@@ -546,47 +1003,90 @@ export default function FriendsTabScreen() {
     }, []),
   );
 
-  // ── Кеш с устройства → подписки (сначала старый снимок, потом тихое обновление из облака) ──
+  // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
+  // ──
 
   useEffect(() => {
     let cancelled = false;
     let unsubFriends: () => void = () => {};
     let unsubRequests: () => void = () => {};
+    let liveResolveTimer: ReturnType<typeof setTimeout> | null = null;
+    const LIVE_RESOLVE_MS = 12_000;
 
-    // 1. Читаем кеш немедленно — не ждём Auth, uid нужен только для проверки canonicalUid.
-    void (async () => {
-      try {
-        const raw = await AsyncStorage.getItem(FRIENDS_TAB_SWR_CACHE_KEY);
-        if (raw && !cancelled) {
-          const parsed = JSON.parse(raw) as {
-            canonicalUid?: string;
-            friends?: FriendEntry[];
-            requests?: FriendRequestEntry[];
-            profiles?: Record<string, FriendProfile>;
-          };
-          // Показываем кеш без проверки uid — если uid не совпадёт, Firestore-подписка перезапишет.
-          if (Array.isArray(parsed.friends)) setFriends(parsed.friends);
-          if (Array.isArray(parsed.requests)) setRequests(parsed.requests);
-          if (parsed.profiles && typeof parsed.profiles === 'object') setProfiles(parsed.profiles);
-        }
-      } catch {
-        /* ignore */
+    const clearLiveResolveTimer = () => {
+      if (liveResolveTimer) {
+        clearTimeout(liveResolveTimer);
+        liveResolveTimer = null;
       }
-    })();
+    };
 
-    // 2. Параллельно ждём Auth и запускаем live-подписки.
     void (async () => {
-      const uid = await ensureAnonUser();
-      if (!uid) return;
+      await startFriendsTabSwrPrime();
       if (cancelled) return;
+
+      let canonical: string | null = null;
+      try {
+        canonical = await getCanonicalUserId();
+      } catch {
+        canonical = null;
+      }
+      if (cancelled) return;
+
+      // После prime модульный кеш уже заполнен — не читаем диск снова (async лишний раунд).
+      const profilesCache = peekProfilesCache();
+      profilesCacheRef.current = { ...profilesCache };
+
+      const w = peekFriendsTabSwrWarm();
+      let hadSwrForUser = false;
+
+      if (canonical && w && w.canonicalUid === canonical) {
+        hadSwrForUser = true;
+        swrHadFriendsRef.current = w.friends.length > 0;
+        setFriends(w.friends);
+        setRequests(w.requests);
+        const fromWarmProf = (w.profiles as Record<string, FriendProfile>) ?? {};
+        const allUids = [
+          ...w.friends.map(f => f.uid),
+          ...w.requests.map(r => r.fromUid),
+        ];
+        const merged: Record<string, FriendProfile> = { ...fromWarmProf };
+        for (const uid of allUids) {
+          const e = profilesCache[uid];
+          if (e?.profile) merged[uid] = e.profile as FriendProfile;
+        }
+        if (Object.keys(merged).length > 0) setProfiles(merged);
+      } else if (canonical && w && w.canonicalUid !== canonical) {
+        setFriends([]);
+        setRequests([]);
+        setProfiles({});
+        swrHadFriendsRef.current = false;
+      }
+
+      setFriendsCacheReady(true);
+
+      if (hadSwrForUser && !swrHadFriendsRef.current) {
+        setFriendsLiveResolved(true);
+      } else {
+        liveResolveTimer = setTimeout(() => {
+          if (!cancelled) setFriendsLiveResolved(true);
+        }, LIVE_RESOLVE_MS);
+      }
+
+      const uid = await ensureAnonUser();
+      if (!uid || cancelled) return;
 
       await ensureFriendRequestViewerAuthLink();
       if (cancelled) return;
 
-      unsubFriends = subscribeToFriends(
-        data => { if (!cancelled) setFriends(data); },
-        () => {},
-      );
+      unsubFriends = subscribeToFriends((data, meta) => {
+        if (cancelled) return;
+        const fromCache = meta?.fromCache === true;
+        if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
+        clearLiveResolveTimer();
+        setFriends(data);
+        setFriendsLiveResolved(true);
+      });
+
       unsubRequests = subscribeToIncomingRequests(
         data => { if (!cancelled) setRequests(data); },
         () => {},
@@ -595,6 +1095,7 @@ export default function FriendsTabScreen() {
 
     return () => {
       cancelled = true;
+      clearLiveResolveTimer();
       unsubFriends();
       unsubRequests();
     };
@@ -606,39 +1107,36 @@ export default function FriendsTabScreen() {
         try {
           const uid = await getCanonicalUserId();
           if (!uid) return;
+          // Сохраняем только friends+requests — профили хранятся в отдельном кеше с TTL.
           await AsyncStorage.setItem(
             FRIENDS_TAB_SWR_CACHE_KEY,
-            JSON.stringify({
-              canonicalUid: uid,
-              friends,
-              requests,
-              profiles,
-              savedAt: Date.now(),
-            }),
+            JSON.stringify({ canonicalUid: uid, friends, requests, savedAt: Date.now() }),
           );
+          memoryUpsertFriendsTabSwr(uid, friends, requests);
         } catch {
           /* ignore */
         }
       })();
     }, 450);
     return () => clearTimeout(timer);
-  }, [friends, requests, profiles]);
+  }, [friends, requests]);
 
   // ── Profile loading ────────────────────────────────────────────────────────
 
   useEffect(() => {
-    const uids = [...friends.map(f => f.uid), ...requests.map(r => r.fromUid)];
-    const missing = uids.filter(uid => !profiles[uid]);
-    if (missing.length === 0) return;
+    const uids = [...new Set([...friends.map(f => f.uid), ...requests.map(r => r.fromUid)])];
+    if (uids.length === 0) return;
     let cancelled = false;
-    void Promise.all(missing.map(fetchFriendProfile)).then(result => {
+    void (async () => {
+      // profilesCacheRef.current уже загружен с диска при монтировании — не читаем снова
+      const { fresh, updatedCache } = await loadProfiles(uids, profilesCacheRef.current);
       if (cancelled) return;
+      profilesCacheRef.current = updatedCache;
       setProfiles(prev => {
-        const next = { ...prev };
-        for (const p of result) next[p.uid] = p;
+        const next = { ...prev, ...fresh };
         return next;
       });
-    });
+    })();
     return () => { cancelled = true; };
   }, [friends, requests]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -665,22 +1163,68 @@ export default function FriendsTabScreen() {
     setFoundUser(null);
     setSearchError(null);
     try {
-      const result = await lookupUserByFriendCode(codeInput.toUpperCase());
+      const codeUpper = codeInput.toUpperCase();
+      await trackActivity('friends:search_start', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'start',
+        tags: { codeLength: codeUpper.length },
+      });
+      const result = await lookupUserByFriendCode(codeUpper);
       if (!result) {
+        await trackActivity('friends:search_result', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'blocked',
+          tags: { reason: 'not_found', codeLength: codeUpper.length },
+        });
         setSearchError(L('Пользователь с таким кодом не найден', 'Користувача з таким кодом не знайдено', 'No se encontró usuario con ese código'));
         return;
       }
-      const codeUpper = codeInput.toUpperCase();
       const myUid = await ensureAnonUser();
       const isSelf =
         (myCode != null && codeUpper === myCode.toUpperCase()) ||
         (myUid != null && result.uid === myUid);
       if (isSelf) {
+        await trackActivity('friends:search_result', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'blocked',
+          tags: { reason: 'self_code', targetUid: result.uid },
+        });
         setSearchError(randomSelfFriendCodeMessage(L));
         return;
       }
-      const profile = await fetchFriendProfile(result.uid);
+      const fetched = await fetchFriendProfileFromFirestore(result.uid);
+      const profile: FriendProfile = fetched ?? {
+        uid: result.uid, name: 'Игрок', totalXp: 0, weeklyXp: 0, streak: 0, isPremium: false,
+        avatar: String(getBestAvatarForLevel(1)), frame: String(getBestFrameForLevel(1)),
+      };
       setFoundUser(profile);
+      await trackActivity('friends:search_result', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'success',
+        tags: { targetUid: result.uid, profileLoaded: fetched != null },
+      });
+    } catch (e) {
+      void import('../app_health')
+        .then(({ logAppWarning }) =>
+          logAppWarning('friends:search_failed', e, {
+            feature: 'friends',
+            screen: 'friends',
+            writeToFirestore: true,
+            tags: { codeLength: codeInput.length },
+          }),
+        )
+        .catch(() => {});
+      await trackActivity('friends:search_error', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'error',
+        tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
+      });
+      setSearchError(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
     } finally {
       setIsSearching(false);
     }
@@ -691,10 +1235,23 @@ export default function FriendsTabScreen() {
     hapticTap();
     setIsAdding(true);
     try {
+      await trackActivity('friends:add_request_start', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'start',
+        tags: { targetUid: foundUser.uid },
+      });
       const result = await sendFriendRequest(foundUser.uid);
+      await trackActivity('friends:add_request_result', {
+        feature: 'friends',
+        screen: 'friends',
+        result: result === 'sent' ? 'success' : result === 'error' ? 'error' : 'blocked',
+        tags: { targetUid: foundUser.uid, requestResult: result },
+      });
       if (result === 'sent') {
         setFoundUser(null);
         setCodeInput('');
+        void invalidateFriendsActivityCache();
         showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!'));
       } else if (result === 'already_friends') {
         setFoundUser(null);
@@ -708,6 +1265,24 @@ export default function FriendsTabScreen() {
       } else {
         showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
       }
+    } catch (e) {
+      void import('../app_health')
+        .then(({ logAppWarning }) =>
+          logAppWarning('friends:add_request_ui_failed', e, {
+            feature: 'friends',
+            screen: 'friends',
+            writeToFirestore: true,
+            tags: { targetUid: foundUser.uid },
+          }),
+        )
+        .catch(() => {});
+      await trackActivity('friends:add_request_error', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'error',
+        tags: { targetUid: foundUser.uid, error: e instanceof Error ? e.message : String(e) },
+      });
+      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
     } finally {
       setIsAdding(false);
     }
@@ -751,7 +1326,8 @@ export default function FriendsTabScreen() {
     });
   };
 
-  const [addPanelOpen, setAddPanelOpen] = useState(false);
+  const [addModalOpen, setAddModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState<'friends' | 'activity'>('friends');
 
   // ── Derived ────────────────────────────────────────────────────────────────
 
@@ -763,256 +1339,191 @@ export default function FriendsTabScreen() {
     [friends, profiles],
   );
 
+  const showFriendsEmpty =
+    friendsCacheReady && friendsLiveResolved && sortedFriends.length === 0;
+
+  const friendUids = useMemo(() => friends.map(f => f.uid), [friends]);
+
   const PX = 16;
-  /** Кнопка «назад» не должна центрироваться по блоку заголовок+подпись — при переносе подписи на 2 строки она «прыгала» вниз. Выравниваем по первой строке заголовка. */
-  const friendsTitleFs = typeof f.h1 === 'number' ? f.h1 : 28;
-  const friendsTitleLineH = Math.round(friendsTitleFs * 1.2);
-  const friendsBackBtnMarginTop = Math.max(0, Math.round((friendsTitleLineH - 36) / 2));
 
   // ── Render ─────────────────────────────────────────────────────────────────
 
   return (
-    <View style={{ flex: 1 }}>
+    <View testID="screen-friends" style={{ flex: 1 }}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX }}
       >
 
-        {/* Header — back по центру только строки заголовка (не всего столбца с подписью) */}
-        <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingTop: 12, paddingBottom: 6, marginBottom: 14 }}>
+        {/* Header */}
+        <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 6, marginBottom: 14 }}>
+          {/* Back */}
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel={L('На главную', 'На головну', 'Inicio')}
             style={{
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              backgroundColor: t.bgCard,
-              borderWidth: 0.5,
-              borderColor: t.border,
-              justifyContent: 'center',
-              alignItems: 'center',
-              marginRight: 12,
-              marginTop: friendsBackBtnMarginTop,
-              flexShrink: 0,
+              width: 36, height: 36, borderRadius: 18,
+              backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border,
+              justifyContent: 'center', alignItems: 'center', marginRight: 10, flexShrink: 0,
             }}
             onPress={() => { hapticTap(); goHome(); }}
             activeOpacity={0.85}
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TouchableOpacity>
-          <View style={{ flex: 1, minWidth: 0, justifyContent: 'center' }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5 }}>
-              {L('Друзья', 'Друзі', 'Amigos')}
-            </Text>
-            <Text
-              style={{
-                color: t.textMuted,
-                fontSize: f.sub,
-                marginTop: 2,
-                lineHeight: Math.round((typeof f.sub === 'number' ? f.sub : 14) * 1.35),
-                minHeight: Math.round((typeof f.sub === 'number' ? f.sub : 14) * 1.35) * 2,
-              }}
-              numberOfLines={2}
-            >
-              {sortedFriends.length > 0
-                ? L(`${sortedFriends.length} ${sortedFriends.length === 1 ? 'друг' : 'друзей'}`, `${sortedFriends.length} друзів`, `${sortedFriends.length} amigos`)
-                : L('Добавляйте друзей и соревнуйтесь', 'Додавайте друзів і змагайтеся', 'Añade amigos y compite')
-              }
-            </Text>
-          </View>
+
+          {/* Title */}
+          <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5, flex: 1 }}>
+            {L('Друзья', 'Друзі', 'Amigos')}
+          </Text>
+
+          {/* Add friend — круглая иконка */}
+          <TouchableOpacity
+            testID="friends-open-add"
+            onPress={() => {
+              hapticTap();
+              setAddModalOpen(true);
+              setFoundUser(null);
+              setSearchError(null);
+              setCodeInput('');
+            }}
+            activeOpacity={0.8}
+            style={{
+              width: 40, height: 40, borderRadius: 20,
+              backgroundColor: t.accent,
+              justifyContent: 'center', alignItems: 'center',
+              flexShrink: 0,
+            }}
+          >
+            <Ionicons name="person-add" size={18} color={t.correctText} />
+          </TouchableOpacity>
         </View>
 
-        {/* Add friend button — сверху; «Мой код» под ней / внутри той же выпадающей панели */}
-        <TouchableOpacity
-          onPress={() => { hapticTap(); setAddPanelOpen(v => !v); setFoundUser(null); setSearchError(null); setCodeInput(''); }}
-          activeOpacity={0.8}
-          style={{
-            backgroundColor: addPanelOpen ? t.bgCard : t.accent,
-            borderRadius: 16, paddingVertical: 14, paddingHorizontal: 18,
-            flexDirection: 'row', alignItems: 'center', justifyContent: 'center',
-            gap: 8, marginBottom: 0,
-            borderWidth: addPanelOpen ? 0.5 : 0,
-            borderColor: addPanelOpen ? t.border : 'transparent',
-            borderBottomLeftRadius: 0,
-            borderBottomRightRadius: 0,
-          }}
-        >
-          <Ionicons
-            name={addPanelOpen ? 'close' : 'person-add'}
-            size={18}
-            color={addPanelOpen ? t.textMuted : t.correctText}
-          />
-          <Text style={{ color: addPanelOpen ? t.textMuted : t.correctText, fontSize: f.body, fontWeight: '700' }}>
-            {addPanelOpen
-              ? L('Отмена', 'Скасувати', 'Cancelar')
-              : L('Добавить друга', 'Додати друга', 'Agregar amigo')
-            }
-          </Text>
-        </TouchableOpacity>
-
-        {!addPanelOpen && (
-          <CodeCard
-            code={myCode} onCopy={handleCopy} onShare={handleShare}
-            copied={copied} lang={lang} t={t} f={f}
-            layout="underButton"
-            loadError={friendCodeLoadError}
-            onRetryLoad={retryFriendCode}
-          />
-        )}
-
-        {/* Expandable add panel: мой код + поле ввода */}
-        {addPanelOpen && (
-          <View style={{
-            backgroundColor: t.bgCard,
-            borderBottomLeftRadius: 16,
-            borderBottomRightRadius: 16,
-            marginBottom: 24,
-            borderWidth: 0.5,
-            borderTopWidth: 0,
-            borderColor: t.border,
-            overflow: 'hidden',
-          }}>
-            <CodeCard
-              code={myCode} onCopy={handleCopy} onShare={handleShare}
-              copied={copied} lang={lang} t={t} f={f}
-              layout="inSheet"
-              loadError={friendCodeLoadError}
-              onRetryLoad={retryFriendCode}
-            />
-            <View style={{ padding: 16, paddingTop: 12, gap: 12 }}>
-            <View style={{ flexDirection: 'row', gap: 10 }}>
-              <TextInput
-                style={{
-                  flex: 1, backgroundColor: t.bgSurface, borderRadius: 12,
-                  paddingHorizontal: 16, paddingVertical: 13,
-                  fontSize: 20, fontWeight: '800', color: t.textPrimary,
-                  letterSpacing: 4, borderWidth: 0.5, borderColor: t.border,
-                }}
-                placeholder=""
-                placeholderTextColor={t.textMuted}
-                maxLength={6}
-                autoCapitalize="characters"
-                autoCorrect={false}
-                value={codeInput}
-                onChangeText={v => {
-                  setCodeInput(v.toUpperCase().replace(/[^ABCDEFGHJKMNPQRSTUVWXYZ23456789]/g, ''));
-                  setFoundUser(null);
-                  setSearchError(null);
-                }}
-                onSubmitEditing={handleSearch}
-              />
+        {/* Tab switcher */}
+        <View style={{
+          flexDirection: 'row', backgroundColor: t.bgCard,
+          borderRadius: 14, padding: 3, marginBottom: 20,
+          borderWidth: 0.5, borderColor: t.border,
+        }}>
+          {(['friends', 'activity'] as const).map(tab => {
+            const active = activeTab === tab;
+            const label = tab === 'friends'
+              ? L('Друзья', 'Друзі', 'Amigos')
+              : L('Активность', 'Активність', 'Actividad');
+            return (
               <TouchableOpacity
-                onPress={handleSearch}
-                disabled={codeInput.length !== 6 || isSearching}
+                testID={`friends-tab-${tab}`}
+                key={tab}
+                onPress={() => { hapticTap(); setActiveTab(tab); }}
+                activeOpacity={0.8}
                 style={{
-                  backgroundColor: codeInput.length === 6 ? t.accent : t.bgSurface,
-                  borderRadius: 12, paddingHorizontal: 18, justifyContent: 'center', alignItems: 'center',
-                  borderWidth: 0.5, borderColor: codeInput.length === 6 ? t.accent : t.border,
-                  opacity: isSearching ? 0.6 : 1,
+                  flex: 1, paddingVertical: 9, borderRadius: 11,
+                  backgroundColor: active ? t.accent : 'transparent',
+                  alignItems: 'center',
                 }}
               >
-                {isSearching
-                  ? <ActivityIndicator size="small" color={codeInput.length === 6 ? t.correctText : t.textMuted} />
-                  : <Ionicons name="search" size={22} color={codeInput.length === 6 ? t.correctText : t.textMuted} />
-                }
+                <Text style={{
+                  color: active ? t.correctText : t.textMuted,
+                  fontSize: f.body, fontWeight: active ? '700' : '500',
+                }}>
+                  {label}
+                  {tab === 'friends' && sortedFriends.length > 0
+                    ? ` (${sortedFriends.length})`
+                    : ''}
+                  {tab === 'friends' && requests.length > 0
+                    ? ` · ${requests.length}` : ''}
+                </Text>
               </TouchableOpacity>
-            </View>
+            );
+          })}
+        </View>
 
-            {searchError && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="alert-circle-outline" size={16} color="#FF6B6B" />
-                <Text style={{ color: '#FF6B6B', fontSize: f.sub }}>{searchError}</Text>
-              </View>
-            )}
-
-            {foundUser && (
-              <FoundUserCard
-                profile={foundUser} onAdd={handleAddFound} onClose={() => setFoundUser(null)}
-                isAdding={isAdding} lang={lang} t={t} f={f}
-              />
-            )}
-
-            {addFeedback && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="checkmark-circle-outline" size={16} color="#34C759" />
-                <Text style={{ color: '#34C759', fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
-              </View>
-            )}
-            </View>
-          </View>
-        )}
-
-        {/* Активные входящие заявки — над списком друзей */}
-        {requests.length > 0 && (
+        {/* ── Вкладка Друзья ── */}
+        {activeTab === 'friends' && (
           <>
-            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12, marginTop: 8 }}>
-              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-                {L('Активные заявки', 'Активні заявки', 'Solicitudes activas')}
+            {/* Активные входящие заявки */}
+            {requests.length > 0 && (
+              <>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                  <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
+                    {L('Активные заявки', 'Активні заявки', 'Solicitudes activas')}
+                  </Text>
+                  <View style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
+                    <Text style={{ color: t.correctText, fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
+                  </View>
+                </View>
+                {requests.map(req => (
+                  <RequestRow
+                    key={req.fromUid}
+                    profile={profiles[req.fromUid] ?? placeholderFriendProfile(req.fromUid)}
+                    onAccept={() => {
+                      hapticTap();
+                      acceptFriendRequest(req.fromUid)
+                        .then(() => { void invalidateFriendsActivityCache(); })
+                        .catch(() => {
+                          showFeedback(L('Ошибка при принятии. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar'));
+                        });
+                    }}
+                    onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
+                    lang={lang} t={t} f={f}
+                  />
+                ))}
+              </>
+            )}
+
+            {/* Список друзей */}
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
+              <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
+                {L('Список друзей', 'Список друзів', 'Lista de amigos')}
               </Text>
-              <View style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
-                <Text style={{ color: t.correctText, fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
-              </View>
+              {sortedFriends.length > 0 && (
+                <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+                  {L('по XP', 'за XP', 'por XP')}
+                </Text>
+              )}
             </View>
-            {requests.map(req => (
-              <RequestRow
-                key={req.fromUid}
-                profile={profiles[req.fromUid] ?? placeholderFriendProfile(req.fromUid)}
-                onAccept={() => {
-                  hapticTap();
-                  acceptFriendRequest(req.fromUid).catch(() => {
-                    showFeedback(L('Ошибка при принятии. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar'));
-                  });
-                }}
-                onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
-                lang={lang}
-                t={t}
-                f={f}
-              />
-            ))}
+
+            {sortedFriends.length === 0 ? (
+              !showFriendsEmpty ? null : (
+              <View testID="friends-empty-state" style={{
+                backgroundColor: t.bgCard, borderRadius: 20, padding: 32,
+                alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: t.border,
+              }}>
+                <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
+                  <Ionicons name="people-outline" size={28} color={t.textMuted} />
+                </View>
+                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                  {L('Пока нет друзей', 'Поки немає друзів', 'Sin amigos aún')}
+                </Text>
+                <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 20 }}>
+                  {L('Нажмите иконку + вверху справа', 'Натисніть іконку + вгорі праворуч', 'Pulsa el ícono + arriba a la derecha')}
+                </Text>
+              </View>
+              )
+            ) : (
+              sortedFriends.map((profile, i) => (
+                <FriendRow
+                  key={profile.uid}
+                  profile={profile}
+                  myWeekly={myWeeklyXp}
+                  rank={i + 1}
+                  onPress={() => openProfile(profile)}
+                  onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
+                  lang={lang} t={t} f={f}
+                />
+              ))
+            )}
           </>
         )}
 
-        {/* Friends list */}
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
-          <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
-            {L('Друзья', 'Друзі', 'Amigos')}
-          </Text>
-          {sortedFriends.length > 0 && (
-            <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-              {L('по XP', 'за XP', 'por XP')}
-            </Text>
-          )}
-        </View>
-
-        {sortedFriends.length === 0 ? (
-          <View style={{
-            backgroundColor: t.bgCard, borderRadius: 20, padding: 32,
-            alignItems: 'center', gap: 12, borderWidth: 0.5, borderColor: t.border,
-          }}>
-            <View style={{ width: 60, height: 60, borderRadius: 30, backgroundColor: t.bgSurface, justifyContent: 'center', alignItems: 'center' }}>
-              <Ionicons name="people-outline" size={28} color={t.textMuted} />
-            </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-              {L('Пока нет друзей', 'Поки немає друзів', 'Sin amigos aún')}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 20 }}>
-              {L('Нажмите «Добавить друга» и введите код', 'Натисніть «Додати друга» і введіть код', 'Pulsa «Agregar amigo» e ingresa el código')}
-            </Text>
-          </View>
-        ) : (
-          sortedFriends.map((profile, i) => (
-            <FriendRow
-              key={profile.uid}
-              profile={profile}
-              myWeekly={myWeeklyXp}
-              rank={i + 1}
-              onPress={() => openProfile(profile)}
-              onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
-              lang={lang} t={t} f={f}
-            />
-          ))
+        {/* ── Вкладка Активность ── */}
+        {activeTab === 'activity' && (
+          <ActivityTab
+            friendUids={friendUids}
+            profiles={profiles}
+            lang={lang} t={t} f={f}
+          />
         )}
 
         <View style={{ alignItems: 'center', paddingVertical: 16 }}>
@@ -1024,6 +1535,29 @@ export default function FriendsTabScreen() {
         </View>
 
       </ScrollView>
+
+      {/* Модал добавления друга */}
+      <AddFriendModal
+        visible={addModalOpen}
+        onClose={() => setAddModalOpen(false)}
+        myCode={myCode}
+        onCopy={handleCopy}
+        onShare={handleShare}
+        copied={copied}
+        codeInput={codeInput}
+        setCodeInput={setCodeInput}
+        isSearching={isSearching}
+        foundUser={foundUser}
+        searchError={searchError}
+        isAdding={isAdding}
+        addFeedback={addFeedback}
+        onSearch={handleSearch}
+        onAddFound={handleAddFound}
+        onCloseFoundUser={() => setFoundUser(null)}
+        loadError={friendCodeLoadError}
+        onRetryLoad={retryFriendCode}
+        lang={lang} t={t} f={f}
+      />
 
       <UnifiedPlayerModal
         player={selectedPlayer}
@@ -1043,11 +1577,18 @@ export default function FriendsTabScreen() {
         cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
         confirmLabel={L('Удалить', 'Видалити', 'Eliminar')}
         confirmVariant="default"
+        testIDPrefix="friends-delete-confirm"
         onCancel={() => setDeleteTarget(null)}
         onConfirm={() => {
           const target = deleteTarget;
           setDeleteTarget(null);
-          if (target) void deleteFriend(target.uid);
+          if (target) {
+            deleteFriend(target.uid)
+              .then(() => { void invalidateFriendsActivityCache(); })
+              .catch(() => {
+                showFeedback(L('Ошибка удаления. Попробуйте ещё раз', 'Помилка видалення. Спробуйте ще раз', 'Error al eliminar. Inténtalo de nuevo'));
+              });
+          }
         }}
       />
     </View>

@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, ScrollView, Modal, Pressable,
-  TouchableOpacity, Image,
+  TouchableOpacity, Image, ActivityIndicator,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
+import { useRouter, useFocusEffect } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
-import LevelBadge from '../components/LevelBadge';
+import ReportErrorButton from '../components/ReportErrorButton';
 import { getXPProgress } from '../constants/theme';
 import { getTitleString, TITLES } from '../constants/titles';
 import { useLang } from '../components/LangContext';
@@ -21,15 +21,16 @@ import {
   streakWeekRowShort,
   streakWagerTierDaysLabel,
 } from '../constants/streak_stats_i18n';
-import XpGainBadge from '../components/XpGainBadge';
 import { loadLeagueState, LEAGUES, CLUB_DESC_ES } from './league_engine';
-import { loadLeaderboard, loadWeekLeaderboard, getMyWeekPoints, getWeekKey , checkStreakLossPending } from './hall_of_fame_utils';
+import { getMyWeekPoints, checkStreakLossPending } from './hall_of_fame_utils';
 import { loadWager, placeWager, wagerDaysLeft, WagerState, WAGER_TIERS } from './streak_wager';
 import { getXPMultiplier, getActiveBoosts } from './club_boosts';
 // stationary_clubs feature удалён.
 import { readGiftMultiplier } from './level_gift_system';
-import { STORE_URL } from './config';
+import { DEV_MODE, IS_STORE_RELEASE, STORE_URL } from './config';
 import { usePremium } from '../components/PremiumContext';
+import StatsPremiumBlur from '../components/StatsPremiumBlur';
+import ActivityHeatmap365 from '../components/ActivityHeatmap365';
 import { hapticTap } from '../hooks/use-haptics';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { getShardsBalance, spendShards } from './shards_system';
@@ -38,13 +39,40 @@ import { getStatsCache, preloadStats, invalidateStatsCache } from './statsCache'
 import { onAppEvent } from './events';
 import { oskolokImageForPackShards } from './oskolok';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
+import { getForegroundDailyMsMap } from './foreground_usage_ms';
+import { syncDailyAnalyticsIfNeeded, loadPercentileData } from './daily_analytics_sync';
+import { type AllPercentiles } from './leaderboard_stats';
+import { loadLifetimeProfileStats, readLifetimeProfileStatsCache, type LifetimeProfileStats } from './lifetime_profile_stats';
+import {
+  devRandomizeLifetimePathDailyMetrics,
+  loadLifetimeTotalsChartDays,
+  type LifetimeTotalsChartKind,
+  type LifetimeChartDay,
+  type DevLifetimePathRandomSums,
+} from './stats_daily_breakdown';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
-import Svg from 'react-native-svg';
+import Svg, { Polyline, Line, Circle } from 'react-native-svg';
 import StreakShareCardSvg from '../components/share_cards/StreakShareCardSvg';
 import { shareStreakCardPng } from '../components/share_cards/shareStreakCardImage';
+import { navigateAfterModalClose } from './safe_modal_navigation';
 
 const CHART_H = 110;
 const DAYS_SHOW = 14;
+
+/** Линейный график «Весь путь»: сетка; линия по сырым значениям; опционально вторая — сглаженная (rollingAvg3). */
+const LIFETIME_LINE_COL_W = 26;
+const LIFETIME_LINE_GAP = 3;
+const LIFETIME_LINE_CELL = LIFETIME_LINE_COL_W + LIFETIME_LINE_GAP;
+const LIFETIME_LINE_PLOT_H = 108;
+
+type LifetimeChartTheme = {
+  bgSurface: string;
+  border: string;
+  textPrimary: string;
+  textSecond: string;
+  textMuted: string;
+  accent: string;
+};
 
 interface DayData {
   date: string;
@@ -53,6 +81,15 @@ interface DayData {
   points: number;
   active: boolean;
   streak: number;
+}
+
+/** Тот же диапазон дат, что и график опыта — время в приложении (foreground), мс. */
+interface TimeDayData {
+  date: string;
+  shortLabel: string;
+  dayNum: string;
+  ms: number;
+  active: boolean;
 }
 
 const toDateStr = (d: Date) => d.toISOString().split('T')[0];
@@ -81,6 +118,471 @@ const extractStreak = (val: any): number => {
   if (typeof val === 'object' && typeof val.streak === 'number') return val.streak;
   return 0;
 };
+
+const CHART_VALUE_LABEL_H = 20;
+
+/** Очки (опыт) за день над столбцом «Полученный опыт за день» (значение из daily_stats). */
+function formatActivityBarPoints(points: number, lang: Lang): string {
+  const n = Math.max(0, Math.round(Number(points) || 0));
+  if (n === 0) return triLang(lang, { ru: '0', uk: '0', es: '0' });
+  return String(n);
+}
+
+/** Время за день над столбцом «Время в приложении» (foreground, мс). */
+function formatTimeBarMs(ms: number, lang: Lang): string {
+  const safe = Math.max(0, Math.floor(ms));
+  const totalM = Math.floor(safe / 60000);
+  const h = Math.floor(totalM / 60);
+  const m = totalM % 60;
+  if (safe > 0 && totalM < 1) {
+    return triLang(lang, { ru: '<1м', uk: '<1хв', es: '<1m' });
+  }
+  if (totalM <= 0) return triLang(lang, { ru: '0', uk: '0', es: '0' });
+  if (h === 0) return triLang(lang, { ru: `${m}м`, uk: `${m}хв`, es: `${m}m` });
+  if (m === 0) return triLang(lang, { ru: `${h}ч`, uk: `${h}г`, es: `${h}h` });
+  return triLang(lang, { ru: `${h}ч${m}`, uk: `${h}г${m}`, es: `${h}h${m}` });
+}
+
+function rollingAvg3Series(vals: number[]): number[] {
+  const n = vals.length;
+  if (n === 0) return [];
+  return vals.map((_, i) => {
+    const i0 = Math.max(0, i - 1);
+    const i1 = i;
+    const i2 = Math.min(n - 1, i + 1);
+    return Math.round((vals[i0] + vals[i1] + vals[i2]) / 3);
+  });
+}
+
+function lifetimeLineChartContentWidth(n: number): number {
+  if (n <= 0) return 1;
+  return LIFETIME_LINE_CELL * n - LIFETIME_LINE_GAP;
+}
+
+function lifetimeChartYForValue(val: number, maxV: number, plotH: number): number {
+  const padTop = 8;
+  const usableH = Math.max(8, plotH - padTop - 6);
+  const ratio = Math.min(1, Math.max(0, val / maxV));
+  return padTop + usableH * (1 - ratio);
+}
+
+function buildLifetimeLinePoints(values: number[], maxV: number, plotH: number): string {
+  const n = values.length;
+  if (n === 0 || maxV <= 0) return '';
+  return values.map((v, i) => {
+    const x = LIFETIME_LINE_COL_W / 2 + i * LIFETIME_LINE_CELL;
+    const y = lifetimeChartYForValue(v, maxV, plotH);
+    return `${x},${y}`;
+  }).join(' ');
+}
+
+function lifetimeLineChartZeroLevelY(plotH: number): number {
+  const padTop = 8;
+  const usableH = Math.max(8, plotH - padTop - 6);
+  return padTop + usableH;
+}
+
+function LifetimePathLineChart({
+  days,
+  loading,
+  scrollRef,
+  chartTheme,
+  plotFutureDays = false,
+  showSmoothedLine = true,
+}: {
+  days: LifetimeChartDay[];
+  loading: boolean;
+  scrollRef?: React.RefObject<any> | null;
+  chartTheme: LifetimeChartTheme;
+  /** Показывать точки и для будущих дат на оси (dev: чтобы видеть все 7 залитых дней). */
+  plotFutureDays?: boolean;
+  /** Вторая линия — скользящее среднее по 3 дням (rollingAvg3Series). */
+  showSmoothedLine?: boolean;
+}) {
+  const ct = chartTheme;
+  if (loading) {
+    return (
+      <View style={{ paddingVertical: 16, alignItems: 'center' }}>
+        <ActivityIndicator color={ct.accent} />
+      </View>
+    );
+  }
+  if (days.length === 0) {
+    return null;
+  }
+
+  const chartToday = toDateStr(new Date());
+  const visibleDays = days;
+  /** Если в хранилище уже есть ненули на будущих датах оси (напр. dev залил 7 дней недели), не обрезаем ряд по «сегодня». */
+  const hasFutureValues = visibleDays.some((d) => d.date > chartToday && d.value > 0);
+  const useFullAxis = plotFutureDays || hasFutureValues;
+  const measuredDays = useFullAxis ? visibleDays : visibleDays.filter((d) => d.date <= chartToday);
+  const raw = measuredDays.map((d) => d.value);
+  const hasDailyData = raw.some((v) => v > 0);
+
+  const smooth =
+    hasDailyData && showSmoothedLine && !hasFutureValues ? rollingAvg3Series(raw) : [];
+  const maxV = hasDailyData
+    ? Math.max(1, ...raw, ...(smooth.length > 0 ? smooth : []))
+    : 1;
+  const chartW = lifetimeLineChartContentWidth(visibleDays.length);
+  const chartLen = raw.length;
+  /** Одна колонка: polyline из одной пары координат почти не видна — рисуем точку явно. */
+  const drawLines = hasDailyData && chartLen >= 2;
+  const pointsRed = drawLines ? buildLifetimeLinePoints(raw, maxV, LIFETIME_LINE_PLOT_H) : '';
+  const pointsPink =
+    drawLines && showSmoothedLine && smooth.length > 0
+      ? buildLifetimeLinePoints(smooth, maxV, LIFETIME_LINE_PLOT_H)
+      : '';
+  const yZero = lifetimeLineChartZeroLevelY(LIFETIME_LINE_PLOT_H);
+  /** Пока нет данных за неделю — маркер на первый день недели слева, не «вперёди» справа. */
+  const startDotCx = LIFETIME_LINE_COL_W / 2;
+
+  return (
+    <View
+      style={{
+        marginTop: 8,
+        marginBottom: 4,
+        paddingTop: 4,
+      }}
+    >
+      <ScrollView
+        ref={scrollRef ?? undefined}
+        horizontal
+        showsHorizontalScrollIndicator
+        onLayout={() => scrollRef?.current?.scrollTo?.({ x: 0, y: 0, animated: false })}
+      >
+        <View>
+          <Svg width={chartW} height={LIFETIME_LINE_PLOT_H}>
+            {[0, 1, 2, 3, 4].map((g) => {
+              const plotBottom = LIFETIME_LINE_PLOT_H - 4;
+              const plotTop = 8;
+              const y = plotTop + ((plotBottom - plotTop) * g) / 4;
+              return (
+                <Line
+                  key={`g-${g}`}
+                  x1={0}
+                  y1={y}
+                  x2={chartW}
+                  y2={y}
+                  stroke={ct.border}
+                  strokeWidth={1}
+                />
+              );
+            })}
+            {!hasDailyData ? (
+              <Circle cx={startDotCx} cy={yZero} r={4.5} fill={ct.accent} />
+            ) : chartLen === 1 && raw[0] > 0 ? (
+              <Circle
+                cx={LIFETIME_LINE_COL_W / 2}
+                cy={lifetimeChartYForValue(raw[0], maxV, LIFETIME_LINE_PLOT_H)}
+                r={5}
+                fill={ct.accent}
+              />
+            ) : (
+              <>
+                {pointsPink.length > 0 ? (
+                  <Polyline
+                    points={pointsPink}
+                    fill="none"
+                    stroke={ct.accent}
+                    strokeOpacity={0.38}
+                    strokeWidth={2.25}
+                  />
+                ) : null}
+                {pointsRed.length > 0 ? (
+                  <Polyline points={pointsRed} fill="none" stroke={ct.accent} strokeWidth={2.75} />
+                ) : null}
+              </>
+            )}
+          </Svg>
+          <View style={{ flexDirection: 'row', gap: LIFETIME_LINE_GAP, marginTop: 8 }}>
+            {visibleDays.map((d, i) => {
+              const isToday = d.date === chartToday;
+              const isFuture = d.date > chartToday;
+              return (
+                <View key={`ltx-${i}`} style={{ width: LIFETIME_LINE_COL_W, alignItems: 'center' }}>
+                  <Text
+                    style={{
+                      fontSize: 8,
+                      fontWeight: isToday ? '800' : '500',
+                      color: isToday ? ct.accent : ct.textMuted,
+                      opacity: isFuture ? 0.45 : 1,
+                    }}
+                    numberOfLines={1}
+                  >
+                    {d.shortLabel}
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 8,
+                      marginTop: 2,
+                      fontWeight: isToday ? '800' : '400',
+                      color: isToday ? ct.textSecond : ct.textMuted,
+                      opacity: isFuture ? 0.45 : 1,
+                    }}
+                  >
+                    {d.dayNum}
+                  </Text>
+                </View>
+              );
+            })}
+          </View>
+        </View>
+      </ScrollView>
+    </View>
+  );
+}
+
+function LifetimeTotalsBlock({
+  t,
+  f,
+  lang,
+  data,
+  expandedKind,
+  onToggleMetric,
+  chartDays,
+  chartLoading,
+  chartScrollRef,
+  gateExpandAll,
+  teaserChartDays,
+  showAllPathCharts,
+  pathChartsByKind,
+}: {
+  t: {
+    bgCard: string;
+    bgSurface: string;
+    border: string;
+    textPrimary: string;
+    textSecond: string;
+    textMuted: string;
+    accent: string;
+  };
+  f: { label: number; body: number; h2: number; sub: number };
+  lang: Lang;
+  data: LifetimeProfileStats;
+  expandedKind: LifetimeTotalsChartKind | null;
+  onToggleMetric: (kind: LifetimeTotalsChartKind) => void;
+  chartDays: LifetimeChartDay[];
+  chartLoading: boolean;
+  chartScrollRef: React.RefObject<any>;
+  /** «Расширить все строки» (редко нужно — по умолчанию только `expandedKind`). */
+  gateExpandAll?: boolean;
+  teaserChartDays?: LifetimeChartDay[];
+  /** Dev: показать график под каждой строкой «Весь путь». */
+  showAllPathCharts?: boolean;
+  pathChartsByKind?: Partial<Record<LifetimeTotalsChartKind, LifetimeChartDay[]>>;
+}) {
+
+  const metricRow = (label: string, value: string, kind: LifetimeTotalsChartKind) => {
+    const multiSeries = showAllPathCharts ? pathChartsByKind?.[kind] : undefined;
+    const teaserOk = !!gateExpandAll && teaserChartDays && teaserChartDays.length > 0;
+    const rowExpanded = teaserOk || expandedKind === kind || (!!showAllPathCharts && !!multiSeries?.length);
+    const showChart = teaserOk || expandedKind === kind || (!!showAllPathCharts && !!multiSeries?.length);
+    const daysForChart = teaserOk
+      ? teaserChartDays!
+      : showAllPathCharts && multiSeries?.length
+        ? multiSeries
+        : chartDays;
+    const loadingForChart = teaserOk ? false : showAllPathCharts && multiSeries?.length ? false : chartLoading;
+    return (
+      <React.Fragment key={kind}>
+        <TouchableOpacity
+          activeOpacity={0.72}
+          onPress={() => onToggleMetric(kind)}
+          accessibilityRole="button"
+          accessibilityLabel={label}
+        >
+          <View
+            style={{
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingVertical: 7,
+              borderBottomWidth: 0.5,
+              borderBottomColor: t.border,
+              gap: 8,
+            }}
+          >
+            <Text style={{ color: t.accent, fontSize: f.body, flex: 1, fontWeight: '600' }} numberOfLines={2}>
+              {label}
+            </Text>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>
+                {value}
+              </Text>
+              <Ionicons
+                name={rowExpanded ? 'chevron-down' : 'chevron-forward'}
+                size={18}
+                color={t.textMuted}
+              />
+            </View>
+          </View>
+        </TouchableOpacity>
+        {showChart ? (
+          <>
+            <Text
+              style={{
+                color: t.textMuted,
+                fontSize: f.sub,
+                marginTop: 8,
+                marginBottom: 2,
+              }}
+            >
+              {triLang(lang, {
+                ru: 'По дням: текущая и следующая календарные недели',
+                uk: 'За днями: поточний і наступний календарні тижні',
+                es: 'Por días: semana actual y próxima',
+              })}
+            </Text>
+            <LifetimePathLineChart
+              days={daysForChart}
+              loading={loadingForChart}
+              scrollRef={teaserOk || (showAllPathCharts && !!multiSeries?.length) ? undefined : chartScrollRef}
+              plotFutureDays={!!showAllPathCharts}
+              showSmoothedLine={!showAllPathCharts}
+              chartTheme={{
+                bgSurface: t.bgSurface,
+                border: t.border,
+                textPrimary: t.textPrimary,
+                textSecond: t.textSecond,
+                textMuted: t.textMuted,
+                accent: t.accent,
+              }}
+            />
+          </>
+        ) : null}
+      </React.Fragment>
+    );
+  };
+
+  return (
+    <View
+      style={{
+        borderRadius: 18,
+        padding: 16,
+        marginBottom: 12,
+        backgroundColor: t.bgCard,
+        borderWidth: 0.5,
+        borderColor: t.border,
+      }}
+    >
+      <Text
+        style={{
+          color: t.textMuted,
+          fontSize: f.label,
+          textTransform: 'uppercase',
+          letterSpacing: 0.8,
+          marginBottom: 10,
+        }}
+      >
+        {triLang(lang, { ru: 'За всё время', uk: 'За весь час', es: 'Total histórico' })}
+      </Text>
+      <Text
+        style={{
+          color: t.textMuted,
+          fontSize: f.sub,
+          marginTop: -4,
+          marginBottom: 8,
+          lineHeight: f.sub * 1.35,
+        }}
+      >
+        {triLang(lang, {
+          ru: 'Числа справа — общий итог за всё время.',
+          uk: 'Числа праворуч — загальний підсумок за весь час.',
+          es: 'Los números de la derecha son el total histórico.',
+        })}
+      </Text>
+      {metricRow(
+        triLang(lang, { ru: 'Слов выучено', uk: 'Слів вивчено', es: 'Palabras aprendidas' }),
+        String(data.wordsLearned),
+        'words_learned',
+      )}
+      {metricRow(
+        triLang(lang, { ru: 'Карточек сохранено', uk: 'Карток збережено', es: 'Tarjetas guardadas' }),
+        String(data.flashcardsSaved),
+        'flashcards_saved',
+      )}
+      {metricRow(
+        triLang(lang, {
+          ru: 'Фраз выучено',
+          uk: 'Фраз вивчено',
+          es: 'Frases aprendidas',
+        }),
+        String(data.phrasesLearned),
+        'phrases_learned',
+      )}
+      {metricRow(
+        triLang(lang, {
+          ru: 'Квизов пройдено',
+          uk: 'Квізів пройдено',
+          es: 'Cuestionarios hechos',
+        }),
+        String(data.quizzesTotal),
+        'quizzes_completed',
+      )}
+      {metricRow(
+        triLang(lang, { ru: 'Побед на Арене', uk: 'Перемог на Арені', es: 'Victorias en Arena' }),
+        String(data.arenaWins),
+        'arena_wins',
+      )}
+      {metricRow(
+        triLang(lang, { ru: 'Поражений на Арене', uk: 'Поразок на Арені', es: 'Derrotas en Arena' }),
+        String(data.arenaLosses),
+        'arena_losses',
+      )}
+      {metricRow(
+        triLang(lang, {
+          ru: 'Заданий дня выполнено',
+          uk: 'Завдань дня виконано',
+          es: 'Misiones diarias hechas',
+        }),
+        String(data.dailyTasksClaimed),
+        'daily_tasks_claimed',
+      )}
+      {metricRow(
+        triLang(lang, { ru: 'Осколков заработано', uk: 'Осколків зароблено', es: 'Fragmentos ganados' }),
+        String(data.shardsEarned),
+        'shards_earned',
+      )}
+      {metricRow(
+        triLang(lang, { ru: 'Осколков потрачено', uk: 'Осколків витрачено', es: 'Fragmentos gastados' }),
+        String(data.shardsSpent),
+        'shards_spent',
+      )}
+    </View>
+  );
+}
+
+const LIFETIME_PATH_DEV_CHART_KINDS: LifetimeTotalsChartKind[] = [
+  'words_learned',
+  'flashcards_saved',
+  'phrases_learned',
+  'quizzes_completed',
+  'arena_wins',
+  'arena_losses',
+  'daily_tasks_claimed',
+  'shards_earned',
+  'shards_spent',
+];
+
+function mergeDevRandomSumsIntoLifetime(
+  base: LifetimeProfileStats,
+  sums: DevLifetimePathRandomSums,
+): LifetimeProfileStats {
+  return {
+    ...base,
+    wordsLearned: sums.wordsLearned,
+    flashcardsSaved: sums.flashcardsSaved,
+    phrasesLearned: sums.phrasesLearned,
+    quizzesTotal: sums.quizzesTotal,
+    arenaWins: sums.arenaWins,
+    arenaLosses: sums.arenaLosses,
+    dailyTasksClaimed: sums.dailyTasksClaimed,
+    shardsEarned: sums.shardsEarned,
+    shardsSpent: sums.shardsSpent,
+  };
+}
 
 // ── Пари на цепочку ───────────────────────────────────────────────────────────
 const TIER_ICONS_WAGER: any[] = ['flag-outline', 'flame-outline', 'thunderstorm-outline', 'trophy-outline', 'star-outline', 'diamond-outline'];
@@ -155,7 +657,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
     const won = wager.result === 'won';
     const resultColor = won ? '#34C759' : '#FF3B30';
     return (
-      <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+      <View testID="wager-result-card" style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12 }}>
         <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: resultColor + '22', alignItems: 'center', justifyContent: 'center' }}>
           <Ionicons name={won ? 'trophy' : 'close-circle'} size={22} color={resultColor} />
         </View>
@@ -170,7 +672,13 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                 })}
               </Text>
               <ShardsInline n={`+${wager.rewardShards}`} size={f.body} textColor={resultColor} />
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>+{wager.rewardXP} XP</Text>
+              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
+                {triLang(lang, {
+                  ru: `+${wager.rewardXP} к опыту`,
+                  uk: `+${wager.rewardXP} до досвіду`,
+                  es: `+${wager.rewardXP} de XP`,
+                })}
+              </Text>
             </View>
           ) : (
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
@@ -193,6 +701,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
           </Text>
         </View>
         <TouchableOpacity
+          testID="wager-result-new"
           onPress={() => setWager(null)}
           style={{ backgroundColor: t.bgSurface2, borderRadius: 10, paddingHorizontal: 12, paddingVertical: 7 }}
         >
@@ -211,7 +720,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
     const tierIcon = TIER_ICONS_WAGER[wager.tierIdx] ?? 'flame-outline';
 
     return (
-      <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14 }}>
+      <View testID="wager-active-card" style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 12 }}>
           <View style={{ width: 40, height: 40, borderRadius: 12, backgroundColor: t.textSecond + '22', alignItems: 'center', justifyContent: 'center' }}>
             <Ionicons name={tierIcon} size={20} color={t.textSecond} />
@@ -232,8 +741,17 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
             </View>
           </View>
           <View style={{ alignItems: 'flex-end' }}>
-            <XpGainBadge amount={wager.rewardXP} visible={true} style={{ color: t.textSecond, fontSize: f.body, fontWeight: '800' }} />
-            <Text style={{ color: t.textMuted, fontSize: f.label }}>XP</Text>
+            <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', marginBottom: 2 }}>
+              {triLang(lang, { ru: 'Приз', uk: 'Приз', es: 'Premio' })}
+            </Text>
+            <ShardsInline n={wager.rewardShards} size={f.body} textColor={t.textSecond} />
+            <Text style={{ color: t.textGhost, fontSize: f.label, marginTop: 3 }}>
+              {triLang(lang, {
+                ru: `ещё +${wager.rewardXP} опыта`,
+                uk: `ще +${wager.rewardXP} досвіду`,
+                es: `+${wager.rewardXP} XP extra`,
+              })}
+            </Text>
           </View>
         </View>
 
@@ -266,6 +784,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
   return (
     <>
       <TouchableOpacity
+        testID="wager-open"
         onPress={() => setModalOpen(true)}
         activeOpacity={0.8}
         style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, flexDirection: 'row', alignItems: 'center', gap: 12 }}
@@ -279,9 +798,9 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.sub }}>
             {triLang(lang, {
-              ru: 'Удержи цепочку — получи +100% XP',
-              uk: 'Утримай ланцюжок — отримай +100% XP',
-              es: 'Mantén la racha y gana +100 % de XP',
+              ru: 'Ставка осколками — удержи серию и забери выигрыш',
+              uk: 'Ставка осколками — утримай серію й забери виграш',
+              es: 'Apuesta fragmentos: mantén la racha y cobra el premio',
             })}
           </Text>
         </View>
@@ -292,7 +811,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
       <Modal visible={modalOpen} transparent animationType="slide" onRequestClose={() => setModalOpen(false)}>
         <Pressable style={{ flex: 1, backgroundColor: '#00000066', justifyContent: 'flex-end' }} onPress={() => setModalOpen(false)}>
           <Pressable onPress={e => e.stopPropagation()}>
-            <View style={{ backgroundColor: t.bgPrimary, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 20, paddingBottom: 36 }}>
+            <View testID="wager-modal" style={{ backgroundColor: t.bgPrimary, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 20, paddingBottom: 36 }}>
 
               {/* Handle */}
               <View style={{ width: 36, height: 4, backgroundColor: t.border, borderRadius: 2, alignSelf: 'center', marginBottom: 18 }} />
@@ -338,6 +857,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                       const deficit  = Math.max(0, tier.betShards - shardsWager);
                       return (
                         <TouchableOpacity
+                          testID={`wager-tier-${i}`}
                           key={i}
                           onPress={() => setSelectedTier(i)}
                           activeOpacity={0.75}
@@ -395,6 +915,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
 
               {/* CTA */}
               <TouchableOpacity
+                testID="wager-place"
                 onPress={handlePlace}
                 disabled={placing || !canAfford}
                 activeOpacity={0.85}
@@ -420,9 +941,9 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                       </View>
                       <Text style={{ color: '#000', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
                         {triLang(lang, {
-                          ru: `Успех: +${sel.rewardShards - sel.betShards} к балансу · +${sel.rewardXP} XP`,
-                          uk: `Успіх: +${sel.rewardShards - sel.betShards} чистими · +${sel.rewardXP} XP`,
-                          es: `Si aciertas: +${sel.rewardShards - sel.betShards} netos al saldo · +${sel.rewardXP} XP`,
+                          ru: `Успех: +${sel.rewardShards - sel.betShards} оск. к балансу · +${sel.rewardXP} опыта`,
+                          uk: `Успіх: +${sel.rewardShards - sel.betShards} оск. до балансу · +${sel.rewardXP} досвіду`,
+                          es: `Si aciertas: +${sel.rewardShards - sel.betShards} frag. netos · +${sel.rewardXP} XP`,
                         })}
                       </Text>
                     </View>
@@ -465,16 +986,19 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
         }
         cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
         confirmLabel={triLang(lang, { ru: 'В магазин', uk: 'У магазин', es: 'A la tienda' })}
+        testIDPrefix="wager-need-shards"
         onCancel={() => setWagerNeedShards(false)}
         onConfirm={() => {
-          setWagerNeedShards(false);
-          router.push({
-            pathname: '/shards_shop',
-            params: {
-              need: String(Math.max(0, sel.betShards - shardsWager)),
-              source: 'streak_wager',
-            },
-          } as any);
+          navigateAfterModalClose(
+            () => setWagerNeedShards(false),
+            () => router.push({
+              pathname: '/shards_shop',
+              params: {
+                need: String(Math.max(0, sel.betShards - shardsWager)),
+                source: 'streak_wager',
+              },
+            } as any),
+          );
         }}
       />
       <ThemedConfirmModal
@@ -520,7 +1044,13 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
                       })}
                     </Text>
                   </View>
-                  <Text style={{ color: t.textMuted, fontSize: f.body }}>+{sel.rewardXP} XP</Text>
+                  <Text style={{ color: t.textMuted, fontSize: f.body }}>
+                    {triLang(lang, {
+                      ru: `+${sel.rewardXP} к опыту`,
+                      uk: `+${sel.rewardXP} до досвіду`,
+                      es: `+${sel.rewardXP} de XP`,
+                    })}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -540,6 +1070,7 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
         }
         cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
         confirmLabel={triLang(lang, { ru: 'Поставить', uk: 'Поставити', es: 'Apostar' })}
+        testIDPrefix="wager-confirm"
         onCancel={() => setWagerConfirm(false)}
         onConfirm={() => {
           setWagerConfirm(false);
@@ -550,9 +1081,207 @@ function WagerCard({ lang, t, f, totalStreak }: { lang: Lang; t: any; f: any; to
   );
 }
 
+/** Цепочка дней, неделя, заморозка, перцентиль цепочки — вынесено для порядка блоков на экране. */
+function StreakStatsHero({
+  t,
+  f,
+  lang,
+  totalStreak,
+  bestStreak,
+  days,
+  freezeActive,
+  chainShieldDays,
+  purpleColor,
+  isPremium,
+  premiumFreezeUsed,
+  freezeShardCost,
+  shardsBalance,
+  onFreezePress,
+  streakShareSvgRef,
+  percentilesStreak,
+}: {
+  t: any;
+  f: any;
+  lang: Lang;
+  totalStreak: number;
+  bestStreak: number;
+  days: DayData[];
+  freezeActive: boolean;
+  chainShieldDays: number;
+  purpleColor: string;
+  isPremium: boolean;
+  premiumFreezeUsed: boolean;
+  freezeShardCost: number;
+  shardsBalance: number;
+  onFreezePress: () => void;
+  streakShareSvgRef: React.RefObject<Svg | null>;
+  percentilesStreak: number | null;
+}) {
+  return (
+    <LinearGradient colors={t.cardGradient} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={{ borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border }}>
+      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
+        <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={Math.round(f.numLg * 1.1)} color={freezeActive ? '#64B4FF' : '#FF6B35'} />
+        <View style={{ flex: 1 }}>
+          <Text style={{ color: t.textPrimary, fontSize: f.numLg + 4, fontWeight: '700' }} numberOfLines={1}>{totalStreak}</Text>
+          <Text style={{ color: t.textMuted, fontSize: f.caption }}>{triLang(lang, { ru: 'дней подряд', uk: 'днів поспіль', es: 'días seguidos' })}</Text>
+        </View>
+        <View style={{ alignItems: 'flex-end', gap: 4 }}>
+          <Text style={{ color: t.textSecond, fontSize: f.h1, fontWeight: '700' }}>{bestStreak}</Text>
+          <Text style={{ color: t.textMuted, fontSize: f.label }}>{triLang(lang, { ru: 'лучший', uk: 'найкращий', es: 'récord' })}</Text>
+          {totalStreak >= 3 && (
+            <TouchableOpacity
+              style={{ flexDirection:'row', alignItems:'center', gap:4 }}
+              onPress={async () => {
+                const _ru = [
+                  `Моя цепочка в Phraseman — ${totalStreak} дней! 🔥 Я мощнее, чем утренняя доза кофеина. Кто догонит?`,
+                  `${totalStreak} дней подряд в Phraseman! 🏆 Стабильность — моё второе имя. Английский уже как родной! 🔥`,
+                  `Видишь этот огонь? 🔥 Моя цепочка уже ${totalStreak} дней в Phraseman! Ни дня без английского, ни дня без побед!`,
+                  `${totalStreak} дней подряд в Phraseman! Моя дисциплина официально вышла на новый уровень. Не останавливайте меня! 🔥`,
+                  `Говорят, привычка формируется 21 день. У меня уже ${totalStreak}! Phraseman — это уже стиль жизни. ☕️📖`,
+                  `Моя цепочка в Phraseman горит ярче моего желания уйти в отпуск! 🔥 ${totalStreak} дней в деле!`,
+                  `Моя цепочка в Phraseman горит ярче солнца! 🔥 ${totalStreak} дней подряд. Кто сможет побить мой рекорд?`,
+                  `${totalStreak} дней в Phraseman! 🏆 Маленькими шагами к большой цели. Мой английский говорит мне «спасибо»!`,
+                  `Не сбавляю темп! 🔥 ${totalStreak} дней обучения в Phraseman. Стабильность — признак мастерства!`,
+                  `Не подходите близко — я горяч! 🔥 ${totalStreak} дней подряд в Phraseman. Английский стал моей полезной привычкой.`,
+                  `Бегу марафон по английскому. Уже ${totalStreak}-й день в Phraseman без остановок! 🏃‍♀️ Кто со мной?`,
+                ];
+                const _uk = [
+                  `Мій стрік у Phraseman — ${totalStreak} днів! 🔥 Я потужніший за ранкову дозу кофеїну. Хто наздожене?`,
+                  `${totalStreak} днів поспіль у Phraseman! 🏆 Стабільність — моє друге ім'я. Англійська вже як рідна! 🔥`,
+                  `Бачиш цей вогонь? 🔥 Це мій стрік ${totalStreak} днів у Phraseman! Жодного дня без англійської, жодного дня без перемог!`,
+                  `${totalStreak} днів поспіль у Phraseman! Моя дисципліна офіційно вийшла на новий рівень. Не зупиняйте мене! 🔥`,
+                  `Кажуть, звичка формується 21 день. У мене вже ${totalStreak}! Phraseman — це вже стиль життя. ☕️📖`,
+                  `Мій стрік у Phraseman горить яскравіше за моє бажання піти у відпустку! 🔥 ${totalStreak} днів у справі!`,
+                  `Мій стрік у Phraseman горить яскравіше за сонце! 🔥 ${totalStreak} днів поспіль. Хто зможе побити мій рекорд?`,
+                  `${totalStreak} днів у Phraseman! 🏆 Маленькими кроками до великої мети. Моя англійська каже мені «дякую»!`,
+                  `Не збавляю темп! 🔥 ${totalStreak} днів навчання у Phraseman. Стабільність — ознака майстерності!`,
+                  `Не підходьте близько — я гарячий! 🔥 ${totalStreak} днів стріку у Phraseman. Англійська стала моєю корисною звичкою.`,
+                  `Біжу марафон з англійської. Вже ${totalStreak}-й день у Phraseman без зупинок! 🏃‍♀️ Хто зі мною?`,
+                ];
+                const _es = [
+                  `Mi racha en Phraseman: ¡${totalStreak} días! 🔥 Más fuerte que el café de la mañana. ¿Quién me alcanza?`,
+                  `¡${totalStreak} días seguidos en Phraseman! 🏆 La constancia es mi segundo nombre. ¡El inglés ya se siente natural! 🔥`,
+                  `¿Ves ese fuego? 🔥 Es mi racha de ${totalStreak} días en Phraseman. Ni un día sin inglés, ni un día sin ganar.`,
+                  `¡${totalStreak} días seguidos en Phraseman! Mi disciplina subió de nivel. ¡No me frenes! 🔥`,
+                  `Dicen que un hábito tarda 21 días. ¡Yo llevo ${totalStreak}! Phraseman ya es estilo de vida. ☕️📖`,
+                  `¡Mi racha en Phraseman arde más que mis ganas de vacaciones! 🔥 ${totalStreak} días y sumando.`,
+                  `¡Mi racha en Phraseman brilla más que el sol! 🔥 ${totalStreak} días seguidos. ¿Quién bate mi récord?`,
+                  `¡${totalStreak} días en Phraseman! 🏆 Paso a paso hacia la meta. ¡Mi inglés me lo agradece!`,
+                  `¡No bajo el ritmo! 🔥 ${totalStreak} días estudiando en Phraseman. ¡La constancia es maestría!`,
+                  `¡Cuidado, que quemo! 🔥 ${totalStreak} días de racha en Phraseman. El inglés ya es mi buen hábito.`,
+                  `Maratón de inglés: día ${totalStreak} en Phraseman sin parar. 🏃 ¿Quién se une?`,
+                ];
+                const _p = lang === 'uk' ? _uk : lang === 'es' ? _es : _ru;
+                const msg = _p[Math.floor(Math.random() * _p.length)] + `\n${STORE_URL}`;
+                await shareStreakCardPng(streakShareSvgRef, msg);
+              }}
+            >
+              <Ionicons name="share-outline" size={14} color={t.textGhost}/>
+              <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
+              </Text>
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
+      <View style={{ flexDirection: 'row', gap: 5 }}>
+        {streakWeekRowShort(lang).map((d, i) => {
+          const todayIdx = (new Date().getDay() + 6) % 7;
+          const weekStart = new Date();
+          weekStart.setDate(weekStart.getDate() - todayIdx);
+          const dayDate = new Date(weekStart);
+          dayDate.setDate(dayDate.getDate() + i);
+          const dateStr = toDateStr(dayDate);
+          const dayInfo = days.find(x => x.date === dateStr);
+          const done = dayInfo?.active || false;
+          const isToday = i === todayIdx;
+          return (
+            <View key={i} style={{ flex: 1, alignItems: 'center', gap: 6 }}>
+              <View style={[
+                { width: 22, height: 22, borderRadius: 11, backgroundColor: t.bgSurface2 },
+                done && { backgroundColor: t.correct },
+                isToday && !done && { backgroundColor: t.bgSurface2, borderWidth: 2, borderColor: t.textPrimary },
+              ]} />
+              <Text style={{ color: isToday ? t.textPrimary : (done ? t.textPrimary : t.textMuted), fontSize: 12, fontWeight: isToday ? '700' : '600' }}>{d}</Text>
+            </View>
+          );
+        })}
+      </View>
+      {percentilesStreak !== null && percentilesStreak >= 10 && totalStreak > 0 && (
+        <View style={{
+          flexDirection: 'row', alignItems: 'center', gap: 8,
+          backgroundColor: 'rgba(255,107,53,0.10)', borderRadius: 10,
+          padding: 10, marginTop: 10,
+          borderWidth: 0.5, borderColor: 'rgba(255,107,53,0.3)',
+        }}>
+          <Text style={{ fontSize: 16 }}>🔥</Text>
+          <Text style={{ color: t.textPrimary, fontSize: f.label, flex: 1, lineHeight: f.label * 1.4 }}>
+            {triLang(lang, {
+              ru: `Ваша цепочка ${totalStreak} дн. обходит ${percentilesStreak}% пользователей`,
+              uk: `Ваш ланцюжок ${totalStreak} дн. обганяє ${percentilesStreak}% користувачів`,
+              es: `Tu racha de ${totalStreak} días supera al ${percentilesStreak}% de usuarios`,
+            })}
+          </Text>
+        </View>
+      )}
+      <View style={{ marginTop: 14 }}>
+        {chainShieldDays > 0 && (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(167,139,250,0.12)', borderRadius: 12, padding: 12, marginBottom: 8 }}>
+            <Ionicons name="shield-checkmark-outline" size={20} color="#A78BFA" />
+            <Text style={{ color: purpleColor, fontSize: f.body, fontWeight: '600', flex: 1 }}>
+              {triLang(lang, {
+                ru: `Заморозка активна: ${chainShieldDays} дней`,
+                uk: `Заморозка активна: ${chainShieldDays} дн.`,
+                es: `Congelación activa: ${chainShieldDays} días`,
+              })}
+            </Text>
+          </View>
+        )}
+        {freezeActive ? (
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(100,180,255,0.12)', borderRadius: 12, padding: 12 }}>
+            <Ionicons name="snow-outline" size={20} color="#64B4FF" />
+            <Text style={{ color: '#64B4FF', fontSize: f.body, fontWeight: '600', flex: 1 }}>
+              {triLang(lang, {
+                ru: 'Цепочка заморожена на сегодня',
+                uk: 'Ланцюжок заморожено на сьогодні',
+                es: 'Racha congelada por hoy',
+              })}
+            </Text>
+          </View>
+        ) : (
+          <TouchableOpacity
+            onPress={onFreezePress}
+            disabled={chainShieldDays > 0}
+            style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: '#64B4FF', paddingVertical: 11, paddingHorizontal: 16, opacity: chainShieldDays > 0 ? 0.4 : 1 }}
+          >
+            <Ionicons name="snow-outline" size={18} color="#64B4FF" />
+            <View style={{ flex: 1 }}>
+              <Text style={{ color: '#64B4FF', fontSize: f.body, fontWeight: '600' }}>
+                {triLang(lang, { ru: 'Заморозить цепочку', uk: 'Заморозити ланцюжок', es: 'Congelar la racha' })}
+              </Text>
+              {isPremium && premiumFreezeUsed ? (
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 1 }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{freezeShardCost}</Text>
+                  <Image source={oskolokImageForPackShards(freezeShardCost)} style={{ width: 14, height: 14 }} />
+                </View>
+              ) : (
+                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 1 }}>
+                  {isPremium
+                    ? triLang(lang, { ru: 'Бесплатно (Премиум)', uk: 'Безкоштовно (Преміум)', es: 'Gratis (Premium)' })
+                    : triLang(lang, { ru: 'Нужен Премиум', uk: 'Потрібен Преміум', es: 'Se necesita Premium' })}
+                </Text>
+              )}
+            </View>
+            {!isPremium && <Ionicons name="lock-closed-outline" size={16} color={t.textMuted} />}
+          </TouchableOpacity>
+        )}
+      </View>
+    </LinearGradient>
+  );
+}
+
 export default function StreakStats() {
   const router = useRouter();
-  const { section } = useLocalSearchParams<{section?:string}>();
   const { theme: t, f, isDark, themeMode } = useTheme();
   const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
   const purpleColor = isDark ? '#9B59F5' : '#6B21D4';
@@ -564,21 +1293,32 @@ export default function StreakStats() {
 
   const [days, setDays]                  = useState<DayData[]>([]);
   const [allDays, setAllDays]            = useState<DayData[]>([]);
+  const [allTimeDays, setAllTimeDays]    = useState<TimeDayData[]>([]);
   const [totalStreak, setTotalStreak]    = useState(_sc.totalStreak);
   const [bestStreak, setBestStreak]      = useState(0);
   const [, setTotalPoints]    = useState(0);
   const [, setActiveDays] = useState(0);
   const [weekPoints, setWeekPoints]      = useState(_sc.weekPoints);
-  const [, setTopPlayers]      = useState<{ name: string; points: number }[]>([]);
-  const [, setMyRank]              = useState(0);
   const [, setMyName]              = useState(_sc.myName);
   const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[number]>(() =>
     LEAGUES.find(l => l.id === (_sc.engineLeagueId != null ? _sc.engineLeagueId : 0)) ?? LEAGUES[0],
   );
   const [totalXP, setTotalXP]            = useState(_sc.totalXP);
-  const [lessonsCompleted, setLessonsCompleted] = useState(_sc.lessonsCompleted);
-  const [lessonsProgressPct, setLessonsProgressPct] = useState(_sc.lessonsProgressPct);
   const { isPremium }                            = usePremium();
+  /** Тестер «Снять премиум»: иначе devUnlock ниже перекрывает блюр, хотя isPremium уже false. */
+  const [testerStripsPremium, setTesterStripsPremium] = useState(false);
+  useFocusEffect(
+    useCallback(() => {
+      let cancelled = false;
+      void AsyncStorage.getItem('tester_no_premium').then((v) => {
+        if (!cancelled) setTesterStripsPremium(v === 'true');
+      });
+      return () => { cancelled = true; };
+    }, []),
+  );
+  /** В dev-сборках без «магазинного» флага — снимаем блюр и открываем «Весь путь». Не при симуляции бесплатного. */
+  const statsDevUnlock =
+    (__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && !testerStripsPremium;
   const arenaRank                                = useArenaRank();
   const [freezeActive, setFreezeActive]         = useState(_sc.freezeActive);
   const [, setStreakAtRisk]          = useState(_sc.streakAtRisk);
@@ -606,19 +1346,76 @@ export default function StreakStats() {
 
   const scrollRef     = useRef<any>(null);
   const chartScrollRef = useRef<any>(null);
+  /** «Опыт» | «Время» — один блок графика по дням. */
+  const [dailyChartTab, setDailyChartTab] = useState<'xp' | 'time'>('xp');
   const streakShareSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
   const today = toDateStr(new Date());
-  const [levelY, setLevelY] = React.useState(0);
+  const [lifetimeStats, setLifetimeStats] = useState<LifetimeProfileStats | null>(null);
+  const [percentiles, setPercentiles] = useState<AllPercentiles>({ xp: null, streak: null, weekXp: null, daily7xp: null, daily7timeMs: null, arenaXp: null, totalUsers: 0 });
+  const [myXp7, setMyXp7] = useState(0);
+  const [myTime7ms, setMyTime7ms] = useState(0);
+
+  const [expandedLifetimeKind, setExpandedLifetimeKind] = useState<LifetimeTotalsChartKind | null>(null);
+  const [lifetimeChartDays, setLifetimeChartDays] = useState<LifetimeChartDay[]>([]);
+  const [lifetimeChartLoading, setLifetimeChartLoading] = useState(false);
+  /** Сброс загрузки графиков «Весь путь» после dev-рандома (AsyncStorage). */
+  const [lifetimeChartSeed, setLifetimeChartSeed] = useState(0);
+  const [devLifetimeChartsBusy, setDevLifetimeChartsBusy] = useState(false);
+  /** Dev: графики под всеми строками «Весь путь» + серии по каждой метрике */
+  const [devLifetimeAllCharts, setDevLifetimeAllCharts] = useState(false);
+  const [lifetimePathChartsByKind, setLifetimePathChartsByKind] = useState<
+    Partial<Record<LifetimeTotalsChartKind, LifetimeChartDay[]>>
+  >({});
+  const lifetimeChartScrollRef = useRef<any>(null);
+
+  useEffect(() => {
+    if (devLifetimeAllCharts) return;
+    if (!expandedLifetimeKind) {
+      setLifetimeChartDays([]);
+      setLifetimeChartLoading(false);
+      return;
+    }
+    let cancelled = false;
+    setLifetimeChartLoading(true);
+    setLifetimeChartDays([]);
+    loadLifetimeTotalsChartDays(expandedLifetimeKind, lang, REPORT_SCREENS_RUSSIAN_ONLY)
+      .then(series => {
+        if (!cancelled && series) setLifetimeChartDays(series);
+      })
+      .catch(() => {
+        if (!cancelled) setLifetimeChartDays([]);
+      })
+      .finally(() => {
+        if (!cancelled) setLifetimeChartLoading(false);
+      });
+    return () => { cancelled = true; };
+  }, [expandedLifetimeKind, lang, lifetimeChartSeed, devLifetimeAllCharts]);
+
+  useEffect(() => {
+    if (!expandedLifetimeKind || devLifetimeAllCharts) return;
+    const id = requestAnimationFrame(() => {
+      lifetimeChartScrollRef.current?.scrollTo?.({ x: 0, y: 0, animated: false });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [expandedLifetimeKind, lifetimeChartDays, devLifetimeAllCharts]);
 
   const loadAll = React.useCallback(async () => {
     try {
-      const [streakVal, statsRaw, wp, name, board, weekBoard] = await Promise.all([
+      const cachedLifetime = await readLifetimeProfileStatsCache();
+      if (cachedLifetime) setLifetimeStats(cachedLifetime);
+    } catch { /* ignore */ }
+
+    const lifetimeRefresh = loadLifetimeProfileStats()
+      .then(setLifetimeStats)
+      .catch(() => {});
+
+    try {
+      const [streakVal, statsRaw, wp, name, fgDaily] = await Promise.all([
         AsyncStorage.getItem('streak_count'),
         AsyncStorage.getItem('daily_stats'),
         getMyWeekPoints(),
         AsyncStorage.getItem('user_name'),
-        loadLeaderboard(),
-        loadWeekLeaderboard(),
+        getForegroundDailyMsMap(),
       ]);
 
       if (streakVal) setTotalStreak(parseInt(streakVal) || 0);
@@ -644,19 +1441,19 @@ export default function StreakStats() {
       });
       setDays(dayData);
 
-      // All-history chart: from first day of usage to first day + 60 days
+      // Activity chart: up to the last 60 days, but never before stats started.
       const todayStr = toDateStr(new Date());
       const statsKeys = Object.keys(statsMap).sort();
       const firstUsageDate = statsKeys.length > 0 ? statsKeys[0] : todayStr;
       const firstDay = new Date(firstUsageDate + 'T12:00:00');
-      const sixtyDaysFromFirst = new Date(firstDay);
-      sixtyDaysFromFirst.setDate(sixtyDaysFromFirst.getDate() + 59);
-
       const todayDay = new Date(todayStr + 'T12:00:00');
-      const endDate = todayDay < sixtyDaysFromFirst ? todayDay : sixtyDaysFromFirst;
+      const sixtyDaysAgo = new Date(todayDay);
+      sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 59);
+      const startDate = firstDay > sixtyDaysAgo ? firstDay : sixtyDaysAgo;
+      const endDate = todayDay;
 
       const allHistoryDays: DayData[] = [];
-      const cursor = new Date(firstDay);
+      const cursor = new Date(startDate);
       while (cursor <= endDate) {
         const dateStr = toDateStr(cursor);
         const val = statsMap[dateStr];
@@ -672,6 +1469,20 @@ export default function StreakStats() {
         cursor.setDate(cursor.getDate() + 1);
       }
       setAllDays(allHistoryDays);
+
+      const MIN_ACTIVE_MS = 60_000;
+      setAllTimeDays(
+        allHistoryDays.map((d) => {
+          const ms = fgDaily[d.date] ?? 0;
+          return {
+            date: d.date,
+            shortLabel: d.shortLabel,
+            dayNum: d.dayNum,
+            ms,
+            active: ms >= MIN_ACTIVE_MS,
+          };
+        }),
+      );
 
       const allPts = Object.values(statsMap).reduce((sum: number, val: any) => {
         return sum + extractPoints(val);
@@ -690,39 +1501,11 @@ export default function StreakStats() {
       }
       setBestStreak(best);
 
-      // Validate week board is current week before showing
-      const currentWeekKey = getWeekKey(new Date());
-      const wbMetaRaw = await AsyncStorage.getItem('week_board_meta');
-      const weekMeta = wbMetaRaw ? JSON.parse(wbMetaRaw) : { weekKey: '' };
-      const validWeekBoard = weekMeta.weekKey === currentWeekKey ? weekBoard : [];
-      const topSource = validWeekBoard.length > 0 ? validWeekBoard : board;
-      setTopPlayers(topSource.slice(0, 3).map(e => ({ name: e.name, points: e.points })));
-      if (name) {
-        const rank = topSource.findIndex(e => e.name === name);
-        setMyRank(rank >= 0 ? rank + 1 : 0);
-      }
-
       const ls = await loadLeagueState();
       setEngineLeague(LEAGUES.find(l => l.id === (ls?.leagueId ?? 0)) ?? LEAGUES[0]);
 
       const hadPrem = await AsyncStorage.getItem('had_premium_ever');
       setHadPremiumEver(hadPrem === '1');
-
-      // Count completed lessons (≥45 correct+replay_correct out of 50)
-      let completedCount = 0;
-      let totalCorrectAll = 0;
-      const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
-      const lessonResults = await AsyncStorage.multiGet(lessonKeys);
-      for (const [, val] of lessonResults) {
-        if (val) {
-          const p: string[] = JSON.parse(val);
-          const correctCount = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-          totalCorrectAll += correctCount;
-          if (correctCount >= 45) completedCount++; // 90% of TOTAL=50
-        }
-      }
-      setLessonsCompleted(completedCount);
-      setLessonsProgressPct(Math.min(100, Math.round(totalCorrectAll / (32 * 50) * 100)));
 
       // Streak freeze state
       const [freezeRaw, freeUsedRaw] = await Promise.all([
@@ -779,7 +1562,18 @@ export default function StreakStats() {
           setChainShieldDays(total);
         }
       }
+
     } catch {}
+
+    await lifetimeRefresh;
+
+    // Синк аналитики + перцентиль (не блокирует рендер — запускаем после основной загрузки)
+    void syncDailyAnalyticsIfNeeded();
+    loadPercentileData().then(({ myXp7: x7, myTime7ms: t7, percentiles: p }) => {
+      setMyXp7(x7);
+      setMyTime7ms(t7);
+      setPercentiles(p);
+    }).catch(() => {});
   }, [wdays]);
 
   // Reload data when screen regains focus (e.g. after tester functions).
@@ -791,6 +1585,32 @@ export default function StreakStats() {
     preloadStats();
     return undefined;
   }, [loadAll]));
+
+  const randomizeLifetimeChartsForDev = React.useCallback(async () => {
+    if (!(__DEV__ || DEV_MODE) || IS_STORE_RELEASE) return;
+    hapticTap();
+    setDevLifetimeChartsBusy(true);
+    try {
+      const sums = await devRandomizeLifetimePathDailyMetrics(7);
+      setLifetimeChartSeed((s) => s + 1);
+      setExpandedLifetimeKind(null);
+      await loadAll();
+      const base = await loadLifetimeProfileStats();
+      setLifetimeStats(mergeDevRandomSumsIntoLifetime(base, sums));
+
+      const byKind: Partial<Record<LifetimeTotalsChartKind, LifetimeChartDay[]>> = {};
+      await Promise.all(
+        LIFETIME_PATH_DEV_CHART_KINDS.map(async (k) => {
+          const series = await loadLifetimeTotalsChartDays(k, lang, REPORT_SCREENS_RUSSIAN_ONLY);
+          if (series) byKind[k] = series;
+        }),
+      );
+      setLifetimePathChartsByKind(byKind);
+      setDevLifetimeAllCharts(true);
+    } finally {
+      setDevLifetimeChartsBusy(false);
+    }
+  }, [loadAll, lang]);
 
   useEffect(() => {
     const sub = onAppEvent('xp_changed', () => {
@@ -831,7 +1651,6 @@ export default function StreakStats() {
     return () => clearInterval(timer);
   }, [leagueBoostExpiresAt, leagueBoostMultiplier]);
 
-  // Scroll to level section if opened from level block on home screen
   // Таймер обратного отсчёта для подарочного множителя XP
   useEffect(() => {
     if (!giftExpiresAt || giftMultiplier <= 1) { setGiftTimeLeft(''); return; }
@@ -847,14 +1666,6 @@ export default function StreakStats() {
     const timer = setInterval(fmt, 1000);
     return () => clearInterval(timer);
   }, [giftExpiresAt, giftMultiplier]);
-
-  useEffect(() => {
-    if (section === 'level' && levelY > 0) {
-      setTimeout(() => {
-        scrollRef.current?.scrollTo({ y: levelY, animated: true });
-      }, 300);
-    }
-  }, [section, levelY]);
 
   const handleFreezeStreak = () => {
     hapticTap();
@@ -897,7 +1708,7 @@ export default function StreakStats() {
           <Pressable onPress={e => e.stopPropagation()} style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, width: '82%', alignItems: 'center', borderWidth: 1, borderColor: t.border }}>
             <Text style={{ fontSize: 40, marginBottom: 10 }}>❄️</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 6, textAlign: 'center' }}>
-              {triLang(lang, { ru: 'Заморозить стрик?', uk: 'Заморозити стрік?', es: '¿Congelar la racha?' })}
+              {triLang(lang, { ru: 'Заморозить цепочку?', uk: 'Заморозити ланцюжок?', es: '¿Congelar la racha?' })}
             </Text>
             <View style={{ alignItems: 'center', marginBottom: 20, gap: 4 }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
@@ -954,86 +1765,476 @@ export default function StreakStats() {
             layoutSize={1080}
           />
         </View>
-        <View style={{ flexDirection: 'row', gap: 8 }}>
-          <TouchableOpacity
-            activeOpacity={0.82}
-            onPress={() => router.push('/hall_of_fame_screen' as any)}
+        <StreakStatsHero
+          t={t}
+          f={f}
+          lang={lang}
+          totalStreak={totalStreak}
+          bestStreak={bestStreak}
+          days={days}
+          freezeActive={freezeActive}
+          chainShieldDays={chainShieldDays}
+          purpleColor={purpleColor}
+          isPremium={isPremium}
+          premiumFreezeUsed={premiumFreezeUsed}
+          freezeShardCost={FREEZE_COST_SHARDS}
+          shardsBalance={shardsBalance}
+          onFreezePress={handleFreezeStreak}
+          streakShareSvgRef={streakShareSvgRef}
+          percentilesStreak={percentiles.streak}
+        />
+
+        <TouchableOpacity
+          activeOpacity={0.88}
+          onPress={() => {
+            hapticTap();
+            router.push('/progress_map' as any);
+          }}
+          style={{ borderRadius: 16, overflow: 'hidden' }}
+        >
+          <LinearGradient
+            colors={t.cardGradient}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
             style={{
-              flex: 1,
-              backgroundColor: t.bgSurface,
-              borderRadius: 12,
-              borderWidth: 1.2,
-              borderColor: `${t.accent}55`,
-              paddingHorizontal: 12,
-              paddingVertical: 10,
               flexDirection: 'row',
-              justifyContent: 'center',
               alignItems: 'center',
-              gap: 8,
+              gap: 14,
+              paddingVertical: 14,
+              paddingHorizontal: 16,
+              borderRadius: 16,
+              borderWidth: 0.5,
+              borderColor: t.border,
             }}
           >
-            <View style={{ width: 20, alignItems: 'center', justifyContent: 'center' }}>
-              <Ionicons name="trophy-outline" size={18} color={t.textPrimary} />
+            <Image
+              source={
+                themeMode === 'minimalLight'
+                  ? require('../assets/images/levels/her man grafit.webp')
+                  : themeMode === 'minimalDark'
+                    ? require('../assets/images/levels/her man fog.webp')
+                    : themeMode === 'ocean'
+                      ? require('../assets/images/levels/hero map ocean.webp')
+                      : themeMode === 'sakura'
+                        ? require('../assets/images/levels/hero map sacura.webp')
+                        : themeMode === 'gold'
+                          ? require('../assets/images/levels/hero map coarl.webp')
+                          : themeMode === 'neon'
+                            ? require('../assets/images/levels/hero man neon.webp')
+                            : require('../assets/images/levels/her man foret.webp')
+              }
+              style={{ width: 56, height: 56 }}
+              resizeMode="contain"
+            />
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
+                {triLang(lang, { ru: 'Карта прогресса', uk: 'Карта прогресу', es: 'Mapa de progreso' })}
+              </Text>
             </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Зал славы', uk: 'Зал слави', es: 'Salón de la fama' })}
-            </Text>
-          </TouchableOpacity>
-          {/* «Клубы» feature удалён — кнопка убрана. */}
-          <TouchableOpacity
-            activeOpacity={0.82}
-            onPress={() => router.push('/club_screen' as any)}
+            <Ionicons name="chevron-forward" size={22} color={t.textGhost} />
+          </LinearGradient>
+        </TouchableOpacity>
+
+        {/* XP MULTIPLIERS BLOCK */}
+        {(() => {
+          const streakM = totalStreak >= 30 ? 1.8 : totalStreak >= 14 ? 1.6 : totalStreak >= 7 ? 1.4 : totalStreak >= 3 ? 1.2 : 1;
+          const clubWeekTierM = 1 + engineLeague.id * 0.1;
+          const clubCombinedM = clubBoostMultiplier + clubWeekTierM + stationaryClubMultiplier - 2;
+          const comebackM = comebackActive ? 2 : 1;
+          const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1);
+          const hasBonus = total > 1;
+          const pct = (m: number) => `+${Math.round((m - 1) * 100)}%`;
+          const items: { key: string; label: string; value: string; color: string; active: boolean }[] = [
+            { key: 'streak', label: triLang(lang, { ru: 'Цепочка', uk: 'Ланцюжок', es: 'Racha' }), value: pct(streakM), color: '#FF6B35', active: streakM > 1 },
+            { key: 'club', label: triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga' }), value: pct(clubCombinedM), color: t.gold, active: clubCombinedM > 1 },
+            { key: 'league_boost', label: triLang(lang, { ru: 'Буст лиги', uk: 'Буст ліги', es: 'Impulso de liga' }), value: pct(leagueBoostMultiplier), color: '#A78BFA', active: leagueBoostMultiplier > 1 },
+            { key: 'comeback', label: triLang(lang, { ru: 'Возврат', uk: 'Повернення', es: 'Bonificación de retorno' }), value: pct(comebackM), color: '#60A5FA', active: comebackActive },
+            { key: 'gift', label: triLang(lang, { ru: 'Подарок уровня', uk: 'Подарунок рівня', es: 'Regalo de nivel' }), value: pct(giftMultiplier), color: purpleColor, active: giftMultiplier > 1 },
+          ];
+          const activeItems = items.filter(i => i.active);
+          return (
+            <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, borderWidth: 0.5, borderColor: hasBonus ? t.gold : t.border }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: activeItems.length > 0 ? 10 : 0 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
+                  {triLang(lang, {
+                  ru: 'Активные множители опыта',
+                  uk: 'Активні множники досвіду',
+                  es: 'Multiplicadores de experiencia activos',
+                })}
+                </Text>
+                <Text style={{ color: hasBonus ? t.gold : t.textMuted, fontSize: f.bodyLg, fontWeight: '800' }}>
+                  ×{total.toFixed(2)}
+                </Text>
+              </View>
+              {activeItems.length === 0 ? (
+                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 6 }}>
+                  {triLang(lang, { ru: 'Нет активных бонусов', uk: 'Немає активних бонусів', es: 'No hay bonificaciones activas' })}
+                </Text>
+              ) : (
+                <View style={{ gap: 6 }}>
+                  {activeItems.map(item => {
+                    const isGiftItem = item.key === 'gift';
+                    const isClubRow = item.key === 'club';
+                    const isLeagueBoostRow = item.key === 'league_boost';
+                    return (
+                      <View key={item.key} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+                          <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: item.color }} />
+                          <Text style={{ color: t.textSecond, fontSize: f.caption }}>{item.label}</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                          <Text style={{ color: item.color, fontSize: f.caption, fontWeight: '700' }}>{item.value}</Text>
+                          {isGiftItem && !!giftTimeLeft && (
+                            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '500' }}>{giftTimeLeft}</Text>
+                          )}
+                          {isClubRow && clubBoostMultiplier > 1 && !!clubBoostTimeLeft && (
+                            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '500' }}>{clubBoostTimeLeft}</Text>
+                          )}
+                          {isLeagueBoostRow && leagueBoostMultiplier > 1 && !!leagueBoostTimeLeft && (
+                            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '500' }}>{leagueBoostTimeLeft}</Text>
+                          )}
+                        </View>
+                      </View>
+                    );
+                  })}
+                </View>
+              )}
+            </View>
+          );
+        })()}
+
+        {/* Аналитика ошибок — отдельный экран (категории / уроки / фразы) */}
+        <TouchableOpacity
+          onPress={() => {
+            hapticTap();
+            router.push('/phrase_analytics_screen' as any);
+          }}
+          activeOpacity={0.88}
+          style={{ borderRadius: 18, overflow: 'hidden' }}
+        >
+          <LinearGradient
+            colors={isLightTheme ? ['#FFFBF0', '#FFF5E0', '#F5E6D3'] : ['#1a1508', '#2d2410', '#1f180c']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
             style={{
-              flex: 1,
-              backgroundColor: t.bgSurface,
-              borderRadius: 12,
-              borderWidth: 1.2,
-              borderColor: `${t.accent}55`,
-              paddingHorizontal: 12,
-              paddingVertical: 10,
+              padding: 16,
+              borderWidth: 1,
+              borderColor: 'rgba(255,215,0,0.5)',
+              borderRadius: 18,
               flexDirection: 'row',
-              justifyContent: 'center',
               alignItems: 'center',
-              gap: 8,
+              justifyContent: 'space-between',
             }}
           >
-            <View style={{ width: 20, alignItems: 'center', justifyContent: 'center' }}>
-              <Ionicons name="shield-outline" size={18} color={t.textPrimary} />
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+              <View style={{ width: 46, height: 46, borderRadius: 14, backgroundColor: 'rgba(184,134,11,0.25)', alignItems: 'center', justifyContent: 'center' }}>
+                <Ionicons name="analytics" size={26} color="#FFD700" />
+              </View>
+              <View style={{ flex: 1 }}>
+                <Text style={{ color: isLightTheme ? '#5c4a1a' : '#FFD700', fontSize: f.body, fontWeight: '900' }}>
+                  {triLang(lang, { ru: 'Аналитика ошибок', uk: 'Аналітика помилок', es: 'Análisis de errores' })}
+                </Text>
+                <Text style={{ color: isLightTheme ? '#8a7820' : 'rgba(255,215,0,0.75)', fontSize: f.caption, marginTop: 4, lineHeight: f.caption * 1.35 }}>
+                  {triLang(lang, {
+                    ru: 'Где ошибаешься чаще всего — по темам и фразам',
+                    uk: 'Де помиляєшся найчастіше — за темами й фразами',
+                    es: 'Dónde fallas más: temas y frases concretas',
+                  })}
+                </Text>
+              </View>
             </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga' })}
+            <Ionicons name="chevron-forward" size={20} color="#B8860B" />
+          </LinearGradient>
+        </TouchableOpacity>
+
+        {/* Годовая карта активности (~365 дней); премиум — без блюра. */}
+        <StatsPremiumBlur isPremium={isPremium} context="heatmap" devUnlock={statsDevUnlock}>
+          <ActivityHeatmap365 />
+        </StatsPremiumBlur>
+
+        {/* Два премиум-графика подряд; сразу под «Аналитика ошибок». */}
+        <View style={{ gap: 12 }}>
+        {/* График по дням: переключатель «Опыт» / «Время» — для !premium закрыт blur'ом + lock CTA. */}
+        <StatsPremiumBlur isPremium={isPremium} context="stats" devUnlock={statsDevUnlock}>
+        {(() => {
+          const chartDays = allDays.length > 0 ? allDays : days;
+          const maxAllPts = Math.max(...chartDays.map(d => d.points), 1);
+          const timeDaysChart = allTimeDays.length > 0
+            ? allTimeDays
+            : allDays.map(d => ({
+                date: d.date,
+                shortLabel: d.shortLabel,
+                dayNum: d.dayNum,
+                ms: 0,
+                active: false,
+              }));
+          const maxMs = Math.max(...timeDaysChart.map(d => d.ms), 1);
+          const segBg = t.bgSurface ?? (isLightTheme ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.06)');
+          const segActive = t.bgCard ?? (isLightTheme ? '#fff' : t.bgSurface2 ?? '#2a2a2a');
+          return (
+            <LinearGradient colors={t.cardGradient} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={{ borderRadius: 16, padding: 16, paddingBottom: 8, borderWidth: 0.5, borderColor: t.border }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 12,
+                  borderRadius: 12,
+                  padding: 3,
+                  backgroundColor: segBg,
+                  borderWidth: 0.5,
+                  borderColor: t.border,
+                }}
+              >
+                <TouchableOpacity
+                  activeOpacity={0.85}
+                  onPress={() => {
+                    hapticTap();
+                    setDailyChartTab('xp');
+                  }}
+                  style={{
+                    flex: 1,
+                    paddingVertical: 10,
+                    borderRadius: 9,
+                    alignItems: 'center',
+                    backgroundColor: dailyChartTab === 'xp' ? segActive : 'transparent',
+                    borderWidth: dailyChartTab === 'xp' ? 0.5 : 0,
+                    borderColor: dailyChartTab === 'xp' ? t.border : 'transparent',
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: dailyChartTab === 'xp' ? t.textPrimary : t.textMuted,
+                      fontSize: f.body,
+                      fontWeight: dailyChartTab === 'xp' ? '700' : '500',
+                    }}
+                  >
+                    {triLang(lang, { ru: 'Опыт', uk: 'Досвід', es: 'XP' })}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  activeOpacity={0.85}
+                  onPress={() => {
+                    hapticTap();
+                    setDailyChartTab('time');
+                  }}
+                  style={{
+                    flex: 1,
+                    paddingVertical: 10,
+                    borderRadius: 9,
+                    alignItems: 'center',
+                    backgroundColor: dailyChartTab === 'time' ? segActive : 'transparent',
+                    borderWidth: dailyChartTab === 'time' ? 0.5 : 0,
+                    borderColor: dailyChartTab === 'time' ? t.border : 'transparent',
+                  }}
+                >
+                  <Text
+                    style={{
+                      color: dailyChartTab === 'time' ? t.textPrimary : t.textMuted,
+                      fontSize: f.body,
+                      fontWeight: dailyChartTab === 'time' ? '700' : '500',
+                    }}
+                  >
+                    {triLang(lang, { ru: 'Время', uk: 'Час', es: 'Tiempo' })}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+              <ScrollView
+                key={dailyChartTab}
+                ref={chartScrollRef}
+                horizontal
+                showsHorizontalScrollIndicator
+                indicatorStyle="white"
+                onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })}
+                contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}
+              >
+                {dailyChartTab === 'xp'
+                  ? chartDays.map((d, i) => {
+                      const barH = d.points > 0 ? Math.max((d.points / maxAllPts) * CHART_H, 8) : 5;
+                      const isToday = d.date === today;
+                      const barColor = d.active
+                        ? (isToday ? t.textPrimary : t.accent)
+                        : (isToday ? t.border : t.bgSurface2 ?? t.border);
+                      const ptsLabel = formatActivityBarPoints(d.points, lang);
+                      return (
+                        <View key={i} style={{ width: 26, alignItems: 'center', gap: 2 }}>
+                          <View style={{ height: CHART_VALUE_LABEL_H, justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
+                            <Text
+                              style={{
+                                color: d.points > 0 ? (isToday ? t.textPrimary : t.textSecond) : t.textGhost,
+                                fontSize: 7,
+                                fontWeight: '700',
+                                textAlign: 'center',
+                              }}
+                              numberOfLines={1}
+                              adjustsFontSizeToFit
+                              minimumFontScale={0.55}
+                            >
+                              {ptsLabel}
+                            </Text>
+                          </View>
+                          <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', height: CHART_H }}>
+                            <View style={{
+                              width: d.active ? 18 : 14, height: barH, borderRadius: 3,
+                              backgroundColor: barColor,
+                              opacity: d.active ? 1 : 0.35,
+                            }} />
+                          </View>
+                          <Text style={{
+                            color: isToday ? t.textPrimary : t.textMuted,
+                            fontSize: 8, fontWeight: isToday ? '800' : '400',
+                            lineHeight: 11,
+                          }} numberOfLines={1}>{d.shortLabel}</Text>
+                          <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
+                        </View>
+                      );
+                    })
+                  : timeDaysChart.map((d, i) => {
+                      const barH = d.ms > 0 ? Math.max((d.ms / maxMs) * CHART_H, 8) : 5;
+                      const isToday = d.date === today;
+                      const barColor = d.active
+                        ? (isToday ? t.textPrimary : t.accent)
+                        : (isToday ? t.border : t.bgSurface2 ?? t.border);
+                      const timeLabel = formatTimeBarMs(d.ms, lang);
+                      return (
+                        <View key={`t-${i}`} style={{ width: 26, alignItems: 'center', gap: 2 }}>
+                          <View style={{ height: CHART_VALUE_LABEL_H, justifyContent: 'flex-end', alignItems: 'center', width: '100%' }}>
+                            <Text
+                              style={{
+                                color: d.ms > 0 ? (isToday ? t.textPrimary : t.textSecond) : t.textGhost,
+                                fontSize: 7,
+                                fontWeight: '700',
+                                textAlign: 'center',
+                              }}
+                              numberOfLines={1}
+                              adjustsFontSizeToFit
+                              minimumFontScale={0.55}
+                            >
+                              {timeLabel}
+                            </Text>
+                          </View>
+                          <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', height: CHART_H }}>
+                            <View style={{
+                              width: d.active ? 18 : 14, height: barH, borderRadius: 3,
+                              backgroundColor: barColor,
+                              opacity: d.active ? 1 : 0.35,
+                            }} />
+                          </View>
+                          <Text style={{
+                            color: isToday ? t.textPrimary : t.textMuted,
+                            fontSize: 8, fontWeight: isToday ? '800' : '400',
+                            lineHeight: 11,
+                          }} numberOfLines={1}>{d.shortLabel}</Text>
+                          <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
+                        </View>
+                      );
+                    })}
+              </ScrollView>
+            </LinearGradient>
+          );
+        })()}
+        </StatsPremiumBlur>
+
+        {lifetimeStats != null && (
+          <StatsPremiumBlur isPremium={isPremium} context="stats" devUnlock={statsDevUnlock}>
+            <LifetimeTotalsBlock
+              t={{
+                bgCard: t.bgCard,
+                bgSurface: t.bgSurface,
+                border: t.border,
+                textPrimary: t.textPrimary,
+                textSecond: t.textSecond,
+                textMuted: t.textMuted,
+                accent: t.accent,
+              }}
+              f={f}
+              lang={lang}
+              data={lifetimeStats}
+              expandedKind={expandedLifetimeKind}
+              onToggleMetric={(kind) => {
+                if (!isPremium && !statsDevUnlock) return;
+                setDevLifetimeAllCharts(false);
+                setLifetimePathChartsByKind({});
+                hapticTap();
+                setExpandedLifetimeKind((prev) => (prev === kind ? null : kind));
+              }}
+              chartDays={lifetimeChartDays}
+              chartLoading={lifetimeChartLoading}
+              chartScrollRef={lifetimeChartScrollRef}
+              showAllPathCharts={devLifetimeAllCharts}
+              pathChartsByKind={lifetimePathChartsByKind}
+            />
+          </StatsPremiumBlur>
+        )}
+        {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && (
+          <TouchableOpacity
+            onPress={() => void randomizeLifetimeChartsForDev()}
+            disabled={devLifetimeChartsBusy}
+            activeOpacity={0.75}
+            style={{
+              marginBottom: 12,
+              borderRadius: 14,
+              paddingVertical: 12,
+              paddingHorizontal: 14,
+              backgroundColor: 'rgba(255, 180, 60, 0.14)',
+              borderWidth: 1,
+              borderColor: 'rgba(255, 160, 40, 0.45)',
+            }}
+          >
+            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+              {triLang(lang, {
+                ru: devLifetimeChartsBusy ? 'Генерация…' : 'Dev: случайные графики «Весь путь» (7 дн.)',
+                uk: devLifetimeChartsBusy ? 'Генерація…' : 'Dev: випадкові графіки «Увесь шлях» (7 дн.)',
+                es: devLifetimeChartsBusy ? 'Generando…' : 'Dev: gráficas aleatorias «Todo el camino» (7 d.)',
+              })}
+            </Text>
+            <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center', lineHeight: f.sub * 1.35 }}>
+              {triLang(lang, {
+                ru: 'Случайные значения за 7 дней: все строки и графики под ними; цифры слева = сумма за эти 7 дней (дни цепочки/уровень — как в профиле).',
+                uk: 'Випадкові значення за 7 днів: усі рядки й графіки під ними; числа зліва = сума за ці 7 днів.',
+                es: 'Valores aleatorios 7 días: todas las filas y gráficos debajo; la columna izquierda = suma de esos 7 días.',
+              })}
             </Text>
           </TouchableOpacity>
+        )}
         </View>
 
-        {/* LEVEL */}
-        <View onLayout={(e) => setLevelY(e.nativeEvent.layout.y)}>
-          {(() => {
-            const { level, xpInLevel, xpNeeded, progress } = getXPProgress(totalXP);
-            return (
-              <LinearGradient colors={t.cardGradient} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={{ borderRadius: 16, padding: 14, borderWidth: 0.5, borderColor: t.border }}>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 10 }}>
-                  <LevelBadge level={level} size={44} />
-                  <View style={{ flex: 1 }}>
-                    <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-                      {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}` })}
-                    </Text>
-                    <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '600', marginTop: 2 }}>{Math.round(totalXP)} XP</Text>
-                  </View>
-                </View>
-                <View style={{ height: 7, backgroundColor: t.bgSurface, borderRadius: 4, overflow: 'hidden', marginBottom: 4 }}>
-                  <View style={{ width: `${Math.min(100, Math.round(progress * 100))}%` as any, height: '100%', borderRadius: 4, backgroundColor: isLightTheme ? t.accent : t.gold }} />
-                </View>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.label }}>{xpInLevel} / {xpNeeded} XP</Text>
-                  <Text style={{ color: t.gold, fontSize: f.label }}>
-                    {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}` })}
-                  </Text>
-                </View>
-              </LinearGradient>
-            );
-          })()}
-        </View>
+
+
+        {/* Сравнение с другими по опыту — после личных метрик */}
+        {percentiles.xp !== null && percentiles.xp >= 10 && (
+          <View style={{
+            flexDirection: 'row', alignItems: 'center', gap: 10,
+            borderRadius: 14, padding: 12,
+            backgroundColor: 'rgba(255,215,0,0.10)',
+            borderWidth: 0.5, borderColor: 'rgba(255,215,0,0.35)',
+          }}>
+            <Text style={{ fontSize: 20 }}>🏆</Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, flex: 1, lineHeight: f.body * 1.4 }}>
+              {triLang(lang, {
+                ru: `По суммарному опыту вы обошли ${percentiles.xp}% пользователей`,
+                uk: `За сумарним досвідом ви обігнали ${percentiles.xp}% користувачів`,
+                es: `En XP total superas al ${percentiles.xp}% de los usuarios`,
+              })}
+            </Text>
+          </View>
+        )}
+        {percentiles.weekXp !== null && percentiles.weekXp >= 10 && (
+          <View style={{
+            flexDirection: 'row', alignItems: 'center', gap: 10,
+            borderRadius: 14, padding: 12,
+            backgroundColor: 'rgba(52,211,153,0.10)',
+            borderWidth: 0.5, borderColor: 'rgba(52,211,153,0.35)',
+          }}>
+            <Text style={{ fontSize: 20 }}>📅</Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, flex: 1, lineHeight: f.body * 1.4 }}>
+              {triLang(lang, {
+                ru: `На этой неделе вы обошли ${percentiles.weekXp}% пользователей по опыту`,
+                uk: `Цього тижня ви обігнали ${percentiles.weekXp}% користувачів за досвідом`,
+                es: `Esta semana superaste al ${percentiles.weekXp}% de los usuarios en XP`,
+              })}
+            </Text>
+          </View>
+        )}
 
         {/* TITLE PANEL */}
         {(() => {
@@ -1110,218 +2311,6 @@ export default function StreakStats() {
           </View>
         </Modal>
 
-        {/* XP MULTIPLIERS BLOCK */}
-        {(() => {
-          const streakM = totalStreak >= 30 ? 1.8 : totalStreak >= 14 ? 1.6 : totalStreak >= 7 ? 1.4 : totalStreak >= 3 ? 1.2 : 1;
-          const clubWeekTierM = 1 + engineLeague.id * 0.1;
-          const clubCombinedM = clubBoostMultiplier + clubWeekTierM + stationaryClubMultiplier - 2;
-          const comebackM = comebackActive ? 2 : 1;
-          const total = 1 + (streakM - 1) + (clubCombinedM - 1) + (leagueBoostMultiplier - 1) + (comebackM - 1) + (giftMultiplier - 1);
-          const hasBonus = total > 1;
-          const pct = (m: number) => `+${Math.round((m - 1) * 100)}%`;
-          const items: { key: string; label: string; value: string; color: string; active: boolean }[] = [
-            { key: 'streak', label: triLang(lang, { ru: 'Цепочка', uk: 'Ланцюжок', es: 'Racha' }), value: pct(streakM), color: '#FF6B35', active: streakM > 1 },
-            { key: 'club', label: triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga' }), value: pct(clubCombinedM), color: t.gold, active: clubCombinedM > 1 },
-            { key: 'league_boost', label: triLang(lang, { ru: 'Буст лиги', uk: 'Буст ліги', es: 'Impulso de liga' }), value: pct(leagueBoostMultiplier), color: '#A78BFA', active: leagueBoostMultiplier > 1 },
-            { key: 'comeback', label: triLang(lang, { ru: 'Возврат', uk: 'Повернення', es: 'Bonificación de retorno' }), value: pct(comebackM), color: '#60A5FA', active: comebackActive },
-            { key: 'gift', label: triLang(lang, { ru: 'Подарок уровня', uk: 'Подарунок рівня', es: 'Regalo de nivel' }), value: pct(giftMultiplier), color: purpleColor, active: giftMultiplier > 1 },
-          ];
-          const activeItems = items.filter(i => i.active);
-          return (
-            <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, borderWidth: 0.5, borderColor: hasBonus ? t.gold : t.border }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: activeItems.length > 0 ? 10 : 0 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Активные множители XP', uk: 'Активні множники XP', es: 'Multiplicadores de XP activos' })}
-                </Text>
-                <Text style={{ color: hasBonus ? t.gold : t.textMuted, fontSize: f.bodyLg, fontWeight: '800' }}>
-                  ×{total.toFixed(2)}
-                </Text>
-              </View>
-              {activeItems.length === 0 ? (
-                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 6 }}>
-                  {triLang(lang, { ru: 'Нет активных бонусов', uk: 'Немає активних бонусів', es: 'No hay bonificaciones activas' })}
-                </Text>
-              ) : (
-                <View style={{ gap: 6 }}>
-                  {activeItems.map(item => {
-                    const isGiftItem = item.key === 'gift';
-                    const isClubRow = item.key === 'club';
-                    const isLeagueBoostRow = item.key === 'league_boost';
-                    return (
-                      <View key={item.key} style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                          <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: item.color }} />
-                          <Text style={{ color: t.textSecond, fontSize: f.caption }}>{item.label}</Text>
-                        </View>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
-                          <Text style={{ color: item.color, fontSize: f.caption, fontWeight: '700' }}>{item.value}</Text>
-                          {isGiftItem && !!giftTimeLeft && (
-                            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '500' }}>{giftTimeLeft}</Text>
-                          )}
-                          {isClubRow && clubBoostMultiplier > 1 && !!clubBoostTimeLeft && (
-                            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '500' }}>{clubBoostTimeLeft}</Text>
-                          )}
-                          {isLeagueBoostRow && leagueBoostMultiplier > 1 && !!leagueBoostTimeLeft && (
-                            <Text style={{ color: t.textMuted, fontSize: f.caption - 1, fontWeight: '500' }}>{leagueBoostTimeLeft}</Text>
-                          )}
-                        </View>
-                      </View>
-                    );
-                  })}
-                </View>
-              )}
-            </View>
-          );
-        })()}
-
-        {/* STREAK */}
-        <LinearGradient colors={t.cardGradient} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={{ borderRadius: 16, padding: 16, borderWidth: 0.5, borderColor: t.border }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginBottom: 14 }}>
-            <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={Math.round(f.numLg * 1.1)} color={freezeActive ? '#64B4FF' : '#FF6B35'} />
-            <View style={{ flex: 1 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.numLg + 4, fontWeight: '700' }} numberOfLines={1}>{totalStreak}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.caption }}>{triLang(lang, { ru: 'дней подряд', uk: 'днів поспіль', es: 'días seguidos' })}</Text>
-            </View>
-            <View style={{ alignItems: 'flex-end', gap: 4 }}>
-              <Text style={{ color: t.textSecond, fontSize: f.h1, fontWeight: '700' }}>{bestStreak}</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.label }}>{triLang(lang, { ru: 'лучший', uk: 'найкращий', es: 'récord' })}</Text>
-              {totalStreak >= 3 && (
-                <TouchableOpacity
-                  style={{ flexDirection:'row', alignItems:'center', gap:4 }}
-                  onPress={async () => {
-                    const _ru = [
-                      `Мой стрик в Phraseman — ${totalStreak} дней! 🔥 Я мощнее, чем утренняя доза кофеина. Кто догонит?`,
-                      `${totalStreak} дней подряд в Phraseman! 🏆 Стабильность — моё второе имя. Английский уже как родной! 🔥`,
-                      `Видишь этот огонь? 🔥 Это мой стрик ${totalStreak} дней в Phraseman! Ни дня без английского, ни дня без побед!`,
-                      `${totalStreak} дней подряд в Phraseman! Моя дисциплина официально вышла на новый уровень. Не останавливайте меня! 🔥`,
-                      `Говорят, привычка формируется 21 день. У меня уже ${totalStreak}! Phraseman — это уже стиль жизни. ☕️📖`,
-                      `Мой стрик в Phraseman горит ярче моего желания уйти в отпуск! 🔥 ${totalStreak} дней в деле!`,
-                      `Мой стрик в Phraseman горит ярче солнца! 🔥 ${totalStreak} дней подряд. Кто сможет побить мой рекорд?`,
-                      `${totalStreak} дней в Phraseman! 🏆 Маленькими шагами к большой цели. Мой английский говорит мне «спасибо»!`,
-                      `Не сбавляю темп! 🔥 ${totalStreak} дней обучения в Phraseman. Стабильность — признак мастерства!`,
-                      `Не подходите близко — я горяч! 🔥 ${totalStreak} дней стрика в Phraseman. Английский стал моей полезной привычкой.`,
-                      `Бегу марафон по английскому. Уже ${totalStreak}-й день в Phraseman без остановок! 🏃‍♀️ Кто со мной?`,
-                    ];
-                    const _uk = [
-                      `Мій стрік у Phraseman — ${totalStreak} днів! 🔥 Я потужніший за ранкову дозу кофеїну. Хто наздожене?`,
-                      `${totalStreak} днів поспіль у Phraseman! 🏆 Стабільність — моє друге ім'я. Англійська вже як рідна! 🔥`,
-                      `Бачиш цей вогонь? 🔥 Це мій стрік ${totalStreak} днів у Phraseman! Жодного дня без англійської, жодного дня без перемог!`,
-                      `${totalStreak} днів поспіль у Phraseman! Моя дисципліна офіційно вийшла на новий рівень. Не зупиняйте мене! 🔥`,
-                      `Кажуть, звичка формується 21 день. У мене вже ${totalStreak}! Phraseman — це вже стиль життя. ☕️📖`,
-                      `Мій стрік у Phraseman горить яскравіше за моє бажання піти у відпустку! 🔥 ${totalStreak} днів у справі!`,
-                      `Мій стрік у Phraseman горить яскравіше за сонце! 🔥 ${totalStreak} днів поспіль. Хто зможе побити мій рекорд?`,
-                      `${totalStreak} днів у Phraseman! 🏆 Маленькими кроками до великої мети. Моя англійська каже мені «дякую»!`,
-                      `Не збавляю темп! 🔥 ${totalStreak} днів навчання у Phraseman. Стабільність — ознака майстерності!`,
-                      `Не підходьте близько — я гарячий! 🔥 ${totalStreak} днів стріку у Phraseman. Англійська стала моєю корисною звичкою.`,
-                      `Біжу марафон з англійської. Вже ${totalStreak}-й день у Phraseman без зупинок! 🏃‍♀️ Хто зі мною?`,
-                    ];
-                    const _es = [
-                      `Mi racha en Phraseman: ¡${totalStreak} días! 🔥 Más fuerte que el café de la mañana. ¿Quién me alcanza?`,
-                      `¡${totalStreak} días seguidos en Phraseman! 🏆 La constancia es mi segundo nombre. ¡El inglés ya se siente natural! 🔥`,
-                      `¿Ves ese fuego? 🔥 Es mi racha de ${totalStreak} días en Phraseman. Ni un día sin inglés, ni un día sin ganar.`,
-                      `¡${totalStreak} días seguidos en Phraseman! Mi disciplina subió de nivel. ¡No me frenes! 🔥`,
-                      `Dicen que un hábito tarda 21 días. ¡Yo llevo ${totalStreak}! Phraseman ya es estilo de vida. ☕️📖`,
-                      `¡Mi racha en Phraseman arde más que mis ganas de vacaciones! 🔥 ${totalStreak} días y sumando.`,
-                      `¡Mi racha en Phraseman brilla más que el sol! 🔥 ${totalStreak} días seguidos. ¿Quién bate mi récord?`,
-                      `¡${totalStreak} días en Phraseman! 🏆 Paso a paso hacia la meta. ¡Mi inglés me lo agradece!`,
-                      `¡No bajo el ritmo! 🔥 ${totalStreak} días estudiando en Phraseman. ¡La constancia es maestría!`,
-                      `¡Cuidado, que quemo! 🔥 ${totalStreak} días de racha en Phraseman. El inglés ya es mi buen hábito.`,
-                      `Maratón de inglés: día ${totalStreak} en Phraseman sin parar. 🏃 ¿Quién se une?`,
-                    ];
-                    const _p = lang === 'uk' ? _uk : lang === 'es' ? _es : _ru;
-                    const msg = _p[Math.floor(Math.random() * _p.length)] + `\n${STORE_URL}`;
-                    await shareStreakCardPng(streakShareSvgRef, msg);
-                  }}
-                >
-                  <Ionicons name="share-outline" size={14} color={t.textGhost}/>
-                  <Text style={{ color: t.textGhost, fontSize: f.label }}>
-                    {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
-                  </Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          </View>
-          {/* Current week days */}
-          <View style={{ flexDirection: 'row', gap: 5 }}>
-            {streakWeekRowShort(lang).map((d, i) => {
-              const todayIdx = (new Date().getDay() + 6) % 7;
-              const weekStart = new Date();
-              weekStart.setDate(weekStart.getDate() - todayIdx);
-              const dayDate = new Date(weekStart);
-              dayDate.setDate(dayDate.getDate() + i);
-              const dateStr = toDateStr(dayDate);
-              const dayInfo = days.find(x => x.date === dateStr);
-              const done = dayInfo?.active || false;
-              const isToday = i === todayIdx;
-              return (
-                <View key={i} style={{ flex: 1, alignItems: 'center', gap: 6 }}>
-                  <View style={[
-                    { width: 22, height: 22, borderRadius: 11, backgroundColor: t.bgSurface2 },
-                    done && { backgroundColor: t.correct },
-                    isToday && !done && { backgroundColor: t.bgSurface2, borderWidth: 2, borderColor: t.textPrimary },
-                  ]} />
-                  <Text style={{ color: isToday ? t.textPrimary : (done ? t.textPrimary : t.textMuted), fontSize: 12, fontWeight: isToday ? '700' : '600' }}>{d}</Text>
-                </View>
-              );
-            })}
-          </View>
-
-          {/* Freeze button */}
-          <View style={{ marginTop: 14 }}>
-            {chainShieldDays > 0 && (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(167,139,250,0.12)', borderRadius: 12, padding: 12, marginBottom: 8 }}>
-                <Ionicons name="shield-checkmark-outline" size={20} color="#A78BFA" />
-                <Text style={{ color: purpleColor, fontSize: f.body, fontWeight: '600', flex: 1 }}>
-                  {triLang(lang, {
-                    ru: `Заморозка активна: ${chainShieldDays} дней`,
-                    uk: `Заморозка активна: ${chainShieldDays} дн.`,
-                    es: `Congelación activa: ${chainShieldDays} días`,
-                  })}
-                </Text>
-              </View>
-            )}
-            {freezeActive ? (
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, backgroundColor: 'rgba(100,180,255,0.12)', borderRadius: 12, padding: 12 }}>
-                <Ionicons name="snow-outline" size={20} color="#64B4FF" />
-                <Text style={{ color: '#64B4FF', fontSize: f.body, fontWeight: '600', flex: 1 }}>
-                  {triLang(lang, {
-                    ru: 'Цепочка заморожена на сегодня',
-                    uk: 'Ланцюжок заморожено на сьогодні',
-                    es: 'Racha congelada por hoy',
-                  })}
-                </Text>
-              </View>
-            ) : (
-              <TouchableOpacity
-                onPress={handleFreezeStreak}
-                disabled={chainShieldDays > 0}
-                style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, borderRadius: 12, borderWidth: 1, borderColor: '#64B4FF', paddingVertical: 11, paddingHorizontal: 16, opacity: chainShieldDays > 0 ? 0.4 : 1 }}
-              >
-                <Ionicons name="snow-outline" size={18} color="#64B4FF" />
-                <View style={{ flex: 1 }}>
-                  <Text style={{ color: '#64B4FF', fontSize: f.body, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Заморозить цепочку', uk: 'Заморозити ланцюжок', es: 'Congelar la racha' })}
-                  </Text>
-                  {isPremium && premiumFreezeUsed ? (
-                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 1 }}>
-                      <Text style={{ color: t.textMuted, fontSize: f.label }}>{FREEZE_COST_SHARDS}</Text>
-                      <Image source={oskolokImageForPackShards(FREEZE_COST_SHARDS)} style={{ width: 14, height: 14 }} />
-                    </View>
-                  ) : (
-                    <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 1 }}>
-                      {isPremium
-                        ? triLang(lang, { ru: 'Бесплатно (Премиум)', uk: 'Безкоштовно (Преміум)', es: 'Gratis (Premium)' })
-                        : triLang(lang, { ru: 'Нужен Премиум', uk: 'Потрібен Преміум', es: 'Se necesita Premium' })}
-                    </Text>
-                  )}
-                </View>
-                {!isPremium && <Ionicons name="lock-closed-outline" size={16} color={t.textMuted} />}
-              </TouchableOpacity>
-            )}
-          </View>
-        </LinearGradient>
-
-
         {/* LEAGUE */}
         <TouchableOpacity
           activeOpacity={0.8}
@@ -1358,120 +2347,25 @@ export default function StreakStats() {
           </View>
         </TouchableOpacity>
 
-        {/* CHART — horizontal scroll, full history */}
-        {(() => {
-          const chartDays = allDays.length > 0 ? allDays : days;
-          const maxAllPts = Math.max(...chartDays.map(d => d.points), 1);
-          return (
-            <LinearGradient colors={t.cardGradient} start={{x: 0, y: 0}} end={{x: 1, y: 1}} style={{ borderRadius: 16, padding: 16, paddingBottom: 8, borderWidth: 0.5, borderColor: t.border }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
-                  {triLang(lang, { ru: 'Вся активность', uk: 'Вся активність', es: 'Toda tu actividad' })}
-                </Text>
-              </View>
-              <ScrollView
-                ref={chartScrollRef}
-                horizontal
-                showsHorizontalScrollIndicator
-                indicatorStyle="white"
-                onLayout={() => chartScrollRef.current?.scrollToEnd?.({ animated: false })}
-                contentContainerStyle={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, paddingBottom: 12 }}
-              >
-                {chartDays.map((d, i) => {
-                  const barH = d.points > 0 ? Math.max((d.points / maxAllPts) * CHART_H, 8) : 5;
-                  const isToday = d.date === today;
-                  const barColor = d.active
-                    ? (isToday ? t.textPrimary : t.accent)
-                    : (isToday ? t.border : t.bgSurface2 ?? t.border);
-                  return (
-                    <View key={i} style={{ width: 26, alignItems: 'center', gap: 2 }}>
-                      {d.points > 0 && (
-                        <Text style={{ color: t.textMuted, fontSize: 7, fontWeight: '600' }} numberOfLines={1}>{d.points}</Text>
-                      )}
-                      {d.points === 0 && <View style={{ height: 12 }} />}
-                      <View style={{ flex: 1, justifyContent: 'flex-end', alignItems: 'center', height: CHART_H }}>
-                        <View style={{
-                          width: d.active ? 18 : 14, height: barH, borderRadius: 3,
-                          backgroundColor: barColor,
-                          opacity: d.active ? 1 : 0.35,
-                        }} />
-                      </View>
-                      <Text style={{
-                        color: isToday ? t.textPrimary : t.textMuted,
-                        fontSize: 8, fontWeight: isToday ? '800' : '400',
-                        lineHeight: 11,
-                      }} numberOfLines={1}>{d.shortLabel}</Text>
-                      <Text style={{ color: isToday ? t.textSecond : t.textGhost, fontSize: 8 }}>{d.dayNum}</Text>
-                    </View>
-                  );
-                })}
-              </ScrollView>
-            </LinearGradient>
-          );
-        })()}
-
-
-
-        {/* PATH A1 → B2 */}
-        {(() => {
-          const stages = ['A1','A2','B1','B2'];
-          // Lesson brackets: A1=1-8, A2=9-18, B1=19-28, B2=29-32
-          const lessonStages = [
-            { label: 'A1', from: 1,  to: 8  },
-            { label: 'A2', from: 9,  to: 18 },
-            { label: 'B1', from: 19, to: 28 },
-            { label: 'B2', from: 29, to: 32 },
-          ];
-          const overallPct = lessonsProgressPct;
-          const currentStage = lessonsCompleted < 8 ? 0 : lessonsCompleted < 18 ? 1 : lessonsCompleted < 28 ? 2 : 3;
-          const currentStageMeta = lessonStages[currentStage] || lessonStages[3];
-          return (
-            <View style={{ borderRadius: 16, padding: 14, borderWidth: 0.5, backgroundColor: t.bgCard, borderColor: t.border }}>
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 10 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Путь A1 → B2', uk: 'Шлях A1 → B2', es: 'Camino A1 → B2' })}
-                </Text>
-                <Text style={{ color: t.accent, fontSize: f.label, fontWeight: '700' }}>
-                  {overallPct}%
-                </Text>
-              </View>
-              {/* Progress bar */}
-              <View style={{ height: 6, backgroundColor: t.bgSurface, borderRadius: 3, marginBottom: 10, overflow: 'hidden' }}>
-                <View style={{ width: `${overallPct}%` as any, height: '100%', borderRadius: 3, backgroundColor: t.accent }} />
-              </View>
-              {/* Stage labels */}
-              <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginBottom: 12 }}>
-                {stages.map((s, i) => (
-                  <Text key={s} style={{ fontSize: f.label, fontWeight: '600', color: i <= currentStage ? t.accent : t.textMuted }}>{s}</Text>
-                ))}
-              </View>
-              {/* Real progress info */}
-              <View style={{ flexDirection: 'row', gap: 8 }}>
-                <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 10, padding: 10, alignItems: 'center' }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>{lessonsCompleted}</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>{triLang(lang, { ru: 'уроков сдано', uk: 'уроків виконано', es: 'lecciones hechas' })}</Text>
-                </View>
-                <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 10, padding: 10, alignItems: 'center' }}>
-                  <Text style={{ color: t.accent, fontSize: f.numMd, fontWeight: '700' }}>{currentStageMeta.label}</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>{triLang(lang, { ru: 'текущий уровень', uk: 'поточний рівень', es: 'nivel actual' })}</Text>
-                </View>
-                <View style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 10, padding: 10, alignItems: 'center' }}>
-                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '700' }}>{32 - lessonsCompleted}</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>{triLang(lang, { ru: 'осталось', uk: 'залишилось', es: 'restantes' })}</Text>
-                </View>
-              </View>
-              {lessonsCompleted < 32 && (
-                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 10, textAlign: 'center' }}>
-                  {triLang(lang, {
-                    ru: `Уроки ${currentStageMeta.from}–${currentStageMeta.to} — уровень ${currentStageMeta.label}`,
-                    uk: `Уроки ${currentStageMeta.from}–${currentStageMeta.to} — рівень ${currentStageMeta.label}`,
-                    es: `Lecciones ${currentStageMeta.from}–${currentStageMeta.to} — nivel ${currentStageMeta.label}`,
-                  })}
-                </Text>
-              )}
-            </View>
-          );
-        })()}
+        {/* После блоков Premium */}
+        {/* TIME PERCENTILE BANNER */}
+        {percentiles.daily7timeMs !== null && percentiles.daily7timeMs >= 10 && myTime7ms > 0 && (
+          <View style={{
+            flexDirection: 'row', alignItems: 'center', gap: 10,
+            borderRadius: 14, padding: 12,
+            backgroundColor: 'rgba(100,180,255,0.10)',
+            borderWidth: 0.5, borderColor: 'rgba(100,180,255,0.35)',
+          }}>
+            <Text style={{ fontSize: 20 }}>⏱️</Text>
+            <Text style={{ color: t.textPrimary, fontSize: f.body, flex: 1, lineHeight: f.body * 1.4 }}>
+              {triLang(lang, {
+                ru: `За последние 7 дней вы обошли ${percentiles.daily7timeMs}% пользователей по времени изучения`,
+                uk: `За останні 7 днів ви обігнали ${percentiles.daily7timeMs}% користувачів за часом навчання`,
+                es: `En los últimos 7 días superaste al ${percentiles.daily7timeMs}% de los usuarios en tiempo de estudio`,
+              })}
+            </Text>
+          </View>
+        )}
 
         {/* ── ДОСТИЖЕНИЯ ────────────────────────────────────────────────────── */}
         <TouchableOpacity
@@ -1506,36 +2400,47 @@ export default function StreakStats() {
               ⚔️ {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
             </Text>
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
-              <Image source={arenaRank.image} style={{ width: 48, height: 48 }} resizeMode="contain" />
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', lineHeight: f.h2 + 4 }}>
-                  {arenaRank.label}
-                </Text>
-                {arenaRank.games > 0 && (
-                  <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
-                    {`${arenaRank.xp} XP`}
+              {arenaRank.isHydrated ? (
+                <>
+                  <Image source={arenaRank.image} style={{ width: 48, height: 48 }} resizeMode="contain" />
+                  <View style={{ flex: 1 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', lineHeight: f.h2 + 4 }}>
+                      {arenaRank.label}
+                    </Text>
+                    {arenaRank.games > 0 && (
+                      <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
+                        {`${arenaRank.xp} XP`}
+                      </Text>
+                    )}
+                  </View>
+                  <View style={{ alignItems: 'flex-end', gap: 6 }}>
+                    <View style={{ flexDirection: 'row', gap: 5 }}>
+                      {[0, 1, 2].map(i => (
+                        <View
+                          key={i}
+                          style={{
+                            width: 20, height: 20, borderRadius: 10,
+                            backgroundColor: i < arenaRank.stars ? t.gold : 'transparent',
+                            borderWidth: 2,
+                            borderColor: i < arenaRank.stars ? t.gold : t.textGhost,
+                          }}
+                        />
+                      ))}
+                    </View>
+                    <Text style={{ color: t.textGhost, fontSize: f.label }}>
+                      {arenaRank.stars}/3
+                    </Text>
+                  </View>
+                </>
+              ) : (
+                <>
+                  <ActivityIndicator size="small" color={t.accent} style={{ width: 48, height: 48 }} />
+                  <Text style={{ color: t.textMuted, fontSize: f.sub, flex: 1 }}>
+                    {triLang(lang, { ru: 'Загрузка…', uk: 'Завантаження…', es: 'Cargando…' })}
                   </Text>
-                )}
-              </View>
-              <View style={{ alignItems: 'flex-end', gap: 6 }}>
-                {/* 3 stars: filled / empty */}
-                <View style={{ flexDirection: 'row', gap: 5 }}>
-                  {[0, 1, 2].map(i => (
-                    <View
-                      key={i}
-                      style={{
-                        width: 20, height: 20, borderRadius: 10,
-                        backgroundColor: i < arenaRank.stars ? t.gold : 'transparent',
-                        borderWidth: 2,
-                        borderColor: i < arenaRank.stars ? t.gold : t.textGhost,
-                      }}
-                    />
-                  ))}
-                </View>
-                <Text style={{ color: t.textGhost, fontSize: f.label }}>
-                  {arenaRank.stars}/3
-                </Text>
-              </View>
+                  <View style={{ width: 18 }} />
+                </>
+              )}
               <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
             </View>
           </LinearGradient>
@@ -1567,8 +2472,20 @@ export default function StreakStats() {
           </LinearGradient>
         </TouchableOpacity>
 
-        {/* ── ПАРИ НА СТРИК ─────────────────────────────────────────────────── */}
+        {/* ── ПАРИ НА ЦЕПОЧКУ ───────────────────────────────────────────────── */}
         <WagerCard lang={lang} t={t} f={f} totalStreak={totalStreak} />
+
+        <View style={{ alignItems: 'center', paddingVertical: 12 }}>
+          <ReportErrorButton
+            screen="streak_stats"
+            dataId="streak_stats_main"
+            dataText={triLang(lang, {
+              ru: 'Цепочки и статистика',
+              uk: 'Стріки та статистика',
+              es: 'Rachas y estadísticas',
+            })}
+          />
+        </View>
 
         <View style={{ height: 8 }} />
       </ScrollView>
@@ -1704,14 +2621,16 @@ export default function StreakStats() {
         confirmLabel={triLang(lang, { ru: 'В магазин', uk: 'У магазин', es: 'A la tienda' })}
         onCancel={() => setFreezeNeedShardsModal(false)}
         onConfirm={() => {
-          setFreezeNeedShardsModal(false);
-          router.push({
-            pathname: '/shards_shop',
-            params: {
-              need: String(Math.max(0, FREEZE_COST_SHARDS - shardsBalance)),
-              source: 'streak_stats_freeze',
-            },
-          } as any);
+          navigateAfterModalClose(
+            () => setFreezeNeedShardsModal(false),
+            () => router.push({
+              pathname: '/shards_shop',
+              params: {
+                need: String(Math.max(0, FREEZE_COST_SHARDS - shardsBalance)),
+                source: 'streak_stats_freeze',
+              },
+            } as any),
+          );
         }}
       />
 

@@ -309,7 +309,7 @@ const L14 = [
   "Hoy reservamos el hotel más barato",
   "Hoy encontraron una playa más tranquila",
   "Hoy probé la mostaza más fuerte",
-  "Hoy trajiste un chocolate más amargo",
+  "Hoy trajiste el pan más fresco",
   "Hoy probó un sillón más cómodo",
   "Hoy trajimos la sopa más rica",
   "Hoy eligieron un traje más oscuro",

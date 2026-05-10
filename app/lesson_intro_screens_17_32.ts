@@ -1,6 +1,5 @@
 /**
- * PROMPT-005 — Уроки 17–32: реэкспорт из канонического модуля español L2.
- * Источник правды: `lesson_intro_screens_es_l2.ts` (why / how / tip / trap).
+ * Уроки 17–32: слайды интро из `lesson_intro_screens_en_17_32.ts` (англ. курс; без испанского L2 в проде).
  */
 export {
   LESSON_17_INTRO_EXTRA,
@@ -19,4 +18,4 @@ export {
   LESSON_30_INTRO_EXTRA,
   LESSON_31_INTRO_EXTRA,
   LESSON_32_INTRO_EXTRA,
-} from './lesson_intro_screens_es_l2';
+} from './lesson_intro_screens_en_17_32';

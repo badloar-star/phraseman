@@ -1,15 +1,12 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
-import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+
+export { isReferralCloudEnabled } from './referral_flags';
 
 const REGION = 'us-central1';
 
 function callable<TReq, TRes>(name: string) {
   return httpsCallable<TReq, TRes>(getFunctions(getApp(), REGION), name);
-}
-
-export function isReferralCloudEnabled(): boolean {
-  return CLOUD_SYNC_ENABLED && !IS_EXPO_GO;
 }
 
 export type EnsureReferralCodeResult = { code: string };

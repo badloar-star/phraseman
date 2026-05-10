@@ -10,6 +10,11 @@ import {
   OFFICIAL_PEAKY_BLINDERS_EN_ID,
   OFFICIAL_ROYAL_TEA_EN_ID,
   OFFICIAL_WILD_WEST_EN_ID,
+  OFFICIAL_PREP_IN_EN_ID,
+  OFFICIAL_PREP_ON_EN_ID,
+  OFFICIAL_PREP_AT_EN_ID,
+  OFFICIAL_PREP_TO_EN_ID,
+  OFFICIAL_PREP_BY_EN_ID,
 } from './bundles/packIds';
 export type FlashcardPackCategory = 'business' | 'travel' | 'daily' | 'exam' | 'slang' | 'verbs';
 
@@ -392,6 +397,26 @@ export function buildDevOwnedPackCards(packs: FlashcardMarketPack[]): CardItem[]
 /** Карточки для купленных наборов: реальный контент для известных id, иначе шаблоны. */
 export function buildMarketplaceOwnedCards(ownedPacks: FlashcardMarketPack[]): CardItem[] {
   return ownedPacks.flatMap((pack) => {
+    if (pack.id === OFFICIAL_PREP_IN_EN_ID) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./bundles/prepInBundle') as typeof import('./bundles/prepInBundle')).getPrepInBundleCards();
+    }
+    if (pack.id === OFFICIAL_PREP_ON_EN_ID) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./bundles/prepOnBundle') as typeof import('./bundles/prepOnBundle')).getPrepOnBundleCards();
+    }
+    if (pack.id === OFFICIAL_PREP_AT_EN_ID) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./bundles/prepAtBundle') as typeof import('./bundles/prepAtBundle')).getPrepAtBundleCards();
+    }
+    if (pack.id === OFFICIAL_PREP_TO_EN_ID) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./bundles/prepToBundle') as typeof import('./bundles/prepToBundle')).getPrepToBundleCards();
+    }
+    if (pack.id === OFFICIAL_PREP_BY_EN_ID) {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      return (require('./bundles/prepByBundle') as typeof import('./bundles/prepByBundle')).getPrepByBundleCards();
+    }
     if (pack.id === OFFICIAL_PEAKY_BLINDERS_EN_ID) {
       // eslint-disable-next-line @typescript-eslint/no-require-imports
       return (require('./bundles/peakyBlindersBundle') as typeof import('./bundles/peakyBlindersBundle')).getPeakyBlindersBundleCards();

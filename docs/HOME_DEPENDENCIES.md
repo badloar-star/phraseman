@@ -16,7 +16,6 @@
 | Маршрут | Экран |
 |---------|-------|
 | `index` | Уроки (32 урока) |
-| `/dialogs` | Диалоги (20 сценариев) |
 | `/(tabs)/quizzes` | Квизы (премиум) |
 | `/flashcards` | Карточки |
 | `/daily_tasks_screen` | Задания |
@@ -51,7 +50,6 @@
 | **hall_of_fame_utils.ts** | `getMyWeekPoints()`, `checkStreakLossPending()`, `getWeekKey()` |
 | **streak_repair.ts** | `isRepairEligible()`, `getRepairProgress()` |
 | **medal_utils.ts** | `loadAllMedals()`, `countMedals()` |
-| **dialogs_data.ts** | `DIALOGS` (20 диалогов) |
 | **debug-logger.ts** | `DebugLogger.error()` |
 | **config.ts** | `DEV_MODE`, `IS_EXPO_GO` |
 
@@ -76,7 +74,7 @@ home.tsx
 ├── Навигация: useRouter (expo-router)
 ├── Хранилище: AsyncStorage
 ├── UI: ScreenGradient, PremiumCard, CircularProgress, AnimatedFrame, LevelBadge, EnergyIcon, DailyPhraseCard
-├── Данные: active_recall, daily_tasks, league_engine, hall_of_fame_utils, streak_repair, medal_utils, dialogs_data
+├── Данные: active_recall, daily_tasks, league_engine, hall_of_fame_utils, streak_repair, medal_utils
 ├── Константы: avatars, theme, lessons
 └── RevenueCat: Purchases.getCustomerInfo()
 ```

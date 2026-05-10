@@ -35,6 +35,9 @@ type Props = {
   borderAccent: string;
   canRemove: boolean;
   onRemove: () => void;
+  canEdit?: boolean;
+  onEdit?: () => void;
+  editing?: boolean;
   onSpeakEn?: (text: string) => void;
 };
 
@@ -65,6 +68,9 @@ export default function UgcPackEditorCardPreview({
   borderAccent,
   canRemove,
   onRemove,
+  canEdit,
+  onEdit,
+  editing,
   onSpeakEn,
 }: Props) {
   const [cardSide, setCardSide] = useState<'front' | 'back'>('front');
@@ -341,23 +347,51 @@ export default function UgcPackEditorCardPreview({
         </View>
       ) : null}
 
-      {canRemove ? (
-        <TouchableOpacity
-          onPress={() => {
-            Keyboard.dismiss();
-            onRemove();
-          }}
-          style={[styles.toolBtn, { marginTop: 8 }]}
-        >
-          <Ionicons name="trash-outline" size={18} color="#f87171" />
-          <Text style={[styles.toolTxt, { color: '#f87171' }]}>{triLang(lang, { uk: 'Видалити', ru: 'Удалить', es: 'Eliminar' })}</Text>
-        </TouchableOpacity>
-      ) : null}
+      {editing ? (
+        <View style={[styles.toolBtn, { marginTop: 8 }]}>
+          <Ionicons name="create-outline" size={18} color={t.accent} />
+          <Text style={[styles.toolTxt, { color: t.accent }]}>
+            {triLang(lang, { uk: 'Редагується…', ru: 'Редактируется…', es: 'En edición…' })}
+          </Text>
+        </View>
+      ) : (
+        <View style={[styles.toolRow, { marginTop: 8 }]}>
+          {canEdit && onEdit ? (
+            <TouchableOpacity
+              onPress={() => {
+                Keyboard.dismiss();
+                onEdit();
+              }}
+              style={styles.toolBtn}
+            >
+              <Ionicons name="create-outline" size={18} color={t.accent} />
+              <Text style={[styles.toolTxt, { color: t.accent }]}>
+                {triLang(lang, { uk: 'Редагувати', ru: 'Редактировать', es: 'Editar' })}
+              </Text>
+            </TouchableOpacity>
+          ) : null}
+          {canRemove ? (
+            <TouchableOpacity
+              onPress={() => {
+                Keyboard.dismiss();
+                onRemove();
+              }}
+              style={styles.toolBtn}
+            >
+              <Ionicons name="trash-outline" size={18} color="#f87171" />
+              <Text style={[styles.toolTxt, { color: '#f87171' }]}>
+                {triLang(lang, { uk: 'Видалити', ru: 'Удалить', es: 'Eliminar' })}
+              </Text>
+            </TouchableOpacity>
+          ) : null}
+        </View>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  toolRow: { flexDirection: 'row', alignItems: 'center', gap: 18, flexWrap: 'wrap' },
   toolBtn: { flexDirection: 'row', alignItems: 'center', gap: 6 },
   toolTxt: { fontSize: 13, fontWeight: '700' },
 });

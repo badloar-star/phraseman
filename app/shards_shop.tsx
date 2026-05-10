@@ -31,8 +31,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useScreen } from '../hooks/use-screen';
-import { bundleLang } from '../constants/i18n';
+import { bundleLang, triLang } from '../constants/i18n';
 import { BRAND_SHARDS_ES } from '../constants/terms_es';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
@@ -60,6 +61,7 @@ import { bundledPackTilePng } from './flashcards/packMarketplaceIcons';
 import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial_gift';
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
+import { initRevenueCat } from './revenuecat_init';
 import { emitAppEvent, onAppEvent } from './events';
 import { logShardsPurchased } from './firebase';
 import { oskolokImageForPackShards, oskolokImageForShardIapRow } from './oskolok';
@@ -70,7 +72,7 @@ import {
   trackShardsShopOpen,
 } from './user_stats';
 
-/** Реліз-збірка: false → Purchases.purchasePackage і системний діалог Google Play, без миттєвого DEV-нарахування. */
+/** Реліз-збірка: false → Purchases.purchasePackage і системний діалог магазину (App Store / Google Play), без миттєвого DEV-нарахування. */
 const isDevStoreBypass = __DEV__ || DEV_IAP_BYPASS || IS_EXPO_GO;
 
 /** Teal / cyan в стилі «осколків» на paywall-референсі */
@@ -232,9 +234,11 @@ type ShopCtaProps = {
   useLockIcon: boolean;
   shadow: object;
   fontSize: number;
+  /** Узкая кнопка в карточках паков осколков */
+  dense?: boolean;
 };
 
-function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon, shadow, fontSize }: ShopCtaProps) {
+function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon, shadow, fontSize, dense = false }: ShopCtaProps) {
   const ctaW = useSharedValue(0);
   const sh = useSharedValue(0);
   const [boxW, setBoxW] = useState(0);
@@ -274,7 +278,7 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
       style={{
         alignSelf: 'stretch',
         width: '100%',
-        borderRadius: 14,
+        borderRadius: dense ? 12 : 14,
         overflow: 'hidden',
         backgroundColor: accent,
         ...shadow,
@@ -285,11 +289,11 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={{
-        paddingVertical: 14,
+        paddingVertical: dense ? 10 : 14,
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
-        gap: 8,
+        gap: dense ? 6 : 8,
         opacity: busy ? 0.88 : 1,
       }}
     >
@@ -301,9 +305,9 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
         ) : (
           <>
             {useLockIcon ? (
-              <Ionicons name="lock-closed" size={18} color={correctText} />
+              <Ionicons name="lock-closed" size={dense ? 16 : 18} color={correctText} />
             ) : (
-              <Ionicons name="bag-handle" size={18} color={correctText} />
+              <Ionicons name="bag-handle" size={dense ? 16 : 18} color={correctText} />
             )}
             <Text style={{ color: correctText, fontSize, fontWeight: '900' }}>{label}</Text>
           </>
@@ -489,8 +493,9 @@ export default function ShardsShopScreen() {
 
   const syncAfterStoreAction = useCallback(async () => {
     await refreshBalance();
+    /** Не блокує UI paywall — оновлення каталогу асинхронно (Firestore інколи не відповідає). */
     if (shopTab === 'paid' || cardMarketFetchedOnce.current) {
-      await loadCardMarket({ background: true, force: true });
+      void loadCardMarket({ background: true, force: true });
     }
   }, [refreshBalance, loadCardMarket, shopTab]);
 
@@ -664,7 +669,7 @@ export default function ShardsShopScreen() {
   }, []);
 
   const grantPurchasedShardsOnce = useCallback(async (productId: string, shards: number, customerInfo?: any): Promise<boolean> => {
-    const txKey = resolveTransactionKey(customerInfo, productId) ?? `${productId}:fallback`;
+    const txKey = resolveTransactionKey(customerInfo, productId) ?? `${productId}:fallback:${Date.now()}`;
     const storageKey = `shards_purchase_granted:${txKey}`;
     const already = await AsyncStorage.getItem(storageKey);
     if (already === '1') return false;
@@ -679,15 +684,25 @@ export default function ShardsShopScreen() {
       setProcessingPackId(packId);
       try {
         if (isDevStoreBypass) {
-          await addShardsRaw(shards, 'shards_store_purchase');
+          await addShardsRaw(shards, 'shards_store_purchase', { skipServerAwait: true });
           void trackShardPackPurchase(packId).catch(() => {});
-          await syncAfterStoreAction();
-          emitAppEvent('shards_balance_updated', { balance: await getShardsBalance() });
+          await refreshBalance();
+          void loadCardMarket({ background: true, force: true }).catch(() => {});
           emitAppEvent('action_toast', {
             type: 'success',
             messageRu: `DEV: начислено ${shards} осколков.`,
             messageUk: `DEV: нараховано ${shards} осколків.`,
             messageEs: `DEV: se añadieron ${shards} ${BRAND_SHARDS_ES.toLowerCase()}.`,
+          });
+          return;
+        }
+        await initRevenueCat();
+        if (!(await Purchases.isConfigured())) {
+          emitAppEvent('action_toast', {
+            type: 'error',
+            messageRu: 'Платежи временно недоступны. Подождите несколько секунд и попробуйте снова.',
+            messageUk: 'Платежі тимчасово недоступні. Зачекайте кілька секунд і спробуйте знову.',
+            messageEs: 'Pagos no disponibles. Espera unos segundos e inténtalo de nuevo.',
           });
           return;
         }
@@ -735,7 +750,7 @@ export default function ShardsShopScreen() {
         setProcessingPackId(null);
       }
     },
-    [grantPurchasedShardsOnce, syncAfterStoreAction, packagesByProductId, processingPackId],
+    [grantPurchasedShardsOnce, syncAfterStoreAction, packagesByProductId, processingPackId, refreshBalance, loadCardMarket],
   );
 
   const promptBuyCardPack = useCallback(
@@ -748,9 +763,11 @@ export default function ShardsShopScreen() {
   );
 
   const renderPackCard = (pack: ShardsPack, cardW: number) => {
+    const iconBox = 46;
+    const iconRadius = 14;
     const totalShards = totalShardsFromPack(pack);
     const packShardImg = oskolokImageForShardIapRow(pack);
-    const packPileDisplay = pack.shards >= 180 ? 40 : pack.shards >= 80 ? 38 : 34;
+    const packPileDisplay = pack.shards >= 180 ? 36 : pack.shards >= 80 ? 34 : 30;
     const pkg = packagesByProductId[pack.productId];
     const priceHint = pricesFromDisk[pack.productId];
     const loadingPrices = !isDevStoreBypass && !pkg && !priceHint?.priceString && !storeChecked;
@@ -793,11 +810,9 @@ export default function ShardsShopScreen() {
               : isES
                 ? 'Cargando precios…'
                 : 'Загрузка цен…'
-            : isUK
-              ? 'Ціну покаже Google Play'
-              : isES
-                ? 'El precio lo muestra Google Play'
-                : 'Цену покажет Google Play';
+            : '';
+
+    const hasSubtitle = subtitle.trim().length > 0;
 
     const paywallMood = isPaywallAtmosphereMode(themeMode);
     const borderColor = isBest
@@ -811,9 +826,15 @@ export default function ShardsShopScreen() {
     const hasRevenuePackage = !!pkg;
     const hasStorePrice = !!(pkg?.product?.priceString || priceHint?.priceString);
     const ctaLabel = busy
-      ? isES
-        ? 'Pago…'
-        : 'Оплата…'
+      ? isDevStoreBypass
+        ? isUK
+          ? 'Нараховуємо…'
+          : isES
+            ? 'Añadiendo…'
+            : 'Зачисление…'
+        : isES
+          ? 'Procesando…'
+          : 'Обработка…'
       : isDevStoreBypass
         ? isUK
           ? 'Купити (DEV)'
@@ -855,7 +876,7 @@ export default function ShardsShopScreen() {
           <View
             style={{
               width: cardW,
-              borderRadius: 18,
+              borderRadius: 16,
               borderWidth: 1,
               borderColor,
               overflow: 'hidden',
@@ -864,38 +885,37 @@ export default function ShardsShopScreen() {
             }}
           >
             {(isPopular || isBest) && (
-              <View style={{ position: 'absolute', top: 12, right: 12, zIndex: 2 }}>
+              <View style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
                 <HitBadgeShell
                   style={{
                     borderRadius: 999,
-                    paddingHorizontal: 10,
-                    paddingVertical: 4,
+                    paddingHorizontal: 9,
+                    paddingVertical: 3,
                     backgroundColor: isBest ? t.gold : t.accent,
                   }}
                 >
-                  <Text style={{ color: isBest ? '#1a1208' : ctaOnAccent, fontSize: 10, fontWeight: '900', letterSpacing: 0.4 }}>
+                  <Text style={{ color: isBest ? '#1a1208' : ctaOnAccent, fontSize: 9, fontWeight: '900', letterSpacing: 0.4 }}>
                     {isBest ? (isUK ? 'ВИГІДНО' : isES ? 'OFERTA' : 'ВЫГОДНО') : isUK ? 'ХІТ' : isES ? 'TOP' : 'ХИТ'}
                   </Text>
                 </HitBadgeShell>
               </View>
             )}
 
-            {/* Симметричный padding 16 — иначе большой paddingRight под бейдж сужал всю колонку и кнопку. */}
-            <View style={{ width: '100%', padding: 16 }}>
+            <View style={{ width: '100%', paddingHorizontal: 12, paddingVertical: 11 }}>
               <View
                 style={{
                   flexDirection: 'row',
                   alignItems: 'flex-start',
-                  gap: 14,
-                  paddingRight: isPopular || isBest ? 76 : 0,
+                  gap: 10,
+                  paddingRight: isPopular || isBest ? 72 : 0,
                 }}
               >
-                <PulsingShardFrame width={52} height={52} borderRadius={16}>
+                <PulsingShardFrame width={iconBox} height={iconBox} borderRadius={iconRadius}>
                   <View
                     style={{
-                      width: 52,
-                      height: 52,
-                      borderRadius: 16,
+                      width: iconBox,
+                      height: iconBox,
+                      borderRadius: iconRadius,
                       backgroundColor: paywallMood ? `${SHARD_TEAL}18` : `${t.accent}14`,
                       borderWidth: 1,
                       borderColor: paywallMood ? `${SHARD_TEAL}40` : `${t.accent}35`,
@@ -913,7 +933,7 @@ export default function ShardsShopScreen() {
                 </PulsingShardFrame>
                 <View style={{ flex: 1, minWidth: 0 }}>
                   <Text
-                    style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900', lineHeight: Math.round((f.numMd || 22) * 1.12) }}
+                    style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900', lineHeight: Math.round((f.numMd || 22) * 1.08) }}
                     numberOfLines={1}
                     adjustsFontSizeToFit
                     minimumFontScale={0.82}
@@ -926,38 +946,40 @@ export default function ShardsShopScreen() {
                         color: paywallMood ? SHARD_TEAL : t.accent,
                         fontSize: f.caption,
                         fontWeight: '800',
-                        marginTop: 4,
+                        marginTop: 2,
                       }}
                       numberOfLines={1}
                     >
                       {isUK ? `+${pack.bonusShards} у подарунок` : isES ? `+${pack.bonusShards} de regalo` : `+${pack.bonusShards} в подарок`}
                     </Text>
                   ) : null}
-                  <View style={{ height: 40, marginTop: 6, justifyContent: 'flex-start' }}>
-                    <Text
-                      style={{
-                        color: loadingPrices && pack.id !== 'starter' ? t.textMuted : t.textSecond,
-                        fontSize: f.caption,
-                        lineHeight: 20,
-                      }}
-                      numberOfLines={2}
-                      ellipsizeMode="tail"
-                    >
-                      {subtitle}
-                    </Text>
-                  </View>
+                  {hasSubtitle ? (
+                    <View style={{ marginTop: pack.bonusShards > 0 ? 4 : 3, justifyContent: 'flex-start' }}>
+                      <Text
+                        style={{
+                          color: loadingPrices && pack.id !== 'starter' ? t.textMuted : t.textSecond,
+                          fontSize: f.caption,
+                          lineHeight: 17,
+                        }}
+                        numberOfLines={2}
+                        ellipsizeMode="tail"
+                      >
+                        {subtitle}
+                      </Text>
+                    </View>
+                  ) : null}
                 </View>
               </View>
 
-              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: 12, gap: 10 }}>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginTop: hasSubtitle ? 8 : 6, gap: 8 }}>
                 <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>{isUK ? 'У магазині' : isES ? 'En la tienda' : 'В магазине'}</Text>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-                  <Text style={{ color: t.textMuted, fontSize: f.h2, fontWeight: '500', letterSpacing: 1 }}>—</Text>
-                  <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>{priceLabel}</Text>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
+                  <Text style={{ color: t.textMuted, fontSize: f.numMd, fontWeight: '500', letterSpacing: 1 }}>—</Text>
+                  <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{priceLabel}</Text>
                 </View>
               </View>
 
-              <View style={{ marginTop: 12, alignSelf: 'stretch', width: '100%' }}>
+              <View style={{ marginTop: 8, alignSelf: 'stretch', width: '100%' }}>
                 <ShopNeonCta
                   accent={t.accent}
                   accentSoft={accentSoft}
@@ -966,7 +988,8 @@ export default function ShardsShopScreen() {
                   label={ctaLabel}
                   useLockIcon={useLockIcon}
                   shadow={getVolumetricShadow(themeMode, t, 1)}
-                  fontSize={f.bodyLg}
+                  fontSize={f.body}
+                  dense
                 />
               </View>
             </View>
@@ -1420,7 +1443,7 @@ export default function ShardsShopScreen() {
                 style={{
                   width: packCardWidth,
                   alignSelf: 'center',
-                  marginBottom: 12,
+                  marginBottom: 10,
                   opacity: shardRowEnt[packIdx]!,
                   transform: [
                     {
@@ -1450,7 +1473,19 @@ export default function ShardsShopScreen() {
                 {isUK ? 'Оплата в Google Play' : isES ? 'Pago en Google Play' : 'Оплата в Google Play'}
               </Text>
             </View>
+
               </>
+            </View>
+            <View style={{ alignItems: 'center', paddingVertical: 16 }}>
+              <ReportErrorButton
+                screen="shards_shop"
+                dataId="shards_shop_main"
+                dataText={triLang(lang, {
+                  ru: 'Магазин осколков',
+                  uk: 'Крамниця уламків',
+                  es: 'Tienda de fragmentos',
+                })}
+              />
             </View>
           </ScrollView>
         </ContentWrap>

@@ -4,6 +4,7 @@ import { AppState, DeviceEventEmitter } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import { formatTimeUntilRecovery } from '../app/energy_system';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
@@ -22,13 +23,15 @@ export interface EnergyContextValue {
   bonusExpiresAt: number;    // epoch ms when bonus expires (0 if no bonus)
   maxEnergy: number;         // динамически: 5-10 в зависимости от уровня
   timeUntilNextMs: number;   // ms until +1 energy (0 if full or unlimited)
-  formattedTime: string;     // "29м" or "1ч 5м" — ready to display
+  formattedTime: string;     // e.g. "29м 12с" or "1ч 5м 3с" — ready to display
   isUnlimited: boolean;      // premium or tester mode
   restoringPremium: boolean; // true while animating premium energy restore
   spendOne: () => Promise<boolean>;  // returns false if no energy
   /** Spend N units: bonus first, then base. Returns false if total available < n (atomic). */
   spendAmount: (n: number) => Promise<boolean>;
   reload: () => Promise<void>;       // force re-read (call after tester toggle)
+  /** First AsyncStorage load finished — safe to gate screens on real energy+bonus (not defaults). */
+  energyReady: boolean;
 }
 
 const EnergyContext = createContext<EnergyContextValue>({
@@ -43,6 +46,7 @@ const EnergyContext = createContext<EnergyContextValue>({
   spendOne: async () => true,
   spendAmount: async () => true,
   reload: async () => {},
+  energyReady: false,
 });
 
 export function useEnergy(): EnergyContextValue {
@@ -50,14 +54,6 @@ export function useEnergy(): EnergyContextValue {
 }
 
 // ── Helpers ──────────────────────────────────────────────────────────────────
-function formatMs(ms: number): string {
-  const totalSec = Math.floor(ms / 1000);
-  const hours = Math.floor(totalSec / 3600);
-  const minutes = Math.floor((totalSec % 3600) / 60);
-  if (hours > 0) return `${hours}ч ${minutes}м`;
-  return `${minutes}м`;
-}
-
 async function readUnlimited(): Promise<boolean> {
   const [tester, noLimits] = await Promise.all([
     AsyncStorage.getItem('tester_energy_disabled'),
@@ -117,6 +113,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const [timeUntilNextMs, setTimeUntilNextMs] = useState(0);
   const [isUnlimited, setIsUnlimited] = useState(false);
   const [restoringPremium, setRestoringPremium] = useState(false);
+  const [energyReady, setEnergyReady] = useState(false);
 
   // Refs for use inside callbacks without stale closures
   const energyRef = useRef(MAX_ENERGY);
@@ -196,7 +193,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       } else {
         setTimeUntilNextMs(0);
       }
-    } catch {}
+    } catch {
+    } finally {
+      setEnergyReady(true);
+    }
   }, []);
 
   // Load on mount
@@ -330,10 +330,10 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // ── Force reload (call after tester toggle in settings) ────────────────────
   const reload = useCallback(async () => { await load(); }, [load]);
 
-  const formattedTime = energy < dynMaxRef.current && !isUnlimited ? formatMs(timeUntilNextMs) : '';
+  const formattedTime = energy < dynMaxRef.current && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs) : '';
 
   return (
-    <EnergyContext.Provider value={{ energy, bonusEnergy, bonusExpiresAt, maxEnergy, timeUntilNextMs, formattedTime, isUnlimited, restoringPremium, spendOne, spendAmount, reload }}>
+    <EnergyContext.Provider value={{ energy, bonusEnergy, bonusExpiresAt, maxEnergy, timeUntilNextMs, formattedTime, isUnlimited, restoringPremium, spendOne, spendAmount, reload, energyReady }}>
       {children}
     </EnergyContext.Provider>
   );

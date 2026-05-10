@@ -10,8 +10,8 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { getCanonicalUserId } from './user_id_policy';
 import { ensureAnonUser } from './cloud_sync';
+import { ensureArenaAuthUid, getCanonicalUserId } from './user_id_policy';
 import { getWeekKey } from './hall_of_fame_utils';
 
 // ── Дебаунс для pushMyScore — пишем в Firestore не чаще 1 раза в 30 сек ─────
@@ -61,6 +61,8 @@ export interface RemoteLeaderEntry {
   streak?: number;
   leagueId?: number;
   isPremium?: boolean;
+  daily7xp?: number;
+  daily7time_ms?: number;
 }
 
 const getFirestore = () => {
@@ -107,6 +109,25 @@ export function pushMyScore(
   });
 }
 
+export async function pushMyScoreImmediate(
+  name: string,
+  totalPoints: number,
+  weekPoints: number,
+  lang: string,
+  avatar?: string,
+  streak?: number,
+  leagueId?: number,
+  frame?: string,
+  isPremium?: boolean,
+): Promise<void> {
+  if (_pushDebounceTimer) {
+    clearTimeout(_pushDebounceTimer);
+    _pushDebounceTimer = null;
+  }
+  _pendingPush = null;
+  await _doPushMyScore(name, totalPoints, weekPoints, lang, avatar, streak, leagueId, frame, isPremium);
+}
+
 async function _doPushMyScore(
   name: string,
   totalPoints: number,
@@ -120,15 +141,21 @@ async function _doPushMyScore(
 ): Promise<void> {
   const db = getFirestore();
   if (!db) return;
-  const uid = await ensureAnonUser();
-  if (!uid) return;
+  const stableId = await ensureAnonUser();
+  if (!stableId) return;
+  let arenaAuth: string | null = null;
+  try {
+    arenaAuth = await ensureArenaAuthUid();
+  } catch {
+    arenaAuth = null;
+  }
   try {
     // Не пишем в лидерборд если пользователь забанен
-    const banDoc = await db.collection('banned_users').doc(uid).get();
+    const banDoc = await db.collection('banned_users').doc(stableId).get();
     if (banDoc.exists) return;
   } catch {}
   try {
-    await db.collection(COL).doc(uid).set({
+    await db.collection(COL).doc(stableId).set({
       name: name.trim(),
       nameLower: name.trim().toLowerCase(),
       points: totalPoints,
@@ -140,8 +167,22 @@ async function _doPushMyScore(
       streak: streak ?? null,
       leagueId: leagueId ?? null,
       isPremium: isPremium ?? false,
+      ...(arenaAuth ? { firebaseAuthUid: arenaAuth } : {}),
       updatedAt: Date.now(),
     }, { merge: true });
+  } catch {}
+  // Копия для топа арены: id arena_profiles = Auth uid, leaderboard = stableId.
+  try {
+    if (arenaAuth) {
+      await db.collection('arena_profiles').doc(arenaAuth).set({
+        courseTotalXp: totalPoints,
+        courseAvatar: avatar?.trim() ? avatar.trim() : null,
+        courseFrame: frame?.trim() ? frame.trim() : null,
+        courseIsPremium: isPremium ?? false,
+        courseDisplayAt: Date.now(),
+        mirrorStableId: stableId,
+      }, { merge: true });
+    }
   } catch {}
 }
 
@@ -153,6 +194,15 @@ export async function updateMyPremiumInLeaderboard(isPremium: boolean): Promise<
   if (!uid) return;
   try {
     await db.collection(COL).doc(uid).set({ isPremium }, { merge: true });
+  } catch {}
+  try {
+    const arenaAuth = await ensureArenaAuthUid();
+    if (arenaAuth) {
+      await db.collection('arena_profiles').doc(arenaAuth).set({
+        courseIsPremium: isPremium,
+        courseDisplayAt: Date.now(),
+      }, { merge: true });
+    }
   } catch {}
 }
 
@@ -271,6 +321,8 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
       streak: doc.data().streak ?? undefined,
       leagueId: doc.data().leagueId ?? undefined,
       isPremium: doc.data().isPremium ?? false,
+      daily7xp: typeof doc.data().daily7xp === 'number' ? doc.data().daily7xp : undefined,
+      daily7time_ms: typeof doc.data().daily7time_ms === 'number' ? doc.data().daily7time_ms : undefined,
     });
 
     const passesFilter = (e: RemoteLeaderEntry) =>
@@ -339,6 +391,65 @@ export async function deleteMyLeaderboardEntry(): Promise<void> {
     const authUid = auth.currentUser?.uid ?? null;
     const docIds = Array.from(new Set([canonicalUid, authUid].filter(Boolean) as string[]));
     await Promise.all(docIds.map((id) => db.collection(COL).doc(id).delete().catch(() => {})));
+  } catch {}
+}
+
+// ── Освободить ник в name_index (вызывается при удалении аккаунта) ───────────
+// Без этого следующий онбординг с тем же ником получит 'taken', т.к. документ
+// name_index/{nameLower} остаётся с привязкой к старому uid даже после удаления
+// users/{uid} и leaderboard/{uid}.
+//
+// Источники имени (в порядке приоритета):
+//   1. leaderboard/{uid}.nameLower — самый достоверный, всегда нормализован.
+//   2. AsyncStorage.user_name — если юзер прошёл онбординг, но ещё не получил XP.
+//
+// ВАЖНО: вызывать ДО deleteMyLeaderboardEntry/deleteCloudData — иначе оба
+// источника будут уже стёрты.
+export async function deleteMyNameReservation(): Promise<void> {
+  if (!CLOUD_SYNC_ENABLED) return;
+  const db = getFirestore();
+  if (!db) return;
+  try {
+    const canonicalUid = await getCanonicalUserId();
+    if (!canonicalUid) return;
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const auth = require('@react-native-firebase/auth').default();
+    const authUid = auth.currentUser?.uid ?? null;
+    const ownerUids = new Set<string>([canonicalUid, authUid].filter(Boolean) as string[]);
+
+    // Собираем nameLower из всех возможных источников.
+    const candidates = new Set<string>();
+    for (const uid of ownerUids) {
+      try {
+        const snap = await db.collection(COL).doc(uid).get();
+        const nl = snap.data()?.nameLower;
+        if (typeof nl === 'string' && nl.trim()) candidates.add(nl.trim());
+        const n = snap.data()?.name;
+        if (typeof n === 'string' && n.trim()) candidates.add(n.trim().toLowerCase());
+      } catch {}
+    }
+    try {
+      const localName = await AsyncStorage.getItem('user_name');
+      if (localName && localName.trim()) candidates.add(localName.trim().toLowerCase());
+    } catch {}
+
+    if (candidates.size === 0) return;
+
+    // Удаляем каждый name_index/{nameLower} в транзакции с проверкой uid,
+    // чтобы случайно не снести чужую резервацию.
+    await Promise.all(
+      Array.from(candidates).map(async (nameLower) => {
+        try {
+          await db.runTransaction(async (tx: any) => {
+            const ref = db.collection(NAME_IDX).doc(nameLower);
+            const snap = await tx.get(ref);
+            if (snap.exists && ownerUids.has(snap.data()?.uid)) {
+              tx.delete(ref);
+            }
+          });
+        } catch {}
+      }),
+    );
   } catch {}
 }
 

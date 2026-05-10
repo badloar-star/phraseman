@@ -117,7 +117,7 @@ function TabScaffold({ tabScreens }: TabScaffoldProps) {
   const { theme: t, f, ds, themeMode, statusBarLight } = useTheme();
   const { contentMaxW, tabBarHeight, bottomInset: PB } = useScreen();
   const insets = useSafeAreaInsets();
-  const { goToTab, activeIdx } = useTabNav();
+  const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
   const isDeepLightTab = themeMode === 'sakura' || themeMode === 'ocean';
@@ -129,7 +129,7 @@ function TabScaffold({ tabScreens }: TabScaffoldProps) {
         <View style={{ flex: 1, maxWidth: contentMaxW, width: '100%', alignSelf: 'center', flexDirection: 'column' }}>
           {/* flex-колонка вместо absolute: таб-бар всегда снизу в дереве, его не перекрывает ScrollView/elevation */}
           <View style={s.tabContent}>
-            <TabSlider activeIndex={activeIdx} onTabChange={goToTab} swipeEnabled={true}>
+            <TabSlider activeIndex={activeIdx} onTabChange={goToTab} onSwipeStart={onSwipeStart} onSwipeComplete={onSwipeComplete} swipeEnabled={true}>
               {tabScreens}
             </TabSlider>
           </View>
@@ -203,7 +203,11 @@ export default function TabLayout() {
   activeIdxRef.current = activeIdx;
   const [focusTick, setFocusTick] = useState(0);
   // Ліниве монтування: повний екран лише для активного таба або вже відкритих (стан зберігається); інше — плейсхолдер (менш навантаження при зміні мови/теми).
-  const [visitedTabs, setVisitedTabs] = useState(() => new Set<number>());
+  // Начальный таб всегда в visited — чтобы первый рендер не был плейсхолдером.
+  const [visitedTabs, setVisitedTabs] = useState(() => {
+    const initial = tabIdxFromRouter(pathname, segments) ?? 0;
+    return new Set<number>([initial]);
+  });
   const router = useRouter();
   /** Пока router.replace ещё не обновил pathname, useLayoutEffect не должен откатить вкладку по старому URL. */
   const pendingTabIdxRef = useRef<number | null>(null);
@@ -226,36 +230,58 @@ export default function TabLayout() {
     });
   }, [pathname, segments]);
 
-  useEffect(() => {
-    setVisitedTabs((prev) => {
-      if (prev.has(activeIdx)) return prev;
-      const next = new Set(prev);
-      next.add(activeIdx);
-      return next;
-    });
-  }, [activeIdx]);
-
   useFocusEffect(useCallback(() => { setFocusTick(tick => tick + 1); }, []));
 
-  const handleTabChange = useCallback((idx: number) => {
+  /** Вызывается в момент отпускания пальца (до анимации) — обновляем таббар и монтируем экран назначения.
+   *  Нативный driver изолирован от JS-потока, поэтому React-mount нового экрана не прерывает анимацию. */
+  const handleSwipeStart = useCallback((idx: number) => {
     if (idx === activeIdxRef.current) return;
-    pendingTabIdxRef.current = idx;
     setActiveIdx(idx);
-    // URL таба должен совпадать с видимым табом — иначе после router.back() из стек-экрана
-    // pathname остаётся старым (напр. /arena), и эффект ниже переключает слайдер на арену.
+    setVisitedTabs((prev) => {
+      if (prev.has(idx)) return prev;
+      const next = new Set(prev);
+      next.add(idx);
+      return next;
+    });
+  }, []);
+
+  const routerReplaceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const navigateTo = useCallback((idx: number) => {
     const target = IDX_TO_TAB_ROUTE[idx];
     if (!target) return;
-    if (routerShowsTab(pathname, segments, idx)) {
-      pendingTabIdxRef.current = null;
-      return;
-    }
-    router.replace(target as any);
+    if (routerShowsTab(pathname, segments, idx)) return;
+    // Откладываем router.replace на следующий frame после отрисовки UI — иначе
+    // usePathname()-change → useLayoutEffect → React re-render вызывает белый кадр.
+    if (routerReplaceTimerRef.current) clearTimeout(routerReplaceTimerRef.current);
+    routerReplaceTimerRef.current = setTimeout(() => {
+      pendingTabIdxRef.current = idx;
+      router.replace(target as any);
+    }, 0);
   }, [pathname, segments, router]);
 
+  /** Тап по таббару — немедленно обновляем UI, URL обновляем асинхронно. */
+  const handleTabChange = useCallback((idx: number) => {
+    if (idx === activeIdxRef.current) return;
+    setActiveIdx(idx);
+    setVisitedTabs((prev) => {
+      if (prev.has(idx)) return prev;
+      const next = new Set(prev);
+      next.add(idx);
+      return next;
+    });
+    navigateTo(idx);
+  }, [navigateTo]);
+
+  /** Свайп завершён — обновляем URL асинхронно (UI уже обновлён в handleSwipeStart). */
+  const handleSwipeComplete = useCallback((idx: number) => {
+    navigateTo(idx);
+  }, [navigateTo]);
+
   const tabScreens = useMemo(() => {
-    // Головна (0) і Уроки (1) завжди в дереві — інакше при першому відкритті таба екран монтується
-    // «з нуля» і користувач бачить порожній список / нульові прогреси до приходу AsyncStorage.
-    const show = (i: number) => i === 0 || i === 1 || visitedTabs.has(i) || i === activeIdx;
+    // Головна (0) і Уроки (1) завжди в дереві. Решальные табы монтируются в handleSwipeStart/handleTabChange
+    // (добавляются в visitedTabs), но не раньше — чтобы не строить тяжёлые экраны при старте.
+    const show = (i: number) => i === 0 || i === 1 || visitedTabs.has(i);
     const placeholder = (k: string) => (
       <View key={k} style={{ width: tabPaneWidth, flex: 1, backgroundColor: 'transparent' }} collapsable={false} />
     );
@@ -266,10 +292,10 @@ export default function TabLayout() {
       show(3) ? <FriendsScreen    key="friends" />      : placeholder('ph-friends'),
       show(4) ? <SettingsScreen   key="settings" />     : placeholder('ph-settings'),
     ];
-  }, [visitedTabs, activeIdx, tabPaneWidth]);
+  }, [visitedTabs, tabPaneWidth]);
 
   return (
-    <TabProvider activeIdx={activeIdx} onTabChange={handleTabChange} focusTick={focusTick}>
+    <TabProvider activeIdx={activeIdx} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
       <TabScaffold tabScreens={tabScreens} />
     </TabProvider>
   );

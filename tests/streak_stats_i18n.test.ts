@@ -1,5 +1,5 @@
 /**
- * Подписи экрана статистики стрика — RU / UK / ES.
+ * Подписи экрана статистики / цепочки дней — RU / UK / ES.
  */
 import type { Lang } from '../constants/i18n';
 import {

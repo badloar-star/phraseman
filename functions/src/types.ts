@@ -69,7 +69,7 @@ export interface DuelSession {
   acceptDeadlineAt?: number;
   getReadyEndsAt?: number;
   getReadyStartedAt?: number;
-  abortReason?: 'decline' | 'accept_timeout';
+  abortReason?: 'decline' | 'accept_timeout' | 'stale_cleanup';
   abortedAt?: number;
 }
 
@@ -79,6 +79,7 @@ export interface SessionPlayer {
   sessionId: string;
   playerId: string;
   displayName?: string;
+  avatarLevel?: number;
   answers: SessionAnswer[];
   score: number;
   finished?: boolean;

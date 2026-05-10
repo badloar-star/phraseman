@@ -3,7 +3,7 @@
 //
 // Зачем:
 //   На холодном старте параллельно могут «попроситься» сразу несколько модалок
-//   (Update / Broadcast / ShardReward / NotifNudge / LevelUp), и без координации
+//   (Update / ReleaseNotes / Broadcast / NotifNudge / LevelUp), и без координации
 //   они отрисовываются друг поверх друга. На Android при visible сразу нескольких
 //   `Modal` со statusBarTranslucent система начинает мерцать и иногда подвешивает
 //   System UI — это и был основной источник ANR/freeze на холодном старте.
@@ -12,7 +12,7 @@
 //   • Каждая модалка-кандидат говорит «я готова показаться» через `useOverlayVisible`.
 //   • Арбитр держит ровно ОДНУ активную модалку в каждый момент времени.
 //   • Когда активная закрывается, автоматически активируется следующая по приоритету.
-//   • Приоритет: update > broadcast > shardReward > notifNudge > levelUp.
+//   • Приоритет: update > releaseNotes > broadcast > notifNudge > levelUp.
 //
 // Использование:
 //   const visible = useOverlayVisible('update', !!updateInfo && !hidden);
@@ -30,20 +30,20 @@ import React, {
 
 export type OverlayKey =
   | 'update'
+  | 'releaseNotes'
   | 'releaseWave'
   | 'broadcast'
-  | 'shardReward'
   | 'notifNudge'
   | 'levelUp';
 
 // `releaseWave` идёт сразу после `update`: «у тебя свежий апдейт + вот тебе подарок».
-// Раньше broadcast/shardReward — потому что это разовая модалка после установки
+// Раньше broadcast — потому что это разовая модалка после установки
 // новой сборки и её приятнее показать первой, до текущих сетевых событий.
 const PRIORITY: OverlayKey[] = [
   'update',
+  'releaseNotes',
   'releaseWave',
   'broadcast',
-  'shardReward',
   'notifNudge',
   'levelUp',
 ];
@@ -52,9 +52,9 @@ type WantsMap = Record<OverlayKey, boolean>;
 
 const EMPTY_WANTS: WantsMap = {
   update: false,
+  releaseNotes: false,
   releaseWave: false,
   broadcast: false,
-  shardReward: false,
   notifNudge: false,
   levelUp: false,
 };
@@ -62,6 +62,7 @@ const EMPTY_WANTS: WantsMap = {
 type Ctx = {
   active: OverlayKey | null;
   setWants: (key: OverlayKey, wants: boolean) => void;
+  disabled?: boolean;
 };
 
 const OverlayArbiterContext = createContext<Ctx | null>(null);
@@ -98,7 +99,7 @@ function useOverlayArbiter(): Ctx {
       // eslint-disable-next-line no-console
       console.warn('[OverlayArbiter] Provider не смонтирован — fail-soft, всегда пускаю');
     }
-    return { active: null, setWants: () => {} };
+    return { active: null, setWants: () => {}, disabled: true };
   }
   return ctx;
 }
@@ -112,7 +113,7 @@ function useOverlayArbiter(): Ctx {
  * @returns         `ownState && active === key` — пробрасывай в `<Modal visible={...}>`.
  */
 export function useOverlayVisible(key: OverlayKey, ownState: boolean): boolean {
-  const { active, setWants } = useOverlayArbiter();
+  const { active, setWants, disabled } = useOverlayArbiter();
 
   useEffect(() => {
     setWants(key, ownState);
@@ -122,6 +123,7 @@ export function useOverlayVisible(key: OverlayKey, ownState: boolean): boolean {
     };
   }, [key, ownState, setWants]);
 
+  if (disabled) return ownState;
   return ownState && active === key;
 }
 

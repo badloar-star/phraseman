@@ -29,9 +29,9 @@ import { GiftOpenBurst, animTierF2p, animTierPrem, type GiftAnimTier } from './G
 import { markGiftClaimed, saveClaimedGiftRarity, UNCLAIMED_GIFTS_KEY } from './LevelGiftModal';
 
 const F2P_IMAGES: Record<string, number> = {
-  common: require('../assets/images/levels/GIF_COMMON.png'),
-  rare:   require('../assets/images/levels/GIFT_RARE.png'),
-  epic:   require('../assets/images/levels/GIFT_EPIC.png'),
+  common: require('../assets/images/levels/GIF_COMMON.webp'),
+  rare:   require('../assets/images/levels/GIFT_RARE.webp'),
+  epic:   require('../assets/images/levels/GIFT_EPIC.webp'),
 };
 
 /** Подписи сундуков/карточек — не «F2P»/англ. жаргон, а нормальные RU/UK/ES. */
@@ -43,7 +43,7 @@ const DUAL_UI = {
 /** Заголовок карточки премиум-награды: тёмный фиолетовый на светлом фоне (не бледный #C4B5FD). */
 const PREM_LABEL_COLOR = '#5B21B6';
 /** Без пробела в имени — иначе Metro/бандл на части девайсов не подхватывают `require` и `Image` пустой. */
-const PREMIUM_CHEST = require('../assets/images/levels/GIFT_PREMIUM.png');
+const PREMIUM_CHEST = require('../assets/images/levels/GIFT_PREMIUM.webp');
 
 const RARITY_BORDER: Record<string, string> = {
   common: '#44444488',

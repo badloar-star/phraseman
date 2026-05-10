@@ -1,4 +1,5 @@
 // Все тексты интерфейса (RU/UK — прод; ES — включается в dev, см. ENABLE_SPANISH_LOCALE)
+import { ENABLE_SPANISH_LOCALE } from '../app/config';
 export type Lang = 'ru' | 'uk' | 'es';
 
 export const T = {
@@ -6,7 +7,6 @@ export const T = {
     // Табы
     tabLessons:   'Уроки',
     tabQuizzes:   'Квизы',
-    tabHallFame:  'Зал славы',
     tabSettings:  'Настройки',
 
     // Список уроков
@@ -46,13 +46,6 @@ export const T = {
     wordList:     'Список слов',
     allLearned:   'Все слова выучены!',
     wordsInLesson:(n: number) => `${n} слов в этом уроке`,
-
-    // Зал славы
-    hallOfFame:   'Зал славы',
-    noPlayers:    'Пока никого нет.\nПройди квиз и займи место!',
-    rank:         'Место',
-    player:       'Игрок',
-    points:       'Опыт',
 
     // Настройки
     settings:       'Настройки',
@@ -125,7 +118,6 @@ export const T = {
   uk: {
     tabLessons:   'Уроки',
     tabQuizzes:   'Квізи',
-    tabHallFame:  'Зал слави',
     tabSettings:  'Налаштування',
 
     lessonN:      (n: number) => `Урок ${n}`,
@@ -161,12 +153,6 @@ export const T = {
     allLearned:   'Всі слова вивчено!',
     wordsInLesson:(n: number) => `${n} слів у цьому уроці`,
 
-    hallOfFame:   'Зал слави',
-    noPlayers:    'Поки нікого немає.\nПройди квіз та займи місце!',
-    rank:         'Місце',
-    player:       'Гравець',
-    points:       'Бали',
-
     settings:       'Налаштування',
     learningSettings:'Налаштування навчання',
     autoCheck:      'Автоперевірка',
@@ -178,7 +164,7 @@ export const T = {
     hardMode:       'Складний режим',
     hardModeSub:    'Введення речення вручну з клавіатури',
     speed:          'Швидкість вимови',
-    speedHint:      'Відпусти повзунок — прозвучить приклад',
+    speedHint:      'Відпусти повзунок — пролунає приклад',
     slow:           'Повільно',
     fast:           'Швидко',
     feedback:       'Ідеї й пропозиції',
@@ -236,7 +222,6 @@ export const T = {
   es: {
     tabLessons:   'Lecciones',
     tabQuizzes:   'Cuestionarios',
-    tabHallFame:  'Salón de la fama',
     tabSettings:  'Ajustes',
 
     lessonN:      (n: number) => `Lección ${n}`,
@@ -271,12 +256,6 @@ export const T = {
     wordList:     'Lista de palabras',
     allLearned:   '¡Has aprendido todas las palabras!',
     wordsInLesson:(n: number) => `${n} palabras en esta lección`,
-
-    hallOfFame:   'Salón de la fama',
-    noPlayers:    'Aún no hay nadie.\n¡Haz un cuestionario y sube en la clasificación!',
-    rank:         'Puesto',
-    player:       'Jugador',
-    points:       'Puntos de experiencia',
 
     settings:       'Ajustes',
     learningSettings:'Ajustes del aprendizaje',
@@ -345,14 +324,14 @@ export type Strings = typeof T['ru'];
 /** Интерфейс (RU / UK / ES в прод-пакетах). */
 export function triLang(lang: Lang, txt: { ru: string; uk: string; es: string }): string {
   if (lang === 'uk') return txt.uk;
-  if (lang === 'es') return txt.es;
+  if (lang === 'es' && ENABLE_SPANISH_LOCALE) return txt.es;
   return txt.ru;
 }
 
 /** Ключ строк в `T` для текущего языка интерфейса (RU / UK / ES). */
 export function legacyRuUk(lang: Lang): 'ru' | 'uk' | 'es' {
   if (lang === 'uk') return 'uk';
-  if (lang === 'es') return 'es';
+  if (lang === 'es' && ENABLE_SPANISH_LOCALE) return 'es';
   return 'ru';
 }
 
@@ -361,6 +340,6 @@ export type UiBundleLang = 'ru' | 'uk' | 'es';
 
 export function bundleLang(lang: Lang): UiBundleLang {
   if (lang === 'uk') return 'uk';
-  if (lang === 'es') return 'es';
+  if (lang === 'es' && ENABLE_SPANISH_LOCALE) return 'es';
   return 'ru';
 }

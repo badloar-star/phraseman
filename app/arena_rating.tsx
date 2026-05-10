@@ -1,20 +1,25 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Image, ScrollView } from 'react-native';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {
+  View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Image, ScrollView,
+  Modal, Pressable, Dimensions,
+} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import XpGainBadge from '../components/XpGainBadge';
+import { hapticTap } from '../hooks/use-haptics';
 import {
   ARENA_RATING_SCREEN_CACHE_KEY,
   fetchAndCacheArenaRating,
   sanitizeArenaProfileForRating,
   sanitizeArenaRatingHistory,
+  rememberArenaLobbyProfile,
 } from './arena_rating_cache';
-import { ArenaProfile, RankTier, RankLevel } from './types/arena';
-import { getRankImage } from '../hooks/use-arena-rank';
+import { ArenaProfile, RankTier, RankLevel, RANK_TIERS, RANK_LEVELS, rankToIndex } from './types/arena';
+import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank';
 import { emitAppEvent } from './events';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
@@ -110,6 +115,16 @@ function MatchRow({ match, t, f, lang }: { match: MatchRecord; t: ReturnType<typ
   );
 }
 
+const ALL_RANK_SLOTS = (() => {
+  const slots: { tier: RankTier; level: RankLevel }[] = [];
+  for (const tier of RANK_TIERS) {
+    for (const level of RANK_LEVELS) {
+      slots.push({ tier, level });
+    }
+  }
+  return slots;
+})();
+
 export default function DuelRatingScreen() {
   const router = useRouter();
   const { theme: t, f } = useTheme();
@@ -118,6 +133,12 @@ export default function DuelRatingScreen() {
   const [matchHistory, setMatchHistory] = useState<MatchRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
+  const [rankPickerOpen, setRankPickerOpen] = useState(false);
+  const [rankPickerTop, setRankPickerTop] = useState(0);
+  const rankRowRef = useRef<View>(null);
+  const rankListRef = useRef<ScrollView>(null);
+
+  const pickerMaxH = useMemo(() => Math.round(Dimensions.get('window').height * 0.58), []);
 
   useEffect(() => {
     let cancelled = false;
@@ -128,7 +149,10 @@ export default function DuelRatingScreen() {
           const parsed = JSON.parse(raw) as { profile?: unknown; history?: unknown };
           const profile = sanitizeArenaProfileForRating(parsed.profile ?? null);
           const history = sanitizeArenaRatingHistory(parsed.history);
-          if (profile) setMyProfile(profile);
+          if (profile) {
+            rememberArenaLobbyProfile(profile);
+            setMyProfile(profile);
+          }
           setMatchHistory(history);
           setLoading(false);
         }
@@ -143,7 +167,10 @@ export default function DuelRatingScreen() {
     try {
       const data = await fetchAndCacheArenaRating();
       if (data) {
-        if (data.profile) setMyProfile(data.profile);
+        if (data.profile) {
+          rememberArenaLobbyProfile(data.profile);
+          setMyProfile(data.profile);
+        }
         setMatchHistory(data.history);
       }
     } catch {
@@ -163,6 +190,29 @@ export default function DuelRatingScreen() {
   const myRankLevel = myProfile?.rank?.level ?? 'I';
   const myStars = (myProfile?.rank?.stars ?? 0) as 0 | 1 | 2;
   const myXP = myProfile?.xp ?? 0;
+  const myRankIdx = rankToIndex(myRankTier, myRankLevel);
+
+  const openRankPicker = () => {
+    hapticTap();
+    requestAnimationFrame(() => {
+      rankRowRef.current?.measureInWindow((_x, y, _w, h) => {
+        setRankPickerTop(y + h + 6);
+        setRankPickerOpen(true);
+      });
+    });
+  };
+
+  const closeRankPicker = () => setRankPickerOpen(false);
+
+  useEffect(() => {
+    if (!rankPickerOpen) return;
+    const tm = setTimeout(() => {
+      const rowH = 58;
+      const scrollY = Math.max(0, myRankIdx * rowH - pickerMaxH / 2 + rowH);
+      rankListRef.current?.scrollTo({ y: scrollY, animated: false });
+    }, 72);
+    return () => clearTimeout(tm);
+  }, [rankPickerOpen, myRankIdx, pickerMaxH]);
 
   return (
     <ScreenGradient>
@@ -171,7 +221,7 @@ export default function DuelRatingScreen() {
           <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
         </TouchableOpacity>
         <View style={{ flex: 1, alignItems: 'center', gap: 6 }}>
-          <Image source={require('../assets/images/levels/ARENA  ICON.png')} style={{ width: 44, height: 44 }} resizeMode="contain" />
+          <Image source={require('../assets/images/levels/ARENA  ICON.webp')} style={{ width: 44, height: 44 }} resizeMode="contain" />
           <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}>
             {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
           </Text>
@@ -186,23 +236,58 @@ export default function DuelRatingScreen() {
           style={[styles.myCard, { borderColor: t.border }]}
           start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
         >
-          <View style={styles.myCardLeft}>
-            <Image source={getRankImage(myRankTier, myRankLevel)} style={{ width: 48, height: 48 }} resizeMode="contain" />
-            <View>
-              <Text style={[styles.myRankName, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {arenaTierLabel(myRankTier, lang)} {myRankLevel}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                {(() => {
-                  const n = myProfile?.stats?.matchesPlayed ?? 0;
-                  return triLang(lang, {
-                    ru: `${myXP} XP · ${n} игр`,
-                    uk: `${myXP} XP · ${n} ігор`,
-                    es: `${myXP} XP · ${n} ${n === 1 ? 'duelo' : 'duelos'}`,
-                  });
-                })()}
-              </Text>
-            </View>
+          <View ref={rankRowRef} collapsable={false} style={styles.myCardLeft}>
+            <Pressable
+              onPress={openRankPicker}
+              style={({ pressed }) => [
+                styles.rankPressable,
+                { opacity: pressed ? 0.78 : 1 },
+              ]}
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, {
+                ru: 'Все ранги арены',
+                uk: 'Усі ранги арени',
+                es: 'Todos los rangos de la arena',
+              })}
+            >
+              <View
+                style={{
+                  width: 48,
+                  height: 48,
+                  overflow: 'hidden',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Image
+                  source={getRankImage(myRankTier, myRankLevel)}
+                  style={{
+                    width: 48,
+                    height: 48,
+                    transform: [{ scale: getRankImageDisplayScale(myRankTier, myRankLevel) }],
+                  }}
+                  resizeMode="contain"
+                />
+              </View>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, flexWrap: 'wrap' }}>
+                  <Text style={[styles.myRankName, { color: t.textPrimary, fontSize: f.h2 }]}>
+                    {arenaTierLabel(myRankTier, lang)} {myRankLevel}
+                  </Text>
+                  <Ionicons name="chevron-down" size={18} color={t.textMuted} />
+                </View>
+                <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+                  {(() => {
+                    const n = myProfile?.stats?.matchesPlayed ?? 0;
+                    return triLang(lang, {
+                      ru: `${myXP} XP · ${n} игр`,
+                      uk: `${myXP} XP · ${n} ігор`,
+                      es: `${myXP} XP · ${n} ${n === 1 ? 'duelo' : 'duelos'}`,
+                    });
+                  })()}
+                </Text>
+              </View>
+            </Pressable>
           </View>
           <View style={styles.myCardRight}>
             <Stars count={myStars} color={t.gold} />
@@ -215,6 +300,95 @@ export default function DuelRatingScreen() {
             </Text>
           </View>
         </LinearGradient>
+
+        <Modal
+          visible={rankPickerOpen}
+          transparent
+          animationType="fade"
+          onRequestClose={closeRankPicker}
+        >
+          <View style={styles.rankModalRoot} pointerEvents="box-none">
+            <Pressable
+              style={[StyleSheet.absoluteFill, { backgroundColor: 'rgba(0,0,0,0.5)' }]}
+              onPress={closeRankPicker}
+            />
+            <View
+              pointerEvents="box-none"
+              style={[
+                styles.rankPickerSheet,
+                {
+                  top: Math.max(72, rankPickerTop),
+                  backgroundColor: t.bgCard,
+                  borderColor: 'rgba(255,215,0,0.35)',
+                  maxHeight: pickerMaxH,
+                },
+              ]}
+            >
+              <Text style={[styles.rankPickerTitle, { color: t.textMuted, fontSize: f.label }]}>
+                {triLang(lang, { ru: 'РАНГИ АРЕНЫ', uk: 'РАНГИ АРЕНИ', es: 'RANGOS DE LA ARENA' })}
+              </Text>
+              <ScrollView
+                ref={rankListRef}
+                nestedScrollEnabled
+                keyboardShouldPersistTaps="handled"
+                scrollIndicatorInsets={{ right: 4 }}
+                contentContainerStyle={styles.rankPickerScrollContent}
+              >
+                {ALL_RANK_SLOTS.map(({ tier, level }) => {
+                  const idx = rankToIndex(tier, level);
+                  const current = idx === myRankIdx;
+                  return (
+                    <View
+                      key={`${tier}-${level}`}
+                      style={[
+                        styles.rankPickerRow,
+                        {
+                          borderColor: current ? '#D4AF37' : t.border,
+                          backgroundColor: current ? 'rgba(255,215,0,0.14)' : t.bgSurface,
+                        },
+                      ]}
+                    >
+                    <View
+                      style={{
+                        width: 40,
+                        height: 40,
+                        overflow: 'hidden',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      <Image
+                        source={getRankImage(tier, level)}
+                        style={{
+                          width: 40,
+                          height: 40,
+                          transform: [{ scale: getRankImageDisplayScale(tier, level) }],
+                        }}
+                        resizeMode="contain"
+                      />
+                    </View>
+                      <Text
+                        style={[
+                          styles.rankPickerRowText,
+                          { color: t.textPrimary, fontSize: f.body, fontWeight: current ? '800' : '600' },
+                        ]}
+                      >
+                        {arenaTierLabel(tier, lang)} {level}
+                      </Text>
+                      {current ? (
+                        <View style={styles.rankPickerYouBadge}>
+                          <Text style={{ color: '#1a1208', fontSize: f.caption - 1, fontWeight: '800' }}>
+                            {triLang(lang, { ru: 'Твой', uk: 'Твій', es: 'Tuyo' })}
+                          </Text>
+                        </View>
+                      ) : null}
+                    </View>
+                  );
+                })}
+              </ScrollView>
+            </View>
+          </View>
+        </Modal>
 
         {/* История матчей */}
         <View style={{ paddingHorizontal: 16, marginTop: 8 }}>
@@ -279,9 +453,50 @@ const styles = StyleSheet.create({
     borderRadius: 20, borderWidth: 1, padding: 16,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
   },
-  myCardLeft: { flexDirection: 'row', alignItems: 'center', gap: 12 },
+  myCardLeft: { flex: 1, flexDirection: 'row', alignItems: 'center', minWidth: 0 },
+  rankPressable: { flexDirection: 'row', alignItems: 'center', gap: 12, flex: 1, minWidth: 0 },
   myRankName: { fontWeight: '800' },
   myCardRight: { alignItems: 'flex-end' },
+
+  rankModalRoot: { flex: 1 },
+  rankPickerSheet: {
+    position: 'absolute',
+    left: 16,
+    right: 16,
+    borderRadius: 18,
+    borderWidth: 1,
+    paddingHorizontal: 12,
+    paddingTop: 12,
+    paddingBottom: 10,
+    overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.35,
+    shadowRadius: 16,
+    elevation: 12,
+  },
+  rankPickerTitle: { fontWeight: '800', letterSpacing: 1.2, marginBottom: 10 },
+  rankPickerScrollContent: {
+    paddingBottom: 8,
+    paddingRight: 14,
+  },
+  rankPickerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderRadius: 14,
+    borderWidth: 1,
+    marginBottom: 8,
+  },
+  rankPickerRowText: { flex: 1 },
+  rankPickerYouBadge: {
+    backgroundColor: '#FFD700',
+    borderRadius: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+  },
 
   matchRow: {
     flexDirection: 'row', alignItems: 'center', gap: 10,

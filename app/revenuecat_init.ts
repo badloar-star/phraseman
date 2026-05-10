@@ -1,14 +1,84 @@
-import Purchases from 'react-native-purchases';
+import Purchases, { type PurchasesPackage } from 'react-native-purchases';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
 import { Platform } from 'react-native';
 import { IS_EXPO_GO } from './config';
 import { prefetchShardsShopOfferings } from './shards_shop_cache';
 
-const RC_API_KEY = Platform.select({
-  ios:     process.env.EXPO_PUBLIC_RC_IOS ?? '',
-  android: process.env.EXPO_PUBLIC_RC_ANDROID ?? '',
-  default: '',
-})!;
+/**
+ * Из общего `availablePackages` возвращает monthly + yearly.
+ * Один источник правды для premium_modal и PremiumContext.
+ */
+export function resolvePremiumPackages(
+  availablePackages: PurchasesPackage[],
+): { monthly?: PurchasesPackage; yearly?: PurchasesPackage } {
+  const byType = (needle: string) =>
+    availablePackages.find((p: any) => String(p?.packageType || '').toUpperCase() === needle);
+  const byId = (rx: RegExp) => availablePackages.find(p => rx.test(p.product.identifier));
+
+  const monthly =
+    byType('MONTHLY') ??
+    byType('$RC_MONTHLY') ??
+    byId(/month|monthly|1.?month/i);
+  const yearly =
+    byType('ANNUAL') ??
+    byType('$RC_ANNUAL') ??
+    byType('YEARLY') ??
+    byId(/year|yearly|annual|12.?month/i);
+
+  return { monthly, yearly };
+}
+
+function trimKey(raw: unknown): string {
+  return String(raw ?? '').trim();
+}
+
+/**
+ * RevenueCat public keys are platform-specific. Using Android (`goog_`) on iOS (or vice versa)
+ * yields backend error 7810: "The API key is not intended for the Platform."
+ * We refuse to configure in that case — the fix is EAS: `EXPO_PUBLIC_RC_IOS` must be the iOS
+ * public key from RevenueCat (prefix `appl_`), not the Google Play key.
+ */
+function matchPlatformRevenueCatKey(key: string): boolean {
+  if (!key) return false;
+  if (Platform.OS === 'ios') {
+    // iOS / App Store / Mac App Store use appl_
+    return key.startsWith('appl_');
+  }
+  if (Platform.OS === 'android') {
+    return key.startsWith('goog_');
+  }
+  return false;
+}
+
+function resolveRevenueCatPublicApiKey(): string {
+  const fromEnv = Platform.select({
+    ios:     trimKey(process.env.EXPO_PUBLIC_RC_IOS),
+    android: trimKey(process.env.EXPO_PUBLIC_RC_ANDROID),
+    default: '',
+  })!;
+  let key = fromEnv;
+  if (!key) {
+    const ex = Constants.expoConfig?.extra as Record<string, unknown> | undefined;
+    if (ex) {
+      key = Platform.select({
+        ios:     trimKey(ex.EXPO_PUBLIC_RC_IOS),
+        android: trimKey(ex.EXPO_PUBLIC_RC_ANDROID),
+        default: '',
+      })!;
+    }
+  }
+  if (!key) return '';
+  if (!matchPlatformRevenueCatKey(key)) {
+    const hint =
+      Platform.OS === 'ios'
+        ? 'Проверь Expo/EAS: переменная EXPO_PUBLIC_RC_IOS должна быть iOS public key (префикс appl_) из RevenueCat, не goog_.'
+        : 'Проверь Expo/EAS: EXPO_PUBLIC_RC_ANDROID должен начинаться с goog_.';
+    console.error('[RevenueCat]', hint, 'Сейчас ключ не подходит платформе — инициализация пропущена.');
+    return '';
+  }
+  return key;
+}
 
 const RC_TIMEOUT_MS = 8000; // увеличен с 3000 для аудитории СНГ
 
@@ -17,7 +87,7 @@ let configurePromise: Promise<void> | null = null;
 /**
  * Безопасная инициализация RevenueCat.
  * - Идемпотентна: повторные вызовы возвращают тот же Promise.
- * - Проверяет Purchases.isConfigured перед configure().
+ * - Вызывает configure() только если SDK ещё не сконфигурирован.
  * - Таймаут 8 секунд на getCustomerInfo().
  * - Логирует ошибки, не блокирует запуск приложения.
  */
@@ -29,10 +99,22 @@ export function initRevenueCat(): Promise<void> {
 }
 
 async function _doInit(): Promise<void> {
-  if (IS_EXPO_GO || !RC_API_KEY) return;
+  const RC_API_KEY = resolveRevenueCatPublicApiKey();
+  if (IS_EXPO_GO || !RC_API_KEY) {
+    if (__DEV__ && !IS_EXPO_GO && !RC_API_KEY) {
+      console.warn(
+        '[RevenueCat] Публичный ключ не задан для',
+        Platform.OS,
+        '— для EAS добавьте EXPO_PUBLIC_RC_IOS / EXPO_PUBLIC_RC_ANDROID (секреты проекта или env).',
+      );
+    }
+    return;
+  }
 
   try {
-    Purchases.configure({ apiKey: RC_API_KEY });
+    if (!(await Purchases.isConfigured())) {
+      Purchases.configure({ apiKey: RC_API_KEY });
+    }
     // Параллельно с getCustomerInfo: прогрев getOfferings → кэш цен для мгновенного магазина
     void prefetchShardsShopOfferings().catch(() => {});
 

@@ -11,7 +11,6 @@ import {
   Easing,
   KeyboardAvoidingView,
   Modal,
-  Platform,
   Pressable,
   ScrollView,
   Image,
@@ -24,6 +23,7 @@ import {
 import Svg from 'react-native-svg';
 
 import AddToFlashcard from '../../components/AddToFlashcard';
+import PhraseContentStars from '../../components/PhraseContentStars';
 import BonusXPCard from '../../components/BonusXPCard';
 import ContentWrap from '../../components/ContentWrap';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -38,6 +38,8 @@ import { isCorrectAnswer } from '../../constants/contractions';
 import { getXPProgress } from '../../constants/theme';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../../constants/motion';
 import { checkAchievements } from '../achievements';
+import { bumpQuizSessionCompleted } from '../lifetime_profile_stats';
+import { playActivityCompletionModalSound } from '../activity_complete_sound';
 import { logQuizComplete, logQuizLevelSelected, logEnergyLimitHit } from '../firebase';
 import { trackEnergyHit, trackQuizLevel } from '../user_stats';
 import { emitAppEvent } from '../events';
@@ -47,6 +49,7 @@ import { DebugLogger } from '../debug-logger';
 import { useEnergy } from '../../components/EnergyContext';
 import EnergyBar from '../../components/EnergyBar';
 import NoEnergyModal from '../../components/NoEnergyModal';
+import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
 import { isQuizChoiceCorrect, quizPrimaryCorrectIndex, type QuizPhrase } from '../quiz_data';
 import { getQuizPhrasesLoaded } from '../quiz_phrases_loader';
@@ -55,8 +58,11 @@ import { useTabNav } from '../TabContext';
 import { tabSwipeLock } from '../tabSwipeLock';
 import { calculateRewardWithBonus } from '../variable_reward_system';
 import { registerXP } from '../xp_manager';
+import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { recordMistake } from '../active_recall';
+import { logMistake } from '../mistake_log';
 import { QUIZ_E2E_OPEN_RESULTS_KEY } from '../quizzes/constants';
+import { incrementHardPaywallBlock } from '../paywall_personalization';
 import {
   buildQuizShareMessage,
   getQuizShareCardRank,
@@ -68,9 +74,9 @@ import { REPORT_SCREENS_RUSSIAN_ONLY } from '../../constants/report_ui_ru';
 import type { ShareCardLang } from '../../components/share_cards/streakCardCopy';
 
 const LEVEL_IMAGES: Record<string, number> = {
-  easy:   require('../../assets/images/levels/easy.png'),
-  medium: require('../../assets/images/levels/medium.png'),
-  hard:   require('../../assets/images/levels/hard.png'),
+  easy:   require('../../assets/images/levels/easy.webp'),
+  medium: require('../../assets/images/levels/medium.webp'),
+  hard:   require('../../assets/images/levels/hard.webp'),
 };
 
 const stripPunct = (w: string) => w.replace(/[^a-zA-Z0-9']/g, '').toLowerCase();
@@ -221,7 +227,7 @@ function MultBadge({ streak, t, f }: { streak:number; t:any; f:any }) {
   );
 }
 
-// ── Анимация сброса стрика ───────────────────────────────────────────────────
+// ── Анимация сброса цепочки ───────────────────────────────────────────────────
 function StreakBreak({ show, old, t, f }: { show:boolean; old:number; t:any; f:any }) {
   const y   = useRef(new Animated.Value(0)).current;
   const opa = useRef(new Animated.Value(0)).current;
@@ -366,7 +372,11 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
               <TouchableOpacity
                 onPress={() => {
                   hapticTap();
-                  if (locked) { router.push({ pathname: '/premium_modal', params: { context: lv === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any); return; }
+                  if (locked) {
+                    if (lv === 'hard') incrementHardPaywallBlock();
+                    router.push({ pathname: '/premium_modal', params: { context: lv === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any);
+                    return;
+                  }
                   if (isSelected) { handleStart(lv); return; }
                   setSelected(lv);
                 }}
@@ -478,6 +488,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
 
 // ── КВИЗ ────────────────────────────────────────────────────────────────────
 function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=>void; e2eInjectResults?: boolean }) {
+  const effectiveOs = useEffectivePlatformOS();
   const { theme:t , f, themeMode } = useTheme();
   const { s, lang } = useLang();
   const { goHome, activeIdx } = useTabNav();
@@ -487,6 +498,11 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
   const insets = useSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
   const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  /** Текст на тёмном градиенте (океан/сакура): не t.text* — они для светлых карточек */
+  const quizGradTxt = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
+  const onGradPrimary = isLightTheme ? quizGradTxt.primary : t.textPrimary;
+  const onGradMuted = isLightTheme ? quizGradTxt.secondary : t.textMuted;
+  const onGradSecondary = isLightTheme ? quizGradTxt.secondary : t.textSecond;
   const cfg   = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
   const label = triLang(lang, { ru: cfg.labelRU, uk: cfg.labelUK, es: cfg.labelES });
 
@@ -536,6 +552,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
       quizCompletedRef.current = true;
       const score = results.filter(Boolean).length;
       logQuizComplete(level, score);
+      void bumpQuizSessionCompleted(level);
     }
   }, [done, level, results]);
   const showEnergyEmptyFeedbackRef = useRef<() => void>(() => {});
@@ -545,8 +562,10 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     setShowNoEnergyModal(true);
   }, []);
   const dismissEnergyModal = useCallback(() => {
-    setShowNoEnergyModal(false);
-    onBack();
+    navigateAfterModalClose(
+      () => setShowNoEnergyModal(false),
+      onBack,
+    );
   }, [onBack]);
   useEffect(() => { showEnergyEmptyFeedbackRef.current = showEnergyEmptyFeedback; }, [showEnergyEmptyFeedback]);
 
@@ -678,6 +697,11 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     }
   }, [done, level, results, reviewing, score]);
 
+  useEffect(() => {
+    if (!done || reviewing) return;
+    void playActivityCompletionModalSound();
+  }, [done, reviewing]);
+
   // Синхронизируем isTabActive — но таймер не останавливаем
   useEffect(() => {
     isTabActiveRef.current = activeIdx === 2;
@@ -744,7 +768,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
       <ScreenGradient>
       <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
-        <Text style={{ color:t.textMuted, fontSize: f.body }}>
+        <Text style={{ color:onGradMuted, fontSize: f.body }}>
           {triLang(lang, {
             ru: 'Вопросы временно недоступны',
             uk: 'Питання тимчасово недоступні',
@@ -762,7 +786,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
       <ScreenGradient>
       <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
-        <Text style={{ color:t.textMuted, fontSize: f.body }}>
+        <Text style={{ color:onGradMuted, fontSize: f.body }}>
           {triLang(lang, {
             ru: 'Что-то пошло не так',
             uk: 'Щось пішло не так',
@@ -804,6 +828,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
         'quiz',
         current.es,
       );
+      logMistake(current.answer, current.lessonNum, 'quiz', 'wrong_pick');
     }
 
     if (!reviewing) {
@@ -1160,12 +1185,12 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     <ScreenGradient>
     <View style={{ flex:1 }}>
       <ContentWrap>
-      <KeyboardAvoidingView style={{ flex:1 }} behavior={Platform.OS==='ios'?'padding':'height'}>
+      <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs==='ios'?'padding':'height'}>
 
         {/* ХЕДЕР */}
         <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, paddingTop: 15 + insets.top }}>
           <TouchableOpacity onPress={() => { hapticTap(); onBack(); }}>
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
+            <Ionicons name="chevron-back" size={28} color={onGradPrimary}/>
           </TouchableOpacity>
           <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : cfg.color, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1} adjustsFontSizeToFit>
             {reviewing ? s.quizzes.fixErrors : label}
@@ -1179,7 +1204,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                 borderColor: timeLeft <= 5 ? t.wrong : timeLeft <= 10 ? '#D4A017' : t.border,
                 justifyContent: 'center', alignItems: 'center',
               }}>
-                <Text style={{ color: timeLeft <= 5 ? t.wrong : t.textSecond, fontWeight: '700', fontSize: f.label }}>
+                <Text style={{ color: timeLeft <= 5 ? t.wrong : onGradSecondary, fontWeight: '700', fontSize: f.label }}>
                   {timeLeft}
                 </Text>
               </View>
@@ -1187,8 +1212,8 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
             <MultBadge streak={streak} t={t} f={f}/>
             <StreakBreak show={showBreak} old={prevStr} t={t} f={f}/>
             <View style={{ flexDirection:'row', alignItems:'center', gap:3 }}>
-              <Ionicons name="star" size={13} color={t.textSecond}/>
-              <Text style={{ color:t.textSecond, fontWeight:'600', fontSize: f.body }}>{Math.round(score * 10) / 10}</Text>
+              <Ionicons name="star" size={13} color={onGradSecondary}/>
+              <Text style={{ color:onGradSecondary, fontWeight:'600', fontSize: f.body }}>{Math.round(score * 10) / 10}</Text>
             </View>
           </View>
         </View>
@@ -1199,7 +1224,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
             {phrases.map((_, i) => {
               let bg = t.border;
               if (i < results.length) bg = results[i] ? t.correct : t.wrong;
-              if (i === idx) bg = t.textSecond;
+              if (i === idx) bg = onGradSecondary;
               return <View key={i} style={{ flex:1, height:5, borderRadius:2, backgroundColor:bg }}/>;
             })}
           </View>
@@ -1208,14 +1233,22 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
         <View style={{ flex: 1 }}>
         <Animated.View style={{ flex:1, opacity:fadeAnim }}>
           <ScrollView style={{ flex:1 }} contentContainerStyle={{ paddingHorizontal:20, paddingTop:20, paddingBottom:40 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={true} persistentScrollbar={true}>
-          <Text style={{ color:t.textMuted, fontSize: f.caption, marginBottom:14 }}>
+          <Text style={{ color:onGradMuted, fontSize: f.caption, marginBottom:14 }}>
             {(reviewing?rIdx:idx)+1} / {reviewing?reviewQ.length:phrases.length}
           </Text>
 
           {/* ВОПРОС */}
-          <Text style={{ color:t.textPrimary, fontSize: f.h2 + 6, fontWeight:'500', marginBottom:20, lineHeight:32 }}>
+          <Text style={{ color:onGradPrimary, fontSize: f.h2 + 6, fontWeight:'500', marginBottom:12, lineHeight:32 }}>
             {triLang(lang, { uk: current.uk, ru: current.ru, es: current.es })}
           </Text>
+
+          <PhraseContentStars
+            scope="quiz"
+            itemId={`quiz_${level}_L${current.lessonNum}_${current.answer.replace(/\s+/g, '_').slice(0, 120)}`}
+            labelSnippet={triLang(lang, { uk: current.uk, ru: current.ru, es: current.es })}
+            ratingTarget="phrase"
+            style={{ marginBottom: 16, alignSelf: 'center' }}
+          />
 
           {/* АНИМАЦИЯ ВСТАВКИ */}
           {displayAnswer !== null && (
@@ -1235,7 +1268,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                 </Text>
               )}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Text style={{ color: displayColor, fontSize: f.h2 + 2, fontWeight: '600', lineHeight: (f.h2 + 2) * 1.4, flex: 1 }}>
+                <Text style={{ color: isLightTheme ? onGradPrimary : displayColor, fontSize: f.h2 + 2, fontWeight: '600', lineHeight: (f.h2 + 2) * 1.4, flex: 1 }}>
                   {shownCorrectEnglish}
                 </Text>
                 <View onStartShouldSetResponder={() => true}>
@@ -1333,7 +1366,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                 marginBottom: 16,
               }}>
                 <TextInput
-                  style={{ color: typedOk===null ? t.textPrimary : typedOk ? t.correct : t.wrong, fontSize: f.h1, paddingVertical:10 }}
+                  style={{ color: typedOk===null ? onGradPrimary : typedOk ? t.correct : t.wrong, fontSize: f.h1, paddingVertical:10 }}
                   value={typed}
                   onChangeText={setTyped}
                   placeholder={s.lesson.typeHere}

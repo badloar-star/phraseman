@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
+import { Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import type { Lang } from '../constants/i18n';
@@ -8,8 +9,8 @@ import { emitDevStudyTargetChanged, resetDevStudyTargetForSpanishUi } from '../a
 export type { Lang };
 const RU = {
   tabs: {
-    home: 'Главная', lessons: 'Уроки', quizzes: 'Квизы',
-    hallFame: 'Зал славы', settings: 'Настройки',
+    home: 'Главная', lessons: 'Уроки', quizzes: 'Квизы', flashcards: 'Карточки',
+    settings: 'Настройки',
   },
   home: {
     greeting: (n: string) => `${n}`,
@@ -22,7 +23,10 @@ const RU = {
     leagueLabel: 'Клуб недели',
     testBtn: 'Тест знаний',
     testSub: 'Узнай уровень',
-    examBtn: 'Экзамен',
+    examBtn: 'Финальный экзамен',
+    attestTile: 'Аттестация',
+    statsCardTitle: 'Статистика',
+    statsPulseHint: 'Нажми сюда, чтобы увидеть больше',
   },
   lessonMenu: {
     start: 'Начать урок',
@@ -58,12 +62,6 @@ const RU = {
     back: 'Выбрать уровень', fixErrors: 'Исправь ошибки', timeUp: 'Время вышло',
     perAnswer: 'балл/ответ',
   },
-  hallFame: {
-    title: 'Зал славы',
-    empty: 'Пока никого нет.\nПройди квиз и займи место!',
-    rank: 'Место', player: 'Участник', points: 'Опыт',
-    weekReset: 'Сброс каждое воскресенье',
-  },
   leagues: [
     { name: 'Искатель',    min: 0 },
     { name: 'Знаток',      min: 100 },
@@ -79,7 +77,7 @@ const RU = {
     theme: 'Тема', themeDark: 'Тёмная', themeLight: 'Светлая',
     learning: 'Обучение', learnSet: 'Настройки обучения',
     feedback: 'Идеи и предложения', help: 'Помощь',
-    premium: 'Premium', premiumSub: 'Все уроки и квизы — €3.99/мес',
+    premium: 'Premium', premiumSub: 'Все уроки и квизы — по подписке',
     changeName: 'Изменить имя', cancel: 'Отмена', save: 'Сохранить',
     nameError: 'Введите имя', namePlaceholder: 'Введите имя...',
   },
@@ -100,7 +98,6 @@ const RU = {
     title: (n: number) => `${n}. Словарь`,
     training: 'Тренировка', wordList: 'Список слов',
     listStartTraining: 'Начать тренировку',
-    listTapToClose: 'Нажмите, чтобы закрыть',
     allLearned: 'Все слова выучены!',
     learnedOf: (a: number, b: number) => `${a} / ${b} выучено`,
     plusPoints: (n: number) => `+${n} опыта`,
@@ -114,11 +111,14 @@ const RU = {
   },
   diagnostic: {
     title: 'Диагностика уровня',
-    subtitle: 'По материалам курса',
-    desc: '20 заданий · до 30 с на ответ\nЛексика, грамматика и скорость. Ориентир CEFR A1–C2 только внутри приложения; это не DELE/SIELE.',
-    prevResult: 'Предыдущий результат',
-    start: 'Начать диагностику',
+    prevResult: 'Ваш последний результат',
+    examReadinessTitle: 'Готовность к экзамену',
+    start: 'Тест уровня английского',
+    startTest: 'Начать тест',
     yourLevel: 'Ориентир по уровню',
+    currentEnglishLevelTitle: 'Ваш текущий уровень английского',
+    currentEnglishLevelHintBeforeTest:
+      'Пройдите тест, чтобы узнать ваш уровень.',
     correct: 'Верных ответов',
     skipped: (n: number) => `Пропущено (таймер): ${n}`,
     again: 'Пройти ещё раз',
@@ -140,7 +140,7 @@ const RU = {
     locked: 'Без Premium ты теряешь доступ\nк 31 уроку и квизам',
     freeCont: 'Продолжить бесплатно (Урок 1)',
     cta: 'Начать 7 дней бесплатно',
-    ctaSub: 'Подписаться — €3.99/мес',
+    ctaSub: 'Оформить подписку',
     legal: 'Отмена в любое время в настройках App Store / Google Play.',
     features: ['Все 32 урока','Квизы всех уровней','Голосовой ввод','Подробная статистика'],
   },
@@ -148,8 +148,8 @@ const RU = {
 
 const UK: typeof RU = {
   tabs: {
-    home: 'Головна', lessons: 'Уроки', quizzes: 'Квізи',
-    hallFame: 'Зал слави', settings: 'Налаштування',
+    home: 'Головна', lessons: 'Уроки', quizzes: 'Квізи', flashcards: 'Картки',
+    settings: 'Налаштування',
   },
   home: {
     greeting: (n: string) => `${n}`,
@@ -162,7 +162,10 @@ const UK: typeof RU = {
     leagueLabel: 'Клуб тижня',
     testBtn: 'Тест знань',
     testSub: 'Дізнайся рівень',
-    examBtn: 'Іспит',
+    examBtn: 'Фінальний іспит',
+    attestTile: 'Атестація',
+    statsCardTitle: 'Статистика',
+    statsPulseHint: 'Натисни сюди, щоб побачити більше',
   },
   lessonMenu: {
     start: 'Почати урок',
@@ -198,12 +201,6 @@ const UK: typeof RU = {
     back: 'Обрати рівень', fixErrors: 'Виправ помилки', timeUp: 'Час вийшов',
     perAnswer: 'бал/відповідь',
   },
-  hallFame: {
-    title: 'Зал слави',
-    empty: 'Поки нікого немає.\nПройди квіз та займи місце!',
-    rank: 'Місце', player: 'Учасник', points: 'Досвід',
-    weekReset: 'Скидання щонеділі',
-  },
   leagues: [
     { name: 'Шукач',       min: 0 },
     { name: 'Знавець',     min: 100 },
@@ -219,7 +216,7 @@ const UK: typeof RU = {
     theme: 'Тема', themeDark: 'Темна', themeLight: 'Світла',
     learning: 'Навчання', learnSet: 'Налаштування навчання',
     feedback: 'Ідеї й пропозиції', help: 'Допомога',
-    premium: 'Premium', premiumSub: 'Всі уроки та квізи — €3.99/міс',
+    premium: 'Premium', premiumSub: 'Всі уроки та квізи — за підпискою',
     changeName: 'Змінити імʼя', cancel: 'Скасувати', save: 'Зберегти',
     nameError: 'Введіть імʼя', namePlaceholder: 'Введіть імʼя...',
   },
@@ -229,7 +226,7 @@ const UK: typeof RU = {
     voiceOut: 'Озвучити відповідь', voiceOutSub: 'Вимовляти фразу після відповіді',
     autoAdvance: 'Автоперехід після відповіді', autoAdvanceSub: 'Автоматично переходити при правильній відповіді',
     hardMode: 'Введення з клавіатури', hardModeSub: 'Вводити речення вручну',
-    speed: 'Швидкість вимови', speedHint: 'Відпусти повзунок — прозвучить приклад',
+    speed: 'Швидкість вимови', speedHint: 'Відпусти повзунок — пролунає приклад',
     speedSlowLabel: 'Повільно', speedFastLabel: 'Швидко',
     haptics: 'Вібрація при помилці',
     hapticsSub: 'Тактильний сигнал при неправильній відповіді',
@@ -240,7 +237,6 @@ const UK: typeof RU = {
     title: (n: number) => `${n}. Словник`,
     training: 'Тренування', wordList: 'Список слів',
     listStartTraining: 'Почати тренування',
-    listTapToClose: 'Натисніть, щоб закрити',
     allLearned: 'Всі слова вивчено!',
     learnedOf: (a: number, b: number) => `${a} / ${b} вивчено`,
     plusPoints: (n: number) => `+${n} досвіду`,
@@ -254,11 +250,14 @@ const UK: typeof RU = {
   },
   diagnostic: {
     title: 'Діагностика рівня',
-    subtitle: 'За матеріалами курсу',
-    desc: '20 завдань · до 30 с на відповідь\nЛексика, граматика й швидкість. Орієнтир CEFR A1–C2 лише в межах застосунку; це не DELE/SIELE.',
-    prevResult: 'Попередній результат',
-    start: 'Почати діагностику',
+    prevResult: 'Ваш останній результат',
+    examReadinessTitle: 'Готовність до іспиту',
+    start: 'Тест рівня англійської',
+    startTest: 'Почати тест',
     yourLevel: 'Орієнтир за рівнем',
+    currentEnglishLevelTitle: 'Ваш поточний рівень англійської',
+    currentEnglishLevelHintBeforeTest:
+      'Пройдіть тест, щоб дізнатися свій рівень.',
     correct: 'Правильних відповідей',
     skipped: (n: number) => `Пропущено (таймер): ${n}`,
     again: 'Пройти ще раз',
@@ -280,7 +279,7 @@ const UK: typeof RU = {
     locked: 'Без Premium ти втрачаєш доступ\nдо 31 уроку та квізів',
     freeCont: 'Продовжити безкоштовно (Урок 1)',
     cta: 'Почати 7 днів безкоштовно',
-    ctaSub: 'Підписатися — €3.99/міс',
+    ctaSub: 'Оформити підписку',
     legal: 'Скасування будь-коли в налаштуваннях App Store / Google Play.',
     features: ['Всі 32 уроки','Квізи всіх рівнів','Голосове введення','Докладна статистика'],
   },
@@ -288,8 +287,8 @@ const UK: typeof RU = {
 
 const ES: typeof RU = {
   tabs: {
-    home: 'Inicio', lessons: 'Lecciones', quizzes: 'Cuestionarios',
-    hallFame: 'Salón de la fama', settings: 'Ajustes',
+    home: 'Inicio', lessons: 'Lecciones', quizzes: 'Cuestionarios', flashcards: 'Tarjetas',
+    settings: 'Ajustes',
   },
   home: {
     greeting: (n: string) => `${n}`,
@@ -302,7 +301,10 @@ const ES: typeof RU = {
     leagueLabel: 'Club semanal',
     testBtn: 'Test de conocimientos',
     testSub: 'Descubre tu nivel',
-    examBtn: 'Examen',
+    examBtn: 'Examen final',
+    attestTile: 'Evaluación',
+    statsCardTitle: 'Estadísticas',
+    statsPulseHint: 'Toca aquí para ver más',
   },
   lessonMenu: {
     start: 'Empezar la lección',
@@ -338,12 +340,6 @@ const ES: typeof RU = {
     back: 'Elegir otro nivel', fixErrors: 'Corrige los errores', timeUp: 'Se acabó el tiempo',
     perAnswer: 'punto por respuesta',
   },
-  hallFame: {
-    title: 'Salón de la fama',
-    empty: 'Aún no hay nadie.\n¡Haz un cuestionario y sube en la clasificación!',
-    rank: 'Puesto', player: 'Jugador', points: 'Puntos',
-    weekReset: 'La clasificación se reinicia cada domingo',
-  },
   leagues: [
     { name: 'Explorador',    min: 0 },
     { name: 'Experto',       min: 100 },
@@ -359,7 +355,7 @@ const ES: typeof RU = {
     theme: 'Tema', themeDark: 'Oscuro', themeLight: 'Claro',
     learning: 'Aprendizaje', learnSet: 'Ajustes del aprendizaje',
     feedback: 'Comentarios e ideas', help: 'Ayuda',
-    premium: 'Premium', premiumSub: 'Todas las lecciones y todos los cuestionarios — 3,99 €/mes',
+    premium: 'Premium', premiumSub: 'Todas las lecciones y todos los cuestionarios — con suscripción',
     changeName: 'Cambiar nombre', cancel: 'Cancelar', save: 'Guardar',
     nameError: 'Escribe un nombre', namePlaceholder: 'Tu nombre...',
   },
@@ -380,7 +376,6 @@ const ES: typeof RU = {
     title: (n: number) => `${n}. Vocabulario`,
     training: 'Práctica', wordList: 'Lista de palabras',
     listStartTraining: 'Empieza a practicar',
-    listTapToClose: 'Toca para cerrar',
     allLearned: '¡Has aprendido todas las palabras!',
     learnedOf: (a: number, b: number) => `${a} / ${b} aprendidas`,
     plusPoints: (n: number) => `+${n} XP`,
@@ -394,11 +389,14 @@ const ES: typeof RU = {
   },
   diagnostic: {
     title: 'Diagnóstico de nivel',
-    subtitle: 'Según el programa del curso',
-    desc: '20 tareas · hasta 30 s por respuesta\nEvaluamos léxico, gramática y rapidez. La escala A1–C2 es orientativa dentro de la app; no sustituye a DELE/SIELE ni otros exámenes oficiales.',
-    prevResult: 'Resultado anterior',
-    start: 'Empezar el diagnóstico',
+    prevResult: 'Tu último resultado',
+    examReadinessTitle: 'Preparación para el examen',
+    start: 'Test de nivel de inglés',
+    startTest: 'Empezar el test',
     yourLevel: 'Nivel orientativo',
+    currentEnglishLevelTitle: 'Tu nivel actual de inglés',
+    currentEnglishLevelHintBeforeTest:
+      'Haz el test para conocer tu nivel.',
     correct: 'Aciertos',
     skipped: (n: number) => `Omitidas (tiempo): ${n}`,
     again: 'Repetir diagnóstico',
@@ -420,7 +418,7 @@ const ES: typeof RU = {
     locked: 'Sin Premium, pierdes el acceso\na la lección 31 y al resto de cuestionarios',
     freeCont: 'Seguir gratis (Lección 1)',
     cta: 'Prueba gratuita de 7 días',
-    ctaSub: 'Suscripción — 3,99 €/mes',
+    ctaSub: 'Contratar suscripción',
     legal: 'Puedes cancelar cuando quieras desde los ajustes de App Store o Google Play.',
     features: [
       'Las 32 lecciones',
@@ -430,6 +428,23 @@ const ES: typeof RU = {
     ],
   },
 };
+
+/** Текст про отмену подписки — только релевантный магазин для текущей платформы (в iOS без упоминания Google Play). */
+(() => {
+  if (Platform.OS === 'ios') {
+    RU.premium.legal = 'Отмена в любое время в настройках App Store (Подписки).';
+    UK.premium.legal = 'Скасування будь-коли в налаштуваннях App Store (Підписки).';
+    ES.premium.legal = 'Puedes cancelar cuando quieras en Ajustes → Apple ID → Suscripciones.';
+  } else if (Platform.OS === 'android') {
+    RU.premium.legal = 'Отмена в любое время в настройках Google Play (Подписки).';
+    UK.premium.legal = 'Скасування будь-коли в налаштуваннях Google Play (Підписки).';
+    ES.premium.legal = 'Puedes cancelar cuando quieras en Google Play → Suscripciones.';
+  } else {
+    RU.premium.legal = 'Отмена в любое время в разделе подписок магазина приложений.';
+    UK.premium.legal = 'Скасування будь-коли в розділі підписок магазину застосунків.';
+    ES.premium.legal = 'Puedes cancelar cuando quieras en la sección de suscripciones de la tienda de apps.';
+  }
+})();
 
 export { RU, UK, ES };
 
@@ -454,7 +469,7 @@ const LangContext = createContext<LangCtx>({
 /** Строки интерфейса для кода и лиг без хука React. */
 export function stringsForLang(lang: Lang): Strings {
   if (lang === 'uk') return UK;
-  if (lang === 'es') return ES;
+  if (lang === 'es' && ENABLE_SPANISH_LOCALE) return ES;
   return RU;
 }
 

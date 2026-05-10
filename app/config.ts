@@ -17,7 +17,7 @@
 //
 // [МОНЕТЫ] — отдельная валюта вместо трат XP
 //   Сейчас XP используется в пари — конфликт роста и траты.
-//   Монеты фармятся отдельно (за уроки, серии), тратятся на бустеры/страховку стрика.
+//   Монеты фармятся отдельно (за уроки, серии), тратятся на бустеры/страховку цепочки.
 //   XP только растёт, монеты — расходуемые.
 //   Сложность: большой рефакторинг экономики. Делать после релиза.
 //
@@ -58,9 +58,6 @@ export const FORCE_PREMIUM = false;
 //         npm install @react-native-firebase/auth @react-native-firebase/firestore
 export const CLOUD_SYNC_ENABLED = true;
 
-// false = диалоги закрыты (в разработке), игнорирует DEV_MODE
-export const DIALOGS_ENABLED = true;
-
 // true  = показывать бета-экран с инструкциями для тестеров
 // false = продакшн, бета-экран пропускается
 export const IS_BETA_TESTER = false;
@@ -71,6 +68,12 @@ export const IS_EXPO_GO = Constants.appOwnership === 'expo';
  * Метка публичной стор-сборки: флаги вроде DEV_MODE не отключают настоящий IAP.
  */
 export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
+
+/**
+ * Ставка осколками на следующий рейтинг-матч арены (очередь «Найти матч»).
+ * Включено во всех сборках, включая стор.
+ */
+export const ENABLE_ARENA_RANKED_WAGER = true;
 
 /**
  * Мгновенный «премиум» / dev-осколки без Google Play (см. premium_modal, shards_shop).
@@ -90,9 +93,13 @@ export const ENABLE_DEV_STUDY_TARGET_LANG =
   typeof __DEV__ !== 'undefined' && __DEV__;
 
 // ── Store links ───────────────────────────────────────────────────────────────
-export const STORE_URL_IOS     = 'https://apps.apple.com/app/phraseman/id6744042438';
+export const STORE_URL_IOS     = 'https://apps.apple.com/app/id6764800879';
 export const STORE_URL_ANDROID = 'https://play.google.com/store/apps/details?id=app.phraseman';
 export const STORE_URL = Platform.OS === 'ios' ? STORE_URL_IOS : STORE_URL_ANDROID;
+
+/** Публичные юридические страницы на сайте студии (вне приложения). */
+export const KNOWLY_LEGAL_PRIVACY_URL = 'https://knowlyapps.com/legal/privacy/';
+export const KNOWLY_LEGAL_TERMS_URL = 'https://knowlyapps.com/legal/terms/';
 
 // ── Update check ──────────────────────────────────────────────────────────────
 // version.json: { "versionCode": N, "message": "…" }. Пустая строка = проверка отключена.
@@ -103,24 +110,31 @@ export const UPDATE_CHECK_URL = 'https://raw.githubusercontent.com/badloar-star/
 export const RELEASE_WAVE_BONUS_VERSION = 0;
 export const RELEASE_WAVE_BONUS_SHARDS = 0;
 
+/** Окно принятия матча в лобби / тосте «соперник найден» (мс). Должно совпадать с Cloud Function `acceptDeadlineAt`. */
+export const ARENA_LOBBY_ACCEPT_MS = 15_000;
 // ── Арена: бот-фолбэк при пустой очереди (ранний этап, мало DAU) ─────────────
 // Если за окно [BOT_FALLBACK_MIN_MS, BOT_FALLBACK_MAX_MS] не нашёлся реальный
 // соперник — клиент создаёт локальную бот-сессию (sessionId="bot_..."). Бот
 // идёт в рейтинг как обычный матч (см. arena_results.tsx isMockSession ветка).
 // Серверные коллекции (arena_sessions, match_history) для бот-матчей не
 // создаются — только клиентский write в arena_profiles.
+// Живой соперник из CF всегда перебивает по подписке; пока в очереди есть другие
+// игроки — клиент может отложить бота (см. MatchmakingContext).
 // Чтобы выключить: BOT_FALLBACK_ENABLED = false (ребилд не нужен в дев-сборке,
 // но в production — релиз).
 export const BOT_FALLBACK_ENABLED = true;
-/** Случайная задержка до бота: от 1 с до 2 мин (живой соперник из CF всегда перебивает по подписке). */
-export const BOT_FALLBACK_MIN_MS = 1_000;
-export const BOT_FALLBACK_MAX_MS = 120_000;
+/** Случайная задержка до бота при «Найти матч» (не «Ещё раз»): в первые ~40 с; живой соперник и отложка при других в очереди — как раньше. */
+export const BOT_FALLBACK_MIN_MS = 8_000;
+export const BOT_FALLBACK_MAX_MS = 40_000;
+/**
+ * «Ещё раз»: случайная задержка до бота от min до max (мс, включительно),
+ * внутри этого окна живой соперник всё ещё может перебить. Не «ровно через 10 с».
+ */
+export const ARENA_PLAY_AGAIN_BOT_MIN_MS = 1;
+export const ARENA_PLAY_AGAIN_BOT_MAX_MS = 10_000;
 
 // Минимальный балл для разблокировки следующего урока
 export const MIN_LESSON_SCORE = 4.5;
-
-// Минимальный порог для получения XP в диалогах
-export const MIN_PCT_FOR_DIALOG_XP = 0.5;
 
 // Максимум XP за один диалог
 export const MAX_DIALOG_XP = 10;

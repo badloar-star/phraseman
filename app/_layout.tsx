@@ -1,8 +1,10 @@
 import 'react-native-gesture-handler';
 import 'react-native-reanimated';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Stack, useRouter } from 'expo-router';
+import { Stack, usePathname, useRouter } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
@@ -21,13 +23,14 @@ import Onboarding from '../components/onboarding';
 import { PremiumProvider } from '../components/PremiumContext';
 import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
+import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import { getAvatarImageByIndex, getBestAvatarForLevel } from '../constants/avatars';
 import { getMaxEnergyForLevel } from '../constants/theme';
 import type { Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
-import { DEV_MODE, IS_EXPO_GO } from './config';
+import { DEV_MODE, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { ensureAnonUser, restoreFromCloud, syncToCloud } from './cloud_sync';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
@@ -42,7 +45,7 @@ import {
 import { initRevenueCat } from './revenuecat_init';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
 import { prefetchArenaRatingCache } from './arena_rating_cache';
-import { prefetchGlobalLeaderboard, updateMyPremiumInLeaderboard } from './firestore_leaderboard';
+import { updateMyPremiumInLeaderboard } from './firestore_leaderboard';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { tryGrantPremiumMonthlyWagerFromLevelUp } from './streak_wager';
 import { incrementSessionCount } from './review_utils';
@@ -51,21 +54,33 @@ import { registerXP, migrateXPFormulaV2 } from './xp_manager';
 import { getShardsBalance, loadShardsFromCloud } from './shards_system';
 import { MatchmakingProvider } from '../contexts/MatchmakingContext';
 import MatchFoundToast from '../components/MatchFoundToast';
-import ShardRewardModal, { ShardReward } from '../components/ShardRewardModal';
 import ActionToast from '../components/ActionToast';
+import ArenaFriendInviteHost from '../components/ArenaFriendInviteHost';
 import GlobalShardsEarnedHost from '../components/GlobalShardsEarnedHost';
 import ThemedBlockingAlertHost from '../components/ThemedBlockingAlertHost';
 import { getCanonicalUserId } from './user_id_policy';
+import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } from './release_notes_modal';
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
+import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
+import { playLevelUpModalSound } from './level_up_sound';
 import { markWentToFirstLessonFromAfterOnboardingSheet, setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { loadFlashcards } from '../hooks/use-flashcards';
 import { primeAllLessonsFromStorageOnAppLaunch } from './lesson_screen_bootstrap';
 import { hydrateUserSettingsFromStorage } from './user_settings_store';
 import { hydrateHapticsTapFromStorage } from './haptics_tap_preload';
+import { installForegroundUsageMsTracker } from './foreground_usage_ms';
+import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
+import { trackActivity } from './app_activity';
+
+/** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
+startFriendsTabSwrPrime();
+
+// Нативный сплэш из app.json — скрываем только когда AppContent сообщает ready (см. hideAsync в useEffect).
+void SplashScreen.preventAutoHideAsync().catch(() => {});
 
 const LEVELUP_CONGRATS_RU = [
   'Поздравляем! Твой прогресс впечатляет!',
@@ -110,7 +125,7 @@ const runSessionChecks = async () => {
     const today = new Date().toISOString().split('T')[0];
 
     // ── 1. Daily Login Bonus ────────────────────────────────────────────────
-    // Храним consecutive login days отдельно от lesson-стрика
+    // Храним consecutive login days отдельно от lesson-цепочки (дней подряд)
     const loginRaw = await AsyncStorage.getItem('login_bonus_v1');
     let login = { lastDate: null as string | null, consecutiveDays: 0 };
     try {
@@ -343,12 +358,18 @@ function GlobalLevelUpHandler() {
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
   const titleColor  = getTitleColor(currentLevel, isDark);
+  const levelUpOverlayVisible = useOverlayVisible('levelUp', showLevelUp || showGiftModal);
+
+  useEffect(() => {
+    if (!showLevelUp || !levelUpOverlayVisible) return;
+    void playLevelUpModalSound();
+  }, [levelUpOverlayVisible, showLevelUp]);
   return (
     <>
       {/* Level-up congratulation — wrapped in Modal so it renders above ALL screens */}
       <Modal
         transparent
-        visible={showLevelUp}
+        visible={levelUpOverlayVisible && showLevelUp}
         animationType="none"
         statusBarTranslucent
         onRequestClose={() => {}}
@@ -442,7 +463,7 @@ function GlobalLevelUpHandler() {
 
       {levelGiftDualMode ? (
         <LevelGiftDualModal
-          visible={showGiftModal}
+          visible={levelUpOverlayVisible && showGiftModal}
           level={currentLevel}
           userName={userName}
           lang={lang}
@@ -450,7 +471,7 @@ function GlobalLevelUpHandler() {
         />
       ) : (
         <LevelGiftModal
-          visible={showGiftModal}
+          visible={levelUpOverlayVisible && showGiftModal}
           level={currentLevel}
           userName={userName}
           lang={lang}
@@ -476,6 +497,14 @@ function AppContent() {
   /** Скрываем RN Modal до ухода в стор — на Android иначе зависания System UI при возврате. */
   const [updateModalHiddenForStore, setUpdateModalHiddenForStore] = useState(false);
   const awaitingStoreReturnRef = useRef(false);
+  /** Гард от повторного вызова handleOnboardingDone (двойной тап «Позже» в auth-шаге онбординга
+   *  раньше планировал два setTimeout → модалка «Начнём первый урок?» открывалась повторно после «Поехали»). */
+  const onboardingDoneHandledRef = useRef(false);
+  /** Первый запуск с онбордингом: не грузим 32 урока с диска до первого кадра — иначе подвисают тапы. */
+  const onboardingPathRef = useRef(false);
+  const deferLessonPrimeRef = useRef(false);
+  /** Гард от повторного тапа «Поехали» в листе первого урока (router.replace + push не должны исполняться дважды). */
+  const firstLessonStartHandledRef = useRef(false);
 
   useEffect(() => {
     if (!updateInfo) {
@@ -483,7 +512,8 @@ function AppContent() {
       awaitingStoreReturnRef.current = false;
     }
   }, [updateInfo]);
-  const [shardRewards, setShardRewards] = useState<ShardReward[]>([]);
+
+  const [releaseNotesOffer, setReleaseNotesOffer] = useState(false);
   const [globalBroadcastModal, setGlobalBroadcastModal] = useState<GlobalBroadcastModalPayload | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
@@ -491,8 +521,42 @@ function AppContent() {
   const { showAchievement } = useAchievement();
   const { theme: tTheme } = useTheme();
   const router = useRouter();
+  const pathname = usePathname();
   const insets = useSafeAreaInsets();
   const globalBottomOverlay = useGlobalBottomOverlayOffset();
+  const lastPathRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!ready || !pathname || lastPathRef.current === pathname) return;
+    const previous = lastPathRef.current;
+    lastPathRef.current = pathname;
+    void trackActivity('navigation:screen_view', {
+      feature: 'navigation',
+      screen: pathname,
+      result: 'success',
+      tags: { previous },
+    });
+  }, [pathname, ready]);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', state => {
+      void trackActivity('app:state_change', {
+        feature: 'app_lifecycle',
+        result: 'info',
+        tags: { state },
+      });
+    });
+    return () => sub.remove();
+  }, []);
+
+  useEffect(() => {
+    if (!ready) return;
+    void SplashScreen.hideAsync();
+  }, [ready]);
+
+  useEffect(() => {
+    void hydratePlatformUiPreviewFromStorage();
+  }, []);
 
   const checkBanStatus = useCallback(async (force = false) => {
     if (IS_EXPO_GO) return;
@@ -528,67 +592,6 @@ function AppContent() {
     }
   }, []);
 
-  // Непросмотренные награды осколков (багфикс / принятая идея) — старт и при возврате из фона
-  const lastShardRewardPullRef = useRef(0);
-  const shardRewardCheckInFlightRef = useRef(false);
-  const checkShardRewardsFn = useCallback(async () => {
-    if (IS_EXPO_GO) return;
-    if (shardRewardCheckInFlightRef.current) return;
-    const now = Date.now();
-    if (lastShardRewardPullRef.current !== 0 && now - lastShardRewardPullRef.current < 45_000) return;
-    lastShardRewardPullRef.current = now;
-    shardRewardCheckInFlightRef.current = true;
-    try {
-      const firestoreModule = await import('@react-native-firebase/firestore');
-      const db = firestoreModule.default();
-      const uid = await getCanonicalUserId();
-      if (!uid) return;
-      const snap = await db
-        .collection('users')
-        .doc(uid)
-        .collection('shard_rewards')
-        .where('seen', '==', false)
-        .get();
-      if (snap.empty) return;
-      const rewards: ShardReward[] = snap.docs.map((d: any) => {
-        const data = d.data();
-        const rawReason = data.reason;
-        const reason: ShardReward['reason'] =
-          rawReason === 'suggestion_accepted' ? 'suggestion_accepted'
-          : rawReason === 'admin_grant' ? 'admin_grant'
-          : 'bug_fixed';
-        // adminGrantReward CF (functions/src/admin_grant.ts) пишет:
-        //   amount   — реальные шарды (0 для xp_boost/chain_shield/arena_extra)
-        //   rewardType — 'shards' | 'xp_boost_2x_24h' | 'chain_shield_1' | …
-        //   label    — человекочитаемая подпись для модалки
-        // Старые записи (markFixed / suggestion_accepted) шлют count, не amount.
-        const count = Number(data.amount ?? data.count ?? 0);
-        return {
-          id: d.id,
-          dataId: data.dataId ?? '',
-          dataText: data.dataText ?? data.comment ?? '',
-          count,
-          reason,
-          rewardType: typeof data.rewardType === 'string' ? data.rewardType : undefined,
-          label: typeof data.label === 'string' ? data.label : undefined,
-        };
-      });
-      await Promise.all(snap.docs.map((d: any) => d.ref.update({ seen: true })));
-      // Админка уже начислила осколки: users.shards += count (markFixed / accept idea).
-      // addShardsRaw здесь давал удвоение (30→60) и вторую модалку через shards_earned.
-      await loadShardsFromCloud();
-      setShardRewards(rewards);
-    } catch { /* */ }
-    finally {
-      shardRewardCheckInFlightRef.current = false;
-    }
-  }, []);
-
-  useEffect(() => {
-    const t = setTimeout(() => { void checkShardRewardsFn(); }, 800);
-    return () => clearTimeout(t);
-  }, [checkShardRewardsFn]);
-
   const globalBroadcastCheckInFlightRef = useRef(false);
   const checkGlobalBroadcastFn = useCallback(async () => {
     if (IS_EXPO_GO) return;
@@ -607,6 +610,33 @@ function AppContent() {
     const t = setTimeout(() => { void checkGlobalBroadcastFn(); }, 1400);
     return () => clearTimeout(t);
   }, [checkGlobalBroadcastFn]);
+
+  useEffect(() => installForegroundUsageMsTracker(), []);
+
+  useEffect(() => {
+    if (!ready || showOnboarding) {
+      setReleaseNotesOffer(false);
+      return;
+    }
+    let cancelled = false;
+    const timer = setTimeout(() => {
+      void (async () => {
+        try {
+          const offer = await shouldOfferReleaseNotesModal();
+          if (!cancelled && offer) setReleaseNotesOffer(true);
+        } catch { /* */ }
+      })();
+    }, 400);
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
+  }, [ready, showOnboarding]);
+
+  const closeReleaseNotesModal = useCallback(async () => {
+    await dismissReleaseNotesModalPermanently();
+    setReleaseNotesOffer(false);
+  }, []);
 
   useEffect(() => {
     let timeoutId: ReturnType<typeof setTimeout> | null = null;
@@ -707,6 +737,24 @@ function AppContent() {
     let cloudHydratePromise: Promise<void> | null = null;
 
     const runHeavyInit = () => {
+      const startShopWarm = () => {
+        if (!IS_EXPO_GO) void initRevenueCat();
+        void prefetchMarketplacePacks().catch(() => {});
+      };
+      if (onboardingPathRef.current) {
+        InteractionManager.runAfterInteractions(() => {
+          setTimeout(startShopWarm, 400);
+        });
+      } else {
+        startShopWarm();
+      }
+      if (deferLessonPrimeRef.current) {
+        deferLessonPrimeRef.current = false;
+        InteractionManager.runAfterInteractions(() => {
+          void primeAllLessonsFromStorageOnAppLaunch().catch(() => {});
+        });
+      }
+
       if (!IS_EXPO_GO) {
         import('@react-native-firebase/crashlytics')
           .then(m => m.default().setCrashlyticsCollectionEnabled(true))
@@ -739,7 +787,6 @@ function AppContent() {
         // См. repairLessonUnlocksAfterRestore() и lesson_unlock_repair_v1 флаг.
         repairLessonUnlocksAfterRestore().catch(() => {});
         await loadShardsFromCloud().catch(() => {});
-        prefetchGlobalLeaderboard();
         prefetchArenaRatingCache();
         const freshShards = await AsyncStorage.getItem('shards_balance');
         const parsedShards = Number(freshShards);
@@ -779,11 +826,8 @@ function AppContent() {
     };
 
     const bootstrap = async () => {
-      // RevenueCat + offerings магазина осколков — как можно раньше (раньше было только после setReady в runHeavyInit).
-      if (!IS_EXPO_GO) void initRevenueCat();
-      // Прогрев списка наборов магазина (Firestore card_packs) — к моменту открытия магазина/хаба
-      // список уже в session memory, без сетевого ожидания и мигания.
-      void prefetchMarketplacePacks().catch(() => {});
+      onboardingPathRef.current = false;
+      deferLessonPrimeRef.current = false;
 
       // ВАЖНО: запускаем гидратацию из облака как можно раньше (параллельно
       // локальной подготовке), и потом подождём её ниже с таймаутом 2.5с
@@ -799,8 +843,6 @@ function AppContent() {
         })();
       }
 
-      // Всё, что нужно для первого кадра /lesson1 без лоадера: shuffle + cell + progress (локальный кэш).
-      await primeAllLessonsFromStorageOnAppLaunch().catch(() => {});
       // Синхронные снимки тумблеров (настройки обучения, тактильный отклик, расписание пушей) — до setReady
       await Promise.all([
         hydrateUserSettingsFromStorage().catch(() => {}),
@@ -864,6 +906,14 @@ function AppContent() {
           });
         }
 
+        const willShowOnboarding = !handledByReferrer && !val;
+        onboardingPathRef.current = willShowOnboarding;
+        if (willShowOnboarding) {
+          deferLessonPrimeRef.current = true;
+        } else {
+          await primeAllLessonsFromStorageOnAppLaunch().catch(() => {});
+        }
+
         if (!handledByReferrer) {
           setShow(!val);
         }
@@ -883,6 +933,10 @@ function AppContent() {
       setTimeout(flushPending, 200);
     });
     const subDelete = onAppEvent('account_deleted', () => {
+      // После первого онбординга refs = true; без сброса повторное завершение
+      // (Apple/Google/«Позже» на шаге auth) вызывает handleOnboardingDone → ранний return → экран не уходит.
+      onboardingDoneHandledRef.current = false;
+      firstLessonStartHandledRef.current = false;
       setShow(true);
     });
     return () => { sub.remove(); subDelete.remove(); };
@@ -913,6 +967,10 @@ function AppContent() {
 
   // Навигация после онбординга — показываем bottomsheet первого урока
   const handleOnboardingDone = useCallback(async () => {
+    // Гард от повторного вызова: handleFinishOnboarding в Onboarding async, и при двойном тапе
+    // «Позже»/«Войти» onDone() мог вызваться дважды → два setTimeout → модалка повторно открывалась.
+    if (onboardingDoneHandledRef.current) return;
+    onboardingDoneHandledRef.current = true;
     await AsyncStorage.setItem('xp_migration_v2', '1');
     setShow(false);
     // Не показываем тутор энергии на «Главной» одновременно с этим листом (ждём «Позже» или возврат с урока)
@@ -933,35 +991,15 @@ function AppContent() {
   }, [pendingRoute, router, showOnboarding]);
 
 
-  // Обработка входящих deeplink-ов (аренаные приглашения)
-  useEffect(() => {
-    const handleUrl = (url: string) => {
-      // https://badloar-star.github.io/phraseman/arena/ROOMID
-      // или phraseman://arena/ROOMID
-      if (/^phraseman:\/\/\/?$/i.test(url.trim())) {
-        router.replace('/home' as any);
-        return;
-      }
-      const match = url.match(/\/duel\/([A-Z0-9]+)/i);
-      if (match) {
-        const roomId = match[1];
-        router.push({ pathname: '/arena_join' as any, params: { roomId } });
-      }
-    };
-    Linking.getInitialURL().then(url => { if (url) handleUrl(url); });
-    const sub = Linking.addEventListener('url', ({ url }) => handleUrl(url));
-    return () => sub.remove();
-  }, [router]);
-
   // ── Очередь модалок: ровно одна показывается за раз ─────────────────────
-  // Приоритет: update > broadcast > shardReward > notifNudge (бонус за волну релиза отключён).
+  // Приоритет: update > releaseNotes > broadcast > notifNudge (releaseWave не подключён).
   // ВАЖНО: эти хуки должны вызываться до любых условных return ниже.
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
+  const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesOffer);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
-  const shardRewardModalVisible = useOverlayVisible('shardReward', shardRewards.length > 0);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
 
-  if (!ready) return <View style={{ flex:1, backgroundColor:'#06141B' }} />;
+  if (!ready) return null;
 
   if (isBanned) {
     return (
@@ -990,12 +1028,15 @@ function AppContent() {
   }
 
   return (
-    <>
+    <View style={{ flex: 1, backgroundColor: tTheme.bgPrimary }}>
     <Stack
       initialRouteName="(tabs)"
       screenOptions={{
         headerShown: false,
         contentStyle: { backgroundColor: tTheme.bgPrimary },
+        // Без fade: глобальный fade на native-stack даёт поздний белый кроссфейд при каждом push/replace.
+        // Нужен мягкий переход — только у отдельных экранов (например pack_opening).
+        animation: 'none',
       }}
     >
       <Stack.Screen name="index" />
@@ -1019,10 +1060,8 @@ function AppContent() {
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
-      {(__DEV__ || DEV_MODE) && <Stack.Screen name="audio_debug" />}
+      {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && <Stack.Screen name="audio_debug" />}
       <Stack.Screen name="exam" />
-      <Stack.Screen name="dialogs" />
-      <Stack.Screen name="dialog_vocab" />
       <Stack.Screen name="daily_tasks_screen" />
       <Stack.Screen name="premium_modal" options={{ presentation: 'modal' }} />
       <Stack.Screen name="avatar_select" />
@@ -1033,10 +1072,9 @@ function AppContent() {
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
-      {(__DEV__ || DEV_MODE) && <Stack.Screen name="admin_review_test" />}
-      {(__DEV__ || DEV_MODE) && <Stack.Screen name="settings_testers" />}
+      {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && <Stack.Screen name="admin_review_test" />}
+      {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && <Stack.Screen name="settings_testers" />}
       <Stack.Screen name="progress_map" />
-      <Stack.Screen name="hall_of_fame_screen" />
       <Stack.Screen name="beta_testers" />
       <Stack.Screen name="privacy_screen" />
       <Stack.Screen name="terms_screen" />
@@ -1049,14 +1087,11 @@ function AppContent() {
       <Stack.Screen name="arena_leaderboard" />
       <Stack.Screen name="web_screen" />
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
+      <Stack.Screen name="trainer" />
+      <Stack.Screen name="trainer_words_session" />
+      <Stack.Screen name="trainer_phrases_session" />
+      <Stack.Screen name="trainer_arena_session" />
     </Stack>
-
-    {/* Модалка награды осколком за исправленный баг */}
-    <ShardRewardModal
-      visible={shardRewardModalVisible}
-      rewards={shardRewards}
-      onClose={() => setShardRewards([])}
-    />
 
     <NotificationPermissionModal
       visible={notifNudgeModalVisible}
@@ -1080,7 +1115,7 @@ function AppContent() {
           ? ['Recordatorios en el momento adecuado', 'Te ayudan a mantener la racha y el progreso', 'Puedes desactivarlos en cualquier momento']
           : lang === 'uk'
           ? ['Нагадування в потрібний час', 'Підтримка стріку та прогресу', 'Вимикається в будь-який момент']
-          : ['Напоминания в нужное время', 'Поддержка стрика и прогресса', 'Отключается в любой момент']
+          : ['Напоминания в нужное время', 'Поддержка цепочки и прогресса', 'Отключается в любой момент']
       }
       confirmLabel={lang === 'es' ? 'Activar recordatorios' : lang === 'uk' ? 'Увімкнути нагадування' : 'Включить напоминания'}
       cancelLabel={lang === 'es' ? 'Más tarde' : lang === 'uk' ? 'Пізніше' : 'Позже'}
@@ -1119,6 +1154,11 @@ function AppContent() {
         }}
       />
     )}
+
+    <ReleaseNotesModal
+      visible={releaseNotesModalVisible}
+      onClose={() => { void closeReleaseNotesModal(); }}
+    />
 
     <GlobalBroadcastModal
       visible={broadcastModalVisible}
@@ -1170,10 +1210,22 @@ function AppContent() {
             <TouchableOpacity
               style={{ width: '100%', backgroundColor: '#C8FF00', borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginBottom: 12 }}
               onPress={() => {
+                if (firstLessonStartHandledRef.current) return;
+                firstLessonStartHandledRef.current = true;
                 setShowFirstLessonSheet(false);
                 setDeferEnergyOnboardingForPostOnboardingFirstLesson(true);
                 void markWentToFirstLessonFromAfterOnboardingSheet();
-                router.replace({ pathname: '/lesson1', params: { id: 1 } } as any);
+                // Сначала фиксируем (tabs)/home как корень стека, затем кладём поверх lesson_menu
+                // и lesson1 — чтобы из урока можно было вернуться в меню урока, а из меню — на главную.
+                // Раньше один router.replace('/lesson1') оставлял пустой стек: кнопка «назад» в lesson_menu
+                // (router.back()) не срабатывала, юзер застревал.
+                router.replace('/(tabs)/home' as any);
+                setTimeout(() => {
+                  router.push({ pathname: '/lesson_menu', params: { id: 1 } } as any);
+                  setTimeout(() => {
+                    router.push({ pathname: '/lesson1', params: { id: 1, from: 'lesson_menu' } } as any);
+                  }, 30);
+                }, 30);
               }}
               activeOpacity={0.85}
             >
@@ -1199,12 +1251,13 @@ function AppContent() {
       </Modal>
     )}
 
-    </>
+    </View>
   );
 }
 
 export default function RootLayout() {
   return (
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#07100A' }}>
     <ErrorBoundary>
       <SafeAreaProvider>
       <ThemeProvider>
@@ -1218,6 +1271,7 @@ export default function RootLayout() {
                     <AppContent />
                     <AchievementToast />
                     <ActionToast />
+                    <ArenaFriendInviteHost />
                     <MatchFoundToast />
                     <GlobalLevelUpHandler />
                     <GlobalShardsEarnedHost />
@@ -1232,5 +1286,6 @@ export default function RootLayout() {
       </ThemeProvider>
       </SafeAreaProvider>
     </ErrorBoundary>
+    </GestureHandlerRootView>
   );
 }

@@ -4,6 +4,7 @@ import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReportPackModal from '../../components/ReportPackModal';
+import { hideCommunityPackOnDevice } from '../community_packs/communityPackHiddenStorage';
 import {
   ActivityIndicator,
   Modal,
@@ -54,6 +55,8 @@ type Props = {
   onClose: () => void;
   onConfirmPurchase: () => void | Promise<void>;
   onGoToShards: () => void;
+  /** Після «Не показывать» у ReportPackModal — оновити каталог на хабі. */
+  onCommunityPackHiddenOnDevice?: () => void;
 };
 
 const AnimatedLinearGradient = Animated.createAnimatedComponent(LinearGradient);
@@ -89,6 +92,7 @@ type PaywallModalCopy = {
   shardsUnit: string;
   waitBusy: string;
   reportPack: string;
+  hidePack: string;
 };
 
 function paywallModalCopy(lang: Lang): PaywallModalCopy {
@@ -122,6 +126,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       shardsUnit: 'осколків',
       waitBusy: 'Зачекайте…',
       reportPack: '⚐ Поскаржитися на набір',
+      hidePack: 'Не показувати мені',
     };
   }
   if (lang === 'es') {
@@ -155,6 +160,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       shardsUnit: S,
       waitBusy: 'Espera…',
       reportPack: '⚐ Reportar este paquete',
+      hidePack: 'No mostrarme',
     };
   }
   return {
@@ -186,6 +192,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     shardsUnit: 'осколков',
     waitBusy: 'Подождите…',
     reportPack: '⚐ Пожаловаться на набор',
+    hidePack: 'Не показывать мне',
   };
 }
 
@@ -199,6 +206,7 @@ export default function CardPackShardPaywallModal({
   onClose,
   onConfirmPurchase,
   onGoToShards,
+  onCommunityPackHiddenOnDevice,
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
@@ -1001,15 +1009,34 @@ export default function CardPackShardPaywallModal({
 
                       {/* Apple Guideline 1.2 (UGC): кнопка скарги для community-наборів */}
                       {pack.isCommunityUgc ? (
-                        <Pressable
-                          onPress={() => setReportVisible(true)}
-                          hitSlop={8}
-                          style={{ marginTop: 6, paddingVertical: 6, alignItems: 'center' }}
-                        >
-                          <Text style={{ color: t.textGhost, fontSize: 12, textDecorationLine: 'underline' }}>
-                            {str.reportPack}
-                          </Text>
-                        </Pressable>
+                        <>
+                          <Pressable
+                            onPress={() => setReportVisible(true)}
+                            hitSlop={8}
+                            style={{ marginTop: 6, paddingVertical: 6, alignItems: 'center' }}
+                          >
+                            <Text style={{ color: t.textGhost, fontSize: 12, textDecorationLine: 'underline' }}>
+                              {str.reportPack}
+                            </Text>
+                          </Pressable>
+                          <Pressable
+                            onPress={async () => {
+                              try {
+                                await hideCommunityPackOnDevice(pack.id);
+                                onCommunityPackHiddenOnDevice?.();
+                              } catch {
+                                // no-op: AsyncStorage unavailable
+                              }
+                              handleClose();
+                            }}
+                            hitSlop={8}
+                            style={{ marginTop: 2, paddingVertical: 6, alignItems: 'center' }}
+                          >
+                            <Text style={{ color: t.textGhost, fontSize: 12, textDecorationLine: 'underline' }}>
+                              {str.hidePack}
+                            </Text>
+                          </Pressable>
+                        </>
                       ) : null}
                     </View>
                   </LinearGradient>
@@ -1029,6 +1056,7 @@ export default function CardPackShardPaywallModal({
           authorStableId={pack.authorStableId ?? null}
           lang={lang}
           onClose={() => setReportVisible(false)}
+          onPackHiddenOnDevice={onCommunityPackHiddenOnDevice}
         />
       ) : null}
     </Modal>

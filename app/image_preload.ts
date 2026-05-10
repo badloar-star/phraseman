@@ -7,27 +7,27 @@ import { Image } from 'react-native';
 // asset registry without triggering the "No suitable URL request handler for (null)" error.
 
 const CLUB_IMAGES = [
-  require('../assets/images/levels/club icon base forest.png'),
-  require('../assets/images/levels/club base ocean.png'),
-  require('../assets/images/levels/club base corak.png'),
-  require('../assets/images/levels/club base sacura.png'),
-  require('../assets/images/levels/club base neon.png'),
-  require('../assets/images/levels/club icon base forest.png'),
-  require('../assets/images/levels/club base ocean.png'),
-  require('../assets/images/levels/club base corak.png'),
-  require('../assets/images/levels/club base sacura.png'),
-  require('../assets/images/levels/club base neon.png'),
-  require('../assets/images/levels/club icon base forest.png'),
-  require('../assets/images/levels/club base neon.png'),
+  require('../assets/images/levels/club icon base forest.webp'),
+  require('../assets/images/levels/club base ocean.webp'),
+  require('../assets/images/levels/club base corak.webp'),
+  require('../assets/images/levels/club base sacura.webp'),
+  require('../assets/images/levels/club base neon.webp'),
+  require('../assets/images/levels/club icon base forest.webp'),
+  require('../assets/images/levels/club base ocean.webp'),
+  require('../assets/images/levels/club base corak.webp'),
+  require('../assets/images/levels/club base sacura.webp'),
+  require('../assets/images/levels/club base neon.webp'),
+  require('../assets/images/levels/club icon base forest.webp'),
+  require('../assets/images/levels/club base neon.webp'),
 ];
 
 const MEDAL_IMAGES = [
-  require('../assets/images/levels/bronza.png'),
-  require('../assets/images/levels/serebro.png'),
-  require('../assets/images/levels/zoloto.png'),
-  require('../assets/images/levels/rubin.png'),
-  require('../assets/images/levels/izumrud.png'),
-  require('../assets/images/levels/almaz.png'),
+  require('../assets/images/levels/bronza.webp'),
+  require('../assets/images/levels/serebro.webp'),
+  require('../assets/images/levels/zoloto.webp'),
+  require('../assets/images/levels/rubin.webp'),
+  require('../assets/images/levels/izumrud.webp'),
+  require('../assets/images/levels/almaz.webp'),
 ];
 
 export const preloadImages = async () => {

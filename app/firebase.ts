@@ -10,6 +10,15 @@ const getCrashlytics = () => IS_EXPO_GO ? null : require('@react-native-firebase
 
 export function logEvent(name: string, params?: Record<string, string | number>) {
   getAnalytics()?.logEvent(name, params).catch(() => {});
+  void import('./app_activity')
+    .then(({ trackActivity }) =>
+      trackActivity(`analytics:${name}`, {
+        feature: String(name).split('_')[0] || 'analytics',
+        result: 'info',
+        tags: params,
+      }),
+    )
+    .catch(() => {});
 }
 
 export function setUserId(userId: string) {
@@ -50,11 +59,7 @@ export function logStreakLost(streakDays: number) {
   logEvent('streak_lost', { days: streakDays });
 }
 
-// ── Hall of fame / League ─────────────────────────────────────────────────────
-
-export function logHallOfFameViewed() {
-  logEvent('hall_of_fame_viewed');
-}
+// ── League ─────────────────────────────────────────────────────────────────────
 
 export function logLeaguePromoted(leagueName: string) {
   logEvent('league_promoted', { league: leagueName });

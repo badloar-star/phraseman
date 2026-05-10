@@ -14,9 +14,9 @@ import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
-import { useLang, getLeague } from '../../components/LangContext';
+import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
-import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, clubTierShortName } from '../league_engine';
+import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
@@ -36,21 +36,18 @@ import { lessonNamesForLang } from '../../constants/lessons';
 import { GREETINGS_ES } from '../../constants/greetings_es';
 import { triLang, type Lang } from '../../constants/i18n';
 import { BRAND_SHARDS_ES } from '../../constants/terms_es';
-import { DEV_MODE } from '../config';
 import PremiumCard from '../../components/PremiumCard';
 import { hapticTap } from '../../hooks/use-haptics';
 import CircularProgress from '../../components/CircularProgress';
-import AnimatedFrame from '../../components/AnimatedFrame';
-import { getBestAvatarForLevel, getBestFrameForLevel, getAvatarImageByIndex } from '../../constants/avatars';
-import LevelBadge from '../../components/LevelBadge';
+import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
+import AvatarView from '../../components/AvatarView';
+import { isCustomAvatarValue } from '../../constants/custom_avatars';
 import EnergyIcon from '../../components/EnergyIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
-// [SRS] getDueItems() возвращает фразы из active_recall_items,
-// у которых nextDue <= конец сегодняшнего дня (по SM-2 алгоритму).
-// Используется только для получения количества — сами карточки рендерит review.tsx.
-import { getDueItems, SESSION_LIMIT } from '../active_recall';
+import { getTrainerTotalDue } from '../trainer_store';
 import { getCurrentMultiplier } from '../xp_manager';
 import DailyPhraseCard from '../../components/DailyPhraseCard';
+import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
 import { useEnergy } from '../../components/EnergyContext';
@@ -61,13 +58,12 @@ import ShardsEarnedModal from '../../components/ShardsEarnedModal';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
-import { useArenaRank } from '../../hooks/use-arena-rank';
 import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
 import {
   getDeferEnergyOnboardingForPostOnboardingFirstLesson,
   tryClearAfterOnboardingFirstLessonReturn,
 } from '../energyOnboardingGate';
-import { onAppEvent } from '../events';
+import { emitAppEvent, onAppEvent } from '../events';
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
@@ -189,7 +185,6 @@ export default function HomeScreen() {
   const { s, lang } = useLang();
   const insets = useSafeAreaInsets();
   const { goToTab, activeIdx, focusTick } = useTabNav();
-  const arenaRank = useArenaRank();
   const hh = homeStatsLoadedOnce ? peekHomeScreenHydration() : null;
 
   const [userName, setUserName]     = useState(() => hh?.userName ?? '');
@@ -204,7 +199,6 @@ export default function HomeScreen() {
     return w && w.length === 7 ? [...w] : new Array(7).fill(false);
   });
   const [weekPoints, setWeekPoints] = useState(() => hh?.weekPoints ?? 0);
-  const [lessonsCompleted, setLessons] = useState(() => hh?.lessonsCompleted ?? 0);
   const [lastLesson, setLastLesson] = useState<{id:number;name:string;progress:number;score:string}|null>(() => buildLastLessonFromHydration(lang) ?? null);
   // Початкове значення підбираємо за поточною мовою інтерфейсу,
   // щоб юзер з UK не бачив миготливе російське «Привет,» до завантаження `loadData`.
@@ -216,8 +210,8 @@ export default function HomeScreen() {
   const [engineLeague, setEngineLeague] = useState<typeof LEAGUES[0] | null>(null);
   const { isPremium } = usePremium();
   // [SRS] Количество фраз, готовых к повторению сегодня.
-  // 0 = карточка «Повторить сегодня» скрыта (не мешает новым пользователям).
-  // >0 = карточка появляется над блоком «Тест/Экзамен» и ведёт на /review.
+  // Временно: только __DEV__ (в стор-сборках карточка скрыта, запрос не делаем).
+  // >0 = карточка над «Тест/Экзамен», ведёт на /trainer.
   const [dueCount, setDueCount] = useState(0);
   const [userAvatar, setUserAvatar] = useState(() => hh?.userAvatar ?? '🐣');
   const [userFrame, setUserFrame]   = useState(() => hh?.userFrame ?? 'plain');
@@ -324,51 +318,6 @@ export default function HomeScreen() {
   const fadeAnim = useRef(new Animated.Value(1)).current;
   const diagChecked = true;
 
-  // ── Анимация "карточки летят в раздел" ──────────────────────────────────────
-  const cardsIconScaleAnim = useRef(new Animated.Value(1)).current;
-  const cardsBadgeOpacity  = useRef(new Animated.Value(0)).current;
-  const cardsBadgeScale    = useRef(new Animated.Value(0)).current;
-  const [newCardsCount, setNewCardsCount]       = useState(0);
-  const [displayCardsCount, setDisplayCardsCount] = useState(0);
-
-  useEffect(() => {
-    if (newCardsCount <= 0) return;
-    setDisplayCardsCount(newCardsCount);
-    cardsBadgeOpacity.setValue(1);
-    cardsBadgeScale.setValue(0);
-    Animated.spring(cardsBadgeScale, { toValue: 1, useNativeDriver: true, friction: 4, tension: 200 }).start();
-    let current = newCardsCount;
-    const step = () => {
-      if (!mountedRef.current) return;
-      if (current <= 0) {
-        Animated.timing(cardsBadgeOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => setNewCardsCount(0));
-        return;
-      }
-      current--;
-      setDisplayCardsCount(current);
-      Animated.sequence([
-        Animated.spring(cardsIconScaleAnim, { toValue: 1.35, useNativeDriver: true, friction: 3, tension: 250 }),
-        Animated.spring(cardsIconScaleAnim, { toValue: 1,    useNativeDriver: true, friction: 5, tension: 180 }),
-      ]).start();
-      setTimeout(step, 220);
-    };
-    setTimeout(step, 400);
-  }, [newCardsCount]);
-
-  // Пульсирующая анимация для карточки "Повторить сегодня"
-  const pulseAnim = useRef(new Animated.Value(1)).current;
-
-  React.useEffect(() => {
-    if (dueCount > 0) {
-      pulseAnim.setValue(1);
-      Animated.sequence([
-        Animated.spring(pulseAnim, { toValue: 1.04, useNativeDriver: true, friction: 4, tension: 200 }),
-        Animated.spring(pulseAnim, { toValue: 1,    useNativeDriver: true, friction: 6, tension: 180 }),
-      ]).start();
-    } else {
-      pulseAnim.setValue(1);
-    }
-  }, [dueCount]);
 
   // Секции главной: без entrance-анимации при открытии таба / возврате в приложение (сразу видимы).
   const S_COUNT = 6;
@@ -477,7 +426,7 @@ export default function HomeScreen() {
         ]).start();
       });
     });
-    // Стрик только что обнулён (или markStreakLost вызван из любого места) — подтянуть
+    // Цепочка только что обнулена (или markStreakLost вызван из любого места) — подтянуть
     // оффер и поднять модалку, не дожидаясь следующего loadData.
     const reviveOfferSub = onAppEvent('streak_revive_offer', () => {
       void getReviveOffer().then((o) => {
@@ -605,7 +554,13 @@ export default function HomeScreen() {
           }, 800);
           onStreakUpdated(currentStreakNum).then((earned) => {
             const earnedAmount = typeof earned === 'number' ? earned : (earned?.amount ?? 0);
-            if (earnedAmount > 0) DeviceEventEmitter.emit('shards_earned', { amount: earnedAmount });
+            const rk = typeof earned === 'object' && earned && 'reasonKey' in earned ? earned.reasonKey : undefined;
+            if (earnedAmount > 0) {
+              emitAppEvent(
+                'shards_earned',
+                rk ? { amount: earnedAmount, reasonKey: rk } : { amount: earnedAmount },
+              );
+            }
           }).catch(() => {});
         } else {
           setDisplayStreak(currentStreakNum);
@@ -619,8 +574,8 @@ export default function HomeScreen() {
         const curLvl = getLevelFromXP(newXP);
         // Обновляем UI аватара/рамки по текущему уровню
         // (запись в AsyncStorage и детект level-up делает xp_manager.ts)
-        const savedFr = await AsyncStorage.getItem('user_frame');
-        setUserAvatar(getBestAvatarForLevel(curLvl));
+        const [[, savedAv], [, savedFr]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame']);
+        setUserAvatar(isCustomAvatarValue(savedAv) ? savedAv! : getBestAvatarForLevel(curLvl));
         setUserFrame(savedFr  || getBestFrameForLevel(curLvl).id);
 
         // Мини-бейдж перцентиля — глобальные пороги из leaderboard_stats/global
@@ -632,8 +587,8 @@ export default function HomeScreen() {
       }
       const xpSnap = parseInt(xpStored || '0', 10) || 0;
       const curLvlSnap = getLevelFromXP(xpSnap);
-      const savedFrSnap = await AsyncStorage.getItem('user_frame');
-      const avatarSnap = getBestAvatarForLevel(curLvlSnap);
+      const [[, savedAvSnap], [, savedFrSnap]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame']);
+      const avatarSnap = isCustomAvatarValue(savedAvSnap) ? savedAvSnap! : getBestAvatarForLevel(curLvlSnap);
       const frameSnap = savedFrSnap || getBestFrameForLevel(curLvlSnap).id;
 
       let weekParsedForSnap: boolean[] = new Array(7).fill(false);
@@ -668,7 +623,6 @@ export default function HomeScreen() {
           if (correct >= 45) done++;
         }
       }
-      setLessons(done);
 
       let snapLastLessonId: number | null = null;
       let snapLastLessonProgress = 0;
@@ -691,6 +645,8 @@ export default function HomeScreen() {
           snapLastLessonScore = '0.0';
           setLastLesson({ id: lastId, name: lessonNames[lastId - 1], progress: 0, score: '0.0' });
         }
+      } else if (mountedRef.current) {
+        setLastLesson(null);
       }
 
       // Крупная карта «Рівень / Ланцюжок»: не ждём лігу, медалі, SRS — щоб не ловити вічний спінер.
@@ -738,7 +694,7 @@ export default function HomeScreen() {
         // Полный расчёт: при смене ISO-недели создаст pending и сохранит state.
         // Если remote недоступен — функция сама фолбэкнется на локальный state.
         checkLeagueOnAppOpen(leagueName, weekPts).catch(() => null),
-        getDueItems(SESSION_LIMIT),
+        __DEV__ ? getTrainerTotalDue().then(n => Array(n).fill(null)) : Promise.resolve([]),
         loadAllMedals(),
         isRepairEligible(),
         AsyncStorage.getItem('login_bonus_pending'),
@@ -776,17 +732,8 @@ export default function HomeScreen() {
         }
       }
 
-// [SRS] Ліміт SESSION_LIMIT — не перегружаємо користувача в бейджі на головній
       setDueCount(dueItems.length);
       setMedalCounts(countMedals(allMedals));
-
-      if (activeIdx === 0) {
-        const pendingCards = await AsyncStorage.getItem('flashcard_anim_pending');
-        if (pendingCards && parseInt(pendingCards, 10) > 0) {
-          await AsyncStorage.removeItem('flashcard_anim_pending');
-          setNewCardsCount(parseInt(pendingCards, 10));
-        }
-      }
 
       // [BANNERS] Login bonus, comeback, personal best, streak repair
       if (bonusRaw) {
@@ -808,7 +755,7 @@ export default function HomeScreen() {
         setRepairProgress(progress.lessons);
       }
 
-      // [STREAK PAYWALL / FREEZE] Проверяем угрозу стрику для всех пользователей.
+      // [STREAK PAYWALL / FREEZE] Проверяем угрозу цепочке для всех пользователей.
       // Для не-премиум — показываем paywall (один раз в день).
       // Для премиум — показываем кнопку заморозки.
       const { willLose, streakBefore } = await checkStreakLossPending();
@@ -829,7 +776,7 @@ export default function HomeScreen() {
         }
       }
 
-      // Streak Revive: если стрик уже обнулён в updateStreakOnActivity (≤24ч назад) —
+      // Streak Revive: если цепочка уже обнулена в updateStreakOnActivity (≤24ч назад) —
       // оффер активен, показываем модалку. Не пересекается с willLose (там 1 пропущенный
       // день и freeze ещё может помочь).
       const offer = await getReviveOffer();
@@ -905,12 +852,7 @@ export default function HomeScreen() {
     setStreakAtRisk(false);
   };
 
-const league = getLeague(weekPoints, lang);
-  const leagueFromEngine = LEAGUES.find(l =>
-    l.nameRU === league.name || l.nameUK === league.name || l.nameES === league.name
-  ) ?? LEAGUES[0];
-
-  const weekDays =
+const weekDays =
     lang === 'uk'
       ? ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд']
       : lang === 'es'
@@ -1002,14 +944,14 @@ const league = getLeague(weekPoints, lang);
             <View style={{ flex:1 }}>
               <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>{
                 triLang(lang, {
-                  ru: 'Почини стрик!',
+                  ru: 'Почини цепочку!',
                   uk: 'Полагодь стрік!',
                   es: '¡Recupera tu racha!',
                 })
               }</Text>
               <Text style={{ color:t.textMuted, fontSize:f.sub, marginTop:2 }}>{
                 triLang(lang, {
-                  ru: `Пройди 1 урок сегодня, чтобы сохранить стрик · ${repairProgress}/1`,
+                  ru: `Пройди 1 урок сегодня, чтобы сохранить цепочку · ${repairProgress}/1`,
                   uk: `Пройди 1 урок сьогодні, щоб зберегти стрік · ${repairProgress}/1`,
                   es: `Hoy completa 1 lección para no romper tu racha · ${repairProgress}/1`,
                 })
@@ -1050,13 +992,6 @@ const league = getLeague(weekPoints, lang);
                : themeMode === 'gold'   ? require('../../assets/images/levels/cards coral.webp')
                : themeMode === 'neon'   ? require('../../assets/images/levels/cards neon.webp')
                :                          require('../../assets/images/levels/cards forest.webp'),
-      shop:      themeMode === 'minimalLight' ? require('../../assets/images/levels/shop grafit.webp')
-               : themeMode === 'minimalDark' ? require('../../assets/images/levels/shop fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/SHOP OCEAN.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/SHOP SAKURA.webp')
-               : themeMode === 'gold'   ? require('../../assets/images/levels/SHOP CORAL.webp')
-               : themeMode === 'neon'   ? require('../../assets/images/levels/SHOP NEON.webp')
-               :                          require('../../assets/images/levels/SHOP FOREST.webp'),
       dayTasks:  themeMode === 'minimalLight' ? require('../../assets/images/levels/dayli task grafit.webp')
                : themeMode === 'minimalDark' ? require('../../assets/images/levels/day tasks fog.webp')
                : themeMode === 'ocean'  ? require('../../assets/images/levels/day tasks ocean.webp')
@@ -1071,74 +1006,11 @@ const league = getLeague(weekPoints, lang);
                : themeMode === 'gold'   ? require('../../assets/images/levels/test coral.webp')
                : themeMode === 'neon'   ? require('../../assets/images/levels/test neon.webp')
                :                          require('../../assets/images/levels/test forest.webp'),
-      exam:      themeMode === 'minimalLight' ? require('../../assets/images/levels/exam grafit.webp')
-               : themeMode === 'minimalDark' ? require('../../assets/images/levels/exam fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/exam ocean.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/exam sacura.webp')
-               : themeMode === 'gold'   ? require('../../assets/images/levels/exam coral.webp')
-               : themeMode === 'neon'   ? require('../../assets/images/levels/exam neon.webp')
-               :                          require('../../assets/images/levels/examen forest.webp'),
-      arena:     themeMode === 'minimalLight' ? require('../../assets/images/levels/arena grafit.webp')
-               : themeMode === 'minimalDark' ? require('../../assets/images/levels/arena fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/ARENA OCEAN.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/ARENA SAKURA.webp')
-               : themeMode === 'gold'   ? require('../../assets/images/levels/ARENA CORAL.webp')
-               : themeMode === 'neon'   ? require('../../assets/images/levels/ARENA NEON.webp')
-               :                          require('../../assets/images/levels/ARENA FOREST.webp'),
     };
     const quickItems = [
-      { img: menuImages.lesson,   label: s.tabs.lessons,       sub: triLang(lang, { ru: '32 урока', uk: '32 уроки', es: '32 lecciones' }),           path: 'lessons' },
-      { img: menuImages.quizes,   label: s.tabs.quizzes,      sub: triLang(lang, { ru: '3 уровня', uk: '3 рівні', es: '3 niveles de dificultad' }),            path:'/quizzes_screen' },
-      { img: menuImages.cards,    label: triLang(lang, { ru: 'Карточки', uk: 'Картки', es: 'Tarjetas' }),   sub: triLang(lang, { ru: 'Сохранённые', uk: 'Збережені', es: 'Guardadas' }), path:'/flashcards' },
-    ];
-    // Порядок: Задания | Клуб / Тест знаний | Экзамен
-    const gridItems = [
-      {
-        img: menuImages.dayTasks, iconName:'flash' as const, iconColor:t.accent,
-        label: triLang(lang, { ru: 'Задания', uk: 'Завдання', es: 'Tareas de hoy' }),
-        path:'/daily_tasks_screen',
-        isTasksBlock: true,
-      },
-      {
-        iconName:(isPremium ? (engineLeague?.ionIcon ?? leagueFromEngine.ionIcon ?? 'trophy') : 'lock-closed') as any,
-        iconColor: isPremium ? (engineLeague?.color ?? leagueFromEngine.color ?? '#FFD700') : t.textMuted,
-        label: triLang(lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga' }),
-        sub: isPremium
-          ? (engineLeague ? clubTierShortName(engineLeague, lang) : league.name)
-          : triLang(lang, { ru: 'Премиум клубы', uk: 'Преміум клуби', es: 'Clubes Premium' }),
-        path: '/league_screen',
-        pct: null,
-        isClub: true,
-      },
-      {
-        img: menuImages.shop, iconName:'diamond' as const, iconColor:t.textSecond,
-        label: triLang(lang, { ru: 'Магазин', uk: 'Магазин', es: 'Tienda' }),
-        sub: triLang(lang, { ru: 'Осколки', uk: 'Осколки', es: BRAND_SHARDS_ES }),
-        path:'/shards_shop',
-        pct: null,
-      },
-      {
-        img: themeMode === 'minimalLight' ? require('../../assets/images/levels/her man grafit.webp') : themeMode === 'minimalDark' ? require('../../assets/images/levels/her man fog.webp') : themeMode === 'ocean' ? require('../../assets/images/levels/hero map ocean.webp') : themeMode === 'sakura' ? require('../../assets/images/levels/hero map sacura.webp') : themeMode === 'gold' ? require('../../assets/images/levels/hero map coarl.webp') : themeMode === 'neon' ? require('../../assets/images/levels/hero man neon.webp') : require('../../assets/images/levels/her man foret.webp'),
-        iconName:'map' as const, iconColor:t.textSecond,
-        label: triLang(lang, { ru: 'Карта уровней', uk: 'Карта рівнів', es: 'Mapa de niveles' }),
-        sub: triLang(lang, { ru: 'Карта уровней', uk: 'Карта рівнів', es: 'Progreso y recompensas' }),
-        path:'/progress_map',
-        pct: null,
-      },
-      {
-        img: menuImages.test, iconName:'analytics' as const, iconColor:t.textSecond,
-        label: s.home.testBtn,
-        sub: s.home.testSub,
-        path:'/diagnostic_test',
-        pct: null,
-      },
-      {
-        img: menuImages.exam, iconName:'school' as const, iconColor:t.correct,
-        label: s.home.examBtn,
-        sub:`${lessonsCompleted}/32 ${triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones' })}`,
-        path:'/exam',
-        pct: lessonsCompleted/32,
-      },
+      { img: menuImages.lesson,   label: s.tabs.lessons,    sub: triLang(lang, { ru: '32 урока', uk: '32 уроки', es: '32 lecciones' }), path: 'lessons' },
+      { img: menuImages.quizes,   label: s.tabs.quizzes,    sub: triLang(lang, { ru: '3 уровня', uk: '3 рівні', es: '3 niveles de dificultad' }), path: '/quizzes_screen' },
+      { img: menuImages.cards,    label: s.tabs.flashcards, sub: triLang(lang, { ru: 'Свои фразы', uk: 'Свої фрази', es: 'Tus tarjetas' }), path: '/flashcards' },
     ];
     const themedClubIcon =
       themeMode === 'minimalLight' ? require('../../assets/images/levels/club base grafit.webp') :
@@ -1149,6 +1021,30 @@ const league = getLeague(weekPoints, lang);
       themeMode === 'neon'   ? require('../../assets/images/levels/club base neon.webp') :
                                require('../../assets/images/levels/club icon base forest.webp');
 
+    /** Второй ряд быстрых плиток — тот же визуал, что «Уроки / Квизы / Карточки». */
+    const activityQuickItems = [
+      {
+        key: 'daily',
+        kind: 'tasks' as const,
+        label: triLang(lang, { ru: 'Задания дня', uk: 'Завдання дня', es: 'Tareas del día' }),
+        path: '/daily_tasks_screen' as const,
+        img: menuImages.dayTasks,
+      },
+      {
+        key: 'league',
+        kind: 'league' as const,
+        label: triLang(lang, { ru: 'Лига недели', uk: 'Ліга тижня', es: 'Liga de la semana' }),
+        path: '/league_screen' as const,
+      },
+      {
+        key: 'attest',
+        kind: 'image' as const,
+        label: s.home.attestTile,
+        path: '/diagnostic_test' as const,
+        img: menuImages.test,
+      },
+    ];
+
     return (
       <ScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom:32, paddingTop:6 }}>
 
@@ -1156,11 +1052,11 @@ const league = getLeague(weekPoints, lang);
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection:'row', alignItems:'flex-start', padding:20, paddingBottom:12, gap:8 }}>
             <View style={{ flex:1 }}>
-              <Text style={{ color:t.textMuted, fontSize:f.caption }}>{greeting}</Text>
+              <Text style={{ color:t.heroTextMuted, fontSize:f.caption }}>{greeting}</Text>
               {isPremium ? (
                 <PremiumGoldUserName text={userName || '...'} fontSize={f.h1} />
               ) : (
-                <Text style={{ color:t.textPrimary, fontSize:f.h1, fontWeight:'700', marginTop:2 }}>{userName||'...'}</Text>
+                <Text style={{ color:t.heroTextPrimary, fontSize:f.h1, fontWeight:'700', marginTop:2 }}>{userName||'...'}</Text>
               )}
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
@@ -1182,7 +1078,7 @@ const league = getLeague(weekPoints, lang);
                       <View key={i} style={{ marginLeft: i > 0 ? -8 : 0 }}>
                         <EnergyIcon
                           filled={i < energyCount}
-                          themeColor={i < energyCount ? energyFilledColor : t.textGhost}
+                          themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? (themeMode === 'ocean' ? 'rgba(234,246,255,0.40)' : 'rgba(255,245,252,0.38)') : t.textGhost)}
                           size={20}
                           animateChange={true}
                           shouldShake={false}
@@ -1207,7 +1103,7 @@ const league = getLeague(weekPoints, lang);
                     ))}
                   </View>
                   {!energyUnlimited && energyCount < energyMax && timeUntilNextEnergy && (
-                    <Text style={{ fontSize: f.label, color: t.textMuted, fontWeight: '500', marginLeft: 6 }}>
+                    <Text style={{ fontSize: f.label, color: t.heroTextMuted, fontWeight: '500', marginLeft: 6 }}>
                       {`+1 ${triLang(lang, { ru: 'через', uk: 'через', es: 'en' })} ${timeUntilNextEnergy}`}
                     </Text>
                   )}
@@ -1238,6 +1134,7 @@ const league = getLeague(weekPoints, lang);
           {/* ── ГЕРОЙ: Уровень + Цепочка ── */}
           <Animated.View style={sectionStyle(1)}>
           <TouchableOpacity
+            testID="home-stats-card"
             activeOpacity={0.88}
             onPress={()=>{ hapticTap(); router.push('/streak_stats'); }}
             style={{ marginHorizontal:16, marginBottom:12 }}
@@ -1263,10 +1160,21 @@ const league = getLeague(weekPoints, lang);
                 <View style={{ flex:1 }}>
                   <Text style={{ color:t.textMuted, fontSize:10, textTransform:'uppercase', letterSpacing:1, marginBottom:6 }}>{triLang(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel' })}</Text>
                   <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
-                    <LevelBadge level={level} size={44} />
+                    <TouchableOpacity
+                      activeOpacity={0.78}
+                      onPress={(event) => {
+                        event.stopPropagation?.();
+                        hapticTap();
+                        router.push('/avatar_select');
+                      }}
+                      accessibilityRole="button"
+                      accessibilityLabel="Avatar"
+                    >
+                      <AvatarView avatar={userAvatar} level={level} size={44} />
+                    </TouchableOpacity>
                     <View style={{ flex:1 }}>
                       <Text style={{ color:t.textPrimary, fontSize:22, fontWeight:'800', lineHeight:26 }} numberOfLines={1}>{triLang(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel' })} {level}</Text>
-                      <Text style={{ color:t.gold, fontSize:13, fontWeight:'600', marginTop:2 }} numberOfLines={1}>{getTitleString(level, lang)}</Text>
+                      <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize:13, fontWeight:'600', marginTop:2 }} numberOfLines={1}>{getTitleString(level, lang)}</Text>
                     </View>
                   </View>
                 </View>
@@ -1288,8 +1196,8 @@ const league = getLeague(weekPoints, lang);
                 <View style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'center', marginTop:5 }}>
                   <Text style={{ color:t.textMuted, fontSize:f.label }}>{xpInLevel} / {xpNeeded} XP</Text>
                   {totalXPMulti > 1.0 && (
-                    <View style={{ backgroundColor:t.gold+'22', borderRadius:8, paddingHorizontal:6, paddingVertical:2, borderWidth:1, borderColor:t.gold+'55' }}>
-                      <Text style={{ color:t.gold, fontSize:11, fontWeight:'700' }}>+{Math.round((totalXPMulti-1)*100)}% XP</Text>
+                    <View style={{ backgroundColor:t.gold, borderRadius:8, paddingHorizontal:6, paddingVertical:2 }}>
+                      <Text style={{ color:t.textOnGold, fontSize:11, fontWeight:'700' }}>+{Math.round((totalXPMulti-1)*100)}% XP</Text>
                     </View>
                   )}
                 </View>
@@ -1298,9 +1206,9 @@ const league = getLeague(weekPoints, lang);
               {/* МИНИ-БЕЙДЖ XP-ПЕРЦЕНТИЛЯ */}
               {isPremium && homeXpPercentile !== null && (
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-                  <View style={{ backgroundColor: t.gold + '22', borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3, borderWidth: 0.5, borderColor: t.gold + '55', flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+                  <View style={{ backgroundColor: t.gold, borderRadius: 10, paddingHorizontal: 8, paddingVertical: 3, flexDirection: 'row', alignItems: 'center', gap: 4 }}>
                     <Text style={{ fontSize: 12 }}>🏆</Text>
-                    <Text style={{ color: t.gold, fontSize: 11, fontWeight: '700' }}>
+                    <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>
                       {triLang(lang, {
                         ru: `Топ ${100 - homeXpPercentile}% по опыту`,
                         uk: `Топ ${100 - homeXpPercentile}% за досвідом`,
@@ -1317,9 +1225,11 @@ const league = getLeague(weekPoints, lang);
                   <View key={i} style={{ alignItems:'center', gap:6 }}>
                     <View style={{
                       width: 22, height: 22, borderRadius: 11,
-                      backgroundColor: weekDone[i] ? t.correct : (i===todayIdx ? t.textPrimary+'66' : t.bgSurface2),
-                      borderWidth: i===todayIdx && !weekDone[i] ? 2 : 0,
-                      borderColor: t.textPrimary,
+                      backgroundColor: weekDone[i] ? t.correct : (isLightTheme
+                        ? (i === todayIdx ? 'rgba(255,255,255,0.75)' : 'rgba(255,255,255,0.38)')
+                        : (i===todayIdx ? t.textPrimary+'66' : t.bgSurface2)),
+                      borderWidth: weekDone[i] ? 0 : (isLightTheme ? (i === todayIdx && !weekDone[i] ? 2 : 1) : (i===todayIdx && !weekDone[i] ? 2 : 0)),
+                      borderColor: isLightTheme ? t.textMuted : t.textPrimary,
                     }} />
                     <Text style={{ color: weekDone[i] ? t.textPrimary : t.textMuted, fontSize:12, fontWeight:'600' }}>{d}</Text>
                   </View>
@@ -1347,9 +1257,10 @@ const league = getLeague(weekPoints, lang);
           </TouchableOpacity>
           </Animated.View>
 
-          {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА */}
+          {/* ПРОДОЛЖИТЬ УРОК + ЗАМОРОЗКА (карточка урока — только после первого захода в любой урок / last_opened_lesson) */}
+          {(streakAtRisk && !freezeActive || lastLesson != null) && (
           <Animated.View style={sectionStyle(2)}>
-          {/* ЗАМОРОЗКА СТРИКА — для всех когда стрик под угрозой */}
+          {/* ЗАМОРОЗКА ЦЕПОЧКИ — для всех когда цепочка под угрозой */}
           {streakAtRisk && !freezeActive && (
             <TouchableOpacity
               activeOpacity={0.88}
@@ -1360,7 +1271,7 @@ const league = getLeague(weekPoints, lang);
               <View style={{ flex:1 }}>
                 <Text style={{ color:'#4FC3F7', fontSize:13, fontWeight:'700' }}>
                   {triLang(lang, {
-                    ru: `Стрик ${streak} дней под угрозой`,
+                    ru: `Цепочка ${streak} дней под угрозой`,
                     uk: `Ланцюжок ${streak} днів під загрозою`,
                     es: `Llevas ${streak} días de racha: no la pierdas hoy`,
                   })}
@@ -1403,31 +1314,33 @@ const league = getLeague(weekPoints, lang);
           )}
 
           {/* ПРОДОЛЖИТЬ УРОК */}
+          {lastLesson != null && (
           <PremiumCard
+            testID="home-continue-lesson"
             level={3}
-            onPress={()=>router.push({ pathname:'/lesson_menu', params:{ id:lastLesson?.id??1 } })}
+            onPress={()=>router.push({ pathname:'/lesson_menu', params:{ id:lastLesson.id } })}
             style={{ marginHorizontal:16, marginBottom:12 }}
             innerStyle={{ padding:16, flexDirection:'row', alignItems:'center', gap:14 }}
           >
             <CircularProgress
-              pct={lastLesson?Math.round(lastLesson.progress/50*100):0}
+              pct={Math.round(lastLesson.progress/50*100)}
               size={52} sw={5} color={t.accent} bg={t.bgSurface}
               textColor={t.textPrimary} fontSize={10}
             />
             <View style={{ flex:1 }}>
               <Text style={{ color:t.textMuted, fontSize:10, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 }}>
-                {lastLesson ? s.home.continueBtn : s.home.startBtn}
+                {s.home.continueBtn}
               </Text>
               <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700', marginTop:3 }}>
-                {lastLesson
-                  ? `${triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} ${lastLesson.id} — ${lessonNamesForLang(lang)[lastLesson.id - 1] ?? lastLesson.name}`
-                  : `${triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} 1 — To Be`}
+                {`${triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} ${lastLesson.id} — ${lessonNamesForLang(lang)[lastLesson.id - 1] ?? lastLesson.name}`}
               </Text>
-              {lastLesson && <Text style={{ color:t.textMuted, fontSize:f.label, marginTop:2 }}>★ {lastLesson.score} · {lastLesson.progress}/50</Text>}
+              <Text style={{ color:t.textMuted, fontSize:f.label, marginTop:2 }}>★ {lastLesson.score} · {lastLesson.progress}/50</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color={t.textGhost} />
           </PremiumCard>
+          )}
           </Animated.View>
+          )}
 
           {/* Persistent баннер "Сохрани прогресс" — для незалогиненных юзеров с XP ≥ 1000.
               Сам решает показываться или нет (см. SaveProgressBanner.tsx). */}
@@ -1435,7 +1348,7 @@ const league = getLeague(weekPoints, lang);
             <SaveProgressBanner />
           </View>
 
-          {/* БЫСТРЫЙ ДОСТУП: 3 равных слота без горизонтального скролла */}
+          {/* БЫСТРЫЙ ДОСТУП: уроки + квизы + карточки */}
           <Animated.View style={sectionStyle(3)}>
           <View
             onTouchStart={() => { tabSwipeLock.blocked = true; }}
@@ -1454,35 +1367,19 @@ const league = getLeague(weekPoints, lang);
                 >
                   <LinearGradient colors={t.cardGradient} start={{x:0,y:0}} end={{x:1,y:1}} style={{ flex:1, borderRadius:18, paddingHorizontal:10, paddingVertical:14, alignItems:'center', gap:5 }}>
                   <View style={{ position: 'relative' }}>
-                    <Animated.View style={item.path === '/flashcards' ? { transform:[{scale:cardsIconScaleAnim}] } : undefined}>
-                      {item.img
-                        ? (
-                          <LightSketchMenuImage
-                            source={item.img}
-                            width={62}
-                            height={62}
-                            lighten={themeMode === 'minimalLight'}
-                            contentFit="contain"
-                            cachePolicy="memory-disk"
-                          />
-                        )
-                        : <View style={{ width: 62, height: 62, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>
-                      }
-                    </Animated.View>
-                    {item.path === '/flashcards' && newCardsCount > 0 && (
-                      <Animated.View style={{
-                        position: 'absolute', top: -6, right: -8,
-                        backgroundColor: t.accent, borderRadius: 12,
-                        minWidth: 22, height: 22, paddingHorizontal: 5,
-                        justifyContent: 'center', alignItems: 'center',
-                        opacity: cardsBadgeOpacity,
-                        transform: [{ scale: cardsBadgeScale }],
-                      }}>
-                        <Text style={{ color: t.bgPrimary, fontSize: f.label, fontWeight: '800' }}>
-                          {displayCardsCount > 0 ? `+${displayCardsCount}` : '✓'}
-                        </Text>
-                      </Animated.View>
-                    )}
+                    {item.img
+                      ? (
+                        <LightSketchMenuImage
+                          source={item.img}
+                          width={62}
+                          height={62}
+                          lighten={themeMode === 'minimalLight'}
+                          contentFit="contain"
+                          cachePolicy="memory-disk"
+                        />
+                      )
+                      : <View style={{ width: 62, height: 62, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>🗺️</Text></View>
+                    }
                   </View>
                   <Text style={{ color:t.textPrimary, fontSize:f.label, fontWeight:'700', textAlign:'center' }} numberOfLines={1}>{item.label}</Text>
                   </LinearGradient>
@@ -1492,136 +1389,115 @@ const league = getLeague(weekPoints, lang);
           </View>
           </Animated.View>
 
-          {/* SRS ПОВТОРЕНИЕ + СЕТКА */}
+          {/* SRS ПОВТОРЕНИЕ + ряд «Задания дня / Лига / Аттестация» */}
           <Animated.View style={sectionStyle(4)}>
 
-          {/* ДУЭЛЬ */}
+          {/* ТРЕНЕР — стационарная кнопка, всегда видна */}
           <View style={{ paddingHorizontal:16, marginBottom:12 }}>
-            <TouchableOpacity activeOpacity={0.85} onPress={()=>{ hapticTap(); goToTab(2); }}
+            <TouchableOpacity activeOpacity={0.85} onPress={()=>{ hapticTap(); router.push('/trainer'); }}
               style={{ borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}
             >
-              <LinearGradient colors={t.cardGradient} start={{x:0,y:0}} end={{x:1,y:1}}
-                style={{ flexDirection:'row', alignItems:'center', justifyContent:'center', gap:12, borderRadius:16, padding:14 }}
-              >
+              <LinearGradient colors={t.cardGradient} start={{x:0,y:0}} end={{x:1,y:1}} style={{ flexDirection:'row', alignItems:'center', gap:12, borderRadius:16, padding:14 }}>
+              <View style={{ width:44, height:44, borderRadius:12, backgroundColor:'transparent', justifyContent:'center', alignItems:'center' }}>
                 <LightSketchMenuImage
-                  source={menuImages.arena}
-                  width={52}
-                  height={52}
+                  source={themeMode === 'minimalLight' ? require('../../assets/images/levels/active recall grafit.webp') : themeMode === 'minimalDark' ? require('../../assets/images/levels/active recall fog.webp') : themeMode === 'ocean' ? require('../../assets/images/levels/active recall ocean.webp') : themeMode === 'sakura' ? require('../../assets/images/levels/active recall sacura.webp') : themeMode === 'gold' ? require('../../assets/images/levels/active recall coral.webp') : themeMode === 'neon' ? require('../../assets/images/levels/active recall neon.webp') : require('../../assets/images/levels/active recall forest.webp')}
+                  width={44}
+                  height={44}
                   lighten={themeMode === 'minimalLight'}
-                  resizeMode="contain"
+                  contentFit="contain"
+                  cachePolicy="memory-disk"
                 />
-                <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'700' }}>
-                  {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
+              </View>
+              <View style={{ flex:1 }}>
+                <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>
+                  {triLang(lang, { ru: '🧠 Тренер', uk: '🧠 Тренер', es: '🧠 Entrenador' })}
                 </Text>
+                <Text style={{ color:t.textSecond, fontSize:f.label, marginTop:1 }}>
+                  {dueCount > 0
+                    ? triLang(lang, { ru: `${dueCount} ждут сегодня`, uk: `${dueCount} чекають сьогодні`, es: `${dueCount} esperan hoy` })
+                    : triLang(lang, { ru: 'Повторение ошибок', uk: 'Повторення помилок', es: 'Repaso de errores' })
+                  }
+                </Text>
+              </View>
+              {dueCount > 0 && (
+                <View style={{ backgroundColor:'#E05050', borderRadius:14, minWidth:28, height:28, alignItems:'center', justifyContent:'center', paddingHorizontal:6 }}>
+                  <Text style={{ color:'#fff', fontSize:f.label, fontWeight:'800' }}>{dueCount}</Text>
+                </View>
+              )}
               </LinearGradient>
             </TouchableOpacity>
           </View>
 
-          {/* SRS ПОВТОРЕНИЕ — только если есть карточки */}
-          {dueCount > 0 && (
-            <Animated.View style={{ paddingHorizontal:16, marginBottom:12, transform:[{scale:pulseAnim}] }}>
-              <TouchableOpacity activeOpacity={0.85} onPress={()=>{ hapticTap(); router.push('/trainer'); }}
-                style={{ borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}
-              >
-                <LinearGradient colors={t.cardGradient} start={{x:0,y:0}} end={{x:1,y:1}} style={{ flexDirection:'row', alignItems:'center', gap:12, borderRadius:16, padding:14 }}>
-                <View style={{ width:44, height:44, borderRadius:12, backgroundColor:'transparent', justifyContent:'center', alignItems:'center' }}>
-                  <LightSketchMenuImage
-                    source={themeMode === 'minimalLight' ? require('../../assets/images/levels/active recall grafit.webp') : themeMode === 'minimalDark' ? require('../../assets/images/levels/active recall fog.webp') : themeMode === 'ocean' ? require('../../assets/images/levels/active recall ocean.webp') : themeMode === 'sakura' ? require('../../assets/images/levels/active recall sacura.webp') : themeMode === 'gold' ? require('../../assets/images/levels/active recall coral.webp') : themeMode === 'neon' ? require('../../assets/images/levels/active recall neon.webp') : require('../../assets/images/levels/active recall forest.webp')}
-                    width={44}
-                    height={44}
-                    lighten={themeMode === 'minimalLight'}
-                    contentFit="contain"
-                    cachePolicy="memory-disk"
-                  />
-                </View>
-                <View style={{ flex:1 }}>
-                  <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>{
-                    triLang(lang, {
-                      ru: 'Повторить сегодня',
-                      uk: 'Повторити сьогодні',
-                      es: 'Repasar hoy',
-                    })
-                  }</Text>
-                  <Text style={{ color:t.textSecond, fontSize:f.label, marginTop:1 }}>
-                    {dueCount}{' '}
-                    {lang === 'es'
-                      ? (dueCount === 1 ? 'frase' : 'frases')
-                      : lang === 'uk'
-                        ? (dueCount === 1 ? 'фраза' : dueCount < 5 ? 'фрази' : 'фраз')
-                        : (dueCount === 1 ? 'фраза' : dueCount < 5 ? 'фразы' : 'фраз')}
-                  </Text>
-                </View>
-                <View style={{ backgroundColor:t.accent, borderRadius:14, paddingHorizontal:10, paddingVertical:5 }}>
-                  <Text style={{ color:t.bgPrimary, fontSize:f.label, fontWeight:'700' }}>{s.home.startBtn}</Text>
-                </View>
-                </LinearGradient>
-              </TouchableOpacity>
-            </Animated.View>
-          )}
-
-          {/* СЕТКА 2×3: Задания|Лига / Магазин|Карта / Тест|Экзамен */}
-          <View style={{ paddingHorizontal:16, gap:10, marginBottom:10 }}>
-            {[[gridItems[0], gridItems[1]], [gridItems[2], gridItems[3]], [gridItems[4], gridItems[5]]].map((row,ri)=>(
-              <View key={ri} style={{ flexDirection:'row', gap:10 }}>
-                {row.map(item=>(
-                  <TouchableOpacity
-                    key={item.label}
-                    activeOpacity={0.85}
-                    onPress={()=>go(item.path)}
-                    style={{ flex:1, borderRadius:20, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}
+          <View
+            onTouchStart={() => { tabSwipeLock.blocked = true; }}
+            onTouchEnd={() => { tabSwipeLock.blocked = false; }}
+            onTouchCancel={() => { tabSwipeLock.blocked = false; }}
+          >
+            <View style={{ marginBottom:12, paddingHorizontal:16, gap:10, flexDirection:'row' }}>
+              {activityQuickItems.map((item) => (
+                <TouchableOpacity
+                  key={item.key}
+                  activeOpacity={0.8}
+                  onPress={() => { go(item.path); }}
+                  style={{ flex:1, borderRadius:18, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}
+                >
+                  <LinearGradient
+                    colors={t.cardGradient}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={{ flex: 1, borderRadius: 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}
                   >
-                    <LinearGradient colors={t.cardGradient} start={{x:0,y:0}} end={{x:1,y:1}} style={{ flex:1, borderRadius:20, padding:18, alignItems:'center', justifyContent:'center', minHeight:120 }}>
-                    <View style={{ width:64, height:64, borderRadius:(item as any).isClub ? 0 : 16, backgroundColor:(item as any).isClub ? 'transparent' : (item as any).img ? 'transparent' : (item.iconColor as string)+'22', justifyContent:'center', alignItems:'center', marginBottom:8 }}>
-                      {(item as any).isClub ? (
+                    <View style={{ position: 'relative', height: 62, justifyContent: 'center', alignItems: 'center' }}>
+                      {item.kind === 'tasks' ? (
                         <LightSketchMenuImage
-                          source={themedClubIcon}
-                          width={64}
-                          height={64}
+                          source={item.img}
+                          width={62}
+                          height={62}
                           lighten={themeMode === 'minimalLight'}
                           contentFit="contain"
                           cachePolicy="memory-disk"
                         />
-                      ) : (item as any).img ? (
+                      ) : item.kind === 'league' ? (
                         <LightSketchMenuImage
-                          source={(item as any).img}
-                          width={66}
-                          height={66}
+                          source={themedClubIcon}
+                          width={62}
+                          height={62}
                           lighten={themeMode === 'minimalLight'}
                           contentFit="contain"
                           cachePolicy="memory-disk"
                         />
                       ) : (
-                        <Ionicons name={item.iconName} size={36} color={item.iconColor} />
+                        <LightSketchMenuImage
+                          source={item.img}
+                          width={62}
+                          height={62}
+                          lighten={themeMode === 'minimalLight'}
+                          contentFit="contain"
+                          cachePolicy="memory-disk"
+                        />
                       )}
                     </View>
-                    <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700', textAlign:'center', marginBottom:4 }}>{item.label}</Text>
-                    {item.isTasksBlock ? (
-                      <View style={{ width:'100%', marginTop:8 }}>
-                        <View style={{ flexDirection:'row', gap:6 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>
+                      {item.label}
+                    </Text>
+                    {item.kind === 'tasks' ? (
+                      <View style={{ width: '100%', marginTop: 2 }}>
+                        <View style={{ flexDirection: 'row', gap: 4 }}>
                           {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
                             const done = ti < tasksCompleted;
                             return (
-                              <View key={ti} style={{ flex:1, height:6, backgroundColor:t.bgSurface2, borderRadius:3, overflow:'hidden' }}>
-                                {done && <View style={{ width:'100%', height:'100%', backgroundColor:t.correct, borderRadius:3 }} />}
+                              <View key={ti} style={{ flex: 1, height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
+                                {done ? <View style={{ width: '100%', height: '100%', backgroundColor: t.correct, borderRadius: 2 }} /> : null}
                               </View>
                             );
                           })}
                         </View>
                       </View>
-                    ) : (
-                      <>
-                        {item.pct !== null && item.pct !== undefined && (
-                          <View style={{ width:'100%', height:4, backgroundColor:t.bgSurface2, borderRadius:2, marginTop:8, overflow:'hidden' }}>
-                            <View style={{ width:`${Math.round((item.pct as number)*100)}%` as any, height:'100%', backgroundColor:t.correct, borderRadius:2 }} />
-                          </View>
-                        )}
-                      </>
-                    )}
-                    </LinearGradient>
-                  </TouchableOpacity>
-                ))}
-              </View>
-            ))}
+                    ) : null}
+                  </LinearGradient>
+                </TouchableOpacity>
+              ))}
+            </View>
           </View>
 
           </Animated.View>
@@ -1638,6 +1514,17 @@ const league = getLeague(weekPoints, lang);
             <Text style={{ color:t.textMuted, fontSize:f.caption, marginTop:4 }}>
               by Professor Lingman
             </Text>
+            <View style={{ marginTop: 16 }}>
+              <ReportErrorButton
+                screen="home"
+                dataId="home_main"
+                dataText={triLang(lang, {
+                  ru: 'Главный экран',
+                  uk: 'Головний екран',
+                  es: 'Pantalla de inicio',
+                })}
+              />
+            </View>
           </View>
           </Animated.View>
 
@@ -1673,7 +1560,7 @@ const league = getLeague(weekPoints, lang);
   );
 
   return (
-    <View style={{ flex:1 }}>
+    <View testID="screen-home" style={{ flex:1 }}>
       <ScreenGradient>
       <View style={{ flex:1 }}>
       {renderNewHome()}
@@ -1879,7 +1766,7 @@ const league = getLeague(weekPoints, lang);
         onClose={() => setShardsEarnedModal(null)}
       />
 
-      {/* Streak Revive — окно 24ч после потери стрика */}
+      {/* Streak Revive — окно 24ч после потери цепочки */}
       <StreakReviveModal
         visible={reviveModalVisible}
         offer={reviveOffer}

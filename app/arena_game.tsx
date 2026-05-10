@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react';
+import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, Animated, Pressable, ActivityIndicator,
+  View, Text, TouchableOpacity, StyleSheet, Animated, Pressable, ActivityIndicator, useWindowDimensions,
 } from 'react-native';
 import Reanimated, {
   cancelAnimation,
@@ -16,13 +16,16 @@ import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import ArenaDuelEmojiReact from '../components/ArenaDuelEmojiReact';
+import { ArenaDuelFlyingEmojiOverlay, type ArenaDuelFlyEmoji } from '../components/ArenaDuelFlyingEmoji';
 import { useArenaSession } from '../hooks/use-arena-session';
 import { useDuelMock } from '../hooks/use-arena-mock';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { getLevelFromXP } from '../constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { SCORE_CONFIG, QUESTIONS_PER_MATCH } from './types/arena';
+import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/arena';
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
@@ -38,7 +41,18 @@ import {
   arenaXpSpeed,
   arenaXpStreak,
   arenaToasts,
+  arenaOpponentReactToast,
 } from '../constants/arena_i18n';
+import { isArenaDuelReactionEmoji, randomArenaDuelReactionEmoji } from '../constants/arena_duel_reaction_emojis';
+import { sendArenaDuelReact } from './services/arena_db';
+import { pickRandomBotName, pickRandomBotNameEs } from './constants/bot_names';
+import { triLang, type Lang } from '../constants/i18n';
+
+function mockOpponentDisplayName(opp: SessionPlayer | undefined, lang: Lang): string {
+  const dn = opp?.displayName?.trim();
+  if (dn) return dn;
+  return lang === 'es' ? pickRandomBotNameEs() : pickRandomBotName();
+}
 
 export default function DuelGameScreen() {
   const { sessionId, userId: paramUserId, fromLobby } = useLocalSearchParams<{
@@ -47,6 +61,7 @@ export default function DuelGameScreen() {
   const fromLobbyFlow = fromLobby === '1';
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { width: winW, height: winH } = useWindowDimensions();
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
 
@@ -85,7 +100,12 @@ export default function DuelGameScreen() {
     players, hasAnswered,
     myAnswer, opponentForfeited,
     submitLobbyChoice, acceptDeadlineAt, myLobbyChoice, abortReason,
+    sessionType,
   } = session;
+  const isDirectDuel = sessionType === 'private' || sessionType === 'rematch';
+
+  const phaseRef = useRef(phase);
+  phaseRef.current = phase;
 
   const acceptSecLeft = useMemo(() => {
     if (typeof acceptDeadlineAt !== 'number' || phase !== 'acceptance') return null;
@@ -158,7 +178,135 @@ export default function DuelGameScreen() {
   const myCorrectRef = useRef(0);
   const myTotalRef = useRef(0);
   const myBonusBreakdown = useRef({ speed: 0, streak: 0, first: 0, outspeed: 0 });
-  const reviewDataRef = useRef<{ question: string; options: string[]; correct: string; myAnswer: string | null; rule: string }[]>([]);
+  const reviewDataRef = useRef<{
+    question: string;
+    options: string[];
+    correct: string;
+    myAnswer: string | null;
+    rule: string;
+    questionId: string;
+    level: string;
+    type?: string;
+  }[]>([]);
+
+  const [mockReactByPlayer, setMockReactByPlayer] = useState<Record<string, { at: number; emoji: string }>>({});
+  const mockBotReactTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  /** Раз за мок-матч: с 5% шансом бот сам отправит эмодзи (таймер без cleanup при смене фазы). */
+  const mockBotSpontaneousTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const mockSpontaneousRollDoneRef = useRef(false);
+  /** Сколько раз игрок отправил реакцию в мок-матче (для ступенчатой вероятности ответа бота). */
+  const mockUserEmojiSendCountRef = useRef(0);
+  const lastOppReactAtRef = useRef<number>(-1);
+  const [flyEmojis, setFlyEmojis] = useState<ArenaDuelFlyEmoji[]>([]);
+  const pushFlyEmoji = useCallback((emoji: string, from: 'self' | 'opponent') => {
+    const key = `fly_${Date.now()}_${from}_${emoji}`;
+    setFlyEmojis((xs) => [...xs, { key, emoji, from }]);
+  }, []);
+  const removeFlyEmoji = useCallback((key: string) => {
+    setFlyEmojis((xs) => xs.filter((x) => x.key !== key));
+  }, []);
+
+  const effectivePlayers = useMemo(() => {
+    if (!useMock) return players;
+    return players.map((p) => {
+      const m = mockReactByPlayer[p.playerId];
+      if (!m) return p;
+      return { ...p, arenaReactEmoji: m.emoji, arenaReactAt: m.at };
+    });
+  }, [players, useMock, mockReactByPlayer]);
+
+  useEffect(() => {
+    lastOppReactAtRef.current = -1;
+    setFlyEmojis([]);
+    mockUserEmojiSendCountRef.current = 0;
+    setMockReactByPlayer({});
+    if (mockBotReactTimerRef.current) {
+      clearTimeout(mockBotReactTimerRef.current);
+      mockBotReactTimerRef.current = null;
+    }
+    if (mockBotSpontaneousTimerRef.current) {
+      clearTimeout(mockBotSpontaneousTimerRef.current);
+      mockBotSpontaneousTimerRef.current = null;
+    }
+    mockSpontaneousRollDoneRef.current = false;
+  }, [sessionId]);
+
+  useEffect(() => {
+    const opp = effectivePlayers.find((p) => p.playerId !== userId);
+    if (!opp) return;
+    const at = typeof opp.arenaReactAt === 'number' ? opp.arenaReactAt : null;
+    const em = typeof opp.arenaReactEmoji === 'string' ? opp.arenaReactEmoji : '';
+    if (at == null || at <= 0 || !em) return;
+    if (at === lastOppReactAtRef.current) return;
+    lastOppReactAtRef.current = at;
+    pushFlyEmoji(em, 'opponent');
+    const dn = opp.displayName?.replace(/\s+/g, ' ').trim();
+    const nameForToast =
+      dn ||
+      (useMock ? mockOpponentDisplayName(opp, lang) : triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' }));
+    emitAppEvent('action_toast', arenaOpponentReactToast(nameForToast, em));
+  }, [effectivePlayers, userId, lang, useMock, pushFlyEmoji]);
+
+  useEffect(() => () => {
+    if (mockBotReactTimerRef.current) clearTimeout(mockBotReactTimerRef.current);
+    if (mockBotSpontaneousTimerRef.current) clearTimeout(mockBotSpontaneousTimerRef.current);
+  }, []);
+
+  /** Мок: один бросок за матч — с 5% шансом бот через случайную задержку сам отправит эмодзи. */
+  useEffect(() => {
+    if (!useMock) return;
+    if (mockSpontaneousRollDoneRef.current) return;
+    if (phase !== 'question') return;
+    mockSpontaneousRollDoneRef.current = true;
+    if (Math.random() >= 0.05) return;
+    const delayMs = 4000 + Math.random() * 26000;
+    mockBotSpontaneousTimerRef.current = setTimeout(() => {
+      mockBotSpontaneousTimerRef.current = null;
+      const ph = phaseRef.current;
+      if (ph !== 'question' && ph !== 'reveal') return;
+      const botEmoji = randomArenaDuelReactionEmoji();
+      setMockReactByPlayer((prev) => ({
+        ...prev,
+        opponent1: { at: Date.now(), emoji: botEmoji },
+      }));
+      logEvent('arena_duel_react_mock_spontaneous', { emoji: botEmoji });
+    }, delayMs);
+  }, [useMock, phase, sessionId]);
+
+  const handleDuelReact = useCallback(
+    async (emoji: string) => {
+      if (useMock) {
+        pushFlyEmoji(emoji, 'self');
+        setMockReactByPlayer((prev) => ({ ...prev, [userId]: { at: Date.now(), emoji } }));
+        logEvent('arena_duel_react_sent', { mock: 1, emoji });
+        if (mockBotReactTimerRef.current) clearTimeout(mockBotReactTimerRef.current);
+        mockUserEmojiSendCountRef.current += 1;
+        const n = mockUserEmojiSendCountRef.current;
+        const replyChance = n === 1 ? 0.8 : n === 2 ? 0.6 : n === 3 ? 0.4 : 0.2;
+        mockBotReactTimerRef.current = setTimeout(() => {
+          mockBotReactTimerRef.current = null;
+          if (Math.random() >= replyChance) return;
+          // «В попад»: чаще зеркалим твой эмодзи, иначе случайный из списка.
+          const mirrorOk = isArenaDuelReactionEmoji(emoji) && Math.random() < 0.82;
+          const botEmoji = mirrorOk ? emoji : randomArenaDuelReactionEmoji();
+          setMockReactByPlayer((prev) => ({
+            ...prev,
+            opponent1: { at: Date.now(), emoji: botEmoji },
+          }));
+        }, 4000 + Math.random() * 11000);
+        return;
+      }
+      try {
+        await sendArenaDuelReact(sessionId, userId, emoji);
+        pushFlyEmoji(emoji, 'self');
+        logEvent('arena_duel_react_sent', { mock: 0, emoji });
+      } catch {
+        emitAppEvent('action_toast', { type: 'error', ...arenaToasts.duelReactSendFail });
+        throw new Error('arena duel react');
+      }
+    },
+    [useMock, userId, sessionId, pushFlyEmoji],
+  );
 
   const qid = currentQuestion?.id;
   const qTimeout = session.questionTimeoutMs;
@@ -213,11 +361,24 @@ export default function DuelGameScreen() {
     });
   }, [session.questionStartedAt, phase, currentQuestionIndex, qid, qTimeout, barProgress]);
 
+  // Дружеский матч (type=private): автоматически принять без экрана "ИГРА НАЙДЕНА"
+  const autoAcceptedRef = useRef(false);
+  useEffect(() => {
+    if (useMock || sessionType !== 'private') return;
+    if (phase !== 'acceptance') return;
+    if (myLobbyChoice === 'accept' || myLobbyChoice === 'decline') return;
+    if (autoAcceptedRef.current) return;
+    autoAcceptedRef.current = true;
+    void submitLobbyChoice('accept');
+  }, [phase, sessionType, myLobbyChoice, submitLobbyChoice, useMock]);
+
   useEffect(() => {
     if (phase === 'finished') {
       const params: Record<string, string> = {
-        sessionId, userId,
+        sessionId,
+        userId,
         opponentForfeited: opponentForfeited ? '1' : '0',
+        rankedArena: fromLobbyFlow ? '1' : '0',
       };
       // For bot/mock sessions pass scores directly — no Firestore docs exist
       if (useMock) {
@@ -225,7 +386,7 @@ export default function DuelGameScreen() {
         const opp = players.find(p => p.playerId !== userId);
         params.mockMyScore   = String(me?.score  ?? 0);
         params.mockOppScore  = String(opp?.score ?? 0);
-        params.mockOppName   = opp?.displayName ?? 'Opponent';
+        params.mockOppName   = mockOpponentDisplayName(opp, lang);
         params.mockMyCorrect = String(myCorrectRef.current);
         params.mockMyTotal   = String(myTotalRef.current);
         params.mockBonusSpeed   = String(myBonusBreakdown.current.speed);
@@ -236,7 +397,7 @@ export default function DuelGameScreen() {
       }
       router.replace({ pathname: '/arena_results', params });
     }
-  }, [opponentForfeited, phase, players, router, sessionId, useMock, userId]);
+  }, [fromLobbyFlow, lang, opponentForfeited, phase, players, router, sessionId, useMock, userId]);
 
   useEffect(() => {
     // Measure reveal -> next question latency for real matches
@@ -296,6 +457,9 @@ export default function DuelGameScreen() {
       correct: currentQuestion.correct,
       myAnswer: option,
       rule: currentQuestion.rule ?? '',
+      questionId: currentQuestion.id,
+      level: currentQuestion.level,
+      ...(currentQuestion.type ? { type: currentQuestion.type } : {}),
     });
 
     if (isCorrect) {
@@ -342,10 +506,28 @@ export default function DuelGameScreen() {
         emitAppEvent('action_toast', { type: 'error', ...arenaToasts.matchFinishFail });
       }
     }
-    router.replace({
-      pathname: '/arena_results',
-      params: { sessionId, userId, forfeited: '1' },
-    });
+    const params: Record<string, string> = {
+      sessionId,
+      userId,
+      forfeited: '1',
+      opponentForfeited: '0',
+      rankedArena: fromLobbyFlow ? '1' : '0',
+    };
+    if (useMock) {
+      const me = players.find((p) => p.playerId === userId);
+      const opp = players.find((p) => p.playerId !== userId);
+      params.mockMyScore = String(me?.score ?? 0);
+      params.mockOppScore = String(opp?.score ?? 0);
+      params.mockOppName = mockOpponentDisplayName(opp, lang);
+      params.mockMyCorrect = String(myCorrectRef.current);
+      params.mockMyTotal = String(myTotalRef.current);
+      params.mockBonusSpeed = String(myBonusBreakdown.current.speed);
+      params.mockBonusStreak = String(myBonusBreakdown.current.streak);
+      params.mockBonusFirst = String(myBonusBreakdown.current.first);
+      params.mockBonusOutspeed = String(myBonusBreakdown.current.outspeed);
+      params.mockReviewData = JSON.stringify(reviewDataRef.current);
+    }
+    router.replace({ pathname: '/arena_results', params });
   };
 
   useEffect(() => {
@@ -383,7 +565,7 @@ export default function DuelGameScreen() {
     );
   }
 
-  if (phase === 'acceptance' && !useMock) {
+  if (phase === 'acceptance' && !useMock && !isDirectDuel) {
     const lobbyDone = myLobbyChoice === 'accept' || myLobbyChoice === 'decline';
 
     if (fromLobbyFlow && myLobbyChoice === 'accept') {
@@ -495,7 +677,7 @@ export default function DuelGameScreen() {
     return null;
   }
 
-  if (phase === 'premeet' && !useMock) {
+  if (phase === 'premeet' && !useMock && !isDirectDuel) {
     return (
       <ScreenGradient>
         <View style={styles.premeetFull}>
@@ -503,8 +685,11 @@ export default function DuelGameScreen() {
             <Text
               style={[
                 styles.premeetH1,
-                { color: t.textPrimary, fontSize: 44, fontWeight: '900', letterSpacing: 2, textAlign: 'center' },
+                { color: t.textPrimary, fontSize: Math.min(44, Math.max(30, winW / 9.2)), fontWeight: '900', textAlign: 'center' },
               ]}
+              adjustsFontSizeToFit
+              minimumFontScale={0.72}
+              numberOfLines={1}
             >
               {arenaGameStr(lang, 'premeet')}
             </Text>
@@ -552,10 +737,23 @@ export default function DuelGameScreen() {
 
       {/* Табло игроков */}
       <View style={[styles.scoreboard, { backgroundColor: t.bgCard, borderBottomColor: t.border }]}>
-        <TouchableOpacity onPress={() => setShowExitConfirm(true)} style={styles.exitBtn}>
-          <Ionicons name="close" size={22} color={t.textMuted} />
-        </TouchableOpacity>
-        {players.slice(0, 2).map((p, idx) => {
+        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <ReportErrorButton
+            variant="icon-flag"
+            screen="arena_game"
+            dataId={`arena_live_${typeof sessionId === 'string' ? sessionId : 'session'}_q${currentQuestionIndex}`}
+            dataText={arenaBilingualFirst(currentQuestion.question, lang)}
+            accessibilityLabel={triLang(lang, {
+              ru: 'Сообщить о проблеме в вопросе арены',
+              uk: 'Повідомити про проблему в питанні арени',
+              es: 'Informar de un problema en la pregunta',
+            })}
+          />
+          <TouchableOpacity onPress={() => setShowExitConfirm(true)} style={styles.exitBtn}>
+            <Ionicons name="close" size={22} color={t.textMuted} />
+          </TouchableOpacity>
+        </View>
+        {effectivePlayers.slice(0, 2).map((p, idx) => {
           const isMe = p.playerId === userId;
           return (
             <View key={p.playerId} style={[styles.playerChip, isMe && { borderBottomWidth: 2, borderBottomColor: t.accent }]}>
@@ -653,8 +851,33 @@ export default function DuelGameScreen() {
         </Animated.View>
       )}
 
+      {(phase === 'question' || phase === 'reveal') && (
+        <ArenaDuelEmojiReact
+          sessionKey={sessionId ?? ''}
+          pickerTitle={arenaGameStr(lang, 'duelReactPicker')}
+          bottomOffset={12}
+          theme={{
+            accent: t.accent,
+            bgCard: t.bgCard,
+            bgSurface2: t.bgSurface2,
+            border: t.border,
+            textPrimary: t.textPrimary,
+            textMuted: t.textMuted,
+          }}
+          disabled={false}
+          onPick={handleDuelReact}
+        />
+      )}
 
       </SafeAreaView>
+      {(phase === 'question' || phase === 'reveal') && flyEmojis.length > 0 ? (
+        <ArenaDuelFlyingEmojiOverlay
+          items={flyEmojis}
+          layoutW={winW}
+          layoutH={winH}
+          onRemove={removeFlyEmoji}
+        />
+      ) : null}
       </View>
       {/* Внутриигровой диалог подтверждения выхода */}
       {showExitConfirm && (
@@ -728,7 +951,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   chipAccept: {
-    flex: 1.4,
+    flex: 1,
     paddingVertical: 16,
     borderRadius: 16,
     flexDirection: 'row',
@@ -738,7 +961,7 @@ const styles = StyleSheet.create({
   },
   waitOpp: { textAlign: 'center', marginTop: 8 },
   deadlinePill: { marginTop: 28, paddingHorizontal: 16, paddingVertical: 8, borderRadius: 999 },
-  premeetFull: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 20 },
+  premeetFull: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 28 },
   premeetH1: { textShadowOffset: { width: 0, height: 2 }, textShadowRadius: 12 },
   countdownHint: { fontWeight: '500' },
   countdownNum: { fontSize: 120, fontWeight: '900', lineHeight: 128, textShadowOffset: { width: 0, height: 4 }, textShadowRadius: 8 },

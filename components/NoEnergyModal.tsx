@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useLayoutEffect } from 'react';
+import React, { useCallback, useEffect, useRef, useState, useLayoutEffect } from 'react';
 import { useRouter } from 'expo-router';
 import {
   View,
@@ -10,6 +10,8 @@ import {
   ActivityIndicator,
   Animated,
   Easing,
+  Platform,
+  InteractionManager,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
@@ -33,16 +35,26 @@ import {
 import { oskolokImageForPackShards } from '../app/oskolok';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from '../app/events';
+import { incrementEnergyZeroCount } from '../app/paywall_personalization';
 import PremiumGoldButton from './PremiumGoldButton';
+import { navigateAfterModalClose } from '../app/safe_modal_navigation';
 
 interface Props {
   visible: boolean;
   onClose: () => void;
+  /**
+   * Если задано — основная кнопка («Понятно» / «На главную») вызывает это.
+   * Иначе как раньше: `onBackHome ?? onClose`.
+   * Нужно, когда `onClose` только закрывает окно (успех покупки за осколки), а «Понятно»
+   * должно выполнить другое действие (например выход с урока).
+   */
+  onGotIt?: () => void;
   onBackHome?: () => void;
   /** Напр. 8 — экзамен Лингмана: иной текст, не «закончилась» */
   minRequired?: number;
   /** `premium_modal` context: аналитика и тексты. По умолчанию `no_energy`. */
   paywallContext?: string;
+  onBeforeOpenPremium?: () => void;
   /**
    * Админ/QA: показать CTA «за осколки» даже при полной базовой энергии (превью в настройках тестера).
    * Покупка тогда вернёт already_full — покажем info-тост.
@@ -53,9 +65,11 @@ interface Props {
 export default function NoEnergyModal({
   visible,
   onClose,
+  onGotIt,
   onBackHome,
   minRequired,
   paywallContext = 'no_energy',
+  onBeforeOpenPremium,
   qaForceShardCta = false,
 }: Props) {
   const router = useRouter();
@@ -69,11 +83,53 @@ export default function NoEnergyModal({
   const [lineRuUk, setLineRuUk] = useState('');
   const [shardBusy, setShardBusy] = useState(false);
 
+  /** «Енергія» → закрыть RN Modal → тут же открыть stack modal премиум: нужно не наслаивать окна, иначе на части прошивок «залипают» тачи под экраном. */
+  const pendingPremiumContextRef = useRef<string | null>(null);
+  const flushPremiumPushRef = useRef<() => void>(() => {});
+
+  const flushPremiumPush = useCallback(() => {
+    const ctx = pendingPremiumContextRef.current;
+    if (!ctx) return;
+    pendingPremiumContextRef.current = null;
+    router.push({ pathname: '/premium_modal', params: { context: ctx } } as any);
+  }, [router]);
+
+  useEffect(() => {
+    flushPremiumPushRef.current = flushPremiumPush;
+  }, [flushPremiumPush]);
+
+  const openPremiumAfterClose = () => {
+    pendingPremiumContextRef.current = paywallContext;
+    (onBeforeOpenPremium ?? onClose)();
+  };
+
+  /** Android: Modal.onDismiss из JS по сути не вызывает колбэк — ждём снятия окна и только потом переходим. */
+  useEffect(() => {
+    if (visible || Platform.OS === 'ios') return;
+    if (pendingPremiumContextRef.current === null) return;
+    let cancelled = false;
+    let timer: ReturnType<typeof setTimeout> | undefined;
+    const ia = InteractionManager.runAfterInteractions(() => {
+      timer = setTimeout(() => {
+        if (cancelled) return;
+        flushPremiumPushRef.current();
+      }, 360);
+    });
+    return () => {
+      cancelled = true;
+      ia.cancel();
+      if (timer != null) clearTimeout(timer);
+    };
+  }, [visible]);
+
+  const handleModalDismissIos = Platform.OS === 'ios' ? () => flushPremiumPush() : undefined;
+
   const shardCost = energyRefillShardCost(maxEnergy);
-  /** Докупка базы за осколки: не скрываем при гейте экзамена (8⚡ при max базы < 8 — база + бонус всё равно могут дотянуть). */
+  /** Докупка базы за осколки: не скрываем при гейте экзамена (8⚡ при max базы < 8 — база + бонус всё равно могут дотянуть).
+   * В __DEV__ при открытой модалке всегда показываем CTA (превью с полной базой иначе выглядит как «пропала кнопка»). */
   const showShardRestore =
     !isUnlimited &&
-    (qaForceShardCta || energy < maxEnergy);
+    (qaForceShardCta || energy < maxEnergy || (__DEV__ && visible));
 
   // ─── Анимации входа и pulse-glow на молнии ──────────────────────────────
   const cardScale  = useRef(new Animated.Value(0.85)).current;
@@ -91,6 +147,8 @@ export default function NoEnergyModal({
       haloPulse.setValue(0);
       return;
     }
+    // Пайволл-персонализация: модалка стала видимой = энергия закончилась.
+    incrementEnergyZeroCount();
 
     // Все запущенные анимации сохраняем в список и останавливаем в cleanup
     // (Fabric: иначе анимация продолжает driver-update view, который уже
@@ -184,11 +242,13 @@ export default function NoEnergyModal({
       }
       if (r.reason === 'insufficient_shards') {
         const bal = await getShardsBalance();
-        onClose();
-        router.push({
-          pathname: '/shards_shop',
-          params: { need: String(Math.max(0, shardCost - bal)), source: 'no_energy_modal' },
-        } as any);
+        navigateAfterModalClose(
+          onClose,
+          () => router.push({
+            pathname: '/shards_shop',
+            params: { need: String(Math.max(0, shardCost - bal)), source: 'no_energy_modal' },
+          } as any),
+        );
         return;
       }
       if (r.reason === 'already_full' || r.reason === 'unlimited') {
@@ -210,7 +270,13 @@ export default function NoEnergyModal({
   const ENERGY_GLOW = '#F59E0B';
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
+    <Modal
+      visible={visible}
+      transparent
+      animationType="fade"
+      onDismiss={handleModalDismissIos}
+      onRequestClose={onClose}
+    >
       <View style={[styles.overlay, { backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.48)' : 'rgba(0,0,0,0.72)' }]}>
         {/* Цветной радиальный отблеск над затемнением */}
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
@@ -306,10 +372,19 @@ export default function NoEnergyModal({
               )}
             </TouchableOpacity>
           )}
-          <PremiumGoldButton f={f} paywallContext={paywallContext} shellStyle={{ marginTop: 4 }} />
+          <PremiumGoldButton
+            f={f}
+            paywallContext={paywallContext}
+            onPress={openPremiumAfterClose}
+            shellStyle={{ marginTop: 4 }}
+          />
           <TouchableOpacity
             onPress={() => {
               hapticTap();
+              if (onGotIt) {
+                onGotIt();
+                return;
+              }
               (onBackHome ?? onClose)();
             }}
             activeOpacity={0.88}

@@ -47,6 +47,42 @@ describe('normalize — contraction validation', () => {
   it('normalizes mightn\'t to might not', () => {
     expect(normalize("We mightn't finish on time.")).toBe('we might not finish on time');
   });
+
+  it('NFKC: fullwidth letters and period match plain ASCII after normalize', () => {
+    expect(normalize('Ｉｆ　ｗｅ　ｇｏ．')).toBe('if we go');
+  });
+
+  it('unifies em dash to hyphen before comparison', () => {
+    expect(normalize('first—second')).toBe('first-second');
+  });
+
+  it('strips ellipsis and trailing colon/spaces', () => {
+    expect(normalize('wait…  ')).toBe('wait');
+    expect(normalize('note:  ')).toBe('note');
+  });
+});
+
+describe('isCorrectAnswer — punctuation and unicode confusables', () => {
+  it('user without final period matches reference with period', () => {
+    expect(isCorrectAnswer(
+      'If this experienced specialist signs the contract we will get profit',
+      'If this experienced specialist signs the contract we will get profit.',
+    )).toBe(true);
+  });
+
+  it('we\'ll vs we will still matches (contraction)', () => {
+    expect(isCorrectAnswer(
+      "If this experienced specialist signs the contract we'll get profit",
+      'If this experienced specialist signs the contract we will get profit.',
+    )).toBe(true);
+  });
+
+  it('fullwidth trailing period on reference side', () => {
+    expect(isCorrectAnswer(
+      'We will go',
+      'We will go\uFF0E',
+    )).toBe(true);
+  });
 });
 
 describe('toAmE — direct BrE → AmE', () => {
@@ -185,5 +221,12 @@ describe('isCorrectAnswer — BrE answer accepted as AmE', () => {
 
   it('non-AmE-related typo → still wrong', () => {
     expect(isCorrectAnswer('I luve this color', 'I love this color')).toBe(false);
+  });
+
+  // Lesson L18p36: word bank token is "Please," but canonical answer strips comma per slot.
+  it('comma on first word chip vs canonical without comma → accepted', () => {
+    const canon = 'Please confirm that important booking via that official link';
+    const assembled = 'Please, confirm that important booking via that official link.';
+    expect(isCorrectAnswer(assembled, canon)).toBe(true);
   });
 });

@@ -12,11 +12,73 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
 import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks';
-import {
-  clearArenaAuthUidCache, getCanonicalUserId, getAuthUserId,
-} from './user_id_policy';
+import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaAuthUid } from './user_id_policy';
 import { processAdminGrantForCelebration } from './premium_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
+
+/** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
+type DailyTaskProgressRow = {
+  taskId: string;
+  current?: number;
+  completed?: boolean;
+  claimed?: boolean;
+  comboPlays?: number;
+  comboWins?: number;
+};
+
+const taskProgressNum = (v: unknown): number =>
+  typeof v === 'number' && Number.isFinite(v) ? v : 0;
+
+/**
+ * Полное восстановление с облака не должно затирать уже накопленный сегодня локальный прогресс
+ * устаревшим daily_tasks_progress (например облако ещё не успело отправить актуальный снимок).
+ */
+export function mergeDailyTasksProgressForRestore(localRaw: string | null | undefined, cloudRaw: string): string {
+  let localArr: DailyTaskProgressRow[] = [];
+  let cloudArr: DailyTaskProgressRow[] = [];
+  try {
+    if (localRaw && localRaw.trim()) {
+      const p = JSON.parse(localRaw);
+      if (Array.isArray(p)) localArr = p;
+    }
+  } catch {
+    localArr = [];
+  }
+  try {
+    const p = JSON.parse(cloudRaw);
+    if (Array.isArray(p)) cloudArr = p;
+    else return (localRaw && localRaw.trim()) ? localRaw : cloudRaw;
+  } catch {
+    return (localRaw && localRaw.trim()) ? localRaw : cloudRaw;
+  }
+  if (localArr.length === 0) return cloudRaw;
+  if (cloudArr.length === 0) return localRaw ?? '[]';
+
+  const byId = new Map<string, DailyTaskProgressRow>();
+  for (const row of cloudArr) {
+    if (row && typeof row.taskId === 'string' && row.taskId) {
+      byId.set(row.taskId, { ...row });
+    }
+  }
+  for (const row of localArr) {
+    if (!row || typeof row.taskId !== 'string' || !row.taskId) continue;
+    const cloud = byId.get(row.taskId);
+    if (!cloud) {
+      byId.set(row.taskId, { ...row });
+      continue;
+    }
+    byId.set(row.taskId, {
+      ...cloud,
+      taskId: row.taskId,
+      current: Math.max(taskProgressNum(cloud.current), taskProgressNum(row.current)),
+      completed: !!(cloud.completed || row.completed),
+      claimed: !!(cloud.claimed || row.claimed),
+      comboPlays: Math.max(taskProgressNum(cloud.comboPlays), taskProgressNum(row.comboPlays)),
+      comboWins: Math.max(taskProgressNum(cloud.comboWins), taskProgressNum(row.comboWins)),
+    });
+  }
+  return JSON.stringify([...byId.values()]);
+}
 
 // ── Ключи AsyncStorage которые синхронизируются с облаком ────────────────────
 // Экспорт: тот же набор должен учитываться при сбросе локали после merge аккаунта (auth_provider).
@@ -30,7 +92,9 @@ export const SYNC_KEYS = [
   'user_name',
   'user_avatar',
   'user_frame',
+  'custom_avatar_owned_v1',
   'streak_count',
+  'last_active_date',
   'streak_last_date',
   'unlocked_lessons',
   'flashcards',
@@ -125,8 +189,8 @@ export const SYNC_KEYS = [
   'lifetime_daily_tasks_claimed_v1',
   'shards_lifetime_earned_v1',
   'shards_lifetime_spent_v1',
-  /** Легаси-счётчик сложных квизов (миграция в lifetime_quiz_hard_v1). */
-  'quiz_hard_count',
+  /** Посуточные счётчики для графиков «Весь путь» (JSON { дата → метрики }). */
+  'stats_daily_breakdown_v1',
 
   // ── Уроки 1..32 (per-lesson) ───────────────────────────────────────────────
   // КРИТИЧНО: lesson{N}_best_score нужен для медалек уроков и для гейта зачёта
@@ -141,6 +205,7 @@ export const SYNC_KEYS = [
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_listening_progress`),
   ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_words`),
+  ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`),
 ] as const;
 const CREATED_AT_SYNC_KEY = 'cloud_created_at_synced_v1';
 const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
@@ -168,6 +233,35 @@ function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise
 }
 
 // ── Lazy getters — грузятся только если пакеты установлены ───────────────────
+const isDateKey = (value: unknown): value is string =>
+  typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value);
+
+const parseProgressInt = (value: unknown): number => {
+  const n = parseInt(String(value ?? '0'), 10);
+  return Number.isFinite(n) ? n : 0;
+};
+
+function latestDateKeyFromJsonMap(raw: unknown): string | null {
+  if (typeof raw !== 'string' || raw.trim() === '') return null;
+  try {
+    const parsed = JSON.parse(raw);
+    if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    const dates = Object.keys(parsed).filter(isDateKey).sort();
+    return dates.length > 0 ? dates[dates.length - 1] : null;
+  } catch {
+    return null;
+  }
+}
+
+export function deriveLastActiveDateForRestore(cloudData: Record<string, string | null>): string | null {
+  if (isDateKey(cloudData['last_active_date'])) return cloudData['last_active_date'];
+  if (isDateKey(cloudData['streak_last_date'])) return cloudData['streak_last_date'];
+  return (
+    latestDateKeyFromJsonMap(cloudData['daily_stats']) ??
+    latestDateKeyFromJsonMap(cloudData['stats_daily_breakdown_v1'])
+  );
+}
+
 const getAuth = () => {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
@@ -335,14 +429,46 @@ async function doSyncToCloud(): Promise<void> {
     const docRef = db.collection('users').doc(uid);
     const createdAtSynced = await AsyncStorage.getItem(CREATED_AT_SYNC_KEY);
     const shouldSendCreatedAt = !createdAtSynced;
+    // Дружба / friend_requests rules: ключ в пути users/{stableId}/… но senderUid должен доказать
+    // связь с текущей Firebase-сессией — см. firestore.rules canonicalUserMatchesAuth + firebaseAuthUid.
+    const firebaseAuthUidRow = getAuthUserId();
     await docRef.set(
       {
+        ...(firebaseAuthUidRow ? { firebaseAuthUid: firebaseAuthUidRow } : {}),
+        ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
+        ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
         ...(Object.keys(progressPatch).length > 0 ? { progress: progressPatch } : {}),
         ...(needActivityStamp || needHeartbeat || shouldSendCreatedAt ? { updatedAt: now, last_active_at: now } : {}),
         ...(shouldSendCreatedAt ? { created_at: now } : {}),
       },
       { merge: true }
     );
+    // Снимок уровня/аватара на arena_profiles — топ арены читает всем одну коллекцию.
+    if (firebaseAuthUidRow) {
+      try {
+        const arenaUid = await ensureArenaAuthUid();
+        if (arenaUid === firebaseAuthUidRow) {
+          const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
+          const avatar = (data['user_avatar'] ?? '').trim();
+          const frame = (data['user_frame'] ?? '').trim();
+          await db
+            .collection('arena_profiles')
+            .doc(arenaUid)
+            .set(
+              {
+                courseTotalXp: totalXp,
+                courseAvatar: avatar || null,
+                courseFrame: frame || null,
+                courseDisplayAt: now,
+                mirrorStableId: uid,
+              },
+              { merge: true },
+            );
+        }
+      } catch {
+        /* ignore */
+      }
+    }
     lastSuccessfulSyncAt = now;
     if (needActivityStamp || needHeartbeat || shouldSendCreatedAt) {
       lastActivityStampAt = now;
@@ -368,6 +494,20 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
   }
   const cloudData: Record<string, string | null> = (root.progress ?? {}) as Record<string, string | null>;
+  const restoredLastActiveDate = deriveLastActiveDateForRestore(cloudData);
+  if (restoredLastActiveDate && !isDateKey(cloudData['last_active_date'])) {
+    cloudData['last_active_date'] = restoredLastActiveDate;
+  }
+
+  try {
+    const { reconcileStatsDailyBreakdownWithCloud } = await import('./stats_daily_breakdown');
+    cloudData['stats_daily_breakdown_v1'] = await reconcileStatsDailyBreakdownWithCloud(
+      cloudData['stats_daily_breakdown_v1'],
+    );
+  } catch {
+    /* ignore */
+  }
+
   const cloudHasPremiumAdminState =
     cloudData['premium_plan'] !== undefined ||
     cloudData['admin_premium_override'] !== undefined ||
@@ -379,9 +519,14 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   void processAdminGrantForCelebration(cloudData['premium_admin_grant_at']);
 
   const localXPRaw = await AsyncStorage.getItem('user_total_xp');
-  const localXP = parseInt(localXPRaw ?? '0') || 0;
-  const cloudXP = parseInt(cloudData['user_total_xp'] ?? '0') || 0;
-  if (localXP >= cloudXP) {
+  const localStreakRaw = await AsyncStorage.getItem('streak_count');
+  const localXP = parseProgressInt(localXPRaw);
+  const cloudXP = parseProgressInt(cloudData['user_total_xp']);
+  const localStreak = parseProgressInt(localStreakRaw);
+  const cloudStreak = parseProgressInt(cloudData['streak_count']);
+  const shouldRestoreCloudProgress =
+    cloudXP > localXP || (cloudXP === localXP && cloudStreak > localStreak);
+  if (!shouldRestoreCloudProgress) {
     const stickyKeys = ['premium_plan', 'admin_premium_override', 'premium_expiry'] as const;
     const stickyPairs: [string, string][] = [];
     for (const key of stickyKeys) {
@@ -428,7 +573,9 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   const dailyBlob = cloudData['daily_tasks_progress'];
   const fullRestoreDaily = dailyBlob != null && dailyBlob !== '';
   if (fullRestoreDaily) {
-    pairs.push([`daily_tasks_${getTodayKey()}`, String(dailyBlob)]);
+    const dk = `daily_tasks_${getTodayKey()}`;
+    const localDailyForMerge = await AsyncStorage.getItem(dk);
+    pairs.push([dk, mergeDailyTasksProgressForRestore(localDailyForMerge, String(dailyBlob))]);
   }
   if (pairs.length > 0) {
     await AsyncStorage.multiSet(pairs);
@@ -532,6 +679,8 @@ export async function forceSyncToCloud(): Promise<boolean> {
       docRef.set(
         {
           progress: data,
+          ...(data['user_avatar'] ? { user_avatar: data['user_avatar'] } : {}),
+          ...(data['user_avatar_frame'] ? { user_avatar_frame: data['user_avatar_frame'] } : {}),
           updatedAt: now,
           last_active_at: now,
           ...(shouldSendCreatedAt ? { created_at: now } : {}),
@@ -541,6 +690,33 @@ export async function forceSyncToCloud(): Promise<boolean> {
       FORCE_SYNC_FIRESTORE_WRITE_MS,
       'firestore_set',
     );
+    const firebaseAuthUidRow = getAuthUserId();
+    if (firebaseAuthUidRow) {
+      try {
+        const arenaUid = await ensureArenaAuthUid();
+        if (arenaUid === firebaseAuthUidRow) {
+          const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
+          const avatar = (data['user_avatar'] ?? '').trim();
+          const frame = (data['user_frame'] ?? '').trim();
+          await withTimeout(
+            db.collection('arena_profiles').doc(arenaUid).set(
+              {
+                courseTotalXp: totalXp,
+                courseAvatar: avatar || null,
+                courseFrame: frame || null,
+                courseDisplayAt: now,
+                mirrorStableId: uid,
+              },
+              { merge: true },
+            ),
+            FORCE_SYNC_FIRESTORE_WRITE_MS,
+            'arena_profile_set',
+          );
+        }
+      } catch {
+        /* ignore */
+      }
+    }
     lastSuccessfulSyncAt = now;
     lastActivityStampAt = now;
     pendingSync = false;
@@ -568,8 +744,6 @@ export async function wipeLocalAccountData(): Promise<void> {
     // Доп. ключи которые синкаются под другими именами или субколлекциями:
     'achievements_v1', // мапится на achievements_state
     'daily_tasks_progress',
-    // intro_shown не в SYNC_KEYS (локальный UX), при смене аккаунта сбрасываем
-    ...Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_intro_shown`),
     // Шарды: баланс и служебные (баланс перетянется loadShardsFromCloud,
     // но для нового аккаунта он стартует с 0).
     'shards_balance',

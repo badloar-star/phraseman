@@ -1,0 +1,24 @@
+diff --git a/node_modules/expo-apple-authentication/build/AppleAuthentication.js b/node_modules/expo-apple-authentication/build/AppleAuthentication.js
+index c8bb477..fb76329 100644
+--- a/node_modules/expo-apple-authentication/build/AppleAuthentication.js
++++ b/node_modules/expo-apple-authentication/build/AppleAuthentication.js
+@@ -41,7 +41,9 @@ export async function signInAsync(options) {
+         requestedOperation: AppleAuthenticationOperation.LOGIN,
+     };
+     const credential = await ExpoAppleAuthentication.requestAsync(requestOptions);
+-    if (!credential.authorizationCode || !credential.identityToken || !credential.user) {
++    // Firebase нужен identityToken (+ user). authorizationCode бывает null у реальных
++    // устройств / релея Apple; жёсткая проверка ломала вход в TestFlight (ERR_REQUEST_FAILED).
++    if (!credential.identityToken || !credential.user) {
+         throw new CodedError('ERR_REQUEST_FAILED', 'The credential returned by `signInAsync` is missing one or more required fields.');
+     }
+     return credential;
+@@ -65,7 +67,7 @@ export async function refreshAsync(options) {
+         requestedOperation: AppleAuthenticationOperation.REFRESH,
+     };
+     const credential = await ExpoAppleAuthentication.requestAsync(requestOptions);
+-    if (!credential.authorizationCode || !credential.identityToken || !credential.user) {
++    if (!credential.identityToken || !credential.user) {
+         throw new CodedError('ERR_REQUEST_FAILED', 'The credential returned by `refreshAsync` is missing one or more required fields.');
+     }
+     return credential;

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react';
-import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +9,8 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
+import ReportErrorButton from '../components/ReportErrorButton';
+import ClozeGapText from '../components/ClozeGapText';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { checkAchievements } from './achievements';
@@ -17,11 +20,12 @@ import { addShards, awardOneTime } from './shards_system';
 import { usePremium } from '../components/PremiumContext';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { buildLevelExamEnglish, buildLevelExamHintPair, recordMistake } from './active_recall';
+import { trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
-  bronze:  require('../assets/images/levels/bronza.png'),
-  silver:  require('../assets/images/levels/serebro.png'),
-  gold:    require('../assets/images/levels/zoloto.png'),
+  bronze:  require('../assets/images/levels/bronza.webp'),
+  silver:  require('../assets/images/levels/serebro.webp'),
+  gold:    require('../assets/images/levels/zoloto.webp'),
 };
 
 // ── Пул вопросов (общий с exam.tsx) ──────────────────────────────────────────
@@ -182,6 +186,18 @@ const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
 
 const PASS_PCT = 70; // минимум % для сдачи
 
+/** Премиальный тон интро-экрана зачёта (как «дорогой» тёмный макет). */
+const LX = {
+  screen: '#121212',
+  card: '#1C1D22',
+  cardLine: 'rgba(232, 199, 111, 0.22)',
+  gold: '#E8C76F',
+  goldSoft: 'rgba(232, 199, 111, 0.14)',
+  ink: '#141109',
+};
+
+const INTRO_Q_COUNT = 30;
+
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LevelExam() {
   const router = useRouter();
@@ -214,6 +230,7 @@ export default function LevelExam() {
   const chosen = choices[idx] ?? null;
 
   const startExam = useCallback(() => {
+    void trackFeatureStart('level_exam', 'start', { level: lvl, total: questions.length }, 'level_exam');
     setChoices(new Array(questions.length).fill(null));
     setIdx(0);
     setShowAnswer(false);
@@ -271,7 +288,10 @@ export default function LevelExam() {
       const gem = gemMap[newPassCount];
       if (gem) checkAchievements({ type: 'gem', level: lvl, gem } as any).catch(() => {});
       checkAchievements({ type: 'exam', pct }).catch(() => {});
-    } catch {}
+      void trackFeatureSuccess('level_exam', 'complete', { level: lvl, correct, total, pct, passed }, 'level_exam');
+    } catch (e) {
+      void trackFeatureError('level_exam', 'complete', e, { level: lvl, correct, total, pct, passed }, 'level_exam');
+    }
     setPhase('result');
   };
 
@@ -280,57 +300,183 @@ export default function LevelExam() {
   const passed = pct >= PASS_PCT;
 
   // ── INTRO ────────────────────────────────────────────────────────────────────
-  if (phase === 'intro') return (
-    <ScreenGradient>
-    <SafeAreaView style={{ flex: 1 }}>
-      <ContentWrap>
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-          <TouchableOpacity onPress={() => { hapticTap(); router.back(); }}>
-            <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
-          </TouchableOpacity>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
-        </View>
-        <ScrollView contentContainerStyle={{ padding: 24, gap: 20 }}>
-          <View style={{ alignItems: 'center', gap: 12 }}>
-            <View style={{ width: 72, height: 72, borderRadius: 36, backgroundColor: t.accentBg, justifyContent: 'center', alignItems: 'center' }}>
-              <Ionicons name="school-outline" size={36} color={t.accent} />
-            </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800', textAlign: 'center' }}>{title}</Text>
-            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22 }}>
-              {triLang(lang, {
-                ru: `${total} вопросов по темам уроков ${lvl}: грамматика, лексика и навыки из блоков «Теория» и «Словарь». Порог зачёта: ${PASS_PCT}%.`,
-                uk: `${total} питань за темами уроків ${lvl}: граматика, лексика й навички з «Теорії» та «Словника». Поріг заліку: ${PASS_PCT}%.`,
-                es: `${total} preguntas del nivel ${lvl}: gramática, léxico y destrezas de «Teoría» y «Vocabulario». Para aprobar hace falta al menos ${PASS_PCT} %.`,
-              })}
-            </Text>
-          </View>
+  if (phase === 'intro') {
+    const statTriples = [
+      {
+        icon: 'reader-outline' as const,
+        value: String(INTRO_Q_COUNT),
+        cap: triLang(lang, { ru: 'ВОПРОСОВ', uk: 'ЗАПИТАНЬ', es: 'PREGUNTAS' }),
+      },
+      {
+        icon: 'ribbon-outline' as const,
+        value: triLang(lang, { ru: '4,5', uk: '4,5', es: '4,5' }),
+        cap: triLang(lang, { ru: 'БАЛЛА', uk: 'БАЛИ', es: 'PTOS.' }),
+      },
+      {
+        icon: 'refresh-circle-outline' as const,
+        value: triLang(lang, { ru: 'БЕЗ', uk: 'БЕЗ', es: 'SIN' }),
+        cap: triLang(lang, { ru: 'ШТРАФА', uk: 'ШТРАФУ', es: 'PENALIZAR' }),
+      },
+    ];
+    const introBody = triLang(lang, {
+      ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Для перехода дальше нужно набрать минимум 4,5 балла. Если результат не устроит, зачёт можно пройти повторно — без штрафа, с сохранением лучшего результата.`,
+      uk: `${INTRO_Q_COUNT} запитань за ключовими темами рівня ${lvl}. Щоб перейти далі, потрібно набрати щонайменше 4,5 бала. Якщо результат не влаштує, залік можна пройти повторно — без штрафу, зі збереженням найкращого результату.`,
+      es: `${INTRO_Q_COUNT} preguntas sobre los temas clave del nivel ${lvl}. Para avanzar necesitas al menos 4,5 puntos. Si quieres mejorar, puedes repetir el examen sin penalización: guardaremos tu mejor resultado.`,
+    });
+    const premiumNote =
+      lvl === 'A2'
+        ? triLang(lang, {
+            ru: 'Уровень B1 также можно открыть оформив Премиум-подписку.',
+            uk: 'Рівень B1 також можна відкрити з Преміум-підпискою.',
+            es: 'El nivel B1 también se puede desbloquear con la suscripción Premium.',
+          })
+        : null;
 
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 0.5, borderColor: t.border, padding: 16, gap: 10 }}>
-            {[
-              { icon: 'help-circle-outline' as const, text: triLang(lang, { ru: `${total} вопросов по программе`, uk: `${total} питань за програмою`, es: `${total} preguntas del programa` }) },
-              { icon: 'medal-outline' as const, text: triLang(lang, { ru: `Золото — от ${90}% (бронза/серебро при проходном ${PASS_PCT}%)`, uk: `Золото — від ${90}% (бронза/срібло при прохідному ${PASS_PCT}%)`, es: `Oro desde ${90} % (bronce/plata con el ${PASS_PCT} % exigido)` }) },
-              { icon: 'refresh-outline' as const, text: triLang(lang, { ru: 'Можно пересдавать без ограничений', uk: 'Можна пересдавати без обмежень', es: 'Puedes repetir sin límite de intentos' }) },
-            ].map((item, i) => (
-              <View key={i} style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <Ionicons name={item.icon} size={20} color={t.accent} />
-                <Text style={{ color: t.textSecond, fontSize: f.body, flex: 1 }}>{item.text}</Text>
-              </View>
-            ))}
-          </View>
-
-          <TouchableOpacity
-            onPress={() => { hapticTap(); startExam(); }}
-            style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 16, alignItems: 'center', marginTop: 8 }}
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: LX.screen }}>
+        <ContentWrap>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+              borderBottomWidth: StyleSheet.hairlineWidth,
+              borderBottomColor: LX.cardLine,
+            }}
           >
-            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', es: 'Empezar' })}
-            </Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </ContentWrap>
-    </SafeAreaView>
-    </ScreenGradient>
-  );
+            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+              <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
+            </TouchableOpacity>
+          </View>
+          <ScrollView contentContainerStyle={{ paddingHorizontal: 18, paddingTop: 16, paddingBottom: 28 }}>
+            <View
+              style={{
+                backgroundColor: LX.card,
+                borderRadius: 22,
+                borderWidth: 1,
+                borderColor: LX.cardLine,
+                padding: 20,
+                gap: 18,
+              }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'flex-start', gap: 14 }}>
+                <View
+                  style={{
+                    width: 48,
+                    height: 48,
+                    borderRadius: 14,
+                    borderWidth: 1.5,
+                    borderColor: LX.gold,
+                    backgroundColor: LX.goldSoft,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Ionicons name="diamond-outline" size={26} color={LX.gold} />
+                </View>
+                <View style={{ flex: 1, paddingTop: 2 }}>
+                  <Text style={{ color: '#FFFFFF', fontSize: f.h1, fontWeight: '800', lineHeight: Math.round(f.h1 * 1.15) }}>
+                    {title}
+                  </Text>
+                </View>
+              </View>
+
+              <View style={{ flexDirection: 'row', gap: 10 }}>
+                {statTriples.map((s, i) => (
+                  <View
+                    key={i}
+                    style={{
+                      flex: 1,
+                      minWidth: 0,
+                      alignItems: 'center',
+                      paddingVertical: 14,
+                      paddingHorizontal: 6,
+                      borderRadius: 16,
+                      backgroundColor: 'rgba(0,0,0,0.35)',
+                      borderWidth: 1,
+                      borderColor: LX.cardLine,
+                    }}
+                  >
+                    <Ionicons name={s.icon} size={18} color={LX.gold} style={{ marginBottom: 8 }} />
+                    <Text style={{ color: LX.gold, fontSize: f.numMd, fontWeight: '800', marginBottom: 4 }}>{s.value}</Text>
+                    <Text
+                      style={{
+                        color: LX.gold,
+                        fontSize: f.label - 1,
+                        fontWeight: '700',
+                        letterSpacing: 0.6,
+                        textAlign: 'center',
+                      }}
+                      numberOfLines={2}
+                    >
+                      {s.cap}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+
+              <Text style={{ color: 'rgba(255,255,255,0.88)', fontSize: f.body, lineHeight: 22 }}>{introBody}</Text>
+
+              {premiumNote ? (
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'flex-start',
+                    gap: 10,
+                    padding: 14,
+                    borderRadius: 14,
+                    backgroundColor: LX.goldSoft,
+                    borderWidth: 1,
+                    borderColor: LX.cardLine,
+                  }}
+                >
+                  <Ionicons name="sparkles-outline" size={20} color={LX.gold} style={{ marginTop: 2 }} />
+                  <Text style={{ flex: 1, color: 'rgba(255,255,255,0.92)', fontSize: f.body, lineHeight: 21 }}>{premiumNote}</Text>
+                </View>
+              ) : null}
+
+              <TouchableOpacity
+                activeOpacity={0.92}
+                onPress={() => { hapticTap(); startExam(); }}
+                style={{ borderRadius: 18, overflow: 'hidden', marginTop: 4 }}
+              >
+                <LinearGradient
+                  colors={['#FFE9A8', '#E8C040', '#C99516']}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 10,
+                    paddingVertical: 16,
+                  }}
+                >
+                  <Ionicons name="sparkles" size={20} color={LX.ink} />
+                  <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
+                    {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', es: 'Empezar examen' })}
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+            </View>
+
+            <View style={{ alignItems: 'center', marginTop: 18 }}>
+              <ReportErrorButton
+                screen="level_exam"
+                dataId={`level_exam_intro_${lvl}`}
+                dataText={triLang(lang, {
+                  ru: `Зачёт уровня ${lvl}: вступление`,
+                  uk: `Залік рівня ${lvl}: вступ`,
+                  es: `Examen de nivel ${lvl}: intro`,
+                })}
+              />
+            </View>
+          </ScrollView>
+        </ContentWrap>
+      </SafeAreaView>
+    );
+  }
 
   // ── RESULT ───────────────────────────────────────────────────────────────────
   if (phase === 'result') {
@@ -423,7 +569,7 @@ export default function LevelExam() {
                     <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
                       {triLang(lang, { ru: item.q.topic ?? '', uk: item.q.topicUK ?? '', es: item.q.topicES ?? '' })}
                     </Text>
-                    <Text style={{ color: t.textPrimary, fontSize: f.body }}>{item.q.q ?? ''}</Text>
+                    <ClozeGapText text={item.q.q ?? ''} style={{ color: t.textPrimary, fontSize: f.body }} />
                     <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}>
                       {item.chosen !== null && item.chosen !== undefined && (
                         <Text style={{ color: t.wrong, fontSize: f.sub }}>
@@ -456,6 +602,17 @@ export default function LevelExam() {
                 {triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Volver a las lecciones' })}
               </Text>
             </TouchableOpacity>
+            <View style={{ alignItems: 'center', marginTop: 8 }}>
+              <ReportErrorButton
+                screen="level_exam"
+                dataId={`level_exam_result_${lvl}_${pct}`}
+                dataText={triLang(lang, {
+                  ru: `Зачёт ${lvl}: результат ${pct}%`,
+                  uk: `Залік ${lvl}: результат ${pct}%`,
+                  es: `Examen ${lvl}: resultado ${pct}%`,
+                })}
+              />
+            </View>
           </ScrollView>
         </ContentWrap>
       </SafeAreaView>
@@ -497,7 +654,7 @@ export default function LevelExam() {
 
           {/* Вопрос */}
           <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 0.5, borderColor: t.border, padding: 20 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600', lineHeight: 26 }}>{q.q}</Text>
+            <ClozeGapText text={q.q} style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600', lineHeight: 26 }} />
           </View>
 
           {/* Варианты ответов */}
@@ -543,6 +700,13 @@ export default function LevelExam() {
               </Text>
             </TouchableOpacity>
           )}
+          <View style={{ alignItems: 'center', marginTop: 8 }}>
+            <ReportErrorButton
+              screen="level_exam"
+              dataId={`level_exam_${lvl}_q${idx}_L${q.lessonNum}`}
+              dataText={`${q.q ?? ''}`.slice(0, 120)}
+            />
+          </View>
         </ScrollView>
       </ContentWrap>
       <ThemedConfirmModal

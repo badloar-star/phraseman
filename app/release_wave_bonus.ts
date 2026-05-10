@@ -272,7 +272,6 @@ export async function claimReleaseWaveBonus(): Promise<boolean> {
 
     const storageKey = 'shards_balance';
     await withStorageLock(async () => {
-      if (await AsyncStorage.getItem(claimKey(wave))) return;
       await AsyncStorage.multiSet([
         [storageKey, String(newBalance)],
         [claimKey(wave), '1'],

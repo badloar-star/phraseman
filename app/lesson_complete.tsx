@@ -26,6 +26,15 @@ import { registerXP } from './xp_manager';
 import { addShards, SHARD_REWARDS, type ShardSource } from './shards_system';
 import { formatLessonShardBatchReason } from './shard_earn_ui';
 import { emitAppEvent } from './events';
+import { markLessonFinishedOnce, isLessonFinishedOnce, getMasteryReplayPriceShards, MASTERY_REPLAY_BASE_SHARDS } from './mastery';
+import { oskolokImageForPackShards } from './oskolok';
+import MasteryReplayModal from '../components/MasteryReplayModal';
+import AfterLesson5PushModal, {
+  loadAfterLesson5Stats,
+  type PersonalStats,
+} from '../components/AfterLesson5PushModal';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import { playActivityCompletionModalSound } from './activity_complete_sound';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { prefetchLessonMenuCache } from './lesson_menu';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
@@ -41,9 +50,9 @@ import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 
 // Medal images for completion screen
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
-  bronze:  require('../assets/images/levels/bronza.png'),
-  silver:  require('../assets/images/levels/serebro.png'),
-  gold:    require('../assets/images/levels/zoloto.png'),
+  bronze:  require('../assets/images/levels/bronza.webp'),
+  silver:  require('../assets/images/levels/serebro.webp'),
+  gold:    require('../assets/images/levels/zoloto.webp'),
 };
 
 const BONUS = 500;
@@ -101,22 +110,45 @@ function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginBottom: 28, lineHeight: f.body * 1.5 }}>
                 {variant.subtitle}
               </Text>
-              <View style={{ flexDirection: 'row', gap: 12, width: '100%' }}>
+              <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: 12, width: '100%' }}>
                 <TouchableOpacity
-                  style={{ flex: 1, backgroundColor: t.bgSurface, borderRadius: 14, padding: 16, alignItems: 'center', borderWidth: 0.5, borderColor: t.border }}
+                  style={{
+                    flex: 1,
+                    minHeight: 52,
+                    backgroundColor: t.bgSurface,
+                    borderRadius: 14,
+                    paddingVertical: 14,
+                    paddingHorizontal: 12,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    borderWidth: 0.5,
+                    borderColor: t.border,
+                  }}
                   onPress={handleNo}
                 >
-                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
+                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
                     {variant.btnNo}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={{ flex: 1, backgroundColor: t.correct, borderRadius: 14, padding: 16, alignItems: 'center' }}
+                  style={{
+                    flex: 1,
+                    minHeight: 52,
+                    backgroundColor: t.correct,
+                    borderRadius: 14,
+                    paddingVertical: 14,
+                    paddingHorizontal: 12,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
                   onPress={handleYes}
                 >
-                  <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-                    {variant.btnYes} ⭐
-                  </Text>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                    <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700', flexShrink: 1 }} numberOfLines={2}>
+                      {variant.btnYes}
+                    </Text>
+                    <Text style={{ fontSize: 16, lineHeight: 20 }}>⭐</Text>
+                  </View>
                 </TouchableOpacity>
               </View>
             </>
@@ -177,9 +209,9 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
   };
 
   const MEDAL_IMAGES: Record<string, any> = {
-    bronze: require('../assets/images/levels/bronza.png'),
-    silver: require('../assets/images/levels/serebro.png'),
-    gold:   require('../assets/images/levels/zoloto.png'),
+    bronze: require('../assets/images/levels/bronza.webp'),
+    silver: require('../assets/images/levels/serebro.webp'),
+    gold:   require('../assets/images/levels/zoloto.webp'),
   };
 
   const medalLabel = (tier: MedalTier) => {
@@ -387,6 +419,16 @@ export default function LessonComplete() {
   const [, setNotifQueue] = useState<Notif[]>([]);
   const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
 
+  // After-lesson-5 soft push: показывается ровно 1 раз когда юзер впервые завершает lesson 5
+  // и не Premium. Storage key premium_push_lesson5_shown_v1=1.
+  const [showLesson5Push, setShowLesson5Push] = useState(false);
+  const [lesson5Stats, setLesson5Stats] = useState<PersonalStats | null>(null);
+
+  const [isPremium, setIsPremium] = useState(false);
+  const [finishedOnce, setFinishedOnce] = useState(false);
+  const [showMasteryModal, setShowMasteryModal] = useState(false);
+  const [masteryReplayPrice, setMasteryReplayPrice] = useState(MASTERY_REPLAY_BASE_SHARDS);
+
   const scaleAnim  = useRef(new Animated.Value(0)).current;
   const fadeAnim   = useRef(new Animated.Value(0)).current;
   const bounceAnim = useRef(new Animated.Value(0)).current;
@@ -514,7 +556,7 @@ export default function LessonComplete() {
         }
       }
 
-      // [STREAK REPAIR] Засчитываем урок в прогресс починки стрика
+      // [STREAK REPAIR] Засчитываем урок в прогресс починки цепочки
       const repair = await recordLessonForRepair();
       if (repair.nowRepaired) {
         checkAchievements({ type: 'streak_repair' }).catch(() => {});
@@ -540,6 +582,7 @@ export default function LessonComplete() {
   }, [lang, lessonId]);
 
   useEffect(() => {
+    void playActivityCompletionModalSound();
     // Появление иконки
     Animated.spring(scaleAnim, { toValue: 1, friction: 4, useNativeDriver: true }).start();
     // Текст чуть позже
@@ -556,6 +599,39 @@ export default function LessonComplete() {
     setTimeout(() => bounce.start(), 400);
 
     grantBonus();
+    // Mastery: первое прохождение урока N → выставить флаг lesson_finished_once_v1_${N}.
+    // На повторных входах функция идемпотентна и ничего не пишет. От этого флага
+    // зависят: бейдж с ценой на тайле lessons.tsx, paywall на «Начать урок» в
+    // lesson1.tsx, триггер AfterLesson5PushModal (для lessonId === 5).
+    void markLessonFinishedOnce(lessonId).then((res) => {
+      // After-lesson-5 push: только при ПЕРВОМ завершении lesson 5 и !premium.
+      // Не показываем повторно (storage flag), не дёргаем при перезаходе на тот же экран.
+      if (lessonId !== 5 || !res.firstTime) return;
+      void (async () => {
+        const [shown, isPrem] = await Promise.all([
+          AsyncStorage.getItem('premium_push_lesson5_shown_v1'),
+          getVerifiedPremiumStatus(),
+        ]);
+        if (shown === '1' || isPrem) return;
+        const stats = await loadAfterLesson5Stats();
+        await AsyncStorage.setItem('premium_push_lesson5_shown_v1', '1');
+        setLesson5Stats(stats);
+        // Откладываем на 1.6с чтобы юзер успел увидеть лесcon-complete celebration сначала.
+        setTimeout(() => setShowLesson5Push(true), 1600);
+      })();
+    });
+    // Загружаем premium-статус, флаг завершения и цену повтора для кнопки "Повторить"
+    void (async () => {
+      const [prem, finished, price] = await Promise.all([
+        getVerifiedPremiumStatus(),
+        isLessonFinishedOnce(lessonId),
+        getMasteryReplayPriceShards(lessonId),
+      ]);
+      setIsPremium(prem);
+      setFinishedOnce(finished);
+      setMasteryReplayPrice(price);
+    })();
+
     // Загружаем оценку урока, сохраняем медаль
     AsyncStorage.getItem(`lesson${lessonId}_progress`).then(async (saved) => {
       if (!saved) {
@@ -673,7 +749,7 @@ export default function LessonComplete() {
         />
       </View>
       <ContentWrap>
-      <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
+      <ScrollView testID="lesson-complete-screen" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
         {/* Анимированная медаль */}
         <Animated.View style={{
@@ -739,6 +815,7 @@ export default function LessonComplete() {
           {/* Следующий урок */}
           {lessonId < 32 && (
             <TouchableOpacity
+              testID="lesson-complete-next-lesson"
               style={{
                 width: '100%', backgroundColor: t.bgSurface,
                 borderRadius: 16, padding: 18, alignItems: 'center',
@@ -754,17 +831,32 @@ export default function LessonComplete() {
 
           {/* Повторить урок */}
           <TouchableOpacity
+            testID="lesson-complete-repeat"
             style={{
               width: '100%', backgroundColor: t.accentBg,
               borderRadius: 16, padding: 16, alignItems: 'center',
               borderWidth: 0.5, borderColor: t.accent, marginBottom: 14,
+              flexDirection: 'row', justifyContent: 'center', gap: 8,
             }}
-            onPress={() => { void (async () => { hapticTap(); await primeLessonScreenFromStorage(lessonId); router.replace({ pathname: '/lesson1', params: { id: lessonId } }); })(); }}
+            onPress={() => {
+              hapticTap();
+              if (finishedOnce && !isPremium) {
+                setShowMasteryModal(true);
+              } else {
+                void (async () => { await primeLessonScreenFromStorage(lessonId); router.replace({ pathname: '/lesson1', params: { id: lessonId } }); })();
+              }
+            }}
             activeOpacity={0.85}
           >
             <Text style={{ color: t.accent, fontSize: 16, fontWeight: '600' }}>
               ↺ {c.repeatLesson}
             </Text>
+            {finishedOnce && !isPremium && (
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, backgroundColor: 'rgba(0,0,0,0.18)', borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
+                <Image source={oskolokImageForPackShards(masteryReplayPrice)} style={{ width: 14, height: 14 }} resizeMode="contain" />
+                <Text style={{ color: '#FFD700', fontSize: 13, fontWeight: '900' }} maxFontSizeMultiplier={1}>{masteryReplayPrice}</Text>
+              </View>
+            )}
           </TouchableOpacity>
 
           {/* Поделиться результатом — PNG рисуется с скрытого SVG только при нажатии */}
@@ -787,7 +879,7 @@ export default function LessonComplete() {
             </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)' as any); }}>
+          <TouchableOpacity testID="lesson-complete-back-home" style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)' as any); }}>
             <Text style={{ color: t.textMuted, fontSize: 16 }}>{c.backHome}</Text>
           </TouchableOpacity>
         </Animated.View>
@@ -828,6 +920,25 @@ export default function LessonComplete() {
         visible={showAuthPrompt}
         context="lesson1"
         onClose={() => setShowAuthPrompt(false)}
+      />
+      {lesson5Stats && (
+        <AfterLesson5PushModal
+          visible={showLesson5Push}
+          stats={lesson5Stats}
+          onClose={() => setShowLesson5Push(false)}
+        />
+      )}
+      <MasteryReplayModal
+        visible={showMasteryModal}
+        lessonId={lessonId}
+        isPremium={isPremium}
+        onClose={() => setShowMasteryModal(false)}
+        onReplayed={() => {
+          void (async () => {
+            await primeLessonScreenFromStorage(lessonId);
+            router.replace({ pathname: '/lesson1', params: { id: lessonId } });
+          })();
+        }}
       />
     </SafeAreaView>
     </ScreenGradient>

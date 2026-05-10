@@ -10,7 +10,6 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 import { LESSON_DATA, LESSON_VOCABULARIES } from '../../app/lesson_data_all';
-import { lessonCards } from '../../app/lesson_cards_data';
 import { IRREGULAR_VERBS_BY_LESSON } from '../../app/irregular_verbs_data';
 import { getPhraseWords } from '../../app/lesson1_smart_options';
 import { parseWordsByLessonFromFile } from './parse_lesson_words_text';
@@ -175,33 +174,6 @@ function checkPhrasesAndWords() {
   }
 }
 
-function checkLessonCards() {
-  for (const lessonIdStr of Object.keys(LESSON_DATA)) {
-    const lessonId = Number(lessonIdStr);
-    const phrases = LESSON_DATA[lessonId as keyof typeof LESSON_DATA].phrases || [];
-    const cardMap = lessonCards[lessonId as keyof typeof lessonCards];
-    if (!cardMap) {
-      w('cards_missing', `нет lessonCards[${lessonId}]`, lessonId);
-      continue;
-    }
-    const n = phrases.length;
-    for (let idx = 1; idx <= n; idx++) {
-      const c = (cardMap as Record<number, unknown>)[idx];
-      if (!c) e('card_hole', `нет карточки phraseIndex ${idx} (всего фраз ${n})`, lessonId);
-    }
-    const maxKey = Math.max(0, ...Object.keys(cardMap as object).map(Number));
-    if (maxKey > n) w('card_extra', `карточек больше чем фраз: maxKey=${maxKey} vs phrases=${n}`, lessonId);
-    for (const [k, c] of Object.entries(cardMap as Record<string, { correctRu: string; secretRu: string; wrongRu: string }>)) {
-      for (const field of ['correctRu', 'correctUk', 'wrongRu', 'wrongUk', 'secretRu', 'secretUk'] as const) {
-        const t = (c as any)[field];
-        if (typeof t === 'string') {
-          if (/\uFFFD|Ã./.test(t)) e('card_mojibake', `lesson ${lessonId} #${k} ${field}`, lessonId);
-        }
-      }
-    }
-  }
-}
-
 /** Нормализация для сравнения: регистр, снятие диакритик (café ↔ cafe), пунктуация. */
 function lessonLemmaKey(raw: string): string {
   return raw
@@ -320,7 +292,6 @@ function main() {
   const lessonWordMap = parseWordsByLessonFromFile(lw);
 
   checkPhrasesAndWords();
-  checkLessonCards();
   checkVocabPacks();
   checkVocabularyAndDedup(lessonWordMap);
   checkIrregularVerbs();

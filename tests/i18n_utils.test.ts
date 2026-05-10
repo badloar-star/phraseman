@@ -1,3 +1,8 @@
+jest.mock('../app/config', () => ({
+  ...jest.requireActual<typeof import('../app/config')>('../app/config'),
+  ENABLE_SPANISH_LOCALE: true,
+}));
+
 import { actionToastTri } from '../app/events';
 import { triLang } from '../constants/i18n';
 

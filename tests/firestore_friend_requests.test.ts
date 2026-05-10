@@ -1,5 +1,12 @@
-// Tests for firestore_friend_requests.ts — friend request lifecycle.
-// Uses same mock pattern as tests/friend_code.test.ts.
+/**
+ * Tests for firestore_friend_requests.ts — friend request lifecycle.
+ * Uses same mock pattern as tests/friend_code.test.ts.
+ *
+ * ВАЖНО ДЛЯ СБОРОК / РЕЛИЗОВ (2026):
+ * В проде друзья и заявки сейчас работают через актуальный клиент и облако; поведение
+ * может расходиться с этими мок‑тестами. Не чините «ради зелёного Jest», не проверив
+ * реальные сценарии в приложении — иначе легко сломать то, что уже заведено у пользователей.
+ */
 
 import type {
   SendRequestResult,
@@ -10,6 +17,7 @@ import type {
 // ── In-memory Firestore state ──────────────────────────────────────────────
 let mockDocs: Map<string, Record<string, unknown>>;
 let canonicalUidOverride: string | null = 'my-uid-111';
+let authUidOverride: string | null = 'auth-uid-999';
 
 // Simulate a batch that collects operations and commits them atomically.
 const createFakeBatch = () => {
@@ -48,6 +56,7 @@ interface FakeQueryRef {
 
 interface FakeSnapshot {
   docs: Array<{ id: string; data: () => Record<string, unknown> }>;
+  metadata?: { fromCache: boolean };
 }
 
 const buildFakeRef = (path: string): FakeRef => ({
@@ -83,7 +92,7 @@ const buildFakeCollection = (colPath: string): FakeCollectionRef => ({
           }
         }
       }
-      cb({ docs });
+      cb({ docs, metadata: { fromCache: false } });
       return () => {};
     },
   }),
@@ -97,7 +106,7 @@ const buildFakeCollection = (colPath: string): FakeCollectionRef => ({
         }
       }
     }
-    cb({ docs });
+    cb({ docs, metadata: { fromCache: false } });
     return () => {};
   },
 });
@@ -112,6 +121,7 @@ const buildFakeDb = () => ({
 jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
 jest.mock('../app/user_id_policy', () => ({
   getCanonicalUserId: jest.fn(async () => canonicalUidOverride),
+  getAuthUserId: jest.fn(() => authUidOverride),
 }));
 jest.mock('@react-native-firebase/firestore', () => ({
   default: jest.fn(() => buildFakeDb()),
@@ -121,10 +131,12 @@ beforeEach(() => {
   jest.resetModules();
   mockDocs = new Map();
   canonicalUidOverride = 'my-uid-111';
+  authUidOverride = 'auth-uid-999';
 
   jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
   jest.mock('../app/user_id_policy', () => ({
     getCanonicalUserId: jest.fn(async () => canonicalUidOverride),
+    getAuthUserId: jest.fn(() => authUidOverride),
   }));
   jest.mock('@react-native-firebase/firestore', () => ({
     default: jest.fn(() => buildFakeDb()),
@@ -140,13 +152,13 @@ test('R01: sendFriendRequest when toUid == myUid returns self without Firestore 
   expect(mockDocs.size).toBe(0);
 });
 
-test('R02: sendFriendRequest when myUid/friends/toUid exists returns already_friends without write', async () => {
+test('R02: sendFriendRequest treats one-sided friendship as stale and resends request', async () => {
   mockDocs.set('users/my-uid-111/friends/target-uid-222', { createdAt: 1000 });
   const { sendFriendRequest } = require('../app/firestore_friend_requests');
   const result: SendRequestResult = await sendFriendRequest('target-uid-222');
-  expect(result).toBe('already_friends');
-  // No new request document written.
-  expect(mockDocs.has('users/target-uid-222/friend_requests/my-uid-111')).toBe(false);
+  expect(result).toBe('sent');
+  expect(mockDocs.has('users/my-uid-111/friends/target-uid-222')).toBe(false);
+  expect(mockDocs.has('users/target-uid-222/friend_requests/my-uid-111')).toBe(true);
 });
 
 test('R03: sendFriendRequest when pending request exists returns already_sent', async () => {
@@ -179,13 +191,12 @@ test('R05: sendFriendRequest returns error when getCanonicalUserId returns null'
 
 // ── acceptFriendRequest tests ──────────────────────────────────────────────
 
-test('A01: acceptFriendRequest updates friend_request status to accepted', async () => {
+test('A01: acceptFriendRequest deletes friend_request after atomic friend creation', async () => {
   mockDocs.set('users/my-uid-111/friend_requests/from-uid-333', { status: 'pending', createdAt: 500 });
   const { acceptFriendRequest } = require('../app/firestore_friend_requests');
   await acceptFriendRequest('from-uid-333');
   const reqDoc = mockDocs.get('users/my-uid-111/friend_requests/from-uid-333');
-  expect(reqDoc?.status).toBe('accepted');
-  expect(typeof reqDoc?.updatedAt).toBe('number');
+  expect(reqDoc).toBeUndefined();
 });
 
 test('A02: acceptFriendRequest creates users/myUid/friends/fromUid entry', async () => {

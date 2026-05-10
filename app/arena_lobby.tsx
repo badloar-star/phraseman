@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
-  ActivityIndicator, Image, Animated, Easing, Platform, Share, ScrollView,
+  ActivityIndicator, Image, Animated, Easing, Share, ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
@@ -44,6 +44,7 @@ import {
   ENABLE_ARENA_RANKED_WAGER,
   IS_EXPO_GO,
 } from './config';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 import type { ArenaSession, LobbyChoice } from './types/arena';
 import {
   setSessionLobbyChoice,
@@ -57,14 +58,17 @@ import {
   clearPendingArenaRankedWager,
   getPendingArenaRankedWager,
   setPendingArenaRankedWager,
+  winPayoutForStake,
   type ArenaRankedPendingWager,
   type ArenaRankedWagerStake,
 } from './arena_match_wager';
 import { getShardsBalance } from './shards_system';
 import { oskolokImageForPackShards } from './oskolok';
 import { subscribeToFriends, type FriendEntry } from './firestore_friend_requests';
+import { sendArenaInvite, subscribeArenaInviteStatus } from './services/arena_invites';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
+import ReportErrorButton from '../components/ReportErrorButton';
 import AvatarView from '../components/AvatarView';
 
 /** Підказка idle «скільки шукають у мережі» (день 1–7, ніч 1–2): спільний кеш, оновлення ~1 хв. */
@@ -76,6 +80,16 @@ let idleQueueHintCache: IdleQueueHintCache | null = null;
 function isNightArenaIdleQueueHint(): boolean {
   const h = new Date().getHours();
   return h >= 20 || h < 8;
+}
+
+/** Склонение для «+N осколк…» в подсказке ставки (RU). */
+function ruWinShardsPhrase(count: number): string {
+  const n = Math.floor(Math.abs(count));
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  if (mod10 === 1 && mod100 !== 11) return `${n} осколок`;
+  if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return `${n} осколка`;
+  return `${n} осколков`;
 }
 
 function getOrRefreshIdleQueueHintCount(): number {
@@ -138,7 +152,7 @@ async function createRoom(hostId: string, hostName: string, roomId: string) {
 export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } = {}) {
   const { width: windowW, contentMaxW } = useScreen();
   const router = useRouter();
-  const { goHome } = useTabNav();
+  const { goHome, activeIdx } = useTabNav();
   const { autoSearch, playAgainTs } = useLocalSearchParams<{ autoSearch?: string; playAgainTs?: string }>();
   const { theme: t, f, themeMode } = useTheme();
   const screenTitleColor = (themeMode === 'sakura' || themeMode === 'ocean')
@@ -148,6 +162,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     ? (themeMode === 'ocean' ? 'rgba(200,230,255,0.78)' : 'rgba(255,210,230,0.75)')
     : t.textMuted;
   const { lang } = useLang();
+  const effectiveOs = useEffectivePlatformOS();
   const defaultPlayerName = useMemo(
     () => triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' }),
     [lang],
@@ -176,16 +191,22 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   const [idleQueueHintDisplayCount, setIdleQueueHintDisplayCount] = useState(getOrRefreshIdleQueueHintCount);
   /** Ставка осколками на следующий рейтинг-матч (только «Найти матч» / бот из очереди). */
   const [rankedWagerPending, setRankedWagerPending] = useState<ArenaRankedPendingWager | null>(null);
+  /** Пока false — не показываем строку «при выигрыше +…» до чтения AsyncStorage. */
+  const [rankedWagerUiReady, setRankedWagerUiReady] = useState(() => !ENABLE_ARENA_RANKED_WAGER);
   const [shardsBalanceUi, setShardsBalanceUi] = useState<number | null>(null);
   const [arenaFriends, setArenaFriends] = useState<FriendEntry[]>([]);
   const [arenaFriendProfiles, setArenaFriendProfiles] = useState<
-    Record<string, { name: string; totalXp: number }>
+    Record<string, { name: string; totalXp: number; avatar?: string }>
   >({});
-  const [arenaFriendHint, setArenaFriendHint] = useState(false);
+  const [arenaInviteSendingUid, setArenaInviteSendingUid] = useState<string | null>(null);
+  /** Выбранный друг перед отправкой вызова (кнопка «Бросить вызов»). */
+  const [arenaFriendPickUid, setArenaFriendPickUid] = useState<string | null>(null);
   const [lobbyAcceptDeadlineAt, setLobbyAcceptDeadlineAt] = useState<number | null>(null);
   const lobbyAcceptBarAnim = useRef(new Animated.Value(1)).current;
   const lobbyAcceptBarAnimRunRef = useRef<Animated.CompositeAnimation | null>(null);
   const friendUnsubRef = useRef<(() => void) | null>(null);
+  /** id последнего отправленного инвайта — для подписки на статус (declined/accepted). */
+  const sentInviteUnsubRef = useRef<(() => void) | null>(null);
   const friendMatchNavRef = useRef(false);
   const pendingMatchChargeRef = useRef(false);
   const chargeInFlightRef = useRef(false);
@@ -193,11 +214,30 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   /** Идемпотентность тоста/cancel при abort одной и той же ranked-сессии из лобби */
   const matchLobbyAbortHandledRef = useRef<string | null>(null);
 
+  const refreshRankedWagerUi = useCallback(async () => {
+    if (!ENABLE_ARENA_RANKED_WAGER) {
+      setRankedWagerPending(null);
+      setShardsBalanceUi(null);
+      setRankedWagerUiReady(true);
+      return;
+    }
+    try {
+      const [w, bal] = await Promise.all([getPendingArenaRankedWager(), getShardsBalance()]);
+      setRankedWagerPending(w);
+      setShardsBalanceUi(bal);
+    } catch {
+      setShardsBalanceUi(null);
+    } finally {
+      setRankedWagerUiReady(true);
+    }
+  }, []);
+
   const handleFindMatch = useCallback(async (
     uidOverride?: string,
     opts?: { playAgain?: boolean },
   ) => {
     if (findMatchInFlightRef.current) return;
+    if (!myRank.isHydrated) return;
     findMatchInFlightRef.current = true;
     try {
       if (!isUnlimited) {
@@ -271,7 +311,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     } finally {
       findMatchInFlightRef.current = false;
     }
-  }, [bonusEnergy, defaultPlayerName, energy, isUnlimited, myRank.level, myRank.rankIndex, myRank.tier, size, startSearching, updateQueueWithPushToken, userId]);
+  }, [bonusEnergy, defaultPlayerName, energy, isUnlimited, myRank.isHydrated, myRank.level, myRank.rankIndex, myRank.tier, size, startSearching, updateQueueWithPushToken, userId]);
 
   /** Стековый /arena_lobby — без таббара; редиректим после маунта, чтобы не падать до RootLayout. */
   useEffect(() => {
@@ -302,20 +342,9 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     })();
   }, [autoSearch, playAgainTs, handleFindMatch]);
 
-  const refreshRankedWagerUi = useCallback(async () => {
-    if (!ENABLE_ARENA_RANKED_WAGER) {
-      setRankedWagerPending(null);
-      setShardsBalanceUi(null);
-      return;
-    }
-    try {
-      const [w, bal] = await Promise.all([getPendingArenaRankedWager(), getShardsBalance()]);
-      setRankedWagerPending(w);
-      setShardsBalanceUi(bal);
-    } catch {
-      setShardsBalanceUi(null);
-    }
-  }, []);
+  useEffect(() => {
+    void refreshRankedWagerUi();
+  }, [refreshRankedWagerUi]);
 
   useFocusEffect(
     useCallback(() => {
@@ -344,22 +373,40 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     return () => clearInterval(id);
   }, [phase]);
 
-  // Register lobby as active so MatchFoundToast is suppressed while we're here
+  // Лобби в табе смонтировано постоянно (TabSlider). Тост «матч найден» душился на всіх екранах,
+  // бо isLobbyActive лишався true після перходу на інші вкладки — тримаємо active лише коли видно таб «Арена» (2).
   useEffect(() => {
-    setLobbyActive(true);
+    if (!isTab) {
+      setLobbyActive(true);
+      return () => setLobbyActive(false);
+    }
+    setLobbyActive(activeIdx === 2);
     return () => setLobbyActive(false);
-  }, [setLobbyActive]);
+  }, [isTab, activeIdx, setLobbyActive]);
 
   useEffect(() => {
     matchLobbyAbortHandledRef.current = null;
   }, [sessionId]);
 
+  useEffect(() => () => {
+    sentInviteUnsubRef.current?.();
+    sentInviteUnsubRef.current = null;
+  }, []);
+
   /** Глобальный статус поиска (в т.ч. после перезапуска) → локальная фаза лобби. */
   useEffect(() => {
     if (status === 'searching') setPhase('searching');
     // Ошибка join / сеть: контекст уже idle, а phase залипал в «searching» (без sessionId).
-    if (status === 'idle' && phase === 'searching' && !sessionId) setPhase('idle');
-  }, [status, phase, sessionId]);
+    if (status === 'idle' && phase === 'searching' && !sessionId) {
+      if (ENABLE_ARENA_RANKED_WAGER) {
+        void (async () => {
+          await clearPendingArenaRankedWager();
+          await refreshRankedWagerUi();
+        })();
+      }
+      setPhase('idle');
+    }
+  }, [status, phase, sessionId, refreshRankedWagerUi]);
 
   // Тикер UI: `Date.now()-t0` не даёт ререндер сам; пока ищем — крутим, даже если searchStartedAt ещё 0
   const [, setSearchUiTick] = useState(0);
@@ -457,7 +504,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
         await cancelSearching();
         setPhase('idle');
         setLobbyAcceptDeadlineAt(null);
-        if (reason !== 'accept_timeout') {
+        if (reason !== 'accept_timeout' && reason !== 'stale_cleanup') {
           emitAppEvent('action_toast', {
             type: 'info',
             messageRu: 'Матч отменён (соперник отказался или вышел).',
@@ -585,8 +632,11 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     const id = genRoomId();
     friendMatchNavRef.current = false;
     friendUnsubRef.current?.();
+    sentInviteUnsubRef.current?.();
+    sentInviteUnsubRef.current = null;
     setFriendRoomId(id);
     setFriendShared(false);
+    setArenaFriendPickUid(null);
 
     const runFirestore = async () => {
       try {
@@ -669,12 +719,102 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     }
   };
 
+  const handleSendInAppInviteToFriend = async (friendStableUid: string) => {
+    hapticTap();
+    if (!friendRoomId) return;
+    const dn =
+      (await AsyncStorage.getItem('user_name'))?.trim()
+      || triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' });
+    setArenaInviteSendingUid(friendStableUid);
+    try {
+      const res = await sendArenaInvite({
+        toFriendStableUid: friendStableUid,
+        roomId: friendRoomId,
+        fromName: dn,
+      });
+      if (!res.ok) {
+        const msg = res.reason === 'friend_no_session'
+          ? {
+            messageRu: effectiveOs === 'ios'
+              ? 'У друга нет активной сессии. Пусть откроет приложение или выберите его в списке ниже.'
+              : 'У друга нет активной сессии в облаке. Пусть откроет приложение или поделись ссылкой.',
+            messageUk: effectiveOs === 'ios'
+              ? 'У друга немає активної сесії. Нехай відкриє застосунок або обери його в списку нижче.'
+              : 'У друга немає активної сесії в хмарі. Нехай відкриє застосунок або поділись посиланням.',
+            messageEs: effectiveOs === 'ios'
+              ? 'Tu amigo no tiene sesión activa. Pídele que abra la app o elígelo en la lista de abajo.'
+              : 'Tu amigo no tiene sesión en la nube. Pídele que abra la app o comparte el enlace.',
+          }
+          : res.reason === 'not_friend'
+            ? {
+              messageRu: 'Этот пользователь не в списке друзей.',
+              messageUk: 'Цей користувач не у списку друзів.',
+              messageEs: 'Este usuario no está en tu lista de amigos.',
+            }
+            : {
+              messageRu: effectiveOs === 'ios'
+                ? 'Пригласить не получилось. Проверь сеть или выбери друга из списка ниже.'
+                : 'Пригласить не получилось. Проверь сеть или попробуй «Поделиться ссылкой».',
+              messageUk: effectiveOs === 'ios'
+                ? 'Не вдалося запросити. Перевір мережу або обери друга зі списку нижче.'
+                : 'Не вдалося запросити. Перевір мережу або спробуй «Поділитися посиланням».',
+              messageEs: effectiveOs === 'ios'
+                ? 'No se pudo enviar la invitación. Revisa la conexión o elige a un amigo en la lista.'
+                : 'No se pudo enviar la invitación. Revisa la conexión o usa «Compartir enlace».',
+            };
+        emitAppEvent('action_toast', { type: 'error', ...msg });
+        return;
+      }
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: 'Приглашение отправлено.',
+        messageUk: 'Запрошення надіслано.',
+        messageEs: 'Invitación enviada.',
+      });
+      setArenaFriendPickUid(null);
+
+      // Subscribe to invite status changes so we can notify sender when declined
+      sentInviteUnsubRef.current?.();
+      sentInviteUnsubRef.current = subscribeArenaInviteStatus(
+        res.inviteId,
+        (status) => {
+          if (status === 'declined') {
+            sentInviteUnsubRef.current?.();
+            sentInviteUnsubRef.current = null;
+            const friendName = arenaFriendProfiles[friendStableUid]?.name;
+            emitAppEvent('action_toast', {
+              type: 'info',
+              messageRu: friendName
+                ? `${friendName} отклонил вызов.`
+                : 'Друг отклонил вызов.',
+              messageUk: friendName
+                ? `${friendName} відхилив виклик.`
+                : 'Друг відхилив виклик.',
+              messageEs: friendName
+                ? `${friendName} rechazó el reto.`
+                : 'Tu amigo rechazó el reto.',
+            });
+          } else if (status === 'accepted') {
+            sentInviteUnsubRef.current?.();
+            sentInviteUnsubRef.current = null;
+          }
+        },
+      );
+    } finally {
+      setArenaInviteSendingUid(null);
+    }
+  };
+
   const handleCancelSearch = async () => {
     hapticTap();
     forgetSearchResumeSnapshot();
     pendingMatchChargeRef.current = false;
     const cancelledMs = searchStartedAt > 0 ? (Date.now() - searchStartedAt) : elapsedMs;
     await cancelSearching();
+    if (ENABLE_ARENA_RANKED_WAGER) {
+      await clearPendingArenaRankedWager();
+      await refreshRankedWagerUi();
+    }
     logEvent('arena_search_cancelled', { elapsed_ms: cancelledMs });
     setPhase('idle');
   };
@@ -688,46 +828,22 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   const countsAsInQueue = phase === 'searching' || phase === 'match_found';
 
   const handleRankedWagerSelect = useCallback(async (stake: ArenaRankedWagerStake) => {
-    if (!ENABLE_ARENA_RANKED_WAGER || inSearchFlow) return;
+    if (!ENABLE_ARENA_RANKED_WAGER) return;
     hapticTap();
     const cur = await getPendingArenaRankedWager();
     if (cur?.stake === stake) {
       await clearPendingArenaRankedWager();
       setRankedWagerPending(null);
       logEvent('arena_ranked_wager_cleared', { stake });
-      emitAppEvent('action_toast', {
-        type: 'info',
-        messageRu: 'Ставка на следующий матч снята.',
-        messageUk: 'Ставку на наступний матч знято.',
-        messageEs: 'Apuesta para la próxima partida cancelada.',
-      });
       return;
     }
     const bal = await getShardsBalance();
-    if (bal < stake) {
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: `Нужно минимум ${stake} осколков.`,
-        messageUk: `Потрібно щонайменше ${stake} осколків.`,
-        messageEs: `Necesitas al menos ${stake} fragmentos.`,
-      });
-      router.push({
-        pathname: '/shards_shop' as any,
-        params: { need: String(Math.max(0, stake - bal)), source: 'arena_ranked_wager' },
-      });
-      return;
-    }
+    if (bal < stake) return;
     await setPendingArenaRankedWager(stake);
     await refreshRankedWagerUi();
-    const payout = stake * 3;
+    const payout = winPayoutForStake(stake);
     logEvent('arena_ranked_wager_set', { stake, payout });
-    emitAppEvent('action_toast', {
-      type: 'success',
-      messageRu: `Ставка на матч: ${stake} → при победе +${payout} осколков. Поражение: −${stake}. Ничья: без потерь.`,
-      messageUk: `Ставка на матч: ${stake} → при перемозі +${payout} осколків. Поразка: −${stake}. Нічия: без втрат.`,
-      messageEs: `Apuesta: ${stake} → si ganas +${payout} fragmentos. Si pierdes: −${stake}. Empate: sin cambio.`,
-    });
-  }, [inSearchFlow, refreshRankedWagerUi, router]);
+  }, [refreshRankedWagerUi]);
   const showMatchFound = status === 'found' && !!sessionId;
   const showQueuePanel =
     (status === 'searching' && (phase === 'searching' || phase === 'idle'))
@@ -739,6 +855,102 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     (isTab ? Math.min(windowW, contentMaxW) : windowW) - 40,
   );
   const slotHalf = (layoutW - 10) / 2;
+
+  const rankedWagerDynamicHint = useMemo(() => {
+    if (!rankedWagerUiReady || !rankedWagerPending) return null;
+    const payout = rankedWagerPending.winPayout;
+    return triLang(lang, {
+      ru: `В случае выигрыша +${ruWinShardsPhrase(payout)}.`,
+      uk: `У разі перемоги +${payout} осколків.`,
+      es: `Si ganas +${payout} fragmentos.`,
+    });
+  }, [lang, rankedWagerPending, rankedWagerUiReady]);
+
+  const rankedWagerCardEl =
+    ENABLE_ARENA_RANKED_WAGER && !friendRoomId ? (
+      <View
+        style={[
+          styles.rankedWagerCard,
+          {
+            width: layoutW,
+            alignSelf: 'center',
+            borderColor: `${t.border}99`,
+            backgroundColor: 'rgba(255,255,255,0.07)',
+          },
+        ]}
+      >
+        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
+          <Text style={[styles.rankedWagerTitle, { color: screenTitleColor, fontSize: f.sub }]}>
+            {triLang(lang, {
+              ru: 'Ставка на матч',
+              uk: 'Ставка на матч',
+              es: 'Apuesta del encuentro',
+            })}
+          </Text>
+          {shardsBalanceUi != null && (
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+              <Image
+                source={oskolokImageForPackShards(Math.min(99, shardsBalanceUi))}
+                style={{ width: 18, height: 18 }}
+                resizeMode="contain"
+              />
+              <Text style={{ color: screenMuted, fontSize: f.caption, fontWeight: '700' }}>{shardsBalanceUi}</Text>
+            </View>
+          )}
+        </View>
+        {rankedWagerDynamicHint ? (
+          <Text style={[styles.rankedWagerHint, { color: screenMuted, fontSize: f.caption - 1 }]}>
+            {rankedWagerDynamicHint}
+          </Text>
+        ) : null}
+        <View style={styles.rankedWagerChipsRow}>
+          {ARENA_RANKED_WAGER_STAKES.map((st) => {
+            const selected = rankedWagerPending?.stake === st;
+            const balanceKnown = shardsBalanceUi !== null;
+            const cannotAfford = balanceKnown && shardsBalanceUi < st;
+            const chipDisabled = cannotAfford && !selected;
+            return (
+              <TouchableOpacity
+                key={st}
+                activeOpacity={chipDisabled ? 1 : 0.85}
+                disabled={chipDisabled}
+                onPress={() => void handleRankedWagerSelect(st)}
+                style={[
+                  styles.rankedWagerChip,
+                  chipDisabled
+                    ? {
+                        borderColor: `${t.border}66`,
+                        backgroundColor: 'rgba(255,255,255,0.02)',
+                        opacity: 0.45,
+                      }
+                    : {
+                        borderColor: selected ? t.accent : t.border,
+                        backgroundColor: selected ? `${t.accent}28` : 'rgba(255,255,255,0.04)',
+                      },
+                ]}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                  <Image
+                    source={oskolokImageForPackShards(st)}
+                    style={{ width: 20, height: 20, opacity: chipDisabled ? 0.7 : 1 }}
+                    resizeMode="contain"
+                  />
+                  <Text
+                    style={{
+                      color: chipDisabled ? screenMuted : screenTitleColor,
+                      fontWeight: '800',
+                      fontSize: f.body,
+                    }}
+                  >
+                    {st}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+      </View>
+    ) : null;
 
   const morph = useRef(new Animated.Value(0)).current;
   const { leftW, rightW, leftOp, spacerW } = useMemo(() => ({
@@ -816,6 +1028,16 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   }, []);
 
   useEffect(() => {
+    if (!friendRoomId) setArenaFriendPickUid(null);
+  }, [friendRoomId]);
+
+  useEffect(() => {
+    if (arenaFriendPickUid && !arenaFriends.some(f => f.uid === arenaFriendPickUid)) {
+      setArenaFriendPickUid(null);
+    }
+  }, [arenaFriends, arenaFriendPickUid]);
+
+  useEffect(() => {
     if (arenaFriends.length === 0) return;
     const db = (() => {
       if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
@@ -829,16 +1051,20 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
           const snap = await db.collection('users').doc(f.uid).get();
           if (!snap.exists) return null;
           const data = snap.data() ?? {};
+          const avatarRaw = typeof data.progress?.user_avatar === 'string'
+            ? data.progress.user_avatar.trim()
+            : '';
           return {
             uid: f.uid,
-            name: (data.displayName as string) || (data.progress?.displayName as string) || 'Игрок',
+            name: (data.displayName as string) || (data.name as string) || (data.progress?.displayName as string) || (data.progress?.user_name as string) || 'Игрок',
             totalXp: parseInt((data.progress?.user_total_xp as string) ?? '0') || 0,
+            avatar: avatarRaw || undefined,
           };
         } catch { return null; }
       })
     ).then(results => {
       if (cancelled) return;
-      const map: Record<string, { name: string; totalXp: number }> = {};
+      const map: Record<string, { name: string; totalXp: number; avatar?: string }> = {};
       for (const r of results) if (r) map[r.uid] = r;
       setArenaFriendProfiles(map);
     });
@@ -948,13 +1174,28 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             onPress={() => { hapticTap(); router.push('/arena_rating' as any); }}
             style={[styles.rankBadge, { backgroundColor: t.bgSurface, borderColor: t.border }]}
           >
-            <Image source={myRank.image} style={{ width: 24, height: 24 }} resizeMode="contain" />
-            <Text style={[styles.rankText, { color: t.textSecond, fontSize: f.label }]}>{myRank.labelShort}</Text>
+            {myRank.isHydrated ? (
+              <>
+                <Image source={myRank.image} style={{ width: 24, height: 24 }} resizeMode="contain" />
+                <Text style={[styles.rankText, { color: t.textSecond, fontSize: f.label }]}>{myRank.labelShort}</Text>
+              </>
+            ) : (
+              <>
+                <ActivityIndicator size="small" color={t.textSecond} style={{ width: 24, height: 24 }} />
+                <Text style={[styles.rankText, { color: t.textSecond, fontSize: f.label }]}>…</Text>
+              </>
+            )}
           </TouchableOpacity>
         </View>
       </View>
 
-      <View style={styles.body}>
+      <ScrollView
+        style={styles.bodyScroll}
+        contentContainerStyle={styles.bodyScrollContent}
+        keyboardShouldPersistTaps="handled"
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled
+      >
         {/* INFO-зона — фиксированная высота над actions. Любая поздняя
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
@@ -1026,26 +1267,6 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                 <Text style={[styles.queueSub, { color: screenMuted, fontSize: f.caption }]}>
                   {triLang(lang, { uk: 'До 10 хв', ru: 'До 10 мин', es: 'Máximo 10 minutos' })}
                 </Text>
-                {ENABLE_ARENA_RANKED_WAGER && rankedWagerPending && (
-                  <Text
-                    style={[
-                      styles.queueSub,
-                      {
-                        color: t.gold ?? t.accent,
-                        fontSize: f.caption,
-                        fontWeight: '700',
-                        marginTop: 2,
-                        textAlign: 'center',
-                      },
-                    ]}
-                  >
-                    {triLang(lang, {
-                      ru: `💎 Ставка: ${rankedWagerPending.stake} → до +${rankedWagerPending.winPayout}`,
-                      uk: `💎 Ставка: ${rankedWagerPending.stake} → до +${rankedWagerPending.winPayout}`,
-                      es: `💎 Apuesta: ${rankedWagerPending.stake} → hasta +${rankedWagerPending.winPayout}`,
-                    })}
-                  </Text>
-                )}
                 <Text style={[styles.queueCountdown, { color: t.accent }]}>
                   {formatRemainSearch(remainSearchMs)}
                 </Text>
@@ -1066,6 +1287,10 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                   </Text>
                 )}
               </View>
+
+              {rankedWagerCardEl && phase === 'searching' ? (
+                <View style={{ marginTop: 10, alignSelf: 'center', width: layoutW }}>{rankedWagerCardEl}</View>
+              ) : null}
 
               {showMatchFound && sessionId && lobbyAcceptDeadlineAt != null && (
                 <View style={{ width: layoutW, alignSelf: 'center', marginBottom: 8, marginTop: 2 }} accessibilityRole="timer">
@@ -1124,7 +1349,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                           textAlign: 'center',
                           lineHeight: f.body + 2,
                         },
-                        Platform.OS === 'android' && { includeFontPadding: false, textAlignVertical: 'center' as const },
+                        effectiveOs === 'android' && { includeFontPadding: false, textAlignVertical: 'center' as const },
                       ]}
                     >
                       {showMatchFound
@@ -1137,72 +1362,15 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             </>
           ) : (
             <>
-              {ENABLE_ARENA_RANKED_WAGER && !friendRoomId && (
-                <View
-                  style={[
-                    styles.rankedWagerCard,
-                    {
-                      width: layoutW,
-                      alignSelf: 'center',
-                      borderColor: `${t.border}99`,
-                      backgroundColor: 'rgba(255,255,255,0.07)',
-                    },
-                  ]}
-                >
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 8 }}>
-                    <Text style={[styles.rankedWagerTitle, { color: screenTitleColor, fontSize: f.sub }]}>
-                      {triLang(lang, {
-                        ru: 'Ставка на следующий матч',
-                        uk: 'Ставка на наступний матч',
-                        es: 'Apuesta en la próxima partida',
-                      })}
-                    </Text>
-                    {shardsBalanceUi != null && (
-                      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-                        <Image
-                          source={oskolokImageForPackShards(Math.min(99, shardsBalanceUi))}
-                          style={{ width: 18, height: 18 }}
-                          resizeMode="contain"
-                        />
-                        <Text style={{ color: screenMuted, fontSize: f.caption, fontWeight: '700' }}>{shardsBalanceUi}</Text>
-                      </View>
-                    )}
-                  </View>
-                  <Text style={[styles.rankedWagerHint, { color: screenMuted, fontSize: f.caption - 1 }]}>
-                    {triLang(lang, {
-                      ru: 'Победа: выплата ×3 к ставке вместо обычных +1. Поражение: −ставка. Ничья: без списания.',
-                      uk: 'Перемога: виплата ×3 до ставки замість звичайних +1. Поразка: −ставка. Нічия: без списання.',
-                      es: 'Victoria: pago ×3 en vez del +1 habitual. Derrota: −apuesta. Empate: sin cambio.',
-                    })}
-                  </Text>
-                  <View style={styles.rankedWagerChipsRow}>
-                    {ARENA_RANKED_WAGER_STAKES.map((st) => {
-                      const selected = rankedWagerPending?.stake === st;
-                      return (
-                        <TouchableOpacity
-                          key={st}
-                          activeOpacity={0.85}
-                          onPress={() => void handleRankedWagerSelect(st)}
-                          style={[
-                            styles.rankedWagerChip,
-                            {
-                              borderColor: selected ? t.accent : t.border,
-                              backgroundColor: selected ? `${t.accent}28` : 'rgba(255,255,255,0.04)',
-                            },
-                          ]}
-                        >
-                          <Text style={{ color: screenTitleColor, fontWeight: '800', fontSize: f.body }}>{st}</Text>
-                          <Text style={{ color: screenMuted, fontSize: f.caption - 2, marginTop: 2 }}>
-                            →{st * 3}
-                          </Text>
-                        </TouchableOpacity>
-                      );
-                    })}
-                  </View>
-                </View>
-              )}
-
-              <TouchableOpacity testID="arena-find-match" accessibilityLabel="qa-arena-find-match" accessible={true} onPress={() => { hapticTap(); handleFindMatch(); }} activeOpacity={0.85}>
+              <TouchableOpacity
+                testID="arena-find-match"
+                accessibilityLabel="qa-arena-find-match"
+                accessible={true}
+                disabled={!myRank.isHydrated}
+                onPress={() => { hapticTap(); handleFindMatch(); }}
+                activeOpacity={0.85}
+                style={{ opacity: myRank.isHydrated ? 1 : 0.55 }}
+              >
                 <LinearGradient
                   colors={[t.accent, t.accent + 'BB']}
                   style={styles.mainBtn}
@@ -1245,6 +1413,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
               {friendRoomId && (
                 <>
+                  {effectiveOs !== 'ios' && (
                   <TouchableOpacity onPress={handleFriendShare} activeOpacity={0.85}>
                     <LinearGradient
                       colors={[t.accent, t.accent + 'BB']}
@@ -1267,7 +1436,8 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                       </Text>
                     </LinearGradient>
                   </TouchableOpacity>
-                  {friendShared && (
+                  )}
+                  {effectiveOs !== 'ios' && friendShared && (
                     <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
                       <ActivityIndicator size="small" color={t.accent} />
                       <Text style={[{ color: screenMuted, fontSize: f.sub }]}>
@@ -1279,76 +1449,99 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                       </Text>
                     </View>
                   )}
-                </>
-              )}
-
-              {/* Arena friends invite list — ARENA-01..04 */}
-              {!inSearchFlow && (
-                <View style={{ marginTop: 12 }}>
-                  <Text style={{ color: screenMuted, fontSize: f.sub, marginBottom: 8, textAlign: 'center' }}>
-                    {triLang(lang, { ru: 'Пригласить друга', uk: 'Запросити друга', es: 'Invitar amigo' })}
-                  </Text>
-                  {arenaFriendHint && (
-                    <Text style={{ color: screenMuted, fontSize: f.sub, textAlign: 'center', marginBottom: 6 }}>
-                      {triLang(lang, {
-                        ru: 'Нажмите «Поделиться ссылкой» выше',
-                        uk: 'Натисніть «Поділитися посиланням» вище',
-                        es: 'Pulsa «Compartir enlace» arriba',
-                      })}
-                    </Text>
-                  )}
-                  {arenaFriends.length === 0 ? (
-                    <Text style={{ color: screenMuted, fontSize: f.sub, textAlign: 'center', opacity: 0.6 }}>
-                      {triLang(lang, {
-                        ru: 'Добавьте друзей по коду в настройках',
-                        uk: 'Додайте друзів за кодом у налаштуваннях',
-                        es: 'Añade amigos por código en ajustes',
-                      })}
-                    </Text>
-                  ) : (
-                    <ScrollView
-                      horizontal
-                      showsHorizontalScrollIndicator={false}
-                      contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }}
-                    >
-                      {arenaFriends.map(friend => {
-                        const profile = arenaFriendProfiles[friend.uid];
-                        const totalXp = profile?.totalXp ?? 0;
-                        const level = getLevelFromXP(totalXp);
-                        const avatarId = String(getBestAvatarForLevel(level));
-                        const name = profile?.name ?? '…';
-                        return (
-                          <TouchableOpacity
-                            key={friend.uid}
-                            onPress={() => {
-                              hapticTap();
-                              if (friendRoomId) {
-                                void handleFriendShare();
-                              } else {
-                                void handlePlayWithFriend();
-                                setArenaFriendHint(true);
-                                setTimeout(() => setArenaFriendHint(false), 2500);
-                              }
-                            }}
-                            activeOpacity={0.7}
-                            style={{ alignItems: 'center', gap: 4, minWidth: 56 }}
-                          >
-                            <AvatarView avatar={avatarId} size={44} />
-                            <Text
-                              numberOfLines={1}
-                              style={{ color: t.textPrimary, fontSize: f.sub, maxWidth: 60 }}
+                  {arenaFriends.length > 0 && (
+                    <View style={{ marginTop: 4, gap: 12 }}>
+                      <ScrollView
+                        horizontal
+                        nestedScrollEnabled
+                        showsHorizontalScrollIndicator={false}
+                        contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }}
+                      >
+                        {arenaFriends.map(friend => {
+                          const profile = arenaFriendProfiles[friend.uid];
+                          const totalXp = profile?.totalXp ?? 0;
+                          const level = getLevelFromXP(totalXp);
+                          const avatarId = profile?.avatar || String(getBestAvatarForLevel(level));
+                          const name = profile?.name ?? '…';
+                          const sending = arenaInviteSendingUid === friend.uid;
+                          const selected = arenaFriendPickUid === friend.uid;
+                          return (
+                            <TouchableOpacity
+                              key={friend.uid}
+                              onPress={() => {
+                                if (sending) return;
+                                hapticTap();
+                                setArenaFriendPickUid(friend.uid);
+                              }}
+                              activeOpacity={0.7}
+                              style={{ alignItems: 'center', gap: 3, minWidth: 76, maxWidth: 108, opacity: sending ? 0.55 : 1 }}
                             >
-                              {name}
+                              <View
+                                style={
+                                  selected
+                                    ? {
+                                      borderRadius: 999,
+                                      padding: 3,
+                                      borderWidth: 2,
+                                      borderColor: t.accent,
+                                    }
+                                    : { borderRadius: 999, padding: 3 }
+                                }
+                              >
+                                <View style={{ position: 'relative' }}>
+                                  <AvatarView avatar={avatarId} size={44} />
+                                  {sending ? (
+                                    <View style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
+                                      <ActivityIndicator size="small" color={t.accent} />
+                                    </View>
+                                  ) : null}
+                                </View>
+                              </View>
+                              <Text
+                                numberOfLines={2}
+                                style={{
+                                  color: t.textPrimary,
+                                  fontSize: f.caption,
+                                  lineHeight: Math.round(f.caption * 1.2),
+                                  maxWidth: 104,
+                                  textAlign: 'center',
+                                }}
+                              >
+                                {name}
+                              </Text>
+                              <Text style={{ color: screenMuted, fontSize: f.caption }}>
+                                Lv {level}
+                              </Text>
+                            </TouchableOpacity>
+                          );
+                        })}
+                      </ScrollView>
+                      {arenaFriendPickUid != null && (
+                        <TouchableOpacity
+                          activeOpacity={0.85}
+                          disabled={arenaInviteSendingUid != null}
+                          onPress={() => void handleSendInAppInviteToFriend(arenaFriendPickUid)}
+                          style={{ opacity: arenaInviteSendingUid != null ? 0.55 : 1 }}
+                        >
+                          <LinearGradient
+                            colors={[t.accent, t.accent + 'BB']}
+                            style={[styles.mainBtn, { marginHorizontal: 16 }]}
+                            start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
+                          >
+                            <Ionicons name="flash" size={22} color={t.correctText} />
+                            <Text style={[styles.mainBtnText, { color: t.correctText, fontSize: f.h2 }]}>
+                              {triLang(lang, {
+                                ru: 'Бросить вызов',
+                                uk: 'Кинути виклик',
+                                es: 'Lanzar el reto',
+                              })}
                             </Text>
-                            <Text style={{ color: screenMuted, fontSize: f.sub }}>
-                              Lv {level}
-                            </Text>
-                          </TouchableOpacity>
-                        );
-                      })}
-                    </ScrollView>
+                          </LinearGradient>
+                        </TouchableOpacity>
+                      )}
+                    </View>
                   )}
-                </View>
+                </>
               )}
 
             </>
@@ -1373,7 +1566,18 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             </Text>
           )}
         </View>
-      </View>
+        <View style={{ alignItems: 'center', paddingTop: 8 }}>
+          <ReportErrorButton
+            screen="arena_lobby"
+            dataId="arena_lobby"
+            dataText={triLang(lang, {
+              ru: 'Лобби арены',
+              uk: 'Лобі арени',
+              es: 'Lobby de la arena',
+            })}
+          />
+        </View>
+      </ScrollView>
       </SafeAreaView>
 
       <ArenaLimitModal
@@ -1424,7 +1628,17 @@ const styles = StyleSheet.create({
   rankEmoji: { fontSize: 16 },
   rankText: { fontWeight: '600' },
 
-  body: { flex: 1, paddingHorizontal: 20, gap: 16 },
+  bodyScroll: { flex: 1 },
+  /** flexGrow + justifyContent: на высоком экране блок по центру; на низком — вертикальный скролл без налезания. */
+  bodyScrollContent: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    paddingTop: 4,
+    paddingBottom: 12,
+    gap: 16,
+  },
+
   /** infoZone — фиксированный по высоте слот сверху для async-контента
       (queueHintIdle + premiumUnlimitedCard). Стабилизирует позицию кнопок:
       когда isUnlimited / queueOthersCount прилетают позже, центр группы
@@ -1443,7 +1657,7 @@ const styles = StyleSheet.create({
   },
   sizeBtnText: { fontWeight: '700' },
 
-  actions: { flex: 1, gap: 12, justifyContent: 'center' },
+  actions: { gap: 12 },
   mainBtn: {
     borderRadius: 18, height: 62,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
@@ -1549,7 +1763,7 @@ const styles = StyleSheet.create({
   energyInfo: { textAlign: 'center', marginTop: 0 },
   /** Один ряд с попытками — чуть выше таббара. minHeight держит место,
       чтобы поздний переключатель isUnlimited не дёргал layout actions. */
-  dailyLimitRow: { alignItems: 'center', justifyContent: 'center', paddingBottom: 4, marginBottom: 18, minHeight: 36 },
+  dailyLimitRow: { alignItems: 'center', justifyContent: 'center', paddingBottom: 4, marginBottom: 8, minHeight: 36 },
 
   queueActionMorphRow: {
     width: '100%',

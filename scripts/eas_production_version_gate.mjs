@@ -9,6 +9,21 @@ if (process.env.EAS_BUILD_PROFILE !== 'production') {
   process.exit(0);
 }
 
+function requireEnvPrefix(name, expectedPrefix) {
+  const value = String(process.env[name] ?? '').trim();
+  if (!value) {
+    throw new Error(`[eas-production-version-gate] ${name} is missing for production build`);
+  }
+  if (!value.startsWith(expectedPrefix)) {
+    throw new Error(
+      `[eas-production-version-gate] ${name} must start with ${expectedPrefix} for production build`,
+    );
+  }
+}
+
+requireEnvPrefix('EXPO_PUBLIC_RC_IOS', 'appl_');
+requireEnvPrefix('EXPO_PUBLIC_RC_ANDROID', 'goog_');
+
 function readAppSnapshot(raw) {
   const j = JSON.parse(raw);
   const e = j.expo;

@@ -40,7 +40,7 @@ export default function NotificationPermissionModal({
   const resolvedBody =
     body ??
     triLang(lang, {
-      ru: 'Мы напомним в нужное время, чтобы ты не терял стрик и быстрее рос в уровне.',
+      ru: 'Мы напомним в нужное время, чтобы ты не терял цепочку и быстрее рос в уровне.',
       uk: 'Ми нагадаємо в потрібний час, щоб ти не втрачав стрік і швидше ріс у рівні.',
       es: 'Te avisaremos en el momento adecuado para que no pierdas la racha y sigas subiendo de nivel.',
     });

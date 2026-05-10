@@ -3,6 +3,8 @@ import { Image, View } from 'react-native';
 import LevelBadge from './LevelBadge';
 import { getAvatarImageByIndex } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
+import CustomAvatarBadge from './CustomAvatarBadge';
+import { parseCustomAvatarValue } from '../constants/custom_avatars';
 
 interface Props {
   avatar?: string | null;  // числовой индекс аватара из приложения
@@ -14,6 +16,10 @@ interface Props {
 
 export default function AvatarView({ avatar, totalXP, level, size = 44, style }: Props) {
   const resolvedLevel = level ?? (totalXP !== undefined ? getLevelFromXP(totalXP) : 1);
+  const customAvatar = parseCustomAvatarValue(avatar);
+  if (customAvatar) {
+    return <CustomAvatarBadge value={avatar} size={size} style={style} />;
+  }
   const avatarIndex = avatar && /^\d+$/.test(avatar) ? parseInt(avatar) : resolvedLevel;
   const avatarImage = getAvatarImageByIndex(avatarIndex);
 

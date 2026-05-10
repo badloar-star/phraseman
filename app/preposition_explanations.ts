@@ -66,6 +66,15 @@ const phraseRules: Rule[] = [
     },
   },
   {
+    preposition: 'on',
+    matches: [/\bput\s+on\b/],
+    explain: {
+      ru: '"Put on" — фразовый глагол: «надевать» (одежду, обувь). Здесь «on» не про положение на поверхности, а часть устойчивого сочетания вместе с глаголом put; другие предлоги в этот слот не подходят.',
+      uk: '"Put on" — фразове дієслово: «надягати» (одяг, взуття). Тут «on» не про положення на поверхні, а частина сталого сполучення з дієсловом put; інші прийменники в цей слот не підходять.',
+      es: '«Put on» es un verbo frasal para ponerse ropa o calzado; «on» forma parte fija del verbo, no indica superficie espacial como «on the table».',
+    },
+  },
+  {
     preposition: 'at',
     matches: [/\bat home\b/],
     explain: {

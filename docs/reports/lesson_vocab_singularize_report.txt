@@ -1,0 +1,163 @@
+- friends → friend
+- enemies → enemy
+- people → person
+- terms → term
+- books → book
+- dishes → dish
+- keys → key
+- letters → letter
+- strangers → stranger
+- ads → ad
+- details → detail
+- masks → mask
+- messages → message
+- rules → rule
+- secrets → secret
+- tickets → ticket
+- vegetables → vegetable
+- cards → card
+- mistakes → mistake
+- taxes → tax
+- groceries → grocery bag
+- guests → guest
+- bookings → booking
+- chargers → charger
+- documents → document
+- mondays → Monday
+- saturdays → Saturday
+- sundays → Sunday
+- thursdays → Thursday
+- tuesdays → Tuesday
+- wednesdays → Wednesday
+- weekends → weekend
+- apples → apple
+- cafes → cafe
+- cars → car
+- desserts → dessert
+- magazines → magazine
+- mountains → mountain
+- pens → pen
+- pharmacies → pharmacy
+- photos → photo
+- places → place
+- printers → printer
+- questions → question
+- stars → star
+- students → student
+- tasks → task
+- towels → towel
+- trees → tree
+- windows → window
+- papers → paper
+- batteries → battery
+- days → day
+- hours → hour
+- minutes → minute
+- plants → plant
+- shelves → shelf
+- shoes → shoe
+- suitcases → suitcase
+- gloves → glove
+- boots → boot
+- bags → bag
+- fruits → fruit
+- words → word
+- armchairs → armchair
+- grapes → grape
+- pears → pear
+- snacks → snack
+- crumbs → crumb
+- bananas → banana
+- blankets → blanket
+- buildings → building
+- clocks → clock
+- cookies → cookie
+- curtains → curtain
+- drones → drone
+- knives → knife
+- licenses → license
+- maps → map
+- mice → mouse
+- nuts → nut
+- ribbons → ribbon
+- rings → ring
+- scarves → scarf
+- tomatoes → tomato
+- tools → tool
+- addresses → address
+- bottles → bottle
+- clients → client
+- coins → coin
+- colleagues → colleague
+- deals → deal
+- drops → drop
+- folders → folder
+- hands → hand
+- jackets → jacket
+- leaflets → leaflet
+- parcels → parcel
+- plates → plate
+- problems → problem
+- socks → sock
+- builders → builder
+- children → child
+- conditions → condition
+- farmers → farmer
+- flowers → flower
+- gardeners → gardener
+- gifts → gift
+- panels → panel
+- gates → gate
+- berries → berry
+- watches → watch
+- blueprints → blueprint
+- lamps → lamp
+- newspapers → newspaper
+- stairs → stair step
+- sneakers → sneaker
+- boxes → box
+- bushes → bush
+- clouds → cloud
+- forests → forest
+- hills → hill
+- parks → park
+- tables → table
+- employees → employee
+- VOCAB Vegetables → Vegetable
+- VOCAB Shoes → Shoe
+- VOCAB Dishes → Dish
+- VOCAB Batteries → Battery
+- VOCAB Plants → Plant
+- VOCAB Details → Detail
+- VOCAB Gloves → Glove
+- VOCAB Keys → Key
+- VOCAB Fruits → Fruit
+- VOCAB Documents → Document
+- VOCAB Vegetables → Vegetable
+- VOCAB Gloves → Glove
+- VOCAB Shoes → Shoe
+- VOCAB Terms → Term
+- VOCAB Vegetables → Vegetable
+- VOCAB Goods → Good
+
+## Addendum 2026-05-02 (app/lesson_words.tsx)
+
+Structural fixes:
+- Lesson 7: normalized duplicate booking/charger/document entries; booking pos corrected to nouns once.
+- Removed duplicate rows within a lesson where the singular headword already exists: lesson 9 (removed towels row; towel present), removed redundant plural weekday rows (Monday–Saturday/weekend already listed), lesson 16 folders/parcels/plates, lesson 14 snacks (snack kept), lesson 13 armchairs, lesson 26 objects, lesson 27 instructions, lesson 29 theories (Theory in lesson 30).
+- Lesson 19: merged duplicate sail rows (kept sailing sense as single lemma).
+
+Plural → singular (selected; see git history on app/lesson_words.tsx for full delta):
+- Lesson 12: headphones→headphone; earlier lessons batch in first section of this file.
+- Lesson 22: landscapes, languages, mushrooms, opportunities, products, lines, souvenirs, stamps, toys; animals/artifacts/chemicals/cultures.
+- Lesson 23: bills, files, ideas, meetings, patients, prizes, reports, secretaries, tourists, winners.
+- Lessons 24–25: parents, partners, results, sports, technologies, tests; contracts; relatives; services; settings.
+- Lesson 26: crossroads→crossroad, funds→fund; club, customer, error, figure, sensor, vent.
+- Lessons 28–31: citizen, volunteer, speech; cigarette, distance, award, rescuer, dispute, pilot, gathering, obstacle, sculpture, surgery; graphic, content, exhibit; argument, jewel, edge, diploma, tradition, company, skill, rose; protester, slogan.
+- Lesson 32: negotiations→negotiation, assignments→assignment, conclusions→conclusion, parties→party (legal sense gloss), cyberattacks→cyberattack, goods→merchandise.
+
+Still plural or special (product decision unchanged):
+- news, glasses, sunglasses, chess, belongings, species, overalls — plural-/mass-/plural-only forms.
+- Many rows remained with English surface form ending in -s where POS is wrongly `nouns` but lemma is verbal 3sg (e.g. calls, sleeps, hides); correcting those requires retagging verbs, not English plural morphology.
+
+Outstanding: VOCAB arrays in lesson_data_1_8.ts … lesson_data_25_32.ts were not re-audited in this pass — align phrases with WORDS_BY_LESSON if phrase English headwords must match.

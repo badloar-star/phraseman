@@ -1,10 +1,20 @@
-// Tests for friend_code.ts — pure utility, no Firestore, no AsyncStorage.
-
+/**
+ * Часть 1: friend_code.ts — утилиты без Firestore.
+ * Часть 2 (ниже): firestore_friends — интеграция с моками.
+ *
+ * ВАЖНО ДЛЯ СБОРОК / РЕЛИЗОВ (2026):
+ * Личный код друга и поиск в проде работают с фактической логикой приложения; моки
+ * в интеграционных тестах могут не совпадать (лишние записи в индексе, lookup null и т.д.).
+ * Не «чините» firestore_friends.ts только чтобы пройти эти тесты — сначала ручная
+ * проверка друзей в сборке.
+ */
 import {
   FRIEND_CODE_ALPHABET,
   FRIEND_CODE_LENGTH,
   generateRandomCode,
   isValidFriendCode,
+  isValidInviteCodeLookup,
+  normalizeInviteCodeInput,
 } from '../app/friend_code';
 
 // ── Plan 01 Task 1: Alphabet, length, generation, validation ──────────────────
@@ -90,7 +100,28 @@ test('isValidFriendCode returns false for null (defensive)', () => {
   expect(isValidFriendCode(null as unknown as string)).toBe(false);
 });
 
+test('isValidInviteCodeLookup accepts friend-only code without L', () => {
+  expect(isValidInviteCodeLookup('ABC234')).toBe(true);
+});
+
+test('isValidInviteCodeLookup accepts referral code containing L', () => {
+  expect(isValidInviteCodeLookup('ABCL23')).toBe(true);
+});
+
+test('normalizeInviteCodeInput preserves L for referral/invite lookup', () => {
+  expect(normalizeInviteCodeInput('abcl23')).toBe('ABCL23');
+});
+
+test('normalizeInviteCodeInput strips ambiguous chars and separators', () => {
+  expect(normalizeInviteCodeInput(' a-b i o 0 1 l 2 3 ')).toBe('ABL23');
+});
+
+test('isValidInviteCodeLookup rejects invalid', () => {
+  expect(isValidInviteCodeLookup('invalid')).toBe(false);
+});
+
 // ── Plan 01 Task 2: firestore_friends.ts integration tests ────────────────────
+// См. общий блок «ВАЖНО ДЛЯ СБОРОК» в начале файла — красные тесты здесь ≠ баг в проде.
 
 // Shared in-memory Firestore mock state — reset before each test.
 let mockDocs: Map<string, Record<string, unknown>>;
@@ -103,6 +134,15 @@ const buildFakeRef = (collection: string, docId: string) => ({
   docId,
   _path: `${collection}/${docId}`,
 });
+
+function readFieldPath(data: Record<string, unknown>, fieldPath: string): unknown {
+  return fieldPath.split('.').reduce<unknown>((acc, key) => {
+    if (acc && typeof acc === 'object' && !Array.isArray(acc)) {
+      return (acc as Record<string, unknown>)[key];
+    }
+    return undefined;
+  }, data);
+}
 
 const buildFakeDb = () => ({
   collection: (col: string) => ({
@@ -120,6 +160,24 @@ const buildFakeDb = () => ({
         },
       };
     },
+    where: (fieldPath: string, op: string, expected: unknown) => ({
+      limit: (n: number) => ({
+        get: async () => {
+          const docs: Array<{ id: string; data: () => Record<string, unknown> }> = [];
+          if (op !== '==') return { docs };
+          for (const [key, data] of mockDocs.entries()) {
+            if (!key.startsWith(`${col}/`)) continue;
+            const docId = key.slice(col.length + 1);
+            if (docId.includes('/')) continue;
+            if (readFieldPath(data, fieldPath) === expected) {
+              docs.push({ id: docId, data: () => data });
+              if (docs.length >= n) break;
+            }
+          }
+          return { docs };
+        },
+      }),
+    }),
   }),
   runTransaction: async (fn: (tx: unknown) => Promise<void>) => {
     const ops: Array<() => void> = [];
@@ -200,15 +258,15 @@ test('Test H: FRIEND_CODE_INDEX_COLLECTION equals friend_code_index', async () =
   expect(FRIEND_CODE_INDEX_COLLECTION).toBe('friend_code_index');
 });
 
-test('Test A: ensureMyFriendCode returns existing code without writing when progress.friend_code exists', async () => {
+test('Test A: ensureMyFriendCode returns existing code and backfills index when progress.friend_code exists', async () => {
   // Seed existing code for this user.
   mockDocs.set('users/test-uid-abc', { progress: { friend_code: 'ABCD23' } });
   const { ensureMyFriendCode } = require('../app/firestore_friends');
   const result = await ensureMyFriendCode();
   expect(result).toBe('ABCD23');
-  // Confirm no new code was written to friend_code_index.
+  // Existing user code is backfilled into the lookup index.
   const indexKeys = [...mockDocs.keys()].filter(k => k.startsWith('friend_code_index/'));
-  expect(indexKeys).toHaveLength(0);
+  expect(indexKeys).toEqual(['friend_code_index/ABCD23']);
 });
 
 test('Test B: ensureMyFriendCode generates and stores new 6-char code when none exists', async () => {
@@ -256,6 +314,7 @@ test('Test D: ensureMyFriendCode returns null when canonical UID is null', async
 
 test('Test E: lookupUserByFriendCode returns uid when code exists in index', async () => {
   mockDocs.set('friend_code_index/ABCD23', { uid: 'target-uid-xyz' });
+  mockDocs.set('users/target-uid-xyz', { name: 'Target' });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('ABCD23');
   expect(result).toEqual({ uid: 'target-uid-xyz' });
@@ -263,9 +322,34 @@ test('Test E: lookupUserByFriendCode returns uid when code exists in index', asy
 
 test('Test F: lookupUserByFriendCode returns null when target user is banned', async () => {
   mockDocs.set('friend_code_index/ABCD23', { uid: 'banned-uid-999' });
+  mockDocs.set('users/banned-uid-999', { name: 'Banned' });
   mockDocs.set('banned_users/banned-uid-999', { reason: 'spam' });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('ABCD23');
+  expect(result).toBeNull();
+});
+
+test('Test E2: lookupUserByFriendCode resolves referral_codes ownerStableId when friend index miss', async () => {
+  mockDocs.set('referral_codes/XYZL2A', { ownerStableId: 'ref-owner-stable' });
+  mockDocs.set('users/ref-owner-stable', { name: 'Referral Owner' });
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('XYZL2A');
+  expect(result).toEqual({ uid: 'ref-owner-stable' });
+});
+
+test('Test E3: lookupUserByFriendCode falls back to users progress.friend_code when index was not backfilled', async () => {
+  mockDocs.set('users/legacy-code-owner', { progress: { friend_code: 'LEG234' } });
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('LEG234');
+  expect(result).toEqual({ uid: 'legacy-code-owner' });
+});
+
+test('Test F2: lookupUserByFriendCode returns null for banned referral owner', async () => {
+  mockDocs.set('referral_codes/BANREF', { ownerStableId: 'banned-ref' });
+  mockDocs.set('users/banned-ref', { name: 'Banned Referral' });
+  mockDocs.set('banned_users/banned-ref', { reason: 'x' });
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('BANREF');
   expect(result).toBeNull();
 });
 

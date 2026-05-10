@@ -46,7 +46,7 @@ export const getStreakReminderText = (streakDays: number, lang: Lang) => ({
       ? `Твоя серія: ${streakDays} днів 🔥`
       : lang === 'es'
         ? `Tu racha: ${streakDays} días 🔥`
-        : `Твой стрик: ${streakDays} дней 🔥`,
+        : `Твоя цепочка: ${streakDays} ${streakDays === 1 ? 'день' : streakDays < 5 ? 'дня' : 'дней'} 🔥`,
   body: lang === 'uk' ? 'Займайся сьогодні!' : lang === 'es' ? '¡Practica hoy!' : 'Займись сегодня!',
 });
 

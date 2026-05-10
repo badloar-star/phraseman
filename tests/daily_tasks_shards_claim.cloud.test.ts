@@ -40,10 +40,10 @@ describe('claimDailyTasksAllShardsReward (Firestore transaction)', () => {
 
     await expect(claimDailyTasksAllShardsReward('2026-08-10')).resolves.toBe(true);
     expect(mockStorage['daily_tasks_all_shards_2026-08-10']).toBe('1');
-    expect(mockStorage.shards_balance).toBe('5');
+    expect(mockStorage.shards_balance).toBe('7');
 
     await expect(claimDailyTasksAllShardsReward('2026-08-10')).resolves.toBe(false);
-    expect(mockStorage.shards_balance).toBe('5');
+    expect(mockStorage.shards_balance).toBe('7');
   });
 
   it('returns false when reward claim already exists on server', async () => {

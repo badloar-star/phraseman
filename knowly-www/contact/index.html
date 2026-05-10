@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Связь и отзывы — Knowly · PhraseMan</title>
+  <meta name="description" content="Написать в поддержку PhraseMan или оставить отзыв." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/knowly.css?v=c1" />
+  <script src="/assets/site-config.js?v=6764800879" defer></script>
+</head>
+<body>
+  <div class="km-page-bg" aria-hidden="true"></div>
+  <div class="km-shell">
+    <header class="km-nav">
+      <a class="km-brand" href="/">
+        <span class="km-mark" aria-hidden="true"></span>
+        <span>
+          <span class="km-brand-name">Knowly</span><br />
+          <span class="km-brand-tag">мобильная студия</span>
+        </span>
+      </a>
+      <nav class="km-nav-links" aria-label="Главное">
+        <a href="/">Главная</a>
+        <div class="km-dd">
+          <button type="button" class="km-dd-btn" aria-haspopup="true" aria-expanded="false">
+            Приложения ▾
+          </button>
+          <div class="km-dd-panel" role="menu">
+            <a href="/download/" role="menuitem">PhraseMan — скачать</a>
+            <a href="/legal/privacy/" role="menuitem">Privacy</a>
+            <a href="/legal/terms/" role="menuitem">Terms</a>
+            <a href="/contact/" role="menuitem">Связь по приложениям</a>
+            <span style="display:block;padding:10px 12px;font-size:12px;color:var(--km-muted);border-top:1px solid var(--km-border);margin-top:6px">Другие приложения — скоро</span>
+          </div>
+        </div>
+        <a href="/#news">Новости</a>
+        <a href="/download/" class="km-cta">В магазин</a>
+      </nav>
+      <button type="button" id="km-burger" class="km-burger" aria-label="Меню">☰</button>
+    </header>
+    <div id="km-overlay" class="km-overlay" aria-hidden="true"></div>
+    <aside id="km-drawer" class="km-drawer" aria-label="Меню">
+      <div style="font-family:Syne,sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px">Knowly</div>
+      <a href="/" data-drawer-close>Главная</a>
+      <div class="km-drawer-h">Приложения</div>
+      <a href="/download/" data-drawer-close>PhraseMan — скачать</a>
+      <a href="/legal/privacy/" data-drawer-close>Privacy</a>
+      <a href="/legal/terms/" data-drawer-close>Terms</a>
+      <a href="/contact/" data-drawer-close>Связь по приложениям</a>
+      <div class="km-drawer-h">Ещё</div>
+      <a href="/#news" data-drawer-close>Новости</a>
+      <a href="/download/" data-drawer-close class="km-btn-primary km-cta">В магазин</a>
+    </aside>
+
+    <main class="km-main">
+      <section class="km-section">
+        <h1 class="km-h2">Связь и отзывы</h1>
+        <p class="km-sub">
+          Напишите, что хотите сообщить или спросить, и укажите почту для ответа — мы прочитаем обращение и свяжемся с вами.
+        </p>
+
+        <div class="km-glass-panel" style="max-width:560px">
+          <form id="km-contact-form" novalidate>
+            <div class="km-field km-hp" aria-hidden="true">
+              <label for="km-trap">Company</label>
+              <input type="text" id="km-trap" name="company" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="km-field">
+              <label for="km-name">Имя (по желанию)</label>
+              <input type="text" id="km-name" name="name" maxlength="120" autocomplete="name" />
+            </div>
+            <div class="km-field">
+              <label for="km-email">Email для ответа *</label>
+              <input type="email" id="km-email" name="email" required maxlength="320" autocomplete="email" />
+            </div>
+            <div class="km-field">
+              <label for="km-topic">Тема</label>
+              <select id="km-topic" name="topic">
+                <option value="support">Поддержка</option>
+                <option value="feedback">Отзыв</option>
+                <option value="legal">Юридический вопрос</option>
+                <option value="other">Другое</option>
+              </select>
+            </div>
+            <div class="km-field">
+              <label for="km-msg">Сообщение *</label>
+              <textarea id="km-msg" name="message" required minlength="10" maxlength="5000" placeholder="Опишите вопрос или идею (не меньше 10 символов)"></textarea>
+            </div>
+            <button type="submit" class="km-btn km-btn-primary" style="width:100%;border:none;cursor:pointer">
+              Отправить
+            </button>
+            <div id="km-toast" class="km-toast" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="km-footer">
+      <div class="km-footer-inner">
+        <p class="km-fineprint">Knowly — студия · форма обратной связи по приложениям</p>
+        <nav class="km-footer-links">
+          <a href="/">Главная</a>
+          <a href="/download/">Скачать</a>
+          <a href="/legal/privacy/">Privacy</a>
+          <a href="/legal/terms/">Terms</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/site.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('km-contact-form');
+      var toast = document.getElementById('km-toast');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (toast) {
+          toast.className = 'km-toast';
+          toast.textContent = '';
+        }
+        var trap = document.getElementById('km-trap');
+        if (trap && trap.value) {
+          if (toast) {
+            toast.className = 'km-toast ok';
+            toast.textContent = 'Спасибо! Сообщение принято.';
+          }
+          return;
+        }
+        var cfg = window.KNOWLY_SITE || {};
+        var ep = cfg.contactEndpoint;
+        if (!ep) {
+          if (toast) {
+            toast.className = 'km-toast err';
+            toast.textContent = 'Не настроен адрес отправки. Напишите на support.phraseman@gmail.com';
+          }
+          return;
+        }
+        var email = (document.getElementById('km-email') || {}).value || '';
+        var message = (document.getElementById('km-msg') || {}).value || '';
+        var name = (document.getElementById('km-name') || {}).value || '';
+        var topic = (document.getElementById('km-topic') || {}).value || 'support';
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.disabled = true;
+          btn.textContent = 'Отправка…';
+        }
+        try {
+          var res = await fetch(ep, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: email.trim(),
+              message: message.trim(),
+              name: name.trim(),
+              topic: topic,
+              pageUrl: typeof location !== 'undefined' ? location.href : '',
+            }),
+          });
+          var json = {};
+          try {
+            json = await res.json();
+          } catch (_) {}
+          if (!res.ok) {
+            throw new Error(json.error || 'Ошибка сервера (' + res.status + ')');
+          }
+          if (toast) {
+            toast.className = 'km-toast ok';
+            toast.textContent = 'Спасибо! Сообщение принято.';
+          }
+          form.reset();
+        } catch (err) {
+          if (toast) {
+            toast.className = 'km-toast err';
+            toast.textContent = (err && err.message) || 'Не удалось отправить. Попробуйте позже или напишите на почту.';
+          }
+        } finally {
+          if (btn) {
+            btn.disabled = false;
+            btn.textContent = 'Отправить';
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>

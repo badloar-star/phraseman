@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useRef } from 'react';
+import { Platform } from 'react-native';
 import * as Speech from 'expo-speech';
 import { getUserSettingsSnapshot, normalizeSpeechRate } from '../app/user_settings_store';
 
 export function preloadAudio() {}
 export function preloadSound(_text: string) {}
 
-type SpeakOpts = {
+export type SpeakOpts = {
   pitch?: number;
   /** BCP-47, напр. en-US, es-ES. По умолчанию en-US. */
   language?: string;
@@ -14,6 +15,45 @@ type SpeakOpts = {
   onStopped?: () => void;
   onError?: (e: Error) => void;
 };
+
+const UK_MARKERS = /[іїєґІЇЄҐ]/;
+const CYRILLIC_RE = /[\u0400-\u04FF]/;
+const LATIN_LETTER_RE = /[a-zA-ZÀ-ÖØ-öø-ÿĀ-ž]/;
+
+/**
+ * Підбирає мову expo-speech за вмістом рядка.
+ * Лицьова сторона картки може бути не англійською; зворотна — з підказкою `contentLangHint`
+ * для латиниці (іспанський переклад без окремих «іспанських» символів).
+ */
+export function inferExpoSpeechLanguage(
+  text: string,
+  contentLangHint?: 'ru' | 'uk' | 'es',
+): string {
+  const s = text.trim();
+  if (!s) return 'en-US';
+  if (UK_MARKERS.test(s)) return 'uk-UA';
+  let nCyr = 0;
+  let nLat = 0;
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+    if (CYRILLIC_RE.test(ch)) nCyr += 1;
+    else if (LATIN_LETTER_RE.test(ch)) nLat += 1;
+  }
+  if (nCyr >= 1 && nCyr >= nLat) return 'ru-RU';
+  if (nLat >= 1 && nCyr === 0) {
+    if (contentLangHint === 'es') return 'es-ES';
+    return 'en-US';
+  }
+  return 'en-US';
+}
+
+export function speechLocaleToShortLabel(locale: string): string {
+  const x = locale.trim().toLowerCase();
+  if (x.startsWith('uk')) return 'UK';
+  if (x.startsWith('ru')) return 'RU';
+  if (x.startsWith('es')) return 'ES';
+  return 'EN';
+}
 
 /**
  * На Android `Speech.stop()` отправляет команду TTS-движку асинхронно.
@@ -88,19 +128,19 @@ export function useAudio() {
       // eslint-disable-next-line no-console
       console.log(`[useAudio] speak rate=${safeRate} (req=${rate ?? 'snapshot'}) text="${normalized.slice(0, 40)}${normalized.length > 40 ? '…' : ''}"`);
     }
-    // Не пробрасываем pitch=undefined в native — на некоторых Android-движках
-    // это даёт писклявый/ускоренный артефакт. Опускаем поле, если не задано.
-    const speakOptions: Parameters<typeof Speech.speak>[1] = {
+    // Явный volume/stabilized pitch уменьшают «то громче, то тише» между материализациями на TTS-движке.
+    // pitch всегда число (never undefined в native — иначе часть Android-движков даёт «уставший» голос или писклявость).
+    const speakOptions = {
       language: opts?.language?.trim() || 'en-US',
       rate: safeRate,
+      volume: 1,
+      pitch: opts?.pitch != null ? opts.pitch : 1,
       onStart: opts?.onStart,
       onDone: opts?.onDone,
       onStopped: opts?.onStopped,
       onError: opts?.onError,
-    };
-    if (opts?.pitch != null) {
-      speakOptions.pitch = opts.pitch;
-    }
+      ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
+    } satisfies Parameters<typeof Speech.speak>[1];
 
     // Откладываем сам speak() на STOP_SETTLE_MS, чтобы Speech.stop() выше
     // гарантированно успел отработать на Android TTS-движке. Без этого

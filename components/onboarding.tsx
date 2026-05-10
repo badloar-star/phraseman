@@ -1054,12 +1054,24 @@ function AuthOnboardingStep({
           );
           return;
         }
-        // Не блокируем онбординг, но в проде иначе «тап — тишина».
+        // Человеческое сообщение для известных кодов ошибок.
+        const err = result.error ?? '';
+        const isNetwork =
+          err.includes('deadline-exceeded') ||
+          err.includes('ssl') ||
+          err.includes('I/O error') ||
+          err.includes('network') ||
+          err.includes('NETWORK_ERROR');
+        const body = isNetwork
+          ? authPick(
+              'Проблема с сетью. Проверь интернет и попробуй ещё раз.',
+              'Проблема з мережею. Перевір інтернет і спробуй ще раз.',
+              'Problema de red. Comprueba Internet e inténtalo otra vez.',
+            )
+          : authPick('Попробуй ещё раз или пропусти шаг.', 'Спробуй ще раз або пропусти крок.', 'Inténtalo otra vez u omite el paso.');
         AppInfoDialog.alert(
           authPick('Не удалось войти', 'Не вдалося увійти', 'No se pudo iniciar sesión'),
-          result.error
-            ? `${authPick('Код:', 'Код:', 'Código:')} ${result.error}`
-            : authPick('Попробуй позже или пропусти шаг.', 'Спробуй пізніше або пропусти крок.', 'Inténtalo más tarde u omite el paso.'),
+          body,
         );
         return;
       }

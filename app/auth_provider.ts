@@ -417,6 +417,11 @@ async function runGoogleNativeSignIn(): Promise<NativeAuthCredential | { cancell
         try { await mod.GoogleSignin.signOut(); } catch { /* ignore */ }
         continue;
       }
+      if (isTimeout) {
+        // Второй таймаут подряд — нативный picker завис, лечится повторным тапом.
+        if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: timeout on attempt 1, treating as cancelled');
+        return { cancelled: true };
+      }
       if (__DEV__) console.warn('[auth_provider] runGoogleNativeSignIn: signIn threw', e);
       throw e;
     }

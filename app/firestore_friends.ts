@@ -67,6 +67,9 @@ export function peekMemoryInviteCodeForFriends(): string | null {
 /** Firestore collection name for code → uid reverse index. Indexed by code (doc id). */
 export const FRIEND_CODE_INDEX_COLLECTION = 'friend_code_index';
 
+export type InviteCodeLookupSource = 'friend_code_index' | 'referral_code' | 'legacy_friend_code';
+export type InviteCodeLookupResult = { uid: string; source: InviteCodeLookupSource };
+
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
 const MAX_COLLISION_RETRIES = 10;
 
@@ -320,7 +323,7 @@ async function resolveCloudFriendCode(
  * Performs client-side validation via isValidFriendCode() before any
  * network call (cheap fail-fast on garbage input).
  */
-export async function lookupUserByFriendCode(code: string): Promise<{ uid: string } | null> {
+export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLookupResult | null> {
   const normalized = normalizeInviteCodeInput(code);
   if (!isValidInviteCodeLookup(normalized)) return null;
 
@@ -336,7 +339,7 @@ export async function lookupUserByFriendCode(code: string): Promise<{ uid: strin
         db.collection('users').doc(uid).get(),
         db.collection('banned_users').doc(uid).get(),
       ]);
-      if (userSnap.exists && !banSnap.exists) return { uid };
+      if (userSnap.exists && !banSnap.exists) return { uid, source: 'friend_code_index' };
     }
   }
 
@@ -348,7 +351,7 @@ export async function lookupUserByFriendCode(code: string): Promise<{ uid: strin
         db.collection('users').doc(uid).get(),
         db.collection('banned_users').doc(uid).get(),
       ]);
-      if (userSnap.exists && !banSnap.exists) return { uid };
+      if (userSnap.exists && !banSnap.exists) return { uid, source: 'referral_code' };
     }
   }
 
@@ -362,7 +365,7 @@ export async function lookupUserByFriendCode(code: string): Promise<{ uid: strin
     const uid = doc?.id as string | undefined;
     if (uid) {
       const banSnap = await db.collection('banned_users').doc(uid).get();
-      if (!banSnap.exists) return { uid };
+      if (!banSnap.exists) return { uid, source: 'legacy_friend_code' };
     }
   } catch {
     /* Best-effort fallback for old users whose friend_code_index was never backfilled. */

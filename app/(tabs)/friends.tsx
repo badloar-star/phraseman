@@ -1195,6 +1195,11 @@ export default function FriendsTabScreen() {
         setSearchError(randomSelfFriendCodeMessage(L));
         return;
       }
+      if (result.source === 'referral_code') {
+        void import('../referral_bootstrap')
+          .then((m) => m.captureReferralCodeFromManualInput(codeUpper))
+          .catch(() => {});
+      }
       const fetched = await fetchFriendProfileFromFirestore(result.uid);
       const profile: FriendProfile = fetched ?? {
         uid: result.uid, name: 'Игрок', totalXp: 0, weeklyXp: 0, streak: 0, isPremium: false,

@@ -317,7 +317,7 @@ test('Test E: lookupUserByFriendCode returns uid when code exists in index', asy
   mockDocs.set('users/target-uid-xyz', { name: 'Target' });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('ABCD23');
-  expect(result).toEqual({ uid: 'target-uid-xyz' });
+  expect(result).toEqual({ uid: 'target-uid-xyz', source: 'friend_code_index' });
 });
 
 test('Test F: lookupUserByFriendCode returns null when target user is banned', async () => {
@@ -334,14 +334,14 @@ test('Test E2: lookupUserByFriendCode resolves referral_codes ownerStableId when
   mockDocs.set('users/ref-owner-stable', { name: 'Referral Owner' });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('XYZL2A');
-  expect(result).toEqual({ uid: 'ref-owner-stable' });
+  expect(result).toEqual({ uid: 'ref-owner-stable', source: 'referral_code' });
 });
 
 test('Test E3: lookupUserByFriendCode falls back to users progress.friend_code when index was not backfilled', async () => {
   mockDocs.set('users/legacy-code-owner', { progress: { friend_code: 'LEG234' } });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('LEG234');
-  expect(result).toEqual({ uid: 'legacy-code-owner' });
+  expect(result).toEqual({ uid: 'legacy-code-owner', source: 'legacy_friend_code' });
 });
 
 test('Test F2: lookupUserByFriendCode returns null for banned referral owner', async () => {

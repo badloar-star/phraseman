@@ -10,7 +10,7 @@ import {
 import { loadShardsFromCloud } from './shards_system';
 import { getCanonicalUserId } from './user_id_policy';
 
-const INVITE_HTTPS_BASE = 'https://badloar-star.github.io/phraseman/invite';
+const INVITE_HTTPS_BASE = 'https://knowlyapps.com/phraseman/invite';
 
 /** Старый глобальный ключ (один ref на устройство) — больше не используем; убираем при apply. */
 const LEGACY_APPLIED_KEY = 'referral_apply_success_code';
@@ -41,7 +41,7 @@ const PENDING_REF_KEY = 'pending_referral_code';
 /** Сохраняет pending-код; `source` — аналитика. */
 export async function captureReferralCodeIfNew(
   code: string,
-  source: 'deeplink' | 'play_install' = 'deeplink',
+  source: 'deeplink' | 'play_install' | 'manual_code' = 'deeplink',
 ): Promise<void> {
   const c = String(code).trim().toUpperCase();
   if (c.length < 4) return;
@@ -53,6 +53,12 @@ export async function captureReferralCodeIfNew(
   }
   await AsyncStorage.setItem(PENDING_REF_KEY, c);
   logEvent('referral_deeplink_captured', { ref_len: c.length, src: source });
+}
+
+/** Stores a code entered in Friends and kicks off best-effort apply without blocking the UI. */
+export async function captureReferralCodeFromManualInput(code: string): Promise<void> {
+  await captureReferralCodeIfNew(code, 'manual_code');
+  void tryApplyPendingReferral().catch(() => {});
 }
 
 function extractRefParam(url: string | null | undefined): string | null {

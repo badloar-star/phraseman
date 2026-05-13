@@ -1,9 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import {
   ActivityIndicator,
-  Platform,
   ScrollView,
   Share,
   Text,
@@ -183,16 +182,7 @@ export default function SettingsInviteFriend() {
   }, [busy, lang, tx.needAuth, tx.needAuthTitle]);
 
   const isIos = effectiveOs === 'ios';
-  const scrollBottomPad = (isIos ? 28 : 100) + Math.max(insets.bottom, 16);
-
-  useEffect(() => {
-    if (Platform.OS !== 'ios') return;
-    router.replace('/(tabs)/friends' as any);
-  }, [router]);
-
-  if (Platform.OS === 'ios') {
-    return null;
-  }
+  const scrollBottomPad = 100 + Math.max(insets.bottom, 16);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'left', 'right']}>
@@ -293,21 +283,17 @@ export default function SettingsInviteFriend() {
               marginBottom: 18,
             }}
           >
-            {!isIos && (
-              <>
-                <Step
-                  n={1}
-                  title={tx.step1Title}
-                  body={tx.step1Body}
-                  icon="paper-plane-outline"
-                  t={t}
-                  f={f}
-                />
-                <Divider color={t.border} />
-              </>
-            )}
             <Step
-              n={isIos ? 1 : 2}
+              n={1}
+              title={tx.step1Title}
+              body={tx.step1Body}
+              icon="paper-plane-outline"
+              t={t}
+              f={f}
+            />
+            <Divider color={t.border} />
+            <Step
+              n={2}
               title={isIos ? tx.step2TitleIos : tx.step2Title}
               body={isIos ? tx.step2BodyIos : tx.step2Body}
               icon="school-outline"
@@ -316,7 +302,7 @@ export default function SettingsInviteFriend() {
             />
             <Divider color={t.border} />
             <Step
-              n={isIos ? 2 : 3}
+              n={3}
               title={tx.step3Title}
               body={tx.step3Body}
               icon="diamond-outline"
@@ -357,46 +343,44 @@ export default function SettingsInviteFriend() {
           </View>
         </ScrollView>
 
-        {!isIos && (
-          <View
+        <View
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            bottom: 0,
+            paddingHorizontal: 20,
+            paddingTop: 12,
+            paddingBottom: bottomPad,
+            backgroundColor: t.bgPrimary,
+            borderTopWidth: 0.5,
+            borderTopColor: t.border,
+          }}
+        >
+          <TouchableOpacity
+            onPress={onSendInvite}
+            disabled={busy}
+            activeOpacity={0.85}
             style={{
-              position: 'absolute',
-              left: 0,
-              right: 0,
-              bottom: 0,
-              paddingHorizontal: 20,
-              paddingTop: 12,
-              paddingBottom: bottomPad,
-              backgroundColor: t.bgPrimary,
-              borderTopWidth: 0.5,
-              borderTopColor: t.border,
+              backgroundColor: busy ? t.textGhost : t.correct,
+              borderRadius: 16,
+              paddingVertical: 16,
+              alignItems: 'center',
+              flexDirection: 'row',
+              justifyContent: 'center',
+              gap: 10,
             }}
           >
-            <TouchableOpacity
-              onPress={onSendInvite}
-              disabled={busy}
-              activeOpacity={0.85}
-              style={{
-                backgroundColor: busy ? t.textGhost : t.correct,
-                borderRadius: 16,
-                paddingVertical: 16,
-                alignItems: 'center',
-                flexDirection: 'row',
-                justifyContent: 'center',
-                gap: 10,
-              }}
-            >
-              {busy ? (
-                <ActivityIndicator color={t.correctText} />
-              ) : (
-                <Ionicons name="share-social" size={20} color={t.correctText} />
-              )}
-              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
-                {busy ? tx.preparing : tx.cta}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        )}
+            {busy ? (
+              <ActivityIndicator color={t.correctText} />
+            ) : (
+              <Ionicons name="share-social" size={20} color={t.correctText} />
+            )}
+            <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
+              {busy ? tx.preparing : tx.cta}
+            </Text>
+          </TouchableOpacity>
+        </View>
       </ScreenGradient>
     </SafeAreaView>
   );

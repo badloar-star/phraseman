@@ -1,0 +1,18 @@
+{
+  "generatedAt": "2026-05-16T09:05:56.947Z",
+  "checklist": [
+    "visible English answer leak in RU/UK word prompts",
+    "plural source canonicalized to singular without singular gloss",
+    "base verb prompt includes past-tense hint",
+    "plural weekdays should be periodic prompts",
+    "same visible prompt for different EN in one lesson",
+    "lesson theory mentions patterns used by phrase data",
+    "intro sources are wired and free of obvious mojibake/empty fields"
+  ],
+  "counts": {},
+  "wordRows": 1590,
+  "phraseRows": 1600,
+  "introFiles": 28,
+  "introStringFields": 1174,
+  "issues": []
+}

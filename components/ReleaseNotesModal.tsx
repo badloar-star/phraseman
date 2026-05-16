@@ -30,33 +30,48 @@ const TEXT = {
     es: 'La app ahora es más clara, más útil y un poco más seria.',
   },
   chips: {
-    ru: ['Уроки понятнее', 'Тренировки умнее', 'Статистика полезнее', 'Профиль красивее'],
-    uk: ['Уроки зрозуміліші', 'Тренування розумніші', 'Статистика корисніша', 'Профіль красивіший'],
-    es: ['Lecciones más claras', 'Entrenos más inteligentes', 'Estadísticas más útiles', 'Perfil más bonito'],
+    ru: ['Чат лиги', 'Призы за цель', 'Умнее тренировки', 'Сильнее аналитика'],
+    uk: ['Чат ліги', 'Призи за ціль', 'Розумніші тренування', 'Сильніша аналітика'],
+    es: ['Chat de liga', 'Premios por objetivo', 'Entrenos más inteligentes', 'Más analítica'],
   },
   body: {
     ru:
-      'У нас большое обновление. Такое, после которого приложение чуть выпрямило спину и сказало: «Ну всё, теперь я серьёзное».\n\n'
-      + 'Что нового: уроки стали понятнее, тренировки — умнее, статистика — полезнее, арена и лиги — стабильнее, а профиль теперь можно сделать заметнее и красивее. Мы также прошлись по контенту: поправили фразы, переводы и места, где приложение могло вести себя так, будто английский придумали в пятницу вечером.\n\n'
+      'У нас большое обновление. Такое, после которого PhraseMan поправил воротник и сказал: «Ладно, теперь работаем серьёзно».\n\n'
+      + 'Что нового: в лигах появился чат. Он живёт одну неделю — ровно столько, сколько текущая лига. Можно зайти, пожелать удачи другим участникам и сделать вид, что вы не собираетесь их обгонять по XP через пять минут.\n\n'
+      + 'В лигах теперь есть ценные призы за выполнение цели. Не просто «молодец, держи уважение», а настоящая игровая награда за регулярность.\n\n'
+      + 'Персональные тренировки стали умнее: приложение лучше замечает проблемные места и возвращает вас к ним без драмы, но с настойчивостью хорошего тренера.\n\n'
+      + 'Аналитика тоже сильно выросла. Теперь проще понять, где вы ошибаетесь, что уже получается и куда двигаться дальше. Стало нагляднее, честнее и намного полезнее.\n\n'
+      + 'Профиль стал заметнее: аватар, рамки и другие элементы кастомизации теперь помогают выглядеть так, будто прогресс у вас не только внутри, но и снаружи.\n\n'
+      + 'Мы также улучшили уроки, фразы, переводы, арену, лиги и места, где приложение могло вести себя так, будто английский придумали в пятницу вечером.\n\n'
       + 'Теперь о важном. Есть неприятная новость: все уроки начиная с четвёртого переходят в Premium.\n\n'
-      + 'Понимаем, что это не то сообщение, от которого хочется хлопать в ладоши. Но скажем честно: PhraseMan сильно вырос. Пользователей становится больше, серверы работают больше, обновления требуют больше времени, а маленькая студия не умеет оплачивать всё одним «спасибо, вы лучшие». Мы пробовали. Банковское приложение не оценило.\n\n'
-      + 'Мы не закрываем всё приложение: большая бесплатная часть остаётся доступной. Вы всё ещё можете учиться, тренироваться, играть, выполнять ежедневные задания и знакомиться с форматом.\n\n'
+      + 'Понимаем, это не тот момент, где хочется запускать салют. Но PhraseMan сильно вырос: пользователей больше, серверы работают больше, обновления требуют больше времени, а маленькая студия не умеет оплачивать всё одним «спасибо, вы лучшие». Мы проверяли. Банк не засчитал.\n\n'
+      + 'Большая бесплатная часть остаётся доступной: можно учиться, тренироваться, играть, выполнять ежедневные задания, участвовать в лигах и знакомиться с форматом.\n\n'
       + 'Premium нужен, чтобы мы могли продолжать делать новые уроки, улучшать качество и держать приложение быстрым для всех.\n\n'
       + 'Спасибо за понимание. Мы не ставим замок ради замка. Мы делаем это, чтобы PhraseMan не остановился.',
     uk:
-      'У нас велике оновлення. Таке, після якого застосунок трохи випростав спину й сказав: «Ну все, тепер я серйозний».\n\n'
-      + 'Що нового: уроки стали зрозумілішими, тренування — розумнішими, статистика — кориснішою, арена й ліги — стабільнішими, а профіль тепер можна зробити помітнішим і красивішим. Ми також пройшлися контентом: виправили фрази, переклади й місця, де застосунок поводився так, ніби англійську вигадали в п’ятницю ввечері.\n\n'
+      'У нас велике оновлення. Таке, після якого PhraseMan поправив комір і сказав: «Гаразд, тепер працюємо серйозно».\n\n'
+      + 'Що нового: у лігах з’явився чат. Він живе один тиждень — рівно стільки, скільки поточна ліга. Можна зайти, побажати удачі іншим учасникам і зробити вигляд, що ви не збираєтеся обганяти їх за XP через п’ять хвилин.\n\n'
+      + 'У лігах тепер є цінні призи за виконання цілі. Не просто «молодець, тримай повагу», а справжня ігрова нагорода за регулярність.\n\n'
+      + 'Персональні тренування стали розумнішими: застосунок краще помічає проблемні місця й повертає вас до них без драми, але з наполегливістю хорошого тренера.\n\n'
+      + 'Аналітика теж сильно виросла. Тепер простіше зрозуміти, де ви помиляєтеся, що вже виходить і куди рухатися далі. Стало наочніше, чесніше й набагато корисніше.\n\n'
+      + 'Профіль став помітнішим: аватар, рамки та інші елементи кастомізації тепер допомагають виглядати так, ніби прогрес у вас не лише всередині, а й зовні.\n\n'
+      + 'Ми також покращили уроки, фрази, переклади, арену, ліги й місця, де застосунок міг поводитися так, ніби англійську вигадали в п’ятницю ввечері.\n\n'
       + 'Тепер про важливе. Є неприємна новина: усі уроки, починаючи з четвертого, переходять у Premium.\n\n'
-      + 'Розуміємо, що це не те повідомлення, від якого хочеться плескати в долоні. Але скажемо чесно: PhraseMan сильно виріс. Користувачів стає більше, сервери працюють більше, оновлення потребують більше часу, а маленька студія не вміє оплачувати все одним «дякуємо, ви найкращі». Ми пробували. Банківський застосунок не оцінив.\n\n'
-      + 'Ми не закриваємо весь застосунок: велика безкоштовна частина залишається доступною. Ви все ще можете вчитися, тренуватися, грати, виконувати щоденні завдання й знайомитися з форматом.\n\n'
+      + 'Розуміємо, це не той момент, де хочеться запускати салют. Але PhraseMan сильно виріс: користувачів більше, сервери працюють більше, оновлення потребують більше часу, а маленька студія не вміє оплачувати все одним «дякуємо, ви найкращі». Ми перевіряли. Банк не зарахував.\n\n'
+      + 'Велика безкоштовна частина залишається доступною: можна вчитися, тренуватися, грати, виконувати щоденні завдання, брати участь у лігах і знайомитися з форматом.\n\n'
       + 'Premium потрібен, щоб ми могли продовжувати робити нові уроки, покращувати якість і тримати застосунок швидким для всіх.\n\n'
       + 'Дякуємо за розуміння. Ми не ставимо замок заради замка. Ми робимо це, щоб PhraseMan не зупинився.',
     es:
-      'Tenemos una actualización grande. De esas en las que la app se endereza un poco y dice: "Vale, ahora voy en serio".\n\n'
-      + 'Novedades: las lecciones son más claras, los entrenamientos son más inteligentes, las estadísticas son más útiles, la arena y las ligas son más estables, y ahora puedes hacer que tu perfil destaque más. También revisamos el contenido: corregimos frases, traducciones y lugares donde la app se comportaba como si el inglés se hubiera inventado un viernes por la noche.\n\n'
+      'Tenemos una actualización grande. De esas en las que PhraseMan se arregla el cuello de la camisa y dice: "Vale, ahora trabajamos en serio".\n\n'
+      + 'Novedades: las ligas ahora tienen chat. Vive una semana, exactamente lo mismo que la liga actual. Puedes entrar, desear suerte a otros participantes y fingir que no vas a adelantarlos en XP dentro de cinco minutos.\n\n'
+      + 'Las ligas ahora también tienen premios valiosos por completar el objetivo. No solo un "bien hecho, toma respeto", sino una recompensa real del juego por tu constancia.\n\n'
+      + 'Los entrenamientos personales son más inteligentes: la app detecta mejor tus puntos débiles y te devuelve a ellos sin drama, pero con la insistencia de un buen entrenador.\n\n'
+      + 'Las estadísticas también han crecido mucho. Ahora es más fácil entender dónde te equivocas, qué ya funciona y hacia dónde seguir. Todo es más claro, más honesto y mucho más útil.\n\n'
+      + 'El perfil también destaca más: el avatar, los marcos y otros elementos de personalización ayudan a que tu progreso se vea por dentro y por fuera.\n\n'
+      + 'También mejoramos lecciones, frases, traducciones, arena, ligas y lugares donde la app se comportaba como si el inglés se hubiera inventado un viernes por la noche.\n\n'
       + 'Ahora lo importante. Hay una noticia incómoda: todas las lecciones a partir de la cuarta pasan a Premium.\n\n'
-      + 'Sabemos que no es el tipo de mensaje que invita a aplaudir. Pero, siendo honestos, PhraseMan ha crecido mucho. Hay más usuarios, los servidores trabajan más, las actualizaciones requieren más tiempo y un estudio pequeño no puede pagarlo todo con un "gracias, son los mejores". Lo intentamos. La app del banco no quedó impresionada.\n\n'
-      + 'No cerramos toda la app: una gran parte gratuita sigue disponible. Todavía puedes aprender, entrenar, jugar, completar tareas diarias y probar el formato.\n\n'
+      + 'Sabemos que no es el momento de lanzar fuegos artificiales. Pero PhraseMan ha crecido mucho: hay más usuarios, los servidores trabajan más, las actualizaciones requieren más tiempo y un estudio pequeño no puede pagarlo todo con un "gracias, son los mejores". Lo comprobamos. El banco no lo aceptó.\n\n'
+      + 'Una gran parte gratuita sigue disponible: puedes aprender, entrenar, jugar, completar tareas diarias, participar en ligas y probar el formato.\n\n'
       + 'Premium nos ayuda a seguir creando lecciones nuevas, mejorar la calidad y mantener la app rápida para todos.\n\n'
       + 'Gracias por entenderlo. No ponemos un candado por ponerlo. Lo hacemos para que PhraseMan no se detenga.',
   },
@@ -256,7 +271,19 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
             {chips.map((chip, index) => (
               <View key={chip} style={styles.chip}>
                 <View style={styles.chipIcon}>
-                  <Ionicons name={index === 3 ? 'person-circle-outline' : 'checkmark'} size={13} color="#1B2330" />
+                  <Ionicons
+                    name={
+                      index === 0
+                        ? 'chatbubble-ellipses-outline'
+                        : index === 1
+                          ? 'trophy-outline'
+                          : index === 3
+                            ? 'analytics-outline'
+                            : 'checkmark'
+                    }
+                    size={13}
+                    color="#1B2330"
+                  />
                 </View>
                 <Text style={[styles.chipText, { fontSize: captionSize }]} numberOfLines={2}>
                   {chip}

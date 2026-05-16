@@ -338,12 +338,12 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
     }
   };
 
-  if (!visible) return null;
+  if (!visible || !gift) return null;
 
-  const rarity      = gift?.rarity ?? 'common';
-  const borderColor = gift ? RARITY_BORDER[rarity] : '#B8860B44';
-  const bgTint      = gift ? RARITY_BG[rarity] : 'transparent';
-  const rarityLabel = gift ? giftRarityUiLabel(rarity, lang) : '';
+  const rarity      = gift.rarity;
+  const borderColor = RARITY_BORDER[rarity];
+  const bgTint      = RARITY_BG[rarity];
+  const rarityLabel = giftRarityUiLabel(rarity, lang);
   const cosmeticLabel = cosmeticLabelForLang(appliedResult, lang);
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });

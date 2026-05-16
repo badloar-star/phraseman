@@ -2424,7 +2424,7 @@ export default function PremiumModal() {
                         </>
                       ) : (
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'right' }} numberOfLines={2}>
-                          {L('Загружаем цену...', 'Завантажуємо ціну...', 'Cargando precio...')}
+                          {L('...', '...', '...')}
                         </Text>
                       )}
                     </View>
@@ -2503,7 +2503,7 @@ export default function PremiumModal() {
                         </>
                       ) : (
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', textAlign: 'right' }} numberOfLines={2}>
-                          {L('Загружаем цену...', 'Завантажуємо ціну...', 'Cargando precio...')}
+                          {L('...', '...', '...')}
                         </Text>
                       )}
                     </View>
@@ -2530,7 +2530,7 @@ export default function PremiumModal() {
                 ? L('/год', '/рік', '/año')
                 : L('/мес', '/міс', '/mes');
               const ctaLabel = !canPurchaseSelectedPlan
-                ? L('Загружаем цены...', 'Завантажуємо ціни...', 'Cargando precios...')
+                ? L('Premium', 'Premium', 'Premium')
                 : hasTrial
                   ? L(
                       `🚀 3 дня бесплатно — затем ${ctaPrice}${periodStr}`,
@@ -2613,9 +2613,9 @@ export default function PremiumModal() {
                   <View style={{ marginTop: 12 }}>
                     <Text style={{ color: t.textGhost, fontSize: f.label, textAlign: 'center', lineHeight: 18 }}>
                       {L(
-                        'Загружаем актуальные цены из магазина приложений.',
-                        'Завантажуємо актуальні ціни з магазину застосунків.',
-                        'Cargando precios actuales desde la tienda de apps.',
+                        'Store price appears before purchase.',
+                        'Store price appears before purchase.',
+                        'Store price appears before purchase.',
                       )}
                     </Text>
                   </View>

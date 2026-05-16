@@ -1736,7 +1736,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                           <Ionicons name="flash" size={18} color={t.correctText} />
                           <Text style={[styles.arenaInviteButtonText, { color: t.correctText, fontSize: f.sub }]}>
                             {!friendRoomReady
-                              ? triLang(lang, { ru: 'Готовим комнату', uk: 'Готуємо кімнату', es: 'Preparando sala' })
+                              ? triLang(lang, { ru: 'Arena', uk: 'Arena', es: 'Arena' })
                               : arenaInviteSendingUid != null
                                   ? triLang(lang, { ru: 'Отправляем', uk: 'Надсилаємо', es: 'Enviando' })
                                   : triLang(lang, {

@@ -4,10 +4,12 @@
 // Перед выпуском: подстройте RELEASE_NOTES_NEW_USER_CUTOFF_MS (начало дня выкладки в стор).
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getAppReleaseBuildId } from './app_build_id';
 import { IS_EXPO_GO } from './config';
 
 /** false — окно «что нового» не показываем (текст устарел / не нужен). */
 export const RELEASE_NOTES_MODAL_ENABLED = true;
+export const RELEASE_NOTES_MIN_BUILD_ID = 71;
 
 /**
  * Установки с первого запуска не раньше этого момента (UTC) считаются «новыми» — окно не показываем.
@@ -20,6 +22,7 @@ const DISMISS_KEY = 'release_notes_dismissed_2026_05_15_premium_v1';
 export async function shouldOfferReleaseNotesModal(): Promise<boolean> {
   if (!RELEASE_NOTES_MODAL_ENABLED) return false;
   if (IS_EXPO_GO) return false;
+  if (getAppReleaseBuildId() < RELEASE_NOTES_MIN_BUILD_ID) return false;
 
   const [dismissed, installRaw, onboarding] = await AsyncStorage.multiGet([
     DISMISS_KEY,

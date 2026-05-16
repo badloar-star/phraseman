@@ -33,6 +33,7 @@ import {
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATAR_OWNED_KEY,
   CUSTOM_AVATARS,
+  customAvatarGiftLabelForLang,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
 import {
@@ -762,15 +763,14 @@ export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock
       [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify(next)],
       [COSMETIC_GIFT_OWNED_AVATAR_KEY, avatar.id],
     ]);
-    const label = `${avatar.name} - ${gradient.name}`;
     return {
       kind: 'avatar',
       id: avatar.id,
       gradientId: gradient.id,
       logoColor,
-      labelRu: label,
-      labelUk: label,
-      labelEs: label,
+      labelRu: customAvatarGiftLabelForLang(avatar, gradient, 'ru'),
+      labelUk: customAvatarGiftLabelForLang(avatar, gradient, 'uk'),
+      labelEs: customAvatarGiftLabelForLang(avatar, gradient, 'es'),
     };
   } catch {
     return null;

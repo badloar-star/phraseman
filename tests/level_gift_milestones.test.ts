@@ -4,6 +4,11 @@ import {
   getMilestoneLevelGift,
   rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
+import {
+  CUSTOM_AVATAR_GRADIENTS,
+  CUSTOM_AVATARS,
+  customAvatarGiftLabelForLang,
+} from '../constants/custom_avatars';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
@@ -87,5 +92,18 @@ describe('level gift milestone rewards', () => {
 
     const owned = JSON.parse(mockStorage.custom_avatar_owned_v1 || '{}');
     expect(owned[unlocked!.id]).toBe(`${unlocked!.gradientId}:${unlocked!.logoColor}`);
+    expect(unlocked!.labelRu).toMatch(/^Аватар \d{2} - /);
+    expect(unlocked!.labelUk).toMatch(/^Аватар \d{2} - /);
+    expect(unlocked!.labelEs).toMatch(/^Avatar \d{2} - /);
+    expect(unlocked!.labelRu).not.toContain('Custom');
+  });
+
+  it('localizes custom avatar gift labels for the interface language', () => {
+    const avatar = CUSTOM_AVATARS.find(a => a.id === 'custom-12')!;
+    const gradient = CUSTOM_AVATAR_GRADIENTS.find(g => g.id === 'citrine')!;
+
+    expect(customAvatarGiftLabelForLang(avatar, gradient, 'ru')).toBe('Аватар 12 - Цитрин');
+    expect(customAvatarGiftLabelForLang(avatar, gradient, 'uk')).toBe('Аватар 12 - Цитрин');
+    expect(customAvatarGiftLabelForLang(avatar, gradient, 'es')).toBe('Avatar 12 - Citrino');
   });
 });

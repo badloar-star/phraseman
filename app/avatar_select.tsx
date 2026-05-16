@@ -16,6 +16,7 @@ import { useFocusEffect, useRouter } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
+import { useLang } from '../components/LangContext';
 import { usePremium } from '../components/PremiumContext';
 import { hapticTap } from '../hooks/use-haptics';
 import {
@@ -38,9 +39,11 @@ import {
   CUSTOM_AVATARS,
   CustomAvatarLogoColor,
   CustomAvatarDef,
+  customAvatarGradientNameForLang,
   makeCustomAvatarValue,
   parseCustomAvatarValue,
 } from '../constants/custom_avatars';
+import { triLang } from '../constants/i18n';
 import CustomAvatarBadge from '../components/CustomAvatarBadge';
 import AvatarView from '../components/AvatarView';
 import AvatarAura from '../components/AvatarAura';
@@ -311,6 +314,7 @@ export default function AvatarSelect() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
+  const { lang } = useLang();
   const { isPremium } = usePremium();
   const [level, setLevel] = useState(1);
   const [shards, setShards] = useState(0);
@@ -350,6 +354,10 @@ export default function AvatarSelect() {
   const leagueName = LEAGUE_SHORT_RU[Math.max(0, Math.min(LEAGUE_SHORT_RU.length - 1, leagueId))] ?? LEAGUE_SHORT_RU[0];
   const profileTitle = getTitleString(level, 'ru');
   const cardLevelText = profileCardSnapshot.level > 0 ? profileCardLevelRoman(profileCardSnapshot.level) : '0';
+  const auraName = useCallback(
+    (aura: AvatarAuraDef) => triLang(lang, { ru: aura.nameRu, uk: aura.nameUk, es: aura.nameEs }),
+    [lang],
+  );
   const profileCardStats = useMemo(
     () => [
       { label: 'Лига', value: leagueName },
@@ -971,7 +979,7 @@ export default function AvatarSelect() {
                     <AvatarView avatar={activeAvatar} level={level} size={54} />
                   </AvatarAura>
                   <Text style={{ color: t.textPrimary, fontSize: 10, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
-                    {aura.nameRu}
+                    {auraName(aura)}
                   </Text>
                   <View style={{ marginTop: 3, minHeight: 15, justifyContent: 'center' }}>
                     {isOwned
@@ -1012,7 +1020,11 @@ export default function AvatarSelect() {
         messageNode={pendingAuraPurchase ? (
           <View style={{ marginBottom: 22 }}>
             <Text style={{ color: t.textMuted, fontSize: f.body, lineHeight: f.body * 1.5 }}>
-              Открыть ауру «{pendingAuraPurchase.nameRu}» за осколки?
+              {triLang(lang, {
+                ru: `Открыть ауру «${auraName(pendingAuraPurchase)}» за осколки?`,
+                uk: `Відкрити ауру «${auraName(pendingAuraPurchase)}» за осколки?`,
+                es: `¿Desbloquear el aura «${auraName(pendingAuraPurchase)}» con fragmentos?`,
+              })}
             </Text>
             <View style={{ marginTop: 12, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
               <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>Стоимость:</Text>
@@ -1088,7 +1100,7 @@ export default function AvatarSelect() {
                       >
                         <CustomAvatarBadge avatarId={draftAvatar.id} gradientId={gradient.id} logoColor={draftLogoColor} size={52} />
                         <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '800', marginTop: 5 }} numberOfLines={1}>
-                          {gradient.name}
+                          {customAvatarGradientNameForLang(gradient, lang)}
                         </Text>
                       </TouchableOpacity>
                     );

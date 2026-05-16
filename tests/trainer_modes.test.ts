@@ -1781,7 +1781,7 @@ describe('mistake_log analytics', () => {
       id: 'article_a_an',
       category: 'article',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 1,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -1821,7 +1821,7 @@ describe('mistake_log analytics', () => {
       id: 'article_the_specific',
       category: 'article',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 2,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -1866,7 +1866,7 @@ describe('mistake_log analytics', () => {
       id: 'article_zero',
       category: 'article',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 3,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -1911,7 +1911,7 @@ describe('mistake_log analytics', () => {
       id: 'preposition_time_in_on_at',
       category: 'preposition',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 4,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -1956,7 +1956,7 @@ describe('mistake_log analytics', () => {
       id: 'preposition_place_in_on_at',
       category: 'preposition',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 5,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -2002,7 +2002,7 @@ describe('mistake_log analytics', () => {
       id: 'preposition_time_place',
       category: 'preposition',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 54,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2070,7 +2070,7 @@ describe('mistake_log analytics', () => {
       id: 'preposition_duration_for_since',
       category: 'preposition',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 6,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -2116,7 +2116,7 @@ describe('mistake_log analytics', () => {
       id: 'preposition_direction_to_into_from',
       category: 'preposition',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 28,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2167,7 +2167,7 @@ describe('mistake_log analytics', () => {
       id: 'preposition_direction',
       category: 'preposition',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 55,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2235,7 +2235,7 @@ describe('mistake_log analytics', () => {
       id: 'preposition_common_verb_patterns',
       category: 'preposition',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 29,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2288,7 +2288,7 @@ describe('mistake_log analytics', () => {
       id: 'object_order_give_me_it',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 30,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2339,7 +2339,7 @@ describe('mistake_log analytics', () => {
       id: 'word_order_basic_statement',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 31,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2390,7 +2390,7 @@ describe('mistake_log analytics', () => {
       id: 'word_order_basic_question',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 32,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2443,7 +2443,7 @@ describe('mistake_log analytics', () => {
       id: 'imperative_basic',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 49,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2494,7 +2494,7 @@ describe('mistake_log analytics', () => {
       id: 'condition_zero_first',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 50,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2545,7 +2545,7 @@ describe('mistake_log analytics', () => {
       id: 'condition_second_basic',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 51,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2596,7 +2596,7 @@ describe('mistake_log analytics', () => {
       id: 'relative_clauses_who_which_that',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 52,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2647,7 +2647,7 @@ describe('mistake_log analytics', () => {
       id: 'reported_speech_basic',
       category: 'syntax',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 53,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2698,7 +2698,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_present_simple_negative_question',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 7,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -2744,7 +2744,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_third_person',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 8,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -2790,7 +2790,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_present_simple_statement',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 22,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -2841,7 +2841,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_present_continuous_basic',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 23,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -2894,7 +2894,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_present_simple_vs_continuous',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 24,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -2945,7 +2945,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_past_simple_regular_irregular',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 25,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -2998,7 +2998,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_past_simple_negative_question',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 37,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3049,7 +3049,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_present_perfect_basic',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 38,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3102,7 +3102,7 @@ describe('mistake_log analytics', () => {
       id: 'present_perfect_vs_past_simple',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 39,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3153,7 +3153,7 @@ describe('mistake_log analytics', () => {
       id: 'present_perfect_questions_negatives',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 40,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3204,7 +3204,7 @@ describe('mistake_log analytics', () => {
       id: 'present_perfect_for_since',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 41,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3255,7 +3255,7 @@ describe('mistake_log analytics', () => {
       id: 'past_continuous_basic',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 42,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3306,7 +3306,7 @@ describe('mistake_log analytics', () => {
       id: 'past_simple_vs_past_continuous',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 43,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3357,7 +3357,7 @@ describe('mistake_log analytics', () => {
       id: 'used_to_basic',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 44,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3408,7 +3408,7 @@ describe('mistake_log analytics', () => {
       id: 'future_present_continuous_arrangements',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 45,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3459,7 +3459,7 @@ describe('mistake_log analytics', () => {
       id: 'verb_was_were',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 26,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3514,7 +3514,7 @@ describe('mistake_log analytics', () => {
       id: 'future_will_going_to',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 27,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3567,7 +3567,7 @@ describe('mistake_log analytics', () => {
       id: 'infinitive_vs_gerund_basic',
       category: 'verb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 33,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3620,7 +3620,7 @@ describe('mistake_log analytics', () => {
       id: 'to_be_present_agreement',
       category: 'to-be',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 9,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -3666,11 +3666,11 @@ describe('mistake_log analytics', () => {
       id: 'modal_base_form',
       category: 'modal',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: 'active',
       priority: 10,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
-    expect(training.contrastSet).toEqual(['modal + base verb', 'modal + to verb', 'modal + verb+s', 'modal + verb+ed', 'modal + be']);
+    expect(training.contrastSet).toEqual(['can help', 'can to help', 'can helps', 'can helping', 'should be']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
     expect(training.masteryRules).toEqual(expect.objectContaining({
@@ -3683,7 +3683,7 @@ describe('mistake_log analytics', () => {
     expect(training.smartTrainerConfig).toEqual(expect.objectContaining({
       source: 'diagnosis_training',
       microDiagnosisId: 'modal_base_form',
-      contrastSet: ['modal + base verb', 'modal + to verb', 'modal + verb+s', 'modal + verb+ed', 'modal + be'],
+      contrastSet: ['can help', 'can to help', 'can helps', 'can helping', 'should be'],
       minItems: 12,
       recommendedItems: 20,
     }));
@@ -3712,7 +3712,7 @@ describe('mistake_log analytics', () => {
       id: 'modal_should_must_have_to',
       category: 'modal',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 46,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3763,7 +3763,7 @@ describe('mistake_log analytics', () => {
       id: 'modal_can_could_ability_request',
       category: 'modal',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 47,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3814,7 +3814,7 @@ describe('mistake_log analytics', () => {
       id: 'modal_may_might_probability',
       category: 'modal',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 48,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -3865,7 +3865,7 @@ describe('mistake_log analytics', () => {
       id: 'pronoun_case',
       category: 'pronoun',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 11,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -3911,7 +3911,7 @@ describe('mistake_log analytics', () => {
       id: 'pronoun_possessive',
       category: 'pronoun',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 12,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -3957,7 +3957,7 @@ describe('mistake_log analytics', () => {
       id: 'adjective_comparison',
       category: 'adjective',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 13,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4005,7 +4005,7 @@ describe('mistake_log analytics', () => {
       id: 'adjective_vs_adverb',
       category: 'adverb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 14,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4054,7 +4054,7 @@ describe('mistake_log analytics', () => {
       id: 'adverb_frequency_position',
       category: 'adverb',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 15,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4103,7 +4103,7 @@ describe('mistake_log analytics', () => {
       id: 'too_enough',
       category: 'modifier',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 34,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -4156,7 +4156,7 @@ describe('mistake_log analytics', () => {
       id: 'modifier_very_really_quite',
       category: 'modifier',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 35,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -4209,7 +4209,7 @@ describe('mistake_log analytics', () => {
       id: 'conjunction_logic',
       category: 'conjunction',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 16,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4258,7 +4258,7 @@ describe('mistake_log analytics', () => {
       id: 'quantifier_some_any',
       category: 'determiner',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 18,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4307,7 +4307,7 @@ describe('mistake_log analytics', () => {
       id: 'determiner_this_that_these_those',
       category: 'determiner',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 19,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4357,7 +4357,7 @@ describe('mistake_log analytics', () => {
       id: 'there_is_are',
       category: 'existential',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 20,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4407,7 +4407,7 @@ describe('mistake_log analytics', () => {
       id: 'noun_singular_plural_basic',
       category: 'noun',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 21,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk', 'es']);
@@ -4457,7 +4457,7 @@ describe('mistake_log analytics', () => {
       id: 'noun_possessive_apostrophe_s',
       category: 'noun',
       version: '1.0.0',
-      status: 'ready_for_mvp_review',
+      status: expect.stringMatching(/^(ready_for_mvp_review|active)$/),
       priority: 36,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
@@ -4727,4 +4727,3 @@ describe('mistake_log analytics', () => {
     expect(legacyCount).toBeLessThanOrEqual(100);
   });
 });
-

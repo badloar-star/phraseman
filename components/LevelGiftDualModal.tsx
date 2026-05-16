@@ -452,15 +452,18 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
     }
   };
 
-  if (!visible) return null;
+  if (!visible || !f2pGift || !premGift) return null;
 
-  const borderC = f2pGift
-    ? (f2pGift.rarity === 'epic' || (premGift?.rarity === 'epic') ? RARITY_BORDER.epic : f2pGift.rarity === 'rare' || premGift?.rarity === 'rare' ? RARITY_BORDER.rare : RARITY_BORDER.common)
-    : RARITY_BORDER.common;
-  const bgTint  = f2pGift
-    ? (f2pGift.rarity === 'epic' || premGift?.rarity === 'epic' ? RARITY_BG.epic
-      : f2pGift.rarity === 'rare' || premGift?.rarity === 'rare' ? RARITY_BG.rare
-        : RARITY_BG.common) : RARITY_BG.common;
+  const borderC = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
+    ? RARITY_BORDER.epic
+    : f2pGift.rarity === 'rare' || premGift.rarity === 'rare'
+      ? RARITY_BORDER.rare
+      : RARITY_BORDER.common;
+  const bgTint  = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
+    ? RARITY_BG.epic
+    : f2pGift.rarity === 'rare' || premGift.rarity === 'rare'
+      ? RARITY_BG.rare
+      : RARITY_BG.common;
   const hasCosmeticGift = isCosmeticGiftId(f2pGift?.id) || isCosmeticGiftId(premGift?.id);
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.93, 1] });
   const modalY = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });

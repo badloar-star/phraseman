@@ -1,4 +1,5 @@
 import type { ImageSourcePropType } from 'react-native';
+import type { Lang } from './i18n';
 
 export const CUSTOM_AVATAR_BUY_COST = 50;
 export const CUSTOM_AVATAR_RESTYLE_COST = 10;
@@ -16,6 +17,42 @@ export type CustomAvatarDef = {
   id: string;
   name: string;
   image: ImageSourcePropType;
+};
+
+const CUSTOM_AVATAR_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
+  'custom-01': { ru: 'Аватар 01', uk: 'Аватар 01', es: 'Avatar 01' },
+  'custom-02': { ru: 'Аватар 02', uk: 'Аватар 02', es: 'Avatar 02' },
+  'custom-03': { ru: 'Аватар 03', uk: 'Аватар 03', es: 'Avatar 03' },
+  'custom-04': { ru: 'Аватар 04', uk: 'Аватар 04', es: 'Avatar 04' },
+  'custom-05': { ru: 'Аватар 05', uk: 'Аватар 05', es: 'Avatar 05' },
+  'custom-06': { ru: 'Аватар 06', uk: 'Аватар 06', es: 'Avatar 06' },
+  'custom-07': { ru: 'Аватар 07', uk: 'Аватар 07', es: 'Avatar 07' },
+  'custom-08': { ru: 'Аватар 08', uk: 'Аватар 08', es: 'Avatar 08' },
+  'custom-09': { ru: 'Аватар 09', uk: 'Аватар 09', es: 'Avatar 09' },
+  'custom-10': { ru: 'Аватар 10', uk: 'Аватар 10', es: 'Avatar 10' },
+  'custom-11': { ru: 'Аватар 11', uk: 'Аватар 11', es: 'Avatar 11' },
+  'custom-12': { ru: 'Аватар 12', uk: 'Аватар 12', es: 'Avatar 12' },
+  'custom-13': { ru: 'Аватар 13', uk: 'Аватар 13', es: 'Avatar 13' },
+  'custom-14': { ru: 'Аватар 14', uk: 'Аватар 14', es: 'Avatar 14' },
+  'custom-15': { ru: 'Аватар 15', uk: 'Аватар 15', es: 'Avatar 15' },
+  'custom-16': { ru: 'Аватар 16', uk: 'Аватар 16', es: 'Avatar 16' },
+  'custom-17': { ru: 'Аватар 17', uk: 'Аватар 17', es: 'Avatar 17' },
+  'custom-18': { ru: 'Аватар 18', uk: 'Аватар 18', es: 'Avatar 18' },
+  'custom-19': { ru: 'Аватар 19', uk: 'Аватар 19', es: 'Avatar 19' },
+  'custom-20': { ru: 'Аватар 20', uk: 'Аватар 20', es: 'Avatar 20' },
+};
+
+const CUSTOM_AVATAR_GRADIENT_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
+  aurora: { ru: 'Аврора', uk: 'Аврора', es: 'Aurora' },
+  ember: { ru: 'Искра', uk: 'Іскра', es: 'Brasa' },
+  cosmic: { ru: 'Космос', uk: 'Космос', es: 'Cósmico' },
+  forest: { ru: 'Лес', uk: 'Ліс', es: 'Bosque' },
+  citrine: { ru: 'Цитрин', uk: 'Цитрин', es: 'Citrino' },
+  royal: { ru: 'Королевский', uk: 'Королівський', es: 'Real' },
+  ruby: { ru: 'Рубин', uk: 'Рубін', es: 'Rubí' },
+  magma: { ru: 'Магма', uk: 'Магма', es: 'Magma' },
+  noirgold: { ru: 'Черное золото', uk: 'Чорне золото', es: 'Oro negro' },
+  sakura: { ru: 'Сакура', uk: 'Сакура', es: 'Sakura' },
 };
 
 export const CUSTOM_AVATAR_GRADIENTS: CustomAvatarGradient[] = [
@@ -93,5 +130,30 @@ export function getCustomAvatarById(id: string): CustomAvatarDef | undefined {
 
 export function getCustomAvatarGradientById(id: string): CustomAvatarGradient | undefined {
   return CUSTOM_AVATAR_GRADIENTS.find((gradient) => gradient.id === id);
+}
+
+export function customAvatarNameForLang(avatar: CustomAvatarDef | string | undefined | null, lang: Lang): string {
+  const id = typeof avatar === 'string' ? avatar : avatar?.id;
+  const fallback = typeof avatar === 'string' ? avatar : avatar?.name;
+  const label = id ? CUSTOM_AVATAR_LABELS[id] : undefined;
+  return label?.[lang] ?? label?.ru ?? fallback ?? '';
+}
+
+export function customAvatarGradientNameForLang(
+  gradient: CustomAvatarGradient | string | undefined | null,
+  lang: Lang,
+): string {
+  const id = typeof gradient === 'string' ? gradient : gradient?.id;
+  const fallback = typeof gradient === 'string' ? gradient : gradient?.name;
+  const label = id ? CUSTOM_AVATAR_GRADIENT_LABELS[id] : undefined;
+  return label?.[lang] ?? label?.ru ?? fallback ?? '';
+}
+
+export function customAvatarGiftLabelForLang(
+  avatar: CustomAvatarDef,
+  gradient: CustomAvatarGradient,
+  lang: Lang,
+): string {
+  return `${customAvatarNameForLang(avatar, lang)} - ${customAvatarGradientNameForLang(gradient, lang)}`;
 }
 

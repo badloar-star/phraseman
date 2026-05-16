@@ -38,6 +38,7 @@ export const PERSONAL_TRAINING_TAXONOMY: PersonalTrainingTaxonomyEntry[] = [
   entry('preposition_place_in_on_at', 'active', 'PASS'),
   entry('pronoun_case', 'active', 'PASS'),
   entry('to_be_present_agreement', 'active', 'PASS'),
+  entry('modal_base_form', 'active', 'PASS'),
   entry('verb_present_simple_negative_question', 'active', 'PASS'),
   entry('word_order_basic_question', 'active', 'PASS'),
 

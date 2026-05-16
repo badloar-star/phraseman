@@ -9,7 +9,7 @@ import { IS_EXPO_GO } from './config';
 
 /** false — окно «что нового» не показываем (текст устарел / не нужен). */
 export const RELEASE_NOTES_MODAL_ENABLED = true;
-export const RELEASE_NOTES_MIN_BUILD_ID = 71;
+export const RELEASE_NOTES_MIN_BUILD_ID = 73;
 
 /**
  * Установки с первого запуска не раньше этого момента (UTC) считаются «новыми» — окно не показываем.

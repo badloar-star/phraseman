@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StatusBar, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
@@ -174,9 +174,9 @@ export default function FlashcardsMarketDevScreen() {
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{subtitle}</Text>
             <Text style={{ marginTop: 6, color: t.textSecond, fontSize: f.sub }}>
               {triLang(lang, {
-                ru: 'Этап 1: каталог и оценки. Этап 2: покупка за осколки, ownership, отзывы.',
-                uk: 'Етап 1: каталог та оцінки. Етап 2: купівля за осколки, ownership, відгуки.',
-                es: 'Fase 1: catálogo y valoraciones. Fase 2: pagos con fragmentos, colección propia y reseñas.',
+                ru: 'Этап 1: каталог. Этап 2: покупка за осколки и ownership.',
+                uk: 'Етап 1: каталог. Етап 2: купівля за осколки та ownership.',
+                es: 'Fase 1: catálogo. Fase 2: pagos con fragmentos y colección propia.',
               })}
             </Text>
           </View>
@@ -221,9 +221,9 @@ export default function FlashcardsMarketDevScreen() {
             </View>
           )}
 
-          {loading ? (
+          {false && loading ? (
             <View style={{ paddingVertical: 32, alignItems: 'center' }}>
-              <ActivityIndicator color={t.accent} />
+              <View />
             </View>
           ) : (
             packs.map((pack) => {

@@ -8,8 +8,8 @@ export function preloadSound(_text: string) {}
 
 export type SpeakOpts = {
   pitch?: number;
-  /** BCP-47, напр. en-US, es-ES. По умолчанию en-US. */
   language?: string;
+  voice?: string;
   onStart?: () => void;
   onDone?: () => void;
   onStopped?: () => void;
@@ -19,12 +19,8 @@ export type SpeakOpts = {
 const UK_MARKERS = /[іїєґІЇЄҐ]/;
 const CYRILLIC_RE = /[\u0400-\u04FF]/;
 const LATIN_LETTER_RE = /[a-zA-ZÀ-ÖØ-öø-ÿĀ-ž]/;
+const STOP_SETTLE_MS = Platform.OS === 'android' ? 80 : 20;
 
-/**
- * Підбирає мову expo-speech за вмістом рядка.
- * Лицьова сторона картки може бути не англійською; зворотна — з підказкою `contentLangHint`
- * для латиниці (іспанський переклад без окремих «іспанських» символів).
- */
 export function inferExpoSpeechLanguage(
   text: string,
   contentLangHint?: 'ru' | 'uk' | 'es',
@@ -39,11 +35,8 @@ export function inferExpoSpeechLanguage(
     if (CYRILLIC_RE.test(ch)) nCyr += 1;
     else if (LATIN_LETTER_RE.test(ch)) nLat += 1;
   }
-  if (nCyr >= 1 && nCyr >= nLat) return 'ru-RU';
-  if (nLat >= 1 && nCyr === 0) {
-    if (contentLangHint === 'es') return 'es-ES';
-    return 'en-US';
-  }
+  if (nCyr >= 1 && nCyr >= nLat) return contentLangHint === 'uk' ? 'uk-UA' : 'ru-RU';
+  if (nLat >= 1 && nCyr === 0) return contentLangHint === 'es' ? 'es-ES' : 'en-US';
   return 'en-US';
 }
 
@@ -55,100 +48,60 @@ export function speechLocaleToShortLabel(locale: string): string {
   return 'EN';
 }
 
-/**
- * На Android `Speech.stop()` отправляет команду TTS-движку асинхронно.
- * Если сразу за ним вызвать `Speech.speak()`, движок может не успеть
- * обработать остановку — и оба utterance запускаются параллельно,
- * звучит как «перемотка плёнки». 80 мс эмпирически достаточно
- * (тестировано на Pixel/Samsung), при этом задержка незаметна UX.
- */
-const STOP_SETTLE_MS = 80;
-
 export function useAudio() {
   const lastTextRef = useRef('');
   const lastSpeakAtRef = useRef(0);
   const pendingTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Подстраховка: если экран размонтировался между stop() и отложенным speak() —
-  // не оставлять висящий таймер, который вызовет Speech.speak уже после ухода.
   useEffect(() => {
     return () => {
-      if (pendingTimerRef.current) {
-        clearTimeout(pendingTimerRef.current);
-        pendingTimerRef.current = null;
-      }
+      if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+      pendingTimerRef.current = null;
+      Speech.stop();
     };
   }, []);
 
   const stop = useCallback(() => {
-    if (pendingTimerRef.current) {
-      clearTimeout(pendingTimerRef.current);
-      pendingTimerRef.current = null;
-    }
-    Speech.stop();
-    // Reset dedupe so a deliberate replay right after stop is allowed.
+    if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+    pendingTimerRef.current = null;
     lastTextRef.current = '';
     lastSpeakAtRef.current = 0;
+    Speech.stop();
   }, []);
 
-  // ВАЖНО: если caller не передал rate — берём ТЕКУЩУЮ настройку юзера из snapshot,
-  // а не хардкод 0.9. Иначе экраны, забывшие пробросить settings.speechRate
-  // (flashcards practice tap, lesson_verbs auto-speak, FlashcardListItem.onSpeak,
-  // UgcPackEditorCardPreview.onSpeakEn), будут звучать на 0.9 при выставленных
-  // в настройках 0.5/0.6/0.7 — это и воспринимается как «перемотка пленки».
   const speak = useCallback((text: string, rate?: number, opts?: SpeakOpts) => {
     const normalized = text?.trim();
     if (!normalized) return;
+
     const now = Date.now();
+    if (normalized === lastTextRef.current && now - lastSpeakAtRef.current < 220) return;
 
-    // Ignore accidental double-taps for the same token to avoid TTS restart jitter.
-    if (normalized === lastTextRef.current && now - lastSpeakAtRef.current < 220) {
-      return;
-    }
-
-    // Если есть отложенный speak (предыдущий тап ещё не запустился) — отменяем,
-    // запускаем только новейший запрос. Это правильное UX-поведение:
-    // юзер тапнул на новое — играем новое.
-    if (pendingTimerRef.current) {
-      clearTimeout(pendingTimerRef.current);
-      pendingTimerRef.current = null;
-    }
-
-    // Always stop before speaking to avoid overlapping utterances.
-    // Overlap sounds like "ultra-fast" broken speech on device.
+    if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+    pendingTimerRef.current = null;
     Speech.stop();
 
     lastTextRef.current = normalized;
     lastSpeakAtRef.current = now;
-    const desired = rate ?? getUserSettingsSnapshot().speechRate;
-    const safeRate = normalizeSpeechRate(desired);
-    // Помогает диагностировать «озвучка ультра-быстрая» — видно реальный rate
-    // и был ли он передан явно (req) или взят из user settings (snapshot).
-    if (typeof __DEV__ !== 'undefined' && __DEV__) {
-      // eslint-disable-next-line no-console
-      console.log(`[useAudio] speak rate=${safeRate} (req=${rate ?? 'snapshot'}) text="${normalized.slice(0, 40)}${normalized.length > 40 ? '…' : ''}"`);
-    }
-    // Явный volume/stabilized pitch уменьшают «то громче, то тише» между материализациями на TTS-движке.
-    // pitch всегда число (never undefined в native — иначе часть Android-движков даёт «уставший» голос или писклявость).
-    const speakOptions = {
-      language: opts?.language?.trim() || 'en-US',
-      rate: safeRate,
-      volume: 1,
-      pitch: opts?.pitch != null ? opts.pitch : 1,
-      onStart: opts?.onStart,
-      onDone: opts?.onDone,
-      onStopped: opts?.onStopped,
-      onError: opts?.onError,
-      ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
-    } satisfies Parameters<typeof Speech.speak>[1];
 
-    // Откладываем сам speak() на STOP_SETTLE_MS, чтобы Speech.stop() выше
-    // гарантированно успел отработать на Android TTS-движке. Без этого
-    // gap'а старый utterance успевает наложиться на новый — это и есть
-    // «работает через раз / эффект перемотки».
+    const settings = getUserSettingsSnapshot();
+    const safeRate = normalizeSpeechRate(rate ?? settings.speechRate);
+    const language = opts?.language?.trim() || inferExpoSpeechLanguage(normalized);
+    const requestedVoice = opts?.voice?.trim() || settings.speechVoiceId.trim();
+
     pendingTimerRef.current = setTimeout(() => {
       pendingTimerRef.current = null;
-      Speech.speak(normalized, speakOptions);
+      Speech.speak(normalized, {
+        language,
+        ...(requestedVoice ? { voice: requestedVoice } : {}),
+        rate: safeRate,
+        pitch: opts?.pitch ?? 1,
+        volume: 1,
+        onStart: opts?.onStart,
+        onDone: opts?.onDone,
+        onStopped: opts?.onStopped,
+        onError: opts?.onError,
+        ...(Platform.OS === 'ios' ? { useApplicationAudioSession: false as const } : {}),
+      });
     }, STOP_SETTLE_MS);
   }, []);
 

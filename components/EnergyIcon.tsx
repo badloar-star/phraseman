@@ -6,8 +6,6 @@ const ENERGY_IMAGES: Partial<Record<ThemeMode, any>> = {
   dark:   require('../assets/images/levels/ENERGY FOREST.webp'),
   neon:   require('../assets/images/levels/ENERGY NEON.webp'),
   gold:   require('../assets/images/levels/ENERGY CORAL.webp'),
-  ocean:  require('../assets/images/levels/ENERGY FOREST.webp'),
-  sakura: require('../assets/images/levels/ENERGY CORAL.webp'),
   minimalDark: require('../assets/images/levels/ENERGY FOREST.webp'),
   minimalLight: require('../assets/images/levels/ENERGY CORAL.webp'),
 };
@@ -33,8 +31,7 @@ export default function EnergyIcon({
   tintColor,
   isPremium = false,
 }: EnergyIconProps) {
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
-  const emptyOpacity = isLightTheme ? 0.6 : 0.4;
+  const emptyOpacity = 0.4;
   const opacityAnim = useRef(new Animated.Value(filled ? 1 : emptyOpacity)).current;
   const shakeAnim = useRef(new Animated.Value(0)).current;
 
@@ -73,8 +70,6 @@ export default function EnergyIcon({
   const computedTint = (() => {
     if (isPremium) return undefined; // premium image has its own colors — no tint
     if (tintColor) return tintColor;
-    if (themeMode === 'ocean') return filled ? '#0076C0' : '#1A4F72';
-    if (themeMode === 'sakura') return filled ? '#C0006A' : '#7B1F4E';
     return undefined;
   })();
 

@@ -11,6 +11,7 @@ import TabSlider from '../TabSlider';
 import { TabProvider, useTabNav } from '../TabContext';
 import { hapticTap } from '../../hooks/use-haptics';
 import { HOME_ENTRANCE } from '../../constants/motion';
+import { emitAppEvent } from '../events';
 import HomeScreen       from './home';
 import LessonsScreen    from './lessons';
 import ArenaTabScreen   from './arena';
@@ -106,13 +107,13 @@ const TABS: TabDef[] = [
   { key: 'settings', ru: 'Настройки', uk: 'Налаштування', es: 'Ajustes', icon: 'settings-outline', active: 'settings' },
 ];
 
-type TabScaffoldProps = { tabScreens: React.ReactNode[] };
+type TabScaffoldProps = { tabScreens: React.ReactNode[]; currentRouteIsTab: boolean };
 
 /**
  * Один full-screen ScreenGradient (орбы/градиент) под системным статус-баром + paddingTop по insets
  * (без SafeAreaView сверху — иначе над контентом оставалась «плашка» из bgPrimary).
  */
-function TabScaffold({ tabScreens }: TabScaffoldProps) {
+function TabScaffold({ tabScreens, currentRouteIsTab }: TabScaffoldProps) {
   const { lang } = useLang();
   const { theme: t, f, ds, themeMode, statusBarLight } = useTheme();
   const { contentMaxW, tabBarHeight, bottomInset: PB } = useScreen();
@@ -120,12 +121,25 @@ function TabScaffold({ tabScreens }: TabScaffoldProps) {
   const { goToTab, activeIdx, onSwipeStart, onSwipeComplete } = useTabNav();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
-  const isDeepLightTab = themeMode === 'sakura' || themeMode === 'ocean';
+  const isDeepLightTab = false;
   const isMinimal = themeMode === 'minimalLight' || themeMode === 'minimalDark';
+  const firstContentReadyEmittedRef = useRef(false);
+  const notifyFirstContentReady = useCallback(() => {
+    if (!currentRouteIsTab || activeIdx === 0 || firstContentReadyEmittedRef.current) return;
+    firstContentReadyEmittedRef.current = true;
+    requestAnimationFrame(() => {
+      setTimeout(() => emitAppEvent('app_first_content_ready'), 160);
+    });
+  }, [activeIdx, currentRouteIsTab]);
+
+  useEffect(() => {
+    notifyFirstContentReady();
+  }, [notifyFirstContentReady]);
+
   return (
     <ScreenGradient style={{ flex: 1 }} staticParallaxY={HOME_ENTRANCE.bgDriftPx}>
       <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} backgroundColor="transparent" translucent />
-      <View style={{ flex: 1, paddingTop: insets.top }}>
+      <View onLayout={notifyFirstContentReady} style={{ flex: 1, paddingTop: insets.top }}>
         <View style={{ flex: 1, maxWidth: contentMaxW, width: '100%', alignSelf: 'center', flexDirection: 'column' }}>
           {/* flex-колонка вместо absolute: таб-бар всегда снизу в дереве, его не перекрывает ScrollView/elevation */}
           <View style={s.tabContent}>
@@ -140,9 +154,7 @@ function TabScaffold({ tabScreens }: TabScaffoldProps) {
                 {
                   height: tabBarHeight,
                   backgroundColor: isMinimal ? t.bgCard : t.bgPrimary,
-                  borderTopColor: isDeepLightTab
-                    ? (themeMode === 'sakura' ? 'rgba(255,200,220,0.18)' : 'rgba(100,200,255,0.24)')
-                    : t.border,
+                  borderTopColor: t.border,
                   borderTopWidth: isMinimal ? 1 : 0.5,
                   borderTopLeftRadius: isMinimal ? ds.radius.xl : 0,
                   borderTopRightRadius: isMinimal ? ds.radius.xl : 0,
@@ -154,11 +166,7 @@ function TabScaffold({ tabScreens }: TabScaffoldProps) {
             >
               {TABS.map((tab, i) => {
                 const focused = activeIdx === i;
-                const color = isDeepLightTab
-                  ? (themeMode === 'sakura'
-                    ? (focused ? 'rgba(255,248,252,0.95)' : 'rgba(255,220,235,0.55)')
-                    : (focused ? 'rgba(240,252,255,0.95)' : 'rgba(180,220,255,0.6)'))
-                  : (focused ? t.textPrimary : t.textMuted);
+                const color = focused ? t.textPrimary : t.textMuted;
                 const label = isES ? tab.es : isUK ? tab.uk : tab.ru;
                 return (
                   <TouchableOpacity
@@ -171,14 +179,17 @@ function TabScaffold({ tabScreens }: TabScaffoldProps) {
                     activeOpacity={0.7}
                   >
                     {focused && (
-                      <View style={[s.indicator, { backgroundColor: isDeepLightTab ? (themeMode === 'sakura' ? 'rgba(255,180,210,0.9)' : 'rgba(120,210,255,0.95)') : t.textPrimary }]} />
+                      <View style={[s.indicator, { backgroundColor: t.textPrimary }]} />
                     )}
                     <Ionicons
                       name={focused ? tab.active : tab.icon}
                       size={22}
                       color={color}
                     />
-                    <Text style={[s.tabLabel, { color, fontWeight: focused ? '600' : '400', fontSize: f.label }]} numberOfLines={1}>
+                    <Text
+                      style={[s.tabLabel, { color, fontWeight: focused ? '600' : '400', fontSize: f.label }]}
+                      numberOfLines={1}
+                    >
                       {label}
                     </Text>
                   </TouchableOpacity>
@@ -245,7 +256,7 @@ export default function TabLayout() {
     });
   }, []);
 
-  const routerReplaceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const routerNavigateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const navigateTo = useCallback((idx: number) => {
     const target = IDX_TO_TAB_ROUTE[idx];
@@ -253,10 +264,10 @@ export default function TabLayout() {
     if (routerShowsTab(pathname, segments, idx)) return;
     // Откладываем router.replace на следующий frame после отрисовки UI — иначе
     // usePathname()-change → useLayoutEffect → React re-render вызывает белый кадр.
-    if (routerReplaceTimerRef.current) clearTimeout(routerReplaceTimerRef.current);
-    routerReplaceTimerRef.current = setTimeout(() => {
+    if (routerNavigateTimerRef.current) clearTimeout(routerNavigateTimerRef.current);
+    routerNavigateTimerRef.current = setTimeout(() => {
       pendingTabIdxRef.current = idx;
-      router.replace(target as any);
+      router.navigate(target as any);
     }, 0);
   }, [pathname, segments, router]);
 
@@ -294,9 +305,11 @@ export default function TabLayout() {
     ];
   }, [visitedTabs, tabPaneWidth]);
 
+  const currentRouteIsTab = tabIdxFromRouter(pathname, segments) !== null;
+
   return (
     <TabProvider activeIdx={activeIdx} onTabChange={handleTabChange} onSwipeStart={handleSwipeStart} onSwipeComplete={handleSwipeComplete} focusTick={focusTick}>
-      <TabScaffold tabScreens={tabScreens} />
+      <TabScaffold tabScreens={tabScreens} currentRouteIsTab={currentRouteIsTab} />
     </TabProvider>
   );
 }

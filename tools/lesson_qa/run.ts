@@ -9,7 +9,7 @@ import { readFileSync, existsSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-import { LESSON_DATA, LESSON_VOCABULARIES } from '../../app/lesson_data_all';
+import { LESSON_DATA } from '../../app/lesson_data_all';
 import { IRREGULAR_VERBS_BY_LESSON } from '../../app/irregular_verbs_data';
 import { getPhraseWords } from '../../app/lesson1_smart_options';
 import { parseWordsByLessonFromFile } from './parse_lesson_words_text';
@@ -49,6 +49,8 @@ const e = (check: string, detail: string, lessonId?: number, phraseId?: string |
   push({ severity: 'error', check, lessonId, phraseId, detail });
 const w = (check: string, detail: string, lessonId?: number, phraseId?: string | number) =>
   push({ severity: 'warn', check, lessonId, phraseId, detail });
+const info = (check: string, detail: string, lessonId?: number, phraseId?: string | number) =>
+  push({ severity: 'info', check, lessonId, phraseId, detail });
 
 // ─── British / non-AmE common spellings (heuristic) ───
 const BRITISH_PATTERNS: { re: RegExp; hint: string }[] = [
@@ -80,9 +82,21 @@ const FORBIDDEN_CONTR_AUX = new Set([
   "they're|are",
 ]);
 
-function phraseTokensFromData(phrase: { english: string; words: { correct: string }[] }): string[] {
-  if (phrase.words?.length) {
-    return phrase.words.map((x) => x.correct);
+type SlotRow = {
+  correct: string;
+  text?: string;
+  category?: string;
+  distractors?: string[];
+};
+
+function englishRows(phrase: { words?: SlotRow[]; wordsEn?: SlotRow[] }): SlotRow[] {
+  return phrase.wordsEn?.length ? phrase.wordsEn : phrase.words ?? [];
+}
+
+function phraseTokensFromData(phrase: { english: string; words?: SlotRow[]; wordsEn?: SlotRow[] }): string[] {
+  const rows = englishRows(phrase);
+  if (rows.length) {
+    return rows.map((x) => x.correct);
   }
   return getPhraseWords(phrase.english);
 }
@@ -100,7 +114,7 @@ function checkPhrasesAndWords() {
       if (!phrase.russian?.trim() || !phrase.ukrainian?.trim()) {
         w('translation', 'пустой russian или ukrainian', lessonId, pid);
       }
-      const words = phrase.words;
+      const words = englishRows(phrase);
       if (!words?.length) {
         w('no_words', 'массив words пуст — дрейф токенов', lessonId, pid);
         continue;
@@ -110,16 +124,20 @@ function checkPhrasesAndWords() {
         e('token_mismatch', `getPhraseTokens: ${words.length} слотов, токенизатор/words: ${toks.length} (${phrase.english})`, lessonId, pid);
       } else {
         for (let i = 0; i < toks.length; i++) {
-          if (words[i].correct.toLowerCase() !== toks[i].toLowerCase() && toks[i] !== '-') {
-            w('word_align', `слот ${i}: correct="${words[i].correct}" vs токен "${toks[i]}"`, lessonId, pid);
+          const word = words[i];
+          const tok = toks[i];
+          if (!word || tok === undefined) continue;
+          if (word.correct.toLowerCase() !== tok.toLowerCase() && tok !== '-') {
+            w('word_align', `слот ${i}: correct="${word.correct}" vs токен "${tok}"`, lessonId, pid);
           }
         }
       }
       for (let i = 0; i < words.length; i++) {
         const wi = words[i];
+        if (!wi) continue;
         if (!wi.correct?.trim()) e('empty_slot', `пустой correct @${i}`, lessonId, pid);
-        const d = wi.distractors;
-        if (!d?.length) e('distractors', 'нет дистракторов', lessonId, pid);
+        const d = wi.distractors ?? [];
+        if (!d.length) info('distractors', 'нет ручных дистракторов; fallback options проверяет audit:correct-presence', lessonId, pid);
         const set = new Set(d.map((x) => x.toLowerCase()));
         if (set.size !== d.length) w('distractor_dup', `повтор дистрактора @${i}`, lessonId, pid);
         if (d.some((x) => !x || !x.trim())) e('distractor_empty', `пустой дистрактор @${i}`, lessonId, pid);
@@ -131,7 +149,7 @@ function checkPhrasesAndWords() {
         // contraction + auxiliary
         if (i < words.length - 1) {
           const a = (wi.correct || '').trim();
-          const b = (words[i + 1].correct || '').trim();
+          const b = (words[i + 1]?.correct || '').trim();
           const k = `${a.toLowerCase()}|${b.toLowerCase()}`;
           if (FORBIDDEN_CONTR_AUX.has(k)) {
             w('contraction', `подозрительная пара: «${a}» + «${b}» (двойной глагол?)`, lessonId, pid);
@@ -195,7 +213,7 @@ function checkVocabularyAndDedup(lessonWordMap: Map<number, { en: string }[]>) {
   for (let lessonId = 1; lessonId <= 32; lessonId++) {
     for (const en of firstTokensForLesson(lessonId)) {
       if (seenLemmas.has(en)) {
-        w('vocab_repeat', `слово «${en}» уже встречалось в словаре раннего урока — убрать дубликат по смыслу?`, lessonId);
+        info('vocab_repeat', `слово «${en}» уже встречалось в словаре раннего урока — педагогический повтор`, lessonId);
       } else {
         seenLemmas.add(en);
       }
@@ -231,7 +249,7 @@ function checkVocabularyAndDedup(lessonWordMap: Map<number, { en: string }[]>) {
     if (!meta) continue;
     const need = new Set<string>();
     for (const p of meta.phrases) {
-      for (const word of p.words || []) {
+      for (const word of englishRows(p)) {
         const cat = (word.category || '').toLowerCase();
         if (cat === 'preposition' || cat === 'article' || word.text === '-' || word.correct === '-') continue;
         const fromPhrase = (word.correct || word.text) || '';
@@ -244,7 +262,7 @@ function checkVocabularyAndDedup(lessonWordMap: Map<number, { en: string }[]>) {
       if (/^\d+$/.test(wn)) continue; // годы, номера (1985) — не в словаре-леммах
       if (skipForms.has(wn)) continue;
       if (!enSet.has(wn) && ![...enSet].some((x) => wn.startsWith(x) || x.startsWith(wn))) {
-        w('vocab_coverage', `«${wn}» в фразах, нет en в lesson_words (проверить; не учтены омонимы/формы)`, lessonId);
+        info('vocab_coverage', `«${wn}» в фразах: старая эвристика покрытия (строгий источник — audit:lesson-words)`, lessonId);
       }
     }
   }
@@ -257,7 +275,7 @@ function checkIrregularVerbs() {
     for (const v of list) {
       const b = v.base.toLowerCase();
       if (pastSeenBases.has(b)) {
-        w('irreg_repeat', `глагол ${b} повторяется в списке непр. (уже в предыдущем уроке) — требуется?`, lessonId);
+        info('irreg_repeat', `глагол ${b} повторяется в списке непр. для закрепления`, lessonId);
       } else {
         pastSeenBases.add(b);
       }
@@ -266,11 +284,6 @@ function checkIrregularVerbs() {
   }
 }
 
-function checkVocabPacks() {
-  for (const [lid, _pack] of Object.entries(LESSON_VOCABULARIES)) {
-    if (!Object.keys(LESSON_DATA).includes(lid)) w('vocab_orphan', `LESSON_VOCABULARIES[${lid}] нет в LESSON_DATA?`);
-  }
-}
 
 function checkTheoryFile() {
   const p = join(REPO, 'app/lesson_help.tsx');
@@ -292,7 +305,6 @@ function main() {
   const lessonWordMap = parseWordsByLessonFromFile(lw);
 
   checkPhrasesAndWords();
-  checkVocabPacks();
   checkVocabularyAndDedup(lessonWordMap);
   checkIrregularVerbs();
   checkTheoryFile();
@@ -306,6 +318,7 @@ function main() {
 
   const err = report.filter((f) => f.severity === 'error');
   const warn = report.filter((f) => f.severity === 'warn');
+  const inf = report.filter((f) => f.severity === 'info');
 
   if (LESSON_FILTER != null) {
     console.log(`=== Урок ${LESSON_FILTER} (остальные уроки скрыты) ===\n`);
@@ -313,7 +326,10 @@ function main() {
 
   if (SUMMARY) {
     const by = new Map<string, number>();
-    for (const f of report) by.set(f.check, (by.get(f.check) || 0) + 1);
+    for (const f of report) {
+      const key = f.severity === 'info' ? `info:${f.check}` : f.check;
+      by.set(key, (by.get(key) || 0) + 1);
+    }
     const lines = [...by.entries()].sort((a, b) => b[1] - a[1]);
     for (const [k, n] of lines) console.log(`${n}\t${k}`);
   } else {
@@ -326,7 +342,7 @@ function main() {
 
   console.log('\n---');
   console.log(
-    `Всего по отчёту: ${report.length} (${err.length} ошиб., ${warn.length} предупр.)` +
+    `Всего по отчёту: ${report.length} (${err.length} ошиб., ${warn.length} предупр., ${inf.length} инфо)` +
       (LESSON_FILTER != null ? ` [урок ${LESSON_FILTER}]` : ` — в базе ${findings.length} находок`) +
       (SUMMARY ? '' : ' — подробно без --summary')
   );

@@ -1,0 +1,12 @@
+appId: app.phraseman
+---
+- extendedWaitUntil:
+    visible:
+      id: "trainer-quick-mistake-preview"
+    timeout: 30000
+- tapOn:
+    id: "trainer-quick-mistake-preview"
+    waitToSettleTimeoutMs: 1000
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: trainer_qa_mistake_preview

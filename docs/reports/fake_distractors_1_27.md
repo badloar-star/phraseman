@@ -1,23 +1,23 @@
-# Аудит выдуманных distractors (2026-04-30T06:29:36.967Z)
+# Аудит выдуманных distractors (2026-05-14T12:12:57.166Z)
 
-Найдено fake-вхождений: 1, уникальных слов: 1
+Найдено fake-вхождений: 508, уникальных слов: 236
 Словарь: an-array-of-english-words (274937 слов).
 
 ## По урокам
 - ✅ Урок 1: 0 fake-distractor(ов)
 - ✅ Урок 2: 0 fake-distractor(ов)
-- ✅ Урок 3: 0 fake-distractor(ов)
+- ⚠️ Урок 3: 6 fake-distractor(ов)
 - ✅ Урок 4: 0 fake-distractor(ов)
 - ✅ Урок 5: 0 fake-distractor(ов)
-- ✅ Урок 6: 0 fake-distractor(ов)
+- ⚠️ Урок 6: 1 fake-distractor(ов)
 - ✅ Урок 7: 0 fake-distractor(ов)
-- ✅ Урок 8: 0 fake-distractor(ов)
-- ✅ Урок 9: 0 fake-distractor(ов)
-- ✅ Урок 10: 0 fake-distractor(ов)
-- ✅ Урок 11: 0 fake-distractor(ов)
-- ✅ Урок 12: 0 fake-distractor(ов)
+- ⚠️ Урок 8: 7 fake-distractor(ов)
+- ⚠️ Урок 9: 4 fake-distractor(ов)
+- ⚠️ Урок 10: 1 fake-distractor(ов)
+- ⚠️ Урок 11: 5 fake-distractor(ов)
+- ⚠️ Урок 12: 80 fake-distractor(ов)
 - ✅ Урок 13: 0 fake-distractor(ов)
-- ✅ Урок 14: 0 fake-distractor(ов)
+- ⚠️ Урок 14: 28 fake-distractor(ов)
 - ✅ Урок 15: 0 fake-distractor(ов)
 - ✅ Урок 16: 0 fake-distractor(ов)
 - ✅ Урок 17: 0 fake-distractor(ов)
@@ -27,16 +27,486 @@
 - ✅ Урок 21: 0 fake-distractor(ов)
 - ✅ Урок 22: 0 fake-distractor(ов)
 - ✅ Урок 23: 0 fake-distractor(ов)
-- ✅ Урок 24: 0 fake-distractor(ов)
-- ✅ Урок 25: 0 fake-distractor(ов)
-- ✅ Урок 26: 0 fake-distractor(ов)
-- ✅ Урок 27: 0 fake-distractor(ов)
-- ✅ Урок 28: 0 fake-distractor(ов)
-- ✅ Урок 29: 0 fake-distractor(ов)
-- ✅ Урок 30: 0 fake-distractor(ов)
+- ⚠️ Урок 24: 12 fake-distractor(ов)
+- ⚠️ Урок 25: 33 fake-distractor(ов)
+- ⚠️ Урок 26: 72 fake-distractor(ов)
+- ⚠️ Урок 27: 16 fake-distractor(ов)
+- ⚠️ Урок 28: 115 fake-distractor(ов)
+- ⚠️ Урок 29: 70 fake-distractor(ов)
+- ⚠️ Урок 30: 48 fake-distractor(ов)
 - ⚠️ Урок 31: 1 fake-distractor(ов)
-- ✅ Урок 32: 0 fake-distractor(ов)
+- ⚠️ Урок 32: 9 fake-distractor(ов)
 
 ## Уникальные выдуманные слова с предложениями замен
-- **Finnish** → правильное «finish», встречается 1× (L31/lesson31_phrase_47)
+- **youself** → правильное «yourself», встречается 16× (L28/lesson28_phrase_2, L28/lesson28_phrase_12, L28/lesson28_phrase_21)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **yousself** → правильное «yourself», встречается 16× (L28/lesson28_phrase_2, L28/lesson28_phrase_12, L28/lesson28_phrase_21)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **nowing** → правильное «now», встречается 13× (L29/lesson29_phrase_16, L29/lesson29_phrase_17, L29/lesson29_phrase_18)…
+  - Кандидаты: bow, cow, dow, how, jow, kow, low, mow
+- **hersself** → правильное «herself», встречается 8× (L28/lesson28_phrase_4, L28/lesson28_phrase_10, L28/lesson28_phrase_14)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **sheself** → правильное «herself», встречается 8× (L28/lesson28_phrase_4, L28/lesson28_phrase_10, L28/lesson28_phrase_14)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **herselves** → правильное «herself», встречается 8× (L28/lesson28_phrase_4, L28/lesson28_phrase_10, L28/lesson28_phrase_14)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **doored** → правильное «door», встречается 7× (L24/lesson24_phrase_5, L24/lesson24_phrase_25, L24/lesson24_phrase_34)…
+  - Кандидаты: boor, doer, doo, doob, dook, dool, doom, doon
+- **dooring** → правильное «door», встречается 7× (L24/lesson24_phrase_5, L24/lesson24_phrase_25, L24/lesson24_phrase_34)…
+  - Кандидаты: boor, doer, doo, doob, dook, dool, doom, doon
+- **hurted** → правильное «hurt», встречается 7× (L28/lesson28_phrase_1, L28/lesson28_phrase_2, L28/lesson28_phrase_3)…
+  - Кандидаты: curt, hart, hunt, hurl, hurts, yurt, hurter, hurting
+- **themselfs** → правильное «themselves», встречается 7× (L28/lesson28_phrase_8, L28/lesson28_phrase_17, L28/lesson28_phrase_20)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **useing** → правильное «used», встречается 7× (L32/lesson32_phrase_2, L32/lesson32_phrase_3, L32/lesson32_phrase_4)…
+  - Кандидаты: use, user, uses
+- **readed** → правильное «read», встречается 6× (L24/lesson24_phrase_18, L26/lesson26_phrase_11, L29/lesson29_phrase_7)…
+  - Кандидаты: bead, dead, head, lead, mead, reads, reak, real
+- **apped** → правильное «app», встречается 6× (L24/lesson24_phrase_45, L27/lesson27_phrase_30, L28/lesson28_phrase_5)…
+  - Кандидаты: alp, amp, ape, apo, apps, apt, asp, apply
+- **apping** → правильное «app», встречается 6× (L24/lesson24_phrase_45, L27/lesson27_phrase_30, L28/lesson28_phrase_5)…
+  - Кандидаты: alp, amp, ape, apo, apps, apt, asp, apply
+- **mineself** → правильное «myself», встречается 6× (L28/lesson28_phrase_1, L28/lesson28_phrase_9, L28/lesson28_phrase_11)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **heself** → правильное «himself», встречается 6× (L28/lesson28_phrase_3, L28/lesson28_phrase_13, L28/lesson28_phrase_22)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **himselves** → правильное «himself», встречается 6× (L28/lesson28_phrase_3, L28/lesson28_phrase_13, L28/lesson28_phrase_22)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **everys** → правильное «every», встречается 6× (L28/lesson28_phrase_46, L29/lesson29_phrase_3, L29/lesson29_phrase_8)…
+  - Кандидаты: emery, ever, evert
+- **gooder** → правильное «better», встречается 5× (L14/lesson14_phrase_3, L14/lesson14_phrase_7, L14/lesson14_phrase_41)…
+  - Кандидаты: batter, beater, belter, betted, betters, bettor, bitter, butter
+- **TVs** → правильное «TV», встречается 5× (L25/lesson25_phrase_6, L25/lesson25_phrase_16, L25/lesson25_phrase_25)…
+  - Кандидаты: ta, te, ti, to
+- **TVed** → правильное «TV», встречается 5× (L25/lesson25_phrase_6, L25/lesson25_phrase_16, L25/lesson25_phrase_25)…
+  - Кандидаты: ta, te, ti, to
+- **TVing** → правильное «TV», встречается 5× (L25/lesson25_phrase_6, L25/lesson25_phrase_16, L25/lesson25_phrase_25)…
+  - Кандидаты: ta, te, ti, to
+- **outsided** → правильное «outside», встречается 5× (L25/lesson25_phrase_12, L25/lesson25_phrase_27, L27/lesson27_phrase_21)…
+  - Кандидаты: outsider, outsides
+- **outsiding** → правильное «outside», встречается 5× (L25/lesson25_phrase_12, L25/lesson25_phrase_27, L27/lesson27_phrase_21)…
+  - Кандидаты: outsider, outsides
+- **coffeed** → правильное «coffee», встречается 5× (L25/lesson25_phrase_33, L27/lesson27_phrase_6, L27/lesson27_phrase_37)…
+  - Кандидаты: coffed, coffees, coffer, coffle, toffee, coff
+- **coffeeing** → правильное «coffee», встречается 5× (L25/lesson25_phrase_33, L27/lesson27_phrase_6, L27/lesson27_phrase_37)…
+  - Кандидаты: coffed, coffees, coffer, coffle, toffee, coff
+- **todayly** → правильное «today», встречается 5× (L26/lesson26_phrase_3, L26/lesson26_phrase_4, L26/lesson26_phrase_10)…
+  - Кандидаты: todays, toddy, tokay
+- **todayer** → правильное «today», встречается 5× (L26/lesson26_phrase_3, L26/lesson26_phrase_4, L26/lesson26_phrase_10)…
+  - Кандидаты: todays, toddy, tokay
+- **moneying** → правильное «money», встречается 5× (L27/lesson27_phrase_33, L29/lesson29_phrase_20, L29/lesson29_phrase_20)…
+  - Кандидаты: boney, coney, honey, mobey, moner, moneys, monty, mopey
+- **womens** → правильное «woman», встречается 5× (L30/lesson30_phrase_2, L30/lesson30_phrase_10, L30/lesson30_phrase_32)…
+  - Кандидаты: roman, soman, toman, womans, women, womyn, womaned, womanly
+- **peple** → правильное «people», встречается 4× (L9/lesson9_phrase_47, L9/lesson9_phrase_48, L9/lesson9_phrase_49)…
+  - Кандидаты: peopled, peopler, peoples, peopling
+- **usselves** → правильное «ourselves», встречается 4× (L28/lesson28_phrase_6, L28/lesson28_phrase_15, L28/lesson28_phrase_30)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **weselves** → правильное «ourselves», встречается 4× (L28/lesson28_phrase_6, L28/lesson28_phrase_15, L28/lesson28_phrase_30)…
+  - Кандидатов нет (нужно подобрать вручную)
+- **couldnt** → правильное «cannot», встречается 4× (L28/lesson28_phrase_37, L28/lesson28_phrase_38, L28/lesson28_phrase_39)…
+  - Кандидаты: cannon
+- **dayly** → правильное «day», встречается 4× (L28/lesson28_phrase_46, L29/lesson29_phrase_3, L29/lesson29_phrase_15)…
+  - Кандидаты: bay, cay, da, dab, dad, dae, dag, dah
+- **evering** → правильное «every», встречается 4× (L29/lesson29_phrase_3, L29/lesson29_phrase_8, L29/lesson29_phrase_15)…
+  - Кандидаты: emery, ever, evert
+- **evered** → правильное «every», встречается 4× (L29/lesson29_phrase_3, L29/lesson29_phrase_8, L29/lesson29_phrase_15)…
+  - Кандидаты: emery, ever, evert
+- **Englishs** → правильное «English», встречается 4× (L29/lesson29_phrase_4, L29/lesson29_phrase_32, L29/lesson29_phrase_39)…
+  - Кандидаты: englished, englishes, englishing
+- **mens** → правильное «man», встречается 4× (L30/lesson30_phrase_1, L30/lesson30_phrase_9, L30/lesson30_phrase_31)…
+  - Кандидаты: ban, can, dan, ean, fan, gan, han, ma
+- **buyed** → правильное «bought», встречается 3× (L12/lesson12_phrase_1, L12/lesson12_phrase_11, L14/lesson14_phrase_49)
+  - Кандидаты: bouget, bough, boughs, boughts, dought, fought, mought, nought
+- **haved** → правильное «had», встречается 3× (L12/lesson12_phrase_38, L12/lesson12_phrase_39, L12/lesson12_phrase_40)
+  - Кандидаты: bad, cad, dad, fad, gad, ha, hads, hae
+- **expensiver** → правильное «expensive», встречается 3× (L14/lesson14_phrase_2, L14/lesson14_phrase_10, L14/lesson14_phrase_34)
+  - Кандидаты: expensively
+- **problemed** → правильное «problem», встречается 3× (L24/lesson24_phrase_19, L25/lesson25_phrase_32, L30/lesson30_phrase_18)
+  - Кандидаты: problems
+- **readed** → правильное «reading», встречается 3× (L25/lesson25_phrase_2, L25/lesson25_phrase_22, L25/lesson25_phrase_35)
+  - Кандидаты: readings
+- **nowly,** → правильное «now,», встречается 3× (L26/lesson26_phrase_3, L26/lesson26_phrase_21, L26/lesson26_phrase_34)
+  - Кандидаты: bow, cow, dow, how, jow, kow, low, mow
+- **nower,** → правильное «now,», встречается 3× (L26/lesson26_phrase_3, L26/lesson26_phrase_21, L26/lesson26_phrase_34)
+  - Кандидаты: bow, cow, dow, how, jow, kow, low, mow
+- **nowest,** → правильное «now,», встречается 3× (L26/lesson26_phrase_3, L26/lesson26_phrase_21, L26/lesson26_phrase_34)
+  - Кандидаты: bow, cow, dow, how, jow, kow, low, mow
+- **moneyly** → правильное «money», встречается 3× (L26/lesson26_phrase_10, L26/lesson26_phrase_39, L26/lesson26_phrase_39)
+  - Кандидаты: boney, coney, honey, mobey, moner, moneys, monty, mopey
+- **apper,** → правильное «app,», встречается 3× (L26/lesson26_phrase_12, L26/lesson26_phrase_29, L26/lesson26_phrase_42)
+  - Кандидаты: alp, amp, ape, apo, apps, apt, asp, apply
+- **everies** → правильное «every», встречается 3× (L26/lesson26_phrase_13, L26/lesson26_phrase_38, L28/lesson28_phrase_46)
+  - Кандидаты: emery, ever, evert
+- **earlied** → правильное «early», встречается 3× (L29/lesson29_phrase_16, L29/lesson29_phrase_33, L29/lesson29_phrase_40)
+  - Кандидаты: earl, earls, marly, parly, earlier, earlies, earliest
+- **Swedish** → правильное «English», встречается 2× (L3/lesson3_phrase_5, L3/lesson3_phrase_29)
+  - Кандидаты: englished, englishes, englishing
+- **Finnish** → правильное «finish», встречается 2× (L10/lesson10_phrase_36, L31/lesson31_phrase_47)
   - Кандидаты: fikish, finis, linish, minish, winish, finished, finisher, finishes
+- **drinked** → правильное «drank», встречается 2× (L12/lesson12_phrase_2, L12/lesson12_phrase_15)
+  - Кандидаты: brank, crank, drack, drant, drink, drunk, frank, prank
+- **finded** → правильное «found», встречается 2× (L12/lesson12_phrase_3, L12/lesson12_phrase_44)
+  - Кандидаты: bound, founds, fount, hound, lound, mound, pound, round
+- **tikets** → правильное «tickets», встречается 2× (L12/lesson12_phrase_4, L12/lesson12_phrase_20)
+  - Кандидаты: ticket
+- **mesages** → правильное «messages», встречается 2× (L12/lesson12_phrase_5, L12/lesson12_phrase_9)
+  - Кандидаты: message
+- **bringed** → правильное «brought», встречается 2× (L12/lesson12_phrase_10, L12/lesson12_phrase_45)
+  - Кандидаты: brough
+- **gaved** → правильное «gave», встречается 2× (L12/lesson12_phrase_14, L12/lesson12_phrase_41)
+  - Кандидаты: cave, eave, fave, gade, gage, gale, game, gane
+- **maked** → правильное «made», встречается 2× (L12/lesson12_phrase_18, L12/lesson12_phrase_50)
+  - Кандидаты: bade, cade, fade, gade, hade, jade, kade, lade
+- **geted** → правильное «got», встречается 2× (L12/lesson12_phrase_20, L12/lesson12_phrase_49)
+  - Кандидаты: bot, cot, dot, gat, get, git, go, goa
+- **ouside** → правильное «outside», встречается 2× (L12/lesson12_phrase_31, L12/lesson12_phrase_34)
+  - Кандидаты: outsider, outsides
+- **outide** → правильное «outside», встречается 2× (L12/lesson12_phrase_31, L12/lesson12_phrase_34)
+  - Кандидаты: outsider, outsides
+- **kee** → правильное «key», встречается 2× (L12/lesson12_phrase_41, L12/lesson12_phrase_46)
+  - Кандидаты: bey, dey, fey, gey, hey, kay, kea, keb
+- **telled** → правильное «told», встречается 2× (L12/lesson12_phrase_42, L28/lesson28_phrase_10)
+  - Кандидаты: bold, cold, fold, gold, hold, mold, sold, teld
+- **choosed** → правильное «chose», встречается 2× (L12/lesson12_phrase_47, L14/lesson14_phrase_47)
+  - Кандидаты: chase, chode, choke, chore, choses, chuse, close, those
+- **expensiver** → правильное «cheaper», встречается 2× (L14/lesson14_phrase_1, L14/lesson14_phrase_9)
+  - Кандидатов нет (нужно подобрать вручную)
+- **importanter** → правильное «important», встречается 2× (L14/lesson14_phrase_16, L26/lesson26_phrase_50)
+  - Кандидаты: importantly
+- **dangerouser** → правильное «dangerous», встречается 2× (L14/lesson14_phrase_18, L14/lesson14_phrase_40)
+  - Кандидаты: dangerously
+- **goodest** → правильное «best», встречается 2× (L14/lesson14_phrase_31, L14/lesson14_phrase_47)
+  - Кандидаты: bast, beat, beet, belt, bent, bes, bests, bist
+- **expensivest** → правильное «cheapest», встречается 2× (L14/lesson14_phrase_33, L14/lesson14_phrase_48)
+  - Кандидатов нет (нужно подобрать вручную)
+- **o'clocks** → правильное «o'clock», встречается 2× (L25/lesson25_phrase_1, L25/lesson25_phrase_13)
+  - Кандидатов нет (нужно подобрать вручную)
+- **probleming** → правильное «problem», встречается 2× (L25/lesson25_phrase_32, L30/lesson30_phrase_18)
+  - Кандидаты: problems
+- **keyes,** → правильное «keys,», встречается 2× (L26/lesson26_phrase_5, L26/lesson26_phrase_19)
+  - Кандидаты: beys, deys, feys, heys, kays, keas, kebs, keds
+- **keyses,** → правильное «keys,», встречается 2× (L26/lesson26_phrase_5, L26/lesson26_phrase_19)
+  - Кандидаты: beys, deys, feys, heys, kays, keas, kebs, keds
+- **hereing,** → правильное «here,», встречается 2× (L26/lesson26_phrase_9, L26/lesson26_phrase_19)
+  - Кандидаты: bere, cere, dere, fere, gere, hare, hebe, hele
+- **herely,** → правильное «here,», встречается 2× (L26/lesson26_phrase_9, L26/lesson26_phrase_19)
+  - Кандидаты: bere, cere, dere, fere, gere, hare, hebe, hele
+- **everyly** → правильное «every», встречается 2× (L26/lesson26_phrase_13, L26/lesson26_phrase_38)
+  - Кандидаты: emery, ever, evert
+- **everyer** → правильное «every», встречается 2× (L26/lesson26_phrase_13, L26/lesson26_phrase_38)
+  - Кандидаты: emery, ever, evert
+- **dayer,** → правильное «day,», встречается 2× (L26/lesson26_phrase_13, L26/lesson26_phrase_38)
+  - Кандидаты: bay, cay, da, dab, dad, dae, dag, dah
+- **Englishly** → правильное «English», встречается 2× (L26/lesson26_phrase_13, L30/lesson30_phrase_2)
+  - Кандидаты: englished, englishes, englishing
+- **peopley** → правильное «people», встречается 2× (L26/lesson26_phrase_37, L26/lesson26_phrase_40)
+  - Кандидаты: peopled, peopler, peoples, peopling
+- **todayed** → правильное «today», встречается 2× (L27/lesson27_phrase_16, L27/lesson27_phrase_26)
+  - Кандидаты: todays, toddy, tokay
+- **todaying** → правильное «today», встречается 2× (L27/lesson27_phrase_16, L27/lesson27_phrase_26)
+  - Кандидаты: todays, toddy, tokay
+- **youselves** → правильное «yourselves», встречается 2× (L28/lesson28_phrase_7, L28/lesson28_phrase_16)
+  - Кандидатов нет (нужно подобрать вручную)
+- **yoursselves** → правильное «yourselves», встречается 2× (L28/lesson28_phrase_7, L28/lesson28_phrase_16)
+  - Кандидатов нет (нужно подобрать вручную)
+- **togethered** → правильное «together», встречается 2× (L29/lesson29_phrase_5, L29/lesson29_phrase_38)
+  - Кандидатов нет (нужно подобрать вручную)
+- **togethering** → правильное «together», встречается 2× (L29/lesson29_phrase_5, L29/lesson29_phrase_38)
+  - Кандидатов нет (нужно подобрать вручную)
+- **togethers** → правильное «together», встречается 2× (L29/lesson29_phrase_5, L29/lesson29_phrase_38)
+  - Кандидатов нет (нужно подобрать вручную)
+- **fooded** → правильное «food», встречается 2× (L29/lesson29_phrase_23, L30/lesson30_phrase_21)
+  - Кандидаты: feod, foid, fold, fond, foods, fool, foot, ford
+- **fooding** → правильное «food», встречается 2× (L29/lesson29_phrase_23, L30/lesson30_phrase_21)
+  - Кандидаты: feod, foid, fold, fond, foods, fool, foot, ford
+- **mistaked** → правильное «mistakes», встречается 2× (L29/lesson29_phrase_47, L29/lesson29_phrase_49)
+  - Кандидаты: mistake
+- **nighting** → правильное «night», встречается 2× (L30/lesson30_phrase_6, L32/lesson32_phrase_1)
+  - Кандидаты: aight, bight, dight, eight, fight, hight, kight, light
+- **teached** → правильное «teacher», встречается 2× (L30/lesson30_phrase_7, L30/lesson30_phrase_36)
+  - Кандидаты: teachers, teacherly
+- **studented** → правильное «student», встречается 2× (L30/lesson30_phrase_8, L30/lesson30_phrase_33)
+  - Кандидаты: students
+- **studenting** → правильное «student», встречается 2× (L30/lesson30_phrase_8, L30/lesson30_phrase_33)
+  - Кандидаты: students
+- **underland** → правильное «understand», встречается 1× (L3/lesson3_phrase_2)
+  - Кандидаты: understands, understanded, understander, understanding
+- **understay** → правильное «understand», встречается 1× (L3/lesson3_phrase_2)
+  - Кандидаты: understands, understanded, understander, understanding
+- **belps** → правильное «helps», встречается 1× (L3/lesson3_phrase_7)
+  - Кандидаты: heaps, heles, hells, helms, helos, help, hemps, hesps
+- **fait** → правильное «wait», встречается 1× (L3/lesson3_phrase_45)
+  - Кандидаты: bait, gait, rait, tait, wadt, waft, wai, waid
+- **café** → правильное «cafés», встречается 1× (L6/lesson6_phrase_50)
+  - Кандидаты: cafes, caffs
+- **Mondays** → правильное «Tuesdays», встречается 1× (L8/lesson8_phrase_26)
+  - Кандидатов нет (нужно подобрать вручную)
+- **Wednesdays** → правильное «Tuesdays», встречается 1× (L8/lesson8_phrase_26)
+  - Кандидатов нет (нужно подобрать вручную)
+- **Tuesdays** → правильное «Wednesdays», встречается 1× (L8/lesson8_phrase_28)
+  - Кандидатов нет (нужно подобрать вручную)
+- **Thursdays** → правильное «Wednesdays», встречается 1× (L8/lesson8_phrase_28)
+  - Кандидатов нет (нужно подобрать вручную)
+- **Saturn** → правильное «Saturday», встречается 1× (L8/lesson8_phrase_30)
+  - Кандидатов нет (нужно подобрать вручную)
+- **Tuesdays** → правильное «Mondays», встречается 1× (L8/lesson8_phrase_50)
+  - Кандидатов нет (нужно подобрать вручную)
+- **Sundays** → правильное «Mondays», встречается 1× (L8/lesson8_phrase_50)
+  - Кандидатов нет (нужно подобрать вручную)
+- **workd** → правильное «worked», встречается 1× (L11/lesson11_phrase_1)
+  - Кандидаты: borked, corked, forked, porked, warked, worded, worker, wormed
+- **listend** → правильное «listened», встречается 1× (L11/lesson11_phrase_14)
+  - Кандидатов нет (нужно подобрать вручную)
+- **lented** → правильное «rented», встречается 1× (L11/lesson11_phrase_26)
+  - Кандидаты: dented, hented, kented, ranted, rended, renied, renned, rente
+- **pinted** → правильное «printed», встречается 1× (L11/lesson11_phrase_27)
+  - Кандидатов нет (нужно подобрать вручную)
+- **vandaled** → правильное «canceled», встречается 1× (L11/lesson11_phrase_35)
+  - Кандидатов нет (нужно подобрать вручную)
+- **coffe** → правильное «coffee», встречается 1× (L12/lesson12_phrase_2)
+  - Кандидаты: coffed, coffees, coffer, coffle, toffee, coff
+- **kees** → правильное «keys», встречается 1× (L12/lesson12_phrase_3)
+  - Кандидаты: beys, deys, feys, heys, kays, keas, kebs, keds
+- **keeys** → правильное «keys», встречается 1× (L12/lesson12_phrase_3)
+  - Кандидаты: beys, deys, feys, heys, kays, keas, kebs, keds
+- **selled** → правильное «sold», встречается 1× (L12/lesson12_phrase_4)
+  - Кандидаты: bold, cold, fold, gold, hold, mold, seld, sild
+- **comed** → правильное «came», встречается 1× (L12/lesson12_phrase_6)
+  - Кандидаты: cade, cafe, cage, cake, cam, cama, cames, camo
+- **writed** → правильное «wrote», встречается 1× (L12/lesson12_phrase_9)
+  - Кандидаты: wrate, write, wroke, wroth
+- **hedphones** → правильное «headphones», встречается 1× (L12/lesson12_phrase_11)
+  - Кандидаты: headphone
+- **goed** → правильное «went», встречается 1× (L12/lesson12_phrase_12)
+  - Кандидаты: bent, cent, dent, fent, gent, hent, kent, lent
+- **adice** → правильное «advice», встречается 1× (L12/lesson12_phrase_14)
+  - Кандидаты: advices, advise
+- **juce** → правильное «juice», встречается 1× (L12/lesson12_phrase_15)
+  - Кандидаты: juiced, juicer, juices, juicy, juicing
+- **joose** → правильное «juice», встречается 1× (L12/lesson12_phrase_15)
+  - Кандидаты: juiced, juicer, juices, juicy, juicing
+- **eated** → правильное «ate», встречается 1× (L12/lesson12_phrase_16)
+  - Кандидаты: ace, age, ake, ale, ame, ane, ape, are
+- **brakefast** → правильное «breakfast», встречается 1× (L12/lesson12_phrase_16)
+  - Кандидаты: breakfasts, breakfasted, breakfaster, breakfasting
+- **brekfast** → правильное «breakfast», встречается 1× (L12/lesson12_phrase_16)
+  - Кандидаты: breakfasts, breakfasted, breakfaster, breakfasting
+- **brefast** → правильное «breakfast», встречается 1× (L12/lesson12_phrase_16)
+  - Кандидаты: breakfasts, breakfasted, breakfaster, breakfasting
+- **taked** → правильное «took», встречается 1× (L12/lesson12_phrase_17)
+  - Кандидаты: book, cook, dook, gook, hook, jook, kook, look
+- **hearded** → правильное «heard», встречается 1× (L12/lesson12_phrase_19)
+  - Кандидаты: beard, heald, hear, heards, heare, hears, heart, hoard
+- **moeny** → правильное «money», встречается 1× (L12/lesson12_phrase_21)
+  - Кандидаты: boney, coney, honey, mobey, moner, moneys, monty, mopey
+- **earley** → правильное «early», встречается 1× (L12/lesson12_phrase_22)
+  - Кандидаты: earl, earls, marly, parly, earlier, earlies, earliest
+- **feeled** → правильное «felt», встречается 1× (L12/lesson12_phrase_23)
+  - Кандидаты: belt, celt, delt, feat, feet, fell, felts, fent
+- **meeted** → правильное «met», встречается 1× (L12/lesson12_phrase_24)
+  - Кандидаты: bet, fet, get, het, jet, ket, let, mat
+- **frieds** → правильное «friends», встречается 1× (L12/lesson12_phrase_24)
+  - Кандидаты: friend
+- **speaked** → правильное «spoke», встречается 1× (L12/lesson12_phrase_26)
+  - Кандидаты: smoke, snoke, spake, spike, spode, spoked, spokes, spore
+- **Inglish** → правильное «English», встречается 1× (L12/lesson12_phrase_26)
+  - Кандидаты: englished, englishes, englishing
+- **Engish** → правильное «English», встречается 1× (L12/lesson12_phrase_26)
+  - Кандидаты: englished, englishes, englishing
+- **Anglish** → правильное «English», встречается 1× (L12/lesson12_phrase_26)
+  - Кандидаты: englished, englishes, englishing
+- **knowed** → правильное «knew», встречается 1× (L12/lesson12_phrase_27)
+  - Кандидаты: anew, enew, knee, know
+- **befour** → правильное «before», встречается 1× (L12/lesson12_phrase_27)
+  - Кандидатов нет (нужно подобрать вручную)
+- **befor** → правильное «before», встречается 1× (L12/lesson12_phrase_27)
+  - Кандидатов нет (нужно подобрать вручную)
+- **thinked** → правильное «thought», встречается 1× (L12/lesson12_phrase_28)
+  - Кандидаты: though, thoughts, thoughted
+- **aboot** → правильное «about», встречается 1× (L12/lesson12_phrase_28)
+  - Кандидаты: abort, abouts
+- **sleeped** → правильное «slept», встречается 1× (L12/lesson12_phrase_32)
+  - Кандидаты: clept, sleet, slipt, stept, swept
+- **sitted** → правильное «sat», встречается 1× (L12/lesson12_phrase_33)
+  - Кандидаты: bat, cat, eat, fat, gat, hat, kat, lat
+- **standed** → правильное «stood», встречается 1× (L12/lesson12_phrase_34)
+  - Кандидаты: snood, stond, stook, stool, stoop, stoor
+- **glases** → правильное «glasses», встречается 1× (L12/lesson12_phrase_35)
+  - Кандидатов нет (нужно подобрать вручную)
+- **blasses** → правильное «glasses», встречается 1× (L12/lesson12_phrase_35)
+  - Кандидатов нет (нужно подобрать вручную)
+- **drived** → правильное «drove», встречается 1× (L12/lesson12_phrase_36)
+  - Кандидаты: drave, drive, drole, drome, drone, droved, drover, droves
+- **queston** → правильное «question», встречается 1× (L12/lesson12_phrase_39)
+  - Кандидаты: questions, questioned, questioner, questioning
+- **qustion** → правильное «question», встречается 1× (L12/lesson12_phrase_39)
+  - Кандидаты: questions, questioned, questioner, questioning
+- **probem** → правильное «problem», встречается 1× (L12/lesson12_phrase_40)
+  - Кандидаты: problems
+- **problam** → правильное «problem», встречается 1× (L12/lesson12_phrase_40)
+  - Кандидаты: problems
+- **prublem** → правильное «problem», встречается 1× (L12/lesson12_phrase_40)
+  - Кандидаты: problems
+- **forgeted** → правильное «forgot», встречается 1× (L12/lesson12_phrase_46)
+  - Кандидаты: forgat, forget, forgo
+- **docments** → правильное «documents», встречается 1× (L12/lesson12_phrase_48)
+  - Кандидаты: document
+- **doucments** → правильное «documents», встречается 1× (L12/lesson12_phrase_48)
+  - Кандидаты: document
+- **docements** → правильное «documents», встречается 1× (L12/lesson12_phrase_48)
+  - Кандидаты: document
+- **goood** → правильное «good», встречается 1× (L12/lesson12_phrase_49)
+  - Кандидаты: food, goad, gold, goo, goods, goof, goog, gook
+- **gnews** → правильное «news», встречается 1× (L12/lesson12_phrase_49)
+  - Кандидаты: dews, fews, hews, jews, mews, nebs, neds, nefs
+- **misstakes** → правильное «mistakes», встречается 1× (L12/lesson12_phrase_50)
+  - Кандидаты: mistake
+- **mistkes** → правильное «mistakes», встречается 1× (L12/lesson12_phrase_50)
+  - Кандидаты: mistake
+- **misakes** → правильное «mistakes», встречается 1× (L12/lesson12_phrase_50)
+  - Кандидаты: mistake
+- **seriouser** → правильное «serious», встречается 1× (L14/lesson14_phrase_6)
+  - Кандидаты: seriously
+- **interestinger** → правильное «interesting», встречается 1× (L14/lesson14_phrase_15)
+  - Кандидаты: interestingly
+- **dangerouser** → правильное «safer», встречается 1× (L14/lesson14_phrase_17)
+  - Кандидаты: saber, safe, safed, safes, sager, saker, saner, saser
+- **confusinger** → правильное «clearer», встречается 1× (L14/lesson14_phrase_29)
+  - Кандидаты: clearers
+- **confusinger** → правильное «confusing», встречается 1× (L14/lesson14_phrase_30)
+  - Кандидаты: confusingly
+- **expensivest** → правильное «expensive», встречается 1× (L14/lesson14_phrase_34)
+  - Кандидаты: expensively
+- **dangerousest** → правильное «safest», встречается 1× (L14/lesson14_phrase_39)
+  - Кандидаты: safes, sagest, sanest, sayest
+- **dangerousest** → правильное «dangerous», встречается 1× (L14/lesson14_phrase_40)
+  - Кандидаты: dangerously
+- **slowlier** → правильное «slowly», встречается 1× (L14/lesson14_phrase_44)
+  - Кандидатов нет (нужно подобрать вручную)
+- **passworded** → правильное «password», встречается 1× (L24/lesson24_phrase_20)
+  - Кандидаты: passwords
+- **passwording** → правильное «password», встречается 1× (L24/lesson24_phrase_20)
+  - Кандидаты: passwords
+- **midnighted** → правильное «midnight», встречается 1× (L25/lesson25_phrase_23)
+  - Кандидаты: midnights, midnightly
+- **midnighting** → правильное «midnight», встречается 1× (L25/lesson25_phrase_23)
+  - Кандидаты: midnights, midnightly
+- **documentes,** → правильное «documents,», встречается 1× (L26/lesson26_phrase_6)
+  - Кандидаты: document
+- **documentses,** → правильное «documents,», встречается 1× (L26/lesson26_phrase_6)
+  - Кандидаты: document
+- **backly** → правильное «back», встречается 1× (L26/lesson26_phrase_9)
+  - Кандидаты: bac, bach, backs, bacs, balk, bank, bark, bask
+- **ticketes** → правильное «tickets», встречается 1× (L26/lesson26_phrase_10)
+  - Кандидаты: ticket
+- **ticketses** → правильное «tickets», встречается 1× (L26/lesson26_phrase_10)
+  - Кандидаты: ticket
+- **messagely,** → правильное «message,», встречается 1× (L26/lesson26_phrase_11)
+  - Кандидаты: messaged, messages, messaging
+- **messager,** → правильное «message,», встречается 1× (L26/lesson26_phrase_11)
+  - Кандидаты: messaged, messages, messaging
+- **Englisher** → правильное «English», встречается 1× (L26/lesson26_phrase_13)
+  - Кандидаты: englished, englishes, englishing
+- **ourselfs** → правильное «ourselves», встречается 1× (L26/lesson26_phrase_18)
+  - Кандидатов нет (нужно подобрать вручную)
+- **ourselveses** → правильное «ourselves», встречается 1× (L26/lesson26_phrase_18)
+  - Кандидатов нет (нужно подобрать вручную)
+- **messagely,** → правильное «messages,», встречается 1× (L26/lesson26_phrase_20)
+  - Кандидаты: message
+- **messager,** → правильное «messages,», встречается 1× (L26/lesson26_phrase_20)
+  - Кандидаты: message
+- **newsly** → правильное «news», встречается 1× (L26/lesson26_phrase_20)
+  - Кандидаты: dews, fews, hews, jews, mews, nebs, neds, nefs
+- **newser** → правильное «news», встречается 1× (L26/lesson26_phrase_20)
+  - Кандидаты: dews, fews, hews, jews, mews, nebs, neds, nefs
+- **problemes** → правильное «problems», встречается 1× (L26/lesson26_phrase_24)
+  - Кандидаты: problem
+- **problemses** → правильное «problems», встречается 1× (L26/lesson26_phrase_24)
+  - Кандидаты: problem
+- **phonely?** → правильное «phone?», встречается 1× (L26/lesson26_phrase_35)
+  - Кандидаты: ohone, phene, phon, phoned, phoner, phones, phono, phons
+- **waterly,** → правильное «water,», встречается 1× (L26/lesson26_phrase_36)
+  - Кандидаты: cater, dater, eater, gater, hater, later, mater, oater
+- **lessly** → правильное «less», встречается 1× (L26/lesson26_phrase_39)
+  - Кандидаты: cess, fess, jess, lass, leas, lees, legs, leis
+- **doorly,** → правильное «door,», встречается 1× (L26/lesson26_phrase_41)
+  - Кандидаты: boor, doer, doo, doob, dook, dool, doom, doon
+- **doorer,** → правильное «door,», встречается 1× (L26/lesson26_phrase_41)
+  - Кандидаты: boor, doer, doo, doob, dook, dool, doom, doon
+- **buttonly,** → правильное «button,», встречается 1× (L26/lesson26_phrase_42)
+  - Кандидаты: burton, buttons, mutton, buttoned, buttoner, buttoning
+- **bagly,** → правильное «bag,», встречается 1× (L26/lesson26_phrase_45)
+  - Кандидаты: ba, baa, bac, bad, bags, bah, bal, bam
+- **mistakely,** → правильное «mistake,», встречается 1× (L26/lesson26_phrase_46)
+  - Кандидаты: mistaker, mistakes, mistaking
+- **questionly,** → правильное «questions,», встречается 1× (L26/lesson26_phrase_47)
+  - Кандидаты: question
+- **importantest,** → правильное «important,», встречается 1× (L26/lesson26_phrase_50)
+  - Кандидаты: importantly
+- **sooning** → правильное «soon», встречается 1× (L27/lesson27_phrase_22)
+  - Кандидаты: boon, coon, doon, goon, hoon, loon, moon, noon
+- **itselfs** → правильное «itself», встречается 1× (L28/lesson28_phrase_5)
+  - Кандидатов нет (нужно подобрать вручную)
+- **itsself** → правильное «itself», встречается 1× (L28/lesson28_phrase_5)
+  - Кандидатов нет (нужно подобрать вручную)
+- **everyy** → правильное «every», встречается 1× (L28/lesson28_phrase_46)
+  - Кандидаты: emery, ever, evert
+- **whyer** → правильное «why», встречается 1× (L28/lesson28_phrase_47)
+  - Кандидаты: rhy, shy, thy, way, wey, wha, who, whys
+- **whying** → правильное «why», встречается 1× (L28/lesson28_phrase_47)
+  - Кандидаты: rhy, shy, thy, way, wey, wha, who, whys
+- **morninged** → правильное «morning», встречается 1× (L29/lesson29_phrase_17)
+  - Кандидаты: mornings
+- **oftens** → правильное «often», встречается 1× (L29/lesson29_phrase_30)
+  - Кандидаты: oaten, ofter, oftener, oftenest
+- **oftened** → правильное «often», встречается 1× (L29/lesson29_phrase_30)
+  - Кандидаты: oaten, ofter, oftener, oftenest
+- **oftening** → правильное «often», встречается 1× (L29/lesson29_phrase_30)
+  - Кандидаты: oaten, ofter, oftener, oftenest
+- **Frided** → правильное «Fridays», встречается 1× (L29/lesson29_phrase_41)
+  - Кандидатов нет (нужно подобрать вручную)
+- **Friding** → правильное «Fridays», встречается 1× (L29/lesson29_phrase_41)
+  - Кандидатов нет (нужно подобрать вручную)
+- **afraids** → правильное «afraid», встречается 1× (L29/lesson29_phrase_47)
+  - Кандидаты: abraid
+- **afraided** → правильное «afraid», встречается 1× (L29/lesson29_phrase_47)
+  - Кандидаты: abraid
+- **afraiding** → правильное «afraid», встречается 1× (L29/lesson29_phrase_47)
+  - Кандидаты: abraid
+- **mored** → правильное «more», встречается 1× (L29/lesson29_phrase_48)
+  - Кандидаты: bore, core, dore, fore, gore, hore, kore, lore
+- **confidented** → правильное «confidently», встречается 1× (L29/lesson29_phrase_48)
+  - Кандидатов нет (нужно подобрать вручную)
+- **nearbys** → правильное «nearby», встречается 1× (L30/lesson30_phrase_4)
+  - Кандидаты: nearly
+- **nearbied** → правильное «nearby», встречается 1× (L30/lesson30_phrase_4)
+  - Кандидаты: nearly
+- **nearbying** → правильное «nearby», встречается 1× (L30/lesson30_phrase_4)
+  - Кандидаты: nearly
+- **everied** → правильное «every», встречается 1× (L30/lesson30_phrase_5)
+  - Кандидаты: emery, ever, evert
+- **everying** → правильное «every», встречается 1× (L30/lesson30_phrase_5)
+  - Кандидаты: emery, ever, evert
+- **dayed** → правильное «day», встречается 1× (L30/lesson30_phrase_5)
+  - Кандидаты: bay, cay, da, dab, dad, dae, dag, dah
+- **daying** → правильное «day», встречается 1× (L30/lesson30_phrase_5)
+  - Кандидаты: bay, cay, da, dab, dad, dae, dag, dah
+- **carefuls** → правильное «carefully», встречается 1× (L30/lesson30_phrase_12)
+  - Кандидатов нет (нужно подобрать вручную)
+- **carefuling** → правильное «carefully», встречается 1× (L30/lesson30_phrase_12)
+  - Кандидатов нет (нужно подобрать вручную)
+- **yesterdayed** → правильное «yesterday», встречается 1× (L30/lesson30_phrase_14)
+  - Кандидаты: yesterdays
+- **yesterdaying** → правильное «yesterday», встречается 1× (L30/lesson30_phrase_14)
+  - Кандидаты: yesterdays
+- **hoteled** → правильное «hotel», встречается 1× (L30/lesson30_phrase_27)
+  - Кандидаты: botel, hosel, hote, hotels, hoten, hovel, motel, hoteling
+- **drived** → правильное «driver», встречается 1× (L30/lesson30_phrase_34)
+  - Кандидаты: drive, drivel, driven, drivers, drives, drover
+- **someoned** → правильное «someone», встречается 1× (L30/lesson30_phrase_49)
+  - Кандидаты: someones
+- **someoning** → правильное «someone», встречается 1× (L30/lesson30_phrase_49)
+  - Кандидаты: someones
+- **useed** → правильное «used», встречается 1× (L32/lesson32_phrase_1)
+  - Кандидаты: use, user, uses

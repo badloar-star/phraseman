@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Modal, Text, TouchableOpacity, View } from 'react-native';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { submitUserReport } from '../app/user_report';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
@@ -46,7 +46,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
       <TouchableOpacity
         style={{
           flex: 1,
-          backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.42)' : 'rgba(0,0,0,0.53)',
+          backgroundColor: 'rgba(0,0,0,0.53)',
           justifyContent: 'center',
           alignItems: 'center',
         }}
@@ -71,7 +71,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
             {done ? (
               <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '700' }}>
                 {previewOnly
-                  ? (isES ? '✅ Vista previa: sin enviar a Firestore' : isUK ? '✅ Превʼю: без відправки у Firestore' : '✅ Превью: без отправки в Firestore')
+                  ? (isES ? '✅ Vista previa: sin enviar a Firestore' : isUK ? '✅ Прев\'ю: без відправки у Firestore' : '✅ Превью: без отправки в Firestore')
                   : (isES ? '✅ Reporte enviado' : isUK ? '✅ Скаргу надіслано' : '✅ Жалоба отправлена')}
               </Text>
             ) : (
@@ -114,8 +114,7 @@ export default function ReportUserModal({ visible, reportedUid, reportedName, sc
                     disabled={loading}
                     style={{ flex: 1, paddingVertical: 11, borderRadius: 10, backgroundColor: t.accent }}
                   >
-                    {loading
-                      ? <ActivityIndicator color={t.correctText} size="small" />
+                    {false && loading ? <View />
                       : <Text style={{ color: t.correctText, textAlign: 'center', fontWeight: '700', fontSize: f.body }}>
                           {isES ? 'Enviar' : isUK ? 'Надіслати' : 'Отправить'}
                         </Text>

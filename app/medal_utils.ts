@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
+import { COURSE_LEVEL_RANGES } from './course_levels';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
@@ -13,10 +14,7 @@ export interface MedalInfo {
 
 // CEFR диапазоны уроков
 export const CEFR_RANGES: Record<string, [number, number]> = {
-  A1: [1,  8],
-  A2: [9,  16],
-  B1: [17, 24],
-  B2: [25, 32],
+  ...COURSE_LEVEL_RANGES,
 };
 
 // ─── Tier расчёт ──────────────────────────────────────────────────────────────

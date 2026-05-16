@@ -31,10 +31,27 @@ function loadTsModule(absPath) {
   });
   const module = { exports: {} };
   const requireShim = (rel) => {
+    if (rel === 'react-native') {
+      return {
+        Platform: {
+          OS: 'android',
+          Version: 'qa',
+          select: (map) => map?.android ?? map?.native ?? map?.default,
+        },
+        DeviceEventEmitter: { emit() {}, addListener: () => ({ remove() {} }) },
+      };
+    }
+    if (rel === 'expo-constants') return { default: { appOwnership: null }, appOwnership: null };
+    if (rel === '@react-native-async-storage/async-storage') {
+      const storage = { getItem: async () => null, setItem: async () => undefined, removeItem: async () => undefined };
+      return { default: storage, ...storage };
+    }
     if (rel === './lesson_data_types' || rel.endsWith('lesson_data_types')) return {};
-    if (rel.startsWith('./')) {
-      const next = path.resolve(path.dirname(absPath), `${rel}.ts`);
-      if (fs.existsSync(next)) return loadTsModule(next);
+    if (rel.startsWith('.')) {
+      for (const suffix of ['.ts', '.tsx', '/index.ts']) {
+        const next = path.resolve(path.dirname(absPath), `${rel}${suffix}`);
+        if (fs.existsSync(next)) return loadTsModule(next);
+      }
     }
     return {};
   };
@@ -305,7 +322,9 @@ function main() {
   lines.push('');
   lines.push('## Другие аудиты в репозитории');
   lines.push('');
-  lines.push('- `npm run audit:lessons` — структура фраз, кодировки, число distractors (`scripts/audit_lessons_1_27.mjs`).');
+  lines.push('- `npm run audit:pre-release` — TypeScript + строгие lesson-аудиты + POS coverage + переводы.');
+  lines.push('- `npm run audit:lessons` — актуальная строгая проверка уроков 1-32: фразы, словари, предлоги, drill, intro, correct-options, POS coverage.');
+  lines.push('- `npm run audit:pos` — strict POS coverage: 0 unresolved/unknown/low-confidence lesson tokens.');
   lines.push('- `npm run audit:translations` — эвристики по переводам фраз (`scripts/audit_translations_1_32.mjs`).');
   lines.push('- `npm run audit:correct-presence` — слоты фраз vs токены `getPhraseWords`, дубликат correct в distractors (`scripts/audit_correct_word_presence.ts`).');
   lines.push('- `node tools/audit/audit_lessons_1_32.mjs` — словарь vs фразы, дубликаты.');

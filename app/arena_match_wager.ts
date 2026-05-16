@@ -4,6 +4,7 @@
  */
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ENABLE_ARENA_RANKED_WAGER } from './config';
+import { getArenaFeatureFlagsOnce } from './services/arena_feature_flags';
 import { withStorageLock } from './storage_mutex';
 import { spendShards } from './shards_system';
 
@@ -121,7 +122,10 @@ export async function resolveRankedArenaWagerForMatchOutcome(args: {
   won: boolean;
   isDraw: boolean;
 }): Promise<{ baseWinShardsOverride?: number; wagerLossStake?: number }> {
-  if (!ENABLE_ARENA_RANKED_WAGER) {
+  const remoteEnabled = ENABLE_ARENA_RANKED_WAGER
+    ? (await getArenaFeatureFlagsOnce()).rankedWagerEnabled === true
+    : false;
+  if (!remoteEnabled) {
     if (args.rankedArenaParam) {
       const sid = args.sessionId ?? '';
       if (sid && !sid.startsWith('invite_')) {

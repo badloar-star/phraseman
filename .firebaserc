@@ -5,9 +5,14 @@
   "targets": {
     "phraseman-ea0b3": {
       "hosting": {
-        "admin": ["phraseman-ea0b3"],
-        "knowlywww": ["knowlyapps"]
+        "admin": [
+          "phraseman-ea0b3"
+        ],
+        "knowlywww": [
+          "knowlyapps"
+        ]
       }
     }
-  }
+  },
+  "etags": {}
 }

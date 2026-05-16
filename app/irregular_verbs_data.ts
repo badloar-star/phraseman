@@ -6,205 +6,113 @@ export interface IrregularVerb {
   uk: string;
 }
 
-// Irregular Verbs by Lesson
-export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = {
-  3: [
-    { base: 'drink', past: 'drank', pp: 'drunk', ru: 'Пить', uk: 'Пити' },
-    { base: 'speak', past: 'spoke', pp: 'spoken', ru: 'Говорить', uk: 'Говорити' },
-    { base: 'understand', past: 'understood', pp: 'understood', ru: 'Понимать', uk: 'Розуміти' },
-    { base: 'know', past: 'knew', pp: 'known', ru: 'Знать', uk: 'Знати' },
-    { base: 'eat', past: 'ate', pp: 'eaten', ru: 'Есть', uk: 'Їсти' },
-    { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
-    { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
-    { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити' },
-    { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
-    { base: 'drive', past: 'drove', pp: 'driven', ru: 'Водить', uk: 'Водити' },
-    { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Відчувати' },
-    { base: 'forget', past: 'forgot', pp: 'forgotten', ru: 'Забывать', uk: 'Забувати' },
-    { base: 'take', past: 'took', pp: 'taken', ru: 'Брать', uk: 'Брати' },
-    { base: 'teach', past: 'taught', pp: 'taught', ru: 'Преподавать', uk: 'Викладати' },
-    { base: 'wear', past: 'wore', pp: 'worn', ru: 'Носить', uk: 'Носити' },
-    { base: 'cost', past: 'cost', pp: 'cost', ru: 'Стоить', uk: 'Коштувати' },
-  ],
-  4: [
-    { base: 'see', past: 'saw', pp: 'seen', ru: 'Видеть', uk: 'Бачити' },
-    { base: 'pay', past: 'paid', pp: 'paid', ru: 'Платить', uk: 'Платити' },
-    { base: 'sell', past: 'sold', pp: 'sold', ru: 'Продавать', uk: 'Продавати' },
-    { base: 'lose', past: 'lost', pp: 'lost', ru: 'Терять', uk: 'Втрачати' },
-    { base: 'spend', past: 'spent', pp: 'spent', ru: 'Тратить', uk: 'Витрачати' },
-    { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
-    { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Відправляти' },
-  ],
-  5: [
-    { base: 'go', past: 'went', pp: 'gone', ru: 'Идти', uk: 'Йти' },
-    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
-    { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
-    { base: 'sing', past: 'sang', pp: 'sung', ru: 'Петь', uk: 'Співати' },
-    { base: 'sleep', past: 'slept', pp: 'slept', ru: 'Спать', uk: 'Спати' },
-  ],
-  6: [
-    { base: 'leave', past: 'left', pp: 'left', ru: 'Уходить', uk: 'Йти' },
-    { base: 'keep', past: 'kept', pp: 'kept', ru: 'Хранить', uk: 'Зберігати' },
-    { base: 'meet', past: 'met', pp: 'met', ru: 'Встречать', uk: 'Зустрічати' },
-    { base: 'put', past: 'put', pp: 'put', ru: 'Класть', uk: 'Класти' },
-    { base: 'get', past: 'got', pp: 'got', ru: 'Получать', uk: 'Отримувати' },
-  ],
-  7: [
-    { base: 'have', past: 'had', pp: 'had', ru: 'Иметь', uk: 'Мати' },
-  ],
-  8: [
-    { base: 'spring', past: 'sprang', pp: 'sprung', ru: 'Прыгать / Пружинить', uk: 'Пострибати / Стискатися' },
-  ],
-  9: [
-  ],
-  10: [
-    { base: 'go', past: 'went', pp: 'gone', ru: 'Идти; ехать', uk: 'Іти; їхати' },
-    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
-    { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
-    { base: 'drive', past: 'drove', pp: 'driven', ru: 'Водить', uk: 'Водити' },
-  ],
-  11: [
-  ],
-  12: [
-    { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
-    { base: 'drink', past: 'drank', pp: 'drunk', ru: 'Пить', uk: 'Пити' },
-    { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
-    { base: 'sell', past: 'sold', pp: 'sold', ru: 'Продавать', uk: 'Продавати' },
-    { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Надсилати' },
-    { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити' },
-    { base: 'see', past: 'saw', pp: 'seen', ru: 'Видеть', uk: 'Бачити' },
-    { base: 'build', past: 'built', pp: 'built', ru: 'Строить', uk: 'Будувати' },
-    { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
-    { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити' },
-    { base: 'go', past: 'went', pp: 'gone', ru: 'Идти; ехать', uk: 'Іти; їхати' },
-    { base: 'put', past: 'put', pp: 'put', ru: 'Класть', uk: 'Класти' },
-    { base: 'give', past: 'gave', pp: 'given', ru: 'Давать', uk: 'Давати' },
-    { base: 'eat', past: 'ate', pp: 'eaten', ru: 'Есть', uk: 'Їсти' },
-    { base: 'take', past: 'took', pp: 'taken', ru: 'Брать', uk: 'Брати' },
-    { base: 'make', past: 'made', pp: 'made', ru: 'Делать; готовить', uk: 'Робити; готувати' },
-    { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
-    { base: 'get', past: 'got', pp: 'gotten', ru: 'Получать', uk: 'Отримувати' },
-    { base: 'lose', past: 'lost', pp: 'lost', ru: 'Терять', uk: 'Губити' },
-    { base: 'leave', past: 'left', pp: 'left', ru: 'Уходить; оставлять', uk: 'Іти; залишати' },
-    { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Відчувати' },
-    { base: 'meet', past: 'met', pp: 'met', ru: 'Встречать', uk: 'Зустрічати' },
-    { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
-    { base: 'speak', past: 'spoke', pp: 'spoken', ru: 'Говорить', uk: 'Говорити' },
-    { base: 'know', past: 'knew', pp: 'known', ru: 'Знать', uk: 'Знати' },
-    { base: 'think', past: 'thought', pp: 'thought', ru: 'Думать', uk: 'Думати' },
-    { base: 'say', past: 'said', pp: 'said', ru: 'Сказать', uk: 'Сказати' },
-    { base: 'pay', past: 'paid', pp: 'paid', ru: 'Платить', uk: 'Платити' },
-    { base: 'run', past: 'ran', pp: 'run', ru: 'Бегать', uk: 'Бігати' },
-    { base: 'sleep', past: 'slept', pp: 'slept', ru: 'Спать', uk: 'Спати' },
-    { base: 'sit', past: 'sat', pp: 'sat', ru: 'Сидеть', uk: 'Сидіти' },
-    { base: 'stand', past: 'stood', pp: 'stood', ru: 'Стоять', uk: 'Стояти' },
-    { base: 'wear', past: 'wore', pp: 'worn', ru: 'Носить', uk: 'Носити' },
-    { base: 'drive', past: 'drove', pp: 'driven', ru: 'Водить', uk: 'Водити' },
-    { base: 'do', past: 'did', pp: 'done', ru: 'Делать', uk: 'Робити' },
-    { base: 'have', past: 'had', pp: 'had', ru: 'Иметь; было', uk: 'Мати; було' },
-    { base: 'tell', past: 'told', pp: 'told', ru: 'Рассказывать; говорить', uk: 'Розповідати; говорити' },
-    { base: 'forget', past: 'forgot', pp: 'forgotten', ru: 'Забывать', uk: 'Забувати' },
-    { base: 'choose', past: 'chose', pp: 'chosen', ru: 'Выбирать', uk: 'Вибирати' },
-  ],
-  13: [
-    { base: 'cut', past: 'cut', pp: 'cut', ru: 'Резать', uk: 'Різати' },
-    { base: 'shut', past: 'shut', pp: 'shut', ru: 'Закрывать', uk: 'Зачиняти' },
-  ],
-  14: [
-    { base: 'seek', past: 'sought', pp: 'sought', ru: 'Искать', uk: 'Шукати' },
-    { base: 'fight', past: 'fought', pp: 'fought', ru: 'Драться / Бороться', uk: 'Битися / Боротися' },
-    { base: 'light', past: 'lit', pp: 'lit', ru: 'Зажигать / Освещать', uk: 'Запалювати / Освітлювати' },
-    { base: 'sweep', past: 'swept', pp: 'swept', ru: 'Подметать', uk: 'Підмітати' },
-    { base: 'weep', past: 'wept', pp: 'wept', ru: 'Плакать', uk: 'Плакати' },
-  ],
-  15: [
-    { base: 'bend', past: 'bent', pp: 'bent', ru: 'Гнуть / Сгибать', uk: 'Гнути / Згинати' },
-    { base: 'split', past: 'split', pp: 'split', ru: 'Расколоть / Делить', uk: 'Розколювати / Ділити' },
-    { base: 'stink', past: 'stank', pp: 'stunk', ru: 'Вонять / Плохо пахнуть', uk: 'Смердіти' },
-    { base: 'kneel', past: 'kneeled', pp: 'kneeled', ru: 'Стоять на коленях', uk: 'Стояти на колінах' },
-    { base: 'spill', past: 'spilled', pp: 'spilled', ru: 'Проливать / Ронять жидкость', uk: 'Проливати / Роняти рідину' },
-  ],
-  16: [
-    { base: 'deal', past: 'dealt', pp: 'dealt', ru: 'Иметь дело / Решать (with)', uk: 'Мати справу / Вирішувати (with)' },
-    { base: 'hang', past: 'hung', pp: 'hung', ru: 'Вешать / Висеть', uk: 'Вішати / Висіти' },
-    { base: 'lay', past: 'laid', pp: 'laid', ru: 'Класть (положить)', uk: 'Класти (покласти)' },
-    { base: 'stick', past: 'stuck', pp: 'stuck', ru: 'Втыкать / Липнуть', uk: 'Встромляти / Липнути' },
-    { base: 'tear', past: 'tore', pp: 'torn', ru: 'Рвать', uk: 'Рвати' },
-  ],
-  17: [
-    { base: 'set', past: 'set', pp: 'set', ru: 'Накрывать (на стол) / Ставить', uk: 'Накривати / Ставити' },
-    { base: 'flee', past: 'fled', pp: 'fled', ru: 'Бежать (спасаясь)', uk: 'Тікати' },
-    { base: 'shine', past: 'shone', pp: 'shone', ru: 'Сиять / Светить', uk: 'Сяяти / Світити' },
-    { base: 'sting', past: 'stung', pp: 'stung', ru: 'Жалить / Обжечь (о разуме)', uk: 'Жалити / Пекти (про заувагу)' },
-  ],
-  18: [
-    { base: 'strive', past: 'strove', pp: 'striven', ru: 'Стремиться; добиваться', uk: 'Прагти; досягати' },
-    { base: 'thrive', past: 'thrived', pp: 'thrived', ru: 'Преуспевать; процветать', uk: 'Процвітати; мати успіх' },
-    { base: 'cling', past: 'clung', pp: 'clung', ru: 'Цепляться; держаться', uk: 'Чіплятися; триматися' },
-    { base: 'fling', past: 'flung', pp: 'flung', ru: 'Швырять; бросать', uk: 'Швиряти; кидати' },
-    { base: 'sling', past: 'slung', pp: 'slung', ru: 'Бросок; на ремень', uk: 'Слінг; кинути; на ремінь' },
-    { base: 'let', past: 'let', pp: 'let', ru: 'Позволять', uk: 'Дозволяти' },
-  ],
-  19: [
-    { base: 'shrink', past: 'shrank', pp: 'shrunk', ru: 'Сжиматься; уменьшаться', uk: 'Стискатися; зменшуватися' },
-    { base: 'slink', past: 'slunk', pp: 'slunk', ru: 'Красться; подкрадываться', uk: 'Крастися; підкраватися' },
-    { base: 'strew', past: 'strewed', pp: 'strewn', ru: 'Усыпать; разбрасывать', uk: 'Посипати; розкидати' },
-    { base: 'slay', past: 'slew', pp: 'slain', ru: 'Убивать (в т.ч. в перен. знач.)', uk: 'Убивати (у т. ч. в перен. знач.)' },
-    { base: 'smite', past: 'smote', pp: 'smitten', ru: 'Поражать; сильно ударить', uk: 'Вражати; сильно вдарити' },
-    { base: 'lie', past: 'lay', pp: 'lain', ru: 'Лежать', uk: 'Лежати' },
-    { base: 'stand', past: 'stood', pp: 'stood', ru: 'Стоять', uk: 'Стояти' },
-  ],
-  20: [
-  ],
-  21: [
-    { base: 'steal', past: 'stole', pp: 'stolen', ru: 'Красть', uk: 'Красти' },
-  ],
-  22: [
-    { base: 'ride', past: 'rode', pp: 'ridden', ru: 'Ездить', uk: 'Їздити' },
-    { base: 'forbid', past: 'forbade', pp: 'forbidden', ru: 'Запрещать', uk: 'Забороняти' },
-  ],
-  23: [
-  ],
-  24: [
-    { base: 'lend', past: 'lent', pp: 'lent', ru: 'Одолживать', uk: 'Позичати' },
-    { base: 'win', past: 'won', pp: 'won', ru: 'Выигрывать', uk: 'Вигравати' },
-  ],
-  25: [
-  ],
-  26: [
-    { base: 'catch', past: 'caught', pp: 'caught', ru: 'Ловить', uk: 'Ловити' },
-    { base: 'run', past: 'ran', pp: 'run', ru: 'Бегать', uk: 'Бігати' },
-    { base: 'burn', past: 'burned', pp: 'burned', ru: 'Гореть', uk: 'Горіти' },
-    { base: 'hold', past: 'held', pp: 'held', ru: 'Держать', uk: 'Тримати' },
-  ],
-  27: [
-  ],
-  28: [
-    { base: 'hurt', past: 'hurt', pp: 'hurt', ru: 'Ранить', uk: 'Поранити' },
-  ],
-  29: [
-    { base: 'dwell', past: 'dwelt', pp: 'dwelt', ru: 'Обитать', uk: 'Мешкати' },
-    { base: 'overcome', past: 'overcame', pp: 'overcome', ru: 'Преодолевать', uk: 'Долати' },
-    { base: 'fly', past: 'flew', pp: 'flown', ru: 'Летать', uk: 'Літати' },
-  ],
-  30: [
-    { base: 'lead', past: 'led', pp: 'led', ru: 'Вести', uk: 'Вести' },
-    { base: 'begin', past: 'began', pp: 'begun', ru: 'Начинать', uk: 'Починати' },
-  ],
-  31: [
-    { base: 'fall', past: 'fell', pp: 'fallen', ru: 'Падать', uk: 'Падати' },
-    { base: 'shake', past: 'shook', pp: 'shaken', ru: 'Трясти', uk: 'Трусити' },
-    { base: 'hit', past: 'hit', pp: 'hit', ru: 'Ударять', uk: 'Вдаряти' },
-  ],
-  32: [
-  ],
+const IRREGULAR_VERB_GLOSSARY: Record<string, IrregularVerb> = {
+  break: { base: 'break', past: 'broke', pp: 'broken', ru: 'Ломать', uk: 'Ламати' },
+  bring: { base: 'bring', past: 'brought', pp: 'brought', ru: 'Приносить', uk: 'Приносити' },
+  build: { base: 'build', past: 'built', pp: 'built', ru: 'Строить', uk: 'Будувати' },
+  buy: { base: 'buy', past: 'bought', pp: 'bought', ru: 'Покупать', uk: 'Купувати' },
+  choose: { base: 'choose', past: 'chose', pp: 'chosen', ru: 'Выбирать', uk: 'Вибирати' },
+  come: { base: 'come', past: 'came', pp: 'come', ru: 'Приходить', uk: 'Приходити' },
+  cost: { base: 'cost', past: 'cost', pp: 'cost', ru: 'Стоить', uk: 'Коштувати' },
+  drink: { base: 'drink', past: 'drank', pp: 'drunk', ru: 'Пить', uk: 'Пити' },
+  drive: { base: 'drive', past: 'drove', pp: 'driven', ru: 'Водить', uk: 'Водити' },
+  eat: { base: 'eat', past: 'ate', pp: 'eaten', ru: 'Есть', uk: 'Їсти' },
+  fall: { base: 'fall', past: 'fell', pp: 'fallen', ru: 'Падать', uk: 'Падати' },
+  feel: { base: 'feel', past: 'felt', pp: 'felt', ru: 'Чувствовать', uk: 'Відчувати' },
+  find: { base: 'find', past: 'found', pp: 'found', ru: 'Находить', uk: 'Знаходити' },
+  forget: { base: 'forget', past: 'forgot', pp: 'forgotten', ru: 'Забывать', uk: 'Забувати' },
+  get: { base: 'get', past: 'got', pp: 'gotten', ru: 'Получать', uk: 'Отримувати' },
+  give: { base: 'give', past: 'gave', pp: 'given', ru: 'Давать', uk: 'Давати' },
+  go: { base: 'go', past: 'went', pp: 'gone', ru: 'Идти; ехать', uk: 'Іти; їхати' },
+  have: { base: 'have', past: 'had', pp: 'had', ru: 'Иметь', uk: 'Мати' },
+  hear: { base: 'hear', past: 'heard', pp: 'heard', ru: 'Слышать', uk: 'Чути' },
+  hit: { base: 'hit', past: 'hit', pp: 'hit', ru: 'Ударять', uk: 'Вдаряти' },
+  hurt: { base: 'hurt', past: 'hurt', pp: 'hurt', ru: 'Причинять боль', uk: 'Завдавати болю' },
+  keep: { base: 'keep', past: 'kept', pp: 'kept', ru: 'Держать; хранить', uk: 'Тримати; зберігати' },
+  know: { base: 'know', past: 'knew', pp: 'known', ru: 'Знать', uk: 'Знати' },
+  leave: { base: 'leave', past: 'left', pp: 'left', ru: 'Уходить; оставлять', uk: 'Іти; залишати' },
+  let: { base: 'let', past: 'let', pp: 'let', ru: 'Позволять', uk: 'Дозволяти' },
+  lose: { base: 'lose', past: 'lost', pp: 'lost', ru: 'Терять', uk: 'Втрачати' },
+  make: { base: 'make', past: 'made', pp: 'made', ru: 'Делать; заставлять', uk: 'Робити; змушувати' },
+  meet: { base: 'meet', past: 'met', pp: 'met', ru: 'Встречать', uk: 'Зустрічати' },
+  pay: { base: 'pay', past: 'paid', pp: 'paid', ru: 'Платить', uk: 'Платити' },
+  put: { base: 'put', past: 'put', pp: 'put', ru: 'Класть; ставить', uk: 'Класти; ставити' },
+  read: { base: 'read', past: 'read', pp: 'read', ru: 'Читать', uk: 'Читати' },
+  ring: { base: 'ring', past: 'rang', pp: 'rung', ru: 'Звонить', uk: 'Дзвонити' },
+  run: { base: 'run', past: 'ran', pp: 'run', ru: 'Бегать', uk: 'Бігати' },
+  say: { base: 'say', past: 'said', pp: 'said', ru: 'Сказать', uk: 'Сказати' },
+  see: { base: 'see', past: 'saw', pp: 'seen', ru: 'Видеть', uk: 'Бачити' },
+  sell: { base: 'sell', past: 'sold', pp: 'sold', ru: 'Продавать', uk: 'Продавати' },
+  send: { base: 'send', past: 'sent', pp: 'sent', ru: 'Отправлять', uk: 'Надсилати' },
+  shake: { base: 'shake', past: 'shook', pp: 'shaken', ru: 'Трясти', uk: 'Трусити' },
+  sing: { base: 'sing', past: 'sang', pp: 'sung', ru: 'Петь', uk: 'Співати' },
+  sit: { base: 'sit', past: 'sat', pp: 'sat', ru: 'Сидеть', uk: 'Сидіти' },
+  sleep: { base: 'sleep', past: 'slept', pp: 'slept', ru: 'Спать', uk: 'Спати' },
+  speak: { base: 'speak', past: 'spoke', pp: 'spoken', ru: 'Говорить', uk: 'Говорити' },
+  stand: { base: 'stand', past: 'stood', pp: 'stood', ru: 'Стоять', uk: 'Стояти' },
+  strike: { base: 'strike', past: 'struck', pp: 'struck', ru: 'Ударять', uk: 'Вдаряти' },
+  take: { base: 'take', past: 'took', pp: 'taken', ru: 'Брать', uk: 'Брати' },
+  tell: { base: 'tell', past: 'told', pp: 'told', ru: 'Рассказывать; говорить', uk: 'Розповідати; говорити' },
+  think: { base: 'think', past: 'thought', pp: 'thought', ru: 'Думать', uk: 'Думати' },
+  understand: { base: 'understand', past: 'understood', pp: 'understood', ru: 'Понимать', uk: 'Розуміти' },
+  wake: { base: 'wake', past: 'woke', pp: 'woken', ru: 'Просыпаться; будить', uk: 'Прокидатися; будити' },
+  wear: { base: 'wear', past: 'wore', pp: 'worn', ru: 'Носить', uk: 'Носити' },
+  write: { base: 'write', past: 'wrote', pp: 'written', ru: 'Писать', uk: 'Писати' },
 };
 
+const LESSON_IRREGULAR_BASES = {
+  1: [],
+  2: [],
+  3: ['buy', 'come', 'cost', 'drink', 'drive', 'eat', 'feel', 'forget', 'hear', 'know', 'read', 'speak', 'take', 'understand', 'wear', 'write'],
+  4: ['break', 'lose', 'pay', 'see', 'sell', 'send'],
+  5: ['find', 'sing', 'sleep'],
+  6: ['get', 'go', 'keep', 'meet', 'put'],
+  7: ['have'],
+  8: ['leave', 'run'],
+  9: [],
+  10: [],
+  11: [],
+  12: ['bring', 'build', 'choose', 'give', 'make', 'say', 'sit', 'stand', 'tell', 'think'],
+  13: [],
+  14: [],
+  15: [],
+  16: ['wake'],
+  17: [],
+  18: ['let'],
+  19: [],
+  20: [],
+  21: [],
+  22: [],
+  23: [],
+  24: [],
+  25: ['ring'],
+  26: [],
+  27: [],
+  28: ['hurt'],
+  29: [],
+  30: [],
+  31: ['fall', 'hit', 'shake', 'strike'],
+  32: [],
+} satisfies Record<number, string[]>;
+
+function verbsForLesson(bases: string[]): IrregularVerb[] {
+  return bases.map((base) => {
+    const verb = IRREGULAR_VERB_GLOSSARY[base];
+    if (!verb) throw new Error(`Missing irregular verb glossary row: ${base}`);
+    return verb;
+  });
+}
+
+export const IRREGULAR_VERBS_BY_LESSON: Record<number, IrregularVerb[]> = Object.fromEntries(
+  Object.entries(LESSON_IRREGULAR_BASES).map(([lessonId, bases]) => [Number(lessonId), verbsForLesson(bases)])
+) as Record<number, IrregularVerb[]>;
+
 export const LESSONS_WITH_IRREGULAR_VERBS: Set<number> = new Set(
-  Object.entries(IRREGULAR_VERBS_BY_LESSON).filter(([, v]) => v.length > 0).map(([k]) => Number(k))
+  Object.entries(IRREGULAR_VERBS_BY_LESSON).filter(([, verbs]) => verbs.length > 0).map(([lessonId]) => Number(lessonId))
 );
+
 export const IRREGULAR_VERB_COUNT_BY_LESSON: Record<number, number> = Object.fromEntries(
-  Object.entries(IRREGULAR_VERBS_BY_LESSON).map(([k, v]) => [Number(k), v.length])
+  Object.entries(IRREGULAR_VERBS_BY_LESSON).map(([lessonId, verbs]) => [Number(lessonId), verbs.length])
 );
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

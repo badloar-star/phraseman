@@ -47,4 +47,46 @@ describe('lesson phrases regression', () => {
       }
     }
   });
+
+  it('reported phrase translations stay aligned with English answers', () => {
+    const lesson6Phrase27 = LESSON_DATA[6].phrases.find((phrase) => phrase.id === 'lesson6_phrase_27');
+    expect(lesson6Phrase27).toMatchObject({
+      english: 'Where does he keep keys?',
+      russian: 'Где он хранит ключи?',
+      ukrainian: 'Де він зберігає ключі?',
+    });
+    expect(lesson6Phrase27?.wordsEn?.map((word) => word.correct)).toEqual([
+      'Where',
+      'does',
+      'he',
+      'keep',
+      'keys',
+    ]);
+
+    const lesson11Phrase22 = LESSON_DATA[11].phrases.find((phrase) => phrase.id === 'lesson11_phrase_22');
+    expect(lesson11Phrase22).toMatchObject({
+      english: 'She closed apps yesterday',
+      russian: 'Она закрыла приложения вчера',
+      ukrainian: 'Вона закрила застосунки вчора',
+    });
+
+    const lesson3Phrase39 = LESSON_DATA[3].phrases.find((phrase) => phrase.id === 'lesson3_phrase_39');
+    expect(lesson3Phrase39).toMatchObject({
+      english: 'We trust you',
+      russian: 'Мы доверяем тебе',
+      ukrainian: 'Ми довіряємо тобі',
+      spanish: 'Confiamos en ti.',
+    });
+    expect(lesson3Phrase39?.words?.map((word) => word.correct)).toEqual([
+      'Confiamos',
+      'en',
+      'ti',
+      '.',
+    ]);
+    expect(lesson3Phrase39?.wordsEn?.map((word) => word.correct)).toEqual([
+      'We',
+      'trust',
+      'you',
+    ]);
+  });
 });

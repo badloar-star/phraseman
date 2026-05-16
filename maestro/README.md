@@ -38,6 +38,12 @@ powershell -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows
 npm run maestro:modules
 ```
 
+Focused Lesson 1 intro contract:
+
+```bash
+powershell -ExecutionPolicy Bypass -File ./scripts/run_maestro.ps1 maestro/flows/modules/lessons/lesson1_intro_contract.yaml
+```
+
 Несколько эмуляторов / шардирование (параллельно разные YAML, не один девайс):
 
 ```bash

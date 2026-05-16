@@ -37,6 +37,10 @@ exports.lookupPercentile = lookupPercentile;
 exports.computeLeaderboardStats = computeLeaderboardStats;
 const admin = __importStar(require("firebase-admin"));
 const db = admin.firestore();
+function readProgressInt(value) {
+    const n = Math.trunc(Number(value));
+    return Number.isFinite(n) ? n : 0;
+}
 /**
  * Для массива значений строит таблицу перцентильных порогов p1..p99.
  * pN = минимальное значение, чтобы быть «выше N% пользователей».
@@ -86,14 +90,35 @@ function lookupPercentile(thresholds, myValue) {
 }
 async function computeLeaderboardStats() {
     console.log('[computeLeaderboardStats] start');
-    // ── 1. Читаем leaderboard (XP, streak, weekPoints, daily7xp, daily7time_ms) ──
+    // 1. Lifetime XP thresholds.
+    // Lifetime XP must come from the real progress document, not from leaderboard
+    // mirrors that can lag behind or be jump-clamped by the callable guard.
     const xpVals = [];
+    let lastUserDoc = null;
+    while (true) {
+        let q = db.collection('users')
+            .orderBy('__name__')
+            .limit(500);
+        if (lastUserDoc)
+            q = q.startAfter(lastUserDoc);
+        const snap = await q.get();
+        if (snap.empty)
+            break;
+        for (const doc of snap.docs) {
+            const progress = doc.data()?.progress ?? {};
+            const xp = readProgressInt(progress.user_total_xp);
+            if (xp >= 50)
+                xpVals.push(xp);
+        }
+        lastUserDoc = snap.docs[snap.docs.length - 1] ?? null;
+        if (snap.size < 500)
+            break;
+    }
     const streakVals = [];
     const weekXpVals = [];
     const daily7xpVals = [];
     const daily7timeMsVals = [];
     let lastLbDoc = null;
-    let lbTotal = 0;
     while (true) {
         let q = db.collection('leaderboard')
             .where('points', '>=', 50)
@@ -109,8 +134,6 @@ async function computeLeaderboardStats() {
             const xp = typeof d.points === 'number' ? d.points : 0;
             if (xp <= 0)
                 continue;
-            lbTotal++;
-            xpVals.push(xp);
             if (typeof d.streak === 'number' && d.streak > 0)
                 streakVals.push(d.streak);
             if (typeof d.weekPoints === 'number' && d.weekPoints > 0)
@@ -152,7 +175,7 @@ async function computeLeaderboardStats() {
     }
     // ── 3. Строим таблицы порогов ─────────────────────────────────────────────────
     const stats = {
-        totalUsers: lbTotal,
+        totalUsers: xpVals.length,
         updatedAt: Date.now(),
         xpThresholds: buildPercentileThresholds(xpVals),
         streakThresholds: buildPercentileThresholds(streakVals),
@@ -162,7 +185,7 @@ async function computeLeaderboardStats() {
         arenaXpThresholds: buildPercentileThresholds(arenaXpVals),
     };
     await db.collection('leaderboard_stats').doc('global').set(stats);
-    console.log(`[computeLeaderboardStats] done. users=${lbTotal}, ` +
+    console.log(`[computeLeaderboardStats] done. xpUsers=${xpVals.length}, ` +
         `streak=${streakVals.length}, daily7xp=${daily7xpVals.length}, ` +
         `arenaXp=${arenaXpVals.length}`);
 }

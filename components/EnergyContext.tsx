@@ -1,15 +1,15 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
-import { AppState, DeviceEventEmitter } from 'react-native';
+import { AppState, DeviceEventEmitter, InteractionManager } from 'react-native';
 import { getLevelFromXP, getMaxEnergyForLevel } from '../constants/theme';
 import { readBonusEnergy, BONUS_ENERGY_KEY } from '../app/level_gift_system';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
-import { formatTimeUntilRecovery } from '../app/energy_system';
+import { formatTimeUntilRecovery, getRecoveryIntervalMs } from '../app/energy_system';
+import { readLeagueChestEnergyOverrideMs } from '../app/services/league_chest_rewards';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 const ENERGY_KEY = 'energy_state';
 export const MAX_ENERGY = 5; // базовый минимум (уровень 1-9)
-const RECOVERY_MS = 30 * 60 * 1000; // 30 minutes per 1 energy unit
 
 interface StoredEnergy {
   current: number;
@@ -22,6 +22,7 @@ export interface EnergyContextValue {
   bonusEnergy: number;       // 0-N extra energy from gifts (expires next day)
   bonusExpiresAt: number;    // epoch ms when bonus expires (0 if no bonus)
   maxEnergy: number;         // динамически: 5-10 в зависимости от уровня
+  recoveryIntervalMs: number;// current +1 energy recovery interval
   timeUntilNextMs: number;   // ms until +1 energy (0 if full or unlimited)
   formattedTime: string;     // e.g. "29м 12с" or "1ч 5м 3с" — ready to display
   isUnlimited: boolean;      // premium or tester mode
@@ -39,6 +40,7 @@ const EnergyContext = createContext<EnergyContextValue>({
   bonusEnergy: 0,
   bonusExpiresAt: 0,
   maxEnergy: MAX_ENERGY,
+  recoveryIntervalMs: getRecoveryIntervalMs(0),
   timeUntilNextMs: 0,
   formattedTime: '',
   isUnlimited: false,
@@ -64,8 +66,18 @@ async function readUnlimited(): Promise<boolean> {
   return isPremium || tester === 'true' || noLimits === 'true';
 }
 
+async function readRecoveryIntervalMs(): Promise<number> {
+  try {
+    const leagueChestMs = await readLeagueChestEnergyOverrideMs();
+    if (leagueChestMs) return leagueChestMs;
+    return getRecoveryIntervalMs();
+  } catch {
+    return getRecoveryIntervalMs();
+  }
+}
+
 /** Читает и восстанавливает состояние энергии с учётом динамического максимума */
-async function readAndRecoverState(dynMax: number): Promise<StoredEnergy> {
+async function readAndRecoverState(dynMax: number, recoveryMs: number): Promise<StoredEnergy> {
   const raw = await AsyncStorage.getItem(ENERGY_KEY);
   let state: StoredEnergy = { current: dynMax, lastRecoveryTime: Date.now() };
 
@@ -81,11 +93,11 @@ async function readAndRecoverState(dynMax: number): Promise<StoredEnergy> {
   if (state.current < dynMax) {
     const now = Date.now();
     const elapsed = now - state.lastRecoveryTime;
-    const recovered = Math.floor(elapsed / RECOVERY_MS);
+    const recovered = Math.floor(elapsed / recoveryMs);
     if (recovered > 0) {
       state.current = Math.min(state.current + recovered, dynMax);
       // Advance lastRecoveryTime by completed full intervals (keeps remainder accurate)
-      state.lastRecoveryTime = state.lastRecoveryTime + recovered * RECOVERY_MS;
+      state.lastRecoveryTime = state.lastRecoveryTime + recovered * recoveryMs;
       await AsyncStorage.setItem(ENERGY_KEY, JSON.stringify(state));
     }
   }
@@ -110,6 +122,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const [bonusEnergy, setBonusEnergy] = useState(0);
   const [bonusExpiresAt, setBonusExpiresAt] = useState(0);
   const [maxEnergy, setMaxEnergy] = useState(MAX_ENERGY);
+  const [recoveryIntervalMs, setRecoveryIntervalMs] = useState(getRecoveryIntervalMs(0));
   const [timeUntilNextMs, setTimeUntilNextMs] = useState(0);
   const [isUnlimited, setIsUnlimited] = useState(false);
   const [restoringPremium, setRestoringPremium] = useState(false);
@@ -119,6 +132,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const energyRef = useRef(MAX_ENERGY);
   const bonusRef = useRef(0);
   const dynMaxRef = useRef(MAX_ENERGY);
+  const recoveryMsRef = useRef(getRecoveryIntervalMs(0));
   const lastRecoveryRef = useRef(Date.now());
   const isUnlimitedRef = useRef(false);
   const restoreTimersRef = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -126,13 +140,15 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // ── Load and apply recovery ────────────────────────────────────────────────
   const load = useCallback(async () => {
     try {
-      const [unlimited, dynMax, bonusState] = await Promise.all([readUnlimited(), readDynMax(), readBonusEnergy()]);
+      const [unlimited, dynMax, recoveryMs, bonusState] = await Promise.all([readUnlimited(), readDynMax(), readRecoveryIntervalMs(), readBonusEnergy()]);
       const bonus = bonusState?.amount ?? 0;
       bonusRef.current = bonus;
       setBonusEnergy(bonus);
       setBonusExpiresAt(bonusState?.expiresAt ?? 0);
       dynMaxRef.current = dynMax;
+      recoveryMsRef.current = recoveryMs;
       setMaxEnergy(dynMax);
+      setRecoveryIntervalMs(recoveryMs);
 
       const wasUnlimited = isUnlimitedRef.current;
       isUnlimitedRef.current = unlimited;
@@ -147,7 +163,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
       if (unlimited) {
         // Читаем реальное сохранённое значение энергии
-        const storedState = await readAndRecoverState(dynMax);
+        const storedState = await readAndRecoverState(dynMax, recoveryMs);
         const storedEnergy = storedState.current;
         setTimeUntilNextMs(0);
 
@@ -180,7 +196,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      const state = await readAndRecoverState(dynMax);
+      const state = await readAndRecoverState(dynMax, recoveryMs);
       energyRef.current = state.current;
       lastRecoveryRef.current = state.lastRecoveryTime;
       setEnergy(state.current);
@@ -188,7 +204,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
       if (state.current < dynMax) {
         const now = Date.now();
         const elapsed = now - state.lastRecoveryTime;
-        const remaining = RECOVERY_MS - (elapsed % RECOVERY_MS);
+        const remaining = recoveryMs - (elapsed % recoveryMs);
         setTimeUntilNextMs(remaining > 0 ? remaining : 0);
       } else {
         setTimeUntilNextMs(0);
@@ -205,6 +221,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   // Poll every 30s for recovery — paused while in background to prevent AsyncStorage deadlocks
   useEffect(() => {
     let intervalId: ReturnType<typeof setInterval> | null = null;
+    let resumeTimer: ReturnType<typeof setTimeout> | null = null;
+    let resumeTask: { cancel?: () => void } | null = null;
 
     const startInterval = () => {
       if (intervalId) clearInterval(intervalId);
@@ -218,9 +236,21 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
 
     const sub = AppState.addEventListener('change', state => {
       if (state === 'active') {
-        load();        // reload once on foreground resume
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTask?.cancel?.();
+        resumeTimer = setTimeout(() => {
+          resumeTimer = null;
+          resumeTask = InteractionManager.runAfterInteractions(() => {
+            load();
+          });
+        }, 300);
         startInterval(); // restart polling
       } else {
+        if (resumeTimer) {
+          clearTimeout(resumeTimer);
+          resumeTimer = null;
+        }
+        resumeTask?.cancel?.();
         stopInterval(); // stop polling while in background
       }
     });
@@ -228,7 +258,13 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     // Перезагружаем энергию по событию от xp_manager при level-up
     const levelSub = DeviceEventEmitter.addListener('energy_reload', () => { load(); });
 
-    return () => { stopInterval(); sub.remove(); levelSub.remove(); };
+    return () => {
+      stopInterval();
+      sub.remove();
+      levelSub.remove();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTask?.cancel?.();
+    };
   }, [load]);
 
   // Countdown every second when energy is not full
@@ -240,7 +276,8 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     const id = setInterval(() => {
       const now = Date.now();
       const elapsed = now - lastRecoveryRef.current;
-      const remaining = RECOVERY_MS - (elapsed % RECOVERY_MS);
+      const recoveryMs = recoveryMsRef.current;
+      const remaining = recoveryMs - (elapsed % recoveryMs);
       setTimeUntilNextMs(remaining > 0 ? remaining : 0);
     }, 1000);
     return () => clearInterval(id);
@@ -271,7 +308,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
     }
 
     const now = Date.now();
-    // Start fresh 30-min timer when spending from full
+    // Start fresh recovery timer when spending from full
     const newLastRecovery = energyRef.current >= dynMaxRef.current ? now : lastRecoveryRef.current;
     const newEnergy = energyRef.current - 1;
 
@@ -333,7 +370,7 @@ export function EnergyProvider({ children }: { children: React.ReactNode }) {
   const formattedTime = energy < dynMaxRef.current && !isUnlimited ? formatTimeUntilRecovery(timeUntilNextMs) : '';
 
   return (
-    <EnergyContext.Provider value={{ energy, bonusEnergy, bonusExpiresAt, maxEnergy, timeUntilNextMs, formattedTime, isUnlimited, restoringPremium, spendOne, spendAmount, reload, energyReady }}>
+    <EnergyContext.Provider value={{ energy, bonusEnergy, bonusExpiresAt, maxEnergy, recoveryIntervalMs, timeUntilNextMs, formattedTime, isUnlimited, restoringPremium, spendOne, spendAmount, reload, energyReady }}>
       {children}
     </EnergyContext.Provider>
   );

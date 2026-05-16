@@ -8,6 +8,14 @@ import firestore from '@react-native-firebase/firestore';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureArenaAuthUid } from './user_id_policy';
 import type { RankLevel, RankTier } from './types/arena';
+import { normalizeAvatarAuraId } from '../constants/avatar_auras';
+import { fetchActiveLeagueCrowns, type LeagueCrown } from './services/league_chest_rewards';
+import {
+  normalizeProfileCardLevel,
+  normalizeProfileCardMotion,
+  normalizeProfileCardPublicFocus,
+  normalizeProfileCardTheme,
+} from './profile_card_system';
 
 export interface ArenaLbRow {
   uid: string;
@@ -20,6 +28,12 @@ export interface ArenaLbRow {
   totalXp: number;
   isPremium: boolean;
   frame?: string;
+  aura?: string;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
+  leagueCrown?: LeagueCrown;
   /** Кастомный эмодзи-аватар из глобального рейтинга (если есть). */
   avatarEmoji?: string;
 }
@@ -31,7 +45,16 @@ export interface ArenaLbRow {
  *  v4: дедуп по stable users id.
  *  v3: bump после ужесточения PLACEHOLDER_NAMES filter — старый v2 кеш мог
  *  содержать "Игрок"/"—"/тестовые записи, теперь они отфильтровываются. */
-export const ARENA_TOP100_CACHE_KEY = 'arena_top100_snapshot_v7';
+export const ARENA_TOP100_CACHE_KEY = 'arena_top100_snapshot_v8';
+const ARENA_TOP100_LEGACY_CACHE_KEYS = [
+  'arena_top100_snapshot_v7',
+  'arena_top100_snapshot_v6',
+  'arena_top100_snapshot_v5',
+  'arena_top100_snapshot_v4',
+  'arena_top100_snapshot_v3',
+  'arena_top100_snapshot_v2',
+  'arena_top100_snapshot_v1',
+];
 /** Время последнего успешного запроса к Firestore (для правила 6 ч при заходе). */
 export const ARENA_REMOTE_REFRESH_AT_KEY = 'arena_top100_remote_at_v1';
 export const ARENA_REMOTE_REFRESH_MS = 6 * 60 * 60 * 1000;
@@ -59,8 +82,14 @@ const getFirestore = () => {
 interface LbExtras {
   points: number;
   frame?: string;
+  aura?: string;
+  leagueCrown?: LeagueCrown;
   isPremium: boolean;
   avatarEmoji?: string;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
 }
 
 function mergeLbExtras(prev: LbExtras | undefined, next: LbExtras): LbExtras {
@@ -69,23 +98,41 @@ function mergeLbExtras(prev: LbExtras | undefined, next: LbExtras): LbExtras {
     return {
       points: next.points,
       frame: next.frame ?? prev.frame,
+      aura: next.aura ?? prev.aura,
+      leagueCrown: next.leagueCrown ?? prev.leagueCrown,
       isPremium: prev.isPremium || next.isPremium,
       avatarEmoji: next.avatarEmoji ?? prev.avatarEmoji,
+      profileCardLevel: next.profileCardLevel ?? prev.profileCardLevel,
+      profileCardTheme: next.profileCardTheme ?? prev.profileCardTheme,
+      profileCardMotion: next.profileCardMotion ?? prev.profileCardMotion,
+      profileCardPublicFocus: next.profileCardPublicFocus ?? prev.profileCardPublicFocus,
     };
   }
   if (prev.points > next.points) {
     return {
       points: prev.points,
       frame: prev.frame ?? next.frame,
+      aura: prev.aura ?? next.aura,
+      leagueCrown: prev.leagueCrown ?? next.leagueCrown,
       isPremium: prev.isPremium || next.isPremium,
       avatarEmoji: prev.avatarEmoji ?? next.avatarEmoji,
+      profileCardLevel: prev.profileCardLevel ?? next.profileCardLevel,
+      profileCardTheme: prev.profileCardTheme ?? next.profileCardTheme,
+      profileCardMotion: prev.profileCardMotion ?? next.profileCardMotion,
+      profileCardPublicFocus: prev.profileCardPublicFocus ?? next.profileCardPublicFocus,
     };
   }
   return {
     points: prev.points,
     frame: prev.frame ?? next.frame,
+    aura: prev.aura ?? next.aura,
+    leagueCrown: prev.leagueCrown ?? next.leagueCrown,
     isPremium: prev.isPremium || next.isPremium,
     avatarEmoji: prev.avatarEmoji ?? next.avatarEmoji,
+    profileCardLevel: prev.profileCardLevel ?? next.profileCardLevel,
+    profileCardTheme: prev.profileCardTheme ?? next.profileCardTheme,
+    profileCardMotion: prev.profileCardMotion ?? next.profileCardMotion,
+    profileCardPublicFocus: prev.profileCardPublicFocus ?? next.profileCardPublicFocus,
   };
 }
 
@@ -94,14 +141,36 @@ function parseLeaderboardDoc(data: Record<string, unknown> | undefined): LbExtra
   const d = data as {
     points?: number;
     frame?: string | null;
+    aura?: string | null;
     isPremium?: boolean;
     avatar?: string | null;
+    profileCardLevel?: unknown;
+    profileCardTheme?: unknown;
+    profileCardMotion?: unknown;
+    profileCardPublicFocus?: unknown;
+    leagueCrownExpiresAt?: number | null;
   };
   return {
     points: typeof d.points === 'number' ? d.points : 0,
     frame: typeof d.frame === 'string' && d.frame.trim() ? d.frame : undefined,
+    aura: normalizeAvatarAuraId(d.aura) ?? undefined,
     isPremium: !!d.isPremium,
     avatarEmoji: typeof d.avatar === 'string' && d.avatar.trim() ? d.avatar.trim() : undefined,
+    profileCardLevel: normalizeProfileCardLevel(d.profileCardLevel),
+    profileCardTheme: normalizeProfileCardTheme(d.profileCardTheme),
+    profileCardMotion: normalizeProfileCardMotion(d.profileCardMotion),
+    profileCardPublicFocus: normalizeProfileCardPublicFocus(d.profileCardPublicFocus),
+    leagueCrown: Number(d.leagueCrownExpiresAt) > Date.now()
+      ? {
+          uid: '',
+          name: '',
+          weekId: '',
+          groupId: '',
+          leagueId: 0,
+          expiresAt: Number(d.leagueCrownExpiresAt),
+          aura: 'league_chest_crown',
+        }
+      : undefined,
   };
 }
 
@@ -128,18 +197,36 @@ function progressTotalXp(progress: Record<string, unknown> | undefined): number 
   return n > 0 ? n : 0;
 }
 
+function progressAvatar(progress: Record<string, unknown> | undefined): string | undefined {
+  const raw = progress?.user_avatar;
+  const avatar = typeof raw === 'string' ? raw.trim() : '';
+  return avatar || undefined;
+}
+
+function progressAura(progress: Record<string, unknown> | undefined): string | undefined {
+  const raw = progress?.user_avatar_aura;
+  return normalizeAvatarAuraId(typeof raw === 'string' ? raw.trim() : '');
+}
+
 /** Снимок с doc arena_profiles (пишут клиент при синке/push и CF после матча). */
 function courseExtrasFromProfileData(d: Record<string, unknown>): LbExtras | undefined {
   const xp = typeof d.courseTotalXp === 'number' ? d.courseTotalXp : 0;
   const av = typeof d.courseAvatar === 'string' ? d.courseAvatar.trim() : '';
   const fr = typeof d.courseFrame === 'string' ? d.courseFrame.trim() : '';
+  const aura = normalizeAvatarAuraId(typeof d.courseAura === 'string' ? d.courseAura.trim() : '');
   const isP = !!d.courseIsPremium;
-  if (xp <= 0 && !av && !fr && !isP) return undefined;
+  const profileCardLevel = normalizeProfileCardLevel(d.courseProfileCardLevel);
+  if (xp <= 0 && !av && !fr && !aura && !isP && profileCardLevel <= 0) return undefined;
   return {
     points: xp > 0 ? xp : 0,
     avatarEmoji: av || undefined,
     frame: fr || undefined,
+    aura,
     isPremium: isP,
+    profileCardLevel,
+    profileCardTheme: normalizeProfileCardTheme(d.courseProfileCardTheme),
+    profileCardMotion: normalizeProfileCardMotion(d.courseProfileCardMotion),
+    profileCardPublicFocus: normalizeProfileCardPublicFocus(d.courseProfileCardPublicFocus),
   };
 }
 
@@ -157,26 +244,22 @@ function mergeRemoteAndProfileExtras(
   return {
     points,
     frame: pri?.frame ?? sec?.frame,
+    aura: pri?.aura ?? sec?.aura,
+    leagueCrown: pri?.leagueCrown ?? sec?.leagueCrown,
     avatarEmoji: pri?.avatarEmoji ?? sec?.avatarEmoji,
     isPremium: (remote?.isPremium ?? false) || (profile?.isPremium ?? false),
+    profileCardLevel: pri?.profileCardLevel ?? sec?.profileCardLevel,
+    profileCardTheme: pri?.profileCardTheme ?? sec?.profileCardTheme,
+    profileCardMotion: pri?.profileCardMotion ?? sec?.profileCardMotion,
+    profileCardPublicFocus: pri?.profileCardPublicFocus ?? sec?.profileCardPublicFocus,
   };
 }
 
 /** Один «логический» аккаунт в облаке: users/{id} или связка firebaseAuthUid → этот id. */
 async function resolveStableGroupKey(authUid: string): Promise<string> {
-  const db = firestore();
-  try {
-    const qSnap = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
-    if (!qSnap.empty) return `s:${qSnap.docs[0].id}`;
-  } catch {
-    /* ignore */
-  }
-  try {
-    const d = await db.collection('users').doc(authUid).get();
-    if (d.exists) return `s:${authUid}`;
-  } catch {
-    /* ignore */
-  }
+  // users/* is intentionally private in Firestore rules. Public leaderboards
+  // must not fan out into private user docs; use arena mirrorStableId/name
+  // grouping and public leaderboard docs instead.
   return `a:${authUid}`;
 }
 
@@ -268,54 +351,9 @@ async function fetchLeaderboardExtras(uids: string[]): Promise<Map<string, LbExt
   }
 
   const needFallback = uids.filter((uid) => (map.get(uid)?.points ?? 0) <= 0);
-  for (const part of chunk(needFallback, 12)) {
-    await Promise.all(
-      part.map(async (authUid) => {
-        try {
-          let merged = map.get(authUid);
-
-          const directUser = await db.collection('users').doc(authUid).get();
-          if (directUser.exists) {
-            const progress = directUser.data()?.progress as Record<string, unknown> | undefined;
-            const xp = progressTotalXp(progress);
-            if (xp > 0) {
-              merged = mergeLbExtras(merged, { points: xp, isPremium: merged?.isPremium ?? false });
-            }
-          }
-
-          const qSnap = await db
-            .collection('users')
-            .where('firebaseAuthUid', '==', authUid)
-            .limit(1)
-            .get();
-
-          if (!qSnap.empty) {
-            const stableDoc = qSnap.docs[0];
-            const progress = stableDoc.data()?.progress as Record<string, unknown> | undefined;
-            const xpFromProgress = progressTotalXp(progress);
-
-            let fromLb: LbExtras | null = null;
-            try {
-              const lbSnap = await db.collection('leaderboard').doc(stableDoc.id).get();
-              if (lbSnap.exists) fromLb = parseLeaderboardDoc(lbSnap.data() as Record<string, unknown>);
-            } catch {
-              /* ignore */
-            }
-
-            const stableSide = mergeLbExtras(
-              { points: xpFromProgress, isPremium: false },
-              fromLb ?? { points: 0, isPremium: false },
-            );
-            merged = mergeLbExtras(merged, stableSide);
-          }
-
-          if (merged) map.set(authUid, merged);
-        } catch {
-          /* ignore uid */
-        }
-      }),
-    );
-  }
+  needFallback.forEach((uid) => {
+    if (!map.has(uid)) map.set(uid, { points: 0, isPremium: false });
+  });
 
   return map;
 }
@@ -331,7 +369,7 @@ function parseRank(raw: { tier?: string; level?: string } | undefined): { tier: 
   return { tier, levelRoman: lv };
 }
 
-/** Имена-плейсхолдеры от старых билдов / из CF fallback'ов — НЕ показываем в лидерборде.
+/** Имена-плейсхолдеры от старых билдов / из CF fallback\'ов — НЕ показываем в лидерборде.
  *  Используется для фильтра как при свежем fetch из Firestore, так и при чтении кеша. */
 const PLACEHOLDER_NAMES = new Set([
   'Игрок', 'Гравець', 'Player', 'Гость', 'Guest',
@@ -440,47 +478,61 @@ async function queryArenaProfilesTop100(): Promise<ArenaLbRow[]> {
       totalXp: ex.points,
       isPremium: ex.isPremium,
       frame: ex.frame,
+      aura: ex.aura,
       avatarEmoji: ex.avatarEmoji,
+      profileCardLevel: ex.profileCardLevel,
+      profileCardTheme: ex.profileCardTheme,
+      profileCardMotion: ex.profileCardMotion,
+      profileCardPublicFocus: ex.profileCardPublicFocus,
     });
   }
+
+  const crowns = await fetchActiveLeagueCrowns(
+    mergedRows.map((r) => r.friendUid).filter((uid): uid is string => !!uid),
+  );
+  mergedRows.forEach((row) => {
+    if (row.friendUid && crowns[row.friendUid]) {
+      row.leagueCrown = crowns[row.friendUid];
+    }
+  });
 
   mergedRows.sort((x, y) => y.arenaXp - x.arenaXp || x.uid.localeCompare(y.uid));
   return mergedRows.slice(0, 100).map((r, i) => ({ ...r, place: i + 1 }));
 }
 
-/**
- * Загрузка топ-100: как Зал славы — показываем последний снимок, удалённое обновление
- * только если прошло ≥6 ч с последнего успешного запроса или передан forceRemote (ручная кнопка).
- */
-export async function loadArenaTop100(opts?: { forceRemote?: boolean }): Promise<ArenaLbRow[]> {
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return [];
-
-  let cachedRows: ArenaLbRow[] = [];
-  try {
-    const raw = await AsyncStorage.getItem(ARENA_TOP100_CACHE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw) as { data?: ArenaLbRow[]; timestamp?: number };
-      if (Array.isArray(parsed.data)) {
-        // Defensive: даже если кеш был сохранён до фильтра — отрезаем плейсхолдеры
-        // на чтении, чтобы юзер не видел "Игрок"/"—" пока не подоспеет remote refresh.
-        cachedRows = stripPlaceholdersAndReplace(parsed.data);
+export async function loadCachedArenaTop100(): Promise<ArenaLbRow[]> {
+  const keys = [ARENA_TOP100_CACHE_KEY, ...ARENA_TOP100_LEGACY_CACHE_KEYS];
+  for (const key of keys) {
+    let cachedRows: ArenaLbRow[] = [];
+    try {
+      const raw = await AsyncStorage.getItem(key);
+      if (raw) {
+        const parsed = JSON.parse(raw) as { data?: ArenaLbRow[]; timestamp?: number };
+        if (Array.isArray(parsed.data)) {
+          // Defensive: даже если кеш был сохранён до фильтра — отрезаем плейсхолдеры
+          // на чтении, чтобы юзер не видел "Игрок"/"—" пока не подоспеет remote refresh.
+          cachedRows = stripPlaceholdersAndReplace(parsed.data);
+        }
       }
+    } catch {
+      /* ignore */
     }
-  } catch {
-    /* ignore */
+    if (cachedRows.length > 0) {
+      if (key !== ARENA_TOP100_CACHE_KEY) {
+        await AsyncStorage.setItem(
+          ARENA_TOP100_CACHE_KEY,
+          JSON.stringify({ data: cachedRows, timestamp: Date.now() }),
+        ).catch(() => {});
+      }
+      return cachedRows;
+    }
   }
+  return [];
+}
 
-  const lastRemoteAtRaw = await AsyncStorage.getItem(ARENA_REMOTE_REFRESH_AT_KEY);
-  const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
-  const shouldFetchRemote =
-    !!opts?.forceRemote || cachedRows.length === 0 || Date.now() - lastRemoteAt >= ARENA_REMOTE_REFRESH_MS;
-
-  if (!shouldFetchRemote) {
-    return cachedRows;
-  }
-
+async function fetchAndCacheArenaTop100(): Promise<ArenaLbRow[]> {
   if (!getFirestore()) {
-    return cachedRows;
+    return [];
   }
 
   await ensureArenaAuthUid().catch(() => null);
@@ -491,20 +543,49 @@ export async function loadArenaTop100(opts?: { forceRemote?: boolean }): Promise
     // но если в будущем добавится новая placeholder-вариация — здесь подстрахуем.
     const result = stripPlaceholdersAndReplace(fetched);
     if (result.length > 0) {
-      try {
-        await AsyncStorage.multiSet([
-          [ARENA_TOP100_CACHE_KEY, JSON.stringify({ data: result, timestamp: Date.now() })],
-          [ARENA_REMOTE_REFRESH_AT_KEY, String(Date.now())],
-        ]);
-      } catch {
-        /* ignore */
-      }
-      return result;
+      await AsyncStorage.multiSet([
+        [ARENA_TOP100_CACHE_KEY, JSON.stringify({ data: result, timestamp: Date.now() })],
+        [ARENA_REMOTE_REFRESH_AT_KEY, String(Date.now())],
+      ]).catch(() => {});
     }
-    return cachedRows;
+    return result;
   } catch {
+    return [];
+  }
+}
+
+/**
+ * Загрузка топ-100: cache-first. Если кеш есть, он возвращается сразу, а устаревшее
+ * remote-обновление идёт фоном через onBackgroundRefresh без пустого экрана.
+ */
+export async function loadArenaTop100(opts?: {
+  forceRemote?: boolean;
+  onBackgroundRefresh?: (rows: ArenaLbRow[]) => void;
+}): Promise<ArenaLbRow[]> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return [];
+
+  const cachedRows = await loadCachedArenaTop100();
+
+  const lastRemoteAtRaw = await AsyncStorage.getItem(ARENA_REMOTE_REFRESH_AT_KEY);
+  const lastRemoteAt = parseInt(lastRemoteAtRaw || '0', 10) || 0;
+  const shouldFetchRemote =
+    !!opts?.forceRemote || cachedRows.length === 0 || Date.now() - lastRemoteAt >= ARENA_REMOTE_REFRESH_MS;
+
+  if (!shouldFetchRemote) {
     return cachedRows;
   }
+
+  if (cachedRows.length > 0 && !opts?.forceRemote) {
+    void fetchAndCacheArenaTop100()
+      .then((freshRows) => {
+        if (freshRows.length > 0) opts?.onBackgroundRefresh?.(freshRows);
+      })
+      .catch(() => {});
+    return cachedRows;
+  }
+
+  const fetchedRows = await fetchAndCacheArenaTop100();
+  return fetchedRows.length > 0 ? fetchedRows : cachedRows;
 }
 
 /**

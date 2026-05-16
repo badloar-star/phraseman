@@ -69,7 +69,7 @@ The trigger `'she is ready'` is a **CORRECT STATEMENT answer** to "Is she ready?
 
 **Impact:** High — Same false positive issue
 
-**Fix:** Remove `'she is ready'` from the trigger set. The pedagogical intent (article before adjective) doesn't apply when the answer is a valid statement response.
+**Fix:** Remove `'she is ready'` from the trigger set. The pedagogical intent (article before adjective) doesn\'t apply when the answer is a valid statement response.
 
 ---
 
@@ -89,7 +89,7 @@ The trigger `'she is ready'` is a **CORRECT STATEMENT answer** to "Is she ready?
 **Problem:**
 The trigger includes `'are you colleague'` (singular noun). However, if a student answers the question "Are you colleagues?" with the statement "We are colleagues" (which mirrors the question structure but corrects the subject), this would be a correct contextual response. More problematically, `'are you colleague'` could be triggered by a learner attempting to make a statement using "are you" — though grammatically wrong, the issue is not the article but the subject-verb order.
 
-**Pedagogical concern:** The trap explanation focuses on article use with plural nouns, but the trigger `'are you colleague'` doesn't cleanly isolate the article error — it mixes word order and article issues.
+**Pedagogical concern:** The trap explanation focuses on article use with plural nouns, but the trigger `'are you colleague'` doesn\'t cleanly isolate the article error — it mixes word order and article issues.
 
 **Impact:** Medium — Less likely to cause false positives in actual learner responses, but trigger is conceptually confused
 
@@ -111,7 +111,7 @@ The trigger includes `'are you colleague'` (singular noun). However, if a studen
 ```
 
 **Problem:**
-The explanation correctly targets the verb form error ("is" instead of "are" with "they"), but the explanatory text's implicit context is a *question*. However, the same trigger `'is they at home'` would also fire if a learner produced the *statement* "Is they at home" (incorrect subject-verb agreement in a statement context). The issue is verb agreement, not specifically question formation, so the explanation conflates two different error contexts.
+The explanation correctly targets the verb form error ("is" instead of "are" with "they"), but the explanatory text\'s implicit context is a *question*. However, the same trigger `'is they at home'` would also fire if a learner produced the *statement* "Is they at home" (incorrect subject-verb agreement in a statement context). The issue is verb agreement, not specifically question formation, so the explanation conflates two different error contexts.
 
 While not strictly a false positive (the error IS wrong), the explanation is **contextually misleading** for non-question answers.
 
@@ -128,14 +128,14 @@ While not strictly a false positive (the error IS wrong), the explanation is **c
 **Trap definition:**
 ```typescript
 {
-  trigger: ['i am work', "i'm work"],
+  trigger: ['i am work', "i\'m work"],
   explanation: 'В настоящем времени (Present Simple) с "I" используется основная форма глагола "work", без "am". Неправильно: "I am work"...',
   lite: 'Present Simple без "am": I work.'
 }
 ```
 
 **Linguistic accuracy issue:**
-The explanation is **technically correct**, but the trigger may have a subtle false-positive risk depending on how it's matched. The trigger `['i am work']` as a substring match would correctly identify "I am work" anywhere in the response. However, if the matching logic is case-sensitive AND space-sensitive, and a student writes:
+The explanation is **technically correct**, but the trigger may have a subtle false-positive risk depending on how it\'s matched. The trigger `['i am work']` as a substring match would correctly identify "I am work" anywhere in the response. However, if the matching logic is case-sensitive AND space-sensitive, and a student writes:
 - "I am working" (Present Continuous, grammatically correct in different contexts)
 - "I am working every day" (if the lesson asks for present continuous instead)
 
@@ -165,7 +165,7 @@ This would depend on matching implementation. The trigger as written targets spe
 **Linguistic accuracy issue:**
 The explanation is correct (no article before language names in English). However, the trigger `'she speaks a english'` uses the WRONG article. In English, we use `'an'` before vowel sounds, not `'a'`. The trigger should logically include both `'she speaks a english'` AND `'she speaks an english'` to cover the full range of common article errors, but only the former is listed.
 
-While `'she speaks a english'` is a common Russian learner error (and correctly targeted), the omission of `'she speaks an english'` means learners making that specific article error won't receive this helpful correction.
+While `'she speaks a english'` is a common Russian learner error (and correctly targeted), the omission of `'she speaks an english'` means learners making that specific article error won\'t receive this helpful correction.
 
 **Impact:** Low — Not a false positive, but incomplete coverage of related errors
 
@@ -241,7 +241,7 @@ Across lessons 5–8, several instances of short, potentially broad triggers wer
 
 **Issue:**
 The explanation is correct linguistically. However, the trigger also includes `'they are in home'`, which is presented as an error. While true that "in home" is not standard (we use "at home"), the explanation could be more pedagogically precise:
-- "At home" = at someone's house (location)
+- "At home" = at someone\'s house (location)
 - "In home" = within the interior of a house (rare, formal, and incorrect in everyday English)
 
 For A1 learners, the simpler explanation works, but it glosses over the distinction. The trap is **acceptable** but could be clearer.
@@ -266,7 +266,7 @@ The explanation correctly identifies the article error but is incomplete. It doe
 - "a university" (starts with consonant SOUND /j/, not "y" letter)
 - "an hour" (silent "h", starts with vowel SOUND)
 
-For A1 learners, this simplification is acceptable, but it's technically imprecise.
+For A1 learners, this simplification is acceptable, but it\'s technically imprecise.
 
 **Severity:** Low — Rule is correct; explanation just uses simpler (letter-based) model
 
@@ -286,7 +286,7 @@ For A1 learners, this simplification is acceptable, but it's technically impreci
 **Issue:**
 The trigger `'i am youngs'` targets an error where a learner adds plural "-s" to an adjective. While this IS a common error in Russian learners (who are accustomed to adjective inflection), the explanation conflates two separate issues:
 1. No article before predicate adjectives (correct)
-2. Adjectives don't take plural "-s" in English (also correct)
+2. Adjectives don\'t take plural "-s" in English (also correct)
 
 The explanation should isolate the second error: "Прилагательные в английском языке не изменяются: 'young', не 'youngs'."
 
@@ -299,7 +299,7 @@ The explanation should isolate the second error: "Прилагательные �
 **Location:** Lesson 3, phraseIndex 6
 
 **Pedagogical issue:**
-The phrase should clarify the distinction between "drives to work" (destination focus) vs. "drives a car to work" (object + destination). If the trap only targets missing preposition ("he drives work" → should be "to work"), it's fine. But if it also targets missing object ("he drives to work" when the Russian prompt suggests "drive a car"), the error classification is ambiguous.
+The phrase should clarify the distinction between "drives to work" (destination focus) vs. "drives a car to work" (object + destination). If the trap only targets missing preposition ("he drives work" → should be "to work"), it\'s fine. But if it also targets missing object ("he drives to work" when the Russian prompt suggests "drive a car"), the error classification is ambiguous.
 
 **Action:** Verify the Russian prompt in lessons data matches the English target
 
@@ -344,10 +344,10 @@ Across multiple lessons (especially 4–8), explanations use Russian grammatical
 
 ### S1: Supportive Tone in L2 (Questions)
 
-Some explanations use slightly directive language: "Не забудьте" (Don't forget) could be softened to "Помните" (Remember) for learners who are already anxious about question formation.
+Some explanations use slightly directive language: "Не забудьте" (Don\'t forget) could be softened to "Помните" (Remember) for learners who are already anxious about question formation.
 
 **Example:** L2_phraseIndex_0, trap 2
-- Current: "Не пропускайте вопросительное слово 'are'" (Don't skip the question word 'are')
+- Current: "Не пропускайте вопросительное слово 'are'" (Don\'t skip the question word 'are')
 - Better: "В вопросе 'are' стоит на первом месте:" (In the question, 'are' goes first)
 
 **Severity:** Low — Tone is not harmful, just slightly austere
@@ -487,7 +487,7 @@ The following phraseIndex entries have been reviewed and **PASS all linguistic, 
 
 ### OPTIONAL ENHANCEMENTS (Nice-to-Have)
 
-9. Soften directive tone ("Don't forget") to more supportive phrasing ("Remember")
+9. Soften directive tone ("Don\'t forget") to more supportive phrasing ("Remember")
 10. Add explicit pedagogical note about "at home" vs. "in home" preposition distinction
 
 ---

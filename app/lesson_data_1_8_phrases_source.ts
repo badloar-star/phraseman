@@ -1450,14 +1450,14 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson3_phrase_17',
-    english: 'He writes letters',
-    russian: 'Он пишет письма',
-    ukrainian: 'Він пише листи',
-    spanish: 'Escribe cartas.',
+    english: 'He writes messages',
+    russian: 'Он пишет сообщения',
+    ukrainian: 'Він пише повідомлення',
+    spanish: 'Él escribe mensajes.',
     words: [
       { text: 'He', correct: 'He', distractors: ['she', 'his', 'we', 'hey', 'her'], category: 'pronoun' },
       { text: 'writes', correct: 'writes', distractors: ['write', 'wrote', 'writing', 'rights', 'bites'], category: 'verb' },
-      { text: 'letters', correct: 'letters', distractors: ['letter', 'litters', 'betters', 'lotters', 'liters'], category: 'noun' },
+      { text: 'messages', correct: 'messages', distractors: ['message', 'passages', 'massages', 'packages', 'damages'], category: 'noun' },
     ],
   },
   {
@@ -1719,14 +1719,14 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson3_phrase_39',
-    english: 'We accept terms',
-    russian: 'Мы соглашаемся с условиями',
-    ukrainian: 'Ми погоджуємося з умовами',
-    spanish: 'Aceptamos las condiciones.',
+    english: 'We trust you',
+    russian: 'Мы доверяем тебе',
+    ukrainian: 'Ми довіряємо тобі',
+    spanish: 'Confiamos en ti.',
     words: [
       { text: 'We', correct: 'We', distractors: ['me', 'he', 'be', 'she', 'the'], category: 'pronoun' },
-      { text: 'accept', correct: 'accept', distractors: ['except', 'expect', 'accent', 'access', 'aspect'], category: 'verb' },
-      { text: 'terms', correct: 'terms', distractors: ['germs', 'firms', 'worms', 'turns', 'burns'], category: 'noun' },
+      { text: 'trust', correct: 'trust', distractors: ['trusts', 'crust', 'rust', 'bust', 'gust'], category: 'verb' },
+      { text: 'you', correct: 'you', distractors: ['your', 'yours', 'u', 'ye', 'yew'], category: 'pronoun' },
     ],
   },
   {
@@ -4710,7 +4710,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'leaves', correct: 'leaves', distractors: ['leave', 'leaf', 'lives', 'left', 'level'] },
       { text: 'at', correct: 'at', distractors: ['in', 'on', 'to', 'as', 'it'], category: 'preposition' },
       { text: 'eight', correct: 'eight', distractors: ['eat', 'weight', 'night', 'height', 'eighth'] },
-      { text: "o'clock", correct: "o'clock", distractors: ['clock', 'hour', 'time', 'midnight', 'noon'] },
+      { text: "o\'clock", correct: "o\'clock", distractors: ['clock', 'hour', 'time', 'midnight', 'noon'] },
     ],
   },
   {
@@ -5115,7 +5115,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson8_phrase_31',
-    english: "He takes a shower at eight o'clock",
+    english: "He takes a shower at eight o\'clock",
     russian: 'Он принимает душ в восемь часов',
     ukrainian: "Він приймає душ о восьмій годині",
     spanish: 'Se ducha a las ocho.',
@@ -5126,7 +5126,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'shower', correct: 'shower', distractors: ['power', 'tower', 'flower', 'mower', 'lower'] },
       { text: 'at', correct: 'at', distractors: ['in', 'on', 'to', 'by', 'as'], category: 'preposition' },
       { text: 'eight', correct: 'eight', distractors: ['ate', 'height', 'eighteen', 'weight', 'freight'] },
-      { text: "o'clock", correct: "o'clock", distractors: ['clock', 'hour', 'time', 'midnight', 'noon'] },
+      { text: "o\'clock", correct: "o\'clock", distractors: ['clock', 'hour', 'time', 'midnight', 'noon'] },
     ],
   },  {
     id: 'lesson8_phrase_32',
@@ -5146,7 +5146,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     id: 'lesson8_phrase_33',
     english: 'She finishes work at five PM',
     russian: 'Она заканчивает работу в пять вечера',
-    ukrainian: "Вона закінчує роботу о п'ятій вечора",
+    ukrainian: "Вона закінчує роботу о п\'ятій вечора",
     spanish: 'Termina el trabajo a las cinco de la tarde.',
     words: [
       { text: 'She', correct: 'She', distractors: ['her', 'see', 'sea', 'shy', 'show'] },
@@ -5204,7 +5204,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     id: 'lesson8_phrase_37',
     english: 'Does she have time on Friday?',
     russian: 'У нее есть время в пятницу?',
-    ukrainian: "У неї є час у п'ятницю?",
+    ukrainian: "У неї є час у п\'ятницю?",
     spanish: '¿Tiene tiempo ella el viernes?',
     words: [
       { text: 'Does', correct: 'Does', distractors: ['Do', 'Dose', 'Done', 'Did', 'Dust'] },
@@ -5290,7 +5290,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     id: 'lesson8_phrase_43',
     english: 'We drink tea in the afternoon',
     russian: 'Мы пьем чай днем',
-    ukrainian: "Ми п'ємо чай вдень",
+    ukrainian: "Ми п\'ємо чай вдень",
     spanish: 'Tomamos té por la tarde.',
     words: [
       { text: 'We', correct: 'We', distractors: ['way', 'us', 'our', 'why', 'west'] },

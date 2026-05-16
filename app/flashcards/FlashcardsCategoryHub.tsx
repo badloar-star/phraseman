@@ -53,7 +53,7 @@ type Props = {
   ownedPackIds: string[];
   shardBalance: number;
   onMarketRefresh: () => void | Promise<void>;
-  /** Вкладки «Мої / Спільнота» + UGC-каталог (без Expo Go, з cloud). */
+  /** Вкладки «Мої / Вітрина / Спільнота» + UGC-каталог (без Expo Go, з cloud). */
   cloudCommunityEnabled?: boolean;
   communityPacks?: FlashcardMarketPack[];
   ownedCommunityPackIds?: string[];
@@ -164,7 +164,7 @@ type UnownedCardProps = {
   reduceMotion: boolean;
 };
 
-/** Картка магазину: глянець, м’якший CTA, «живі» деталі. */
+/** Картка магазину: глянець, м\'якший CTA, «живі» деталі. */
 function UnownedMarketPackCard({
   t,
   tileW,
@@ -344,7 +344,7 @@ export default function FlashcardsCategoryHub({
   const router = useRouter();
   const [buyingPackId, setBuyingPackId] = useState<string | null>(null);
   const [reduceMotion, setReduceMotion] = useState(false);
-  const [hubPackSegment, setHubPackSegment] = useState<'mine' | 'community'>('mine');
+  const [hubPackSegment, setHubPackSegment] = useState<'mine' | 'showcase' | 'community'>('mine');
   const [hasUnfinishedPackDraft, setHasUnfinishedPackDraft] = useState(false);
   const [discardDraftForNewOpen, setDiscardDraftForNewOpen] = useState(false);
   const [hiddenCommunityPackIds, setHiddenCommunityPackIds] = useState<Set<string>>(() => new Set());
@@ -393,24 +393,15 @@ export default function FlashcardsCategoryHub({
 
   const hubCategories = useMemo(() => categoriesForFlashcardsHub(), []);
 
-  const isGradientSurface = themeMode === 'ocean' || themeMode === 'sakura';
-  /** Підписи під плитками рендеряться на градієнті — `t.textPrimary` там тьмяний (як у налаштуваннях). */
-  const hubLabelPrimary = isGradientSurface
-    ? (themeMode === 'ocean' ? 'rgba(246,252,255,0.98)' : 'rgba(255,250,252,0.98)')
-    : t.textPrimary;
-  const hubLabelMuted = isGradientSurface
-    ? (themeMode === 'ocean' ? 'rgba(215,236,255,0.88)' : 'rgba(255,215,232,0.86)')
-    : t.textMuted;
-  const hubLabelAccent = isGradientSurface
-    ? (themeMode === 'ocean' ? 'rgba(200,236,255,0.95)' : 'rgba(255,200,228,0.95)')
-    : t.accent;
-  const tabOnBg = isGradientSurface ? t.bgCard : `${t.accent}22`;
-  const tabOnText = isGradientSurface ? t.textPrimary : t.accent;
-  const tabOffBg = isGradientSurface ? 'rgba(255,255,255,0.16)' : t.bgSurface;
-  const tabOffText = isGradientSurface
-    ? (themeMode === 'ocean' ? 'rgba(235,248,255,0.94)' : 'rgba(255,236,245,0.94)')
-    : t.textSecond;
-  const tabOffBorder = isGradientSurface ? 'rgba(255,255,255,0.38)' : t.border;
+  const isGradientSurface = false;
+  const hubLabelPrimary = t.textPrimary;
+  const hubLabelMuted = t.textMuted;
+  const hubLabelAccent = t.accent;
+  const tabOnBg = `${t.accent}22`;
+  const tabOnText = t.accent;
+  const tabOffBg = t.bgSurface;
+  const tabOffText = t.textSecond;
+  const tabOffBorder = t.border;
 
   /**
    * Куплений UGC, авторський набір, або UGC id у спільному `ownedPackIds` (легасі/гілка без isCommunityUgc).
@@ -430,7 +421,7 @@ export default function FlashcardsCategoryHub({
 
   /**
    * Вкладка «Мои»: без витрины платных официальных наборов — только то, что уже в «Моїх» (`ownedPackIds`).
-   * Подари: ваучер активується в paywall → `redeemPackGiftVoucher` додає id в owned — тоді плитка зʼявляється тут.
+   * Подари: ваучер активується в paywall → `redeemPackGiftVoucher` додає id в owned — тоді плитка з\'являється тут.
    */
   const mineTabPacksOnlyOwned = useMemo(() => {
     const catalogOwnedOrdered = marketPacks.filter((p) => ownedPackIds.includes(p.id));
@@ -440,6 +431,11 @@ export default function FlashcardsCategoryHub({
     );
     return [...catalogOwnedOrdered, ...extraOwnedCommunity];
   }, [marketPacks, communityPacks, ownedPackIds, isCommunityPackMine]);
+
+  const showcaseTabPacks = useMemo(
+    () => marketPacks.filter((p) => !ownedPackIds.includes(p.id)),
+    [marketPacks, ownedPackIds],
+  );
 
   const visibleCommunityPacks = useMemo(
     () => communityPacks.filter((p) => !hiddenCommunityPackIds.has(p.id)),
@@ -510,6 +506,44 @@ export default function FlashcardsCategoryHub({
   });
 
   const hubBarW = winW - H_PAD * 2;
+
+  const renderHubSegmentTab = (id: 'mine' | 'showcase' | 'community', label: string) => {
+    const active = hubPackSegment === id;
+    return (
+      <TouchableOpacity
+        onPress={() => {
+          setUgcReportHintPackId(null);
+          setHubPackSegment(id);
+        }}
+        style={{
+          flex: 1,
+          minWidth: 0,
+          alignItems: 'center',
+          justifyContent: 'center',
+          paddingVertical: 8,
+          paddingHorizontal: 8,
+          borderRadius: 12,
+          borderWidth: 1,
+          borderColor: active ? t.accent : tabOffBorder,
+          backgroundColor: active ? tabOnBg : tabOffBg,
+        }}
+      >
+        <Text
+          numberOfLines={1}
+          adjustsFontSizeToFit
+          minimumFontScale={0.78}
+          style={{
+            color: active ? tabOnText : tabOffText,
+            fontWeight: '800',
+            fontSize: labelSize + 1,
+            textAlign: 'center',
+          }}
+        >
+          {label}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
 
   const renderPackTiles = (
     packList: FlashcardMarketPack[],
@@ -681,11 +715,6 @@ export default function FlashcardsCategoryHub({
               {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación' })}
             </Text>
           ) : null}
-          {pack.isCommunityUgc && pack.ratingCount > 0 ? (
-            <Text style={{ fontSize: 9, color: isGradientSurface ? hubLabelMuted : t.textMuted, marginTop: 2, textAlign: 'center', fontWeight: '700' }}>
-              ★ {pack.ratingAvg.toFixed(1)} ({pack.ratingCount})
-            </Text>
-          ) : null}
         </Reanimated.View>
       );
     });
@@ -743,65 +772,13 @@ export default function FlashcardsCategoryHub({
       style={{
         width: hubBarW,
         flexDirection: 'row',
-        flexWrap: 'wrap',
-        gap: 10,
+        gap: 8,
         marginBottom: 14,
       }}
     >
-      <TouchableOpacity
-        onPress={() => {
-          setUgcReportHintPackId(null);
-          setHubPackSegment('mine');
-        }}
-        style={{
-          flex: 1,
-          minWidth: 0,
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingVertical: 8,
-          paddingHorizontal: 10,
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: hubPackSegment === 'mine' ? t.accent : tabOffBorder,
-          backgroundColor: hubPackSegment === 'mine' ? tabOnBg : tabOffBg,
-        }}
-      >
-        <Text style={{ color: hubPackSegment === 'mine' ? tabOnText : tabOffText, fontWeight: '800', fontSize: labelSize + 1 }} numberOfLines={1}>
-          {triLang(lang, { ru: 'Мои', uk: 'Мої', es: 'Mis' })}
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setUgcReportHintPackId(null);
-          setHubPackSegment('community');
-        }}
-        style={{
-          flex: 1,
-          minWidth: 0,
-          alignItems: 'center',
-          justifyContent: 'center',
-          paddingVertical: 8,
-          paddingHorizontal: 10,
-          borderRadius: 12,
-          borderWidth: 1,
-          borderColor: hubPackSegment === 'community' ? t.accent : tabOffBorder,
-          backgroundColor: hubPackSegment === 'community' ? tabOnBg : tabOffBg,
-        }}
-      >
-        <Text
-          numberOfLines={1}
-          adjustsFontSizeToFit
-          minimumFontScale={0.85}
-          style={{
-            color: hubPackSegment === 'community' ? tabOnText : tabOffText,
-            fontWeight: '800',
-            fontSize: labelSize + 1,
-            textAlign: 'center',
-          }}
-        >
-          {triLang(lang, { ru: 'Сообщество', uk: 'Спільнота', es: 'Comunidad' })}
-        </Text>
-      </TouchableOpacity>
+      {renderHubSegmentTab('mine', triLang(lang, { ru: 'Мои', uk: 'Мої', es: 'Mis' }))}
+      {renderHubSegmentTab('showcase', triLang(lang, { ru: 'Витрина', uk: 'Вітрина', es: 'Vitrina' }))}
+      {renderHubSegmentTab('community', triLang(lang, { ru: 'Сообщество', uk: 'Спільнота', es: 'Comunidad' }))}
     </View>
   ) : null;
 
@@ -822,6 +799,18 @@ export default function FlashcardsCategoryHub({
           >
             {renderHubCategoryTiles()}
             {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
+          </View>
+        ) : hubPackSegment === 'showcase' ? (
+          <View
+            style={{
+              width: hubBarW,
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              gap: GAP,
+              justifyContent: 'flex-start',
+            }}
+          >
+            {renderPackTiles(showcaseTabPacks, (p) => ownedPackIds.includes(p.id), false)}
           </View>
         ) : (
           <View style={{ width: hubBarW }}>

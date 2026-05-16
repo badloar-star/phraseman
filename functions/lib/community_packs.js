@@ -33,7 +33,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.communitySubmitPackRating = exports.communityGetPackRatingSummary = exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = void 0;
+exports.communityMarkSellerInboxSeen = exports.communityListSellerInbox = exports.communityPurchasePack = exports.communityFetchPackCardsIfAccessible = exports.communityAdminModeratePack = exports.communityModerateSubmission = exports.communitySubmitPackForReview = void 0;
 /**
  * Community (UGC) packs — Cloud Functions (источник правды для покупок и модерации).
  * Осколки только внутри приложения; вывода в фиат нет.
@@ -118,6 +118,14 @@ function authorNetShards(price) {
     const fee = Math.floor((price * PLATFORM_FEE_BPS) / 10000);
     const net = price - fee;
     return Math.max(0, net);
+}
+function shardLedgerMeta(op, reason, updatedAtMs) {
+    return {
+        shards_updated_at_ms: updatedAtMs,
+        shards_updated_op: op,
+        shards_updated_reason: reason,
+        updatedAt: updatedAtMs,
+    };
 }
 /**
  * Отправка набора на модерацию (создаёт документ в community_pack_submissions).
@@ -331,9 +339,6 @@ exports.communityModerateSubmission = (0, https_1.onCall)(async (request) => {
             cards: payload.cards,
             cardCount: payload.cards.length,
             cardThemeKey: themeKey,
-            ratingSum: 0,
-            ratingAvg: 0,
-            ratingCount: 0,
             salesCount: 0,
             publishedAt: now,
             updatedAt: now,
@@ -545,6 +550,10 @@ exports.communityPurchasePack = (0, https_1.onCall)(async (request) => {
         const authorSnap = await tx.get(authorRef);
         const authorShards = parseShards(authorSnap.data());
         const net = authorNetShards(price);
+        const now = Date.now();
+        const nowIso = new Date(now).toISOString();
+        const buyerBalanceAfter = buyerShards - price;
+        const authorBalanceAfter = authorShards + net;
         tx.set(purchaseRef, {
             packId,
             buyerStableId,
@@ -552,14 +561,42 @@ exports.communityPurchasePack = (0, https_1.onCall)(async (request) => {
             priceShards: price,
             authorNetShards: net,
             platformFeeShards: price - net,
-            createdAt: Date.now(),
+            createdAt: now,
             buyerDisplayName,
         });
-        tx.set(buyerRef, { shards: buyerShards - price }, { merge: true });
-        tx.set(authorRef, { shards: authorShards + net }, { merge: true });
+        tx.set(buyerRef, {
+            shards: buyerBalanceAfter,
+            ...shardLedgerMeta('spend', 'community_pack_purchase', now),
+        }, { merge: true });
+        tx.set(authorRef, {
+            shards: authorBalanceAfter,
+            ...shardLedgerMeta('earn', 'community_pack_sale', now),
+        }, { merge: true });
+        tx.set(buyerRef.collection('shard_log').doc(), {
+            ts: nowIso,
+            type: 'spend',
+            amount: price,
+            reason: 'community_pack_purchase',
+            packId,
+            authorStableId,
+            balanceBefore: buyerShards,
+            balanceAfter: buyerBalanceAfter,
+        });
+        tx.set(authorRef.collection('shard_log').doc(), {
+            ts: nowIso,
+            type: 'earn',
+            amount: net,
+            grossAmount: price,
+            platformFeeShards: price - net,
+            reason: 'community_pack_sale',
+            packId,
+            buyerStableId,
+            balanceBefore: authorShards,
+            balanceAfter: authorBalanceAfter,
+        });
         tx.update(packRef, {
             salesCount: admin.firestore.FieldValue.increment(1),
-            updatedAt: Date.now(),
+            updatedAt: now,
         });
         const inboxRef = authorRef.collection(SELLER_INBOX).doc(purchaseId);
         tx.set(inboxRef, {
@@ -569,14 +606,14 @@ exports.communityPurchasePack = (0, https_1.onCall)(async (request) => {
             buyerDisplayName,
             grossShards: price,
             authorNetShards: net,
-            createdAt: Date.now(),
+            createdAt: now,
             seen: false,
         });
         return {
             alreadyOwned: false,
             priceShards: price,
             authorNetShards: net,
-            buyerBalanceAfter: buyerShards - price,
+            buyerBalanceAfter,
         };
     });
     return result;
@@ -627,120 +664,5 @@ exports.communityMarkSellerInboxSeen = (0, https_1.onCall)(async (request) => {
     }
     await batch.commit();
     return { ok: true };
-});
-function readRatingAggregates(pack) {
-    let ratingCount = Math.floor(Number(pack.ratingCount) || 0);
-    if (ratingCount < 0)
-        ratingCount = 0;
-    let ratingSum = Number(pack.ratingSum);
-    if (!Number.isFinite(ratingSum)) {
-        const avg = Number(pack.ratingAvg);
-        ratingSum = Number.isFinite(avg) && ratingCount > 0 ? avg * ratingCount : 0;
-    }
-    const ratingAvg = ratingCount > 0 ? Math.round((ratingSum / ratingCount) * 100) / 100 : 0;
-    return { ratingSum, ratingCount, ratingAvg };
-}
-/** Средняя оценка и оценка текущего покупателя (документ оценок клиенту не читается из Firestore). */
-exports.communityGetPackRatingSummary = (0, https_1.onCall)(async (request) => {
-    if (!request.auth) {
-        throw new https_1.HttpsError('unauthenticated', 'Auth required');
-    }
-    const buyerStableId = String(request.data?.buyerStableId ?? '').trim();
-    const packId = String(request.data?.packId ?? '').trim();
-    if (!buyerStableId || !packId) {
-        throw new https_1.HttpsError('invalid-argument', 'buyerStableId and packId required');
-    }
-    const db = admin.firestore();
-    const packSnap = await db.collection(COMMUNITY_PACKS).doc(packId).get();
-    if (!packSnap.exists) {
-        throw new https_1.HttpsError('not-found', 'Pack not found');
-    }
-    const pack = packSnap.data();
-    const listingSt = String(pack.listingStatus ?? '');
-    const purchaseId = `${buyerStableId}__${packId}`;
-    const purSnap = await db.collection(COMMUNITY_PURCHASES).doc(purchaseId).get();
-    const purchased = purSnap.exists;
-    const { ratingAvg, ratingCount } = readRatingAggregates(pack);
-    const ratingSnap = await db.collection(COMMUNITY_RATINGS).doc(purchaseId).get();
-    let myStars = null;
-    if (ratingSnap.exists) {
-        const s = Math.floor(Number(ratingSnap.data()?.stars));
-        if (s >= 1 && s <= 5)
-            myStars = s;
-    }
-    if (listingSt !== 'published') {
-        return { purchased, canRate: false, myStars, ratingAvg, ratingCount };
-    }
-    const authorStableId = String(pack.authorStableId ?? '').trim();
-    const canRate = purchased && !!authorStableId && authorStableId !== buyerStableId;
-    return { purchased, canRate, myStars, ratingAvg, ratingCount };
-});
-/**
- * Оценка 1–5 звёздами (как в Google Play): только после покупки, одна оценка на покупателя (можно изменить).
- */
-exports.communitySubmitPackRating = (0, https_1.onCall)(async (request) => {
-    if (!request.auth) {
-        throw new https_1.HttpsError('unauthenticated', 'Auth required');
-    }
-    const buyerStableId = String(request.data?.buyerStableId ?? '').trim();
-    const packId = String(request.data?.packId ?? '').trim();
-    const stars = Math.floor(Number(request.data?.stars));
-    if (!buyerStableId || !packId) {
-        throw new https_1.HttpsError('invalid-argument', 'buyerStableId and packId required');
-    }
-    if (!Number.isFinite(stars) || stars < 1 || stars > 5) {
-        throw new https_1.HttpsError('invalid-argument', 'stars must be 1–5');
-    }
-    const db = admin.firestore();
-    const purchaseId = `${buyerStableId}__${packId}`;
-    const purchaseRef = db.collection(COMMUNITY_PURCHASES).doc(purchaseId);
-    const packRef = db.collection(COMMUNITY_PACKS).doc(packId);
-    const ratingRef = db.collection(COMMUNITY_RATINGS).doc(purchaseId);
-    const out = await db.runTransaction(async (tx) => {
-        const [purSnap, packSnap, rateSnap] = await Promise.all([tx.get(purchaseRef), tx.get(packRef), tx.get(ratingRef)]);
-        if (!purSnap.exists) {
-            throw new https_1.HttpsError('failed-precondition', 'Purchase required to rate');
-        }
-        if (!packSnap.exists) {
-            throw new https_1.HttpsError('not-found', 'Pack not found');
-        }
-        const pack = packSnap.data();
-        if (String(pack.listingStatus ?? '') !== 'published') {
-            throw new https_1.HttpsError('failed-precondition', 'Pack is not published');
-        }
-        const authorStableId = String(pack.authorStableId ?? '').trim();
-        if (!authorStableId || authorStableId === buyerStableId) {
-            throw new https_1.HttpsError('failed-precondition', 'Cannot rate own pack');
-        }
-        const { ratingSum: sum0, ratingCount: cnt0, ratingAvg: avg0 } = readRatingAggregates(pack);
-        const oldStars = rateSnap.exists ? Math.floor(Number(rateSnap.data()?.stars)) : null;
-        const oldValid = oldStars != null && oldStars >= 1 && oldStars <= 5;
-        let newSum;
-        let newCount;
-        if (!oldValid) {
-            newSum = sum0 + stars;
-            newCount = cnt0 + 1;
-        }
-        else {
-            newSum = sum0 - oldStars + stars;
-            newCount = Math.max(1, cnt0);
-        }
-        const ratingAvg = newCount > 0 ? Math.round((newSum / newCount) * 100) / 100 : 0;
-        const now = Date.now();
-        tx.set(ratingRef, {
-            packId,
-            buyerStableId,
-            stars,
-            updatedAt: now,
-        }, { merge: true });
-        tx.update(packRef, {
-            ratingSum: newSum,
-            ratingCount: newCount,
-            ratingAvg,
-            updatedAt: now,
-        });
-        return { ratingAvg, ratingCount: newCount, myStars: stars };
-    });
-    return { ok: true, ...out };
 });
 //# sourceMappingURL=community_packs.js.map

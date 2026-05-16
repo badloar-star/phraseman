@@ -96,8 +96,8 @@ export function getQuizRankInfo(pct: number, neutralColor: string, mutedColor: s
   };
 }
 
-/** Same tiers as getQuizRankInfo, fixed copy — share-card art must not re-roll. */
-export function getQuizShareCardRank(
+/** Same tiers as getQuizRankInfo, fixed copy for text sharing. */
+export function getQuizShareRank(
   pct: number,
   neutralColor: string,
   mutedColor: string,

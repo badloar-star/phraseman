@@ -5,7 +5,7 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import { useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import Reanimated, { FadeInDown } from 'react-native-reanimated';
 import { usePremium } from '../components/PremiumContext';
-import { useAudio, inferExpoSpeechLanguage, speechLocaleToShortLabel } from '../hooks/use-audio';
+import { useAudio } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
     Animated,
@@ -78,7 +78,6 @@ import {
   fetchCommunityPackCards,
   loadPublishedCommunityMarketPacks,
 } from './community_packs/communityFirestore';
-import CommunityPackRatingBar from './community_packs/CommunityPackRatingBar';
 import { isCommunityPacksCloudEnabled } from './community_packs/functionsClient';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardContentLang } from './spanish_content_gate';
@@ -188,7 +187,7 @@ export default function FlashcardsScreen() {
   const effectiveOs = useEffectivePlatformOS();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, isDark, themeMode, statusBarLight, uiScale } = useTheme();
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLightTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const strLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
@@ -451,7 +450,7 @@ export default function FlashcardsScreen() {
   const detailsEscortIgnoreScrollUntilRef = useRef(0);
   const detailsEscortUserDragRef = useRef(false);
   const detailsEscortProgrammaticRef = useRef(false);
-  /** Last FlatList content offset (for measure-based “center the row in the list viewport”) */
+  /** Last FlatList content offset (for measure-based "center the row in the list viewport") */
   const listScrollYRef = useRef(0);
   /** Map item id → ref to the full row (card + details) for measureInWindow */
   const listItemRowRefById = useRef<Record<string, View | null>>({});
@@ -592,7 +591,7 @@ export default function FlashcardsScreen() {
     if (!mustDelayForEmptyMarketOnly) setLoading(false);
 
     // Міграція UK / транскрипції (важка) і маркет — паралельно; `setMarketCards` не чекає міграції
-    // (інакше платні картки з’являються пізніше за «Збережені» / порожній список).
+    // (інакше платні картки з\'являються пізніше за «Збережені» / порожній список).
     const migrationPromise = (async (): Promise<Flashcard[]> => {
         const hasMissingUk = saved.some((c: Flashcard) => !c.uk || c.uk === c.ru);
         const hasMissingTr = saved.some((c: Flashcard) => !c.transcription);
@@ -1046,14 +1045,6 @@ export default function FlashcardsScreen() {
     return full ?? s.title;
   }, [packDeeplink, marketPackCatalog, lang, activeCat, s.title]);
 
-  const onCommunityRatingUpdated = useCallback(
-    (avg: number, count: number) => {
-      if (!packDeeplink) return;
-      setMarketPackCatalog((prev) => prev.map((p) => (p.id === packDeeplink ? { ...p, ratingAvg: avg, ratingCount: count } : p)));
-    },
-    [packDeeplink],
-  );
-
   // ── Scroll to card when category switches ─────────────────────────────────
   useEffect(() => {
     if (flatListRef.current) {
@@ -1307,8 +1298,6 @@ export default function FlashcardsScreen() {
   if (mode === 'practice') {
     const practiceCard = practiceQueue[0] ?? null;
     const practiceTr = practiceCard ? resolveFlashcardBackText(practiceCard, cardContentLang) : '';
-    const practiceFrontLocale = practiceCard ? inferExpoSpeechLanguage(practiceCard.en) : 'en-US';
-    const practiceFrontBadge = speechLocaleToShortLabel(practiceFrontLocale);
     const totalPr = customCards.length;
 
     if (practiceQueue.length === 0) {
@@ -1384,17 +1373,9 @@ export default function FlashcardsScreen() {
               borderWidth: practiceStatus !== 'idle' ? 2 : 1,
               position: 'relative',
             }]}>
-              <Text style={{ color: t.textGhost, fontSize:11, fontWeight:'800', letterSpacing:1.5, marginBottom:12 }}>{practiceFrontBadge}</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h1+4, fontWeight:'700', textAlign:'center' }}>
                 {practiceCard!.en}
               </Text>
-              <TouchableOpacity
-                onPress={() => speakAudio(practiceCard!.en, undefined, { language: practiceFrontLocale })}
-                hitSlop={{ top:8, bottom:8, left:8, right:8 }}
-                style={{ marginTop: 12 }}
-              >
-                <Ionicons name="volume-medium-outline" size={20} color={t.textGhost} />
-              </TouchableOpacity>
               {practiceStatus !== 'idle' && (
                 <Text style={{ color: practiceStatus === 'correct' ? t.correct : t.wrong, fontSize: f.body, fontWeight:'600', marginTop: 12, textAlign:'center' }}>
                   {practiceTr}
@@ -1495,9 +1476,9 @@ export default function FlashcardsScreen() {
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: 'Повторить загрузку',
-                  uk: 'Повторити завантаження',
-                  es: 'Reintentar la carga',
+                  ru: 'Повторить',
+                  uk: 'Повторити',
+                  es: 'Reintentar',
                 })}
               </Text>
             </TouchableOpacity>
@@ -1624,22 +1605,6 @@ export default function FlashcardsScreen() {
           </View>
         </View>
 
-        {packDeeplink &&
-        currentMarketPack?.isCommunityUgc &&
-        communityOwnedIdList.includes(packDeeplink) &&
-        CLOUD_SYNC_ENABLED &&
-        !IS_EXPO_GO &&
-        isCommunityPacksCloudEnabled() ? (
-          <CommunityPackRatingBar
-            packId={packDeeplink}
-            lang={strLang}
-            t={t}
-            catalogRatingAvg={currentMarketPack.ratingAvg}
-            catalogRatingCount={currentMarketPack.ratingCount}
-            onAggregateUpdated={onCommunityRatingUpdated}
-          />
-        ) : null}
-
         {/* Slide wrapper — clips and drives category-switch slide transition */}
         <View
           style={{ flex: 1, overflow: 'hidden' }}
@@ -1667,7 +1632,7 @@ export default function FlashcardsScreen() {
           </TouchableOpacity>
         )}
 
-        {/* Flip all — у режимі купленого паку: спокійна друкарська кнопка, без “кислотного” лайму */}
+        {/* Flip all — у режимі купленого паку: спокійна друкарська кнопка, без "кислотного" лайму */}
         {filteredCards.length > 0 &&
           (packPremiumVisual ? (
             <TouchableOpacity

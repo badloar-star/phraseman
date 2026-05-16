@@ -19,8 +19,6 @@ function basePack(p: Partial<FlashcardMarketPack>): FlashcardMarketPack {
     category: 'daily',
     cardCount: 10,
     priceShards: 50,
-    ratingAvg: 0,
-    ratingCount: 0,
     salesCount: 0,
     authorName: 'Test',
     isOfficial: true,

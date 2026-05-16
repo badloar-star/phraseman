@@ -1,8 +1,8 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { withStorageLock } from './storage_mutex';
-import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
+import { useLocalSearchParams, useRouter } from 'expo-router';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   Animated,
   Dimensions,
@@ -21,11 +21,18 @@ import { configureAccordionLayout } from '../constants/layoutAnimation';
 import { unlockAllFrames } from '../constants/avatars';
 import AccordionChevronIonicons from '../components/AccordionChevronIonicons';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
-import { unlockAllAchievements, ALL_ACHIEVEMENTS } from './achievements';
+import { unlockAllAchievements, ALL_ACHIEVEMENTS, devSeedAchievementsSmoke } from './achievements';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { calculateResult, LeagueResult, loadLeagueState, savePendingResult, getWeekId } from './league_engine';
+import {
+  clearDailyTasksAdminOverride,
+  getDailyTaskAdminPacks,
+  seedDailyTasksAdminPack,
+  type DailyTaskAdminPack,
+  type DailyTaskSeedMode,
+} from './daily_tasks';
 import RankChangeTestModal from '../components/RankChangeTestModal';
-import ClubResultModal from '../components/ClubResultModal';
+import LeagueResultModal from './LeagueResultModal';
 import { registerXP } from './xp_manager';
 import { useAchievement } from '../components/AchievementContext';
 import { enqueueThemedBlockingInfoAlert } from './themed_blocking_alert_queue';
@@ -43,7 +50,13 @@ import {
   isAppleSignInAvailable,
   isGoogleSignInAvailable,
 } from './auth_provider';
-import { addShards } from './shards_system';
+import { addShards, replaceShardsBalanceLocal } from './shards_system';
+import {
+  PROFILE_CARD_LEVEL_KEY,
+  PROFILE_CARD_MOTION_KEY,
+  PROFILE_CARD_PUBLIC_FOCUS_KEY,
+  PROFILE_CARD_THEME_KEY,
+} from './profile_card_system';
 import { RankChangeModal, TIER_COLORS } from './components/RankChangeModal';
 import { setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { actionToastTri, emitAppEvent } from './events';
@@ -52,31 +65,23 @@ import NoEnergyModal from '../components/NoEnergyModal';
 import ArenaLimitModal from '../components/ArenaLimitModal';
 import QuizTimeoutModal from '../components/QuizTimeoutModal';
 import UserWarningModal from '../components/UserWarningModal';
-import ShardRewardModal, { type ShardReward } from '../components/ShardRewardModal';
 import ReportUserModal from '../components/ReportUserModal';
 import UpdateModal from '../components/UpdateModal';
-import ReleaseWaveBonusModal from '../components/ReleaseWaveBonusModal';
+import ReleaseNotesModal from '../components/ReleaseNotesModal';
+import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import CertificatePreviewAdminModal from '../components/CertificatePreviewAdminModal';
 import MedalToast from '../components/MedalToast';
 import type { MedalTier } from './medal_utils';
 import { DEV_MODE, STORE_URL } from './config';
 import { setPlatformUiPreviewMode, usePlatformUiPreviewMode } from './platform_ui_preview';
-import { getAppReleaseBuildId } from './app_build_id';
-import {
-  getActiveReleaseWaveVersion,
-  isUserBuildMatchingReleaseWave,
-  resetReleaseWaveBonusLocalClaimForTesting,
-  resetLastPersistedNativeBuildForTesting,
-  APP_LAST_RECORDED_NATIVE_BUILD_ID_KEY,
-} from './release_wave_bonus';
 import { QUIZ_E2E_OPEN_RESULTS_KEY } from './quizzes/constants';
 import { useMatchmakingContext } from '../contexts/MatchmakingContext';
 import { seedAdminTestReviewSession } from './active_recall';
 import { requestNotificationPermissionWithFallback } from './notifications';
+import type { GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import PremiumCelebrationModal from '../components/PremiumCelebrationModal';
 import MasteryReplayModal from '../components/MasteryReplayModal';
-import AfterLesson5PushModal from '../components/AfterLesson5PushModal';
 import StreakReviveModal from '../components/StreakReviveModal';
 import { markCelebrationPending } from './premium_celebration_state';
 import { markStreakLost, getReviveOffer, type StreakReviveOffer } from './streak_revive';
@@ -88,11 +93,16 @@ import {
 import {
   DAILY_FREE_SESSION_KEY,
 } from './trainer_session';
-import { getTopMistakePhrases, clearMistakeLog, logMistake } from './mistake_log';
+import { clearTrainerStore, devSeedTrainerScenario } from './trainer_store';
+import { devSeedActivity365Scenario } from './activity_365_analytics';
+import { getTopMistakePhrases, clearMistakeLog, logMistake, getMistakeLogDebugSnapshot } from './mistake_log';
 import type { TrainerMode } from './active_recall';
-import { checkCoachToastNeeded, type CoachToastDecision } from './coach_toast_trigger';
+import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
 import CoachToast from '../components/CoachToast';
 import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderboard_stats';
+import ThroneRewardModal from '../components/ThroneRewardModal';
+import { getCanonicalUserId } from './user_id_policy';
+import { ensureAnonUser } from './cloud_sync';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -107,6 +117,43 @@ const RED_DIM = '#CC0000';
 const RED_DARK = '#8B0000';
 const RED_BG = 'rgba(255,0,0,0.08)';
 const RED_BORDER = 'rgba(255,32,32,0.35)';
+const DAILY_TASK_QA_PACKS = getDailyTaskAdminPacks(3);
+
+function getIsoWeekIdForDate(d: Date): string {
+  const date = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+  const day = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+}
+
+function getPreviousWeekIdForAdmin(): string {
+  const d = new Date();
+  d.setUTCDate(d.getUTCDate() - 7);
+  return getIsoWeekIdForDate(d);
+}
+
+const ADMIN_GLOBAL_BROADCAST_PREVIEW: GlobalBroadcastModalPayload = {
+  id: 'admin_preview_broadcast',
+  kind: 'general',
+  premiumAudience: 'all',
+  rewardType: 'shards',
+  rewardAmount: 5,
+  premiumRewardDays: 0,
+  titleRu: 'Превью сообщения от команды',
+  titleUk: 'Превʼю повідомлення від команди',
+  titleEs: 'Vista previa del mensaje del equipo',
+  messageRu: 'Так выглядит актуальная GlobalBroadcastModal из очереди _layout. Preview-only: без записи claim и без начисления награды.',
+  messageUk: 'Так виглядає актуальна GlobalBroadcastModal з черги _layout. Preview-only: без запису claim і без нарахування нагороди.',
+  messageEs: 'Así se ve GlobalBroadcastModal desde la cola de _layout. Preview-only: sin claim ni recompensa real.',
+  reviewUrlIos: '',
+  reviewUrlAndroid: '',
+  reviewCtaRu: 'Оценить приложение',
+  reviewCtaUk: 'Оцінити застосунок',
+  reviewCtaEs: 'Valorar la app',
+  createdAt: '2026-05-14T00:00:00.000Z',
+};
 
 const MATRIX_CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモ01ラリルレロ0123456789ABCDEF!@#$%';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -177,9 +224,9 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     params: { context: 'streak', streak: '7' },
   },
   {
-    label: '🎓 Урок 19 — B1',
-    sub: 'lessons_done, акцент на A2 done',
-    params: { context: 'lesson_b1', lessons_done: '18' },
+    label: '🎓 Курс после 3 уроков',
+    sub: 'course_after_lesson3 — актуальный course lock после бесплатного старта',
+    params: { context: 'course_after_lesson3', lessons_done: '3' },
   },
   {
     label: '⚡ Квизы — лимит',
@@ -222,14 +269,19 @@ const PREMIUM_PREVIEW_CONTEXTS: { label: string; sub: string; params: Record<str
     params: { context: 'generic' },
   },
   {
-    label: '👑 After-lesson-5 push',
-    sub: 'Пейволл показывается из soft-push после 5 урока',
-    params: { context: 'after_lesson5', source: 'admin_preview' },
-  },
-  {
     label: '🔁 Mastery — повтор урока',
     sub: 'Премиум за безлимит повторов',
     params: { context: 'mastery', lesson: '7' },
+  },
+  {
+    label: '🏋 Тренер — Premium режимы',
+    sub: 'Smart Mix / слабые места / тяжелые ошибки',
+    params: { context: 'trainer' },
+  },
+  {
+    label: '⏳ Тренер — дневной лимит',
+    sub: 'Когда бесплатная сессия сегодня уже использована',
+    params: { context: 'trainer_limit' },
   },
   {
     label: '📊 Stats — аналитика',
@@ -304,6 +356,7 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
   return (
     <View style={{ marginHorizontal: 12, marginBottom: 8, borderRadius: 14, borderWidth: 1, borderColor: RED_BORDER, overflow: 'hidden', backgroundColor: 'rgba(30,0,0,0.6)' }}>
       <TouchableOpacity
+        testID={`testers-section-${id}`}
         style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}
         onPress={() => { configureAccordionLayout(); onToggle(id); }}
         activeOpacity={0.7}
@@ -328,9 +381,10 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
+  const params = useLocalSearchParams<{ qa?: string | string[]; qaRun?: string | string[] }>();
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight';
+  const isLightTheme = themeMode === 'minimalLight';
   const platformUiPreview = usePlatformUiPreviewMode();
 
   /** У продакшн-збірці пункт у меню прихований; без цього екран лишався доступним через deep link. */
@@ -364,30 +418,32 @@ export default function SettingsTestersFunctions() {
   const [arenaLimitMode, setArenaLimitMode] = useState<'matchmaking' | 'invite' | null>(null);
   const [quizTimeoutHardMode, setQuizTimeoutHardMode] = useState<boolean | null>(null);
   const [userWarningVisible, setUserWarningVisible] = useState(false);
-  const [shardRewardVisible, setShardRewardVisible] = useState(false);
   const [reportUserPreviewVisible, setReportUserPreviewVisible] = useState(false);
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [notifPermissionPreviewVisible, setNotifPermissionPreviewVisible] = useState(false);
   const [certificatePreviewVisible, setCertificatePreviewVisible] = useState(false);
-  const [releaseWaveModal, setReleaseWaveModal] = useState<{ open: boolean; preview: boolean }>({ open: false, preview: true });
+  const [releaseNotesPreviewVisible, setReleaseNotesPreviewVisible] = useState(false);
+  const [globalBroadcastPreview, setGlobalBroadcastPreview] = useState<GlobalBroadcastModalPayload | null>(null);
   const [qaChecks, setQaChecks] = useState<Record<string, boolean>>({
     noEnergy: false,
     arenaLimit: false,
     quizTimeout: false,
     userWarning: false,
-    shardReward: false,
+    shardsEarned: false,
     reportModal: false,
     actionToast: false,
     updateModal: false,
+    releaseNotes: false,
+    globalBroadcast: false,
     matchFoundToast: false,
-    releaseWaveBonus: false,
   });
 
-  // Preview-флаги для новых soft-monetization модалок (Phase 02 plan 01).
+  // Preview-флаги для активных soft-monetization сценариев.
   const [softMonetizationPreview, setSoftMonetizationPreview] = useState<
-    null | 'celebration' | 'mastery' | 'after_lesson5' | 'streak_revive'
+    null | 'celebration' | 'mastery' | 'streak_revive'
   >(null);
   const [previewReviveOffer, setPreviewReviveOffer] = useState<StreakReviveOffer | null>(null);
+  const [throneRewardPreview, setThroneRewardPreview] = useState(false);
 
   const [rankModal, setRankModal] = useState<{ promoted: boolean; tier: string; level: string } | null>(null);
   const [rankTest, setRankTest] = useState<{ mode: 'club'; delta: number } | null>(null);
@@ -398,7 +454,30 @@ export default function SettingsTestersFunctions() {
   const RANK_LEVELS = ['I', 'II', 'III'];
 
   const [openSection, setOpenSection] = useState<string | null>('premium_modals');
+  const [dailyTaskSeedMode, setDailyTaskSeedMode] = useState<DailyTaskSeedMode>('empty');
   const [trialCooldownStatusLine, setTrialCooldownStatusLine] = useState('…');
+
+  const seedProfileCardUpgradeQa = useCallback(async () => {
+    await replaceShardsBalanceLocal(1200);
+    await AsyncStorage.multiSet([
+      [PROFILE_CARD_LEVEL_KEY, '0'],
+      [PROFILE_CARD_THEME_KEY, 'classic'],
+      [PROFILE_CARD_MOTION_KEY, 'none'],
+      [PROFILE_CARD_PUBLIC_FOCUS_KEY, 'balanced'],
+    ]);
+    emitAppEvent('xp_changed');
+    router.push('/avatar_select' as any);
+  }, [router]);
+
+  const profileCardAutoSeedKey = useRef<string | null>(null);
+  useEffect(() => {
+    const qa = Array.isArray(params.qa) ? params.qa[0] : params.qa;
+    const qaRun = Array.isArray(params.qaRun) ? params.qaRun[0] : params.qaRun;
+    const key = `${qa}:${qaRun || ''}`;
+    if (profileCardAutoSeedKey.current === key || qa !== 'profile_card_upgrade') return;
+    profileCardAutoSeedKey.current = key;
+    void seedProfileCardUpgradeQa();
+  }, [params.qa, params.qaRun, seedProfileCardUpgradeQa]);
 
   // ── Превью премиальных тостов медалей (Bronze / Silver / Gold × up/down)
   const [medalPreview, setMedalPreview] = useState<{ tier: MedalTier; promoted: boolean } | null>(null);
@@ -419,7 +498,7 @@ export default function SettingsTestersFunctions() {
   const [modalResetStats, setModalResetStats] = useState(false);
   const [authPromptDevOpen, setAuthPromptDevOpen] = useState(false);
 
-  // ── Персонализация пейволла (Plan 02) ──────────────────────────────────────
+  // ── Персонализация пейволла ────────────────────────────────────────────────
   const [paywallCounters, setPaywallCounters] = useState<{
     energy: number; streak: number; hard: number;
   } | null>(null);
@@ -439,10 +518,10 @@ export default function SettingsTestersFunctions() {
     setPaywallTagsPreview(tags.map(tag => `${tag.emoji} ${tag.ru}`));
   };
 
-  // ── Problem Coach Toast ──────────────────────────────────────────────────
+  // ── Diagnosis Toast ──────────────────────────────────────────────────
   const [coachToastPreview, setCoachToastPreview] = useState<CoachToastDecision | null>(null);
 
-  // ── Тренер (Plan 03) ───────────────────────────────────────────────────────
+  // ── Тренер ────────────────────────────────────────────────────────────────
   const [mistakeLogPreview, setMistakeLogPreview] = useState<
     { phrase: string; count: number }[] | null
   >(null);
@@ -459,37 +538,51 @@ export default function SettingsTestersFunctions() {
     const top = await getTopMistakePhrases(10);
     setMistakeLogPreview(top);
   };
-  const { showMatchFoundForTesterPreview } = useMatchmakingContext();
 
-  const shardRewardPreview: ShardReward[] = [{
-    id: 'preview_reward',
-    dataId: 'preview_001',
-    dataText: triLang(lang, {
-      uk: 'Тестовий репорт: помилка в перекладі',
-      ru: 'Тестовый репорт: ошибка в переводе',
-      es: 'Informe de prueba: error de traducción',
-    }),
-    count: 1,
-  }];
-  const shardRewardMultiPreview: ShardReward[] = [
-    {
-      id: 'preview_reward_1',
-      dataId: 'preview_101',
-      dataText: triLang(lang, { uk: 'Тест: урок 3 переклад', ru: 'Тест: урок 3 перевод', es: 'Prueba: lección 3, traducción' }),
-      count: 1,
-    },
-    {
-      id: 'preview_reward_2',
-      dataId: 'preview_102',
-      dataText: triLang(lang, {
-        uk: 'Тест: квіз medium — друкарська помилка',
-        ru: 'Тест: квиз medium опечатка',
-        es: 'Prueba: cuestionario medium — typo',
-      }),
-      count: 2,
-    },
-  ];
-  const [shardRewardPayload, setShardRewardPayload] = useState<ShardReward[]>(shardRewardPreview);
+  const ensureQaPremiumAccess = async () => {
+    await AsyncStorage.multiSet([
+      ['tester_no_limits', 'true'],
+      ['tester_no_premium', 'false'],
+      ['premium_active', 'true'],
+      ['premium_plan', 'admin_grant'],
+      ['premium_expiry', '0'],
+      ['admin_premium_override', 'true'],
+    ]);
+    setNoLimitsEnabled(true);
+    setNoPremiumEnabled(false);
+    invalidatePremiumCache();
+    emitAppEvent('premium_activated');
+    await reloadEnergy().catch(() => {});
+  };
+
+  const prepareWeakTrainerQa = async () => {
+    await ensureQaPremiumAccess();
+    await AsyncStorage.removeItem(DAILY_FREE_SESSION_KEY);
+    await devSeedTrainerScenario('weak');
+    await loadTrainerDebugState();
+  };
+
+  const openTrainerQaHub = async () => {
+    await prepareWeakTrainerQa();
+    router.push('/trainer' as any);
+  };
+
+  const openTrainerReportPreview = async () => {
+    await prepareWeakTrainerQa();
+    router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak', preview: 'report' } } as any);
+  };
+
+  const openTrainerMistakePreview = async () => {
+    await prepareWeakTrainerQa();
+    router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak', preview: 'mistake' } } as any);
+  };
+
+  const openStats365RandomQa = async () => {
+    await ensureQaPremiumAccess();
+    await devSeedActivity365Scenario('random');
+    router.push({ pathname: '/streak_stats', params: { qa365: '1' } } as any);
+  };
+  const { showMatchFoundForTesterPreview } = useMatchmakingContext();
 
   const triggerGlobalLevelUp = async (level: number) => {
     const queueRaw = await AsyncStorage.getItem('pending_level_up_queue');
@@ -502,13 +595,25 @@ export default function SettingsTestersFunctions() {
 
   const markQa = (key: string) => setQaChecks(prev => ({ ...prev, [key]: true }));
 
+  const showShardsEarnedPreview = () => {
+    emitAppEvent('shards_earned', {
+      amount: 5,
+      reasonText: triLang(lang, {
+        ru: 'Admin preview: актуальная глобальная модалка осколков',
+        uk: 'Admin preview: актуальна глобальна модалка осколків',
+        es: 'Admin preview: modal global actual de fragmentos',
+      }),
+    });
+    markQa('shardsEarned');
+  };
+
   const triggerMatchFoundToastPreview = () => {
     // Сразу status=found, без Firestore: dev-бот есть только при __DEV__ / DEV_MODE.
     showMatchFoundForTesterPreview();
     markQa('matchFoundToast');
   };
 
-  /** QA checklist rows: same previews as section «Новые модалки (QA core)» */
+  /** QA checklist rows: same previews as section «Активные core-модалки (QA)» */
   const runQaChecklistItem = (key: keyof typeof qaChecks) => {
     doHaptic();
     switch (key) {
@@ -528,10 +633,8 @@ export default function SettingsTestersFunctions() {
         setUserWarningVisible(true);
         markQa('userWarning');
         break;
-      case 'shardReward':
-        setShardRewardPayload(shardRewardPreview);
-        setShardRewardVisible(true);
-        markQa('shardReward');
+      case 'shardsEarned':
+        showShardsEarnedPreview();
         break;
       case 'reportModal':
         setReportUserPreviewVisible(true);
@@ -572,12 +675,16 @@ export default function SettingsTestersFunctions() {
         setUpdateModalVisible(true);
         markQa('updateModal');
         break;
+      case 'releaseNotes':
+        setReleaseNotesPreviewVisible(true);
+        markQa('releaseNotes');
+        break;
+      case 'globalBroadcast':
+        setGlobalBroadcastPreview(ADMIN_GLOBAL_BROADCAST_PREVIEW);
+        markQa('globalBroadcast');
+        break;
       case 'matchFoundToast':
         void triggerMatchFoundToastPreview();
-        break;
-      case 'releaseWaveBonus':
-        setReleaseWaveModal({ open: true, preview: true });
-        markQa('releaseWaveBonus');
         break;
       default:
         break;
@@ -836,6 +943,131 @@ export default function SettingsTestersFunctions() {
     }
   };
 
+  const seedDailyTaskPackForQa = async (pack: DailyTaskAdminPack) => {
+    doHaptic();
+    const seeded = await seedDailyTasksAdminPack(pack.taskIds, dailyTaskSeedMode);
+    emitAppEvent(
+      'action_toast',
+      actionToastTri(seeded.length ? 'success' : 'error', {
+        ru: seeded.length
+          ? `Daily tasks QA: pack ${pack.label}, mode ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed failed',
+        uk: seeded.length
+          ? `Daily tasks QA: pack ${pack.label}, mode ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed failed',
+        es: seeded.length
+          ? `Daily tasks QA: pack ${pack.label}, mode ${dailyTaskSeedMode}`
+          : 'Daily tasks QA: seed failed',
+      }),
+    );
+    if (seeded.length) router.push('/daily_tasks_screen' as any);
+  };
+
+  const clearDailyTaskQaOverride = async () => {
+    doHaptic();
+    await clearDailyTasksAdminOverride();
+    emitAppEvent(
+      'action_toast',
+      actionToastTri('success', {
+        ru: 'Daily tasks QA override cleared',
+        uk: 'Daily tasks QA override cleared',
+        es: 'Daily tasks QA override cleared',
+      }),
+    );
+  };
+
+  const seedFirestoreWeeklyRolloverScenario = async () => {
+    doHaptic();
+    try {
+      const authUid = await ensureAnonUser();
+      const stableUid = await getCanonicalUserId().catch(() => null);
+      const uid = authUid || stableUid;
+      if (!uid) throw new Error('no_uid');
+
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const firestore = require('@react-native-firebase/firestore').default;
+      const db = firestore();
+      const previousWeekId = getPreviousWeekIdForAdmin();
+      const currentWeekId = getWeekId();
+      const leagueId = 0;
+      const groupId = `qa_weekly_rollover_${String(uid).replace(/[^A-Za-z0-9_-]/g, '').slice(0, 18)}_${Date.now()}`;
+      const name = (await AsyncStorage.getItem('user_name')) || 'QA Weekly';
+
+      const botNames = ['Ada', 'Berta', 'Ciro', 'Dana', 'Eli', 'Fia', 'Gio', 'Hana', 'Ivan'];
+      const members: Record<string, Record<string, unknown>> = {
+        [uid]: { name, points: 9200, isPremium: true, totalXp: 100000, streak: 7 },
+      };
+      botNames.forEach((bot, i) => {
+        members[`qa_bot_${i + 1}`] = {
+          name: `QA ${bot}`,
+          points: Math.max(120, 7000 - i * 650),
+          isPremium: i % 2 === 0,
+          totalXp: 50000 - i * 1000,
+          streak: Math.max(1, 9 - i),
+        };
+      });
+
+      await db.collection('league_groups').doc(groupId).set({
+        weekId: previousWeekId,
+        leagueId,
+        memberCount: Object.keys(members).length,
+        createdAt: Date.now(),
+        qaScenario: 'weekly_rollover_result_modal',
+        members,
+      });
+      await db.collection('leaderboard').doc(uid).set({
+        name,
+        leagueId,
+        groupId,
+        groupWeekId: previousWeekId,
+        weekKey: previousWeekId,
+        weekPoints: 9200,
+        points: 100000,
+        qaScenario: 'weekly_rollover_result_modal',
+      }, { merge: true });
+
+      const group = Object.entries(members)
+        .map(([memberUid, member]) => ({
+          uid: memberUid,
+          name: String(member.name || memberUid),
+          points: Number(member.points) || 0,
+          isMe: memberUid === uid,
+          isPremium: Boolean(member.isPremium),
+          streak: Number(member.streak) || undefined,
+          totalXp: Number(member.totalXp) || undefined,
+        }))
+        .sort((a, b) => b.points - a.points);
+
+      await AsyncStorage.multiSet([
+        ['user_name', name],
+        ['week_points_v2', JSON.stringify({ weekKey: previousWeekId, points: 9200 })],
+        ['league_state_v3', JSON.stringify({ leagueId, weekId: previousWeekId, group })],
+      ]);
+      await AsyncStorage.multiRemove(['league_result_pending', 'league_result_consumed_sig']);
+
+      const leagueResult = calculateResult({ leagueId, weekId: previousWeekId, group }, 9200);
+      setLeagueResult(leagueResult);
+      setLeagueResultVisible(true);
+      emitAppEvent(
+        'action_toast',
+        actionToastTri('success', {
+          ru: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
+          uk: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
+          es: `Firestore weekly rollover seeded: ${previousWeekId} -> ${currentWeekId}`,
+        }),
+      );
+    } catch {
+      emitAppEvent(
+        'action_toast',
+        actionToastTri('error', {
+          ru: 'Firestore weekly rollover seed failed',
+          uk: 'Firestore weekly rollover seed failed',
+          es: 'Firestore weekly rollover seed failed',
+        }),
+      );
+    }
+  };
+
   const performStripPremium = async () => {
     try {
       await AsyncStorage.multiSet([['premium_active', 'false'], ['premium_plan', ''], ['tester_no_limits', 'false'], ['tester_energy_disabled', 'false'], ['tester_no_premium', 'true']]);
@@ -1019,28 +1251,55 @@ export default function SettingsTestersFunctions() {
         </View>
 
         <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 60, paddingTop: 12 }} style={{ backgroundColor: 'rgba(13,0,0,0.80)' }}>
-          <View style={{ marginHorizontal: 12, marginBottom: 10 }}>
-            <TouchableOpacity
-              onPress={() => { doHaptic(); router.push('/audio_debug' as any); }}
-              activeOpacity={0.75}
-              style={{
-                borderRadius: 14,
-                borderWidth: 1.5,
-                borderColor: RED,
-                backgroundColor: RED_BG,
-                paddingHorizontal: 14,
-                paddingVertical: 12,
-                flexDirection: 'row',
-                alignItems: 'center',
-              }}
-            >
-              <Ionicons name="volume-high-outline" size={20} color={RED} style={{ marginRight: 10 }} />
-              <View style={{ flex: 1 }}>
-                <Text style={{ color: '#FFB0B0', fontSize: 15, fontWeight: '800' }}>TTS Debug</Text>
-                <Text style={{ color: '#FF8080', fontSize: 12, marginTop: 2 }}>Voices, rate test, Android system rate hint</Text>
-              </View>
-              <Ionicons name="chevron-forward" size={18} color={RED_DIM} />
-            </TouchableOpacity>
+          <View style={{ marginHorizontal: 12, marginBottom: 10, borderRadius: 14, borderWidth: 1.5, borderColor: RED, backgroundColor: RED_BG, overflow: 'hidden' }}>
+            <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 6 }}>
+              <Text style={{ color: '#FFB0B0', fontSize: 13, fontWeight: '900', letterSpacing: 0.6, textTransform: 'uppercase' }}>
+                Maestro quick QA
+              </Text>
+              <Text style={{ color: '#FF8080', fontSize: 11, marginTop: 2 }}>
+                Stable entry points for live admin flows
+              </Text>
+            </View>
+            <ButtonRow
+              testID="trainer-quick-seed-weak-open"
+              icon="barbell-outline"
+              label="Trainer: seed weak + open hub"
+              sub="Seed weak TrainerStore, enable QA premium, open /trainer"
+              onPress={openTrainerQaHub}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="trainer-quick-report-preview"
+              icon="analytics-outline"
+              label="Trainer: premium report preview"
+              sub="Seed weak TrainerStore, open Smart Trainer report preview"
+              onPress={openTrainerReportPreview}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="trainer-quick-mistake-preview"
+              icon="bug-outline"
+              label="Trainer: mistake drill preview"
+              sub="Seed weak TrainerStore, open a wrong-answer drill preview"
+              onPress={openTrainerMistakePreview}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="stats-quick-365-random-open"
+              icon="pulse-outline"
+              label="Stats 365: random seeded year"
+              sub="Seed yearly activity data and open streak_stats at the 365-day card"
+              onPress={openStats365RandomQa}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
           </View>
 
           <View style={{ marginHorizontal: 12, marginBottom: 10 }}>
@@ -1129,7 +1388,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 1. СОСТОЯНИЕ АККАУНТА ── */}
-          <AccordionSection id="account" icon="settings-outline" title="Состояние аккаунта" badge={3}
+          <AccordionSection id="account" icon="settings-outline" title="Состояние аккаунта" badge={6}
             open={openSection === 'account'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow
               icon={noLimitsEnabled ? "lock-open-outline" : "lock-outline"}
@@ -1153,17 +1412,30 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
-              icon="volume-high-outline"
-              label="TTS Debug"
-              sub="Voices, rate test, Android system rate hint"
-              onPress={() => router.push('/audio_debug' as any)}
-              t={t} f={f} doHaptic={doHaptic}
-            />
-            <ButtonRow
+              testID="testers-unlock-all-achievements"
               icon="star-outline"
               label="Разблокировать все достижения"
               sub="Достижения и рамки"
               onPress={unlockAllAchievementsHandler}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              testID="testers-seed-new-achievements"
+              icon="trophy-outline"
+              label="🌱 Seed: все новые достижения"
+              sub="Социал, арена, тренер, кастомизация, вехи — smoke-проверка"
+              onPress={async () => {
+                doHaptic();
+                try {
+                  const result = await devSeedAchievementsSmoke();
+                  AppInfoDialog.alert(
+                    'Seed завершён',
+                    `Всего: ${result.total}\nРазблокировано: ${result.unlocked}\n${result.missing.length > 0 ? `Не закрыто: ${result.missing.join(', ')}` : 'Все закрыты ✓'}`,
+                  );
+                } catch (e) {
+                  AppInfoDialog.alert('Ошибка', String(e));
+                }
+              }}
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
@@ -1282,7 +1554,7 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 2. МОДАЛКИ АРЕНЫ ── */}
-          <AccordionSection id="arena_modals" icon="trophy-outline" title="Модалки — Арена" badge={4}
+          <AccordionSection id="arena_modals" icon="trophy-outline" title="Модалки — Арена" badge={5}
             open={openSection === 'arena_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             {/* Rank picker */}
             <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 8, gap: 8 }}>
@@ -1331,6 +1603,14 @@ export default function SettingsTestersFunctions() {
               sub="Показать результат лиги"
               onPress={triggerEndOfWeek}
               t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="cloud-done-outline" label="League weekly rollover — Firestore scenario"
+              sub="Writes previous-week league_groups/leaderboard, then opens the real result modal"
+              onPress={seedFirestoreWeeklyRolloverScenario}
+              t={t} f={f} doHaptic={doHaptic} />
+            <ButtonRow icon="ribbon-outline" label="👑 Трон дня — награда чемпиона"
+              sub="+10 осколков за удержание трона до 00:00"
+              onPress={() => { doHaptic(); setThroneRewardPreview(true); }}
+              t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
           {/* ── 3. МОДАЛКИ УРОКОВ ── */}
@@ -1362,7 +1642,7 @@ export default function SettingsTestersFunctions() {
               onPress={() => router.push('/progress_map' as any)}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="ribbon-outline" label="🎓 Сертификат Профессора Лингмана — превью"
-              sub="Редактируемые поля + share PNG + засеять/удалить мой сертификат"
+              sub="Редактируемые поля + текстовый share + засеять/удалить мой сертификат"
               onPress={() => setCertificatePreviewVisible(true)}
               t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
@@ -1370,7 +1650,7 @@ export default function SettingsTestersFunctions() {
           {/* ── 4. МОДАЛКИ PREMIUM / ПЕЙВОЛЛЫ ── */}
           <AccordionSection id="premium_modals" icon="diamond-outline" title="Пейволлы Premium — все контексты" badge={PREMIUM_PREVIEW_CONTEXTS.length + 4}
             open={openSection === 'premium_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            {/* Trial UI QA — приоритетный блок: проверка новой золотой ленты + Free 7 days
+            {/* Trial UI QA — приоритетный блок: проверка новой золотой ленты + Free 3 days
                 в карточках планов. _force_trial_ui=1 форсит UI даже без реального RC
                 (Expo Go / dev / магазин не отдаёт intro). В проде параметр недоступен. */}
             <View style={{ marginHorizontal: 12, marginVertical: 10, borderRadius: 12, borderWidth: 1.5, borderColor: '#FFD700', backgroundColor: 'rgba(255,215,0,0.08)', padding: 12 }}>
@@ -1378,7 +1658,7 @@ export default function SettingsTestersFunctions() {
                 🎁 ТРИАЛ-UI · ЧТО ПРОВЕРИТЬ
               </Text>
               <Text style={{ color: '#FFE07A', fontSize: 11, lineHeight: 15, marginBottom: 10 }}>
-                {`✓ Сверху золотая лента «Попробуй Premium 7 дней бесплатно»\n✓ В обоих карточках справа: «Бесплатно» (зелёным) + «на 7 дней» + мелко «затем €X/період»\n✓ CTA: «🚀 7 дней бесплатно — затем €X/період»\n✗ Большие ценники справа НЕ доминируют (compliance ok)`}
+                {`✓ Сверху золотая лента «Попробуй Premium 3 дня бесплатно»\n✓ В обоих карточках справа: «Бесплатно» (зелёным) + «на 3 дня» + мелко «затем €X/період»\n✓ CTA: «🚀 3 дня бесплатно — затем €X/період»\n✗ Большие ценники справа НЕ доминируют (compliance ok)`}
               </Text>
               <TouchableOpacity
                 onPress={async () => {
@@ -1460,11 +1740,11 @@ export default function SettingsTestersFunctions() {
             ))}
           </AccordionSection>
 
-          {/* ── 4b. SOFT MONETIZATION (Phase 02) ── */}
+          {/* ── 4b. MONETIZATION SCENARIOS ── */}
           <AccordionSection
             id="soft_monetization"
             icon="sparkles-outline"
-            title="Soft Monetization — новые модалки"
+            title="Монетизация: активные сценарии"
             badge={5}
             open={openSection === 'soft_monetization'}
             onToggle={(id) => setOpenSection(openSection === id ? null : id)}
@@ -1483,15 +1763,6 @@ export default function SettingsTestersFunctions() {
               label="🔁 Mastery replay confirm"
               sub="Перепройти за осколки / Premium / Отмена (цена: база +5 за каждый повтор)"
               onPress={() => setSoftMonetizationPreview('mastery')}
-              t={t}
-              f={f}
-              doHaptic={doHaptic}
-            />
-            <ButtonRow
-              icon="rocket-outline"
-              label="🚀 After-lesson-5 push"
-              sub="Soft-push после первого финиша lesson 5 (стат + 7-day trial CTA)"
-              onPress={() => setSoftMonetizationPreview('after_lesson5')}
               t={t}
               f={f}
               doHaptic={doHaptic}
@@ -1540,12 +1811,32 @@ export default function SettingsTestersFunctions() {
             />
           </AccordionSection>
 
-          {/* ── 4c. ПЕРСОНАЛИЗАЦИЯ ПЕЙВОЛЛА (Plan 02) ── */}
+          <AccordionSection
+            id="activity_365_qa"
+            icon="pulse-outline"
+            title="Stats 365 QA"
+            badge={1}
+            open={openSection === 'activity_365_qa'}
+            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
+          >
+            <ButtonRow
+              testID="testers-365-random-open"
+              icon="pulse-outline"
+              label="Stats 365: random seeded year"
+              sub="Seed yearly activity data and open streak_stats at the 365-day card"
+              onPress={openStats365RandomQa}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
+          </AccordionSection>
+
+          {/* ── 4c. ПЕРСОНАЛИЗАЦИЯ ПЕЙВОЛЛА ── */}
           <AccordionSection
             id="paywall_personalization"
             icon="person-outline"
-            title="Персонализация пейволла (Plan 02)"
-            badge={3}
+            title="Пейволл: персонализация"
+            badge={6}
             open={openSection === 'paywall_personalization'}
             onToggle={(id) => {
               setOpenSection(openSection === id ? null : id);
@@ -1625,12 +1916,12 @@ export default function SettingsTestersFunctions() {
             />
           </AccordionSection>
 
-          {/* ── 4d. ТРЕНЕР (Plan 03) ── */}
+          {/* ── 4d. ТРЕНЕР ── */}
           <AccordionSection
             id="trainer_debug"
             icon="barbell-outline"
-            title="Тренер — режимы и лог ошибок (Plan 03)"
-            badge={6}
+            title="Тренер: режимы и лог ошибок"
+            badge={20}
             open={openSection === 'trainer_debug'}
             onToggle={(id) => {
               setOpenSection(openSection === id ? null : id);
@@ -1672,15 +1963,118 @@ export default function SettingsTestersFunctions() {
             )}
             <ButtonRow
               icon="navigate-outline"
+              testID="trainer-qa-open-hub"
               label="🏋 Открыть Тренер (hub)"
               sub="Переход на /trainer"
               onPress={() => router.push('/trainer' as any)}
               t={t} f={f} doHaptic={doHaptic}
             />
+            <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
+              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+                Текущий TrainerStore:
+              </Text>
+            </View>
+            <ButtonRow
+              icon="sparkles-outline"
+              testID="trainer-qa-seed-weak"
+              label="🌱 Засеять текущую «Мою практику»"
+              sub="devSeedTrainerScenario('weak') + QA premium для Maestro"
+              onPress={async () => {
+                doHaptic();
+                await prepareWeakTrainerQa();
+                await loadTrainerDebugState();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'TrainerStore засеян: открой /trainer или текущие сессии ниже',
+                  uk: 'TrainerStore засіяно: відкрий /trainer або поточні сесії нижче',
+                  es: 'TrainerStore sembrado: abre /trainer o las sesiones actuales abajo',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trash-outline"
+              label="🧹 Очистить текущую «Мою практику»"
+              sub="clearTrainerStore() — только новый TrainerStore, не legacy active_recall"
+              danger
+              onPress={async () => {
+                doHaptic();
+                await clearTrainerStore();
+                await loadTrainerDebugState();
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'TrainerStore очищен',
+                  uk: 'TrainerStore очищено',
+                  es: 'TrainerStore limpiado',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
+              <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
+                Текущие сессии тренера:
+              </Text>
+            </View>
+            <ButtonRow
+              icon="library-outline"
+              label="Words session"
+              sub="/trainer_words_session — актуальная сессия слов"
+              onPress={() => router.push('/trainer_words_session' as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="chatbubbles-outline"
+              label="Phrases session"
+              sub="/trainer_phrases_session — актуальная сессия фраз"
+              onPress={() => router.push('/trainer_phrases_session' as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="shield-checkmark-outline"
+              label="Arena practice session"
+              sub="/trainer_arena_session — актуальная сессия арены без давления"
+              onPress={() => router.push('/trainer_arena_session' as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="sparkles-outline"
+              label="Smart Trainer — Smart Mix"
+              sub="/trainer_smart_session?mode=smart_mix"
+              onPress={() => router.push({ pathname: '/trainer_smart_session', params: { mode: 'smart_mix' } } as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="pulse-outline"
+              label="Smart Trainer — Weak"
+              sub="/trainer_smart_session?mode=weak"
+              onPress={() => router.push({ pathname: '/trainer_smart_session', params: { mode: 'weak' } } as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="flame-outline"
+              label="Smart Trainer — Hard"
+              sub="/trainer_smart_session?mode=hard"
+              onPress={() => router.push({ pathname: '/trainer_smart_session', params: { mode: 'hard' } } as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="analytics-outline"
+              testID="trainer-qa-open-report-preview"
+              label="Trainer: premium report preview"
+              sub="/trainer_smart_session?mode=weak&preview=report"
+              onPress={openTrainerReportPreview}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="bug-outline"
+              testID="trainer-qa-open-mistake-preview"
+              label="Trainer: mistake drill preview"
+              sub="/trainer_smart_session?mode=weak&preview=mistake"
+              onPress={openTrainerMistakePreview}
+              t={t} f={f} doHaptic={doHaptic}
+            />
             <ButtonRow
               icon="add-circle-outline"
-              label="🧪 Засеять 15 ошибок (тест weak/hard)"
-              sub="pick up ×5, let down ×3, burn out ×2, set off ×5 — в лог"
+              label="🧪 Legacy /review: засеять 15 SRS ошибок"
+              sub="active_recall + mistake_log для старого /review trainerMode"
               onPress={async () => {
                 doHaptic();
                 const seed: Array<[string, number, string]> = [
@@ -1737,10 +2131,10 @@ export default function SettingsTestersFunctions() {
               }}
               t={t} f={f} doHaptic={doHaptic}
             />
-            {/* 6 режимов тренера */}
+            {/* Legacy active_recall modes */}
             <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
               <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-                6 режимов тренера:
+                Legacy SRS /review modes:
               </Text>
             </View>
             {([
@@ -1750,15 +2144,17 @@ export default function SettingsTestersFunctions() {
               { mode: 'hard' as TrainerMode, label: '💪 Hard — ошибки ≥ 3×', free: false },
               { mode: 'smart_mix' as TrainerMode, label: '🤖 Smart Mix — авто-выбор', free: false },
               { mode: 'by_topic' as TrainerMode, label: '📚 By Topic — урок 5', free: false },
+              { mode: 'mistakes' as TrainerMode, label: '🎯 Mistakes — top mistake_log', free: false },
             ]).map(({ mode, label, free }) => (
               <ButtonRow
                 key={mode}
                 icon={free ? 'play-outline' : 'diamond-outline'}
                 label={label}
-                sub={free ? 'Бесплатный режим' : 'Premium режим (TRAINER_PREMIUM_MODES)'}
+                sub={free ? 'Legacy active_recall режим' : 'Legacy premium mode из active_recall'}
                 onPress={() => {
                   const params: Record<string, string> = { trainerMode: mode };
                   if (mode === 'by_topic') params.lessonId = '5';
+                  if (mode === 'mistakes') params.category = 'article';
                   router.push({ pathname: '/review', params } as any);
                 }}
                 t={t} f={f} doHaptic={doHaptic}
@@ -1766,12 +2162,12 @@ export default function SettingsTestersFunctions() {
             ))}
           </AccordionSection>
 
-          {/* ── 4e. АНАЛИТИКА ОШИБОК (Plan 04) ── */}
+          {/* ── 4e. ОШИБКИ И ПЕРСОНАЛЬНЫЕ ТРЕНИРОВКИ ── */}
           <AccordionSection
             id="phrase_analytics_debug"
             icon="analytics-outline"
-            title="Аналитика ошибок — категории слов (Plan 04)"
-            badge={8}
+            title="Ошибки → персональные тренировки"
+            badge={35}
             open={openSection === 'phrase_analytics_debug'}
             onToggle={(id) => setOpenSection(openSection === id ? null : id)}
           >
@@ -1782,6 +2178,17 @@ export default function SettingsTestersFunctions() {
               onPress={() => {
                 doHaptic();
                 router.push('/phrase_analytics_screen' as any);
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="bug-outline"
+              testID="testers-pos-audit-open"
+              label="POS token audit"
+              sub="Release coverage, exact events and unresolved token queue"
+              onPress={() => {
+                doHaptic();
+                router.push('/pos_analytics_audit' as any);
               }}
               t={t} f={f} doHaptic={doHaptic}
             />
@@ -1864,43 +2271,62 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="people-outline"
               label="4. LeagueResultModal — % группы"
-              sub="Открыть через секцию «Лиги» → симулировать итог → увидеть «Топ X% группы»"
-              onPress={() => {
-                doHaptic();
-                setOpenSection('league');
-              }}
+              sub="Сразу симулирует итог недели и открывает актуальный LeagueResultModal"
+              onPress={triggerEndOfWeek}
               t={t} f={f} doHaptic={doHaptic}
             />
-            {/* Problem Coach экран */}
+            {/* Diagnosis trainer экран */}
             <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
               <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-                Problem Coach — экран тренировки:
+                Diagnosis trainer — экран тренировки:
               </Text>
             </View>
-            {(
-              [
-                { cat: 'article',          emoji: '📘', label: 'Артикли' },
-                { cat: 'preposition',      emoji: '📍', label: 'Предлоги' },
-                { cat: 'verb',             emoji: '⚡', label: 'Глаголы' },
-                { cat: 'modal',            emoji: '🎛️', label: 'Модальные глаголы' },
-                { cat: 'to-be',            emoji: '🔵', label: 'To be' },
-                { cat: 'phrasal_particle', emoji: '🌀', label: 'Фразовые глаголы' },
-                { cat: 'noun',             emoji: '📦', label: 'Существительные' },
-                { cat: 'adjective',        emoji: '🎨', label: 'Прилагательные' },
-                { cat: 'adverb',           emoji: '💨', label: 'Наречия' },
-                { cat: 'pronoun',          emoji: '👤', label: 'Местоимения' },
-                { cat: 'conjunction',      emoji: '🔗', label: 'Союзы' },
-                { cat: 'other',            emoji: '🗂️', label: 'Разное' },
-              ] as { cat: string; emoji: string; label: string }[]
-            ).map(({ cat, emoji, label }) => (
+            {([
+              { category: 'article', id: 'article_a_an' },
+              { category: 'article', id: 'article_the_specific' },
+              { category: 'article', id: 'article_zero' },
+              { category: 'preposition', id: 'preposition_time_in_on_at' },
+              { category: 'preposition', id: 'preposition_place_in_on_at' },
+              { category: 'preposition', id: 'preposition_duration_for_since' },
+              { category: 'preposition', id: 'preposition_direction_to_into_from' },
+              { category: 'preposition', id: 'preposition_common_verb_patterns' },
+              { category: 'syntax', id: 'object_order_give_me_it' },
+              { category: 'syntax', id: 'word_order_basic_statement' },
+              { category: 'syntax', id: 'word_order_basic_question' },
+              { category: 'verb', id: 'verb_present_simple_negative_question' },
+              { category: 'verb', id: 'verb_present_continuous_basic' },
+              { category: 'verb', id: 'verb_present_simple_vs_continuous' },
+              { category: 'verb', id: 'verb_past_simple_regular_irregular' },
+              { category: 'verb', id: 'verb_was_were' },
+              { category: 'verb', id: 'future_will_going_to' },
+              { category: 'verb', id: 'infinitive_vs_gerund_basic' },
+              { category: 'modifier', id: 'too_enough' },
+              { category: 'modifier', id: 'modifier_very_really_quite' },
+              { category: 'verb', id: 'verb_present_simple_statement' },
+              { category: 'verb', id: 'verb_third_person' },
+              { category: 'to-be', id: 'to_be_present_agreement' },
+              { category: 'modal', id: 'modal_base_form' },
+              { category: 'modal', id: 'modal_force' },
+              { category: 'pronoun', id: 'pronoun_case' },
+              { category: 'pronoun', id: 'pronoun_possessive' },
+              { category: 'adjective', id: 'adjective_comparison' },
+              { category: 'adverb', id: 'adjective_vs_adverb' },
+              { category: 'adverb', id: 'adverb_frequency_position' },
+              { category: 'conjunction', id: 'conjunction_logic' },
+              { category: 'phrasal_particle', id: 'phrasal_particle_pair' },
+              { category: 'determiner', id: 'quantifier_some_any' },
+              { category: 'determiner', id: 'determiner_this_that_these_those' },
+              { category: 'existential', id: 'there_is_are' },
+              { category: 'noun', id: 'noun_singular_plural_basic' },
+            ] as const).map(({ category, id: microDiagnosisId }) => (
               <ButtonRow
-                key={cat}
-                icon="school-outline"
-                label={`${emoji} ${label}`}
-                sub={`/problem_coach?category=${cat}`}
+                key={microDiagnosisId}
+                icon="git-compare-outline"
+                label={`Open diagnosis: ${microDiagnosisId}`}
+                sub={`/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}`}
                 onPress={() => {
                   doHaptic();
-                  router.push((`/problem_coach?category=${cat}`) as any);
+                  router.push((`/problem_coach?category=${category}&microDiagnosisId=${microDiagnosisId}`) as any);
                 }}
                 t={t} f={f} doHaptic={doHaptic}
               />
@@ -1908,13 +2334,13 @@ export default function SettingsTestersFunctions() {
             {/* CoachToast превью */}
             <View style={{ paddingHorizontal: 16, paddingTop: 10, paddingBottom: 4 }}>
               <Text style={{ color: '#FF8080', fontSize: 11, fontWeight: '700', letterSpacing: 0.8, textTransform: 'uppercase' }}>
-                Problem Coach Toast:
+                Diagnosis Toast:
               </Text>
             </View>
             <ButtonRow
               icon="school-outline"
               label="Тост: «Разобрать тему — Глаголы»"
-              sub="CoachToast → после сессии при 2+ ошибок одной категории"
+              sub="CoachToast → после сессии при 3+ точных ошибках одной категории"
               onPress={() => {
                 doHaptic();
                 setCoachToastPreview({
@@ -1924,6 +2350,7 @@ export default function SettingsTestersFunctions() {
                   labelUk: 'Дієслова',
                   labelEs: 'Verbos',
                   mistakeCount: 3,
+                  weaknessScore: 72,
                 });
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -1931,7 +2358,7 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="school-outline"
               label="Тост: «Разобрать тему — Артикли»"
-              sub="Ещё один пример — article"
+              sub="Категорийный пример без microDiagnosisId"
               onPress={() => {
                 doHaptic();
                 setCoachToastPreview({
@@ -1940,7 +2367,56 @@ export default function SettingsTestersFunctions() {
                   labelRu: 'Артикли',
                   labelUk: 'Артиклі',
                   labelEs: 'Artículos',
-                  mistakeCount: 2,
+                  mistakeCount: 3,
+                  weaknessScore: 72,
+                });
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="git-compare-outline"
+              label="Тост: точная ошибка — a/an"
+              sub="microDiagnosisId=article_a_an → Diagnosis trainer → Smart Trainer"
+              onPress={() => {
+                doHaptic();
+                setCoachToastPreview({
+                  show: true,
+                  category: 'article',
+                  labelRu: 'Артикли',
+                  labelUk: 'Артиклі',
+                  labelEs: 'Artículos',
+                  mistakeCount: 3,
+                  weaknessScore: 78,
+                  focusWords: ['a', 'an'],
+                  microDiagnosisId: 'article_a_an',
+                  microLabelRu: 'a/an перед звуком',
+                  microLabelUk: 'a/an перед звуком',
+                  microLabelEs: 'a/an antes del sonido',
+                  diagnosisEvidenceCount: 3,
+                });
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="git-compare-outline"
+              label="Тост: точная ошибка — in/on/at time"
+              sub="microDiagnosisId=preposition_time_in_on_at → отдельная тренировка"
+              onPress={() => {
+                doHaptic();
+                setCoachToastPreview({
+                  show: true,
+                  category: 'preposition',
+                  labelRu: 'Предлоги',
+                  labelUk: 'Прийменники',
+                  labelEs: 'Preposiciones',
+                  mistakeCount: 3,
+                  weaknessScore: 80,
+                  focusWords: ['in', 'on', 'at'],
+                  microDiagnosisId: 'preposition_time_in_on_at',
+                  microLabelRu: 'in/on/at для времени',
+                  microLabelUk: 'in/on/at для часу',
+                  microLabelEs: 'in/on/at para tiempo',
+                  diagnosisEvidenceCount: 3,
                 });
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -1948,50 +2424,64 @@ export default function SettingsTestersFunctions() {
             <ButtonRow
               icon="flask-outline"
               label="Тест тоста из реальных ошибок лога"
-              sub="checkCoachToastNeeded() по топ фразам в логе"
+              sub="Берёт exact POS события из mistake_log и persistent analytics"
               onPress={async () => {
                 doHaptic();
-                const top = await getTopMistakePhrases(20);
-                const decision = checkCoachToastNeeded(top.map(m => m.phrase));
+                const snapshot = await getMistakeLogDebugSnapshot(60);
+                const exactMistakes = snapshot.events
+                  .filter(event => event.exactSignal && event.resolvedCategory)
+                  .map(event => ({
+                    phrase: event.phrase,
+                    tokenText: event.tokenText || event.expected || event.phrase,
+                    expected: event.expected,
+                    picked: event.picked,
+                    rawCategory: event.rawCategory,
+                    category: event.resolvedCategory!,
+                    grammarTag: event.grammarTag,
+                  }));
+                const decision = await checkCoachToastNeededWithAnalytics(exactMistakes);
                 if (decision.show) {
                   setCoachToastPreview(decision);
                 } else {
-                  AppInfoDialog.alert('CoachToast', 'Нет доминирующей категории (нужно ≥2 ошибок одной категории). Засей лог сначала.');
+                  AppInfoDialog.alert('CoachToast', 'Нет диагностируемого exact-паттерна: нужно ≥3 точных ошибки одной категории. Засей exact POS лог сначала.');
                 }
               }}
               t={t} f={f} doHaptic={doHaptic}
             />
             <ButtonRow
               icon="flask-outline"
-              label="🌱 Засеять лог ошибок (15 записей)"
-              sub="Нужно чтобы аналитика не была пустой"
+              label="🌱 Засеять exact POS ошибки (15 записей)"
+              sub="Артикли, предлоги и do/does с token/category метаданными"
               onPress={async () => {
                 doHaptic();
-                const testPhrases = [
-                  { phrase: 'I am here', lessonId: 1 },
-                  { phrase: 'She is at home', lessonId: 1 },
-                  { phrase: 'We are ready', lessonId: 1 },
-                  { phrase: 'He is not busy', lessonId: 2 },
-                  { phrase: 'They are not tired', lessonId: 2 },
-                  { phrase: 'I work every day', lessonId: 3 },
-                  { phrase: 'She works here', lessonId: 3 },
-                  { phrase: 'We play football', lessonId: 3 },
-                  { phrase: 'He does not work', lessonId: 4 },
-                  { phrase: 'I have a car', lessonId: 7 },
-                  { phrase: 'The book is on the table', lessonId: 19 },
-                  { phrase: 'She can swim well', lessonId: 10 },
-                  { phrase: 'I am reading a book', lessonId: 17 },
-                  { phrase: 'They have already done it', lessonId: 24 },
-                  { phrase: 'If I were rich', lessonId: 26 },
+                const testMistakes = [
+                  { phrase: 'I am an engineer', lessonId: 7, tokenText: 'an', picked: 'a', rawCategory: 'article_a_an', category: 'article' as const },
+                  { phrase: 'She is an artist', lessonId: 7, tokenText: 'an', picked: 'a', rawCategory: 'article_a_an', category: 'article' as const },
+                  { phrase: 'He bought a car', lessonId: 7, tokenText: 'a', picked: 'an', rawCategory: 'article_a_an', category: 'article' as const },
+                  { phrase: 'The book is on the table', lessonId: 19, tokenText: 'the', picked: 'a', rawCategory: 'article_specific', category: 'article' as const },
+                  { phrase: 'Open the door', lessonId: 19, tokenText: 'the', picked: 'a', rawCategory: 'article_specific', category: 'article' as const },
+                  { phrase: 'We meet on Monday', lessonId: 19, tokenText: 'on', picked: 'in', rawCategory: 'preposition_time', category: 'preposition' as const },
+                  { phrase: 'The lesson starts at seven', lessonId: 19, tokenText: 'at', picked: 'on', rawCategory: 'preposition_time', category: 'preposition' as const },
+                  { phrase: 'I was born in May', lessonId: 19, tokenText: 'in', picked: 'at', rawCategory: 'preposition_time', category: 'preposition' as const },
+                  { phrase: 'She is at school', lessonId: 20, tokenText: 'at', picked: 'in', rawCategory: 'preposition_place', category: 'preposition' as const },
+                  { phrase: 'The keys are on the table', lessonId: 20, tokenText: 'on', picked: 'in', rawCategory: 'preposition_place', category: 'preposition' as const },
+                  { phrase: 'They live in London', lessonId: 20, tokenText: 'in', picked: 'at', rawCategory: 'preposition_place', category: 'preposition' as const },
+                  { phrase: 'Does she work here?', lessonId: 4, tokenText: 'does', picked: 'works', rawCategory: 'verb_question', category: 'verb' as const },
+                  { phrase: 'He does not work here', lessonId: 4, tokenText: 'does', picked: 'works', rawCategory: 'verb_negative', category: 'verb' as const },
+                  { phrase: 'Do they play football?', lessonId: 4, tokenText: 'do', picked: 'plays', rawCategory: 'verb_question', category: 'verb' as const },
+                  { phrase: 'She can swim well', lessonId: 10, tokenText: 'swim', picked: 'swims', rawCategory: 'verb_after_modal', category: 'verb' as const },
                 ];
-                for (const { phrase, lessonId } of testPhrases) {
-                  logMistake(phrase, lessonId, 'lesson', 'wrong_pick');
+                for (const { phrase, lessonId, ...meta } of testMistakes) {
+                  logMistake(phrase, lessonId, 'lesson', 'wrong_pick', {
+                    ...meta,
+                    expected: meta.tokenText,
+                  });
                   await new Promise((r) => setTimeout(r, 5));
                 }
                 emitAppEvent('action_toast', actionToastTri('success', {
-                  ru: '15 записей добавлено в лог → открой аналитику',
-                  uk: '15 записів додано → відкрий аналітику',
-                  es: '15 entradas añadidas → abre la analítica',
+                  ru: '15 exact POS записей добавлено → проверь CoachToast и аналитику',
+                  uk: '15 exact POS записів додано → перевір CoachToast і аналітику',
+                  es: '15 eventos POS exactos añadidos → revisa CoachToast y analítica',
                 }));
               }}
               t={t} f={f} doHaptic={doHaptic}
@@ -2066,10 +2556,11 @@ export default function SettingsTestersFunctions() {
           </AccordionSection>
 
           {/* ── 6. LEVEL UP И ПОДАРКИ ── */}
-          <AccordionSection id="levelup" icon="gift-outline" title="Level-up и подарки" badge={12}
+          <AccordionSection id="levelup" icon="gift-outline" title="Level-up и подарки" badge={16}
             open={openSection === 'levelup'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
-            {([5, 10, 20, 30, 50] as const).map(lvl => (
+            {([5, 10, 15, 20, 30, 35, 50] as const).map(lvl => (
               <ButtonRow key={`gift_${lvl}`} icon="gift-outline"
+                testID={`admin-level-gift-${lvl}`}
                 label={`🎁 Подарок уровня ${lvl}`}
                 sub="Превью: один сундук (level-up)"
                 onPress={() => { setGiftModalLevel(lvl); setGiftModalVisible(true); }}
@@ -2098,6 +2589,16 @@ export default function SettingsTestersFunctions() {
           {/* ── 7. ОСКОЛКИ ── */}
           <AccordionSection id="shards" icon="diamond-outline" title="Осколки" badge={5}
             open={openSection === 'shards'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <ButtonRow
+              testID="testers-profile-card-seed"
+              icon="id-card-outline"
+              label="QA: карточка профиля + 1200 осколков"
+              sub="Сбросить CARD 0, выдать осколки и открыть экран аватара"
+              onPress={() => { void seedProfileCardUpgradeQa(); }}
+              t={t}
+              f={f}
+              doHaptic={doHaptic}
+            />
             {([
               { source: 'lesson_first' as const, label: '+1 Первый урок', reason: 'Первое прохождение урока' },
               { source: 'lesson_perfect' as const, label: '+2 Идеальный урок', reason: 'Идеальный урок (0 ошибок)' },
@@ -2134,8 +2635,8 @@ export default function SettingsTestersFunctions() {
               t={t} f={f} doHaptic={doHaptic} />
           </AccordionSection>
 
-          {/* ── 9. NEW CORE MODALS (QA) ── */}
-          <AccordionSection id="core_modals" icon="construct-outline" title="Новые модалки (QA core)" badge={18}
+          {/* ── 9. ACTIVE CORE MODALS (QA) ── */}
+          <AccordionSection id="core_modals" icon="construct-outline" title="Активные core-модалки (QA)" badge={19}
             open={openSection === 'core_modals'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
             <ButtonRow icon="flash-outline" label="⚡ NoEnergy — обычная"
               sub="Как при нуле энергии в уроке (текст + Понятно + Premium)"
@@ -2173,21 +2674,9 @@ export default function SettingsTestersFunctions() {
               sub="Системное предупреждение пользователю"
               onPress={() => { setUserWarningVisible(true); markQa('userWarning'); }}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="diamond-outline" label="💎 ShardRewardModal"
-              sub="Награда за исправленный репорт"
-              onPress={() => {
-                setShardRewardPayload(shardRewardPreview);
-                setShardRewardVisible(true);
-                markQa('shardReward');
-              }}
-              t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="albums-outline" label="💎 ShardRewardModal (multi)"
-              sub="Несколько наград сразу"
-              onPress={() => {
-                setShardRewardPayload(shardRewardMultiPreview);
-                setShardRewardVisible(true);
-                markQa('shardReward');
-              }}
+            <ButtonRow icon="diamond-outline" label="💎 ShardsEarnedModal — глобальный поток"
+              sub="Текущий production-путь: emitAppEvent('shards_earned') → GlobalShardsEarnedHost"
+              onPress={showShardsEarnedPreview}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="flag-outline" label="🚩 ReportUserModal (safe preview)"
               sub="Только UI, без записи репорта"
@@ -2243,90 +2732,74 @@ export default function SettingsTestersFunctions() {
               sub="Показать кастомную модалку перед системным запросом"
               onPress={() => { setNotifPermissionPreviewVisible(true); }}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="gift-outline" label="🎁 Release bonus (релиз)"
-              sub={
-                (() => {
-                  const w = getActiveReleaseWaveVersion();
-                  const b = getAppReleaseBuildId();
-                  if (w <= 0) {
-                    return triLang(lang, {
-                      uk: 'У config: RELEASE_WAVE_BONUS_VERSION = 0',
-                      ru: 'В config: RELEASE_WAVE_BONUS_VERSION = 0',
-                      es: 'En config: RELEASE_WAVE_BONUS_VERSION = 0',
-                    });
-                  }
-                  return (
-                    triLang(lang, {
-                      uk: `Хвиля ${w} · нативний build ${b} · збіг: `,
-                      ru: `Волна ${w} · нативный build ${b} · совпад: `,
-                      es: `Oleada ${w} · build nativo ${b} · coincide: `,
-                    }) + (b === w ? '✓' : '✗')
-                  );
-                })()
-              }
-              onPress={() => { setReleaseWaveModal({ open: true, preview: true }); markQa('releaseWaveBonus'); }}
+            <ButtonRow icon="document-text-outline" label="✨ ReleaseNotesModal preview"
+              sub="Актуальная welcome-to-new-version модалка из _layout"
+              onPress={() => { setReleaseNotesPreviewVisible(true); markQa('releaseNotes'); }}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="diamond-outline" label="🎁 Release bonus — як у прод"
-              sub={triLang(lang, {
-                uk: 'Імітує «був build (волна-1)»: після скидів — діалог як після оновлення зі стору. Не дасть, якщо v=0 або build≠волна',
-                ru: 'Имитирует «стоял build (волна−1)» — после сбросов, как у обновившегося. v=0 или build≠волна — стоп.',
-                es: 'Simula «build anterior (oleada−1)»: tras los resets, diálogo como tras actualizar. Si v=0 o build≠oleada — no.',
-              })}
-              onPress={async () => {
-                doHaptic();
-                const w = getActiveReleaseWaveVersion();
-                await resetLastPersistedNativeBuildForTesting();
-                await resetReleaseWaveBonusLocalClaimForTesting(w);
-                if (w <= 0 || !isUserBuildMatchingReleaseWave()) {
-                  emitAppEvent(
-                    'action_toast',
-                    actionToastTri('info', {
-                      ru:
-                        w <= 0
-                          ? 'В config выставь RELEASE_WAVE_BONUS_VERSION > 0 и пересобери'
-                          : `Нативный build ${getAppReleaseBuildId()} ≠ волна ${w} (выровняй app.json)`,
-                      uk:
-                        w <= 0
-                          ? 'У config: RELEASE_WAVE_BONUS_VERSION > 0 і перезбірка'
-                          : `Нативний build ${getAppReleaseBuildId()} ≠ хвиля ${w} (app.json)`,
-                      es:
-                        w <= 0
-                          ? 'En config pon RELEASE_WAVE_BONUS_VERSION > 0 y vuelve a compilar'
-                          : `Build nativo ${getAppReleaseBuildId()} ≠ oleada ${w} (alinéalo en app.json)`,
-                    }),
-                  );
-                  return;
-                }
-                await AsyncStorage.setItem(
-                  APP_LAST_RECORDED_NATIVE_BUILD_ID_KEY,
-                  w > 1 ? String(w - 1) : '0',
-                );
-                setReleaseWaveModal({ open: true, preview: false });
-                markQa('releaseWaveBonus');
-              }}
+            <ButtonRow icon="sparkles-outline" label="✨ Большое обновление / Premium после 3 урока"
+              sub="Новая одноразовая модалка для существующих free-пользователей"
+              testID="admin-preview-release-notes-premium-gate"
+              onPress={() => { setReleaseNotesPreviewVisible(true); markQa('releaseNotes'); }}
               t={t} f={f} doHaptic={doHaptic} />
-            <ButtonRow icon="trash-outline" label="🧹 Сброс маркера бонуса релиза (локал)"
-              sub="Сбрасывает и claim, и app_last_recorded… (полный сценарий с нуля, не дашборд claim)"
-              onPress={async () => {
-                doHaptic();
-                const w = getActiveReleaseWaveVersion();
-                await resetLastPersistedNativeBuildForTesting();
-                await resetReleaseWaveBonusLocalClaimForTesting(w);
-                const vLabel = w > 0 ? w : '—';
-                emitAppEvent(
-                  'action_toast',
-                  actionToastTri('success', {
-                    ru: `Сброшены v${vLabel} + build`,
-                    uk: `Скинуто v${vLabel} + build`,
-                    es: `Restablecidos v${vLabel} + build`,
-                  }),
-                );
-              }}
+            <ButtonRow icon="megaphone-outline" label="📣 GlobalBroadcastModal preview"
+              sub="Preview-only: активная broadcast-модалка без claim, cloud-write и награды"
+              onPress={() => { setGlobalBroadcastPreview(ADMIN_GLOBAL_BROADCAST_PREVIEW); markQa('globalBroadcast'); }}
               t={t} f={f} doHaptic={doHaptic} />
             <ButtonRow icon="people-outline" label="⚔️ MatchFoundToast mock"
               sub="status=found без сети (релиз и dev)"
               onPress={triggerMatchFoundToastPreview}
               t={t} f={f} doHaptic={doHaptic} />
+          </AccordionSection>
+
+          <AccordionSection id="daily_tasks_qa" icon="checkbox-outline" title="Daily tasks QA" badge={DAILY_TASK_QA_PACKS.length + 5}
+            open={openSection === 'daily_tasks_qa'} onToggle={id => setOpenSection(openSection === id ? null : id)}>
+            <ButtonRow
+              icon="open-outline"
+              label="Open Daily Tasks"
+              sub="Use after any pack seed to test card taps and reward buttons"
+              onPress={() => router.push('/daily_tasks_screen' as any)}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon={dailyTaskSeedMode === 'empty' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
+              label="Seed mode: empty"
+              sub="Cards are actionable: tap checks navigation targets"
+              onPress={() => setDailyTaskSeedMode('empty')}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon={dailyTaskSeedMode === 'ready' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
+              label="Seed mode: ready"
+              sub="Conditions are completed: test XP claim and all-3 shards"
+              onPress={() => setDailyTaskSeedMode('ready')}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon={dailyTaskSeedMode === 'claimed' ? 'radio-button-on-outline' : 'radio-button-off-outline'}
+              label="Seed mode: claimed"
+              sub="Rewards are already received: test claimed state"
+              onPress={() => setDailyTaskSeedMode('claimed')}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trash-outline"
+              label="Clear daily task override"
+              sub="Return to the real day schedule"
+              onPress={clearDailyTaskQaOverride}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            {DAILY_TASK_QA_PACKS.map((pack) => (
+              <ButtonRow
+                key={pack.id}
+                icon="list-outline"
+                label={`Pack ${pack.label}`}
+                sub={pack.types.join(' / ')}
+                onPress={() => void seedDailyTaskPackForQa(pack)}
+                t={t}
+                f={f}
+                doHaptic={doHaptic}
+              />
+            ))}
           </AccordionSection>
 
           <AccordionSection id="qa_checklist" icon="checkbox-outline" title="QA чеклист (dev)" badge={Object.values(qaChecks).filter(Boolean).length}
@@ -2336,11 +2809,12 @@ export default function SettingsTestersFunctions() {
               ['arenaLimit', 'ArenaLimitModal'],
               ['quizTimeout', 'QuizTimeoutModal'],
               ['userWarning', 'UserWarningModal'],
-              ['shardReward', 'ShardRewardModal'],
+              ['shardsEarned', 'ShardsEarnedModal / GlobalShardsEarnedHost'],
               ['reportModal', 'ReportUserModal preview'],
               ['actionToast', 'ActionToast (all types)'],
               ['updateModal', 'UpdateModal'],
-              ['releaseWaveBonus', 'Release bonus релиз'],
+              ['releaseNotes', 'ReleaseNotesModal'],
+              ['globalBroadcast', 'GlobalBroadcastModal preview-only'],
               ['matchFoundToast', 'MatchFoundToast'],
             ] as const).map(([key, label]) => (
               <TouchableOpacity
@@ -2374,10 +2848,12 @@ export default function SettingsTestersFunctions() {
                 arenaLimit: false,
                 quizTimeout: false,
                 userWarning: false,
-                shardReward: false,
+                shardsEarned: false,
                 reportModal: false,
                 actionToast: false,
                 updateModal: false,
+                releaseNotes: false,
+                globalBroadcast: false,
                 matchFoundToast: false,
               })}
               t={t}
@@ -2466,7 +2942,7 @@ export default function SettingsTestersFunctions() {
       </SafeAreaView>
 
       {leagueResult && (
-        <ClubResultModal
+        <LeagueResultModal
           visible={leagueResultVisible}
           result={leagueResult}
           onClose={() => setLeagueResultVisible(false)}
@@ -2518,11 +2994,6 @@ export default function SettingsTestersFunctions() {
         }
         lang={lang}
         onClose={() => setUserWarningVisible(false)}
-      />
-      <ShardRewardModal
-        rewards={shardRewardPayload}
-        visible={shardRewardVisible}
-        onClose={() => setShardRewardVisible(false)}
       />
       <ReportUserModal
         visible={reportUserPreviewVisible}
@@ -2579,14 +3050,15 @@ export default function SettingsTestersFunctions() {
           );
         }}
       />
-      <ReleaseWaveBonusModal
-        visible={releaseWaveModal.open}
-        previewMode={releaseWaveModal.preview}
-        onClose={() => {
-          setReleaseWaveModal(m => {
-            return { ...m, open: false };
-          });
-        }}
+      <ReleaseNotesModal
+        visible={releaseNotesPreviewVisible}
+        onClose={() => setReleaseNotesPreviewVisible(false)}
+      />
+      <GlobalBroadcastModal
+        visible={globalBroadcastPreview !== null}
+        payload={globalBroadcastPreview}
+        previewOnly
+        onClose={() => setGlobalBroadcastPreview(null)}
       />
       <CertificatePreviewAdminModal
         visible={certificatePreviewVisible}
@@ -2706,7 +3178,7 @@ export default function SettingsTestersFunctions() {
         />
       )}
 
-      {/* ─── Soft Monetization preview modals (admin only) ─── */}
+      {/* ─── Active monetization preview modals (admin only) ─── */}
       <PremiumCelebrationModal
         visible={softMonetizationPreview === 'celebration'}
         onClose={() => setSoftMonetizationPreview(null)}
@@ -2717,11 +3189,6 @@ export default function SettingsTestersFunctions() {
         isPremium={false}
         onClose={() => setSoftMonetizationPreview(null)}
       />
-      <AfterLesson5PushModal
-        visible={softMonetizationPreview === 'after_lesson5'}
-        stats={{ phrasesLearned: 312, streak: 5, level: 4 }}
-        onClose={() => setSoftMonetizationPreview(null)}
-      />
       <StreakReviveModal
         visible={softMonetizationPreview === 'streak_revive'}
         offer={previewReviveOffer}
@@ -2730,8 +3197,14 @@ export default function SettingsTestersFunctions() {
           setPreviewReviveOffer(null);
         }}
       />
+      <ThroneRewardModal
+        visible={throneRewardPreview}
+        shards={10}
+        wins={7}
+        onClose={() => setThroneRewardPreview(false)}
+      />
 
-      {/* ── Превью Problem Coach Toast ── */}
+      {/* ── Превью Diagnosis Toast ── */}
       {coachToastPreview?.show && (
         <CoachToast
           category={coachToastPreview.category}
@@ -2739,9 +3212,19 @@ export default function SettingsTestersFunctions() {
           labelUk={coachToastPreview.labelUk}
           labelEs={coachToastPreview.labelEs}
           mistakeCount={coachToastPreview.mistakeCount}
+          weaknessScore={coachToastPreview.weaknessScore}
+          priorityScore={coachToastPreview.priorityScore}
+          recoveryScore={coachToastPreview.recoveryScore}
+          focusWords={coachToastPreview.focusWords}
+          microDiagnosisId={coachToastPreview.microDiagnosisId}
+          microLabelRu={coachToastPreview.microLabelRu}
+          microLabelUk={coachToastPreview.microLabelUk}
+          microLabelEs={coachToastPreview.microLabelEs}
+          diagnosisEvidenceCount={coachToastPreview.diagnosisEvidenceCount}
           onDismiss={() => setCoachToastPreview(null)}
         />
       )}
     </View>
   );
 }
+

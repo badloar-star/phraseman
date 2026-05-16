@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Animated as RNAnim,
   BackHandler,
   type DimensionValue,
@@ -27,7 +26,6 @@ import Animated, {
 import type { ThemeMode } from '../constants/theme';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
 import Purchases, { PurchasesPackage } from 'react-native-purchases';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme, getVolumetricShadow } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { useScreen } from '../hooks/use-screen';
@@ -37,7 +35,7 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
-import { addShardsRaw, getShardsBalance, peekLastKnownShardsBalance } from './shards_system';
+import { addShardsRaw, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import {
   getWarmShardsPackagesMap,
@@ -62,6 +60,7 @@ import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial
 import { useCardPackShardPaywall } from './flashcards/useCardPackShardPaywall';
 import { DEV_IAP_BYPASS, IS_EXPO_GO } from './config';
 import { initRevenueCat } from './revenuecat_init';
+import { useEffectivePlatformOS } from './platform_ui_preview';
 import { emitAppEvent, onAppEvent } from './events';
 import { logShardsPurchased } from './firebase';
 import { oskolokImageForPackShards, oskolokImageForShardIapRow } from './oskolok';
@@ -95,6 +94,8 @@ type Blob = {
   right?: DimensionValue;
   bottom?: DimensionValue;
 };
+
+type IoniconName = React.ComponentProps<typeof Ionicons>['name'];
 
 function ShopParallaxBlobs({ themeMode }: { themeMode: ThemeMode }) {
   const p0 = useRef(new RNAnim.Value(0)).current;
@@ -297,21 +298,12 @@ function ShopNeonCta({ accent, accentSoft, correctText, busy, label, useLockIcon
         opacity: busy ? 0.88 : 1,
       }}
     >
-        {busy ? (
-          <>
-            <ActivityIndicator color={correctText} size="small" />
-            {label ? <Text style={{ color: correctText, fontSize, fontWeight: '900' }}>{label}</Text> : null}
-          </>
+        {useLockIcon ? (
+          <Ionicons name="lock-closed" size={dense ? 16 : 18} color={correctText} />
         ) : (
-          <>
-            {useLockIcon ? (
-              <Ionicons name="lock-closed" size={dense ? 16 : 18} color={correctText} />
-            ) : (
-              <Ionicons name="bag-handle" size={dense ? 16 : 18} color={correctText} />
-            )}
-            <Text style={{ color: correctText, fontSize, fontWeight: '900' }}>{label}</Text>
-          </>
+          <Ionicons name="bag-handle" size={dense ? 16 : 18} color={correctText} />
         )}
+        <Text style={{ color: correctText, fontSize, fontWeight: '900' }}>{label}</Text>
       </LinearGradient>
       {!busy && boxW > 0 ? (
         <View
@@ -372,7 +364,49 @@ export default function ShardsShopScreen() {
   const lb = bundleLang(lang);
   const isUK = lang === 'uk';
   const isES = lang === 'es';
+  const effectiveOs = useEffectivePlatformOS();
   const shardsEsLc = BRAND_SHARDS_ES.toLowerCase();
+  const storePaymentCopy = useMemo<{
+    icon: IoniconName;
+    cardPurchase: string;
+    footerPayment: string;
+    notReady: string;
+  }>(() => {
+    if (effectiveOs === 'ios') {
+      return {
+        icon: 'logo-apple-appstore',
+        cardPurchase: isUK ? 'Покупка — в App Store' : isES ? 'Compra — App Store' : 'Покупка — в App Store',
+        footerPayment: isUK ? 'Оплата в App Store' : isES ? 'Pago en App Store' : 'Оплата в App Store',
+        notReady: isUK
+          ? 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в App Store Connect.'
+          : isES
+            ? 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en App Store Connect.'
+            : 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в App Store Connect.',
+      };
+    }
+    if (effectiveOs === 'android') {
+      return {
+        icon: 'logo-google-playstore',
+        cardPurchase: isUK ? 'Покупка — у Google Play' : isES ? 'Compra — Google Play' : 'Покупка — в Google Play',
+        footerPayment: isUK ? 'Оплата в Google Play' : isES ? 'Pago en Google Play' : 'Оплата в Google Play',
+        notReady: isUK
+          ? 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в Google Play.'
+          : isES
+            ? 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en Google Play.'
+            : 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в Google Play.',
+      };
+    }
+    return {
+      icon: 'shield-checkmark',
+      cardPurchase: isUK ? 'Покупка — у магазині застосунків' : isES ? 'Compra — tienda de apps' : 'Покупка — в магазине приложений',
+      footerPayment: isUK ? 'Оплата в магазині застосунків' : isES ? 'Pago en la tienda de apps' : 'Оплата в магазине приложений',
+      notReady: isUK
+        ? 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в магазині застосунків.'
+        : isES
+          ? 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en la tienda de apps.'
+          : 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в магазине приложений.',
+    };
+  }, [effectiveOs, isUK, isES]);
   const params = useLocalSearchParams<{ need?: string; source?: string; tab?: string }>();
   /** Снимок нехватки из маршрута; сам по себе не обновляется после покупки. */
   const needFromRoute = useMemo(() => {
@@ -492,12 +526,25 @@ export default function ShardsShopScreen() {
   }, []);
 
   const syncAfterStoreAction = useCallback(async () => {
+    await loadShardsFromCloud();
     await refreshBalance();
     /** Не блокує UI paywall — оновлення каталогу асинхронно (Firestore інколи не відповідає). */
     if (shopTab === 'paid' || cardMarketFetchedOnce.current) {
       void loadCardMarket({ background: true, force: true });
     }
   }, [refreshBalance, loadCardMarket, shopTab]);
+
+  const waitForServerShardGrant = useCallback(async (startingBalance: number, expectedShards: number): Promise<number> => {
+    const expectedBalance = startingBalance + expectedShards;
+    for (let i = 0; i < 8; i += 1) {
+      await new Promise(resolve => setTimeout(resolve, i === 0 ? 1200 : 2500));
+      await loadShardsFromCloud();
+      const next = await getShardsBalance();
+      setBalance(next);
+      if (next >= expectedBalance) return next;
+    }
+    return getShardsBalance();
+  }, []);
 
   /** Активний 48-год ваучер: на вкладці «Картки» ціни замінюються іконкою подарка, paywall відкривається в voucher-режимі. */
   const hasActiveVoucher = packTrialHours != null && packTrialHours > 0;
@@ -652,32 +699,6 @@ export default function ShardsShopScreen() {
     [heroEnt],
   );
 
-  const resolveTransactionKey = useCallback((customerInfo: any, productId: string): string | null => {
-    const list = Array.isArray(customerInfo?.nonSubscriptionTransactions)
-      ? customerInfo.nonSubscriptionTransactions
-      : [];
-    const matched = list
-      .filter((tx: any) => tx?.productIdentifier === productId)
-      .sort((a: any, b: any) => {
-        const ta = Date.parse(a?.purchaseDate || '') || 0;
-        const tb = Date.parse(b?.purchaseDate || '') || 0;
-        return tb - ta;
-      });
-    const latest = matched[0];
-    if (!latest) return null;
-    return String(latest.transactionIdentifier || `${latest.productIdentifier}:${latest.purchaseDate || 'unknown'}`);
-  }, []);
-
-  const grantPurchasedShardsOnce = useCallback(async (productId: string, shards: number, customerInfo?: any): Promise<boolean> => {
-    const txKey = resolveTransactionKey(customerInfo, productId) ?? `${productId}:fallback:${Date.now()}`;
-    const storageKey = `shards_purchase_granted:${txKey}`;
-    const already = await AsyncStorage.getItem(storageKey);
-    if (already === '1') return false;
-    await addShardsRaw(shards, 'shards_store_purchase');
-    await AsyncStorage.setItem(storageKey, '1');
-    return true;
-  }, [resolveTransactionKey]);
-
   const buyPack = useCallback(
     async (packId: string, productId: string, shards: number) => {
       if (processingPackId) return;
@@ -717,13 +738,20 @@ export default function ShardsShopScreen() {
           });
           return;
         }
-        const { customerInfo } = await Purchases.purchasePackage(pkg);
-        const granted = await grantPurchasedShardsOnce(productId, shards, customerInfo);
+        const beforePurchaseBalance = await getShardsBalance();
+        await Purchases.purchasePackage(pkg);
+        logShardsPurchased(productId, shards);
+        void trackShardPackPurchase(packId).catch(() => {});
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: 'Покупка подтверждена.',
+          messageUk: 'Покупку підтверджено.',
+          messageEs: 'Compra confirmada.',
+        });
+        const nextBalance = await waitForServerShardGrant(beforePurchaseBalance, shards);
         await syncAfterStoreAction();
-        emitAppEvent('shards_balance_updated', { balance: await getShardsBalance() });
-        if (granted) {
-          logShardsPurchased(productId, shards);
-          void trackShardPackPurchase(packId).catch(() => {});
+        emitAppEvent('shards_balance_updated', { balance: nextBalance });
+        if (nextBalance >= beforePurchaseBalance + shards) {
           emitAppEvent('action_toast', {
             type: 'success',
             messageRu: `Готово: +${shards} осколков`,
@@ -733,9 +761,9 @@ export default function ShardsShopScreen() {
         } else {
           emitAppEvent('action_toast', {
             type: 'info',
-            messageRu: 'Покупка уже обработана.',
-            messageUk: 'Покупку вже оброблено.',
-            messageEs: 'La compra ya se procesó.',
+            messageRu: 'Покупка принята. Осколки появятся после webhook RevenueCat.',
+            messageUk: 'Покупку прийнято. Осколки з\'являться після webhook RevenueCat.',
+            messageEs: 'Compra recibida. Los fragmentos aparecerán tras el webhook de RevenueCat.',
           });
         }
       } catch (e: any) {
@@ -750,7 +778,7 @@ export default function ShardsShopScreen() {
         setProcessingPackId(null);
       }
     },
-    [grantPurchasedShardsOnce, syncAfterStoreAction, packagesByProductId, processingPackId, refreshBalance, loadCardMarket],
+    [syncAfterStoreAction, packagesByProductId, processingPackId, refreshBalance, loadCardMarket, waitForServerShardGrant],
   );
 
   const promptBuyCardPack = useCallback(
@@ -774,13 +802,7 @@ export default function ShardsShopScreen() {
     const priceLabel =
       pkg?.product.priceString ??
       priceHint?.priceString ??
-      (loadingPrices
-        ? isUK
-          ? 'Завантаження…'
-          : isES
-            ? 'Cargando…'
-            : 'Загрузка…'
-        : '—');
+      '—';
     const savings = savingsVsStarterFromStore(pack, packagesByProductId);
     const isPopular = pack.badge === 'popular';
     const isBest = pack.badge === 'best_value';
@@ -804,13 +826,7 @@ export default function ShardsShopScreen() {
             : isES
               ? `-${savings}% frente al pack de ${totalShardsFromPack(SHARDS_PACKS[0])} uds.`
               : `Выгоднее ${totalShardsFromPack(SHARDS_PACKS[0])} шт. на ${savings}%`
-          : loadingPrices
-            ? isUK
-              ? 'Завантаження цін…'
-              : isES
-                ? 'Cargando precios…'
-                : 'Загрузка цен…'
-            : '';
+          : '';
 
     const hasSubtitle = subtitle.trim().length > 0;
 
@@ -825,17 +841,7 @@ export default function ShardsShopScreen() {
 
     const hasRevenuePackage = !!pkg;
     const hasStorePrice = !!(pkg?.product?.priceString || priceHint?.priceString);
-    const ctaLabel = busy
-      ? isDevStoreBypass
-        ? isUK
-          ? 'Нараховуємо…'
-          : isES
-            ? 'Añadiendo…'
-            : 'Зачисление…'
-        : isES
-          ? 'Procesando…'
-          : 'Обработка…'
-      : isDevStoreBypass
+    const ctaLabel = isDevStoreBypass
         ? isUK
           ? 'Купити (DEV)'
           : isES
@@ -1158,22 +1164,10 @@ export default function ShardsShopScreen() {
                   <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
                 </View>
 
-                {cardMarketLoading && marketPacks.length > 0 ? (
-                  <View style={{ alignItems: 'center', paddingVertical: 8 }}>
-                    <ActivityIndicator color={t.accent} size="small" />
-                  </View>
-                ) : null}
-
                 {marketPacks.length === 0 ? (
-                  cardMarketLoading ? (
-                    <View style={{ alignItems: 'center', paddingVertical: 16 }}>
-                      <ActivityIndicator color={t.accent} />
-                    </View>
-                  ) : (
                   <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginBottom: 16 }}>
                     {isUK ? 'Список наборів тимчасово недоступний.' : isES ? 'La lista de paquetes no está disponible.' : 'Список наборов временно недоступен.'}
                   </Text>
-                  )
                 ) : (
                   <RNAnim.View
                     style={{
@@ -1331,9 +1325,9 @@ export default function ShardsShopScreen() {
                     paddingVertical: 14,
                   }}
                 >
-                  <Ionicons name="logo-google-playstore" size={16} color={t.textMuted} />
+                  <Ionicons name={storePaymentCopy.icon} size={16} color={t.textMuted} />
                   <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                    {isUK ? 'Покупка — у Google Play' : isES ? 'Compra — Google Play' : 'Покупка — в Google Play'}
+                    {storePaymentCopy.cardPurchase}
                   </Text>
                 </View>
               </>
@@ -1395,15 +1389,6 @@ export default function ShardsShopScreen() {
               </View>
             </RNAnim.View>
 
-            {!storeChecked && !isDevStoreBypass && !hasAnyPriceFromDisk && (
-              <View style={{ alignItems: 'center', paddingVertical: 8, marginBottom: 8 }}>
-                <ActivityIndicator color={t.accent} />
-                <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8 }}>
-                  {isUK ? 'Завантажуємо ціни…' : isES ? 'Cargando precios…' : 'Загружаем цены…'}
-                </Text>
-              </View>
-            )}
-
             {!allPacksHavePackages && storeChecked && !isDevStoreBypass && (
               <View
                 style={{
@@ -1420,11 +1405,7 @@ export default function ShardsShopScreen() {
               >
                 <Ionicons name="warning" size={22} color={t.wrong} style={{ marginTop: 2 }} />
                 <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '600', flex: 1, lineHeight: 20 }}>
-                  {isUK
-                    ? 'Магазин ще не готовий: перевір Offering «shards» у RevenueCat і активні товари в Google Play.'
-                    : isES
-                      ? 'La tienda aún no está lista: revisa la oferta «shards» en RevenueCat y los productos activos en Google Play.'
-                      : 'Магазин ещё не готов: проверь Offering «shards» в RevenueCat и активные товары в Google Play.'}
+                  {storePaymentCopy.notReady}
                 </Text>
               </View>
             )}
@@ -1470,7 +1451,7 @@ export default function ShardsShopScreen() {
             >
               <Ionicons name="shield-checkmark" size={16} color={t.textMuted} />
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                {isUK ? 'Оплата в Google Play' : isES ? 'Pago en Google Play' : 'Оплата в Google Play'}
+                {storePaymentCopy.footerPayment}
               </Text>
             </View>
 

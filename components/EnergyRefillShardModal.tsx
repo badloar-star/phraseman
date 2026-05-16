@@ -1,7 +1,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useCallback, useState } from 'react';
 import {
-  ActivityIndicator,
   Image,
   Modal,
   Pressable,
@@ -109,7 +108,7 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
 
   const bodyHint = isUnlimited ? hintUnlimited : baseFull ? hintFull : hintOk;
 
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLight = false;
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onClose}>
@@ -167,16 +166,12 @@ export default function EnergyRefillShardModal({ visible, onClose }: Props) {
                 ]}
                 disabled={busy}
               >
-                {busy ? (
-                  <ActivityIndicator color={t.correctText} />
-                ) : (
-                  <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                    <Image source={oskolokImageForPackShards(cost)} style={{ width: 22, height: 22 }} resizeMode="contain" />
-                    <Text style={[styles.btnPrimaryText, { fontSize: f.body, color: t.correctText }]}>
-                      {isUK ? 'Відновити' : isES ? 'Recuperar' : 'Восстановить'} · {cost} 💎
-                    </Text>
-                  </View>
-                )}
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+                  <Image source={oskolokImageForPackShards(cost)} style={{ width: 22, height: 22 }} resizeMode="contain" />
+                  <Text style={[styles.btnPrimaryText, { fontSize: f.body, color: t.correctText }]}>
+                    {isUK ? 'Відновити' : isES ? 'Recuperar' : 'Восстановить'} · {cost} 💎
+                  </Text>
+                </View>
               </TouchableOpacity>
             )}
 

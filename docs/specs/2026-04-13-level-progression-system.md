@@ -308,7 +308,7 @@ if ([10, 20, 35, 50].includes(newLvl)) {
 
 **Новый компонент:** `app/cefr_certificate.tsx`
 - Параметры: `level: 'A1'|'A2'|'B1'|'B2'`, `userName: string`, `date: string`
-- Зависимости: `react-native-view-shot` (генерация PNG), `expo-media-library` (сохранение), `expo-sharing`
+- Шеринг: только текстовое сообщение через системный `Share`; файловые вложения не используются.
 - Хранение в AsyncStorage: `'cefr_certificates'` → `{ a1?: string, a2?: string, b1?: string, b2?: string }` (ISO дата)
 
 ---
@@ -536,9 +536,7 @@ onPress={() => router.push('/hero_path')}
 
 | Пакет | Для чего | Уже есть? |
 |-------|----------|-----------|
-| `react-native-view-shot` | Генерация PNG сертификата | Проверить |
-| `expo-media-library` | Сохранение в галерею | Скорее всего да |
-| `expo-sharing` | Шаринг файла | Скорее всего да |
+| `Share` из `react-native` | Текстовый шеринг сертификата/награды | Да |
 
 ---
 

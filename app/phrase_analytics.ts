@@ -14,27 +14,35 @@ import { loadMistakeLog } from './mistake_log';
 import { getLessonData } from './lesson_data_all';
 import { LESSON_NAMES_RU, LESSON_NAMES_UK, LESSON_NAMES_ES } from '../constants/lessons';
 import { DebugLogger } from './debug-logger';
+import { isUserFacingCategory, normalizeTokenKey, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
+import { getPosMasterySnapshot, type PosMasteryEntry } from './pos_workout_engine';
+import {
+  getPersonalTrainingResolvedAt,
+  loadResolvedPersonalTrainings,
+} from './diagnosis_training_progress';
 
 // ── Типы ─────────────────────────────────────────────────────────────────────
 
-export type WordCategory =
-  | 'verb'
-  | 'noun'
-  | 'pronoun'
-  | 'adjective'
-  | 'adverb'
-  | 'preposition'
-  | 'article'
-  | 'to-be'
-  | 'conjunction'
-  | 'modal'
-  | 'phrasal_particle'
-  | 'other';
+export type { WordCategory } from './pos_taxonomy';
 
 export interface WordCategoryStat {
   category: WordCategory;
   /** Сколько раз ошибался в словах этой категории */
   mistakeCount: number;
+  /** Raw weakness from mistakes only. */
+  weaknessScore: number;
+  /** Final queue priority after successful POS practice gives recovery credit. */
+  priorityScore: number;
+  /** Practice credit from POS mastery, streak, accuracy, and recency. */
+  recoveryScore: number;
+  exactMistakeCount: number;
+  recentMistakeCount: number;
+  masteryLevel: number;
+  masteryXp: number;
+  masteryStreak: number;
+  practiceCorrect: number;
+  practiceWrong: number;
+  lastPracticed?: number;
   /** Процент от всех ошибок по категориям (0–100) */
   pct: number;
   /** Топ-3 конкретных слова этой категории где чаще всего ошибается */
@@ -74,6 +82,56 @@ export interface PhraseAnalyticsResult {
   windowDays: number;
 }
 
+export interface PosCoverageSample {
+  lessonId: number;
+  phrase: string;
+  word: string;
+  rawCategory?: string;
+  category?: WordCategory;
+  source?: string;
+  confidence?: number;
+  issue?: 'unresolved' | 'unknown_source' | 'low_confidence';
+}
+
+export interface PosCoverageAudit {
+  totalTokens: number;
+  resolvedTokens: number;
+  unresolvedTokens: number;
+  unknownSourceTokens: number;
+  lowConfidenceTokens: number;
+  resolvedPct: number;
+  minConfidence: number;
+  unresolvedSamples: PosCoverageSample[];
+  unknownSourceSamples: PosCoverageSample[];
+  lowConfidenceSamples: PosCoverageSample[];
+  unresolvedWordCounts: Array<{ word: string; count: number; rawCategory?: string }>;
+  rawCategoryCounts: Array<{ rawCategory: string; count: number }>;
+  categoryCounts: Array<{ category: WordCategory; count: number }>;
+  sourceCounts: Array<{ source: string; count: number }>;
+  releaseReady: boolean;
+}
+
+export interface PhraseMistakeSignal {
+  phrase: string;
+  tokenText?: string;
+  tokenIndex?: number;
+  expected?: string;
+  picked?: string;
+  rawCategory?: string;
+  category?: WordCategory;
+  grammarTag?: string;
+  mode?: string;
+}
+
+export type PhraseMistakeInput = string | PhraseMistakeSignal;
+
+export interface CategoryWeaknessCandidate {
+  category: WordCategory;
+  count: number;
+  exactCount: number;
+  weaknessScore: number;
+}
+
 // ── Словари для автовывода категории когда нет явного поля ─────────────────
 
 const ARTICLES = new Set(['a', 'an', 'the']);
@@ -81,48 +139,27 @@ const TO_BE = new Set(['am', 'is', 'are', 'was', 'were', 'be', 'been', 'being'])
 const MODALS = new Set(['can', 'could', 'will', 'would', 'shall', 'should', 'may', 'might', 'must', 'need', 'dare', 'ought']);
 const PRONOUNS = new Set(['i', 'you', 'he', 'she', 'it', 'we', 'they', 'me', 'him', 'her', 'us', 'them', 'my', 'your', 'his', 'its', 'our', 'their', 'mine', 'yours', 'hers', 'ours', 'theirs', 'myself', 'yourself', 'himself', 'herself', 'itself', 'ourselves', 'themselves', 'who', 'which', 'that', 'what', 'this', 'these', 'those']);
 const CONJUNCTIONS = new Set(['and', 'but', 'or', 'nor', 'so', 'yet', 'for', 'because', 'although', 'though', 'while', 'when', 'if', 'unless', 'until', 'since', 'after', 'before', 'as', 'than', 'that', 'whether']);
-// phrasal_particle checked BEFORE preposition so 'up/down/out/off' in phrasal context aren't swallowed by the preposition set
+// phrasal_particle checked BEFORE preposition so 'up/down/out/off' in phrasal context aren\'t swallowed by the preposition set
 const PHRASAL_PARTICLES = new Set(['up', 'down', 'out', 'in', 'on', 'off', 'away', 'back', 'over', 'through', 'around', 'along', 'ahead', 'forward', 'together', 'apart']);
 const COMMON_PREPOSITIONS = new Set(['in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'from', 'into', 'onto', 'about', 'above', 'below', 'between', 'behind', 'beside', 'under', 'over', 'through', 'during', 'before', 'after', 'near', 'without', 'against', 'around', 'among', 'along', 'across', 'off', 'out', 'up', 'down', 'inside', 'outside', 'opposite', 'past']);
 const ADVERBS = new Set(['there', 'here', 'now', 'then', 'not', 'never', 'always', 'often', 'still', 'already', 'just', 'very', 'really', 'quite', 'soon', 'today', 'yesterday', 'tomorrow', 'right', 'again', 'also', 'too', 'well', 'loudly', 'slowly', 'quickly', 'carefully', 'finally', 'suddenly', 'recently', 'often', 'sometimes', 'usually', 'immediately']);
 
 function inferCategory(word: string, knownCategory?: string): WordCategory {
-  if (knownCategory) {
-    const normalized = knownCategory.toLowerCase().trim();
-    if (normalized === 'verb') return 'verb';
-    if (normalized === 'noun') return 'noun';
-    if (normalized === 'pronoun') return 'pronoun';
-    if (normalized === 'adjective') return 'adjective';
-    if (normalized === 'adverb') return 'adverb';
-    if (normalized === 'preposition') return 'preposition';
-    if (normalized === 'article') return 'article';
-    if (normalized === 'to-be') return 'to-be';
-    if (normalized === 'conjunction') return 'conjunction';
-    if (normalized === 'modal') return 'modal';
-    if (normalized === 'phrasal_particle' || normalized === 'particle') return 'phrasal_particle';
-  }
-  const w = word.toLowerCase().replace(/[^a-z']/g, '');
-  if (!w) return 'other';
-  if (TO_BE.has(w)) return 'to-be';
-  if (MODALS.has(w)) return 'modal';
-  if (ARTICLES.has(w)) return 'article';
-  if (PRONOUNS.has(w)) return 'pronoun';
-  if (CONJUNCTIONS.has(w)) return 'conjunction';
-  if (ADVERBS.has(w)) return 'adverb';
-  if (COMMON_PREPOSITIONS.has(w)) return 'preposition';
-  return 'other';
+  return normalizeWordCategory(knownCategory, word).category;
 }
 
 // ── Русские/украинские/испанские подписи для категорий ─────────────────────
 
-const CATEGORY_LABELS: Record<WordCategory, { ru: string; uk: string; es: string }> = {
+const CATEGORY_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
   'verb':           { ru: 'Глаголы',           uk: 'Дієслова',           es: 'Verbos' },
   'noun':           { ru: 'Существительные',    uk: 'Іменники',           es: 'Sustantivos' },
   'pronoun':        { ru: 'Местоимения',        uk: 'Займенники',         es: 'Pronombres' },
   'adjective':      { ru: 'Прилагательные',     uk: 'Прикметники',        es: 'Adjetivos' },
   'adverb':         { ru: 'Наречия',            uk: 'Прислівники',        es: 'Adverbios' },
   'preposition':    { ru: 'Предлоги',           uk: 'Прийменники',        es: 'Preposiciones' },
+  'syntax':         { ru: 'Syntax',             uk: 'Syntax',             es: 'Sintaxis' },
   'article':        { ru: 'Артикли',            uk: 'Артиклі',            es: 'Artículos' },
+  'existential':    { ru: 'There is / There are', uk: 'There is / There are', es: 'There is / There are' },
   'to-be':          { ru: 'Глагол to be',       uk: 'Дієслово to be',     es: 'Verbo to be' },
   'conjunction':    { ru: 'Союзы',              uk: 'Сполучники',         es: 'Conjunciones' },
   'modal':          { ru: 'Модальные глаголы',  uk: 'Модальні дієслова',  es: 'Verbos modales' },
@@ -132,6 +169,9 @@ const CATEGORY_LABELS: Record<WordCategory, { ru: string; uk: string; es: string
 
 // ── Кэш фраз: phrase → categories[], tokens[], lessonId ─────────────────────
 
+CATEGORY_LABELS.modifier = { ru: 'Modifiers', uk: 'Modifiers', es: 'Modificadores' };
+CATEGORY_LABELS.determiner = { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes' };
+
 interface PhraseIndexEntry {
   categories: WordCategory[];
   /** text → category для быстрого перебора при сборке topWords */
@@ -140,6 +180,16 @@ interface PhraseIndexEntry {
 }
 
 let phraseIndex: Map<string, PhraseIndexEntry> | null = null;
+
+function normalizePhraseKey(value: string): string {
+  return value.trim().replace(/[.!?,;¿¡]+$/, '').replace(/\s+/g, ' ').toLowerCase();
+}
+
+function addPhraseIndexEntry(key: string, entry: PhraseIndexEntry): void {
+  const normalized = normalizePhraseKey(key);
+  if (!normalized || phraseIndex?.has(normalized)) return;
+  phraseIndex!.set(normalized, entry);
+}
 
 function buildPhraseIndex(): void {
   if (phraseIndex) return;
@@ -157,12 +207,16 @@ function buildPhraseIndex(): void {
         const tokenCategories: Array<{ text: string; category: WordCategory }> = [];
         for (const word of tokens) {
           if (!word.text || word.text === '.') continue;
-          const cat = inferCategory(word.text, word.category);
+          const tokenText = word.correct || word.text;
+          const cat = inferCategory(tokenText, word.category);
           cats.push(cat);
-          tokenCategories.push({ text: word.text.toLowerCase(), category: cat });
+          tokenCategories.push({ text: normalizeTokenKey(tokenText), category: cat });
         }
         if (cats.length > 0) {
-          phraseIndex!.set(key, { categories: cats, tokenCategories, lessonId });
+          const entry = { categories: cats, tokenCategories, lessonId };
+          phraseIndex!.set(key, entry);
+          addPhraseIndexEntry(phrase.english, entry);
+          addPhraseIndexEntry(tokenCategories.map((t) => t.text).join(' '), entry);
         }
       }
     } catch (err) {
@@ -177,13 +231,263 @@ function invalidatePhraseIndex(): void {
 
 // ── Основной движок ──────────────────────────────────────────────────────────
 
+export function auditPhrasePosCoverage(): PosCoverageAudit {
+  let totalTokens = 0;
+  let resolvedTokens = 0;
+  let unknownSourceTokens = 0;
+  let lowConfidenceTokens = 0;
+  let minConfidence = 1;
+  const unresolvedSamples: PosCoverageSample[] = [];
+  const unknownSourceSamples: PosCoverageSample[] = [];
+  const lowConfidenceSamples: PosCoverageSample[] = [];
+  const unresolvedWordCounter = new Map<string, { word: string; count: number; rawCategory?: string }>();
+  const rawCategoryCounter = new Map<string, number>();
+  const categoryCounter = new Map<WordCategory, number>();
+  const sourceCounter = new Map<string, number>();
+
+  for (let lessonId = 1; lessonId <= 32; lessonId += 1) {
+    try {
+      const phrases = getLessonData(lessonId);
+      for (const phrase of phrases) {
+        const tokens = (phrase.wordsEn ?? phrase.words) ?? [];
+        for (const word of tokens) {
+          const tokenText = word.correct || word.text;
+          const tokenKey = normalizeTokenKey(tokenText);
+          if (!tokenKey) continue;
+          totalTokens += 1;
+          const rawCategory = word.category || '';
+          if (rawCategory) rawCategoryCounter.set(rawCategory, (rawCategoryCounter.get(rawCategory) ?? 0) + 1);
+          const resolved = normalizeWordCategory(rawCategory, tokenText);
+          minConfidence = Math.min(minConfidence, resolved.confidence);
+          categoryCounter.set(resolved.category, (categoryCounter.get(resolved.category) ?? 0) + 1);
+          sourceCounter.set(resolved.source, (sourceCounter.get(resolved.source) ?? 0) + 1);
+          if (isUserFacingCategory(resolved.category)) {
+            resolvedTokens += 1;
+            if (resolved.source === 'unknown') {
+              unknownSourceTokens += 1;
+              if (unknownSourceSamples.length < 25) {
+                unknownSourceSamples.push({
+                  lessonId,
+                  phrase: phrase.english,
+                  word: tokenText,
+                  rawCategory: rawCategory || undefined,
+                  category: resolved.category,
+                  source: resolved.source,
+                  confidence: resolved.confidence,
+                  issue: 'unknown_source',
+                });
+              }
+            }
+            if (resolved.confidence < 0.5) {
+              lowConfidenceTokens += 1;
+              if (lowConfidenceSamples.length < 25) {
+                lowConfidenceSamples.push({
+                  lessonId,
+                  phrase: phrase.english,
+                  word: tokenText,
+                  rawCategory: rawCategory || undefined,
+                  category: resolved.category,
+                  source: resolved.source,
+                  confidence: resolved.confidence,
+                  issue: 'low_confidence',
+                });
+              }
+            }
+          } else {
+            const issueKey = `${tokenKey}::${rawCategory}`;
+            const issueExisting = unresolvedWordCounter.get(issueKey);
+            if (issueExisting) {
+              issueExisting.count += 1;
+            } else {
+              unresolvedWordCounter.set(issueKey, {
+                word: tokenText,
+                count: 1,
+                rawCategory: rawCategory || undefined,
+              });
+            }
+            if (unresolvedSamples.length < 25) {
+              unresolvedSamples.push({
+                lessonId,
+                phrase: phrase.english,
+                word: tokenText,
+                rawCategory: rawCategory || undefined,
+                category: resolved.category,
+                source: resolved.source,
+                confidence: resolved.confidence,
+                issue: 'unresolved',
+              });
+            }
+            if (resolved.source === 'unknown') {
+              unknownSourceTokens += 1;
+              if (unknownSourceSamples.length < 25) {
+                unknownSourceSamples.push({
+                  lessonId,
+                  phrase: phrase.english,
+                  word: tokenText,
+                  rawCategory: rawCategory || undefined,
+                  category: resolved.category,
+                  source: resolved.source,
+                  confidence: resolved.confidence,
+                  issue: 'unknown_source',
+                });
+              }
+            }
+            lowConfidenceTokens += 1;
+            if (lowConfidenceSamples.length < 25) {
+              lowConfidenceSamples.push({
+              lessonId,
+              phrase: phrase.english,
+              word: tokenText,
+              rawCategory: rawCategory || undefined,
+                category: resolved.category,
+                source: resolved.source,
+                confidence: resolved.confidence,
+                issue: 'low_confidence',
+              });
+            }
+          }
+        }
+      }
+    } catch (err) {
+      DebugLogger.error('phrase_analytics:auditPosCoverage', err, 'warning');
+    }
+  }
+
+  return {
+    totalTokens,
+    resolvedTokens,
+    unresolvedTokens: Math.max(0, totalTokens - resolvedTokens),
+    unknownSourceTokens,
+    lowConfidenceTokens,
+    resolvedPct: totalTokens > 0 ? Math.round((resolvedTokens / totalTokens) * 100) : 100,
+    minConfidence: totalTokens > 0 ? minConfidence : 1,
+    unresolvedSamples,
+    unknownSourceSamples,
+    lowConfidenceSamples,
+    unresolvedWordCounts: Array.from(unresolvedWordCounter.values())
+      .sort((a, b) => b.count - a.count || a.word.localeCompare(b.word)),
+    rawCategoryCounts: Array.from(rawCategoryCounter.entries())
+      .map(([rawCategory, count]) => ({ rawCategory, count }))
+      .sort((a, b) => b.count - a.count || a.rawCategory.localeCompare(b.rawCategory)),
+    categoryCounts: Array.from(categoryCounter.entries())
+      .map(([category, count]) => ({ category, count }))
+      .sort((a, b) => b.count - a.count || a.category.localeCompare(b.category)),
+    sourceCounts: Array.from(sourceCounter.entries())
+      .map(([source, count]) => ({ source, count }))
+      .sort((a, b) => b.count - a.count || a.source.localeCompare(b.source)),
+    releaseReady: resolvedTokens === totalTokens && unknownSourceTokens === 0 && lowConfidenceTokens === 0,
+  };
+}
+
+export function buildPosCoverageAuditFailure(audit: PosCoverageAudit): string {
+  if (audit.releaseReady) return '';
+  return JSON.stringify({
+    totalTokens: audit.totalTokens,
+    resolvedPct: audit.resolvedPct,
+    unresolvedTokens: audit.unresolvedTokens,
+    unknownSourceTokens: audit.unknownSourceTokens,
+    lowConfidenceTokens: audit.lowConfidenceTokens,
+    minConfidence: audit.minConfidence,
+    unresolvedSamples: audit.unresolvedSamples.slice(0, 12),
+    unknownSourceSamples: audit.unknownSourceSamples.slice(0, 12),
+    lowConfidenceSamples: audit.lowConfidenceSamples.slice(0, 12),
+    unresolvedWordCounts: audit.unresolvedWordCounts.slice(0, 200),
+    sourceCounts: audit.sourceCounts,
+    categoryCounts: audit.categoryCounts,
+    rawCategoryCounts: audit.rawCategoryCounts.slice(0, 30),
+  }, null, 2);
+}
+
+function countWord(catWords: Map<WordCategory, Map<string, number>>, category: WordCategory, word?: string): void {
+  if (!isUserFacingCategory(category)) return;
+  const key = normalizeTokenKey(word);
+  if (!key) return;
+  if (!catWords.has(category)) catWords.set(category, new Map());
+  const wordMap = catWords.get(category)!;
+  wordMap.set(key, (wordMap.get(key) ?? 0) + 1);
+}
+
+function resolveEntryCategories(
+  entry: PhraseMistakeSignal,
+  indexEntry?: PhraseIndexEntry,
+): { categories: WordCategory[]; exact: boolean; tokenText?: string } {
+  const tokenText = entry.tokenText || entry.expected || (entry.mode === 'lesson_words' ? entry.phrase : undefined);
+  if (entry.category && isUserFacingCategory(entry.category)) {
+    return { categories: [entry.category], exact: true, tokenText };
+  }
+
+  const tokenKey = normalizeTokenKey(tokenText);
+  if (tokenKey && indexEntry) {
+    const token = indexEntry.tokenCategories.find((t) => t.text === tokenKey);
+    if (token && isUserFacingCategory(token.category)) {
+      return { categories: [token.category], exact: true, tokenText: token.text };
+    }
+  }
+
+  if (tokenKey) {
+    const inferred = normalizeWordCategory(entry.rawCategory, tokenKey).category;
+    if (isUserFacingCategory(inferred)) {
+      return { categories: [inferred], exact: true, tokenText: tokenKey };
+    }
+  }
+
+  return { categories: [], exact: false };
+}
+
+function mistakeRecencyWeight(ts: number, now: number): number {
+  const ageDays = Math.max(0, (now - ts) / (24 * 60 * 60 * 1000));
+  if (ageDays <= 1) return 1.5;
+  if (ageDays <= 7) return 1.25;
+  if (ageDays <= 14) return 1.1;
+  return 1;
+}
+
+function computeCategoryWeaknessScore(input: {
+  count: number;
+  pct: number;
+  exactCount: number;
+  recentCount: number;
+  weighted: number;
+}): number {
+  const countScore = Math.min(30, input.count * 8);
+  const shareScore = Math.min(35, input.pct * 0.35);
+  const recencyScore = Math.min(20, input.recentCount * 7);
+  const exactScore = input.count > 0 ? Math.round((input.exactCount / input.count) * 15) : 0;
+  const weightScore = Math.min(15, Math.round(input.weighted * 3));
+  return Math.min(100, Math.round(countScore + shareScore + recencyScore + exactScore + weightScore));
+}
+
+function computePracticeRecoveryScore(entry: PosMasteryEntry | undefined, now: number): number {
+  if (!entry) return 0;
+  const attempts = entry.correct + entry.wrong;
+  const accuracy = attempts > 0 ? entry.correct / attempts : 0;
+  const ageDays = Math.max(0, (now - entry.lastPracticed) / (24 * 60 * 60 * 1000));
+  const levelScore = Math.min(24, Math.max(0, entry.level - 1) * 8);
+  const streakScore = Math.min(30, entry.streak * 6);
+  const accuracyScore = Math.round(accuracy * 22);
+  const recencyScore = ageDays <= 1 ? 18 : ageDays <= 7 ? 14 : ageDays <= 30 ? 8 : 0;
+  return Math.min(100, Math.round(levelScore + streakScore + accuracyScore + recencyScore));
+}
+
+function computePriorityScore(weaknessScore: number, recoveryScore: number): number {
+  const recoveryCredit = Math.min(55, Math.round(recoveryScore * 0.55));
+  return Math.max(0, Math.round(weaknessScore - recoveryCredit));
+}
+
+function computeSessionWeaknessScore(count: number, exactCount: number, totalSignals: number): number {
+  const dominance = totalSignals > 0 ? count / totalSignals : 0;
+  const exactRatio = count > 0 ? exactCount / count : 0;
+  return Math.min(100, Math.round(count * 24 + dominance * 35 + exactRatio * 31));
+}
+
 const ANALYTICS_WINDOW_DAYS = 30;
 const ANALYTICS_WINDOW_MS = ANALYTICS_WINDOW_DAYS * 24 * 60 * 60 * 1000;
 
 export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
   try {
     const entries = await loadMistakeLog();
-    const windowStart = Date.now() - ANALYTICS_WINDOW_MS;
+    const now = Date.now();
+    const windowStart = now - ANALYTICS_WINDOW_MS;
     const recent = entries.filter((e) => e.ts >= windowStart);
 
     if (recent.length === 0) {
@@ -192,20 +496,44 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
 
     // Build index lazily — only when there are actual mistakes to process
     buildPhraseIndex();
+    const masteryByCategory = new Map<WordCategory, PosMasteryEntry>();
+    for (const entry of await getPosMasterySnapshot()) {
+      masteryByCategory.set(entry.category, entry);
+    }
+    const resolvedPersonalTrainings = await loadResolvedPersonalTrainings();
 
     // ── Счётчики по категориям ────────────────────────────────────────────
     const catCount = new Map<WordCategory, number>();
     const catWords = new Map<WordCategory, Map<string, number>>();
+    const catWeighted = new Map<WordCategory, number>();
+    const catExactCount = new Map<WordCategory, number>();
+    const catRecentCount = new Map<WordCategory, number>();
 
     // ── Счётчики по урокам ────────────────────────────────────────────────
     const lessonCount = new Map<number, number>();
 
     // ── Топ фраз ──────────────────────────────────────────────────────────
     const phraseCount = new Map<string, { count: number; lessonId: number }>();
+    let totalCategoryMistakes = 0;
+    let activeMistakeCount = 0;
 
     for (const entry of recent) {
       // Normalize key same way as phraseIndex (strip trailing punctuation)
       const key = entry.phrase.trim().replace(/[.!?,;¿¡]+$/, '').toLowerCase();
+      const indexEntry = phraseIndex?.get(key) ?? phraseIndex?.get(normalizePhraseKey(entry.phrase));
+      const resolved = resolveEntryCategories(entry, indexEntry);
+      const activeCategories = resolved.categories.filter((cat) => {
+        const resolvedAt = getPersonalTrainingResolvedAt(resolvedPersonalTrainings, {
+          category: cat,
+          microDiagnosisId: entry.grammarTag,
+        });
+        return entry.ts > resolvedAt;
+      });
+
+      if (resolved.categories.length > 0 && activeCategories.length === 0) {
+        continue;
+      }
+      activeMistakeCount += 1;
 
       // Фразы
       const existing = phraseCount.get(key);
@@ -215,33 +543,56 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
         phraseCount.set(key, { count: 1, lessonId: entry.lessonId });
       }
 
-      // Уроки
-      lessonCount.set(entry.lessonId, (lessonCount.get(entry.lessonId) ?? 0) + 1);
+      // Уроки. Diagnostic entries can use lessonId=0: они влияют на POS/phrase
+      // analytics, but should not render as "Урок 0".
+      if (entry.lessonId > 0) {
+        lessonCount.set(entry.lessonId, (lessonCount.get(entry.lessonId) ?? 0) + 1);
+      }
 
-      // Категории: одна запись = один vote per уникальной категории фразы
-      // (не per token) — иначе pct != "% ошибок", а "% токенов-в-ошибках"
-      const indexEntry = phraseIndex?.get(key);
-      if (indexEntry && indexEntry.categories.length > 0) {
-        for (const cat of new Set(indexEntry.categories)) {
+      // Categories: only exact token/category signals are allowed into user-facing
+      // POS percentages. Legacy phrase-only logs still count for totals/phrases,
+      // but they no longer vote for every category inside the whole phrase.
+      if (activeCategories.length > 0) {
+        for (const cat of activeCategories) {
           catCount.set(cat, (catCount.get(cat) ?? 0) + 1);
-          if (!catWords.has(cat)) catWords.set(cat, new Map());
-        }
-        for (const { text, category } of indexEntry.tokenCategories) {
-          const wordMap = catWords.get(category);
-          if (wordMap) {
-            wordMap.set(text, (wordMap.get(text) ?? 0) + 1);
+          const weight = mistakeRecencyWeight(entry.ts, now) * (resolved.exact ? 1.15 : 0.85);
+          catWeighted.set(cat, (catWeighted.get(cat) ?? 0) + weight);
+          if (resolved.exact) catExactCount.set(cat, (catExactCount.get(cat) ?? 0) + 1);
+          if (now - entry.ts <= 7 * 24 * 60 * 60 * 1000) {
+            catRecentCount.set(cat, (catRecentCount.get(cat) ?? 0) + 1);
+          }
+          totalCategoryMistakes += 1;
+          if (resolved.exact) {
+            countWord(catWords, cat, resolved.tokenText || entry.phrase);
+          } else if (indexEntry) {
+            for (const token of indexEntry.tokenCategories.filter((t) => t.category === cat)) {
+              countWord(catWords, cat, token.text);
+            }
           }
         }
       }
     }
 
-    const totalMistakes = recent.length;
+    const totalMistakes = activeMistakeCount;
 
     // ── Сборка categoryStats ─────────────────────────────────────────────
+    const categoryTotal = Math.max(1, totalCategoryMistakes);
     const categoryStats: WordCategoryStat[] = Array.from(catCount.entries())
-      .filter(([cat]) => cat !== 'other')
-      .sort((a, b) => b[1] - a[1])
+      .filter(([cat]) => isUserFacingCategory(cat))
       .map(([cat, count]) => {
+        const pct = Math.round((count / categoryTotal) * 100);
+        const exactMistakeCount = catExactCount.get(cat) ?? 0;
+        const recentMistakeCount = catRecentCount.get(cat) ?? 0;
+        const weighted = catWeighted.get(cat) ?? count;
+        const mastery = masteryByCategory.get(cat);
+        const weaknessScore = computeCategoryWeaknessScore({
+          count,
+          pct,
+          exactCount: exactMistakeCount,
+          recentCount: recentMistakeCount,
+          weighted,
+        });
+        const recoveryScore = computePracticeRecoveryScore(mastery, now);
         const wordMap = catWords.get(cat);
         const topWords = wordMap
           ? Array.from(wordMap.entries())
@@ -252,10 +603,26 @@ export async function computePhraseAnalytics(): Promise<PhraseAnalyticsResult> {
         return {
           category: cat,
           mistakeCount: count,
-          pct: Math.round((count / totalMistakes) * 100),
+          weaknessScore,
+          priorityScore: computePriorityScore(weaknessScore, recoveryScore),
+          recoveryScore,
+          exactMistakeCount,
+          recentMistakeCount,
+          masteryLevel: mastery?.level ?? 1,
+          masteryXp: mastery?.xp ?? 0,
+          masteryStreak: mastery?.streak ?? 0,
+          practiceCorrect: mastery?.correct ?? 0,
+          practiceWrong: mastery?.wrong ?? 0,
+          lastPracticed: mastery?.lastPracticed,
+          pct,
           topWords,
         };
-      });
+      })
+      .sort((a, b) =>
+        b.priorityScore - a.priorityScore ||
+        b.weaknessScore - a.weaknessScore ||
+        b.mistakeCount - a.mistakeCount
+      );
 
     // ── Сборка lessonStats ────────────────────────────────────────────────
     const lessonStats: LessonMistakeStat[] = Array.from(lessonCount.entries())
@@ -304,7 +671,7 @@ function buildInsights(
 
   // Топ-1 слабая категория
   const weak = catStats[0];
-  if (weak && weak.pct >= 20) {
+  if (weak && weak.priorityScore >= 55 && weak.pct >= 10) {
     const label = CATEGORY_LABELS[weak.category];
     const topWord = weak.topWords[0] ? ` («${weak.topWords[0]}»)` : '';
     insights.push({
@@ -332,7 +699,7 @@ function buildInsights(
   // (иначе мы просто выбираем первую из ALL_CATEGORIES, о которой нет данных)
   if (catStats.length >= 3) {
     const weakCats = new Set(catStats.slice(0, 3).map((c) => c.category));
-    const ALL_CATEGORIES: WordCategory[] = ['verb', 'noun', 'pronoun', 'adjective', 'adverb', 'preposition', 'article', 'to-be', 'modal'];
+    const ALL_CATEGORIES: WordCategory[] = ['verb', 'noun', 'pronoun', 'adjective', 'adverb', 'modifier', 'preposition', 'article', 'determiner', 'existential', 'to-be', 'modal'];
     const strongCat = ALL_CATEGORIES.find((c) => !weakCats.has(c));
     if (strongCat) {
       const label = CATEGORY_LABELS[strongCat];
@@ -397,44 +764,61 @@ export { invalidatePhraseIndex };
 
 /**
  * Для набора английских фраз (ошибки одной сессии) возвращает топ-категорию
- * и количество фраз этой категории. Используется тостом Problem Coach.
+ * и количество фраз этой категории. Используется тостом точного диагноза.
  * Возвращает null если данных недостаточно (< minCount фраз в топ-категории).
  */
 export function getTopCategoryForPhrases(
-  phrases: string[],
+  phrases: PhraseMistakeInput[],
   minCount = 2,
-): { category: WordCategory; count: number } | null {
+): CategoryWeaknessCandidate | null {
   buildPhraseIndex();
   const catCount = new Map<WordCategory, number>();
+  const catExactCount = new Map<WordCategory, number>();
 
-  for (const phrase of phrases) {
+  for (const input of phrases) {
+    const signal: PhraseMistakeSignal = typeof input === 'string' ? { phrase: input } : input;
+    const phrase = signal.phrase;
     const key = phrase.trim().replace(/[.!?,;¿¡]+$/, '').toLowerCase();
     const entry = phraseIndex?.get(key);
-    if (!entry) continue;
-
     const seen = new Set<WordCategory>();
-    for (const cat of entry.categories) {
-      if (cat === 'other') continue;
+    const resolved = resolveEntryCategories(signal, entry);
+    for (const cat of resolved.categories) {
+      if (!isUserFacingCategory(cat)) continue;
       if (!seen.has(cat)) {
         seen.add(cat);
         catCount.set(cat, (catCount.get(cat) ?? 0) + 1);
+        if (resolved.exact) catExactCount.set(cat, (catExactCount.get(cat) ?? 0) + 1);
       }
     }
   }
 
-  let topCat: WordCategory | null = null;
+  let top: CategoryWeaknessCandidate | null = null;
   let topCount = 0;
   for (const [cat, count] of catCount) {
-    if (count > topCount) { topCount = count; topCat = cat; }
+    const exactCount = catExactCount.get(cat) ?? 0;
+    const candidate = {
+      category: cat,
+      count,
+      exactCount,
+      weaknessScore: computeSessionWeaknessScore(count, exactCount, phrases.length),
+    };
+    if (
+      !top ||
+      candidate.weaknessScore > top.weaknessScore ||
+      (candidate.weaknessScore === top.weaknessScore && candidate.count > top.count)
+    ) {
+      top = candidate;
+      topCount = count;
+    }
   }
 
-  if (!topCat || topCount < minCount) return null;
-  return { category: topCat, count: topCount };
+  if (!top || topCount < minCount) return null;
+  return top;
 }
 
 /**
  * Возвращает грамматические категории для одной фразы.
- * Используется фильтрацией фраз по категории в active_recall (Problem Coach).
+ * Используется фильтрацией фраз по категории в active_recall.
  */
 export function getPhraseCategories(phrase: string): WordCategory[] {
   buildPhraseIndex();

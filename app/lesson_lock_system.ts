@@ -2,8 +2,10 @@
  * Система блокировки уроков
  *
  * Правила разблокировки:
- * - Следующий урок в рамках уровня: score >= 2.5 (бронза)
- * - Зачёт уровня: все уроки этого уровня >= 4.5
+ * - Free: первые 3 урока доступны; дальше нужен Premium.
+ * - Premium: все уроки текущего уровня доступны сразу, следующий уровень открывает зачёт.
+ * - Следующий урок внутри уже заработанной free-цепочки: score >= 2.5 (бронза)
+ * - Зачёт уровня: все уроки этого уровня >= 4.5; для Premium UI открывает зачёт текущего уровня сразу.
  * - Экзамен профессора Лингмана: все уроки всех уровней = 5.0 + все зачёты сданы
  *
  * Первый урок всегда доступен.
@@ -11,18 +13,28 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { Lang } from '../constants/i18n';
-import { CEFR_RANGES } from './medal_utils';
+import { storageGet, storageSet, storageGetString, storageSetString } from '../lib/storage';
 import { effectiveLessonStarScore } from './lesson_star_score';
+import {
+  COURSE_LEVEL_RANGES,
+  COURSE_LEVELS,
+  type CourseLevel,
+  getCourseLevelForLesson,
+  getCourseLevelIndex,
+  isLastLessonInLevel,
+  isLessonWithinReachedLevel,
+  normalizeCourseLevel,
+} from './course_levels';
 
 const UNLOCKED_LESSONS_KEY = 'unlocked_lessons';
+const PREMIUM_COURSE_LEVEL_KEY = 'premium_course_level';
 
 // ─── Урок ────────────────────────────────────────────────────────────────────
 
 export const isLessonUnlocked = async (lessonId: number): Promise<boolean> => {
   if (lessonId === 1) return true;
   try {
-    const unlockedStr = await AsyncStorage.getItem(UNLOCKED_LESSONS_KEY);
-    const unlocked: number[] = unlockedStr ? JSON.parse(unlockedStr) : [];
+    const unlocked = (await storageGet<number[]>(UNLOCKED_LESSONS_KEY)) ?? [];
     return unlocked.includes(lessonId);
   } catch {
     return false;
@@ -31,17 +43,16 @@ export const isLessonUnlocked = async (lessonId: number): Promise<boolean> => {
 
 export const unlockLesson = async (lessonId: number): Promise<void> => {
   try {
-    const unlockedStr = await AsyncStorage.getItem(UNLOCKED_LESSONS_KEY);
-    const unlocked: number[] = unlockedStr ? JSON.parse(unlockedStr) : [];
+    const unlocked = (await storageGet<number[]>(UNLOCKED_LESSONS_KEY)) ?? [];
     if (!unlocked.includes(lessonId)) {
-      unlocked.push(lessonId);
-      await AsyncStorage.setItem(UNLOCKED_LESSONS_KEY, JSON.stringify(unlocked));
+      await storageSet(UNLOCKED_LESSONS_KEY, [...unlocked, lessonId]);
     }
   } catch {}
 };
 
 /** Разблокирует следующий урок если score >= 2.5 (бронза). Возвращает true если разблокировал. */
 export const tryUnlockNextLesson = async (currentLessonId: number, score: number): Promise<boolean> => {
+  if (isLastLessonInLevel(currentLessonId)) return false;
   if (score >= 2.5 && currentLessonId < 32) {
     const nextLessonId = currentLessonId + 1;
     const alreadyUnlocked = await isLessonUnlocked(nextLessonId);
@@ -51,6 +62,81 @@ export const tryUnlockNextLesson = async (currentLessonId: number, score: number
     }
   }
   return false;
+};
+
+function areScoresReady(scores: number[], from: number, to: number, required: number): boolean {
+  for (let lessonId = from; lessonId <= to; lessonId++) {
+    if ((scores[lessonId - 1] ?? 0) < required) return false;
+  }
+  return true;
+}
+
+function safeNumberList(raw: string | null): number[] {
+  if (!raw) return [];
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed)
+      ? parsed.filter((n): n is number => typeof n === 'number' && Number.isFinite(n))
+      : [];
+  } catch {
+    return [];
+  }
+}
+
+function maxLevel(a: CourseLevel, b: CourseLevel): CourseLevel {
+  return getCourseLevelIndex(a) >= getCourseLevelIndex(b) ? a : b;
+}
+
+export const getPremiumCourseLevel = async (): Promise<CourseLevel> => {
+  try {
+    const metaKeys = [
+      PREMIUM_COURSE_LEVEL_KEY,
+      UNLOCKED_LESSONS_KEY,
+      'level_exam_A1_passed',
+      'level_exam_A2_passed',
+      'level_exam_B1_passed',
+      'level_exam_B2_passed',
+    ];
+    const lessonKeys: string[] = [];
+    for (let id = 1; id <= 32; id++) {
+      lessonKeys.push(`lesson${id}_best_score`, `lesson${id}_progress`, `lesson${id}_pass_count`);
+    }
+    const map = Object.fromEntries(await AsyncStorage.multiGet([...metaKeys, ...lessonKeys]));
+
+    let reached: CourseLevel = normalizeCourseLevel(map[PREMIUM_COURSE_LEVEL_KEY]) ?? 'A1';
+    if (map.level_exam_A1_passed === '1') reached = maxLevel(reached, 'A2');
+    if (map.level_exam_A2_passed === '1') reached = maxLevel(reached, 'B1');
+    if (map.level_exam_B1_passed === '1' || map.level_exam_B2_passed === '1') reached = maxLevel(reached, 'B2');
+
+    for (const lessonId of safeNumberList(map[UNLOCKED_LESSONS_KEY])) {
+      reached = maxLevel(reached, getCourseLevelForLesson(lessonId));
+    }
+
+    for (let id = 1; id <= 32; id++) {
+      const { score, correctCount } = effectiveLessonStarScore(map[`lesson${id}_best_score`], map[`lesson${id}_progress`]);
+      const passCount = parseInt(map[`lesson${id}_pass_count`] || '0', 10) || 0;
+      if (score > 0 || correctCount > 0 || passCount > 0) {
+        reached = maxLevel(reached, getCourseLevelForLesson(id));
+      }
+    }
+
+    await storageSetString(PREMIUM_COURSE_LEVEL_KEY, reached);
+    return reached;
+  } catch {
+    return 'A1';
+  }
+};
+
+export const markPremiumCourseLevelReached = async (level: CourseLevel): Promise<void> => {
+  try {
+    const current = await getPremiumCourseLevel();
+    await storageSetString(PREMIUM_COURSE_LEVEL_KEY, maxLevel(current, level));
+  } catch {}
+};
+
+export const isLessonUnlockedByPremiumCourse = async (lessonId: number): Promise<boolean> => {
+  const reached = await getPremiumCourseLevel();
+  return isLessonWithinReachedLevel(lessonId, reached);
 };
 
 export const getLessonLockInfo = async (lessonId: number) => {
@@ -80,18 +166,18 @@ export const tryUnlockLevelExam = async (lessonId: number): Promise<string | nul
   try {
     // Найти уровень урока
     let foundLevel: string | null = null;
-    for (const [lvl, [from, to]] of Object.entries(CEFR_RANGES)) {
+    for (const [lvl, [from, to]] of Object.entries(COURSE_LEVEL_RANGES)) {
       if (lessonId >= from && lessonId <= to) { foundLevel = lvl; break; }
     }
     if (!foundLevel) return null;
 
     // Уже было разблокировано ранее?
     const alreadyKey = `level_exam_${foundLevel}_available`;
-    const already = await AsyncStorage.getItem(alreadyKey);
+    const already = await storageGetString(alreadyKey);
     if (already === '1') return null;
 
     // Все уроки уровня >= 4.5 по max(best_score, progress) — см. lesson_star_score
-    const [from, to] = CEFR_RANGES[foundLevel];
+    const [from, to] = COURSE_LEVEL_RANGES[foundLevel as CourseLevel];
     const keys: string[] = [];
     for (let id = from; id <= to; id++) {
       keys.push(`lesson${id}_best_score`, `lesson${id}_progress`);
@@ -108,7 +194,7 @@ export const tryUnlockLevelExam = async (lessonId: number): Promise<string | nul
     if (!allReady) return null;
 
     // Разблокируем впервые
-    await AsyncStorage.setItem(alreadyKey, '1');
+    await storageSetString(alreadyKey, '1');
     return foundLevel;
   } catch {
     return null;
@@ -124,7 +210,7 @@ export const tryUnlockLevelExam = async (lessonId: number): Promise<string | nul
 export const tryUnlockLingmanExam = async (): Promise<boolean> => {
   try {
     const alreadyKey = 'lingman_exam_available';
-    const already = await AsyncStorage.getItem(alreadyKey);
+    const already = await storageGetString(alreadyKey);
     if (already === '1') return false;
 
     const lessonKeys: string[] = [];
@@ -148,7 +234,7 @@ export const tryUnlockLingmanExam = async (): Promise<boolean> => {
     const allPassed = examPairs.every(([, v]) => v === '1');
     if (!allPassed) return false;
 
-    await AsyncStorage.setItem(alreadyKey, '1');
+    await storageSetString(alreadyKey, '1');
     return true;
   } catch {
     return false;
@@ -162,7 +248,7 @@ export const tryUnlockLingmanExam = async (): Promise<boolean> => {
  * Правила:
  *  - Урок N открыт ⇔ урок N-1 пройден на ★2.5+ (для не-пограничных).
  *  - Пограничные 9/19/29 открываются ТОЛЬКО через сдачу зачёта прошлого уровня
- *    (level_exam_{A1|A2|B1}_passed='1') или, для урока 19, при наличии премиума.
+ *    (level_exam_{A1|A2|B1}_passed='1').
  *  - Здесь, при пересчёте «честно заработанных» открытий, премиум НЕ учитываем
  *    (этот метод вызывается именно при снятии премиума, чтобы зафиксировать
  *    то что юзер заработал «по уму»). Урок 19 без премиума требует сдачу A2.
@@ -187,7 +273,6 @@ export const recomputeEarnedUnlocks = async (): Promise<void> => {
     const a1Passed = examMap['level_exam_A1_passed'] === '1';
     const a2Passed = examMap['level_exam_A2_passed'] === '1';
     const b1Passed = examMap['level_exam_B1_passed'] === '1';
-
     const u = new Array(32).fill(false);
     u[0] = true; // урок 1 всегда открыт
     for (let i = 1; i < 32; i++) {
@@ -202,7 +287,7 @@ export const recomputeEarnedUnlocks = async (): Promise<void> => {
       if (unlocked) acc.push(i + 1);
       return acc;
     }, []);
-    await AsyncStorage.setItem(UNLOCKED_LESSONS_KEY, JSON.stringify(earned));
+    await storageSet(UNLOCKED_LESSONS_KEY, earned);
   } catch {}
 };
 
@@ -215,14 +300,13 @@ export const recomputeEarnedUnlocks = async (): Promise<void> => {
  *   • Урок 2..8  — открыт если предыдущий ★2.5+.
  *   • Урок 9     — открыт ТОЛЬКО если сдан зачёт A1 (`level_exam_A1_passed='1'`).
  *   • Урок 10..18 — открыт если предыдущий ★2.5+ И урок 9 открыт.
- *   • Урок 19    — открыт если сдан зачёт A2 ИЛИ премиум активен сейчас.
+ *   • Урок 19    — открыт если сдан зачёт A2.
  *   • Урок 20..28 — открыт если предыдущий ★2.5+ И урок 19 открыт.
  *   • Урок 29    — открыт ТОЛЬКО если сдан зачёт B1.
  *   • Урок 30..32 — открыт если предыдущий ★2.5+ И урок 29 открыт.
  *
  * Что НЕ делает:
- *   • НЕ учитывает placement_level (это runtime-логика в (tabs)/lessons.tsx и
- *     lesson_menu, не должна попадать в persisted unlocked_lessons).
+ *   • НЕ учитывает диагностический тест: он только рекомендует уровень.
  *   • НЕ учитывает tester_no_limits / DEV_MODE (это runtime override).
  *   • НЕ учитывает had_premium_ever (после lapse премиума урок 19 закрывается).
  *
@@ -234,7 +318,7 @@ export const recomputeEarnedUnlocks = async (): Promise<void> => {
 export const repairLessonUnlocksAfterRestore = async (): Promise<void> => {
   const REPAIR_KEY = 'lesson_unlock_repair_v3';
   try {
-    const done = await AsyncStorage.getItem(REPAIR_KEY);
+    const done = await storageGetString(REPAIR_KEY);
     if (done === '1') return;
 
     // ── 1. Загружаем состояние ────────────────────────────────────────────────
@@ -242,10 +326,6 @@ export const repairLessonUnlocksAfterRestore = async (): Promise<void> => {
       'level_exam_A1_passed',
       'level_exam_A2_passed',
       'level_exam_B1_passed',
-      'premium_active',
-      'admin_premium_override',
-      'premium_plan',
-      'premium_expiry',
     ];
     const lessonKeys: string[] = [];
     for (let i = 1; i <= 32; i++) {
@@ -257,19 +337,6 @@ export const repairLessonUnlocksAfterRestore = async (): Promise<void> => {
     const a1Passed = map['level_exam_A1_passed'] === '1';
     const a2Passed = map['level_exam_A2_passed'] === '1';
     const b1Passed = map['level_exam_B1_passed'] === '1';
-    const adminOv = map['admin_premium_override'] === 'true';
-    const adminRevoked = map['admin_premium_override'] === 'false';
-    const planStr = String(map['premium_plan'] || '').trim();
-    const planLower = planStr.toLowerCase();
-    const ex = parseInt(map['premium_expiry'] || '0', 10) || 0;
-    // Согласовано с premium_guard: plan admin_grant без override (старый облако-снимок).
-    const adminGrantPlan = planLower === 'admin_grant' && !adminRevoked;
-    const adminGrantOk =
-      (adminOv || adminGrantPlan) &&
-      !!planStr &&
-      planLower !== 'null' &&
-      (ex === 0 || ex > Date.now());
-    const isPremiumNow = map['premium_active'] === 'true' || adminGrantOk;
 
     const scores = Array.from({ length: 32 }, (_, i) =>
       effectiveLessonStarScore(
@@ -277,14 +344,13 @@ export const repairLessonUnlocksAfterRestore = async (): Promise<void> => {
         map[`lesson${i + 1}_progress`],
       ).score,
     );
-
     // ── 2. Пересчитываем unlocked_lessons СТРОГО по правилам игры ──────────────
     const u = new Array(32).fill(false);
     u[0] = true; // урок 1 всегда
     for (let i = 1; i < 32; i++) {
       const num = i + 1;
       if      (num === 9)  u[i] = a1Passed;
-      else if (num === 19) u[i] = a2Passed || isPremiumNow;
+      else if (num === 19) u[i] = a2Passed;
       else if (num === 29) u[i] = b1Passed;
       else                 u[i] = u[i - 1] && scores[i - 1] >= 2.5;
     }
@@ -292,7 +358,7 @@ export const repairLessonUnlocksAfterRestore = async (): Promise<void> => {
       if (ok) acc.push(i + 1);
       return acc;
     }, []);
-    await AsyncStorage.setItem(UNLOCKED_LESSONS_KEY, JSON.stringify(earned));
+    await storageSet(UNLOCKED_LESSONS_KEY, earned);
 
     // ── 3. Чиним best_score=2.5 для предыдущих уроков (cloud-restore safety) ──
     // Если урок N открыт но lesson{N-1}_best_score=0 (не сохранён, потому что
@@ -316,7 +382,7 @@ export const repairLessonUnlocksAfterRestore = async (): Promise<void> => {
       await AsyncStorage.multiSet(fixes);
     }
 
-    await AsyncStorage.setItem(REPAIR_KEY, '1');
+    await storageSetString(REPAIR_KEY, '1');
   } catch {
     // soft-fail: следующий запуск повторит попытку, флаг не выставлен
   }

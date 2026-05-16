@@ -85,7 +85,7 @@
     "rand": 0.36780078802257776,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m not interested ___ buying a new phone.",
+    "question": "I'm not interested ___ buying a new phone.",
     "options": [
       "for",
       "on",
@@ -295,7 +295,7 @@
     "task": "Найдите НЕВЕРНОЕ предложение · Знайдіть НЕПРАВИЛЬНЕ речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I can’t stand waiting in long lines.",
+      "I can't stand waiting in long lines.",
       "He kept talking during the film.",
       "She let him to leave early.",
       "We enjoyed the concert last night."
@@ -501,7 +501,7 @@
     "rand": 0.019820712972432375,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m worried ___ the results of the exam.",
+    "question": "I'm worried ___ the results of the exam.",
     "options": [
       "about",
       "for",
@@ -1399,7 +1399,7 @@
     "task": "Найдите НЕВЕРНОЕ предложение · Знайдіть НЕПРАВИЛЬНЕ речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I’d rather stay here tonight.",
+      "I'd rather stay here tonight.",
       "They offered to drive me home.",
       "She told me to not worry.",
       "He promised to help us."
@@ -3813,7 +3813,7 @@
     "rand": 0.8390193136874586,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m not interested ___ buying a new car right now.",
+    "question": "I'm not interested ___ buying a new car right now.",
     "options": [
       "at",
       "on",
@@ -4629,7 +4629,7 @@
     "rand": 0.17540533374994993,
     "type": "translate_meaning",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "What does 'make out' mean (in this context: I can’t make out what he said)?",
+    "question": "What does 'make out' mean (in this context: I can't make out what he said)?",
     "options": [
       "Понять · Зрозуміти",
       "Повторить · Повторити",
@@ -4885,7 +4885,7 @@
     "rand": 0.10547637986019254,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m not very good ___ remembering names.",
+    "question": "I'm not very good ___ remembering names.",
     "options": [
       "in",
       "at",
@@ -5255,7 +5255,7 @@
     "task": "Найдите НЕВЕРНОЕ предложение · Знайдіть НЕПРАВИЛЬНЕ речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I can’t stand waiting in long lines.",
+      "I can't stand waiting in long lines.",
       "They considered moving abroad.",
       "She admitted to break the rule.",
       "He enjoys playing chess."
@@ -5541,7 +5541,7 @@
     "rand": 0.9590110261924565,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m interested ___ learning more about this topic.",
+    "question": "I'm interested ___ learning more about this topic.",
     "options": [
       "in",
       "at",
@@ -6135,7 +6135,7 @@
     "task": "Найдите НЕВЕРНОЕ предложение · Знайдіть НЕПРАВИЛЬНЕ речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I can’t stand waiting in long lines.",
+      "I can't stand waiting in long lines.",
       "He suggested meeting earlier.",
       "She finished to write the report.",
       "They keep talking during the lesson."
@@ -6232,7 +6232,7 @@
     "question": "Which sentence is incorrect?",
     "options": [
       "She avoided answering the question.",
-      "I don’t mind waiting here.",
+      "I don't mind waiting here.",
       "He enjoys to play football.",
       "They considered moving abroad."
     ],
@@ -6357,7 +6357,7 @@
     "rand": 0.6172023834660649,
     "type": "complete_phrasal",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "Please turn ___ the volume, it’s too loud.",
+    "question": "Please turn ___ the volume, it's too loud.",
     "options": [
       "out",
       "on",
@@ -6407,7 +6407,7 @@
     "task": "Найдите НЕВЕРНОЕ предложение · Знайдіть НЕПРАВИЛЬНЕ речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I’m used to waking up early.",
+      "I'm used to waking up early.",
       "He is used to living alone.",
       "She is used to drive every day.",
       "They are used to working hard."
@@ -6485,7 +6485,7 @@
     "rand": 0.8639528232160956,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m not interested ___ watching that movie.",
+    "question": "I'm not interested ___ watching that movie.",
     "options": [
       "for",
       "on",
@@ -6725,7 +6725,7 @@
     "rand": 0.2800542290788144,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m tired ___ waiting for him.",
+    "question": "I'm tired ___ waiting for him.",
     "options": [
       "by",
       "from",
@@ -6999,7 +6999,7 @@
     "task": "Найдите НЕВЕРНОЕ предложение · Знайдіть НЕПРАВИЛЬНЕ речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I’m used to waking up early.",
+      "I'm used to waking up early.",
       "They enjoy spending time together.",
       "She avoided to answer the question.",
       "He decided to leave early."
@@ -7045,7 +7045,7 @@
     "rand": 0.9035157307516783,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m interested ___ learning Spanish this year.",
+    "question": "I'm interested ___ learning Spanish this year.",
     "options": [
       "in",
       "on",
@@ -7080,7 +7080,7 @@
     "question": "Which sentence is incorrect?",
     "options": [
       "She suggested going to the cinema.",
-      "I can’t stand waiting in lines.",
+      "I can't stand waiting in lines.",
       "He denied to take the money.",
       "We finished doing the task."
     ],
@@ -7157,7 +7157,7 @@
     "rand": 0.8147938016336411,
     "type": "complete_phrasal",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "Don’t forget to turn ___ the lights before leaving.",
+    "question": "Don't forget to turn ___ the lights before leaving.",
     "options": [
       "up",
       "on",
@@ -7288,7 +7288,7 @@
     "question": "Which sentence is incorrect?",
     "options": [
       "He apologized for being late.",
-      "I’m interested in learning English.",
+      "I'm interested in learning English.",
       "She insisted on to pay the bill.",
       "They succeeded in solving the problem."
     ],
@@ -9173,7 +9173,7 @@
     "rand": 0.5212365165352821,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "We usually have dinner ___ 7 o’clock in the evening.",
+    "question": "We usually have dinner ___ 7 o'clock in the evening.",
     "options": [
       "at",
       "on",
@@ -9189,7 +9189,7 @@
     "rand": 0.617433282546699,
     "type": "complete_phrasal",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I can’t hear you. Please speak ___!",
+    "question": "I can't hear you. Please speak ___!",
     "options": [
       "out",
       "in",
@@ -11893,7 +11893,7 @@
     "rand": 0.35127168195322156,
     "type": "complete_phrasal",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I don’t know this word, so I will look it ___ in a dictionary.",
+    "question": "I don't know this word, so I will look it ___ in a dictionary.",
     "options": [
       "on",
       "in",
@@ -12869,7 +12869,7 @@
     "rand": 0.9221653963904828,
     "type": "complete_phrasal",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I don’t know this word, I will look it ___ in the dictionary.",
+    "question": "I don't know this word, I will look it ___ in the dictionary.",
     "options": [
       "up",
       "on",
@@ -12901,7 +12901,7 @@
     "rand": 0.011708304286003113,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m really interested ___ learning new languages and cultures.",
+    "question": "I'm really interested ___ learning new languages and cultures.",
     "options": [
       "in",
       "at",
@@ -13221,7 +13221,7 @@
     "rand": 0.3393016259651631,
     "type": "complete_phrasal",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "Don’t forget to turn ___ the lights before you leave the house.",
+    "question": "Don't forget to turn ___ the lights before you leave the house.",
     "options": [
       "up",
       "off",
@@ -13269,7 +13269,7 @@
     "rand": 0.017824694514274597,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "We met ___ the bus stop at 8 o’clock in the morning.",
+    "question": "We met ___ the bus stop at 8 o'clock in the morning.",
     "options": [
       "to",
       "at",
@@ -13797,7 +13797,7 @@
     "rand": 0.7760617816820741,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "We usually arrive ___ school at about eight o’clock every morning.",
+    "question": "We usually arrive ___ school at about eight o'clock every morning.",
     "options": [
       "at",
       "on",
@@ -13893,7 +13893,7 @@
     "rand": 0.011771228164434433,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I am not very good ___ remembering people’s names.",
+    "question": "I am not very good ___ remembering people's names.",
     "options": [
       "at",
       "with",
@@ -14357,7 +14357,7 @@
     "rand": 0.5809358763508499,
     "type": "complete_phrasal",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "We are going to ___ out of time if we don’t hurry.",
+    "question": "We are going to ___ out of time if we don't hurry.",
     "options": [
       "run",
       "come",
@@ -14503,12 +14503,12 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t like playing chess.",
+      "He don't like playing chess.",
       "I live near the city center.",
       "She works in a hospital.",
       "They are very happy today."
     ],
-    "correct": "He don’t like playing chess.",
+    "correct": "He don't like playing chess.",
     "rule": "Правильно: He doesn't · правильно: He doesn't"
   },
   {
@@ -14615,12 +14615,12 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t has any money.",
+      "He don't has any money.",
       "I go to school every day.",
       "She lives in London.",
       "They are very happy."
     ],
-    "correct": "He don’t has any money.",
+    "correct": "He don't has any money.",
     "rule": "Правильно: He doesn't have · правильно: He doesn't have"
   },
   {
@@ -14791,13 +14791,13 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t understand the question.",
+      "She don't understand the question.",
       "I like this book.",
       "He works in an office.",
       "They are playing football."
     ],
-    "correct": "She don’t understand the question.",
-    "rule": "Правильно: She doesn’t · правильно: She doesn’t"
+    "correct": "She don't understand the question.",
+    "rule": "Правильно: She doesn't · правильно: She doesn't"
   },
   {
     "id": "b1_926",
@@ -14871,13 +14871,13 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t has any friends.",
+      "He don't has any friends.",
       "I go to school every day.",
       "She lives in Ireland.",
       "They are very busy."
     ],
-    "correct": "He don’t has any friends.",
-    "rule": "Правильно: He doesn’t have · правильно: He doesn’t have"
+    "correct": "He don't has any friends.",
+    "rule": "Правильно: He doesn't have · правильно: He doesn't have"
   },
   {
     "id": "b1_931",
@@ -14999,12 +14999,12 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t understand the question.",
+      "He don't understand the question.",
       "I have two brothers.",
       "She works in a hospital.",
       "They are playing football."
     ],
-    "correct": "He don’t understand the question.",
+    "correct": "He don't understand the question.",
     "rule": "Правильно: He doesn't · правильно: He doesn't"
   },
   {
@@ -15111,13 +15111,13 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t has enough time.",
+      "She don't has enough time.",
       "I like this idea.",
       "He is very busy today.",
       "They are watching TV."
     ],
-    "correct": "She don’t has enough time.",
-    "rule": "Правильная форма: She doesn’t have · Правильна форма: She doesn’t have"
+    "correct": "She don't has enough time.",
+    "rule": "Правильная форма: She doesn't have · Правильна форма: She doesn't have"
   },
   {
     "id": "b1_946",
@@ -15319,13 +15319,13 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t like coffee.",
+      "He don't like coffee.",
       "I have a new phone.",
       "She is very happy today.",
       "They are at home."
     ],
-    "correct": "He don’t like coffee.",
-    "rule": "Правильная форма: He doesn’t · Правильна форма: He doesn’t"
+    "correct": "He don't like coffee.",
+    "rule": "Правильная форма: He doesn't · Правильна форма: He doesn't"
   },
   {
     "id": "b1_959",
@@ -15863,13 +15863,13 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t like coffee.",
+      "She don't like coffee.",
       "They work here.",
       "He likes music.",
       "I am happy."
     ],
-    "correct": "She don’t like coffee.",
-    "rule": "Правильная форма: She doesn’t · Правильна форма: She doesn’t"
+    "correct": "She don't like coffee.",
+    "rule": "Правильная форма: She doesn't · Правильна форма: She doesn't"
   },
   {
     "id": "b1_993",
@@ -15943,12 +15943,12 @@
     "task": "Выберите неправильный вариант · Оберіть неправильний варіант",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t have any money.",
+      "She don't have any money.",
       "They are at home.",
       "He lives in London.",
       "I like this movie."
     ],
-    "correct": "She don’t have any money.",
+    "correct": "She don't have any money.",
     "rule": "Правильная форма: She doesn't · Правильна форма: She doesn't"
   },
   {

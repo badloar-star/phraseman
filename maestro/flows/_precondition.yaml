@@ -5,15 +5,143 @@ appId: app.phraseman
       visible: "Понятно, буду искать!"
     commands:
       - tapOn: "Понятно, буду искать!"
-
 - runFlow:
     when:
       visible: "Зрозуміло, шукатиму!"
     commands:
       - tapOn: "Зрозуміло, шукатиму!"
+- runFlow:
+    when:
+      visible: "(Позже|Пізніше|Mas tarde|Más tarde)"
+    commands:
+      - tapOn: "(Позже|Пізніше|Mas tarde|Más tarde)"
 
 - runFlow:
     when:
-      visible: "(Начнём первый урок\\?|Почнемо перший урок\\?)"
+      visible:
+        id: "first-lesson-later"
     commands:
-      - tapOn: "(Позже|Пізніше)"
+      - tapOn:
+          id: "first-lesson-later"
+      - waitForAnimationToEnd:
+          timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-beta-continue"
+    commands:
+      - tapOn:
+          id: "onboarding-beta-continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-demo2-skip"
+    commands:
+      - tapOn:
+          id: "onboarding-demo2-skip"
+      - waitForAnimationToEnd:
+          timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-demo-option-0"
+    commands:
+      - tapOn:
+          id: "onboarding-demo-option-0"
+      - waitForAnimationToEnd:
+          timeout: 2000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-demo-continue"
+    commands:
+      - tapOn:
+          id: "onboarding-demo-continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-welcome-continue"
+    commands:
+      - tapOn:
+          id: "onboarding-welcome-continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-name-input"
+    commands:
+      - pressKey: BACK
+      - waitForAnimationToEnd:
+          timeout: 1500
+      - scrollUntilVisible:
+          element:
+            id: "onboarding-name-skip"
+          direction: DOWN
+          timeout: 10000
+          speed: 60
+          visibilityPercentage: 30
+      - tapOn:
+          id: "onboarding-name-skip"
+      - waitForAnimationToEnd:
+          timeout: 6000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-name-skip"
+    commands:
+      - tapOn:
+          id: "onboarding-name-skip"
+      - waitForAnimationToEnd:
+          timeout: 6000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-streak-continue"
+    commands:
+      - tapOn:
+          id: "onboarding-streak-continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-energy-continue"
+    commands:
+      - tapOn:
+          id: "onboarding-energy-continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+
+- runFlow:
+    when:
+      visible:
+        id: "onboarding-auth-later"
+    commands:
+      - tapOn:
+          id: "onboarding-auth-later"
+      - waitForAnimationToEnd:
+          timeout: 8000
+
+- runFlow:
+    when:
+      visible:
+        id: "level-up-dismiss"
+    commands:
+      - tapOn:
+          id: "level-up-dismiss"
+      - waitForAnimationToEnd:
+          timeout: 3000

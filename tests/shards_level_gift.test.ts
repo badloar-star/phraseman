@@ -1,5 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { rollGift, applyGift, GIFT_POOL, GiftDef, giftLocaleStrings, giftRarityUiLabel } from '../app/level_gift_system';
+import {
+  rollGift,
+  applyGift,
+  GIFT_POOL,
+  GiftDef,
+  giftLocaleStrings,
+  giftRarityUiLabel,
+} from '../app/level_gift_system';
 import { getShardsBalance } from '../app/shards_system';
 
 jest.mock('@react-native-async-storage/async-storage');

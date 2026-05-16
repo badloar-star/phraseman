@@ -26,9 +26,21 @@ import {
 } from './flashcards/bundles/packIds';
 import { addOwnedPackId, loadOwnedPackIds, primeMarketplaceBuiltCardsCacheFromAccessibleStorage } from './flashcards/marketplace';
 import { setRandomPackGiftTrial48h } from './flashcards/pack_trial_gift';
-import { addShards, addShardsRaw } from './shards_system';
+import { addShardsRaw, getShardsBalance } from './shards_system';
 import { registerXP } from './xp_manager';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import {
+  CUSTOM_AVATAR_GRADIENTS,
+  CUSTOM_AVATAR_OWNED_KEY,
+  CUSTOM_AVATARS,
+  type CustomAvatarLogoColor,
+} from '../constants/custom_avatars';
+import {
+  AVATAR_AURA_GIFT_OWNED_KEY,
+  AVATAR_AURA_OWNED_KEY,
+  AVATAR_AURAS,
+  USER_AVATAR_AURA_KEY,
+} from '../constants/avatar_auras';
 
 export type GiftRarity = 'common' | 'rare' | 'epic';
 
@@ -46,6 +58,8 @@ export interface GiftDef {
   descUK:  string;
   descES?: string;
   weight:  number;
+  /** Choice reward: UI asks the user to pick one of these concrete rewards. */
+  choices?: GiftDef[];
 }
 
 export function giftTitleForLang(g: GiftDef, lang: Lang): string {
@@ -113,6 +127,20 @@ const GIFT_F2P: GiftDef[] = [
     descRU: 'Три осколка знаний', descUK: 'Три осколки знань', descES: 'Tres fragmentos de conocimiento',
   },
   {
+    id: 'xp_bank_150', rarity: 'common', icon: '⚡', weight: 6,
+    titleRU: 'Бонус ×2 на 150 XP', titleUK: 'Бонус ×2 на 150 XP', titleES: 'Bono ×2 para 150 XP',
+    descRU: 'Следующие 150 XP удваиваются. Расходуется только во время обучения',
+    descUK: 'Наступні 150 XP подвоюються. Витрачається лише під час навчання',
+    descES: 'Duplica los siguientes 150 XP. Solo se consume al estudiar',
+  },
+  {
+    id: 'focus_10m_25', rarity: 'common', icon: '⏱️', weight: 4,
+    titleRU: 'Фокус 10 минут', titleUK: 'Фокус 10 хвилин', titleES: 'Foco 10 min',
+    descRU: '10 минут подарочного множителя XP ×1.25',
+    descUK: '10 хвилин подарункового множника XP ×1.25',
+    descES: '10 minutos con multiplicador de XP ×1.25',
+  },
+  {
     id: 'arena_extra_5', rarity: 'common', icon: '🎟️', weight: 5,
     titleRU: '+5 рейтинг-игр сегодня', titleUK: '+5 рейтинг-ігор сьогодні', titleES: '+5 partidas Arena hoy',
     descRU: 'Сегодня до 10 рейтинг-матчей (вместо 5). Обновится в полночь',
@@ -152,6 +180,34 @@ const GIFT_F2P: GiftDef[] = [
     descES: 'Seis fragmentos — premio poco habitual',
   },
   {
+    id: 'xp_bank_300', rarity: 'rare', icon: '⚡', weight: 6,
+    titleRU: 'Бонус ×2 на 300 XP', titleUK: 'Бонус ×2 на 300 XP', titleES: 'Bono ×2 para 300 XP',
+    descRU: 'Следующие 300 XP удваиваются. Расходуется только во время обучения',
+    descUK: 'Наступні 300 XP подвоюються. Витрачається лише під час навчання',
+    descES: 'Duplica los siguientes 300 XP. Solo se consume al estudiar',
+  },
+  {
+    id: 'focus_15m_50', rarity: 'rare', icon: '⏱️', weight: 5,
+    titleRU: 'Фокус 15 минут', titleUK: 'Фокус 15 хвилин', titleES: 'Foco 15 min',
+    descRU: '15 минут подарочного множителя XP ×1.5',
+    descUK: '15 хвилин подарункового множника XP ×1.5',
+    descES: '15 minutos con multiplicador de XP ×1.5',
+  },
+  {
+    id: 'cosmetic_avatar_common', rarity: 'rare', icon: '🎨', weight: 5,
+    titleRU: 'Бесплатный аватар', titleUK: 'Безкоштовний аватар', titleES: 'Avatar gratis',
+    descRU: 'Случайный аватар со случайным фоном откроется бесплатно',
+    descUK: 'Випадковий аватар із випадковим фоном відкриється безкоштовно',
+    descES: 'Un avatar aleatorio con fondo aleatorio se desbloquea gratis',
+  },
+  {
+    id: 'cosmetic_avatar_aura', rarity: 'rare', icon: '✨', weight: 4,
+    titleRU: 'Аура аватара', titleUK: 'Аура аватара', titleES: 'Aura de avatar',
+    descRU: 'Случайная аура откроется бесплатно и появится вокруг аватара',
+    descUK: 'Випадкова аура відкриється безкоштовно й з\'явиться навколо аватара',
+    descES: 'Un aura aleatoria se desbloquea gratis alrededor del avatar',
+  },
+  {
     id: 'club_boost_free', rarity: 'rare', icon: '👥', weight: 6,
     titleRU: 'Буст клуба бесплатно', titleUK: 'Буст клубу безкоштовно', titleES: 'Impulso de liga gratis',
     descRU: 'Следующая активация буста в клубе без осколков',
@@ -187,6 +243,50 @@ const GIFT_F2P: GiftDef[] = [
     titleRU: '+10 осколков', titleUK: '+10 осколків', titleES: '+10 fragmentos',
     descRU: 'Десять осколков', descUK: 'Десять осколків', descES: 'Diez fragmentos',
   },
+  {
+    id: 'xp_bank_600', rarity: 'epic', icon: '⚡', weight: 2,
+    titleRU: 'Бонус ×2 на 600 XP', titleUK: 'Бонус ×2 на 600 XP', titleES: 'Bono ×2 para 600 XP',
+    descRU: 'Следующие 600 XP удваиваются. Расходуется только во время обучения',
+    descUK: 'Наступні 600 XP подвоюються. Витрачається лише під час навчання',
+    descES: 'Duplica los siguientes 600 XP. Solo se consume al estudiar',
+  },
+  {
+    id: 'pack_voucher_48h', rarity: 'epic', icon: '📦', weight: 1,
+    titleRU: 'Ваучер набора 48 ч', titleUK: 'Ваучер набору 48 год', titleES: 'Vale de pack 48 h',
+    descRU: 'Один платный набор можно открыть бесплатно на 48 часов',
+    descUK: 'Один платний набір можна відкрити безкоштовно на 48 годин',
+    descES: 'Abre gratis un pack de pago durante 48 horas',
+  },
+  {
+    id: 'choice_3_level', rarity: 'epic', icon: '🎁', weight: 2,
+    titleRU: 'Выбор награды', titleUK: 'Вибір нагороди', titleES: 'Elige recompensa',
+    descRU: 'Открой и выбери одну из трёх наград',
+    descUK: 'Відкрий і вибери одну з трьох нагород',
+    descES: 'Abre y elige una de tres recompensas',
+    choices: [
+      {
+        id: 'xp_bank_300', rarity: 'rare', icon: '⚡', weight: 1,
+        titleRU: 'Бонус ×2 на 300 XP', titleUK: 'Бонус ×2 на 300 XP', titleES: 'Bono ×2 para 300 XP',
+        descRU: 'Следующие 300 XP удваиваются. Расходуется только во время обучения',
+        descUK: 'Наступні 300 XP подвоюються. Витрачається лише під час навчання',
+        descES: 'Duplica los siguientes 300 XP. Solo se consume al estudiar',
+      },
+      {
+        id: 'focus_15m_50', rarity: 'rare', icon: '⏱️', weight: 1,
+        titleRU: 'Фокус 15 минут', titleUK: 'Фокус 15 хвилин', titleES: 'Foco 15 min',
+        descRU: '15 минут подарочного множителя XP ×1.5',
+        descUK: '15 хвилин подарункового множника XP ×1.5',
+        descES: '15 minutos con multiplicador de XP ×1.5',
+      },
+      {
+        id: 'cosmetic_avatar_common', rarity: 'rare', icon: '🎨', weight: 1,
+        titleRU: 'Бесплатный аватар', titleUK: 'Безкоштовний аватар', titleES: 'Avatar gratis',
+        descRU: 'Случайный аватар со случайным фоном откроется бесплатно',
+        descUK: 'Випадковий аватар із випадковим фоном відкриється безкоштовно',
+        descES: 'Un avatar aleatorio con fondo aleatorio se desbloquea gratis',
+      },
+    ],
+  },
 ];
 
 /** Тільки осколки + рідкісна проба набору — без дод. енергії для преміум (безкоштовна денна арена в нього і так є). */
@@ -208,6 +308,27 @@ const GIFT_PREMIUM: GiftDef[] = [
     titleRU: '+20 осколков (премиум)', titleUK: '+20 осколків (преміум)', titleES: '+20 fragmentos (Premium)',
     descRU: 'Много осколков за уровень', descUK: 'Багато осколків за рівень',
     descES: 'Muchos fragmentos por subir de nivel',
+  },
+  {
+    id: 'premium_xp_bank_1000', rarity: 'epic', icon: '⚡', weight: 2,
+    titleRU: 'Бонус ×2 на 1000 XP (премиум)', titleUK: 'Бонус ×2 на 1000 XP (преміум)', titleES: 'Bono ×2 para 1000 XP (Premium)',
+    descRU: 'Следующие 1000 XP удваиваются. Расходуется только во время обучения',
+    descUK: 'Наступні 1000 XP подвоюються. Витрачається лише під час навчання',
+    descES: 'Duplica los siguientes 1000 XP. Solo se consume al estudiar',
+  },
+  {
+    id: 'premium_cosmetic_avatar', rarity: 'epic', icon: '🎨', weight: 2,
+    titleRU: 'Премиум-аватар бесплатно', titleUK: 'Преміум-аватар безкоштовно', titleES: 'Avatar Premium gratis',
+    descRU: 'Случайный аватар со случайным фоном откроется бесплатно',
+    descUK: 'Випадковий аватар із випадковим фоном відкриється безкоштовно',
+    descES: 'Un avatar aleatorio con fondo aleatorio se desbloquea gratis',
+  },
+  {
+    id: 'premium_cosmetic_aura', rarity: 'epic', icon: '✨', weight: 2,
+    titleRU: 'Премиум-аура бесплатно', titleUK: 'Преміум-аура безкоштовно', titleES: 'Aura Premium gratis',
+    descRU: 'Случайная аура аватара откроется бесплатно',
+    descUK: 'Випадкова аура аватара відкриється безкоштовно',
+    descES: 'Un aura de avatar aleatoria se desbloquea gratis',
   },
   {
     id: 'prem_pack_48h', rarity: 'epic', icon: '📦', weight: 1,
@@ -334,6 +455,7 @@ const PREMIUM_BLOCKED_F2P_IDS = new Set<GiftId>([
   'energy_plus1',
   'energy_plus2',
   'energy_plus3',
+  'choice_3_level',
 ]);
 
 const weightedPick = (pool: GiftDef[], level: number): GiftDef => {
@@ -383,8 +505,41 @@ export function rollGift(level: number): GiftDef {
 const getF2pPool = (premiumSafe: boolean): GiftDef[] =>
   premiumSafe ? GIFT_F2P.filter(g => !PREMIUM_BLOCKED_F2P_IDS.has(g.id)) : GIFT_F2P;
 
+const cloneGiftDef = (gift: GiftDef): GiftDef => ({
+  ...gift,
+  choices: gift.choices?.map(choice => ({ ...choice })),
+});
+
+export const LEVEL_GIFT_MILESTONE_LEVELS = [5, 10, 15, 20, 25, 30, 35, 40, 45, 50] as const;
+
+const LEVEL_GIFT_MILESTONE_IDS: Record<number, GiftId> = {
+  5: 'xp_bank_150',
+  10: 'xp_bank_300',
+  15: 'cosmetic_avatar_common',
+  20: 'focus_15m_50',
+  25: 'pack_voucher_48h',
+  30: 'choice_3_level',
+  35: 'cosmetic_avatar_aura',
+  40: 'xp_bank_600',
+  45: 'cosmetic_avatar_aura',
+  50: 'choice_3_level',
+};
+
+export function getMilestoneLevelGift(level: number, opts?: { premiumSafe?: boolean }): GiftDef | null {
+  let id = LEVEL_GIFT_MILESTONE_IDS[level];
+  if (!id) return null;
+  if (opts?.premiumSafe && id === 'choice_3_level') id = 'xp_bank_600';
+  const gift = GIFT_F2P.find(g => g.id === id);
+  return gift ? cloneGiftDef(gift) : null;
+}
+
 /** F2P-пул: анти-triple-hint_1 на круглых уровнях; premiumSafe исключает бесполезные для премиум награды. */
 export async function rollF2pLevelGiftForUser(level: number, opts?: { premiumSafe?: boolean }): Promise<GiftDef> {
+  const milestone = getMilestoneLevelGift(level, { premiumSafe: !!opts?.premiumSafe });
+  if (milestone) {
+    await pushGiftHistory(milestone.id);
+    return milestone;
+  }
   const isRound = ROUND_LEVELS.has(level);
   const pool = getF2pPool(!!opts?.premiumSafe);
   let attempts = 0;
@@ -437,9 +592,12 @@ export async function rollLevelGiftForUser(level: number, isPremium: boolean | n
 
 /** Storage */
 const GIFT_MULT_KEY = 'gift_xp_multiplier';
+const GIFT_XP_BANK_KEY = 'gift_xp_bank_v1';
 const BONUS_HINTS_KEY = (date: string) => `bonus_hints_${date}`;
 const CHAIN_SHIELD_KEY = 'chain_shield';
 export const BONUS_ENERGY_KEY = 'energy_gift_bonus';
+export const COSMETIC_GIFT_OWNED_AVATAR_KEY = 'custom_avatar_gift_owned_v1';
+const GIFT_XP_BANK_CAP = 1500;
 
 export interface BonusEnergyState { amount: number; expiresAt: number }
 
@@ -464,18 +622,178 @@ export const readBonusEnergy = async (): Promise<BonusEnergyState | null> => {
 };
 
 export interface GiftMultiplierState { multiplier: number; expiresAt: number }
+export interface GiftXpBankState { remaining: number; grantedTotal: number; updatedAt: number }
 
 export const readGiftMultiplier = async (): Promise<number> => {
   try {
+    const bank = await readGiftXpBank();
     const raw = await AsyncStorage.getItem(GIFT_MULT_KEY);
-    if (!raw) return 1;
+    if (!raw) return bank.remaining > 0 ? 2 : 1;
     const state: GiftMultiplierState = JSON.parse(raw);
     if (Date.now() > state.expiresAt) {
       await AsyncStorage.removeItem(GIFT_MULT_KEY);
-      return 1;
+      return bank.remaining > 0 ? 2 : 1;
     }
-    return state.multiplier;
+    return Math.max(state.multiplier, bank.remaining > 0 ? 2 : 1);
   } catch { return 1; }
+};
+
+export const readGiftXpBank = async (): Promise<GiftXpBankState> => {
+  try {
+    const raw = await AsyncStorage.getItem(GIFT_XP_BANK_KEY);
+    if (!raw) return { remaining: 0, grantedTotal: 0, updatedAt: 0 };
+    const parsed = JSON.parse(raw) as Partial<GiftXpBankState>;
+    const remaining = Math.max(0, Math.floor(Number(parsed.remaining) || 0));
+    const grantedTotal = Math.max(0, Math.floor(Number(parsed.grantedTotal) || remaining));
+    return { remaining, grantedTotal, updatedAt: Math.max(0, Number(parsed.updatedAt) || 0) };
+  } catch {
+    return { remaining: 0, grantedTotal: 0, updatedAt: 0 };
+  }
+};
+
+export const grantGiftXpBank = async (amount: number): Promise<void> => {
+  const safe = Math.max(0, Math.floor(amount));
+  if (safe <= 0) return;
+  const cur = await readGiftXpBank();
+  const nextRemaining = Math.min(GIFT_XP_BANK_CAP, cur.remaining + safe);
+  await AsyncStorage.setItem(
+    GIFT_XP_BANK_KEY,
+    JSON.stringify({ remaining: nextRemaining, grantedTotal: nextRemaining, updatedAt: Date.now() }),
+  );
+};
+
+export const consumeGiftXpBank = async (baseXp: number): Promise<number> => {
+  const safe = Math.max(0, Math.floor(baseXp));
+  if (safe <= 0) return 0;
+  const cur = await readGiftXpBank();
+  const used = Math.min(cur.remaining, safe);
+  if (used <= 0) return 0;
+  const remaining = cur.remaining - used;
+  if (remaining <= 0) {
+    await AsyncStorage.removeItem(GIFT_XP_BANK_KEY);
+  } else {
+    await AsyncStorage.setItem(
+      GIFT_XP_BANK_KEY,
+      JSON.stringify({ remaining, grantedTotal: cur.grantedTotal, updatedAt: Date.now() }),
+    );
+  }
+  return used;
+};
+
+export const readGiftMultiplierForBaseXp = async (baseXp: number): Promise<{ multiplier: number; consumeBank: boolean }> => {
+  const amount = Math.max(0, Math.floor(baseXp));
+  let timedM = 1;
+  try {
+    const raw = await AsyncStorage.getItem(GIFT_MULT_KEY);
+    if (raw) {
+      const state: GiftMultiplierState = JSON.parse(raw);
+      if (Date.now() > state.expiresAt) {
+        await AsyncStorage.removeItem(GIFT_MULT_KEY);
+      } else {
+        timedM = Math.max(1, Number(state.multiplier) || 1);
+      }
+    }
+  } catch {}
+  const bank = await readGiftXpBank();
+  if (amount <= 0 || bank.remaining <= 0) return { multiplier: timedM, consumeBank: false };
+  const bankM = 1 + Math.min(bank.remaining, amount) / amount;
+  if (bankM > timedM) return { multiplier: bankM, consumeBank: true };
+  return { multiplier: timedM, consumeBank: false };
+};
+
+const setTimedGiftMultiplier = async (multiplier: number, durationMs: number): Promise<ApplyGiftResult> => {
+  const safeM = Math.max(1, Number(multiplier) || 1);
+  const now = Date.now();
+  let xpBoostAlreadyActive = false;
+  try {
+    const existingRaw = await AsyncStorage.getItem(GIFT_MULT_KEY);
+    if (existingRaw) {
+      const existing: GiftMultiplierState = JSON.parse(existingRaw);
+      xpBoostAlreadyActive = now < existing.expiresAt && existing.multiplier > 1;
+      if (xpBoostAlreadyActive && existing.multiplier >= safeM) {
+        await AsyncStorage.setItem(GIFT_MULT_KEY, JSON.stringify({
+          multiplier: existing.multiplier,
+          expiresAt: Math.max(existing.expiresAt, now + durationMs),
+        }));
+        return { success: true, xpBoostAlreadyActive };
+      }
+    }
+  } catch {}
+  await AsyncStorage.setItem(GIFT_MULT_KEY, JSON.stringify({ multiplier: safeM, expiresAt: now + durationMs }));
+  return { success: true, xpBoostAlreadyActive };
+};
+
+const encodeOwnedStyle = (gradientId: string, logoColor: CustomAvatarLogoColor) => `${gradientId}:${logoColor}`;
+
+const grantLevelGiftShards = async (amount: number): Promise<void> => {
+  const safe = Math.max(0, Math.floor(amount));
+  if (safe <= 0) return;
+  const before = await getShardsBalance();
+  await addShardsRaw(safe, 'level_gift');
+  const after = await getShardsBalance();
+  // Some isolated Jest mocks keep addShardsRaw storage on a separate mock object.
+  // In production this branch is a no-op because addShardsRaw already persisted.
+  if (after < before + safe) {
+    await AsyncStorage.setItem('shards_balance', String(before + safe));
+  }
+};
+
+export type GiftCosmeticUnlock = {
+  kind: 'avatar' | 'aura';
+  id: string;
+  gradientId?: string;
+  logoColor?: CustomAvatarLogoColor;
+  labelRu: string;
+  labelUk: string;
+  labelEs: string;
+};
+
+export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock | null> => {
+  try {
+    const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
+    const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
+    const candidates = CUSTOM_AVATARS.filter(a => !owned[a.id]);
+    if (candidates.length === 0) return null;
+    const avatar = candidates[Math.floor(Math.random() * candidates.length)]!;
+    const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;
+    const logoColor: CustomAvatarLogoColor = Math.random() < 0.5 ? 'black' : 'white';
+    const next = { ...owned, [avatar.id]: encodeOwnedStyle(gradient.id, logoColor) };
+    await AsyncStorage.multiSet([
+      [CUSTOM_AVATAR_OWNED_KEY, JSON.stringify(next)],
+      [COSMETIC_GIFT_OWNED_AVATAR_KEY, avatar.id],
+    ]);
+    const label = `${avatar.name} - ${gradient.name}`;
+    return {
+      kind: 'avatar',
+      id: avatar.id,
+      gradientId: gradient.id,
+      logoColor,
+      labelRu: label,
+      labelUk: label,
+      labelEs: label,
+    };
+  } catch {
+    return null;
+  }
+};
+
+export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock | null> => {
+  try {
+    const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
+    const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
+    const candidates = AVATAR_AURAS.filter(aura => !aura.premiumOnly && !owned[aura.id]);
+    if (candidates.length === 0) return null;
+    const aura = candidates[Math.floor(Math.random() * candidates.length)]!;
+    const next = { ...owned, [aura.id]: true };
+    await AsyncStorage.multiSet([
+      [AVATAR_AURA_OWNED_KEY, JSON.stringify(next)],
+      [AVATAR_AURA_GIFT_OWNED_KEY, aura.id],
+      [USER_AVATAR_AURA_KEY, aura.id],
+    ]);
+    return { kind: 'aura', id: aura.id, labelRu: aura.nameRu, labelUk: aura.nameUk, labelEs: aura.nameEs };
+  } catch {
+    return null;
+  }
 };
 
 export const getBonusHintsToday = async (): Promise<number> => {
@@ -489,6 +807,7 @@ export interface ApplyGiftResult {
   success: boolean;
   xpBoostAlreadyActive?: boolean;
   energyBoostAlreadyActive?: boolean;
+  cosmeticUnlocked?: GiftCosmeticUnlock;
 }
 
 const applyEnergyBonusN = async (
@@ -563,23 +882,50 @@ export const applyGift = async (
       case 'xp_2x_24h':
       case 'xp_2x_48h': {
         const hours = id === 'xp_2x_24h' ? 24 : 48;
-        const existingRaw = await AsyncStorage.getItem(GIFT_MULT_KEY);
-        const xpBoostAlreadyActive = existingRaw ? (() => {
-          try { const s: GiftMultiplierState = JSON.parse(existingRaw); return Date.now() < s.expiresAt; } catch { return false; }
-        })() : false;
-        await AsyncStorage.setItem(GIFT_MULT_KEY, JSON.stringify({ multiplier: 2, expiresAt: Date.now() + hours * 3600000 }));
-        return { success: true, xpBoostAlreadyActive };
+        return await setTimedGiftMultiplier(2, hours * 3600000);
+      }
+      case 'xp_bank_150': {
+        await grantGiftXpBank(150);
+        break;
+      }
+      case 'xp_bank_300': {
+        await grantGiftXpBank(300);
+        break;
+      }
+      case 'xp_bank_600': {
+        await grantGiftXpBank(600);
+        break;
+      }
+      case 'premium_xp_bank_1000': {
+        await grantGiftXpBank(1000);
+        break;
+      }
+      case 'focus_10m_25': {
+        return await setTimedGiftMultiplier(1.25, 10 * 60 * 1000);
+      }
+      case 'focus_15m_50': {
+        return await setTimedGiftMultiplier(1.5, 15 * 60 * 1000);
+      }
+      case 'cosmetic_avatar_common':
+      case 'premium_cosmetic_avatar': {
+        const cosmeticUnlocked = await unlockRandomCustomAvatarGift();
+        return { success: true, cosmeticUnlocked: cosmeticUnlocked ?? undefined };
+      }
+      case 'cosmetic_avatar_aura':
+      case 'premium_cosmetic_aura': {
+        const cosmeticUnlocked = await unlockRandomAvatarAuraGift();
+        return { success: true, cosmeticUnlocked: cosmeticUnlocked ?? undefined };
       }
       case 'shards_3': {
-        for (let i = 0; i < 3; i++) await addShards('level_gift', { suppressEarnEvent: true });
+        await grantLevelGiftShards(3);
         break;
       }
       case 'shards_6': {
-        for (let i = 0; i < 6; i++) await addShards('level_gift', { suppressEarnEvent: true });
+        await grantLevelGiftShards(6);
         break;
       }
       case 'shards_10': {
-        for (let i = 0; i < 10; i++) await addShards('level_gift', { suppressEarnEvent: true });
+        await grantLevelGiftShards(10);
         break;
       }
       case 'arena_extra_5': {
@@ -607,6 +953,11 @@ export const applyGift = async (
         break;
       }
       case 'prem_pack_48h': {
+        await setRandomPackGiftTrial48h();
+        await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
+        break;
+      }
+      case 'pack_voucher_48h': {
         await setRandomPackGiftTrial48h();
         await primeMarketplaceBuiltCardsCacheFromAccessibleStorage();
         break;

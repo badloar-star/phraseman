@@ -5,8 +5,9 @@ import {
   TouchableOpacity,
   TextInput,
   ScrollView,
-  ActivityIndicator,
   Clipboard,
+  Modal,
+  Pressable,
   Share,
   StyleSheet,
 } from 'react-native';
@@ -20,6 +21,7 @@ import ContentWrap from '../components/ContentWrap';
 import AvatarView from '../components/AvatarView';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { normalizeAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
 import { ensureMyInviteCodeForFriends, lookupUserByFriendCode } from './firestore_friends';
 import {
@@ -39,6 +41,13 @@ import { randomSelfFriendCodeMessage } from './friends_self_code_messages';
 import { triLang } from '../constants/i18n';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { trackActivity } from './app_activity';
+import { getShardsBalance } from './shards_system';
+import {
+  FRIEND_GIFT_CATALOG,
+  isFriendGiftsCloudEnabled,
+  sendFriendGiftWithShards,
+  type FriendGiftId,
+} from './friend_gifts';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -46,6 +55,8 @@ interface UserProfile {
   uid: string;
   name: string;
   xp: number;
+  avatar?: string;
+  aura?: string;
 }
 
 // ── Firestore accessor ────────────────────────────────────────────────────────
@@ -62,24 +73,39 @@ const getDb = () => {
 
 // ── Profile fetch helper ──────────────────────────────────────────────────────
 
+function readPublicNumber(value: unknown): number {
+  if (typeof value === 'number' && Number.isFinite(value)) return Math.max(0, Math.floor(value));
+  if (typeof value === 'string') {
+    const parsed = parseInt(value, 10);
+    return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+  }
+  return 0;
+}
+
+function readPublicString(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
 async function fetchUserProfile(uid: string): Promise<UserProfile> {
   try {
     const db = getDb();
     if (!db) return { uid, name: 'Игрок', xp: 0 };
-    const snap = await db.collection('users').doc(uid).get();
+    let snap = await db.collection('leaderboard').doc(uid).get();
+    if (!snap.exists) {
+      const byAuthSnap = await db.collection('leaderboard').where('firebaseAuthUid', '==', uid).limit(1).get();
+      const byAuthDoc = byAuthSnap.docs?.[0];
+      if (byAuthDoc) snap = byAuthDoc;
+    }
     if (!snap.exists) return { uid, name: 'Игрок', xp: 0 };
     const data: Record<string, unknown> = snap.data() ?? {};
-    const progress = (data.progress as Record<string, unknown>) ?? {};
-    const linked = (data.linkedAuth as Record<string, unknown> | undefined) ?? {};
     const name =
-      (data.displayName as string) ||
-      (progress.displayName as string) ||
-      (progress.user_name as string) ||
-      (typeof linked.displayName === 'string' ? linked.displayName : '') ||
+      readPublicString(data.name) ||
+      readPublicString(data.displayName) ||
       'Игрок';
-    const xp =
-      parseInt((progress.user_total_xp as string) ?? '0') || 0;
-    return { uid, name, xp };
+    const xp = readPublicNumber(data.points);
+    const avatar = readPublicString(data.avatar);
+    const aura = readPublicString(data.aura);
+    return { uid, name, xp, avatar: avatar || undefined, aura: normalizeAvatarAuraId(aura) };
   } catch {
     return { uid, name: 'Игрок', xp: 0 };
   }
@@ -108,6 +134,9 @@ export default function FriendsScreen() {
 
   const [profileCache, setProfileCache] = useState<Record<string, UserProfile>>({});
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
+  const [giftTarget, setGiftTarget] = useState<UserProfile | null>(null);
+  const [giftBalance, setGiftBalance] = useState(0);
+  const [giftBusyId, setGiftBusyId] = useState<FriendGiftId | null>(null);
 
   // Track whether both subscriptions have fired at least once
   const friendsFiredRef = useRef(false);
@@ -177,7 +206,7 @@ export default function FriendsScreen() {
     };
   }, []);
 
-  // Fallback: if subscriptions don't fire within 5s (e.g. no network), stop spinner
+  // Fallback: if subscriptions don\'t fire within 5s (e.g. no network), stop spinner
   useEffect(() => {
     const t = setTimeout(() => setIsLoading(false), 5000);
     return () => clearTimeout(t);
@@ -255,6 +284,11 @@ export default function FriendsScreen() {
         showFeedback(randomSelfFriendCodeMessage(L));
         return;
       }
+      if (lookup.source === 'referral_code') {
+        void import('./referral_bootstrap')
+          .then((m) => m.captureReferralCodeFromManualInput(codeNorm))
+          .catch(() => {});
+      }
       const result = await sendFriendRequest(lookup.uid);
       await trackActivity('friends:add_by_code_result', {
         feature: 'friends',
@@ -330,6 +364,64 @@ export default function FriendsScreen() {
   const handleDeleteConfirm = (uid: string, name: string) => {
     doHaptic();
     setDeleteTarget({ uid, name });
+  };
+
+  const openGiftPicker = (profile: UserProfile) => {
+    doHaptic();
+    setGiftTarget(profile);
+    void getShardsBalance().then(setGiftBalance).catch(() => setGiftBalance(0));
+  };
+
+  const giftLabel = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
+    triLang(lang, { ru: gift.labelRu, uk: gift.labelUk, es: gift.labelEs });
+
+  const giftDescription = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
+    triLang(lang, { ru: gift.descRu, uk: gift.descUk, es: gift.descEs });
+
+  const handleSendGift = async (giftId: FriendGiftId) => {
+    if (!giftTarget || giftBusyId) return;
+    const gift = FRIEND_GIFT_CATALOG.find((x) => x.id === giftId);
+    if (!gift) return;
+    if (!isFriendGiftsCloudEnabled()) {
+      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronizacion en la nube'));
+      return;
+    }
+    if (giftBalance < gift.costShards) {
+      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos'));
+      return;
+    }
+    doHaptic();
+    setGiftBusyId(giftId);
+    try {
+      const res = await sendFriendGiftWithShards({
+        friendStableId: giftTarget.uid,
+        giftId,
+      });
+      setGiftBalance(res.senderBalanceAfter);
+      setGiftTarget(null);
+      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado'));
+      await trackActivity('friends:send_gift', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'success',
+        tags: { giftId, targetUid: giftTarget.uid, cost: gift.costShards },
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      showFeedback(
+        msg.includes('precondition') || msg.includes('Not enough')
+          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa')
+          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo'),
+      );
+      await trackActivity('friends:send_gift', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'error',
+        tags: { giftId, targetUid: giftTarget.uid, error: msg },
+      });
+    } finally {
+      setGiftBusyId(null);
+    }
   };
 
   // ── Derived data ──────────────────────────────────────────────────────────
@@ -503,10 +595,111 @@ export default function FriendsScreen() {
       borderWidth: 1,
       borderColor: '#e55',
     },
+    giftBtn: {
+      width: 36,
+      height: 34,
+      borderRadius: 8,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: t.bgSurface,
+      borderWidth: 1,
+      borderColor: t.accent,
+    },
     deleteBtnText: {
       fontSize: 12,
       fontWeight: '600',
       color: '#e55',
+    },
+    modalBackdrop: {
+      flex: 1,
+      backgroundColor: 'rgba(0,0,0,0.55)',
+      justifyContent: 'flex-end',
+    },
+    giftSheet: {
+      backgroundColor: t.bgCard,
+      borderTopLeftRadius: 18,
+      borderTopRightRadius: 18,
+      padding: 18,
+      paddingBottom: 24,
+      gap: 12,
+    },
+    giftSheetHeader: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+    },
+    giftSheetTitleWrap: { flex: 1 },
+    giftSheetTitle: {
+      fontSize: 18,
+      fontWeight: '800',
+      color: t.textPrimary,
+    },
+    giftSheetSubtitle: {
+      fontSize: 13,
+      color: t.textSecond,
+      marginTop: 2,
+    },
+    giftCloseBtn: {
+      width: 36,
+      height: 36,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 18,
+      backgroundColor: t.bgSurface,
+    },
+    giftBalancePill: {
+      alignSelf: 'flex-start',
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 6,
+      backgroundColor: t.bgSurface,
+      borderRadius: 999,
+      paddingHorizontal: 10,
+      paddingVertical: 6,
+    },
+    giftBalanceText: {
+      color: t.textPrimary,
+      fontSize: 13,
+      fontWeight: '700',
+    },
+    giftOption: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: 12,
+      backgroundColor: t.bgSurface,
+      borderRadius: 12,
+      padding: 12,
+      borderWidth: 1,
+      borderColor: 'rgba(127,127,127,0.18)',
+    },
+    giftOptionDisabled: {
+      opacity: 0.45,
+    },
+    giftIconBox: {
+      width: 38,
+      height: 38,
+      borderRadius: 10,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: t.bgCard,
+    },
+    giftOptionText: { flex: 1 },
+    giftOptionTitle: {
+      color: t.textPrimary,
+      fontSize: 14,
+      fontWeight: '800',
+    },
+    giftOptionDesc: {
+      color: t.textSecond,
+      fontSize: 12,
+      marginTop: 2,
+    },
+    giftCost: {
+      minWidth: 46,
+      textAlign: 'right',
+      color: t.accent,
+      fontSize: 14,
+      fontWeight: '800',
     },
     bottomPad: { height: 40 },
   });
@@ -516,17 +709,18 @@ export default function FriendsScreen() {
   const renderRequest = (req: FriendRequestEntry) => {
     const profile = profileCache[req.fromUid];
     const xp = profile?.xp ?? 0;
-    const avatarId = String(getBestAvatarForLevel(getLevelFromXP(xp)));
-    const name = profile?.name ?? '...';
+    const avatarId = profile?.avatar || String(getBestAvatarForLevel(getLevelFromXP(xp)));
+    const name = profile?.name ?? 'Phraseman';
     return (
-      <View key={req.fromUid} style={styles.personRow}>
-        <AvatarView avatar={avatarId} size={44} />
+      <View key={req.fromUid} testID={`friends-request-${req.fromUid}`} style={styles.personRow}>
+        <AvatarView avatar={avatarId} size={44} auraId={profile?.aura} />
         <View style={styles.personInfo}>
           <Text style={styles.personName}>{name}</Text>
           <Text style={styles.personXp}>{xp} XP</Text>
         </View>
         <View style={styles.actionRow}>
           <TouchableOpacity
+            testID={`friends-accept-${req.fromUid}`}
             style={styles.acceptBtn}
             onPress={() => void handleAccept(req.fromUid)}
             accessibilityLabel={L('Принять', 'Прийняти', 'Aceptar')}
@@ -536,6 +730,7 @@ export default function FriendsScreen() {
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
+            testID={`friends-decline-${req.fromUid}`}
             style={styles.declineBtn}
             onPress={() => void handleDecline(req.fromUid)}
             accessibilityLabel={L('Отклонить', 'Відхилити', 'Rechazar')}
@@ -552,16 +747,25 @@ export default function FriendsScreen() {
   const renderFriend = (friend: FriendEntry) => {
     const profile = profileCache[friend.uid];
     const xp = profile?.xp ?? 0;
-    const avatarId = String(getBestAvatarForLevel(getLevelFromXP(xp)));
-    const name = profile?.name ?? '...';
+    const avatarId = profile?.avatar || String(getBestAvatarForLevel(getLevelFromXP(xp)));
+    const name = profile?.name ?? 'Phraseman';
     return (
-      <View key={friend.uid} style={styles.personRow}>
-        <AvatarView avatar={avatarId} size={44} />
+      <View key={friend.uid} testID={`friends-row-${friend.uid}`} style={styles.personRow}>
+        <AvatarView avatar={avatarId} size={44} auraId={profile?.aura} />
         <View style={styles.personInfo}>
           <Text style={styles.personName}>{name}</Text>
           <Text style={styles.personXp}>{xp} XP</Text>
         </View>
         <TouchableOpacity
+          testID={`friends-gift-${friend.uid}`}
+          style={styles.giftBtn}
+          onPress={() => openGiftPicker({ uid: friend.uid, name, xp, avatar: avatarId, aura: profile?.aura })}
+          accessibilityLabel={L('Подарить', 'Подарувати', 'Regalar')}
+        >
+          <Ionicons name="gift-outline" size={18} color={t.accent} />
+        </TouchableOpacity>
+        <TouchableOpacity
+          testID={`friends-delete-${friend.uid}`}
           style={styles.deleteBtn}
           onPress={() => handleDeleteConfirm(friend.uid, name)}
           accessibilityLabel={L('Удалить', 'Видалити', 'Eliminar')}
@@ -576,7 +780,7 @@ export default function FriendsScreen() {
 
   // ── Full-screen loading ────────────────────────────────────────────────────
 
-  if (isLoading) {
+  if (false && isLoading) {
     return (
       <ScreenGradient>
         <SafeAreaView style={styles.flex1}>
@@ -589,7 +793,7 @@ export default function FriendsScreen() {
             </Text>
           </View>
           <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color={t.accent} />
+            <Text style={styles.emptyText} />
           </View>
         </SafeAreaView>
       </ScreenGradient>
@@ -600,7 +804,7 @@ export default function FriendsScreen() {
 
   return (
     <ScreenGradient>
-      <SafeAreaView style={styles.flex1}>
+      <SafeAreaView testID="screen-friends" style={styles.flex1}>
         <View style={styles.header}>
           <TouchableOpacity onPress={() => { doHaptic(); router.back(); }}>
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
@@ -620,7 +824,7 @@ export default function FriendsScreen() {
             <View style={styles.codeCard}>
               {myCode ? (
                 <>
-                  <Text style={styles.codeText}>{myCode}</Text>
+                  <Text testID="friends-my-code" style={styles.codeText}>{myCode}</Text>
                   <View style={styles.codeButtonRow}>
                     <TouchableOpacity style={styles.codeButton} onPress={handleCopy}>
                       <Ionicons name="copy-outline" size={16} color={t.textPrimary} />
@@ -639,7 +843,7 @@ export default function FriendsScreen() {
                   </View>
                 </>
               ) : (
-                <ActivityIndicator size="small" color={t.accent} />
+                <Text style={styles.codeText}>------</Text>
               )}
             </View>
 
@@ -649,6 +853,7 @@ export default function FriendsScreen() {
             </Text>
             <View style={styles.inputRow}>
               <TextInput
+                testID="friends-code-input"
                 style={styles.textInput}
                 placeholder={L(
                   'Код друга (6 символов)',
@@ -665,6 +870,7 @@ export default function FriendsScreen() {
                 }
               />
               <TouchableOpacity
+                testID="friends-search"
                 style={[
                   styles.addButton,
                   (codeInput.length !== 6 || isAdding) && styles.addButtonDisabled,
@@ -673,7 +879,9 @@ export default function FriendsScreen() {
                 disabled={codeInput.length !== 6 || isAdding}
               >
                 {isAdding ? (
-                  <ActivityIndicator size="small" color={t.correctText} />
+                  <Text style={styles.addButtonText}>
+                    {L('Добавить', 'Додати', 'Añadir')}
+                  </Text>
                 ) : (
                   <Text style={styles.addButtonText}>
                     {L('Добавить', 'Додати', 'Añadir')}
@@ -682,7 +890,7 @@ export default function FriendsScreen() {
               </TouchableOpacity>
             </View>
             {addFeedback ? (
-              <Text style={styles.feedbackText}>{addFeedback}</Text>
+              <Text testID="friends-add-feedback" style={styles.feedbackText}>{addFeedback}</Text>
             ) : null}
 
             {/* ── Активные входящие заявки (только если есть) ─────────── */}
@@ -714,6 +922,64 @@ export default function FriendsScreen() {
             <View style={styles.bottomPad} />
           </ContentWrap>
         </ScrollView>
+        <Modal
+          visible={giftTarget !== null}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setGiftTarget(null)}
+        >
+          <View style={styles.modalBackdrop}>
+            <Pressable style={StyleSheet.absoluteFill} onPress={() => setGiftTarget(null)} />
+            <View style={styles.giftSheet}>
+              <View style={styles.giftSheetHeader}>
+                {giftTarget ? (
+                  <AvatarView
+                    avatar={giftTarget.avatar || String(getBestAvatarForLevel(getLevelFromXP(giftTarget.xp)))}
+                    size={44}
+                    auraId={giftTarget.aura}
+                  />
+                ) : null}
+                <View style={styles.giftSheetTitleWrap}>
+                  <Text style={styles.giftSheetTitle}>
+                    {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo')}
+                  </Text>
+                  <Text style={styles.giftSheetSubtitle}>{giftTarget?.name ?? ''}</Text>
+                </View>
+                <TouchableOpacity style={styles.giftCloseBtn} onPress={() => setGiftTarget(null)}>
+                  <Ionicons name="close" size={20} color={t.textPrimary} />
+                </TouchableOpacity>
+              </View>
+              <View style={styles.giftBalancePill}>
+                <Ionicons name="diamond-outline" size={15} color={t.accent} />
+                <Text style={styles.giftBalanceText}>{giftBalance}</Text>
+              </View>
+              {FRIEND_GIFT_CATALOG.map((gift) => {
+                const disabled = giftBalance < gift.costShards || giftBusyId !== null;
+                return (
+                  <TouchableOpacity
+                    key={gift.id}
+                    style={[styles.giftOption, disabled && styles.giftOptionDisabled]}
+                    disabled={disabled}
+                    onPress={() => void handleSendGift(gift.id)}
+                  >
+                    <View style={styles.giftIconBox}>
+                      <Ionicons name={gift.icon as any} size={21} color={t.accent} />
+                    </View>
+                    <View style={styles.giftOptionText}>
+                      <Text style={styles.giftOptionTitle}>{giftLabel(gift)}</Text>
+                      <Text style={styles.giftOptionDesc}>{giftDescription(gift)}</Text>
+                    </View>
+                    {giftBusyId === gift.id ? (
+                      <Text style={styles.giftCost}>{gift.costShards} 💎</Text>
+                    ) : (
+                      <Text style={styles.giftCost}>{gift.costShards} 💎</Text>
+                    )}
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </View>
+        </Modal>
         <ThemedConfirmModal
           visible={deleteTarget !== null}
           title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?')}

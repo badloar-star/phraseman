@@ -19,7 +19,7 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
       <Pressable
         style={{
           flex: 1,
-          backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.42)' : 'rgba(0,0,0,0.55)',
+          backgroundColor: 'rgba(0,0,0,0.55)',
           justifyContent: 'center',
           alignItems: 'center',
           padding: 32,

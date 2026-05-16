@@ -1,0 +1,705 @@
+import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
+
+// JESSE_REWORKED_PERSONAL_TRAINING
+// This file is protected from legacy replacement unless this exact id is being rebuilt.
+
+const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+
+const ARTICLE_OPTIONS = [
+  { id: 'a', text: 'a' },
+  { id: 'an', text: 'an' },
+  { id: 'the', text: 'the' },
+  { id: 'no article', text: 'no article' },
+];
+
+function articleStep(input: {
+  id: string;
+  order: number;
+  difficulty: DiagnosisTrainingStep['difficulty'];
+  targetSkill: string;
+  sentence: string;
+  translation: TriText;
+  correctAnswer: 'a' | 'an' | 'the' | 'no article';
+  correctFeedback: TriText;
+  wrong: Partial<Record<'a' | 'an' | 'the' | 'no article', TriText>>;
+  retry: [TriText, TriText, TriText];
+  focusWords: string[];
+}): DiagnosisTrainingStep {
+  const correctIndex = ARTICLE_OPTIONS.findIndex((option) => option.id === input.correctAnswer);
+  return {
+    id: input.id,
+    order: input.order,
+    difficulty: input.difficulty,
+    type: 'single_choice',
+    targetSkill: input.targetSkill,
+    translation: input.translation,
+    explanationBlock: tri(
+      'Не думай про все артикли сразу. Здесь один вопрос: первый звук после пропуска гласный или согласный?',
+      'Не думай про всі артиклі одразу. Тут одне питання: перший звук після пропуску голосний чи приголосний?',
+      'No pienses en todos los artículos. Aquí hay una pregunta: el primer sonido después del hueco es vocálico o consonántico?',
+    ),
+    microTask: tri(
+      'Выбери правильный вариант.',
+      'Обери правильний варіант.',
+      'Elige la opción correcta.',
+    ),
+    sentence: input.sentence,
+    answerOptions: ARTICLE_OPTIONS,
+    correctAnswerId: input.correctAnswer,
+    correctIndex,
+    correctFeedback: input.correctFeedback,
+    wrongFeedbackByOption: {
+      a: input.wrong.a ?? tri(
+        'a здесь не подходит. Проверь первый звук после пропуска.',
+        'a тут не підходить. Перевір перший звук після пропуску.',
+        'a no encaja aquí. Comprueba el primer sonido después del hueco.',
+      ),
+      an: input.wrong.an ?? tri(
+        'an здесь не подходит. Проверь первый звук после пропуска.',
+        'an тут не підходить. Перевір перший звук після пропуску.',
+        'an no encaja aquí. Comprueba el primer sonido después del hueco.',
+      ),
+      the: input.wrong.the ?? tri(
+        'the означает конкретный, уже известный предмет. Здесь тренируем выбор a/an по звуку.',
+        'the означає конкретний, уже відомий предмет. Тут тренуємо вибір a/an за звуком.',
+        'the means a specific known thing. Here we are training a/an by sound.',
+      ),
+      'no article': input.wrong['no article'] ?? tri(
+        'Это один исчисляемый предмет или человек. В такой фразе нужен артикль.',
+        'Це один злічуваний предмет або людина. У такій фразі потрібен артикль.',
+        'This is one countable thing or person. In this phrase it needs an article.',
+      ),
+    },
+    retryFeedback: [
+      input.retry[0],
+      input.retry[1],
+      input.retry[2],
+      tri(
+        `Подсказка: ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
+        `Підказка: ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
+        `Pista: ${input.correctAnswer} ${input.focusWords[0] ?? ''}.`.trim(),
+      ),
+    ],
+    fallbackExplanation: tri(
+      'Смотри только на первый звук после пропуска. Гласный звук - an. Согласный звук - a.',
+      'Дивись тільки на перший звук після пропуску. Голосний звук - an. Приголосний звук - a.',
+      'Look only at the first sound after the gap. Vowel sound - an. Consonant sound - a.',
+    ),
+    focusWords: input.focusWords,
+  };
+}
+
+export const ARTICLE_A_AN_TRAINING: DiagnosisTraining = {
+  id: 'article_a_an',
+  category: 'article',
+  version: '1.0.0',
+  status: 'active',
+  priority: 1,
+  supportedLocales: ['ru', 'uk', 'es'],
+  title: tri(
+    'A или An: выбираем по звуку',
+    'A чи An: обираємо за звуком',
+    'A o An: elegimos por sonido',
+  ),
+  shortTitle: tri('A / An по звуку', 'A / An за звуком', 'A / An por sonido'),
+  shortDiagnosis: tri(
+    'Ты путаешь a и an: скорее всего, смотришь на букву, а не слушаешь звук.',
+    'Ти плутаєш a та an: найімовірніше, дивишся на літеру, а не слухаєш звук.',
+    'Confundes a y an: probablemente miras la letra y no escuchas el sonido.',
+  ),
+  diagnosisText: tri(
+    'Ты путаешь a и an. Скорее всего, ты смотришь на первую букву слова, а в английском здесь важна не буква, а первый звук.',
+    'Ти плутаєш a та an. Найімовірніше, ти дивишся на першу літеру слова, а в англійській тут важлива не літера, а перший звук.',
+    'Confundes a y an. Probablemente miras la primera letra de la palabra, pero en inglés aquí importa el primer sonido, no la letra.',
+  ),
+  mentalModel: tri(
+    'Не смотри на букву. Слушай первый звук. Если слово начинается со звука гласной - an. Если со звука согласной - a.',
+    'Не дивись на літеру. Слухай перший звук. Якщо слово починається зі звуку голосної - an. Якщо зі звуку приголосної - a.',
+    'No mires la letra. Escucha el primer sonido. Si la palabra empieza con sonido vocálico - an. Si empieza con sonido consonántico - a.',
+  ),
+  contrastSet: ['a', 'an'],
+  coreRule: tri(
+    'a + согласный звук: a car, a book, a university. an + гласный звук: an apple, an hour, an honest man.',
+    'a + приголосний звук: a car, a book, a university. an + голосний звук: an apple, an hour, an honest man.',
+    'a + sonido consonántico: a car, a book, a university. an + sonido vocálico: an apple, an hour, an honest man.',
+  ),
+  whatUserMustLearn: {
+    ru: [
+      'A/an используется перед одним исчисляемым предметом или человеком.',
+      'Выбор между a и an зависит от первого звука следующего слова.',
+      'Буква может обманывать: hour начинается с гласного звука, поэтому an hour.',
+      'Буква u может звучать как /ju/, то есть начинаться с согласного звука /j/, поэтому a university.',
+      'Если перед существительным стоит прилагательное, выбираем по первому звуку прилагательного: an old car, a red apple.',
+    ],
+    uk: [
+      'A/an використовується перед одним злічуваним предметом або людиною.',
+      'Вибір між a та an залежить від першого звуку наступного слова.',
+      'Літера може обманювати: hour починається з голосного звуку, тому an hour.',
+      'Літера u може звучати як /ju/, тобто починатися з приголосного звуку /j/, тому a university.',
+      'Якщо перед іменником стоїть прикметник, обираємо за першим звуком прикметника: an old car, a red apple.',
+    ],
+    es: [
+      'A/an se usa antes de una cosa o persona contable en singular.',
+      'La elección entre a y an depende del primer sonido de la siguiente palabra.',
+      'La letra puede engañar: hour empieza con sonido vocálico, por eso an hour.',
+      'La letra u puede sonar como /ju/, es decir, empezar con sonido consonántico /j/, por eso a university.',
+      'Si hay un adjetivo antes del sustantivo, elegimos por el primer sonido del adjetivo: an old car, a red apple.',
+    ],
+  },
+  examples: [
+    {
+      en: 'I saw a dog.',
+      ru: 'Я увидел собаку.',
+      uk: 'Я побачив собаку.',
+      es: 'Vi un perro.',
+      why: tri(
+        'dog начинается со звука /d/. Это согласный звук, поэтому a dog.',
+        'dog починається зі звуку /d/. Це приголосний звук, тому a dog.',
+        'dog empieza con el sonido /d/. Es un sonido consonántico, por eso a dog.',
+      ),
+    },
+    {
+      en: 'She has an idea.',
+      ru: 'У неё есть идея.',
+      uk: 'У неї є ідея.',
+      es: 'Ella tiene una idea.',
+      why: tri(
+        'idea начинается со звука /ai/. Это гласный звук, поэтому an idea.',
+        'idea починається зі звуку /ai/. Це голосний звук, тому an idea.',
+        'idea empieza con el sonido /ai/. Es un sonido vocálico, por eso an idea.',
+      ),
+    },
+    {
+      en: 'I waited for an hour.',
+      ru: 'Я ждал час.',
+      uk: 'Я чекав годину.',
+      es: 'Esperé una hora.',
+      why: tri(
+        'В hour буква h не звучит. Слово начинается со звука /au/, поэтому an hour.',
+        'У hour літера h не звучить. Слово починається зі звуку /au/, тому an hour.',
+        'En hour la letra h no se pronuncia. La palabra empieza con /au/, por eso an hour.',
+      ),
+    },
+    {
+      en: 'He studies at a university.',
+      ru: 'Он учится в университете.',
+      uk: 'Він навчається в університеті.',
+      es: 'Él estudia en una universidad.',
+      why: tri(
+        'university начинается не со звука /u/, а со звука /j/ как в yes. Это согласный звук, поэтому a university.',
+        'university починається не зі звуку /u/, а зі звуку /j/ як у yes. Це приголосний звук, тому a university.',
+        'university no empieza con /u/, sino con /j/ como en yes. Es un sonido consonántico, por eso a university.',
+      ),
+    },
+    {
+      en: 'She is an honest person.',
+      ru: 'Она честный человек.',
+      uk: 'Вона чесна людина.',
+      es: 'Ella es una persona honesta.',
+      why: tri(
+        'В honest буква h не звучит. Первый звук гласный, поэтому an honest person.',
+        'У honest літера h не звучить. Перший звук голосний, тому an honest person.',
+        'En honest la h no se pronuncia. El primer sonido is vocálico, por eso an honest person.',
+      ),
+    },
+    {
+      en: 'It was a useful lesson.',
+      ru: 'Это был полезный урок.',
+      uk: 'Це був корисний урок.',
+      es: 'Fue una lección útil.',
+      why: tri(
+        'useful начинается со звука /j/ как в yes. Это согласный звук, поэтому a useful lesson.',
+        'useful починається зі звуку /j/ як у yes. Це приголосний звук, тому a useful lesson.',
+        'useful empieza con /j/ como en yes. Es consonántico, por eso a useful lesson.',
+      ),
+    },
+    {
+      en: 'I bought an old car.',
+      ru: 'Я купил старую машину.',
+      uk: 'Я купив стару машину.',
+      es: 'Compré un coche viejo.',
+      why: tri(
+        'Перед car стоит old. Мы выбираем артикль по слову old, а old начинается с гласного звука. Поэтому an old car.',
+        'Перед car стоїть old. Ми обираємо артикль за словом old, а old починається з голосного звуку. Тому an old car.',
+        'Antes de car está old. Elegimos el artículo por old, y old empieza con sonido vocálico. Por eso an old car.',
+      ),
+    },
+    {
+      en: 'This is a European country.',
+      ru: 'Это европейская страна.',
+      uk: 'Це європейська країна.',
+      es: 'Es un país europeo.',
+      why: tri(
+        'European начинается со звука /j/ как в yes. Это согласный звук, поэтому a European country.',
+        'European починається зі звуку /j/ як у yes. Це приголосний звук, тому a European country.',
+        'European empieza con /j/ como en yes. Es consonántico, por eso a European country.',
+      ),
+    },
+  ],
+  introBlocks: [
+    {
+      id: 'intro_problem',
+      type: 'diagnosis',
+      text: tri(
+        'Похоже, ты спотыкаешься на a/an. Это не страшно. Ошибка почти всегда одна: человек смотрит на букву, а английский просит слушать звук.',
+        'Схоже, ти спотикаєшся на a/an. Це не страшно. Помилка майже завжди одна: людина дивиться на літеру, а англійська просить слухати звук.',
+        'Parece que te trabas con a/an. No pasa nada. El error casi siempre es el mismo: la persona mira la letra, pero el inglés pide escuchar el sonido.',
+      ),
+    },
+    {
+      id: 'intro_rule',
+      type: 'rule',
+      text: tri(
+        'Главное правило очень простое: a перед согласным звуком, an перед гласным звуком.',
+        'Головне правило дуже просте: a перед приголосним звуком, an перед голосним звуком.',
+        'La regla principal es muy simple: a antes de sonido consonántico, an antes de sonido vocálico.',
+      ),
+    },
+    {
+      id: 'intro_warning',
+      type: 'warning',
+      text: tri(
+        'Но есть ловушка: первая буква и первый звук не всегда совпадают. hour пишется с h, но звучит как будто начинается с гласной. university пишется с u, но звучит как будто начинается с y.',
+        'Але є пастка: перша літера і перший звук не завжди збігаються. hour пишеться з h, але звучить так, ніби починається з голосної. university пишеться з u, але звучить так, ніби починається з y.',
+        'Pero hay una trampa: la primera letra y el primer sonido no siempre coinciden. hour se escribe con h, pero suena como si empezara con vocal. university se escribe con u, pero suena como si empezara con y.',
+      ),
+    },
+  ],
+  steps: [
+    articleStep({
+      id: 'a_an_easy_001',
+      order: 1,
+      difficulty: 'easy',
+      targetSkill: 'basic_consonant_sound',
+      sentence: 'I saw ___ dog near the house.',
+      translation: tri('Я увидел собаку возле дома.', 'Я побачив собаку біля будинку.', 'Vi un perro cerca de la casa.'),
+      correctAnswer: 'a',
+      correctFeedback: tri(
+        'Да. dog начинается со звука /d/. Это согласный звук, поэтому a dog.',
+        'Так. dog починається зі звуку /d/. Це приголосний звук, тому a dog.',
+        'Sí. dog empieza con /d/. Es un sonido consonántico, por eso a dog.',
+      ),
+      wrong: {
+        an: tri(
+          'an здесь не подходит. dog начинается не с гласного звука, а со звука /d/. Перед согласным звуком нужен a.',
+          'an тут не підходить. dog починається не з голосного звуку, а зі звуку /d/. Перед приголосним звуком потрібен a.',
+          'an no encaja aquí. dog no empieza con sonido vocálico, sino con /d/. Antes de sonido consonántico usamos a.',
+        ),
+        the: tri(
+          'the означает конкретную, уже известную собаку. Здесь мы просто впервые говорим об одной собаке, поэтому нужен a.',
+          'the означає конкретну, уже відому собаку. Тут ми просто вперше говоримо про одного собаку, тому потрібен a.',
+          'the significa un perro específico ya conocido. Aquí solo mencionamos un perro por primera vez, por eso necesitamos a.',
+        ),
+      },
+      retry: [
+        tri('Смотри только на первый звук слова dog. Ты слышишь /d/. Это согласный звук. Значит a.', 'Дивись тільки на перший звук слова dog. Ти чуєш /d/. Це приголосний звук. Значить a.', 'Mira solo el primer sonido de dog. Oyes /d/. Es consonántico. Entonces a.'),
+        tri('dog начинается как d. Перед d говорим a dog.', 'dog починається як d. Перед d кажемо a dog.', 'dog empieza como d. Antes de d decimos a dog.'),
+        tri('Подсказка: правильный вариант начинается с буквы a и состоит из одной буквы.', 'Підказка: правильний варіант починається з літери a і складається з однієї літери.', 'Pista: la opción correcta empieza con a y tiene una sola letra.'),
+      ],
+      focusWords: ['dog'],
+    }),
+    articleStep({
+      id: 'a_an_easy_002',
+      order: 2,
+      difficulty: 'easy',
+      targetSkill: 'basic_vowel_sound',
+      sentence: 'She gave me ___ apple.',
+      translation: tri('Она дала мне яблоко.', 'Вона дала мені яблуко.', 'Ella me dio una manzana.'),
+      correctAnswer: 'an',
+      correctFeedback: tri('Да. apple начинается с гласного звука /a/. Поэтому an apple.', 'Так. apple починається з голосного звуку /a/. Тому an apple.', 'Sí. apple empieza con sonido vocálico /a/. Por eso an apple.'),
+      wrong: {
+        a: tri('a здесь звучит тяжело, потому что apple начинается с гласного звука. Чтобы произношение было плавным, английский использует an.', 'a тут звучить важко, бо apple починається з голосного звуку. Щоб вимова була плавною, англійська використовує an.', 'a suena difícil aquí porque apple empieza con sonido vocálico. Para que suene fluido, el inglés usa an.'),
+        the: tri('the было бы про конкретное яблоко, которое уже известно. Здесь просто одно яблоко, поэтому an.', 'the було б про конкретне яблуко, яке вже відоме. Тут просто одне яблуко, тому an.', 'the sería una manzana específica ya conocida. Aquí es simplemente una manzana, por eso an.'),
+      },
+      retry: [
+        tri('apple начинается с гласного звука. Перед гласным звуком ставим an.', 'apple починається з голосного звуку. Перед голосним звуком ставимо an.', 'apple empieza con sonido vocálico. Antes de vocal usamos an.'),
+        tri('Скажи вслух: apple. Первый звук открытый, гласный. Значит an apple.', 'Скажи вголос: apple. Перший звук відкритий, голосний. Значить an apple.', 'Di en voz alta: apple. El primer sonido es abierto, vocálico. Entonces an apple.'),
+        tri('Подсказка: перед apple нужен вариант из двух букв.', 'Підказка: перед apple потрібен варіант із двох літер.', 'Pista: antes de apple necesitas la opción de dos letras.'),
+      ],
+      focusWords: ['apple'],
+    }),
+    articleStep({
+      id: 'a_an_easy_003',
+      order: 3,
+      difficulty: 'easy',
+      targetSkill: 'basic_consonant_sound',
+      sentence: 'He bought ___ new phone.',
+      translation: tri('Он купил новый телефон.', 'Він купив новий телефон.', 'Él compró un teléfono nuevo.'),
+      correctAnswer: 'a',
+      correctFeedback: tri('Да. После артикля первым идет слово new. Оно начинается со звука /n/. Это согласный звук, поэтому a new phone.', 'Так. Після артикля першим іде слово new. Воно починається зі звуку /n/. Це приголосний звук, тому a new phone.', 'Sí. Después del artículo viene new. Empieza con /n/. Es consonántico, por eso a new phone.'),
+      wrong: {
+        an: tri('an не подходит, потому что первое слово после артикля - new, а оно начинается со звука /n/. Это согласный звук.', 'an не підходить, бо перше слово після артикля - new, а воно починається зі звуку /n/. Це приголосний звук.', 'an no encaja porque la primera palabra después del artículo es new, y empieza con /n/. Es consonántico.'),
+        the: tri('the сделал бы телефон конкретным и уже известным. Здесь просто один новый телефон, поэтому a.', 'the зробило б телефон конкретним і вже відомим. Тут просто один новий телефон, тому a.', 'the haría el teléfono específico y ya conocido. Aquí es solo un teléfono nuevo, por eso a.'),
+      },
+      retry: [
+        tri('Не смотри на phone. Смотри на первое слово после пропуска: new. Первый звук /n/. Значит a.', 'Не дивись на phone. Дивись на перше слово після пропуску: new. Перший звук /n/. Значить a.', 'No mires phone. Mira la primera palabra después del hueco: new. Primer sonido /n/. Entonces a.'),
+        tri('new начинается как n. Перед n говорим a.', 'new починається як n. Перед n кажемо a.', 'new empieza como n. Antes de n decimos a.'),
+        tri('Подсказка: a new phone.', 'Підказка: a new phone.', 'Pista: a new phone.'),
+      ],
+      focusWords: ['new'],
+    }),
+    articleStep({
+      id: 'a_an_contrast_001',
+      order: 4,
+      difficulty: 'contrast',
+      targetSkill: 'silent_h_trap',
+      sentence: 'I waited for ___ hour.',
+      translation: tri('Я ждал час.', 'Я чекав годину.', 'Esperé una hora.'),
+      correctAnswer: 'an',
+      correctFeedback: tri('Да. hour пишется с h, но h не звучит. Первый звук - /au/, поэтому an hour.', 'Так. hour пишеться з h, але h не звучить. Перший звук - /au/, тому an hour.', 'Sí. hour se escribe con h, pero la h no se pronuncia. El primer sonido es /au/, por eso an hour.'),
+      wrong: {
+        a: tri('Вот главная ловушка. Ты посмотрел на букву h, но она в hour не звучит. Английский выбирает не по букве, а по звуку. Слышно /au/ - нужен an.', 'Ось головна пастка. Ти подивився на літеру h, але вона в hour не звучить. Англійська обирає не за літерою, а за звуком. Чути /au/ - потрібен an.', 'Esta es la trampa principal. Miraste la letra h, pero en hour no se pronuncia. El inglés elige por sonido, no por letra. Se oye /au/ - necesitas an.'),
+        the: tri('the здесь не нужен, потому что мы говорим о количестве времени: один час. В этой конструкции нужен an hour.', 'the тут не потрібен, бо ми говоримо про кількість часу: одну годину. У цій конструкції потрібен an hour.', 'the no es necesario aquí porque hablamos de una cantidad de tiempo: una hora. En esta estructura necesitamos an hour.'),
+      },
+      retry: [
+        tri('Слово hour звучит почти как our. Оно начинается не с /h/, а с гласного звука. Значит an.', 'Слово hour звучить майже як our. Воно починається не з /h/, а з голосного звуку. Значить an.', 'hour suena casi como our. No empieza con /h/, sino con sonido vocálico. Entonces an.'),
+        tri('h молчит. Первый звук гласный. Гласный звук - an.', 'h мовчить. Перший звук голосний. Голосний звук - an.', 'La h es muda. Primer sonido vocálico. Sonido vocálico - an.'),
+        tri('Подсказка: an hour.', 'Підказка: an hour.', 'Pista: an hour.'),
+      ],
+      focusWords: ['hour'],
+    }),
+    articleStep({
+      id: 'a_an_contrast_002',
+      order: 5,
+      difficulty: 'contrast',
+      targetSkill: 'silent_h_trap',
+      sentence: 'She is ___ honest person.',
+      translation: tri('Она честный человек.', 'Вона чесна людина.', 'Ella es una persona honesta.'),
+      correctAnswer: 'an',
+      correctFeedback: tri('Да. В honest буква h не звучит. Первый звук гласный, поэтому an honest person.', 'Так. У honest літера h не звучить. Перший звук голосний, тому an honest person.', 'Sí. En honest la h no se pronuncia. El primer sonido es vocálico, por eso an honest person.'),
+      wrong: {
+        a: tri('Ты снова попался на букву h. В honest она не звучит. Мы слышим гласный звук в начале, поэтому нужен an.', 'Ти знову попався на літеру h. У honest вона не звучить. Ми чуємо голосний звук на початку, тому потрібен an.', 'Otra vez caíste en la letra h. En honest no se pronuncia. Oímos sonido vocálico al principio, por eso necesitamos an.'),
+        the: tri('the изменит смысл: конкретный честный человек. Здесь мы описываем, кто она: an honest person.', 'the змінить зміст: конкретна чесна людина. Тут ми описуємо, хто вона: an honest person.', 'the cambia el sentido: una persona honesta específica. Aquí describimos qué tipo de persona es: an honest person.'),
+      },
+      retry: [
+        tri('honest звучит без h. Первый слышимый звук - гласный. Значит an honest.', 'honest звучить без h. Перший чутний звук - голосний. Значить an honest.', 'honest suena sin h. El primer sonido audible es vocálico. Entonces an honest.'),
+        tri('h не слышно. Слышишь гласный - выбирай an.', 'h не чути. Чуєш голосний - обирай an.', 'No se oye h. Si oyes vocal, elige an.'),
+        tri('Подсказка: an honest person.', 'Підказка: an honest person.', 'Pista: an honest person.'),
+      ],
+      focusWords: ['honest'],
+    }),
+    articleStep({
+      id: 'a_an_contrast_003',
+      order: 6,
+      difficulty: 'contrast',
+      targetSkill: 'normal_h_vs_silent_h',
+      sentence: 'He lives in ___ house near the river.',
+      translation: tri('Он живёт в доме возле реки.', 'Він живе в будинку біля річки.', 'Él vive en una casa cerca del río.'),
+      correctAnswer: 'a',
+      correctFeedback: tri('Да. В house буква h звучит: /haus/. Первый звук согласный, поэтому a house.', 'Так. У house літера h звучить: /haus/. Перший звук приголосний, тому a house.', 'Sí. En house la h se pronuncia: /haus/. El primer sonido es consonántico, por eso a house.'),
+      wrong: {
+        an: tri('Не каждое слово с h требует an. В hour h молчит, но в house h звучит. Мы слышим /h/, значит a house.', 'Не кожне слово з h потребує an. У hour h мовчить, але в house h звучить. Ми чуємо /h/, значить a house.', 'No toda palabra con h necesita an. En hour la h es muda, pero en house se pronuncia. Oímos /h/, entonces a house.'),
+        the: tri('the был бы про конкретный дом, уже известный собеседнику. Здесь просто один дом возле реки, поэтому a.', 'the був би про конкретний будинок, уже відомий співрозмовнику. Тут просто один будинок біля річки, тому a.', 'the sería una casa específica ya conocida. Aquí es simplemente una casa cerca del río, por eso a.'),
+      },
+      retry: [
+        tri('Проверь звук. house начинается с настоящего /h/. Это согласный звук. Значит a.', 'Перевір звук. house починається зі справжнього /h/. Це приголосний звук. Значить a.', 'Comprueba el sonido. house empieza con /h/ real. Es consonántico. Entonces a.'),
+        tri('house не как hour. В house h слышно. Значит a house.', 'house не як hour. У house h чути. Значить a house.', 'house no es como hour. En house se oye h. Entonces a house.'),
+        tri('Подсказка: a house.', 'Підказка: a house.', 'Pista: a house.'),
+      ],
+      focusWords: ['house'],
+    }),
+    articleStep({
+      id: 'a_an_contrast_004',
+      order: 7,
+      difficulty: 'contrast',
+      targetSkill: 'u_y_sound_trap',
+      sentence: 'She studies at ___ university.',
+      translation: tri('Она учится в университете.', 'Вона навчається в університеті.', 'Ella estudia en una universidad.'),
+      correctAnswer: 'a',
+      correctFeedback: tri('Да. university начинается со звука /j/, как yes. Это согласный звук, поэтому a university.', 'Так. university починається зі звуку /j/, як yes. Це приголосний звук, тому a university.', 'Sí. university empieza con /j/, como yes. Es consonántico, por eso a university.'),
+      wrong: {
+        an: tri('Ты посмотрел на букву u, но university звучит как /ju.../. Первый звук похож на y в yes. Это согласный звук, поэтому a.', 'Ти подивився на літеру u, але university звучить як /ju.../. Перший звук схожий на y у yes. Це приголосний звук, тому a.', 'Miraste la letra u, pero university suena como /ju.../. El primer sonido se parece a y en yes. Es consonántico, por eso a.'),
+        the: tri('the нужен, если университет конкретный или уже известный. Здесь просто говорится, что она учится в университете, поэтому a university.', 'the потрібен, якщо університет конкретний або вже відомий. Тут просто кажемо, що вона навчається в університеті, тому a university.', 'the se usa si la universidad es específica o ya conocida. Aquí solo decimos que estudia en una universidad, por eso a university.'),
+      },
+      retry: [
+        tri('university звучит не как "уни", а как "юни". Первый звук /j/ - согласный. Значит a.', 'university звучить не як "уні", а як "юні". Перший звук /j/ - приголосний. Значить a.', 'university no suena como "u", suena como "yu". El primer sonido /j/ es consonántico. Entonces a.'),
+        tri('university начинается как yes. Перед таким звуком нужен a.', 'university починається як yes. Перед таким звуком потрібен a.', 'university empieza como yes. Antes de ese sonido usamos a.'),
+        tri('Подсказка: a university.', 'Підказка: a university.', 'Pista: a university.'),
+      ],
+      focusWords: ['university'],
+    }),
+    articleStep({
+      id: 'a_an_contrast_005',
+      order: 8,
+      difficulty: 'contrast',
+      targetSkill: 'u_y_sound_trap',
+      sentence: 'This is ___ useful tool.',
+      translation: tri('Это полезный инструмент.', 'Це корисний інструмент.', 'Esta es una herramienta útil.'),
+      correctAnswer: 'a',
+      correctFeedback: tri('Да. useful начинается со звука /j/, как yes. Это согласный звук, поэтому a useful tool.', 'Так. useful починається зі звуку /j/, як yes. Це приголосний звук, тому a useful tool.', 'Sí. useful empieza con /j/, como yes. Es consonántico, por eso a useful tool.'),
+      wrong: {
+        an: tri('an кажется логичным из-за буквы u, но useful начинается со звука /j/. Английский слышит согласный звук, поэтому a.', 'an здається логічним через літеру u, але useful починається зі звуку /j/. Англійська чує приголосний звук, тому a.', 'an parece lógico por la letra u, pero useful empieza con /j/. El inglés oye un sonido consonántico, por eso a.'),
+        the: tri('the сделал бы инструмент конкретным. Здесь мы просто называем его полезным инструментом, поэтому a useful tool.', 'the зробило б інструмент конкретним. Тут ми просто називаємо його корисним інструментом, тому a useful tool.', 'the haría la herramienta específica. Aquí solo la llamamos una herramienta útil, por eso a useful tool.'),
+      },
+      retry: [
+        tri('Произнеси useful: "юсфул". Первый звук как y. Это не гласный звук. Значит a.', 'Вимов useful: "юсфул". Перший звук як y. Це не голосний звук. Значить a.', 'Pronuncia useful: "yusful". El primer sonido es como y. No es vocálico. Entonces a.'),
+        tri('useful начинается как yes. Значит a useful.', 'useful починається як yes. Значить a useful.', 'useful empieza como yes. Entonces a useful.'),
+        tri('Подсказка: a useful tool.', 'Підказка: a useful tool.', 'Pista: a useful tool.'),
+      ],
+      focusWords: ['useful'],
+    }),
+    articleStep({
+      id: 'a_an_contrast_006',
+      order: 9,
+      difficulty: 'contrast',
+      targetSkill: 'eu_y_sound_trap',
+      sentence: 'France is ___ European country.',
+      translation: tri('Франция - европейская страна.', 'Франція - європейська країна.', 'Francia es un país europeo.'),
+      correctAnswer: 'a',
+      correctFeedback: tri('Да. European начинается со звука /j/, как yes. Поэтому a European country.', 'Так. European починається зі звуку /j/, як yes. Тому a European country.', 'Sí. European empieza con /j/, como yes. Por eso a European country.'),
+      wrong: {
+        an: tri('European начинается с букв eu, но первый звук - /j/. Это согласный звук, поэтому не an, а a.', 'European починається з літер eu, але перший звук - /j/. Це приголосний звук, тому не an, а a.', 'European empieza con letras eu, pero el primer sonido es /j/. Es consonántico, por eso no an, sino a.'),
+        the: tri('the здесь не нужно. Мы классифицируем Францию как одну европейскую страну, поэтому a European country.', 'the тут не потрібно. Ми класифікуємо Францію як одну європейську країну, тому a European country.', 'the no es necesario aquí. Clasificamos Francia como un país europeo, por eso a European country.'),
+      },
+      retry: [
+        tri('European звучит как начинается с "й". Это согласный звук. Поэтому a.', 'European звучить так, ніби починається з "й". Це приголосний звук. Тому a.', 'European suena como si empezara con "y". Es consonántico. Por eso a.'),
+        tri('European начинается как yes. Значит a European.', 'European починається як yes. Значить a European.', 'European empieza como yes. Entonces a European.'),
+        tri('Подсказка: a European country.', 'Підказка: a European country.', 'Pista: a European country.'),
+      ],
+      focusWords: ['European'],
+    }),
+    articleStep({
+      id: 'a_an_mixed_001',
+      order: 10,
+      difficulty: 'mixed_review',
+      targetSkill: 'adjective_before_noun_vowel',
+      sentence: 'I bought ___ old car.',
+      translation: tri('Я купил старую машину.', 'Я купив стару машину.', 'Compré un coche viejo.'),
+      correctAnswer: 'an',
+      correctFeedback: tri('Да. Мы выбираем по первому слову после пропуска: old. Оно начинается с гласного звука, поэтому an old car.', 'Так. Ми обираємо за першим словом після пропуску: old. Воно починається з голосного звуку, тому an old car.', 'Sí. Elegimos por la primera palabra después del hueco: old. Empieza con sonido vocálico, por eso an old car.'),
+      wrong: {
+        a: tri('Не выбирай по слову car. Между артиклем и car стоит old. Первый звук после артикля - гласный, поэтому an.', 'Не обирай за словом car. Між артиклем і car стоїть old. Перший звук після артикля - голосний, тому an.', 'No elijas por car. Entre el artículo y car está old. El primer sonido después del artículo es vocálico, por eso an.'),
+        the: tri('the был бы про конкретную старую машину. Здесь просто одна старая машина, поэтому an old car.', 'the був би про конкретну стару машину. Тут просто одна стара машина, тому an old car.', 'the sería un coche viejo específico. Aquí es simplemente un coche viejo, por eso an old car.'),
+      },
+      retry: [
+        tri('Первое слово после пропуска - old. Не car. old начинается с гласного звука. Значит an.', 'Перше слово після пропуску - old. Не car. old починається з голосного звуку. Значить an.', 'La primera palabra después del hueco es old. No car. old empieza con vocal. Entonces an.'),
+        tri('old начинается с o. Перед o ставим an.', 'old починається з o. Перед o ставимо an.', 'old empieza con o. Antes de o usamos an.'),
+        tri('Подсказка: an old car.', 'Підказка: an old car.', 'Pista: an old car.'),
+      ],
+      focusWords: ['old'],
+    }),
+    articleStep({
+      id: 'a_an_mixed_002',
+      order: 11,
+      difficulty: 'mixed_review',
+      targetSkill: 'adjective_before_noun_consonant',
+      sentence: 'She gave me ___ red apple.',
+      translation: tri('Она дала мне красное яблоко.', 'Вона дала мені червоне яблуко.', 'Ella me dio una manzana roja.'),
+      correctAnswer: 'a',
+      correctFeedback: tri('Да. Первое слово после пропуска - red. Оно начинается со звука /r/. Это согласный звук, поэтому a red apple.', 'Так. Перше слово після пропуску - red. Воно починається зі звуку /r/. Це приголосний звук, тому a red apple.', 'Sí. La primera palabra después del hueco es red. Empieza con /r/. Es consonántico, por eso a red apple.'),
+      wrong: {
+        an: tri('Ты, скорее всего, выбрал an из-за apple. Но перед apple стоит red. Артикль выбирается по red, а red начинается с согласного звука.', 'Ти, ймовірно, обрав an через apple. Але перед apple стоїть red. Артикль обирається за red, а red починається з приголосного звуку.', 'Probablemente elegiste an por apple. Pero antes de apple está red. El artículo se elige por red, y red empieza con sonido consonántico.'),
+        the: tri('the был бы про конкретное красное яблоко. Здесь просто одно красное яблоко, поэтому a red apple.', 'the був би про конкретне червоне яблуко. Тут просто одне червоне яблуко, тому a red apple.', 'the sería una manzana roja específica. Aquí es simplemente una manzana roja, por eso a red apple.'),
+      },
+      retry: [
+        tri('Не смотри на apple. Смотри на red. red начинается с /r/. Значит a.', 'Не дивись на apple. Дивись на red. red починається з /r/. Значить a.', 'No mires apple. Mira red. red empieza con /r/. Entonces a.'),
+        tri('red начинается как r. Перед r говорим a.', 'red починається як r. Перед r кажемо a.', 'red empieza como r. Antes de r decimos a.'),
+        tri('Подсказка: a red apple.', 'Підказка: a red apple.', 'Pista: a red apple.'),
+      ],
+      focusWords: ['red'],
+    }),
+    articleStep({
+      id: 'a_an_mixed_003',
+      order: 12,
+      difficulty: 'mixed_review',
+      targetSkill: 'basic_vowel_sound',
+      sentence: 'He is ___ actor.',
+      translation: tri('Он актёр.', 'Він актор.', 'Él es actor.'),
+      correctAnswer: 'an',
+      correctFeedback: tri('Да. actor начинается с гласного звука. Поэтому an actor.', 'Так. actor починається з голосного звуку. Тому an actor.', 'Sí. actor empieza con sonido vocálico. Por eso an actor.'),
+      wrong: {
+        a: tri('actor начинается с гласного звука. Перед гласным звуком нужен an, чтобы фраза звучала плавно.', 'actor починається з голосного звуку. Перед голосним звуком потрібен an, щоб фраза звучала плавно.', 'actor empieza con sonido vocálico. Antes de sonido vocálico usamos an para que la frase suene fluida.'),
+        the: tri('the actor означало бы конкретный актёр. Здесь мы говорим о профессии: he is an actor.', 'the actor означало б конкретний актор. Тут ми говоримо про професію: he is an actor.', 'the actor significaría un actor específico. Aquí hablamos de profesión: he is an actor.'),
+        'no article': tri('В английском перед профессией в единственном числе обычно нужен a/an: an actor, a doctor, a teacher.', 'В англійській перед професією в однині зазвичай потрібен a/an: an actor, a doctor, a teacher.', 'En inglés, antes de una profesión en singular normalmente usamos a/an: an actor, a doctor, a teacher.'),
+      },
+      retry: [
+        tri('actor начинается с открытого гласного звука. Значит an actor.', 'actor починається з відкритого голосного звуку. Значить an actor.', 'actor empieza con un sonido vocálico abierto. Entonces an actor.'),
+        tri('actor начинается с a. Перед таким звуком нужен an.', 'actor починається з a. Перед таким звуком потрібен an.', 'actor empieza con a. Antes de ese sonido necesitamos an.'),
+        tri('Подсказка: an actor.', 'Підказка: an actor.', 'Pista: an actor.'),
+      ],
+      focusWords: ['actor'],
+    }),
+    articleStep({
+      id: 'a_an_mixed_004',
+      order: 13,
+      difficulty: 'mixed_review',
+      targetSkill: 'silent_h_trap',
+      sentence: 'It was ___ honor to meet you.',
+      translation: tri('Было честью познакомиться с вами.', 'Було честю познайомитися з вами.', 'Fue un honor conocerte.'),
+      correctAnswer: 'an',
+      correctFeedback: tri('Да. honor начинается с гласного звука, потому что h не звучит. Поэтому an honor.', 'Так. honor починається з голосного звуку, бо h не звучить. Тому an honor.', 'Sí. honor empieza con sonido vocálico porque la h no se pronuncia. Por eso an honor.'),
+      wrong: {
+        a: tri('Ты снова выбрал по букве h. Но в honor h не звучит. Первый звук гласный, значит an.', 'Ти знову обрав за літерою h. Але в honor h не звучить. Перший звук голосний, значить an.', 'Otra vez elegiste por la letra h. Pero en honor la h no se pronuncia. El primer sonido es vocálico, entonces an.'),
+        the: tri('the honor возможно в другом контексте, но устойчиво и естественно здесь: it was an honor.', 'the honor можливе в іншому контексті, але природно тут: it was an honor.', 'the honor puede existir en otro contexto, pero aquí lo natural es: it was an honor.'),
+      },
+      retry: [
+        tri('honor звучит без h. Если h не слышно, первый звук гласный. Значит an honor.', 'honor звучить без h. Якщо h не чути, перший звук голосний. Значить an honor.', 'honor suena sin h. Si no se oye h, el primer sonido es vocálico. Entonces an honor.'),
+        tri('h молчит. Гласный звук - an.', 'h мовчить. Голосний звук - an.', 'La h es muda. Sonido vocálico - an.'),
+        tri('Подсказка: an honor.', 'Підказка: an honor.', 'Pista: an honor.'),
+      ],
+      focusWords: ['honor'],
+    }),
+    articleStep({
+      id: 'a_an_mixed_005',
+      order: 14,
+      difficulty: 'mixed_review',
+      targetSkill: 'u_y_sound_trap',
+      sentence: 'He gave me ___ unique chance.',
+      translation: tri('Он дал мне уникальный шанс.', 'Він дав мені унікальний шанс.', 'Me dio una oportunidad única.'),
+      correctAnswer: 'a',
+      correctFeedback: tri('Да. unique начинается со звука /j/, как yes. Это согласный звук, поэтому a unique chance.', 'Так. unique починається зі звуку /j/, як yes. Це приголосний звук, тому a unique chance.', 'Sí. unique empieza con /j/, como yes. Es consonántico, por eso a unique chance.'),
+      wrong: {
+        an: tri('unique начинается с буквы u, но первый звук - /j/. Это согласный звук. Поэтому a unique chance.', 'unique починається з літери u, але перший звук - /j/. Це приголосний звук. Тому a unique chance.', 'unique empieza con la letra u, pero el primer sonido es /j/. Es consonántico. Por eso a unique chance.'),
+        the: tri('the unique chance возможно, если шанс уже известен. Здесь просто один уникальный шанс, поэтому a unique chance.', 'the unique chance можливо, якщо шанс уже відомий. Тут просто один унікальний шанс, тому a unique chance.', 'the unique chance es posible si la oportunidad ya es conocida. Aquí es simplemente una oportunidad única, por eso a unique chance.'),
+      },
+      retry: [
+        tri('unique звучит как начинается с "ю". Это согласный звук /j/. Значит a.', 'unique звучить так, ніби починається з "ю". Це приголосний звук /j/. Значить a.', 'unique suena como si empezara con "yu". Es consonántico /j/. Entonces a.'),
+        tri('unique начинается как yes. Значит a unique.', 'unique починається як yes. Значить a unique.', 'unique empieza como yes. Entonces a unique.'),
+        tri('Подсказка: a unique chance.', 'Підказка: a unique chance.', 'Pista: a unique chance.'),
+      ],
+      focusWords: ['unique'],
+    }),
+    articleStep({
+      id: 'a_an_mixed_006',
+      order: 15,
+      difficulty: 'mixed_review',
+      targetSkill: 'mixed_basic',
+      sentence: 'We need ___ answer today.',
+      translation: tri('Нам нужен ответ сегодня.', 'Нам потрібна відповідь сьогодні.', 'Necesitamos una respuesta hoy.'),
+      correctAnswer: 'an',
+      correctFeedback: tri('Да. answer начинается с гласного звука. Поэтому an answer.', 'Так. answer починається з голосного звуку. Тому an answer.', 'Sí. answer empieza con sonido vocálico. Por eso an answer.'),
+      wrong: {
+        a: tri('answer начинается с гласного звука. Перед таким звуком нужен an.', 'answer починається з голосного звуку. Перед таким звуком потрібен an.', 'answer empieza con sonido vocálico. Antes de ese sonido necesitamos an.'),
+        the: tri('the answer означало бы конкретный ответ, уже понятный из контекста. Здесь можно сказать просто an answer - один ответ.', 'the answer означало б конкретну відповідь, уже зрозумілу з контексту. Тут можна сказати просто an answer - одну відповідь.', 'the answer significaría una respuesta específica ya clara por contexto. Aquí podemos decir an answer - una respuesta.'),
+      },
+      retry: [
+        tri('answer начинается с a-звука. Это гласный звук. Значит an.', 'answer починається з a-звуку. Це голосний звук. Значить an.', 'answer empieza con sonido a. Es vocálico. Entonces an.'),
+        tri('Перед answer говорим an answer.', 'Перед answer кажемо an answer.', 'Antes de answer decimos an answer.'),
+        tri('Подсказка: an answer.', 'Підказка: an answer.', 'Pista: an answer.'),
+      ],
+      focusWords: ['answer'],
+    }),
+  ],
+  masteryRules: {
+    minCorrect: 9,
+    minCorrectStreak: 4,
+    requireCorrectAfterWrong: true,
+    requireMixedReview: true,
+    maxAllowedCriticalMistakes: 2,
+    criticalMistakeIds: ['letter_over_sound', 'silent_h_trap', 'u_y_sound_trap'],
+    repeatIfCorrectRateBelow: 0.75,
+    unlockSmartTrainerAfterMastery: true,
+  },
+  adaptiveFeedbackPolicy: {
+    maxDepth: 4,
+    depth1: tri('Обычное объяснение: показываем правило и причину ошибки.', 'Звичайне пояснення: показуємо правило і причину помилки.', 'Explicación normal: mostramos la regla y la causa del error.'),
+    depth2: tri('Проще: убираем лишнюю грамматику и даем один ориентир.', 'Простіше: прибираємо зайву граматику і даємо один орієнтир.', 'Más simple: quitamos gramática extra y damos una sola pista.'),
+    depth3: tri('Еще проще: сравниваем только два звука.', 'Ще простіше: порівнюємо тільки два звуки.', 'Aún más simple: comparamos solo dos sonidos.'),
+    depth4: tri('Почти подсказка: прямо указываем первый звук и просим выбрать a/an.', 'Майже підказка: прямо вказуємо перший звук і просимо обрати a/an.', 'Casi pista: indicamos directamente el primer sonido y pedimos elegir a/an.'),
+  },
+  failureRecovery: {
+    afterTwoWrongInSameExercise: {
+      action: 'show_simplified_rule_card',
+    },
+    afterThreeWrongInSameExercise: {
+      action: 'show_sound_hint_then_retry',
+    },
+    afterFourWrongInSameExercise: {
+      action: 'switch_to_guided_mode',
+    },
+  },
+  guidedMode: {
+    enabled: true,
+    triggerAfterWrongAttempts: 4,
+    tasks: [
+      {
+        id: 'guided_sound_001',
+        options: ['гласный звук', 'согласный звук'],
+        correctIndex: 0,
+        thenReturnToExerciseId: 'a_an_contrast_001',
+      },
+      {
+        id: 'guided_sound_002',
+        options: ['гласный звук', 'согласный звук'],
+        correctIndex: 1,
+        thenReturnToExerciseId: 'a_an_contrast_004',
+      },
+    ],
+  },
+  smartTrainerConfig: {
+    mode: 'weak',
+    source: 'diagnosis_training',
+    category: 'article',
+    microDiagnosisId: 'article_a_an',
+    diagnosisLabel: tri('A / An по первому звуку', 'A / An за першим звуком', 'A / An por primer sonido'),
+    contrastSet: ['a', 'an'],
+    focusWords: ['a', 'an', 'hour', 'honest', 'university', 'useful'],
+    focusPatterns: [
+      'basic_consonant_sound',
+      'basic_vowel_sound',
+      'silent_h_trap',
+      'u_y_sound_trap',
+      'adjective_before_noun_vowel',
+      'adjective_before_noun_consonant',
+    ],
+    includeFailedItems: true,
+    includeRecoveredItems: true,
+    includeSimilarItems: true,
+    minItems: 12,
+    recommendedItems: 18,
+    difficultyLevel: 1,
+    difficultyEscalation: {
+      start: 'easy',
+      afterCorrectInRow: 3,
+      next: 'contrast',
+      afterCorrectInRowAtContrast: 3,
+      final: 'mixed_review',
+    },
+  },
+  analyticsEvents: {
+    start: 'diagnosis_training_started',
+    answer: 'diagnosis_training_answer',
+    mastery: 'diagnosis_training_mastered',
+    fallback: 'diagnosis_training_fallback',
+    onStart: 'diagnosis_training_started',
+    onCorrect: 'diagnosis_training_answer_correct',
+    onWrong: 'diagnosis_training_answer_wrong',
+    onDepthIncrease: 'diagnosis_training_feedback_depth_increased',
+    onGuidedMode: 'diagnosis_training_guided_mode_started',
+    onMastery: 'diagnosis_training_mastered',
+    onSmartTrainerOpen: 'diagnosis_training_smart_trainer_opened',
+    payload: {
+      category: 'article',
+      microDiagnosisId: 'article_a_an',
+      contrastSet: ['a', 'an'],
+      logExactToken: true,
+      logMistakeType: true,
+      logExerciseId: true,
+      logAttemptCount: true,
+      logFeedbackDepth: true,
+    },
+  },
+  routing: {
+    diagnosisTrainerRoute: '/problem_coach?category=article&microDiagnosisId=article_a_an',
+  },
+  qualityChecklist: {
+    hasStableId: true,
+    hasCategory: true,
+    hasMultilingualTitle: true,
+    hasPlainDiagnosisText: true,
+    hasMentalModel: true,
+    hasContrastSet: true,
+    hasAtLeastSixExamples: true,
+    hasAtLeastTwelveExercises: true,
+    hasEasyContrastMixedStructure: true,
+    hasDistractorSpecificFeedback: true,
+    hasRetryFeedbackLevels: true,
+    hasGuidedModeForRepeatedMistakes: true,
+    hasMasteryRules: true,
+    hasSmartTrainerConfig: true,
+    hasAnalyticsPayload: true,
+    hasFallbackRoute: true,
+  },
+};
+
+

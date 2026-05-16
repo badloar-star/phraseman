@@ -1,10 +1,10 @@
-import firestore from '@react-native-firebase/firestore';
 import {
   ArenaProfile, ArenaSession, SessionPlayer, LobbyChoice,
   ArenaRoom, MatchmakingEntry, ArenaQuestion,
   RankTier, RematchStatus, REMATCH_TTL_MS,
 } from '../types/arena';
 import { isArenaDuelReactionEmoji } from '../../constants/arena_duel_reaction_emojis';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 
 // ─── Коллекции ────────────────────────────────────────────────────────────────
 //
@@ -17,22 +17,47 @@ import { isArenaDuelReactionEmoji } from '../../constants/arena_duel_reaction_em
 //
 // ─────────────────────────────────────────────────────────────────────────────
 
-const db = firestore();
+function getFirestoreModule(): any | null {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('@react-native-firebase/firestore').default;
+  } catch {
+    return null;
+  }
+}
+
+function getDb(): any | null {
+  const firestore = getFirestoreModule();
+  if (!firestore) return null;
+  try {
+    return firestore();
+  } catch {
+    return null;
+  }
+}
+
+function requireDb(): any {
+  const db = getDb();
+  if (!db) throw new Error('firebase_unavailable');
+  return db;
+}
 
 const col = {
-  profiles: () => db.collection('arena_profiles'),
-  sessions: () => db.collection('arena_sessions'),
-  sessionPlayers: () => db.collection('session_players'),
-  rooms: () => db.collection('arena_rooms'),
-  queue: () => db.collection('matchmaking_queue'),
-  questions: () => db.collection('arena_questions'),
+  profiles: () => requireDb().collection('arena_profiles'),
+  sessions: () => requireDb().collection('arena_sessions'),
+  sessionPlayers: () => requireDb().collection('session_players'),
+  rooms: () => requireDb().collection('arena_rooms'),
+  queue: () => requireDb().collection('matchmaking_queue'),
+  questions: () => requireDb().collection('arena_questions'),
   /** Агрегат «сколько в поиске» — оновлює Cloud Function, див. functions/src/matchmaking.ts */
-  matchmakingMeta: () => db.doc('app_meta/matchmaking_searching'),
+  matchmakingMeta: () => requireDb().doc('app_meta/matchmaking_searching'),
 };
 
 // ─── Профиль ──────────────────────────────────────────────────────────────────
 
 export async function getArenaProfile(userId: string): Promise<ArenaProfile | null> {
+  if (!getDb()) return null;
   const snap = await col.profiles().doc(userId).get();
   return snap.exists ? (snap.data() as ArenaProfile) : null;
 }
@@ -55,7 +80,8 @@ export function subscribeArenaProfile(
   userId: string,
   onUpdate: (profile: ArenaProfile) => void
 ): () => void {
-  return col.profiles().doc(userId).onSnapshot(snap => {
+  if (!getDb()) return () => {};
+  return col.profiles().doc(userId).onSnapshot((snap: any) => {
     if (snap && snap.exists) onUpdate(snap.data() as ArenaProfile);
   });
 }
@@ -63,6 +89,7 @@ export function subscribeArenaProfile(
 // ─── Сессия ───────────────────────────────────────────────────────────────────
 
 export async function getSession(sessionId: string): Promise<ArenaSession | null> {
+  if (!getDb()) return null;
   const snap = await col.sessions().doc(sessionId).get();
   return snap.exists ? (snap.data() as ArenaSession) : null;
 }
@@ -71,7 +98,8 @@ export function subscribeSession(
   sessionId: string,
   onUpdate: (session: ArenaSession) => void
 ): () => void {
-  return col.sessions().doc(sessionId).onSnapshot(snap => {
+  if (!getDb()) return () => {};
+  return col.sessions().doc(sessionId).onSnapshot((snap: any) => {
     if (snap && snap.exists) onUpdate(snap.data() as ArenaSession);
   });
 }
@@ -82,9 +110,10 @@ export function subscribeSessionPlayers(
   sessionId: string,
   onUpdate: (players: SessionPlayer[]) => void
 ): () => void {
+  if (!getDb()) return () => {};
   return col.sessionPlayers()
     .where('sessionId', '==', sessionId)
-    .onSnapshot(snap => {
+    .onSnapshot((snap: any) => {
       if (!snap) return;
       const players = snap.docs.map((d: any) => d.data() as SessionPlayer);
       onUpdate(players);
@@ -98,6 +127,8 @@ export async function submitAnswer(
   answer: string | null,
   timeMs: number
 ): Promise<void> {
+  const firestore = getFirestoreModule();
+  if (!firestore) throw new Error('firebase_unavailable');
   const docId = `${sessionId}_${playerId}`;
   await col.sessionPlayers().doc(docId).update({
     answers: firestore.FieldValue.arrayUnion({
@@ -156,9 +187,10 @@ export async function createRematchOffer(
   byUid: string,
   byName: string,
 ): Promise<boolean> {
+  const db = requireDb();
   const ref = col.sessions().doc(sessionId);
   let success = false;
-  await db.runTransaction(async (tx) => {
+  await db.runTransaction(async (tx: any) => {
     const snap = await tx.get(ref);
     if (!snap.exists) return;
     const data = snap.data() as { rematchOffer?: { status?: string; ttlAt?: number } } | undefined;
@@ -244,7 +276,8 @@ export function subscribeMatchmakingQueue(
 ): () => void {
   // Cloud Function создаёт сессию и пишет sessionId в запись очереди; сразу удаляем документ,
   // иначе запись с sessionId навсегда остаётся в коллекции (stale-чистка её не трогает).
-  return col.queue().doc(userId).onSnapshot((snap) => {
+  if (!getDb()) return () => {};
+  return col.queue().doc(userId).onSnapshot((snap: any) => {
     if (!snap || !snap.exists) return;
     const data = snap.data() as MatchmakingEntry & { sessionId?: string };
     if (!data.sessionId) return;
@@ -261,84 +294,45 @@ export function subscribeMatchmakingQueueOthersCount(
   getPresence: () => { userId: string | null; inSearchFlow: boolean },
   onOthersCount: (n: number) => void,
 ): () => void {
-  return col.queue().onSnapshot(
-    (snap) => {
-      if (!snap) return;
-      const { userId: myId, inSearchFlow } = getPresence();
-      let n = 0;
-      for (const doc of snap.docs) {
-        const d = doc.data() as MatchmakingEntry & { sessionId?: string };
-        if (!d?.userId || d.sessionId) continue;
-        if (inSearchFlow && myId && doc.id === myId) continue;
-        n += 1;
-      }
-      onOthersCount(n);
+  if (!getDb()) {
+    onOthersCount(0);
+    return () => {};
+  }
+  return col.matchmakingMeta().onSnapshot(
+    (snap: any) => {
+      const { inSearchFlow } = getPresence();
+      const total = snap?.exists
+        ? (snap.data() as { searchingCount?: number })?.searchingCount
+        : 0;
+      const n = typeof total === 'number' && total > 0 ? total : 0;
+      onOthersCount(Math.max(0, n - (inSearchFlow ? 1 : 0)));
     },
     () => onOthersCount(0),
   );
 }
 
-/** Скільки документів у `matchmaking_queue` без `sessionId`. */
-function countUnmatchedQueue(snap: { docs: { data: () => unknown }[] } | null): number {
-  if (!snap) return 0;
-  let n = 0;
-  for (const doc of snap.docs) {
-    const d = doc.data() as MatchmakingEntry & { sessionId?: string };
-    if (!d?.userId || d.sessionId) continue;
-    n += 1;
-  }
-  return n;
-}
-
 /**
- * «У пошуку в мережі» — `app_meta/matchmaking_searching` (якщо CF задеплоїв) + скан `matchmaking_queue`, беремо max.
- * Якщо meta-файлу немає, раніше UI був вічно 0; live queue показує реальну кількість.
+ * «У пошуку в мережі» — тільки агрегат `app_meta/matchmaking_searching`.
+ * Не слухаємо всю `matchmaking_queue`: на великій аудиторії це множить Firestore reads.
  */
 export function subscribeMatchmakingSearchingTotal(
   onTotal: (n: number) => void,
 ): () => void {
-  let metaCount: number | null = null;
-  let queueCount = 0;
-
-  const emit = () => {
-    const q = queueCount;
-    const m = metaCount;
-    if (m != null && m >= 0) {
-      onTotal(Math.max(m, q));
-    } else {
-      onTotal(q);
-    }
-  };
-
-  const unMeta = col.matchmakingMeta().onSnapshot(
-    (snap) => {
+  if (!getDb()) {
+    onTotal(0);
+    return () => {};
+  }
+  return col.matchmakingMeta().onSnapshot(
+    (snap: any) => {
       if (!snap || !snap.exists) {
-        metaCount = null;
-      } else {
-        const n = (snap.data() as { searchingCount?: number })?.searchingCount;
-        metaCount = typeof n === 'number' && n >= 0 ? n : null;
+        onTotal(0);
+        return;
       }
-      emit();
+      const n = (snap.data() as { searchingCount?: number })?.searchingCount;
+      onTotal(typeof n === 'number' && n >= 0 ? n : 0);
     },
-    () => {
-      metaCount = null;
-      emit();
-    },
+    () => onTotal(0),
   );
-  const unQ = col.queue().onSnapshot(
-    (snap) => {
-      queueCount = countUnmatchedQueue(snap);
-      emit();
-    },
-    () => {
-      queueCount = 0;
-      emit();
-    },
-  );
-  return () => {
-    unMeta();
-    unQ();
-  };
 }
 
 // ─── Приватные комнаты ────────────────────────────────────────────────────────
@@ -348,10 +342,12 @@ export async function createRoom(room: ArenaRoom): Promise<void> {
 }
 
 export async function joinRoom(code: string, userId: string): Promise<ArenaRoom | null> {
+  const db = getDb();
+  if (!db) return null;
   const ref = col.rooms().doc(code.toUpperCase());
   let result: ArenaRoom | null = null;
 
-  await db.runTransaction(async tx => {
+  await db.runTransaction(async (tx: any) => {
     const snap = await tx.get(ref);
     if (!snap.exists) return;
 
@@ -376,7 +372,8 @@ export function subscribeRoom(
   code: string,
   onUpdate: (room: ArenaRoom) => void
 ): () => void {
-  return col.rooms().doc(code).onSnapshot(snap => {
+  if (!getDb()) return () => {};
+  return col.rooms().doc(code).onSnapshot((snap: any) => {
     if (snap && snap.exists) onUpdate(snap.data() as ArenaRoom);
   });
 }
@@ -387,12 +384,13 @@ export async function getQuestionsByLevel(
   level: string,
   count: number
 ): Promise<ArenaQuestion[]> {
+  if (!getDb()) return [];
   const snap = await col.questions()
     .where('level', '==', level)
     .limit(count * 3) // берём с запасом, потом shuffle
     .get();
 
-  const all = snap.docs.map(d => d.data() as ArenaQuestion);
+  const all: ArenaQuestion[] = snap.docs.map((d: any) => d.data() as ArenaQuestion);
   return shuffleArray(all).slice(0, count);
 }
 

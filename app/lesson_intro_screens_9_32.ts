@@ -1,8 +1,8 @@
 /**
  * Intro-screens for lessons 9–32.
  *
- * Уроки 9–16: английский как цель — `lesson_intro_screens_en_9_16.ts`.
- * Уроки 17–32: английский курс — `lesson_intro_screens_en_17_32.ts`.
+ * Уроки 9–22: отдельные `lesson_intro_screens_lesson*_v2.ts`.
+ * Уроки 23–32: английский курс — `lesson_intro_screens_en_17_32.ts`.
  *
  * Подключается через `getLessonIntroScreens` в lesson_data_all.ts.
  *
@@ -14,21 +14,47 @@
 import type { LessonIntroScreen } from './lesson_data_types';
 import {
   LESSON_9_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson9_v2';
+import {
   LESSON_10_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson10_v2';
+import {
   LESSON_11_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson11_v2';
+import {
   LESSON_12_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson12_v2';
+import {
   LESSON_13_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson13_v2';
+import {
   LESSON_14_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson14_v2';
+import {
   LESSON_15_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson15_v2';
+import {
   LESSON_16_INTRO_SCREENS,
-} from './lesson_intro_screens_en_9_16';
+} from './lesson_intro_screens_lesson16_v2';
 import {
   LESSON_17_INTRO_EXTRA,
+} from './lesson_intro_screens_lesson17_v2';
+import {
   LESSON_18_INTRO_EXTRA,
+} from './lesson_intro_screens_lesson18_v2';
+import {
   LESSON_19_INTRO_EXTRA,
+} from './lesson_intro_screens_lesson19_v2';
+import {
   LESSON_20_INTRO_EXTRA,
+} from './lesson_intro_screens_lesson20_v2';
+import {
   LESSON_21_INTRO_EXTRA,
+} from './lesson_intro_screens_lesson21_v2';
+import {
   LESSON_22_INTRO_EXTRA,
+} from './lesson_intro_screens_lesson22_v2';
+import {
   LESSON_23_INTRO_EXTRA,
   LESSON_24_INTRO_EXTRA,
   LESSON_25_INTRO_EXTRA,

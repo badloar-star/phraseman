@@ -1892,7 +1892,7 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['your', 'yours', 'u', 'ye', 'yew'], category: 'pronoun' },
-      { text: 'understand', correct: 'understand', distractors: ['underline', 'undermine', 'underland', 'understay', 'undertone'], category: 'verb' },
+      { text: 'understand', correct: 'understand', distractors: ['underline', 'undermine', 'below', 'misread', 'undertone'], category: 'verb' },
       { text: 'me', correct: 'me', distractors: ['my', 'mine', 'I', 'we', 'him'], category: 'pronoun' },
     ],
   },
@@ -1981,7 +1981,7 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'It', correct: 'It', distractors: ['its', 'is', 'if', 'in', 'eat'], category: 'pronoun' },
-      { text: 'helps', correct: 'helps', distractors: ['help', 'held', 'belps', 'heaps', 'melts'], category: 'verb' },
+      { text: 'helps', correct: 'helps', distractors: ['help', 'held', 'backs', 'heaps', 'melts'], category: 'verb' },
       { text: 'people', correct: 'people', distractors: ['temple', 'purple', 'pickle', 'poodle', 'ripple'], category: 'noun' },
     ],
   },
@@ -2123,7 +2123,7 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['your', 'yours', 'u', 'ye', 'yew'], category: 'pronoun' },
       { text: 'read', correct: 'read', distractors: ['reads', 'real', 'lead', 'bead', 'head'], category: 'verb' },
-      { text: 'books', correct: 'books', distractors: ['looks', 'cooks', 'hooks', 'boots', 'boots'], category: 'noun' },
+      { text: 'books', correct: 'books', distractors: ['looks', 'cooks', 'hooks', 'boots', 'boxes'], category: 'noun' },
     ],
   },
   {
@@ -2153,8 +2153,8 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
     spanish: 'Él escribe mensajes.',
     words: [
       { text: 'Escribe', correct: 'Escribe', distractors: ['cartas', 'cuando', 'porque', 'aunque', 'también'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (cartas).; D2: colisión léxica o colocación no idiomática en el hueco (cuando).; D3: colisión léxica o colocación no idiomática en el hueco (porque).; D4: colisión léxica o colocación no idiomática en el hueco (aunque).; D5: colisión léxica o colocación no idiomática en el hueco (también).
-      { text: 'cartas', correct: 'cartas', distractors: ['Escribe', 'algún', 'alguna', 'ningún', 'ninguna'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (escribe).; D2: colisión léxica o colocación no idiomática en el hueco (algún).; D3: colisión léxica o colocación no idiomática en el hueco (alguna).; D4: colisión léxica o colocación no idiomática en el hueco (ningún).; D5: colisión léxica o colocación no idiomática en el hueco (ninguna).
-      { text: '.', correct: '.', distractors: ['Escribe', 'cartas', 'solo', 'así', 'casi'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (escribe).; D2: marca de enunciación (¿?¡!) típica de calco inglés (cartas).; D3: marca de enunciación (¿?¡!) típica de calco inglés (solo).; D4: marca de enunciación (¿?¡!) típica de calco inglés (así).; D5: marca de enunciación (¿?¡!) típica de calco inglés (casi).
+      { text: 'mensajes', correct: 'mensajes', distractors: ['Escribe', 'algún', 'alguna', 'ningún', 'ninguna'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (escribe).; D2: colisión léxica o colocación no idiomática en el hueco (algún).; D3: colisión léxica o colocación no idiomática en el hueco (alguna).; D4: colisión léxica o colocación no idiomática en el hueco (ningún).; D5: colisión léxica o colocación no idiomática en el hueco (ninguna).
+      { text: '.', correct: '.', distractors: ['Escribe', 'mensajes', 'solo', 'así', 'casi'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (escribe).; D2: marca de enunciación (¿?¡!) típica de calco inglés (mensajes).; D3: marca de enunciación (¿?¡!) típica de calco inglés (solo).; D4: marca de enunciación (¿?¡!) típica de calco inglés (así).; D5: marca de enunciación (¿?¡!) típica de calco inglés (casi).
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['his', 'him', 'she', 'they', 'we'], category: 'pronoun' },
@@ -2541,10 +2541,10 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
     ukrainian: 'Ми довіряємо тобі',
     spanish: 'Confiamos en ti.',
     words: [
-      { text: 'Aceptamos', correct: 'Aceptamos', distractors: ['las', 'condiciones', 'cuando', 'porque', 'aunque'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (las).; D2: colisión léxica o colocación no idiomática en el hueco (condiciones).; D3: colisión léxica o colocación no idiomática en el hueco (cuando).; D4: colisión léxica o colocación no idiomática en el hueco (porque).; D5: colisión léxica o colocación no idiomática en el hueco (aunque).
-      { text: 'las', correct: 'las', distractors: ['Los', 'El', 'La', 'Unas', 'Unos'], category: 'articulo' }, // D1: género/número o contracción al/del no aplicada (los).; D2: género/número o contracción al/del no aplicada (el).; D3: género/número o contracción al/del no aplicada (la).; D4: género/número o contracción al/del no aplicada (unas).; D5: género/número o contracción al/del no aplicada (unos).
-      { text: 'condiciones', correct: 'condiciones', distractors: ['Aceptamos', 'las', 'solo', 'así', 'casi'], category: 'lexico_oracion' }, // D1: colisión léxica o colocación no idiomática en el hueco (aceptamos).; D2: colisión léxica o colocación no idiomática en el hueco (las).; D3: colisión léxica o colocación no idiomática en el hueco (solo).; D4: colisión léxica o colocación no idiomática en el hueco (así).; D5: colisión léxica o colocación no idiomática en el hueco (casi).
-      { text: '.', correct: '.', distractors: ['Aceptamos', 'las', 'condiciones', 'mucho', 'muchas'], category: 'puntuacion' }, // D1: marca de enunciación (¿?¡!) típica de calco inglés (aceptamos).; D2: marca de enunciación (¿?¡!) típica de calco inglés (las).; D3: marca de enunciación (¿?¡!) típica de calco inglés (condiciones).; D4: marca de enunciación (¿?¡!) típica de calco inglés (mucho).; D5: marca de enunciación (¿?¡!) típica de calco inglés (muchas).
+      { text: 'Confiamos', correct: 'Confiamos', distractors: ['Confías', 'Confiar', 'Aceptamos', 'Creemos', 'Necesitamos'], category: 'verbo' },
+      { text: 'en', correct: 'en', distractors: ['A', 'De', 'Por', 'Con', 'Sin'], category: 'preposicion' },
+      { text: 'ti', correct: 'ti', distractors: ['tú', 'te', 'mí', 'usted', 'él'], category: 'pronombre' },
+      { text: '.', correct: '.', distractors: ['Confiamos', 'en', 'ti', 'mucho', 'ahora'], category: 'puntuacion' },
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['way', 'us', 'our', 'west', 'wet'], category: 'pronoun' },
@@ -2654,7 +2654,7 @@ export const LESSON_3_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['way', 'us', 'our', 'west', 'wet'], category: 'pronoun' },
-      { text: 'wait', correct: 'wait', distractors: ['waits', 'bait', 'fait', 'gait', 'rait'], category: 'verb' },
+      { text: 'wait', correct: 'wait', distractors: ['waits', 'bait', 'fast', 'gait', 'rait'], category: 'verb' },
       { text: 'here', correct: 'here', distractors: ['hear', 'her', 'there', 'where', 'hair'], category: 'adverb' },
     ],
   },
@@ -3230,7 +3230,7 @@ export const LESSON_4_PHRASES: LessonPhrase[] = [
       { text: 'do', correct: 'do', distractors: ['does', 'did', 'done', 'go', 'to'], category: 'verb' },
       { text: 'not', correct: 'not', distractors: ['no', 'nor', 'net', 'note', 'nut'], category: 'adverb' },
       { text: 'feel', correct: 'feel', distractors: ['feels', 'felt', 'fill', 'fall', 'fell'], category: 'verb' },
-      { text: 'tired', correct: 'tired', distractors: ['tired', 'fired', 'hired', 'wired', 'tried'], category: 'adjective' },
+      { text: 'tired', correct: 'tired', distractors: ['bored', 'fired', 'hired', 'wired', 'tried'], category: 'adjective' },
     ],
   },
   {
@@ -4618,7 +4618,7 @@ export const LESSON_5_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'Does', correct: 'Does', distractors: ['do', 'did', 'dose', 'done', 'dotes'], category: 'verb' },
       { text: 'she', correct: 'she', distractors: ['her', 'he', 'see', 'shy', 'they'], category: 'pronoun' },
-      { text: 'want', correct: 'want', distractors: ['wants', 'went', 'wand', 'rant', 'want'], category: 'verb' },
+      { text: 'want', correct: 'want', distractors: ['wants', 'went', 'wand', 'rant', 'need'], category: 'verb' },
       { text: 'work', correct: 'work', distractors: ['works', 'word', 'wore', 'fork', 'worm'], category: 'noun' },
     ],
   },
@@ -5281,17 +5281,18 @@ export const LESSON_6_PHRASES: LessonPhrase[] = [
   },
   {
     id: 'lesson6_phrase_27',
-    english: 'Where does he keep money?',
-    russian: 'Где он хранит деньги?',
-    ukrainian: 'Де він зберігає гроші?',
-    spanish: '¿Dónde guarda él dinero?',
+    english: 'Where does he keep keys?',
+    russian: 'Где он хранит ключи?',
+    ukrainian: 'Де він зберігає ключі?',
+    spanish: '¿Dónde guarda él las llaves?',
     words: [
-      { text: '¿', correct: '¿', distractors: ['Dónde', 'guarda', 'él', 'dinero', 'nunca'], category: 'puntuacion' },
+      { text: '¿', correct: '¿', distractors: ['Dónde', 'guarda', 'él', 'llaves', 'nunca'], category: 'puntuacion' },
       { text: 'Dónde', correct: 'Dónde', distractors: ['Cuándo', 'Adónde', 'Cómo', 'Qué', 'Cuál'], category: 'interrogativo' },
       { text: 'guarda', correct: 'guarda', distractors: ['Dónde', 'él', 'dinero', 'menos', 'bien'], category: 'lexico_oracion' },
       { text: 'él', correct: 'él', distractors: ['Ella', 'Ellos', 'Usted', 'Yo', 'Nosotros'], category: 'pronombre' },
-      { text: 'dinero', correct: 'dinero', distractors: ['Dónde', 'guarda', 'él', 'donde', 'cuando'], category: 'lexico_oracion' },
-      { text: '?', correct: '?', distractors: ['Dónde', 'guarda', 'él', 'dinero', 'aquella'], category: 'puntuacion' },
+      { text: 'las', correct: 'las', distractors: ['el', 'la', 'los', 'unas', 'sus'], category: 'articulo' },
+      { text: 'llaves', correct: 'llaves', distractors: ['dinero', 'casa', 'cartera', 'puertas', 'salidas'], category: 'lexico_oracion' },
+      { text: '?', correct: '?', distractors: ['Dónde', 'guarda', 'él', 'llaves', 'aquella'], category: 'puntuacion' },
     ],
     wordsEn: [
       { text: 'Where', correct: 'Where', distractors: ['were', 'when', 'what', 'who', 'why'] },
@@ -5863,8 +5864,8 @@ export const LESSON_7_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson7_phrase_4',
     english: 'She has a bag',
-    russian: 'У нее есть сумка',
-    ukrainian: 'Вона має сумку',
+    russian: 'У неё есть сумка',
+    ukrainian: 'У неї є сумка',
     spanish: 'Ella tiene bolso.',
     words: [
       { text: 'Ella', correct: 'Ella', distractors: ['Él', 'Ellas', 'Usted', 'Yo', 'Nosotros'], category: 'pronombre' }, // D1: persona o caso pronominal equivocado (él).; D2: persona o caso pronominal equivocado (ellas).; D3: persona o caso pronominal equivocado (usted).; D4: persona o caso pronominal equivocado (yo).; D5: persona o caso pronominal equivocado (nosotros).
@@ -6862,7 +6863,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'We', correct: 'We', distractors: ['I', 'They', 'She', 'our', 'us'] },
       { text: 'rest', correct: 'rest', distractors: ['rests', 'resting', 'reset', 'test', 'best'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
-      { text: 'July', correct: 'July', distractors: ['June', 'January', 'August', 'jolly', 'July'] },
+      { text: 'July', correct: 'July', distractors: ['June', 'January', 'August', 'jolly', 'March'] },
     ],
   },
   {
@@ -6948,7 +6949,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'pay', correct: 'pay', distractors: ['pays', 'paid', 'say', 'way', 'day'] },
       { text: 'cash', correct: 'cash', distractors: ['card', 'money', 'crash', 'dash', 'hash'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'to', 'of', 'by'], category: 'preposition' },
-      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'Friday', 'friend'] },
+      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'Sunday', 'friend'] },
     ],
   },
   {
@@ -7007,7 +7008,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'walk', correct: 'walk', distractors: ['walks', 'walking', 'talk', 'work', 'wall'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'evening', correct: 'evening', distractors: ['morning', 'night', 'afternoon', 'evening', 'evening'] },
+      { text: 'evening', correct: 'evening', distractors: ['morning', 'night', 'afternoon', 'dawn', 'midnight'] },
     ],
   },
   {
@@ -7061,7 +7062,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     spanish: 'Nos reunimos en mayo.',
     words: [
       { text: 'Nos', correct: 'Nos', distractors: ['Me', 'Te', 'Se', 'Le', 'Les'], category: 'pronombre' },
-      { text: 'reunimos', correct: 'reunimos', distractors: ['reunimos', 'reúno', 'reúne', 'reúnen', 'viajamos'], category: 'lexico_oracion' },
+      { text: 'reunimos', correct: 'reunimos', distractors: ['reúno', 'reúne', 'reúnen', 'viajamos', 'trabajamos'], category: 'lexico_oracion' },
       { text: 'en', correct: 'en', distractors: ['a', 'por', 'de', 'al', 'con'], category: 'preposicion' },
       { text: 'mayo', correct: 'mayo', distractors: ['enero', 'julio', 'invierno', 'verano', 'octubre'], category: 'lexico_temporal' },
       { text: '.', correct: '.', distractors: ['Nos', 'reunimos', 'en', 'mayo', 'hoy'], category: 'puntuacion' },
@@ -7070,7 +7071,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'We', correct: 'We', distractors: ['I', 'They', 'She', 'our', 'us'] },
       { text: 'meet', correct: 'meet', distractors: ['meets', 'met', 'meat', 'feet', 'greet'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
-      { text: 'May', correct: 'May', distractors: ['June', 'March', 'April', 'may', 'say'] },
+      { text: 'May', correct: 'May', distractors: ['June', 'March', 'April', 'July', 'say'] },
     ],
   },
   {
@@ -7131,7 +7132,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'you', correct: 'you', distractors: ['your', 'I', 'we', 'they', 'he'] },
       { text: 'work', correct: 'work', distractors: ['works', 'working', 'walk', 'word', 'week'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'to', 'of', 'by'], category: 'preposition' },
-      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'friend', 'Friday'] },
+      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'friend', 'Sunday'] },
       { text: '?', correct: '?', distractors: ['Do', 'you', 'work', 'on', 'Friday'] },
     ],
   },
@@ -7560,7 +7561,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'his', 'one', 'any'] },
       { text: 'birthday', correct: 'birthday', distractors: ['birthdays', 'holiday', 'party', 'birdsong', 'birth'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
-      { text: 'October', correct: 'October', distractors: ['November', 'September', 'December', 'octopus', 'October'] },
+      { text: 'October', correct: 'October', distractors: ['November', 'September', 'December', 'octopus', 'January'] },
     ],
   },
   {
@@ -7607,7 +7608,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'gave', 'save', 'wave'] },
       { text: 'time', correct: 'time', distractors: ['times', 'dime', 'lime', 'rhyme', 'tile'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'to', 'of', 'by'], category: 'preposition' },
-      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'friend', 'Friday'] },
+      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'friend', 'Sunday'] },
       { text: '?', correct: '?', distractors: ['Does', 'she', 'have', 'time', 'Friday'] },
     ],
   },
@@ -7647,7 +7648,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'We', correct: 'We', distractors: ['I', 'They', 'She', 'our', 'us'] },
       { text: 'travel', correct: 'travel', distractors: ['travels', 'traveled', 'gravel', 'unravel', 'level'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
-      { text: 'May', correct: 'May', distractors: ['June', 'March', 'April', 'may', 'say'] },
+      { text: 'May', correct: 'May', distractors: ['June', 'March', 'April', 'July', 'say'] },
     ],
   },
   {
@@ -7719,7 +7720,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'call', correct: 'call', distractors: ['calls', 'called', 'tall', 'ball', 'fall'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'evening', correct: 'evening', distractors: ['morning', 'night', 'afternoon', 'even', 'evening'] },
+      { text: 'evening', correct: 'evening', distractors: ['morning', 'night', 'afternoon', 'even', 'midnight'] },
       { text: '?', correct: '?', distractors: ['When', 'they', 'call', 'in', 'evening'] },
     ],
   },
@@ -7771,7 +7772,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'we', correct: 'we', distractors: ['I', 'they', 'she', 'our', 'us'] },
       { text: 'meet', correct: 'meet', distractors: ['meets', 'met', 'meat', 'feet', 'greet'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'to', 'of', 'by'], category: 'preposition' },
-      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'friend', 'Friday'] },
+      { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Saturday', 'fridge', 'friend', 'Sunday'] },
       { text: '?', correct: '?', distractors: ['Where', 'we', 'meet', 'on', 'Friday'] },
     ],
   },
@@ -7842,7 +7843,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'They', 'She', 'our', 'us'] },
       { text: 'study', correct: 'study', distractors: ['studies', 'studied', 'studio', 'steady', 'stud'] },
-      { text: 'English', correct: 'English', distractors: ['Spanish', 'French', 'enlarge', 'angle', 'English'] },
+      { text: 'English', correct: 'English', distractors: ['Spanish', 'French', 'enlarge', 'angle', 'German'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'afternoon', 'mourning', 'moaning'] },
@@ -7890,7 +7891,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
       { text: 'books', correct: 'books', distractors: ['book', 'looks', 'cooks', 'hooks', 'boots'] },
       { text: 'in', correct: 'in', distractors: ['on', 'at', 'to', 'by', 'of'], category: 'preposition' },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'evening', correct: 'evening', distractors: ['morning', 'night', 'afternoon', 'even', 'evening'] },
+      { text: 'evening', correct: 'evening', distractors: ['morning', 'night', 'afternoon', 'even', 'midnight'] },
     ],
   },
   {
@@ -7910,7 +7911,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'eye', 'hi', 'mine'] },
       { text: 'feel', correct: 'feel', distractors: ['feels', 'felt', 'heal', 'deal', 'real'] },
-      { text: 'tired', correct: 'tired', distractors: ['tired', 'bored', 'wired', 'hired', 'fired'] },
+      { text: 'tired', correct: 'tired', distractors: ['sleepy', 'bored', 'wired', 'hired', 'fired'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'to', 'of', 'by'], category: 'preposition' },
       { text: 'Mondays', correct: 'Mondays', distractors: ['Monday', 'Tuesdays', 'Sundays', 'money', 'mornings'] },
     ],

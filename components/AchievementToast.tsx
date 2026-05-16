@@ -1,22 +1,17 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, Image, PanResponder,
+  View, Text, Animated, TouchableOpacity, StyleSheet, Modal, Pressable, Dimensions, Image, PanResponder, Share,
 } from 'react-native';
-import Svg from 'react-native-svg';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { Ionicons } from '@expo/vector-icons';
 import { useAchievement } from './AchievementContext';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { markAchievementsNotified } from '../app/achievements';
-import { playAchievementUnlockSound } from '../app/achievement_modal_sound';
 import { ACHIEVEMENT_ICON, ACHIEVEMENT_IMAGE, CAT_COLOR, BadgeShield } from '../app/achievements_screen';
 import { STORE_URL } from '../app/config';
 import { buildAchievementShareMessage } from '../app/achievement_share';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
-import type { ShareCardLang } from './share_cards/streakCardCopy';
-import AchievementShareCardSvg from './share_cards/AchievementShareCardSvg';
-import { shareCardFromSvgRef } from './share_cards/shareCardPng';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
@@ -34,14 +29,6 @@ export default function AchievementToast() {
   const { theme: t, f, isDark } = useTheme();
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
-  const toastAchShareRef = useRef<InstanceType<typeof Svg> | null>(null);
-  const toastCardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY
-    ? 'ru'
-    : lang === 'uk'
-      ? 'uk'
-      : lang === 'es'
-        ? 'es'
-        : 'ru';
 
   const translateY    = useRef(new Animated.Value(160)).current;
   const swipeDy       = useRef(new Animated.Value(0)).current;
@@ -136,7 +123,6 @@ export default function AchievementToast() {
 
       // Вибрация
       hapticSuccess();
-      void playAchievementUnlockSound(currentToast.category);
 
       // Пометить как notified
       markAchievementsNotified([currentToast.id]);
@@ -288,18 +274,6 @@ export default function AchievementToast() {
           >
             <Pressable onPress={e => e.stopPropagation()}>
               <View style={[s.modalCard, { backgroundColor: t.bgCard }]}>
-                <View
-                  pointerEvents="none"
-                  collapsable={false}
-                  style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, overflow: 'hidden' }}
-                >
-                  <AchievementShareCardSvg
-                    ref={toastAchShareRef}
-                    title={name}
-                    lang={toastCardLang}
-                    layoutSize={1080}
-                  />
-                </View>
                 <BadgeShield
                   unlocked={true}
                   inProgress={false}
@@ -323,10 +297,7 @@ export default function AchievementToast() {
                   style={s.shareRow}
                   onPress={async () => {
                     const msg = buildAchievementShareMessage(REPORT_SCREENS_RUSSIAN_ONLY ? 'ru' : lang, name, STORE_URL);
-                    await shareCardFromSvgRef(toastAchShareRef, {
-                      fileNamePrefix: 'phraseman-achievement',
-                      textFallback: msg,
-                    });
+                    await Share.share({ message: msg }).catch(() => {});
                   }}
                 >
                   <Ionicons name="share-outline" size={16} color={t.textSecond} />

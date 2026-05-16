@@ -18,10 +18,10 @@
 // ════════════════════════════════════════════════════════════════════════════
 import React from 'react';
 import { Redirect } from 'expo-router';
-import { DEV_MODE, IS_STORE_RELEASE } from './config';
+import { IS_STORE_RELEASE } from './config';
 
 export default function SettingsTestersGate() {
-  if ((__DEV__ || DEV_MODE) && !IS_STORE_RELEASE) {
+  if (__DEV__ && !IS_STORE_RELEASE) {
     // eslint-disable-next-line @typescript-eslint/no-require-imports -- intentional: lets Metro tree-shake the dev module out of prod bundle
     const Real = require('./_admin_settings_testers').default;
     return <Real />;

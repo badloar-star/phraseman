@@ -225,7 +225,7 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
 
   const [
     wordsLearned,
-    placementLevel,
+    diagnosticLastRaw,
     dailyStatsRaw,
     fgDaily,
     flashCards,
@@ -239,7 +239,7 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     arena,
   ] = await Promise.all([
     countLearnedWordsTotal(),
-    AsyncStorage.getItem('placement_level'),
+    AsyncStorage.getItem('diagnostic_last'),
     AsyncStorage.getItem('daily_stats'),
     getForegroundDailyMsMap(),
     readCustomCards(),
@@ -252,6 +252,15 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     readCounter(K_SHARDS_SPENT),
     loadArenaWinsLosses(),
   ]);
+  let diagnosticLevel: string | null = null;
+  if (diagnosticLastRaw) {
+    try {
+      const parsed = JSON.parse(diagnosticLastRaw);
+      diagnosticLevel = typeof parsed?.level === 'string' ? parsed.level.trim() || null : null;
+    } catch {
+      diagnosticLevel = null;
+    }
+  }
 
   const statsMap: Record<string, unknown> = dailyStatsRaw ? JSON.parse(dailyStatsRaw) : {};
   const unionDates = new Set([...Object.keys(statsMap), ...Object.keys(fgDaily)]);
@@ -279,7 +288,7 @@ export async function loadLifetimeProfileStats(): Promise<LifetimeProfileStats> 
     quizzesTotal: quizzesE + quizzesM + quizzesH,
     arenaWins: arena.wins,
     arenaLosses: arena.losses,
-    englishLevel: placementLevel?.trim() || null,
+    englishLevel: diagnosticLevel,
     dailyTasksClaimed: dailyClaims,
     shardsEarned: shardsE,
     shardsSpent: shardsS,

@@ -1,0 +1,363 @@
+import * as admin from 'firebase-admin';
+import { onRequest } from 'firebase-functions/v2/https';
+import * as logger from 'firebase-functions/logger';
+import { defineSecret } from 'firebase-functions/params';
+
+const REGION = 'us-central1';
+const REVENUECAT_WEBHOOK_AUTH = defineSecret('REVENUECAT_WEBHOOK_AUTH');
+
+const SHARD_PACKS_BY_PRODUCT_ID: Record<string, { packId: string; shards: number }> = {
+  phraseman_shards_30: { packId: 'starter', shards: 35 },
+  phraseman_shards_80: { packId: 'popular', shards: 92 },
+  phraseman_shards_180: { packId: 'value', shards: 210 },
+  phraseman_shards_420: { packId: 'pro', shards: 500 },
+};
+
+const PREMIUM_ACTIVE_EVENTS = new Set([
+  'INITIAL_PURCHASE',
+  'RENEWAL',
+  'UNCANCELLATION',
+  'PRODUCT_CHANGE',
+  'SUBSCRIPTION_EXTENDED',
+  'TEMPORARY_ENTITLEMENT_GRANT',
+]);
+
+const PREMIUM_KEEP_ACTIVE_EVENTS = new Set([
+  'CANCELLATION',
+  'BILLING_ISSUE',
+]);
+
+const PREMIUM_INACTIVE_EVENTS = new Set([
+  'EXPIRATION',
+]);
+
+type RevenueCatWebhookBody = {
+  api_version?: string;
+  event?: {
+    id?: string;
+    type?: string;
+    app_user_id?: string;
+    original_app_user_id?: string;
+    aliases?: unknown[];
+    product_id?: string;
+    transaction_id?: string;
+    original_transaction_id?: string;
+    store?: string;
+    environment?: string;
+    event_timestamp_ms?: number;
+    purchased_at_ms?: number;
+    expiration_at_ms?: number;
+    period_type?: string;
+    entitlement_id?: string;
+    entitlement_ids?: unknown[];
+    presented_offering_id?: string;
+  };
+};
+
+type RevenueCatEvent = NonNullable<RevenueCatWebhookBody['event']>;
+
+function cleanId(raw: unknown): string {
+  return String(raw ?? '').trim();
+}
+
+function authMatches(header: string | undefined, expected: string): boolean {
+  const value = String(header ?? '').trim();
+  if (!value) return false;
+  return value === expected || value.toLowerCase() === `bearer ${expected}`.toLowerCase();
+}
+
+function parseShards(raw: unknown): number {
+  const n = typeof raw === 'number' ? raw : Number(raw);
+  if (!Number.isFinite(n) || n < 0) return 0;
+  return Math.floor(n);
+}
+
+function candidateUserIds(event: RevenueCatEvent): string[] {
+  const out = new Set<string>();
+  for (const raw of [event.app_user_id, event.original_app_user_id]) {
+    const id = cleanId(raw);
+    if (id) out.add(id);
+  }
+  for (const raw of Array.isArray(event.aliases) ? event.aliases : []) {
+    const id = cleanId(raw);
+    if (id) out.add(id);
+  }
+  return [...out];
+}
+
+function entitlementIds(event: RevenueCatEvent): string[] {
+  const out = new Set<string>();
+  const one = cleanId(event.entitlement_id);
+  if (one) out.add(one.toLowerCase());
+  for (const raw of Array.isArray(event.entitlement_ids) ? event.entitlement_ids : []) {
+    const id = cleanId(raw);
+    if (id) out.add(id.toLowerCase());
+  }
+  return [...out];
+}
+
+function looksLikePremiumSubscription(event: RevenueCatEvent): boolean {
+  const productId = cleanId(event.product_id).toLowerCase();
+  const offeringId = cleanId(event.presented_offering_id).toLowerCase();
+  const entitlements = entitlementIds(event);
+
+  if (entitlements.includes('premium')) return true;
+  if (/premium|monthly|month|yearly|annual|subscription|sub/.test(productId)) return true;
+  return /premium|subscription|sub/.test(offeringId);
+}
+
+function premiumPlanFromEvent(event: RevenueCatEvent): 'monthly' | 'yearly' {
+  const productId = cleanId(event.product_id).toLowerCase();
+  if (/year|yearly|annual|12.?month/.test(productId)) return 'yearly';
+  return 'monthly';
+}
+
+function eventMs(raw: unknown): number | null {
+  const n = typeof raw === 'number' ? raw : Number(raw);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  return Math.floor(n);
+}
+
+async function findExistingUserRef(
+  tx: admin.firestore.Transaction,
+  db: admin.firestore.Firestore,
+  candidates: string[],
+): Promise<{ uid: string; ref: admin.firestore.DocumentReference; snap: admin.firestore.DocumentSnapshot }> {
+  let uid = candidates[0];
+  let ref = db.collection('users').doc(uid);
+  let snap = await tx.get(ref);
+  for (const candidate of candidates.slice(1)) {
+    if (snap.exists) break;
+    uid = candidate;
+    ref = db.collection('users').doc(uid);
+    snap = await tx.get(ref);
+  }
+  return { uid, ref, snap };
+}
+
+async function handlePremiumSubscriptionEvent(
+  event: RevenueCatEvent,
+  eventType: string,
+  productId: string,
+  res: any,
+): Promise<void> {
+  const candidates = candidateUserIds(event);
+  if (candidates.length === 0) {
+    res.status(400).send('Missing app_user_id');
+    return;
+  }
+
+  const transactionId = cleanId(
+    event.transaction_id ||
+    event.original_transaction_id ||
+    event.id ||
+    `${eventType}_${event.event_timestamp_ms || Date.now()}_${candidates[0]}`,
+  );
+  const eventId = cleanId(event.id) || transactionId;
+  const expiryMs = eventMs(event.expiration_at_ms);
+  const purchasedMs = eventMs(event.purchased_at_ms);
+  const now = Date.now();
+  const plan = premiumPlanFromEvent(event);
+  const periodType = cleanId(event.period_type).toUpperCase();
+  const db = admin.firestore();
+  const processedRef = db.collection('revenuecat_premium_events').doc(eventId);
+
+  try {
+    const out = await db.runTransaction(async (tx) => {
+      const processedSnap = await tx.get(processedRef);
+      if (processedSnap.exists) {
+        return { updated: false, reason: 'duplicate' as const };
+      }
+
+      const { uid, ref: userRef, snap: userSnap } = await findExistingUserRef(tx, db, candidates);
+      const progress = (userSnap.data()?.progress ?? {}) as Record<string, unknown>;
+      const adminOverride = cleanId(progress.admin_premium_override) === 'true';
+      const activeEvent = PREMIUM_ACTIVE_EVENTS.has(eventType);
+      const keepActiveEvent = PREMIUM_KEEP_ACTIVE_EVENTS.has(eventType);
+      const inactiveEvent = PREMIUM_INACTIVE_EVENTS.has(eventType);
+
+      const progressPatch: Record<string, string> = {
+        premium_rc_product_id: productId,
+        premium_rc_period_type: periodType,
+        premium_rc_store: cleanId(event.store).toUpperCase(),
+        premium_rc_environment: cleanId(event.environment).toUpperCase(),
+        premium_rc_event_type: eventType,
+        premium_rc_updated_at: String(now),
+      };
+      if (expiryMs != null) progressPatch.premium_rc_expiry_ms = String(expiryMs);
+      if (purchasedMs != null) progressPatch.premium_rc_purchased_at_ms = String(purchasedMs);
+
+      if (!adminOverride) {
+        if (activeEvent || keepActiveEvent) {
+          progressPatch.premium_plan = plan;
+          progressPatch.premium_expiry = '0';
+          progressPatch.had_premium_ever = '1';
+          if (keepActiveEvent) {
+            progressPatch.premium_rc_cancelled_at = String(now);
+          }
+        } else if (inactiveEvent) {
+          progressPatch.premium_plan = '';
+          progressPatch.premium_expiry = String(expiryMs ?? now);
+        }
+      }
+
+      tx.set(processedRef, {
+        uid,
+        candidates,
+        productId,
+        eventId,
+        eventType,
+        periodType,
+        store: cleanId(event.store),
+        environment: cleanId(event.environment),
+        transactionId,
+        originalTransactionId: cleanId(event.original_transaction_id),
+        purchasedAtMs: purchasedMs,
+        expirationAtMs: expiryMs,
+        eventTimestampMs: eventMs(event.event_timestamp_ms),
+        userDocExists: userSnap.exists,
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      tx.set(userRef, {
+        progress: progressPatch,
+        updatedAt: now,
+        last_active_at: now,
+      }, { merge: true });
+
+      return {
+        updated: true,
+        uid,
+        userDocExists: userSnap.exists,
+        active: activeEvent || keepActiveEvent,
+        adminOverride,
+      };
+    });
+
+    res.status(200).json({ ok: true, kind: 'premium', ...out });
+  } catch (error) {
+    logger.error('revenuecat_premium_webhook_failed', error);
+    res.status(500).send('Internal error');
+  }
+}
+
+async function handleShardPurchaseEvent(
+  event: RevenueCatEvent,
+  eventType: string,
+  productId: string,
+  pack: { packId: string; shards: number },
+  res: any,
+): Promise<void> {
+  if (eventType !== 'NON_RENEWING_PURCHASE') {
+    res.status(200).json({ ok: true, ignored: 'not_non_renewing_purchase' });
+    return;
+  }
+
+  const transactionId = cleanId(event.transaction_id || event.original_transaction_id || event.id);
+  const candidates = candidateUserIds(event);
+  if (!transactionId || candidates.length === 0) {
+    res.status(400).send('Missing transaction_id or app_user_id');
+    return;
+  }
+
+  const db = admin.firestore();
+  const processedRef = db.collection('revenuecat_shard_transactions').doc(transactionId);
+  const now = Date.now();
+  const nowIso = new Date(now).toISOString();
+
+  try {
+    const out = await db.runTransaction(async (tx) => {
+      const processedSnap = await tx.get(processedRef);
+      if (processedSnap.exists) {
+        return { granted: false, reason: 'duplicate' as const };
+      }
+
+      const { uid, ref: userRef, snap: userSnap } = await findExistingUserRef(tx, db, candidates);
+      const before = parseShards(userSnap.data()?.shards);
+      const after = before + pack.shards;
+
+      tx.set(processedRef, {
+        uid,
+        productId,
+        packId: pack.packId,
+        shards: pack.shards,
+        eventId: cleanId(event.id),
+        eventType,
+        store: cleanId(event.store),
+        environment: cleanId(event.environment),
+        purchasedAtMs: eventMs(event.purchased_at_ms),
+        eventTimestampMs: eventMs(event.event_timestamp_ms),
+        createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      });
+
+      tx.set(userRef, {
+        shards: after,
+        shards_updated_at_ms: now,
+        shards_updated_op: 'earn',
+        shards_updated_reason: 'shards_store_purchase',
+        updatedAt: now,
+      }, { merge: true });
+
+      tx.set(userRef.collection('shard_log').doc(), {
+        ts: nowIso,
+        type: 'earn',
+        amount: pack.shards,
+        reason: 'shards_store_purchase',
+        productId,
+        packId: pack.packId,
+        revenueCatTransactionId: transactionId,
+        balanceBefore: before,
+        balanceAfter: after,
+      });
+
+      return { granted: true, balanceAfter: after };
+    });
+
+    res.status(200).json({ ok: true, kind: 'shards', ...out });
+  } catch (error) {
+    logger.error('revenuecat_shards_webhook_failed', error);
+    res.status(500).send('Internal error');
+  }
+}
+
+export const revenueCatShardsWebhook = onRequest({ region: REGION, secrets: [REVENUECAT_WEBHOOK_AUTH] }, async (req, res) => {
+  if (req.method !== 'POST') {
+    res.status(405).send('Method not allowed');
+    return;
+  }
+
+  const body = req.body as RevenueCatWebhookBody;
+  const event = body?.event;
+  const eventType = cleanId(event?.type).toUpperCase();
+  const productId = cleanId(event?.product_id);
+
+  if (!event || !eventType) {
+    res.status(400).send('Bad request');
+    return;
+  }
+
+  const pack = SHARD_PACKS_BY_PRODUCT_ID[productId];
+  const premium = looksLikePremiumSubscription(event);
+  if (!pack && !premium) {
+    res.status(200).json({ ok: true, ignored: 'not_managed_product' });
+    return;
+  }
+
+  const expectedAuth = REVENUECAT_WEBHOOK_AUTH.value().trim();
+  if (!expectedAuth || !authMatches(req.headers.authorization, expectedAuth)) {
+    res.status(401).send('Unauthorized');
+    return;
+  }
+
+  if (premium) {
+    await handlePremiumSubscriptionEvent(event, eventType, productId, res);
+    return;
+  }
+
+  await handleShardPurchaseEvent(event, eventType, productId, pack, res);
+});
+
+export const __revenueCatWebhookTestHooks = {
+  looksLikePremiumSubscription,
+  premiumPlanFromEvent,
+};

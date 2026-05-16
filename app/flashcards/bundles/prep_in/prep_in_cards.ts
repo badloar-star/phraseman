@@ -84,8 +84,8 @@ export const PREP_IN_CARDS: VictoriaRow[] = [
   {
     id: 'official_prep_in_en_09',
     en: 'in a hurry',
-    ru: 'в спешке / торопиться',
-    uk: 'поспіхом / поспішати',
+    ru: 'в спешке',
+    uk: 'поспіхом',
     es: 'con prisa',
     explanationRu: 'Hurry — состояние, которое охватывает человека. IN = ты попал внутрь этого режима. Ошибка — I have hurry: так не говорят. Правильно: I\'m in a hurry.',
     explanationUk: 'Hurry — стан, що охоплює людину. IN = ти потрапив всередину цього режиму. Помилка — I have hurry: так не кажуть. Правильно: I\'m in a hurry.',
@@ -114,8 +114,8 @@ export const PREP_IN_CARDS: VictoriaRow[] = [
   {
     id: 'official_prep_in_en_12',
     en: 'in pain',
-    ru: 'испытывать боль / страдать',
-    uk: 'відчувати біль / страждати',
+    ru: 'испытывать боль',
+    uk: 'відчувати біль',
     es: 'con dolor',
     explanationRu: 'Pain охватывает человека целиком — отсюда IN. He has pain in his back (боль в конкретном месте) vs He is in pain (состояние в целом). IN pain звучит естественнее, когда говоришь о человеке, а не о части тела.',
     explanationUk: 'Pain охоплює людину цілком — звідси IN. He has pain in his back (біль у конкретному місці) vs He is in pain (стан загалом). IN pain звучить природніше, коли говориш про людину, а не про частину тіла.',

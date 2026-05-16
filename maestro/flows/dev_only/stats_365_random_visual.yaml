@@ -1,0 +1,83 @@
+appId: app.phraseman
+---
+- runFlow: ../_shared/open_dev_client.yaml
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "tab-home"
+    timeout: 120000
+- tapOn:
+    id: "tab-home"
+- extendedWaitUntil:
+    visible:
+      id: "screen-home"
+    timeout: 25000
+- tapOn:
+    id: "tab-settings"
+- extendedWaitUntil:
+    visible:
+      id: "screen-settings"
+    timeout: 20000
+- scrollUntilVisible:
+    element:
+      id: "settings-open-testers"
+    direction: DOWN
+    timeout: 25000
+    speed: 80
+    visibilityPercentage: 40
+- tapOn:
+    id: "settings-open-testers"
+- extendedWaitUntil:
+    visible:
+      id: "testers-section-activity_365_qa"
+    timeout: 20000
+- tapOn:
+    id: "testers-section-activity_365_qa"
+- scrollUntilVisible:
+    element:
+      id: "testers-365-random-open"
+    direction: DOWN
+    timeout: 30000
+    speed: 80
+    visibilityPercentage: 45
+- tapOn:
+    id: "testers-365-random-open"
+- extendedWaitUntil:
+    visible:
+      id: "screen-streak-stats"
+    timeout: 30000
+- assertVisible:
+    id: "stats-learning-health-card"
+- assertVisible:
+    id: "stats-rhythm-week-card"
+- takeScreenshot: stats_seeded_random_top
+- scrollUntilVisible:
+    element:
+      id: "stats-activity-365"
+    direction: DOWN
+    timeout: 30000
+    speed: 70
+    visibilityPercentage: 35
+- takeScreenshot: stats_seeded_random_365
+- tapOn:
+    id: "activity-365-toggle"
+- extendedWaitUntil:
+    visible:
+      id: "activity-365-goal-card"
+    timeout: 15000
+- takeScreenshot: stats_seeded_random_365_expanded
+- scrollUntilVisible:
+    element:
+      id: "activity-365-report-open"
+    direction: DOWN
+    timeout: 20000
+    speed: 55
+    visibilityPercentage: 60
+- tapOn:
+    id: "activity-365-report-open"
+- extendedWaitUntil:
+    visible:
+      id: "activity-365-monthly-report-modal"
+    timeout: 15000
+- takeScreenshot: stats_seeded_random_365_report

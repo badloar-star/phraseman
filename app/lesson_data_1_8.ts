@@ -1,17 +1,38 @@
-﻿// Lessons 1-8 Data
+// Lessons 1-8 Data
 import type { LessonIntroScreen } from './lesson_data_types';
 
-/** Ð¢ÐµÐ¾Ñ€Ð¸Ñ 1â€“8 Ð´Ð»Ñ Â«ÑƒÑ‡Ð¸Ð¼ Ð°Ð½Ð³Ð»Ð¸Ð¹ÑÐºÐ¸Ð¹Â»; Ð¸ÑÐ¿Ð°Ð½ÑÐºÐ¸Ðµ ÑÐ»Ð°Ð¹Ð´Ñ‹ Ð¿Ð¾Ð´ÑÑ‚Ð°Ð²Ð»ÑÐµÑ‚ `getLessonIntroScreens(..., 'es')`. */
+/** Теория 1–8 для «учим английский»; испанские слайды подставляет `getLessonIntroScreens(..., 'es')`. */
 export {
   LESSON_1_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson1_v2';
+
+export {
   LESSON_2_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson2_v2';
+
+export {
   LESSON_3_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson3_v2';
+
+export {
   LESSON_4_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson4_v2';
+
+export {
   LESSON_5_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson5_v2';
+
+export {
   LESSON_6_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson6_v2';
+
+export {
   LESSON_7_INTRO_SCREENS,
+} from './lesson_intro_screens_lesson7_v2';
+
+export {
   LESSON_8_INTRO_SCREENS,
-} from './lesson_intro_screens_en_1_8';
+} from './lesson_intro_screens_lesson8_v2';
 
 export {
   LESSON_1_PHRASES,
@@ -40,125 +61,6 @@ export const LESSON_3_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 // ==================== LESSON 4 ====================
 
 // Lesson 4 Vocabulary
-export const LESSON_4_VOCABULARY = [
-  { english: 'Drink', russian: 'ÐŸÐ¸Ñ‚ÑŒ', ukrainian: 'ÐŸÐ¸Ñ‚Ð¸' },
-  { english: 'Milk', russian: 'ÐœÐ¾Ð»Ð¾ÐºÐ¾', ukrainian: 'ÐœÐ¾Ð»Ð¾ÐºÐ¾' },
-  { english: 'Listen', russian: 'Ð¡Ð»ÑƒÑˆÐ°Ñ‚ÑŒ', ukrainian: 'Ð¡Ð»ÑƒÑ…Ð°Ñ‚Ð¸' },
-  { english: 'Smoke', russian: 'ÐšÑƒÑ€Ð¸Ñ‚ÑŒ', ukrainian: 'ÐšÑƒÑ€Ð¸Ñ‚Ð¸' },
-  { english: 'Eat', russian: 'Ð•ÑÑ‚ÑŒ', ukrainian: 'Ð‡ÑÑ‚Ð¸' },
-  { english: 'Sugar', russian: 'Ð¡Ð°Ñ…Ð°Ñ€', ukrainian: 'Ð¦ÑƒÐºÐ¾Ñ€' },
-  { english: 'Understand', russian: 'ÐŸÐ¾Ð½Ð¸Ð¼Ð°Ñ‚ÑŒ', ukrainian: 'Ð Ð¾Ð·ÑƒÐ¼Ñ–Ñ‚Ð¸' },
-  { english: 'Live', russian: 'Ð–Ð¸Ñ‚ÑŒ', ukrainian: 'Ð–Ð¸Ñ‚Ð¸' },
-  { english: 'Work', russian: 'Ð Ð°Ð±Ð¾Ñ‚Ð°Ñ‚ÑŒ', ukrainian: 'ÐŸÑ€Ð°Ñ†ÑŽÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Know', russian: 'Ð—Ð½Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð½Ð°Ñ‚Ð¸' },
-  { english: 'Address', russian: 'ÐÐ´Ñ€ÐµÑ', ukrainian: 'ÐÐ´Ñ€ÐµÑÐ°' },
-  { english: 'Meat', russian: 'ÐœÑÑÐ¾', ukrainian: 'Ðœ\'ÑÑÐ¾' },
-  { english: 'Remember', russian: 'ÐŸÐ¾Ð¼Ð½Ð¸Ñ‚ÑŒ', ukrainian: 'ÐŸÐ°Ð¼\'ÑÑ‚Ð°Ñ‚Ð¸' },
-  { english: 'Number', russian: 'ÐÐ¾Ð¼ÐµÑ€', ukrainian: 'ÐÐ¾Ð¼ÐµÑ€' },
-  { english: 'Buy', russian: 'ÐŸÐ¾ÐºÑƒÐ¿Ð°Ñ‚ÑŒ', ukrainian: 'ÐšÑƒÐ¿ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Coffee', russian: 'ÐšÐ¾Ñ„Ðµ', ukrainian: 'ÐšÐ°Ð²Ð°' },
-  { english: 'Use', russian: 'Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð’Ð¸ÐºÐ¾Ñ€Ð¸ÑÑ‚Ð¾Ð²ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Password', russian: 'ÐŸÐ°Ñ€Ð¾Ð»ÑŒ', ukrainian: 'ÐŸÐ°Ñ€Ð¾Ð»ÑŒ' },
-  { english: 'See', russian: 'Ð’Ð¸Ð´ÐµÑ‚ÑŒ', ukrainian: 'Ð‘Ð°Ñ‡Ð¸Ñ‚Ð¸' },
-  { english: 'Problem', russian: 'ÐŸÑ€Ð¾Ð±Ð»ÐµÐ¼Ð°', ukrainian: 'ÐŸÑ€Ð¾Ð±Ð»ÐµÐ¼Ð°' },
-  { english: 'Wear', russian: 'ÐÐ¾ÑÐ¸Ñ‚ÑŒ (Ð¾Ð´ÐµÐ¶Ð´Ñƒ)', ukrainian: 'ÐÐ¾ÑÐ¸Ñ‚Ð¸ (Ð¾Ð´ÑÐ³)' },
-  { english: 'Mask', russian: 'ÐœÐ°ÑÐºÐ°', ukrainian: 'ÐœÐ°ÑÐºÐ°' },
-  { english: 'Spicy', russian: 'ÐžÑÑ‚Ñ€Ñ‹Ð¹ (Ð¾ ÐµÐ´Ðµ)', ukrainian: 'Ð“Ð¾ÑÑ‚Ñ€Ð¸Ð¹ (Ð¿Ñ€Ð¾ Ñ—Ð¶Ñƒ)' },
-  { english: 'Food', russian: 'Ð•Ð´Ð°', ukrainian: 'Ð‡Ð¶Ð°' },
-  { english: 'Pay', russian: 'ÐŸÐ»Ð°Ñ‚Ð¸Ñ‚ÑŒ', ukrainian: 'ÐŸÐ»Ð°Ñ‚Ð¸Ñ‚Ð¸' },
-  { english: 'Cash', russian: 'ÐÐ°Ð»Ð¸Ñ‡Ð½Ñ‹Ðµ', ukrainian: 'Ð“Ð¾Ñ‚Ñ–Ð²ÐºÐ°' },
-  { english: 'Like', russian: 'Ð›ÑŽÐ±Ð¸Ñ‚ÑŒ (Ð½Ñ€Ð°Ð²Ð¸Ñ‚ÑŒÑÑ)', ukrainian: 'Ð›ÑŽÐ±Ð¸Ñ‚Ð¸ (Ð¿Ð¾Ð´Ð¾Ð±Ð°Ñ‚Ð¸ÑÑ)' },
-  { english: 'Risk', russian: 'Ð Ð¸ÑÐº', ukrainian: 'Ð Ð¸Ð·Ð¸Ðº' },
-  { english: 'Sell', russian: 'ÐŸÑ€Ð¾Ð´Ð°Ð²Ð°Ñ‚ÑŒ', ukrainian: 'ÐŸÑ€Ð¾Ð´Ð°Ð²Ð°Ñ‚Ð¸' },
-  { english: 'Send', russian: 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð»ÑÑ‚ÑŒ', ukrainian: 'ÐÐ°Ð´ÑÐ¸Ð»Ð°Ñ‚Ð¸' },
-  { english: 'Message', russian: 'Ð¡Ð¾Ð¾Ð±Ñ‰ÐµÐ½Ð¸Ðµ', ukrainian: 'ÐŸÐ¾Ð²Ñ–Ð´Ð¾Ð¼Ð»ÐµÐ½Ð½Ñ' },
-  { english: 'Carry', russian: 'ÐÐ¾ÑÐ¸Ñ‚ÑŒ (Ð½ÐµÑÑ‚Ð¸)', ukrainian: 'ÐÐ¾ÑÐ¸Ñ‚Ð¸ (Ð½ÐµÑÑ‚Ð¸)' },
-  { english: 'Car', russian: 'ÐœÐ°ÑˆÐ¸Ð½Ð°', ukrainian: 'ÐœÐ°ÑˆÐ¸Ð½Ð°' },
-  { english: 'Share', russian: 'Ð”ÐµÐ»Ð¸Ñ‚ÑŒÑÑ', ukrainian: 'Ð”Ñ–Ð»Ð¸Ñ‚Ð¸ÑÑ' },
-  { english: 'Secret', russian: 'Ð¡ÐµÐºÑ€ÐµÑ‚', ukrainian: 'Ð¡ÐµÐºÑ€ÐµÑ‚' },
-  { english: 'Check', russian: 'ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÑ‚ÑŒ', ukrainian: 'ÐŸÐµÑ€ÐµÐ²Ñ–Ñ€ÑÑ‚Ð¸' },
-  { english: 'Need', russian: 'ÐÑƒÐ¶Ð´Ð°Ñ‚ÑŒÑÑ', ukrainian: 'ÐŸÐ¾Ñ‚Ñ€ÐµÐ±ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Own', russian: 'Ð’Ð»Ð°Ð´ÐµÑ‚ÑŒ', ukrainian: 'Ð’Ð¾Ð»Ð¾Ð´Ñ–Ñ‚Ð¸' },
-  { english: 'Skip', russian: 'ÐŸÑ€Ð¾Ð¿ÑƒÑÐºÐ°Ñ‚ÑŒ', ukrainian: 'ÐŸÑ€Ð¾Ð¿ÑƒÑÐºÐ°Ñ‚Ð¸' },
-  { english: 'Stranger', russian: 'ÐÐµÐ·Ð½Ð°ÐºÐ¾Ð¼ÐµÑ†', ukrainian: 'ÐÐµÐ·Ð½Ð°Ð¹Ð¾Ð¼ÐµÑ†ÑŒ' },
-  { english: 'List', russian: 'Ð¡Ð¿Ð¸ÑÐ¾Ðº', ukrainian: 'Ð¡Ð¿Ð¸ÑÐ¾Ðº' },
-  { english: 'Trust', russian: 'Ð”Ð¾Ð²ÐµÑ€ÑÑ‚ÑŒ', ukrainian: 'Ð”Ð¾Ð²Ñ–Ñ€ÑÑ‚Ð¸' },
-  { english: 'Ticket', russian: 'Ð‘Ð¸Ð»ÐµÑ‚', ukrainian: 'ÐšÐ²Ð¸Ñ‚Ð¾Ðº' },
-  { english: 'Rule', russian: 'ÐŸÑ€Ð°Ð²Ð¸Ð»Ð¾', ukrainian: 'ÐŸÑ€Ð°Ð²Ð¸Ð»Ð¾' },
-  { english: 'Drive', russian: 'Ð’Ð¾Ð´Ð¸Ñ‚ÑŒ', ukrainian: 'Ð’Ð¾Ð´Ð¸Ñ‚Ð¸' },
-  { english: 'Bus', russian: 'ÐÐ²Ñ‚Ð¾Ð±ÑƒÑ', ukrainian: 'ÐÐ²Ñ‚Ð¾Ð±ÑƒÑ' },
-  { english: 'Lose', russian: 'Ð¢ÐµÑ€ÑÑ‚ÑŒ', ukrainian: 'Ð’Ñ‚Ñ€Ð°Ñ‡Ð°Ñ‚Ð¸' },
-  { english: 'Hope', russian: 'ÐÐ°Ð´ÐµÐ¶Ð´Ð°', ukrainian: 'ÐÐ°Ð´Ñ–Ñ' },
-  { english: 'Change', russian: 'ÐœÐµÐ½ÑÑ‚ÑŒ', ukrainian: 'Ð—Ð¼Ñ–Ð½ÑŽÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Opinion', russian: 'ÐœÐ½ÐµÐ½Ð¸Ðµ', ukrainian: 'Ð”ÑƒÐ¼ÐºÐ°' },
-  { english: 'Feel', russian: 'Ð§ÑƒÐ²ÑÑ‚Ð²Ð¾Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð’Ñ–Ð´Ñ‡ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Fear', russian: 'Ð¡Ñ‚Ñ€Ð°Ñ…', ukrainian: 'Ð¡Ñ‚Ñ€Ð°Ñ…' },
-  { english: 'Spend', russian: 'Ð¢Ñ€Ð°Ñ‚Ð¸Ñ‚ÑŒ', ukrainian: 'Ð’Ð¸Ñ‚Ñ€Ð°Ñ‡Ð°Ñ‚Ð¸' },
-  { english: 'Money', russian: 'Ð”ÐµÐ½ÑŒÐ³Ð¸', ukrainian: 'Ð“Ñ€Ð¾ÑˆÑ–' },
-  { english: 'Advice', russian: 'Ð¡Ð¾Ð²ÐµÑ‚', ukrainian: 'ÐŸÐ¾Ñ€Ð°Ð´Ð°' },
-  { english: 'Forget', russian: 'Ð—Ð°Ð±Ñ‹Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð°Ð±ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Detail', russian: 'Ð”ÐµÑ‚Ð°Ð»ÑŒ', ukrainian: 'Ð”ÐµÑ‚Ð°Ð»ÑŒ' },
-  { english: 'Believe', russian: 'Ð’ÐµÑ€Ð¸Ñ‚ÑŒ', ukrainian: 'Ð’Ñ–Ñ€Ð¸Ñ‚Ð¸' },
-  { english: 'Ad', russian: 'Ð ÐµÐºÐ»Ð°Ð¼Ð½Ð¾Ðµ Ð¾Ð±ÑŠÑÐ²Ð»ÐµÐ½Ð¸Ðµ', ukrainian: 'Ð ÐµÐºÐ»Ð°Ð¼Ð½Ðµ Ð¾Ð³Ð¾Ð»Ð¾ÑˆÐµÐ½Ð½Ñ' },
-  { english: 'Cook', russian: 'Ð“Ð¾Ñ‚Ð¾Ð²Ð¸Ñ‚ÑŒ', ukrainian: 'Ð“Ð¾Ñ‚ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Breakfast', russian: 'Ð—Ð°Ð²Ñ‚Ñ€Ð°Ðº', ukrainian: 'Ð¡Ð½Ñ–Ð´Ð°Ð½Ð¾Ðº' },
-  { english: 'Break', russian: 'ÐÐ°Ñ€ÑƒÑˆÐ°Ñ‚ÑŒ (Ð»Ð¾Ð¼Ð°Ñ‚ÑŒ)', ukrainian: 'ÐŸÐ¾Ñ€ÑƒÑˆÑƒÐ²Ð°Ñ‚Ð¸ (Ð»Ð°Ð¼Ð°Ñ‚Ð¸)' },
-  { english: 'Law', russian: 'Ð—Ð°ÐºÐ¾Ð½', ukrainian: 'Ð—Ð°ÐºÐ¾Ð½' },
-  { english: 'Waste', russian: 'Ð Ð°ÑÑ‚Ñ€Ð°Ñ‡Ð¸Ð²Ð°Ñ‚ÑŒ Ð²Ð¿ÑƒÑÑ‚ÑƒÑŽ', ukrainian: 'ÐœÐ°Ñ€Ð½ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Time', russian: 'Ð’Ñ€ÐµÐ¼Ñ', ukrainian: 'Ð§Ð°Ñ' },
-  { english: 'Read', russian: 'Ð§Ð¸Ñ‚Ð°Ñ‚ÑŒ', ukrainian: 'Ð§Ð¸Ñ‚Ð°Ñ‚Ð¸' },
-  { english: 'News', russian: 'ÐÐ¾Ð²Ð¾ÑÑ‚Ð¸', ukrainian: 'ÐÐ¾Ð²Ð¸Ð½Ð¸' },
-  { english: 'Tie', russian: 'Ð“Ð°Ð»ÑÑ‚ÑƒÐº', ukrainian: 'ÐšÑ€Ð°Ð²Ð°Ñ‚ÐºÐ°' },
-  { english: 'Take', russian: 'Ð‘Ñ€Ð°Ñ‚ÑŒ', ukrainian: 'Ð‘Ñ€Ð°Ñ‚Ð¸' },
-  { english: 'Here', russian: 'Ð—Ð´ÐµÑÑŒ', ukrainian: 'Ð¢ÑƒÑ‚' },
-  { english: 'Close', russian: 'Ð—Ð°ÐºÑ€Ñ‹Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð°Ñ‡Ð¸Ð½ÑÑ‚Ð¸' },
-  { english: 'Window', russian: 'ÐžÐºÐ½Ð¾', ukrainian: 'Ð’Ñ–ÐºÐ½Ð¾' },
-  { english: 'Wine', russian: 'Ð’Ð¸Ð½Ð¾', ukrainian: 'Ð’Ð¸Ð½Ð¾' },
-  { english: 'Fine', russian: 'Ð¨Ñ‚Ñ€Ð°Ñ„', ukrainian: 'Ð¨Ñ‚Ñ€Ð°Ñ„' },
-  { english: 'Ask', russian: 'ÐŸÑ€Ð¾ÑÐ¸Ñ‚ÑŒ (ÑÐ¿Ñ€Ð°ÑˆÐ¸Ð²Ð°Ñ‚ÑŒ)', ukrainian: 'ÐŸÑ€Ð¾ÑÐ¸Ñ‚Ð¸ (Ð¿Ð¸Ñ‚Ð°Ñ‚Ð¸)' },
-  { english: 'Help', russian: 'ÐŸÐ¾Ð¼Ð¾Ñ‰ÑŒ', ukrainian: 'Ð”Ð¾Ð¿Ð¾Ð¼Ð¾Ð³Ð°' },
-  { english: 'Juice', russian: 'Ð¡Ð¾Ðº', ukrainian: 'Ð¡Ñ–Ðº' },
-  { english: 'Fish', russian: 'Ð Ñ‹Ð±Ð°', ukrainian: 'Ð Ð¸Ð±Ð°' },
-  { english: 'Watch', russian: 'Ð¡Ð¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ', ukrainian: 'Ð”Ð¸Ð²Ð¸Ñ‚Ð¸ÑÑ' },
-  { english: 'TV', russian: 'Ð¢ÐµÐ»ÐµÐ²Ð¸Ð·Ð¾Ñ€', ukrainian: 'Ð¢ÐµÐ»ÐµÐ²Ñ–Ð·Ð¾Ñ€' },
-  { english: 'Map', russian: 'ÐšÐ°Ñ€Ñ‚Ð°', ukrainian: 'ÐšÐ°Ñ€Ñ‚Ð°' },
-  { english: 'Bread', russian: 'Ð¥Ð»ÐµÐ±', ukrainian: 'Ð¥Ð»Ñ–Ð±' },
-  { english: 'Alcohol', russian: 'ÐÐ»ÐºÐ¾Ð³Ð¾Ð»ÑŒ', ukrainian: 'ÐÐ»ÐºÐ¾Ð³Ð¾Ð»ÑŒ' },
-  { english: 'Key', russian: 'ÐšÐ»ÑŽÑ‡', ukrainian: 'ÐšÐ»ÑŽÑ‡' },
-];
-
-// Lesson 4 Irregular Verbs
-export const LESSON_4_IRREGULAR_VERBS = [
-  { english: 'Drink', russian: 'ÐŸÐ¸Ñ‚ÑŒ', ukrainian: 'ÐŸÐ¸Ñ‚Ð¸', past: 'drank', pastParticiple: 'drunk' },
-  { english: 'Eat', russian: 'Ð•ÑÑ‚ÑŒ', ukrainian: 'Ð‡ÑÑ‚Ð¸', past: 'ate', pastParticiple: 'eaten' },
-  { english: 'Understand', russian: 'ÐŸÐ¾Ð½Ð¸Ð¼Ð°Ñ‚ÑŒ', ukrainian: 'Ð Ð¾Ð·ÑƒÐ¼Ñ–Ñ‚Ð¸', past: 'understood', pastParticiple: 'understood' },
-  { english: 'Know', russian: 'Ð—Ð½Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð½Ð°Ñ‚Ð¸', past: 'knew', pastParticiple: 'known' },
-  { english: 'Buy', russian: 'ÐŸÐ¾ÐºÑƒÐ¿Ð°Ñ‚ÑŒ', ukrainian: 'ÐšÑƒÐ¿ÑƒÐ²Ð°Ñ‚Ð¸', past: 'bought', pastParticiple: 'bought' },
-  { english: 'See', russian: 'Ð’Ð¸Ð´ÐµÑ‚ÑŒ', ukrainian: 'Ð‘Ð°Ñ‡Ð¸Ñ‚Ð¸', past: 'saw', pastParticiple: 'seen' },
-  { english: 'Wear', russian: 'ÐÐ¾ÑÐ¸Ñ‚ÑŒ (Ð¾Ð´ÐµÐ¶Ð´Ñƒ)', ukrainian: 'ÐÐ¾ÑÐ¸Ñ‚Ð¸ (Ð¾Ð´ÑÐ³)', past: 'wore', pastParticiple: 'worn' },
-  { english: 'Pay', russian: 'ÐŸÐ»Ð°Ñ‚Ð¸Ñ‚ÑŒ', ukrainian: 'ÐŸÐ»Ð°Ñ‚Ð¸Ñ‚Ð¸', past: 'paid', pastParticiple: 'paid' },
-  { english: 'Sell', russian: 'ÐŸÑ€Ð¾Ð´Ð°Ð²Ð°Ñ‚ÑŒ', ukrainian: 'ÐŸÑ€Ð¾Ð´Ð°Ð²Ð°Ñ‚Ð¸', past: 'sold', pastParticiple: 'sold' },
-  { english: 'Drive', russian: 'Ð’Ð¾Ð´Ð¸Ñ‚ÑŒ', ukrainian: 'Ð’Ð¾Ð´Ð¸Ñ‚Ð¸', past: 'drove', pastParticiple: 'driven' },
-  { english: 'Lose', russian: 'Ð¢ÐµÑ€ÑÑ‚ÑŒ', ukrainian: 'Ð’Ñ‚Ñ€Ð°Ñ‡Ð°Ñ‚Ð¸', past: 'lost', pastParticiple: 'lost' },
-  { english: 'Feel', russian: 'Ð§ÑƒÐ²ÑÑ‚Ð²Ð¾Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð’Ñ–Ð´Ñ‡ÑƒÐ²Ð°Ñ‚Ð¸', past: 'felt', pastParticiple: 'felt' },
-  { english: 'Spend', russian: 'Ð¢Ñ€Ð°Ñ‚Ð¸Ñ‚ÑŒ', ukrainian: 'Ð’Ð¸Ñ‚Ñ€Ð°Ñ‡Ð°Ñ‚Ð¸', past: 'spent', pastParticiple: 'spent' },
-  { english: 'Forget', russian: 'Ð—Ð°Ð±Ñ‹Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð°Ð±ÑƒÐ²Ð°Ñ‚Ð¸', past: 'forgot', pastParticiple: 'forgotten' },
-  { english: 'Break', russian: 'ÐÐ°Ñ€ÑƒÑˆÐ°Ñ‚ÑŒ (Ð»Ð¾Ð¼Ð°Ñ‚ÑŒ)', ukrainian: 'ÐŸÐ¾Ñ€ÑƒÑˆÑƒÐ²Ð°Ñ‚Ð¸ (Ð»Ð°Ð¼Ð°Ñ‚Ð¸)', past: 'broke', pastParticiple: 'broken' },
-  { english: 'Read', russian: 'Ð§Ð¸Ñ‚Ð°Ñ‚ÑŒ', ukrainian: 'Ð§Ð¸Ñ‚Ð°Ñ‚Ð¸', past: 'read', pastParticiple: 'read' },
-  { english: 'Take', russian: 'Ð‘Ñ€Ð°Ñ‚ÑŒ', ukrainian: 'Ð‘Ñ€Ð°Ñ‚Ð¸', past: 'took', pastParticiple: 'taken' },
-  { english: 'Send', russian: 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð»ÑÑ‚ÑŒ', ukrainian: 'ÐÐ°Ð´ÑÐ¸Ð»Ð°Ñ‚Ð¸', past: 'sent', pastParticiple: 'sent' },
-];
-
-// Lesson 5 Irregular Verbs
-export const LESSON_5_IRREGULAR_VERBS = [
-  { english: 'Cost', russian: 'Ð¡Ñ‚Ð¾Ð¸Ñ‚ÑŒ', ukrainian: 'ÐšÐ¾ÑˆÑ‚ÑƒÐ²Ð°Ñ‚Ð¸', past: 'cost', pastParticiple: 'cost' },
-  { english: 'Hear', russian: 'Ð¡Ð»Ñ‹ÑˆÐ°Ñ‚ÑŒ', ukrainian: 'Ð§ÑƒÑ‚Ð¸', past: 'heard', pastParticiple: 'heard' },
-  { english: 'Sing', russian: 'ÐŸÐµÑ‚ÑŒ', ukrainian: 'Ð¡Ð¿Ñ–Ð²Ð°Ñ‚Ð¸', past: 'sang', pastParticiple: 'sung' },
-  { english: 'Speak', russian: 'Ð“Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ÑŒ', ukrainian: 'Ð“Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚Ð¸', past: 'spoke', pastParticiple: 'spoken' },
-  { english: 'Go', russian: 'Ð˜Ð´Ñ‚Ð¸ (Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ)', ukrainian: 'Ð™Ñ‚Ð¸ (Ñ…Ð¾Ð´Ð¸Ñ‚Ð¸)', past: 'went', pastParticiple: 'gone' },
-  { english: 'Sleep', russian: 'Ð¡Ð¿Ð°Ñ‚ÑŒ', ukrainian: 'Ð¡Ð¿Ð°Ñ‚Ð¸', past: 'slept', pastParticiple: 'slept' },
-  { english: 'Find', russian: 'ÐÐ°Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ', ukrainian: 'Ð—Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚Ð¸', past: 'found', pastParticiple: 'found' },
-];
 
 // ==================== LESSON 5 ====================
 
@@ -168,203 +70,7 @@ export const LESSON_5_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 
 export const LESSON_6_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
 
-// Lesson 5 Vocabulary
-export const LESSON_5_VOCABULARY = [
-  { english: 'Tomorrow', russian: 'Ð—Ð°Ð²Ñ‚Ñ€Ð°', ukrainian: 'Ð—Ð°Ð²Ñ‚Ñ€Ð°' },
-  { english: 'Correctly', russian: 'ÐŸÑ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾', ukrainian: 'ÐŸÑ€Ð°Ð²Ð¸Ð»ÑŒÐ½Ð¾' },
-  { english: 'Much', russian: 'ÐœÐ½Ð¾Ð³Ð¾', ukrainian: 'Ð‘Ð°Ð³Ð°Ñ‚Ð¾' },
-  { english: 'Code', russian: 'ÐšÐ¾Ð´', ukrainian: 'ÐšÐ¾Ð´' },
-  { english: 'Tired', russian: 'Ð£ÑÑ‚Ð°Ð»Ñ‹Ð¹', ukrainian: 'Ð’Ñ‚Ð¾Ð¼Ð»ÐµÐ½Ð¸Ð¹' },
-  { english: 'Noise', russian: 'Ð¨ÑƒÐ¼', ukrainian: 'Ð¨ÑƒÐ¼' },
-  { english: 'Hear', russian: 'Ð¡Ð»Ñ‹ÑˆÐ°Ñ‚ÑŒ', ukrainian: 'Ð§ÑƒÑ‚Ð¸' },
-  { english: 'Sing', russian: 'ÐŸÐµÑ‚ÑŒ', ukrainian: 'Ð¡Ð¿Ñ–Ð²Ð°Ñ‚Ð¸' },
-  { english: 'Speak', russian: 'Ð“Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ÑŒ', ukrainian: 'Ð“Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚Ð¸' },
-  { english: 'Well', russian: 'Ð¥Ð¾Ñ€Ð¾ÑˆÐ¾ (ÐºÐ°Ðº?)', ukrainian: 'Ð”Ð¾Ð±Ñ€Ðµ (ÑÐº?)' },
-  { english: 'Luck', russian: 'Ð£Ð´Ð°Ñ‡Ð°', ukrainian: 'Ð’Ð´Ð°Ñ‡Ð°' },
-  { english: 'Cold', russian: 'Ð¥Ð¾Ð»Ð¾Ð´Ð½Ñ‹Ð¹', ukrainian: 'Ð¥Ð¾Ð»Ð¾Ð´Ð½Ð¸Ð¹' },
-  { english: 'Price', russian: 'Ð¦ÐµÐ½Ð°', ukrainian: 'Ð¦Ñ–Ð½Ð°' },
-  { english: 'Doctor', russian: 'Ð’Ñ€Ð°Ñ‡', ukrainian: 'Ð›Ñ–ÐºÐ°Ñ€' },
-  { english: 'Credit', russian: 'ÐšÑ€ÐµÐ´Ð¸Ñ‚', ukrainian: 'ÐšÑ€ÐµÐ´Ð¸Ñ‚' },
-  { english: 'Card', russian: 'ÐšÐ°Ñ€Ñ‚Ð°', ukrainian: 'ÐšÐ°Ñ€Ñ‚ÐºÐ°' },
-  { english: 'Inside', russian: 'Ð’Ð½ÑƒÑ‚Ñ€ÑŒ (Ð²Ð½ÑƒÑ‚Ñ€Ð¸)', ukrainian: 'Ð’ÑÐµÑ€ÐµÐ´Ð¸Ð½Ñƒ (Ð²ÑÐµÑ€ÐµÐ´Ð¸Ð½Ñ–)' },
-  { english: 'Go', russian: 'Ð˜Ð´Ñ‚Ð¸ (Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ)', ukrainian: 'Ð™Ñ‚Ð¸ (Ñ…Ð¾Ð´Ð¸Ñ‚Ð¸)' },
-  { english: 'Tax', russian: 'ÐÐ°Ð»Ð¾Ð³', ukrainian: 'ÐŸÐ¾Ð´Ð°Ñ‚Ð¾Ðº' },
-  { english: 'Job', russian: 'Ð Ð°Ð±Ð¾Ñ‚Ð° (Ð´Ð¾Ð»Ð¶Ð½Ð¾ÑÑ‚ÑŒ)', ukrainian: 'Ð Ð¾Ð±Ð¾Ñ‚Ð° (Ð¿Ð¾ÑÐ°Ð´Ð°)' },
-  { english: 'Vegetable', russian: 'ÐžÐ²Ð¾Ñ‰', ukrainian: 'ÐžÐ²Ð¾Ñ‡' },
-  { english: 'Sleep', russian: 'Ð¡Ð¿Ð°Ñ‚ÑŒ', ukrainian: 'Ð¡Ð¿Ð°Ñ‚Ð¸' },
-  { english: 'Enough', russian: 'Ð”Ð¾ÑÑ‚Ð°Ñ‚Ð¾Ñ‡Ð½Ð¾', ukrainian: 'Ð”Ð¾ÑÑ‚Ð°Ñ‚Ð½ÑŒÐ¾' },
-  { english: 'Room', russian: 'ÐšÐ¾Ð¼Ð½Ð°Ñ‚Ð° (Ð½Ð¾Ð¼ÐµÑ€)', ukrainian: 'ÐšÑ–Ð¼Ð½Ð°Ñ‚Ð° (Ð½Ð¾Ð¼ÐµÑ€)' },
-  { english: 'Mistake', russian: 'ÐžÑˆÐ¸Ð±ÐºÐ°', ukrainian: 'ÐŸÐ¾Ð¼Ð¸Ð»ÐºÐ°' },
-  { english: 'Find', russian: 'ÐÐ°Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ', ukrainian: 'Ð—Ð½Ð°Ñ…Ð¾Ð´Ð¸Ñ‚Ð¸' },
-  { english: 'Table', russian: 'Ð¡Ñ‚Ð¾Ð»', ukrainian: 'Ð¡Ñ‚Ñ–Ð»' },
-  { english: 'Car', russian: 'ÐœÐ°ÑˆÐ¸Ð½Ð°', ukrainian: 'ÐœÐ°ÑˆÐ¸Ð½Ð°' },
-  { english: 'Book', russian: 'Ð‘Ñ€Ð¾Ð½Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð‘Ñ€Ð¾Ð½ÑŽÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Good', russian: 'Ð¥Ð¾Ñ€Ð¾ÑˆÐ¸Ð¹', ukrainian: 'Ð“Ð°Ñ€Ð½Ð¸Ð¹' },
-];
-
-export const LESSON_6_VOCABULARY = [
-  // Ð¡Ð¿ÐµÑ†Ð¸Ð°Ð»ÑŒÐ½Ñ‹Ðµ Ð²Ð¾Ð¿Ñ€Ð¾ÑÑ‹ (WH) + Â«ÑÐºÐ¾Ð»ÑŒÐºÐ¾Â» Ð´Ð»Ñ Ñ†ÐµÐ½Ñ‹/ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð°
-  { english: 'Where', russian: 'Ð“Ð´Ðµ', ukrainian: 'Ð”Ðµ' },
-  { english: 'What', russian: 'Ð§Ñ‚Ð¾', ukrainian: 'Ð©Ð¾' },
-  { english: 'When', russian: 'ÐšÐ¾Ð³Ð´Ð°', ukrainian: 'ÐšÐ¾Ð»Ð¸' },
-  { english: 'Who', russian: 'ÐšÑ‚Ð¾', ukrainian: 'Ð¥Ñ‚Ð¾' },
-  { english: 'Why', russian: 'ÐŸÐ¾Ñ‡ÐµÐ¼Ñƒ', ukrainian: 'Ð§Ð¾Ð¼Ñƒ' },
-  { english: 'How', russian: 'ÐšÐ°Ðº', ukrainian: 'Ð¯Ðº' },
-  { english: 'Which', russian: 'ÐšÐ°ÐºÐ¾Ð¹ (Ð¸Ð·)', ukrainian: 'Ð¯ÐºÐ¸Ð¹ (Ð·)' },
-  { english: 'How much', russian: 'Ð¡ÐºÐ¾Ð»ÑŒÐºÐ¾ (Ñ†ÐµÐ½Ð° Ð¸Ð»Ð¸ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾)', ukrainian: 'Ð¡ÐºÑ–Ð»ÑŒÐºÐ¸ (Ñ†Ñ–Ð½Ð° Ð°Ð±Ð¾ ÐºÑ–Ð»ÑŒÐºÑ–ÑÑ‚ÑŒ)' },
-  { english: 'Start', russian: 'ÐÐ°Ñ‡Ð¸Ð½Ð°Ñ‚ÑŒ', ukrainian: 'ÐŸÐ¾Ñ‡Ð¸Ð½Ð°Ñ‚Ð¸' },
-  { english: 'Cry', russian: 'ÐŸÐ»Ð°ÐºÐ°Ñ‚ÑŒ', ukrainian: 'ÐŸÐ»Ð°ÐºÐ°Ñ‚Ð¸' },
-  { english: 'Cost', russian: 'Ð¡Ñ‚Ð¾Ð¸Ñ‚ÑŒ', ukrainian: 'ÐšÐ¾ÑˆÑ‚ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Call', russian: 'Ð—Ð²Ð¾Ð½Ð¸Ñ‚ÑŒ', ukrainian: 'Ð¢ÐµÐ»ÐµÑ„Ð¾Ð½ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Wait', russian: 'Ð–Ð´Ð°Ñ‚ÑŒ', ukrainian: 'Ð§ÐµÐºÐ°Ñ‚Ð¸' },
-  { english: 'Get', russian: 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÑŒ; Ð´Ð¾Ð±Ð¸Ñ€Ð°Ñ‚ÑŒÑÑ', ukrainian: 'ÐžÑ‚Ñ€Ð¸Ð¼ÑƒÐ²Ð°Ñ‚Ð¸; Ð´Ñ–ÑÑ‚Ð°Ð²Ð°Ñ‚Ð¸ÑÑ' },
-  { english: 'Usually', russian: 'ÐžÐ±Ñ‹Ñ‡Ð½Ð¾', ukrainian: 'Ð—Ð°Ð·Ð²Ð¸Ñ‡Ð°Ð¹' },
-  { english: 'Come', russian: 'ÐŸÑ€Ð¸Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ', ukrainian: 'ÐŸÑ€Ð¸Ñ…Ð¾Ð´Ð¸Ñ‚Ð¸' },
-  { english: 'Door', russian: 'Ð”Ð²ÐµÑ€ÑŒ', ukrainian: 'Ð”Ð²ÐµÑ€Ñ–' },
-  { english: 'Now', russian: 'Ð¡ÐµÐ¹Ñ‡Ð°Ñ', ukrainian: 'Ð—Ð°Ñ€Ð°Ð·' },
-  { english: 'Open', russian: 'ÐžÑ‚ÐºÑ€Ñ‹Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð’Ñ–Ð´ÐºÑ€Ð¸Ð²Ð°Ñ‚Ð¸' },
-  { english: 'Home', russian: 'Ð”Ð¾Ð¼; Ð´Ð¾Ð¼Ð¾Ð¹', ukrainian: 'Ð”Ñ–Ð¼; Ð´Ð¾Ð´Ð¾Ð¼Ñƒ' },
-  { english: 'Sign', russian: 'ÐŸÐ¾Ð´Ð¿Ð¸ÑÑ‹Ð²Ð°Ñ‚ÑŒ', ukrainian: 'ÐŸÑ–Ð´Ð¿Ð¸ÑÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'Send', russian: 'ÐžÑ‚Ð¿Ñ€Ð°Ð²Ð»ÑÑ‚ÑŒ', ukrainian: 'Ð’Ñ–Ð´Ð¿Ñ€Ð°Ð²Ð»ÑÑ‚Ð¸' },
-  { english: 'Report', russian: 'ÐžÑ‚Ñ‡Ñ‘Ñ‚', ukrainian: 'Ð—Ð²Ñ–Ñ‚' },
-  { english: 'Do', russian: 'Ð”ÐµÐ»Ð°Ñ‚ÑŒ', ukrainian: 'Ð Ð¾Ð±Ð¸Ñ‚Ð¸' },
-  { english: 'Want', russian: 'Ð¥Ð¾Ñ‚ÐµÑ‚ÑŒ', ukrainian: 'Ð¥Ð¾Ñ‚Ñ–Ñ‚Ð¸' },
-  { english: 'Leave', russian: 'Ð£Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ; Ð¿Ð¾ÐºÐ¸Ð´Ð°Ñ‚ÑŒ', ukrainian: 'ÐŸÑ–Ñ‚Ð¸; Ð·Ð°Ð»Ð¸ÑˆÐ°Ñ‚Ð¸ (Ð¼Ñ–ÑÑ†Ðµ)' },
-  { english: 'Finish', russian: 'Ð—Ð°ÐºÐ°Ð½Ñ‡Ð¸Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð°ÐºÑ–Ð½Ñ‡ÑƒÐ²Ð°Ñ‚Ð¸' },
-  { english: 'See', russian: 'Ð’Ð¸Ð´ÐµÑ‚ÑŒ', ukrainian: 'Ð‘Ð°Ñ‡Ð¸Ñ‚Ð¸' },
-  { english: 'Keep', russian: 'Ð¥Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ; Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð±ÐµÑ€Ñ–Ð³Ð°Ñ‚Ð¸; Ñ‚Ñ€Ð¸Ð¼Ð°Ñ‚Ð¸' },
-  { english: 'Exit', russian: 'Ð’Ñ‹Ñ…Ð¾Ð´', ukrainian: 'Ð’Ð¸Ñ…Ñ–Ð´' },
-  { english: 'Carry', russian: 'ÐÐ¾ÑÐ¸Ñ‚ÑŒ (Ð² Ñ€ÑƒÐºÐ°Ñ…)', ukrainian: 'ÐÐ¾ÑÐ¸Ñ‚Ð¸ (Ð² Ñ€ÑƒÐºÐ°Ñ…)' },
-  { english: 'Bag', russian: 'Ð¡ÑƒÐ¼ÐºÐ°', ukrainian: 'Ð¡ÑƒÐ¼ÐºÐ°' },
-  { english: 'Shop', russian: 'ÐœÐ°Ð³Ð°Ð·Ð¸Ð½', ukrainian: 'ÐœÐ°Ð³Ð°Ð·Ð¸Ð½' },
-  { english: 'Meet', russian: 'Ð’ÑÑ‚Ñ€ÐµÑ‡Ð°Ñ‚ÑŒ (ÐºÐ¾Ð³Ð¾-Ð».)', ukrainian: 'Ð—ÑƒÑÑ‚Ñ€Ñ–Ñ‡Ð°Ñ‚Ð¸ (ÐºÐ¾Ð³Ð¾ÑÑŒ)' },
-  { english: 'Guest', russian: 'Ð“Ð¾ÑÑ‚ÑŒ', ukrainian: 'Ð“Ñ–ÑÑ‚ÑŒ' },
-  { english: 'Check', russian: 'ÐŸÑ€Ð¾Ð²ÐµÑ€ÑÑ‚ÑŒ', ukrainian: 'ÐŸÐµÑ€ÐµÐ²Ñ–Ñ€ÑÑ‚Ð¸' },
-  { english: 'Mail', russian: 'ÐŸÐ¾Ñ‡Ñ‚Ð°', ukrainian: 'ÐŸÐ¾ÑˆÑ‚Ð°' },
-  { english: 'Groceries', russian: 'ÐŸÑ€Ð¾Ð´ÑƒÐºÑ‚Ñ‹ (Ð±Ð°ÐºÐ°Ð»ÐµÑ)', ukrainian: 'ÐŸÑ€Ð¾Ð´ÑƒÐºÑ‚Ð¸ (Ð±Ð°ÐºÐ°Ð»Ñ–Ñ)' },
-  { english: 'Speak', russian: 'Ð“Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚ÑŒ', ukrainian: 'Ð“Ð¾Ð²Ð¾Ñ€Ð¸Ñ‚Ð¸' },
-  { english: 'Slowly', russian: 'ÐœÐµÐ´Ð»ÐµÐ½Ð½Ð¾', ukrainian: 'ÐŸÐ¾Ð²Ñ–Ð»ÑŒÐ½Ð¾' },
-  { english: 'Meeting', russian: 'Ð’ÑÑ‚Ñ€ÐµÑ‡Ð°', ukrainian: 'Ð—ÑƒÑÑ‚Ñ€Ñ–Ñ‡' },
-  { english: 'Watch', russian: 'Ð¡Ð¼Ð¾Ñ‚Ñ€ÐµÑ‚ÑŒ', ukrainian: 'Ð”Ð¸Ð²Ð¸Ñ‚Ð¸ÑÑ' },
-  { english: 'Put', russian: 'ÐšÐ»Ð°ÑÑ‚ÑŒ', ukrainian: 'ÐšÐ»Ð°ÑÑ‚Ð¸' },
-  { english: 'Luggage', russian: 'Ð‘Ð°Ð³Ð°Ð¶', ukrainian: 'Ð‘Ð°Ð³Ð°Ð¶' },
-  { english: 'Way', russian: 'ÐŸÑƒÑ‚ÑŒ; Ð´Ð¾Ñ€Ð¾Ð³Ð°', ukrainian: 'Ð¨Ð»ÑÑ…; Ð´Ð¾Ñ€Ð¾Ð³Ð°' },
-  { english: 'Dinner', russian: 'Ð£Ð¶Ð¸Ð½', ukrainian: 'Ð’ÐµÑ‡ÐµÑ€Ñ' },
-  { english: 'Order', russian: 'Ð—Ð°ÐºÐ°Ð·Ñ‹Ð²Ð°Ñ‚ÑŒ', ukrainian: 'Ð—Ð°Ð¼Ð¾Ð²Ð»ÑÑ‚Ð¸' },
-  { english: 'Bill', russian: 'Ð¡Ñ‡Ñ‘Ñ‚ (Ð² Ñ€ÐµÑÑ‚Ð¾Ñ€Ð°Ð½Ðµ)', ukrainian: 'Ð Ð°Ñ…ÑƒÐ½Ð¾Ðº (Ñƒ Ñ€ÐµÑÑ‚Ð¾Ñ€Ð°Ð½Ñ–)' },
-  { english: 'Always', russian: 'Ð’ÑÐµÐ³Ð´Ð°', ukrainian: 'Ð—Ð°Ð²Ð¶Ð´Ð¸' },
-  { english: 'Café', russian: 'Кафе', ukrainian: 'Кафе' },
-  { english: 'App', russian: 'Приложение', ukrainian: 'Застосунок' },
-  { english: 'Cash', russian: 'Наличные', ukrainian: 'Готівка' },
-  { english: 'Money', russian: 'Деньги', ukrainian: 'Гроші' },
-  { english: 'Ticket', russian: 'Билет', ukrainian: 'Квиток' },
-  { english: 'Window', russian: 'Окно', ukrainian: 'Вікно' },
-  { english: 'Route', russian: 'Маршрут', ukrainian: 'Маршрут' },
-  { english: 'Close', russian: 'Закрывать', ukrainian: 'Зачиняти' },
-];
-
-export const LESSON_6_IRREGULAR_VERBS = [
-  { english: 'Come', russian: 'ÐŸÑ€Ð¸Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ', ukrainian: 'ÐŸÑ€Ð¸Ñ…Ð¾Ð´Ð¸Ñ‚Ð¸', past: 'came', pastParticiple: 'come' },
-  { english: 'Do', russian: 'Ð”ÐµÐ»Ð°Ñ‚ÑŒ', ukrainian: 'Ð Ð¾Ð±Ð¸Ñ‚Ð¸', past: 'did', pastParticiple: 'done' },
-  { english: 'Get', russian: 'ÐŸÐ¾Ð»ÑƒÑ‡Ð°Ñ‚ÑŒ / Ð´Ð¾Ð±Ð¸Ñ€Ð°Ñ‚ÑŒÑÑ', ukrainian: 'ÐžÑ‚Ñ€Ð¸Ð¼ÑƒÐ²Ð°Ñ‚Ð¸ / Ð´Ñ–ÑÑ‚Ð°Ð²Ð°Ñ‚Ð¸ÑÑ', past: 'got', pastParticiple: 'gotten' },
-  { english: 'Keep', russian: 'Ð¥Ñ€Ð°Ð½Ð¸Ñ‚ÑŒ (Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑŒ)', ukrainian: 'Ð—Ð±ÐµÑ€Ñ–Ð³Ð°Ñ‚Ð¸ (Ñ‚Ñ€Ð¸Ð¼Ð°Ñ‚Ð¸)', past: 'kept', pastParticiple: 'kept' },
-  { english: 'Leave', russian: 'Ð£Ñ…Ð¾Ð´Ð¸Ñ‚ÑŒ; Ð¿Ð¾ÐºÐ¸Ð´Ð°Ñ‚ÑŒ', ukrainian: 'ÐŸÑ–Ñ‚Ð¸; Ð·Ð°Ð»Ð¸ÑˆÐ°Ñ‚Ð¸ (Ð¼Ñ–ÑÑ†Ðµ)', past: 'left', pastParticiple: 'left' },
-  { english: 'Meet', russian: 'Ð’ÑÑ‚Ñ€ÐµÑ‡Ð°Ñ‚ÑŒ (ÐºÐ¾Ð³Ð¾-Ð».)', ukrainian: 'Ð—ÑƒÑÑ‚Ñ€Ñ–Ñ‡Ð°Ñ‚Ð¸ (ÐºÐ¾Ð³Ð¾ÑÑŒ)', past: 'met', pastParticiple: 'met' },
-  { english: 'Put', russian: 'ÐšÐ»Ð°ÑÑ‚ÑŒ', ukrainian: 'ÐšÐ»Ð°ÑÑ‚Ð¸', past: 'put', pastParticiple: 'put' },
-];
-
 // ==================== LESSON 7 ====================
 
-export const LESSON_7_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];
-
-export const LESSON_7_VOCABULARY = [
-  { english: 'I', russian: 'Я', ukrainian: 'Я' },
-  { english: 'You', russian: 'Ты; вы', ukrainian: 'Ти; ви' },
-  { english: 'He', russian: 'Он', ukrainian: 'Він' },
-  { english: 'She', russian: 'Она', ukrainian: 'Вона' },
-  { english: 'We', russian: 'Мы', ukrainian: 'Ми' },
-  { english: 'They', russian: 'Они', ukrainian: 'Вони' },
-  { english: 'Have', russian: 'Иметь (обладать)', ukrainian: 'Мати (володіти)' },
-  { english: 'Has', russian: 'Имеет (форма have: он, она, оно)', ukrainian: 'Має (форма «мати»: він, вона, воно)' },
-  { english: 'Do', russian: 'Делать (вспомогательный в вопросах и отрицании)', ukrainian: 'Робити (допоміжне в запитаннях і запереченні)' },
-  { english: 'Does', russian: 'Форма do в вопросах (он, она, оно)', ukrainian: 'Форма do у запитаннях (він, вона, воно)' },
-  { english: 'Not', russian: 'Не', ukrainian: 'Не' },
-  { english: 'A', russian: 'Неопределённый артикль (перед согласной)', ukrainian: 'Неозначений артикль (перед приголосною)' },
-  { english: 'An', russian: 'Неопределённый артикль (перед гласной)', ukrainian: 'Неозначений артикль (перед голосною)' },
-  { english: 'Question', russian: 'Вопрос', ukrainian: 'Питання' },
-  { english: 'Problem', russian: 'Проблема', ukrainian: 'Проблема' },
-  { english: 'Idea', russian: 'Идея', ukrainian: 'Ідея' },
-  { english: 'Plan', russian: 'План', ukrainian: 'План' },
-  { english: 'Time', russian: 'Время', ukrainian: 'Час' },
-  { english: 'Ticket', russian: 'Билет', ukrainian: 'Квиток' },
-  { english: 'Key', russian: 'Ключ', ukrainian: 'Ключ' },
-  { english: 'Umbrella', russian: 'Зонт', ukrainian: 'Парасоля' },
-  { english: 'Document', russian: 'Документ', ukrainian: 'Документ' },
-  { english: 'Bag', russian: 'Сумка', ukrainian: 'Сумка' },
-  { english: 'Charger', russian: 'Зарядное устройство', ukrainian: 'Зарядний пристрій' },
-  { english: 'Passport', russian: 'Паспорт', ukrainian: 'Паспорт' },
-  { english: 'Break', russian: 'Перерыв', ukrainian: 'Перерва' },
-  { english: 'News', russian: 'Новости', ukrainian: 'Новини' },
-  { english: 'Good', russian: 'Хороший', ukrainian: 'Гарний' },
-  { english: 'Coffee', russian: 'Кофе', ukrainian: 'Кава' },
-  { english: 'For', russian: 'Для; ради', ukrainian: 'Для; заради' },
-];
-export const LESSON_7_IRREGULAR_VERBS = [
-  { english: 'Have', russian: 'Ð˜Ð¼ÐµÑ‚ÑŒ', ukrainian: 'ÐœÐ°Ñ‚Ð¸', past: 'had', pastParticiple: 'had' },
-  { english: 'Do', russian: 'Ð”ÐµÐ»Ð°Ñ‚ÑŒ', ukrainian: 'Ð Ð¾Ð±Ð¸Ñ‚Ð¸', past: 'did', pastParticiple: 'done' },
-];
-
-export const LESSON_8_VOCABULARY = [
-  { english: 'At', russian: 'В / о (точное время, час)', ukrainian: 'О / у (точний час, година)' },
-  { english: 'On', russian: 'В / по (дни недели)', ukrainian: 'У / по (дні тижня)' },
-  { english: 'In', russian: 'В / по (месяцы, сезоны, части дня)', ukrainian: 'У / по (місяці, пори року, частини доби)' },
-  { english: 'Monday', russian: 'Понедельник', ukrainian: 'Понеділок' },
-  { english: 'Tuesday', russian: 'Вторник', ukrainian: 'Вівторок' },
-  { english: 'Wednesday', russian: 'Среда', ukrainian: 'Середа' },
-  { english: 'Friday', russian: 'Пятница', ukrainian: 'П’ятниця' },
-  { english: 'Saturday', russian: 'Суббота', ukrainian: 'Субота' },
-  { english: 'Sunday', russian: 'Воскресенье', ukrainian: 'Неділя' },
-  { english: 'Weekend', russian: 'Выходные', ukrainian: 'Вихідні' },
-  { english: 'Morning', russian: 'Утро', ukrainian: 'Ранок' },
-  { english: 'Noon', russian: 'Полдень', ukrainian: 'Полудень' },
-  { english: 'Evening', russian: 'Вечер', ukrainian: 'Вечір' },
-  { english: 'Night', russian: 'Ночь', ukrainian: 'Ніч' },
-  { english: 'Midnight', russian: 'Полночь', ukrainian: 'Північ' },
-  { english: 'January', russian: 'Январь', ukrainian: 'Січень' },
-  { english: 'May', russian: 'Май', ukrainian: 'Травень' },
-  { english: 'July', russian: 'Июль', ukrainian: 'Липень' },
-  { english: 'October', russian: 'Октябрь', ukrainian: 'Жовтень' },
-  { english: 'Winter', russian: 'Зима', ukrainian: 'Зима' },
-  { english: 'Summer', russian: 'Лето', ukrainian: 'Літо' },
-  { english: 'Lunch', russian: 'Обед', ukrainian: 'Обід' },
-  { english: 'Dinner', russian: 'Ужин', ukrainian: 'Вечеря' },
-  { english: 'Birthday', russian: 'День рождения', ukrainian: 'День народження' },
-  { english: 'Rent', russian: 'Аренда', ukrainian: 'Оренда' },
-  { english: 'Class', russian: 'Занятие; урок', ukrainian: 'Заняття; урок' },
-  { english: 'Shower', russian: 'Душ', ukrainian: 'Душ' },
-  { english: 'Music', russian: 'Музыка', ukrainian: 'Музика' },
-  { english: 'Book', russian: 'Книга', ukrainian: 'Книга' },
-  { english: 'English', russian: 'Английский (язык)', ukrainian: 'Англійська (мова)' },
-  { english: 'Document', russian: 'Документ', ukrainian: 'Документ' },
-  { english: 'Food', russian: 'Еда', ukrainian: 'Їжа' },
-  { english: 'Leave', russian: 'Уходить; уезжать', ukrainian: 'Іти; від’їжджати' },
-  { english: 'Start', russian: 'Начинать', ukrainian: 'Починати' },
-  { english: 'Finish', russian: 'Заканчивать', ukrainian: 'Закінчувати' },
-  { english: 'Study', russian: 'Учиться; изучать', ukrainian: 'Навчатися; вивчати' },
-  { english: 'Run', russian: 'Бежать; бегать', ukrainian: 'Бігти; бігати' },
-  { english: 'Sleep', russian: 'Спать', ukrainian: 'Спати' },
-  { english: 'Feel', russian: 'Чувствовать', ukrainian: 'Відчувати' },
-  { english: 'Tired', russian: 'Уставший', ukrainian: 'Втомлений' },
-  { english: 'Well', russian: 'Хорошо (как?)', ukrainian: 'Добре (як?)' },
-];
-
-export const LESSON_8_IRREGULAR_VERBS = [
-  { english: 'Wake', russian: 'ÐŸÑ€Ð¾ÑÑ‹Ð¿Ð°Ñ‚ÑŒÑÑ', ukrainian: 'ÐŸÑ€Ð¾ÐºÐ¸Ð´Ð°Ñ‚Ð¸ÑÑ', past: 'woke', pastParticiple: 'woken' },
-  { english: 'Write', russian: 'ÐŸÐ¸ÑÐ°Ñ‚ÑŒ', ukrainian: 'ÐŸÐ¸ÑÐ°Ñ‚Ð¸', past: 'wrote', pastParticiple: 'written' },
-  { english: 'Think', russian: 'Ð”ÑƒÐ¼Ð°Ñ‚ÑŒ', ukrainian: 'Ð”ÑƒÐ¼Ð°Ñ‚Ð¸', past: 'thought', pastParticiple: 'thought' },
-  { english: 'Run', russian: 'Ð‘ÐµÐ³Ð°Ñ‚ÑŒ', ukrainian: 'Ð‘Ñ–Ð³Ð°Ñ‚Ð¸', past: 'ran', pastParticiple: 'run' },
-  { english: 'Bring', russian: 'ÐŸÑ€Ð¸Ð½Ð¾ÑÐ¸Ñ‚ÑŒ', ukrainian: 'ÐŸÑ€Ð¸Ð½Ð¾ÑÐ¸Ñ‚Ð¸', past: 'brought', pastParticiple: 'brought' },
-];
-
-/* expo-router route shim: keeps utility module from warning when discovered as route */
+export const LESSON_7_ENCOURAGEMENT_SCREENS: LessonIntroScreen[] = [];/* expo-router route shim: keeps utility module from warning when discovered as route */
 export default function __RouteShim() { return null; }

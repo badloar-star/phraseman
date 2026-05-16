@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Animated,
   Easing,
   Image,
@@ -182,7 +181,7 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
     onClose();
   }, [busy, onClose]);
 
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLight = false;
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onDismiss}>
@@ -275,8 +274,8 @@ export default function StreakReviveModal({ visible, offer, onClose, onRevived }
                   { borderColor: PAYWALL_MODAL.border, backgroundColor: PAYWALL_MODAL.goldSoft },
                 ]}
               >
-                {busy ? (
-                  <ActivityIndicator color={PAYWALL_MODAL.title} />
+                {false && busy ? (
+                  <View />
                 ) : (
                   <>
                     <View style={styles.shardBtnIconSlot} pointerEvents="none">

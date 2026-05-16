@@ -38,7 +38,6 @@ type Props = {
   canEdit?: boolean;
   onEdit?: () => void;
   editing?: boolean;
-  onSpeakEn?: (text: string) => void;
 };
 
 if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -71,7 +70,6 @@ export default function UgcPackEditorCardPreview({
   canEdit,
   onEdit,
   editing,
-  onSpeakEn,
 }: Props) {
   const [cardSide, setCardSide] = useState<'front' | 'back'>('front');
   const [detailsExpanded, setDetailsExpanded] = useState(false);
@@ -129,14 +127,6 @@ export default function UgcPackEditorCardPreview({
     LayoutAnimation.configureNext(LayoutAnimation.create(220, 'easeInEaseOut', 'opacity'));
     setDetailsExpanded((v) => !v);
   }, [hasDescription]);
-
-  const onSpeak = useCallback(() => {
-    Keyboard.dismiss();
-    const s = en.trim();
-    if (!s) return;
-    onSpeakEn?.(s);
-  }, [en, onSpeakEn]);
-
   const cardFaceStyle = useMemo(
     () =>
       ({
@@ -269,36 +259,6 @@ export default function UgcPackEditorCardPreview({
             )}
           </Animated.View>
         </TouchableOpacity>
-
-        <Animated.View
-          style={{ position: 'absolute', top: 8, left: 8, zIndex: 5, opacity: cFrontOp }}
-          onStartShouldSetResponder={() => true}
-        >
-          <TouchableOpacity
-            onPress={onSpeak}
-            disabled={!onSpeakEn || !en.trim()}
-            hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-            accessibilityRole="button"
-            accessibilityLabel={triLang(lang, {
-              uk: 'Озвучити англійське',
-              ru: 'Озвучить по-английски',
-              es: 'Escuchar en inglés',
-            })}
-            style={{
-              width: 30,
-              height: 30,
-              borderRadius: 15,
-              alignItems: 'center',
-              justifyContent: 'center',
-              backgroundColor: `${t.bgSurface}F0`,
-              borderWidth: 1,
-              borderColor: t.border,
-              opacity: onSpeakEn && en.trim() ? 1 : 0.45,
-            }}
-          >
-            <Ionicons name="volume-medium" size={15} color={t.accent} />
-          </TouchableOpacity>
-        </Animated.View>
 
         <Animated.View style={{ position: 'absolute', top: 14, left: 44, opacity: cFrontOp, zIndex: 1 }} pointerEvents="none">
           <Text style={{ color: t.textGhost, fontSize: 10, fontWeight: '800', letterSpacing: 1.5 }}>EN</Text>

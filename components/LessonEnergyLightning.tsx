@@ -33,10 +33,9 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
     es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,
   });
   const [refillModal, setRefillModal] = useState(false);
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
-  const premiumTint = isUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : undefined;
+  const premiumTint = isUnlimited ? PREMIUM_BLUE : undefined;
   const filledTint = premiumTint;
-  const filledColor = isUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : t.gold;
+  const filledColor = isUnlimited ? PREMIUM_BLUE : t.gold;
   const [timeUntilNextEnergy, setTimeUntilNextEnergy] = useState<string | null>(null);
 
   // Update timer every second when energy is not at max

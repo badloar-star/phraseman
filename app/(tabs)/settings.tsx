@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, TouchableOpacity,
   TextInput, Modal, ScrollView, DeviceEventEmitter,
-  ActivityIndicator,
   Linking,
   Platform,
   Keyboard,
@@ -22,12 +21,10 @@ import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
 import { usePremium } from '../../components/PremiumContext';
 import CustomSwitch from '../../components/CustomSwitch';
-import EnergyBar from '../../components/EnergyBar';
 import { hapticTap as doHaptic, setHapticCacheEnabled } from '../../hooks/use-haptics';
 import {
-  DEV_MODE,
+  ENABLE_DEV_TOOLS,
   ENABLE_DEV_STUDY_TARGET_LANG,
-  IS_STORE_RELEASE,
   KNOWLY_LEGAL_PRIVACY_URL,
   KNOWLY_LEGAL_TERMS_URL,
 } from '../config';
@@ -57,22 +54,12 @@ export default function SettingsMain() {
    * которые рендерятся прямо на градиенте, подменяем цвета на светлые.
    * Внутри модалок / карточек — оставляем штатные t.textPrimary и пр.
    */
-  const isGradientLight = themeMode === 'ocean' || themeMode === 'sakura';
-  const screenPrimary = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(240,252,255,0.95)' : 'rgba(255,248,252,0.95)')
-    : t.textPrimary;
-  const screenMuted = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(220,240,255,0.88)' : 'rgba(255,220,235,0.85)')
-    : t.textMuted;
-  const screenSecond = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(200,238,255,0.95)' : 'rgba(255,215,232,0.92)')
-    : t.textSecond;
-  const screenGhost = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(210,235,255,0.72)' : 'rgba(255,215,230,0.68)')
-    : t.textGhost;
-  const screenBorder = isGradientLight
-    ? (themeMode === 'ocean' ? 'rgba(200,230,255,0.18)' : 'rgba(255,200,220,0.18)')
-    : t.border;
+  const isGradientLight = false;
+  const screenPrimary = t.textPrimary;
+  const screenMuted = t.textMuted;
+  const screenSecond = t.textSecond;
+  const screenGhost = t.textGhost;
+  const screenBorder = t.border;
   /**
    * Чипы на градиенте (Океан/Сакура): `t.bgCard` — светлая плитка → текст только тёмный (`t.textPrimary`).
    * Выбранное состояние: не `correctBg` (полупрозрачный «просвечивает» градиент) — плотная заливка + белый текст.
@@ -80,9 +67,7 @@ export default function SettingsMain() {
   const chipSurfaceOff = t.bgCard;
   const chipTextOff = isGradientLight ? t.textPrimary : screenPrimary;
   /** Плотная заливка: сакура — яркая магента (#B0105C на тёмном фоне почти сливалась с белым при грязном рендере / субпиксели). */
-  const chipSurfaceOn = isGradientLight
-    ? (themeMode === 'ocean' ? '#0A6CB5' : '#E5126E')
-    : t.correctBg;
+  const chipSurfaceOn = t.correctBg;
   const chipTextOn = isGradientLight ? '#FFFFFF' : t.correct;
   const chipBorderOn = isGradientLight ? chipSurfaceOn : t.correct;
   /** Плашка Premium на градиенте: не correctBg (просвечивает) — как обычная светлая карточка + тёмный текст. */
@@ -142,7 +127,7 @@ export default function SettingsMain() {
     }
   };
   const scrollRef = useRef<any>(null);
-  const { activeIdx, focusTick } = useTabNav();
+  const { activeIdx, focusTick, goHome } = useTabNav();
   const SETTINGS_TAB_IDX = 4;
 
   useEffect(() => {
@@ -156,7 +141,7 @@ export default function SettingsMain() {
   const [nameReady, setNameReady] = useState(false);
   const [nameModal, setNameModal] = useState(false);
   const [newName, setNewName]     = useState('');
-  const { isPremium, trialEligible } = usePremium();
+  const { isPremium } = usePremium();
   const [premiumPlan, setPremiumPlan] = useState<string | null>(null);
   const [linkedAuth, setLinkedAuth] = useState<LinkedAuth | null>(null);
   /** Пока false — getLinkedAuthInfo ещё не завершился (избегаем кадра «Не привязан»). */
@@ -184,8 +169,6 @@ export default function SettingsMain() {
       dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque' },
       neon: { ru: 'Неон', uk: 'Неон', es: 'Neón' },
       gold: { ru: 'Корал', uk: 'Корал', es: 'Coral' },
-      ocean: { ru: 'Океан', uk: 'Океан', es: 'Océano' },
-      sakura: { ru: 'Сакура', uk: 'Сакура', es: 'Sakura' },
       minimalLight: { ru: 'Скетч', uk: 'Скетч', es: 'Boceto' },
       minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito' },
     };
@@ -254,22 +237,22 @@ export default function SettingsMain() {
 
   const saveName = async () => {
     const trimmed = newName.trim();
-    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім'я", 'Escribe un nombre o apodo')); return; }
+    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім\'я", 'Escribe un nombre o apodo')); return; }
     if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres')); return; }
     if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres')); return; }
-    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім'я", 'Nombre no válido')); return; }
+    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido')); return; }
 
     // Быстрая read-only проверка (UI feedback) + атомарная резервация (транзакция)
     const available = await isNameAvailable(trimmed);
     if (!available) {
-      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
+      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
       return;
     }
 
     const oldName = userName;
     const reservation = await reserveName(trimmed, oldName);
     if (reservation === 'taken') {
-      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
+      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
       return;
     }
     if (reservation !== 'ok') {
@@ -368,11 +351,14 @@ export default function SettingsMain() {
     closeNameModal();
   };
 
-  const Row = ({ icon, label, sub, onPress, right, danger }: {
+  const Row = ({ icon, label, sub, onPress, right, danger, testID }: {
     icon: string; label: string; sub?: string;
-    onPress: () => void; right?: React.ReactNode; danger?: boolean;
+    onPress: () => void; right?: React.ReactNode; danger?: boolean; testID?: string;
   }) => (
     <TouchableOpacity
+      testID={testID}
+      accessibilityLabel={testID ? `qa-${testID}` : undefined}
+      accessible={!!testID}
       style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: screenBorder }}
       onPress={() => { doHaptic(); onPress(); }} activeOpacity={0.7}
     >
@@ -393,13 +379,32 @@ export default function SettingsMain() {
 
   return (
     <ScreenGradient>
-      <ScrollView ref={scrollRef} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }} keyboardShouldPersistTaps="handled">
+      <ScrollView testID="screen-settings" ref={scrollRef} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 40 }} keyboardShouldPersistTaps="handled">
 
         <View style={{ paddingHorizontal:20, paddingTop:14, paddingBottom:4, flexDirection:'row', alignItems:'center' }}>
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel={L('На главную', 'На головну', 'Inicio')}
+            activeOpacity={0.85}
+            onPress={() => { doHaptic(); goHome(); }}
+            style={{
+              width: 36,
+              height: 36,
+              borderRadius: 18,
+              backgroundColor: t.bgCard,
+              borderWidth: 0.5,
+              borderColor: screenBorder,
+              justifyContent: 'center',
+              alignItems: 'center',
+              marginRight: 12,
+              flexShrink: 0,
+            }}
+          >
+            <Ionicons name="chevron-back" size={20} color={chipTextOff} />
+          </TouchableOpacity>
           <Text style={{ color: screenPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex:1 }}>
             {L('Настройки', 'Налаштування', 'Ajustes')}
           </Text>
-          <EnergyBar size={20} />
         </View>
 
         {ENABLE_DEV_STUDY_TARGET_LANG && (
@@ -464,9 +469,7 @@ export default function SettingsMain() {
           icon="person-outline"
           label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo')}
           sub={
-            !nameReady
-              ? '…'
-              : (userName || L('Не задано', 'Не задано', 'No indicado'))
+            false && !nameReady ? '' : (userName || L('Не задано', 'Не задано', 'No indicado'))
           }
           onPress={() => { setNewName(userName); setNameModal(true); }}
         />
@@ -474,11 +477,9 @@ export default function SettingsMain() {
           icon="person-circle-outline"
           label={L('Аккаунт', 'Акаунт', 'Cuenta')}
           sub={
-            !authReady
-              ? '…'
-              : linkedAuth
+            false && !authReady ? '' : linkedAuth
                 ? `${linkedAuth.provider === 'apple' ? 'Apple' : 'Google'}${linkedAuth.email ? ` · ${linkedAuth.email}` : ''}`
-                : L('Не привязан', 'Не привʼязано', 'Sin vincular')
+                : L('Не привязан', "Не прив\'язано", 'Sin vincular')
           }
           onPress={() => {
             if (!linkedAuth) {
@@ -597,20 +598,6 @@ export default function SettingsMain() {
 
 
 <SectionTitle title={L('Ещё', 'Ще', 'Más')} />
-        {Platform.OS !== 'ios' && (
-          <Row
-            icon="person-add-outline"
-            label={L('Пригласить друга', 'Запросити друга', 'Invitar a un amigo')}
-            sub={L('Бонусы вам обоим', 'Бонуси вам обом', 'Recompensas para ambos')}
-            onPress={() => { doHaptic(); router.push('/settings_invite_friend' as any); }}
-          />
-        )}
-        <Row icon="help-circle-outline" label={L('Помощь / FAQ', 'Допомога / FAQ', 'Ayuda / FAQ')} sub={L('Ответы на частые вопросы', 'Відповіді на часті запитання', 'Respuestas a preguntas frecuentes')} onPress={() => { doHaptic(); router.push('/help_faq' as any); }} />
-        <Row
-          icon="mail-outline"
-          label={L('Идеи и предложения', 'Ідеї й пропозиції', 'Comentarios e ideas')}
-          onPress={() => router.push('/suggestion_screen' as any)}
-        />
         <Row
           icon="at-outline"
           label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte')}
@@ -622,16 +609,11 @@ export default function SettingsMain() {
             );
           }}
         />
-        {/* "Частые вопросы" удалён — дублирует раздел "Помощь / FAQ" выше */}
         {effectiveOs === 'android' && (
           <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta')} onPress={() => router.push('/beta_testers' as any)} />
         )}
-        {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && (
-          <Row
-            icon="shield-outline"
-            label={L('Админ панель', 'Адмін панель', 'Panel de administración')}
-            onPress={() => router.push('/settings_testers' as any)}
-          />
+        {ENABLE_DEV_TOOLS && (
+          <Row icon="construct-outline" label={L('Админ панель', 'Адмін панель', 'Panel admin')} onPress={() => router.push('/settings_testers' as any)} />
         )}
         {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat */}
         {isPremium ? (
@@ -667,20 +649,16 @@ export default function SettingsMain() {
         ) : (
           <TouchableOpacity
             style={{ flexDirection: 'row', alignItems: 'center', margin: 20, backgroundColor: t.bgCard, borderRadius: 14, padding: 16, borderWidth: 0.5, borderColor: t.border }}
-            onPress={() => router.push('/premium_modal')}
+            onPress={() => router.push({ pathname: '/premium_modal', params: { context: 'generic', source: 'settings_premium' } } as any)}
             activeOpacity={0.85}
           >
             <Ionicons name="diamond-outline" size={26} color={t.textSecond} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {trialEligible
-                  ? L('Попробуй Premium бесплатно', 'Спробуй Premium безкоштовно', 'Prueba Premium gratis')
-                  : 'Premium'}
+                Premium
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                {trialEligible
-                  ? L('7 дней бесплатно · месячный или годовой план', '7 днів безкоштовно · місячний або річний план', '7 días gratis · plan mensual o anual')
-                  : L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual')}
+                {L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual')}
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
@@ -751,7 +729,7 @@ export default function SettingsMain() {
               {L('Аккаунт', 'Акаунт', 'Cuenta')}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22 }}>
-              {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', 'Не привʼязано', 'Sin vincular')}
+              {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', "Не прив\'язано", 'Sin vincular')}
             </Text>
             {!!linkedAuth?.email && (
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
@@ -804,7 +782,7 @@ export default function SettingsMain() {
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
               {L(
                 'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
-                'Поточний прогрес залишиться привʼязаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.',
+                "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
                 'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
               )}
             </Text>
@@ -840,7 +818,7 @@ export default function SettingsMain() {
                       res.reason === 'sync_failed'
                         ? L(
                             'Нет связи с сервером. Прогресс не сохранён в облако — попробуй позже, когда появится интернет.',
-                            'Немає звʼязку з сервером. Прогрес не збережено в хмару — спробуй пізніше, коли зʼявиться інтернет.',
+                            "Немає зв\'язку з сервером. Прогрес не збережено в хмару — спробуй пізніше, коли з\'явиться інтернет.",
                             'Sin conexión con el servidor: el progreso no se guardó en la nube. Inténtalo de nuevo cuando tengas internet.',
                           )
                         : L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Error desconocido. Inténtalo de nuevo.'),
@@ -865,9 +843,9 @@ export default function SettingsMain() {
       <Modal visible={switchAccountStage === 'wiping'} transparent animationType="fade">
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 32 }}>
           <View style={{ width: '100%', maxWidth: 280, backgroundColor: t.bgCard, borderRadius: 16, padding: 28, borderWidth: 1, borderColor: t.border, alignItems: 'center' }}>
-            <ActivityIndicator size="large" color={t.correct} />
+            <Ionicons name="shield-checkmark" size={28} color={t.correct} />
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
-              {L('Сохраняем прогресс…', 'Зберігаємо прогрес…', 'Guardando el progreso…')}
+              {L('Аккаунт', 'Акаунт', 'Cuenta')}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
               {L('Не закрывай приложение', 'Не закривай застосунок', 'No cierres la app')}

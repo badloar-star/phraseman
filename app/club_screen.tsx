@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Modal, Animated, Easing, Pressable, Image } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import InGameToast from '../components/InGameToast';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,8 +12,10 @@ import UnifiedPlayerModal, { PlayerInfo as UnifiedPlayerInfo } from '../componen
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
+import LeagueCrownName from '../components/LeagueCrownName';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
+import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
 import {
   LEAGUES,
   CLUB_DESC_ES,
@@ -29,19 +30,20 @@ import {
 import LeagueResultModal from './LeagueResultModal';
 import { logLeaguePromoted } from './firebase';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getTitleString } from '../constants/titles';
 
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { ensureAnonUser } from './cloud_sync';
 import { getCanonicalUserId } from './user_id_policy';
-import { getXPProgress, getLevelFromXP } from '../constants/theme';
+import { getXPProgress, getLevelFromXP, screenTextOnGradient } from '../constants/theme';
 import {
   loadPrevRank, savePrevRank, computeRankDelta,
   KEY_CLUB_PREV_RANK, RankDelta,
 } from './rank_change';
 import RankChangeBanner from '../components/RankChangeBanner';
 import { getShardsBalance } from './shards_system';
-import { onAppEvent } from './events';
+import { actionToastTri, emitAppEvent, onAppEvent } from './events';
 import {
   LEAGUE_PERSONAL_BOOSTS,
   LeaguePersonalBoostDef,
@@ -52,8 +54,18 @@ import {
   loadActiveLeagueBoost,
 } from './league_personal_boosts';
 import { oskolokImageForPackShards } from './oskolok';
+import { subscribeMyArenaClubWarEvent } from './services/arena_club_wars';
+import {
+  LEAGUE_CROWN_NICK_COLOR,
+  ensureLeagueChestRewards,
+  fetchActiveLeagueCrowns,
+  getLeagueChestGoal,
+  resolveMyLeagueGroupMeta,
+} from './services/league_chest_rewards';
+import { shouldShowLeagueRace } from './league_race_visibility';
+import LeagueChatPanel from '../components/LeagueChatPanel';
 
-// v2 — bumped после фикса race на signInAnonymously + остановки записи fallback'а
+// v2 — bumped после фикса race на signInAnonymously + остановки записи fallback\'а
 // в league_state_v3. Старый таймер мог хранить «не обновлять» с момента, когда
 // fetchGroupForUser возвращал только пользователя из-за PERMISSION_DENIED.
 const CLUB_REMOTE_REFRESH_AT_KEY = 'club_remote_refresh_at_v2';
@@ -71,8 +83,14 @@ function localCalendarDayKey(): string {
 }
 
 function leagueTag(lang: Lang, tagRU: string, tagUK: string): string {
-  const es = tagRU.replace(/^Бонус:\s*/i, 'Bonificación: ');
-  return triLang(lang, { ru: tagRU, uk: tagUK, es });
+  const pct = Number(tagRU.match(/([+-]?\d+)%/)?.[1] ?? '0');
+  if (pct <= 0) return '';
+  const formattedPct = `+${pct}%`;
+  return triLang(lang, {
+    ru: `Бонус к опыту: ${formattedPct}`,
+    uk: `Бонус до досвіду: ${formattedPct}`,
+    es: `Bono de XP: ${formattedPct}`,
+  });
 }
 
 function leagueDesc(lang: Lang, leagueId: number, descRU: string, descUK: string): string {
@@ -80,6 +98,21 @@ function leagueDesc(lang: Lang, leagueId: number, descRU: string, descUK: string
     ru: descRU,
     uk: descUK,
     es: CLUB_DESC_ES[leagueId] ?? descRU,
+  });
+}
+
+function leaguePromotionHintText(lang: Lang, promotionCutoff: number): string {
+  if (promotionCutoff <= 0) {
+    return triLang(lang, {
+      ru: 'Повышение станет доступно, когда в лиге будет хотя бы 2 участника.',
+      uk: 'Підвищення стане доступним, коли в лізі буде хоча б 2 учасники.',
+      es: 'El ascenso estará disponible cuando haya al menos 2 participantes en la liga.',
+    });
+  }
+  return triLang(lang, {
+    ru: `Чтобы перейти в следующую лигу, к концу недели нужно войти в топ-${promotionCutoff} по опыту, набранному за эту неделю.`,
+    uk: `Щоб перейти в наступну лігу, до кінця тижня потрібно потрапити в топ-${promotionCutoff} за досвідом, зібраним за цей тиждень.`,
+    es: `Para subir de liga, al final de la semana debes estar entre los ${promotionCutoff} primeros por experiencia ganada esta semana.`,
   });
 }
 
@@ -120,7 +153,6 @@ function LeagueIcon({
         width: size,
         height: size,
         opacity: locked ? 0.55 : (active ? 1 : 0.65),
-        tintColor: locked ? '#7A7A7A' : undefined,
       }}
       resizeMode="contain"
     />
@@ -142,7 +174,8 @@ function LeagueIcon({
 
 export default function ClubScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
 
   const [myLeagueId, setMyLeagueId]     = useState(0);
@@ -152,9 +185,10 @@ export default function ClubScreen() {
   const [profilePlayer, setProfile]     = useState<UnifiedPlayerInfo | null>(null);
   const [myAvatarEmoji, setMyAvatarEmoji] = useState('🐣');
   const [myFrameId, setMyFrameId]         = useState('plain');
+  const [myAuraId, setMyAuraId]           = useState('');
   const [userName, setUserName]         = useState('');
   const [playerXP, setPlayerXP]         = useState(0);
-  const [toast, setToast] = useState<string | null>(null);
+  const [clubTab, setClubTab] = useState<'rank' | 'chat'>('rank');
   const [rankDelta, setRankDelta] = useState<RankDelta | null>(null);
   const [shardsBalance, setShardsBalance] = useState(0);
   const [boostMenuVisible, setBoostMenuVisible] = useState(false);
@@ -175,16 +209,71 @@ export default function ClubScreen() {
   const LEAGUE_ITEM_GAP = 14;
   const LEAGUE_ITEM_FULL = LEAGUE_ITEM_SIZE + LEAGUE_ITEM_GAP;
   const leagueRailRef = useRef<ScrollView | null>(null);
+  const contentScrollRef = useRef<ScrollView | null>(null);
+  const didAutoScrollToMyRowRef = useRef<string | null>(null);
+  const [contentViewportHeight, setContentViewportHeight] = useState(0);
+  const [leaderboardTopY, setLeaderboardTopY] = useState<number | null>(null);
   const lastSnapLeagueRef = useRef<number | null>(null);
   const [railSideInset, setRailSideInset] = useState(12);
   /** Совпадает с RankChangeTestModal / тестовым превью — не менять без синхронизации. */
   const ROW_HEIGHT_CLUB = 60;
   const myRowAnim = useRef(new Animated.Value(0)).current;
+  const leagueChestRewardCheckKeyRef = useRef<string | null>(null);
+  const chatMetaRefreshAtRef = useRef(0);
 
-  /** Подсказка про топ‑5: только первый раз за календарный день при открытии вкладки лиги. */
+  /** Подсказка про зону повышения: только первый раз за календарный день при открытии вкладки лиги. */
   const [leaguePromoHintVisible, setLeaguePromoHintVisible] = useState(false);
+  const [arenaClubEvent, setArenaClubEvent] = useState<any | null>(null);
+  const [arenaClubStableUid, setArenaClubStableUid] = useState('');
+  const [leagueGroupMeta, setLeagueGroupMeta] = useState<{ weekId: string; groupId: string; leagueId: number } | null>(null);
+  const [leagueChestClaimed, setLeagueChestClaimed] = useState(false);
+  const [leagueCrownsByUid, setLeagueCrownsByUid] = useState<Record<string, { expiresAt: number }>>({});
+  const [leagueChestOpenModal, setLeagueChestOpenModal] = useState<{
+    crownName?: string;
+    isCrownWinner?: boolean;
+  } | null>(null);
 
   const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    let cancelled = false;
+    let unsub: (() => void) | null = null;
+    void ensureAnonUser().then((stableUid) => {
+      if (cancelled || !stableUid) return;
+      setArenaClubStableUid(stableUid);
+      unsub = subscribeMyArenaClubWarEvent(stableUid, setArenaClubEvent);
+    });
+    return () => {
+      cancelled = true;
+      unsub?.();
+    };
+  }, []);
+
+  useEffect(() => {
+    const groupId = String(arenaClubEvent?.groupId ?? '').trim();
+    const weekId = String(arenaClubEvent?.weekId ?? '').trim();
+    if (!groupId || !weekId) return;
+    setLeagueGroupMeta({
+      weekId,
+      groupId,
+      leagueId: Math.max(0, Math.floor(Number(arenaClubEvent?.leagueId) || myLeagueId)),
+    });
+  }, [arenaClubEvent, myLeagueId]);
+
+  useEffect(() => {
+    const uids = group.map((m) => m.uid).filter((uid): uid is string => !!uid);
+    if (uids.length === 0) {
+      setLeagueCrownsByUid({});
+      return;
+    }
+    let cancelled = false;
+    void fetchActiveLeagueCrowns(uids).then((crowns) => {
+      if (!cancelled && isMountedRef.current) setLeagueCrownsByUid(crowns);
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [group]);
 
   useFocusEffect(
     useCallback(() => {
@@ -271,9 +360,11 @@ export default function ClubScreen() {
 
     try {
       // ── Фаза 1: мгновенно читаем локальный кеш ──────────────────────────────
-      const [name, frame, phrasm, xp, canonicalUid, cachedLeague, cachedPending] = await Promise.all([
+      const [name, avatar, frame, aura, phrasm, xp, canonicalUid, cachedLeague, cachedPending] = await Promise.all([
         AsyncStorage.getItem('user_name'),
+        AsyncStorage.getItem('user_avatar'),
         AsyncStorage.getItem('user_frame'),
+        AsyncStorage.getItem(USER_AVATAR_AURA_KEY),
         AsyncStorage.getItem('user_phrasm'),
         AsyncStorage.getItem('user_total_xp'),
         getCanonicalUserId(),
@@ -295,8 +386,12 @@ export default function ClubScreen() {
       setUserName(n);
       setPlayerXP(xpNum);
       setShardsBalance(await getShardsBalance());
-      setMyAvatarEmoji(getBestAvatarForLevel(getLevelFromXP(xpNum)));
+      setMyAvatarEmoji((avatar && avatar.trim()) || getBestAvatarForLevel(getLevelFromXP(xpNum)));
       if (frame) setMyFrameId(frame);
+      setMyAuraId(aura ?? '');
+      resolveMyLeagueGroupMeta().then((meta) => {
+        if (isMountedRef.current && meta) setLeagueGroupMeta(meta);
+      }).catch(() => {});
 
       // Показываем кешированные данные лиги сразу, без ожидания сети
       if (cachedLeague) {
@@ -360,6 +455,24 @@ export default function ClubScreen() {
     };
   }, [loadData]);
 
+  useEffect(() => {
+    if (clubTab !== 'chat' || leagueGroupMeta) return;
+    const now = Date.now();
+    if (now - chatMetaRefreshAtRef.current < 15_000) return;
+    chatMetaRefreshAtRef.current = now;
+    void resolveMyLeagueGroupMeta()
+      .then((meta) => {
+        if (isMountedRef.current && meta) {
+          setLeagueGroupMeta(meta);
+          return;
+        }
+        void loadData({ forceRemote: true });
+      })
+      .catch(() => {
+        void loadData({ forceRemote: true });
+      });
+  }, [clubTab, leagueGroupMeta, loadData]);
+
   const refreshActiveBoost = useCallback(async () => {
     const active = await loadActiveLeagueBoost();
     if (!isMountedRef.current) return;
@@ -405,9 +518,74 @@ export default function ClubScreen() {
 
   const sortedGroup = [...group].sort((a, b) => b.points - a.points);
   const zoneSize = Math.max(1, Math.ceil(sortedGroup.length * 0.15));
+  const promotionCutoff = sortedGroup.length >= 2 && myLeagueId < LEAGUES.length - 1 ? zoneSize : 0;
   const relegationStartIndex = Math.max(0, sortedGroup.length - zoneSize);
   const myRank      = sortedGroup.findIndex(m => m.isMe) + 1;
   const total       = sortedGroup.length;
+  const myRowIndex = myRank > 0 ? myRank - 1 : -1;
+  const leagueRaceVisible = shouldShowLeagueRace(sortedGroup.length, userName);
+  const myArenaClubPoints = arenaClubStableUid
+    ? Math.max(0, Math.floor(Number((arenaClubEvent?.members ?? {})[arenaClubStableUid]?.points) || 0))
+    : 0;
+  const leagueRoomXp = sortedGroup.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
+  const arenaChestBonus = Math.max(0, Math.floor(Number(arenaClubEvent?.totalPoints) || 0));
+  const leagueChestGoal = getLeagueChestGoal(myLeagueId);
+  const leagueChestProgress = leagueRaceVisible ? Math.min(leagueChestGoal, leagueRoomXp + arenaChestBonus) : 0;
+  const leagueChestPct = leagueChestGoal > 0 ? Math.min(100, Math.round((leagueChestProgress / leagueChestGoal) * 100)) : 0;
+  const myLeagueRoomXp = Math.max(0, Math.floor(Number(sortedGroup.find((p) => p.isMe)?.points) || 0));
+  const myLeagueChestContribution = myLeagueRoomXp + myArenaClubPoints;
+  const leagueChestReady = leagueRaceVisible && leagueChestProgress >= leagueChestGoal;
+  const leagueCrownWinnerUid = leagueRaceVisible && leagueChestReady ? sortedGroup[0]?.uid : undefined;
+  const leagueCrownWinnerName = leagueRaceVisible && leagueChestReady ? sortedGroup[0]?.name : undefined;
+  const crownRaceTop = leagueRaceVisible ? sortedGroup.slice(0, 3) : [];
+
+  useEffect(() => {
+    if (!leagueRaceVisible || !leagueChestReady || !leagueGroupMeta || sortedGroup.length === 0 || leagueChestClaimed) return;
+    const checkKey = `${leagueGroupMeta.weekId}:${leagueGroupMeta.groupId}:${Math.floor(myLeagueChestContribution)}`;
+    if (leagueChestRewardCheckKeyRef.current === checkKey) return;
+    leagueChestRewardCheckKeyRef.current = checkKey;
+    let cancelled = false;
+    void ensureLeagueChestRewards({
+      weekId: leagueGroupMeta.weekId,
+      groupId: leagueGroupMeta.groupId,
+      leagueId: leagueGroupMeta.leagueId,
+      members: sortedGroup.map((m) => ({
+        uid: m.uid,
+        name: m.name,
+        points: Math.max(0, Math.floor(Number(m.points) || 0)),
+        isMe: m.isMe,
+      })),
+      chestReady: leagueChestReady,
+      myContribution: myLeagueChestContribution,
+    }).then((res) => {
+      if (cancelled || !isMountedRef.current) return;
+      if (res.claimed) setLeagueChestClaimed(true);
+      if (res.rewards) {
+        setLeagueChestOpenModal({
+          crownName: res.crown?.name,
+          isCrownWinner: !!res.crown?.uid && res.crown.uid === arenaClubStableUid,
+        });
+        emitAppEvent('action_toast', actionToastTri('success', {
+          ru: '+30 осколков, x2 XP на 3 раза, энергия за 5 минут и щит серии +1',
+          uk: '+30 осколків, x2 XP на 3 рази, енергія за 5 хвилин і щит серії +1',
+          es: '+30 fragmentos, x2 XP por 3 usos, energía en 5 min y escudo de racha +1',
+        }));
+      }
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [leagueRaceVisible, leagueChestReady, leagueGroupMeta, leagueChestClaimed, myLeagueChestContribution, sortedGroup, lang, arenaClubStableUid]);
+
+  const showLeagueToast = useCallback((message: string, type: 'success' | 'error' | 'info' = 'info') => {
+    emitAppEvent('action_toast', {
+      type,
+      messageRu: message,
+      messageUk: message,
+      messageEs: message,
+    });
+  }, []);
+
   const onSnapToLeague = useCallback((x: number) => {
     const raw = Math.round(x / LEAGUE_ITEM_FULL);
     const idx = Math.max(0, Math.min(LEAGUES.length - 1, raw));
@@ -427,6 +605,20 @@ export default function ClubScreen() {
   const snapOffsets = LEAGUES.map((_, idx) => idx * LEAGUE_ITEM_FULL);
   const x2BoostOptions = LEAGUE_PERSONAL_BOOSTS.filter((b) => b.multiplier === 2);
   const x3BoostDef = getLeagueBoostDef('x3_15m');
+
+  useEffect(() => {
+    if (!contentScrollRef.current || leaderboardTopY == null || contentViewportHeight <= 0 || myRowIndex < 0) return;
+    const scrollKey = `${getWeekId()}-${myLeagueId}-${group.length}-${myRowIndex}`;
+    if (didAutoScrollToMyRowRef.current === scrollKey) return;
+    didAutoScrollToMyRowRef.current = scrollKey;
+
+    const rowCenterY = leaderboardTopY + myRowIndex * ROW_HEIGHT_CLUB + ROW_HEIGHT_CLUB / 2;
+    const targetY = Math.max(0, rowCenterY - contentViewportHeight * 0.45);
+    const id = setTimeout(() => {
+      contentScrollRef.current?.scrollTo({ y: targetY, animated: false });
+    }, 80);
+    return () => clearTimeout(id);
+  }, [ROW_HEIGHT_CLUB, contentViewportHeight, group.length, leaderboardTopY, myLeagueId, myRowIndex]);
 
   const boostLabel = (boost: LeaguePersonalBoostDef): string => {
     if (boost.id === 'x2_30m') return triLang(lang, { ru: '30 минут', uk: '30 хвилин', es: '30 minutos' });
@@ -510,50 +702,75 @@ export default function ClubScreen() {
     });
   };
 
+  useEffect(() => {
+    if (clubTab === 'chat') setBoostMenuVisible(false);
+  }, [clubTab]);
+
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex:1 }}>
       <ContentWrap>
       {/* Хедер */}
       <View style={{ flexDirection:'row', alignItems:'center', padding:16, borderBottomWidth:0.5, borderBottomColor:t.border }}>
-        <TouchableOpacity onPress={() => {
-          if (router.canGoBack()) router.back();
-          else router.replace('/(tabs)/home' as any);
-        }}>
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+        <TouchableOpacity
+          testID="league-screen-back"
+          accessibilityRole="button"
+          accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+          activeOpacity={0.85}
+          hitSlop={{ top: 12, right: 12, bottom: 12, left: 12 }}
+          onPress={() => {
+            Haptics.selectionAsync().catch(() => {});
+            if (router.canGoBack()) router.back();
+            else router.replace('/(tabs)/home' as any);
+          }}
+          style={{ width: 36, height: 36, borderRadius: 18, alignItems: 'center', justifyContent: 'center' }}
+        >
+          <Ionicons name="chevron-back" size={28} color={sx.primary} />
         </TouchableOpacity>
-        <Text style={{ color:t.textPrimary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}>
+        <Text style={{ color:sx.primary, fontSize: f.h2, fontWeight:'700', marginLeft:8, flex:1 }}>
           {triLang(lang, { ru: 'Лига недели', uk: 'Ліга тижня', es: 'Liga de la semana' })}
         </Text>
-        <TouchableOpacity
-          activeOpacity={0.85}
-          disabled={!!activeLeagueBoost}
-          onPress={() => setBoostMenuVisible(true)}
-          style={{
-            paddingHorizontal:12,
-            paddingVertical:7,
-            borderRadius:12,
-            borderWidth:0.5,
-            borderColor:t.border,
-            backgroundColor: activeLeagueBoost ? '#3A3A3A' : t.bgCard,
-            flexDirection:'row',
-            alignItems:'center',
-            gap:6,
-            opacity: activeLeagueBoost ? 0.9 : 1,
-          }}
-        >
-          <Ionicons name="flash-outline" size={15} color={activeLeagueBoost ? '#CFCFCF' : t.textPrimary} />
-          <Text style={{ color: activeLeagueBoost ? '#CFCFCF' : t.textPrimary, fontSize:f.sub, fontWeight:'800' }}>
-            {activeLeagueBoost ? activeLeagueBoostTime : triLang(lang, { ru: 'Буст', uk: 'Буст', es: 'Impulso' })}
-          </Text>
-        </TouchableOpacity>
+        {clubTab === 'rank' && (
+          <TouchableOpacity
+            activeOpacity={0.85}
+            disabled={!!activeLeagueBoost}
+            onPress={() => setBoostMenuVisible(true)}
+            style={{
+              paddingHorizontal:12,
+              paddingVertical:7,
+              borderRadius:12,
+              borderWidth:0.5,
+              borderColor:t.border,
+              backgroundColor: activeLeagueBoost ? '#3A3A3A' : t.bgCard,
+              flexDirection:'row',
+              alignItems:'center',
+              gap:6,
+              opacity: activeLeagueBoost ? 0.9 : 1,
+            }}
+          >
+            <Ionicons name="flash-outline" size={15} color={activeLeagueBoost ? '#CFCFCF' : t.textPrimary} />
+            <Text style={{ color: activeLeagueBoost ? '#CFCFCF' : t.textPrimary, fontSize:f.sub, fontWeight:'800' }}>
+              {activeLeagueBoost ? activeLeagueBoostTime : triLang(lang, { ru: 'Буст', uk: 'Буст', es: 'Impulso' })}
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
 
       <ScrollView
-        contentContainerStyle={{ padding:16, gap:12 }}
+        ref={contentScrollRef}
+        onLayout={(e) => setContentViewportHeight(e.nativeEvent.layout.height)}
+        scrollEnabled={clubTab !== 'chat'}
+        keyboardShouldPersistTaps="handled"
+        style={clubTab === 'chat' ? { flexGrow: 0, flexShrink: 0 } : { flex: 1 }}
+        contentContainerStyle={{
+          paddingHorizontal: 16,
+          paddingTop: 16,
+          paddingBottom: clubTab === 'chat' ? 8 : 16,
+          gap: 12,
+        }}
       >
 
-        {rankDelta && (
+        {clubTab === 'rank' && rankDelta && (
           <RankChangeBanner
             delta={rankDelta.delta}
             passedName={rankDelta.passedName}
@@ -563,6 +780,41 @@ export default function ClubScreen() {
           />
         )}
 
+        <View style={{ flexDirection:'row', backgroundColor:t.bgCard, borderRadius:14, borderWidth:0.5, borderColor:t.border, padding:4, gap:4, marginHorizontal: clubTab === 'chat' ? 16 : 0 }}>
+          {([
+            ['rank', triLang(lang, { ru: 'Рейтинг', uk: 'Рейтинг', es: 'Ranking' }), 'podium-outline'],
+            ['chat', triLang(lang, { ru: 'Чат', uk: 'Чат', es: 'Chat' }), 'chatbubbles-outline'],
+          ] as const).map(([key, label, icon]) => {
+            const active = clubTab === key;
+            return (
+              <TouchableOpacity
+                key={key}
+                testID={`club-tab-${key}`}
+                activeOpacity={0.86}
+                onPress={() => {
+                  setClubTab(key);
+                  void Haptics.selectionAsync().catch(() => {});
+                }}
+                style={{
+                  flex:1,
+                  minHeight:42,
+                  borderRadius:10,
+                  alignItems:'center',
+                  justifyContent:'center',
+                  flexDirection:'row',
+                  gap:7,
+                  backgroundColor: active ? t.accent : 'transparent',
+                }}
+              >
+                <Ionicons name={icon as any} size={17} color={active ? t.correctText : t.textMuted} />
+                <Text style={{ color:active ? t.correctText : t.textMuted, fontSize:f.sub, fontWeight:'900' }}>{label}</Text>
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+
+        {clubTab !== 'chat' && (
+        <>
         {/* ── Горизонтальная лента лиг ── */}
         <View
           onLayout={(e) => setLeagueRailWidth(e.nativeEvent.layout.width)}
@@ -592,6 +844,7 @@ export default function ClubScreen() {
             {LEAGUES.map((league, idx) => {
               const isSelectedLeague = league.id === selectedLeagueId;
               const isLockedLeague = league.id > myLeagueId;
+              const tagText = leagueTag(lang, league.tagRU, league.tagUK);
               // 5-точечный inputRange — даёт более «крутилочный» эффект:
               // boczne иконки почти исчезают, центральная сильно укрупняется.
               const center = idx * LEAGUE_ITEM_FULL;
@@ -665,32 +918,50 @@ export default function ClubScreen() {
                   <Animated.Text
                     numberOfLines={2}
                     style={{
-                      color: isLockedLeague ? '#7A7A7A' : (isSelectedLeague ? t.textPrimary : t.textMuted),
+                      color: isLockedLeague ? sx.ghost : (isSelectedLeague ? sx.primary : sx.muted),
                       textAlign: 'center',
-                      fontSize: f.caption,
-                      lineHeight: Math.round(f.caption * 1.2),
+                      fontSize: 11,
+                      lineHeight: 14,
                       fontWeight: isSelectedLeague ? '700' : '600',
                       opacity: labelOpacity,
                       width: '100%',
-                      paddingHorizontal: 2,
-                      minHeight: Math.round(f.caption * 2.4),
+                      paddingHorizontal: 4,
                     }}
                   >
-                    {triLang(lang, { ru: league.nameRU, uk: league.nameUK, es: league.nameES })}
+                    {triLang(lang, {
+                      ru: (() => {
+                        const n = league.nameRU;
+                        if (/^лига\s+/i.test(n)) {
+                          // "Лига Черного Алмаза" → "Черного\nАлмаза"
+                          return n.replace(/^лига\s+/i, '').replace(/\s+/, '\n');
+                        }
+                        // "Золотая лига" → "Золотая\nлига"
+                        return n.replace(/\s+лига$/i, '\nлига');
+                      })(),
+                      uk: league.nameUK,
+                      es: league.nameES,
+                    })}
                   </Animated.Text>
-                  <Animated.Text
-                    numberOfLines={1}
-                    style={{
-                      color: isLockedLeague ? '#8A8A8A' : (isSelectedLeague ? '#D4A017' : t.textGhost),
-                      textAlign: 'center',
-                      fontSize: Math.max(10, f.caption - 2),
-                      fontWeight: '700',
-                      opacity: labelOpacity,
-                      width: '100%',
-                    }}
-                  >
-                    {leagueTag(lang, league.tagRU, league.tagUK)}
-                  </Animated.Text>
+                  {tagText ? (
+                    <Animated.Text
+                      numberOfLines={1}
+                      adjustsFontSizeToFit
+                      minimumFontScale={0.75}
+                      style={{
+                        color: isLockedLeague ? sx.ghost : (isSelectedLeague ? '#D4A017' : sx.ghost),
+                        textAlign: 'center',
+                        fontSize: 11,
+                        lineHeight: 14,
+                        fontWeight: '700',
+                        opacity: labelOpacity,
+                        width: '100%',
+                      }}
+                    >
+                      {tagText}
+                    </Animated.Text>
+                  ) : (
+                    <View style={{ height: 14 }} />
+                  )}
                   {isSelectedLeague && !isLockedLeague && (
                     <View style={{ width:24, height:2, borderRadius:2, backgroundColor:league.color, marginTop:2 }} />
                   )}
@@ -700,24 +971,72 @@ export default function ClubScreen() {
           </Animated.ScrollView>
         </View>
 
-        <Text style={{ color:t.textMuted, fontSize: f.label, textTransform:'uppercase', letterSpacing:0.8, marginTop:4, marginBottom: leaguePromoHintVisible ? 0 : 8 }}>
-          {triLang(lang, {
-            ru: 'Участники твоей лиги',
-            uk: 'Учасники твоєї ліги',
-            es: 'Compañeros de tu liga',
-          })}
-        </Text>
-        {leaguePromoHintVisible ? (
-        <Text style={{ color:t.textSecond, fontSize: f.caption, marginTop:-2, marginBottom:8, lineHeight: Math.round(f.caption * 1.35), fontWeight:'800' }}>
-          {triLang(lang, {
-            ru: 'Чтобы перейти в следующую лигу, к концу недели нужно войти в топ‑5 по опыту, набранному за эту неделю.',
-            uk: 'Щоб перейти в наступну лігу, до кінця тижня потрібно потрапити в топ‑5 за досвідом, зібраним за цей тиждень.',
-            es: 'Para subir de liga, al final de la semana debes estar entre los 5 primeros por experiencia ganada en esa semana.',
-          })}
-        </Text>
-        ) : null}
+        {leagueRaceVisible && (
+        <View style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, padding:14, gap:12 }}>
+          <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12 }}>
+            <View style={{ flexDirection:'row', alignItems:'center', gap:8, flex:1, minWidth:0 }}>
+              <Ionicons name="gift-outline" size={19} color={t.accent} />
+              <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900', flex:1 }} numberOfLines={1}>
+                {triLang(lang, { ru: 'Бонус лиги', uk: 'Бонус ліги', es: 'Bono de liga' })}
+              </Text>
+            </View>
+            <Text style={{ color: leagueChestReady ? t.correct : t.accent, fontSize:f.body, fontWeight:'900' }}>
+              {leagueChestPct}%
+            </Text>
+          </View>
+          <View style={{ height:10, borderRadius:6, overflow:'hidden', backgroundColor:t.bgSurface, borderWidth:0.5, borderColor:t.border }}>
+            <View style={{ height:'100%', width:`${leagueChestPct}%` as any, backgroundColor: leagueChestReady ? t.correct : t.accent, borderRadius:6 }} />
+          </View>
+          <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
+            <Text style={{ color:t.textSecond, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
+              {leagueChestProgress.toLocaleString()} / {leagueChestGoal.toLocaleString()} XP
+            </Text>
+          </View>
+          {!!leagueCrownWinnerName && (
+            <View style={{ flexDirection:'row', alignItems:'center', gap:6, paddingTop:2 }}>
+              <Ionicons name="trophy-outline" size={15} color={LEAGUE_CROWN_NICK_COLOR} />
+              <Text style={{ color:t.textSecond, fontSize:Math.max(10, f.caption - 1), fontWeight:'800', flex:1 }} numberOfLines={1}>
+                {triLang(lang, { ru: `Корона недели: ${leagueCrownWinnerName}`, uk: `Корона тижня: ${leagueCrownWinnerName}`, es: `Corona semanal: ${leagueCrownWinnerName}` })}
+              </Text>
+            </View>
+          )}
+          {!leagueChestReady && crownRaceTop.length > 0 && (
+            <View style={{ backgroundColor:t.bgSurface, borderRadius:12, borderWidth:0.5, borderColor:t.border, padding:10, gap:8 }}>
+              <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:10 }}>
+                <View style={{ flexDirection:'row', alignItems:'center', gap:6, flex:1, minWidth:0 }}>
+                  <Ionicons name="trophy-outline" size={16} color={LEAGUE_CROWN_NICK_COLOR} />
+                  <Text style={{ color:t.textPrimary, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
+                    {triLang(lang, { ru: 'Гонка за корону', uk: 'Гонка за корону', es: 'Carrera por la corona' })}
+                  </Text>
+                </View>
+              </View>
+              <View style={{ gap:6 }}>
+                {crownRaceTop.map((p, idx) => {
+                  const points = Math.max(0, Math.floor(Number(p.points) || 0));
+                  return (
+                    <View key={p.uid || `${p.name}-${idx}`} style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
+                      <Text style={{ width:18, color:idx === 0 ? LEAGUE_CROWN_NICK_COLOR : t.textMuted, fontSize:f.caption, fontWeight:'900' }}>
+                        {idx + 1}
+                      </Text>
+                      <Text style={{ color:p.isMe ? t.accent : t.textSecond, fontSize:f.caption, fontWeight:'900', flex:1 }} numberOfLines={1}>
+                        {p.name}
+                      </Text>
+                      <Text style={{ color:t.textMuted, fontSize:f.caption, fontWeight:'800' }}>
+                        {points}
+                      </Text>
+                    </View>
+                  );
+                })}
+              </View>
+            </View>
+          )}
+        </View>
+        )}
 
-        <View style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'visible' }}>
+        <View
+          onLayout={(e) => setLeaderboardTopY(e.nativeEvent.layout.y)}
+          style={{ backgroundColor:t.bgCard, borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden', marginTop:8 }}
+        >
           {sortedGroup.length === 0 ? (
             <Text style={{ color:t.textGhost, fontSize: f.sub, padding:16, textAlign:'center' }}>
               {triLang(lang, {
@@ -728,7 +1047,7 @@ export default function ClubScreen() {
             </Text>
           ) : (
             sortedGroup.map((p, i) => {
-              const isPromotionZone = i < zoneSize;
+              const isPromotionZone = promotionCutoff > 0 && i < promotionCutoff;
               const isRelegationZone = i >= relegationStartIndex;
               const rowXp = p.isMe ? playerXP : (p.totalXp ?? 0);
               const rowAvatar = p.isMe
@@ -739,13 +1058,21 @@ export default function ClubScreen() {
                 : isRelegationZone
                   ? 'rgba(255, 59, 48, 0.09)'
                   : 'transparent';
-              const rowMask = rowBg === 'transparent' ? t.bgCard : rowBg;
+              const isMyRow = !!p.isMe;
+              const rowFinalBg = isMyRow ? t.accentBg : rowBg;
+              const rowMask = rowFinalBg === 'transparent' ? t.bgCard : rowFinalBg;
               const boostMult = p.leagueBoostMultiplier;
               const boostUntil = p.leagueBoostExpiresAt ?? 0;
               const showLeagueBoost =
                 typeof boostMult === 'number' && boostMult > 1 && boostUntil > Date.now();
+              const hasLeagueCrown = leagueRaceVisible && !!p.uid && (
+                p.uid === leagueCrownWinnerUid ||
+                Number(leagueCrownsByUid[p.uid]?.expiresAt) > Date.now()
+              );
               const rowInner = (
               <TouchableOpacity
+                testID={`league-row-${p.uid || i}`}
+                accessibilityLabel={`qa-league-row-${p.uid || i}`}
                 activeOpacity={0.7}
                 onPress={() => setProfile({
                   name: p.name,
@@ -757,35 +1084,71 @@ export default function ClubScreen() {
                   isPremium: p.isPremium ?? false,
                   avatar: p.avatar,
                   frame: p.frame,
+                  aura: p.isMe ? myAuraId : p.aura,
                   streak: p.streak ?? null,
                   weekXp: p.points,
+                  leagueCrownExpiresAt: hasLeagueCrown
+                    ? Math.max(Date.now() + 1, Number(leagueCrownsByUid[p.uid ?? '']?.expiresAt) || 0)
+                    : undefined,
+                  profileCardLevel: p.profileCardLevel,
+                  profileCardTheme: p.profileCardTheme,
+                  profileCardMotion: p.profileCardMotion,
+                  profileCardPublicFocus: p.profileCardPublicFocus,
                 })}
                 style={{
                   flexDirection:'row', alignItems:'center',
                   paddingHorizontal:16, paddingVertical:11,
                   borderBottomWidth: i < sortedGroup.length - 1 ? 0.5 : 0,
                   borderBottomColor: t.border,
-                  backgroundColor: rowBg,
+                  backgroundColor: rowFinalBg,
+                  borderLeftWidth: isMyRow ? 4 : 0,
+                  borderLeftColor: isMyRow ? t.accent : 'transparent',
                 }}
               >
-                <Text style={{ width:24, fontSize: 14, color:t.textPrimary }}>{i + 1}</Text>
-                <PremiumAvatarHalo
-                  enabled={!!p.isPremium}
-                  avatarSize={36}
-                  maskColor={rowMask}
-                  style={{ marginLeft: 2, marginRight: 10 }}
-                >
-                  <AvatarView avatar={rowAvatar} totalXP={rowXp} size={36} />
-                </PremiumAvatarHalo>
-                <View style={{ flex:1 }}>
-                  {!!p.isPremium ? (
+                <Text style={{ width:24, fontSize: 14, color: isMyRow ? t.accent : t.textPrimary, fontWeight: isMyRow ? '900' : '400' }}>{i + 1}</Text>
+                <View style={{
+                  marginLeft: 2,
+                  marginRight: 10,
+                  borderRadius: 999,
+                  padding: hasLeagueCrown ? 2 : 0,
+                  borderWidth: hasLeagueCrown ? 1.5 : 0,
+                  borderColor: hasLeagueCrown ? LEAGUE_CROWN_NICK_COLOR : 'transparent',
+                  shadowColor: hasLeagueCrown ? LEAGUE_CROWN_NICK_COLOR : 'transparent',
+                  shadowOpacity: hasLeagueCrown ? 0.35 : 0,
+                  shadowRadius: hasLeagueCrown ? 8 : 0,
+                  shadowOffset: { width: 0, height: 0 },
+                }}>
+                  <PremiumAvatarHalo
+                    enabled={!!p.isPremium}
+                    avatarSize={36}
+                    maskColor={rowMask}
+                  >
+                    <AvatarView
+                      avatar={rowAvatar}
+                      totalXP={rowXp}
+                      size={36}
+                      auraId={getEffectiveAvatarAuraId(p.isMe ? myAuraId : p.aura, p.isPremium)}
+                    />
+                  </PremiumAvatarHalo>
+                </View>
+                <View style={{ flex:1, minWidth: 0 }}>
+                  {hasLeagueCrown ? (
+                    <LeagueCrownName text={p.name} fontSize={f.body} />
+                  ) : !!p.isPremium ? (
                     <PremiumGoldUserName text={p.name} fontSize={f.body} />
                   ) : (
-                    <Text style={{ fontSize: f.body, color: t.textSecond, fontWeight: '400' }}>
+                    <Text numberOfLines={1} style={{ fontSize: f.body, color: isMyRow ? t.textPrimary : t.textSecond, fontWeight: isMyRow ? '800' : '400' }}>
                       {p.name}
                     </Text>
                   )}
                 </View>
+                {isMyRow && (
+                  <View style={{ marginRight: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0.5, borderColor: t.accent + '55' }}>
+                    <Text style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
+                      {triLang(lang, { ru: 'Вы', uk: 'Ви', es: 'Tú' })}
+                    </Text>
+                  </View>
+                )}
                 <View style={{ flexDirection:'row', alignItems:'center', gap:5, flexShrink: 0 }}>
                   {showLeagueBoost && (
                     <Text style={{ fontSize: 12, fontWeight: '800', color: '#f472b6' }}>
@@ -821,8 +1184,23 @@ export default function ClubScreen() {
             })
           )}
         </View>
+        </>
+        )}
 
       </ScrollView>
+
+      {clubTab === 'chat' && (
+        <View style={{ flex: 1, minHeight: 0 }}>
+          <LeagueChatPanel
+            fallbackRoom={leagueGroupMeta}
+            myUid={arenaClubStableUid}
+            myAvatar={myAvatarEmoji}
+            myAuraId={myAuraId}
+            myTotalXP={playerXP}
+            onToast={showLeagueToast}
+          />
+        </View>
+      )}
       </ContentWrap>
 
       <UnifiedPlayerModal
@@ -831,6 +1209,7 @@ export default function ClubScreen() {
           name: userName,
           avatar: myAvatarEmoji,
           frame: myFrameId,
+          aura: myAuraId,
           totalXP: playerXP,
           leagueId: myLeagueId,
         }}
@@ -845,7 +1224,7 @@ export default function ClubScreen() {
       >
         <Pressable style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center', padding:24 }} onPress={() => setBoostMenuVisible(false)}>
           <Pressable onPress={() => {}}>
-            <View style={{ backgroundColor:t.bgCard, borderRadius:18, padding:14, width:280, borderWidth:0.5, borderColor:t.border, gap:10 }}>
+            <View style={{ backgroundColor:t.bgCard, borderRadius:18, padding:14, width:'90%', maxWidth:280, borderWidth:0.5, borderColor:t.border, gap:10 }}>
               <TouchableOpacity
                 activeOpacity={0.85}
                 onPress={() => {
@@ -923,7 +1302,7 @@ export default function ClubScreen() {
               <Text style={{ color:t.textSecond, fontSize:f.body, lineHeight:22, textAlign:'center' }}>
                 {descModal ? leagueDesc(lang, descModal.id, descModal.descRU, descModal.descUK) : ''}
               </Text>
-              {!!descModal && (
+              {!!descModal && !!leagueTag(lang, descModal.tagRU, descModal.tagUK) && (
                 <Text style={{ color:'#D4A017', fontSize:f.body, fontWeight:'700', textAlign:'center', marginTop:12 }}>
                   ⭐ {leagueTag(lang, descModal.tagRU, descModal.tagUK)}
                 </Text>
@@ -950,7 +1329,7 @@ export default function ClubScreen() {
           onPress={() => setGameAlert(null)}
         >
           <Pressable onPress={() => {}}>
-            <View style={{ backgroundColor:t.bgCard, borderRadius:18, padding:18, width:320, maxWidth:'95%', borderWidth:0.5, borderColor:t.border }}>
+            <View style={{ backgroundColor:t.bgCard, borderRadius:18, padding:18, width:'90%', maxWidth:320, borderWidth:0.5, borderColor:t.border }}>
               <Text style={{ color:t.textPrimary, fontSize:f.h2, fontWeight:'800', marginBottom:10 }}>
                 {gameAlert?.title}
               </Text>
@@ -985,7 +1364,18 @@ export default function ClubScreen() {
         </Pressable>
       </Modal>
 
-      <InGameToast message={toast} onHide={() => setToast(null)} type="error" />
+      <LeagueChestOpenModal
+        visible={leagueRaceVisible && leagueChestOpenModal !== null}
+        crownName={leagueChestOpenModal?.crownName}
+        isCrownWinner={leagueChestOpenModal?.isCrownWinner}
+        onClose={() => setLeagueChestOpenModal(null)}
+        onShowLeaderboard={() => {
+          setLeagueChestOpenModal(null);
+          setClubTab('rank');
+          const y = Math.max(0, (leaderboardTopY ?? 0) - 12);
+          contentScrollRef.current?.scrollTo({ y, animated: true });
+        }}
+      />
 
       {pendingLeagueResult && (
         <LeagueResultModal
@@ -1004,4 +1394,3 @@ export default function ClubScreen() {
     </ScreenGradient>
   );
 }
-

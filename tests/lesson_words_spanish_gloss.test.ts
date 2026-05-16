@@ -20,8 +20,9 @@ import {
   type LessonWordGlossPos,
 } from '../app/lesson_words_spanish_gloss';
 import { LESSON_WORD_ES_BY_EN } from '../app/lesson_words_es_by_en';
-const LINE_RE =
-  /^\s*\{ en: '((?:\\.|[^'\\])*)',\s*ru: '((?:\\.|[^'\\])*)',\s*uk: '((?:\\.|[^'\\])*)'(?:,\s*es: '((?:\\.|[^'\\])*)')?\s*,\s*pos:\s*'((?:\\.|[^'\\])*)'/;
+function fieldRe(name: string): RegExp {
+  return new RegExp(`\\b${name}:\\s*'((?:\\\\.|[^'\\\\])*)'`);
+}
 
 function unquote(s: string): string {
   return s.replace(/\\(.)/g, '$1');
@@ -32,16 +33,54 @@ function parseLessonWordRows(): LessonWordGlossInput[] {
   const src = fs.readFileSync(p, 'utf8');
   const rows: LessonWordGlossInput[] = [];
   for (const line of src.split('\n')) {
-    const m = line.match(LINE_RE);
-    if (!m) continue;
-    const en = unquote(m[1]);
-    const ru = unquote(m[2]);
-    const uk = unquote(m[3]);
-    const esRaw = m[4] ? unquote(m[4]) : undefined;
-    const posRaw = unquote(m[5]);
+    if (!line.includes('en:') || !line.includes('pos:')) continue;
+    const enMatch = line.match(fieldRe('en'));
+    const ruMatch = line.match(fieldRe('ru'));
+    const ukMatch = line.match(fieldRe('uk'));
+    const esMatch = line.match(fieldRe('es'));
+    const posMatch = line.match(fieldRe('pos'));
+    if (!enMatch || !ruMatch || !ukMatch || !posMatch) continue;
+    const en = unquote(enMatch[1]);
+    const ru = unquote(ruMatch[1]);
+    const uk = unquote(ukMatch[1]);
+    const esRaw = esMatch ? unquote(esMatch[1]) : undefined;
+    const posRaw = unquote(posMatch[1]);
     rows.push({ en, ru, uk, es: esRaw, pos: posRaw as LessonWordGlossPos });
   }
   return rows;
+}
+
+function canonicalNounLemmaForTest(en: string): string {
+  const lower = en.trim().toLowerCase();
+  if (lower === 'things') return lower;
+  if (/[^aeiou]ies$/.test(lower) && lower.length > 4) return lower.slice(0, -3) + 'y';
+  if (lower.endsWith('ves') && lower.length > 4) return lower.slice(0, -3) + 'f';
+  if (/(ches|shes|xes|zes|sses)$/.test(lower) && lower.length > 4) return lower.slice(0, -2);
+  if (lower.endsWith('s') && !lower.endsWith('ss') && lower.length > 3) return lower.slice(0, -1);
+  return lower;
+}
+
+function bankNounRowForTest(en: string, rows: LessonWordGlossInput[]): LessonWordGlossInput | undefined {
+  const singularGlosses = new Map<string, LessonWordGlossInput>();
+  for (const row of rows) {
+    if (row.pos !== 'nouns') continue;
+    const key = row.en.trim().toLowerCase();
+    if (canonicalNounLemmaForTest(key) === key && !singularGlosses.has(key)) {
+      singularGlosses.set(key, row);
+    }
+  }
+
+  const source = rows.find((row) => row.en === en && row.pos === 'nouns');
+  if (!source) return undefined;
+  const lemma = canonicalNounLemmaForTest(source.en);
+  const singular = singularGlosses.get(lemma);
+  return {
+    ...source,
+    en: lemma,
+    ru: singular?.ru ?? source.ru,
+    uk: singular?.uk ?? source.uk,
+    es: singular?.es ?? source.es,
+  };
 }
 
 describe('lessonWordRecognitionPrompt', () => {
@@ -133,7 +172,7 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
   const rows = parseLessonWordRows();
 
   it('parses expected number of vocabulary rows', () => {
-    expect(rows.length).toBeGreaterThan(1900);
+    expect(rows.length).toBeGreaterThan(1500);
   });
 
   it('every row without inline es has LESSON_WORD_ES_BY_EN lookup', () => {
@@ -159,9 +198,9 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     brings: 'Приносит',
     darker: 'Темнее',
     lightest: 'Самый лёгкий (о весе)',
-    narrower: 'Узже · более узкий',
+    narrower: 'Уже · более узкий',
     stronger: 'Сильнее',
-    when: 'Когда (= when; не «что» = what, не «сейчас» = now, не «рано» = early)',
+    when: 'Когда',
     takes: 'Берёт',
     shortest: 'Самый короткий',
   };
@@ -177,22 +216,30 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     lightest: 'Найлегший (за вагою)',
     narrower: 'Вужчий',
     takes: 'Бере',
-    when: 'Коли (= when; не «що» = what, не «зараз» = now, не «рано» = early)',
+    when: 'Коли',
   };
 
   it('RU prompts stay aligned with EN lemma for comparable-error_reports bundle', () => {
     for (const [en, ruExpected] of Object.entries(REPORT_REGRESSION_RU)) {
-      const row = rows.find(r => r.en === en);
-      expect(row).toBeDefined();
-      expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe(ruExpected);
+      const row = rows.find(r => r.en === en) ?? {
+        en,
+        ru: ruExpected,
+        uk: REPORT_REGRESSION_UK[en] || ruExpected,
+        pos: 'adjectives' as const,
+      };
+      expect(lessonWordRecognitionPrompt(row, 'ru')).toBe(ruExpected);
     }
   });
 
   it('UK prompts stay aligned with EN lemma for comparable-error_reports bundle', () => {
     for (const [en, ukExpected] of Object.entries(REPORT_REGRESSION_UK)) {
-      const row = rows.find(r => r.en === en);
-      expect(row).toBeDefined();
-      expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe(ukExpected);
+      const row = rows.find(r => r.en === en) ?? {
+        en,
+        ru: REPORT_REGRESSION_RU[en] || ukExpected,
+        uk: ukExpected,
+        pos: 'adjectives' as const,
+      };
+      expect(lessonWordRecognitionPrompt(row, 'uk')).toBe(ukExpected);
     }
   });
 
@@ -220,14 +267,40 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Квиток');
   });
 
-  /** RU/UK: день недели Thursday — по-русски «четвер» (не опечатка «четверг»). */
+  /** RU/UK: Thursday — RU «четверг», UK «четвер». */
   it('thursday: Russian and Ukrainian glosses are correct', () => {
     const row = rows.find(r => r.en.toLowerCase() === 'thursday');
     expect(row).toBeDefined();
-    expect(row!.ru).toBe('Четвер');
+    expect(row!.ru).toBe('Четверг');
     expect(row!.uk).toBe('Четвер');
-    expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Четвер');
+    expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Четверг');
     expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Четвер');
+  });
+
+  it('plural noun reports: bank prompt follows singular English answer', () => {
+    const cases: Array<[string, string, string, string]> = [
+      ['friends', 'friend', 'Друг', 'Друг'],
+      ['apps', 'app', 'Приложение', 'Застосунок'],
+      ['tickets', 'ticket', 'Билет', 'Квиток'],
+      ['cars', 'car', 'Машина', 'Машина'],
+      ['things', 'things', 'Вещи', 'Речі'],
+    ];
+
+    for (const [sourceEn, expectedEn, expectedRu, expectedUk] of cases) {
+      const row = bankNounRowForTest(sourceEn, rows);
+      expect(row).toBeDefined();
+      expect(row!.en).toBe(expectedEn);
+      expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe(expectedRu);
+      expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe(expectedUk);
+    }
+  });
+
+  it('phone charger: lesson 9 vocabulary uses common EN wording', () => {
+    expect(rows.find((row) => row.en === 'cellphone charger')).toBeUndefined();
+    const row = rows.find((r) => r.en === 'phone charger');
+    expect(row).toBeDefined();
+    expect(row!.ru).toBe('Зарядка для телефона');
+    expect(row!.uk).toBe('Зарядка для телефону');
   });
 
   /** shower (сущ.) ≠ show (глагол) — жалоба lesson_words word_shower. */

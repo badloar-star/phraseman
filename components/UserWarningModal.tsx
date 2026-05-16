@@ -29,7 +29,7 @@ export default function UserWarningModal({ visible, message, lang, onClose }: Pr
       <View
         style={{
           flex: 1,
-          backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.60)',
+          backgroundColor: 'rgba(0,0,0,0.60)',
           justifyContent: 'center',
           alignItems: 'center',
           padding: 24,

@@ -47,11 +47,14 @@ interface Props {
   dataId: string;
   /** человекочитаемый текст: фраза, вопрос, слово */
   dataText?: string;
+  /** What the user actually entered/assembled before sending the report. */
+  userAnswer?: string;
   style?: object;
   onSuccess?: (xpGained: number) => void;
   /** Только красный флаг без подписи (напр. угол карточки описания) */
   variant?: 'default' | 'icon-flag';
   accessibilityLabel?: string;
+  textColor?: string;
 }
 
 const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
@@ -59,7 +62,6 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
     { key: 'wrong_answer',  label: 'Неверный правильный ответ|Неправильна правильна відповідь|La opción marcada como correcta es errónea' },
     { key: 'typo',          label: 'Опечатка / ошибка в тексте|Друкарська помилка / помилка в тексті|Error ortográfico o en el texto' },
     { key: 'translation',   label: 'Неточный перевод|Неточний переклад|Traducción inexacta' },
-    { key: 'audio',         label: 'Проблема с аудио|Проблема з аудіо|Problema con el audio' },
     { key: 'hint',          label: 'Неверная подсказка к уроку|Неправильна підказка до уроку|Pista equivocada en la lección' },
     { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
     { key: 'other',         label: 'Другое|Інше|Otro' },
@@ -91,7 +93,6 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
   flashcards: [
     { key: 'translation',   label: 'Неточный перевод|Неточний переклад|Traducción inexacta' },
     { key: 'typo',          label: 'Опечатка / ошибка в тексте|Друкарська помилка / помилка в тексті|Error ortográfico o en el texto' },
-    { key: 'audio',         label: 'Проблема с аудио|Проблема з аудіо|Problema con el audio' },
     { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
     { key: 'other',         label: 'Другое|Інше|Otro' },
   ],
@@ -120,13 +121,6 @@ const SCREEN_CATEGORIES: Record<string, { key: string; label: string }[]> = {
     { key: 'explanation',   label: 'Ошибка в объяснении|Помилка в поясненні|Fallo en la explicación' },
     { key: 'typo',          label: 'Опечатка в тексте|Друкарська помилка в тексті|Error ortográfico en el texto' },
     { key: 'example',       label: 'Неточный пример|Неточний приклад|Ejemplo inexacto' },
-    { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
-    { key: 'other',         label: 'Другое|Інше|Otro' },
-  ],
-  faq: [
-    { key: 'outdated',      label: 'Неточный / устаревший ответ|Неточна / застаріла відповідь|Respuesta inexacta u obsoleta' },
-    { key: 'typo',          label: 'Опечатка в тексте|Друкарська помилка в тексті|Error ortográfico en el texto' },
-    { key: 'incomplete',    label: 'Вопрос не раскрыт|Питання не розкрито|La pregunta no queda resuelta' },
     { key: 'ui_bug',        label: 'Баг интерфейса|Баг інтерфейсу|Fallo de la interfaz' },
     { key: 'other',         label: 'Другое|Інше|Otro' },
   ],
@@ -170,10 +164,12 @@ export default function ReportErrorButton({
   screen,
   dataId,
   dataText,
+  userAnswer,
   style,
   onSuccess,
   variant = 'default',
   accessibilityLabel,
+  textColor,
 }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -230,6 +226,7 @@ export default function ReportErrorButton({
         category: selected,
         dataId,
         dataText: dataText ?? dataId,
+        userAnswer,
         comment: commentTrimmed,
       },
       nameRaw,
@@ -272,7 +269,7 @@ export default function ReportErrorButton({
           <Ionicons name="flag" size={17} color={t.wrong} />
         ) : (
           <Text
-            style={[styles.triggerText, { color: t.textSecond, fontSize: f.sub }]}
+            style={[styles.triggerText, { color: textColor ?? t.textSecond, fontSize: f.sub }]}
             numberOfLines={1}
             ellipsizeMode="tail"
           >
@@ -422,9 +419,7 @@ export default function ReportErrorButton({
                     style={[styles.btnSend, { backgroundColor: selected ? t.accent : t.border }]}
                   >
                     <Text style={{ color: selected ? t.correctText : t.textPrimary, fontWeight: '700', fontSize: f.body }}>
-                      {sending
-                        ? triLang(lang, { ru: 'Отправка...', uk: 'Надсилання...', es: 'Enviando...' })
-                        : triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar' })}
+                      {triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar' })}
                     </Text>
                   </TouchableOpacity>
                 </View>

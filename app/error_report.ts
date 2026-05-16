@@ -41,6 +41,8 @@ export interface ErrorReportPayload {
   category: string;
   dataId: string;
   dataText: string;
+  /** What the user actually entered/assembled before sending the report. */
+  userAnswer?: string;
   /** Обязательный поясняющий текст; минимум ERROR_REPORT_COMMENT_MIN_LEN символов после trim */
   comment: string;
 }
@@ -134,6 +136,10 @@ export function buildCopyText(
     'content:',
     ...payload.dataText.split('\n').map(l => `  ${l}`),
   ];
+  const userAnswer = (payload.userAnswer ?? '').trim();
+  if (userAnswer.length > 0) {
+    lines.push(`userAnswer: ${userAnswer}`);
+  }
   lines.push(`comment:   ${payload.comment.trim()}`);
   lines.push('===========================');
   return lines.join('\n');
@@ -166,6 +172,7 @@ export const submitErrorReport = async (
       category:  payload.category,
       dataId:    payload.dataId,
       dataText:  payload.dataText,
+      userAnswer: (payload.userAnswer ?? '').trim(),
       comment:   commentTrimmed,
       // Device
       deviceModel:      meta.deviceModel,
@@ -187,6 +194,7 @@ export const submitErrorReport = async (
       // Meta
       copyText:  buildCopyText(payload, meta),
       createdAt: new Date().toISOString(),
+      status: 'new',
     }).catch(() => {/* Firestore недоступен — XP уже выдан */});
   }
 

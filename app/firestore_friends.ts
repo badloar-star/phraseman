@@ -5,6 +5,7 @@ import { generateRandomCode, isValidFriendCode, isValidInviteCodeLookup, normali
 import { isReferralCloudEnabled } from './referral_flags';
 import { getCanonicalUserId } from './user_id_policy';
 import { getStableId } from './stable_id';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 /** Устаревший глобальный ключ — без привязки к stableId; мигрируем в v2 при чтении. */
 const FRIEND_CODE_LEGACY_KEY = 'friend_code_local_v1';
@@ -67,8 +68,11 @@ export function peekMemoryInviteCodeForFriends(): string | null {
 /** Firestore collection name for code → uid reverse index. Indexed by code (doc id). */
 export const FRIEND_CODE_INDEX_COLLECTION = 'friend_code_index';
 
+export type InviteCodeLookupSource = 'friend_code_index' | 'referral_code' | 'legacy_friend_code';
+export type InviteCodeLookupResult = { uid: string; source: InviteCodeLookupSource };
+
 /** Maximum collision retries before throwing. With 31^6 codespace this is astronomically safe. */
-const MAX_COLLISION_RETRIES = 10;
+const FUNCTIONS_REGION = 'us-central1';
 
 /** Не даём облачному пути зависнуть навечно (в UI тогда «Генерируем код…» без счётчика ошибок). */
 const FRIEND_CODE_CLOUD_TOTAL_MS = 38_000;
@@ -108,6 +112,14 @@ const getFirestore = () => {
     return null;
   }
 };
+
+function callable<TReq, TRes>(name: string) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
+}
 
 /**
  * Ensure the current user has a unique friend code stored in
@@ -199,18 +211,7 @@ export async function ensureMyFriendCode(): Promise<string | null> {
         // Index points to different uid (uid migration after reinstall) — re-register
         // the SAME code under current uid. One code per stable_id, forever.
         try {
-          await db.runTransaction(async (tx: Record<string, unknown> & { get: (ref: unknown) => Promise<{exists: boolean; data?: () => Record<string, unknown>}>; set: (ref: unknown, data: unknown, opts?: unknown) => void }) => {
-            const codeRef = db.collection(FRIEND_CODE_INDEX_COLLECTION).doc(c);
-            const snap = await tx.get(codeRef);
-            // If taken by someone else (not our old uid), abort — can't reclaim.
-            if (snap.exists && snap.data?.()?.uid !== indexUid) throw new Error('CODE_CLAIMED');
-            tx.set(codeRef, { uid, createdAt: Date.now() });
-            tx.set(
-              db.collection('users').doc(uid),
-              { progress: { friend_code: c }, updatedAt: Date.now() },
-              { merge: true },
-            );
-          });
+          await callFriendEnsureMyCode(uid);
           await saveOwnerScopedStoredCode(owner, c);
         } catch {
           // Re-registration failed (network / claimed by someone else) — trust cache, try next time.
@@ -234,82 +235,43 @@ async function resolveCloudFriendCode(
   db: NonNullable<ReturnType<typeof getFirestore>>,
   cacheOwner: string,
 ): Promise<string | null> {
-  // Wait for Firebase Auth before Firestore write (избегаем PERMISSION_DENIED).
+  return resolveCloudFriendCodeViaCallable(db, cacheOwner);
+}
+
+async function resolveCloudFriendCodeViaCallable(
+  _db: NonNullable<ReturnType<typeof getFirestore>>,
+  cacheOwner: string,
+): Promise<string | null> {
   const uid = await withTimeout(ensureAnonUser(), FRIEND_CODE_ENSURE_UID_MS);
   if (!uid) return null;
-
-  // Check Firestore — code may exist from a previous install or other device.
-  let existingCode: string | undefined;
   try {
-    const userSnap = await db.collection('users').doc(uid).get();
-    const raw = typeof userSnap.data === 'function' ? userSnap.data() : null;
-    existingCode =
-      raw && typeof raw === 'object' && raw !== null && 'progress' in raw
-        ? (raw as { progress?: { friend_code?: string } }).progress?.friend_code
-        : undefined;
+    const code = await callFriendEnsureMyCode(uid);
+    await saveOwnerScopedStoredCode(cacheOwner, code);
+    return code;
   } catch {
-    // Сбой чтения (сеть / офлайн) — не выходим: ниже пробуем зарезервировать код транзакцией.
+    return null;
   }
-  if (typeof existingCode === 'string' && isValidFriendCode(existingCode)) {
-    const c = existingCode.trim().toUpperCase();
-    // Verify the index still points to THIS uid (handles uid migration after reinstall).
-    try {
-      const indexSnap = await db.collection(FRIEND_CODE_INDEX_COLLECTION).doc(c).get();
-      const indexUid = indexSnap.exists ? (indexSnap.data?.()?.uid as string | undefined) : undefined;
-      if (indexUid === uid) {
-        await saveOwnerScopedStoredCode(cacheOwner, c);
-        return c;
-      }
-      // Index points to a different uid — re-register the SAME code under current uid.
-      // One code per stable_id, forever — never generate a replacement.
-      try {
-        await db.runTransaction(async (tx: Record<string, unknown> & { get: (ref: unknown) => Promise<{exists: boolean; data?: () => Record<string, unknown>}>; set: (ref: unknown, data: unknown, opts?: unknown) => void }) => {
-          const codeRef = db.collection(FRIEND_CODE_INDEX_COLLECTION).doc(c);
-          const snap = await tx.get(codeRef);
-          if (snap.exists && snap.data?.()?.uid !== indexUid) throw new Error('CODE_CLAIMED');
-          tx.set(codeRef, { uid, createdAt: Date.now() });
-          tx.set(
-            db.collection('users').doc(uid),
-            { progress: { friend_code: c }, updatedAt: Date.now() },
-            { merge: true },
-          );
-        });
-      } catch {
-        // Re-registration failed — still return the code so UI isn't broken.
-      }
-      await saveOwnerScopedStoredCode(cacheOwner, c);
-      return c;
-    } catch {
-      // Network error — trust the stored code for now, revalidate next time.
-      await saveOwnerScopedStoredCode(cacheOwner, c);
-      return c;
-    }
-  }
+}
 
-  // Generate and transactionally reserve a unique code.
-  for (let attempt = 0; attempt < MAX_COLLISION_RETRIES; attempt++) {
-    const code = generateRandomCode();
-    try {
-      await db.runTransaction(async (tx: Record<string, unknown> & { get: (ref: unknown) => Promise<{exists: boolean}>; set: (ref: unknown, data: unknown, opts?: unknown) => void }) => {
-        const codeRef = db.collection(FRIEND_CODE_INDEX_COLLECTION).doc(code);
-        const snap = await tx.get(codeRef);
-        if (snap.exists) throw new Error('CODE_TAKEN');
-        tx.set(codeRef, { uid, createdAt: Date.now() });
-        tx.set(
-          db.collection('users').doc(uid),
-          { progress: { friend_code: code }, updatedAt: Date.now() },
-          { merge: true },
-        );
-      });
-      await saveOwnerScopedStoredCode(cacheOwner, code);
-      return code;
-    } catch (err) {
-      if (err instanceof Error && err.message === 'CODE_TAKEN') continue;
-      return null;
-    }
-  }
+async function callFriendEnsureMyCode(stableId: string): Promise<string> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<{ stableId: string }, { code: string }>('friendEnsureMyCode');
+  const { data } = await fn({ stableId });
+  const code = normalizeInviteCodeInput(data?.code);
+  if (!isValidFriendCode(code)) throw new Error('INVALID_FRIEND_CODE');
+  return code;
+}
 
-  return null;
+async function isUidBannedBestEffort(
+  db: NonNullable<ReturnType<typeof getFirestore>>,
+  uid: string,
+): Promise<boolean> {
+  try {
+    const banSnap = await db.collection('banned_users').doc(uid).get();
+    return banSnap.exists;
+  } catch {
+    return false;
+  }
 }
 
 /**
@@ -320,23 +282,23 @@ async function resolveCloudFriendCode(
  * Performs client-side validation via isValidFriendCode() before any
  * network call (cheap fail-fast on garbage input).
  */
-export async function lookupUserByFriendCode(code: string): Promise<{ uid: string } | null> {
+export async function lookupUserByFriendCode(code: string): Promise<InviteCodeLookupResult | null> {
   const normalized = normalizeInviteCodeInput(code);
   if (!isValidInviteCodeLookup(normalized)) return null;
 
   const db = getFirestore();
   if (!db) return null;
 
+  // friend_code_index/referral_codes are readable only to authenticated clients.
+  // Wait for anonymous auth here so every caller has the same cold-start behavior.
+  const authUid = await ensureAnonUser();
+  if (!authUid) return null;
+
   const indexSnap = await db.collection(FRIEND_CODE_INDEX_COLLECTION).doc(normalized).get();
   if (indexSnap.exists) {
     const uid = indexSnap.data?.()?.uid as string | undefined;
     if (uid) {
-      // Verify the user document exists — stale index entries point to deleted/migrated accounts.
-      const [userSnap, banSnap] = await Promise.all([
-        db.collection('users').doc(uid).get(),
-        db.collection('banned_users').doc(uid).get(),
-      ]);
-      if (userSnap.exists && !banSnap.exists) return { uid };
+      if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'friend_code_index' };
     }
   }
 
@@ -344,11 +306,7 @@ export async function lookupUserByFriendCode(code: string): Promise<{ uid: strin
   if (refSnap.exists) {
     const uid = refSnap.data?.()?.ownerStableId as string | undefined;
     if (typeof uid === 'string' && uid.length > 0) {
-      const [userSnap, banSnap] = await Promise.all([
-        db.collection('users').doc(uid).get(),
-        db.collection('banned_users').doc(uid).get(),
-      ]);
-      if (userSnap.exists && !banSnap.exists) return { uid };
+      if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'referral_code' };
     }
   }
 
@@ -361,8 +319,7 @@ export async function lookupUserByFriendCode(code: string): Promise<{ uid: strin
     const doc = legacySnap.docs?.[0];
     const uid = doc?.id as string | undefined;
     if (uid) {
-      const banSnap = await db.collection('banned_users').doc(uid).get();
-      if (!banSnap.exists) return { uid };
+      if (!(await isUidBannedBestEffort(db, uid))) return { uid, source: 'legacy_friend_code' };
     }
   } catch {
     /* Best-effort fallback for old users whose friend_code_index was never backfilled. */

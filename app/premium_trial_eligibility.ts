@@ -4,7 +4,7 @@ import type { Lang } from '../constants/i18n';
 const STORAGE_KEY_LAST = 'trial_last_consumed_at';
 const LEGACY_KEY_BOOLEAN = 'trial_used';
 
-/** Один раз на устройство: сброс старых флагов, чтобы снова показать копию «7 дней» на обоих планах (если магазин отдаёт intro). */
+/** Один раз на устройство: сброс старых флагов, чтобы снова показать копию «3 дня» на обоих планах (если магазин отдаёт intro). */
 const ONE_TIME_GLOBAL_TRIAL_UI_RESET_KEY = 'trial_migrate_all_show_7d_v1';
 
 /**
@@ -57,7 +57,7 @@ export async function getLastTrialOrPurchaseMarker(): Promise<number | null> {
   return t;
 }
 
-/** true, если в течение кулдауна — не показывать копию про 7 дней (локально). */
+/** true, если в течение кулдауна — не показывать копию про 3 дня (локально). */
 export async function getTrialReofferBlockedByCooldown(): Promise<boolean> {
   const last = await getLastTrialOrPurchaseMarker();
   if (last == null) return false;
@@ -85,10 +85,10 @@ export async function getTrialStatusLineForTesters(lang: Lang): Promise<string> 
     lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'ru-RU';
   if (last == null) {
     return lang === 'uk'
-      ? 'Немає запису: пейвол покаже 7 днів (якщо магазин віддає триал)'
+      ? 'Немає запису: пейвол покаже 3 дні (якщо магазин віддає триал)'
       : lang === 'es'
-        ? 'Sin registro: el paywall puede mostrar 7 días (si la tienda da prueba gratuita)'
-        : 'Нет записи: пейволл покажет 7 дней (если магазин отдаёт триал)';
+        ? 'Sin registro: el paywall puede mostrar 3 días (si la tienda da prueba gratuita)'
+        : 'Нет записи: пейволл покажет 3 дня (если магазин отдаёт триал)';
   }
   if (Date.now() - last >= TRIAL_REOFFER_COOLDOWN_MS) {
     return lang === 'uk'

@@ -1,10 +1,16 @@
 import { IS_EXPO_GO } from './config';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Constants from 'expo-constants';
+import { Platform } from 'react-native';
+import { getCanonicalUserId } from './user_id_policy';
 
 // Firebase недоступен в Expo Go — только в production билде
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const getAnalytics = () => IS_EXPO_GO ? null : require('@react-native-firebase/analytics').default();
 // eslint-disable-next-line @typescript-eslint/no-require-imports
 const getCrashlytics = () => IS_EXPO_GO ? null : require('@react-native-firebase/crashlytics').default();
+// eslint-disable-next-line @typescript-eslint/no-require-imports
+const getFirestore = () => IS_EXPO_GO ? null : require('@react-native-firebase/firestore').default();
 
 // ── Core helpers ─────────────────────────────────────────────────────────────
 
@@ -103,6 +109,30 @@ export function logPaywallClose(context: string) {
   logEvent('paywall_close', { context });
 }
 
+export function logCoursePaywallAfterLesson3(lessonsDone: number) {
+  logEvent('course_paywall_after_lesson3', { lessons_done: lessonsDone });
+}
+
+export function logExitTrialOfferShown(context: string, plan: string) {
+  logEvent('exit_trial_offer_shown', { context, plan });
+}
+
+export function logExitTrialOfferAccepted(context: string, plan: string) {
+  logEvent('exit_trial_offer_accepted', { context, plan });
+}
+
+export function logExitTrialOfferDeclined(context: string, plan: string) {
+  logEvent('exit_trial_offer_declined', { context, plan });
+}
+
+export function logTrainerDirectGateBlocked(route: string) {
+  logEvent('trainer_direct_gate_blocked', { route });
+}
+
+export function logArenaDirectGateBlocked(sessionId: string) {
+  logEvent('arena_direct_gate_blocked', { session_id: sessionId.slice(0, 80) });
+}
+
 // ── Flashcard events ──────────────────────────────────────────────────────────
 
 export function logFlashcardAdded() {
@@ -111,8 +141,32 @@ export function logFlashcardAdded() {
 
 // ── Subscription cancel survey ────────────────────────────────────────────────
 
-export function logCancelSurvey(reason: string) {
+export function logCancelSurvey(reason: string, reasonText = '', context = 'manage') {
   logEvent('subscription_cancel_survey', { reason });
+  void (async () => {
+    const db = getFirestore();
+    if (!db) return;
+    const [uid, userName, lang, plan] = await Promise.all([
+      getCanonicalUserId().catch(() => null),
+      AsyncStorage.getItem('user_name').catch(() => null),
+      AsyncStorage.getItem('app_lang').catch(() => null),
+      AsyncStorage.getItem('premium_plan').catch(() => null),
+    ]);
+    await db.collection('subscription_cancel_surveys').add({
+      reason: String(reason || 'unknown').slice(0, 80),
+      reasonText: String(reasonText || '').trim().slice(0, 1000),
+      context: String(context || 'manage').slice(0, 80),
+      uid: uid || 'unknown',
+      userName: userName || null,
+      lang: lang || null,
+      premiumPlan: plan || null,
+      platform: Platform.OS,
+      osVersion: String(Platform.Version),
+      appVersion: Constants.expoConfig?.version ?? Constants.nativeAppVersion ?? 'unknown',
+      buildNumber: Constants.nativeBuildVersion ?? 'unknown',
+      createdAt: new Date().toISOString(),
+    }).catch(() => {});
+  })();
 }
 
 // ── Lesson drop-off ───────────────────────────────────────────────────────────

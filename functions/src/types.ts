@@ -79,6 +79,8 @@ export interface SessionPlayer {
   sessionId: string;
   playerId: string;
   displayName?: string;
+  avatar?: string;
+  aura?: string | null;
   avatarLevel?: number;
   answers: SessionAnswer[];
   score: number;

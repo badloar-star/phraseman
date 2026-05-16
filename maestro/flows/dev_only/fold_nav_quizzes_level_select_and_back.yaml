@@ -1,0 +1,36 @@
+appId: app.phraseman
+---
+- runFlow: ../_shared/open_dev_client.yaml
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+# Pixel Fold centers the app content; 27%,95% is the visible Home tab center.
+- tapOn:
+    point: "27%,95%"
+- waitForAnimationToEnd:
+    timeout: 10000
+- runFlow:
+    when:
+      visible:
+        id: "save-progress-banner-dismiss"
+    commands:
+      - tapOn:
+          id: "save-progress-banner-dismiss"
+      - waitForAnimationToEnd:
+          timeout: 5000
+- scrollUntilVisible:
+    element:
+      id: "home-quick-quizzes"
+    direction: DOWN
+    timeout: 30000
+    speed: 80
+    visibilityPercentage: 40
+- tapOn:
+    id: "home-quick-quizzes"
+- extendedWaitUntil:
+    visible:
+      id: "quiz-level-select-back"
+    timeout: 30000
+- tapOn:
+    id: "quiz-level-select-back"
+- waitForAnimationToEnd:
+    timeout: 10000

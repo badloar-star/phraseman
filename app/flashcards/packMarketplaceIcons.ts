@@ -7,6 +7,11 @@ const BUNDLED_PACK_TILE_WEBP: Record<string, ImageSourcePropType> = {
   official_wild_west_en: require('../../assets/images/levels/WILD WEST.webp'),
   official_royal_tea_en: require('../../assets/images/levels/ROYAL TEA.webp'),
   official_peaky_blinders_en: require('../../assets/images/levels/PEAKY BLINDERS.webp'),
+  official_prep_in_en: require('../../assets/images/levels/in.webp'),
+  official_prep_on_en: require('../../assets/images/levels/on.webp'),
+  official_prep_at_en: require('../../assets/images/levels/At.webp'),
+  official_prep_to_en: require('../../assets/images/levels/to.webp'),
+  official_prep_by_en: require('../../assets/images/levels/by.webp'),
 };
 
 export function bundledPackTilePng(packId: string): ImageSourcePropType | undefined {

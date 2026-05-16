@@ -28,6 +28,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { englishRecallSurface } from './phrase_target_utils';
+import { getTopMistakePhraseDetails, logMistake, type MistakeTokenMeta } from './mistake_log';
+import { isCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 
 // ─── Типы ────────────────────────────────────────────────────────────────────
 
@@ -47,6 +49,14 @@ export interface RecallItem {
   lessonId:      number;
   /** Источник ошибки (для подписи на экране повторения) */
   source?:       MistakeSource;
+  /** Concrete token that caused the mistake, when known. */
+  errorWord?:    string;
+  /** Normalized POS category for the mistaken token. */
+  category?:     WordCategory;
+  /** Raw grammar tag from lesson/exam data for drill generation. */
+  grammarTag?:   string;
+  /** Token index in the English phrase, when known. */
+  tokenIndex?:   number;
   /** Счётчик суммарных ошибок по этой фразе */
   errorCount:    number;
   /** Кол-во правильных повторений подряд (для SM-2) */
@@ -85,6 +95,34 @@ function recallPhraseKey(phrase: string): string {
   return englishRecallSurface(phrase);
 }
 
+function resolveRecallMistakeMeta(
+  phraseKey: string,
+  meta?: MistakeTokenMeta,
+): Pick<RecallItem, 'errorWord' | 'category' | 'grammarTag' | 'tokenIndex'> {
+  if (!meta) return {};
+  const errorWord = meta?.tokenText?.trim() || meta?.expected?.trim() || undefined;
+  if (!errorWord && !meta.category && !meta.rawCategory && !meta.grammarTag) return {};
+  const resolved = isCategory(meta?.category)
+    ? { category: meta.category, grammarTag: meta.grammarTag }
+    : normalizeWordCategory(meta?.rawCategory || meta?.grammarTag, errorWord || phraseKey);
+  return {
+    errorWord,
+    category: resolved.category !== 'other' ? resolved.category : undefined,
+    grammarTag: resolved.grammarTag || meta?.grammarTag || meta?.rawCategory,
+    tokenIndex: Number.isFinite(meta?.tokenIndex) ? meta?.tokenIndex : undefined,
+  };
+}
+
+function applyRecallMistakeMeta(
+  item: RecallItem,
+  meta: Pick<RecallItem, 'errorWord' | 'category' | 'grammarTag' | 'tokenIndex'>,
+): void {
+  if (meta.errorWord) item.errorWord = meta.errorWord;
+  if (meta.category) item.category = meta.category;
+  if (meta.grammarTag) item.grammarTag = meta.grammarTag;
+  if (Number.isFinite(meta.tokenIndex)) item.tokenIndex = meta.tokenIndex;
+}
+
 /** Если после нормализации оказались дубликаты, объединяем — консервативный SM-2. */
 function mergeDuplicateRecallItems(a: RecallItem, b: RecallItem): RecallItem {
   const newer = a.lastReviewed >= b.lastReviewed ? a : b;
@@ -96,6 +134,10 @@ function mergeDuplicateRecallItems(a: RecallItem, b: RecallItem): RecallItem {
     correctAnswerES: newer.correctAnswerES ?? older.correctAnswerES,
     lessonId: newer.lessonId,
     source: newer.source ?? older.source,
+    errorWord: newer.errorWord ?? older.errorWord,
+    category: newer.category ?? older.category,
+    grammarTag: newer.grammarTag ?? older.grammarTag,
+    tokenIndex: Number.isFinite(newer.tokenIndex) ? newer.tokenIndex : older.tokenIndex,
     errorCount: Math.max(a.errorCount, b.errorCount),
     repetitions: Math.min(a.repetitions, b.repetitions),
     interval: Math.min(a.interval, b.interval),
@@ -229,10 +271,12 @@ export async function recordMistake(
   correctAnswerUK?: string,
   source:           MistakeSource = 'lesson',
   correctAnswerES?: string,
+  meta?:            MistakeTokenMeta,
 ): Promise<void> {
   const raw = await loadItems();
 
   const phraseKey = recallPhraseKey(phrase);
+  const mistakeMeta = resolveRecallMistakeMeta(phraseKey, meta);
 
   // Авто-удаление: фразы, которые не показывались AUTO_DELETE_DAYS дней
   const cutoff = Date.now() - AUTO_DELETE_DAYS * MS_PER_DAY;
@@ -263,6 +307,7 @@ export async function recordMistake(
     if (correctAnswerES) existing.correctAnswerES = correctAnswerES;
     existing.lessonId  = lessonId;
     existing.source      = source;
+    applyRecallMistakeMeta(existing, mistakeMeta);
     // Следующее повторение — через 1 день
     existing.nextDue      = daysFromNow(1);
   } else {
@@ -274,6 +319,7 @@ export async function recordMistake(
       correctAnswerES,
       lessonId,
       source,
+      ...mistakeMeta,
       errorCount:  1,
       repetitions: 0,
       interval:    1,
@@ -433,17 +479,24 @@ export async function getTrainerItems(
       // Фразы из mistake_log (топ по ошибкам за 30 дней), отсортированные по частоте.
       // Если фраза есть в SRS-базе — берём её оттуда (чтобы SM-2 метрики сохранялись).
       // Если нет в базе — пропускаем (фраза ещё не добавлена в повторение).
-      const { getWeakPhrases } = await import('./mistake_log');
-      const weakPhrases = await getWeakPhrases(limit * 4, 1);
+      const weakDetails = await getTopMistakePhraseDetails(limit * 4, 1);
+      const weakPhrases = weakDetails.map((detail) => detail.phrase);
       const byPhrase = new Map(all.map((i) => [i.phrase.toLowerCase(), i]));
 
       // Если передана категория — фильтруем фразы по грамматической категории через phraseIndex
       let categoryFilter: ((phrase: string) => boolean) | null = null;
-      if (category) {
-        const { getPhraseCategories } = await import('./phrase_analytics');
+      let focusCategoryFilter: WordCategory | null = null;
+      if (category && isCategory(category) && category !== 'other') {
+        const focusCategory = category as WordCategory;
+        focusCategoryFilter = focusCategory;
+        const detailsByPhrase = new Map(
+          weakDetails.map((detail) => [recallPhraseKey(detail.phrase).toLowerCase(), detail]),
+        );
         categoryFilter = (phrase: string) => {
-          const cats = getPhraseCategories(phrase);
-          return cats.includes(category as any);
+          const detail = detailsByPhrase.get(recallPhraseKey(phrase).toLowerCase());
+          const categoryCount = detail?.categoryCounts[focusCategory] ?? 0;
+          if (categoryCount > 0) return true;
+          return false;
         };
       }
 
@@ -461,6 +514,7 @@ export async function getTrainerItems(
           .filter((i) => {
             if (usedPhrases.has(i.phrase.toLowerCase())) return false;
             if (i.easeFactor > WEAK_EASE_THRESHOLD) return false;
+            if (focusCategoryFilter && i.category) return i.category === focusCategoryFilter;
             if (categoryFilter && !categoryFilter(i.phrase)) return false;
             return true;
           })
@@ -509,6 +563,7 @@ export async function getTrainerModeCounts(): Promise<Record<TrainerMode, number
 export async function markReviewed(
   phrase:      string,
   gotCorrect:  boolean,
+  meta?:       MistakeTokenMeta,
 ): Promise<void> {
   const items = await loadItems();
   const item  = items.find(i => i.phrase === phrase);
@@ -545,10 +600,16 @@ export async function markReviewed(
     item.interval     = 1;
     item.easeFactor   = Math.max(MIN_EASE_FACTOR, item.easeFactor - 0.2);
     item.errorCount  += 1;
+    applyRecallMistakeMeta(item, resolveRecallMistakeMeta(item.phrase, meta));
   }
 
   item.nextDue = daysFromNow(item.interval);
   await saveItems(items);
+
+  if (gotCorrect) {
+    const { checkAchievements } = await import('./achievements');
+    void checkAchievements({ type: 'trainer_correct', correct: 1 });
+  }
 }
 
 /**
@@ -704,7 +765,18 @@ export function buildDiagnosticEnglishPhrase(q: DiagnosticMistakeQ): string | nu
 export async function recordMistakeFromDiagnostic(q: DiagnosticMistakeQ): Promise<void> {
   const phrase = buildDiagnosticEnglishPhrase(q);
   if (!phrase) return;
-  await recordMistake(phrase, q.hintRU, 0, q.hintUK, 'diagnostic');
+  const expected = q.answer || q.opts?.[q.correct];
+  const tokenMeta = q.phrase.includes('___') && expected
+    ? { tokenText: expected, expected, rawCategory: q.type }
+    : undefined;
+  await recordMistake(phrase, q.hintRU, 0, q.hintUK, 'diagnostic', undefined, tokenMeta);
+  logMistake(
+    phrase,
+    0,
+    'diagnostic',
+    'wrong_pick',
+    tokenMeta,
+  );
 }
 
 /**

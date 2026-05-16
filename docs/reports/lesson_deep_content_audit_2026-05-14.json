@@ -1,0 +1,298 @@
+{
+  "stamp": "2026-05-14",
+  "counts": {
+    "low": 48,
+    "WORD_PROMPT_HAS_LATIN_REVIEW": 14,
+    "WORD_SAME_EN_DIFFERENT_POS_REVIEW": 34
+  },
+  "issues": [
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1114",
+      "detail": "ru prompt has Latin tokens [good]: Лучше (сравн. от good)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1114",
+      "detail": "uk prompt has Latin tokens [good]: Краще (від good)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1115",
+      "detail": "ru prompt has Latin tokens [bad]: Хуже (сравн. от bad)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1115",
+      "detail": "uk prompt has Latin tokens [bad]: Гірше (від bad)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1501",
+      "detail": "ru prompt has Latin tokens [he, she]: Был (для I/he/she/it)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1502",
+      "detail": "ru prompt has Latin tokens [we, they]: Были (для you/we/they)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1704",
+      "detail": "ru prompt has Latin tokens [ame]: Археолог (AmE)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:1704",
+      "detail": "uk prompt has Latin tokens [ame]: Археолог (AmE)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:266",
+      "detail": "ru prompt has Latin tokens [he, she]: нужно / приходится (he/she/it)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:266",
+      "detail": "uk prompt has Latin tokens [he, she]: потрібно / доводиться (he/she/it)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:272",
+      "detail": "ru prompt has Latin tokens [he, she]: нужно / необходимо (he/she/it)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:272",
+      "detail": "uk prompt has Latin tokens [he, she]: потрібно / необхідно (he/she/it)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:966",
+      "detail": "ru prompt has Latin tokens [off]: Выключил(а) (с off) / повернул(а)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_PROMPT_HAS_LATIN_REVIEW",
+      "loc": "app/lesson_words.tsx:966",
+      "detail": "uk prompt has Latin tokens [off]: Вимкнув(ла) (з off) / повернув(ла)"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "answer",
+      "detail": "answer appears as multiple POS: verbs, nouns in lessons 10, 14, 15, 21"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "before",
+      "detail": "before appears as multiple POS: prepositions, adverbs in lessons 22, 24"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "better",
+      "detail": "better appears as multiple POS: adjectives, adverbs in lessons 13, 14, 32"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "break",
+      "detail": "break appears as multiple POS: verbs, nouns in lessons 4, 7"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "call",
+      "detail": "call appears as multiple POS: verbs, nouns in lessons 3, 4, 6, 11, 13, 18"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "clean",
+      "detail": "clean appears as multiple POS: adjectives, verbs in lessons 9, 18"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "faster",
+      "detail": "faster appears as multiple POS: adjectives, adverbs in lessons 14, 26, 29"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "he",
+      "detail": "he appears as multiple POS: pronouns, nouns in lessons 1, 2, 3, 7"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "his",
+      "detail": "his appears as multiple POS: adjectives, pronouns in lessons 7, 15"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "i",
+      "detail": "i appears as multiple POS: pronouns, nouns in lessons 1, 2, 3, 7"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "late",
+      "detail": "late appears as multiple POS: adjectives, adverbs in lessons 1, 2, 16, 22"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "lighter",
+      "detail": "lighter appears as multiple POS: nouns, adjectives in lessons 7, 14"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "may",
+      "detail": "may appears as multiple POS: nouns, verbs in lessons 8, 10"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "my",
+      "detail": "my appears as multiple POS: adjectives, pronouns in lessons 7, 15"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "near",
+      "detail": "near appears as multiple POS: adjectives, adverbs in lessons 1, 19, 25, 29"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "new",
+      "detail": "new appears as multiple POS: nouns, adjectives in lessons 9, 11"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "not",
+      "detail": "not appears as multiple POS: adverbs, nouns in lessons 2, 7, 15"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "okay",
+      "detail": "okay appears as multiple POS: adjectives, adverbs in lessons 1, 2, 27, 32"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "old",
+      "detail": "old appears as multiple POS: nouns, adjectives in lessons 9, 11"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "open",
+      "detail": "open appears as multiple POS: adjectives, verbs in lessons 2, 6, 18"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "order",
+      "detail": "order appears as multiple POS: verbs, nouns in lessons 3, 6, 11, 21, 29"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "park",
+      "detail": "park appears as multiple POS: nouns, verbs in lessons 8, 11"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "rent",
+      "detail": "rent appears as multiple POS: nouns, verbs in lessons 8, 11, 13"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "rest",
+      "detail": "rest appears as multiple POS: nouns, verbs in lessons 3, 26, 28"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "return",
+      "detail": "return appears as multiple POS: adjectives, verbs in lessons 7, 11"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "she",
+      "detail": "she appears as multiple POS: pronouns, nouns in lessons 1, 2, 3, 7"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "they",
+      "detail": "they appears as multiple POS: pronouns, nouns in lessons 1, 2, 3, 7"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "this",
+      "detail": "this appears as multiple POS: adjectives, pronouns in lessons 7, 15"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "water",
+      "detail": "water appears as multiple POS: verbs, nouns in lessons 11, 20"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "we",
+      "detail": "we appears as multiple POS: pronouns, nouns in lessons 1, 2, 3, 7"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "which",
+      "detail": "which appears as multiple POS: adverbs, pronouns in lessons 6, 30"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "who",
+      "detail": "who appears as multiple POS: adverbs, pronouns in lessons 6, 30"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "will",
+      "detail": "will appears as multiple POS: verbs, adverbs in lessons 10, 13, 26"
+    },
+    {
+      "severity": "low",
+      "code": "WORD_SAME_EN_DIFFERENT_POS_REVIEW",
+      "loc": "work",
+      "detail": "work appears as multiple POS: verbs, nouns in lessons 3, 4, 11, 18"
+    }
+  ]
+}

@@ -17,7 +17,7 @@ import * as path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import { LESSON_DATA } from '../app/lesson_data_all';
-import { getPhraseWords } from '../app/lesson1_smart_options';
+import { getPerWordDistracts, getPhraseWords } from '../app/lesson1_smart_options';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -28,6 +28,9 @@ type IssueKind =
   | 'TOKEN_LEN_MISMATCH'
   | 'TOKEN_CORRECT_MISMATCH'
   | 'CORRECT_IN_DISTRACTORS'
+  | 'PHRASE_OPTIONS_MISSING_CORRECT'
+  | 'PHRASE_OPTIONS_TOO_FEW'
+  | 'PHRASE_OPTIONS_DUPLICATE'
   | 'VOCAB_OPTIONS_MISSING_CORRECT';
 
 interface Issue {
@@ -37,6 +40,17 @@ interface Issue {
   english: string;
   slot: number;
   msg: string;
+}
+
+type WordRow = {
+  correct?: string;
+  text?: string;
+  category?: string;
+  distractors?: string[];
+};
+
+function englishRows(phrase: { words?: WordRow[]; wordsEn?: WordRow[] }): WordRow[] {
+  return phrase.wordsEn?.length ? phrase.wordsEn : phrase.words ?? [];
 }
 
 function stripTok(s: string): string {
@@ -51,6 +65,21 @@ function eqTok(a: string, b: string): boolean {
   return stripTok(a).toLowerCase() === stripTok(b).toLowerCase();
 }
 
+function isPunctuationRow(w: WordRow | undefined): boolean {
+  const raw = String(w?.correct ?? w?.text ?? '').trim();
+  const category = String(w?.category ?? '').toLowerCase();
+  return /^[.?!]$/.test(raw) || raw === '¿' || raw === '¡' || category.includes('punct') || category.includes('puntuacion');
+}
+
+function phraseSurface(s: string): string {
+  return String(s ?? '')
+    .replace(/[¿¡]/g, ' ')
+    .replace(/[.,!?;:]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .toLowerCase();
+}
+
 function auditLessonPhrases(): Issue[] {
   const issues: Issue[] = [];
   for (let lessonId = 1; lessonId <= 32; lessonId++) {
@@ -59,7 +88,11 @@ function auditLessonPhrases(): Issue[] {
     for (const p of lesson.phrases) {
       const english = String(p.english ?? '');
       const phraseId = String(p.id ?? '?');
-      const words = p.words ?? [];
+      const words = englishRows(p);
+      const contentEntries = words
+        .map((w, rowIndex) => ({ w, rowIndex }))
+        .filter(({ w }) => !isPunctuationRow(w));
+      const contentWords = contentEntries.map(({ w }) => w);
       let tokens: string[] = [];
       try {
         tokens = getPhraseWords(english);
@@ -75,20 +108,24 @@ function auditLessonPhrases(): Issue[] {
         continue;
       }
 
-      if (tokens.length !== words.length) {
+      const expectedSurface = phraseSurface(english);
+      const actualSurface = phraseSurface(contentWords.map((w) => w.correct ?? w.text ?? '').join(' '));
+
+      if (tokens.length !== contentWords.length && actualSurface !== expectedSurface) {
         issues.push({
           kind: 'TOKEN_LEN_MISMATCH',
           lesson: lessonId,
           phraseId,
           english,
           slot: -1,
-          msg: `токенов=${tokens.length}, words=${words.length}; tokens=[${tokens.join('|')}]`,
+          msg: `tokens=${tokens.length}, contentWords=${contentWords.length}; phrase="${expectedSurface}", slots="${actualSurface}"`,
         });
       }
 
-      const n = Math.min(tokens.length, words.length);
-      for (let i = 0; i < words.length; i++) {
-        const w = words[i];
+      const n = Math.min(tokens.length, contentWords.length);
+      for (let i = 0; i < contentWords.length; i++) {
+        const w = contentWords[i];
+        const rowIndex = contentEntries[i]?.rowIndex ?? i;
         const correctRaw = w?.correct ?? w?.text ?? '';
         if (!String(correctRaw).trim()) {
           issues.push({
@@ -102,7 +139,7 @@ function auditLessonPhrases(): Issue[] {
           continue;
         }
 
-        if (i < n && !eqTok(tokens[i], correctRaw)) {
+        if (tokens.length === contentWords.length && i < n && !eqTok(tokens[i], correctRaw)) {
           issues.push({
             kind: 'TOKEN_CORRECT_MISMATCH',
             lesson: lessonId,
@@ -122,6 +159,39 @@ function auditLessonPhrases(): Issue[] {
             english,
             slot: i,
             msg: `correct «${correctRaw}» также в distractors`,
+          });
+        }
+
+        const options = getPerWordDistracts(p, rowIndex, 'en');
+        const optionKeys = options.map((o) => stripTok(o).toLowerCase()).filter(Boolean);
+        if (!optionKeys.some((o) => o === stripTok(correctRaw).toLowerCase())) {
+          issues.push({
+            kind: 'PHRASE_OPTIONS_MISSING_CORRECT',
+            lesson: lessonId,
+            phraseId,
+            english,
+            slot: rowIndex,
+            msg: `generated options do not include correct "${correctRaw}": ${options.join(', ')}`,
+          });
+        }
+        if (optionKeys.length < 4) {
+          issues.push({
+            kind: 'PHRASE_OPTIONS_TOO_FEW',
+            lesson: lessonId,
+            phraseId,
+            english,
+            slot: rowIndex,
+            msg: `generated options count=${optionKeys.length}: ${options.join(', ')}`,
+          });
+        }
+        if (new Set(optionKeys).size !== optionKeys.length) {
+          issues.push({
+            kind: 'PHRASE_OPTIONS_DUPLICATE',
+            lesson: lessonId,
+            phraseId,
+            english,
+            slot: rowIndex,
+            msg: `generated options contain duplicates: ${options.join(', ')}`,
           });
         }
 
@@ -274,6 +344,10 @@ function main() {
 
   console.log(lines.join('\n'));
   console.log(`\nWritten:\n  ${mdPath}\n  ${jsonPath}`);
+
+  if (issues.length > 0) {
+    process.exitCode = 1;
+  }
 }
 
 main();

@@ -4,7 +4,7 @@
  */
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { seedAdminTestReviewSession } from './active_recall';
 
 export default function AdminReviewTestScreen() {
@@ -29,7 +29,7 @@ export default function AdminReviewTestScreen() {
 
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#0f0f13' }}>
-      <ActivityIndicator color="#C8FF00" size="large" />
+      <View />
       <Text style={{ color: '#94a3b8', marginTop: 20, fontSize: 15 }}>
         7 карт — повтор…
       </Text>

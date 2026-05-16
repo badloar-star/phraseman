@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="emulator-5556" tests="1" failures="1" time="0.0">
+    <testcase id="friends_open_and_search_contract_no_boot" name="friends_open_and_search_contract_no_boot" classname="friends_open_and_search_contract_no_boot" time="0.0" status="ERROR">
+      <failure>io.grpc.StatusRuntimeException: UNAVAILABLE: io exception&#xd;
+	at io.grpc.stub.ClientCalls.toStatusRuntimeException(ClientCalls.java:275)&#xd;
+	at io.grpc.stub.ClientCalls.getUnchecked(ClientCalls.java:256)&#xd;
+	at io.grpc.stub.ClientCalls.blockingUnaryCall(ClientCalls.java:169)&#xd;
+	at maestro_android.MaestroDriverGrpc$MaestroDriverBlockingStub.deviceInfo(MaestroDriverGrpc.java:740)&#xd;
+	at maestro.drivers.AndroidDriver.deviceInfo$lambda$4(AndroidDriver.kt:214)&#xd;
+	at maestro.drivers.AndroidDriver.runDeviceCall(AndroidDriver.kt:1265)&#xd;
+	at maestro.drivers.AndroidDriver.deviceInfo(AndroidDriver.kt:213)&#xd;
+	at maestro.Maestro.cachedDeviceInfo_delegate$lambda$0(Maestro.kt:50)&#xd;
+	at kotlin.SynchronizedLazyImpl.getValue(LazyJVM.kt:86)&#xd;
+	at maestro.Maestro.getCachedDeviceInfo(Maestro.kt:48)&#xd;
+	at maestro.orchestra.Orchestra._init_$lambda$11(Orchestra.kt:145)&#xd;
+	at maestro.orchestra.Orchestra.initJsEngine(Orchestra.kt:310)&#xd;
+	at maestro.orchestra.Orchestra.runFlow(Orchestra.kt:169)&#xd;
+	at maestro.cli.runner.TestSuiteInteractor.runFlow(TestSuiteInteractor.kt:245)&#xd;
+	at maestro.cli.runner.TestSuiteInteractor.runTestSuite(TestSuiteInteractor.kt:98)&#xd;
+	at maestro.cli.command.TestCommand.runMultipleFlows(TestCommand.kt:619)&#xd;
+	at maestro.cli.command.TestCommand.access$runMultipleFlows(TestCommand.kt:80)&#xd;
+	at maestro.cli.command.TestCommand$runShardSuite$1$1.invokeSuspend(TestCommand.kt:502)&#xd;
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)&#xd;
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:104)&#xd;
+	at kotlinx.coroutines.EventLoopImplBase.processNextEvent(EventLoop.common.kt:277)&#xd;
+	at kotlinx.coroutines.BlockingCoroutine.joinBlocking(Builders.kt:95)&#xd;
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking(Builders.kt:69)&#xd;
+	at kotlinx.coroutines.BuildersKt.runBlocking(Unknown Source)&#xd;
+	at kotlinx.coroutines.BuildersKt__BuildersKt.runBlocking$default(Builders.kt:48)&#xd;
+	at kotlinx.coroutines.BuildersKt.runBlocking$default(Unknown Source)&#xd;
+	at maestro.cli.command.TestCommand.runShardSuite$lambda$10(TestCommand.kt:501)&#xd;
+	at maestro.cli.session.MaestroSessionManager.newSession(MaestroSessionManager.kt:132)&#xd;
+	at maestro.cli.session.MaestroSessionManager.newSession$default(MaestroSessionManager.kt:66)&#xd;
+	at maestro.cli.command.TestCommand.runShardSuite(TestCommand.kt:476)&#xd;
+	at maestro.cli.command.TestCommand.access$runShardSuite(TestCommand.kt:80)&#xd;
+	at maestro.cli.command.TestCommand$handleSessions$1$results$1$1.invokeSuspend(TestCommand.kt:435)&#xd;
+	at kotlin.coroutines.jvm.internal.BaseContinuationImpl.resumeWith(ContinuationImpl.kt:34)&#xd;
+	at kotlinx.coroutines.DispatchedTask.run(DispatchedTask.kt:104)&#xd;
+	at kotlinx.coroutines.internal.LimitedDispatcher$Worker.run(LimitedDispatcher.kt:111)&#xd;
+	at kotlinx.coroutines.scheduling.TaskImpl.run(Tasks.kt:99)&#xd;
+	at kotlinx.coroutines.scheduling.CoroutineScheduler.runSafely(CoroutineScheduler.kt:585)&#xd;
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.executeTask(CoroutineScheduler.kt:802)&#xd;
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.runWorker(CoroutineScheduler.kt:706)&#xd;
+	at kotlinx.coroutines.scheduling.CoroutineScheduler$Worker.run(CoroutineScheduler.kt:693)&#xd;
+Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: Connection refused: getsockopt: localhost/[0:0:0:0:0:0:0:1]:7001&#xd;
+Caused by: java.net.ConnectException: Connection refused: getsockopt&#xd;
+	at java.base/sun.nio.ch.Net.pollConnect(Native Method)&#xd;
+	at java.base/sun.nio.ch.Net.pollConnectNow(Unknown Source)&#xd;
+	at java.base/sun.nio.ch.SocketChannelImpl.finishConnect(Unknown Source)&#xd;
+	at io.netty.channel.socket.nio.NioSocketChannel.doFinishConnect(NioSocketChannel.java:337)&#xd;
+	at io.netty.channel.nio.AbstractNioChannel$AbstractNioUnsafe.finishConnect(AbstractNioChannel.java:334)&#xd;
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:776)&#xd;
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)&#xd;
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)&#xd;
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)&#xd;
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)&#xd;
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)&#xd;
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)&#xd;
+	at java.base/java.lang.Thread.run(Unknown Source)&#xd;
+</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

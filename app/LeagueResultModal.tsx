@@ -22,10 +22,10 @@ import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import { premiumMemberNameStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
-import { playLeagueMovementModalSound } from './league_result_modal_sound';
 
 const { width: W, height: H } = Dimensions.get('window');
 const CARD_W = Math.min(W - 24, 420);
@@ -295,15 +295,9 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
     // Конфетти
     let t1: ReturnType<typeof setTimeout> | null = null;
     let t2: ReturnType<typeof setTimeout> | null = null;
-    /** Звук смены лиги — в момент блока «переход» (после иконки клуба), не накладывается с другими UI-SFX. */
-    let leagueSoundTimer: ReturnType<typeof setTimeout> | null = null;
     if (isPromo || isDemo) {
       t1 = setTimeout(() => setShowConfetti(true), 350);
       t2 = setTimeout(() => setShowConfetti(false), isPromo ? 4200 : 2600);
-      leagueSoundTimer = setTimeout(() => {
-        leagueSoundTimer = null;
-        void playLeagueMovementModalSound();
-      }, 560);
     }
 
     return () => {
@@ -311,7 +305,6 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
       shineLoop.stop();
       if (t1) clearTimeout(t1);
       if (t2) clearTimeout(t2);
-      if (leagueSoundTimer) clearTimeout(leagueSoundTimer);
     };
   }, [
     visible, isPromo, isDemo,
@@ -417,6 +410,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose} statusBarTranslucent>
       <Pressable
+        testID="league-result-modal"
         onPress={handleClose}
         accessible={false}
         style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 12 }}
@@ -509,6 +503,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
 
                   {/* Кнопка-крестик */}
                   <TouchableOpacity
+                    testID="league-result-close-button"
                     onPress={handleClose}
                     accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
                     hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
@@ -819,6 +814,7 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                 {/* ── CTA ─────────────────────────────────────────── */}
                 <Animated.View style={{ opacity: btnOp, paddingHorizontal: 18, paddingTop: 14, paddingBottom: 20 }}>
                   <TouchableOpacity
+                    testID="league-result-continue-button"
                     activeOpacity={0.9}
                     onPress={handleClose}
                     accessibilityRole="button"
@@ -919,7 +915,12 @@ const PodiumColumn = memo(function PodiumColumn({
           avatarSize={place === 1 ? 44 : 36}
           maskColor={t.bgCard}
         >
-          <AvatarView avatar={avatar} totalXP={xp} size={place === 1 ? 44 : 36} />
+          <AvatarView
+            avatar={avatar}
+            totalXP={xp}
+            size={place === 1 ? 44 : 36}
+            auraId={getEffectiveAvatarAuraId(member?.aura, member?.isPremium)}
+          />
         </PremiumAvatarHalo>
         <Text style={{ position: 'absolute', top: -8, right: -8, fontSize: 18 }}>
           {PODIUM_MEDAL[place]}
@@ -1045,7 +1046,7 @@ const GroupRow = memo(function GroupRow({
         maskColor={member.isMe ? t.bgCard : t.bgPrimary}
         style={{ marginRight: 10 }}
       >
-        <AvatarView avatar={avatar} totalXP={xp} size={32} />
+        <AvatarView avatar={avatar} totalXP={xp} size={32} auraId={getEffectiveAvatarAuraId(member.aura, member.isPremium)} />
       </PremiumAvatarHalo>
 
       {/* Имя */}

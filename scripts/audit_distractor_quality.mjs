@@ -11,8 +11,8 @@
 import { readFileSync } from 'fs';
 
 const FILES = [
-  'app/lesson_data_1_8.ts',
-  'app/lesson_data_9_16.ts',
+  'app/lesson_data_1_8_phrases_es.gen.ts',
+  'app/lesson_data_9_16_phrases_es.gen.ts',
   'app/lesson_data_17_24.ts',
   'app/lesson_data_25_32.ts',
 ];
@@ -45,7 +45,7 @@ function extractPhrases(src) {
     const engM = block.match(/english:\s*(?:'([^']+)'|"([^"]+)")/);
     if (!engM) continue;
     const english = engM[1] ?? engM[2];
-    const wordsStart = block.indexOf('words:');
+    const wordsStart = block.includes('wordsEn:') ? block.indexOf('wordsEn:') : block.indexOf('words:');
     if (wordsStart === -1) continue;
     const wordsBlock = block.slice(wordsStart);
     const wordRx =
@@ -55,7 +55,9 @@ function extractPhrases(src) {
     while ((wm = wordRx.exec(wordsBlock)) !== null) {
       const text = wm[1] ?? wm[2] ?? '';
       const correct = wm[3] ?? wm[4];
-      const dists = (wm[5].match(/'[^']*'|"[^"]*"/g) || []).map((s) => s.slice(1, -1));
+      const dists = (wm[5].match(/'(?:\\'|[^'])*'|"(?:\\"|[^"])*"/g) || []).map((s) =>
+        s.slice(1, -1).replace(/\\'/g, "'").replace(/\\"/g, '"'),
+      );
       words.push({ text, correct, distractors: dists });
     }
     if (words.length > 0) phrases.push({ id, english, words });
@@ -86,6 +88,7 @@ function inflectionSuspicion(correct, distractor) {
 
 const findings = {
   DUPLICATE: [],
+  DISTRACTOR_DUPLICATE: [],
   SHORT_POOL: [],
   KNOWN_BAD: [],
   INFLECTED: [],
@@ -108,6 +111,15 @@ for (const f of FILES) {
         if (d.toLowerCase() === low) {
           findings.DUPLICATE.push(`${ph.id} pos${idx} duplicate correct "${correct}" inside distractors`);
         }
+      }
+
+      const seenDistractors = new Set();
+      for (const d of dists) {
+        const dl = d.toLowerCase();
+        if (seenDistractors.has(dl)) {
+          findings.DISTRACTOR_DUPLICATE.push(`${ph.id} pos${idx} correct="${correct}" duplicate distractor="${d}"`);
+        }
+        seenDistractors.add(dl);
       }
 
       for (const d of dists) {

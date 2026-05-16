@@ -11,7 +11,11 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "environment": "production",
+      "channel": "production",
+      "autoIncrement": false
+    }
   },
   "submit": {
     "production": {

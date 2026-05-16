@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="emulator-5556" tests="1" failures="1" time="70.0">
+    <testcase id="friends_open_and_search_contract" name="friends_open_and_search_contract" classname="friends_open_and_search_contract" time="70.0" status="ERROR">
+      <failure>Element not found: Id matching regex: tab-friends</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

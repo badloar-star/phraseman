@@ -35,13 +35,38 @@ export interface LessonPhrase {
 
 /**
  * Тип блока определяет иконку, акцентный цвет и заголовок по умолчанию:
- * - 'why'      — мотивация: зачем эта тема (sparkles, accent)
- * - 'how'      — принцип построения фразы (construct, correct/green)
- * - 'tip'      — полезный нюанс / лайфхак (bulb, gold)
- * - 'trap'     — типичная ошибка / ловушка (warning, wrong)
- * - 'mechanic' — объяснение механики приложения (hand, accent) — обычно только для урока 1
+ * - 'why'              — мотивация: зачем эта тема (sparkles, accent)
+ * - 'how'              — принцип построения фразы (construct, correct/green)
+ * - 'tip'              — полезный нюанс / лайфхак (bulb, gold)
+ * - 'trap'             — типичная ошибка / ловушка (warning, wrong)
+ * - 'mechanic'         — объяснение механики приложения (hand, accent) — обычно только для урока 1
+ * - 'core_idea'          — ключевая идея урока (flash, accent)
+ * - 'main_formula'       — главная формула (calculator, gold)
+ * - 'be_choice'          — выбор формы глагола (git-branch, correct)
+ * - 'description_logic'  — что идёт после глагола (list, gold)
+ * - 'memory_tip'         — приём для запоминания / сборки (bulb, gold)
+ * - 'negative_formula'   — формула отрицания (close-circle, wrong)
+ * - 'question_formula'   — формула вопроса (help-circle, accent)
+ * - 'after_be'           — что идёт после To Be в конкретном уроке (list, gold)
+ * - 'negative_questions' — вопросы с not (alert-circle, accent)
+ * - 'mistakes'           — разбор главных ошибок (warning, wrong)
  */
-export type LessonIntroBlockKind = 'why' | 'how' | 'tip' | 'trap' | 'mechanic';
+export type LessonIntroBlockKind =
+  | 'why'
+  | 'how'
+  | 'tip'
+  | 'trap'
+  | 'mechanic'
+  | 'core_idea'
+  | 'main_formula'
+  | 'be_choice'
+  | 'description_logic'
+  | 'memory_tip'
+  | 'negative_formula'
+  | 'question_formula'
+  | 'after_be'
+  | 'negative_questions'
+  | 'mistakes';
 
 export interface LessonIntroExample {
   en: string;
@@ -53,19 +78,89 @@ export interface LessonIntroExample {
 
 export interface LessonIntroScreen {
   /** Основной текст блока (обязательно — для обратной совместимости) */
-  textRU: string;
-  textUK: string;
+  textRU?: string;
+  textUK?: string;
   /** ES; если нет — для локали es временно показываем textRU */
   textES?: string;
   /** Тип блока — определяет иконку, цвет акцента, заголовок по умолчанию */
-  kind?: LessonIntroBlockKind;
+  kind?: LessonIntroBlockKind | 'concept' | 'formula' | 'practice';
   /** Свой заголовок (если не задан — берётся дефолт по kind) */
   titleRU?: string;
   titleUK?: string;
   titleES?: string;
   /** Опциональный список примеров: EN-фраза + перевод (рисуется отдельной колонкой под текстом) */
-  examples?: LessonIntroExample[];
+  examples?: any[];
+  lessonId?: number;
+  screenId?: string;
+  order?: number;
+  subtitleRU?: string;
+  subtitleUK?: string;
+  subtitleES?: string;
+  linesRU?: IntroLine[];
+  linesUK?: IntroLine[];
+  linesES?: IntroLine[];
+  developerNotes?: LessonIntroScreenV2['developerNotes'];
 }
+
+// V2 Intro Screen types — rich inline markup with tones and line types
+export type IntroTextTone =
+  | 'normal'
+  | 'muted'
+  | 'strong'
+  | 'accent'
+  | 'success'
+  | 'danger'
+  | 'warning'
+  | 'formula'
+  | 'code';
+
+export type IntroTextPart = {
+  text: string;
+  tone?: IntroTextTone;
+};
+
+export type IntroLine = {
+  type: 'text' | 'formula' | 'example' | 'wrong' | 'correct' | 'step' | 'tip' | 'spacer';
+  parts?: IntroTextPart[];
+  text?: string;
+};
+
+export type IntroExample = {
+  labelRU?: string;
+  labelUK?: string;
+  labelES?: string;
+  en: IntroTextPart[];
+  ru: string;
+  uk: string;
+  es: string;
+  noteRU?: string;
+  noteUK?: string;
+  noteES?: string;
+};
+
+export type LessonIntroScreenV2 = {
+  lessonId: number;
+  screenId: string;
+  order: number;
+  kind: 'concept' | 'formula' | 'practice';
+  titleRU: string;
+  titleUK: string;
+  titleES: string;
+  subtitleRU?: string;
+  subtitleUK?: string;
+  subtitleES?: string;
+  linesRU: IntroLine[];
+  linesUK: IntroLine[];
+  linesES: IntroLine[];
+  examples?: IntroExample[];
+  developerNotes?: {
+    screenGoal: string;
+    visualPriority: string[];
+    highlightRules: string[];
+    forbiddenContent: string[];
+    layoutRules: string[];
+  };
+};
 
 export interface LessonData {
   id: number;

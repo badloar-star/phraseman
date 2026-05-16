@@ -94,14 +94,9 @@ export default function EnergyBar({ size = 20 }: Props) {
     }
   }, [bonusEnergy, bonusScaleAnims]);
 
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
-  const frozenColor = isLightTheme ? '#0077B6' : PREMIUM_BLUE;
-  const filledTint = isUnlimited ? frozenColor : undefined;
-  const filledColor = isUnlimited ? frozenColor : t.gold;
-  // В шапке на тёмном градиенте пустые слоты: полупрозрачный светлый, не тёмный textMuted
-  const emptyColor = isLightTheme
-    ? (themeMode === 'ocean' ? 'rgba(180,220,255,0.5)' : 'rgba(255,200,220,0.45)')
-    : t.textGhost;
+  const filledTint = isUnlimited ? PREMIUM_BLUE : undefined;
+  const filledColor = isUnlimited ? PREMIUM_BLUE : t.gold;
+  const emptyColor = t.textGhost;
 
   const safeBonus = Math.min(bonusEnergy, bonusScaleAnims.length);
 
@@ -149,7 +144,7 @@ export default function EnergyBar({ size = 20 }: Props) {
       </View>
       </Pressable>
       {!isUnlimited && energy < maxEnergy && !!formattedTime && (
-        <Text style={{ color: isLightTheme ? t.heroTextMuted : t.textMuted, fontSize: f.label, marginTop: 2 }}>
+        <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
           {formattedTime}
         </Text>
       )}

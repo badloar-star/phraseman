@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, NEON, GOLD, LIGHT_OCEAN, LIGHT_SAKURA, MINIMAL_DARK, MINIMAL_LIGHT, Theme, ThemeMode } from '../constants/theme';
+import { DARK, NEON, GOLD, MINIMAL_DARK, MINIMAL_LIGHT, Theme, ThemeMode } from '../constants/theme';
 import { computeUiScale } from '../constants/layout-scale';
 import { DEV_MODE } from '../app/config';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
@@ -146,14 +146,12 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   dark: DARK,
   neon: NEON,
   gold: GOLD,
-  ocean: LIGHT_OCEAN,
-  sakura: LIGHT_SAKURA,
   minimalLight: MINIMAL_LIGHT,
   minimalDark: MINIMAL_DARK,
 };
-const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'dark', 'neon', 'gold', 'ocean', 'sakura'];
+const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'dark', 'neon', 'gold'];
 /** Темы только с Premium; бесплатные: `minimalDark` и `minimalLight`. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'gold', 'ocean', 'sakura'];
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'gold'];
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
@@ -171,10 +169,16 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       // Тот же смысл, что PremiumProvider: не опираться только на raw premium_active (RC/грейс/оверрайды).
       const isPremium = await getVerifiedPremiumStatus();
       if (cancelled) return;
+      // Миграция: ocean/sakura больше не поддерживаются → заменяем на dark
+      let migrated = themeStr;
+      if (themeStr === 'ocean' || themeStr === 'sakura') {
+        migrated = 'dark';
+        void AsyncStorage.setItem('app_theme', 'dark');
+      }
       const valid =
-        themeStr === 'neon' || themeStr === 'dark' || themeStr === 'gold' || themeStr === 'ocean' || themeStr === 'sakura' || themeStr === 'minimalLight' || themeStr === 'minimalDark';
+        migrated === 'neon' || migrated === 'dark' || migrated === 'gold' || migrated === 'minimalLight' || migrated === 'minimalDark';
       if (valid) {
-        const t = themeStr as ThemeMode;
+        const t = migrated as ThemeMode;
         if (!isPremium && !DEV_MODE && PREMIUM_ONLY_THEMES.includes(t)) {
           setThemeModeState('minimalDark');
           void AsyncStorage.setItem('app_theme', 'minimalDark');
@@ -217,7 +221,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   );
   const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
   const isDark = themeMode === 'dark' || themeMode === 'neon' || themeMode === 'gold' || themeMode === 'minimalDark';
-  const statusBarLight = isDark || themeMode === 'ocean' || themeMode === 'sakura';
+  const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
     return {

@@ -29,6 +29,9 @@ export type TaskType =
   | 'recall_session'      // начать сессию повторения (правильный ответ хотя бы на одну карточку)
   | 'recall_answers'      // N фраз в Повторении (max 7/сессия)
   | 'recall_perfect'      // сессия Повторения без ошибок (минимум 5 карточек)
+  | 'trainer_words'       // N правильных карточек слов в новом Тренере ошибок
+  | 'trainer_phrases'     // N правильных карточек фраз в новом Тренере ошибок
+  | 'trainer_arena'       // N правильных карточек арены в новом Тренере ошибок
   | 'daily_phrase_read'   // прочитать фразу дня на главном экране
   | 'daily_phrase_save'   // сохранить фразу дня в карточки
   | 'diagnostic_complete' // пройти диагностический тест целиком (20 вопросов)
@@ -393,8 +396,8 @@ const ALL_TASKS: DailyTask[] = [
     descUK:'Відкрий будь-який урок і збери хоча б одну фразу.' },
   { id:'da5', type:'daily_active', icon:'🎯', target:1, xp:18,
     titleRU:'Держу ритм', titleUK:'Тримаю ритм',
-    descRU:'Зайди в урок и собери хотя бы одну фразу сегодня.',
-    descUK:'Зайди в урок і збери хоча б одну фразу сьогодні.' },
+    descRU:'Открой урок и собери одну фразу.',
+    descUK:'Відкрий урок і збери одну фразу.' },
   { id:'da6', type:'daily_active', icon:'💫', target:1, xp:18,
     titleRU:'Ещё один день', titleUK:'Ще один день',
     descRU:'Открой урок и собери хотя бы одну фразу — маленький шаг в верном направлении.',
@@ -750,6 +753,32 @@ const ALL_TASKS: DailyTask[] = [
     descRU:'Пройди сессию Повторения без единой ошибки (нужно минимум 5 карточек).',
     descUK:'Пройди сесію Повторення без жодної помилки (потрібно мінімум 5 карток).' },
 
+  // Новый Тренер ошибок: отдельные задания для words / phrases / arena.
+  { id:'tw1', type:'trainer_words', icon:'📚', target:3, xp:30,
+    titleRU:'Разобрать слова', titleUK:'Розібрати слова',
+    descRU:'В Моей практике правильно ответь на 3 карточки слов — закрой слабые места в словаре.',
+    descUK:'У Моїй практиці правильно відповідай на 3 картки слів — закрий слабкі місця у словнику.' },
+  { id:'tw2', type:'trainer_words', icon:'🧠', target:5, xp:48,
+    titleRU:'Слова под контроль', titleUK:'Слова під контроль',
+    descRU:'В Моей практике правильно ответь на 5 карточек слов.',
+    descUK:'У Моїй практиці правильно відповідай на 5 карток слів.' },
+  { id:'tp1', type:'trainer_phrases', icon:'💬', target:3, xp:36,
+    titleRU:'Починить фразы', titleUK:'Полагодити фрази',
+    descRU:'В Моей практике правильно собери 3 проблемные фразы.',
+    descUK:'У Моїй практиці правильно склади 3 проблемні фрази.' },
+  { id:'tp2', type:'trainer_phrases', icon:'🧩', target:5, xp:60,
+    titleRU:'Фразы без провалов', titleUK:'Фрази без провалів',
+    descRU:'В Моей практике правильно ответь на 5 карточек фраз.',
+    descUK:'У Моїй практиці правильно відповідай на 5 карток фраз.' },
+  { id:'tar1', type:'trainer_arena', icon:'🛡️', target:2, xp:42,
+    titleRU:'Разбор ошибок', titleUK:'Розбір помилок',
+    descRU:'В Моей практике правильно ответь на 2 вопроса, где раньше были ошибки.',
+    descUK:'У Моїй практиці правильно відповідай на 2 питання, де раніше були помилки.' },
+  { id:'tar2', type:'trainer_arena', icon:'⚔️', target:4, xp:72,
+    titleRU:'Без старых ошибок', titleUK:'Без старих помилок',
+    descRU:'В Моей практике правильно ответь на 4 вопроса из своих ошибок.',
+    descUK:'У Моїй практиці правильно відповідай на 4 питання зі своїх помилок.' },
+
   // energy_spend — потратить N единиц энергии (только Free-аккаунт, Premium — безлимит)
   { id:'es1', type:'energy_spend', icon:'⚡', target:3, xp:30, freeOnly:true,
     titleRU:'Трата энергии', titleUK:'Витрата енергії',
@@ -829,8 +858,8 @@ const ALL_TASKS: DailyTask[] = [
 
   { id:'inv1', type:'invite_friend', icon:'👥', target:1, xp:42,
     titleRU:'Пригласи друга', titleUK:'Запроси друга',
-    descRU:'В Настройках открой «Пригласить друга» и отправь приглашение через «Поделиться». Если закрыл окно без отправки — задание не засчитывается.',
-    descUK:'У Налаштуваннях відкрий «Запросити друга» і надішли запрошення через «Поділитися». Якщо закрив вікно без надсилання — завдання не зараховується.' },
+    descRU:'Открой приглашение друга и отправь ссылку.',
+    descUK:'Відкрий запрошення друга й надішли посилання.' },
 ];
 
 // ── Наборы заданий по тиру игрового уровня (30 дней × 3 задания) ──────────
@@ -846,7 +875,7 @@ const DAILY_SETS_TIER1: string[][] = [
   ['da7','lnm1','dw3'],        // день 7
   ['da8','ta8','dp2w1'],         // день 8
   ['da1','cs6','dw4'],         // день 9
-  ['da2','ra3','dw5'],         // день 10
+  ['da2','tw1','dw5'],         // день 10
   ['da3','ta1','dp1'],        // день 11
   ['da4','qe4','dp4'],         // день 12
   ['da5','inv1','dw1'],       // день 13 — пригласить друга
@@ -863,7 +892,7 @@ const DAILY_SETS_TIER1: string[][] = [
   ['da8','es3','dw1'],         // день 24
   ['da1','lnm6','dp2w1'],       // день 25
   ['da2','ta9','arup1'],        // день 26
-  ['da3','rs2','dp1'],         // день 27
+  ['da3','tp1','dp1'],         // день 27
   ['da4','dl1','dw1'],         // день 28
   ['da5','fs1','dp3'],        // день 29
   ['da6','qe4','dp4'],         // день 30
@@ -880,7 +909,7 @@ const DAILY_SETS_TIER2: string[][] = [
   ['da7','lnm2','dw2'],        // день 7
   ['da8','ta4','dw3'],         // день 8
   ['da1','cs7','dp2w1'],         // день 9
-  ['da2','ra5','dw4'],         // день 10
+  ['da2','tw2','dw4'],         // день 10
   ['da3','inv1','dw5'],       // день 11 — пригласить друга
   ['da4','qe5','dp1'],         // день 12
   ['da5','vl5','dp4'],        // день 13
@@ -897,7 +926,7 @@ const DAILY_SETS_TIER2: string[][] = [
   ['da8','ot2','dp1'],         // день 24
   ['da1','lnm3','dp5'],       // день 25
   ['da2','ta3','dp1'],         // день 26
-  ['da3','rp2','dp5'],         // день 27
+  ['da3','tp2','dp5'],         // день 27
   ['da4','dl1','dp2w1'],       // день 28 — 2 матча в Арене + ≥1 победа
   ['da5','fs2','dp2'],        // день 29
   ['da6','dp2','ta10'],         // день 30
@@ -914,7 +943,7 @@ const DAILY_SETS_TIER3: string[][] = [
   ['da7','lnm3','dw3'],        // день 7
   ['da8','ta5','dp2w1'],         // день 8
   ['da1','cs8','dw4'],         // день 9
-  ['da2','ra4','dw5'],         // день 10
+  ['da2','tar1','dw5'],         // день 10
   ['da3','ta6','dp1'],        // день 11
   ['da4','qh5','dp4'],         // день 12
   ['da5','vl6','dw1'],        // день 13
@@ -931,7 +960,7 @@ const DAILY_SETS_TIER3: string[][] = [
   ['da8','ot2','dp1'],         // день 24
   ['da1','lnm5','dp5'],       // день 25
   ['da2','ta5','dp3'],         // день 26
-  ['da3','rp3','dp5'],         // день 27
+  ['da3','tar2','dp5'],         // день 27
   ['da4','dl2','dp2w1'],       // день 28 — 2 матча в Арене + ≥1 победа
   ['da5','fs3','dw5'],         // день 29
   ['da6','dp2','ta10'],         // день 30
@@ -1065,12 +1094,99 @@ export const DAILY_TASK_REROLL_COST_SHARDS = 3;
 export const DAILY_TASK_REROLL_MAX_PER_DAY = 1;
 
 const REROLL_STORAGE_KEY = 'daily_tasks_reroll_v1';
+const ADMIN_TASK_OVERRIDE_STORAGE_KEY = 'daily_tasks_admin_override_v1';
 
 interface RerollState {
   dayKey: string;
   /** origTaskId → newTaskId. Применяется в getTodayTasksSafe поверх дневного набора. */
   replacements: Record<string, string>;
 }
+
+type AdminTaskOverrideState = {
+  dayKey: string;
+  taskIds: string[];
+};
+
+export type DailyTaskSeedMode = 'empty' | 'ready' | 'claimed';
+
+export type DailyTaskAdminPack = {
+  id: string;
+  label: string;
+  taskIds: string[];
+  types: TaskType[];
+};
+
+const loadAdminTaskOverride = async (): Promise<AdminTaskOverrideState | null> => {
+  try {
+    const raw = await AsyncStorage.getItem(ADMIN_TASK_OVERRIDE_STORAGE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as AdminTaskOverrideState;
+    if (!parsed || parsed.dayKey !== getTodayKey() || !Array.isArray(parsed.taskIds)) return null;
+    const taskIds = parsed.taskIds.filter((id) => ALL_TASKS.some((t) => t.id === id));
+    return taskIds.length > 0 ? { dayKey: parsed.dayKey, taskIds } : null;
+  } catch {
+    return null;
+  }
+};
+
+export const clearDailyTasksAdminOverride = async (): Promise<void> => {
+  try {
+    await AsyncStorage.removeItem(ADMIN_TASK_OVERRIDE_STORAGE_KEY);
+  } catch {}
+};
+
+export const getDailyTaskAdminPacks = (packSize = 3): DailyTaskAdminPack[] => {
+  const safeSize = Math.max(1, Math.min(6, Math.floor(packSize) || 3));
+  const packs: DailyTaskAdminPack[] = [];
+  for (let i = 0; i < ALL_TASKS.length; i += safeSize) {
+    const tasks = ALL_TASKS.slice(i, i + safeSize);
+    packs.push({
+      id: `daily_tasks_admin_pack_${Math.floor(i / safeSize) + 1}`,
+      label: `${i + 1}-${i + tasks.length} / ${ALL_TASKS.length}`,
+      taskIds: tasks.map((t) => t.id),
+      types: tasks.map((t) => t.type),
+    });
+  }
+  return packs;
+};
+
+const makeAdminProgressRow = (task: DailyTask, mode: DailyTaskSeedMode): TaskProgress => {
+  const done = mode === 'ready' || mode === 'claimed';
+  if (task.type === 'arena_plays_wins_combo') {
+    const req = getArenaComboRequirement(task);
+    return {
+      taskId: task.id,
+      current: done ? req.minPlays : 0,
+      comboPlays: done ? req.minPlays : 0,
+      comboWins: done ? req.minWins : 0,
+      completed: done,
+      claimed: mode === 'claimed',
+    };
+  }
+  return {
+    taskId: task.id,
+    current: done ? task.target : 0,
+    completed: done,
+    claimed: mode === 'claimed',
+  };
+};
+
+export const seedDailyTasksAdminPack = async (
+  taskIds: string[],
+  mode: DailyTaskSeedMode = 'empty',
+): Promise<DailyTask[]> => {
+  const tasks = taskIds
+    .map((id) => ALL_TASKS.find((t) => t.id === id))
+    .filter((t): t is DailyTask => Boolean(t));
+  if (tasks.length === 0) return [];
+
+  await AsyncStorage.setItem(ADMIN_TASK_OVERRIDE_STORAGE_KEY, JSON.stringify({
+    dayKey: getTodayKey(),
+    taskIds: tasks.map((t) => t.id),
+  }));
+  await saveTodayProgress(tasks.map((task) => makeAdminProgressRow(task, mode)));
+  return tasks;
+};
 
 const emptyRerollState = (): RerollState => ({ dayKey: getTodayKey(), replacements: {} });
 
@@ -1101,7 +1217,7 @@ export const getDailyRerollsLeftToday = async (): Promise<number> => {
 };
 
 /** Категории заданий — реролл подбирает кандидата из той же категории, чтобы сохранить баланс. */
-type DailyTaskCategory = 'engage' | 'perfect' | 'quiz' | 'words' | 'flashcard' | 'recall' | 'arena' | 'social';
+type DailyTaskCategory = 'engage' | 'perfect' | 'quiz' | 'words' | 'flashcard' | 'recall' | 'trainer' | 'arena' | 'social';
 
 const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   daily_active: 'engage',
@@ -1130,6 +1246,9 @@ const TASK_TYPE_CATEGORY: Record<TaskType, DailyTaskCategory> = {
   recall_session: 'recall',
   recall_answers: 'recall',
   recall_perfect: 'recall',
+  trainer_words: 'trainer',
+  trainer_phrases: 'trainer',
+  trainer_arena: 'trainer',
   arena_play: 'arena',
   arena_win: 'arena',
   arena_plays_wins_combo: 'arena',
@@ -1274,6 +1393,12 @@ export const rerollDailyTask = async (taskId: string): Promise<RerollResult> => 
  */
 export const getTodayTasksSafe = async (): Promise<DailyTask[]> => {
   const [playerLevel, isPremium] = await Promise.all([getUserPlayerLevel(), getUserIsPremium()]);
+  const adminOverride = await loadAdminTaskOverride();
+  if (adminOverride) {
+    return adminOverride.taskIds
+      .map((id) => ALL_TASKS.find((t) => t.id === id))
+      .filter((t): t is DailyTask => Boolean(t));
+  }
   // Выбираем набор заданий по тиру уровня игрока
   const baseTasks = getTodayTasksByLevel(playerLevel);
 

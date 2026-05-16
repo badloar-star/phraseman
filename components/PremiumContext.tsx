@@ -1,10 +1,9 @@
 import React, { createContext, useCallback, useContext, useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AppState } from 'react-native';
+import { AppState, InteractionManager } from 'react-native';
 import Purchases from 'react-native-purchases';
-import { unlockLesson } from '../app/lesson_lock_system';
 import { getVerifiedPremiumStatus, invalidatePremiumCache } from '../app/premium_guard';
-import { DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO } from '../app/config';
+import { DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from '../app/config';
 import { onAppEvent } from '../app/events';
 import { getTrialReofferBlockedByCooldown } from '../app/premium_trial_eligibility';
 import { anyPackageHasTrialIntro } from '../app/premium_trial_signal';
@@ -13,7 +12,7 @@ import { resolvePremiumPackages } from '../app/revenuecat_init';
 interface PremiumContextValue {
   isPremium: boolean;
   /**
-   * `true`, если для пользователя реально доступна копия «Попробуй Premium бесплатно»:
+   * `true`, если магазин реально отдаёт intro free phase:
    *  - локальный кулдаун 90 д. не активен И
    *  - хотя бы один пакет (monthly/yearly) от магазина имеет intro free phase.
    * В Expo Go / DEV_IAP_BYPASS — всегда `false` (нет реального магазина, не врём пользователю).
@@ -33,6 +32,7 @@ export function usePremium(): PremiumContextValue {
 }
 
 async function computeTrialEligible(): Promise<boolean> {
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE) return false;
   if (IS_EXPO_GO || DEV_IAP_BYPASS) return false;
   try {
     const blocked = await getTrialReofferBlockedByCooldown();
@@ -60,7 +60,6 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setIsPremium(true);
       // Активный премиум — копия про триал нерелевантна
       setTrialEligible(false);
-      void unlockLesson(19);
       return;
     }
     const status = await getVerifiedPremiumStatus();
@@ -85,6 +84,8 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
 
   // Reload when app comes to foreground — only invalidate cache if background > 5 min
   useEffect(() => {
+    let resumeTimer: ReturnType<typeof setTimeout> | null = null;
+    let resumeTask: { cancel?: () => void } | null = null;
     const sub = AppState.addEventListener('change', state => {
       if (state === 'active') {
         const backgroundDurationMs = backgroundedAtRef.current != null
@@ -93,13 +94,31 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         backgroundedAtRef.current = null;
         if (backgroundDurationMs > 5 * 60 * 1000) {
           invalidatePremiumCache();
+          void reload();
+          return;
         }
-        void reload();
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTask?.cancel?.();
+        resumeTimer = setTimeout(() => {
+          resumeTimer = null;
+          resumeTask = InteractionManager.runAfterInteractions(() => {
+            void reload();
+          });
+        }, 650);
       } else if (state === 'background') {
         backgroundedAtRef.current = Date.now();
+        if (resumeTimer) {
+          clearTimeout(resumeTimer);
+          resumeTimer = null;
+        }
+        resumeTask?.cancel?.();
       }
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTask?.cancel?.();
+    };
   }, [reload]);
 
   // Instant update on purchase — set true immediately, reload only syncs cache
@@ -107,9 +126,11 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     const sub = onAppEvent('premium_activated', () => {
       setIsPremium(true);
       setTrialEligible(false);
-      void unlockLesson(19);
       invalidatePremiumCache();
-      // Sync cache in background — but don't let it override our true state
+      void import('../app/lesson_lock_system')
+        .then(m => m.getPremiumCourseLevel())
+        .catch(() => {});
+      // Sync cache in background — but don\'t let it override our true state
       // (RC sandbox can have propagation delay, grace period in premium_guard handles it)
       void reload();
     });
@@ -121,6 +142,9 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     const sub = onAppEvent('premium_deactivated', () => {
       setIsPremium(false);
       invalidatePremiumCache();
+      void import('../app/lesson_lock_system')
+        .then(m => m.recomputeEarnedUnlocks())
+        .catch(() => {});
       void reload();
     });
     return () => sub.remove();

@@ -261,7 +261,7 @@ export default function AdminIntroPreview() {
   });
   const resetSubtitle = triLang(lang, {
     ru: 'Удаляет lesson{id}_intro_shown — интро снова появится при первом реальном входе',
-    uk: 'Видаляє lesson{id}_intro_shown — інтро знову з’явиться під час першого реального входу',
+    uk: "Видаляє lesson{id}_intro_shown — інтро знову з\'явиться під час першого реального входу",
     es: 'Elimina lesson{id}_intro_shown — la intro vuelve en la primera visita real',
   });
   const howTitle = triLang(lang, {
@@ -276,8 +276,8 @@ export default function AdminIntroPreview() {
       + '• Превью можно открывать сколько угодно раз — флаг показа НЕ записывается.',
     uk:
       '• Тап по плитці уроку — відкриє той самий екран онбордингу, що бачить користувач.\n'
-      + '• «Розпочати урок» або ✕ у прев’ю просто закриють оверлей. Сам урок не запускається.\n'
-      + '• Прев’ю можна відкривати скільки завгодно — прапор показу НЕ записується.',
+      + '• «Розпочати урок» або ✕ у прев\'ю просто закриють оверлей. Сам урок не запускається.\n'
+      + '• Прев\'ю можна відкривати скільки завгодно — прапор показу НЕ записується.',
     es:
       '• Toca una lección: verás la misma intro que el usuario.\n'
       + '• «Empezar la lección» o ✕ solo cierran la superposición; no arranca la lección.\n'
@@ -409,6 +409,7 @@ export default function AdminIntroPreview() {
               introScreens={getLessonIntroScreens(previewLessonId, studyTarget)}
               lessonId={previewLessonId}
               onComplete={handleClosePreview}
+              onBack={handleClosePreview}
             />
             {/* Маленький бейдж «PREVIEW» в углу, чтобы не путать с реальным запуском */}
             <View
@@ -436,10 +437,11 @@ export default function AdminIntroPreview() {
       <Text style={{ position: 'absolute', left: -9999 }} accessible={false}>
         {triLang(lang, {
           ru: 'превью интро уроков',
-          uk: 'превʼю інтро уроків',
+          uk: 'прев\'ю інтро уроків',
           es: 'vista previa de intros de lección',
         })}
       </Text>
     </View>
   );
 }
+

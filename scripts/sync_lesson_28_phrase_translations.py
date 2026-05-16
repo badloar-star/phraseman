@@ -40,7 +40,10 @@ def main() -> None:
     pairs = parse_md()
     t = TS.read_text(encoding="utf-8")
     a = t.index("export const LESSON_28_PHRASES")
-    b = t.index("export const LESSON_28_VOCABULARY")
+    m = re.search(r"\nexport const LESSON_28_", t[a + 1 :])
+    if not m:
+        raise ValueError("Could not find the next lesson 28 export after LESSON_28_PHRASES")
+    b = a + 1 + m.start()
     head, section, tail = t[:a], t[a:b], t[b:]
 
     lines = section.splitlines(keepends=True)

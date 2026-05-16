@@ -1,5 +1,6 @@
 import { getApp } from '@react-native-firebase/app';
 import { getFunctions, httpsCallable } from '@react-native-firebase/functions';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 export { isReferralCloudEnabled } from './referral_flags';
 
@@ -12,6 +13,7 @@ function callable<TReq, TRes>(name: string) {
 export type EnsureReferralCodeResult = { code: string };
 
 export async function callReferralEnsureMyCode(stableId: string): Promise<EnsureReferralCodeResult> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<{ stableId: string }, EnsureReferralCodeResult>('referralEnsureMyCode');
   const res = await fn({ stableId });
   return res.data;
@@ -29,6 +31,7 @@ export async function callReferralApply(params: {
   refereeStableId: string;
   refCode: string;
 }): Promise<ApplyReferralResult> {
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const fn = callable<typeof params, ApplyReferralResult>('referralApply');
   const res = await fn(params);
   return res.data;

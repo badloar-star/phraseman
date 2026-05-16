@@ -27,7 +27,7 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   },
   streak_100: {
     nameEs: 'Cien días',
-    descEs: '100 días seguidos sin “días vacíos” en la cuenta de la racha.',
+    descEs: '100 días seguidos sin "días vacíos" en la cuenta de la racha.',
   },
   streak_200: {
     nameEs: 'Doscientos días',
@@ -177,17 +177,17 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
     descEs: 'Easy, Medium y Hard perfectos: un cuestionario impecable por nivel.',
   },
   quiz_speed_demon: {
-    nameEs: 'Velocidad',
+    nameEs: 'A toda velocidad',
     descEs: 'Cinco veces termina por completo un cuestionario Hard (contador en la app).',
   },
 
   combo_3: {
     nameEs: 'En racha',
-    descEs: '3 aciertos seguidos en clase o en el cuestionario.',
+    descEs: '3 aciertos seguidos durante una lección.',
   },
   combo_10: {
     nameEs: 'Francotirador',
-    descEs: '10 aciertos seguidos en pasos de lección o en cuestionario.',
+    descEs: '10 aciertos seguidos en pasos de lección.',
   },
   combo_20: {
     nameEs: 'Inquebrantable',
@@ -208,6 +208,14 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
   all_daily: {
     nameEs: 'Día completo',
     descEs: 'En un mismo día calendario, las tres tareas diarias hechas.',
+  },
+  daily_phrase_first: {
+    nameEs: 'Frase del día',
+    descEs: 'Abre la tarjeta de la frase del día y lee la explicación.',
+  },
+  daily_phrase_save: {
+    nameEs: 'A la colección',
+    descEs: 'Guarda la frase del día en tus tarjetas.',
   },
 
   login_7: {
@@ -311,10 +319,122 @@ export const ACHIEVEMENT_ES: Record<string, { nameEs: string; descEs: string }> 
     descEs:
       'En una sola visita a la colección, revisa cada tarjeta guardada (flashcards).',
   },
+  recall_first: {
+    nameEs: 'Lo recordé',
+    descEs: 'Da tu primera respuesta correcta en el entrenador de repaso.',
+  },
+  recall_50: {
+    nameEs: 'La memoria se fortalece',
+    descEs: 'Consigue 50 respuestas correctas en el entrenador de repaso.',
+  },
+  arena_first_win: {
+    nameEs: 'Primer duelo',
+    descEs: 'Gana tu primer combate en la Arena.',
+  },
+  arena_10_wins: {
+    nameEs: 'Diez victorias',
+    descEs: 'Gana 10 combates en la Arena.',
+  },
+  shards_100: {
+    nameEs: 'Coleccionista de fragmentos',
+    descEs: 'Llega a un saldo de 100 fragmentos de conocimiento.',
+  },
 
   gem_all_complete: {
     nameEs: 'Coleccionista de medallas',
     descEs:
       'Reúne la medalla superior (diamante) en los cuatro bloques A1, A2, B1 y B2.',
+  },
+  social_friend_first: {
+    nameEs: 'Ya no vas solo',
+    descEs: 'Añade tu primer amigo usando un código de invitación.',
+  },
+  social_friends_3: {
+    nameEs: 'Tu propio grupo',
+    descEs: 'Ten tres amigos en tu lista.',
+  },
+  social_friends_10: {
+    nameEs: 'Imán social',
+    descEs: 'Ten 10 amigos en tu lista.',
+  },
+  social_gift_send: {
+    nameEs: 'Primer regalo',
+    descEs: 'Envía un regalo a un amigo.',
+  },
+  social_gift_5: {
+    nameEs: 'Generosidad constante',
+    descEs: 'Envía 5 regalos a tus amigos.',
+  },
+  social_like_received: {
+    nameEs: 'Te han visto',
+    descEs: 'Recibe un me gusta de un amigo en uno de tus logros.',
+  },
+  arena_streak_5: {
+    nameEs: 'Máquina de victorias',
+    descEs: 'Gana 5 combates seguidos en la Arena.',
+  },
+  arena_streak_10: {
+    nameEs: 'Fenómeno',
+    descEs: 'Gana 10 combates seguidos en la Arena.',
+  },
+  arena_duel_friend: {
+    nameEs: 'Duelo amistoso',
+    descEs: 'Gana un duelo de Arena contra un amigo por invitación.',
+  },
+  arena_wager_win: {
+    nameEs: 'Riesgo premiado',
+    descEs: 'Apuesta fragmentos en un combate de Arena y gana.',
+  },
+  arena_wager_5: {
+    nameEs: 'Aventurero profesional',
+    descEs: 'Gana 5 apuestas en la Arena.',
+  },
+  trainer_session: {
+    nameEs: 'Primera práctica',
+    descEs: 'Completa tu primera sesión en Mi práctica.',
+  },
+  trainer_100_correct: {
+    nameEs: 'Memoria de acero',
+    descEs: 'Consigue 100 respuestas correctas en Mi práctica.',
+  },
+  avatar_custom: {
+    nameEs: 'Rostro propio',
+    descEs: 'Elige un avatar único para tu perfil.',
+  },
+  profile_themed: {
+    nameEs: 'Perfil con estilo',
+    descEs: 'Aplica un estilo visual a tu tarjeta de perfil.',
+  },
+  pack_purchased: {
+    nameEs: 'Coleccionista',
+    descEs: 'Compra tu primer paquete de tarjetas.',
+  },
+  pack_5_purchased: {
+    nameEs: 'Bibliotecario',
+    descEs: 'Compra 5 paquetes de tarjetas.',
+  },
+  share_achievement: {
+    nameEs: 'Logro en voz alta',
+    descEs: 'Comparte un logro desbloqueado.',
+  },
+  level_50: {
+    nameEs: 'Nivel 50',
+    descEs: 'Alcanza el nivel 50.',
+  },
+  xp_75000: {
+    nameEs: '75K y subiendo',
+    descEs: 'Acumula 75.000 XP en total.',
+  },
+  quiz_10_completed: {
+    nameEs: 'Los primeros diez',
+    descEs: 'Completa 10 sesiones de cuestionario.',
+  },
+  arena_streak_freeze: {
+    nameEs: 'Plan astuto',
+    descEs: 'Usa una congelación para proteger tu racha.',
+  },
+  wager_win_3: {
+    nameEs: 'Tres de tres',
+    descEs: 'Gana 3 apuestas de racha.',
   },
 };

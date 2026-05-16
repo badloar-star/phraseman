@@ -1,5 +1,5 @@
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import { useTheme } from '../ThemeContext';
 
 type PrimaryButtonProps = {
@@ -30,11 +30,7 @@ export default function PrimaryButton({ label, onPress, disabled, loading, style
         style,
       ]}
     >
-      {loading ? (
-        <ActivityIndicator color={t.correctText} />
-      ) : (
-        <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>{label}</Text>
-      )}
+      <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>{label}</Text>
     </TouchableOpacity>
   );
 }

@@ -37,7 +37,7 @@ export function buildExamShareMessage(
     `Mission Accomplished. 🎓 Іспит у Phraseman пройдено на ${pct}%. Рівень англійської: «Майже Шекспір».`,
     `Я зробив це! Іспит у Phraseman складено на ${pct}%. 🎓 Тепер я офіційно крутий в англійській! 🥳`,
     `Склав іспит у Phraseman: ${score}/${total}. 🎓 Мої старання окупилися! Усім шампанського (або чаю)! ☕️🥂`,
-    `Іспитовий бар'єр взято! 🎓 ${pct}% правильних відповідей у Phraseman. Рівень майстерності зашкалює! 🎯`,
+    `Іспитовий бар\'єр взято! 🎓 ${pct}% правильних відповідей у Phraseman. Рівень майстерності зашкалює! 🎯`,
   ];
   const variantsEs = [
     `¡Lo logré! Aprobé el examen en Phraseman: ${score}/${total}. ¡Ahora sí que pueden preocuparse los nativos! 🎓🔥`,
@@ -55,11 +55,11 @@ export function buildExamShareMessage(
 }
 
 /**
- * Подпись к шерингу карточки-награды (`LingmanCertificateSvg`).
+ * Подпись к текстовому шерингу награды.
  *
  * Тексты сознательно НЕ содержат слов «сертификат» / «диплом» / «академия» /
  * «выпускник» — это игровая награда приложения, а не официальная
- * квалификация (см. footer disclaimer на самой карточке).
+ * квалификация (см. дисклеймер в экране награды).
  */
 export function buildCertificateShareMessage(
   lang: ShareExamLang,

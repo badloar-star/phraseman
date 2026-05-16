@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import firestore from '@react-native-firebase/firestore';
+import { AppState } from 'react-native';
 import { ArenaSession, ArenaQuestion, SessionPlayer } from '../app/types/arena';
 import {
   subscribeSession,
@@ -8,6 +8,7 @@ import {
   touchSessionPlayerPresence,
   setSessionLobbyChoice,
 } from '../app/services/arena_db';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../app/config';
 
 export type GamePhase =
   | 'loading'
@@ -49,6 +50,16 @@ const COUNTDOWN_SECONDS = 3;
 const OPPONENT_ABSENT_GRACE_MS = 55_000;
 /** Допуск на расхождение часов клиента и сервера (сервер пишет questionStartedAt, клиент пишет lastSeen). */
 const CLOCK_SKEW_TOLERANCE_MS = 5_000;
+
+function getDb(): any | null {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('@react-native-firebase/firestore').default();
+  } catch {
+    return null;
+  }
+}
 
 export function useArenaSession(
   sessionId: string,
@@ -123,7 +134,8 @@ export function useArenaSession(
 
     let cancelled = false;
     const loadQuestions = async () => {
-      const db = firestore();
+      const db = getDb();
+      if (!db) return;
       const docs = await Promise.all(
         ids.map(id => db.collection('arena_questions').doc(id).get())
       );
@@ -304,6 +316,28 @@ export function useArenaSession(
     setHasAnswered(true);
     submitAnswer(sid, uid, qid, null, sessionRef.current?.questionTimeoutMs ?? 0).catch(() => {});
   };
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (nextState) => {
+      if (nextState !== 'active') return;
+      const s = sessionRef.current;
+      if (!s || s.state !== 'question') return;
+      const startedAt = s.questionStartedAt;
+      if (startedAt == null) return;
+      const questionId = s.questions[s.currentQuestionIndex];
+      if (!questionId) return;
+      const left = Math.max(0, s.questionTimeoutMs - (Date.now() - startedAt));
+      const displaySec = Math.ceil(left / 1000) || 0;
+      if (lastShownSecRef.current !== displaySec) {
+        lastShownSecRef.current = displaySec;
+        setQuestionTimeLeft(left);
+      }
+      if (left > 0 || hasAnsweredRef.current) return;
+      clearQuestionTimer();
+      handleNoAnswer(sessionId, userId, questionId);
+    });
+    return () => sub.remove();
+  }, [sessionId, userId]);
 
   const submitMyAnswer = useCallback(async (answer: string) => {
     if (hasAnswered || !session) return;

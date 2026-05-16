@@ -3,7 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { tabSwipeLock } from '../tabSwipeLock';
 import {
   View, Text, StyleSheet, TouchableOpacity,
-  ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, ActivityIndicator,
+  ScrollView, Animated, Dimensions, Modal, AppState, DeviceEventEmitter, InteractionManager,
 } from 'react-native';
 import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -16,7 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../../components/ThemeContext';
 import { useLang } from '../../components/LangContext';
 import ScreenGradient from '../../components/ScreenGradient';
-import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult } from '../league_engine';
+import { checkLeagueOnAppOpen, clearPendingResult, loadPendingResult, LEAGUES, LeagueResult, GroupMember, clubTierShortName } from '../league_engine';
 import LeagueResultModal from '../LeagueResultModal';
 import { DebugLogger } from '../debug-logger';
 import { getMyWeekPoints, checkStreakLossPending, getWeekKey } from '../hall_of_fame_utils';
@@ -26,10 +26,11 @@ import { enqueueThemedBlockingInfoAlert } from '../themed_blocking_alert_queue';
 import StreakReviveModal from '../../components/StreakReviveModal';
 import {
   consumeCelebration,
+  getPendingCelebrationMarker,
   isCelebrationPending,
 } from '../premium_celebration_state';
 import PremiumCelebrationModal from '../../components/PremiumCelebrationModal';
-import { countClaimedForTaskList, getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
+import { getTodayTasksSafe, loadTodayProgress, TaskProgress } from '../daily_tasks';
 import { getXPProgress, getLevelFromXP, getNextEnergyUnlockLevel } from '../../constants/theme';
 import { getTitleString } from '../../constants/titles';
 import { lessonNamesForLang } from '../../constants/lessons';
@@ -42,6 +43,8 @@ import CircularProgress from '../../components/CircularProgress';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
 import AvatarView from '../../components/AvatarView';
 import { isCustomAvatarValue } from '../../constants/custom_avatars';
+import { checkAchievements } from '../achievements';
+import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import EnergyIcon from '../../components/EnergyIcon';
 import { loadAllMedals, countMedals } from '../medal_utils';
 import { getTrainerTotalDue } from '../trainer_store';
@@ -50,26 +53,28 @@ import DailyPhraseCard from '../../components/DailyPhraseCard';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import SaveProgressBanner from '../../components/SaveProgressBanner';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
+import LeagueCrownName from '../../components/LeagueCrownName';
 import { useEnergy } from '../../components/EnergyContext';
 import { computeAllPercentiles } from '../leaderboard_stats';
 import { getShardsBalance, peekLastKnownShardsBalance, spendShards, onStreakUpdated } from '../shards_system';
 import { buildLastLessonFromHydration, peekHomeScreenHydration, rememberHomeScreenHydration } from '../home_screen_hydration';
 import ShardsEarnedModal from '../../components/ShardsEarnedModal';
+import AppMessagesInbox from '../../components/AppMessagesInbox';
 import { getForegroundUsageMs } from '../foreground_usage_ms';
 import { logFeatureOpened } from '../firebase';
 import { trackFeatureOpened } from '../user_stats';
 import { perfMark, perfScreenMount, perfNavStart } from '../perf-monitor';
-import {
-  getDeferEnergyOnboardingForPostOnboardingFirstLesson,
-  tryClearAfterOnboardingFirstLessonReturn,
-} from '../energyOnboardingGate';
 import { emitAppEvent, onAppEvent } from '../events';
+import { ensureAnonUser } from '../cloud_sync';
+import { fetchActiveLeagueCrowns, getLeagueChestGoal } from '../services/league_chest_rewards';
+import { shouldShowLeagueRace } from '../league_race_visibility';
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
 /** Ширина всплывающей подсказки энергии (clamp по экрану, стрелка привязана к иконкам). */
 const ENERGY_TOOLTIP_W = 220;
 const CONTENT_W = Math.min(SCREEN_W, 640);
 const CARD_W = (CONTENT_W - 32 - 10) / 2;
+const USE_ELITE_HOME_STATUS = true;
 
 /** Сесійний прапор: після першого успішного loadData дочірні mounts не показують «рівень 1» кадр. */
 let homeStatsLoadedOnce = false;
@@ -78,41 +83,41 @@ const GREETINGS_RU = [
   'Твой лингвистический дзен','Время покорять вершины','Зарядись знаниями','Твой мозг скажет «спасибо»',
   'Готов к новым инсайтам?','Мир ждет твоего слова','На шаг ближе к цели','Твой интеллект в тонусе',
   'Вдохновение начинается здесь','Стань лучшей версией себя','Твой путь к мастерству','Время открывать горизонты',
-  'Заставь мысли летать','Твой пропуск в мир','Прокачай свой потенциал','Сегодня — лучший день для старта',
+  'Дай мыслям взлететь','Твой пропуск в мир английского','Прокачай свой потенциал','Сегодня — лучший день для старта',
   'Будь на волне прогресса','Энергия твоего разума','Сделай шаг к успеху','Твое будущее начинается сейчас',
   'Твой интеллектуальный апгрейд','Время расширять границы','Зарядись на успех','Твой мозг в отличной форме',
-  'Готов к новым свершениям?','Мир заговорит с тобой','На шаг впереди всех','Твоя ежедневная порция знаний',
+  'Готов к новым свершениям?','Слова станут твоей силой','На шаг впереди всех','Твоя ежедневная порция знаний',
   'Вдохновение в каждом слове','Стань мастером своего дела','Твой персональный прорыв','Время блистать знаниями',
   'Заряди разум на максимум','Твой мозг жаждет открытий','Готов удивить весь мир?','Мир открыт для тебя',
-  'На шаг ближе к мечте','Твой интеллект вне границ','Вдохновение в каждом шаге','Стань легендой сегодня',
-  'Твой интеллектуальный драйв','Время менять реальность','Зарядись на победу','Твой мозг в центре событий',
-  'Готов к новым высотам?','Мир понимает тебя','На шаг впереди вчерашнего','Твой безграничный потенциал',
+  'На шаг ближе к мечте','Твой интеллект без границ','Вдохновение в каждом шаге','Стань легендой сегодня',
+  'Твой интеллектуальный драйв','Время менять реальность','Зарядись на победу','Твой мозг в фокусе',
+  'Готов к новым высотам?','Ты говоришь увереннее','На шаг дальше, чем вчера','Твой безграничный потенциал',
   'Вдохновение внутри тебя','Стань лучшим в своем деле','Твой интеллектуальный триумф','Время ярких открытий',
   'Зарядись на результат','Твой разум — твоя сила','Готов к новому вызову?','Мир слышит тебя',
-  'На шаг ближе к идеалу','Твой путь к совершенству','Вдохновение в деталях','Стань тем, кем мечтал',
-  'Твой интеллектуальный кураж','Время мыслить шире','Зарядись на максимум','Твой разум — твой капитал',
-  'Готов к новым интригам?','Мир заиграет красками','На шаг ближе к мечте','Твой путь к свободе',
-  'Вдохновение в прогрессе','Стань душой компании',
+  'На шаг ближе к идеалу','Твой путь к совершенству','Вдохновение в деталях','Стань тем, кем хочешь быть',
+  'Смелость мыслить шире','Время мыслить шире','Зарядись на максимум','Твой разум — твой капитал',
+  'Готов к новым задачам?','Мир заиграет красками','На шаг ближе к мечте','Свободнее с каждым словом',
+  'Прогресс вдохновляет','Слова сближают людей',
 ];
 const GREETINGS_UK = [
-  'Твій лінгвістичний дзен','Час покорювати вершини','Зарядись знаннями','Твій мозок скаже «спасибі»',
-  'Готовий до нових інсайтів?','Світ чекає твого слова','На крок ближче до цілі','Твій інтелект в тонусі',
+  'Твій лінгвістичний дзен','Час підкорювати вершини','Зарядись знаннями','Твій мозок скаже «дякую»',
+  'Готовий до нових інсайтів?','Світ чекає твого слова','На крок ближче до мети','Твій інтелект у тонусі',
   'Натхнення починається тут','Стань кращою версією себе','Твій шлях до майстерства','Час відкривати горизонти',
-  'Змусь думки літати','Твій пропуск у світ','Прокачай свій потенціал','Сьогодні — найкращий день для старту',
-  'Будь на хвилі прогресу','Енергія твого розуму','Зробити крок до успіху','Твоє майбутнє починається зараз',
-  'Твій інтелектуальний апгрейд','Час розширювати границі','Зарядись на успіх','Твій мозок у відмінній формі',
-  'Готовий до нових звершень?','Світ заговорить з тобою','На крок попереду всіх','Твоя щоденна порція знань',
-  'Натхнення в кожному слові','Стань майстром своєї справи','Твій персональний прорив','Час блискучати знаннями',
-  'Зарядь розум на максимум','Твій мозок жадає відкриттів','Готовий здивувати весь світ?','Світ відкритий для тебе',
-  'На крок ближче до мрії','Твій інтелект без меж','Натхнення в кожному кроці','Стань легендою сьогодні',
-  'Твій інтелектуальний драйв','Час змінювати реальність','Зарядись на перемогу','Твій мозок в центрі подій',
-  'Готовий до нових висот?','Світ розуміє тебе','На крок попереду вчорашнього','Твій безмежний потенціал',
-  'Натхнення всередині тебе','Стань кращим у своїй справі','Твій інтелектуальний триумф','Час яскравих відкриттів',
+  'Дай думкам злетіти','Твій пропуск у світ англійської','Розкрий свій потенціал','Сьогодні — найкращий день для старту',
+  'Будь на хвилі прогресу','Енергія твого розуму','Зроби крок до успіху','Твоє майбутнє починається зараз',
+  'Твій інтелектуальний апгрейд','Час розширювати межі','Зарядись на успіх','Твій мозок у відмінній формі',
+  'Готовий до нових звершень?','Слова стануть твоєю силою','На крок попереду всіх','Твоя щоденна порція знань',
+  'Натхнення у кожному слові','Стань майстром своєї справи','Твій персональний прорив','Час сяяти знаннями',
+  'Зарядь розум на максимум','Твій мозок прагне відкриттів','Готовий здивувати весь світ?','Світ відкритий для тебе',
+  'На крок ближче до мрії','Твій інтелект без меж','Натхнення у кожному кроці','Стань легендою сьогодні',
+  'Твій інтелектуальний драйв','Час змінювати реальність','Зарядись на перемогу','Твій мозок у фокусі',
+  'Готовий до нових висот?','Ти говориш упевненіше','На крок далі, ніж учора','Твій безмежний потенціал',
+  'Натхнення всередині тебе','Стань кращим у своїй справі','Твій інтелектуальний тріумф','Час яскравих відкриттів',
   'Зарядись на результат','Твій розум — твоя сила','Готовий до нового виклику?','Світ чує тебе',
-  'На крок ближче до ідеалу','Твій шлях до досконалості','Натхнення в деталях','Стань тим, кім мріяв',
-  'Твій інтелектуальний кураж','Час думати ширше','Зарядись на максимум','Твій розум — твій капітал',
-  'Готовий до нових інтриг?','Світ заграє барвами','На крок ближче до мрії','Твій шлях до свободи',
-  'Натхнення в прогресі','Стань душею компанії',
+  'На крок ближче до ідеалу','Твій шлях до досконалості','Натхнення у деталях','Стань тим, ким мрієш бути',
+  'Сміливість мислити ширше','Час думати ширше','Зарядись на максимум','Твій розум — твій капітал',
+  'Готовий до нових завдань?','Світ заграє барвами','На крок ближче до мрії','Вільніше з кожним словом',
+  'Прогрес надихає','Слова зближують людей',
 ];
 
 const HOME_DAILY_GREETING_KEY = 'home_daily_greeting_v1';
@@ -179,6 +184,44 @@ function LightSketchMenuImage({ width, height, lighten, ...props }: LightSketchM
   );
 }
 
+function buildHomeLeagueChest(
+  group: GroupMember[],
+  leagueName: string,
+  leagueId: number,
+): {
+  leagueName: string;
+  progress: number;
+  goal: number;
+  myContribution: number;
+  leaderName: string;
+  leaderPoints: number;
+} | null {
+  if (!group.length) return null;
+  const sorted = [...group].sort((a, b) => (Number(b.points) || 0) - (Number(a.points) || 0));
+  const goal = getLeagueChestGoal(leagueId);
+  const total = sorted.reduce((sum, p) => sum + Math.max(0, Math.floor(Number(p.points) || 0)), 0);
+  const leader = sorted[0];
+  return {
+    leagueName,
+    progress: Math.min(goal, total),
+    goal,
+    myContribution: Math.max(0, Math.floor(Number(sorted.find((p) => p.isMe)?.points) || 0)),
+    leaderName: leader?.name || 'Player',
+    leaderPoints: Math.max(0, Math.floor(Number(leader?.points) || 0)),
+  };
+}
+
+function buildFallbackHomeLeagueChest(lang: Lang) {
+  return {
+    leagueName: triLang(lang, { ru: 'Лига недели', uk: 'Ліга тижня', es: 'Liga semanal' }),
+    progress: 0,
+    goal: getLeagueChestGoal(0),
+    myContribution: 0,
+    leaderName: 'Player',
+    leaderPoints: 0,
+  };
+}
+
 export default function HomeScreen() {
   const router = useRouter();
   const { theme: t, isDark, f, themeMode } = useTheme();
@@ -214,6 +257,8 @@ export default function HomeScreen() {
   // >0 = карточка над «Тест/Экзамен», ведёт на /trainer.
   const [dueCount, setDueCount] = useState(0);
   const [userAvatar, setUserAvatar] = useState(() => hh?.userAvatar ?? '🐣');
+  const [userAvatarAura, setUserAvatarAura] = useState<string | null>(null);
+  const effectiveUserAvatarAura = getEffectiveAvatarAuraId(userAvatarAura, isPremium);
   const [userFrame, setUserFrame]   = useState(() => hh?.userFrame ?? 'plain');
   // Бонусные баннеры
   const [loginBonus, setLoginBonus]     = useState<{ xp: number; cycle: number } | null>(null);
@@ -226,14 +271,30 @@ export default function HomeScreen() {
   const [reviveModalVisible, setReviveModalVisible] = useState(false);
   // Premium celebration: после IAP-покупки или admin-grant с timestamp новее last seen.
   const [celebrationVisible, setCelebrationVisible] = useState(false);
+  const [celebrationMarker, setCelebrationMarker] = useState<string | null>(null);
   const [premiumFreezeUsed, setPremiumFreezeUsed] = useState(() => hh?.premiumFreezeUsed ?? false);
   const [pageScrollEnabled, setPageScrollEnabled] = useState(true);
   const [medalCounts, setMedalCounts] = useState({ bronze: 0, silver: 0, gold: 0 });
   const [totalXPMulti, setTotalXPMulti] = useState(() => hh?.totalXPMulti ?? 1);
-  const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
+  const { energy: energyCount, bonusEnergy: energyBonus, maxEnergy: energyMax, recoveryIntervalMs: energyRecoveryIntervalMs, formattedTime: timeUntilNextEnergy, isUnlimited: energyUnlimited } = useEnergy();
+  const energyRecoveryMinutes = Math.max(1, Math.round(energyRecoveryIntervalMs / 60000));
   const BONUS_ENERGY_COLOR = '#FFD700';
   const PREMIUM_BLUE = '#4FC3F7';
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  const isSketchLightTheme = themeMode === 'minimalLight';
+  const isLightTheme = isSketchLightTheme;
+  const lightPanelBg = isSketchLightTheme ? 'rgba(255,253,248,0.82)' : 'rgba(255,255,255,0.50)';
+  const lightPanelBorder = isSketchLightTheme ? 'rgba(40,37,32,0.16)' : 'rgba(255,255,255,0.48)';
+  const lightPanelIconBg = isSketchLightTheme ? 'rgba(63,63,70,0.08)' : 'rgba(255,255,255,0.28)';
+  const lightPanelChevronBg = isSketchLightTheme ? 'rgba(63,63,70,0.08)' : 'rgba(255,255,255,0.58)';
+  const leagueChestAccent = isSketchLightTheme ? t.correct : '#16B7D9';
+  const leagueChestGradient = isSketchLightTheme
+    ? ['rgba(255,253,248,0.96)', 'rgba(222,214,196,0.82)'] as [string, string]
+    : isLightTheme
+      ? ['rgba(255,255,255,0.92)', 'rgba(22,183,217,0.16)'] as [string, string]
+      : ['rgba(16,24,34,0.96)', 'rgba(22,183,217,0.16)'] as [string, string];
+  const energyEmptyTint = isSketchLightTheme
+    ? 'rgba(63,63,70,0.22)'
+    : 'rgba(255,245,252,0.38)';
   const premiumEnergyTint = energyUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : undefined;
   const energyFilledTint = premiumEnergyTint;
   const energyFilledColor = energyUnlimited ? (isLightTheme ? '#004F8C' : PREMIUM_BLUE) : t.gold;
@@ -245,14 +306,20 @@ export default function HomeScreen() {
   });
   const energyTooltipAnim = useRef(new Animated.Value(0)).current;
   const energyTooltipTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [energyOnboardingVisible, setEnergyOnboardingVisible] = useState(false);
-  const energyOnboardingAnim = useRef(new Animated.Value(0)).current;
-  const energyPulseAnim = useRef(new Animated.Value(1)).current;
-  const energyPulseLoop = useRef<Animated.CompositeAnimation | null>(null);
   const energyIconRef = useRef<View>(null);
   const mountedRef = useRef(true);
   const [shardsBalance, setShardsBalance] = useState(() => peekLastKnownShardsBalance() ?? hh?.shardsBalance ?? 0);
   const [homeXpPercentile, setHomeXpPercentile] = useState<number | null>(null);
+  const [homeLeagueCrownExpiresAt, setHomeLeagueCrownExpiresAt] = useState(() => hh?.homeLeagueCrownExpiresAt ?? 0);
+  const [homeLeagueRaceVisible, setHomeLeagueRaceVisible] = useState(() => hh?.homeLeagueRaceVisible ?? false);
+  const [homeLeagueChest, setHomeLeagueChest] = useState<{
+    leagueName: string;
+    progress: number;
+    goal: number;
+    myContribution: number;
+    leaderName: string;
+    leaderPoints: number;
+  } | null>(() => hh?.homeLeagueChest ?? buildFallbackHomeLeagueChest(lang));
   const shardsAnim = useRef(new Animated.Value(1)).current;
   const shardsBonusAnim = useRef(new Animated.Value(0)).current;
   const [shardsBonusText, setShardsBonusText] = useState('');
@@ -267,14 +334,10 @@ export default function HomeScreen() {
   const statsHintPulseAnim = useRef(new Animated.Value(1)).current;
   const statsPulseSessionRef = useRef(false);
   const [showStatsPulseHint, setShowStatsPulseHint] = useState(false);
-
-  const dismissEnergyOnboarding = () => {
-    energyPulseLoop.current?.stop();
-    Animated.timing(energyOnboardingAnim, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => {
-      setEnergyOnboardingVisible(false);
-    });
-    AsyncStorage.setItem('energy_onboarding_shown', '1').catch(() => {});
-  };
+  const eliteStatusEntrance = useRef(new Animated.Value(1)).current;
+  const eliteStatusShimmer = useRef(new Animated.Value(0)).current;
+  const eliteQuickTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
+  const eliteActivityTileEntrance = useRef(Array.from({ length: 3 }, () => new Animated.Value(1))).current;
 
   const showEnergyTooltip = () => {
     hapticTap();
@@ -335,6 +398,25 @@ export default function HomeScreen() {
     Animated.timing(fadeAnim, { toValue:1, duration:380, useNativeDriver:true }).start();
   }, [lang]);
 
+  useEffect(() => {
+    if (!USE_ELITE_HOME_STATUS) return;
+    eliteStatusEntrance.setValue(1);
+    eliteQuickTileEntrance.forEach((anim) => anim.setValue(1));
+    eliteActivityTileEntrance.forEach((anim) => anim.setValue(1));
+
+    const shimmerLoop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(eliteStatusShimmer, { toValue: 1, duration: 2800, useNativeDriver: true }),
+        Animated.delay(1100),
+        Animated.timing(eliteStatusShimmer, { toValue: 0, duration: 0, useNativeDriver: true }),
+      ]),
+    );
+    shimmerLoop.start();
+    return () => {
+      shimmerLoop.stop();
+    };
+  }, [eliteActivityTileEntrance, eliteQuickTileEntrance, eliteStatusEntrance, eliteStatusShimmer, lang]);
+
   // Миграция v2: пороги XP удвоены — умножаем сохранённый XP на 2 (один раз).
   // Новые пользователи помечаются как "мигрированные" в handleOnboardingDone (_layout.tsx),
   // поэтому сюда попадают только старые пользователи со старой формулой XP.
@@ -351,64 +433,33 @@ export default function HomeScreen() {
     })();
   }, []);
 
-  const showEnergyOnboarding = useCallback(() => {
-    setEnergyOnboardingVisible(true);
-    energyOnboardingAnim.setValue(0);
-    Animated.timing(energyOnboardingAnim, { toValue: 1, duration: 400, useNativeDriver: true }).start();
-    energyPulseAnim.setValue(1);
-    Animated.sequence([
-      Animated.spring(energyPulseAnim, { toValue: 1.15, useNativeDriver: true, friction: 3, tension: 180 }),
-      Animated.spring(energyPulseAnim, { toValue: 1.0,  useNativeDriver: true, friction: 5, tension: 160 }),
-    ]).start();
-  }, []);
-
-  // Тутор энергии нельзя показывать одновременно с пост-онбординг листом «Первый урок».
-  // Поэтому сначала пробуем показать с задержкой, но уважаем gate-флаг (см. energyOnboardingGate.ts):
-  //  - если сейчас показывается лист «Первый урок» (deferred=true) — пропускаем;
-  //  - повторно пробуем по событию energy_onboarding_may_show, которое летит из _layout.tsx,
-  //    когда лист закрыт по «Позже» / тапу по фону / по возврату с первого урока.
-  useEffect(() => {
-    const tryShowEnergyOnboarding = async () => {
-      try {
-        const shown = await AsyncStorage.getItem('energy_onboarding_shown');
-        if (shown) return;
-        if (getDeferEnergyOnboardingForPostOnboardingFirstLesson()) return;
-        showEnergyOnboarding();
-      } catch {}
-    };
-    const t = setTimeout(() => { void tryShowEnergyOnboarding(); }, 1500);
-    const sub = onAppEvent('energy_onboarding_may_show', () => { void tryShowEnergyOnboarding(); });
-    return () => {
-      clearTimeout(t);
-      sub.remove();
-    };
-  }, []);
-
-  // Возврат на главную после первого урока (запущенного с пост-онбординг листа):
-  // снимаем hold и (если энергия-онбординг ещё не показан) показываем его.
-  useEffect(() => {
-    let cancelled = false;
-    (async () => {
-      const cleared = await tryClearAfterOnboardingFirstLessonReturn().catch(() => false);
-      if (!cleared || cancelled) return;
-      const shown = await AsyncStorage.getItem('energy_onboarding_shown').catch(() => '1');
-      if (shown || cancelled) return;
-      setTimeout(() => { if (!cancelled) showEnergyOnboarding(); }, 600);
-    })();
-    return () => { cancelled = true; };
-  }, [focusTick]);
-
   useEffect(() => {
     mountedRef.current = true;
     perfScreenMount('home');
+    let resumeTimer: ReturnType<typeof setTimeout> | null = null;
+    let resumeTask: { cancel?: () => void } | null = null;
     const sub = AppState.addEventListener('change', (state) => {
       if (state === 'active') {
-        loadData();
+        if (resumeTimer) clearTimeout(resumeTimer);
+        resumeTask?.cancel?.();
+        resumeTimer = setTimeout(() => {
+          resumeTimer = null;
+          resumeTask = InteractionManager.runAfterInteractions(() => {
+            loadData();
+          });
+        }, 350);
+      } else if (resumeTimer) {
+        clearTimeout(resumeTimer);
+        resumeTimer = null;
+        resumeTask?.cancel?.();
       }
     });
     // Слушаем событие изменения XP (от тестеров и других экранов)
     const xpSub = DeviceEventEmitter.addListener('xp_changed', () => { loadData(); });
     const leagueStateSub = onAppEvent('league_local_state_updated', () => { loadData(); });
+    const crownSub = onAppEvent('league_crown_updated', ({ expiresAt }) => {
+      setHomeLeagueCrownExpiresAt(expiresAt);
+    });
     // Слушаем событие начисления осколков
     const shardsSub = DeviceEventEmitter.addListener('shards_earned', (payload: { amount: number }) => {
       getShardsBalance().then(bal => {
@@ -438,8 +489,11 @@ export default function HomeScreen() {
     return () => {
       mountedRef.current = false;
       sub.remove();
+      if (resumeTimer) clearTimeout(resumeTimer);
+      resumeTask?.cancel?.();
       xpSub.remove();
       leagueStateSub.remove();
+      crownSub.remove();
       shardsSub.remove();
       reviveOfferSub.remove();
       if (streakTimerRef.current) clearTimeout(streakTimerRef.current);
@@ -454,6 +508,21 @@ export default function HomeScreen() {
   const needsReloadRef = useRef(false);
   useEffect(() => { loadData(); }, [focusTick]);
   useEffect(() => { if (activeIdx === 0) loadData(); }, [activeIdx]);
+  useEffect(() => {
+    let cancelled = false;
+    void ensureAnonUser()
+      .then((uid) => {
+        if (!uid) return null;
+        return fetchActiveLeagueCrowns([uid]).then((crowns) => crowns[uid]?.expiresAt ?? 0);
+      })
+      .then((expiresAt) => {
+        if (!cancelled && typeof expiresAt === 'number') setHomeLeagueCrownExpiresAt(expiresAt);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, [focusTick]);
 
   /** Подсказка по блоку статистики: один раз после 3 ч в приложении, пульс 10 с, затем скрыть навсегда. */
   useEffect(() => {
@@ -515,6 +584,11 @@ export default function HomeScreen() {
     };
   }, [homeStatsReady, activeIdx, focusTick, statsHintPulseAnim]);
 
+  useEffect(() => {
+    if (homeStatsReady && activeIdx === 0) {
+      emitAppEvent('app_first_content_ready');
+    }
+  }, [homeStatsReady, activeIdx]);
 
   const loadData = async () => {
     if (loadingRef.current) { needsReloadRef.current = true; return; }
@@ -574,14 +648,15 @@ export default function HomeScreen() {
         const curLvl = getLevelFromXP(newXP);
         // Обновляем UI аватара/рамки по текущему уровню
         // (запись в AsyncStorage и детект level-up делает xp_manager.ts)
-        const [[, savedAv], [, savedFr]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame']);
+        const [[, savedAv], [, savedFr], [, savedAura]] = await AsyncStorage.multiGet(['user_avatar', 'user_frame', USER_AVATAR_AURA_KEY]);
         setUserAvatar(isCustomAvatarValue(savedAv) ? savedAv! : getBestAvatarForLevel(curLvl));
+        setUserAvatarAura(normalizeAvatarAuraId(savedAura) ?? null);
         setUserFrame(savedFr  || getBestFrameForLevel(curLvl).id);
 
         // Мини-бейдж перцентиля — глобальные пороги из leaderboard_stats/global
         if (newXP > 0) {
           computeAllPercentiles({ myXp: newXP, myStreak: 0, myWeekXp: 0, myDaily7xp: 0, myDaily7timeMs: 0, myArenaXp: 0 }).then((p) => {
-            if (mountedRef.current) setHomeXpPercentile(p.xp !== null && p.xp >= 10 ? p.xp : null);
+            if (mountedRef.current) setHomeXpPercentile(p.xp !== null && p.xp >= 50 ? p.xp : null);
           }).catch(() => {});
         }
       }
@@ -676,6 +751,9 @@ export default function HomeScreen() {
         lastLessonId: snapLastLessonId,
         lastLessonProgress: snapLastLessonProgress,
         lastLessonScore: snapLastLessonScore,
+        homeLeagueRaceVisible,
+        homeLeagueCrownExpiresAt,
+        homeLeagueChest,
       });
       if (mountedRef.current) setHomeStatsReady(true);
 
@@ -710,9 +788,26 @@ export default function HomeScreen() {
       setTaskProgress(tp);
       const nSlots = taskList.length > 0 ? taskList.length : 3;
       setDailyTaskBarCount(nSlots);
-      setTasksCompleted(countClaimedForTaskList(taskList, tp));
+      const taskProgressById = new Map(tp.map((row) => [row.taskId, row]));
+      setTasksCompleted(taskList.filter((task) => taskProgressById.get(task.id)?.completed).length);
 
-      if (leagueState) setEngineLeague(LEAGUES.find(l => l.id === leagueState.leagueId) ?? null);
+      if (leagueState) {
+        const league = LEAGUES.find(l => l.id === leagueState.leagueId) ?? null;
+        const showLeagueRace = shouldShowLeagueRace(leagueState.group?.length ?? 0, name);
+        const nextHomeLeagueChest = showLeagueRace
+          ? buildHomeLeagueChest(
+            leagueState.group ?? [],
+            league ? clubTierShortName(league, lang) : triLang(lang, { ru: 'Лига недели', uk: 'Ліга тижня', es: 'Liga semanal' }),
+            leagueState.leagueId,
+          )
+          : buildFallbackHomeLeagueChest(lang);
+        setHomeLeagueRaceVisible(showLeagueRace);
+        setEngineLeague(league);
+        setHomeLeagueChest(nextHomeLeagueChest);
+      } else {
+        setHomeLeagueRaceVisible(false);
+        setHomeLeagueChest((prev) => prev ?? buildFallbackHomeLeagueChest(lang));
+      }
 
       if (leaguePending && mountedRef.current) {
         const pendingSig = JSON.stringify({
@@ -788,6 +883,8 @@ export default function HomeScreen() {
       // Premium celebration: pending выставлен в premium_modal (IAP) или cloud_sync (admin grant).
       const pending = await isCelebrationPending();
       if (pending && mountedRef.current) {
+        const marker = await getPendingCelebrationMarker();
+        setCelebrationMarker(marker);
         // Не показываем одновременно с revive-модалкой — celebration важнее, revive отложится до закрытия.
         if (!offer) setCelebrationVisible(true);
         else {
@@ -827,7 +924,7 @@ export default function HomeScreen() {
       await AsyncStorage.setItem('premium_free_freeze_used', 'true');
       setPremiumFreezeUsed(true);
     } else {
-      const ok = await spendShards(FREEZE_COST_SHARDS);
+      const ok = await spendShards(FREEZE_COST_SHARDS, 'streak_freeze');
       if (!ok) {
         await enqueueThemedBlockingInfoAlert(
           triLang(lang, {
@@ -850,6 +947,7 @@ export default function HomeScreen() {
     await AsyncStorage.setItem('streak_freeze', JSON.stringify({ active: true, date: today }));
     setFreezeActive(true);
     setStreakAtRisk(false);
+    void checkAchievements({ type: 'streak_freeze_used' });
   };
 
 const weekDays =
@@ -973,50 +1071,38 @@ const weekDays =
     const menuImages = {
       lesson:    themeMode === 'minimalLight' ? require('../../assets/images/levels/lesson grafit.webp')
                : themeMode === 'minimalDark' ? require('../../assets/images/levels/lesson fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/lesson ocean.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/lesson sacura.webp')
                : themeMode === 'gold'   ? require('../../assets/images/levels/lesson coral.webp')
                : themeMode === 'neon'   ? require('../../assets/images/levels/lesson neon.webp')
                :                          require('../../assets/images/levels/lesson forest.webp'),
       quizes:    themeMode === 'minimalLight' ? require('../../assets/images/levels/quizes grafit.webp')
                : themeMode === 'minimalDark' ? require('../../assets/images/levels/quizes fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/quizes ocean.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/quizes sacura.webp')
                : themeMode === 'gold'   ? require('../../assets/images/levels/quizes coral.webp')
                : themeMode === 'neon'   ? require('../../assets/images/levels/quizes neon.webp')
                :                          require('../../assets/images/levels/quizes forest.webp'),
       cards:     themeMode === 'minimalLight' ? require('../../assets/images/levels/cards grafit.webp')
                : themeMode === 'minimalDark' ? require('../../assets/images/levels/cards fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/cards ocean.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/cards sacura.webp')
                : themeMode === 'gold'   ? require('../../assets/images/levels/cards coral.webp')
                : themeMode === 'neon'   ? require('../../assets/images/levels/cards neon.webp')
                :                          require('../../assets/images/levels/cards forest.webp'),
       dayTasks:  themeMode === 'minimalLight' ? require('../../assets/images/levels/dayli task grafit.webp')
                : themeMode === 'minimalDark' ? require('../../assets/images/levels/day tasks fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/day tasks ocean.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/day tasks sacura.webp')
                : themeMode === 'gold'   ? require('../../assets/images/levels/day tasks coral.webp')
                : themeMode === 'neon'   ? require('../../assets/images/levels/day tasks neon.webp')
                :                          require('../../assets/images/levels/day tasks forest.webp'),
       test:      themeMode === 'minimalLight' ? require('../../assets/images/levels/test grafit.webp')
                : themeMode === 'minimalDark' ? require('../../assets/images/levels/test fog.webp')
-               : themeMode === 'ocean'  ? require('../../assets/images/levels/test ocean.webp')
-               : themeMode === 'sakura' ? require('../../assets/images/levels/test sacura.webp')
                : themeMode === 'gold'   ? require('../../assets/images/levels/test coral.webp')
                : themeMode === 'neon'   ? require('../../assets/images/levels/test neon.webp')
                :                          require('../../assets/images/levels/test forest.webp'),
     };
     const quickItems = [
-      { img: menuImages.lesson,   label: s.tabs.lessons,    sub: triLang(lang, { ru: '32 урока', uk: '32 уроки', es: '32 lecciones' }), path: 'lessons' },
-      { img: menuImages.quizes,   label: s.tabs.quizzes,    sub: triLang(lang, { ru: '3 уровня', uk: '3 рівні', es: '3 niveles de dificultad' }), path: '/quizzes_screen' },
-      { img: menuImages.cards,    label: s.tabs.flashcards, sub: triLang(lang, { ru: 'Свои фразы', uk: 'Свої фрази', es: 'Tus tarjetas' }), path: '/flashcards' },
+      { key: 'lessons', testID: 'home-quick-lessons', img: menuImages.lesson,   label: s.tabs.lessons,    sub: triLang(lang, { ru: '32 урока', uk: '32 уроки', es: '32 lecciones' }), path: 'lessons' },
+      { key: 'quizzes', testID: 'home-quick-quizzes', img: menuImages.quizes,   label: s.tabs.quizzes,    sub: triLang(lang, { ru: '3 уровня', uk: '3 рівні', es: '3 niveles de dificultad' }), path: '/quizzes_screen' },
+      { key: 'flashcards', testID: 'home-quick-flashcards', img: menuImages.cards,    label: s.tabs.flashcards, sub: triLang(lang, { ru: 'Свои фразы', uk: 'Свої фрази', es: 'Tus tarjetas' }), path: '/flashcards' },
     ];
     const themedClubIcon =
       themeMode === 'minimalLight' ? require('../../assets/images/levels/club base grafit.webp') :
       themeMode === 'minimalDark' ? require('../../assets/images/levels/club base fog.webp') :
-      themeMode === 'ocean'  ? require('../../assets/images/levels/club base ocean.webp') :
-      themeMode === 'sakura' ? require('../../assets/images/levels/club base sacura.webp') :
       themeMode === 'gold'   ? require('../../assets/images/levels/club base corak.webp') :
       themeMode === 'neon'   ? require('../../assets/images/levels/club base neon.webp') :
                                require('../../assets/images/levels/club icon base forest.webp');
@@ -1044,19 +1130,33 @@ const weekDays =
         img: menuImages.test,
       },
     ];
-
+    const xpPct = Math.min(100, Math.max(0, Math.round(progress * 100)));
+    const eliteCardY = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
+    const eliteCardScale = eliteStatusEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.985, 1] });
+    const eliteShimmerX = eliteStatusShimmer.interpolate({ inputRange: [0, 1], outputRange: [-90, Math.max(320, CONTENT_W)] });
+    const homeLeagueChestPct = homeLeagueChest
+      ? Math.min(100, Math.round((homeLeagueChest.progress / Math.max(1, homeLeagueChest.goal)) * 100))
+      : 0;
     return (
-      <ScrollView scrollEnabled={pageScrollEnabled} showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom:32, paddingTop:6 }}>
+      <ScrollView
+        scrollEnabled={pageScrollEnabled}
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={{ paddingBottom: Math.max(220, insets.bottom + 180), paddingTop: 6 }}
+      >
 
           {/* ХЕДЕР */}
           <Animated.View style={sectionStyle(0)}>
           <View style={{ flexDirection:'row', alignItems:'flex-start', padding:20, paddingBottom:12, gap:8 }}>
-            <View style={{ flex:1 }}>
+            <View style={{ flex:1, minWidth:0 }}>
               <Text style={{ color:t.heroTextMuted, fontSize:f.caption }}>{greeting}</Text>
-              {isPremium ? (
-                <PremiumGoldUserName text={userName || '...'} fontSize={f.h1} />
+              {homeLeagueRaceVisible && homeLeagueCrownExpiresAt > Date.now() ? (
+                <View style={{ marginTop:2, alignSelf:'flex-start', maxWidth:'100%' }}>
+                  <LeagueCrownName text={userName || 'Phraseman'} fontSize={f.h1} />
+                </View>
+              ) : isPremium ? (
+                <PremiumGoldUserName text={userName || 'Phraseman'} fontSize={f.h1} onGradient />
               ) : (
-                <Text style={{ color:t.heroTextPrimary, fontSize:f.h1, fontWeight:'700', marginTop:2 }}>{userName||'...'}</Text>
+                <Text style={{ color:t.heroTextPrimary, fontSize:f.h1, fontWeight:'700', marginTop:2 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.62}>{userName || 'Phraseman'}</Text>
               )}
               {/* Анимация начисления осколков */}
               <Animated.Text style={{
@@ -1078,7 +1178,7 @@ const weekDays =
                       <View key={i} style={{ marginLeft: i > 0 ? -8 : 0 }}>
                         <EnergyIcon
                           filled={i < energyCount}
-                          themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? (themeMode === 'ocean' ? 'rgba(234,246,255,0.40)' : 'rgba(255,245,252,0.38)') : t.textGhost)}
+                          themeColor={i < energyCount ? energyFilledColor : (isLightTheme ? energyEmptyTint : t.textGhost)}
                           size={20}
                           animateChange={true}
                           shouldShake={false}
@@ -1110,19 +1210,22 @@ const weekDays =
                 </TouchableOpacity>
                 </View>
 
-                <TouchableOpacity
-                  activeOpacity={0.75}
-                  onPress={() => {
-                    hapticTap();
-                    router.push('/shards_shop');
-                  }}
-                  style={{ flexDirection:'row', alignItems:'center', gap:4 }}
-                >
-                  <Animated.View style={{ transform:[{scale:shardsAnim}], flexDirection:'row', alignItems:'center', gap:3 }}>
-                    <Image source={require('../../assets/images/levels/OSKOLOK.webp')} style={{ width:22, height:22 }} resizeMode="contain" />
-                    <Text style={{ color:'#A78BFA', fontSize:12, fontWeight:'800' }}>{shardsBalance}</Text>
-                  </Animated.View>
-                </TouchableOpacity>
+                <View style={{ flexDirection:'row', alignItems:'center', gap:8, flexShrink:0 }}>
+                  <AppMessagesInbox />
+                  <TouchableOpacity
+                    activeOpacity={0.75}
+                    onPress={() => {
+                      hapticTap();
+                      router.push('/shards_shop');
+                    }}
+                    style={{ flexDirection:'row', alignItems:'center', gap:4 }}
+                  >
+                    <Animated.View style={{ transform:[{scale:shardsAnim}], flexDirection:'row', alignItems:'center', gap:3 }}>
+                      <Image source={require('../../assets/images/levels/OSKOLOK.webp')} style={{ width:22, height:22 }} resizeMode="contain" />
+                      <Text style={{ color:'#A78BFA', fontSize:12, fontWeight:'800' }}>{shardsBalance}</Text>
+                    </Animated.View>
+                  </TouchableOpacity>
+                </View>
               </View>
 
             </View>
@@ -1144,22 +1247,166 @@ const weekDays =
           >
             <LinearGradient colors={t.cardGradient} start={{x:0, y:0}} end={{x:1, y:1}} style={{ borderRadius:24, borderWidth:0.5, borderColor:t.border, padding:20, minHeight: homeStatsReady ? undefined : 200 }}>
               {/* Декоративные круги — в отдельном контейнере чтобы не обрезать текст */}
-              <View style={{ position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:24, overflow:'hidden' }} pointerEvents="none">
-                <View style={{ position:'absolute', top:-30, right:-20, width:110, height:110, borderRadius:55, backgroundColor:t.textSecond+'12' }} />
-                <View style={{ position:'absolute', bottom:-20, left:-10, width:70, height:70, borderRadius:35, backgroundColor:t.correct+'10' }} />
-              </View>
-
-              {!homeStatsReady ? (
-                <View style={{ paddingVertical: 32, alignItems: 'center', justifyContent: 'center' }} accessibilityState={{ busy: true }}>
-                  <ActivityIndicator size="large" color={t.accent} />
+              {!USE_ELITE_HOME_STATUS && (
+                <View style={{ position:'absolute', top:0, left:0, right:0, bottom:0, borderRadius:24, overflow:'hidden' }} pointerEvents="none">
+                  <View style={{ position:'absolute', top:-30, right:-20, width:110, height:110, borderRadius:55, backgroundColor:t.textSecond+'12' }} />
+                  <View style={{ position:'absolute', bottom:-20, left:-10, width:70, height:70, borderRadius:35, backgroundColor:t.correct+'10' }} />
                 </View>
+              )}
+
+              {false && !homeStatsReady ? (
+                <View style={{ paddingVertical: 32, alignItems: 'center', justifyContent: 'center' }} accessibilityState={{ busy: true }}>
+                  <Text style={{ color: t.textGhost }} />
+                </View>
+              ) : USE_ELITE_HOME_STATUS ? (
+                <Animated.View style={{
+                  opacity: eliteStatusEntrance,
+                  transform: [{ translateY: eliteCardY }, { scale: eliteCardScale }],
+                }}>
+                  <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:18, gap:10 }}>
+                    <View style={{ flexDirection:'row', alignItems:'center', flex:1, minWidth:0 }}>
+                      <TouchableOpacity
+                        activeOpacity={0.78}
+                        onPress={(event) => {
+                          event.stopPropagation?.();
+                          hapticTap();
+                          router.push('/avatar_select');
+                        }}
+                        accessibilityRole="button"
+                        accessibilityLabel="Avatar"
+                        style={{ marginRight:12 }}
+                      >
+                        <AvatarView avatar={userAvatar} level={level} size={58} auraId={effectiveUserAvatarAura} />
+                      </TouchableOpacity>
+                      <View style={{ flex:1, minWidth:0 }}>
+                        <Text style={{ color:t.textMuted, fontSize:10, textTransform:'uppercase', letterSpacing:0.8, marginBottom:4 }}>
+                          {triLang(lang, { ru: 'Статус игрока', uk: 'Статус гравця', es: 'Estado del jugador' })}
+                        </Text>
+                        <Text style={{ color:t.textPrimary, fontSize:22, fontWeight:'900', lineHeight:27 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.72}>
+                          {triLang(lang, { ru: 'Ур.', uk: 'Рів.', es: 'Nv.' })} {level}
+                        </Text>
+                        <Text style={{ color:isLightTheme ? t.textSecond : t.gold, fontSize:13, fontWeight:'700', marginTop:1 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.68}>
+                          {getTitleString(level, lang)}
+                        </Text>
+                      </View>
+                    </View>
+
+                    <View style={{ alignItems:'flex-end', width:78, flexShrink:0 }}>
+                      <Text style={{ color:t.textMuted, fontSize:10, textTransform:'uppercase', letterSpacing:0.8, marginBottom:3 }}>
+                        {s.home.streakLabel}
+                      </Text>
+                      <View style={{ flexDirection:'row', alignItems:'center', gap:5 }}>
+                        <Animated.Text style={{ color:t.textPrimary, fontSize:37, fontWeight:'900', lineHeight:42, transform:[{scale:streakScaleAnim}], flexShrink:1 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.7}>
+                          {displayStreak}
+                        </Animated.Text>
+                        <View style={{
+                          width:34,
+                          height:34,
+                          borderRadius:17,
+                          alignItems:'center',
+                          justifyContent:'center',
+                          backgroundColor: freezeActive ? 'rgba(100,180,255,0.16)' : 'rgba(255,107,53,0.16)',
+                          borderWidth:1,
+                          borderColor: freezeActive ? 'rgba(100,180,255,0.52)' : 'rgba(255,138,61,0.46)',
+                        }}>
+                          <Ionicons name={freezeActive ? 'snow-outline' : 'flame'} size={23} color={freezeActive ? '#64B4FF' : (streak>0?'#FF8A3D':t.textGhost)} />
+                        </View>
+                      </View>
+                      <Text style={{ color:t.textSecond, fontSize:12, fontWeight:'600' }} numberOfLines={1}>
+                        {s.home.streakDays}
+                      </Text>
+                    </View>
+                  </View>
+
+                  <View style={{ marginBottom:15 }}>
+                    <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom:7 }}>
+                      <Text style={{ color:t.textMuted, fontSize:f.label, fontWeight:'700' }}>{xpInLevel} / {xpNeeded} XP</Text>
+                      <View style={{ flexDirection:'row', alignItems:'center', gap:8 }}>
+                        {totalXPMulti > 1.0 && (
+                          <View style={{ backgroundColor:t.gold, borderRadius:9, paddingHorizontal:7, paddingVertical:2 }}>
+                            <Text style={{ color:t.textOnGold, fontSize:11, fontWeight:'800' }}>+{Math.round((totalXPMulti-1)*100)}% XP</Text>
+                          </View>
+                        )}
+                        <Text style={{ color:isLightTheme ? t.textSecond : t.gold, fontSize:12, fontWeight:'800' }}>{xpPct}%</Text>
+                      </View>
+                    </View>
+                    <View style={{ height:12, borderRadius:8, overflow:'hidden', backgroundColor:isLightTheme ? 'rgba(255,255,255,0.35)' : 'rgba(255,255,255,0.08)' }}>
+                      <LinearGradient
+                        colors={isLightTheme ? [t.accent, '#FFFFFFAA'] : [t.gold, '#FFF2B0', t.accent]}
+                        start={{x:0, y:0}}
+                        end={{x:1, y:0}}
+                        style={{ width:`${xpPct}%` as any, height:'100%', borderRadius:8, overflow:'hidden' }}
+                      >
+                        <Animated.View style={{ width:72, height:'100%', transform:[{ translateX: eliteShimmerX }] }}>
+                          <LinearGradient
+                            colors={['rgba(255,255,255,0)', 'rgba(255,255,255,0.72)', 'rgba(255,255,255,0)']}
+                            start={{x:0, y:0}}
+                            end={{x:1, y:0}}
+                            style={{ flex:1 }}
+                          />
+                        </Animated.View>
+                      </LinearGradient>
+                    </View>
+                  </View>
+
+                  {isPremium && homeXpPercentile !== null && (
+                    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginBottom: 13 }}>
+                      <LinearGradient colors={[t.gold, '#FFF2B0']} start={{x:0,y:0}} end={{x:1,y:1}} style={{ borderRadius: 12, paddingHorizontal: 9, paddingVertical: 4, flexDirection: 'row', alignItems: 'center', gap: 5 }}>
+                        <Ionicons name="trophy" size={13} color={t.textOnGold} />
+                        <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '800' }}>
+                          {triLang(lang, {
+                            ru: `Обошёл ${homeXpPercentile}% по XP`,
+                            uk: `Обійшов ${homeXpPercentile}% за XP`,
+                            es: `Ahead of ${homeXpPercentile}% in XP`,
+                          })}
+                        </Text>
+                      </LinearGradient>
+                    </View>
+                  )}
+
+                  <View style={{ flexDirection:'row', justifyContent:'space-between', paddingHorizontal:2 }}>
+                    {weekDays.map((d,i)=>(
+                      <View key={i} style={{ alignItems:'center', gap:6, width:34 }}>
+                        <View style={{
+                          width: 24, height: 24, borderRadius: 12,
+                          alignItems:'center',
+                          justifyContent:'center',
+                          backgroundColor: weekDone[i] ? t.correct : (isLightTheme
+                            ? (i === todayIdx ? 'rgba(255,255,255,0.82)' : 'rgba(255,255,255,0.34)')
+                            : (i===todayIdx ? 'rgba(255,255,255,0.18)' : 'rgba(255,255,255,0.07)')),
+                          borderWidth: weekDone[i] ? 0 : 1,
+                          borderColor: i === todayIdx ? (isLightTheme ? t.textSecond : t.gold) : (isLightTheme ? 'rgba(255,255,255,0.42)' : 'rgba(255,255,255,0.10)'),
+                        }}>
+                          {weekDone[i] && <Ionicons name="checkmark" size={14} color={t.textPrimary} />}
+                        </View>
+                        <Text style={{ color: weekDone[i] || i === todayIdx ? t.textPrimary : t.textMuted, fontSize:11, fontWeight:'800' }}>{d}</Text>
+                      </View>
+                    ))}
+                  </View>
+                  {showStatsPulseHint && (
+                    <Animated.Text
+                      accessibilityLiveRegion="polite"
+                      style={{
+                        color: t.accent,
+                        fontSize: 13,
+                        fontWeight: '700',
+                        marginTop: 14,
+                        textAlign: 'center',
+                        lineHeight: 18,
+                        transform: [{ scale: statsHintPulseAnim }],
+                      }}
+                    >
+                      {s.home.statsPulseHint}
+                    </Animated.Text>
+                  )}
+                </Animated.View>
               ) : (
               <>
               {/* Верхняя строка: Уровень + Цепочка */}
               <View style={{ flexDirection:'row', justifyContent:'space-between', alignItems:'flex-start', marginBottom:16 }}>
                 <View style={{ flex:1 }}>
                   <Text style={{ color:t.textMuted, fontSize:10, textTransform:'uppercase', letterSpacing:1, marginBottom:6 }}>{triLang(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel' })}</Text>
-                  <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
+                    <View style={{ flexDirection:'row', alignItems:'center', gap:10 }}>
                     <TouchableOpacity
                       activeOpacity={0.78}
                       onPress={(event) => {
@@ -1170,11 +1417,25 @@ const weekDays =
                       accessibilityRole="button"
                       accessibilityLabel="Avatar"
                     >
-                      <AvatarView avatar={userAvatar} level={level} size={44} />
+                      <AvatarView avatar={userAvatar} level={level} size={44} auraId={effectiveUserAvatarAura} />
                     </TouchableOpacity>
-                    <View style={{ flex:1 }}>
-                      <Text style={{ color:t.textPrimary, fontSize:22, fontWeight:'800', lineHeight:26 }} numberOfLines={1}>{triLang(lang, { ru: 'Уровень', uk: 'Рівень', es: 'Nivel' })} {level}</Text>
-                      <Text style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize:13, fontWeight:'600', marginTop:2 }} numberOfLines={1}>{getTitleString(level, lang)}</Text>
+                    <View style={{ flex:1, minWidth:0 }}>
+                      <Text
+                        style={{ color:t.textPrimary, fontSize:20, fontWeight:'800', lineHeight:24 }}
+                        numberOfLines={1}
+                        adjustsFontSizeToFit
+                        minimumFontScale={0.72}
+                      >
+                        {triLang(lang, { ru: 'Ур.', uk: 'Рів.', es: 'Nv.' })} {level}
+                      </Text>
+                      <Text
+                        style={{ color: isLightTheme ? t.textSecond : t.gold, fontSize:12, fontWeight:'600', marginTop:2 }}
+                        numberOfLines={1}
+                        adjustsFontSizeToFit
+                        minimumFontScale={0.7}
+                      >
+                        {getTitleString(level, lang)}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -1210,9 +1471,9 @@ const weekDays =
                     <Text style={{ fontSize: 12 }}>🏆</Text>
                     <Text style={{ color: t.textOnGold, fontSize: 11, fontWeight: '700' }}>
                       {triLang(lang, {
-                        ru: `Топ ${100 - homeXpPercentile}% по опыту`,
-                        uk: `Топ ${100 - homeXpPercentile}% за досвідом`,
-                        es: `Top ${100 - homeXpPercentile}% en XP`,
+                        ru: `Обошёл ${homeXpPercentile}% по XP`,
+                        uk: `Обійшов ${homeXpPercentile}% за XP`,
+                        es: `Ahead of ${homeXpPercentile}% in XP`,
                       })}
                     </Text>
                   </View>
@@ -1315,29 +1576,76 @@ const weekDays =
 
           {/* ПРОДОЛЖИТЬ УРОК */}
           {lastLesson != null && (
-          <PremiumCard
-            testID="home-continue-lesson"
-            level={3}
-            onPress={()=>router.push({ pathname:'/lesson_menu', params:{ id:lastLesson.id } })}
-            style={{ marginHorizontal:16, marginBottom:12 }}
-            innerStyle={{ padding:16, flexDirection:'row', alignItems:'center', gap:14 }}
-          >
-            <CircularProgress
-              pct={Math.round(lastLesson.progress/50*100)}
-              size={52} sw={5} color={t.accent} bg={t.bgSurface}
-              textColor={t.textPrimary} fontSize={10}
-            />
-            <View style={{ flex:1 }}>
-              <Text style={{ color:t.textMuted, fontSize:10, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 }}>
-                {s.home.continueBtn}
-              </Text>
-              <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700', marginTop:3 }}>
-                {`${triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} ${lastLesson.id} — ${lessonNamesForLang(lang)[lastLesson.id - 1] ?? lastLesson.name}`}
-              </Text>
-              <Text style={{ color:t.textMuted, fontSize:f.label, marginTop:2 }}>★ {lastLesson.score} · {lastLesson.progress}/50</Text>
-            </View>
-            <Ionicons name="chevron-forward" size={20} color={t.textGhost} />
-          </PremiumCard>
+            USE_ELITE_HOME_STATUS ? (
+              <TouchableOpacity
+                testID="home-continue-lesson"
+                activeOpacity={0.88}
+                onPress={()=>{ hapticTap(); router.push({ pathname:'/lesson_menu', params:{ id:lastLesson.id } }); }}
+                style={{
+                  marginHorizontal:16,
+                  marginBottom:12,
+                  borderRadius:18,
+                  borderWidth:1,
+                  borderColor:isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)',
+                  backgroundColor:isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.07)',
+                  padding:15,
+                  overflow:'hidden',
+                }}
+              >
+                  <View style={{ flexDirection:'row', alignItems:'center', gap:14 }}>
+                    <View style={{ width:52, height:52, alignItems:'center', justifyContent:'center' }}>
+                      <CircularProgress
+                        pct={Math.round(lastLesson.progress/50*100)}
+                        size={52} sw={5} color={t.accent} bg={t.bgSurface}
+                        textColor={t.textPrimary} fontSize={10}
+                      />
+                    </View>
+                    <View style={{ flex:1, minWidth:0 }}>
+                      <Text style={{ color:t.textMuted, fontSize:10, fontWeight:'800', textTransform:'uppercase', letterSpacing:0.7 }}>
+                        {s.home.continueBtn}
+                      </Text>
+                      <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'900', marginTop:4 }} numberOfLines={1}>
+                        {`${triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} ${lastLesson.id}`}
+                      </Text>
+                      <Text style={{ color:t.textMuted, fontSize:f.label, marginTop:2 }} numberOfLines={1}>
+                        {lessonNamesForLang(lang)[lastLesson.id - 1] ?? lastLesson.name}
+                      </Text>
+                      <View style={{ flexDirection:'row', alignItems:'center', gap:7, marginTop:8 }}>
+                        <Text style={{ color:isLightTheme ? t.textSecond : t.gold, fontSize:12, fontWeight:'800' }}>★ {lastLesson.score}</Text>
+                        <View style={{ width:3, height:3, borderRadius:1.5, backgroundColor:t.textGhost }} />
+                        <Text style={{ color:t.textSecond, fontSize:12, fontWeight:'700' }}>{lastLesson.progress}/50</Text>
+                      </View>
+                    </View>
+                    <View style={{ width:34, height:34, borderRadius:17, alignItems:'center', justifyContent:'center', backgroundColor:isLightTheme ? lightPanelChevronBg : 'rgba(255,255,255,0.08)' }}>
+                      <Ionicons name="chevron-forward" size={19} color={isLightTheme ? t.textSecond : t.gold} />
+                    </View>
+                  </View>
+              </TouchableOpacity>
+            ) : (
+              <PremiumCard
+                testID="home-continue-lesson"
+                level={3}
+                onPress={()=>router.push({ pathname:'/lesson_menu', params:{ id:lastLesson.id } })}
+                style={{ marginHorizontal:16, marginBottom:12 }}
+                innerStyle={{ padding:16, flexDirection:'row', alignItems:'center', gap:14 }}
+              >
+                <CircularProgress
+                  pct={Math.round(lastLesson.progress/50*100)}
+                  size={52} sw={5} color={t.accent} bg={t.bgSurface}
+                  textColor={t.textPrimary} fontSize={10}
+                />
+                <View style={{ flex:1 }}>
+                  <Text style={{ color:t.textMuted, fontSize:10, fontWeight:'700', textTransform:'uppercase', letterSpacing:0.6 }}>
+                    {s.home.continueBtn}
+                  </Text>
+                  <Text style={{ color:t.textPrimary, fontSize:f.bodyLg, fontWeight:'700', marginTop:3 }}>
+                    {`${triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} ${lastLesson.id} — ${lessonNamesForLang(lang)[lastLesson.id - 1] ?? lastLesson.name}`}
+                  </Text>
+                  <Text style={{ color:t.textMuted, fontSize:f.label, marginTop:2 }}>★ {lastLesson.score} · {lastLesson.progress}/50</Text>
+                </View>
+                <Ionicons name="chevron-forward" size={20} color={t.textGhost} />
+              </PremiumCard>
+            )
           )}
           </Animated.View>
           )}
@@ -1356,15 +1664,66 @@ const weekDays =
             onTouchCancel={() => { tabSwipeLock.blocked = false; }}
           >
           <View style={{ marginBottom:12, paddingHorizontal:16, gap:10, flexDirection:'row' }}>
-              {quickItems.map(item=>(
-                <TouchableOpacity
+              {quickItems.map((item, index)=>{
+                const tileOpacity = eliteQuickTileEntrance[index] ?? eliteStatusEntrance;
+                const tileY = tileOpacity.interpolate({ inputRange:[0,1], outputRange:[10,0] });
+                const tileBorderColor = isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
+                const tileIconBg = isLightTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
+                return (
+                <Animated.View
                   key={item.label}
-                  activeOpacity={0.8}
+                  style={{
+                    flex:1,
+                    opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
+                    transform: USE_ELITE_HOME_STATUS ? [{ translateY: tileY }] : [],
+                  }}
+                >
+                <TouchableOpacity
+                  testID={item.testID}
+                  accessibilityLabel={`qa-${item.testID}`}
+                  accessible={true}
+                  activeOpacity={0.78}
                   onPress={() => {
                     go(item.path);
                   }}
-                  style={{ flex:1, borderRadius:18, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}
+                  style={{
+                    flex:1,
+                    borderRadius:18,
+                    borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
+                    borderColor: USE_ELITE_HOME_STATUS ? tileBorderColor : t.border,
+                    overflow:'hidden',
+                    backgroundColor: USE_ELITE_HOME_STATUS
+                      ? (isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
+                      : 'transparent',
+                  }}
                 >
+              {USE_ELITE_HOME_STATUS ? (
+                    <View style={{ flex:1, borderRadius:18, paddingHorizontal:10, paddingVertical:13, alignItems:'center', gap:6 }}>
+                      <View style={{
+                        width:66,
+                        height:66,
+                        borderRadius:18,
+                        alignItems:'center',
+                        justifyContent:'center',
+                        backgroundColor:tileIconBg,
+                      }}>
+                        {item.img
+                          ? (
+                            <LightSketchMenuImage
+                              source={item.img}
+                              width={58}
+                              height={58}
+                              lighten={themeMode === 'minimalLight'}
+                              contentFit="contain"
+                              cachePolicy="memory-disk"
+                            />
+                          )
+                          : <View style={{ width: 58, height: 58, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: f.numLg + 4 }}>...</Text></View>
+                        }
+                      </View>
+                      <Text style={{ color:t.textPrimary, fontSize:Math.max(12, f.label - 1), fontWeight:'800', textAlign:'center' }} numberOfLines={1}>{item.label}</Text>
+                    </View>
+                  ) : (
                   <LinearGradient colors={t.cardGradient} start={{x:0,y:0}} end={{x:1,y:1}} style={{ flex:1, borderRadius:18, paddingHorizontal:10, paddingVertical:14, alignItems:'center', gap:5 }}>
                   <View style={{ position: 'relative' }}>
                     {item.img
@@ -1383,8 +1742,10 @@ const weekDays =
                   </View>
                   <Text style={{ color:t.textPrimary, fontSize:f.label, fontWeight:'700', textAlign:'center' }} numberOfLines={1}>{item.label}</Text>
                   </LinearGradient>
+                  )}
                 </TouchableOpacity>
-              ))}
+                </Animated.View>
+              );})}
           </View>
           </View>
           </Animated.View>
@@ -1394,13 +1755,23 @@ const weekDays =
 
           {/* ТРЕНЕР — стационарная кнопка, всегда видна */}
           <View style={{ paddingHorizontal:16, marginBottom:12 }}>
-            <TouchableOpacity activeOpacity={0.85} onPress={()=>{ hapticTap(); router.push('/trainer'); }}
-              style={{ borderRadius:16, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}
+            <TouchableOpacity activeOpacity={0.85} testID="home-open-trainer" onPress={()=>{ hapticTap(); router.push('/trainer'); }}
+              style={{
+                borderRadius:16,
+                borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
+                borderColor: USE_ELITE_HOME_STATUS
+                  ? (isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)')
+                  : t.border,
+                overflow:'hidden',
+                backgroundColor: USE_ELITE_HOME_STATUS
+                  ? (isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
+                  : 'transparent',
+              }}
             >
-              <LinearGradient colors={t.cardGradient} start={{x:0,y:0}} end={{x:1,y:1}} style={{ flexDirection:'row', alignItems:'center', gap:12, borderRadius:16, padding:14 }}>
+              <View style={{ flexDirection:'row', alignItems:'center', gap:12, borderRadius:16, padding:14 }}>
               <View style={{ width:44, height:44, borderRadius:12, backgroundColor:'transparent', justifyContent:'center', alignItems:'center' }}>
                 <LightSketchMenuImage
-                  source={themeMode === 'minimalLight' ? require('../../assets/images/levels/active recall grafit.webp') : themeMode === 'minimalDark' ? require('../../assets/images/levels/active recall fog.webp') : themeMode === 'ocean' ? require('../../assets/images/levels/active recall ocean.webp') : themeMode === 'sakura' ? require('../../assets/images/levels/active recall sacura.webp') : themeMode === 'gold' ? require('../../assets/images/levels/active recall coral.webp') : themeMode === 'neon' ? require('../../assets/images/levels/active recall neon.webp') : require('../../assets/images/levels/active recall forest.webp')}
+                  source={themeMode === 'minimalLight' ? require('../../assets/images/levels/active recall grafit.webp') : themeMode === 'minimalDark' ? require('../../assets/images/levels/active recall fog.webp') : themeMode === 'gold' ? require('../../assets/images/levels/active recall coral.webp') : themeMode === 'neon' ? require('../../assets/images/levels/active recall neon.webp') : require('../../assets/images/levels/active recall forest.webp')}
                   width={44}
                   height={44}
                   lighten={themeMode === 'minimalLight'}
@@ -1409,10 +1780,19 @@ const weekDays =
                 />
               </View>
               <View style={{ flex:1 }}>
-                <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>
-                  {triLang(lang, { ru: '🧠 Тренер', uk: '🧠 Тренер', es: '🧠 Entrenador' })}
+                <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'800' }}>
+                  {triLang(lang, { ru: 'Моя практика', uk: 'Моя практика', es: 'Mi práctica' })}
                 </Text>
-                <Text style={{ color:t.textSecond, fontSize:f.label, marginTop:1 }}>
+                <Text style={{ display:'none', color:t.textPrimary, fontSize:f.body, fontWeight:'800' }}>
+                  {triLang(lang, { ru: '🧠 Моя практика', uk: '🧠 Моя практика', es: '🧠 Mi práctica' })}
+                </Text>
+                <Text style={{ color:t.textSecond, fontSize:f.label, marginTop:1 }} numberOfLines={1}>
+                  {dueCount > 0
+                    ? triLang(lang, { ru: `${dueCount} ждут сегодня`, uk: `${dueCount} чекають сьогодні`, es: `${dueCount} esperan hoy` })
+                    : triLang(lang, { ru: 'Ошибки под контролем', uk: 'Помилки під контролем', es: 'Errores bajo control' })
+                  }
+                </Text>
+                <Text style={{ display:'none', color:t.textSecond, fontSize:f.label, marginTop:1 }} numberOfLines={1}>
                   {dueCount > 0
                     ? triLang(lang, { ru: `${dueCount} ждут сегодня`, uk: `${dueCount} чекають сьогодні`, es: `${dueCount} esperan hoy` })
                     : triLang(lang, { ru: 'Повторение ошибок', uk: 'Повторення помилок', es: 'Repaso de errores' })
@@ -1420,11 +1800,12 @@ const weekDays =
                 </Text>
               </View>
               {dueCount > 0 && (
-                <View style={{ backgroundColor:'#E05050', borderRadius:14, minWidth:28, height:28, alignItems:'center', justifyContent:'center', paddingHorizontal:6 }}>
-                  <Text style={{ color:'#fff', fontSize:f.label, fontWeight:'800' }}>{dueCount}</Text>
+                <View style={{ backgroundColor:'#E05050', borderRadius:11, minWidth:22, height:22, alignItems:'center', justifyContent:'center', paddingHorizontal:6 }}>
+                  <Text style={{ color:'#fff', fontSize:11, fontWeight:'900' }}>{dueCount}</Text>
                 </View>
               )}
-              </LinearGradient>
+              <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
+              </View>
             </TouchableOpacity>
           </View>
 
@@ -1434,25 +1815,51 @@ const weekDays =
             onTouchCancel={() => { tabSwipeLock.blocked = false; }}
           >
             <View style={{ marginBottom:12, paddingHorizontal:16, gap:10, flexDirection:'row' }}>
-              {activityQuickItems.map((item) => (
-                <TouchableOpacity
+              {activityQuickItems.map((item, index) => {
+                const tileOpacity = eliteActivityTileEntrance[index] ?? eliteStatusEntrance;
+                const tileY = tileOpacity.interpolate({ inputRange:[0,1], outputRange:[10,0] });
+                const tileBorderColor = isLightTheme ? lightPanelBorder : 'rgba(255,255,255,0.10)';
+                const tileIconBg = isLightTheme ? lightPanelIconBg : 'rgba(255,255,255,0.045)';
+                return (
+                <Animated.View
                   key={item.key}
-                  activeOpacity={0.8}
-                  onPress={() => { go(item.path); }}
-                  style={{ flex:1, borderRadius:18, borderWidth:0.5, borderColor:t.border, overflow:'hidden' }}
+                  style={{
+                    flex:1,
+                    opacity: USE_ELITE_HOME_STATUS ? tileOpacity : 1,
+                    transform: USE_ELITE_HOME_STATUS ? [{ translateY: tileY }] : [],
+                  }}
                 >
-                  <LinearGradient
-                    colors={t.cardGradient}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 1, y: 1 }}
-                    style={{ flex: 1, borderRadius: 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}
+                  <TouchableOpacity
+                    testID={`home-activity-${item.key}`}
+                    activeOpacity={0.78}
+                    onPress={() => { go(item.path); }}
+                    style={{
+                      flex:1,
+                      borderRadius:18,
+                      borderWidth: USE_ELITE_HOME_STATUS ? 1 : 0.5,
+                      borderColor: USE_ELITE_HOME_STATUS ? tileBorderColor : t.border,
+                      overflow:'hidden',
+                      backgroundColor: USE_ELITE_HOME_STATUS
+                        ? (isLightTheme ? lightPanelBg : 'rgba(255,255,255,0.055)')
+                        : 'transparent',
+                    }}
                   >
-                    <View style={{ position: 'relative', height: 62, justifyContent: 'center', alignItems: 'center' }}>
+                    {USE_ELITE_HOME_STATUS ? (
+                    <View style={{ flex: 1, borderRadius: 18, paddingHorizontal: 10, paddingVertical: 13, alignItems: 'center', gap: 6 }}>
+                    <View style={{
+                      position: 'relative',
+                      width: 66,
+                      height: 66,
+                      borderRadius: 18,
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      backgroundColor: tileIconBg,
+                    }}>
                       {item.kind === 'tasks' ? (
                         <LightSketchMenuImage
                           source={item.img}
-                          width={62}
-                          height={62}
+                          width={58}
+                          height={58}
                           lighten={themeMode === 'minimalLight'}
                           contentFit="contain"
                           cachePolicy="memory-disk"
@@ -1460,8 +1867,8 @@ const weekDays =
                       ) : item.kind === 'league' ? (
                         <LightSketchMenuImage
                           source={themedClubIcon}
-                          width={62}
-                          height={62}
+                          width={58}
+                          height={58}
                           lighten={themeMode === 'minimalLight'}
                           contentFit="contain"
                           cachePolicy="memory-disk"
@@ -1469,24 +1876,24 @@ const weekDays =
                       ) : (
                         <LightSketchMenuImage
                           source={item.img}
-                          width={62}
-                          height={62}
+                          width={58}
+                          height={58}
                           lighten={themeMode === 'minimalLight'}
                           contentFit="contain"
                           cachePolicy="memory-disk"
                         />
                       )}
                     </View>
-                    <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>
+                    <Text style={{ color: t.textPrimary, fontSize: Math.max(12, f.label - 1), fontWeight: '800', textAlign: 'center' }} numberOfLines={2}>
                       {item.label}
                     </Text>
                     {item.kind === 'tasks' ? (
-                      <View style={{ width: '100%', marginTop: 2 }}>
+                      <View style={{ width: '100%', marginTop: 1 }}>
                         <View style={{ flexDirection: 'row', gap: 4 }}>
                           {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
                             const done = ti < tasksCompleted;
                             return (
-                              <View key={ti} style={{ flex: 1, height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
+                              <View key={ti} style={{ flex: 1, height: 3, backgroundColor: isLightTheme ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.10)', borderRadius: 2, overflow: 'hidden' }}>
                                 {done ? <View style={{ width: '100%', height: '100%', backgroundColor: t.correct, borderRadius: 2 }} /> : null}
                               </View>
                             );
@@ -1494,11 +1901,111 @@ const weekDays =
                         </View>
                       </View>
                     ) : null}
+                    </View>
+                    ) : (
+                    <LinearGradient
+                      colors={t.cardGradient}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={{ flex: 1, borderRadius: 18, paddingHorizontal: 10, paddingVertical: 14, alignItems: 'center', gap: 5 }}
+                    >
+                      <View style={{ position: 'relative', height: 62, justifyContent: 'center', alignItems: 'center' }}>
+                        {item.kind === 'tasks' ? (
+                          <LightSketchMenuImage
+                            source={item.img}
+                            width={62}
+                            height={62}
+                            lighten={themeMode === 'minimalLight'}
+                            contentFit="contain"
+                            cachePolicy="memory-disk"
+                          />
+                        ) : item.kind === 'league' ? (
+                          <LightSketchMenuImage
+                            source={themedClubIcon}
+                            width={62}
+                            height={62}
+                            lighten={themeMode === 'minimalLight'}
+                            contentFit="contain"
+                            cachePolicy="memory-disk"
+                          />
+                        ) : (
+                          <LightSketchMenuImage
+                            source={item.img}
+                            width={62}
+                            height={62}
+                            lighten={themeMode === 'minimalLight'}
+                            contentFit="contain"
+                            cachePolicy="memory-disk"
+                          />
+                        )}
+                      </View>
+                      <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '700', textAlign: 'center' }} numberOfLines={2}>
+                        {item.label}
+                      </Text>
+                      {item.kind === 'tasks' ? (
+                        <View style={{ width: '100%', marginTop: 2 }}>
+                          <View style={{ flexDirection: 'row', gap: 4 }}>
+                            {Array.from({ length: dailyTaskBarCount }, (_, ti) => {
+                              const done = ti < tasksCompleted;
+                              return (
+                                <View key={ti} style={{ flex: 1, height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, overflow: 'hidden' }}>
+                                  {done ? <View style={{ width: '100%', height: '100%', backgroundColor: t.correct, borderRadius: 2 }} /> : null}
+                                </View>
+                              );
+                            })}
+                          </View>
+                        </View>
+                      ) : null}
                   </LinearGradient>
+                    )}
                 </TouchableOpacity>
-              ))}
+                </Animated.View>
+              );})}
             </View>
           </View>
+
+          {homeLeagueChest && (
+            <TouchableOpacity
+              testID="home-league-open"
+              activeOpacity={0.88}
+              onPress={() => {
+                hapticTap();
+                router.push('/league_screen');
+              }}
+              style={{ marginHorizontal:16, marginBottom:12 }}
+              accessibilityRole="button"
+              accessibilityLabel={triLang(lang, { ru: 'Бонус лиги', uk: 'Бонус ліги', es: 'Bono de liga' })}
+            >
+              <LinearGradient
+                colors={leagueChestGradient}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{ borderRadius:18, borderWidth:0.5, borderColor:t.border, padding:14, overflow:'hidden' }}
+              >
+                <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', gap:12, marginBottom:10 }}>
+                  <View style={{ flexDirection:'row', alignItems:'center', gap:9, flex:1, minWidth:0 }}>
+                    <View style={{ width:34, height:34, borderRadius:17, backgroundColor:isSketchLightTheme ? 'rgba(59,74,107,0.12)' : '#16B7D91F', alignItems:'center', justifyContent:'center', borderWidth:0.5, borderColor:isSketchLightTheme ? 'rgba(59,74,107,0.28)' : '#16B7D955' }}>
+                      <Ionicons name="gift-outline" size={19} color={leagueChestAccent} />
+                    </View>
+                    <View style={{ flex:1, minWidth:0 }}>
+                      <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'900' }} numberOfLines={1}>
+                        {triLang(lang, { ru: 'Бонус лиги', uk: 'Бонус ліги', es: 'Bono de liga' })}
+                      </Text>
+                      <Text style={{ color:t.textMuted, fontSize:Math.max(10, f.caption - 1), fontWeight:'800' }} numberOfLines={1}>
+                        {homeLeagueChest.leagueName}
+                      </Text>
+                    </View>
+                  </View>
+                  <Text style={{ color:homeLeagueChestPct >= 100 ? t.correct : leagueChestAccent, fontSize:f.h2, fontWeight:'900' }}>
+                    {homeLeagueChestPct}%
+                  </Text>
+                </View>
+                <View style={{ height:10, borderRadius:6, overflow:'hidden', backgroundColor:isSketchLightTheme ? 'rgba(40,37,32,0.10)' : t.bgSurface, borderWidth:0.5, borderColor:t.border }}>
+                  <View style={{ height:'100%', width:`${homeLeagueChestPct}%` as any, borderRadius:6, backgroundColor:homeLeagueChestPct >= 100 ? t.correct : leagueChestAccent }} />
+                </View>
+              </LinearGradient>
+            </TouchableOpacity>
+          )}
 
           </Animated.View>
 
@@ -1507,24 +2014,16 @@ const weekDays =
           <DailyPhraseCard />
 
           {/* Подвал */}
-          <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:t.border }}>
-            <Text style={{ color:t.textMuted, fontSize:f.caption, fontWeight:'600', letterSpacing:0.5 }}>
-              PHRASEMAN
-            </Text>
-            <Text style={{ color:t.textMuted, fontSize:f.caption, marginTop:4 }}>
-              by Professor Lingman
-            </Text>
-            <View style={{ marginTop: 16 }}>
-              <ReportErrorButton
-                screen="home"
-                dataId="home_main"
-                dataText={triLang(lang, {
-                  ru: 'Главный экран',
-                  uk: 'Головний екран',
-                  es: 'Pantalla de inicio',
-                })}
-              />
-            </View>
+          <View style={{ alignItems:'center', paddingVertical:24, marginTop:12, borderTopWidth:0.5, borderTopColor:t.border }}>
+            <ReportErrorButton
+              screen="home"
+              dataId="home_main"
+              dataText={triLang(lang, {
+                ru: 'Главный экран',
+                uk: 'Головний екран',
+                es: 'Pantalla de inicio',
+              })}
+            />
           </View>
           </Animated.View>
 
@@ -1624,9 +2123,9 @@ const weekDays =
                     <Text style={{ fontSize:16 }}>⚡</Text>
                     <Text style={{ color:'#FFFFFF', fontSize:13, fontWeight:'600', flex:1 }}>
                       {`${energyCount}/${energyMax} · `}{triLang(lang, {
-                        ru: '1 энергия каждые 30 минут',
-                        uk: '1 енергія кожні 30 хвилин',
-                        es: '+1 punto de energía cada 30 min',
+                        ru: `1 энергия каждые ${energyRecoveryMinutes} мин`,
+                        uk: `1 енергія кожні ${energyRecoveryMinutes} хв`,
+                        es: `+1 punto de energía cada ${energyRecoveryMinutes} min`,
                       })}
                     </Text>
                   </View>
@@ -1658,106 +2157,6 @@ const weekDays =
 
 
       </ScreenGradient>
-
-      {/* ── Онбординг: подсветка иконок энергии (первый запуск) ── */}
-      <Modal visible={energyOnboardingVisible} transparent animationType="none" onRequestClose={dismissEnergyOnboarding}>
-        <Animated.View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.82)', opacity: energyOnboardingAnim }}>
-          <TouchableOpacity activeOpacity={1} onPress={dismissEnergyOnboarding} style={{ flex:1 }}>
-
-            {/* Иконки энергии — рендерим сами в правильном месте поверх оверлея */}
-            {/* Позиция = safeArea.top + padding(20) + greeting(~18) + username(~34) + marginTop(6) */}
-            <Animated.View
-              pointerEvents="none"
-              style={{
-                position: 'absolute',
-                top: insets.top + 78,
-                left: 20,
-                transform: [{ scale: energyPulseAnim }],
-                flexDirection: 'row',
-                alignItems: 'center',
-                backgroundColor: 'rgba(245,166,35,0.15)',
-                borderRadius: 10,
-                paddingHorizontal: 6,
-                paddingVertical: 4,
-                borderWidth: 1.5,
-                borderColor: '#F5A623',
-              }}
-            >
-              {Array.from({ length: energyMax }).map((_, i) => (
-                <View key={i} style={{ marginLeft: i > 0 ? -8 : 0 }}>
-                  <EnergyIcon
-                    filled={i < energyCount}
-                    themeColor={i < energyCount ? energyFilledColor : '#555'}
-                    size={22}
-                    animateChange={false}
-                    shouldShake={false}
-                    themeMode={themeMode}
-                    tintColor={i < energyCount ? energyFilledTint : undefined}
-                    isPremium={energyUnlimited}
-                  />
-                </View>
-              ))}
-            </Animated.View>
-
-            {/* Стрелка вниз от иконок к карточке */}
-            <View pointerEvents="none" style={{
-              position:'absolute',
-              top: insets.top + 78 + 36,
-              left: 34,
-              width: 0, height: 0,
-              borderLeftWidth: 7, borderRightWidth: 7, borderTopWidth: 8,
-              borderLeftColor: 'transparent', borderRightColor: 'transparent', borderTopColor: '#F5A623',
-            }} />
-
-            {/* Карточка объяснения */}
-            <View style={{
-              position: 'absolute',
-              top: insets.top + 78 + 50,
-              left: 16, right: 16,
-              backgroundColor: '#1C1C1E', borderRadius: 16,
-              paddingVertical: 18, paddingHorizontal: 20,
-              borderWidth: 1, borderColor: '#F5A623',
-              shadowColor: '#000', shadowOpacity: 0.5, shadowRadius: 12, shadowOffset: { width:0, height:4 },
-              elevation: 20,
-            }}>
-              <Text style={{ color:'#F5A623', fontSize:16, fontWeight:'800', marginBottom:10 }}>
-                {triLang(lang, { ru: '⚡ Энергия', uk: '⚡ Енергія', es: '⚡ Energía' })}
-              </Text>
-              <Text style={{ color:'#FFFFFF', fontSize:14, lineHeight:21, marginBottom:6 }}>
-                {triLang(lang, {
-                  ru: '• Тратится при ошибках в упражнениях',
-                  uk: '• Витрачається при помилках у вправах',
-                  es: '• Se gasta si fallas en un ejercicio',
-                })}
-              </Text>
-              <Text style={{ color:'#FFFFFF', fontSize:14, lineHeight:21, marginBottom:6 }}>
-                {triLang(lang, {
-                  ru: '• Восстанавливается по 1 единице каждые 30 минут',
-                  uk: '• Відновлюється по 1 одиниці кожні 30 хвилин',
-                  es: '• Recuperas 1 punto cada 30 min',
-                })}
-              </Text>
-              <Text style={{ color:'#4FC3F7', fontSize:14, lineHeight:21, marginBottom:16 }}>
-                {triLang(lang, {
-                  ru: '• С Премиум — энергия не тратится ♾️',
-                  uk: '• З Преміум — енергія не витрачається ♾️',
-                  es: '• Con Premium no gastas energía ♾️',
-                })}
-              </Text>
-              <TouchableOpacity
-                onPress={dismissEnergyOnboarding}
-                style={{ backgroundColor:'#F5A623', borderRadius:12, paddingVertical:11, alignItems:'center' }}
-              >
-                <Text style={{ color:'#000', fontWeight:'800', fontSize:15 }}>
-                  {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}
-                </Text>
-              </TouchableOpacity>
-            </View>
-
-          </TouchableOpacity>
-        </Animated.View>
-      </Modal>
-
       {/* Shards Earned Modal */}
       <ShardsEarnedModal
         visible={!!shardsEarnedModal}
@@ -1787,8 +2186,10 @@ const weekDays =
         visible={celebrationVisible}
         onClose={() => {
           setCelebrationVisible(false);
-          // Маркер: timestamp текущего момента (не критично; ключ в том что seen != pending).
-          void consumeCelebration(String(Date.now()));
+          // Consume the exact event marker so the same admin grant does not re-open on next sync.
+          const marker = celebrationMarker;
+          setCelebrationMarker(null);
+          void consumeCelebration(marker);
         }}
       />
       {pendingLeagueResult && (

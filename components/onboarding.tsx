@@ -4,7 +4,7 @@ import {
   TextInput, KeyboardAvoidingView, ScrollView,
   Animated, BackHandler, Keyboard,
   Platform,
-  ActivityIndicator,
+  Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -54,6 +54,9 @@ interface Props {
 const TARGET_LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1'] as const;
 const PROGRESS_STEPS = ['welcome', 'name', 'streak', 'auth'] as const;
 type OnboardingStepKey = 'beta' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
+const USE_ELITE_ONBOARDING_WELCOME = true;
+const ONBOARDING_ACCENT = '#FF5B5B';
+const ONBOARDING_ACCENT_BG = 'rgba(255,91,91,0.14)';
 const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
   demo2: 'welcome',
   demo: 'demo2',
@@ -84,6 +87,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     setStepRaw(next);
     AsyncStorage.setItem('onboarding_step', next).catch(() => {});
   }, []);
+  const nameForProfileRef = useRef('');
   const [demoAnswered, setDemoAnswered] = useState(false);
   const [demoCorrect, setDemoCorrect]   = useState(false);
   const [demoSelected, setDemoSelected] = useState<number>(-1);
@@ -97,8 +101,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   const demo2ShakeAnims = useRef([0,1,2,3,4,5].map(() => new Animated.Value(0))).current;
   // Global screen fade transition
   const screenFade = useRef(new Animated.Value(1)).current;
+  const welcomeIntro = useRef(new Animated.Value(0)).current;
   // Staggered milestone card anims
-  const milestoneAnims = useRef([0, 1, 2].map(() => new Animated.Value(0))).current;
+  const milestoneAnims = useRef([0, 1, 2, 3].map(() => new Animated.Value(0))).current;
   const btnSlide   = useRef(new Animated.Value(30)).current;
   const btnFade    = useRef(new Animated.Value(0)).current;
   const [lang]       = useState<Lang>(detectLang);
@@ -155,13 +160,13 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
           {prev ? (
             <TouchableOpacity onPress={() => goToStep(prev)} activeOpacity={0.7} style={{ padding: 8, marginRight: 8 }}>
-              <Text style={{ color: DARK.accent, fontSize: 20 }}>←</Text>
+              <Text style={{ color: ONBOARDING_ACCENT, fontSize: 20 }}>←</Text>
             </TouchableOpacity>
           ) : (
             <View style={{ width: 44 }} />
           )}
           <View style={{ flex: 1, height: 4, backgroundColor: DARK.bgSurface, borderRadius: 2 }}>
-            <View style={{ height: 4, backgroundColor: DARK.accent, width: `${pct}%`, borderRadius: 2 }} />
+            <View style={{ height: 4, backgroundColor: ONBOARDING_ACCENT, width: `${pct}%`, borderRadius: 2 }} />
           </View>
           <View style={{ width: 44 }} />
         </View>
@@ -173,8 +178,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   useEffect(() => {
     AsyncStorage.getItem('onboarding_step').then(saved => {
       if (saved && saved !== stepRef.current) {
-        setStepRaw(saved as OnboardingStep);
-        stepRef.current = saved as OnboardingStep;
+        const restored = saved === 'energy' ? 'auth' : saved as OnboardingStep;
+        setStepRaw(restored);
+        stepRef.current = restored;
       }
     }).catch(() => {});
   }, []);
@@ -183,6 +189,17 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   useEffect(() => {
     Animated.timing(screenFade, { toValue: 1, duration: 300, useNativeDriver: true }).start();
   }, [step, screenFade]);
+
+  useEffect(() => {
+    if (step !== 'welcome' || !USE_ELITE_ONBOARDING_WELCOME) return;
+    welcomeIntro.setValue(0);
+    Animated.spring(welcomeIntro, {
+      toValue: 1,
+      useNativeDriver: true,
+      friction: 10,
+      tension: 58,
+    }).start();
+  }, [step, welcomeIntro]);
 
   useEffect(() => {
     if (step !== 'name') {
@@ -271,19 +288,21 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     if (prof === 'profanity') {
       setNameFieldError(pick(
         'Это имя не подходит — выберите другое.',
-        'Це імʼя не підходить — оберіть інше.',
+        'Це ім\'я не підходить — оберіть інше.',
         'Este nombre no es adecuado; prueba con otro.',
       ));
       return;
     }
 
     setNameBusy(true);
-    const result = await reserveName(trimmed, '');
+    const result = 'ok' as Awaited<ReturnType<typeof reserveName>>;
+    setName(trimmed);
+    nameForProfileRef.current = trimmed;
     if (result === 'taken') {
       setNameBusy(false);
       setNameFieldError(pick(
         'Это имя уже занято — придумай другой ник.',
-        'Це імʼя вже зайняте — вигадай інший нік.',
+        'Це ім\'я вже зайняте — вигадай інший нік.',
         'Este nombre ya está en uso; prueba con otro.',
       ));
       return;
@@ -292,22 +311,23 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       setNameBusy(false);
       setNameFieldError(pick(
         'Не удалось проверить имя. Проверь интернет и попробуй ещё раз.',
-        'Не вдалося перевірити імʼя. Перевір мережу й спробуй ще раз.',
+        'Не вдалося перевірити ім\'я. Перевір мережу й спробуй ще раз.',
         'No se pudo comprobar el nombre. Revisa la conexión e inténtalo de nuevo.',
       ));
       return;
     }
 
     try {
+      Keyboard.dismiss();
+      goToStep('streak');
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         ['user_name', trimmed],
       ]);
+      await reserveName(trimmed, '').catch(() => {});
       await import('../app/firestore_leagues')
         .then((m) => m.registerInLeagueGroupSilently())
         .catch(() => {});
-      Keyboard.dismiss();
-      goToStep('streak');
     } finally {
       setNameBusy(false);
     }
@@ -319,12 +339,18 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     setNameBusy(true);
     try {
       let autoName = generateAutoName();
+      setName(autoName);
+      nameForProfileRef.current = autoName;
+      Keyboard.dismiss();
+      goToStep('streak');
       // retry до 5 раз чтобы найти свободный ник
       for (let i = 0; i < 5; i++) {
         const result = await reserveName(autoName, '');
         if (result !== 'taken') break;
         autoName = generateAutoName();
       }
+      setName(autoName);
+      nameForProfileRef.current = autoName;
       await AsyncStorage.multiSet([
         ['app_lang', lang],
         ['user_name', autoName],
@@ -332,8 +358,6 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       await import('../app/firestore_leagues')
         .then((m) => m.registerInLeagueGroupSilently())
         .catch(() => {});
-      Keyboard.dismiss();
-      goToStep('streak');
     } finally {
       setNameBusy(false);
     }
@@ -351,7 +375,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     const targetDate = addDays(new Date(), daysEstimate);
 
     const profile: UserProfile = {
-      name,
+      name: (nameForProfileRef.current || name).trim(),
       learningGoal: goal,
       minutesPerDay,
       currentLevel,
@@ -366,7 +390,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     await AsyncStorage.setItem('user_profile', JSON.stringify(profile));
 
     // Рефкод в облаке — в фоне, без блокировки кнопки «Позже» / входа
-    void generateReferralCode(name).catch(() => {});
+    void generateReferralCode((nameForProfileRef.current || name).trim()).catch(() => {});
   };
 
   // Гард от повторного завершения онбординга при двойном тапе на «Позже»/auth-кнопках.
@@ -411,7 +435,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               '💬 Напиши мне в Telegram со скриншотом',
             ];
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} testID="onboarding-beta-screen">
         <ScrollView contentContainerStyle={{ alignItems: 'center', paddingHorizontal: 28, paddingVertical: 40 }} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: 52, marginBottom: 16 }}>🧪</Text>
           <Text style={[styles.appName, { marginBottom: 24 }]}>
@@ -425,7 +449,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             <Text style={{ color: DARK.textMuted, fontSize: 14, lineHeight: 22, marginBottom: 16 }}>
               {pick(
                 'Ты один из первых пользователей Phraseman. Твоя обратная связь напрямую влияет на продукт.',
-                'Ти один з перших користувачів Phraseman. Твій зворотний звʼязок напряму впливає на продукт.',
+                'Ти один з перших користувачів Phraseman. Твій зворотний зв\'язок напряму впливає на продукт.',
                 'Eres de los primeros usuarios de Phraseman. Tus comentarios influyen de forma directa en la app.',
               )}
             </Text>
@@ -464,6 +488,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           </View>
 
           <TouchableOpacity
+            testID="onboarding-beta-continue"
             style={[styles.continueBtn, { width: '100%' }]}
             onPress={() => goToStep('demo2')}
             activeOpacity={0.85}
@@ -477,8 +502,64 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
   // ── Шаг 0: Welcome — главный оффер ─────────────────────────────────────────
   if (step === 'welcome') {
+    if (USE_ELITE_ONBOARDING_WELCOME) {
+      const heroY = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
+      const heroScale = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [0.98, 1] });
+      return (
+        <SafeAreaView style={styles.container} testID="onboarding-welcome-screen">
+          <Animated.View style={[styles.eliteWelcomeRoot, { opacity: screenFade }]}>
+            <View pointerEvents="none" style={styles.eliteWelcomeTopLight} />
+
+            <Animated.View
+              style={[
+                styles.eliteWelcomeMain,
+                { transform: [{ translateY: heroY }, { scale: heroScale }] },
+              ]}
+            >
+              <View style={styles.eliteWelcomeMark}>
+                <Image
+                  source={require('../assets/images/onboarding-icon.png')}
+                  style={styles.eliteWelcomeMarkLogo}
+                  resizeMode="contain"
+                />
+              </View>
+              <Text style={styles.eliteWelcomeTitle}>
+                {triOb(
+                  'Английский без лишнего шума',
+                  'Англійська без зайвого шуму',
+                  'Inglés sin ruido',
+                )}
+              </Text>
+              <Text style={styles.eliteWelcomeSub}>
+                {triOb(
+                  'Короткая практика, спокойный ритм и понятный прогресс.',
+                  'Коротка практика, спокійний ритм і зрозумілий прогрес.',
+                  'Práctica breve, ritmo tranquilo y progreso claro.',
+                )}
+              </Text>
+            </Animated.View>
+
+            <View style={styles.eliteWelcomeBottom}>
+              <TouchableOpacity
+                testID="onboarding-welcome-continue"
+                style={styles.eliteWelcomeCta}
+                onPress={() => goToStep('name')}
+                activeOpacity={0.88}
+              >
+                <Text style={styles.eliteWelcomeCtaText}>
+                  {triOb('Начать', 'Почати', 'Empezar')}
+                </Text>
+              </TouchableOpacity>
+              <Text style={styles.eliteWelcomeFootnote}>
+                {triOb('Займет меньше минуты.', 'Займе менше хвилини.', 'Tarda menos de un minuto.')}
+              </Text>
+            </View>
+          </Animated.View>
+        </SafeAreaView>
+      );
+    }
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} testID="onboarding-welcome-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
           <Text style={{ color: DARK.gold, fontSize: 13, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 32, textAlign: 'center' }}>
             Phraseman
@@ -498,6 +579,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             )}
           </Text>
           <TouchableOpacity
+            testID="onboarding-welcome-continue"
             style={[styles.continueBtn, { width: '100%' }]}
             onPress={() => goToStep('name')}
             activeOpacity={0.85}
@@ -542,7 +624,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             ];
     const correctIndex = 0;
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} testID="onboarding-demo-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { paddingTop: 0, flexGrow: 1 }]} showsVerticalScrollIndicator={false}>
@@ -558,7 +640,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             <Text style={{ color: DARK.textMuted, fontSize: 12, marginBottom: 10, textTransform: 'uppercase', letterSpacing: 1 }}>
               {demoQuestion}
             </Text>
-            <Text style={{ color: DARK.accent, fontSize: 22, fontWeight: '700', lineHeight: 30 }}>
+            <Text style={{ color: ONBOARDING_ACCENT, fontSize: 22, fontWeight: '700', lineHeight: 30 }}>
               {demoPhrase}
             </Text>
           </View>
@@ -570,8 +652,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               let iconStroke = DARK.textGhost;
               if (demoAnswered) {
                 if (i === correctIndex) {
-                  borderColor = DARK.accent; bg = DARK.correctBg;
-                  textColor = DARK.accent; iconStroke = DARK.accent;
+                  borderColor = ONBOARDING_ACCENT; bg = ONBOARDING_ACCENT_BG;
+                  textColor = ONBOARDING_ACCENT; iconStroke = ONBOARDING_ACCENT;
                 } else if (i === demoSelected) {
                   borderColor = '#FF453A'; bg = 'rgba(255,69,58,0.08)';
                   textColor = '#FF453A'; iconStroke = '#FF453A';
@@ -588,6 +670,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               );
               return (
                 <TouchableOpacity
+                  testID={`onboarding-demo-option-${i}`}
                   key={i}
                   style={{ width: '100%', backgroundColor: bg, borderRadius: 14, padding: 16, borderWidth: 1.5, borderColor, flexDirection: 'row', alignItems: 'center', gap: 14 }}
                   onPress={() => {
@@ -599,7 +682,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                   }}
                   activeOpacity={demoAnswered ? 1 : 0.8}
                 >
-                  <View style={{ width: 30, height: 30, borderRadius: 8, backgroundColor: demoAnswered && i === correctIndex ? DARK.correctBg : demoAnswered && i === demoSelected ? 'rgba(255,69,58,0.15)' : DARK.bgSurface2, alignItems: 'center', justifyContent: 'center' }}>
+                  <View style={{ width: 30, height: 30, borderRadius: 8, backgroundColor: demoAnswered && i === correctIndex ? ONBOARDING_ACCENT_BG : demoAnswered && i === demoSelected ? 'rgba(255,69,58,0.15)' : DARK.bgSurface2, alignItems: 'center', justifyContent: 'center' }}>
                     <DemoIcon />
                   </View>
                   <Text style={{ color: textColor, fontSize: 16, fontWeight: '500', flex: 1 }}>{opt}</Text>
@@ -610,6 +693,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           {demoAnswered && (
             <Animated.View style={{ width: '100%', marginTop: 24, opacity: btnFade, transform: [{ translateY: btnSlide }] }}>
               <TouchableOpacity
+                testID="onboarding-demo-continue"
                 style={[styles.continueBtn, { width: '100%' }]}
                 onPress={() => goToStep('name')}
                 activeOpacity={0.85}
@@ -668,7 +752,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     };
 
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} testID="onboarding-demo2-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingHorizontal: 28, paddingVertical: 20 }} showsVerticalScrollIndicator={false}>
@@ -696,7 +780,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           {/* Подсказка-инструкция (fade-in с задержкой) */}
           <Animated.View style={{ opacity: demo2HintFade, marginBottom: 20 }}>
             <View style={{ backgroundColor: DARK.bgSurface, borderRadius: 12, paddingVertical: 12, paddingHorizontal: 16, borderWidth: 1, borderColor: DARK.borderHighlight }}>
-              <Text style={{ color: DARK.accent, fontSize: 13, fontWeight: '600', textAlign: 'center' }}>
+              <Text style={{ color: ONBOARDING_ACCENT, fontSize: 13, fontWeight: '600', textAlign: 'center' }}>
                 {pick(
                   'Попробуй собрать фразу из этих слов:',
                   'Спробуй скласти фразу з цих слів:',
@@ -716,7 +800,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           {/* Сама игра (fade-in последним) */}
           <Animated.View style={{ opacity: demo2QuizFade }}>
             {/* Область ответа */}
-            <View style={{ minHeight: 56, backgroundColor: DARK.bgPrimary, borderRadius: 14, borderWidth: 1.5, borderColor: demo2Answered ? (demo2Correct ? DARK.accent : '#FF4444') : 'rgba(71,200,112,0.28)', padding: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+            <View style={{ minHeight: 56, backgroundColor: DARK.bgPrimary, borderRadius: 14, borderWidth: 1.5, borderColor: demo2Answered ? (demo2Correct ? ONBOARDING_ACCENT : '#FF4444') : 'rgba(255,91,91,0.28)', padding: 12, flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
               {currentPhrase.length === 0
                 ? <Text style={{ color: DARK.textGhost, fontSize: 15 }}>{pick('здесь появится фраза…', 'тут з\'явиться фраза…', 'aquí aparecerá la frase…')}</Text>
                 : currentPhrase.map((w, pos) => {
@@ -762,7 +846,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                       paddingHorizontal: 16,
                       paddingVertical: 10,
                       borderWidth: 1.5,
-                      borderColor: used ? DARK.border : 'rgba(71,200,112,0.3)',
+                      borderColor: used ? DARK.border : 'rgba(255,91,91,0.28)',
                     }}
                   >
                     <Text style={{ color: used ? DARK.textGhost : DARK.textPrimary, fontSize: 16, fontWeight: '500' }}>{w}</Text>
@@ -774,7 +858,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             {/* Результат + кнопка */}
             {demo2Answered && (
               <Animated.View style={{ marginTop: 4, opacity: btnFade, transform: [{ translateY: btnSlide }] }}>
-                <Text style={{ color: demo2Correct ? DARK.accent : '#FF8888', fontSize: 15, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
+                <Text style={{ color: demo2Correct ? ONBOARDING_ACCENT : '#FF8888', fontSize: 15, fontWeight: '600', textAlign: 'center', marginBottom: 16 }}>
                   {demo2Correct
                     ? pick('🎉 Отлично! Всё правильно!', '🎉 Відмінно! Усе вірно!', '🎉 ¡Genial! ¡Todo correcto!')
                     : `${pick('✅ Правильно: ', '✅ Правильно: ', '✅ Correcto: ')}${demo2Answer.join(' ')}`}
@@ -793,6 +877,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             {/* Кнопка пропустить — всегда видна если пользователь ещё не ответил */}
             {!demo2Answered && (
               <TouchableOpacity
+                testID="onboarding-demo2-skip"
                 style={{ marginTop: 20, alignSelf: 'center', padding: 12 }}
                 onPress={() => goToStep('demo')}
                 activeOpacity={0.7}
@@ -859,6 +944,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               </Text>
             ) : null}
             <TextInput
+              testID="onboarding-name-input"
               style={styles.input}
               value={name}
               onChangeText={(t) => {
@@ -874,24 +960,26 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               onSubmitEditing={handleNameDone}
             />
             <TouchableOpacity
+              testID="onboarding-name-continue"
               style={[styles.continueBtn, nameBusy && { opacity: 0.75 }]}
               onPress={handleNameDone}
               activeOpacity={0.85}
               disabled={nameBusy}
             >
-              {nameBusy ? (
-                <ActivityIndicator color="#0d1b2a" />
+              {false && nameBusy ? (
+                <View />
               ) : (
                 <Text style={styles.continueBtnText}>{pick('Продолжить', 'Продовжити', 'Continuar')}</Text>
               )}
             </TouchableOpacity>
             <TouchableOpacity
-              style={{ width: '100%', borderWidth: 1.5, borderColor: DARK.borderHighlight, borderRadius: 12, paddingVertical: 16, alignItems: 'center', marginTop: 12 }}
+              testID="onboarding-name-skip"
+              style={{ paddingVertical: 12, paddingHorizontal: 10, alignItems: 'center', marginTop: 8 }}
               onPress={handleSkipName}
               activeOpacity={0.8}
               disabled={nameBusy}
             >
-              <Text style={{ color: DARK.textGhost, fontSize: 15, fontWeight: '500' }}>
+              <Text style={{ color: DARK.textGhost, fontSize: 14, fontWeight: '600', textAlign: 'center' }}>
                 {pick(
                   'Пропустить (имя можно сменить позже)',
                   'Пропустити (ім\'я можна змінити пізніше)',
@@ -911,53 +999,56 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     const streakMilestones =
       lang === 'es'
         ? [
-            { days: 3,  emoji: '🔥', reward: 'Aprendes un 20 % más rápido' },
-            { days: 7,  emoji: '⚡', reward: 'Memorizas el doble de frases' },
-            { days: 30, emoji: '👑', reward: 'Desbloqueas niveles y recompensas' },
+            { label: '3 días seguidos', emoji: '🔥', reward: 'La costumbre empieza' },
+            { label: '7 días seguidos', emoji: '⚡', reward: 'Ya tienes ritmo' },
+            { label: '14 días seguidos', emoji: '💎', reward: 'Practicar se vuelve más fácil' },
+            { label: '30 días seguidos', emoji: '👑', reward: 'Una racha fuerte' },
           ]
         : isUK
           ? [
-              { days: 3,  emoji: '🔥', reward: 'Вчишся на 20% швидше' },
-              { days: 7,  emoji: '⚡', reward: 'Запам\'ятовуєш вдвічі більше фраз' },
-              { days: 30, emoji: '👑', reward: 'Розблокуєш рівні та нагороди' },
+              { label: '3 дні поспіль', emoji: '🔥', reward: 'Звичка починається' },
+              { label: '7 днів поспіль', emoji: '⚡', reward: 'У тебе вже є ритм' },
+              { label: '14 днів поспіль', emoji: '💎', reward: 'Практикуватися легше' },
+              { label: '30 днів поспіль', emoji: '👑', reward: 'Сильна серія' },
             ]
           : [
-              { days: 3,  emoji: '🔥', reward: 'Учишься на 20% быстрее' },
-              { days: 7,  emoji: '⚡', reward: 'Запоминаешь вдвое больше фраз' },
-              { days: 30, emoji: '👑', reward: 'Открываешь уровни и награды' },
+              { label: '3 дня подряд', emoji: '🔥', reward: 'Хорошее начало' },
+              { label: '7 дней подряд', emoji: '⚡', reward: 'Ты держишь темп' },
+              { label: '14 дней подряд', emoji: '💎', reward: 'Становится проще' },
+              { label: '30 дней подряд', emoji: '👑', reward: 'Сильная серия' },
             ];
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} testID="onboarding-streak-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: 56, marginBottom: 12 }}>🔥</Text>
           <Text style={[styles.title, { marginBottom: 8 }]}>
             {pick(
-              'Каждый день — и ты непобедим',
+              'Английский любит регулярность',
               'Щодня — і ти непереможний',
               'Cada día te hace invencible',
             )}
           </Text>
           <Text style={{ color: DARK.textMuted, fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28 }}>
             {pick(
-              'Даже 5 минут в день. Серия дней — твой главный инструмент.',
-              'Навіть 5 хвилин на день. Серія днів — твій головний інструмент.',
-              'Aunque sean solo 5 minutos al día. La racha es tu mejor aliada.',
+              'Лучше понемногу каждый день, чем редко и тяжело.',
+              'Коротка практика щодня перетворюється на звичку.',
+              'Una práctica corta cada día se convierte en hábito.',
             )}
           </Text>
 
           {/* Milestones */}
           <View style={{ width: '100%', gap: 10, marginBottom: 32 }}>
             {streakMilestones.map((m, i) => (
-              <Animated.View key={m.days} style={{ opacity: milestoneAnims[i], transform: [{ translateY: milestoneAnims[i].interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] }}>
+              <Animated.View key={m.label} style={{ opacity: milestoneAnims[i], transform: [{ translateY: milestoneAnims[i].interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] }}>
               <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: DARK.bgSurface, borderRadius: 14, padding: 14, gap: 14, borderWidth: 1, borderColor: DARK.border }}>
                 <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: DARK.bgSurface2, alignItems: 'center', justifyContent: 'center' }}>
                   <Text style={{ fontSize: 22 }}>{m.emoji}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
-                  <Text style={{ color: DARK.accent, fontSize: 13, fontWeight: '700', marginBottom: 2 }}>
-                    {pick(`${m.days} дней`, `${m.days} днів`, `${m.days} días`)}
+                  <Text style={{ color: ONBOARDING_ACCENT, fontSize: 13, fontWeight: '700', marginBottom: 2 }}>
+                    {m.label}
                   </Text>
                   <Text style={{ color: DARK.textMuted, fontSize: 13 }}>{m.reward}</Text>
                 </View>
@@ -967,6 +1058,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           </View>
 
           <TouchableOpacity
+            testID="onboarding-streak-continue"
             style={[styles.continueBtn, { width: '100%' }]}
             onPress={() => goToStep('auth')}
             activeOpacity={0.85}
@@ -1096,7 +1188,7 @@ function AuthOnboardingStep({
   const interactionLocked = loadingProvider !== null || authBusy;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} testID="onboarding-auth-screen">
       <Animated.View style={{ flex: 1, opacity: screenFade }}>
         {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
@@ -1145,13 +1237,14 @@ function AuthOnboardingStep({
           )}
 
           <TouchableOpacity
+            testID="onboarding-auth-later"
             onPress={handleLater}
             disabled={interactionLocked}
             style={{ paddingVertical: 14, marginTop: 8 }}
             activeOpacity={0.7}
           >
-            {authBusy ? (
-              <ActivityIndicator color={DARK.textMuted} />
+            {false && authBusy ? (
+              <View />
             ) : (
               <Text style={{ color: DARK.textMuted, fontSize: 15, fontWeight: '500', textAlign: 'center' }}>
                 {authPick('Позже', 'Пізніше', 'Más tarde')}
@@ -1175,8 +1268,184 @@ function AuthOnboardingStep({
 const styles = StyleSheet.create({
   container:       { flex: 1, backgroundColor: DARK.bgPrimary },
   center:          { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
-  appName:         { color: DARK.gold, fontSize: 15, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
+  appName:         { color: ONBOARDING_ACCENT, fontSize: 15, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
   title:           { color: DARK.textPrimary, fontSize: 24, fontWeight: '600', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
+  eliteWelcomeRoot: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 12,
+    paddingBottom: 24,
+    justifyContent: 'space-between',
+    overflow: 'hidden',
+  },
+  eliteWelcomeTopLight: {
+    position: 'absolute',
+    top: 0,
+    left: 40,
+    right: 40,
+    height: 1,
+    backgroundColor: ONBOARDING_ACCENT,
+    opacity: 0.28,
+  },
+  eliteWelcomeHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    alignSelf: 'center',
+    paddingVertical: 8,
+  },
+  eliteWelcomeLogo: {
+    width: 34,
+    height: 34,
+  },
+  eliteWelcomeBrand: {
+    color: DARK.textPrimary,
+    fontSize: 14,
+    fontWeight: '900',
+    letterSpacing: 1.4,
+    textTransform: 'uppercase',
+  },
+  eliteWelcomeMain: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 2,
+    paddingBottom: 18,
+  },
+  eliteWelcomeMark: {
+    width: 168,
+    height: 142,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 24,
+  },
+  eliteWelcomeMarkLogo: {
+    width: 168,
+    height: 142,
+  },
+  eliteHeroPreview: {
+    width: '100%',
+    borderRadius: 24,
+    padding: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.10)',
+    backgroundColor: 'rgba(255,255,255,0.045)',
+    shadowColor: '#D6B85C',
+    shadowOpacity: 0.18,
+    shadowRadius: 24,
+    shadowOffset: { width: 0, height: 12 },
+  },
+  eliteHeroTopRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 16,
+  },
+  eliteHeroKicker: {
+    color: DARK.gold,
+    fontSize: 10,
+    fontWeight: '900',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase',
+  },
+  eliteHeroXp: {
+    color: DARK.textPrimary,
+    fontSize: 12,
+    fontWeight: '900',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    overflow: 'hidden',
+  },
+  eliteHeroPhrase: {
+    color: DARK.textPrimary,
+    fontSize: 23,
+    lineHeight: 31,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  eliteHeroTranslation: {
+    color: DARK.textMuted,
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: '700',
+    textAlign: 'center',
+    marginBottom: 18,
+  },
+  eliteHeroMetrics: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  eliteMetricPill: {
+    flex: 1,
+    borderRadius: 16,
+    paddingVertical: 11,
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.18)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+  },
+  eliteMetricValue: {
+    color: DARK.textPrimary,
+    fontSize: 18,
+    fontWeight: '900',
+    marginBottom: 2,
+  },
+  eliteMetricLabel: {
+    color: DARK.textGhost,
+    fontSize: 10,
+    fontWeight: '800',
+    textTransform: 'uppercase',
+  },
+  eliteWelcomeCopy: {
+    alignItems: 'center',
+    paddingHorizontal: 2,
+  },
+  eliteWelcomeTitle: {
+    color: DARK.textPrimary,
+    fontSize: 34,
+    lineHeight: 41,
+    fontWeight: '900',
+    textAlign: 'center',
+    marginBottom: 16,
+  },
+  eliteWelcomeSub: {
+    color: DARK.textMuted,
+    fontSize: 16,
+    lineHeight: 24,
+    fontWeight: '600',
+    textAlign: 'center',
+    maxWidth: 310,
+  },
+  eliteWelcomeBottom: {
+    width: '100%',
+    gap: 12,
+  },
+  eliteWelcomeCta: {
+    width: '100%',
+    minHeight: 56,
+    backgroundColor: ONBOARDING_ACCENT,
+    paddingVertical: 17,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.10)',
+  },
+  eliteWelcomeCtaText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '900',
+  },
+  eliteWelcomeFootnote: {
+    color: DARK.textGhost,
+    fontSize: 12,
+    fontWeight: '600',
+    textAlign: 'center',
+    lineHeight: 17,
+  },
   langBtn: {
     width: '100%', flexDirection: 'row', alignItems: 'center',
     backgroundColor: DARK.bgCard, borderRadius: 14, padding: 20,
@@ -1189,8 +1458,8 @@ const styles = StyleSheet.create({
     fontSize: 20, padding: 16, borderRadius: 12,
     borderWidth: 1, borderColor: DARK.border, marginBottom: 24,
   },
-  continueBtn:     { width: '100%', backgroundColor: DARK.accent, padding: 18, borderRadius: 12, alignItems: 'center' },
-  continueBtnText: { color: DARK.correctText, fontSize: 18, fontWeight: '700' },
+  continueBtn:     { width: '100%', backgroundColor: ONBOARDING_ACCENT, padding: 18, borderRadius: 12, alignItems: 'center' },
+  continueBtnText: { color: '#FFFFFF', fontSize: 18, fontWeight: '700' },
   langHint:        { color: DARK.textGhost, fontSize: 14, fontWeight: '500', letterSpacing: 0.5, marginBottom: 32 },
   // Premium step
   premiumScroll:   { padding: 24, paddingBottom: 40, alignItems: 'center' },

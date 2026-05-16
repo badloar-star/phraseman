@@ -3,7 +3,6 @@ import { View, Text, TouchableOpacity, StyleSheet, Animated, Easing, type ViewSt
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { useLang } from './LangContext';
-import { usePremium } from './PremiumContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 
@@ -20,27 +19,18 @@ type Props = {
   cornerRadius?: number;
 };
 
-/** Золотой градиент + медленный перелив (shine) для CTA Premium — один стиль с NoEnergyModal.
- *  Текст автоматически переключается на «Попробуй Premium бесплатно», если для пользователя
- *  реально доступна intro-фаза (см. PremiumContext.trialEligible). */
+/** Золотой градиент + медленный перелив (shine) для CTA Premium — один стиль с NoEnergyModal. */
 export default function PremiumGoldButton({ f, paywallContext = 'no_energy', onPress, customLabel, shellStyle, cornerRadius = 14 }: Props) {
   const router = useRouter();
   const { lang } = useLang();
-  const { trialEligible } = usePremium();
   const shineX = useRef(new Animated.Value(0)).current;
   const label =
     customLabel?.trim() ||
-    (trialEligible
-      ? triLang(lang, {
-          ru: 'Попробуй Premium бесплатно',
-          uk: 'Спробуй Premium безкоштовно',
-          es: 'Prueba Premium gratis',
-        })
-      : triLang(lang, {
-          ru: 'Получить Премиум',
-          uk: 'Отримати Premium',
-          es: 'Obtener Premium',
-        }));
+    triLang(lang, {
+      ru: 'Получить Премиум',
+      uk: 'Отримати Premium',
+      es: 'Obtener Premium',
+    });
 
   useEffect(() => {
     const sweepMs = 5600;

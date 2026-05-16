@@ -1,8 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useAudio } from '../hooks/use-audio';
-import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Easing,
@@ -22,24 +21,26 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
 import { useScreen } from '../hooks/use-screen';
-import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import NoEnergyModal from '../components/NoEnergyModal';
+import CoachToast from '../components/CoachToast';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
 import { loadFlashcards } from '../hooks/use-flashcards';
+import { useAudio } from '../hooks/use-audio';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { loadSettings } from './settings_edu';
-import { getCurrentMultiplier, registerXP } from './xp_manager';
+import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
-import { playActivityCompletionModalSound } from './activity_complete_sound';
-import FlatTopHexFill from '../components/FlatTopHexFill';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { lessonWordRecognitionPrompt } from './lesson_words_spanish_gloss';
-import { LESSON_22_VOCABULARY } from './lesson_data_17_24';
 import { LESSON_WORD_ES_BY_EN } from './lesson_words_es_by_en';
 import { logMistake } from './mistake_log';
 import { recordWordMistake, activateWordForTrainer } from './trainer_store';
+import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
+import type { PhraseMistakeInput } from './phrase_analytics';
 import { bumpStatsDaily } from './stats_daily_breakdown';
+import { LESSON_DATA } from './lesson_data_all';
+import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
 
 const shuffle = <T,>(arr: T[]): T[] => {
   const a = [...arr];
@@ -64,7 +65,12 @@ const shuffleNoConsecutive = (arr: Card[]): Card[] => {
 
 const REQUIRED = 3;
 const POINTS_PER_CORRECT = 5;
-const POINTS_PER_LEARNED = 10;
+
+const vocabularyStepBaseXP = (prevCount: number): number => {
+  const clampedPrevCount = Math.min(Math.max(0, prevCount), REQUIRED);
+  if (clampedPrevCount >= REQUIRED) return 0;
+  return POINTS_PER_CORRECT;
+};
 
 /**
  * После верного: почти сразу (озвучка не блокирует таймер — вынесена в конец callback).
@@ -72,74 +78,225 @@ const POINTS_PER_LEARNED = 10;
  */
 const ANSWER_FEEDBACK_MS = { correct: 800, wrong: 400 } as const;
 
-type POS = 'pronouns'|'verbs'|'irregular_verbs'|'adjectives'|'adverbs'|'nouns';
+type POS = 'pronouns'|'verbs'|'irregular_verbs'|'adjectives'|'adverbs'|'nouns'|'prepositions'|'conjunctions'|'articles'|'phrases';
 interface Word { en:string; ru:string; uk:string; es:string; pos:POS; context?:string; definition?:string; }
 
 function vocabularyProgressMetrics(
   words: Word[],
   counts: Record<string, number>,
 ): { correctSteps: number; totalSteps: number; fullyLearned: number; pct: number } {
-  const totalSteps = words.length * REQUIRED;
-  const correctSteps = words.reduce((sum, w) => sum + Math.min(counts[w.en] ?? 0, REQUIRED), 0);
   const fullyLearned = words.filter(w => (counts[w.en] ?? 0) >= REQUIRED).length;
+  const totalSteps = words.length;
+  const correctSteps = fullyLearned;
   const pct = totalSteps > 0 ? Math.min(100, Math.round((correctSteps / totalSteps) * 100)) : 0;
   return { correctSteps, totalSteps, fullyLearned, pct };
 }
 
 const POS_LABELS_RU: Record<POS,string> = {
   pronouns:'Местоимения', verbs:'Глаголы (to-be)', irregular_verbs:'Неправильные глаголы', adjectives:'Прилагательные',
-  adverbs:'Наречия', nouns:'Существительные',
+  adverbs:'Наречия', nouns:'Существительные', prepositions:'Предлоги', conjunctions:'Союзы', articles:'Артикли', phrases:'Конструкции',
 };
 const POS_LABELS_UK: Record<POS,string> = {
   pronouns:'Займенники', verbs:'Дієслова (to-be)', irregular_verbs:'Неправильні дієслова', adjectives:'Прикметники',
-  adverbs:'Прислівники', nouns:'Іменники',
+  adverbs:'Прислівники', nouns:'Іменники', prepositions:'Прийменники', conjunctions:'Сполучники', articles:'Артиклі', phrases:'Конструкції',
 };
 const POS_LABELS_ES: Record<POS,string> = {
   pronouns:'Pronombres', verbs:'Verbos (to-be)', irregular_verbs:'Verbos irregulares', adjectives:'Adjetivos',
-  adverbs:'Adverbios', nouns:'Sustantivos',
+  adverbs:'Adverbios', nouns:'Sustantivos', prepositions:'Preposiciones', conjunctions:'Conjunciones', articles:'Artículos', phrases:'Construcciones',
 };
 
-/** Испанские подсказки урока 22: переопределения, где глоссарий по EN не совпадает со смыслом в уроке. */
-const LESSON_22_ES_OVERRIDE: Record<string, string> = {
-  line: 'cola',
-  reschedule: 'reprogramar',
-  shopping: 'compras',
+const FUNCTION_WORDS: Record<string, Word> = {
+  a: { en: 'a', ru: 'неопределённый артикль', uk: 'неозначений артикль', es: 'un / una', pos: 'articles' },
+  an: { en: 'an', ru: 'неопределённый артикль перед гласной', uk: 'неозначений артикль перед голосною', es: 'un / una', pos: 'articles' },
+  the: { en: 'the', ru: 'определённый артикль', uk: 'означений артикль', es: 'el / la / los / las', pos: 'articles' },
+  about: { en: 'about', ru: 'о / про', uk: 'про', es: 'sobre / acerca de', pos: 'prepositions' },
+  above: { en: 'above', ru: 'над / выше', uk: 'над / вище', es: 'encima de', pos: 'prepositions' },
+  across: { en: 'across', ru: 'через / поперёк', uk: 'через / упоперек', es: 'a través de', pos: 'prepositions' },
+  after: { en: 'after', ru: 'после', uk: 'після', es: 'después de', pos: 'prepositions' },
+  against: { en: 'against', ru: 'против / к', uk: 'проти / до', es: 'contra', pos: 'prepositions' },
+  along: { en: 'along', ru: 'вдоль', uk: 'уздовж', es: 'a lo largo de', pos: 'prepositions' },
+  among: { en: 'among', ru: 'среди', uk: 'серед', es: 'entre', pos: 'prepositions' },
+  around: { en: 'around', ru: 'вокруг / около', uk: 'навколо / близько', es: 'alrededor de', pos: 'prepositions' },
+  as: { en: 'as', ru: 'как / в качестве', uk: 'як / у ролі', es: 'como', pos: 'conjunctions' },
+  at: { en: 'at', ru: 'в / у / на (точка)', uk: 'у / в / на (точка)', es: 'en / a', pos: 'prepositions' },
+  before: { en: 'before', ru: 'до / перед', uk: 'до / перед', es: 'antes de', pos: 'prepositions' },
+  behind: { en: 'behind', ru: 'за / позади', uk: 'за / позаду', es: 'detrás de', pos: 'prepositions' },
+  below: { en: 'below', ru: 'ниже', uk: 'нижче', es: 'debajo de', pos: 'prepositions' },
+  between: { en: 'between', ru: 'между', uk: 'між', es: 'entre', pos: 'prepositions' },
+  by: { en: 'by', ru: 'у / рядом / кем-то', uk: 'біля / кимось', es: 'por / junto a', pos: 'prepositions' },
+  down: { en: 'down', ru: 'вниз', uk: 'вниз', es: 'abajo', pos: 'prepositions' },
+  during: { en: 'during', ru: 'во время', uk: 'під час', es: 'durante', pos: 'prepositions' },
+  for: { en: 'for', ru: 'для / за / в течение', uk: 'для / за / протягом', es: 'para / por', pos: 'prepositions' },
+  from: { en: 'from', ru: 'из / от / с', uk: 'з / від', es: 'de / desde', pos: 'prepositions' },
+  in: { en: 'in', ru: 'в / внутри', uk: 'у / в / всередині', es: 'en / dentro de', pos: 'prepositions' },
+  inside: { en: 'inside', ru: 'внутри', uk: 'всередині', es: 'dentro de', pos: 'prepositions' },
+  into: { en: 'into', ru: 'внутрь / в', uk: 'всередину / у', es: 'a / dentro de', pos: 'prepositions' },
+  like: { en: 'like', ru: 'как / похожий на', uk: 'як / схожий на', es: 'como', pos: 'prepositions' },
+  near: { en: 'near', ru: 'рядом / около', uk: 'поруч / біля', es: 'cerca de', pos: 'prepositions' },
+  of: { en: 'of', ru: 'из / от / принадлежность', uk: 'з / від / належність', es: 'de', pos: 'prepositions' },
+  off: { en: 'off', ru: 'с / прочь / выключено', uk: 'з / геть / вимкнено', es: 'fuera / apagado', pos: 'prepositions' },
+  on: { en: 'on', ru: 'на / вкл.', uk: 'на / увімкнено', es: 'en / sobre', pos: 'prepositions' },
+  onto: { en: 'onto', ru: 'на поверхность', uk: 'на поверхню', es: 'sobre / encima de', pos: 'prepositions' },
+  out: { en: 'out', ru: 'наружу / вне', uk: 'назовні / поза', es: 'fuera', pos: 'prepositions' },
+  outside: { en: 'outside', ru: 'снаружи / за пределами', uk: 'зовні / поза', es: 'fuera de', pos: 'prepositions' },
+  over: { en: 'over', ru: 'над / через / более', uk: 'над / через / понад', es: 'sobre / por encima de', pos: 'prepositions' },
+  through: { en: 'through', ru: 'через / сквозь', uk: 'через / крізь', es: 'a través de', pos: 'prepositions' },
+  to: { en: 'to', ru: 'к / в / частица инфинитива', uk: 'до / у / частка інфінітива', es: 'a / para', pos: 'prepositions' },
+  under: { en: 'under', ru: 'под', uk: 'під', es: 'debajo de', pos: 'prepositions' },
+  until: { en: 'until', ru: 'до тех пор пока / до', uk: 'доки / до', es: 'hasta', pos: 'prepositions' },
+  up: { en: 'up', ru: 'вверх / до конца', uk: 'вгору / до кінця', es: 'arriba', pos: 'prepositions' },
+  with: { en: 'with', ru: 'с / вместе с', uk: 'з / разом із', es: 'con', pos: 'prepositions' },
+  without: { en: 'without', ru: 'без', uk: 'без', es: 'sin', pos: 'prepositions' },
+  and: { en: 'and', ru: 'и', uk: 'і / та', es: 'y', pos: 'conjunctions' },
+  but: { en: 'but', ru: 'но', uk: 'але', es: 'pero', pos: 'conjunctions' },
+  because: { en: 'because', ru: 'потому что', uk: 'тому що', es: 'porque', pos: 'conjunctions' },
+  if: { en: 'if', ru: 'если', uk: 'якщо', es: 'si', pos: 'conjunctions' },
+  when: { en: 'when', ru: 'когда', uk: 'коли', es: 'cuando', pos: 'conjunctions' },
+  while: { en: 'while', ru: 'пока / в то время как', uk: 'поки / тоді як', es: 'mientras', pos: 'conjunctions' },
+  or: { en: 'or', ru: 'или', uk: 'або', es: 'o', pos: 'conjunctions' },
+  so: { en: 'so', ru: 'поэтому / так', uk: 'тому / так', es: 'así que / tan', pos: 'conjunctions' },
+  than: { en: 'than', ru: 'чем', uk: 'ніж', es: 'que', pos: 'conjunctions' },
+  am: { en: 'am', ru: 'форма to be для I', uk: 'форма to be для I', es: 'soy / estoy', pos: 'verbs' },
+  is: { en: 'is', ru: 'есть / является', uk: 'є', es: 'es / está', pos: 'verbs' },
+  are: { en: 'are', ru: 'есть / являются', uk: 'є', es: 'son / están', pos: 'verbs' },
+  be: { en: 'be', ru: 'быть', uk: 'бути', es: 'ser / estar', pos: 'verbs' },
+  been: { en: 'been', ru: 'был / бывал', uk: 'був / бувала', es: 'sido / estado', pos: 'verbs' },
+  being: { en: 'being', ru: 'будучи / являясь', uk: 'будучи / перебуваючи', es: 'siendo / estando', pos: 'verbs' },
+  wifi: { en: 'wifi', ru: 'вай-фай', uk: 'вай-фай', es: 'wifi', pos: 'nouns' },
+  no: { en: 'no', ru: 'нет / никакой', uk: 'ні / жодний', es: 'no / ningun', pos: 'adverbs' },
+  every: { en: 'every', ru: 'каждый', uk: 'кожний', es: 'cada', pos: 'adjectives' },
+  too: { en: 'too', ru: 'тоже / слишком', uk: 'теж / занадто', es: 'tambien / demasiado', pos: 'adverbs' },
+  yes: { en: 'yes', ru: 'да', uk: 'так', es: 'si', pos: 'adverbs' },
+  great: { en: 'great', ru: 'отличный / здорово', uk: 'чудовий / чудово', es: 'genial', pos: 'adjectives' },
+  reserve: { en: 'reserve', ru: 'бронировать', uk: 'бронювати', es: 'reservar', pos: 'verbs' },
+  route: { en: 'route', ru: 'маршрут', uk: 'маршрут', es: 'ruta', pos: 'nouns' },
+  show: { en: 'show', ru: 'показывать', uk: 'показувати', es: 'mostrar', pos: 'verbs' },
+  enter: { en: 'enter', ru: 'входить', uk: 'входити', es: 'entrar', pos: 'verbs' },
+  clothes: { en: 'clothes', ru: 'одежда', uk: 'одяг', es: 'ropa', pos: 'nouns' },
+  advice: { en: 'advice', ru: 'совет', uk: 'порада', es: 'consejo', pos: 'nouns' },
+  small: { en: 'small', ru: 'маленький', uk: 'маленький', es: 'pequeno', pos: 'adjectives' },
+  clear: { en: 'clear', ru: 'ясный / понятный', uk: 'ясний / зрозумілий', es: 'claro', pos: 'adjectives' },
+  simple: { en: 'simple', ru: 'простой', uk: 'простий', es: 'simple', pos: 'adjectives' },
+  easy: { en: 'easy', ru: 'лёгкий', uk: 'легкий', es: 'facil', pos: 'adjectives' },
+  body: { en: 'body', ru: 'тело', uk: 'тіло', es: 'cuerpo', pos: 'nouns' },
+  learn: { en: 'learn', ru: 'учиться / узнавать', uk: 'вчитися / дізнаватися', es: 'aprender', pos: 'verbs' },
+  online: { en: 'online', ru: 'онлайн', uk: 'онлайн', es: 'en linea', pos: 'adverbs' },
+  thank: { en: 'thank', ru: 'благодарить', uk: 'дякувати', es: 'agradecer', pos: 'verbs' },
+  rain: { en: 'rain', ru: 'дождь / идти дождю', uk: 'дощ / дощити', es: 'lluvia / llover', pos: 'nouns' },
+  use: { en: 'use', ru: 'использовать', uk: 'використовувати', es: 'usar', pos: 'verbs' },
+  walk: { en: 'walk', ru: 'ходить пешком / гулять', uk: 'ходити пішки / гуляти', es: 'caminar', pos: 'verbs' },
+  spend: { en: 'spend', ru: 'тратить / проводить время', uk: 'витрачати / проводити час', es: 'gastar / pasar', pos: 'verbs' },
+  throw: { en: 'throw', ru: 'бросать', uk: 'кидати', es: 'lanzar', pos: 'verbs' },
+  away: { en: 'away', ru: 'прочь / в сторону', uk: 'геть / убік', es: 'lejos / fuera', pos: 'adverbs' },
+  back: { en: 'back', ru: 'назад / обратно', uk: 'назад / назад', es: 'de vuelta', pos: 'adverbs' },
+  go: { en: 'go', ru: 'идти / ехать', uk: 'йти / їхати', es: 'ir', pos: 'verbs' },
+  leave: { en: 'leave', ru: 'уходить / оставлять', uk: 'йти / залишати', es: 'salir / dejar', pos: 'verbs' },
+  bring: { en: 'bring', ru: 'приносить', uk: 'приносити', es: 'traer', pos: 'verbs' },
+  get: { en: 'get', ru: 'получать / становиться', uk: 'отримувати / ставати', es: 'conseguir / ponerse', pos: 'verbs' },
+  choose: { en: 'choose', ru: 'выбирать', uk: 'обирати', es: 'elegir', pos: 'verbs' },
+  put: { en: 'put', ru: 'класть / ставить', uk: 'класти / ставити', es: 'poner', pos: 'verbs' },
+  sit: { en: 'sit', ru: 'сидеть / садиться', uk: 'сидіти / сідати', es: 'sentarse', pos: 'verbs' },
+  sleep: { en: 'sleep', ru: 'спать', uk: 'спати', es: 'dormir', pos: 'verbs' },
+  run: { en: 'run', ru: 'бежать / работать', uk: 'бігти / працювати', es: 'correr / funcionar', pos: 'verbs' },
+  give: { en: 'give', ru: 'давать', uk: 'давати', es: 'dar', pos: 'verbs' },
+  wake: { en: 'wake', ru: 'просыпаться / будить', uk: 'прокидатися / будити', es: 'despertar', pos: 'verbs' },
+  write: { en: 'write', ru: 'писать', uk: 'писати', es: 'escribir', pos: 'verbs' },
+  see: { en: 'see', ru: 'видеть', uk: 'бачити', es: 'ver', pos: 'verbs' },
+  say: { en: 'say', ru: 'сказать / говорить', uk: 'сказати / говорити', es: 'decir', pos: 'verbs' },
+  forget: { en: 'forget', ru: 'забывать', uk: 'забувати', es: 'olvidar', pos: 'verbs' },
+  those: { en: 'those', ru: 'те', uk: 'ті', es: 'esos / aquellos', pos: 'pronouns' },
+  inexperienced: { en: 'inexperienced', ru: 'неопытный', uk: 'недосвідчений', es: 'inexperto', pos: 'adjectives' },
+  huge: { en: 'huge', ru: 'огромный', uk: 'величезний', es: 'enorme', pos: 'adjectives' },
+  pilot: { en: 'pilot', ru: 'пилот', uk: 'пілот', es: 'piloto', pos: 'nouns' },
+  complex: { en: 'complex', ru: 'сложный', uk: 'складний', es: 'complejo', pos: 'adjectives' },
+  strict: { en: 'strict', ru: 'строгий', uk: 'суворий', es: 'estricto', pos: 'adjectives' },
+  guard: { en: 'guard', ru: 'охранник', uk: 'охоронець', es: 'guardia', pos: 'nouns' },
+  suspicious: { en: 'suspicious', ru: 'подозрительный', uk: 'підозрілий', es: 'sospechoso', pos: 'adjectives' },
+  visitor: { en: 'visitor', ru: 'посетитель', uk: 'відвідувач', es: 'visitante', pos: 'nouns' },
+  contents: { en: 'contents', ru: 'содержимое', uk: 'вміст', es: 'contenido', pos: 'nouns' },
+  leather: { en: 'leather', ru: 'кожаный / кожа', uk: 'шкіряний / шкіра', es: 'cuero', pos: 'nouns' },
+  briefcase: { en: 'briefcase', ru: 'портфель', uk: 'портфель', es: 'maletin', pos: 'nouns' },
+  powerful: { en: 'powerful', ru: 'мощный', uk: 'потужний', es: 'poderoso', pos: 'adjectives' },
+  brick: { en: 'brick', ru: 'кирпич / кирпичный', uk: 'цегла / цегляний', es: 'ladrillo', pos: 'nouns' },
+  envelope: { en: 'envelope', ru: 'конверт', uk: 'конверт', es: 'sobre', pos: 'nouns' },
+  lightning: { en: 'lightning', ru: 'молния', uk: 'блискавка', es: 'relampago', pos: 'nouns' },
+  sharp: { en: 'sharp', ru: 'острый / резкий', uk: 'гострий / різкий', es: 'afilado / intenso', pos: 'adjectives' },
+  wind: { en: 'wind', ru: 'ветер', uk: 'вітер', es: 'viento', pos: 'nouns' },
+  touch: { en: 'touch', ru: 'касаться', uk: 'торкатися', es: 'tocar', pos: 'verbs' },
+  boss: { en: 'boss', ru: 'начальник', uk: 'начальник', es: 'jefe', pos: 'nouns' },
+  skillful: { en: 'skillful', ru: 'умелый', uk: 'умілий', es: 'habilidoso', pos: 'adjectives' },
+  ladder: { en: 'ladder', ru: 'лестница', uk: 'драбина', es: 'escalera', pos: 'nouns' },
+  delegation: { en: 'delegation', ru: 'делегация', uk: 'делегація', es: 'delegacion', pos: 'nouns' },
+  laboratory: { en: 'laboratory', ru: 'лаборатория', uk: 'лабораторія', es: 'laboratorio', pos: 'nouns' },
+  inspector: { en: 'inspector', ru: 'инспектор', uk: 'інспектор', es: 'inspector', pos: 'nouns' },
+  needle: { en: 'needle', ru: 'игла', uk: 'голка', es: 'aguja', pos: 'nouns' },
+  base: { en: 'base', ru: 'база', uk: 'база', es: 'base', pos: 'nouns' },
+  landlord: { en: 'landlord', ru: 'арендодатель', uk: 'орендодавець', es: 'propietario', pos: 'nouns' },
+  electricity: { en: 'electricity', ru: 'электричество', uk: 'електрика', es: 'electricidad', pos: 'nouns' },
+  object: { en: 'object', ru: 'предмет / объект', uk: 'предмет / об\'єкт', es: 'objeto', pos: 'nouns' },
+  left: { en: 'left', ru: 'левый / оставил', uk: 'лівий / залишив', es: 'izquierdo / dejo', pos: 'adjectives' },
+  engine: { en: 'engine', ru: 'двигатель', uk: 'двигун', es: 'motor', pos: 'nouns' },
+  stray: { en: 'stray', ru: 'бродячий', uk: 'бродячий', es: 'callejero', pos: 'adjectives' },
+  cross: { en: 'cross', ru: 'пересекать', uk: 'переходити / перетинати', es: 'cruzar', pos: 'verbs' },
+  sunlight: { en: 'sunlight', ru: 'солнечный свет', uk: 'сонячне світло', es: 'luz solar', pos: 'nouns' },
+  stranger: { en: 'stranger', ru: 'незнакомец', uk: 'незнайомець', es: 'desconocido', pos: 'nouns' },
+  station: { en: 'station', ru: 'станция', uk: 'станція', es: 'estacion', pos: 'nouns' },
+  firefighter: { en: 'firefighter', ru: 'пожарный', uk: 'пожежник', es: 'bombero', pos: 'nouns' },
+  emergency: { en: 'emergency', ru: 'экстренный / чрезвычайный', uk: 'екстрений / надзвичайний', es: 'emergencia', pos: 'nouns' },
+  wedding: { en: 'wedding', ru: 'свадьба', uk: 'весілля', es: 'boda', pos: 'nouns' },
+  official: { en: 'official', ru: 'официальный', uk: 'офіційний', es: 'oficial', pos: 'adjectives' },
+  mural: { en: 'mural', ru: 'настенная роспись', uk: 'мурал', es: 'mural', pos: 'nouns' },
+  cart: { en: 'cart', ru: 'тележка', uk: 'візок', es: 'carrito', pos: 'nouns' },
+  drain: { en: 'drain', ru: 'сток / слив', uk: 'злив / стік', es: 'desague', pos: 'nouns' },
+  verdict: { en: 'verdict', ru: 'вердикт / приговор', uk: 'вердикт / вирок', es: 'veredicto', pos: 'nouns' },
+  building: { en: 'building', ru: 'здание', uk: 'будівля', es: 'edificio', pos: 'nouns' },
+  earthquake: { en: 'earthquake', ru: 'землетрясение', uk: 'землетрус', es: 'terremoto', pos: 'nouns' },
+  ancient: { en: 'ancient', ru: 'древний', uk: 'давній', es: 'antiguo', pos: 'adjectives' },
+  mechanic: { en: 'mechanic', ru: 'механик', uk: 'механік', es: 'mecanico', pos: 'nouns' },
+  branch: { en: 'branch', ru: 'ветка', uk: 'гілка', es: 'rama', pos: 'nouns' },
 };
 
-function posForLesson22Word(enLower: string): POS {
-  const adjectives = new Set([
-    'annual', 'beautiful', 'boring', 'bright', 'cheap', 'classical', 'cold', 'complex',
-    'favorite', 'foreign', 'free', 'great', 'historical', 'huge', 'important', 'legal',
-    'modern', 'noisy', 'plastic', 'public', 'rare', 'refreshing', 'reliable', 'spicy',
-    'stressed', 'technical', 'wild', 'whole',
-  ]);
-  const verbs = new Set([
-    'appreciate', 'avoid', 'buy', 'check', 'clean', 'collect', 'consider', 'cook', 'dance',
-    'discuss', 'dislike', 'enjoy', 'finish', 'hate', 'help', 'ignore', 'imagine', 'include',
-    'keep', 'learn', 'like', 'listen', 'mention', 'order', 'paint', 'photograph', 'prefer',
-    'read', 'relax', 'require', 'reschedule', 'ride', 'sell', 'smoke', 'stop', 'study',
-    'suggest', 'swim', 'take', 'teach', 'translate', 'travel', 'understand', 'visit', 'wait',
-    'walk', 'work', 'write',
-  ]);
-  if (adjectives.has(enLower)) return 'adjectives';
-  if (verbs.has(enLower)) return 'verbs';
-  return 'nouns';
+const GRAMMAR_CHUNKS: Record<string, Word> = {
+  'there is': { en: 'there is', ru: 'есть / находится (один предмет)', uk: 'є / знаходиться (один предмет)', es: 'hay', pos: 'phrases' },
+  'there are': { en: 'there are', ru: 'есть / находятся (несколько)', uk: 'є / знаходяться (кілька)', es: 'hay', pos: 'phrases' },
+  'is there': { en: 'is there', ru: 'есть...? (один предмет / неисчисляемое)', uk: 'є...? (один предмет / незлічуване)', es: '¿hay...? (uno / incontable)', pos: 'phrases' },
+  'are there': { en: 'are there', ru: 'есть...? (несколько / множественное)', uk: 'є...? (кілька / множина)', es: '¿hay...? (plural)', pos: 'phrases' },
+  'have to': { en: 'have to', ru: 'нужно / приходится', uk: 'потрібно / доводиться', es: 'tener que', pos: 'phrases' },
+  'has to': { en: 'has to', ru: 'нужно / приходится (he/she/it)', uk: 'потрібно / доводиться (he/she/it)', es: 'tener que', pos: 'phrases' },
+  'had to': { en: 'had to', ru: 'пришлось / нужно было', uk: 'довелося / потрібно було', es: 'tuvo que', pos: 'phrases' },
+  'do not have to': { en: 'do not have to', ru: 'не нужно / не обязан', uk: 'не потрібно / не зобов\'язаний', es: 'no tener que', pos: 'phrases' },
+  'does not have to': { en: 'does not have to', ru: 'не нужно / не обязан(а)', uk: 'не потрібно / не зобов\'язаний(а)', es: 'no tener que', pos: 'phrases' },
+  "don't have to": { en: "don't have to", ru: 'не нужно / не обязан', uk: 'не потрібно / не зобов\'язаний', es: 'no tener que', pos: 'phrases' },
+  'need to': { en: 'need to', ru: 'нужно / необходимо', uk: 'потрібно / необхідно', es: 'necesitar / tener que', pos: 'phrases' },
+  'needs to': { en: 'needs to', ru: 'нужно / необходимо (he/she/it)', uk: 'потрібно / необхідно (he/she/it)', es: 'necesita', pos: 'phrases' },
+  'used to': { en: 'used to', ru: 'раньше обычно', uk: 'раніше зазвичай', es: 'solía', pos: 'phrases' },
+  'did not use to': { en: 'did not use to', ru: 'раньше не', uk: 'раніше не', es: 'no solía', pos: 'phrases' },
+  "didn't use to": { en: "didn't use to", ru: 'раньше не', uk: 'раніше не', es: 'no solía', pos: 'phrases' },
+  'going to': { en: 'going to', ru: 'собираться / будущее намерение', uk: 'збиратися / майбутній намір', es: 'ir a', pos: 'phrases' },
+  'able to': { en: 'able to', ru: 'способен / может', uk: 'здатний / може', es: 'capaz de', pos: 'phrases' },
+  'because of': { en: 'because of', ru: 'из-за / по причине', uk: 'через / з причини', es: 'debido a', pos: 'phrases' },
+  'instead of': { en: 'instead of', ru: 'вместо', uk: 'замість', es: 'en vez de', pos: 'phrases' },
+  'as soon as': { en: 'as soon as', ru: 'как только', uk: 'щойно / як тільки', es: 'tan pronto como', pos: 'phrases' },
+  'in order to': { en: 'in order to', ru: 'для того чтобы', uk: 'для того щоб', es: 'para', pos: 'phrases' },
+  'look forward to': { en: 'look forward to', ru: 'ждать с нетерпением', uk: 'чекати з нетерпінням', es: 'esperar con ganas', pos: 'phrases' },
+  'take care of': { en: 'take care of', ru: 'заботиться о', uk: 'піклуватися про', es: 'cuidar de', pos: 'phrases' },
+};
+
+function phraseTextForCoverage(english: string): string {
+  return String(english ?? '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[']/g, "'")
+    .replace(/\bwi[\s-]?fi\b/g, 'wifi')
+    .replace(/[^a-z0-9' ]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
-const LESSON_22_WORD_CARDS: Word[] = LESSON_22_VOCABULARY.map((row) => {
-  const en = row.english.toLowerCase();
-  const es =
-    LESSON_22_ES_OVERRIDE[en] ??
-    LESSON_WORD_ES_BY_EN[en] ??
-    en;
-  return {
-    en,
-    ru: row.russian,
-    uk: row.ukrainian,
-    es,
-    pos: posForLesson22Word(en),
-  };
-});
+function supplementalWordsForLesson(lessonId: number): Word[] {
+  return [];
+}
 
 const WORDS_BY_LESSON: Record<number, Word[]> = {
   1: [
@@ -160,7 +317,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'calm', ru: 'Спокойный', uk: 'Спокійний', es: 'tranquilo', pos: 'adjectives' },
     { en: 'happy', ru: 'Счастливый', uk: 'Щасливий', es: 'feliz', pos: 'adjectives' },
     { en: 'important', ru: 'Важный', uk: 'Важливий', es: 'importante', pos: 'adjectives' },
-    { en: 'okay', ru: 'В порядке', uk: 'В порядку', es: 'bien', pos: 'adjectives' },
+    { en: 'okay', ru: 'В порядке (хорошо)', uk: 'В порядку (добре)', es: 'bien', pos: 'adjectives' },
     { en: 'right', ru: 'Правый / Правильный', uk: 'Правий / Правильний', es: 'correcto', pos: 'adjectives' },
     { en: 'safe', ru: 'В безопасности', uk: 'В безпеці', es: 'seguro', pos: 'adjectives' },
     { en: 'sick', ru: 'Больной', uk: 'Хворий', es: 'enfermo', pos: 'adjectives' },
@@ -172,7 +329,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'strong', ru: 'Сильный', uk: 'Сильний', es: 'fuerte', pos: 'adjectives' },
     { en: 'kind', ru: 'Добрый', uk: 'Добрий', es: 'amable', pos: 'adjectives' },
     { en: 'serious', ru: 'Серьёзный', uk: 'Серйозний', es: 'serio', pos: 'adjectives' },
-    { en: 'fine', ru: 'В порядке', uk: 'В порядку', es: 'bien', pos: 'adjectives' },
+    { en: 'fine', ru: 'Хорошо (в порядке)', uk: 'Добре (в порядку)', es: 'bien', pos: 'adjectives' },
     { en: 'smart', ru: 'Умный', uk: 'Розумний', es: 'inteligente', pos: 'adjectives' },
     { en: 'nervous', ru: 'Нервный / Нервничающий', uk: 'Нервовий / Тривожний', es: 'nervioso', pos: 'adjectives' },
     { en: 'hungry', ru: 'Голодный', uk: 'Голодний', es: 'hambriento', pos: 'adjectives' },
@@ -202,7 +359,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'calm', ru: 'Спокойный', uk: 'Спокійний', es: 'tranquilo', pos: 'adjectives' },
     { en: 'happy', ru: 'Счастливый', uk: 'Щасливий', es: 'feliz', pos: 'adjectives' },
     { en: 'important', ru: 'Важный', uk: 'Важливий', es: 'importante', pos: 'adjectives' },
-    { en: 'okay', ru: 'В порядке', uk: 'В порядку', es: 'bien', pos: 'adjectives' },
+    { en: 'okay', ru: 'В порядке (хорошо)', uk: 'В порядку (добре)', es: 'bien', pos: 'adjectives' },
     { en: 'right', ru: 'Правый / Правильный', uk: 'Правий / Правильний', es: 'correcto', pos: 'adjectives' },
     { en: 'safe', ru: 'В безопасности', uk: 'В безпеці', es: 'seguro', pos: 'adjectives' },
     { en: 'sick', ru: 'Больной', uk: 'Хворий', es: 'enfermo', pos: 'adjectives' },
@@ -282,7 +439,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'English', ru: 'Английский', uk: 'Англійська', es: 'inglés', pos: 'nouns' },
     { en: 'TV', ru: 'Телевизор', uk: 'Телевізор', es: 'televisión', pos: 'nouns' },
     { en: 'people', ru: 'Люди', uk: 'Люди', es: 'gente', pos: 'nouns' },
-    { en: 'meat', ru: 'Мясо', uk: "М'ясо", es: 'carne', pos: 'nouns' },
+    { en: 'meat', ru: 'Мясо', uk: "М\'ясо", es: 'carne', pos: 'nouns' },
     { en: 'music', ru: 'Музыка', uk: 'Музика', es: 'música', pos: 'nouns' },
     { en: 'food', ru: 'Еда', uk: 'Їжа', es: 'comida', pos: 'nouns' },
     { en: 'money', ru: 'Деньги', uk: 'Гроші', es: 'dinero', pos: 'nouns' },
@@ -357,14 +514,8 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'breakfast', ru: 'Завтрак', uk: 'Сніданок', es: 'desayuno', pos: 'nouns' },
   ],
   5: [
-    { en: 'do', ru: 'Делать', uk: 'Робити', es: 'hacer', pos: 'irregular_verbs' },
-    { en: 'find', ru: 'Находить', uk: 'Знаходити', es: 'encontrar', pos: 'irregular_verbs' },
-    { en: 'go', ru: 'Идти', uk: 'Йти', es: 'ir', pos: 'irregular_verbs' },
-    { en: 'hear', ru: 'Слышать', uk: 'Чути', es: 'oír', pos: 'irregular_verbs' },
     { en: 'sing', ru: 'Петь', uk: 'Співати', es: 'cantar', pos: 'verbs' },
     { en: 'book', ru: 'Бронировать', uk: 'Бронювати', es: 'reservar', pos: 'verbs' },
-    { en: 'speak', ru: 'Говорить', uk: 'Говорити', es: 'hablar', pos: 'irregular_verbs' },
-    { en: 'sleep', ru: 'Спать', uk: 'Спати', es: 'dormir', pos: 'irregular_verbs' },
     { en: 'code', ru: 'Код', uk: 'Код', es: 'código', pos: 'nouns' },
     { en: 'room', ru: 'Номер', uk: 'Номер', es: 'habitación', pos: 'nouns' },
     { en: 'table', ru: 'Стол', uk: 'Стіл', es: 'mesa', pos: 'nouns' },
@@ -418,13 +569,6 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'order', ru: 'Заказывать', uk: 'Замовляти', es: 'pedir', pos: 'verbs' },
     { en: 'slowly', ru: 'Медленно', uk: 'Повільно', es: 'despacio', pos: 'adverbs' },
     { en: 'always', ru: 'Всегда', uk: 'Завжди', es: 'siempre', pos: 'adverbs' },
-    { en: 'come', ru: 'Приходить', uk: 'Приходити', es: 'venir', pos: 'irregular_verbs' },
-    { en: 'do', ru: 'Делать', uk: 'Робити', es: 'hacer', pos: 'irregular_verbs' },
-    { en: 'get', ru: 'Получать; добираться', uk: 'Отримувати; діставатися', es: 'llegar; obtener', pos: 'irregular_verbs' },
-    { en: 'keep', ru: 'Хранить; держать', uk: 'Зберігати; тримати', es: 'guardar; mantener', pos: 'irregular_verbs' },
-    { en: 'leave', ru: 'Уходить; покидать', uk: 'Піти; залишати (місце)', es: 'irse', pos: 'irregular_verbs' },
-    { en: 'meet', ru: 'Встречать (кого-л.)', uk: 'Зустрічати (когось)', es: 'encontrarse (con)', pos: 'irregular_verbs' },
-    { en: 'put', ru: 'Класть', uk: 'Класти', es: 'poner', pos: 'irregular_verbs' },
     { en: 'door', ru: 'Дверь', uk: 'Двері', es: 'puerta', pos: 'nouns' },
     { en: 'home', ru: 'Дом; домой', uk: 'Дім; додому', es: 'casa; a casa', pos: 'nouns' },
     { en: 'report', ru: 'Отчёт', uk: 'Звіт', es: 'informe', pos: 'nouns' },
@@ -531,8 +675,8 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'Monday', ru: 'Понедельник', uk: 'Понеділок', es: 'Lunes', pos: 'nouns' },
     { en: 'Tuesday', ru: 'Вторник', uk: 'Вівторок', es: 'Martes', pos: 'nouns' },
     { en: 'Wednesday', ru: 'Среда', uk: 'Середа', es: 'Miércoles', pos: 'nouns' },
-    { en: 'Thursday', ru: 'Четвер', uk: 'Четвер', es: 'Jueves', pos: 'nouns' },
-    { en: 'Friday', ru: 'Пятница', uk: "П'ятниця", es: 'Viernes', pos: 'nouns' },
+    { en: 'Thursday', ru: 'Четверг', uk: 'Четвер', es: 'Jueves', pos: 'nouns' },
+    { en: 'Friday', ru: 'Пятница', uk: "П\'ятниця", es: 'Viernes', pos: 'nouns' },
     { en: 'Saturday', ru: 'Суббота', uk: 'Субота', es: 'Sábado', pos: 'nouns' },
     { en: 'Sunday', ru: 'Воскресенье', uk: 'Неділя', es: 'Domingo', pos: 'nouns' },
     { en: 'weekend', ru: 'Выходные', uk: 'Вихідні', es: 'fin de semana', pos: 'nouns' },
@@ -545,16 +689,16 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'midnight', ru: 'Полночь', uk: 'Північ', es: 'medianoche', pos: 'nouns' },
     { en: 'AM', ru: 'До полудня (утро)', uk: 'До полудня (ранок)', es: 'a. m.', pos: 'nouns' },
     { en: 'PM', ru: 'После полудня (день и вечер)', uk: 'Після полудня (день і вечір)', es: 'p. m.', pos: 'nouns' },
-    { en: "o'clock", ru: 'Ровно (указание часа)', uk: 'Рівно (на годиннику)', es: 'en punto', pos: 'nouns' },
+    { en: "o\'clock", ru: 'Ровно (указание часа)', uk: 'Рівно (на годиннику)', es: 'en punto', pos: 'nouns' },
     { en: 'one', ru: 'Один', uk: 'Один', es: 'uno', pos: 'nouns' },
     { en: 'two', ru: 'Два', uk: 'Два', es: 'dos', pos: 'nouns' },
-    { en: 'five', ru: 'Пять', uk: "П'ять", es: 'cinco', pos: 'nouns' },
+    { en: 'five', ru: 'Пять', uk: "П\'ять", es: 'cinco', pos: 'nouns' },
     { en: 'six', ru: 'Шесть', uk: 'Шість', es: 'seis', pos: 'nouns' },
     { en: 'seven', ru: 'Семь', uk: 'Сім', es: 'siete', pos: 'nouns' },
     { en: 'eight', ru: 'Восемь', uk: 'Вісім', es: 'ocho', pos: 'nouns' },
-    { en: 'nine', ru: 'Девять', uk: "Дев'ять", es: 'nueve', pos: 'nouns' },
+    { en: 'nine', ru: 'Девять', uk: "Дев\'ять", es: 'nueve', pos: 'nouns' },
     { en: 'ten', ru: 'Десять', uk: 'Десять', es: 'diez', pos: 'nouns' },
-    { en: 'fifteen', ru: 'Пятнадцать', uk: "П'ятнадцять", es: 'quince', pos: 'nouns' },
+    { en: 'fifteen', ru: 'Пятнадцать', uk: "П\'ятнадцять", es: 'quince', pos: 'nouns' },
     { en: 'thirty', ru: 'Тридцать', uk: 'Тридцять', es: 'treinta', pos: 'nouns' },
     { en: 'January', ru: 'Январь', uk: 'Січень', es: 'enero', pos: 'nouns' },
     { en: 'February', ru: 'Февраль', uk: 'Лютий', es: 'febrero', pos: 'nouns' },
@@ -578,7 +722,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'train', ru: 'Поезд', uk: 'Потяг', es: 'tren', pos: 'nouns' },
     { en: 'park', ru: 'Парк', uk: 'Парк', es: 'parque', pos: 'nouns' },
     { en: 'sport', ru: 'Спорт', uk: 'Спорт', es: 'deporte', pos: 'nouns' },
-    { en: 'do', ru: 'Делать (в do sport — заниматься)', uk: 'Робити (у do sport — займатися)', es: 'hacer', pos: 'verbs' },
+    { en: 'do', ru: 'Делать (в выражении про спорт — заниматься)', uk: 'Робити (у виразі про спорт — займатися)', es: 'hacer', pos: 'verbs' },
     { en: 'visit', ru: 'Посещать', uk: 'Відвідувати', es: 'visitar', pos: 'verbs' },
     { en: 'visits', ru: 'Посещает (он, она)', uk: 'Відвідує (він, вона)', es: 'visita', pos: 'verbs' },
     { en: 'music', ru: 'Музыка', uk: 'Музика', es: 'música', pos: 'nouns' },
@@ -592,11 +736,6 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'class', ru: 'Занятие (урок)', uk: 'Заняття (урок)', es: 'clase', pos: 'nouns' },
     { en: 'classes', ru: 'Уроки (занятия)', uk: 'Заняття (уроки)', es: 'clases', pos: 'nouns' },
     { en: 'shower', ru: 'Душ', uk: 'Душ', es: 'ducha', pos: 'nouns' },
-    { en: 'wake', ru: 'Просыпаться', uk: 'Прокидатися', es: 'despertarse', pos: 'irregular_verbs' },
-    { en: 'write', ru: 'Писать', uk: 'Писати', es: 'escribir', pos: 'irregular_verbs' },
-    { en: 'think', ru: 'Думать', uk: 'Думати', es: 'pensar', pos: 'irregular_verbs' },
-    { en: 'run', ru: 'Бегать', uk: 'Бігати', es: 'correr', pos: 'irregular_verbs' },
-    { en: 'bring', ru: 'Приносить', uk: 'Приносити', es: 'traer', pos: 'irregular_verbs' },
   ],
   9: [
     { en: 'bed', ru: 'Кровать', uk: 'Ліжко', es: 'cama', pos: 'nouns' },
@@ -613,7 +752,6 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'ice', ru: 'Лед', uk: 'Лід', es: 'hielo', pos: 'nouns' },
     { en: 'glass', ru: 'Стакан', uk: 'Склянка', es: 'vaso', pos: 'nouns' },
     { en: 'wall', ru: 'Стена', uk: 'Стіна', es: 'muro', pos: 'nouns' },
-    { en: 'swimming pool', ru: 'Бассейн', uk: 'Басейн', es: 'piscina', pos: 'nouns' },
     { en: 'garden', ru: 'Сад', uk: 'Сад', es: 'jardín', pos: 'nouns' },
     { en: 'plate', ru: 'Тарелка', uk: 'Тарілка', es: 'plato', pos: 'nouns' },
     { en: 'living room', ru: 'Гостиная', uk: 'Вітальня', es: 'sala de estar', pos: 'nouns' },
@@ -623,7 +761,6 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'desk', ru: 'Письменный стол', uk: 'Письмовий стіл', es: 'escritorio', pos: 'nouns' },
     { en: 'library', ru: 'Библиотека', uk: 'Бібліотека', es: 'biblioteca', pos: 'nouns' },
     { en: 'wallet', ru: 'Кошелек', uk: 'Гаманець', es: 'billetera', pos: 'nouns' },
-    { en: 'cellphone charger', ru: 'Зарядка для телефона', uk: 'Зарядка для телефону', es: 'cargador de celular', pos: 'nouns' },
     { en: 'furniture', ru: 'Мебель', uk: 'Меблі', es: 'muebles', pos: 'nouns' },
     { en: 'supermarket', ru: 'Супермаркет', uk: 'Супермаркет', es: 'supermercado', pos: 'nouns' },
     { en: 'museum', ru: 'Музей', uk: 'Музей', es: 'museo', pos: 'nouns' },
@@ -679,15 +816,16 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
   10: [
     { en: 'can', ru: 'Мочь / Уметь', uk: 'Могти / Вміти', es: 'poder', pos: 'verbs' },
     { en: 'must', ru: 'Должен / Обязан', uk: 'Повинен / Зобов\'язаний', es: 'deber', pos: 'verbs' },
-    { en: "can't", ru: 'Нельзя / не могу', uk: 'Не можна / не можу', es: 'no poder', pos: 'verbs' },
-    { en: "mustn't", ru: 'Нельзя (запрет)', uk: 'Не можна (заборона)', es: 'prohibido', pos: 'verbs' },
+    { en: "can\'t", ru: 'Нельзя / не могу', uk: 'Не можна / не можу', es: 'no poder', pos: 'verbs' },
+    { en: "mustn\'t", ru: 'Нельзя (запрет)', uk: 'Не можна (заборона)', es: 'prohibido', pos: 'verbs' },
+    { en: 'have to', ru: 'Нужно / приходится', uk: 'Потрібно / доводиться', es: 'tener que', pos: 'verbs' },
     { en: 'may', ru: 'Можно (разрешение)', uk: 'Можна (дозвіл)', es: 'poder (permiso)', pos: 'verbs' },
     { en: 'should', ru: 'Следует / стоило бы', uk: 'Слід / варто було б', es: 'debería', pos: 'verbs' },
     { en: 'could', ru: 'Мог бы / смог бы', uk: 'Міг би / зміг би', es: 'podría', pos: 'verbs' },
     { en: 'might', ru: 'Возможно (мало вероятно)', uk: 'Можливо', es: 'quizá', pos: 'verbs' },
     { en: 'would', ru: 'Бы (условное намерение)', uk: 'Би (умовний)', es: 'condicional (‑ía)', pos: 'verbs' },
     { en: 'will', ru: 'Буду / будет (будущее)', uk: 'У майбутньому (will)', es: 'futuro (‑rá)', pos: 'verbs' },
-    { en: 'need', ru: 'Нужно (need to)', uk: 'Потрібно (need to)', es: 'necesitar', pos: 'verbs' },
+    { en: 'need', ru: 'Нужно / нуждаться', uk: 'Потрібно / потребувати', es: 'necesitar', pos: 'verbs' },
     { en: 'translate', ru: 'Переводить', uk: 'Перекладати', es: 'traducir', pos: 'verbs' },
     { en: 'fix', ru: 'Починить', uk: 'Полагодити', es: 'arreglar', pos: 'verbs' },
     { en: 'explain', ru: 'Объяснять', uk: 'Пояснювати', es: 'explicar', pos: 'verbs' },
@@ -699,10 +837,8 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'finish', ru: 'Заканчивать', uk: 'Закінчувати', es: 'terminar', pos: 'verbs' },
     { en: 'remember', ru: 'Помнить / Запомнить', uk: 'Пам\'ятати / Запам\'ятати', es: 'recordar', pos: 'verbs' },
     { en: 'answer', ru: 'Отвечать', uk: 'Відповідати', es: 'responder', pos: 'verbs' },
-    { en: 'ride', ru: 'Ездить (на чём-то)', uk: 'Їздити (на чомусь)', es: 'montar (en bici, etc.)', pos: 'irregular_verbs' },
     { en: 'ask', ru: 'Спрашивать', uk: 'Питати', es: 'preguntar', pos: 'verbs' },
     { en: 'study', ru: 'Учиться / Изучать', uk: 'Вчитися / Вивчати', es: 'estudiar', pos: 'verbs' },
-    { en: 'show', ru: 'Показывать', uk: 'Показувати', es: 'mostrar', pos: 'irregular_verbs' },
     { en: 'print', ru: 'Распечатывать', uk: 'Роздруковувати', es: 'imprimir', pos: 'verbs' },
     { en: 'document', ru: 'Документ', uk: 'Документ', es: 'documento', pos: 'nouns' },
     { en: 'password', ru: 'Пароль', uk: 'Пароль', es: 'contraseña', pos: 'nouns' },
@@ -744,7 +880,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'last', ru: 'Последний (прошлый)', uk: 'Минулий / останній', es: 'pasado / último', pos: 'adjectives' },
     { en: 'Monday', ru: 'Понедельник', uk: 'Понеділок', es: 'Lunes', pos: 'nouns' },
     { en: 'Tuesday', ru: 'Вторник', uk: 'Вівторок', es: 'Martes', pos: 'nouns' },
-    { en: 'Thursday', ru: 'Четвер', uk: 'Четвер', es: 'Jueves', pos: 'nouns' },
+    { en: 'Thursday', ru: 'Четверг', uk: 'Четвер', es: 'Jueves', pos: 'nouns' },
     { en: 'Friday', ru: 'Пятница', uk: 'П\'ятниця', es: 'Viernes', pos: 'nouns' },
     { en: 'Saturday', ru: 'Суббота', uk: 'Субота', es: 'Sábado', pos: 'nouns' },
     { en: 'Sunday', ru: 'Воскресенье', uk: 'Неділя', es: 'Domingo', pos: 'nouns' },
@@ -814,7 +950,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'watched', ru: 'Посмотрел(а)', uk: 'Дивився / дивилась', es: 'vio', pos: 'verbs' },
     { en: 'brushed', ru: 'Почистил(а) щёткой', uk: 'Почистив(ла) щіткою', es: 'cepilló', pos: 'verbs' },
     { en: 'shirt', ru: 'Рубашка', uk: 'Сорочка', es: 'camisa', pos: 'nouns' },
-    { en: 'shoe', ru: 'Обувь (туфля)', uk: 'Взуття (туфля)', es: 'zapato', pos: 'nouns' },
+    { en: 'shoe', ru: 'Туфля / ботинок', uk: 'Туфля / черевик', es: 'zapato', pos: 'nouns' },
     { en: 'dish', ru: 'Блюдо', uk: 'Страва', es: 'plato', pos: 'nouns' },
     { en: 'dishes', ru: 'Блюда / посуда', uk: 'Страви / посуд', es: 'platos', pos: 'nouns' },
     { en: 'laptop', ru: 'Ноутбук', uk: 'Ноутбук', es: 'portátil', pos: 'nouns' },
@@ -876,38 +1012,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
   ],
   12: [
     // Past Simple — неправильные формы (инфинитив → прошедшее)
-    { en: 'ate', ru: 'есть → ate', uk: 'їсти → ate', es: 'comer → comió', pos: 'irregular_verbs' },
-    { en: 'bought', ru: 'покупать → bought', uk: 'купувати → bought', es: 'comprar → compró', pos: 'irregular_verbs' },
-    { en: 'brought', ru: 'приносить → brought', uk: 'приносити → brought', es: 'traer → trajo', pos: 'irregular_verbs' },
-    { en: 'built', ru: 'строить → built', uk: 'будувати → built', es: 'construir → construyó', pos: 'irregular_verbs' },
-    { en: 'came', ru: 'приходить → came', uk: 'приходити → came', es: 'venir → vino', pos: 'irregular_verbs' },
-    { en: 'chose', ru: 'выбирать → chose', uk: 'вибирати → chose', es: 'elegir → eligió', pos: 'irregular_verbs' },
-    { en: 'drank', ru: 'пить → drank', uk: 'пити → drank', es: 'beber → bebió', pos: 'irregular_verbs' },
-    { en: 'felt', ru: 'чувствовать → felt', uk: 'відчувати → felt', es: 'sentir → sintió', pos: 'irregular_verbs' },
-    { en: 'forgot', ru: 'забывать → forgot', uk: 'забувати → forgot', es: 'olvidar → olvidó', pos: 'irregular_verbs' },
-    { en: 'found', ru: 'находить → found', uk: 'знаходити → found', es: 'encontrar → encontró', pos: 'irregular_verbs' },
-    { en: 'gave', ru: 'давать → gave', uk: 'давати → gave', es: 'dar → dio', pos: 'irregular_verbs' },
-    { en: 'got', ru: 'получать → got', uk: 'отримувати → got', es: 'obtener → obtuvo', pos: 'irregular_verbs' },
-    { en: 'heard', ru: 'слышать → heard', uk: 'чути → heard', es: 'oír → oyó', pos: 'irregular_verbs' },
-    { en: 'kept', ru: 'хранить → kept', uk: 'тримати / зберігати → kept', es: 'guardar → guardó', pos: 'irregular_verbs' },
-    { en: 'knew', ru: 'знать → knew', uk: 'знати → knew', es: 'saber → supo', pos: 'irregular_verbs' },
-    { en: 'left', ru: 'оставлять / уходить → left', uk: 'залишати / йти → left', es: 'dejar → dejó', pos: 'irregular_verbs' },
-    { en: 'lost', ru: 'терять → lost', uk: 'губити / втрачати → lost', es: 'perder → perdió', pos: 'irregular_verbs' },
-    { en: 'made', ru: 'делать / готовить → made', uk: 'робити / готувати → made', es: 'hacer → hizo', pos: 'irregular_verbs' },
-    { en: 'met', ru: 'встречать → met', uk: 'зустрічати → met', es: 'conocer → conoció', pos: 'irregular_verbs' },
-    { en: 'said', ru: 'сказать → said', uk: 'сказати → said', es: 'decir → dijo', pos: 'irregular_verbs' },
-    { en: 'saw', ru: 'видеть → saw', uk: 'бачити → saw', es: 'ver → vio', pos: 'irregular_verbs' },
-    { en: 'sent', ru: 'отправлять → sent', uk: 'надсилати → sent', es: 'enviar → envió', pos: 'irregular_verbs' },
-    { en: 'slept', ru: 'спать → slept', uk: 'спати → slept', es: 'dormir → durmió', pos: 'irregular_verbs' },
-    { en: 'sold', ru: 'продавать → sold', uk: 'продавати → sold', es: 'vender → vendió', pos: 'irregular_verbs' },
-    { en: 'spent', ru: 'тратить → spent', uk: 'витрачати → spent', es: 'gastar → gastó', pos: 'irregular_verbs' },
-    { en: 'told', ru: 'рассказывать → told', uk: 'розповідати → told', es: 'contar → contó', pos: 'irregular_verbs' },
-    { en: 'took', ru: 'брать → took', uk: 'брати → took', es: 'tomar → tomó', pos: 'irregular_verbs' },
-    { en: 'understood', ru: 'понимать → understood', uk: 'розуміти → understood', es: 'entender → entendió', pos: 'irregular_verbs' },
-    { en: 'went', ru: 'идти → went', uk: 'йти → went', es: 'ir → fue', pos: 'irregular_verbs' },
-    { en: 'wore', ru: 'носить (одежду) → wore', uk: 'носити (одяг) → wore', es: 'llevar (puesto) → llevó', pos: 'irregular_verbs' },
-    { en: 'wrote', ru: 'писать → wrote', uk: 'писати → wrote', es: 'escribir → escribió', pos: 'irregular_verbs' },
-    // Словарь урока (LESSON_12_VOCABULARY)
+    // Словарь урока
     { en: 'apple', ru: 'Яблоко', uk: 'Яблуко', es: 'manzana', pos: 'nouns' },
     { en: 'boat', ru: 'Лодка', uk: 'Човен', es: 'barco', pos: 'nouns' },
     { en: 'box', ru: 'Ящик / коробка', uk: 'Ящик / коробка', es: 'caja', pos: 'nouns' },
@@ -939,11 +1044,11 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'rare', ru: 'Редкий', uk: 'Рідкісний', es: 'raro', pos: 'adjectives' },
     { en: 'red', ru: 'Красный', uk: 'Червоний', es: 'rojo', pos: 'adjectives' },
     { en: 'short', ru: 'Короткий', uk: 'Короткий', es: 'corto', pos: 'adjectives' },
-    { en: 'soft', ru: 'Мягкий', uk: "М'який", es: 'suave', pos: 'adjectives' },
+    { en: 'soft', ru: 'Мягкий', uk: "М\'який", es: 'suave', pos: 'adjectives' },
     { en: 'strange', ru: 'Странный', uk: 'Дивний', es: 'extraño', pos: 'adjectives' },
     { en: 'sweet', ru: 'Сладкий', uk: 'Солодкий', es: 'dulce', pos: 'adjectives' },
     { en: 'useful', ru: 'Полезный', uk: 'Корисний', es: 'útil', pos: 'adjectives' },
-    { en: 'wooden', ru: 'Деревянный', uk: "Дерев'яний", es: 'de madera', pos: 'adjectives' },
+    { en: 'wooden', ru: 'Деревянный', uk: "Дерев\'яний", es: 'de madera', pos: 'adjectives' },
     { en: 'warm', ru: 'Тёплый', uk: 'Теплий', es: 'cálido', pos: 'adjectives' },
     { en: 'long', ru: 'Длинный', uk: 'Довгий', es: 'largo', pos: 'adjectives' },
     { en: 'tired', ru: 'Усталый', uk: 'Втомлений', es: 'cansado', pos: 'adjectives' },
@@ -958,28 +1063,26 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'wednesday', ru: 'Среда', uk: 'Середа', es: 'miércoles', pos: 'nouns' },
     { en: 'words', ru: 'Слова', uk: 'Слова', es: 'palabras', pos: 'nouns' },
     { en: 'tasty', ru: 'Вкусный', uk: 'Смачний', es: 'sabroso', pos: 'adjectives' },
+    { en: 'drank', ru: 'Пил(а)', uk: 'Пив / пила', es: 'bebió', pos: 'verbs' },
+    { en: 'came', ru: 'Пришёл / пришла', uk: 'Прийшов / прийшла', es: 'vino', pos: 'verbs' },
+    { en: 'ate', ru: 'Ел(а)', uk: 'Їв / їла', es: 'comió', pos: 'verbs' },
+    { en: 'took', ru: 'Взял(а)', uk: 'Взяв / взяла', es: 'tomó', pos: 'verbs' },
+    { en: 'heard', ru: 'Услышал(а)', uk: 'Почув / почула', es: 'oyó', pos: 'verbs' },
+    { en: 'felt', ru: 'Чувствовал(а)', uk: 'Відчував / відчувала', es: 'sintió', pos: 'verbs' },
+    { en: 'spoke', ru: 'Говорил(а)', uk: 'Говорив / говорила', es: 'habló', pos: 'verbs' },
+    { en: 'knew', ru: 'Знал(а)', uk: 'Знав / знала', es: 'sabía', pos: 'verbs' },
+    { en: 'wore', ru: 'Носил(а)', uk: 'Носив / носила', es: 'llevaba', pos: 'verbs' },
+    { en: 'drove', ru: 'Вёл / вела машину', uk: 'Керував / керувала авто', es: 'condujo', pos: 'verbs' },
+    { en: 'had', ru: 'Имел(а) / был(а)', uk: 'Мав / мала; був / була', es: 'tenía', pos: 'verbs' },
   ],
   13: [
     { en: 'will', ru: 'Буду / будешь / будет… (will)', uk: 'Буду / будеш / буде… (will)', es: 'will (futuro)', pos: 'adverbs' },
     { en: 'call', ru: 'Звонить', uk: 'Телефонувати', es: 'llamar', pos: 'verbs' },
     { en: 'help', ru: 'Помогать', uk: 'Допомагати', es: 'ayudar', pos: 'verbs' },
-    { en: 'come', ru: 'Приходить', uk: 'Приходити', es: 'venir', pos: 'irregular_verbs' },
-    { en: 'find', ru: 'Находить', uk: 'Знаходити', es: 'encontrar', pos: 'irregular_verbs' },
-    { en: 'choose', ru: 'Выбирать', uk: 'Вибирати', es: 'elegir', pos: 'irregular_verbs' },
-    { en: 'understand', ru: 'Понимать', uk: 'Розуміти', es: 'entender', pos: 'irregular_verbs' },
-    { en: 'buy', ru: 'Покупать', uk: 'Купувати', es: 'comprar', pos: 'irregular_verbs' },
-    { en: 'sell', ru: 'Продавать', uk: 'Продавати', es: 'vender', pos: 'irregular_verbs' },
     { en: 'send', ru: 'Отправлять', uk: 'Надсилати', es: 'enviar', pos: 'verbs' },
     { en: 'cook', ru: 'Готовить', uk: 'Готувати', es: 'cocinar', pos: 'verbs' },
-    { en: 'wear', ru: 'Носить / надевать', uk: 'Носити / надягати', es: 'llevar / ponerse', pos: 'irregular_verbs' },
-    { en: 'read', ru: 'Читать', uk: 'Читати', es: 'leer', pos: 'irregular_verbs' },
-    { en: 'write', ru: 'Писать', uk: 'Писати', es: 'escribir', pos: 'irregular_verbs' },
-    { en: 'pay', ru: 'Платить', uk: 'Платити', es: 'pagar', pos: 'irregular_verbs' },
-    { en: 'leave', ru: 'Уходить / оставлять', uk: 'Йти / залишати', es: 'salir / dejar', pos: 'irregular_verbs' },
-    { en: 'feel', ru: 'Чувствовать', uk: 'Відчувати', es: 'sentir', pos: 'irregular_verbs' },
     { en: 'sing', ru: 'Петь', uk: 'Співати', es: 'cantar', pos: 'verbs' },
     { en: 'close', ru: 'Закрывать', uk: 'Зачиняти', es: 'cerrar', pos: 'verbs' },
-    { en: 'forget', ru: 'Забывать', uk: 'Забувати', es: 'olvidar', pos: 'irregular_verbs' },
     { en: 'tomorrow', ru: 'Завтра', uk: 'Завтра', es: 'mañana', pos: 'adverbs' },
     { en: 'soon', ru: 'Скоро', uk: 'Скоро', es: 'pronto', pos: 'adverbs' },
     { en: 'later', ru: 'Позже', uk: 'Пізніше', es: 'después / más tarde', pos: 'adverbs' },
@@ -1094,14 +1197,8 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'clean up', ru: 'Убирать · наводить порядок', uk: 'Прибирати · наводити лад', es: 'limpiar / ordenar', pos: 'verbs' },
     { en: 'throw away', ru: 'Выбрасывать', uk: 'Викидати', es: 'tirar / botar', pos: 'verbs' },
     { en: 'give back', ru: 'Возвращать (отдавать обратно)', uk: 'Повертати (віддавати назад)', es: 'devolver', pos: 'verbs' },
-    { en: 'find out', ru: 'Выяснять · узнавать', uk: "З'ясовувати · дізнаватися", es: 'averiguar / enterarse', pos: 'verbs' },
+    { en: 'find out', ru: 'Выяснять · узнавать', uk: "З\'ясовувати · дізнаватися", es: 'averiguar / enterarse', pos: 'verbs' },
     { en: 'go back', ru: 'Возвращаться назад', uk: 'Повертатися назад', es: 'volver / regresar', pos: 'verbs' },
-    { en: 'woke up', ru: 'Проснулся / проснулась', uk: 'Прокинувся / прокинулася', es: 'se despertó', pos: 'irregular_verbs' },
-    { en: 'got up', ru: 'Встал / встала', uk: 'Встав / встала', es: 'se levantó', pos: 'irregular_verbs' },
-    { en: 'put on', ru: 'Надел / надела (прош.)', uk: 'Надягнув / надягнула', es: 'se puso', pos: 'irregular_verbs' },
-    { en: 'took off', ru: 'Снял / сняла', uk: 'Зняв / зняла', es: 'se quitó', pos: 'irregular_verbs' },
-    { en: 'found out', ru: 'Выяснил / выяснила', uk: "З'ясував / з'ясувала", es: 'averiguó', pos: 'irregular_verbs' },
-    { en: 'gave back', ru: 'Вернул / вернула', uk: 'Повернув / повернула', es: 'devolvió', pos: 'irregular_verbs' },
     { en: 'lights', ru: 'Свет · лампы', uk: 'Світло · лампи', es: 'luces', pos: 'nouns' },
     { en: 'shoes', ru: 'Обувь · туфли', uk: 'Взуття · туфлі', es: 'zapatos', pos: 'nouns' },
     { en: 'papers', ru: 'Бумаги', uk: 'Папери', es: 'papeles', pos: 'nouns' },
@@ -1120,32 +1217,32 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'should', ru: 'Следует · стоит (совет)', uk: 'Слід · варто (порада)', es: 'debería / deberíamos', pos: 'verbs' },
   ],
   17: [
-    { en: 'working', ru: 'Работает сейчас / работающий', uk: 'Працює зараз', es: 'trabajando', pos: 'verbs' },
-    { en: 'reading', ru: 'Читает сейчас', uk: 'Читає зараз', es: 'leyendo', pos: 'verbs' },
-    { en: 'cooking', ru: 'Готовит сейчас', uk: 'Готує зараз', es: 'cocinando', pos: 'verbs' },
-    { en: 'writing', ru: 'Пишет сейчас', uk: 'Пише зараз', es: 'escribiendo', pos: 'verbs' },
-    { en: 'waiting', ru: 'Ждёт сейчас', uk: 'Чекає зараз', es: 'esperando', pos: 'verbs' },
-    { en: 'watching', ru: 'Смотрит сейчас', uk: 'Дивиться зараз', es: 'viendo', pos: 'verbs' },
-    { en: 'listening', ru: 'Слушает сейчас', uk: 'Слухає зараз', es: 'escuchando', pos: 'verbs' },
-    { en: 'drinking', ru: 'Пьёт сейчас', uk: "П'є зараз", es: 'bebiendo', pos: 'verbs' },
-    { en: 'speaking', ru: 'Говорит сейчас', uk: 'Говорить зараз', es: 'hablando', pos: 'verbs' },
-    { en: 'driving', ru: 'Ведёт машину сейчас', uk: 'Їде за кермом зараз', es: 'conduciendo', pos: 'verbs' },
-    { en: 'checking', ru: 'Проверяет сейчас', uk: 'Перевіряє зараз', es: 'revisando', pos: 'verbs' },
-    { en: 'sending', ru: 'Отправляет сейчас', uk: 'Надсилає зараз', es: 'enviando', pos: 'verbs' },
-    { en: 'cleaning', ru: 'Убирает сейчас', uk: 'Прибирає зараз', es: 'limpiando', pos: 'verbs' },
-    { en: 'fixing', ru: 'Чинит / исправляет сейчас', uk: 'Лагодить зараз', es: 'arreglando', pos: 'verbs' },
-    { en: 'ordering', ru: 'Заказывает сейчас', uk: 'Замовляє зараз', es: 'pidiendo', pos: 'verbs' },
-    { en: 'buying', ru: 'Покупает сейчас', uk: 'Купує зараз', es: 'comprando', pos: 'verbs' },
-    { en: 'calling', ru: 'Звонит сейчас', uk: 'Телефонує зараз', es: 'llamando', pos: 'verbs' },
-    { en: 'helping', ru: 'Помогает сейчас', uk: 'Допомагає зараз', es: 'ayudando', pos: 'verbs' },
-    { en: 'sleeping', ru: 'Спит сейчас', uk: 'Спить зараз', es: 'durmiendo', pos: 'verbs' },
-    { en: 'doing', ru: 'Делает сейчас', uk: 'Робить зараз', es: 'haciendo', pos: 'verbs' },
-    { en: 'going', ru: 'Идёт / едет сейчас', uk: 'Іде / їде зараз', es: 'yendo', pos: 'verbs' },
-    { en: 'crying', ru: 'Плачет сейчас', uk: 'Плаче зараз', es: 'llorando', pos: 'verbs' },
-    { en: 'turning off', ru: 'Выключает сейчас', uk: 'Вимикає зараз', es: 'apagando', pos: 'verbs' },
-    { en: 'putting on', ru: 'Надевает сейчас', uk: 'Надягає зараз', es: 'poniéndose', pos: 'verbs' },
-    { en: 'cleaning up', ru: 'Убирает / наводит порядок сейчас', uk: 'Прибирає зараз', es: 'limpiando', pos: 'verbs' },
-    { en: 'going back', ru: 'Возвращается назад сейчас', uk: 'Повертається назад зараз', es: 'volviendo', pos: 'verbs' },
+    { en: 'work', ru: 'Работать', uk: 'Працювати', es: 'trabajar', pos: 'verbs' },
+    { en: 'read', ru: 'Читать', uk: 'Читати', es: 'leer', pos: 'verbs' },
+    { en: 'cook', ru: 'Готовить', uk: 'Готувати', es: 'cocinar', pos: 'verbs' },
+    { en: 'write', ru: 'Писать', uk: 'Писати', es: 'escribir', pos: 'verbs' },
+    { en: 'wait', ru: 'Ждать', uk: 'Чекати', es: 'esperar', pos: 'verbs' },
+    { en: 'watch', ru: 'Смотреть', uk: 'Дивитися', es: 'mirar', pos: 'verbs' },
+    { en: 'listen', ru: 'Слушать', uk: 'Слухати', es: 'escuchar', pos: 'verbs' },
+    { en: 'drink', ru: 'Пить', uk: 'Пити', es: 'beber', pos: 'verbs' },
+    { en: 'speak', ru: 'Говорить', uk: 'Говорити', es: 'hablar', pos: 'verbs' },
+    { en: 'drive', ru: 'Вести машину', uk: 'Їхати за кермом', es: 'conducir', pos: 'verbs' },
+    { en: 'check', ru: 'Проверять', uk: 'Перевіряти', es: 'revisar', pos: 'verbs' },
+    { en: 'send', ru: 'Отправлять', uk: 'Надсилати', es: 'enviar', pos: 'verbs' },
+    { en: 'clean', ru: 'Убирать / чистить', uk: 'Прибирати / чистити', es: 'limpiar', pos: 'verbs' },
+    { en: 'fix', ru: 'Чинить / исправлять', uk: 'Лагодити / виправляти', es: 'arreglar', pos: 'verbs' },
+    { en: 'order', ru: 'Заказывать', uk: 'Замовляти', es: 'pedir', pos: 'verbs' },
+    { en: 'buy', ru: 'Покупать', uk: 'Купувати', es: 'comprar', pos: 'verbs' },
+    { en: 'call', ru: 'Звонить', uk: 'Телефонувати', es: 'llamar', pos: 'verbs' },
+    { en: 'help', ru: 'Помогать', uk: 'Допомагати', es: 'ayudar', pos: 'verbs' },
+    { en: 'sleep', ru: 'Спать', uk: 'Спати', es: 'dormir', pos: 'verbs' },
+    { en: 'do', ru: 'Делать', uk: 'Робити', es: 'hacer', pos: 'verbs' },
+    { en: 'go', ru: 'Идти / ехать', uk: 'Іти / їхати', es: 'ir', pos: 'verbs' },
+    { en: 'cry', ru: 'Плакать', uk: 'Плакати', es: 'llorar', pos: 'verbs' },
+    { en: 'turn off', ru: 'Выключать', uk: 'Вимикати', es: 'apagar', pos: 'verbs' },
+    { en: 'put on', ru: 'Надевать', uk: 'Надягати', es: 'ponerse', pos: 'verbs' },
+    { en: 'clean up', ru: 'Убирать / наводить порядок', uk: 'Прибирати / наводити лад', es: 'limpiar', pos: 'verbs' },
+    { en: 'go back', ru: 'Возвращаться назад', uk: 'Повертатися назад', es: 'volver', pos: 'verbs' },
     { en: 'now', ru: 'Сейчас', uk: 'Зараз', es: 'ahora', pos: 'adverbs' },
     { en: 'right now', ru: 'Прямо сейчас', uk: 'Прямо зараз', es: 'ahora mismo', pos: 'adverbs' },
     { en: 'at the moment', ru: 'В данный момент', uk: 'На даний момент', es: 'en este momento', pos: 'adverbs' },
@@ -1158,6 +1255,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'English', ru: 'Английский язык', uk: 'Англійська мова', es: 'inglés', pos: 'nouns' },
     { en: 'problem', ru: 'Проблема', uk: 'Проблема', es: 'problema', pos: 'nouns' },
     { en: 'jacket', ru: 'Куртка', uk: 'Куртка', es: 'chaqueta', pos: 'nouns' },
+    { en: 'turning', ru: 'Поворачивая / выключая', uk: 'Повертаючи / вимикаючи', es: 'girando / apagando', pos: 'verbs' },
   ],
   18: [
     { en: 'please', ru: 'Пожалуйста', uk: 'Будь ласка', es: 'por favor', pos: 'adverbs' },
@@ -1168,21 +1266,16 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'send', ru: 'Отправлять', uk: 'Надсилати', es: 'enviar', pos: 'verbs' },
     { en: 'open', ru: 'Открывать', uk: 'Відкривати', es: 'abrir', pos: 'verbs' },
     { en: 'close', ru: 'Закрывать', uk: 'Закривати', es: 'cerrar', pos: 'verbs' },
-    { en: 'bring', ru: 'Приносить', uk: 'Приносити', es: 'traer', pos: 'irregular_verbs' },
-    { en: 'take', ru: 'Брать', uk: 'Брати', es: 'coger / tomar', pos: 'irregular_verbs' },
     { en: 'clean', ru: 'Убирать / чистить', uk: 'Прибирати / чистити', es: 'limpiar', pos: 'verbs' },
     { en: 'start', ru: 'Начинать', uk: 'Починати', es: 'empezar', pos: 'verbs' },
     { en: 'listen', ru: 'Слушать', uk: 'Слухати', es: 'escuchar', pos: 'verbs' },
     { en: 'look', ru: 'Смотреть', uk: 'Дивитися', es: 'mirar', pos: 'verbs' },
-    { en: 'forget', ru: 'Забывать', uk: 'Забувати', es: 'olvidar', pos: 'irregular_verbs' },
-    { en: 'lose', ru: 'Терять', uk: 'Втрачати', es: 'perder', pos: 'irregular_verbs' },
     { en: 'share', ru: 'Делиться', uk: 'Ділитися', es: 'compartir', pos: 'verbs' },
     { en: 'use', ru: 'Использовать', uk: 'Використовувати', es: 'usar', pos: 'verbs' },
     { en: 'waste', ru: 'Тратить зря', uk: 'Витрачати даремно', es: 'desperdiciar', pos: 'verbs' },
     { en: 'finish', ru: 'Заканчивать', uk: 'Закінчувати', es: 'terminar', pos: 'verbs' },
     { en: 'talk', ru: 'Говорить / поговорить', uk: 'Говорити / поговорити', es: 'hablar', pos: 'verbs' },
     { en: 'work', ru: 'Работать', uk: 'Працювати', es: 'trabajar', pos: 'verbs' },
-    { en: 'let', ru: 'Позволять / давайте', uk: 'Дозволяти / давайте', es: 'dejar / vamos a', pos: 'irregular_verbs' },
     { en: 'together', ru: 'Вместе', uk: 'Разом', es: 'juntos', pos: 'adverbs' },
     { en: 'door', ru: 'Дверь', uk: 'Двері', es: 'puerta', pos: 'nouns' },
     { en: 'lights', ru: 'Свет / лампы', uk: 'Світло / лампи', es: 'luces', pos: 'nouns' },
@@ -1218,11 +1311,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'wallet', ru: 'Кошелёк', uk: 'Гаманець', es: 'cartera', pos: 'nouns' },
     { en: 'passport', ru: 'Паспорт', uk: 'Паспорт', es: 'pasaporte', pos: 'nouns' },
     { en: 'light', ru: 'Свет / лампа', uk: 'Світло / лампа', es: 'luz / lámpara', pos: 'nouns' },
-    { en: 'put', ru: 'Класть / положить', uk: 'Класти / покласти', es: 'poner (put / put)', pos: 'irregular_verbs' },
-    { en: 'stand', ru: 'Стоять', uk: 'Стояти', es: 'estar de pie (stood / stood)', pos: 'irregular_verbs' },
-    { en: 'sit', ru: 'Сидеть', uk: 'Сидіти', es: 'sentarse (sat / sat)', pos: 'irregular_verbs' },
-    { en: 'leave', ru: 'Оставлять / уходить', uk: 'Залишати / іти', es: 'dejar / irse (left / left)', pos: 'irregular_verbs' },
-    { en: 'find', ru: 'Находить', uk: 'Знаходити', es: 'encontrar (found / found)', pos: 'irregular_verbs' },
+    { en: 'stand', ru: 'Стоять', uk: 'Стояти', es: 'estar de pie', pos: 'verbs' },
   ],
   20: [
     /* Урок 20: артикли a / an / the / нулевой артикль */
@@ -1231,7 +1320,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'key', ru: 'Ключ', uk: 'Ключ', es: 'llave', pos: 'nouns' },
     { en: 'ticket', ru: 'Билет', uk: 'Квиток', es: 'boleto', pos: 'nouns' },
     { en: 'wallet', ru: 'Кошелёк', uk: 'Гаманець', es: 'billetera', pos: 'nouns' },
-    { en: 'charger', ru: 'Зарядка', uk: 'Зарядка', es: 'cargador', pos: 'nouns' },
+    { en: 'phone charger', ru: 'Зарядка для телефона', uk: 'Зарядка для телефону', es: 'cargador de teléfono', pos: 'nouns' },
     { en: 'passport', ru: 'Паспорт', uk: 'Паспорт', es: 'pasaporte', pos: 'nouns' },
     { en: 'email', ru: 'Письмо / имейл', uk: 'Лист / імейл', es: 'correo', pos: 'nouns' },
     { en: 'idea', ru: 'Идея', uk: 'Ідея', es: 'idea', pos: 'nouns' },
@@ -1245,586 +1334,341 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'water', ru: 'Вода', uk: 'Вода', es: 'agua', pos: 'nouns' },
     { en: 'money', ru: 'Деньги', uk: 'Гроші', es: 'dinero', pos: 'nouns' },
     { en: 'food', ru: 'Еда', uk: 'Їжа', es: 'comida', pos: 'nouns' },
-    { en: 'buy', ru: 'Покупать', uk: 'Купувати', es: 'comprar (bought / bought)', pos: 'irregular_verbs' },
-    { en: 'find', ru: 'Находить', uk: 'Знаходити', es: 'encontrar (found / found)', pos: 'irregular_verbs' },
-    { en: 'bring', ru: 'Приносить', uk: 'Приносити', es: 'traer (brought / brought)', pos: 'irregular_verbs' },
-    { en: 'write', ru: 'Писать', uk: 'Писати', es: 'escribir (wrote / written)', pos: 'irregular_verbs' },
-    { en: 'choose', ru: 'Выбирать', uk: 'Вибирати', es: 'elegir (chose / chosen)', pos: 'irregular_verbs' },
   ],
   21: [
-    { en: 'no one', ru: 'Никто', uk: 'Ніхто', es: 'nadie', pos: 'pronouns' },
-    { en: 'everybody', ru: 'Все', uk: 'Усі', es: 'todos', pos: 'pronouns' },
+    { en: 'someone', ru: 'Кто-то (нейтрально)', uk: 'Хтось (нейтрально)', es: 'alguien', pos: 'pronouns' },
+    { en: 'somebody', ru: 'Кто-то (разговорно)', uk: 'Хтось (розмовно)', es: 'alguien', pos: 'pronouns' },
+    { en: 'anyone', ru: 'Кто-нибудь (нейтрально)', uk: 'Хто-небудь (нейтрально)', es: 'alguien', pos: 'pronouns' },
+    { en: 'anybody', ru: 'Кто-нибудь (разговорно)', uk: 'Хто-небудь (розмовно)', es: 'alguien', pos: 'pronouns' },
+    { en: 'no one', ru: 'Никто (пишется раздельно)', uk: 'Ніхто (два слова в английском)', es: 'nadie', pos: 'pronouns' },
+    { en: 'nobody', ru: 'Никто (одно слово)', uk: 'Ніхто (одне слово в англійській)', es: 'nadie', pos: 'pronouns' },
+    { en: 'everyone', ru: 'Все; каждый', uk: 'Усі; кожен', es: 'todos', pos: 'pronouns' },
+    { en: 'everybody', ru: 'Все люди / каждый', uk: 'Усі люди / кожен', es: 'todos', pos: 'pronouns' },
     { en: 'something', ru: 'Что-то', uk: 'Щось', es: 'algo', pos: 'pronouns' },
+    { en: 'anything', ru: 'Что-нибудь', uk: 'Що-небудь', es: 'algo / nada', pos: 'pronouns' },
     { en: 'nothing', ru: 'Ничего', uk: 'Нічого', es: 'nada', pos: 'pronouns' },
-    { en: 'everything', ru: 'Всё', uk: 'Все', es: 'todo', pos: 'pronouns' },
-    { en: 'anything', ru: 'Что-нибудь', uk: 'Що-небудь', es: 'cualquier cosa', pos: 'pronouns' },
-    { en: 'different', ru: 'Другой', uk: 'Інший', es: 'diferente', pos: 'adjectives' },
-    { en: 'formal', ru: 'Торжественный', uk: 'Урочистий', es: 'formal', pos: 'adjectives' },
-    { en: 'possible', ru: 'Возможный', uk: 'Можливий', es: 'posible', pos: 'adjectives' },
-    { en: 'abandoned', ru: 'Заброшенный', uk: 'Покинутий', es: 'abandonado', pos: 'adjectives' },
-    { en: 'crowded', ru: 'Переполненный', uk: 'Переповнений', es: 'atestado', pos: 'adjectives' },
-    { en: 'valuable', ru: 'Ценный', uk: 'Цінний', es: 'valioso', pos: 'adjectives' },
-    { en: 'favorite', ru: 'Любимый', uk: 'Улюблений', es: 'favorito', pos: 'adjectives' },
-    { en: 'incident', ru: 'Происшествие', uk: 'Подія', es: 'incidente', pos: 'nouns' },
-    { en: 'situation', ru: 'Ситуация', uk: 'Ситуація', es: 'situación', pos: 'nouns' },
-    { en: 'mall', ru: 'Торговый центр', uk: 'Торговий центр', es: 'centro comercial', pos: 'nouns' },
-    { en: 'ghost', ru: 'Привидение', uk: 'Привид', es: 'fantasma', pos: 'nouns' },
-    { en: 'conversation', ru: 'Разговор', uk: 'Розмова', es: 'conversación', pos: 'nouns' },
-    { en: 'explanation', ru: 'Объяснение', uk: 'Пояснення', es: 'explicación', pos: 'nouns' },
-    { en: 'wind', ru: 'Ветер', uk: 'Вітер', es: 'viento', pos: 'nouns' },
-    { en: 'sunglasses', ru: 'Солнечные очки', uk: 'Сонцезахисні окуляри', es: 'gafas de sol', pos: 'nouns' },
-    { en: 'spoon', ru: 'Ложка', uk: 'Ложка', es: 'cuchara', pos: 'nouns' },
-    { en: 'singer', ru: 'Певица', uk: 'Співачка', es: 'cantante', pos: 'nouns' },
-    { en: 'excuse', ru: 'Оправдание', uk: 'Виправдання', es: 'excusa', pos: 'nouns' },
-    { en: 'countryside', ru: 'Сельская местность', uk: 'Сільська місцевість', es: 'campo', pos: 'nouns' },
-    { en: 'bar', ru: 'Бар', uk: 'Бар', es: 'bar', pos: 'nouns' },
-    { en: 'believed', ru: 'Поверил(а)', uk: 'Повірив(ла)', es: 'creyó', pos: 'verbs' },
-    { en: 'cave', ru: 'Пещера', uk: 'Печера', es: 'cueva', pos: 'nouns' },
-    { en: 'fruit', ru: 'Фрукт / фрукты', uk: 'Фрукт / фрукти', es: 'fruta', pos: 'nouns' },
-    { en: 'hid', ru: 'Спрятал', uk: 'Сховав', es: 'escondió', pos: 'irregular_verbs' },
-    { en: 'knocked', ru: 'Постучал(а)', uk: 'Постукав(ла)', es: 'tocó', pos: 'verbs' },
-    { en: 'laptop', ru: 'Ноутбук', uk: 'Ноутбук', es: 'portátil', pos: 'nouns' },
-    { en: 'lot', ru: 'Много', uk: 'Багато', es: 'mucho', pos: 'adverbs' },
-    { en: 'mat', ru: 'Коврик', uk: 'Килимок', es: 'estera', pos: 'nouns' },
-    { en: 'notice', ru: 'Извещение', uk: 'Примітка', es: 'aviso', pos: 'nouns' },
-    { en: 'recognized', ru: 'Распознал(а)', uk: 'Розпізнав(ла)', es: 'reconoció', pos: 'verbs' },
-    { en: 'spilled', ru: 'Пролил(а)', uk: 'Пролив(ла)', es: 'derramó', pos: 'verbs' },
-    { en: 'stole', ru: 'Украл', uk: 'Вкрав', es: 'robó', pos: 'irregular_verbs' },
-    { en: 'visit', ru: 'Визит', uk: 'Візит', es: 'visita', pos: 'nouns' },
-    { en: 'wants', ru: 'Хочет', uk: 'Хоче', es: 'quiere', pos: 'irregular_verbs' },
-  ],
-  22: LESSON_22_WORD_CARDS,
-  23: [
-    { en: 'personal', ru: 'Личный', uk: 'Особистий', es: 'personal', pos: 'adjectives' },
-    { en: 'immediately', ru: 'Немедленно', uk: 'Негайно', es: 'inmediatamente', pos: 'adverbs' },
-    { en: 'periodically', ru: 'Периодически', uk: 'Періодично', es: 'periódicamente', pos: 'adverbs' },
-    { en: 'thrice', ru: 'Трижды', uk: 'Тричі', es: 'tres veces', pos: 'adverbs' },
-    { en: 'highly', ru: 'Высоко', uk: 'Високо', es: 'sumamente', pos: 'adverbs' },
-    { en: 'postman', ru: 'Почтальон', uk: 'Листоноша', es: 'cartero', pos: 'nouns' },
-    { en: 'application', ru: 'Заявление', uk: 'Заява', es: 'solicitud', pos: 'nouns' },
-    { en: 'department', ru: 'Отдел', uk: 'Відділ', es: 'departamento', pos: 'nouns' },
-    { en: 'bill', ru: 'Счёт', uk: 'Рахунок', es: 'factura', pos: 'nouns' },
-    { en: 'bin', ru: 'Корзина', uk: 'Кошик', es: 'contenedor', pos: 'nouns' },
-    { en: 'directed', ru: 'Направленный', uk: 'Направлений', es: 'dirigido', pos: 'adjectives' },
-    { en: 'easily', ru: 'Легко', uk: 'Легко', es: 'fácilmente', pos: 'adverbs' },
-    { en: 'eaten', ru: 'Съеденный', uk: 'Зʼїдений', es: 'comido', pos: 'adjectives' },
-    { en: 'end', ru: 'Конец', uk: 'Кінець', es: 'fin', pos: 'nouns' },
-    { en: 'exercise', ru: 'Упражнение', uk: 'Вправа', es: 'ejercicio', pos: 'nouns' },
-    { en: 'explained', ru: 'Объяснённый', uk: 'Пояснений', es: 'explicado', pos: 'adjectives' },
-    { en: 'file', ru: 'Файл', uk: 'Файл', es: 'archivo', pos: 'nouns' },
-    { en: 'filled', ru: 'Наполненный', uk: 'Наповнений', es: 'llenado', pos: 'adjectives' },
-    { en: 'filmmaker', ru: 'Кинорежиссёр', uk: 'Кінорежисер', es: 'cineasta', pos: 'nouns' },
-    { en: 'forgotten', ru: 'Забытый', uk: 'Забутий', es: 'olvidado', pos: 'adjectives' },
-    { en: 'gardener', ru: 'Садовник', uk: 'Садівник', es: 'jardinero', pos: 'nouns' },
-    { en: 'given', ru: 'Данный', uk: 'Даний', es: 'dado', pos: 'adjectives' },
-    { en: 'idea', ru: 'Идея', uk: 'Ідея', es: 'idea', pos: 'nouns' },
-    { en: 'invited', ru: 'Приглашённый', uk: 'Запрошений', es: 'invitado', pos: 'adjectives' },
-    { en: 'learned', ru: 'Выученный', uk: 'Вивчений', es: 'aprendido', pos: 'adjectives' },
-    { en: 'legend', ru: 'Легенда', uk: 'Легенда', es: 'leyenda', pos: 'nouns' },
-    { en: 'management', ru: 'Руководство', uk: 'Керівництво', es: 'dirección', pos: 'nouns' },
-    { en: 'meeting', ru: 'Встреча', uk: 'Зустріч', es: 'reunión', pos: 'nouns' },
-    { en: 'paid', ru: 'Оплаченный', uk: 'Оплачений', es: 'pagado', pos: 'adjectives' },
-    { en: 'patient', ru: 'Пациент', uk: 'Пацієнт', es: 'paciente', pos: 'nouns' },
-    { en: 'prize', ru: 'Приз', uk: 'Приз', es: 'premio', pos: 'nouns' },
-    { en: 'professional', ru: 'Профессиональный', uk: 'Професійний', es: 'profesional', pos: 'adjectives' },
-    { en: 'protected', ru: 'Защищённый', uk: 'Захищений', es: 'protegido', pos: 'adjectives' },
-    { en: 'repaired', ru: 'Починенный', uk: 'Відремонтований', es: 'reparado', pos: 'adjectives' },
-    { en: 'report', ru: 'Отчёт', uk: 'Звіт', es: 'informe', pos: 'nouns' },
-    { en: 'secretary', ru: 'Секретарь', uk: 'Секретар', es: 'secretaria', pos: 'nouns' },
-    { en: 'security', ru: 'Охрана', uk: 'Охорона', es: 'seguridad', pos: 'nouns' },
-    { en: 'signed', ru: 'Подписанный', uk: 'Підписаний', es: 'firmado', pos: 'adjectives' },
-    { en: 'solved', ru: 'Решённый', uk: 'Вирішений', es: 'resuelto', pos: 'adjectives' },
-    { en: 'supported', ru: 'Поддержанный', uk: 'Підтриманий', es: 'apoyado', pos: 'adjectives' },
-    { en: 'taken', ru: 'Взятый', uk: 'Взятий', es: 'tomado', pos: 'adjectives' },
-    { en: 'teacher', ru: 'Учитель', uk: 'Вчитель', es: 'profesor', pos: 'nouns' },
-    { en: 'thrown', ru: 'Брошенный', uk: 'Кинутий', es: 'arrojado', pos: 'adjectives' },
-    { en: 'tourist', ru: 'Турист', uk: 'Турист', es: 'turista', pos: 'nouns' },
-    { en: 'treated', ru: 'Обработанный', uk: 'Оброблений', es: 'tratado', pos: 'adjectives' },
-    { en: 'used', ru: 'Использованный', uk: 'Використаний', es: 'usado', pos: 'adjectives' },
-    { en: 'winner', ru: 'Победитель', uk: 'Переможець', es: 'ganador', pos: 'nouns' },
-    { en: 'written', ru: 'Написанный', uk: 'Написаний', es: 'escrito', pos: 'adjectives' },
-  ],
-  24: [
-    { en: 'traditional', ru: 'Традиционный', uk: 'Традиційний', es: 'tradicional', pos: 'adjectives' },
-    { en: 'suitable', ru: 'Подходящий', uk: 'Підходящий', es: 'adecuado', pos: 'adjectives' },
-    { en: 'exotic', ru: 'Экзотический', uk: 'Екзотичний', es: 'exótico', pos: 'adjectives' },
-    { en: 'grand', ru: 'Грандиозный', uk: 'Грандіозний', es: 'magnífico', pos: 'adjectives' },
-    { en: 'massive', ru: 'Массивный', uk: 'Масивний', es: 'masivo', pos: 'adjectives' },
-    { en: 'prestigious', ru: 'Престижный', uk: 'Престижний', es: 'prestigioso', pos: 'adjectives' },
-    { en: 'scientific', ru: 'Научный', uk: 'Науковий', es: 'científico', pos: 'adjectives' },
-    { en: 'natural', ru: 'Природный', uk: 'Природний', es: 'natural', pos: 'adjectives' },
-    { en: 'just', ru: 'Только что', uk: 'Щойно', es: 'recién; acabar de', pos: 'adverbs' },
-    { en: 'already', ru: 'Уже', uk: 'Вже', es: 'ya', pos: 'adverbs' },
-    { en: 'yet', ru: 'Ещё (в отриц.)', uk: 'Ще (у запереченні)', es: 'todavía', pos: 'adverbs' },
-    { en: 'ever', ru: 'Когда-либо', uk: 'Коли-небудь', es: 'alguna vez', pos: 'adverbs' },
-    { en: 'never', ru: 'Никогда', uk: 'Ніколи', es: 'nunca', pos: 'adverbs' },
-    { en: 'somewhere', ru: 'Где-то', uk: 'Десь', es: 'en algún lugar', pos: 'adverbs' },
-    { en: 'concert', ru: 'Концерт', uk: 'Концерт', es: 'concierto', pos: 'nouns' },
-    { en: 'review', ru: 'Отзыв', uk: 'Відгук', es: 'reseña', pos: 'nouns' },
-    { en: 'environment', ru: 'Среда (окружающая)', uk: 'Середовище', es: 'medio ambiente', pos: 'nouns' },
-    { en: 'anniversary', ru: 'Годовщина', uk: 'Річниця', es: 'aniversario', pos: 'nouns' },
-    { en: 'recipe', ru: 'Рецепт', uk: 'Рецепт', es: 'receta', pos: 'nouns' },
-    { en: 'gallery', ru: 'Галерея', uk: 'Галерея', es: 'galería', pos: 'nouns' },
-    { en: 'ladder', ru: 'Лестница (стремянка)', uk: 'Драбина', es: 'escalera', pos: 'nouns' },
-    { en: 'invitation', ru: 'Приглашение', uk: 'Запрошення', es: 'invitación', pos: 'nouns' },
-    { en: 'grant', ru: 'Грант', uk: 'Грант', es: 'beca; subvención', pos: 'nouns' },
-    { en: 'research', ru: 'Исследование', uk: 'Дослідження', es: 'investigación', pos: 'nouns' },
-    { en: 'phenomenon', ru: 'Явление', uk: 'Явище', es: 'fenómeno', pos: 'nouns' },
-    { en: 'actor', ru: 'Актёр', uk: 'Актор', es: 'actor', pos: 'nouns' },
-    { en: 'aunt', ru: 'Тетя', uk: 'Тітка', es: 'tía', pos: 'nouns' },
-    { en: 'baked', ru: 'Печёный', uk: 'Запечений', es: 'horneado', pos: 'adjectives' },
-    { en: 'belongings', ru: 'Личные вещи', uk: 'Особисті речі', es: 'pertenencias', pos: 'nouns' },
-    { en: 'blood', ru: 'Кровь', uk: 'Кров', es: 'sangre', pos: 'nouns' },
-    { en: 'chief', ru: 'Главный', uk: 'Головний', es: 'principal', pos: 'adjectives' },
-    { en: 'chosen', ru: 'Выбранный', uk: 'Вибраний', es: 'elegido', pos: 'adjectives' },
-    { en: 'colleague', ru: 'Коллега', uk: 'Колега', es: 'colega', pos: 'nouns' },
-    { en: 'created', ru: 'Созданный', uk: 'Створений', es: 'creado', pos: 'adjectives' },
-    { en: 'driven', ru: 'Довезённый', uk: 'Довезений', es: 'conducido', pos: 'adjectives' },
-    { en: 'drunk', ru: 'Выпитый', uk: 'Випитий', es: 'bebido', pos: 'adjectives' },
-    { en: 'employee', ru: 'Сотрудник', uk: 'Співробітник', es: 'empleado', pos: 'nouns' },
-    { en: 'latest', ru: 'Последний (самый новый)', uk: 'Останній (найновіший)', es: 'último', pos: 'adjectives' },
-    { en: 'lent', ru: 'Одолжил', uk: 'Позичив', es: 'prestó', pos: 'irregular_verbs' },
-    { en: 'magazine', ru: 'Журнал', uk: 'Журнал', es: 'revista', pos: 'nouns' },
-    { en: 'mexican', ru: 'Мексиканский', uk: 'Мексиканський', es: 'mexicano', pos: 'adjectives' },
-    { en: 'mobile', ru: 'Мобильный (телефон)', uk: 'Мобільний (телефон)', es: 'móvil', pos: 'nouns' },
-    { en: 'parent', ru: 'Родитель', uk: 'Один з батьків', es: 'progenitor', pos: 'nouns' },
-    { en: 'partner', ru: 'Партнёр', uk: 'Партнер', es: 'socio', pos: 'nouns' },
-    { en: 'real', ru: 'Реальный', uk: 'Реальний', es: 'real', pos: 'adjectives' },
-    { en: 'result', ru: 'Результат', uk: 'Результат', es: 'resultado', pos: 'nouns' },
-    { en: 'seen', ru: 'Увиденный', uk: 'Побачений', es: 'visto', pos: 'adjectives' },
-    { en: 'sport', ru: 'Спорт', uk: 'Спорт', es: 'deporte', pos: 'nouns' },
-    { en: 'stolen', ru: 'Украденный', uk: 'Вкрадений', es: 'robado', pos: 'adjectives' },
-    { en: 'stupid', ru: 'Глупый', uk: 'Дурний', es: 'estúpido', pos: 'adjectives' },
-    { en: 'such', ru: 'Такой', uk: 'Такий', es: 'tal', pos: 'adjectives' },
-    { en: 'tasted', ru: 'Испробованный', uk: 'Скуштуваний', es: 'probado', pos: 'adjectives' },
-    { en: 'technology', ru: 'Технология', uk: 'Технологія', es: 'tecnología', pos: 'nouns' },
-    { en: 'test', ru: 'Анализ (тест)', uk: 'Аналіз (тест)', es: 'análisis', pos: 'nouns' },
-    { en: 'won', ru: 'Выигранный', uk: 'Виграний', es: 'ganado', pos: 'adjectives' },
-    { en: 'yourself', ru: 'Сам; себя (возвр.)', uk: 'Сам; себе (зворотн.)', es: 'tú mismo', pos: 'pronouns' },
-  ],
-  25: [
-    { en: 'cautious', ru: 'Осторожный', uk: 'Обережний', es: 'precavido', pos: 'adjectives' },
-    { en: 'slippery', ru: 'Скользкий', uk: 'Слизький', es: 'resbaladizo', pos: 'adjectives' },
-    { en: 'financial', ru: 'Финансовый', uk: 'Фінансовий', es: 'financiero', pos: 'adjectives' },
-    { en: 'suspicious', ru: 'Подозрительный', uk: 'Підозрілий', es: 'sospechoso', pos: 'adjectives' },
-    { en: 'successful', ru: 'Успешный', uk: 'Успішний', es: 'exitoso', pos: 'adjectives' },
-    { en: 'unhealthy', ru: 'Вредный', uk: 'Шкідливий', es: 'malsano', pos: 'adjectives' },
-    { en: 'loudly', ru: 'Громко', uk: 'Голосно', es: 'fuerte', pos: 'adverbs' },
-    { en: 'still', ru: 'Все еще', uk: 'Все ще', es: 'aún', pos: 'adverbs' },
-    { en: 'excursion', ru: 'Экскурсия', uk: 'Екскурсія', es: 'excursión', pos: 'nouns' },
-    { en: 'complaint', ru: 'Жалоба', uk: 'Скарга', es: 'queja', pos: 'nouns' },
-    { en: 'conflict', ru: 'Конфликт', uk: 'Конфлікт', es: 'conflicto', pos: 'nouns' },
-    { en: 'playground', ru: 'Площадка', uk: 'Майданчик', es: 'patio de juegos', pos: 'nouns' },
-    { en: 'platform', ru: 'Платформа', uk: 'Платформа', es: 'plataforma', pos: 'nouns' },
-    { en: 'agreement', ru: 'Соглашение', uk: 'Угода', es: 'acuerdo', pos: 'nouns' },
-    { en: 'deal', ru: 'Сделка', uk: 'Угода', es: 'trato', pos: 'nouns' },
-    { en: 'inspector', ru: 'Инспектор', uk: 'Інспектор', es: 'inspector', pos: 'nouns' },
-    { en: 'administration', ru: 'Администрация', uk: 'Адміністрація', es: 'administración', pos: 'nouns' },
-    { en: 'animal', ru: 'Животное', uk: 'Тварина', es: 'animal', pos: 'nouns' },
-    { en: 'answering', ru: 'Отвечает', uk: 'Відповідає', es: 'respondiendo', pos: 'verbs' },
-    { en: 'celebrating', ru: 'Празднует', uk: 'Святкує', es: 'celebrando', pos: 'verbs' },
-    { en: 'contract', ru: 'Контракт', uk: 'Контракт', es: 'contrato', pos: 'nouns' },
-    { en: 'delayed', ru: 'Задержанный', uk: 'Затриманий', es: 'demorado', pos: 'adjectives' },
-    { en: 'deleting', ru: 'Удаляет', uk: 'Видаляє', es: 'eliminando', pos: 'verbs' },
-    { en: 'four', ru: 'Четыре', uk: 'Чотири', es: 'cuatro', pos: 'nouns' },
-    { en: 'knocking', ru: 'Стучит', uk: 'Стукає', es: 'golpeando', pos: 'verbs' },
-    { en: 'landscape', ru: 'Пейзаж', uk: 'Пейзаж', es: 'paisaje', pos: 'nouns' },
-    { en: 'neighboring', ru: 'Соседний', uk: 'Сусідній', es: 'vecino', pos: 'adjectives' },
-    { en: 'patrolling', ru: 'Патрулирует', uk: 'Патрулює', es: 'patrullando', pos: 'verbs' },
-    { en: 'printing', ru: 'Печатает', uk: 'Друкує', es: 'imprimiendo', pos: 'verbs' },
-    { en: 'reckless', ru: 'Неосторожный', uk: 'Нерозумний', es: 'imprudente', pos: 'adjectives' },
-    { en: 'relative', ru: 'Родственник', uk: 'Родич', es: 'pariente', pos: 'nouns' },
-    { en: 'scratching', ru: 'Царапает', uk: 'Дряпає', es: 'rascándose', pos: 'verbs' },
-    { en: 'sending', ru: 'Отправляет', uk: 'Відправляє', es: 'enviando', pos: 'verbs' },
-    { en: 'service', ru: 'Услуга', uk: 'Послуга', es: 'servicio', pos: 'nouns' },
-    { en: 'setting', ru: 'Настройка', uk: 'Налаштування', es: 'ajuste', pos: 'nouns' },
-    { en: 'shouting', ru: 'Кричит', uk: 'Кричить', es: 'gritando', pos: 'verbs' },
-    { en: 'singing', ru: 'Поёт', uk: 'Співає', es: 'cantando', pos: 'verbs' },
-    { en: 'speeding', ru: 'Превышение скорости', uk: 'Перевищення швидкості', es: 'exceso de velocidad', pos: 'nouns' },
-    { en: 'state', ru: 'Состояние / государство', uk: 'Стан / держава', es: 'estado', pos: 'nouns' },
-    { en: 'taking', ru: 'Берёт', uk: 'Бере', es: 'tomando', pos: 'verbs' },
-    { en: 'tariff', ru: 'Тариф', uk: 'Тариф', es: 'arancel', pos: 'nouns' },
-    { en: 'television', ru: 'Телевизор', uk: 'Телебачення', es: 'televisión', pos: 'nouns' },
-    { en: 'telling', ru: 'Рассказывает', uk: 'Розповідає', es: 'contando', pos: 'verbs' },
-    { en: 'unfamiliar', ru: 'Незнакомый', uk: 'Незнайомий', es: 'desconocido', pos: 'adjectives' },
-  ],
-  26: [
-    { en: 'catch', ru: 'Ловить', uk: 'Ловити', es: 'atrapar', pos: 'irregular_verbs' },
-    { en: 'run', ru: 'Бежать', uk: 'Бігти', es: 'correr', pos: 'irregular_verbs' },
-    { en: 'heat', ru: 'Нагревать', uk: 'Нагрівати', es: 'calentar', pos: 'verbs' },
-    { en: 'reduce', ru: 'Уменьшать', uk: 'Зменшувати', es: 'reducir', pos: 'verbs' },
-    { en: 'replace', ru: 'Заменять', uk: 'Замінювати', es: 'reemplazar', pos: 'verbs' },
-    { en: 'expand', ru: 'Расширяться', uk: 'Розширюватися', es: 'expandir', pos: 'verbs' },
-    { en: 'enable', ru: 'Включать', uk: 'Ввімкнути', es: 'permitir', pos: 'verbs' },
-    { en: 'happen', ru: 'Случаться', uk: 'Ставатися', es: 'suceder', pos: 'verbs' },
-    { en: 'attract', ru: 'Притягивать', uk: 'Притягувати', es: 'atraer', pos: 'verbs' },
-    { en: 'improve', ru: 'Улучшать', uk: 'Покращувати', es: 'mejorar', pos: 'verbs' },
-    { en: 'hidden', ru: 'Скрытый', uk: 'Прихований', es: 'oculto', pos: 'adjectives' },
-    { en: 'profitable', ru: 'Выгодный', uk: 'Вигідний', es: 'rentable', pos: 'adjectives' },
-    { en: 'responsible', ru: 'Ответственный', uk: 'Відповідальний', es: 'responsable', pos: 'adjectives' },
-    { en: 'automatic', ru: 'Автоматический', uk: 'Автоматичний', es: 'automático', pos: 'adjectives' },
-    { en: 'successfully', ru: 'Успешно', uk: 'Успішно', es: 'exitosamente', pos: 'adverbs' },
-    { en: 'strongly', ru: 'Сильно', uk: 'Сильно', es: 'fuertemente', pos: 'adverbs' },
-    { en: 'regularly', ru: 'Регулярно', uk: 'Регулярно', es: 'regularmente', pos: 'adverbs' },
-    { en: 'profit', ru: 'Прибыль', uk: 'Прибуток', es: 'ganancia', pos: 'nouns' },
-    { en: 'strategy', ru: 'Стратегия', uk: 'Стратегія', es: 'estrategia', pos: 'nouns' },
-    { en: 'oil', ru: 'Техническое масло', uk: 'Технічне масло', es: 'aceite', pos: 'nouns' },
-    { en: 'interview', ru: 'Собеседование', uk: 'Співбесіда', es: 'entrevista', pos: 'nouns' },
-    { en: 'navigator', ru: 'Навигатор', uk: 'Навігатор', es: 'navegador', pos: 'nouns' },
-    { en: 'investor', ru: 'Инвестор', uk: 'Інвестор', es: 'inversor', pos: 'nouns' },
-    { en: 'startup', ru: 'Стартап', uk: 'Стартап', es: 'startup', pos: 'nouns' },
-    { en: 'capital', ru: 'Капитал', uk: 'Капітал', es: 'capital', pos: 'nouns' },
-    { en: 'payment', ru: 'Оплата', uk: 'Оплата', es: 'pago', pos: 'nouns' },
-    { en: 'magnet', ru: 'Магнит', uk: 'Магніт', es: 'imán', pos: 'nouns' },
-    { en: 'trash', ru: 'Мусор', uk: 'Сміття', es: 'basura', pos: 'nouns' },
-    { en: 'position', ru: 'Должность', uk: 'Посада', es: 'posición', pos: 'nouns' },
-    { en: 'furnace', ru: 'Промышленная печь', uk: 'Промислова піч', es: 'horno', pos: 'nouns' },
-    { en: 'parameter', ru: 'Параметр', uk: 'Параметр', es: 'parámetro', pos: 'nouns' },
-    { en: 'crossroad', ru: 'Перекрёсток', uk: 'Перехрестя', es: 'encrucijada', pos: 'nouns' },
-    { en: 'logo', ru: 'Логотип', uk: 'Логотип', es: 'logo', pos: 'nouns' },
-    { en: 'fund', ru: 'Фонд', uk: 'Фонд', es: 'fondo', pos: 'nouns' },
-    { en: 'permission', ru: 'Разрешение', uk: 'Дозвіл', es: 'permiso', pos: 'nouns' },
-    { en: 'salt', ru: 'Соль', uk: 'Сіль', es: 'sal', pos: 'nouns' },
-    { en: 'designer', ru: 'Дизайнер', uk: 'Дизайнер', es: 'diseñador', pos: 'nouns' },
-    { en: 'temperature', ru: 'Температура', uk: 'Температура', es: 'temperatura', pos: 'nouns' },
-    { en: 'additional', ru: 'Дополнительный', uk: 'Додатковий', es: 'adicional', pos: 'adjectives' },
-    { en: 'adds', ru: 'Добавляет', uk: 'Додає', es: 'agrega', pos: 'verbs' },
-    { en: 'attends', ru: 'Посещает', uk: 'Відвідує', es: 'asiste', pos: 'verbs' },
-    { en: 'attracts', ru: 'Притягивает', uk: 'Притягує', es: 'atrae', pos: 'verbs' },
-    { en: 'burns', ru: 'Горит', uk: 'Горить', es: 'arde', pos: 'verbs' },
-    { en: 'butter', ru: 'Сливочное масло', uk: 'Вершкове масло', es: 'manteca', pos: 'nouns' },
-    { en: 'cage', ru: 'Клетка', uk: 'Клітка', es: 'jaula', pos: 'nouns' },
-    { en: 'changes', ru: 'Меняет', uk: 'Змінює', es: 'cambia', pos: 'verbs' },
-    { en: 'club', ru: 'Клуб', uk: 'Гурток', es: 'club', pos: 'nouns' },
-    { en: 'collect', ru: 'Собирать', uk: 'Збирати', es: 'recolectar', pos: 'verbs' },
-    { en: 'comes', ru: 'Приходит', uk: 'Приходить', es: 'llega', pos: 'irregular_verbs' },
-    { en: 'complete', ru: 'Завершать', uk: 'Завершувати', es: 'completar', pos: 'verbs' },
-    { en: 'completes', ru: 'Завершает', uk: 'Завершує', es: 'completa', pos: 'verbs' },
-    { en: 'creates', ru: 'Создаёт', uk: 'Створює', es: 'crea', pos: 'verbs' },
-    { en: 'customer', ru: 'Клиент', uk: 'Клієнт', es: 'cliente', pos: 'nouns' },
-    { en: 'die', ru: 'Умирать', uk: 'Вмирати', es: 'morir', pos: 'irregular_verbs' },
-    { en: 'error', ru: 'Ошибка', uk: 'Помилка', es: 'error', pos: 'nouns' },
-    { en: 'expands', ru: 'Расширяется', uk: 'Розширюється', es: 'se expande', pos: 'verbs' },
-    { en: 'figure', ru: 'Рисунок / фигура', uk: 'Малюнок / фігура', es: 'figura', pos: 'nouns' },
-    { en: 'fire', ru: 'Пожар', uk: 'Пожежа', es: 'fuego', pos: 'nouns' },
-    { en: 'fixes', ru: 'Чинит', uk: 'Лагодить', es: 'arregla', pos: 'verbs' },
-    { en: 'floats', ru: 'Плавает', uk: 'Плаває', es: 'flota', pos: 'verbs' },
-    { en: 'generous', ru: 'Щедрый', uk: 'Щедрий', es: 'generoso', pos: 'adjectives' },
-    { en: 'gets', ru: 'Получает', uk: 'Отримує', es: 'obtiene', pos: 'irregular_verbs' },
-    { en: 'heats', ru: 'Нагревает', uk: 'Нагріває', es: 'calienta', pos: 'verbs' },
-    { en: 'holds', ru: 'Держит', uk: 'Тримає', es: 'sostiene', pos: 'irregular_verbs' },
-    { en: 'invest', ru: 'Инвестировать', uk: 'Інвестувати', es: 'invertir', pos: 'verbs' },
-    { en: 'make', ru: 'Создавать / готовить', uk: 'Створювати / готувати', es: 'hacer', pos: 'irregular_verbs' },
-    { en: 'melts', ru: 'Тает', uk: 'Тає', es: 'se derrite', pos: 'verbs' },
-    { en: 'membership', ru: 'Подписка', uk: 'Членство', es: 'afiliación', pos: 'nouns' },
-    { en: 'object', ru: 'Предмет', uk: 'Предмет', es: 'objeto', pos: 'nouns' },
-    { en: 'overheats', ru: 'Перегревается', uk: 'Перегрівається', es: 'se sobrecalienta', pos: 'verbs' },
-    { en: 'packet', ru: 'Упаковка', uk: 'Пакет', es: 'paquete', pos: 'nouns' },
-    { en: 'pan', ru: 'Сковорода', uk: 'Сковорідка', es: 'sartén', pos: 'nouns' },
-    { en: 'presses', ru: 'Нажимает', uk: 'Натискає', es: 'presiona', pos: 'verbs' },
-    { en: 'provide', ru: 'Предоставлять', uk: 'Надавати', es: 'proporcionar', pos: 'verbs' },
-    { en: 'provides', ru: 'Предоставляет', uk: 'Надає', es: 'proporciona', pos: 'verbs' },
-    { en: 'reads', ru: 'Читает', uk: 'Читає', es: 'lee', pos: 'irregular_verbs' },
-    { en: 'ruined', ru: 'Разрушенный', uk: 'Зруйнований', es: 'arruinado', pos: 'adjectives' },
-    { en: 'sensor', ru: 'Датчик', uk: 'Датчик', es: 'sensor', pos: 'nouns' },
-    { en: 'shows', ru: 'Показывает', uk: 'Показує', es: 'muestra', pos: 'verbs' },
-    { en: 'significantly', ru: 'Значительно', uk: 'Суттєво', es: 'significativamente', pos: 'adverbs' },
-    { en: 'signs', ru: 'Подписывает', uk: 'Підписує', es: 'firma', pos: 'verbs' },
-    { en: 'smoothly', ru: 'Плавно', uk: 'Плавно', es: 'suavemente', pos: 'adverbs' },
-    { en: 'solution', ru: 'Решение', uk: 'Рішення', es: 'solución', pos: 'nouns' },
-    { en: 'speaking', ru: 'Разговорная речь', uk: 'Розмовна мова', es: 'expresión oral', pos: 'nouns' },
-    { en: 'specialist', ru: 'Специалист', uk: 'Фахівець', es: 'especialista', pos: 'nouns' },
-    { en: 'test', ru: 'Тест; проверка', uk: 'Тест; перевірка', es: 'prueba', pos: 'nouns' },
-    { en: 'throws', ru: 'Бросает', uk: 'Кидає', es: 'lanza', pos: 'irregular_verbs' },
-    { en: 'turns', ru: 'Поворачивает', uk: 'Повертає', es: 'gira', pos: 'verbs' },
-    { en: 'vent', ru: 'Вентиляционное отверстие', uk: 'Вентиляційний отвір', es: 'respiradero', pos: 'nouns' },
-    { en: 'wood', ru: 'Дерево (материал)', uk: 'Деревина (матеріал)', es: 'madera', pos: 'nouns' },
-  ],
-  27: [
-    { en: 'say', ru: 'Говорить', uk: 'Говорити', es: 'decir', pos: 'irregular_verbs' },
-    { en: 'tell', ru: 'Рассказывать', uk: 'Розповідати', es: 'contar', pos: 'irregular_verbs' },
-    { en: 'find', ru: 'Находить', uk: 'Знаходити', es: 'encontrar', pos: 'irregular_verbs' },
-    { en: 'know', ru: 'Знать', uk: 'Знати', es: 'saber', pos: 'irregular_verbs' },
-    { en: 'send', ru: 'Отправлять', uk: 'Відправляти', es: 'enviar', pos: 'irregular_verbs' },
-    { en: 'bring', ru: 'Приносить', uk: 'Приносити', es: 'traer', pos: 'irregular_verbs' },
-    { en: 'lose', ru: 'Терять', uk: 'Втрачати', es: 'perder', pos: 'irregular_verbs' },
-    { en: 'see', ru: 'Видеть', uk: 'Бачити', es: 'ver', pos: 'irregular_verbs' },
-    { en: 'break', ru: 'Ломать', uk: 'Ламати', es: 'romper', pos: 'irregular_verbs' },
-    { en: 'forget', ru: 'Забывать', uk: 'Забувати', es: 'olvidar', pos: 'irregular_verbs' },
-    { en: 'make', ru: 'Делать', uk: 'Робити', es: 'hacer', pos: 'irregular_verbs' },
-    { en: 'steal', ru: 'Красть', uk: 'Красти', es: 'robar', pos: 'irregular_verbs' },
-    { en: 'pay', ru: 'Платить', uk: 'Платити', es: 'pagar', pos: 'irregular_verbs' },
-    { en: 'take', ru: 'Брать', uk: 'Брати', es: 'tomar', pos: 'irregular_verbs' },
-    { en: 'leave', ru: 'Оставлять', uk: 'Залишати', es: 'dejar', pos: 'irregular_verbs' },
-    { en: 'hear', ru: 'Слышать', uk: 'Чути', es: 'oír', pos: 'irregular_verbs' },
-    { en: 'mention', ru: 'Упоминать', uk: 'Згадувати', es: 'mencionar', pos: 'verbs' },
-    { en: 'reply', ru: 'Отвечать', uk: 'Відповідати', es: 'responder', pos: 'verbs' },
+    { en: 'everything', ru: 'Всё (вещи / события)', uk: 'Усе (речі / події)', es: 'todo', pos: 'pronouns' },
+    { en: 'wrong', ru: 'Неверный; неправильный', uk: 'Невірний; неправильний', es: 'incorrecto', pos: 'adjectives' },
+    { en: 'strange', ru: 'Странный', uk: 'Дивний', es: 'extraño', pos: 'adjectives' },
+    { en: 'ready', ru: 'Готовый', uk: 'Готовий', es: 'listo', pos: 'adjectives' },
+    { en: 'sure', ru: 'Уверенный', uk: 'Впевнений', es: 'seguro', pos: 'adjectives' },
+    { en: 'happen', ru: 'Происходить', uk: 'Відбуватися', es: 'pasar', pos: 'verbs' },
+    { en: 'need', ru: 'Нуждаться; нужно', uk: 'Потребувати; треба', es: 'necesitar', pos: 'verbs' },
+    { en: 'help', ru: 'Помогать; помощь', uk: 'Допомагати; допомога', es: 'ayudar', pos: 'verbs' },
+    { en: 'order', ru: 'Заказывать; заказ', uk: 'Замовляти; замовлення', es: 'pedir', pos: 'verbs' },
+    { en: 'answer', ru: 'Отвечать; ответ', uk: 'Відповідати; відповідь', es: 'responder', pos: 'verbs' },
     { en: 'explain', ru: 'Объяснять', uk: 'Пояснювати', es: 'explicar', pos: 'verbs' },
-    { en: 'confirm', ru: 'Подтверждать', uk: 'Підтверджувати', es: 'confirmar', pos: 'verbs' },
-    { en: 'warn', ru: 'Предупреждать', uk: 'Попереджати', es: 'advertir', pos: 'verbs' },
-    { en: 'announce', ru: 'Объявлять', uk: 'Оголошувати', es: 'anunciar', pos: 'verbs' },
-    { en: 'remind', ru: 'Напоминать', uk: 'Нагадувати', es: 'recordar', pos: 'verbs' },
-    { en: 'complain', ru: 'Жаловаться', uk: 'Скаржитися', es: 'quejarse', pos: 'verbs' },
-    { en: 'promise', ru: 'Обещать', uk: 'Обіцяти', es: 'prometer', pos: 'verbs' },
+    { en: 'miss', ru: 'Пропускать; скучать', uk: 'Пропускати; сумувати', es: 'perder', pos: 'verbs' },
+    { en: 'arrive', ru: 'Прибывать', uk: 'Прибувати', es: 'llegar', pos: 'verbs' },
+    { en: 'told', ru: 'Сказал(а)', uk: 'Сказав / сказала', es: 'dijo', pos: 'verbs' },
+  ],
+  22: [
+    { en: 'reading', ru: 'Чтение', uk: 'Читання', es: 'leer', pos: 'verbs' },
+    { en: 'cooking', ru: 'Готовка; приготовление', uk: 'Готування', es: 'cocinar', pos: 'verbs' },
+    { en: 'waiting', ru: 'Ожидание; ждать', uk: 'Очікування; чекати', es: 'esperar', pos: 'verbs' },
+    { en: 'learning', ru: 'Изучение; учеба', uk: 'Вивчення; навчання', es: 'aprender', pos: 'verbs' },
+    { en: 'driving', ru: 'Вождение; водить', uk: 'Водіння; водити', es: 'conducir', pos: 'verbs' },
+    { en: 'walking', ru: 'Ходьба; гулять', uk: 'Ходьба; гуляти', es: 'caminar', pos: 'verbs' },
+    { en: 'running', ru: 'Бег; бегать', uk: 'Біг; бігати', es: 'correr', pos: 'verbs' },
+    { en: 'sleeping', ru: 'Сон; спать', uk: 'Сон; спати', es: 'dormir', pos: 'verbs' },
+    { en: 'listening', ru: 'Слушание; слушать', uk: 'Слухання; слухати', es: 'escuchar', pos: 'verbs' },
+    { en: 'speaking', ru: 'Говорение; говорить', uk: 'Говоріння; говорити', es: 'hablar', pos: 'verbs' },
+    { en: 'working', ru: 'Работа; работать', uk: 'Робота; працювати', es: 'trabajar', pos: 'verbs' },
+    { en: 'studying', ru: 'Учеба; учиться', uk: 'Навчання; вчитися', es: 'estudiar', pos: 'verbs' },
+    { en: 'cleaning', ru: 'Уборка; убирать', uk: 'Прибирання; прибирати', es: 'limpiar', pos: 'verbs' },
+    { en: 'helping', ru: 'Помощь; помогать', uk: 'Допомога; допомагати', es: 'ayudar', pos: 'verbs' },
+    { en: 'watching', ru: 'Просмотр; смотреть', uk: 'Перегляд; дивитися', es: 'ver', pos: 'verbs' },
+    { en: 'writing', ru: 'Письмо; писать', uk: 'Письмо; писати', es: 'escribir', pos: 'verbs' },
+    { en: 'traveling', ru: 'Путешествие; путешествовать', uk: 'Подорож; подорожувати', es: 'viajar', pos: 'verbs' },
+    { en: 'spending', ru: 'Трата; тратить', uk: 'Витрата; витрачати', es: 'gastar', pos: 'verbs' },
+    { en: 'wasting', ru: 'Трата зря; тратить зря', uk: 'Марна витрата; витрачати даремно', es: 'desperdiciar', pos: 'verbs' },
+    { en: 'calling', ru: 'Звонок; звонить', uk: 'Дзвінок; дзвонити', es: 'llamar', pos: 'verbs' },
+    { en: 'enjoy', ru: 'Получать удовольствие; любить делать', uk: 'Отримувати задоволення; любити робити', es: 'disfrutar', pos: 'verbs' },
+    { en: 'like', ru: 'Нравиться; любить', uk: 'Подобатися; любити', es: 'gustar', pos: 'verbs' },
+    { en: 'hate', ru: 'Ненавидеть', uk: 'Ненавидіти', es: 'odiar', pos: 'verbs' },
+    { en: 'finish', ru: 'Заканчивать', uk: 'Закінчувати', es: 'terminar', pos: 'verbs' },
+    { en: 'stop', ru: 'Прекращать; переставать', uk: 'Припиняти; переставати', es: 'parar', pos: 'verbs' },
+    { en: 'avoid', ru: 'Избегать', uk: 'Уникати', es: 'evitar', pos: 'verbs' },
+    { en: 'keep', ru: 'Продолжать (делать)', uk: 'Продовжувати (робити)', es: 'seguir', pos: 'verbs' },
+    { en: 'suggest', ru: 'Предлагать', uk: 'Пропонувати', es: 'sugerir', pos: 'verbs' },
+    { en: 'practice', ru: 'Практика', uk: 'Практика', es: 'pr?ctica', pos: 'nouns' },
+    { en: 'useful', ru: 'Полезный', uk: 'Корисний', es: '?til', pos: 'adjectives' },
+    { en: 'dangerous', ru: 'Опасный', uk: 'Небезпечний', es: 'peligroso', pos: 'adjectives' },
+    { en: 'hard', ru: 'Сложный; тяжелый', uk: 'Складний; важкий', es: 'dif?cil', pos: 'adjectives' },
+    { en: 'before', ru: 'До; перед', uk: 'До; перед', es: 'antes de', pos: 'prepositions' },
+    { en: 'after', ru: 'После', uk: 'Після', es: 'despu?s de', pos: 'prepositions' },
+    { en: 'music', ru: 'Музыка', uk: 'Музика', es: 'm?sica', pos: 'nouns' },
+    { en: 'document', ru: 'Документ', uk: 'Документ', es: 'documento', pos: 'nouns' },
+    { en: 'cash', ru: 'Наличные', uk: 'Готівка', es: 'efectivo', pos: 'nouns' },
+    { en: 'phone', ru: 'Телефон', uk: 'Телефон', es: 'tel?fono', pos: 'nouns' },
+    { en: 'food', ru: 'Еда', uk: 'Їжа', es: 'comida', pos: 'nouns' },
+    { en: 'late', ru: 'Опаздывать; поздно', uk: 'Запізнюватися; пізно', es: 'tarde', pos: 'adjectives' },
+  ],
+  23: [
+    { en: 'cleaned', ru: 'Убирается / убран', uk: 'Прибирається', es: 'se limpia / limpiado', pos: 'verbs' },
+    { en: 'checked', ru: 'Проверяется / проверен', uk: 'Перевіряється', es: 'se revisa / revisado', pos: 'verbs' },
+    { en: 'sold', ru: 'Продаётся / продан', uk: 'Продається', es: 'se vende / vendido', pos: 'verbs' },
+    { en: 'cooked', ru: 'Готовится / приготовлен', uk: 'Готується', es: 'se cocina / cocinado', pos: 'verbs' },
+    { en: 'made', ru: 'Делается / сделан', uk: 'Робиться', es: 'se hace / hecho', pos: 'verbs' },
+    { en: 'closed', ru: 'Закрывается / закрыт', uk: 'Зачиняється', es: 'se cierra / cerrado', pos: 'verbs' },
+    { en: 'opened', ru: 'Открывается / открыт', uk: 'Відкривається', es: 'se abre / abierto', pos: 'verbs' },
+    { en: 'sent', ru: 'Отправляется / отправлен', uk: 'Надсилається', es: 'se envía / enviado', pos: 'verbs' },
+    { en: 'used', ru: 'Используется / использован', uk: 'Використовується', es: 'se usa / usado', pos: 'verbs' },
+    { en: 'charged', ru: 'Заряжается / заряжен', uk: 'Заряджається', es: 'se carga / cargado', pos: 'verbs' },
+    { en: 'kept', ru: 'Хранится / хранился', uk: 'Зберігається', es: 'se guarda / guardado', pos: 'verbs' },
+    { en: 'changed', ru: 'Меняется / изменён', uk: 'Змінюється', es: 'se cambia / cambiado', pos: 'verbs' },
+    { en: 'answered', ru: 'Отвечают / дан ответ', uk: 'Відповідають', es: 'se responde / respondido', pos: 'verbs' },
+    { en: 'explained', ru: 'Объясняется / объяснён', uk: 'Пояснюється', es: 'se explica / explicado', pos: 'verbs' },
+    { en: 'discussed', ru: 'Обсуждается / обсуждён', uk: 'Обговорюється', es: 'se discute / discutido', pos: 'verbs' },
+    { en: 'supported', ru: 'Поддерживается / поддержан', uk: 'Підтримується', es: 'se apoya / apoyado', pos: 'verbs' },
+    { en: 'solved', ru: 'Решается / решён', uk: 'Вирішується', es: 'se resuelve / resuelto', pos: 'verbs' },
+    { en: 'finished', ru: 'Заканчивается / закончен', uk: 'Закінчується', es: 'se termina / terminado', pos: 'verbs' },
+    { en: 'invited', ru: 'Приглашается / приглашён', uk: 'Запрошується', es: 'se invita / invitado', pos: 'verbs' },
+    { en: 'called', ru: 'Называется / так называют', uk: 'Називається', es: 'se llama / llamado', pos: 'verbs' },
+    { en: 'signed', ru: 'Подписывается / подписан', uk: 'Підписується', es: 'se firma / firmado', pos: 'verbs' },
+    { en: 'room', ru: 'Комната', uk: 'Кімната', es: 'habitación', pos: 'nouns' },
+    { en: 'documents', ru: 'Документы', uk: 'Документи', es: 'documentos', pos: 'nouns' },
+    { en: 'tickets', ru: 'Билеты', uk: 'Квитки', es: 'entradas / billetes', pos: 'nouns' },
+    { en: 'messages', ru: 'Сообщения', uk: 'Повідомлення', es: 'mensajes', pos: 'nouns' },
+    { en: 'password', ru: 'Пароль', uk: 'Пароль', es: 'contraseña', pos: 'nouns' },
+    { en: 'keys', ru: 'Ключи', uk: 'Ключі', es: 'llaves', pos: 'nouns' },
+    { en: 'problem', ru: 'Проблема', uk: 'Проблема', es: 'problema', pos: 'nouns' },
+    { en: 'plan', ru: 'План', uk: 'План', es: 'plan', pos: 'nouns' },
+    { en: 'ideas', ru: 'Идеи', uk: 'Ідеї', es: 'ideas', pos: 'nouns' },
+    { en: 'rules', ru: 'Правила', uk: 'Правила', es: 'reglas', pos: 'nouns' },
+    { en: 'often', ru: 'Часто', uk: 'Часто', es: 'a menudo', pos: 'adverbs' },
+    { en: 'carefully', ru: 'Внимательно', uk: 'Уважно', es: 'cuidadosamente', pos: 'adverbs' },
+    { en: 'quickly', ru: 'Быстро', uk: 'Швидко', es: 'rápidamente', pos: 'adverbs' },
+    { en: 'clearly', ru: 'Чётко', uk: 'Чітко', es: 'claramente', pos: 'adverbs' },
+    { en: 'on time', ru: 'Вовремя', uk: 'Вчасно', es: 'a tiempo', pos: 'adverbs' },
+    { en: 'send', ru: 'Отправлять', uk: 'Надсилати', es: 'enviar', pos: 'verbs' },
+    { en: 'keep', ru: 'Хранить, держать', uk: 'Зберігати, тримати', es: 'guardar', pos: 'verbs' },
+    { en: 'sell', ru: 'Продавать', uk: 'Продавати', es: 'vender', pos: 'verbs' },
+    { en: 'make', ru: 'Делать', uk: 'Робити', es: 'hacer', pos: 'verbs' },
+    { en: 'hold', ru: 'Держать, проводить', uk: 'Тримати, проводити', es: 'sostener', pos: 'verbs' },
+  ],
+    24: [
+    { en: 'just', ru: 'Только что', uk: 'Щойно', es: 'recién / acabar de', pos: 'adverbs' },
+    { en: 'already', ru: 'Уже', uk: 'Вже', es: 'ya', pos: 'adverbs' },
+    { en: 'yet', ru: 'Ещё (в отриц.) / уже (в вопросе)', uk: 'Ще / вже', es: 'todavía / ya', pos: 'adverbs' },
+    { en: 'ever', ru: 'Когда-нибудь', uk: 'Коли-небудь', es: 'alguna vez', pos: 'adverbs' },
+    { en: 'never', ru: 'Никогда', uk: 'Ніколи', es: 'nunca', pos: 'adverbs' },
+    { en: 'before', ru: 'Раньше', uk: 'Раніше', es: 'antes', pos: 'adverbs' },
+    { en: 'there', ru: 'Там', uk: 'Там', es: 'allí', pos: 'adverbs' },
+    { en: 'arrived', ru: 'Прибыл / пришёл', uk: 'Прибув / прийшов', es: 'llegado', pos: 'verbs' },
+    { en: 'found', ru: 'Нашёл', uk: 'Знайшов', es: 'encontrado', pos: 'verbs' },
+    { en: 'seen', ru: 'Видел', uk: 'Бачив', es: 'visto', pos: 'verbs' },
+    { en: 'sent', ru: 'Отправил', uk: 'Надіслав', es: 'enviado', pos: 'verbs' },
+    { en: 'chosen', ru: 'Выбрал', uk: 'Обрав', es: 'elegido', pos: 'verbs' },
+    { en: 'read', ru: 'Прочитал', uk: 'Прочитав', es: 'leído', pos: 'verbs' },
+    { en: 'done', ru: 'Сделал / завершил', uk: 'Зробив / завершив', es: 'hecho', pos: 'verbs' },
+    { en: 'been', ru: 'Был', uk: 'Був', es: 'estado', pos: 'verbs' },
+    { en: 'made', ru: 'Сделал / создал', uk: 'Зробив / створив', es: 'hecho', pos: 'verbs' },
+    { en: 'met', ru: 'Встретил', uk: 'Зустрів', es: 'conocido', pos: 'verbs' },
+    { en: 'lost', ru: 'Потерял', uk: 'Загубив', es: 'perdido', pos: 'verbs' },
+    { en: 'paid', ru: 'Заплатил', uk: 'Заплатив', es: 'pagado', pos: 'verbs' },
+    { en: 'bought', ru: 'Купил', uk: 'Купив', es: 'comprado', pos: 'verbs' },
+    { en: 'cleaned', ru: 'Убрал', uk: 'Прибрав', es: 'limpiado', pos: 'verbs' },
+    { en: 'changed', ru: 'Изменил', uk: 'Змінив', es: 'cambiado', pos: 'verbs' },
+    { en: 'checked', ru: 'Проверил', uk: 'Перевірив', es: 'revisado', pos: 'verbs' },
+    { en: 'discussed', ru: 'Обсудил', uk: 'Обговорив', es: 'discutido', pos: 'verbs' },
+    { en: 'answered', ru: 'Ответил', uk: 'Відповів', es: 'respondido', pos: 'verbs' },
+    { en: 'visited', ru: 'Навестил / посетил', uk: 'Відвідав', es: 'visitado', pos: 'verbs' },
+    { en: 'used', ru: 'Использовал', uk: 'Використав', es: 'usado', pos: 'verbs' },
+    { en: 'keys', ru: 'Ключи', uk: 'Ключі', es: 'llaves', pos: 'nouns' },
+    { en: 'documents', ru: 'Документы', uk: 'Документи', es: 'documentos', pos: 'nouns' },
+    { en: 'tickets', ru: 'Билеты', uk: 'Квитки', es: 'entradas', pos: 'nouns' },
+    { en: 'messages', ru: 'Сообщения', uk: 'Повідомлення', es: 'mensajes', pos: 'nouns' },
+    { en: 'password', ru: 'Пароль', uk: 'Пароль', es: 'contraseña', pos: 'nouns' },
+    { en: 'option', ru: 'Вариант', uk: 'Варіант', es: 'opción', pos: 'nouns' },
+    { en: 'problem', ru: 'Проблема', uk: 'Проблема', es: 'problema', pos: 'nouns' },
+    { en: 'app', ru: 'Приложение', uk: 'Застосунок', es: 'aplicación', pos: 'nouns' },
+    { en: 'mistakes', ru: 'Ошибки', uk: 'Помилки', es: 'errores', pos: 'nouns' },
+    { en: 'email', ru: 'Письмо / email', uk: 'Лист / email', es: 'correo electrónico', pos: 'nouns' },
+    { en: 'phone', ru: 'Телефон', uk: 'Телефон', es: 'teléfono', pos: 'nouns' },
+    { en: 'dinner', ru: 'Ужин', uk: 'Вечеря', es: 'cena', pos: 'nouns' },
+    { en: 'room', ru: 'Комната', uk: 'Кімната', es: 'habitación', pos: 'nouns' },
+    { en: 'find', ru: 'Находить', uk: 'Знаходити', es: 'encontrar', pos: 'verbs' },
+    { en: 'see', ru: 'Видеть', uk: 'Бачити', es: 'ver', pos: 'verbs' },
+    { en: 'buy', ru: 'Покупать', uk: 'Купувати', es: 'comprar', pos: 'verbs' },
+    { en: 'lose', ru: 'Терять', uk: 'Втрачати', es: 'perder', pos: 'verbs' },
+    { en: 'meet', ru: 'Встретить; познакомиться', uk: 'Зустріти; познайомитися', es: 'conocer', pos: 'verbs' },
+  ],
+    25: [
+    { en: 'was', ru: 'Был (для I/he/she/it)', uk: 'Був', es: 'estaba/estuvo', pos: 'verbs' },
+    { en: 'were', ru: 'Были (для you/we/they)', uk: 'Були', es: 'estabas/estaban', pos: 'verbs' },
+    { en: 'while', ru: 'Пока', uk: 'Поки', es: 'mientras', pos: 'adverbs' },
+    { en: 'when', ru: 'Когда', uk: 'Коли', es: 'cuando', pos: 'adverbs' },
+    { en: 'at that time', ru: 'В тот момент', uk: 'У той момент', es: 'en ese momento', pos: 'adverbs' },
+    { en: 'at noon', ru: 'В полдень', uk: 'Опівдні', es: 'al mediodía', pos: 'adverbs' },
+    { en: 'at midnight', ru: 'В полночь', uk: 'Опівночі', es: 'a medianoche', pos: 'adverbs' },
+    { en: 'last night', ru: 'Прошлой ночью', uk: 'Минулої ночі', es: 'anoche', pos: 'adverbs' },
+    { en: 'yesterday evening', ru: 'Вчера вечером', uk: 'Вчора ввечері', es: 'ayer por la tarde', pos: 'adverbs' },
+    { en: 'working', ru: 'Работал', uk: 'Працював', es: 'trabajando', pos: 'verbs' },
+    { en: 'reading', ru: 'Читал', uk: 'Читав', es: 'leyendo', pos: 'verbs' },
+    { en: 'cooking', ru: 'Готовил', uk: 'Готував', es: 'cocinando', pos: 'verbs' },
+    { en: 'writing', ru: 'Писал', uk: 'Писав', es: 'escribiendo', pos: 'verbs' },
+    { en: 'waiting', ru: 'Ждал', uk: 'Чекав', es: 'esperando', pos: 'verbs' },
+    { en: 'watching', ru: 'Смотрел', uk: 'Дивився', es: 'viendo', pos: 'verbs' },
+    { en: 'looking for', ru: 'Искал', uk: 'Шукав', es: 'buscando', pos: 'verbs' },
+    { en: 'talking', ru: 'Разговаривал', uk: 'Розмовляв', es: 'hablando', pos: 'verbs' },
+    { en: 'driving', ru: 'Ехал / вёл машину', uk: 'Їхав / вів машину', es: 'conduciendo', pos: 'verbs' },
+    { en: 'cleaning', ru: 'Убирал', uk: 'Прибирав', es: 'limpiando', pos: 'verbs' },
+    { en: 'checking', ru: 'Проверял', uk: 'Перевіряв', es: 'revisando', pos: 'verbs' },
+    { en: 'walking', ru: 'Шёл / гулял', uk: 'Йшов / гуляв', es: 'caminando', pos: 'verbs' },
+    { en: 'listening', ru: 'Слушал', uk: 'Слухав', es: 'escuchando', pos: 'verbs' },
+    { en: 'speaking', ru: 'Говорил', uk: 'Говорив', es: 'hablando', pos: 'verbs' },
+    { en: 'studying', ru: 'Занимался', uk: 'Навчався', es: 'estudiando', pos: 'verbs' },
+    { en: 'sleeping', ru: 'Спал', uk: 'Спав', es: 'durmiendo', pos: 'verbs' },
+    { en: 'eating', ru: 'Ел', uk: 'Їв', es: 'comiendo', pos: 'verbs' },
+    { en: 'crying', ru: 'Плакала', uk: 'Плакала', es: 'llorando', pos: 'verbs' },
+    { en: 'raining', ru: 'Шёл дождь', uk: 'Йшов дощ', es: 'lloviendo', pos: 'verbs' },
+    { en: 'outside', ru: 'Снаружи / на улице', uk: 'Надворі', es: 'afuera', pos: 'adverbs' },
+    { en: 'fast', ru: 'Быстро', uk: 'Швидко', es: 'rápido', pos: 'adverbs' },
+    { en: 'then', ru: 'Тогда', uk: 'Тоді', es: 'entonces', pos: 'adverbs' },
+    { en: 'near', ru: 'Рядом / у', uk: 'Поруч / біля', es: 'cerca de', pos: 'adverbs' },
+    { en: 'keys', ru: 'Ключи', uk: 'Ключі', es: 'llaves', pos: 'nouns' },
+    { en: 'documents', ru: 'Документы', uk: 'Документи', es: 'documentos', pos: 'nouns' },
+    { en: 'tickets', ru: 'Билеты', uk: 'Квитки', es: 'entradas', pos: 'nouns' },
+    { en: 'phone', ru: 'Телефон', uk: 'Телефон', es: 'teléfono', pos: 'nouns' },
+    { en: 'bag', ru: 'Сумка', uk: 'Сумка', es: 'bolsa', pos: 'nouns' },
+    { en: 'problem', ru: 'Проблема', uk: 'Проблема', es: 'problema', pos: 'nouns' },
+    { en: 'knock', ru: 'Стучать', uk: 'Стукати', es: 'llamar (a la puerta)', pos: 'verbs' },
+    { en: 'bus', ru: 'Автобус', uk: 'Автобус', es: 'autobús', pos: 'nouns' },
+  ],
+    26: [
+    { en: 'if', ru: 'Если', uk: 'Якщо', es: 'si', pos: 'adverbs' },
+    { en: 'will', ru: 'Будет / сделает (будущее)', uk: 'Буде / зробить', es: 'will (futuro)', pos: 'verbs' },
+    { en: 'faster', ru: 'Быстрее', uk: 'Швидше', es: 'más rápido', pos: 'adverbs' },
+    { en: 'improve', ru: 'Улучшаться', uk: 'Покращуватися', es: 'mejorar', pos: 'verbs' },
+    { en: 'happen', ru: 'Происходить', uk: 'Траплятися', es: 'ocurrir', pos: 'verbs' },
+    { en: 'miss', ru: 'Пропустить', uk: 'Пропустити', es: 'perderse', pos: 'verbs' },
+    { en: 'restart', ru: 'Перезапустить', uk: 'Перезапустити', es: 'reiniciar', pos: 'verbs' },
+    { en: 'button', ru: 'Кнопка', uk: 'Кнопка', es: 'botón', pos: 'nouns' },
+    { en: 'less', ru: 'Меньше', uk: 'Менше', es: 'menos', pos: 'adverbs' },
+    { en: 'tired', ru: 'Уставший', uk: 'Стомлений', es: 'cansado', pos: 'adjectives' },
+    { en: 'rest', ru: 'Отдыхать', uk: 'Відпочивати', es: 'descansar', pos: 'verbs' },
+    { en: 'fix', ru: 'Исправить', uk: 'Виправити', es: 'corregir', pos: 'verbs' },
+    { en: 'mistake', ru: 'Ошибка', uk: 'Помилка', es: 'error', pos: 'nouns' },
+    { en: 'news', ru: 'Новости', uk: 'Новини', es: 'noticias', pos: 'nouns' },
+    { en: 'ourselves', ru: 'Сами', uk: 'Самі', es: 'nosotros mismos', pos: 'pronouns' },
+    { en: 'without', ru: 'Без', uk: 'Без', es: 'sin', pos: 'adverbs' },
+    { en: 'save money', ru: 'Сэкономить деньги', uk: 'Заощадити гроші', es: 'ahorrar dinero', pos: 'verbs' },
+    { en: 'stay home', ru: 'Остаться дома', uk: 'Залишитися вдома', es: 'quedarse en casa', pos: 'verbs' },
+    { en: 'come back', ru: 'Вернуться', uk: 'Повернутися', es: 'volver', pos: 'verbs' },
+    { en: 'invite', ru: 'Приглашать', uk: 'Запрошувати', es: 'invitar', pos: 'verbs' },
+    { en: 'arrive', ru: 'Прибывать', uk: 'Прибувати', es: 'llegar', pos: 'verbs' },
+    { en: 'heat', ru: 'Нагревать', uk: 'Нагрівати', es: 'calentar', pos: 'verbs' },
+    { en: 'press', ru: 'Нажимать', uk: 'Натискати', es: 'presionar', pos: 'verbs' },
+    { en: 'tell', ru: 'Сказать / рассказать', uk: 'Сказати / розповісти', es: 'decir / contar', pos: 'verbs' },
+  ],
+    27: [
+    { en: 'explain', ru: 'Объяснять', uk: 'Пояснювати', es: 'explicar', pos: 'verbs' },
     { en: 'admit', ru: 'Признавать', uk: 'Визнавати', es: 'admitir', pos: 'verbs' },
-    { en: 'report', ru: 'Сообщать', uk: 'Повідомляти', es: 'informar', pos: 'verbs' },
-    { en: 'state', ru: 'Утверждать', uk: 'Стверджувати', es: 'afirmar', pos: 'verbs' },
-    { en: 'notice', ru: 'Замечать', uk: 'Помічати', es: 'notar', pos: 'verbs' },
+    { en: 'promise', ru: 'Обещать', uk: 'Обіцяти', es: 'prometer', pos: 'verbs' },
+    { en: 'warn', ru: 'Предупреждать', uk: 'Попереджати', es: 'advertir', pos: 'verbs' },
+    { en: 'reply', ru: 'Отвечать', uk: 'Відповідати', es: 'responder', pos: 'verbs' },
+    { en: 'would', ru: 'Бы / Будет (косвен.)', uk: 'Б / Буде (косв.)', es: 'condicional', pos: 'verbs' },
+    { en: 'could', ru: 'Мог(ла)', uk: 'Міг(ла)', es: 'podría', pos: 'verbs' },
+    { en: 'busy', ru: 'Занятой', uk: 'Зайнятий', es: 'ocupado', pos: 'adjectives' },
+    { en: 'ready', ru: 'Готовый', uk: 'Готовий', es: 'listo', pos: 'adjectives' },
+    { en: 'wrong', ru: 'Неправильный', uk: 'Неправильний', es: 'equivocado', pos: 'adjectives' },
+    { en: 'dangerous', ru: 'Опасный', uk: 'Небезпечний', es: 'peligroso', pos: 'adjectives' },
+    { en: 'important', ru: 'Важный', uk: 'Важливий', es: 'importante', pos: 'adjectives' },
+    { en: 'experienced', ru: 'Опытный', uk: 'Досвідчений', es: 'experimentado', pos: 'adjectives' },
+    { en: 'reliable', ru: 'Надежный', uk: 'Надійний', es: 'confiable', pos: 'adjectives' },
+    { en: 'honest', ru: 'Честный', uk: 'Чесний', es: 'honesto', pos: 'adjectives' },
+    { en: 'okay', ru: 'В порядке', uk: 'Гаразд', es: 'bien', pos: 'adverbs' },
+    { en: 'later', ru: 'Позже', uk: 'Пізніше', es: 'más tarde', pos: 'adverbs' },
+    { en: 'soon', ru: 'Скоро', uk: 'Скоро', es: 'pronto', pos: 'adverbs' },
+    { en: 'still', ru: 'Всё ещё', uk: 'Ще', es: 'todavía', pos: 'adverbs' },
     { en: 'contract', ru: 'Контракт', uk: 'Контракт', es: 'contrato', pos: 'nouns' },
     { en: 'document', ru: 'Документ', uk: 'Документ', es: 'documento', pos: 'nouns' },
     { en: 'password', ru: 'Пароль', uk: 'Пароль', es: 'contraseña', pos: 'nouns' },
-    { en: 'invitation', ru: 'Приглашение', uk: 'Запрошення', es: 'invitación', pos: 'nouns' },
-    { en: 'wallet', ru: 'Кошелек', uk: 'Гаманець', es: 'cartera', pos: 'nouns' },
-    { en: 'witness', ru: 'Свидетель', uk: 'Свідок', es: 'testigo', pos: 'nouns' },
-    { en: 'instruction', ru: 'Инструкция', uk: 'Інструкція', es: 'instrucción', pos: 'nouns' },
-    { en: 'painting', ru: 'Картина', uk: 'Картина', es: 'cuadro', pos: 'nouns' },
-    { en: 'exhibition', ru: 'Выставка', uk: 'Виставка', es: 'exposición', pos: 'nouns' },
-    { en: 'experienced', ru: 'Опытный', uk: 'Досвідчений', es: 'experimentado', pos: 'adjectives' },
-    { en: 'reliable', ru: 'Надежный', uk: 'Надійний', es: 'confiable', pos: 'adjectives' },
-    { en: 'polite', ru: 'Вежливый', uk: 'Ввічливий', es: 'educado', pos: 'adjectives' },
-    { en: 'attentive', ru: 'Внимательный', uk: 'Уважний', es: 'atento', pos: 'adjectives' },
-    { en: 'qualified', ru: 'Квалифицированный', uk: 'Кваліфікований', es: 'cualificado', pos: 'adjectives' },
-    { en: 'strict', ru: 'Строгий', uk: 'Суворий', es: 'estricto', pos: 'adjectives' },
-    { en: 'honest', ru: 'Честный', uk: 'Чесний', es: 'honesto', pos: 'adjectives' },
-    { en: 'immediately', ru: 'Немедленно', uk: 'Негайно', es: 'inmediatamente', pos: 'adverbs' },
-    { en: 'previously', ru: 'Ранее', uk: 'Раніше', es: 'anteriormente', pos: 'adverbs' },
+    { en: 'meeting', ru: 'Встреча', uk: 'Зустріч', es: 'reunión', pos: 'nouns' },
+    { en: 'report', ru: 'Отчет', uk: 'Звіт', es: 'informe', pos: 'nouns' },
+    { en: 'problem', ru: 'Проблема', uk: 'Проблема', es: 'problema', pos: 'nouns' },
+    { en: 'everything', ru: 'Всё', uk: 'Все', es: 'todo', pos: 'pronouns' },
+    { en: 'nothing', ru: 'Ничего', uk: 'Нічого', es: 'nada', pos: 'pronouns' },
   ],
   28: [
-    { en: 'achieve', ru: 'Достигать', uk: 'Досягати', es: 'lograr', pos: 'verbs' },
-    { en: 'introduce', ru: 'Представлять; представляться', uk: 'Представляти; представлятися', es: 'presentar', pos: 'verbs' },
-    { en: 'force', ru: 'Заставлять', uk: 'Змушувати', es: 'forzar', pos: 'verbs' },
-    { en: 'treat', ru: 'Баловать; обращаться (с кем-л.)', uk: 'Балувати; ставитися (до когось)', es: 'mimar; tratar', pos: 'verbs' },
-    { en: 'control', ru: 'Контролировать', uk: 'Контролювати', es: 'controlar', pos: 'verbs' },
-    { en: 'behave', ru: 'Вести себя', uk: 'Поводитися', es: 'comportarse', pos: 'verbs' },
-    { en: 'allow', ru: 'Позволять', uk: 'Дозволяти', es: 'permitir', pos: 'verbs' },
-    { en: 'hurt', ru: 'Ранить; болеть', uk: 'Ранити; боліти', es: 'herir; doler', pos: 'irregular_verbs' },
-    { en: 'ambitious', ru: 'Амбициозный', uk: 'Амбітний', es: 'ambicioso', pos: 'adjectives' },
-    { en: 'challenging', ru: 'Сложный, трудный', uk: 'Складний, важкий', es: 'desafiante', pos: 'adjectives' },
-    { en: 'digital', ru: 'Цифровой', uk: 'Цифровий', es: 'digital', pos: 'adjectives' },
-    { en: 'calm', ru: 'Спокойный', uk: 'Спокійний', es: 'tranquilo', pos: 'adjectives' },
-    { en: 'sincere', ru: 'Искренний', uk: 'Щирий', es: 'sincero', pos: 'adjectives' },
-    { en: 'distant', ru: 'Далёкий; отдалённый', uk: 'Далекий; віддалений', es: 'distante', pos: 'adjectives' },
-    { en: 'goal', ru: 'Цель', uk: 'Мета', es: 'meta', pos: 'nouns' },
-    { en: 'blade', ru: 'Лезвие', uk: 'Лезо', es: 'cuchilla', pos: 'nouns' },
-    { en: 'politician', ru: 'Политик', uk: 'Політик', es: 'político', pos: 'nouns' },
-    { en: 'committee', ru: 'Комитет', uk: 'Комітет', es: 'comité', pos: 'nouns' },
-    { en: 'modesty', ru: 'Скромность', uk: 'Скромність', es: 'modestia', pos: 'nouns' },
-    { en: 'campaign', ru: 'Кампания', uk: 'Кампанія', es: 'campaña', pos: 'nouns' },
-    { en: 'seatbelt', ru: 'Ремень безопасности', uk: 'Ремінь безпеки', es: 'cinturón de seguridad', pos: 'nouns' },
-    { en: 'thoroughly', ru: 'Тщательно', uk: 'Ретельно', es: 'minuciosamente', pos: 'adverbs' },
-    { en: 'meal', ru: 'Прием пищи', uk: 'Прийом їжі', es: 'comida', pos: 'nouns' },
-    { en: 'proud', ru: 'Гордый', uk: 'Гордий', es: 'orgulloso', pos: 'adjectives' },
-    { en: 'marathon', ru: 'Марафон', uk: 'Марафон', es: 'maratón', pos: 'nouns' },
-    { en: 'again', ru: 'Снова', uk: 'Знову', es: 'de nuevo', pos: 'adverbs' },
-    { en: 'tough', ru: 'Трудный / жёсткий', uk: 'Важкий / жорсткий', es: 'difícil', pos: 'adjectives' },
-    { en: 'decided', ru: 'Решил(а)', uk: 'Вирішив(ла)', es: 'decidió', pos: 'verbs' },
-    { en: 'praises', ru: 'Хвалит; похвала', uk: 'Хвалить; похвала', es: 'alaba; elogios', pos: 'verbs' },
-    { en: 'study', ru: 'Исследование / занятия', uk: 'Дослідження / заняття', es: 'estudio', pos: 'nouns' },
-    { en: 'world', ru: 'Мир', uk: 'Світ', es: 'mundo', pos: 'nouns' },
-    { en: 'shaves', ru: 'Бреется (он)', uk: 'Голиться (він)', es: 'se afeita', pos: 'verbs' },
-    { en: 'taught', ru: 'Учил, преподавал', uk: 'Вчив, викладав', es: 'enseñó', pos: 'verbs' },
-    { en: 'stay', ru: 'Оставаться; пребывание', uk: 'Залишатися; перебування', es: 'permanecer', pos: 'verbs' },
-    { en: 'critical', ru: 'Критический; критичный', uk: 'Критичний; критичний (важливий)', es: 'crítico', pos: 'adjectives' },
-    { en: 'expert', ru: 'Эксперт', uk: 'Експерт', es: 'experto', pos: 'nouns' },
-    { en: 'field', ru: 'Поле, область', uk: 'Поле, галузь', es: 'campo', pos: 'nouns' },
-    { en: 'dissatisfied', ru: 'Недовольный', uk: 'Невдоволений', es: 'insatisfecho', pos: 'adjectives' },
-    { en: 'citizen', ru: 'Гражданин', uk: 'Громадянин', es: 'ciudadano', pos: 'nouns' },
-    { en: 'case', ru: 'Случай; дело; кейс', uk: 'Випадок; справа', es: 'caso', pos: 'nouns' },
-    { en: 'reminds', ru: 'Напоминает', uk: 'Нагадує', es: 'recuerda', pos: 'verbs' },
-    { en: 'exam', ru: 'Экзамен', uk: 'Екзамен', es: 'examen', pos: 'nouns' },
-    { en: 'active', ru: 'Активный', uk: 'Активний', es: 'activo', pos: 'adjectives' },
-    { en: 'volunteer', ru: 'Волонтёр', uk: 'Волонтер', es: 'voluntario', pos: 'nouns' },
-    { en: 'leader', ru: 'Лидер', uk: 'Лідер', es: 'líder', pos: 'nouns' },
-    { en: 'creative', ru: 'Творческий', uk: 'Творчий', es: 'creativo', pos: 'adjectives' },
-    { en: 'speech', ru: 'Выступление; речь', uk: 'Виступ; промова', es: 'discurso', pos: 'nouns' },
-    { en: 'lazy', ru: 'Ленивый', uk: 'Ледачий', es: 'perezoso', pos: 'adjectives' },
-    { en: 'boy', ru: 'Мальчик', uk: 'Хлопчик', es: 'chico', pos: 'nouns' },
-    { en: 'blames', ru: 'Винит', uk: 'Звинувачує', es: 'culpa', pos: 'verbs' },
-    { en: 'annoying', ru: 'Раздражающий', uk: 'Дратівливий', es: 'irritante', pos: 'adjectives' },
+    { en: 'myself', ru: 'Себя / сам (я)', uk: 'Себе / сам (я)', es: 'me mismo', pos: 'pronouns' },
+    { en: 'yourself', ru: 'Себя / сам (ты/вы)', uk: 'Себе / сам (ти/ви)', es: 'te mismo', pos: 'pronouns' },
+    { en: 'himself', ru: 'Себя / сам (он)', uk: 'Себе / сам (він)', es: 'se mismo', pos: 'pronouns' },
+    { en: 'herself', ru: 'Себя / сама', uk: 'Себе / сама', es: 'se misma', pos: 'pronouns' },
+    { en: 'itself', ru: 'Себя / само', uk: 'Себе / само', es: 'se mismo', pos: 'pronouns' },
+    { en: 'ourselves', ru: 'Себя / сами (мы)', uk: 'Себе / самі (ми)', es: 'nos mismos', pos: 'pronouns' },
+    { en: 'yourselves', ru: 'Себя / сами (вы)', uk: 'Себе / самі (ви)', es: 'os mismos', pos: 'pronouns' },
+    { en: 'themselves', ru: 'Себя / сами (они)', uk: 'Себе / самі (вони)', es: 'se mismos', pos: 'pronouns' },
+    { en: 'prepare', ru: 'Подготовиться', uk: 'Підготуватися', es: 'preparar', pos: 'verbs' },
+    { en: 'protect', ru: 'Защитить себя', uk: 'Захистити себе', es: 'proteger', pos: 'verbs' },
+    { en: 'control', ru: 'Контролировать себя', uk: 'Контролювати себе', es: 'controlar', pos: 'verbs' },
+    { en: 'force', ru: 'Заставить себя', uk: 'Змусити себе', es: 'forzar', pos: 'verbs' },
+    { en: 'forgive', ru: 'Простить себя', uk: 'Пробачити себе', es: 'perdonar', pos: 'verbs' },
+    { en: 'blame', ru: 'Винить себя', uk: 'Звинувачувати себе', es: 'culpar', pos: 'verbs' },
+    { en: 'stop', ru: 'Остановить себя', uk: 'Зупинити себе', es: 'parar', pos: 'verbs' },
+    { en: 'believe', ru: 'Верить в себя', uk: 'Вірити в себе', es: 'creer', pos: 'verbs' },
+    { en: 'trust', ru: 'Доверять себе', uk: 'Довіряти собі', es: 'confiar', pos: 'verbs' },
+    { en: 'remind', ru: 'Напомнить себе', uk: 'Нагадати собі', es: 'recordar', pos: 'verbs' },
+    { en: 'ask', ru: 'Спросить себя', uk: 'Запитати себе', es: 'preguntar', pos: 'verbs' },
+    { en: 'truth', ru: 'Правда', uk: 'Правда', es: 'verdad', pos: 'nouns' },
+    { en: 'dinner', ru: 'Ужин', uk: 'Вечеря', es: 'cena', pos: 'nouns' },
+    { en: 'room', ru: 'Комната', uk: 'Кімната', es: 'habitación', pos: 'nouns' },
+    { en: 'question', ru: 'Вопрос', uk: 'Питання', es: 'pregunta', pos: 'nouns' },
+    { en: 'why', ru: 'Почему', uk: 'Чому', es: 'por qué', pos: 'adverbs' },
+    { en: 'rest', ru: 'Отдыхать', uk: 'Відпочивати', es: 'descansar', pos: 'verbs' },
+    { en: 'take care of', ru: 'Заботиться о', uk: 'Піклуватися про', es: 'cuidar de', pos: 'verbs' },
   ],
   29: [
-    { en: 'achievement', ru: 'Достижение', uk: 'Досягнення', es: 'logro', pos: 'nouns' },
-    { en: 'ancient', ru: 'Древний', uk: 'Древній', es: 'antiguo', pos: 'adjectives' },
-    { en: 'appetizer', ru: 'Закуска', uk: 'Закуска', es: 'aperitivo', pos: 'nouns' },
-    { en: 'architect', ru: 'Архитектор', uk: 'Архітектор', es: 'arquitecto', pos: 'nouns' },
-    { en: 'attic', ru: 'Чердак', uk: 'Горище', es: 'ático', pos: 'nouns' },
-    { en: 'bitter', ru: 'Горький', uk: 'Гіркий', es: 'amargo', pos: 'adjectives' },
-    { en: 'blueprint', ru: 'Чертеж', uk: 'Креслення', es: 'plano', pos: 'nouns' },
-    { en: 'classical', ru: 'Классический', uk: 'Класичний', es: 'clásico', pos: 'adjectives' },
-    { en: 'conference', ru: 'Конференция', uk: 'Конференція', es: 'conferencia', pos: 'nouns' },
-    { en: 'design', ru: 'Проектировать', uk: 'Проєктувати', es: 'diseñar', pos: 'verbs' },
-    { en: 'discuss', ru: 'Обсуждать', uk: 'Обговорювати', es: 'comentar', pos: 'verbs' },
-    { en: 'doubt', ru: 'Сомнение; сомневаться', uk: 'Сумнів; сумніватися', es: 'duda; dudar', pos: 'verbs' },
-    { en: 'engineer', ru: 'Инженер', uk: 'Інженер', es: 'ingeniero', pos: 'nouns' },
-    { en: 'entrance', ru: 'Вход', uk: 'Вхід', es: 'entrada', pos: 'nouns' },
-    { en: 'exotic', ru: 'Экзотический', uk: 'Екзотичний', es: 'exótico', pos: 'adjectives' },
-    { en: 'guard', ru: 'Охранник', uk: 'Охоронець', es: 'guardia', pos: 'nouns' },
-    { en: 'indifference', ru: 'Безразличие', uk: 'Байдужість', es: 'indiferencia', pos: 'nouns' },
-    { en: 'landscape', ru: 'Пейзаж', uk: 'Пейзаж', es: 'paisaje', pos: 'nouns' },
-    { en: 'lecture', ru: 'Лекция', uk: 'Лекція', es: 'charla; clase', pos: 'nouns' },
-    { en: 'metropolis', ru: 'Мегаполис', uk: 'Мегаполіс', es: 'metrópoli', pos: 'nouns' },
-    { en: 'novel', ru: 'Роман', uk: 'Роман', es: 'novela', pos: 'nouns' },
-    { en: 'prestigious', ru: 'Престижный', uk: 'Престижний', es: 'prestigioso', pos: 'adjectives' },
-    { en: 'rare', ru: 'Редкий', uk: 'Рідкісний', es: 'poco común', pos: 'adjectives' },
-    { en: 'strategy', ru: 'Стратегия', uk: 'Стратегія', es: 'estrategia', pos: 'nouns' },
-    { en: 'trust', ru: 'Доверять', uk: 'Довіряти', es: 'confiar', pos: 'verbs' },
-    { en: 'unique', ru: 'Уникальный', uk: 'Унікальний', es: 'único', pos: 'adjectives' },
-    { en: 'dwell', ru: 'Обитать', uk: 'Мешкати', es: 'habitar', pos: 'irregular_verbs' },
-    { en: 'limit', ru: 'Ограничивать', uk: 'Обмежувати', es: 'limitar', pos: 'verbs' },
-    { en: 'overcome', ru: 'Преодолевать', uk: 'Долати', es: 'superar', pos: 'irregular_verbs' },
-    { en: 'fly', ru: 'Летать', uk: 'Літати', es: 'volar', pos: 'irregular_verbs' },
-    { en: 'suburb', ru: 'Пригород', uk: 'Передмістя', es: 'suburbio', pos: 'nouns' },
-    { en: 'drought', ru: 'Засуха', uk: 'Посуха', es: 'sequía', pos: 'nouns' },
-    { en: 'temple', ru: 'Храм', uk: 'Храм', es: 'templo', pos: 'nouns' },
-    { en: 'injury', ru: 'Травма', uk: 'Травма', es: 'lesión', pos: 'nouns' },
-    { en: 'mentor', ru: 'Наставник', uk: 'Наставник', es: 'mentor', pos: 'nouns' },
-    { en: 'factory', ru: 'Завод', uk: 'Завод', es: 'fábrica', pos: 'nouns' },
-    { en: 'coast', ru: 'Побережье', uk: 'Узбережжя', es: 'costa', pos: 'nouns' },
-    { en: 'theater', ru: 'Театр', uk: 'Театр', es: 'teatro', pos: 'nouns' },
-    { en: 'marble', ru: 'Мрамор', uk: 'Мармур', es: 'mármol', pos: 'nouns' },
-    { en: 'shelter', ru: 'Приют', uk: 'Притулок', es: 'refugio', pos: 'nouns' },
-    { en: 'council', ru: 'Совет', uk: 'Рада', es: 'consejo', pos: 'nouns' },
-    { en: 'kingdom', ru: 'Королевство', uk: 'Королівство', es: 'reino', pos: 'nouns' },
-    { en: 'victory', ru: 'Победа', uk: 'Перемога', es: 'victoria', pos: 'nouns' },
-    { en: 'humble', ru: 'Скромный', uk: 'Скромний', es: 'humilde', pos: 'adjectives' },
-    { en: 'organic', ru: 'Органический', uk: 'Органічний', es: 'orgánico', pos: 'adjectives' },
-    { en: 'fertile', ru: 'Плодородный', uk: 'Родючий', es: 'fértil', pos: 'adjectives' },
-    { en: 'outstanding', ru: 'Выдающийся', uk: 'Видатний', es: 'sobresaliente', pos: 'adjectives' },
-    { en: 'decisive', ru: 'Решающий', uk: 'Вирішальний', es: 'decisivo', pos: 'adjectives' },
-    { en: 'childhood', ru: 'Детство', uk: 'Дитинство', es: 'infancia', pos: 'nouns' },
-    { en: 'southern', ru: 'Южный', uk: 'Південний', es: 'meridional', pos: 'adjectives' },
-    { en: 'solemn', ru: 'Торжественный', uk: 'Урочистий', es: 'solemne', pos: 'adjectives' },
-    { en: 'cigarette', ru: 'Сигарета', uk: 'Сигарета', es: 'cigarrillo', pos: 'nouns' },
-    { en: 'meditation', ru: 'Медитация', uk: 'Медитація', es: 'meditación', pos: 'nouns' },
-    { en: 'philosophical', ru: 'Философский', uk: 'Філософський', es: 'filosófico', pos: 'adjectives' },
-    { en: 'distance', ru: 'Расстояние', uk: 'Відстань', es: 'distancia', pos: 'nouns' },
-    { en: 'opportunity', ru: 'Возможность', uk: 'Можливість', es: 'oportunidad', pos: 'nouns' },
-    { en: 'opportunities', ru: 'Возможности', uk: 'Можливості', es: 'oportunidades', pos: 'nouns' },
-    { en: 'knee', ru: 'Колено', uk: 'Коліно', es: 'rodilla', pos: 'nouns' },
-    { en: 'development', ru: 'Развитие', uk: 'Розвиток', es: 'desarrollo', pos: 'nouns' },
-    { en: 'antique', ru: 'Антикварный', uk: 'Антикварний', es: 'antiguo', pos: 'adjectives' },
-    { en: 'university', ru: 'Университет', uk: 'Університет', es: 'universidad', pos: 'nouns' },
-    { en: 'universities', ru: 'Университеты', uk: 'Університети', es: 'universidades', pos: 'nouns' },
-    { en: 'loving', ru: 'Любящий, нежный', uk: 'Ласкавий, люблячий', es: 'cariñoso', pos: 'adjectives' },
-    { en: 'award', ru: 'Награда', uk: 'Нагорода', es: 'premio', pos: 'nouns' },
-    { en: 'rescuer', ru: 'Спасатель', uk: 'Рятувальник', es: 'rescatista', pos: 'nouns' },
-    { en: 'dispute', ru: 'Спор', uk: 'Суперечка', es: 'disputa', pos: 'nouns' },
-    { en: 'lend', ru: 'Одолжать', uk: 'Позичати (комусь)', es: 'prestar', pos: 'irregular_verbs' },
-    { en: 'professor', ru: 'Профессор', uk: 'Професор', es: 'profesor', pos: 'nouns' },
-    { en: 'pilot', ru: 'Пилот', uk: 'Пілот', es: 'piloto', pos: 'nouns' },
-    { en: 'due', ru: 'Предстоящий; должный', uk: "Запланований; зобов'язаний", es: 'pendiente; debido', pos: 'adjectives' },
-    { en: 'constant', ru: 'Постоянный', uk: 'Постійний', es: 'constante', pos: 'adjectives' },
-    { en: 'practice', ru: 'Практика; практиковать', uk: 'Практика; практикувати', es: 'práctica', pos: 'nouns' },
-    { en: 'pianist', ru: 'Пианист', uk: 'Піаніст', es: 'pianista', pos: 'nouns' },
-    { en: 'jewelry', ru: 'Ювелирные изделия', uk: 'Ювелірні вироби', es: 'joyas', pos: 'nouns' },
-    { en: 'social', ru: 'Социальный', uk: 'Соціальний', es: 'social', pos: 'adjectives' },
-    { en: 'gathering', ru: 'Собрание', uk: 'Зібрання', es: 'reunión', pos: 'nouns' },
-    { en: 'society', ru: 'Общество', uk: 'Суспільство', es: 'sociedad', pos: 'nouns' },
-    { en: 'curious', ru: 'Любопытный', uk: 'Цікавий', es: 'curioso', pos: 'adjectives' },
-    { en: 'cover', ru: 'Обложка; покрывать', uk: 'Обкладинка; покривати', es: 'cubierta; cubrir', pos: 'nouns' },
-    { en: 'military', ru: 'Военный', uk: 'Воєнний', es: 'militar', pos: 'adjectives' },
-    { en: 'obstacle', ru: 'Препятствие', uk: 'Перешкода', es: 'obstáculo', pos: 'nouns' },
-    { en: 'ultimate', ru: 'Окончательный, в высшей степени', uk: 'Кінцевий, найвищий', es: 'último', pos: 'adjectives' },
-    { en: 'elegant', ru: 'Изящный', uk: 'Елегантний', es: 'elegante', pos: 'adjectives' },
-    { en: 'sculpture', ru: 'Скульптура', uk: 'Скульптура', es: 'escultura', pos: 'nouns' },
-    { en: 'obvious', ru: 'Очевидный', uk: 'Очевидний', es: 'obvio', pos: 'adjectives' },
-    { en: 'surgery', ru: 'Операция (мед.)', uk: 'Операція (мед.)', es: 'cirugía', pos: 'nouns' },
-    { en: 'central', ru: 'Центральный', uk: 'Центральний', es: 'central', pos: 'adjectives' },
-    { en: 'hospital', ru: 'Больница', uk: 'Лікарня', es: 'hospital', pos: 'nouns' },
-    { en: 'devoted', ru: 'Преданный', uk: 'Відданий', es: 'dedicado', pos: 'adjectives' },
-    { en: 'complicated', ru: 'Сложный', uk: 'Складний', es: 'complicado', pos: 'adjectives' },
-    { en: 'fair', ru: 'Справедливый; ярмарка', uk: 'Справедливий; ярмарок', es: 'justo', pos: 'adjectives' },
-    { en: 'prosperous', ru: 'Процветающий', uk: 'Процвітаючий', es: 'próspero', pos: 'adjectives' },
-    { en: 'subtle', ru: 'Тонкий, едва заметный', uk: 'Тонкий, ледь помітний', es: 'sutil', pos: 'adjectives' },
-    { en: 'final', ru: 'Финальный, последний', uk: 'Фінальний, останній', es: 'final', pos: 'adjectives' },
+    { en: 'used to', ru: 'Раньше обычно', uk: 'Раніше зазвичай', es: 'solía', pos: 'verbs' },
+    { en: 'live', ru: 'Жить', uk: 'Жити', es: 'vivir', pos: 'verbs' },
+    { en: 'travel', ru: 'Путешествовать', uk: 'Подорожувати', es: 'viajar', pos: 'verbs' },
+    { en: 'save', ru: 'Экономить', uk: 'Економити', es: 'ahorrar', pos: 'verbs' },
+    { en: 'check', ru: 'Проверять', uk: 'Перевіряти', es: 'revisar', pos: 'verbs' },
+    { en: 'order', ru: 'Заказывать', uk: 'Замовляти', es: 'pedir', pos: 'verbs' },
+    { en: 'shy', ru: 'Стеснительный', uk: "Сором\'язливий", es: 'tímido', pos: 'adjectives' },
+    { en: 'patient', ru: 'Терпеливый', uk: 'Терплячий', es: 'paciente', pos: 'adjectives' },
+    { en: 'confidently', ru: 'Уверенно', uk: 'Впевнено', es: 'con confianza', pos: 'adverbs' },
+    { en: 'slowly', ru: 'Медленно', uk: 'Повільно', es: 'lentamente', pos: 'adverbs' },
+    { en: 'faster', ru: 'Быстрее', uk: 'Швидше', es: 'más rápido', pos: 'adverbs' },
+    { en: 'on time', ru: 'Вовремя', uk: 'Вчасно', es: 'a tiempo', pos: 'adverbs' },
+    { en: 'together', ru: 'Вместе', uk: 'Разом', es: 'juntos', pos: 'adverbs' },
+    { en: 'near', ru: 'Рядом', uk: 'Поруч', es: 'cerca', pos: 'adverbs' },
+    { en: 'mistake', ru: 'Ошибка', uk: 'Помилка', es: 'error', pos: 'nouns' },
+    { en: 'keys', ru: 'Ключи', uk: 'Ключі', es: 'llaves', pos: 'nouns' },
+    { en: 'bag', ru: 'Сумка', uk: 'Сумка', es: 'bolsa', pos: 'nouns' },
+    { en: 'play', ru: 'Играть', uk: 'Грати', es: 'tocar / jugar', pos: 'verbs' },
   ],
   30: [
-    { en: 'documentary', ru: 'Документальный фильм', uk: 'Документальний фільм', es: 'documental', pos: 'nouns' },
-    { en: 'innovative', ru: 'Инновационный', uk: 'Інноваційний', es: 'innovador', pos: 'adjectives' },
-    { en: 'recently', ru: 'Недавно', uk: 'Нещодавно', es: 'recientemente', pos: 'adverbs' },
-    { en: 'lay', ru: 'Класть; лёг (lay)', uk: 'Класти; лежав (форма lie/lay)', es: 'poner', pos: 'irregular_verbs' },
-    { en: 'popular', ru: 'Популярный', uk: 'Популярний', es: 'popular', pos: 'adjectives' },
-    { en: 'graphics', ru: 'Графика (комп.); изображение', uk: 'Графіка (комп.); зображення', es: 'gráficos', pos: 'nouns' },
-    { en: 'exquisite', ru: 'Изысканный', uk: 'Вишуканий', es: 'exquisito', pos: 'adjectives' },
-    { en: 'version', ru: 'Версия', uk: 'Версія', es: 'versión', pos: 'nouns' },
-    { en: 'describes', ru: 'Описывает', uk: 'Описує', es: 'describe', pos: 'verbs' },
-    { en: 'technological', ru: 'Технологический', uk: 'Технологічний', es: 'tecnológico', pos: 'adjectives' },
-    { en: 'chain', ru: 'Цепочка; цепь', uk: 'Ланцюжок; ланцюг', es: 'cadena', pos: 'nouns' },
-    { en: 'girl', ru: 'Девочка, девушка', uk: 'Дівчинка, дівчина', es: 'chica', pos: 'nouns' },
-    { en: 'collapse', ru: 'Обрушиться; рухнуть', uk: 'Обвалитися; зруйнуватися', es: 'colapsar', pos: 'verbs' },
-    { en: 'exhibited', ru: 'Выставил(а)', uk: 'Виставив(ла)', es: 'exhibió', pos: 'verbs' },
-    { en: 'abstract', ru: 'Абстрактный, отвлечённый', uk: 'Абстрактний, відвлечений', es: 'abstracto', pos: 'adjectives' },
-    { en: 'content', ru: 'Содержимое', uk: 'Вміст', es: 'contenido', pos: 'nouns' },
-    { en: 'belonged', ru: 'Принадлежало', uk: 'Належало', es: 'pertenecía', pos: 'verbs' },
-    { en: 'contains', ru: 'Содержит', uk: 'Містить', es: 'contiene', pos: 'verbs' },
-    { en: 'quality', ru: 'Качество', uk: 'Якість', es: 'calidad', pos: 'nouns' },
-    { en: 'recommended', ru: 'Рекомендовал', uk: 'Рекомендував', es: 'recomendado', pos: 'verbs' },
-    { en: 'journalist', ru: 'Журналист', uk: 'Журналіст', es: 'periodista', pos: 'nouns' },
-    { en: 'refused', ru: 'Отказался', uk: 'Відмовився', es: 'rechazado', pos: 'verbs' },
-    { en: 'board', ru: 'Доска; борт; совет', uk: 'Дошка; борт; рада', es: 'junta', pos: 'nouns' },
-    { en: 'thanked', ru: 'Поблагодарил', uk: 'Подякував', es: 'agradecido', pos: 'verbs' },
-    { en: 'analyst', ru: 'Аналитик', uk: 'Аналітик', es: 'analista', pos: 'nouns' },
-    { en: 'detected', ru: 'Обнаружил', uk: 'Виявив', es: 'detectado', pos: 'verbs' },
-    { en: 'audit', ru: 'Аудит, проверка', uk: 'Аудит, перевірка', es: 'auditoría', pos: 'nouns' },
-    { en: 'medical', ru: 'Медицинский', uk: 'Медичний', es: 'médico', pos: 'adjectives' },
-    { en: 'mysterious', ru: 'Загадочный, таинственный', uk: 'Загадковий, таємничий', es: 'misterioso', pos: 'adjectives' },
-    { en: 'electrician', ru: 'Электрик', uk: 'Електрик', es: 'electricista', pos: 'nouns' },
-    { en: 'wiring', ru: 'Проводка (эл.)', uk: 'Проводка (ел.)', es: 'alambrado', pos: 'nouns' },
-    { en: 'exhibit', ru: 'Экспонат', uk: 'Експонат', es: 'exhibición', pos: 'nouns' },
-    { en: 'represent', ru: 'Представлять, олицетворять', uk: 'Представляти, втілювати', es: 'representar', pos: 'verbs' },
-    { en: 'civilization', ru: 'Цивилизация (AmE)', uk: 'Цивілізація (AmE)', es: 'civilización', pos: 'nouns' },
-    { en: 'arranged', ru: 'Организовал, устроил', uk: 'Організував, влаштував', es: 'organizado', pos: 'verbs' },
-    { en: 'cheerful', ru: 'Весёлый', uk: 'Веселий', es: 'alegre', pos: 'adjectives' },
-    { en: 'picnic', ru: 'Пикник', uk: 'Пікнік', es: 'picnic', pos: 'nouns' },
-    { en: 'controversial', ru: 'Спорный', uk: 'Суперечливий', es: 'controversial', pos: 'adjectives' },
-    { en: 'theory', ru: 'Теория', uk: 'Теорія', es: 'teoría', pos: 'nouns' },
-    { en: 'argument', ru: 'Аргумент', uk: 'Аргумент', es: 'argumento', pos: 'nouns' },
-    { en: 'caused', ru: 'Вызвало, привело', uk: 'Викликало, призвело', es: 'causado', pos: 'verbs' },
-    { en: 'latte', ru: 'Латте (кофе)', uk: 'Лате (кава)', es: 'café con leche', pos: 'nouns' },
-    { en: 'spy', ru: 'Шпион', uk: 'Шпигун', es: 'espía', pos: 'nouns' },
-    { en: 'spies', ru: 'Шпионы', uk: 'Шпигуни', es: 'espías', pos: 'nouns' },
-    { en: 'surgeon', ru: 'Хирург', uk: 'Хірург', es: 'cirujano', pos: 'nouns' },
-    { en: 'operation', ru: 'Операция', uk: 'Операція', es: 'operación', pos: 'nouns' },
-    { en: 'human', ru: 'Человеческий, человек', uk: 'Людський, людина', es: 'humano', pos: 'adjectives' },
-    { en: 'jewel', ru: 'Драгоценность', uk: 'Коштовність', es: 'joya', pos: 'nouns' },
-    { en: 'jeweler', ru: 'Ювелир (AmE)', uk: 'Ювелір (AmE: jeweler)', es: 'joyero', pos: 'nouns' },
-    { en: 'edge', ru: 'Край', uk: 'Край', es: 'borde', pos: 'nouns' },
-    { en: 'leading', ru: 'Ведущий, главный', uk: 'Провідний, головний', es: 'principal', pos: 'adjectives' },
-    { en: 'celebrated', ru: 'Праздновал(а)', uk: 'Святкував(ла)', es: 'celebró', pos: 'verbs' },
-    { en: 'author', ru: 'Автор', uk: 'Автор', es: 'autor', pos: 'nouns' },
-    { en: 'published', ru: 'Опубликовали', uk: 'Опублікували', es: 'publicado', pos: 'verbs' },
-    { en: 'landlord', ru: 'Арендодатель', uk: 'Орендодавець', es: 'propietario', pos: 'nouns' },
-    { en: 'action', ru: 'Действие', uk: 'Дія', es: 'acción', pos: 'nouns' },
-    { en: 'prevented', ru: 'Предотвратили', uk: 'Запобігли', es: 'prevenido', pos: 'verbs' },
-    { en: 'terrible', ru: 'Ужасный', uk: 'Жахливий', es: 'horrible', pos: 'adjectives' },
-    { en: 'disaster', ru: 'Катастрофа', uk: 'Катастрофа', es: 'desastre', pos: 'nouns' },
-    { en: 'ceremony', ru: 'Церемония', uk: 'Церемонія', es: 'ceremonia', pos: 'nouns' },
-    { en: 'distinguished', ru: 'Уважаемый; видный', uk: 'Поважаний; видатний', es: 'distinguido', pos: 'adjectives' },
-    { en: 'diploma', ru: 'Диплом', uk: 'Диплом', es: 'diploma', pos: 'nouns' },
-    { en: 'tradition', ru: 'Традиция', uk: 'Традиція', es: 'tradición', pos: 'nouns' },
-    { en: 'preserved', ru: 'Сохранили', uk: 'Зберегли', es: 'en conserva', pos: 'verbs' },
-    { en: 'developed', ru: 'Разработали, развили', uk: 'Розробили, розвинули', es: 'desarrollado', pos: 'verbs' },
-    { en: 'major', ru: 'Крупный, основной; специальность (вуз)', uk: 'Крупний, основний; спеціальність (у виші)', es: 'importante', pos: 'adjectives' },
-    { en: 'company', ru: 'Компания', uk: 'Компанія', es: 'empresa', pos: 'nouns' },
-    { en: 'captain', ru: 'Капитан', uk: 'Капітан', es: 'capitán', pos: 'nouns' },
-    { en: 'navigation', ru: 'Навигация', uk: 'Навігація', es: 'navegación', pos: 'nouns' },
-    { en: 'skill', ru: 'Навык', uk: 'Навичка', es: 'habilidad', pos: 'nouns' },
-    { en: 'storm', ru: 'Буря, шторм', uk: 'Буря, шторм', es: 'tormenta', pos: 'nouns' },
-    { en: 'peaceful', ru: 'Мирный, спокойный', uk: 'Мирний, спокійний', es: 'pacífico', pos: 'adjectives' },
-    { en: 'rose', ru: 'Роза', uk: 'Троянда', es: 'rosa', pos: 'nouns' },
-    { en: 'bloom', ru: 'Цвести', uk: 'Цвісти', es: 'florecer', pos: 'verbs' },
+    { en: 'who', ru: 'Который (про людей)', uk: 'Який / яка / які', es: 'que (personas)', pos: 'pronouns' },
+    { en: 'which', ru: 'Который (про вещи)', uk: 'Який / яке (про речі)', es: 'que (cosas)', pos: 'pronouns' },
+    { en: 'that', ru: 'Который (универсально)', uk: 'Що / який (універсально)', es: 'que', pos: 'pronouns' },
+    { en: 'where', ru: 'Где / в котором', uk: 'Де / в якому', es: 'donde', pos: 'adverbs' },
+    { en: 'whose', ru: 'Чей / чья / чьи', uk: 'Чий / чия / чиї', es: 'cuyo', pos: 'pronouns' },
+    { en: 'explain', ru: 'Объяснять', uk: 'Пояснювати', es: 'explicar', pos: 'verbs' },
+    { en: 'solve', ru: 'Решать', uk: 'Вирішувати', es: 'resolver', pos: 'verbs' },
+    { en: 'invite', ru: 'Приглашать', uk: 'Запрошувати', es: 'invitar', pos: 'verbs' },
+    { en: 'stay', ru: 'Останавливаться', uk: 'Зупинятися', es: 'quedarse', pos: 'verbs' },
+    { en: 'person', ru: 'Человек', uk: 'Людина', es: 'persona', pos: 'nouns' },
+    { en: 'tickets', ru: 'Билеты', uk: 'Квитки', es: 'entradas', pos: 'nouns' },
+    { en: 'plan', ru: 'План', uk: 'План', es: 'plan', pos: 'nouns' },
+    { en: 'hotel', ru: 'Отель', uk: 'Готель', es: 'hotel', pos: 'nouns' },
+    { en: 'bank', ru: 'Банк', uk: 'Банк', es: 'banco', pos: 'nouns' },
+    { en: 'table', ru: 'Стол', uk: 'Стіл', es: 'mesa', pos: 'nouns' },
+    { en: 'nearby', ru: 'Рядом / неподалёку', uk: 'Поруч / неподалік', es: 'cerca', pos: 'adverbs' },
+    { en: 'correctly', ru: 'Правильно', uk: 'Правильно', es: 'correctamente', pos: 'adverbs' },
+    { en: 'carefully', ru: 'Внимательно', uk: 'Уважно', es: 'con cuidado', pos: 'adverbs' },
   ],
   31: [
     { en: 'demand', ru: 'Требовать', uk: 'Вимагати', es: 'exigir', pos: 'verbs' },
     { en: 'conduct', ru: 'Проводить', uk: 'Проводити', es: 'dirigir', pos: 'verbs' },
     { en: 'verify', ru: 'Проверять', uk: 'Перевіряти', es: 'verificar', pos: 'verbs' },
-    { en: 'shake', ru: 'Трясти', uk: 'Трусити', es: 'agitar', pos: 'irregular_verbs' },
     { en: 'carpenter', ru: 'Плотник', uk: 'Тесляр', es: 'carpintero', pos: 'nouns' },
     { en: 'supplier', ru: 'Поставщик', uk: 'Постачальник', es: 'proveedor', pos: 'nouns' },
     { en: 'tenant', ru: 'Жилец', uk: 'Мешканець', es: 'arrendatario', pos: 'nouns' },
     { en: 'thesis', ru: 'Диссертация', uk: 'Дисертація', es: 'tesis', pos: 'nouns' },
     { en: 'tremor', ru: 'Толчок', uk: 'Поштовх', es: 'temblor', pos: 'nouns' },
-    { en: 'injection', ru: 'Инъекция', uk: "Ін'єкція", es: 'inyección', pos: 'nouns' },
+    { en: 'injection', ru: 'Инъекция', uk: "Ін\'єкція", es: 'inyección', pos: 'nouns' },
     { en: 'forecast', ru: 'Прогноз', uk: 'Прогноз', es: 'pronóstico', pos: 'nouns' },
     { en: 'furious', ru: 'Разъяренный', uk: 'Розлючений', es: 'furioso', pos: 'adjectives' },
     { en: 'pale', ru: 'Бледный', uk: 'Блідий', es: 'pálido', pos: 'adjectives' },
@@ -1834,7 +1678,6 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'flight', ru: 'Полёт, рейс', uk: 'Політ, рейс', es: 'vuelo', pos: 'nouns' },
     { en: 'procedure', ru: 'Процедура', uk: 'Процедура', es: 'procedimiento', pos: 'nouns' },
     { en: 'raindrop', ru: 'Капля дождя', uk: 'Крапля дощу', es: 'gota de agua', pos: 'nouns' },
-    { en: 'fall', ru: 'Падать; осень (AmE fall)', uk: 'Падати; осінь (AmE fall)', es: 'caer', pos: 'irregular_verbs' },
     { en: 'shoulder', ru: 'Плечо', uk: 'Плече', es: 'hombro', pos: 'nouns' },
     { en: 'jazz', ru: 'Джаз', uk: 'Джаз', es: 'jazz', pos: 'nouns' },
     { en: 'composition', ru: 'Сочинение, состав', uk: 'Твір, склад', es: 'composición', pos: 'nouns' },
@@ -1864,109 +1707,121 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'square', ru: 'Площадь, квадратный', uk: 'Площа, квадратний', es: 'cuadrado', pos: 'nouns' },
     { en: 'steam', ru: 'Пар', uk: 'Пар', es: 'vapor', pos: 'nouns' },
     { en: 'mayor', ru: 'Мэр', uk: 'Мер', es: 'alcalde', pos: 'nouns' },
-    { en: 'hit', ru: 'Ударять; хит', uk: 'Вдаряти; хіт', es: 'golpear', pos: 'verbs' },
     { en: 'arm', ru: 'Рука (от плеча до кисти)', uk: 'Рука (від плеча до кисті)', es: 'brazo', pos: 'nouns' },
     { en: 'hand', ru: 'Рука (кисть)', uk: 'Рука (кисть)', es: 'mano', pos: 'nouns' },
     { en: 'bare', ru: 'Голый, оголённый', uk: 'Голий, оголений', es: 'desnudo', pos: 'adjectives' },
+    { en: 'child', ru: 'Ребёнок', uk: 'Дитина', es: 'niño', pos: 'nouns' },
+    { en: 'chocolate', ru: 'Шоколадный', uk: 'Шоколадний', es: 'de chocolate', pos: 'adjectives' },
+    { en: 'cake', ru: 'Торт', uk: 'Торт', es: 'pastel', pos: 'nouns' },
+    { en: 'little', ru: 'Маленький', uk: 'Маленький', es: 'pequeño', pos: 'adjectives' },
+    { en: 'notice', ru: 'Замечать', uk: 'Помічати', es: 'notar', pos: 'verbs' },
+    { en: 'shout', ru: 'Кричать', uk: 'Кричати', es: 'gritar', pos: 'verbs' },
+    { en: 'loud', ru: 'Громкий', uk: 'Гучний', es: 'fuerte / alto', pos: 'adjectives' },
+    { en: 'bright', ru: 'Яркий', uk: 'Яскравий', es: 'brillante', pos: 'adjectives' },
+    { en: 'hill', ru: 'Холм', uk: 'Пагорб', es: 'colina', pos: 'nouns' },
+    { en: 'lazy', ru: 'Ленивый', uk: 'Лінивий', es: 'perezoso', pos: 'adjectives' },
+    { en: 'manager', ru: 'Менеджер', uk: 'Менеджер', es: 'gerente', pos: 'nouns' },
+    { en: 'worker', ru: 'Работник', uk: 'Працівник', es: 'trabajador', pos: 'nouns' },
+    { en: 'necessary', ru: 'Необходимый', uk: 'Необхідний', es: 'necesario', pos: 'adjectives' },
+    { en: 'construction', ru: 'Строительный', uk: 'Будівельний', es: 'de construcción', pos: 'adjectives' },
+    { en: 'materials', ru: 'Материалы', uk: 'Матеріали', es: 'materiales', pos: 'nouns' },
+    { en: 'foreign', ru: 'Иностранный', uk: 'Іноземний', es: 'extranjero', pos: 'adjectives' },
+    { en: 'inspect', ru: 'Проверять / осматривать', uk: 'Перевіряти / оглядати', es: 'inspeccionar', pos: 'verbs' },
+    { en: 'modern', ru: 'Современный', uk: 'Сучасний', es: 'moderno', pos: 'adjectives' },
+    { en: 'chemical', ru: 'Химический', uk: 'Хімічний', es: 'químico', pos: 'adjectives' },
+    { en: 'pierce', ru: 'Прокалывать', uk: 'Проколювати', es: 'perforar', pos: 'verbs' },
+    { en: 'thick', ru: 'Толстый', uk: 'Товстий', es: 'grueso', pos: 'adjectives' },
+    { en: 'protective', ru: 'Защитный', uk: 'Захисний', es: 'protector', pos: 'adjectives' },
+    { en: 'young', ru: 'Молодой', uk: 'Молодий', es: 'joven', pos: 'adjectives' },
+    { en: 'secret', ru: 'Секретный', uk: 'Таємний', es: 'secreto', pos: 'adjectives' },
+    { en: 'government', ru: 'Правительство', uk: 'Уряд', es: 'gobierno', pos: 'nouns' },
+    { en: 'farmer', ru: 'Фермер', uk: 'Фермер', es: 'agricultor', pos: 'nouns' },
+    { en: 'irrigation', ru: 'Ирригационный', uk: 'Зрошувальний', es: 'de riego', pos: 'adjectives' },
+    { en: 'system', ru: 'Система', uk: 'Система', es: 'sistema', pos: 'nouns' },
+    { en: 'customer', ru: 'Клиент', uk: 'Клієнт', es: 'cliente', pos: 'nouns' },
+    { en: 'immediate', ru: 'Немедленный', uk: 'Негайний', es: 'inmediato', pos: 'adjectives' },
+    { en: 'woolen', ru: 'Шерстяной', uk: 'Вовняний', es: 'de lana', pos: 'adjectives' },
+    { en: 'gold', ru: 'Золотой', uk: 'Золотий', es: 'de oro', pos: 'adjectives' },
+    { en: 'coin', ru: 'Монета', uk: 'Монета', es: 'moneda', pos: 'nouns' },
+    { en: 'wise', ru: 'Мудрый', uk: 'Мудрий', es: 'sabio', pos: 'adjectives' },
+    { en: 'mentor', ru: 'Наставник', uk: 'Наставник', es: 'mentor', pos: 'nouns' },
+    { en: 'talented', ru: 'Талантливый', uk: 'Талановитий', es: 'talentoso', pos: 'adjectives' },
+    { en: 'perform', ru: 'Исполнять', uk: 'Виконувати', es: 'interpretar', pos: 'verbs' },
+    { en: 'burn', ru: 'Жечь / обжигать', uk: 'Пекти / обпікати', es: 'quemar', pos: 'verbs' },
+    { en: 'local', ru: 'Местный', uk: 'Місцевий', es: 'local', pos: 'adjectives' },
+    { en: 'interview', ru: 'Брать интервью', uk: 'Брати інтерв\'ю', es: 'entrevistar', pos: 'verbs' },
+    { en: 'knee', ru: 'Колено', uk: 'Коліно', es: 'rodilla', pos: 'nouns' },
+    { en: 'engineer', ru: 'Инженер', uk: 'Інженер', es: 'ingeniero', pos: 'nouns' },
+    { en: 'test', ru: 'Тестировать', uk: 'Тестувати', es: 'probar', pos: 'verbs' },
+    { en: 'solar', ru: 'Солнечный', uk: 'Сонячний', es: 'solar', pos: 'adjectives' },
+    { en: 'reach', ru: 'Достигать', uk: 'Досягати', es: 'alcanzar', pos: 'verbs' },
+    { en: 'eyes', ru: 'Глаза', uk: 'Очі', es: 'ojos', pos: 'nouns' },
+    { en: 'tall', ru: 'Высокий (о росте)', uk: 'Високий (про зріст)', es: 'alto', pos: 'adjectives' },
+    { en: 'crowded', ru: 'Многолюдный', uk: 'Людний', es: 'concurrido', pos: 'adjectives' },
+    { en: 'brave', ru: 'Смелый', uk: 'Хоробрий', es: 'valiente', pos: 'adjectives' },
+    { en: 'panicked', ru: 'Охваченный паникой', uk: 'Охоплений панікою', es: 'en pánico', pos: 'adjectives' },
+    { en: 'family', ru: 'Семья', uk: 'Родина', es: 'familia', pos: 'nouns' },
+    { en: 'follow', ru: 'Следовать / идти за', uk: 'Слідувати / іти за', es: 'seguir', pos: 'verbs' },
+    { en: 'couple', ru: 'Пара', uk: 'Пара', es: 'pareja', pos: 'nouns' },
+    { en: 'candidate', ru: 'Кандидат', uk: 'Кандидат', es: 'candidato', pos: 'nouns' },
+    { en: 'artist', ru: 'Художник', uk: 'Художник', es: 'artista', pos: 'nouns' },
+    { en: 'massive', ru: 'Огромный / массивный', uk: 'Величезний / масивний', es: 'masivo', pos: 'adjectives' },
+    { en: 'push', ru: 'Толкать', uk: 'Штовхати', es: 'empujar', pos: 'verbs' },
+    { en: 'list', ru: 'Список', uk: 'Список', es: 'lista', pos: 'nouns' },
+    { en: 'nurse', ru: 'Медсестра', uk: 'Медсестра', es: 'enfermera', pos: 'nouns' },
+    { en: 'bitter', ru: 'Горький', uk: 'Гіркий', es: 'amargo', pos: 'adjectives' },
+    { en: 'drop', ru: 'Ронять', uk: 'Кидати / ронити', es: 'dejar caer', pos: 'verbs' },
+    { en: 'metal', ru: 'Металлический', uk: 'Металевий', es: 'metálico', pos: 'adjectives' },
+    { en: 'storm', ru: 'Ливень / шторм', uk: 'Злива / шторм', es: 'tormenta', pos: 'nouns' },
+    { en: 'wild', ru: 'Дикий', uk: 'Дикий', es: 'salvaje', pos: 'adjectives' },
+    { en: 'horse', ru: 'Лошадь', uk: 'Кінь', es: 'caballo', pos: 'nouns' },
+    { en: 'jump', ru: 'Прыгать', uk: 'Стрибати', es: 'saltar', pos: 'verbs' },
+    { en: 'high', ru: 'Высокий (по высоте)', uk: 'Високий (за висотою)', es: 'alto', pos: 'adjectives' },
+    { en: 'judge', ru: 'Судья', uk: 'Суддя', es: 'juez', pos: 'nouns' },
+    { en: 'announce', ru: 'Объявлять', uk: 'Оголошувати', es: 'anunciar', pos: 'verbs' },
+    { en: 'surprising', ru: 'Удивительный', uk: 'Дивовижний', es: 'sorprendente', pos: 'adjectives' },
+    { en: 'whole', ru: 'Весь / целый', uk: 'Весь / цілий', es: 'entero', pos: 'adjectives' },
+    { en: 'helpful', ru: 'Полезный / готовый помочь', uk: 'Корисний / готовий допомогти', es: 'útil', pos: 'adjectives' },
+    { en: 'tourist', ru: 'Турист', uk: 'Турист', es: 'turista', pos: 'nouns' },
+    { en: 'firm', ru: 'Строгий / твёрдый', uk: 'Суворий / твердий', es: 'firme', pos: 'adjectives' },
+    { en: 'employee', ru: 'Сотрудник', uk: 'Працівник / співробітник', es: 'empleado', pos: 'nouns' },
+    { en: 'boring', ru: 'Скучный', uk: 'Нудний', es: 'aburrido', pos: 'adjectives' },
+    { en: 'skilled', ru: 'Опытный / умелый', uk: 'Досвідчений / вмілий', es: 'hábil', pos: 'adjectives' },
+    { en: 'let', ru: 'Позволил(а) / позволять', uk: 'Дозволив / дозволила; дозволяти', es: 'dejó / permitir', pos: 'verbs' },
   ],
   32: [
-    // Словарь урока 32 (LESSON_32_VOCABULARY) + смысловые формы из фраз (00_rules.md)
-    { en: 'tedious', ru: 'Скучный (утомительный)', uk: 'Нудний (втомлюючий)', es: 'tedioso', pos: 'adjectives' },
-    { en: 'innovative', ru: 'Инновационный', uk: 'Інноваційний', es: 'innovador', pos: 'adjectives' },
-    { en: 'steep', ru: 'Крутой', uk: 'Стрімкий', es: 'empinado', pos: 'adjectives' },
-    { en: 'cliff', ru: 'Утёс, крутой обрыв', uk: 'Урвище, крутий обрив', es: 'acantilado', pos: 'nouns' },
-    { en: 'equipment', ru: 'Оборудование', uk: 'Обладнання', es: 'equipo', pos: 'nouns' },
-    { en: 'cautious', ru: 'Осторожный', uk: 'Обережний', es: 'prudente, cauteloso', pos: 'adjectives' },
-    { en: 'narrow', ru: 'Узкий', uk: 'Вузький', es: 'estrecho', pos: 'adjectives' },
-    { en: 'research', ru: 'Исследование', uk: 'Дослідження', es: 'investigación', pos: 'nouns' },
-    { en: 'avoid', ru: 'Избегать', uk: 'Уникати', es: 'evitar', pos: 'verbs' },
-    { en: 'warehouse', ru: 'Склад', uk: 'Склад', es: 'almacén', pos: 'nouns' },
-    { en: 'goods', ru: 'Товары', uk: 'Товари', es: 'mercancías, bienes', pos: 'nouns' },
-    { en: 'vital', ru: 'Жизненно важный', uk: 'Життєво важливий', es: 'vital', pos: 'adjectives' },
-    { en: 'accidentally', ru: 'Случайно', uk: 'Випадково', es: 'accidentalmente', pos: 'adverbs' },
-    { en: 'intern', ru: 'Стажер', uk: 'Стажер', es: 'becario, practicante', pos: 'nouns' },
-    { en: 'opinion', ru: 'Мнение', uk: 'Думка', es: 'opinión', pos: 'nouns' },
-    { en: 'confidential', ru: 'Конфиденциальный', uk: 'Конфіденційний', es: 'confidencial', pos: 'adjectives' },
-    { en: 'accurate', ru: 'Точный', uk: 'Точний', es: 'preciso', pos: 'adjectives' },
-    { en: 'testimony', ru: 'Показания', uk: 'Свідчення', es: 'testimonio', pos: 'nouns' },
-    { en: 'trial', ru: 'Судебный процесс', uk: 'Судовий процес', es: 'juicio', pos: 'nouns' },
-    { en: 'volunteer', ru: 'Волонтёр', uk: 'Волонтер', es: 'voluntario', pos: 'nouns' },
-    { en: 'sincere', ru: 'Искренний', uk: 'Щирий', es: 'sincero', pos: 'adjectives' },
-    { en: 'dedication', ru: 'Преданность', uk: 'Відданість', es: 'dedicación', pos: 'nouns' },
-    { en: 'community', ru: 'Сообщество', uk: 'Громада', es: 'comunidad', pos: 'nouns' },
-    { en: 'honesty', ru: 'Честность', uk: 'Чесність', es: 'honestidad', pos: 'nouns' },
-    { en: 'justice', ru: 'Правосудие', uk: 'Правосуддя', es: 'justicia', pos: 'nouns' },
-    { en: 'curious', ru: 'Любопытный', uk: 'Цікавий', es: 'curioso', pos: 'adjectives' },
-    { en: 'negotiation', ru: 'Переговоры', uk: 'Переговори', es: 'negociación', pos: 'nouns' },
-    { en: 'incompetent', ru: 'Некомпетентный', uk: 'Некомпетентний', es: 'incompetente', pos: 'adjectives' },
-    { en: 'warning', ru: 'Предупреждение', uk: 'Попередження', es: 'advertencia', pos: 'nouns' },
-    { en: 'steady', ru: 'Твёрдый (уверенный)', uk: 'Твердий (впевнений)', es: 'firme, seguro', pos: 'adjectives' },
-    { en: 'grateful', ru: 'Признательный', uk: 'Вдячний', es: 'agradecido', pos: 'adjectives' },
-    { en: 'audience', ru: 'Аудитория', uk: 'Аудиторія', es: 'público, asistentes', pos: 'nouns' },
-    { en: 'structure', ru: 'Сооружение', uk: 'Споруда', es: 'estructura', pos: 'nouns' },
-    { en: 'safety', ru: 'Безопасность', uk: 'Безпека', es: 'seguridad', pos: 'nouns' },
-    { en: 'thoroughly', ru: 'Тщательно', uk: 'Ретельно', es: 'a fondo, minuciosamente', pos: 'adverbs' },
-    { en: 'stranger', ru: 'Незнакомец', uk: 'Незнайомець', es: 'desconocido', pos: 'nouns' },
-    { en: 'bold', ru: 'Смелый', uk: 'Сміливий', es: 'audaz', pos: 'adjectives' },
-    { en: 'attic', ru: 'Чердак', uk: 'Горище', es: 'desván, buhardilla', pos: 'nouns' },
-    { en: 'valuable', ru: 'Ценный', uk: 'Цінний', es: 'valioso', pos: 'adjectives' },
-    { en: 'lecture', ru: 'Лекция', uk: 'Лекція', es: 'conferencia, clase magistral', pos: 'nouns' },
-    { en: 'obstacle', ru: 'Препятствие', uk: 'Перешкода', es: 'obstáculo', pos: 'nouns' },
-    { en: 'nimble', ru: 'Ловкий', uk: 'Спритний', es: 'ágil', pos: 'adjectives' },
-    { en: 'statistical', ru: 'Статистический', uk: 'Статистичний', es: 'estadístico', pos: 'adjectives' },
-    { en: 'conclusion', ru: 'Вывод', uk: 'Висновок', es: 'conclusión', pos: 'nouns' },
-    { en: 'irresponsible', ru: 'Безответственный', uk: 'Безвідповідальний', es: 'irresponsable', pos: 'adjectives' },
-    { en: 'vacate', ru: 'Освобождать, покидать (помещение)', uk: 'Звільняти, залишати (приміщення)', es: 'desalojar, dejar libre', pos: 'verbs' },
-    { en: 'potential', ru: 'Потенциальный', uk: 'Потенційний', es: 'potencial', pos: 'adjectives' },
-    { en: 'entirely', ru: 'Полностью', uk: 'Повністю', es: 'enteramente, por completo', pos: 'adverbs' },
-    { en: 'refuse', ru: 'Отказываться', uk: 'Відмовлятися', es: 'negarse (a)', pos: 'verbs' },
-    { en: 'guarantee', ru: 'Гарантировать', uk: 'Гарантувати', es: 'garantizar', pos: 'verbs' },
-    { en: 'mouse', ru: 'Мышь', uk: 'Миша', es: 'ratón', pos: 'nouns' },
-    { en: 'mice', ru: 'Мыши', uk: 'Миші', es: 'ratones', pos: 'nouns' },
-    { en: 'half', ru: 'Половина', uk: 'Половина', es: 'mitad', pos: 'nouns' },
-    { en: 'halves', ru: 'Половины', uk: 'Половини', es: 'mitades', pos: 'nouns' },
-    { en: 'thief', ru: 'Вор', uk: 'Злодій', es: 'ladrón', pos: 'nouns' },
-    { en: 'thieves', ru: 'Воры', uk: 'Злодії', es: 'ladrones', pos: 'nouns' },
-    { en: 'lady', ru: 'Дама', uk: 'Дама', es: 'dama, señora', pos: 'nouns' },
-    { en: 'ladies', ru: 'Дамы', uk: 'Дами', es: 'damas', pos: 'nouns' },
-    { en: 'party', ru: 'Сторона (в суде)', uk: 'Сторона в суді', es: 'parte (jurídica)', pos: 'nouns' },
-    { en: 'parties', ru: 'Стороны (в суде); вечеринки', uk: 'Сторони в суді; вечірки', es: 'partes (jur.); fiestas', pos: 'nouns' },
-    { en: 'aggressively', ru: 'Агрессивно', uk: 'Агресивно', es: 'agresivamente', pos: 'adverbs' },
-    { en: 'analyze', ru: 'Анализировать (AmE)', uk: 'Аналізувати (AmE)', es: 'analizar', pos: 'verbs' },
-    { en: 'arrogantly', ru: 'Высокомерно', uk: 'Зарозуміло', es: 'arrogantemente', pos: 'adverbs' },
-    { en: 'assignment', ru: 'Задание (в т.ч. домашнее)', uk: 'Завдання (у т. ч. домашнє)', es: 'tarea, asignación', pos: 'nouns' },
-    { en: 'awful', ru: 'Ужасный', uk: 'Жахливий', es: 'horrible', pos: 'adjectives' },
-    { en: 'circling', ru: 'Кружит', uk: 'Кружляє', es: 'dando vueltas', pos: 'verbs' },
-    { en: 'climb', ru: 'Влезать, карабкаться', uk: 'Лізти, підніматися', es: 'trepar, escalar', pos: 'verbs' },
-    { en: 'complaining', ru: 'Жалуется', uk: 'Скаржиться', es: 'quejándose', pos: 'verbs' },
-    { en: 'concluded', ru: 'Завершённый; подведён итог', uk: 'Завершений; підбито підсумок', es: 'concluido', pos: 'adjectives' },
-    { en: 'cyberattack', ru: 'Кибератака', uk: 'Кібератака', es: 'ciberataque', pos: 'nouns' },
-    { en: 'damaged', ru: 'Повреждённый', uk: 'Пошкоджений', es: 'dañado', pos: 'adjectives' },
-    { en: 'delicate', ru: 'Хрупкий; деликатный', uk: 'Крихкий; делікатний', es: 'delicado', pos: 'adjectives' },
-    { en: 'depends', ru: 'Зависит', uk: 'Залежить', es: 'depende', pos: 'verbs' },
-    { en: 'destroyed', ru: 'Разрушенный, уничтоженный', uk: 'Зруйнований', es: 'destruido', pos: 'adjectives' },
-    { en: 'detective', ru: 'Детектив', uk: 'Детектив', es: 'detective', pos: 'nouns' },
+    { en: 'be used to', ru: 'Быть привыкшим к', uk: 'Бути звиклим до', es: 'estar acostumbrado a', pos: 'verbs' },
+    { en: 'working', ru: 'Работать (в процессе)', uk: 'Працювати (у процесі)', es: 'trabajando', pos: 'verbs' },
+    { en: 'studying', ru: 'Учиться', uk: 'Вчитися', es: 'estudiando', pos: 'verbs' },
+    { en: 'driving', ru: 'Водить (машину)', uk: 'Керувати (автомобілем)', es: 'conduciendo', pos: 'verbs' },
+    { en: 'living', ru: 'Жить', uk: 'Жити', es: 'viviendo', pos: 'verbs' },
+    { en: 'waking up', ru: 'Просыпаться', uk: 'Прокидатися', es: 'levantarse', pos: 'verbs' },
+    { en: 'person', ru: 'Человек', uk: 'Людина', es: 'persona', pos: 'nouns' },
+    { en: 'bag', ru: 'Сумка', uk: 'Сумка', es: 'bolso', pos: 'nouns' },
+    { en: 'app', ru: 'Приложение', uk: 'Додаток', es: 'aplicación', pos: 'nouns' },
+    { en: 'place', ru: 'Место', uk: 'Місце', es: 'lugar', pos: 'nouns' },
+    { en: 'message', ru: 'Сообщение', uk: 'Повідомлення', es: 'mensaje', pos: 'nouns' },
+    { en: 'keys', ru: 'Ключи', uk: 'Ключі', es: 'llaves', pos: 'nouns' },
+    { en: 'teacher', ru: 'Учитель', uk: 'Вчитель', es: 'profesor', pos: 'nouns' },
+    { en: 'lesson', ru: 'Урок', uk: 'Урок', es: 'lección', pos: 'nouns' },
+    { en: 'documents', ru: 'Документы', uk: 'Документи', es: 'documentos', pos: 'nouns' },
+    { en: 'tickets', ru: 'Билеты', uk: 'Квитки', es: 'entradas', pos: 'nouns' },
+    { en: 'problem', ru: 'Проблема', uk: 'Проблема', es: 'problema', pos: 'nouns' },
+    { en: 'room', ru: 'Комната', uk: 'Кімната', es: 'habitación', pos: 'nouns' },
+    { en: 'phone', ru: 'Телефон', uk: 'Телефон', es: 'teléfono', pos: 'nouns' },
+    { en: 'evening', ru: 'Вечер', uk: 'Вечір', es: 'noche', pos: 'nouns' },
+    { en: 'vibrate', ru: 'Вибрировать', uk: 'Вібрувати', es: 'vibrar', pos: 'verbs' },
+    { en: 'would rather', ru: 'Предпочёл бы', uk: 'Волів би', es: 'preferiría', pos: 'verbs' },
+    { en: 'without', ru: 'Без', uk: 'Без', es: 'sin', pos: 'adverbs' },
     { en: 'earlier', ru: 'Раньше', uk: 'Раніше', es: 'antes', pos: 'adverbs' },
-    { en: 'expect', ru: 'Ожидать', uk: 'Очікувати', es: 'esperar', pos: 'verbs' },
-    { en: 'expected', ru: 'Ожидаемый; ожидали', uk: 'Очікуваний; очікували', es: 'esperado', pos: 'adjectives' },
-    { en: 'extremely', ru: 'Чрезвычайно', uk: 'Надзвичайно', es: 'extremadamente', pos: 'adverbs' },
-    { en: 'frightened', ru: 'Испуганный', uk: 'Переляканий', es: 'asustado', pos: 'adjectives' },
-    { en: 'giving', ru: 'Даёт', uk: 'Дає', es: 'dando', pos: 'verbs' },
-    { en: 'making', ru: 'Делает', uk: 'Робить', es: 'haciendo', pos: 'verbs' },
-    { en: 'nest', ru: 'Гнездо', uk: 'Гніздо', es: 'nido', pos: 'nouns' },
-    { en: 'package', ru: 'Посылка, упаковка', uk: 'Посилка, упаковка', es: 'paquete', pos: 'nouns' },
-    { en: 'rather', ru: 'Скорее; довольно', uk: 'Радше; досить', es: 'bastante; preferiría (would rather)', pos: 'adverbs' },
-    { en: 'rebuilt', ru: 'Восстановленный, перестроенный', uk: 'Відбудований, перебудований', es: 'reconstruido', pos: 'adjectives' },
-    { en: 'relies', ru: 'Полагается, опирается', uk: 'Покладається, спирається', es: 'confía (en)', pos: 'verbs' },
-    { en: 'rely', ru: 'Полагаться, опираться', uk: 'Покладатися, спиратися', es: 'confiar (en)', pos: 'verbs' },
-    { en: 'representative', ru: 'Представитель', uk: 'Представник', es: 'representante', pos: 'nouns' },
-    { en: 'securely', ru: 'Надёжно, безопасно', uk: 'Надійно, безпечно', es: 'de forma segura', pos: 'adverbs' },
-    { en: 'several', ru: 'Несколько', uk: 'Кілька', es: 'varios', pos: 'adjectives' },
-    { en: 'spot', ru: 'Место; тесный участок', uk: 'Місце; тісне місце', es: 'sitio; hueco', pos: 'nouns' },
-    { en: 'surprised', ru: 'Удивлённый', uk: 'Здивований', es: 'sorprendido', pos: 'adjectives' },
-    { en: 'vibration', ru: 'Вибрация', uk: 'Вібрація', es: 'vibración', pos: 'nouns' },
-    { en: 'remote', ru: 'Отдалённый; пульт', uk: 'Віддалений; пульт', es: 'remoto', pos: 'adjectives' },
-    { en: 'region', ru: 'Регион, область', uk: 'Регіон, область', es: 'región', pos: 'nouns' },
+    { en: 'later', ru: 'Позже', uk: 'Пізніше', es: 'más tarde', pos: 'adverbs' },
+    { en: 'better', ru: 'Лучше', uk: 'Краще', es: 'mejor', pos: 'adverbs' },
+    { en: 'since', ru: 'С (момента)', uk: 'З (часу)', es: 'desde', pos: 'adverbs' },
+    { en: 'outside', ru: 'Снаружи', uk: 'На вулиці', es: 'afuera', pos: 'adverbs' },
+    { en: 'quickly', ru: 'Быстро', uk: 'Швидко', es: 'rápidamente', pos: 'adverbs' },
+    { en: 'okay', ru: 'В порядке', uk: 'Гаразд', es: 'bien', pos: 'adverbs' },
+    { en: 'today', ru: 'Сегодня', uk: 'Сьогодні', es: 'hoy', pos: 'adverbs' },
+    { en: 'known', ru: 'Известный / знал(а)', uk: 'Відомий / знав(ла)', es: 'conocido', pos: 'verbs' },
   ],
 };
 
@@ -2010,8 +1865,32 @@ function morphNeighborsForVerbLemma(lower: string, lex: Set<string>): string[] {
   return [...out];
 }
 
+function regularVerbSurfaceLemma(lower: string): string {
+  if (!lower || lower.includes(' ')) return lower;
+  if (lower.endsWith('ies') && lower.length > 4) return lower.slice(0, -3) + 'y';
+  if (/(ches|shes|xes|zes|oes|ses)$/.test(lower) && lower.length > 4) return lower.slice(0, -2);
+  if (lower.endsWith('s') && !lower.endsWith('ss') && lower.length > 3) return lower.slice(0, -1);
+  if (lower.endsWith('ying') && lower.length > 5) return lower.slice(0, -4) + 'ie';
+  if (lower.endsWith('ing') && lower.length > 5) {
+    const stem = lower.slice(0, -3);
+    if (stem.length >= 2 && stem[stem.length - 1] === stem[stem.length - 2]) return stem.slice(0, -1);
+    if (/(iv|ov|av|us|ak|it|at|iz)$/.test(stem)) return stem + 'e';
+    return stem;
+  }
+  if (lower.endsWith('ied') && lower.length > 4) return lower.slice(0, -3) + 'y';
+  if (lower.endsWith('ed') && lower.length > 4) {
+    const noD = lower.slice(0, -1);
+    const noEd = lower.slice(0, -2);
+    if (noD.endsWith('e')) return noD;
+    if (noEd.length >= 2 && noEd[noEd.length - 1] === noEd[noEd.length - 2]) return noEd.slice(0, -1);
+    return noEd;
+  }
+  return lower;
+}
+
 /** Инфинитив / словарная форма для строк из уроков (только pos `verbs`). */
 function canonicalLemmaVerb(lower: string, lex: Set<string>): string {
+  const regularLemma = regularVerbSurfaceLemma(lower);
   const q = [lower];
   const seen = new Set<string>();
   const hits: string[] = [];
@@ -2024,7 +1903,7 @@ function canonicalLemmaVerb(lower: string, lex: Set<string>): string {
       if (!seen.has(nb)) q.push(nb);
     }
   }
-  if (!hits.length) return lower;
+  if (!hits.length) return regularLemma;
   const minLen = Math.min(...hits.map((h) => h.length));
   let cand = hits.filter((h) => h.length === minLen);
   if (cand.length > 1 && cand.includes(lower)) {
@@ -2032,13 +1911,16 @@ function canonicalLemmaVerb(lower: string, lex: Set<string>): string {
     if (others.length) cand = others;
   }
   cand.sort((a, b) => a.localeCompare(b));
-  return cand[0]!;
+  const best = cand[0]!;
+  return best === lower && regularLemma !== lower ? regularLemma : best;
 }
 
 const NOUN_PLURAL_SURFACE_EXCEPTIONS = new Set([
   'belongings',
   'boots',
   'children',
+  'clothes',
+  'contents',
   'genius',
   'glasses',
   'goods',
@@ -2063,13 +1945,46 @@ const NOUN_PLURAL_SURFACE_EXCEPTIONS = new Set([
   'sunglasses',
   'thesis',
   'thieves',
+  'things',
 ]);
 
 const NOUN_LEMMA_GLOSS_OVERRIDES: Record<string, Pick<Word, 'ru' | 'uk' | 'es'>> = {
   book: { ru: 'Книга', uk: 'Книжка', es: 'libro' },
   cookie: { ru: 'Печенье', uk: 'Печиво', es: 'galleta' },
-  name: { ru: 'Имя', uk: "Ім'я", es: 'nombre' },
+  eye: { ru: 'Глаз', uk: 'Око', es: 'ojo' },
+  fact: { ru: 'Факт', uk: 'Факт', es: 'hecho' },
+  material: { ru: 'Материал', uk: 'Матеріал', es: 'material' },
+  name: { ru: 'Имя', uk: "Ім\'я", es: 'nombre' },
+  paper: { ru: 'Бумага', uk: 'Папір', es: 'papel' },
+  thing: { ru: 'Вещь', uk: 'Річ', es: 'cosa' },
   word: { ru: 'Слово', uk: 'Слово', es: 'palabra' },
+};
+
+const IRREGULAR_SURFACE_TO_BASE: Record<string, string> = {
+  went: 'go',
+  gone: 'go',
+  left: 'leave',
+  brought: 'bring',
+  got: 'get',
+  gotten: 'get',
+  chose: 'choose',
+  chosen: 'choose',
+  wrote: 'write',
+  written: 'write',
+  saw: 'see',
+  seen: 'see',
+  said: 'say',
+  gave: 'give',
+  given: 'give',
+  woke: 'wake',
+  woken: 'wake',
+  sat: 'sit',
+  slept: 'sleep',
+  ran: 'run',
+  did: 'do',
+  done: 'do',
+  forgot: 'forget',
+  forgotten: 'forget',
 };
 
 function canonicalLemmaNoun(lower: string): string {
@@ -2108,10 +2023,96 @@ function mergeSurfaceToLemma(w: Word, lemma: string, singularNounGlosses?: Map<s
   };
 }
 
+function coverageTokenCandidates(token: string, verbLex: Set<string>): string[] {
+  const lower = token.trim().toLowerCase();
+  if (!lower) return [];
+  const candidates = new Set<string>([lower, canonicalLemmaNoun(lower), canonicalLemmaVerb(lower, verbLex)]);
+  const irregularBase = IRREGULAR_SURFACE_TO_BASE[lower];
+  if (irregularBase) candidates.add(irregularBase);
+
+  if (/[^aeiou]ies$/.test(lower) && lower.length > 4) candidates.add(lower.slice(0, -3) + 'y');
+  if (lower.endsWith('es') && lower.length > 4) {
+    candidates.add(lower.slice(0, -2));
+    candidates.add(lower.slice(0, -1));
+  }
+  if (lower.endsWith('s') && !lower.endsWith('ss') && lower.length > 3) candidates.add(lower.slice(0, -1));
+  if (lower.endsWith('ied') && lower.length > 4) candidates.add(lower.slice(0, -3) + 'y');
+  if (lower.endsWith('ed') && lower.length > 4) {
+    candidates.add(lower.slice(0, -2));
+    candidates.add(lower.slice(0, -1));
+    if (lower.length > 5 && lower.at(-3) === lower.at(-4)) candidates.add(lower.slice(0, -3));
+  }
+  if (lower.endsWith('ing') && lower.length > 4) {
+    candidates.add(lower.slice(0, -3));
+    candidates.add(lower.slice(0, -3) + 'e');
+    if (lower.length > 6 && lower.at(-4) === lower.at(-5)) candidates.add(lower.slice(0, -4));
+  }
+  if (lower.endsWith('ier') && lower.length > 4) candidates.add(lower.slice(0, -3) + 'y');
+  if (lower.endsWith('iest') && lower.length > 5) candidates.add(lower.slice(0, -4) + 'y');
+  if (lower.endsWith('er') && lower.length > 4) candidates.add(lower.slice(0, -2));
+  if (lower.endsWith('est') && lower.length > 5) candidates.add(lower.slice(0, -3));
+
+  return [...candidates];
+}
+
+function buildGlobalGlossIndex(
+  raw: Record<number, Word[]>,
+  verbLex: Set<string>,
+  singularNounGlosses: Map<string, Word>,
+): Map<string, Word> {
+  const index = new Map<string, Word>();
+  for (const lid of Object.keys(raw).map(Number).sort((a, b) => a - b)) {
+    for (const w of raw[lid] ?? []) {
+      if (w.pos === 'irregular_verbs') continue;
+      const key = bankDictionaryKey(w, verbLex);
+      if (index.has(key)) continue;
+      const row = w.pos === 'verbs' || w.pos === 'nouns'
+        ? mergeSurfaceToLemma(w, canonicalDictionaryEnglish(w, verbLex), singularNounGlosses)
+        : w;
+      index.set(key, row);
+      const compactKey = phraseTextForCoverage(w.en).replace(/\s+/g, '');
+      if (compactKey && !compactKey.includes(' ') && !index.has(compactKey)) index.set(compactKey, row);
+    }
+  }
+  return index;
+}
+
+function knownSupplementalWordsForLesson(
+  lessonId: number,
+  globalGlosses: Map<string, Word>,
+  verbLex: Set<string>,
+): Word[] {
+  const phrases = LESSON_DATA[lessonId]?.phrases ?? [];
+  const found = new Map<string, Word>();
+
+  for (const phrase of phrases) {
+    const text = phraseTextForCoverage(phrase.english);
+    if (!text) continue;
+    const padded = ` ${text} `;
+
+    for (const [key, row] of globalGlosses) {
+      if (key.includes(' ') && padded.includes(` ${key} `)) found.set(key, row);
+    }
+
+    for (const token of text.split(' ')) {
+      for (const candidate of coverageTokenCandidates(token, verbLex)) {
+        const row = globalGlosses.get(candidate);
+        if (row) {
+          found.set(row.en.toLowerCase(), row);
+          break;
+        }
+      }
+    }
+  }
+
+  return [...found.values()];
+}
+
 /**
  * Слова урока для словаря/тренажёра: лемма EN для `verbs`, без повторов леммы внутри урока
  * и без повторов между уроками (первое вхождение по номеру урока сохраняется).
- * Строки `irregular_verbs` в исходнике не меняем — они по-прежнему в массиве урока, но в словаре/тренажёре скрыты.
+ * `irregular_verbs` живут в отдельном источнике для экрана неправильных глаголов; здесь они только поддержаны
+ * на уровне типа для старых сохранений/тестов.
  */
 function buildWordsByLessonForBank(raw: Record<number, Word[]>): Record<number, Word[]> {
   const verbLex = collectVerbSurfaceLexicon(raw);
@@ -2126,39 +2127,73 @@ function buildWordsByLessonForBank(raw: Record<number, Word[]>): Record<number, 
       }
     }
   }
-  const firstOcc = new Map<string, { lessonId: number; index: number }>();
-  for (const lid of lessonIds) {
-    const arr = raw[lid] ?? [];
-    for (let i = 0; i < arr.length; i++) {
-      const w = arr[i]!;
-      if (w.pos === 'irregular_verbs') continue;
-      const k = bankDictionaryKey(w, verbLex);
-      if (!firstOcc.has(k)) firstOcc.set(k, { lessonId: lid, index: i });
-    }
-  }
+  const globalGlosses = buildGlobalGlossIndex(raw, verbLex, singularNounGlosses);
   const out: Record<number, Word[]> = {};
+  const seenAcrossLessons = new Set<string>();
   for (const lid of lessonIds) {
-    const arr = raw[lid] ?? [];
+    const arr = [
+      ...(raw[lid] ?? []),
+      ...supplementalWordsForLesson(lid),
+      ...knownSupplementalWordsForLesson(lid, globalGlosses, verbLex),
+    ];
     const rowOut: Word[] = [];
+    const seenInLesson = new Set<string>();
     for (let i = 0; i < arr.length; i++) {
       const w = arr[i]!;
-      if (w.pos === 'irregular_verbs') {
-        rowOut.push(w);
-        continue;
-      }
-      const k = bankDictionaryKey(w, verbLex);
-      const fo = firstOcc.get(k);
-      if (!fo || fo.lessonId !== lid || fo.index !== i) continue;
-      if (w.pos === 'verbs' || w.pos === 'nouns') {
-        const lemma = canonicalDictionaryEnglish(w, verbLex);
-        rowOut.push(mergeSurfaceToLemma(w, lemma, singularNounGlosses));
-      } else {
-        rowOut.push(w);
-      }
+      const row = w.pos === 'verbs' || w.pos === 'nouns'
+        ? mergeSurfaceToLemma(w, canonicalDictionaryEnglish(w, verbLex), singularNounGlosses)
+        : w;
+      if (!isDictionaryWordAllowed(row)) continue;
+      const k = row.en.trim().toLowerCase();
+      if (seenInLesson.has(k)) continue;
+      seenInLesson.add(k);
+      if (seenAcrossLessons.has(k)) continue;
+      seenAcrossLessons.add(k);
+      rowOut.push(row);
     }
     out[lid] = rowOut;
   }
   return out;
+}
+
+const AUXILIARY_DICTIONARY_BLOCKLIST = new Set([
+  'am',
+  'is',
+  'are',
+  'was',
+  'were',
+  'been',
+  'being',
+  'does',
+  'did',
+  'has',
+  'had',
+  'not',
+  'can',
+  'could',
+  'may',
+  'might',
+  'must',
+  'shall',
+  'should',
+  'will',
+  'would',
+  'past simple',
+  'how much',
+  'last week',
+  'last month',
+  'this morning',
+  'am',
+  'pm',
+]);
+
+function isDictionaryWordAllowed(word: Word): boolean {
+  const en = word.en.trim().toLowerCase();
+  if (!en) return false;
+  if (word.pos === 'irregular_verbs') return false;
+  if (word.pos === 'phrases' || word.pos === 'articles' || word.pos === 'prepositions' || word.pos === 'conjunctions') return false;
+  if (AUXILIARY_DICTIONARY_BLOCKLIST.has(en)) return false;
+  return true;
 }
 
 const WORDS_BY_LESSON_FOR_BANK = buildWordsByLessonForBank(WORDS_BY_LESSON);
@@ -2169,11 +2204,12 @@ const WORDS_BY_LESSON_FOR_BANK = buildWordsByLessonForBank(WORDS_BY_LESSON);
  */
 export function lessonWordBank(lessonId: number): Word[] {
   const raw = WORDS_BY_LESSON_FOR_BANK[lessonId] ?? WORDS_BY_LESSON_FOR_BANK[1]!;
-  const noIrreg = raw.filter((w) => w.pos !== 'irregular_verbs');
+  const noIrreg = raw.filter((w) => w.pos !== 'irregular_verbs' && isDictionaryWordAllowed(w));
   const ens = new Set(noIrreg.map((w) => w.en.toLowerCase()));
   return noIrreg.filter((w) => {
     if (w.pos !== 'verbs') return true;
     const l = w.en.toLowerCase();
+    if (l.length <= 3) return true;
     if (!l.endsWith('s')) return true;
     if (l.endsWith('ss')) return true;
     if (ens.has(l.slice(0, -1))) return false;
@@ -2195,7 +2231,7 @@ const groupByPOS = (words: Word[], lang: Lang) => {
     if (!map[w.pos]) map[w.pos] = [];
     map[w.pos]!.push(w);
   }
-  return (['pronouns','verbs','irregular_verbs','adjectives','adverbs','nouns'] as POS[])
+  return (['phrases','pronouns','verbs','articles','prepositions','conjunctions','adjectives','adverbs','nouns'] as POS[])
     .filter(k => map[k]?.length)
     .map(k => ({
       title: pickTriLang(lang, {
@@ -2234,6 +2270,7 @@ const LEGACY_PLURAL_WORD_COUNT_MERGES: Record<string, string> = {
   friends: 'friend',
   enemies: 'enemy',
   books: 'book',
+  things: 'thing',
   dishes: 'dish',
   keys: 'key',
   letters: 'letter',
@@ -2300,6 +2337,7 @@ const LEGACY_PLURAL_WORD_COUNT_MERGES: Record<string, string> = {
   gloves: 'glove',
   batteries: 'battery',
   papers: 'paper',
+  facts: 'fact',
   terms: 'term',
   people: 'person',
   children: 'child',
@@ -2363,6 +2401,8 @@ const LEGACY_PLURAL_WORD_COUNT_MERGES: Record<string, string> = {
   grapes: 'grape',
   pears: 'pear',
   jewels: 'jewel',
+  materials: 'material',
+  eyes: 'eye',
 };
 
 function mergeLegacyPluralLessonWordCounts(counts: Record<string, number>): { counts: Record<string, number>; dirty: boolean } {
@@ -2452,29 +2492,14 @@ function makeTrainingQueueState(
 ): { counts: Record<string, number>; queue: Card[]; learnedCnt: number } {
   const notLearned = words.filter(w => !initialLearned.includes(w.en));
   const pool = notLearned.length > 0 ? notLearned : words;
-  const cards: Card[] = [];
-  for (const w of pool) {
-    const done = Math.min(initialCounts[w.en] ?? 0, REQUIRED);
-    for (let r = done; r < REQUIRED; r++) {
-      cards.push(buildCard(w, r, pool, lang));
-    }
-  }
+  const cards = pool
+    .filter(w => Math.min(initialCounts[w.en] ?? 0, REQUIRED) < REQUIRED)
+    .map(w => buildCard(w, 0, pool, lang));
   return {
     counts: { ...initialCounts },
     queue: shuffleNoConsecutive(cards),
     learnedCnt: initialLearned.length,
   };
-}
-
-// ── Мини-гексагон ────────────────────────────────────────────────────────────
-// Flat-top hex: flat edges at top/bottom, pointed left/right
-function MiniHex({ filled, partial, size = 16 }: { filled: boolean; partial?: boolean; size?: number }) {
-  const { theme: t, isDark } = useTheme();
-  const w     = size;
-  const h     = w * 0.866;  // √3/2
-  const emptyColor = isDark ? t.bgSurface2 : t.textMuted + '55';
-  const color = filled ? t.correct : partial ? t.correct + '55' : emptyColor;
-  return <FlatTopHexFill width={w} height={h} fill={color} />;
 }
 
 // ── ТРЕНИРОВКА ───────────────────────────────────────────────────────────────
@@ -2485,7 +2510,8 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   const { s } = useLang();
   const router = useRouter();
   const ws = s.words;
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLightTheme = false;
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
   const { energy: currentEnergy, isUnlimited: testerEnergyDisabled, spendOne } = useEnergy();
   const currentEnergyRef = useRef(currentEnergy);
@@ -2504,27 +2530,29 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
   const [queue, setQueue] = useState<Card[]>(() => makeTrainingQueueState(words, initialLearned, initialCounts, lang).queue);
   const [qIdx,       setQIdx]       = useState(0);
   const [chosen,     setChosen]     = useState<string|null>(null);
-  const [dotCount,   setDotCount]   = useState(0); // кружочки – обновляются сразу
   const [totalPts,   setTotalPts]   = useState(0);
   const [learnedCnt, setLearnedCnt] = useState(initialLearned.length);
   const sessionTouchedRef = useRef(false);
-  const prevCardKeyRef = useRef('');
   // Счётчик ошибок на слово в этой сессии (для порога тренера: 2+ ошибки → активация)
   const wordMistakeCountRef = useRef<Record<string, number>>({});
   const [userName,   setUserName]   = useState(userNameProp);
   const [hapticsOn,  setHapticsOn]  = useState(true);
-  const [speechRate, setSpeechRate] = useState(1.0);
+  const [voiceOut,   setVoiceOut]   = useState(true);
+  const [speechRate, setSpeechRate] = useState(0.9);
   const [allDone,    setAllDone]    = useState(false);
+  const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
   const [xpToastVisible, setXpToastVisible] = useState(false);
-  const [xpToastAmount, setXpToastAmount] = useState(3);
-  const xpMultiplierRef = useRef(1);
+  const [xpToastAmount, setXpToastAmount] = useState(POINTS_PER_CORRECT);
+  const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
 
   /** Снизу вверх + фейд; исчезновение — фейд и лёгкий подъём */
   const xpTranslateY = useRef(new Animated.Value(44)).current;
   const xpOpacity = useRef(new Animated.Value(0)).current;
-  const cardShownAt = useRef<number>(Date.now());
-  const showXpToast = (amount: number = 3) => {
-    setXpToastAmount(amount);
+  const showXpToast = (amount: number = POINTS_PER_CORRECT) => {
+    const safeAmount = Number.isFinite(amount) && amount >= 0
+      ? Math.round(amount)
+      : POINTS_PER_CORRECT;
+    setXpToastAmount(safeAmount);
     const rise = 44;
     const easeIn = Easing.out(Easing.cubic);
     const easeOut = Easing.in(Easing.cubic);
@@ -2549,13 +2577,16 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 
   useEffect(() => {
     if (!userNameProp) AsyncStorage.getItem('user_name').then(n => { if(n) setUserName(n); });
-    loadSettings().then(s => { setHapticsOn(s.haptics); setSpeechRate(s.speechRate ?? 1.0); });
-    getCurrentMultiplier().then(m => { xpMultiplierRef.current = m; }).catch(() => {});
+    loadSettings().then(s => { setHapticsOn(s.haptics); setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
   }, [userNameProp]);
 
   useEffect(() => {
     if (!allDone) return;
-    void playActivityCompletionModalSound();
+    let cancelled = false;
+    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current).then((decision) => {
+      if (!cancelled && decision.show) setCoachToast(decision);
+    });
+    return () => { cancelled = true; };
   }, [allDone]);
 
   // AsyncStorage догнал: пересобрать очередь по сохранённому прогрессу, но только пока юзер ещё не ответил.
@@ -2572,18 +2603,9 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     setAllDone(false);
     setTotalPts(0);
     locked.current = false;
-    prevCardKeyRef.current = '';
   }, [wordProgressVersion, words, lang, initialLearned, initialCounts]);
 
   const current: Card | undefined = queue[qIdx % Math.max(queue.length, 1)];
-  React.useEffect(() => {
-    const key = current ? `${current.word.en}:${current.roundIndex}` : '';
-    if (key && key !== prevCardKeyRef.current) {
-      prevCardKeyRef.current = key;
-      setDotCount(counts[current!.word.en] ?? 0);
-      cardShownAt.current = Date.now();
-    }
-  }, [counts, current]);
 
   const handleChoice = async (opt: string) => {
     if (locked.current || chosen !== null || !current) return;
@@ -2598,21 +2620,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     setChosen(opt);
     const isRight = opt === current.correctOption;
     const wordEn = current.word.en;
-
-    if (isRight) {
-      setDotCount(c => Math.min(c + 1, REQUIRED));
-      const prevCount = counts[wordEn] ?? 0;
-      const newCount = prevCount + 1;
-      const wordJustCompleted = newCount >= REQUIRED;
-      const xpThisStep = wordJustCompleted ? POINTS_PER_CORRECT + POINTS_PER_LEARNED : POINTS_PER_CORRECT;
-      const previewMultiplier = await getCurrentMultiplier().catch(() => xpMultiplierRef.current);
-      xpMultiplierRef.current = previewMultiplier;
-      showXpToast(Math.round(xpThisStep * previewMultiplier));
-      setTotalPts(p => p + xpThisStep);
-    }
-
-    // Озвучиваем сразу на текущей карточке, чтобы звук не уезжал на следующий вопрос.
-    speakAudio(wordEn, speechRate);
+    if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (!isRight && hapticsOn) {
       void hapticError();
     }
@@ -2621,8 +2629,9 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       const newQueue = [...queue];
 
       if (isRight) {
+        // Читаем counts через ref чтобы избежать stale closure
         const prevCount = counts[wordEn] ?? 0;
-        const newCount = prevCount + 1;
+        const newCount = prevCount >= REQUIRED ? prevCount : REQUIRED;
         const newCounts = { ...counts, [wordEn]: newCount };
         setCounts(newCounts);
         onCountUpdate(wordEn, newCount);
@@ -2633,16 +2642,17 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         // Удаляем текущую карточку из очереди
         newQueue.splice(qIdx % newQueue.length, 1);
 
-        const wordJustCompleted = newCount >= REQUIRED;
-        if (userName) {
-          void (async () => {
-            try {
-              await registerXP(POINTS_PER_CORRECT, 'vocabulary_learned', userName, lang);
-              if (wordJustCompleted) {
-                await registerXP(POINTS_PER_LEARNED, 'vocabulary_learned', userName, lang);
-              }
-            } catch {}
-          })();
+        const wordJustCompleted = prevCount < REQUIRED && newCount >= REQUIRED;
+        const xpThisStep = vocabularyStepBaseXP(prevCount);
+        if (xpThisStep > 0) {
+          setTotalPts(p => p + xpThisStep);
+          void registerXP(xpThisStep, 'vocabulary_learned', userName, lang)
+            .then((result) => {
+              if (wordJustCompleted) showXpToast(result.finalDelta);
+            })
+            .catch(() => {
+              if (wordJustCompleted) showXpToast(xpThisStep);
+            });
         }
 
         if (wordJustCompleted) {
@@ -2650,7 +2660,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           // Слово выучено — убираем все оставшиеся карточки этого слова из очереди
           const finalQ = newQueue.filter(c => c.word.en !== current.word.en);
           const newLearned = Math.min(learnedCnt + 1, words.length);
-          updateMultipleTaskProgress([{ type: 'words_learned' }, { type: 'daily_active' }]);
+          updateMultipleTaskProgress([{ type: 'words_learned' }]);
           if (finalQ.length === 0) {
             setLearnedCnt(newLearned); setQueue(finalQ); setAllDone(true);
             setChosen(null); locked.current = false;
@@ -2673,16 +2683,22 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         }
       } else {
         // Ошибка — логируем в аналитику и перемещаем карточку вперёд
-        logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick');
+        const mistakeMeta = {
+          tokenText: current.word.en,
+          expected: current.word.en,
+          rawCategory: current.word.pos,
+        };
+        logMistake(current.word.en, lessonId, 'lesson_words', 'wrong_pick', mistakeMeta);
+        wrongMistakesRef.current.push({ phrase: current.word.en, ...mistakeMeta });
         // Тренер: считаем ошибки; при 2-й — активируем слово в очереди
         const wKey = current.word.en;
         const prevCount = wordMistakeCountRef.current[wKey] ?? 0;
         const newCount = prevCount + 1;
         wordMistakeCountRef.current[wKey] = newCount;
         if (newCount === 2) {
-          void activateWordForTrainer(wKey, current.word.ru, current.word.uk, lessonId);
+          void activateWordForTrainer(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos);
         } else {
-          void recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId);
+          void recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos);
         }
         const resetCard = buildCard(current.word, current.roundIndex, words, lang);
         newQueue.splice(qIdx % newQueue.length, 1);
@@ -2715,30 +2731,39 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
 
   const startPractice = () => {
     // Пересобираем очередь со ВСЕМИ словами — прогресс не меняем
-    const cards: Card[] = [];
-    for (const w of words) {
-      for (let r = 0; r < REQUIRED; r++) {
-        cards.push(buildCard(w, r, words, lang));
-      }
-    }
+    const cards = words.map(w => buildCard(w, 0, words, lang));
     setQueue(shuffleNoConsecutive(cards));
     setQIdx(0);
     setChosen(null);
     setLearnedCnt(words.filter(w => (counts[w.en] ?? 0) >= REQUIRED).length);
     setAllDone(false);
+    setCoachToast(null);
+    wrongMistakesRef.current = [];
     locked.current = false;
   };
 
   const progressMetrics = useMemo(() => vocabularyProgressMetrics(words, counts), [words, counts]);
+  const xpToastOverlay = xpToastVisible ? (
+    <Animated.View
+      pointerEvents="none"
+      style={{
+        position: 'absolute', top: 100, alignSelf: 'center',
+        backgroundColor: isLightTheme ? '#92400E' : '#FFC800', borderRadius: 20, paddingHorizontal: 20, paddingVertical: 10,
+        transform: [{ translateY: xpTranslateY }], opacity: xpOpacity, zIndex: 99999, elevation: 24,
+      }}
+    >
+      <Text style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontWeight: '700', fontSize: 16 }}>+{xpToastAmount} XP</Text>
+    </Animated.View>
+  ) : null;
 
   if (allDone || queue.length === 0) return (
-    <>
+    <View style={{ flex: 1 }}>
       <View testID="lesson-words-complete" style={{ flex:1, justifyContent:'center', alignItems:'center', gap:16, padding:20 }}>
         <View style={{ width:80,height:80,borderRadius:40,backgroundColor:t.bgCard,borderWidth:1,borderColor:t.border,justifyContent:'center',alignItems:'center' }}>
           <Ionicons name="checkmark-done-outline" size={36} color={t.correct}/>
         </View>
-        <Text style={{ color:t.textPrimary, fontSize:f.h1, fontWeight:'700' }}>{ws.allLearned}</Text>
-        <Text style={{ color:t.textMuted, fontSize:f.bodyLg }}>{ws.learnedOf(words.length, words.length)}</Text>
+        <Text style={{ color:sx.primary, fontSize:f.h1, fontWeight:'700' }}>{ws.allLearned}</Text>
+        <Text style={{ color:sx.muted, fontSize:f.bodyLg }}>{ws.learnedOf(words.length, words.length)}</Text>
         {totalPts > 0 && (
           <View style={{ flexDirection:'row',alignItems:'center',gap:6,backgroundColor:t.correctBg,borderRadius:10,paddingHorizontal:14,paddingVertical:8 }}>
             <Ionicons name="star" size={16} color={t.correct}/>
@@ -2784,7 +2809,27 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         }}
         confirmVariant="accent"
       />
-    </>
+      {coachToast?.show && (
+        <CoachToast
+          category={coachToast.category}
+          labelRu={coachToast.labelRu}
+          labelUk={coachToast.labelUk}
+          labelEs={coachToast.labelEs}
+          mistakeCount={coachToast.mistakeCount}
+          weaknessScore={coachToast.weaknessScore}
+          priorityScore={coachToast.priorityScore}
+          recoveryScore={coachToast.recoveryScore}
+          focusWords={coachToast.focusWords}
+          microDiagnosisId={coachToast.microDiagnosisId}
+          microLabelRu={coachToast.microLabelRu}
+          microLabelUk={coachToast.microLabelUk}
+          microLabelEs={coachToast.microLabelEs}
+          diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
+          onDismiss={() => setCoachToast(null)}
+        />
+      )}
+      {xpToastOverlay}
+    </View>
   );
 
   if (!current) return null;
@@ -2811,19 +2856,12 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       {/* Прогресс: только % и полоска (счёт по верным ответам); без числовых «шагов» и «выучено» в интерфейсе */}
       <View style={{ width:'100%', marginBottom:14 }}>
         <View style={{ flexDirection:'row', justifyContent:'flex-end', marginBottom:5, alignItems:'flex-start' }}>
-          <Text style={{ color:progressMetrics.pct>0?t.correct:t.textMuted, fontSize:f.label, fontWeight:'600' }}>
+          <Text style={{ color:progressMetrics.pct>0?sx.second:sx.muted, fontSize:f.label, fontWeight:'600' }}>
             {progressMetrics.pct}%
           </Text>
         </View>
-        <View style={{ height:5, backgroundColor:t.border, borderRadius:3, overflow:'hidden' }}>
+        <View style={{ height:5, backgroundColor:sx.ghost, borderRadius:3, overflow:'hidden' }}>
           <View style={{ height:'100%', width:`${progressMetrics.pct}%` as any, backgroundColor:t.correct, borderRadius:3 }}/>
-        </View>
-      </View>
-
-      {/* Гексагоны */}
-      <View style={{ flexDirection:'row', justifyContent:'center', alignItems:'center', marginBottom:18 }}>
-        <View style={{ flexDirection:'row', gap:8 }}>
-          {[0,1,2].map(i => <MiniHex key={i} filled={dotCount > i} size={22} />)}
         </View>
       </View>
 
@@ -2831,14 +2869,14 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       <View style={{ flex:1, justifyContent:'center', alignItems:'center', gap:10 }}>
         {current.roundType === 'context' ? (
           <View style={{ alignItems:'center', gap:10, paddingHorizontal:4 }}>
-            <Text style={{ color:t.textGhost, fontSize:f.sub, letterSpacing:0.5 }}>
+            <Text style={{ color:sx.muted, fontSize:f.sub, letterSpacing:0.5 }}>
               {pickTriLang(lang, { ru: 'Вставьте слово в предложение:', uk: 'Вставте слово у речення:', es: 'Coloca la palabra en la frase:' })}
             </Text>
             <View style={{ backgroundColor: round.bg, borderRadius:16, paddingHorizontal:20, paddingVertical:16, borderWidth:1, borderColor: round.color + '40' }}>
               {(() => {
                 const parts = current.question.split('...');
                 return (
-                  <Text style={{ color:t.textPrimary, fontSize:22, fontWeight:'400', textAlign:'center', lineHeight:32 }}>
+                  <Text style={{ color:sx.primary, fontSize:22, fontWeight:'400', textAlign:'center', lineHeight:32 }}>
                     {parts[0]}
                     <Text style={{ color: round.color, fontWeight:'800', letterSpacing:1 }}>{'___'}</Text>
                     {parts[1] ?? ''}
@@ -2849,7 +2887,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           </View>
         ) : (
           <View style={{ alignItems:'center', gap:8 }}>
-            <Text style={{ color:t.textGhost, fontSize:f.sub, letterSpacing:0.5 }}>
+            <Text style={{ color:sx.muted, fontSize:f.sub, letterSpacing:0.5 }}>
               {pickTriLang(lang, {
                 ru: 'Выберите английский перевод:',
                 uk: 'Оберіть англійський переклад:',
@@ -2857,7 +2895,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
               })}
             </Text>
             <Text
-              style={{ color:t.textPrimary, fontSize:38, fontWeight:'300', textAlign:'center', lineHeight:46, maxWidth:'100%' }}
+              style={{ color:sx.primary, fontSize:38, fontWeight:'300', textAlign:'center', lineHeight:46, maxWidth:'100%' }}
               numberOfLines={4}
               adjustsFontSizeToFit
               minimumFontScale={0.65}
@@ -2911,29 +2949,18 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
             `${pickTriLang(lang, { ru: 'Варианты', uk: 'Варіанти', es: 'Opciones' })}: ${current.options.map(o=>o===current.correctOption?`[✓${o}]`:o).join(' | ')}`,
           ].join('\n')}
           style={{ alignSelf: 'flex-end', marginBottom: 4 }}
+          textColor={sx.muted}
         />
       )}
 
-      {/* XP Toast */}
-      {xpToastVisible && (
-        <Animated.View
-          pointerEvents="none"
-          style={{
-            position: 'absolute', top: 100, alignSelf: 'center',
-            backgroundColor: isLightTheme ? '#92400E' : '#FFC800', borderRadius: 20, paddingHorizontal: 20, paddingVertical: 10,
-            transform: [{ translateY: xpTranslateY }], opacity: xpOpacity, zIndex: 99999, elevation: 24,
-          }}
-        >
-          <Text style={{ color: isLightTheme ? '#FFF3C4' : '#000', fontWeight: '700', fontSize: 16 }}>+{xpToastAmount} XP</Text>
-        </Animated.View>
-      )}
+      {xpToastOverlay}
 
     </View>
   );
 }
 
 // ── СПИСОК ───────────────────────────────────────────────────────────────────
-function WordList({ words, learnedCounts, lang, speechRate, lessonId, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang: Lang; speechRate:number; lessonId?: number; onStartTraining?: () => void; }) {
+function WordList({ words, learnedCounts, lang, lessonId, onStartTraining }: { words:Word[]; learnedCounts:Record<string,number>; lang: Lang; lessonId?: number; onStartTraining?: () => void; }) {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const { theme: t, f, ds, themeMode } = useTheme();
@@ -2957,6 +2984,7 @@ function WordList({ words, learnedCounts, lang, speechRate, lessonId, onStartTra
               es: `Vocabulario de la lección ${lessonId ?? ''}`,
             })}
             style={{ alignSelf: 'flex-end', marginHorizontal: hPad, marginTop: ds.spacing.sm }}
+            textColor={sx.muted}
           />
         }
         ListHeaderComponent={onStartTraining ? (
@@ -2996,13 +3024,14 @@ function WordList({ words, learnedCounts, lang, speechRate, lessonId, onStartTra
                 }}
                 contentInset={{ right: hPad }}
               >
-                <View style={{ flexDirection: 'row', gap: 3, marginRight: ds.spacing.sm, alignItems: 'center', flexShrink: 0 }}>
-                  {[0, 1, 2].map(i => (
-                    <MiniHex key={i} filled={count > i} partial={count > i && count < REQUIRED} size={11} />
-                  ))}
+                <View style={{ width: 20, marginRight: ds.spacing.sm, alignItems: 'center', flexShrink: 0 }}>
+                  {count >= REQUIRED
+                    ? <Ionicons name="checkmark-circle" size={18} color={t.correct} />
+                    : <Ionicons name="ellipse-outline" size={18} color={t.textMuted} />
+                  }
                 </View>
                 <TouchableOpacity
-                  onPress={() => speakAudio(item.en, speechRate)}
+                  onPress={() => speakAudio(item.en, undefined, { language: 'en-US' })}
                   activeOpacity={0.7}
                   style={{ flexShrink: 0, marginRight: ds.spacing.sm }}
                 >
@@ -3036,10 +3065,17 @@ export default function LessonWords() {
   const { theme:t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { s, lang } = useLang();
-  const { energy, maxEnergy, isUnlimited: energyUnlimited } = useEnergy();
+  const { energy, isUnlimited: energyUnlimited } = useEnergy();
   const canTrain = energyUnlimited || energy > 0;
   const { id } = useLocalSearchParams<{ id:string }>();
   const lessonId = parseInt(id || '1', 10);
+  useEffect(() => {
+    let cancelled = false;
+    void shouldBlockLessonAccess(lessonId).then(blocked => {
+      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+    });
+    return () => { cancelled = true; };
+  }, [lessonId, router]);
   const words = useMemo(() => lessonWordBank(lessonId), [lessonId]);
   const storageKey = `lesson${lessonId}`;
   const ws = s.words;
@@ -3060,7 +3096,6 @@ export default function LessonWords() {
   const [learnedCounts, setLearnedCounts] = useState<Record<string,number>>({});
   /** +1 после завершения чтения lessonN_words (в т.ч. пусто) — тренажёр подмешивает прогресс без спиннера. */
   const [wordProgressVersion, setWordProgressVersion] = useState(0);
-  const [listSpeechRate, setListSpeechRate] = useState(1.0);
   const learnedListForTraining = useMemo(
     () => Object.keys(learnedCounts).filter(k => (learnedCounts[k] ?? 0) >= REQUIRED),
     [learnedCounts],
@@ -3107,7 +3142,6 @@ export default function LessonWords() {
         }
       })
       .finally(() => { if (!cancelled) setWordProgressVersion(ver => ver + 1); });
-    loadSettings().then(cfg => setListSpeechRate(cfg.speechRate ?? 1.0));
     return () => { cancelled = true; };
   }, [lessonId, storageKey]);
 
@@ -3119,8 +3153,8 @@ export default function LessonWords() {
         <TouchableOpacity testID="lesson-words-header-back" onPress={() => router.back()}>
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
-        <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600' }}>{ws.title(lessonId)}</Text>
-        <LessonEnergyLightning energyCount={energy} maxEnergy={maxEnergy} shouldShake={false} />
+        <Text style={{ color:sx.primary, fontSize:f.h2, fontWeight:'600', flex:1, textAlign:'center', marginHorizontal:8 }} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.75}>{ws.title(lessonId)}</Text>
+        <View style={{ width:28 }} />
       </View>
 
       <View style={{ flex:1 }}>
@@ -3129,7 +3163,6 @@ export default function LessonWords() {
             words={words}
             learnedCounts={learnedCounts}
             lang={lang}
-            speechRate={listSpeechRate}
             lessonId={lessonId}
             onStartTraining={() => {
               if (!canTrain) {

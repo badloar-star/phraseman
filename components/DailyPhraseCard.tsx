@@ -1,20 +1,27 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { Ionicons } from '@expo/vector-icons';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
-import { getTodayPhrase, getTodayPhraseSync, DailyPhrase } from '../app/daily_phrase_system';
+import { checkAchievements } from '../app/achievements';
+import { getTodayPhrase, getTodayPhraseSync, subscribeTodayPhrase, DailyPhrase } from '../app/daily_phrase_system';
 import AddToFlashcard from './AddToFlashcard';
 
 const DAILY_PHRASE_IMAGES: Record<string, any> = {
   dark:   require('../assets/images/levels/dayly phrase forest.webp'),
+  minimalDark: require('../assets/images/levels/dayly phrase fog.webp'),
+  minimalLight: require('../assets/images/levels/dayly phrase grafit.webp'),
   neon:   require('../assets/images/levels/dayly phrase neon.webp'),
   gold:   require('../assets/images/levels/dayly phrase coral.webp'),
   ocean:  require('../assets/images/levels/dayly phrase ocean.webp'),
   sakura: require('../assets/images/levels/dayly phrase sacura.webp'),
 };
+
+const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;
+
+const USE_EDITORIAL_DAILY_PHRASE = true;
 
 interface Props {
   userLevel?: number;
@@ -25,10 +32,23 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
   const { lang } = useLang();
   const [phrase, setPhrase] = useState<DailyPhrase>(() => getTodayPhraseSync());
   const [expanded, setExpanded] = useState(false);
+  const revealAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     void getTodayPhrase().then(p => { if (p) setPhrase(p); }).catch(() => {});
+    const unsubscribe = subscribeTodayPhrase(p => { if (p) setPhrase(p); });
+    return unsubscribe;
   }, []);
+
+  useEffect(() => {
+    if (!USE_EDITORIAL_DAILY_PHRASE) return;
+    revealAnim.setValue(0);
+    Animated.timing(revealAnim, {
+      toValue: 1,
+      duration: 360,
+      useNativeDriver: true,
+    }).start();
+  }, [expanded, phrase?.date, revealAnim]);
 
   if (!phrase) {
     return <View style={[styles.container, { backgroundColor: t.bgCard }]} />;
@@ -40,6 +60,102 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
   const phraseLiteral = lang === 'uk' ? phrase.literal_uk : phrase.literal;
   const phraseMeaning = lang === 'uk' ? phrase.meaning_uk : phrase.meaning;
   const phraseText = lang === 'uk' ? phrase.text_uk : phrase.text;
+  const dailyPhraseImage = DAILY_PHRASE_IMAGES[themeMode] ?? DAILY_PHRASE_FALLBACK_IMAGE;
+  const revealStyle = {
+    opacity: revealAnim,
+    transform: [{ translateY: revealAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
+  };
+
+  if (USE_EDITORIAL_DAILY_PHRASE) {
+    return (
+      <TouchableOpacity onPress={() => {
+        const opening = !expanded;
+        setExpanded(opening);
+        if (opening) {
+          updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }]).catch(() => {});
+          checkAchievements({ type: 'daily_phrase', action: 'read' }).catch(() => {});
+        }
+      }} activeOpacity={0.9}>
+        <View style={[
+          styles.editorialContainer,
+          {
+            backgroundColor: t.bgCard,
+            borderColor: t.border,
+          },
+        ]}>
+          <View style={styles.editorialHeader}>
+            <View style={[styles.editorialIconBox, { backgroundColor: t.bgSurface2 }]}>
+              {dailyPhraseImage ? (
+                <Image source={dailyPhraseImage} style={{ width: 34, height: 34 }} resizeMode="contain" />
+              ) : (
+                <Ionicons name="chatbubble-ellipses" size={24} color={t.textMuted} />
+              )}
+            </View>
+            <View style={{ flex: 1, minWidth: 0 }}>
+              <Text style={[styles.editorialKicker, { color: t.textMuted, fontSize: f.caption }]}>
+                {triLang(lang, { uk: 'Вислів дня', ru: 'Фраза дня', es: 'Frase del día' })}
+              </Text>
+            </View>
+            <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={19} color={t.textMuted} />
+          </View>
+
+          <Animated.View style={[styles.editorialPhraseWrap, revealStyle]}>
+            <Text style={[styles.editorialPhrase, { color: t.textPrimary, fontSize: f.bodyLg || f.body }]}>
+              {phrase.english}
+            </Text>
+          </Animated.View>
+
+          {expanded && (
+            <Animated.View style={[styles.editorialExpanded, revealStyle]}>
+              <View style={[styles.editorialDivider, { backgroundColor: t.border }]} />
+
+              <View style={styles.editorialSection}>
+                <Text style={[styles.editorialLabel, { color: t.textMuted, fontSize: f.caption }]}>
+                  {labelLiteral}
+                </Text>
+                <Text style={[styles.editorialBody, { color: t.textPrimary, fontSize: f.body }]}>
+                  {phraseLiteral}
+                </Text>
+              </View>
+
+              <View style={styles.editorialSection}>
+                <Text style={[styles.editorialLabel, { color: t.textMuted, fontSize: f.caption }]}>
+                  {labelMeaning}
+                </Text>
+                <Text style={[styles.editorialBody, { color: t.textPrimary, fontSize: f.body }]}>
+                  {phraseMeaning}
+                </Text>
+              </View>
+
+              <View style={[styles.editorialDivider, { backgroundColor: t.border, marginTop: 2 }]} />
+              <Text style={[styles.editorialStory, { color: t.textSecond, fontSize: f.body }]}>
+                {phraseText}
+              </Text>
+
+              {phrase.allowSave !== false && (
+              <View style={{ marginTop: 14, alignItems: 'flex-end' }}>
+                <AddToFlashcard
+                  en={phrase.english}
+                  ru={phrase.meaning}
+                  uk={phraseMeaning}
+                  source="daily_phrase"
+                  sourceId={phrase.id || phrase.date}
+                  size={22}
+                  literalRu={phrase.literal}
+                  literalUk={phrase.literal_uk}
+                  explanationRu={phrase.meaning}
+                  explanationUk={phrase.meaning_uk}
+                  exampleRu={phrase.text}
+                  exampleUk={phrase.text_uk}
+                />
+              </View>
+              )}
+            </Animated.View>
+          )}
+        </View>
+      </TouchableOpacity>
+    );
+  }
 
   return (
     <TouchableOpacity onPress={() => {
@@ -47,6 +163,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
       setExpanded(opening);
       if (opening) {
         updateMultipleTaskProgress([{ type: 'daily_phrase_read', increment: 1 }]).catch(() => {});
+        checkAchievements({ type: 'daily_phrase', action: 'read' }).catch(() => {});
       }
     }} activeOpacity={0.9}>
       <View style={[styles.container, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
@@ -57,7 +174,11 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
         {/* Header */}
         <View style={styles.header}>
           <View style={{ alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 10, backgroundColor: 'transparent' }}>
-            <Image source={DAILY_PHRASE_IMAGES[themeMode]} style={{ width: 36, height: 36 }} resizeMode="contain" />
+            {dailyPhraseImage ? (
+              <Image source={dailyPhraseImage} style={{ width: 36, height: 36 }} resizeMode="contain" />
+            ) : (
+              <Ionicons name="chatbubble-ellipses" size={24} color={t.accent} />
+            )}
           </View>
           <View style={{ flex: 1, marginLeft: 12 }}>
             <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>{triLang(lang, { uk: 'ВИСЛІВ ДНЯ', ru: 'ФРАЗА ДНЯ', es: 'FRASE DEL DÍA' })}</Text>
@@ -107,13 +228,14 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
             </Text>
 
             {/* Save button */}
+            {phrase.allowSave !== false && (
             <View style={{ marginTop: 12, alignItems: 'flex-end' }}>
               <AddToFlashcard
                 en={phrase.english}
                 ru={phrase.meaning}
                 uk={phraseMeaning}
                 source="daily_phrase"
-                sourceId={phrase.date}
+                sourceId={phrase.id || phrase.date}
                 size={22}
                 literalRu={phrase.literal}
                 literalUk={phrase.literal_uk}
@@ -123,6 +245,7 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
                 exampleUk={phrase.text_uk}
               />
             </View>
+            )}
           </View>
         )}
       </View>
@@ -131,6 +254,64 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
 }
 
 const styles = StyleSheet.create({
+  editorialContainer: {
+    borderRadius: 18,
+    padding: 16,
+    marginHorizontal: 16,
+    marginVertical: 12,
+    borderWidth: 1,
+    overflow: 'hidden',
+  },
+  editorialHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  editorialIconBox: {
+    width: 42,
+    height: 42,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  editorialKicker: {
+    fontWeight: '800',
+    letterSpacing: 0.7,
+    textTransform: 'uppercase',
+  },
+  editorialPhraseWrap: {
+    paddingTop: 16,
+  },
+  editorialPhrase: {
+    fontWeight: '800',
+    lineHeight: 27,
+  },
+  editorialExpanded: {
+    marginTop: 14,
+  },
+  editorialDivider: {
+    height: 1,
+    opacity: 0.7,
+    marginBottom: 14,
+  },
+  editorialSection: {
+    marginBottom: 13,
+  },
+  editorialLabel: {
+    fontWeight: '800',
+    letterSpacing: 0.5,
+    textTransform: 'uppercase',
+    marginBottom: 5,
+  },
+  editorialBody: {
+    fontWeight: '500',
+    lineHeight: 22,
+  },
+  editorialStory: {
+    fontWeight: '400',
+    lineHeight: 22,
+    marginTop: 13,
+  },
   container: {
     borderRadius: 20,
     padding: 16,

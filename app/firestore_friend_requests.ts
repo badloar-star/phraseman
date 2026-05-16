@@ -127,8 +127,8 @@ export async function sendFriendRequest(toUid: string): Promise<SendRequestResul
       const reqStatus = reqSnap.data?.()?.status as string | undefined;
       if (reqStatus === 'pending') {
         // Pending request already exists — could be a real pending OR a stale one left
-        // after deleteFriend (batch couldn't delete the other user's request due to security rules).
-        // Check if they're actually friends: if not, the pending doc is stale garbage — overwrite it.
+        // after deleteFriend (batch couldn\'t delete the other user\'s request due to security rules).
+        // Check if they\'re actually friends: if not, the pending doc is stale garbage — overwrite it.
         const [myFriendSnap, theirFriendSnap] = await Promise.all([
           db.collection('users').doc(myUid).collection('friends').doc(toUid).get(),
           db.collection('users').doc(toUid).collection('friends').doc(myUid).get(),
@@ -223,6 +223,14 @@ export async function acceptFriendRequest(fromUid: string): Promise<void> {
     logFriendsHealth('friends:accept_request_failed', e, { action: 'accept_friend_request', myUid, fromUid });
     throw e;
   }
+
+  // Достижения: считаем текущих друзей после принятия заявки
+  try {
+    const { checkAchievements } = await import('./achievements');
+    const friendsSnap = await db.collection('users').doc(myUid).collection('friends').get();
+    const totalFriends = friendsSnap.size;
+    void checkAchievements({ type: 'friend_added', totalFriends });
+  } catch {}
 }
 
 // ── declineFriendRequest ───────────────────────────────────────────────────
@@ -297,7 +305,7 @@ export async function deleteFriend(friendUid: string): Promise<void> {
 
   batch.delete(db.collection('users').doc(myUid).collection('friends').doc(friendUid));
   batch.delete(db.collection('users').doc(friendUid).collection('friends').doc(myUid));
-  // Only delete own request doc — security rules forbid deleting the other user's subcollection.
+  // Only delete own request doc — security rules forbid deleting the other user\'s subcollection.
   // Stale request on their side is handled by sendFriendRequest on next add attempt.
   batch.delete(db.collection('users').doc(myUid).collection('friend_requests').doc(friendUid));
 
@@ -342,7 +350,7 @@ export async function ensureFriendRequestViewerAuthLink(): Promise<void> {
 export type SubscribeFriendsSnapshotMeta = { fromCache: boolean };
 
 /**
- * Real-time listener for the current user's friends collection.
+ * Real-time listener for the current user\'s friends collection.
  *
  * Returns an unsubscribe function. The callback receives the full array of
  * FriendEntry on every snapshot update.

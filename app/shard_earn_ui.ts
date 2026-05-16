@@ -77,7 +77,7 @@ const LABELS: Record<string, { ru: string; uk: string; es: string }> = {
   },
   lessons_5_perfect: {
     ru: 'Пять идеальных уроков подряд — клуб перфекционистов',
-    uk: 'П’ять ідеальних уроків поспіль — клуб перфекціоністів',
+    uk: 'П\'ять ідеальних уроків поспіль — клуб перфекціоністів',
     es: '5 lecciones perfectas seguidas: club de precisión',
   },
   level_gift: {
@@ -119,6 +119,16 @@ const LABELS: Record<string, { ru: string; uk: string; es: string }> = {
     ru: 'Тренажёр предлогов без единой ошибки',
     uk: 'Тренажер прийменників без жодної помилки',
     es: 'Preposiciones a la perfección',
+  },
+  pos_mastery_level: {
+    ru: 'Уровень части речи повышен — персональная отработка принесла награду',
+    uk: 'Рівень частини мови підвищено — персональне тренування принесло нагороду',
+    es: 'Nivel gramatical subido: recompensa por práctica personalizada',
+  },
+  pos_pool_perfect: {
+    ru: 'Диагноз закреплён идеально — слабое место стало заметно крепче',
+    uk: 'Діагноз закріплено ідеально — слабке місце стало помітно міцнішим',
+    es: 'Diagnóstico perfecto: el punto débil ya está más fuerte',
   },
   generic_raw: {
     ru: 'Начисление осколков знаний',

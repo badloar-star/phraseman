@@ -21,8 +21,31 @@ function requireEnvPrefix(name, expectedPrefix) {
   }
 }
 
-requireEnvPrefix('EXPO_PUBLIC_RC_IOS', 'appl_');
-requireEnvPrefix('EXPO_PUBLIC_RC_ANDROID', 'goog_');
+function requireEnvEquals(name, expectedValue) {
+  const value = String(process.env[name] ?? '').trim();
+  if (value !== expectedValue) {
+    throw new Error(
+      `[eas-production-version-gate] ${name} must be ${expectedValue} for production build`,
+    );
+  }
+}
+
+requireEnvEquals('EXPO_PUBLIC_STORE_RELEASE', '1');
+
+if (String(process.env.EXPO_PUBLIC_ENABLE_DEV_TOOLS ?? '').trim() === '1') {
+  throw new Error('[eas-production-version-gate] EXPO_PUBLIC_ENABLE_DEV_TOOLS must not be enabled for production build');
+}
+
+const platform = String(process.env.EAS_BUILD_PLATFORM ?? process.env.EAS_BUILD_PLATFORM_NAME ?? '').trim();
+const isIosBuild = platform === 'ios' || !platform;
+const isAndroidBuild = platform === 'android' || !platform;
+
+if (isIosBuild) {
+  requireEnvPrefix('EXPO_PUBLIC_RC_IOS', 'appl_');
+}
+if (isAndroidBuild) {
+  requireEnvPrefix('EXPO_PUBLIC_RC_ANDROID', 'goog_');
+}
 
 function readAppSnapshot(raw) {
   const j = JSON.parse(raw);
@@ -113,7 +136,7 @@ const versionOk = current.version !== baseline.version;
 const androidOk = current.versionCode > baseline.versionCode;
 const iosOk = current.buildNumber > baseline.buildNumber;
 
-if (!versionOk || !androidOk || !iosOk) {
+if (!versionOk || (isAndroidBuild && !androidOk) || (isIosBuild && !iosOk)) {
   console.error(
     '[eas-production-version-gate] Для EAS production обновите в app.json относительно baseline',
     baselineRef,
@@ -126,4 +149,4 @@ if (!versionOk || !androidOk || !iosOk) {
   process.exit(1);
 }
 
-console.log('[eas-production-version-gate] OK vs', baselineRef, baseline);
+console.log('[eas-production-version-gate] OK vs', baselineRef, baseline, 'platform:', platform || 'unknown');

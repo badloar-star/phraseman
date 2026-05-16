@@ -164,9 +164,7 @@ function ScreenGradient({ children, style, entranceOffsetY, staticParallaxY, for
         <View style={{
           position: 'absolute', top: 0, right: -80,
           width: 220, height: 220, borderRadius: 110,
-          backgroundColor: themeMode === 'ocean' || themeMode === 'sakura'
-            ? 'rgba(255,255,255,0.08)'
-            : `${t.accent}18`,
+          backgroundColor: `${t.accent}18`,
           transform: [{ rotate: '30deg' }, { scaleX: 2.2 }],
         }} />
         <LinearGradient

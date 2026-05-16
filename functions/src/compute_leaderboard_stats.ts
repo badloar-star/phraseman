@@ -2,6 +2,11 @@ import * as admin from 'firebase-admin';
 
 const db = admin.firestore();
 
+function readProgressInt(value: unknown): number {
+  const n = Math.trunc(Number(value));
+  return Number.isFinite(n) ? n : 0;
+}
+
 /**
  * Для массива значений строит таблицу перцентильных порогов p1..p99.
  * pN = минимальное значение, чтобы быть «выше N% пользователей».
@@ -60,15 +65,36 @@ export interface LeaderboardStats {
 export async function computeLeaderboardStats(): Promise<void> {
   console.log('[computeLeaderboardStats] start');
 
-  // ── 1. Читаем leaderboard (XP, streak, weekPoints, daily7xp, daily7time_ms) ──
+  // 1. Lifetime XP thresholds.
+  // Lifetime XP must come from the real progress document, not from leaderboard
+  // mirrors that can lag behind or be jump-clamped by the callable guard.
   const xpVals: number[] = [];
+  let lastUserDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
+
+  while (true) {
+    let q: FirebaseFirestore.Query = db.collection('users')
+      .orderBy('__name__')
+      .limit(500);
+    if (lastUserDoc) q = q.startAfter(lastUserDoc);
+    const snap = await q.get();
+    if (snap.empty) break;
+
+    for (const doc of snap.docs) {
+      const progress = doc.data()?.progress ?? {};
+      const xp = readProgressInt(progress.user_total_xp);
+      if (xp >= 50) xpVals.push(xp);
+    }
+
+    lastUserDoc = snap.docs[snap.docs.length - 1] ?? null;
+    if (snap.size < 500) break;
+  }
+
   const streakVals: number[] = [];
   const weekXpVals: number[] = [];
   const daily7xpVals: number[] = [];
   const daily7timeMsVals: number[] = [];
 
   let lastLbDoc: FirebaseFirestore.QueryDocumentSnapshot | null = null;
-  let lbTotal = 0;
 
   while (true) {
     let q: FirebaseFirestore.Query = db.collection('leaderboard')
@@ -83,8 +109,6 @@ export async function computeLeaderboardStats(): Promise<void> {
       const d = doc.data();
       const xp = typeof d.points === 'number' ? d.points : 0;
       if (xp <= 0) continue;
-      lbTotal++;
-      xpVals.push(xp);
       if (typeof d.streak === 'number' && d.streak > 0) streakVals.push(d.streak);
       if (typeof d.weekPoints === 'number' && d.weekPoints > 0) weekXpVals.push(d.weekPoints);
       if (typeof d.daily7xp === 'number' && d.daily7xp > 0) daily7xpVals.push(d.daily7xp);
@@ -122,7 +146,7 @@ export async function computeLeaderboardStats(): Promise<void> {
 
   // ── 3. Строим таблицы порогов ─────────────────────────────────────────────────
   const stats: LeaderboardStats = {
-    totalUsers: lbTotal,
+    totalUsers: xpVals.length,
     updatedAt: Date.now(),
     xpThresholds: buildPercentileThresholds(xpVals),
     streakThresholds: buildPercentileThresholds(streakVals),
@@ -135,7 +159,7 @@ export async function computeLeaderboardStats(): Promise<void> {
   await db.collection('leaderboard_stats').doc('global').set(stats);
 
   console.log(
-    `[computeLeaderboardStats] done. users=${lbTotal}, ` +
+    `[computeLeaderboardStats] done. xpUsers=${xpVals.length}, ` +
     `streak=${streakVals.length}, daily7xp=${daily7xpVals.length}, ` +
     `arenaXp=${arenaXpVals.length}`,
   );

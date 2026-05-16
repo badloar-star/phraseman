@@ -16,7 +16,7 @@ import Reanimated, {
   withTiming,
 } from 'react-native-reanimated';
 import type { Theme } from '../../constants/theme';
-import { inferExpoSpeechLanguage, speechLocaleToShortLabel, type SpeakOpts } from '../../hooks/use-audio';
+import { inferExpoSpeechLanguage, type SpeakOpts } from '../../hooks/use-audio';
 import { SOURCE_COLORS } from './constants';
 import FlashcardDetailsBody from './FlashcardDetailsBody';
 import { OFFICIAL_MODERN_ABBREV_EN_ID } from './bundles/packIds';
@@ -35,7 +35,7 @@ function splitAbbrevMarketplaceEn(
   }
   if (abbrevEn?.trim()) {
     const head = abbrevEn.trim();
-    const rest = en.replace(head, '').replace(/^[\s:：—–\-|]+/u, '').trim();
+    const rest = en.replace(head, '').replace(/^[\s::—–\-|]+/u, '').trim();
     return { head, rest };
   }
   const t = en.trim();
@@ -43,14 +43,14 @@ function splitAbbrevMarketplaceEn(
   if (byDelim.length >= 2) {
     return { head: byDelim[0].trim(), rest: byDelim.slice(1).join(' — ').trim() };
   }
-  const m = t.match(/^([^:]+)[:：]\s*(.+)$/s);
+  const m = t.match(/^([^:]+)[::]\s*(.+)$/s);
   if (m) return { head: m[1].trim(), rest: m[2].trim() };
   return { head: t, rest: '' };
 }
 
 const OPEN_DETAILS_MS = 280;
 const CLOSE_DETAILS_MS = 240;
-/** Split gap + borders after height expand — short timing avoids a one-frame “pop” vs list scroll. */
+/** Split gap + borders after height expand — short timing avoids a one-frame "pop" vs list scroll. */
 const SPLIT_DETAILS_OPEN_MS = 110;
 const DETAILS_H_PAD = 32;
 const OPEN_DETAILS_EASING = REasing.bezier(0.25, 0.1, 0.25, 1);
@@ -85,7 +85,7 @@ type Props = {
   onCloseDelete: () => void;
   onDeleteCard: (item: CardItem, itemIdx: number) => void;
   onSpeak: (text: string, opts?: SpeakOpts) => void;
-  /** Fires when the user starts opening details (resets list “escort” state). */
+  /** Fires when the user starts opening details (resets list "escort" state). */
   onDetailsOpenAnimStarted?: (info: { itemId: string; itemIndex: number }) => void;
   /** Fires when details are fully open (after split spring) so the list can scroll the row into view. */
   onDetailsScrollSettled?: (info: { itemId: string; itemIndex: number }) => void;
@@ -156,7 +156,7 @@ function FlashcardListItemImpl({
   );
   const isLocked = activeCat === 'saved' && !isPremium && itemIdx >= 20;
   /** У «Збережені» кнопка озвучки справа (як раніше); в інших вкладках — зліва, щоб не перекривати фразу. */
-  const voiceSpeakOnRight = activeCat === 'saved';
+  const savedBadgesOnRight = activeCat === 'saved';
   const hasDetails = !isModernAbbrevCard && cardHasDetails(item);
   const { height: winH } = useWindowDimensions();
   /** Fallback if layout measure fails (should be rare) */
@@ -378,7 +378,7 @@ function FlashcardListItemImpl({
     setDetailsNatH(0);
   }, [detailsTargetSV, expandSV, item.id, splitSV]);
 
-  // Subtle “nudge down” on chevron = hint to tap and open (only when details exist and panel closed)
+  // Subtle "nudge down" on chevron = hint to tap and open (only when details exist and panel closed)
   useEffect(() => {
     if (hintLoopRef.current) {
       hintLoopRef.current.stop();
@@ -423,25 +423,13 @@ function FlashcardListItemImpl({
   const voiceTextFront = isModernAbbrevCard
     ? (parsedAbbrevEn.rest || item.en)
     : item.en;
-  const voiceTextBack = tr;
-
   const frontSpeakLocale = useMemo(
     () => inferExpoSpeechLanguage(voiceTextFront),
     [voiceTextFront],
   );
-  const backSpeakLocale = useMemo(
-    () => inferExpoSpeechLanguage(voiceTextBack, lang),
-    [voiceTextBack, lang],
-  );
-  const frontLangBadge = speechLocaleToShortLabel(frontSpeakLocale);
-  const backLangBadge = speechLocaleToShortLabel(backSpeakLocale);
-
   const speakFront = useCallback(() => {
     onSpeak(voiceTextFront, { language: frontSpeakLocale });
   }, [frontSpeakLocale, onSpeak, voiceTextFront]);
-  const speakBack = useCallback(() => {
-    onSpeak(voiceTextBack, { language: backSpeakLocale });
-  }, [backSpeakLocale, onSpeak, voiceTextBack]);
 
   if (isLocked) {
     return (
@@ -555,7 +543,7 @@ function FlashcardListItemImpl({
               )}
               <Text
                 style={
-                  voiceSpeakOnRight
+                  savedBadgesOnRight
                     ? {
                         position: 'absolute',
                         top: 14,
@@ -578,14 +566,14 @@ function FlashcardListItemImpl({
                       }
                 }
               >
-                {frontLangBadge}
+                EN
               </Text>
               {showDevPackCornerBadge && (
                 <View
                   style={{
                     position: 'absolute',
                     top: 14,
-                    right: voiceSpeakOnRight ? 46 : 14,
+                    right: savedBadgesOnRight ? 46 : 14,
                     borderRadius: 999,
                     borderWidth: 1,
                     borderColor: `${t.accent}77`,
@@ -601,7 +589,7 @@ function FlashcardListItemImpl({
                 <View
                   style={[
                     sourceBadgeStyle,
-                    voiceSpeakOnRight
+                    savedBadgesOnRight
                       ? { backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` }
                       : { left: 48, backgroundColor: `${srcBadgeColor}22`, borderColor: `${srcBadgeColor}55` },
                   ]}
@@ -730,7 +718,7 @@ function FlashcardListItemImpl({
               <Text
                 maxFontSizeMultiplier={1.35}
                 style={
-                  voiceSpeakOnRight
+                  savedBadgesOnRight
                     ? {
                         position: 'absolute',
                         top: 14,
@@ -753,7 +741,7 @@ function FlashcardListItemImpl({
                       }
                 }
               >
-                {backLangBadge}
+                {lang.toUpperCase()}
               </Text>
               {showDevPackCornerBadge && (
                 <View
@@ -832,98 +820,35 @@ function FlashcardListItemImpl({
               </Reanimated.View>
             </Animated.View>
           </TouchableOpacity>
-
           <View
             onStartShouldSetResponder={() => true}
             style={
-              voiceSpeakOnRight
+              savedBadgesOnRight
                 ? { position: 'absolute', top: 8, right: 8, zIndex: 5 }
                 : { position: 'absolute', top: 8, left: 8, zIndex: 5 }
             }
           >
-            {isModernAbbrevCard ? (
-              <>
-                <Animated.View
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: voiceSpeakOnRight ? undefined : 0,
-                    right: voiceSpeakOnRight ? 0 : undefined,
-                    opacity: cFrontOp,
-                  }}
-                >
-                  <TouchableOpacity
-                    onPress={speakFront}
-                    accessibilityRole="button"
-                    accessibilityLabel={voiceLabel}
-                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                    style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 15,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: `${t.bgSurface}F0`,
-                      borderWidth: 1,
-                      borderColor: t.border,
-                    }}
-                  >
-                    <Ionicons name="volume-medium" size={15} color={t.accent} />
-                  </TouchableOpacity>
-                </Animated.View>
-                <Animated.View
-                  style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: voiceSpeakOnRight ? undefined : 0,
-                    right: voiceSpeakOnRight ? 0 : undefined,
-                    opacity: cBackOp,
-                  }}
-                >
-                  <TouchableOpacity
-                    onPress={speakBack}
-                    accessibilityRole="button"
-                    accessibilityLabel={voiceLabel}
-                    hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                    style={{
-                      width: 30,
-                      height: 30,
-                      borderRadius: 15,
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      backgroundColor: `${t.bgSurface}F0`,
-                      borderWidth: 1,
-                      borderColor: t.border,
-                    }}
-                  >
-                    <Ionicons name="volume-medium" size={15} color={t.accent} />
-                  </TouchableOpacity>
-                </Animated.View>
-              </>
-            ) : (
-              <Animated.View style={{ opacity: cFrontOp }}>
-                <TouchableOpacity
-                  onPress={speakFront}
-                  accessibilityRole="button"
-                  accessibilityLabel={voiceLabel}
-                  hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-                  style={{
-                    width: 30,
-                    height: 30,
-                    borderRadius: 15,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: `${t.bgSurface}F0`,
-                    borderWidth: 1,
-                    borderColor: t.border,
-                  }}
-                >
-                  <Ionicons name="volume-medium" size={15} color={t.accent} />
-                </TouchableOpacity>
-              </Animated.View>
-            )}
+            <Animated.View style={{ opacity: cFrontOp }}>
+              <TouchableOpacity
+                onPress={speakFront}
+                accessibilityRole="button"
+                accessibilityLabel={voiceLabel}
+                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
+                style={{
+                  width: 30,
+                  height: 30,
+                  borderRadius: 15,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  backgroundColor: `${t.bgSurface}F0`,
+                  borderWidth: 1,
+                  borderColor: t.border,
+                }}
+              >
+                <Ionicons name="volume-medium" size={15} color={t.accent} />
+              </TouchableOpacity>
+            </Animated.View>
           </View>
-
           {hasDetails && (
             <View
               onStartShouldSetResponder={() => true}

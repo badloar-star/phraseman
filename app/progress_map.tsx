@@ -1,6 +1,6 @@
 /**
  * Progress Map — визуальная карта прогресса.
- * Вертикальный скролл: уровни 1-50, milestone'ы на 10/20/30/40/50.
+ * Вертикальный скролл: уровни 1-50, milestone\'ы на 10/20/30/40/50.
  * Подарки уровня: принятые, непринятые (можно открыть здесь), будущие.
  */
 
@@ -27,7 +27,15 @@ import { useTheme } from '../components/ThemeContext';
 import LevelBadge from '../components/LevelBadge';
 import LevelGiftDualModal, { loadUnclaimedDualGifts, loadDualClaimedLevels, type PremPair } from '../components/LevelGiftDualModal';
 import LevelGiftModal, { loadUnclaimedGifts, loadClaimedGiftRarities } from '../components/LevelGiftModal';
-import { GiftDef } from './level_gift_system';
+import { ARENA_DAILY_MAX, getDailyArenaMaxToday } from './arena_daily_limit';
+import { getPackGiftTrial, getPackTrialHoursLeft } from './flashcards/pack_trial_gift';
+import {
+  GiftDef,
+  getBonusHintsToday,
+  getMilestoneLevelGift,
+  giftTitleForLang,
+  readGiftXpBank,
+} from './level_gift_system';
 import { triLang } from '../constants/i18n';
 import { getXPProgress, getMaxEnergyForLevel } from '../constants/theme';
 import { TITLES } from '../constants/titles';
@@ -55,6 +63,21 @@ interface MilestoneInfo {
   doneDescUk?: string;
   doneDescEs?: string;
 }
+
+interface ActiveGiftInfo {
+  key: string;
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+const formatMsLeft = (ms: number, lang: 'ru' | 'uk' | 'es'): string => {
+  const safe = Math.max(0, ms);
+  const h = Math.floor(safe / 3600000);
+  const m = Math.floor((safe % 3600000) / 60000);
+  if (h > 0) return lang === 'es' ? `${h}h ${String(m).padStart(2, '0')}m` : `${h}ч ${String(m).padStart(2, '0')}м`;
+  return lang === 'es' ? `${m}m` : `${m}м`;
+};
 
 const MILESTONES: MilestoneInfo[] = [
   {
@@ -125,6 +148,7 @@ export default function ProgressMapScreen() {
   const [unclaimedDual, setUnclaimedDual]   = useState<Record<number, PremPair>>({});
   const [claimedRarities, setClaimedRarities] = useState<Record<number, string>>({});
   const [dualClaimedLevels, setDualClaimedLevels] = useState<Set<number>>(() => new Set());
+  const [activeGifts, setActiveGifts] = useState<ActiveGiftInfo[]>([]);
 
   // Gift modal state for unclaimed gifts opened from this screen
   const [giftModalVisible, setGiftModalVisible] = useState(false);
@@ -163,7 +187,134 @@ export default function ProgressMapScreen() {
     setClaimedRarities(claimed);
     setUnclaimedDual(dualU);
     setDualClaimedLevels(dualClaim);
-  }, []);
+
+    const nextActive: ActiveGiftInfo[] = [];
+    const [
+      xpBank,
+      packTrial,
+      arenaMax,
+      hintsToday,
+      giftMultRaw,
+      shieldRaw,
+      wagerDiscount,
+      clubGiftBoost,
+    ] = await Promise.all([
+      readGiftXpBank(),
+      getPackGiftTrial(),
+      getDailyArenaMaxToday(),
+      getBonusHintsToday(),
+      AsyncStorage.getItem('gift_xp_multiplier'),
+      AsyncStorage.getItem('chain_shield'),
+      AsyncStorage.getItem('wager_discount'),
+      AsyncStorage.getItem('club_gift_free_boost_v1'),
+    ]);
+
+    if (xpBank.remaining > 0) {
+      nextActive.push({
+        key: 'xp_bank',
+        icon: '⚡',
+        title: triLang(lang, { ru: 'Бонус ×2', uk: 'Бонус ×2', es: 'Bono ×2' }),
+        desc: triLang(lang, {
+          ru: `ещё на ${xpBank.remaining} XP`,
+          uk: `ще на ${xpBank.remaining} XP`,
+          es: `por ${xpBank.remaining} XP más`,
+        }),
+      });
+    }
+
+    try {
+      const state = giftMultRaw ? JSON.parse(giftMultRaw) as { multiplier?: number; expiresAt?: number } : null;
+      const ms = Math.max(0, Number(state?.expiresAt || 0) - Date.now());
+      const mult = Math.max(1, Number(state?.multiplier || 1));
+      if (ms > 0 && mult > 1) {
+        nextActive.push({
+          key: 'gift_focus',
+          icon: '⏱️',
+          title: triLang(lang, { ru: 'Фокус', uk: 'Фокус', es: 'Foco' }),
+          desc: `×${mult.toFixed(mult % 1 === 0 ? 0 : 2)} · ${formatMsLeft(ms, lang)}`,
+        });
+      }
+    } catch {}
+
+    if (packTrial) {
+      nextActive.push({
+        key: 'pack_trial',
+        icon: '📦',
+        title: triLang(lang, { ru: 'Ваучер набора', uk: 'Ваучер набору', es: 'Vale de pack' }),
+        desc: triLang(lang, {
+          ru: `${getPackTrialHoursLeft(packTrial.expiresAt)} ч доступа`,
+          uk: `${getPackTrialHoursLeft(packTrial.expiresAt)} год доступу`,
+          es: `${getPackTrialHoursLeft(packTrial.expiresAt)} h de acceso`,
+        }),
+      });
+    }
+
+    if (arenaMax > ARENA_DAILY_MAX) {
+      nextActive.push({
+        key: 'arena_extra',
+        icon: '🎟️',
+        title: triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' }),
+        desc: triLang(lang, {
+          ru: `+${arenaMax - ARENA_DAILY_MAX} матчей сегодня`,
+          uk: `+${arenaMax - ARENA_DAILY_MAX} матчів сьогодні`,
+          es: `+${arenaMax - ARENA_DAILY_MAX} duelos hoy`,
+        }),
+      });
+    }
+
+    if (hintsToday > 0) {
+      nextActive.push({
+        key: 'hints',
+        icon: '💡',
+        title: triLang(lang, { ru: 'Подсказки', uk: 'Підказки', es: 'Pistas' }),
+        desc: triLang(lang, {
+          ru: `${hintsToday} на сегодня`,
+          uk: `${hintsToday} на сьогодні`,
+          es: `${hintsToday} para hoy`,
+        }),
+      });
+    }
+
+    try {
+      const shield = shieldRaw ? JSON.parse(shieldRaw) as { daysLeft?: number; grantedAt?: string } : null;
+      const total = Math.max(0, Math.floor(Number(shield?.daysLeft) || 0));
+      const granted = shield?.grantedAt ? new Date(shield.grantedAt) : null;
+      const daysPassed = granted ? Math.floor((Date.now() - granted.getTime()) / 86400000) : 0;
+      const remaining = Math.max(0, total - daysPassed);
+      if (remaining > 0) {
+        nextActive.push({
+          key: 'chain_shield',
+          icon: '🛡️',
+          title: triLang(lang, { ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha' }),
+          desc: triLang(lang, {
+            ru: `${remaining} дн.`,
+            uk: `${remaining} дн.`,
+            es: `${remaining} d`,
+          }),
+        });
+      }
+    } catch {}
+
+    if (wagerDiscount) {
+      nextActive.push({
+        key: 'wager_discount',
+        icon: '🎲',
+        title: triLang(lang, { ru: 'Скидка на пари', uk: 'Знижка на парі', es: 'Descuento apuesta' }),
+        desc: '-25%',
+      });
+    }
+
+    if (clubGiftBoost === '1') {
+      nextActive.push({
+        key: 'club_boost',
+        icon: '👥',
+        title: triLang(lang, { ru: 'Буст клуба', uk: 'Буст клубу', es: 'Impulso de liga' }),
+        desc: triLang(lang, { ru: '1 бесплатная активация', uk: '1 безкоштовна активація', es: '1 activación gratis' }),
+      });
+    }
+
+    setActiveGifts(nextActive);
+  }, [lang]);
 
   // После анимации перехода экрана — чтение AsyncStorage не борется с transition
   useEffect(() => {
@@ -236,6 +387,7 @@ export default function ProgressMapScreen() {
     const isLocked = lvl > userLevel;
     const maxEnrg = getMaxEnergyForLevel(lvl);
     const milestone = MILESTONE_BY_LEVEL[lvl];
+    const milestoneGift = getMilestoneLevelGift(lvl);
     const titleDef = TITLES.find(td => td.minLevel === lvl);
     const hasUnclaimed = !!unclaimedGifts[lvl] || !!unclaimedDual[lvl];
     const receivedGiftLabel = triLang(lang, {
@@ -313,6 +465,19 @@ export default function ProgressMapScreen() {
                 }}
               >
                 {titleDef.titleEN}
+              </Text>
+            )}
+            {milestoneGift && (
+              <Text
+                style={{
+                  color: isDone || isCurrent ? t.textSecond : t.textMuted,
+                  fontSize: 11,
+                  fontWeight: '700',
+                  marginTop: 4,
+                }}
+                numberOfLines={1}
+              >
+                {milestoneGift.icon} {giftTitleForLang(milestoneGift, lang)}
               </Text>
             )}
           </View>
@@ -501,9 +666,47 @@ export default function ProgressMapScreen() {
             data={levels}
             keyExtractor={item => String(item)}
             renderItem={renderLevelRow}
-            extraData={{ userLevel, unclaimedGifts, unclaimedDual, claimedRarities, dualClaimedLevels, lang }}
+            extraData={{ userLevel, unclaimedGifts, unclaimedDual, claimedRarities, dualClaimedLevels, activeGifts, lang }}
             showsVerticalScrollIndicator={false}
             contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40 }}
+            ListHeaderComponent={activeGifts.length > 0 ? (
+              <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 0.5, borderColor: t.border }}>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
+                    {triLang(lang, { ru: 'Активные подарки', uk: 'Активні подарунки', es: 'Regalos activos' })}
+                  </Text>
+                  <View style={{ borderRadius: 999, paddingHorizontal: 8, paddingVertical: 2, backgroundColor: t.accentBg }}>
+                    <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800' }}>{activeGifts.length}</Text>
+                  </View>
+                </View>
+                <View style={{ gap: 8 }}>
+                  {activeGifts.map((gift) => (
+                    <View
+                      key={gift.key}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: 10,
+                        borderRadius: 12,
+                        paddingVertical: 8,
+                        paddingHorizontal: 10,
+                        backgroundColor: t.bgSurface2,
+                      }}
+                    >
+                      <Text style={{ fontSize: 20 }}>{gift.icon}</Text>
+                      <View style={{ flex: 1, minWidth: 0 }}>
+                        <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800' }} numberOfLines={1}>
+                          {gift.title}
+                        </Text>
+                        <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '600', marginTop: 1 }} numberOfLines={1}>
+                          {gift.desc}
+                        </Text>
+                      </View>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            ) : null}
             initialNumToRender={5}
             maxToRenderPerBatch={5}
             windowSize={4}

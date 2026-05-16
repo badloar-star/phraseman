@@ -2,21 +2,9 @@
 # Ловит регрессии навигации (в т.ч. когда goHome из TabContext — no-op вне табов).
 appId: app.phraseman
 ---
-- launchApp
-- runFlow: ../_dismiss_bug_hunt.yaml
-- runFlow: ../_precondition.yaml
-- extendedWaitUntil:
-    visible:
-      id: "tab-home"
-    timeout: 90000
-- tapOn:
-    id: "tab-home"
+- runFlow: ../_shared/boot_to_home_fast.yaml
 - waitForAnimationToEnd:
-    timeout: 5000
-- extendedWaitUntil:
-    visible:
-      id: "screen-home"
-    timeout: 45000
+    timeout: 10000
 - tapOn:
     id: "home-quick-quizzes"
 - extendedWaitUntil:
@@ -29,5 +17,5 @@ appId: app.phraseman
     id: "quiz-level-select-back"
 - extendedWaitUntil:
     visible:
-      id: "screen-home"
+      id: "home-quick-quizzes"
     timeout: 15000

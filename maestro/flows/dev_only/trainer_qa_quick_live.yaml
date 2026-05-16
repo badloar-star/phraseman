@@ -1,0 +1,17 @@
+appId: app.phraseman
+---
+- extendedWaitUntil:
+    visible:
+      id: "trainer-quick-seed-weak-open"
+    timeout: 30000
+- takeScreenshot: trainer_qa_quick_panel
+- tapOn:
+    id: "trainer-quick-seed-weak-open"
+    waitToSettleTimeoutMs: 1000
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-trainer"
+    timeout: 30000
+- takeScreenshot: trainer_qa_quick_hub

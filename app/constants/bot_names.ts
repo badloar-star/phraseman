@@ -95,7 +95,7 @@ export function pickRandomBotName(): string {
   return BOT_NAMES[Math.floor(Math.random() * BOT_NAMES.length)];
 }
 
-/** Pool español / latin-only; mismo contrato que pickRandomBotName. Fallback alineado con T.es.player (“Participante”). */
+/** Pool español / latin-only; mismo contrato que pickRandomBotName. Fallback alineado con T.es.player ("Participante"). */
 export function pickRandomBotNameEs(): string {
   if (BOT_NAMES_ES.length === 0) return 'Participante';
   return BOT_NAMES_ES[Math.floor(Math.random() * BOT_NAMES_ES.length)];

@@ -15,17 +15,62 @@ const rulesPath = path.join(process.cwd(), 'firestore.rules');
 describe('firestore.rules security baseline', () => {
   const rules = readFileSync(rulesPath, 'utf8');
 
-  // См. комментарий в firestore.rules: любой request.auth != null для /users/{userId}
-  // из‑за статической админки и того же клиентского auth в приложении.
-  test('users collection allows authenticated read/write (documented tradeoff)', () => {
+  test('users collection is restricted to owner/admin, including stableId auth mapping', () => {
     expect(rules).toContain('match /users/{userId} {');
-    expect(rules).toContain('allow read, write: if request.auth != null;');
+    expect(rules).toContain('function userDocOwnerMatchesAuth(userId) {');
+    expect(rules).toContain('function newUserDocOwnerMatchesAuth(userId) {');
+    expect(rules).toContain('allow read, update, delete: if userDocOwnerMatchesAuth(userId);');
+    expect(rules).toContain('allow create: if newUserDocOwnerMatchesAuth(userId);');
   });
 
-  test('users shard_log allows authenticated read and create only', () => {
+  test('users shard_log allows owner read and create only', () => {
     expect(rules).toContain('match /shard_log/{logId} {');
-    expect(rules).toContain('allow read, create: if request.auth != null;');
+    expect(rules).toContain('allow read, create: if userDocOwnerMatchesAuth(userId);');
     expect(rules).toContain('allow update, delete: if false;');
+  });
+
+  test('leaderboard writes are restricted to admin callables while owners can delete', () => {
+    const leaderboardBlock = rules.match(/match \/leaderboard\/\{userId\} \{[\s\S]*?\n    \}/);
+    expect(leaderboardBlock).not.toBeNull();
+    expect(leaderboardBlock![0]).toContain('allow read: if true;');
+    expect(leaderboardBlock![0]).toContain('allow create, update: if isAdmin();');
+    expect(leaderboardBlock![0]).toContain('allow delete: if userDocOwnerMatchesAuth(userId);');
+    expect(leaderboardBlock![0]).not.toContain('allow write: if request.auth != null;');
+    expect(leaderboardBlock![0]).not.toContain('allow create: if newUserDocOwnerMatchesAuth(userId);');
+  });
+
+  test('leaderboard_stats aggregate is client-readable but admin-write only', () => {
+    const statsBlock = rules.match(/match \/leaderboard_stats\/\{docId\} \{[\s\S]*?\n    \}/);
+    expect(statsBlock).not.toBeNull();
+    expect(statsBlock![0]).toContain('allow read: if true;');
+    expect(statsBlock![0]).toContain('allow create, update, delete: if isAdmin();');
+    expect(statsBlock![0]).not.toContain('allow write: if request.auth != null;');
+  });
+
+  test('card_packs marketplace exposes only published metadata to clients', () => {
+    const cardPacksBlock = rules.match(/match \/card_packs\/\{packId\} \{[\s\S]*?\n    \}/);
+    expect(cardPacksBlock).not.toBeNull();
+    expect(cardPacksBlock![0]).toContain("allow read: if resource.data.status == 'published';");
+    expect(cardPacksBlock![0]).toContain('allow create, update, delete: if isAdmin();');
+    expect(cardPacksBlock![0]).not.toContain('allow write: if request.auth != null;');
+  });
+
+  test('league_groups uses Cloud Functions for writes and keeps client reads only', () => {
+    const leagueGroupsBlock = rules.match(/match \/league_groups\/\{groupId\} \{[\s\S]*?\n    \}/);
+    expect(leagueGroupsBlock).not.toBeNull();
+    expect(leagueGroupsBlock![0]).toContain('allow read: if request.auth != null;');
+    expect(leagueGroupsBlock![0]).toContain('allow create, update, delete: if isAdmin();');
+    expect(leagueGroupsBlock![0]).not.toContain('allow write: if request.auth != null;');
+    expect(leagueGroupsBlock![0]).not.toContain('request.resource.data.diff(resource.data)');
+    expect(leagueGroupsBlock![0]).not.toContain('allow read, write: if request.auth != null;');
+  });
+
+  test('league_groups write path is exported through callable functions', () => {
+    const functionsIndex = readFileSync(path.join(process.cwd(), 'functions/src/index.ts'), 'utf8');
+    expect(functionsIndex).toContain("const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost } = require('./league_groups');");
+    expect(functionsIndex).toContain('exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;');
+    expect(functionsIndex).toContain('exports.leagueUpdateMyMember = leagueUpdateMyMember;');
+    expect(functionsIndex).toContain('exports.leagueSyncMyBoost = leagueSyncMyBoost;');
   });
 
   test('catch-all rule is deny-all', () => {
@@ -49,10 +94,28 @@ describe('firestore.rules security baseline', () => {
     expect(rules).toContain('canonicalUserMatchesAuth(resource.data.friendStableUid)');
   });
 
-  test('friend activity my_events has owner writes and authenticated reads', () => {
+  test('friend activity my_events keeps client reads but restricts writes to admins/server', () => {
     expect(rules).toContain('match /users/{userId}/my_events/{eventId} {');
     expect(rules).toMatch(/my_events\/\{eventId\} \{[\s\S]*?allow read: if request\.auth != null;/);
-    expect(rules).toMatch(/my_events\/\{eventId\} \{[\s\S]*?allow create, update, delete: if canonicalUserMatchesAuth\(userId\);/);
+    expect(rules).toMatch(/my_events\/\{eventId\} \{[\s\S]*?allow create, update, delete: if isAdmin\(\);/);
+    expect(rules).not.toMatch(/my_events\/\{eventId\} \{[\s\S]*?allow create, update, delete: if canonicalUserMatchesAuth\(userId\);/);
+  });
+
+  test('friend activity likes are server-written with readable counters and owner-only daily state', () => {
+    expect(rules).toContain('match /users/{userId}/friend_activity_like_daily_limits/{dayId} {');
+    expect(rules).toMatch(/friend_activity_like_daily_limits\/\{dayId\} \{[\s\S]*?allow read: if canonicalUserMatchesAuth\(userId\);/);
+    expect(rules).toMatch(/friend_activity_like_daily_limits\/\{dayId\} \{[\s\S]*?allow create, update, delete: if isAdmin\(\);/);
+    expect(rules).toMatch(/activity_like_stats\/\{docId\} \{[\s\S]*?allow read: if request\.auth != null;/);
+    expect(rules).toMatch(/activity_like_stats\/\{docId\} \{[\s\S]*?allow create, update, delete: if isAdmin\(\);/);
+  });
+
+  test('app messages allow user-owned read state and per-message reactions', () => {
+    expect(rules).toContain('match /app_messages/{messageId} {');
+    expect(rules).toContain('match /app_message_states/{messageId} {');
+    expect(rules).toMatch(/app_message_states\/\{messageId\} \{[\s\S]*?allow read, create, update, delete: if userDocOwnerMatchesAuth\(userId\);/);
+    expect(rules).toMatch(/app_messages\/\{messageId\} \{[\s\S]*?allow read: if request\.auth != null;/);
+    expect(rules).toMatch(/reactions\/\{userId\} \{[\s\S]*?request\.resource\.data\.messageId == messageId/);
+    expect(rules).toMatch(/reactions\/\{userId\} \{[\s\S]*?request\.resource\.data\.reaction in \['like', 'dislike'\]/);
   });
 });
 
@@ -64,12 +127,18 @@ describe('firestore.rules friend system (Phase 1)', () => {
     expect(rules).toMatch(/match \/friend_code_index\/\{code\} \{[\s\S]*?allow read: if request\.auth != null;/);
   });
 
-  test('friend_code_index rule restricts create to non-empty uid', () => {
-    expect(rules).toMatch(/match \/friend_code_index\/\{code\} \{[\s\S]*?allow create: if request\.auth != null[\s\S]*?request\.resource\.data\.uid is string[\s\S]*?request\.resource\.data\.uid\.size\(\) > 0/);
+  test('friend_code_index writes are restricted to Cloud Functions/admin', () => {
+    const friendCodeBlock = rules.match(/match \/friend_code_index\/\{code\} \{[\s\S]*?\n    \}/);
+    expect(friendCodeBlock).not.toBeNull();
+    expect(friendCodeBlock![0]).toContain('allow read: if request.auth != null;');
+    expect(friendCodeBlock![0]).toContain('allow create, update, delete: if isAdmin();');
+    expect(friendCodeBlock![0]).not.toContain('allow create: if request.auth != null');
   });
 
-  test('friend_code_index rule forbids update and delete', () => {
-    expect(rules).toMatch(/match \/friend_code_index\/\{code\} \{[\s\S]*?allow update: if false;[\s\S]*?allow delete: if false;/);
+  test('friend_code_index write path is exported through callable function', () => {
+    const functionsIndex = readFileSync(path.join(process.cwd(), 'functions/src/index.ts'), 'utf8');
+    expect(functionsIndex).toContain("const { friendEnsureMyCode } = require('./friend_codes');");
+    expect(functionsIndex).toContain('exports.friendEnsureMyCode = friendEnsureMyCode;');
   });
 
   test('friend_requests create requires senderUid to match the signed-in canonical user (anti-impersonation)', () => {

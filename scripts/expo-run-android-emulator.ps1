@@ -1,5 +1,6 @@
-# Эмулятор: освободить порты, при желании adb reverse, затем expo run:android.
-# Metro должен принимать 10.0.2.2 → в metro.config.js server.host = 0.0.0.0
+# Emulator debug build helper: free Metro ports, keep adb reverse only as an
+# optional localhost fallback, then run expo run:android.
+# Metro should be started with --lan so emulators can load 10.0.2.2:8081.
 $ErrorActionPreference = "Continue"
 $adb = Join-Path $env:LOCALAPPDATA "Android\Sdk\platform-tools\adb.exe"
 if (-not (Test-Path $adb) -and $env:ANDROID_HOME) {
@@ -19,10 +20,10 @@ foreach ($ln in @(& $adb devices 2>&1 | ForEach-Object { "$_" })) {
   if ($ln -match '^(\S+)\s+device\s*$') {
     $s = $Matches[1]
     & $adb "-s", $s, "reverse", "tcp:8081", "tcp:8081" 2>$null | Out-Null
-    Write-Host "adb reverse tcp:8081 -> $s (опционально, для localhost-сценариев)"
+    Write-Host "adb reverse tcp:8081 -> $s (optional localhost fallback)"
   }
 }
-Write-Host 'Два эмулятора и "Loading 10.0.2.2:8081"? Сначала оставьте Metro на порту 8081, затем: npm run android:dev-localhost'
+Write-Host 'Multiple emulators: keep Metro on port 8081, then run: npm run android:dev-all-emulators'
 
 $env:JAVA_HOME = if ($env:JAVA_HOME) { $env:JAVA_HOME } else { 'C:\Program Files\Android\Android Studio\jbr' }
 $env:ANDROID_HOME = if ($env:ANDROID_HOME) { $env:ANDROID_HOME } else { Join-Path $env:LOCALAPPDATA "Android\Sdk" }
@@ -32,5 +33,5 @@ Set-Location $projRoot
 Remove-Item Env:CI -ErrorAction SilentlyContinue
 $env:EXPO_PUBLIC_DISABLE_EXPO_UPDATES = '1'
 
-Write-Host "expo run:android --variant debug (Metro :8081; без подмены JS с Expo Update-сервера)"
+Write-Host "expo run:android --variant debug (Metro :8081; no Expo Updates JS override)"
 & npx expo run:android --variant debug

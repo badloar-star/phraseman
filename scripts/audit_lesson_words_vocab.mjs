@@ -3,7 +3,8 @@
  * — дубликаты en внутри урока;
  * — одинаковые ru+uk у разных en (глобально);
  * — отсутствие ES (inline es или LESSON_WORD_ES_BY_EN);
- * — pos: nouns при типичных формах 3 л. наст. (эвристика).
+ * — pos: nouns при типичных формах 3 л. наст. (эвристика);
+ * — утечки множественного RU/UK/ES после singularize noun: books -> book не должен показывать «Книги».
  */
 import fs from 'fs';
 import path from 'path';
@@ -43,6 +44,85 @@ opens starts stops tries shows knows grows draws blows flows throws
 owns seems means appears works plays stays sounds becomes
 `.trim().split(/\s+/),
 );
+
+const NOUN_PLURAL_SURFACE_EXCEPTIONS = new Set(
+  `
+belongings boots children genius glasses goods graphics groceries halves headphones
+knives leaves metropolis mice news overalls people scissors series shoes shelves
+sneakers species stairs sunglasses thesis thieves
+`.trim().split(/\s+/),
+);
+
+function canonicalLemmaNoun(lower) {
+  if (NOUN_PLURAL_SURFACE_EXCEPTIONS.has(lower)) return lower;
+  if (/[^aeiou]ies$/.test(lower) && lower.length > 4) return lower.slice(0, -3) + 'y';
+  if (lower.endsWith('ves') && lower.length > 4) return lower.slice(0, -3) + 'f';
+  if (/(ches|shes|xes|zes|sses)$/.test(lower) && lower.length > 4) return lower.slice(0, -2);
+  if (lower.endsWith('oes') && lower.length > 4) return lower.slice(0, -1);
+  if (lower.endsWith('s') && !lower.endsWith('ss') && lower.length > 3) return lower.slice(0, -1);
+  return lower;
+}
+
+function objectBody(src, marker) {
+  const start = src.indexOf(marker);
+  if (start < 0) return '';
+  const bodyStart = src.indexOf('{', start);
+  if (bodyStart < 0) return '';
+  let depth = 0;
+  for (let i = bodyStart; i < src.length; i++) {
+    if (src[i] === '{') depth++;
+    else if (src[i] === '}') {
+      depth--;
+      if (depth === 0) return src.slice(bodyStart + 1, i);
+    }
+  }
+  return '';
+}
+
+function parseNounLemmaOverrides(src) {
+  const body = objectBody(src, 'const NOUN_LEMMA_GLOSS_OVERRIDES');
+  const map = new Map();
+  const re =
+    /([a-zA-Z][\w -]*|'[^']+'):\s*\{\s*ru:\s*(['"])((?:\\.|(?!\2).)*?)\2,\s*uk:\s*(['"])((?:\\.|(?!\4).)*?)\4,\s*es:\s*(['"])((?:\\.|(?!\6).)*?)\6/g;
+  let m;
+  while ((m = re.exec(body)) !== null) {
+    map.set(m[1].replace(/^'|'$/g, ''), {
+      ru: unquote(m[3]),
+      uk: unquote(m[5]),
+      es: unquote(m[7]),
+    });
+  }
+  return map;
+}
+
+function singularizedNounGlossLeaks(rows, src) {
+  const overrides = parseNounLemmaOverrides(src);
+  const singularRows = new Map();
+  for (const r of rows) {
+    if (r.pos !== 'nouns') continue;
+    const en = r.en.trim().toLowerCase();
+    if (canonicalLemmaNoun(en) === en && !singularRows.has(en)) singularRows.set(en, r);
+  }
+
+  const leaks = [];
+  for (const r of rows) {
+    if (r.pos !== 'nouns') continue;
+    const en = r.en.trim().toLowerCase();
+    const lemma = canonicalLemmaNoun(en);
+    if (lemma === en) continue;
+
+    const override = overrides.get(lemma);
+    const singular = singularRows.get(lemma);
+    if (override || singular) continue;
+
+    leaks.push({
+      ...r,
+      lemma,
+      msg: `raw plural noun "${r.en}" singularizes to "${lemma}", but no singular row/override supplies singular ru/uk/es`,
+    });
+  }
+  return leaks;
+}
 
 function main() {
   const src = fs.readFileSync(LESSON_WORDS, 'utf8');
@@ -101,6 +181,8 @@ function main() {
     if (SUSPECT_NOUN_POS_VERB_FORMS.has(low)) suspectPos.push(r);
   }
 
+  const nounSingularizationLeaks = singularizedNounGlossLeaks(rows, src);
+
   const enToLessons = new Map();
   const enToRows = new Map();
   for (const r of rows) {
@@ -154,6 +236,16 @@ function main() {
     }
   }
 
+  console.log(`\n--- Singularized noun still uses raw plural gloss (${nounSingularizationLeaks.length}) ---`);
+  if (nounSingularizationLeaks.length === 0) console.log('(none)');
+  else {
+    for (const r of nounSingularizationLeaks) {
+      console.log(
+        `  L${r.lesson} L${r.line} ${r.en} -> ${r.lemma}: ru=${JSON.stringify(r.ru)} uk=${JSON.stringify(r.uk)} es=${JSON.stringify(r.es)}`,
+      );
+    }
+  }
+
   console.log(`\n--- Same RU+UK pair, different EN (${ruUkCollisions.length}) ---`);
   const show = ruUkCollisions.slice(0, 80);
   if (show.length === 0) console.log('(none)');
@@ -184,8 +276,8 @@ function main() {
     console.log(`  … +${enMultiLessonRuUkMismatch.length - 35} more`);
 
   const exit =
-    dupWithinLesson.size > 0 || missingEs.length > 0 ? 1 : 0;
-  if (exit) console.log('\nEXIT 1: fix duplicates or missing ES.');
+    dupWithinLesson.size > 0 || missingEs.length > 0 || nounSingularizationLeaks.length > 0 ? 1 : 0;
+  if (exit) console.log('\nEXIT 1: fix duplicates, missing ES, or noun singularization plural-gloss leaks.');
   else console.log('\nOK: no duplicate en per lesson, no missing ES.');
   process.exit(exit);
 }

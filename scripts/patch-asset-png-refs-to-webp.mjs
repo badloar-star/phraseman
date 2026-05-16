@@ -1,6 +1,5 @@
 /**
  * Rewrites source references from .png to .webp for converted app assets.
- * Skips share-card export temp filenames (components/share_cards/shareCardPng.ts).
  */
 import fs from 'fs';
 import path from 'path';
@@ -58,16 +57,10 @@ function patchContent(relPath, text) {
   let out = text;
   let changed = false;
 
-  const skipAssetImg =
-    norm === 'components/share_cards/shareCardPng.ts' ||
-    norm.endsWith('/components/share_cards/shareCardPng.ts');
-
-  if (!skipAssetImg) {
-    const next = out.replace(ASSET_IMG_PNG, (m) => `${m.slice(0, -4)}.webp`);
-    if (next !== out) {
-      out = next;
-      changed = true;
-    }
+  const next = out.replace(ASSET_IMG_PNG, (m) => `${m.slice(0, -4)}.webp`);
+  if (next !== out) {
+    out = next;
+    changed = true;
   }
 
   if (norm === 'admin/index.html') {

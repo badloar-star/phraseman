@@ -1,7 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as StoreReview from 'expo-store-review';
 import type { Lang } from '../constants/i18n';
-import { getEffectivePlatformOS } from './platform_ui_preview';
 
 const KEY_LAST_PROMPTED = 'review_prompted_at';
 const KEY_SESSIONS      = 'app_session_count';
@@ -135,17 +133,17 @@ const GENERAL_VARIANTS: Array<{
     emoji: '👋',
     title: {
       ru: 'Дай пять?',
-      uk: 'Дай п’ять?',
+      uk: 'Дай п\'ять?',
       es: '¿Chocamos?',
     },
     subtitle: {
       ru: 'Пять звёзд, конечно. Нам будет дико приятно, а тебе — плюс к удаче в следующем уроке.',
-      uk: 'П’ять зірок, звісно. Нам буде дуже приємно, а тобі — плюс до удачі в наступному уроці.',
+      uk: 'П\'ять зірок, звісно. Нам буде дуже приємно, а тобі — плюс до удачі в наступному уроці.',
       es: 'Cinco estrellas, claro. Nos haría muchísima ilusión… y puede que te den suerte en la próxima lección.',
     },
     btnYes: {
       ru: 'Даю пять!',
-      uk: 'Даю п’ять!',
+      uk: 'Даю п\'ять!',
       es: '¡Ahí va!',
     },
     btnNo: {
@@ -186,15 +184,14 @@ export const getReviewVariant = async (
 ): Promise<ReviewVariant> => {
   if (context === 'perfect_lesson') return localizeVariant(CONTEXTUAL.perfect_lesson, lang);
   if (context === 'arena_win') {
-    const sn = getEffectivePlatformOS() === 'ios' ? 'App Store' : 'Google Play';
     return localizeVariant(
       {
         emoji: CONTEXTUAL.arena_win.emoji,
         title: CONTEXTUAL.arena_win.title,
         subtitle: {
-          ru: `Ты только что разгромил соперника. Осталось победить ${sn} — поставь нам 5 звёзд.`,
-          uk: `Ти щойно здолав суперника. Залишилося перемогти ${sn} — постав 5 зірок.`,
-          es: `Acabas de ganarle a tu rival. Solo queda un último paso en ${sn}: déjanos 5 estrellas.`,
+          ru: 'Ты только что выиграл матч. Поставь нам 5 звёзд в магазине приложения.',
+          uk: 'Ти щойно виграв матч. Постав нам 5 зірок у магазині застосунку.',
+          es: 'Acabas de ganar el duelo. Déjanos 5 estrellas en la tienda de la app.',
         },
         btnYes: CONTEXTUAL.arena_win.btnYes,
         btnNo: CONTEXTUAL.arena_win.btnNo,
@@ -260,6 +257,10 @@ export const markReviewPrompted = async (): Promise<void> => {
 
 export const requestNativeReview = async (): Promise<void> => {
   try {
+    const StoreReview = require('expo-store-review') as {
+      hasAction: () => Promise<boolean>;
+      requestReview: () => Promise<void>;
+    };
     if (await StoreReview.hasAction()) {
       await StoreReview.requestReview();
     }

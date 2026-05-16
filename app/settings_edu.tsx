@@ -1,48 +1,85 @@
-import React, { useState, useCallback } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import Slider from '@react-native-community/slider';
-import { useRouter, useFocusEffect } from 'expo-router';
-import CustomSwitch from '../components/CustomSwitch';
 import { Ionicons } from '@expo/vector-icons';
-import { useTheme } from '../components/ThemeContext';
-import { useLang } from '../components/LangContext';
+import * as Speech from 'expo-speech';
+import type { Voice } from 'expo-speech';
+import { useRouter, useFocusEffect } from 'expo-router';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
+import CustomSwitch from '../components/CustomSwitch';
+import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
-import { hapticTap } from '../hooks/use-haptics';
+import { useTheme } from '../components/ThemeContext';
 import { useAudio } from '../hooks/use-audio';
+import { hapticTap } from '../hooks/use-haptics';
 import {
-  type UserSettings,
+  applyUserSettingsNow,
   getUserSettingsSnapshot,
   loadSettings,
-  applyUserSettingsNow,
   normalizeSpeechRate,
+  type UserSettings,
 } from './user_settings_store';
 
 export {
   DEFAULT_SETTINGS,
-  loadSettings,
-  saveSettings,
-  type UserSettings,
+  applyUserSettingsNow,
   getUserSettingsSnapshot,
   hydrateUserSettingsFromStorage,
-  applyUserSettingsNow,
+  loadSettings,
+  normalizeSpeechRate,
+  saveSettings,
+  type UserSettings,
 } from './user_settings_store';
 
-const PREVIEW = 'She did not tell him about it';
+type RowKey = Exclude<keyof UserSettings, 'speechRate' | 'speechVoiceId'>;
+
+const ACCENT_LABELS: Record<string, string> = {
+  'en-au': 'Australian',
+  'en-gb': 'British',
+  'en-us': 'American',
+  'en-in': 'Indian',
+  'en-nz': 'New Zealand',
+  'en-za': 'South African',
+  'en-ie': 'Irish',
+  'en-ca': 'Canadian',
+};
+
+function formatVoiceLabel(voice: Voice): string {
+  const lang = (voice.language ?? '').toLowerCase();
+  const accent = ACCENT_LABELS[lang] ?? ACCENT_LABELS[lang.slice(0, 5)] ?? 'English';
+
+  // identifier like "en-au-x-aua-local" → extract variant letter (aua→A, aub→B, auc→C)
+  const id = (voice.identifier ?? '').toLowerCase();
+  const variantMatch = /x-([a-z]{2,4})-(local|network)/.exec(id);
+  const type = id.includes('network') ? 'Online' : 'Local';
+
+  if (variantMatch) {
+    const variantCode = variantMatch[1]; // e.g. "aua", "aub", "gba"
+    const letter = variantCode.slice(-1).toUpperCase(); // A, B, C…
+    return `${accent} ${letter} · ${type}`;
+  }
+
+  // fallback: use name as-is if it's already human-readable
+  const name = voice.name ?? '';
+  if (name && !/^en-/i.test(name)) return `${name} · ${accent}`;
+
+  return `${accent} · ${type}`;
+}
 
 export default function SettingsEdu() {
   const router = useRouter();
   const { theme: t } = useTheme();
   const { lang, s: loc } = useLang();
   const { speak: speakAudio, stop: stopAudio } = useAudio();
-  /** Снимок после bootstrap — без «загрузки»; при фокусе подтягиваем с диска (облако и т.д.) */
   const [s, setS] = useState<UserSettings>(() => getUserSettingsSnapshot());
+  const [voices, setVoices] = useState<Voice[]>([]);
+  const [voicePickerOpen, setVoicePickerOpen] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
       void loadSettings().then(setS);
-    }, [])
+    }, []),
   );
 
   const update = (key: keyof UserSettings, val: boolean | number) => {
@@ -53,83 +90,239 @@ export default function SettingsEdu() {
     });
   };
 
-  const ROWS: { key: keyof UserSettings; label: string; labelUK: string; labelES: string; sub: string; subUK: string; subES: string }[] = [
-    { key:'autoCheck',   label:'Автопроверка',             labelUK:'Автоперевірка',         labelES:'Comprobación automática', sub:'Проверять при наборе последнего слова',                                  subUK:'Перевіряти при наборі останнього слова', subES:'Comprobar al escribir la última palabra' },
-    { key:'voiceOut',    label:'Озвучить ответ',            labelUK:'Озвучити відповідь',     labelES:'Leer la respuesta', sub:'Произносить фразу после ответа',                                        subUK:'Вимовляти фразу після відповіді', subES:'Leer la frase después de responder' },
-    { key:'autoAdvance', label:'Автопереход после ответа', labelUK:'Автоперехід після відповіді', labelES:'Siguiente automático', sub:'Автоматически переходить к следующему заданию при правильном ответе', subUK:'Автоматично переходити до наступного завдання при правильній відповіді', subES:'Pasas a la siguiente pregunta cuando aciertas.' },
-    { key:'hardMode',    label:'Ввод с клавиатуры',        labelUK:'Введення з клавіатури',  labelES:'Escribir con el teclado', sub:'Вводить ответ вручную вместо выбора слов (работает и в квизах)',          subUK:'Вводити відповідь вручну замість вибору слів (працює і в квізах)', subES:'Escribir la respuesta completa con el teclado (también en cuestionarios).' },
-    { key:'haptics',    label:'Вибрация при ошибке',    labelUK:'Вібрація при помилці',   labelES:'Vibración al fallar', sub:'Тактильный сигнал при неправильном ответе',                              subUK:'Тактильний сигнал при неправильній відповіді', subES:'Pequeño aviso háptico si la respuesta es incorrecta.' },
+  const updateVoice = (voiceId: string) => {
+    setS(prev => {
+      const next = { ...prev, speechVoiceId: voiceId };
+      applyUserSettingsNow(next);
+      return next;
+    });
+    stopAudio();
+    speakAudio('I speak English every day', s.speechRate, { language: 'en-US', voice: voiceId });
+  };
+
+  const L = (ru: string, uk: string, es: string) => (
+    lang === 'uk' ? uk : lang === 'es' ? es : ru
+  );
+
+  const rows: { key: RowKey; label: string; sub: string }[] = [
+    {
+      key: 'autoCheck',
+      label: L('Автопроверка', 'Автоперевірка', 'Comprobación automática'),
+      sub: L('Проверять при наборе последнего слова', 'Перевіряти при наборі останнього слова', 'Comprobar al escribir la última palabra'),
+    },
+    {
+      key: 'voiceOut',
+      label: L('Озвучить ответ', 'Озвучити відповідь', 'Leer la respuesta'),
+      sub: L('Произносить фразу после ответа', 'Вимовляти фразу після відповіді', 'Leer la frase después de responder'),
+    },
+    {
+      key: 'autoAdvance',
+      label: L('Автопереход после ответа', 'Автоперехід після відповіді', 'Siguiente automático'),
+      sub: L('Переходить к следующему заданию при правильном ответе', 'Переходити до наступного завдання при правильній відповіді', 'Pasar a la siguiente pregunta cuando aciertas'),
+    },
+    {
+      key: 'hardMode',
+      label: L('Ввод с клавиатуры', 'Введення з клавіатури', 'Escribir con el teclado'),
+      sub: L('Вводить ответ вручную вместо выбора слов', 'Вводити відповідь вручну замість вибору слів', 'Escribir la respuesta completa con el teclado'),
+    },
+    {
+      key: 'haptics',
+      label: L('Вибрация при ошибке', 'Вібрація при помилці', 'Vibración al fallar'),
+      sub: L('Тактильный сигнал при неправильном ответе', 'Тактильний сигнал при неправильній відповіді', 'Pequeño aviso háptico si la respuesta es incorrecta'),
+    },
   ];
+
+  useEffect(() => {
+    let cancelled = false;
+    Speech.getAvailableVoicesAsync()
+      .then(list => {
+        if (!cancelled) setVoices(list);
+      })
+      .catch(() => {
+        if (!cancelled) setVoices([]);
+      });
+    return () => { cancelled = true; };
+  }, []);
+
+  const englishVoices = useMemo(() => {
+    const unique = new Map<string, Voice>();
+    for (const voice of voices) {
+      if (voice.identifier && voice.language?.toLowerCase().startsWith('en')) {
+        unique.set(voice.identifier, voice);
+      }
+    }
+    return Array.from(unique.values()).sort((a, b) => {
+      const langCompare = String(a.language).localeCompare(String(b.language));
+      return langCompare || String(a.name).localeCompare(String(b.name));
+    });
+  }, [voices]);
+
+  const currentVoiceName = s.speechVoiceId
+    ? englishVoices.find(v => v.identifier === s.speechVoiceId)?.name ?? L('Выбранный голос', 'Вибраний голос', 'Selected voice')
+    : L('Системный голос', 'Системний голос', 'System voice');
 
   return (
     <ScreenGradient>
-    <SafeAreaView style={{ flex: 1 }}>
-      <ContentWrap>
-      <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, marginBottom: 8 }}>
-        <TouchableOpacity onPress={() => {
-          hapticTap();
-          if (router.canGoBack()) router.back();
-          else router.replace('/(tabs)/home' as any);
-        }}>
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
-        </TouchableOpacity>
-        <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '600' }}>
-          {loc.edu.title}
-        </Text>
-        <View style={{ width: 28 }} />
-      </View>
-
-      <ScrollView showsVerticalScrollIndicator={false}>
-      {ROWS.map(row => {
-        const isOn = !!s[row.key];
-        return (
-          <View key={row.key} style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-            <View style={{ flex: 1, marginRight: 12 }}>
-              <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-                {lang === 'uk' ? row.labelUK : lang === 'es' ? row.labelES : row.label}
-              </Text>
-              <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 3 }}>
-                {lang === 'uk' ? row.subUK : lang === 'es' ? row.subES : row.sub}
-              </Text>
-            </View>
-            <CustomSwitch value={isOn} onValueChange={val => update(row.key, val)} />
+      <SafeAreaView style={{ flex: 1 }}>
+        <ContentWrap>
+          <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15, marginBottom: 8 }}>
+            <TouchableOpacity
+              onPress={() => {
+                hapticTap();
+                if (router.canGoBack()) router.back();
+                else router.replace('/(tabs)/home' as any);
+              }}
+            >
+              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+            </TouchableOpacity>
+            <Text style={{ color: t.textPrimary, fontSize: 18, fontWeight: '600' }}>
+              {loc.edu.title}
+            </Text>
+            <View style={{ width: 28 }} />
           </View>
-        );
-      })}
 
-      {s.voiceOut && <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
-          <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
-            {loc.edu.speed}
-          </Text>
-          <Text style={{ color: t.textSecond, fontSize: 16, fontWeight: '600' }}>{s.speechRate.toFixed(1)}x</Text>
-        </View>
-        <Text style={{ color: t.textMuted, fontSize: 12, marginBottom: 6 }}>
-          {loc.edu.speedHint}
-        </Text>
-        <Slider
-          style={{ width: '100%', height: 44 }}
-          minimumValue={0.5} maximumValue={1.0} step={0.1}
-          value={normalizeSpeechRate(s.speechRate)}
-          onValueChange={v => setS(prev => ({ ...prev, speechRate: normalizeSpeechRate(v) }))}
-          onSlidingComplete={v => {
-            const rate = normalizeSpeechRate(v);
-            update('speechRate', rate);
-            stopAudio();
-            speakAudio(PREVIEW, rate);
-          }}
-          minimumTrackTintColor={t.textSecond}
-          maximumTrackTintColor={t.border}
-          thumbTintColor={t.textSecond}
-        />
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text style={{ color: t.textMuted, fontSize: 11 }}>0.5x  {loc.edu.speedSlowLabel}</Text>
-          <Text style={{ color: t.textMuted, fontSize: 11 }}>{loc.edu.speedFastLabel}  1.0x</Text>
-        </View>
-      </View>}
-      </ScrollView>
-      </ContentWrap>
-    </SafeAreaView>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {rows.map(row => {
+              const isOn = !!s[row.key];
+              return (
+                <View key={row.key} style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+                  <View style={{ flex: 1, marginRight: 12 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
+                      {row.label}
+                    </Text>
+                    <Text style={{ color: t.textMuted, fontSize: 13, marginTop: 3 }}>
+                      {row.sub}
+                    </Text>
+                  </View>
+                  <CustomSwitch value={isOn} onValueChange={val => update(row.key, val)} />
+                </View>
+              );
+            })}
+
+            {s.voiceOut ? (
+              <View style={{ paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 }}>
+                  <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
+                    {loc.edu.speed}
+                  </Text>
+                  <Text style={{ color: t.textSecond, fontSize: 16, fontWeight: '600' }}>
+                    {normalizeSpeechRate(s.speechRate).toFixed(1)}x
+                  </Text>
+                </View>
+                <Text style={{ color: t.textMuted, fontSize: 12, marginBottom: 6 }}>
+                  {loc.edu.speedHint}
+                </Text>
+                <Slider
+                  style={{ width: '100%', height: 44 }}
+                  minimumValue={0.5}
+                  maximumValue={1.0}
+                  step={0.1}
+                  value={normalizeSpeechRate(s.speechRate)}
+                  onValueChange={v => setS(prev => ({ ...prev, speechRate: normalizeSpeechRate(v) }))}
+                  onSlidingComplete={v => {
+                    const rate = normalizeSpeechRate(v);
+                    update('speechRate', rate);
+                    stopAudio();
+                    speakAudio('I speak English every day', rate, { language: 'en-US' });
+                  }}
+                  minimumTrackTintColor={t.textSecond}
+                  maximumTrackTintColor={t.border}
+                  thumbTintColor={t.textSecond}
+                />
+
+                <View style={{ marginTop: 12 }}>
+                  {/* Row: label + current voice + change button */}
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: 16, fontWeight: '500' }}>
+                      {L('Голос', 'Голос', 'Voice')}
+                    </Text>
+                    <TouchableOpacity
+                      onPress={() => { hapticTap(); setVoicePickerOpen(v => !v); }}
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        gap: 4,
+                        backgroundColor: t.bgCard,
+                        borderWidth: 1,
+                        borderColor: t.border,
+                        borderRadius: 10,
+                        paddingHorizontal: 12,
+                        paddingVertical: 7,
+                      }}
+                    >
+                      <Text style={{ color: t.accent, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
+                        {currentVoiceName}
+                      </Text>
+                      <Ionicons name={voicePickerOpen ? 'chevron-up' : 'chevron-down'} size={14} color={t.accent} />
+                    </TouchableOpacity>
+                  </View>
+
+                  {/* Expandable voice list */}
+                  {voicePickerOpen ? (
+                    <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8, marginBottom: 10 }}>
+                      <TouchableOpacity
+                        onPress={() => { updateVoice(''); setVoicePickerOpen(false); }}
+                        style={{
+                          borderWidth: 1,
+                          borderColor: !s.speechVoiceId ? t.accent : t.border,
+                          backgroundColor: !s.speechVoiceId ? `${t.accent}22` : t.bgCard,
+                          borderRadius: 10,
+                          paddingHorizontal: 12,
+                          paddingVertical: 9,
+                        }}
+                      >
+                        <Text style={{ color: !s.speechVoiceId ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }}>
+                          {L('Системный', 'Системний', 'System')}
+                        </Text>
+                      </TouchableOpacity>
+                      {englishVoices.map(voice => {
+                        const selected = s.speechVoiceId === voice.identifier;
+                        return (
+                          <TouchableOpacity
+                            key={voice.identifier}
+                            onPress={() => { updateVoice(voice.identifier); setVoicePickerOpen(false); }}
+                            style={{
+                              borderWidth: 1,
+                              borderColor: selected ? t.accent : t.border,
+                              backgroundColor: selected ? `${t.accent}22` : t.bgCard,
+                              borderRadius: 10,
+                              paddingHorizontal: 12,
+                              paddingVertical: 9,
+                            }}
+                          >
+                            <Text style={{ color: selected ? t.accent : t.textPrimary, fontSize: 13, fontWeight: '700' }} numberOfLines={1}>
+                              {formatVoiceLabel(voice)}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      })}
+                      {englishVoices.length === 0 ? (
+                        <Text style={{ color: t.textMuted, fontSize: 12 }}>
+                          {L('Голосов не найдено. Попробуйте скачать английский язык в настройках телефона.', 'Голосів не знайдено. Спробуйте завантажити англійську мову в налаштуваннях телефону.', 'No voices found. Try downloading English in your phone settings.')}
+                        </Text>
+                      ) : null}
+                    </View>
+                  ) : null}
+
+                  {/* Fun disclaimer */}
+                  <View style={{ marginTop: 4, backgroundColor: `${t.accent}12`, borderRadius: 12, padding: 14 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: 15, fontWeight: '700', marginBottom: 6 }}>
+                      {L('🎙️ Почему голос звучит странно?', '🎙️ Чому голос звучить дивно?', '🎙️ Why does the voice sound odd?')}
+                    </Text>
+                    <Text style={{ color: t.textSecond, fontSize: 13, lineHeight: 20 }}>
+                      {L(
+                        'У нас нет записанной озвучки — фразы произносит встроенный голосовой помощник вашего телефона (Android или iOS). Именно он отвечает за качество произношения.\n\nМы бы рады нанять настоящего британца с безупречным акцентом, но спонсора пока нет. Так что если ударение не там — спасибо телефону. 😅',
+                        'У нас немає записаного озвучення — фрази вимовляє вбудований голосовий помічник вашого телефону (Android або iOS). Саме він відповідає за якість вимови.\n\nМи б раді найняти справжнього британця з бездоганним акцентом, але спонсора поки немає. Тож якщо наголос не там — дякуємо телефону. 😅',
+                        'We have no recorded voice — phrases are spoken by your phone\'s built-in voice assistant (Android or iOS). It\'s fully responsible for pronunciation quality.\n\nWe\'d love to hire a real British actor with a flawless accent, but no sponsor yet. So if the stress sounds off — thank your phone. 😅',
+                      )}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            ) : null}
+          </ScrollView>
+        </ContentWrap>
+      </SafeAreaView>
     </ScreenGradient>
   );
 }

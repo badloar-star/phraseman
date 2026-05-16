@@ -8,6 +8,7 @@ import type { Lang } from '../constants/i18n';
 import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayPhrase } from './daily_phrase_system';
+import { reserveArenaGameEntry } from './arena_access_gate';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -58,7 +59,7 @@ const getNotifications = async () => {
       handleNotification: async () => ({
         shouldShowBanner: true,
         shouldShowList: true,
-        shouldPlaySound: true,
+        shouldPlaySound: false,
         shouldSetBadge: false,
       }),
     });
@@ -69,7 +70,6 @@ const getNotifications = async () => {
           importance: Notifications.AndroidImportance.HIGH,
           vibrationPattern: [0, 250, 250, 250],
           lightColor: '#06141B',
-          sound: 'default',
           enableVibrate: true,
         });
       } catch {
@@ -256,7 +256,7 @@ export const scheduleDailyReminder = async (
       content: {
         title: msg.title,
         body: msg.body,
-        sound: true,
+        sound: false,
         data: { type: 'reminder' },
       },
       trigger: triggerDaily(hour, minute),
@@ -329,7 +329,7 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
     ];
     const _body = pickNotif(lang, _p(ruBody), _p(ukBody), _p(esBody));
     await N.scheduleNotificationAsync({
-      content: { title: _title, body: _body, sound: true, data: { type: 'streak_warning' } },
+      content: { title: _title, body: _body, sound: false, data: { type: 'streak_warning' } },
       trigger: triggerInterval(2),
     });
   } catch {}
@@ -380,7 +380,7 @@ export const scheduleD1PersonalizedReminder = async (
     if (secondsUntil <= 0) return;
 
     await N.scheduleNotificationAsync({
-      content: { title, body, sound: true, data: { type: 'd1_reminder' } },
+      content: { title, body, sound: false, data: { type: 'd1_reminder' } },
       trigger: triggerInterval(secondsUntil),
     });
   } catch {}
@@ -424,7 +424,7 @@ export const sendPremiumNotification = async (lang: Lang = 'ru'): Promise<void> 
       ]),
     );
     await N.scheduleNotificationAsync({
-      content: { title: _premTitle, body: _premBody, sound: true, data: { type: 'premium' } },
+      content: { title: _premTitle, body: _premBody, sound: false, data: { type: 'premium' } },
       trigger: null,
     });
   } catch {}
@@ -529,7 +529,7 @@ export const scheduleNotifications = async (
     const msg = messages[Math.floor(Math.random() * messages.length)];
     try {
       const id = await N.scheduleNotificationAsync({
-        content: { title: msg.title, body: msg.body, sound: true, data: { type: 'reminder' } },
+        content: { title: msg.title, body: msg.body, sound: false, data: { type: 'reminder' } },
         trigger: triggerWeekly(
           appDayToExpoWeekday(Number(dayStr)),
           day.hour,
@@ -736,7 +736,7 @@ export const scheduleStreakWarningIfNeeded = async (
       content: {
         title,
         body,
-        sound: true,
+        sound: false,
         data: { type: 'streak_warning' },
       },
       trigger: triggerInterval(secondsUntil),
@@ -804,7 +804,7 @@ export const scheduleWeeklyRecapNotification = async (
     if (prevWeeklyId) await N.cancelScheduledNotificationAsync(prevWeeklyId).catch(() => {});
 
     const weeklyId = await N.scheduleNotificationAsync({
-      content: { title, body, sound: true, data: { type: 'weekly_recap' } },
+      content: { title, body, sound: false, data: { type: 'weekly_recap' } },
       trigger: triggerInterval(secondsUntil),
     });
 
@@ -850,7 +850,7 @@ export const scheduleMonthlyRecapNotification = async (
     if (prevMonthlyId) await N.cancelScheduledNotificationAsync(prevMonthlyId).catch(() => {});
 
     const monthlyId = await N.scheduleNotificationAsync({
-      content: { title, body, sound: true, data: { type: 'monthly_recap' } },
+      content: { title, body, sound: false, data: { type: 'monthly_recap' } },
       trigger: triggerInterval(secondsUntil),
     });
 
@@ -895,7 +895,7 @@ export const checkLeagueOvertakeNotification = async (
     const body = pickNotif(lang, _po(ruB), _po(ukB), _po(esB));
 
     await N.scheduleNotificationAsync({
-      content: { title, body, sound: true, data: { type: 'league_overtake' } },
+      content: { title, body, sound: false, data: { type: 'league_overtake' } },
       trigger: null, // немедленное уведомление
     });
   } catch {}
@@ -986,7 +986,7 @@ export const schedulePhrasOfDayNotification = async (
       content: {
         title,
         body,
-        sound: true,
+        sound: false,
         data: { type: 'phrase_of_day', phraseId: phrase.english },
       },
       trigger: triggerInterval(secondsUntil),
@@ -1019,10 +1019,13 @@ export const setupNotificationTapHandler = (
       switch (data.type) {
         case 'arena_match':
           if (data.sessionId && data.userId) {
-            router.push({
-              pathname: '/arena_game' as any,
-              params: { sessionId: data.sessionId, userId: data.userId },
-            });
+            void (async () => {
+              await reserveArenaGameEntry(String(data.sessionId), 'notification');
+              router.push({
+                pathname: '/arena_game' as any,
+                params: { sessionId: data.sessionId, userId: data.userId },
+              });
+            })();
           }
           break;
         case 'streak_warning':

@@ -1,0 +1,45 @@
+appId: app.phraseman
+---
+- stopApp
+- openLink: "exp+phraseman://expo-development-client/?url=http%3A%2F%2F127.0.0.1%3A8081"
+- waitForAnimationToEnd:
+    timeout: 8000
+- runFlow:
+    when:
+      visible: "Got it"
+    commands:
+      - tapOn: "Got it"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- runFlow:
+    when:
+      visible: "Continue"
+    commands:
+      - tapOn: "Continue"
+      - waitForAnimationToEnd:
+          timeout: 3000
+- tapOn:
+    point: "50%,94%"
+- waitForAnimationToEnd:
+    timeout: 5000
+- runFlow:
+    when:
+      visible: "Go home"
+    commands:
+      - tapOn: "Go home"
+      - waitForAnimationToEnd:
+          timeout: 5000
+- tapOn:
+    point: "73%,27%"
+- waitForAnimationToEnd:
+    timeout: 5000
+- runFlow:
+    when:
+      visible: "New development server"
+    commands:
+      - tapOn:
+          point: "50%,26%"
+      - waitForAnimationToEnd:
+          timeout: 8000
+- waitForAnimationToEnd:
+    timeout: 8000

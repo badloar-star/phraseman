@@ -2,7 +2,7 @@
 # Update the inputText value when the seeded emulator accounts change.
 appId: app.phraseman
 ---
-- launchApp
+- runFlow: ../../_shared/open_dev_client.yaml
 - runFlow: ../../_dismiss_bug_hunt.yaml
 - runFlow: ../../_precondition.yaml
 - waitForAnimationToEnd:

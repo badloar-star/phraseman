@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, ActivityIndicator, Image, ScrollView,
+  View, Text, TouchableOpacity, StyleSheet, Image, ScrollView,
   Modal, Pressable, Dimensions,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -23,6 +23,7 @@ import { getRankImage, getRankImageDisplayScale } from '../hooks/use-arena-rank'
 import { emitAppEvent } from './events';
 import { useLang } from '../components/LangContext';
 import { triLang, type Lang } from '../constants/i18n';
+import { screenTextOnGradient } from '../constants/theme';
 
 const RANK_NAMES: Record<RankTier, string> = {
   bronze: 'Бронза', silver: 'Серебро', gold: 'Золото',
@@ -127,7 +128,8 @@ const ALL_RANK_SLOTS = (() => {
 
 export default function DuelRatingScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const [myProfile, setMyProfile] = useState<ArenaProfile | null>(null);
   const [matchHistory, setMatchHistory] = useState<MatchRecord[]>([]);
@@ -218,11 +220,11 @@ export default function DuelRatingScreen() {
     <ScreenGradient>
       <View style={styles.header}>
         <TouchableOpacity onPress={() => { if (router.canGoBack()) router.back(); else router.replace('/(tabs)/home' as any); }} style={styles.backBtn}>
-          <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
+          <Ionicons name="arrow-back" size={24} color={sx.primary} />
         </TouchableOpacity>
         <View style={{ flex: 1, alignItems: 'center', gap: 6 }}>
           <Image source={require('../assets/images/levels/ARENA  ICON.webp')} style={{ width: 44, height: 44 }} resizeMode="contain" />
-          <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700' }}>
+          <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700' }}>
             {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
           </Text>
         </View>
@@ -392,7 +394,7 @@ export default function DuelRatingScreen() {
 
         {/* История матчей */}
         <View style={{ paddingHorizontal: 16, marginTop: 8 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
             {triLang(lang, {
               ru: 'История матчей',
               uk: 'Історія матчів',
@@ -400,16 +402,10 @@ export default function DuelRatingScreen() {
             })}
           </Text>
 
-          {loading && (
-            <View style={{ alignItems: 'center', paddingVertical: 32 }}>
-              <ActivityIndicator size="large" color={t.accent} />
-            </View>
-          )}
-
-          {!loading && matchHistory.length === 0 && (
+          {matchHistory.length === 0 && (
             <View style={{ alignItems: 'center', paddingVertical: 40 }}>
               <Text style={{ fontSize: 40, marginBottom: 12 }}>⚔️</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginBottom: loadError ? 14 : 0 }}>
+              <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginBottom: loadError ? 14 : 0 }}>
                 {loadError
                   ? triLang(lang, {
                       ru: 'Не удалось получить историю матчей',
@@ -418,7 +414,7 @@ export default function DuelRatingScreen() {
                     })
                   : triLang(lang, {
                       ru: 'Сыграй первый матч,\nи он появится здесь',
-                      uk: 'Зіграй перший матч,\nі він з’явиться тут',
+                      uk: 'Зіграй перший матч,\nі він з\'явиться тут',
                       es: 'Juega tu primer duelo\ny aparecerá aquí.',
                     })}
               </Text>

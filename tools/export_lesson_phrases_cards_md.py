@@ -12,7 +12,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def extract_lesson24_phrases(ts: str) -> dict[int, tuple[str, str, str]]:
     start = ts.index("export const LESSON_24_PHRASES")
-    end = ts.index("export const LESSON_24_VOCABULARY", start)
+    m = re.search(r"\nexport const LESSON_24_", ts[start + 1 :])
+    if not m:
+        raise SystemExit("Could not find the next lesson 24 export after LESSON_24_PHRASES")
+    end = start + 1 + m.start()
     block = ts[start:end]
     pat = re.compile(
         r"\{id:'l24p(\d+)',english:'((?:\\'|[^'])*)',russian:'((?:\\'|[^'])*)',ukrainian:'((?:\\'|[^'])*)'",

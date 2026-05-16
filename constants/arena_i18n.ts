@@ -34,15 +34,11 @@ export function arenaBilingualFirst(text: string, lang: Lang): string {
 }
 
 const GAME = {
-  loadingQuestions: { ru: 'Загружаем вопросы…', uk: 'Завантаження…', es: 'Cargando preguntas…' },
+  loadingQuestions: { ru: 'Арена', uk: 'Арена', es: 'Arena' },
   abortedUi: { ru: 'Отмена…', uk: 'Скасовано…', es: 'Cancelado…' },
-  waitOpponent: { ru: 'Ждём соперника…', uk: 'Очікуємо суперника…', es: 'Esperando al rival…' },
+  waitOpponent: { ru: 'Раунд арены', uk: 'Раунд арени', es: 'Ronda de arena' },
   timeLeft: { ru: 'Осталось', uk: 'Залишилось', es: 'Te quedan' },
-  connecting: {
-    ru: 'Подключение к матчу…',
-    uk: 'Підключення до матчу…',
-    es: 'Uniéndote al duelo…',
-  },
+  connecting: { ru: 'Игра найдена', uk: 'Гру знайдено', es: 'Duelo encontrado' },
   gameFound: { ru: 'ИГРА НАЙДЕНА', uk: 'ГРУ ЗНАЙДЕНО', es: '¡DUELO ENCONTRADO!' },
   decline: { ru: 'Отклонить', uk: 'Відмовити', es: 'Rechazar' },
   accept: { ru: 'ПРИНЯТЬ', uk: 'ПРИЙНЯТИ', es: 'ACEPTAR' },
@@ -123,7 +119,7 @@ export const arenaToasts = {
   },
   answerNotSent: {
     messageRu: 'Ответ не отправлен. Проверь соединение и попробуй снова.',
-    messageUk: 'Відповідь не надіслано. Перевір зʼєднання і спробуй ще раз.',
+    messageUk: 'Відповідь не надіслано. Перевір з\'єднання і спробуй ще раз.',
     messageEs: 'La respuesta no se ha enviado. Revisa la conexión e inténtalo de nuevo.',
   },
   matchFinishFail: {
@@ -170,4 +166,3 @@ export function arenaOpponentReactToast(displayName: string, emoji: string) {
     messageEs: line,
   };
 }
-

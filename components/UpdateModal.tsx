@@ -77,7 +77,7 @@ export default function UpdateModal({ visible, storeUrl, message, onClose, onWil
       <View
         style={[
           styles.overlay,
-          { backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.42)' : 'rgba(0,0,0,0.55)' },
+          { backgroundColor: 'rgba(0,0,0,0.55)' },
         ]}
       >
         <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.borderHighlight }]}>

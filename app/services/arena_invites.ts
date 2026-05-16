@@ -78,7 +78,7 @@ export async function sendArenaInvite(params: {
   if (!okFriend) return { ok: false, reason: 'not_friend' };
 
   const toAuth = await getAuthUidForStableUser(toFriendStableUid);
-  // toAuth may be missing if friend hasn't opened the app recently — that's OK:
+  // toAuth may be missing if friend hasn\'t opened the app recently — that\'s OK:
   // subscribeIncomingArenaInvites queries by friendStableUid (not toUid), and
   // Firestore update rules allow the friend via canonicalUserMatchesAuth(friendStableUid).
 

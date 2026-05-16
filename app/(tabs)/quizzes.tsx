@@ -1,7 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { hapticError, hapticTap } from '../../hooks/use-haptics';
-import { useAudio } from '../../hooks/use-audio';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
@@ -13,6 +12,7 @@ import {
   Modal,
   Pressable,
   ScrollView,
+  Share,
   Image,
   Text,
   TextInput,
@@ -20,10 +20,8 @@ import {
   useWindowDimensions,
   View,
 } from 'react-native';
-import Svg from 'react-native-svg';
 
 import AddToFlashcard from '../../components/AddToFlashcard';
-import PhraseContentStars from '../../components/PhraseContentStars';
 import BonusXPCard from '../../components/BonusXPCard';
 import ContentWrap from '../../components/ContentWrap';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -39,7 +37,6 @@ import { getXPProgress } from '../../constants/theme';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../../constants/motion';
 import { checkAchievements } from '../achievements';
 import { bumpQuizSessionCompleted } from '../lifetime_profile_stats';
-import { playActivityCompletionModalSound } from '../activity_complete_sound';
 import { logQuizComplete, logQuizLevelSelected, logEnergyLimitHit } from '../firebase';
 import { trackEnergyHit, trackQuizLevel } from '../user_stats';
 import { emitAppEvent } from '../events';
@@ -51,6 +48,7 @@ import EnergyBar from '../../components/EnergyBar';
 import NoEnergyModal from '../../components/NoEnergyModal';
 import { navigateAfterModalClose } from '../safe_modal_navigation';
 import { pointsForAnswer, streakMultiplier } from '../hall_of_fame_utils';
+import { useAudio } from '../../hooks/use-audio';
 import { isQuizChoiceCorrect, quizPrimaryCorrectIndex, type QuizPhrase } from '../quiz_data';
 import { getQuizPhrasesLoaded } from '../quiz_phrases_loader';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from '../settings_edu';
@@ -61,17 +59,21 @@ import { registerXP } from '../xp_manager';
 import { useEffectivePlatformOS } from '../platform_ui_preview';
 import { recordMistake } from '../active_recall';
 import { logMistake } from '../mistake_log';
+import { resolvePhraseMistakeToken } from '../mistake_token_resolver';
 import { QUIZ_E2E_OPEN_RESULTS_KEY } from '../quizzes/constants';
 import { incrementHardPaywallBlock } from '../paywall_personalization';
 import {
+  FREE_DAILY_QUIZ_LIMIT,
+  getFreeDailyQuizState,
+  hasFreeDailyQuizzesLeft,
+  incrementFreeDailyQuizCount,
+  type QuizDailyLimitState,
+} from '../quiz_daily_limit';
+import {
   buildQuizShareMessage,
-  getQuizShareCardRank,
+  getQuizShareRank,
   quizShareMessageLang,
 } from '../quizzes/results';
-import QuizShareCardSvg from '../../components/share_cards/QuizShareCardSvg';
-import { shareCardFromSvgRef } from '../../components/share_cards/shareCardPng';
-import { REPORT_SCREENS_RUSSIAN_ONLY } from '../../constants/report_ui_ru';
-import type { ShareCardLang } from '../../components/share_cards/streakCardCopy';
 
 const LEVEL_IMAGES: Record<string, number> = {
   easy:   require('../../assets/images/levels/easy.webp'),
@@ -264,9 +266,14 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   const { energy, bonusEnergy, isUnlimited: energyUnlimited } = useEnergy();
   const [selected, setSelected] = useState<Level | null>(null);
   const [showLevelNoEnergy, setShowLevelNoEnergy] = useState(false);
-  const screenTitleColor = (themeMode === 'sakura' || themeMode === 'ocean')
-    ? (themeMode === 'ocean' ? 'rgba(240,252,255,0.95)' : 'rgba(255,248,252,0.95)')
-    : t.textPrimary;
+  const [freeQuizState, setFreeQuizState] = useState<QuizDailyLimitState>({
+    date: '',
+    count: 0,
+    limit: FREE_DAILY_QUIZ_LIMIT,
+    left: FREE_DAILY_QUIZ_LIMIT,
+    exhausted: false,
+  });
+  const screenTitleColor = t.textPrimary;
   const { width: windowWidth } = useWindowDimensions();
   /** Ширина трека полоски: translateX + native driver (без скачков interpolate от onLayout) */
   const startTrackW = Math.max(1, windowWidth - 40);
@@ -299,6 +306,14 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     return () => loops.forEach(a => a.stop());
   }, [pulseAnims]);
 
+  useEffect(() => {
+    let cancelled = false;
+    void getFreeDailyQuizState().then((state) => {
+      if (!cancelled) setFreeQuizState(state);
+    });
+    return () => { cancelled = true; };
+  }, []);
+
 
   const handleStart = (lv: Level) => {
     if (!energyUnlimited && energy + bonusEnergy <= 0) {
@@ -325,7 +340,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     <ScreenGradient>
     <View style={{ flex:1 }}>
       <ContentWrap>
-      <View style={{ flexDirection:'row', alignItems:'center', padding:16, paddingTop: 16 + insets.top, borderBottomWidth:0.5, borderBottomColor: themeMode === 'sakura' ? 'rgba(255,200,220,0.22)' : themeMode === 'ocean' ? 'rgba(100,200,255,0.24)' : t.border }}>
+      <View style={{ flexDirection:'row', alignItems:'center', padding:16, paddingTop: 16 + insets.top, borderBottomWidth:0.5, borderBottomColor: t.border }}>
         <TouchableOpacity
           testID="quiz-level-select-back"
           accessibilityLabel="qa-quiz-level-select-back"
@@ -356,7 +371,9 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
           const c        = LEVEL_CONFIG[lv];
           const lbl      = triLang(lang, { ru: c.labelRU, uk: c.labelUK, es: c.labelES });
           const tag      = triLang(lang, { ru: c.tagRU, uk: c.tagUK, es: c.tagES });
-          const locked   = !DEV_MODE && !isPremium && lv !== 'easy';
+          const lockedByLevel = !DEV_MODE && !isPremium && lv !== 'easy';
+          const lockedByDailyLimit = !DEV_MODE && !isPremium && lv === 'easy' && freeQuizState.exhausted;
+          const locked   = lockedByLevel || lockedByDailyLimit;
           const palette  = (THEME_PALETTES[themeMode] ?? THEME_PALETTES.dark)[lv];
           const txt      = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
           const gradA    = locked ? t.bgCard    : palette.gradA;
@@ -374,7 +391,10 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                   hapticTap();
                   if (locked) {
                     if (lv === 'hard') incrementHardPaywallBlock();
-                    router.push({ pathname: '/premium_modal', params: { context: lv === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any);
+                    router.push({
+                      pathname: '/premium_modal',
+                      params: { context: lockedByDailyLimit ? 'quiz_limit' : lv === 'hard' ? 'quiz_hard' : 'quiz_medium' },
+                    } as any);
                     return;
                   }
                   if (isSelected) { handleStart(lv); return; }
@@ -415,7 +435,11 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                       {locked && (
                         <View style={{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor: t.accentBg, borderRadius:6, paddingHorizontal:7, paddingVertical:2 }}>
                           <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
-                          <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>Premium</Text>
+                          <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
+                            {lockedByDailyLimit
+                              ? triLang(lang, { ru: 'Лимит', uk: 'Ліміт', es: 'Límite' })
+                              : 'Premium'}
+                          </Text>
                         </View>
                       )}
                     </View>
@@ -473,13 +497,40 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
             </View>
           );
         })}
+        {!DEV_MODE && !isPremium && (
+          <View style={{
+            marginTop: 8,
+            borderRadius: 14,
+            borderWidth: 1,
+            borderColor: freeQuizState.exhausted ? t.border : t.accent + '66',
+            backgroundColor: freeQuizState.exhausted ? t.bgCard : t.accentBg,
+            paddingHorizontal: 14,
+            paddingVertical: 12,
+            flexDirection: 'row',
+            alignItems: 'center',
+            gap: 10,
+          }}>
+            <Ionicons
+              name={freeQuizState.exhausted ? 'lock-closed' : 'flash-outline'}
+              size={18}
+              color={freeQuizState.exhausted ? t.textMuted : t.accent}
+            />
+            <Text style={{ color: freeQuizState.exhausted ? t.textMuted : t.textSecond, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
+              {triLang(lang, {
+                ru: `Бесплатные квизы сегодня: ${freeQuizState.left}/${freeQuizState.limit}`,
+                uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
+                es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
+              })}
+            </Text>
+          </View>
+        )}
       </View>
       </ContentWrap>
 
       <NoEnergyModal
         visible={showLevelNoEnergy}
         onClose={() => setShowLevelNoEnergy(false)}
-        paywallContext="quiz_limit"
+        paywallContext="no_energy"
       />
     </View>
     </ScreenGradient>
@@ -493,11 +544,10 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
   const { s, lang } = useLang();
   const { goHome, activeIdx } = useTabNav();
   const router = useRouter();
-  const { speak: speakAudio, stop: stopAudio } = useAudio();
-  useEffect(() => () => { stopAudio(); }, [stopAudio]);
+  const { isPremium } = usePremium();
   const insets = useSafeAreaInsets();
   const { width: windowWidth } = useWindowDimensions();
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLightTheme = false;
   /** Текст на тёмном градиенте (океан/сакура): не t.text* — они для светлых карточек */
   const quizGradTxt = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
   const onGradPrimary = isLightTheme ? quizGradTxt.primary : t.textPrimary;
@@ -519,6 +569,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
   }, [level, lang, retryCount]);
 
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+  const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [idx,      setIdx]      = useState(0);
   const [chosen,   setChosen]   = useState<number|null>(null);
   const [typed,    setTyped]    = useState('');
@@ -553,8 +604,19 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
       const score = results.filter(Boolean).length;
       logQuizComplete(level, score);
       void bumpQuizSessionCompleted(level);
+      if (!DEV_MODE && !isPremium) {
+        void incrementFreeDailyQuizCount();
+      }
+      void (async () => {
+        const { checkAchievements: ca } = await import('../achievements');
+        const totalKey = 'achievement_quiz_total_count';
+        const prev = parseInt((await AsyncStorage.getItem(totalKey)) ?? '0', 10) || 0;
+        const next = prev + 1;
+        await AsyncStorage.setItem(totalKey, String(next));
+        void ca({ type: 'quiz_session_count', count: next });
+      })();
     }
-  }, [done, level, results]);
+  }, [done, isPremium, level, results]);
   const showEnergyEmptyFeedbackRef = useRef<() => void>(() => {});
   const showEnergyEmptyFeedback = useCallback(() => {
     logEnergyLimitHit('quiz');
@@ -585,7 +647,6 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
   const resultsRef  = useRef<boolean[]>([]);
   // Guard: предотвращает повторный лог/ачивки при завершении review mode
   const quizCompletedRef = useRef(false);
-  const quizCardSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
 
   const e2eResultAppliedRef = useRef(false);
   useEffect(() => {
@@ -699,7 +760,6 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
 
   useEffect(() => {
     if (!done || reviewing) return;
-    void playActivityCompletionModalSound();
   }, [done, reviewing]);
 
   // Синхронизируем isTabActive — но таймер не останавливаем
@@ -710,6 +770,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
   const onBackRef = useRef(onBack);
   useEffect(() => { onBackRef.current = onBack; }, [onBack]);
   useEffect(() => { settingsRef.current = settings; }, [settings]);
+  useEffect(() => () => { stopAudio(); }, [stopAudio]);
 
   // ── Таймер на вопрос — работает даже при смене вкладки ──────────────────
   const answeredRef = useRef(false);
@@ -813,13 +874,18 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     ]).start();
   };
 
-  const afterAnswer = async (isRight: boolean) => {
+  const afterAnswer = async (isRight: boolean, userAnswer?: string) => {
     const nr = reviewing ? results : [...results, isRight];
     if (!reviewing) { resultsRef.current = nr; setResults(nr); }
 
     if (!isRight && settings.haptics) hapticError();
 
+    if (settings.voiceOut && current?.answer) {
+      speakAudio(current.answer, settings.speechRate, { language: 'en-US' });
+    }
+
     if (!isRight && current) {
+      const tokenMeta = resolvePhraseMistakeToken(current.answer, userAnswer, current.skillTag ?? current.quizItemType);
       void recordMistake(
         current.answer,
         current.ru,
@@ -827,8 +893,15 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
         current.uk,
         'quiz',
         current.es,
+        tokenMeta,
       );
-      logMistake(current.answer, current.lessonNum, 'quiz', 'wrong_pick');
+      logMistake(
+        current.answer,
+        current.lessonNum,
+        'quiz',
+        'wrong_pick',
+        tokenMeta,
+      );
     }
 
     if (!reviewing) {
@@ -848,9 +921,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
         // Начисляем баллы — имя уже в ref, нет асинхронного запроса
         if (userNameRef.current) { registerXP(pts, 'quiz_answer', userNameRef.current, lang).then(xpResult => { setEarnedXP(p => p + xpResult.finalDelta); }).catch(() => {}); }
         // Триггеры заданий — quiz_score обновляется в done useEffect (один раз с итогом сессии)
-        const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [
-          { type: 'daily_active' },
-        ];
+        const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [];
         if (level === 'hard') updates.push({ type: 'quiz_hard' });
         if (level === 'easy') updates.push({ type: 'quiz_easy' });
         if (level === 'medium') updates.push({ type: 'quiz_medium' });
@@ -878,10 +949,6 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           if (newCount >= 2) setShowHardTip(true);
         }
       }
-    }
-
-    if (settings.voiceOut && isTabActiveRef.current) {
-      speakAudio(current.answer, settings.speechRate);
     }
 
     // Задержка зависит от уровня и настройки autoAdvance
@@ -928,7 +995,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     if (timerRef.current) clearInterval(timerRef.current);
     setChosen(ci);
     playInsertAnim();
-    afterAnswer(isQuizChoiceCorrect(ci, current.correct));
+    afterAnswer(isQuizChoiceCorrect(ci, current.correct), current.choices[ci]);
   };
 
   const handleTyped = () => {
@@ -943,7 +1010,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     const ok = isCorrectAnswer(typed, current.answer, current.answerAlternatives);
     setTypedOk(ok);
     playInsertAnim();
-    afterAnswer(ok);
+    afterAnswer(ok, typed);
   };
 
   // ── ФИНАЛЬНЫЙ ЭКРАН ──────────────────────────────────────────────────────
@@ -951,13 +1018,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     const total = phrases.length;
     const right = results.filter(Boolean).length;
     const pct   = Math.round((right / Math.max(1, total)) * 100);
-    const cardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY
-      ? 'ru'
-      : lang === 'uk'
-        ? 'uk'
-        : lang === 'es'
-          ? 'es'
-          : 'ru';
+    const shareLang = quizShareMessageLang(lang);
     const _qp = (a: string[]) => a[Math.floor(Math.random() * a.length)];
     const rankInfo = pct === 100
       ? { icon:'🏆', labelRU: _qp(['Безупречно!','Идеально!','Гений!','Просто огонь! 🔥','Легенда!']), labelUK: _qp(['Бездоганно!','Ідеально!','Геній!','Просто вогонь! 🔥','Легенда!']), labelES: _qp(['¡Impecable!','¡Perfecto!','¡Genial!','¡Qué nivelazo! 🔥','¡Eres una leyenda!']), color:'#D4A017' }
@@ -972,20 +1033,6 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     return (
       <ScreenGradient>
       <View style={{ flex:1 }}>
-        <View
-          pointerEvents="none"
-          collapsable={false}
-          style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, zIndex: -1, overflow: 'hidden' }}
-        >
-          <QuizShareCardSvg
-            ref={quizCardSvgRef}
-            right={right}
-            total={total}
-            pct={pct}
-            lang={cardLang}
-            layoutSize={1080}
-          />
-        </View>
         <ContentWrap>
         <ScrollView contentContainerStyle={{ flexGrow:1, justifyContent:'center', alignItems:'center', padding:30 }} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: f.numLg + 28, marginBottom:10 }} adjustsFontSizeToFit numberOfLines={1}>{rankInfo.icon}</Text>
@@ -1052,6 +1099,13 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
               // Отменяем все pending таймеры от предыдущей игры
               if (autoAdvanceTimerRef.current) { clearTimeout(autoAdvanceTimerRef.current); autoAdvanceTimerRef.current = null; }
               if (timerRef.current) { clearInterval(timerRef.current); timerRef.current = null; }
+              if (!DEV_MODE && !isPremium) {
+                void hasFreeDailyQuizzesLeft().then((hasLeft) => {
+                  if (hasLeft) return;
+                  router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+                });
+                return;
+              }
               fadeAnim.stopAnimation();
               fadeAnim.setValue(1);
               // Перечитываем актуальный XP из storage чтобы не сбрасывать заработанный
@@ -1075,12 +1129,11 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
             style={{ flexDirection:'row', alignItems:'center', gap:8, padding:10, marginTop: 8 }}
             onPress={async () => {
               hapticTap();
-              const shareLang = quizShareMessageLang(lang);
-              const shareRank = getQuizShareCardRank(
+              const shareRank = getQuizShareRank(
                 pct,
                 '#94a3b8',
                 '#64748b',
-                cardLang
+                shareLang
               );
               const msg = buildQuizShareMessage(
                 shareLang,
@@ -1090,7 +1143,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                 shareRank.icon,
                 STORE_URL
               );
-              await shareCardFromSvgRef(quizCardSvgRef, { fileNamePrefix: 'phraseman-quiz', textFallback: msg });
+              await Share.share({ message: msg }).catch(() => {});
             }}
           >
             <Ionicons name="share-outline" size={16} color={t.textGhost}/>
@@ -1149,8 +1202,8 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
 
   // Переход к следующему вопросу (тап по экрану или кнопка "Далее")
   const handleTap = () => {
-    if (chosen === null && typedOk === null) return; // ещё не ответили
-    stopAudio();
+    if (chosen === null && typedOk === null) return;
+    stopAudio(); // ещё не ответили
     // Отменяем авто-таймер если был запланирован
     if (autoAdvanceTimerRef.current) {
       clearTimeout(autoAdvanceTimerRef.current);
@@ -1185,7 +1238,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     <ScreenGradient>
     <View style={{ flex:1 }}>
       <ContentWrap>
-      <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs==='ios'?'padding':'height'}>
+      <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
 
         {/* ХЕДЕР */}
         <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, paddingTop: 15 + insets.top }}>
@@ -1241,14 +1294,6 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           <Text style={{ color:onGradPrimary, fontSize: f.h2 + 6, fontWeight:'500', marginBottom:12, lineHeight:32 }}>
             {triLang(lang, { uk: current.uk, ru: current.ru, es: current.es })}
           </Text>
-
-          <PhraseContentStars
-            scope="quiz"
-            itemId={`quiz_${level}_L${current.lessonNum}_${current.answer.replace(/\s+/g, '_').slice(0, 120)}`}
-            labelSnippet={triLang(lang, { uk: current.uk, ru: current.ru, es: current.es })}
-            ratingTarget="phrase"
-            style={{ marginBottom: 16, alignSelf: 'center' }}
-          />
 
           {/* АНИМАЦИЯ ВСТАВКИ */}
           {displayAnswer !== null && (
@@ -1467,8 +1512,8 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
         onPress={() => { hapticTap(); setShowTimeoutAlert(false); onBackRef.current(); }}
       >
         <Pressable onPress={e => e.stopPropagation()}>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 320, width: '100%' }}>
-            <Text style={{ fontSize: 52, marginBottom: 12 }}>⏰</Text>
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 320, width: '90%' }}>
+            <Text style={{ fontSize: 52, marginBottom: 12 }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>⏰</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
               {triLang(lang, { ru: 'Время вышло!', uk: 'Час вийшов!', es: '¡Se acabó el tiempo!' })}
             </Text>
@@ -1504,7 +1549,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     <NoEnergyModal
       visible={showNoEnergyModal}
       onClose={dismissEnergyModal}
-      paywallContext="quiz_limit"
+      paywallContext="no_energy"
     />
 
     </ScreenGradient>
@@ -1520,6 +1565,7 @@ export default function QuizzesScreen() {
   const fromTaskRef = useRef(false);
   const { activeIdx } = useTabNav();
   const router = useRouter();
+  const { isPremium } = usePremium();
   const { energy, bonusEnergy, isUnlimited } = useEnergy();
   const energySnapRef = useRef({ e: 0, b: 0, u: false });
   energySnapRef.current = { e: energy, b: bonusEnergy, u: isUnlimited };
@@ -1551,6 +1597,16 @@ export default function QuizzesScreen() {
           if (!cancelled) {
             await new Promise(r => setTimeout(r, 200));
             if (cancelled) return;
+            if (!DEV_MODE && !isPremium && nav !== 'easy') {
+              await AsyncStorage.removeItem('quiz_nav_level');
+              router.push({ pathname: '/premium_modal', params: { context: nav === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any);
+              return;
+            }
+            if (!DEV_MODE && !isPremium && nav === 'easy' && !(await hasFreeDailyQuizzesLeft())) {
+              await AsyncStorage.removeItem('quiz_nav_level');
+              router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+              return;
+            }
             const snap = energySnapRef.current;
             if (!snap.u && snap.e + snap.b <= 0) {
               await AsyncStorage.removeItem('quiz_nav_level');
@@ -1579,7 +1635,7 @@ export default function QuizzesScreen() {
       } catch { /* ignore */ }
     })();
     return () => { cancelled = true; };
-  }, []);
+  }, [isPremium, router]);
 
   return (
     <View style={{ flex: 1 }}>

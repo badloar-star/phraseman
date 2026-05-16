@@ -38,7 +38,10 @@ def normalize_fr_quote_english(s: str) -> str:
 def main() -> None:
     text = PATH.read_text(encoding="utf-8")
     start = text.index("export const LESSON_20_PHRASES")
-    end = text.index("export const LESSON_20_VOCABULARY")
+    m = re.search(r"\nexport const LESSON_20_", text[start + 1 :])
+    if not m:
+        raise ValueError("Could not find the next lesson 20 export after LESSON_20_PHRASES")
+    end = start + 1 + m.start()
     pre, block, post = text[:start], text[start:end], text[end:]
 
     block2 = re.sub(r"english:(')((?:[^'\\]|\\.)*)'", fix_english_match, block)

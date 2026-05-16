@@ -6,6 +6,7 @@ import { useTheme } from './ThemeContext';
 type Props = {
   text: string;
   fontSize: number;
+  onGradient?: boolean;
 };
 
 const GOLD_STOPS: { offset: string; color: string }[] = [
@@ -30,10 +31,10 @@ const GOLD_STOPS_SKETCH: { offset: string; color: string }[] = [
 /** Имя на главной для Premium: золотой градиент по буквам (через SVG, без @react-native-masked-view).
  *  Ширина SVG = реально измеренной ширине RN <Text> с теми же параметрами,
  *  чтобы длинные/широкие ники (Gamma7816, заглавные, цифры) не обрезались. */
-export default function PremiumGoldUserName({ text, fontSize }: Props) {
+export default function PremiumGoldUserName({ text, fontSize, onGradient = false }: Props) {
   const { themeMode, theme } = useTheme();
   const [measuredW, setMeasuredW] = useState(0);
-  const display = text || '...';
+  const display = text || 'Phraseman';
   const lineHeight = Math.ceil(fontSize * 1.28);
 
   const fallbackW = useMemo(
@@ -44,24 +45,6 @@ export default function PremiumGoldUserName({ text, fontSize }: Props) {
     const hash = Math.abs((display + fontSize).split('').reduce((acc, ch) => ((acc * 31) + ch.charCodeAt(0)) | 0, 7));
     return `premiumGold_${hash}`;
   }, [display, fontSize]);
-
-  /** Тёмно-бирюзовый / винный фон экрана — золотой градиент почти не виден, оставляем светлый контрастный текст */
-  if (themeMode === 'ocean' || themeMode === 'sakura') {
-    return (
-      <Text
-        style={{
-          marginTop: 2,
-          color: theme.heroTextPrimary,
-          fontSize,
-          lineHeight,
-          fontWeight: '700',
-        }}
-        numberOfLines={1}
-      >
-        {display}
-      </Text>
-    );
-  }
 
   const isSketch = themeMode === 'minimalLight';
   const gradientStops = isSketch ? GOLD_STOPS_SKETCH : GOLD_STOPS;

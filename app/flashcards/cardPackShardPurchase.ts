@@ -28,8 +28,7 @@ export async function purchaseCardPackWithShards(
   if (owned.includes(pack.id)) return 'already_owned';
   const balance = await getShardsBalance();
   if (balance < pack.priceShards) return 'insufficient';
-  /** Не ждём Firestore после списания — иначе paywall висит на `syncShardsToCloud`. */
-  const ok = await spendShards(pack.priceShards, 'card_pack', { skipServerAwait: true });
+  const ok = await spendShards(pack.priceShards, 'card_pack');
   if (!ok) {
     emitAppEvent('action_toast', {
       type: 'error',

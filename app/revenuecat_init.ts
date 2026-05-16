@@ -1,9 +1,16 @@
-import Purchases, { type PurchasesPackage } from 'react-native-purchases';
+import Purchases, { LOG_LEVEL, type PurchasesPackage } from 'react-native-purchases';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { Platform } from 'react-native';
-import { IS_EXPO_GO } from './config';
+import { IS_EXPO_GO, IS_STORE_RELEASE } from './config';
 import { prefetchShardsShopOfferings } from './shards_shop_cache';
+import { getCanonicalUserId } from './user_id_policy';
+import {
+  inferPremiumPlanFromProductId,
+  persistStorePremiumLocally,
+  revenueCatPremiumMetadata,
+  type PremiumStorePlan,
+} from './premium_revenuecat_state';
 
 /**
  * Из общего `availablePackages` возвращает monthly + yearly.
@@ -82,7 +89,28 @@ function resolveRevenueCatPublicApiKey(): string {
 
 const RC_TIMEOUT_MS = 8000; // увеличен с 3000 для аудитории СНГ
 
+const DEV_STORE_BILLING_OPTIONAL =
+  typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+
 let configurePromise: Promise<void> | null = null;
+let revenueCatLoggingConfigured = false;
+
+function configureRevenueCatLogging(): void {
+  if (revenueCatLoggingConfigured) return;
+  revenueCatLoggingConfigured = true;
+
+  try {
+    if (DEV_STORE_BILLING_OPTIONAL) {
+      Purchases.setLogHandler(() => {});
+      void Purchases.setLogLevel(LOG_LEVEL.ERROR).catch(() => {});
+      return;
+    }
+
+    void Purchases.setLogLevel(__DEV__ ? LOG_LEVEL.WARN : LOG_LEVEL.ERROR).catch(() => {});
+  } catch {
+    // RevenueCat native module can be absent in Expo Go; init already no-ops there.
+  }
+}
 
 /**
  * Безопасная инициализация RevenueCat.
@@ -99,6 +127,8 @@ export function initRevenueCat(): Promise<void> {
 }
 
 async function _doInit(): Promise<void> {
+  configureRevenueCatLogging();
+
   const RC_API_KEY = resolveRevenueCatPublicApiKey();
   if (IS_EXPO_GO || !RC_API_KEY) {
     if (__DEV__ && !IS_EXPO_GO && !RC_API_KEY) {
@@ -112,10 +142,18 @@ async function _doInit(): Promise<void> {
   }
 
   try {
+    const canonicalUserId = await getCanonicalUserId().catch(() => null);
     if (!(await Purchases.isConfigured())) {
-      Purchases.configure({ apiKey: RC_API_KEY });
+      Purchases.configure({ apiKey: RC_API_KEY, appUserID: canonicalUserId || undefined });
+    }
+    if (canonicalUserId) {
+      await Purchases.logIn(canonicalUserId).catch(() => {});
+      await Purchases.setAttributes({ phraseman_uid: canonicalUserId }).catch(() => {});
     }
     // Параллельно с getCustomerInfo: прогрев getOfferings → кэш цен для мгновенного магазина
+    if (DEV_STORE_BILLING_OPTIONAL) {
+      return;
+    }
     void prefetchShardsShopOfferings().catch(() => {});
 
     const info = await Promise.race([
@@ -129,11 +167,31 @@ async function _doInit(): Promise<void> {
         (info as any).activeSubscriptions.length > 0;
       if (isActive) {
         // Тестер «Снять премиум» — не перезаписывать локальное «без премиума» флагом из RC
-        const noPremium = await AsyncStorage.getItem('tester_no_premium');
+        const pairs = await AsyncStorage.multiGet([
+          'tester_no_premium',
+          'admin_premium_override',
+          'premium_plan',
+        ]);
+        const noPremium = pairs.find(p => p[0] === 'tester_no_premium')?.[1];
+        const adminOverride = pairs.find(p => p[0] === 'admin_premium_override')?.[1];
+        const existingPlan = pairs.find(p => p[0] === 'premium_plan')?.[1];
         if (noPremium === 'true') {
           if (__DEV__) console.log('[RevenueCat] init: skip sync premium_active (tester_no_premium)');
         } else {
-          await AsyncStorage.setItem('premium_active', 'true');
+          const metadata = revenueCatPremiumMetadata(info as any);
+          const existingStorePlan =
+            existingPlan === 'monthly' || existingPlan === 'yearly'
+              ? existingPlan as PremiumStorePlan
+              : null;
+          if (adminOverride === 'true' && existingPlan && existingPlan !== 'null') {
+            await AsyncStorage.setItem('premium_active', 'true');
+          } else {
+            const plan = existingStorePlan ?? inferPremiumPlanFromProductId(
+              metadata.productId ?? (info as any).activeSubscriptions?.[0],
+              'monthly',
+            );
+            await persistStorePremiumLocally(plan, metadata);
+          }
         }
       }
     }

@@ -7,7 +7,6 @@ import {
   Modal,
   StyleSheet,
   Image,
-  ActivityIndicator,
   Animated,
   Easing,
   Platform,
@@ -208,14 +207,15 @@ export default function NoEnergyModal({
     }
     const list = isUK ? ENERGY_MESSAGES_UK : isES ? ENERGY_MESSAGES_ES : ENERGY_MESSAGES_RU;
     const raw = list[Math.floor(Math.random() * list.length)] ?? list[0] ?? '';
-    setLineRuUk(raw.replace(/\{time\}/g, formattedTime || '...'));
-  }, [visible, isGate, isUK, isES, minRequired, totalAvailable, formattedTime]);
+    setLineRuUk(raw);
+  }, [visible, isGate, isUK, isES, minRequired, totalAvailable]);
 
+  const recoveryTimeText = formattedTime || (isUK ? 'кілька хвилин' : isES ? 'unos minutos' : 'несколько минут');
   const defaultSubtitle = isUK
-    ? `+1 ⚡ відновиться через ${formattedTime || '...'}. Хочеш безліміт? Тобі в Premium.`
+    ? `+1 ⚡ відновиться через ${recoveryTimeText}. Хочеш безліміт? Тобі в Premium.`
     : isES
-      ? `+1 ⚡ se recuperará en ${formattedTime || '...'}. ¿Quieres energía ilimitada? Prueba Premium.`
-      : `+1 ⚡ восстановится через ${formattedTime || '...'}. Хочешь безлимит? Тебе в Premium.`;
+      ? `+1 ⚡ se recuperará en ${recoveryTimeText}. ¿Quieres energía ilimitada? Prueba Premium.`
+      : `+1 ⚡ восстановится через ${recoveryTimeText}. Хочешь безлимит? Тебе в Premium.`;
   const gateFallback = isGate && minRequired != null
     ? (isUK
       ? `Для іспиту потрібно ${minRequired} ⚡ одразу. У вас: ${totalAvailable}. У Premium — без обмежень.`
@@ -223,7 +223,7 @@ export default function NoEnergyModal({
         ? `Para el examen necesitas ${minRequired} ⚡ de golpe. Dispones de: ${totalAvailable}. Con Premium, sin límites.`
         : `Для экзамена нужно ${minRequired} ⚡ сразу. У вас: ${totalAvailable}. С Premium — без ограничений.`)
     : '';
-  const showBody = (isGate ? (lineRuUk || gateFallback) : (lineRuUk || defaultSubtitle));
+  const showBody = (isGate ? (lineRuUk || gateFallback) : (lineRuUk || defaultSubtitle)).replace(/\{time\}/g, recoveryTimeText);
 
   const onRestoreWithShards = async () => {
     if (shardBusy || !showShardRestore) return;
@@ -277,7 +277,7 @@ export default function NoEnergyModal({
       onDismiss={handleModalDismissIos}
       onRequestClose={onClose}
     >
-      <View style={[styles.overlay, { backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.48)' : 'rgba(0,0,0,0.72)' }]}>
+      <View style={[styles.overlay, { backgroundColor: 'rgba(0,0,0,0.72)' }]}>
         {/* Цветной радиальный отблеск над затемнением */}
         <View pointerEvents="none" style={StyleSheet.absoluteFill}>
           <LinearGradient
@@ -356,20 +356,16 @@ export default function NoEnergyModal({
               disabled={shardBusy}
               style={[styles.shardBtn, { borderColor: '#7C3AED88', backgroundColor: '#7C3AED22' }]}
             >
-              {shardBusy ? (
-                <ActivityIndicator color={t.textPrimary} />
-              ) : (
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                  <Image
-                    source={oskolokImageForPackShards(shardCost)}
-                    style={{ width: 30, height: 30 }}
-                    resizeMode="contain"
-                  />
-                  <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
-                    {isUK ? 'Відновити енергію' : isES ? 'Recuperar energía' : 'Восстановить энергию'} · {shardCost} 💎
-                  </Text>
-                </View>
-              )}
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                <Image
+                  source={oskolokImageForPackShards(shardCost)}
+                  style={{ width: 30, height: 30 }}
+                  resizeMode="contain"
+                />
+                <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>
+                  {isUK ? 'Відновити енергію' : isES ? 'Recuperar energía' : 'Восстановить энергию'} · {shardCost} 💎
+                </Text>
+              </View>
             </TouchableOpacity>
           )}
           <PremiumGoldButton

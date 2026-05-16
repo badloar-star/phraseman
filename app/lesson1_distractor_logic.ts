@@ -650,7 +650,7 @@ export function getDistractorsForWord(
         basePool = pools.toBe_all;
       }
       // Also add confusing auxiliaries
-      basePool = [...basePool, "don't", "doesn't", "didn't"];
+      basePool = [...basePool, "don\'t", "doesn\'t", "didn\'t"];
       break;
 
     case 'article':

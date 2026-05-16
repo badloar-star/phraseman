@@ -1,4 +1,6 @@
-# Metro + dev-client on emulator (no native rebuild). adb reverse tcp:8081 for localhost tunnel.
+# Metro + dev-client on emulator (no native rebuild).
+# Opens Android emulators through http://127.0.0.1:8081 with adb reverse,
+# matching plugins/withAndroidDevServer127.js.
 param(
   [switch]$Clear,
   [string]$Avd = ""
@@ -129,7 +131,7 @@ try {
   npx --yes kill-port 8081 2>$null | Out-Null
 } catch { }
 
-# Эмулятор → Metro: http://127.0.0.1:8081 + adb reverse на каждый запущенный AVD (10.0.2.2 на Windows часто висит со вторым эмулятором).
+# Android Emulator -> Metro: use http://127.0.0.1:8081 and refresh adb reverse.
 $emuSerialLaunchList = [System.Collections.ArrayList]::new()
 foreach ($ln in @( & $adb devices 2>&1 | ForEach-Object { "$_" } )) {
   if ($ln -match '^(emulator-\d+)\s+device\s*$') {
@@ -139,7 +141,7 @@ foreach ($ln in @( & $adb devices 2>&1 | ForEach-Object { "$_" } )) {
 
 $launchDevJob = $null
 if ($emuSerialLaunchList.Count -gt 0) {
-  Write-Host ('Emulators {0}: opening bundle URL http://127.0.0.1:8081 (adb reverse, Metro --lan).' -f ($emuSerialLaunchList -join ', '))
+  Write-Host ('Emulators {0}: opening bundle URL http://127.0.0.1:8081 (adb reverse tcp:8081).' -f ($emuSerialLaunchList -join ', '))
   $adbArg = $adb
   # PowerShell serialization: строка с разделителем надёжнее, чем [string[]] в -ArgumentList.
   $serArg = (($emuSerialLaunchList | Select-Object -Unique | ForEach-Object { "$_" }) -join '|')
@@ -173,13 +175,13 @@ if ($emuSerialLaunchList.Count -gt 0) {
     foreach ($serial in $serials) {
       for ($r = 0; $r -lt 3; $r++) {
         & $adbPath "-s", $serial, "reverse", "tcp:8081", "tcp:8081" 2>&1 | Out-Null
-        Start-Sleep -Milliseconds 400
+        Start-Sleep -Milliseconds 120
       }
 
       & $adbPath "-s", $serial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep1, "-p", $pkg 2>&1 | Out-Null
       Start-Sleep -Milliseconds 400
       & $adbPath "-s", $serial, "shell", "am", "start", "-a", "android.intent.action.VIEW", "-d", $deep2, "-p", $pkg 2>&1 | Out-Null
-      Write-Output "Opened dev launcher $serial (127.0.0.1:8081 + reverse)."
+      Write-Output "Opened dev launcher $serial (127.0.0.1:8081 via adb reverse)."
     }
   }
 }

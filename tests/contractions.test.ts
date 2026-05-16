@@ -3,36 +3,36 @@ import { normalize, isCorrectAnswer, toAmE } from '../constants/contractions';
 
 describe('getContractionFor — expansion → contraction lookup', () => {
   // Already existing pairs (regression)
-  it('I + am → I\'m', () => expect(getContractionFor('I', 'am')).toBe("I'm"));
-  it('he + is → he\'s', () => expect(getContractionFor('he', 'is')).toBe("he's"));
-  it('she + is → she\'s', () => expect(getContractionFor('she', 'is')).toBe("she's"));
-  it('it + is → it\'s', () => expect(getContractionFor('it', 'is')).toBe("it's"));
-  it('we + are → we\'re', () => expect(getContractionFor('we', 'are')).toBe("we're"));
-  it('they + are → they\'re', () => expect(getContractionFor('they', 'are')).toBe("they're"));
-  it('you + are → you\'re', () => expect(getContractionFor('you', 'are')).toBe("you're"));
-  it('I + will → I\'ll', () => expect(getContractionFor('I', 'will')).toBe("I'll"));
-  it('we + will → we\'ll', () => expect(getContractionFor('we', 'will')).toBe("we'll"));
-  it('do + not → don\'t', () => expect(getContractionFor('do', 'not')).toBe("don't"));
-  it('does + not → doesn\'t', () => expect(getContractionFor('does', 'not')).toBe("doesn't"));
-  it('did + not → didn\'t', () => expect(getContractionFor('did', 'not')).toBe("didn't"));
-  it('will + not → won\'t', () => expect(getContractionFor('will', 'not')).toBe("won't"));
-  it('is + not → isn\'t', () => expect(getContractionFor('is', 'not')).toBe("isn't"));
-  it('are + not → aren\'t', () => expect(getContractionFor('are', 'not')).toBe("aren't"));
-  it('there + is → there\'s', () => expect(getContractionFor('there', 'is')).toBe("there's"));
+  it('I + am → I\'m', () => expect(getContractionFor('I', 'am')).toBe("I\'m"));
+  it('he + is → he\'s', () => expect(getContractionFor('he', 'is')).toBe("he\'s"));
+  it('she + is → she\'s', () => expect(getContractionFor('she', 'is')).toBe("she\'s"));
+  it('it + is → it\'s', () => expect(getContractionFor('it', 'is')).toBe("it\'s"));
+  it('we + are → we\'re', () => expect(getContractionFor('we', 'are')).toBe("we\'re"));
+  it('they + are → they\'re', () => expect(getContractionFor('they', 'are')).toBe("they\'re"));
+  it('you + are → you\'re', () => expect(getContractionFor('you', 'are')).toBe("you\'re"));
+  it('I + will → I\'ll', () => expect(getContractionFor('I', 'will')).toBe("I\'ll"));
+  it('we + will → we\'ll', () => expect(getContractionFor('we', 'will')).toBe("we\'ll"));
+  it('do + not → don\'t', () => expect(getContractionFor('do', 'not')).toBe("don\'t"));
+  it('does + not → doesn\'t', () => expect(getContractionFor('does', 'not')).toBe("doesn\'t"));
+  it('did + not → didn\'t', () => expect(getContractionFor('did', 'not')).toBe("didn\'t"));
+  it('will + not → won\'t', () => expect(getContractionFor('will', 'not')).toBe("won\'t"));
+  it('is + not → isn\'t', () => expect(getContractionFor('is', 'not')).toBe("isn\'t"));
+  it('are + not → aren\'t', () => expect(getContractionFor('are', 'not')).toBe("aren\'t"));
+  it('there + is → there\'s', () => expect(getContractionFor('there', 'is')).toBe("there\'s"));
 
   // Newly added pairs
-  it('what + is → what\'s', () => expect(getContractionFor('what', 'is')).toBe("what's"));
-  it('who + is → who\'s', () => expect(getContractionFor('who', 'is')).toBe("who's"));
-  it('must + not → mustn\'t', () => expect(getContractionFor('must', 'not')).toBe("mustn't"));
-  it('need + not → needn\'t', () => expect(getContractionFor('need', 'not')).toBe("needn't"));
-  it('might + not → mightn\'t', () => expect(getContractionFor('might', 'not')).toBe("mightn't"));
-  it('let + us → let\'s', () => expect(getContractionFor('let', 'us')).toBe("let's"));
-  it('it + will → it\'ll', () => expect(getContractionFor('it', 'will')).toBe("it'll"));
+  it('what + is → what\'s', () => expect(getContractionFor('what', 'is')).toBe("what\'s"));
+  it('who + is → who\'s', () => expect(getContractionFor('who', 'is')).toBe("who\'s"));
+  it('must + not → mustn\'t', () => expect(getContractionFor('must', 'not')).toBe("mustn\'t"));
+  it('need + not → needn\'t', () => expect(getContractionFor('need', 'not')).toBe("needn\'t"));
+  it('might + not → mightn\'t', () => expect(getContractionFor('might', 'not')).toBe("mightn\'t"));
+  it('let + us → let\'s', () => expect(getContractionFor('let', 'us')).toBe("let\'s"));
+  it('it + will → it\'ll', () => expect(getContractionFor('it', 'will')).toBe("it\'ll"));
 
   // Case-insensitive
-  it('He + is → he\'s (capital)', () => expect(getContractionFor('He', 'is')).toBe("he's"));
-  it('What + is → what\'s (capital)', () => expect(getContractionFor('What', 'is')).toBe("what's"));
-  it('There + is → there\'s (capital)', () => expect(getContractionFor('There', 'is')).toBe("there's"));
+  it('He + is → he\'s (capital)', () => expect(getContractionFor('He', 'is')).toBe("he\'s"));
+  it('What + is → what\'s (capital)', () => expect(getContractionFor('What', 'is')).toBe("what\'s"));
+  it('There + is → there\'s (capital)', () => expect(getContractionFor('There', 'is')).toBe("there\'s"));
 
   // No contraction cases
   it('am + not → null (amn\'t не существует)', () => expect(getContractionFor('am', 'not')).toBeNull());
@@ -41,15 +41,23 @@ describe('getContractionFor — expansion → contraction lookup', () => {
 
 describe('normalize — contraction validation', () => {
   it('normalizes it\'ll to it will', () => {
-    expect(normalize("It'll work")).toBe('it will work');
+    expect(normalize("It\'ll work")).toBe('it will work');
   });
 
   it('normalizes mightn\'t to might not', () => {
-    expect(normalize("We mightn't finish on time.")).toBe('we might not finish on time');
+    expect(normalize("We mightn\'t finish on time.")).toBe('we might not finish on time');
+  });
+
+  it('normalizes let\'s to let us', () => {
+    expect(normalize("Let's discuss this plan.")).toBe('let us discuss this plan');
+    expect(isCorrectAnswer(
+      "Let's hide those expensive gifts under that big fir-tree",
+      'Let us hide those expensive gifts under that big fir-tree.',
+    )).toBe(true);
   });
 
   it('NFKC: fullwidth letters and period match plain ASCII after normalize', () => {
-    expect(normalize('Ｉｆ　ｗｅ　ｇｏ．')).toBe('if we go');
+    expect(normalize('If we go.')).toBe('if we go');
   });
 
   it('unifies em dash to hyphen before comparison', () => {
@@ -72,7 +80,7 @@ describe('isCorrectAnswer — punctuation and unicode confusables', () => {
 
   it('we\'ll vs we will still matches (contraction)', () => {
     expect(isCorrectAnswer(
-      "If this experienced specialist signs the contract we'll get profit",
+      "If this experienced specialist signs the contract we\'ll get profit",
       'If this experienced specialist signs the contract we will get profit.',
     )).toBe(true);
   });

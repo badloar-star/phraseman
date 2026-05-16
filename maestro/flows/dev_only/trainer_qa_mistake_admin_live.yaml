@@ -1,0 +1,13 @@
+appId: app.phraseman
+---
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "trainer-quick-mistake-preview"
+    timeout: 30000
+- tapOn:
+    id: "trainer-quick-mistake-preview"
+- waitForAnimationToEnd:
+    timeout: 10000
+- takeScreenshot: trainer_qa_mistake_preview

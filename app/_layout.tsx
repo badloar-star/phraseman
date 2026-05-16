@@ -8,11 +8,10 @@ import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, InteractionManager, Modal, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Image, InteractionManager, Modal, Platform, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
-import AnimatedFrame from '../components/AnimatedFrame';
 import { EnergyProvider } from '../components/EnergyContext';
 import { LangProvider, useLang } from '../components/LangContext';
 import { StudyTargetProvider } from '../components/StudyTargetContext';
@@ -26,11 +25,11 @@ import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
-import { getAvatarImageByIndex, getBestAvatarForLevel } from '../constants/avatars';
 import { getMaxEnergyForLevel } from '../constants/theme';
 import type { Lang } from '../constants/i18n';
 import { getTitleColor, getTitleForLevel } from '../constants/titles';
-import { DEV_MODE, IS_EXPO_GO, IS_STORE_RELEASE } from './config';
+import { ENABLE_DEV_TOOLS, IS_EXPO_GO } from './config';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
 import { ensureAnonUser, restoreFromCloud, syncToCloud } from './cloud_sync';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
@@ -63,7 +62,6 @@ import { dismissReleaseNotesModalPermanently, shouldOfferReleaseNotesModal } fro
 import { fetchPendingGlobalBroadcastModal, GlobalBroadcastModalPayload } from './global_broadcast_modal';
 import { emitAppEvent, onAppEvent } from './events';
 import { hydratePlatformUiPreviewFromStorage } from './platform_ui_preview';
-import { playLevelUpModalSound } from './level_up_sound';
 import { markWentToFirstLessonFromAfterOnboardingSheet, setDeferEnergyOnboardingForPostOnboardingFirstLesson } from './energyOnboardingGate';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
 import { loadFlashcards } from '../hooks/use-flashcards';
@@ -81,6 +79,70 @@ startFriendsTabSwrPrime();
 
 // Нативный сплэш из app.json — скрываем только когда AppContent сообщает ready (см. hideAsync в useEffect).
 void SplashScreen.preventAutoHideAsync().catch(() => {});
+
+const DefaultText = Text as typeof Text & { defaultProps?: Record<string, unknown> };
+DefaultText.defaultProps = {
+  ...DefaultText.defaultProps,
+  android_hyphenationFrequency: 'none',
+  textBreakStrategy: 'simple',
+};
+
+const STARTUP_SPLASH_BG = '#101214';
+const USE_ELITE_LEVEL_UP_MODAL = true;
+const DAILY_LOGIN_BONUS_XP_BY_DAY = [
+  20, 25, 30, 40, 50, 75, 120,
+  130, 140, 150, 160, 170, 180, 220,
+  230, 240, 250, 260, 270, 280, 350,
+  360, 370, 380, 390, 400, 450, 500,
+  600, 750,
+] as const;
+
+function normalizeWarmDeepLink(url: string): string | null {
+  const rawInput = String(url || '').trim();
+  if (!rawInput) return null;
+
+  try {
+    const parsed = new URL(rawInput);
+    const routePath = parsed.pathname && parsed.pathname !== '/'
+      ? parsed.pathname
+      : parsed.host
+        ? `/${parsed.host}`
+        : '';
+    const normalized = `${routePath}${parsed.search || ''}${parsed.hash || ''}`.trim();
+    return normalized && normalized !== '/' ? normalized : null;
+  } catch {
+    const stripped = rawInput.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').trim();
+    if (!stripped || stripped === '/') return null;
+    return stripped.startsWith('/') ? stripped : `/${stripped}`;
+  }
+}
+
+function StartupSplashHold({ visible }: { visible: boolean }) {
+  if (!visible) return null;
+  return (
+    <View
+      pointerEvents="none"
+      style={{
+        position: 'absolute',
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        zIndex: 9999,
+        elevation: 9999,
+        backgroundColor: STARTUP_SPLASH_BG,
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Image
+        source={require('../assets/images/splash-icon.png')}
+        resizeMode="contain"
+        style={{ width: 240, height: 240 }}
+      />
+    </View>
+  );
+}
 
 const LEVELUP_CONGRATS_RU = [
   'Поздравляем! Твой прогресс впечатляет!',
@@ -145,9 +207,9 @@ const runSessionChecks = async () => {
         ? login.consecutiveDays + 1
         : 1;
 
-      // XP по циклу: дни 1-2 = 5, 3-4 = 10, 5-6 = 15, день 7 = 50, потом заново
-      const cycle = ((consecutive - 1) % 7) + 1;
-      const bonusXP = cycle === 7 ? 50 : cycle >= 5 ? 15 : cycle >= 3 ? 10 : 5;
+      // 30-day login ladder. If the streak breaks, consecutive resets to 1 above.
+      const bonusDay = Math.min(Math.max(1, consecutive), DAILY_LOGIN_BONUS_XP_BY_DAY.length);
+      const bonusXP = DAILY_LOGIN_BONUS_XP_BY_DAY[bonusDay - 1] ?? DAILY_LOGIN_BONUS_XP_BY_DAY[0];
 
       const name = await AsyncStorage.getItem('user_name');
       if (name) {
@@ -155,7 +217,7 @@ const runSessionChecks = async () => {
       }
 
       // Сохранить бонус для отображения на Home
-      await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle }));
+      await AsyncStorage.setItem('login_bonus_pending', JSON.stringify({ xp: bonusXP, cycle: consecutive }));
       await AsyncStorage.setItem('login_bonus_v1', JSON.stringify({ lastDate: today, consecutiveDays: consecutive }));
 
       // Ачивки за логин
@@ -268,24 +330,30 @@ function GlobalLevelUpHandler() {
 
   const levelUpOpacity    = useRef(new Animated.Value(0)).current;
   const levelUpTranslateY = useRef(new Animated.Value(40)).current;
+  const levelUpGlow       = useRef(new Animated.Value(0)).current;
   const queueRef    = useRef<number[]>([]);
   const isShowingRef = useRef(false);
+  const dismissingLevelUpRef = useRef(false);
+  const giftOpenTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   /** Сериализация flush: двойной await getItem до removeItem давал дубликаты уровня в queueRef. */
   const flushQueueBusyRef = useRef(false);
   const flushQueueRetryRef = useRef(false);
 
   const showNext = useCallback(() => {
     if (queueRef.current.length === 0) { isShowingRef.current = false; return; }
+    dismissingLevelUpRef.current = false;
     const lvl = queueRef.current[0];
     setCurrentLevel(lvl);
     setShowLevelUp(true);
     levelUpOpacity.setValue(0);
     levelUpTranslateY.setValue(40);
+    levelUpGlow.setValue(0);
     Animated.parallel([
-      Animated.spring(levelUpOpacity, { toValue: 1, useNativeDriver: true, friction: 6 }),
-      Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: 6 }),
+      Animated.spring(levelUpOpacity, { toValue: 1, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
+      Animated.spring(levelUpTranslateY, { toValue: 0, useNativeDriver: true, friction: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6 }),
+      Animated.timing(levelUpGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
     ]).start();
-  }, [levelUpOpacity, levelUpTranslateY]);
+  }, [levelUpGlow, levelUpOpacity, levelUpTranslateY]);
 
   const flushQueue = useCallback(async () => {
     if (flushQueueBusyRef.current) {
@@ -324,28 +392,45 @@ function GlobalLevelUpHandler() {
 
   useEffect(() => {
     // Проверяем очередь при старте (с задержкой, чтобы onboarding не перекрывал)
-    setTimeout(flushQueue, 500);
+    const t = setTimeout(flushQueue, 500);
     const sub = onAppEvent('level_up_pending', flushQueue);
-    return () => sub.remove();
+    return () => {
+      clearTimeout(t);
+      sub.remove();
+      if (giftOpenTimerRef.current) clearTimeout(giftOpenTimerRef.current);
+    };
   }, [flushQueue]);
 
   const dismissLevelUp = () => {
+    if (dismissingLevelUpRef.current) return;
+    dismissingLevelUpRef.current = true;
     Animated.timing(levelUpOpacity, { toValue: 0, duration: 300, useNativeDriver: true }).start(() => {
       setShowLevelUp(false);
       void (async () => {
-        const name = (await AsyncStorage.getItem('user_name')) || userName;
-        const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
-        await registerXP(100, 'level_up_bonus', name, l);
-        await tryGrantPremiumMonthlyWagerFromLevelUp();
-        const prem = await getVerifiedPremiumStatus();
-        setLevelGiftDualMode(!!prem);
-        setShowGiftModal(true);
+        try {
+          const name = (await AsyncStorage.getItem('user_name')) || userName;
+          const l: Lang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+          await registerXP(100, 'level_up_bonus', name, l);
+          await tryGrantPremiumMonthlyWagerFromLevelUp();
+          const prem = await getVerifiedPremiumStatus().catch(() => false);
+          setLevelGiftDualMode(!!prem);
+        } finally {
+          InteractionManager.runAfterInteractions(() => {
+            // Android can keep the closing Modal's native window alive for a beat.
+            // Opening the gift Modal immediately after level-up caused stuck touches/ANR.
+            giftOpenTimerRef.current = setTimeout(() => {
+              giftOpenTimerRef.current = null;
+              setShowGiftModal(true);
+            }, Platform.OS === 'android' ? 260 : 180);
+          });
+        }
       })();
     });
   };
 
   const onGiftClose = (_claimed: boolean) => {
     setShowGiftModal(false);
+    dismissingLevelUpRef.current = false;
     queueRef.current = queueRef.current.slice(1);
     if (queueRef.current.length > 0) {
       queueMicrotask(showNext);
@@ -354,16 +439,17 @@ function GlobalLevelUpHandler() {
     }
   };
 
-  const newAvatar  = getBestAvatarForLevel(currentLevel);
   const newTitleDef = getTitleForLevel(currentLevel);
   const isNewTitle  = newTitleDef.minLevel === currentLevel;
   const titleColor  = getTitleColor(currentLevel, isDark);
   const levelUpOverlayVisible = useOverlayVisible('levelUp', showLevelUp || showGiftModal);
+  const levelUpGlowOpacity = levelUpGlow.interpolate({ inputRange: [0, 1], outputRange: [0.14, 0.44] });
+  const levelUpModalScale = levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: USE_ELITE_LEVEL_UP_MODAL ? [0.9, 1] : [0.85, 1] });
 
   useEffect(() => {
     if (!showLevelUp || !levelUpOverlayVisible) return;
-    void playLevelUpModalSound();
   }, [levelUpOverlayVisible, showLevelUp]);
+
   return (
     <>
       {/* Level-up congratulation — wrapped in Modal so it renders above ALL screens */}
@@ -374,47 +460,72 @@ function GlobalLevelUpHandler() {
         statusBarTranslucent
         onRequestClose={() => {}}
       >
-        <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-          <Animated.View style={{
+        <View style={{ flex: 1, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(3,5,10,0.86)' : 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+          <Animated.View testID="level-up-modal" style={{
             transform: [
               { translateY: levelUpTranslateY },
-              { scale: levelUpOpacity.interpolate({ inputRange: [0, 1], outputRange: [0.85, 1] }) },
+              { scale: levelUpModalScale },
             ],
             opacity: levelUpOpacity,
-            borderRadius: 28,
-            width: '100%', maxWidth: 360,
-            shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20,
+            borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
+            width: '100%', maxWidth: USE_ELITE_LEVEL_UP_MODAL ? 368 : 360,
+            shadowColor: USE_ELITE_LEVEL_UP_MODAL ? '#F6C85F' : '#000',
+            shadowOpacity: USE_ELITE_LEVEL_UP_MODAL ? 0.28 : 0.4,
+            shadowRadius: USE_ELITE_LEVEL_UP_MODAL ? 34 : 24,
+            elevation: 20,
             overflow: 'hidden',
           }}>
-            <LinearGradient colors={t.cardGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
-              borderRadius: 28, padding: 28,
+            <LinearGradient colors={USE_ELITE_LEVEL_UP_MODAL ? [t.bgSurface, t.bgCard, t.bgSurface2] : t.cardGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
+              borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
+              padding: USE_ELITE_LEVEL_UP_MODAL ? 26 : 28,
               alignItems: 'center',
-              borderWidth: 1, borderColor: t.textSecond + '44',
+              borderWidth: 1,
+              borderColor: USE_ELITE_LEVEL_UP_MODAL ? t.border : t.textSecond + '44',
             }}>
-              <LevelBadge level={currentLevel} size={100} />
-              <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 10 }}>
+              {USE_ELITE_LEVEL_UP_MODAL && (
+                <>
+                  <Animated.View
+                    pointerEvents="none"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 34,
+                      right: 34,
+                      height: 1,
+                      backgroundColor: t.gold,
+                      opacity: levelUpGlowOpacity,
+                    }}
+                  />
+                  <View
+                    pointerEvents="none"
+                    style={{
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: 82,
+                      backgroundColor: 'rgba(246,200,95,0.055)',
+                    }}
+                  />
+                  <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 }}>
+                    {lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень'}
+                  </Text>
+                </>
+              )}
+              {/* Static first frame: animated webp inside a global Modal was a freeze risk on Android. */}
+              <LevelBadge level={currentLevel} size={USE_ELITE_LEVEL_UP_MODAL ? 108 : 100} autoplay={false} />
+              <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_UP_MODAL ? f.numLg + 2 : f.numLg, fontWeight: '900', textAlign: 'center', marginTop: 10 }}>
                 {lang === 'uk' ? `РІВЕНЬ ${currentLevel}!` : lang === 'es' ? `¡NIVEL ${currentLevel}!` : `УРОВЕНЬ ${currentLevel}!`}
               </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.bodyLg, fontWeight: '500', marginTop: 6, textAlign: 'center' }}>
+              <Text style={{ color: t.textMuted, fontSize: USE_ELITE_LEVEL_UP_MODAL ? f.body : f.bodyLg, fontWeight: USE_ELITE_LEVEL_UP_MODAL ? '600' : '500', marginTop: 6, textAlign: 'center', lineHeight: USE_ELITE_LEVEL_UP_MODAL ? f.body + 6 : undefined }}>
                 {(() => {
                   const pool = lang === 'uk' ? LEVELUP_CONGRATS_UK : lang === 'es' ? LEVELUP_CONGRATS_ES : LEVELUP_CONGRATS_RU;
                   return pool[currentLevel % pool.length];
                 })()}
               </Text>
-
-              <View style={{ marginTop: 16, alignItems: 'center', gap: 4 }}>
-                <AnimatedFrame
-                  image={/^\d+$/.test(newAvatar) ? getAvatarImageByIndex(parseInt(newAvatar)) : undefined}
-                  emoji={newAvatar}
-                  frameId="none"
-                  size={60}
-                />
-              </View>
-
-
               {isNewTitle && (
-                <View style={{ marginTop: 10, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 16, paddingVertical: 10, alignItems: 'center', gap: 2, width: '100%', borderWidth: 1, borderColor: titleColor + '55' }}>
-                  <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 0.7 }}>
+                <View style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 12 : 10, alignItems: 'center', gap: 2, width: '100%', borderWidth: 1, borderColor: titleColor + (USE_ELITE_LEVEL_UP_MODAL ? '44' : '55') }}>
+                  <Text style={{ color: t.textMuted, fontSize: 10, fontWeight: USE_ELITE_LEVEL_UP_MODAL ? '800' : '700', textTransform: 'uppercase', letterSpacing: 0.7 }}>
                     {lang === 'uk' ? '🎖️ Новий титул' : lang === 'es' ? '🎖️ Nuevo título' : '🎖️ Новый титул'}
                   </Text>
                   <Text style={{ color: titleColor, fontSize: f.bodyLg, fontWeight: '800', marginTop: 2 }}>
@@ -423,7 +534,7 @@ function GlobalLevelUpHandler() {
                 </View>
               )}
 
-              <View style={{ backgroundColor: t.bgSurface, paddingHorizontal: 16, paddingVertical: 6, borderRadius: 16, marginTop: 10 }}>
+              <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.05)' : t.bgSurface, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 999 : 16, marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : 'transparent' }}>
                 <Text style={{ color: t.gold, fontWeight: '800', fontSize: f.caption }}>
                   {lang === 'uk'
                     ? `+100 XP — бонус за ${currentLevel} рівень`
@@ -434,8 +545,8 @@ function GlobalLevelUpHandler() {
               </View>
 
               {[10, 20, 30, 40, 50].includes(currentLevel) && (
-                <View style={{ backgroundColor: '#1A3A2A', borderRadius: 14, paddingHorizontal: 16, paddingVertical: 10, marginTop: 10, width: '100%', alignItems: 'center', borderWidth: 1, borderColor: '#34D399' }}>
-                  <Text style={{ color: '#34D399', fontWeight: '800', fontSize: f.body }}>
+                <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.045)' : '#1A3A2A', borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 16 : 14, paddingHorizontal: 16, paddingVertical: 10, marginTop: 10, width: '100%', alignItems: 'center', borderWidth: 1, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : '#34D399' }}>
+                  <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.textSecond : '#34D399', fontWeight: '800', fontSize: f.body }}>
                     {lang === 'uk'
                       ? `⚡ Тепер у тебе ${getMaxEnergyForLevel(currentLevel)} енергії на день!`
                       : lang === 'es'
@@ -446,14 +557,17 @@ function GlobalLevelUpHandler() {
               )}
 
               <TouchableOpacity
+                testID="level-up-dismiss"
                 onPress={dismissLevelUp}
-                style={{ marginTop: 20, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 40, paddingVertical: 12 }}
+                style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 22 : 20, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? t.textPrimary : t.accent, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 46 : 40, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 14 : 12, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.18)' : 'transparent' }}
               >
-                <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
-                  {(() => {
-                    const pool = lang === 'uk' ? LEVELUP_BTN_UK : lang === 'es' ? LEVELUP_BTN_ES : LEVELUP_BTN_RU;
-                    return pool[currentLevel % pool.length];
-                  })()}
+                <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.bgPrimary : t.correctText, fontWeight: '900', fontSize: f.bodyLg }}>
+                  {USE_ELITE_LEVEL_UP_MODAL
+                    ? (lang === 'uk' ? 'Продовжити' : lang === 'es' ? 'Continuar' : 'Продолжить')
+                    : (() => {
+                      const pool = lang === 'uk' ? LEVELUP_BTN_UK : lang === 'es' ? LEVELUP_BTN_ES : LEVELUP_BTN_RU;
+                      return pool[currentLevel % pool.length];
+                    })()}
                 </Text>
               </TouchableOpacity>
             </LinearGradient>
@@ -491,8 +605,10 @@ function AppContent() {
   const [ready, setReady]           = useState(false);
   const [isBanned, setIsBanned]     = useState(false);
   const [showOnboarding, setShow]   = useState(false);
+  const [firstContentReady, setFirstContentReady] = useState(false);
   const [showFirstLessonSheet, setShowFirstLessonSheet] = useState(false);
   const [pendingRoute, setPendingRoute] = useState<string | null>(null);
+  const [pendingWarmDeepLink, setPendingWarmDeepLink] = useState<string | null>(null);
   const [updateInfo, setUpdateInfo] = useState<UpdateInfo | null>(null);
   /** Скрываем RN Modal до ухода в стор — на Android иначе зависания System UI при возврате. */
   const [updateModalHiddenForStore, setUpdateModalHiddenForStore] = useState(false);
@@ -503,6 +619,7 @@ function AppContent() {
   /** Первый запуск с онбордингом: не грузим 32 урока с диска до первого кадра — иначе подвисают тапы. */
   const onboardingPathRef = useRef(false);
   const deferLessonPrimeRef = useRef(false);
+  const firstContentReadyTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   /** Гард от повторного тапа «Поехали» в листе первого урока (router.replace + push не должны исполняться дважды). */
   const firstLessonStartHandledRef = useRef(false);
 
@@ -527,6 +644,38 @@ function AppContent() {
   const lastPathRef = useRef<string | null>(null);
 
   useEffect(() => {
+    const sub = Linking.addEventListener('url', ({ url }) => {
+      const target = normalizeWarmDeepLink(url);
+      if (!target) return;
+      setPendingWarmDeepLink(target);
+    });
+    return () => sub.remove();
+  }, []);
+
+  useEffect(() => {
+    if (!pendingWarmDeepLink || !ready || showOnboarding || isBanned) return;
+    const target = pendingWarmDeepLink;
+    setPendingWarmDeepLink(null);
+
+    if (
+      target.startsWith('/settings_testers') ||
+      target.startsWith('/pos_analytics_audit') ||
+      target.startsWith('/admin_review_test') ||
+      target.startsWith('/admin_intro_preview')
+    ) {
+      if (!ENABLE_DEV_TOOLS) {
+        router.replace('/(tabs)/home' as any);
+        return;
+      }
+      router.replace(target as any);
+      const retry = setTimeout(() => router.replace(target as any), 250);
+      return () => clearTimeout(retry);
+    }
+
+    router.push(target as any);
+  }, [isBanned, pendingWarmDeepLink, ready, router, showOnboarding]);
+
+  useEffect(() => {
     if (!ready || !pathname || lastPathRef.current === pathname) return;
     const previous = lastPathRef.current;
     lastPathRef.current = pathname;
@@ -539,20 +688,57 @@ function AppContent() {
   }, [pathname, ready]);
 
   useEffect(() => {
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
     const sub = AppState.addEventListener('change', state => {
-      void trackActivity('app:state_change', {
-        feature: 'app_lifecycle',
-        result: 'info',
-        tags: { state },
-      });
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        timeoutId = null;
+        void trackActivity('app:state_change', {
+          feature: 'app_lifecycle',
+          result: 'info',
+          tags: { state },
+        });
+      }, state === 'active' ? 1200 : 250);
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      if (timeoutId) clearTimeout(timeoutId);
+    };
   }, []);
 
   useEffect(() => {
     if (!ready) return;
     void SplashScreen.hideAsync();
   }, [ready]);
+
+  useEffect(() => {
+    const sub = onAppEvent('app_first_content_ready', () => {
+      if (firstContentReadyTimerRef.current) return;
+      firstContentReadyTimerRef.current = setTimeout(() => {
+        firstContentReadyTimerRef.current = null;
+        setFirstContentReady(true);
+      }, 80);
+    });
+    return () => {
+      sub.remove();
+      if (firstContentReadyTimerRef.current) {
+        clearTimeout(firstContentReadyTimerRef.current);
+        firstContentReadyTimerRef.current = null;
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!ready || showOnboarding || isBanned || firstContentReady) return;
+    const timer = setTimeout(() => setFirstContentReady(true), 12000);
+    return () => clearTimeout(timer);
+  }, [firstContentReady, isBanned, ready, showOnboarding]);
+
+  useEffect(() => {
+    if (!ready || !pathname || showOnboarding || isBanned || firstContentReady) return;
+    const timer = setTimeout(() => setFirstContentReady(true), 1200);
+    return () => clearTimeout(timer);
+  }, [firstContentReady, isBanned, pathname, ready, showOnboarding]);
 
   useEffect(() => {
     void hydratePlatformUiPreviewFromStorage();
@@ -663,12 +849,25 @@ function AppContent() {
 
   // Фоновый flush синка: перед уходом приложения в background/inactive.
   useEffect(() => {
+    let flushTimer: ReturnType<typeof setTimeout> | null = null;
     const sub = AppState.addEventListener('change', (state) => {
+      if (flushTimer) {
+        clearTimeout(flushTimer);
+        flushTimer = null;
+      }
       if (state === 'background' || state === 'inactive') {
-        syncToCloud({ forceNow: true }).catch(() => {});
+        flushTimer = setTimeout(() => {
+          flushTimer = null;
+          if (AppState.currentState === 'background' || AppState.currentState === 'inactive') {
+            syncToCloud({ forceNow: true }).catch(() => {});
+          }
+        }, 900);
       }
     });
-    return () => sub.remove();
+    return () => {
+      sub.remove();
+      if (flushTimer) clearTimeout(flushTimer);
+    };
   }, []);
 
   // Обработчик тапа по уведомлению — deep link в нужный экран
@@ -700,16 +899,30 @@ function AppContent() {
   // Ref всегда указывает на актуальный showAchievement — не зависит от closure в useEffect([], []).
   const showAchievementRef = useRef(showAchievement);
   useEffect(() => { showAchievementRef.current = showAchievement; }, [showAchievement]);
+  const achievementFlushRunningRef = useRef(false);
+  const achievementFlushQueuedRef = useRef(false);
 
   // Проверяем pending-ачивки и показываем тосты.
   // Вызывается сразу при старте и по событию 'achievement_unlocked' (DeviceEventEmitter).
   // Polling убран — он блокировал JS-поток каждые 4с во время навигационных переходов.
   const flushPending = useCallback(async () => {
-    const pending = await getPendingNotifications();
-    if (pending && pending.length > 0) {
-      // Пометить как notified ДО показа, чтобы повторный вызов не задублировал
-      await markAchievementsNotified(pending.map(a => a.id));
-      pending.forEach(a => showAchievementRef.current(a));
+    if (achievementFlushRunningRef.current) {
+      achievementFlushQueuedRef.current = true;
+      return;
+    }
+    achievementFlushRunningRef.current = true;
+    try {
+      do {
+        achievementFlushQueuedRef.current = false;
+        const pending = await getPendingNotifications();
+        if (pending && pending.length > 0) {
+          // Пометить как notified ДО показа, чтобы повторный вызов не задублировал.
+          await markAchievementsNotified(pending.map(a => a.id));
+          pending.forEach(a => showAchievementRef.current(a));
+        }
+      } while (achievementFlushQueuedRef.current);
+    } finally {
+      achievementFlushRunningRef.current = false;
     }
   }, []); // deps пусты — читаем showAchievement через ref, не через closure
 
@@ -737,7 +950,8 @@ function AppContent() {
     let cloudHydratePromise: Promise<void> | null = null;
 
     const runHeavyInit = () => {
-      const startShopWarm = () => {
+      const startShopWarm = async () => {
+        await initFirebaseAppCheckIfAvailable().catch(() => {});
         if (!IS_EXPO_GO) void initRevenueCat();
         void prefetchMarketplacePacks().catch(() => {});
       };
@@ -759,9 +973,7 @@ function AppContent() {
         import('@react-native-firebase/crashlytics')
           .then(m => m.default().setCrashlyticsCollectionEnabled(true))
           .catch(() => {});
-        void import('./app_check_init')
-          .then((m) => m.initFirebaseAppCheckIfAvailable())
-          .catch(() => {});
+        void initFirebaseAppCheckIfAvailable().catch(() => {});
       }
 
       AsyncStorage.multiSet([
@@ -793,6 +1005,9 @@ function AppContent() {
         if (Number.isFinite(parsedShards) && parsedShards >= 0) {
           emitAppEvent('shards_balance_updated', { balance: Math.floor(parsedShards) });
         }
+        await migrateWeekPointsIfNeeded().catch(() => {});
+        await updateStreakOnActivity().catch(() => {});
+        await runSessionChecks().catch(() => {});
         syncToCloud().catch(() => {});
         registerInLeagueGroupSilently().catch(() => {});
         getVerifiedPremiumStatus().then(isPrem => {
@@ -811,9 +1026,6 @@ function AppContent() {
         if (!val) AsyncStorage.setItem('install_date', String(Date.now())).catch(() => {});
       }).catch(() => {});
 
-      migrateWeekPointsIfNeeded().catch(() => {});
-      updateStreakOnActivity().catch(() => {});
-      runSessionChecks();
       incrementSessionCount().catch(() => {});
       preloadImages().catch(() => {});
       InteractionManager.runAfterInteractions(() => {
@@ -835,6 +1047,10 @@ function AppContent() {
       // AsyncStorage юзеру повторно показывается онбординг — а параллельно
       // авто-имя (Psi5552 и т.п.) затирает реальный ник в облаке.
       if (!IS_EXPO_GO) {
+        await Promise.race([
+          initFirebaseAppCheckIfAvailable(),
+          new Promise<void>((resolve) => setTimeout(resolve, 1200)),
+        ]).catch(() => {});
         cloudHydratePromise = (async () => {
           try {
             await ensureAnonUser();
@@ -850,17 +1066,9 @@ function AppContent() {
         hydrateNotifSettingsFromStorage().catch(() => {}),
       ]);
       // Сразу читаем осколки в фоне — к моменту «Главной» peekLastKnownShardsBalance уже с кэшем.
-      void getShardsBalance().catch(() => {});
-
-      // Ждём облачную гидратацию, но не дольше 2.5с — чтобы не блокировать UI при плохой сети.
-      // На быстром интернете restoreFromCloud отрабатывает <500мс и онбординг
-      // больше не покажется, если в облаке onboarding_done='1'.
-      if (cloudHydratePromise) {
-        await Promise.race([
-          cloudHydratePromise,
-          new Promise<void>((resolve) => setTimeout(resolve, 2500)),
-        ]);
-      }
+      void getShardsBalance()
+        .then(balance => checkAchievements({ type: 'shards', balance }).catch(() => {}))
+        .catch(() => {});
 
       try {
         const prevXPRaw = await AsyncStorage.getItem('user_prev_xp');
@@ -932,6 +1140,10 @@ function AppContent() {
     const sub = onAppEvent('achievement_unlocked', () => {
       setTimeout(flushPending, 200);
     });
+    const subShards = onAppEvent('shards_balance_updated', (payload) => {
+      const balance = typeof payload?.balance === 'number' ? payload.balance : null;
+      if (balance !== null) checkAchievements({ type: 'shards', balance }).catch(() => {});
+    });
     const subDelete = onAppEvent('account_deleted', () => {
       // После первого онбординга refs = true; без сброса повторное завершение
       // (Apple/Google/«Позже» на шаге auth) вызывает handleOnboardingDone → ранний return → экран не уходит.
@@ -939,7 +1151,7 @@ function AppContent() {
       firstLessonStartHandledRef.current = false;
       setShow(true);
     });
-    return () => { sub.remove(); subDelete.remove(); };
+    return () => { sub.remove(); subShards.remove(); subDelete.remove(); };
   }, [flushPending]);
 
   useEffect(() => {
@@ -999,7 +1211,13 @@ function AppContent() {
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
 
-  if (!ready) return null;
+  if (!ready) {
+    return (
+      <View style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
+        <StartupSplashHold visible={true} />
+      </View>
+    );
+  }
 
   if (isBanned) {
     return (
@@ -1024,19 +1242,26 @@ function AppContent() {
   }
 
   if (showOnboarding) {
-    return <Onboarding onDone={handleOnboardingDone} onLangSelect={handleLangSelect} />;
+    return (
+      <View style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
+        <Onboarding onDone={handleOnboardingDone} onLangSelect={handleLangSelect} />
+      </View>
+    );
   }
 
+  const appShellReady = firstContentReady;
+
   return (
-    <View style={{ flex: 1, backgroundColor: tTheme.bgPrimary }}>
+    <View style={{ flex: 1, backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG }}>
     <Stack
       initialRouteName="(tabs)"
       screenOptions={{
         headerShown: false,
-        contentStyle: { backgroundColor: tTheme.bgPrimary },
+        contentStyle: { backgroundColor: appShellReady ? tTheme.bgPrimary : STARTUP_SPLASH_BG },
         // Без fade: глобальный fade на native-stack даёт поздний белый кроссфейд при каждом push/replace.
         // Нужен мягкий переход — только у отдельных экранов (например pack_opening).
         animation: 'none',
+        headerBackButtonMenuEnabled: false,
       }}
     >
       <Stack.Screen name="index" />
@@ -1048,7 +1273,6 @@ function AppContent() {
       <Stack.Screen name="lesson_complete" />
 
 
-      <Stack.Screen name="help_faq" />
       <Stack.Screen name="hint" />
       <Stack.Screen name="lesson_help" />
       <Stack.Screen name="preposition_drill" />
@@ -1060,10 +1284,9 @@ function AppContent() {
       <Stack.Screen name="club_screen" />
       <Stack.Screen name="streak_stats" />
       <Stack.Screen name="diagnostic_test" />
-      {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && <Stack.Screen name="audio_debug" />}
       <Stack.Screen name="exam" />
       <Stack.Screen name="daily_tasks_screen" />
-      <Stack.Screen name="premium_modal" options={{ presentation: 'modal' }} />
+      <Stack.Screen name="premium_modal" options={{ presentation: 'modal', animation: 'slide_from_bottom', animationDuration: 420 }} />
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_collection" />
@@ -1072,25 +1295,30 @@ function AppContent() {
       <Stack.Screen name="achievements_screen" />
       <Stack.Screen name="level_exam" />
       <Stack.Screen name="review" />
-      {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && <Stack.Screen name="admin_review_test" />}
-      {(__DEV__ || DEV_MODE) && !IS_STORE_RELEASE && <Stack.Screen name="settings_testers" />}
+      {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_review_test" />}
+      {ENABLE_DEV_TOOLS && <Stack.Screen name="admin_intro_preview" />}
+      {ENABLE_DEV_TOOLS && <Stack.Screen name="settings_testers" />}
+      {ENABLE_DEV_TOOLS && <Stack.Screen name="pos_analytics_audit" />}
       <Stack.Screen name="progress_map" />
       <Stack.Screen name="beta_testers" />
       <Stack.Screen name="privacy_screen" />
       <Stack.Screen name="terms_screen" />
-      <Stack.Screen name="suggestion_screen" />
       <Stack.Screen name="arena_game" options={{ animation: 'none' }} />
       <Stack.Screen name="arena_lobby" options={{ animation: 'none' }} />
       <Stack.Screen name="arena_results" />
       <Stack.Screen name="arena_join" />
+      <Stack.Screen name="arena_room" />
       <Stack.Screen name="arena_rating" />
       <Stack.Screen name="arena_leaderboard" />
       <Stack.Screen name="web_screen" />
       <Stack.Screen name="quizzes_screen" options={{ headerShown: false }} />
       <Stack.Screen name="trainer" />
+      <Stack.Screen name="trainer_smart_session" />
       <Stack.Screen name="trainer_words_session" />
       <Stack.Screen name="trainer_phrases_session" />
       <Stack.Screen name="trainer_arena_session" />
+      <Stack.Screen name="phrase_analytics_screen" />
+      <Stack.Screen name="problem_coach" />
     </Stack>
 
     <NotificationPermissionModal
@@ -1234,6 +1462,7 @@ function AppContent() {
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
+              testID="first-lesson-later"
               style={{ paddingVertical: 14, paddingHorizontal: 40, marginBottom: 8 }}
               onPress={() => {
                 setShowFirstLessonSheet(false);
@@ -1251,13 +1480,15 @@ function AppContent() {
       </Modal>
     )}
 
+    <StartupSplashHold visible={!appShellReady} />
+
     </View>
   );
 }
 
 export default function RootLayout() {
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#07100A' }}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: STARTUP_SPLASH_BG }}>
     <ErrorBoundary>
       <SafeAreaProvider>
       <ThemeProvider>

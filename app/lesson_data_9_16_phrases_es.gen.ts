@@ -274,13 +274,13 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
     words: [
       { text: '¿', correct: '¿', distractors: ['Hay', 'Wi-Fi', 'donde', 'algo', 'bien'], category: 'puntuacion' },
       { text: 'Hay', correct: 'Hay', distractors: ['Es', 'Son', 'Está', 'Tiene', 'Hace'], category: 'verbo_estar' },
-      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['WiFi', 'wi-fi', 'Wifi', 'W-Fi', 'WI-FI'], category: 'lexico_oracion' },
+      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['router', 'signal', 'internet', 'network', 'wireless'], category: 'lexico_oracion' },
       { text: '?', correct: '?', distractors: ['Hay', 'Wi-Fi', 'internet', 'bien', 'ya'], category: 'puntuacion' },
     ],
     wordsEn: [
       { text: 'Is', correct: 'Is', distractors: ['Are', 'Was', 'Has', 'Does', 'Do'] },
       { text: 'there', correct: 'there', distractors: ['here', 'this', 'that', 'it', 'where'] },
-      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['WiFi', 'wi-fi', 'Wifi', 'W-Fi', 'WI-FI'] },
+      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['router', 'signal', 'internet', 'network', 'wireless'] },
     ],
   },
   {
@@ -292,14 +292,14 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
     words: [
       { text: 'No', correct: 'No', distractors: ['Ni', 'Sí', 'Tampoco', 'Nunca', 'Jamás'], category: 'negacion_afirmacion' },
       { text: 'hay', correct: 'hay', distractors: ['es', 'son', 'está', 'tiene', 'hace'], category: 'verbo_estar' },
-      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['WiFi', 'wi-fi', 'Wifi', 'W-Fi', 'WI-FI'], category: 'lexico_oracion' },
+      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['router', 'signal', 'internet', 'network', 'wireless'], category: 'lexico_oracion' },
       { text: '.', correct: '.', distractors: ['No', 'hay', 'Wi-Fi', 'bien', 'ya'], category: 'puntuacion' },
     ],
     wordsEn: [
       { text: 'There', correct: 'There', distractors: ['Here', 'This', 'That', 'It', 'Where'] },
       { text: 'is', correct: 'is', distractors: ['are', 'was', 'has', 'be', 'am'] },
       { text: 'no', correct: 'no', distractors: ['not', 'never', 'none', 'any', 'some'] },
-      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['WiFi', 'wi-fi', 'Wifi', 'W-Fi', 'WI-FI'] },
+      { text: 'Wi-Fi', correct: 'Wi-Fi', distractors: ['router', 'signal', 'internet', 'network', 'wireless'] },
     ],
   },
   {
@@ -866,7 +866,7 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'There', correct: 'There', distractors: ['Here', 'This', 'That', 'It', 'Where'] },
       { text: 'are', correct: 'are', distractors: ['is', 'were', 'have', 'be', 'am'] },
-      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'peple'] },
+      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'persons'] },
     ],
   },
   {
@@ -886,7 +886,7 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
       { text: 'Are', correct: 'Are', distractors: ['Is', 'Were', 'Have', 'Does', 'Do'] },
       { text: 'there', correct: 'there', distractors: ['here', 'this', 'that', 'it', 'where'] },
       { text: 'many', correct: 'many', distractors: ['much', 'some', 'few', 'more', 'any'] },
-      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'peple'] },
+      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'persons'] },
     ],
   },
   {
@@ -905,7 +905,7 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
       { text: 'There', correct: 'There', distractors: ['Here', 'This', 'That', 'It', 'Where'] },
       { text: 'are', correct: 'are', distractors: ['is', 'were', 'have', 'be', 'am'] },
       { text: 'many', correct: 'many', distractors: ['much', 'some', 'few', 'more', 'any'] },
-      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'peple'] },
+      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'persons'] },
     ],
   },
   {
@@ -924,7 +924,7 @@ export const LESSON_9_PHRASES: LessonPhrase[] = [
       { text: 'There', correct: 'There', distractors: ['Here', 'This', 'That', 'It', 'Where'] },
       { text: 'are', correct: 'are', distractors: ['is', 'were', 'have', 'be', 'am'] },
       { text: 'no', correct: 'no', distractors: ['not', 'never', 'none', 'any', 'some'] },
-      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'peple'] },
+      { text: 'people', correct: 'people', distractors: ['person', 'peoples', 'purple', 'pebble', 'persons'] },
     ],
   },
 ];
@@ -1645,7 +1645,7 @@ export const LESSON_10_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['his', 'him', 'she', 'we', 'they'] },
       { text: 'must', correct: 'must', distractors: ['can', 'should', 'will', 'would', 'could'] },
-      { text: 'finish', correct: 'finish', distractors: ['finishes', 'finished', 'finishing', 'Finnish', 'burnish'] },
+      { text: 'finish', correct: 'finish', distractors: ['finishes', 'finished', 'finishing', 'furnish', 'burnish'] },
       { text: 'work', correct: 'work', distractors: ['works', 'worked', 'working', 'walk', 'word'] },
     ],
   },
@@ -1962,7 +1962,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'worked', correct: 'worked', distractors: ['work', 'works', 'working', 'workd', 'wore'] },
+      { text: 'worked', correct: 'worked', distractors: ['work', 'works', 'working', 'walked', 'wore'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -2228,7 +2228,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['I', 'He', 'She', 'We', 'They'] },
-      { text: 'listened', correct: 'listened', distractors: ['listen', 'listens', 'listening', 'glistened', 'listend'] },
+      { text: 'listened', correct: 'listened', distractors: ['listen', 'listens', 'listening', 'glistened', 'heard'] },
       { text: 'to', correct: 'to', distractors: ['at', 'in', 'on', 'for', 'by'] },
       { text: 'music', correct: 'music', distractors: ['radio', 'movies', 'games', 'song', 'dance'] },
     ],
@@ -2361,7 +2361,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson11_phrase_22',
     english: 'She closed apps yesterday',
-    russian: 'Она закрыла приложения вчора',
+    russian: 'Она закрыла приложения вчера',
     ukrainian: 'Вона закрила застосунки вчора',
     spanish: 'Ella cerró aplicaciones ayer.',
     words: [
@@ -2455,7 +2455,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['I', 'He', 'She', 'We', 'They'] },
-      { text: 'rented', correct: 'rented', distractors: ['rent', 'rents', 'renting', 'dented', 'lented'] },
+      { text: 'rented', correct: 'rented', distractors: ['rent', 'rents', 'renting', 'dented', 'loaned'] },
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'some', 'any', 'one'] },
       { text: 'car', correct: 'car', distractors: ['bike', 'bus', 'truck', 'van', 'taxi'] },
       { text: 'last', correct: 'last', distractors: ['next', 'this', 'every', 'past', 'first'] },
@@ -2479,7 +2479,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'I', 'You', 'We', 'They'] },
-      { text: 'printed', correct: 'printed', distractors: ['print', 'prints', 'printing', 'pointed', 'pinted'] },
+      { text: 'printed', correct: 'printed', distractors: ['print', 'prints', 'printing', 'pointed', 'painted'] },
       { text: 'documents', correct: 'documents', distractors: ['files', 'photos', 'reports', 'lists', 'contracts'] },
       { text: 'last', correct: 'last', distractors: ['next', 'this', 'every', 'past', 'first'] },
       { text: 'week', correct: 'week', distractors: ['month', 'year', 'day', 'night', 'time'] },
@@ -2656,7 +2656,7 @@ export const LESSON_11_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'canceled', correct: 'canceled', distractors: ['cancel', 'cancels', 'canceling', 'handled', 'vandaled'] },
+      { text: 'canceled', correct: 'canceled', distractors: ['cancel', 'cancels', 'canceling', 'handled', 'damaged'] },
       { text: 'plans', correct: 'plans', distractors: ['schedules', 'rules', 'ideas', 'dates', 'tasks'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3029,7 +3029,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'bought', correct: 'bought', distractors: ['buy', 'buys', 'buying', 'buyed', 'bring'] },
+      { text: 'bought', correct: 'bought', distractors: ['buy', 'buys', 'buying', 'paid', 'bring'] },
       { text: 'bread', correct: 'bread', distractors: ['breed', 'bead', 'brad', 'broad', 'dread'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3050,8 +3050,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
-      { text: 'drank', correct: 'drank', distractors: ['drink', 'drinks', 'drinking', 'drinked', 'drunk'] },
-      { text: 'coffee', correct: 'coffee', distractors: ['coffe', 'cafe', 'tea', 'juice', 'water'] },
+      { text: 'drank', correct: 'drank', distractors: ['drink', 'drinks', 'drinking', 'sipped', 'drunk'] },
+      { text: 'coffee', correct: 'coffee', distractors: ['latte', 'cafe', 'tea', 'juice', 'water'] },
       { text: 'this', correct: 'this', distractors: ['that', 'the', 'a', 'these', 'those'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'noon', 'week', 'month'] },
     ],
@@ -3071,8 +3071,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['They', 'I', 'He', 'our', 'us'] },
-      { text: 'found', correct: 'found', distractors: ['find', 'finds', 'finding', 'finded', 'fount'] },
-      { text: 'keys', correct: 'keys', distractors: ['key', 'kees', 'kays', 'quays', 'keeys'] },
+      { text: 'found', correct: 'found', distractors: ['find', 'finds', 'finding', 'located', 'fount'] },
+      { text: 'keys', correct: 'keys', distractors: ['key', 'locks', 'kays', 'quays', 'codes'] },
       { text: 'this', correct: 'this', distractors: ['that', 'the', 'a', 'these', 'those'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'noon', 'week', 'month'] },
     ],
@@ -3093,8 +3093,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'He', 'them', 'their'] },
-      { text: 'sold', correct: 'sold', distractors: ['sell', 'sells', 'selling', 'selled', 'sole'] },
-      { text: 'tickets', correct: 'tickets', distractors: ['ticket', 'tikets', 'tickers', 'tokens', 'tackle'] },
+      { text: 'sold', correct: 'sold', distractors: ['sell', 'sells', 'selling', 'bought', 'sole'] },
+      { text: 'tickets', correct: 'tickets', distractors: ['ticket', 'passes', 'tickers', 'tokens', 'tackle'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
       { text: 'week', correct: 'week', distractors: ['month', 'day', 'night', 'year', 'weak'] },
     ],
@@ -3114,7 +3114,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['They', 'I', 'He', 'your', 'we'] },
       { text: 'sent', correct: 'sent', distractors: ['send', 'sends', 'sending', 'sended', 'cent'] },
-      { text: 'messages', correct: 'messages', distractors: ['message', 'massages', 'mesages', 'messes', 'passages'] },
+      { text: 'messages', correct: 'messages', distractors: ['message', 'massages', 'letters', 'messes', 'passages'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -3132,7 +3132,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'He', 'them', 'their'] },
-      { text: 'came', correct: 'came', distractors: ['come', 'comes', 'coming', 'comed', 'game'] },
+      { text: 'came', correct: 'came', distractors: ['come', 'comes', 'coming', 'went', 'game'] },
       { text: 'late', correct: 'late', distractors: ['early', 'now', 'soon', 'fast', 'fate'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3195,8 +3195,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'wrote', correct: 'wrote', distractors: ['write', 'writes', 'writing', 'writed', 'rote'] },
-      { text: 'messages', correct: 'messages', distractors: ['message', 'massages', 'mesages', 'messes', 'passages'] },
+      { text: 'wrote', correct: 'wrote', distractors: ['write', 'writes', 'writing', 'written', 'rote'] },
+      { text: 'messages', correct: 'messages', distractors: ['message', 'massages', 'letters', 'messes', 'passages'] },
       { text: 'this', correct: 'this', distractors: ['that', 'the', 'a', 'these', 'those'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'noon', 'week', 'month'] },
     ],
@@ -3218,7 +3218,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
-      { text: 'brought', correct: 'brought', distractors: ['bring', 'brings', 'bringing', 'bringed', 'brung'] },
+      { text: 'brought', correct: 'brought', distractors: ['bring', 'brings', 'bringing', 'carried', 'brung'] },
       { text: 'food', correct: 'food', distractors: ['mood', 'flood', 'good', 'foot', 'fool'] },
       { text: 'two', correct: 'two', distractors: ['three', 'one', 'four', 'too', 'to'] },
       { text: 'hours', correct: 'hours', distractors: ['hour', 'ours', 'days', 'weeks', 'oars'] },
@@ -3240,8 +3240,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'I'] },
-      { text: 'bought', correct: 'bought', distractors: ['buy', 'buys', 'buying', 'buyed', 'bring'] },
-      { text: 'headphones', correct: 'headphones', distractors: ['headphone', 'earphones', 'phones', 'speakers', 'hedphones'] },
+      { text: 'bought', correct: 'bought', distractors: ['buy', 'buys', 'buying', 'paid', 'bring'] },
+      { text: 'headphones', correct: 'headphones', distractors: ['headphone', 'earphones', 'phones', 'speakers', 'headset'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -3260,7 +3260,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['They', 'I', 'He', 'our', 'us'] },
-      { text: 'went', correct: 'went', distractors: ['go', 'goes', 'going', 'goed', 'gone'] },
+      { text: 'went', correct: 'went', distractors: ['go', 'goes', 'going', 'came', 'gone'] },
       { text: 'home', correct: 'home', distractors: ['house', 'hose', 'hole', 'Rome', 'dome'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
       { text: 'night', correct: 'night', distractors: ['day', 'morning', 'noon', 'knight', 'nigh'] },
@@ -3303,9 +3303,9 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'He', 'them', 'their'] },
-      { text: 'gave', correct: 'gave', distractors: ['give', 'gives', 'giving', 'gaved', 'cave'] },
+      { text: 'gave', correct: 'gave', distractors: ['give', 'gives', 'giving', 'sent', 'cave'] },
       { text: 'me', correct: 'me', distractors: ['my', 'I', 'him', 'her', 'we'] },
-      { text: 'advice', correct: 'advice', distractors: ['advise', 'adice', 'notice', 'device', 'service'] },
+      { text: 'advice', correct: 'advice', distractors: ['advise', 'help', 'notice', 'device', 'service'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
       { text: 'month', correct: 'month', distractors: ['week', 'day', 'year', 'mouth', 'most'] },
     ],
@@ -3325,8 +3325,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['They', 'I', 'He', 'your', 'we'] },
-      { text: 'drank', correct: 'drank', distractors: ['drink', 'drinks', 'drinking', 'drinked', 'drunk'] },
-      { text: 'juice', correct: 'juice', distractors: ['juicy', 'juce', 'joose', 'loose', 'mouse'] },
+      { text: 'drank', correct: 'drank', distractors: ['drink', 'drinks', 'drinking', 'sipped', 'drunk'] },
+      { text: 'juice', correct: 'juice', distractors: ['juicy', 'soda', 'water', 'loose', 'mouse'] },
       { text: 'this', correct: 'this', distractors: ['that', 'the', 'a', 'these', 'those'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'noon', 'week', 'month'] },
     ],
@@ -3347,8 +3347,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'I'] },
-      { text: 'ate', correct: 'ate', distractors: ['eat', 'eats', 'eating', 'eated', 'eight'] },
-      { text: 'breakfast', correct: 'breakfast', distractors: ['lunch', 'dinner', 'brakefast', 'brekfast', 'brefast'] },
+      { text: 'ate', correct: 'ate', distractors: ['eat', 'eats', 'eating', 'eaten', 'eight'] },
+      { text: 'breakfast', correct: 'breakfast', distractors: ['lunch', 'dinner', 'meal', 'brunch', 'snack'] },
       { text: 'at', correct: 'at', distractors: ['in', 'on', 'by', 'to', 'of'] },
       { text: 'eight', correct: 'eight', distractors: ['seven', 'nine', 'ate', 'height', 'tenth'] },
     ],
@@ -3368,7 +3368,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
-      { text: 'took', correct: 'took', distractors: ['take', 'takes', 'taking', 'taked', 'look'] },
+      { text: 'took', correct: 'took', distractors: ['take', 'takes', 'taking', 'taken', 'look'] },
       { text: 'cash', correct: 'cash', distractors: ['card', 'cats', 'crash', 'catch', 'hash'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3388,7 +3388,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['They', 'I', 'He', 'our', 'us'] },
-      { text: 'made', correct: 'made', distractors: ['make', 'makes', 'making', 'maked', 'maid'] },
+      { text: 'made', correct: 'made', distractors: ['make', 'makes', 'making', 'built', 'maid'] },
       { text: 'dinner', correct: 'dinner', distractors: ['lunch', 'breakfast', 'winner', 'diner', 'sinner'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3409,7 +3409,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'He', 'them', 'their'] },
-      { text: 'heard', correct: 'heard', distractors: ['hear', 'hears', 'hearing', 'hearded', 'herd'] },
+      { text: 'heard', correct: 'heard', distractors: ['hear', 'hears', 'hearing', 'listened', 'herd'] },
       { text: 'us', correct: 'us', distractors: ['we', 'our', 'them', 'me', 'you'] },
       { text: 'at', correct: 'at', distractors: ['in', 'on', 'by', 'to', 'of'] },
       { text: 'night', correct: 'night', distractors: ['day', 'morning', 'noon', 'knight', 'nigh'] },
@@ -3431,8 +3431,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'got', correct: 'got', distractors: ['get', 'gets', 'getting', 'geted', 'gut'] },
-      { text: 'tickets', correct: 'tickets', distractors: ['ticket', 'tikets', 'tickers', 'tokens', 'tackle'] },
+      { text: 'got', correct: 'got', distractors: ['get', 'gets', 'getting', 'received', 'gut'] },
+      { text: 'tickets', correct: 'tickets', distractors: ['ticket', 'passes', 'tickers', 'tokens', 'tackle'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
       { text: 'week', correct: 'week', distractors: ['month', 'day', 'night', 'year', 'weak'] },
     ],
@@ -3452,7 +3452,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['They', 'I', 'He', 'your', 'we'] },
       { text: 'lost', correct: 'lost', distractors: ['lose', 'loses', 'losing', 'losed', 'loss'] },
-      { text: 'money', correct: 'money', distractors: ['monkey', 'honey', 'moeny', 'many', 'funny'] },
+      { text: 'money', correct: 'money', distractors: ['monkey', 'honey', 'cash', 'many', 'funny'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -3473,7 +3473,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'I'] },
       { text: 'left', correct: 'left', distractors: ['leave', 'leaves', 'leaving', 'leaved', 'lest'] },
-      { text: 'early', correct: 'early', distractors: ['late', 'soon', 'fast', 'earley', 'yearly'] },
+      { text: 'early', correct: 'early', distractors: ['late', 'soon', 'fast', 'sooner', 'yearly'] },
       { text: 'this', correct: 'this', distractors: ['that', 'the', 'a', 'these', 'those'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'noon', 'week', 'month'] },
     ],
@@ -3494,7 +3494,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
-      { text: 'felt', correct: 'felt', distractors: ['feel', 'feels', 'feeling', 'feeled', 'melt'] },
+      { text: 'felt', correct: 'felt', distractors: ['feel', 'feels', 'feeling', 'fell', 'melt'] },
       { text: 'tired', correct: 'tired', distractors: ['bored', 'sad', 'angry', 'tiring', 'tiresome'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3515,8 +3515,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['They', 'I', 'He', 'our', 'us'] },
-      { text: 'met', correct: 'met', distractors: ['meet', 'meets', 'meeting', 'meeted', 'net'] },
-      { text: 'friends', correct: 'friends', distractors: ['friend', 'fiends', 'fends', 'trends', 'frieds'] },
+      { text: 'met', correct: 'met', distractors: ['meet', 'meets', 'meeting', 'knew', 'net'] },
+      { text: 'friends', correct: 'friends', distractors: ['friend', 'fiends', 'fends', 'trends', 'guests'] },
       { text: 'on', correct: 'on', distractors: ['in', 'at', 'by', 'to', 'of'] },
       { text: 'Friday', correct: 'Friday', distractors: ['Monday', 'Tuesday', 'Saturday', 'Sunday', 'Wednesday'] },
     ],
@@ -3557,8 +3557,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'spoke', correct: 'spoke', distractors: ['speak', 'speaks', 'speaking', 'speaked', 'smoke'] },
-      { text: 'English', correct: 'English', distractors: ['Spanish', 'French', 'Inglish', 'Engish', 'Anglish'] },
+      { text: 'spoke', correct: 'spoke', distractors: ['speak', 'speaks', 'speaking', 'talked', 'smoke'] },
+      { text: 'English', correct: 'English', distractors: ['Spanish', 'French', 'Italian', 'German', 'Turkish'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -3576,9 +3576,9 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['They', 'I', 'He', 'your', 'we'] },
-      { text: 'knew', correct: 'knew', distractors: ['know', 'knows', 'knowing', 'knowed', 'new'] },
+      { text: 'knew', correct: 'knew', distractors: ['know', 'knows', 'knowing', 'learned', 'new'] },
       { text: 'him', correct: 'him', distractors: ['her', 'them', 'his', 'he', 'hims'] },
-      { text: 'before', correct: 'before', distractors: ['after', 'now', 'soon', 'befour', 'befor'] },
+      { text: 'before', correct: 'before', distractors: ['after', 'now', 'soon', 'during', 'later'] },
     ],
   },
   {
@@ -3597,8 +3597,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'I'] },
-      { text: 'thought', correct: 'thought', distractors: ['think', 'thinks', 'thinking', 'thinked', 'though'] },
-      { text: 'about', correct: 'about', distractors: ['around', 'above', 'abut', 'bout', 'aboot'] },
+      { text: 'thought', correct: 'thought', distractors: ['think', 'thinks', 'thinking', 'guessed', 'though'] },
+      { text: 'about', correct: 'about', distractors: ['around', 'above', 'across', 'below', 'near'] },
       { text: 'it', correct: 'it', distractors: ['its', 'is', 'in', 'if', 'him'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3658,7 +3658,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'He', 'them', 'their'] },
       { text: 'ran', correct: 'ran', distractors: ['run', 'runs', 'running', 'runed', 'rent'] },
-      { text: 'outside', correct: 'outside', distractors: ['inside', 'ouside', 'outide', 'beside', 'aside'] },
+      { text: 'outside', correct: 'outside', distractors: ['inside', 'nearby', 'beside', 'aside', 'upstairs'] },
       { text: 'this', correct: 'this', distractors: ['that', 'the', 'a', 'these', 'those'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'noon', 'week', 'month'] },
     ],
@@ -3677,7 +3677,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'slept', correct: 'slept', distractors: ['sleep', 'sleeps', 'sleeping', 'sleeped', 'swept'] },
+      { text: 'slept', correct: 'slept', distractors: ['sleep', 'sleeps', 'sleeping', 'rested', 'swept'] },
       { text: 'well', correct: 'well', distractors: ['good', 'bad', 'late', 'welt', 'bell'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
       { text: 'night', correct: 'night', distractors: ['day', 'morning', 'noon', 'knight', 'nigh'] },
@@ -3698,7 +3698,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['They', 'I', 'He', 'your', 'we'] },
-      { text: 'sat', correct: 'sat', distractors: ['sit', 'sits', 'sitting', 'sitted', 'set'] },
+      { text: 'sat', correct: 'sat', distractors: ['sit', 'sits', 'sitting', 'seated', 'set'] },
       { text: 'here', correct: 'here', distractors: ['hear', 'there', 'where', 'were', 'her'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3714,13 +3714,13 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
       { text: 'estuvo', correct: 'estuvo', distractors: ['está', 'estar', 'estaba', 'estamos', 'estuvieron'], category: 'lexico_oracion' },
       { text: 'fuera', correct: 'fuera', distractors: ['dentro', 'arriba', 'abajo', 'cerca', 'lejos'], category: 'lexico_oracion' },
       { text: 'de', correct: 'de', distractors: ['en', 'a', 'con', 'por', 'para'], category: 'lexico_oracion' },
-      { text: 'pie', correct: 'pie', distractors: ['mano', 'cabeza', 'lado', 'brazo', 'lado'], category: 'lexico_oracion' },
+      { text: 'pie', correct: 'pie', distractors: ['mano', 'cabeza', 'lado', 'brazo', 'rodilla'], category: 'lexico_oracion' },
       { text: '.', correct: '.', distractors: ['Él', 'estuvo', 'fuera', 'bien', 'ya'], category: 'puntuacion' },
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'I'] },
-      { text: 'stood', correct: 'stood', distractors: ['stand', 'stands', 'standing', 'standed', 'stool'] },
-      { text: 'outside', correct: 'outside', distractors: ['inside', 'ouside', 'outide', 'beside', 'aside'] },
+      { text: 'stood', correct: 'stood', distractors: ['stand', 'stands', 'standing', 'stayed', 'stool'] },
+      { text: 'outside', correct: 'outside', distractors: ['inside', 'nearby', 'beside', 'aside', 'upstairs'] },
     ],
   },
   {
@@ -3739,7 +3739,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
       { text: 'wore', correct: 'wore', distractors: ['wear', 'wears', 'wearing', 'weared', 'more'] },
-      { text: 'glasses', correct: 'glasses', distractors: ['glass', 'glases', 'classes', 'blasses', 'lasses'] },
+      { text: 'glasses', correct: 'glasses', distractors: ['glass', 'lenses', 'classes', 'cups', 'lasses'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -3759,7 +3759,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['They', 'I', 'He', 'our', 'us'] },
-      { text: 'drove', correct: 'drove', distractors: ['drive', 'drives', 'driving', 'drived', 'grove'] },
+      { text: 'drove', correct: 'drove', distractors: ['drive', 'drives', 'driving', 'driven', 'grove'] },
       { text: 'cars', correct: 'cars', distractors: ['car', 'bars', 'jars', 'stars', 'cares'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
       { text: 'week', correct: 'week', distractors: ['month', 'day', 'night', 'year', 'weak'] },
@@ -3798,7 +3798,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'had', correct: 'had', distractors: ['have', 'has', 'having', 'haved', 'bad'] },
+      { text: 'had', correct: 'had', distractors: ['have', 'has', 'having', 'owned', 'bad'] },
       { text: 'time', correct: 'time', distractors: ['times', 'dime', 'lime', 'tame', 'tome'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
@@ -3818,9 +3818,9 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['They', 'I', 'He', 'your', 'we'] },
-      { text: 'had', correct: 'had', distractors: ['have', 'has', 'having', 'haved', 'bad'] },
+      { text: 'had', correct: 'had', distractors: ['have', 'has', 'having', 'owned', 'bad'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
-      { text: 'question', correct: 'question', distractors: ['questions', 'queston', 'qustion', 'suggestion', 'section'] },
+      { text: 'question', correct: 'question', distractors: ['questions', 'answer', 'topic', 'suggestion', 'section'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -3842,9 +3842,9 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
-      { text: 'had', correct: 'had', distractors: ['have', 'has', 'having', 'haved', 'bad'] },
+      { text: 'had', correct: 'had', distractors: ['have', 'has', 'having', 'owned', 'bad'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
-      { text: 'problem', correct: 'problem', distractors: ['problems', 'probem', 'problam', 'prublem', 'solution'] },
+      { text: 'problem', correct: 'problem', distractors: ['problems', 'issue', 'trouble', 'error', 'solution'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
       { text: 'week', correct: 'week', distractors: ['month', 'day', 'night', 'year', 'weak'] },
     ],
@@ -3865,10 +3865,10 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'I'] },
-      { text: 'gave', correct: 'gave', distractors: ['give', 'gives', 'giving', 'gaved', 'cave'] },
+      { text: 'gave', correct: 'gave', distractors: ['give', 'gives', 'giving', 'sent', 'cave'] },
       { text: 'her', correct: 'her', distractors: ['him', 'them', 'his', 'he', 'she'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
-      { text: 'key', correct: 'key', distractors: ['keys', 'kee', 'quay', 'kay', 'tea'] },
+      { text: 'key', correct: 'key', distractors: ['keys', 'lock', 'quay', 'kay', 'tea'] },
     ],
   },
   {
@@ -3887,7 +3887,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
-      { text: 'told', correct: 'told', distractors: ['tell', 'tells', 'telling', 'telled', 'cold'] },
+      { text: 'told', correct: 'told', distractors: ['tell', 'tells', 'telling', 'sold', 'cold'] },
       { text: 'me', correct: 'me', distractors: ['my', 'I', 'him', 'her', 'we'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
       { text: 'story', correct: 'story', distractors: ['stories', 'storey', 'store', 'glory', 'sorry'] },
@@ -3927,7 +3927,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'He', 'them', 'their'] },
-      { text: 'found', correct: 'found', distractors: ['find', 'finds', 'finding', 'finded', 'fount'] },
+      { text: 'found', correct: 'found', distractors: ['find', 'finds', 'finding', 'located', 'fount'] },
       { text: 'it', correct: 'it', distractors: ['its', 'is', 'in', 'if', 'him'] },
       { text: 'this', correct: 'this', distractors: ['that', 'the', 'a', 'these', 'those'] },
       { text: 'morning', correct: 'morning', distractors: ['evening', 'night', 'noon', 'week', 'month'] },
@@ -3947,7 +3947,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['me', 'my', 'hi', 'eye', 'he'] },
-      { text: 'brought', correct: 'brought', distractors: ['bring', 'brings', 'bringing', 'bringed', 'brung'] },
+      { text: 'brought', correct: 'brought', distractors: ['bring', 'brings', 'bringing', 'carried', 'brung'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
       { text: 'charger', correct: 'charger', distractors: ['chargers', 'changer', 'charter', 'larger', 'hanger'] },
     ],
@@ -3967,9 +3967,9 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['They', 'I', 'He', 'your', 'we'] },
-      { text: 'forgot', correct: 'forgot', distractors: ['forget', 'forgets', 'forgetting', 'forgotten', 'forgeted'] },
+      { text: 'forgot', correct: 'forgot', distractors: ['forget', 'forgets', 'forgetting', 'forgotten', 'remembered'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
-      { text: 'key', correct: 'key', distractors: ['keys', 'kee', 'quay', 'kay', 'tea'] },
+      { text: 'key', correct: 'key', distractors: ['keys', 'lock', 'quay', 'kay', 'tea'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -3991,7 +3991,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'his', 'I'] },
-      { text: 'chose', correct: 'chose', distractors: ['choose', 'chooses', 'choosing', 'choosed', 'close'] },
+      { text: 'chose', correct: 'chose', distractors: ['choose', 'chooses', 'choosing', 'selected', 'close'] },
       { text: 'a', correct: 'a', distractors: ['the', 'an', 'one', 'this', 'that'] },
       { text: 'plan', correct: 'plan', distractors: ['plans', 'plain', 'plane', 'clan', 'plant'] },
       { text: 'last', correct: 'last', distractors: ['this', 'next', 'past', 'first', 'lost'] },
@@ -4015,7 +4015,7 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'her', 'I'] },
       { text: 'left', correct: 'left', distractors: ['leave', 'leaves', 'leaving', 'leaved', 'lest'] },
-      { text: 'documents', correct: 'documents', distractors: ['document', 'docments', 'doucments', 'papers', 'docements'] },
+      { text: 'documents', correct: 'documents', distractors: ['document', 'papers', 'files', 'letters', 'forms'] },
       { text: 'at', correct: 'at', distractors: ['in', 'on', 'by', 'to', 'of'] },
       { text: 'home', correct: 'home', distractors: ['house', 'hose', 'hole', 'Rome', 'dome'] },
     ],
@@ -4035,9 +4035,9 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['They', 'I', 'He', 'our', 'us'] },
-      { text: 'got', correct: 'got', distractors: ['get', 'gets', 'getting', 'geted', 'gut'] },
-      { text: 'good', correct: 'good', distractors: ['bad', 'great', 'best', 'goood', 'goo'] },
-      { text: 'news', correct: 'news', distractors: ['new', 'knew', 'mews', 'nows', 'gnews'] },
+      { text: 'got', correct: 'got', distractors: ['get', 'gets', 'getting', 'received', 'gut'] },
+      { text: 'good', correct: 'good', distractors: ['bad', 'great', 'best', 'fine', 'well'] },
+      { text: 'news', correct: 'news', distractors: ['new', 'knew', 'mews', 'nows', 'updates'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -4055,8 +4055,8 @@ export const LESSON_12_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'He', 'them', 'their'] },
-      { text: 'made', correct: 'made', distractors: ['make', 'makes', 'making', 'maked', 'maid'] },
-      { text: 'mistakes', correct: 'mistakes', distractors: ['mistake', 'misstakes', 'mistkes', 'misakes', 'shakes'] },
+      { text: 'made', correct: 'made', distractors: ['make', 'makes', 'making', 'built', 'maid'] },
+      { text: 'mistakes', correct: 'mistakes', distractors: ['mistake', 'errors', 'wrong', 'faults', 'shakes'] },
       { text: 'yesterday', correct: 'yesterday', distractors: ['today', 'tomorrow', 'morning', 'now', 'later'] },
     ],
   },
@@ -4079,7 +4079,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['You', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'call', correct: 'call', distractors: ['called', 'calls', 'send', 'meet', 'help'] },
       { text: 'you', correct: 'you', distractors: ['me', 'him', 'her', 'us', 'them'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -4102,7 +4102,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'help', correct: 'help', distractors: ['helped', 'helps', 'call', 'meet', 'send'] },
       { text: 'us', correct: 'us', distractors: ['me', 'you', 'him', 'her', 'them'] },
       { text: 'next', correct: 'next', distractors: ['last', 'this', 'past', 'every', 'some'] },
@@ -4123,7 +4123,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'meet', correct: 'meet', distractors: ['met', 'meets', 'see', 'find', 'call'] },
       { text: 'soon', correct: 'soon', distractors: ['later', 'now', 'tomorrow', 'tonight', 'today'] },
     ],
@@ -4142,7 +4142,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'You', 'He', 'She'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'buy', correct: 'buy', distractors: ['bought', 'buys', 'sell', 'get', 'take'] },
       { text: 'food', correct: 'food', distractors: ['drink', 'water', 'coffee', 'bread', 'soup'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -4163,7 +4163,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['I', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'bring', correct: 'bring', distractors: ['brought', 'brings', 'take', 'get', 'send'] },
       { text: 'documents', correct: 'documents', distractors: ['books', 'papers', 'messages', 'keys', 'tickets'] },
       { text: 'later', correct: 'later', distractors: ['soon', 'now', 'tomorrow', 'tonight', 'today'] },
@@ -4186,7 +4186,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'send', correct: 'send', distractors: ['sent', 'sends', 'bring', 'take', 'call'] },
       { text: 'messages', correct: 'messages', distractors: ['documents', 'books', 'papers', 'letters', 'keys'] },
       { text: 'in', correct: 'in', distractors: ['at', 'on', 'by', 'with', 'for'] },
@@ -4208,7 +4208,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'cook', correct: 'cook', distractors: ['cooked', 'cooks', 'eat', 'buy', 'bring'] },
       { text: 'soup', correct: 'soup', distractors: ['coffee', 'bread', 'water', 'food', 'milk'] },
       { text: 'soon', correct: 'soon', distractors: ['later', 'now', 'tomorrow', 'tonight', 'today'] },
@@ -4228,7 +4228,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'wear', correct: 'wear', distractors: ['wore', 'wears', 'bring', 'buy', 'take'] },
       { text: 'glasses', correct: 'glasses', distractors: ['books', 'keys', 'shoes', 'gloves', 'documents'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -4248,7 +4248,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'You', 'He', 'She'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'understand', correct: 'understand', distractors: ['understood', 'understands', 'know', 'see', 'help'] },
       { text: 'it', correct: 'it', distractors: ['this', 'that', 'them', 'us', 'me'] },
       { text: 'soon', correct: 'soon', distractors: ['later', 'now', 'tomorrow', 'tonight', 'today'] },
@@ -4271,7 +4271,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['I', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'read', correct: 'read', distractors: ['reads', 'write', 'send', 'bring', 'buy'] },
       { text: 'books', correct: 'books', distractors: ['messages', 'documents', 'papers', 'letters', 'keys'] },
       { text: 'next', correct: 'next', distractors: ['last', 'this', 'past', 'every', 'some'] },
@@ -4293,7 +4293,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'write', correct: 'write', distractors: ['wrote', 'writes', 'read', 'send', 'bring'] },
       { text: 'messages', correct: 'messages', distractors: ['books', 'documents', 'papers', 'letters', 'keys'] },
       { text: 'tonight', correct: 'tonight', distractors: ['today', 'yesterday', 'tomorrow', 'soon', 'later'] },
@@ -4313,7 +4313,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'see', correct: 'see', distractors: ['saw', 'sees', 'meet', 'find', 'help'] },
       { text: 'them', correct: 'them', distractors: ['us', 'me', 'you', 'him', 'her'] },
       { text: 'soon', correct: 'soon', distractors: ['later', 'now', 'tomorrow', 'tonight', 'today'] },
@@ -4336,7 +4336,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'You', 'He', 'She'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'sell', correct: 'sell', distractors: ['sold', 'sells', 'buy', 'get', 'take'] },
       { text: 'tickets', correct: 'tickets', distractors: ['books', 'keys', 'documents', 'glasses', 'messages'] },
       { text: 'next', correct: 'next', distractors: ['last', 'this', 'past', 'every', 'some'] },
@@ -4359,7 +4359,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['You', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'take', correct: 'take', distractors: ['took', 'takes', 'bring', 'get', 'buy'] },
       { text: 'cash', correct: 'cash', distractors: ['food', 'water', 'coffee', 'bread', 'books'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -4381,7 +4381,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'drink', correct: 'drink', distractors: ['drank', 'drinks', 'eat', 'cook', 'take'] },
       { text: 'coffee', correct: 'coffee', distractors: ['water', 'milk', 'soup', 'bread', 'food'] },
       { text: 'in', correct: 'in', distractors: ['at', 'on', 'by', 'with', 'for'] },
@@ -4404,7 +4404,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'find', correct: 'find', distractors: ['found', 'finds', 'see', 'meet', 'get'] },
       { text: 'keys', correct: 'keys', distractors: ['books', 'glasses', 'documents', 'tickets', 'messages'] },
       { text: 'soon', correct: 'soon', distractors: ['later', 'now', 'tomorrow', 'tonight', 'today'] },
@@ -4427,7 +4427,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'You', 'He', 'She'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'get', correct: 'get', distractors: ['got', 'gets', 'take', 'bring', 'find'] },
       { text: 'documents', correct: 'documents', distractors: ['books', 'messages', 'keys', 'tickets', 'letters'] },
       { text: 'in', correct: 'in', distractors: ['at', 'on', 'by', 'with', 'for'] },
@@ -4450,7 +4450,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'choose', correct: 'choose', distractors: ['chose', 'chooses', 'pick', 'find', 'take'] },
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'this', 'that', 'some'] },
       { text: 'plan', correct: 'plan', distractors: ['book', 'map', 'document', 'message', 'paper'] },
@@ -4475,7 +4475,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['You', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'pay', correct: 'pay', distractors: ['paid', 'pays', 'buy', 'sell', 'get'] },
       { text: 'rent', correct: 'rent', distractors: ['money', 'food', 'coffee', 'plan', 'book'] },
       { text: 'next', correct: 'next', distractors: ['last', 'this', 'past', 'every', 'some'] },
@@ -4497,7 +4497,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['I', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'answer', correct: 'answer', distractors: ['answered', 'answers', 'ask', 'reply', 'tell'] },
       { text: 'questions', correct: 'questions', distractors: ['answers', 'messages', 'books', 'documents', 'letters'] },
       { text: 'later', correct: 'later', distractors: ['soon', 'now', 'tomorrow', 'tonight', 'today'] },
@@ -4517,7 +4517,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['You', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'wait', correct: 'wait', distractors: ['waited', 'waits', 'stay', 'come', 'go'] },
     ],
@@ -4538,7 +4538,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'call', correct: 'call', distractors: ['called', 'calls', 'send', 'meet', 'help'] },
       { text: 'him', correct: 'him', distractors: ['her', 'me', 'us', 'them', 'you'] },
@@ -4559,7 +4559,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'work', correct: 'work', distractors: ['worked', 'works', 'wait', 'come', 'help'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -4579,7 +4579,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'You', 'He', 'She'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'come', correct: 'come', distractors: ['came', 'comes', 'go', 'meet', 'wait'] },
       { text: 'today', correct: 'today', distractors: ['yesterday', 'tomorrow', 'soon', 'later', 'tonight'] },
@@ -4603,7 +4603,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'He', correct: 'He', distractors: ['She', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'help', correct: 'help', distractors: ['helped', 'helps', 'call', 'meet', 'send'] },
       { text: 'them', correct: 'them', distractors: ['us', 'me', 'you', 'him', 'her'] },
@@ -4626,7 +4626,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'You', correct: 'You', distractors: ['I', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'lose', correct: 'lose', distractors: ['lost', 'loses', 'find', 'get', 'take'] },
       { text: 'money', correct: 'money', distractors: ['books', 'keys', 'food', 'coffee', 'time'] },
@@ -4649,7 +4649,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'read', correct: 'read', distractors: ['reads', 'write', 'send', 'bring', 'buy'] },
       { text: 'messages', correct: 'messages', distractors: ['books', 'documents', 'papers', 'letters', 'keys'] },
@@ -4671,7 +4671,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'buy', correct: 'buy', distractors: ['bought', 'buys', 'sell', 'get', 'take'] },
       { text: 'tickets', correct: 'tickets', distractors: ['books', 'keys', 'documents', 'glasses', 'messages'] },
@@ -4692,7 +4692,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'You', 'He', 'She'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'start', correct: 'start', distractors: ['started', 'starts', 'stop', 'finish', 'come'] },
       { text: 'now', correct: 'now', distractors: ['then', 'soon', 'later', 'today', 'tomorrow'] },
@@ -4712,7 +4712,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['You', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'not', correct: 'not', distractors: ['no', 'now', 'any', 'none', 'never'] },
       { text: 'forget', correct: 'forget', distractors: ['forgot', 'forgets', 'remember', 'lose', 'find'] },
       { text: 'it', correct: 'it', distractors: ['this', 'that', 'them', 'us', 'me'] },
@@ -4944,7 +4944,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'What', correct: 'What', distractors: ['When', 'Where', 'Why', 'Who', 'How'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'you', correct: 'you', distractors: ['I', 'he', 'she', 'we', 'they'] },
       { text: 'do', correct: 'do', distractors: ['did', 'does', 'make', 'go', 'take'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -4965,7 +4965,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'When', correct: 'When', distractors: ['What', 'Where', 'Why', 'Who', 'How'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'she', correct: 'she', distractors: ['he', 'I', 'you', 'we', 'they'] },
       { text: 'call', correct: 'call', distractors: ['called', 'calls', 'send', 'meet', 'help'] },
       { text: '?', correct: '?', distractors: ['.', '!', ',', ';', ':'] },
@@ -4986,7 +4986,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Where', correct: 'Where', distractors: ['What', 'When', 'Why', 'Who', 'How'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'we', correct: 'we', distractors: ['I', 'you', 'he', 'she', 'they'] },
       { text: 'meet', correct: 'meet', distractors: ['met', 'meets', 'see', 'find', 'call'] },
       { text: '?', correct: '?', distractors: ['.', '!', ',', ';', ':'] },
@@ -5007,7 +5007,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Why', correct: 'Why', distractors: ['What', 'When', 'Where', 'Who', 'How'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'they', correct: 'they', distractors: ['we', 'I', 'you', 'he', 'she'] },
       { text: 'wait', correct: 'wait', distractors: ['waited', 'waits', 'stay', 'come', 'go'] },
       { text: '?', correct: '?', distractors: ['.', '!', ',', ';', ':'] },
@@ -5028,7 +5028,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'How', correct: 'How', distractors: ['What', 'When', 'Where', 'Why', 'Who'] },
       { text: 'much', correct: 'much', distractors: ['many', 'more', 'less', 'few', 'some'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'it', correct: 'it', distractors: ['this', 'that', 'them', 'us', 'me'] },
       { text: 'cost', correct: 'cost', distractors: ['costs', 'costed', 'pay', 'buy', 'sell'] },
       { text: '?', correct: '?', distractors: ['.', '!', ',', ';', ':'] },
@@ -5049,7 +5049,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'Who', correct: 'Who', distractors: ['What', 'When', 'Where', 'Why', 'How'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'help', correct: 'help', distractors: ['helped', 'helps', 'call', 'meet', 'send'] },
       { text: 'them', correct: 'them', distractors: ['us', 'me', 'you', 'him', 'her'] },
       { text: '?', correct: '?', distractors: ['.', '!', ',', ';', ':'] },
@@ -5070,7 +5070,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'I', correct: 'I', distractors: ['You', 'He', 'She', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'feel', correct: 'feel', distractors: ['felt', 'feels', 'be', 'get', 'have'] },
       { text: 'better', correct: 'better', distractors: ['worse', 'good', 'bad', 'best', 'well'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -5090,7 +5090,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'We', correct: 'We', distractors: ['I', 'You', 'He', 'She', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'leave', correct: 'leave', distractors: ['left', 'leaves', 'stay', 'come', 'go'] },
       { text: 'early', correct: 'early', distractors: ['late', 'soon', 'now', 'later', 'before'] },
       { text: 'tomorrow', correct: 'tomorrow', distractors: ['today', 'yesterday', 'soon', 'later', 'tonight'] },
@@ -5111,7 +5111,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'I', 'You', 'We', 'They'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'sing', correct: 'sing', distractors: ['sang', 'sings', 'speak', 'talk', 'say'] },
       { text: 'later', correct: 'later', distractors: ['earlier', 'soon', 'now', 'before', 'after'] },
       { text: 'today', correct: 'today', distractors: ['yesterday', 'tomorrow', 'soon', 'later', 'tonight'] },
@@ -5130,7 +5130,7 @@ export const LESSON_13_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['We', 'I', 'You', 'He', 'She'] },
-      { text: 'will', correct: 'will', distractors: ["won't", 'would', 'can', 'shall', 'did'] },
+      { text: 'will', correct: 'will', distractors: ["won\'t", 'would', 'can', 'shall', 'did'] },
       { text: 'close', correct: 'close', distractors: ['closed', 'closes', 'open', 'start', 'finish'] },
       { text: 'soon', correct: 'soon', distractors: ['later', 'now', 'tomorrow', 'tonight', 'today'] },
     ],
@@ -5154,7 +5154,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
-      { text: 'cheaper', correct: 'cheaper', distractors: ['cheapest', 'cheap', 'more cheap', 'most cheap', 'expensiver'] },
+      { text: 'cheaper', correct: 'cheaper', distractors: ['cheapest', 'cheap', 'more cheap', 'most cheap', 'costlier'] },
     ],
   },
   {
@@ -5174,7 +5174,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'expensive', correct: 'expensive', distractors: ['expensiver', 'most expensive', 'cheap', 'cheaper', 'expensively'] },
+      { text: 'expensive', correct: 'expensive', distractors: ['costlier', 'most expensive', 'cheap', 'cheaper', 'expensively'] },
     ],
   },
   {
@@ -5192,7 +5192,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
     wordsEn: [
       { text: 'It', correct: 'It', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
-      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'gooder'] },
+      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'finer'] },
       { text: 'now', correct: 'now', distractors: ['yesterday', 'tomorrow', 'soon', 'later', 'tonight'] },
     ],
   },
@@ -5252,7 +5252,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'I', 'It'] },
       { text: 'looks', correct: 'looks', distractors: ['look', 'looked', 'looking', 'seems', 'sees'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'serious', correct: 'serious', distractors: ['seriouser', 'most serious', 'funny', 'happier', 'seriously'] },
+      { text: 'serious', correct: 'serious', distractors: ['severe', 'most serious', 'funny', 'happier', 'seriously'] },
       { text: 'today', correct: 'today', distractors: ['yesterday', 'tomorrow', 'soon', 'later', 'tonight'] },
     ],
   },
@@ -5273,7 +5273,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'plan', correct: 'plan', distractors: ['option', 'way', 'question', 'job', 'place'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
-      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'gooder'] },
+      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'finer'] },
     ],
   },
   {
@@ -5314,7 +5314,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'option', correct: 'option', distractors: ['plan', 'way', 'question', 'job', 'place'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
-      { text: 'cheaper', correct: 'cheaper', distractors: ['cheapest', 'cheap', 'more cheap', 'most cheap', 'expensiver'] },
+      { text: 'cheaper', correct: 'cheaper', distractors: ['cheapest', 'cheap', 'more cheap', 'most cheap', 'costlier'] },
     ],
   },
   {
@@ -5336,7 +5336,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'option', correct: 'option', distractors: ['plan', 'way', 'question', 'job', 'place'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'expensive', correct: 'expensive', distractors: ['expensiver', 'most expensive', 'cheap', 'cheaper', 'expensively'] },
+      { text: 'expensive', correct: 'expensive', distractors: ['costlier', 'most expensive', 'cheap', 'cheaper', 'expensively'] },
     ],
   },
   {
@@ -5442,7 +5442,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'job', correct: 'job', distractors: ['plan', 'option', 'way', 'question', 'place'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'interesting', correct: 'interesting', distractors: ['interestinger', 'most interesting', 'boring', 'interested', 'interestingly'] },
+      { text: 'interesting', correct: 'interesting', distractors: ['engaging', 'most interesting', 'boring', 'interested', 'interestingly'] },
     ],
   },
   {
@@ -5464,7 +5464,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'work', correct: 'work', distractors: ['plan', 'option', 'way', 'question', 'place'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'important', correct: 'important', distractors: ['importanter', 'most important', 'unimportant', 'importantly', 'imported'] },
+      { text: 'important', correct: 'important', distractors: ['crucial', 'most important', 'unimportant', 'importantly', 'imported'] },
     ],
   },
   {
@@ -5485,7 +5485,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'place', correct: 'place', distractors: ['plan', 'option', 'way', 'question', 'job'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
-      { text: 'safer', correct: 'safer', distractors: ['safest', 'safe', 'more safe', 'most safe', 'dangerouser'] },
+      { text: 'safer', correct: 'safer', distractors: ['safest', 'safe', 'more safe', 'most safe', 'riskier'] },
     ],
   },
   {
@@ -5507,7 +5507,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'place', correct: 'place', distractors: ['plan', 'option', 'way', 'question', 'job'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'dangerous', correct: 'dangerous', distractors: ['dangerouser', 'most dangerous', 'safe', 'safer', 'dangerously'] },
+      { text: 'dangerous', correct: 'dangerous', distractors: ['riskier', 'most dangerous', 'safe', 'safer', 'dangerously'] },
     ],
   },
   {
@@ -5738,7 +5738,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'answer', correct: 'answer', distractors: ['plan', 'option', 'way', 'question', 'place'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
-      { text: 'clearer', correct: 'clearer', distractors: ['clearest', 'clear', 'more clear', 'most clear', 'confusinger'] },
+      { text: 'clearer', correct: 'clearer', distractors: ['clearest', 'clear', 'more clear', 'most clear', 'unclear'] },
     ],
   },
   {
@@ -5760,7 +5760,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'answer', correct: 'answer', distractors: ['plan', 'option', 'way', 'question', 'place'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'confusing', correct: 'confusing', distractors: ['confusinger', 'most confusing', 'clear', 'clearer', 'confused'] },
+      { text: 'confusing', correct: 'confusing', distractors: ['unclear', 'most confusing', 'clear', 'clearer', 'confused'] },
     ],
   },
   {
@@ -5781,7 +5781,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'best', correct: 'best', distractors: ['better', 'good', 'worst', 'worse', 'goodest'] },
+      { text: 'best', correct: 'best', distractors: ['better', 'good', 'worst', 'worse', 'greatest'] },
       { text: 'option', correct: 'option', distractors: ['plan', 'way', 'question', 'job', 'place'] },
     ],
   },
@@ -5826,7 +5826,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'cheapest', correct: 'cheapest', distractors: ['cheaper', 'cheap', 'more cheap', 'most cheap', 'expensivest'] },
+      { text: 'cheapest', correct: 'cheapest', distractors: ['cheaper', 'cheap', 'more cheap', 'most cheap', 'costliest'] },
       { text: 'ticket', correct: 'ticket', distractors: ['plan', 'option', 'way', 'question', 'place'] },
     ],
   },
@@ -5850,7 +5850,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
       { text: 'most', correct: 'most', distractors: ['more', 'much', 'many', 'very', 'too'] },
-      { text: 'expensive', correct: 'expensive', distractors: ['expensiver', 'expensivest', 'cheap', 'cheaper', 'expensively'] },
+      { text: 'expensive', correct: 'expensive', distractors: ['costlier', 'costliest', 'cheap', 'cheaper', 'expensively'] },
       { text: 'ticket', correct: 'ticket', distractors: ['plan', 'option', 'way', 'question', 'place'] },
     ],
   },
@@ -5965,7 +5965,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'This', correct: 'This', distractors: ['These', 'Those', 'They', 'There', 'The'] },
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'safest', correct: 'safest', distractors: ['safer', 'safe', 'more safe', 'most safe', 'dangerousest'] },
+      { text: 'safest', correct: 'safest', distractors: ['safer', 'safe', 'more safe', 'most safe', 'riskiest'] },
       { text: 'place', correct: 'place', distractors: ['plan', 'option', 'way', 'question', 'job'] },
     ],
   },
@@ -5989,7 +5989,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'is', correct: 'is', distractors: ['was', 'were', 'be', 'am', 'been'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
       { text: 'most', correct: 'most', distractors: ['more', 'much', 'many', 'very', 'too'] },
-      { text: 'dangerous', correct: 'dangerous', distractors: ['dangerouser', 'dangerousest', 'safe', 'safer', 'dangerously'] },
+      { text: 'dangerous', correct: 'dangerous', distractors: ['riskier', 'riskiest', 'safe', 'safer', 'dangerously'] },
       { text: 'place', correct: 'place', distractors: ['plan', 'option', 'way', 'question', 'job'] },
     ],
   },
@@ -6011,7 +6011,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'I', correct: 'I', distractors: ['He', 'She', 'They', 'We', 'It'] },
       { text: 'feel', correct: 'feel', distractors: ['feels', 'felt', 'feeling', 'fell', 'fill'] },
       { text: 'much', correct: 'much', distractors: ['very', 'more', 'most', 'many', 'so'] },
-      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'gooder'] },
+      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'finer'] },
       { text: 'today', correct: 'today', distractors: ['yesterday', 'tomorrow', 'soon', 'later', 'tonight'] },
     ],
   },
@@ -6072,7 +6072,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'They', correct: 'They', distractors: ['He', 'She', 'We', 'I', 'It'] },
       { text: 'work', correct: 'work', distractors: ['works', 'worked', 'working', 'walk', 'word'] },
       { text: 'more', correct: 'more', distractors: ['most', 'much', 'many', 'very', 'too'] },
-      { text: 'slowly', correct: 'slowly', distractors: ['slower', 'slowest', 'slow', 'slowlier', 'fastly'] },
+      { text: 'slowly', correct: 'slowly', distractors: ['slower', 'slowest', 'slow', 'quickly', 'carefully'] },
       { text: 'now', correct: 'now', distractors: ['yesterday', 'tomorrow', 'soon', 'later', 'tonight'] },
     ],
   },
@@ -6093,7 +6093,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'We', correct: 'We', distractors: ['He', 'She', 'They', 'I', 'It'] },
       { text: 'need', correct: 'need', distractors: ['needs', 'needed', 'needing', 'want', 'knee'] },
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'this', 'that', 'their'] },
-      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'gooder'] },
+      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'finer'] },
       { text: 'plan', correct: 'plan', distractors: ['option', 'way', 'question', 'job', 'place'] },
     ],
   },
@@ -6134,9 +6134,9 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'They', correct: 'They', distractors: ['He', 'She', 'We', 'I', 'It'] },
-      { text: 'chose', correct: 'chose', distractors: ['choose', 'chosen', 'chooses', 'choosed', 'picked'] },
+      { text: 'chose', correct: 'chose', distractors: ['choose', 'chosen', 'chooses', 'selected', 'picked'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'best', correct: 'best', distractors: ['better', 'good', 'worst', 'worse', 'goodest'] },
+      { text: 'best', correct: 'best', distractors: ['better', 'good', 'worst', 'worse', 'greatest'] },
       { text: 'option', correct: 'option', distractors: ['plan', 'way', 'question', 'job', 'place'] },
     ],
   },
@@ -6158,7 +6158,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'We', correct: 'We', distractors: ['He', 'She', 'They', 'I', 'It'] },
       { text: 'found', correct: 'found', distractors: ['find', 'finds', 'finding', 'founded', 'fond'] },
       { text: 'the', correct: 'the', distractors: ['a', 'an', 'this', 'that', 'their'] },
-      { text: 'cheapest', correct: 'cheapest', distractors: ['cheaper', 'cheap', 'more cheap', 'most cheap', 'expensivest'] },
+      { text: 'cheapest', correct: 'cheapest', distractors: ['cheaper', 'cheap', 'more cheap', 'most cheap', 'costliest'] },
       { text: 'tickets', correct: 'tickets', distractors: ['plans', 'options', 'ways', 'questions', 'places'] },
     ],
   },
@@ -6178,7 +6178,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
     ],
     wordsEn: [
       { text: 'She', correct: 'She', distractors: ['He', 'They', 'We', 'I', 'It'] },
-      { text: 'bought', correct: 'bought', distractors: ['buy', 'buys', 'buying', 'buyed', 'brought'] },
+      { text: 'bought', correct: 'bought', distractors: ['buy', 'buys', 'buying', 'paid', 'brought'] },
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'this', 'that', 'their'] },
       { text: 'newer', correct: 'newer', distractors: ['newest', 'new', 'more new', 'most new', 'older'] },
       { text: 'phone', correct: 'phone', distractors: ['plan', 'option', 'way', 'question', 'place'] },
@@ -6201,7 +6201,7 @@ export const LESSON_14_PHRASES: LessonPhrase[] = [
       { text: 'He', correct: 'He', distractors: ['She', 'They', 'We', 'I', 'It'] },
       { text: 'got', correct: 'got', distractors: ['get', 'gets', 'getting', 'gotten', 'gat'] },
       { text: 'a', correct: 'a', distractors: ['an', 'the', 'this', 'that', 'their'] },
-      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'gooder'] },
+      { text: 'better', correct: 'better', distractors: ['best', 'good', 'worse', 'worst', 'finer'] },
       { text: 'job', correct: 'job', distractors: ['plan', 'option', 'way', 'question', 'place'] },
     ],
   },
@@ -7455,7 +7455,7 @@ export const LESSON_16_PHRASES: LessonPhrase[] = [
     id: 'lesson16_phrase_11',
     english: "We find out facts",
     russian: "Мы выясняем факты",
-    ukrainian: "Ми з'ясовуємо факти",
+    ukrainian: "Ми з\'ясовуємо факти",
     spanish: "Averiguamos los hechos.",
     words: [
       { text: 'Averiguamos', correct: 'Averiguamos', distractors: ['Averiguo', 'Averiguas', 'Averigua', 'Averiguan', 'Averigüé'], category: 'verbo' },
@@ -7870,7 +7870,7 @@ export const LESSON_16_PHRASES: LessonPhrase[] = [
     id: 'lesson16_phrase_30',
     english: "She does not find out facts",
     russian: "Она не выясняет факты",
-    ukrainian: "Вона не з'ясовує факти",
+    ukrainian: "Вона не з\'ясовує факти",
     spanish: "No averigua los hechos.",
     words: [
       { text: 'No', correct: 'No', distractors: ['Sí', 'Nunca', 'Nada', 'Ni', 'Tampoco'], category: 'negacion' },

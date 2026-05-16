@@ -1,7 +1,7 @@
-﻿import { Ionicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   Image,
@@ -31,9 +31,8 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
-import PhraseContentStars from '../components/PhraseContentStars';
 import { triLang } from '../constants/i18n';
-import type { ThemeMode } from '../constants/theme';
+import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
 import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 
@@ -42,8 +41,6 @@ const TIMER_SEC = 30;
 function examMenuImage(themeMode: ThemeMode) {
   return themeMode === 'minimalLight' ? require('../assets/images/levels/exam grafit.webp')
     : themeMode === 'minimalDark' ? require('../assets/images/levels/exam fog.webp')
-    : themeMode === 'ocean'  ? require('../assets/images/levels/exam ocean.webp')
-    : themeMode === 'sakura' ? require('../assets/images/levels/exam sacura.webp')
     : themeMode === 'gold'   ? require('../assets/images/levels/exam coral.webp')
     : themeMode === 'neon'   ? require('../assets/images/levels/exam neon.webp')
     :                          require('../assets/images/levels/examen forest.webp');
@@ -153,7 +150,7 @@ const POOL: Question[] = [
   {phrase:'They ___ football last week.',  hintRU:'Они ___ в футбол на прошлой неделе.',hintUK:'Вони ___ у футбол минулого тижня.',hintES:'Ellos ___ al fútbol la semana pasada.',opts:['play','plays','played','playing'],correct:2, level:'A2'},
   {phrase:'I ___ him yesterday.',          hintRU:'Я ___ ему вчера.',             hintUK:'Я ___ йому вчора.',         hintES:'Ayer ___ (a él) → past simple: «called».', opts:['call','calls','called','calling'],      correct:2, level:'A2'},
   // A2: Prepositions
-  {phrase:"I wake up ___ 7 o'clock.",      hintRU:'Я просыпаюсь ___ 7 часов.',    hintUK:'Я прокидаюсь ___ 7 годині.',hintES:'Me levanto ___ las 7.',opts:['in','on','at','by'],                  correct:2, level:'A2'},
+  {phrase:"I wake up ___ 7 o\'clock.",      hintRU:'Я просыпаюсь ___ 7 часов.',    hintUK:'Я прокидаюсь ___ 7 годині.',hintES:'Me levanto ___ las 7.',opts:['in','on','at','by'],                  correct:2, level:'A2'},
   {phrase:'She was born ___ Monday.',      hintRU:'Она родилась ___ понедельник.',hintUK:'Вона народилася ___ понеділок.',hintES:'Nació ___ un lunes.',opts:['in','on','at','by'],               correct:1, level:'A2'},
   {phrase:'He lives ___ London.',          hintRU:'Он живёт ___ Лондоне.',        hintUK:'Він живе ___ Лондоні.',     hintES:'Vive ___ Londres.', opts:['in','on','at','by'],                  correct:0, level:'A2'},
   // A2: Future (will/going to)
@@ -214,7 +211,7 @@ const POOL: Question[] = [
   {phrase:'If you work hard, you ___ succeed.',hintRU:'Если ты будешь стараться, ты ___.', hintUK:'Якщо ти будеш старатися, ти ___.',hintES:'Condicional 1: resultado en futuro probable → «will».',opts:['will','would','shall','should'],correct:0, level:'B1'},
   // B1: Comparatives
   {phrase:'She is ___ than her sister.',   hintRU:'Она ___ своей сестры.',        hintUK:'Вона ___ своєї сестри.',    hintES:'Ella es más alta que su hermana (comparativo).', opts:['tall','taller','tallest','most tall'], correct:1, level:'B1'},
-  {phrase:"It's ___ book I've read.",      hintRU:'Это ___ книга, что я читал.',  hintUK:'Це ___ книга, яку я читав.', hintES:'Es el mejor libro que he leído (superlativo).', opts:['good','better','the best','best'],    correct:2, level:'B1'},
+  {phrase:"It\'s ___ book I\'ve read.",      hintRU:'Это ___ книга, что я читал.',  hintUK:'Це ___ книга, яку я читав.', hintES:'Es el mejor libro que he leído (superlativo).', opts:['good','better','the best','best'],    correct:2, level:'B1'},
   // B1: Build questions
   {phrase:'Собери фразу из слов:', hintRU:'Они уже ушли.', hintUK:'Вони вже пішли.', hintES:'Ya se han marchado.',
    opts:['have','They','left','already'], correct:0, level:'B1', type:'build',
@@ -228,7 +225,7 @@ const POOL: Question[] = [
   {phrase:'Have you ___ read this book?',  hintRU:'Ты ___ читал эту книгу?',      hintUK:'Ти ___ читав цю книгу?',    hintES:'Pregunta con «have»: «___» = alguna vez → «ever».', opts:['ever','never','always','yet'], correct:0, level:'B1', type:'type', answer:'ever'},
   {phrase:'I ___ in London since 2019.',  hintRU:'Я ___ в Лондоне с 2019.',       hintUK:'Я ___ в Лондоні з 2019.',   hintES:'Desde 2019 → present perfect → «have lived».', opts:['live','lived',"have lived",'am living'], correct:2, level:'B1'},
   {phrase:'Each of the boys ___ a ticket.', hintRU:'У каждого мальчика ___ билет.', hintUK:'У кожного хлопчика ___ квиток.', hintES:'«Each of…» → verbo en singular → «has».', opts:['have','has','is','are'],     correct:1, level:'B1'},
-  {phrase:"I'll call you when I ___.",    hintRU:'Позвоню, как только ___.',   hintUK:'Зателефоную, щойно ___.',  hintES:'Tras «when»: present simple, no futuro → «arrive».', opts:['arrive','arrived','will arrive','arriving'], correct:0, level:'B1'},
+  {phrase:"I\'ll call you when I ___.",    hintRU:'Позвоню, как только ___.',   hintUK:'Зателефоную, щойно ___.',  hintES:'Tras «when»: present simple, no futuro → «arrive».', opts:['arrive','arrived','will arrive','arriving'], correct:0, level:'B1'},
   {phrase:'By 2020, she ___ in Paris for 10 years.', hintRU:'К 2020-му она 10 лет жила в Париже.', hintUK:'До 2020 вона 10 років жила в Парижі.', hintES:'Antes de un punto del pasado → past perfect → «had lived».', opts:['has lived',"had lived","was living","lived"], correct:1, level:'B1'},
   {phrase:'The police ___ the thief yesterday.',       hintRU:'Полиция ___. (поймала вора)',  hintUK:'Поліція ___. (злодія)',  hintES:'La policía ___ al ladrón ayer.', opts:['catches',"caught","has caught","was catching"], correct:1, level:'B1'},
   {phrase:'I have never ___ a horse.',  hintRU:'Никогда не ___. (ездил верхом)', hintUK:'Ніколи не ___. (їздив верхи)', hintES:'Nunca he ___ a caballo (participio)', opts:['ride','rode','rides','ridden'],   correct:3, level:'B1'},
@@ -239,7 +236,7 @@ const POOL: Question[] = [
   {phrase:'If I ___ you, I would not say that.',  hintRU:'Будь ___, не сказал бы.',  hintUK:'Будь ___, не сказав би цього.', hintES:'Si yo fuera tú ... (If I ___ you)', opts:['am','am not','was','were'],  correct:3, level:'B1'},
   {phrase:'We are looking forward ___ the concert.',  hintRU:'С нетерпением ___. (концерт)',  hintUK:'З нетерпінням ___. (концерт)', hintES:'«look forward to» + nombre/gerundio → «to».', opts:['at','on','to','for'],  correct:2, level:'B1'},
   {phrase:'What does "necessary" mean?',  hintRU:'«necessary» — это…',  hintUK:'Що значить «necessary»?',  hintES:'¿Qué significa «necessary»?', opts:['невозможный','нужный/необх.','лишний','лёгкий'],  optsUK:['неможливий','потрібний','зайвий','легкий'], optsES:['imposible','necesario/indispensable','superfluo','fácil/ligero'],  correct:1, level:'B1', type:'match'},
-  {phrase:"She doesn't mind ___ late.",  hintRU:'Поздно ___ — не волнует.',  hintUK:'Пізно ___ — не заважає.',  hintES:'«mind» + gerundio → «working».', opts:['work','to work',"working",'works'],  correct:2, level:'B1'},
+  {phrase:"She doesn\'t mind ___ late.",  hintRU:'Поздно ___ — не волнует.',  hintUK:'Пізно ___ — не заважає.',  hintES:'«mind» + gerundio → «working».', opts:['work','to work',"working",'works'],  correct:2, level:'B1'},
   {phrase:'I wish I ___ how to play the guitar.',  hintRU:'Как ___, вот мечта...',  hintUK:'Вміти б ___. (гітара)',  hintES:'«wish» + past simple del verbo «know» → «knew».', opts:['knew',"will know", 'know', 'am knowing'],  correct:0, level:'B1'},
   {phrase:"Before I moved, I had never ___ a flight.",  hintRU:'Раньше никогда не ___.(пер. раз летал, перф.)',  hintUK:'Раніше ніколи не ___.(пер. раз, перф.)',  hintES:'«had never» + participio de «take» → «taken».',  opts:['take',"took", 'taken', 'taking'],  correct:2, level:'B1'},
 
@@ -283,27 +280,27 @@ const POOL: Question[] = [
    correct:0, level:'B2', type:'choice4'},
   {phrase:'The report must be submitted by Friday.', hintRU:'Выбери правильный перевод:', hintUK:'Обери правильний переклад:', hintES:'Elige la traducción correcta:',
    opts:['Отчёт можно сдать в пятницу','Отчёт должен быть сдан до пятницы','Отчёт был сдан в пятницу','Отчёт сдадут в пятницу'],
-   optsUK:["Звіт можна здати в п'ятницю","Звіт має бути зданий до п'ятниці","Звіт був зданий у п'ятницю","Звіт здадуть у п'ятницю"],
+   optsUK:["Звіт можна здати в п\'ятницю","Звіт має бути зданий до п\'ятниці","Звіт був зданий у п\'ятницю","Звіт здадуть у п\'ятницю"],
    optsES:['Se puede entregar el informe el viernes','El informe debe entregarse antes del viernes','El informe se entregó el viernes','Entregarán el informe el viernes'],
    correct:1, level:'B2', type:'choice4'},
   // B2: Type questions
   {phrase:'She has been here ___ 2010.',   hintRU:'Она здесь ___ 2010 года.',     hintUK:'Вона тут ___ 2010 року.',   hintES:'Punto en el tiempo → «since» (no «for»).', opts:['for','since','during','from'], correct:1, level:'B2', type:'type', answer:'since'},
   {phrase:'They ___ each other for years.',hintRU:'Они знают друг друга ___ годами.',hintUK:'Вони знають одне одного ___ роки.',hintES:'«for years» + experiencia hasta ahora → «have known».',opts:['know','knew','have known','known'],correct:2, level:'B2', type:'type', answer:'have known'},
-  {phrase:"I'd rather you ___ a little more polite.", hintRU:'Лучше бы ты был ___.', hintUK:'Краще б ти був ___.', hintES:'«would rather you» + «were» (subjuntivo formal).', opts:['be','am','is','are'],     correct:0, level:'B2'},
+  {phrase:"I\'d rather you ___ a little more polite.", hintRU:'Лучше бы ты был ___.', hintUK:'Краще б ти був ___.', hintES:'«would rather you» + «were» (subjuntivo formal).', opts:['be','am','is','are'],     correct:0, level:'B2'},
   {phrase:'The manager demanded that the report ___ on time.', hintRU:'Руководитель требовал, чтобы отчёт ___.', hintUK:'Керівник вимагав, щоб звіт ___.', hintES:'Tras demand: forma base («be»), no «is/was».', opts:['is','be','was','will be'],         correct:1, level:'B2'},
   {phrase:'Not only was the food cold, but the service was also ___.',  hintRU:'И еда холодная, и обслуживание ___.',  hintUK:'Їжа холодна, а обслуговування ___.', hintES:'Balance con «cold» → servicio «poor» (malo/deficiente).', opts:['slow','poor',"very expensive",'rude'],  correct:1, level:'B2'},
-  {phrase:"It's high time you ___ a haircut.",  hintRU:'Пора тебе ___. (сделай стрижку)',  hintUK:'Що й тобі ___. (стрижка)',  hintES:'Tras «it’s high time you» → past simple coloquial → «got».',  opts:['get','got',"get one",'are getting'],  correct:1, level:'B2'},
-  {phrase:"I'd sooner ___ home than go to that party.",  hintRU:'___ домой, чем на вечеринку',  hintUK:'___ вдома, ніж на вечірку', hintES:'«sooner» + infinitivo sin «to» → «stay».', opts:['stay',"stayed", 'to stay', 'staying'],  correct:0, level:'B2'},
+  {phrase:"It\'s high time you ___ a haircut.",  hintRU:'Пора тебе ___. (сделай стрижку)',  hintUK:'Що й тобі ___. (стрижка)',  hintES:'Tras «it\'s high time you» → past simple coloquial → «got».',  opts:['get','got',"get one",'are getting'],  correct:1, level:'B2'},
+  {phrase:"I\'d sooner ___ home than go to that party.",  hintRU:'___ домой, чем на вечеринку',  hintUK:'___ вдома, ніж на вечірку', hintES:'«sooner» + infinitivo sin «to» → «stay».', opts:['stay',"stayed", 'to stay', 'staying'],  correct:0, level:'B2'},
   {phrase:"No sooner had we arrived than it ___.",  hintRU:'Как приехали, тут ___. (заминка/паника)',  hintUK:'Щойно прибули, як...',  hintES:'Patrón «No sooner… than»: «than» + past simple.',  opts:['began to rain',"began","had begun", 'rains'],  correct:0, level:'B2'},
   {phrase:'I remember ___ the door, but the keys were gone anyway.',  hintRU:'___. (что сделал с дверью? герунд/инфин.)',  hintUK:'___. (що зробив; герундій/інфін.)',  hintES:'«remember» + gerundio (hecho vivido) → «locking».',  opts:['lock','to lock',"locking",'locked'],  correct:2, level:'B2'},
-  {phrase:"She can't help ___. (always talks too much); it's just her way.",  hintRU:'___. (не в силах удержаться)',  hintUK:'___. (не може втриматися)',  hintES:'«can’t help» + gerundio → «talking».',  opts:['talk','talks',"talking", 'to talk'],  correct:2, level:'B2'},
+  {phrase:"She can\'t help ___. (always talks too much); it\'s just her way.",  hintRU:'___. (не в силах удержаться)',  hintUK:'___. (не може втриматися)',  hintES:'«can\'t help» + gerundio → «talking».',  opts:['talk','talks',"talking", 'to talk'],  correct:2, level:'B2'},
   {phrase:'In five years, this area ___ a new business district.', hintRU:'К концу пятилетки район ___.',  hintUK:'За 5 років район ___. (стане повністю змін. районом)', hintES:'«In five years» → futuro perfecto → «will have become».',  opts:['will be',"will have become",'is','has become'],  correct:1, level:'B2'},
   {phrase:"So confusing was the sign that I ___ the wrong way.",  hintRU:'Настолько ___ указатель, что...',  hintUK:'Показник ___, тому...',  hintES:'Inversión por «So…»: resultado en pasado → «drove».',  opts:['drove',"drives","was driving", 'was driven'],  correct:0, level:'B2'},
   {phrase:'I suggest that he ___ a professional.', hintRU: 'Предлагаю, чтобы ___. (нанял)', hintUK: 'Пропоную, щоб ___. (найм)', hintES:'Tras «suggest that» → forma base (sin -s) → «see».', opts:['see','saw',"saw a doctor",'sees'],  correct:0, level:'B2'},
   {phrase:'I must have the report ___ by noon.',  hintRU:'Сделай так, чтоб отчёт ___. (готов) к полудню',  hintUK: 'Щоб звіт ___. (був гот.) до 12:00',  hintES:'«have» + objeto + participio (causativa) → «finished».',  opts:['finished',"is finished",'to finish', 'be finishing'],  correct:0, level:'B2'},
-  {phrase:"They can't find their keys, ___?",  hintRU:'___. (тег-вопрос).',  hintUK: '___. (пит. тег)',  hintES:'Tras modal negativo («can’t») → mismo auxiliar positivo («can»).',  opts:['do they',"can they", 'are they', 'can\'t they'],  correct:1, level:'B2'},
+  {phrase:"They can\'t find their keys, ___?",  hintRU:'___. (тег-вопрос).',  hintUK: '___. (пит. тег)',  hintES:'Tras modal negativo («can\'t») → mismo auxiliar positivo («can»).',  opts:['do they',"can they", 'are they', 'can\'t they'],  correct:1, level:'B2'},
   {phrase:'The children might ___ lost in the crowd.',  hintRU:'___. (модальное+perf?)',  hintUK: '___. (модальний+perf)',  hintES:'Deducción: «might have» + participio → «have been».',  opts:['have been',"be",'get','have got'],  correct:0, level:'B2'},
-  {phrase:"She's the woman ___ son won the contest.",  hintRU:'___.(relative pron.)',  hintUK: '___(відн. займ.)',  hintES:'Relativo posesivo («cuyo hijo») → «whose».',  opts:['whose',"who", 'which', 'whom'],  correct:0, level:'B2'},
+  {phrase:"She\'s the woman ___ son won the contest.",  hintRU:'___.(relative pron.)',  hintUK: '___(відн. займ.)',  hintES:'Relativo posesivo («cuyo hijo») → «whose».',  opts:['whose',"who", 'which', 'whom'],  correct:0, level:'B2'},
 
   // ── C1 ────────────────────────────────────────────────────────────────────
   {phrase:'If you had come, you ___ her.', hintRU:'Если бы ты пришёл, ты ___ её.',hintUK:'Якби ти прийшов, ти ___ її.', hintES:'III tipo: «would have» + participio → «met».', opts:['meet','met','would have met','had met'],correct:2, level:'C1'},
@@ -366,7 +363,7 @@ const LEVEL_RESULTS = [
     msgES:'Estás cimentando bases: es habitual. Sigue el hilo de lecciones (léxico, gramática y teoría) para afianzar.'},
   {min:4,  level:'A2', ru:'Базовый ориентир',  uk:'Базовий орієнтир',   es:'Nivel básico (orientativo)',
     msgRU:'Структуры узнаваемы — углуби лексику и грамматику в упражнениях уроков; скорость придёт с привычкой.',
-    msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з’явиться з практикою.',
+    msgUK:'Структури впізнавані — поглиб лексику й граматику в вправках уроків; швидкість з\'явиться з практикою.',
     msgES:'Reconoces patrones: refuerza léxico y gramática en las lecciones; la rapidez mejora con la práctica habitual.'},
   {min:8,  level:'B1', ru:'Средний ориентир',       uk:'Середній орієнтир',       es:'Intermedio (orientativo)',
     msgRU:'Увереннее держишь материал курса. Отмечай пробелы в темах и возвращайся к блокам «Теория» и «Словарь».',
@@ -396,7 +393,7 @@ const getResult = (score: number, qs?: Question[], ans?: boolean[]) => {
       const lvIdxs = qs.reduce<number[]>((acc, q, i) => q.level === lv ? [...acc, i] : acc, []);
       const lvCorrect = lvIdxs.filter(i => ans[i]).length;
       if (lvCorrect >= 3) bestLevel = lv; // 75% threshold per level
-      else break; // levels are sequential — can't skip a failed level
+      else break; // levels are sequential — can\'t skip a failed level
     }
     if (score === qs.length) bestLevel = 'C2'; // perfect score only
     return LEVEL_RESULTS.find(r => r.level === bestLevel) || LEVEL_RESULTS[0];
@@ -422,6 +419,7 @@ export default function DiagnosticTest() {
   const params = useLocalSearchParams();
   const isFromOnboarding = params.fromOnboarding === '1';
   const { theme: t , f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang, s } = useLang();
   const isUK = lang === 'uk';
   const isES = lang === 'es';
@@ -598,7 +596,6 @@ export default function DiagnosticTest() {
       };
       void AsyncStorage.setItem('diagnostic_last', JSON.stringify(lastPayload));
       setPrev(lastPayload);
-      void AsyncStorage.setItem('placement_level', res.level);
       checkAchievements({ type: 'diagnosis' }).catch(() => {});
       updateMultipleTaskProgress([{ type: 'diagnostic_complete', increment: 1 }]).catch(() => {});
       awardOneTime('diagnostic_test').catch(() => {});
@@ -681,7 +678,7 @@ export default function DiagnosticTest() {
   const handleTypeSubmit = () => {
     if (locked.current || typeSubmitted) return;
     const q = questions[idx];
-    // Normalize: lowercase, trim, strip trailing punctuation (? ! .) so typing "?" doesn't cause error
+    // Normalize: lowercase, trim, strip trailing punctuation (? ! .) so typing "?" doesn\'t cause error
     const expectedAnswer = q?.answer || q?.opts?.[q.correct];
     if (!expectedAnswer) return;
     locked.current = true;
@@ -739,7 +736,7 @@ export default function DiagnosticTest() {
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-              <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+              <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
                 {isES
                   ? 'No se pudieron cargar las preguntas. Inténtalo más tarde.'
                   : isUK
@@ -770,10 +767,10 @@ export default function DiagnosticTest() {
       <View style={{ flexDirection: 'row', alignItems: 'center', padding: 15, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
         {!isFromOnboarding && (
           <TouchableOpacity onPress={() => router.back()}>
-            <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+            <Ionicons name="chevron-back" size={28} color={sx.primary} />
           </TouchableOpacity>
         )}
-        <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: isFromOnboarding ? 0 : 8 }}>
+        <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: isFromOnboarding ? 0 : 8 }}>
           {s.diagnostic.start}
         </Text>
       </View>
@@ -941,14 +938,14 @@ export default function DiagnosticTest() {
         <View style={{ width: 100, height: 100, borderRadius: 50, backgroundColor: t.bgCard, borderWidth: 1.5, borderColor: t.border, justifyContent: 'center', alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
           <Ionicons name="school-outline" size={44} color={t.textSecond} />
         </View>
-        <Text style={{ color: t.textSecond, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>
+        <Text style={{ color: sx.second, fontSize: f.caption, textTransform: 'uppercase', letterSpacing: 1, marginBottom: 8 }}>
           {s.diagnostic.yourLevel}
         </Text>
-        <Text style={{ color: t.textPrimary, fontSize: f.numLg + 16, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={1}>{result.level}</Text>
-        <Text style={{ color: t.textSecond, fontSize: f.h1, fontWeight: '600', marginTop: 4 }}>
+        <Text style={{ color: sx.primary, fontSize: f.numLg + 16, fontWeight: '700' }} adjustsFontSizeToFit numberOfLines={1}>{result.level}</Text>
+        <Text style={{ color: sx.second, fontSize: f.h1, fontWeight: '600', marginTop: 4 }}>
           {isES ? result.es : isUK ? result.uk : result.ru}
         </Text>
-        <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center', marginTop: 16, lineHeight: 24, marginBottom: 28 }}>
+        <Text style={{ color: sx.second, fontSize: f.body, textAlign: 'center', marginTop: 16, lineHeight: 24, marginBottom: 28 }}>
           {isES ? result.msgES : isUK ? result.msgUK : result.msgRU}
         </Text>
         <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 0.5, borderColor: t.border, width: '100%', alignItems: 'center', marginBottom: 16 }}>
@@ -975,7 +972,7 @@ export default function DiagnosticTest() {
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={{ padding: 14 }} onPress={() => { hapticTap(); router.replace('/(tabs)' as any); }}>
-          <Text style={{ color: t.textSecond, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
+          <Text style={{ color: sx.second, fontSize: f.body }}>{s.diagnostic.backHome}</Text>
         </TouchableOpacity>
       </ScrollView>
       </ContentWrap>
@@ -999,16 +996,16 @@ export default function DiagnosticTest() {
         <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', padding: 15 }}>
           {isFromOnboarding ? (
             <TouchableOpacity onPress={() => { AsyncStorage.removeItem('open_diagnostic'); router.replace('/(tabs)' as any); }} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-              <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
+              <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '600' }}>
                 {isES ? s.settings.cancel : isUK ? 'Відмінити' : 'Отменить'}
               </Text>
             </TouchableOpacity>
           ) : (
             <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
           )}
-          <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '500' }}>{idx + 1} / {questions.length}</Text>
+          <Text style={{ color: sx.second, fontSize: f.body, fontWeight: '500' }}>{idx + 1} / {questions.length}</Text>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
             <Ionicons name="checkmark-circle" size={16} color={t.correct} />
             <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '600' }}>{score}</Text>
@@ -1022,7 +1019,7 @@ export default function DiagnosticTest() {
             width: timerAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }),
           }} />
         </View>
-        <Text style={{ color: t.textSecond, fontSize: f.label, textAlign: 'right', marginRight: 16, marginBottom: 12 }}>
+        <Text style={{ color: sx.second, fontSize: f.label, textAlign: 'right', marginRight: 16, marginBottom: 12 }}>
           {isAnswered ? '—' : isES ? `${timeLeft}s` : `${timeLeft}с`}
         </Text>
 
@@ -1033,7 +1030,7 @@ export default function DiagnosticTest() {
           {/* Тип вопроса */}
           {q.type === 'build' && (
             <Text
-              style={{ color: t.textSecond, fontSize: f.label, marginBottom: 4 }}
+              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
               accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.build)}
             >
@@ -1042,7 +1039,7 @@ export default function DiagnosticTest() {
           )}
           {q.type === 'choice4' && (
             <Text
-              style={{ color: t.textSecond, fontSize: f.label, marginBottom: 4 }}
+              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
               accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.choice4)}
             >
@@ -1051,7 +1048,7 @@ export default function DiagnosticTest() {
           )}
           {q.type === 'match' && (
             <Text
-              style={{ color: t.textSecond, fontSize: f.label, marginBottom: 4 }}
+              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
               accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.match)}
             >
@@ -1060,7 +1057,7 @@ export default function DiagnosticTest() {
           )}
           {q.type === 'type' && (
             <Text
-              style={{ color: t.textSecond, fontSize: f.label, marginBottom: 4 }}
+              style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
               accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.type)}
             >
@@ -1070,18 +1067,7 @@ export default function DiagnosticTest() {
 
           <ClozeGapText
             text={q.type === 'build' ? triLang(lang, { ru: q.hintRU, uk: q.hintUK, es: q.hintES }) : q.phrase}
-            style={{ color: t.textPrimary, fontSize: f.numMd + 6, fontWeight: '500', lineHeight: 36, marginBottom: 12 }}
-          />
-          <PhraseContentStars
-            scope="exam"
-            itemId={diagnosticContentRatingItemId(q)}
-            labelSnippet={
-              q.type === 'build'
-                ? (q.answer?.trim() || triLang(lang, { ru: q.hintRU, uk: q.hintUK, es: q.hintES }))
-                : q.phrase
-            }
-            ratingTarget={q.type === 'match' ? 'word' : 'phrase'}
-            style={{ marginBottom: 16, alignSelf: 'center' }}
+            style={{ color: sx.primary, fontSize: f.numMd + 6, fontWeight: '500', lineHeight: 36, marginBottom: 12 }}
           />
           </View>
 
@@ -1239,6 +1225,7 @@ export default function DiagnosticTest() {
                 ].join('\n');
               })()}
               style={{ alignSelf: 'flex-end', paddingHorizontal: 16 }}
+              textColor={sx.muted}
             />
           )}
 
@@ -1249,7 +1236,7 @@ export default function DiagnosticTest() {
               onPress={() => { hapticTap(); handleSkip(); }}
               activeOpacity={0.5}
             >
-              <Text style={{ color: t.textMuted, fontSize: f.body }}>
+              <Text style={{ color: sx.muted, fontSize: f.body }}>
                 {isES ? 'Omitir' : isUK ? 'Пропустити' : 'Пропустить'}
               </Text>
             </TouchableOpacity>
@@ -1257,7 +1244,7 @@ export default function DiagnosticTest() {
 
           {isAnswered && !autoAdvance && (
             <>
-              <Text style={{ color: t.textSecond, fontSize: f.caption, textAlign: 'center', marginTop: 14, marginBottom: 8 }}>
+              <Text style={{ color: sx.second, fontSize: f.caption, textAlign: 'center', marginTop: 14, marginBottom: 8 }}>
                 {isES ? 'Toca el botón de abajo' : isUK ? 'Торкніться кнопку нижче' : 'Нажмите кнопку ниже'}
               </Text>
               <TouchableOpacity

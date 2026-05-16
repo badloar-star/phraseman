@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Animated, Text, TouchableOpacity, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
@@ -14,6 +14,15 @@ interface CoachToastProps {
   labelUk: string;
   labelEs: string;
   mistakeCount: number;
+  weaknessScore?: number;
+  priorityScore?: number;
+  recoveryScore?: number;
+  focusWords?: string[];
+  microDiagnosisId?: string;
+  microLabelRu?: string;
+  microLabelUk?: string;
+  microLabelEs?: string;
+  diagnosisEvidenceCount?: number;
   onDismiss: () => void;
 }
 
@@ -24,7 +33,15 @@ export default function CoachToast({
   labelRu,
   labelUk,
   labelEs,
-  mistakeCount,
+  weaknessScore,
+  priorityScore,
+  recoveryScore,
+  focusWords = [],
+  microDiagnosisId,
+  microLabelRu,
+  microLabelUk,
+  microLabelEs,
+  diagnosisEvidenceCount,
   onDismiss,
 }: CoachToastProps) {
   const { theme: t, f } = useTheme();
@@ -35,33 +52,73 @@ export default function CoachToast({
 
   const categoryLabel = triLang(lang, { ru: labelRu, uk: labelUk, es: labelEs });
 
+  const dismiss = useCallback(() => {
+    Animated.parallel([
+      Animated.timing(slideAnim, { toValue: 120, duration: 220, useNativeDriver: true }),
+      Animated.timing(opacityAnim, { toValue: 0, duration: 200, useNativeDriver: true }),
+    ]).start(() => onDismiss());
+  }, [opacityAnim, onDismiss, slideAnim]);
+
   useEffect(() => {
     Animated.parallel([
       Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, tension: 80, friction: 10 }),
       Animated.timing(opacityAnim, { toValue: 1, duration: 250, useNativeDriver: true }),
     ]).start();
 
-    const timer = setTimeout(() => dismiss(), AUTO_DISMISS_MS);
+    const timer = setTimeout(dismiss, AUTO_DISMISS_MS);
     return () => clearTimeout(timer);
-  }, []);
-
-  const dismiss = () => {
-    Animated.parallel([
-      Animated.timing(slideAnim, { toValue: 120, duration: 220, useNativeDriver: true }),
-      Animated.timing(opacityAnim, { toValue: 0, duration: 200, useNativeDriver: true }),
-    ]).start(() => onDismiss());
-  };
+  }, [dismiss, opacityAnim, slideAnim]);
 
   const handleStart = () => {
     hapticTap();
     onDismiss();
-    router.push({ pathname: '/problem_coach', params: { category } });
+    if (microDiagnosisId) {
+      router.push({
+        pathname: '/problem_coach',
+        params: {
+          category,
+          ...(typeof priorityScore === 'number' ? { priority: String(priorityScore) } : {}),
+          ...(typeof recoveryScore === 'number' ? { recovery: String(recoveryScore) } : {}),
+          microDiagnosisId,
+          ...(microLabelRu ? { microLabelRu } : {}),
+          ...(microLabelUk ? { microLabelUk } : {}),
+          ...(microLabelEs ? { microLabelEs } : {}),
+          ...(typeof diagnosisEvidenceCount === 'number' ? { evidence: String(diagnosisEvidenceCount) } : {}),
+        },
+      });
+      return;
+    }
   };
 
+  const microLabel = microLabelRu || microLabelUk || microLabelEs
+    ? triLang(lang, {
+        ru: microLabelRu ?? categoryLabel,
+        uk: microLabelUk ?? microLabelRu ?? categoryLabel,
+        es: microLabelEs ?? microLabelRu ?? categoryLabel,
+      })
+    : null;
+  const titleText = triLang(lang, {
+    ru: microLabel
+      ? `Мы заметили трудности с ${microLabel}`
+      : `Мы заметили трудности с темой «${categoryLabel}»`,
+    uk: microLabel
+      ? `Ми помітили труднощі з ${microLabel}`
+      : `Ми помітили труднощі з темою «${categoryLabel}»`,
+    es: microLabel
+      ? `Notamos dificultad con ${microLabel}`
+      : `Notamos dificultad con «${categoryLabel}»`,
+  });
   const descText = triLang(lang, {
-    ru: `В этой сессии ${mistakeCount}+ ошибок — «${categoryLabel}»`,
-    uk: `У цій сесії ${mistakeCount}+ помилок — «${categoryLabel}»`,
-    es: `En esta sesión ${mistakeCount}+ errores — «${categoryLabel}»`,
+    ru: 'Если есть минутка, объясним на простом примере, как больше не допускать эту ошибку.',
+    uk: 'Якщо є хвилинка, пояснимо на простому прикладі, як більше не припускатися цієї помилки.',
+    es: 'Si tienes un minuto, te lo explicamos con un ejemplo sencillo para evitar este error.',
+  });
+  const focusText = focusWords.length > 0 ? focusWords.join(' · ') : null;
+  const hasStrongSignal = typeof weaknessScore === 'number' && weaknessScore >= 70;
+  const confidenceText = triLang(lang, {
+    ru: hasStrongSignal ? 'Точный фокус' : 'Есть зацепка',
+    uk: hasStrongSignal ? 'Точний фокус' : 'Є зачіпка',
+    es: hasStrongSignal ? 'Foco claro' : 'Hay una pista',
   });
 
   return (
@@ -72,33 +129,47 @@ export default function CoachToast({
       ]}
     >
       <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-        <View style={styles.iconWrap}>
-          <Ionicons name="school" size={22} color={t.accent} />
+        <View style={styles.headerRow}>
+          <View style={[styles.iconWrap, { backgroundColor: t.accentBg }]}>
+            <Ionicons name="sparkles" size={21} color={t.accent} />
+          </View>
+          <View style={styles.textWrap}>
+            <Text style={[styles.eyebrow, { color: t.accent, fontSize: f.caption }]} numberOfLines={1}>
+              {confidenceText}
+            </Text>
+            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.body }]}>
+              {titleText}
+            </Text>
+          </View>
+          <TouchableOpacity onPress={dismiss} style={styles.dismissBtn} hitSlop={12}>
+            <Ionicons name="close" size={19} color={t.textMuted} />
+          </TouchableOpacity>
         </View>
-        <View style={styles.textWrap}>
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.body }]}>
-            {triLang(lang, {
-              ru: 'Разобрать тему?',
-              uk: 'Розібрати тему?',
-              es: '¿Trabajar el tema?',
-            })}
-          </Text>
-          <Text style={[styles.desc, { color: t.textSecond, fontSize: f.caption }]} numberOfLines={2}>
-            {descText}
-          </Text>
+
+        <Text style={[styles.desc, { color: t.textSecond, fontSize: f.caption }]} numberOfLines={2}>
+          {descText}
+        </Text>
+
+        <View style={styles.metaRow}>
+          {focusText && (
+            <View style={[styles.focusPill, { borderColor: t.border }]}>
+              <Text style={[styles.focusText, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+                {focusText}
+              </Text>
+            </View>
+          )}
         </View>
+
         <View style={styles.actions}>
           <TouchableOpacity
             onPress={handleStart}
             style={[styles.startBtn, { backgroundColor: t.accent }]}
             activeOpacity={0.85}
           >
-            <Text style={[styles.startBtnText, { fontSize: f.label }]}>
-              {triLang(lang, { ru: 'Давай', uk: 'Давай', es: 'Vamos' })}
+            <Text style={[styles.startBtnText, { color: t.correctText, fontSize: f.label }]}>
+              {triLang(lang, { ru: 'Объяснить', uk: 'Пояснити', es: 'Explicar' })}
             </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={dismiss} style={styles.dismissBtn} hitSlop={12}>
-            <Ionicons name="close" size={18} color={t.textMuted} />
+            <Ionicons name="arrow-forward" size={16} color={t.correctText} />
           </TouchableOpacity>
         </View>
       </View>
@@ -115,52 +186,77 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   card: {
-    flexDirection: 'row',
-    alignItems: 'center',
     borderRadius: 16,
     borderWidth: 1,
-    paddingVertical: 12,
+    paddingVertical: 13,
     paddingHorizontal: 14,
-    gap: 10,
+    gap: 9,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 12,
-    elevation: 8,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.28,
+    shadowRadius: 18,
+    elevation: 10,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
   },
   iconWrap: {
-    width: 36,
-    height: 36,
-    borderRadius: 10,
+    width: 38,
+    height: 38,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(255,255,255,0.07)',
   },
   textWrap: {
     flex: 1,
-    gap: 2,
+    minWidth: 0,
+  },
+  eyebrow: {
+    fontWeight: '800',
+    textTransform: 'uppercase',
   },
   title: {
-    fontWeight: '700',
+    fontWeight: '800',
   },
   desc: {
-    lineHeight: 16,
+    lineHeight: 17,
+  },
+  metaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 7,
+  },
+  focusPill: {
+    maxWidth: '100%',
+    borderWidth: 1,
+    borderRadius: 999,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  focusText: {
+    fontWeight: '700',
   },
   actions: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'flex-end',
   },
   startBtn: {
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
+    minHeight: 38,
+    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
   },
   startBtnText: {
-    color: '#fff',
-    fontWeight: '700',
+    fontWeight: '800',
   },
   dismissBtn: {
-    padding: 2,
+    padding: 4,
   },
 });

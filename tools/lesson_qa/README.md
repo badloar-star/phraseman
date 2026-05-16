@@ -42,7 +42,6 @@ npx tsx tools/lesson_qa/run.ts --warn
 | `vocab_coverage` | Леммы из фраз (кроме предлогов/артиклей) vs `lesson_words.tsx` |
 | `vocab_repeat` | Повтор `en` в словаре в более позднем уроке (как у тебя в ТЗ) |
 | `irreg_repeat` | Повтор **base** непр. глагола в списке урока |
-| `vocab_orphan` | Ключ в `LESSON_VOCABULARIES` без урока |
 | `theory_ame` | `lesson_help.tsx` — наводка на AmE (эвристика) |
 
 **Не делается автоматически (нужен человек/LLM):** смысл переводов, ложные факты в `secret*`, педагогика дистракторов «грамматически почти ок», AmE в теории пошагово, согласованность сокращений She’s/cleaning с логикой `lesson1.tsx`, полная вычитка theory.

@@ -22,6 +22,7 @@ jest.mock('expo-store-review', () => ({
   requestReview: jest.fn(async () => {}),
 }));
 
+
 jest.mock('../app/config', () => ({
   ...jest.requireActual<typeof import('../app/config')>('../app/config'),
   ENABLE_SPANISH_LOCALE: true,
@@ -136,14 +137,14 @@ describe('getReviewVariant (localized by Lang)', () => {
   it('arena_win in Ukrainian uses uk strings', async () => {
     const v = await getReviewVariant('arena_win', 'uk');
     expect(v.title).toContain('Переможець');
-    expect(v.subtitle).toMatch(/App Store/);
+    expect(v.subtitle).toMatch(/магазині застосунку/);
   });
 
   it('general uses AsyncStorage rotation index modulo variant count', async () => {
     asyncStore.review_show_count = '5';
     const v = await getReviewVariant('general', 'es');
-    // 5 % 3 → variant index 2 (emoji 🚫)
     expect(v.emoji).toBe('🚫');
     expect(v.title).toContain('botón');
   });
 });
+

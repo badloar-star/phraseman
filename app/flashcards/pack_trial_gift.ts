@@ -51,7 +51,7 @@ export async function setRandomPackGiftTrial48h(): Promise<PackTrialState> {
 }
 
 /**
- * Чи активний зараз ваучер. Швидкий чек без читання packId / повного об'єкта.
+ * Чи активний зараз ваучер. Швидкий чек без читання packId / повного об\'єкта.
  */
 export async function hasActivePackGiftVoucher(): Promise<boolean> {
   const tr = await getPackGiftTrial();

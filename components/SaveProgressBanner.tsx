@@ -116,6 +116,7 @@ export default function SaveProgressBanner() {
   return (
     <>
       <PremiumCard
+        testID="save-progress-banner"
         level={1}
         innerStyle={{
           paddingHorizontal: 14,
@@ -175,11 +176,12 @@ export default function SaveProgressBanner() {
             }}
           >
             <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '800' }}>
-              {triLang(lang, { ru: 'Привязать', uk: 'Привʼязати', es: 'Vincular' })}
+              {triLang(lang, { ru: 'Привязать', uk: 'Прив\'язати', es: 'Vincular' })}
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
+            testID="save-progress-banner-dismiss"
             activeOpacity={0.7}
             onPress={handleDismiss}
             hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}
@@ -201,7 +203,7 @@ export default function SaveProgressBanner() {
             ru:
               'Привяжи аккаунт — и твои уроки, XP, серия и достижения останутся в безопасности. Даже если телефон внезапно решит уйти в отпуск.',
             uk:
-              "Прив'яжи акаунт — і твої уроки, XP, серія та досягнення будуть у безпеці. Навіть якщо телефон раптом вирішить піти у відпустку.",
+              "Прив\'яжи акаунт — і твої уроки, XP, серія та досягнення будуть у безпеці. Навіть якщо телефон раптом вирішить піти у відпустку.",
             es:
               'Vincula tu cuenta: tus lecciones, XP, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
           })}

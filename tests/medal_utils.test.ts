@@ -1,5 +1,7 @@
 import {
   getCorrectNeededForNextTier,
+  getEarnedDots,
+  loadMedalInfo,
   getMedalTier,
   saveMedalProgress,
 } from '../app/medal_utils';
@@ -37,5 +39,24 @@ describe('lesson medal thresholds', () => {
     expect(result.newTier).toBe('bronze');
     expect(await AsyncStorage.getItem('lesson1_best_score')).toBe('3.5');
     expect(await AsyncStorage.getItem('lesson1_pass_count')).toBeNull();
+  });
+
+  it('counts each strong repeated lesson pass for replay reward dots', async () => {
+    const perfect = new Array(50).fill('correct');
+
+    for (let i = 0; i < 4; i++) {
+      await saveMedalProgress(11, 5, perfect);
+    }
+
+    await expect(AsyncStorage.getItem('lesson11_pass_count')).resolves.toBe('4');
+    await expect(loadMedalInfo(11)).resolves.toMatchObject({ bestScore: 5, passCount: 4 });
+    expect(getEarnedDots('gold', 4)).toEqual([
+      'bronze',
+      'silver',
+      'gold',
+      'ruby',
+      'emerald',
+      'diamond',
+    ]);
   });
 });

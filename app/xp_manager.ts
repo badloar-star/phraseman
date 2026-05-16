@@ -1,13 +1,14 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
+import { storageGetString, storageGetNumber, storageSetString } from '../lib/storage';
 import { ensureAnonUser, syncToCloud } from './cloud_sync';
 import { checkAchievements } from './achievements';
 import { getXPMultiplier } from './club_boosts';
 import { DebugLogger } from './debug-logger';
-import { addOrUpdateScore, streakMultiplier } from './hall_of_fame_utils';
+import { addOrUpdateScore, getMyWeekPoints, streakMultiplier } from './hall_of_fame_utils';
 import { pushMyScore } from './firestore_leaderboard';
 import { loadLeagueState } from './league_engine';
-import { readGiftMultiplier } from './level_gift_system';
+import { consumeGiftXpBank, readGiftMultiplier, readGiftMultiplierForBaseXp } from './level_gift_system';
 import { getLeagueBoostMultiplier } from './league_personal_boosts';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { recordActivityForRepair } from './streak_repair';
@@ -20,6 +21,7 @@ import type { Lang } from '../constants/i18n';
 import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
+import { consumeLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -124,7 +126,7 @@ export const registerXP = async (
     if (!resolvedName) {
       const [canonicalUid, xpStored] = await Promise.all([
         getCanonicalUserId(),
-        AsyncStorage.getItem('user_total_xp'),
+        storageGetString('user_total_xp'),
       ]);
       const level = getLevelFromXP(parseInt(xpStored || '0', 10));
       const title = getTitleString(level, lang);
@@ -143,12 +145,12 @@ export const registerXP = async (
       const clubM = await getCombinedClubMultiplier();
 
       // Б) Множитель за длину цепочки (x2, x3, x5)
-      const streakRaw = await AsyncStorage.getItem('streak_count');
+      const streakRaw = await storageGetString('streak_count');
       const streakM = streakMultiplier(parseInt(streakRaw || '0'));
 
       // В) Comeback бонус (x2)
       const todayStr = new Date().toISOString().split('T')[0];
-      const comebackRaw = await AsyncStorage.getItem('comeback_active');
+      const comebackRaw = await storageGetString('comeback_active');
       const comebackM = (comebackRaw === todayStr) ? 2 : 1;
 
       // Г) Множитель сложности урока (+5% за каждый урок, только для lesson_answer/lesson_complete)
@@ -156,13 +158,18 @@ export const registerXP = async (
         ? getLessonDifficultyMultiplier(lessonNumber)
         : 1;
 
-      // Д) Подарок за уровень (×2 XP на час)
-      const giftM = await readGiftMultiplier();
+      // Д) Подарок за уровень: timed multiplier или запас XP с ×2, без бесконечного стака.
+      const giftState = await readGiftMultiplierForBaseXp(amount);
+      const giftM = giftState.multiplier;
       // Е) Персональный буст лиги (x2/x3 на ограниченное время)
       const leagueBoostM = await getLeagueBoostMultiplier();
+      const leagueChestM = await consumeLeagueChestXpOverrideMultiplier();
 
-      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1);
+      totalMultiplier = 1 + (clubM - 1) + (streakM - 1) + (comebackM - 1) + (lessonDiffM - 1) + (giftM - 1) + (leagueBoostM - 1) + (leagueChestM - 1);
       finalDelta = Math.round(amount * totalMultiplier);
+      if (giftState.consumeBank) {
+        await consumeGiftXpBank(amount).catch(() => 0);
+      }
 
       // Сохраняем множители в arena_profiles/{uid} для показа другим игрокам
       try {
@@ -181,10 +188,9 @@ export const registerXP = async (
     await addOrUpdateScore(resolvedName, finalDelta, lang);
 
     // 3. Обновляем глобальный счетчик user_total_xp (XP никогда не уходит в минус)
-    const totalXPRaw = await AsyncStorage.getItem('user_total_xp');
-    const currentTotal = parseInt(totalXPRaw || '0');
+    const currentTotal = await storageGetNumber('user_total_xp', 0);
     const newTotal = Math.max(0, currentTotal + finalDelta);
-    await AsyncStorage.setItem('user_total_xp', String(newTotal));
+    await storageSetString('user_total_xp', String(newTotal));
     // XP-01: Track weekly XP in lockstep with total XP. addWeeklyXp internally
     // ignores delta <= 0 and self-heals stale week period. Synced to Firestore
     // via SYNC_KEYS in cloud_sync.ts → users/{canonicalUid}.progress.weekly_xp.
@@ -199,37 +205,34 @@ export const registerXP = async (
 
     // 3.2. Детектируем level-up прямо здесь — надёжнее чем в home.tsx через listener
     if (finalDelta > 0) {
-      const prevXPRaw = await AsyncStorage.getItem('user_prev_xp');
-      const prevXP = parseInt(prevXPRaw || '0') || 0;
-      if (newTotal > prevXP) {
-        const prevLvl = getLevelFromXP(prevXP);
-        const newLvl  = getLevelFromXP(newTotal);
-        if (newLvl > prevLvl) {
-          // Обновляем аватар и рамку по финальному уровню
-          const currentAvatar = await AsyncStorage.getItem('user_avatar');
-          const newAv = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(newLvl);
-          const newFr = getBestFrameForLevel(newLvl);
-          // Читаем текущую очередь и добавляем ВСЕ промежуточные уровни
-          const queueRaw = await AsyncStorage.getItem('pending_level_up_queue');
-          let queue: number[] = [];
-          try { if (queueRaw) { const parsed = JSON.parse(queueRaw); queue = Array.isArray(parsed) ? parsed : []; } } catch {}
-          for (let lvl = prevLvl + 1; lvl <= newLvl; lvl++) {
-            if (!queue.includes(lvl)) queue.push(lvl);
-          }
-          await AsyncStorage.multiSet([
-            ['user_avatar', newAv],
-            ['user_frame', newFr.id],
-            ['pending_level_up_queue', JSON.stringify(queue)],
-            ['user_prev_xp', String(newTotal)],
-          ]);
-          emitAppEvent('level_up_pending');
-          emitAppEvent('energy_reload'); // перезагружаем энергию после level-up
-          emitAppEvent('xp_changed');    // обновляем UI в home.tsx
-          // Лента друзей: клиент (тестеры/registerXP) + CF после синка — один doc id level_up_{lvl}
-          writeFriendEvent('level_up', { level: newLvl }).catch(() => {});
-        } else {
-          await AsyncStorage.setItem('user_prev_xp', String(newTotal));
+      const prevLvl = getLevelFromXP(currentTotal);
+      const newLvl  = getLevelFromXP(newTotal);
+      if (newLvl > prevLvl) {
+        // Обновляем аватар и рамку по финальному уровню
+        const currentAvatar = await storageGetString('user_avatar');
+        const newAv = isCustomAvatarValue(currentAvatar) ? currentAvatar! : getBestAvatarForLevel(newLvl);
+        const newFr = getBestFrameForLevel(newLvl);
+        // Читаем текущую очередь и добавляем ВСЕ промежуточные уровни текущего начисления
+        const queueRaw = await storageGetString('pending_level_up_queue');
+        let queue: number[] = [];
+        try { if (queueRaw) { const parsed = JSON.parse(queueRaw); queue = Array.isArray(parsed) ? parsed : []; } } catch {}
+        for (let lvl = prevLvl + 1; lvl <= newLvl; lvl++) {
+          if (!queue.includes(lvl)) queue.push(lvl);
         }
+        await AsyncStorage.multiSet([
+          ['user_avatar', newAv],
+          ['user_frame', newFr.id],
+          ['pending_level_up_queue', JSON.stringify(queue)],
+          ['user_prev_xp', String(newTotal)],
+        ]);
+        emitAppEvent('level_up_pending');
+        emitAppEvent('energy_reload'); // перезагружаем энергию после level-up
+        emitAppEvent('xp_changed');    // обновляем UI в home.tsx
+        // Лента друзей: клиент (тестеры/registerXP) + CF после синка — один doc id level_up_{lvl}
+        writeFriendEvent('level_up', { level: newLvl }).catch(() => {});
+        checkAchievements({ type: 'level_reached', level: newLvl }).catch(() => {});
+      } else {
+        await storageSetString('user_prev_xp', String(newTotal));
       }
     }
 
@@ -258,14 +261,10 @@ export const registerXP = async (
 
     // Обновляем leaderboard/{uid} напрямую — не ждём Cloud Function
     if (finalDelta > 0) {
-      const weekPtsRaw = await AsyncStorage.getItem('week_points_v2').catch(() => null);
-      let weekPoints = 0;
-      try {
-        if (weekPtsRaw) weekPoints = (JSON.parse(weekPtsRaw) as any).points ?? 0;
-      } catch {}
-      const streakVal = parseInt((await AsyncStorage.getItem('streak_count').catch(() => '0')) || '0') || undefined;
-      const frameId = await AsyncStorage.getItem('user_frame').catch(() => null);
-      const lsRaw = await AsyncStorage.getItem('league_state_v3').catch(() => null);
+      const weekPoints = await getMyWeekPoints();
+      const streakVal = (await storageGetNumber('streak_count', 0)) || undefined;
+      const frameId = await storageGetString('user_frame');
+      const lsRaw = await storageGetString('league_state_v3');
       let leagueId: number | undefined;
       try { if (lsRaw) leagueId = JSON.parse(lsRaw).leagueId; } catch {}
       const premiumStatus = await getVerifiedPremiumStatus().catch(() => false);
@@ -274,7 +273,7 @@ export const registerXP = async (
         newTotal,
         weekPoints,
         lang,
-        String((await AsyncStorage.getItem('user_avatar').catch(() => null)) || getLevelFromXP(newTotal)),
+        String((await storageGetString('user_avatar')) || getLevelFromXP(newTotal)),
         streakVal,
         leagueId,
         frameId ?? undefined,
@@ -313,21 +312,20 @@ const oldLevelFromXP = (xp: number): number => {
  */
 export const migrateXPFormulaV2 = async (): Promise<void> => {
   try {
-    const done = await AsyncStorage.getItem(XP_MIGRATION_KEY);
+    const done = await storageGetString(XP_MIGRATION_KEY);
     if (done) return;
 
     // Если пользователь уже прошёл миграцию xp_migration_v2 (home.tsx) — он уже на новой формуле.
     // Просто помечаем как мигрированного, не трогаем XP.
-    const newFormulaDone = await AsyncStorage.getItem('xp_migration_v2');
+    const newFormulaDone = await storageGetString('xp_migration_v2');
     if (newFormulaDone) {
-      await AsyncStorage.setItem(XP_MIGRATION_KEY, '1');
+      await storageSetString(XP_MIGRATION_KEY, '1');
       return;
     }
 
-    const raw = await AsyncStorage.getItem('user_total_xp');
-    const currentXP = parseInt(raw || '0', 10);
+    const currentXP = await storageGetNumber('user_total_xp', 0);
     if (currentXP <= 0) {
-      await AsyncStorage.setItem(XP_MIGRATION_KEY, '1');
+      await storageSetString(XP_MIGRATION_KEY, '1');
       return;
     }
 
@@ -336,7 +334,7 @@ export const migrateXPFormulaV2 = async (): Promise<void> => {
 
     // Никогда не уменьшаем XP — только увеличиваем или оставляем как есть
     if (newXP <= currentXP) {
-      await AsyncStorage.setItem(XP_MIGRATION_KEY, '1');
+      await storageSetString(XP_MIGRATION_KEY, '1');
       return;
     }
 
@@ -356,11 +354,11 @@ export const migrateXPFormulaV2 = async (): Promise<void> => {
 export const getCurrentMultiplier = async (): Promise<number> => {
   try {
     const clubM = await getCombinedClubMultiplier();
-    const streakRaw = await AsyncStorage.getItem('streak_count');
+    const streakRaw = await storageGetString('streak_count');
     const streakM = streakMultiplier(parseInt(streakRaw || '0'));
 
     const todayStr = new Date().toISOString().split('T')[0];
-    const comebackRaw = await AsyncStorage.getItem('comeback_active');
+    const comebackRaw = await storageGetString('comeback_active');
     const comebackM = (comebackRaw === todayStr) ? 2 : 1;
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();
@@ -382,10 +380,10 @@ export interface MultiplierBreakdown {
 export const getCurrentMultiplierBreakdown = async (): Promise<MultiplierBreakdown> => {
   try {
     const clubM = await getCombinedClubMultiplier();
-    const streakRaw = await AsyncStorage.getItem('streak_count');
+    const streakRaw = await storageGetString('streak_count');
     const streakM = streakMultiplier(parseInt(streakRaw || '0'));
     const todayStr = new Date().toISOString().split('T')[0];
-    const comebackRaw = await AsyncStorage.getItem('comeback_active');
+    const comebackRaw = await storageGetString('comeback_active');
     const comebackM = (comebackRaw === todayStr) ? 2 : 1;
     const giftM = await readGiftMultiplier();
     const leagueBoostM = await getLeagueBoostMultiplier();

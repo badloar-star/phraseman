@@ -34,7 +34,7 @@ export function packCategoryIonIcon(category: FlashcardPackCategory): string {
 
 export type FlashcardMarketPack = {
   id: string;
-  /** Короткое кодове ім’я для сітки хаба (одна-дві «клички», без обрізання довгого заголовка). */
+  /** Короткое кодове ім\'я для сітки хаба (одна-дві «клички», без обрізання довгого заголовка). */
   codeName: string;
   titleRu: string;
   titleUk: string;
@@ -46,8 +46,6 @@ export type FlashcardMarketPack = {
   category: FlashcardPackCategory;
   cardCount: number;
   priceShards: number;
-  ratingAvg: number;
-  ratingCount: number;
   salesCount: number;
   authorName: string;
   isOfficial: boolean;
@@ -275,8 +273,6 @@ const mapPack = (id: string, data: any): FlashcardMarketPack | null => {
     category: (data.category as FlashcardPackCategory) ?? 'daily',
     cardCount: Math.max(0, Math.floor(parseNumber(data.cardCount))),
     priceShards: Math.max(0, Math.floor(parseNumber(data.priceShards))),
-    ratingAvg: Math.max(0, Math.min(5, parseNumber(data.ratingAvg))),
-    ratingCount: Math.max(0, Math.floor(parseNumber(data.ratingCount))),
     salesCount: Math.max(0, Math.floor(parseNumber(data.salesCount))),
     authorName: String(data.authorName ?? 'Unknown'),
     isOfficial: Boolean(data.isOfficial),

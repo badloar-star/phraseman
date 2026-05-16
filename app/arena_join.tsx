@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { emitAppEvent } from './events';
@@ -82,18 +83,28 @@ export default function DuelJoinScreen() {
     setStatus('not_found');
   };
 
+  const goBack = useCallback(() => {
+    if (router.canGoBack()) router.back();
+    else router.replace('/(tabs)/home' as any);
+  }, [router]);
+
   return (
     <ScreenGradient>
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+        activeOpacity={0.85}
+        onPress={goBack}
+        style={[styles.backBtn, { backgroundColor: t.bgCard, borderColor: t.border }]}
+      >
+        <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+      </TouchableOpacity>
       <View style={styles.centered}>
         {status === 'loading' && (
           <>
-            <ActivityIndicator size="large" color={t.accent} />
-            <Text style={[{ color: t.textMuted, fontSize: f.body, marginTop: 16 }]}>
-              {triLang(lang, {
-                ru: 'Проверяем комнату...',
-                uk: 'Перевіряємо кімнату...',
-                es: 'Revisando la sala…',
-              })}
+            <Text style={{ fontSize: 64 }}>⚔️</Text>
+            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
+              {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
             </Text>
           </>
         )}
@@ -134,13 +145,9 @@ export default function DuelJoinScreen() {
 
         {status === 'joining' && (
           <>
-            <ActivityIndicator size="large" color={t.accent} />
-            <Text style={[{ color: t.textMuted, fontSize: f.body, marginTop: 16 }]}>
-              {triLang(lang, {
-                ru: 'Входим в комнату...',
-                uk: 'Заходимо в кімнату...',
-                es: 'Entrando en la sala…',
-              })}
+            <Text style={{ fontSize: 64 }}>⚔️</Text>
+            <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
+              {triLang(lang, { ru: `Арена с ${hostName}`, uk: `Арена з ${hostName}`, es: `Duelo con ${hostName}` })}
             </Text>
           </>
         )}
@@ -199,9 +206,20 @@ export default function DuelJoinScreen() {
 
 const styles = StyleSheet.create({
   centered: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, paddingHorizontal: 32 },
+  backBtn: {
+    position: 'absolute',
+    zIndex: 10,
+    top: 54,
+    left: 20,
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    borderWidth: 0.5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   title: { fontWeight: '800', textAlign: 'center' },
   btn: { borderRadius: 16, paddingHorizontal: 32, paddingVertical: 16, marginTop: 8 },
   btnText: { fontWeight: '800' },
   decline: { paddingVertical: 12 },
 });
-

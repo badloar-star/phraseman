@@ -5,9 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 let cachedHapticTap: boolean | null = null;
 
 // Синхронный кэш — читаем при старте приложения
-AsyncStorage.getItem('haptics_tap').then(val => {
-  cachedHapticTap = val !== 'false';
-});
+if (typeof window !== 'undefined') {
+  AsyncStorage.getItem('haptics_tap').then(val => {
+    cachedHapticTap = val !== 'false';
+  }).catch(() => {});
+}
 
 /** Вызывать при изменении настройки хаптика чтобы сразу обновить кэш */
 export function setHapticCacheEnabled(enabled: boolean) {

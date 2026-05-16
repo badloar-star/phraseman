@@ -18,7 +18,6 @@ import {
   BOT_FALLBACK_ENABLED, BOT_FALLBACK_MAX_MS, BOT_FALLBACK_MIN_MS, IS_EXPO_GO,
 } from '../app/config';
 import { emitAppEvent } from '../app/events';
-import { playArenaMatchFoundSound } from '../app/arena_match_found_sound';
 import { arenaToasts } from '../constants/arena_i18n';
 
 export type MatchmakingStatus = 'idle' | 'searching' | 'found' | 'timeout' | 'error';
@@ -192,21 +191,10 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
   /** Последний успешный join — для автопродолжения поиска после отказа от матча. */
   const searchResumeSnapshotRef = useRef<SearchResumeSnapshot | null>(null);
   const resumeSearchLockRef = useRef(false);
-  const matchFoundSoundSidRef = useRef<string | null>(null);
 
   useEffect(() => {
     statusRef.current = status;
   }, [status]);
-
-  useEffect(() => {
-    if (status !== 'found' || !sessionId) {
-      if (status !== 'found') matchFoundSoundSidRef.current = null;
-      return;
-    }
-    if (matchFoundSoundSidRef.current === sessionId) return;
-    matchFoundSoundSidRef.current = sessionId;
-    void playArenaMatchFoundSound();
-  }, [status, sessionId]);
 
   const endQueueSubscription = useCallback(() => {
     unsubRef.current?.();
@@ -309,7 +297,7 @@ export function MatchmakingProvider({ children }: { children: React.ReactNode })
     setElapsedMs(Math.max(0, elapsedAlready));
     setSessionId(null);
 
-    // Interval: elapsed + range expand + 10m timeout. При переході в `found` обовʼязково гасимо інтервал
+    // Interval: elapsed + range expand + 10m timeout. При переході в `found` обов'язково гасимо інтервал
     // (інакше `timerRef !== null` і наступний `startSearching()` тихо no-op із return true — кнопка «Не реагує»).
     timerRef.current = setInterval(() => {
       const elapsed = Date.now() - startTimeRef.current;

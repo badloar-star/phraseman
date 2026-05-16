@@ -12,7 +12,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React from 'react';
-import { TouchableOpacity, Text, View, StyleSheet, ActivityIndicator } from 'react-native';
+import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
 import { GoogleIcon, AppleIcon, GoogleIconMono } from './AuthProviderIcons';
 
 const HEIGHT = 56;
@@ -52,8 +52,8 @@ export function GoogleSignInButton({ onPress, loading, disabled, label, variant 
       accessibilityLabel={label}
     >
       <View style={styles.iconWrap}>
-        {loading ? (
-          <ActivityIndicator color={fg} />
+        {false && loading ? (
+          <View />
         ) : isDark ? (
           <GoogleIconMono size={20} color={fg} />
         ) : (
@@ -85,7 +85,7 @@ export function AppleSignInButton({ onPress, loading, disabled, label }: Provide
       accessibilityLabel={label}
     >
       <View style={styles.iconWrap}>
-        {loading ? <ActivityIndicator color="#FFFFFF" /> : <AppleIcon size={22} color="#FFFFFF" />}
+        {false && loading ? <View /> : <AppleIcon size={22} color="#FFFFFF" />}
       </View>
       <Text style={[styles.label, { color: '#FFFFFF' }]} numberOfLines={1}>
         {label}

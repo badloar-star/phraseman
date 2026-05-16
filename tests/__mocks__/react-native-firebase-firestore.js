@@ -6,11 +6,14 @@
  *   firestore.__resetTestState()
  */
 
-/** @type {{ rewardClaimExists: boolean; userDocExists: boolean; userShards: number | null }} */
+/** @type {{ rewardClaimExists: boolean; userDocExists: boolean; userShards: number | null; userShardsUpdatedAtMs: number | null; userShardsUpdatedOp: string | null; userShardsUpdatedReason: string | null }} */
 const testState = {
   rewardClaimExists: false,
   userDocExists: true,
   userShards: 0,
+  userShardsUpdatedAtMs: null,
+  userShardsUpdatedOp: null,
+  userShardsUpdatedReason: null,
 };
 
 function createRef(path) {
@@ -23,12 +26,23 @@ function createRef(path) {
       return createRef(`${path}/${id}`);
     },
     set: jest.fn(() => Promise.resolve()),
-    get: jest.fn(() =>
-      Promise.resolve({
+    get: jest.fn(() => {
+      if (testState.userDocExists && /^users\/[^/]+$/.test(path)) {
+        return Promise.resolve({
+          exists: true,
+          data: () => ({
+            shards: testState.userShards ?? 0,
+            shards_updated_at_ms: testState.userShardsUpdatedAtMs,
+            shards_updated_op: testState.userShardsUpdatedOp,
+            shards_updated_reason: testState.userShardsUpdatedReason,
+          }),
+        });
+      }
+      return Promise.resolve({
         exists: false,
         data: () => ({}),
-      }),
-    ),
+      });
+    }),
     add: jest.fn(() => Promise.resolve()),
     where: jest.fn(() => ({
       get: jest.fn(() => Promise.resolve({ empty: true, docs: [] })),
@@ -56,7 +70,12 @@ function firestore() {
           if (testState.userDocExists && /^users\/[^/]+$/.test(p)) {
             return {
               exists: true,
-              data: () => ({ shards: testState.userShards ?? 0 }),
+              data: () => ({
+                shards: testState.userShards ?? 0,
+                shards_updated_at_ms: testState.userShardsUpdatedAtMs,
+                shards_updated_op: testState.userShardsUpdatedOp,
+                shards_updated_reason: testState.userShardsUpdatedReason,
+              }),
             };
           }
           return { exists: false, data: () => ({}) };
@@ -65,6 +84,21 @@ function firestore() {
           const p = ref.__path || '';
           if (p.includes('/reward_claims/')) {
             testState.rewardClaimExists = true;
+          }
+          if (/^users\/[^/]+$/.test(p)) {
+            if (Object.prototype.hasOwnProperty.call(_data, 'shards')) {
+              testState.userShards = _data.shards;
+              testState.userDocExists = true;
+            }
+            if (Object.prototype.hasOwnProperty.call(_data, 'shards_updated_at_ms')) {
+              testState.userShardsUpdatedAtMs = _data.shards_updated_at_ms;
+            }
+            if (Object.prototype.hasOwnProperty.call(_data, 'shards_updated_op')) {
+              testState.userShardsUpdatedOp = _data.shards_updated_op;
+            }
+            if (Object.prototype.hasOwnProperty.call(_data, 'shards_updated_reason')) {
+              testState.userShardsUpdatedReason = _data.shards_updated_reason;
+            }
           }
           return Promise.resolve();
         }),
@@ -84,6 +118,9 @@ firestore.__resetTestState = () => {
   testState.rewardClaimExists = false;
   testState.userDocExists = true;
   testState.userShards = 0;
+  testState.userShardsUpdatedAtMs = null;
+  testState.userShardsUpdatedOp = null;
+  testState.userShardsUpdatedReason = null;
 };
 
 firestore.default = firestore;

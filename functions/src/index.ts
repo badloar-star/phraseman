@@ -6,7 +6,7 @@ admin.initializeApp();
 
 // These imports must come AFTER initializeApp() — use require to control order
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { runMatchmaking, tryMatchForUser, publishMatchmakingSearchingCount } = require('./matchmaking');
+const { runMatchmaking, tryMatchForUser } = require('./matchmaking');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { syncLeaderboardFromUsers } = require('./sync_leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -19,6 +19,62 @@ const { onPlayerAnswered, startSessionCountdown, onQuestionTimeout } = require('
 const { processLobbyAfterChoice } = require('./arena_pregame') as {
   processLobbyAfterChoice: (sessionId: string) => Promise<void>;
 };
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage } = require('./league_chat');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost } = require('./league_groups');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const {
+  leaderboardPushMyScore,
+  leaderboardUpdatePremium,
+  leaderboardUpdateDailyAnalytics,
+  nameCheckAvailability,
+  nameReserve,
+  nameReleaseMine,
+} = require('./leaderboard');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { leagueChestClaim } = require('./league_chest');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaClubWarContribute } = require('./arena_club_wars');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaHillRecordAttempt } = require('./arena_hill');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaHillDailyRewardCron } = require('./arena_hill_daily_reward');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { friendEnsureMyCode } = require('./friend_codes');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { friendLikeActivity } = require('./friend_activity_likes');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaRoomCreate, arenaRoomRecordRun, arenaPulsePublish } = require('./arena_rooms');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { arenaGhostCreateChallenge, arenaGhostRecordPlay } = require('./arena_ghosts');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { cleanupExpiredAppMessages, onAppMessageReactionWritten } = require('./app_messages');
+
+exports.leagueChatAuthorizeRoom = leagueChatAuthorizeRoom;
+exports.leagueChatSendMessage = leagueChatSendMessage;
+exports.leagueChatReportMessage = leagueChatReportMessage;
+exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
+exports.leagueUpdateMyMember = leagueUpdateMyMember;
+exports.leagueSyncMyBoost = leagueSyncMyBoost;
+exports.leaderboardPushMyScore = leaderboardPushMyScore;
+exports.leaderboardUpdatePremium = leaderboardUpdatePremium;
+exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;
+exports.nameCheckAvailability = nameCheckAvailability;
+exports.nameReserve = nameReserve;
+exports.nameReleaseMine = nameReleaseMine;
+exports.leagueChestClaim = leagueChestClaim;
+exports.arenaClubWarContribute = arenaClubWarContribute;
+exports.arenaHillRecordAttempt = arenaHillRecordAttempt;
+exports.arenaHillDailyRewardCron = arenaHillDailyRewardCron;
+exports.friendEnsureMyCode = friendEnsureMyCode;
+exports.friendLikeActivity = friendLikeActivity;
+exports.arenaRoomCreate = arenaRoomCreate;
+exports.arenaRoomRecordRun = arenaRoomRecordRun;
+exports.arenaPulsePublish = arenaPulsePublish;
+exports.arenaGhostCreateChallenge = arenaGhostCreateChallenge;
+exports.arenaGhostRecordPlay = arenaGhostRecordPlay;
+exports.onAppMessageReactionWritten = onAppMessageReactionWritten;
 
 const PRIVATE_DUEL_QUESTION_COUNT = 10;
 
@@ -36,8 +92,13 @@ const TIERS = ['bronze', 'silver', 'gold', 'platinum', 'diamond', 'master', 'gra
 type ArenaCourseLbExtra = {
   points: number;
   frame?: string;
+  aura?: string;
   isPremium: boolean;
   avatarEmoji?: string;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
 };
 
 function progressTotalXpCf(progress: Record<string, unknown> | undefined): number {
@@ -52,23 +113,38 @@ function mergeArenaCourseExtras(a: ArenaCourseLbExtra | undefined, b: ArenaCours
     return {
       points: b.points,
       frame: b.frame ?? a.frame,
+      aura: b.aura ?? a.aura,
       isPremium: a.isPremium || b.isPremium,
       avatarEmoji: b.avatarEmoji ?? a.avatarEmoji,
+      profileCardLevel: b.profileCardLevel ?? a.profileCardLevel,
+      profileCardTheme: b.profileCardTheme ?? a.profileCardTheme,
+      profileCardMotion: b.profileCardMotion ?? a.profileCardMotion,
+      profileCardPublicFocus: b.profileCardPublicFocus ?? a.profileCardPublicFocus,
     };
   }
   if (a.points > b.points) {
     return {
       points: a.points,
       frame: a.frame ?? b.frame,
+      aura: a.aura ?? b.aura,
       isPremium: a.isPremium || b.isPremium,
       avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
+      profileCardLevel: a.profileCardLevel ?? b.profileCardLevel,
+      profileCardTheme: a.profileCardTheme ?? b.profileCardTheme,
+      profileCardMotion: a.profileCardMotion ?? b.profileCardMotion,
+      profileCardPublicFocus: a.profileCardPublicFocus ?? b.profileCardPublicFocus,
     };
   }
   return {
     points: a.points,
     frame: a.frame ?? b.frame,
+    aura: a.aura ?? b.aura,
     isPremium: a.isPremium || b.isPremium,
     avatarEmoji: a.avatarEmoji ?? b.avatarEmoji,
+    profileCardLevel: a.profileCardLevel ?? b.profileCardLevel,
+    profileCardTheme: a.profileCardTheme ?? b.profileCardTheme,
+    profileCardMotion: a.profileCardMotion ?? b.profileCardMotion,
+    profileCardPublicFocus: a.profileCardPublicFocus ?? b.profileCardPublicFocus,
   };
 }
 
@@ -76,8 +152,19 @@ function parseLeaderboardDocCf(data: FirebaseFirestore.DocumentData | undefined)
   if (!data) return null;
   const points = typeof data.points === 'number' ? data.points : 0;
   const frame = typeof data.frame === 'string' && data.frame.trim() ? data.frame.trim() : undefined;
+  const aura = typeof data.aura === 'string' && data.aura.trim() ? data.aura.trim() : undefined;
   const avatarEmoji = typeof data.avatar === 'string' && data.avatar.trim() ? data.avatar.trim() : undefined;
-  return { points, frame, isPremium: !!data.isPremium, avatarEmoji };
+  return {
+    points,
+    frame,
+    aura,
+    isPremium: !!data.isPremium,
+    avatarEmoji,
+    profileCardLevel: Math.max(0, Math.min(5, parseInt(String(data.profileCardLevel ?? '0'), 10) || 0)),
+    profileCardTheme: typeof data.profileCardTheme === 'string' && data.profileCardTheme.trim() ? data.profileCardTheme.trim().slice(0, 32) : 'classic',
+    profileCardMotion: typeof data.profileCardMotion === 'string' && data.profileCardMotion.trim() ? data.profileCardMotion.trim().slice(0, 32) : 'none',
+    profileCardPublicFocus: typeof data.profileCardPublicFocus === 'string' && data.profileCardPublicFocus.trim() ? data.profileCardPublicFocus.trim().slice(0, 32) : 'balanced',
+  };
 }
 
 /** После матча: копируем очки уроков на arena_profiles для корректного топа у всех клиентов. */
@@ -118,16 +205,21 @@ async function enrichArenaCourseDisplay(db: FirebaseFirestore.Firestore, authUid
     await absorbStableId(id);
   }
 
-  if (best.points <= 0 && !best.isPremium && !best.frame && !best.avatarEmoji && !mirrorStableId) return;
+  if (best.points <= 0 && !best.isPremium && !best.frame && !best.aura && !best.avatarEmoji && !best.profileCardLevel && !mirrorStableId) return;
 
-  const hasCourse = best.points > 0 || best.isPremium || !!best.frame || !!best.avatarEmoji;
+  const hasCourse = best.points > 0 || best.isPremium || !!best.frame || !!best.aura || !!best.avatarEmoji || !!best.profileCardLevel;
   await db.collection('arena_profiles').doc(authUid).set({
     ...(hasCourse
       ? {
         courseTotalXp: best.points,
         courseAvatar: best.avatarEmoji ?? null,
         courseFrame: best.frame ?? null,
+        courseAura: best.aura ?? null,
         courseIsPremium: best.isPremium,
+        courseProfileCardLevel: best.profileCardLevel ?? 0,
+        courseProfileCardTheme: best.profileCardTheme ?? 'classic',
+        courseProfileCardMotion: best.profileCardMotion ?? 'none',
+        courseProfileCardPublicFocus: best.profileCardPublicFocus ?? 'balanced',
       }
       : {}),
     courseDisplayAt: Date.now(),
@@ -194,13 +286,23 @@ export const resetWeeklyXpCron = functions.scheduler.onSchedule(
   async () => { await resetWeeklyXp(); }
 );
 
+export const cleanupExpiredAppMessagesCron = functions.scheduler.onSchedule(
+  { schedule: '0 4 * * *', timeZone: 'UTC' },
+  async () => { await cleanupExpiredAppMessages(); }
+);
+
 // ─── Matchmaking: instant trigger on queue write ──────────────────────────────
 
 export const onMatchmakingWrite = functions.firestore.onDocumentWritten(
   'matchmaking_queue/{userId}',
   async (event) => {
+    const beforeData = event.data?.before.exists ? event.data.before.data() as { sessionId?: string } : null;
+    const afterData = event.data?.after.exists ? event.data.after.data() as { sessionId?: string } : null;
+    const beforeSearching = !!beforeData && !beforeData.sessionId;
+    const afterSearching = !!afterData && !afterData.sessionId;
+
     // tryMatch, потім один publish — клієнт тягне `app_meta/matchmaking_searching` (колекція
-    // після матчу скидає «0 у пошуку», бо в доках з’являється sessionId).
+    // після матчу скидає «0 у пошуку», бо в доках з'являється sessionId).
     const after = event.data?.after;
     if (after?.exists) {
       const data = after.data() as { sessionId?: string } | undefined;
@@ -214,14 +316,23 @@ export const onMatchmakingWrite = functions.firestore.onDocumentWritten(
       }
     }
     try {
-      await publishMatchmakingSearchingCount();
+      const delta = (afterSearching ? 1 : 0) - (beforeSearching ? 1 : 0);
+      if (delta !== 0) {
+        await admin.firestore().doc('app_meta/matchmaking_searching').set(
+          {
+            searchingCount: admin.firestore.FieldValue.increment(delta),
+            updatedAt: Date.now(),
+          },
+          { merge: true },
+        );
+      }
     } catch (e) {
-      console.error('publishMatchmakingSearchingCount', e);
+      console.error('updateMatchmakingSearchingCount', e);
     }
   }
 );
 
-// ─── Matchmaking: 1-min cron fallback for players who didn't trigger onWrite ──
+// ─── Matchmaking: 1-min cron fallback for players who didn\'t trigger onWrite ──
 
 export const matchmakingCron = functions.scheduler.onSchedule(
   { schedule: 'every 1 minutes', timeZone: 'UTC' },
@@ -249,15 +360,23 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
     const questions = await pickArenaQuestions(PRIVATE_DUEL_QUESTION_COUNT);
     const tPrivate = Date.now();
 
-    // Read XP for both players to record avatarLevel in session_players
+    // Read XP + selected avatar for both players to record the displayed avatar in session_players.
     const [hostUserSnap, guestUserSnap] = await Promise.all([
       db.collection('users').doc(after.hostId).get().catch(() => null),
       db.collection('users').doc(after.guestId).get().catch(() => null),
     ]);
-    const hostXp = parseInt(((hostUserSnap?.data() as Record<string, Record<string, string>> | undefined)?.progress?.user_total_xp) ?? '0') || 0;
-    const guestXp = parseInt(((guestUserSnap?.data() as Record<string, Record<string, string>> | undefined)?.progress?.user_total_xp) ?? '0') || 0;
+    const hostData = hostUserSnap?.data() as Record<string, Record<string, string>> | undefined;
+    const guestData = guestUserSnap?.data() as Record<string, Record<string, string>> | undefined;
+    const hostXp = parseInt(hostData?.progress?.user_total_xp ?? '0') || 0;
+    const guestXp = parseInt(guestData?.progress?.user_total_xp ?? '0') || 0;
     const hostLevel = getLevelFromXPLocal(hostXp);
     const guestLevel = getLevelFromXPLocal(guestXp);
+    const hostAvatarRaw = typeof hostData?.progress?.user_avatar === 'string' ? hostData.progress.user_avatar.trim() : '';
+    const guestAvatarRaw = typeof guestData?.progress?.user_avatar === 'string' ? guestData.progress.user_avatar.trim() : '';
+    const hostAuraRaw = typeof hostData?.progress?.user_avatar_aura === 'string' ? hostData.progress.user_avatar_aura.trim() : '';
+    const guestAuraRaw = typeof guestData?.progress?.user_avatar_aura === 'string' ? guestData.progress.user_avatar_aura.trim() : '';
+    const hostAvatar = hostAvatarRaw && !/^\d+$/.test(hostAvatarRaw) ? hostAvatarRaw : String(hostLevel);
+    const guestAvatar = guestAvatarRaw && !/^\d+$/.test(guestAvatarRaw) ? guestAvatarRaw : String(guestLevel);
 
     await db.runTransaction(async (tx) => {
       const roomSnap = await tx.get(roomRef);
@@ -293,6 +412,8 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         sessionId: roomId,
         playerId: room.hostId,
         displayName: room.hostName ?? 'Игрок',
+        avatar: hostAvatar,
+        aura: hostAuraRaw || null,
         avatarLevel: hostLevel,
         score: 0,
         answers: [],
@@ -303,6 +424,8 @@ export const onArenaRoomMatched = functions.firestore.onDocumentUpdated(
         sessionId: roomId,
         playerId: room.guestId,
         displayName: room.guestName ?? 'Игрок',
+        avatar: guestAvatar,
+        aura: guestAuraRaw || null,
         avatarLevel: guestLevel,
         score: 0,
         answers: [],
@@ -788,9 +911,17 @@ export const onArenaRematchAccepted = functions.firestore.onDocumentUpdated(
       .where('sessionId', '==', oldSid)
       .get();
     const nameByUid = new Map<string, string>();
+    const avatarByUid = new Map<string, string>();
+    const auraByUid = new Map<string, string>();
+    const avatarLevelByUid = new Map<string, number>();
     for (const doc of oldPlayersSnap.docs) {
-      const d = doc.data() as { playerId?: string; displayName?: string };
-      if (d.playerId) nameByUid.set(d.playerId, d.displayName ?? 'Игрок');
+      const d = doc.data() as { playerId?: string; displayName?: string; avatar?: string; aura?: string; avatarLevel?: number };
+      if (d.playerId) {
+        nameByUid.set(d.playerId, d.displayName ?? 'Игрок');
+        if (typeof d.avatar === 'string' && d.avatar.trim()) avatarByUid.set(d.playerId, d.avatar.trim());
+        if (typeof d.aura === 'string' && d.aura.trim()) auraByUid.set(d.playerId, d.aura.trim());
+        if (typeof d.avatarLevel === 'number') avatarLevelByUid.set(d.playerId, d.avatarLevel);
+      }
     }
 
     await db.runTransaction(async (tx) => {
@@ -823,6 +954,9 @@ export const onArenaRematchAccepted = functions.firestore.onDocumentUpdated(
           sessionId: newSid,
           playerId: uid,
           displayName: nameByUid.get(uid) ?? 'Игрок',
+          avatar: avatarByUid.get(uid) ?? String(avatarLevelByUid.get(uid) ?? 1),
+          aura: auraByUid.get(uid) ?? null,
+          avatarLevel: avatarLevelByUid.get(uid) ?? 1,
           score: 0,
           answers: [],
           lobbyChoice: 'none',
@@ -881,17 +1015,19 @@ export {
   communityPurchasePack,
   communityListSellerInbox,
   communityMarkSellerInboxSeen,
-  communityGetPackRatingSummary,
-  communitySubmitPackRating,
 } from './community_packs';
 
 export { mirrorFriendActivityOnUserWrite } from './friend_activity_mirror';
+
+export { friendSendGift } from './friend_gifts';
 
 export { referralEnsureMyCode, referralApply, referralOnUserProgressUpdated } from './referral';
 
 // ── Admin grant (типизированные награды из админки) ───────────────────────────
 export { adminGrantReward } from './admin_grant';
 
-export { phraseContentRatingSubmit, phraseContentRatingGetState } from './phrase_content_rating';
+export { dailyPhraseSetSaved } from './daily_phrases';
 
 export { submitWebsiteContact } from './website_contact';
+
+export { revenueCatShardsWebhook } from './revenuecat_shards';

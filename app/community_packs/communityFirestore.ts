@@ -54,8 +54,6 @@ export function mapCommunityPackDocToMarket(
     category: cat,
     cardCount: Math.max(0, num(data.cardCount)),
     priceShards: COMMUNITY_PACK_PRICE_SHARDS,
-    ratingAvg: Math.max(0, Math.min(5, num(data.ratingAvg))),
-    ratingCount: Math.max(0, num(data.ratingCount)),
     salesCount: Math.max(0, num(data.salesCount)),
     authorName: authorSid ? authorSid.slice(0, 24) : 'Community',
     authorStableId: authorSid || undefined,
@@ -70,8 +68,6 @@ export function mapCommunityPackDocToMarket(
 
 /** Выше средний балл и при равенстве — больше число оценок; иначе свежее обновление. */
 export function sortCommunityMarketPacksByRating(a: FlashcardMarketPack, b: FlashcardMarketPack): number {
-  if (b.ratingAvg !== a.ratingAvg) return b.ratingAvg - a.ratingAvg;
-  if (b.ratingCount !== a.ratingCount) return b.ratingCount - a.ratingCount;
   return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime();
 }
 

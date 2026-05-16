@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { useFocusEffect } from 'expo-router';
+import { useFocusEffect, useRouter } from 'expo-router';
 import {
   View, Text, TouchableOpacity, TextInput, ScrollView,
-  ActivityIndicator, Share, Keyboard, StyleSheet, Modal,
+  Share, Keyboard, StyleSheet, Modal,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from 'react-native-safe-area-context';
 import * as Clipboard from 'expo-clipboard';
@@ -13,12 +13,20 @@ import { usePremium } from '../../components/PremiumContext';
 import AvatarView from '../../components/AvatarView';
 import PremiumAvatarHalo from '../../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../../components/PremiumGoldUserName';
+import LeagueCrownName from '../../components/LeagueCrownName';
 import UnifiedPlayerModal, { PlayerInfo } from '../../components/PlayerProfileModal';
 import ThemedConfirmModal from '../../components/ThemedConfirmModal';
 import { getBestAvatarForLevel, getBestFrameForLevel } from '../../constants/avatars';
+import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId, normalizeAvatarAuraId } from '../../constants/avatar_auras';
 import { getLevelFromXP, getXPProgress } from '../../constants/theme';
 import { triLang } from '../../constants/i18n';
 import { hapticTap } from '../../hooks/use-haptics';
+import {
+  normalizeProfileCardLevel,
+  normalizeProfileCardMotion,
+  normalizeProfileCardPublicFocus,
+  normalizeProfileCardTheme,
+} from '../profile_card_system';
 import { normalizeInviteCodeInput } from '../friend_code';
 import { ensureMyInviteCodeForFriends, lookupUserByFriendCode, readCachedMyInviteCodeForFriends } from '../firestore_friends';
 import {
@@ -36,6 +44,7 @@ import {
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../config';
 import { getCanonicalUserId } from '../user_id_policy';
 import { ensureAnonUser } from '../cloud_sync';
+import { fetchActiveLeagueCrowns } from '../services/league_chest_rewards';
 import { randomSelfFriendCodeMessage } from '../friends_self_code_messages';
 import {
   startFriendsTabSwrPrime,
@@ -51,7 +60,22 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ReportErrorButton from '../../components/ReportErrorButton';
 import { useTabNav } from '../TabContext';
 import { fetchFriendsActivityFeed, invalidateFriendsActivityCache, type FriendEvent } from '../firestore_friend_activity';
+import {
+  fetchTodayActivityLikeState,
+  fetchActivityLikeTotal,
+  sendFriendActivityLike,
+  type FriendActivityLikeTodayState,
+} from '../friend_activity_likes';
 import { trackActivity } from '../app_activity';
+import { getShardsBalance } from '../shards_system';
+import { claimUnseenFriendGifts } from '../friend_gift_inbox';
+import { emitAppEvent } from '../events';
+import {
+  FRIEND_GIFT_CATALOG,
+  isFriendGiftsCloudEnabled,
+  sendFriendGiftWithShards,
+  type FriendGiftId,
+} from '../friend_gifts';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -67,6 +91,12 @@ interface FriendProfile {
   isPremium: boolean;
   avatar: string;
   frame: string;
+  aura?: string;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
+  leagueCrownExpiresAt?: number;
 }
 
 const PROFILE_TTL_MS = 30 * 1000;
@@ -97,59 +127,163 @@ function placeholderFriendProfile(uid: string): FriendProfile {
     streak: 0,
     isPremium: false,
     avatar: String(getBestAvatarForLevel(1)),
-    frame: String(getBestFrameForLevel(1)),
+    frame: String(getBestFrameForLevel(1).id),
+    aura: undefined,
   };
+}
+
+function readPublicNumber(value: unknown): number {
+  if (typeof value === 'number' && Number.isFinite(value)) return Math.max(0, Math.floor(value));
+  if (typeof value === 'string') {
+    const parsed = parseInt(value, 10);
+    return Number.isFinite(parsed) ? Math.max(0, parsed) : 0;
+  }
+  return 0;
+}
+
+function readPublicString(value: unknown): string {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+function normalizePublicFriendProfile(profile: FriendProfile): FriendProfile {
+  const level = getLevelFromXP(profile.totalXp);
+  return {
+    ...profile,
+    name: profile.name.trim() || 'Игрок',
+    avatar: profile.avatar.trim() || String(getBestAvatarForLevel(level)),
+    frame: profile.frame.trim() || String(getBestFrameForLevel(level).id),
+    aura: normalizeAvatarAuraId(profile.aura),
+    profileCardLevel: normalizeProfileCardLevel(profile.profileCardLevel),
+    profileCardTheme: normalizeProfileCardTheme(profile.profileCardTheme),
+    profileCardMotion: normalizeProfileCardMotion(profile.profileCardMotion),
+    profileCardPublicFocus: normalizeProfileCardPublicFocus(profile.profileCardPublicFocus),
+  };
+}
+
+function mergePublicFriendProfiles(
+  current: FriendProfile | null,
+  incoming: FriendProfile | null,
+): FriendProfile | null {
+  if (!incoming) return current;
+  if (!current) return normalizePublicFriendProfile(incoming);
+
+  const primary = incoming.totalXp >= current.totalXp ? incoming : current;
+  const secondary = primary === incoming ? current : incoming;
+  return normalizePublicFriendProfile({
+    uid: primary.uid || secondary.uid,
+    name: primary.name || secondary.name,
+    totalXp: Math.max(primary.totalXp, secondary.totalXp),
+    weeklyXp: Math.max(primary.weeklyXp, secondary.weeklyXp),
+    streak: Math.max(primary.streak, secondary.streak),
+    isPremium: primary.isPremium || secondary.isPremium,
+    avatar: primary.avatar || secondary.avatar,
+    frame: primary.frame || secondary.frame,
+    aura: primary.aura ?? secondary.aura,
+    profileCardLevel: primary.profileCardLevel ?? secondary.profileCardLevel,
+    profileCardTheme: primary.profileCardTheme ?? secondary.profileCardTheme,
+    profileCardMotion: primary.profileCardMotion ?? secondary.profileCardMotion,
+    profileCardPublicFocus: primary.profileCardPublicFocus ?? secondary.profileCardPublicFocus,
+    leagueCrownExpiresAt: primary.leagueCrownExpiresAt ?? secondary.leagueCrownExpiresAt,
+  });
+}
+
+function profileFromLeaderboardDoc(uid: string, data: Record<string, unknown>): FriendProfile | null {
+  const totalXp = readPublicNumber(data.points);
+  const avatar = readPublicString(data.avatar);
+  const frame = readPublicString(data.frame);
+  const aura = normalizeAvatarAuraId(readPublicString(data.aura));
+  const name = readPublicString(data.name) || readPublicString(data.displayName);
+  const profileCardLevel = normalizeProfileCardLevel(data.profileCardLevel);
+  if (!name && totalXp <= 0 && !avatar && !frame && !aura && profileCardLevel <= 0) return null;
+
+  return normalizePublicFriendProfile({
+    uid,
+    name,
+    totalXp,
+    weeklyXp: readPublicNumber(data.weekPoints),
+    streak: readPublicNumber(data.streak),
+    isPremium: data.isPremium === true,
+    avatar,
+    frame,
+    aura,
+    profileCardLevel,
+    profileCardTheme: normalizeProfileCardTheme(data.profileCardTheme),
+    profileCardMotion: normalizeProfileCardMotion(data.profileCardMotion),
+    profileCardPublicFocus: normalizeProfileCardPublicFocus(data.profileCardPublicFocus),
+  });
+}
+
+function profileFromArenaDoc(uid: string, data: Record<string, unknown>): FriendProfile | null {
+  const stableUid = readPublicString(data.mirrorStableId) || uid;
+  const totalXp = readPublicNumber(data.courseTotalXp);
+  const avatar = readPublicString(data.courseAvatar);
+  const frame = readPublicString(data.courseFrame);
+  const aura = normalizeAvatarAuraId(readPublicString(data.courseAura));
+  const name = readPublicString(data.displayName) || readPublicString(data.name);
+  const profileCardLevel = normalizeProfileCardLevel(data.courseProfileCardLevel);
+  if (!name && totalXp <= 0 && !avatar && !frame && !aura && profileCardLevel <= 0) return null;
+
+  return normalizePublicFriendProfile({
+    uid: stableUid,
+    name,
+    totalXp,
+    weeklyXp: 0,
+    streak: 0,
+    isPremium: data.courseIsPremium === true || data.isPremium === true,
+    avatar,
+    frame,
+    aura,
+    profileCardLevel,
+    profileCardTheme: normalizeProfileCardTheme(data.courseProfileCardTheme),
+    profileCardMotion: normalizeProfileCardMotion(data.courseProfileCardMotion),
+    profileCardPublicFocus: normalizeProfileCardPublicFocus(data.courseProfileCardPublicFocus),
+  });
 }
 
 async function fetchFriendProfileFromFirestore(uid: string): Promise<FriendProfile | null> {
   try {
     const db = getDb();
     if (!db) return null;
-    const snap = await db.collection('users').doc(uid).get();
-    if (!snap.exists) {
-      console.warn('[friendProfile] doc missing for uid:', uid);
-      return null;
+    let profile: FriendProfile | null = null;
+
+    const leaderboardSnap = await db.collection('leaderboard').doc(uid).get();
+    if (leaderboardSnap.exists) {
+      profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(uid, leaderboardSnap.data() ?? {}));
     }
-    const d: Record<string, unknown> = snap.data() ?? {};
-    const p = (d.progress as Record<string, unknown>) ?? {};
-    const totalXp = parseInt((p.user_total_xp as string) ?? '0') || 0;
-    const weeklyXp = parseInt((p.weekly_xp as string) ?? '0') || 0;
-    const streak = parseInt((p.streak_count as string) ?? '0') || 0;
-    const isPremium = (p.premium_plan as string) === 'monthly' || (p.premium_plan as string) === 'annual';
-    const level = getLevelFromXP(totalXp);
-    const avatarRaw = typeof p.user_avatar === 'string' ? p.user_avatar.trim() : '';
-    const frameRaw = typeof p.user_avatar_frame === 'string'
-      ? p.user_avatar_frame.trim()
-      : (typeof p.user_frame === 'string' ? p.user_frame.trim() : '');
-    const linked = (d.linkedAuth as Record<string, unknown> | undefined) ?? {};
-    const nameRaw =
-      (d.displayName as string) ||
-      (d.name as string) ||
-      (p.displayName as string) ||
-      (p.display_name as string) ||
-      (p.user_name as string) ||
-      (typeof linked.displayName === 'string' ? linked.displayName : '') ||
-      (typeof linked.name === 'string' ? linked.name : '');
-    console.warn('[friendProfile] uid:', uid, 'name:', JSON.stringify(nameRaw), 'xp:', totalXp, 'progressKeys:', Object.keys(p));
-    return {
-      uid,
-      name: nameRaw.trim() || 'Игрок',
-      totalXp, weeklyXp, streak, isPremium,
-      avatar: avatarRaw || String(getBestAvatarForLevel(level)),
-      frame: frameRaw || String(getBestFrameForLevel(level)),
-    };
+    if (!profile || profile.totalXp <= 0) {
+      const byAuthSnap = await db.collection('leaderboard').where('firebaseAuthUid', '==', uid).limit(1).get();
+      const byAuthDoc = byAuthSnap.docs?.[0];
+      if (byAuthDoc) {
+        profile = mergePublicFriendProfiles(profile, profileFromLeaderboardDoc(byAuthDoc.id, byAuthDoc.data() ?? {}));
+      }
+    }
+
+    if (!profile || profile.totalXp <= 0) {
+      const arenaByStableSnap = await db.collection('arena_profiles').where('mirrorStableId', '==', uid).limit(1).get();
+      const arenaByStableDoc = arenaByStableSnap.docs?.[0];
+      if (arenaByStableDoc) {
+        profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaByStableDoc.data() ?? {}));
+      }
+    }
+
+    if (!profile || profile.totalXp <= 0) {
+      const arenaSnap = await db.collection('arena_profiles').doc(uid).get();
+      if (arenaSnap.exists) {
+        profile = mergePublicFriendProfiles(profile, profileFromArenaDoc(uid, arenaSnap.data() ?? {}));
+      }
+    }
+
+    if (!profile) console.warn('[friendProfile] public profile missing for uid:', uid);
+    return profile;
   } catch (e) {
     console.warn('[friendProfile] error for uid:', uid, String(e));
     return null;
   }
 }
 
-/**
- * Загружает профили для списка uid.
- * - Из кеша (TTL 5 мин) — мгновенно без Firestore.
- * - Просроченные или отсутствующие — из Firestore, результат кешируется.
- * Возвращает Map uid→профиль; отсутствующие в Firestore не включаются.
- */
+
+// ── XP Bar ────────────────────────────────────────────────────────────────────
+
 async function loadProfiles(
   uids: string[],
   existingCache: Record<string, ProfileCacheEntry>,
@@ -162,8 +296,7 @@ async function loadProfiles(
   for (const uid of uids) {
     const entry = existingCache[uid];
     if (entry) {
-      // Сразу показываем последний сохранённый профиль (даже если TTL вышел); обновление — в фоне.
-      result[uid] = entry.profile;
+      result[uid] = entry.profile as FriendProfile;
       if (now - entry.fetchedAt >= PROFILE_TTL_MS) toFetch.push(uid);
     } else {
       toFetch.push(uid);
@@ -171,20 +304,21 @@ async function loadProfiles(
   }
 
   if (toFetch.length > 0) {
-    // Убеждаемся что Auth готов один раз перед параллельными запросами.
     await ensureAnonUser();
     const fetched = await Promise.all(toFetch.map(fetchFriendProfileFromFirestore));
+    const fetchedProfiles = fetched.filter((p): p is FriendProfile => p !== null);
+    const crownMap = await fetchActiveLeagueCrowns(fetchedProfiles.map((p) => p.uid));
     const newEntries: Record<string, ProfileCacheEntry> = {};
     for (let i = 0; i < toFetch.length; i++) {
       const profile = fetched[i];
       if (profile) {
-        result[toFetch[i]] = profile;
-        const entry: ProfileCacheEntry = { profile, fetchedAt: now };
+        const crowned = { ...profile, leagueCrownExpiresAt: crownMap[profile.uid]?.expiresAt };
+        result[toFetch[i]] = crowned;
+        const entry: ProfileCacheEntry = { profile: crowned, fetchedAt: now };
         updatedCache[toFetch[i]] = entry;
         newEntries[toFetch[i]] = entry;
       }
     }
-    // Обновляем модульный кеш сразу — переживает ремаунты компонента.
     if (Object.keys(newEntries).length > 0) upsertProfilesCache(newEntries);
     void writeProfilesCache(updatedCache);
   }
@@ -209,87 +343,18 @@ async function fetchMyProfile() {
     const frameRaw = typeof p.user_avatar_frame === 'string'
       ? p.user_avatar_frame.trim()
       : (typeof p.user_frame === 'string' ? p.user_frame.trim() : '');
+    const auraRaw = typeof p.user_avatar_aura === 'string' ? p.user_avatar_aura.trim() : '';
     return {
       name: (d.displayName as string) || (p.displayName as string) || (p.user_name as string) || 'Я',
       avatar: avatarRaw || String(getBestAvatarForLevel(level)),
-      frame: frameRaw || String(getBestFrameForLevel(level)),
+      frame: frameRaw || String(getBestFrameForLevel(level).id),
+      aura: normalizeAvatarAuraId(auraRaw),
       totalXP: totalXp,
       streak: streak ?? null,
       isPremium,
     };
   } catch { return null; }
 }
-
-/** Коротко: 11324 → 11.3k, 1 200 000 → 1.2M — чтобы строка на карточке не расползалась. */
-function formatCompactWeeklyXpDiff(absDiff: number): string {
-  const a = Math.abs(Math.round(absDiff));
-  if (a >= 1_000_000) {
-    const v = a / 1_000_000;
-    const s = v >= 10 ? String(Math.round(v)) : String(Math.round(v * 10) / 10).replace(/\.0$/, '');
-    return `${s}M`;
-  }
-  if (a >= 1000) {
-    const v = a / 1000;
-    const s = v >= 100 ? String(Math.round(v)) : String(Math.round(v * 10) / 10).replace(/\.0$/, '');
-    return `${s}k`;
-  }
-  return String(a);
-}
-
-// ── Weekly comparison badge ───────────────────────────────────────────────────
-
-function WeeklyBadge({ myWeekly, friendWeekly, lang, textMuted }: {
-  myWeekly: number; friendWeekly: number; lang: string;
-  textMuted: string;
-}) {
-  if (myWeekly === 0 && friendWeekly === 0) return null;
-  const diff = myWeekly - friendWeekly;
-  if (Math.abs(diff) < 10) return null;
-  const ahead = diff > 0;
-  const color = ahead ? '#34C759' : '#FF6B6B';
-  const icon = ahead ? 'trending-up' : 'trending-down';
-  const compact = formatCompactWeeklyXpDiff(diff);
-  const sign = ahead ? '+' : '−';
-  const tail = ahead
-    ? triLang(lang as any, { ru: 'впереди', uk: 'попереду', es: 'adelante' })
-    : triLang(lang as any, { ru: 'отстаёшь', uk: 'відстаєш', es: 'atrás' });
-  const weekTag = triLang(lang as any, { ru: 'нед', uk: 'тиж', es: 'sem' });
-  const accessibilityLabel = ahead
-    ? triLang(lang as any, {
-        ru: `По неделе ты впереди на ${diff} XP`,
-        uk: `За тиждень ти попереду на ${diff} XP`,
-        es: `Esta semana llevas ${diff} XP más que este amigo`,
-      })
-    : triLang(lang as any, {
-        ru: `По неделе ты отстаёшь на ${Math.abs(diff)} XP`,
-        uk: `За тиждень ти відстаєш на ${Math.abs(diff)} XP`,
-        es: `Esta semana este amigo lleva ${Math.abs(diff)} XP más que tú`,
-      });
-
-  return (
-    <View
-      accessibilityLabel={accessibilityLabel}
-      accessibilityRole="text"
-      style={{ flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', gap: 4, marginTop: 2, maxWidth: '100%' }}
-    >
-      <Ionicons name={icon as any} size={11} color={color} />
-      <Text style={{ fontSize: 11, color, fontWeight: '700' }} numberOfLines={1}>
-        {sign}
-        {compact}
-      </Text>
-      <Text style={{ fontSize: 10, color: textMuted, fontWeight: '600', opacity: 0.85 }} numberOfLines={1}>
-        {'XP · '}
-        {weekTag}
-        {' · '}
-      </Text>
-      <Text style={{ fontSize: 11, color, fontWeight: '600' }} numberOfLines={1}>
-        {tail}
-      </Text>
-    </View>
-  );
-}
-
-// ── XP Bar ────────────────────────────────────────────────────────────────────
 
 function MiniXpBar({ xp, color }: { xp: number; color: string }) {
   const level = getLevelFromXP(xp);
@@ -307,13 +372,14 @@ function MiniXpBar({ xp, color }: { xp: number; color: string }) {
 // ── Friend row ────────────────────────────────────────────────────────────────
 
 function FriendRow({
-  profile, myWeekly, rank, onPress, onDelete, lang, t, f,
+  profile, rank, onPress, onDelete, onGift, lang, t, f,
 }: {
-  profile: FriendProfile; myWeekly: number; rank: number;
-  onPress: () => void; onDelete: () => void;
+  profile: FriendProfile; rank: number;
+  onPress: () => void; onDelete: () => void; onGift: () => void;
   lang: string; t: any; f: any;
 }) {
   const rankColor = rank === 1 ? '#FFD700' : rank === 2 ? '#C0C0C0' : rank === 3 ? '#CD7F32' : t.textMuted;
+  const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
   return (
     <TouchableOpacity
       testID={`friend-row-${profile.uid}`}
@@ -331,15 +397,16 @@ function FriendRow({
         {rank}
       </Text>
       <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={44} maskColor={t.bgCard}>
-        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} />
+        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={getEffectiveAvatarAuraId(profile.aura, profile.isPremium)} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
-        {profile.isPremium
+        {hasLeagueCrown
+          ? <LeagueCrownName text={profile.name} fontSize={f.body} />
+          : profile.isPremium
           ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
           : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
         }
         <MiniXpBar xp={profile.totalXp} color={t.textSecond} />
-        <WeeklyBadge myWeekly={myWeekly} friendWeekly={profile.weeklyXp} lang={lang} textMuted={t.textMuted} />
       </View>
       <View style={{ alignItems: 'flex-end', justifyContent: 'center', gap: 8, flexShrink: 0 }}>
         {profile.streak > 0 && (
@@ -348,13 +415,23 @@ function FriendRow({
             <Text style={{ fontSize: f.sub, color: '#FF9500', fontWeight: '700' }}>{profile.streak}</Text>
           </View>
         )}
-        <TouchableOpacity
-          testID={`friend-delete-${profile.uid}`}
-          onPress={onDelete}
-          hitSlop={{ top: 8, bottom: 8, left: 12, right: 12 }}
-        >
-          <Ionicons name="person-remove-outline" size={16} color={t.textMuted} />
-        </TouchableOpacity>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+          <TouchableOpacity
+            testID={`friend-gift-${profile.uid}`}
+            accessibilityLabel={triLang(lang as any, { ru: 'Подарить', uk: 'Подарувати', es: 'Regalar' })}
+            onPress={onGift}
+            hitSlop={{ top: 8, bottom: 8, left: 10, right: 10 }}
+          >
+            <Ionicons name="gift-outline" size={18} color={t.accent} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            testID={`friend-delete-${profile.uid}`}
+            onPress={onDelete}
+            hitSlop={{ top: 8, bottom: 8, left: 10, right: 10 }}
+          >
+            <Ionicons name="person-remove-outline" size={16} color={t.textMuted} />
+          </TouchableOpacity>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -371,6 +448,7 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
   f: any;
 }) {
   const B = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+  const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
   return (
     <View testID={`friend-request-row-${profile.uid}`} style={{
       flexDirection: 'row', alignItems: 'center',
@@ -378,10 +456,12 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
       borderWidth: 0.5, borderColor: t.border, gap: 12,
     }}>
       <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={44} maskColor={t.bgCard}>
-        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} />
+        <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={44} auraId={getEffectiveAvatarAuraId(profile.aura, profile.isPremium)} />
       </PremiumAvatarHalo>
       <View style={{ flex: 1, minWidth: 0 }}>
-        {profile.isPremium
+        {hasLeagueCrown
+          ? <LeagueCrownName text={profile.name} fontSize={f.body} />
+          : profile.isPremium
           ? <PremiumGoldUserName text={profile.name} fontSize={f.body} />
           : <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }} numberOfLines={1}>{profile.name}</Text>
         }
@@ -429,6 +509,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
   isAdding: boolean; lang: string; t: any; f: any;
 }) {
   const level = getLevelFromXP(profile.totalXp);
+  const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
   return (
     <View testID="friends-found-user-card" style={{
       backgroundColor: t.bgCard, borderRadius: 20, padding: 20, marginTop: 12,
@@ -437,10 +518,12 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
     }}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}>
         <PremiumAvatarHalo enabled={profile.isPremium} avatarSize={56} maskColor={t.bgCard}>
-          <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={56} />
+          <AvatarView avatar={profile.avatar} totalXP={profile.totalXp} size={56} auraId={getEffectiveAvatarAuraId(profile.aura, profile.isPremium)} />
         </PremiumAvatarHalo>
         <View style={{ flex: 1 }}>
-          {profile.isPremium
+          {hasLeagueCrown
+            ? <LeagueCrownName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
+            : profile.isPremium
             ? <PremiumGoldUserName text={profile.name} fontSize={f.h3 ?? f.body + 2} />
             : <Text style={{ color: t.textPrimary, fontSize: f.h3 ?? 18, fontWeight: '800' }}>{profile.name}</Text>
           }
@@ -467,10 +550,7 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
           flexDirection: 'row', justifyContent: 'center', gap: 8,
         }}
       >
-        {isAdding
-          ? <ActivityIndicator size="small" color={t.correctText} />
-          : <Ionicons name="person-add" size={18} color={t.correctText} />
-        }
+        <Ionicons name="person-add" size={18} color={t.correctText} />
         <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
           {triLang(lang as any, { ru: 'Добавить в друзья', uk: 'Додати в друзі', es: 'Agregar amigo' })}
         </Text>
@@ -523,7 +603,11 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
             style={{
             fontSize: 36, fontWeight: '900', letterSpacing: 8,
             color: t.textPrimary, fontVariant: ['tabular-nums'],
-          }}>
+          }}
+            adjustsFontSizeToFit
+            numberOfLines={1}
+            minimumFontScale={0.65}
+          >
             {code}
           </Text>
           <View style={{ flexDirection: 'row', gap: 10 }}>
@@ -590,7 +674,7 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
         <Text style={{
           fontSize: 36, fontWeight: '900', letterSpacing: 8,
           color: t.textMuted, fontVariant: ['tabular-nums'],
-        }}>
+        }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.65}>
           ······
         </Text>
       )}
@@ -616,6 +700,12 @@ function eventText(event: FriendEvent, friendName: string, lang: string): string
   const n = friendName;
   const p = event.payload;
   const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+  if (event.type === 'friend_gift_sent') {
+    return L(`${n} отправил подарок: ${p.giftLabel ?? p.giftId}`, `${n} надіслав подарунок: ${p.giftLabel ?? p.giftId}`, `${n} envió un regalo: ${p.giftLabel ?? p.giftId}`);
+  }
+  if (event.type === 'friend_gift_received') {
+    return L(`${n} получил подарок: ${p.giftLabel ?? p.giftId}`, `${n} отримав подарунок: ${p.giftLabel ?? p.giftId}`, `${n} recibió un regalo: ${p.giftLabel ?? p.giftId}`);
+  }
   switch (event.type) {
     case 'level_up':
       return L(`${n} достиг уровня ${p.level}`, `${n} досяг рівня ${p.level}`, `${n} alcanzó el nivel ${p.level}`);
@@ -638,6 +728,7 @@ function eventText(event: FriendEvent, friendName: string, lang: string): string
 }
 
 function eventIcon(type: FriendEvent['type']): string {
+  if (type === 'friend_gift_sent' || type === 'friend_gift_received') return 'gift-outline';
   switch (type) {
     case 'level_up': return 'trending-up';
     case 'lesson_complete': return 'book-outline';
@@ -650,6 +741,8 @@ function eventIcon(type: FriendEvent['type']): string {
 }
 
 function eventIconColor(type: FriendEvent['type'], accent: string): string {
+  if (type === 'friend_gift_sent') return '#60A5FA';
+  if (type === 'friend_gift_received') return '#A78BFA';
   switch (type) {
     case 'level_up': return '#34C759';
     case 'lesson_complete': return accent;
@@ -673,22 +766,84 @@ function ActivityTab({
   const [events, setEvents] = useState<FriendEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
+  const [likeBusyEventId, setLikeBusyEventId] = useState<string | null>(null);
   const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
 
+  const showActivityLikeToast = useCallback((type: 'success' | 'error' | 'info', ru: string, uk: string, es: string) => {
+    emitAppEvent('action_toast', { type, messageRu: ru, messageUk: uk, messageEs: es });
+  }, []);
+
   const load = useCallback(async (force = false) => {
-    if (friendUids.length === 0) { setEvents([]); return; }
+    if (friendUids.length === 0) { setEvents([]); setTodayLike(null); return; }
     if (force) setRefreshing(true); else setLoading(true);
-    const result = await fetchFriendsActivityFeed(friendUids, force);
+    const [result, likeState] = await Promise.all([
+      fetchFriendsActivityFeed(friendUids, force),
+      fetchTodayActivityLikeState(),
+    ]);
     setEvents(result);
+    setTodayLike(likeState);
     if (force) setRefreshing(false); else setLoading(false);
+    // Check "liked by friend" achievement
+    void (async () => {
+      try {
+        const myUid = await getCanonicalUserId();
+        if (!myUid) return;
+        const total = await fetchActivityLikeTotal(myUid);
+        if (total > 0) {
+          const { checkAchievements } = await import('../achievements');
+          void checkAchievements({ type: 'achievement_liked' });
+        }
+      } catch {}
+    })();
   }, [friendUids]);
+
+  const handleActivityLike = useCallback(async (event: FriendEvent) => {
+    const sameLike = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
+    if (sameLike) {
+      showActivityLikeToast('info', 'Лайк за активность уже здесь', 'Лайк за активність уже тут', 'Tu like de actividad ya está aquí');
+      return;
+    }
+    if (todayLike) {
+      showActivityLikeToast('info', 'Сегодня лайк за активность уже использован', 'Сьогодні лайк за активність уже використано', 'Ya usaste tu like de actividad de hoy');
+      return;
+    }
+    if (likeBusyEventId) return;
+    hapticTap();
+    setLikeBusyEventId(`${event.uid}:${event.id}`);
+    try {
+      const res = await sendFriendActivityLike({ targetUid: event.uid, eventId: event.id });
+      setTodayLike({ date: res.date, targetUid: res.targetUid, eventId: res.eventId, createdAt: Date.now() });
+      setEvents(prev => prev.map(row =>
+        row.uid === event.uid && row.id === event.id
+          ? { ...row, activityLikeCount: res.activityLikeCount }
+          : row,
+      ));
+      void invalidateFriendsActivityCache();
+      showActivityLikeToast('success', 'Лайк за активность!', 'Лайк за активність!', 'Like de actividad');
+    } catch (e) {
+      const code = String((e as any)?.code ?? '');
+      const msg = String((e as any)?.message ?? e);
+      const freshState = await fetchTodayActivityLikeState();
+      if (freshState) setTodayLike(freshState);
+      if (code.includes('resource-exhausted') || msg.includes('resource-exhausted') || msg.includes('Daily activity like limit')) {
+        showActivityLikeToast('info', 'Сегодня лайк за активность уже использован', 'Сьогодні лайк за активність уже використано', 'Ya usaste tu like de actividad de hoy');
+      } else if (msg.includes('Self activity likes')) {
+        showActivityLikeToast('info', 'Лайки считаются от других пользователей', 'Лайки рахуються від інших користувачів', 'Los likes cuentan cuando vienen de otros usuarios');
+      } else {
+        showActivityLikeToast('error', 'Не удалось поставить лайк', 'Не вдалося поставити лайк', 'No se pudo dar like');
+      }
+    } finally {
+      setLikeBusyEventId(null);
+    }
+  }, [likeBusyEventId, showActivityLikeToast, todayLike]);
 
   // Без force кэш ленты (30 мин) долго показывает пустоту после событий у друзей.
   useEffect(() => { void load(true); }, [load]);
 
   if (friendUids.length === 0) {
     return (
-      <View style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
+      <View testID="friends-activity-empty-no-friends" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
         <Ionicons name="people-outline" size={40} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
           {L('Добавьте друзей, чтобы видеть их активность', 'Додайте друзів, щоб бачити їхню активність', 'Agrega amigos para ver su actividad')}
@@ -697,13 +852,9 @@ function ActivityTab({
     );
   }
 
-  if (loading) {
-    return <ActivityIndicator color={t.accent} style={{ marginTop: 40 }} />;
-  }
-
   if (events.length === 0) {
     return (
-      <View style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
+      <View testID="friends-activity-empty" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
         <Ionicons name="pulse-outline" size={40} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
           {L('Пока нет активности', 'Поки немає активності', 'Sin actividad aún')}
@@ -716,16 +867,14 @@ function ActivityTab({
   }
 
   return (
-    <>
+    <View testID="friends-activity-list">
       <TouchableOpacity
+        testID="friends-activity-refresh"
         onPress={() => { hapticTap(); void load(true); }}
         style={{ flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-end', marginBottom: 12 }}
         activeOpacity={0.7}
       >
-        {refreshing
-          ? <ActivityIndicator size="small" color={t.textMuted} />
-          : <Ionicons name="refresh-outline" size={16} color={t.textMuted} />
-        }
+        <Ionicons name="refresh-outline" size={16} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.sub }}>
           {L('Обновить', 'Оновити', 'Actualizar')}
         </Text>
@@ -734,9 +883,13 @@ function ActivityTab({
         const profile = profiles[event.uid];
         const name = profile?.name ?? L('Друг', 'Друг', 'Amigo');
         const color = eventIconColor(event.type, t.accent);
+        const likeCount = Math.max(0, Math.floor(Number(event.activityLikeCount ?? 0) || 0));
+        const likedToday = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
+        const busy = likeBusyEventId === `${event.uid}:${event.id}`;
         return (
           <View
-            key={event.id}
+            key={`${event.uid}:${event.id}`}
+            testID={`friends-activity-row-${event.uid}-${event.id}`}
             style={{
               flexDirection: 'row', alignItems: 'flex-start', gap: 12,
               backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 10,
@@ -758,10 +911,35 @@ function ActivityTab({
                 {formatEventTime(event.ts, lang)}
               </Text>
             </View>
+            <TouchableOpacity
+              testID={`friends-activity-like-${event.uid}-${event.id}`}
+              activeOpacity={0.78}
+              onPress={() => { void handleActivityLike(event); }}
+              accessibilityRole="button"
+              accessibilityLabel={L('Лайк за активность', 'Лайк за активність', 'Like de actividad')}
+              style={{
+                minWidth: 44,
+                minHeight: 44,
+                borderRadius: 14,
+                paddingHorizontal: 7,
+                paddingVertical: 5,
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: likedToday ? 'rgba(255,45,85,0.16)' : t.bgSurface,
+                borderWidth: 0.5,
+                borderColor: likedToday ? 'rgba(255,45,85,0.55)' : t.border,
+                opacity: busy ? 0.55 : 1,
+              }}
+            >
+              <Ionicons name={likedToday ? 'heart' : 'heart-outline'} size={19} color={likedToday ? '#FF2D55' : t.textMuted} />
+              <Text style={{ color: likedToday ? '#FF2D55' : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
+                {likeCount}
+              </Text>
+            </TouchableOpacity>
           </View>
         );
       })}
-    </>
+    </View>
   );
 }
 
@@ -788,7 +966,6 @@ function AddFriendModal({
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
         <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }} edges={['top', 'right', 'bottom', 'left']}>
         <View style={{ flex: 1 }}>
-          {/* Header */}
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
             <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
               {L('Добавить друга', 'Додати друга', 'Agregar amigo')}
@@ -802,7 +979,6 @@ function AddFriendModal({
             keyboardShouldPersistTaps="handled"
             contentContainerStyle={{ padding: 20, gap: 16 }}
           >
-            {/* My code */}
             <CodeCard
               code={myCode} onCopy={onCopy} onShare={onShare}
               copied={copied} lang={lang} t={t} f={f}
@@ -810,8 +986,6 @@ function AddFriendModal({
               loadError={loadError}
               onRetryLoad={onRetryLoad}
             />
-
-            {/* Search */}
             <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
               {L('Введите код друга', 'Введіть код друга', 'Ingresa el código del amigo')}
             </Text>
@@ -847,10 +1021,7 @@ function AddFriendModal({
                   opacity: isSearching ? 0.6 : 1,
                 }}
               >
-                {isSearching
-                  ? <ActivityIndicator size="small" color={codeInput.length === 6 ? t.correctText : t.textMuted} />
-                  : <Ionicons name="search" size={22} color={codeInput.length === 6 ? t.correctText : t.textMuted} />
-                }
+                <Ionicons name="search" size={22} color={codeInput.length === 6 ? t.correctText : t.textMuted} />
               </TouchableOpacity>
             </View>
 
@@ -888,15 +1059,15 @@ export default function FriendsTabScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const { isPremium } = usePremium();
+  const router = useRouter();
   const { goHome } = useTabNav();
   const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
 
   /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
   const [friendCodeLoadError, setFriendCodeLoadError] = useState(false);
-  const [myWeeklyXp, setMyWeeklyXp] = useState(0);
   const [myProfile, setMyProfile] = useState<{
-    name: string; avatar: string; frame: string; totalXP: number; streak: number | null;
+    name: string; avatar: string; frame: string; aura?: string; totalXP: number; streak: number | null;
   } | null>(null);
 
   const [codeInput, setCodeInput] = useState('');
@@ -929,6 +1100,10 @@ export default function FriendsTabScreen() {
 
   const [selectedPlayer, setSelectedPlayer] = useState<PlayerInfo | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<{ uid: string; name: string } | null>(null);
+  const [giftTarget, setGiftTarget] = useState<FriendProfile | null>(null);
+  const [giftBalance, setGiftBalance] = useState(0);
+  const [giftBusyId, setGiftBusyId] = useState<FriendGiftId | null>(null);
+  const [giftConfirm, setGiftConfirm] = useState<{ target: FriendProfile; giftId: FriendGiftId } | null>(null);
 
   const mountedRef = useRef(true);
   /** Был непустой список в SWR-кеше для текущего uid — блокируем пустой локальный onSnapshot Firestore. */
@@ -977,9 +1152,6 @@ export default function FriendsTabScreen() {
     });
     void syncMyInviteCode();
     void fetchMyProfile().then(p => { if (mountedRef.current && p) setMyProfile(p); });
-    void AsyncStorage.getItem('weekly_xp').then(v => {
-      if (mountedRef.current) setMyWeeklyXp(parseInt(v ?? '0') || 0);
-    });
     // После prime диск прочитан, modCache обновлён — синхронизируем ref и state.
     void startFriendsTabSwrPrime().then(() => {
       if (!mountedRef.current) return;
@@ -997,10 +1169,36 @@ export default function FriendsTabScreen() {
     return () => { mountedRef.current = false; };
   }, [syncMyInviteCode]);
 
+  const pollIncomingFriendGifts = useCallback(async () => {
+    try {
+      const gifts = await claimUnseenFriendGifts();
+      if (gifts.length === 0) return;
+      const first = gifts[0];
+      const from = first.fromName || L('друг', 'друг', 'amigo');
+      const gift = first.giftLabel || first.giftId;
+      showFeedback(
+        gifts.length === 1
+          ? L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`)
+          : L(`Новые подарки от друзей: ${gifts.length}`, `Нові подарунки від друзів: ${gifts.length}`, `Regalos nuevos de amigos: ${gifts.length}`),
+      );
+      emitAppEvent('action_toast', {
+        type: 'success',
+        messageRu: gifts.length === 1 ? `${from} подарил: ${gift}` : `Новые подарки от друзей: ${gifts.length}`,
+        messageUk: gifts.length === 1 ? `${from} подарував: ${gift}` : `Нові подарунки від друзів: ${gifts.length}`,
+        messageEs: gifts.length === 1 ? `${from} te regaló: ${gift}` : `Regalos nuevos de amigos: ${gifts.length}`,
+      });
+      void invalidateFriendsActivityCache();
+      setActiveTab('activity');
+    } catch {
+      /* ignore */
+    }
+  }, [L]);
+
   useFocusEffect(
     useCallback(() => {
       void ensureFriendRequestViewerAuthLink();
-    }, []),
+      void pollIncomingFriendGifts();
+    }, [pollIncomingFriendGifts]),
   );
 
   // ── Кеш с устройства → подписки: сначала SWR, затем live; пустой кеш Firestore не затирает SWR.
@@ -1195,17 +1393,32 @@ export default function FriendsTabScreen() {
         setSearchError(randomSelfFriendCodeMessage(L));
         return;
       }
+      if (result.source === 'referral_code') {
+        void import('../referral_bootstrap')
+          .then((m) => m.captureReferralCodeFromManualInput(codeUpper))
+          .catch(() => {});
+      }
       const fetched = await fetchFriendProfileFromFirestore(result.uid);
-      const profile: FriendProfile = fetched ?? {
-        uid: result.uid, name: 'Игрок', totalXp: 0, weeklyXp: 0, streak: 0, isPremium: false,
-        avatar: String(getBestAvatarForLevel(1)), frame: String(getBestFrameForLevel(1)),
-      };
-      setFoundUser(profile);
+      if (!fetched) {
+        await trackActivity('friends:search_result', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'blocked',
+          tags: { reason: 'profile_unavailable', targetUid: result.uid },
+        });
+        setSearchError(L(
+          'Профиль найден, но еще не синхронизирован. Откройте профиль на втором устройстве и попробуйте снова.',
+          'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
+          'Perfil encontrado, pero aun no esta sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
+        ));
+        return;
+      }
+      setFoundUser(fetched);
       await trackActivity('friends:search_result', {
         feature: 'friends',
         screen: 'friends',
         result: 'success',
-        tags: { targetUid: result.uid, profileLoaded: fetched != null },
+        tags: { targetUid: result.uid, profileLoaded: true },
       });
     } catch (e) {
       void import('../app_health')
@@ -1310,19 +1523,108 @@ export default function FriendsTabScreen() {
     setDeleteTarget({ uid, name });
   };
 
+  const openGiftPicker = (profile: FriendProfile) => {
+    hapticTap();
+    setGiftTarget(profile);
+    void getShardsBalance().then(setGiftBalance).catch(() => setGiftBalance(0));
+  };
+
+  const giftLabel = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
+    triLang(lang, { ru: gift.labelRu, uk: gift.labelUk, es: gift.labelEs });
+
+  const giftDescription = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
+    triLang(lang, { ru: gift.descRu, uk: gift.descUk, es: gift.descEs });
+
+  const handleSendGift = async (giftId: FriendGiftId) => {
+    if (!giftTarget || giftBusyId) return;
+    const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
+    if (!gift) return;
+    if (!isFriendGiftsCloudEnabled()) {
+      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronizacion en la nube'));
+      return;
+    }
+    if (giftBalance < gift.costShards) {
+      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos'));
+      return;
+    }
+    hapticTap();
+    setGiftBusyId(giftId);
+    try {
+      const target = giftTarget;
+      const res = await sendFriendGiftWithShards({
+        friendStableId: target.uid,
+        giftId,
+        senderDisplayName: myProfile?.name ?? '',
+      });
+      setGiftBalance(res.senderBalanceAfter);
+      setGiftTarget(null);
+      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado'));
+      await trackActivity('friends:send_gift', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'success',
+        tags: { giftId, targetUid: target.uid, cost: gift.costShards },
+      });
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : String(e);
+      if (msg.includes('resource-exhausted') || msg.includes('limit')) {
+        showFeedback(L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy'));
+        await trackActivity('friends:send_gift', {
+          feature: 'friends',
+          screen: 'friends',
+          result: 'error',
+          tags: { giftId, targetUid: giftTarget.uid, error: msg },
+        });
+        return;
+      }
+      showFeedback(
+        msg.includes('precondition') || msg.includes('Not enough')
+          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa')
+          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo'),
+      );
+      await trackActivity('friends:send_gift', {
+        feature: 'friends',
+        screen: 'friends',
+        result: 'error',
+        tags: { giftId, targetUid: giftTarget.uid, error: msg },
+      });
+    } finally {
+      setGiftBusyId(null);
+    }
+  };
+
+  const requestSendGift = (giftId: FriendGiftId) => {
+    if (!giftTarget || giftBusyId) return;
+    const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
+    if (!gift) return;
+    if (giftBalance < gift.costShards) {
+      const missing = gift.costShards - giftBalance;
+      setGiftTarget(null);
+      router.push({ pathname: '/shards_shop', params: { need: String(missing), source: 'friend_gift' } } as any);
+      return;
+    }
+    setGiftConfirm({ target: giftTarget, giftId });
+  };
+
   const openProfile = (profile: FriendProfile) => {
     hapticTap();
     setSelectedPlayer({
       name: profile.name,
       points: profile.totalXp,
       totalXp: profile.totalXp,
-      weekXp: profile.weeklyXp,
       isMe: false,
       uid: profile.uid,
       isPremium: profile.isPremium,
       avatar: profile.avatar,
       frame: profile.frame,
+      aura: profile.aura,
       streak: profile.streak,
+      friendUid: profile.uid,
+      leagueCrownExpiresAt: profile.leagueCrownExpiresAt,
+      profileCardLevel: profile.profileCardLevel,
+      profileCardTheme: profile.profileCardTheme,
+      profileCardMotion: profile.profileCardMotion,
+      profileCardPublicFocus: profile.profileCardPublicFocus,
     });
   };
 
@@ -1355,10 +1657,7 @@ export default function FriendsTabScreen() {
         keyboardShouldPersistTaps="handled"
         contentContainerStyle={{ paddingBottom: 32, paddingHorizontal: PX }}
       >
-
-        {/* Header */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 6, marginBottom: 14 }}>
-          {/* Back */}
           <TouchableOpacity
             accessibilityRole="button"
             accessibilityLabel={L('На главную', 'На головну', 'Inicio')}
@@ -1372,13 +1671,9 @@ export default function FriendsTabScreen() {
           >
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TouchableOpacity>
-
-          {/* Title */}
           <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5, flex: 1 }}>
             {L('Друзья', 'Друзі', 'Amigos')}
           </Text>
-
-          {/* Add friend — круглая иконка */}
           <TouchableOpacity
             testID="friends-open-add"
             onPress={() => {
@@ -1399,8 +1694,6 @@ export default function FriendsTabScreen() {
             <Ionicons name="person-add" size={18} color={t.correctText} />
           </TouchableOpacity>
         </View>
-
-        {/* Tab switcher */}
         <View style={{
           flexDirection: 'row', backgroundColor: t.bgCard,
           borderRadius: 14, padding: 3, marginBottom: 20,
@@ -1438,11 +1731,8 @@ export default function FriendsTabScreen() {
             );
           })}
         </View>
-
-        {/* ── Вкладка Друзья ── */}
         {activeTab === 'friends' && (
           <>
-            {/* Активные входящие заявки */}
             {requests.length > 0 && (
               <>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
@@ -1471,8 +1761,6 @@ export default function FriendsTabScreen() {
                 ))}
               </>
             )}
-
-            {/* Список друзей */}
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
                 {L('Список друзей', 'Список друзів', 'Lista de amigos')}
@@ -1506,18 +1794,16 @@ export default function FriendsTabScreen() {
                 <FriendRow
                   key={profile.uid}
                   profile={profile}
-                  myWeekly={myWeeklyXp}
                   rank={i + 1}
                   onPress={() => openProfile(profile)}
                   onDelete={() => handleDeleteConfirm(profile.uid, profile.name)}
+                  onGift={() => openGiftPicker(profile)}
                   lang={lang} t={t} f={f}
                 />
               ))
             )}
           </>
         )}
-
-        {/* ── Вкладка Активность ── */}
         {activeTab === 'activity' && (
           <ActivityTab
             friendUids={friendUids}
@@ -1535,8 +1821,6 @@ export default function FriendsTabScreen() {
         </View>
 
       </ScrollView>
-
-      {/* Модал добавления друга */}
       <AddFriendModal
         visible={addModalOpen}
         onClose={() => setAddModalOpen(false)}
@@ -1559,16 +1843,166 @@ export default function FriendsTabScreen() {
         lang={lang} t={t} f={f}
       />
 
+      <Modal
+        visible={giftTarget !== null}
+        transparent
+        animationType="slide"
+        onRequestClose={() => setGiftTarget(null)}
+      >
+        <View style={{ flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.58)' }}>
+          <TouchableOpacity
+            activeOpacity={1}
+            style={StyleSheet.absoluteFill}
+            onPress={() => setGiftTarget(null)}
+          />
+          <View style={{
+            backgroundColor: t.bgCard,
+            borderTopLeftRadius: 20,
+            borderTopRightRadius: 20,
+            padding: 18,
+            paddingBottom: 28,
+            gap: 12,
+            borderWidth: 0.5,
+            borderColor: t.border,
+          }}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+              {giftTarget ? (
+                <PremiumAvatarHalo enabled={giftTarget.isPremium} avatarSize={44} maskColor={t.bgCard}>
+                  <AvatarView avatar={giftTarget.avatar} totalXP={giftTarget.totalXp} size={44} auraId={getEffectiveAvatarAuraId(giftTarget.aura, giftTarget.isPremium)} />
+                </PremiumAvatarHalo>
+              ) : null}
+              <View style={{ flex: 1 }}>
+                <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
+                  {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo')}
+                </Text>
+                <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }} numberOfLines={1}>
+                  {giftTarget?.name ?? ''}
+                </Text>
+              </View>
+              <TouchableOpacity
+                testID="friend-gift-close"
+                onPress={() => setGiftTarget(null)}
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 18,
+                  backgroundColor: t.bgSurface,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name="close" size={20} color={t.textPrimary} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={{
+              alignSelf: 'flex-start',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 6,
+              paddingHorizontal: 10,
+              paddingVertical: 6,
+              borderRadius: 999,
+              backgroundColor: t.bgSurface,
+            }}>
+              <Ionicons name="diamond-outline" size={15} color={t.accent} />
+              <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
+            </View>
+
+            {FRIEND_GIFT_CATALOG.map(gift => {
+              const cannotAfford = giftBalance < gift.costShards;
+              const disabled = giftBusyId !== null;
+              return (
+                <TouchableOpacity
+                  key={gift.id}
+                  testID={`friend-gift-option-${gift.id}`}
+                  disabled={disabled}
+                  onPress={() => requestSendGift(gift.id)}
+                  activeOpacity={0.82}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 12,
+                    padding: 13,
+                    borderRadius: 14,
+                    backgroundColor: t.bgSurface,
+                    opacity: disabled ? 0.45 : cannotAfford ? 0.72 : 1,
+                    borderWidth: 0.5,
+                    borderColor: t.border,
+                  }}
+                >
+                  <View style={{
+                    width: 38,
+                    height: 38,
+                    borderRadius: 12,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    backgroundColor: t.bgCard,
+                  }}>
+                    <Ionicons name={gift.icon as any} size={21} color={t.accent} />
+                  </View>
+                  <View style={{ flex: 1, minWidth: 0 }}>
+                    <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
+                      {giftLabel(gift)}
+                    </Text>
+                    <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }} numberOfLines={2}>
+                      {giftDescription(gift)}
+                    </Text>
+                  </View>
+                  {giftBusyId === gift.id ? (
+                    <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900', minWidth: 48, textAlign: 'right' }}>
+                      {cannotAfford
+                        ? L(`+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`)
+                        : `${gift.costShards} 💎`}
+                    </Text>
+                  ) : (
+                    <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900', minWidth: 48, textAlign: 'right' }}>
+                      {cannotAfford
+                        ? L(`+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`)
+                        : `${gift.costShards} 💎`}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        </View>
+      </Modal>
+
       <UnifiedPlayerModal
         player={selectedPlayer}
         myInfo={{
           name: myProfile?.name ?? 'Я',
           avatar: myProfile?.avatar ?? String(getBestAvatarForLevel(1)),
-          frame: myProfile?.frame ?? String(getBestFrameForLevel(1)),
+          frame: myProfile?.frame ?? String(getBestFrameForLevel(1).id),
+          aura: myProfile?.aura,
           totalXP: myProfile?.totalXP ?? 0,
           streak: myProfile?.streak ?? null,
         }}
         onClose={() => setSelectedPlayer(null)}
+      />
+      <ThemedConfirmModal
+        visible={giftConfirm !== null}
+        title={L('Отправить подарок?', 'Надіслати подарунок?', '¿Enviar regalo?')}
+        message={
+          giftConfirm
+            ? L(
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} за ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} осколков`,
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} за ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} осколків`,
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} por ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} fragmentos`,
+              )
+            : ''
+        }
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
+        confirmLabel={L('Подарить', 'Подарувати', 'Regalar')}
+        confirmVariant="accent"
+        testIDPrefix="friends-gift-confirm"
+        onCancel={() => setGiftConfirm(null)}
+        onConfirm={() => {
+          const pending = giftConfirm;
+          setGiftConfirm(null);
+          if (pending) void handleSendGift(pending.giftId);
+        }}
       />
       <ThemedConfirmModal
         visible={deleteTarget !== null}

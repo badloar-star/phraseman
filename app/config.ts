@@ -70,6 +70,14 @@ export const IS_EXPO_GO = Constants.appOwnership === 'expo';
 export const IS_STORE_RELEASE = process.env.EXPO_PUBLIC_STORE_RELEASE === '1';
 
 /**
+ * Single switch for visible/internal dev tooling.
+ * Keep this tied to Metro's literal __DEV__ so buttons and routes cannot be
+ * enabled by DEV_MODE in production or preview runtimes.
+ */
+export const ENABLE_DEV_TOOLS =
+  typeof __DEV__ !== 'undefined' && __DEV__ && !IS_STORE_RELEASE;
+
+/**
  * Ставка осколками на следующий рейтинг-матч арены (очередь «Найти матч»).
  * Включено во всех сборках, включая стор.
  */

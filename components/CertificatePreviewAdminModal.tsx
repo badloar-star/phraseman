@@ -2,7 +2,6 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   Modal,
-  Platform,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -149,6 +148,9 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
   const handleShare = async () => {
     hapticTap();
     const msg = buildCertificateShareMessage(cert.lang, cert.name, cert.pct, STORE_URL);
+    await new Promise<void>((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+    });
     await shareCardFromSvgRef(certificateSvgRef, {
       fileNamePrefix: `phraseman-certificate-${cert.certId}`,
       textFallback: msg,
@@ -233,7 +235,6 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="fullScreen" onRequestClose={onClose}>
       <SafeAreaView style={{ flex: 1, backgroundColor: t.bgPrimary }}>
-        {/* Hidden 1080×1080 for share-export */}
         <View
           pointerEvents="none"
           collapsable={false}
@@ -251,7 +252,6 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
             layoutWidth={1500}
           />
         </View>
-
         <View style={[styles.header, { borderBottomColor: t.border }]}>
           <TouchableOpacity onPress={onClose} hitSlop={10}>
             <Ionicons name="close" size={28} color={t.textPrimary} />
@@ -349,7 +349,7 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
           <ActionButton icon="eye-outline" label="Показать экран после экзамена"
             sub="Что юзер видит: «Экзамен завершён», темы, карточка сертификата + модалка ввода имени"
             onPress={() => { hapticTap(); setResultPreviewVisible(true); }} t={t} f={f} />
-          <ActionButton icon="share-outline" label="Поделиться этим превью (PNG 1080×1080)"
+          <ActionButton icon="share-outline" label="Поделиться текстом"
             onPress={handleShare} t={t} f={f} primary />
           <ActionButton icon="save-outline" label="Сохранить в AsyncStorage как мой сертификат"
             sub="Сразу появится на /exam при следующем заходе"
@@ -361,11 +361,6 @@ export default function CertificatePreviewAdminModal({ visible, onClose }: Props
             sub="Юзер снова попадёт на intro экзамена"
             onPress={handleClear} t={t} f={f} danger />
 
-          {Platform.OS === 'web' && (
-            <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 14, textAlign: 'center' }}>
-              На web SVG → PNG может не работать; используй native dev-build для проверки шеринга.
-            </Text>
-          )}
         </ScrollView>
       </SafeAreaView>
 

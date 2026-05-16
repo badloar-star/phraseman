@@ -59,6 +59,15 @@ function parseShardBalance(data: admin.firestore.DocumentData | undefined): numb
   return Math.floor(n);
 }
 
+function shardLedgerMeta(reason: string, updatedAtMs: number) {
+  return {
+    shards_updated_at_ms: updatedAtMs,
+    shards_updated_op: 'earn',
+    shards_updated_reason: reason,
+    updatedAt: updatedAtMs,
+  };
+}
+
 function randomCode(): string {
   let s = '';
   for (let i = 0; i < CODE_LEN; i += 1) {
@@ -70,6 +79,99 @@ function randomCode(): string {
 function yyyymmNow(): string {
   const d = new Date();
   return `${d.getUTCFullYear()}-${String(d.getUTCMonth() + 1).padStart(2, '0')}`;
+}
+
+async function grantReferralRewardIfQualified(
+  db: admin.firestore.Firestore,
+  userId: string,
+): Promise<void> {
+  const attRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(userId);
+  const attSnap = await attRef.get();
+  if (!attSnap.exists) return;
+  const att0 = attSnap.data() as { status?: string; referrerStableId?: string };
+  if (att0?.status && att0.status !== 'pending') return;
+  const referrerId = String(att0.referrerStableId ?? '').trim();
+  if (!referrerId) return;
+
+  const ym = yyyymmNow();
+  const uref = (uid: string) => db.collection(USERS).doc(uid);
+
+  await db.runTransaction(async (tx) => {
+    const attR = await tx.get(attRef);
+    const refUserSnap = await tx.get(uref(referrerId));
+    const refeeSnap = await tx.get(uref(userId));
+    if (!attR.exists) return;
+    if (!hasLesson1DoneProgress(refeeSnap.data())) return;
+    const row = attR.data() as { status?: string };
+    if (row?.status && row.status !== 'pending') return;
+
+    const refData = refUserSnap.data() ?? {};
+    const monthly = (refData.referral_bonuses_monthly as Record<string, number> | undefined) ?? {};
+    const used = Math.max(0, Math.floor(Number(monthly[ym] ?? 0)));
+    let refererDelta = REFERRER_SHARD_BONUS;
+    let outStatus: AttributionStatus = 'rewarded';
+    if (used >= MAX_REFERRER_BONUSES_PER_MONTH) {
+      refererDelta = 0;
+      outStatus = 'skipped_referrer_cap';
+    }
+
+    const refeeBal = parseShardBalance(refeeSnap.data());
+    const nextRefee = refeeBal + REFEREE_SHARD_BONUS;
+    const nowMs = Date.now();
+    const nowIso = new Date(nowMs).toISOString();
+    tx.set(
+      uref(userId),
+      {
+        shards: nextRefee,
+        ...shardLedgerMeta('referral_referee_l1', nowMs),
+      },
+      { merge: true },
+    );
+    const refeeLog = uref(userId).collection('shard_log').doc();
+    tx.set(refeeLog, {
+      type: 'earn',
+      amount: REFEREE_SHARD_BONUS,
+      reason: 'referral_referee_l1',
+      balanceBefore: refeeBal,
+      balanceAfter: nextRefee,
+      ts: nowIso,
+    });
+
+    if (refererDelta > 0) {
+      const refBal = parseShardBalance(refUserSnap.data());
+      const nextRef = refBal + refererDelta;
+      tx.set(
+        uref(referrerId),
+        {
+          shards: nextRef,
+          ...shardLedgerMeta('referral_referrer_l1', nowMs),
+          referral_bonuses_monthly: { ...monthly, [ym]: used + 1 },
+        },
+        { merge: true },
+      );
+      const refLog = uref(referrerId).collection('shard_log').doc();
+      tx.set(refLog, {
+        type: 'earn',
+        amount: refererDelta,
+        reason: 'referral_referrer_l1',
+        balanceBefore: refBal,
+        balanceAfter: nextRef,
+        ts: nowIso,
+      });
+    }
+
+    tx.set(
+      attRef,
+      {
+        status: outStatus,
+        rewardedAt: admin.firestore.FieldValue.serverTimestamp(),
+        referrerShardBonus: refererDelta,
+        refereeShardBonus: REFEREE_SHARD_BONUS,
+        qualifiedBy: 'unlocked_lesson_2',
+      },
+      { merge: true },
+    );
+  });
 }
 
 async function assertAuthStableLink(
@@ -169,7 +271,7 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
   const attRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(refereeStableId);
   const userRef = db.collection(USERS).doc(refereeStableId);
 
-  return db.runTransaction(async (tx) => {
+  const result = await db.runTransaction(async (tx) => {
     const att0 = await tx.get(attRef);
     if (att0.exists) {
       const d = att0.data() as { refCode?: string; referrerStableId?: string; status?: string } | undefined;
@@ -214,6 +316,12 @@ export const referralApply = onCall(CALLABLE_BASE, async (request) => {
     });
     return { ok: true, already: false, referrerStableId: ownerStableId, refCode };
   });
+  if (result?.ok) {
+    await grantReferralRewardIfQualified(db, refereeStableId).catch((e) => {
+      console.warn('[referral] reward after apply failed', e);
+    });
+  }
+  return result;
 });
 
 /**
@@ -235,85 +343,6 @@ export const referralOnUserProgressUpdated = functions.firestore.onDocumentWritt
     if (!hasLesson1DoneProgress(after)) return;
 
     const db = admin.firestore();
-    const attRef = db.collection(REFERRAL_ATTRIBUTIONS).doc(userId);
-    const attSnap = await attRef.get();
-    if (!attSnap.exists) return;
-    const att0 = attSnap.data() as { status?: string; referrerStableId?: string };
-    if (att0?.status && att0.status !== 'pending') return;
-    const referrerId = String(att0.referrerStableId ?? '').trim();
-    if (!referrerId) return;
-
-    const ym = yyyymmNow();
-    const uref = (uid: string) => db.collection(USERS).doc(uid);
-
-    await db.runTransaction(async (tx) => {
-      const attR = await tx.get(attRef);
-      const refUserSnap = await tx.get(uref(referrerId));
-      const refeeSnap = await tx.get(uref(userId));
-      if (!attR.exists) return;
-      if (!hasLesson1DoneProgress(refeeSnap.data())) return;
-      const row = attR.data() as { status?: string };
-      if (row?.status && row?.status !== 'pending') return;
-
-      const refData = refUserSnap.data() ?? {};
-      const monthly = (refData.referral_bonuses_monthly as Record<string, number> | undefined) ?? {};
-      const used = Math.max(0, Math.floor(Number(monthly[ym] ?? 0)));
-      let refererDelta = REFERRER_SHARD_BONUS;
-      let outStatus: AttributionStatus = 'rewarded';
-      if (used >= MAX_REFERRER_BONUSES_PER_MONTH) {
-        refererDelta = 0;
-        outStatus = 'skipped_referrer_cap';
-      }
-
-      const refeeBal = parseShardBalance(refeeSnap.data());
-      const nextRefee = refeeBal + REFEREE_SHARD_BONUS;
-      tx.set(
-        uref(userId),
-        { shards: nextRefee, updatedAt: admin.firestore.FieldValue.serverTimestamp() },
-        { merge: true },
-      );
-      const refeeLog = uref(userId).collection('shard_log').doc();
-      tx.set(refeeLog, {
-        type: 'earn',
-        amount: REFEREE_SHARD_BONUS,
-        reason: 'referral_referee_l1',
-        balanceAfter: nextRefee,
-        ts: new Date().toISOString(),
-      });
-
-      if (refererDelta > 0) {
-        const refBal = parseShardBalance(refUserSnap.data());
-        const nextRef = refBal + refererDelta;
-        tx.set(
-          uref(referrerId),
-          {
-            shards: nextRef,
-            referral_bonuses_monthly: { ...monthly, [ym]: used + 1 },
-            updatedAt: admin.firestore.FieldValue.serverTimestamp(),
-          },
-          { merge: true },
-        );
-        const refLog = uref(referrerId).collection('shard_log').doc();
-        tx.set(refLog, {
-          type: 'earn',
-          amount: refererDelta,
-          reason: 'referral_referrer_l1',
-          balanceAfter: nextRef,
-          ts: new Date().toISOString(),
-        });
-      }
-
-      tx.set(
-        attRef,
-        {
-          status: outStatus,
-          rewardedAt: admin.firestore.FieldValue.serverTimestamp(),
-          referrerShardBonus: refererDelta,
-          refereeShardBonus: REFEREE_SHARD_BONUS,
-          qualifiedBy: 'unlocked_lesson_2',
-        },
-        { merge: true },
-      );
-    });
+    await grantReferralRewardIfQualified(db, userId);
   },
 );

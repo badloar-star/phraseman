@@ -37,7 +37,7 @@ NOUN_REPLACE: dict[str, tuple[str, str, str, str]] = {
     "mondays": ("Monday", "Понедельник", "Понеділок", "lunes"),
     "saturdays": ("Saturday", "Суббота", "Субота", "sábado"),
     "sundays": ("Sunday", "Воскресенье", "Неділя", "domingo"),
-    "thursdays": ("Thursday", "Четвер", "Четвер", "jueves"),
+    "thursdays": ("Thursday", "Четверг", "Четвер", "jueves"),
     "tuesdays": ("Tuesday", "Вторник", "Вівторок", "martes"),
     "wednesdays": ("Wednesday", "Среда", "Середа", "miércoles"),
     "weekends": ("weekend", "Выходной (день)", "Вихідний", "fin de semana"),

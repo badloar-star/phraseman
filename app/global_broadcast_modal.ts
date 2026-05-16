@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Platform } from 'react-native';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { getCanonicalUserId } from './user_id_policy';
 import { addShardsRaw, loadShardsFromCloud } from './shards_system';
@@ -10,10 +11,16 @@ import { WAGER_DISCOUNT_KEY } from './level_gift_system';
 
 const COLLECTION = 'global_broadcast_modals';
 
+export type GlobalBroadcastKind = 'general' | 'review_promo';
+export type GlobalBroadcastPremiumAudience = 'all' | 'free' | 'premium';
+
 export interface GlobalBroadcastModalPayload {
   id: string;
+  kind: GlobalBroadcastKind;
+  premiumAudience: GlobalBroadcastPremiumAudience;
   rewardType: GlobalBroadcastRewardType;
   rewardAmount: number;
+  premiumRewardDays: number;
   titleRu: string;
   titleUk: string;
   /** Испанский заголовок; при отсутствии в данных подставляется titleRu */
@@ -21,6 +28,11 @@ export interface GlobalBroadcastModalPayload {
   messageRu: string;
   messageUk: string;
   messageEs: string;
+  reviewUrlIos: string;
+  reviewUrlAndroid: string;
+  reviewCtaRu: string;
+  reviewCtaUk: string;
+  reviewCtaEs: string;
   createdAt: string;
 }
 
@@ -63,6 +75,15 @@ function normalizeRewardType(value: unknown): GlobalBroadcastRewardType {
   return allowed.includes(raw) ? raw : 'none';
 }
 
+function normalizeKind(value: unknown): GlobalBroadcastKind {
+  return String(value ?? '').trim() === 'review_promo' ? 'review_promo' : 'general';
+}
+
+function normalizePremiumAudience(value: unknown): GlobalBroadcastPremiumAudience {
+  const raw = String(value ?? '').trim();
+  return raw === 'free' || raw === 'premium' ? raw : 'all';
+}
+
 function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroadcastModalPayload {
   const titleRu = String(data.titleRu ?? '').trim() || 'Сообщение от команды';
   const titleUk = String(data.titleUk ?? '').trim() || titleRu;
@@ -74,16 +95,25 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
   const legacyShards = toSafePositiveInt(data.shards, 0);
   const rewardAmount = toSafePositiveInt(data.rewardAmount, legacyShards);
   const resolvedRewardType: GlobalBroadcastRewardType = rewardType === 'none' && rewardAmount > 0 ? 'shards' : rewardType;
+  const kind = normalizeKind(data.kind);
   return {
     id,
+    kind,
+    premiumAudience: normalizePremiumAudience(data.premiumAudience ?? (data.audience as any)?.premium),
     rewardType: resolvedRewardType,
     rewardAmount,
+    premiumRewardDays: toSafePositiveInt(data.premiumRewardDays, 90),
     titleRu,
     titleUk,
     titleEs,
     messageRu,
     messageUk,
     messageEs,
+    reviewUrlIos: String(data.reviewUrlIos ?? '').trim(),
+    reviewUrlAndroid: String(data.reviewUrlAndroid ?? '').trim(),
+    reviewCtaRu: String(data.reviewCtaRu ?? '').trim() || 'Оценить приложение',
+    reviewCtaUk: String(data.reviewCtaUk ?? '').trim() || 'Оцінити застосунок',
+    reviewCtaEs: String(data.reviewCtaEs ?? '').trim() || 'Valorar la app',
     createdAt: String(data.createdAt ?? ''),
   };
 }
@@ -178,6 +208,23 @@ function pickLatest(activeDocs: Array<{ id: string; data: Record<string, unknown
   return normalizePayload(top.id, top.data);
 }
 
+function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): boolean {
+  const text = [
+    payload.id,
+    payload.titleRu,
+    payload.titleUk,
+    payload.titleEs,
+    payload.messageRu,
+    payload.messageUk,
+    payload.messageEs,
+  ].join(' ').toLowerCase();
+  const mentionsLeague = text.includes('\u043b\u0438\u0433') || text.includes('league');
+  const mentionsSystemUpdate = text.includes('\u0441\u0438\u0441\u0442\u0435\u043c') || text.includes('system');
+  const mentionsCompensation = text.includes('\u043a\u043e\u043c\u043f\u0435\u043d\u0441') || text.includes('compens');
+  const isShardCompensation = payload.rewardType === 'shards' && payload.rewardAmount === 30;
+  return mentionsLeague && (mentionsSystemUpdate || mentionsCompensation || isShardCompensation);
+}
+
 export async function fetchPendingGlobalBroadcastModal(): Promise<GlobalBroadcastModalPayload | null> {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   const uid = await getCanonicalUserId().catch(() => null);
@@ -195,6 +242,21 @@ export async function fetchPendingGlobalBroadcastModal(): Promise<GlobalBroadcas
     }));
     const payload = pickLatest(activeDocs);
     if (!payload) return null;
+    if (isRetiredLeagueSystemBroadcast(payload)) {
+      await AsyncStorage.setItem(dismissKey(payload.id), '1').catch(() => {});
+      return null;
+    }
+
+    if (payload.premiumAudience !== 'all') {
+      const userSnap = await db.collection('users').doc(uid).get();
+      const progress = userSnap.data()?.progress ?? {};
+      const plan = String(progress.premium_plan ?? '').trim().toLowerCase();
+      const expiry = toSafePositiveInt(progress.premium_expiry, 0);
+      const hasPlan = !!plan && plan !== 'null';
+      const isPremium = hasPlan && !(expiry > 0 && expiry < Date.now());
+      if (payload.premiumAudience === 'free' && isPremium) return null;
+      if (payload.premiumAudience === 'premium' && !isPremium) return null;
+    }
 
     const dismissed = await AsyncStorage.getItem(dismissKey(payload.id));
     if (dismissed === '1') return null;
@@ -209,6 +271,32 @@ export async function fetchPendingGlobalBroadcastModal(): Promise<GlobalBroadcas
     return payload;
   } catch {
     return null;
+  }
+}
+
+export function getReviewPromoUrl(payload: GlobalBroadcastModalPayload): string {
+  if (Platform.OS === 'ios') return payload.reviewUrlIos || payload.reviewUrlAndroid;
+  return payload.reviewUrlAndroid || payload.reviewUrlIos;
+}
+
+export async function recordReviewPromoClick(payload: GlobalBroadcastModalPayload): Promise<void> {
+  if (!payload?.id || payload.kind !== 'review_promo') return;
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
+  const uid = await getCanonicalUserId().catch(() => null);
+  if (!uid) return;
+
+  try {
+    const firestoreModule = await import('@react-native-firebase/firestore');
+    const db = firestoreModule.default();
+    await db.collection('review_promo_claims').add({
+      uid,
+      broadcastId: payload.id,
+      platform: Platform.OS,
+      clickedAt: new Date().toISOString(),
+      status: 'clicked',
+    });
+  } catch {
+    // Best-effort analytics; never block the user from opening the store.
   }
 }
 

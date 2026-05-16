@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 import { getVerifiedPremiumStatus } from './premium_guard';
+import { readLeagueChestEnergyOverrideMs } from './services/league_chest_rewards';
 
 export interface EnergyState {
   current: number;
@@ -9,8 +10,24 @@ export interface EnergyState {
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 const MAX_ENERGY = 5;
-const RECOVERY_INTERVAL_MS = 10 * 60 * 1000; // 10 минут в миллисекундах
 const ENERGY_PER_LESSON = 1;
+export const ENERGY_RECOVERY_INTERVAL_MS = 10 * 60 * 1000;
+
+// Время восстановления 1 единицы энергии фиксированное:
+// цепочка дней влияет на XP, но не ускоряет энергию.
+export function getRecoveryIntervalMs(_streakDays: number = 0): number {
+  return ENERGY_RECOVERY_INTERVAL_MS;
+}
+
+async function getCurrentRecoveryIntervalMs(): Promise<number> {
+  try {
+    const leagueChestMs = await readLeagueChestEnergyOverrideMs();
+    if (leagueChestMs) return leagueChestMs;
+    return getRecoveryIntervalMs();
+  } catch {
+    return ENERGY_RECOVERY_INTERVAL_MS;
+  }
+}
 
 const DEFAULT_STATE: EnergyState = {
   current: MAX_ENERGY,
@@ -43,25 +60,24 @@ export async function getEnergyState(): Promise<EnergyState> {
 
 /**
  * Проверить и применить восстановление энергии (автоматически).
- * Восстанавливает +1 энергию каждые 2 часа до максимума.
+ * Скорость восстановления фиксированная; цепочка дней не влияет на энергию.
  * Возвращает обновленное состояние.
  */
 export async function checkAndRecover(): Promise<EnergyState> {
   try {
     let state = await getEnergyState();
     const now = Date.now();
+    const recoveryIntervalMs = await getCurrentRecoveryIntervalMs();
     const timeSinceLastRecovery = now - state.lastRecoveryTime;
 
-    // Проверяем, прошло ли достаточно времени для восстановления
-    if (timeSinceLastRecovery >= RECOVERY_INTERVAL_MS) {
-      // Вычисляем, сколько полных периодов восстановления прошло
-      const recoveryCount = Math.floor(timeSinceLastRecovery / RECOVERY_INTERVAL_MS);
+    if (timeSinceLastRecovery >= recoveryIntervalMs) {
+      const recoveryCount = Math.floor(timeSinceLastRecovery / recoveryIntervalMs);
       const newCurrent = Math.min(state.current + recoveryCount, MAX_ENERGY);
 
       state = {
         ...state,
         current: newCurrent,
-        lastRecoveryTime: now,
+        lastRecoveryTime: state.lastRecoveryTime + recoveryCount * recoveryIntervalMs,
       };
 
       await AsyncStorage.setItem(ENERGY_STORAGE_KEY, JSON.stringify(state));
@@ -157,18 +173,17 @@ export async function resetEnergyToMax(): Promise<EnergyState> {
  */
 export async function getTimeUntilNextRecovery(): Promise<number> {
   try {
-    // checkAndRecover нужен чтобы применить прошедшие периоды восстановления
-    // и получить корректный lastRecoveryTime для расчёта таймера
-    const state = await checkAndRecover();
+    const [state, recoveryIntervalMs] = await Promise.all([
+      checkAndRecover(),
+      getCurrentRecoveryIntervalMs(),
+    ]);
 
     if (state.current >= MAX_ENERGY) {
       return 0;
     }
 
     const timeSinceLastRecovery = Date.now() - state.lastRecoveryTime;
-    const timeUntilNextRecovery = RECOVERY_INTERVAL_MS - timeSinceLastRecovery;
-
-    return Math.max(0, timeUntilNextRecovery);
+    return Math.max(0, recoveryIntervalMs - timeSinceLastRecovery);
   } catch (error) {
     DebugLogger.error('energy_system.ts:getTimeUntilNextRecovery', error, 'warning');
     return 0;

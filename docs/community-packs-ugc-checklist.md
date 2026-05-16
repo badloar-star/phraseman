@@ -47,7 +47,6 @@
 - [x] **Submit for review**: callable `communitySubmitPackForReview` — создаёт документ в `community_pack_submissions` со статусом `pending`.
 - [x] **Approve / Reject**: callable `communityModerateSubmission` — `token.admin`, approve публикует в `community_packs` (id набора = id submission), reject с причиной.
 - [x] **Purchase pack**: callable `communityPurchasePack` — транзакция: списание у покупателя, начисление автору (комиссия `PLATFORM_FEE_BPS`), покупка, inbox, `salesCount`. **Без фиата.**
-- [ ] **Rate pack**: проверка «купил», одна оценка на покупателя, пересчёт агрегатов (`ratingAvg` / `ratingCount`).
 - [x] **Inbox (read)**: callable `communityListSellerInbox` — список непрочитанных событий для автора.
 - [x] **Inbox (mark seen)**: callable `communityMarkSellerInboxSeen` — после показа модалки.
 - [ ] (Опционально позже) Антиспам: лимиты создания наборов в сутки с одного `stableId`.

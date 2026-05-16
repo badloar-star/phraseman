@@ -25,8 +25,7 @@ export default function ThemedChoiceModal({
   onRequestClose,
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
-  const dim =
-    themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.60)';
+  const dim = 'rgba(0,0,0,0.60)';
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={onRequestClose}>

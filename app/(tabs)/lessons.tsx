@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import { useRouter } from 'expo-router';
 import { usePremium } from '../../components/PremiumContext';
+import { lessonPaywallContext, requiresPremiumForLesson, resolveLessonAccess } from '../monetization_policy';
 import { useTabNav } from '../TabContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,6 +22,12 @@ import ReportErrorButton from '../../components/ReportErrorButton';
 import ThemedChoiceModal from '../../components/ThemedChoiceModal';
 import { effectiveLessonStarScore } from '../lesson_star_score';
 import EnergyBar from '../../components/EnergyBar';
+import {
+  getCourseLevelForLesson,
+  getCourseLevelIndex,
+  getPreviousCourseLevel,
+  type CourseLevel,
+} from '../course_levels';
 
 /** Снимок UI списку уроків: survives remount між сесіями таба (див. `_layout.tsx` lazy tabs). */
 type LessonsUiCache = {
@@ -30,7 +37,6 @@ type LessonsUiCache = {
   examBestPcts: Record<string, number>;
   examPassCounts: Record<string, number>;
   examResults: Record<string, { pct: number; passed: boolean }>;
-  placementLevel: string;
   persistedUnlocked: number[];
   noLimits: boolean;
 };
@@ -40,9 +46,10 @@ let lessonsUiSessionCache: LessonsUiCache | null = null;
 /**
  * Единый стиль карточек списка уроков (как «Туман» / «Графит»).
  * Объявлено на уровне модуля (не внутри компонента): имя начинается с `use` — внутри функции
- * Metro/Hermes + Fast Refresh иногда дают «Property 'useSketchLessonVisual' doesn't exist».
+ * Metro/Hermes + Fast Refresh иногда дают «Property 'useSketchLessonVisual' doesn\'t exist».
  */
 export const useSketchLessonVisual = true;
+const USE_ELITE_LESSONS_MAP = true;
 
 // ── Список уроков: один стиль «Туман / Графит» (мягкие заливки + чернила) во всех темах приложения ──
 const PALETTE_SKETCH: Record<string, string> = {
@@ -131,9 +138,7 @@ export default function LessonsTab() {
   const router          = useRouter();
   const { goHome }      = useTabNav();
   const { theme: t, f, themeMode } = useTheme();
-  const screenTitleColor = (themeMode === 'sakura' || themeMode === 'ocean')
-    ? (themeMode === 'ocean' ? 'rgba(240,252,255,0.95)' : 'rgba(255,248,252,0.95)')
-    : t.textPrimary;
+  const screenTitleColor = t.textPrimary;
   const { lang, s }        = useLang();
   const { height: SCREEN_H } = useWindowDimensions();
   const VIEWPORT_H = SCREEN_H - 90; // approx tab bar + status bar
@@ -146,7 +151,6 @@ export default function LessonsTab() {
   const [passCounts,     setPassCounts]     = useState<number[]>(() => boot?.passCounts ?? new Array(32).fill(0));
   const [examBestPcts,   setExamBestPcts]   = useState<Record<string, number>>(() => boot?.examBestPcts ?? {});
   const [examPassCounts, setExamPassCounts] = useState<Record<string, number>>(() => boot?.examPassCounts ?? {});
-  const [placementLevel, setPlacementLevel] = useState<string>(() => boot?.placementLevel ?? 'A1');
   // persistedUnlocked — это список уроков, ранее открытых через unlockLesson()
   // (после прохождения предыдущего на ★2.5+, покупки премиума, сдачи зачёта).
   // Используется как safety-net, чтобы юзер после restore из облака или просто
@@ -163,7 +167,8 @@ export default function LessonsTab() {
     | null
     | { kind: 'exam'; level: string }
     | { kind: 'lesson'; prevNum: number }
-    | { kind: 'levelGate'; prevLevel: string }
+    | { kind: 'levelGate'; level: string; prevLevel: string }
+    | { kind: 'premium'; lessonNum: number }
   >(null);
 
   const mountedRef = useRef(true);
@@ -180,9 +185,8 @@ export default function LessonsTab() {
 
   const loadScores = useCallback(async () => {
     try {
-      const [noLimitsRaw, plRaw, unlockedRaw] = await Promise.all([
+      const [noLimitsRaw, unlockedRaw] = await Promise.all([
         AsyncStorage.getItem('tester_no_limits'),
-        AsyncStorage.getItem('placement_level'),
         AsyncStorage.getItem('unlocked_lessons'),
       ]);
       const nextNoLimits = noLimitsRaw === 'true';
@@ -240,7 +244,6 @@ export default function LessonsTab() {
       });
       if (!mountedRef.current) return;
       setNoLimits(nextNoLimits);
-      if (plRaw) setPlacementLevel(plRaw);
       setPersistedUnlocked(nextPersisted);
       setScores(nextScores);
       setProgCounts(nextProg);
@@ -248,7 +251,6 @@ export default function LessonsTab() {
       setExamResults(nextExamResults);
       setExamBestPcts(nextBest);
       setExamPassCounts(nextExamPass);
-      const placementForCache = plRaw ?? lessonsUiSessionCache?.placementLevel ?? 'A1';
       lessonsUiSessionCache = {
         scores: nextScores,
         progCounts: nextProg,
@@ -256,7 +258,6 @@ export default function LessonsTab() {
         examBestPcts: nextBest,
         examPassCounts: nextExamPass,
         examResults: nextExamResults,
-        placementLevel: placementForCache,
         persistedUnlocked: nextPersisted,
         noLimits: nextNoLimits,
       };
@@ -276,38 +277,40 @@ export default function LessonsTab() {
 
   const lessons = lessonNamesForLang(lang);
 
-  const unlockedLessons = useMemo(() => {
-    if (DEV_MODE || noLimits) return new Array(32).fill(true);
-    // Placement test pre-unlocks: A2→lessons 1-8, B1→1-18, B2→1-28
-    const PLACEMENT_UNLOCK: Record<string, number> = { A1: 0, A2: 8, B1: 18, B2: 28 };
-    const preUnlock = PLACEMENT_UNLOCK[placementLevel] ?? 0;
-    const u = new Array(32).fill(false);
-    // Pre-unlock lessons based on placement result
-    for (let i = 0; i < preUnlock; i++) u[i] = true;
-    if (u.length > 0) u[0] = true; // lesson 1 always unlocked
-    for (let i = Math.max(1, preUnlock); i < 32; i++) {
-      const num = i + 1;
-      // Пограничные уроки (первые в новом уровне) открываются ТОЛЬКО через
-      // unlockLesson из level_exam.tsx (после сдачи зачёта) или premium_modal.tsx
-      // (для урока 19 — после покупки премиума, без зачёта A2).
-      // Цепочка ★2.5 здесь НЕ применяется — иначе можно было бы перейти на
-      // следующий уровень без сдачи экзамена. См. правило в lesson_lock_system.ts.
-      if (num === 9 || num === 19 || num === 29) {
-        // Урок 19: премиум = доступ к B1 без записи в unlocked_lessons (облако/старые билды).
-        u[i] = (num === 19 && isPremium) || persistedUnlocked.includes(num);
-      } else {
-        // persistedUnlocked — safety-net: уважаем уже открытые уроки даже если
-        // scores[i-1] < 2.5 после restore из облака без lesson{N}_progress
-        // (он не в SYNC_KEYS). См. repairLessonUnlocksAfterRestore().
-        u[i] = (u[i - 1] && scores[i - 1] >= 2.5) || persistedUnlocked.includes(num);
+  const premiumReachableLevelIndex = useMemo(() => {
+    let idx = getCourseLevelIndex('A1');
+    if (examResults.A1?.passed) idx = Math.max(idx, getCourseLevelIndex('A2'));
+    if (examResults.A2?.passed) idx = Math.max(idx, getCourseLevelIndex('B1'));
+    if (examResults.B1?.passed || examResults.B2?.passed) idx = Math.max(idx, getCourseLevelIndex('B2'));
+
+    for (let i = 0; i < 32; i++) {
+      const lessonNum = i + 1;
+      if ((scores[i] ?? 0) > 0 || (progCounts[i] ?? 0) > 0 || (passCounts[i] ?? 0) > 0) {
+        idx = Math.max(idx, getCourseLevelIndex(getCourseLevelForLesson(lessonNum)));
       }
     }
-    // B1 (lessons 19-28) and B2 (lessons 29-32) require premium
-    if (!isPremium && !DEV_MODE) {
-      for (let i = 18; i < 32; i++) u[i] = false;
+    for (const lessonNum of persistedUnlocked) {
+      idx = Math.max(idx, getCourseLevelIndex(getCourseLevelForLesson(lessonNum)));
     }
+    return idx;
+  }, [examResults, passCounts, persistedUnlocked, progCounts, scores]);
+
+  const unlockedLessons = useMemo(() => {
+    if (DEV_MODE || noLimits) return new Array(32).fill(true);
+    const u = new Array(32).fill(false);
+
+    if (isPremium) {
+      for (let i = 0; i < 32; i++) {
+        const levelIdx = getCourseLevelIndex(getCourseLevelForLesson(i + 1));
+        u[i] = levelIdx <= premiumReachableLevelIndex;
+      }
+      return u;
+    }
+
+    // Free sample: lessons 1-3 are available, everything after that is a Premium gate.
+    for (let i = 0; i < Math.min(3, u.length); i++) u[i] = true;
     return u;
-  }, [scores, placementLevel, noLimits, isPremium, persistedUnlocked]);
+  }, [noLimits, isPremium, premiumReachableLevelIndex]);
 
   type ListItem =
     | { kind: 'header'; label: string; color: string }
@@ -334,6 +337,11 @@ export default function LessonsTab() {
     });
     return data;
   }, [lessons]);
+
+  const currentLessonNum = useMemo(() => {
+    const idx = unlockedLessons.findIndex((unlocked, i) => unlocked && (progCounts[i] ?? 0) < 50);
+    return idx >= 0 ? idx + 1 : null;
+  }, [progCounts, unlockedLessons]);
 
   // ── Per-item scale animations based on scroll position ───────────────────
   const itemAnims = useMemo(() => {
@@ -404,7 +412,30 @@ export default function LessonsTab() {
 
           // ── CEFR divider ─────────────────────────────────────────────
           if (item.kind === 'header') {
-            const isPremiumLevel = (item.label === 'B1' || item.label === 'B2') && !isPremium && !DEV_MODE;
+            const isPremiumLevel = !isPremium && !DEV_MODE && item.label !== 'A1';
+            if (USE_ELITE_LESSONS_MAP) {
+              return (
+                <View key={`h-${item.label}`} style={{ paddingHorizontal: 18, paddingTop: 18, paddingBottom: 7 }}>
+                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+                    <View style={{ width: 34, height: 34, borderRadius: 17, alignItems: 'center', justifyContent: 'center', backgroundColor: item.color + '33', borderWidth: 1.5, borderColor: item.color }}>
+                      <Text style={{ color: item.color, fontSize: f.label, fontWeight: '900', letterSpacing: 0.8 }}>
+                        {item.label}
+                      </Text>
+                    </View>
+                    <View style={{ flex: 1, minWidth: 0 }}>
+                      <Text style={{ color: screenTitleColor, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
+                        {triLang(lang, {
+                          ru: `Глава ${item.label}`,
+                          uk: `Глава ${item.label}`,
+                          es: `Capítulo ${item.label}`,
+                        })}
+                      </Text>
+                    </View>
+                    {isPremiumLevel && <Ionicons name="lock-closed" size={14} color={item.color} style={{ opacity: 0.75 }} />}
+                  </View>
+                </View>
+              );
+            }
             return (
               <View key={`h-${item.label}`} style={{ paddingLeft: 22, paddingTop: 14, paddingBottom: 4, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <View style={{ width: 3, height: 16, borderRadius: 2, backgroundColor: item.color }} />
@@ -424,7 +455,13 @@ export default function LessonsTab() {
             const { level: lvl } = item;
             const meta = EXAM_META_SKETCH[lvl];
             const [from, to] = lvl === 'A1' ? [1,8] : lvl === 'A2' ? [9,18] : lvl === 'B1' ? [19,28] : [29,32];
-            const allDone  = DEV_MODE || noLimits || scores.slice(from - 1, to).every(s => s >= 4.5);
+            const scoreReady = scores.slice(from - 1, to).every(s => s >= 4.5);
+            const examLevel = lvl as CourseLevel;
+            const examLevelIdx = getCourseLevelIndex(examLevel);
+            const premiumExamAvailable = isPremium && examLevelIdx <= premiumReachableLevelIndex;
+            const examPremiumRequired = !isPremium && !DEV_MODE && !noLimits && requiresPremiumForLesson(to);
+            const allDone  = !examPremiumRequired && (DEV_MODE || noLimits || premiumExamAvailable || scoreReady);
+            const prevExamLevel = getPreviousCourseLevel(examLevel);
             const result   = examResults[lvl];
             const isB2     = lvl === 'B2';
             const examMedal = getExamMedalTier(examBestPcts[lvl] ?? 0);
@@ -455,6 +492,18 @@ export default function LessonsTab() {
                     : lang === 'es'
                       ? 'Toca para empezar'
                       : 'Нажми чтобы начать')
+                : examPremiumRequired
+                  ? triLang(lang, {
+                      ru: 'Откроется с Premium',
+                      uk: 'Відкриється з Premium',
+                      es: 'Se abre con Premium',
+                    })
+                : isPremium && prevExamLevel
+                  ? (lang === 'uk'
+                      ? `Спочатку залік ${prevExamLevel}`
+                      : lang === 'es'
+                        ? `Primero el examen ${prevExamLevel}`
+                        : `Сначала зачёт ${prevExamLevel}`)
                 : (lang === 'uk'
                     ? `Завершіть усі уроки ${lvl} на 4.5+`
                     : lang === 'es'
@@ -467,11 +516,13 @@ export default function LessonsTab() {
                   activeOpacity={0.82}
                   onPress={() => {
                     hapticTap();
-                    if (!isPremium && !DEV_MODE && (lvl === 'B1' || lvl === 'B2')) {
-                      const doneSoFar = scores.filter(s => s > 0).length;
-                      router.push({ pathname: '/premium_modal', params: { context: 'lesson_b1', lessons_done: String(doneSoFar) } } as any);
+                    const firstLessonByLevel = lvl === 'A1' ? 1 : lvl === 'A2' ? 9 : lvl === 'B1' ? 19 : 29;
+                    if (examPremiumRequired) {
+                      setGateModal({ kind: 'premium', lessonNum: requiresPremiumForLesson(firstLessonByLevel) ? firstLessonByLevel : to });
                     } else if (allDone) {
                       router.push({ pathname: '/level_exam', params: { level: lvl } });
+                    } else if (isPremium && prevExamLevel) {
+                      setGateModal({ kind: 'levelGate', level: lvl, prevLevel: prevExamLevel });
                     } else {
                       setGateModal({ kind: 'exam', level: lvl });
                     }
@@ -480,7 +531,7 @@ export default function LessonsTab() {
                     height: 78,
                     flexDirection: 'row',
                     backgroundColor: meta.bg,
-                    opacity: allDone ? 1 : 0.5,
+                    opacity: allDone ? 1 : isPremium ? 0.38 : 0.5,
                     overflow: 'hidden',
                   }}
                 >
@@ -489,7 +540,7 @@ export default function LessonsTab() {
                     <View style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: 1.5, backgroundColor: meta.accent + '30' }} />
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                       <Ionicons
-                        name={result?.passed ? 'checkmark-circle' : allDone ? (meta.icon as any) : 'lock-closed-outline'}
+                        name={result?.passed ? 'checkmark-circle' : allDone || isPremium ? (meta.icon as any) : 'lock-closed-outline'}
                         size={isB2 ? 26 : 22}
                         color={meta.accent}
                       />
@@ -518,7 +569,12 @@ export default function LessonsTab() {
           const darkBg     = darkenHex(bg, 0.42);
           const progPct    = Math.min(100, Math.round((progCounts[index] ?? 0) / 50 * 100));
           const isComplete = progPct >= 100;
-          const lockedCardHasLightFill = !isUnlocked && progPct > 0;
+          const isCurrent  = currentLessonNum === num;
+          const lessonLevel = getCourseLevelForLesson(num);
+          const prevLessonLevel = getPreviousCourseLevel(lessonLevel);
+          const levelLockedByExam = isPremium && !isUnlocked && !DEV_MODE && !noLimits;
+          const premiumRequired = !isPremium && !DEV_MODE && !noLimits && requiresPremiumForLesson(num);
+          const lockedCardHasLightFill = !isUnlocked && progPct > 0 && premiumRequired;
 
           return (
             <Animated.View
@@ -526,13 +582,17 @@ export default function LessonsTab() {
               style={{
                 marginTop: 5,
                 marginHorizontal: 14,
-                borderRadius: 16,
+                borderRadius: USE_ELITE_LESSONS_MAP ? 18 : 16,
                 transform: [{ scale: scaleAnim ?? 1 }],
                 shadowColor: useSketchLessonVisual ? '#2A2620' : '#000',
-                shadowOffset: { width: 0, height: isUnlocked ? 4 : 2 },
-                shadowOpacity: useSketchLessonVisual ? (isUnlocked ? 0.14 : 0.08) : (isUnlocked ? 0.28 : 0.15),
-                shadowRadius: useSketchLessonVisual ? (isUnlocked ? 10 : 5) : (isUnlocked ? 8 : 4),
-                elevation: isUnlocked ? 6 : 2,
+                shadowOffset: { width: 0, height: isCurrent ? 7 : isUnlocked ? 4 : 2 },
+                shadowOpacity: USE_ELITE_LESSONS_MAP
+                  ? (isCurrent ? 0.20 : isUnlocked ? 0.11 : 0.05)
+                  : useSketchLessonVisual ? (isUnlocked ? 0.14 : 0.08) : (isUnlocked ? 0.28 : 0.15),
+                shadowRadius: USE_ELITE_LESSONS_MAP
+                  ? (isCurrent ? 14 : isUnlocked ? 9 : 4)
+                  : useSketchLessonVisual ? (isUnlocked ? 10 : 5) : (isUnlocked ? 8 : 4),
+                elevation: isCurrent ? 8 : isUnlocked ? 6 : 2,
               }}
             >
               <TouchableOpacity
@@ -540,28 +600,33 @@ export default function LessonsTab() {
                 activeOpacity={0.82}
                 onPress={() => {
                   hapticTap();
-                  if (isUnlocked) {
+                  const access = resolveLessonAccess({
+                    lessonId: num,
+                    unlocked: isUnlocked,
+                    isPremium,
+                    devMode: DEV_MODE,
+                    noLimits,
+                  });
+                  if (access === 'available') {
                     // Navigation must be instant; prefetch runs in background.
                     void prefetchLessonMenuCache(num);
                     router.push({ pathname: '/lesson_menu', params: { id: num } });
-                  } else if (!isPremium && !DEV_MODE && num >= 19) {
-                    const doneSoFar = scores.filter(s => s > 0).length;
-                    router.push({ pathname: '/premium_modal', params: { context: 'lesson_b1', lessons_done: String(doneSoFar) } } as any);
-                  } else if (num === 9 || num === 29) {
-                    // Пограничные открываются ТОЛЬКО после сдачи зачёта прошлого уровня.
-                    // Урок 19 уже отработан выше через premium-гейт (для премиум-юзера
-                    // он будет открыт через unlockLesson(19) из premium_modal).
-                    setGateModal({ kind: 'levelGate', prevLevel: num === 9 ? 'A1' : 'B1' });
+                  } else if (access === 'premium_required') {
+                    setGateModal({ kind: 'premium', lessonNum: num });
+                  } else if (levelLockedByExam && prevLessonLevel) {
+                    setGateModal({ kind: 'levelGate', level: lessonLevel, prevLevel: prevLessonLevel });
                   } else {
                     setGateModal({ kind: 'lesson', prevNum: num - 1 });
                   }
                 }}
                 style={{
                   height: BOOK_H,
-                  borderRadius: 16,
+                  borderRadius: USE_ELITE_LESSONS_MAP ? 18 : 16,
                   overflow: 'hidden',
-                  borderWidth: useSketchLessonVisual && isUnlocked ? 1.5 : 0,
-                  borderColor: useSketchLessonVisual && isUnlocked ? 'rgba(55,48,38,0.28)' : 'transparent',
+                  borderWidth: USE_ELITE_LESSONS_MAP ? 1 : useSketchLessonVisual && isUnlocked ? 1.5 : 0,
+                  borderColor: USE_ELITE_LESSONS_MAP
+                    ? (isCurrent ? 'rgba(255,255,255,0.38)' : isUnlocked ? 'rgba(255,255,255,0.16)' : 'rgba(255,255,255,0.08)')
+                    : useSketchLessonVisual && isUnlocked ? 'rgba(55,48,38,0.28)' : 'transparent',
                 }}
               >
                 {/* Card background */}
@@ -571,6 +636,13 @@ export default function LessonsTab() {
                     start={{ x: 0, y: 1 }}
                     end={{ x: 1, y: 0 }}
                     style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0 }}
+                  />
+                ) : levelLockedByExam ? (
+                  <LinearGradient
+                    colors={[darkenHex(bg, 0.46), darkenHex(bg, 0.40), darkenHex(bg, 0.34)]}
+                    start={{ x: 0, y: 1 }}
+                    end={{ x: 1, y: 0 }}
+                    style={{ position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, opacity: 0.44 }}
                   />
                 ) : (
                   <LinearGradient
@@ -590,6 +662,7 @@ export default function LessonsTab() {
                       position: 'absolute',
                       left: 0, top: 0, bottom: 0,
                       width: `${progPct}%`,
+                      opacity: levelLockedByExam ? 0.28 : 1,
                       borderTopLeftRadius: 16,
                       borderBottomLeftRadius: 16,
                       borderTopRightRadius: isComplete ? 16 : 0,
@@ -603,6 +676,7 @@ export default function LessonsTab() {
                     position: 'absolute', left: 0, top: 0,
                     width: `${progPct}%`, height: 1.5,
                     backgroundColor: useSketchLessonVisual ? 'rgba(255,255,255,0.45)' : 'rgba(255,255,255,0.3)',
+                    opacity: levelLockedByExam ? 0.24 : 1,
                     borderTopLeftRadius: 16,
                     borderTopRightRadius: isComplete ? 16 : 0,
                   }} />
@@ -610,11 +684,16 @@ export default function LessonsTab() {
 
                 {/* Content */}
                 <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: 18 }}>
+                  {USE_ELITE_LESSONS_MAP && isCurrent && (
+                    <View style={{ position: 'absolute', left: 0, top: 10, bottom: 10, width: 3, borderRadius: 2, backgroundColor: 'rgba(255,255,255,0.62)' }} />
+                  )}
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
                     <Text
                       style={{
                         color: !isUnlocked
-                          ? (lockedCardHasLightFill ? 'rgba(42,34,24,0.62)' : 'rgba(255,255,255,0.30)')
+                          ? levelLockedByExam
+                            ? 'rgba(255,255,255,0.30)'
+                            : (lockedCardHasLightFill ? 'rgba(42,34,24,0.62)' : 'rgba(255,255,255,0.30)')
                           : useSketchLessonVisual
                             ? 'rgba(42,48,44,0.62)'
                             : 'rgba(255,255,255,0.70)',
@@ -633,7 +712,11 @@ export default function LessonsTab() {
                     {/* Right side: percentage / lock */}
                     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
                       {!isUnlocked
-                        ? <Ionicons name="lock-closed" size={14} color={lockedCardHasLightFill ? 'rgba(42,34,24,0.36)' : 'rgba(255,255,255,0.35)'} />
+                        ? premiumRequired
+                          ? <Ionicons name="lock-closed" size={14} color={lockedCardHasLightFill ? 'rgba(42,34,24,0.36)' : 'rgba(255,255,255,0.35)'} />
+                          : null
+                        : USE_ELITE_LESSONS_MAP && isComplete
+                          ? <Ionicons name="checkmark-circle" size={18} color={useSketchLessonVisual ? 'rgba(26,32,28,0.76)' : 'rgba(255,255,255,0.86)'} />
                         : progPct > 0
                           ? (
                             <Text
@@ -656,7 +739,9 @@ export default function LessonsTab() {
                   <Text
                     style={{
                       color: !isUnlocked
-                        ? (lockedCardHasLightFill ? 'rgba(42,34,24,0.76)' : 'rgba(255,255,255,0.35)')
+                        ? levelLockedByExam
+                          ? 'rgba(255,255,255,0.42)'
+                          : (lockedCardHasLightFill ? 'rgba(42,34,24,0.76)' : 'rgba(255,255,255,0.35)')
                         : useSketchLessonVisual
                           ? 'rgba(22,28,26,0.94)'
                           : 'rgba(255,255,255,0.97)',
@@ -673,6 +758,14 @@ export default function LessonsTab() {
             </Animated.View>
           );
         })}
+        <View style={{ alignItems: 'center', paddingTop: 28, paddingBottom: 8 }}>
+          <Text style={{ fontSize: 18, fontWeight: '700', color: '#ffffff', opacity: 0.15, letterSpacing: 0.5 }}>
+            {triLang(lang, { ru: '· · ·', uk: '· · ·', es: '· · ·' })}
+          </Text>
+          <Text style={{ fontSize: 13, fontWeight: '600', color: '#ffffff', opacity: 0.2, marginTop: 8 }}>
+            {triLang(lang, { ru: 'Продолжение скоро', uk: 'Продовження незабаром', es: 'Próximamente' })}
+          </Text>
+        </View>
         <View style={{ alignItems: 'center', paddingVertical: 20 }}>
           <ReportErrorButton
             screen="lessons_tab"
@@ -691,7 +784,19 @@ export default function LessonsTab() {
       title={
         gateModal?.kind === 'exam'
           ? triLang(lang, { ru: 'Недоступно', uk: 'Недоступно', es: 'No disponible' })
-          : gateModal?.kind === 'levelGate' || gateModal?.kind === 'lesson'
+          : gateModal?.kind === 'premium'
+            ? triLang(lang, {
+                ru: 'Premium',
+                uk: 'Premium',
+                es: 'Premium',
+              })
+          : gateModal?.kind === 'levelGate'
+            ? triLang(lang, {
+                ru: 'Уровень пока закрыт',
+                uk: 'Рівень поки закритий',
+                es: 'Nivel bloqueado',
+              })
+          : gateModal?.kind === 'lesson'
               ? triLang(lang, {
                   ru: 'Урок заблокирован',
                   uk: 'Урок заблоковано',
@@ -708,19 +813,49 @@ export default function LessonsTab() {
                 : `Сначала пройдите все уроки ${gateModal.level} с оценкой 4.5+`)
           : gateModal?.kind === 'levelGate'
             ? (lang === 'uk'
-                ? `Спочатку складіть залік ${gateModal.prevLevel}, щоб відкрити наступний рівень`
+                ? `Щоб відкрити рівень ${gateModal.level}, спочатку складіть залік ${gateModal.prevLevel}.`
                 : lang === 'es'
-                  ? `Primero debes superar el examen de ${gateModal.prevLevel} para desbloquear el siguiente nivel`
-                  : `Сначала сдайте зачёт ${gateModal.prevLevel}, чтобы открыть следующий уровень`)
+                  ? `Para abrir el nivel ${gateModal.level}, primero supera el examen de ${gateModal.prevLevel}.`
+                  : `Чтобы открыть уровень ${gateModal.level}, сначала сдайте зачёт ${gateModal.prevLevel}.`)
             : gateModal?.kind === 'lesson'
               ? (lang === 'uk'
                   ? `Пройдіть урок ${gateModal.prevNum} з оцінкою 2.5+`
                   : lang === 'es'
                     ? `Completa la lección ${gateModal.prevNum} con nota mínima de 2,5`
                     : `Пройдите урок ${gateModal.prevNum} с оценкой 2.5+`)
+              : gateModal?.kind === 'premium'
+                ? triLang(lang, {
+                    ru: 'Этот урок входит в Premium.',
+                    uk: 'Цей урок входить до Premium.',
+                    es: 'Esta lección forma parte de Premium.',
+                  })
               : ''
       }
-      choices={[{ label: triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' }), onPress: () => {} }]}
+      choices={
+        gateModal?.kind === 'premium'
+          ? [
+              {
+                label: triLang(lang, { ru: 'Получить Premium', uk: 'Отримати Premium', es: 'Obtener Premium' }),
+                variant: 'primary' as const,
+                onPress: () => {
+                  const doneSoFar = scores.filter(score => score > 0).length;
+                  router.push({
+                    pathname: '/premium_modal',
+                    params: {
+                      context: lessonPaywallContext(gateModal.lessonNum),
+                      lessons_done: String(doneSoFar),
+                    },
+                  } as any);
+                },
+              },
+              {
+                label: triLang(lang, { ru: 'Пока нет', uk: 'Поки ні', es: 'Ahora no' }),
+                variant: 'secondary' as const,
+                onPress: () => {},
+              },
+            ]
+          : [{ label: triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' }), onPress: () => {} }]
+      }
       onRequestClose={() => setGateModal(null)}
     />
     </>

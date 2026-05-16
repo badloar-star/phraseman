@@ -1,7 +1,7 @@
 // Модалка разового бонуса осколков за волну релиза (см. config RELEASE_WAVE_BONUS_VERSION).
 // Без анимации opacity на оверлее; у осколка — только transform (useNativeDriver), без сбоев на Fabric.
 import React, { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, Animated, Easing, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Animated, Easing, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -67,7 +67,7 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
   const [busy, setBusy] = useState(false);
   const amount = getReleaseWaveBonusLabelAmount();
   const oskolokImage = oskolokImageForPackShards(amount);
-  const dimColor = themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.62)';
+  const dimColor = 'rgba(0,0,0,0.62)';
 
   const shardFloatY = useRef(new Animated.Value(0)).current;
   useEffect(() => {
@@ -224,8 +224,8 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
               },
             ]}
           >
-            {busy && !previewMode ? (
-              <ActivityIndicator color={t.correctText} />
+            {false && busy && !previewMode ? (
+              <View />
             ) : (
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '800' }}>
                 {previewMode ? tx.ctaPreview : tx.cta}

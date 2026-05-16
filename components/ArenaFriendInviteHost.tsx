@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Animated,
   AppState,
   type AppStateStatus,
@@ -18,7 +17,6 @@ import { ensureAnonUser } from '../app/cloud_sync';
 import { ensureFriendRequestViewerAuthLink } from '../app/firestore_friend_requests';
 import { emitAppEvent, onAppEvent } from '../app/events';
 import { logEvent } from '../app/firebase';
-import { playArenaMatchFoundSound } from '../app/arena_match_found_sound';
 import { useEnergy } from './EnergyContext';
 import {
   subscribeIncomingArenaInvites,
@@ -46,7 +44,7 @@ export default function ArenaFriendInviteHost() {
 
   const [topInvite, setTopInvite] = useState<ArenaInviteRow | null>(null);
   const [busy, setBusy] = useState(false);
-  const soundedIdsRef = useRef<Set<string>>(new Set());
+  const shownIdsRef = useRef<Set<string>>(new Set());
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const currentInviteRef = useRef<ArenaInviteRow | null>(null);
 
@@ -156,9 +154,8 @@ export default function ArenaFriendInviteHost() {
           }
           // New invite or same id — show/keep
           if (!currentInviteRef.current || currentInviteRef.current.id !== next.id) {
-            if (!soundedIdsRef.current.has(next.id)) {
-              soundedIdsRef.current.add(next.id);
-              void playArenaMatchFoundSound();
+            if (!shownIdsRef.current.has(next.id)) {
+              shownIdsRef.current.add(next.id);
             }
             showInvite(next);
           }
@@ -341,8 +338,8 @@ export default function ArenaFriendInviteHost() {
                 opacity: busy ? 0.7 : 1,
               }}
             >
-              {busy ? (
-                <ActivityIndicator color={t.correctText} />
+              {false && busy ? (
+                <View />
               ) : (
                 <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>
                   {triLang(lang, { ru: '⚡ ПРИНЯТЬ', uk: '⚡ ПРИЙНЯТИ', es: '⚡ ACEPTAR' })}

@@ -1,9 +1,6 @@
 import { Ionicons } from '@expo/vector-icons';
-import React, { type RefObject } from 'react';
+import React, { useMemo } from 'react';
 import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import Svg from 'react-native-svg';
-import QuizShareCardSvg from '../../components/share_cards/QuizShareCardSvg';
-import type { ShareCardLang } from '../../components/share_cards/streakCardCopy';
 import BonusXPCard from '../../components/BonusXPCard';
 import ContentWrap from '../../components/ContentWrap';
 import LevelBadge from '../../components/LevelBadge';
@@ -12,9 +9,9 @@ import { useLang, RU } from '../../components/LangContext';
 import { REPORT_SCREENS_RUSSIAN_ONLY } from '../../constants/report_ui_ru';
 import { triLang } from '../../constants/i18n';
 import { useTheme } from '../../components/ThemeContext';
-import { getXPProgress } from '../../constants/theme';
+import { getXPProgress, screenTextOnGradient } from '../../constants/theme';
 import type { QuizPhrase } from '../quiz_data';
-import { getQuizRankInfo, getQuizShareCardRank } from './results';
+import { getQuizRankInfo, getQuizShareRank } from './results';
 import { XpCounter } from './ui';
 
 type Props = {
@@ -35,7 +32,6 @@ type Props = {
   onBack: () => void;
   onShare: (right: number, total: number, pct: number, rankIcon: string) => void;
   onHome: () => void;
-  shareCardSvgRef: RefObject<InstanceType<typeof Svg> | null>;
 };
 
 export default function QuizResultView({
@@ -56,13 +52,13 @@ export default function QuizResultView({
   onBack,
   onShare,
   onHome,
-  shareCardSvgRef,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { s, lang } = useLang();
   const sQuiz = REPORT_SCREENS_RUSSIAN_ONLY ? RU : s;
   const effectiveLang = REPORT_SCREENS_RUSSIAN_ONLY ? 'ru' : lang;
-  const cardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY
+  const shareLang = REPORT_SCREENS_RUSSIAN_ONLY
     ? 'ru'
     : lang === 'uk'
       ? 'uk'
@@ -80,29 +76,15 @@ export default function QuizResultView({
   return (
     <ScreenGradient>
       <View style={{ flex: 1 }}>
-        <View
-          pointerEvents="none"
-          collapsable={false}
-          style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, zIndex: -1, overflow: 'hidden' }}
-        >
-          <QuizShareCardSvg
-            ref={shareCardSvgRef}
-            right={right}
-            total={total}
-            pct={pct}
-            lang={cardLang}
-            layoutSize={1080}
-          />
-        </View>
         <ContentWrap>
           <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
             <Text style={{ fontSize: f.numLg + 28, marginBottom: 10 }} adjustsFontSizeToFit numberOfLines={1}>{rankInfo.icon}</Text>
             <View style={{ backgroundColor: `${rankInfo.color}22`, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: `${rankInfo.color}55`, marginBottom: 16 }}>
               <Text style={{ color: rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
             </View>
-            <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '700', marginBottom: 10 }} adjustsFontSizeToFit numberOfLines={1}>{sQuiz.quizzes.done}</Text>
-            <Text style={{ color: t.textPrimary, fontSize: f.h1, marginBottom: 4 }}>{right} / {total}</Text>
-            <Text style={{ color: t.textSecond, fontSize: f.numLg + 8, fontWeight: '700', marginBottom: 8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
+            <Text style={{ color: sx.primary, fontSize: f.numLg, fontWeight: '700', marginBottom: 10 }} adjustsFontSizeToFit numberOfLines={1}>{sQuiz.quizzes.done}</Text>
+            <Text style={{ color: sx.primary, fontSize: f.h1, marginBottom: 4 }}>{right} / {total}</Text>
+            <Text style={{ color: sx.second, fontSize: f.numLg + 8, fontWeight: '700', marginBottom: 8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
             <Animated.Text style={{ color: t.correct, fontSize: f.h2, fontWeight: '600', marginBottom: bonusXP > 0 ? 4 : 16, transform: [{ translateY: xpFlyY }], opacity: xpFlyOpacity }}>
               +{Math.round(score)}{' '}
               {triLang(effectiveLang, { ru: 'опыта', uk: 'досвіду', es: 'XP' })}
@@ -154,22 +136,22 @@ export default function QuizResultView({
               <Text style={{ color: accentColor, fontSize: f.bodyLg, fontWeight: '600' }}>{sQuiz.quizzes.again}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ padding: 14 }} onPress={onBack}>
-              <Text style={{ color: t.textMuted, fontSize: f.body }}>{sQuiz.quizzes.back}</Text>
+              <Text style={{ color: sx.muted, fontSize: f.body }}>{sQuiz.quizzes.back}</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{ flexDirection: 'row', alignItems: 'center', gap: 8, padding: 10, marginTop: 8 }}
               onPress={() => {
-                const shareRank = getQuizShareCardRank(pct, '#94a3b8', '#64748b', cardLang);
+                const shareRank = getQuizShareRank(pct, '#94a3b8', '#64748b', shareLang);
                 onShare(right, total, pct, shareRank.icon);
               }}
             >
-              <Ionicons name="share-outline" size={16} color={t.textGhost} />
-              <Text style={{ color: t.textGhost, fontSize: f.body }}>
+              <Ionicons name="share-outline" size={16} color={sx.ghost} />
+              <Text style={{ color: sx.ghost, fontSize: f.body }}>
                 {triLang(effectiveLang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ padding: 12 }} onPress={onHome}>
-              <Text style={{ color: t.textMuted, fontSize: f.body, textDecorationLine: 'underline' }}>
+              <Text style={{ color: sx.muted, fontSize: f.body, textDecorationLine: 'underline' }}>
                 {triLang(effectiveLang, {
                   ru: '🏠 На главную',
                   uk: '🏠 На головну',

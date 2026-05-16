@@ -2,19 +2,21 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // ── Helpers ───────────────────────────────────────────────────────────────
+    // â”€â”€ Helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     function isOwner(uid) {
       return request.auth != null && request.auth.uid == uid;
     }
 
-    // Custom claim: set via scripts/set_admin_claim.mjs (Firebase Admin SDK)
     function isAdmin() {
-      return request.auth != null && request.auth.token.admin == true;
+      return request.auth != null
+        && request.auth.token.keys().hasAny(['admin'])
+        && request.auth.token.admin == true;
     }
 
     function stableUserMatchesAuth(stableUid) {
       return request.auth != null
         && exists(/databases/$(database)/documents/users/$(stableUid))
+        && get(/databases/$(database)/documents/users/$(stableUid)).data.keys().hasAny(['firebaseAuthUid'])
         && get(/databases/$(database)/documents/users/$(stableUid)).data.firebaseAuthUid == request.auth.uid;
     }
 
@@ -22,7 +24,22 @@ service cloud.firestore {
       return stableUserMatchesAuth(stableUid);
     }
 
-    // ── Referral: запись только CF; чтение — панель admin (custom claim admin) ─
+    function userDocOwnerMatchesAuth(userId) {
+      return isAdmin() || isOwner(userId) || stableUserMatchesAuth(userId);
+    }
+
+    function newUserDocOwnerMatchesAuth(userId) {
+      return isAdmin()
+        || isOwner(userId)
+        || (
+          request.auth != null
+          && request.resource.data.keys().hasAny(['firebaseAuthUid'])
+          && request.resource.data.firebaseAuthUid is string
+          && request.resource.data.firebaseAuthUid == request.auth.uid
+        );
+    }
+
+    // â”€â”€ Referral: Ð·Ð°Ð¿Ð¸ÑÑŒ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ CF; Ñ‡Ñ‚ÐµÐ½Ð¸Ðµ â€” Ð¿Ð°Ð½ÐµÐ»ÑŒ admin (custom claim admin) â”€
     match /referral_codes/{code} {
       allow read: if request.auth != null;
       allow write: if false;
@@ -36,82 +53,117 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // ── User data ─────────────────────────────────────────────────────────────
-    // ВНИМАНИЕ: read/write для любого request.auth != null (приложение + анонимы).
-    // Сужение по владельцу — отдельная миграция (stableId → auth uid).
-    // Модерация/бан/репорты: только isAdmin() (см. admin/index.html, email+claim).
+    // â”€â”€ User data â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ÐšÐ¾Ñ€Ð½ÐµÐ²Ð¾Ð¹ users/{userId}: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð²Ð»Ð°Ð´ÐµÐ»ÐµÑ†/Ð°Ð´Ð¼Ð¸Ð½. ÐŸÐ¾Ð´Ð´ÐµÑ€Ð¶Ð¸Ð²Ð°ÐµÐ¼ Ð¾Ð±Ðµ ÑÑ…ÐµÐ¼Ñ‹:
+    //  - userId == request.auth.uid
+    //  - stableId-Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ñ Ð¿Ð¾Ð»ÐµÐ¼ firebaseAuthUid == request.auth.uid
+    // ÐœÐ¾Ð´ÐµÑ€Ð°Ñ†Ð¸Ñ/Ð±Ð°Ð½/Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ isAdmin() (ÑÐ¼. admin/index.html, email+claim).
     match /users/{userId} {
-      allow read, write: if request.auth != null;
+      allow read, update, delete: if userDocOwnerMatchesAuth(userId);
+      allow create: if newUserDocOwnerMatchesAuth(userId);
 
-      // UGC: события продажи наборов — только Cloud Functions (Admin SDK).
       match /community_seller_inbox/{eventId} {
         allow read, write: if false;
       }
 
       match /shard_log/{logId} {
-        allow read, create: if request.auth != null;
+        allow read, create: if userDocOwnerMatchesAuth(userId);
         allow update, delete: if false;
       }
 
       match /reward_claims/{claimId} {
-        allow read, create: if request.auth != null;
+        allow read, create: if userDocOwnerMatchesAuth(userId);
         allow update, delete: if false;
       }
 
+      match /app_message_states/{messageId} {
+        allow read, create, update, delete: if userDocOwnerMatchesAuth(userId);
+      }
+
       match /shard_rewards/{rewardId} {
-        allow read:   if request.auth != null;
-        allow update: if request.auth != null && request.resource.data.seen == true;
-        allow create: if request.auth != null;
+        allow read:   if userDocOwnerMatchesAuth(userId);
+        allow update: if userDocOwnerMatchesAuth(userId) && request.resource.data.seen == true;
+        allow create: if userDocOwnerMatchesAuth(userId);
         allow delete: if false;
       }
     }
 
-    // ── Arena profiles ────────────────────────────────────────────────────────
+    // â”€â”€ Arena profiles â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /arena_profiles/{userId} {
       allow read:  if request.auth != null;
       allow write: if isOwner(userId);
 
-      // История матчей: пишет только Cloud Function (Admin); клиент только читает.
-      // Без отдельного match подколлекция по умолчанию запрещена → экран рейтинга падал с PERMISSION_DENIED.
+      // Ð˜ÑÑ‚Ð¾Ñ€Ð¸Ñ Ð¼Ð°Ñ‚Ñ‡ÐµÐ¹: Ð¿Ð¸ÑˆÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Cloud Function (Admin); ÐºÐ»Ð¸ÐµÐ½Ñ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‡Ð¸Ñ‚Ð°ÐµÑ‚.
+      // Ð‘ÐµÐ· Ð¾Ñ‚Ð´ÐµÐ»ÑŒÐ½Ð¾Ð³Ð¾ match Ð¿Ð¾Ð´ÐºÐ¾Ð»Ð»ÐµÐºÑ†Ð¸Ñ Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ Ð·Ð°Ð¿Ñ€ÐµÑ‰ÐµÐ½Ð° â†’ ÑÐºÑ€Ð°Ð½ Ñ€ÐµÐ¹Ñ‚Ð¸Ð½Ð³Ð° Ð¿Ð°Ð´Ð°Ð» Ñ PERMISSION_DENIED.
       match /match_history/{matchId} {
         allow read: if request.auth != null;
         allow write, update, delete: if false;
       }
     }
 
-    // ── Leaderboard ───────────────────────────────────────────────────────────
+    // â”€â”€ Leaderboard â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /leaderboard/{userId} {
       allow read: if true;
-      allow write: if request.auth != null;
+      allow create, update: if isAdmin();
+      allow delete: if userDocOwnerMatchesAuth(userId);
     }
 
-    // ── Banned users ─────────────────────────────────────────────────────────
+    // Public aggregate percentile thresholds written by Cloud Functions.
+    match /leaderboard_stats/{docId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Friend activity likes: server-owned writes, client-readable counters.
+    match /users/{userId}/friend_activity_like_daily_limits/{dayId} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /users/{userId}/activity_like_stats/{docId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /users/{userId}/activity_likes_received/{likeId} {
+      allow read: if canonicalUserMatchesAuth(userId);
+      allow create, update, delete: if isAdmin();
+    }
+
+    // â”€â”€ Banned users â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Legacy/bundled flashcard marketplace metadata. Clients query only
+    // published packs; writes stay server/admin-only.
+    match /card_packs/{packId} {
+      allow read: if resource.data.status == 'published';
+      allow create, update, delete: if isAdmin();
+    }
+
     match /banned_users/{docId} {
       allow read:  if request.auth != null;
       allow write: if isAdmin();
     }
 
-    // ── User warnings ─────────────────────────────────────────────────────────
+    // â”€â”€ User warnings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /user_warnings/{docId} {
       allow read:   if request.auth != null;
       allow create, update, delete: if isAdmin();
     }
 
-    // ── User reports (жалобы на других пользователей) ────────────────────────
+    // â”€â”€ User reports (Ð¶Ð°Ð»Ð¾Ð±Ñ‹ Ð½Ð° Ð´Ñ€ÑƒÐ³Ð¸Ñ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /user_reports/{docId} {
       allow create: if request.auth != null;
       allow read, update, delete: if isAdmin();
     }
 
-    // ── Community pack reports (UGC content moderation, Apple Guideline 1.2) ──
-    // Любой авторизованный юзер может пожаловаться на community-пак;
-    // читать/модерировать — только admin (через admin/index.html → custom claim).
+    // â”€â”€ Community pack reports (UGC content moderation, Apple Guideline 1.2) â”€â”€
+    // Ð›ÑŽÐ±Ð¾Ð¹ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ñ‹Ð¹ ÑŽÐ·ÐµÑ€ Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ð¾Ð¶Ð°Ð»Ð¾Ð²Ð°Ñ‚ÑŒÑÑ Ð½Ð° community-Ð¿Ð°Ðº;
+    // Ñ‡Ð¸Ñ‚Ð°Ñ‚ÑŒ/Ð¼Ð¾Ð´ÐµÑ€Ð¸Ñ€Ð¾Ð²Ð°Ñ‚ÑŒ â€” Ñ‚Ð¾Ð»ÑŒÐºÐ¾ admin (Ñ‡ÐµÑ€ÐµÐ· admin/index.html â†’ custom claim).
     match /community_pack_reports/{docId} {
       allow create: if request.auth != null;
       allow read, update, delete: if isAdmin();
     }
 
-    // ── Error reports (баг-репорты) ───────────────────────────────────────────
+    // â”€â”€ Error reports (Ð±Ð°Ð³-Ñ€ÐµÐ¿Ð¾Ñ€Ñ‚Ñ‹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /error_reports/{docId} {
       allow create: if request.auth != null;
       allow read, update, delete: if isAdmin();
@@ -127,32 +179,70 @@ service cloud.firestore {
       allow read, update, delete: if isAdmin();
     }
 
-    // ── User suggestions (идеи / предложения из настроек) ───────────────────────
-    match /user_suggestions/{docId} {
+    match /subscription_cancel_surveys/{docId} {
       allow create: if request.auth != null;
       allow read, update, delete: if isAdmin();
     }
 
-    // ── Глобальные одноразовые модалки (админ-рассылка для всех пользователей) ──
+    match /website_contact_inbox/{docId} {
+      allow create: if false;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // â”€â”€ Ð“Ð»Ð¾Ð±Ð°Ð»ÑŒÐ½Ñ‹Ðµ Ð¾Ð´Ð½Ð¾Ñ€Ð°Ð·Ð¾Ð²Ñ‹Ðµ Ð¼Ð¾Ð´Ð°Ð»ÐºÐ¸ (Ð°Ð´Ð¼Ð¸Ð½-Ñ€Ð°ÑÑÑ‹Ð»ÐºÐ° Ð´Ð»Ñ Ð²ÑÐµÑ… Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»ÐµÐ¹) â”€â”€
     match /global_broadcast_modals/{docId} {
       allow read: if request.auth != null;
       allow create, update, delete: if isAdmin();
     }
 
-    // ── Arena sessions ────────────────────────────────────────────────────────
+    match /app_messages/{messageId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+
+      match /reactions/{userId} {
+        allow read: if isAdmin();
+        allow create, update: if userDocOwnerMatchesAuth(userId)
+          && request.resource.data.keys().hasOnly(['messageId', 'userId', 'reaction', 'updatedAtMs'])
+          && request.resource.data.messageId == messageId
+          && request.resource.data.userId == userId
+          && request.resource.data.reaction in ['like', 'dislike'];
+        allow delete: if isAdmin() || userDocOwnerMatchesAuth(userId);
+      }
+    }
+
+    match /review_promo_claims/{docId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /daily_phrases/{phraseId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /daily_phrase_save_counts/{phraseId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /daily_phrase_saves/{saveId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    // â”€â”€ Arena sessions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /arena_sessions/{sessionId} {
       allow read: if request.auth != null;
-      // Клієнт: форфейт (finished + forfeitedBy) як раніше; поля pre-match оновлює лише CF.
-      // Реванш: участник матча может писать в rematchOffer (status — только client-side accept/decline/cancel/expired,
-      // создание pending тоже допустимо).
+      // ÐšÐ»Ñ–Ñ”Ð½Ñ‚: Ñ„Ð¾Ñ€Ñ„ÐµÐ¹Ñ‚ (finished + forfeitedBy) ÑÐº Ñ€Ð°Ð½Ñ–ÑˆÐµ; Ð¿Ð¾Ð»Ñ pre-match Ð¾Ð½Ð¾Ð²Ð»ÑŽÑ” Ð»Ð¸ÑˆÐµ CF.
+      // Ð ÐµÐ²Ð°Ð½Ñˆ: ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸Ðº Ð¼Ð°Ñ‚Ñ‡Ð° Ð¼Ð¾Ð¶ÐµÑ‚ Ð¿Ð¸ÑÐ°Ñ‚ÑŒ Ð² rematchOffer (status â€” Ñ‚Ð¾Ð»ÑŒÐºÐ¾ client-side accept/decline/cancel/expired,
+      // ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ðµ pending Ñ‚Ð¾Ð¶Ðµ Ð´Ð¾Ð¿ÑƒÑÑ‚Ð¸Ð¼Ð¾).
       allow update: if request.auth != null
         && resource.data.playerIds.hasAny([request.auth.uid])
         && request.resource.data.diff(resource.data).affectedKeys()
            .hasOnly(['state', 'questionStartedAt', 'currentQuestionIndex', 'forfeitedBy', 'rematchOffer']);
     }
 
-    // ── Session players ───────────────────────────────────────────────────────
-    // Создание только Cloud Functions (Admin SDK); клиент — update ответов.
+    // â”€â”€ Session players â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /session_players/{docId} {
       allow read:   if request.auth != null;
       allow create: if false;
@@ -163,7 +253,7 @@ service cloud.firestore {
         && (!('lobbyChoice' in request.resource.data) || request.resource.data.lobbyChoice in ['none', 'accept', 'decline']);
     }
 
-    // ── Arena rooms (friend invite flow) ──────────────────────────────────────
+    // â”€â”€ Arena rooms (friend invite flow) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /arena_rooms/{roomId} {
       allow read: if request.auth != null;
       allow create: if request.auth != null
@@ -177,8 +267,8 @@ service cloud.firestore {
            .hasOnly(['guestId', 'guestName', 'status', 'sessionId']);
     }
 
-    // ── Arena invites (legacy friend-invite docs) ──────────────────────────────
-    // Разрешаем только смену статуса и только участникам инвайта.
+    // â”€â”€ Arena invites (legacy friend-invite docs) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Ð Ð°Ð·Ñ€ÐµÑˆÐ°ÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÑÐ¼ÐµÐ½Ñƒ ÑÑ‚Ð°Ñ‚ÑƒÑÐ° Ð¸ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ ÑƒÑ‡Ð°ÑÑ‚Ð½Ð¸ÐºÐ°Ð¼ Ð¸Ð½Ð²Ð°Ð¹Ñ‚Ð°.
     match /arena_invites/{inviteId} {
       allow read: if request.auth != null;
       allow create: if request.auth != null
@@ -192,24 +282,24 @@ service cloud.firestore {
       allow delete: if false;
     }
 
-    // ── Arena computed per-user match results ────────────────────────────────
+    // â”€â”€ Arena computed per-user match results â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /arena_session_results/{resultId} {
       allow read: if request.auth != null;
       allow write: if false;
     }
 
-    // ── Matchmaking queue ─────────────────────────────────────────────────────
-    // Только поля очереди: без sessionId/matchedAt (их пишет только CF).
-    // Документ: matchmaking_queue/{userId} — id совпадает с userId.
+    // â”€â”€ Matchmaking queue â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Ð¢Ð¾Ð»ÑŒÐºÐ¾ Ð¿Ð¾Ð»Ñ Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸: Ð±ÐµÐ· sessionId/matchedAt (Ð¸Ñ… Ð¿Ð¸ÑˆÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ CF).
+    // Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚: matchmaking_queue/{userId} â€” id ÑÐ¾Ð²Ð¿Ð°Ð´Ð°ÐµÑ‚ Ñ userId.
     function matchmakingQueueDocOk(entryId) {
       let d = request.resource.data;
       return d.userId is string
         && d.userId == request.auth.uid
         && entryId == d.userId
-        // RN/JS шлёт часто double; как joinedAt — принимаем int | float.
+        // RN/JS ÑˆÐ»Ñ‘Ñ‚ Ñ‡Ð°ÑÑ‚Ð¾ double; ÐºÐ°Ðº joinedAt â€” Ð¿Ñ€Ð¸Ð½Ð¸Ð¼Ð°ÐµÐ¼ int | float.
         && (d.size is int || d.size is float)
         && (d.size == 2 || d.size == 4)
-        // Клиент (RN/JS) часто шлёт millis как number/double — строгий is int ломал join.
+        // ÐšÐ»Ð¸ÐµÐ½Ñ‚ (RN/JS) Ñ‡Ð°ÑÑ‚Ð¾ ÑˆÐ»Ñ‘Ñ‚ millis ÐºÐ°Ðº number/double â€” ÑÑ‚Ñ€Ð¾Ð³Ð¸Ð¹ is int Ð»Ð¾Ð¼Ð°Ð» join.
         && (d.joinedAt is int || d.joinedAt is float)
         && d.joinedAt > 0
         && d.joinedAt < 10000000000000
@@ -238,21 +328,16 @@ service cloud.firestore {
       allow write: if false;
     }
 
-    // ── Name index (unique nickname reservation) ───────────────────────────────
+    // â”€â”€ Name index (unique nickname reservation) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /name_index/{nameKey} {
       allow read:  if request.auth != null;
-      allow write: if request.auth != null;
+      allow create, update, delete: if isAdmin();
     }
 
     // Friend code reverse index. Doc id = 6-char code; data = { uid, createdAt }.
     match /friend_code_index/{code} {
       allow read: if request.auth != null;
-      allow create: if request.auth != null
-        && request.resource.data.uid is string
-        && request.resource.data.uid.size() > 0
-        && request.resource.data.createdAt is number;
-      allow update: if false;
-      allow delete: if false;
+      allow create, update, delete: if isAdmin();
     }
 
     // Friend requests: users/{targetUid}/friend_requests/{senderUid}.
@@ -287,57 +372,89 @@ service cloud.firestore {
     // Friend activity feed: users/{stableUid}/my_events/{eventId}.
     match /users/{userId}/my_events/{eventId} {
       allow read: if request.auth != null;
-      allow create, update, delete: if canonicalUserMatchesAuth(userId);
+      allow create, update, delete: if isAdmin();
     }
 
-    // ── League / clubs (недельные мини-группы) ────────────────────────────────
-    // Клиент: как leaderboard — вошедшие пользователи. Админка index.html: список групп.
+    // â”€â”€ League / clubs (Ð½ÐµÐ´ÐµÐ»ÑŒÐ½Ñ‹Ðµ Ð¼Ð¸Ð½Ð¸-Ð³Ñ€ÑƒÐ¿Ð¿Ñ‹) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // ÐšÐ»Ð¸ÐµÐ½Ñ‚: ÐºÐ°Ðº leaderboard â€” Ð²Ð¾ÑˆÐµÐ´ÑˆÐ¸Ðµ Ð¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÐµÐ»Ð¸. ÐÐ´Ð¼Ð¸Ð½ÐºÐ° index.html: ÑÐ¿Ð¸ÑÐ¾Ðº Ð³Ñ€ÑƒÐ¿Ð¿.
     match /league_groups/{groupId} {
-      allow read, write: if request.auth != null;
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
     }
 
-    // ── Auth links (Google/Apple → stable_id mapping) ─────────────────────────
+    // League chat UGC: live weekly room messages, moderation queue, reports.
+    match /league_chat_messages/{messageId} {
+      allow read: if isAdmin()
+        || (
+          request.auth != null
+          && exists(/databases/$(database)/documents/league_chat_members/$(request.auth.uid)/rooms/$(resource.data.groupId))
+        );
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /league_chat_moderation_queue/{itemId} {
+      allow create: if false;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /league_chat_reports/{reportId} {
+      allow create: if false;
+      allow read, update, delete: if isAdmin();
+    }
+
+    match /league_chat_bans/{userId} {
+      allow read, create, update, delete: if isAdmin();
+    }
+
+    match /league_chat_members/{authUid}/rooms/{groupId} {
+      allow read: if isAdmin() || (request.auth != null && request.auth.uid == authUid);
+      allow create, update, delete: if false;
+    }
+
+    // â”€â”€ Auth links (Google/Apple â†’ stable_id mapping) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     // Doc id = providerUid (Google sub / Apple sub).
-    // Используется при логине на новом устройстве: query auth_links/{providerUid}
-    // чтобы восстановить stable_id и подтянуть прогресс.
+    // Ð˜ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÐµÑ‚ÑÑ Ð¿Ñ€Ð¸ Ð»Ð¾Ð³Ð¸Ð½Ðµ Ð½Ð° Ð½Ð¾Ð²Ð¾Ð¼ ÑƒÑÑ‚Ñ€Ð¾Ð¹ÑÑ‚Ð²Ðµ: query auth_links/{providerUid}
+    // Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð²Ð¾ÑÑÑ‚Ð°Ð½Ð¾Ð²Ð¸Ñ‚ÑŒ stable_id Ð¸ Ð¿Ð¾Ð´Ñ‚ÑÐ½ÑƒÑ‚ÑŒ Ð¿Ñ€Ð¾Ð³Ñ€ÐµÑÑ.
     match /auth_links/{providerUid} {
-      // Read нужен любому авторизованному клиенту, чтобы сделать lookup при login.
-      // providerUid сам по себе не PII (opaque sub).
+      // Read Ð½ÑƒÐ¶ÐµÐ½ Ð»ÑŽÐ±Ð¾Ð¼Ñƒ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð¾Ð²Ð°Ð½Ð½Ð¾Ð¼Ñƒ ÐºÐ»Ð¸ÐµÐ½Ñ‚Ñƒ, Ñ‡Ñ‚Ð¾Ð±Ñ‹ ÑÐ´ÐµÐ»Ð°Ñ‚ÑŒ lookup Ð¿Ñ€Ð¸ login.
+      // providerUid ÑÐ°Ð¼ Ð¿Ð¾ ÑÐµÐ±Ðµ Ð½Ðµ PII (opaque sub).
       allow read: if request.auth != null;
 
-      // Create: при первом login. Документ должен ссылаться на providerUid из id
-      // и содержать stable_id текущего юзера + provider.
+      // Create: Ð¿Ñ€Ð¸ Ð¿ÐµÑ€Ð²Ð¾Ð¼ login. Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚ Ð´Ð¾Ð»Ð¶ÐµÐ½ ÑÑÑ‹Ð»Ð°Ñ‚ÑŒÑÑ Ð½Ð° providerUid Ð¸Ð· id
+      // Ð¸ ÑÐ¾Ð´ÐµÑ€Ð¶Ð°Ñ‚ÑŒ stable_id Ñ‚ÐµÐºÑƒÑ‰ÐµÐ³Ð¾ ÑŽÐ·ÐµÑ€Ð° + provider.
       allow create: if request.auth != null
         && request.resource.data.providerUid == providerUid
         && request.resource.data.stable_id is string
         && request.resource.data.stable_id.size() > 0
         && request.resource.data.provider in ['google', 'apple'];
 
-      // Update: при relogin или swap аккаунта. Меняем только белый список полей.
-      // providerUid менять нельзя.
+      // Update: Ð¿Ñ€Ð¸ relogin Ð¸Ð»Ð¸ swap Ð°ÐºÐºÐ°ÑƒÐ½Ñ‚Ð°. ÐœÐµÐ½ÑÐµÐ¼ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð±ÐµÐ»Ñ‹Ð¹ ÑÐ¿Ð¸ÑÐ¾Ðº Ð¿Ð¾Ð»ÐµÐ¹.
+      // providerUid Ð¼ÐµÐ½ÑÑ‚ÑŒ Ð½ÐµÐ»ÑŒÐ·Ñ.
       allow update: if request.auth != null
         && resource.data.providerUid == providerUid
         && request.resource.data.providerUid == providerUid
         && request.resource.data.diff(resource.data).affectedKeys()
            .hasOnly(['stable_id', 'email', 'displayName', 'lastSignInAt', 'devicePlatform']);
 
-      // Delete: только админ (через панель) или Cloud Function для revocation.
+      // Delete: Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ð°Ð´Ð¼Ð¸Ð½ (Ñ‡ÐµÑ€ÐµÐ· Ð¿Ð°Ð½ÐµÐ»ÑŒ) Ð¸Ð»Ð¸ Cloud Function Ð´Ð»Ñ revocation.
       allow delete: if isAdmin();
     }
 
-    // Агрегаты для UI (счётчик очереди арены — пишет только Cloud Function)
+    // ÐÐ³Ñ€ÐµÐ³Ð°Ñ‚Ñ‹ Ð´Ð»Ñ UI (ÑÑ‡Ñ‘Ñ‚Ñ‡Ð¸Ðº Ð¾Ñ‡ÐµÑ€ÐµÐ´Ð¸ Ð°Ñ€ÐµÐ½Ñ‹ â€” Ð¿Ð¸ÑˆÐµÑ‚ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Cloud Function)
     match /app_meta/{docId} {
       allow read: if request.auth != null;
-      allow write: if false;
+      allow write: if isAdmin();
     }
 
-    // ── Admin audit log ───────────────────────────────────────────────────────
+    // â”€â”€ Admin audit log â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /admin_log/{docId} {
       allow read, create: if isAdmin();
       allow update, delete: if false;
     }
 
-    // ── Community (UGC) packs — запись только через Cloud Functions ───────────
+    // â”€â”€ Community (UGC) packs â€” Ð·Ð°Ð¿Ð¸ÑÑŒ Ñ‚Ð¾Ð»ÑŒÐºÐ¾ Ñ‡ÐµÑ€ÐµÐ· Cloud Functions â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /community_packs/{packId} {
       allow read: if request.auth != null;
       allow write: if false;
@@ -360,7 +477,88 @@ service cloud.firestore {
       allow read, write: if false;
     }
 
-    // ── CATCH-ALL ─────────────────────────────────────────────────────────────
+    // Arena ghost challenges: async shareable arena replays.
+    match /arena_ghost_challenges/{challengeId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /arena_hill_thrones/{dayKey} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /arena_hill_attempts/{attemptId} {
+      allow read: if isAdmin();
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /arena_club_events/{eventId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /arena_club_contributions/{contributionId} {
+      allow read: if isAdmin()
+        || (request.auth != null && resource.data.arenaUid == request.auth.uid);
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
+    match /arena_rooms_live/{roomCode} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /arena_room_runs/{runId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ── Arena room members (lobby participants) ────────────────────────────────
+    // Все записи создаёт/обновляет Cloud Function (Admin SDK).
+    // Клиент читает участников своей комнаты.
+    match /arena_room_members/{memberId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // ── Arena room chat ────────────────────────────────────────────────────────
+    // Сообщения пишет только Cloud Function (после rate-limit + фильтрации).
+    // Клиент читает только видимые сообщения (status==visible) своей комнаты.
+    match /arena_room_chat/{roomCode}/messages/{msgId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    // Rate-limit счётчики чата комнаты — только CF.
+    match /arena_room_chat_rate/{authUid} {
+      allow read: if request.auth != null && request.auth.uid == authUid;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /arena_pulse_events/{eventId} {
+      allow read: if request.auth != null;
+      allow create, update, delete: if isAdmin();
+    }
+
+    match /league_chest_events/{eventId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /league_crowns/{crownId} {
+      allow read: if request.auth != null;
+      allow write: if false;
+    }
+
+    match /league_chest_claims/{claimId} {
+      allow read: if isAdmin()
+        || (request.auth != null && resource.data.authUid == request.auth.uid);
+      allow write: if false;
+    }
+
+    // â”€â”€ CATCH-ALL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     match /{document=**} {
       allow read, write: if false;
     }

@@ -29,8 +29,8 @@ import { getShardsBalance } from './shards_system';
 export default function FlashcardsHubScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, statusBarLight, themeMode } = useTheme();
-  const onColoredGradient = themeMode === 'ocean' || themeMode === 'sakura';
-  const gradHeaderInk = themeMode === 'ocean' ? 'rgba(246,252,255,0.98)' : 'rgba(255,250,252,0.98)';
+  const onColoredGradient = false;
+  const gradHeaderInk = t.textPrimary;
   const { lang } = useLang();
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const insets = useSafeAreaInsets();

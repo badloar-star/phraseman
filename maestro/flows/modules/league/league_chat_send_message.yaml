@@ -1,0 +1,36 @@
+appId: app.phraseman
+---
+- runFlow: ../../_shared/open_dev_client.yaml
+- runFlow: ../../_dismiss_bug_hunt.yaml
+- runFlow: ../../_precondition.yaml
+- waitForAnimationToEnd:
+    timeout: 5000
+- tapOn:
+    point: "50%,92%"
+- waitForAnimationToEnd:
+    timeout: 3000
+- runFlow: ../../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "home-league-open"
+    timeout: 30000
+- tapOn:
+    id: "home-league-open"
+- extendedWaitUntil:
+    visible:
+      id: "club-tab-chat"
+    timeout: 30000
+- tapOn:
+    id: "club-tab-chat"
+- extendedWaitUntil:
+    visible:
+      id: "league-chat-panel"
+    timeout: 30000
+- tapOn:
+    id: "league-chat-input"
+- inputText: "${CHAT_TEXT}"
+- tapOn:
+    id: "league-chat-send"
+- extendedWaitUntil:
+    visible: "${CHAT_TEXT}"
+    timeout: 30000

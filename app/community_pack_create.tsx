@@ -2,9 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import auth from '@react-native-firebase/auth';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  ActivityIndicator,
-  AppState,
+import {  AppState,
   Dimensions,
   Keyboard,
   KeyboardAvoidingView,
@@ -49,7 +47,6 @@ import {
   ugcCardThemeLabel,
   type UgcCardThemeId,
 } from './community_packs/ugcCardThemePresets';
-import { useAudio } from '../hooks/use-audio';
 import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
@@ -110,7 +107,6 @@ export default function CommunityPackCreateScreen() {
 
   const { theme: t, f, themeMode, isDark } = useTheme();
   const { lang } = useLang();
-  const { speak: speakAudio } = useAudio();
   const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
   const isLightTheme = !isDark;
 
@@ -670,8 +666,8 @@ export default function CommunityPackCreateScreen() {
           >
             <ContentWrap>
               <View style={styles.formHorizontalInset}>
-              {isEditMode && rows.length === 0 ? (
-                <ActivityIndicator style={{ marginTop: 24 }} color={t.accent} />
+              {false && isEditMode && rows.length === 0 ? (
+                <View />
               ) : null}
               {!isEditMode && draftHydrated && localDraftLooksMeaningful ? (
                 <TouchableOpacity
@@ -806,7 +802,7 @@ export default function CommunityPackCreateScreen() {
                     style={fieldInputStyle(t)}
                   />
                   <Text style={draftLabelStyle(t)}>
-                    {L('ОПИСАНИЕ (НЕОБЯЗАТЕЛЬНО)', 'ОПИС (НЕОБОВ’ЯЗКОВО)', 'DESCRIPCIÓN (OPCIONAL)')}
+                    {L('ОПИСАНИЕ (НЕОБЯЗАТЕЛЬНО)', 'ОПИС (НЕОБОВ\'ЯЗКОВО)', 'DESCRIPCIÓN (OPCIONAL)')}
                   </Text>
                   <TextInput
                     ref={draftNoteInputRef}
@@ -884,7 +880,6 @@ export default function CommunityPackCreateScreen() {
                   canEdit={!isEditingCard}
                   onEdit={() => editRow(idx)}
                   editing={editingIdx === idx}
-                  onSpeakEn={speakAudio}
                 />
               ))}
 
@@ -903,9 +898,7 @@ export default function CommunityPackCreateScreen() {
                   alignItems: 'center',
                 }}
               >
-                {busy ? (
-                  <ActivityIndicator color={t.correctText} />
-                ) : (
+                {false && busy ? (<View />) : (
                   <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
                     {isEditMode
                       ? L(

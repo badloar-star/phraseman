@@ -7,6 +7,7 @@ import { checkWagerProgress } from './streak_wager';
 import { sendStreakWarning } from './notifications';
 import { markStreakLost } from './streak_revive';
 import { incrementStreakLostCount } from './paywall_personalization';
+import { repairDevSeededStreakInStorage } from './streak_safety';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
 
@@ -61,6 +62,33 @@ export const loadWeekLeaderboard = async (): Promise<WeekEntry[]> => {
   } catch { return []; }
 };
 
+export function parseWeekPointsForWeek(raw: string | null | undefined, weekKey: string = getWeekKey(new Date())): number {
+  try {
+    if (!raw) return 0;
+    const data: { weekKey?: string; points?: number } = JSON.parse(raw);
+    if (data.weekKey !== weekKey) return 0;
+    const points = Number(data.points ?? 0);
+    return Number.isFinite(points) ? points : 0;
+  } catch {
+    return 0;
+  }
+}
+
+export const resetWeekPointsIfStale = async (): Promise<void> => {
+  try {
+    const currentWeekKey = getWeekKey(new Date());
+    const raw = await AsyncStorage.getItem('week_points_v2');
+    if (!raw) return;
+    const data: { weekKey?: string; points?: number } = JSON.parse(raw);
+    if (data.weekKey !== currentWeekKey) {
+      await AsyncStorage.multiSet([
+        ['week_points_v2', JSON.stringify({ weekKey: currentWeekKey, points: 0 })],
+        ['week_points', '0'],
+      ]);
+    }
+  } catch {}
+};
+
 const saveWeekLeaderboard = async (entries: WeekEntry[]) => {
   try { await AsyncStorage.setItem(WEEK_BOARD_KEY, JSON.stringify(entries)); } catch {}
 };
@@ -80,15 +108,14 @@ export const getMyWeekPoints = async (): Promise<number> => {
   try {
     const currentWeekKey = getWeekKey(new Date());
     const raw = await AsyncStorage.getItem('week_points_v2');
-    if (!raw) return 0;
-    const data: { weekKey: string; points: number } = JSON.parse(raw);
-    return data.weekKey === currentWeekKey ? data.points : 0;
+    return parseWeekPointsForWeek(raw, currentWeekKey);
   } catch { return 0; }
 };
 
 // Одноразовая миграция: сбрасывает week_points_v2 если там накопленный total XP
 export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
   try {
+    await resetWeekPointsIfStale();
     const migrated = await AsyncStorage.getItem('week_points_migrated_v1');
     if (migrated) return;
     const raw = await AsyncStorage.getItem('week_points_v2');
@@ -110,6 +137,8 @@ export const migrateWeekPointsIfNeeded = async (): Promise<void> => {
 // Вызывать при ЛЮБОМ начислении опыта
 export const updateStreakOnActivity = async (): Promise<number> => {
   try {
+    await repairDevSeededStreakInStorage();
+
     const today = new Date().toISOString().split('T')[0];
     const lastActiveKey = 'last_active_date';
     const lastActive = await AsyncStorage.getItem(lastActiveKey);
@@ -258,15 +287,23 @@ export const addOrUpdateScore = async (
   }
 
   // ── 1. Leaderboard (накопительный) ──────────────────────────────────────
+  let resolvedAvatar = avatar?.trim() || undefined;
+  try {
+    const storedAvatar = (await AsyncStorage.getItem('user_avatar'))?.trim();
+    if (storedAvatar && (!resolvedAvatar || /^\d+$/.test(resolvedAvatar))) {
+      resolvedAvatar = storedAvatar;
+    }
+  } catch {}
+
   const canonicalName = name.trim();
   const board = await loadLeaderboard();
   const idx = board.findIndex(e => e.name.trim().toLowerCase() === canonicalName.toLowerCase());
   if (idx >= 0) {
     board[idx].points += delta;
     board[idx].name = canonicalName; // normalize in place
-    if (avatar) board[idx].avatar = avatar;
+    if (resolvedAvatar) board[idx].avatar = resolvedAvatar;
   } else {
-    board.push({ name: canonicalName, points: delta, lang, avatar });
+    board.push({ name: canonicalName, points: delta, lang, avatar: resolvedAvatar });
   }
   board.sort((a, b) => b.points - a.points);
   await saveLeaderboard(board);

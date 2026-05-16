@@ -12,6 +12,10 @@
 // ═══════════════════════════════════════════════════════════════════════════
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { flushMistakeLog, logMistake } from './mistake_log';
+import { computePhraseAnalytics } from './phrase_analytics';
+import { normalizeWordCategory, type WordCategory } from './pos_taxonomy';
+import { getPosMasterySnapshot } from './pos_workout_engine';
 
 // ── Константы ────────────────────────────────────────────────────────────────
 
@@ -27,6 +31,8 @@ const GRADUATE_AT = INTERVALS.length; // 5
 // ── Типы ────────────────────────────────────────────────────────────────────
 
 export type TrainerQueue = 'words' | 'phrases' | 'arena';
+export type TrainerPremiumMode = 'smart_mix' | 'weak' | 'hard';
+export type TrainerDevScenario = 'empty' | 'random' | 'weak' | 'hard' | 'overloaded';
 
 export interface TrainerItem {
   /** Уникальный ключ: для слов — английское слово/глагол, для фраз — английская фраза */
@@ -42,6 +48,8 @@ export interface TrainerItem {
   arenaQuestion?: ArenaQuestion;
   /** Урок из которого взято */
   lessonId: number;
+  category?: WordCategory;
+  grammarTag?: string;
   /** Суммарное кол-во ошибок при записи (не при отработке) */
   mistakeCount: number;
   /** Кол-во правильных ответов подряд при отработке */
@@ -87,11 +95,30 @@ function nextInterval(correctStreak: number): number {
 
 // ── Storage ──────────────────────────────────────────────────────────────────
 
+function trainerCategory(word?: string, rawCategory?: string): Pick<TrainerItem, 'category' | 'grammarTag'> {
+  const resolved = normalizeWordCategory(rawCategory, word);
+  return resolved.category === 'other'
+    ? {}
+    : { category: resolved.category, grammarTag: resolved.grammarTag };
+}
+
+function trainerCategoryForItem(item: Pick<TrainerItem, 'queue' | 'key' | 'category' | 'errorWord' | 'arenaQuestion'>): Pick<TrainerItem, 'category' | 'grammarTag'> {
+  const word = item.errorWord || (item.queue === 'words' ? item.key : item.arenaQuestion?.correct);
+  return trainerCategory(word, item.category === 'other' ? undefined : item.category);
+}
+
+function withTrainerCategory(item: TrainerItem): TrainerItem {
+  const meta = trainerCategoryForItem(item);
+  return meta.category && item.category !== meta.category
+    ? { ...item, ...meta }
+    : item;
+}
+
 async function load(): Promise<TrainerItem[]> {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
-    return JSON.parse(raw) as TrainerItem[];
+    return (JSON.parse(raw) as TrainerItem[]).map(withTrainerCategory);
   } catch {
     return [];
   }
@@ -113,6 +140,7 @@ export async function recordWordMistake(
   translationRu: string,
   translationUk: string,
   lessonId: number,
+  rawCategory?: string,
 ): Promise<void> {
   const key = wordEn.trim().toLowerCase();
   const items = await load();
@@ -122,6 +150,7 @@ export async function recordWordMistake(
     existing.mistakeCount += 1;
     existing.translationRu = translationRu;
     existing.translationUk = translationUk;
+    Object.assign(existing, trainerCategory(wordEn, rawCategory));
     // nextDue === 0 означает "ещё не активировано" — не трогаем, ждём activateWordForTrainer
     if (existing.nextDue !== 0) {
       if (existing.archived) {
@@ -144,6 +173,7 @@ export async function recordWordMistake(
     translationRu,
     translationUk,
     lessonId,
+    ...trainerCategory(wordEn, rawCategory),
     mistakeCount: 1,
     correctStreak: 0,
     nextDue: 0, // 0 = ещё не в очереди
@@ -163,6 +193,7 @@ export async function activateWordForTrainer(
   translationRu: string,
   translationUk: string,
   lessonId: number,
+  rawCategory?: string,
 ): Promise<void> {
   const key = wordEn.trim().toLowerCase();
   const items = await load();
@@ -172,6 +203,7 @@ export async function activateWordForTrainer(
     existing.mistakeCount += 1;
     existing.translationRu = translationRu;
     existing.translationUk = translationUk;
+    Object.assign(existing, trainerCategory(wordEn, rawCategory));
     if (existing.nextDue === 0) {
       // Первый раз достиг порога — активируем
       existing.nextDue = tomorrowStart();
@@ -186,6 +218,7 @@ export async function activateWordForTrainer(
     translationRu,
     translationUk,
     lessonId,
+    ...trainerCategory(wordEn, rawCategory),
     mistakeCount: 2,
     correctStreak: 0,
     nextDue: tomorrowStart(),
@@ -207,6 +240,7 @@ export async function recordPhraseMistake(
   translationUk: string,
   lessonId: number,
   errorWord?: string,
+  rawCategory?: string,
 ): Promise<void> {
   const key = phraseEn.trim();
   const items = await load();
@@ -217,6 +251,7 @@ export async function recordPhraseMistake(
     existing.translationRu = translationRu;
     existing.translationUk = translationUk;
     if (errorWord) existing.errorWord = errorWord;
+    Object.assign(existing, trainerCategory(errorWord, rawCategory));
     if (existing.archived) {
       existing.archived = false;
       existing.correctStreak = 0;
@@ -235,6 +270,7 @@ export async function recordPhraseMistake(
     translationUk,
     errorWord,
     lessonId,
+    ...(errorWord ? trainerCategory(errorWord, rawCategory) : {}),
     mistakeCount: 1,
     correctStreak: 0,
     nextDue: tomorrowStart(),
@@ -260,6 +296,7 @@ export async function recordArenaMistake(
   if (existing) {
     existing.mistakeCount += 1;
     existing.arenaQuestion = question;
+    Object.assign(existing, trainerCategory(question.correct, question.rule));
     if (existing.archived) {
       existing.archived = false;
       existing.correctStreak = 0;
@@ -276,6 +313,7 @@ export async function recordArenaMistake(
     translationUk: '',
     arenaQuestion: question,
     lessonId,
+    ...trainerCategory(question.correct, question.rule),
     mistakeCount: 1,
     correctStreak: 0,
     nextDue: tomorrowStart(),
@@ -311,6 +349,7 @@ export async function markTrainerResult(
       item.nextDue = nextInterval(item.correctStreak);
     }
   } else {
+    item.mistakeCount += 1;
     item.correctStreak = 0;
     item.nextDue = tomorrowStart();
   }
@@ -338,6 +377,87 @@ export async function getTrainerTotalDue(): Promise<number> {
   return counts.words + counts.phrases + counts.arena;
 }
 
+export interface TrainerDashboard {
+  due: Record<TrainerQueue, number>;
+  totalDue: number;
+  totalTracked: number;
+  active: number;
+  future: number;
+  archived: number;
+  hardestQueue: TrainerQueue | null;
+  hardestMistakes: number;
+  hardestCategory: WordCategory | null;
+  hardestCategoryMistakes: number;
+  hardestCategoryPriority: number;
+  hardestCategoryRecovery: number;
+  memoryScore: number;
+  posMasteryXp: number;
+  posMasteryTop: Array<{ category: WordCategory; level: number; xp: number; streak: number }>;
+  nextQueue: TrainerQueue | null;
+}
+
+export async function getTrainerDashboard(): Promise<TrainerDashboard> {
+  const items = await load();
+  const posMastery = await getPosMasterySnapshot();
+  const end = todayEnd();
+  const activeItems = items.filter(i => !i.archived && i.nextDue > 0);
+  const dueItems = activeItems.filter(i => i.nextDue <= end);
+  const archived = items.filter(i => i.archived).length;
+  const due: Record<TrainerQueue, number> = {
+    words: dueItems.filter(i => i.queue === 'words').length,
+    phrases: dueItems.filter(i => i.queue === 'phrases').length,
+    arena: dueItems.filter(i => i.queue === 'arena').length,
+  };
+
+  const queues: TrainerQueue[] = ['phrases', 'words', 'arena'];
+  const queueStats = queues.map(queue => {
+    const all = activeItems.filter(i => i.queue === queue);
+    const dueCount = due[queue];
+    const mistakes = all.reduce((sum, item) => sum + item.mistakeCount, 0);
+    const avgMistakes = all.length > 0 ? mistakes / all.length : 0;
+    return { queue, dueCount, mistakes, avgMistakes, score: dueCount * 10 + avgMistakes * 3 };
+  });
+  const hardest = [...queueStats].sort((a, b) => b.mistakes - a.mistakes || b.avgMistakes - a.avgMistakes)[0];
+  const next = [...queueStats].filter(s => s.dueCount > 0).sort((a, b) => b.score - a.score)[0];
+  const categoryStats = new Map<WordCategory, number>();
+  for (const item of activeItems) {
+    const category = item.category ?? trainerCategoryForItem(item).category;
+    if (!category || category === 'other') continue;
+    categoryStats.set(category, (categoryStats.get(category) ?? 0) + item.mistakeCount);
+  }
+  const fallbackHardestCategory = [...categoryStats.entries()].sort((a, b) => b[1] - a[1])[0];
+  const analyticsStats = await computePhraseAnalytics();
+  const analyticsHardestCategory = analyticsStats.categoryStats[0];
+  const totalTracked = items.length;
+  const memoryScore = totalTracked === 0
+    ? 100
+    : Math.max(0, Math.min(100, Math.round(((archived + activeItems.length * 0.35) / totalTracked) * 100)));
+
+  return {
+    due,
+    totalDue: due.words + due.phrases + due.arena,
+    totalTracked,
+    active: activeItems.length,
+    future: activeItems.filter(i => i.nextDue > end).length,
+    archived,
+    hardestQueue: hardest && hardest.mistakes > 0 ? hardest.queue : null,
+    hardestMistakes: hardest?.mistakes ?? 0,
+    hardestCategory: analyticsHardestCategory?.category ?? fallbackHardestCategory?.[0] ?? null,
+    hardestCategoryMistakes: analyticsHardestCategory?.mistakeCount ?? fallbackHardestCategory?.[1] ?? 0,
+    hardestCategoryPriority: analyticsHardestCategory?.priorityScore ?? 0,
+    hardestCategoryRecovery: analyticsHardestCategory?.recoveryScore ?? 0,
+    memoryScore,
+    posMasteryXp: posMastery.reduce((sum, entry) => sum + entry.xp, 0),
+    posMasteryTop: posMastery.slice(0, 3).map(entry => ({
+      category: entry.category,
+      level: entry.level,
+      xp: entry.xp,
+      streak: entry.streak,
+    })),
+    nextQueue: next?.queue ?? null,
+  };
+}
+
 /** Элементы конкретной очереди ожидающие сегодня. */
 export async function getDueItems(queue: TrainerQueue, limit = 20): Promise<TrainerItem[]> {
   const items = await load();
@@ -346,6 +466,101 @@ export async function getDueItems(queue: TrainerQueue, limit = 20): Promise<Trai
     .filter(i => i.queue === queue && !i.archived && i.nextDue > 0 && i.nextDue <= end)
     .sort((a, b) => b.mistakeCount - a.mistakeCount || a.nextDue - b.nextDue)
     .slice(0, limit);
+}
+
+function uniqueTrainerItems(items: TrainerItem[]): TrainerItem[] {
+  const seen = new Set<string>();
+  const result: TrainerItem[] = [];
+  for (const item of items) {
+    const id = `${item.queue}:${item.key}`;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    result.push(item);
+  }
+  return result;
+}
+
+function itemCategoryPriority(item: TrainerItem, categoryPriority: Map<WordCategory, number>): number {
+  const category = item.category ?? trainerCategoryForItem(item).category;
+  if (!category || category === 'other') return 0;
+  return categoryPriority.get(category) ?? 0;
+}
+
+async function loadCategoryPriorityScores(): Promise<Map<WordCategory, number>> {
+  try {
+    const analytics = await computePhraseAnalytics();
+    return new Map(analytics.categoryStats.map(stat => [stat.category, stat.priorityScore]));
+  } catch {
+    return new Map();
+  }
+}
+
+function trainerPriorityScore(item: TrainerItem, end: number, categoryPriority = 0): number {
+  const dueBonus = item.nextDue <= end ? 80 : 0;
+  const mistakeScore = item.mistakeCount * 14;
+  const weakScore = Math.max(0, 4 - item.correctStreak) * 8;
+  const ageScore = Math.max(0, Math.min(20, Math.floor((Date.now() - item.createdAt) / MS_PER_DAY)));
+  const posScore = Math.round(categoryPriority * 0.75);
+  return dueBonus + mistakeScore + weakScore + ageScore + posScore;
+}
+
+export async function getTrainerPremiumItems(
+  mode: TrainerPremiumMode,
+  limit = 12,
+): Promise<TrainerItem[]> {
+  const items = (await load()).map(withTrainerCategory);
+  const end = todayEnd();
+  const active = items.filter(i => !i.archived && i.nextDue > 0);
+  const categoryPriority = await loadCategoryPriorityScores();
+  const score = (item: TrainerItem) => trainerPriorityScore(item, end, itemCategoryPriority(item, categoryPriority));
+  const byPriority = () => [...active].sort((a, b) => score(b) - score(a));
+  const due = active
+    .filter(i => i.nextDue <= end)
+    .sort((a, b) => score(b) - score(a));
+
+  if (mode === 'weak') {
+    const weak = active
+      .filter(i => i.correctStreak <= 1 || i.mistakeCount >= 2)
+      .sort((a, b) =>
+        itemCategoryPriority(b, categoryPriority) - itemCategoryPriority(a, categoryPriority) ||
+        a.correctStreak - b.correctStreak ||
+        b.mistakeCount - a.mistakeCount ||
+        a.nextDue - b.nextDue
+      );
+    return uniqueTrainerItems([...weak, ...due, ...byPriority()]).slice(0, limit);
+  }
+
+  if (mode === 'hard') {
+    const hard = active
+      .filter(i => i.mistakeCount >= 3)
+      .sort((a, b) =>
+        b.mistakeCount - a.mistakeCount ||
+        itemCategoryPriority(b, categoryPriority) - itemCategoryPriority(a, categoryPriority) ||
+        a.correctStreak - b.correctStreak ||
+        a.nextDue - b.nextDue
+      );
+    return uniqueTrainerItems([...hard, ...due, ...byPriority()]).slice(0, limit);
+  }
+
+  const weakPart = active
+    .filter(i => i.correctStreak <= 1 || i.mistakeCount >= 2)
+    .sort((a, b) =>
+      itemCategoryPriority(b, categoryPriority) - itemCategoryPriority(a, categoryPriority) ||
+      a.correctStreak - b.correctStreak ||
+      b.mistakeCount - a.mistakeCount
+    );
+  const fresh = active
+    .filter(i => i.nextDue > end)
+    .sort((a, b) => b.createdAt - a.createdAt);
+  const dueCount = Math.ceil(limit * 0.5);
+  const weakCount = Math.ceil(limit * 0.3);
+  const mixed = uniqueTrainerItems([
+    ...due.slice(0, dueCount),
+    ...weakPart.slice(0, weakCount),
+    ...fresh.slice(0, limit - dueCount),
+    ...byPriority(),
+  ]);
+  return mixed.slice(0, limit);
 }
 
 /** Все слова в хранилище (включая ещё не активированные) — для подбора ложных переводов. */
@@ -365,8 +580,11 @@ export async function getTrainerStoreDebug(): Promise<{
   active: number;
   archived: number;
   byQueue: Record<TrainerQueue, number>;
+  posMasteryXp: number;
+  posMasteryCount: number;
 }> {
   const items = await load();
+  const posMastery = await getPosMasterySnapshot();
   const active = items.filter(i => !i.archived && i.nextDue > 0);
   const archived = items.filter(i => i.archived);
   return {
@@ -378,6 +596,8 @@ export async function getTrainerStoreDebug(): Promise<{
       phrases: items.filter(i => i.queue === 'phrases').length,
       arena:   items.filter(i => i.queue === 'arena').length,
     },
+    posMasteryXp: posMastery.reduce((sum, entry) => sum + entry.xp, 0),
+    posMasteryCount: posMastery.length,
   };
 }
 
@@ -411,6 +631,47 @@ const DEV_ARENA = [
   { question: 'He ___ his keys again',          correct: 'lost',    options: ['lose', 'lost', 'loses', 'loss'],rule: 'Past Simple' },
   { question: 'We ___ finish by tomorrow',      correct: 'must',    options: ['must', 'can', 'may', 'might'],  rule: 'Modals' },
 ];
+
+const DEV_ANALYTICS_PICKED = ['go', 'in', 'the', 'has', 'wait', 'must to', 'call to', 'a', 'never not'];
+
+async function devSeedMistakeAnalytics(now: number, rnd: (min: number, max: number) => number): Promise<void> {
+  const eventCount = rnd(12, 24);
+  const phrasePool = [...DEV_PHRASES].sort(() => Math.random() - 0.5);
+  const wordPool = [...DEV_WORDS].sort(() => Math.random() - 0.5);
+
+  for (let i = 0; i < eventCount; i += 1) {
+    const useWord = Math.random() < 0.28;
+    const lessonId = rnd(1, 8);
+    const picked = DEV_ANALYTICS_PICKED[rnd(0, DEV_ANALYTICS_PICKED.length - 1)];
+
+    if (useWord) {
+      const word = wordPool[i % wordPool.length];
+      logMistake(word.key, lessonId, 'lesson_words', 'wrong_pick', {
+        tokenText: word.key,
+        tokenIndex: 0,
+        expected: word.key,
+        picked,
+      });
+      continue;
+    }
+
+    const phrase = phrasePool[i % phrasePool.length];
+    const tokens = phrase.key.split(/\s+/).filter(Boolean);
+    const errorIndex = tokens.findIndex(token => token.toLowerCase() === phrase.errorWord.toLowerCase());
+    const fallbackIndex = errorIndex >= 0 ? errorIndex : 0;
+    const tokenIndex = Math.random() < 0.65 ? fallbackIndex : rnd(0, Math.max(0, tokens.length - 1));
+    const tokenText = tokens[tokenIndex] ?? phrase.errorWord;
+    logMistake(phrase.key, lessonId, 'lesson', 'wrong_pick', {
+      tokenText,
+      tokenIndex,
+      expected: tokenText,
+      picked,
+      phraseId: `dev-${now}-${i}`,
+    });
+  }
+
+  await flushMistakeLog();
+}
 
 /**
  * DEV ONLY — заполняет тренер случайным кол-вом элементов в каждый раздел.
@@ -482,7 +743,75 @@ export async function devSeedTrainer(): Promise<void> {
   }
 
   await save(items);
+  await devSeedMistakeAnalytics(now, rnd);
+}
+
+function devItem(
+  item: Omit<TrainerItem, 'nextDue' | 'createdAt' | 'archived'> & Partial<Pick<TrainerItem, 'nextDue' | 'createdAt' | 'archived'>>,
+  now: number,
+): TrainerItem {
+  return {
+    nextDue: now,
+    createdAt: now,
+    archived: false,
+    ...item,
+  };
+}
+
+/** DEV ONLY — deterministic scenarios for admin/maestro visual QA. */
+export async function devSeedTrainerScenario(scenario: TrainerDevScenario): Promise<void> {
+  if (scenario === 'empty') {
+    await clearTrainerStore();
+    return;
+  }
+  if (scenario === 'random') {
+    await clearTrainerStore();
+    await devSeedTrainer();
+    return;
+  }
+
+  const now = Date.now();
+  const base: TrainerItem[] = [
+    ...DEV_PHRASES.map((p, i) => devItem({
+      key: p.key,
+      queue: 'phrases',
+      translationRu: p.ru,
+      translationUk: p.uk,
+      errorWord: p.errorWord,
+      lessonId: 1 + i,
+      mistakeCount: scenario === 'hard' ? 4 + (i % 3) : 1 + (i % 2),
+      correctStreak: scenario === 'weak' ? 0 : 1,
+    }, now)),
+    ...DEV_WORDS.map((w, i) => devItem({
+      key: w.key,
+      queue: 'words',
+      translationRu: w.ru,
+      translationUk: w.uk,
+      lessonId: 1 + i,
+      mistakeCount: scenario === 'hard' ? 3 + (i % 4) : 2,
+      correctStreak: scenario === 'weak' ? (i % 2) : 2,
+    }, now)),
+    ...DEV_ARENA.map((a, i) => devItem({
+      key: a.question,
+      queue: 'arena',
+      translationRu: '',
+      translationUk: '',
+      arenaQuestion: a,
+      lessonId: 5 + i,
+      mistakeCount: scenario === 'hard' ? 5 : 1 + (i % 2),
+      correctStreak: scenario === 'weak' ? 0 : 1,
+    }, now)),
+  ];
+
+  const items = scenario === 'overloaded'
+    ? [...base, ...base.map((item, i) => ({ ...item, key: `${item.key} #${i + 1}`, mistakeCount: item.mistakeCount + 1, correctStreak: 0 }))]
+    : scenario === 'hard'
+      ? base.filter(item => item.mistakeCount >= 3)
+      : base;
+  await save(items);
 }
 
 /* expo-router route shim */
 export default function __RouteShim() { return null; }
+
+

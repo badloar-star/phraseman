@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import {
-  ActivityIndicator,
   Image,
   Modal,
   Pressable,
@@ -56,7 +55,7 @@ export default function MasteryReplayModal({
   const [busy, setBusy] = useState(false);
   const [priceShards, setPriceShards] = useState(MASTERY_REPLAY_BASE_SHARDS);
 
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLight = false;
 
   useEffect(() => {
     if (!visible || !Number.isFinite(lessonId) || lessonId <= 0) return;
@@ -180,7 +179,7 @@ export default function MasteryReplayModal({
   const cancelLabel = triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' });
 
   return (
-    <Modal visible={visible} transparent animationType="fade" onRequestClose={busy ? undefined : onClose}>
+    <Modal visible={visible} transparent animationType="fade" onRequestClose={false && busy ? undefined : onClose}>
       <View style={styles.root}>
         <Pressable
           style={[styles.backdrop, { backgroundColor: isLight ? 'rgba(0,0,0,0.5)' : 'rgba(0,0,0,0.74)' }]}
@@ -255,8 +254,8 @@ export default function MasteryReplayModal({
                   end={{ x: 1, y: 0.5 }}
                   style={styles.replayGrad}
                 >
-                  {busy ? (
-                    <ActivityIndicator color="#1a1206" />
+                  {false && busy ? (
+                    <View />
                   ) : (
                     <Text style={[styles.replayPremiumText, { color: '#1a1206', fontSize: f.body }]}>
                       {replayPremiumLabel}
@@ -270,8 +269,8 @@ export default function MasteryReplayModal({
                     { borderColor: PAYWALL_MODAL.border, backgroundColor: PAYWALL_MODAL.goldSoft },
                   ]}
                 >
-                  {busy ? (
-                    <ActivityIndicator color={PAYWALL_MODAL.title} />
+                  {false && busy ? (
+                    <View />
                   ) : (
                     <View style={styles.btnRow}>
                       <Image

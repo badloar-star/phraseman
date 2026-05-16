@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="emulator-5558" tests="1" failures="1" time="20.0">
+    <testcase id="nav_flashcards_open_and_back" name="nav_flashcards_open_and_back" classname="nav_flashcards_open_and_back" time="20.0" status="ERROR">
+      <failure>Unable to launch app app.phraseman</failure>
+    </testcase>
+  </testsuite>
+</testsuites>

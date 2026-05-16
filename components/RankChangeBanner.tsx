@@ -22,7 +22,7 @@ export default function RankChangeBanner({
   duration = 5000,
   onClose,
 }: Props) {
-  const { theme: t, f } = useTheme();
+  const { f } = useTheme();
   const anim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -92,6 +92,8 @@ export default function RankChangeBanner({
   const bg = isUp ? '#10381e' : '#3a2a14';
   const border = isUp ? '#34d399' : '#f59e0b';
   const titleColor = isUp ? '#34d399' : '#fbbf24';
+  const bodyColor = isUp ? '#D8FBE8' : '#FFE9B5';
+  const closeColor = 'rgba(255,255,255,0.68)';
 
   return (
     <Animated.View
@@ -118,9 +120,9 @@ export default function RankChangeBanner({
           <Text style={{ color: titleColor, fontSize: f.bodyLg, fontWeight: '800', flexShrink: 1 }}>
             {title}
           </Text>
-          <Text style={{ color: t.textGhost, fontSize: f.caption }}>×</Text>
+          <Text style={{ color: closeColor, fontSize: f.caption }}>×</Text>
         </View>
-        <Text style={{ color: t.textPrimary, fontSize: f.sub, marginTop: 4, fontWeight: '500' }}>
+        <Text style={{ color: bodyColor, fontSize: f.sub, marginTop: 4, fontWeight: '600' }}>
           {subtitle}
         </Text>
       </Pressable>

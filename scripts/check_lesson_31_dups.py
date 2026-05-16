@@ -6,9 +6,8 @@ from pathlib import Path
 lines = (Path(__file__).resolve().parent.parent / "app" / "lesson_data_25_32.ts").read_text(
     encoding="utf-8"
 ).splitlines()
-# L31: export ... through closing ]; before LESSON_31_VOCABULARY
 start = next(i for i, L in enumerate(lines) if "export const LESSON_31_PHRASES" in L)
-end = next(i for i, L in enumerate(lines) if "export const LESSON_31_VOCABULARY" in L)
+end = next(i for i, L in enumerate(lines[start + 1 :], start + 1) if "export const LESSON_31_" in L)
 chunk = "\n".join(lines[start : end + 1])
 
 in_words = False

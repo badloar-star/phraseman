@@ -12,7 +12,7 @@ export const MOTION_SPRING = {
   toast: { tension: 70, friction: 9 },
 } as const;
 
-/** Subtle scale peaks — keep UI motion premium, not “bouncy toy” */
+/** Subtle scale peaks — keep UI motion premium, not "bouncy toy" */
 export const MOTION_SCALE = {
   hint: 1.02,
   nudge: 1.06,

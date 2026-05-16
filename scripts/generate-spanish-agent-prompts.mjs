@@ -187,8 +187,6 @@ const AGENTS = [
 
   { id: 38, slug: 'settings-invite-friend-tsx', title: '`app/settings_invite_friend.tsx`', role: 'Редактор UI.', mission: 'Испанский текст приглашений.', scope: '- Файл: `app/settings_invite_friend.tsx`.', inputs: 'Файл.', output: 'Таблица + ES.', forbidden: '—', verify: 'Язык; уместность share-текста.', finalLine: 'Проверено три раза: язык, UX, термины.' },
 
-  { id: 39, slug: 'lessonCardCopy-ts', title: '`components/share_cards/lessonCardCopy.ts`', role: 'Редактор UI.', mission: 'Испанские строки для шаринга карточки урока.', scope: '- Файл указан в названии.', inputs: 'Файл.', output: 'Готовые строки или функции локализации.', forbidden: 'Не менять формат deep link без задачи.', verify: 'Язык; бренд Phraseman сохранён как в источнике.', finalLine: 'Проверено три раза: язык, формат, термины.' },
-
   { id: 40, slug: 'lesson-share-ts', title: '`app/lesson_share.ts`', role: 'Редактор UI.', mission: 'Испанские строки шаринга урока.', scope: '- Файл: `app/lesson_share.ts`.', inputs: 'Файл.', output: 'Патчи ES.', forbidden: '—', verify: 'Язык; полнота.', finalLine: 'Проверено три раза: язык, полнота.' },
 
   { id: 41, slug: 'quizzes-results-ts', title: '`app/quizzes/results.ts` — `labelES`', role: 'Редактор мотивационных фраз.', mission: 'Вычитать все **`labelES`** и испанские шаблоны рангов.', scope: '- Файл: `app/quizzes/results.ts`.', inputs: 'Файл.', output: 'Исправленный фрагмент только с изменёнными `labelES`.', forbidden: 'Не менять логику выбора случайной строки.', verify: 'Грамматика; тон; единый стиль.', finalLine: 'Проверено три раза: язык, тон, консистентность.' },

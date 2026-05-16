@@ -16,7 +16,12 @@ export function redirectSystemPath({
   if (/^[a-z][a-z0-9+.-]*:\/\//i.test(raw)) {
     try {
       const url = new URL(raw);
-      raw = `${url.pathname || ''}${url.search || ''}${url.hash || ''}`.trim();
+      const routePath = url.pathname && url.pathname !== '/'
+        ? url.pathname
+        : url.host
+          ? `/${url.host}`
+          : '';
+      raw = `${routePath}${url.search || ''}${url.hash || ''}`.trim();
     } catch {
       raw = raw.replace(/^[a-z][a-z0-9+.-]*:\/\//i, '').trim();
       raw = raw.startsWith('/') ? raw : `/${raw}`;
@@ -26,6 +31,23 @@ export function redirectSystemPath({
   // Handles launches like `phraseman:///` or empty path.
   if (!raw || raw === '/' || raw === '///') {
     return '/home';
+  }
+
+  // Referral invite links should not route to a non-existent `/invite` screen.
+  // The root layout captures the ref query from Linking.getInitialURL/listeners;
+  // this redirect only keeps app launch/navigation on a valid screen.
+  const inviteMatch =
+    raw.match(/(?:^|\/)invite(?:[/?#]|$)/i) ??
+    raw.match(/(?:^|\/)phraseman\/invite(?:[/?#]|$)/i);
+  if (inviteMatch) {
+    const queryIndex = raw.indexOf('?');
+    const hashIndex = raw.indexOf('#');
+    const endIndex =
+      hashIndex >= 0 && (queryIndex < 0 || hashIndex > queryIndex)
+        ? hashIndex
+        : raw.length;
+    const query = queryIndex >= 0 ? raw.slice(queryIndex, endIndex) : '';
+    return `/home${query}`;
   }
 
   // Extract room id from web/app links:

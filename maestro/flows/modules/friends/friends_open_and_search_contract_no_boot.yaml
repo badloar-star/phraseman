@@ -1,0 +1,27 @@
+appId: app.phraseman
+---
+- runFlow: ../../_dismiss_bug_hunt.yaml
+- runFlow: ../../_precondition.yaml
+- tapOn:
+    id: "tab-friends"
+- extendedWaitUntil:
+    visible:
+      id: "screen-friends"
+    timeout: 30000
+- tapOn:
+    id: "friends-open-add"
+- extendedWaitUntil:
+    visible:
+      id: "friends-code-input"
+    timeout: 15000
+- tapOn:
+    id: "friends-code-input"
+- eraseText
+- inputText: "LSB8NC"
+- assertVisible: "LSB8NC"
+- tapOn:
+    id: "friends-search"
+- extendedWaitUntil:
+    visible:
+      id: "friends-search-error"
+    timeout: 20000

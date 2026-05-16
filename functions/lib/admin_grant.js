@@ -100,6 +100,9 @@ exports.adminGrantReward = (0, https_1.onCall)({ region: REGION }, async (reques
             const before = Number(u.shards) || 0;
             const after = before + amount;
             updates['shards'] = after;
+            updates['shards_updated_at_ms'] = Date.now();
+            updates['shards_updated_op'] = 'earn';
+            updates['shards_updated_reason'] = 'admin_grant';
             shardsAmount = amount;
             humanLabel = `+${amount} 💎`;
             const shardLogRef = userRef.collection('shard_log').doc();
@@ -108,6 +111,7 @@ exports.adminGrantReward = (0, https_1.onCall)({ region: REGION }, async (reques
                 type: 'earn',
                 amount,
                 reason: 'admin_grant',
+                balanceBefore: before,
                 balanceAfter: after,
                 adminEmail,
                 comment: comment || null,

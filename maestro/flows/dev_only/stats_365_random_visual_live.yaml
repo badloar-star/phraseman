@@ -1,0 +1,39 @@
+appId: app.phraseman
+---
+- extendedWaitUntil:
+    visible:
+      id: "stats-quick-365-random-open"
+    timeout: 45000
+- tapOn:
+    id: "stats-quick-365-random-open"
+    waitToSettleTimeoutMs: 1000
+- extendedWaitUntil:
+    visible:
+      id: "screen-streak-stats"
+    timeout: 30000
+- extendedWaitUntil:
+    visible:
+      id: "activity-365-card"
+    timeout: 45000
+- takeScreenshot: stats_seeded_random_365
+- tapOn:
+    id: "activity-365-toggle"
+- extendedWaitUntil:
+    visible:
+      id: "activity-365-goal-card"
+    timeout: 15000
+- takeScreenshot: stats_seeded_random_365_expanded
+- scrollUntilVisible:
+    element:
+      id: "activity-365-report-open"
+    direction: DOWN
+    timeout: 20000
+    speed: 55
+    visibilityPercentage: 60
+- tapOn:
+    id: "activity-365-report-open"
+- extendedWaitUntil:
+    visible:
+      id: "activity-365-monthly-report-modal"
+    timeout: 15000
+- takeScreenshot: stats_seeded_random_365_report

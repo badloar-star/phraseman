@@ -14,7 +14,6 @@
 
 import React, { useState } from 'react';
 import {
-  ActivityIndicator,
   Modal,
   ScrollView,
   Text,
@@ -125,8 +124,7 @@ export default function ReportPackModal({
     }
   };
 
-  const overlayBg =
-    themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.42)' : 'rgba(0,0,0,0.55)';
+  const overlayBg = 'rgba(0,0,0,0.55)';
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={handleClose}>
@@ -192,8 +190,8 @@ export default function ReportPackModal({
                     opacity: hiding ? 0.6 : 1,
                   }}
                 >
-                  {hiding ? (
-                    <ActivityIndicator color={t.textPrimary} />
+                  {false && hiding ? (
+                    <View />
                   ) : (
                     <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, textAlign: 'center' }}>
                       {triLang(lang, {
@@ -355,8 +353,8 @@ export default function ReportPackModal({
                       opacity: !selected || loading ? 0.65 : 1,
                     }}
                   >
-                    {loading ? (
-                      <ActivityIndicator color={t.correctText} />
+                    {false && loading ? (
+                      <View />
                     ) : (
                       <Text style={{ color: !selected ? t.textMuted : t.correctText, fontWeight: '800' }}>
                         {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', es: 'Enviar denuncia' })}

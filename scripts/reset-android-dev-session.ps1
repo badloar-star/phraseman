@@ -196,21 +196,20 @@ if (-not $NoMetro) {
 
     Start-Sleep -Seconds 2
 
-    & (Join-Path $PSScriptRoot "adb-reverse-metro.ps1")
-
     try {
 
-      & (Join-Path $PSScriptRoot "adb-open-dev-localhost.ps1")
+      & (Join-Path $PSScriptRoot "adb-open-dev-all-emulators.ps1") -Port 8081
 
     } catch {
 
-      Write-Host "adb-open-dev-localhost: $($_.Exception.Message)"
+      Write-Host "adb-open-dev-all-emulators: $($_.Exception.Message)"
 
     }
 
   } elseif (-not $ready) {
 
-    Write-Host "Metro не поднялся на :8081 вовремя — проверь окно Metro, потом: npm run android:dev-localhost"
+    Write-Host "Metro did not open on :8081 in time. Check the Metro window, then run: npm run android:dev-all-emulators"
+    return
 
   }
 

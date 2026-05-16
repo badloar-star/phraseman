@@ -1,0 +1,65 @@
+# Проверяет экран достижений с аккордеоном:
+# 1. Открывает экран достижений из Settings
+# 2. Убеждается что секции видны как полоски (не раскрыты)
+# 3. Нажимает на «Особые» — проверяет что раскрылось
+# 4. Нажимает на «Уроки» — проверяет что открылось, «Особые» закрылось
+# 5. Возвращается назад
+appId: app.phraseman
+---
+- runFlow: ../_shared/boot_to_home.yaml
+
+# Переходим в Settings (последний таб)
+- tapOn:
+    point: "90%,95%"
+- waitForAnimationToEnd:
+    timeout: 4000
+
+# Скролл до кнопки «Достижения» в настройках
+- scrollUntilVisible:
+    element:
+      text: "(Достижения|Досягнення|Logros)"
+    direction: DOWN
+    timeout: 15000
+    speed: 60
+    visibilityPercentage: 30
+- tapOn:
+    text: "(Достижения|Досягнення|Logros)"
+- waitForAnimationToEnd:
+    timeout: 4000
+
+# Экран достижений открыт — проверяем что аккордеон показывает заголовки категорий
+- assertVisible:
+    text: "(Цепочка|Ланцюжок|Racha)"
+- assertVisible:
+    text: "(Уроки|Lecciones)"
+- assertVisible:
+    text: "(Особые|Особливі|Especiales)"
+
+# Нажимаем «Особые» — должна раскрыться секция
+- tapOn:
+    text: "(Особые|Особливі|Especiales)"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+# Проверяем что внутри «Особые» появился контент (значки достижений)
+- assertVisible:
+    text: "(Не один в поле|Не один у полі)"
+
+# Нажимаем «Уроки» — «Особые» должна закрыться, «Уроки» открыться
+- tapOn:
+    text: "(Уроки|Lecciones)"
+- waitForAnimationToEnd:
+    timeout: 2000
+
+- assertVisible:
+    text: "(Первый шаг|Перший крок|Primer paso)"
+
+# «Особые» больше не видна в раскрытом виде — заголовок всё ещё есть, но контент скрыт
+- assertNotVisible:
+    text: "(Не один в поле|Не один у полі)"
+
+# Закрываем экран достижений
+- tapOn:
+    point: "5%,10%"
+- waitForAnimationToEnd:
+    timeout: 3000

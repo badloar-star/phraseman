@@ -137,6 +137,8 @@ export interface SessionPlayer {
   sessionId: string;
   playerId: string;
   displayName?: string;
+  avatar?: string;
+  aura?: string;
   avatarLevel?: number;
   score: number;
   answers: SessionAnswer[];
@@ -176,7 +178,12 @@ export interface ArenaProfile {
   courseTotalXp?: number;
   courseAvatar?: string | null;
   courseFrame?: string | null;
+  courseAura?: string | null;
   courseIsPremium?: boolean;
+  courseProfileCardLevel?: number;
+  courseProfileCardTheme?: string | null;
+  courseProfileCardMotion?: string | null;
+  courseProfileCardPublicFocus?: string | null;
   courseDisplayAt?: number;
   /** Тот же id, что users/{id} / лидерборд — для слияния дублей arena_profiles по разным Auth uid. */
   mirrorStableId?: string | null;

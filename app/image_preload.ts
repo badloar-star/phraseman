@@ -1,6 +1,6 @@
 import { Image } from 'react-native';
 
-// Pre-load all critical images at app startup so they're cached locally.
+// Pre-load all critical images at app startup so they\'re cached locally.
 // NOTE: Image.getSize() only works with network URIs — NOT with require() assets.
 // Bundled require() assets are already included in the app bundle by Metro and
 // do not need prefetching. We use Image.resolveAssetSource() to warm up the
@@ -40,7 +40,7 @@ export const preloadImages = async () => {
       try {
         const resolved = Image.resolveAssetSource(source);
         if (resolved?.uri && resolved.uri.startsWith('http')) {
-          // In Expo dev mode assets may be served over Metro's dev server —
+          // In Expo dev mode assets may be served over Metro\'s dev server —
           // in that case we can prefetch the resolved network URI safely.
           Image.prefetch(resolved.uri).catch(() => {});
         }

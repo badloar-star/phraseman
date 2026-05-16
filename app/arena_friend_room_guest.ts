@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { emitAppEvent } from './events';
-import { logEvent } from './firebase';
+import { chargeArenaEntry, reserveArenaGameEntry } from './arena_access_gate';
 import { ensureArenaAuthUid } from './user_id_policy';
 
 export type JoinArenaGuestResult =
@@ -65,20 +65,24 @@ export async function joinArenaFriendRoomAsGuest(
 
     if (!foundSessionId) return { ok: false, code: 'session_timeout' };
 
-    if (!isUnlimited) {
-      const ok = await spendOne();
-      if (!ok) {
-        emitAppEvent('action_toast', {
-          type: 'error',
-          messageRu: 'Недостаточно энергии для входа в матч.',
-          messageUk: 'Недостатньо енергії для входу в матч.',
-          messageEs: 'No tienes suficiente energía para unirte a la partida.',
-        });
-        return { ok: false, code: 'no_energy' };
-      }
-      logEvent('arena_match_charged', { mode: 'friend', role: 'guest' });
+    const charge = await chargeArenaEntry({
+      isUnlimited,
+      spendOne,
+      countDaily: false,
+      mode: 'friend',
+      extraLogParams: { role: 'guest' },
+    });
+    if (!charge.ok) {
+      emitAppEvent('action_toast', {
+        type: 'error',
+        messageRu: 'Недостаточно энергии для входа в матч.',
+        messageUk: 'Недостатньо енергії для входу в матч.',
+        messageEs: 'No tienes suficiente energía para unirte a la partida.',
+      });
+      return { ok: false, code: 'no_energy' };
     }
 
+    await reserveArenaGameEntry(foundSessionId, 'friend_guest');
     return { ok: true, sessionId: foundSessionId, uid };
   } catch {
     return { ok: false, code: 'error' };

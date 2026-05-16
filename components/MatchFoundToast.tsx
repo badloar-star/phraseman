@@ -10,6 +10,7 @@ import { hapticSoftImpact, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { ARENA_LOBBY_ACCEPT_MS, CLOUD_SYNC_ENABLED } from '../app/config';
 import { setSessionLobbyChoice } from '../app/services/arena_db';
+import { reserveArenaGameEntry } from '../app/arena_access_gate';
 
 const { width: SCREEN_W } = Dimensions.get('window');
 
@@ -51,7 +52,7 @@ export default function MatchFoundToast() {
   /** Тост реально в «показан»-состоянии (не вызываем slideOut из else на каждом тике эффекта — это давало sync-колбэки анимации → setState во время useInsertionEffect). */
   const toastActiveRef = useRef(false);
   /** rAF-id отложенного старта slideIn-анимаций под Fabric:
-   *  без отсрочки connectAnimatedNodeToView вызывается раньше commit'а маунта
+   *  без отсрочки connectAnimatedNodeToView вызывается раньше commit\'а маунта
    *  и кидает JSApplicationIllegalArgumentException. */
   const slideInRafRef = useRef<number | null>(null);
 
@@ -214,10 +215,13 @@ export default function MatchFoundToast() {
     clearAcceptSchedule();
     markMatchHandled();
     slideOut(() => {
-      router.push({
+      void (async () => {
+        await reserveArenaGameEntry(sessionId, 'match_toast');
+        router.push({
         pathname: '/arena_game' as any,
         params: { sessionId, userId },
-      });
+        });
+      })();
     });
   };
 

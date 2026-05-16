@@ -10,7 +10,7 @@ import {
 } from './bundles/packIds';
 
 /**
- * Декор paywall прив’язаний до **глобальної теми** (`ThemeMode`):
+ * Декор paywall прив\'язаний до **глобальної теми** (`ThemeMode`):
  * - `dark` = Deep Forest (як DARK з theme.ts) — натуральний багряний/зелений, **не** неон
  * - `neon` = «перший ідеальний варіант» — C8FF00, темний текст CTA
  * - `gold` / `ocean` / `sakura` = палітри з constants/theme
@@ -65,19 +65,18 @@ function fadeStop(pair: readonly [string, string], factor: number): [string, str
 }
 
 /**
- * На світлих картках глобальний `factor` 0.4 вбивав ореол. Для ocean/sakura — м’якше
+ * На світлих картках глобальний `factor` 0.4 вбивав ореол. Для ocean/sakura — м\'якше
  * притінення, щоб **сяйво** лишалося помітним (електричні неон-краї).
  */
 function forLightShell(t: CardPackPaywallTheme, themeMode: ThemeMode): CardPackPaywallTheme {
-  const richLight = themeMode === 'ocean' || themeMode === 'sakura';
-  const g = richLight ? 0.86 : 0.42;
-  const edge = richLight ? 0.9 : 0.42;
-  const b = richLight ? 0.86 : 0.55;
-  const h = richLight ? 0.88 : 0.75;
-  const ic = richLight ? 0.8 : 0.5;
-  const pr = richLight ? 0.8 : 0.6;
-  const pg = richLight ? 0.75 : 0.55;
-  const cg = richLight ? 0.72 : 0.45;
+  const g = 0.42;
+  const edge = 0.42;
+  const b = 0.55;
+  const h = 0.75;
+  const ic = 0.5;
+  const pr = 0.6;
+  const pg = 0.55;
+  const cg = 0.45;
   return m(t, {
     outerGlow: [fadeRgba(t.outerGlow[0], g), fadeRgba(t.outerGlow[1], g * 0.94), fadeRgba(t.outerGlow[2], edge)] as const,
     borderAccent: fadeRgba(t.borderAccent, b),
@@ -215,8 +214,6 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   dark: shellDark(),
   neon: shellNeon(),
   gold: shellGold(),
-  ocean: shellOcean(),
-  sakura: shellSakura(),
   minimalLight: shellGold(),
   minimalDark: shellDark(),
 };

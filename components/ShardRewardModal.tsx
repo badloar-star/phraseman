@@ -2,7 +2,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Image, Modal, Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { playShardsRewardModalSound } from '../app/achievement_modal_sound';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { bundleLang } from '../constants/i18n';
 import { SHARD_MODAL_ACCENT_GLOW, SHARD_MODAL_FRAME_COLORS } from '../constants/shard_modal_chrome';
@@ -39,14 +38,14 @@ const TEXTS = {
     subtitle: (n: number) => ruShardKnowledgeSubtitle(n),
     body: 'Репорт проверили и починили баг. Заслуженная награда за настоящую сыскную работу.',
     bodySuggestion:
-      'Идея принята в работу — спасибо, что помогаешь Phraseman становиться лучше. Ценим это.',
+      'Команда начислила тебе осколки. Спасибо, что помогаешь Phraseman становиться лучше.',
     bodyAdmin: 'Команда начислила тебе осколки. Это наш способ сказать спасибо за твою поддержку.',
     label: 'За исправление:',
-    labelSuggestion: 'Твоя идея:',
+    labelSuggestion: 'От команды:',
     labelAdmin: 'От команды:',
     btn: 'Прекрасно',
     multiple: (n: number) => `${n} исправленных ошибок`,
-    multipleSuggestion: (n: number) => `${n} принятых идей`,
+    multipleSuggestion: (n: number) => `${n} наград от команды`,
     multipleAdmin: (n: number) => `${n} наград от команды`,
   },
   uk: {
@@ -55,14 +54,14 @@ const TEXTS = {
     subtitle: (n: number) => ukShardKnowledgeSubtitle(n),
     body: 'Репорт перевірили і полагодили баг. Це справжня детективна робота — і вона має ціну.',
     bodySuggestion:
-      'Ідея прийнята в роботу — дякуємо, що допомагаєш Phraseman ставати кращим. Це важливо для нас.',
+      'Команда нарахувала тобі осколки. Дякуємо, що допомагаєш Phraseman ставати кращим.',
     bodyAdmin: 'Команда нарахувала тобі осколки. Невеликий жест великої вдячності.',
     label: 'За виправлення:',
-    labelSuggestion: 'Твоя ідея:',
+    labelSuggestion: 'Від команди:',
     labelAdmin: 'Від команди:',
     btn: 'Чудово',
     multiple: (n: number) => `${n} виправлених помилок`,
-    multipleSuggestion: (n: number) => `${n} прийнятих ідей`,
+    multipleSuggestion: (n: number) => `${n} нагород від команди`,
     multipleAdmin: (n: number) => `${n} нагород від команди`,
   },
   es: {
@@ -72,17 +71,19 @@ const TEXTS = {
     body:
       'Confirmaron tu informe y ya corrigieron el fallo. Mereces el botín del detective.',
     bodySuggestion:
-      'Tu idea pasó a desarrollo. Gracias por empujar Phraseman hacia algo mejor.',
+      'El equipo te abonó fragmentos. Gracias por ayudar a mejorar Phraseman.',
     bodyAdmin: 'El equipo te abonó fragmentos. Gracias por quedarte con nosotros.',
     label: 'Por el arreglo:',
-    labelSuggestion: 'Tu idea:',
+    labelSuggestion: 'Del equipo:',
     labelAdmin: 'Del equipo:',
     btn: 'Entendido',
     multiple: (n: number) => `${n} errores corregidos`,
-    multipleSuggestion: (n: number) => `${n} ideas aceptadas`,
+    multipleSuggestion: (n: number) => `${n} recompensas del equipo`,
     multipleAdmin: (n: number) => `${n} recompensas del equipo`,
   },
 };
+
+const USE_ELITE_SHARD_REWARD_MODAL = true;
 
 export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
   const { theme: t, f, themeMode } = useTheme();
@@ -90,26 +91,30 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
   const insets = useSafeAreaInsets();
   const tx = TEXTS[bundleLang(lang)];
   const backdropOpacity = useModalBackdropFade(visible);
-  const dimColor =
-    themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight'
-      ? 'rgba(8,12,20,0.48)'
-      : 'rgba(0,0,0,0.72)';
+  const dimColor = themeMode === 'minimalLight'
+    ? (USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(8,12,20,0.64)' : 'rgba(8,12,20,0.48)')
+    : (USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(3,5,10,0.82)' : 'rgba(0,0,0,0.72)');
 
   const scaleAnim = useRef(new Animated.Value(0.88)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const gemAnim = useRef(new Animated.Value(1)).current;
+  const sheetY = useRef(new Animated.Value(16)).current;
+  const topLineGlow = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (!visible) return;
     hapticSuccess();
-    void playShardsRewardModalSound();
     scaleAnim.setValue(0.88);
     opacityAnim.setValue(0);
     gemAnim.setValue(1);
+    sheetY.setValue(16);
+    topLineGlow.setValue(0);
 
     Animated.parallel([
-      Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, friction: 8, tension: 56 }),
+      Animated.spring(scaleAnim, { toValue: 1, useNativeDriver: true, friction: USE_ELITE_SHARD_REWARD_MODAL ? 10 : 8, tension: USE_ELITE_SHARD_REWARD_MODAL ? 52 : 56 }),
+      Animated.spring(sheetY, { toValue: 0, useNativeDriver: true, friction: 10, tension: 52 }),
       Animated.timing(opacityAnim, { toValue: 1, duration: 260, useNativeDriver: true }),
+      Animated.timing(topLineGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
     ]).start(() => {
       Animated.loop(
         Animated.sequence([
@@ -119,13 +124,13 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
         { iterations: 3 },
       ).start();
     });
-  }, [visible, scaleAnim, opacityAnim, gemAnim]);
+  }, [visible, scaleAnim, opacityAnim, gemAnim, sheetY, topLineGlow]);
 
   const totalShards = rewards.reduce((s, r) => s + r.count, 0);
   const firstDataText = rewards[0]?.dataText ?? '';
   const multipleReports = rewards.length > 1;
-  const isSuggestion = rewards.some((r) => r.reason === 'suggestion_accepted');
-  const isAdminGrant = !isSuggestion && rewards.every((r) => r.reason === 'admin_grant');
+  const isSuggestion = false;
+  const isAdminGrant = rewards.every((r) => r.reason === 'admin_grant' || r.reason === 'suggestion_accepted');
   const typedRewardLabels = rewards
     .filter((r) => r.label && r.rewardType && r.rewardType !== 'shards')
     .map((r) => r.label!) as string[];
@@ -160,29 +165,41 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
             {
               paddingBottom: 26 + insets.bottom,
               opacity: opacityAnim,
-              transform: [{ scale: scaleAnim }],
+              transform: [{ scale: scaleAnim }, { translateY: USE_ELITE_SHARD_REWARD_MODAL ? sheetY : 0 }],
             },
           ]}
         >
           <LinearGradient
-            colors={[...SHARD_MODAL_FRAME_COLORS]}
+            colors={USE_ELITE_SHARD_REWARD_MODAL ? ['rgba(255,255,255,0.10)', t.gold, 'rgba(255,255,255,0.08)'] : [...SHARD_MODAL_FRAME_COLORS]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 0.5 }}
-            style={styles.sheetFrame}
+            style={[styles.sheetFrame, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetFrame]}
           >
-            <View style={[styles.sheetInner, { backgroundColor: t.bgCard }]}>
+            <View style={[styles.sheetInner, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteSheetInner, { backgroundColor: USE_ELITE_SHARD_REWARD_MODAL ? t.bgSurface : t.bgCard }]}>
               <LinearGradient
                 colors={[...SHARD_MODAL_ACCENT_GLOW]}
                 start={{ x: 0.5, y: 0 }}
                 end={{ x: 0.5, y: 1 }}
-                style={[StyleSheet.absoluteFill, { opacity: 0.55 }]}
+                style={[StyleSheet.absoluteFill, { opacity: USE_ELITE_SHARD_REWARD_MODAL ? 0.48 : 0.55 }]}
               />
+              {USE_ELITE_SHARD_REWARD_MODAL && (
+                <Animated.View
+                  pointerEvents="none"
+                  style={[
+                    styles.eliteTopLine,
+                    {
+                      backgroundColor: t.gold,
+                      opacity: topLineGlow.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.46] }),
+                    },
+                  ]}
+                />
+              )}
               <View>
                 <Text style={[styles.kicker, { color: t.gold }]}>{tx.kicker}</Text>
 
                 <View style={styles.gemWrap}>
                   <Animated.View style={{ transform: [{ scale: gemAnim }] }}>
-                    <View style={[styles.gemRing, { borderColor: t.gold + '66', backgroundColor: t.goldBg }]}>
+                    <View style={[styles.gemRing, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteGemRing, { borderColor: t.gold + (USE_ELITE_SHARD_REWARD_MODAL ? '44' : '66'), backgroundColor: USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(255,255,255,0.045)' : t.goldBg }]}>
                       <Image
                         source={oskolokImageForPackShards(Math.max(1, totalShards))}
                         style={styles.gemIcon}
@@ -192,12 +209,12 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                   </Animated.View>
                   {showShardBadge && (
                     <LinearGradient
-                      colors={['#16A34A', '#059669']}
+                      colors={USE_ELITE_SHARD_REWARD_MODAL ? [t.gold, '#C9A227'] : ['#16A34A', '#059669']}
                       start={{ x: 0, y: 0 }}
                       end={{ x: 1, y: 1 }}
                       style={styles.badge}
                     >
-                      <Text style={styles.badgeText}>+{totalShards}</Text>
+                      <Text style={[styles.badgeText, USE_ELITE_SHARD_REWARD_MODAL && { color: t.textOnGold }]}>+{totalShards}</Text>
                     </LinearGradient>
                   )}
                 </View>
@@ -228,7 +245,7 @@ export default function ShardRewardModal({ rewards, visible, onClose }: Props) {
                 </Text>
 
                 {(isAdminGrant && !firstDataText) ? null : (
-                  <View style={[styles.detailBox, { backgroundColor: t.bgSurface, borderColor: t.gold + '2A' }]}>
+                  <View style={[styles.detailBox, USE_ELITE_SHARD_REWARD_MODAL && styles.eliteDetailBox, { backgroundColor: USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderColor: USE_ELITE_SHARD_REWARD_MODAL ? 'rgba(255,255,255,0.12)' : t.gold + '2A' }]}>
                     <Text style={[styles.detailLabel, { color: t.gold, fontSize: f.label }]}>
                       {multipleReports
                         ? (isAdminGrant ? tx.multipleAdmin(rewards.length) : isSuggestion ? tx.multipleSuggestion(rewards.length) : tx.multiple(rewards.length))
@@ -285,6 +302,12 @@ const styles = StyleSheet.create({
     shadowRadius: 24,
     elevation: 28,
   },
+  eliteSheetFrame: {
+    padding: 1,
+    shadowColor: '#D6B85C',
+    shadowOpacity: 0.22,
+    shadowRadius: 32,
+  },
   sheetInner: {
     borderTopLeftRadius: 29.5,
     borderTopRightRadius: 29.5,
@@ -294,6 +317,17 @@ const styles = StyleSheet.create({
     gap: 10,
     alignItems: 'center',
     overflow: 'hidden',
+  },
+  eliteSheetInner: {
+    paddingTop: 30,
+    paddingBottom: 14,
+  },
+  eliteTopLine: {
+    position: 'absolute',
+    top: 0,
+    left: 34,
+    right: 34,
+    height: 1,
   },
   kicker: {
     fontSize: 10,
@@ -315,6 +349,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  eliteGemRing: {
+    borderWidth: 1,
   },
   gemIcon: { width: 62, height: 62 },
   badge: {
@@ -343,6 +380,10 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 16,
     gap: 8,
+  },
+  eliteDetailBox: {
+    borderRadius: 18,
+    paddingVertical: 15,
   },
   detailLabel: { fontWeight: '800', letterSpacing: 0.6, textTransform: 'uppercase' },
   detailText: { lineHeight: 22, fontWeight: '600' },

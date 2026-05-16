@@ -5,7 +5,7 @@
 //   word_bank  — сборка фразы из перемешанных слов (как в уроке)
 //   fill_gap   — вставь пропущенное слово (то слово где была ошибка)
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   ScrollView,
@@ -22,17 +22,22 @@ import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
+import { screenTextOnGradient } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getDueItems,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
+import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import {
   shuffleWordBankTiles,
   tokenizeRecallPhrase,
   type WordBankTile,
 } from './review_evaluator';
+import { consumeTrainerSessionEntry } from './trainer_session';
+import { logTrainerDirectGateBlocked } from './firebase';
+import TrainerSessionReport from './trainer_session_report';
 
 type SessionMode = 'word_bank' | 'fill_gap';
 
@@ -142,7 +147,7 @@ function WordBankMode({ item, onResult }: WordBankProps) {
       ]}>
         {selected.length === 0
           ? <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-              {triLang(lang, { ru: 'Тут появятся слова…', uk: 'Тут зʼявляться слова…', es: 'Aquí aparecerán las palabras…' })}
+              {triLang(lang, { ru: 'Тут появятся слова…', uk: 'Тут з\'являться слова…', es: 'Aquí aparecerán las palabras…' })}
             </Text>
           : <View style={styles.tilesRow}>
               {selected.map(tile => (
@@ -263,7 +268,8 @@ function FillGapMode({ item, onResult }: FillGapProps) {
 // ── Основной экран ────────────────────────────────────────────────────────────
 export default function TrainerPhrasesSession() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
 
   const [deck, setDeck] = useState<SessionCard[]>([]);
@@ -272,74 +278,78 @@ export default function TrainerPhrasesSession() {
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [accessReady, setAccessReady] = useState(false);
+  const dailySessionTracked = useRef(false);
 
   useEffect(() => {
     void (async () => {
+      const allowed = await consumeTrainerSessionEntry('/trainer_phrases_session');
+      if (!allowed) {
+        logTrainerDirectGateBlocked('/trainer_phrases_session');
+        router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+        return;
+      }
+      setAccessReady(true);
       const items = await getDueItems('phrases', 15);
       if (items.length === 0) { setDone(true); setLoading(false); return; }
       setDeck(buildDeck(items));
       setLoading(false);
     })();
-  }, []);
+  }, [router]);
 
   const handleResult = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
     if (!card) return;
 
+    const nextWrong = wrong + (answeredCorrectly ? 0 : 1);
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
 
     await markTrainerResult(card.item.key, 'phrases', answeredCorrectly);
+    const updates: { type: TaskType; increment: number }[] = [];
+    if (!dailySessionTracked.current) {
+      dailySessionTracked.current = true;
+      updates.push({ type: 'recall_session', increment: 1 });
+    }
+    if (answeredCorrectly) {
+      updates.push({ type: 'recall_answers', increment: 1 });
+      updates.push({ type: 'trainer_phrases', increment: 1 });
+    }
 
     const next = current + 1;
-    if (next >= deck.length) setDone(true);
-    else setCurrent(next);
-  }, [deck, current]);
+    if (next >= deck.length) {
+      if (deck.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
+      setDone(true);
+    } else {
+      setCurrent(next);
+    }
+    if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
+  }, [deck, current, wrong]);
 
-  if (loading) {
+  if (!accessReady || loading) {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: '#888' }}>…</Text>
+          <Text style={{ color: '#888' }} />
         </SafeAreaView>
       </ScreenGradient>
     );
   }
 
   if (done) {
-    const total = correct + wrong;
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <View style={styles.doneContainer}>
-              <Text style={[styles.doneTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {triLang(lang, { ru: 'Сессия завершена', uk: 'Сесію завершено', es: 'Sesión terminada' })}
-              </Text>
-              <View style={[styles.doneStats, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.doneStat}>
-                  <Text style={[{ color: '#40C080', fontSize: f.numLg, fontWeight: '900' }]}>{correct}</Text>
-                  <Text style={[{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }]}>
-                    {triLang(lang, { ru: 'верно', uk: 'вірно', es: 'correcto' })}
-                  </Text>
-                </View>
-                <View style={[{ width: StyleSheet.hairlineWidth, backgroundColor: t.border }]} />
-                <View style={styles.doneStat}>
-                  <Text style={[{ color: '#E05050', fontSize: f.numLg, fontWeight: '900' }]}>{wrong}</Text>
-                  <Text style={[{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }]}>
-                    {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores' })}
-                  </Text>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => { hapticTap(); router.back(); }}
-                style={[styles.doneBtn, { backgroundColor: '#40C080' }]}
-              >
-                <Text style={[styles.doneBtnText, { fontSize: f.body }]}>
-                  {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <TrainerSessionReport
+              queue="phrases"
+              correct={correct}
+              wrong={wrong}
+              total={deck.length || correct + wrong}
+              accent="#40C080"
+              onDone={() => { hapticTap(); router.back(); }}
+              onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
+            />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -358,12 +368,12 @@ export default function TrainerPhrasesSession() {
           {/* Header */}
           <View style={styles.headerRow}>
             <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
+            <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.body }]}>
               {triLang(lang, { ru: 'Фразы', uk: 'Фрази', es: 'Frases' })}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption }}>
+            <Text style={{ color: sx.muted, fontSize: f.caption }}>
               {current + 1} / {deck.length}
             </Text>
           </View>
@@ -375,7 +385,7 @@ export default function TrainerPhrasesSession() {
 
           {/* Лейбл режима */}
           <View style={{ paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>{modeLabel}</Text>
+            <Text style={{ color: sx.muted, fontSize: f.caption, fontWeight: '600' }}>{modeLabel}</Text>
           </View>
 
           <ScrollView
@@ -465,6 +475,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   doneStat: { flex: 1, alignItems: 'center', paddingVertical: 16, gap: 4 },
-  doneBtn: { borderRadius: 16, paddingHorizontal: 48, paddingVertical: 14 },
+  doneBtn: { borderRadius: 16, paddingHorizontal: 24, paddingVertical: 14, width: '100%' },
   doneBtnText: { color: '#fff', fontWeight: '800' },
 });

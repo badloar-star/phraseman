@@ -13,7 +13,7 @@ import { DEV_MODE } from './config';
 import { triLang } from '../constants/i18n';
 
 type ThemeOption = {
-  mode: 'dark' | 'neon' | 'gold' | 'ocean' | 'sakura' | 'minimalLight' | 'minimalDark';
+  mode: 'dark' | 'neon' | 'gold' | 'minimalLight' | 'minimalDark';
   labelRU: string;
   labelUK: string;
   labelES: string;
@@ -31,8 +31,6 @@ const THEME_OPTIONS: ThemeOption[] = [
   { mode: 'dark', labelRU: 'Форест', labelUK: 'Форест', labelES: 'Forest', bg: '#152019', accent: '#47C870', text: '#F0F7F2', preview2: '#47C870', preview3: '#253630', premiumOnly: true },
   { mode: 'neon', labelRU: 'Неон', labelUK: 'Неон', labelES: 'Neón', bg: '#202020', accent: '#C8FF00', text: '#F0F0F0', preview2: '#C8FF00', preview3: '#343434', premiumOnly: true },
   { mode: 'gold', labelRU: 'Корал', labelUK: 'Корал', labelES: 'Coral', bg: '#14142A', accent: '#FF6464', text: '#FFFFFF', preview2: '#FF6464', preview3: '#25254A', premiumOnly: true },
-  { mode: 'ocean', labelRU: 'Океан', labelUK: 'Океан', labelES: 'Océano', bg: '#B8DEFF', accent: '#0076C0', text: '#0A2540', preview2: '#00A878', preview3: '#D4EDFF', premiumOnly: true },
-  { mode: 'sakura', labelRU: 'Сакура', labelUK: 'Сакура', labelES: 'Sakura', bg: '#FFB8D5', accent: '#C0006A', text: '#2D0A1A', preview2: '#C0006A', preview3: '#FFD8EA', premiumOnly: true },
 ];
 
 export default function SettingsThemes() {
@@ -73,6 +71,10 @@ export default function SettingsThemes() {
                       return;
                     }
                     setThemeMode(item.mode);
+                    void (async () => {
+                      const { checkAchievements } = await import('./achievements');
+                      void checkAchievements({ type: 'profile_theme_set' });
+                    })();
                   }}
                   style={{
                     flexDirection: 'row',

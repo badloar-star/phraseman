@@ -51,16 +51,25 @@ function pickBody(lang: InviteShareLang): string {
 
 export type ReferralInviteShare = { message: string; url: string };
 
-/** Android: Play с Install Referrer; в сообщении только магазин, без второй ссылки. */
-function buildAndroidInviteShare(lang: InviteShareLang, refCode: string): ReferralInviteShare {
+function label(lang: InviteShareLang, ru: string, uk: string, es: string): string {
+  return lang === 'uk' ? uk : lang === 'es' ? es : ru;
+}
+
+/** Android: primary web invite for installed users, Play URL only as install fallback. */
+function buildAndroidInviteShare(
+  lang: InviteShareLang,
+  inviteHttps: string,
+  appDeepLink: string,
+  refCode: string,
+): ReferralInviteShare {
   const body = pickBody(lang);
   const storeUrl = buildPlayStoreUrlWithInstallReferral(refCode);
-  const line1 =
-    (lang === 'uk' ? 'Завантаж застосунок: ' : lang === 'es' ? 'Descarga la app: ' : 'Скачай приложение: ') +
-    storeUrl;
+  const line1 = label(lang, 'Открой приглашение: ', 'Відкрий запрошення: ', 'Abre la invitación: ') + inviteHttps;
+  const line2 = label(lang, 'Если приложение уже установлено: ', 'Якщо застосунок уже встановлено: ', 'Si ya tienes la app: ') + appDeepLink;
+  const line3 = label(lang, 'Если нужно установить: ', 'Якщо треба встановити: ', 'Si necesitas instalarla: ') + storeUrl;
   return {
-    message: `${body}\n\n${line1}`,
-    url: storeUrl,
+    message: `${body}\n\n${line1}\n${line2}\n${line3}`,
+    url: inviteHttps,
   };
 }
 
@@ -90,7 +99,7 @@ function buildIosInviteShare(lang: InviteShareLang, inviteHttps: string, appDeep
         : 'Или открой в приложении: ' + appDeepLink;
   return {
     message: `${body}\n\n${line1}\n${line2}\n${line3}`,
-    url: STORE_URL_IOS,
+    url: inviteHttps,
   };
 }
 
@@ -109,7 +118,7 @@ export async function buildCloudReferralInviteShare(params: {
   const { lang } = params;
 
   if (Platform.OS === 'android') {
-    return buildAndroidInviteShare(lang, refCode);
+    return buildAndroidInviteShare(lang, inviteHttps, appDeepLink, refCode);
   }
   if (Platform.OS === 'ios') {
     return buildIosInviteShare(lang, inviteHttps, appDeepLink);

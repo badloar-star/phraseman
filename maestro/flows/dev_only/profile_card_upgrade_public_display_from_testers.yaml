@@ -1,0 +1,74 @@
+appId: app.phraseman
+---
+- scrollUntilVisible:
+    element:
+      id: "testers-section-shards"
+    direction: DOWN
+    timeout: 45000
+    speed: 75
+    visibilityPercentage: 40
+- tapOn:
+    id: "testers-section-shards"
+- scrollUntilVisible:
+    element:
+      id: "testers-profile-card-seed"
+    direction: DOWN
+    timeout: 30000
+    speed: 75
+    visibilityPercentage: 40
+- tapOn:
+    id: "testers-profile-card-seed"
+
+- extendedWaitUntil:
+    visible:
+      id: "screen-avatar-select"
+    timeout: 30000
+- extendedWaitUntil:
+    visible:
+      id: "avatar-profile-card-preview"
+    timeout: 15000
+- assertVisible: "CARD 0"
+- assertVisible: "Standard"
+
+- tapOn:
+    id: "avatar-profile-card-upgrade-open"
+- extendedWaitUntil:
+    visible:
+      id: "profile-card-upgrade-modal"
+    timeout: 15000
+- assertVisible: "Standard"
+
+- tapOn:
+    id: "profile-card-upgrade-submit"
+- extendedWaitUntil:
+    visible: "Polished I"
+    timeout: 15000
+- tapOn:
+    id: "profile-card-upgrade-submit"
+- extendedWaitUntil:
+    visible: "Signature II"
+    timeout: 15000
+- assertVisible:
+    id: "profile-card-theme-gold"
+- tapOn:
+    id: "profile-card-theme-gold"
+- waitForAnimationToEnd:
+    timeout: 2000
+- pressKey: Back
+
+- extendedWaitUntil:
+    visible:
+      id: "screen-avatar-select"
+    timeout: 15000
+- assertVisible: "CARD II"
+- assertVisible: "Signature"
+- tapOn:
+    id: "avatar-profile-card-preview"
+- extendedWaitUntil:
+    visible:
+      id: "player-profile-modal-sheet"
+    timeout: 15000
+- assertVisible: "CARD II"
+- assertNotVisible:
+    id: "player-profile-card-upgrade-open"
+- takeScreenshot: profile_card_public_display_card_ii

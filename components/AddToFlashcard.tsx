@@ -11,6 +11,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useFocusEffect, useRouter } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
+import { checkAchievements } from '../app/achievements';
 import { logFlashcardAdded } from '../app/firebase';
 import { getTranscription } from '../app/transcription';
 import {
@@ -21,6 +22,7 @@ import {
   Flashcard,
 } from '../hooks/use-flashcards';
 import { bumpStatsDaily } from '../app/stats_daily_breakdown';
+import { setDailyPhraseSavedOnServer } from '../app/daily_phrase_system';
 
 interface Props {
   en: string;
@@ -132,6 +134,9 @@ export default function AddToFlashcard({
           try {
             const ok = await removeFlashcardByEnglish(enSnap);
             if (!ok) setSaved(true);
+            else if (source === 'daily_phrase') {
+              void setDailyPhraseSavedOnServer(sourceId, false);
+            }
           } catch {
             setSaved(true);
           } finally {
@@ -157,6 +162,9 @@ export default function AddToFlashcard({
               register, level,
             });
             if (result === 'added') {
+              if (source === 'daily_phrase') {
+                void setDailyPhraseSavedOnServer(sourceId, true);
+              }
               void bumpStatsDaily('flashcards_saved', 1);
               logFlashcardAdded();
               const updates: { type: Parameters<typeof updateMultipleTaskProgress>[0][0]['type']; increment: number }[] = [
@@ -164,6 +172,7 @@ export default function AddToFlashcard({
               ];
               if (source === 'daily_phrase') {
                 updates.push({ type: 'daily_phrase_save', increment: 1 });
+                checkAchievements({ type: 'daily_phrase', action: 'save' }).catch(() => {});
               }
               updateMultipleTaskProgress(updates).catch(() => {});
             } else if (result === 'limit_reached') {

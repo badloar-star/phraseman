@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
@@ -21,7 +21,13 @@ import { getLessonPrepositionPack, hasLessonPrepositionDrill } from './lesson_pr
 import CircularProgress from '../components/CircularProgress';
 import { getMedalTier, getNextMedalHint, loadMedalInfo, getEarnedDots } from './medal_utils';
 import { Image } from 'react-native';
-import { isLessonUnlocked, getLessonLockInfo, getLockMessageText } from './lesson_lock_system';
+import {
+  isLessonUnlocked,
+  getLessonLockInfo,
+  getLockMessageText,
+  isLessonUnlockedByPremiumCourse,
+} from './lesson_lock_system';
+import { effectiveLessonStarScore } from './lesson_star_score';
 import { perfScreenMount } from './perf-monitor';
 import ThemedChoiceModal from '../components/ThemedChoiceModal';
 import { emitAppEvent, onAppEvent } from './events';
@@ -29,24 +35,9 @@ import { isLessonFinishedOnce, getMasteryReplayPriceShards, MASTERY_REPLAY_BASE_
 import MasteryReplayModal from '../components/MasteryReplayModal';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { oskolokImageForPackShards } from './oskolok';
-import { Lesson1MatrixIntroOverlay, LESSON1_MATRIX_INTRO_STORAGE_KEY } from './lesson1_matrix_intro_overlay';
-import { usePremium } from '../components/PremiumContext';
-
-/**
- * Повтор интро при каждом заходе — только если явно включено (проверки).
- * Иначе один раз и флаг в AsyncStorage (`LESSON1_MATRIX_INTRO_STORAGE_KEY`).
- */
-const L1_MATRIX_INTRO_EACH_VISIT_FOR_QA =
-  process.env.EXPO_PUBLIC_QA_REPEAT_LESSON1_INTRO === '1';
-
-function computeL1IntroModeForHydrate(
-  lessonId: number,
-  qaRepeatsEachVisit: boolean,
-): 'hidden' | 'checking' | 'playing' {
-  if (lessonId !== 1) return 'hidden';
-  if (qaRepeatsEachVisit) return 'playing';
-  return 'checking';
-}
+import { isFreeLesson, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
+import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
+import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 
 // Medal images
 const MEDAL_IMAGES: Record<string, any> = {
@@ -77,9 +68,13 @@ function parseProgress(progressRaw: string | null): Pick<LessonMenuCache, 'score
   try {
     if (progressRaw) {
       const progressArr: string[] = JSON.parse(progressRaw);
-      const correct = progressArr.filter(x => x === 'correct' || x === 'replay_correct').length;
+      const denominator = Math.min(progressArr.length, 50);
+      const correct = Math.min(
+        progressArr.filter(x => x === 'correct' || x === 'replay_correct').length,
+        denominator,
+      );
       return {
-        score: correct / 50 * 5,
+        score: denominator > 0 ? correct / denominator * 5 : 0,
         progress: correct,
         progressArr: progressArr.length === 50 ? progressArr : emptyProgress(),
       };
@@ -156,9 +151,8 @@ export default function LessonMenu() {
   useEffect(() => { perfScreenMount('lesson_menu'); }, []);
   const router = useRouter();
   const { theme:t, f, themeMode } = useTheme();
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLightTheme = false;
   const { s, lang } = useLang();
-  const { trialEligible } = usePremium();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
   const { id: idParam } = useLocalSearchParams<{ id?: string | string[] }>();
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
@@ -182,12 +176,11 @@ export default function LessonMenu() {
   const [prepositionTotal, setPrepositionTotal] = useState(cachedMenu?.prepositionTotal ?? 0);
   const [passCount, setPassCount] = useState(cachedMenu?.passCount ?? 0);
   const [dataLoaded, setDataLoaded] = useState(Boolean(cachedMenu));
-  const [vocabTipOpen, setVocabTipOpen] = useState(false);
   const [soonOpen, setSoonOpen] = useState<null | 'vocab' | 'verbs' | 'prepositions'>(null);
-  const vocabAlertShown = useRef(false);
 
   // Состояние блокировки урока
   const [isLessonLocked, setIsLessonLocked] = useState(false);
+  const [lockReason, setLockReason] = useState<'premium' | 'level' | 'progress'>('progress');
   const [lockInfo, setLockInfo] = useState<Awaited<ReturnType<typeof getLessonLockInfo>> | null>(null);
   const [showLockModal, setShowLockModal] = useState(false);
 
@@ -197,56 +190,7 @@ export default function LessonMenu() {
   const [showMasteryModal, setShowMasteryModal] = useState(false);
   const [masteryReplayPrice, setMasteryReplayPrice] = useState(MASTERY_REPLAY_BASE_SHARDS);
 
-  /** Одноразовый «матрица» на первом входе в меню урока 1. */
-  const [l1MatrixIntroMode, setL1MatrixIntroMode] = useState<'hidden' | 'checking' | 'playing'>(() =>
-    computeL1IntroModeForHydrate(lessonId, L1_MATRIX_INTRO_EACH_VISIT_FOR_QA),
-  );
-
   const showMasteryPaywall = finishedOnce && !isPremium && !isLessonLocked;
-
-  const completeL1MatrixIntro = useCallback(async () => {
-    if (!L1_MATRIX_INTRO_EACH_VISIT_FOR_QA) {
-      await AsyncStorage.setItem(LESSON1_MATRIX_INTRO_STORAGE_KEY, '1');
-    }
-    setL1MatrixIntroMode('hidden');
-  }, []);
-
-  const openPremiumFromL1Intro = useCallback(() => {
-    void completeL1MatrixIntro().then(() => {
-      router.push({
-        pathname: '/premium_modal',
-        params: { context: 'stats', source: 'lesson1_intro' },
-      } as any);
-    });
-  }, [completeL1MatrixIntro, router]);
-
-  useEffect(() => {
-    if (lessonId !== 1 || isLessonLocked) {
-      setL1MatrixIntroMode('hidden');
-      return;
-    }
-    if (L1_MATRIX_INTRO_EACH_VISIT_FOR_QA) {
-      setL1MatrixIntroMode('playing');
-      return;
-    }
-    setL1MatrixIntroMode('checking');
-    let cancelled = false;
-    void AsyncStorage.getItem(LESSON1_MATRIX_INTRO_STORAGE_KEY).then((v) => {
-      if (cancelled) return;
-      setL1MatrixIntroMode(v === '1' ? 'hidden' : 'playing');
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [lessonId, isLessonLocked]);
-
-  /** QA: каждый фокус на этом экране (назад со списка уроков и снова на урок 1), даже если React не перемонтировал. */
-  useFocusEffect(
-    useCallback(() => {
-      if (lessonId !== 1 || isLessonLocked || !L1_MATRIX_INTRO_EACH_VISIT_FOR_QA) return;
-      setL1MatrixIntroMode('playing');
-    }, [lessonId, isLessonLocked]),
-  );
 
   useEffect(() => {
     let cancelled = false;
@@ -293,25 +237,37 @@ export default function LessonMenu() {
       const noLimits = await AsyncStorage.getItem('tester_no_limits');
       if (noLimits === 'true') {
         setIsLessonLocked(false);
+        setLockReason('progress');
+        setLockInfo(null);
         return;
       }
 
-      if (lessonId === 19 && (await getVerifiedPremiumStatus())) {
-        const { unlockLesson } = await import('./lesson_lock_system');
-        await unlockLesson(19);
+      const premiumNow = await getVerifiedPremiumStatus();
+      setIsPremium(premiumNow);
+
+      if (!premiumNow && requiresPremiumForLesson(lessonId)) {
+        setIsLessonLocked(true);
+        setLockReason('premium');
+        setLockInfo(await getLessonLockInfo(lessonId));
+        return;
+      }
+
+      if (premiumNow) {
+        const premiumUnlocked = await isLessonUnlockedByPremiumCourse(lessonId);
+        setIsLessonLocked(!premiumUnlocked);
+        setLockReason(premiumUnlocked ? 'progress' : 'level');
+        setLockInfo(premiumUnlocked ? null : await getLessonLockInfo(lessonId));
+        return;
+      }
+
+      if (isFreeLesson(lessonId)) {
         setIsLessonLocked(false);
+        setLockReason('progress');
+        setLockInfo(null);
         return;
       }
 
       let unlocked = await isLessonUnlocked(lessonId);
-      const placementLevelRaw = await AsyncStorage.getItem('placement_level');
-      const placementLevel = String(placementLevelRaw || 'A1').toUpperCase();
-      const placementPreunlock = placementLevel === 'B2' ? 28 : placementLevel === 'B1' ? 18 : placementLevel === 'A2' ? 8 : 0;
-      // Placement test pre-unlock must match lessons list behavior.
-      if (!unlocked && lessonId <= placementPreunlock) {
-        unlocked = true;
-      }
-
       // Fallback: если урок не в persisted unlock list, проверяем предыдущий урок
       // через best_score или динамически через прогресс (как в index.tsx)
       if (!unlocked && lessonId > 1) {
@@ -322,13 +278,7 @@ export default function LessonMenu() {
         // Если best_score ещё не записан — считаем из прогресса (урок в процессе)
         if (prevScore === 0) {
           const savedProg = await AsyncStorage.getItem(`lesson${prevId}_progress`);
-          if (savedProg) {
-            const p: string[] = JSON.parse(savedProg);
-            if (p.length > 0) {
-              const correct = p.filter((x: string) => x === 'correct' || x === 'replay_correct').length;
-              prevScore = (correct / p.length) * 5;
-            }
-          }
+          prevScore = effectiveLessonStarScore(prevBestRaw, savedProg).score;
         }
 
         if (prevScore >= 2.5) {
@@ -340,8 +290,11 @@ export default function LessonMenu() {
 
       setIsLessonLocked(!unlocked);
       if (!unlocked) {
+        setLockReason('progress');
         const info = await getLessonLockInfo(lessonId);
         setLockInfo(info);
+      } else {
+        setLockInfo(null);
       }
     })();
   }, [lessonId]);
@@ -351,8 +304,12 @@ export default function LessonMenu() {
       try {
         if (saved) {
           const p: string[] = JSON.parse(saved);
-          const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-          setScore(correct / 50 * 5);
+          const denominator = Math.min(p.length, 50);
+          const correct = Math.min(
+            p.filter(x => x === 'correct' || x === 'replay_correct').length,
+            denominator,
+          );
+          setScore(denominator > 0 ? correct / denominator * 5 : 0);
           setProgress(correct);
           setProgressArr(p.length === 50 ? p : new Array(50).fill('empty'));
         } else {
@@ -405,7 +362,6 @@ export default function LessonMenu() {
 
   useEffect(() => {
     void AsyncStorage.setItem('last_opened_lesson', String(lessonId));
-    vocabAlertShown.current = false;
     loadLockState();
     // Не сбрасываем dataLoaded вслепую: это ломало мгновенный UI после prefetch и
     // оставляло пустые кольца до первого getItem(progress). Если кэш уже есть — сразу гидратим.
@@ -425,15 +381,20 @@ export default function LessonMenu() {
     }
   }, [lessonId, loadLockState]);
 
-  // Показать подсказку при первом нажатии «Начать урок»
   const handleStartLesson = useCallback(() => {
-    if (!vocabAlertShown.current && LESSONS_WITH_WORDS.has(lessonId)) {
-      vocabAlertShown.current = true;
-      setVocabTipOpen(true);
-    } else {
-      router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } });
-    }
+    router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } });
   }, [lessonId, router]);
+
+  const handleReplayIntroAndContinue = useCallback(() => {
+    if (isLessonLocked || showMasteryPaywall) return;
+    void (async () => {
+      await primeLessonScreenFromStorage(lessonId).catch(() => {});
+      router.push({
+        pathname: '/lesson1',
+        params: { id: lessonId, from: 'lesson_menu', replayIntro: '1', replayIntroAt: String(Date.now()) },
+      });
+    })();
+  }, [isLessonLocked, lessonId, router, showMasteryPaywall]);
 
   const handleLockedLessonPress = useCallback(() => {
     hapticTap();
@@ -453,6 +414,7 @@ export default function LessonMenu() {
     icon: IconName;
     pct?: number;
     onPress: () => void;
+    onLongPress?: () => void;
     disabled?: boolean;
     unavailable?: boolean;
     hidden?: boolean;
@@ -493,6 +455,7 @@ export default function LessonMenu() {
           : (isStarted
               ? () => router.push({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } })
               : handleStartLesson),
+      onLongPress: isStarted && !isLessonLocked && !showMasteryPaywall ? handleReplayIntroAndContinue : undefined,
       disabled: isLessonLocked,
     },
     {
@@ -527,7 +490,6 @@ export default function LessonMenu() {
       })(),
       onPress: () => {
         if (LESSONS_WITH_WORDS.has(lessonId)) {
-          vocabAlertShown.current = true;
           router.push({pathname:'/lesson_words',params:{id:lessonId}});
         } else {
           setSoonOpen('vocab');
@@ -627,7 +589,61 @@ export default function LessonMenu() {
 
   // Заглушка для заблокированного урока
   if (isLessonLocked) {
-    const prevId = lessonId - 1;
+    const prevId = Math.max(1, lessonId - 1);
+    const lessonLevel = getCourseLevelForLesson(lessonId);
+    const prevLevel = getPreviousCourseLevel(lessonLevel);
+    const lockedIcon = lockReason === 'premium'
+      ? 'diamond-outline'
+      : lockReason === 'level'
+        ? 'school-outline'
+        : 'lock-closed';
+    const lockedTitle = lockReason === 'premium'
+      ? triLang(lang, {
+          ru: 'Premium',
+          uk: 'Premium',
+          es: 'Premium',
+        })
+      : lockReason === 'level'
+        ? triLang(lang, {
+            ru: 'Уровень пока закрыт',
+            uk: 'Рівень поки закритий',
+            es: 'Nivel bloqueado',
+          })
+        : triLang(lang, {
+            ru: 'Урок заблокирован',
+            uk: 'Урок заблоковано',
+            es: 'Lección bloqueada',
+          });
+    const lockedMessage = lockReason === 'premium'
+      ? triLang(lang, {
+          ru: 'Этот урок входит в Premium.',
+          uk: 'Цей урок входить до Premium.',
+          es: 'Esta lección forma parte de Premium.',
+        })
+      : lockReason === 'level' && prevLevel
+        ? triLang(lang, {
+            ru: `Чтобы открыть уровень ${lessonLevel}, сначала сдайте зачёт ${prevLevel}.`,
+            uk: `Щоб відкрити рівень ${lessonLevel}, спочатку складіть залік ${prevLevel}.`,
+            es: `Para abrir el nivel ${lessonLevel}, primero supera el examen de ${prevLevel}.`,
+          })
+        : triLang(lang, {
+            ru: `Пройдите урок ${prevId} с оценкой 2.5 или больше, чтобы открыть этот урок`,
+            uk: `Пройдіть урок ${prevId} з оцінкою 2.5 або більше, щоб відкрити цей урок`,
+            es: `Completa la lección ${prevId} con nota mínima de 2,5 para desbloquear esta lección`,
+          });
+    const lockedButtonLabel = lockReason === 'premium'
+      ? triLang(lang, { ru: 'Получить Premium', uk: 'Отримати Premium', es: 'Obtener Premium' })
+      : lockReason === 'level' && prevLevel
+        ? triLang(lang, {
+            ru: `К зачёту ${prevLevel}`,
+            uk: `До заліку ${prevLevel}`,
+            es: `Ir al examen ${prevLevel}`,
+          })
+        : triLang(lang, {
+            ru: `Перейти к уроку ${prevId}`,
+            uk: `Перейти до уроку ${prevId}`,
+            es: `Ir a la lección ${prevId}`,
+          });
     return (
       <ScreenGradient>
       <SafeAreaView style={{flex:1}}>
@@ -661,39 +677,43 @@ export default function LessonMenu() {
             marginBottom:24,
             shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6
           }}>
-            <Ionicons name="lock-closed" size={40} color={t.textMuted}/>
+            <Ionicons name={lockedIcon} size={40} color={t.textMuted}/>
           </View>
           <Text style={{color:t.heroTextPrimary,fontSize:f.h2,fontWeight:'700',textAlign:'center',marginBottom:12}}>
-            {triLang(lang, {
-              ru: 'Урок заблокирован',
-              uk: 'Урок заблоковано',
-              es: 'Lección bloqueada',
-            })}
+            {lockedTitle}
           </Text>
           <Text style={{color:t.heroTextMuted,fontSize:f.bodyLg,textAlign:'center',lineHeight:24,marginBottom:32}}>
-            {triLang(lang, {
-              ru: `Пройдите урок ${prevId} с оценкой 2.5 или больше, чтобы открыть этот урок`,
-              uk: `Пройдіть урок ${prevId} з оцінкою 2.5 або більше, щоб відкрити цей урок`,
-              es: `Completa la lección ${prevId} con nota mínima de 2,5 para desbloquear esta lección`,
-            })}
+            {lockedMessage}
           </Text>
           <PremiumCard level={2}
             onPress={() => {
               hapticTap();
-              void (async () => {
-                await prefetchLessonMenuCache(prevId);
-                router.replace({ pathname: '/lesson_menu', params: { id: prevId } });
-              })();
+              if (lockReason === 'premium') {
+                router.push({
+                  pathname: '/premium_modal',
+                  params: {
+                    context: lessonPaywallContext(lessonId),
+                    lessons_done: String(Math.max(0, lessonId - 1)),
+                  },
+                } as any);
+              } else if (lockReason === 'level' && prevLevel) {
+                router.replace({ pathname: '/level_exam', params: { level: prevLevel } });
+              } else {
+                void (async () => {
+                  await prefetchLessonMenuCache(prevId);
+                  router.replace({ pathname: '/lesson_menu', params: { id: prevId } });
+                })();
+              }
             }}
             innerStyle={{paddingHorizontal:28,paddingVertical:14,flexDirection:'row',alignItems:'center',gap:10}}
           >
-            <Ionicons name="arrow-back-outline" size={20} color={t.textPrimary}/>
-            <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}}>
-              {triLang(lang, {
-                ru: `Перейти к уроку ${prevId}`,
-                uk: `Перейти до уроку ${prevId}`,
-                es: `Ir a la lección ${prevId}`,
-              })}
+            <Ionicons
+              name={lockReason === 'premium' ? 'diamond-outline' : lockReason === 'level' ? 'school-outline' : 'arrow-back-outline'}
+              size={20}
+              color={t.textPrimary}
+            />
+            <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.82}>
+              {lockedButtonLabel}
             </Text>
           </PremiumCard>
         </View>
@@ -726,7 +746,7 @@ export default function LessonMenu() {
             lessonId<=18 ? (isLightTheme?'#93C5FD':'#40B4E8') :
             lessonId<=28 ? (isLightTheme?'#FDE047':'#D4A017') :
                            (isLightTheme?'#FCA5A5':'#DC6428')
-          }}>{lessonId<=8?'A1':lessonId<=18?'A2':lessonId<=28?'B1':'B2'}</Text>
+          }}>{lessonId <= 8 ? 'A1' : lessonId <= 18 ? 'A2' : lessonId <= 28 ? 'B1' : 'B2'}</Text>
         </Text>
         <EnergyBar size={20} />
         <PremiumCard level={1} onPress={()=>{ hapticTap(); router.push('/settings_edu'); }}
@@ -796,6 +816,8 @@ export default function LessonMenu() {
             hapticTap();
             item.onPress();
           }}
+            onLongPress={item.onLongPress && !item.disabled ? item.onLongPress : undefined}
+            delayLongPress={550}
             innerStyle={{
               padding: 18,
               flexDirection: 'row',
@@ -917,29 +939,6 @@ export default function LessonMenu() {
         </Pressable>
       </Modal>
       <ThemedChoiceModal
-        visible={vocabTipOpen}
-        title={triLang(lang, { ru: '💡 Совет', uk: '💡 Порада', es: '💡 Consejo' })}
-        message={
-          lang === 'uk'
-            ? 'Якщо тема нова — спочатку перегляньте Слова уроку та розділ Теорія. Це допоможе краще засвоїти матеріал.'
-            : lang === 'es'
-              ? 'Si el tema es nuevo para ti, repasa primero el vocabulario y la teoría: asimilarás mejor.'
-              : 'Если тема для вас новая — рекомендуем сначала изучить Слова урока и раздел Теория. Это поможет лучше усвоить материал.'
-        }
-        choices={[
-          {
-            label: s.lessonMenu.wordsOfLesson,
-            variant: 'secondary',
-            onPress: () => router.push({ pathname: '/lesson_words', params: { id: lessonId } }),
-          },
-          {
-            label: s.lessonMenu.start,
-            onPress: () => router.replace({ pathname: '/lesson1', params: { id: lessonId, from: 'lesson_menu' } }),
-          },
-        ]}
-        onRequestClose={() => setVocabTipOpen(false)}
-      />
-      <ThemedChoiceModal
         visible={soonOpen !== null}
         title={triLang(lang, { ru: 'Скоро', uk: 'Скоро', es: 'Próximamente' })}
         message={
@@ -981,13 +980,6 @@ export default function LessonMenu() {
       />
       </ContentWrap>
     </SafeAreaView>
-    <Lesson1MatrixIntroOverlay
-      lang={lang}
-      mode={l1MatrixIntroMode}
-      onComplete={completeL1MatrixIntro}
-      trialCtaEligible={trialEligible && !isPremium}
-      onTryPremium={openPremiumFromL1Intro}
-    />
     </ScreenGradient>
   );
 }

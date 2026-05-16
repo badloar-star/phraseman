@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState, useMemo, useCallback } from 'react';
 import {
-  View, Text, TouchableOpacity, StyleSheet, Animated, Pressable, ActivityIndicator, useWindowDimensions,
+  AppState, View, Text, TouchableOpacity, StyleSheet, Animated, Pressable, useWindowDimensions,
 } from 'react-native';
 import Reanimated, {
   cancelAnimation,
@@ -18,10 +18,12 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
+import AvatarView from '../components/AvatarView';
 import ArenaDuelEmojiReact from '../components/ArenaDuelEmojiReact';
 import { ArenaDuelFlyingEmojiOverlay, type ArenaDuelFlyEmoji } from '../components/ArenaDuelFlyingEmoji';
 import { useArenaSession } from '../hooks/use-arena-session';
 import { useDuelMock } from '../hooks/use-arena-mock';
+import { useArenaRoomRun } from '../hooks/use-arena-room-run';
 import { useArenaRank } from '../hooks/use-arena-rank';
 import { getLevelFromXP } from '../constants/theme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -29,7 +31,8 @@ import { SCORE_CONFIG, QUESTIONS_PER_MATCH, type SessionPlayer } from './types/a
 import { hapticMediumImpact, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { IS_EXPO_GO } from './config';
 import { emitAppEvent } from './events';
-import { logEvent } from './firebase';
+import { logArenaDirectGateBlocked, logEvent } from './firebase';
+import { consumeArenaGameEntry } from './arena_access_gate';
 import { recordMistakeFromArena } from './active_recall';
 import {
   arenaBilingualFirst,
@@ -47,6 +50,7 @@ import { isArenaDuelReactionEmoji, randomArenaDuelReactionEmoji } from '../const
 import { sendArenaDuelReact } from './services/arena_db';
 import { pickRandomBotName, pickRandomBotNameEs } from './constants/bot_names';
 import { triLang, type Lang } from '../constants/i18n';
+import { ensureArenaAuthUid } from './user_id_policy';
 
 function mockOpponentDisplayName(opp: SessionPlayer | undefined, lang: Lang): string {
   const dn = opp?.displayName?.trim();
@@ -55,8 +59,8 @@ function mockOpponentDisplayName(opp: SessionPlayer | undefined, lang: Lang): st
 }
 
 export default function DuelGameScreen() {
-  const { sessionId, userId: paramUserId, fromLobby } = useLocalSearchParams<{
-    sessionId: string; userId: string; fromLobby?: string;
+  const { sessionId, userId: paramUserId, fromLobby, ghostChallengeId: routeGhostChallengeId, hillMode, roomCode } = useLocalSearchParams<{
+    sessionId: string; userId: string; fromLobby?: string; ghostChallengeId?: string; hillMode?: string; roomCode?: string;
   }>();
   const fromLobbyFlow = fromLobby === '1';
   const router = useRouter();
@@ -65,7 +69,8 @@ export default function DuelGameScreen() {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
 
-  const userId = paramUserId ?? '';
+  const [resolvedUserId, setResolvedUserId] = useState(paramUserId ?? '');
+  const [entryAllowed, setEntryAllowed] = useState(false);
 
   const [acceptTimeTick, setAcceptTimeTick] = useState(0);
   const premeetScale = useSharedValue(1);
@@ -73,14 +78,63 @@ export default function DuelGameScreen() {
     transform: [{ scale: premeetScale.value }],
   }));
 
-  const useMock = IS_EXPO_GO || sessionId?.startsWith('bot_');
+  const legacyGhostLink = !!routeGhostChallengeId || (typeof sessionId === 'string' && sessionId.startsWith('ghost_'));
+  const useHill = hillMode === '1' || (typeof sessionId === 'string' && sessionId.startsWith('bot_hill_'));
+  const cleanRoomCode = String(roomCode || (typeof sessionId === 'string' && sessionId.startsWith('room_') ? sessionId.slice('room_'.length) : '')).trim().toUpperCase();
+  const useRoom = !!cleanRoomCode;
+  const useBotMock = !legacyGhostLink && !useRoom && (IS_EXPO_GO || sessionId?.startsWith('bot_'));
+  const useMock = useBotMock || useRoom;
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      if (legacyGhostLink) {
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: 'Этот режим больше недоступен.',
+          messageUk: 'Цей режим більше недоступний.',
+          messageEs: 'Este modo ya no está disponible.',
+        });
+        router.replace('/(tabs)/arena' as any);
+        return;
+      }
+      const allowed = await consumeArenaGameEntry(String(sessionId || ''));
+      if (cancelled) return;
+      if (!allowed) {
+        logArenaDirectGateBlocked(String(sessionId || ''));
+        emitAppEvent('action_toast', {
+          type: 'info',
+          messageRu: 'Открой матч через Арену.',
+          messageUk: 'Відкрий матч через Арену.',
+          messageEs: 'Abre la partida desde Arena.',
+        });
+        router.replace('/(tabs)/arena' as any);
+        return;
+      }
+      setEntryAllowed(true);
+    })();
+    return () => { cancelled = true; };
+  }, [legacyGhostLink, router, sessionId]);
+
+  useEffect(() => {
+    if (paramUserId) {
+      setResolvedUserId(paramUserId);
+      return;
+    }
+    if (!useRoom) return;
+    let cancelled = false;
+    void ensureArenaAuthUid().then((uid) => {
+      if (!cancelled && uid) setResolvedUserId(uid);
+    });
+    return () => { cancelled = true; };
+  }, [paramUserId, useRoom]);
+  const userId = resolvedUserId;
 
   // Для бота: сложность и аватар выбираются из ранга/уровня игрока. Загружаем
   // из тех же источников, что и остальной UI арены (arena_profiles + totalXP).
   const myRank = useArenaRank();
   const [playerLevel, setPlayerLevel] = useState<number>(1);
   useEffect(() => {
-    if (!useMock) return;
+    if (!useBotMock) return;
     let cancelled = false;
     (async () => {
       const raw = await AsyncStorage.getItem('user_total_xp').catch(() => null);
@@ -88,12 +142,13 @@ export default function DuelGameScreen() {
       if (!cancelled) setPlayerLevel(getLevelFromXP(xp));
     })();
     return () => { cancelled = true; };
-  }, [useMock]);
+  }, [useBotMock]);
 
   const realSession = useArenaSession(useMock ? '' : sessionId, useMock ? '' : userId);
   const mockSession = useDuelMock(userId, myRank.rankIndex, playerLevel);
+  const roomSession = useArenaRoomRun(cleanRoomCode, userId);
 
-  const session = useMock ? mockSession : realSession;
+  const session = useRoom ? roomSession : useBotMock ? mockSession : realSession;
   const {
     phase, countdown, questionTimeLeft, currentQuestion,
     currentQuestionIndex, totalQuestions,
@@ -102,7 +157,7 @@ export default function DuelGameScreen() {
     submitLobbyChoice, acceptDeadlineAt, myLobbyChoice, abortReason,
     sessionType,
   } = session;
-  const isDirectDuel = sessionType === 'private' || sessionType === 'rematch';
+  const isDirectDuel = !useRoom && (sessionType === 'private' || sessionType === 'rematch');
 
   const phaseRef = useRef(phase);
   phaseRef.current = phase;
@@ -187,6 +242,8 @@ export default function DuelGameScreen() {
     questionId: string;
     level: string;
     type?: string;
+    timeMs?: number;
+    points?: number;
   }[]>([]);
 
   const [mockReactByPlayer, setMockReactByPlayer] = useState<Record<string, { at: number; emoji: string }>>({});
@@ -361,6 +418,29 @@ export default function DuelGameScreen() {
     });
   }, [session.questionStartedAt, phase, currentQuestionIndex, qid, qTimeout, barProgress]);
 
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (nextState) => {
+      if (nextState !== 'active') return;
+      if (phase !== 'question' || !qid) return;
+      const timeoutMs = qTimeout;
+      const started = qStartedForAnimRef.current;
+      const durationMs = started != null
+        ? Math.max(0, timeoutMs - (Date.now() - started))
+        : Math.max(0, questionTimeLeft);
+      const startFraction = timeoutMs > 0
+        ? Math.min(1, Math.max(0, durationMs / timeoutMs))
+        : 0;
+      cancelAnimation(barProgress);
+      barProgress.value = startFraction;
+      if (durationMs <= 0) return;
+      barProgress.value = withTiming(0, {
+        duration: Math.max(200, durationMs),
+        easing: Easing.linear,
+      });
+    });
+    return () => sub.remove();
+  }, [phase, qid, qTimeout, questionTimeLeft, barProgress]);
+
   // Дружеский матч (type=private): автоматически принять без экрана "ИГРА НАЙДЕНА"
   const autoAcceptedRef = useRef(false);
   useEffect(() => {
@@ -380,6 +460,14 @@ export default function DuelGameScreen() {
         opponentForfeited: opponentForfeited ? '1' : '0',
         rankedArena: fromLobbyFlow ? '1' : '0',
       };
+      if (useHill) {
+        params.hillMode = '1';
+        params.rankedArena = '0';
+      }
+      if (useRoom) {
+        params.roomCode = cleanRoomCode;
+        params.rankedArena = '0';
+      }
       // For bot/mock sessions pass scores directly — no Firestore docs exist
       if (useMock) {
         const me = players.find(p => p.playerId === userId);
@@ -397,7 +485,7 @@ export default function DuelGameScreen() {
       }
       router.replace({ pathname: '/arena_results', params });
     }
-  }, [fromLobbyFlow, lang, opponentForfeited, phase, players, router, sessionId, useMock, userId]);
+  }, [cleanRoomCode, fromLobbyFlow, lang, opponentForfeited, phase, players, router, sessionId, useHill, useMock, useRoom, userId]);
 
   useEffect(() => {
     // Measure reveal -> next question latency for real matches
@@ -459,6 +547,8 @@ export default function DuelGameScreen() {
       rule: currentQuestion.rule ?? '',
       questionId: currentQuestion.id,
       level: currentQuestion.level,
+      timeMs: elapsed,
+      points: isCorrect ? SCORE_CONFIG.correctBase + speedBonus + streakBonus + firstBonus + outspeedBonus : 0,
       ...(currentQuestion.type ? { type: currentQuestion.type } : {}),
     });
 
@@ -482,7 +572,7 @@ export default function DuelGameScreen() {
     });
     const bonusTotal = speedBonus + streakBonus + firstBonus + outspeedBonus;
     if (useMock) {
-      (session as typeof mockSession).submitAnswer(option, bonusTotal);
+      (session as typeof mockSession | typeof roomSession).submitAnswer(option, bonusTotal);
     } else {
       try {
         await (session as typeof realSession).submitMyAnswer(option);
@@ -513,6 +603,14 @@ export default function DuelGameScreen() {
       opponentForfeited: '0',
       rankedArena: fromLobbyFlow ? '1' : '0',
     };
+    if (useHill) {
+      params.hillMode = '1';
+      params.rankedArena = '0';
+    }
+    if (useRoom) {
+      params.roomCode = cleanRoomCode;
+      params.rankedArena = '0';
+    }
     if (useMock) {
       const me = players.find((p) => p.playerId === userId);
       const opp = players.find((p) => p.playerId !== userId);
@@ -541,13 +639,11 @@ export default function DuelGameScreen() {
     prevPhase.current = phase;
   }, [currentQuestionIndex, phase, totalQuestions, useMock]);
 
-  if (phase === 'loading') {
+  if (!entryAllowed || phase === 'loading') {
     return (
       <ScreenGradient>
         <View style={styles.centered}>
-          <Text style={[styles.countdownHint, { color: t.textMuted, fontSize: f.body }]}>
-            {arenaGameStr(lang, 'loadingQuestions')}
-          </Text>
+          <Text style={[styles.countdownHint, { color: t.textMuted, fontSize: f.body }]} />
         </View>
       </ScreenGradient>
     );
@@ -596,9 +692,8 @@ export default function DuelGameScreen() {
         <ScreenGradient>
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
             <View style={styles.arenaAcceptRoot}>
-              <ActivityIndicator size="large" color={t.accent} />
-              <Text style={[{ color: t.textMuted, fontSize: f.body, marginTop: 16, textAlign: 'center' }]}>
-                {arenaGameStr(lang, 'connecting')}
+              <Text style={[{ color: t.accent, fontWeight: '900', fontSize: 16, letterSpacing: 1.2, textAlign: 'center' }]}>
+                {arenaGameStr(lang, 'gameFound')}
               </Text>
             </View>
           </SafeAreaView>
@@ -668,7 +763,9 @@ export default function DuelGameScreen() {
         <ScreenGradient>
           <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
             <View style={styles.arenaAcceptRoot}>
-              <ActivityIndicator size="large" color={t.accent} />
+              <Text style={[{ color: t.accent, fontWeight: '900', fontSize: 16, letterSpacing: 1.2, textAlign: 'center' }]}>
+                {arenaGameStr(lang, 'gameFound')}
+              </Text>
             </View>
           </SafeAreaView>
         </ScreenGradient>
@@ -706,7 +803,7 @@ export default function DuelGameScreen() {
           <Text style={[styles.getReady, { color: t.textMuted, fontSize: f.sub }]}>
             {arenaGameStr(lang, 'letsGo')}
           </Text>
-          <Text style={[styles.countdownNum, { color: t.accent, textShadowColor: 'rgba(0,0,0,0.35)' }]}>
+          <Text style={[styles.countdownNum, { color: t.accent, textShadowColor: 'rgba(0,0,0,0.35)' }]} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.5}>
             {countdown}
           </Text>
         </View>
@@ -757,9 +854,12 @@ export default function DuelGameScreen() {
           const isMe = p.playerId === userId;
           return (
             <View key={p.playerId} style={[styles.playerChip, isMe && { borderBottomWidth: 2, borderBottomColor: t.accent }]}>
-              <Text style={[styles.playerLabel, { color: isMe ? t.accent : t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
-                {p.displayName ?? (isMe ? arenaScoreboardYou(lang) : `P${idx + 1}`)}
-              </Text>
+              <View style={styles.playerNameRow}>
+                <AvatarView avatar={p.avatar ?? String(p.avatarLevel ?? 1)} size={22} auraId={p.aura} />
+                <Text style={[styles.playerLabel, { color: isMe ? t.accent : t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
+                  {p.displayName ?? (isMe ? arenaScoreboardYou(lang) : `P${idx + 1}`)}
+                </Text>
+              </View>
               <Text style={[styles.playerScore, { color: t.textPrimary, fontSize: f.body }]}>
                 {p.score}
               </Text>
@@ -927,7 +1027,7 @@ const styles = StyleSheet.create({
   },
   lobbyRoot: { flex: 1, paddingHorizontal: 20, paddingTop: 8, alignItems: 'center', justifyContent: 'center' },
   lobbyGlowWrap: { position: 'absolute', top: '12%', left: 0, right: 0, height: 220, alignItems: 'center' },
-  lobbyGlow: { width: 360, height: 220, borderRadius: 120, opacity: 0.9 },
+  lobbyGlow: { width: '100%', height: 220, borderRadius: 120, opacity: 0.9 },
   lobbyKicker: { textTransform: 'uppercase', letterSpacing: 3, marginBottom: 8, fontWeight: '700' },
   lobbyTitle: { fontWeight: '800', textAlign: 'center', marginBottom: 20 },
   lobbySub: { textAlign: 'center', marginBottom: 22, lineHeight: 22, paddingHorizontal: 8 },
@@ -976,6 +1076,7 @@ const styles = StyleSheet.create({
   },
   exitBtn: { padding: 8, marginRight: 2 },
   playerChip: { flex: 1, alignItems: 'center', gap: 2, paddingHorizontal: 4, paddingBottom: 4 },
+  playerNameRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 5, maxWidth: '100%' },
   playerLabel: { fontWeight: '600' },
   playerScore: { fontWeight: '800' },
 

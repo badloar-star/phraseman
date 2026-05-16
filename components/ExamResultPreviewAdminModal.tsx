@@ -3,6 +3,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import {
   Modal,
   ScrollView,
+  Share,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,7 +13,6 @@ import {
 import Svg from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import LingmanCertificateSvg from './share_cards/LingmanCertificateSvg';
-import QuizShareCardSvg from './share_cards/QuizShareCardSvg';
 import { shareCardFromSvgRef } from './share_cards/shareCardPng';
 import CertificateNameModal from './CertificateNameModal';
 import XpGainBadge from './XpGainBadge';
@@ -23,9 +23,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { buildExamShareMessage, buildCertificateShareMessage } from '../app/exam_share';
 import { STORE_URL } from '../app/config';
 import type { LingmanCertificate } from '../app/exam_certificate';
-import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { bundleLang, triLang } from '../constants/i18n';
-import type { ShareCardLang } from './share_cards/streakCardCopy';
 
 type Props = {
   visible: boolean;
@@ -64,16 +62,8 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
   const { width: winW } = useWindowDimensions();
 
   const [nameModalVisible, setNameModalVisible] = useState(false);
-  const [mountExportExam, setMountExportExam] = useState(false);
   const [mountExportCert, setMountExportCert] = useState(false);
-
   const certificateSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
-  const examCardSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
-
-  const waitTwoFrames = () =>
-    new Promise<void>((resolve) => {
-      requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
-    });
 
   // На реальном экране результат — всегда есть сертификат после прохождения.
   // Но у юзера он может быть «без имени» — это нормальный кейс, имя ставится модалкой.
@@ -102,6 +92,11 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
   );
   const hasName = !!enteredName.trim();
 
+  const waitTwoFrames = () =>
+    new Promise<void>((resolve) => {
+      requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
+    });
+
   // Адаптивная ширина превью карточки сертификата на «экране результата»
   // (внутри ScrollView с padding 24).
   const certCardWidth = Math.min(420, Math.max(220, winW - 96));
@@ -126,8 +121,6 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
     return slice;
   }, [cert.score, cert.total]);
 
-  const cardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY ? 'ru' : bundleLang(lang);
-
   const handleShareExam = async () => {
     hapticTap();
     const msg = buildExamShareMessage(
@@ -137,22 +130,13 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
       cert.pct,
       STORE_URL,
     );
-    setMountExportExam(true);
-    try {
-      await waitTwoFrames();
-      await shareCardFromSvgRef(examCardSvgRef, {
-        fileNamePrefix: 'phraseman-exam-preview',
-        textFallback: msg,
-      });
-    } finally {
-      setMountExportExam(false);
-    }
+    await Share.share({ message: msg }).catch(() => {});
   };
 
   const handleShareCert = async () => {
     hapticTap();
     if (!hasName) {
-      // Превью без имени шарить нельзя — попадёт PNG с пустой подписью.
+      // Превью без имени шарить нельзя: подпись будет неполной.
       setNameModalVisible(true);
       return;
     }
@@ -189,41 +173,25 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
     >
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }} edges={['top', 'bottom']}>
-          {/* Скрытые SVG для шеринга PNG: монтируются только в момент шеринга,
-              чтобы тяжёлый сертификат + quiz-карточка не висели в дереве. */}
-          {(mountExportExam || mountExportCert) && (
+          {mountExportCert && hasName && (
             <View
               pointerEvents="none"
               collapsable={false}
-              style={styles.hiddenExport}
+              style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, zIndex: -1, overflow: 'hidden' }}
             >
-              {mountExportExam && (
-                <QuizShareCardSvg
-                  ref={examCardSvgRef}
-                  right={cert.score}
-                  total={cert.total}
-                  pct={cert.pct}
-                  lang={cardLang}
-                  mode="exam"
-                  layoutSize={1080}
-                />
-              )}
-              {mountExportCert && hasName && (
-                <LingmanCertificateSvg
-                  ref={certificateSvgRef}
-                  name={effectiveCert.name}
-                  score={effectiveCert.score}
-                  total={effectiveCert.total}
-                  pct={effectiveCert.pct}
-                  certId={effectiveCert.certId}
-                  completedAt={effectiveCert.completedAt}
-                  lang={effectiveCert.lang}
-                  layoutWidth={1500}
-                />
-              )}
+              <LingmanCertificateSvg
+                ref={certificateSvgRef}
+                name={effectiveCert.name}
+                score={effectiveCert.score}
+                total={effectiveCert.total}
+                pct={effectiveCert.pct}
+                certId={effectiveCert.certId}
+                completedAt={effectiveCert.completedAt}
+                lang={effectiveCert.lang}
+                layoutWidth={1500}
+              />
             </View>
           )}
-
           {/* Admin-шапка превью (не отображается юзеру в проде) */}
           <View style={[styles.adminHeader, { borderBottomColor: t.border }]}>
             <TouchableOpacity onPress={onClose} hitSlop={10}>
@@ -357,7 +325,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
             )}
             {showCert && !hasName && (
               // Имени нет — диплом НЕ показываем, только CTA на ввод. Так и
-              // должен видеть юзер на боевом экране: без имени никакой PNG-ни-
+              // должен видеть юзер на боевом экране: без имени никакой
               // подписи на дипломе он не получит.
               <TouchableOpacity
                 activeOpacity={0.88}
@@ -463,16 +431,6 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
 }
 
 const styles = StyleSheet.create({
-  hiddenExport: {
-    position: 'absolute',
-    width: 1,
-    height: 1,
-    opacity: 0,
-    left: 0,
-    top: 0,
-    zIndex: -1,
-    overflow: 'hidden',
-  },
   adminHeader: {
     flexDirection: 'row',
     alignItems: 'center',

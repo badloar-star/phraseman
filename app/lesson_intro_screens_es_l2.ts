@@ -12,7 +12,7 @@ export const LESSON_1_INTRO_SCREENS: LessonIntroScreen[] = [
     titleUK: "Навіщо це іспанською",
     titleES: "Por qué en español",
     textRU: "Без связки ser / estar и местоимений ты не скажешь по-испански ни профессию, ни место, ни состояние: «я здесь», «она дома», «мы заняты». Это базовый каркас предложения — без него речь не держится.",
-    textUK: "Без зв'язки ser / estar і займенників ти не скажеш іспанською ні професію, ні місце, ні стан: «я тут», «вона вдома», «ми зайняті». Це базовий каркас речення.",
+    textUK: "Без зв\'язки ser / estar і займенників ти не скажеш іспанською ні професію, ні місце, ні стан: «я тут», «вона вдома», «ми зайняті». Це базовий каркас речення.",
     textES: "Sin ser/estar y pronombres no puedes decir profesión, lugar ni estado: «estoy aquí», «ella está en casa», «estamos ocupados». Es el esqueleto de casi toda frase.",
   },
   {
@@ -35,7 +35,7 @@ export const LESSON_1_INTRO_SCREENS: LessonIntroScreen[] = [
     titleUK: "Головна пастка",
     titleES: "La trampa principal",
     textRU: "Русское «он студент» без глагола в испанском не работает: нельзя *él estudiante*. Нужна связка: Él es estudiante. И не путай ser и estar: профессия почти всегда с ser (soy médico), временное состояние — con estar (estoy enfermo).",
-    textUK: "Українське «він студент» без дієслова іспанською не працює: не кажи *él estudiante*. Треба зв'язка: Él es estudiante. Не плутай ser і estar: професія — з ser, тимчасовий стан — з estar.",
+    textUK: "Українське «він студент» без дієслова іспанською не працює: не кажи *él estudiante*. Треба зв\'язка: Él es estudiante. Не плутай ser і estar: професія — з ser, тимчасовий стан — з estar.",
     textES: "No digas *él estudiante* sin verbo: usa Él es estudiante. Profesión suele ir con ser; estado puntual con estar (estoy cansado vs soy médico).",
   },
   {
@@ -132,9 +132,9 @@ export const LESSON_4_INTRO_SCREENS: LessonIntroScreen[] = [
     textUK: "No стоїть безпосередньо перед формою дієслова: No hablo / No como. Решта порядку як у ствердженні.",
     textES: "No va pegado al verbo flexionado; el resto mantiene el orden afirmativo.",
     examples: [
-      { en: "I don't understand.", trRU: "Я не понимаю.", trUK: "Я не розумію.", trES: "No entiendo." },
-      { en: "We don't live here.", trRU: "Мы не живём здесь.", trUK: "Ми не живемо тут.", trES: "No vivimos aquí." },
-      { en: "They don't work today.", trRU: "Они сегодня не работают.", trUK: "Вони сьогодні не працюють.", trES: "No trabajan hoy." },
+      { en: "I don\'t understand.", trRU: "Я не понимаю.", trUK: "Я не розумію.", trES: "No entiendo." },
+      { en: "We don\'t live here.", trRU: "Мы не живём здесь.", trUK: "Ми не живемо тут.", trES: "No vivimos aquí." },
+      { en: "They don\'t work today.", trRU: "Они сегодня не работают.", trUK: "Вони сьогодні не працюють.", trES: "No trabajan hoy." },
     ],
   },
   {
@@ -192,7 +192,7 @@ export const LESSON_6_INTRO_SCREENS: LessonIntroScreen[] = [
   {
     kind: "trap",
     textRU: "Не пиши *¿Qué es tu nombre?* — так испанский почти не спрашивают имя; норма ¿Cómo te llamas? / ¿Cuál es tu nombre?. Калька с английского what is your name здесь ложная.",
-    textUK: "Ім'я питають ¿Cómo te llamas?, а не кальку з англійського what is your name.",
+    textUK: "Ім\'я питають ¿Cómo te llamas?, а не кальку з англійського what is your name.",
     textES: "Para el nombre usa ¿Cómo te llamas?; «¿Qué es tu nombre?» suena extraño.",
   },
 ];
@@ -207,7 +207,7 @@ export const LESSON_7_INTRO_SCREENS: LessonIntroScreen[] = [
   {
     kind: "how",
     textRU: "Tengo / tienes / tiene + объект: Tengo hermana. Для болезней и состояний часто Me duele la cabeza (не калькируй I have headache буквально без modelo). Hay + sustantivo: Hay pan.",
-    textUK: "tengo / tienes + об'єкт. Hay + іменник для «є щось».",
+    textUK: "tengo / tienes + об\'єкт. Hay + іменник для «є щось».",
     textES: "Conjugaciones de tener según persona; hay para «existe».",
     examples: [
       { en: "I have two sisters.", trRU: "У меня две сестры.", trUK: "У мене дві сестри.", trES: "Tengo dos hermanas." },
@@ -237,7 +237,7 @@ export const LESSON_8_INTRO_SCREENS: LessonIntroScreen[] = [
     textES: "el + día de la semana; en + mes/estación; a las + hora; por la tarde…",
     examples: [
       { en: "On Monday I work.", trRU: "В понедельник я работаю.", trUK: "У понеділок я працюю.", trES: "El lunes trabajo." },
-      { en: "At three o'clock.", trRU: "В три часа.", trUK: "О третій.", trES: "A las tres." },
+      { en: "At three o\'clock.", trRU: "В три часа.", trUK: "О третій.", trES: "A las tres." },
       { en: "In May.", trRU: "В мае.", trUK: "У травні.", trES: "En mayo." },
     ],
   },
@@ -290,7 +290,7 @@ export const LESSON_10_INTRO_SCREENS: LessonIntroScreen[] = [
     textRU:
       "can — умение; could — мягче или про прошлое; may / might — разрешение или возможность (might слабее); must — долг, must not — запрет; shall — предложение (Shall we…?); should — совет; will — будущее; would — вежливость или условие. have to / need to — внешняя необходимость.",
     textUK:
-      "can, could, may, might, must, shall, should, will, would — див. повний список у «Теорії» (en); have to / need to — окремий обов’язок.",
+      "can, could, may, might, must, shall, should, will, would — див. повний список у «Теорії» (en); have to / need to — окремий обов\'язок.",
     textES:
       "Resumen: can/could/may/might/must/shall/should/will/would + base verbal; have to / need to para deberes externos.",
     examples: [
@@ -308,11 +308,11 @@ export const LESSON_10_INTRO_SCREENS: LessonIntroScreen[] = [
   {
     kind: "trap",
     textRU:
-      "Не ставь to после настоящих модальных (*must to go* ✗). must not (запрет) ≠ don't have to (не обязан). После модального второй глагол без -s: *she can goes* ✗.",
+      "Не ставь to после настоящих модальных (*must to go* ✗). must not (запрет) ≠ don\'t have to (не обязан). После модального второй глагол без -s: *she can goes* ✗.",
     textUK:
-      "Не *must to go*. must not ≠ don't have to. Не *she can goes*. У have to / need to — to обов’язкове.",
+      "Не *must to go*. must not ≠ don\'t have to. Не *she can goes*. У have to / need to — to обов\'язкове.",
     textES:
-      "Sin «to» tras modal puro. must not ≠ don't have to. Verbo en base tras el modal. Con have to/need to el «to» sí va.",
+      "Sin «to» tras modal puro. must not ≠ don\'t have to. Verbo en base tras el modal. Con have to/need to el «to» sí va.",
   },
 ];
 
@@ -381,9 +381,9 @@ export const LESSON_13_INTRO_SCREENS: LessonIntroScreen[] = [
     textUK: "Voy a estudiar або hablaré — без кальки англійського will окремим словом.",
     textES: "Patrones: ir a + infinitivo; futuro morphológico en -ré, -rás…",
     examples: [
-      { en: "I'm going to call you.", trRU: "Я собираюсь тебе позвонить.", trUK: "Я збираюся тобі подзвонити.", trES: "Voy a llamarte." },
+      { en: "I\'m going to call you.", trRU: "Я собираюсь тебе позвонить.", trUK: "Я збираюся тобі подзвонити.", trES: "Voy a llamarte." },
       { en: "She will travel.", trRU: "Она поедет.", trUK: "Вона поїде.", trES: "Ella viajará." },
-      { en: "We'll see.", trRU: "Посмотрим.", trUK: "Побачимо.", trES: "Ya veremos." },
+      { en: "We\'ll see.", trRU: "Посмотрим.", trUK: "Побачимо.", trES: "Ya veremos." },
     ],
   },
   {
@@ -512,14 +512,14 @@ export const LESSON_18_INTRO_EXTRA: LessonIntroScreen[] = [
     textES: "Afirmativo/negativo; reflexivos con pronombre enclítico: Siéntate, No te vayas.",
     examples: [
       { en: "Open the window.", trRU: "Открой окно.", trUK: "Відкрий вікно.", trES: "Abre la ventana." },
-      { en: "Don't worry.", trRU: "Не беспокойся.", trUK: "Не хвилюйся.", trES: "No te preocupes." },
+      { en: "Don\'t worry.", trRU: "Не беспокойся.", trUK: "Не хвилюйся.", trES: "No te preocupes." },
       { en: "Sit down.", trRU: "Садись.", trUK: "Сідай.", trES: "Siéntate." },
     ],
   },
   {
     kind: "trap",
     textRU: "Не переноси русский «давай» как *Давай откроем* с неправильным лицом без согласования: для предложения действия чаще Vamos a abrir / Abre tú, а не смесь лиц.",
-    textUK: "Узгоджуй особу в наказах і пропозиціях; уникай змішання суб'єктів.",
+    textUK: "Узгоджуй особу в наказах і пропозиціях; уникай змішання суб\'єктів.",
     textES: "Cuida la concordancia de persona en mandatos colectivos; usa Vamos a + inf para propuestas.",
   },
 ];
@@ -534,7 +534,7 @@ export const LESSON_19_INTRO_EXTRA: LessonIntroScreen[] = [
   {
     kind: "how",
     textRU: "en caja / sobre la mesa / debajo de la silla / delante del banco. Сочетай estar для положения: El libro está sobre la mesa.",
-    textUK: "en/sobre/debajo de + estar для положення об'єкта.",
+    textUK: "en/sobre/debajo de + estar для положення об\'єкта.",
     textES: "en/sobre/debajo de… + estar para ubicar objetos.",
     examples: [
       { en: "The keys are on the table.", trRU: "Ключи на столе.", trUK: "Ключі на столі.", trES: "Las llaves están en la mesa." },
@@ -589,16 +589,16 @@ export const LESSON_21_INTRO_EXTRA: LessonIntroScreen[] = [
     textUK: "No + verbo + nadie/nada або algún у питаннях.",
     textES: "Patrones: No veo nada; ¿Hay algún problema?",
     examples: [
-      { en: "I don't see anyone.", trRU: "Я никого не вижу.", trUK: "Я нікого не бачу.", trES: "No veo a nadie." },
+      { en: "I don\'t see anyone.", trRU: "Я никого не вижу.", trUK: "Я нікого не бачу.", trES: "No veo a nadie." },
       { en: "Is there something wrong?", trRU: "Что-то не так?", trUK: "Щось не так?", trES: "¿Pasa algo malo?" },
       { en: "She never says anything.", trRU: "Она никогда ничего не говорит.", trUK: "Вона ніколи нічого не каже.", trES: "Ella nunca dice nada." },
     ],
   },
   {
     kind: "trap",
-    textRU: "Двойное отрицание в испанском допустимо как стиль (no… nunca), не путай с английским запретом на don't… nothing.",
+    textRU: "Двойное отрицание в испанском допустимо как стиль (no… nunca), не путай с английским запретом на don\'t… nothing.",
     textUK: "Подвійне заперечення в іспанському стилі ≠ англійське правило.",
-    textES: "La doble negación española no es el «don't… nothing» inglés.",
+    textES: "La doble negación española no es el «don\'t… nothing» inglés.",
   },
 ];
 
@@ -851,7 +851,7 @@ export const LESSON_31_INTRO_EXTRA: LessonIntroScreen[] = [
     examples: [
       { en: "I want you to come.", trRU: "Я хочу, чтобы ты пришёл.", trUK: "Я хочу, щоб ти прийшов.", trES: "Quiero que vengas." },
       { en: "She asked me to wait.", trRU: "Она попросила подождать.", trUK: "Вона попросила зачекати.", trES: "Me pidió que esperara." },
-      { en: "It's important that he knows.", trRU: "Важно, чтобы он знал.", trUK: "Важливо, щоб він знав.", trES: "Es importante que lo sepa." },
+      { en: "It\'s important that he knows.", trRU: "Важно, чтобы он знал.", trUK: "Важливо, щоб він знав.", trES: "Es importante que lo sepa." },
     ],
   },
   {

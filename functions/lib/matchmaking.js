@@ -56,6 +56,8 @@ const APP_META_MATCHMAKING = 'app_meta/matchmaking_searching';
 const RANKED_QUESTIONS_PER_MATCH = 10;
 const QUESTION_TIMEOUT_MS = 40000;
 const STALE_ENTRY_MS = 15 * 60 * 1000; // remove entries older than 15 min
+const QUEUE_WINDOW_LIMIT = 500;
+const CLEANUP_WINDOW_LIMIT = 500;
 /** Клиент должен сам удалить queue сразу после match; иначе cron убирает через 2 мин (см. matchedAt) */
 const MATCHED_QUEUE_TTL_MS = 2 * 60 * 1000;
 /** Документ с sessionId, но без matchedAt (legacy / сбой) — удаляем строку очереди по давности joinedAt */
@@ -84,17 +86,23 @@ function highestRankTierFromPlayers(players) {
 function sameSessionSize(a, b) {
     return Number(a) === Number(b);
 }
-/** id в об’єкті — завжди id Firestore-дока; userId дублює id, якщо в data немає. */
+/** id в об'єкті — завжди id Firestore-дока; userId дублює id, якщо в data немає. */
 function docToQueueEntry(d) {
     const data = d.data();
     return { ...data, id: d.id, userId: data.userId ?? d.id };
 }
+async function readQueueWindow(limit = QUEUE_WINDOW_LIMIT) {
+    const snap = await db
+        .collection('matchmaking_queue')
+        .orderBy('joinedAt')
+        .limit(limit)
+        .get();
+    return snap.docs.map(d => docToQueueEntry(d));
+}
 // ─── Core matching logic ──────────────────────────────────────────────────────
 async function runMatchmaking() {
     const now = Date.now();
-    const snap = await db.collection('matchmaking_queue').get();
-    const entries = snap.docs
-        .map(d => docToQueueEntry(d))
+    const entries = (await readQueueWindow())
         .filter(e => !e.sessionId); // skip already-matched entries
     // Clean up stale entries
     const stale = entries.filter(e => now - e.joinedAt > STALE_ENTRY_MS);
@@ -126,18 +134,23 @@ async function runMatchmaking() {
 }
 /** Сколько записей в matchmaking_queue ещё без sessionId (реально в поиске). */
 async function publishMatchmakingSearchingCount() {
-    const snap = await db.collection('matchmaking_queue').get();
     let n = 0;
-    for (const doc of snap.docs) {
-        const d = doc.data();
-        if (!d.sessionId)
-            n += 1;
+    try {
+        const snap = await db.collection('matchmaking_queue').count().get();
+        n = snap.data().count ?? 0;
+    }
+    catch {
+        n = (await readQueueWindow()).filter(e => !e.sessionId).length;
     }
     await db.doc(APP_META_MATCHMAKING).set({ searchingCount: n, updatedAt: Date.now() }, { merge: true });
 }
 /** Документы с sessionId не попадают в stale-чистку по joinedAt; убираем по matchedAt или legacy без timestamp. */
 async function cleanupOrphanedMatchedQueueEntries(now) {
-    const snap = await db.collection('matchmaking_queue').get();
+    const snap = await db
+        .collection('matchmaking_queue')
+        .orderBy('joinedAt')
+        .limit(CLEANUP_WINDOW_LIMIT)
+        .get();
     if (snap.empty)
         return;
     const batch = db.batch();
@@ -178,10 +191,7 @@ async function tryMatchForUser(userId) {
     };
     if (userEntry.sessionId)
         return; // already matched
-    const now = Date.now();
-    const snap = await db.collection('matchmaking_queue').get();
-    const all = snap.docs
-        .map(d => docToQueueEntry(d))
+    const all = (await readQueueWindow())
         .filter(e => !e.sessionId &&
         e.id !== userId &&
         sameSessionSize(e.size, userEntry.size));
@@ -272,13 +282,22 @@ async function createSession(players, size) {
         createdAt: now,
         acceptDeadlineAt: now + 15000,
     };
-    // Read XP to compute avatarLevel for each player
+    // Read XP + selected avatar for each player. Numeric legacy avatars are derived from XP;
+    // custom avatars are stored as string values like `custom:...`.
     const userSnaps = await Promise.all(playersNorm.map(p => db.collection('users').doc(p.userId).get().catch(() => null)));
     const avatarLevelByUid = new Map();
+    const avatarByUid = new Map();
+    const auraByUid = new Map();
     for (let i = 0; i < playersNorm.length; i++) {
         const d = userSnaps[i]?.data();
         const xp = parseInt(d?.progress?.user_total_xp ?? '0') || 0;
-        avatarLevelByUid.set(playersNorm[i].userId, getLevelFromXP(xp));
+        const level = getLevelFromXP(xp);
+        const avatarRaw = typeof d?.progress?.user_avatar === 'string' ? d.progress.user_avatar.trim() : '';
+        const auraRaw = typeof d?.progress?.user_avatar_aura === 'string' ? d.progress.user_avatar_aura.trim() : '';
+        avatarLevelByUid.set(playersNorm[i].userId, level);
+        avatarByUid.set(playersNorm[i].userId, avatarRaw && !/^\d+$/.test(avatarRaw) ? avatarRaw : String(level));
+        if (auraRaw)
+            auraByUid.set(playersNorm[i].userId, auraRaw);
     }
     const matchedAt = Date.now();
     // Use transaction to prevent double-matching race conditions
@@ -298,6 +317,8 @@ async function createSession(players, size) {
                 sessionId,
                 playerId: player.userId,
                 displayName: player.displayName ?? 'Игрок',
+                avatar: avatarByUid.get(player.userId) ?? String(avatarLevelByUid.get(player.userId) ?? 1),
+                aura: auraByUid.get(player.userId),
                 avatarLevel: avatarLevelByUid.get(player.userId) ?? 1,
                 score: 0,
                 answers: [],

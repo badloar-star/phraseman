@@ -28,7 +28,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter, useLocalSearchParams } from 'expo-router';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   AppState, AppStateStatus, Animated, Dimensions, Easing as SlideEasing, ScrollView,
   StyleSheet,
@@ -53,13 +53,15 @@ import { useLang } from '../components/LangContext';
 import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
+import { screenTextOnGradient } from '../constants/theme';
 import XpGainBadge from '../components/XpGainBadge';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getDueItems, markReviewed, RecallItem, removeItem, SESSION_LIMIT,
   getTrainerItems, type TrainerMode,
 } from './active_recall';
-import { logMistake } from './mistake_log';
+import { logMistake, type MistakeTokenMeta } from './mistake_log';
+import { resolvePhraseMistakeToken, resolveSlotMistake } from './mistake_token_resolver';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { registerXP } from './xp_manager';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -76,7 +78,8 @@ import {
 import { spanishLessonUiStringsActive, spanishSurfacesEnabled } from './spanish_content_gate';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { englishRecallSurface } from './phrase_target_utils';
-import { checkCoachToastNeeded, type CoachToastDecision } from './coach_toast_trigger';
+import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
+import type { PhraseMistakeInput } from './phrase_analytics';
 import CoachToast from '../components/CoachToast';
 
 const { width: SCREEN_W } = Dimensions.get('window');
@@ -462,7 +465,8 @@ function BurnCardEffect({
 // ─── Компонент ────────────────────────────────────────────────────────────────
 export default function ReviewScreen() {
   const router  = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   // trainerMode и lessonId передаются из trainer.tsx при старте режимной сессии.
@@ -480,7 +484,7 @@ export default function ReviewScreen() {
   const [wrong,     setWrong]     = useState(0);
   const [totalXP,   setTotalXP]   = useState(0);
   const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
-  const wrongPhrasesRef = useRef<string[]>([]);
+  const wrongPhrasesRef = useRef<PhraseMistakeInput[]>([]);
 
   // Состояние текущей карточки (без плиточной сборки)
   const [mode, setMode]           = useState<ReviewMode>('word_bank');
@@ -682,13 +686,42 @@ export default function ReviewScreen() {
       setWrong(w => w + 1);
     }
 
-    markReviewed(item.phrase, ok).catch(() => {});
+    let tokenMeta: MistakeTokenMeta | undefined;
     if (!ok) {
-      if (trainerMode !== 'mistakes') {
-        logMistake(item.phrase, item.lessonId, 'trainer', 'wrong_pick');
-      }
-      wrongPhrasesRef.current.push(item.phrase);
+      const reviewPhrase = tokenizeRecallPhrase(item.phrase).join(' ');
+      const interactionTokenMeta: MistakeTokenMeta | undefined = mode === 'word_bank'
+        ? resolveSlotMistake(reviewPhrase, nextSlot, userPick ?? undefined)
+        : mode === 'recall_type'
+          ? resolvePhraseMistakeToken(englishRecallSurface(item.phrase), userPick)
+          : undefined;
+      const storedTokenMeta: MistakeTokenMeta | undefined = item.errorWord || item.category || item.grammarTag
+        ? {
+            tokenText: item.errorWord,
+            expected: item.errorWord,
+            rawCategory: item.grammarTag,
+            category: item.category,
+            grammarTag: item.grammarTag,
+            tokenIndex: item.tokenIndex,
+          }
+        : undefined;
+      tokenMeta = interactionTokenMeta || storedTokenMeta
+        ? {
+            ...storedTokenMeta,
+            ...interactionTokenMeta,
+            tokenText: interactionTokenMeta?.tokenText ?? storedTokenMeta?.tokenText,
+            expected: interactionTokenMeta?.expected ?? storedTokenMeta?.expected,
+            rawCategory: interactionTokenMeta?.rawCategory ?? storedTokenMeta?.rawCategory,
+            category: interactionTokenMeta?.category ?? storedTokenMeta?.category,
+            grammarTag: interactionTokenMeta?.grammarTag ?? storedTokenMeta?.grammarTag,
+            tokenIndex: Number.isFinite(interactionTokenMeta?.tokenIndex)
+              ? interactionTokenMeta?.tokenIndex
+              : storedTokenMeta?.tokenIndex,
+          }
+        : undefined;
+      logMistake(item.phrase, item.lessonId, 'trainer', 'wrong_pick', tokenMeta);
+      wrongPhrasesRef.current.push(tokenMeta ? { phrase: item.phrase, ...tokenMeta } : item.phrase);
     }
+    markReviewed(item.phrase, ok, tokenMeta).catch(() => {});
 
     if (!recallSessionTracked.current) {
       recallSessionTracked.current = true;
@@ -707,7 +740,7 @@ export default function ReviewScreen() {
     }
 
     checkingRef.current = false;
-  }, [items, index, lang, resultAnim, trainerMode]);
+  }, [items, index, lang, mode, nextSlot, resultAnim, trainerMode]);
 
   const onWordBankTap = useCallback((tile: WordBankTile) => {
     if (status !== 'playing' || burning) return;
@@ -831,24 +864,14 @@ export default function ReviewScreen() {
     if (wrong === 0 && correct >= 5) {
       updateMultipleTaskProgress([{ type: 'recall_perfect', increment: 1 }]).catch(() => {});
     }
-    // Проверяем нужен ли тост Problem Coach
-    const decision = checkCoachToastNeeded(wrongPhrasesRef.current);
-    if (decision.show) setCoachToast(decision);
+    // Проверяем нужен ли тост точного диагноза
+    let cancelled = false;
+    void checkCoachToastNeededWithAnalytics(wrongPhrasesRef.current).then((decision) => {
+      if (!cancelled && decision.show) setCoachToast(decision);
+    });
+    return () => { cancelled = true; };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [done]);
-
-  // ─── Загрузка ─────────────────────────────────────────────────────────────
-  if (loading) {
-    return (
-      <ScreenGradient>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: t.textMuted, fontSize: f.body }}>
-          {triLang(lang, { ru: 'Загрузка...', uk: 'Завантаження...', es: 'Cargando...' })}
-        </Text>
-      </View>
-      </ScreenGradient>
-    );
-  }
 
   // ─── Нечего повторять ─────────────────────────────────────────────────────
   if (items.length === 0) {
@@ -857,25 +880,25 @@ export default function ReviewScreen() {
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12 }}>
           <TouchableOpacity onPress={() => router.back()} style={{ padding: 4 }}>
-            <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
+            <Ionicons name="chevron-back" size={26} color={sx.primary} />
           </TouchableOpacity>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
             {triLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso' })}
           </Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
           <Text style={{ fontSize: 56, marginBottom: 16 }}>✅</Text>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
             {triLang(lang, {
               ru: 'Нечего повторять!',
               uk: 'Нічого повторювати!',
               es: '¡Nada que repasar por ahora!',
             })}
           </Text>
-          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
             {triLang(lang, {
               ru: 'Допускай ошибки в уроках — они появятся здесь для повторения',
-              uk: 'Допускай помилки в уроках — вони зʼявляться тут для повторення',
+              uk: 'Допускай помилки в уроках — вони з\'являться тут для повторення',
               es: 'Si te equivocas en las lecciones, aquí aparecerán frases para repasar.',
             })}
           </Text>
@@ -922,10 +945,10 @@ export default function ReviewScreen() {
       <SafeAreaView style={{ flex: 1 }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
           <Text style={{ fontSize: 64, marginBottom: 16 }}>{emoji}</Text>
-          <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '800', textAlign: 'center' }}>
+          <Text style={{ color: sx.primary, fontSize: f.numLg, fontWeight: '800', textAlign: 'center' }}>
             {title}
           </Text>
-          <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '700', marginTop: 8 }}>
+          <Text style={{ color: sx.second, fontSize: f.h2, fontWeight: '700', marginTop: 8 }}>
             {pct}%
           </Text>
           <View style={{ flexDirection: 'row', gap: 20, marginTop: 28 }}>
@@ -954,7 +977,7 @@ export default function ReviewScreen() {
               </Text>
             </View>
           )}
-          <Text style={{ color: t.textMuted, fontSize: f.caption, textAlign: 'center', marginTop: 12, lineHeight: 18 }}>
+          <Text style={{ color: sx.muted, fontSize: f.caption, textAlign: 'center', marginTop: 12, lineHeight: 18 }}>
             {triLang(lang, {
               ru: 'Фразы с ошибками вернутся завтра',
               uk: 'Фрази з помилками повернуться завтра',
@@ -979,6 +1002,15 @@ export default function ReviewScreen() {
           labelUk={coachToast.labelUk}
           labelEs={coachToast.labelEs}
           mistakeCount={coachToast.mistakeCount}
+          weaknessScore={coachToast.weaknessScore}
+          priorityScore={coachToast.priorityScore}
+          recoveryScore={coachToast.recoveryScore}
+          focusWords={coachToast.focusWords}
+          microDiagnosisId={coachToast.microDiagnosisId}
+          microLabelRu={coachToast.microLabelRu}
+          microLabelUk={coachToast.microLabelUk}
+          microLabelEs={coachToast.microLabelEs}
+          diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
           onDismiss={() => setCoachToast(null)}
         />
       )}
@@ -993,7 +1025,7 @@ export default function ReviewScreen() {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 24 }}>
-          <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
+          <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center' }}>
             {triLang(lang, {
               ru: 'Не удалось загрузить карточку. Нажми «Назад» и попробуй снова.',
               uk: 'Не вдалося завантажити картку. Натисни «Назад» і спробуй ще раз.',
@@ -1001,7 +1033,7 @@ export default function ReviewScreen() {
             })}
           </Text>
           <TouchableOpacity onPress={() => router.back()} style={{ marginTop: 24, padding: 14 }}>
-            <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '700' }}>
+            <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>
               {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
             </Text>
           </TouchableOpacity>
@@ -1035,14 +1067,14 @@ export default function ReviewScreen() {
       {/* Хедер: назад + заголовок + счётчик */}
       <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 12, gap: 12 }}>
         <TouchableOpacity onPress={() => router.back()} style={{ padding: 4 }}>
-          <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
+          <Ionicons name="chevron-back" size={26} color={sx.primary} />
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
+          <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
             {triLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso' })}
           </Text>
         </View>
-        <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600' }}>
+        <Text style={{ color: sx.muted, fontSize: f.body, fontWeight: '600' }}>
           {index + 1} / {items.length}
         </Text>
       </View>
@@ -1061,7 +1093,7 @@ export default function ReviewScreen() {
         showsVerticalScrollIndicator={false}
       >
         {/* Источник: урок / квиз / арена / … */}
-        <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 12 }}>
+        <Text style={{ color: sx.muted, fontSize: f.caption, marginBottom: 12 }}>
           {recallOriginCaption(item, lang)}
         </Text>
 
@@ -1131,7 +1163,7 @@ export default function ReviewScreen() {
               })}
             </ScrollView>
             {swipeCueHintEligible && swipeCueHintVisible && (
-              <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center', marginTop: 8 }}>
+              <Text style={{ color: sx.ghost, fontSize: f.caption, textAlign: 'center', marginTop: 8 }}>
                 {triLang(lang, {
                   ru: 'Свайпните карточку влево или вправо, чтобы выбрать другую фразу',
                   uk: 'Свайніть картку вліво або вправо, щоб обрати іншу фразу',
@@ -1254,6 +1286,7 @@ export default function ReviewScreen() {
                 `Урок: ${item.lessonId}`,
               ].filter(Boolean).join('\n')}
               style={{ alignSelf: 'flex-end', marginBottom: 4 }}
+              textColor={sx.muted}
             />
           )}
 
@@ -1308,7 +1341,7 @@ export default function ReviewScreen() {
                 >
                   {triLang(lang, {
                     ru: 'Если сжечь карточку — она больше не появится в повторении',
-                    uk: 'Якщо спалити картку — вона більше не зʼявиться у повторенні',
+                    uk: 'Якщо спалити картку — вона більше не з\'явиться у повторенні',
                     es: 'Si quemas la tarjeta, no volverá a aparecer en el repaso',
                   })}
                 </Animated.Text>

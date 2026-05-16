@@ -15,7 +15,7 @@ interface Props {
 
 /**
  * Circular progress ring — colored fill technique.
- * Fills CW from 12 o'clock.
+ * Fills CW from 12 o\'clock.
  *
  * All fill layers are clipped to a circle via the outer borderRadius+overflow:hidden
  * wrapper, so the ring edges are always smooth.
@@ -94,7 +94,7 @@ export default function CircularProgress({
         }} />
       </View>
 
-      {/* 5. Percentage label — outside clip wrapper so it's not cut */}
+      {/* 5. Percentage label — outside clip wrapper so it\'s not cut */}
       <Text
         style={{ color: textColor, fontSize, fontWeight: '700', textAlign: 'center' }}
         adjustsFontSizeToFit

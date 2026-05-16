@@ -1,0 +1,17 @@
+appId: app.phraseman
+---
+- runFlow: ../_dismiss_bug_hunt.yaml
+- runFlow: ../_precondition.yaml
+- extendedWaitUntil:
+    visible:
+      id: "trainer-quick-report-preview"
+    timeout: 30000
+- tapOn:
+    id: "trainer-quick-report-preview"
+- waitForAnimationToEnd:
+    timeout: 5000
+- extendedWaitUntil:
+    visible:
+      id: "screen-trainer-smart-session"
+    timeout: 30000
+- takeScreenshot: trainer_qa_report_preview

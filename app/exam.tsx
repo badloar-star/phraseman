@@ -1,10 +1,11 @@
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
     Animated,
     ScrollView,
+    Share,
     Text, TouchableOpacity,
     View,
 } from 'react-native';
@@ -15,17 +16,16 @@ import { useEnergy } from '../components/EnergyContext';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
+import { screenTextOnGradient } from '../constants/theme';
 import XpGainBadge from '../components/XpGainBadge';
 import { registerXP } from './xp_manager';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
-import PhraseContentStars from '../components/PhraseContentStars';
 import { checkAchievements } from './achievements';
 import { DEV_MODE, STORE_URL } from './config';
 import { shuffle } from './utils_shuffle';
 import { isLingmanExamAvailable } from './lesson_lock_system';
-import QuizShareCardSvg from '../components/share_cards/QuizShareCardSvg';
 import LingmanCertificateSvg from '../components/share_cards/LingmanCertificateSvg';
 import { shareCardFromSvgRef } from '../components/share_cards/shareCardPng';
 import { buildExamShareMessage, buildCertificateShareMessage } from './exam_share';
@@ -39,11 +39,13 @@ import {
   type LingmanCertificate,
 } from './exam_certificate';
 import CertificateNameModal from '../components/CertificateNameModal';
-import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { bundleLang, triLang } from '../constants/i18n';
-import type { ShareCardLang } from '../components/share_cards/streakCardCopy';
 import { examTopicForLang } from './exam_locale';
 import { trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
+import { logMistake, type MistakeWhat } from './mistake_log';
+import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
+import type { PhraseMistakeSignal } from './phrase_analytics';
+import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
 
 const TOTAL_EXAM_SECONDS = 60 * 60; // 60 minutes total
 const LINGMAN_EXAM_ENERGY = 8;
@@ -52,6 +54,7 @@ type ExamQType = 'fill' | 'choice4' | 'error';
 interface ExamQuestion {
   lessonNum: number;
   topic:   string;   // RU topic name
+  rawTopic?: string; // stable, non-localized topic used for analytics
   topicUK: string;   // UK topic name
   /** ES; если нет — для es показывается topic (RU) */
   topicES?: string;
@@ -59,6 +62,51 @@ interface ExamQuestion {
   opts:    string[]; // 4 options
   correct: number;
   type?:   ExamQType; // default = 'fill'
+}
+
+function buildExamQuestionPhrase(q: ExamQuestion): string {
+  const expected = q.opts[q.correct] ?? '';
+  if (q.q.includes('___')) return q.q.replace('___', expected);
+  if (/\[[^\]]+\]/.test(q.q)) return q.q.replace(/\[[^\]]+\]/, expected).replace(/^Correct:\s*/i, '');
+  return expected.includes(' ') ? expected : q.q;
+}
+
+function examRawCategory(q: ExamQuestion): string {
+  return q.rawTopic ?? q.topic;
+}
+
+function examTopicCategory(q: ExamQuestion, token?: string): WordCategory | undefined {
+  const category = normalizeWordCategory(examRawCategory(q), token).category;
+  return isUserFacingCategory(category) ? category : undefined;
+}
+
+function buildExamMistakeSignal(
+  q: ExamQuestion,
+  pickedIndex: number | null,
+): { lessonId: number; signal: PhraseMistakeSignal; what: MistakeWhat } | null {
+  if (pickedIndex === q.correct) return null;
+  const expected = q.opts[q.correct] ?? '';
+  if (!expected) return null;
+  const picked = pickedIndex === null ? undefined : q.opts[pickedIndex] ?? '';
+  const phrase = buildExamQuestionPhrase(q);
+  const rawCategory = examRawCategory(q);
+  const resolvedToken = picked
+    ? q.type === 'choice4'
+      ? resolveChoiceMistakeToken(phrase, picked, rawCategory)
+      : resolvePhraseMistakeToken(phrase, picked, rawCategory)
+    : undefined;
+  const tokenMeta = (q.q.includes('___') || /\[[^\]]+\]/.test(q.q)) && expected
+    ? { tokenText: expected, expected, picked, rawCategory }
+    : {
+        ...(resolvedToken ?? { expected }),
+        rawCategory,
+      };
+  const category = examTopicCategory(q, tokenMeta.tokenText || tokenMeta.expected);
+  return {
+    lessonId: q.lessonNum,
+    signal: tokenMeta ? { phrase, ...tokenMeta, category } : { phrase },
+    what: pickedIndex === null ? 'forgot' : 'wrong_pick',
+  };
 }
 
 const EXAM_POOL: ExamQuestion[] = [
@@ -83,8 +131,8 @@ const EXAM_POOL: ExamQuestion[] = [
   {lessonNum:4, topic:'Present Simple — отрицание',  topicUK:'Present Simple — заперечення',  q:'She ___ not understand.',   opts:['do','does','did','doing'],                                                     correct:1},
   {lessonNum:4, topic:'Present Simple — отрицание',  topicUK:'Present Simple — заперечення',  q:'He ___ not smoke.',         opts:['do','does','did','doing'],                                                     correct:1},
   {lessonNum:4, topic:'Present Simple — отрицание',  topicUK:'Present Simple — заперечення',  q:'They ___ not know the answer.', opts:['does','do','did','doing'],                                                correct:1},
-  {lessonNum:4, topic:'Present Simple — отрицание',  topicUK:'Present Simple — заперечення',  q:'Which sentence is correct?', opts:["She don't like it.","They doesn't eat meat.","He does not smoke.","I does not know."], correct:2, type:'choice4'},
-  {lessonNum:4, topic:'Present Simple — отрицание',  topicUK:'Present Simple — заперечення',  q:"Correct: He [don't] understand.", opts:["doesn't","don't","didn't","doesn't not"],                               correct:0, type:'error'},
+  {lessonNum:4, topic:'Present Simple — отрицание',  topicUK:'Present Simple — заперечення',  q:'Which sentence is correct?', opts:["She don\'t like it.","They doesn\'t eat meat.","He does not smoke.","I does not know."], correct:2, type:'choice4'},
+  {lessonNum:4, topic:'Present Simple — отрицание',  topicUK:'Present Simple — заперечення',  q:"Correct: He [don\'t] understand.", opts:["doesn\'t","don\'t","didn\'t","doesn\'t not"],                               correct:0, type:'error'},
   // ── LESSON 5: Present Simple questions ───────────────────────────────────
   {lessonNum:5, topic:'Present Simple — вопросы',    topicUK:'Present Simple — питання',      q:'___ you speak English?',    opts:['Do','Does','Did','Are'],                                                       correct:0},
   {lessonNum:5, topic:'Present Simple — вопросы',    topicUK:'Present Simple — питання',      q:'___ she like music?',       opts:['Do','Does','Did','Is'],                                                        correct:1},
@@ -104,7 +152,7 @@ const EXAM_POOL: ExamQuestion[] = [
   {lessonNum:7, topic:'Глагол To Have',        topicUK:'Дієслово To Have',        q:'Which sentence is correct?',        opts:['She have a cat.','He has a cat.','They has a dog.','We has a house.'],              correct:1, type:'choice4'},
   {lessonNum:7, topic:'Глагол To Have',        topicUK:'Дієслово To Have',        q:'Correct: He [have] a new car.',     opts:['has','have','had','having'],                                                       correct:0, type:'error'},
   // ── LESSON 8: Prepositions of time ───────────────────────────────────────
-  {lessonNum:8, topic:'Предлоги времени (at/in/on)', topicUK:'Прийменники часу (at/in/on)', q:"I wake up ___ 7 o'clock.",  opts:['in','on','at','by'],                                                            correct:2},
+  {lessonNum:8, topic:'Предлоги времени (at/in/on)', topicUK:'Прийменники часу (at/in/on)', q:"I wake up ___ 7 o\'clock.",  opts:['in','on','at','by'],                                                            correct:2},
   {lessonNum:8, topic:'Предлоги времени (at/in/on)', topicUK:'Прийменники часу (at/in/on)', q:'She was born ___ Monday.',  opts:['in','on','at','by'],                                                            correct:1},
   {lessonNum:8, topic:'Предлоги времени (at/in/on)', topicUK:'Прийменники часу (at/in/on)', q:'He was born ___ 1990.',     opts:['in','on','at','by'],                                                            correct:0},
   {lessonNum:8, topic:'Предлоги времени (at/in/on)', topicUK:'Прийменники часу (at/in/on)', q:'Which sentence is correct?', opts:['She arrived in Monday.','He works at night.','They met in weekend.','I wake up on morning.'], correct:1, type:'choice4'},
@@ -140,7 +188,7 @@ const EXAM_POOL: ExamQuestion[] = [
   {lessonNum:13, topic:'Future Simple (will)',  topicUK:'Future Simple (will)',    q:'Which sentence is correct?',        opts:["He wills help.","She will helps.","They will come.","We will to go."],            correct:2, type:'choice4'},
   {lessonNum:13, topic:'Future Simple (will)',  topicUK:'Future Simple (will)',    q:'Correct: She will [to come] tomorrow.', opts:['come','to come','comes','came'],                                             correct:0, type:'error'},
   // ── LESSON 14: Comparatives ───────────────────────────────────────────────
-  {lessonNum:14, topic:'Степени сравнения',     topicUK:'Ступені порівняння',      q:"This is ___ book I've read.",       opts:['good','better','the best','best'],                                               correct:2},
+  {lessonNum:14, topic:'Степени сравнения',     topicUK:'Ступені порівняння',      q:"This is ___ book I\'ve read.",       opts:['good','better','the best','best'],                                               correct:2},
   {lessonNum:14, topic:'Степени сравнения',     topicUK:'Ступені порівняння',      q:'She is ___ than her sister.',       opts:['tall','taller','tallest','most tall'],                                           correct:1},
   {lessonNum:14, topic:'Степени сравнения',     topicUK:'Ступені порівняння',      q:'This test is ___ than the last one.', opts:['hard','harder','hardest','more hard'],                                        correct:1},
   {lessonNum:14, topic:'Степени сравнения',     topicUK:'Ступені порівняння',      q:'Which sentence is correct?',        opts:['She is more tall.','He is the tallest.','This is more better.','She is taller then him.'], correct:1, type:'choice4'},
@@ -149,7 +197,7 @@ const EXAM_POOL: ExamQuestion[] = [
   {lessonNum:15, topic:'Притяжательные местоимения', topicUK:'Присвійні займенники', q:'This is ___ bag.',               opts:['her','hers','she','herself'],                                                     correct:0},
   {lessonNum:15, topic:'Притяжательные местоимения', topicUK:'Присвійні займенники', q:'Is this pen ___?',               opts:['your','yours','you','yourself'],                                                  correct:1},
   {lessonNum:15, topic:'Притяжательные местоимения', topicUK:'Присвійні займенники', q:'These are ___ books.',           opts:['their','theirs','they','themselves'],                                             correct:0},
-  {lessonNum:15, topic:'Притяжательные местоимения', topicUK:'Присвійні займенники', q:'Which sentence is correct?',     opts:["That's hers bag.","That's her bag.","That's she bag.","That's herself bag."],    correct:1, type:'choice4'},
+  {lessonNum:15, topic:'Притяжательные местоимения', topicUK:'Присвійні займенники', q:'Which sentence is correct?',     opts:["That\'s hers bag.","That\'s her bag.","That\'s she bag.","That\'s herself bag."],    correct:1, type:'choice4'},
   {lessonNum:15, topic:'Притяжательные местоимения', topicUK:'Присвійні займенники', q:"Correct: Is this [hers] book?",  opts:['her','hers','she','him'],                                                        correct:0, type:'error'},
   // ── LESSON 16: Phrasal verbs ──────────────────────────────────────────────
   {lessonNum:16, topic:'Фразовые глаголы',      topicUK:'Фразові дієслова',        q:'Please ___ the light.',             opts:['turn on','turn up','turn in','turn out'],                                        correct:0},
@@ -165,9 +213,9 @@ const EXAM_POOL: ExamQuestion[] = [
   {lessonNum:17, topic:'Present Continuous',    topicUK:'Present Continuous',      q:'Correct: She is [study] English now.', opts:['studying','study','studied','studies'],                                      correct:0, type:'error'},
   // ── LESSON 18: Imperative ─────────────────────────────────────────────────
   {lessonNum:18, topic:'Повелительное наклонение', topicUK:'Наказовий спосіб',    q:'___ quiet, please.',                opts:['Be','Is','Are','Being'],                                                          correct:0},
-  {lessonNum:18, topic:'Повелительное наклонение', topicUK:'Наказовий спосіб',    q:"Don't ___ late.",                   opts:['be','is','are','being'],                                                         correct:0},
+  {lessonNum:18, topic:'Повелительное наклонение', topicUK:'Наказовий спосіб',    q:"Don\'t ___ late.",                   opts:['be','is','are','being'],                                                         correct:0},
   {lessonNum:18, topic:'Повелительное наклонение', topicUK:'Наказовий спосіб',    q:'___ the window, please.',           opts:['Open','Opens','Opening','Opened'],                                                correct:0},
-  {lessonNum:18, topic:'Повелительное наклонение', topicUK:'Наказовий спосіб',    q:'Which sentence is correct?',        opts:["Opens the window.","Being careful!","Don't be late.","Is quiet please."],        correct:2, type:'choice4'},
+  {lessonNum:18, topic:'Повелительное наклонение', topicUK:'Наказовий спосіб',    q:'Which sentence is correct?',        opts:["Opens the window.","Being careful!","Don\'t be late.","Is quiet please."],        correct:2, type:'choice4'},
   {lessonNum:18, topic:'Повелительное наклонение', topicUK:'Наказовий спосіб',    q:'Correct: [Being] careful when you drive.',  opts:['Be','Being','Is','Are'],                                             correct:0, type:'error'},
   // ── LESSON 19: Prepositions of place ─────────────────────────────────────
   {lessonNum:19, topic:'Предлоги места',        topicUK:'Прийменники місця',       q:'The cat is ___ the table.',         opts:['in','on','under','between'],                                                     correct:1},
@@ -184,9 +232,9 @@ const EXAM_POOL: ExamQuestion[] = [
   // ── LESSON 21: Some/Any/Indefinite pronouns ───────────────────────────────
   {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:'I heard a noise. There must be ___ outside.',  opts:['somebody','anybody','nobody','everybody'],                                correct:0},
   {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:'Is there ___ who can help me?',             opts:['somewhere','anyone','no one','everyone'],                                          correct:1},
-  {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:"I don't have ___ money.",        opts:['some','any','no','every'],                                                       correct:1},
-  {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:'Which sentence is correct?',     opts:["I have any money.","She needs any help.","There is many people in the room.","He doesn't want anything."], correct:3, type:'choice4'},
-  {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:"Correct: I don't have [some] time.", opts:['any','some','no','every'],                                                  correct:0, type:'error'},
+  {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:"I don\'t have ___ money.",        opts:['some','any','no','every'],                                                       correct:1},
+  {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:'Which sentence is correct?',     opts:["I have any money.","She needs any help.","There is many people in the room.","He doesn\'t want anything."], correct:3, type:'choice4'},
+  {lessonNum:21, topic:'Неопределённые местоимения', topicUK:'Неозначені займенники', q:"Correct: I don\'t have [some] time.", opts:['any','some','no','every'],                                                  correct:0, type:'error'},
   // ── LESSON 22: Gerund ─────────────────────────────────────────────────────
   {lessonNum:22, topic:'Герундий (-ing)',        topicUK:'Герундій (-ing)',          q:'She enjoys ___.',                   opts:['dance','dances','dancing','to dance'],                                           correct:2},
   {lessonNum:22, topic:'Герундий (-ing)',        topicUK:'Герундій (-ing)',          q:'He avoids ___ the problem.',        opts:['discuss','discussed','discussing','to discuss'],                                 correct:2},
@@ -283,7 +331,7 @@ const EXAM_POOL: ExamQuestion[] = [
   {lessonNum:26, topic:'Условные предложения (if)', topicUK:'Умовні речення (if)',   q:'If you heat ice, it ___.',     opts:['melts','melted','will melt','is melting'],  correct:0},
   {lessonNum:27, topic:'Косвенная речь',         topicUK:'Непряма мова',             q:'She said that she ___.',      opts:['is tired','was tired','be tired','tired'],  correct:1},
   {lessonNum:28, topic:'Возвратные местоимения', topicUK:'Зворотні займенники',      q:'I cut ___ shaving this morning.',  opts:['me','myself','mine','I'],   correct:1},
-  {lessonNum:29, topic:'Used to',                topicUK:'Used to',                  q:"I'm not ___ driving on the left yet.",  opts:['used to','use to','used to it','am used to'],  correct:0},
+  {lessonNum:29, topic:'Used to',                topicUK:'Used to',                  q:"I\'m not ___ driving on the left yet.",  opts:['used to','use to','used to it','am used to'],  correct:0},
   {lessonNum:30, topic:'Relative Clauses (who/which)', topicUK:'Relative Clauses (who/which)', q:'This is the house ___ I grew up in.',  opts:['which','who','whom','whose'],  correct:0},
   {lessonNum:31, topic:'Complex Object',         topicUK:'Complex Object',           q:'The teacher made us ___.',    opts:['to study','study','studying','studies'],  correct:1},
   {lessonNum:32, topic:'Повторение всех тем',    topicUK:'Повторення всіх тем',      q:'She might ___ the train if she runs.',   opts:['catch','to catch','catching','caught'],  correct:0},
@@ -308,13 +356,13 @@ type Phase = 'locked'|'intro'|'countdown'|'quiz'|'review'|'result'|'cert';
 
 export default function ExamScreen() {
   const router = useRouter();
-  const {theme:t, f } = useTheme();
+  const {theme:t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const {lang} = useLang();
   const insets = useSafeAreaInsets();
   const t3 = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
   const { isUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
-  const examCardSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
   const certificateSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
 
   const [phase, setPhase]           = useState<Phase>('intro');
@@ -326,10 +374,6 @@ export default function ExamScreen() {
    *  Юзер всё равно явно подтверждает (или меняет) до того как сертификат
    *  с этим именем попадёт в шеринг. */
   const [certNamePrefill, setCertNamePrefill] = useState('');
-  // Ленивый монтаж скрытых 1500/1080-px SVG для экспорта PNG: они тяжёлые и
-  // тормозят result-экран, если висят в дереве постоянно. Монтируем только
-  // на момент шеринга, потом размонтируем.
-  const [mountExportExam, setMountExportExam] = useState(false);
   const [mountExportCert, setMountExportCert] = useState(false);
   const questions = React.useMemo(() => {
     // Группируем по уроку
@@ -348,7 +392,7 @@ export default function ExamScreen() {
     const needed = Math.max(0, 50 - mandatory.length);
     const pool = [...mandatory, ...shuffle(extras).slice(0, needed)];
     const result = shuffle(pool);
-    return result.map(q => ({ ...q, topic: examTopicForLang(q, lang) }));
+    return result.map(q => ({ ...q, rawTopic: q.rawTopic ?? q.topic, topic: examTopicForLang(q, lang) }));
   }, [lang]);
   const [idx, setIdx]               = useState(0);
   const [choices, setChoices]       = useState<(number|null)[]>(() => Array(questions.length).fill(null));
@@ -489,6 +533,13 @@ export default function ExamScreen() {
     try {
       const s = choices.filter((c, i) => c !== null && c === questions[i]?.correct).length;
       const p = questions.length > 0 ? Math.round(s / questions.length * 100) : 0;
+      const mistakeSignals = questions
+        .map((question, i) => buildExamMistakeSignal(question, choices[i] ?? null))
+        .filter((item): item is { lessonId: number; signal: PhraseMistakeSignal; what: MistakeWhat } => Boolean(item));
+      mistakeSignals.forEach(({ lessonId, signal, what }) => {
+        const { phrase, ...meta } = signal;
+        logMistake(phrase, lessonId, 'exam', what, meta);
+      });
     // XP: 10000 за золото (≥90%), иначе 50 + бонус за %
     const xp = p >= 90 ? 10000 : 50 + Math.round(p / 2);
     if (p >= 90) awardOneTime('exam_excellent').catch(() => {});
@@ -548,9 +599,8 @@ export default function ExamScreen() {
     setNameModalVisible(false);
   };
 
-  // Один кадр reqAF недостаточен: react-native-svg успевает создать узел, но
-  // ref.current ещё может быть пустым. Двойной reqAF гарантирует, что ref
-  // привязан и можно дёрнуть toDataURL.
+  // Двойной reqAF нужен, чтобы скрытый SVG успел смонтироваться и ref уже
+  // поддерживал toDataURL перед экспортом PNG.
   const waitTwoFrames = () =>
     new Promise<void>((resolve) => {
       requestAnimationFrame(() => requestAnimationFrame(() => resolve()));
@@ -558,9 +608,7 @@ export default function ExamScreen() {
 
   const shareCertificate = async () => {
     if (!certificate) return;
-    // Защита: не разрешаем шарить сертификат без имени — иначе уйдёт PNG
-    // с пустой подписью на бумажном поле, что выглядит как чужой/незавершённый
-    // диплом. Открываем модалку ввода имени вместо шеринга.
+    // Защита: не разрешаем шарить сертификат без имени.
     if (!certificate.name?.trim()) {
       setNameModalVisible(true);
       return;
@@ -587,16 +635,7 @@ export default function ExamScreen() {
 
   const shareExamResult = async () => {
     const msg = buildExamShareMessage(bundleLang(lang), score, questions.length, pct, STORE_URL);
-    setMountExportExam(true);
-    try {
-      await waitTwoFrames();
-      await shareCardFromSvgRef(examCardSvgRef, {
-        fileNamePrefix: 'phraseman-exam',
-        textFallback: msg,
-      });
-    } finally {
-      setMountExportExam(false);
-    }
+    await Share.share({ message: msg }).catch(() => {});
   };
 
   const score = choices.filter((c,i) => c !== null && c === questions[i]?.correct).length;
@@ -616,18 +655,18 @@ export default function ExamScreen() {
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <TouchableOpacity onPress={()=>router.back()}>
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
+          <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
-        <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
+        <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
           {t3('Экзамен', 'Іспит', 'Examen')}
         </Text>
       </View>
       <View style={{flex:1,justifyContent:'center',alignItems:'center',padding:30}}>
         <ProgressRing progress={lessonsCompleted/32} size={90} color={t.correct} bg={t.border}/>
-        <Text style={{color:t.textPrimary,fontSize:f.h1,fontWeight:'700',textAlign:'center',marginTop:24,marginBottom:12}}>
+        <Text style={{color:sx.primary,fontSize:f.h1,fontWeight:'700',textAlign:'center',marginTop:24,marginBottom:12}}>
           {t3('Экзамен недоступен', 'Іспит недоступний', 'Examen no disponible')}
         </Text>
-        <Text style={{color:t.textMuted,fontSize:f.body,textAlign:'center',lineHeight:24}}>
+        <Text style={{color:sx.muted,fontSize:f.body,textAlign:'center',lineHeight:24}}>
           {t3(
             'Пройди все 32 урока с оценкой 5.0 и сдай все 4 зачёта, чтобы открыть финальный тест Phraseman.',
             'Пройди всі 32 уроки з оцінкою 5.0 та склади всі 4 заліки, щоб відкрити фінальний тест Phraseman.',
@@ -643,7 +682,7 @@ export default function ExamScreen() {
           </Text>
         </View>
         <TouchableOpacity style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/' as any)}>
-          <Text style={{color:t.textSecond,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
+          <Text style={{color:sx.second,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
             {t3('Перейти к урокам →', 'Перейти до уроків →', 'Ir a las lecciones →')}
           </Text>
         </TouchableOpacity>
@@ -661,9 +700,9 @@ export default function ExamScreen() {
     <SafeAreaView style={{flex:1}}>
       <View style={{flexDirection:'row',alignItems:'center',padding:15,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <TouchableOpacity onPress={() => certificate ? setPhase('cert') : router.back()}>
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
+          <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
-        <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
+        <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
           {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso')}
         </Text>
       </View>
@@ -684,10 +723,10 @@ export default function ExamScreen() {
           <View style={{width:90,height:90,borderRadius:45,backgroundColor:t.bgCard,borderWidth:1.5,borderColor:t.border,justifyContent:'center',alignItems:'center',marginBottom:16}}>
             <Ionicons name="ribbon-outline" size={40} color={t.textSecond}/>
           </View>
-          <Text style={{color:t.textPrimary,fontSize:f.numMd+6,fontWeight:'700',textAlign:'center'}}>
+          <Text style={{color:sx.primary,fontSize:f.numMd+6,fontWeight:'700',textAlign:'center'}}>
             {t3('Что будет на экзамене', 'Що буде на іспиті', 'Qué incluye el examen')}
           </Text>
-          <Text style={{color:t.textMuted,fontSize:f.body,textAlign:'center',marginTop:8,lineHeight:22}}>
+          <Text style={{color:sx.muted,fontSize:f.body,textAlign:'center',marginTop:8,lineHeight:22}}>
             {t3(
               '50 заданий: грамматика и лексика по темам уроков; оценка только в приложении (не DELE/SIELE).',
               '50 завдань: граматика й лексика за темами уроків; оцінка лише в застосунку (не DELE/SIELE).',
@@ -737,7 +776,7 @@ export default function ExamScreen() {
           </Text>
         </TouchableOpacity>
         {!isUnlimited && (
-          <Text style={{color:t.textMuted,fontSize:f.caption,textAlign:'center',marginTop:10}}>
+          <Text style={{color:sx.muted,fontSize:f.caption,textAlign:'center',marginTop:10}}>
             {t3(
               `${LINGMAN_EXAM_ENERGY} ⚡ списываются за один старт · Premium — без лимита`,
               `${LINGMAN_EXAM_ENERGY} ⚡ знімаються за один старт · Premium — без ліміту`,
@@ -745,7 +784,7 @@ export default function ExamScreen() {
             )}
           </Text>
         )}
-        <Text style={{color:t.textMuted,fontSize:f.caption,textAlign:'center',marginTop:12}}>
+        <Text style={{color:sx.muted,fontSize:f.caption,textAlign:'center',marginTop:12}}>
           {t3(
             'После начала таймер не останавливается',
             'Після початку таймер не зупиняється',
@@ -756,7 +795,7 @@ export default function ExamScreen() {
           onPress={() => router.replace('/(tabs)/home' as any)}
           style={{ marginTop: 8, alignSelf: 'center', paddingHorizontal: 12, paddingVertical: 8 }}
         >
-          <Text style={{ color: t.textSecond, fontSize: f.sub, textDecorationLine: 'underline' }}>
+          <Text style={{ color: sx.second, fontSize: f.sub, textDecorationLine: 'underline' }}>
             {t3('На главную', 'На головну', 'Volver al inicio')}
           </Text>
         </TouchableOpacity>
@@ -779,7 +818,7 @@ export default function ExamScreen() {
         >
           <Ionicons name="chevron-back" size={24} color={t.textPrimary}/>
         </TouchableOpacity>
-        <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700',marginLeft:8,flex:1}}>
+        <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8,flex:1}}>
           {t3('Проверка ответов', 'Перевірка відповідей', 'Revisión de respuestas')}
         </Text>
         <Text style={{color:isLowTime?t.wrong:t.textSecond,fontSize:f.body,fontWeight:'600'}}>
@@ -790,19 +829,19 @@ export default function ExamScreen() {
       <View style={{flexDirection:'row',gap:8,paddingHorizontal:16,paddingVertical:10,borderBottomWidth:0.5,borderBottomColor:t.border}}>
         <View style={{flexDirection:'row',alignItems:'center',gap:4,flexShrink:1}}>
           <View style={{width:10,height:10,borderRadius:5,backgroundColor:t.correct,flexShrink:0}}/>
-          <Text style={{color:t.textSecond,fontSize:f.sub}} numberOfLines={1}>
+          <Text style={{color:sx.second,fontSize:f.sub}} numberOfLines={1}>
             {answered} {t3('отв.', 'відп.', 'resp.')}
           </Text>
         </View>
         <View style={{flexDirection:'row',alignItems:'center',gap:4,flexShrink:1}}>
           <View style={{width:10,height:10,borderRadius:5,backgroundColor:t.wrong,flexShrink:0}}/>
-          <Text style={{color:t.textSecond,fontSize:f.sub}} numberOfLines={1}>
+          <Text style={{color:sx.second,fontSize:f.sub}} numberOfLines={1}>
             {questions.length-answered} {t3('без отв.', 'без відп.', 'sin resp.')}
           </Text>
         </View>
         <View style={{flexDirection:'row',alignItems:'center',gap:4,flexShrink:1}}>
           <Ionicons name="bookmark" size={12} color="#D4A017"/>
-          <Text style={{color:t.textSecond,fontSize:f.sub}} numberOfLines={1}>
+          <Text style={{color:sx.second,fontSize:f.sub}} numberOfLines={1}>
             {flagged.filter(Boolean).length} {t3('помеч.', 'позн.', 'marc.')}
           </Text>
         </View>
@@ -883,12 +922,12 @@ export default function ExamScreen() {
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
-            <Text style={{ color: t.textMuted, fontSize: f.bodyLg, fontWeight: '600', marginBottom: 18 }}>
+            <Text style={{ color: sx.muted, fontSize: f.bodyLg, fontWeight: '600', marginBottom: 18 }}>
               {t3('Приготовься', 'Приготуйся', 'Prepárate')}
             </Text>
             <Animated.Text
               style={{
-                color: t.textPrimary,
+                color: sx.primary,
                 fontSize: f.numLg + 10,
                 fontWeight: '800',
                 transform: [{ scale: countdownAnim }],
@@ -896,7 +935,7 @@ export default function ExamScreen() {
             >
               {countdownNum}
             </Animated.Text>
-            <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 18 }}>
+            <Text style={{ color: sx.second, fontSize: f.sub, marginTop: 18 }}>
               {t3('Старт экзамена...', 'Старт іспиту...', 'Comienza el examen...')}
             </Text>
           </View>
@@ -908,54 +947,37 @@ export default function ExamScreen() {
 
   // ── RESULT ────────────────────────────────────────────────────────────────
   if (phase === 'result') {
-    const cardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY ? 'ru' : bundleLang(lang);
     return (
     <>
     <ScreenGradient>
     <SafeAreaView style={{flex:1}}>
-      {/* Скрытые SVG для PNG-экспорта монтируются ТОЛЬКО на момент шеринга:
-          раньше они висели в дереве постоянно, что давало ощутимые лаги
-          на result-экране (тяжёлый Lingman-серт + QuizShareCardSvg). */}
-      {(mountExportExam || mountExportCert) && (
+      {mountExportCert && certificate && (
         <View
           pointerEvents="none"
           collapsable={false}
           style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, zIndex: -1, overflow: 'hidden' }}
         >
-          {mountExportExam && (
-            <QuizShareCardSvg
-              ref={examCardSvgRef}
-              right={score}
-              total={questions.length}
-              pct={pct}
-              lang={cardLang}
-              mode="exam"
-              layoutSize={1080}
-            />
-          )}
-          {mountExportCert && certificate && (
-            <LingmanCertificateSvg
-              ref={certificateSvgRef}
-              name={certificate.name}
-              score={certificate.score}
-              total={certificate.total}
-              pct={certificate.pct}
-              certId={certificate.certId}
-              completedAt={certificate.completedAt}
-              lang={certificate.lang}
-              layoutWidth={1500}
-            />
-          )}
+          <LingmanCertificateSvg
+            ref={certificateSvgRef}
+            name={certificate.name}
+            score={certificate.score}
+            total={certificate.total}
+            pct={certificate.pct}
+            certId={certificate.certId}
+            completedAt={certificate.completedAt}
+            lang={certificate.lang}
+            layoutWidth={1500}
+          />
         </View>
       )}
       <ScrollView contentContainerStyle={{padding:24,alignItems:'center'}}>
         <View style={{width:100,height:100,borderRadius:50,backgroundColor:t.bgCard,borderWidth:1.5,borderColor:t.border,justifyContent:'center',alignItems:'center',marginTop:20,marginBottom:20}}>
           <Ionicons name="ribbon" size={44} color={t.textSecond}/>
         </View>
-        <Text style={{color:t.textPrimary,fontSize:f.numLg,fontWeight:'700',marginBottom:8}}>
+        <Text style={{color:sx.primary,fontSize:f.numLg,fontWeight:'700',marginBottom:8}}>
           {t3('Блок завершён', 'Блок завершено', 'Bloque terminado')}
         </Text>
-        <Text style={{color:t.textMuted,fontSize:f.body,textAlign:'center',lineHeight:22,marginBottom:8,paddingHorizontal:8}}>
+        <Text style={{color:sx.muted,fontSize:f.body,textAlign:'center',lineHeight:22,marginBottom:8,paddingHorizontal:8}}>
           {pct >= 80
             ? t3(
                 'Сильный результат по темам курса — закрепляй слабые места в уроках.',
@@ -974,7 +996,7 @@ export default function ExamScreen() {
                   'Un bajo porcentaje no mide «talento»: indica temas para repasar con calma.',
                 )}
         </Text>
-        <Text style={{color:t.textSecond,fontSize:f.h2,marginBottom:24}}>{score} / {questions.length} — {pct}%</Text>
+        <Text style={{color:sx.second,fontSize:f.h2,marginBottom:24}}>{score} / {questions.length} — {pct}%</Text>
         <View style={{ marginBottom: 16 }}>
           <XpGainBadge amount={examXp} visible={true} />
         </View>
@@ -987,7 +1009,7 @@ export default function ExamScreen() {
             .map((qItem, i) => ({ qItem, i, correct: choices[i] === qItem.correct }))
             .map(({ qItem, i, correct }) => (
             <View key={i} style={{flexDirection:'row',alignItems:'center',paddingVertical:6,borderBottomWidth:i<questions.length-1?0.5:0,borderBottomColor:t.border}}>
-              <Ionicons name={correct?'checkmark-circle':'close-circle'} size={16} color={correct?t.correct:t.wrong} style={{marginRight:8}}/>
+              <Ionicons name={correct ? 'checkmark-circle' : 'close-circle'} size={16} color={correct ? t.correct : t.wrong} style={{marginRight:8}}/>
               <Text style={{color:t.textMuted,fontSize:f.label,marginRight:6,width:26}}>{i + 1}.</Text>
               <Text style={{color:correct?t.textPrimary:t.textSecond,fontSize:f.sub,flex:1}}>{examTopicForLang(qItem, lang)}</Text>
             </View>
@@ -1107,9 +1129,6 @@ export default function ExamScreen() {
     <>
     <ScreenGradient>
     <SafeAreaView style={{flex:1}}>
-      {/* Скрытый 1500×1080 SVG для экспорта PNG. Раньше висел постоянно и
-          рендерил весь сертификат каждый раз, что давало заметный лаг при
-          скролле. Теперь монтируется только на момент шеринга. */}
       {mountExportCert && (
         <View
           pointerEvents="none"
@@ -1134,9 +1153,9 @@ export default function ExamScreen() {
           if (router.canGoBack()) router.back();
           else router.replace('/(tabs)/home' as any);
         }}>
-          <Ionicons name="chevron-back" size={28} color={t.textPrimary}/>
+          <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
-        <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
+        <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
           {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2')}
         </Text>
       </View>
@@ -1147,7 +1166,7 @@ export default function ExamScreen() {
             PHRASEMAN ACADEMY
           </Text>
         </View>
-        <Text style={{color:t.textMuted,fontSize:f.sub,textAlign:'center',marginBottom:18}}>
+        <Text style={{color:sx.muted,fontSize:f.sub,textAlign:'center',marginBottom:18}}>
           {`${certificate.score} / ${certificate.total} · ${certificate.pct}% · ${formatCertDate(certificate.completedAt, certificate.lang)}`}
         </Text>
         {certificate.name?.trim() ? (
@@ -1188,9 +1207,9 @@ export default function ExamScreen() {
             </TouchableOpacity>
             <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:8,textAlign:'center',lineHeight:18}}>
               {t3(
-                'PNG 1080×1080 · можно сохранить в галерею или отправить в любой мессенджер',
-                'PNG 1080×1080 · можна зберегти в галерею або відправити в будь-який месенджер',
-                'PNG 1080×1080 · puedes guardarlo en la galería o enviarlo por cualquier app',
+                'Шеринг отправит PNG сертификата; текст используется как запасной вариант.',
+                'Шеринг надішле PNG сертифіката; текст використовується як запасний варіант.',
+                'Se compartira el PNG del diploma; el texto se usa como alternativa.',
               )}
             </Text>
 
@@ -1207,7 +1226,7 @@ export default function ExamScreen() {
           </>
         ) : (
           // Сохранённый сертификат без имени (юзер раньше пропустил ввод).
-          // Не рендерим SVG: пустая подпись на дипломе выглядит как чужой/
+          // Не рендерим диплом: пустая подпись выглядит как чужая/
           // незавершённый. Показываем CTA на ввод имени.
           <TouchableOpacity
             activeOpacity={0.88}
@@ -1279,7 +1298,7 @@ export default function ExamScreen() {
     <SafeAreaView style={{flex:1}}>
       {/* Header */}
       <View style={{flexDirection:'row',alignItems:'center',justifyContent:'space-between',padding:15,paddingBottom:10}}>
-        <Text style={{color:t.textSecond,fontSize:f.sub,fontWeight:'500'}}>{idx+1} / {questions.length}</Text>
+        <Text style={{color:sx.second,fontSize:f.sub,fontWeight:'500'}}>{idx+1} / {questions.length}</Text>
         <View style={{backgroundColor:t.bgCard,borderRadius:10,paddingHorizontal:10,paddingVertical:4,borderWidth:0.5,borderColor:t.border,flex:1,marginHorizontal:8}}>
           <Text style={{color:t.textSecond,fontSize:f.caption,fontWeight:'600'}} numberOfLines={1} adjustsFontSizeToFit>
             {t3('Урок', 'Урок', 'Lección')} {q.lessonNum} · {examTopicForLang(q, lang)}
@@ -1299,7 +1318,7 @@ export default function ExamScreen() {
       </View>
 
       {/* Progress bar */}
-      <View style={{height:3,backgroundColor:t.border,marginHorizontal:16,borderRadius:2,overflow:'hidden',marginBottom:8}}>
+        <View style={{height:3,backgroundColor:sx.ghost,marginHorizontal:16,borderRadius:2,overflow:'hidden',marginBottom:8}}>
         <View style={{height:'100%',width:`${(answered/questions.length)*100}%` as any,backgroundColor:t.textSecond,borderRadius:2}}/>
       </View>
 
@@ -1308,7 +1327,7 @@ export default function ExamScreen() {
         keyboardShouldPersistTaps="handled"
       >
         {q.type === 'choice4' && (
-          <Text style={{color:t.textSecond,fontSize:f.label,marginBottom:8,fontWeight:'600'}}>
+          <Text style={{color:sx.second,fontSize:f.label,marginBottom:8,fontWeight:'600'}}>
             🔤 {t3('Какое предложение верное?', 'Яке речення правильне?', '¿Qué frase es correcta?')}
           </Text>
         )}
@@ -1317,14 +1336,7 @@ export default function ExamScreen() {
             🔍 {t3('Исправь ошибку', 'Виправ помилку', 'Corrige el error')}
           </Text>
         )}
-        <ClozeGapText text={q.q} style={{color:t.textPrimary,fontSize:f.h2+4,fontWeight:'500',lineHeight:32,marginBottom:20}} />
-
-        <PhraseContentStars
-          scope="exam"
-          itemId={`exam_L${q.lessonNum}_${String(q.correct)}_${q.q.replace(/\s+/g, '_').slice(0, 100)}`}
-          labelSnippet={q.q}
-          style={{ marginBottom: 16 }}
-        />
+        <ClozeGapText text={q.q} style={{color:sx.primary,fontSize:f.h2+4,fontWeight:'500',lineHeight:32,marginBottom:20}} />
 
         {(q.opts ?? []).map((opt,ci)=>{
           let bg=t.bgCard, border=t.border, tc=t.textPrimary;
@@ -1349,6 +1361,7 @@ export default function ExamScreen() {
           `Варианты: ${(q.opts ?? []).map((o,i)=>i===q.correct?`[✓${o}]`:o).join(' | ')}`,
         ].join('\n')}
         style={{ alignSelf: 'flex-end', paddingHorizontal: 16, marginBottom: 4 }}
+        textColor={sx.muted}
       />
 
       {/* Bottom navigation — 2 rows, safe area aware */}
@@ -1415,7 +1428,7 @@ export default function ExamScreen() {
             }}
             onPress={toggleFlag}
           >
-            <Ionicons name={isFlagged?'bookmark':'bookmark-outline'} size={20} color={isFlagged?'#D4A017':t.textSecond}/>
+            <Ionicons name={isFlagged ? 'bookmark' : 'bookmark-outline'} size={20} color={isFlagged ? '#D4A017' : t.textSecond}/>
           </TouchableOpacity>
           <TouchableOpacity
             style={{

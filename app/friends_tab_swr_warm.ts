@@ -16,6 +16,11 @@ export interface FriendsTabProfileWarm {
   isPremium: boolean;
   avatar: string;
   frame: string;
+  aura?: string;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
 }
 
 export type FriendsTabWarmSnapshot = {

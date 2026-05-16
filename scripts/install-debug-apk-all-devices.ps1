@@ -1,9 +1,8 @@
 # Install latest debug APK on all connected adb devices/emulators.
-# Важно при двух эмуляторах: `expo run:android` ставит apk только на ОДИН девайс.
-# Второй остаётся со старым dev-client → часто CLEARTEXT к 127.0.0.1. Этот скрипт — копирует
-# уже собранный app-debug.apk на ВСЕ adb-устройства.
-# Optional: -Build -> run gradlew assembleDebug first
-# Optional: -OpenDev -> после установки открыть dev-client на всех (127.0.0.1 + reverse)
+# Useful with multiple emulators: expo run:android can install on only one
+# device, while this copies the already built app-debug.apk to every adb device.
+# Optional: -Build -> run gradlew assembleDebug first.
+# Optional: -OpenDev -> open dev-client on all emulators via 10.0.2.2.
 param(
   [switch] $Build,
   [switch] $OpenDev
@@ -54,14 +53,16 @@ foreach ($s in $serials) {
   Write-Host "Installing on $s ..."
   & $adb "-s", $s, "install", "-r", $apk
   if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+  # Optional fallback for explicit localhost/reverse workflows.
   & $adb "-s", $s, "reverse", "tcp:8081", "tcp:8081" 2>$null | Out-Null
-  Write-Host "adb -s $s reverse tcp:8081"
+  Write-Host "adb -s $s reverse tcp:8081 (optional fallback)"
 }
 
-Write-Host "OK: $($serials.Count) device(s). Start Metro: npm run metro:dev"
+Write-Host "OK: $($serials.Count) device(s). Start Metro: npm run metro:emu"
 
 if ($OpenDev) {
-  $openPs1 = Join-Path $PSScriptRoot "adb-open-dev-localhost.ps1"
-  Write-Host "Opening dev-client (localhost URL) on all emulators ..."
+  $openPs1 = Join-Path $PSScriptRoot "adb-open-dev-all-emulators.ps1"
+  Write-Host "Opening dev-client (10.0.2.2 URL) on all emulators ..."
   & $openPs1
 }

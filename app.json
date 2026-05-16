@@ -1,8 +1,9 @@
 {
   "expo": {
     "name": "Phraseman",
+    "owner": "badloar",
     "slug": "phraseman",
-    "version": "1.5.30",
+    "version": "1.5.32",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "phraseman",
@@ -13,14 +14,13 @@
     },
     "updates": {
       "enabled": true,
-      "url": "https://u.expo.dev/e6235200-f736-4f96-ab81-09354d945ba8",
+      "url": "https://u.expo.dev/87b454d9-0384-4213-8c26-fc12162e73d2",
       "checkAutomatically": "ON_LOAD"
     },
     "android": {
       "package": "app.phraseman",
-      "usesCleartextTraffic": true,
       "googleServicesFile": "./google-services.json",
-      "versionCode": 67,
+      "versionCode": 71,
       "allowBackup": true,
       "adaptiveIcon": {
         "backgroundColor": "#06141B",
@@ -40,6 +40,11 @@
             {
               "scheme": "https",
               "host": "badloar-star.github.io",
+              "pathPrefix": "/phraseman/invite"
+            },
+            {
+              "scheme": "https",
+              "host": "knowlyapps.com",
               "pathPrefix": "/phraseman/invite"
             }
           ],
@@ -62,9 +67,12 @@
     },
     "ios": {
       "bundleIdentifier": "app.phraseman",
-      "buildNumber": "67",
+      "buildNumber": "71",
       "supportsTablet": false,
       "usesAppleSignIn": true,
+      "associatedDomains": [
+        "applinks:knowlyapps.com"
+      ],
       "googleServicesFile": "./GoogleService-Info.plist",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
@@ -80,11 +88,11 @@
         "expo-splash-screen",
         {
           "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
+          "imageWidth": 240,
           "resizeMode": "contain",
-          "backgroundColor": "#000000",
+          "backgroundColor": "#101214",
           "dark": {
-            "backgroundColor": "#000000"
+            "backgroundColor": "#101214"
           }
         }
       ],
@@ -132,6 +140,7 @@
       "./plugins/withAndroidBackupRules",
       "./plugins/withAndroidDevCleartext",
       "./plugins/withAndroidDevServer127",
+      "./plugins/withAndroidSplashWindowBackground",
       "./plugins/withIosFirebaseEarlyConfigure"
     ],
     "experiments": {
@@ -141,7 +150,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "e6235200-f736-4f96-ab81-09354d945ba8"
+        "projectId": "87b454d9-0384-4213-8c26-fc12162e73d2"
       }
     }
   }

@@ -3,7 +3,6 @@
 // ═══════════════════════════════════════════════════════════════════════════
 import React, { useCallback, useState, type ComponentProps } from 'react';
 import {
-  ActivityIndicator,
   ScrollView,
   StyleSheet,
   Text,
@@ -20,7 +19,8 @@ import { usePremium } from '../components/PremiumContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import { triLang } from '../constants/i18n';
-import { hapticTap, hapticSuccess } from '../hooks/use-haptics';
+import { hapticTap } from '../hooks/use-haptics';
+import { ENABLE_DEV_TOOLS } from './config';
 import {
   computePhraseAnalytics,
   type PhraseAnalyticsResult,
@@ -29,6 +29,7 @@ import {
   type PersonalInsight,
   type WordCategory,
 } from './phrase_analytics';
+import { getDiagnosisTraining } from './diagnosis_trainings';
 
 type IonName = ComponentProps<typeof Ionicons>['name'];
 
@@ -63,7 +64,7 @@ const GATE_BENEFITS: { icon: IonName; ru: string; uk: string; es: string }[] = [
 
 // ── Метки категорий ───────────────────────────────────────────────────────────
 
-const CATEGORY_LABELS: Record<WordCategory, { ru: string; uk: string; es: string }> = {
+const CATEGORY_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
   verb:            { ru: 'Глаголы',          uk: 'Дієслова',          es: 'Verbos' },
   noun:            { ru: 'Существительные',   uk: 'Іменники',          es: 'Sustantivos' },
   pronoun:         { ru: 'Местоимения',       uk: 'Займенники',        es: 'Pronombres' },
@@ -71,6 +72,7 @@ const CATEGORY_LABELS: Record<WordCategory, { ru: string; uk: string; es: string
   adverb:          { ru: 'Наречия',           uk: 'Прислівники',       es: 'Adverbios' },
   preposition:     { ru: 'Предлоги',          uk: 'Прийменники',       es: 'Preposiciones' },
   article:         { ru: 'Артикли',           uk: 'Артиклі',           es: 'Artículos' },
+  existential:     { ru: 'There is / There are', uk: 'There is / There are', es: 'There is / There are' },
   'to-be':         { ru: 'Глагол to be',      uk: 'Дієслово to be',    es: 'Verbo to be' },
   conjunction:     { ru: 'Союзы',             uk: 'Сполучники',        es: 'Conjunciones' },
   modal:           { ru: 'Модальные',         uk: 'Модальні',          es: 'Modales' },
@@ -80,8 +82,70 @@ const CATEGORY_LABELS: Record<WordCategory, { ru: string; uk: string; es: string
 
 // ── ProgressBar ───────────────────────────────────────────────────────────────
 
+CATEGORY_LABELS.modifier = { ru: 'Modifiers', uk: 'Modifiers', es: 'Modificadores' };
+CATEGORY_LABELS.determiner = { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes' };
+
+function chooseDiagnosisForCategory(stat: WordCategoryStat): string | null {
+  const words = new Set(stat.topWords.map((word) => word.trim().toLowerCase()).filter(Boolean));
+  const has = (...candidates: string[]) => candidates.some((word) => words.has(word));
+  const hasPart = (...parts: string[]) => [...words].some((word) => parts.some((part) => word.includes(part)));
+
+  const candidatesByCategory: Partial<Record<WordCategory, string[]>> = {
+    article: has('a', 'an')
+      ? ['article_a_an', 'article_zero']
+      : has('the')
+        ? ['article_the_specific', 'article_zero']
+        : ['article_zero', 'article_a_an', 'article_the_specific'],
+    preposition: has('for', 'since')
+      ? ['preposition_duration_for_since']
+      : has('to', 'into', 'from', 'out of', 'towards')
+        ? ['preposition_direction_to_into_from', 'preposition_common_verb_patterns']
+        : has('in', 'on', 'at')
+          ? ['preposition_time_in_on_at', 'preposition_place_in_on_at']
+          : ['preposition_common_verb_patterns', 'preposition_time_in_on_at'],
+    verb: has('am', 'is', 'are', 'be', 'been')
+      ? ['to_be_present_agreement', 'verb_present_continuous_basic']
+      : has('was', 'were')
+        ? ['verb_was_were']
+        : has('do', 'does', "don't", "doesn't", 'did', "didn't")
+          ? ['verb_present_simple_negative_question', 'verb_past_simple_negative_question']
+          : hasPart('ing')
+            ? ['verb_present_continuous_basic', 'verb_present_simple_vs_continuous']
+            : has('have', 'has', 'ever', 'never', 'yet', 'already')
+              ? ['verb_present_perfect_basic', 'present_perfect_vs_past_simple']
+              : has('will', 'going')
+                ? ['future_will_going_to', 'future_present_continuous_arrangements']
+                : ['verb_present_simple_statement', 'verb_third_person'],
+    'to-be': ['to_be_present_agreement', 'verb_was_were'],
+    modal: has('may', 'might')
+      ? ['modal_may_might_probability', 'modal_base_form']
+      : has('can', 'could')
+        ? ['modal_can_could_ability_request', 'modal_base_form']
+        : has('should', 'must', 'have to', 'has to')
+          ? ['modal_should_must_have_to', 'modal_base_form']
+          : ['modal_base_form'],
+    pronoun: has('my', 'mine', 'your', 'yours', 'his', 'her', 'hers', 'our', 'ours', 'their', 'theirs')
+      ? ['pronoun_possessive', 'pronoun_case']
+      : ['pronoun_case', 'pronoun_possessive'],
+    adjective: ['adjective_comparison', 'adjective_vs_adverb'],
+    adverb: ['adverb_frequency_position', 'adjective_vs_adverb'],
+    modifier: has('very', 'really', 'quite') ? ['modifier_very_really_quite', 'too_enough'] : ['too_enough', 'modifier_very_really_quite'],
+    syntax: ['word_order_basic_statement', 'word_order_basic_question', 'object_order_give_me_it'],
+    conjunction: ['conjunction_logic'],
+    determiner: has('this', 'that', 'these', 'those')
+      ? ['determiner_this_that_these_those', 'quantifier_some_any']
+      : ['quantifier_some_any', 'determiner_this_that_these_those'],
+    existential: ['there_is_are'],
+    noun: hasPart("'s") ? ['noun_possessive_apostrophe_s', 'noun_singular_plural_basic'] : ['noun_singular_plural_basic', 'noun_possessive_apostrophe_s'],
+  };
+
+  const candidates = candidatesByCategory[stat.category] ?? [];
+  return candidates.find((id) => Boolean(getDiagnosisTraining(id))) ?? null;
+}
+
 function ProgressBar({ pct }: { pct: number }) {
   const barColor = pct >= 30 ? SIGNAL.bar.high : pct >= 15 ? SIGNAL.bar.mid : SIGNAL.bar.low;
+
   return (
     <View style={styles.progressBg}>
       <View style={[styles.progressFill, { width: `${Math.min(pct, 100)}%`, backgroundColor: barColor }]} />
@@ -119,8 +183,22 @@ function CategoryRow({ stat, router }: { stat: WordCategoryStat; router: Router 
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const label = triLang(lang, CATEGORY_LABELS[stat.category]);
-  const isWeak = stat.pct >= 15;
-  const pctOpacity = stat.pct >= 30 ? 1 : stat.pct >= 15 ? 0.75 : 0.45;
+  const priorityScore = stat.priorityScore ?? stat.weaknessScore;
+  const recoveryScore = stat.recoveryScore ?? 0;
+  const isWeak = priorityScore >= 55 || (stat.pct >= 15 && recoveryScore < 25);
+  const pctOpacity = priorityScore >= 70 ? 1 : priorityScore >= 45 || stat.pct >= 15 ? 0.75 : 0.45;
+  const diagnosisId = isWeak ? chooseDiagnosisForCategory(stat) : null;
+  const openDiagnosis = () => {
+    if (!diagnosisId) return;
+    hapticTap();
+    router.push({
+      pathname: '/problem_coach',
+      params: {
+        microDiagnosisId: diagnosisId,
+        category: stat.category,
+      },
+    } as any);
+  };
 
   const inner = (
     <>
@@ -135,12 +213,7 @@ function CategoryRow({ stat, router }: { stat: WordCategoryStat; router: Router 
           {label}
         </Text>
         <ProgressBar pct={stat.pct} />
-        {stat.topWords.length > 0 && (
-          <Text style={[styles.catWords, { color: t.textMuted, fontSize: f.caption }]} numberOfLines={1}>
-            {stat.topWords.join(' · ')}
-          </Text>
-        )}
-        {isWeak && (
+        {diagnosisId && (
           <View style={[styles.coachCta, { borderTopColor: t.border }]}>
             <Ionicons name="school-outline" size={12} color={t.accent} />
             <Text style={[styles.coachCtaText, { color: t.accent, fontSize: f.caption }]}>
@@ -157,25 +230,20 @@ function CategoryRow({ stat, router }: { stat: WordCategoryStat; router: Router 
     </>
   );
 
-  if (isWeak) {
-    return (
+  return (
+    diagnosisId ? (
       <TouchableOpacity
-        onPress={() => {
-          hapticTap();
-          router.push({ pathname: '/problem_coach', params: { category: stat.category } } as any);
-        }}
         style={[styles.catRow, { backgroundColor: t.bgCard, borderColor: t.border }]}
-        activeOpacity={0.75}
+        onPress={openDiagnosis}
+        activeOpacity={0.86}
       >
         {inner}
       </TouchableOpacity>
-    );
-  }
-
-  return (
-    <View style={[styles.catRow, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-      {inner}
-    </View>
+    ) : (
+      <View style={[styles.catRow, { backgroundColor: t.bgCard, borderColor: t.border }]}>
+        {inner}
+      </View>
+    )
   );
 }
 
@@ -215,12 +283,13 @@ function LessonRow({ stat }: { stat: LessonMistakeStat }) {
 export default function PhraseAnalyticsScreen() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
-  const isLightGate = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLightGate = false;
   const { lang } = useLang();
   const { isPremium } = usePremium();
   const [data, setData] = useState<PhraseAnalyticsResult | null>(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
+  const showDevAudit = ENABLE_DEV_TOOLS;
 
   const load = useCallback(async () => {
     setLoading(true);
@@ -261,7 +330,17 @@ export default function PhraseAnalyticsScreen() {
             <Ionicons name="chevron-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
-          <View style={{ width: 36 }} />
+          {showDevAudit ? (
+            <TouchableOpacity
+              onPress={() => { hapticTap(); router.push('/pos_analytics_audit' as any); }}
+              style={styles.auditBtn}
+              hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
+            >
+              <Ionicons name="bug-outline" size={19} color={t.textPrimary} />
+            </TouchableOpacity>
+          ) : (
+            <View style={{ width: 36 }} />
+          )}
         </View>
 
         {/* ── Premium gate ── */}
@@ -284,24 +363,24 @@ export default function PhraseAnalyticsScreen() {
                   </LinearGradient>
                   <View style={{ flex: 1, marginLeft: 16 }}>
                     <Text style={[styles.gateLabel, { color: isLightGate ? '#B8860B' : GATE_LUX.gold }]}>
-                      INSIGHT LAB
+                      PHRASEMAN
                     </Text>
                     <Text style={[styles.gateTitle, { color: isLightGate ? t.textPrimary : '#f2efe8', fontSize: Math.max(18, f.h2 * 0.88) }]}>
-                      {triLang(lang, { ru: 'Персональный отчёт по слабым местам', uk: 'Персональний звіт по слабких місцях', es: 'Informe personal de puntos débiles' })}
+                      {triLang(lang, { ru: 'Разбор твоих ошибок', uk: 'Розбір твоїх помилок', es: 'Análisis de tus errores' })}
                     </Text>
                   </View>
                 </View>
 
                 <Text style={[styles.gateProse, { color: isLightGate ? t.textSecond : GATE_LUX.prose, fontSize: f.body }]}>
                   {triLang(lang, {
-                    ru: 'Категории слов, уроки и конкретные фразы — в одном месте.',
-                    uk: 'Категорії слів, уроки й конкретні фрази — в одному місці.',
-                    es: 'Categorías, lecciones y frases en un solo lugar.',
+                    ru: 'Покажем слабые темы, уроки и фразы, которые лучше повторить сейчас.',
+                    uk: 'Покажемо слабкі теми, уроки й фрази, які краще повторити зараз.',
+                    es: 'Verás temas débiles, lecciones y frases para repasar ahora.',
                   })}
                 </Text>
 
                 <Text style={[styles.gateSubLabel, { color: isLightGate ? t.textMuted : 'rgba(200,190,175,0.65)' }]}>
-                  {triLang(lang, { ru: 'С PREMIUM ТЫ ПОЛУЧИШЬ', uk: 'З PREMIUM ТИ ОТРИМАЄШ', es: 'CON PREMIUM DESBLOQUEAS' })}
+                  {triLang(lang, { ru: 'ЧТО ОТКРОЕТСЯ', uk: 'ЩО ВІДКРИЄТЬСЯ', es: 'QUÉ SE DESBLOQUEA' })}
                 </Text>
 
                 <View style={{ gap: 12 }}>
@@ -329,18 +408,13 @@ export default function PhraseAnalyticsScreen() {
                     style={styles.gateBtnInner}
                   >
                     <Text style={[styles.gateBtnText, { fontSize: f.body }]}>
-                      {triLang(lang, { ru: 'Открыть полный отчёт', uk: 'Відкрити повний звіт', es: 'Desbloquear informe completo' })}
+                      {triLang(lang, { ru: 'Открыть аналитику', uk: 'Відкрити аналітику', es: 'Abrir analítica' })}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
               </View>
             </ContentWrap>
           </ScrollView>
-
-        ) : loading ? (
-          <View style={styles.center}>
-            <ActivityIndicator size="large" color={t.accent} />
-          </View>
 
         ) : !data || data.totalMistakes === 0 ? (
           <View style={styles.center}>
@@ -351,7 +425,7 @@ export default function PhraseAnalyticsScreen() {
           </View>
 
         ) : (
-          <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollContent}>
+          <ScrollView showsVerticalScrollIndicator contentContainerStyle={styles.scrollContent}>
             <ContentWrap>
 
               {/* ── Сводка ── */}
@@ -399,28 +473,6 @@ export default function PhraseAnalyticsScreen() {
               )}
 
               {/* ── CTA тренировка ── */}
-              <TouchableOpacity
-                onPress={() => {
-                  if (!isPremium) { hapticTap(); router.push({ pathname: '/premium_modal', params: { context: 'trainer' } } as any); return; }
-                  hapticSuccess();
-                  router.push({ pathname: '/review', params: { trainerMode: 'mistakes' } } as any);
-                }}
-                activeOpacity={0.82}
-                style={styles.trainBtn}
-              >
-                <LinearGradient
-                  colors={[t.accent, t.accent + 'cc']}
-                  start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
-                  style={styles.trainBtnGrad}
-                >
-                  <Ionicons name="flash-outline" size={18} color="#fff" />
-                  <Text style={[styles.trainBtnText, { fontSize: f.body }]}>
-                    {triLang(lang, { ru: 'Тренировать слабые места', uk: 'Тренувати слабкі місця', es: 'Entrenar puntos débiles' })}
-                  </Text>
-                  <Ionicons name="chevron-forward" size={16} color="rgba(255,255,255,0.6)" />
-                </LinearGradient>
-              </TouchableOpacity>
-
               {/* ── Вкладки ── */}
               <View style={[styles.tabs, { backgroundColor: t.bgSurface }]}>
                 {tabs.map(({ key, label }) => (
@@ -505,6 +557,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   backBtn: { width: 36, alignItems: 'flex-start' },
+  auditBtn: { width: 36, alignItems: 'flex-end' },
   headerTitle: { flex: 1, textAlign: 'center', fontWeight: '700', letterSpacing: -0.3 },
 
   center: { flex: 1, alignItems: 'center', justifyContent: 'center', gap: 16, padding: 32 },
@@ -594,27 +647,6 @@ const styles = StyleSheet.create({
   },
   insightText: { flex: 1, lineHeight: 22, fontWeight: '500' },
 
-  // CTA кнопка
-  trainBtn: {
-    borderRadius: 14,
-    overflow: 'hidden',
-    marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 5,
-  },
-  trainBtnGrad: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    paddingVertical: 15,
-    paddingHorizontal: 20,
-  },
-  trainBtnText: { color: '#fff', fontWeight: '700', letterSpacing: 0.2, flex: 1 },
-
   // Вкладки — pills style
   tabs: {
     flexDirection: 'row',
@@ -654,7 +686,22 @@ const styles = StyleSheet.create({
   catPctSign: { marginLeft: 1, fontWeight: '500' },
   catBody: { flex: 1, gap: 5 },
   catLabel: { fontWeight: '600', letterSpacing: 0.1 },
-  catWords: { fontWeight: '400', opacity: 0.7 },
+  catSignals: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 5,
+  },
+  catSignalPill: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    borderWidth: 0.5,
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+  },
+  catSignalText: { fontWeight: '700' },
 
   coachCta: {
     flexDirection: 'row',

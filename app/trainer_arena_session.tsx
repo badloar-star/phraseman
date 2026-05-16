@@ -2,7 +2,7 @@
 // trainer_arena_session.tsx — Сессия арены: 4 варианта ответа
 // Тот же интерфейс что в арене — вопрос с пропуском + 4 кнопки.
 // ═══════════════════════════════════════════════════════════════════════════
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Animated,
   StyleSheet,
@@ -14,23 +14,26 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
-import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import { triLang } from '../constants/i18n';
+import { screenTextOnGradient } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getDueItems,
   markTrainerResult,
   type TrainerItem,
 } from './trainer_store';
+import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
+import { consumeTrainerSessionEntry } from './trainer_session';
+import { logTrainerDirectGateBlocked } from './firebase';
+import TrainerSessionReport from './trainer_session_report';
 
 type BtnState = 'idle' | 'correct' | 'wrong';
 
 export default function TrainerArenaSession() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
-  const { lang } = useLang();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
   const [items, setItems] = useState<TrainerItem[]>([]);
   const [current, setCurrent] = useState(0);
@@ -40,16 +43,25 @@ export default function TrainerArenaSession() {
   const [wrong, setWrong] = useState(0);
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [accessReady, setAccessReady] = useState(false);
   const flashAnim = useRef(new Animated.Value(1)).current;
+  const dailySessionTracked = useRef(false);
 
   useEffect(() => {
     void (async () => {
+      const allowed = await consumeTrainerSessionEntry('/trainer_arena_session');
+      if (!allowed) {
+        logTrainerDirectGateBlocked('/trainer_arena_session');
+        router.replace({ pathname: '/premium_modal', params: { context: 'trainer_limit' } } as any);
+        return;
+      }
+      setAccessReady(true);
       const loaded = await getDueItems('arena', 15);
       if (loaded.length === 0) { setDone(true); setLoading(false); return; }
       setItems(loaded);
       setLoading(false);
     })();
-  }, []);
+  }, [router]);
 
   const flash = useCallback((ok: boolean) => {
     Animated.sequence([
@@ -85,63 +97,55 @@ export default function TrainerArenaSession() {
     flash(isOk);
 
     await markTrainerResult(item.key, 'arena', isOk);
+    const nextWrong = wrong + (isOk ? 0 : 1);
+    const updates: { type: TaskType; increment: number }[] = [];
+    if (!dailySessionTracked.current) {
+      dailySessionTracked.current = true;
+      updates.push({ type: 'recall_session', increment: 1 });
+    }
+    if (isOk) {
+      updates.push({ type: 'recall_answers', increment: 1 });
+      updates.push({ type: 'trainer_arena', increment: 1 });
+    }
 
     setTimeout(() => {
       const next = current + 1;
       if (next >= items.length) {
+        if (items.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
         setDone(true);
       } else {
         setCurrent(next);
         setBtnStates(['idle', 'idle', 'idle', 'idle']);
         setLocked(false);
       }
+      if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
     }, isOk ? 700 : 1100);
-  }, [locked, items, current, flash]);
+  }, [locked, items, current, wrong, flash]);
 
-  if (loading) {
+  if (!accessReady || loading) {
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-          <Text style={{ color: '#888' }}>…</Text>
+          <Text style={{ color: '#888' }} />
         </SafeAreaView>
       </ScreenGradient>
     );
   }
 
   if (done) {
-    const total = correct + wrong;
     return (
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
           <ContentWrap>
-            <View style={styles.doneContainer}>
-              <Text style={[styles.doneTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {triLang(lang, { ru: 'Сессия завершена', uk: 'Сесію завершено', es: 'Sesión terminada' })}
-              </Text>
-              <View style={[styles.doneStats, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-                <View style={styles.doneStat}>
-                  <Text style={{ color: '#40C080', fontSize: f.numLg, fontWeight: '900' }}>{correct}</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'верно', uk: 'вірно', es: 'correcto' })}
-                  </Text>
-                </View>
-                <View style={{ width: StyleSheet.hairlineWidth, backgroundColor: t.border }} />
-                <View style={styles.doneStat}>
-                  <Text style={{ color: '#E05050', fontSize: f.numLg, fontWeight: '900' }}>{wrong}</Text>
-                  <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores' })}
-                  </Text>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => { hapticTap(); router.back(); }}
-                style={[styles.doneBtn, { backgroundColor: '#E05050' }]}
-              >
-                <Text style={[styles.doneBtnText, { fontSize: f.body }]}>
-                  {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <TrainerSessionReport
+              queue="arena"
+              correct={correct}
+              wrong={wrong}
+              total={items.length || correct + wrong}
+              accent="#E05050"
+              onDone={() => { hapticTap(); router.back(); }}
+              onPracticeMore={() => { hapticTap(); router.replace('/trainer' as any); }}
+            />
           </ContentWrap>
         </SafeAreaView>
       </ScreenGradient>
@@ -159,12 +163,9 @@ export default function TrainerArenaSession() {
           {/* Header */}
           <View style={styles.headerRow}>
             <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={{ padding: 4 }}>
-              <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
+              <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
-            <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.body }]}>
-              {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.caption }}>
+            <Text style={{ color: sx.muted, fontSize: f.caption }}>
               {current + 1} / {items.length}
             </Text>
           </View>
@@ -180,7 +181,7 @@ export default function TrainerArenaSession() {
           <View style={{ flex: 1, padding: 16, gap: 16, justifyContent: 'center' }}>
             {/* Правило/тема (если есть) */}
             {q.rule ? (
-              <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600', textAlign: 'center' }}>
+              <Text style={{ color: sx.muted, fontSize: f.caption, fontWeight: '600', textAlign: 'center' }}>
                 {q.rule}
               </Text>
             ) : null}
@@ -231,7 +232,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 12,
   },
-  headerTitle: { fontWeight: '700' },
   progressBar: { height: 4, borderRadius: 2, marginHorizontal: 16, overflow: 'hidden' },
   progressFill: { height: '100%', borderRadius: 2 },
   questionBox: {
@@ -267,6 +267,6 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   doneStat: { flex: 1, alignItems: 'center', paddingVertical: 16, gap: 4 },
-  doneBtn: { borderRadius: 16, paddingHorizontal: 48, paddingVertical: 14 },
+  doneBtn: { borderRadius: 16, paddingHorizontal: 24, paddingVertical: 14, width: '100%' },
   doneBtnText: { color: '#fff', fontWeight: '800' },
 });

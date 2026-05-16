@@ -2,6 +2,6 @@
 # Без assert на tab-home — чтобы снять скрин «как есть» в момент, где дальше тест ждёт tab-home.
 appId: app.phraseman
 ---
-- launchApp
+- runFlow: ../_shared/open_dev_client.yaml
 - runFlow: ../_dismiss_bug_hunt.yaml
 - runFlow: ../_precondition.yaml

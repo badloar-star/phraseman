@@ -56,7 +56,7 @@ interface FeatureRow {
 const FEATURES: FeatureRow[] = [
   { emoji: '⚡', ru: 'Безлимит энергии', uk: 'Безліміт енергії', es: 'Energía ilimitada' },
   { emoji: '🔁', ru: 'Повтор уроков неограниченно', uk: 'Повтор уроків необмежено', es: 'Lecciones sin límites' },
-  { emoji: '📊', ru: 'Тренер слабых мест', uk: 'Тренер слабких місць', es: 'Entrenador de puntos débiles' },
+  { emoji: '📊', ru: 'Моя практика слабых мест', uk: 'Моя практика слабких місць', es: 'Mi práctica de puntos débiles' },
   { emoji: '🧠', ru: 'Аналитика прогресса', uk: 'Аналітика прогресу', es: 'Analítica del progreso' },
   { emoji: '🥇', ru: 'Сложные квизы', uk: 'Складні квізи', es: 'Quizzes difíciles' },
   { emoji: '🛡️', ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha' },

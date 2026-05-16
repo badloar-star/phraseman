@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites>
+  <testsuite name="Test Suite" device="emulator-5558" tests="9" failures="2" time="797.0">
+    <testcase id="arena_invite_accept_flow" name="arena_invite_accept_flow" classname="arena_invite_accept_flow" time="13.0" status="SUCCESS"/>
+    <testcase id="arena_matchmaking_to_results" name="arena_matchmaking_to_results" classname="arena_matchmaking_to_results" time="12.0" status="SUCCESS"/>
+    <testcase id="nav_flashcards_open_and_back" name="nav_flashcards_open_and_back" classname="nav_flashcards_open_and_back" time="194.0" status="ERROR">
+      <failure>Assertion is false: id: tab-home is visible</failure>
+    </testcase>
+    <testcase id="nav_lesson_menu_to_lesson_and_back" name="nav_lesson_menu_to_lesson_and_back" classname="nav_lesson_menu_to_lesson_and_back" time="196.0" status="ERROR">
+      <failure>Assertion is false: id: tab-home is visible</failure>
+    </testcase>
+    <testcase id="nav_quizzes_level_select_and_back" name="nav_quizzes_level_select_and_back" classname="nav_quizzes_level_select_and_back" time="325.0" status="SUCCESS"/>
+    <testcase id="onboarding_to_first_lesson" name="onboarding_to_first_lesson" classname="onboarding_to_first_lesson" time="17.0" status="SUCCESS"/>
+    <testcase id="premium_purchase_updates_energy_and_gates" name="premium_purchase_updates_energy_and_gates" classname="premium_purchase_updates_energy_and_gates" time="14.0" status="SUCCESS"/>
+    <testcase id="settings_delete_account_recovery" name="settings_delete_account_recovery" classname="settings_delete_account_recovery" time="13.0" status="SUCCESS"/>
+    <testcase id="xp_gain_updates_home_hall" name="xp_gain_updates_home_hall" classname="xp_gain_updates_home_hall" time="13.0" status="SUCCESS"/>
+  </testsuite>
+</testsuites>

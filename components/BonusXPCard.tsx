@@ -10,7 +10,6 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { hapticMediumImpact } from '../hooks/use-haptics';
-import * as Speech from 'expo-speech';
 
 export interface BonusXPCardProps {
   bonusXP: number;
@@ -29,18 +28,6 @@ export default function BonusXPCard({
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
   const dismissTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const playBonusSound = useCallback(() => {
-    // Позитивный звук: быстрые пиксели (звучит весело и энергично)
-    try {
-      Speech.speak('', {
-        language: 'en-US',
-        rate: 1,
-        pitch: 1,
-      });
-    } catch {}
-  }, []);
-
   const dismissCard = useCallback(() => {
     if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current);
 
@@ -84,8 +71,6 @@ export default function BonusXPCard({
     ]).start();
 
     // Звуковой эффект
-    playBonusSound();
-
     // Хаптика
     void hapticMediumImpact();
 
@@ -97,7 +82,7 @@ export default function BonusXPCard({
     return () => {
       if (dismissTimerRef.current) clearTimeout(dismissTimerRef.current);
     };
-  }, [dismissCard, duration, opacityAnim, playBonusSound, scaleAnim, slideAnim]);
+  }, [dismissCard, duration, opacityAnim, scaleAnim, slideAnim]);
 
   const getTierColor = () => {
     if (bonusXP <= 10) return '#4ADE80'; // Зелёный (мало)

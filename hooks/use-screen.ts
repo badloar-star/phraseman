@@ -67,7 +67,7 @@ export function useScreen() {
   //            (correct because edgeToEdgeEnabled: true is in app.json)
   const bottomInset = insets.bottom;
 
-  // ── Extra guard for Android 3-button nav that doesn't report insets ───────
+  // ── Extra guard for Android 3-button nav that doesn\'t report insets ───────
   // On very old Android or certain OEM skins, bottom inset might be reported
   // as 0 even with a visible soft nav bar.  We add a small floor on Android
   // when the phone has no physical buttons (gesture bar area always exists).
@@ -89,7 +89,7 @@ export function useScreen() {
 
   // ── Device-level font scale ───────────────────────────────────────────────
   // This is the BASE multiplier for all UI text on large-screen devices.
-  // It stacks with the user's chosen font size in ThemeContext.
+  // It stacks with the user\'s chosen font size in ThemeContext.
   const deviceFontScale: number =
     (isLargeTablet ? 1.20 : isTablet ? 1.10 : 1.0) * uiScale;
 

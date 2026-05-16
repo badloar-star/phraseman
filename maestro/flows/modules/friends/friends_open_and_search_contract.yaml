@@ -1,25 +1,25 @@
-# Friends screen contract: opens the add-friend modal and verifies that a friend
-# code containing L stays editable/searchable. For cross-device lifecycle runs,
-# pass a generated copy of this flow with the current target device code.
+# Friends screen contract: verifies that a friend code containing L stays
+# editable/searchable in the current inline add-friend UI.
 appId: app.phraseman
 ---
-- launchApp
+- runFlow: ../../_shared/open_dev_client.yaml
 - runFlow: ../../_dismiss_bug_hunt.yaml
 - runFlow: ../../_precondition.yaml
 - waitForAnimationToEnd:
     timeout: 5000
+- tapOn:
+    point: "50%,92%"
+- waitForAnimationToEnd:
+    timeout: 3000
+- runFlow: ../../_precondition.yaml
+- waitForAnimationToEnd:
+    timeout: 3000
 - tapOn:
     id: "tab-friends"
 - extendedWaitUntil:
     visible:
       id: "screen-friends"
     timeout: 30000
-- tapOn:
-    id: "friends-open-add"
-- extendedWaitUntil:
-    visible:
-      id: "friends-code-input"
-    timeout: 15000
 - tapOn:
     id: "friends-code-input"
 - eraseText
@@ -29,5 +29,5 @@ appId: app.phraseman
     id: "friends-search"
 - extendedWaitUntil:
     visible:
-      id: "friends-search-error"
+      id: "friends-add-feedback"
     timeout: 20000

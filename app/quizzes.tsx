@@ -9,6 +9,7 @@ import {
     Easing,
     KeyboardAvoidingView,
     ScrollView,
+    Share,
     Image,
     Text,
     TextInput,
@@ -16,7 +17,6 @@ import {
     useWindowDimensions,
     View,
 } from 'react-native';
-import Svg from 'react-native-svg';
 
 import AddToFlashcard from '../components/AddToFlashcard';
 import ContentWrap from '../components/ContentWrap';
@@ -26,24 +26,24 @@ import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { isCorrectAnswer } from '../constants/contractions';
-import { getXPProgress } from '../constants/theme';
+import { getXPProgress, screenTextOnGradient } from '../constants/theme';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../constants/motion';
 import { checkAchievements } from './achievements';
-import { playActivityCompletionModalSound } from './activity_complete_sound';
 import { logEnergyLimitHit } from './firebase';
 import { trackEnergyHit } from './user_stats';
 import { DEV_MODE, STORE_URL } from './config';
 import { hapticError, hapticLightImpact, hapticTap } from '../hooks/use-haptics';
-import { useAudio } from '../hooks/use-audio';
 import { updateMultipleTaskProgress } from './daily_tasks';
 import { DebugLogger } from './debug-logger';
 import { useEnergy } from '../components/EnergyContext';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
+import CoachToast from '../components/CoachToast';
 import { navigateAfterModalClose } from './safe_modal_navigation';
 import PremiumCard from '../components/PremiumCard';
 import QuizTimeoutModal from '../components/QuizTimeoutModal';
 import { pointsForAnswer } from './hall_of_fame_utils';
+import { useAudio } from '../hooks/use-audio';
 import { isQuizChoiceCorrect, quizPrimaryCorrectIndex, type QuizPhrase } from './quiz_data';
 import { getQuizPhrasesLoaded } from './quiz_phrases_loader';
 import { DEFAULT_SETTINGS, loadSettings, saveSettings, UserSettings as Settings } from './settings_edu';
@@ -51,15 +51,24 @@ import { useTabNav } from './TabContext';
 import { calculateRewardWithBonus } from './variable_reward_system';
 import { registerXP } from './xp_manager';
 import { recordMistake } from './active_recall';
+import { logMistake } from './mistake_log';
+import { resolvePhraseMistakeToken } from './mistake_token_resolver';
+import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './coach_toast_trigger';
+import type { PhraseMistakeInput } from './phrase_analytics';
 import ReportErrorButton from '../components/ReportErrorButton';
-import PhraseContentStars from '../components/PhraseContentStars';
-import { shareCardFromSvgRef } from '../components/share_cards/shareCardPng';
 import { emitAppEvent } from './events';
 import { trackActivity, trackFeatureBlocked, trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { LEVEL_CONFIG, LEVEL_IMAGES, Level, THEME_PALETTES, THEME_TEXT } from './quizzes/constants';
 import { diffWords } from './quizzes/diff';
 import { computeNextQuizProgression, getQuizTimerSeconds } from './quizzes/progression';
+import {
+  FREE_DAILY_QUIZ_LIMIT,
+  getFreeDailyQuizState,
+  hasFreeDailyQuizzesLeft,
+  incrementFreeDailyQuizCount,
+  type QuizDailyLimitState,
+} from './quiz_daily_limit';
 import { buildQuizShareMessage, quizShareMessageLang } from './quizzes/results';
 import QuizResultView from './quizzes/result_view';
 import { buildQuizRestartState, buildReviewRetryState, clearQuizPendingTimers } from './quizzes/session';
@@ -79,12 +88,20 @@ type Phrase = QuizPhrase;
 function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
   const { goHome } = useTabNav();
   const { theme:t , f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { s, lang } = useLang();
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { isPremium } = usePremium();
   const { energy, bonusEnergy, isUnlimited: entryEnergyUnlimited } = useEnergy();
   const [selected, setSelected] = useState<Level | null>(null);
+  const [freeQuizState, setFreeQuizState] = useState<QuizDailyLimitState>({
+    date: '',
+    count: 0,
+    limit: FREE_DAILY_QUIZ_LIMIT,
+    left: FREE_DAILY_QUIZ_LIMIT,
+    exhausted: false,
+  });
   const { width: windowWidth } = useWindowDimensions();
   const startTrackW = Math.max(1, windowWidth - 40);
 
@@ -126,6 +143,14 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
     return () => loops.forEach(a => a.stop());
   }, [pulseAnims]);
 
+  useEffect(() => {
+    let cancelled = false;
+    void getFreeDailyQuizState().then((state) => {
+      if (!cancelled) setFreeQuizState(state);
+    });
+    return () => { cancelled = true; };
+  }, []);
+
 
   const handleStart = (lv: Level) => {
     void trackFeatureStart('quiz', 'start', { level: lv }, 'quizzes');
@@ -161,7 +186,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
         >
           <Ionicons name="chevron-back" size={22} color={t.textPrimary}/>
         </TouchableOpacity>
-        <Text style={{ color:t.textPrimary, fontSize: f.numMd, fontWeight:'700', marginLeft:12, flex:1 }} adjustsFontSizeToFit numberOfLines={1}>
+        <Text style={{ color:sx.primary, fontSize: f.numMd, fontWeight:'700', marginLeft:12, flex:1 }} adjustsFontSizeToFit numberOfLines={1}>
           {s.quizzes.selectLevel}
         </Text>
         <EnergyBar size={20} />
@@ -182,7 +207,9 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
           const c        = LEVEL_CONFIG[lv];
           const lbl      = triLang(lang, { ru: c.labelRU, uk: c.labelUK, es: c.labelES });
           const tag      = triLang(lang, { ru: c.tagRU, uk: c.tagUK, es: c.tagES });
-          const locked   = !DEV_MODE && !isPremium && lv !== 'easy';
+          const lockedByLevel = !DEV_MODE && !isPremium && lv !== 'easy';
+          const lockedByDailyLimit = !DEV_MODE && !isPremium && lv === 'easy' && freeQuizState.exhausted;
+          const locked   = lockedByLevel || lockedByDailyLimit;
           const palette  = (THEME_PALETTES[themeMode] ?? THEME_PALETTES.dark)[lv];
           const txt      = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
           const gradA    = locked ? t.bgCard    : palette.gradA;
@@ -197,7 +224,13 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
               {/* ── Карточка уровня ── */}
               <TouchableOpacity
                 onPress={() => {
-                  if (locked) { router.push({ pathname: '/premium_modal', params: { context: lv === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any); return; }
+                  if (locked) {
+                    router.push({
+                      pathname: '/premium_modal',
+                      params: { context: lockedByDailyLimit ? 'quiz_limit' : lv === 'hard' ? 'quiz_hard' : 'quiz_medium' },
+                    } as any);
+                    return;
+                  }
                   if (isSelected) { handleStart(lv); return; }
                   setSelected(lv);
                 }}
@@ -236,7 +269,11 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                       {locked && (
                         <View style={{ flexDirection:'row', alignItems:'center', gap:4, backgroundColor: t.accentBg, borderRadius:6, paddingHorizontal:7, paddingVertical:2 }}>
                           <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
-                          <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>Premium</Text>
+                          <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
+                            {lockedByDailyLimit
+                              ? triLang(lang, { ru: 'Лимит', uk: 'Ліміт', es: 'Límite' })
+                              : 'Premium'}
+                          </Text>
                         </View>
                       )}
                     </View>
@@ -294,6 +331,18 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
             </View>
           );
         })}
+        {!DEV_MODE && !isPremium && (
+          <View style={{ marginTop: 8, borderRadius: 14, borderWidth: 1, borderColor: freeQuizState.exhausted ? t.border : t.accent + '66', backgroundColor: freeQuizState.exhausted ? t.bgCard : t.accentBg, paddingHorizontal: 14, paddingVertical: 12, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            <Ionicons name={freeQuizState.exhausted ? 'lock-closed' : 'flash-outline'} size={18} color={freeQuizState.exhausted ? t.textMuted : t.accent} />
+            <Text style={{ color: freeQuizState.exhausted ? t.textMuted : t.textSecond, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
+              {triLang(lang, {
+                ru: `Бесплатные квизы сегодня: ${freeQuizState.left}/${freeQuizState.limit}`,
+                uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
+                es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
+              })}
+            </Text>
+          </View>
+        )}
       </View>
       </ContentWrap>
 
@@ -309,7 +358,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
             },
           );
         }}
-        paywallContext="quiz_limit"
+        paywallContext="no_energy"
       />
     </View>
     </ScreenGradient>
@@ -323,14 +372,12 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const { s, lang } = useLang();
   const { activeIdx } = useTabNav();
   const router = useRouter();
-  const { speak: speakAudio, stop: stopAudio } = useAudio();
-  useEffect(() => () => { stopAudio(); }, [stopAudio]);
+  const { isPremium } = usePremium();
   const insets = useSafeAreaInsets();
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
-  const quizGradTxt = THEME_TEXT[themeMode] ?? THEME_TEXT.dark;
-  const onGradPrimary = isLightTheme ? quizGradTxt.primary : t.textPrimary;
-  const onGradMuted = isLightTheme ? quizGradTxt.secondary : t.textMuted;
-  const onGradSecondary = isLightTheme ? quizGradTxt.secondary : t.textSecond;
+  const isLightTheme = false;
+  const onGradPrimary = t.textPrimary;
+  const onGradMuted = t.textMuted;
+  const onGradSecondary = t.textSecond;
   const cfg   = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
   const label = triLang(lang, { ru: cfg.labelRU, uk: cfg.labelUK, es: cfg.labelES });
 
@@ -356,6 +403,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     });
   }, [phrasesLoadFailed, level, lang, retryCount]);
   const [settings, setSettings] = useState<Settings>(DEFAULT_SETTINGS);
+  const { speak: speakAudio, stop: stopAudio } = useAudio();
   const [idx,      setIdx]      = useState(0);
   const [chosen,   setChosen]   = useState<number|null>(null);
   const [typed,    setTyped]    = useState('');
@@ -366,6 +414,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const [showBreak,setShowBreak]= useState(false);
   const [results,  setResults]  = useState<boolean[]>([]);
   const [done,     setDone]     = useState(false);
+  const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
   const [reviewing,setReviewing]= useState(false);
   const [totalXP,  setTotalXP]  = useState(0);
   const [reviewQ,  setReviewQ]  = useState<Phrase[]>([]);
@@ -403,6 +452,8 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const streakRef   = useRef(0);
   // results в ref — чтобы handleTap не читал устаревший стейт из замыкания
   const resultsRef  = useRef<boolean[]>([]);
+  const freeQuizCompletionMarkedRef = useRef(false);
+  const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
 
   const insertAnim  = useRef(new Animated.Value(0)).current;
   const insertScale = useRef(new Animated.Value(0.7)).current;
@@ -418,7 +469,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const xpAnimStarted  = useRef(false);
   const xpTimer1       = useRef<ReturnType<typeof setTimeout> | null>(null);
   const xpTimer2       = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const quizCardSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
 
   // Запускаем XP-анимации когда done=true и score уже установлен
   useEffect(() => {
@@ -482,6 +532,10 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       pct: total > 0 ? Math.round(right / total * 100) : 0,
       perfect,
     }, 'quizzes');
+    if (!DEV_MODE && !isPremium && !freeQuizCompletionMarkedRef.current) {
+      freeQuizCompletionMarkedRef.current = true;
+      void incrementFreeDailyQuizCount();
+    }
     checkAchievements({ type: 'quiz', level, perfect }).catch(() => {});
     const doneUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [];
     if (score > 0) doneUpdates.push({ type: 'quiz_score', increment: score });
@@ -490,11 +544,15 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       if (level === 'hard') doneUpdates.push({ type: 'quiz_hard_perfect', increment: 1 });
     }
     if (doneUpdates.length > 0) updateMultipleTaskProgress(doneUpdates).catch(() => {});
-  }, [done, level, results, score]);
+  }, [done, isPremium, level, results, score]);
 
   useEffect(() => {
     if (!done || reviewing) return;
-    void playActivityCompletionModalSound();
+    let cancelled = false;
+    void checkCoachToastNeededWithAnalytics(wrongMistakesRef.current).then((decision) => {
+      if (!cancelled && decision.show) setCoachToast(decision);
+    });
+    return () => { cancelled = true; };
   }, [done, reviewing]);
 
   // Синхронизируем isTabActive — но таймер не останавливаем
@@ -505,6 +563,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const onBackRef = useRef(onBack);
   useEffect(() => { onBackRef.current = onBack; }, [onBack]);
   useEffect(() => { settingsRef.current = settings; }, [settings]);
+  useEffect(() => () => { stopAudio(); }, [stopAudio]);
 
   // ── Таймер на вопрос — работает даже при смене вкладки ──────────────────
   const answeredRef = useRef(false);
@@ -593,8 +652,8 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         >
           <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
             {triLang(lang, {
-              ru: 'Повторить загрузку',
-              uk: 'Повторити завантаження',
+              ru: 'Повторить',
+              uk: 'Повторити',
               es: 'Reintentar',
             })}
           </Text>
@@ -623,9 +682,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       <ScreenGradient>
       <View style={{ flex:1, justifyContent:'center', alignItems:'center' }}>
         <ContentWrap>
-        <Text style={{ color:t.textMuted, fontSize: f.body }}>
-          {triLang(lang, { ru: 'Загрузка...', uk: 'Завантаження...', es: 'Cargando...' })}
-        </Text>
+        <Text style={{ color:t.textMuted, fontSize: f.body }} />
         </ContentWrap>
       </View>
       </ScreenGradient>
@@ -646,7 +703,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     ]).start();
   };
 
-  const afterAnswer = async (isRight: boolean, isHardTyped = false) => {
+  const afterAnswer = async (isRight: boolean, userAnswer?: string, isHardTyped = false) => {
     const nr = reviewing ? results : [...results, isRight];
     if (!reviewing) { resultsRef.current = nr; setResults(nr); }
 
@@ -654,7 +711,12 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
       void hapticError();
     }
 
+    if (settings.voiceOut && current?.answer) {
+      speakAudio(current.answer, settings.speechRate, { language: 'en-US' });
+    }
+
     if (!isRight && current) {
+      const tokenMeta = resolvePhraseMistakeToken(current.answer, userAnswer, current.skillTag ?? current.quizItemType);
       void recordMistake(
         current.answer,
         current.ru,
@@ -662,7 +724,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         current.uk,
         'quiz',
         current.es,
+        tokenMeta,
       );
+      logMistake(
+        current.answer,
+        current.lessonNum,
+        'quiz',
+        'wrong_pick',
+        tokenMeta,
+      );
+      wrongMistakesRef.current.push(tokenMeta ? { phrase: current.answer, ...tokenMeta } : current.answer);
     }
 
     if (!reviewing) {
@@ -683,9 +754,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         // Начисляем баллы — имя уже в ref, нет асинхронного запроса
         if (userNameRef.current) { registerXP(pts, 'quiz_answer', userNameRef.current, lang).catch(() => {}); }
         // Триггеры заданий — quiz_score обновляется в done useEffect (один раз с итогом сессии)
-        const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [
-          { type: 'daily_active' },
-        ];
+        const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [];
         if (level === 'hard') updates.push({ type: 'quiz_hard' });
         if (level === 'easy') updates.push({ type: 'quiz_easy' });
         if (level === 'medium') updates.push({ type: 'quiz_medium' });
@@ -713,10 +782,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           if (newCount >= 2) setShowHardTip(true);
         }
       }
-    }
-
-    if (settings.voiceOut && isTabActiveRef.current) {
-      speakAudio(current.answer, settings.speechRate);
     }
 
     // Задержка зависит от уровня и настройки autoAdvance
@@ -759,7 +824,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     setNextReady(false);
     setChosen(ci);
     playInsertAnim();
-    afterAnswer(isQuizChoiceCorrect(ci, current.correct));
+    afterAnswer(isQuizChoiceCorrect(ci, current.correct), current.choices[ci]);
     setTimeout(() => setNextReady(true), 500);
   };
 
@@ -771,13 +836,14 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     const ok = isCorrectAnswer(typed, current.answer, current.answerAlternatives);
     setTypedOk(ok);
     playInsertAnim();
-    afterAnswer(ok, true);
+    afterAnswer(ok, typed, true);
     setTimeout(() => setNextReady(true), 500);
   };
 
   // ── ФИНАЛЬНЫЙ ЭКРАН ──────────────────────────────────────────────────────
   if (done) {
     return (
+      <View style={{ flex: 1 }}>
         <QuizResultView
           phrases={phrases}
           results={results}
@@ -802,9 +868,17 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             setRIdx(reviewState.rIdx);
             setReviewing(reviewState.reviewing);
             setDone(reviewState.done);
+            setCoachToast(null);
           }}
           onRestart={() => {
             clearQuizPendingTimers(autoAdvanceTimerRef, timerRef);
+            if (!DEV_MODE && !isPremium) {
+              void hasFreeDailyQuizzesLeft().then((hasLeft) => {
+                if (hasLeft) return;
+                router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+              });
+              return;
+            }
             fadeAnim.stopAnimation();
             fadeAnim.setValue(1);
             AsyncStorage.getItem('user_total_xp').then(v => { setTotalXP(parseInt(v || '0') || 0); }).catch(() => {});
@@ -819,6 +893,9 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             setReviewing(restartState.reviewing);
             setTyped(restartState.typed);
             setTypedOk(restartState.typedOk);
+            setCoachToast(null);
+            wrongMistakesRef.current = [];
+            freeQuizCompletionMarkedRef.current = false;
             xpAnimStarted.current = false;
             xpFlyY.setValue(0);
             xpFlyOpacity.setValue(1);
@@ -827,11 +904,30 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           onBack={onBack}
           onShare={async (right, total, pct, rankIcon) => {
             const msg = buildQuizShareMessage(quizShareMessageLang(lang), right, total, pct, rankIcon, STORE_URL);
-            await shareCardFromSvgRef(quizCardSvgRef, { fileNamePrefix: 'phraseman-quiz', textFallback: msg });
+            await Share.share({ message: msg }).catch(() => {});
           }}
           onHome={() => router.replace('/(tabs)/home' as any)}
-          shareCardSvgRef={quizCardSvgRef}
         />
+        {coachToast?.show && (
+          <CoachToast
+            category={coachToast.category}
+            labelRu={coachToast.labelRu}
+            labelUk={coachToast.labelUk}
+            labelEs={coachToast.labelEs}
+            mistakeCount={coachToast.mistakeCount}
+            weaknessScore={coachToast.weaknessScore}
+            priorityScore={coachToast.priorityScore}
+            recoveryScore={coachToast.recoveryScore}
+            focusWords={coachToast.focusWords}
+            microDiagnosisId={coachToast.microDiagnosisId}
+            microLabelRu={coachToast.microLabelRu}
+            microLabelUk={coachToast.microLabelUk}
+            microLabelEs={coachToast.microLabelEs}
+            diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
+            onDismiss={() => setCoachToast(null)}
+          />
+        )}
+      </View>
     );
   }
 
@@ -852,8 +948,8 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
 
   // Переход к следующему вопросу (тап по экрану или кнопка "Далее")
   const handleTap = () => {
-    if (chosen === null && typedOk === null) return; // ещё не ответили
-    stopAudio();
+    if (chosen === null && typedOk === null) return;
+    stopAudio(); // ещё не ответили
     // Отменяем авто-таймер если был запланирован
     clearQuizPendingTimers(autoAdvanceTimerRef, timerRef);
     const lastRight =
@@ -890,7 +986,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     <ScreenGradient>
     <View style={{ flex:1 }}>
       <ContentWrap>
-      <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs==='ios'?'padding':'height'}>
+      <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
 
         {/* ХЕДЕР */}
         <View style={{ flexDirection:'row', alignItems:'center', justifyContent:'space-between', padding:15, paddingTop: 15 + insets.top }}>
@@ -945,14 +1041,6 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             {triLang(lang, { ru: current.ru, uk: current.uk, es: current.es })}
           </Text>
 
-          <PhraseContentStars
-            scope="quiz"
-            itemId={`quiz_${level}_L${current.lessonNum}_${current.answer.replace(/\s+/g, '_').slice(0, 120)}`}
-            labelSnippet={triLang(lang, { ru: current.ru, uk: current.uk, es: current.es })}
-            ratingTarget="phrase"
-            style={{ marginBottom: 16, alignSelf: 'center' }}
-          />
-
           {/* АНИМАЦИЯ ВСТАВКИ */}
           {displayAnswer !== null && (
             <Animated.View style={{
@@ -971,11 +1059,11 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                 </Text>
               )}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
-                <TouchableOpacity style={{ flex: 1 }} activeOpacity={0.75} onPress={() => { void hapticLightImpact(); speakAudio(shownCorrectEnglish, settings.speechRate); }}>
+                <View style={{ flex: 1 }}>
                   <Text style={{ color: isLightTheme ? onGradPrimary : displayColor, fontSize: f.h2 + 2, fontWeight: '600', lineHeight: (f.h2 + 2) * 1.4 }}>
                     {shownCorrectEnglish}
                   </Text>
-                </TouchableOpacity>
+                </View>
                 <View onStartShouldSetResponder={() => true}>
                   <AddToFlashcard en={shownCorrectEnglish} ru={current.ru} uk={current.uk} es={current.es} source="lesson" sourceId="quiz" />
                 </View>
@@ -1010,6 +1098,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                 `Правильный: ${current.answer}${current.answerAlternatives?.length ? ` ; alt: ${current.answerAlternatives.join(' | ')}` : ''}`,
               ].join('\n')}
               style={{ alignSelf: 'flex-end', marginBottom: 4 }}
+              textColor={onGradMuted}
             />
           )}
           {/* РАЗБОР ОТВЕТА */}
@@ -1189,7 +1278,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         );
       }}
       onBeforeOpenPremium={() => setShowNoEnergyModal(false)}
-      paywallContext="quiz_limit"
+      paywallContext="no_energy"
     />
 
     </ScreenGradient>
@@ -1201,6 +1290,8 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
 export default function QuizzesScreen() {
   const [level, setLevel] = useState<Level|null>(null);
   const [gameKey, setGameKey] = useState(0);
+  const { isPremium } = usePremium();
+  const router = useRouter();
   const { energy, bonusEnergy, isUnlimited } = useEnergy();
   const energySnapRef = useRef({ e: 0, b: 0, u: false });
   energySnapRef.current = { e: energy, b: bonusEnergy, u: isUnlimited };
@@ -1210,6 +1301,16 @@ export default function QuizzesScreen() {
       const val = await AsyncStorage.getItem('quiz_nav_level');
       if (val === 'hard' || val === 'medium' || val === 'easy') {
         await new Promise(r => setTimeout(r, 200));
+        if (!DEV_MODE && !isPremium && val !== 'easy') {
+          await AsyncStorage.removeItem('quiz_nav_level');
+          router.push({ pathname: '/premium_modal', params: { context: val === 'hard' ? 'quiz_hard' : 'quiz_medium' } } as any);
+          return;
+        }
+        if (!DEV_MODE && !isPremium && val === 'easy' && !(await hasFreeDailyQuizzesLeft())) {
+          await AsyncStorage.removeItem('quiz_nav_level');
+          router.push({ pathname: '/premium_modal', params: { context: 'quiz_limit' } } as any);
+          return;
+        }
         const snap = energySnapRef.current;
         if (!snap.u && snap.e + snap.b <= 0) {
           await AsyncStorage.removeItem('quiz_nav_level');
@@ -1225,7 +1326,7 @@ export default function QuizzesScreen() {
         setLevel(val as Level);
       }
     })();
-  }, []);
+  }, [isPremium, router]);
 
   return (
     <View style={{ flex: 1 }}>

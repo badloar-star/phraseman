@@ -24,6 +24,8 @@ import { useTheme, getVolumetricShadow } from './ThemeContext';
 interface PremiumCardProps {
   children:     React.ReactNode;
   onPress?:     () => void;
+  onLongPress?: () => void;
+  delayLongPress?: number;
   activeOpacity?: number;
   style?:       ViewStyle;
   innerStyle?:  ViewStyle;
@@ -39,6 +41,8 @@ interface PremiumCardProps {
 export default function PremiumCard({
   children,
   onPress,
+  onLongPress,
+  delayLongPress,
   activeOpacity = 0.85,
   style,
   innerStyle,
@@ -51,12 +55,14 @@ export default function PremiumCard({
   accessible,
 }: PremiumCardProps) {
   const { theme: t, themeMode } = useTheme();
+  const longPressFiredRef = React.useRef(false);
 
   const shadow = getVolumetricShadow(themeMode, t, level);
 
+  const disabledOpacity = 0.48;
   const outerStyle: ViewStyle = {
     borderRadius,
-    opacity: disabled ? 0.48 : 1,
+    opacity: disabled ? disabledOpacity : 1,
     ...shadow,
     ...(style || {}),
   };
@@ -88,9 +94,20 @@ export default function PremiumCard({
 
   if (onPress) {
     const handlePress = () => {
+      if (longPressFiredRef.current) {
+        longPressFiredRef.current = false;
+        return;
+      }
       hapticTap();
       onPress();
     };
+    const handleLongPress = onLongPress
+      ? () => {
+          longPressFiredRef.current = true;
+          hapticTap();
+          onLongPress();
+        }
+      : undefined;
     return (
       <TouchableOpacity
         testID={testID}
@@ -98,6 +115,8 @@ export default function PremiumCard({
         accessible={accessible !== undefined ? accessible : !!(testID || accessibilityLabel)}
         style={outerStyle}
         onPress={handlePress}
+        onLongPress={handleLongPress}
+        delayLongPress={delayLongPress}
         activeOpacity={activeOpacity}
         disabled={disabled}
       >

@@ -33,9 +33,10 @@ function wordsOf(sentence: string): string[] {
 
 function wordsAfter(sentence: string, preposition: string, count = 3): string {
   const words = wordsOf(sentence);
-  const idx = words.indexOf(preposition);
+  const prepParts = preposition.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  const idx = words.findIndex((_, i) => prepParts.every((part, offset) => words[i + offset] === part));
   if (idx < 0) return '';
-  return words.slice(idx + 1, idx + 1 + count).join(' ');
+  return words.slice(idx + prepParts.length, idx + prepParts.length + count).join(' ');
 }
 
 function phraseAfter(sentence: string, preposition: string): string {
@@ -139,7 +140,7 @@ const phraseRules: Rule[] = [
   },
   {
     preposition: 'on',
-    matches: [/\bon (christmas|easter|new year|new year's eve|halloween|thanksgiving|birthday|birthdays|anniversary)\b/],
+    matches: [/\bon (christmas|easter|new year|new year\'s eve|halloween|thanksgiving|birthday|birthdays|anniversary)\b/],
     explain: {
       ru: 'С праздниками и значимыми датами говорим "on": on Christmas, on Easter, on my birthday. "On" помещает действие внутрь конкретного события.',
       uk: 'Зі святами та важливими датами кажемо "on": on Christmas, on Easter, on my birthday. "On" розміщує дію всередині конкретної події.',
@@ -462,15 +463,15 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     if (new RegExp(`\\bon ${descriptor}${onMedia.source}\\b`).test(normalized)) {
       return {
         ru: `С носителями информации используем "on": "${onChunk}". Имя, дата или объект находится "на" странице, экране, в списке или на карте.`,
-        uk: `З носіями інформації використовуємо "on": "${onChunk}". Ім'я, дата або об'єкт знаходиться "на" сторінці, екрані, у списку чи на карті.`,
-        es: `Con soportes digitales o impresos («${onChunk}») aparece «on»: el dato está “sobre” página, pantalla, lista o mapa.`,
+        uk: `З носіями інформації використовуємо "on": "${onChunk}". Ім\'я, дата або об\'єкт знаходиться "на" сторінці, екрані, у списку чи на карті.`,
+        es: `Con soportes digitales o impresos («${onChunk}») aparece «on»: el dato está "sobre" página, pantalla, lista o mapa.`,
         level: 'context',
       };
     }
     if (new RegExp(`\\bon ${descriptor}${onLine.source}\\b`).test(normalized)) {
       return {
         ru: `С линиями и протяжёнными объектами говорим "on": "${onChunk}". Дорога, улица или граница - это линия, на которой что-то находится или движется.`,
-        uk: `З лініями та протяжними об'єктами кажемо "on": "${onChunk}". Дорога, вулиця або межа - це лінія, на якій щось знаходиться або рухається.`,
+        uk: `З лініями та протяжними об\'єктами кажемо "on": "${onChunk}". Дорога, вулиця або межа - це лінія, на якій щось знаходиться або рухається.`,
         es: `Para trayectos lineales (calle, ribera, frontera…) se usa «on» («${onChunk}»): actúa como eje sobre el que hay posición o movimiento.`,
         level: 'context',
       };
@@ -514,7 +515,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     if (new RegExp(`\\bin ${descriptor}${inWaterSky.source}\\b`).test(normalized)) {
       return {
         ru: `Со стихиями и большими "массами" говорим "in": "${inChunk}". Вода, небо, воздух воспринимаются как объём, в который что-то погружено.`,
-        uk: `Зі стихіями та великими "масами" кажемо "in": "${inChunk}". Вода, небо, повітря сприймаються як об'єм, у який щось занурено.`,
+        uk: `Зі стихіями та великими "масами" кажемо "in": "${inChunk}". Вода, небо, повітря сприймаються як об\'єм, у який щось занурено.`,
         es: `Masas fluidas o amplias («${inChunk}»): agua, niebla, espacio se entienden como volumen tridimensional donde «in» encaja mejor.`,
         level: 'context',
       };
@@ -544,7 +545,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
   const recipientWords = /\b(me|you|him|her|us|them|friend|friends|family|teacher|student|students|children|customer|client|team|group)\b/;
   const toolWords = /\b(key|knife|pen|pencil|phone|computer|tool|tools|machine|camera|card|hand|hands)\b/;
   const deadlineWords = /\b(today|tomorrow|monday|tuesday|wednesday|thursday|friday|saturday|sunday|morning|evening|noon|midnight|deadline|time|then|end)\b/;
-  const timeWords = /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|o'clock|noon|midnight)\b/;
+  const timeWords = /\b(one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|o\'clock|noon|midnight)\b/;
   const numericTime = /\b\d{1,2}(:\d{2})?\b/;
   const movementVerbs = /\b(go|goes|went|come|comes|came|walk|walks|run|runs|move|moves|travel|travels|drive|drives|return|returns|send|sends|bring|brings|take|takes|fly|flies)\b/;
   const mediaWords = /\b(tv|television|radio|internet|website|official page|page|screen|phone|computer)\b/;
@@ -620,7 +621,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     const trimmed = chunkUntil(sentence, 'on', /^(door|button|key|table|wall|screen|panel|surface|keyboard|window|link|icon|tab)$/);
     return {
       ru: `"On" часто используется при контакте с поверхностью: "${trimmed}". Мы стучим, нажимаем или кликаем именно "on" объект.`,
-      uk: `"On" часто використовується при контакті з поверхнею: "${trimmed}". Ми стукаємо, натискаємо або клікаємо саме "on" об'єкт.`,
+      uk: `"On" часто використовується при контакті з поверхнею: "${trimmed}". Ми стукаємо, натискаємо або клікаємо саме "on" об\'єкт.`,
       es: `Tras golpear, clicar… «${trimmed}» usa «on» sobre la superficie o control de contacto inmediato.`,
       level: 'context',
     };
@@ -686,7 +687,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
   }
 
   if (preposition === 'at' && numericTime.test(after)) {
-    const trimmed = chunkUntil(sentence, 'at', /^(o'clock|am|pm|noon|midnight|\d{1,2}([:.]\d{2})?)$/);
+    const trimmed = chunkUntil(sentence, 'at', /^(o\'clock|am|pm|noon|midnight|\d{1,2}([:.]\d{2})?)$/);
     return {
       ru: `"At" ставится с точным временем: "${trimmed}" - точный момент на часах. Поэтому здесь не "in" и не "on".`,
       uk: `"At" ставиться з точним часом: "${trimmed}" - точний момент на годиннику. Тому тут не "in" і не "on".`,
@@ -696,7 +697,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
   }
 
   if (preposition === 'at' && timeWords.test(after)) {
-    const trimmed = chunkUntil(sentence, 'at', /^(o'clock|noon|midnight|am|pm)$/);
+    const trimmed = chunkUntil(sentence, 'at', /^(o\'clock|noon|midnight|am|pm)$/);
     return {
       ru: `"At" ставится с точным временем: "${trimmed}" - точный момент. Во фразах с конкретным часом всегда "at".`,
       uk: `"At" ставиться з точним часом: "${trimmed}" - точний момент. У фразах з конкретною годиною завжди "at".`,
@@ -721,7 +722,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     if (infinitiveLike.test(candidate)) {
       return {
         ru: `"To" перед глаголом "${candidate}" - инфинитивная частица, а не предлог места. Конструкция "${chunkUntil(sentence, 'to', new RegExp(`^${candidate}$`))}" означает цель или соединяет два действия.`,
-        uk: `"To" перед дієсловом "${candidate}" - інфінітивна частка, а не прийменник місця. Конструкція "${chunkUntil(sentence, 'to', new RegExp(`^${candidate}$`))}" означає мету або з'єднує дві дії.`,
+        uk: `"To" перед дієсловом "${candidate}" - інфінітивна частка, а не прийменник місця. Конструкція "${chunkUntil(sentence, 'to', new RegExp(`^${candidate}$`))}" означає мету або з\'єднує дві дії.`,
         es: `Ante «${candidate}», «to» introduce infinitivo (partícula de objetivo/enlace verbal), no preposición de lugar: véase «${chunkUntil(sentence, 'to', new RegExp(`^${candidate}$`))}».`,
         level: 'specific',
       };
@@ -771,7 +772,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     const trimmed = chunkUntil(sentence, 'to', /^(temperature|degree|degrees|level|point|state)$/);
     return {
       ru: `"To" показывает достижение состояния или уровня: "${trimmed}" отвечает на вопрос "до чего?". Здесь действие доводит объект до конкретной точки.`,
-      uk: `"To" показує досягнення стану або рівня: "${trimmed}" відповідає на питання "до чого?". Тут дія доводить об'єкт до конкретної точки.`,
+      uk: `"To" показує досягнення стану або рівня: "${trimmed}" відповідає на питання "до чого?". Тут дія доводить об\'єкт до конкретної точки.`,
       es: `«${trimmed}» con «to» marca meta numérica o de estado al que se eleva o baja (temperatura, nivel).`,
       level: 'context',
     };
@@ -824,7 +825,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
       const trimmed = chunkUntil(sentence, 'of', possessorWords);
       return {
         ru: `"Of" связывает два существительных в значении принадлежности: "${trimmed}" - кто-то/что-то относится к другому объекту. По-русски часто переводится родительным падежом.`,
-        uk: `"Of" пов'язує два іменники у значенні належності: "${trimmed}" - хтось/щось належить до іншого об'єкта. Українською часто перекладається родовим відмінком.`,
+        uk: `"Of" пов\'язує два іменники у значенні належності: "${trimmed}" - хтось/щось належить до іншого об\'єкта. Українською часто перекладається родовим відмінком.`,
         es: `«${trimmed}» con «of» articula posesión o parte respecto de un conjunto (equivalente a «de» posesivo en español).`,
         level: 'context',
       };
@@ -856,6 +857,34 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
   const phraseUk = hasChunk ? `у фразі "${trim}"` : 'тут';
   const phraseEs = hasChunk ? `en la expresión «${trim}»` : 'aquí';
   switch (preposition) {
+    case 'next to':
+      return {
+        ru: `"Next to" ${phraseRu} означает "рядом с / вплотную рядом": один предмет находится у другого предмета сбоку или очень близко к нему.`,
+        uk: `"Next to" ${phraseUk} означає "поруч із / безпосередньо біля": один предмет розташований збоку або дуже близько до іншого.`,
+        es: `"Next to" ${phraseEs} equivale a «al lado de»: proximidad inmediata junto al objeto de referencia.`,
+        level: 'context',
+      };
+    case 'in front of':
+      return {
+        ru: `"In front of" ${phraseRu} означает "перед": предмет находится с передней стороны другого объекта, не внутри и не рядом сбоку.`,
+        uk: `"In front of" ${phraseUk} означає "перед": предмет розташований з переднього боку іншого об\'єкта, не всередині й не збоку.`,
+        es: `"In front of" ${phraseEs} significa «delante de»: posición en la parte frontal del punto de referencia.`,
+        level: 'context',
+      };
+    case 'about':
+      return {
+        ru: `"About" ${phraseRu} означает "о / про": он показывает тему мысли, разговора, вопроса или сообщения.`,
+        uk: `"About" ${phraseUk} означає "про": він показує тему думки, розмови, питання або повідомлення.`,
+        es: `"About" ${phraseEs} marca el tema: pensar, hablar, preguntar o escribir sobre algo.`,
+        level: 'context',
+      };
+    case 'back':
+      return {
+        ru: `"Back" ${phraseRu} показывает возврат: назад в прежнее место или обратно к человеку. В сочетаниях go back / give back это часть устойчивого блока.`,
+        uk: `"Back" ${phraseUk} показує повернення: назад у попереднє місце або назад до людини. У сполуках go back / give back це частина сталого блоку.`,
+        es: `"Back" ${phraseEs} expresa retorno: volver a un lugar anterior o devolver algo a alguien; en go back / give back funciona como partícula fija.`,
+        level: 'context',
+      };
     case 'to':
       return {
         ru: `"To" ${phraseRu} задаёт направление к цели: к месту, человеку или результату. По-русски это часто переводится как "к / в / до".`,
@@ -880,7 +909,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     case 'of':
       return {
         ru: `"Of" ${phraseRu} связывает два существительных и показывает принадлежность или часть целого. По-русски обычно передаётся родительным падежом.`,
-        uk: `"Of" ${phraseUk} пов'язує два іменники й показує належність або частину цілого. Українською зазвичай передається родовим відмінком.`,
+        uk: `"Of" ${phraseUk} пов\'язує два іменники й показує належність або частину цілого. Українською зазвичай передається родовим відмінком.`,
         es: `"Of" ${phraseEs} relaciona posesión o parte respecto de un conjunto (equivalente frecuente a «de» en español).`,
         level: 'context',
       };
@@ -936,28 +965,28 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     case 'above':
       return {
         ru: `"Above" ${phraseRu} означает "выше" по уровню или положению. Важна сама высота относительно объекта, без движения.`,
-        uk: `"Above" ${phraseUk} означає "вище" за рівнем або положенням. Важлива сама висота відносно об'єкта, без руху.`,
+        uk: `"Above" ${phraseUk} означає "вище" за рівнем або положенням. Важлива сама висота відносно об\'єкта, без руху.`,
         es: `"Above" ${phraseEs} expresa mayor altura o nivel respecto del punto de referencia, sin atravesarlo.`,
         level: 'context',
       };
     case 'behind':
       return {
         ru: `"Behind" ${phraseRu} означает "позади / за": предмет или человек находится с задней стороны другого объекта.`,
-        uk: `"Behind" ${phraseUk} означає "позаду / за": предмет або людина знаходиться з заднього боку іншого об'єкта.`,
+        uk: `"Behind" ${phraseUk} означає "позаду / за": предмет або людина знаходиться з заднього боку іншого об\'єкта.`,
         es: `"Behind" ${phraseEs} ubica algo detrás del frente habitual del objeto de referencia.`,
         level: 'context',
       };
     case 'between':
       return {
         ru: `"Between" ${phraseRu} означает "между" двумя отдельными объектами: что-то находится в промежутке между ними.`,
-        uk: `"Between" ${phraseUk} означає "між" двома окремими об'єктами: щось знаходиться у проміжку між ними.`,
+        uk: `"Between" ${phraseUk} означає "між" двома окремими об\'єктами: щось знаходиться у проміжку між ними.`,
         es: `"Between" ${phraseEs} usa dos referencias claras: algo situado «entre» ambas.`,
         level: 'context',
       };
     case 'among':
       return {
         ru: `"Among" ${phraseRu} означает "среди" группы: объект находится внутри множества людей или предметов.`,
-        uk: `"Among" ${phraseUk} означає "серед" групи: об'єкт знаходиться всередині множини людей або предметів.`,
+        uk: `"Among" ${phraseUk} означає "серед" групи: об\'єкт знаходиться всередині множини людей або предметів.`,
         es: `"Among" ${phraseEs} encaja dentro de un grupo plural: «entre» varios.`,
         level: 'context',
       };
@@ -971,7 +1000,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     case 'inside':
       return {
         ru: `"Inside" ${phraseRu} прямо подчёркивает нахождение во внутренней части объекта или помещения. Сильнее, чем "in".`,
-        uk: `"Inside" ${phraseUk} прямо підкреслює перебування у внутрішній частині об'єкта чи приміщення. Сильніший за "in".`,
+        uk: `"Inside" ${phraseUk} прямо підкреслює перебування у внутрішній частині об\'єкта чи приміщення. Сильніший за "in".`,
         es: `"Inside" ${phraseEs} refuerza «en el interior» (con más fuerza semántica que «in» en muchos ejemplos).`,
         level: 'context',
       };
@@ -985,7 +1014,7 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     case 'opposite':
       return {
         ru: `"Opposite" ${phraseRu} означает "напротив": два объекта находятся лицом друг к другу или по разные стороны.`,
-        uk: `"Opposite" ${phraseUk} означає "навпроти": два об'єкти знаходяться один навпроти одного або по різні боки.`,
+        uk: `"Opposite" ${phraseUk} означає "навпроти": два об\'єкти знаходяться один навпроти одного або по різні боки.`,
         es: `"Opposite" ${phraseEs} indica «enfrente», del otro lado de la vía o del espacio compartido.`,
         level: 'context',
       };
@@ -1006,14 +1035,14 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     case 'through':
       return {
         ru: `"Through" ${phraseRu} означает движение "сквозь / через внутренность": важно пройти внутри объекта от начала до конца.`,
-        uk: `"Through" ${phraseUk} означає рух "крізь / через середину": важливо пройти всередині об'єкта від початку до кінця.`,
+        uk: `"Through" ${phraseUk} означає рух "крізь / через середину": важливо пройти всередині об\'єкта від початку до кінця.`,
         es: `"Through" ${phraseEs} suele expresar atravesar el interior y salir por el otro lado.`,
         level: 'context',
       };
     case 'along':
       return {
         ru: `"Along" ${phraseRu} означает движение или расположение вдоль протяжённого объекта: улица, река, граница.`,
-        uk: `"Along" ${phraseUk} означає рух або розташування вздовж протяжного об'єкта: вулиця, річка, межа.`,
+        uk: `"Along" ${phraseUk} означає рух або розташування вздовж протяжного об\'єкта: вулиця, річка, межа.`,
         es: `"Along" ${phraseEs} describe paralelismo a eje longitudinal.`,
         level: 'context',
       };
@@ -1069,14 +1098,14 @@ function ruleFor(preposition: string, sentence: string): Explanation | null {
     case 'on':
       return {
         ru: `"On" ${phraseRu} показывает контакт с поверхностью или связь с конкретным днём/носителем. Между предметом и опорой есть прямой контакт.`,
-        uk: `"On" ${phraseUk} показує контакт із поверхнею або зв'язок з конкретним днем/носієм. Між предметом і опорою є прямий контакт.`,
+        uk: `"On" ${phraseUk} показує контакт із поверхнею або зв\'язок з конкретним днем/носієм. Між предметом і опорою є прямий контакт.`,
         es: `"On" ${phraseEs} expresa contacto con superficie o fijación a día/medio («on TV», «on Monday»…).`,
         level: 'context',
       };
     case 'in':
       return {
         ru: `"In" ${phraseRu} показывает нахождение внутри объёма, области или периода. Действие или предмет находится в пределах указанного пространства.`,
-        uk: `"In" ${phraseUk} показує перебування всередині об'єму, області або періоду. Дія або предмет знаходиться в межах вказаного простору.`,
+        uk: `"In" ${phraseUk} показує перебування всередині об\'єму, області або періоду. Дія або предмет знаходиться в межах вказаного простору.`,
         es: `"In" ${phraseEs} sitúa dentro de un volumen, ámbito o periodo.`,
         level: 'context',
       };

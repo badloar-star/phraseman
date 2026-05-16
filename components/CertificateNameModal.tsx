@@ -67,14 +67,14 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
                 {triLang(lang as Lang, {
                   ru: 'Чьё имя указать на награде?',
-                  uk: 'Чиє імʼя вказати на нагороді?',
+                  uk: 'Чиє ім\'я вказати на нагороді?',
                   es: '¿Qué nombre quieres en el certificado?',
                 })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 8, textAlign: 'center', lineHeight: 20 }}>
                 {triLang(lang as Lang, {
                   ru: 'Имя появится на награде Phraseman. Можно указать настоящее или ник.',
-                  uk: 'Імʼя зʼявиться на нагороді Phraseman. Можна вказати справжнє або нік.',
+                  uk: 'Ім\'я з\'явиться на нагороді Phraseman. Можна вказати справжнє або нік.',
                   es: 'El nombre figurará en tu certificado Phraseman. Puedes usar tu nombre real o un apodo.',
                 })}
               </Text>
@@ -84,7 +84,7 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
                 onChangeText={(txt) => setValue(txt.slice(0, LINGMAN_CERT_NAME_MAX_LEN))}
                 placeholder={triLang(lang as Lang, {
                   ru: 'Ваше имя или ник',
-                  uk: 'Ваше імʼя або нік',
+                  uk: 'Ваше ім\'я або нік',
                   es: 'Tu nombre o apodo',
                 })}
                 placeholderTextColor={t.textMuted}

@@ -36,7 +36,7 @@ export function derivePackCodeName(packId: string): string {
 /**
  * Рядок картки в `official_*.json` (маркетплейс / Victoria).
  *
- * **Профіль `marketplace_phrase_v1`:** у кожної картки обов’язкові
+ * **Профіль `marketplace_phrase_v1`:** у кожної картки обов\'язкові
  * `en`, `ru`, `uk`, `literalRu`, `literalUk`, `explanationRu`, `explanationUk`, `transcription`;
  * `example*`, `usageNote*`, `register`, `level` — лише якщо свідомо додаєте колонку (див. `docs/pipelines/victoria-qa/MARKETPLACE_PHRASE_PIPELINE.md`).
  */
@@ -72,7 +72,7 @@ export type VictoriaRow = {
 export type VictoriaPackFile = {
   pack: {
     id: string;
-    /** Коротке кодове ім’я на плитці хаба (звичайний регістр). Якщо немає — `derivePackCodeName(id)`. */
+    /** Коротке кодове ім\'я на плитці хаба (звичайний регістр). Якщо немає — `derivePackCodeName(id)`. */
     codeName?: string;
     titleRu: string;
     titleUk: string;
@@ -105,8 +105,6 @@ export function victoriaMetaFromPackJson(p: VictoriaPackFile['pack']): Flashcard
     category: (p.category as FlashcardPackCategory) ?? 'daily',
     cardCount: p.cardCount,
     priceShards: p.priceShards,
-    ratingAvg: 0,
-    ratingCount: 0,
     salesCount: 0,
     authorName: p.authorName,
     isOfficial: p.isOfficial,

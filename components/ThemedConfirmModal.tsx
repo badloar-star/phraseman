@@ -31,8 +31,7 @@ export default function ThemedConfirmModal({
   testIDPrefix,
 }: Props) {
   const { theme: t, themeMode, f } = useTheme();
-  const dim =
-    themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.60)';
+  const dim = 'rgba(0,0,0,0.60)';
   const confirmBg = confirmVariant === 'accent' ? t.accent : t.bgSurface;
   const confirmText = confirmVariant === 'accent' ? t.correctText : t.textPrimary;
   const confirmBorder = confirmVariant === 'accent' ? t.accent : t.border;

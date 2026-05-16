@@ -249,7 +249,7 @@ export const LESSON_WORD_ES_BY_EN: Record<string, string> = {
   'cave': 'cueva',
   'celebrated': 'celebró',
   'celebrating': 'celebrando',
-  'cellphone charger': 'cargador de celular',
+  'phone charger': 'cargador de teléfono',
   'center': 'centro',
   'central': 'central',
   'ceremony': 'ceremonia',

@@ -40,8 +40,8 @@ const WORD_POOLS_L1 = {
   languages:  ['English','French','Spanish','German','Italian','Portuguese','Chinese','Japanese','Arabic',
                 'Dutch','Polish','Swedish','Norwegian','Danish','Turkish','Korean','Hindi','Greek','Ukrainian'],
   pronouns:   ['I','you','he','she','it','we','they','this','that','these','those','me','him','her','us','them'],
-  toBe:       ['am','is','are','was','were','be','been','being',"isn't","aren't","wasn't","weren't"],
-  negation:   ['not',"don't","doesn't","didn't","won't","can't","couldn't","shouldn't","wouldn't","haven't","hadn't","never"],
+  toBe:       ['am','is','are','was','were','be','been','being',"isn\'t","aren\'t","wasn\'t","weren\'t"],
+  negation:   ['not',"don\'t","doesn\'t","didn\'t","won\'t","can\'t","couldn\'t","shouldn\'t","wouldn\'t","haven\'t","hadn\'t","never"],
   verbs:      ['work','works','worked','do','does','did','go','goes','went','come','comes','came',
                 'have','has','had','know','knew','think','thought','get','got','make','made','take','took',
                 'give','gave','find','found','tell','told','buy','bought','write','wrote','read','eat','ate',
@@ -142,9 +142,9 @@ const WORD_POOLS_L1 = {
                 'plumber','electrician','dentist','pharmacist','firefighter','officer','soldier','coach',
                 'trainer','analyst','consultant','developer','investor','farmer','baker','butcher'],
   // CHANGE v4: removed multi-word entries ("am not","was not","were not","be not") — rule: each distractor must be a single word.
-  // Only contractions like "isn't","weren't" are allowed since they are one orthographic unit.
-  toBe_neg:   ["isn't","aren't","wasn't","weren't"],
-  // CHANGE v4: removed "don't have","doesn't have","didn't have","have got","has got" — all multi-word.
+  // Only contractions like "isn\'t","weren\'t" are allowed since they are one orthographic unit.
+  toBe_neg:   ["isn\'t","aren\'t","wasn\'t","weren\'t"],
+  // CHANGE v4: removed "don\'t have","doesn\'t have","didn\'t have","have got","has got" — all multi-word.
   have:       ['have','has','had'],
   // CHANGE v4: "there is","there are",… are all multi-word — replaced with single-word location adverbs
   // so that "there" as a word in a phrase gets sensible distractors.
@@ -199,56 +199,56 @@ const WORD_POOLS_L1 = {
 };
 
 // CHANGELOG v5: CONTRACTION_MAP — maps each contraction to its expanded token pair.
-// Used for branching: when expected word is "don't", show both "don't" AND "do" as valid choices.
+// Used for branching: when expected word is "don\'t", show both "don\'t" AND "do" as valid choices.
 // If student picks "do", the next expected word becomes "not" (collected before advancing).
-// "n't" is NEVER shown as a separate token. Only [contracted, expanded_first] in one step.
+// "n\'t" is NEVER shown as a separate token. Only [contracted, expanded_first] in one step.
 const CONTRACTION_MAP: Record<string, [string, string]> = {
-  "don't":    ["do",    "not"],
-  "doesn't":  ["does",  "not"],
-  "didn't":   ["did",   "not"],
-  "won't":    ["will",  "not"],
-  "can't":    ["can",   "not"],
-  "couldn't": ["could", "not"],
-  "shouldn't":["should","not"],
-  "wouldn't": ["would", "not"],
-  "haven't":  ["have",  "not"],
-  "hadn't":   ["had",   "not"],
-  "hasn't":   ["has",   "not"],
-  "isn't":    ["is",    "not"],
-  "aren't":   ["are",   "not"],
-  "wasn't":   ["was",   "not"],
-  "weren't":  ["were",  "not"],
-  "needn't":  ["need",  "not"],
-  "mustn't":  ["must",  "not"],
-  "it's":     ["it",    "is"],
-  "that's":   ["that",  "is"],
-  "there's":  ["there", "is"],
-  "what's":   ["what",  "is"],
-  "who's":    ["who",   "is"],
-  "he's":     ["he",    "is"],
-  "she's":    ["she",   "is"],
-  "I'm":      ["I",     "am"],
-  "I've":     ["I",     "have"],
-  "I'll":     ["I",     "will"],
-  "I'd":      ["I",     "would"],
-  "you're":   ["you",   "are"],
-  "we're":    ["we",    "are"],
-  "they're":  ["they",  "are"],
-  "you've":   ["you",   "have"],
-  "we've":    ["we",    "have"],
-  "they've":  ["they",  "have"],
-  "you'll":   ["you",   "will"],
-  "he'll":    ["he",    "will"],
-  "she'll":   ["she",   "will"],
-  "we'll":    ["we",    "will"],
-  "they'll":  ["they",  "will"],
-  "it'll":    ["it",    "will"],
-  "you'd":    ["you",   "would"],
-  "he'd":     ["he",    "would"],
-  "she'd":    ["she",   "would"],
-  "we'd":     ["we",    "would"],
-  "they'd":   ["they",  "would"],
-  "let's":    ["let",   "us"],
+  "don\'t":    ["do",    "not"],
+  "doesn\'t":  ["does",  "not"],
+  "didn\'t":   ["did",   "not"],
+  "won\'t":    ["will",  "not"],
+  "can\'t":    ["can",   "not"],
+  "couldn\'t": ["could", "not"],
+  "shouldn\'t":["should","not"],
+  "wouldn\'t": ["would", "not"],
+  "haven\'t":  ["have",  "not"],
+  "hadn\'t":   ["had",   "not"],
+  "hasn\'t":   ["has",   "not"],
+  "isn\'t":    ["is",    "not"],
+  "aren\'t":   ["are",   "not"],
+  "wasn\'t":   ["was",   "not"],
+  "weren\'t":  ["were",  "not"],
+  "needn\'t":  ["need",  "not"],
+  "mustn\'t":  ["must",  "not"],
+  "it\'s":     ["it",    "is"],
+  "that\'s":   ["that",  "is"],
+  "there\'s":  ["there", "is"],
+  "what\'s":   ["what",  "is"],
+  "who\'s":    ["who",   "is"],
+  "he\'s":     ["he",    "is"],
+  "she\'s":    ["she",   "is"],
+  "I\'m":      ["I",     "am"],
+  "I\'ve":     ["I",     "have"],
+  "I\'ll":     ["I",     "will"],
+  "I\'d":      ["I",     "would"],
+  "you\'re":   ["you",   "are"],
+  "we\'re":    ["we",    "are"],
+  "they\'re":  ["they",  "are"],
+  "you\'ve":   ["you",   "have"],
+  "we\'ve":    ["we",    "have"],
+  "they\'ve":  ["they",  "have"],
+  "you\'ll":   ["you",   "will"],
+  "he\'ll":    ["he",    "will"],
+  "she\'ll":   ["she",   "will"],
+  "we\'ll":    ["we",    "will"],
+  "they\'ll":  ["they",  "will"],
+  "it\'ll":    ["it",    "will"],
+  "you\'d":    ["you",   "would"],
+  "he\'d":     ["he",    "would"],
+  "she\'d":    ["she",   "would"],
+  "we\'d":     ["we",    "would"],
+  "they\'d":   ["they",  "would"],
+  "let\'s":    ["let",   "us"],
 };
 
 // Дополнительные пулы для конкретных тем уроков
@@ -422,7 +422,7 @@ const tokenizePhrase = (english: string): string[] => {
 // Returns original phrase words with phrasal verbs merged into single tokens
 const getPhraseWords = (english: string): string[] => tokenizePhrase(english);
 
-// Case-insensitive CONTRACTION_MAP lookup (handles "i'm" → "I'm" etc.)
+// Case-insensitive CONTRACTION_MAP lookup (handles "i\'m" → "I\'m" etc.)
 const lookupContraction = (word: string): [string, string] | null =>
   CONTRACTION_MAP[word] ?? CONTRACTION_MAP[word.charAt(0).toUpperCase() + word.slice(1)] ?? null;
 
@@ -454,37 +454,37 @@ const makeExpansionOptions = (token: string): string[] => {
 // Reverse lookup: [expanded_first, expanded_second] → contraction
 // Used to offer contraction as an alternative when phrase has two-word form
 const EXPANSION_TO_CONTRACTION: Record<string, Record<string, string>> = {
-  'do':     { 'not': "don't" },
-  'does':   { 'not': "doesn't" },
-  'did':    { 'not': "didn't" },
-  'will':   { 'not': "won't" },
-  'can':    { 'not': "can't" },
-  'could':  { 'not': "couldn't" },
-  'should': { 'not': "shouldn't" },
-  'would':  { 'not': "wouldn't" },
-  'have':   { 'not': "haven't" },
-  'had':    { 'not': "hadn't" },
-  'has':    { 'not': "hasn't" },
-  'is':     { 'not': "isn't" },
-  'are':    { 'not': "aren't" },
-  'was':    { 'not': "wasn't" },
-  'were':   { 'not': "weren't" },
+  'do':     { 'not': "don\'t" },
+  'does':   { 'not': "doesn\'t" },
+  'did':    { 'not': "didn\'t" },
+  'will':   { 'not': "won\'t" },
+  'can':    { 'not': "can\'t" },
+  'could':  { 'not': "couldn\'t" },
+  'should': { 'not': "shouldn\'t" },
+  'would':  { 'not': "wouldn\'t" },
+  'have':   { 'not': "haven\'t" },
+  'had':    { 'not': "hadn\'t" },
+  'has':    { 'not': "hasn\'t" },
+  'is':     { 'not': "isn\'t" },
+  'are':    { 'not': "aren\'t" },
+  'was':    { 'not': "wasn\'t" },
+  'were':   { 'not': "weren\'t" },
   // Pronouns — all lowercase so case-insensitive lookup works
-  'i':      { 'am': "I'm", 'have': "I've", 'will': "I'll", 'would': "I'd" },
-  'you':    { 'are': "you're", 'have': "you've", 'will': "you'll", 'would': "you'd" },
-  'we':     { 'are': "we're", 'have': "we've", 'will': "we'll", 'would': "we'd" },
-  'they':   { 'are': "they're", 'have': "they've", 'will': "they'll", 'would': "they'd" },
-  'he':     { 'is': "he's", 'will': "he'll", 'would': "he'd" },
-  'she':    { 'is': "she's", 'will': "she'll", 'would': "she'd" },
-  'it':     { 'is': "it's", 'will': "it'll" },
-  'there':  { 'is': "there's" },
-  'that':   { 'is': "that's" },
-  'what':   { 'is': "what's" },
-  'who':    { 'is': "who's" },
-  'must':   { 'not': "mustn't" },
-  'need':   { 'not': "needn't" },
-  'might':  { 'not': "mightn't" },
-  'let':    { 'us': "let's" },
+  'i':      { 'am': "I\'m", 'have': "I\'ve", 'will': "I\'ll", 'would': "I\'d" },
+  'you':    { 'are': "you\'re", 'have': "you\'ve", 'will': "you\'ll", 'would': "you\'d" },
+  'we':     { 'are': "we\'re", 'have': "we\'ve", 'will': "we\'ll", 'would': "we\'d" },
+  'they':   { 'are': "they\'re", 'have': "they\'ve", 'will': "they\'ll", 'would': "they\'d" },
+  'he':     { 'is': "he\'s", 'will': "he\'ll", 'would': "he\'d" },
+  'she':    { 'is': "she\'s", 'will': "she\'ll", 'would': "she\'d" },
+  'it':     { 'is': "it\'s", 'will': "it\'ll" },
+  'there':  { 'is': "there\'s" },
+  'that':   { 'is': "that\'s" },
+  'what':   { 'is': "what\'s" },
+  'who':    { 'is': "who\'s" },
+  'must':   { 'not': "mustn\'t" },
+  'need':   { 'not': "needn\'t" },
+  'might':  { 'not': "mightn\'t" },
+  'let':    { 'us': "let\'s" },
 };
 
 // Case-insensitive lookup: "You" → "you", "I" → "i", "He" → "he", etc.
@@ -492,6 +492,10 @@ export const getContractionFor = (word: string, nextWord: string): string | null
   EXPANSION_TO_CONTRACTION[word.toLowerCase()]?.[nextWord?.toLowerCase()] ?? null;
 
 /** Always returns 6 shuffled options; guarantees `correct` is present when non-empty. */
+function optionIdentity(value: string): string {
+  return String(value ?? '').trim().replace(/[.,!?;:]+$/g, '').toLowerCase();
+}
+
 function finalizeOptionRow(choices: string[], correct: string | undefined | null): string[] {
   const c = typeof correct === 'string' ? correct.trim() : '';
   const deduped: string[] = [];
@@ -499,12 +503,12 @@ function finalizeOptionRow(choices: string[], correct: string | undefined | null
   for (const w of choices) {
     if (w == null || String(w).trim() === '') continue;
     const s = String(w);
-    const k = s.toLowerCase();
+    const k = optionIdentity(s);
     if (seen.has(k)) continue;
     seen.add(k);
     deduped.push(s);
   }
-  if (c && !deduped.some((w) => w.toLowerCase() === c.toLowerCase())) {
+  if (c && !deduped.some((w) => optionIdentity(w) === optionIdentity(c))) {
     deduped.unshift(c);
   }
   const trimmed = deduped.slice(0, 6);
@@ -524,8 +528,6 @@ const getPerWordDistracts = (
   if (!currentCorrect || String(currentCorrect).trim() === '') {
     return [];
   }
-  const currentDistractors = (wordData.distractors ?? []).slice(0, 5);
-
   const enSurface = String(phrase?.english ?? '').trim();
   const blockLoudAsDistractorForStrangeNoise =
     /\bstrange\s+noise\b/i.test(enSurface) &&
@@ -536,12 +538,60 @@ const getPerWordDistracts = (
     return k === 'loud' || k === 'louder' || k === 'noisy';
   };
 
-  const fallbackPool =
+  const globalFallbackPool =
     ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es'
       ? SPANISH_FALLBACK_POOL.filter((w: string) => !w.includes(' '))
       : [...WORD_POOLS_L1.nouns, ...WORD_POOLS_L1.verbs, ...WORD_POOLS_L1.adjectives].filter(
           (w: string) => !w.includes(' ') && !isConfusingVolumeDistractor(w),
         );
+
+  const cat = String(wordData.category ?? '').toLowerCase();
+  const correctLower = String(currentCorrect).toLowerCase();
+  const isSpanishTarget = ENABLE_DEV_STUDY_TARGET_LANG && studyTarget === 'es';
+  const sameLanguageCategoryPool = (): string[] => {
+    if (isSpanishTarget) {
+      if (cat.includes('articulo') || cat === 'article') return ['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas'];
+      if (cat.includes('pronombre') || cat === 'pronoun') return ['yo', 'tú', 'él', 'ella', 'usted', 'nosotros', 'ellos', 'me', 'te', 'se', 'nos', 'lo', 'la', 'le'];
+      if (cat.includes('prepos')) return ['a', 'de', 'en', 'por', 'para', 'con', 'sin', 'desde', 'hasta', 'sobre'];
+      if (cat.includes('neg')) return ['no', 'nunca', 'nada', 'tampoco', 'ya'];
+      if (cat.includes('verbo')) return ['soy', 'es', 'estoy', 'está', 'tengo', 'tiene', 'hago', 'hace', 'voy', 'va', 'puedo', 'puede'];
+      if (cat.includes('adverb')) return ['ahora', 'hoy', 'ayer', 'siempre', 'nunca', 'también', 'bien', 'mal', 'aquí', 'allí'];
+      if (cat.includes('sustantivo')) return ['casa', 'tiempo', 'día', 'trabajo', 'persona', 'lugar', 'mesa', 'puerta', 'libro', 'teléfono'];
+      if (cat.includes('adj')) return ['bueno', 'nuevo', 'grande', 'pequeño', 'importante', 'fácil', 'difícil', 'listo', 'ocupado'];
+      if (cat.includes('puntuacion')) return [',', '?', '!', ';', ':'];
+      return SPANISH_FALLBACK_POOL;
+    }
+
+    if (cat.includes('articulo') || cat === 'article') return ['a', 'an', 'the', 'this', 'that', 'these', 'those', 'my', 'your'];
+    if (cat.includes('pronombre') || cat === 'pronoun') return WORD_POOLS_L1.pronouns;
+    if (cat.includes('prepos')) return WORD_POOLS_L1.prepositions;
+    if (cat.includes('neg')) return WORD_POOLS_L1.negation;
+    if (cat.includes('modal')) return WORD_POOLS_L1.modals;
+    if (cat.includes('verbo') || cat === 'verb') return WORD_POOLS_L1.verbs;
+    if (cat.includes('adverb')) return WORD_POOLS_L1.adverbs;
+    if (cat.includes('sustantivo') || cat === 'noun') return WORD_POOLS_L1.nouns;
+    if (cat.includes('adj')) return WORD_POOLS_L1.adjectives;
+    if (cat.includes('puntuacion') || cat === 'punctuation') return [',', '?', '!', ';', ':'];
+    if (WORD_POOLS_L1.toBe.some((w) => w.toLowerCase() === correctLower)) return WORD_POOLS_L1.toBe;
+    if (WORD_POOLS_L1.modals.includes(correctLower)) return WORD_POOLS_L1.modals;
+    if (WORD_POOLS_L1.prepositions.includes(correctLower)) return WORD_POOLS_L1.prepositions;
+    if (WORD_POOLS_L1.articles.includes(correctLower)) return WORD_POOLS_L1.articles;
+    if (WORD_POOLS_L1.perfect.includes(correctLower)) return WORD_POOLS_L1.perfect;
+    if (WORD_POOLS_L1.gerund.includes(correctLower)) return WORD_POOLS_L1.gerund;
+    if (WORD_POOLS_L1.continuous.includes(correctLower)) return WORD_POOLS_L1.continuous;
+    if (WORD_POOLS_L1.verbs.includes(correctLower)) return WORD_POOLS_L1.verbs;
+    if (WORD_POOLS_L1.adverbs.includes(correctLower)) return WORD_POOLS_L1.adverbs;
+    if (WORD_POOLS_L1.nouns.includes(correctLower)) return WORD_POOLS_L1.nouns;
+    if (WORD_POOLS_L1.adjectives.includes(correctLower)) return WORD_POOLS_L1.adjectives;
+    return globalFallbackPool;
+  };
+
+  const categoryFallbackPool = sameLanguageCategoryPool().filter(
+    (w: string) => !String(w).includes(' ') && !isConfusingVolumeDistractor(String(w)),
+  );
+
+  const rawCurrentDistractors = Array.isArray(wordData.distractors) ? wordData.distractors : [];
+  const currentDistractors = [...rawCurrentDistractors, ...categoryFallbackPool, ...globalFallbackPool];
 
   // Sliding window: pull distractors from next word too (like competitor)
   const nextWordData = rows[wordIndex + 1];
@@ -550,40 +600,48 @@ const getPerWordDistracts = (
 
     // Check if current+next form a contraction pair — offer contraction as alternative
     const contraction = getContractionFor(currentCorrect, nextCorrect);
+    const contractionExpansion = lookupContraction(String(currentCorrect));
 
-    const seen = new Set<string>([currentCorrect.toLowerCase()]);
-    if (nextCorrect) seen.add(String(nextCorrect).toLowerCase());
-    if (contraction) seen.add(contraction.toLowerCase());
+    const seen = new Set<string>([optionIdentity(currentCorrect)]);
+    if (nextCorrect) seen.add(optionIdentity(String(nextCorrect)));
+    if (contraction) seen.add(optionIdentity(contraction));
+    if (contractionExpansion) seen.add(optionIdentity(contractionExpansion[0]));
 
-    const pickUnique = (pool: string[], count: number): string[] => {
+    const pickUnique = (pool: string[], count: number, preserveOrder = false): string[] => {
       const result: string[] = [];
-      for (const w of shuffle([...pool])) {
+      const candidates = preserveOrder ? pool : shuffle([...pool]);
+      for (const w of candidates) {
         if (result.length >= count) break;
         if (isConfusingVolumeDistractor(w)) continue;
-        if (!seen.has(w.toLowerCase())) {
-          seen.add(w.toLowerCase());
+        const k = optionIdentity(w);
+        if (!seen.has(k)) {
+          seen.add(k);
           result.push(w);
         }
       }
       return result;
     };
 
-    const fromCurrent = pickUnique(currentDistractors, contraction ? 2 : 3);
+    const extras = [
+      ...(contraction ? [contraction] : []),
+      ...(contractionExpansion ? [contractionExpansion[0]] : []),
+    ];
+    const targetDistractors = Math.max(0, 5 - extras.length);
+    const fromCurrent = pickUnique(currentDistractors, targetDistractors, true);
     const nextDistractors = (nextWordData.distractors ?? []).slice(0, 5);
     const fromNext = pickUnique(
       nextDistractors.filter((d: string) => d !== nextCorrect),
-      2,
+      Math.max(0, targetDistractors - fromCurrent.length),
     );
 
-    const extras = contraction ? [contraction] : [];
-    const combined = [currentCorrect, ...fromCurrent, ...fromNext, ...extras];
+    const combined = [currentCorrect, ...extras, ...fromCurrent, ...fromNext];
     if (combined.length < 6) {
-      const fallback = fallbackPool.filter(
-        (w: string) => !seen.has(w.toLowerCase()) && !isConfusingVolumeDistractor(w),
+      const fallback = [...categoryFallbackPool, ...globalFallbackPool].filter(
+        (w: string) => !seen.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
       );
       for (const w of shuffle(fallback)) {
         if (combined.length >= 6) break;
-        seen.add(w.toLowerCase());
+        seen.add(optionIdentity(w));
         combined.push(w);
       }
     }
@@ -591,22 +649,28 @@ const getPerWordDistracts = (
   }
 
   // Last word or no next word: show exactly 6, deduplicated
-  const seenLast = new Set<string>([String(currentCorrect).toLowerCase()]);
+  const seenLast = new Set<string>([optionIdentity(String(currentCorrect))]);
+  const contractionExpansion = lookupContraction(String(currentCorrect));
+  if (contractionExpansion) seenLast.add(optionIdentity(contractionExpansion[0]));
   const uniqueDistractors = currentDistractors.filter((d: string) => {
     if (isConfusingVolumeDistractor(d)) return false;
-    const k = d.toLowerCase();
+    const k = optionIdentity(d);
     if (seenLast.has(k)) return false;
     seenLast.add(k);
     return true;
   });
-  const result = [currentCorrect, ...uniqueDistractors];
+  const result = [
+    currentCorrect,
+    ...(contractionExpansion ? [contractionExpansion[0]] : []),
+    ...uniqueDistractors,
+  ];
   if (result.length < 6) {
-    const fallback = fallbackPool.filter(
-      (w: string) => !seenLast.has(w.toLowerCase()) && !isConfusingVolumeDistractor(w),
+    const fallback = [...categoryFallbackPool, ...globalFallbackPool].filter(
+      (w: string) => !seenLast.has(optionIdentity(w)) && !isConfusingVolumeDistractor(w),
     );
     for (const w of shuffle(fallback)) {
       if (result.length >= 6) break;
-      seenLast.add(w.toLowerCase());
+      seenLast.add(optionIdentity(w));
       result.push(w);
     }
   }
@@ -689,7 +753,7 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
   }
 
   // RULE v4: every distractor must be a single orthographic word — no spaces.
-  // Contractions (don't, isn't) are fine — they have no space and are one unit.
+  // Contractions (don\'t, isn\'t) are fine — they have no space and are one unit.
   const singleWord = (w: string) => !w.includes(' ');
 
   // CHANGE v5: contraction branching — when the correct word is a contraction,
@@ -708,11 +772,11 @@ const makeSmartOptions = (english: string, wordIndex: number = 0, lessonId: numb
     return shuffle([correctWord, expandedFirst, ...shuffle(contrDistPool).slice(0, 4)]);
   }
 
-  // Отрицательные формы (don't / isn't / can't / won't…) — только отрицания
+  // Отрицательные формы (don\'t / isn\'t / can\'t / won\'t…) — только отрицания
   const NEGATION_FORMS = [
-    "don't","doesn't","didn't","won't","can't","couldn't","shouldn't","wouldn't",
-    "haven't","hadn't","hasn't","isn't","aren't","wasn't","weren't","needn't","mustn't",
-    "shan't","mightn't","daren't","not","never",
+    "don\'t","doesn\'t","didn\'t","won\'t","can\'t","couldn\'t","shouldn\'t","wouldn\'t",
+    "haven\'t","hadn\'t","hasn\'t","isn\'t","aren\'t","wasn\'t","weren\'t","needn\'t","mustn\'t",
+    "shan\'t","mightn\'t","daren\'t","not","never",
   ];
   if (NEGATION_FORMS.includes(correctWord)) {
     const pool = NEGATION_FORMS.filter(n => n !== correctWord);

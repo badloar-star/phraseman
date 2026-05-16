@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -8,6 +8,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
+import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
@@ -15,12 +16,17 @@ import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { checkAchievements } from './achievements';
 import { saveExamProgress, type MedalTier } from './medal_utils';
-import { unlockLesson } from './lesson_lock_system';
+import { getPremiumCourseLevel, markPremiumCourseLevelReached, unlockLesson } from './lesson_lock_system';
 import { addShards, awardOneTime } from './shards_system';
-import { usePremium } from '../components/PremiumContext';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
 import { buildLevelExamEnglish, buildLevelExamHintPair, recordMistake } from './active_recall';
 import { trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
+import { logMistake } from './mistake_log';
+import { resolveChoiceMistakeToken, resolvePhraseMistakeToken } from './mistake_token_resolver';
+import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from './pos_taxonomy';
+import { getCourseLevelIndex, getFirstLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
+import { getVerifiedPremiumStatus } from './premium_guard';
+import { lessonPaywallContext } from './monetization_policy';
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -39,6 +45,11 @@ interface LevelQ {
   opts:    string[];
   correct: number;
   type?:   QType;
+}
+
+function levelExamCategory(q: LevelQ, token?: string): WordCategory | undefined {
+  const category = normalizeWordCategory(`${q.topic} ${q.topicUK} ${q.topicES}`, token).category;
+  return isUserFacingCategory(category) ? category : undefined;
 }
 
 // 3 вопроса per lesson (первые 3 из pool = fill-типы, они лучше всего подходят)
@@ -72,7 +83,7 @@ const QUESTION_POOL: LevelQ[] = [
   {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',topicES:'El verbo to have',q:'She ___ two children.',opts:['have','has','had','having'],correct:1},
   {lessonNum:7,topic:'Глагол To Have',topicUK:'Дієслово To Have',topicES:'El verbo to have',q:'Do they ___ a car?',opts:['has','have','had','having'],correct:1},
   // L8
-  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',topicES:'Preposiciones de tiempo',q:"I wake up ___ 7 o'clock.",opts:['in','on','at','by'],correct:2},
+  {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',topicES:'Preposiciones de tiempo',q:"I wake up ___ 7 o\'clock.",opts:['in','on','at','by'],correct:2},
   {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',topicES:'Preposiciones de tiempo',q:'She was born ___ Monday.',opts:['in','on','at','by'],correct:1},
   {lessonNum:8,topic:'Предлоги времени',topicUK:'Прийменники часу',topicES:'Preposiciones de tiempo',q:'He was born ___ 1990.',opts:['in','on','at','by'],correct:0},
   // L9
@@ -96,7 +107,7 @@ const QUESTION_POOL: LevelQ[] = [
   {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',topicES:'Future Simple (will)',q:'I ___ not be late.',opts:['will','shall','would','am'],correct:0},
   {lessonNum:13,topic:'Future Simple (will)',topicUK:'Future Simple (will)',topicES:'Future Simple (will)',q:'It ___ rain tomorrow.',opts:['will','would','shall','is'],correct:0},
   // L14
-  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',topicES:'Grados de comparación',q:"This is ___ book I've read.",opts:['good','better','the best','best'],correct:2},
+  {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',topicES:'Grados de comparación',q:"This is ___ book I\'ve read.",opts:['good','better','the best','best'],correct:2},
   {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',topicES:'Grados de comparación',q:'She is ___ than her sister.',opts:['tall','taller','tallest','most tall'],correct:1},
   {lessonNum:14,topic:'Степени сравнения',topicUK:'Ступені порівняння',topicES:'Grados de comparación',q:'This test is ___ than the last one.',opts:['hard','harder','hardest','more hard'],correct:1},
   // L15
@@ -113,7 +124,7 @@ const QUESTION_POOL: LevelQ[] = [
   {lessonNum:17,topic:'Present Continuous',topicUK:'Present Continuous',topicES:'Present Continuous',q:'I ___ dinner at the moment.',opts:['cook','cooks','am cooking','cooked'],correct:2},
   // L18
   {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',topicES:'Imperativo',q:'___ quiet, please.',opts:['Be','Is','Are','Being'],correct:0},
-  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',topicES:'Imperativo',q:"Don't ___ late.",opts:['be','is','are','being'],correct:0},
+  {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',topicES:'Imperativo',q:"Don\'t ___ late.",opts:['be','is','are','being'],correct:0},
   {lessonNum:18,topic:'Повелительное наклонение',topicUK:'Наказовий спосіб',topicES:'Imperativo',q:'___ the window, please.',opts:['Open','Opens','Opening','Opened'],correct:0},
   // L19
   {lessonNum:19,topic:'Предлоги места',topicUK:'Прийменники місця',topicES:'Preposiciones de lugar',q:'The cat is ___ the table.',opts:['in','on','under','between'],correct:1},
@@ -126,7 +137,7 @@ const QUESTION_POOL: LevelQ[] = [
   // L21
   {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',topicES:'Pronombres indefinidos',q:'I heard a noise. There must be ___ outside.',opts:['somebody','anybody','nobody','everybody'],correct:0},
   {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',topicES:'Pronombres indefinidos',q:'Is there ___ who can help me?',opts:['somewhere','anyone','no one','everyone'],correct:1},
-  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',topicES:'Pronombres indefinidos',q:"I don't have ___ money.",opts:['some','any','no','every'],correct:1},
+  {lessonNum:21,topic:'Неопределённые местоимения',topicUK:'Неозначені займенники',topicES:'Pronombres indefinidos',q:"I don\'t have ___ money.",opts:['some','any','no','every'],correct:1},
   // L22
   {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',topicES:'Gerundio (-ing)',q:'She enjoys ___.',opts:['dance','dances','dancing','to dance'],correct:2},
   {lessonNum:22,topic:'Герундий (-ing)',topicUK:'Герундій (-ing)',topicES:'Gerundio (-ing)',q:'He avoids ___ the problem.',opts:['discuss','discussed','discussing','to discuss'],correct:2},
@@ -201,9 +212,9 @@ const INTRO_Q_COUNT = 30;
 // ── Главный компонент ─────────────────────────────────────────────────────────
 export default function LevelExam() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
-  const { isPremium } = usePremium();
   const { level } = useLocalSearchParams<{ level: string }>();
   const validLevels = ['A1', 'A2', 'B1', 'B2'];
   const lvl = validLevels.includes(level) ? level : 'A1';
@@ -216,11 +227,77 @@ export default function LevelExam() {
   const [examPassCount, setExamPassCount] = useState(0);
   const [medalImproved, setMedalImproved] = useState(false);
   const [exitExamConfirm, setExitExamConfirm] = useState(false);
+  const [accessState, setAccessState] = useState<'checking' | 'allowed' | 'blocked'>('checking');
+  const [blockedText, setBlockedText] = useState('');
+  const [accessBlockKind, setAccessBlockKind] = useState<'premium' | 'level' | 'error'>('level');
 
   const questions = useMemo(() => {
     const [from, to] = LEVEL_RANGES[lvl] ?? [1, 8];
     return QUESTION_POOL.filter(q => q.lessonNum >= from && q.lessonNum <= to);
   }, [lvl]);
+
+  useEffect(() => {
+    let cancelled = false;
+    setAccessState('checking');
+    setBlockedText('');
+    setAccessBlockKind('level');
+    void (async () => {
+      const noLimits = await AsyncStorage.getItem('tester_no_limits');
+      if (noLimits === 'true') {
+        if (!cancelled) setAccessState('allowed');
+        return;
+      }
+
+      const premiumNow = await getVerifiedPremiumStatus();
+      if (!premiumNow) {
+        if (!cancelled) {
+          setAccessBlockKind('premium');
+          setBlockedText(triLang(lang, {
+            ru: 'Premium откроет уроки уровня и доступ к зачёту. Без Premium доступны только первые 3 урока.',
+            uk: 'Premium відкриє уроки рівня і доступ до заліку. Без Premium доступні лише перші 3 уроки.',
+            es: 'Premium abre las lecciones del nivel y el acceso al examen. Sin Premium solo están disponibles las 3 primeras lecciones.',
+          }));
+          setAccessState('blocked');
+        }
+        return;
+      }
+
+      const reachedLevel = await getPremiumCourseLevel();
+      const examLevel = lvl as CourseLevel;
+      if (getCourseLevelIndex(examLevel) <= getCourseLevelIndex(reachedLevel)) {
+        if (!cancelled) setAccessState('allowed');
+        return;
+      }
+
+      const prevLevel = getPreviousCourseLevel(examLevel);
+      if (!cancelled) {
+        setAccessBlockKind('level');
+        setBlockedText(prevLevel
+          ? triLang(lang, {
+              ru: `Чтобы открыть уровень ${examLevel}, сначала сдайте зачёт ${prevLevel}.`,
+              uk: `Щоб відкрити рівень ${examLevel}, спочатку складіть залік ${prevLevel}.`,
+              es: `Para abrir el nivel ${examLevel}, primero supera el examen de ${prevLevel}.`,
+            })
+          : triLang(lang, {
+              ru: 'Этот зачёт пока недоступен.',
+              uk: 'Цей залік поки недоступний.',
+              es: 'Este examen todavía no está disponible.',
+            }));
+        setAccessState('blocked');
+      }
+    })().catch(() => {
+      if (!cancelled) {
+        setAccessBlockKind('error');
+        setBlockedText(triLang(lang, {
+          ru: 'Не удалось проверить доступ к зачёту. Попробуйте открыть его ещё раз.',
+          uk: 'Не вдалося перевірити доступ до заліку. Спробуйте відкрити його ще раз.',
+          es: 'No se pudo comprobar el acceso al examen. Inténtalo de nuevo.',
+        }));
+        setAccessState('blocked');
+      }
+    });
+    return () => { cancelled = true; };
+  }, [lang, lvl]);
 
   const title = LEVEL_LABELS[lvl]
     ? triLang(lang, LEVEL_LABELS[lvl])
@@ -235,19 +312,42 @@ export default function LevelExam() {
     setIdx(0);
     setShowAnswer(false);
     setPhase('quiz');
-  }, [questions.length]);
+  }, [questions.length, lvl]);
 
   const handlePick = (ci: number) => {
     if (chosen !== null) return;
     hapticTap();
     if (q && ci !== q.correct) {
       const hints = buildLevelExamHintPair(q);
+      const phrase = buildLevelExamEnglish(q);
+      const expected = q.opts[q.correct];
+      const picked = q.opts[ci];
+      const resolvedToken = q.type === 'choice4'
+        ? resolveChoiceMistakeToken(phrase, picked, q.topic)
+        : resolvePhraseMistakeToken(phrase, picked, q.topic);
+      const tokenMetaBase = q.q.includes('___') && expected
+        ? { tokenText: expected, expected, picked, rawCategory: q.topic }
+        : {
+            ...(resolvedToken ?? { expected }),
+            rawCategory: q.topic,
+          };
+      const category = levelExamCategory(q, tokenMetaBase.tokenText || tokenMetaBase.expected);
+      const tokenMeta = { ...tokenMetaBase, category };
       void recordMistake(
-        buildLevelExamEnglish(q),
+        phrase,
         hints.ru,
         q.lessonNum,
         hints.uk,
         'exam',
+        undefined,
+        tokenMeta,
+      );
+      logMistake(
+        phrase,
+        q.lessonNum,
+        'exam',
+        'wrong_pick',
+        tokenMeta,
       );
     }
     setChoices(prev => { const n = [...prev]; n[idx] = ci; return n; });
@@ -269,13 +369,13 @@ export default function LevelExam() {
     try {
       await AsyncStorage.setItem(`level_exam_${lvl}_pct`, String(pct));
       await AsyncStorage.setItem(`level_exam_${lvl}_passed`, passed ? '1' : '0');
-      // При сдаче зачёта открываем первый урок следующего уровня (A1→9, B1→25)
+      // При сдаче зачёта открываем следующий уровень.
       if (passed) {
-        // A1 → 9 (первый A2); A2 → 19 (первый B1, только для премиум);
-        // B1 → 29 (первый B2). Пограничные открываются ТОЛЬКО через сдачу зачёта.
-        const nextLevelFirst: Record<string, number> = { A1: 9, B1: 29, ...(isPremium ? { A2: 19 } : {}) };
-        const firstLesson = nextLevelFirst[lvl];
-        if (firstLesson) await unlockLesson(firstLesson);
+        const nextLevel = getNextCourseLevel(lvl as CourseLevel);
+        if (nextLevel) {
+          await markPremiumCourseLevelReached(nextLevel);
+          await unlockLesson(getFirstLessonForLevel(nextLevel));
+        }
         addShards('lesson_quiz_passed').catch(() => {});
       }
       if (pct >= 90) awardOneTime('exam_excellent').catch(() => {});
@@ -299,6 +399,75 @@ export default function LevelExam() {
   const pct = total > 0 ? Math.round(correctCount / total * 100) : 0;
   const passed = pct >= PASS_PCT;
 
+  if (accessState !== 'allowed') {
+    const checking = accessState === 'checking';
+    return (
+      <SafeAreaView style={{ flex: 1, backgroundColor: LX.screen }}>
+        <ContentWrap>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              paddingHorizontal: 16,
+              paddingVertical: 12,
+              borderBottomWidth: StyleSheet.hairlineWidth,
+              borderBottomColor: LX.cardLine,
+            }}
+          >
+            <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
+              <Ionicons name="chevron-back" size={26} color="#FFFFFF" />
+            </TouchableOpacity>
+          </View>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
+            <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: LX.card, borderWidth: 1, borderColor: LX.cardLine, alignItems: 'center', justifyContent: 'center', marginBottom: 22 }}>
+              <Ionicons name={checking ? 'hourglass-outline' : 'lock-closed-outline'} size={38} color={LX.gold} />
+            </View>
+            <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
+              {checking
+                ? triLang(lang, { ru: 'Проверяем доступ', uk: 'Перевіряємо доступ', es: 'Comprobando acceso' })
+                : title}
+            </Text>
+            <Text style={{ color: 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
+              {checking
+                ? triLang(lang, {
+                    ru: 'Секунду, сверяем текущий уровень.',
+                    uk: 'Секунду, звіряємо поточний рівень.',
+                    es: 'Un segundo, estamos comprobando tu nivel actual.',
+                  })
+                : blockedText}
+            </Text>
+            {!checking && (
+              <TouchableOpacity
+                activeOpacity={0.86}
+                onPress={() => {
+                  hapticTap();
+                  if (accessBlockKind === 'premium') {
+                    router.push({
+                      pathname: '/premium_modal',
+                      params: {
+                        context: lessonPaywallContext(getFirstLessonForLevel(lvl as CourseLevel)),
+                        lessons_done: '0',
+                      },
+                    } as any);
+                  } else {
+                    router.replace('/(tabs)/lessons' as any);
+                  }
+                }}
+                style={{ backgroundColor: LX.gold, paddingHorizontal: 22, paddingVertical: 13, borderRadius: 14 }}
+              >
+                <Text style={{ color: LX.ink, fontSize: f.body, fontWeight: '900' }}>
+                  {accessBlockKind === 'premium'
+                    ? triLang(lang, { ru: 'Получить Premium', uk: 'Отримати Premium', es: 'Obtener Premium' })
+                    : triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Ir a lecciones' })}
+                </Text>
+              </TouchableOpacity>
+            )}
+          </View>
+        </ContentWrap>
+      </SafeAreaView>
+    );
+  }
+
   // ── INTRO ────────────────────────────────────────────────────────────────────
   if (phase === 'intro') {
     const statTriples = [
@@ -309,8 +478,8 @@ export default function LevelExam() {
       },
       {
         icon: 'ribbon-outline' as const,
-        value: triLang(lang, { ru: '4,5', uk: '4,5', es: '4,5' }),
-        cap: triLang(lang, { ru: 'БАЛЛА', uk: 'БАЛИ', es: 'PTOS.' }),
+        value: `${PASS_PCT}%`,
+        cap: triLang(lang, { ru: 'ДЛЯ СДАЧИ', uk: 'ДЛЯ ЗДАЧІ', es: 'PARA APROBAR' }),
       },
       {
         icon: 'refresh-circle-outline' as const,
@@ -319,16 +488,16 @@ export default function LevelExam() {
       },
     ];
     const introBody = triLang(lang, {
-      ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Для перехода дальше нужно набрать минимум 4,5 балла. Если результат не устроит, зачёт можно пройти повторно — без штрафа, с сохранением лучшего результата.`,
-      uk: `${INTRO_Q_COUNT} запитань за ключовими темами рівня ${lvl}. Щоб перейти далі, потрібно набрати щонайменше 4,5 бала. Якщо результат не влаштує, залік можна пройти повторно — без штрафу, зі збереженням найкращого результату.`,
-      es: `${INTRO_Q_COUNT} preguntas sobre los temas clave del nivel ${lvl}. Para avanzar necesitas al menos 4,5 puntos. Si quieres mejorar, puedes repetir el examen sin penalización: guardaremos tu mejor resultado.`,
+      ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Для перехода дальше нужно набрать минимум ${PASS_PCT}%. Если результат не устроит, зачёт можно пройти повторно — без штрафа, с сохранением лучшего результата.`,
+      uk: `${INTRO_Q_COUNT} запитань за ключовими темами рівня ${lvl}. Щоб перейти далі, потрібно набрати щонайменше ${PASS_PCT}%. Якщо результат не влаштує, залік можна пройти повторно — без штрафу, зі збереженням найкращого результату.`,
+      es: `${INTRO_Q_COUNT} preguntas sobre los temas clave del nivel ${lvl}. Para avanzar necesitas al menos un ${PASS_PCT} %. Si quieres mejorar, puedes repetir el examen sin penalización: guardaremos tu mejor resultado.`,
     });
     const premiumNote =
-      lvl === 'A2'
+      lvl !== 'B2'
         ? triLang(lang, {
-            ru: 'Уровень B1 также можно открыть оформив Премиум-подписку.',
-            uk: 'Рівень B1 також можна відкрити з Преміум-підпискою.',
-            es: 'El nivel B1 también se puede desbloquear con la suscripción Premium.',
+            ru: 'С Premium все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
+            uk: 'З Premium усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',
+            es: 'Con Premium todas las lecciones del nivel actual están abiertas; el siguiente nivel se abrirá al aprobar este examen.',
           })
         : null;
 
@@ -405,10 +574,12 @@ export default function LevelExam() {
                         color: LX.gold,
                         fontSize: f.label - 1,
                         fontWeight: '700',
-                        letterSpacing: 0.6,
+                        letterSpacing: 0,
                         textAlign: 'center',
                       }}
-                      numberOfLines={2}
+                      numberOfLines={1}
+                      adjustsFontSizeToFit
+                      minimumFontScale={0.62}
                     >
                       {s.cap}
                     </Text>
@@ -470,6 +641,7 @@ export default function LevelExam() {
                   uk: `Залік рівня ${lvl}: вступ`,
                   es: `Examen de nivel ${lvl}: intro`,
                 })}
+                textColor={sx.muted}
               />
             </View>
           </ScrollView>
@@ -484,14 +656,15 @@ export default function LevelExam() {
       .map((qu, i) => ({ q: qu, chosen: choices[i] ?? null, correct: qu?.correct ?? -1 }))
       .filter(x => x.q && x.chosen !== x.correct);
     return (
+      <>
       <ScreenGradient>
       <SafeAreaView style={{ flex: 1 }}>
         <ContentWrap>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
             <TouchableOpacity onPress={() => { hapticTap(); router.back(); }}>
-              <Ionicons name="chevron-back" size={26} color={t.textPrimary} />
+              <Ionicons name="chevron-back" size={26} color={sx.primary} />
             </TouchableOpacity>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
+            <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700', marginLeft: 10 }}>{title}</Text>
           </View>
           <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
             {/* Итог */}
@@ -516,15 +689,15 @@ export default function LevelExam() {
                       : triLang(lang, { ru: '🥉 Новая медаль!', uk: '🥉 Нова медаль!', es: '🥉 ¡Nueva medalla!' })}
                 </Text>
               )}
-              <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '800' }}>{pct}%</Text>
-              <Text style={{ color: t.textMuted, fontSize: f.body }}>
+              <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800' }}>{pct}%</Text>
+              <Text style={{ color: sx.muted, fontSize: f.body }}>
                 {triLang(lang, {
                   ru: `${correctCount} из ${total} правильно`,
                   uk: `${correctCount} з ${total} правильно`,
                   es: `${correctCount} de ${total} acertadas`,
                 })}
               </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.sub }}>
+              <Text style={{ color: sx.muted, fontSize: f.sub }}>
                 {triLang(lang, {
                   ru: `Попытка №${examPassCount}`,
                   uk: `Спроба №${examPassCount}`,
@@ -538,7 +711,7 @@ export default function LevelExam() {
               <View style={{ height: '100%', width: `${pct}%` as any, backgroundColor: passed ? t.correct : t.wrong, borderRadius: 4 }} />
             </View>
 
-            <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginTop: 12, paddingHorizontal: 8 }}>
+            <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginTop: 12, paddingHorizontal: 8 }}>
               {!passed
                 ? triLang(lang, {
                     ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по ошибкам.`,
@@ -611,12 +784,14 @@ export default function LevelExam() {
                   uk: `Залік ${lvl}: результат ${pct}%`,
                   es: `Examen ${lvl}: resultado ${pct}%`,
                 })}
+                textColor={sx.muted}
               />
             </View>
           </ScrollView>
         </ContentWrap>
       </SafeAreaView>
       </ScreenGradient>
+      </>
     );
   }
 
@@ -634,21 +809,21 @@ export default function LevelExam() {
             hapticTap();
             setExitExamConfirm(true);
           }}>
-            <Ionicons name="close" size={26} color={t.textPrimary} />
+            <Ionicons name="close" size={26} color={sx.primary} />
           </TouchableOpacity>
           <View style={{ flex: 1, marginHorizontal: 12 }}>
             <View style={{ height: 6, backgroundColor: t.bgSurface, borderRadius: 3, overflow: 'hidden' }}>
               <View style={{ height: '100%', width: `${progressPct}%` as any, backgroundColor: t.accent, borderRadius: 3 }} />
             </View>
           </View>
-          <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', minWidth: 48, textAlign: 'right' }}>
+          <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', minWidth: 48, textAlign: 'right' }}>
             {idx + 1} / {total}
           </Text>
         </View>
 
         <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }} bounces={false}>
           {/* Топик */}
-          <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
+          <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
             {triLang(lang, { ru: q.topic, uk: q.topicUK, es: q.topicES })} · {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} {q.lessonNum}
           </Text>
 
@@ -705,6 +880,7 @@ export default function LevelExam() {
               screen="level_exam"
               dataId={`level_exam_${lvl}_q${idx}_L${q.lessonNum}`}
               dataText={`${q.q ?? ''}`.slice(0, 120)}
+              textColor={sx.muted}
             />
           </View>
         </ScrollView>

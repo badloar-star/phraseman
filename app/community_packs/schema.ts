@@ -8,8 +8,6 @@
  * - communityPurchasePack
  * - communityListSellerInbox
  * - communityMarkSellerInboxSeen
- * - communityGetPackRatingSummary
- * - communitySubmitPackRating
  * - communityFetchPackCardsIfAccessible (карты при снятии с витрины / для покупателя)
  * - communityAdminModeratePack (admin claim; только админка)
  */

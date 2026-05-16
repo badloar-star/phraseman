@@ -12,7 +12,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { ensureAnonUser } from './cloud_sync';
 import { ensureArenaAuthUid, getCanonicalUserId } from './user_id_policy';
-import { getWeekKey } from './hall_of_fame_utils';
+import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
+import {
+  PROFILE_CARD_LEVEL_KEY,
+  PROFILE_CARD_MOTION_KEY,
+  PROFILE_CARD_PUBLIC_FOCUS_KEY,
+  PROFILE_CARD_THEME_KEY,
+  normalizeProfileCardLevel,
+  normalizeProfileCardMotion,
+  normalizeProfileCardPublicFocus,
+  normalizeProfileCardTheme,
+} from './profile_card_system';
+import type { LeagueCrown } from './services/league_chest_rewards';
 
 // ── Дебаунс для pushMyScore — пишем в Firestore не чаще 1 раза в 30 сек ─────
 // Экономит ~95% записей (урок = 20+ ответов, а пишем 1 раз в конце паузы)
@@ -24,6 +35,7 @@ let _pendingPush: {
   lang: string;
   avatar?: string;
   frame?: string;
+  aura?: string;
   streak?: number;
   leagueId?: number;
   isPremium?: boolean;
@@ -56,11 +68,17 @@ export interface RemoteLeaderEntry {
   lang: string;
   avatar?: string;
   frame?: string;
+  aura?: string;
   weekPoints?: number;
   weekKey?: string;
   streak?: number;
   leagueId?: number;
   isPremium?: boolean;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
+  leagueCrown?: LeagueCrown;
   daily7xp?: number;
   daily7time_ms?: number;
 }
@@ -74,6 +92,16 @@ const getFirestore = () => {
     return null;
   }
 };
+
+const FUNCTIONS_REGION = 'us-central1';
+
+function callable<TReq, TRes>(name: string) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
+}
 
 const COL = 'leaderboard';
 
@@ -89,11 +117,12 @@ export function pushMyScore(
   leagueId?: number,
   frame?: string,
   isPremium?: boolean,
+  aura?: string,
 ): Promise<void> {
   if (!CLOUD_SYNC_ENABLED || !name) return Promise.resolve();
 
   // Накапливаем последние значения
-  _pendingPush = { name, totalPoints, weekPoints, lang, avatar, frame, streak, leagueId, isPremium };
+  _pendingPush = { name, totalPoints, weekPoints, lang, avatar, frame, aura, streak, leagueId, isPremium };
 
   // Сбрасываем предыдущий таймер и ставим новый
   if (_pushDebounceTimer) clearTimeout(_pushDebounceTimer);
@@ -103,7 +132,7 @@ export function pushMyScore(
       const p = _pendingPush;
       _pendingPush = null;
       if (!p) { resolve(); return; }
-      await _doPushMyScore(p.name, p.totalPoints, p.weekPoints, p.lang, p.avatar, p.streak, p.leagueId, p.frame, p.isPremium);
+      await _doPushMyScore(p.name, p.totalPoints, p.weekPoints, p.lang, p.avatar, p.streak, p.leagueId, p.frame, p.isPremium, p.aura);
       resolve();
     }, PUSH_DEBOUNCE_MS);
   });
@@ -119,13 +148,14 @@ export async function pushMyScoreImmediate(
   leagueId?: number,
   frame?: string,
   isPremium?: boolean,
+  aura?: string,
 ): Promise<void> {
   if (_pushDebounceTimer) {
     clearTimeout(_pushDebounceTimer);
     _pushDebounceTimer = null;
   }
   _pendingPush = null;
-  await _doPushMyScore(name, totalPoints, weekPoints, lang, avatar, streak, leagueId, frame, isPremium);
+  await _doPushMyScore(name, totalPoints, weekPoints, lang, avatar, streak, leagueId, frame, isPremium, aura);
 }
 
 async function _doPushMyScore(
@@ -138,11 +168,40 @@ async function _doPushMyScore(
   leagueId?: number,
   frame?: string,
   isPremium?: boolean,
+  aura?: string,
 ): Promise<void> {
   const db = getFirestore();
   if (!db) return;
   const stableId = await ensureAnonUser();
   if (!stableId) return;
+  let resolvedAvatar = avatar?.trim() || undefined;
+  try {
+    const storedAvatar = (await AsyncStorage.getItem('user_avatar'))?.trim();
+    if (storedAvatar && (!resolvedAvatar || /^\d+$/.test(resolvedAvatar))) {
+      resolvedAvatar = storedAvatar;
+    }
+  } catch {}
+  let resolvedAura = normalizeAvatarAuraId(aura);
+  try {
+    const storedAura = (await AsyncStorage.getItem(USER_AVATAR_AURA_KEY))?.trim();
+    resolvedAura = resolvedAura ?? normalizeAvatarAuraId(storedAura);
+  } catch {}
+  let profileCardLevel = 0;
+  let profileCardTheme = 'classic';
+  let profileCardMotion = 'none';
+  let profileCardPublicFocus = 'balanced';
+  try {
+    const [[, rawLevel], [, rawTheme], [, rawMotion], [, rawFocus]] = await AsyncStorage.multiGet([
+      PROFILE_CARD_LEVEL_KEY,
+      PROFILE_CARD_THEME_KEY,
+      PROFILE_CARD_MOTION_KEY,
+      PROFILE_CARD_PUBLIC_FOCUS_KEY,
+    ]);
+    profileCardLevel = normalizeProfileCardLevel(rawLevel);
+    profileCardTheme = normalizeProfileCardTheme(rawTheme);
+    profileCardMotion = normalizeProfileCardMotion(rawMotion);
+    profileCardPublicFocus = normalizeProfileCardPublicFocus(rawFocus);
+  } catch {}
   let arenaAuth: string | null = null;
   try {
     arenaAuth = await ensureArenaAuthUid();
@@ -155,30 +214,44 @@ async function _doPushMyScore(
     if (banDoc.exists) return;
   } catch {}
   try {
-    await db.collection(COL).doc(stableId).set({
+    const fn = callable<
+      {
+        name: string; points: number; weekPoints: number; lang: string; avatar?: string | null;
+        frame?: string | null; aura?: string | null; streak?: number | null; leagueId?: number | null; isPremium?: boolean;
+        profileCardLevel?: number; profileCardTheme?: string; profileCardMotion?: string; profileCardPublicFocus?: string;
+      },
+      { ok: boolean; points?: number; weekPoints?: number }
+    >('leaderboardPushMyScore');
+    await fn({
       name: name.trim(),
-      nameLower: name.trim().toLowerCase(),
       points: totalPoints,
       weekPoints,
-      weekKey: getWeekKey(new Date()),
       lang,
-      avatar: avatar ?? null,
+      avatar: resolvedAvatar ?? null,
       frame: frame ?? null,
+      aura: resolvedAura ?? null,
       streak: streak ?? null,
       leagueId: leagueId ?? null,
       isPremium: isPremium ?? false,
-      ...(arenaAuth ? { firebaseAuthUid: arenaAuth } : {}),
-      updatedAt: Date.now(),
-    }, { merge: true });
+      profileCardLevel,
+      profileCardTheme,
+      profileCardMotion,
+      profileCardPublicFocus,
+    });
   } catch {}
   // Копия для топа арены: id arena_profiles = Auth uid, leaderboard = stableId.
   try {
     if (arenaAuth) {
       await db.collection('arena_profiles').doc(arenaAuth).set({
         courseTotalXp: totalPoints,
-        courseAvatar: avatar?.trim() ? avatar.trim() : null,
+        courseAvatar: resolvedAvatar ?? null,
         courseFrame: frame?.trim() ? frame.trim() : null,
+        courseAura: resolvedAura ?? null,
         courseIsPremium: isPremium ?? false,
+        courseProfileCardLevel: profileCardLevel,
+        courseProfileCardTheme: profileCardTheme,
+        courseProfileCardMotion: profileCardMotion,
+        courseProfileCardPublicFocus: profileCardPublicFocus,
         courseDisplayAt: Date.now(),
         mirrorStableId: stableId,
       }, { merge: true });
@@ -190,23 +263,12 @@ async function _doPushMyScore(
 export async function updateMyPremiumInLeaderboard(isPremium: boolean): Promise<void> {
   const db = getFirestore();
   if (!db) return;
-  const uid = await ensureAnonUser();
-  if (!uid) return;
   try {
-    await db.collection(COL).doc(uid).set({ isPremium }, { merge: true });
-  } catch {}
-  try {
-    const arenaAuth = await ensureArenaAuthUid();
-    if (arenaAuth) {
-      await db.collection('arena_profiles').doc(arenaAuth).set({
-        courseIsPremium: isPremium,
-        courseDisplayAt: Date.now(),
-      }, { merge: true });
-    }
+    await ensureAnonUser();
+    const fn = callable<{ isPremium: boolean }, { ok: boolean }>('leaderboardUpdatePremium');
+    await fn({ isPremium });
   } catch {}
 }
-
-const NAME_IDX = 'name_index'; // коллекция резервации уникальных ников
 
 // ── Атомарно зарезервировать ник через транзакцию ───────────────────────────
 // Возвращает 'ok' | 'taken' | 'error'
@@ -216,48 +278,13 @@ export async function reserveName(
   oldName: string,
 ): Promise<'ok' | 'taken' | 'error'> {
   if (!CLOUD_SYNC_ENABLED) return 'ok';
-  const db = getFirestore();
-  if (!db) return 'ok';
   try {
-    const myUid = await ensureAnonUser();
-    if (!myUid) return 'error';
-    const nameLower = name.trim().toLowerCase();
-    const oldNameLower = oldName.trim().toLowerCase();
-
-    // Legacy-страховка: у старых аккаунтов может не быть записи в name_index.
-    // Проверяем сам leaderboard, чтобы не выдать уже занятый ник.
-    const sameNameSnap = await db
-      .collection(COL)
-      .where('nameLower', '==', nameLower)
-      .limit(5)
-      .get();
-    if (sameNameSnap.docs.some((d: any) => d.id !== myUid)) {
-      return 'taken';
-    }
-
-    await db.runTransaction(async (tx: any) => {
-      const nameRef = db.collection(NAME_IDX).doc(nameLower);
-      const snap = await tx.get(nameRef);
-
-      if (snap.exists && snap.data()?.uid !== myUid) {
-        throw new Error('NAME_TAKEN');
-      }
-
-      tx.set(nameRef, { uid: myUid, name: name.trim(), updatedAt: Date.now() });
-
-      // Освобождаем старый слот если имя изменилось
-      if (oldNameLower && oldNameLower !== nameLower) {
-        const oldRef = db.collection(NAME_IDX).doc(oldNameLower);
-        const oldSnap = await tx.get(oldRef);
-        if (oldSnap.exists && oldSnap.data()?.uid === myUid) {
-          tx.delete(oldRef);
-        }
-      }
-    });
-
-    return 'ok';
+    await ensureAnonUser();
+    const fn = callable<{ name: string; oldName: string }, { ok: boolean; status: 'ok' | 'taken' }>('nameReserve');
+    const { data } = await fn({ name: name.trim(), oldName: oldName.trim() });
+    return data.status === 'taken' ? 'taken' : 'ok';
   } catch (e: any) {
-    if (e?.message === 'NAME_TAKEN') return 'taken';
+    if (String(e?.message ?? '').includes('name_taken') || String(e?.code ?? '').includes('already-exists')) return 'taken';
     return 'error';
   }
 }
@@ -266,28 +293,11 @@ export async function reserveName(
 // Используется для валидации перед показом ошибки. Основная блокировка — reserveName.
 export async function isNameAvailable(name: string): Promise<boolean> {
   if (!CLOUD_SYNC_ENABLED) return true;
-  const db = getFirestore();
-  if (!db) return true;
   try {
-    const myUid = await ensureAnonUser();
-    const nameLower = name.trim().toLowerCase();
-
-    const snap = await db.collection(NAME_IDX).doc(nameLower).get();
-    if (snap.exists) {
-      // Занят только самим пользователем — разрешаем
-      if (myUid && snap.data()?.uid === myUid) return true;
-      return false;
-    }
-
-    // Fallback для legacy-данных без name_index:
-    // если в leaderboard уже есть такой nameLower у другого uid — ник занят.
-    const sameNameSnap = await db
-      .collection(COL)
-      .where('nameLower', '==', nameLower)
-      .limit(5)
-      .get();
-    const takenByOther = sameNameSnap.docs.some((d: any) => d.id !== myUid);
-    return !takenByOther;
+    await ensureAnonUser();
+    const fn = callable<{ name: string }, { ok: boolean; available: boolean }>('nameCheckAvailability');
+    const { data } = await fn({ name: name.trim() });
+    return data.available !== false;
   } catch {
     return true; // при ошибке не блокируем
   }
@@ -316,11 +326,27 @@ export async function fetchGlobalLeaderboard(): Promise<RemoteLeaderEntry[]> {
       lang: doc.data().lang ?? 'ru',
       avatar: doc.data().avatar ?? undefined,
       frame: doc.data().frame ?? undefined,
+      aura: normalizeAvatarAuraId(doc.data().aura) ?? undefined,
       weekPoints: doc.data().weekPoints ?? 0,
       weekKey: doc.data().weekKey ?? '',
       streak: doc.data().streak ?? undefined,
       leagueId: doc.data().leagueId ?? undefined,
       isPremium: doc.data().isPremium ?? false,
+      profileCardLevel: normalizeProfileCardLevel(doc.data().profileCardLevel),
+      profileCardTheme: normalizeProfileCardTheme(doc.data().profileCardTheme),
+      profileCardMotion: normalizeProfileCardMotion(doc.data().profileCardMotion),
+      profileCardPublicFocus: normalizeProfileCardPublicFocus(doc.data().profileCardPublicFocus),
+      leagueCrown: Number(doc.data().leagueCrownExpiresAt) > Date.now()
+        ? {
+            uid: doc.id,
+            name: doc.data().name ?? '',
+            weekId: String(doc.data().leagueCrownWeekId ?? ''),
+            groupId: String(doc.data().leagueCrownGroupId ?? ''),
+            leagueId: Math.max(0, Math.floor(Number(doc.data().leagueId) || 0)),
+            expiresAt: Number(doc.data().leagueCrownExpiresAt),
+            aura: 'league_chest_crown',
+          }
+        : undefined,
       daily7xp: typeof doc.data().daily7xp === 'number' ? doc.data().daily7xp : undefined,
       daily7time_ms: typeof doc.data().daily7time_ms === 'number' ? doc.data().daily7time_ms : undefined,
     });
@@ -407,49 +433,19 @@ export async function deleteMyLeaderboardEntry(): Promise<void> {
 // источника будут уже стёрты.
 export async function deleteMyNameReservation(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
-  const db = getFirestore();
-  if (!db) return;
   try {
     const canonicalUid = await getCanonicalUserId();
     if (!canonicalUid) return;
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const auth = require('@react-native-firebase/auth').default();
-    const authUid = auth.currentUser?.uid ?? null;
-    const ownerUids = new Set<string>([canonicalUid, authUid].filter(Boolean) as string[]);
 
     // Собираем nameLower из всех возможных источников.
     const candidates = new Set<string>();
-    for (const uid of ownerUids) {
-      try {
-        const snap = await db.collection(COL).doc(uid).get();
-        const nl = snap.data()?.nameLower;
-        if (typeof nl === 'string' && nl.trim()) candidates.add(nl.trim());
-        const n = snap.data()?.name;
-        if (typeof n === 'string' && n.trim()) candidates.add(n.trim().toLowerCase());
-      } catch {}
-    }
     try {
       const localName = await AsyncStorage.getItem('user_name');
       if (localName && localName.trim()) candidates.add(localName.trim().toLowerCase());
     } catch {}
 
-    if (candidates.size === 0) return;
-
-    // Удаляем каждый name_index/{nameLower} в транзакции с проверкой uid,
-    // чтобы случайно не снести чужую резервацию.
-    await Promise.all(
-      Array.from(candidates).map(async (nameLower) => {
-        try {
-          await db.runTransaction(async (tx: any) => {
-            const ref = db.collection(NAME_IDX).doc(nameLower);
-            const snap = await tx.get(ref);
-            if (snap.exists && ownerUids.has(snap.data()?.uid)) {
-              tx.delete(ref);
-            }
-          });
-        } catch {}
-      }),
-    );
+    const fn = callable<{ names: string[] }, { ok: boolean; deleted: number }>('nameReleaseMine');
+    await fn({ names: Array.from(candidates) });
   } catch {}
 }
 

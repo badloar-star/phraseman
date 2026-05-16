@@ -20,13 +20,64 @@ import { triLang, type Lang } from '../constants/i18n';
 import ScreenGradient from '../components/ScreenGradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { MOTION_SCALE } from '../constants/motion';
-import type { LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
+import type { IntroLine, IntroTextPart, IntroTextTone, LessonIntroExample, LessonIntroScreen, LessonIntroBlockKind } from './lesson_data_types';
 import type { StudyTargetLang } from './study_target_lang_dev';
 import { spanishLessonUiStringsActive, spanishStudyActive } from './spanish_content_gate';
 import { useStudyTarget } from '../components/StudyTargetContext';
-import PhraseContentStars from '../components/PhraseContentStars';
 
 const { width: SCREEN_W, height: SCREEN_H } = Dimensions.get('window');
+
+/**
+ * Разбивает текст на сегменты: обычный текст и английские вставки.
+ * Английская вставка — последовательность ASCII-символов (латиница, цифры,
+ * пробел, дефис, слэш, апостроф, точка, запятая) длиной ≥2, окружённая
+ * не-ASCII символами или границами строки. Односимвольные ASCII (I, a)
+ * внутри кириллического текста тоже выделяются если стоят отдельным словом.
+ */
+function splitEnglish(text: string): Array<{ value: string; isEn: boolean }> {
+  // Паттерн: блок ASCII-слов (мин 1 ASCII-буква) отделённый от кириллицы
+  const segments: Array<{ value: string; isEn: boolean }> = [];
+  // Разбиваем по границам ASCII/не-ASCII
+  const re = /([A-Za-z][A-Za-z0-9 '\-\/.,→↔]*)/g;
+  let last = 0;
+  let m: RegExpExecArray | null;
+  while ((m = re.exec(text)) !== null) {
+    if (m.index > last) {
+      segments.push({ value: text.slice(last, m.index), isEn: false });
+    }
+    segments.push({ value: m[0], isEn: true });
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) {
+    segments.push({ value: text.slice(last), isEn: false });
+  }
+  return segments;
+}
+
+function HighlightedText({
+  text,
+  style,
+  accentColor,
+}: {
+  text: string;
+  style: any;
+  accentColor: string;
+}) {
+  const segments = splitEnglish(text);
+  return (
+    <Text style={style}>
+      {segments.map((seg, i) =>
+        seg.isEn ? (
+          <Text key={i} style={{ color: accentColor, fontWeight: '600' }}>
+            {seg.value}
+          </Text>
+        ) : (
+          <Text key={i}>{seg.value}</Text>
+        )
+      )}
+    </Text>
+  );
+}
 
 /** В режиме «учим ES» первая строка — испанская цель (trES), не английский мост (en). */
 function lessonIntroExampleLines(
@@ -47,10 +98,175 @@ function lessonIntroExampleLines(
   return { primary, secondary };
 }
 
+function hasRichIntroLines(screen: LessonIntroScreen): boolean {
+  return !!(screen.linesRU?.length || screen.linesUK?.length || screen.linesES?.length);
+}
+
+function richIntroLines(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): IntroLine[] {
+  if (lang === 'uk') return screen.linesUK ?? screen.linesRU ?? [];
+  if (spanishLessonUiStringsActive(lang, studyTarget)) return screen.linesES ?? screen.linesRU ?? [];
+  return screen.linesRU ?? [];
+}
+
+function richSubtitle(screen: LessonIntroScreen, lang: Lang, studyTarget: StudyTargetLang): string | undefined {
+  if (lang === 'uk') return screen.subtitleUK ?? screen.subtitleRU;
+  if (spanishLessonUiStringsActive(lang, studyTarget)) return screen.subtitleES ?? screen.subtitleRU;
+  return screen.subtitleRU;
+}
+
+function richKindToLegacyKind(kind: LessonIntroScreen['kind']): LessonIntroBlockKind {
+  if (kind === 'concept') return 'core_idea';
+  if (kind === 'formula') return 'main_formula';
+  if (kind === 'practice') return 'memory_tip';
+  return (kind as LessonIntroBlockKind) ?? 'tip';
+}
+
+function isRichExample(ex: LessonIntroExample | any): ex is {
+  en: IntroTextPart[];
+  ru: string;
+  uk: string;
+  es: string;
+  labelRU?: string;
+  labelUK?: string;
+  labelES?: string;
+  noteRU?: string;
+  noteUK?: string;
+  noteES?: string;
+} {
+  return Array.isArray(ex?.en);
+}
+
+function toneStyle(tone: IntroTextTone | undefined, t: any, accent: string, isLight: boolean) {
+  const resolved = tone ?? 'normal';
+  const colorByTone: Record<IntroTextTone, string> = {
+    normal: t.textPrimary,
+    muted: t.textMuted,
+    strong: t.textPrimary,
+    accent,
+    success: t.correct,
+    danger: t.wrong,
+    warning: t.gold,
+    formula: isLight ? '#6D28D9' : '#C4B5FD',
+    code: isLight ? '#0369A1' : '#7DD3FC',
+  };
+  const weightByTone: Record<IntroTextTone, '400' | '600' | '700' | '800'> = {
+    normal: '400',
+    muted: '400',
+    strong: '800',
+    accent: '800',
+    success: '800',
+    danger: '800',
+    warning: '700',
+    formula: '800',
+    code: '700',
+  };
+  return { color: colorByTone[resolved], fontWeight: weightByTone[resolved] };
+}
+
+function RichTextParts({
+  parts,
+  text,
+  t,
+  accent,
+  isLight,
+  style,
+}: {
+  parts?: IntroTextPart[];
+  text?: string;
+  t: any;
+  accent: string;
+  isLight: boolean;
+  style: any;
+}) {
+  const source = parts?.length ? parts : [{ text: text ?? '', tone: 'normal' as IntroTextTone }];
+  return (
+    <Text style={style}>
+      {source.map((part, i) => (
+        <Text key={`${part.text}-${i}`} style={toneStyle(part.tone, t, accent, isLight)}>
+          {part.text}
+        </Text>
+      ))}
+    </Text>
+  );
+}
+
+function RichIntroLineView({
+  line,
+  t,
+  accent,
+  isLight,
+  f,
+}: {
+  line: IntroLine;
+  t: any;
+  accent: string;
+  isLight: boolean;
+  f: any;
+}) {
+  if (line.type === 'spacer') return <View style={{ height: 8 }} />;
+
+  const borderColor =
+    line.type === 'wrong'
+      ? `${t.wrong}55`
+      : line.type === 'correct'
+        ? `${t.correct}55`
+        : line.type === 'formula'
+          ? `${accent}55`
+          : line.type === 'step'
+            ? `${accent}33`
+            : 'transparent';
+  const bg =
+    line.type === 'wrong'
+      ? `${t.wrong}16`
+      : line.type === 'correct'
+        ? `${t.correct}16`
+        : line.type === 'formula'
+          ? `${accent}18`
+          : line.type === 'step'
+            ? isLight ? '#FFFFFFB8' : '#00000020'
+            : line.type === 'tip'
+              ? `${t.gold}14`
+              : 'transparent';
+  const isFramed = line.type === 'wrong' || line.type === 'correct' || line.type === 'formula' || line.type === 'step' || line.type === 'tip';
+
+  return (
+    <View
+      style={[
+        styles.richLine,
+        isFramed && {
+          backgroundColor: bg,
+          borderColor,
+          borderWidth: 1,
+          paddingHorizontal: 12,
+          paddingVertical: line.type === 'formula' ? 12 : 10,
+        },
+      ]}
+    >
+      <RichTextParts
+        parts={line.parts}
+        text={line.text}
+        t={t}
+        accent={accent}
+        isLight={isLight}
+        style={[
+          styles.richLineText,
+          {
+            color: t.textPrimary,
+            fontSize: line.type === 'formula' ? f.bodyLg : f.body,
+            lineHeight: Math.round((line.type === 'formula' ? f.bodyLg : f.body) * 1.42),
+            textAlign: line.type === 'formula' ? 'center' : 'left',
+          },
+        ]}
+      />
+    </View>
+  );
+}
+
 interface LessonIntroScreensProps {
   introScreens: LessonIntroScreen[];
   lessonId: number;
   onComplete: () => void;
+  onBack?: () => void;
 }
 
 const FADE_DURATION_MS = 1400; // длинный плавный фейд
@@ -120,6 +336,76 @@ const KIND_MAP: Record<LessonIntroBlockKind, KindStyle> = {
     defaultTitleES: '¿Cómo funciona esto?',
     color: (t) => t.accent,
   },
+  core_idea: {
+    icon: 'flash',
+    defaultTitleRU: 'Ключевая идея',
+    defaultTitleUK: 'Ключова ідея',
+    defaultTitleES: 'Idea clave',
+    color: (t) => t.accent,
+  },
+  main_formula: {
+    icon: 'calculator',
+    defaultTitleRU: 'Формула урока',
+    defaultTitleUK: 'Формула уроку',
+    defaultTitleES: 'Fórmula de la lección',
+    color: (t) => t.gold,
+  },
+  be_choice: {
+    icon: 'git-branch',
+    defaultTitleRU: 'Как выбрать форму',
+    defaultTitleUK: 'Як обрати форму',
+    defaultTitleES: 'Cómo elegir la forma',
+    color: (t) => t.correct,
+  },
+  description_logic: {
+    icon: 'list',
+    defaultTitleRU: 'Что идёт после глагола',
+    defaultTitleUK: 'Що йде після дієслова',
+    defaultTitleES: 'Qué va después del verbo',
+    color: (t) => t.gold,
+  },
+  memory_tip: {
+    icon: 'bulb',
+    defaultTitleRU: 'Приём сборки',
+    defaultTitleUK: 'Прийом складання',
+    defaultTitleES: 'Truco de construcción',
+    color: (t) => t.gold,
+  },
+  negative_formula: {
+    icon: 'close-circle',
+    defaultTitleRU: 'Отрицание',
+    defaultTitleUK: 'Заперечення',
+    defaultTitleES: 'Negación',
+    color: (t) => t.wrong,
+  },
+  question_formula: {
+    icon: 'help-circle',
+    defaultTitleRU: 'Вопрос',
+    defaultTitleUK: 'Питання',
+    defaultTitleES: 'Pregunta',
+    color: (t) => t.accent,
+  },
+  after_be: {
+    icon: 'list',
+    defaultTitleRU: 'Что идёт после To Be',
+    defaultTitleUK: 'Що йде після To Be',
+    defaultTitleES: 'Qué va después de To Be',
+    color: (t) => t.gold,
+  },
+  negative_questions: {
+    icon: 'alert-circle',
+    defaultTitleRU: 'Вопросы с not',
+    defaultTitleUK: 'Питання з not',
+    defaultTitleES: 'Preguntas con not',
+    color: (t) => t.accent,
+  },
+  mistakes: {
+    icon: 'warning',
+    defaultTitleRU: 'Главные ошибки',
+    defaultTitleUK: 'Головні помилки',
+    defaultTitleES: 'Errores principales',
+    color: (t) => t.wrong,
+  },
 };
 
 function lessonLevelLabel(lessonId: number): 'A1' | 'A2' | 'B1' | 'B2' {
@@ -166,10 +452,10 @@ function IntroBlockCard({
   const scale = useRef(new Animated.Value(0.965)).current;
   const iconPulse = useRef(new Animated.Value(0)).current;
 
-  const kind: LessonIntroBlockKind = data.kind ?? KIND_BY_INDEX[index] ?? 'tip';
+  const kind: LessonIntroBlockKind = richKindToLegacyKind(data.kind) ?? KIND_BY_INDEX[index] ?? 'tip';
   const km = KIND_MAP[kind];
   const accent = km.color(t);
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight';
+  const isLight = themeMode === 'minimalLight';
 
   const defaultTitle =
     lang === 'uk' ? km.defaultTitleUK : spanishLessonUiStringsActive(lang, studyTarget) ? km.defaultTitleES : km.defaultTitleRU;
@@ -178,6 +464,9 @@ function IntroBlockCard({
   const title = localizedTitle ?? defaultTitle;
   const text =
     lang === 'uk' ? data.textUK : spanishLessonUiStringsActive(lang, studyTarget) ? (data.textES ?? data.textRU) : data.textRU;
+  const rich = hasRichIntroLines(data);
+  const lines = richIntroLines(data, lang, studyTarget);
+  const subtitle = richSubtitle(data, lang, studyTarget);
 
   useEffect(() => {
     if (!visible) return;
@@ -260,6 +549,7 @@ function IntroBlockCard({
       }}
     >
       <View
+        testID={`lesson-intro-card-${index + 1}`}
         style={[
           styles.card,
           {
@@ -296,41 +586,100 @@ function IntroBlockCard({
                   fontSize: f.caption,
                 },
               ]}
-              numberOfLines={1}
             >
               {title}
             </Text>
           </View>
 
           {/* Тело блока */}
-          <Text
-            style={[
-              styles.cardBody,
-              {
-                color: t.textPrimary,
-                fontSize: f.bodyLg,
-                lineHeight: Math.round(f.bodyLg * 1.5),
-              },
-            ]}
-          >
-            {text}
-          </Text>
+          {rich ? (
+            <View style={styles.richBody}>
+              {!!subtitle && (
+                <Text style={[styles.richSubtitle, { color: t.textMuted, fontSize: f.sub, lineHeight: Math.round(f.sub * 1.45) }]}>
+                  {subtitle}
+                </Text>
+              )}
+              {lines.map((line, i) => (
+                <RichIntroLineView
+                  key={`${data.screenId ?? index}-line-${i}`}
+                  line={line}
+                  t={t}
+                  accent={accent}
+                  isLight={isLight}
+                  f={f}
+                />
+              ))}
+            </View>
+          ) : (
+            <HighlightedText
+              text={text ?? ''}
+              accentColor={accent}
+              style={[
+                styles.cardBody,
+                {
+                  color: t.textPrimary,
+                  fontSize: f.bodyLg,
+                  lineHeight: Math.round(f.bodyLg * 1.5),
+                },
+              ]}
+            />
+          )}
 
           {/* Опциональные примеры */}
           {!!data.examples?.length && (
             <View style={[styles.exampleBox, { borderColor: `${accent}33`, backgroundColor: isLight ? '#FFFFFF80' : '#00000022' }]}>
               {data.examples.map((ex, i) => {
-                const { primary, secondary } = lessonIntroExampleLines(ex, lang, studyTarget);
+                const richExample = isRichExample(ex);
+                const { primary, secondary } = richExample
+                  ? {
+                      primary: '',
+                      secondary:
+                        lang === 'uk'
+                          ? ex.uk
+                          : spanishLessonUiStringsActive(lang, studyTarget)
+                            ? ex.es
+                            : ex.ru,
+                    }
+                  : lessonIntroExampleLines(ex as LessonIntroExample, lang, studyTarget);
+                const label = richExample
+                  ? lang === 'uk'
+                    ? ex.labelUK
+                    : spanishLessonUiStringsActive(lang, studyTarget)
+                      ? ex.labelES
+                      : ex.labelRU
+                  : undefined;
+                const note = richExample
+                  ? lang === 'uk'
+                    ? ex.noteUK
+                    : spanishLessonUiStringsActive(lang, studyTarget)
+                      ? ex.noteES
+                      : ex.noteRU
+                  : undefined;
                 return (
                 <View key={i} style={[styles.exampleRow, i > 0 && { marginTop: 6 }]}>
-                  <Text
-                    style={[
-                      styles.exampleEN,
-                      { color: t.correct, fontSize: f.body },
-                    ]}
-                  >
-                    {primary}
-                  </Text>
+                  {!!label && (
+                    <Text style={[styles.exampleTR, { color: t.textMuted, fontSize: f.caption, marginBottom: 2 }]}>
+                      {label}
+                    </Text>
+                  )}
+                  {richExample ? (
+                    <RichTextParts
+                      parts={ex.en}
+                      t={t}
+                      accent={accent}
+                      isLight={isLight}
+                      style={[styles.exampleEN, { color: t.correct, fontSize: f.body }]}
+                    />
+                  ) : (
+                    <Text
+                      style={[
+                        styles.exampleEN,
+                        { color: t.correct, fontSize: f.body },
+                      ]}
+                    >
+                      {primary}
+                    </Text>
+                  )}
                   <Text
                     style={[
                       styles.exampleTR,
@@ -339,6 +688,11 @@ function IntroBlockCard({
                   >
                     {secondary}
                   </Text>
+                  {!!note && (
+                    <Text style={[styles.exampleTR, { color: t.gold, fontSize: f.caption, marginTop: 2 }]}>
+                      {note}
+                    </Text>
+                  )}
                 </View>
                 );
               })}
@@ -354,14 +708,15 @@ export default function LessonIntroScreens({
   introScreens,
   lessonId,
   onComplete,
+  onBack,
 }: LessonIntroScreensProps) {
   const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
   const insets = useSafeAreaInsets();
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight';
+  const isLight = themeMode === 'minimalLight';
 
-  const totalBlocks = Math.min(introScreens.length, 3);
+  const totalBlocks = introScreens.length;
   const [revealedCount, setRevealedCount] = useState(1); // первый блок виден сразу
   const allRevealed = revealedCount >= totalBlocks;
 
@@ -515,8 +870,9 @@ export default function LessonIntroScreens({
     onComplete();
   };
 
-  const handleSkip = () => {
-    onComplete();
+  const handleBack = () => {
+    hapticTap();
+    (onBack ?? onComplete)();
   };
 
   // Защитный кейс: контента нет — мгновенно проваливаем в урок
@@ -567,12 +923,14 @@ export default function LessonIntroScreens({
           </View>
 
           <TouchableOpacity
-            testID="lesson-intro-skip"
-            onPress={handleSkip}
+            testID="lesson-intro-back"
+            accessibilityRole="button"
+            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+            onPress={handleBack}
             hitSlop={{ top: 14, right: 14, bottom: 14, left: 14 }}
             style={[styles.skipBtn, { backgroundColor: t.bgCard, borderColor: t.borderHighlight }]}
           >
-            <Ionicons name="close" size={20} color={t.textMuted} />
+            <Ionicons name="chevron-back" size={20} color={t.textMuted} />
           </TouchableOpacity>
         </Animated.View>
 
@@ -621,6 +979,7 @@ export default function LessonIntroScreens({
               {/* Подсказка-плашка: визуальная только. Тап обрабатывает родительский Pressable. */}
               {!allRevealed && (
                 <Animated.View
+                  testID="lesson-intro-hint"
                   pointerEvents="none"
                   style={[styles.tapHintRow, { opacity: hintFade, alignSelf: 'center' }]}
                 >
@@ -663,15 +1022,6 @@ export default function LessonIntroScreens({
               zIndex: 10,
             }}
           >
-            <PhraseContentStars
-              scope="lesson_theory"
-              itemId={`L${lessonId}_intro`}
-              labelSnippet={triLang(lang, {
-                ru: `Урок ${lessonId} — интро (экран перед уроком)`,
-                uk: `Урок ${lessonId} — інтро (початковий екран)`,
-                es: `Lección ${lessonId} — intro (pantalla previa)`,
-              })}
-            />
           </View>
         ) : null}
 
@@ -806,6 +1156,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   cardBody: {
+    fontWeight: '500',
+  },
+  richBody: {
+    gap: 8,
+  },
+  richSubtitle: {
+    fontWeight: '500',
+    marginBottom: 2,
+  },
+  richLine: {
+    borderRadius: 12,
+  },
+  richLineText: {
     fontWeight: '500',
   },
   exampleBox: {

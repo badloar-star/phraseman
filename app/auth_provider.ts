@@ -157,6 +157,14 @@ function getAppleAndroidRedirectUri(): string {
   return Linking.createURL('apple-auth');
 }
 
+function getAppleAndroidAppCallbackUri(): string {
+  const fromEnv =
+    process.env.EXPO_PUBLIC_APPLE_ANDROID_APP_CALLBACK_URI?.trim() ||
+    readExpoExtraString('EXPO_PUBLIC_APPLE_ANDROID_APP_CALLBACK_URI');
+  if (fromEnv) return fromEnv;
+  return Linking.createURL('apple-auth');
+}
+
 function parseAppleOAuthRedirectUrl(url: string): { idToken?: string; error?: string; state?: string; userJson?: string } {
   try {
     const hashIdx = url.indexOf('#');
@@ -237,7 +245,7 @@ export async function isAppleSignInAvailable(): Promise<boolean> {
     }
   }
   if (Platform.OS === 'android') {
-    return true;
+    return !!getAppleAndroidServiceId();
   }
   return false;
 }
@@ -357,9 +365,9 @@ interface NativeAuthCredential {
 
 /**
  * Watchdog: native Google sign-in flow ОБЯЗАН вернуть результат за разумное время
- * (тапнул аккаунт в picker'е → токен максимум за 30 секунд). Если промис висит
+ * (тапнул аккаунт в picker\'е → токен максимум за 30 секунд). Если промис висит
  * дольше — это баг native-модуля / битая Activity / отозванный consent с автокансел.
- * Без таймаута UI-loader спинит вечно, кнопка disable'd, и юзер думает «приложение
+ * Без таймаута UI-loader спинит вечно, кнопка disable\'d, и юзер думает «приложение
  * сломалось» (см. сценарий «после удаления аккаунта залогиниться через Google
  * не получается, ничего не происходит»). Лучше явная ошибка с инструкцией.
  */
@@ -500,6 +508,7 @@ async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { ca
   }
 
   const redirectUri = getAppleAndroidRedirectUri();
+  const appCallbackUri = getAppleAndroidAppCallbackUri();
   const rawBytes = await Crypto.getRandomBytesAsync(16);
   const rawNonce = Array.from(rawBytes, b => b.toString(16).padStart(2, '0')).join('');
 
@@ -524,7 +533,7 @@ async function runAppleAndroidOAuthSignIn(): Promise<NativeAuthCredential | { ca
   const authUrl = `https://appleid.apple.com/auth/authorize?${params.toString()}`;
 
   const session = await withTimeout(
-    WebBrowser.openAuthSessionAsync(authUrl, redirectUri),
+    WebBrowser.openAuthSessionAsync(authUrl, appCallbackUri),
     APPLE_OAUTH_TIMEOUT_MS,
     'apple_oauth_session',
   );
@@ -812,7 +821,7 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
           // Сценарий-боль: после старого delete-account flow + повторного логина
           // remote-док мог пересоздаться через restoreAndMigrateFromCloud → syncToCloud
           // БЕЗ поля linkedAuth. Тогда getLinkedAuthInfo() возвращает null, и Settings
-          // вечно показывает "Не привʼязано" хотя юзер реально залогинен.
+          // вечно показывает "Не прив\'язано" хотя юзер реально залогинен.
           tx.set(
             usersRef.doc(remoteStableId),
             { linkedAuth: mergedLinkedAuth, updatedAt: now },
@@ -967,9 +976,9 @@ export async function signInWithProvider(provider: AuthProviderId): Promise<Sign
   if (outcome.kind === 'linked_existing') {
     // КРИТИЧЕСКИ ВАЖНО: после переустановки приложения с allowBackup=true Keychain
     // восстанавливает stable_id, а локальный AsyncStorage пустой. Если сразу вызвать
-    // syncToCloud — он перезапишет users/{stable_id}.progress null'ами и затрёт прогресс.
+    // syncToCloud — он перезапишет users/{stable_id}.progress null\'ами и затрёт прогресс.
     // Поэтому сначала тащим cloud → local. Если local имеет существенный прогресс —
-    // тогда можно sync. Иначе — пропускаем sync, чтобы не пере-затереть облако null'ами.
+    // тогда можно sync. Иначе — пропускаем sync, чтобы не пере-затереть облако null\'ами.
     try {
       await restoreFromCloud();
     } catch (e) {
@@ -1107,7 +1116,7 @@ async function maybeAdoptDisplayNameAsUserName(displayName: string | null): Prom
 /**
  * Признак что у локального юзера есть значимый прогресс.
  * Используется чтобы не запускать syncToCloud сразу после login на переустановленном
- * устройстве, когда AsyncStorage пуст и любой sync затрёт облако null'ами.
+ * устройстве, когда AsyncStorage пуст и любой sync затрёт облако null\'ами.
  *
  * Считаем что есть прогресс если:
  *   • user_total_xp > 0, ИЛИ
@@ -1331,7 +1340,7 @@ export async function signOutCurrentProvider(): Promise<void> {
   // Сбрасываем JS-флаг "конфигурация выполнена". Это страховка: если internal
   // state native-модуля как-то поедет (револизация consent, очистка кеша Play
   // Services и т.д.), следующий runGoogleNativeSignIn() заново вызовет configure()
-  // и не повиснет на пустом native picker'е.
+  // и не повиснет на пустом native picker\'е.
   _googleConfigured = false;
   // Firebase Auth signOut — после этого ensureAnonUser() при следующем sync создаст
   // новую анонимную сессию (либо подхватится из linkedAuth при signIn).

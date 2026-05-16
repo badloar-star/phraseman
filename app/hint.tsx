@@ -85,13 +85,13 @@ const HINTS: Record<number, HintContent> = {
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
-          ['I',    "I am / I'm",       "I'm not",      'Am I?'    ],
-          ['You',  "You are / You're", "You aren't",   'Are you?' ],
-          ['He',   "He is / He's",     "He isn't",     'Is he?'   ],
-          ['She',  "She is / She's",   "She isn't",    'Is she?'  ],
-          ['It',   "It is / It's",     "It isn't",     'Is it?'   ],
-          ['We',   "We are / We're",   "We aren't",    'Are we?'  ],
-          ['They', 'They are',         "They aren't",  'Are they?'],
+          ['I',    "I am / I\'m",       "I\'m not",      'Am I?'    ],
+          ['You',  "You are / You\'re", "You aren\'t",   'Are you?' ],
+          ['He',   "He is / He\'s",     "He isn\'t",     'Is he?'   ],
+          ['She',  "She is / She\'s",   "She isn\'t",    'Is she?'  ],
+          ['It',   "It is / It\'s",     "It isn\'t",     'Is it?'   ],
+          ['We',   "We are / We\'re",   "We aren\'t",    'Are we?'  ],
+          ['They', 'They are',         "They aren\'t",  'Are they?'],
         ]}
       />,
     ],
@@ -105,18 +105,18 @@ const HINTS: Record<number, HintContent> = {
         label={L(lang,'Отрицание (нет «являться» у глагола)','Заперечення (не є)','Negación')}
         headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Полная форма','Повна форма','Forma completa'), L(lang,'Сокращение','Скорочення','Forma corta')]}
         rows={[
-          ['I',         'I am not',     "I'm not"    ],
-          ['He/She/It', 'He is not',    "He isn't"   ],
-          ['You/We/They','You are not', "You aren't" ],
+          ['I',         'I am not',     "I\'m not"    ],
+          ['He/She/It', 'He is not',    "He isn\'t"   ],
+          ['You/We/They','You are not', "You aren\'t" ],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
         label={L(lang,'Вопросы и краткие ответы','Питання та короткі відповіді','Preguntas y respuestas breves')}
         headers={[L(lang,'Вопрос','Питання','Pregunta'), L(lang,'Да','Так','Sí'), L(lang,'Нет','Ні','No')]}
         rows={[
-          ['Am I right?',      'Yes, you are.',  "No, you aren't."  ],
-          ['Is he a doctor?',  'Yes, he is.',    "No, he isn't."    ],
-          ['Are they at home?','Yes, they are.', "No, they aren't." ],
+          ['Am I right?',      'Yes, you are.',  "No, you aren\'t."  ],
+          ['Is he a doctor?',  'Yes, he is.',    "No, he isn\'t."    ],
+          ['Are they at home?','Yes, they are.', "No, they aren\'t." ],
         ]}
       />,
     ],
@@ -161,17 +161,17 @@ const HINTS: Record<number, HintContent> = {
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
-          ['I / You / We / They', "don't + V",   'Do + ... + V?'  ],
-          ['He / She / It',       "doesn't + V", 'Does + ... + V?'],
+          ['I / You / We / They', "don\'t + V",   'Do + ... + V?'  ],
+          ['He / She / It',       "doesn\'t + V", 'Does + ... + V?'],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
         label={L(lang,'Примеры','Приклади','Ejemplos')}
         headers={[L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación')]}
         rows={[
-          ['I work here.',       "I don't work here."    ],
-          ['She reads books.',   "She doesn't read."     ],
-          ['They play tennis.',  "They don't play."      ],
+          ['I work here.',       "I don\'t work here."    ],
+          ['She reads books.',   "She doesn\'t read."     ],
+          ['They play tennis.',  "They don\'t play."      ],
         ]}
       />,
     ],
@@ -185,8 +185,8 @@ const HINTS: Record<number, HintContent> = {
         label={L(lang,'Общие вопросы','Загальні питання','Preguntas generales')}
         headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Вопрос','Питання','Pregunta'), L(lang,'Ответ','Відповідь','Respuesta')]}
         rows={[
-          ['I / You / We / They', 'Do you work?',   "Yes, I do. / No, I don't."        ],
-          ['He / She / It',       'Does she work?', "Yes, she does. / No, she doesn't."],
+          ['I / You / We / They', 'Do you work?',   "Yes, I do. / No, I don\'t."        ],
+          ['He / She / It',       'Does she work?', "Yes, she does. / No, she doesn\'t."],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
@@ -260,15 +260,15 @@ const HINTS: Record<number, HintContent> = {
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang,'Подлежащее','Підмет','Sujeto'), L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
-          ['I / You / We / They', 'have', "don't have",   'Do ... have?'  ],
-          ['He / She / It',       'has',  "doesn't have", 'Does ... have?'],
+          ['I / You / We / They', 'have', "don\'t have",   'Do ... have?'  ],
+          ['He / She / It',       'has',  "doesn\'t have", 'Does ... have?'],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
         label={L(lang,'Примеры','Приклади','Ejemplos')}
         headers={[L(lang,'Предложение','Речення','Oración')]}
         rows={[
-          ['I have a car.'],['She has two cats.'],["He doesn't have a phone."],
+          ['I have a car.'],['She has two cats.'],["He doesn\'t have a phone."],
           ['Do you have a pen?'],['Does she have time?'],
         ]}
       />,
@@ -305,8 +305,8 @@ const HINTS: Record<number, HintContent> = {
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang,'Число','Число','Número'), L(lang,'Утверждение','Ствердження','Afirmación'), L(lang,'Отрицание','Заперечення','Negación'), L(lang,'Вопрос','Питання','Pregunta')]}
         rows={[
-          [L(lang,'Ед.ч.','Одн.','Sing.'), 'There is a book.',  "There isn't a book.",   'Is there a book?'  ],
-          [L(lang,'Мн.ч.','Мн.','Plur.'),  'There are chairs.', "There aren't chairs.",  'Are there chairs?' ],
+          [L(lang,'Ед.ч.','Одн.','Sing.'), 'There is a book.',  "There isn\'t a book.",   'Is there a book?'  ],
+          [L(lang,'Мн.ч.','Мн.','Plur.'),  'There are chairs.', "There aren\'t chairs.",  'Are there chairs?' ],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
@@ -352,27 +352,27 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Глагол','Дієслово','Verbo'), L(lang,'Значение','Значення','Significado'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={lang === 'uk' ? [
           ['can',     'вміти / мати змогу',   'I can swim.'             ],
-          ["can't",   'не вміти / не можна',  "You can't park here."    ],
+          ["can\'t",   'не вміти / не можна',  "You can\'t park here."    ],
           ['must',    'мусити (внутрішня потреба)',   'I must finish this.'     ],
-          ["mustn't", 'заборона',                    "You mustn't smoke here." ],
+          ["mustn\'t", 'заборона',                    "You mustn\'t smoke here." ],
           ['should',  'слід / варто',                'You should sleep more.'  ],
           ['may',     'можна (дозвіл)',               'May I come in?'          ],
           ['might',   'можливо (невпевненість)',      'It might rain today.'    ],
           ['have to', 'мусити (зовнішня необхідність)', 'I have to work tomorrow.'],
         ] : lang === 'es' ? [
           ['can',     'poder / saber',          'I can swim.'             ],
-          ["can't",   'no poder / prohibición', "You can't park here."    ],
+          ["can\'t",   'no poder / prohibición', "You can\'t park here."    ],
           ['must',    'obligación (fuerte)',    'I must finish this.'     ],
-          ["mustn't", 'prohibición terminante', "You mustn't smoke here." ],
+          ["mustn\'t", 'prohibición terminante', "You mustn\'t smoke here." ],
           ['should',  'aconsejar / conviene',   'You should sleep more.'  ],
           ['may',     'permiso',                'May I come in?'          ],
           ['might',   'quizá / posibilidad débil','It might rain today.' ],
           ['have to', 'tener que',              'I have to work tomorrow.'],
         ] : [
           ['can',     'уметь / мочь',         'I can swim.'             ],
-          ["can't",   'не уметь / нельзя',    "You can't park here."    ],
+          ["can\'t",   'не уметь / нельзя',    "You can\'t park here."    ],
           ['must',    'должен (внутреннее)',  'I must finish this.'     ],
-          ["mustn't", 'запрет',               "You mustn't smoke here." ],
+          ["mustn\'t", 'запрет',               "You mustn\'t smoke here." ],
           ['should',  'следует / стоит',       'You should sleep more.'  ],
           ['may',     'можно (разрешение)',   'May I come in?'          ],
           ['might',   'возможно (неуверенность)', 'It might rain today.'    ],
@@ -390,7 +390,7 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'Subject + V-ed',       'She worked yesterday.' ],
-          ['−', "Subject + didn't + V", "She didn't work."      ],
+          ['−', "Subject + didn\'t + V", "She didn\'t work."      ],
           ['?', 'Did + subject + V?',   'Did she work?'         ],
         ]}
       />,
@@ -425,7 +425,7 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'Subject + V2',          'He went home.'   ],
-          ['−', "Subject + didn't + V1", "He didn't go."   ],
+          ['−', "Subject + didn\'t + V1", "He didn\'t go."   ],
           ['?', 'Did + subject + V1?',   'Did he go?'      ],
         ]}
       />,
@@ -478,27 +478,27 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+',                  'Subject + will + V',  'I will call you.'      ],
-          ['−',                  "Subject + won't + V", "She won't be late."    ],
+          ['−',                  "Subject + won\'t + V", "She won\'t be late."    ],
           ['?',                  'Will + subj + V?',    'Will you help me?'     ],
-          [L(lang,'Сокр.','Скор.','Contr.'), "I'll / You'll",       "I'll do it tomorrow."  ],
+          [L(lang,'Сокр.','Скор.','Contr.'), "I\'ll / You\'ll",       "I\'ll do it tomorrow."  ],
         ]}
       />,
       <Table key="t2" t={t} f={f} firstBold
         label={L(lang,'Когда использовать','Коли вживать','Cuándo usarlo')}
         headers={[L(lang,'Ситуация','Ситуація','Uso'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={lang === 'uk' ? [
-          ['Рішення зараз',          "It's cold — I'll close the window."],
-          ['Обіцянка',               "I'll help you tomorrow."           ],
+          ['Рішення зараз',          "It\'s cold — I\'ll close the window."],
+          ['Обіцянка',               "I\'ll help you tomorrow."           ],
           ['Передбачення (думаю)',    'I think it will rain.'             ],
           ['Прохання / пропозиція',  'Will you open the door?'           ],
         ] : lang === 'es' ? [
-          ['Decisión al momento',    "It's cold — I'll close the window."],
-          ['Promesa',               "I'll help you tomorrow."           ],
+          ['Decisión al momento',    "It\'s cold — I\'ll close the window."],
+          ['Promesa',               "I\'ll help you tomorrow."           ],
           ['Predicción (suposición)','I think it will rain.'             ],
           ['Petición / oferta',     'Will you open the door?'           ],
         ] : [
-          ['Решение прямо сейчас',   "It's cold — I'll close the window."],
-          ['Обещание',               "I'll help you tomorrow."           ],
+          ['Решение прямо сейчас',   "It\'s cold — I\'ll close the window."],
+          ['Обещание',               "I\'ll help you tomorrow."           ],
           ['Предсказание (думаю)',    'I think it will rain.'             ],
           ['Просьба / предложение',  'Will you open the door?'           ],
         ]}
@@ -550,10 +550,10 @@ const HINTS: Record<number, HintContent> = {
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang,'Лицо','Особа','Persona'), L(lang,'Перед сущ.','Перед іменником','Antes del sust.'), L(lang,'Самостоятельно','Самостійно','Apartados'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
-          ['I',    'my',    'mine',   "This is my bag. — It's mine."    ],
-          ['You',  'your',  'yours',  "It's yours."                     ],
+          ['I',    'my',    'mine',   "This is my bag. — It\'s mine."    ],
+          ['You',  'your',  'yours',  "It\'s yours."                     ],
           ['He',   'his',   'his',    "His name is Alex."               ],
-          ['She',  'her',   'hers',   "That's hers."                    ],
+          ['She',  'her',   'hers',   "That\'s hers."                    ],
           ['It',   'its',   '—',      "The dog ate its food."           ],
           ['We',   'our',   'ours',   "Our house is big."               ],
           ['They', 'their', 'theirs', "The keys are theirs."            ],
@@ -572,8 +572,8 @@ const HINTS: Record<number, HintContent> = {
           ['get up',    'вставати',          'I get up at 7.'              ],
           ['turn on',   'вмикати',           'Turn on the light.'          ],
           ['turn off',  'вимикати',          'Turn off the TV.'            ],
-          ['look for',  'шукати',            "I'm looking for my keys."    ],
-          ['give up',   'кидати / здаватись',"Don't give up!"              ],
+          ['look for',  'шукати',            "I\'m looking for my keys."    ],
+          ['give up',   'кидати / здаватись',"Don\'t give up!"              ],
           ['find out',  'дізнатися',         'I found out the truth.'      ],
           ['come back', 'повертатися',       'Come back soon.'             ],
           ['put on',    'одягати',           'Put on your coat.'           ],
@@ -583,8 +583,8 @@ const HINTS: Record<number, HintContent> = {
           ['get up',    'levantarse',        'I get up at 7.'              ],
           ['turn on',   'encender',          'Turn on the light.'          ],
           ['turn off',  'apagar',            'Turn off the TV.'            ],
-          ['look for',  'buscar',            "I'm looking for my keys."    ],
-          ['give up',   'rendirse / dejar',  "Don't give up!"              ],
+          ['look for',  'buscar',            "I\'m looking for my keys."    ],
+          ['give up',   'rendirse / dejar',  "Don\'t give up!"              ],
           ['find out',  'averiguar',         'I found out the truth.'      ],
           ['come back', 'volver',             'Come back soon.'             ],
           ['put on',    'ponerse (ropa)',    'Put on your coat.'           ],
@@ -594,8 +594,8 @@ const HINTS: Record<number, HintContent> = {
           ['get up',    'вставать',          'I get up at 7.'              ],
           ['turn on',   'включать',          'Turn on the light.'          ],
           ['turn off',  'выключать',         'Turn off the TV.'            ],
-          ['look for',  'искать',            "I'm looking for my keys."    ],
-          ['give up',   'бросать / сдаться', "Don't give up!"              ],
+          ['look for',  'искать',            "I\'m looking for my keys."    ],
+          ['give up',   'бросать / сдаться', "Don\'t give up!"              ],
           ['find out',  'узнать',            'I found out the truth.'      ],
           ['come back', 'возвращаться',      'Come back soon.'             ],
           ['put on',    'надевать',          'Put on your coat.'           ],
@@ -613,8 +613,8 @@ const HINTS: Record<number, HintContent> = {
       <Table key="t1" t={t} f={f} firstBold
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
-          ['+', 'am/is/are + V-ing',         "She's working now."    ],
-          ['−', "am/is/are + not + V-ing",   "He isn't sleeping."    ],
+          ['+', 'am/is/are + V-ing',         "She\'s working now."    ],
+          ['−', "am/is/are + not + V-ing",   "He isn\'t sleeping."    ],
           ['?', 'Am/Is/Are + subj + V-ing?', 'Are they coming?'      ],
         ]}
       />,
@@ -649,18 +649,18 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Примеры','Приклади','Ejemplos')]}
         rows={lang === 'uk' ? [
           ['Наказ +',   'V (основна форма)', 'Come here! Open the door!'     ],
-          ['Наказ −',   "Don't + V",         "Don't run! Don't be late!"     ],
-          ["Let's",     "Let's + V",         "Let's go! Let's start."        ],
+          ['Наказ −',   "Don\'t + V",         "Don\'t run! Don\'t be late!"     ],
+          ["Let\'s",     "Let\'s + V",         "Let\'s go! Let\'s start."        ],
           ['Ввічливо',  'Please + V',        'Please sit down.'              ],
         ] : lang === 'es' ? [
           ['Afirmativo','forma base (you)', 'Come here! Open the door!'     ],
-          ['Negativo',  "Don't + V",       "Don't run! Don't be late!"     ],
-          ["Let's",     "Let's + V",       "Let's go! Let's start."        ],
+          ['Negativo',  "Don\'t + V",       "Don\'t run! Don\'t be late!"     ],
+          ["Let\'s",     "Let\'s + V",       "Let\'s go! Let\'s start."        ],
           ['Cortesía',  'Please + V',      'Please sit down.'              ],
         ] : [
           ['Команда +', 'V (основная форма)','Come here! Open the door!'     ],
-          ['Команда −', "Don't + V",         "Don't run! Don't be late!"     ],
-          ["Let's",     "Let's + V",         "Let's go! Let's start."        ],
+          ['Команда −', "Don\'t + V",         "Don\'t run! Don\'t be late!"     ],
+          ["Let\'s",     "Let\'s + V",         "Let\'s go! Let\'s start."        ],
           ['Вежливо',   'Please + V',        'Please sit down.'              ],
         ]}
       />,
@@ -683,7 +683,7 @@ const HINTS: Record<number, HintContent> = {
           ['behind',      'позаду',       'He is standing behind the door.'   ],
           ['in front of', 'перед',        'The car is in front of the house.' ],
           ['opposite',    'навпроти',     'The school is opposite the park.'  ],
-          ['at',          'біля / на',    "I'm at the station."               ],
+          ['at',          'біля / на',    "I\'m at the station."               ],
         ] : lang === 'es' ? [
           ['in',          'dentro de',    'The keys are in the bag.'          ],
           ['on',          'sobre',        'The phone is on the table.'        ],
@@ -694,7 +694,7 @@ const HINTS: Record<number, HintContent> = {
           ['behind',      'detrás de',    'He is standing behind the door.'   ],
           ['in front of', 'delante de',   'The car is in front of the house.' ],
           ['opposite',    'enfrente de',  'The school is opposite the park.'  ],
-          ['at',          'en',           "I'm at the station."               ],
+          ['at',          'en',           "I\'m at the station."               ],
         ] : [
           ['in',          'внутри',       'The keys are in the bag.'          ],
           ['on',          'на',           'The phone is on the table.'        ],
@@ -705,7 +705,7 @@ const HINTS: Record<number, HintContent> = {
           ['behind',      'позади',       'He is standing behind the door.'   ],
           ['in front of', 'перед',        'The car is in front of the house.' ],
           ['opposite',    'напротив',     'The school is opposite the park.'  ],
-          ['at',          'у / на',       "I'm at the station."               ],
+          ['at',          'у / на',       "I\'m at the station."               ],
         ]}
       />,
     ],
@@ -863,7 +863,7 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'have/has + V3',        'I have seen this film.'       ],
-          ['−', "haven't/hasn't + V3",  "She hasn't called yet."       ],
+          ['−', "haven\'t/hasn\'t + V3",  "She hasn\'t called yet."       ],
           ['?', 'Have/Has + subj + V3?','Have you ever been to Paris?'],
         ]}
       />,
@@ -872,28 +872,28 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Слово','Слово','Palabra'), L(lang,'Значение','Значення','Sentido'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={lang === 'uk' ? [
           ['ever',   'коли-небудь',   'Have you ever tried sushi?'    ],
-          ['never',  'ніколи',        "I've never been to Japan."     ],
-          ['already','вже',           "She's already finished."       ],
+          ['never',  'ніколи',        "I\'ve never been to Japan."     ],
+          ['already','вже',           "She\'s already finished."       ],
           ['yet',    'ще / вже (?)',  "Have you eaten yet?"           ],
-          ['just',   'щойно',         "He's just arrived."            ],
-          ['for',    'протягом',      "I've lived here for 5 years."  ],
-          ['since',  'з (часу)',      "She's worked here since 2020." ],
+          ['just',   'щойно',         "He\'s just arrived."            ],
+          ['for',    'протягом',      "I\'ve lived here for 5 years."  ],
+          ['since',  'з (часу)',      "She\'s worked here since 2020." ],
         ] : lang === 'es' ? [
           ['ever',   'alguna vez',    'Have you ever tried sushi?'    ],
-          ['never',  'nunca',         "I've never been to Japan."     ],
-          ['already','ya',            "She's already finished."       ],
+          ['never',  'nunca',         "I\'ve never been to Japan."     ],
+          ['already','ya',            "She\'s already finished."       ],
           ['yet',    'ya / ¿aún?',    "Have you eaten yet?"           ],
-          ['just',   'recién',        "He's just arrived."            ],
-          ['for',    'durante',       "I've lived here for 5 years."  ],
-          ['since',  'desde',         "She's worked here since 2020." ],
+          ['just',   'recién',        "He\'s just arrived."            ],
+          ['for',    'durante',       "I\'ve lived here for 5 years."  ],
+          ['since',  'desde',         "She\'s worked here since 2020." ],
         ] : [
           ['ever',   'когда-нибудь',  'Have you ever tried sushi?'    ],
-          ['never',  'никогда',       "I've never been to Japan."     ],
-          ['already','уже',           "She's already finished."       ],
+          ['never',  'никогда',       "I\'ve never been to Japan."     ],
+          ['already','уже',           "She\'s already finished."       ],
           ['yet',    'ещё / уже (?)', "Have you eaten yet?"           ],
-          ['just',   'только что',    "He's just arrived."            ],
-          ['for',    'в течение',     "I've lived here for 5 years."  ],
-          ['since',  'с (времени)',   "She's worked here since 2020." ],
+          ['just',   'только что',    "He\'s just arrived."            ],
+          ['for',    'в течение',     "I\'ve lived here for 5 years."  ],
+          ['since',  'с (времени)',   "She\'s worked here since 2020." ],
         ]}
       />,
     ],
@@ -907,7 +907,7 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'was/were + V-ing',         'She was working at 8pm.'       ],
-          ['−', "wasn't/weren't + V-ing",   "He wasn't sleeping."           ],
+          ['−', "wasn\'t/weren\'t + V-ing",   "He wasn\'t sleeping."           ],
           ['?', 'Was/Were + subj + V-ing?', 'Were they watching TV?'        ],
         ]}
       />,
@@ -940,17 +940,17 @@ const HINTS: Record<number, HintContent> = {
         rows={lang === 'uk' ? [
           ['0 (факт)',       'Present Simple', 'Present Simple', 'If you heat water, it boils.'            ],
           ['1 (реальне)',    'Present Simple', 'will + V',       'If it rains, I will stay home.'          ],
-          ['2 (нереальне)',  'Past Simple',    'would + V',      "If I had money, I'd travel."             ],
+          ['2 (нереальне)',  'Past Simple',    'would + V',      "If I had money, I\'d travel."             ],
           ['3 (минуле)',     'Past Perfect',   'would have + V3','If she had studied, she would have passed.'],
         ] : lang === 'es' ? [
           ['0 (hecho)',      'Present Simple', 'Present Simple', 'If you heat water, it boils.'            ],
           ['1 (real)',       'Present Simple', 'will + V',       'If it rains, I will stay home.'          ],
-          ['2 (irreal)',     'Past Simple',    'would + V',      "If I had money, I'd travel."             ],
+          ['2 (irreal)',     'Past Simple',    'would + V',      "If I had money, I\'d travel."             ],
           ['3 (pasado)',     'Past Perfect',   'would have + V3','If she had studied, she would have passed.'],
         ] : [
           ['0 (факт)',       'Present Simple', 'Present Simple', 'If you heat water, it boils.'            ],
           ['1 (реальное)',   'Present Simple', 'will + V',       'If it rains, I will stay home.'          ],
-          ['2 (нереальное)', 'Past Simple',    'would + V',      "If I had money, I'd travel."             ],
+          ['2 (нереальное)', 'Past Simple',    'would + V',      "If I had money, I\'d travel."             ],
           ['3 (прошлое)',    'Past Perfect',   'would have + V3','If she had studied, she would have passed.'],
         ]}
       />,
@@ -1014,7 +1014,7 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Форма','Форма','Forma'), L(lang,'Структура','Структура','Estructura'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={[
           ['+', 'used to + V',        'I used to play football.'          ],
-          ['−', "didn't use to + V",  "She didn't use to drink coffee."   ],
+          ['−', "didn\'t use to + V",  "She didn\'t use to drink coffee."   ],
           ['?', 'Did ... use to + V?','Did you use to live here?'         ],
         ]}
       />,
@@ -1023,16 +1023,16 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Конструкция','Конструкція','Forma'), L(lang,'Значение','Значення','Sentido'), L(lang,'Пример','Приклад','Ejemplo')]}
         rows={lang === 'uk' ? [
           ['used to + V',      'Звичка в минулому',    'I used to smoke.'            ],
-          ['be used to + -ing','Звичний до чогось',    "I'm used to waking up early."],
-          ['get used to + -ing','Звикати до чогось',   "I'm getting used to the cold."],
+          ['be used to + -ing','Звичний до чогось',    "I\'m used to waking up early."],
+          ['get used to + -ing','Звикати до чогось',   "I\'m getting used to the cold."],
         ] : lang === 'es' ? [
           ['used to + V',      'hábito en el pasado',  'I used to smoke.'            ],
-          ['be used to + -ing','estar acostumbrado a', "I'm used to waking up early."],
-          ['get used to + -ing','acostumbrarse a',      "I'm getting used to the cold."],
+          ['be used to + -ing','estar acostumbrado a', "I\'m used to waking up early."],
+          ['get used to + -ing','acostumbrarse a',      "I\'m getting used to the cold."],
         ] : [
           ['used to + V',      'Привычка в прошлом',   'I used to smoke.'            ],
-          ['be used to + -ing','Привыкший к чему-то',  "I'm used to waking up early."],
-          ['get used to + -ing','Привыкать к чему-то', "I'm getting used to the cold."],
+          ['be used to + -ing','Привыкший к чему-то',  "I\'m used to waking up early."],
+          ['get used to + -ing','Привыкать к чему-то', "I\'m getting used to the cold."],
         ]}
       />,
     ],
@@ -1109,10 +1109,10 @@ const HINTS: Record<number, HintContent> = {
         headers={[L(lang,'Время','Час','Tiempo'), L(lang,'Пример','Приклад','Ejemplo'), L(lang,'Ключевые слова','Ключові слова','Marcadores')]}
         rows={[
           ['Present Simple',     'She works.',       'always, every day'      ],
-          ['Present Continuous', "She's working.",   'now, at the moment'     ],
+          ['Present Continuous', "She\'s working.",   'now, at the moment'     ],
           ['Past Simple',        'She worked.',      'yesterday, ago, last'   ],
           ['Past Continuous',    'She was working.', 'at 8pm, when, while'    ],
-          ['Present Perfect',    "She's worked.",    'ever, never, already'   ],
+          ['Present Perfect',    "She\'s worked.",    'ever, never, already'   ],
           ['Future Simple',      'She will work.',   'tomorrow, next week'    ],
         ]}
       />,
@@ -1126,7 +1126,7 @@ const HINTS: Record<number, HintContent> = {
           ['was/were + V3',        'It was built in 1990.'          ],
           ['If + PS → will',       'If it rains, I will stay.'      ],
           ['used to + V',          'I used to play tennis.'         ],
-          ['have/has + V3',        "She's already finished."        ],
+          ['have/has + V3',        "She\'s already finished."        ],
           ['want you to + V',      'I want you to stay.'            ],
         ]}
       />,

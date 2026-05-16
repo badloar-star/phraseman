@@ -6,7 +6,6 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import ReportPackModal from '../../components/ReportPackModal';
 import { hideCommunityPackOnDevice } from '../community_packs/communityPackHiddenStorage';
 import {
-  ActivityIndicator,
   Modal,
   Pressable,
   ScrollView,
@@ -115,7 +114,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherWarn:
         '⚠️ Подарунок одноразовий: одразу після підтвердження він зникне і вже не повернеться.',
       voucherCta: '🎁 Використати подарунок',
-      voucherCtaBusy: 'Активуємо…',
+      voucherCtaBusy: '',
       voucherCtaSub: 'Подарунок «згорить» одразу після цього',
       packKindLabel: 'Набір',
       metaCards: (n: number) => `${n} карток`,
@@ -124,7 +123,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       youHaveLabel: 'У вас',
       costLabel: 'Вартість',
       shardsUnit: 'осколків',
-      waitBusy: 'Зачекайте…',
+      waitBusy: '',
       reportPack: '⚐ Поскаржитися на набір',
       hidePack: 'Не показувати мені',
     };
@@ -149,7 +148,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       voucherWarn:
         '⚠️ El regalo es de un solo uso: al confirmar, desaparecerá y no podrás recuperarlo.',
       voucherCta: '🎁 Usar regalo',
-      voucherCtaBusy: 'Activando…',
+      voucherCtaBusy: '',
       voucherCtaSub: 'El regalo se consumirá al confirmar',
       packKindLabel: 'Paquete',
       metaCards: (n: number) => `${n} tarjetas`,
@@ -158,7 +157,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
       youHaveLabel: 'Tienes',
       costLabel: 'Precio',
       shardsUnit: S,
-      waitBusy: 'Espera…',
+      waitBusy: '',
       reportPack: '⚐ Reportar este paquete',
       hidePack: 'No mostrarme',
     };
@@ -181,7 +180,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     voucherWarn:
       '⚠️ Подарок одноразовый: сразу после подтверждения он исчезнет и больше не вернётся.',
     voucherCta: '🎁 Использовать подарок',
-    voucherCtaBusy: 'Активируем…',
+    voucherCtaBusy: '',
     voucherCtaSub: 'Подарок «сгорит» сразу после этого',
     packKindLabel: 'Набор',
     metaCards: (n: number) => `${n} карточек`,
@@ -190,7 +189,7 @@ function paywallModalCopy(lang: Lang): PaywallModalCopy {
     youHaveLabel: 'У вас',
     costLabel: 'Стоимость',
     shardsUnit: 'осколков',
-    waitBusy: 'Подождите…',
+    waitBusy: '',
     reportPack: '⚐ Пожаловаться на набор',
     hidePack: 'Не показывать мне',
   };
@@ -209,10 +208,9 @@ export default function CardPackShardPaywallModal({
   onCommunityPackHiddenOnDevice,
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
-  /** Під світлішими схемами `textMuted` інколи “засмоктує” в фоні картки */
-  const bodyTextColor = isLightTheme ? t.textSecond : t.textMuted;
-  const subLabelColor = isLightTheme ? t.textSecond : t.textMuted;
+  const isLightTheme = false;
+  const bodyTextColor = t.textMuted;
+  const subLabelColor = t.textMuted;
   const insets = useSafeAreaInsets();
   const { height: winH } = useWindowDimensions();
   const str = useMemo(() => paywallModalCopy(lang), [lang]);
@@ -231,7 +229,7 @@ export default function CardPackShardPaywallModal({
   const shardPriceImg = useMemo(() => oskolokImageForPackShards(pack.priceShards), [pack.priceShards]);
 
   const backdropO = useSharedValue(0);
-  const sheetY = useSharedValue(48);
+  const sheetY = useSharedValue(80);
   const sheetOpacity = useSharedValue(0);
   const ctaPulse = useSharedValue(0);
   const dragTranslateY = useSharedValue(0);
@@ -283,9 +281,9 @@ export default function CardPackShardPaywallModal({
   useEffect(() => {
     if (visible) {
       dragTranslateY.value = 0;
-      backdropO.value = withTiming(1, { duration: 280, easing: Easing.out(Easing.cubic) });
-      sheetY.value = withTiming(0, { duration: 420, easing: Easing.out(Easing.cubic) });
-      sheetOpacity.value = withTiming(1, { duration: 300 });
+      backdropO.value = withTiming(1, { duration: 320, easing: Easing.out(Easing.cubic) });
+      sheetY.value = withSpring(0, { damping: 18, stiffness: 90, mass: 0.9 });
+      sheetOpacity.value = withTiming(1, { duration: 240 });
       ctaPulse.value = withRepeat(
         withSequence(withTiming(1, { duration: 1200, easing: Easing.inOut(Easing.sin) }), withTiming(0, { duration: 1200, easing: Easing.inOut(Easing.sin) })),
         -1,
@@ -928,11 +926,11 @@ export default function CardPackShardPaywallModal({
                                   gap: 10,
                                 }}
                               >
-                                {purchasing ? (
-                                  <ActivityIndicator color={t.bgPrimary} size="small" />
+                                {false && purchasing ? (
+                                  <View />
                                 ) : null}
                                 <Text style={{ color: t.bgPrimary, fontSize: f.bodyLg, fontWeight: '900' }}>
-                                  {purchasing ? str.voucherCtaBusy : str.voucherCta}
+                                  {str.voucherCta}
                                 </Text>
                               </LinearGradient>
                             </Pressable>
@@ -990,13 +988,13 @@ export default function CardPackShardPaywallModal({
                                   gap: 10,
                                 }}
                               >
-                                {purchasing ? (
-                                  <ActivityIndicator color={paywallVisual.ctaForeground} size="small" />
+                                {false && purchasing ? (
+                                  <View />
                                 ) : (
                                   <Image source={shardPriceImg} style={{ width: 24, height: 24 }} contentFit="contain" />
                                 )}
                                 <Text style={{ color: paywallVisual.ctaForeground, fontSize: f.bodyLg, fontWeight: '900' }}>
-                                  {purchasing ? str.waitBusy : str.forShards(pack.priceShards)}
+                                  {str.forShards(pack.priceShards)}
                                 </Text>
                               </LinearGradient>
                             </Pressable>

@@ -929,7 +929,7 @@ const L8_TRAPS: readonly PhraseErrorTraps[] = [
     generalRule_UA: 'Логіка цієї фрази будується по кроках: спочатку той, хто діє (I), потім сама дія (work), і в кінці — час через прийменник on та назву дня.',
     traps: []
   },
-  // 1: "She leaves at eight o'clock"
+  // 1: "She leaves at eight o\'clock"
   {
     phraseIndex: 1,
     wordTraps: [
@@ -1178,7 +1178,7 @@ const L8_TRAPS: readonly PhraseErrorTraps[] = [
     generalRule_UA: 'Схема речення: на першому місці ті, хто діє (They), потім саме заняття (shop) і в кінці — день тижня з прийменником on.',
     traps: []
   },
-  // 25: "I order a taxi at six o'clock"
+  // 25: "I order a taxi at six o\'clock"
   {
     phraseIndex: 25,
     wordTraps: [
@@ -1230,7 +1230,7 @@ const L8_TRAPS: readonly PhraseErrorTraps[] = [
     generalRule_UA: 'Ми будуємо речення за кроками: спочатку персонаж (He), факт наявності вихідного (has a day off) і день тижня з прийменником on.',
     traps: []
   },
-  // 30: "I have a break at two o'clock"
+  // 30: "I have a break at two o\'clock"
   {
     phraseIndex: 30,
     wordTraps: [
@@ -1303,7 +1303,7 @@ const L8_TRAPS: readonly PhraseErrorTraps[] = [
     generalRule_UA: 'У запитанні спочатку йде помічник (Does), потім персонаж (she), дія (have time) і в кінці день тижня з прийменником on.',
     traps: []
   },
-  // 37: "They have dinner at seven o'clock"
+  // 37: "They have dinner at seven o\'clock"
   {
     phraseIndex: 37,
     wordTraps: [

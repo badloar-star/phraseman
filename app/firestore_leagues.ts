@@ -22,6 +22,17 @@ import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { loadActiveLeagueBoost } from './league_personal_boosts';
 import { emitAppEvent } from './events';
+import { USER_AVATAR_AURA_KEY, normalizeAvatarAuraId } from '../constants/avatar_auras';
+import {
+  PROFILE_CARD_LEVEL_KEY,
+  PROFILE_CARD_MOTION_KEY,
+  PROFILE_CARD_PUBLIC_FOCUS_KEY,
+  PROFILE_CARD_THEME_KEY,
+  normalizeProfileCardLevel,
+  normalizeProfileCardMotion,
+  normalizeProfileCardPublicFocus,
+  normalizeProfileCardTheme,
+} from './profile_card_system';
 
 // Дебаунс для updateMyGroupPoints — не чаще 1 раза в 8 сек
 let _groupPtsTimer: ReturnType<typeof setTimeout> | null = null;
@@ -34,6 +45,18 @@ const getFirestore = () => {
     return require('@react-native-firebase/firestore').default();
   } catch { return null; }
 };
+
+const FUNCTIONS_REGION = 'us-central1';
+
+function callable<TReq, TRes>(name: string) {
+  // Lazy require keeps Expo Go / disabled cloud sync paths quiet.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const fn = httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name);
+  return fn as (data: TReq) => Promise<{ data: TRes }>;
+}
 
 const COL_LB = 'leaderboard';
 const GROUP_SIZE = 30;
@@ -52,6 +75,43 @@ function normLeagueIdData(v: unknown, fallback: number = 0): number {
   const n = Number(v);
   if (!Number.isFinite(n)) return fallback;
   return Math.trunc(n);
+}
+
+function withoutUndefinedFields<T extends Record<string, unknown>>(obj: T): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  Object.entries(obj).forEach(([key, value]) => {
+    if (value !== undefined) out[key] = value;
+  });
+  return out;
+}
+
+function makeLeagueGroupDocId(weekId: string, leagueId: number, uid: string): string {
+  const safeUid = uid.replace(/[^A-Za-z0-9_-]/g, '').slice(0, 16) || 'user';
+  return `${weekId}_${leagueId}_${Date.now()}_${safeUid}_${Math.random().toString(36).slice(2, 8)}`;
+}
+
+async function removeUserFromLeagueGroupBestEffort(
+  db: any,
+  groupId: string,
+  uid: string,
+): Promise<void> {
+  try {
+    await db.runTransaction(async (t: any) => {
+      const ref = db.collection('league_groups').doc(groupId);
+      const snap = await t.get(ref);
+      if (!snap.exists) return;
+      const data = snap.data() ?? {};
+      const members: Record<string, unknown> = { ...(data.members || {}) };
+      if (members[uid] === undefined) return;
+      delete members[uid];
+      const memberCount = Object.keys(members).length;
+      if (memberCount <= 0) {
+        t.delete(ref);
+        return;
+      }
+      t.set(ref, { members, memberCount }, { merge: true });
+    });
+  } catch {}
 }
 
 /**
@@ -329,13 +389,37 @@ export async function getOrCreateLeagueGroup(
   if (!uid) return null;
 
   // Читаем аватар и рамку чтобы сохранить их в данных участника
-  const [[, avatarRaw], [, frameRaw], [, streakRaw], [, totalXpRaw]] =
-    await AsyncStorage.multiGet(['user_avatar', 'user_frame', 'streak_count', 'user_total_xp']);
+  const [
+    [, avatarRaw],
+    [, frameRaw],
+    [, auraRaw],
+    [, streakRaw],
+    [, totalXpRaw],
+    [, cardLevelRaw],
+    [, cardThemeRaw],
+    [, cardMotionRaw],
+    [, cardFocusRaw],
+  ] = await AsyncStorage.multiGet([
+    'user_avatar',
+    'user_frame',
+    USER_AVATAR_AURA_KEY,
+    'streak_count',
+    'user_total_xp',
+    PROFILE_CARD_LEVEL_KEY,
+    PROFILE_CARD_THEME_KEY,
+    PROFILE_CARD_MOTION_KEY,
+    PROFILE_CARD_PUBLIC_FOCUS_KEY,
+  ]);
   const memberAvatar   = avatarRaw  ?? undefined;
   const memberFrame    = frameRaw   ?? undefined;
+  const memberAura     = normalizeAvatarAuraId(auraRaw);
   const memberPremium  = await getVerifiedPremiumStatus().catch(() => false);
   const memberStreak   = streakRaw  ? parseInt(streakRaw, 10) : 0;
   const memberTotalXp  = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
+  const memberProfileCardLevel = normalizeProfileCardLevel(cardLevelRaw);
+  const memberProfileCardTheme = normalizeProfileCardTheme(cardThemeRaw);
+  const memberProfileCardMotion = normalizeProfileCardMotion(cardMotionRaw);
+  const memberProfileCardPublicFocus = normalizeProfileCardPublicFocus(cardFocusRaw);
 
   const boost = await loadActiveLeagueBoost();
   const boostFields =
@@ -343,17 +427,36 @@ export async function getOrCreateLeagueGroup(
       ? { leagueBoostMultiplier: boost.multiplier, leagueBoostExpiresAt: boost.expiresAt }
       : {};
 
-  const memberData = {
+  const memberData = withoutUndefinedFields({
     name:      myName,
     points:    myWeekPoints,
     uid,
     avatar:    memberAvatar,
     frame:     memberFrame,
+    aura:      memberAura,
+    profileCardLevel: memberProfileCardLevel,
+    profileCardTheme: memberProfileCardTheme,
+    profileCardMotion: memberProfileCardMotion,
+    profileCardPublicFocus: memberProfileCardPublicFocus,
     isPremium: memberPremium,
     streak:    memberStreak,
     totalXp:   memberTotalXp,
     ...boostFields,
-  };
+  });
+
+  try {
+    const fn = callable<
+      { weekId: string; leagueId: number; member: Record<string, unknown> },
+      { ok: boolean; groupId: string; weekId: string; leagueId: number }
+    >('leagueJoinOrUpdateGroup');
+    const res = await fn({ weekId, leagueId: normLeagueIdData(leagueId, 0), member: memberData });
+    const groupId = res.data?.groupId;
+    if (groupId) {
+      return await fetchGroupMembers(db, groupId, uid, myName, myWeekPoints);
+    }
+  } catch (e) {
+    if (__DEV__) console.warn('[firestore_leagues] leagueJoinOrUpdateGroup failed, falling back', e);
+  }
 
   try {
     // Проверяем — есть ли у нас уже groupId на эту неделю
@@ -362,7 +465,7 @@ export async function getOrCreateLeagueGroup(
     const savedGroupId: string | undefined = myData?.groupId;
     const savedWeekId: string | undefined  = myData?.groupWeekId;
     // Локальное значение с экрана клуба + нормализация из Firebase (int/long)
-    const leagueIdForGroup = normLeagueIdData(myData?.leagueId, normLeagueIdData(leagueId, 0));
+    const leagueIdForGroup = normLeagueIdData(leagueId, 0);
 
     // Источник истины — поле `members` в league_groups, а не только leaderboard.groupId
     // (указатель мог остаться на сольнике после миграции, гонки вступления, ручного правок).
@@ -370,9 +473,11 @@ export async function getOrCreateLeagueGroup(
     let effectiveLeagueId = leagueIdForGroup;
     if (!canonicalGid) {
       const any = await findAnyLeagueGroupDocIdForUser(db, weekId, uid);
-      if (any) {
+      if (any && any.leagueId === leagueIdForGroup) {
         canonicalGid = any.id;
         effectiveLeagueId = any.leagueId;
+      } else if (any) {
+        removeUserFromLeagueGroupBestEffort(db, any.id, uid).catch(() => {});
       }
     }
     if (canonicalGid) {
@@ -406,8 +511,9 @@ export async function getOrCreateLeagueGroup(
       const savedMembers: Record<string, unknown> = (savedData?.members as Record<string, unknown>) || {};
       const savedMemberCount = countMembersInData(savedData);
       const iAmInSaved = !!savedMembers[uid];
+      const savedLeagueMatches = normLeagueIdData(savedData?.leagueId, leagueIdForGroup) === leagueIdForGroup;
 
-      if (savedData && iAmInSaved) {
+      if (savedData && iAmInSaved && savedLeagueMatches) {
         // Я реально в этой группе. Если она solo — пробуем relocate;
         // если relocate не помог и группа всё ещё solo, проваливаемся в ВЕТКУ 3 (поиск/создание).
         let effective: string | null = savedGroupId;
@@ -426,6 +532,8 @@ export async function getOrCreateLeagueGroup(
           });
           return await fetchGroupMembers(db, effective, uid, myName, myWeekPoints);
         }
+      } else if (savedData && iAmInSaved && !savedLeagueMatches) {
+        removeUserFromLeagueGroupBestEffort(db, savedGroupId, uid).catch(() => {});
       }
       // savedGroupId недействителен (не существует / меня там нет / solo без relocate-цели):
       // обнуляем и идём в ВЕТКУ 3.
@@ -437,7 +545,7 @@ export async function getOrCreateLeagueGroup(
     let groupId: string | null = null;
     const maxJoinAttempts = 4;
     for (let attempt = 0; attempt < maxJoinAttempts; attempt++) {
-      const candidate = await findGroupIdWithSpace(db, weekId, leagueId, uid);
+      const candidate = await findGroupIdWithSpace(db, weekId, leagueIdForGroup, uid);
       if (!candidate) break;
       const res = await addMemberToLeagueGroup(db, candidate, uid, memberData);
       if (res === 'ok') {
@@ -446,10 +554,10 @@ export async function getOrCreateLeagueGroup(
       }
     }
     if (!groupId) {
-      groupId = `${weekId}_${leagueId}_${Date.now()}`;
+      groupId = makeLeagueGroupDocId(weekId, leagueIdForGroup, uid);
       await db.collection('league_groups').doc(groupId).set({
         weekId,
-        leagueId,
+        leagueId: leagueIdForGroup,
         memberCount: 1,
         createdAt: Date.now(),
         members: { [uid]: memberData },
@@ -458,14 +566,14 @@ export async function getOrCreateLeagueGroup(
       // освободить слот, или появилась группа. Это закрывает гонку
       // «findGroupIdWithSpace вернул full → создал solo» и сразу нашёл свободную.
       const relocatedTo = await tryRelocateSoloToSharedGroup(
-        db, weekId, leagueId, uid, groupId, memberData,
+        db, weekId, leagueIdForGroup, uid, groupId, memberData,
       );
       if (relocatedTo) groupId = relocatedTo;
     }
 
     // Сохраняем groupId и leagueId в профиле пользователя
     await db.collection(COL_LB).doc(uid).set(
-      { groupId, groupWeekId: weekId, leagueId },
+      { groupId, groupWeekId: weekId, leagueId: leagueIdForGroup },
       { merge: true }
     );
 
@@ -510,10 +618,21 @@ export async function fetchLeagueTopMembers(
       snap.docs
         .filter((doc: any) => normLeagueIdData(doc.data().leagueId) === normLeagueIdData(leagueId))
         .forEach((doc: any) => {
-          const members: Record<string, { name: string; points: number; uid: string }> =
+          const members: Record<string, { name: string; points: number; uid: string; avatar?: string; frame?: string; aura?: string; isPremium?: boolean; streak?: number; totalXp?: number }> =
             doc.data()?.members ?? {};
-          Object.values(members).forEach(m => {
-            all.push({ name: m.name, points: m.points, isMe: false });
+          Object.entries(members).forEach(([uid, m]) => {
+            all.push({
+              name: m.name,
+              points: m.points,
+              isMe: false,
+              uid: m.uid ?? uid,
+              avatar: m.avatar,
+              frame: m.frame,
+              aura: normalizeAvatarAuraId(m.aura),
+              isPremium: m.isPremium,
+              streak: m.streak,
+              totalXp: m.totalXp,
+            });
           });
         });
     }
@@ -534,7 +653,18 @@ export async function fetchLeagueTopMembers(
           lbSnap.docs.forEach((doc: any) => {
             const d = doc.data();
             if (d?.name && !existingNames.has((d.name as string).trim().toLowerCase())) {
-              all.push({ name: d.name, points: d.weekPoints ?? 0, isMe: false });
+              all.push({
+                name: d.name,
+                points: d.weekKey === weekId ? (d.weekPoints ?? 0) : 0,
+                isMe: false,
+                uid: doc.id,
+                avatar: d.avatar,
+                frame: d.frame,
+                aura: normalizeAvatarAuraId(d.aura),
+                isPremium: d.isPremium,
+                streak: d.streak,
+                totalXp: d.points,
+              });
               existingNames.add((d.name as string).trim().toLowerCase());
             }
           });
@@ -552,7 +682,18 @@ export async function fetchLeagueTopMembers(
             const d = doc.data();
             const hasLeagueId = d?.leagueId !== undefined && d?.leagueId !== null;
             if (d?.name && !hasLeagueId && !existingNames.has((d.name as string).trim().toLowerCase())) {
-              all.push({ name: d.name, points: d.weekPoints ?? 0, isMe: false });
+              all.push({
+                name: d.name,
+                points: d.weekKey === weekId ? (d.weekPoints ?? 0) : 0,
+                isMe: false,
+                uid: doc.id,
+                avatar: d.avatar,
+                frame: d.frame,
+                aura: normalizeAvatarAuraId(d.aura),
+                isPremium: d.isPremium,
+                streak: d.streak,
+                totalXp: d.points,
+              });
               existingNames.add((d.name as string).trim().toLowerCase());
             }
           });
@@ -593,20 +734,45 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
   const uid = await ensureAnonUser();
   if (!uid) return;
   try {
-    const [[, avatarRaw], [, frameRaw], [, streakRaw], [, totalXpRaw]] =
-      await AsyncStorage.multiGet(['user_avatar', 'user_frame', 'streak_count', 'user_total_xp']);
+    const [
+      [, avatarRaw],
+      [, frameRaw],
+      [, auraRaw],
+      [, streakRaw],
+      [, totalXpRaw],
+      [, cardLevelRaw],
+      [, cardThemeRaw],
+      [, cardMotionRaw],
+      [, cardFocusRaw],
+    ] = await AsyncStorage.multiGet([
+      'user_avatar',
+      'user_frame',
+      USER_AVATAR_AURA_KEY,
+      'streak_count',
+      'user_total_xp',
+      PROFILE_CARD_LEVEL_KEY,
+      PROFILE_CARD_THEME_KEY,
+      PROFILE_CARD_MOTION_KEY,
+      PROFILE_CARD_PUBLIC_FOCUS_KEY,
+    ]);
     const memberPremium = await getVerifiedPremiumStatus().catch(() => false);
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
-    const myDoc = await db.collection(COL_LB).doc(uid).get();
-    const groupId: string | undefined = myDoc.exists ? myDoc.data()?.groupId : undefined;
-    if (!groupId) return;
-    await db.collection('league_groups').doc(groupId).update({
-      [`members.${uid}.points`]:    weekPoints,
-      [`members.${uid}.avatar`]:    avatarRaw  ?? null,
-      [`members.${uid}.frame`]:     frameRaw   ?? null,
-      [`members.${uid}.isPremium`]: memberPremium,
-      [`members.${uid}.streak`]:    streakRaw  ? parseInt(streakRaw, 10) : 0,
-      [`members.${uid}.totalXp`]:   memberTotalXp,
+    const fn = callable<{ member: Record<string, unknown> }, { ok: boolean }>('leagueUpdateMyMember');
+    await fn({
+      member: {
+        points: weekPoints,
+        uid,
+        avatar: avatarRaw ?? null,
+        frame: frameRaw ?? null,
+        aura: normalizeAvatarAuraId(auraRaw) ?? null,
+        profileCardLevel: normalizeProfileCardLevel(cardLevelRaw),
+        profileCardTheme: normalizeProfileCardTheme(cardThemeRaw),
+        profileCardMotion: normalizeProfileCardMotion(cardMotionRaw),
+        profileCardPublicFocus: normalizeProfileCardPublicFocus(cardFocusRaw),
+        isPremium: memberPremium,
+        streak: streakRaw ? parseInt(streakRaw, 10) : 0,
+        totalXp: memberTotalXp,
+      },
     });
   } catch {}
 }
@@ -617,8 +783,8 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
 export async function registerInLeagueGroupSilently(isPremium?: boolean): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
   try {
-    const [[, nameRaw], [, leagueRaw], [, weekPtsRaw]] =
-      await AsyncStorage.multiGet(['user_name', 'league_state_v3', 'week_points_v2']);
+    const [[, nameRaw], [, leagueRaw]] =
+      await AsyncStorage.multiGet(['user_name', 'league_state_v3']);
 
     const name = (nameRaw ?? '').trim();
     if (!name) return;
@@ -636,11 +802,7 @@ export async function registerInLeagueGroupSilently(isPremium?: boolean): Promis
     // groupId указывал на сольник.
     const weekId = getWeekId();
 
-    let weekPoints = 0;
-    try {
-      const wpData = weekPtsRaw ? JSON.parse(weekPtsRaw) : null;
-      weekPoints = wpData?.points ?? 0;
-    } catch {}
+    const weekPoints = await getMyWeekPoints();
 
     const group = await getOrCreateLeagueGroup(weekId, leagueId, name, weekPoints);
     // Первый запуск: пока в multiGet не было league_state_v3, сохраняем снимок группы из облака,
@@ -683,6 +845,11 @@ function mapLeagueMembersToGroupList(
         isPremium: m.isPremium ?? false,
         avatar: m.avatar ?? undefined,
         frame: m.frame ?? undefined,
+        aura: normalizeAvatarAuraId(m.aura),
+        profileCardLevel: normalizeProfileCardLevel(m.profileCardLevel),
+        profileCardTheme: normalizeProfileCardTheme(m.profileCardTheme),
+        profileCardMotion: normalizeProfileCardMotion(m.profileCardMotion),
+        profileCardPublicFocus: normalizeProfileCardPublicFocus(m.profileCardPublicFocus),
         streak: m.streak ?? undefined,
         totalXp: m.totalXp ?? undefined,
         leagueBoostMultiplier: boostLive ? mult : undefined,
@@ -802,35 +969,12 @@ export async function syncMyLeagueMemberBoostToCloud(): Promise<void> {
   if (!db) return;
   const uid = await ensureAnonUser();
   if (!uid) return;
-  let FieldValue: { delete: () => unknown };
-  try {
-    FieldValue = require('@react-native-firebase/firestore').default.FieldValue;
-  } catch {
-    return;
-  }
   const boost = await loadActiveLeagueBoost();
-  let groupId: string | undefined;
   try {
-    const lb = await db.collection(COL_LB).doc(uid).get();
-    groupId = lb.exists ? (lb.data()?.groupId as string | undefined) : undefined;
-  } catch {
-    return;
-  }
-  if (!groupId) return;
-  const pathMult = `members.${uid}.leagueBoostMultiplier`;
-  const pathUntil = `members.${uid}.leagueBoostExpiresAt`;
-  try {
-    if (!boost || Date.now() >= boost.expiresAt) {
-      await db.collection('league_groups').doc(groupId).update({
-        [pathMult]: FieldValue.delete(),
-        [pathUntil]: FieldValue.delete(),
-      });
-    } else {
-      await db.collection('league_groups').doc(groupId).update({
-        [pathMult]: boost.multiplier,
-        [pathUntil]: boost.expiresAt,
-      });
-    }
+    const fn = callable<{ multiplier?: number; expiresAt?: number }, { ok: boolean }>('leagueSyncMyBoost');
+    await fn(boost && Date.now() < boost.expiresAt
+      ? { multiplier: boost.multiplier, expiresAt: boost.expiresAt }
+      : {});
   } catch { /* empty */ }
 }
 

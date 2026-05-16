@@ -128,6 +128,7 @@ let mockDocs: Map<string, Record<string, unknown>>;
 let mockBannedUids: Set<string>;
 let canonicalUidOverride: string | null = 'test-uid-abc';
 let transactionCollisionCodes: Set<string>;
+let mockFriendEnsureMyCode: jest.Mock;
 
 const buildFakeRef = (collection: string, docId: string) => ({
   collection,
@@ -235,6 +236,22 @@ jest.mock('../app/user_id_policy', () => ({
 jest.mock('@react-native-firebase/firestore', () => ({
   default: jest.fn(() => buildFakeDb()),
 }));
+jest.mock('@react-native-firebase/app', () => ({
+  getApp: jest.fn(() => ({})),
+}));
+jest.mock('@react-native-firebase/functions', () => ({
+  getFunctions: jest.fn(() => ({})),
+  httpsCallable: jest.fn((_functions, name: string) => {
+    if (name === 'friendEnsureMyCode') return mockFriendEnsureMyCode;
+    return jest.fn(async () => ({ data: {} }));
+  }),
+}));
+jest.mock('../app/app_check_init', () => ({
+  initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined),
+}));
+jest.mock('../app/cloud_sync', () => ({
+  ensureAnonUser: jest.fn(async () => canonicalUidOverride),
+}));
 
 beforeEach(() => {
   jest.resetModules();
@@ -242,6 +259,29 @@ beforeEach(() => {
   mockBannedUids = new Set();
   transactionCollisionCodes = new Set();
   canonicalUidOverride = 'test-uid-abc';
+  require('@react-native-async-storage/async-storage').__reset?.();
+
+  mockFriendEnsureMyCode = jest.fn(async ({ stableId }: { stableId: string }) => {
+    if (!stableId) return { data: { code: '' } };
+
+    const userKey = `users/${stableId}`;
+    const userDoc = mockDocs.get(userKey);
+    const existing = (userDoc?.progress as Record<string, unknown> | undefined)?.friend_code;
+    if (typeof existing === 'string' && isValidFriendCode(existing)) {
+      mockDocs.set(`friend_code_index/${existing}`, { uid: stableId });
+      return { data: { code: existing } };
+    }
+
+    for (let attempt = 0; attempt < 8; attempt += 1) {
+      const code = require('../app/friend_code').generateRandomCode();
+      if (transactionCollisionCodes.has(code) || mockDocs.has(`friend_code_index/${code}`)) continue;
+      mockDocs.set(`friend_code_index/${code}`, { uid: stableId });
+      mockDocs.set(userKey, deepMerge(userDoc ?? {}, { progress: { friend_code: code } }));
+      return { data: { code } };
+    }
+
+    return { data: { code: '' } };
+  });
 
   // Re-apply mocks after resetModules.
   jest.mock('../app/config', () => ({ IS_EXPO_GO: false, CLOUD_SYNC_ENABLED: true }));
@@ -250,6 +290,22 @@ beforeEach(() => {
   }));
   jest.mock('@react-native-firebase/firestore', () => ({
     default: jest.fn(() => buildFakeDb()),
+  }));
+  jest.mock('@react-native-firebase/app', () => ({
+    getApp: jest.fn(() => ({})),
+  }));
+  jest.mock('@react-native-firebase/functions', () => ({
+    getFunctions: jest.fn(() => ({})),
+    httpsCallable: jest.fn((_functions, name: string) => {
+      if (name === 'friendEnsureMyCode') return mockFriendEnsureMyCode;
+      return jest.fn(async () => ({ data: {} }));
+    }),
+  }));
+  jest.mock('../app/app_check_init', () => ({
+    initFirebaseAppCheckIfAvailable: jest.fn(async () => undefined),
+  }));
+  jest.mock('../app/cloud_sync', () => ({
+    ensureAnonUser: jest.fn(async () => canonicalUidOverride),
   }));
 });
 
@@ -315,9 +371,21 @@ test('Test D: ensureMyFriendCode returns null when canonical UID is null', async
 test('Test E: lookupUserByFriendCode returns uid when code exists in index', async () => {
   mockDocs.set('friend_code_index/ABCD23', { uid: 'target-uid-xyz' });
   mockDocs.set('users/target-uid-xyz', { name: 'Target' });
+  const cloudSync = require('../app/cloud_sync');
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('ABCD23');
-  expect(result).toEqual({ uid: 'target-uid-xyz' });
+  expect(cloudSync.ensureAnonUser).toHaveBeenCalledTimes(1);
+  expect(result).toEqual({ uid: 'target-uid-xyz', source: 'friend_code_index' });
+});
+
+test('Test E0: lookupUserByFriendCode returns null when auth cannot be prepared', async () => {
+  canonicalUidOverride = null;
+  mockDocs.set('friend_code_index/ABCD23', { uid: 'target-uid-xyz' });
+  const cloudSync = require('../app/cloud_sync');
+  const { lookupUserByFriendCode } = require('../app/firestore_friends');
+  const result = await lookupUserByFriendCode('ABCD23');
+  expect(result).toBeNull();
+  expect(cloudSync.ensureAnonUser).toHaveBeenCalledTimes(1);
 });
 
 test('Test F: lookupUserByFriendCode returns null when target user is banned', async () => {
@@ -334,14 +402,14 @@ test('Test E2: lookupUserByFriendCode resolves referral_codes ownerStableId when
   mockDocs.set('users/ref-owner-stable', { name: 'Referral Owner' });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('XYZL2A');
-  expect(result).toEqual({ uid: 'ref-owner-stable' });
+  expect(result).toEqual({ uid: 'ref-owner-stable', source: 'referral_code' });
 });
 
 test('Test E3: lookupUserByFriendCode falls back to users progress.friend_code when index was not backfilled', async () => {
   mockDocs.set('users/legacy-code-owner', { progress: { friend_code: 'LEG234' } });
   const { lookupUserByFriendCode } = require('../app/firestore_friends');
   const result = await lookupUserByFriendCode('LEG234');
-  expect(result).toEqual({ uid: 'legacy-code-owner' });
+  expect(result).toEqual({ uid: 'legacy-code-owner', source: 'legacy_friend_code' });
 });
 
 test('Test F2: lookupUserByFriendCode returns null for banned referral owner', async () => {

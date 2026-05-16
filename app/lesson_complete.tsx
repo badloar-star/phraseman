@@ -2,8 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, Image, Modal, Pressable, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import Svg from 'react-native-svg';
+import { Animated, Image, Modal, Pressable, ScrollView, Share, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import BonusXPCard from '../components/BonusXPCard';
 import ContentWrap from '../components/ContentWrap';
@@ -29,35 +28,27 @@ import { emitAppEvent } from './events';
 import { markLessonFinishedOnce, isLessonFinishedOnce, getMasteryReplayPriceShards, MASTERY_REPLAY_BASE_SHARDS } from './mastery';
 import { oskolokImageForPackShards } from './oskolok';
 import MasteryReplayModal from '../components/MasteryReplayModal';
-import AfterLesson5PushModal, {
-  loadAfterLesson5Stats,
-  type PersonalStats,
-} from '../components/AfterLesson5PushModal';
 import { getVerifiedPremiumStatus } from './premium_guard';
-import { playActivityCompletionModalSound } from './activity_complete_sound';
+import { lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
 import { prefetchLessonMenuCache } from './lesson_menu';
+import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
+import CoachToast from '../components/CoachToast';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
-import LessonShareCardSvg from '../components/share_cards/LessonShareCardSvg';
-import CelebrationShareCardSvg from '../components/share_cards/CelebrationShareCardSvg';
-import { getCelebrationVisual } from '../components/share_cards/celebrationCardCopy';
-import { shareCardFromSvgRef } from '../components/share_cards/shareCardPng';
-import type { ShareCardLang } from '../components/share_cards/streakCardCopy';
 import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
-import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
+import { coachToastDecisionFromRouteParams, type CoachToastDecision } from './coach_toast_trigger';
+import { syncToCloud } from './cloud_sync';
 
-// Medal images for completion screen
 const MEDAL_IMAGES_COMPLETE: Record<string, any> = {
-  bronze:  require('../assets/images/levels/bronza.webp'),
-  silver:  require('../assets/images/levels/serebro.webp'),
-  gold:    require('../assets/images/levels/zoloto.webp'),
+  bronze: require('../assets/images/levels/bronza.webp'),
+  silver: require('../assets/images/levels/serebro.webp'),
+  gold: require('../assets/images/levels/zoloto.webp'),
 };
 
 const BONUS = 500;
 
-// ── Двухшаговый модал оценки ─────────────────────────────────────────────────
 function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
   visible: boolean; context: ReviewContext; t: any; f: any; bottomInset: number; lang: Lang; onClose: () => void;
 }) {
@@ -71,7 +62,7 @@ function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
       getReviewVariant(context, lang).then(setVariant);
       Animated.timing(fadeAnim, { toValue: 1, duration: 200, useNativeDriver: true }).start();
     }
-  }, [context, fadeAnim, visible]);
+  }, [context, fadeAnim, lang, visible]);
 
   const handleYes = async () => {
     await markReviewRated();
@@ -89,16 +80,16 @@ function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
 
   return (
     <Modal transparent animationType="none" visible={visible} onRequestClose={handleNo}>
-      <Animated.View style={{
-        flex: 1, backgroundColor: 'rgba(0,0,0,0.5)',
-        justifyContent: 'flex-end', opacity: fadeAnim,
-      }}>
+      <Animated.View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end', opacity: fadeAnim }}>
         <Pressable style={{ flex: 1 }} onPress={handleNo} />
         <View style={{
           backgroundColor: t.bgCard,
-          borderTopLeftRadius: 24, borderTopRightRadius: 24,
-          padding: 28, paddingBottom: Math.max(40, bottomInset + 20),
-          borderTopWidth: 0.5, borderColor: t.border,
+          borderTopLeftRadius: 24,
+          borderTopRightRadius: 24,
+          padding: 28,
+          paddingBottom: Math.max(40, bottomInset + 20),
+          borderTopWidth: 0.5,
+          borderColor: t.border,
           alignItems: 'center',
         }}>
           {step === 'ask' ? (
@@ -112,35 +103,13 @@ function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
               </Text>
               <View style={{ flexDirection: 'row', alignItems: 'stretch', gap: 12, width: '100%' }}>
                 <TouchableOpacity
-                  style={{
-                    flex: 1,
-                    minHeight: 52,
-                    backgroundColor: t.bgSurface,
-                    borderRadius: 14,
-                    paddingVertical: 14,
-                    paddingHorizontal: 12,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    borderWidth: 0.5,
-                    borderColor: t.border,
-                  }}
+                  style={{ flex: 1, minHeight: 52, backgroundColor: t.bgSurface, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 12, justifyContent: 'center', alignItems: 'center', borderWidth: 0.5, borderColor: t.border }}
                   onPress={handleNo}
                 >
-                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>
-                    {variant.btnNo}
-                  </Text>
+                  <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600', textAlign: 'center' }}>{variant.btnNo}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={{
-                    flex: 1,
-                    minHeight: 52,
-                    backgroundColor: t.correct,
-                    borderRadius: 14,
-                    paddingVertical: 14,
-                    paddingHorizontal: 12,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
+                  style={{ flex: 1, minHeight: 52, backgroundColor: t.correct, borderRadius: 14, paddingVertical: 14, paddingHorizontal: 12, justifyContent: 'center', alignItems: 'center' }}
                   onPress={handleYes}
                 >
                   <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
@@ -156,11 +125,7 @@ function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
             <>
               <Text style={{ fontSize: 40, marginBottom: 12 }}>🙏</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, {
-                  ru: 'Спасибо!',
-                  uk: 'Дякуємо!',
-                  es: '¡Gracias!',
-                })}
+                {triLang(lang, { ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!' })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 8 }}>
                 {triLang(lang, {
@@ -177,7 +142,6 @@ function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
   );
 }
 
-// ── Notification types ────────────────────────────────────────────────────────
 type NotifKind = 'medal' | 'lesson_unlock' | 'level_exam_unlock' | 'lingman_exam_unlock';
 interface Notif {
   kind: NotifKind;
@@ -187,13 +151,11 @@ interface Notif {
 }
 
 // ── AchievementNotifModal ─────────────────────────────────────────────────────
-function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lessonCefr, shareCardLang, onDismiss }: {
+function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lessonCefr, onDismiss }: {
   notif: Notif; lang: Lang; t: any; f: any;
   lessonId: number; lessonScore: number; lessonCefr: string;
-  shareCardLang: ShareCardLang;
   onDismiss: () => void;
 }) {
-  const notifShareSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
   const opacity   = useRef(new Animated.Value(0)).current;
   const translateY = useRef(new Animated.Value(40)).current;
 
@@ -275,32 +237,6 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
       es: '¡Todas las lecciones a 5,0 y todos los exámenes de nivel superados! Examen final abierto.',
     });
   }
-  const { tone, centerEmoji } = getCelebrationVisual({
-    kind: notif.kind,
-    medalTier: notif.medalTier,
-  });
-  /** Строка для PNG без дублирования эмодзи с центром карточки */
-  const shareCardLine1 =
-    notif.kind === 'medal' && notif.medalTier
-      ? (notif.medalTier === 'gold'
-          ? triLang(lang, { ru: 'Золотая медаль!', uk: 'Золота медаль!', es: '¡Medalla de oro!' })
-          : notif.medalTier === 'silver'
-            ? triLang(lang, { ru: 'Серебряная медаль!', uk: 'Срібна медаль!', es: '¡Medalla de plata!' })
-            : triLang(lang, { ru: 'Бронзовая медаль!', uk: 'Бронзова медаль!', es: '¡Medalla de bronce!' }))
-      : notif.kind === 'lesson_unlock'
-        ? triLang(lang, { ru: 'Урок разблокирован!', uk: 'Урок розблоковано!', es: '¡Lección desbloqueada!' })
-        : notif.kind === 'level_exam_unlock'
-          ? triLang(lang, {
-              ru: `Зачёт ${notif.cefrLevel} доступен!`,
-              uk: `Залік ${notif.cefrLevel} доступний!`,
-              es: `¡Examen ${notif.cefrLevel} disponible!`,
-            })
-          : triLang(lang, {
-              ru: 'Экзамен Лингмана открыт!',
-              uk: 'Іспит Лінгмана відкрито!',
-              es: '¡Examen de Lingman!',
-            });
-
   return (
     <Animated.View style={{
       position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, zIndex: 999,
@@ -316,22 +252,6 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
         borderWidth: 1, borderColor: t.textSecond + '44',
         shadowColor: '#000', shadowOpacity: 0.4, shadowRadius: 24, elevation: 20,
       }}>
-        <View
-          pointerEvents="none"
-          collapsable={false}
-          style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, overflow: 'hidden' }}
-        >
-          <CelebrationShareCardSvg
-            ref={notifShareSvgRef}
-            kind={notif.kind}
-            centerEmoji={centerEmoji}
-            line1={shareCardLine1}
-            line2={modalSub}
-            tone={tone}
-            lang={shareCardLang}
-            layoutSize={1080}
-          />
-        </View>
         {/* Icon / Image */}
         {notif.kind === 'medal' && notif.medalTier && MEDAL_IMAGES[notif.medalTier] && (
           <Image source={MEDAL_IMAGES[notif.medalTier]} style={{ width: 90, height: 90 }} resizeMode="contain" />
@@ -370,10 +290,7 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
             backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 18, paddingVertical: 10 }}
           onPress={async () => {
             hapticTap();
-            await shareCardFromSvgRef(notifShareSvgRef, {
-              fileNamePrefix: 'phraseman-celebration',
-              textFallback: shareMessage(),
-            });
+            await Share.share({ message: shareMessage() }).catch(() => {});
           }}
         >
           <Ionicons name="share-outline" size={18} color={t.textSecond} />
@@ -401,10 +318,24 @@ export default function LessonComplete() {
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
   const { s, lang } = useLang();
-  const { id } = useLocalSearchParams<{ id: string; unlocked?: string }>();
+  const params = useLocalSearchParams<{
+    id: string;
+    unlocked?: string;
+    coachCategory?: string;
+    coachMistakeCount?: string;
+    coachWeaknessScore?: string;
+    coachPriorityScore?: string;
+    coachRecoveryScore?: string;
+    coachFocusWords?: string;
+    coachMicroDiagnosis?: string;
+    coachMicroLabelRu?: string;
+    coachMicroLabelUk?: string;
+    coachMicroLabelEs?: string;
+    coachDiagnosisEvidenceCount?: string;
+  }>();
+  const { id } = params;
   const lessonId = parseInt(id || '1', 10);
   const c = s.lessonComplete;
-
   const [showReview, setShowReview] = useState(false);
   const [reviewContext, setReviewContext] = useState<ReviewContext>('general');
   const [showAuthPrompt, setShowAuthPrompt] = useState(false);
@@ -419,27 +350,33 @@ export default function LessonComplete() {
   const [, setNotifQueue] = useState<Notif[]>([]);
   const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
 
-  // After-lesson-5 soft push: показывается ровно 1 раз когда юзер впервые завершает lesson 5
-  // и не Premium. Storage key premium_push_lesson5_shown_v1=1.
-  const [showLesson5Push, setShowLesson5Push] = useState(false);
-  const [lesson5Stats, setLesson5Stats] = useState<PersonalStats | null>(null);
+  const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
 
   const [isPremium, setIsPremium] = useState(false);
   const [finishedOnce, setFinishedOnce] = useState(false);
   const [showMasteryModal, setShowMasteryModal] = useState(false);
+
+  useEffect(() => {
+    const decision = coachToastDecisionFromRouteParams(params as Record<string, unknown>);
+    setCoachToast(decision.show ? decision : null);
+  }, [
+    params.coachCategory,
+    params.coachMistakeCount,
+    params.coachWeaknessScore,
+    params.coachPriorityScore,
+    params.coachRecoveryScore,
+    params.coachFocusWords,
+    params.coachMicroDiagnosis,
+    params.coachMicroLabelRu,
+    params.coachMicroLabelUk,
+    params.coachMicroLabelEs,
+    params.coachDiagnosisEvidenceCount,
+  ]);
   const [masteryReplayPrice, setMasteryReplayPrice] = useState(MASTERY_REPLAY_BASE_SHARDS);
 
   const scaleAnim  = useRef(new Animated.Value(0)).current;
   const fadeAnim   = useRef(new Animated.Value(0)).current;
   const bounceAnim = useRef(new Animated.Value(0)).current;
-  const lessonCardSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
-  const shareCardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY
-    ? 'ru'
-    : lang === 'uk'
-      ? 'uk'
-      : lang === 'es'
-        ? 'es'
-        : 'ru';
 
   const dismissNotif = () => {
     setActiveNotif(null);
@@ -506,14 +443,12 @@ export default function LessonComplete() {
         const nP = await addShards('lesson_perfect', suppress);
         if (nP > 0) shardKeys.push('lesson_perfect');
       }
-
       const eligible = await canShowReview();
       if (eligible) {
         setReviewContext(wasPerfect ? 'perfect_lesson' : 'general');
         setShowReview(true);
       }
-
-      // [SHARDS] 5 уроков подряд без ошибок
+// [SHARDS] 5 уроков подряд без ошибок
       if (perfectCount > 0 && perfectCount % 5 === 0) {
         const perfKey = `shards_5perfect_milestone_${perfectCount}`;
         const alreadyPerfect = await AsyncStorage.getItem(perfKey);
@@ -525,9 +460,8 @@ export default function LessonComplete() {
       }
 
       // [SHARDS] Все уроки темы пройдены (CEFR группа: A1=1-8, A2=9-18, B1=19-28, B2=29-32)
-      const CEFR_RANGES: Record<string, [number, number]> = { A1: [1, 8], A2: [9, 18], B1: [19, 28], B2: [29, 32] };
-      const currentCefr = lessonId <= 8 ? 'A1' : lessonId <= 18 ? 'A2' : lessonId <= 28 ? 'B1' : 'B2';
-      const [rangeStart, rangeEnd] = CEFR_RANGES[currentCefr];
+      const currentCefr = getCourseLevelForLesson(lessonId);
+      const [rangeStart, rangeEnd] = COURSE_LEVEL_RANGES[currentCefr];
       let topicAllDone = true;
       for (let i = rangeStart; i <= rangeEnd; i++) {
         try {
@@ -582,7 +516,6 @@ export default function LessonComplete() {
   }, [lang, lessonId]);
 
   useEffect(() => {
-    void playActivityCompletionModalSound();
     // Появление иконки
     Animated.spring(scaleAnim, { toValue: 1, friction: 4, useNativeDriver: true }).start();
     // Текст чуть позже
@@ -599,27 +532,9 @@ export default function LessonComplete() {
     setTimeout(() => bounce.start(), 400);
 
     grantBonus();
-    // Mastery: первое прохождение урока N → выставить флаг lesson_finished_once_v1_${N}.
-    // На повторных входах функция идемпотентна и ничего не пишет. От этого флага
-    // зависят: бейдж с ценой на тайле lessons.tsx, paywall на «Начать урок» в
-    // lesson1.tsx, триггер AfterLesson5PushModal (для lessonId === 5).
-    void markLessonFinishedOnce(lessonId).then((res) => {
-      // After-lesson-5 push: только при ПЕРВОМ завершении lesson 5 и !premium.
-      // Не показываем повторно (storage flag), не дёргаем при перезаходе на тот же экран.
-      if (lessonId !== 5 || !res.firstTime) return;
-      void (async () => {
-        const [shown, isPrem] = await Promise.all([
-          AsyncStorage.getItem('premium_push_lesson5_shown_v1'),
-          getVerifiedPremiumStatus(),
-        ]);
-        if (shown === '1' || isPrem) return;
-        const stats = await loadAfterLesson5Stats();
-        await AsyncStorage.setItem('premium_push_lesson5_shown_v1', '1');
-        setLesson5Stats(stats);
-        // Откладываем на 1.6с чтобы юзер успел увидеть лесcon-complete celebration сначала.
-        setTimeout(() => setShowLesson5Push(true), 1600);
-      })();
-    });
+    // Mastery: первое прохождение урока N -> выставить флаг lesson_finished_once_v1_${N}.
+    // На повторных входах функция идемпотентна и ничего не пишет.
+    void markLessonFinishedOnce(lessonId);
     // Загружаем premium-статус, флаг завершения и цену повтора для кнопки "Повторить"
     void (async () => {
       const [prem, finished, price] = await Promise.all([
@@ -646,10 +561,11 @@ export default function LessonComplete() {
       try {
         const p: string[] = JSON.parse(saved);
         const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
-        const totalAnswers = Array.isArray(p) && p.length > 0 ? p.length : 50;
-        const score = parseFloat(((correct / totalAnswers) * 5).toFixed(1));
+        const totalAnswers = Array.isArray(p) && p.length > 0 ? Math.min(p.length, 50) : 50;
+        const score = parseFloat(((Math.min(correct, totalAnswers) / totalAnswers) * 5).toFixed(1));
         setLessonScore(score);
         const { newTier, prevTier, isNewBest } = await saveMedalProgress(lessonId, score, p);
+        void syncToCloud({ forceNow: true }).catch(() => {});
         setMedalTier(newTier);
         const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';
         setMedalImproved(medalUpgraded);
@@ -723,6 +639,17 @@ export default function LessonComplete() {
     const next = lessonId + 1;
     if (next <= 32) {
       void (async () => {
+        const premium = await getVerifiedPremiumStatus().catch(() => false);
+        if (requiresPremiumForLesson(next) && !premium) {
+          router.replace({
+            pathname: '/premium_modal',
+            params: {
+              context: lessonPaywallContext(next),
+              lessons_done: String(lessonId),
+            },
+          } as any);
+          return;
+        }
         await prefetchLessonMenuCache(next);
         router.replace({ pathname: '/lesson_menu', params: { id: next } });
       })();
@@ -731,23 +658,36 @@ export default function LessonComplete() {
     }
   };
 
+  const goBackFromComplete = () => {
+    hapticTap();
+    router.replace({ pathname: '/lesson_menu', params: { id: lessonId } });
+  };
+
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
-      <View
-        pointerEvents="none"
-        collapsable={false}
-        style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, zIndex: -1, overflow: 'hidden' }}
+      <TouchableOpacity
+        accessibilityRole="button"
+        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+        activeOpacity={0.85}
+        onPress={goBackFromComplete}
+        style={{
+          position: 'absolute',
+          top: Math.max(16, insets.top + 8),
+          left: 20,
+          zIndex: 10,
+          width: 36,
+          height: 36,
+          borderRadius: 18,
+          backgroundColor: t.bgCard,
+          borderWidth: 0.5,
+          borderColor: t.border,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
       >
-        <LessonShareCardSvg
-          ref={lessonCardSvgRef}
-          lessonId={lessonId}
-          score={lessonScore}
-          cefr={lessonCefr}
-          lang={shareCardLang}
-          layoutSize={1080}
-        />
-      </View>
+        <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
+      </TouchableOpacity>
       <ContentWrap>
       <ScrollView testID="lesson-complete-screen" contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
 
@@ -859,7 +799,7 @@ export default function LessonComplete() {
             )}
           </TouchableOpacity>
 
-          {/* Поделиться результатом — PNG рисуется с скрытого SVG только при нажатии */}
+          {/* Поделиться результатом */}
           <TouchableOpacity
             style={{ flexDirection:'row', alignItems:'center', gap:8, padding:12, marginTop: 4 }}
             onPress={async () => {
@@ -870,7 +810,7 @@ export default function LessonComplete() {
                 lessonScore,
                 STORE_URL
               );
-              await shareCardFromSvgRef(lessonCardSvgRef, { fileNamePrefix: 'phraseman-lesson', textFallback: msg });
+              await Share.share({ message: msg }).catch(() => {});
             }}
           >
             <Ionicons name="share-outline" size={18} color={t.textSecond} />
@@ -912,7 +852,6 @@ export default function LessonComplete() {
           lessonId={lessonId}
           lessonScore={lessonScore}
           lessonCefr={lessonCefr}
-          shareCardLang={shareCardLang}
           onDismiss={dismissNotif}
         />
       )}
@@ -921,13 +860,6 @@ export default function LessonComplete() {
         context="lesson1"
         onClose={() => setShowAuthPrompt(false)}
       />
-      {lesson5Stats && (
-        <AfterLesson5PushModal
-          visible={showLesson5Push}
-          stats={lesson5Stats}
-          onClose={() => setShowLesson5Push(false)}
-        />
-      )}
       <MasteryReplayModal
         visible={showMasteryModal}
         lessonId={lessonId}
@@ -940,6 +872,25 @@ export default function LessonComplete() {
           })();
         }}
       />
+      {coachToast?.show && (
+        <CoachToast
+          category={coachToast.category}
+          labelRu={coachToast.labelRu}
+          labelUk={coachToast.labelUk}
+          labelEs={coachToast.labelEs}
+          mistakeCount={coachToast.mistakeCount}
+          weaknessScore={coachToast.weaknessScore}
+          priorityScore={coachToast.priorityScore}
+          recoveryScore={coachToast.recoveryScore}
+          focusWords={coachToast.focusWords}
+          microDiagnosisId={coachToast.microDiagnosisId}
+          microLabelRu={coachToast.microLabelRu}
+          microLabelUk={coachToast.microLabelUk}
+          microLabelEs={coachToast.microLabelEs}
+          diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
+          onDismiss={() => setCoachToast(null)}
+        />
+      )}
     </SafeAreaView>
     </ScreenGradient>
   );

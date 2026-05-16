@@ -9,8 +9,13 @@ import {
   unlockLesson,
   tryUnlockNextLesson,
   tryUnlockLevelExam,
+  repairLessonUnlocksAfterRestore,
+  recomputeEarnedUnlocks,
   getLessonLockInfo,
   getLockMessageText,
+  getPremiumCourseLevel,
+  isLessonUnlockedByPremiumCourse,
+  markPremiumCourseLevelReached,
 } from '../app/lesson_lock_system';
 
 // Mock AsyncStorage
@@ -91,8 +96,33 @@ describe('tryUnlockNextLesson', () => {
     expect(await isLessonUnlocked(6)).toBe(true);
   });
 
-  it('score = 2.5 (бронза минимум) открывает следующий урок', async () => {
+  it('score = 2.5 (бронза минимум) открывает следующий урок внутри уровня', async () => {
+    await tryUnlockNextLesson(7, 2.5);
+    expect(await isLessonUnlocked(8)).toBe(true);
+  });
+
+  it('последний урок уровня не открывает следующий уровень по 2.5', async () => {
     await tryUnlockNextLesson(8, 2.5);
+    expect(await isLessonUnlocked(9)).toBe(false);
+
+    await tryUnlockNextLesson(18, 5.0);
+    expect(await isLessonUnlocked(19)).toBe(false);
+
+    await tryUnlockNextLesson(28, 5.0);
+    expect(await isLessonUnlocked(29)).toBe(false);
+  });
+
+  it('repair держит урок 9 закрытым до сдачи зачёта A1', async () => {
+    for (let i = 1; i <= 8; i++) store[`lesson${i}_best_score`] = '5';
+    await repairLessonUnlocksAfterRestore();
+
+    expect(await isLessonUnlocked(9)).toBe(false);
+  });
+
+  it('repair открывает урок 9 после сдачи зачёта A1', async () => {
+    store['level_exam_A1_passed'] = '1';
+    await repairLessonUnlocksAfterRestore();
+
     expect(await isLessonUnlocked(9)).toBe(true);
   });
 });
@@ -121,8 +151,8 @@ describe('tryUnlockLevelExam — зачёт уровня', () => {
     expect(level).toBeNull();
   });
 
-  it('A2: все уроки 9-16 >= 4.5 → зачёт A2 доступен', async () => {
-    for (let i = 9; i <= 16; i++) store[`lesson${i}_best_score`] = '4.8';
+  it('A2: все уроки 9-18 >= 4.5 → зачёт A2 доступен', async () => {
+    for (let i = 9; i <= 18; i++) store[`lesson${i}_best_score`] = '4.8';
     const level = await tryUnlockLevelExam(12);
     expect(level).toBe('A2');
   });
@@ -202,23 +232,43 @@ describe('Полный сценарий прохождения уровня A1',
   });
 });
 
-describe('Сценарий: покупка премиума открывает урок 17 (B1)', () => {
-  it('урок 17 заблокирован без премиума', async () => {
-    expect(await isLessonUnlocked(17)).toBe(false);
+describe('Premium-доступ по текущему уровню', () => {
+  it('первая покупка Premium открывает весь A1 и не открывает A2 до зачёта', async () => {
+    expect(await getPremiumCourseLevel()).toBe('A1');
+    expect(await isLessonUnlockedByPremiumCourse(8)).toBe(true);
+    expect(await isLessonUnlockedByPremiumCourse(9)).toBe(false);
   });
 
-  it('урок 17 открывается при покупке премиума', async () => {
-    // Симулируем showSuccess() из premium_modal.tsx
-    await unlockLesson(17);
-    expect(await isLessonUnlocked(17)).toBe(true);
+  it('сданный A1 переводит Premium-доступ на весь A2', async () => {
+    store['level_exam_A1_passed'] = '1';
+
+    expect(await getPremiumCourseLevel()).toBe('A2');
+    expect(await isLessonUnlockedByPremiumCourse(18)).toBe(true);
+    expect(await isLessonUnlockedByPremiumCourse(19)).toBe(false);
   });
 
-  it('уроки B1 18-24 открываются последовательно после 17', async () => {
-    await unlockLesson(17);
-    for (let i = 17; i <= 23; i++) {
-      await tryUnlockNextLesson(i, 3.0);
-      expect(await isLessonUnlocked(i + 1)).toBe(true);
-    }
+  it('markPremiumCourseLevelReached не откатывает уже достигнутый уровень', async () => {
+    store['level_exam_A2_passed'] = '1';
+
+    expect(await getPremiumCourseLevel()).toBe('B1');
+    await markPremiumCourseLevelReached('A2');
+
+    expect(await getPremiumCourseLevel()).toBe('B1');
+    expect(await isLessonUnlockedByPremiumCourse(28)).toBe(true);
+    expect(await isLessonUnlockedByPremiumCourse(29)).toBe(false);
+  });
+
+  it('при снятии Premium честный пересчёт оставляет только заработанную цепочку', async () => {
+    await unlockLesson(4);
+    store['lesson1_best_score'] = '5';
+    store['lesson2_best_score'] = '5';
+    store['lesson3_best_score'] = '1';
+
+    await recomputeEarnedUnlocks();
+
+    expect(await isLessonUnlocked(2)).toBe(true);
+    expect(await isLessonUnlocked(3)).toBe(true);
+    expect(await isLessonUnlocked(4)).toBe(false);
   });
 });
 

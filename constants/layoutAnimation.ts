@@ -4,6 +4,10 @@ import { MOTION_DURATION } from './motion';
 
 let androidLayoutAnimEnabled = false;
 
+function isFabricRuntime() {
+  return Boolean((globalThis as { nativeFabricUIManager?: unknown }).nativeFabricUIManager);
+}
+
 /** Включает LayoutAnimation на Android (нужно один раз до первого configureNext). */
 function ensureAndroidLayoutAnimation() {
   if (Platform.OS === 'android' && !androidLayoutAnimEnabled && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -17,6 +21,9 @@ function ensureAndroidLayoutAnimation() {
  * Вызывать сразу перед setState, который меняет разметку.
  */
 export function configureAccordionLayout() {
+  if (Platform.OS === 'android' && isFabricRuntime()) {
+    return;
+  }
   ensureAndroidLayoutAnimation();
   const ms = MOTION_DURATION.slow;
   LayoutAnimation.configureNext({

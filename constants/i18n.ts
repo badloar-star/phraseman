@@ -62,7 +62,6 @@ export const T = {
     speedHint:      'Отпусти ползунок — прозвучит пример',
     slow:           'Медленно',
     fast:           'Быстро',
-    feedback:       'Идеи и предложения',
     helpMenu:       'Помощь',
 
     // Онбординг
@@ -167,7 +166,6 @@ export const T = {
     speedHint:      'Відпусти повзунок — пролунає приклад',
     slow:           'Повільно',
     fast:           'Швидко',
-    feedback:       'Ідеї й пропозиції',
     helpMenu:       'Допомога',
 
     chooseLanguage: 'Оберіть мову',
@@ -271,7 +269,6 @@ export const T = {
     speedHint:      'Suelta el control deslizante para escuchar un ejemplo',
     slow:           'Lenta',
     fast:           'Rápida',
-    feedback:       'Comentarios e ideas',
     helpMenu:       'Ayuda',
 
     chooseLanguage: 'Elige el idioma',

@@ -152,10 +152,10 @@ describe('Energy System', () => {
   });
 
   describe('checkAndRecover', () => {
-    it('should recover energy after 30 minutes', async () => {
+    it('should recover energy after 10 minutes', async () => {
       const currentState: EnergyState = {
         current: 2,
-        lastRecoveryTime: Date.now() - 30 * 60 * 1000, // 30 min ago = 1 cycle
+        lastRecoveryTime: Date.now() - 10 * 60 * 1000, // 10 min ago = 1 cycle
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
       (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
@@ -165,12 +165,43 @@ describe('Energy System', () => {
       expect(result.current).toBe(3);
     });
 
-    it('should not recover energy before 30 minutes', async () => {
+    it('should preserve partial recovery progress after completed intervals', async () => {
+      const now = Date.now();
       const currentState: EnergyState = {
-        current: 2,
-        lastRecoveryTime: Date.now() - 10 * 60 * 1000, // 10 min ago = 0 cycles
+        current: 1,
+        lastRecoveryTime: now - 25 * 60 * 1000, // 2 cycles + 5 min remainder
       };
       (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
+      (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
+
+      const result = await checkAndRecover();
+
+      expect(result.current).toBe(3);
+      expect(result.lastRecoveryTime).toBe(currentState.lastRecoveryTime + 20 * 60 * 1000);
+    });
+
+    it('should not recover energy before 10 minutes', async () => {
+      const currentState: EnergyState = {
+        current: 2,
+        lastRecoveryTime: Date.now() - 9 * 60 * 1000, // 9 min ago = 0 cycles
+      };
+      (AsyncStorage.getItem as jest.Mock).mockResolvedValue(JSON.stringify(currentState));
+
+      const result = await checkAndRecover();
+
+      expect(result.current).toBe(2);
+    });
+
+    it('should not speed up recovery for 7+ day streaks', async () => {
+      const currentState: EnergyState = {
+        current: 2,
+        lastRecoveryTime: Date.now() - 8 * 60 * 1000, // streak does not affect energy recovery
+      };
+      (AsyncStorage.getItem as jest.Mock).mockImplementation(async (key: string) => {
+        if (key === 'streak_count') return '7';
+        return JSON.stringify(currentState);
+      });
+      (AsyncStorage.setItem as jest.Mock).mockResolvedValue(undefined);
 
       const result = await checkAndRecover();
 

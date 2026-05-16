@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   FlatList,
   Image,
   Pressable,
@@ -21,9 +20,11 @@ import { usePremium } from '../components/PremiumContext';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
 import PremiumGoldUserName from '../components/PremiumGoldUserName';
+import LeagueCrownName from '../components/LeagueCrownName';
 import PlayerProfileModal, { PlayerInfo } from '../components/PlayerProfileModal';
 import ReportUserModal from '../components/ReportUserModal';
 import { getBestAvatarForLevel } from '../constants/avatars';
+import { USER_AVATAR_AURA_KEY, getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
 import { getRankImage, getRankImageDisplayScale, useArenaRank } from '../hooks/use-arena-rank';
 import { hapticTap } from '../hooks/use-haptics';
@@ -35,8 +36,6 @@ import type { RankTier } from './types/arena';
 import {
   loadArenaTop100,
   ArenaLbRow,
-  ARENA_REMOTE_REFRESH_MS,
-  ARENA_TOP100_CACHE_KEY,
   ARENA_REMOTE_REFRESH_AT_KEY,
   fetchMyArenaRank,
   getCachedMyArenaRank,
@@ -45,6 +44,7 @@ import { CLOUD_SYNC_ENABLED, IS_EXPO_GO, DEV_MODE } from './config';
 import { computeAllPercentiles } from './leaderboard_stats';
 
 const ARENA_MANUAL_REFRESH_COOLDOWN_UNTIL_KEY = 'arena_top100_manual_cooldown_until_v1';
+const ARENA_ROW_HEIGHT = 68;
 
 const TIER_RU: Record<RankTier, string> = {
   bronze: 'Бронза',
@@ -108,14 +108,24 @@ export default function ArenaLeaderboardScreen() {
   const [myTotalXp, setMyTotalXp] = useState(0);
   const [myAvatar, setMyAvatar] = useState('');
   const [myFrame, setMyFrame] = useState('');
+  const [myAura, setMyAura] = useState('');
   const [myArenaPlace, setMyArenaPlace] = useState<number | null>(null);
-  const [myArenaPlaceLoading, setMyArenaPlaceLoading] = useState(false);
   const [arenaXpPercentile, setArenaXpPercentile] = useState<number | null>(null);
   const [profilePlayer, setProfilePlayer] = useState<PlayerInfo | null>(null);
   const [reportTarget, setReportTarget] = useState<{ uid: string; name: string } | null>(null);
+  const listRef = useRef<FlatList<ArenaLbRow> | null>(null);
+  const didAutoScrollToMeRef = useRef<string | null>(null);
+  const reloadSeqRef = useRef(0);
 
   const reloadBoard = useCallback(async (opts?: { forceRemote?: boolean }) => {
-    const data = await loadArenaTop100(opts);
+    const seq = ++reloadSeqRef.current;
+    const data = await loadArenaTop100({
+      ...opts,
+      onBackgroundRefresh: (freshRows) => {
+        if (seq === reloadSeqRef.current) setRows(freshRows);
+      },
+    });
+    if (seq !== reloadSeqRef.current) return;
     setRows(data);
   }, []);
 
@@ -123,16 +133,18 @@ export default function ArenaLeaderboardScreen() {
     void ensureArenaAuthUid().then(setMyUid);
     void ensureAnonUser().then(setMyStableUid);
     (async () => {
-      const [n, xp, av, fr] = await AsyncStorage.multiGet([
+      const [n, xp, av, fr, aura] = await AsyncStorage.multiGet([
         'user_name',
         'user_total_xp',
         'user_avatar',
         'user_frame',
+        USER_AVATAR_AURA_KEY,
       ]);
       setMyName((n[1] ?? '').trim());
       setMyTotalXp(parseInt(xp[1] ?? '0', 10) || 0);
       setMyAvatar(av[1] ?? '');
       setMyFrame(fr[1] ?? '');
+      setMyAura(aura[1] ?? '');
       const cached = await getCachedMyArenaRank();
       if (cached) setMyArenaPlace(cached);
     })();
@@ -148,31 +160,21 @@ export default function ArenaLeaderboardScreen() {
   useEffect(() => {
     if (loading) return;
     if (!myArena || (myArena.games ?? 0) < 1) {
-      setMyArenaPlaceLoading(false);
       return;
     }
     if (myUid && rows.some((r) => r.uid === myUid)) {
       const me = rows.find((r) => r.uid === myUid);
       if (me) setMyArenaPlace(me.place);
-      setMyArenaPlaceLoading(false);
       return;
     }
     let cancelled = false;
-    setMyArenaPlaceLoading(true);
     fetchMyArenaRank()
       .then((p) => {
         if (cancelled) return;
         if (typeof p === 'number') setMyArenaPlace(p);
-      })
-      .finally(() => {
-        if (!cancelled) setMyArenaPlaceLoading(false);
       });
     return () => {
       cancelled = true;
-      // Иначе при смене зависимостей до ответа Firestore спиннер «залипает» навсегда:
-      // предыдущий fetch в finally не гасит loading из‑за cancelled, а новый прогон
-      // может выйти по ранним return без сброса.
-      setMyArenaPlaceLoading(false);
     };
   }, [loading, myArena, myUid, rows]);
 
@@ -220,7 +222,7 @@ export default function ArenaLeaderboardScreen() {
     if (manualRefreshCooldownUntil > now) return;
     setManualRefreshBusy(true);
     try {
-      await AsyncStorage.multiRemove([ARENA_TOP100_CACHE_KEY, ARENA_REMOTE_REFRESH_AT_KEY]);
+      await AsyncStorage.removeItem(ARENA_REMOTE_REFRESH_AT_KEY);
       await reloadBoard({ forceRemote: true });
       const next = Date.now() + 5 * 60 * 1000; // 5 мин cooldown на ручной refresh
       setManualRefreshCooldownUntil(next);
@@ -240,11 +242,12 @@ export default function ArenaLeaderboardScreen() {
       name: myName || '…',
       avatar: myAvatar,
       frame: myFrame,
+      aura: myAura,
       totalXP: myTotalXp,
       leagueId: undefined,
       streak: null,
     }),
-    [myName, myAvatar, myFrame, myTotalXp],
+    [myName, myAvatar, myFrame, myAura, myTotalXp],
   );
 
   const closePlayerProfile = useCallback(() => setProfilePlayer(null), []);
@@ -257,6 +260,13 @@ export default function ArenaLeaderboardScreen() {
     () => !!myUid && rows.some((r) => r.uid === myUid),
     [myUid, rows],
   );
+  const myBoardIndex = useMemo(
+    () => rows.findIndex((r) =>
+      (!!myUid && r.uid === myUid) ||
+      (!!myStableUid && r.friendUid === myStableUid)
+    ),
+    [myStableUid, myUid, rows],
+  );
   const showMyRankFooter = useMemo(
     () => !disabledCloud && !loading && !!myArena && (myArena.games ?? 0) >= 1 && !isMeInBoard,
     [disabledCloud, loading, myArena, isMeInBoard],
@@ -266,6 +276,21 @@ export default function ArenaLeaderboardScreen() {
     ? rankLabelByLang(myArena.tier, myArena.level, lang)
     : null;
   const myRankImg = myArena ? getRankImage(myArena.tier, myArena.level) : null;
+
+  useEffect(() => {
+    if (loading || myBoardIndex < 0) return;
+    const scrollKey = `${rows.length}-${rows[myBoardIndex]?.uid ?? ''}-${myBoardIndex}`;
+    if (didAutoScrollToMeRef.current === scrollKey) return;
+    didAutoScrollToMeRef.current = scrollKey;
+    const id = setTimeout(() => {
+      listRef.current?.scrollToIndex({
+        index: myBoardIndex,
+        animated: false,
+        viewPosition: 0.38,
+      });
+    }, 80);
+    return () => clearTimeout(id);
+  }, [loading, myBoardIndex, rows]);
 
   return (
     <ScreenGradient>
@@ -320,9 +345,7 @@ export default function ArenaLeaderboardScreen() {
                 }}
               >
                 <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>
-                  {manualRefreshBusy
-                    ? triLang(lang, { uk: 'Оновлення...', ru: 'Обновление...', es: 'Actualizando…' })
-                    : refreshCooldownLabel
+                  {refreshCooldownLabel
                       ? refreshCooldownLabel
                       : triLang(lang, { uk: 'Оновити', ru: 'Обновить', es: 'Actualizar' })}
                 </Text>
@@ -339,26 +362,36 @@ export default function ArenaLeaderboardScreen() {
                   })}
                 </Text>
               </View>
-            ) : loading ? (
-              <View style={{ paddingTop: 48, alignItems: 'center' }}>
-                <ActivityIndicator size="large" color={t.accent} />
-              </View>
             ) : (
               <FlatList
+                ref={listRef}
                 data={rows}
                 keyExtractor={(item) => item.uid}
-                extraData={`${myUid ?? ''}|${myArenaPlace ?? ''}|${myIsPremium ? 1 : 0}`}
+                extraData={`${myUid ?? ''}|${myStableUid ?? ''}|${myArenaPlace ?? ''}|${myAvatar}|${myAura}|${myIsPremium ? 1 : 0}`}
+                getItemLayout={(_, index) => ({
+                  length: ARENA_ROW_HEIGHT,
+                  offset: ARENA_ROW_HEIGHT * index,
+                  index,
+                })}
+                onScrollToIndexFailed={(info) => {
+                  setTimeout(() => {
+                    listRef.current?.scrollToOffset({
+                      offset: Math.max(0, info.averageItemLength * info.index),
+                      animated: false,
+                    });
+                  }, 80);
+                }}
                 contentContainerStyle={{
                   paddingBottom: showMyRankFooter
                     ? 16 + stickyRankBarHeight + insets.bottom
                     : 24 + insets.bottom,
                 }}
                 ListEmptyComponent={
-                  <View style={{ padding: 40, alignItems: 'center' }}>
+                  loading ? null : <View style={{ padding: 40, alignItems: 'center' }}>
                     <Ionicons name="trophy-outline" size={40} color={t.textSecond} />
                     <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 12, textAlign: 'center' }}>
                       {triLang(lang, {
-                        uk: 'Поки що порожньо. Зіграй дуелі, щоб з’явитися в рейтингу.',
+                        uk: 'Поки що порожньо. Зіграй дуелі, щоб з\'явитися в рейтингу.',
                         ru: 'Пока пусто. Сыграй дуэли, чтобы попасть в рейтинг.',
                         es: 'Por ahora la clasificación está vacía. Juega partidas para aparecer.',
                       })}
@@ -405,7 +438,12 @@ export default function ArenaLeaderboardScreen() {
                   const isTop3 = item.place <= 3;
                   const totalXp = item.totalXp;
                   const lvl = getLevelFromXP(totalXp);
-                  const rowAvatar = String(item.avatarEmoji?.trim() || getBestAvatarForLevel(lvl));
+                  const rowAvatar = isMe
+                    ? String(myAvatar?.trim() || getBestAvatarForLevel(lvl))
+                    : String(item.avatarEmoji?.trim() || getBestAvatarForLevel(lvl));
+                  const rowAura = isMe ? myAura : item.aura;
+                  const rowIsPremium = isMe ? myIsPremium : item.isPremium;
+                  const hasLeagueCrown = !!item.leagueCrown && item.leagueCrown.expiresAt > Date.now();
                   const duelLabel = rankLabelByLang(item.tier, item.levelRoman, lang);
                   const rankImg = getRankImage(item.tier, item.levelRoman);
 
@@ -418,11 +456,17 @@ export default function ArenaLeaderboardScreen() {
                           isMe,
                           avatar: rowAvatar,
                           frame: item.frame,
+                          aura: rowAura,
                           streak: null,
                           leagueId: undefined,
                           uid: item.uid,
                           friendUid: item.friendUid ?? '',
-                          isPremium: item.isPremium,
+                          isPremium: rowIsPremium,
+                          leagueCrownExpiresAt: item.leagueCrown?.expiresAt,
+                          profileCardLevel: item.profileCardLevel,
+                          profileCardTheme: item.profileCardTheme,
+                          profileCardMotion: item.profileCardMotion,
+                          profileCardPublicFocus: item.profileCardPublicFocus,
                         });
                       }}
                       onLongPress={() => {
@@ -439,6 +483,8 @@ export default function ArenaLeaderboardScreen() {
                         borderBottomWidth: 0.5,
                         borderBottomColor: t.border,
                         backgroundColor: isMe ? t.accentBg : t.bgCard,
+                        borderLeftWidth: isMe ? 4 : 0,
+                        borderLeftColor: isMe ? t.accent : 'transparent',
                         opacity: pressed ? 0.75 : 1,
                       })}
                     >
@@ -446,23 +492,30 @@ export default function ArenaLeaderboardScreen() {
                         style={{
                           width: 36,
                           fontSize: isTop3 ? 16 : 14,
-                          color: isTop3 ? t.gold : t.textPrimary,
+                          color: isMe ? t.accent : (isTop3 ? t.gold : t.textPrimary),
                           textAlign: 'center',
-                          fontWeight: isTop3 ? '700' : '500',
+                          fontWeight: isMe ? '900' : (isTop3 ? '700' : '500'),
                         }}
                       >
                         {item.place}
                       </Text>
                       <PremiumAvatarHalo
-                        enabled={item.isPremium}
+                        enabled={rowIsPremium}
                         avatarSize={36}
                         maskColor={isMe ? t.accentBg : t.bgCard}
                         style={{ marginRight: 10 }}
                       >
-                        <AvatarView avatar={rowAvatar} totalXP={totalXp} size={36} />
+                        <AvatarView
+                          avatar={rowAvatar}
+                          totalXP={totalXp}
+                          size={36}
+                          auraId={getEffectiveAvatarAuraId(rowAura, rowIsPremium)}
+                        />
                       </PremiumAvatarHalo>
                       <View style={{ flex: 1, minWidth: 0 }}>
-                        {item.isPremium ? (
+                        {hasLeagueCrown ? (
+                          <LeagueCrownName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
+                        ) : rowIsPremium ? (
                           <PremiumGoldUserName text={item.displayName} fontSize={isTop3 ? 16 : 15} />
                         ) : (
                           <Text
@@ -480,6 +533,13 @@ export default function ArenaLeaderboardScreen() {
                           {`${triLang(lang, { uk: 'Місце', ru: 'Место', es: 'Puesto' })} ${item.place} · ${duelLabel} · ${triLang(lang, { uk: 'рів.', ru: 'ур.', es: 'nv.' })} ${lvl}`}
                         </Text>
                       </View>
+                      {isMe && (
+                        <View style={{ marginHorizontal: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0.5, borderColor: t.accent + '55' }}>
+                          <Text style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
+                            {triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú' })}
+                          </Text>
+                        </View>
+                      )}
                       <View
                         style={{
                           width: 44,
@@ -543,8 +603,6 @@ export default function ArenaLeaderboardScreen() {
                       >
                         #{myArenaPlace.toLocaleString()}
                       </Text>
-                    ) : myArenaPlaceLoading ? (
-                      <ActivityIndicator size="small" color={t.textSecond} />
                     ) : (
                       <Text style={{ fontSize: 18, color: t.textMuted, textAlign: 'center' }}>—</Text>
                     )}
@@ -555,7 +613,12 @@ export default function ArenaLeaderboardScreen() {
                     maskColor={t.accentBg}
                     style={{ marginRight: 10 }}
                   >
-                    <AvatarView avatar={myAvatar} totalXP={myTotalXp} size={36} />
+                    <AvatarView
+                      avatar={myAvatar}
+                      totalXP={myTotalXp}
+                      size={36}
+                      auraId={getEffectiveAvatarAuraId(myAura, myIsPremium)}
+                    />
                   </PremiumAvatarHalo>
                   <View style={{ flex: 1, justifyContent: 'center', minWidth: 0 }}>
                     {myIsPremium ? (

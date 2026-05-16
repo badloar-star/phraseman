@@ -18,6 +18,7 @@ const QUEUE_KEY = 'app_activity_queue_v1';
 const MAX_QUEUE = 200;
 const MAX_TAGS = 24;
 const MAX_TEXT = 220;
+const FIRESTORE_SAMPLE_RATE = 0.01;
 let lastEventKey = '';
 let lastEventAt = 0;
 
@@ -80,7 +81,15 @@ export async function trackActivity(action: string, meta: AppActivityMeta = {}) 
     };
 
     await queueLocal(record);
-    if (meta.writeToFirestore === false) return;
+
+    // Routine product analytics already goes to Firebase Analytics. Firestore is
+    // reserved for explicit debug/critical traces, with light sampling for
+    // high-volume diagnostic streams so growth does not turn every tap into a
+    // billable document write.
+    const shouldWrite =
+      meta.writeToFirestore === true
+      || (meta.result === 'error' && Math.random() < FIRESTORE_SAMPLE_RATE);
+    if (!shouldWrite) return;
 
     const db = getFirestore();
     if (!db) return;

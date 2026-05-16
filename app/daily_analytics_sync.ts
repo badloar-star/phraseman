@@ -16,15 +16,20 @@ import { computeAllPercentiles, type AllPercentiles } from './leaderboard_stats'
 
 const SYNCED_DATE_KEY = 'daily_analytics_synced_v1';
 
-const getFirestore = () => {
+const FUNCTIONS_REGION = 'us-central1';
+
+function callable<TReq, TRes>(name: string) {
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
   try {
     // eslint-disable-next-line @typescript-eslint/no-require-imports
-    return require('@react-native-firebase/firestore').default();
+    const { getApp } = require('@react-native-firebase/app');
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+    return httpsCallable(getFunctions(getApp(), FUNCTIONS_REGION), name) as (data: TReq) => Promise<{ data: TRes }>;
   } catch {
     return null;
   }
-};
+}
 
 function todayDateStr(): string {
   return new Date().toISOString().split('T')[0]!;
@@ -83,8 +88,8 @@ export async function getLast7DaysTimeMs(): Promise<number> {
  */
 export async function syncDailyAnalyticsIfNeeded(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
-  const db = getFirestore();
-  if (!db) return;
+  const fn = callable<{ daily7xp: number; daily7time_ms: number }, { ok: boolean }>('leaderboardUpdateDailyAnalytics');
+  if (!fn) return;
 
   const today = todayDateStr();
   try {
@@ -99,10 +104,7 @@ export async function syncDailyAnalyticsIfNeeded(): Promise<void> {
 
   try {
     const [xp7, time7] = await Promise.all([getLast7DaysXp(), getLast7DaysTimeMs()]);
-    await db.collection('leaderboard').doc(uid).set(
-      { daily7xp: xp7, daily7time_ms: time7, dailyAnalyticsUpdatedAt: Date.now() },
-      { merge: true },
-    );
+    await fn({ daily7xp: xp7, daily7time_ms: time7 });
     await AsyncStorage.setItem(SYNCED_DATE_KEY, today);
   } catch {
     // нет сети — попробуем завтра

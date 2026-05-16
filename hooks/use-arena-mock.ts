@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import firestore from '@react-native-firebase/firestore';
+import { AppState } from 'react-native';
 import {
   type ArenaSession,
   ArenaQuestion,
@@ -12,6 +12,7 @@ import { getBotProfile, sampleBotDelayMs, rollBotIsCorrect, BotProfile } from '.
 import { logEvent } from '../app/firebase';
 import { useLang } from '../components/LangContext';
 import { arenaScoreboardYou } from '../constants/arena_i18n';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from '../app/config';
 
 export type MockGamePhase = 'loading' | 'countdown' | 'question' | 'reveal' | 'finished';
 
@@ -84,6 +85,16 @@ const FALLBACK_MOCK_QUESTIONS: ArenaQuestion[] = [
   },
 ];
 
+function getDb(): any | null {
+  if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+  try {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    return require('@react-native-firebase/firestore').default();
+  } catch {
+    return null;
+  }
+}
+
 function shuffleArray<T>(arr: T[]): T[] {
   const result = [...arr];
   for (let i = result.length - 1; i > 0; i--) {
@@ -94,8 +105,10 @@ function shuffleArray<T>(arr: T[]): T[] {
 }
 
 async function fetchMockQuestions(): Promise<ArenaQuestion[]> {
+  const db = getDb();
+  if (!db) return [];
   const pivot = Math.random();
-  const col = firestore().collection('arena_questions');
+  const col = db.collection('arena_questions');
 
   const [snapA, snapB] = await Promise.all([
     col.where('level', '==', 'A1').where('rand', '>=', pivot).orderBy('rand').limit(QUESTIONS_PER_MATCH * 4).get(),
@@ -103,8 +116,8 @@ async function fetchMockQuestions(): Promise<ArenaQuestion[]> {
   ]);
 
   const all = [
-    ...snapA.docs.map(d => d.data() as ArenaQuestion),
-    ...snapB.docs.map(d => d.data() as ArenaQuestion),
+    ...snapA.docs.map((d: any) => d.data() as ArenaQuestion),
+    ...snapB.docs.map((d: any) => d.data() as ArenaQuestion),
   ];
 
   return shuffleArray(all).slice(0, MOCK_QUESTIONS_PER_MATCH);
@@ -113,15 +126,17 @@ async function fetchMockQuestions(): Promise<ArenaQuestion[]> {
 const MAX_MOCK_TIEBREAK_EXTRA = 25;
 
 async function fetchOneMoreMockQuestion(excludeIds: Set<string>): Promise<ArenaQuestion | null> {
+  const db = getDb();
+  if (!db) return null;
   const pivot = Math.random();
-  const col = firestore().collection('arena_questions');
+  const col = db.collection('arena_questions');
   const [snapA, snapB] = await Promise.all([
     col.where('level', '==', 'A1').where('rand', '>=', pivot).orderBy('rand').limit(80).get(),
     col.where('level', '==', 'A1').where('rand', '<', pivot).orderBy('rand').limit(80).get(),
   ]);
   const all = [
-    ...snapA.docs.map((d) => ({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id ?? d.id })),
-    ...snapB.docs.map((d) => ({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id ?? d.id })),
+    ...snapA.docs.map((d: any) => ({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id ?? d.id })),
+    ...snapB.docs.map((d: any) => ({ ...(d.data() as ArenaQuestion), id: (d.data() as ArenaQuestion).id ?? d.id })),
   ];
   for (const q of shuffleArray(all)) {
     const id = q.id ?? '';
@@ -187,6 +202,7 @@ export function useDuelMock(
   const startedRef = useRef(false);
   const botCorrectStreakRef = useRef(0);
   const botFirstCorrectDoneRef = useRef(false);
+  const questionStartedAtRef = useRef<number | null>(null);
 
   useEffect(() => { hasAnsweredRef.current = hasAnswered; }, [hasAnswered]);
   useEffect(() => { botAnsweredRef.current = botAnswered; }, [botAnswered]);
@@ -219,6 +235,7 @@ export function useDuelMock(
   const startQuestionTimer = useCallback(() => {
     if (intervalRef.current) clearInterval(intervalRef.current);
     const start = Date.now();
+    questionStartedAtRef.current = start;
     lastShownSecRef.current = null;
     setQuestionStartedAt(start);
     intervalRef.current = setInterval(() => {
@@ -284,6 +301,7 @@ export function useDuelMock(
     clearBotTimer();
     setBotAnswered(false);
     botAnsweredRef.current = false;
+    questionStartedAtRef.current = null;
     setPhase('reveal');
     const id = setTimeout(() => {
       const next = idx + 1;
@@ -329,6 +347,29 @@ export function useDuelMock(
     }, REVEAL_TIME_MS);
     timers.current.push(id);
   }, [startQuestionTimer, scheduleBotAnswer]);
+
+  useEffect(() => {
+    const sub = AppState.addEventListener('change', (nextState) => {
+      if (nextState !== 'active') return;
+      if (phase !== 'question') return;
+      const startedAt = questionStartedAtRef.current;
+      if (startedAt == null) return;
+      const left = Math.max(0, QUESTION_TIME_MS - (Date.now() - startedAt));
+      const displaySec = Math.ceil(left / 1000) || 0;
+      if (lastShownSecRef.current !== displaySec) {
+        lastShownSecRef.current = displaySec;
+        setTimeLeft(left);
+      }
+      if (left > 0 || hasAnsweredRef.current) return;
+      hasAnsweredRef.current = true;
+      setHasAnswered(true);
+      setMyAnswer(null);
+      clearAll();
+      clearBotTimer();
+      goToReveal(qIndexRef.current);
+    });
+    return () => sub.remove();
+  }, [phase, goToReveal]);
 
   const startFirstQuestion = useCallback(() => {
     if (startedRef.current) return;
@@ -421,7 +462,7 @@ export function useDuelMock(
   const submitMyAnswer = async (answer: string) => { submitAnswer(answer); };
 
   return {
-    phase, countdown, questionTimeLeft, questionStartedAt: null,
+    phase, countdown, questionTimeLeft, questionStartedAt,
     questionTimeoutMs: QUESTION_TIME_MS,
     currentQuestion,
     currentQuestionIndex: qIndex,

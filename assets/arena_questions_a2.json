@@ -1341,7 +1341,7 @@
       "He wasn't at the party."
     ],
     "correct": "He didn't went to the party.",
-    "rule": "Отрицание: didn’t + голый инфинитив · Заперечення: didn’t + інфінітив без to"
+    "rule": "Отрицание: didn't + голый инфинитив · Заперечення: didn't + інфінітив без to"
   },
   {
     "id": "a2_085",
@@ -1589,7 +1589,7 @@
     "rand": 0.09847786324098706,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m in a hurry' mean?",
+    "question": "What does 'I'm in a hurry' mean?",
     "options": [
       "Я в порядке",
       "Я в доме",
@@ -1703,13 +1703,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I didn’t saw him yesterday.",
+      "I didn't saw him yesterday.",
       "He has a bike.",
       "She was very tired.",
       "We are learning English."
     ],
-    "correct": "I didn’t saw him yesterday.",
-    "rule": "После 'didn’t' используется базовая форма: 'see'. · Після 'didn’t' використовується базова форма: 'see'."
+    "correct": "I didn't saw him yesterday.",
+    "rule": "После 'didn't' используется базовая форма: 'see'. · Після 'didn't' використовується базова форма: 'see'."
   },
   {
     "id": "a2_108",
@@ -1717,7 +1717,7 @@
     "rand": 0.8843502497766167,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m broke' mean?",
+    "question": "What does 'I'm broke' mean?",
     "options": [
       "Я сломан",
       "Я занят",
@@ -1749,7 +1749,7 @@
     "rand": 0.15343050588853657,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "There aren’t ___ apples in the fridge.",
+    "question": "There aren't ___ apples in the fridge.",
     "options": [
       "some",
       "much",
@@ -1831,13 +1831,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t understand the question.",
+      "She don't understand the question.",
       "He works every day.",
       "I am waiting for the bus.",
       "They live in a big house."
     ],
-    "correct": "She don’t understand the question.",
-    "rule": "С 'she' используется 'doesn’t'. · З 'she' використовується 'doesn’t'."
+    "correct": "She don't understand the question.",
+    "rule": "С 'she' используется 'doesn't'. · З 'she' використовується 'doesn't'."
   },
   {
     "id": "a2_116",
@@ -1845,7 +1845,7 @@
     "rand": 0.5711183352395892,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I can’t stand it' mean?",
+    "question": "What does 'I can't stand it' mean?",
     "options": [
       "Я не могу это видеть",
       "Я не могу это терпеть",
@@ -1909,7 +1909,7 @@
     "rand": 0.6412753805052489,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'It doesn’t matter' mean?",
+    "question": "What does 'It doesn't matter' mean?",
     "options": [
       "Это не нужно",
       "Это не работает",
@@ -2005,7 +2005,7 @@
     "rand": 0.9731654049828649,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m used to it' mean?",
+    "question": "What does 'I'm used to it' mean?",
     "options": [
       "Я делаю это",
       "Я привык к этому",
@@ -2055,13 +2055,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He didn’t went to work.",
+      "He didn't went to work.",
       "She has finished her homework.",
       "I saw her yesterday.",
       "They are watching TV."
     ],
-    "correct": "He didn’t went to work.",
-    "rule": "После 'didn’t' используется базовая форма: 'go'. · Після 'didn’t' використовується базова форма: 'go'."
+    "correct": "He didn't went to work.",
+    "rule": "После 'didn't' используется базовая форма: 'go'. · Після 'didn't' використовується базова форма: 'go'."
   },
   {
     "id": "a2_130",
@@ -2069,7 +2069,7 @@
     "rand": 0.8284567708615214,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m exhausted' mean?",
+    "question": "What does 'I'm exhausted' mean?",
     "options": [
       "Я очень рад",
       "Я очень устал",
@@ -2133,7 +2133,7 @@
     "rand": 0.20396681618876755,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I don’t mind' mean?",
+    "question": "What does 'I don't mind' mean?",
     "options": [
       "Я не против",
       "Я не хочу",
@@ -2197,7 +2197,7 @@
     "rand": 0.6569525601807982,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’ll think about it' mean?",
+    "question": "What does 'I'll think about it' mean?",
     "options": [
       "Я забуду об этом",
       "Я подумаю об этом",
@@ -2261,7 +2261,7 @@
     "rand": 0.7848221105523407,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m afraid so' mean?",
+    "question": "What does 'I'm afraid so' mean?",
     "options": [
       "Я боюсь этого",
       "Мне страшно",
@@ -2373,7 +2373,7 @@
     "rand": 0.9516333092469722,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not used to it' mean?",
+    "question": "What does 'I'm not used to it' mean?",
     "options": [
       "Я не понимаю это",
       "Я не привык к этому",
@@ -2423,13 +2423,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She didn’t bought anything.",
+      "She didn't bought anything.",
       "He lives near here.",
       "I went there yesterday.",
       "They are having lunch."
     ],
-    "correct": "She didn’t bought anything.",
-    "rule": "После 'didn’t' используется базовая форма: 'buy'. · Після 'didn’t' використовується базова форма: 'buy'."
+    "correct": "She didn't bought anything.",
+    "rule": "После 'didn't' используется базовая форма: 'buy'. · Після 'didn't' використовується базова форма: 'buy'."
   },
   {
     "id": "a2_153",
@@ -2437,7 +2437,7 @@
     "rand": 0.024842377519235015,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m freezing' mean?",
+    "question": "What does 'I'm freezing' mean?",
     "options": [
       "Я холодный человек",
       "Я не двигаюсь",
@@ -2469,7 +2469,7 @@
     "rand": 0.1569246151484549,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I haven’t seen her ___ yesterday.",
+    "question": "I haven't seen her ___ yesterday.",
     "options": [
       "from",
       "since",
@@ -2501,7 +2501,7 @@
     "rand": 0.397870656568557,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'It’s my fault' mean?",
+    "question": "What does 'It's my fault' mean?",
     "options": [
       "Это мой выбор",
       "Это моя вина",
@@ -2565,7 +2565,7 @@
     "rand": 0.37554722558707,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m starving' mean?",
+    "question": "What does 'I'm starving' mean?",
     "options": [
       "Я хочу пить",
       "Я немного устал",
@@ -2629,7 +2629,7 @@
     "rand": 0.3679473956581205,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I can’t afford it' mean?",
+    "question": "What does 'I can't afford it' mean?",
     "options": [
       "Я не могу это понять",
       "Я не могу это сделать",
@@ -2693,7 +2693,7 @@
     "rand": 0.6620260938070714,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not feeling well' mean?",
+    "question": "What does 'I'm not feeling well' mean?",
     "options": [
       "Я не работаю хорошо",
       "Я не выгляжу хорошо",
@@ -2757,7 +2757,7 @@
     "rand": 0.2647595554590225,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’ll be right back' mean?",
+    "question": "What does 'I'll be right back' mean?",
     "options": [
       "Я скоро вернусь",
       "Я уже пришёл",
@@ -2821,7 +2821,7 @@
     "rand": 0.9556834825780243,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m in trouble' mean?",
+    "question": "What does 'I'm in trouble' mean?",
     "options": [
       "Я в дороге",
       "Я в порядке",
@@ -2853,7 +2853,7 @@
     "rand": 0.8652540976181626,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m looking ___ my keys.",
+    "question": "I'm looking ___ my keys.",
     "options": [
       "at",
       "to",
@@ -2885,7 +2885,7 @@
     "rand": 0.8693525986745954,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m just kidding' mean?",
+    "question": "What does 'I'm just kidding' mean?",
     "options": [
       "Я просто шучу",
       "Я просто работаю",
@@ -2901,7 +2901,7 @@
     "rand": 0.3273771640378982,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m responsible ___ this project.",
+    "question": "I'm responsible ___ this project.",
     "options": [
       "at",
       "with",
@@ -2949,7 +2949,7 @@
     "rand": 0.17422278271988034,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not ready' mean?",
+    "question": "What does 'I'm not ready' mean?",
     "options": [
       "Я не дома",
       "Я не работаю",
@@ -3013,7 +3013,7 @@
     "rand": 0.7816657281946391,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m in charge' mean?",
+    "question": "What does 'I'm in charge' mean?",
     "options": [
       "Я виноват",
       "Я главный",
@@ -3077,7 +3077,7 @@
     "rand": 0.10757110780104995,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m in a bad mood' mean?",
+    "question": "What does 'I'm in a bad mood' mean?",
     "options": [
       "Я в плохом настроении",
       "Я в плохой форме",
@@ -3141,7 +3141,7 @@
     "rand": 0.558396648382768,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’ll give you a hand' mean?",
+    "question": "What does 'I'll give you a hand' mean?",
     "options": [
       "Я подожду тебя",
       "Я позвоню тебе",
@@ -3205,7 +3205,7 @@
     "rand": 0.8250801102258265,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m out of breath' mean?",
+    "question": "What does 'I'm out of breath' mean?",
     "options": [
       "Я устал морально",
       "Я запыхался",
@@ -3269,7 +3269,7 @@
     "rand": 0.06305115041323006,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m all ears' mean?",
+    "question": "What does 'I'm all ears' mean?",
     "options": [
       "Я ничего не слышу",
       "Я внимательно слушаю",
@@ -3319,13 +3319,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I didn’t went there last week.",
+      "I didn't went there last week.",
       "He likes this movie.",
       "She was at home yesterday.",
       "They are working now."
     ],
-    "correct": "I didn’t went there last week.",
-    "rule": "После 'didn’t' используется 'go'. · Після 'didn’t' використовується 'go'."
+    "correct": "I didn't went there last week.",
+    "rule": "После 'didn't' используется 'go'. · Після 'didn't' використовується 'go'."
   },
   {
     "id": "a2_209",
@@ -3333,7 +3333,7 @@
     "rand": 0.3629431438166648,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m fed up' mean?",
+    "question": "What does 'I'm fed up' mean?",
     "options": [
       "Я занят сейчас",
       "Мне это надоело",
@@ -3397,7 +3397,7 @@
     "rand": 0.435876076342538,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m running late' mean?",
+    "question": "What does 'I'm running late' mean?",
     "options": [
       "Я скоро бегу",
       "Я бегаю часто",
@@ -3461,7 +3461,7 @@
     "rand": 0.011166109936311841,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m broke again' mean?",
+    "question": "What does 'I'm broke again' mean?",
     "options": [
       "У меня снова нет денег",
       "Я снова устал",
@@ -3525,7 +3525,7 @@
     "rand": 0.6670360951684415,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m on my way' mean?",
+    "question": "What does 'I'm on my way' mean?",
     "options": [
       "Я уже в пути",
       "Я уже дома",
@@ -3575,13 +3575,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t like apples.",
+      "He don't like apples.",
       "I am learning French.",
       "She enjoys reading books.",
       "They went shopping yesterday."
     ],
-    "correct": "He don’t like apples.",
-    "rule": "С 'he' используется 'doesn’t'. · З 'he' використовується 'doesn’t'."
+    "correct": "He don't like apples.",
+    "rule": "С 'he' используется 'doesn't'. · З 'he' використовується 'doesn't'."
   },
   {
     "id": "a2_225",
@@ -3589,7 +3589,7 @@
     "rand": 0.5881738637108356,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m in a rush' mean?",
+    "question": "What does 'I'm in a rush' mean?",
     "options": [
       "Я тороплюсь",
       "Я занят",
@@ -3653,7 +3653,7 @@
     "rand": 0.5490561001934111,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’ll sort it out' mean?",
+    "question": "What does 'I'll sort it out' mean?",
     "options": [
       "Я разберусь с этим",
       "Я найду это",
@@ -3703,13 +3703,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She didn’t wrote the email.",
+      "She didn't wrote the email.",
       "He works in a bank.",
       "I met him last week.",
       "They are watching a film."
     ],
-    "correct": "She didn’t wrote the email.",
-    "rule": "После 'didn’t' используется 'write'. · Після 'didn’t' використовується 'write'."
+    "correct": "She didn't wrote the email.",
+    "rule": "После 'didn't' используется 'write'. · Після 'didn't' використовується 'write'."
   },
   {
     "id": "a2_233",
@@ -3717,7 +3717,7 @@
     "rand": 0.7178991008549929,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m getting better' mean?",
+    "question": "What does 'I'm getting better' mean?",
     "options": [
       "Я становлюсь старше",
       "Я становлюсь быстрее",
@@ -3749,7 +3749,7 @@
     "rand": 0.6784029738046229,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "There isn’t ___ water in the bottle.",
+    "question": "There isn't ___ water in the bottle.",
     "options": [
       "many",
       "several",
@@ -3781,7 +3781,7 @@
     "rand": 0.14271586877293885,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not impressed' mean?",
+    "question": "What does 'I'm not impressed' mean?",
     "options": [
       "Меня это не впечатлило",
       "Я не хочу это",
@@ -3831,13 +3831,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "They doesn’t understand the task.",
+      "They doesn't understand the task.",
       "He bought a new jacket.",
       "I finished my work early.",
       "She is talking on the phone."
     ],
-    "correct": "They doesn’t understand the task.",
-    "rule": "С 'they' используется 'don’t'. · З 'they' використовується 'don’t'."
+    "correct": "They doesn't understand the task.",
+    "rule": "С 'they' используется 'don't'. · З 'they' використовується 'don't'."
   },
   {
     "id": "a2_241",
@@ -3845,7 +3845,7 @@
     "rand": 0.4192141923122108,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not in the mood' mean?",
+    "question": "What does 'I'm not in the mood' mean?",
     "options": [
       "У меня нет настроения",
       "Я в плохом месте",
@@ -3909,7 +3909,7 @@
     "rand": 0.13260161131620407,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m worn out' mean?",
+    "question": "What does 'I'm worn out' mean?",
     "options": [
       "Я очень занят",
       "Я очень измотан",
@@ -3973,7 +3973,7 @@
     "rand": 0.8136464322451502,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not sure about that' mean?",
+    "question": "What does 'I'm not sure about that' mean?",
     "options": [
       "Я не хочу этого",
       "Я не думаю об этом",
@@ -4037,7 +4037,7 @@
     "rand": 0.9020900840405375,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m in a good shape' mean?",
+    "question": "What does 'I'm in a good shape' mean?",
     "options": [
       "Я хорошо работаю",
       "Я в хорошем месте",
@@ -4053,7 +4053,7 @@
     "rand": 0.34803773602470756,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m interested ___ history and art.",
+    "question": "I'm interested ___ history and art.",
     "options": [
       "for",
       "at",
@@ -4245,7 +4245,7 @@
     "rand": 0.3140292949974537,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not ready yet' mean?",
+    "question": "What does 'I'm not ready yet' mean?",
     "options": [
       "Я не хочу сейчас",
       "Я не знаю это",
@@ -4357,7 +4357,7 @@
     "rand": 0.033020986476913095,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m in pain' mean?",
+    "question": "What does 'I'm in pain' mean?",
     "options": [
       "Я устал",
       "Я занят",
@@ -4469,7 +4469,7 @@
     "rand": 0.17416496202349663,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m doing my best' mean?",
+    "question": "What does 'I'm doing my best' mean?",
     "options": [
       "Я стараюсь изо всех сил",
       "Я делаю быстро",
@@ -4517,7 +4517,7 @@
     "rand": 0.8045847427565604,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not okay with this' mean?",
+    "question": "What does 'I'm not okay with this' mean?",
     "options": [
       "Меня это не устраивает",
       "Я не понимаю это",
@@ -4581,7 +4581,7 @@
     "rand": 0.681161641376093,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m running out of time' mean?",
+    "question": "What does 'I'm running out of time' mean?",
     "options": [
       "Я начинаю вовремя",
       "Я бегу вовремя",
@@ -4645,7 +4645,7 @@
     "rand": 0.5271780183538795,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not used to this' mean?",
+    "question": "What does 'I'm not used to this' mean?",
     "options": [
       "Я к этому не привык",
       "Я не люблю это",
@@ -4709,7 +4709,7 @@
     "rand": 0.7980106265749782,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not available' mean?",
+    "question": "What does 'I'm not available' mean?",
     "options": [
       "Я не знаю",
       "Я не работаю",
@@ -4759,13 +4759,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She doesn’t likes coffee.",
-      "I don’t need help.",
-      "He doesn’t work here.",
-      "They don’t understand."
+      "She doesn't likes coffee.",
+      "I don't need help.",
+      "He doesn't work here.",
+      "They don't understand."
     ],
-    "correct": "She doesn’t likes coffee.",
-    "rule": "После 'doesn’t' используется базовая форма. · Після 'doesn’t' використовується базова форма."
+    "correct": "She doesn't likes coffee.",
+    "rule": "После 'doesn't' используется базовая форма. · Після 'doesn't' використовується базова форма."
   },
   {
     "id": "a2_299",
@@ -4922,7 +4922,7 @@
       "We did went to the park.",
       "Did you go to the park?",
       "We went to the park.",
-      "We didn’t go to the park."
+      "We didn't go to the park."
     ],
     "correct": "We did went to the park.",
     "rule": "После 'did' используется базовая форма 'go'. · Після 'did' використовується базова форма 'go'."
@@ -4949,7 +4949,7 @@
     "rand": 0.452957947505638,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "There isn’t ___ milk left in the fridge.",
+    "question": "There isn't ___ milk left in the fridge.",
     "options": [
       "some",
       "few",
@@ -4999,13 +4999,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He didn’t ate breakfast.",
+      "He didn't ate breakfast.",
       "Did he eat breakfast?",
-      "He didn’t eat breakfast.",
+      "He didn't eat breakfast.",
       "He ate breakfast."
     ],
-    "correct": "He didn’t ate breakfast.",
-    "rule": "После 'didn’t' используется базовая форма. · Після 'didn’t' використовується базова форма."
+    "correct": "He didn't ate breakfast.",
+    "rule": "После 'didn't' используется базовая форма. · Після 'didn't' використовується базова форма."
   },
   {
     "id": "a2_314",
@@ -5189,7 +5189,7 @@
     "rand": 0.5307624016422778,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m full' mean?",
+    "question": "What does 'I'm full' mean?",
     "options": [
       "Я устал",
       "Я сыт",
@@ -5221,7 +5221,7 @@
     "rand": 0.48752681794576347,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "He doesn’t have ___ friends here.",
+    "question": "He doesn't have ___ friends here.",
     "options": [
       "any",
       "some",
@@ -5253,7 +5253,7 @@
     "rand": 0.4259575018659234,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m lost' mean?",
+    "question": "What does 'I'm lost' mean?",
     "options": [
       "Я стою",
       "Я заблудился",
@@ -5317,7 +5317,7 @@
     "rand": 0.3123366890940815,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m late' mean?",
+    "question": "What does 'I'm late' mean?",
     "options": [
       "Я устал",
       "Я опоздал",
@@ -5381,7 +5381,7 @@
     "rand": 0.021201984491199255,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m busy' mean?",
+    "question": "What does 'I'm busy' mean?",
     "options": [
       "Я болен",
       "Я занят",
@@ -5431,13 +5431,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t like coffee.",
+      "He don't like coffee.",
       "Does he like coffee?",
-      "He doesn’t like coffee.",
+      "He doesn't like coffee.",
       "He likes coffee."
     ],
-    "correct": "He don’t like coffee.",
-    "rule": "С 'he' используется 'doesn’t', а не 'don’t'. · З 'he' використовується 'doesn’t', а не 'don’t'."
+    "correct": "He don't like coffee.",
+    "rule": "С 'he' используется 'doesn't', а не 'don't'. · З 'he' використовується 'doesn't', а не 'don't'."
   },
   {
     "id": "a2_341",
@@ -5525,7 +5525,7 @@
     "rand": 0.5158212401438504,
     "type": "complete_phrasal",
     "task": "Завершите фразовый глагол · Завершіть фразове дієслово",
-    "question": "Can you turn ___ the TV? It’s too loud.",
+    "question": "Can you turn ___ the TV? It's too loud.",
     "options": [
       "down",
       "up",
@@ -5797,7 +5797,7 @@
     "rand": 0.3357644844800234,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m not sure' mean?",
+    "question": "What does 'I'm not sure' mean?",
     "options": [
       "Я не уверен",
       "Я согласен",
@@ -5861,7 +5861,7 @@
     "rand": 0.02307636267505586,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'It’s too expensive' mean?",
+    "question": "What does 'It's too expensive' mean?",
     "options": [
       "Это бесплатно",
       "Это слишком дорого",
@@ -5925,7 +5925,7 @@
     "rand": 0.3380120627116412,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m ready' mean?",
+    "question": "What does 'I'm ready' mean?",
     "options": [
       "Я занят",
       "Я готов",
@@ -5957,7 +5957,7 @@
     "rand": 0.3189500789158046,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I don’t have ___ money today.",
+    "question": "I don't have ___ money today.",
     "options": [
       "many",
       "a",
@@ -6039,13 +6039,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She didn’t went to work.",
+      "She didn't went to work.",
       "Did she go to work?",
-      "She didn’t go to work.",
+      "She didn't go to work.",
       "She went to work."
     ],
-    "correct": "She didn’t went to work.",
-    "rule": "После 'didn’t' используется базовая форма глагола. · Після 'didn’t' використовується базова форма дієслова."
+    "correct": "She didn't went to work.",
+    "rule": "После 'didn't' используется базовая форма глагола. · Після 'didn't' використовується базова форма дієслова."
   },
   {
     "id": "a2_379",
@@ -6445,7 +6445,7 @@
       "Трогай это"
     ],
     "correct": "Оставайся на связи",
-    "rule": "'Keep in touch' означает поддерживать контакт. · 'Keep in touch' означає підтримувати зв’язок."
+    "rule": "'Keep in touch' означает поддерживать контакт. · 'Keep in touch' означає підтримувати зв'язок."
   },
   {
     "id": "a2_404",
@@ -6469,7 +6469,7 @@
     "rand": 0.8867460505571216,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "There aren’t ___ people in the room.",
+    "question": "There aren't ___ people in the room.",
     "options": [
       "an",
       "many",
@@ -6485,7 +6485,7 @@
     "rand": 0.11608034907840192,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'It’s up to you' mean?",
+    "question": "What does 'It's up to you' mean?",
     "options": [
       "Это для тебя",
       "Это над тобой",
@@ -6519,13 +6519,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She didn’t went to work.",
+      "She didn't went to work.",
       "Did she go to work?",
-      "She didn’t go to work.",
+      "She didn't go to work.",
       "She goes to work."
     ],
-    "correct": "She didn’t went to work.",
-    "rule": "После 'didn’t' используется базовая форма глагола. · Після 'didn’t' використовується базова форма дієслова."
+    "correct": "She didn't went to work.",
+    "rule": "После 'didn't' используется базовая форма глагола. · Після 'didn't' використовується базова форма дієслова."
   },
   {
     "id": "a2_409",
@@ -6677,7 +6677,7 @@
     "rand": 0.312774722231552,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "We didn’t have ___ time to talk.",
+    "question": "We didn't have ___ time to talk.",
     "options": [
       "many",
       "few",
@@ -6773,7 +6773,7 @@
     "rand": 0.7240750740747899,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’ll call you back' mean?",
+    "question": "What does 'I'll call you back' mean?",
     "options": [
       "Я забуду тебя",
       "Я ищу тебя",
@@ -6837,7 +6837,7 @@
     "rand": 0.9266598289832473,
     "type": "translate_meaning",
     "task": "Выберите правильный перевод · Оберіть правильний переклад",
-    "question": "What does 'I’m looking forward to it' mean?",
+    "question": "What does 'I'm looking forward to it' mean?",
     "options": [
       "Я жду этого с нетерпением",
       "Я теряю это",
@@ -6871,12 +6871,12 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t like coffee.",
+      "She don't like coffee.",
       "I like coffee.",
-      "She doesn’t like coffee.",
+      "She doesn't like coffee.",
       "Do you like coffee?"
     ],
-    "correct": "She don’t like coffee.",
+    "correct": "She don't like coffee.",
     "rule": "С he · she используется 'doesn't', а не 'don't'. · З he · she використовується 'doesn't', а не 'don't'."
   },
   {
@@ -6901,7 +6901,7 @@
     "rand": 0.43988125515170395,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "There isn’t ___ milk in the fridge.",
+    "question": "There isn't ___ milk in the fridge.",
     "options": [
       "any",
       "some",
@@ -7095,13 +7095,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I didn’t went to the party.",
-      "They didn’t go to the party.",
-      "I didn’t go to the party.",
-      "She didn’t go to the party."
+      "I didn't went to the party.",
+      "They didn't go to the party.",
+      "I didn't go to the party.",
+      "She didn't go to the party."
     ],
-    "correct": "I didn’t went to the party.",
-    "rule": "После 'didn’t' используется базовая форма глагола. · Після 'didn’t' використовується базова форма дієслова."
+    "correct": "I didn't went to the party.",
+    "rule": "После 'didn't' используется базовая форма глагола. · Після 'didn't' використовується базова форма дієслова."
   },
   {
     "id": "a2_445",
@@ -7221,7 +7221,7 @@
     "rand": 0.14724849653430283,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "She doesn’t have ___ friends in this city.",
+    "question": "She doesn't have ___ friends in this city.",
     "options": [
       "the",
       "a",
@@ -7543,13 +7543,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He didn’t went to work.",
-      "They didn’t go to work.",
-      "He didn’t go to work.",
-      "She didn’t go to work."
+      "He didn't went to work.",
+      "They didn't go to work.",
+      "He didn't go to work.",
+      "She didn't go to work."
     ],
-    "correct": "He didn’t went to work.",
-    "rule": "После 'didn’t' используется начальная форма глагола. · Після 'didn’t' використовується початкова форма дієслова."
+    "correct": "He didn't went to work.",
+    "rule": "После 'didn't' используется начальная форма глагола. · Після 'didn't' використовується початкова форма дієслова."
   },
   {
     "id": "a2_473",
@@ -7589,7 +7589,7 @@
     "rand": 0.004172284156084061,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "There isn’t ___ milk in the fridge.",
+    "question": "There isn't ___ milk in the fridge.",
     "options": [
       "any",
       "some",
@@ -7837,7 +7837,7 @@
       "off"
     ],
     "correct": "out",
-    "rule": "'Find out' означает выяснить. · 'Find out' означає з’ясувати."
+    "rule": "'Find out' означает выяснить. · 'Find out' означає з'ясувати."
   },
   {
     "id": "a2_491",
@@ -7877,7 +7877,7 @@
     "rand": 0.56561683351174,
     "type": "complete_phrasal",
     "task": "Завершите фразовый глагол · Завершіть фразове дієслово",
-    "question": "Please turn ___ the music, it’s too loud.",
+    "question": "Please turn ___ the music, it's too loud.",
     "options": [
       "into",
       "off",
@@ -7895,13 +7895,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She doesn’t likes coffee.",
-      "They don’t like milk.",
-      "She doesn’t like coffee.",
-      "He doesn’t like tea."
+      "She doesn't likes coffee.",
+      "They don't like milk.",
+      "She doesn't like coffee.",
+      "He doesn't like tea."
     ],
-    "correct": "She doesn’t likes coffee.",
-    "rule": "После 'doesn’t' глагол без окончания -s. · Після 'doesn’t' дієслово без закінчення -s."
+    "correct": "She doesn't likes coffee.",
+    "rule": "После 'doesn't' глагол без окончания -s. · Після 'doesn't' дієслово без закінчення -s."
   },
   {
     "id": "a2_495",
@@ -8265,11 +8265,11 @@
     "options": [
       "We did our homework yesterday.",
       "She finished her task early.",
-      "He didn’t went to work.",
+      "He didn't went to work.",
       "They watched a film last night."
     ],
-    "correct": "He didn’t went to work.",
-    "rule": "После 'didn’t' используется начальная форма глагола. · Після 'didn’t' використовується початкова форма дієслова."
+    "correct": "He didn't went to work.",
+    "rule": "После 'didn't' используется начальная форма глагола. · Після 'didn't' використовується початкова форма дієслова."
   },
   {
     "id": "a2_518",
@@ -8551,13 +8551,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She doesn’t like coffee.",
-      "I don’t know the answer.",
-      "He don’t understand this.",
-      "We don’t have enough time."
+      "She doesn't like coffee.",
+      "I don't know the answer.",
+      "He don't understand this.",
+      "We don't have enough time."
     ],
-    "correct": "He don’t understand this.",
-    "rule": "С 'he' используется 'doesn’t', а не 'don’t'. · З 'he' використовується 'doesn’t', а не 'don’t'."
+    "correct": "He don't understand this.",
+    "rule": "С 'he' используется 'doesn't', а не 'don't'. · З 'he' використовується 'doesn't', а не 'don't'."
   },
   {
     "id": "a2_536",
@@ -8983,13 +8983,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t like coffee.",
-      "They don’t play football.",
-      "She doesn’t eat meat.",
-      "I don’t understand this."
+      "He don't like coffee.",
+      "They don't play football.",
+      "She doesn't eat meat.",
+      "I don't understand this."
     ],
-    "correct": "He don’t like coffee.",
-    "rule": "С 'he' нужно 'doesn’t'. · З 'he' потрібно 'doesn’t'."
+    "correct": "He don't like coffee.",
+    "rule": "С 'he' нужно 'doesn't'. · З 'he' потрібно 'doesn't'."
   },
   {
     "id": "a2_563",
@@ -9063,13 +9063,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She didn’t went to work.",
-      "He didn’t call me.",
-      "They didn’t see the film.",
-      "I didn’t finish my homework."
+      "She didn't went to work.",
+      "He didn't call me.",
+      "They didn't see the film.",
+      "I didn't finish my homework."
     ],
-    "correct": "She didn’t went to work.",
-    "rule": "После 'didn’t' используется базовая форма: 'go'. · Після 'didn’t' використовується базова форма: 'go'."
+    "correct": "She didn't went to work.",
+    "rule": "После 'didn't' используется базовая форма: 'go'. · Після 'didn't' використовується базова форма: 'go'."
   },
   {
     "id": "a2_568",
@@ -9477,7 +9477,7 @@
     "rand": 0.23142379126511514,
     "type": "complete_phrasal",
     "task": "Завершите фразовый глагол · Завершіть фразове дієслово",
-    "question": "Please turn ___ the TV. It’s too loud.",
+    "question": "Please turn ___ the TV. It's too loud.",
     "options": [
       "down",
       "over",
@@ -9495,13 +9495,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She doesn’t likes coffee.",
-      "I don’t understand this.",
-      "He doesn’t work here.",
-      "They don’t play football."
+      "She doesn't likes coffee.",
+      "I don't understand this.",
+      "He doesn't work here.",
+      "They don't play football."
     ],
-    "correct": "She doesn’t likes coffee.",
-    "rule": "После 'doesn’t' используется глагол без -s. · Після 'doesn’t' використовується дієслово без -s."
+    "correct": "She doesn't likes coffee.",
+    "rule": "После 'doesn't' используется глагол без -s. · Після 'doesn't' використовується дієслово без -s."
   },
   {
     "id": "a2_595",
@@ -9541,7 +9541,7 @@
     "rand": 0.4375083053018898,
     "type": "complete_phrasal",
     "task": "Завершите фразовый глагол · Завершіть фразове дієслово",
-    "question": "Can you look ___ my dog while I’m away?",
+    "question": "Can you look ___ my dog while I'm away?",
     "options": [
       "for",
       "over",
@@ -9623,13 +9623,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t like tea.",
-      "I don’t watch TV.",
-      "He doesn’t eat meat.",
-      "They don’t live here."
+      "She don't like tea.",
+      "I don't watch TV.",
+      "He doesn't eat meat.",
+      "They don't live here."
     ],
-    "correct": "She don’t like tea.",
-    "rule": "С 'she' используется 'doesn’t', а не 'don’t'. · З 'she' використовується 'doesn’t', а не 'don’t'."
+    "correct": "She don't like tea.",
+    "rule": "С 'she' используется 'doesn't', а не 'don't'. · З 'she' використовується 'doesn't', а не 'don't'."
   },
   {
     "id": "a2_603",
@@ -9845,7 +9845,7 @@
     "rand": 0.49506716313771904,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "I’m looking forward ___ you again.",
+    "question": "I'm looking forward ___ you again.",
     "options": [
       "to seeing",
       "to see",
@@ -9925,7 +9925,7 @@
     "rand": 0.2949330525007099,
     "type": "fill_blank",
     "task": "Выберите правильный вариант · Оберіть правильний варіант",
-    "question": "There aren’t ___ apples left.",
+    "question": "There aren't ___ apples left.",
     "options": [
       "some",
       "much",
@@ -9959,13 +9959,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "She don’t like coffee.",
-      "They don’t watch TV.",
-      "She doesn’t like tea.",
-      "He doesn’t play football."
+      "She don't like coffee.",
+      "They don't watch TV.",
+      "She doesn't like tea.",
+      "He doesn't play football."
     ],
-    "correct": "She don’t like coffee.",
-    "rule": "С 'she' используется 'doesn’t', а не 'don’t'. · З 'she' використовується 'doesn’t', а не 'don’t'."
+    "correct": "She don't like coffee.",
+    "rule": "С 'she' используется 'doesn't', а не 'don't'. · З 'she' використовується 'doesn't', а не 'don't'."
   },
   {
     "id": "a2_624",
@@ -10279,13 +10279,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I didn’t went to school.",
-      "They didn’t eat dinner.",
-      "I didn’t go to school.",
-      "She didn’t see him."
+      "I didn't went to school.",
+      "They didn't eat dinner.",
+      "I didn't go to school.",
+      "She didn't see him."
     ],
-    "correct": "I didn’t went to school.",
-    "rule": "После 'didn’t' используется базовая форма глагола. · Після 'didn’t' використовується базова форма дієслова."
+    "correct": "I didn't went to school.",
+    "rule": "После 'didn't' используется базовая форма глагола. · Після 'didn't' використовується базова форма дієслова."
   },
   {
     "id": "a2_644",
@@ -10375,13 +10375,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t works on Sunday.",
-      "They don’t like fish.",
-      "He doesn’t work on Sunday.",
-      "She doesn’t eat meat."
+      "He don't works on Sunday.",
+      "They don't like fish.",
+      "He doesn't work on Sunday.",
+      "She doesn't eat meat."
     ],
-    "correct": "He don’t works on Sunday.",
-    "rule": "С 'he' используется 'doesn’t' и базовая форма глагола. · З 'he' використовується 'doesn’t' і базова форма дієслова."
+    "correct": "He don't works on Sunday.",
+    "rule": "С 'he' используется 'doesn't' и базовая форма глагола. · З 'he' використовується 'doesn't' і базова форма дієслова."
   },
   {
     "id": "a2_650",
@@ -10599,13 +10599,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "He don’t like coffee.",
-      "I don’t like coffee.",
-      "He doesn’t like coffee.",
-      "They don’t like coffee."
+      "He don't like coffee.",
+      "I don't like coffee.",
+      "He doesn't like coffee.",
+      "They don't like coffee."
     ],
-    "correct": "He don’t like coffee.",
-    "rule": "С 'he' используется 'doesn’t'. · З 'he' використовується 'doesn’t'."
+    "correct": "He don't like coffee.",
+    "rule": "С 'he' используется 'doesn't'. · З 'he' використовується 'doesn't'."
   },
   {
     "id": "a2_664",
@@ -10885,7 +10885,7 @@
     "rand": 0.5666010552085936,
     "type": "complete_phrasal",
     "task": "Завершите фразовый глагол · Завершіть фразове дієслово",
-    "question": "Please put ___ your coat, it’s cold.",
+    "question": "Please put ___ your coat, it's cold.",
     "options": [
       "out",
       "off",
@@ -10903,13 +10903,13 @@
     "task": "Найдите неверное предложение · Знайдіть неправильне речення",
     "question": "Which sentence is incorrect?",
     "options": [
-      "I didn’t saw him yesterday.",
-      "They didn’t see him yesterday.",
-      "I didn’t see him yesterday.",
-      "She didn’t see him yesterday."
+      "I didn't saw him yesterday.",
+      "They didn't see him yesterday.",
+      "I didn't see him yesterday.",
+      "She didn't see him yesterday."
     ],
-    "correct": "I didn’t saw him yesterday.",
-    "rule": "После 'didn’t' используется базовая форма. · Після 'didn’t' використовується базова форма."
+    "correct": "I didn't saw him yesterday.",
+    "rule": "После 'didn't' используется базовая форма. · Після 'didn't' використовується базова форма."
   },
   {
     "id": "a2_683",

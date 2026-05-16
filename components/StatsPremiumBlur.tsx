@@ -38,19 +38,19 @@ export default function StatsPremiumBlur({
 
   if (isPremium || devUnlock) return <>{children}</>;
 
-  const isLight = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLight = false;
 
   const titleByContext: Record<StatsPremiumBlurContext, { ru: string; uk: string; es: string }> = {
-    stats: { ru: 'Статистика — Premium', uk: 'Статистика — Premium', es: 'Estadísticas — Premium' },
-    heatmap: { ru: 'Карта активности — Premium', uk: 'Карта активності — Premium', es: 'Mapa de actividad — Premium' },
-    patterns: { ru: 'Паттерны ошибок — Premium', uk: 'Патерни помилок — Premium', es: 'Patrones de error — Premium' },
-    percentiles: { ru: 'Сравнение с другими — Premium', uk: 'Порівняння з іншими — Premium', es: 'Comparación con otros — Premium' },
+    stats:       { ru: 'Разбор твоего прогресса',   uk: 'Розбір твого прогресу',    es: 'Análisis de tu progreso' },
+    heatmap:     { ru: 'Годовой пульс обучения',     uk: 'Річний пульс навчання',    es: 'Pulso anual de aprendizaje' },
+    patterns:    { ru: 'Карта твоих слабых мест',    uk: 'Карта твоїх слабких місць', es: 'Mapa de tus puntos débiles' },
+    percentiles: { ru: 'Где ты среди всех игроков',  uk: 'Де ти серед усіх гравців', es: 'Tu posición entre todos' },
   };
   const title = overrideTitle ?? triLang(lang, titleByContext[context]);
   const ctaLabel = triLang(lang, {
-    ru: 'Открыть аналитику',
-    uk: 'Відкрити аналітику',
-    es: 'Desbloquear analítica',
+    ru: 'Открыть с Premium',
+    uk: 'Відкрити з Premium',
+    es: 'Abrir con Premium',
   });
 
   const overlayContent = (

@@ -2,23 +2,9 @@
 # Ловит replace/push стека (меню не должно «обновляться» вместо выхода со стека).
 appId: app.phraseman
 ---
-- launchApp
-- runFlow: ../_dismiss_bug_hunt.yaml
-- runFlow: ../_precondition.yaml
-- extendedWaitUntil:
-    visible:
-      id: "tab-home"
-    timeout: 90000
+- runFlow: ../_shared/boot_to_home_fast.yaml
 - tapOn:
-    id: "tab-home"
-- waitForAnimationToEnd:
-    timeout: 5000
-- extendedWaitUntil:
-    visible:
-      id: "screen-home"
-    timeout: 45000
-- tapOn:
-    id: "tab-index"
+    point: "30%,95%"
 # TabSlider сдвигает экраны через transform — дождаться пружины, иначе Maestro не видит строку.
 - waitForAnimationToEnd:
     timeout: 5000

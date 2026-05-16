@@ -1,10 +1,9 @@
-﻿import React, { useEffect, useState, memo, useCallback, useRef, useMemo } from 'react';
+import React, { useEffect, useState, memo, useCallback, useMemo } from 'react';
 import {
   View, Text, SectionList, TouchableOpacity, Modal, Dimensions, Pressable, Image,
   InteractionManager,
-  type SectionListRenderItemInfo,
+  Share,
 } from 'react-native';
-import Svg from 'react-native-svg';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -23,17 +22,14 @@ import {
   hasPendingShardReward,
   achievementNameForLang,
   achievementDescForLang,
+  checkAchievements,
 } from './achievements';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess } from '../hooks/use-haptics';
 import { STORE_URL, DEV_MODE } from './config';
 import { usePremium } from '../components/PremiumContext';
 import { oskolokImageForPackShards } from './oskolok';
-import type { ShareCardLang } from '../components/share_cards/streakCardCopy';
-import AchievementShareCardSvg from '../components/share_cards/AchievementShareCardSvg';
-import { shareCardFromSvgRef } from '../components/share_cards/shareCardPng';
 import { buildAchievementShareMessage } from './achievement_share';
-import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 
 const { width: SW } = Dimensions.get('window');
 const COLS = 4;
@@ -46,17 +42,26 @@ interface AchievementStats {
   lessons: number;
   perfectLessons: number;
   xp: number;
+  recallCorrect: number;
+  arenaWins: number;
+  shards: number;
 }
 
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
-    const [streakRaw, loginRaw, xpRaw] = await Promise.all([
+    const [streakRaw, loginRaw, xpRaw, recallRaw, arenaWinsRaw, shardsRaw] = await Promise.all([
       AsyncStorage.getItem('streak_count'),
       AsyncStorage.getItem('login_bonus_v1'),
       AsyncStorage.getItem('user_total_xp'),
+      AsyncStorage.getItem('achievement_active_recall_correct_count'),
+      AsyncStorage.getItem('achievement_arena_win_count'),
+      AsyncStorage.getItem('shards_balance'),
     ]);
     const streak = parseInt(streakRaw || '0') || 0;
     const xp = parseInt(xpRaw || '0') || 0;
+    const recallCorrect = parseInt(recallRaw || '0') || 0;
+    const arenaWins = parseInt(arenaWinsRaw || '0') || 0;
+    const shards = parseInt(shardsRaw || '0') || 0;
     let loginDays = 0;
     try { loginDays = loginRaw ? JSON.parse(loginRaw).consecutiveDays || 0 : 0; } catch {}
     let lessons = 0, perfectLessons = 0;
@@ -74,8 +79,8 @@ async function loadAchievementStats(): Promise<AchievementStats> {
         }
       }
     } catch {}
-    return { streak, loginDays, lessons, perfectLessons, xp };
-  } catch { return { streak: 0, loginDays: 0, lessons: 0, perfectLessons: 0, xp: 0 }; }
+    return { streak, loginDays, lessons, perfectLessons, xp, recallCorrect, arenaWins, shards };
+  } catch { return { streak: 0, loginDays: 0, lessons: 0, perfectLessons: 0, xp: 0, recallCorrect: 0, arenaWins: 0, shards: 0 }; }
 }
 
 function getAchievementProgress(id: string, stats: AchievementStats): [number, number] | null {
@@ -99,6 +104,11 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
     const n = parseInt(id.replace('xp_', ''));
     if (!isNaN(n)) return [Math.min(stats.xp, n), n];
   }
+  if (id === 'recall_first') return [Math.min(stats.recallCorrect, 1), 1];
+  if (id === 'recall_50') return [Math.min(stats.recallCorrect, 50), 50];
+  if (id === 'arena_first_win') return [Math.min(stats.arenaWins, 1), 1];
+  if (id === 'arena_10_wins') return [Math.min(stats.arenaWins, 10), 10];
+  if (id === 'shards_100') return [Math.min(stats.shards, 100), 100];
   return null;
 }
 
@@ -176,6 +186,8 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   combo_100:           require('../assets/images/levels/nepobedimiy.webp'),
   daily_task_first:    require('../assets/images/levels/pervoe zadanie.webp'),
   all_daily:           require('../assets/images/levels/vse za den.webp'),
+  daily_phrase_first:  require('../assets/images/levels/dayly phrase coral.webp'),
+  daily_phrase_save:   require('../assets/images/levels/dayly phrase ocean.webp'),
   login_7:             require('../assets/images/levels/verny uchenic.webp'),
   login_14:            require('../assets/images/levels/2 nedely (osobie).webp'),
   login_30:            require('../assets/images/levels/mesyac v prilozhenii.webp'),
@@ -188,6 +200,11 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   exam_first:          require('../assets/images/levels/ekzamenator.webp'),
   exam_ace:            require('../assets/images/levels/otlychink.webp'),
   flashcards_session:  require('../assets/images/levels/kartzhnik.webp'),
+  recall_first:        require('../assets/images/levels/active recall coral.webp'),
+  recall_50:           require('../assets/images/levels/active recall forest.webp'),
+  arena_first_win:     require('../assets/images/levels/ARENA  ICON.webp'),
+  arena_10_wins:       require('../assets/images/levels/ARENA GOLD 1.webp'),
+  shards_100:          require('../assets/images/levels/OSKOLOK 80.webp'),
   gem_a1_ruby:         require('../assets/images/levels/rubin.webp'),
   gem_a1_emerald:      require('../assets/images/levels/izumrud.webp'),
   gem_a1_diamond:      require('../assets/images/levels/almaz.webp'),
@@ -200,6 +217,30 @@ export const ACHIEVEMENT_IMAGE: Record<string, any> = {
   gem_b2_ruby:         require('../assets/images/levels/rubin.webp'),
   gem_b2_emerald:      require('../assets/images/levels/izumrud.webp'),
   gem_b2_diamond:      require('../assets/images/levels/almaz.webp'),
+  gem_all_complete:    require('../assets/images/levels/polniy nabor.webp'),
+  social_friend_first: require('../assets/images/levels/dialog coral.webp'),
+  social_friends_3:    require('../assets/images/levels/dialog ocean.webp'),
+  social_friends_10:   require('../assets/images/levels/dialog forest.webp'),
+  social_gift_send:    require('../assets/images/levels/GIF COMMON.webp'),
+  social_gift_5:       require('../assets/images/levels/GIFT PREMIUM.webp'),
+  social_like_received: require('../assets/images/levels/achivement.webp'),
+  arena_streak_5:      require('../assets/images/levels/ARENA GOLD 1.webp'),
+  arena_streak_10:     require('../assets/images/levels/ARENA LEGEND 1.webp'),
+  arena_duel_friend:   require('../assets/images/levels/ARENA  ICON.webp'),
+  arena_wager_win:     require('../assets/images/levels/ARENA NEON.webp'),
+  arena_wager_5:       require('../assets/images/levels/ARENA GRAND 1.webp'),
+  trainer_session:     require('../assets/images/levels/active recall coral.webp'),
+  trainer_100_correct: require('../assets/images/levels/active recall forest.webp'),
+  avatar_custom:       require('../assets/images/levels/professor.webp'),
+  profile_themed:      require('../assets/images/levels/achivement.webp'),
+  pack_purchased:      require('../assets/images/levels/cards coral.webp'),
+  pack_5_purchased:    require('../assets/images/levels/cards forest.webp'),
+  share_achievement:   require('../assets/images/levels/dialog neon.webp'),
+  level_50:            require('../assets/images/levels/legenda.webp'),
+  xp_75000:            require('../assets/images/levels/pol sotny tisyach opita.webp'),
+  quiz_10_completed:   require('../assets/images/levels/quizes coral.webp'),
+  arena_streak_freeze: require('../assets/images/levels/fenix.webp'),
+  wager_win_3:         require('../assets/images/levels/risknul pobedil.webp'),
 };
 
 // ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
@@ -253,6 +294,8 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   combo_100:          'nuclear',
   daily_task_first:   'checkmark-circle',
   all_daily:          'albums',
+  daily_phrase_first: 'chatbubble-ellipses',
+  daily_phrase_save:  'file-tray-full',
   login_7:            'calendar',
   login_14:           'calendar-outline',
   login_30:           'calendar-number',
@@ -265,6 +308,12 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   exam_first:         'document-text',
   exam_ace:           'ribbon',
   flashcards_session: 'layers',
+  recall_first:       'bulb',
+  recall_50:          'library',
+  arena_first_win:    'trophy',
+  arena_10_wins:      'shield-checkmark',
+  shards_100:         'diamond',
+  gem_all_complete:   'trophy',
 };
 
 // ── Цвет категории ────────────────────────────────────────────────────────────
@@ -312,6 +361,29 @@ type AchievementListSection = {
   catTotal: number;
   data: AchievementGridRow[];
 };
+
+function achievementCountLabel(count: number, lang: Lang): string {
+  const n = Math.max(0, count);
+  if (lang === 'uk') {
+    const mod10 = n % 10;
+    const mod100 = n % 100;
+    const word = mod10 === 1 && mod100 !== 11
+      ? 'нагорода'
+      : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
+        ? 'нагороди'
+        : 'нагород';
+    return `${n} ${word}`;
+  }
+  if (lang === 'es') return `${n} recompensa${n === 1 ? '' : 's'}`;
+  const mod10 = n % 10;
+  const mod100 = n % 100;
+  const word = mod10 === 1 && mod100 !== 11
+    ? 'награда'
+    : mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)
+      ? 'награды'
+      : 'наград';
+  return `${n} ${word}`;
+}
 
 type GridCellProps = {
   a: Achievement;
@@ -440,8 +512,16 @@ const AchievementGridCell = memo(function AchievementGridCell({
 
       {!isLocked && (
         <Text
-          style={{ color: unlocked ? t.textPrimary : t.textGhost, fontSize: f.label, textAlign: 'center' }}
-          numberOfLines={2}
+          style={{
+            color: unlocked ? t.textPrimary : t.textGhost,
+            fontSize: f.label,
+            lineHeight: Math.round(f.label * 1.16),
+            textAlign: 'center',
+            width: shieldOuter,
+          }}
+          numberOfLines={3}
+          adjustsFontSizeToFit
+          minimumFontScale={0.78}
           maxFontSizeMultiplier={1}
         >
           {achievementNameForLang(a, lang)}
@@ -539,19 +619,7 @@ function AchievementModal({
 }) {
   const router = useRouter();
   const [claiming, setClaiming] = useState(false);
-  const [shareSvgMounted, setShareSvgMounted] = useState(false);
-  const achShareRef = useRef<InstanceType<typeof Svg> | null>(null);
   const { lang } = useLang();
-  const achCardLang: ShareCardLang = REPORT_SCREENS_RUSSIAN_ONLY
-    ? 'ru'
-    : lang === 'uk'
-      ? 'uk'
-      : lang === 'es'
-        ? 'es'
-        : 'ru';
-  useEffect(() => {
-    setShareSvgMounted(false);
-  }, [achievement.id]);
   const unlocked = !!state?.unlockedAt;
   const pendingShard = hasPendingShardReward(state);
   const color    = CAT_COLOR[achievement.category] ?? '#888';
@@ -579,20 +647,6 @@ function AchievementModal({
       <Pressable style={{ flex: 1, backgroundColor: '#00000088', justifyContent: 'center', alignItems: 'center', padding: 24 }} onPress={onClose}>
         <Pressable onPress={e => e.stopPropagation()}>
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 24, alignItems: 'center', width: SW - 48, gap: 12, position: 'relative' }}>
-            {unlocked && shareSvgMounted && (
-              <View
-                pointerEvents="none"
-                collapsable={false}
-                style={{ position: 'absolute', width: 1, height: 1, opacity: 0, left: 0, top: 0, zIndex: -1, overflow: 'hidden' }}
-              >
-                <AchievementShareCardSvg
-                  ref={achShareRef}
-                  title={name}
-                  lang={achCardLang}
-                  layoutSize={1080}
-                />
-              </View>
-            )}
             {/* Shield */}
             <BadgeShield
               unlocked={unlocked}
@@ -742,12 +796,11 @@ function AchievementModal({
               <TouchableOpacity
                 style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4 }}
                 onPress={async () => {
-                  if (!shareSvgMounted) setShareSvgMounted(true);
-                  await new Promise<void>((resolve) => {
-                    InteractionManager.runAfterInteractions(() => resolve());
-                  });
                   const msg = buildAchievementShareMessage(lang, name, STORE_URL);
-                  await shareCardFromSvgRef(achShareRef, { fileNamePrefix: 'phraseman-achievement', textFallback: msg });
+                  const result = await Share.share({ message: msg }).catch(() => null);
+                  if (result?.action === 'sharedAction') {
+                    void checkAchievements({ type: 'achievement_shared' });
+                  }
                 }}
               >
                 <Ionicons name="share-outline" size={16} color={t.textSecond}/>
@@ -774,6 +827,113 @@ function AchievementModal({
   );
 }
 
+// ── Секция-аккордеон ──────────────────────────────────────────────────────────
+type AccordionSectionProps = {
+  section: AchievementListSection;
+  isOpen: boolean;
+  onToggle: () => void;
+  stateMap: Map<string, AchievementState>;
+  stats: AchievementStats;
+  lang: Lang;
+  t: any;
+  f: any;
+  isDark: boolean;
+  gold: string;
+  premiumQuizHintDisabled: boolean;
+  onSelect: (a: Achievement) => void;
+};
+
+const AccordionSection = memo(function AccordionSection({
+  section,
+  isOpen,
+  onToggle,
+  stateMap,
+  stats,
+  lang,
+  t,
+  f,
+  isDark,
+  gold,
+  premiumQuizHintDisabled,
+  onSelect,
+}: AccordionSectionProps) {
+  return (
+    <View style={{ marginBottom: 8 }}>
+      {/* Заголовок-полоска */}
+      <TouchableOpacity
+        onPress={onToggle}
+        activeOpacity={0.75}
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 10,
+          paddingHorizontal: 14,
+          paddingVertical: 14,
+          backgroundColor: isOpen ? section.color + '18' : t.bgCard,
+          borderRadius: 14,
+          borderWidth: 1,
+          borderColor: isOpen ? section.color + '44' : t.bgSurface2,
+        }}
+      >
+        <View style={{
+          width: 32,
+          height: 32,
+          borderRadius: 10,
+          backgroundColor: section.color + '22',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
+          <Ionicons name={section.catIcon as any} size={17} color={section.color} />
+        </View>
+        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flex: 1 }}>
+          {section.title}
+        </Text>
+        <Text style={{ color: t.textGhost, fontSize: f.sub }}>
+          {achievementCountLabel(section.catUnlocked, lang)}
+        </Text>
+        <Ionicons
+          name={isOpen ? 'chevron-up' : 'chevron-down'}
+          size={18}
+          color={t.textGhost}
+        />
+      </TouchableOpacity>
+
+      {/* Сетка достижений — только когда раскрыто */}
+      {isOpen && (
+        <View style={{ paddingTop: 14, paddingHorizontal: 2, gap: 16 }}>
+          {section.data.map(row => (
+            <View key={row.rowKey} style={{ flexDirection: 'row', gap: 10 }}>
+              {row.items.map(a => (
+                <AchievementGridCell
+                  key={a.id}
+                  a={a}
+                  state={stateMap.get(a.id)}
+                  stats={stats}
+                  color={section.color}
+                  fallbackCatIcon={section.catIcon}
+                  lang={lang}
+                  t={t}
+                  f={f}
+                  isDark={isDark}
+                  gold={gold}
+                  shieldW={SHIELD_W}
+                  shieldOuter={SHIELD_OUTER}
+                  onSelect={onSelect}
+                  showPremiumQuizGate={
+                    !premiumQuizHintDisabled &&
+                    !stateMap.get(a.id)?.unlockedAt &&
+                    achievementNeedsPremiumQuiz(a.id)
+                  }
+                />
+              ))}
+            </View>
+          ))}
+        </View>
+      )}
+    </View>
+  );
+});
+
 // ── Главный экран ─────────────────────────────────────────────────────────────
 export default function AchievementsScreen() {
   const router          = useRouter();
@@ -784,8 +944,9 @@ export default function AchievementsScreen() {
   const premiumQuizHintDisabled = isPremium || DEV_MODE;
 
   const [states, setStates]   = useState<AchievementState[]>([]);
-  const [stats, setStats]     = useState<AchievementStats>({ streak:0, loginDays:0, lessons:0, perfectLessons:0, xp:0 });
+  const [stats, setStats]     = useState<AchievementStats>({ streak:0, loginDays:0, lessons:0, perfectLessons:0, xp:0, recallCorrect:0, arenaWins:0, shards:0 });
   const [selected, setSelected] = useState<Achievement | null>(null);
+  const [openCategory, setOpenCategory] = useState<string | null>(null);
 
   useEffect(() => {
     loadAchievementStates().then(setStates);
@@ -806,12 +967,13 @@ export default function AchievementsScreen() {
   const stateMap = useMemo(() => new Map(states.map(s => [s.id, s])), [states]);
 
   const achievementSections = useMemo((): AchievementListSection[] => {
-    return CATEGORIES.map(cat => {
+    return CATEGORIES.flatMap(cat => {
       const color = CAT_COLOR[cat];
       const catIcon = CAT_ICON[cat];
       const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat] });
-      const catAchs = ALL_ACHIEVEMENTS.filter(a => a.category === cat);
-      const catUnlocked = catAchs.filter(a => stateMap.get(a.id)?.unlockedAt).length;
+      const catAchs = ALL_ACHIEVEMENTS.filter(a => a.category === cat && !!stateMap.get(a.id)?.unlockedAt);
+      if (catAchs.length === 0) return [];
+      const catUnlocked = catAchs.length;
       const rows: AchievementGridRow[] = [];
       for (let i = 0; i < catAchs.length; i += COLS) {
         const chunk = catAchs.slice(i, i + COLS);
@@ -823,62 +985,17 @@ export default function AchievementsScreen() {
         color,
         catIcon,
         catUnlocked,
-        catTotal: catAchs.length,
+        catTotal: catUnlocked,
         data: rows,
       };
     });
   }, [lang, stateMap]);
 
-  const renderSectionHeader = useCallback(
-    ({ section }: { section: AchievementListSection }) => (
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
-        <View style={{ width: 28, height: 28, borderRadius: 8, backgroundColor: section.color + '22', alignItems: 'center', justifyContent: 'center' }}>
-          <Ionicons name={section.catIcon as any} size={15} color={section.color} />
-        </View>
-        <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-          {section.title}
-        </Text>
-        <Text style={{ color: t.textGhost, fontSize: f.sub }}>
-          {section.catUnlocked}/{section.catTotal}
-        </Text>
-      </View>
-    ),
-    [f.body, f.sub, t.textGhost, t.textPrimary],
-  );
-
-  const renderAchievementRow = useCallback(
-    ({ item, section }: SectionListRenderItemInfo<AchievementGridRow> & { section: AchievementListSection }) => (
-      <View style={{ flexDirection: 'row', gap: 10 }}>
-        {item.items.map(a => (
-          <AchievementGridCell
-            key={a.id}
-            a={a}
-            state={stateMap.get(a.id)}
-            stats={stats}
-            color={section.color}
-            fallbackCatIcon={section.catIcon}
-            lang={lang}
-            t={t}
-            f={f}
-            isDark={isDark}
-            gold={gold}
-            shieldW={SHIELD_W}
-            shieldOuter={SHIELD_OUTER}
-            onSelect={onSelectAchievement}
-            showPremiumQuizGate={
-              !premiumQuizHintDisabled &&
-              !stateMap.get(a.id)?.unlockedAt &&
-              achievementNeedsPremiumQuiz(a.id)
-            }
-          />
-        ))}
-      </View>
-    ),
-    [f, gold, isDark, lang, onSelectAchievement, premiumQuizHintDisabled, stateMap, stats, t],
-  );
+  const handleToggle = useCallback((cat: string) => {
+    setOpenCategory(prev => (prev === cat ? null : cat));
+  }, []);
 
   const unlockedCount = states.filter(s => s.unlockedAt !== null).length;
-  const total         = ALL_ACHIEVEMENTS.length;
 
   return (
     <ScreenGradient>
@@ -895,67 +1012,47 @@ export default function AchievementsScreen() {
               {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', es: 'Logros' })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-              {unlockedCount} / {total} {triLang(lang, { ru: 'разблокировано', uk: 'розблоковано', es: 'desbloqueados' })}
+              {achievementCountLabel(unlockedCount, lang)}
             </Text>
           </View>
           <View style={{ backgroundColor: t.bgCard, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 5 }}>
             <Text style={{ color: t.textSecond, fontWeight: '800', fontSize: f.body }}>
-              {Math.round(unlockedCount / total * 100)}%
+              {achievementCountLabel(unlockedCount, lang)}
             </Text>
           </View>
         </View>
 
-        {/* Общий прогресс-бар */}
-        <View style={{ height: 3, backgroundColor: t.bgSurface2, marginHorizontal: 16, borderRadius: 2, marginBottom: 16 }}>
-          <View style={{ height: 3, width: `${unlockedCount / total * 100}%` as any, backgroundColor: t.textSecond, borderRadius: 2 }} />
-        </View>
-
-        {/* Friends HoF entry — HOF-01 */}
-        <TouchableOpacity
-          onPress={() => router.push('/friends_hof_screen' as any)}
-          activeOpacity={0.75}
-          style={{
-            marginHorizontal: 16,
-            marginBottom: 16,
-            backgroundColor: t.bgCard,
-            borderRadius: 14,
-            paddingHorizontal: 16,
-            paddingVertical: 12,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 10,
-          }}
-        >
-          <Ionicons name="people" size={22} color={t.textSecond} />
-          <View style={{ flex: 1 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Зал славы друзей', uk: 'Зал слави друзів', es: 'Salón de la Fama de amigos' })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-              {triLang(lang, { ru: 'Рейтинг среди друзей', uk: 'Рейтинг серед друзів', es: 'Ranking entre amigos' })}
-            </Text>
-          </View>
-          <Ionicons name="chevron-forward" size={18} color={t.textMuted} />
-        </TouchableOpacity>
-
-        {/*
-          Сетка через SectionList: виртуализация строк (4 ачивки в ряд), без
-          монтирования всех ~79 щитов сразу. removeClippedSubviews безопасен для
-          VirtualizedList; на обычном ScrollView на Fabric был краш (Crashlytics 1.5.18).
-        */}
-        <SectionList<AchievementGridRow, AchievementListSection>
-          sections={achievementSections}
-          keyExtractor={item => item.rowKey}
-          renderItem={renderAchievementRow}
-          renderSectionHeader={renderSectionHeader}
-          SectionSeparatorComponent={() => <View style={{ height: 24 }} />}
-          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40 }}
+        {/* Аккордеон-список категорий */}
+        <SectionList<AchievementListSection, { key: string; data: AchievementListSection[] }>
+          sections={[{ key: 'cats', data: achievementSections }]}
+          keyExtractor={item => item.key}
+          renderItem={({ item }) => (
+            <AccordionSection
+              section={item}
+              isOpen={openCategory === item.key}
+              onToggle={() => handleToggle(item.key)}
+              stateMap={stateMap}
+              stats={stats}
+              lang={lang}
+              t={t}
+              f={f}
+              isDark={isDark}
+              gold={gold}
+              premiumQuizHintDisabled={premiumQuizHintDisabled}
+              onSelect={onSelectAchievement}
+            />
+          )}
+          contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 0 }}
           showsVerticalScrollIndicator={false}
-          removeClippedSubviews
-          initialNumToRender={8}
-          maxToRenderPerBatch={10}
-          windowSize={8}
           stickySectionHeadersEnabled={false}
+          ListEmptyComponent={(
+            <View style={{ paddingVertical: 48, alignItems: 'center', gap: 10 }}>
+              <Ionicons name="trophy-outline" size={42} color={t.textGhost} />
+              <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
+                {triLang(lang, { ru: 'Пока нет полученных наград', uk: 'Поки немає отриманих нагород', es: 'Aún no tienes recompensas' })}
+              </Text>
+            </View>
+          )}
           ListFooterComponent={(
             <View style={{ alignItems: 'center', paddingVertical: 20 }}>
               <ReportErrorButton

@@ -25,10 +25,27 @@ function loadTsModule(absPath) {
   });
   const module = { exports: {} };
   const requireShim = (rel) => {
+    if (rel === 'react-native') {
+      return {
+        Platform: {
+          OS: 'android',
+          Version: 'qa',
+          select: (map) => map?.android ?? map?.native ?? map?.default,
+        },
+        DeviceEventEmitter: { emit() {}, addListener: () => ({ remove() {} }) },
+      };
+    }
+    if (rel === 'expo-constants') return { default: { appOwnership: null }, appOwnership: null };
+    if (rel === '@react-native-async-storage/async-storage') {
+      const storage = { getItem: async () => null, setItem: async () => undefined, removeItem: async () => undefined };
+      return { default: storage, ...storage };
+    }
     if (rel === './lesson_data_types' || rel.endsWith('lesson_data_types')) return {};
-    if (rel.startsWith('./')) {
-      const next = path.resolve(path.dirname(absPath), rel + '.ts');
-      if (fs.existsSync(next)) return loadTsModule(next);
+    if (rel.startsWith('.')) {
+      for (const suffix of ['.ts', '.tsx', '/index.ts']) {
+        const next = path.resolve(path.dirname(absPath), rel + suffix);
+        if (fs.existsSync(next)) return loadTsModule(next);
+      }
     }
     return {};
   };

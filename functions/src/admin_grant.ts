@@ -85,6 +85,9 @@ export const adminGrantReward = onCall({ region: REGION }, async (request) => {
       const before = Number(u.shards) || 0;
       const after = before + amount;
       updates['shards'] = after;
+      updates['shards_updated_at_ms'] = Date.now();
+      updates['shards_updated_op'] = 'earn';
+      updates['shards_updated_reason'] = 'admin_grant';
       shardsAmount = amount;
       humanLabel = `+${amount} 💎`;
 
@@ -94,6 +97,7 @@ export const adminGrantReward = onCall({ region: REGION }, async (request) => {
         type: 'earn',
         amount,
         reason: 'admin_grant',
+        balanceBefore: before,
         balanceAfter: after,
         adminEmail,
         comment: comment || null,

@@ -13,8 +13,12 @@ export function effectiveLessonStarScore(
     try {
       const p = JSON.parse(progressJson) as unknown;
       if (Array.isArray(p) && p.length > 0) {
-        correct = p.filter((x: string) => x === 'correct' || x === 'replay_correct').length;
-        const fromProgress = (correct / p.length) * 5;
+        const denominator = Math.min(p.length, 50);
+        correct = Math.min(
+          p.filter((x: string) => x === 'correct' || x === 'replay_correct').length,
+          denominator,
+        );
+        const fromProgress = (correct / denominator) * 5;
         return { score: Math.max(best, fromProgress), correctCount: correct };
       }
     } catch {

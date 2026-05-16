@@ -3,6 +3,11 @@ import {
   OFFICIAL_DARK_LOGIC_EN_ID,
   OFFICIAL_NEGOTIATOR_EN_ID,
   OFFICIAL_PEAKY_BLINDERS_EN_ID,
+  OFFICIAL_PREP_AT_EN_ID,
+  OFFICIAL_PREP_BY_EN_ID,
+  OFFICIAL_PREP_IN_EN_ID,
+  OFFICIAL_PREP_ON_EN_ID,
+  OFFICIAL_PREP_TO_EN_ID,
   OFFICIAL_ROYAL_TEA_EN_ID,
   OFFICIAL_WILD_WEST_EN_ID,
 } from '../app/flashcards/bundles/packIds';
@@ -16,13 +21,18 @@ describe('marketplace: bundled', () => {
       OFFICIAL_WILD_WEST_EN_ID,
       OFFICIAL_ROYAL_TEA_EN_ID,
       OFFICIAL_PEAKY_BLINDERS_EN_ID,
+      OFFICIAL_PREP_IN_EN_ID,
+      OFFICIAL_PREP_ON_EN_ID,
+      OFFICIAL_PREP_AT_EN_ID,
+      OFFICIAL_PREP_TO_EN_ID,
+      OFFICIAL_PREP_BY_EN_ID,
     ]);
   });
 
   it('loadMarketplacePacks (без Firestore) повертає бандл', async () => {
     const packs = await loadMarketplacePacks();
-    expect(packs.length).toBe(5);
-    expect(packs[0].id).toBe(OFFICIAL_NEGOTIATOR_EN_ID);
+    expect(packs.length).toBe(10);
+    expect(packs[0].id).toBe(OFFICIAL_PREP_IN_EN_ID);
   });
 
   it('Negotiator: 30 карток з бандла', () => {
@@ -89,8 +99,6 @@ describe('marketplace: bundled', () => {
         category: 'daily',
         cardCount: 1,
         priceShards: 0,
-        ratingAvg: 0,
-        ratingCount: 0,
         salesCount: 0,
         authorName: 'Test',
         isOfficial: false,

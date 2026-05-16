@@ -1,5 +1,4 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Image } from 'expo-image';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
@@ -8,6 +7,7 @@ import {
   BackHandler,
   Dimensions,
   Easing,
+  Image,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -202,10 +202,19 @@ function FlippableCard({
 
   const frontInterp = rotate.interpolate({ inputRange: [0, 1], outputRange: ['0deg', '180deg'] });
   const backInterp = rotate.interpolate({ inputRange: [0, 1], outputRange: ['180deg', '360deg'] });
+  const frontOpacity = rotate.interpolate({
+    inputRange: [0, 0.48, 0.5, 1],
+    outputRange: [1, 1, 0, 0],
+  });
+  const backOpacity = rotate.interpolate({
+    inputRange: [0, 0.5, 0.52, 1],
+    outputRange: [0, 0, 1, 1],
+  });
   const pulseScale = pulse.interpolate({ inputRange: [0, 1], outputRange: [1, 1.03] });
   const glowOpacity = glow.interpolate({ inputRange: [0, 1], outputRange: [0, 0.55] });
 
   const frontTransform = {
+    opacity: frontOpacity,
     transform: [
       { perspective: 1000 },
       { scale: flipped ? scale : pulseScale },
@@ -213,6 +222,7 @@ function FlippableCard({
     ],
   };
   const backTransform = {
+    opacity: backOpacity,
     transform: [
       { perspective: 1000 },
       { scale },
@@ -256,7 +266,7 @@ function FlippableCard({
             style={[StyleSheet.absoluteFillObject, { borderRadius: 16, opacity: 0.35 }]}
           />
           {packIcon ? (
-            <Image source={packIcon} style={styles.cardBackIcon} contentFit="contain" />
+            <Image source={packIcon} style={styles.cardBackIcon} resizeMode="contain" />
           ) : (
             <Ionicons name="albums-outline" size={42} color={accent} />
           )}
@@ -387,7 +397,7 @@ export default function PackOpeningScreen() {
         setLoading(false);
       } catch {
         if (!cancelled) {
-          setError(triLang(lang, { ru: 'Ошибка загрузки', uk: 'Помилка завантаження', es: 'Error al cargar' }));
+          setError(triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error' }));
           setLoading(false);
         }
       }
@@ -452,9 +462,6 @@ export default function PackOpeningScreen() {
     return (
       <View style={[styles.fillCenter, { backgroundColor: t.bgPrimary }]}>
         <Stack.Screen options={{ headerShown: false }} />
-        <Text style={{ color: t.textMuted, fontSize: f.body }}>
-          {triLang(lang, { ru: 'Готовим набор…', uk: 'Готуємо набір…', es: 'Preparando el paquete…' })}
-        </Text>
       </View>
     );
   }

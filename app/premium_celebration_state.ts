@@ -14,7 +14,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { DebugLogger } from './debug-logger';
 
 const PENDING_KEY = 'premium_celebration_pending_v1';
+const PENDING_MARKER_KEY = 'premium_celebration_pending_marker_v1';
 const SEEN_KEY = 'premium_celebration_seen_v1';
+const ADMIN_SEEN_KEY = 'premium_celebration_admin_seen_v1';
+
+function normalizeMarker(marker: string | null | undefined): string | null {
+  const trimmed = String(marker ?? '').trim();
+  return trimmed && trimmed !== '0' ? trimmed : null;
+}
+
+function timestampMs(marker: string | null | undefined): number | null {
+  const value = normalizeMarker(marker);
+  if (!value || !/^\d{10,}$/.test(value)) return null;
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : null;
+}
+
+function isAdminGrantMarker(marker: string | null | undefined): boolean {
+  return timestampMs(marker) !== null;
+}
 
 /** Активен ли pending-флаг (юзер ещё не видел celebration после последнего grant'а). */
 export async function isCelebrationPending(): Promise<boolean> {
@@ -27,14 +45,28 @@ export async function isCelebrationPending(): Promise<boolean> {
   }
 }
 
+/** Marker of the exact pending celebration event, if known. */
+export async function getPendingCelebrationMarker(): Promise<string | null> {
+  try {
+    return normalizeMarker(await AsyncStorage.getItem(PENDING_MARKER_KEY));
+  } catch (error) {
+    DebugLogger.error('premium_celebration_state:getPendingCelebrationMarker', error, 'warning');
+    return null;
+  }
+}
+
 /**
  * Выставить pending. Вызывается из:
  *  - premium_modal.tsx после успешной IAP-покупки,
  *  - cloud_sync.ts когда admin выдал premium через index.html (новый timestamp).
  */
-export async function markCelebrationPending(): Promise<void> {
+export async function markCelebrationPending(marker?: string | null): Promise<void> {
   try {
-    await AsyncStorage.setItem(PENDING_KEY, '1');
+    const resolvedMarker = normalizeMarker(marker) ?? `local_${Date.now()}`;
+    await AsyncStorage.multiSet([
+      [PENDING_KEY, '1'],
+      [PENDING_MARKER_KEY, resolvedMarker],
+    ]);
   } catch (error) {
     DebugLogger.error('premium_celebration_state:markCelebrationPending', error, 'warning');
   }
@@ -48,13 +80,23 @@ export async function markCelebrationPending(): Promise<void> {
  * Для IAP-покупки можно передать `'iap_<productId>_<timestamp>'`.
  * Для admin-grant — timestamp из progress.premium_admin_grant_at.
  */
-export async function consumeCelebration(seenMarker: string): Promise<void> {
+export async function consumeCelebration(seenMarker?: string | null): Promise<void> {
   try {
-    await AsyncStorage.multiSet([
+    const marker =
+      normalizeMarker(seenMarker) ??
+      await getPendingCelebrationMarker() ??
+      String(Date.now());
+    const pairs: [string, string][] = [
       [PENDING_KEY, ''], // пустая строка надёжнее чем removeItem (некоторые backend cache путают null/missing)
-      [SEEN_KEY, seenMarker],
-    ]);
+      [PENDING_MARKER_KEY, ''],
+      [SEEN_KEY, marker],
+    ];
+    if (isAdminGrantMarker(marker)) {
+      pairs.push([ADMIN_SEEN_KEY, marker]);
+    }
+    await AsyncStorage.multiSet(pairs);
     await AsyncStorage.removeItem(PENDING_KEY);
+    await AsyncStorage.removeItem(PENDING_MARKER_KEY);
   } catch (error) {
     DebugLogger.error('premium_celebration_state:consumeCelebration', error, 'warning');
   }
@@ -71,6 +113,16 @@ export async function getLastSeenMarker(): Promise<string | null> {
   }
 }
 
+async function getLastSeenAdminMarker(): Promise<string | null> {
+  try {
+    const v = await AsyncStorage.getItem(ADMIN_SEEN_KEY);
+    return normalizeMarker(v);
+  } catch (error) {
+    DebugLogger.error('premium_celebration_state:getLastSeenAdminMarker', error, 'warning');
+    return null;
+  }
+}
+
 /**
  * Вызывается из cloud_sync при чтении users/{uid}.progress.
  * Если admin выставил новый premium_admin_grant_at (через admin/index.html) — поднимает pending.
@@ -80,15 +132,21 @@ export async function getLastSeenMarker(): Promise<string | null> {
 export async function processAdminGrantForCelebration(
   grantAt: string | null | undefined,
 ): Promise<void> {
-  if (!grantAt) return;
-  const trimmed = String(grantAt).trim();
-  if (!trimmed || trimmed === '0') return;
+  const trimmed = normalizeMarker(grantAt);
+  if (!trimmed) return;
   try {
+    const lastAdminSeen = await getLastSeenAdminMarker();
+    if (lastAdminSeen === trimmed) return;
     const lastSeen = await getLastSeenMarker();
     // Уже видели именно этот grant — не показываем снова. Новая выдача = новый
     // timestamp, и getLastSeenMarker вернёт прошлый → срабатывает.
     if (lastSeen === trimmed) return;
-    await markCelebrationPending();
+    const lastSeenMs = timestampMs(lastAdminSeen) ?? timestampMs(lastSeen);
+    const grantMs = timestampMs(trimmed);
+    // Compatibility with older builds: home.tsx used to consume admin grants with Date.now()
+    // instead of premium_admin_grant_at. If that already happened, do not re-arm old grants.
+    if (lastSeenMs !== null && grantMs !== null && lastSeenMs >= grantMs) return;
+    await markCelebrationPending(trimmed);
   } catch (error) {
     DebugLogger.error('premium_celebration_state:processAdminGrantForCelebration', error, 'warning');
   }

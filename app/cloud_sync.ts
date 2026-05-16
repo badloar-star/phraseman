@@ -15,6 +15,7 @@ import { getTodayKey, getTodayTasksSafe, loadTodayProgress } from './daily_tasks
 import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaAuthUid } from './user_id_policy';
 import { processAdminGrantForCelebration } from './premium_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
+import { normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
 
 /** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
 type DailyTaskProgressRow = {
@@ -28,6 +29,25 @@ type DailyTaskProgressRow = {
 
 const taskProgressNum = (v: unknown): number =>
   typeof v === 'number' && Number.isFinite(v) ? v : 0;
+
+function leagueResultSignature(raw: unknown): string | null {
+  if (raw === null || raw === undefined) return null;
+  try {
+    const result = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    if (!result || typeof result !== 'object') return null;
+    const r = result as Record<string, unknown>;
+    return JSON.stringify({
+      prevLeagueId: r.prevLeagueId,
+      newLeagueId: r.newLeagueId,
+      myRank: r.myRank,
+      totalInGroup: r.totalInGroup,
+      promoted: r.promoted,
+      demoted: r.demoted,
+    });
+  } catch {
+    return null;
+  }
+}
 
 /**
  * Полное восстановление с облака не должно затирать уже накопленный сегодня локальный прогресс
@@ -92,7 +112,16 @@ export const SYNC_KEYS = [
   'user_name',
   'user_avatar',
   'user_frame',
+  'user_avatar_aura',
   'custom_avatar_owned_v1',
+  'custom_avatar_gift_owned_v1',
+  'avatar_aura_owned_v1',
+  'avatar_aura_gift_owned_v1',
+  'profile_card_level',
+  'profile_card_theme',
+  'profile_card_motion',
+  'profile_card_public_focus',
+  'gift_xp_bank_v1',
   'streak_count',
   'last_active_date',
   'streak_last_date',
@@ -106,6 +135,11 @@ export const SYNC_KEYS = [
 
   // ── Лига / еженедельные очки ───────────────────────────────────────────────
   'league_state_v3',
+  // Server-side weekly rollover writes this so the Monday result modal survives
+  // cloud restore before the local league engine has a chance to recalculate.
+  'league_result_pending',
+  // Tombstone for the exact league result already dismissed on this account.
+  'league_result_consumed_sig',
   'week_leaderboard',
   // КРИТИЧНО: реальный счётчик недельных очков для лиги (formula: members.{uid}.points).
   // Если не синкать — после очистки AsyncStorage недельные очки в league_groups
@@ -113,6 +147,7 @@ export const SYNC_KEYS = [
   // functions/src/sync_leaderboard.ts (читает progress.week_points_v2).
   'week_points_v2',
   'daily_tasks_progress',
+  'login_bonus_v1',
   /** Опыт по дням (график статистики) — без синка теряется на новом устройстве. */
   'daily_stats',
 
@@ -121,11 +156,22 @@ export const SYNC_KEYS = [
   'admin_premium_override',
   /** UNIX ms когда истекает премиум; 0 или отсутствует = без срока (как оплаченная подписка в RC) */
   'premium_expiry',
+  'premium_rc_product_id',
+  'premium_rc_period_type',
+  'premium_rc_store',
+  'premium_rc_expiry_ms',
+  'premium_rc_purchased_at_ms',
+  'premium_rc_updated_at',
+  'premium_admin_grant_at',
   'had_premium_ever',
   'streak_freeze',
   'premium_free_freeze_used',
   'chain_shield',
   'gift_xp_multiplier',
+  'arena_daily_gift_bonus_v1',
+  'flashcard_pack_trial_gift_v1',
+  'club_gift_free_boost_v1',
+  'wager_discount',
 
   // ── Зачёты уровней A1/A2/B1/B2 (без них unlock B1/B2 откатывается) ─────────
   'level_exam_A1_passed',
@@ -168,8 +214,7 @@ export const SYNC_KEYS = [
   // app_theme / app_font_size / haptics_tap — только локально на устройстве (см. wipeLocalAccountData KEEP).
   // Синк с облаком ломал тему: при restore облако перетирало выбор пользователя старым progress.
   'user_settings',
-  'placement_level',
-  /** Последний результат диагностики (дата/балл); уровень дублируется в placement_level. */
+  /** Last diagnostic result: date, score and recommended level. */
   'diagnostic_last',
   'device_platform',
   'app_version',
@@ -212,6 +257,7 @@ const LAST_SYNC_SNAPSHOT_KEY = 'cloud_last_sync_snapshot_v1';
 /** Ожидание чужого syncInFlight без лимита оставляло «Сменить аккаунт» на вечном спиннере при «зависшем» Firestore. */
 const FORCE_SYNC_WAIT_INFLIGHT_MS = 25_000;
 const FORCE_SYNC_FIRESTORE_WRITE_MS = 35_000;
+const ANON_AUTH_READY_TIMEOUT_MS = 8_000;
 const SYNC_DEBOUNCE_MS = 5 * 60_000;
 const SYNC_HEARTBEAT_MS = 60 * 60_000;
 const ACTIVITY_STAMP_INTERVAL_MS = 45 * 60_000;
@@ -240,6 +286,111 @@ const parseProgressInt = (value: unknown): number => {
   const n = parseInt(String(value ?? '0'), 10);
   return Number.isFinite(n) ? n : 0;
 };
+
+const parseProgressFloat = (value: unknown): number => {
+  const n = parseFloat(String(value ?? '0'));
+  return Number.isFinite(n) ? n : 0;
+};
+
+const PREMIUM_PROGRESS_KEYS = new Set([
+  'premium_plan',
+  'admin_premium_override',
+  'premium_expiry',
+  'premium_rc_product_id',
+  'premium_rc_period_type',
+  'premium_rc_store',
+  'premium_rc_expiry_ms',
+  'premium_rc_purchased_at_ms',
+  'premium_rc_updated_at',
+  'premium_admin_grant_at',
+  'had_premium_ever',
+]);
+
+const premiumValuePresent = (value: unknown): boolean => {
+  if (value === null || value === undefined) return false;
+  const s = String(value).trim();
+  return s !== '' && s !== 'null' && s !== 'undefined';
+};
+
+function hasLocalPremiumSyncState(data: Record<string, string | null>): boolean {
+  const plan = String(data['premium_plan'] ?? '').trim().toLowerCase();
+  if (plan && plan !== 'null' && plan !== 'undefined') return true;
+  if (String(data['admin_premium_override'] ?? '').trim() === 'true') return true;
+  if (parseProgressInt(data['premium_expiry']) > 0) return true;
+  return [
+    'premium_rc_product_id',
+    'premium_rc_period_type',
+    'premium_rc_store',
+    'premium_rc_expiry_ms',
+    'premium_rc_purchased_at_ms',
+    'premium_rc_updated_at',
+  ].some((key) => premiumValuePresent(data[key]));
+}
+
+export function shouldSyncPremiumProgressField(
+  key: string,
+  value: string | null,
+  data: Record<string, string | null>,
+): boolean {
+  if (!PREMIUM_PROGRESS_KEYS.has(key)) return true;
+  if (!hasLocalPremiumSyncState(data)) return false;
+  if (key === 'premium_expiry') return value !== null && value !== undefined && String(value).trim() !== '';
+  return premiumValuePresent(value);
+}
+
+const LESSON_RESTORE_MERGE_KEYS = Array.from({ length: 32 }, (_, i) => {
+  const lessonId = i + 1;
+  return [
+    `lesson${lessonId}_best_score`,
+    `lesson${lessonId}_pass_count`,
+    `lesson${lessonId}_progress`,
+  ];
+}).flat();
+
+function parseLessonProgressArray(raw: unknown): string[] | null {
+  if (typeof raw !== 'string' || raw.trim() === '') return null;
+  try {
+    const parsed = JSON.parse(raw);
+    return Array.isArray(parsed) ? parsed.filter(x => typeof x === 'string') : null;
+  } catch {
+    return null;
+  }
+}
+
+function lessonProgressQuality(raw: unknown): { correct: number; wrong: number; total: number } | null {
+  const arr = parseLessonProgressArray(raw);
+  if (!arr) return null;
+  let correct = 0;
+  let wrong = 0;
+  for (const x of arr) {
+    if (x === 'correct' || x === 'replay_correct') correct++;
+    else if (x === 'wrong') wrong++;
+  }
+  return { correct, wrong, total: arr.length };
+}
+
+function mergeLessonRestoreValue(
+  key: string,
+  cloudValue: string,
+  localValue: string | null | undefined,
+): string {
+  if (/^lesson\d+_pass_count$/.test(key)) {
+    return String(Math.max(parseProgressInt(cloudValue), parseProgressInt(localValue)));
+  }
+  if (/^lesson\d+_best_score$/.test(key)) {
+    return String(Math.max(parseProgressFloat(cloudValue), parseProgressFloat(localValue)));
+  }
+  if (/^lesson\d+_progress$/.test(key)) {
+    const cloudQuality = lessonProgressQuality(cloudValue);
+    const localQuality = lessonProgressQuality(localValue);
+    if (!cloudQuality || !localQuality) return cloudValue;
+    if (localQuality.correct > cloudQuality.correct) return localValue ?? cloudValue;
+    if (localQuality.correct < cloudQuality.correct) return cloudValue;
+    if (localQuality.wrong < cloudQuality.wrong) return localValue ?? cloudValue;
+    return cloudValue;
+  }
+  return cloudValue;
+}
 
 function latestDateKeyFromJsonMap(raw: unknown): string | null {
   if (typeof raw !== 'string' || raw.trim() === '') return null;
@@ -294,7 +445,7 @@ function ensureAnonAuthReady(): Promise<void> {
   if (auth.currentUser) return Promise.resolve();
   _anonAuthReady = (async () => {
     try {
-      await auth.signInAnonymously();
+      await withTimeout(auth.signInAnonymously(), ANON_AUTH_READY_TIMEOUT_MS, 'anon_auth_ready');
     } catch {
       // офлайн / транзиентная ошибка — следующий вызов ensureAnonUser
       // увидит !currentUser и попробует снова.
@@ -383,6 +534,89 @@ async function reconcileRestoredDayDailyStorageIfNeeded(hadCloudDaily: boolean):
   } catch { /* empty */ }
 }
 
+function safeParseObject(raw: unknown): Record<string, unknown> {
+  if (raw && typeof raw === 'object' && !Array.isArray(raw)) return raw as Record<string, unknown>;
+  if (typeof raw !== 'string' || !raw.trim()) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? parsed as Record<string, unknown>
+      : {};
+  } catch {
+    return {};
+  }
+}
+
+function numField(obj: Record<string, unknown>, key: string): number {
+  const n = typeof obj[key] === 'number' ? obj[key] : Number(obj[key]);
+  return Number.isFinite(n) ? n : 0;
+}
+
+function loginBonusMergeValue(localRaw: string | null, cloudRaw: string | null | undefined): string | null {
+  if (cloudRaw === null || cloudRaw === undefined || !String(cloudRaw).trim()) return null;
+  const cloud = safeParseObject(cloudRaw);
+  const local = safeParseObject(localRaw);
+  const cloudLastDate = typeof cloud.lastDate === 'string' ? cloud.lastDate : null;
+  const localLastDate = typeof local.lastDate === 'string' ? local.lastDate : null;
+  if (!isDateKey(cloudLastDate)) return null;
+  if (!isDateKey(localLastDate) || cloudLastDate > localLastDate) return String(cloudRaw);
+  if (cloudLastDate === localLastDate && numField(cloud, 'consecutiveDays') > numField(local, 'consecutiveDays')) {
+    return String(cloudRaw);
+  }
+  return null;
+}
+
+function newerDateKeyValue(localRaw: string | null, cloudRaw: string | null | undefined): string | null {
+  if (!isDateKey(cloudRaw)) return null;
+  if (!isDateKey(localRaw) || cloudRaw > localRaw) return cloudRaw;
+  return null;
+}
+
+async function buildGiftEntitlementStickyPairs(cloudData: Record<string, string | null>): Promise<[string, string][]> {
+  const pairs: [string, string][] = [];
+
+  const cloudShield = cloudData['chain_shield'];
+  if (cloudShield) {
+    const [localRaw, cloud] = await Promise.all([
+      AsyncStorage.getItem('chain_shield'),
+      Promise.resolve(safeParseObject(cloudShield)),
+    ]);
+    const local = safeParseObject(localRaw);
+    if (numField(cloud, 'daysLeft') > numField(local, 'daysLeft')) {
+      pairs.push(['chain_shield', String(cloudShield)]);
+    }
+  }
+
+  const cloudXpBoost = cloudData['gift_xp_multiplier'];
+  if (cloudXpBoost) {
+    const [localRaw, cloud] = await Promise.all([
+      AsyncStorage.getItem('gift_xp_multiplier'),
+      Promise.resolve(safeParseObject(cloudXpBoost)),
+    ]);
+    const local = safeParseObject(localRaw);
+    if (numField(cloud, 'expiresAt') > numField(local, 'expiresAt')) {
+      pairs.push(['gift_xp_multiplier', String(cloudXpBoost)]);
+    }
+  }
+
+  const cloudArenaBonus = cloudData['arena_daily_gift_bonus_v1'];
+  if (cloudArenaBonus) {
+    const [localRaw, cloud] = await Promise.all([
+      AsyncStorage.getItem('arena_daily_gift_bonus_v1'),
+      Promise.resolve(safeParseObject(cloudArenaBonus)),
+    ]);
+    const local = safeParseObject(localRaw);
+    if (
+      typeof cloud.date === 'string' &&
+      (cloud.date !== local.date || numField(cloud, 'extra') > numField(local, 'extra'))
+    ) {
+      pairs.push(['arena_daily_gift_bonus_v1', String(cloudArenaBonus)]);
+    }
+  }
+
+  return pairs;
+}
+
 async function doSyncToCloud(): Promise<void> {
   if (!pendingSync) return;
   pendingSync = false;
@@ -392,6 +626,7 @@ async function doSyncToCloud(): Promise<void> {
   const uid = await ensureAnonUser();
   if (!uid) return;
   try {
+    await repairDevSeededStreakInStorage();
     const pairs = await AsyncStorage.multiGet([...SYNC_KEYS]);
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) {
@@ -417,6 +652,7 @@ async function doSyncToCloud(): Promise<void> {
     } catch {}
     const progressPatch: Record<string, string | null> = {};
     for (const [key, value] of Object.entries(data)) {
+      if (!shouldSyncPremiumProgressField(key, value, data)) continue;
       if (previousSnapshot[key] !== value) progressPatch[key] = value;
     }
 
@@ -451,6 +687,11 @@ async function doSyncToCloud(): Promise<void> {
           const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
           const avatar = (data['user_avatar'] ?? '').trim();
           const frame = (data['user_frame'] ?? '').trim();
+          const aura = (data['user_avatar_aura'] ?? '').trim();
+          const profileCardLevel = Math.max(0, Math.min(5, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
+          const profileCardTheme = (data['profile_card_theme'] ?? 'classic').trim() || 'classic';
+          const profileCardMotion = (data['profile_card_motion'] ?? 'none').trim() || 'none';
+          const profileCardPublicFocus = (data['profile_card_public_focus'] ?? 'balanced').trim() || 'balanced';
           await db
             .collection('arena_profiles')
             .doc(arenaUid)
@@ -459,6 +700,11 @@ async function doSyncToCloud(): Promise<void> {
                 courseTotalXp: totalXp,
                 courseAvatar: avatar || null,
                 courseFrame: frame || null,
+                courseAura: aura || null,
+                courseProfileCardLevel: profileCardLevel,
+                courseProfileCardTheme: profileCardTheme,
+                courseProfileCardMotion: profileCardMotion,
+                courseProfileCardPublicFocus: profileCardPublicFocus,
                 courseDisplayAt: now,
                 mirrorStableId: uid,
               },
@@ -473,7 +719,11 @@ async function doSyncToCloud(): Promise<void> {
     if (needActivityStamp || needHeartbeat || shouldSendCreatedAt) {
       lastActivityStampAt = now;
     }
-    await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(data)).catch(() => {});
+    const snapshotData: Record<string, string | null> = {};
+    for (const [key, value] of Object.entries(data)) {
+      if (shouldSyncPremiumProgressField(key, value, data)) snapshotData[key] = value;
+    }
+    await AsyncStorage.setItem(LAST_SYNC_SNAPSHOT_KEY, JSON.stringify(snapshotData)).catch(() => {});
     if (shouldSendCreatedAt) {
       await AsyncStorage.setItem(CREATED_AT_SYNC_KEY, '1').catch(() => {});
     }
@@ -498,6 +748,10 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   if (restoredLastActiveDate && !isDateKey(cloudData['last_active_date'])) {
     cloudData['last_active_date'] = restoredLastActiveDate;
   }
+  const normalizedCloudStreak = normalizeDevSeededStreakValue(parseProgressInt(cloudData['streak_count']), cloudData);
+  if (String(cloudData['streak_count'] ?? '') !== String(normalizedCloudStreak)) {
+    cloudData['streak_count'] = String(normalizedCloudStreak);
+  }
 
   try {
     const { reconcileStatsDailyBreakdownWithCloud } = await import('./stats_daily_breakdown');
@@ -516,7 +770,17 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   // Premium granted by admin via admin/index.html: progress.premium_admin_grant_at — unix ms строка.
   // Если timestamp новее нашего last seen marker — поднимает pending для PremiumCelebrationModal.
   // Срабатывает один раз на каждый grant (повторная выдача ставит новый ts → снова сработает).
-  void processAdminGrantForCelebration(cloudData['premium_admin_grant_at']);
+  // Revoked or expired admin grants can keep the old timestamp in progress.
+  const cloudPremiumPlan = String(cloudData['premium_plan'] ?? '').trim();
+  const cloudPremiumExpiry = parseProgressInt(cloudData['premium_expiry']);
+  const cloudAdminPremiumActive =
+    String(cloudData['admin_premium_override'] ?? '').trim() === 'true' &&
+    !!cloudPremiumPlan &&
+    cloudPremiumPlan !== 'null' &&
+    (cloudPremiumExpiry <= 0 || cloudPremiumExpiry > Date.now());
+  void processAdminGrantForCelebration(
+    cloudAdminPremiumActive ? cloudData['premium_admin_grant_at'] : null,
+  );
 
   const localXPRaw = await AsyncStorage.getItem('user_total_xp');
   const localStreakRaw = await AsyncStorage.getItem('streak_count');
@@ -527,7 +791,18 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   const shouldRestoreCloudProgress =
     cloudXP > localXP || (cloudXP === localXP && cloudStreak > localStreak);
   if (!shouldRestoreCloudProgress) {
-    const stickyKeys = ['premium_plan', 'admin_premium_override', 'premium_expiry'] as const;
+    const stickyKeys = [
+      'premium_plan',
+      'admin_premium_override',
+      'premium_expiry',
+      'premium_rc_product_id',
+      'premium_rc_period_type',
+      'premium_rc_store',
+      'premium_rc_expiry_ms',
+      'premium_rc_purchased_at_ms',
+      'premium_rc_updated_at',
+      'premium_admin_grant_at',
+    ] as const;
     const stickyPairs: [string, string][] = [];
     for (const key of stickyKeys) {
       const val = cloudData[key];
@@ -540,6 +815,18 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     if (!localName && cloudName != null && String(cloudName).trim() !== '') {
       stickyPairs.push(['user_name', String(cloudName).trim()]);
     }
+    const cloudLastActive = cloudData['last_active_date'];
+    const localLastActive = await AsyncStorage.getItem('last_active_date');
+    const mergedLastActive = newerDateKeyValue(localLastActive, cloudLastActive);
+    if (mergedLastActive !== null) {
+      stickyPairs.push(['last_active_date', mergedLastActive]);
+    }
+    const cloudLoginBonus = cloudData['login_bonus_v1'];
+    const localLoginBonus = await AsyncStorage.getItem('login_bonus_v1');
+    const mergedLoginBonus = loginBonusMergeValue(localLoginBonus, cloudLoginBonus);
+    if (mergedLoginBonus !== null) {
+      stickyPairs.push(['login_bonus_v1', mergedLoginBonus]);
+    }
     const cloudDaily = cloudData['daily_tasks_progress'];
     let restoredDailyTasksToLocal = false;
     if (cloudDaily) {
@@ -550,6 +837,24 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
         restoredDailyTasksToLocal = true;
       }
     }
+    const cloudLeaguePending = cloudData['league_result_pending'];
+    const cloudLeaguePendingSig = leagueResultSignature(cloudLeaguePending);
+    const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
+    const cloudConsumedSig = cloudData['league_result_consumed_sig'];
+    const shouldRestoreLeaguePending =
+      cloudLeaguePending !== null &&
+      cloudLeaguePending !== undefined &&
+      cloudLeaguePendingSig !== null &&
+      cloudLeaguePendingSig !== localConsumedSig &&
+      cloudLeaguePendingSig !== cloudConsumedSig;
+    if (shouldRestoreLeaguePending) {
+      stickyPairs.push(['league_result_pending', String(cloudLeaguePending)]);
+      const cloudLeagueState = cloudData['league_state_v3'];
+      if (cloudLeagueState !== null && cloudLeagueState !== undefined) {
+        stickyPairs.push(['league_state_v3', String(cloudLeagueState)]);
+      }
+    }
+    stickyPairs.push(...await buildGiftEntitlementStickyPairs(cloudData));
     if (stickyPairs.length > 0) {
       await AsyncStorage.multiSet(stickyPairs);
       if (cloudHasPremiumAdminState) invalidatePremiumCache();
@@ -561,10 +866,21 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   }
 
   const pairs: [string, string][] = [];
+  const localLessonRestoreMap = Object.fromEntries(
+    await AsyncStorage.multiGet(LESSON_RESTORE_MERGE_KEYS),
+  ) as Record<string, string | null>;
+  const localConsumedSig = await AsyncStorage.getItem('league_result_consumed_sig');
+  const cloudConsumedSig = cloudData['league_result_consumed_sig'];
   for (const key of SYNC_KEYS) {
     const val = cloudData[key];
     if (val !== null && val !== undefined) {
-      pairs.push([key, val]);
+      if (key === 'league_result_pending') {
+        const pendingSig = leagueResultSignature(val);
+        if (pendingSig && (pendingSig === localConsumedSig || pendingSig === cloudConsumedSig)) {
+          continue;
+        }
+      }
+      pairs.push([key, mergeLessonRestoreValue(key, String(val), localLessonRestoreMap[key])]);
     }
   }
   if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);
@@ -622,6 +938,10 @@ export async function restoreFromCloud(): Promise<boolean> {
   return restoreAndMigrateFromCloud();
 }
 
+export const __cloudSyncTestHooks = {
+  applyRestoreFromUserDoc,
+};
+
 // ── Одноразовая миграция локального прогресса в облако ──────────────────────
 // Запускается один раз при первом запуске после обновления.
 // Пушит локальные данные в Firestore только если облако пустое.
@@ -660,6 +980,7 @@ export async function forceSyncToCloud(): Promise<boolean> {
     }
     // doSyncToCloud глотает ошибки внутри, так что обернём напрямую без try-catch фасада:
     // повторим логику записи минимально-инвазивно, ловя ошибки явно.
+    await repairDevSeededStreakInStorage();
     const pairs = await AsyncStorage.multiGet([...SYNC_KEYS]);
     const data: Record<string, string | null> = {};
     for (const [key, value] of pairs) data[key] = value;
@@ -670,6 +991,9 @@ export async function forceSyncToCloud(): Promise<boolean> {
     const todayKey = getTodayKey();
     const todayTasks = await AsyncStorage.getItem('daily_tasks_' + todayKey);
     if (todayTasks) data['daily_tasks_progress'] = todayTasks;
+    for (const [key, value] of Object.entries({ ...data })) {
+      if (!shouldSyncPremiumProgressField(key, value, data)) delete data[key];
+    }
 
     const now = Date.now();
     const docRef = db.collection('users').doc(uid);
@@ -698,12 +1022,22 @@ export async function forceSyncToCloud(): Promise<boolean> {
           const totalXp = parseInt(data['user_total_xp'] ?? '0', 10) || 0;
           const avatar = (data['user_avatar'] ?? '').trim();
           const frame = (data['user_frame'] ?? '').trim();
+          const aura = (data['user_avatar_aura'] ?? '').trim();
+          const profileCardLevel = Math.max(0, Math.min(5, parseInt(data['profile_card_level'] ?? '0', 10) || 0));
+          const profileCardTheme = (data['profile_card_theme'] ?? 'classic').trim() || 'classic';
+          const profileCardMotion = (data['profile_card_motion'] ?? 'none').trim() || 'none';
+          const profileCardPublicFocus = (data['profile_card_public_focus'] ?? 'balanced').trim() || 'balanced';
           await withTimeout(
             db.collection('arena_profiles').doc(arenaUid).set(
               {
                 courseTotalXp: totalXp,
                 courseAvatar: avatar || null,
                 courseFrame: frame || null,
+                courseAura: aura || null,
+                courseProfileCardLevel: profileCardLevel,
+                courseProfileCardTheme: profileCardTheme,
+                courseProfileCardMotion: profileCardMotion,
+                courseProfileCardPublicFocus: profileCardPublicFocus,
                 courseDisplayAt: now,
                 mirrorStableId: uid,
               },

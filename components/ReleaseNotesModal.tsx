@@ -1,5 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import {
+  Animated,
+  Easing,
+  Platform,
   Modal,
   Pressable,
   ScrollView,
@@ -7,6 +10,8 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from './LangContext';
 import { useTheme } from './ThemeContext';
@@ -15,29 +20,50 @@ import { triLang } from '../constants/i18n';
 
 const TEXT = {
   title: {
-    ru: 'Добро пожаловать в новую версию',
-    uk: 'Ласкаво просимо до нової версії',
-    es: 'Te damos la bienvenida a la nueva versión',
+    ru: 'Большое обновление PhraseMan',
+    uk: 'Велике оновлення PhraseMan',
+    es: 'Gran actualización de PhraseMan',
+  },
+  subtitle: {
+    ru: 'Приложение стало взрослее, понятнее и немного серьёзнее.',
+    uk: 'Застосунок став дорослішим, зрозумілішим і трохи серйознішим.',
+    es: 'La app ahora es más clara, más útil y un poco más seria.',
+  },
+  chips: {
+    ru: ['Уроки понятнее', 'Тренировки умнее', 'Статистика полезнее', 'Профиль красивее'],
+    uk: ['Уроки зрозуміліші', 'Тренування розумніші', 'Статистика корисніша', 'Профіль красивіший'],
+    es: ['Lecciones más claras', 'Entrenos más inteligentes', 'Estadísticas más útiles', 'Perfil más bonito'],
   },
   body: {
     ru:
-      'Новое: оценивайте фразы там, где учитесь и проходите квизы — так мы быстрее отделяем сильный контент от слабого.\n\n'
-      + 'Изменилось: после ответа в уроке больше нет подсказок — на текущем объёме это давало слишком много некорректных подсказок. Карточки обновим — подсказки вернём.\n\n'
-      + 'Арена: исправления внесены, соревнования и ранг работают стабильнее.\n\n'
-      + 'Вы можете: в настройках отправить идею для улучшения приложения; если мы её реализуем — +100 осколков на ваш баланс.\n\n'
-      + 'Все исправления по грамматике по вашим сообщениям попали в эту сборку.',
+      'У нас большое обновление. Такое, после которого приложение чуть выпрямило спину и сказало: «Ну всё, теперь я серьёзное».\n\n'
+      + 'Что нового: уроки стали понятнее, тренировки — умнее, статистика — полезнее, арена и лиги — стабильнее, а профиль теперь можно сделать заметнее и красивее. Мы также прошлись по контенту: поправили фразы, переводы и места, где приложение могло вести себя так, будто английский придумали в пятницу вечером.\n\n'
+      + 'Теперь о важном. Есть неприятная новость: все уроки начиная с четвёртого переходят в Premium.\n\n'
+      + 'Понимаем, что это не то сообщение, от которого хочется хлопать в ладоши. Но скажем честно: PhraseMan сильно вырос. Пользователей становится больше, серверы работают больше, обновления требуют больше времени, а маленькая студия не умеет оплачивать всё одним «спасибо, вы лучшие». Мы пробовали. Банковское приложение не оценило.\n\n'
+      + 'Мы не закрываем всё приложение: большая бесплатная часть остаётся доступной. Вы всё ещё можете учиться, тренироваться, играть, выполнять ежедневные задания и знакомиться с форматом.\n\n'
+      + 'Premium нужен, чтобы мы могли продолжать делать новые уроки, улучшать качество и держать приложение быстрым для всех.\n\n'
+      + 'Спасибо за понимание. Мы не ставим замок ради замка. Мы делаем это, чтобы PhraseMan не остановился.',
     uk:
-      'Нове: оцінюйте фрази там, де ви навчаєтесь і проходите квізи — так ми швидше відокремимо сильний контент від слабшого.\n\n'
-      + 'Змінилося: після відповіді в уроці більше немає підказок — на поточному обсязі це давало забагато некоректних підказок. Картки оновимо — підказки повернуться.\n\n'
-      + 'Арена: усе виправлено — змагання та рейтинг працюють стабільніше.\n\n'
-      + 'Ви можете: у налаштуваннях подати ідею для покращення застосунку; якщо ми її реалізуємо — +100 осколків на ваш баланс.\n\n'
-      + 'Усі виправлення з граматики за вашими зверненнями потрапили до цього оновлення.',
+      'У нас велике оновлення. Таке, після якого застосунок трохи випростав спину й сказав: «Ну все, тепер я серйозний».\n\n'
+      + 'Що нового: уроки стали зрозумілішими, тренування — розумнішими, статистика — кориснішою, арена й ліги — стабільнішими, а профіль тепер можна зробити помітнішим і красивішим. Ми також пройшлися контентом: виправили фрази, переклади й місця, де застосунок поводився так, ніби англійську вигадали в п’ятницю ввечері.\n\n'
+      + 'Тепер про важливе. Є неприємна новина: усі уроки, починаючи з четвертого, переходять у Premium.\n\n'
+      + 'Розуміємо, що це не те повідомлення, від якого хочеться плескати в долоні. Але скажемо чесно: PhraseMan сильно виріс. Користувачів стає більше, сервери працюють більше, оновлення потребують більше часу, а маленька студія не вміє оплачувати все одним «дякуємо, ви найкращі». Ми пробували. Банківський застосунок не оцінив.\n\n'
+      + 'Ми не закриваємо весь застосунок: велика безкоштовна частина залишається доступною. Ви все ще можете вчитися, тренуватися, грати, виконувати щоденні завдання й знайомитися з форматом.\n\n'
+      + 'Premium потрібен, щоб ми могли продовжувати робити нові уроки, покращувати якість і тримати застосунок швидким для всіх.\n\n'
+      + 'Дякуємо за розуміння. Ми не ставимо замок заради замка. Ми робимо це, щоб PhraseMan не зупинився.',
     es:
-      'Nuevo: valora las frases donde estudias y en los cuestionarios — así priorizamos mejor el contenido útil.\n\n'
-      + 'Cambio: ya no hay pistas tras la respuesta en la lección — con el volumen actual había demasiadas pistas incorrectas. Mejoraremos las tarjetas y las pistas volverán.\n\n'
-      + 'Arena: correcciones aplicadas; competición y rango van más estables.\n\n'
-      + 'Puedes: en ajustes enviar una idea para mejorar la app; si la implementamos — +100 fragmentos a tu saldo.\n\n'
-      + 'Las correcciones gramaticales que reportaste están en esta versión.',
+      'Tenemos una actualización grande. De esas en las que la app se endereza un poco y dice: "Vale, ahora voy en serio".\n\n'
+      + 'Novedades: las lecciones son más claras, los entrenamientos son más inteligentes, las estadísticas son más útiles, la arena y las ligas son más estables, y ahora puedes hacer que tu perfil destaque más. También revisamos el contenido: corregimos frases, traducciones y lugares donde la app se comportaba como si el inglés se hubiera inventado un viernes por la noche.\n\n'
+      + 'Ahora lo importante. Hay una noticia incómoda: todas las lecciones a partir de la cuarta pasan a Premium.\n\n'
+      + 'Sabemos que no es el tipo de mensaje que invita a aplaudir. Pero, siendo honestos, PhraseMan ha crecido mucho. Hay más usuarios, los servidores trabajan más, las actualizaciones requieren más tiempo y un estudio pequeño no puede pagarlo todo con un "gracias, son los mejores". Lo intentamos. La app del banco no quedó impresionada.\n\n'
+      + 'No cerramos toda la app: una gran parte gratuita sigue disponible. Todavía puedes aprender, entrenar, jugar, completar tareas diarias y probar el formato.\n\n'
+      + 'Premium nos ayuda a seguir creando lecciones nuevas, mejorar la calidad y mantener la app rápida para todos.\n\n'
+      + 'Gracias por entenderlo. No ponemos un candado por ponerlo. Lo hacemos para que PhraseMan no se detenga.',
+  },
+  cta: {
+    ru: 'Понятно, продолжаем',
+    uk: 'Зрозуміло, продовжуємо',
+    es: 'Entendido, seguimos',
   },
 } as const;
 
@@ -47,17 +73,133 @@ type Props = {
 };
 
 export default function ReleaseNotesModal({ visible, onClose }: Props) {
-  const { theme: t, f, themeMode } = useTheme();
+  const { f } = useTheme();
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
+  const cardAnim = useRef(new Animated.Value(0)).current;
+  const glowAnim = useRef(new Animated.Value(0)).current;
+  const shineAnim = useRef(new Animated.Value(0)).current;
 
   const title = useMemo(() => triLang(lang, TEXT.title), [lang]);
+  const subtitle = useMemo(() => triLang(lang, TEXT.subtitle), [lang]);
+  const chips = useMemo(
+    () => (lang === 'es' ? TEXT.chips.es : lang === 'uk' ? TEXT.chips.uk : TEXT.chips.ru),
+    [lang],
+  );
   const body = useMemo(() => triLang(lang, TEXT.body), [lang]);
-  const dimColor = themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.45)' : 'rgba(0,0,0,0.62)';
+  const paragraphs = useMemo(() => body.split('\n\n').filter(Boolean), [body]);
+  const titleSize = Math.min(f.h2, 24);
+  const bodySize = Math.min(f.body, 16);
+  const captionSize = Math.min(f.caption, 13);
+  const buttonSize = Math.min(f.bodyLg, 17);
+
+  useEffect(() => {
+    if (!visible) {
+      cardAnim.setValue(0);
+      glowAnim.setValue(0);
+      shineAnim.setValue(0);
+      return;
+    }
+
+    const enter = Animated.spring(cardAnim, {
+      toValue: 1,
+      useNativeDriver: true,
+      tension: 74,
+      friction: 9,
+    });
+    const glowLoop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(glowAnim, {
+          toValue: 1,
+          duration: 1400,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(glowAnim, {
+          toValue: 0,
+          duration: 1400,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    const shineLoop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(shineAnim, {
+          toValue: 1,
+          duration: 3200,
+          easing: Easing.inOut(Easing.cubic),
+          useNativeDriver: true,
+        }),
+        Animated.delay(6800),
+      ]),
+    );
+
+    enter.start();
+    glowLoop.start();
+    shineLoop.start();
+
+    return () => {
+      enter.stop();
+      glowLoop.stop();
+      shineLoop.stop();
+    };
+  }, [cardAnim, glowAnim, shineAnim, visible]);
 
   const closeOnce = () => {
     hapticTap();
     onClose();
+  };
+
+  const cardAnimatedStyle = {
+    opacity: cardAnim,
+    transform: [
+      {
+        translateY: cardAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [28, 0],
+        }),
+      },
+      {
+        scale: cardAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0.96, 1],
+        }),
+      },
+    ],
+  };
+
+  const iconAnimatedStyle = {
+    transform: [
+      {
+        scale: glowAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [1, 1.08],
+        }),
+      },
+      {
+        rotate: glowAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: ['-4deg', '5deg'],
+        }),
+      },
+    ],
+  };
+
+  const shineAnimatedStyle = {
+    opacity: shineAnim.interpolate({
+      inputRange: [0, 0.25, 0.55, 1],
+      outputRange: [0, 0.24, 0.08, 0],
+    }),
+    transform: [
+      {
+        translateX: shineAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [-260, 260],
+        }),
+      },
+      { rotate: '18deg' },
+    ],
   };
 
   return (
@@ -68,7 +210,7 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
       statusBarTranslucent
       onRequestClose={closeOnce}
     >
-      <View style={[styles.root, { backgroundColor: dimColor, paddingBottom: insets.bottom }]}>
+      <View style={[styles.root, { paddingBottom: insets.bottom }]}>
         <Pressable
           style={StyleSheet.absoluteFill}
           onPress={closeOnce}
@@ -79,29 +221,81 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
             es: 'Cerrar',
           })}
         />
-        <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
-          <Text style={styles.emoji}>{'✨'}</Text>
-          <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h2 }]}>{title}</Text>
+        <Animated.View style={[styles.card, cardAnimatedStyle]}>
+          <LinearGradient
+            colors={['#111722', '#171A24', '#241F13']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={StyleSheet.absoluteFill}
+          />
+          <Animated.View pointerEvents="none" style={[styles.shine, shineAnimatedStyle]} />
+
           <ScrollView
             style={styles.scroll}
             contentContainerStyle={styles.scrollInner}
             showsVerticalScrollIndicator
             bounces
           >
-            <Text style={[styles.body, { color: t.textSecond, fontSize: f.body }]}>{body}</Text>
+          <View style={styles.hero}>
+            <Animated.View style={[styles.iconHalo, iconAnimatedStyle]}>
+              <LinearGradient colors={['#FFF1B8', '#F7C75F', '#D68A2E']} style={styles.iconBadge}>
+                <Ionicons name="sparkles" size={25} color="#172033" />
+              </LinearGradient>
+            </Animated.View>
+            <View style={styles.releasePill}>
+              <Ionicons name="rocket-outline" size={14} color="#F9D77A" />
+              <Text style={[styles.releasePillText, { fontSize: captionSize }]}>
+                {lang === 'es' ? 'Nueva versión' : lang === 'uk' ? 'Нова версія' : 'Новая версия'}
+              </Text>
+            </View>
+            <Text style={[styles.title, { fontSize: titleSize }]}>{title}</Text>
+            <Text style={[styles.subtitle, { fontSize: bodySize }]}>{subtitle}</Text>
+          </View>
+
+          <View style={styles.chipsWrap}>
+            {chips.map((chip, index) => (
+              <View key={chip} style={styles.chip}>
+                <View style={styles.chipIcon}>
+                  <Ionicons name={index === 3 ? 'person-circle-outline' : 'checkmark'} size={13} color="#1B2330" />
+                </View>
+                <Text style={[styles.chipText, { fontSize: captionSize }]} numberOfLines={2}>
+                  {chip}
+                </Text>
+              </View>
+            ))}
+          </View>
+
+            {paragraphs.map((paragraph, index) => {
+              const premiumBlock = index === 2;
+              return premiumBlock ? (
+                <View key={paragraph} style={styles.premiumBlock}>
+                  <View style={styles.premiumBlockIcon}>
+                    <Ionicons name="lock-closed" size={15} color="#1B2330" />
+                  </View>
+                  <Text style={[styles.premiumBlockText, { fontSize: bodySize }]}>{paragraph}</Text>
+                </View>
+              ) : (
+                <Text key={paragraph} style={[styles.body, { fontSize: bodySize }]}>
+                  {paragraph}
+                </Text>
+              );
+            })}
           </ScrollView>
+
           <Pressable
             onPress={closeOnce}
             style={({ pressed }) => [
               styles.btn,
-              { backgroundColor: t.accent, opacity: pressed ? 0.88 : 1 },
+              { opacity: pressed ? 0.9 : 1 },
             ]}
           >
-            <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
-              {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}
-            </Text>
+            <LinearGradient colors={['#FFE08A', '#F7BE4F', '#E99D35']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.btnGradient}>
+              <Text style={[styles.btnText, { fontSize: buttonSize }]}>
+                {triLang(lang, TEXT.cta)}
+              </Text>
+            </LinearGradient>
           </Pressable>
-        </View>
+        </Animated.View>
       </View>
     </Modal>
   );
@@ -112,31 +306,129 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 24,
+    paddingHorizontal: 18,
+    backgroundColor: 'rgba(3, 7, 18, 0.82)',
   },
   card: {
     width: '100%',
     maxWidth: 420,
-    borderRadius: 20,
+    height: '88%',
+    maxHeight: '88%',
+    borderRadius: 24,
     borderWidth: 1.5,
-    paddingHorizontal: 22,
-    paddingTop: 22,
+    borderColor: 'rgba(247, 199, 95, 0.34)',
+    paddingHorizontal: 18,
+    paddingTop: 18,
     paddingBottom: 18,
     alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 18 },
+    shadowOpacity: 0.24,
+    shadowRadius: 28,
+    elevation: 18,
+    overflow: 'hidden',
   },
-  emoji: {
-    fontSize: 40,
-    marginBottom: 4,
+  shine: {
+    position: 'absolute',
+    top: -80,
+    bottom: -80,
+    width: 96,
+    backgroundColor: '#FFF7CE',
+  },
+  hero: {
+    width: '100%',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: 'rgba(247, 199, 95, 0.22)',
+    backgroundColor: 'rgba(255,255,255,0.045)',
+    paddingHorizontal: 16,
+    paddingTop: 17,
+    paddingBottom: 15,
+    alignItems: 'center',
+    marginBottom: 11,
+  },
+  iconHalo: {
+    width: 58,
+    height: 58,
+    borderRadius: 29,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(247, 199, 95, 0.13)',
+    marginBottom: 10,
+  },
+  iconBadge: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  releasePill: {
+    minHeight: 28,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(249, 215, 122, 0.34)',
+    backgroundColor: 'rgba(249, 215, 122, 0.08)',
+    paddingHorizontal: 11,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+    marginBottom: 10,
+  },
+  releasePillText: {
+    color: '#F9D77A',
+    fontWeight: '800',
   },
   title: {
     textAlign: 'center',
-    fontWeight: '800',
-    marginBottom: 8,
-    paddingHorizontal: 4,
+    color: '#FFF7E3',
+    fontWeight: '900',
+    lineHeight: 28,
+    marginBottom: 7,
+  },
+  subtitle: {
+    color: '#C8D6EA',
+    textAlign: 'center',
+    lineHeight: 22,
+  },
+  chipsWrap: {
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
+    marginBottom: 12,
+  },
+  chip: {
+    width: '100%',
+    minHeight: 48,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(125, 146, 178, 0.23)',
+    backgroundColor: 'rgba(255,255,255,0.052)',
+    paddingHorizontal: 9,
+    paddingVertical: 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  chipIcon: {
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+    backgroundColor: '#74A9FF',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  chipText: {
+    color: '#DCE8FF',
+    fontWeight: '700',
+    lineHeight: 17,
+    flexShrink: 1,
   },
   scroll: {
     alignSelf: 'stretch',
-    maxHeight: 360,
+    flex: 1,
     marginBottom: 4,
   },
   scrollInner: {
@@ -144,15 +436,59 @@ const styles = StyleSheet.create({
     paddingBottom: 4,
   },
   body: {
-    textAlign: 'center',
-    lineHeight: 22,
+    color: '#DDE7F6',
+    textAlign: 'left',
+    lineHeight: 23,
+    marginBottom: 15,
+  },
+  premiumBlock: {
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(249, 215, 122, 0.38)',
+    backgroundColor: 'rgba(249, 215, 122, 0.1)',
+    paddingHorizontal: 13,
+    paddingVertical: 12,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 10,
+    marginBottom: 15,
+  },
+  premiumBlockIcon: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    backgroundColor: '#F9D77A',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 1,
+  },
+  premiumBlockText: {
+    flex: 1,
+    color: '#FFE9A8',
+    fontWeight: '800',
+    lineHeight: 23,
   },
   btn: {
     width: '100%',
-    borderRadius: 14,
-    paddingVertical: 15,
+    borderRadius: 16,
     marginTop: 12,
+    overflow: 'hidden',
+    shadowColor: '#F7BE4F',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.24,
+    shadowRadius: 16,
+    elevation: Platform.OS === 'android' ? 3 : 0,
+  },
+  btnGradient: {
+    minHeight: 54,
     alignItems: 'center',
-    minHeight: 52,
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    paddingVertical: 15,
+  },
+  btnText: {
+    color: '#121826',
+    fontWeight: '900',
+    textAlign: 'center',
   },
 });

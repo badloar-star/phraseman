@@ -32,8 +32,8 @@ export interface ClubDef {
 export const CLUBS: ClubDef[] = [
   {
     id: 0, ionIcon: 'flag-outline', imageUri: require("../assets/images/levels/LIG MED.webp"), color: '#7B9BB5', frameId: 'club_initiator',
-    nameRU: 'Медь',  nameUK: 'Мідь', nameES: 'Cobre',
-    shortRU: 'Медь', shortUK: 'Мідь',
+    nameRU: 'Медная лига',  nameUK: 'Мідь', nameES: 'Cobre',
+    shortRU: 'Медная лига', shortUK: 'Мідь',
     tagRU: 'Бонус: +0% XP', tagUK: 'Бонус: +0% XP', tagES: 'Bonificación: +0% XP',
     descRU: 'Твой старт — это уже победа! Ты не просто скачал приложение, ты бросил вызов своей лени. Главное сейчас — не дать меди окислиться. Просто продолжай заходить каждый день, и твой мозг сам поймет, что обратной дороги нет. Пока без бонусов, зато с чистой совестью.',
     descUK: 'Твій старт — це вже перемога! Ти не просто встановив застосунок, ти кинув виклик своїй ліні. Головне зараз — не дати міді окислитися. Просто заходь щодня, і твій мозок сам зрозуміє, що дороги назад уже немає. Поки без бонусів, зате з чистою совістю.',
@@ -42,8 +42,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 1, ionIcon: 'flame', imageUri: require("../assets/images/levels/LIG BRONZ.webp"), color: '#5BA88B', frameId: 'club_adept',
-    nameRU: 'Бронза',         nameUK: 'Бронза', nameES: 'Bronce',
-    shortRU: 'Бронза',        shortUK: 'Бронза',
+    nameRU: 'Бронзовая лига', nameUK: 'Бронза', nameES: 'Bronce',
+    shortRU: 'Бронзовая лига', shortUK: 'Бронза',
     tagRU: 'Бонус: +10% XP',  tagUK: 'Бонус: +10% XP', tagES: 'Bonificación: +10% XP',
     descRU: 'Укрепляем базу! Бронза — металл тех, кто пережил первый порыв и решил остаться. Твои нейронные связи становятся крепче, а рука уже сама тянется к иконке приложения. Первый шаг сделан, и система это ценит — забирай свои законные +10% опыта к каждому уроку.',
     descUK: 'Зміцнюємо базу! Бронза — метал тих, хто пережив перший порив і вирішив залишитися. Твої нейронні зв\'язки стають міцнішими, а рука вже сама тягнеться до іконки застосунку. Перший крок зроблено, і система це цінує — отримуй законні +10% досвіду до кожного уроку.',
@@ -52,8 +52,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 2, ionIcon: 'compass-outline', imageUri: require("../assets/images/levels/LIG SEREBRO.webp"), color: '#4A90A4', frameId: 'club_seeker',
-    nameRU: 'Серебро',     nameUK: 'Срібло', nameES: 'Plata',
-    shortRU: 'Серебро',    shortUK: 'Срібло',
+    nameRU: 'Серебряная лига', nameUK: 'Срібло', nameES: 'Plata',
+    shortRU: 'Серебряная лига', shortUK: 'Срібло',
     tagRU: 'Бонус: +20% XP', tagUK: 'Бонус: +20% XP', tagES: 'Bonificación: +20% XP',
     descRU: 'Твое любопытство — твой двигатель. Ты ищешь новые знания, и это круто. На этом этапе многие сдаются, но ты блестишь на их фоне, как начищенная монета. Не бойся ошибаться, ведь именно так рождается истина и приятный бонус в +20% опыта.',
     descUK: 'Твоя допитливість — твій двигун. Ти шукаєш нові знання, і це круто. На цьому етапі багато хто здається, але ти сяєш на їхньому фоні, як начищена монета. Не бійся помилятися, адже саме так народжується істина і приємний бонус у +20% досвіду.',
@@ -62,8 +62,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 3, ionIcon: 'hammer-outline', imageUri: require("../assets/images/levels/LIG ZOLOTO.webp"), color: '#7BA84A', frameId: 'club_practitioner',
-    nameRU: 'Золото',         nameUK: 'Золото', nameES: 'Oro',
-    shortRU: 'Золото',        shortUK: 'Золото',
+    nameRU: 'Золотая лига',   nameUK: 'Золото', nameES: 'Oro',
+    shortRU: 'Золотая лига',  shortUK: 'Золото',
     tagRU: 'Бонус: +30% XP', tagUK: 'Бонус: +30% XP', tagES: 'Bonificación: +30% XP',
     descRU: 'Дело мастера боится! Ты берешь не зубрежкой, а делом. Теперь ты понимаешь, что каждый твой "клик" — это кирпичик в фундаменте будущего свободного общения. Золотой стандарт достигнут, и награда соответствующая — практика приносит плоды и +30% к прогрессу.',
     descUK: 'Справі майстра страх! Ти береш не зубрінням, а практикою. Тепер ти розумієш, що кожен твій "клік" — це цеглинка у фундаменті майбутнього вільного спілкування. Золотий стандарт досягнуто, і нагорода відповідна — практика дає плоди та +30% до прогресу.',
@@ -72,8 +72,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 4, ionIcon: 'analytics-outline', imageUri: require("../assets/images/levels/LIG PLATINA.webp"), color: '#C8A84A', frameId: 'club_analyst',
-    nameRU: 'Платина',      nameUK: 'Платина', nameES: 'Platino',
-    shortRU: 'Платина',     shortUK: 'Платина',
+    nameRU: 'Платиновая лига', nameUK: 'Платина', nameES: 'Platino',
+    shortRU: 'Платиновая лига', shortUK: 'Платина',
     tagRU: 'Бонус: +40% XP', tagUK: 'Бонус: +40% XP', tagES: 'Bonificación: +40% XP',
     descRU: 'Твой ум ищет закономерности. Ты больше не просто повторяешь — ты вникаешь в самую суть, видишь структуру там, где другие видят хаос. С таким подходом даже самые сложные правила станут понятными. Острый ум — острый рост: получай +40% опыта за свою стабильность.',
     descUK: 'Твій розум шукає закономірності. Ти більше не просто повторюєш — ти вникаєш у саму суть, бачиш структуру там, де інші бачать хаос. Із таким підходом навіть найскладніші правила стануть зрозумілими. Гострий розум — стрімке зростання: отримуй +40% досвіду за свою стабільність.',
@@ -82,8 +82,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 5, ionIcon: 'library-outline', imageUri: require("../assets/images/levels/LIG IZUMRUD.webp"), color: '#CD7F32', frameId: 'club_erudite',
-    nameRU: 'Изумруд',      nameUK: 'Смарагд', nameES: 'Esmeralda',
-    shortRU: 'Изумруд',     shortUK: 'Смарагд',
+    nameRU: 'Изумрудная лига', nameUK: 'Смарагд', nameES: 'Esmeralda',
+    shortRU: 'Изумрудная лига', shortUK: 'Смарагд',
     tagRU: 'Бонус: +50% XP', tagUK: 'Бонус: +50% XP', tagES: 'Bonificación: +50% XP',
     descRU: 'Порог в высшее общество. Изумрудный блеск твоих успехов виден издалека. Ты прошел экватор и доказал, что твоя дисциплина — это не случайность, а характер. Теперь прогресс идет в полтора раза быстрее. Наслаждайся видом, ты это заслужил!',
     descUK: 'Поріг у вище суспільство. Смарагдовий блиск твоїх успіхів видно здалеку. Ти пройшов екватор і довів, що твоя дисципліна — це не випадковість, а характер. Тепер прогрес іде в півтора раза швидше. Насолоджуйся видом — ти це заслужив!',
@@ -92,8 +92,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 6, ionIcon: 'diamond', imageUri: require("../assets/images/levels/LIG SAPFIR.webp"), color: '#4A90D9', frameId: 'club_connoisseur',
-    nameRU: 'Сапфир',          nameUK: 'Сапфір', nameES: 'Zafiro',
-    shortRU: 'Сапфир',         shortUK: 'Сапфір',
+    nameRU: 'Сапфировая лига', nameUK: 'Сапфір', nameES: 'Zafiro',
+    shortRU: 'Сапфировая лига', shortUK: 'Сапфір',
     tagRU: 'Бонус: +60% XP', tagUK: 'Бонус: +60% XP', tagES: 'Bonificación: +60% XP',
     descRU: 'Глубокий синий цвет сапфира символизирует твое полное погружение. Ты уже не просто учишься, ты начинаешь "чувствовать" материал. Ты стал тверже камня в своих намерениях, и твоя награда в +60% XP — прямое подтверждение твоей исключительности.',
     descUK: 'Глибокий синій колір сапфіра символізує твоє повне занурення. Ти вже не просто вчишся, ти починаєш "відчувати" матеріал. Ти став твердішим за камінь у своїх намірах, а твоя нагорода в +60% XP — пряме підтвердження твоєї винятковості.',
@@ -102,8 +102,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 7, ionIcon: 'medal', imageUri: require("../assets/images/levels/LIG RUBIN.webp"), color: '#9B59B6', frameId: 'club_expert',
-    nameRU: 'Рубин',        nameUK: 'Рубін', nameES: 'Rubí',
-    shortRU: 'Рубин',       shortUK: 'Рубін',
+    nameRU: 'Рубиновая лига', nameUK: 'Рубін', nameES: 'Rubí',
+    shortRU: 'Рубиновая лига', shortUK: 'Рубін',
     tagRU: 'Бонус: +70% XP', tagUK: 'Бонус: +70% XP', tagES: 'Bonificación: +70% XP',
     descRU: 'Настоящая страсть к знаниям! В лиге Рубина остаются только те, у кого горят глаза. Твоя продуктивность зашкаливает, а скорость обучения заставляет окружающих завидовать. Мы лишь подливаем масла в огонь твоих достижений — держи +70% к опыту.',
     descUK: 'Справжня пристрасть до знань! У лізі Рубіна залишаються тільки ті, у кого горять очі. Твоя продуктивність зашкалює, а швидкість навчання змушує оточення заздрити. Ми лише підливаємо олії у вогонь твоїх досягнень — тримай +70% до досвіду.',
@@ -112,8 +112,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 8, ionIcon: 'school-outline', imageUri: require("../assets/images/levels/LIG ALMAZ.webp"), color: '#A8B4C0', frameId: 'club_magister',
-    nameRU: 'Алмаз',        nameUK: 'Діамант', nameES: 'Diamante',
-    shortRU: 'Алмаз',       shortUK: 'Діамант',
+    nameRU: 'Алмазная лига', nameUK: 'Діамант', nameES: 'Diamante',
+    shortRU: 'Алмазная лига', shortUK: 'Діамант',
     tagRU: 'Бонус: +80% XP',  tagUK: 'Бонус: +80% XP', tagES: 'Bonificación: +80% XP',
     descRU: 'Идеальная огранка. Алмаз рождается под колоссальным давлением, и ты выдержал его, став практически несокрушимым. Твои знания теперь крепки как никогда, а интеллект сияет под любым углом. За твою фантастическую выдержку — ошеломительные +80% опыта.',
     descUK: 'Ідеальна огранка. Алмаз народжується під колосальним тиском, і ти витримав його, ставши майже незламним. Твої знання тепер міцні як ніколи, а інтелект сяє під будь-яким кутом. За твою фантастичну витримку — приголомшливі +80% досвіду.',
@@ -122,8 +122,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 9, ionIcon: 'bulb-outline', imageUri: require("../assets/images/levels/LIG CHERNIY ALMAZ.webp"), color: '#E87E30', frameId: 'club_thinker',
-    nameRU: 'Черный Алмаз', nameUK: 'Чорний Діамант', nameES: 'Diamante negro',
-    shortRU: 'Черный Алмаз', shortUK: 'Чорний Діамант',
+    nameRU: 'Лига Черного Алмаза', nameUK: 'Чорний Діамант', nameES: 'Diamante negro',
+    shortRU: 'Лига Черного Алмаза', shortUK: 'Чорний Діамант',
     tagRU: 'Бонус: +90% XP',   tagUK: 'Бонус: +90% XP', tagES: 'Bonificación: +90% XP',
     descRU: 'Редчайший экземпляр. Ты — элита из элит. Черный алмаз встречается в природе реже всего, как и игроки с твоим уровнем упорства. Ты поглощаешь информацию, не оставляя шансов конкурентам. Ты почти у цели, и бонус в +90% XP — твой реактивный двигатель.',
     descUK: 'Найрідкісніший екземпляр. Ти — еліта з еліт. Чорний алмаз трапляється в природі найрідше, як і гравці з твоїм рівнем наполегливості. Ти поглинаєш інформацію, не залишаючи шансів конкурентам. Ти майже біля цілі, а бонус у +90% XP — твій реактивний двигун.',
@@ -132,8 +132,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 10, ionIcon: 'hammer', imageUri: require("../assets/images/levels/LIG EFIR.webp"), color: '#D4A017', frameId: 'club_master',
-    nameRU: 'Эфир',          nameUK: 'Ефір', nameES: 'Éter',
-    shortRU: 'Эфир',         shortUK: 'Ефір',
+    nameRU: 'Эфирная лига',  nameUK: 'Ефір', nameES: 'Éter',
+    shortRU: 'Эфирная лига', shortUK: 'Ефір',
     tagRU: 'Бонус: +100% XP',   tagUK: 'Бонус: +100% XP', tagES: 'Bonificación: +100% XP',
     descRU: 'За пределами физики. Ты перешел в состояние чистого разума, где знания усваиваются мгновенно, прямо из воздуха. Ты стал легендой, о которой шепчутся в медной лиге. Твой опыт удваивается автоматически, ведь ты и есть само воплощение обучения.',
     descUK: 'За межами фізики. Ти перейшов у стан чистого розуму, де знання засвоюються миттєво, просто з повітря. Ти став легендою, про яку шепочуться в мідній лізі. Твій досвід автоматично подвоюється, бо ти і є саме втілення навчання.',
@@ -142,8 +142,8 @@ export const CLUBS: ClubDef[] = [
   },
   {
     id: 11, ionIcon: 'trophy-outline', imageUri: require("../assets/images/levels/LIG VISHAYA.webp"), color: '#FFD700', frameId: 'club_professor',
-    nameRU: 'Высшая Лига',   nameUK: 'Вища Ліга', nameES: 'Liga suprema',
-    shortRU: 'Высшая Лига',  shortUK: 'Вища Ліга',
+    nameRU: 'Высшая лига',   nameUK: 'Вища Ліга', nameES: 'Liga suprema',
+    shortRU: 'Высшая лига',  shortUK: 'Вища Ліга',
     tagRU: 'Бонус: +110% XP', tagUK: 'Бонус: +110% XP', tagES: 'Bonificación: +110% XP',
     descRU: 'Абсолютный триумф. Выше — только звезды, но и они кажутся мелкими с твоей вершины. Ты доказал, что для тебя нет границ. Ты — мастер, эталон и вдохновение для каждого. Забирай максимальный бонус в +110% опыта и просто правь этим миром знаний.',
     descUK: 'Абсолютний тріумф. Вище — тільки зірки, але й вони здаються дрібними з твоєї вершини. Ти довів, що для тебе немає меж. Ти — майстер, еталон і натхнення для кожного. Забирай максимальний бонус у +110% досвіду і просто керуй цим світом знань.',
@@ -196,6 +196,11 @@ export interface GroupMember {
   isPremium?: boolean;
   avatar?:   string;
   frame?:    string;
+  aura?:     string;
+  profileCardLevel?: number;
+  profileCardTheme?: string;
+  profileCardMotion?: string;
+  profileCardPublicFocus?: string;
   streak?:   number;
   totalXp?:  number;
   leagueId?: number;
@@ -222,6 +227,16 @@ export interface LeagueResult {
 
 const STATE_KEY  = 'league_state_v3';
 const RESULT_KEY = 'league_result_pending';
+const RESULT_CONSUMED_SIG_KEY = 'league_result_consumed_sig';
+
+export const getLeagueResultSignature = (result: LeagueResult): string => JSON.stringify({
+  prevLeagueId: result.prevLeagueId,
+  newLeagueId: result.newLeagueId,
+  myRank: result.myRank,
+  totalInGroup: result.totalInGroup,
+  promoted: result.promoted,
+  demoted: result.demoted,
+});
 
 // ISO week number — граница в понедельник (как в hall_of_fame_utils)
 export const getWeekId = (): string => {
@@ -257,7 +272,13 @@ export const savePendingResult = async (r: LeagueResult) => {
 };
 
 export const clearPendingResult = async () => {
-  try { await AsyncStorage.removeItem(RESULT_KEY); } catch {}
+  try {
+    const pending = await loadPendingResult();
+    if (pending) {
+      await AsyncStorage.setItem(RESULT_CONSUMED_SIG_KEY, getLeagueResultSignature(pending));
+    }
+    await AsyncStorage.removeItem(RESULT_KEY);
+  } catch {}
 };
 
 let _groupCache: { group: GroupMember[]; ts: number } | null = null;
@@ -349,6 +370,12 @@ export const calculateResult = (state: LeagueState, myWeekPoints: number): Leagu
   };
 };
 
+const getStoredMyPointsFromLeagueState = (state: LeagueState): number => {
+  const me = state.group.find(m => m.isMe);
+  const points = Number(me?.points);
+  return Number.isFinite(points) ? points : 0;
+};
+
 export const checkLeagueOnAppOpen = async (
   myName: string,
   myWeekPoints: number, // передаём НЕДЕЛЬНЫЕ очки
@@ -365,7 +392,12 @@ export const checkLeagueOnAppOpen = async (
   try { state = stateRaw ? JSON.parse(stateRaw) : null; } catch { state = null; }
 
   if (pending) {
-    return { needShowResult: true, result: pending, state: state! };
+    const fallbackState = state ?? {
+      leagueId: pending.newLeagueId,
+      weekId: currentWeekId,
+      group: pending.group,
+    };
+    return { needShowResult: true, result: pending, state: fallbackState };
   }
 
   // Первый запуск — state ещё нет, нужно показать хоть что-то
@@ -381,7 +413,7 @@ export const checkLeagueOnAppOpen = async (
 
   // Новая неделя — считаем итоги
   if (currentWeekId !== state.weekId) {
-    const result = calculateResult(state, myWeekPoints);
+    const result = calculateResult(state, getStoredMyPointsFromLeagueState(state));
     await savePendingResult(result);
 
     // КРИТИЧНО: state.weekId надо двинуть на новую неделю СРАЗУ, иначе при сбое

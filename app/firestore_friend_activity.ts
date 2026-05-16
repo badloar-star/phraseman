@@ -1,7 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser } from './cloud_sync';
-import { getAuthUserId } from './user_id_policy';
 
 // ── Types ──────────────────────────────────────────────────────────────────────
 
@@ -11,13 +9,16 @@ export type FriendEventType =
   | 'achievement'
   | 'streak_milestone'
   | 'arena_rank_up'
-  | 'arena_rank_down';
+  | 'arena_rank_down'
+  | 'friend_gift_sent'
+  | 'friend_gift_received';
 
 export interface FriendEvent {
   id: string;
   uid: string;
   type: FriendEventType;
   ts: number;
+  activityLikeCount?: number;
   /** Уровень (level_up); lesson_complete — не из квизов; achievement; streak_milestone; arena_rank_* */
   payload: Record<string, string | number>;
 }
@@ -47,62 +48,18 @@ const getDb = () => {
 // ── Write my own event ────────────────────────────────────────────────────────
 
 /**
- * Записывает событие в users/{myUid}/my_events/{eventId}.
- * Хранит последние MAX_EVENTS_PER_FRIEND событий — старые удаляются.
- * Вызывается в точках: level_up (xp_manager), achievement (achievements.ts).
- * Квизы в ленту не пишутся (тип lesson_complete оставлен для старых записей / при желании — экран урока).
- * Перед записью кладём firebaseAuthUid на корень users/{uid} — иначе правила my_events
- * отклоняют запись, если синк ещё не успел (ensureAnonUser даёт stable id ≠ auth.uid).
- * Fire-and-forget: ошибки тихо игнорируются, чтобы не мешать основному флоу.
+ * Friend activity is server-owned. Verified level/streak changes and gift events
+ * are written by Cloud Functions, while this client hook remains as a no-op for
+ * old call sites that used to write spoofable feed records.
  */
 export async function writeFriendEvent(
   type: FriendEventType,
   payload: Record<string, string | number>,
 ): Promise<void> {
-  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return;
-  try {
-    const myUid = await ensureAnonUser();
-    if (!myUid) return;
-    const db = getDb();
-    if (!db) return;
-
-    const firebaseAuthUidRow = getAuthUserId();
-    if (firebaseAuthUidRow) {
-      await db.collection('users').doc(myUid).set({ firebaseAuthUid: firebaseAuthUidRow }, { merge: true });
-    }
-
-    const eventId = friendEventDocId(type, payload);
-    await db
-      .collection('users')
-      .doc(myUid)
-      .collection('my_events')
-      .doc(eventId)
-      .set({ type, payload, ts: Date.now(), uid: myUid });
-
-    // Cleanup: оставляем только последние MAX_EVENTS_PER_FRIEND штук
-    void pruneOldEvents(db, myUid);
-  } catch {
-    /* ignore */
-  }
-}
-
-async function pruneOldEvents(db: NonNullable<ReturnType<typeof getDb>>, myUid: string): Promise<void> {
-  try {
-    const snap = await db
-      .collection('users')
-      .doc(myUid)
-      .collection('my_events')
-      .orderBy('ts', 'desc')
-      .get();
-
-    const docs = snap.docs as Array<{ id: string; ref: { delete: () => Promise<void> } }>;
-    if (docs.length <= MAX_EVENTS_PER_FRIEND) return;
-
-    const toDelete = docs.slice(MAX_EVENTS_PER_FRIEND);
-    await Promise.all(toDelete.map((d) => d.ref.delete()));
-  } catch {
-    /* ignore */
-  }
+  // Friend activity writes are server-owned now; keep old call sites harmless.
+  void type;
+  void payload;
+  return;
 }
 
 // ── Read friends' activity feed ───────────────────────────────────────────────
@@ -164,6 +121,7 @@ export async function fetchFriendsActivityFeed(
           uid: String(d.uid),
           type: d.type as FriendEventType,
           ts: Number(d.ts),
+          activityLikeCount: Math.max(0, Math.floor(Number(d.activityLikeCount ?? 0) || 0)),
           payload: (d.payload as Record<string, string | number>) ?? {},
         });
       }

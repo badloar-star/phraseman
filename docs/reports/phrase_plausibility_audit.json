@@ -6,9 +6,9 @@
       "severity": "low",
       "lesson": 1,
       "id": "lesson1_phrase_17",
-      "en": "We are on our way",
-      "ru": "Мы уже в пути",
-      "uk": "Ми вже в дорозі",
+      "en": "We are here",
+      "ru": "Мы здесь",
+      "uk": "Ми тут",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -36,9 +36,9 @@
       "severity": "low",
       "lesson": 6,
       "id": "lesson6_phrase_34",
-      "en": "When does he check his mail?",
-      "ru": "Когда он проверяет свою почту?",
-      "uk": "Коли він перевіряє свою пошту?",
+      "en": "When does he check mail?",
+      "ru": "Когда он проверяет почту?",
+      "uk": "Коли він перевіряє пошту?",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -46,9 +46,9 @@
       "severity": "low",
       "lesson": 7,
       "id": "lesson7_phrase_44",
-      "en": "I have a question about the policy",
-      "ru": "У меня есть вопрос по правилам",
-      "uk": "У мене є питання щодо правил",
+      "en": "I have a charger",
+      "ru": "У меня есть зарядка",
+      "uk": "Я маю зарядний пристрій",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -56,9 +56,9 @@
       "severity": "low",
       "lesson": 8,
       "id": "lesson8_phrase_14",
-      "en": "She checks mail at night",
-      "ru": "Она проверяет почту ночью",
-      "uk": "Вона перевіряє пошту вночі",
+      "en": "He calls at night",
+      "ru": "Он звонит ночью",
+      "uk": "Він дзвонить вночі",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -66,9 +66,9 @@
       "severity": "low",
       "lesson": 9,
       "id": "lesson9_phrase_45",
-      "en": "There is a good film on TV",
-      "ru": "По телевизору есть хороший фильм",
-      "uk": "По телевізору є хороший фільм",
+      "en": "Is there time?",
+      "ru": "Есть время?",
+      "uk": "Є час?",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -76,9 +76,9 @@
       "severity": "low",
       "lesson": 10,
       "id": "lesson10_phrase_39",
-      "en": "He must not share this password.",
-      "ru": "Он не должен делиться этим паролем.",
-      "uk": "Він не повинен ділитися цим паролем.",
+      "en": "They must wait here",
+      "ru": "Они должны ждать здесь",
+      "uk": "Вони мусять чекати тут",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -86,9 +86,9 @@
       "severity": "low",
       "lesson": 11,
       "id": "lesson11_phrase_21",
-      "en": "She washed those dirty dishes yesterday evening",
-      "ru": "Она вчера вечером вымыла ту грязную посуду",
-      "uk": "Вона вчора ввечері помила той брудний посуд",
+      "en": "He used cash yesterday",
+      "ru": "Он использовал наличные вчера",
+      "uk": "Він використовував готівку вчора",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -96,9 +96,9 @@
       "severity": "low",
       "lesson": 11,
       "id": "lesson11_phrase_25",
-      "en": "You attended that lecture last Thursday",
-      "ru": "Вы посетили ту лекцию в прошлый четверг",
-      "uk": "Ви минулого четверга відвідали ту лекцію",
+      "en": "I booked tickets last week",
+      "ru": "Я забронировал билеты на прошлой неделе",
+      "uk": "Я забронював квитки минулого тижня",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -106,9 +106,9 @@
       "severity": "low",
       "lesson": 11,
       "id": "lesson11_phrase_36",
-      "en": "They helped that old man yesterday evening",
-      "ru": "Они вчера вечером помогли тому старому мужчине",
-      "uk": "Вони вчора ввечері допомогли тому старому чоловікові",
+      "en": "They returned tickets yesterday",
+      "ru": "Они вернули билеты вчера",
+      "uk": "Вони повернули квитки вчора",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -116,9 +116,9 @@
       "severity": "low",
       "lesson": 13,
       "id": "lesson13_phrase_1",
-      "en": "Will I call you tomorrow morning?",
-      "ru": "Я позвоню тебе завтра утром?",
-      "uk": "Чи я зателефоную тобі завтра вранці?",
+      "en": "I will call you tomorrow",
+      "ru": "Я позвоню тебе завтра",
+      "uk": "Я зателефоную тобі завтра",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -126,9 +126,9 @@
       "severity": "low",
       "lesson": 13,
       "id": "lesson13_phrase_34",
-      "en": "I will not blow up that big balloon later today.",
-      "ru": "Я сегодня позже не надую тот большой шар.",
-      "uk": "Я сьогодні пізніше не надую ту велику повітряну кулю.",
+      "en": "Will they work tomorrow?",
+      "ru": "Они будут работать завтра?",
+      "uk": "Вони будуть працювати завтра?",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -136,9 +136,9 @@
       "severity": "low",
       "lesson": 14,
       "id": "lesson14_phrase_20",
-      "en": "You look more serious today.",
-      "ru": "Вы сегодня выглядите серьёзнее.",
-      "uk": "Ви сьогодні виглядаєте серйознішим.",
+      "en": "That room is warmer",
+      "ru": "Та комната теплее",
+      "uk": "Та кімната тепліша",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -146,9 +146,9 @@
       "severity": "low",
       "lesson": 15,
       "id": "lesson15_phrase_1",
-      "en": "Is that big black umbrella mine?",
-      "ru": "Тот большой чёрный зонт — мой?",
-      "uk": "Та велика чорна парасоля — моя?",
+      "en": "This phone is mine",
+      "ru": "Этот телефон мой",
+      "uk": "Цей телефон мій",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -156,9 +156,9 @@
       "severity": "low",
       "lesson": 16,
       "id": "lesson16_phrase_46",
-      "en": "That honest person does not always give back this found money to the owner.",
-      "ru": "Тот честный человек не всегда возвращает эти найденные деньги владельцу.",
-      "uk": "Та чесна людина не завжди повертає ці знайдені гроші власнику.",
+      "en": "They turned off phones at noon",
+      "ru": "Они выключили телефоны в полдень",
+      "uk": "Вони вимкнули телефони опівдні",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -166,9 +166,9 @@
       "severity": "low",
       "lesson": 17,
       "id": "lesson17_phrase_35",
-      "en": "Is she choosing that ripe strawberry at this local market?",
-      "ru": "Она выбирает ту спелую клубнику на этом местном рынке?",
-      "uk": "Вона обирає ту стиглу полуницю на цьому місцевому ринку?",
+      "en": "Are we waiting here?",
+      "ru": "Мы ждём здесь?",
+      "uk": "Ми тут чекаємо?",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -176,9 +176,9 @@
       "severity": "low",
       "lesson": 19,
       "id": "lesson19_phrase_17",
-      "en": "Do not put those heavy boxes under those metal stairs.",
-      "ru": "Не ставь те тяжелые коробки под те металлические ступени.",
-      "uk": "Не клади ті важкі коробки під ті металеві сходи.",
+      "en": "Are the keys in the bag?",
+      "ru": "Ключи в сумке?",
+      "uk": "Ключі в сумці?",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -186,9 +186,19 @@
       "severity": "low",
       "lesson": 19,
       "id": "lesson19_phrase_42",
-      "en": "Put those heavy tools inside that metal box under those stairs.",
-      "ru": "Положи те тяжелые инструменты внутрь того металлического ящика под теми ступенями.",
-      "uk": "Поклади ті важкі інструменти всередину того металевого ящика під тими сходами.",
+      "en": "My phone is on the desk",
+      "ru": "Мой телефон на рабочем столе",
+      "uk": "Мій телефон на робочому столі",
+      "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+    },
+    {
+      "code": "SEMANTIC_AUDIT_NAMED",
+      "severity": "low",
+      "lesson": 21,
+      "id": "lesson21_phrase_37",
+      "en": "Everyone helped us",
+      "ru": "Все помогли нам",
+      "uk": "Всі допомогли нам",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -196,9 +206,9 @@
       "severity": "low",
       "lesson": 23,
       "id": "lesson23_phrase_10",
-      "en": "Is that difficult exercise always explained by our teacher?",
-      "ru": "То сложное упражнение всегда объясняется нашим учителем?",
-      "uk": "Та складна вправа завжди пояснюється нашим учителем?",
+      "en": "The phones are charged here",
+      "ru": "Телефоны заряжаются здесь",
+      "uk": "Телефони заряджаються тут",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -206,9 +216,9 @@
       "severity": "low",
       "lesson": 23,
       "id": "lesson23_phrase_17",
-      "en": "This old legend is told by them every winter.",
-      "ru": "Эта старая легенда рассказывается ими каждой зимой.",
-      "uk": "Ця стара легенда розповідається ними щозими.",
+      "en": "The plan is discussed every week",
+      "ru": "План обсуждается каждую неделю",
+      "uk": "План обговорюється щотижня",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -216,9 +226,9 @@
       "severity": "low",
       "lesson": 23,
       "id": "lesson23_phrase_19",
-      "en": "Are we often invited by you to those business meetings?",
-      "ru": "Мы часто приглашены тобой на те деловые встречи?",
-      "uk": "Ми часто запрошені тобою на ті ділові зустрічі?",
+      "en": "The problem is solved quickly",
+      "ru": "Проблема быстро решается",
+      "uk": "Проблема швидко вирішується",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -226,9 +236,9 @@
       "severity": "low",
       "lesson": 23,
       "id": "lesson23_phrase_43",
-      "en": "We are invited by them to every party in this house.",
-      "ru": "Мы приглашены ими на каждую вечеринку в этом доме.",
-      "uk": "Ми запрошені ними на кожну вечірку в цьому будинку.",
+      "en": "He is called every day",
+      "ru": "Ему звонят каждый день",
+      "uk": "Йому телефонують щодня",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -236,9 +246,9 @@
       "severity": "low",
       "lesson": 24,
       "id": "lesson24_phrase_4",
-      "en": "Have you ever tasted this traditional dish?",
-      "ru": "Ты когда-нибудь пробовал это традиционное блюдо?",
-      "uk": "Ти коли-небудь куштував цю традиційну страву?",
+      "en": "They have just sent documents",
+      "ru": "Они только что отправили документы",
+      "uk": "Вони щойно надіслали документи",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -246,9 +256,9 @@
       "severity": "low",
       "lesson": 26,
       "id": "lesson26_phrase_1",
-      "en": "If this experienced specialist signs the contract, we will get profit.",
-      "ru": "Если этот опытный специалист подпишет контракт, мы получим прибыль.",
-      "uk": "Якщо цей досвідчений спеціаліст підпише контракт, ми отримаємо прибуток.",
+      "en": "If you help me, I will finish faster",
+      "ru": "Если ты поможешь мне, я закончу быстрее",
+      "uk": "Якщо ти допоможеш мені, я закінчу швидше",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -256,9 +266,9 @@
       "severity": "low",
       "lesson": 26,
       "id": "lesson26_phrase_13",
-      "en": "Will she know the truth if she reads that old letter today?",
-      "ru": "Она узнает правду, если прочитает то старое письмо сегодня?",
-      "uk": "Вона дізнається правду, якщо прочитає той старий лист сьогодні?",
+      "en": "If she studies every day, her English will improve",
+      "ru": "Если она будет заниматься каждый день, ее английский улучшится",
+      "uk": "Якщо вона займатиметься щодня, її англійська покращиться",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -266,9 +276,9 @@
       "severity": "low",
       "lesson": 27,
       "id": "lesson27_phrase_2",
-      "en": "She mentioned that she could not find those old documents in her office.",
-      "ru": "Она упомянула, что она не могла найти те старые документы в своём офисе.",
-      "uk": "Вона згадала, що вона не могла знайти ті старі документи у своєму офісі.",
+      "en": "She said that she was busy",
+      "ru": "Она сказала, что занята",
+      "uk": "Вона сказала, що зайнята",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -276,9 +286,9 @@
       "severity": "low",
       "lesson": 27,
       "id": "lesson27_phrase_7",
-      "en": "She replied that she did not remember that secret password then.",
-      "ru": "Она ответила, что она не помнила тот секретный пароль тогда.",
-      "uk": "Вона відповіла, що вона не пам'ятала той секретний пароль тоді.",
+      "en": "He said that he knew the answer",
+      "ru": "Он сказал, что знал ответ",
+      "uk": "Він сказав, що знав відповідь",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -286,9 +296,9 @@
       "severity": "low",
       "lesson": 27,
       "id": "lesson27_phrase_29",
-      "en": "My new neighbor said that he had seen that strange black dog before.",
-      "ru": "Мой новый сосед сказал, что он видел ту странную черную собаку раньше.",
-      "uk": "Мій новий сусід сказав, що він бачив ту дивну чорну собаку раніше.",
+      "en": "He said that he could not find the phone",
+      "ru": "Он сказал, что не мог найти телефон",
+      "uk": "Він сказав, що не міг знайти телефон",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -296,9 +306,9 @@
       "severity": "low",
       "lesson": 27,
       "id": "lesson27_phrase_43",
-      "en": "We promised that we would return that book to that local library the next day.",
-      "ru": "Мы пообещали, что мы вернём ту книгу в ту местную библиотеку на следующий день.",
-      "uk": "Ми пообіцяли, що ми повернемо ту книгу в ту місцеву бібліотеку наступного дня.",
+      "en": "I said that I had lost my phone",
+      "ru": "Я сказал, что потерял свой телефон",
+      "uk": "Я сказав, що загубив свій телефон",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -306,9 +316,9 @@
       "severity": "low",
       "lesson": 28,
       "id": "lesson28_phrase_22",
-      "en": "Does that young woman often photograph herself in that beautiful park?",
-      "ru": "Та молодая женщина часто фотографирует себя в том красивом парке?",
-      "uk": "Та молода жінка часто фотографує себе в тому красивому парку?",
+      "en": "Did he hurt himself?",
+      "ru": "Он ушибся?",
+      "uk": "Він забився?",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -316,9 +326,9 @@
       "severity": "low",
       "lesson": 29,
       "id": "lesson29_phrase_4",
-      "en": "We used to travel across that southern country during summer holidays.",
-      "ru": "Раньше мы путешествовали по той южной стране во время летних каникул.",
-      "uk": "Раніше ми подорожували тією південною країною під час літніх канікул.",
+      "en": "She used to study English",
+      "ru": "Раньше она учила английский",
+      "uk": "Раніше вона вчила англійську",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -326,9 +336,9 @@
       "severity": "low",
       "lesson": 29,
       "id": "lesson29_phrase_28",
-      "en": "Those brave rescuers used to patrol that dangerous coast every winter night.",
-      "ru": "Раньше те храбрые спасатели патрулировали то опасное побережье каждую зимнюю ночь.",
-      "uk": "Раніше ті хоробрі рятувальники патрулювали те небезпечне узбережжя кожної зимової ночі.",
+      "en": "He did not use to call me",
+      "ru": "Раньше он не звонил мне",
+      "uk": "Раніше він не телефонував мені",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -336,9 +346,9 @@
       "severity": "low",
       "lesson": 29,
       "id": "lesson29_phrase_40",
-      "en": "Did you use to lend those rare books to that curious colleague?",
-      "ru": "Бывало, ты одалживал те редкие книги тому любопытному коллеге?",
-      "uk": "Чи раніше позичав ти ті рідкісні книги тому допитливому колезі?",
+      "en": "Did you use to wake up early?",
+      "ru": "Ты раньше просыпался рано?",
+      "uk": "Ти раніше прокидався рано?",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -346,9 +356,9 @@
       "severity": "low",
       "lesson": 30,
       "id": "lesson30_phrase_18",
-      "en": "She found that lost bag whose contents belonged to that elderly woman.",
-      "ru": "Она нашла ту потерянную сумку, содержимое которой принадлежало той пожилой женщине.",
-      "uk": "Вона знайшла ту загублену сумку, вміст якого належав тій літній жінці.",
+      "en": "This is the problem that we solved",
+      "ru": "Это проблема, которую мы решили",
+      "uk": "Це проблема, яку ми вирішили",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -356,9 +366,9 @@
       "severity": "low",
       "lesson": 30,
       "id": "lesson30_phrase_34",
-      "en": "Have you ever read that secret letter which that famous spy wrote in that cold winter?",
-      "ru": "Вы когда-нибудь читали то секретное письмо, которое тот знаменитый шпион написал той холодной зимой?",
-      "uk": "Ви коли-небудь читали той секретний лист, який той знаменитий шпигун написав тієї холодної зими?",
+      "en": "They called a driver whose car was outside",
+      "ru": "Они позвонили водителю, чья машина была снаружи",
+      "uk": "Вони зателефонували водієві, чия машина була ззовні",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -396,9 +406,9 @@
       "severity": "low",
       "lesson": 32,
       "id": "lesson32_phrase_23",
-      "en": "By the time she arrived, those vital negotiations had already been successfully concluded.",
-      "ru": "К тому времени как она приехала, те жизненно важные переговоры уже были успешно завершены.",
-      "uk": "На момент, коли вона приїхала, ті життєво важливі переговори вже були успішно завершені.",
+      "en": "They were told that the problem was solved.",
+      "ru": "Им сказали, что проблема решена.",
+      "uk": "Їм сказали, що проблему вирішили.",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -406,9 +416,9 @@
       "severity": "low",
       "lesson": 32,
       "id": "lesson32_phrase_29",
-      "en": "You should know that those old warehouses are being rebuilt into that modern art gallery.",
-      "ru": "Вам следует знать, что те старые склады перестраиваются в ту современную художественную галерею.",
-      "uk": "Вам слід знати, що ті старі склади перебудовуються у ту сучасну художню галерею.",
+      "en": "If I had known, I would have helped.",
+      "ru": "Если бы я знал, я бы помог.",
+      "uk": "Якби я знав, я б допоміг.",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     },
     {
@@ -416,9 +426,9 @@
       "severity": "low",
       "lesson": 32,
       "id": "lesson32_phrase_35",
-      "en": "They are not used to their strict teacher giving them such difficult home assignments.",
-      "ru": "Они не привыкли к тому, что их строгий учитель дает им такие трудные домашние задания.",
-      "uk": "Вони не звикли до того, що їхній суворий учитель дає їм такі важкі домашні завдання.",
+      "en": "We felt the phone vibrate.",
+      "ru": "Мы почувствовали, как телефон завибрировал.",
+      "uk": "Ми відчули, як телефон завібрував.",
       "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
     }
   ],
@@ -431,9 +441,9 @@
         "severity": "low",
         "lesson": 1,
         "id": "lesson1_phrase_17",
-        "en": "We are on our way",
-        "ru": "Мы уже в пути",
-        "uk": "Ми вже в дорозі",
+        "en": "We are here",
+        "ru": "Мы здесь",
+        "uk": "Ми тут",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -461,9 +471,9 @@
         "severity": "low",
         "lesson": 6,
         "id": "lesson6_phrase_34",
-        "en": "When does he check his mail?",
-        "ru": "Когда он проверяет свою почту?",
-        "uk": "Коли він перевіряє свою пошту?",
+        "en": "When does he check mail?",
+        "ru": "Когда он проверяет почту?",
+        "uk": "Коли він перевіряє пошту?",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -471,9 +481,9 @@
         "severity": "low",
         "lesson": 7,
         "id": "lesson7_phrase_44",
-        "en": "I have a question about the policy",
-        "ru": "У меня есть вопрос по правилам",
-        "uk": "У мене є питання щодо правил",
+        "en": "I have a charger",
+        "ru": "У меня есть зарядка",
+        "uk": "Я маю зарядний пристрій",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -481,9 +491,9 @@
         "severity": "low",
         "lesson": 8,
         "id": "lesson8_phrase_14",
-        "en": "She checks mail at night",
-        "ru": "Она проверяет почту ночью",
-        "uk": "Вона перевіряє пошту вночі",
+        "en": "He calls at night",
+        "ru": "Он звонит ночью",
+        "uk": "Він дзвонить вночі",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -491,9 +501,9 @@
         "severity": "low",
         "lesson": 9,
         "id": "lesson9_phrase_45",
-        "en": "There is a good film on TV",
-        "ru": "По телевизору есть хороший фильм",
-        "uk": "По телевізору є хороший фільм",
+        "en": "Is there time?",
+        "ru": "Есть время?",
+        "uk": "Є час?",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -501,9 +511,9 @@
         "severity": "low",
         "lesson": 10,
         "id": "lesson10_phrase_39",
-        "en": "He must not share this password.",
-        "ru": "Он не должен делиться этим паролем.",
-        "uk": "Він не повинен ділитися цим паролем.",
+        "en": "They must wait here",
+        "ru": "Они должны ждать здесь",
+        "uk": "Вони мусять чекати тут",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -511,9 +521,9 @@
         "severity": "low",
         "lesson": 11,
         "id": "lesson11_phrase_21",
-        "en": "She washed those dirty dishes yesterday evening",
-        "ru": "Она вчера вечером вымыла ту грязную посуду",
-        "uk": "Вона вчора ввечері помила той брудний посуд",
+        "en": "He used cash yesterday",
+        "ru": "Он использовал наличные вчера",
+        "uk": "Він використовував готівку вчора",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -521,9 +531,9 @@
         "severity": "low",
         "lesson": 11,
         "id": "lesson11_phrase_25",
-        "en": "You attended that lecture last Thursday",
-        "ru": "Вы посетили ту лекцию в прошлый четверг",
-        "uk": "Ви минулого четверга відвідали ту лекцію",
+        "en": "I booked tickets last week",
+        "ru": "Я забронировал билеты на прошлой неделе",
+        "uk": "Я забронював квитки минулого тижня",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -531,9 +541,9 @@
         "severity": "low",
         "lesson": 11,
         "id": "lesson11_phrase_36",
-        "en": "They helped that old man yesterday evening",
-        "ru": "Они вчера вечером помогли тому старому мужчине",
-        "uk": "Вони вчора ввечері допомогли тому старому чоловікові",
+        "en": "They returned tickets yesterday",
+        "ru": "Они вернули билеты вчера",
+        "uk": "Вони повернули квитки вчора",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -541,9 +551,9 @@
         "severity": "low",
         "lesson": 13,
         "id": "lesson13_phrase_1",
-        "en": "Will I call you tomorrow morning?",
-        "ru": "Я позвоню тебе завтра утром?",
-        "uk": "Чи я зателефоную тобі завтра вранці?",
+        "en": "I will call you tomorrow",
+        "ru": "Я позвоню тебе завтра",
+        "uk": "Я зателефоную тобі завтра",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -551,9 +561,9 @@
         "severity": "low",
         "lesson": 13,
         "id": "lesson13_phrase_34",
-        "en": "I will not blow up that big balloon later today.",
-        "ru": "Я сегодня позже не надую тот большой шар.",
-        "uk": "Я сьогодні пізніше не надую ту велику повітряну кулю.",
+        "en": "Will they work tomorrow?",
+        "ru": "Они будут работать завтра?",
+        "uk": "Вони будуть працювати завтра?",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -561,9 +571,9 @@
         "severity": "low",
         "lesson": 14,
         "id": "lesson14_phrase_20",
-        "en": "You look more serious today.",
-        "ru": "Вы сегодня выглядите серьёзнее.",
-        "uk": "Ви сьогодні виглядаєте серйознішим.",
+        "en": "That room is warmer",
+        "ru": "Та комната теплее",
+        "uk": "Та кімната тепліша",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -571,9 +581,9 @@
         "severity": "low",
         "lesson": 15,
         "id": "lesson15_phrase_1",
-        "en": "Is that big black umbrella mine?",
-        "ru": "Тот большой чёрный зонт — мой?",
-        "uk": "Та велика чорна парасоля — моя?",
+        "en": "This phone is mine",
+        "ru": "Этот телефон мой",
+        "uk": "Цей телефон мій",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -581,9 +591,9 @@
         "severity": "low",
         "lesson": 16,
         "id": "lesson16_phrase_46",
-        "en": "That honest person does not always give back this found money to the owner.",
-        "ru": "Тот честный человек не всегда возвращает эти найденные деньги владельцу.",
-        "uk": "Та чесна людина не завжди повертає ці знайдені гроші власнику.",
+        "en": "They turned off phones at noon",
+        "ru": "Они выключили телефоны в полдень",
+        "uk": "Вони вимкнули телефони опівдні",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -591,9 +601,9 @@
         "severity": "low",
         "lesson": 17,
         "id": "lesson17_phrase_35",
-        "en": "Is she choosing that ripe strawberry at this local market?",
-        "ru": "Она выбирает ту спелую клубнику на этом местном рынке?",
-        "uk": "Вона обирає ту стиглу полуницю на цьому місцевому ринку?",
+        "en": "Are we waiting here?",
+        "ru": "Мы ждём здесь?",
+        "uk": "Ми тут чекаємо?",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -601,9 +611,9 @@
         "severity": "low",
         "lesson": 19,
         "id": "lesson19_phrase_17",
-        "en": "Do not put those heavy boxes under those metal stairs.",
-        "ru": "Не ставь те тяжелые коробки под те металлические ступени.",
-        "uk": "Не клади ті важкі коробки під ті металеві сходи.",
+        "en": "Are the keys in the bag?",
+        "ru": "Ключи в сумке?",
+        "uk": "Ключі в сумці?",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -611,9 +621,19 @@
         "severity": "low",
         "lesson": 19,
         "id": "lesson19_phrase_42",
-        "en": "Put those heavy tools inside that metal box under those stairs.",
-        "ru": "Положи те тяжелые инструменты внутрь того металлического ящика под теми ступенями.",
-        "uk": "Поклади ті важкі інструменти всередину того металевого ящика під тими сходами.",
+        "en": "My phone is on the desk",
+        "ru": "Мой телефон на рабочем столе",
+        "uk": "Мій телефон на робочому столі",
+        "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
+      },
+      {
+        "code": "SEMANTIC_AUDIT_NAMED",
+        "severity": "low",
+        "lesson": 21,
+        "id": "lesson21_phrase_37",
+        "en": "Everyone helped us",
+        "ru": "Все помогли нам",
+        "uk": "Всі допомогли нам",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -621,9 +641,9 @@
         "severity": "low",
         "lesson": 23,
         "id": "lesson23_phrase_10",
-        "en": "Is that difficult exercise always explained by our teacher?",
-        "ru": "То сложное упражнение всегда объясняется нашим учителем?",
-        "uk": "Та складна вправа завжди пояснюється нашим учителем?",
+        "en": "The phones are charged here",
+        "ru": "Телефоны заряжаются здесь",
+        "uk": "Телефони заряджаються тут",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -631,9 +651,9 @@
         "severity": "low",
         "lesson": 23,
         "id": "lesson23_phrase_17",
-        "en": "This old legend is told by them every winter.",
-        "ru": "Эта старая легенда рассказывается ими каждой зимой.",
-        "uk": "Ця стара легенда розповідається ними щозими.",
+        "en": "The plan is discussed every week",
+        "ru": "План обсуждается каждую неделю",
+        "uk": "План обговорюється щотижня",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -641,9 +661,9 @@
         "severity": "low",
         "lesson": 23,
         "id": "lesson23_phrase_19",
-        "en": "Are we often invited by you to those business meetings?",
-        "ru": "Мы часто приглашены тобой на те деловые встречи?",
-        "uk": "Ми часто запрошені тобою на ті ділові зустрічі?",
+        "en": "The problem is solved quickly",
+        "ru": "Проблема быстро решается",
+        "uk": "Проблема швидко вирішується",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -651,9 +671,9 @@
         "severity": "low",
         "lesson": 23,
         "id": "lesson23_phrase_43",
-        "en": "We are invited by them to every party in this house.",
-        "ru": "Мы приглашены ими на каждую вечеринку в этом доме.",
-        "uk": "Ми запрошені ними на кожну вечірку в цьому будинку.",
+        "en": "He is called every day",
+        "ru": "Ему звонят каждый день",
+        "uk": "Йому телефонують щодня",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -661,9 +681,9 @@
         "severity": "low",
         "lesson": 24,
         "id": "lesson24_phrase_4",
-        "en": "Have you ever tasted this traditional dish?",
-        "ru": "Ты когда-нибудь пробовал это традиционное блюдо?",
-        "uk": "Ти коли-небудь куштував цю традиційну страву?",
+        "en": "They have just sent documents",
+        "ru": "Они только что отправили документы",
+        "uk": "Вони щойно надіслали документи",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -671,9 +691,9 @@
         "severity": "low",
         "lesson": 26,
         "id": "lesson26_phrase_1",
-        "en": "If this experienced specialist signs the contract, we will get profit.",
-        "ru": "Если этот опытный специалист подпишет контракт, мы получим прибыль.",
-        "uk": "Якщо цей досвідчений спеціаліст підпише контракт, ми отримаємо прибуток.",
+        "en": "If you help me, I will finish faster",
+        "ru": "Если ты поможешь мне, я закончу быстрее",
+        "uk": "Якщо ти допоможеш мені, я закінчу швидше",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -681,9 +701,9 @@
         "severity": "low",
         "lesson": 26,
         "id": "lesson26_phrase_13",
-        "en": "Will she know the truth if she reads that old letter today?",
-        "ru": "Она узнает правду, если прочитает то старое письмо сегодня?",
-        "uk": "Вона дізнається правду, якщо прочитає той старий лист сьогодні?",
+        "en": "If she studies every day, her English will improve",
+        "ru": "Если она будет заниматься каждый день, ее английский улучшится",
+        "uk": "Якщо вона займатиметься щодня, її англійська покращиться",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -691,9 +711,9 @@
         "severity": "low",
         "lesson": 27,
         "id": "lesson27_phrase_2",
-        "en": "She mentioned that she could not find those old documents in her office.",
-        "ru": "Она упомянула, что она не могла найти те старые документы в своём офисе.",
-        "uk": "Вона згадала, що вона не могла знайти ті старі документи у своєму офісі.",
+        "en": "She said that she was busy",
+        "ru": "Она сказала, что занята",
+        "uk": "Вона сказала, що зайнята",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -701,9 +721,9 @@
         "severity": "low",
         "lesson": 27,
         "id": "lesson27_phrase_7",
-        "en": "She replied that she did not remember that secret password then.",
-        "ru": "Она ответила, что она не помнила тот секретный пароль тогда.",
-        "uk": "Вона відповіла, що вона не пам'ятала той секретний пароль тоді.",
+        "en": "He said that he knew the answer",
+        "ru": "Он сказал, что знал ответ",
+        "uk": "Він сказав, що знав відповідь",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -711,9 +731,9 @@
         "severity": "low",
         "lesson": 27,
         "id": "lesson27_phrase_29",
-        "en": "My new neighbor said that he had seen that strange black dog before.",
-        "ru": "Мой новый сосед сказал, что он видел ту странную черную собаку раньше.",
-        "uk": "Мій новий сусід сказав, що він бачив ту дивну чорну собаку раніше.",
+        "en": "He said that he could not find the phone",
+        "ru": "Он сказал, что не мог найти телефон",
+        "uk": "Він сказав, що не міг знайти телефон",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -721,9 +741,9 @@
         "severity": "low",
         "lesson": 27,
         "id": "lesson27_phrase_43",
-        "en": "We promised that we would return that book to that local library the next day.",
-        "ru": "Мы пообещали, что мы вернём ту книгу в ту местную библиотеку на следующий день.",
-        "uk": "Ми пообіцяли, що ми повернемо ту книгу в ту місцеву бібліотеку наступного дня.",
+        "en": "I said that I had lost my phone",
+        "ru": "Я сказал, что потерял свой телефон",
+        "uk": "Я сказав, що загубив свій телефон",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -731,9 +751,9 @@
         "severity": "low",
         "lesson": 28,
         "id": "lesson28_phrase_22",
-        "en": "Does that young woman often photograph herself in that beautiful park?",
-        "ru": "Та молодая женщина часто фотографирует себя в том красивом парке?",
-        "uk": "Та молода жінка часто фотографує себе в тому красивому парку?",
+        "en": "Did he hurt himself?",
+        "ru": "Он ушибся?",
+        "uk": "Він забився?",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -741,9 +761,9 @@
         "severity": "low",
         "lesson": 29,
         "id": "lesson29_phrase_4",
-        "en": "We used to travel across that southern country during summer holidays.",
-        "ru": "Раньше мы путешествовали по той южной стране во время летних каникул.",
-        "uk": "Раніше ми подорожували тією південною країною під час літніх канікул.",
+        "en": "She used to study English",
+        "ru": "Раньше она учила английский",
+        "uk": "Раніше вона вчила англійську",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -751,9 +771,9 @@
         "severity": "low",
         "lesson": 29,
         "id": "lesson29_phrase_28",
-        "en": "Those brave rescuers used to patrol that dangerous coast every winter night.",
-        "ru": "Раньше те храбрые спасатели патрулировали то опасное побережье каждую зимнюю ночь.",
-        "uk": "Раніше ті хоробрі рятувальники патрулювали те небезпечне узбережжя кожної зимової ночі.",
+        "en": "He did not use to call me",
+        "ru": "Раньше он не звонил мне",
+        "uk": "Раніше він не телефонував мені",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -761,9 +781,9 @@
         "severity": "low",
         "lesson": 29,
         "id": "lesson29_phrase_40",
-        "en": "Did you use to lend those rare books to that curious colleague?",
-        "ru": "Бывало, ты одалживал те редкие книги тому любопытному коллеге?",
-        "uk": "Чи раніше позичав ти ті рідкісні книги тому допитливому колезі?",
+        "en": "Did you use to wake up early?",
+        "ru": "Ты раньше просыпался рано?",
+        "uk": "Ти раніше прокидався рано?",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -771,9 +791,9 @@
         "severity": "low",
         "lesson": 30,
         "id": "lesson30_phrase_18",
-        "en": "She found that lost bag whose contents belonged to that elderly woman.",
-        "ru": "Она нашла ту потерянную сумку, содержимое которой принадлежало той пожилой женщине.",
-        "uk": "Вона знайшла ту загублену сумку, вміст якого належав тій літній жінці.",
+        "en": "This is the problem that we solved",
+        "ru": "Это проблема, которую мы решили",
+        "uk": "Це проблема, яку ми вирішили",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -781,9 +801,9 @@
         "severity": "low",
         "lesson": 30,
         "id": "lesson30_phrase_34",
-        "en": "Have you ever read that secret letter which that famous spy wrote in that cold winter?",
-        "ru": "Вы когда-нибудь читали то секретное письмо, которое тот знаменитый шпион написал той холодной зимой?",
-        "uk": "Ви коли-небудь читали той секретний лист, який той знаменитий шпигун написав тієї холодної зими?",
+        "en": "They called a driver whose car was outside",
+        "ru": "Они позвонили водителю, чья машина была снаружи",
+        "uk": "Вони зателефонували водієві, чия машина була ззовні",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -821,9 +841,9 @@
         "severity": "low",
         "lesson": 32,
         "id": "lesson32_phrase_23",
-        "en": "By the time she arrived, those vital negotiations had already been successfully concluded.",
-        "ru": "К тому времени как она приехала, те жизненно важные переговоры уже были успешно завершены.",
-        "uk": "На момент, коли вона приїхала, ті життєво важливі переговори вже були успішно завершені.",
+        "en": "They were told that the problem was solved.",
+        "ru": "Им сказали, что проблема решена.",
+        "uk": "Їм сказали, що проблему вирішили.",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -831,9 +851,9 @@
         "severity": "low",
         "lesson": 32,
         "id": "lesson32_phrase_29",
-        "en": "You should know that those old warehouses are being rebuilt into that modern art gallery.",
-        "ru": "Вам следует знать, что те старые склады перестраиваются в ту современную художественную галерею.",
-        "uk": "Вам слід знати, що ті старі склади перебудовуються у ту сучасну художню галерею.",
+        "en": "If I had known, I would have helped.",
+        "ru": "Если бы я знал, я бы помог.",
+        "uk": "Якби я знав, я б допоміг.",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       },
       {
@@ -841,9 +861,9 @@
         "severity": "low",
         "lesson": 32,
         "id": "lesson32_phrase_35",
-        "en": "They are not used to their strict teacher giving them such difficult home assignments.",
-        "ru": "Они не привыкли к тому, что их строгий учитель дает им такие трудные домашние задания.",
-        "uk": "Вони не звикли до того, що їхній суворий учитель дає їм такі важкі домашні завдання.",
+        "en": "We felt the phone vibrate.",
+        "ru": "Мы почувствовали, как телефон завибрировал.",
+        "uk": "Ми відчули, як телефон завібрував.",
         "msg": "Named in docs/reports/lessons_translation_semantic_audit_1_32.md (semantic/collocation review). Re-verify after edits."
       }
     ]

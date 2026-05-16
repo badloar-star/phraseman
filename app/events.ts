@@ -18,6 +18,7 @@ export type AppEventMap = {
   cloud_profile_hydrated: undefined;
   /** После первого сохранения league_state_v3 из облака — перечитать карточку клуба на главной. */
   league_local_state_updated: undefined;
+  league_crown_updated: { uid: string; expiresAt: number };
   /** После успешного signInWithProvider — обновить секцию "Аккаунт" в Settings, etc. */
   auth_provider_linked: undefined;
   /** Начисление осколков: анимация на главной + глобальная ShardsEarnedModal (если есть reason). */
@@ -43,7 +44,7 @@ export type AppEventMap = {
   streak_revive_offer: { lostStreak: number };
   /** Цепочка восстановлена за осколки — home/UI должны мгновенно обновить отображение. */
   streak_revived: { restoredStreak: number; spent: number };
-  /** Урок впервые завершён (lesson_complete впервые). Используется AfterLesson5Push, mastery UI. */
+  /** Урок впервые завершён (lesson_complete впервые). Используется mastery UI. */
   lesson_finished_once: { lessonId: number };
   /** Юзер запустил перепрохождение урока (mastery). lesson1.tsx должен перезагрузить прогресс. */
   lesson_replay_started: { lessonId: number; spent: number };
@@ -59,6 +60,8 @@ export type AppEventMap = {
    * См. energyOnboardingGate + home.tsx
    */
   energy_onboarding_may_show: undefined;
+  /** Первый пользовательский экран уже смонтирован: можно скрывать нативный splash без пустого промежутка. */
+  app_first_content_ready: undefined;
   /**
    * Помечаем, что смысл «энергии» уже донесён (модалка 0 энергии) — home может показать «bug hunt» по графику.
    */

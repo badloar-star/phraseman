@@ -2,13 +2,11 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Haptics from 'expo-haptics';
 import { useFocusEffect, useLocalSearchParams, useRouter } from 'expo-router';
-import * as Speech from 'expo-speech';
-import { useAudio } from '../hooks/use-audio';
 import React, { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
-  ActivityIndicator,
   Animated,
   BackHandler,
+  Easing,
   KeyboardAvoidingView,
   Modal,
   Platform,
@@ -26,7 +24,7 @@ import { useStudyTarget } from '../components/StudyTargetContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { triLang, type Lang } from '../constants/i18n';
 import { getCardShadow, useTheme } from '../components/ThemeContext';
-import { ThemeMode } from '../constants/theme';
+import { screenTextOnGradient, ThemeMode } from '../constants/theme';
 import { isCorrectAnswer, normalizeLessonAssemblyAnswer } from '../constants/contractions';
 import { checkAchievements } from './achievements';
 import { resetAndUpdateTaskProgress, updateMultipleTaskProgress } from './daily_tasks';
@@ -43,9 +41,13 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import AddToFlashcard from '../components/AddToFlashcard';
 import LessonEnergyLightning from '../components/LessonEnergyLightning';
 import { hapticTap } from '../hooks/use-haptics';
+import { useAudio } from '../hooks/use-audio';
 import { recordMistake } from './active_recall';
 import { logMistake } from './mistake_log';
+import { resolvePhraseMistakeToken } from './mistake_token_resolver';
 import { recordPhraseMistake } from './trainer_store';
+import { checkCoachToastNeededWithAnalytics, coachToastDecisionToRouteParams } from './coach_toast_trigger';
+import type { PhraseMistakeInput } from './phrase_analytics';
 import { logLessonComplete, logLessonStart, logLessonAbandoned, logLessonAnswer, logEnergyLimitHit } from './firebase';
 import { trackLessonStart, trackLessonAbandoned, trackAnswer, trackEnergyHit } from './user_stats';
 import { useEnergy } from '../components/EnergyContext';
@@ -74,9 +76,10 @@ import {
 import { getBonusHintsToday } from './level_gift_system';
 import { lessonPhraseReportDataId } from './error_report';
 import ReportErrorButton from '../components/ReportErrorButton';
-import PhraseContentStars from '../components/PhraseContentStars';
 import MedalToast from '../components/MedalToast';
 import NoEnergyModal from '../components/NoEnergyModal';
+import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { MOTION_DURATION } from '../constants/motion';
 
 const GRAMMAR_HINTS = [
   {
@@ -185,6 +188,62 @@ let tapHintShownThisSession = false;
 
 const TOTAL = 50;
 const SETTINGS_KEY = 'user_settings';
+const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
+const LESSON_ENTER_MS = MOTION_DURATION.normal;
+const PRESS_IN_MS = 70;
+
+type LessonPressableProps = React.ComponentProps<typeof Pressable> & {
+  pressScale?: number;
+  suppressFeedback?: boolean;
+};
+
+function LessonPressable({
+  children,
+  disabled,
+  onPressIn,
+  onPressOut,
+  pressScale = 0.975,
+  suppressFeedback = false,
+  style,
+  ...props
+}: LessonPressableProps) {
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const animateTo = useCallback((toValue: number) => {
+    Animated.timing(scale, {
+      toValue,
+      duration: PRESS_IN_MS,
+      easing: Easing.out(Easing.quad),
+      useNativeDriver: true,
+    }).start();
+  }, [scale]);
+
+  return (
+    <AnimatedPressable
+      {...props}
+      disabled={disabled}
+      android_ripple={disabled || suppressFeedback ? undefined : { color: 'rgba(255,255,255,0.08)' }}
+      onPressIn={(event) => {
+        if (!disabled && !suppressFeedback) animateTo(pressScale);
+        onPressIn?.(event);
+      }}
+      onPressOut={(event) => {
+        if (!disabled && !suppressFeedback) {
+          Animated.spring(scale, {
+            toValue: 1,
+            useNativeDriver: true,
+            tension: 260,
+            friction: 12,
+          }).start();
+        }
+        onPressOut?.(event);
+      }}
+      style={[style as any, { transform: [{ scale }] }]}
+    >
+      {children}
+    </AnimatedPressable>
+  );
+}
 
 function syncLessonIntroShownFlagNow(): void {
   void import('./cloud_sync')
@@ -193,11 +252,12 @@ function syncLessonIntroShownFlagNow(): void {
 }
 
 interface Settings {
-  speechRate: number; voiceOut: boolean;
-  autoAdvance: boolean; hardMode: boolean; autoCheck: boolean; haptics: boolean;
+  autoAdvance: boolean; hardMode: boolean; autoCheck: boolean; haptics: boolean; voiceOut: boolean; speechRate: number;
 }
 const DEFAULT_SETTINGS: Settings = {
-  speechRate: 0.9, voiceOut: true, autoAdvance: false,
+  autoAdvance: false,
+  voiceOut: true,
+  speechRate: 0.9,
   hardMode: false, autoCheck: false, haptics: true,
 };
 
@@ -299,6 +359,7 @@ function LessonCycleEndModal({ visible, hasErrors, lang, studyTarget, t, f, onCl
  */
 interface LessonContentProps {
   showIntroScreens: boolean;
+  introGateReady: boolean;
   setShowIntroScreens: (val: boolean) => void;
   onIntroDone: () => void;
   lessonId: number;
@@ -369,6 +430,7 @@ interface LessonContentProps {
 
 const LessonContent = React.memo(function LessonContent({
   showIntroScreens,
+  introGateReady,
   setShowIntroScreens,
   onIntroDone,
   lessonId,
@@ -434,9 +496,9 @@ const LessonContent = React.memo(function LessonContent({
   from,
   onHeaderBack,
 }: LessonContentProps) {
-  const { speak: speakAudio } = useAudio();
   const effectiveOs = useEffectivePlatformOS();
   const { width: screenW, height: screenH } = useWindowDimensions();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
 
   // [ARROW] Анимированная стрелка над прогресс-баром
@@ -447,8 +509,11 @@ const LessonContent = React.memo(function LessonContent({
   const [grammarHintText, setGrammarHintText] = useState<string | null>(null);
   const grammarHintAnim = useRef(new Animated.Value(0)).current;
   const grammarHintTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const questionEnterAnim = useRef(new Animated.Value(1)).current;
+  const phraseEnterKey = phrase ? `${String(phrase.id ?? '')}:${String(phrase.english ?? phrase.spanish ?? '')}` : '';
   const phraseTokens = phrase ? getPhraseTokens(phrase, studyTarget) : [];
   const selectedAnswer = selectedWords.join(' ');
+  const reportUserAnswer = (settings.hardMode ? typedText : selectedAnswer).trim();
   const gradeTarget = phrase ? phraseCanonicalAnswer(phrase, studyTarget) : '';
   const gradeAlts = phrase ? phraseAnswerAlternatives(phrase, studyTarget) : undefined;
   const currentCorrectWord = phraseTokens[phraseWordIdx] ?? null;
@@ -544,6 +609,39 @@ const LessonContent = React.memo(function LessonContent({
     }).start();
   }, [displayCell, barWidth]);
 
+  useEffect(() => {
+    if (!phraseEnterKey || status !== 'playing') return;
+    questionEnterAnim.setValue(0);
+    Animated.timing(questionEnterAnim, {
+      toValue: 1,
+      duration: LESSON_ENTER_MS,
+      easing: Easing.out(Easing.cubic),
+      useNativeDriver: true,
+    }).start();
+  }, [phraseEnterKey, displayCell, status, questionEnterAnim]);
+
+  const questionEnterStyle = {
+    opacity: questionEnterAnim,
+    transform: [
+      {
+        translateY: questionEnterAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [10, 0],
+        }),
+      },
+      {
+        scale: questionEnterAnim.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0.985, 1],
+        }),
+      },
+    ],
+  };
+
+  if (!introGateReady) {
+    return <View style={{ flex: 1 }} />;
+  }
+
   // Show intro screens on first visit
   if (showIntroScreens) {
     return (
@@ -551,6 +649,7 @@ const LessonContent = React.memo(function LessonContent({
         introScreens={getLessonIntroScreens(lessonId, studyTarget)}
         lessonId={lessonId}
         onComplete={onIntroDone}
+        onBack={onHeaderBack}
       />
     );
   }
@@ -559,7 +658,7 @@ const LessonContent = React.memo(function LessonContent({
   if (!phrase) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: t.textPrimary }}>Loading lesson...</Text>
+        <Text style={{ color: t.textPrimary }} />
       </View>
     );
   }
@@ -579,7 +678,7 @@ const LessonContent = React.memo(function LessonContent({
         }}
       >
         {/* Кнопка назад совмещена с названием урока — как на скриншоте */}
-        <TouchableOpacity
+        <LessonPressable
           testID="lesson1-header-back"
           onPress={onHeaderBack}
           style={{
@@ -605,7 +704,7 @@ const LessonContent = React.memo(function LessonContent({
           >
             {triLang(lang, { uk: 'Урок', ru: 'Урок', es: 'Lección' })} {lessonId}
           </Text>
-        </TouchableOpacity>
+        </LessonPressable>
         {/* Right side: energy icons + combo badge + stats */}
         <View
           style={{
@@ -645,7 +744,7 @@ const LessonContent = React.memo(function LessonContent({
             }}
           >
             {xpToastVisible && (
-              <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: (themeMode === 'ocean' || themeMode === 'sakura') ? '#92400E' : '#F5A623', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
+              <Animated.Text style={{ position: 'absolute', right: 0, bottom: '100%', color: '#F5A623', fontWeight: '800', fontSize: isSmallScreen ? 10 : f.label, opacity: xpToastAnim, transform: [{ translateY: xpToastAnim.interpolate({ inputRange: [0, 1], outputRange: [4, 0] }) }] }}>
                 +{xpToastAmount} XP
               </Animated.Text>
             )}
@@ -664,10 +763,10 @@ const LessonContent = React.memo(function LessonContent({
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        {/* На экране «ответ» не вешаем «тап = дальше» на блок перевода — иначе жест отменяет отложенный TTS (80 мс) и кажется, что «нет звука». */}
+        <Animated.View style={[questionEnterStyle, { width: '100%' }]}>
         <Pressable onPress={status === 'result' ? undefined : handleBgTap} style={{ width: '100%' }}>
-          <Text style={{ color: t.textPrimary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{(() => {
-            if (!phrase) return triLang(lang, { ru: 'Загрузка...', uk: 'Завантаження...', es: 'Cargando...' });
+          <Text style={{ color: sx.primary, fontSize: f.h2 + 6, marginBottom: compact ? 12 : 20, textAlign: 'center' }} numberOfLines={3} adjustsFontSizeToFit>{(() => {
+            if (!phrase) return '';
             if (lang === 'uk') return (phrase.ukrainian || phrase.russian);
             if (spanishStudyActive(studyTarget)) {
               if (lang === 'es') return (phrase.spanish ?? phrase.russian);
@@ -683,20 +782,22 @@ const LessonContent = React.memo(function LessonContent({
               <TextInput
                 testID="lesson1-typed-input"
                 ref={textInputRef}
-                style={{ color: t.textSecond, fontSize: f.h1, padding: 0, minHeight: 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
+                style={{ color: sx.second, fontSize: f.h1, padding: 0, minHeight: 40, opacity: status === 'playing' ? 1 : 0, width: '100%', textAlign: 'center' }}
                 value={typedText}
                 onChangeText={setTypedText}
                 onSubmitEditing={handleTypedSubmit}
                 placeholder={status === 'playing' ? s.lesson.typeHere : ''}
-                placeholderTextColor={t.textGhost}
+                placeholderTextColor={sx.ghost}
                 returnKeyType="done"
                 autoCapitalize="none"
                 autoCorrect={false}
+                cursorColor={t.accent}
+                selectionColor={`${t.accent}55`}
                 blurOnSubmit={false}
                 editable={status === 'playing'}
               />
             ) : (
-              <Text style={{ color: t.textSecond, fontSize: f.h1, width: '100%', textAlign: 'center' }}>
+              <Text style={{ color: sx.second, fontSize: f.h1, width: '100%', textAlign: 'center' }}>
                 {selectedWords.length > 0
                   ? (() => {
                       const cleaned = selectedWords.map(w => stripMarkers(w)).filter(w => w.length > 0);
@@ -715,14 +816,21 @@ const LessonContent = React.memo(function LessonContent({
                       return first + (rest ? ' ' + rest : '');
                     })()
                   : ''
-                }{status !== 'result' && <Animated.Text style={{ color: t.textPrimary, opacity: cursorAnim }}>|</Animated.Text>}
+                }{status !== 'result' && <Animated.Text style={{ color: sx.primary, opacity: cursorAnim }}>|</Animated.Text>}
               </Text>
             )}
           </View>
 
           </Pressable>
+          </Animated.View>
           {status === 'result' && (
-            <Animated.View style={{ opacity: fadeAnim, width: '100%' }}>
+            <Animated.View style={{
+              opacity: fadeAnim,
+              width: '100%',
+              transform: [{
+                translateY: fadeAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }),
+              }],
+            }}>
               {wasWrong && (
                 <View style={{ backgroundColor: t.wrongBg, padding: 15, borderRadius: 10, marginBottom: 10, borderLeftWidth: 3, borderLeftColor: t.wrong }}>
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 4 }}>
@@ -750,7 +858,7 @@ const LessonContent = React.memo(function LessonContent({
                   </View>
                 </View>
               )}
-              <TouchableOpacity activeOpacity={0.75} onPress={() => { hapticTap(); speakAudio(phrasePrimarySurface(phrase, studyTarget), settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) }); }} style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+              <View style={{ backgroundColor: t.correctBg, padding: 15, borderRadius: 10, borderLeftWidth: 3, borderLeftColor: t.correct, flexDirection: 'row', alignItems: 'center', gap: 10 }}>
                 <Text style={{ color: t.correct, fontSize: f.h1, flex: 1, textAlign: 'left' }}>
                   {phraseAnswerDisplayLine(phrase, studyTarget, lang)}
                 </Text>
@@ -760,7 +868,7 @@ const LessonContent = React.memo(function LessonContent({
                   uk={phrase.ukrainian || phrase.russian}
                   source="lesson" sourceId={String(lessonId)}
                 />
-              </TouchableOpacity>
+              </View>
 
               <ReportErrorButton
                 screen={`lesson_${lessonId}`}
@@ -771,17 +879,10 @@ const LessonContent = React.memo(function LessonContent({
                   phrase.ukrainian ? `UK: ${phrase.ukrainian}` : '',
                   spanishSurfacesEnabled(lang, studyTarget) && phrase.spanish ? `ES: ${phrase.spanish}` : '',
                 ].filter(Boolean).join('\n')}
+                userAnswer={reportUserAnswer}
                 style={{ alignSelf: 'flex-end', marginTop: 4 }}
+                textColor={sx.muted}
               />
-
-              <TouchableOpacity
-                style={{ alignSelf: 'center', marginTop: 36 }}
-                onPress={() => speakAudio(phrasePrimarySurface(phrase, studyTarget), settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) })}
-              >
-                <View style={{ width: 86, height: 86, borderRadius: 43, backgroundColor: t.correct, justifyContent: 'center', alignItems: 'center' }}>
-                  <Ionicons name="volume-high" size={42} color={t.correctText} />
-                </View>
-              </TouchableOpacity>
 
             </Animated.View>
           )}
@@ -804,15 +905,6 @@ const LessonContent = React.memo(function LessonContent({
         )}
 
         {status === 'playing' && phrase && (
-          <PhraseContentStars
-            scope="lesson_practice"
-            itemId={`L${lessonId}_ph_${String(phrase.id)}`}
-            labelSnippet={String(phrase.russian ?? '').slice(0, 200)}
-            style={{ marginHorizontal: 20, marginBottom: 10 }}
-          />
-        )}
-
-        {status === 'playing' && phrase && (
           <ReportErrorButton
             screen={`lesson_${lessonId}`}
             dataId={lessonPhraseReportDataId(lessonId, phrase, realPhraseIdx)}
@@ -822,7 +914,9 @@ const LessonContent = React.memo(function LessonContent({
               phrase.ukrainian ? `UK: ${phrase.ukrainian}` : '',
               spanishSurfacesEnabled(lang, studyTarget) && phrase.spanish ? `ES: ${phrase.spanish}` : '',
             ].filter(Boolean).join('\n')}
+            userAnswer={reportUserAnswer}
             style={{ alignSelf: 'flex-end', marginHorizontal: 20, marginBottom: 6 }}
+            textColor={sx.muted}
           />
         )}
 
@@ -842,9 +936,10 @@ const LessonContent = React.memo(function LessonContent({
                     marginBottom: compact ? 7 : 10,
                     opacity: isDimmed ? 0.25 : (shouldShowHint ? hintPulseAnim : hintPulseAnim.interpolate({ inputRange: [0.4, 1], outputRange: [1, 1] }))
                   }}>
-                    <TouchableOpacity
+                    <LessonPressable
                       testID={isCorrectOption ? 'lesson1-word-option-correct' : `lesson1-word-option-${i}`}
                       style={{ width: '100%', backgroundColor: t.bgCard, paddingVertical: compact ? 9 : 14, alignItems: 'center', borderRadius: 12, borderWidth: themeMode === 'neon' ? 1 : 0.5, borderColor: t.border, ...getCardShadow(themeMode, t.glow) }}
+                      suppressFeedback={isDimmed}
                       onPress={() => {
                         if (isDimmed) return;
                         if (showTapHint) setShowTapHint(false);
@@ -859,10 +954,9 @@ const LessonContent = React.memo(function LessonContent({
                         }
                         requestAnimationFrame(() => { void hapticTap(); });
                       }}
-                      activeOpacity={isDimmed ? 1 : 0.7}
                     >
                       <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '500' }} adjustsFontSizeToFit numberOfLines={1}>{displayText}</Text>
-                    </TouchableOpacity>
+                    </LessonPressable>
                   </Animated.View>
                 );
               })}
@@ -907,7 +1001,7 @@ const LessonContent = React.memo(function LessonContent({
                 ))}
               </View>
             </View>
-            <Text style={{ color: t.textMuted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{displayCell + 1}/{TOTAL}</Text>
+            <Text style={{ color: sx.muted, fontSize: f.label, minWidth: 34, textAlign: 'right' }}>{displayCell + 1}/{TOTAL}</Text>
           </View>
         </View>
 
@@ -919,35 +1013,35 @@ const LessonContent = React.memo(function LessonContent({
               const hintsLeft = Math.max(0, 3 + bonusHints - fiftyFiftyUsedToday);
               const canUse = hintsLeft > 0 && status === 'playing' && dimmedWords.size === 0;
               return (
-                <TouchableOpacity
+                <LessonPressable
                   testID="lesson1-fifty-fifty"
                   style={{ flex: 1, alignItems: 'center', opacity: canUse ? 1 : 0.35 }}
+                  disabled={!canUse}
                   onPress={() => {
-                    if (!canUse) return;
                     hapticTap();
                     onFiftyFifty();
                   }}
                 >
                   <View style={{ position: 'relative' }}>
-                    <Text style={{ color: canUse ? t.accent : t.textSecond, fontSize: 20, fontWeight: '700', lineHeight: 26 }}>½</Text>
+                    <Text style={{ color: canUse ? t.accent : sx.second, fontSize: 20, fontWeight: '700', lineHeight: 26 }}>½</Text>
                     <View style={{ position: 'absolute', top: -4, right: -10, backgroundColor: canUse ? t.accent : t.textMuted, borderRadius: 8, minWidth: 16, height: 16, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 3 }}>
                       <Text style={{ color: t.correctText, fontSize: 10, fontWeight: '700', lineHeight: 12 }}>{hintsLeft}</Text>
                     </View>
                   </View>
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>50/50</Text>
-                </TouchableOpacity>
+                  <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>50/50</Text>
+                </LessonPressable>
               );
             })()
           )}
 
           {/* Theory Button */}
-          <TouchableOpacity testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
-            <Ionicons name="book-outline" size={26} color={t.textSecond} />
-            <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
-          </TouchableOpacity>
+          <LessonPressable testID="lesson1-theory" style={{ flex: 1, alignItems: 'center' }} onPress={() => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); }}>
+            <Ionicons name="book-outline" size={26} color={sx.second} />
+            <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.theory}</Text>
+          </LessonPressable>
 
           {/* Undo Button - всегда доступна когда есть выбранные слова или текст */}
-          <TouchableOpacity
+          <LessonPressable
             testID={status === 'result' ? 'lesson1-next' : 'lesson1-undo'}
             style={{ flex: 1, alignItems: 'center', opacity: (status === 'playing' && (settings.hardMode ? typedText.trim().length === 0 : selectedWords.length === 0)) ? 0.3 : 1 }}
             onPress={() => {
@@ -964,20 +1058,20 @@ const LessonContent = React.memo(function LessonContent({
           >
             {status === 'result' ? (
               <>
-                <Ionicons name="play-forward" size={26} color={t.textSecond} />
-                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.next}</Text>
+                <Ionicons name="play-forward" size={26} color={sx.second} />
+                <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.next}</Text>
               </>
             ) : (
               <>
-                <Ionicons name="arrow-undo" size={26} color={t.textSecond} />
-                <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
+                <Ionicons name="arrow-undo" size={26} color={sx.second} />
+                <Text style={{ color: sx.muted, fontSize: f.label, marginTop: 4 }}>{s.lesson.undo}</Text>
               </>
             )}
-          </TouchableOpacity>
+          </LessonPressable>
 
           {/* Check Button - видна только когда все слова введены и autoCheck выключен */}
           {canManuallyCheckAnswer && (
-            <TouchableOpacity
+            <LessonPressable
               testID="lesson1-check"
               style={{ flex: 1, alignItems: 'center' }}
               onPress={() => {
@@ -988,7 +1082,7 @@ const LessonContent = React.memo(function LessonContent({
             >
               <Ionicons name="checkmark-circle" size={26} color={t.correct} />
               <Text style={{ color: t.correct, fontSize: f.label, marginTop: 4 }}>{s.lesson.check}</Text>
-            </TouchableOpacity>
+            </LessonPressable>
           )}
         </View>
 
@@ -1019,9 +1113,8 @@ const LessonContent = React.memo(function LessonContent({
 });
 
 export default function LessonScreen() {
-  const { speak: speakAudio, stop: stopAudio } = useAudio();
-  useEffect(() => () => { stopAudio(); }, [stopAudio]);
   const router = useRouter();
+  const { speak: speakAudio, stop: stopAudio } = useAudio();
   const { height: windowH, width: windowW } = useWindowDimensions();
   const compact = windowH < 780;
   const isSmallScreen = windowW < 400; // compact header/spacing on narrow widths (lesson top bar used to clip past ~380)
@@ -1031,9 +1124,17 @@ export default function LessonScreen() {
   const studyTargetRef = useRef(studyTarget);
   studyTargetRef.current = studyTarget;
   // iOS / expo-router: query params may arrive as string[] — strict `from === 'lesson_menu'` must not break.
-  const { id: idParam, from: fromParam } = useLocalSearchParams<{ id?: string | string[]; from?: string | string[] }>();
+  const { id: idParam, from: fromParam, replayIntro: replayIntroParam, replayIntroAt: replayIntroAtParam } = useLocalSearchParams<{
+    id?: string | string[];
+    from?: string | string[];
+    replayIntro?: string | string[];
+    replayIntroAt?: string | string[];
+  }>();
   const id = (Array.isArray(idParam) ? idParam[0] : idParam) || '1';
   const from = Array.isArray(fromParam) ? fromParam[0] : fromParam;
+  const replayIntro = (Array.isArray(replayIntroParam) ? replayIntroParam[0] : replayIntroParam) === '1';
+  const replayIntroAt = Array.isArray(replayIntroAtParam) ? replayIntroAtParam[0] : replayIntroAtParam;
+  const replayIntroToken = replayIntro ? (replayIntroAt || 'manual') : '';
   const lessonId = parseInt(id, 10) || 1;
   const LESSON_KEY = `lesson${lessonId}_progress`;
   const CELL_KEY   = `lesson${lessonId}_cellIndex`;
@@ -1048,6 +1149,14 @@ export default function LessonScreen() {
   const effectiveTotal = Math.min(LESSON_DATA.length, TOTAL);
   const { startCell: initialStartCell, initialOrder: initialOrderFromPrime } = getInitialOrderAndCell(lessonId, LESSON_DATA.length, effectiveTotal);
   const { energy: currentEnergy, bonusEnergy, maxEnergy: currentMaxEnergy, isUnlimited: testerEnergyDisabled, spendOne, energyReady } = useEnergy();
+  useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      const blocked = await shouldBlockLessonAccess(lessonId);
+      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+    })();
+    return () => { cancelled = true; };
+  }, [lessonId, router]);
   // Refs to avoid stale closures in useCallback (checkAnswer has [progress,...] deps, not energy)
   const currentEnergyRef = useRef(currentEnergy);
   const bonusEnergyRef = useRef(bonusEnergy);
@@ -1065,6 +1174,7 @@ export default function LessonScreen() {
   const [shuffled,     setShuffled]     = useState<string[]>([]);
   const [progress,     setProgress]     = useState<string[]>(() => getInitialProgressArray(effectiveTotal, lessonId));
   const [settings,     setSettings]     = useState<Settings>(DEFAULT_SETTINGS);
+  const spokenResultKeyRef = useRef('');
   const [wasWrong,     setWasWrong]     = useState(false);
   const [typedText,    setTypedText]    = useState('');
   const [showTapHint,  setShowTapHint]  = useState(false);
@@ -1091,6 +1201,8 @@ export default function LessonScreen() {
   const [testerNoLimits, setTesterNoLimits] = useState(false); // Тестерская функция - без ограничений
   // ==================== NEW: Intro & Encouragement Screens ====================
   const [showIntroScreens, setShowIntroScreens] = useState(false);
+  const [introGateReady, setIntroGateReady] = useState(false);
+  const consumedReplayIntroTokenRef = useRef<string | null>(null);
   const [showToBeHint, setShowToBeHint] = useState(false);
   // No energy modal after 3 failed taps
   const [showNoEnergyModal, setShowNoEnergyModal] = useState(false);
@@ -1116,6 +1228,7 @@ export default function LessonScreen() {
   const autoTimer   = useRef<ReturnType<typeof setTimeout> | null>(null);
   const textInputRef = useRef<any>(null);
   const sessionAnswerCount = useRef(0);   // кол-во ответов в текущей сессии
+  const lessonWrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
   const isReplayRef        = useRef(false); // true если урок уже был пройден полностью
   const isCompletingRef    = useRef(false); // true пока идёт задержка перед переходом на lesson_complete
   const differentLessonTrackedRef = useRef(false); // засчитали different_lessons для этого урока сегодня
@@ -1197,6 +1310,50 @@ export default function LessonScreen() {
     };
   }, [lang, lessonId]);
 
+  useEffect(() => {
+    let cancelled = false;
+    const introKey = `lesson${lessonId}_intro_shown`;
+    const hasIntroScreens = getLessonIntroScreens(lessonId, studyTarget).length > 0;
+    if (!hasIntroScreens) {
+      setShowIntroScreens(false);
+      setIntroGateReady(true);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    const shouldReplayIntro = replayIntro && replayIntroToken !== consumedReplayIntroTokenRef.current;
+    if (shouldReplayIntro) {
+      setShowIntroScreens(true);
+      setIntroGateReady(true);
+      return () => {
+        cancelled = true;
+      };
+    }
+
+    setIntroGateReady(false);
+    AsyncStorage.getItem(introKey)
+      .then((introShownRaw) => {
+        if (cancelled) return;
+        const shouldShowIntro = !introShownRaw;
+        if (shouldShowIntro) {
+          void AsyncStorage.setItem(introKey, 'true').catch(() => {});
+          syncLessonIntroShownFlagNow();
+        }
+        setShowIntroScreens(shouldShowIntro);
+        setIntroGateReady(true);
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setShowIntroScreens(true);
+        setIntroGateReady(true);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [lessonId, replayIntro, replayIntroToken, studyTarget]);
+
   // Показываем подсказку один раз за сессию
   useEffect(() => {
     if (!settings.autoCheck && !settings.hardMode && !tapHintShownThisSession) {
@@ -1215,6 +1372,17 @@ export default function LessonScreen() {
       });
     }, [])
   );
+
+  useEffect(() => () => { stopAudio(); }, [stopAudio]);
+
+  useEffect(() => {
+    if (status !== 'result' || !phrase || !settings.voiceOut) return;
+    const line = phraseAnswerDisplayLine(phrase, studyTarget, lang);
+    const key = `${String(phrase.id ?? cellIndex)}:${line}`;
+    if (!line || spokenResultKeyRef.current === key) return;
+    spokenResultKeyRef.current = key;
+    speakAudio(line, settings.speechRate, { language: ttsLocaleForStudyTarget(studyTarget) });
+  }, [cellIndex, lang, phrase, settings.speechRate, settings.voiceOut, speakAudio, status, studyTarget]);
 
   // Pulsing animation for to-be hint (only on first phrase of lesson 1)
   useEffect(() => {
@@ -1463,7 +1631,7 @@ export default function LessonScreen() {
       // Режим повтора: если все ячейки уже correct — крутим по кругу без автозавершения
       sessionAnswerCount.current = 0;
       isCompletingRef.current = false;
-      isReplayRef.current = restoredProgress.every(x => x === 'correct');
+      isReplayRef.current = restoredProgress.every(x => x === 'correct' || x === 'replay_correct');
 
       // Восстанавливаем позицию строго из CELL_KEY — каждый индикатор = конкретная фраза
       const startCell = ci !== null ? (parseInt(ci) || 0) : 0;
@@ -1643,28 +1811,43 @@ export default function LessonScreen() {
       // Если фраза новая — добавляется с nextDue = завтра.
       {
         const stRm = studyTargetRef.current;
-        recordMistake(
-          phraseCanonicalAnswer(phrase, stRm),
-          phrase.russian,
-          lessonId,
-          phrase.ukrainian,
-          'lesson',
-          spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
-        );
         // Аналитический лог ошибки (mistake_log.ts)
-        logMistake(phraseCanonicalAnswer(phrase, stRm), lessonId, 'lesson', 'wrong_pick');
+        const analyticsPhraseKey = phraseCanonicalAnswer(phrase, stRm);
         // Тренер: записываем фразу с errorWord (слово на котором ошибся)
         {
           const canonKey = phraseCanonicalAnswer(phrase, stRm);
-          const correctTokens = canonKey.toLowerCase().split(/\s+/);
-          const userTokens = selectedWords.map(w => w.toLowerCase());
-          const errWord = correctTokens.find(t => !userTokens.includes(t)) ?? correctTokens[0];
+          const correctTokens = canonKey.split(/\s+/).filter(Boolean);
+          const resolvedToken = resolvePhraseMistakeToken(canonKey, selectedWords.join(' '));
+          const tokenRows = phraseWordRowsForStudyTarget(phrase, stRm);
+          const tokenIndex = resolvedToken?.tokenIndex ?? 0;
+          const tokenRow = tokenIndex >= 0 ? tokenRows[tokenIndex] : undefined;
+          const errWord = resolvedToken?.tokenText ?? tokenRow?.correct ?? tokenRow?.text ?? correctTokens[0] ?? canonKey;
+          const mistakeMeta = {
+            phraseId: phrase.id,
+            tokenText: errWord,
+            tokenIndex: tokenIndex >= 0 ? tokenIndex : undefined,
+            expected: tokenRow?.correct ?? tokenRow?.text ?? errWord,
+            picked: resolvedToken?.picked,
+            rawCategory: tokenRow?.category,
+          };
+          recordMistake(
+            canonKey,
+            phrase.russian,
+            lessonId,
+            phrase.ukrainian,
+            'lesson',
+            spanishSurfacesEnabled(lang, stRm) ? phrase.spanish : undefined,
+            mistakeMeta,
+          );
+          logMistake(analyticsPhraseKey || canonKey, lessonId, 'lesson', 'wrong_pick', mistakeMeta);
+          lessonWrongMistakesRef.current.push({ phrase: analyticsPhraseKey || canonKey, ...mistakeMeta });
           void recordPhraseMistake(
             canonKey,
             phrase.russian,
             phrase.ukrainian ?? phrase.russian,
             lessonId,
             errWord,
+            tokenRow?.category,
           );
         }
       }
@@ -1762,11 +1945,6 @@ export default function LessonScreen() {
       }
 
     }
-
-    if (settings.voiceOut) {
-      const st = studyTargetRef.current;
-      speakAudio(phrasePrimarySurface(phrase, st), settings.speechRate, { language: ttsLocaleForStudyTarget(st) });
-    }
     fadeAnim.setValue(0);
     Animated.timing(fadeAnim, { toValue: 1, duration: 350, useNativeDriver: true }).start();
 
@@ -1832,9 +2010,21 @@ export default function LessonScreen() {
         }, 'lesson1');
         updateMultipleTaskProgress([{ type: 'lesson_complete', increment: 1 }]).catch(() => {});
 
+        let coachRouteParams = {};
+        try {
+          const decision = await checkCoachToastNeededWithAnalytics(lessonWrongMistakesRef.current);
+          coachRouteParams = coachToastDecisionToRouteParams(decision);
+        } catch {
+          coachRouteParams = {};
+        }
+
         const navigate = () => {
           resetShuffleForNextPass();
-          router.replace({ pathname: '/lesson_complete', params: { id: lessonId, unlocked: didUnlock ? '1' : '0' } });
+          lessonWrongMistakesRef.current = [];
+          router.replace({
+            pathname: '/lesson_complete',
+            params: { id: String(lessonId), unlocked: didUnlock ? '1' : '0', ...coachRouteParams },
+          });
         };
 
         const hasErrors = np.some(x => x !== 'correct' && x !== 'replay_correct');
@@ -1845,6 +2035,7 @@ export default function LessonScreen() {
           void trackFeatureError('lesson', 'complete', e, { lessonId }, 'lesson1');
           // Fallback: navigate to lesson_complete even if tracking fails
           resetShuffleForNextPass();
+          lessonWrongMistakesRef.current = [];
           router.replace({ pathname: '/lesson_complete', params: { id: String(lessonId), unlocked: '0' } });
         }
       }, 1500);
@@ -1858,7 +2049,6 @@ export default function LessonScreen() {
 
   const goNext = useCallback(async (_currentProgress?: string[]) => {
     if (autoTimer.current) clearTimeout(autoTimer.current);
-    stopAudio(); // отменяем любой in-flight createAsync или TTS предыдущей фразы
 
     // [IMMEDIATE ERROR REPLAY] Определяем ДО того как двигать cellIndex
     questionsSinceErrorRef.current += 1;
@@ -1873,6 +2063,7 @@ export default function LessonScreen() {
     const nextCell = replayCell !== null ? cellIndex : (cellIndex + 1) % effectiveTotal;
     setCellIndex(nextCell);
 
+    stopAudio();
     setStatus('playing');
     setSelectedWords([]);
     setTypedText('');
@@ -1908,7 +2099,7 @@ export default function LessonScreen() {
     // Сохраняем позицию
     try { await AsyncStorage.setItem(CELL_KEY, String(nextCell)); } catch {}
     touchLessonScreenPrimed(lessonId, { cell: nextCell, order: phraseOrderRef.current, progress });
-  }, [cellIndex, progress, fadeAnim, LESSON_DATA, stopAudio, persistErrorReplayToStorage]);
+  }, [cellIndex, progress, fadeAnim, LESSON_DATA, persistErrorReplayToStorage]);
 
   // CHANGE v5: rewritten for contraction branching using phraseWordIdx
   // Energy is only spent on mistakes — no gate here, users can always attempt answers
@@ -1960,7 +2151,7 @@ export default function LessonScreen() {
     const correctWord = phraseWords[phraseWordIdx];
     const contrEntry = lookupContraction(correctWord ?? '');
     if (contrEntry && word.toLowerCase() === contrEntry[0].toLowerCase()) {
-      // User picked expanded[0] (e.g. "do" when expected "don't") — enter expansion mode
+      // User picked expanded[0] (e.g. "do" when expected "don\'t") — enter expansion mode
       setSelectedWords(next);
       setContrExpanded(contrEntry.slice(1)); // ["not"]
       // phraseWordIdx stays — still on the same original contraction word
@@ -1969,7 +2160,7 @@ export default function LessonScreen() {
     }
 
     // Check if user picked a contraction that covers current word + next word
-    // e.g. expected "do" + "not" but user picked "don't" → skip "not"
+    // e.g. expected "do" + "not" but user picked "don\'t" → skip "not"
     const currentExpected = phraseWords[phraseWordIdx] ?? '';
     const nextExpected = phraseWords[phraseWordIdx + 1] ?? '';
     const matchingContraction = getContractionFor(currentExpected, nextExpected);
@@ -2123,7 +2314,6 @@ export default function LessonScreen() {
   const handleBgTap = useCallback(() => {
     if (showNoEnergyModal) return;
     if (settings.hardMode) return; // hard mode — нет тапа по фону, только клавиатура
-    // На экране ответа переход только кнопкой «Далі» в футере — иначе тап отменяет отложенный TTS (см. Pressable над переводом).
     if (status === 'result') return;
     // Скрываем хинт при первом тапе
     if (showTapHint) setShowTapHint(false);
@@ -2183,15 +2373,12 @@ export default function LessonScreen() {
     <TouchableWithoutFeedback onPress={settings.hardMode ? undefined : handleBgTap}>
       <ScreenGradient>
         <SafeAreaView style={{ flex: 1 }}>
-          {!lessonHydrated ? (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-              <ActivityIndicator size="large" color={t.accent} />
-            </View>
-          ) : (
           <LessonContent
             showIntroScreens={showIntroScreens}
+            introGateReady={introGateReady}
             setShowIntroScreens={setShowIntroScreens}
             onIntroDone={async () => {
+              if (replayIntro) consumedReplayIntroTokenRef.current = replayIntroToken || 'manual';
               await AsyncStorage.setItem(`lesson${lessonId}_intro_shown`, 'true').catch(() => {});
               syncLessonIntroShownFlagNow();
               setShowIntroScreens(false);
@@ -2259,7 +2446,6 @@ export default function LessonScreen() {
             from={from}
             onHeaderBack={handleLessonHeaderBack}
           />
-          )}
         </SafeAreaView>
 
         {/* ── Medal tier toast (premium) ── */}
@@ -2269,7 +2455,7 @@ export default function LessonScreen() {
             promoted={medalToast.promoted}
             anim={medalToastAnim}
             bg={t.bgCard}
-            isLightTheme={themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight'}
+            isLightTheme={themeMode === 'minimalLight'}
             lang={lang}
             spanishUiActive={spanishLessonUiStringsActive(lang, studyTarget)}
           />

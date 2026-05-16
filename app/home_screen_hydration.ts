@@ -23,6 +23,16 @@ export type HomeScreenHydration = {
   lastLessonId: number | null;
   lastLessonProgress: number;
   lastLessonScore: string;
+  homeLeagueRaceVisible?: boolean;
+  homeLeagueCrownExpiresAt?: number;
+  homeLeagueChest?: {
+    leagueName: string;
+    progress: number;
+    goal: number;
+    myContribution: number;
+    leaderName: string;
+    leaderPoints: number;
+  } | null;
 };
 
 let snapshot: HomeScreenHydration | null = null;

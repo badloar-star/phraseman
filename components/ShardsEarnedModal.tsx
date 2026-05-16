@@ -2,7 +2,6 @@
 import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useRef } from 'react';
 import { Animated, Image, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
-import { playShardsRewardModalSound } from '../app/achievement_modal_sound';
 import { oskolokImageForPackShards } from '../app/oskolok';
 import { triLang, type Lang } from '../constants/i18n';
 import {
@@ -23,6 +22,7 @@ interface Props {
 
 /** Автозакрытие только спустя это время; до этого — только тап по затемнению. */
 const AUTO_CLOSE_MS = 40_000;
+const USE_ELITE_SHARDS_EARNED_MODAL = true;
 
 function headline(lang: Lang): string {
   return triLang(lang, {
@@ -51,20 +51,25 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
   const gemBounce = useRef(new Animated.Value(0)).current;
   const glowAnim = useRef(new Animated.Value(0)).current;
   const sheen = useRef(new Animated.Value(0)).current;
+  const entranceY = useRef(new Animated.Value(18)).current;
+  const topLineGlow = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     if (!visible) return;
     hapticSuccess();
-    void playShardsRewardModalSound();
-    scaleAnim.setValue(0.5);
+    scaleAnim.setValue(USE_ELITE_SHARDS_EARNED_MODAL ? 0.92 : 0.5);
     opacityAnim.setValue(0);
     gemBounce.setValue(0);
     glowAnim.setValue(0);
     sheen.setValue(0);
+    entranceY.setValue(18);
+    topLineGlow.setValue(0);
 
     Animated.parallel([
-      Animated.spring(scaleAnim, { toValue: 1, friction: 6, tension: 100, useNativeDriver: true }),
+      Animated.spring(scaleAnim, { toValue: 1, friction: USE_ELITE_SHARDS_EARNED_MODAL ? 9 : 6, tension: USE_ELITE_SHARDS_EARNED_MODAL ? 70 : 100, useNativeDriver: true }),
+      Animated.spring(entranceY, { toValue: 0, friction: 9, tension: 70, useNativeDriver: true }),
       Animated.timing(opacityAnim, { toValue: 1, duration: 240, useNativeDriver: true }),
+      Animated.timing(topLineGlow, { toValue: 1, duration: 900, useNativeDriver: true }),
     ]).start(() => {
       Animated.loop(
         Animated.sequence([
@@ -93,14 +98,13 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
       onCloseRef.current();
     }, AUTO_CLOSE_MS);
     return () => clearTimeout(timer);
-  }, [visible, scaleAnim, opacityAnim, gemBounce, glowAnim, sheen]);
+  }, [visible, scaleAnim, opacityAnim, gemBounce, glowAnim, sheen, entranceY, topLineGlow]);
 
   if (!visible) return null;
 
-  const dim =
-    themeMode === 'ocean' || themeMode === 'sakura' || themeMode === 'minimalLight'
-      ? 'rgba(8,12,20,0.55)'
-      : 'rgba(0,0,0,0.68)';
+  const dim = themeMode === 'minimalLight'
+    ? (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(8,12,20,0.68)' : 'rgba(8,12,20,0.55)')
+    : (USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(3,5,10,0.82)' : 'rgba(0,0,0,0.68)');
 
   const shardLabel = isES
     ? amount === 1
@@ -124,25 +128,37 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
           <Animated.View
             style={{
               opacity: opacityAnim,
-              transform: [{ scale: scaleAnim }],
-              maxWidth: 340,
+              transform: [{ scale: scaleAnim }, { translateY: USE_ELITE_SHARDS_EARNED_MODAL ? entranceY : 0 }],
+              maxWidth: USE_ELITE_SHARDS_EARNED_MODAL ? 336 : 340,
               width: '90%',
             }}
             pointerEvents="auto"
           >
             <LinearGradient
-              colors={[...SHARD_MODAL_FRAME_COLORS]}
+              colors={USE_ELITE_SHARDS_EARNED_MODAL ? ['rgba(255,255,255,0.10)', t.gold, 'rgba(255,255,255,0.08)'] : [...SHARD_MODAL_FRAME_COLORS]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
-              style={styles.frameOuter}
+              style={[styles.frameOuter, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteFrameOuter]}
             >
-              <View style={[styles.innerCard, { backgroundColor: t.bgCard, borderColor: 'rgba(255,255,255,0.08)' }]}>
+              <View style={[styles.innerCard, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteInnerCard, { backgroundColor: USE_ELITE_SHARDS_EARNED_MODAL ? t.bgSurface : t.bgCard, borderColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.10)' : 'rgba(255,255,255,0.08)' }]}>
                 <LinearGradient
                   colors={[...SHARD_MODAL_ACCENT_GLOW]}
                   start={{ x: 0.5, y: 0 }}
                   end={{ x: 0.5, y: 1 }}
-                  style={StyleSheet.absoluteFill}
+                  style={[StyleSheet.absoluteFill, { opacity: USE_ELITE_SHARDS_EARNED_MODAL ? 0.62 : 1 }]}
                 />
+                {USE_ELITE_SHARDS_EARNED_MODAL && (
+                  <Animated.View
+                    pointerEvents="none"
+                    style={[
+                      styles.eliteTopLine,
+                      {
+                        backgroundColor: t.gold,
+                        opacity: topLineGlow.interpolate({ inputRange: [0, 1], outputRange: [0.16, 0.46] }),
+                      },
+                    ]}
+                  />
+                )}
                 <Animated.View
                   style={[
                     styles.sheenRibbon,
@@ -159,29 +175,29 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                 />
 
                 <Text
-                  style={[styles.eyebrow, { color: t.gold }]}
+                  style={[styles.eyebrow, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteEyebrow, { color: t.gold }]}
                   numberOfLines={1}
                 >
                   ✦ {headline(lang)} ✦
                 </Text>
 
-                <Animated.View style={{ transform: [{ translateY: gemBounce }], marginTop: 10, marginBottom: 8 }}>
+                <Animated.View style={{ transform: [{ translateY: gemBounce }], marginTop: USE_ELITE_SHARDS_EARNED_MODAL ? 12 : 10, marginBottom: 8 }}>
                   <Animated.View
                     style={{
                       opacity: glowAnim.interpolate({ inputRange: [0, 1], outputRange: [0.75, 1] }),
                     }}
                   >
-                    <View style={[styles.gemHalo, { borderColor: t.gold + '55', backgroundColor: t.goldBg }]}>
+                    <View style={[styles.gemHalo, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteGemHalo, { borderColor: t.gold + (USE_ELITE_SHARDS_EARNED_MODAL ? '44' : '55'), backgroundColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.045)' : t.goldBg }]}>
                       <Image
                         source={oskolokImageForPackShards(amount)}
-                        style={{ width: 84, height: 84 }}
+                        style={{ width: USE_ELITE_SHARDS_EARNED_MODAL ? 88 : 84, height: USE_ELITE_SHARDS_EARNED_MODAL ? 88 : 84 }}
                         resizeMode="contain"
                       />
                     </View>
                   </Animated.View>
                 </Animated.View>
 
-                <Text style={[styles.amount, { color: t.gold }]}>+{amount}</Text>
+                <Text style={[styles.amount, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteAmount, { color: t.gold }]}>+{amount}</Text>
                 <Text
                   style={[styles.shardKind, { color: t.textSecond }]}
                   numberOfLines={2}
@@ -189,7 +205,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                   {shardLabel}
                 </Text>
 
-                <View style={[styles.reasonBox, { backgroundColor: t.bgSurface, borderColor: t.gold + '33' }]}>
+                <View style={[styles.reasonBox, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteReasonBox, { backgroundColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.045)' : t.bgSurface, borderColor: USE_ELITE_SHARDS_EARNED_MODAL ? 'rgba(255,255,255,0.12)' : t.gold + '33' }]}>
                   <Text style={[styles.reasonLabel, { color: t.gold }]}>{triLang(lang, {
                     ru: 'За что',
                     uk: 'За що',
@@ -200,7 +216,7 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                   </Text>
                 </View>
 
-                <Text style={[styles.tapHint, { color: t.textMuted, fontSize: f.caption }]}>
+                <Text style={[styles.tapHint, USE_ELITE_SHARDS_EARNED_MODAL && styles.eliteTapHint, { color: t.textMuted, fontSize: f.caption }]}>
                   {tapHint(lang)}
                 </Text>
               </View>
@@ -231,6 +247,13 @@ const styles = StyleSheet.create({
     shadowRadius: 28,
     elevation: 24,
   },
+  eliteFrameOuter: {
+    borderRadius: 30,
+    padding: 1,
+    shadowColor: '#D6B85C',
+    shadowOpacity: 0.22,
+    shadowRadius: 32,
+  },
   innerCard: {
     borderRadius: 25.5,
     paddingTop: 26,
@@ -239,6 +262,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     overflow: 'hidden',
+  },
+  eliteInnerCard: {
+    borderRadius: 29,
+    paddingTop: 28,
+    paddingBottom: 26,
+  },
+  eliteTopLine: {
+    position: 'absolute',
+    top: 0,
+    left: 30,
+    right: 30,
+    height: 1,
   },
   sheenRibbon: {
     position: 'absolute',
@@ -255,10 +290,17 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     textAlign: 'center',
   },
+  eliteEyebrow: {
+    letterSpacing: 1.7,
+  },
   gemHalo: {
     padding: 14,
     borderRadius: 52,
     borderWidth: 1.5,
+  },
+  eliteGemHalo: {
+    padding: 15,
+    borderWidth: 1,
   },
   amount: {
     fontSize: 46,
@@ -268,6 +310,10 @@ const styles = StyleSheet.create({
     textShadowColor: 'rgba(0,0,0,0.35)',
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 6,
+  },
+  eliteAmount: {
+    fontSize: 48,
+    letterSpacing: 0,
   },
   shardKind: {
     fontSize: 13,
@@ -286,6 +332,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginBottom: 6,
   },
+  eliteReasonBox: {
+    borderRadius: 18,
+    paddingVertical: 15,
+  },
   reasonLabel: {
     fontSize: 10,
     fontWeight: '800',
@@ -303,5 +353,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: '600',
     opacity: 0.92,
+  },
+  eliteTapHint: {
+    opacity: 0.78,
   },
 });

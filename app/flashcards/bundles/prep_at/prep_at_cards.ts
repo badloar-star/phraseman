@@ -124,7 +124,7 @@ export const PREP_AT_CARDS: VictoriaRow[] = [
   {
     id: 'official_prep_at_en_13',
     en: 'at the end',
-    ru: 'в конце / в итоге',
+    ru: 'в конце',
     uk: 'наприкінці',
     es: 'al final',
     explanationRu: 'At the end = в конце, финальная точка (фильма, дороги, урока). In the end = в итоге, после ряда событий. Сравни: At the end of the film everyone cried (финальная точка) — In the end we stayed home (итог).',

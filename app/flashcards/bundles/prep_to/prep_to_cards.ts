@@ -86,7 +86,7 @@ export const PREP_TO_CARDS: VictoriaRow[] = [
     en: 'to my friend',
     ru: 'к другу / к подруге',
     uk: 'до друга / до подруги',
-    es: 'a casa de mi amigo/a',
+    es: 'a mi amigo/a',
     explanationRu: 'TO + человек = движение к нему или передача ему. I went to my friend\'s place (движение к другу). Give it to my friend (передача адресату). Сравни: TO = к кому / кому. WITH = вместе с кем.',
     explanationUk: 'TO + людина = рух до неї або передача їй. I went to my friend\'s place (рух до друга). Give it to my friend (передача адресату). Порівняй: TO = до кого / кому. WITH = разом з ким.',
     explanationEs: 'TO + persona = movimiento hacia ella o transmisión a ella. I went to my friend\'s place (movimiento hacia el amigo). Give it to my friend (transmisión al destinatario). Compara: TO = hacia quién / a quién. WITH = junto con quién.',

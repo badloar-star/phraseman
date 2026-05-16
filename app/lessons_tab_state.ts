@@ -4,7 +4,6 @@ import { effectiveLessonStarScore } from './lesson_star_score';
 /** Last loaded lessons list state (session memory — first paint without «zero flash»). */
 export type LessonsTabSnapshot = {
   noLimits: boolean;
-  placementLevel: string;
   persistedUnlocked: number[];
   scores: number[];
   progCounts: number[];
@@ -25,7 +24,7 @@ const EXAM_LEVELS = ['A1', 'A2', 'B1', 'B2'] as const;
  * Batched read (one multiGet) + in-memory cache for instant tab mount / prefetch on app start.
  */
 export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapshot> {
-  const metaKeys = ['tester_no_limits', 'placement_level', 'unlocked_lessons'] as const;
+  const metaKeys = ['tester_no_limits', 'unlocked_lessons'] as const;
   const lessonKeys: string[] = [];
   for (let i = 1; i <= 32; i++) {
     lessonKeys.push(`lesson${i}_best_score`, `lesson${i}_progress`);
@@ -44,7 +43,6 @@ export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapsh
   const map: Record<string, string | null> = Object.fromEntries(entries);
 
   const noLimits = map.tester_no_limits === 'true';
-  const placementLevel = map.placement_level?.trim() || 'A1';
   let persistedUnlocked: number[] = [];
   if (map.unlocked_lessons) {
     try {
@@ -85,7 +83,6 @@ export async function loadLessonsTabStateFromStorage(): Promise<LessonsTabSnapsh
 
   const snap: LessonsTabSnapshot = {
     noLimits,
-    placementLevel,
     persistedUnlocked,
     scores,
     progCounts,

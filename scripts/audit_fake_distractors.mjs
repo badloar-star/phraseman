@@ -45,7 +45,9 @@ const EXCEPTIONS = new Set([
   'ukraine',
   // языки (заглавные в английском)
   'english', 'spanish', 'french', 'german', 'italian', 'russian', 'polish',
-  'greek', 'turkish', 'chinese', 'japanese', 'arabic',
+  'greek', 'turkish', 'chinese', 'japanese', 'arabic', 'swedish',
+  // other proper nouns
+  'saturn',
   // имена
   'mary', 'john', 'tom', 'kate', 'anna', 'bob', 'mike',
   'lucy', 'peter', 'sara', 'mark', 'jane', 'david', 'emma', 'alex', 'lisa',
@@ -60,9 +62,15 @@ function loadTsModule(absPath) {
   const module = { exports: {} };
   const requireShim = (rel) => {
     if (rel === './lesson_data_types' || rel.endsWith('lesson_data_types')) return {};
-    if (rel.startsWith('./')) {
-      const next = path.resolve(path.dirname(absPath), rel + '.ts');
-      if (fs.existsSync(next)) return loadTsModule(next);
+    if (rel === 'react-native') return { Platform: { OS: 'android', select: (x) => x?.android ?? x?.default } };
+    if (rel.startsWith('.')) {
+      for (const ext of ['.ts', '.tsx', '.js', '.json']) {
+        const next = path.resolve(path.dirname(absPath), rel + ext);
+        if (fs.existsSync(next)) {
+          if (ext === '.json') return JSON.parse(fs.readFileSync(next, 'utf8'));
+          return loadTsModule(next);
+        }
+      }
     }
     return {};
   };
@@ -76,7 +84,12 @@ const LESSON_DATA = ALL.LESSON_DATA;
 
 // Нормализация: lowercase + срезаем финальную пунктуацию (мы храним в text слова с точкой типа "code.")
 function normalize(w) {
-  return String(w || '').toLowerCase().replace(/[.?!,;:]+$/, '').trim();
+  return String(w || '')
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[.?!,;:]+$/, '')
+    .trim();
 }
 
 function isReal(word) {
@@ -84,6 +97,7 @@ function isReal(word) {
   if (n.length === 0) return true;
   if (/^\d+$/.test(n)) return true; // числа
   if (EXCEPTIONS.has(n)) return true;
+  if (n.endsWith('s') && EXCEPTIONS.has(n.slice(0, -1))) return true;
   if (DICT.has(n)) return true;
   // Возможно слово с апострофом-сокращением (it's, can't) — проверяем без апострофа: но обычно их нет в словаре, всё равно EXCEPTIONS
   // Слово с дефисом: проверяем обе части
@@ -171,7 +185,8 @@ const ids = Object.keys(LESSON_DATA).map(Number).filter((n) => n >= 1 && n <= 32
 for (const lessonId of ids) {
   const lesson = LESSON_DATA[lessonId];
   for (const phrase of (lesson?.phrases || [])) {
-    for (const w of (phrase.words || [])) {
+    const rows = Array.isArray(phrase.wordsEn) && phrase.wordsEn.length ? phrase.wordsEn : (phrase.words || []);
+    for (const w of rows) {
       if (!Array.isArray(w?.distractors)) continue;
       for (let k = 0; k < w.distractors.length; k += 1) {
         const d = w.distractors[k];
@@ -239,8 +254,8 @@ for (const u of sortedUniq) {
 
 const outDir = path.join(ROOT, 'docs', 'reports');
 fs.mkdirSync(outDir, { recursive: true });
-fs.writeFileSync(path.join(outDir, 'fake_distractors_1_27.md'), lines.join('\n'), 'utf8');
-fs.writeFileSync(path.join(outDir, 'fake_distractors_1_27.json'), JSON.stringify({ items, uniqFake: [...uniqFake.values()] }, null, 2), 'utf8');
+fs.writeFileSync(path.join(outDir, 'fake_distractors_1_32.md'), lines.join('\n'), 'utf8');
+fs.writeFileSync(path.join(outDir, 'fake_distractors_1_32.json'), JSON.stringify({ items, uniqFake: [...uniqFake.values()] }, null, 2), 'utf8');
 
 console.log(lines.join('\n'));
-console.log(`\nReport: docs/reports/fake_distractors_1_27.md`);
+console.log(`\nReport: docs/reports/fake_distractors_1_32.md`);

@@ -1,31 +1,42 @@
 /**
- * App Check: связка с Firebase Console (Play Integrity / App Attest / debug).
- * На iOS сначала вызывается RNFBAppCheckModule.sharedInstance() в AppDelegate —
- * см. plugins/withIosFirebaseEarlyConfigure.js.
- *
- * Production: явные провайдеры (не голый activate()), см. rnfirebase.io/app-check .
+ * App Check: Firebase Console providers (Play Integrity / App Attest / debug).
+ * On iOS, RNFBAppCheckModule.sharedInstance() must run before FirebaseApp.configure();
+ * see plugins/withIosFirebaseEarlyConfigure.js.
  */
-import { IS_EXPO_GO, CLOUD_SYNC_ENABLED } from './config';
+import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
+
+let appCheckInitPromise: Promise<void> | null = null;
 
 export async function initFirebaseAppCheckIfAvailable(): Promise<void> {
+  if (appCheckInitPromise) return appCheckInitPromise;
   if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return;
-  try {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
-    const appCheck = require('@react-native-firebase/app-check').default;
-    const provider = appCheck().newReactNativeFirebaseAppCheckProvider();
-    if (__DEV__) {
-      provider.configure({
-        android: { provider: 'debug' },
-        apple: { provider: 'debug' },
+  if (__DEV__ && process.env.EXPO_PUBLIC_ENABLE_APP_CHECK_DEBUG !== '1') return;
+
+  appCheckInitPromise = (async () => {
+    try {
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
+      const appCheck = require('@react-native-firebase/app-check').default;
+      const provider = appCheck().newReactNativeFirebaseAppCheckProvider();
+      if (__DEV__) {
+        provider.configure({
+          android: { provider: 'debug' },
+          apple: { provider: 'debug' },
+        });
+      } else {
+        provider.configure({
+          android: { provider: 'playIntegrity' },
+          apple: { provider: 'appAttestWithDeviceCheckFallback' },
+        });
+      }
+      await appCheck().initializeAppCheck({
+        provider,
+        isTokenAutoRefreshEnabled: true,
       });
-    } else {
-      provider.configure({
-        android: { provider: 'playIntegrity' },
-        apple: { provider: 'appAttestWithDeviceCheckFallback' },
-      });
+    } catch {
+      appCheckInitPromise = null;
+      // Native module may be unavailable before prebuild / pod install.
     }
-    await appCheck().activate(provider, true);
-  } catch {
-    // Нет нативного модуля до prebuild / pod install
-  }
+  })();
+
+  return appCheckInitPromise;
 }

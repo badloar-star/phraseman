@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import {
   Modal, View, Text, TouchableOpacity, StyleSheet, Animated, Dimensions,
-  ActivityIndicator, Easing, Image,
+  Easing, Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -174,7 +174,7 @@ export default function ArenaLimitModal({
           styles.overlay,
           {
             opacity: bgOpacity,
-            backgroundColor: themeMode === 'ocean' || themeMode === 'sakura' ? 'rgba(0,0,0,0.42)' : 'rgba(0,0,0,0.55)',
+            backgroundColor: 'rgba(0,0,0,0.55)',
           },
         ]}
       >
@@ -309,8 +309,8 @@ export default function ArenaLimitModal({
               { borderColor: '#7C3AED88', backgroundColor: '#7C3AED22' },
             ]}
           >
-            {shardBusy ? (
-              <ActivityIndicator color={t.textPrimary} />
+            {false && shardBusy ? (
+              <View />
             ) : (
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, width: '100%' }}>
                 <Text style={{ color: t.textPrimary, fontWeight: '800', fontSize: f.body, flex: 1 }}>

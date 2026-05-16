@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -48,7 +48,7 @@ export default function TabSlider({
   useEffect(() => { tabCount.value = React.Children.count(children); }, [children, tabCount]);
 
   // Sync width on resize
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (tabWidth.value !== W) {
       tabWidth.value = W;
       translateX.value = -currentIdx.value * W;
@@ -56,7 +56,7 @@ export default function TabSlider({
   }, [W, tabWidth, translateX, currentIdx]);
 
   // Snap when activeIndex changes from outside (tab bar tap) — JS thread only
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (currentIdx.value !== activeIndex && !isAnimating.value) {
       currentIdx.value = activeIndex;
       cancelAnimation(translateX);

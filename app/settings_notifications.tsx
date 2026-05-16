@@ -89,7 +89,7 @@ function TimeModal({ visible, hour, minute, timeTitle, cancelLabel, onConfirm, o
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onCancel}>
       <View style={{ flex:1, backgroundColor:'rgba(0,0,0,0.55)', justifyContent:'center', alignItems:'center' }}>
-        <View style={{ width:280, backgroundColor:t.bgCard, borderRadius:18, overflow:'hidden', borderWidth:0.5, borderColor:t.border }}>
+        <View style={{ width:'88%', maxWidth:280, backgroundColor:t.bgCard, borderRadius:18, overflow:'hidden', borderWidth:0.5, borderColor:t.border }}>
           <View style={{ padding:16, borderBottomWidth:0.5, borderBottomColor:t.border, alignItems:'center' }}>
             <Text style={{ color:t.textPrimary, fontSize:16, fontWeight:'600' }}>{timeTitle}</Text>
           </View>

@@ -1,0 +1,28 @@
+# Арена → Комната Арены: открытие экрана и проверка UI-контракта (кнопка «Создать и поделиться»).
+appId: app.phraseman
+---
+- runFlow: ../../_shared/boot_to_home.yaml
+- tapOn:
+    id: "home-open-arena"
+- extendedWaitUntil:
+    visible:
+      id: "screen-arena-lobby"
+    timeout: 35000
+- tapOn:
+    id: "arena-room-button"
+- extendedWaitUntil:
+    visible:
+      id: "screen-arena-room"
+    timeout: 20000
+- assertVisible:
+    id: "arena-room-code-input"
+- assertVisible:
+    id: "arena-room-create-btn"
+- assertVisible:
+    id: "arena-room-join-btn"
+- tapOn:
+    id: "arena-room-header-back"
+- extendedWaitUntil:
+    visible:
+      id: "screen-arena-lobby"
+    timeout: 15000

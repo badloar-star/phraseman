@@ -333,7 +333,7 @@ describe('findContextualExplanation', () => {
     };
 
     test('12a. "didn\'t see" раскрывается до "did not see" → матчит trigger', () => {
-      const result = findContextualExplanation("he didn't see it", contractionsTraps);
+      const result = findContextualExplanation("he didn\'t see it", contractionsTraps);
       expect(result?.explanation).toBe('Correct form is "did not see".');
     });
 

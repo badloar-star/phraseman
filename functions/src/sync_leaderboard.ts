@@ -37,9 +37,23 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
 
       const lang = progress['lang'] ?? progress['app_lang'] ?? 'ru';
       const levelFromXP = Math.min(50, Math.floor(Math.pow(xp / 250, 1 / 1.82)) + 1);
-      // Всегда вычисляем аватар из XP — user_avatar может быть устаревшим (старая формула уровней)
-      const avatar = String(levelFromXP);
+      const avatarRaw = typeof progress['user_avatar'] === 'string' ? progress['user_avatar'].trim() : '';
+      // Numeric legacy avatars are still derived from XP, but custom avatars must survive leaderboard syncs.
+      const avatar = avatarRaw && !/^\d+$/.test(avatarRaw) ? avatarRaw : String(levelFromXP);
       const frame = progress['user_frame'] ?? progress['user_avatar_frame'] ?? null;
+      const aura = typeof progress['user_avatar_aura'] === 'string' && progress['user_avatar_aura'].trim()
+        ? progress['user_avatar_aura'].trim()
+        : null;
+      const profileCardLevel = Math.max(0, Math.min(5, parseInt(progress['profile_card_level'] ?? '0') || 0));
+      const profileCardTheme = typeof progress['profile_card_theme'] === 'string' && progress['profile_card_theme'].trim()
+        ? progress['profile_card_theme'].trim().slice(0, 32)
+        : 'classic';
+      const profileCardMotion = typeof progress['profile_card_motion'] === 'string' && progress['profile_card_motion'].trim()
+        ? progress['profile_card_motion'].trim().slice(0, 32)
+        : 'none';
+      const profileCardPublicFocus = typeof progress['profile_card_public_focus'] === 'string' && progress['profile_card_public_focus'].trim()
+        ? progress['profile_card_public_focus'].trim().slice(0, 32)
+        : 'balanced';
       const streak = parseInt(progress['streak_count'] ?? '0') || null;
 
       const root = doc.data() ?? {};
@@ -78,6 +92,11 @@ export async function syncLeaderboardFromUsers(): Promise<void> {
         lang,
         avatar,
         frame,
+        aura,
+        profileCardLevel,
+        profileCardTheme,
+        profileCardMotion,
+        profileCardPublicFocus,
         streak,
         leagueId,
         ...(firebaseAuthUid ? { firebaseAuthUid } : {}),

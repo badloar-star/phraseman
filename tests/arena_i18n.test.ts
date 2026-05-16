@@ -15,7 +15,7 @@ describe('arena_i18n', () => {
   });
 
   test('arenaGameStr returns Spanish for es', () => {
-    expect(arenaGameStr('es', 'loadingQuestions')).toBe('Cargando preguntas…');
+    expect(arenaGameStr('es', 'loadingQuestions')).toBe('Arena');
     expect(arenaGameStr('es', 'accept')).toBe('ACEPTAR');
   });
 

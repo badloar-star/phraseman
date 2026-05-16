@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import {
   View, Text, TouchableOpacity, StyleSheet,
-  ActivityIndicator, Image, Animated, Easing, Share, ScrollView,
+  Image, Animated, Easing, ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import Constants from 'expo-constants';
@@ -10,7 +10,6 @@ import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
-import EnergyBar from '../components/EnergyBar';
 import ScreenGradient from '../components/ScreenGradient';
 import { SessionSize } from './types/arena';
 import { ensureArenaAuthUid } from './user_id_policy';
@@ -26,9 +25,8 @@ import {
   ARENA_MATCHES_SHARD_REFILL_SLOTS,
   getDailyArenaCount,
   getDailyArenaMaxToday,
-  getDailyArenaPlaysLeft,
-  incrementDailyArenaPlay,
 } from './arena_daily_limit';
+import { canStartArenaMatch, chargeArenaEntry, reserveArenaGameEntry } from './arena_access_gate';
 import { emitAppEvent, onAppEvent } from './events';
 import { logEvent } from './firebase';
 import { useTabNav } from './TabContext';
@@ -52,7 +50,6 @@ import {
   subscribeSession,
   subscribeSessionPlayers,
 } from './services/arena_db';
-import { buildFriendInviteSharePayload } from './arena_duel_share';
 import {
   ARENA_RANKED_WAGER_STAKES,
   clearPendingArenaRankedWager,
@@ -70,11 +67,27 @@ import { getBestAvatarForLevel } from '../constants/avatars';
 import { getLevelFromXP } from '../constants/theme';
 import ReportErrorButton from '../components/ReportErrorButton';
 import AvatarView from '../components/AvatarView';
+import { subscribeTodayArenaHillThrone, type ArenaHillThrone } from './services/arena_hill';
+import {
+  subscribeArenaFeatureFlags,
+  type ArenaFeatureFlags,
+} from './services/arena_feature_flags';
 
 /** Підказка idle «скільки шукають у мережі» (день 1–7, ніч 1–2): спільний кеш, оновлення ~1 хв. */
 const IDLE_QUEUE_HINT_TTL_MS = 60 * 1000;
+const USE_ELITE_ARENA_LOBBY = true;
 type IdleQueueHintCache = { value: number; at: number; night: boolean };
 let idleQueueHintCache: IdleQueueHintCache | null = null;
+
+function alphaColor(color: string, alpha: number, fallback = '255,255,255'): string {
+  if (/^#[0-9a-f]{6}$/i.test(color)) {
+    const r = parseInt(color.slice(1, 3), 16);
+    const g = parseInt(color.slice(3, 5), 16);
+    const b = parseInt(color.slice(5, 7), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+  return `rgba(${fallback},${alpha})`;
+}
 
 /** 20:00–08:00 за локальним часом пристрою — показуємо не більше 2 «у пошуку». */
 function isNightArenaIdleQueueHint(): boolean {
@@ -155,12 +168,8 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   const { goHome, activeIdx } = useTabNav();
   const { autoSearch, playAgainTs } = useLocalSearchParams<{ autoSearch?: string; playAgainTs?: string }>();
   const { theme: t, f, themeMode } = useTheme();
-  const screenTitleColor = (themeMode === 'sakura' || themeMode === 'ocean')
-    ? (themeMode === 'ocean' ? 'rgba(240,252,255,0.95)' : 'rgba(255,248,252,0.95)')
-    : t.textPrimary;
-  const screenMuted = (themeMode === 'sakura' || themeMode === 'ocean')
-    ? (themeMode === 'ocean' ? 'rgba(200,230,255,0.78)' : 'rgba(255,210,230,0.75)')
-    : t.textMuted;
+  const screenTitleColor = t.textPrimary;
+  const screenMuted = t.textMuted;
   const { lang } = useLang();
   const effectiveOs = useEffectivePlatformOS();
   const defaultPlayerName = useMemo(
@@ -182,9 +191,9 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   const [noEnergyModal, setNoEnergyModal] = useState(false);
   const [dailyCount, setDailyCount] = useState(0);
   const [dailyMax, setDailyMax] = useState(ARENA_DAILY_MAX);
-  /** non-null = открыт блок «другу», id комнаты уже известен (локально) до Firestore */
+  /** non-null = открыт inline-блок вызова другу. */
   const [friendRoomId, setFriendRoomId] = useState<string | null>(null);
-  const [friendShared, setFriendShared] = useState(false);
+  const [friendRoomReady, setFriendRoomReady] = useState(false);
   /** Скільки в пошуку зараз (агрегат app_meta, оновлює Cloud Function; не скануємо matchmaking_queue). */
   const [rawSearchingTotal, setRawSearchingTotal] = useState(0);
   /** Підказка «скільки шукають матч» у idle: день 1–7, ніч 20:00–08:00 — 1–2; не частіше ніж раз на хвилину. */
@@ -192,18 +201,24 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   /** Ставка осколками на следующий рейтинг-матч (только «Найти матч» / бот из очереди). */
   const [rankedWagerPending, setRankedWagerPending] = useState<ArenaRankedPendingWager | null>(null);
   /** Пока false — не показываем строку «при выигрыше +…» до чтения AsyncStorage. */
-  const [rankedWagerUiReady, setRankedWagerUiReady] = useState(() => !ENABLE_ARENA_RANKED_WAGER);
+  const [rankedWagerUiReady, setRankedWagerUiReady] = useState(true);
   const [shardsBalanceUi, setShardsBalanceUi] = useState<number | null>(null);
   const [arenaFriends, setArenaFriends] = useState<FriendEntry[]>([]);
   const [arenaFriendProfiles, setArenaFriendProfiles] = useState<
-    Record<string, { name: string; totalXp: number; avatar?: string }>
+    Record<string, { name: string; totalXp: number; avatar?: string; aura?: string }>
   >({});
   const [arenaInviteSendingUid, setArenaInviteSendingUid] = useState<string | null>(null);
   /** Выбранный друг перед отправкой вызова (кнопка «Бросить вызов»). */
   const [arenaFriendPickUid, setArenaFriendPickUid] = useState<string | null>(null);
+  const [hillThrone, setHillThrone] = useState<ArenaHillThrone | null>(null);
+  const [arenaFeatureFlags, setArenaFeatureFlags] = useState<ArenaFeatureFlags>({ rankedWagerEnabled: false });
+  const arenaRankedWagerEnabled = ENABLE_ARENA_RANKED_WAGER && arenaFeatureFlags.rankedWagerEnabled === true;
   const [lobbyAcceptDeadlineAt, setLobbyAcceptDeadlineAt] = useState<number | null>(null);
   const lobbyAcceptBarAnim = useRef(new Animated.Value(1)).current;
   const lobbyAcceptBarAnimRunRef = useRef<Animated.CompositeAnimation | null>(null);
+  const eliteCtaPulse = useRef(new Animated.Value(0)).current;
+  const eliteRadarPulse = useRef(new Animated.Value(0)).current;
+  const eliteRadarSweep = useRef(new Animated.Value(0)).current;
   const friendUnsubRef = useRef<(() => void) | null>(null);
   /** id последнего отправленного инвайта — для подписки на статус (declined/accepted). */
   const sentInviteUnsubRef = useRef<(() => void) | null>(null);
@@ -215,7 +230,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   const matchLobbyAbortHandledRef = useRef<string | null>(null);
 
   const refreshRankedWagerUi = useCallback(async () => {
-    if (!ENABLE_ARENA_RANKED_WAGER) {
+    if (!arenaRankedWagerEnabled) {
       setRankedWagerPending(null);
       setShardsBalanceUi(null);
       setRankedWagerUiReady(true);
@@ -230,7 +245,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     } finally {
       setRankedWagerUiReady(true);
     }
-  }, []);
+  }, [arenaRankedWagerEnabled]);
 
   const handleFindMatch = useCallback(async (
     uidOverride?: string,
@@ -240,15 +255,16 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     if (!myRank.isHydrated) return;
     findMatchInFlightRef.current = true;
     try {
-      if (!isUnlimited) {
-        const left = await getDailyArenaPlaysLeft();
-        if (left <= 0) {
-          setArenaLimitModal('matchmaking');
-          return;
-        }
+      const access = await canStartArenaMatch({
+        isUnlimited,
+        availableEnergy: energy + bonusEnergy,
+        countDaily: true,
+      });
+      if (!access.ok && access.reason === 'daily_limit') {
+        setArenaLimitModal('matchmaking');
+        return;
       }
-      const hasEnergy = isUnlimited || (energy + bonusEnergy) > 0;
-      if (!hasEnergy) {
+      if (!access.ok && access.reason === 'no_energy') {
         setNoEnergyModal(true);
         return;
       }
@@ -313,6 +329,19 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     }
   }, [bonusEnergy, defaultPlayerName, energy, isUnlimited, myRank.isHydrated, myRank.level, myRank.rankIndex, myRank.tier, size, startSearching, updateQueueWithPushToken, userId]);
 
+  useEffect(() => subscribeTodayArenaHillThrone(setHillThrone), []);
+  useEffect(() => subscribeArenaFeatureFlags(setArenaFeatureFlags), []);
+  useEffect(() => {
+    if (!arenaRankedWagerEnabled) {
+      void clearPendingArenaRankedWager();
+      setRankedWagerPending(null);
+      setShardsBalanceUi(null);
+      setRankedWagerUiReady(true);
+    } else {
+      void refreshRankedWagerUi();
+    }
+  }, [arenaRankedWagerEnabled, refreshRankedWagerUi]);
+
   /** Стековый /arena_lobby — без таббара; редиректим после маунта, чтобы не падать до RootLayout. */
   useEffect(() => {
     if (isTab) return;
@@ -358,12 +387,12 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   );
 
   useEffect(() => {
-    if (!ENABLE_ARENA_RANKED_WAGER) return undefined;
+    if (!arenaRankedWagerEnabled) return undefined;
     const sub = onAppEvent('shards_balance_updated', () => {
       void refreshRankedWagerUi();
     });
     return () => sub.remove();
-  }, [refreshRankedWagerUi]);
+  }, [arenaRankedWagerEnabled, refreshRankedWagerUi]);
 
   useEffect(() => {
     if (phase !== 'idle') return;
@@ -372,6 +401,50 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     }, IDLE_QUEUE_HINT_TTL_MS);
     return () => clearInterval(id);
   }, [phase]);
+
+  useEffect(() => {
+    const inQueue = phase === 'searching' || phase === 'match_found' || status === 'searching' || status === 'found';
+    if (!USE_ELITE_ARENA_LOBBY || inQueue) {
+      eliteCtaPulse.setValue(0);
+      return;
+    }
+    const ctaLoop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(eliteCtaPulse, { toValue: 1, duration: 1600, useNativeDriver: true }),
+        Animated.timing(eliteCtaPulse, { toValue: 0, duration: 1600, useNativeDriver: true }),
+      ]),
+    );
+    ctaLoop.start();
+    return () => ctaLoop.stop();
+  }, [eliteCtaPulse, phase, status]);
+
+  useEffect(() => {
+    const queueVisible = phase === 'searching' || phase === 'match_found' || status === 'searching' || status === 'found';
+    if (!USE_ELITE_ARENA_LOBBY || !queueVisible) {
+      eliteRadarPulse.setValue(0);
+      eliteRadarSweep.setValue(0);
+      return;
+    }
+    const radarLoop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(eliteRadarPulse, { toValue: 1, duration: 1500, useNativeDriver: true }),
+        Animated.timing(eliteRadarPulse, { toValue: 0, duration: 0, useNativeDriver: true }),
+      ]),
+    );
+    const sweepLoop = Animated.loop(
+      Animated.timing(eliteRadarSweep, {
+        toValue: 1,
+        duration: 2400,
+        useNativeDriver: true,
+      }),
+    );
+    radarLoop.start();
+    sweepLoop.start();
+    return () => {
+      radarLoop.stop();
+      sweepLoop.stop();
+    };
+  }, [eliteRadarPulse, eliteRadarSweep, phase, status]);
 
   // Лобби в табе смонтировано постоянно (TabSlider). Тост «матч найден» душился на всіх екранах,
   // бо isLobbyActive лишався true після перходу на інші вкладки — тримаємо active лише коли видно таб «Арена» (2).
@@ -389,6 +462,8 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   }, [sessionId]);
 
   useEffect(() => () => {
+    friendUnsubRef.current?.();
+    friendUnsubRef.current = null;
     sentInviteUnsubRef.current?.();
     sentInviteUnsubRef.current = null;
   }, []);
@@ -398,7 +473,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     if (status === 'searching') setPhase('searching');
     // Ошибка join / сеть: контекст уже idle, а phase залипал в «searching» (без sessionId).
     if (status === 'idle' && phase === 'searching' && !sessionId) {
-      if (ENABLE_ARENA_RANKED_WAGER) {
+      if (arenaRankedWagerEnabled) {
         void (async () => {
           await clearPendingArenaRankedWager();
           await refreshRankedWagerUi();
@@ -406,13 +481,14 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
       }
       setPhase('idle');
     }
-  }, [status, phase, sessionId, refreshRankedWagerUi]);
+  }, [status, phase, sessionId, arenaRankedWagerEnabled, refreshRankedWagerUi]);
 
   // Тикер UI: `Date.now()-t0` не даёт ререндер сам; пока ищем — крутим, даже если searchStartedAt ещё 0
   const [, setSearchUiTick] = useState(0);
   useEffect(() => {
     if (phase !== 'searching' && status !== 'searching') return;
-    const id = setInterval(() => { setSearchUiTick((n) => n + 1); }, 200);
+    // 1000ms достаточно — таймер показывает целые секунды, 200ms = лишние 4 ререндера/сек
+    const id = setInterval(() => { setSearchUiTick((n) => n + 1); }, 1000);
     return () => { clearInterval(id); };
   }, [phase, status]);
   const displayElapsed =
@@ -553,10 +629,13 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     setPhase('idle');
     const sid = sessionIdRef.current ?? sessionId ?? '';
     const uid = userIdRef.current || userId;
-    router.replace({
-      pathname: '/arena_game' as any,
-      params: { sessionId: sid, userId: uid, fromLobby: '1' },
-    });
+    void (async () => {
+      await reserveArenaGameEntry(sid, 'ranked');
+      router.replace({
+        pathname: '/arena_game' as any,
+        params: { sessionId: sid, userId: uid, fromLobby: '1' },
+      });
+    })();
   }, [markMatchHandled, stopSearchTimer, clearFoundMatch, router, sessionId, userId]);
 
   const handleMatchFoundDecline = useCallback(async () => {
@@ -602,18 +681,20 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
     chargeInFlightRef.current = true;
     try {
-      const charged = await spendOne();
-      if (!charged) {
+      const charge = await chargeArenaEntry({
+        isUnlimited,
+        spendOne,
+        countDaily: true,
+        mode: 'ranked',
+      });
+      if (!charge.ok) {
         pendingMatchChargeRef.current = false;
         await cancelSearching();
         setPhase('idle');
         setNoEnergyModal(true);
         return;
       }
-      await incrementDailyArenaPlay();
-      const newCount = await getDailyArenaCount();
-      setDailyCount(newCount);
-      logEvent('arena_match_charged', { mode: 'ranked', daily_count: newCount });
+      if (charge.dailyCount !== undefined) setDailyCount(charge.dailyCount);
       pendingMatchChargeRef.current = false;
       await doNavigate();
     } finally {
@@ -623,8 +704,12 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
   const handlePlayWithFriend = async () => {
     hapticTap();
-    const hasEnergy = isUnlimited || (energy + bonusEnergy) > 0;
-    if (!hasEnergy) {
+    const access = await canStartArenaMatch({
+      isUnlimited,
+      availableEnergy: energy + bonusEnergy,
+      countDaily: false,
+    });
+    if (!access.ok) {
       setNoEnergyModal(true);
       return;
     }
@@ -635,7 +720,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     sentInviteUnsubRef.current?.();
     sentInviteUnsubRef.current = null;
     setFriendRoomId(id);
-    setFriendShared(false);
+    setFriendRoomReady(false);
     setArenaFriendPickUid(null);
 
     const runFirestore = async () => {
@@ -643,6 +728,10 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
         const uid = await ensureArenaAuthUid();
         const name = (await AsyncStorage.getItem('user_name')) ?? defaultPlayerName;
         if (!uid) {
+          setFriendRoomId(null);
+          setFriendRoomReady(false);
+          setArenaFriendPickUid(null);
+          friendMatchNavRef.current = false;
           emitAppEvent('action_toast', {
             type: 'error',
             messageRu: 'Облако недоступно (синхронизация выключена). Друг не сможет войти в комнату.',
@@ -662,19 +751,22 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             if (friendMatchNavRef.current) return;
             friendMatchNavRef.current = true;
             void (async () => {
-              if (!isUnlimited) {
-                const charged = await spendOne();
-                if (!charged) {
-                  friendMatchNavRef.current = false;
-                  emitAppEvent('action_toast', {
-                    type: 'error',
-                    messageRu: 'Недостаточно энергии для старта матча.',
-                    messageUk: 'Недостатньо енергії для старту матчу.',
-                    messageEs: 'No tienes suficiente energía para empezar la partida.',
-                  });
-                  return;
-                }
-                logEvent('arena_match_charged', { mode: 'friend' });
+              const charge = await chargeArenaEntry({
+                isUnlimited,
+                spendOne,
+                countDaily: false,
+                mode: 'friend',
+                extraLogParams: { role: 'host' },
+              });
+              if (!charge.ok) {
+                friendMatchNavRef.current = false;
+                emitAppEvent('action_toast', {
+                  type: 'error',
+                  messageRu: 'Недостаточно энергии для старта матча.',
+                  messageUk: 'Недостатньо енергії для старту матчу.',
+                  messageEs: 'No tienes suficiente energía para empezar la partida.',
+                });
+                return;
               }
               emitAppEvent('action_toast', {
                 type: 'success',
@@ -683,12 +775,20 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                 messageEs: 'Tu amigo se ha unido. ¡Empezamos el duelo!',
               });
               friendUnsubRef.current?.();
+              friendUnsubRef.current = null;
               setFriendRoomId(null);
+              setFriendRoomReady(false);
+              await reserveArenaGameEntry(id, 'friend_host');
               router.replace({ pathname: '/arena_game' as any, params: { sessionId: id, userId: uid } });
             })();
           }
         });
+        setFriendRoomReady(true);
       } catch {
+        setFriendRoomId(null);
+        setFriendRoomReady(false);
+        setArenaFriendPickUid(null);
+        friendMatchNavRef.current = false;
         emitAppEvent('action_toast', {
           type: 'error',
           messageRu: 'Не удалось создать комнату в облаке. Проверьте сеть — если друг не заходит, пригласите ещё раз.',
@@ -698,30 +798,12 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
       }
     };
     void runFirestore();
-    // Системный share открывает пользователь кнопкой внизу (ссылку в UI не показываем).
-  };
-
-  const handleFriendShare = async () => {
-    hapticTap();
-    if (!friendRoomId) return;
-    try {
-      const payload = await buildFriendInviteSharePayload(friendRoomId);
-      await Share.share({ message: payload.message }).catch(() => {});
-      // Не показываем тост «отправлено» — лист «Поделиться» можно закрыть без реальной отправки
-      setFriendShared(true);
-    } catch {
-      emitAppEvent('action_toast', {
-        type: 'error',
-        messageRu: 'Не удалось поделиться ссылкой.',
-        messageUk: 'Не вдалося поділитися посиланням.',
-        messageEs: 'No se pudo compartir el enlace.',
-      });
-    }
   };
 
   const handleSendInAppInviteToFriend = async (friendStableUid: string) => {
     hapticTap();
-    if (!friendRoomId) return;
+    const roomId = friendRoomId;
+    if (!roomId || !friendRoomReady) return;
     const dn =
       (await AsyncStorage.getItem('user_name'))?.trim()
       || triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' });
@@ -729,7 +811,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     try {
       const res = await sendArenaInvite({
         toFriendStableUid: friendStableUid,
-        roomId: friendRoomId,
+        roomId,
         fromName: dn,
       });
       if (!res.ok) {
@@ -737,13 +819,13 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
           ? {
             messageRu: effectiveOs === 'ios'
               ? 'У друга нет активной сессии. Пусть откроет приложение или выберите его в списке ниже.'
-              : 'У друга нет активной сессии в облаке. Пусть откроет приложение или поделись ссылкой.',
+              : 'У друга нет активной сессии в облаке. Пусть откроет приложение и попробуйте ещё раз.',
             messageUk: effectiveOs === 'ios'
               ? 'У друга немає активної сесії. Нехай відкриє застосунок або обери його в списку нижче.'
-              : 'У друга немає активної сесії в хмарі. Нехай відкриє застосунок або поділись посиланням.',
+              : 'У друга немає активної сесії в хмарі. Нехай відкриє застосунок і спробуйте ще раз.',
             messageEs: effectiveOs === 'ios'
               ? 'Tu amigo no tiene sesión activa. Pídele que abra la app o elígelo en la lista de abajo.'
-              : 'Tu amigo no tiene sesión en la nube. Pídele que abra la app o comparte el enlace.',
+              : 'Tu amigo no tiene sesión en la nube. Pídele que abra la app e inténtalo otra vez.',
           }
           : res.reason === 'not_friend'
             ? {
@@ -754,13 +836,13 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             : {
               messageRu: effectiveOs === 'ios'
                 ? 'Пригласить не получилось. Проверь сеть или выбери друга из списка ниже.'
-                : 'Пригласить не получилось. Проверь сеть или попробуй «Поделиться ссылкой».',
+                : 'Пригласить не получилось. Проверь сеть и попробуй ещё раз.',
               messageUk: effectiveOs === 'ios'
                 ? 'Не вдалося запросити. Перевір мережу або обери друга зі списку нижче.'
-                : 'Не вдалося запросити. Перевір мережу або спробуй «Поділитися посиланням».',
+                : 'Не вдалося запросити. Перевір мережу і спробуй ще раз.',
               messageEs: effectiveOs === 'ios'
                 ? 'No se pudo enviar la invitación. Revisa la conexión o elige a un amigo en la lista.'
-                : 'No se pudo enviar la invitación. Revisa la conexión o usa «Compartir enlace».',
+                : 'No se pudo enviar la invitación. Revisa la conexión e inténtalo otra vez.',
             };
         emitAppEvent('action_toast', { type: 'error', ...msg });
         return;
@@ -811,7 +893,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     pendingMatchChargeRef.current = false;
     const cancelledMs = searchStartedAt > 0 ? (Date.now() - searchStartedAt) : elapsedMs;
     await cancelSearching();
-    if (ENABLE_ARENA_RANKED_WAGER) {
+    if (arenaRankedWagerEnabled) {
       await clearPendingArenaRankedWager();
       await refreshRankedWagerUi();
     }
@@ -824,11 +906,10 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
    * Не змішувати з `status === 'searching' && phase === 'idle'`: тоді зритель у лобі «вираховує» себе з
    * глобального лічильника, якщо status залип searching (покаже 0, хоча в мережі шукають).
    */
-  const inSearchFlow = phase === 'searching' || phase === 'match_found';
   const countsAsInQueue = phase === 'searching' || phase === 'match_found';
 
   const handleRankedWagerSelect = useCallback(async (stake: ArenaRankedWagerStake) => {
-    if (!ENABLE_ARENA_RANKED_WAGER) return;
+    if (!arenaRankedWagerEnabled) return;
     hapticTap();
     const cur = await getPendingArenaRankedWager();
     if (cur?.stake === stake) {
@@ -843,7 +924,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     await refreshRankedWagerUi();
     const payout = winPayoutForStake(stake);
     logEvent('arena_ranked_wager_set', { stake, payout });
-  }, [refreshRankedWagerUi]);
+  }, [arenaRankedWagerEnabled, refreshRankedWagerUi]);
   const showMatchFound = status === 'found' && !!sessionId;
   const showQueuePanel =
     (status === 'searching' && (phase === 'searching' || phase === 'idle'))
@@ -867,7 +948,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   }, [lang, rankedWagerPending, rankedWagerUiReady]);
 
   const rankedWagerCardEl =
-    ENABLE_ARENA_RANKED_WAGER && !friendRoomId ? (
+    arenaRankedWagerEnabled && !friendRoomId ? (
       <View
         style={[
           styles.rankedWagerCard,
@@ -1028,7 +1109,10 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
   }, []);
 
   useEffect(() => {
-    if (!friendRoomId) setArenaFriendPickUid(null);
+    if (!friendRoomId) {
+      setArenaFriendPickUid(null);
+      setFriendRoomReady(false);
+    }
   }, [friendRoomId]);
 
   useEffect(() => {
@@ -1041,6 +1125,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
     if (arenaFriends.length === 0) return;
     const db = (() => {
       if (IS_EXPO_GO || !CLOUD_SYNC_ENABLED) return null;
+      // eslint-disable-next-line @typescript-eslint/no-require-imports
       try { return require('@react-native-firebase/firestore').default(); } catch { return null; }
     })();
     if (!db) return;
@@ -1054,17 +1139,21 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
           const avatarRaw = typeof data.progress?.user_avatar === 'string'
             ? data.progress.user_avatar.trim()
             : '';
+          const auraRaw = typeof data.progress?.user_avatar_aura === 'string'
+            ? data.progress.user_avatar_aura.trim()
+            : '';
           return {
             uid: f.uid,
             name: (data.displayName as string) || (data.name as string) || (data.progress?.displayName as string) || (data.progress?.user_name as string) || 'Игрок',
             totalXp: parseInt((data.progress?.user_total_xp as string) ?? '0') || 0,
             avatar: avatarRaw || undefined,
+            aura: auraRaw || undefined,
           };
         } catch { return null; }
       })
     ).then(results => {
       if (cancelled) return;
-      const map: Record<string, { name: string; totalXp: number; avatar?: string }> = {};
+      const map: Record<string, { name: string; totalXp: number; avatar?: string; aura?: string }> = {};
       for (const r of results) if (r) map[r.uid] = r;
       setArenaFriendProfiles(map);
     });
@@ -1100,12 +1189,56 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
       </View>
     ) : null;
 
+  const arenaTicketsLeft = Math.max(0, dailyMax - dailyCount);
+  const arenaTicketsColor = isUnlimited
+    ? '#F5D97A'
+    : arenaTicketsLeft <= 0
+      ? '#FF6B6B'
+      : arenaTicketsLeft <= 1
+        ? '#F59E0B'
+        : '#58E58B';
+  const arenaTicketsText = isUnlimited ? '∞' : `${arenaTicketsLeft}/${dailyMax}`;
+  const arenaGlass = useMemo(() => {
+    const light = themeMode === 'minimalLight';
+    const neon = themeMode === 'neon';
+    const gold = themeMode === 'gold';
+    const accent = t.accent;
+    const warm = gold || light ? '#B98925' : '#F5D97A';
+    const ctaBase = neon ? t.accent : gold ? t.textSecond : light ? '#3B4A6B' : t.correct;
+    return {
+      cardColors: light
+        ? ['rgba(255,255,255,0.62)', 'rgba(255,253,248,0.34)', 'rgba(255,255,255,0.20)']
+        : [
+            alphaColor(t.bgSurface, 0.58, '255,255,255'),
+            alphaColor(t.bgCard, 0.42, '255,255,255'),
+            'rgba(255,255,255,0.055)',
+          ],
+      cardBorder: light ? 'rgba(40,37,32,0.18)' : alphaColor(accent, 0.24),
+      cardHighlight: light ? 'rgba(255,255,255,0.72)' : 'rgba(255,255,255,0.14)',
+      innerBg: light ? 'rgba(255,255,255,0.32)' : 'rgba(255,255,255,0.07)',
+      innerBgSoft: light ? 'rgba(255,255,255,0.22)' : 'rgba(255,255,255,0.045)',
+      innerBorder: light ? 'rgba(40,37,32,0.13)' : alphaColor(accent, 0.18),
+      accent,
+      accentSoft: alphaColor(accent, light ? 0.10 : 0.15),
+      live: light ? '#2E9E62' : '#58E58B',
+      liveText: light ? '#1F7A45' : '#BDF9D0',
+      liveBg: light ? 'rgba(46,158,98,0.10)' : 'rgba(88,229,139,0.11)',
+      liveBorder: light ? 'rgba(46,158,98,0.22)' : 'rgba(88,229,139,0.28)',
+      warm,
+      warmBg: alphaColor(warm, light ? 0.10 : 0.14, '245,217,122'),
+      warmBorder: alphaColor(warm, light ? 0.20 : 0.28, '245,217,122'),
+      ctaColors: [alphaColor(ctaBase, 0.95), alphaColor(ctaBase, 0.78), alphaColor(t.correct, 0.62)],
+      ctaText: t.correctText,
+      ctaSubText: alphaColor(t.correctText, 0.66, '7,17,31'),
+      ctaIconBg: alphaColor(t.correctText, 0.12, '7,17,31'),
+    };
+  }, [t, themeMode]);
+
   return (
     <ScreenGradient>
       <SafeAreaView
         style={{ flex: 1, backgroundColor: 'transparent' }}
-        /* В режиме таба верхний inset уже даёт (tabs)/_layout (paddingTop: insets.top).
-           Дублирование SafeArea top на iOS давало лишний отступ и дёрганье при появлении EnergyBar/очереди. */
+        /* В режиме таба верхний inset уже даёт (tabs)/_layout (paddingTop: insets.top). */
         edges={isTab ? [] : ['top', 'bottom']}
       >
       {/* Шапка */}
@@ -1124,19 +1257,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
               router.replace('/(tabs)/home' as any);
             }
           }}
-          style={[
-            styles.backBtn,
-            {
-              width: 36,
-              height: 36,
-              borderRadius: 18,
-              backgroundColor: t.bgCard,
-              borderWidth: 0.5,
-              borderColor: t.border,
-              justifyContent: 'center',
-              alignItems: 'center',
-            },
-          ]}
+          style={[styles.backBtn, { backgroundColor: 'rgba(255,255,255,0.075)', borderColor: 'rgba(255,255,255,0.14)' }]}
         >
           <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
         </TouchableOpacity>
@@ -1144,48 +1265,52 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
           <Text
             testID="screen-arena-lobby"
             accessibilityLabel="qa-screen-arena-lobby"
-            style={[styles.titleText, { color: screenTitleColor, fontSize: f.h2 + 6, fontWeight: '700' }]}
-            numberOfLines={1}
+            style={[styles.titleText, { color: screenTitleColor, fontSize: f.h2 + 5 }]}
             adjustsFontSizeToFit
             minimumFontScale={0.75}
           >
             {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
           </Text>
-        </View>
-        <View style={styles.headerRight}>
-          {!isUnlimited && <EnergyBar size={16} />}
-          <TouchableOpacity
-            testID="arena-top100-button"
-            accessibilityLabel={triLang(lang, {
-              ru: 'Топ-100 арены',
-              uk: 'Топ-100 арени',
-              es: 'Top 100 de la Arena',
-            })}
-            onPress={() => { hapticTap(); router.push('/arena_leaderboard' as any); }}
-            style={[styles.rankBadge, { backgroundColor: t.bgSurface, borderColor: t.border }]}
-          >
-            <Ionicons name="podium-outline" size={18} color={t.accent} />
-            <Text style={[styles.rankText, { color: t.textSecond, fontSize: f.label }]}>
-              {triLang(lang, { ru: 'Топ-100', uk: 'Топ-100', es: 'Top 100' })}
-            </Text>
-          </TouchableOpacity>
           <TouchableOpacity
             testID="arena-rating-button"
             onPress={() => { hapticTap(); router.push('/arena_rating' as any); }}
-            style={[styles.rankBadge, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+            style={styles.headerRankLine}
+            activeOpacity={0.78}
           >
             {myRank.isHydrated ? (
-              <>
-                <Image source={myRank.image} style={{ width: 24, height: 24 }} resizeMode="contain" />
-                <Text style={[styles.rankText, { color: t.textSecond, fontSize: f.label }]}>{myRank.labelShort}</Text>
-              </>
+              <Image source={myRank.image} style={styles.headerRankIcon} resizeMode="contain" />
             ) : (
-              <>
-                <ActivityIndicator size="small" color={t.textSecond} style={{ width: 24, height: 24 }} />
-                <Text style={[styles.rankText, { color: t.textSecond, fontSize: f.label }]}>…</Text>
-              </>
+              <Ionicons name="shield-outline" size={16} color={screenMuted} style={styles.headerRankIcon} />
             )}
+            <Text style={[styles.headerRankText, { color: screenMuted, fontSize: f.caption }]}>
+              {myRank.isHydrated ? myRank.labelShort : '—'}
+            </Text>
+            <Text style={[styles.headerRankMode, { color: screenMuted, fontSize: f.caption }]}>
+              · {triLang(lang, { ru: 'рейтинг', uk: 'рейтинг', es: 'ranked' })}
+            </Text>
           </TouchableOpacity>
+        </View>
+        <View style={styles.headerRight}>
+          <View
+            testID="arena-ticket-pill"
+            accessibilityLabel={triLang(lang, {
+              ru: `Билеты арены: ${arenaTicketsText}`,
+              uk: `Квитки арени: ${arenaTicketsText}`,
+              es: `Entradas de arena: ${arenaTicketsText}`,
+            })}
+            style={[
+              styles.arenaTicketPill,
+              {
+                borderColor: `${arenaTicketsColor}66`,
+                backgroundColor: `${arenaTicketsColor}18`,
+              },
+            ]}
+          >
+            <Ionicons name="ticket" size={16} color={arenaTicketsColor} />
+            <Text style={[styles.arenaTicketText, { color: arenaTicketsColor, fontSize: f.label }]}>
+              {arenaTicketsText}
+            </Text>
+          </View>
         </View>
       </View>
 
@@ -1200,52 +1325,8 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             подгрузка контекста (isUnlimited, queueOthersCount) НЕ должна
             смещать кнопки в actions — поэтому держим всё, что асинхронно,
             в отдельном слоте с зарезервированным minHeight. */}
-        <View style={styles.infoZone} pointerEvents="box-none">
-          {!showQueuePanel && (
-            // Підказка «хто шукає матч»: день 1–7, ніч 20:00–08:00 — 1–2; оновлення ~1 хв (див. getOrRefreshIdleQueueHintCount).
-            // Бейдж намеренно убран из idle: он дублировал эту строку и дёргал layout.
-            <Text
-              style={[
-                styles.queueHintIdle,
-                { color: screenMuted, fontSize: f.caption, textAlign: 'center' },
-              ]}
-              numberOfLines={1}
-            >
-              {triLang(lang, {
-                uk: `Зараз у пошуку в мережі: ${idleQueueHintDisplayCount}`,
-                ru: `Сейчас в сети ищут матч: ${idleQueueHintDisplayCount}`,
-                es:
-                  idleQueueHintDisplayCount === 1
-                    ? 'Hay 1 jugador buscando partida'
-                    : `Hay ${idleQueueHintDisplayCount} jugadores buscando partida`,
-              })}
-            </Text>
-          )}
-          {/* Premium-слот зарезервирован: рендерится всегда, чтобы isUnlimited,
-              приходящий из контекста с задержкой, не сдвигал кнопки.
-              Контент скрыт через opacity, место — через minHeight. */}
-          {!showQueuePanel && (
-            <View
-              style={[
-                styles.premiumUnlimitedCard,
-                {
-                  borderColor: 'rgba(255,255,255,0.22)',
-                  backgroundColor: 'rgba(255,255,255,0.08)',
-                  opacity: isUnlimited ? 1 : 0,
-                },
-              ]}
-              pointerEvents={isUnlimited ? 'auto' : 'none'}
-            >
-              <Text style={[styles.premiumUnlimitedText, { color: screenTitleColor, fontSize: f.caption }]}>
-                {triLang(lang, {
-                  ru: '💎 Premium: безлимитная арена',
-                  uk: '💎 Premium: безлімітна дуель',
-                  es: '💎 Premium: partidas ilimitadas',
-                })}
-              </Text>
-            </View>
-          )}
-        </View>
+        {/* infoZone — минимальный слот, резервирует место под async-контент */}
+        <View style={styles.infoZone} pointerEvents="none" />
 
         <View style={styles.actions}>
           {showQueuePanel ? (
@@ -1253,21 +1334,86 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
               <View
                 style={[
                   styles.queuePanel,
-                  { borderColor: t.border, backgroundColor: 'rgba(255,255,255,0.06)' },
+                  USE_ELITE_ARENA_LOBBY && styles.eliteQueuePanel,
+                  { borderColor: `${t.accent}40`, backgroundColor: 'rgba(255,255,255,0.04)' },
                 ]}
               >
+                {USE_ELITE_ARENA_LOBBY && (
+                  <View style={styles.eliteRadarWrap} pointerEvents="none">
+                    {/* Статичные кольца радара */}
+                    {[1, 0.68, 0.38].map((scale, i) => (
+                      <View
+                        key={i}
+                        style={[
+                          styles.eliteRadarRingStatic,
+                          {
+                            borderColor: t.accent,
+                            opacity: 0.35 + i * 0.18,
+                            transform: [{ scale }],
+                          },
+                        ]}
+                      />
+                    ))}
+                    {/* Пульсирующее кольцо */}
+                    <Animated.View
+                      style={[
+                        styles.eliteRadarRingStatic,
+                        {
+                          borderColor: t.accent,
+                          borderWidth: 1.5,
+                          opacity: eliteRadarPulse.interpolate({
+                            inputRange: [0, 0.3, 0.7, 1],
+                            outputRange: [0.55, 0.25, 0, 0],
+                          }),
+                          transform: [{
+                            scale: eliteRadarPulse.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: [0.36, 1.05],
+                            }),
+                          }],
+                        },
+                      ]}
+                    />
+                    {/* Крестовина */}
+                    <View style={[styles.eliteRadarCross, { backgroundColor: t.accent, width: '100%', height: 1 }]} />
+                    <View style={[styles.eliteRadarCross, { backgroundColor: t.accent, width: 1, height: '100%' }]} />
+                    {/* Луч радара с градиентным следом */}
+                    <Animated.View
+                      style={[
+                        styles.eliteRadarSweepWrap,
+                        {
+                          transform: [{
+                            rotate: eliteRadarSweep.interpolate({
+                              inputRange: [0, 1],
+                              outputRange: ['0deg', '360deg'],
+                            }),
+                          }],
+                        },
+                      ]}
+                    >
+                      {/* Градиентный конус-след (60° дуга, fade к прозрачному) */}
+                      <LinearGradient
+                        colors={[t.accent + '00', t.accent + '55', t.accent + 'BB']}
+                        start={{ x: 0, y: 1 }}
+                        end={{ x: 1, y: 0 }}
+                        style={styles.eliteRadarSweepGradient}
+                      />
+                      {/* Главная линия луча */}
+                      <View style={[styles.eliteRadarBeam, { backgroundColor: t.accent }]} />
+                    </Animated.View>
+                    {/* Центральная точка */}
+                    <View style={[styles.eliteRadarDot, { backgroundColor: t.accent }]} />
+                  </View>
+                )}
                 {othersInQueueBadge}
                 <Text style={[styles.queueTitle, { color: t.textPrimary, fontSize: f.body }]}>
                   {triLang(lang, {
-                    uk: 'Ви в черзі на матч',
-                    ru: 'Вы в очереди на матч',
-                    es: 'Estás en la cola para una partida',
+                    uk: 'Шукаємо суперника',
+                    ru: 'Ищем соперника',
+                    es: 'Buscando rival',
                   })}
                 </Text>
-                <Text style={[styles.queueSub, { color: screenMuted, fontSize: f.caption }]}>
-                  {triLang(lang, { uk: 'До 10 хв', ru: 'До 10 мин', es: 'Máximo 10 minutos' })}
-                </Text>
-                <Text style={[styles.queueCountdown, { color: t.accent }]}>
+                <Text style={[styles.queueCountdown, { color: t.accent }]} adjustsFontSizeToFit minimumFontScale={0.7}>
                   {formatRemainSearch(remainSearchMs)}
                 </Text>
                 <Text style={[styles.searchingLabel, { color: screenMuted, fontSize: f.sub, marginTop: 4 }]}>
@@ -1278,13 +1424,16 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
                   })}
                 </Text>
                 {showMatchFound && (
-                  <Text style={[{ color: t.accent, fontSize: f.caption, fontWeight: '800', marginTop: 6, textAlign: 'center' }]}>
-                    {triLang(lang, {
-                      uk: 'Суперника знайдено',
-                      ru: 'Соперник найден',
-                      es: 'Rival encontrado',
-                    })}
-                  </Text>
+                  <View style={[styles.matchFoundBadge, { backgroundColor: `${t.accent}22`, borderColor: `${t.accent}66` }]}>
+                    <Ionicons name="checkmark-circle" size={16} color={t.accent} />
+                    <Text style={[{ color: t.accent, fontSize: f.caption, fontWeight: '900' }]}>
+                      {triLang(lang, {
+                        uk: 'Суперника знайдено!',
+                        ru: 'Соперник найден!',
+                        es: '¡Rival encontrado!',
+                      })}
+                    </Text>
+                  </View>
                 )}
               </View>
 
@@ -1362,187 +1511,289 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
             </>
           ) : (
             <>
-              <TouchableOpacity
-                testID="arena-find-match"
-                accessibilityLabel="qa-arena-find-match"
-                accessible={true}
-                disabled={!myRank.isHydrated}
-                onPress={() => { hapticTap(); handleFindMatch(); }}
-                activeOpacity={0.85}
-                style={{ opacity: myRank.isHydrated ? 1 : 0.55 }}
+              <LinearGradient
+                colors={arenaGlass.cardColors as [string, string, string]}
+                locations={[0, 0.58, 1]}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                testID="arena-action-container"
+                style={[
+                  styles.arenaStageCard,
+                  {
+                    borderColor: arenaGlass.cardBorder,
+                    shadowColor: t.shadowDark,
+                  },
+                ]}
               >
-                <LinearGradient
-                  colors={[t.accent, t.accent + 'BB']}
-                  style={styles.mainBtn}
-                  start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                >
-                  <Ionicons name="flash" size={22} color={t.correctText} />
-                  <Text style={[styles.mainBtnText, { color: t.correctText, fontSize: f.h2 }]}>
-                    {triLang(lang, { uk: 'Знайти матч', ru: 'Найти матч', es: 'Buscar partida' })}
-                  </Text>
-                  {!isUnlimited && (
-                    <Text style={[styles.energyCost, { color: t.correctText + 'AA', fontSize: f.sub }]}>
-                      −1 ⚡ · −1 🎟
+                <View style={[styles.arenaGlassHighlight, { borderColor: arenaGlass.cardHighlight }]} pointerEvents="none" />
+                <View style={styles.arenaStageTop}>
+                  <View style={[styles.arenaStatusPill, { backgroundColor: arenaGlass.liveBg, borderColor: arenaGlass.liveBorder }]}>
+                    <View style={[styles.arenaStatusDot, { backgroundColor: arenaGlass.live }]} />
+                    <Text style={[styles.arenaStatusText, { color: arenaGlass.liveText, fontSize: f.caption }]}>
+                      {triLang(lang, {
+                        ru: `${idleQueueHintDisplayCount} в поиске`,
+                        uk: `${idleQueueHintDisplayCount} у пошуку`,
+                        es: `${idleQueueHintDisplayCount} buscando`,
+                      })}
                     </Text>
-                  )}
-                </LinearGradient>
-              </TouchableOpacity>
+                  </View>
+                  <View style={[styles.arenaModePill, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}>
+                    <Ionicons name="trophy-outline" size={14} color={arenaGlass.warm} />
+                    <Text style={[styles.arenaModeText, { color: arenaGlass.warm, fontSize: f.caption }]}>
+                      {triLang(lang, { ru: 'Ranked', uk: 'Ranked', es: 'Ranked' })}
+                    </Text>
+                  </View>
+                </View>
 
-              <TouchableOpacity
-                testID="arena-play-with-friend"
-                accessibilityLabel="qa-arena-play-with-friend"
-                accessible={true}
-                style={[styles.secondaryBtn, { borderColor: t.border, backgroundColor: t.bgCard }]}
-                onPress={handlePlayWithFriend}
-                activeOpacity={0.8}
-              >
-                <Ionicons name="people" size={20} color={t.accent} />
-                <Text style={[styles.secondaryBtnText, { color: t.textPrimary, fontSize: f.body }]}>
-                  {triLang(lang, {
-                    uk: 'Грати з другом',
-                    ru: 'Играть с другом',
-                    es: 'Jugar con un amigo',
-                  })}
-                </Text>
-                {!isUnlimited && (
-                  <Text style={[styles.energyCost, { color: t.textMuted, fontSize: f.sub, marginLeft: 4 }]}>
-                    −1 ⚡
+                <View style={styles.arenaStageCopy}>
+                  <Text style={[styles.arenaStageSub, { color: screenMuted, fontSize: f.caption }]}>
+                    {triLang(lang, {
+                      ru: 'Выбери формат матча',
+                      uk: 'Обери формат матчу',
+                      es: 'Elige formato de partida',
+                    })}
                   </Text>
-                )}
-              </TouchableOpacity>
+                </View>
 
-              {friendRoomId && (
-                <>
-                  {effectiveOs !== 'ios' && (
-                  <TouchableOpacity onPress={handleFriendShare} activeOpacity={0.85}>
-                    <LinearGradient
-                      colors={[t.accent, t.accent + 'BB']}
-                      style={styles.mainBtn}
-                      start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                    >
-                      <Ionicons name="share-social" size={22} color={t.correctText} />
-                      <Text style={[styles.mainBtnText, { color: t.correctText, fontSize: f.h2 }]}>
-                        {friendShared
-                          ? triLang(lang, {
-                            uk: 'Поділитися знову',
-                            ru: 'Поделиться снова',
-                            es: 'Compartir de nuevo',
-                          })
-                          : triLang(lang, {
-                            uk: 'Поділитися посиланням',
-                            ru: 'Поделиться ссылкой',
-                            es: 'Compartir el enlace',
-                          })}
+                <TouchableOpacity
+                  testID="arena-find-match"
+                  accessibilityLabel="qa-arena-find-match"
+                  accessible={true}
+                  disabled={!myRank.isHydrated}
+                  onPress={() => { hapticTap(); handleFindMatch(); }}
+                  activeOpacity={0.9}
+                  style={[styles.arenaLaunchTouch, !myRank.isHydrated && styles.eliteDisabled]}
+                >
+                  <LinearGradient
+                    colors={arenaGlass.ctaColors as [string, string, string]}
+                    start={{ x: 0, y: 0 }}
+                    end={{ x: 1, y: 1 }}
+                    style={styles.arenaLaunchGradient}
+                  >
+                    <View style={[styles.arenaLaunchIconWrap, { backgroundColor: arenaGlass.ctaIconBg }]}>
+                      <Ionicons name="flash" size={25} color={arenaGlass.ctaText} />
+                    </View>
+                    <View style={styles.arenaLaunchTextWrap}>
+                      <Text style={[styles.arenaLaunchTitle, { color: arenaGlass.ctaText, fontSize: f.h2 + 3 }]}>
+                        {triLang(lang, { ru: 'Найти матч', uk: 'Знайти матч', es: 'Buscar partida' })}
                       </Text>
-                    </LinearGradient>
-                  </TouchableOpacity>
-                  )}
-                  {effectiveOs !== 'ios' && friendShared && (
-                    <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
-                      <ActivityIndicator size="small" color={t.accent} />
-                      <Text style={[{ color: screenMuted, fontSize: f.sub }]}>
-                        {triLang(lang, {
-                          uk: 'Чекаємо друга...',
-                          ru: 'Ждём друга...',
-                          es: 'Esperando a tu amigo…',
-                        })}
+                      <Text style={[styles.arenaLaunchSub, { color: arenaGlass.ctaSubText, fontSize: f.caption }]}>
+                        {triLang(lang, { ru: 'подбор соперника', uk: 'підбір суперника', es: 'matchmaking' })}
                       </Text>
                     </View>
+                    <Ionicons name="arrow-forward-circle" size={34} color={arenaGlass.ctaText} />
+                  </LinearGradient>
+                </TouchableOpacity>
+
+                <View style={styles.arenaCostRow}>
+                  {isUnlimited ? (
+                    <View style={[styles.arenaCostChip, { backgroundColor: arenaGlass.warmBg, borderColor: arenaGlass.warmBorder }]}>
+                      <Ionicons name="sparkles" size={14} color={arenaGlass.warm} />
+                      <Text style={[styles.arenaCostText, { color: arenaGlass.warm, fontSize: f.caption }]}>
+                        {triLang(lang, { ru: 'Premium без лимита', uk: 'Premium без ліміту', es: 'Premium ilimitado' })}
+                      </Text>
+                    </View>
+                  ) : (
+                    <>
+                      <View style={[styles.arenaCostChip, { backgroundColor: arenaGlass.innerBg, borderColor: arenaGlass.innerBorder }]}>
+                        <Ionicons name="flash" size={14} color={arenaGlass.warm} />
+                        <Text style={[styles.arenaCostText, { color: screenMuted, fontSize: f.caption }]}>
+                          {triLang(lang, { ru: '1 энергия', uk: '1 енергія', es: '1 energía' })}
+                        </Text>
+                      </View>
+                      <View style={[styles.arenaCostChip, { backgroundColor: `${arenaTicketsColor}12`, borderColor: `${arenaTicketsColor}33` }]}>
+                        <Ionicons name="ticket" size={14} color={arenaTicketsColor} />
+                        <Text style={[styles.arenaCostText, { color: screenMuted, fontSize: f.caption }]}>
+                          {triLang(lang, { ru: '1 билет', uk: '1 квиток', es: '1 entrada' })}
+                        </Text>
+                      </View>
+                    </>
                   )}
-                  {arenaFriends.length > 0 && (
-                    <View style={{ marginTop: 4, gap: 12 }}>
-                      <ScrollView
-                        horizontal
-                        nestedScrollEnabled
-                        showsHorizontalScrollIndicator={false}
-                        contentContainerStyle={{ paddingHorizontal: 16, gap: 12 }}
-                      >
-                        {arenaFriends.map(friend => {
-                          const profile = arenaFriendProfiles[friend.uid];
-                          const totalXp = profile?.totalXp ?? 0;
-                          const level = getLevelFromXP(totalXp);
-                          const avatarId = profile?.avatar || String(getBestAvatarForLevel(level));
-                          const name = profile?.name ?? '…';
-                          const sending = arenaInviteSendingUid === friend.uid;
-                          const selected = arenaFriendPickUid === friend.uid;
-                          return (
+                </View>
+
+                <View style={styles.arenaActionList}>
+                  <TouchableOpacity
+                    testID="arena-play-with-friend"
+                    accessibilityLabel="qa-arena-play-with-friend"
+                    accessible={true}
+                    accessibilityRole="button"
+                    accessibilityState={{ expanded: friendRoomId != null }}
+                    onPress={() => {
+                      if (friendRoomId) {
+                        hapticTap();
+                        friendUnsubRef.current?.();
+                        sentInviteUnsubRef.current?.();
+                        friendUnsubRef.current = null;
+                        sentInviteUnsubRef.current = null;
+                        setFriendRoomId(null);
+                        setFriendRoomReady(false);
+                        setArenaFriendPickUid(null);
+                        return;
+                      }
+                      void handlePlayWithFriend();
+                    }}
+                    activeOpacity={0.78}
+                    style={[styles.arenaCommandButton, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBg }]}
+                  >
+                    <View style={[styles.arenaCommandIcon, { backgroundColor: arenaGlass.accentSoft }]}>
+                      <Ionicons name="people-outline" size={20} color={arenaGlass.accent} />
+                    </View>
+                    <View style={styles.arenaCommandCopy}>
+                      <Text style={[styles.arenaCommandTitle, { color: screenTitleColor, fontSize: f.sub }]}>
+                        {triLang(lang, { ru: 'Вызов другу', uk: 'Виклик другу', es: 'Reto a un amigo' })}
+                      </Text>
+                      <Text style={[styles.arenaCommandSub, { color: screenMuted, fontSize: f.caption }]}>
+                        {triLang(lang, { ru: 'Личный бой по приглашению', uk: 'Особистий бій за запрошенням', es: 'Duelo privado por invitación' })}
+                      </Text>
+                    </View>
+                    <Ionicons name={friendRoomId ? 'chevron-up' : 'chevron-down'} size={18} color={screenMuted} />
+                  </TouchableOpacity>
+
+                  {friendRoomId && (
+                    <View
+                      testID="arena-friend-panel"
+                      style={[styles.arenaFriendsPanel, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}
+                    >
+                      {arenaFriends.length > 0 ? (
+                        <>
+                          <ScrollView
+                            testID="arena-friends-scroll"
+                            horizontal
+                            nestedScrollEnabled
+                            showsHorizontalScrollIndicator={false}
+                            contentContainerStyle={styles.arenaFriendsScrollContent}
+                          >
+                            {arenaFriends.map(friend => {
+                              const profile = arenaFriendProfiles[friend.uid];
+                              const totalXp = profile?.totalXp ?? 0;
+                              const level = getLevelFromXP(totalXp);
+                              const avatarId = profile?.avatar || String(getBestAvatarForLevel(level));
+                              const name = profile?.name ?? '—';
+                              const sending = arenaInviteSendingUid === friend.uid;
+                              const selected = arenaFriendPickUid === friend.uid;
+                              return (
+                                <TouchableOpacity
+                                  testID={`arena-friend-pick-${friend.uid}`}
+                                  accessibilityLabel={`qa-arena-friend-pick-${friend.uid}`}
+                                  accessibilityRole="button"
+                                  accessibilityState={{ selected, disabled: sending }}
+                                  key={friend.uid}
+                                  onPress={() => {
+                                    if (sending) return;
+                                    hapticTap();
+                                    setArenaFriendPickUid(friend.uid);
+                                  }}
+                                  activeOpacity={0.75}
+                                  style={[
+                                    styles.arenaFriendChip,
+                                    {
+                                      borderColor: selected ? t.accent : 'rgba(255,255,255,0.12)',
+                                      backgroundColor: selected ? arenaGlass.accentSoft : arenaGlass.innerBgSoft,
+                                      opacity: sending ? 0.55 : 1,
+                                    },
+                                  ]}
+                                >
+                                  <View style={{ position: 'relative' }}>
+                                    <AvatarView avatar={avatarId} size={36} auraId={profile?.aura} />
+                                    {sending ? (
+                                      <View style={styles.arenaFriendSendingOverlay}>
+                                        <Ionicons name="paper-plane" size={15} color={t.accent} />
+                                      </View>
+                                    ) : null}
+                                  </View>
+                                  <Text
+                                    style={[styles.arenaFriendName, { color: screenTitleColor, fontSize: f.caption }]}
+                                  >
+                                    {name}
+                                  </Text>
+                                  <Text style={[styles.arenaFriendLevel, { color: screenMuted, fontSize: f.caption - 1 }]}>
+                                    Lv {level}
+                                  </Text>
+                                </TouchableOpacity>
+                              );
+                            })}
+                          </ScrollView>
+                          {arenaFriendPickUid != null && (
                             <TouchableOpacity
-                              key={friend.uid}
-                              onPress={() => {
-                                if (sending) return;
-                                hapticTap();
-                                setArenaFriendPickUid(friend.uid);
-                              }}
-                              activeOpacity={0.7}
-                              style={{ alignItems: 'center', gap: 3, minWidth: 76, maxWidth: 108, opacity: sending ? 0.55 : 1 }}
+                          testID={`arena-send-friend-invite-${arenaFriendPickUid}`}
+                          accessibilityLabel="qa-arena-send-friend-invite"
+                          accessibilityRole="button"
+                          accessibilityState={{
+                            disabled: arenaInviteSendingUid != null || !friendRoomReady,
+                            busy: arenaInviteSendingUid != null || !friendRoomReady,
+                          }}
+                          activeOpacity={0.86}
+                              disabled={arenaInviteSendingUid != null || !friendRoomReady}
+                              onPress={() => void handleSendInAppInviteToFriend(arenaFriendPickUid)}
+                              style={[
+                                styles.arenaInviteButton,
+                                {
+                                  backgroundColor: arenaGlass.accent,
+                                  opacity: arenaInviteSendingUid != null || !friendRoomReady ? 0.55 : 1,
+                                },
+                              ]}
                             >
-                              <View
-                                style={
-                                  selected
-                                    ? {
-                                      borderRadius: 999,
-                                      padding: 3,
-                                      borderWidth: 2,
-                                      borderColor: t.accent,
-                                    }
-                                    : { borderRadius: 999, padding: 3 }
-                                }
-                              >
-                                <View style={{ position: 'relative' }}>
-                                  <AvatarView avatar={avatarId} size={44} />
-                                  {sending ? (
-                                    <View style={{ position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, justifyContent: 'center', alignItems: 'center' }}>
-                                      <ActivityIndicator size="small" color={t.accent} />
-                                    </View>
-                                  ) : null}
-                                </View>
-                              </View>
-                              <Text
-                                numberOfLines={2}
-                                style={{
-                                  color: t.textPrimary,
-                                  fontSize: f.caption,
-                                  lineHeight: Math.round(f.caption * 1.2),
-                                  maxWidth: 104,
-                                  textAlign: 'center',
-                                }}
-                              >
-                                {name}
-                              </Text>
-                              <Text style={{ color: screenMuted, fontSize: f.caption }}>
-                                Lv {level}
+                          <Ionicons name="flash" size={18} color={t.correctText} />
+                          <Text style={[styles.arenaInviteButtonText, { color: t.correctText, fontSize: f.sub }]}>
+                            {!friendRoomReady
+                              ? triLang(lang, { ru: 'Готовим комнату', uk: 'Готуємо кімнату', es: 'Preparando sala' })
+                              : arenaInviteSendingUid != null
+                                  ? triLang(lang, { ru: 'Отправляем', uk: 'Надсилаємо', es: 'Enviando' })
+                                  : triLang(lang, {
+                                    ru: 'Бросить вызов',
+                                    uk: 'Кинути виклик',
+                                    es: 'Lanzar reto',
+                                  })}
                               </Text>
                             </TouchableOpacity>
-                          );
-                        })}
-                      </ScrollView>
-                      {arenaFriendPickUid != null && (
-                        <TouchableOpacity
-                          activeOpacity={0.85}
-                          disabled={arenaInviteSendingUid != null}
-                          onPress={() => void handleSendInAppInviteToFriend(arenaFriendPickUid)}
-                          style={{ opacity: arenaInviteSendingUid != null ? 0.55 : 1 }}
-                        >
-                          <LinearGradient
-                            colors={[t.accent, t.accent + 'BB']}
-                            style={[styles.mainBtn, { marginHorizontal: 16 }]}
-                            start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
-                          >
-                            <Ionicons name="flash" size={22} color={t.correctText} />
-                            <Text style={[styles.mainBtnText, { color: t.correctText, fontSize: f.h2 }]}>
-                              {triLang(lang, {
-                                ru: 'Бросить вызов',
-                                uk: 'Кинути виклик',
-                                es: 'Lanzar el reto',
-                              })}
-                            </Text>
-                          </LinearGradient>
-                        </TouchableOpacity>
+                          )}
+                        </>
+                      ) : (
+                        <View testID="arena-friend-empty" style={styles.arenaFriendEmpty}>
+                          <Ionicons name="person-add-outline" size={20} color={arenaGlass.accent} />
+                          <Text style={[styles.arenaFriendEmptyText, { color: screenMuted, fontSize: f.caption }]}>
+                            {triLang(lang, {
+                              ru: 'Пока нет друзей для вызова.',
+                              uk: 'Поки немає друзів для виклику.',
+                              es: 'Aún no hay amigos para retar.',
+                            })}
+                          </Text>
+                        </View>
                       )}
                     </View>
                   )}
-                </>
-              )}
+
+                  <View
+                    testID="arena-throne-info"
+                    accessible
+                    accessibilityRole="text"
+                    style={[styles.arenaInfoRow, { borderColor: arenaGlass.innerBorder, backgroundColor: arenaGlass.innerBgSoft }]}
+                  >
+                    <View style={[styles.arenaCommandIcon, { backgroundColor: arenaGlass.warmBg }]}>
+                      <Ionicons name="trophy-outline" size={20} color={arenaGlass.warm} />
+                    </View>
+                    <View style={styles.arenaCommandCopy}>
+                      <Text style={[styles.arenaCommandTitle, { color: screenTitleColor, fontSize: f.sub }]}>
+                        {hillThrone
+                          ? triLang(lang, { ru: 'Трон дня', uk: 'Трон дня', es: 'Trono del día' })
+                          : triLang(lang, { ru: 'Трон свободен', uk: 'Трон вільний', es: 'Trono libre' })}
+                      </Text>
+                      <Text style={[styles.arenaCommandSub, { color: screenMuted, fontSize: f.caption }]}>
+                        {hillThrone
+                          ? triLang(lang, {
+                            ru: `${hillThrone.championName} · ${hillThrone.score} побед`,
+                            uk: `${hillThrone.championName} · ${hillThrone.score} перемог`,
+                            es: `${hillThrone.championName} · ${hillThrone.score} victorias`,
+                          })
+                          : triLang(lang, { ru: 'Пока никто не занял трон', uk: 'Поки ніхто не зайняв трон', es: 'Nadie ocupa el trono aún' })}
+                      </Text>
+                    </View>
+                    <Text style={[styles.arenaInfoBadge, { color: arenaGlass.warm, fontSize: f.caption, backgroundColor: arenaGlass.warmBg }]}>
+                      {triLang(lang, { ru: 'Инфо', uk: 'Інфо', es: 'Info' })}
+                    </Text>
+                  </View>
+                </View>
+              </LinearGradient>
 
             </>
           )}
@@ -1551,21 +1802,7 @@ export default function DuelLobbyScreen({ isTab = false }: { isTab?: boolean } =
 
         {/* Слот всегда занят, чтобы поздний приход isUnlimited / phase
             не сдвигал кнопки в actions (иначе при заходе ловим «прыжок» интерфейса). */}
-        <View
-          style={styles.dailyLimitRow}
-          pointerEvents={!isUnlimited && !inSearchFlow ? 'auto' : 'none'}
-        >
-          {!isUnlimited && !inSearchFlow && (
-            <Text style={[styles.energyInfo, { color: screenMuted, fontSize: f.sub, marginTop: 0 }]}>
-              🎟 {Math.max(0, dailyMax - dailyCount)}/{dailyMax}{' '}
-              {triLang(lang, {
-                uk: 'спроб сьогодні',
-                ru: 'попыток сегодня',
-                es: 'intentos hoy',
-              })}
-            </Text>
-          )}
-        </View>
+        <View style={styles.dailyLimitRow} pointerEvents="none" />
         <View style={{ alignItems: 'center', paddingTop: 8 }}>
           <ReportErrorButton
             screen="arena_lobby"
@@ -1609,18 +1846,45 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12,
+    paddingTop: 12,
     paddingHorizontal: 14,
-    paddingBottom: 6,
-    /** Жёсткая высота шапки: EnergyBar (с formattedTime/bonusEnergy) и
-        myRank (label из Firestore) подгружаются позже — не дёргают layout. */
-    minHeight: 60,
+    paddingBottom: 10,
+    minHeight: 74,
   },
-  backBtn: { marginRight: 12 },
-  /** flex:1 на самом Text между узкой кнопкой и широким headerRight сжимал ширину до ~0 на телефонах → буквы столбиком (iOS). */
-  titleWrap: { flex: 1, minWidth: 0, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 4 },
-  titleText: { textAlign: 'center', width: '100%' },
+  backBtn: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 12,
+  },
+  titleWrap: { flex: 1, minWidth: 0, justifyContent: 'center', alignItems: 'flex-start' },
+  titleText: { textAlign: 'left', width: '100%', fontWeight: '900', letterSpacing: 0 },
+  headerRankLine: {
+    minHeight: 22,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 4,
+    maxWidth: '100%',
+  },
+  headerRankIcon: { width: 16, height: 16, flexShrink: 0 },
+  headerRankText: { fontWeight: '800', maxWidth: 92 },
+  headerRankMode: { fontWeight: '600', opacity: 0.82 },
   headerRight: { flexDirection: 'row', alignItems: 'center', gap: 8, flexShrink: 0 },
+  arenaTicketPill: {
+    minWidth: 66,
+    height: 38,
+    borderRadius: 19,
+    borderWidth: 1,
+    paddingHorizontal: 11,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 6,
+  },
+  arenaTicketText: { fontWeight: '900', fontVariant: ['tabular-nums'] },
   rankBadge: {
     flexDirection: 'row', alignItems: 'center', gap: 4,
     borderRadius: 10, borderWidth: 1, paddingHorizontal: 10, paddingVertical: 5,
@@ -1629,23 +1893,18 @@ const styles = StyleSheet.create({
   rankText: { fontWeight: '600' },
 
   bodyScroll: { flex: 1 },
-  /** flexGrow + justifyContent: на высоком экране блок по центру; на низком — вертикальный скролл без налезания. */
+  /** Stable top rhythm for the lobby controls; low screens still scroll normally. */
   bodyScrollContent: {
     flexGrow: 1,
     justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingTop: 4,
-    paddingBottom: 12,
-    gap: 16,
+    paddingTop: 8,
+    paddingBottom: 88,
+    gap: 22,
   },
 
-  /** infoZone — фиксированный по высоте слот сверху для async-контента
-      (queueHintIdle + premiumUnlimitedCard). Стабилизирует позицию кнопок:
-      когда isUnlimited / queueOthersCount прилетают позже, центр группы
-      в actions НЕ смещается. */
   infoZone: {
-    gap: 8,
-    minHeight: 80,
+    minHeight: 0,
   },
 
   card: { borderRadius: 20, borderWidth: 1, padding: 20, gap: 14 },
@@ -1657,14 +1916,449 @@ const styles = StyleSheet.create({
   },
   sizeBtnText: { fontWeight: '700' },
 
-  actions: { gap: 12 },
+  actions: { width: '100%', gap: 10, alignSelf: 'center' },
+
+  arenaStageCard: {
+    width: '100%',
+    alignSelf: 'center',
+    borderRadius: 28,
+    borderWidth: 1,
+    padding: 20,
+    overflow: 'hidden',
+    gap: 16,
+    shadowOffset: { width: 0, height: 20 },
+    shadowOpacity: 0.22,
+    shadowRadius: 28,
+    elevation: 8,
+  },
+  arenaGlassHighlight: {
+    position: 'absolute',
+    left: 1,
+    right: 1,
+    top: 1,
+    height: '46%',
+    borderTopWidth: 1,
+    borderLeftWidth: 1,
+    borderRightWidth: 1,
+    borderTopLeftRadius: 27,
+    borderTopRightRadius: 27,
+    opacity: 0.85,
+  },
+  arenaStageRail: {
+    position: 'absolute',
+    top: -70,
+    right: 34,
+    width: 88,
+    height: 430,
+    opacity: 0.42,
+    transform: [{ rotate: '31deg' }],
+  },
+  arenaStageRailAlt: {
+    position: 'absolute',
+    bottom: -88,
+    left: 28,
+    width: 64,
+    height: 330,
+    opacity: 0.5,
+    transform: [{ rotate: '31deg' }],
+  },
+  arenaStageTop: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  arenaStatusPill: {
+    minHeight: 34,
+    borderRadius: 17,
+    borderWidth: 1,
+    paddingHorizontal: 11,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 7,
+  },
+  arenaStatusDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
+    backgroundColor: '#58E58B',
+  },
+  arenaStatusText: { fontWeight: '900' },
+  arenaModePill: {
+    minHeight: 34,
+    borderRadius: 17,
+    borderWidth: 1,
+    paddingHorizontal: 11,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    backgroundColor: 'rgba(255,255,255,0.055)',
+  },
+  arenaModeText: { fontWeight: '900' },
+  arenaStageCopy: {
+    gap: 2,
+  },
+  arenaStageKicker: {
+    fontWeight: '900',
+    letterSpacing: 1.2,
+  },
+  arenaStageTitle: {
+    fontWeight: '900',
+    letterSpacing: 0,
+  },
+  arenaStageSub: {
+    lineHeight: 18,
+    fontWeight: '600',
+    maxWidth: 300,
+  },
+  arenaLaunchTouch: {
+    width: '100%',
+    borderRadius: 22,
+  },
+  arenaLaunchGradient: {
+    height: 76,
+    borderRadius: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  arenaLaunchIconWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(7,17,31,0.12)',
+  },
+  arenaLaunchTextWrap: { flex: 1, minWidth: 0 },
+  arenaLaunchTitle: { fontWeight: '900', letterSpacing: 0 },
+  arenaLaunchSub: { fontWeight: '800', textTransform: 'uppercase', letterSpacing: 0.6, flexWrap: 'wrap' },
+  arenaCostRow: {
+    minHeight: 32,
+    flexDirection: 'row',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    gap: 8,
+  },
+  arenaCostChip: {
+    minHeight: 30,
+    borderRadius: 15,
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+  },
+  arenaCostText: { fontWeight: '800' },
+  arenaActionList: {
+    gap: 12,
+    marginTop: 4,
+  },
+  arenaCommandButton: {
+    minHeight: 76,
+    borderRadius: 20,
+    borderWidth: 1,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  arenaCommandIcon: {
+    width: 42,
+    height: 42,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  arenaCommandCopy: { flex: 1, minWidth: 0, gap: 2 },
+  arenaCommandTitle: { fontWeight: '900', letterSpacing: 0 },
+  arenaCommandSub: { fontWeight: '600', lineHeight: 18, flexWrap: 'wrap' },
+  arenaInfoRow: {
+    minHeight: 82,
+    borderRadius: 20,
+    borderWidth: 1,
+    paddingHorizontal: 16,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  arenaInfoBadge: {
+    fontWeight: '900',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 999,
+    overflow: 'hidden',
+  },
+  arenaCommandActionText: { fontWeight: '900', flexShrink: 0 },
+  arenaFriendsPanel: {
+    borderRadius: 20,
+    borderWidth: 1,
+    paddingVertical: 12,
+    gap: 12,
+  },
+  arenaFriendsScrollContent: {
+    paddingHorizontal: 12,
+    gap: 10,
+  },
+  arenaFriendChip: {
+    width: 86,
+    minHeight: 96,
+    borderRadius: 18,
+    borderWidth: 1,
+    paddingVertical: 10,
+    paddingHorizontal: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 4,
+  },
+  arenaFriendSendingOverlay: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.22)',
+    borderRadius: 999,
+  },
+  arenaFriendName: {
+    fontWeight: '800',
+    maxWidth: 72,
+    textAlign: 'center',
+  },
+  arenaFriendLevel: { fontWeight: '700' },
+  arenaFriendEmpty: {
+    minHeight: 76,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    gap: 8,
+  },
+  arenaFriendEmptyText: {
+    textAlign: 'center',
+    fontWeight: '700',
+    lineHeight: 18,
+  },
+  arenaInviteButton: {
+    height: 48,
+    borderRadius: 18,
+    marginHorizontal: 12,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  arenaInviteButtonText: {
+    fontWeight: '900',
+  },
+  arenaEventStrip: {
+    minHeight: 88,
+    borderRadius: 22,
+    borderWidth: 1,
+    padding: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    overflow: 'hidden',
+  },
+  arenaEventAccent: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    bottom: 0,
+    width: 3,
+    backgroundColor: '#F5D97A',
+    opacity: 0.75,
+  },
+  arenaEventIcon: {
+    width: 46,
+    height: 46,
+    borderRadius: 17,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  arenaEventCopy: { flex: 1, minWidth: 0, gap: 2 },
+  arenaEventKicker: { fontWeight: '900', letterSpacing: 1.2 },
+  arenaEventTitle: { fontWeight: '900', letterSpacing: 0 },
+  arenaEventSub: { fontWeight: '700', lineHeight: 17 },
+  arenaEventAction: {
+    minHeight: 34,
+    borderRadius: 17,
+    borderWidth: 1,
+    paddingHorizontal: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0.18)',
+  },
+  arenaEventActionText: { fontWeight: '900' },
+
+  /* ─── ELITE CARD ─── */
+  eliteCard: {
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.13)',
+    backgroundColor: 'rgba(255,255,255,0.055)',
+    padding: 14,
+    gap: 12,
+    overflow: 'hidden',
+  },
+  eliteCornerTL: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: 28,
+    height: 28,
+    borderTopWidth: 2,
+    borderLeftWidth: 2,
+    borderTopLeftRadius: 22,
+  },
+  eliteCornerBR: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    width: 28,
+    height: 28,
+    borderBottomWidth: 2,
+    borderRightWidth: 2,
+    borderBottomRightRadius: 22,
+  },
+  eliteLiveRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    minHeight: 24,
+  },
+  eliteLiveDot: {
+    width: 7,
+    height: 7,
+    borderRadius: 3.5,
+    backgroundColor: '#4ADE80',
+  },
+  eliteLiveText: {
+    fontWeight: '700',
+  },
+  eliteFindBtn: {
+    height: 64,
+    borderRadius: 14,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  eliteFindBtnTouch: {
+    width: '100%',
+    borderRadius: 14,
+  },
+  eliteDisabled: {
+    opacity: 0.5,
+  },
+  eliteFindBtnTitle: {
+    color: '#fff',
+    fontWeight: '900',
+    letterSpacing: 0,
+  },
+  eliteFindBtnSub: {
+    color: 'rgba(255,255,255,0.6)',
+    fontWeight: '500',
+    marginTop: 1,
+  },
+  eliteFindBtnArrow: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    backgroundColor: 'rgba(255,255,255,0.15)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  eliteMainBtnGlow: {
+    position: 'absolute',
+    left: -6,
+    right: -6,
+    top: -6,
+    bottom: -6,
+    borderRadius: 22,
+  },
+  eliteDivider: {
+    height: 1,
+    marginHorizontal: 0,
+  },
+  eliteSecondaryRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    minHeight: 50,
+  },
+  eliteSecondaryBtn: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    height: 50,
+    borderRadius: 14,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+  },
+  eliteSecondaryBtnIcon: {
+    width: 32,
+    height: 32,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  eliteSecondaryBtnText: { fontWeight: '800', letterSpacing: 0 },
+  eliteSecondaryDivider: {
+    width: 1,
+    height: 28,
+    flexShrink: 0,
+  },
+
   mainBtn: {
     borderRadius: 18, height: 62,
     flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8,
+    paddingHorizontal: 18,
   },
-  mainBtnText: { fontWeight: '800' },
+  eliteMainBtn: { height: 70, borderRadius: 16, overflow: 'hidden' },
+  mainBtnText: { fontWeight: '900', letterSpacing: 0 },
   energyCost: { marginLeft: 4, fontWeight: '600' },
 
+  /* ─── THRONE CARD ─── */
+  throneCard: {
+    borderRadius: 18,
+    borderWidth: 1,
+    overflow: 'hidden',
+    minHeight: 82,
+  },
+  throneTopAccent: {
+    height: 2,
+    opacity: 0.6,
+  },
+  throneInner: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingVertical: 13,
+    paddingHorizontal: 16,
+    gap: 12,
+  },
+  throneBadgeLabel: {
+    fontWeight: '800',
+    letterSpacing: 1.4,
+  },
+  throneIconWrap: {
+    width: 48,
+    height: 48,
+    borderRadius: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    backgroundColor: 'rgba(201,168,76,0.12)',
+  },
+  throneTitle: { fontWeight: '900', letterSpacing: 0 },
+  throneSub: { fontWeight: '500', lineHeight: 17 },
 
   secondaryBtn: {
     borderRadius: 18, height: 56, borderWidth: 1,
@@ -1672,7 +2366,6 @@ const styles = StyleSheet.create({
   },
   secondaryBtnText: { fontWeight: '600' },
   queueHintIdle: {
-    width: '100%',
     marginBottom: 4,
     paddingHorizontal: 8,
   },
@@ -1693,14 +2386,28 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   premiumUnlimitedCard: {
-    borderRadius: 14,
+    minHeight: 48,
+    borderRadius: 18,
     borderWidth: 1,
-    paddingHorizontal: 12,
-    paddingVertical: 10,
+    paddingHorizontal: 14,
+    paddingVertical: 9,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+  },
+  premiumUnlimitedIcon: {
+    width: 26,
+    height: 26,
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(245,217,122,0.12)',
   },
   premiumUnlimitedText: {
-    fontWeight: '700',
+    fontWeight: '800',
     textAlign: 'center',
+    letterSpacing: 0,
   },
 
   rankedWagerCard: {
@@ -1729,7 +2436,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
   searchingLabel: { fontWeight: '500' },
   cancelBtn: {
     borderWidth: 1,
@@ -1750,7 +2456,75 @@ const styles = StyleSheet.create({
     borderRadius: 18,
     borderWidth: 1,
   },
-  queueTitle: { fontWeight: '800', textAlign: 'center' },
+  eliteQueuePanel: {
+    minHeight: 194,
+    justifyContent: 'center',
+    overflow: 'hidden',
+  },
+  eliteRadarWrap: {
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+    overflow: 'hidden',
+    borderWidth: 1.5,
+    borderColor: 'rgba(255,255,255,0.18)',
+    backgroundColor: 'rgba(0,0,0,0.32)',
+  },
+  eliteRadarRingStatic: {
+    position: 'absolute',
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 1,
+  },
+  eliteRadarCross: {
+    position: 'absolute',
+    opacity: 0.28,
+  },
+  eliteRadarSweepWrap: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    top: 0,
+    left: 60,
+    transformOrigin: '0% 100%',
+    overflow: 'hidden',
+  },
+  eliteRadarSweepGradient: {
+    position: 'absolute',
+    width: 60,
+    height: 60,
+    borderBottomLeftRadius: 60,
+  },
+  eliteRadarBeam: {
+    position: 'absolute',
+    width: 1.5,
+    height: 60,
+    bottom: 0,
+    left: -0.75,
+    opacity: 0.95,
+    borderRadius: 1,
+  },
+  eliteRadarDot: {
+    width: 10,
+    height: 10,
+    borderRadius: 5,
+    opacity: 0.9,
+  },
+  matchFoundBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    borderRadius: 12,
+    borderWidth: 1,
+    paddingHorizontal: 14,
+    paddingVertical: 7,
+    marginTop: 4,
+  },
+  queueTitle: { fontWeight: '900', textAlign: 'center', letterSpacing: 0.2 },
   queueSub: { textAlign: 'center', lineHeight: 20 },
   queueCountdown: {
     fontSize: 44,
@@ -1761,9 +2535,45 @@ const styles = StyleSheet.create({
   },
 
   energyInfo: { textAlign: 'center', marginTop: 0 },
-  /** Один ряд с попытками — чуть выше таббара. minHeight держит место,
-      чтобы поздний переключатель isUnlimited не дёргал layout actions. */
-  dailyLimitRow: { alignItems: 'center', justifyContent: 'center', paddingBottom: 4, marginBottom: 8, minHeight: 36 },
+  ticketCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+    paddingVertical: 11,
+    paddingHorizontal: 14,
+    width: '100%',
+  },
+  ticketLeft: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255,255,255,0.08)',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+  },
+  ticketTopRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  ticketLabel: { fontWeight: '600', letterSpacing: 0.1 },
+  ticketCount: { fontWeight: '800', letterSpacing: 0 },
+  ticketBarBg: {
+    height: 4,
+    borderRadius: 2,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    overflow: 'hidden',
+  },
+  ticketBarFill: {
+    height: '100%',
+    borderRadius: 2,
+  },
+  dailyLimitRow: { minHeight: 0 },
 
   queueActionMorphRow: {
     width: '100%',

@@ -44,32 +44,6 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
       heroMap: require('../assets/images/levels/her man fog.webp'),
     };
   }
-  if (themeMode === 'ocean') {
-    return {
-      lesson: require('../assets/images/levels/lesson ocean.webp'),
-      quizes: require('../assets/images/levels/quizes ocean.webp'),
-      cards: require('../assets/images/levels/cards ocean.webp'),
-      dayTasks: require('../assets/images/levels/day tasks ocean.webp'),
-      test: require('../assets/images/levels/test ocean.webp'),
-      exam: require('../assets/images/levels/exam ocean.webp'),
-      shop: require('../assets/images/levels/SHOP OCEAN.webp'),
-      arena: require('../assets/images/levels/ARENA OCEAN.webp'),
-      heroMap: require('../assets/images/levels/hero map ocean.webp'),
-    };
-  }
-  if (themeMode === 'sakura') {
-    return {
-      lesson: require('../assets/images/levels/lesson sacura.webp'),
-      quizes: require('../assets/images/levels/quizes sacura.webp'),
-      cards: require('../assets/images/levels/cards sacura.webp'),
-      dayTasks: require('../assets/images/levels/day tasks sacura.webp'),
-      test: require('../assets/images/levels/test sacura.webp'),
-      exam: require('../assets/images/levels/exam sacura.webp'),
-      shop: require('../assets/images/levels/SHOP SAKURA.webp'),
-      arena: require('../assets/images/levels/ARENA SAKURA.webp'),
-      heroMap: require('../assets/images/levels/hero map sacura.webp'),
-    };
-  }
   if (themeMode === 'gold') {
     return {
       lesson: require('../assets/images/levels/lesson coral.webp'),

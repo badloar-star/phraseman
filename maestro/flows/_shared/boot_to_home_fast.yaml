@@ -1,0 +1,11 @@
+appId: app.phraseman
+---
+- stopApp
+- runFlow: open_dev_client.yaml
+- runFlow: ../_dismiss_bug_hunt.yaml
+- waitForAnimationToEnd:
+    timeout: 8000
+- tapOn:
+    point: "10%,95%"
+- waitForAnimationToEnd:
+    timeout: 3000

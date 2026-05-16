@@ -50,9 +50,9 @@ function formatCommunityPurchaseError(e: unknown): { messageRu: string; messageU
   }
   if (lower.includes('insufficient') || lower.includes('недостаточ') || lower.includes('недостатн')) {
     return {
-      messageRu: 'Недостаточно осколков на балансе (проверьте после загрузки с сервера).',
-      messageUk: 'Недостатньо осколків на балансі (перевірте після завантаження з сервера).',
-      messageEs: 'Saldo de fragmentos insuficiente (sincroniza con el servidor y comprueba).',
+      messageRu: 'Недостаточно осколков на балансе. Проверьте баланс после синхронизации.',
+      messageUk: 'Недостатньо осколків на балансі. Перевірте баланс після синхронізації.',
+      messageEs: 'Saldo de fragmentos insuficiente. Sincroniza con el servidor y comprueba.',
     };
   }
   if (lower.includes('own pack') || lower.includes('свой') || lower.includes('власн')) {
@@ -122,6 +122,9 @@ export async function purchaseCommunityPackWithShards(
       await replaceShardsBalanceLocal(await getShardsBalance());
     }
     await addCommunityOwnedPackId(pack.id);
+    const allOwned = await loadCommunityOwnedPackIds();
+    const { checkAchievements } = await import('../achievements');
+    void checkAchievements({ type: 'pack_purchased', totalPacks: allOwned.length });
     const titleEs =
       pack.titleEs.trim()
       || pack.titleUk.trim()

@@ -27,10 +27,27 @@ function loadTsModule(absPath) {
   });
   const module = { exports: {} };
   const requireShim = (rel) => {
+    if (rel === 'react-native') {
+      return {
+        Platform: {
+          OS: 'android',
+          Version: 'qa',
+          select: (map) => map?.android ?? map?.native ?? map?.default,
+        },
+        DeviceEventEmitter: { emit() {}, addListener: () => ({ remove() {} }) },
+      };
+    }
+    if (rel === 'expo-constants') return { default: { appOwnership: null }, appOwnership: null };
+    if (rel === '@react-native-async-storage/async-storage') {
+      const storage = { getItem: async () => null, setItem: async () => undefined, removeItem: async () => undefined };
+      return { default: storage, ...storage };
+    }
     if (rel === './lesson_data_types' || rel.endsWith('lesson_data_types')) return {};
-    if (rel.startsWith('./')) {
-      const next = path.resolve(path.dirname(absPath), rel + '.ts');
-      if (fs.existsSync(next)) return loadTsModule(next);
+    if (rel.startsWith('.')) {
+      for (const suffix of ['.ts', '.tsx', '/index.ts']) {
+        const next = path.resolve(path.dirname(absPath), rel + suffix);
+        if (fs.existsSync(next)) return loadTsModule(next);
+      }
     }
     return {};
   };
@@ -108,7 +125,12 @@ for (const p of flat) {
 
 // 2) Number mismatch: явное "S/are/were/many/some" в EN с pluralным существительным,
 //    но в RU/UK слово в единственном числе (или наоборот). Простая эвристика на маркерах.
-const PLURAL_EN_MARKERS = /\b(are|were|have been|many|several|few|some|two|three|four|five|six|seven|eight|nine|ten|both|all|these|those|my|our|your|their)\s+([a-z]+s)\b/i;
+const PLURAL_EN_MARKERS = [
+  /\bthere\s+are\b/i,
+  /\bare\s+there\b/i,
+  /\b(?:the|these|those)\s+[a-z][a-z-]*s\s+(?:are|were)\b/i,
+  /\b(?:many|several|few|two|three|four|five|six|seven|eight|nine|ten|both|all|these|those)\s+[a-z][a-z-]*s\b/i,
+];
 // Слова-исключения, которые на -s в EN, но не множественное:
 const EN_S_NOT_PLURAL = new Set([
   'news','physics','mathematics','politics','economics','ethics','statistics',
@@ -130,16 +152,29 @@ function looksPluralEnNoun(word) {
   return /[a-z]s$/.test(lw) && !/(ss|us|is)$/.test(lw);
 }
 
+function hasRuPluralSignal(text) {
+  const s = String(text || '').toLowerCase();
+  if (/(они|мы|вы|эти|те|многие|несколько|двое|трое|два|две|три|четыре|пять|шесть|семь|восемь|девять|десять|оба|обе|все|мои|твои|наши|ваши|их|есть|нет|много)/u.test(s)) return true;
+  if (/(ы|и|а|я|ов|ев|ей|ам|ям|ами|ями|ах|ях|ются|лись)(?=$|[\s.,!?;:])/u.test(s)) return true;
+  return /(обувь|люди|проблем|ошибок|правила|ответы|вопросов)/u.test(s);
+}
+
+function hasUkPluralSignal(text) {
+  const s = String(text || '').toLowerCase();
+  if (/(вони|ми|ви|ці|ті|багато|кілька|двоє|троє|дві|три|чотири|п['’]?ять|шість|сім|вісім|дев['’]?ять|десять|обоє|обидва|обидві|всі|мої|твої|наші|ваші|їх|є|немає)/u.test(s)) return true;
+  if (/(и|і|ї|а|я|ів|їв|ей|ам|ям|ами|ями|ах|ях|ються|лись)(?=$|[\s.,!?;:])/u.test(s)) return true;
+  return /(взуття|люди|питання|повідомлення|правила|відповіді|запитань)/u.test(s);
+}
+
 for (const p of flat) {
-  const enWords = p.en.replace(/[.,!?;:]/g, '').split(/\s+/);
-  const enHasPluralNoun = enWords.some(looksPluralEnNoun) || PLURAL_EN_MARKERS.test(p.en);
+  const enHasPluralNoun = PLURAL_EN_MARKERS.some((rx) => rx.test(p.en));
   if (!enHasPluralNoun) continue;
   // Если EN явно про множ. число, а в RU/UK нет ни одного маркера множ. — подсветим.
   // Это лишь подсказка, не приговор.
-  if (!/они|мы|вы|эти|те|многие|несколько|двое|трое|два|две|три|четыре|пять|шесть|семь|восемь|девять|десять|оба|обе|все|мои|твои|его|её|наши|ваши|их|[аеоиыя]ми\b|[аеоиыя]х\b|[ыи]\b/i.test(p.ru)) {
+  if (!hasRuPluralSignal(p.ru)) {
     add('NUMBER_HINT_RU', p, 'EN, похоже, во множественном числе — проверьте RU');
   }
-  if (!/вони|ми|ви|ці|ті|багато|кілька|двоє|троє|дві|три|чотири|п['’]?ять|шість|сім|вісім|дев['’]?ять|десять|обоє|обидва|обидві|всі|мої|твої|його|її|наші|ваші|їх|[аеоиия]ми\b|[аеоиія]х\b|[иі]\b/i.test(p.uk)) {
+  if (!hasUkPluralSignal(p.uk)) {
     add('NUMBER_HINT_UK', p, 'EN, похоже, во множественном числе — проверьте UK');
   }
 }
@@ -209,6 +244,16 @@ const E_YO_WORDS = /(всем(?!и)|жен[аы]|пер[её]рыв|сл[её]з
 // 5) Похожие EN→разные RU (рассинхрон): один и тот же EN-токен переводится по-разному
 //    в разных уроках. Нормализуем по lowercase + punctuation strip.
 const enToTranslations = new Map();
+function normalizeConsistencyText(value) {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/ё/g, 'е')
+    .replace(/[’ʼ`]/g, "'")
+    .replace(/[.?!;:]+$/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 for (const p of flat) {
   const key = p.en.toLowerCase().replace(/[.,!?;:]+$/,'').trim();
   if (!enToTranslations.has(key)) enToTranslations.set(key, []);
@@ -216,8 +261,8 @@ for (const p of flat) {
 }
 for (const [key, list] of enToTranslations) {
   if (list.length < 2) continue;
-  const ruSet = new Set(list.map((x) => x.ru.toLowerCase().trim()));
-  const ukSet = new Set(list.map((x) => x.uk.toLowerCase().trim()));
+  const ruSet = new Set(list.map((x) => normalizeConsistencyText(x.ru)));
+  const ukSet = new Set(list.map((x) => normalizeConsistencyText(x.uk)));
   if (ruSet.size > 1) {
     // Только если расхождение значимое
     add('CONSISTENCY_RU', list[0], `EN "${key}" имеет разные RU-переводы: ${[...ruSet].map(s=>'«'+s+'»').join(', ')} (см. ${list.map(x=>`L${x.lesson}/${x.id}`).join(', ')})`);

@@ -4,24 +4,25 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Animated, Easing, InteractionManager, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { useAudio } from '../hooks/use-audio';
 import ContentWrap from '../components/ContentWrap';
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { triLang } from '../constants/i18n';
+import { screenTextOnGradient } from '../constants/theme';
 import { useTheme } from '../components/ThemeContext';
 import { useEnergy } from '../components/EnergyContext';
 import EnergyBar from '../components/EnergyBar';
 import NoEnergyModal from '../components/NoEnergyModal';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
-import PhraseContentStars from '../components/PhraseContentStars';
 import { hapticError, hapticTap } from '../hooks/use-haptics';
+import { useAudio } from '../hooks/use-audio';
 import { getLessonPrepositionPack } from './lesson_prepositions';
 import { registerXP } from './xp_manager';
 import { addShards } from './shards_system';
-import { playActivityCompletionModalSound } from './activity_complete_sound';
 import { useEffectivePlatformOS } from './platform_ui_preview';
+import { openLessonAccessGate, shouldBlockLessonAccess } from './lesson_premium_gate';
+import { loadSettings } from './settings_edu';
 
 const POINTS_PER_CORRECT = 2;
 const POINTS_PER_PERFECT = 10;
@@ -36,11 +37,19 @@ export default function PrepositionDrillScreen() {
   const effectiveOs = useEffectivePlatformOS();
   const { id } = useLocalSearchParams<{ id?: string }>();
   const lessonId = parseInt(id || '0', 10) || 0;
+  useEffect(() => {
+    let cancelled = false;
+    void shouldBlockLessonAccess(lessonId).then(blocked => {
+      if (!cancelled && blocked) openLessonAccessGate(router, lessonId);
+    });
+    return () => { cancelled = true; };
+  }, [lessonId, router]);
   const { lang } = useLang();
   const { theme: t, f, themeMode, ds } = useTheme();
+  const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const insets = useSafeAreaInsets();
   const scrollRef = useRef<ScrollView>(null);
-  const isLightTheme = themeMode === 'ocean' || themeMode === 'sakura';
+  const isLightTheme = false;
 
   const pack = useMemo(() => getLessonPrepositionPack(lessonId), [lessonId]);
   const progressKey = `lesson${lessonId}_preposition_progress`;
@@ -51,14 +60,16 @@ export default function PrepositionDrillScreen() {
   const [answeredIds, setAnsweredIds] = useState<string[]>([]);
   const [wrongIds, setWrongIds] = useState<string[]>([]);
   const [reviewMode, setReviewMode] = useState(false);
-
   const { speak: speakAudio, stop: stopAudio } = useAudio();
-  useEffect(() => () => { stopAudio(); }, [stopAudio]);
+  const [voiceOut, setVoiceOut] = useState(true);
+  const [speechRate, setSpeechRate] = useState(0.9);
 
   const userNameRef = useRef<string>('');
   useEffect(() => {
     AsyncStorage.getItem('user_name').then(n => { if (n) userNameRef.current = n; });
+    loadSettings().then(s => { setVoiceOut(s.voiceOut); setSpeechRate(s.speechRate); });
   }, []);
+  useEffect(() => () => { stopAudio(); }, [stopAudio]);
 
   // Perfect-bonus is granted once per lesson on the first clean pass
   const perfectAwardedRef = useRef(false);
@@ -199,16 +210,15 @@ export default function PrepositionDrillScreen() {
 
   useEffect(() => {
     if (!done) return;
-    void playActivityCompletionModalSound();
   }, [done]);
-
   const speakSentenceEn = useCallback((template: string, prep: string) => {
+    if (!voiceOut) return;
     const line = template.replace(/__/g, prep).replace(/\s+/g, ' ').trim();
     if (!line) return;
     InteractionManager.runAfterInteractions(() => {
-      speakAudio(line);
+      speakAudio(line, speechRate, { language: 'en-US' });
     });
-  }, [speakAudio]);
+  }, [speakAudio, speechRate, voiceOut]);
 
   /** Після відповіді пояснення може займати екран — докручуємо вниз до «Дальше», зірок і репорта (Android). */
   useEffect(() => {
@@ -373,7 +383,7 @@ export default function PrepositionDrillScreen() {
             >
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
             </TouchableOpacity>
-            <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>{title}</Text>
+            <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>{title}</Text>
             <EnergyBar size={20} />
           </View>
 
@@ -392,7 +402,7 @@ export default function PrepositionDrillScreen() {
                 showsVerticalScrollIndicator
                 removeClippedSubviews={effectiveOs === 'android' ? false : undefined}
               >
-              <Text style={{ color: t.textMuted, fontSize: f.sub, marginBottom: 8 }}>
+              <Text style={{ color: sx.muted, fontSize: f.sub, marginBottom: 8 }}>
                 {triLang(lang, { uk: 'Завдання', ru: 'Задание', es: 'Ejercicio' })} {itemIdx + 1}/{total}
               </Text>
 
@@ -456,13 +466,6 @@ export default function PrepositionDrillScreen() {
                 </View>
               )}
 
-              <PhraseContentStars
-                scope="preposition_drill"
-                itemId={`L${lessonId}_prep_${item.id}`}
-                labelSnippet={item.sentenceTemplate}
-                style={{ marginTop: ds.spacing.sm, marginBottom: ds.spacing.sm }}
-              />
-
               {/* Кнопка репорта — в конце прокрутки */}
               <ReportErrorButton
                 screen="lesson_prepositions"
@@ -485,6 +488,7 @@ export default function PrepositionDrillScreen() {
                   }),
                 ].join('\n')}
                 style={{ alignSelf: 'center', marginTop: ds.spacing.md, marginBottom: ds.spacing.sm }}
+                textColor={sx.muted}
               />
               </ScrollView>
             </View>
@@ -493,17 +497,17 @@ export default function PrepositionDrillScreen() {
               <View style={{ width: 80, height: 80, borderRadius: 40, backgroundColor: t.bgCard, borderWidth: 1, borderColor: t.border, justifyContent: 'center', alignItems: 'center' }}>
                 <Ionicons name="checkmark-done-outline" size={36} color={t.correct} />
               </View>
-              <Text style={{ color: t.textPrimary, fontSize: f.h1, fontWeight: '700', textAlign: 'center' }}>
+              <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '700', textAlign: 'center' }}>
                 {triLang(lang, {
                   uk: 'Прийменники відпрацьовано!',
                   ru: 'Предлоги отработаны!',
                   es: '¡Preposiciones repasadas!',
                 })}
               </Text>
-              <Text style={{ color: t.textMuted, fontSize: f.bodyLg }}>
+              <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>
                 {triLang(lang, { uk: 'Точність: ', ru: 'Точность: ', es: 'Precisión: ' })}{accuracy}% ({correctCount}/{total})
               </Text>
-              <Text style={{ color: t.textSecond, fontSize: f.body }}>
+              <Text style={{ color: sx.second, fontSize: f.body }}>
                 {triLang(lang, {
                   uk: `Помилок: ${wrongIds.length}`,
                   ru: `Ошибок: ${wrongIds.length}`,

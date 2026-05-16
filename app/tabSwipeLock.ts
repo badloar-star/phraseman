@@ -1,6 +1,6 @@
 import { makeMutable } from 'react-native-reanimated';
 
-// SharedValue — читается и пишется как с JS-потока, так и из worklet'ов на UI-потоке.
+// SharedValue — читается и пишется как с JS-потока, так и из worklet\'ов на UI-потоке.
 // Ставится в true пока вложенный горизонтальный ScrollView скроллится,
 // чтобы TabSlider не перехватывал жест.
 export const tabSwipeLocked = makeMutable(false);

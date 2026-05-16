@@ -305,27 +305,15 @@ export const MINIMAL_DARK = {
   bgGradient: ['#1A1A1A', '#121212'] as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'neon' | 'gold' | 'ocean' | 'sakura' | 'minimalLight' | 'minimalDark';
+export type ThemeMode = 'dark' | 'neon' | 'gold' | 'minimalLight' | 'minimalDark';
 export type Theme = typeof DARK;
 
-/**
- * Текст прямо на тёмном градиенте экрана (не на светлой карточке).
- * У ocean/sakura `textPrimary` / `textMuted` заточены под плитки — на фоне их не видно.
- */
-export function screenTextOnGradient(theme: Theme, themeMode: ThemeMode): {
+export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
   primary: string;
   second: string;
   muted: string;
   ghost: string;
 } {
-  if (themeMode === 'ocean' || themeMode === 'sakura') {
-    return {
-      primary: theme.heroTextPrimary,
-      second: theme.heroTextMuted,
-      muted: theme.heroTextMuted,
-      ghost: themeMode === 'ocean' ? 'rgba(210, 236, 255, 0.52)' : 'rgba(255, 218, 232, 0.55)',
-    };
-  }
   return {
     primary: theme.textPrimary,
     second: theme.textSecond,
@@ -337,8 +325,6 @@ export function screenTextOnGradient(theme: Theme, themeMode: ThemeMode): {
 // Убеждаемся, что все темы соответствуют одному типу (compile-time check)
 const _checkNEON:   Theme = NEON         as any;
 const _checkGOLD:   Theme = GOLD         as any;
-const _checkOCEAN:  Theme = LIGHT_OCEAN  as any;
-const _checkSAKURA: Theme = LIGHT_SAKURA as any;
 const _checkMINL:   Theme = MINIMAL_LIGHT as any;
 const _checkMIND:   Theme = MINIMAL_DARK  as any;
 
@@ -416,7 +402,6 @@ export const STRINGS = {
     themeLight: 'Светлая',
     learning:   'Обучение',
     learnSet:   'Настройки обучения',
-    feedback:   'Идеи и предложения',
     help:       'Помощь',
     premium:    'Premium',
   },
@@ -431,15 +416,15 @@ export const STRINGS = {
   premium: {
     title:    'Premium',
     subtitle: 'Полный доступ ко всем материалам',
-    trial:    '7 дней бесплатно',
+    trial:    '3 дня бесплатно',
     price:    'Месячная или годовая — точная сумма в App Store / Google Play',
-    cta:      'Начать 7 дней бесплатно',
+    cta:      'Начать 3 дня бесплатно',
     ctaSub:   'Оформить годовую подписку',
-    locked:   'Без Premium ты теряешь доступ\nк 31 уроку и квизам',
+    locked:   'Premium открывает уроки после первых 3\nи квизы Medium/Hard',
     legal:    'Отмена в любое время в настройках App Store / Google Play.',
     freeCont: 'Продолжить бесплатно (Урок 1)',
     features: [
-      'Все 32 урока',
+      'Уроки после первых 3',
       'Квизы всех уровней',
       'Голосовой ввод',
       'Подробная статистика',

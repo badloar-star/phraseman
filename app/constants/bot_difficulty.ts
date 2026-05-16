@@ -39,13 +39,46 @@ export function getBotProfile(rankIndex: number): BotProfile {
 }
 
 /**
+ * Категории скорости ответа бота.
+ *
+ * Bronze I  → лёгкие вопросы, бот отвечает быстро:
+ *   Быстро  (0.8–6с)   60%
+ *   Нормально (6–15с)  30%
+ *   Медленно (15–28с)   8%
+ *   Очень медленно (28–38с) 2%
+ *
+ * Legend III → бот "тянет", создаёт напряжение:
+ *   Быстро  (0.8–6с)   15%
+ *   Нормально (6–15с)  35%
+ *   Медленно (15–28с)  35%
+ *   Очень медленно (28–38с) 15%
+ */
+const SPEED_BUCKETS: Array<{ minMs: number; maxMs: number; chanceBronze: number; chanceLegend: number }> = [
+  { minMs:   800, maxMs:  6_000, chanceBronze: 0.60, chanceLegend: 0.15 },
+  { minMs: 6_000, maxMs: 15_000, chanceBronze: 0.30, chanceLegend: 0.35 },
+  { minMs: 15_000, maxMs: 28_000, chanceBronze: 0.08, chanceLegend: 0.35 },
+  { minMs: 28_000, maxMs: 38_000, chanceBronze: 0.02, chanceLegend: 0.15 },
+];
+
+/**
  * Сэмпл фактической задержки ответа бота.
+ * Выбирает категорию скорости по взвешенным шансам (интерполированным по рангу),
+ * затем берёт равномерный рандом внутри диапазона.
  * Гарантия: >= 800мс (бот не отвечает мгновенно), <= 38_000мс (укладывается в окно вопроса 40с).
  */
 export function sampleBotDelayMs(profile: BotProfile): number {
-  const noise = (Math.random() * 2 - 1) * profile.jitterMs;
-  const raw = profile.baseDelayMs + noise;
-  return Math.max(800, Math.min(38_000, Math.round(raw)));
+  const t = Math.max(0, Math.min(1, (profile.baseDelayMs - 8000) / (1800 - 8000)));
+  const roll = Math.random();
+  let cumulative = 0;
+  for (const bucket of SPEED_BUCKETS) {
+    const chance = lerp(bucket.chanceBronze, bucket.chanceLegend, t);
+    cumulative += chance;
+    if (roll < cumulative) {
+      const ms = bucket.minMs + Math.random() * (bucket.maxMs - bucket.minMs);
+      return Math.round(ms);
+    }
+  }
+  return 38_000;
 }
 
 /**

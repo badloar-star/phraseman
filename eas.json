@@ -14,7 +14,10 @@
     "production": {
       "environment": "production",
       "channel": "production",
-      "autoIncrement": false
+      "autoIncrement": false,
+      "env": {
+        "EXPO_PUBLIC_STORE_RELEASE": "1"
+      }
     }
   },
   "submit": {

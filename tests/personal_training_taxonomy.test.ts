@@ -4,7 +4,10 @@ import path from 'path';
 import { getDiagnosisTraining } from '../app/diagnosis_trainings';
 import {
   ACTIVE_PERSONAL_TRAINING_IDS,
+  choosePersonalTrainingCandidate,
+  getFirstUnmetPersonalTrainingPrerequisite,
   JESSE_REWORKED_MARKER,
+  PERSONAL_TRAINING_CEFR_ORDER,
   PERSONAL_TRAINING_TAXONOMY,
 } from '../app/personal_training_taxonomy';
 
@@ -76,5 +79,84 @@ describe('personal training taxonomy', () => {
       .filter((id) => !markedIds.has(id));
 
     expect(markedFilesOutsideTaxonomy).toEqual([]);
+  });
+
+  it('keeps Cambridge/CEFR placement metadata complete and connected', () => {
+    const activeIds = new Set(ACTIVE_PERSONAL_TRAINING_IDS);
+    const byId = new Map<string, (typeof PERSONAL_TRAINING_TAXONOMY)[number]>(
+      PERSONAL_TRAINING_TAXONOMY.map((item) => [item.id, item]),
+    );
+
+    for (const entry of PERSONAL_TRAINING_TAXONOMY.filter((item) => item.status === 'active')) {
+      expect(entry.cefrLevel).toMatch(/^(A1|A2|A2\+|B1|B1\+)$/);
+      expect(entry.placementRisk).toMatch(/^(low|medium|high)$/);
+
+      for (const prerequisite of entry.prerequisites) {
+        const prerequisiteEntry = byId.get(prerequisite);
+
+        expect(activeIds.has(prerequisite)).toBe(true);
+        expect(prerequisiteEntry).toBeTruthy();
+        expect(PERSONAL_TRAINING_CEFR_ORDER[prerequisiteEntry!.cefrLevel]).toBeLessThanOrEqual(
+          PERSONAL_TRAINING_CEFR_ORDER[entry.cefrLevel],
+        );
+      }
+    }
+  });
+
+  it('keeps Cambridge/CEFR prerequisites acyclic', () => {
+    const byId = new Map<string, (typeof PERSONAL_TRAINING_TAXONOMY)[number]>(
+      PERSONAL_TRAINING_TAXONOMY.map((item) => [item.id, item]),
+    );
+    const visiting = new Set<string>();
+    const visited = new Set<string>();
+
+    const visit = (id: string): void => {
+      if (visited.has(id)) {
+        return;
+      }
+      expect(visiting.has(id)).toBe(false);
+      visiting.add(id);
+
+      for (const prerequisite of byId.get(id)?.prerequisites ?? []) {
+        visit(prerequisite);
+      }
+
+      visiting.delete(id);
+      visited.add(id);
+    };
+
+    for (const entry of PERSONAL_TRAINING_TAXONOMY) {
+      visit(entry.id);
+    }
+  });
+
+  it('routes high-risk Cambridge/CEFR topics through unmet prerequisites first', () => {
+    expect(
+      getFirstUnmetPersonalTrainingPrerequisite('present_perfect_vs_past_simple', new Set()),
+    ).toBe('verb_past_simple_regular_irregular');
+    expect(
+      choosePersonalTrainingCandidate(['present_perfect_vs_past_simple'], new Set()),
+    ).toBe('verb_past_simple_regular_irregular');
+    expect(
+      choosePersonalTrainingCandidate(
+        ['present_perfect_vs_past_simple'],
+        new Set(['verb_present_simple_statement', 'verb_past_simple_regular_irregular']),
+      ),
+    ).toBe('verb_present_perfect_basic');
+    expect(
+      choosePersonalTrainingCandidate(
+        ['present_perfect_vs_past_simple'],
+        new Set([
+          'verb_present_simple_statement',
+          'verb_past_simple_regular_irregular',
+          'verb_present_perfect_basic',
+        ]),
+      ),
+    ).toBe('present_perfect_vs_past_simple');
+  });
+
+  it('does not over-gate lower-risk A1/A2 topics', () => {
+    expect(choosePersonalTrainingCandidate(['article_the_specific'], new Set())).toBe('article_the_specific');
+    expect(choosePersonalTrainingCandidate(['modal_base_form'], new Set())).toBe('modal_base_form');
   });
 });

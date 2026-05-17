@@ -160,6 +160,11 @@ export default function SaveProgressBanner() {
                 ru: 'Сохрани свой прогресс',
                 uk: 'Збережи свій прогрес',
                 es: 'Guarda tu progreso',
+                'pt-BR': 'Salve seu progresso',
+                vi: 'Lưu tiến trình của bạn',
+                id: 'Simpan progresmu',
+                tr: 'İlerlemeni kaydet',
+                pl: 'Zapisz swój postęp',
               })}
             </Text>
           </View>
@@ -176,7 +181,16 @@ export default function SaveProgressBanner() {
             }}
           >
             <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '800' }}>
-              {triLang(lang, { ru: 'Привязать', uk: 'Прив\'язати', es: 'Vincular' })}
+              {triLang(lang, {
+                ru: 'Привязать',
+                uk: 'Прив\'язати',
+                es: 'Vincular',
+                'pt-BR': 'Vincular',
+                vi: 'Liên kết',
+                id: 'Tautkan',
+                tr: 'Bağla',
+                pl: 'Połącz',
+              })}
             </Text>
           </TouchableOpacity>
 
@@ -206,6 +220,16 @@ export default function SaveProgressBanner() {
               "Прив\'яжи акаунт — і твої уроки, XP, серія та досягнення будуть у безпеці. Навіть якщо телефон раптом вирішить піти у відпустку.",
             es:
               'Vincula tu cuenta: tus lecciones, XP, racha y logros siguen a salvo. Aunque el móvil decida irse de vacaciones sin avisar.',
+            'pt-BR':
+              'Vincule sua conta: suas lições, XP, sequência e conquistas ficam seguros. Mesmo se o celular decidir tirar férias sem avisar.',
+            vi:
+              'Liên kết tài khoản để bài học, XP, chuỗi ngày và thành tích của bạn được an toàn. Kể cả khi điện thoại bất ngờ muốn nghỉ phép.',
+            id:
+              'Tautkan akunmu agar pelajaran, XP, streak, dan pencapaian tetap aman. Bahkan jika ponsel tiba-tiba memutuskan liburan.',
+            tr:
+              'Hesabını bağla; derslerin, XP, serin ve başarımların güvende kalsın. Telefon birden tatile çıkmaya karar verse bile.',
+            pl:
+              'Połącz konto, a lekcje, XP, seria i osiągnięcia będą bezpieczne. Nawet jeśli telefon nagle postanowi zrobić sobie urlop.',
           })}
         </Text>
       </PremiumCard>

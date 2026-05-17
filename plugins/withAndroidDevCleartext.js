@@ -1,9 +1,20 @@
-// Разрешение незащищённого HTTP к Metro для dev-client (adb reverse → 127.0.0.1, LAN).
+// Release должен оставаться HTTPS-only. Cleartext нужен только dev-client для Metro
+// (adb reverse -> 127.0.0.1, LAN), поэтому пишем debug/debugOptimized overlays.
 const { withAndroidManifest, withDangerousMod } = require('@expo/config-plugins');
 const fs = require('fs');
 const path = require('path');
 
-const NETWORK_SECURITY_CONFIG_XML = `<?xml version="1.0" encoding="utf-8"?>
+const RELEASE_NETWORK_SECURITY_CONFIG_XML = `<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+  <base-config cleartextTrafficPermitted="false">
+    <trust-anchors>
+      <certificates src="system" />
+    </trust-anchors>
+  </base-config>
+</network-security-config>
+`;
+
+const DEV_NETWORK_SECURITY_CONFIG_XML = `<?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
   <base-config cleartextTrafficPermitted="true">
     <trust-anchors>
@@ -14,11 +25,18 @@ const NETWORK_SECURITY_CONFIG_XML = `<?xml version="1.0" encoding="utf-8"?>
 </network-security-config>
 `;
 
+const DEV_ANDROID_MANIFEST_XML = `<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <application android:usesCleartextTraffic="true" tools:targetApi="28" tools:ignore="GoogleAppIndexingWarning" tools:replace="android:usesCleartextTraffic" />
+</manifest>
+`;
+
 const writeXml = (config) =>
   withDangerousMod(config, [
     'android',
     async (cfg) => {
-      const xmlDir = path.join(
+      const mainXmlDir = path.join(
         cfg.modRequest.platformProjectRoot,
         'app',
         'src',
@@ -26,12 +44,23 @@ const writeXml = (config) =>
         'res',
         'xml',
       );
-      if (!fs.existsSync(xmlDir)) fs.mkdirSync(xmlDir, { recursive: true });
+      if (!fs.existsSync(mainXmlDir)) fs.mkdirSync(mainXmlDir, { recursive: true });
       fs.writeFileSync(
-        path.join(xmlDir, 'phraseman_network_security_config.xml'),
-        NETWORK_SECURITY_CONFIG_XML,
+        path.join(mainXmlDir, 'phraseman_network_security_config.xml'),
+        RELEASE_NETWORK_SECURITY_CONFIG_XML,
         'utf8',
       );
+      for (const sourceSet of ['debug', 'debugOptimized']) {
+        const srcRoot = path.join(cfg.modRequest.platformProjectRoot, 'app', 'src', sourceSet);
+        const xmlDir = path.join(srcRoot, 'res', 'xml');
+        if (!fs.existsSync(xmlDir)) fs.mkdirSync(xmlDir, { recursive: true });
+        fs.writeFileSync(
+          path.join(xmlDir, 'phraseman_network_security_config.xml'),
+          DEV_NETWORK_SECURITY_CONFIG_XML,
+          'utf8',
+        );
+        fs.writeFileSync(path.join(srcRoot, 'AndroidManifest.xml'), DEV_ANDROID_MANIFEST_XML, 'utf8');
+      }
       return cfg;
     },
   ]);
@@ -45,7 +74,7 @@ const patchManifest = (config) =>
     const application = manifest.application?.[0];
     if (!application) return cfg;
     application.$ = application.$ || {};
-    application.$['android:usesCleartextTraffic'] = 'true';
+    application.$['android:usesCleartextTraffic'] = 'false';
     application.$['android:networkSecurityConfig'] = '@xml/phraseman_network_security_config';
 
     const existing = application.$['tools:replace'];

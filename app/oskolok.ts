@@ -1,37 +1,84 @@
 import type { ImageSourcePropType } from 'react-native';
+import type { ThemeMode } from '../constants/theme';
 
-/**
- * Единая точка для картинок осколков: «OSKOLOK.png» в assets и кучки для паков 80 / 180 / 420.
- * Снаружи используй только `oskolokImageForPackShards` — не импортируй сырой PNG.
- */
-const OSKOLOK_SINGLE: ImageSourcePropType = require('../assets/images/levels/OSKOLOK.webp');
+type OskolokTier = 'single' | '80' | '180' | '420';
+type OskolokThemeMode = ThemeMode;
 
-const OSKOLOK_80: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 80.webp');
-const OSKOLOK_180: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 180.webp');
-const OSKOLOK_420: ImageSourcePropType = require('../assets/images/levels/OSKOLOK 420.webp');
+// Single source of truth for shard art. Keep raw require() calls here so Expo can
+// statically bundle every themed sprite.
+const THEMED_OSKOLOK_IMAGES: Record<OskolokThemeMode, Record<OskolokTier, ImageSourcePropType>> = {
+  dark: {
+    single: require('../assets/images/shards/dark-single.webp'),
+    '80': require('../assets/images/shards/dark-80.webp'),
+    '180': require('../assets/images/shards/dark-180.webp'),
+    '420': require('../assets/images/shards/dark-420.webp'),
+  },
+  neon: {
+    single: require('../assets/images/shards/neon-single.webp'),
+    '80': require('../assets/images/shards/neon-80.webp'),
+    '180': require('../assets/images/shards/neon-180.webp'),
+    '420': require('../assets/images/shards/neon-420.webp'),
+  },
+  gold: {
+    single: require('../assets/images/shards/gold-single.webp'),
+    '80': require('../assets/images/shards/gold-80.webp'),
+    '180': require('../assets/images/shards/gold-180.webp'),
+    '420': require('../assets/images/shards/gold-420.webp'),
+  },
+  coral: {
+    single: require('../assets/images/shards/coral-single.webp'),
+    '80': require('../assets/images/shards/coral-80.webp'),
+    '180': require('../assets/images/shards/coral-180.webp'),
+    '420': require('../assets/images/shards/coral-420.webp'),
+  },
+  minimalLight: {
+    single: require('../assets/images/shards/minimalLight-single.webp'),
+    '80': require('../assets/images/shards/minimalLight-80.webp'),
+    '180': require('../assets/images/shards/minimalLight-180.webp'),
+    '420': require('../assets/images/shards/minimalLight-420.webp'),
+  },
+  minimalDark: {
+    single: require('../assets/images/shards/minimalDark-single.webp'),
+    '80': require('../assets/images/shards/minimalDark-80.webp'),
+    '180': require('../assets/images/shards/minimalDark-180.webp'),
+    '420': require('../assets/images/shards/minimalDark-420.webp'),
+  },
+};
 
-/**
- * Картинка «кучки» осколков по величине суммы (не по номиналу пакета в магазине).
- * Диапазоны: [1, 79] → арт 80, [80, 179] → арт 180, [180, ∞) → арт 420.
- * Для 0 и некорректных значений — одиночный кристалл.
- */
-export function oskolokImageForPackShards(shards: number): ImageSourcePropType {
+let currentOskolokThemeMode: OskolokThemeMode = 'minimalDark';
+
+export function setOskolokThemeMode(themeMode: OskolokThemeMode): void {
+  currentOskolokThemeMode = themeMode;
+}
+
+function oskolokTierForShards(shards: number): OskolokTier {
   const n = Math.floor(Number(shards));
-  if (!Number.isFinite(n) || n <= 0) return OSKOLOK_SINGLE;
-  if (n < 80) return OSKOLOK_80;
-  if (n < 180) return OSKOLOK_180;
-  return OSKOLOK_420;
+  if (!Number.isFinite(n) || n <= 0) return 'single';
+  if (n < 80) return '80';
+  if (n < 180) return '180';
+  return '420';
 }
 
 /**
- * Иконка строки IAP «осколки» в магазине.
- * Стартовый SKU шёл через `OSKOLOK 80.png` (палитровый PNG); в связке expo-image + анимация на части Android
- * этот ассет иногда не рисуется, тогда как `OSKOLOK.png` / 180 / 420 — да. Для `starter` используем один кристалл
- * (тот же путь, что при низком балансе в шапке).
+ * Returns a themed shard pile by amount:
+ * [1, 79] -> small pile, [80, 179] -> medium pile, [180, infinity] -> large pile.
+ * Invalid or zero values use the single shard.
  */
-export function oskolokImageForShardIapRow(pack: { id: string; shards: number }): ImageSourcePropType {
-  if (pack.id === 'starter') return OSKOLOK_SINGLE;
-  return oskolokImageForPackShards(pack.shards);
+export function oskolokImageForPackShards(shards: number, themeMode: OskolokThemeMode = currentOskolokThemeMode): ImageSourcePropType {
+  const themeImages = THEMED_OSKOLOK_IMAGES[themeMode] ?? THEMED_OSKOLOK_IMAGES.minimalDark;
+  return themeImages[oskolokTierForShards(shards)];
+}
+
+/**
+ * Store IAP row icon. Starter intentionally uses the single-shard model;
+ * higher packs use the same amount tiers as the rest of the app.
+ */
+export function oskolokImageForShardIapRow(pack: { id: string; shards: number }, themeMode: OskolokThemeMode = currentOskolokThemeMode): ImageSourcePropType {
+  if (pack.id === 'starter') {
+    const themeImages = THEMED_OSKOLOK_IMAGES[themeMode] ?? THEMED_OSKOLOK_IMAGES.minimalDark;
+    return themeImages.single;
+  }
+  return oskolokImageForPackShards(pack.shards, themeMode);
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */

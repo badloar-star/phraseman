@@ -110,6 +110,16 @@ export const AVATARS: AvatarDef[] = [
   { image: require('../assets/images/levels/48.webp'), unlockLevel: 48 },
   { image: require('../assets/images/levels/49.webp'), unlockLevel: 49 },
   { image: require('../assets/images/levels/50.webp'), unlockLevel: 50 },
+  { image: require('../assets/images/levels/51.webp'), unlockLevel: 51 },
+  { image: require('../assets/images/levels/52.webp'), unlockLevel: 52 },
+  { image: require('../assets/images/levels/53.webp'), unlockLevel: 53 },
+  { image: require('../assets/images/levels/54-readable.webp'), unlockLevel: 54 },
+  { image: require('../assets/images/levels/55-readable.webp'), unlockLevel: 55 },
+  { image: require('../assets/images/levels/56.webp'), unlockLevel: 56 },
+  { image: require('../assets/images/levels/57.webp'), unlockLevel: 57 },
+  { image: require('../assets/images/levels/58.webp'), unlockLevel: 58 },
+  { image: require('../assets/images/levels/59.webp'), unlockLevel: 59 },
+  { image: require('../assets/images/levels/60.webp'), unlockLevel: 60 },
 ];
 
 // ── Рамки по уровням ──────────────────────────────────────────────────────────
@@ -412,7 +422,7 @@ export const getBestFrameForLevel = (level: number): FrameDef => {
 };
 
 export const getBestAvatarForLevel = (level: number): string =>
-  String(Math.max(1, Math.min(50, level)));
+  String(Math.max(1, Math.min(60, level)));
 
 export const getAvatarByIndex = (index: number): AvatarDef | undefined => {
   if (index < 1 || index > AVATARS.length) return undefined;

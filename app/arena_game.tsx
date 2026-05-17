@@ -66,7 +66,7 @@ export default function DuelGameScreen() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { width: winW, height: winH } = useWindowDimensions();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
 
   const [resolvedUserId, setResolvedUserId] = useState(paramUserId ?? '');
@@ -300,7 +300,16 @@ export default function DuelGameScreen() {
     const dn = opp.displayName?.replace(/\s+/g, ' ').trim();
     const nameForToast =
       dn ||
-      (useMock ? mockOpponentDisplayName(opp, lang) : triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' }));
+      (useMock ? mockOpponentDisplayName(opp, lang) : triLang(lang, {
+        ru: 'Игрок',
+        uk: 'Гравець',
+        es: 'Jugador',
+        'pt-BR': 'Jogador',
+        vi: 'Người chơi',
+        id: 'Pemain',
+        tr: 'Oyuncu',
+        pl: 'Gracz',
+      }));
     emitAppEvent('action_toast', arenaOpponentReactToast(nameForToast, em));
   }, [effectivePlayers, userId, lang, useMock, pushFlyEmoji]);
 
@@ -844,6 +853,11 @@ export default function DuelGameScreen() {
               ru: 'Сообщить о проблеме в вопросе арены',
               uk: 'Повідомити про проблему в питанні арени',
               es: 'Informar de un problema en la pregunta',
+              'pt-BR': 'Informar um problema na pergunta da Arena',
+              vi: 'Báo lỗi trong câu hỏi Arena',
+              id: 'Laporkan masalah pada pertanyaan Arena',
+              tr: 'Arena sorusundaki bir sorunu bildir',
+              pl: 'Zgłoś problem w pytaniu Areny',
             })}
           />
           <TouchableOpacity onPress={() => setShowExitConfirm(true)} style={styles.exitBtn}>

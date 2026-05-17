@@ -126,6 +126,52 @@ describe('lessonWordRecognitionPrompt', () => {
     expect(lessonWordRecognitionPrompt(row, 'es')).toBe(LESSON_WORD_ES_BY_EN[row.en]);
   });
 
+  it('RU/UK: tableware prompt is narrower than generic dishes prompt', () => {
+    const staleTableware = { en: 'tableware', ru: 'Посуда', uk: 'Посуд', es: 'vajilla', pos: 'nouns' as const };
+    expect(lessonWordRecognitionPrompt(staleTableware, 'ru')).toBe('Столовая посуда');
+    expect(lessonWordRecognitionPrompt(staleTableware, 'uk')).toBe('Столовий посуд');
+
+    const dishes = { en: 'dishes', ru: 'Посуда', uk: 'Посуд', es: 'platos', pos: 'nouns' as const };
+    expect(lessonWordRecognitionPrompt(dishes, 'ru')).toBe('Посуда');
+    expect(lessonWordRecognitionPrompt(dishes, 'uk')).toBe('Посуд');
+  });
+
+  it('RU/UK: base verb prompts stay infinitive after surface-form canonicalization', () => {
+    const staleBring = { en: 'bring', ru: 'Приносит', uk: 'Приносить', es: 'trae', pos: 'verbs' as const };
+    expect(lessonWordRecognitionPrompt(staleBring, 'ru')).toBe('Приносить');
+    expect(lessonWordRecognitionPrompt(staleBring, 'uk')).toBe('Приносити');
+    expect(lessonWordRecognitionPrompt(staleBring, 'es')).toBe('traer');
+
+    const staleFind = { en: 'find', ru: 'Находит', uk: 'Знаходить', es: 'encuentra', pos: 'verbs' as const };
+    expect(lessonWordRecognitionPrompt(staleFind, 'ru')).toBe('Находить');
+    expect(lessonWordRecognitionPrompt(staleFind, 'uk')).toBe('Знаходити');
+    expect(lessonWordRecognitionPrompt(staleFind, 'es')).toBe('encontrar');
+  });
+
+  it('RU/UK: brush prompt includes the hair meaning', () => {
+    const brush = { en: 'brush', ru: 'Почистить щёткой', uk: 'Почистити щіткою', es: 'cepillar', pos: 'verbs' as const };
+    expect(lessonWordRecognitionPrompt(brush, 'ru')).toBe('Чистить щёткой; расчёсывать');
+    expect(lessonWordRecognitionPrompt(brush, 'uk')).toBe('Чистити щіткою; розчісувати');
+    expect(lessonWordRecognitionPrompt(brush, 'es')).toBe('cepillar');
+  });
+
+  it('singularized noun prompts stay singular when plural gloss leaks from source rows', () => {
+    const staleBook = { en: 'book', ru: 'Книги', uk: 'Книжки', es: 'libros', pos: 'nouns' as const };
+    expect(lessonWordRecognitionPrompt(staleBook, 'ru')).toBe('Книга');
+    expect(lessonWordRecognitionPrompt(staleBook, 'uk')).toBe('Книжка');
+    expect(lessonWordRecognitionPrompt(staleBook, 'es')).toBe('libro');
+
+    const staleCar = { en: 'car', ru: 'Машины', uk: 'Машини', es: 'coches', pos: 'nouns' as const };
+    expect(lessonWordRecognitionPrompt(staleCar, 'ru')).toBe('Машина');
+    expect(lessonWordRecognitionPrompt(staleCar, 'uk')).toBe('Машина');
+    expect(lessonWordRecognitionPrompt(staleCar, 'es')).toBe('carro');
+
+    const verb = { en: 'book', ru: 'Бронировать', uk: 'Бронювати', es: 'reservar', pos: 'verbs' as const };
+    expect(lessonWordRecognitionPrompt(verb, 'ru')).toBe('Бронировать');
+    expect(lessonWordRecognitionPrompt(verb, 'uk')).toBe('Бронювати');
+    expect(lessonWordRecognitionPrompt(verb, 'es')).toBe('reservar');
+  });
+
   /** #error_reports: «… (washes)» в промпте дублирует правильный EN-ответ. */
   it('RU/UK: strips trailing parenthetical when it equals the English headword', () => {
     const spoiled = { en: 'washes', ru: 'Мыть · моет (washes)', uk: 'Мити · миє (washes)' };
@@ -195,8 +241,10 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
 
   /** Regression: lesson_words error_reports — ожидания синхронизированы с `lesson_words.tsx` + `lessonWordRecognitionPrompt`. */
   const REPORT_REGRESSION_RU: Record<string, string> = {
-    brings: 'Приносит',
+    bring: 'Приносить',
+    brush: 'Чистить щёткой; расчёсывать',
     darker: 'Темнее',
+    find: 'Находить',
     lightest: 'Самый лёгкий (о весе)',
     narrower: 'Уже · более узкий',
     stronger: 'Сильнее',
@@ -206,9 +254,11 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
   };
 
   const REPORT_REGRESSION_UK: Record<string, string> = {
-    brings: 'Приносить',
+    bring: 'Приносити',
+    brush: 'Чистити щіткою; розчісувати',
     shortest: 'Найкоротший',
     darker: 'Темніший',
+    find: 'Знаходити',
     sweeter: 'Солодший',
     hottest: 'Найгарячіший',
     stronger: 'Сильніший',
@@ -275,6 +325,16 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     expect(row!.uk).toBe('Четвер');
     expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Четверг');
     expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Четвер');
+    expect(lessonWordRecognitionPrompt({ ...row!, ru: 'Четвер' }, 'ru')).toBe('Четверг');
+  });
+
+  it('shoes: plural item uses concrete plural gloss, not generic footwear', () => {
+    const row = rows.find(r => r.en === 'shoes');
+    expect(row).toBeDefined();
+    expect(row!.ru).toBe('Туфли / ботинки');
+    expect(row!.uk).toBe('Туфлі / черевики');
+    expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Туфли / ботинки');
+    expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Туфлі / черевики');
   });
 
   it('plural noun reports: bank prompt follows singular English answer', () => {
@@ -301,6 +361,16 @@ describe('lesson_words.tsx Spanish gloss coverage', () => {
     expect(row).toBeDefined();
     expect(row!.ru).toBe('Зарядка для телефона');
     expect(row!.uk).toBe('Зарядка для телефону');
+  });
+
+  it('much: lesson 9 vocabulary distinguishes uncountable quantity from many', () => {
+    const row = rows.find((r) => r.en === 'much' && r.ru.includes('неисчисляемым'));
+    expect(row).toBeDefined();
+    expect(row!.ru).toBe('Много (с неисчисляемым)');
+    expect(row!.uk).toBe('Багато (з незлічуваним)');
+    expect(row!.es).toBe('mucho');
+    expect(lessonWordRecognitionPrompt(row!, 'ru')).toBe('Много (с неисчисляемым)');
+    expect(lessonWordRecognitionPrompt(row!, 'uk')).toBe('Багато (з незлічуваним)');
   });
 
   /** shower (сущ.) ≠ show (глагол) — жалоба lesson_words word_shower. */

@@ -13,6 +13,6 @@ After editing either JSON file, regenerate the public HTML copies at the repo ro
 npm run legal:sync
 ```
 
-This updates `terms.html` and `privacy.html` at the **repository root** to match the JSON (e.g. GitHub Pages, static host, or copy into your site). Current Firebase Hosting in this repo targets the `admin/` folder only — add `privacy.html` / mirror `terms.html` there if you want them on the same Firebase site.
+This updates `terms.html` and `privacy.html` at the **repository root**, `admin/oauth-privacy.html`, and the live Knowly website copies under `knowly-www/legal/privacy/index.html`, `knowly-www/legal/terms/index.html`, and `knowly-www/legal/data-deletion/index.html`. Firebase Hosting has both `admin` and `knowlywww` targets, so the Knowly pages must be regenerated before deploying `hosting:knowly-www`.
 
 Do not duplicate long legal paragraphs in `terms_screen.tsx` / `privacy_screen.tsx` — change the JSON, then run `legal:sync`.

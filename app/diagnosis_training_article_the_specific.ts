@@ -367,7 +367,7 @@ export const ARTICLE_THE_SPECIFIC_TRAINING: DiagnosisTraining = {
       wrong: {
         a: tri('a best option звучит неправильно. Best уже выделяет самый лучший вариант, поэтому нужен the best option.', 'a best option звучить неправильно. Best уже виділяє найкращий варіант, тому потрібен the best option.', 'a best option suena incorrecto. Best ya marca la mejor opción, por eso necesitamos the best option.'),
         an: tri('an не подходит по звуку и по правилу. С best нужна конструкция the best.', 'an не підходить за звуком і за правилом. Із best потрібна конструкція the best.', 'an no encaja ni por sonido ni por regla. Con best usamos the best.'),
-        'no article': tri('Best обычно требует the: the best answer, the best option, the best day.', 'Best зазвичай потребує the: the best answer, the best option, the best day.', 'Best normally needs the: the best answer, the best option, the best day.'),
+        'no article': tri('Со словом best обычно нужен the. Говорим: the best answer.', 'Зі словом best зазвичай потрібен the. Кажемо: the best answer.', 'Best normally needs the: the best answer, the best option, the best day.'),
       },
       retry: [
         tri('Best = самый лучший. Самый конкретный вариант - the best.', 'Best = найкращий. Найконкретніший варіант - the best.', 'Best = el mejor. La opción más específica - the best.'),

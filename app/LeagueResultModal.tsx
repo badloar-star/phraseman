@@ -16,7 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import {
-  LeagueResult, LEAGUES, CLUBS, clearPendingResult, GroupMember,
+  LeagueResult, LEAGUES, CLUBS, clearPendingResult, GroupMember, clubDescPlanned, clubNamePlanned,
 } from './league_engine';
 import AvatarView from '../components/AvatarView';
 import PremiumAvatarHalo from '../components/PremiumAvatarHalo';
@@ -24,7 +24,7 @@ import { premiumMemberNameStyle } from '../components/premiumMemberStyles';
 import { getBestAvatarForLevel } from '../constants/avatars';
 import { getEffectiveAvatarAuraId } from '../constants/avatar_auras';
 import { getLevelFromXP } from '../constants/theme';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { hapticSuccess, hapticWarning, hapticTap, hapticSoftImpact } from '../hooks/use-haptics';
 
 const { width: W, height: H } = Dimensions.get('window');
@@ -178,7 +178,7 @@ interface Props {
 }
 
 export default function LeagueResultModal({ visible, result, onClose }: Props) {
-  const { theme: t, themeMode, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
 
   const prevLeague = LEAGUES[result.prevLeagueId] ?? LEAGUES[0];
@@ -325,51 +325,117 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   }, [onClose]);
 
   // ─── Тексты ─────────────────────────────────────────────────────────────
-  const titleText = triLang(lang, { ru: 'Итоги недели', uk: 'Підсумки тижня', es: 'Resultados de la semana' });
+  const titleText = triLang(lang, {
+  ru: 'Итоги недели',
+  uk: 'Підсумки тижня',
+  es: 'Resultados de la semana',
+  "pt-BR": 'Resultados da semana',
+  vi: 'Kết quả tuần',
+  id: 'Hasil minggu ini',
+  tr: 'Haftanın sonuçları',
+  pl: 'Wyniki tygodnia',
+});
 
   const outcomeText = isPromo
     ? triLang(lang, {
-        ru: `Повышен до ${newLeague.nameRU}`,
-        uk: `Підвищено до ${newLeague.nameUK}`,
-        es: `Has ascendido a ${newLeague.nameES}`,
-      })
+  ru: `Повышен до ${newLeague.nameRU}`,
+  uk: `Підвищено до ${newLeague.nameUK}`,
+  es: `Has ascendido a ${newLeague.nameES}`,
+  "pt-BR": `Promovido para ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,
+  vi: `Đã thăng lên ${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)}`,
+  id: `Naik ke ${clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang)}`,
+  tr: `${clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang)} ligine yükseldin`,
+  pl: `Awans do ${clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang)}`,
+})
     : isDemo
       ? triLang(lang, {
-          ru: `Понижен до ${newLeague.nameRU}`,
-          uk: `Понижено до ${newLeague.nameUK}`,
-          es: `Has descendido a ${newLeague.nameES}`,
-        })
+  ru: `Понижен до ${newLeague.nameRU}`,
+  uk: `Понижено до ${newLeague.nameUK}`,
+  es: `Has descendido a ${newLeague.nameES}`,
+  "pt-BR": `Rebaixado para ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,
+  vi: `Đã xuống ${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)}`,
+  id: `Turun ke ${clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang)}`,
+  tr: `${clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang)} ligine düştün`,
+  pl: `Spadek do ${clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang)}`,
+})
       : triLang(lang, {
-          ru: `Остаёшься в лиге ${newLeague.nameRU}`,
-          uk: `Залишаєшся в лізі ${newLeague.nameUK}`,
-          es: `Sigues en ${newLeague.nameES}`,
-        });
+  ru: `Остаёшься в лиге ${newLeague.nameRU}`,
+  uk: `Залишаєшся в лізі ${newLeague.nameUK}`,
+  es: `Sigues en ${newLeague.nameES}`,
+  "pt-BR": `Você continua na ${clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang)}`,
+  vi: `Bạn ở lại ${clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang)}`,
+  id: `Kamu tetap di ${clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang)}`,
+  tr: `${clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang)} liginde kalıyorsun`,
+  pl: `Zostajesz w ${clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang)}`,
+});
 
   const outcomeIcon = isPromo ? 'trending-up' : isDemo ? 'trending-down' : 'shield-checkmark';
 
   const btnText = isPromo
-    ? triLang(lang, { ru: '🚀 Вперёд!', uk: '🚀 Уперед!', es: '🚀 ¡Adelante!' })
+    ? triLang(lang, {
+  ru: '🚀 Вперёд!',
+  uk: '🚀 Уперед!',
+  es: '🚀 ¡Adelante!',
+  "pt-BR": '🚀 Vamos!',
+  vi: '🚀 Tiến lên!',
+  id: '🚀 Maju!',
+  tr: '🚀 İleri!',
+  pl: '🚀 Naprzód!',
+})
     : isDemo
-      ? triLang(lang, { ru: 'Попробую ещё раз', uk: 'Спробую ще раз', es: 'Lo intentaré de nuevo' })
-      : triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar' });
+      ? triLang(lang, {
+  ru: 'Попробую ещё раз',
+  uk: 'Спробую ще раз',
+  es: 'Lo intentaré de nuevo',
+  "pt-BR": 'Vou tentar de novo',
+  vi: 'Mình sẽ thử lại',
+  id: 'Coba lagi',
+  tr: 'Tekrar deneyeceğim',
+  pl: 'Spróbuję jeszcze raz',
+})
+      : triLang(lang, {
+  ru: 'Продолжить',
+  uk: 'Продовжити',
+  es: 'Continuar',
+  "pt-BR": 'Continuar',
+  vi: 'Tiếp tục',
+  id: 'Lanjutkan',
+  tr: 'Devam et',
+  pl: 'Kontynuuj',
+});
 
   const motivation = isPromo
     ? triLang(lang, {
-        ru: 'Новая лига — новые вызовы и бонусы!',
-        uk: 'Нова ліга — нові виклики й бонуси!',
-        es: '¡Nueva liga: nuevos retos y bonificaciones!',
-      })
+  ru: 'Новая лига — новые вызовы и бонусы!',
+  uk: 'Нова ліга — нові виклики й бонуси!',
+  es: '¡Nueva liga: nuevos retos y bonificaciones!',
+  "pt-BR": 'Nova liga: novos desafios e bônus!',
+  vi: 'Giải đấu mới: thử thách và thưởng mới!',
+  id: 'Liga baru: tantangan dan bonus baru!',
+  tr: 'Yeni lig: yeni meydan okumalar ve bonuslar!',
+  pl: 'Nowa liga: nowe wyzwania i bonusy!',
+})
     : isDemo
       ? triLang(lang, {
-          ru: 'Не сдавайся — быстро вернёшься выше.',
-          uk: 'Не здавайся — швидко повернешся вище.',
-          es: 'No te rindas: pronto volverás a subir.',
-        })
+  ru: 'Не сдавайся — быстро вернёшься выше.',
+  uk: 'Не здавайся — швидко повернешся вище.',
+  es: 'No te rindas: pronto volverás a subir.',
+  "pt-BR": 'Não desista: logo você sobe de novo.',
+  vi: 'Đừng bỏ cuộc: bạn sẽ sớm leo lên lại.',
+  id: 'Jangan menyerah: kamu akan segera naik lagi.',
+  tr: 'Vazgeçme: yakında tekrar yükselirsin.',
+  pl: 'Nie poddawaj się: szybko wrócisz wyżej.',
+})
       : triLang(lang, {
-          ru: 'Хороший результат, держи темп!',
-          uk: 'Гарний результат, тримай темп!',
-          es: 'Buen resultado, ¡mantén el ritmo!',
-        });
+  ru: 'Хороший результат, держи темп!',
+  uk: 'Гарний результат, тримай темп!',
+  es: 'Buen resultado, ¡mantén el ritmo!',
+  "pt-BR": 'Bom resultado, mantenha o ritmo!',
+  vi: 'Kết quả tốt, giữ nhịp nhé!',
+  id: 'Hasil bagus, pertahankan ritmenya!',
+  tr: 'İyi sonuç, tempoyu koru!',
+  pl: 'Dobry wynik, trzymaj tempo!',
+});
 
   // Процентиль
   const percentile = result.totalInGroup > 0
@@ -380,7 +446,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
   const restList = result.group.slice(0, 10);
 
   const leagueName = (row: (typeof LEAGUES)[number]) =>
-    triLang(lang, { ru: row.nameRU, uk: row.nameUK, es: row.nameES });
+    triLang(lang, {
+  ru: row.nameRU,
+  uk: row.nameUK,
+  es: row.nameES,
+  "pt-BR": clubNamePlanned(row.id, 'pt-BR' as PlannedInterfaceLang),
+  vi: clubNamePlanned(row.id, 'vi' as PlannedInterfaceLang),
+  id: clubNamePlanned(row.id, 'id' as PlannedInterfaceLang),
+  tr: clubNamePlanned(row.id, 'tr' as PlannedInterfaceLang),
+  pl: clubNamePlanned(row.id, 'pl' as PlannedInterfaceLang),
+});
 
   // ─── Подцвет градиентов ─────────────────────────────────────────────────
   const cardGradient: [string, string, string] = isPromo
@@ -505,7 +580,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                   <TouchableOpacity
                     testID="league-result-close-button"
                     onPress={handleClose}
-                    accessibilityLabel={triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
+                    accessibilityLabel={triLang(lang, {
+  ru: 'Закрыть',
+  uk: 'Закрити',
+  es: 'Cerrar',
+  "pt-BR": 'Fechar',
+  vi: 'Đóng',
+  id: 'Tutup',
+  tr: 'Kapat',
+  pl: 'Zamknij',
+})}
                     hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}
                     style={{
                       position: 'absolute', top: 10, right: 10, zIndex: 4,
@@ -597,7 +681,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                     >
                       <Image source={prevLeague.imageUri} style={{ width: 18, height: 18, opacity: 0.7 }} resizeMode="contain" />
                       <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                        {triLang(lang, { ru: prevLeague.nameRU, uk: prevLeague.nameUK, es: prevLeague.nameES })}
+                        {triLang(lang, {
+  ru: prevLeague.nameRU,
+  uk: prevLeague.nameUK,
+  es: prevLeague.nameES,
+  "pt-BR": clubNamePlanned(prevLeague.id, 'pt-BR' as PlannedInterfaceLang),
+  vi: clubNamePlanned(prevLeague.id, 'vi' as PlannedInterfaceLang),
+  id: clubNamePlanned(prevLeague.id, 'id' as PlannedInterfaceLang),
+  tr: clubNamePlanned(prevLeague.id, 'tr' as PlannedInterfaceLang),
+  pl: clubNamePlanned(prevLeague.id, 'pl' as PlannedInterfaceLang),
+})}
                       </Text>
                       <Ionicons
                         name={isPromo ? 'arrow-forward' : 'arrow-back'}
@@ -606,7 +699,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       />
                       <Image source={newLeague.imageUri} style={{ width: 18, height: 18 }} resizeMode="contain" />
                       <Text style={{ color: palette.primary, fontSize: f.caption, fontWeight: '700' }}>
-                        {triLang(lang, { ru: newLeague.nameRU, uk: newLeague.nameUK, es: newLeague.nameES })}
+                        {triLang(lang, {
+  ru: newLeague.nameRU,
+  uk: newLeague.nameUK,
+  es: newLeague.nameES,
+  "pt-BR": clubNamePlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),
+  vi: clubNamePlanned(newLeague.id, 'vi' as PlannedInterfaceLang),
+  id: clubNamePlanned(newLeague.id, 'id' as PlannedInterfaceLang),
+  tr: clubNamePlanned(newLeague.id, 'tr' as PlannedInterfaceLang),
+  pl: clubNamePlanned(newLeague.id, 'pl' as PlannedInterfaceLang),
+})}
                       </Text>
                     </Animated.View>
                   )}
@@ -630,7 +732,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                     textTransform: 'uppercase',
                     fontWeight: '700',
                   }}>
-                    {triLang(lang, { ru: 'Твоё место', uk: 'Твоє місце', es: 'Tu puesto' })}
+                    {triLang(lang, {
+  ru: 'Твоё место',
+  uk: 'Твоє місце',
+  es: 'Tu puesto',
+  "pt-BR": 'Sua posição',
+  vi: 'Vị trí của bạn',
+  id: 'Posisimu',
+  tr: 'Sıralaman',
+  pl: 'Twoje miejsce',
+})}
                   </Text>
                   <View style={{ flexDirection: 'row', alignItems: 'baseline', marginTop: 2 }}>
                     <Text style={{
@@ -666,10 +777,15 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       <Ionicons name="flame" size={12} color={t.gold} />
                       <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '700' }}>
                         {triLang(lang, {
-                          ru: `Топ ${100 - percentile + 1}% группы`,
-                          uk: `Топ ${100 - percentile + 1}% групи`,
-                          es: `Top ${100 - percentile + 1} % del grupo`,
-                        })}
+  ru: `Топ ${100 - percentile + 1}% группы`,
+  uk: `Топ ${100 - percentile + 1}% групи`,
+  es: `Top ${100 - percentile + 1} % del grupo`,
+  "pt-BR": `Top ${100 - percentile + 1}% do grupo`,
+  vi: `Top ${100 - percentile + 1}% của nhóm`,
+  id: `Top ${100 - percentile + 1}% grup`,
+  tr: `Grubun ilk %${100 - percentile + 1}`,
+  pl: `Top ${100 - percentile + 1}% grupy`,
+})}
                       </Text>
                     </View>
                   )}
@@ -708,10 +824,28 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       textTransform: 'uppercase',
                       fontWeight: '700',
                     }}>
-                      {triLang(lang, { ru: 'Группа недели', uk: 'Група тижня', es: 'Grupo de la semana' })}
+                      {triLang(lang, {
+  ru: 'Группа недели',
+  uk: 'Група тижня',
+  es: 'Grupo de la semana',
+  "pt-BR": 'Grupo da semana',
+  vi: 'Nhóm tuần này',
+  id: 'Grup minggu ini',
+  tr: 'Haftanın grubu',
+  pl: 'Grupa tygodnia',
+})}
                     </Text>
                     <Text style={{ color: t.textGhost, fontSize: f.caption, fontWeight: '600' }}>
-                      {result.totalInGroup} {triLang(lang, { ru: 'чел.', uk: 'осіб', es: 'pers.' })}
+                      {result.totalInGroup} {triLang(lang, {
+  ru: 'чел.',
+  uk: 'осіб',
+  es: 'pers.',
+  "pt-BR": 'pess.',
+  vi: 'người',
+  id: 'org',
+  tr: 'kişi',
+  pl: 'os.',
+})}
                     </Text>
                   </View>
                   <ScrollView
@@ -736,7 +870,16 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       <Text style={{
                         color: t.textGhost, fontSize: f.caption, textAlign: 'center', padding: 8,
                       }}>
-                        +{result.group.length - 10} {triLang(lang, { ru: 'участников', uk: 'учасників', es: 'participantes' })}
+                        +{result.group.length - 10} {triLang(lang, {
+  ru: 'участников',
+  uk: 'учасників',
+  es: 'participantes',
+  "pt-BR": 'participantes',
+  vi: 'người tham gia',
+  id: 'peserta',
+  tr: 'katılımcı',
+  pl: 'uczestników',
+})}
                       </Text>
                     )}
                   </ScrollView>
@@ -772,20 +915,39 @@ export default function LeagueResultModal({ visible, result, onClose }: Props) {
                       </View>
                       <View style={{ flex: 1 }}>
                         <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                          {triLang(lang, { ru: newLeague.tagRU, uk: newLeague.tagUK, es: newLeague.tagES })}
+                          {triLang(lang, {
+  ru: newLeague.tagRU,
+  uk: newLeague.tagUK,
+  es: newLeague.tagES,
+  "pt-BR": clubDescPlanned(newLeague.id, 'pt-BR' as PlannedInterfaceLang),
+  vi: clubDescPlanned(newLeague.id, 'vi' as PlannedInterfaceLang),
+  id: clubDescPlanned(newLeague.id, 'id' as PlannedInterfaceLang),
+  tr: clubDescPlanned(newLeague.id, 'tr' as PlannedInterfaceLang),
+  pl: clubDescPlanned(newLeague.id, 'pl' as PlannedInterfaceLang),
+})}
                         </Text>
                         <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 1 }}>
                           {isPromo
                             ? triLang(lang, {
-                              ru: 'Бонус активирован — новая лига!',
-                              uk: 'Бонус активовано — нової ліги!',
-                              es: '¡Bonificación activada: nueva liga!',
-                            })
+  ru: 'Бонус активирован — новая лига!',
+  uk: 'Бонус активовано — нової ліги!',
+  es: '¡Bonificación activada: nueva liga!',
+  "pt-BR": 'Bônus ativado: nova liga!',
+  vi: 'Đã kích hoạt thưởng: giải đấu mới!',
+  id: 'Bonus aktif: liga baru!',
+  tr: 'Bonus aktif: yeni lig!',
+  pl: 'Bonus aktywowany: nowa liga!',
+})
                             : triLang(lang, {
-                              ru: 'Бонус лиги действует',
-                              uk: 'Бонус ліги діє',
-                              es: 'La bonificación de la liga está activa',
-                            })}
+  ru: 'Бонус лиги действует',
+  uk: 'Бонус ліги діє',
+  es: 'La bonificación de la liga está activa',
+  "pt-BR": 'O bônus da liga está ativo',
+  vi: 'Thưởng giải đấu đang hoạt động',
+  id: 'Bonus liga aktif',
+  tr: 'Lig bonusu aktif',
+  pl: 'Bonus ligi jest aktywny',
+})}
                         </Text>
                       </View>
                     </LinearGradient>
@@ -942,7 +1104,16 @@ const PodiumColumn = memo(function PodiumColumn({
           themeMode,
         )}
       >
-        {name}{member?.isMe ? triLang(lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' }) : ''}
+        {name}{member?.isMe ? triLang(lang, {
+  ru: ' (ты)',
+  uk: ' (ти)',
+  es: ' (tú)',
+  "pt-BR": ' (você)',
+  vi: ' (bạn)',
+  id: ' (kamu)',
+  tr: ' (sen)',
+  pl: ' (ty)',
+}) : ''}
       </Text>
 
       {/* Очки */}
@@ -1063,7 +1234,16 @@ const GroupRow = memo(function GroupRow({
           themeMode,
         )}
       >
-        {member.name}{member.isMe ? triLang(lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' }) : ''}
+        {member.name}{member.isMe ? triLang(lang, {
+  ru: ' (ты)',
+  uk: ' (ти)',
+  es: ' (tú)',
+  "pt-BR": ' (você)',
+  vi: ' (bạn)',
+  id: ' (kamu)',
+  tr: ' (sen)',
+  pl: ' (ty)',
+}) : ''}
       </Text>
 
       {/* Очки */}

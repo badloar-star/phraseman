@@ -882,15 +882,38 @@ export default function LessonIntroScreens({
 
   if (introScreens.length === 0) return null;
 
-  const lessonWord = triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' });
+  const lessonWord = triLang(lang, {
+    ru: 'Урок',
+    uk: 'Урок',
+    es: 'Lección',
+    'pt-BR': 'Lição',
+    vi: 'Bài',
+    id: 'Pelajaran',
+    tr: 'Ders',
+    pl: 'Lekcja',
+  });
   const headerLabel = `${lessonWord} ${lessonId}`;
   const lvlLabel = lessonLevelLabel(lessonId);
   const lvlColor = levelColor(lessonId, isLight);
-  const startLabel = triLang(lang, { ru: 'Начать урок', uk: 'Почати урок', es: 'Empezar la lección' });
+  const startLabel = triLang(lang, {
+    ru: 'Начать урок',
+    uk: 'Почати урок',
+    es: 'Empezar la lección',
+    'pt-BR': 'Começar a lição',
+    vi: 'Bắt đầu bài học',
+    id: 'Mulai pelajaran',
+    tr: 'Derse başla',
+    pl: 'Rozpocznij lekcję',
+  });
   const tapHintLabel = triLang(lang, {
     ru: 'Коснитесь, чтобы увидеть дальше',
     uk: 'Торкніться, щоб побачити далі',
     es: 'Toca para continuar',
+    'pt-BR': 'Toque para continuar',
+    vi: 'Chạm để xem tiếp',
+    id: 'Ketuk untuk melanjutkan',
+    tr: 'Devam etmek için dokun',
+    pl: 'Dotknij, aby kontynuować',
   });
 
   return (
@@ -925,7 +948,16 @@ export default function LessonIntroScreens({
           <TouchableOpacity
             testID="lesson-intro-back"
             accessibilityRole="button"
-            accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+            accessibilityLabel={triLang(lang, {
+              ru: 'Назад',
+              uk: 'Назад',
+              es: 'Volver',
+              'pt-BR': 'Voltar',
+              vi: 'Quay lại',
+              id: 'Kembali',
+              tr: 'Geri',
+              pl: 'Wstecz',
+            })}
             onPress={handleBack}
             hitSlop={{ top: 14, right: 14, bottom: 14, left: 14 }}
             style={[styles.skipBtn, { backgroundColor: t.bgCard, borderColor: t.borderHighlight }]}

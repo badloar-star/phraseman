@@ -30,6 +30,7 @@ type Props = {
   en: string;
   ru: string;
   uk: string;
+  es?: string;
   frontGradient: GradPair;
   backGradient: GradPair;
   borderAccent: string;
@@ -62,6 +63,7 @@ export default function UgcPackEditorCardPreview({
   en,
   ru,
   uk,
+  es,
   frontGradient,
   backGradient,
   borderAccent,
@@ -79,8 +81,10 @@ export default function UgcPackEditorCardPreview({
 
   const cardH = usePackCardPreviewHeight();
   const hasDescription = uk.trim().length > 0;
+  const backText = lang === 'es' ? (es?.trim() || ru.trim()) : ru.trim();
+  const backLabel = lang === 'es' && es?.trim() ? 'ES' : 'RU';
   const canScrollFront = (en.trim() || '').length > 72;
-  const canScrollBack = (ru.trim() || '').length > 72;
+  const canScrollBack = (backText || '').length > 72;
   const textInsetTop = 32;
   const textInsetBottom = hasDescription ? 56 : 34;
 
@@ -96,7 +100,7 @@ export default function UgcPackEditorCardPreview({
     setDetailsExpanded(false);
     flipDrivingAnim.setValue(0);
     chevronRotAnim.setValue(0);
-  }, [en, ru, uk, flipDrivingAnim, chevronRotAnim]);
+  }, [en, ru, uk, es, flipDrivingAnim, chevronRotAnim]);
 
   useEffect(() => {
     Animated.timing(flipDrivingAnim, {
@@ -215,7 +219,7 @@ export default function UgcPackEditorCardPreview({
                 zIndex: 1,
               }}
             >
-              RU
+              {backLabel}
             </Text>
             {canScrollBack ? (
               <ScrollView
@@ -234,7 +238,7 @@ export default function UgcPackEditorCardPreview({
                 keyboardShouldPersistTaps="handled"
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>
-                  {ru.trim() || '…'}
+                  {backText || '…'}
                 </Text>
               </ScrollView>
             ) : (
@@ -253,7 +257,7 @@ export default function UgcPackEditorCardPreview({
                 }}
               >
                 <Text style={{ color: t.textPrimary, fontSize: f.h1 + 2, fontWeight: '700', textAlign: 'center' }}>
-                  {ru.trim() || '…'}
+                  {backText || '…'}
                 </Text>
               </View>
             )}
@@ -277,6 +281,11 @@ export default function UgcPackEditorCardPreview({
                 uk: 'Опис',
                 ru: 'Описание',
                 es: 'Descripción',
+                'pt-BR': 'Descrição',
+                vi: 'Mô tả',
+                id: 'Deskripsi',
+                tr: 'Açıklama',
+                pl: 'Opis',
               })}
               style={{ padding: 4 }}
             >
@@ -301,7 +310,16 @@ export default function UgcPackEditorCardPreview({
           }}
         >
           <Text style={{ color: t.textMuted, fontSize: 11, fontWeight: '800', letterSpacing: 0.5, marginBottom: 8 }}>
-            {triLang(lang, { uk: 'ОПИСАННЯ', ru: 'ОПИСАНИЕ', es: 'DESCRIPCIÓN' })}
+            {triLang(lang, {
+              uk: 'ОПИСАННЯ',
+              ru: 'ОПИСАНИЕ',
+              es: 'DESCRIPCIÓN',
+              'pt-BR': 'DESCRIÇÃO',
+              vi: 'MÔ TẢ',
+              id: 'DESKRIPSI',
+              tr: 'AÇIKLAMA',
+              pl: 'OPIS',
+            })}
           </Text>
           <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '600', lineHeight: 22 }}>{uk.trim()}</Text>
         </View>
@@ -311,7 +329,16 @@ export default function UgcPackEditorCardPreview({
         <View style={[styles.toolBtn, { marginTop: 8 }]}>
           <Ionicons name="create-outline" size={18} color={t.accent} />
           <Text style={[styles.toolTxt, { color: t.accent }]}>
-            {triLang(lang, { uk: 'Редагується…', ru: 'Редактируется…', es: 'En edición…' })}
+            {triLang(lang, {
+              uk: 'Редагується…',
+              ru: 'Редактируется…',
+              es: 'En edición…',
+              'pt-BR': 'Em edição…',
+              vi: 'Đang chỉnh sửa…',
+              id: 'Sedang diedit…',
+              tr: 'Düzenleniyor…',
+              pl: 'Edytowanie…',
+            })}
           </Text>
         </View>
       ) : (
@@ -326,7 +353,16 @@ export default function UgcPackEditorCardPreview({
             >
               <Ionicons name="create-outline" size={18} color={t.accent} />
               <Text style={[styles.toolTxt, { color: t.accent }]}>
-                {triLang(lang, { uk: 'Редагувати', ru: 'Редактировать', es: 'Editar' })}
+                {triLang(lang, {
+                  uk: 'Редагувати',
+                  ru: 'Редактировать',
+                  es: 'Editar',
+                  'pt-BR': 'Editar',
+                  vi: 'Chỉnh sửa',
+                  id: 'Edit',
+                  tr: 'Düzenle',
+                  pl: 'Edytuj',
+                })}
               </Text>
             </TouchableOpacity>
           ) : null}
@@ -340,7 +376,16 @@ export default function UgcPackEditorCardPreview({
             >
               <Ionicons name="trash-outline" size={18} color="#f87171" />
               <Text style={[styles.toolTxt, { color: '#f87171' }]}>
-                {triLang(lang, { uk: 'Видалити', ru: 'Удалить', es: 'Eliminar' })}
+                {triLang(lang, {
+                  uk: 'Видалити',
+                  ru: 'Удалить',
+                  es: 'Eliminar',
+                  'pt-BR': 'Excluir',
+                  vi: 'Xóa',
+                  id: 'Hapus',
+                  tr: 'Sil',
+                  pl: 'Usuń',
+                })}
               </Text>
             </TouchableOpacity>
           ) : null}

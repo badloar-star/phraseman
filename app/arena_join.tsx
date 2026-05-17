@@ -18,7 +18,7 @@ export default function DuelJoinScreen() {
   const { theme: t, f } = useTheme();
   const { spendOne, isUnlimited } = useEnergy();
   const { lang } = useLang();
-  const defaultPlayerName = () => triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' });
+  const defaultPlayerName = () => triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador', 'pt-BR': 'Jogador', vi: 'Người chơi', id: 'Pemain', tr: 'Oyuncu', pl: 'Gracz' });
   const [status, setStatus] = useState<RoomStatus>('loading');
   const [hostName, setHostName] = useState('');
 
@@ -92,7 +92,7 @@ export default function DuelJoinScreen() {
     <ScreenGradient>
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
         activeOpacity={0.85}
         onPress={goBack}
         style={[styles.backBtn, { backgroundColor: t.bgCard, borderColor: t.border }]}
@@ -104,7 +104,7 @@ export default function DuelJoinScreen() {
           <>
             <Text style={{ fontSize: 64 }}>⚔️</Text>
             <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
-              {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' })}
+              {triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena', 'pt-BR': 'Arena', vi: 'Arena', id: 'Arena', tr: 'Arena', pl: 'Arena' })}
             </Text>
           </>
         )}
@@ -117,6 +117,11 @@ export default function DuelJoinScreen() {
                 ru: `Арена с ${hostName}`,
                 uk: `Арена з ${hostName}`,
                 es: `Duelo con ${hostName}`,
+                'pt-BR': `Duelo com ${hostName}`,
+                vi: `Đấu với ${hostName}`,
+                id: `Duel dengan ${hostName}`,
+                tr: `${hostName} ile arena`,
+                pl: `Pojedynek z ${hostName}`,
               })}
             </Text>
             <Text style={[{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }]}>
@@ -124,6 +129,11 @@ export default function DuelJoinScreen() {
                 ru: 'Тебя вызвали на арену по английскому!',
                 uk: 'Тебе викликали на арену з англійської!',
                 es: 'Te han invitado a un duelo de inglés en la Arena.',
+                'pt-BR': 'Você foi chamado para um duelo de inglês na Arena.',
+                vi: 'Bạn được mời vào một trận đấu tiếng Anh trong Arena.',
+                id: 'Kamu ditantang duel bahasa Inggris di Arena.',
+                tr: 'İngilizce için Arena düellosuna davet edildin.',
+                pl: 'Zaproszono cię na pojedynek z angielskiego na Arenie.',
               })}
             </Text>
             <TouchableOpacity onPress={handleJoin} activeOpacity={0.85} style={[styles.btn, { backgroundColor: t.accent }]}>
@@ -132,12 +142,17 @@ export default function DuelJoinScreen() {
                   ru: 'Принять вызов',
                   uk: 'Прийняти виклик',
                   es: 'Aceptar el reto',
+                  'pt-BR': 'Aceitar desafio',
+                  vi: 'Chấp nhận thử thách',
+                  id: 'Terima tantangan',
+                  tr: 'Meydan okumayı kabul et',
+                  pl: 'Przyjmij wyzwanie',
                 })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => router.replace('/(tabs)/' as any)} style={styles.decline}>
               <Text style={[{ color: t.textMuted, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'Отказаться', uk: 'Відмовитися', es: 'Rechazar' })}
+                {triLang(lang, { ru: 'Отказаться', uk: 'Відмовитися', es: 'Rechazar', 'pt-BR': 'Recusar', vi: 'Từ chối', id: 'Tolak', tr: 'Reddet', pl: 'Odrzuć' })}
               </Text>
             </TouchableOpacity>
           </>
@@ -147,7 +162,7 @@ export default function DuelJoinScreen() {
           <>
             <Text style={{ fontSize: 64 }}>⚔️</Text>
             <Text style={[styles.title, { color: t.textPrimary, fontSize: f.h1 }]}>
-              {triLang(lang, { ru: `Арена с ${hostName}`, uk: `Арена з ${hostName}`, es: `Duelo con ${hostName}` })}
+              {triLang(lang, { ru: `Арена с ${hostName}`, uk: `Арена з ${hostName}`, es: `Duelo con ${hostName}`, 'pt-BR': `Duelo com ${hostName}`, vi: `Đấu với ${hostName}`, id: `Duel dengan ${hostName}`, tr: `${hostName} ile arena`, pl: `Pojedynek z ${hostName}` })}
             </Text>
           </>
         )}
@@ -160,16 +175,21 @@ export default function DuelJoinScreen() {
                 ru: 'Комната не найдена',
                 uk: 'Кімнату не знайдено',
                 es: 'No se encontró la sala',
+                'pt-BR': 'Sala não encontrada',
+                vi: 'Không tìm thấy phòng',
+                id: 'Room tidak ditemukan',
+                tr: 'Oda bulunamadı',
+                pl: 'Nie znaleziono pokoju',
               })}
             </Text>
             <TouchableOpacity onPress={checkRoom} style={[styles.btn, { backgroundColor: t.accent }]}>
               <Text style={[{ color: t.correctText, fontSize: f.body, fontWeight: '700' }]}>
-                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar' })}
+                {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar', 'pt-BR': 'Tentar novamente', vi: 'Thử lại', id: 'Coba lagi', tr: 'Tekrar dene', pl: 'Spróbuj ponownie' })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => router.replace('/(tabs)/' as any)} style={[styles.btn, { backgroundColor: t.bgSurface }]}>
               <Text style={[{ color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio' })}
+                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
               </Text>
             </TouchableOpacity>
           </>
@@ -183,6 +203,11 @@ export default function DuelJoinScreen() {
                 ru: 'Комната устарела',
                 uk: 'Кімната застаріла',
                 es: 'La sala ha caducado',
+                'pt-BR': 'A sala expirou',
+                vi: 'Phòng đã hết hạn',
+                id: 'Room sudah kedaluwarsa',
+                tr: 'Odanın süresi doldu',
+                pl: 'Pokój wygasł',
               })}
             </Text>
             <Text style={[{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }]}>
@@ -190,11 +215,16 @@ export default function DuelJoinScreen() {
                 ru: 'Попроси друга создать новую',
                 uk: 'Попроси друга створити нову',
                 es: 'Pídele a tu amigo que cree otra sala.',
+                'pt-BR': 'Peça ao seu amigo para criar outra sala.',
+                vi: 'Hãy nhờ bạn của bạn tạo phòng mới.',
+                id: 'Minta temanmu membuat room baru.',
+                tr: 'Arkadaşından yeni bir oda oluşturmasını iste.',
+                pl: 'Poproś znajomego o utworzenie nowego pokoju.',
               })}
             </Text>
             <TouchableOpacity onPress={() => router.replace('/(tabs)/' as any)} style={[styles.btn, { backgroundColor: t.bgSurface }]}>
               <Text style={[{ color: t.textPrimary, fontSize: f.body }]}>
-                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio' })}
+                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
               </Text>
             </TouchableOpacity>
           </>

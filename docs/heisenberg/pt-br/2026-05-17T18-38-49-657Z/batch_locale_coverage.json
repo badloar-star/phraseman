@@ -1,0 +1,1672 @@
+{
+  "mode": "batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 11129,
+    "expectedUnits": 1633,
+    "completeUnits": 2161,
+    "partialUnits": 81,
+    "missingAllLocaleUnits": 0,
+    "partialFiles": 1,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 81,
+      "tr": 0,
+      "pl": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0
+    }
+  },
+  "partialFiles": [
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    }
+  ],
+  "partialUnits": [
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.allLearned",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 386,
+        "vi": 483,
+        "tr": 677,
+        "pl": 774
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.autoAdvance",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 395,
+        "vi": 492,
+        "tr": 686,
+        "pl": 783
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.autoAdvanceSub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 396,
+        "vi": 493,
+        "tr": 687,
+        "pl": 784
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.autoCheck",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 391,
+        "vi": 488,
+        "tr": 682,
+        "pl": 779
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.autoCheckSub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 392,
+        "vi": 489,
+        "tr": 683,
+        "pl": 780
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.chooseLanguage",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 405,
+        "vi": 502,
+        "tr": 696,
+        "pl": 793
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.congratulations",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 444,
+        "vi": 541,
+        "tr": 735,
+        "pl": 832
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.continueBtn",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 408,
+        "vi": 505,
+        "tr": 699,
+        "pl": 796
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.continueLesson",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 359,
+        "vi": 456,
+        "tr": 650,
+        "pl": 747
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.correct",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 381,
+        "vi": 478,
+        "tr": 672,
+        "pl": 769
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.currentLevel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 423,
+        "vi": 520,
+        "tr": 714,
+        "pl": 811
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.currentLevelLabel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 433,
+        "vi": 530,
+        "tr": 724,
+        "pl": 821
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.daysEstimate",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 436,
+        "vi": 533,
+        "tr": 727,
+        "pl": 824
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.easy",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 374,
+        "vi": 471,
+        "tr": 665,
+        "pl": 762
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.enterName",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 406,
+        "vi": 503,
+        "tr": 697,
+        "pl": 794
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.fast",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 402,
+        "vi": 499,
+        "tr": 693,
+        "pl": 790
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.fixErrors",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 380,
+        "vi": 477,
+        "tr": 671,
+        "pl": 768
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.goalEmigration",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 414,
+        "vi": 511,
+        "tr": 705,
+        "pl": 802
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.goalHobby",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 415,
+        "vi": 512,
+        "tr": 706,
+        "pl": 803
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.goalTourism",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 412,
+        "vi": 509,
+        "tr": 703,
+        "pl": 800
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.goalWork",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 413,
+        "vi": 510,
+        "tr": 704,
+        "pl": 801
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.hard",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 376,
+        "vi": 473,
+        "tr": 667,
+        "pl": 764
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.hardMode",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 397,
+        "vi": 494,
+        "tr": 688,
+        "pl": 785
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.hardModeSub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 398,
+        "vi": 495,
+        "tr": 689,
+        "pl": 786
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.help",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 368,
+        "vi": 465,
+        "tr": 659,
+        "pl": 756
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.helpMenu",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 403,
+        "vi": 500,
+        "tr": 694,
+        "pl": 791
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.hint",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 367,
+        "vi": 464,
+        "tr": 658,
+        "pl": 755
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.hoursPerDay",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 417,
+        "vi": 514,
+        "tr": 708,
+        "pl": 805
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.hoursPerWeek",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 438,
+        "vi": 535,
+        "tr": 729,
+        "pl": 826
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.learningSettings",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 390,
+        "vi": 487,
+        "tr": 681,
+        "pl": 778
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.learnVerbs",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 361,
+        "vi": 458,
+        "tr": 652,
+        "pl": 749
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.learnWords",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 360,
+        "vi": 457,
+        "tr": 651,
+        "pl": 748
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.lessonDescription",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 362,
+        "vi": 459,
+        "tr": 653,
+        "pl": 750
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.lessonN",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 356,
+        "vi": 453,
+        "tr": 647,
+        "pl": 744
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.lessonsCount",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 437,
+        "vi": 534,
+        "tr": 728,
+        "pl": 825
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.levelA1",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 424,
+        "vi": 521,
+        "tr": 715,
+        "pl": 812
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.levelA2",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 425,
+        "vi": 522,
+        "tr": 716,
+        "pl": 813
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.levelB1",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 426,
+        "vi": 523,
+        "tr": 717,
+        "pl": 814
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.levelB2",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 427,
+        "vi": 524,
+        "tr": 718,
+        "pl": 815
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.locked",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 357,
+        "vi": 454,
+        "tr": 648,
+        "pl": 745
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.medium",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 375,
+        "vi": 472,
+        "tr": 666,
+        "pl": 763
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.min15",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 419,
+        "vi": 516,
+        "tr": 710,
+        "pl": 807
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.min30",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 420,
+        "vi": 517,
+        "tr": 711,
+        "pl": 808
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.min5",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 418,
+        "vi": 515,
+        "tr": 709,
+        "pl": 806
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.min60",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 421,
+        "vi": 518,
+        "tr": 712,
+        "pl": 809
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.namePlaceholder",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 407,
+        "vi": 504,
+        "tr": 698,
+        "pl": 795
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.nameRequired",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 409,
+        "vi": 506,
+        "tr": 700,
+        "pl": 797
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.next",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 370,
+        "vi": 467,
+        "tr": 661,
+        "pl": 758
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.noArticle",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 364,
+        "vi": 461,
+        "tr": 655,
+        "pl": 752
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.onboardingComplete",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 445,
+        "vi": 542,
+        "tr": 736,
+        "pl": 833
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.oops",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 366,
+        "vi": 463,
+        "tr": 657,
+        "pl": 754
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.oral",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 369,
+        "vi": 466,
+        "tr": 660,
+        "pl": 757
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.personalPlan",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 429,
+        "vi": 526,
+        "tr": 720,
+        "pl": 817
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.planForGoal",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 430,
+        "vi": 527,
+        "tr": 721,
+        "pl": 818
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.planIntensity",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 431,
+        "vi": 528,
+        "tr": 722,
+        "pl": 819
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.playAgain",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 378,
+        "vi": 475,
+        "tr": 669,
+        "pl": 766
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.preferredTime",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 441,
+        "vi": 538,
+        "tr": 732,
+        "pl": 829
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.quizDone",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 377,
+        "vi": 474,
+        "tr": 668,
+        "pl": 765
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.reachTargetBy",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 439,
+        "vi": 536,
+        "tr": 730,
+        "pl": 827
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.reviewDone",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 382,
+        "vi": 479,
+        "tr": 673,
+        "pl": 770
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.selectLevel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 373,
+        "vi": 470,
+        "tr": 664,
+        "pl": 761
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.selectLevel2",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 379,
+        "vi": 476,
+        "tr": 670,
+        "pl": 767
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.setNotifications",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 442,
+        "vi": 539,
+        "tr": 733,
+        "pl": 830
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.settings",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 389,
+        "vi": 486,
+        "tr": 680,
+        "pl": 777
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.slow",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 401,
+        "vi": 498,
+        "tr": 692,
+        "pl": 789
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.speed",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 399,
+        "vi": 496,
+        "tr": 690,
+        "pl": 787
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.speedHint",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 400,
+        "vi": 497,
+        "tr": 691,
+        "pl": 788
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.step",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 446,
+        "vi": 543,
+        "tr": 737,
+        "pl": 834
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.tabLessons",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 352,
+        "vi": 449,
+        "tr": 643,
+        "pl": 740
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.tabQuizzes",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 353,
+        "vi": 450,
+        "tr": 644,
+        "pl": 741
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.tabSettings",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 354,
+        "vi": 451,
+        "tr": 645,
+        "pl": 742
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.targetLevelLabel",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 434,
+        "vi": 531,
+        "tr": 725,
+        "pl": 822
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.timeTillGoal",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 435,
+        "vi": 532,
+        "tr": 726,
+        "pl": 823
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.training",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 384,
+        "vi": 481,
+        "tr": 675,
+        "pl": 772
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.typeAnswer",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 371,
+        "vi": 468,
+        "tr": 662,
+        "pl": 759
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.voiceOut",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 393,
+        "vi": 490,
+        "tr": 684,
+        "pl": 781
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.voiceOutSub",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 394,
+        "vi": 491,
+        "tr": 685,
+        "pl": 782
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.whyLearnEnglish",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 411,
+        "vi": 508,
+        "tr": 702,
+        "pl": 799
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.wordList",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 385,
+        "vi": 482,
+        "tr": 676,
+        "pl": 773
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.wordsInLesson",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 387,
+        "vi": 484,
+        "tr": 678,
+        "pl": 775
+      }
+    },
+    {
+      "file": "constants/i18n.ts",
+      "surface": "ui-locale",
+      "keyPath": "<locale>.yourForecast",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 432,
+        "vi": 529,
+        "tr": 723,
+        "pl": 820
+      }
+    }
+  ],
+  "missingAllLocaleUnits": [],
+  "truncated": false
+}

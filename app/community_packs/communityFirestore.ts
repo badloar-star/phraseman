@@ -38,7 +38,8 @@ export function mapCommunityPackDocToMarket(
   }
   const titleRu = String(data.titleRu ?? '').trim();
   const titleUk = String(data.titleUk ?? '').trim();
-  if (!titleRu || !titleUk) return null;
+  const titleEs = String(data.titleEs ?? '').trim();
+  if (!titleRu && !titleUk && !titleEs) return null;
   const codeNameRaw = String(data.codeName ?? '').trim();
   const cat = (data.category as FlashcardPackCategory) ?? 'slang';
   const authorSid = String(data.authorStableId ?? '').trim();
@@ -47,7 +48,7 @@ export function mapCommunityPackDocToMarket(
     codeName: codeNameRaw || derivePackCodeName(id),
     titleRu,
     titleUk,
-    titleEs: String(data.titleEs ?? ''),
+    titleEs,
     descriptionRu: String(data.descriptionRu ?? ''),
     descriptionUk: String(data.descriptionUk ?? ''),
     descriptionEs: String(data.descriptionEs ?? ''),
@@ -115,7 +116,7 @@ export type CommunityPackEditorSnapshot = {
   description: string;
   priceShards: number;
   cardThemeKey: string;
-  cards: Array<{ id: string; en: string; ru: string; uk: string }>;
+  cards: Array<{ id: string; en: string; ru: string; uk: string; es?: string }>;
 };
 
 export async function fetchCommunityPackForAuthorEdit(
@@ -138,11 +139,12 @@ export async function fetchCommunityPackForAuthorEdit(
         en: String(c.en ?? '').trim(),
         ru: String(c.ru ?? '').trim(),
         uk: String(c.uk ?? '').trim(),
+        es: String(c.es ?? '').trim() || undefined,
       };
     });
     return {
-      title: String(d.titleRu ?? d.titleUk ?? '').trim(),
-      description: String(d.descriptionRu ?? d.descriptionUk ?? '').trim(),
+      title: String(d.titleRu ?? d.titleUk ?? d.titleEs ?? '').trim(),
+      description: String(d.descriptionRu ?? d.descriptionUk ?? d.descriptionEs ?? '').trim(),
       priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cardThemeKey: String(d.cardThemeKey ?? UGC_CARD_THEME_DEFAULT_ID).trim() || UGC_CARD_THEME_DEFAULT_ID,
       cards,
@@ -162,14 +164,16 @@ export function communityPackCardsToCardItems(packId: string, cards: unknown): C
     const id = String(c.id ?? '').trim();
     const en = String(c.en ?? '').trim();
     const ru = String(c.ru ?? '').trim();
+    const es = String(c.es ?? '').trim();
     /** У `CommunityPackCardPayload` третя колонка — нотатка/опис (редактор), не український переклад фрази. */
     const descriptionNote = String(c.uk ?? '').trim();
-    if (!id || !en || !ru) continue;
+    if (!id || !en || (!ru && !es)) continue;
     out.push({
       id: `${packId}_${id}`,
       en,
       ru,
       uk: ru,
+      es: es || undefined,
       description: descriptionNote || undefined,
       categoryId: 'custom',
       isSystem: true,

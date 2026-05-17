@@ -23,16 +23,31 @@ const TEXT = {
     ru: 'Большое обновление PhraseMan',
     uk: 'Велике оновлення PhraseMan',
     es: 'Gran actualización de PhraseMan',
+    'pt-BR': 'Grande atualização do PhraseMan',
+    vi: 'Bản cập nhật lớn của PhraseMan',
+    id: 'Pembaruan besar PhraseMan',
+    tr: 'PhraseMan büyük güncelleme',
+    pl: 'Duża aktualizacja PhraseMan',
   },
   subtitle: {
     ru: 'Приложение стало взрослее, понятнее и немного серьёзнее.',
     uk: 'Застосунок став дорослішим, зрозумілішим і трохи серйознішим.',
     es: 'La app ahora es más clara, más útil y un poco más seria.',
+    'pt-BR': 'O app ficou mais maduro, mais claro e um pouco mais sério.',
+    vi: 'Ứng dụng trưởng thành hơn, rõ ràng hơn và nghiêm túc hơn một chút.',
+    id: 'Aplikasi kini lebih matang, lebih jelas, dan sedikit lebih serius.',
+    tr: 'Uygulama daha olgun, daha anlaşılır ve biraz daha ciddi oldu.',
+    pl: 'Aplikacja stała się dojrzalsza, czytelniejsza i trochę poważniejsza.',
   },
   chips: {
     ru: ['Чат лиги', 'Призы за цель', 'Умнее тренировки', 'Сильнее аналитика'],
     uk: ['Чат ліги', 'Призи за ціль', 'Розумніші тренування', 'Сильніша аналітика'],
     es: ['Chat de liga', 'Premios por objetivo', 'Entrenos más inteligentes', 'Más analítica'],
+    'pt-BR': ['Chat da liga', 'Prêmios por meta', 'Treinos mais inteligentes', 'Análises melhores'],
+    vi: ['Chat giải đấu', 'Phần thưởng mục tiêu', 'Luyện tập thông minh hơn', 'Phân tích mạnh hơn'],
+    id: ['Chat liga', 'Hadiah target', 'Latihan lebih pintar', 'Analitik lebih kuat'],
+    tr: ['Lig sohbeti', 'Hedef ödülleri', 'Daha akıllı antrenman', 'Daha güçlü analiz'],
+    pl: ['Czat ligi', 'Nagrody za cel', 'Mądrzejsze treningi', 'Lepsza analityka'],
   },
   body: {
     ru:
@@ -74,11 +89,81 @@ const TEXT = {
       + 'Una gran parte gratuita sigue disponible: puedes aprender, entrenar, jugar, completar tareas diarias, participar en ligas y probar el formato.\n\n'
       + 'Premium nos ayuda a seguir creando lecciones nuevas, mejorar la calidad y mantener la app rápida para todos.\n\n'
       + 'Gracias por entenderlo. No ponemos un candado por ponerlo. Lo hacemos para que PhraseMan no se detenga.',
+    'pt-BR':
+      'Temos uma grande atualização. Daquelas em que o PhraseMan ajeita a gola e diz: "Certo, agora vamos trabalhar sério".\n\n'
+      + 'O que há de novo: as ligas agora têm chat. Ele dura uma semana, exatamente o tempo da liga atual. Você pode entrar, desejar boa sorte aos outros participantes e fingir que não pretende passar todo mundo em XP daqui a cinco minutos.\n\n'
+      + 'As ligas agora também têm prêmios valiosos por cumprir a meta. Não é só "muito bem, receba respeito", mas uma recompensa real do jogo pela regularidade.\n\n'
+      + 'Os treinos pessoais ficaram mais inteligentes: o app percebe melhor seus pontos fracos e leva você de volta a eles sem drama, mas com a insistência de um bom treinador.\n\n'
+      + 'A análise também cresceu bastante. Agora fica mais fácil entender onde você erra, o que já funciona e para onde seguir. Ficou mais claro, mais honesto e muito mais útil.\n\n'
+      + 'O perfil também ficou mais visível: avatar, molduras e outros elementos de personalização ajudam seu progresso a aparecer por dentro e por fora.\n\n'
+      + 'Também melhoramos lições, frases, traduções, arena, ligas e lugares em que o app podia se comportar como se o inglês tivesse sido inventado numa sexta-feira à noite.\n\n'
+      + 'Agora o ponto importante. Há uma notícia desconfortável: todas as lições a partir da quarta passam para o Premium.\n\n'
+      + 'Sabemos que este não é o momento de soltar fogos. Mas o PhraseMan cresceu muito: há mais usuários, os servidores trabalham mais, as atualizações exigem mais tempo e um estúdio pequeno não consegue pagar tudo com um "obrigado, vocês são incríveis". Nós testamos. O banco não aceitou.\n\n'
+      + 'Uma grande parte gratuita continua disponível: você pode aprender, treinar, jogar, completar tarefas diárias, participar das ligas e conhecer o formato.\n\n'
+      + 'O Premium nos ajuda a continuar criando novas lições, melhorar a qualidade e manter o app rápido para todos.\n\n'
+      + 'Obrigado por entender. Não colocamos um cadeado por colocar. Fazemos isso para que o PhraseMan não pare.',
+    vi:
+      'Chúng ta có một bản cập nhật lớn. Kiểu cập nhật mà PhraseMan chỉnh lại cổ áo rồi nói: "Được rồi, giờ làm việc nghiêm túc".\n\n'
+      + 'Có gì mới: các giải đấu giờ có chat. Chat tồn tại trong một tuần, đúng bằng thời gian của giải đấu hiện tại. Bạn có thể vào chúc người khác may mắn và giả vờ rằng mình không định vượt họ về XP sau năm phút nữa.\n\n'
+      + 'Các giải đấu giờ cũng có phần thưởng giá trị khi hoàn thành mục tiêu. Không chỉ là "làm tốt lắm, nhận sự tôn trọng nhé", mà là phần thưởng thật trong game cho sự đều đặn.\n\n'
+      + 'Các buổi luyện tập cá nhân thông minh hơn: ứng dụng nhận ra điểm yếu tốt hơn và đưa bạn quay lại luyện chúng, không kịch tính, nhưng kiên trì như một huấn luyện viên tốt.\n\n'
+      + 'Phần phân tích cũng phát triển nhiều. Giờ bạn dễ hiểu hơn mình sai ở đâu, phần nào đã ổn và nên đi tiếp theo hướng nào. Rõ ràng hơn, thật hơn và hữu ích hơn nhiều.\n\n'
+      + 'Hồ sơ cũng nổi bật hơn: avatar, khung và các yếu tố tùy chỉnh khác giúp tiến bộ của bạn được nhìn thấy cả bên trong lẫn bên ngoài.\n\n'
+      + 'Chúng tôi cũng cải thiện bài học, cụm từ, bản dịch, arena, giải đấu và những chỗ ứng dụng từng hành xử như thể tiếng Anh được nghĩ ra vào tối thứ Sáu.\n\n'
+      + 'Bây giờ là phần quan trọng. Có một tin không dễ chịu: tất cả bài học từ bài thứ tư trở đi sẽ chuyển sang Premium.\n\n'
+      + 'Chúng tôi hiểu đây không phải lúc ai muốn ăn mừng. Nhưng PhraseMan đã lớn hơn rất nhiều: người dùng nhiều hơn, máy chủ chạy nhiều hơn, cập nhật cần nhiều thời gian hơn, và một studio nhỏ không thể chi trả mọi thứ chỉ bằng câu "cảm ơn, các bạn tuyệt lắm". Chúng tôi đã thử. Ngân hàng không chấp nhận.\n\n'
+      + 'Một phần miễn phí lớn vẫn còn: bạn có thể học, luyện tập, chơi, làm nhiệm vụ hằng ngày, tham gia giải đấu và làm quen với cách học.\n\n'
+      + 'Premium giúp chúng tôi tiếp tục tạo bài học mới, nâng chất lượng và giữ ứng dụng nhanh cho tất cả mọi người.\n\n'
+      + 'Cảm ơn bạn đã thông cảm. Chúng tôi không đặt khóa chỉ để đặt khóa. Chúng tôi làm vậy để PhraseMan không dừng lại.',
+    id:
+      'Kami punya pembaruan besar. Jenis pembaruan ketika PhraseMan merapikan kerah dan berkata: "Oke, sekarang kita bekerja serius".\n\n'
+      + 'Yang baru: liga sekarang punya chat. Chat ini aktif selama satu minggu, sama persis dengan durasi liga saat ini. Kamu bisa masuk, mendoakan peserta lain semoga berhasil, lalu pura-pura tidak akan menyalip XP mereka lima menit lagi.\n\n'
+      + 'Liga sekarang juga punya hadiah bernilai untuk menyelesaikan target. Bukan cuma "bagus, ini rasa hormat", tapi hadiah game sungguhan untuk konsistensi.\n\n'
+      + 'Latihan personal menjadi lebih pintar: aplikasi lebih baik mengenali titik lemahmu dan mengembalikanmu ke sana tanpa drama, tapi dengan ketekunan seperti pelatih yang baik.\n\n'
+      + 'Analitik juga berkembang banyak. Sekarang lebih mudah memahami di mana kamu sering salah, apa yang sudah mulai berhasil, dan ke mana harus lanjut. Lebih jelas, lebih jujur, dan jauh lebih berguna.\n\n'
+      + 'Profil juga lebih menonjol: avatar, bingkai, dan elemen kustomisasi lain membantu progresmu terlihat, bukan hanya terasa.\n\n'
+      + 'Kami juga meningkatkan pelajaran, frasa, terjemahan, arena, liga, dan bagian-bagian tempat aplikasi dulu bisa bertingkah seolah bahasa Inggris ditemukan pada Jumat malam.\n\n'
+      + 'Sekarang bagian pentingnya. Ada kabar yang kurang nyaman: semua pelajaran mulai dari pelajaran keempat akan masuk Premium.\n\n'
+      + 'Kami paham ini bukan momen untuk menyalakan kembang api. Tapi PhraseMan sudah tumbuh banyak: pengguna lebih banyak, server bekerja lebih keras, pembaruan butuh lebih banyak waktu, dan studio kecil tidak bisa membayar semuanya hanya dengan "terima kasih, kalian hebat". Kami sudah mencoba. Bank tidak menerimanya.\n\n'
+      + 'Bagian gratis yang besar tetap tersedia: kamu bisa belajar, berlatih, bermain, menyelesaikan tugas harian, ikut liga, dan mencoba formatnya.\n\n'
+      + 'Premium membantu kami terus membuat pelajaran baru, meningkatkan kualitas, dan menjaga aplikasi tetap cepat untuk semua orang.\n\n'
+      + 'Terima kasih sudah memahami. Kami tidak memasang kunci hanya demi memasang kunci. Kami melakukannya agar PhraseMan tidak berhenti.',
+    tr:
+      'Büyük bir güncellememiz var. PhraseMan yakasını düzeltip "Tamam, artık ciddi çalışıyoruz" dediği türden bir güncelleme.\n\n'
+      + 'Yenilikler: liglerde artık sohbet var. Bir hafta yaşar; yani mevcut lig ne kadar sürüyorsa tam o kadar. Girip diğer katılımcılara şans dileyebilir ve beş dakika sonra XP ile onları geçmeyecekmiş gibi davranabilirsiniz.\n\n'
+      + 'Liglerde hedefi tamamlayınca artık değerli ödüller de var. Sadece "aferin, saygımızı kazandın" değil; düzenli çalışmanın karşılığı olan gerçek bir oyun ödülü.\n\n'
+      + 'Kişisel antrenmanlar daha akıllı hale geldi: uygulama zayıf noktalarınızı daha iyi fark ediyor ve sizi onlara geri getiriyor. Drama yok, ama iyi bir eğitmen kadar ısrar var.\n\n'
+      + 'Analitik de ciddi şekilde gelişti. Artık nerede hata yaptığınızı, neyin işe yaradığını ve sonra nereye ilerlemeniz gerektiğini anlamak daha kolay. Daha anlaşılır, daha dürüst ve çok daha faydalı oldu.\n\n'
+      + 'Profil de daha görünür hale geldi: avatar, çerçeveler ve diğer kişiselleştirme öğeleri ilerlemenizin yalnızca içeride değil dışarıda da görünmesine yardım ediyor.\n\n'
+      + 'Ayrıca dersleri, ifadeleri, çevirileri, arenayı, ligleri ve uygulamanın İngilizce cuma akşamı icat edilmiş gibi davrandığı yerleri de iyileştirdik.\n\n'
+      + 'Şimdi önemli kısım. Rahatsız edici bir haber var: dördüncü dersten itibaren tüm dersler Premium oluyor.\n\n'
+      + 'Bunun kutlama yapmak isteyeceğiniz bir an olmadığını biliyoruz. Ama PhraseMan çok büyüdü: daha fazla kullanıcı var, sunucular daha fazla çalışıyor, güncellemeler daha çok zaman istiyor ve küçük bir stüdyo her şeyi "teşekkürler, harikasınız" ile ödeyemiyor. Denedik. Banka kabul etmedi.\n\n'
+      + 'Büyük bir ücretsiz bölüm yine açık kalıyor: öğrenebilir, antrenman yapabilir, oynayabilir, günlük görevleri tamamlayabilir, liglere katılabilir ve formatı deneyebilirsiniz.\n\n'
+      + 'Premium, yeni dersler yapmaya, kaliteyi artırmaya ve uygulamayı herkes için hızlı tutmaya devam etmemize yardımcı oluyor.\n\n'
+      + 'Anlayışınız için teşekkürler. Sırf kilit koymuş olmak için kilit koymuyoruz. Bunu PhraseMan durmasın diye yapıyoruz.',
+    pl:
+      'Mamy dużą aktualizację. Taką, po której PhraseMan poprawia kołnierzyk i mówi: "Dobra, teraz pracujemy na serio".\n\n'
+      + 'Co nowego: ligi mają teraz czat. Żyje przez tydzień, dokładnie tyle, ile obecna liga. Możesz wejść, życzyć innym powodzenia i udawać, że wcale nie zamierzasz wyprzedzić ich w XP za pięć minut.\n\n'
+      + 'W ligach są też teraz wartościowe nagrody za wykonanie celu. Nie tylko "dobra robota, masz szacunek", ale prawdziwa nagroda w grze za regularność.\n\n'
+      + 'Treningi personalne stały się mądrzejsze: aplikacja lepiej zauważa słabe miejsca i wraca z tobą do nich bez dramatu, ale z uporem dobrego trenera.\n\n'
+      + 'Analityka też mocno urosła. Teraz łatwiej zrozumieć, gdzie robisz błędy, co już działa i dokąd iść dalej. Jest czytelniej, uczciwiej i dużo bardziej użytecznie.\n\n'
+      + 'Profil stał się bardziej widoczny: avatar, ramki i inne elementy personalizacji pomagają pokazać postęp nie tylko w środku, ale też na zewnątrz.\n\n'
+      + 'Poprawiliśmy też lekcje, frazy, tłumaczenia, arenę, ligi i miejsca, w których aplikacja zachowywała się tak, jakby angielski wymyślono w piątek wieczorem.\n\n'
+      + 'Teraz ważna sprawa. Jest niewygodna wiadomość: wszystkie lekcje od czwartej przechodzą do Premium.\n\n'
+      + 'Rozumiemy, że to nie jest moment na fajerwerki. Ale PhraseMan bardzo urósł: jest więcej użytkowników, serwery pracują więcej, aktualizacje wymagają więcej czasu, a małe studio nie potrafi opłacić wszystkiego jednym "dziękujemy, jesteście najlepsi". Sprawdziliśmy. Bank nie uznał.\n\n'
+      + 'Duża część darmowa zostaje dostępna: możesz się uczyć, trenować, grać, wykonywać codzienne zadania, brać udział w ligach i poznać format.\n\n'
+      + 'Premium pomaga nam dalej tworzyć nowe lekcje, podnosić jakość i utrzymywać aplikację szybką dla wszystkich.\n\n'
+      + 'Dziękujemy za zrozumienie. Nie zakładamy blokady dla samej blokady. Robimy to, żeby PhraseMan się nie zatrzymał.',
   },
   cta: {
     ru: 'Понятно, продолжаем',
     uk: 'Зрозуміло, продовжуємо',
     es: 'Entendido, seguimos',
+    'pt-BR': 'Entendi, continuar',
+    vi: 'Đã hiểu, tiếp tục',
+    id: 'Mengerti, lanjut',
+    tr: 'Anladım, devam',
+    pl: 'Rozumiem, kontynuuj',
   },
 } as const;
 
@@ -95,13 +180,40 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
   const glowAnim = useRef(new Animated.Value(0)).current;
   const shineAnim = useRef(new Animated.Value(0)).current;
 
-  const title = useMemo(() => triLang(lang, TEXT.title), [lang]);
-  const subtitle = useMemo(() => triLang(lang, TEXT.subtitle), [lang]);
+  const title = useMemo(() => triLang(lang, {
+    ru: TEXT.title.ru,
+    uk: TEXT.title.uk,
+    es: TEXT.title.es,
+    'pt-BR': TEXT.title['pt-BR'],
+    vi: TEXT.title.vi,
+    id: TEXT.title.id,
+    tr: TEXT.title.tr,
+    pl: TEXT.title.pl,
+  }), [lang]);
+  const subtitle = useMemo(() => triLang(lang, {
+    ru: TEXT.subtitle.ru,
+    uk: TEXT.subtitle.uk,
+    es: TEXT.subtitle.es,
+    'pt-BR': TEXT.subtitle['pt-BR'],
+    vi: TEXT.subtitle.vi,
+    id: TEXT.subtitle.id,
+    tr: TEXT.subtitle.tr,
+    pl: TEXT.subtitle.pl,
+  }), [lang]);
   const chips = useMemo(
     () => (lang === 'es' ? TEXT.chips.es : lang === 'uk' ? TEXT.chips.uk : TEXT.chips.ru),
     [lang],
   );
-  const body = useMemo(() => triLang(lang, TEXT.body), [lang]);
+  const body = useMemo(() => triLang(lang, {
+    ru: TEXT.body.ru,
+    uk: TEXT.body.uk,
+    es: TEXT.body.es,
+    'pt-BR': TEXT.body['pt-BR'],
+    vi: TEXT.body.vi,
+    id: TEXT.body.id,
+    tr: TEXT.body.tr,
+    pl: TEXT.body.pl,
+  }), [lang]);
   const paragraphs = useMemo(() => body.split('\n\n').filter(Boolean), [body]);
   const titleSize = Math.min(f.h2, 24);
   const bodySize = Math.min(f.body, 16);
@@ -234,6 +346,11 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
             uk: 'Закрити',
             ru: 'Закрыть',
             es: 'Cerrar',
+            'pt-BR': 'Fechar',
+            vi: 'Đóng',
+            id: 'Tutup',
+            tr: 'Kapat',
+            pl: 'Zamknij',
           })}
         />
         <Animated.View style={[styles.card, cardAnimatedStyle]}>
@@ -318,7 +435,16 @@ export default function ReleaseNotesModal({ visible, onClose }: Props) {
           >
             <LinearGradient colors={['#FFE08A', '#F7BE4F', '#E99D35']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={styles.btnGradient}>
               <Text style={[styles.btnText, { fontSize: buttonSize }]}>
-                {triLang(lang, TEXT.cta)}
+                {triLang(lang, {
+                  ru: TEXT.cta.ru,
+                  uk: TEXT.cta.uk,
+                  es: TEXT.cta.es,
+                  'pt-BR': TEXT.cta['pt-BR'],
+                  vi: TEXT.cta.vi,
+                  id: TEXT.cta.id,
+                  tr: TEXT.cta.tr,
+                  pl: TEXT.cta.pl,
+                })}
               </Text>
             </LinearGradient>
           </Pressable>

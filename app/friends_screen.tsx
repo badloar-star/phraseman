@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
+  Image,
   TouchableOpacity,
   TextInput,
   ScrollView,
@@ -42,12 +43,14 @@ import { triLang } from '../constants/i18n';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { trackActivity } from './app_activity';
 import { getShardsBalance } from './shards_system';
+import { oskolokImageForPackShards } from './oskolok';
 import {
   FRIEND_GIFT_CATALOG,
   isFriendGiftsCloudEnabled,
   sendFriendGiftWithShards,
   type FriendGiftId,
 } from './friend_gifts';
+import { checkAchievements } from './achievements';
 
 // ── Types ────────────────────────────────────────────────────────────────────
 
@@ -118,8 +121,17 @@ export default function FriendsScreen() {
   const { theme: t } = useTheme();
   const { lang } = useLang();
 
-  const L = (ru: string, uk: string, es: string) =>
-    triLang(lang, { ru, uk, es });
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) =>
+    triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   // ── State ──────────────────────────────────────────────────────────────────
 
@@ -190,7 +202,15 @@ export default function FriendsScreen() {
       };
 
       unsubFriends = subscribeToFriends(
-        (data) => { if (!cancelled) { setFriends(data); markFriendsDone(); } },
+        (data) => {
+          if (!cancelled) {
+            setFriends(data);
+            if (data.length > 0) {
+              void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
+            }
+            markFriendsDone();
+          }
+        },
         () => { markFriendsDone(); },
       );
       unsubReq = subscribeToIncomingRequests(
@@ -267,7 +287,7 @@ export default function FriendsScreen() {
           result: 'blocked',
           tags: { reason: 'not_found', codeLength: codeNorm.length },
         });
-        showFeedback(L('Пользователь не найден', 'Користувача не знайдено', 'Usuario no encontrado'));
+        showFeedback(L('Пользователь не найден', 'Користувача не знайдено', 'Usuario no encontrado', 'Usuário não encontrado', 'Không tìm thấy người dùng', 'Pengguna tidak ditemukan', 'Kullanıcı bulunamadı', 'Nie znaleziono użytkownika'));
         return;
       }
       const myUid = await getCanonicalUserId();
@@ -297,16 +317,16 @@ export default function FriendsScreen() {
         tags: { targetUid: lookup.uid, requestResult: result },
       });
       if (result === 'sent') {
-        showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!'));
+        showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
         setCodeInput('');
       } else if (result === 'already_sent') {
-        showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Solicitud ya enviada'));
+        showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Solicitud ya enviada', 'Solicitação já enviada', 'Lời mời đã được gửi', 'Permintaan sudah dikirim', 'İstek zaten gönderildi', 'Zaproszenie już wysłane'));
       } else if (result === 'already_friends') {
-        showFeedback(L('Вы уже друзья', 'Ви вже друзі', 'Ya son amigos'));
+        showFeedback(L('Вы уже друзья', 'Ви вже друзі', 'Ya son amigos', 'Vocês já são amigos', 'Các bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi'));
       } else if (result === 'self') {
         showFeedback(randomSelfFriendCodeMessage(L));
       } else {
-        showFeedback(L('Пользователь не найден', 'Користувача не знайдено', 'Usuario no encontrado'));
+        showFeedback(L('Пользователь не найден', 'Користувача не знайдено', 'Usuario no encontrado', 'Usuário não encontrado', 'Không tìm thấy người dùng', 'Pengguna tidak ditemukan', 'Kullanıcı bulunamadı', 'Nie znaleziono użytkownika'));
       }
     } catch (e) {
       void import('./app_health')
@@ -325,7 +345,7 @@ export default function FriendsScreen() {
         result: 'error',
         tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
-      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
+      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
       setIsAdding(false);
     }
@@ -345,7 +365,7 @@ export default function FriendsScreen() {
     doHaptic();
     await Share.share({
       message:
-        L('Мой код в PhraseMan:', 'Мій код у PhraseMan:', 'Mi código en PhraseMan:') +
+        L('Мой код в PhraseMan:', 'Мій код у PhraseMan:', 'Mi código en PhraseMan:', 'Meu código no PhraseMan:', 'Mã của tôi trong PhraseMan:', 'Kode saya di PhraseMan:', 'PhraseMan kodum:', 'Mój kod w PhraseMan:') +
         ' ' +
         myCode,
     });
@@ -373,21 +393,39 @@ export default function FriendsScreen() {
   };
 
   const giftLabel = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
-    triLang(lang, { ru: gift.labelRu, uk: gift.labelUk, es: gift.labelEs });
+    triLang(lang, {
+      ru: gift.labelRu,
+      uk: gift.labelUk,
+      es: gift.labelEs,
+      'pt-BR': gift.labelPtBr,
+      vi: gift.labelVi,
+      id: gift.labelId,
+      tr: gift.labelTr,
+      pl: gift.labelPl,
+    });
 
   const giftDescription = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
-    triLang(lang, { ru: gift.descRu, uk: gift.descUk, es: gift.descEs });
+    triLang(lang, {
+      ru: gift.descRu,
+      uk: gift.descUk,
+      es: gift.descEs,
+      'pt-BR': gift.descPtBr,
+      vi: gift.descVi,
+      id: gift.descId,
+      tr: gift.descTr,
+      pl: gift.descPl,
+    });
 
   const handleSendGift = async (giftId: FriendGiftId) => {
     if (!giftTarget || giftBusyId) return;
     const gift = FRIEND_GIFT_CATALOG.find((x) => x.id === giftId);
     if (!gift) return;
     if (!isFriendGiftsCloudEnabled()) {
-      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronizacion en la nube'));
+      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronización en la nube', 'Presentes só estão disponíveis com sincronização na nuvem', 'Quà tặng chỉ khả dụng khi đồng bộ đám mây', 'Hadiah hanya tersedia dengan sinkronisasi cloud', 'Hediyeler yalnızca bulut senkronizasyonuyla kullanılabilir', 'Prezenty są dostępne tylko z synchronizacją w chmurze'));
       return;
     }
     if (giftBalance < gift.costShards) {
-      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos'));
+      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Fragmen tidak cukup', 'Yeterli parça yok', 'Za mało odłamków'));
       return;
     }
     doHaptic();
@@ -399,7 +437,7 @@ export default function FriendsScreen() {
       });
       setGiftBalance(res.senderBalanceAfter);
       setGiftTarget(null);
-      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado'));
+      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
       await trackActivity('friends:send_gift', {
         feature: 'friends',
         screen: 'friends',
@@ -410,8 +448,8 @@ export default function FriendsScreen() {
       const msg = e instanceof Error ? e.message : String(e);
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
-          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa')
-          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo'),
+          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no está activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Fragmen kurang atau pertemanan tidak lagi aktif', 'Yeterli parça yok veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
+          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không thể gửi quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
       await trackActivity('friends:send_gift', {
         feature: 'friends',
@@ -695,11 +733,25 @@ export default function FriendsScreen() {
       marginTop: 2,
     },
     giftCost: {
-      minWidth: 46,
       textAlign: 'right',
       color: t.accent,
       fontSize: 14,
       fontWeight: '800',
+    },
+    giftCostRow: {
+      minWidth: 58,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-end',
+      gap: 4,
+    },
+    giftShardImg: {
+      width: 20,
+      height: 20,
+    },
+    giftCostShardImg: {
+      width: 22,
+      height: 22,
     },
     bottomPad: { height: 40 },
   });
@@ -723,20 +775,20 @@ export default function FriendsScreen() {
             testID={`friends-accept-${req.fromUid}`}
             style={styles.acceptBtn}
             onPress={() => void handleAccept(req.fromUid)}
-            accessibilityLabel={L('Принять', 'Прийняти', 'Aceptar')}
+            accessibilityLabel={L('Принять', 'Прийняти', 'Aceptar', 'Aceitar', 'Chấp nhận', 'Terima', 'Kabul et', 'Przyjmij')}
           >
             <Text style={styles.acceptBtnText}>
-              {L('Принять', 'Прийняти', 'Aceptar')}
+              {L('Принять', 'Прийняти', 'Aceptar', 'Aceitar', 'Chấp nhận', 'Terima', 'Kabul et', 'Przyjmij')}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
             testID={`friends-decline-${req.fromUid}`}
             style={styles.declineBtn}
             onPress={() => void handleDecline(req.fromUid)}
-            accessibilityLabel={L('Отклонить', 'Відхилити', 'Rechazar')}
+            accessibilityLabel={L('Отклонить', 'Відхилити', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć')}
           >
             <Text style={styles.declineBtnText}>
-              {L('Отклонить', 'Відхилити', 'Rechazar')}
+              {L('Отклонить', 'Відхилити', 'Rechazar', 'Recusar', 'Từ chối', 'Tolak', 'Reddet', 'Odrzuć')}
             </Text>
           </TouchableOpacity>
         </View>
@@ -760,7 +812,7 @@ export default function FriendsScreen() {
           testID={`friends-gift-${friend.uid}`}
           style={styles.giftBtn}
           onPress={() => openGiftPicker({ uid: friend.uid, name, xp, avatar: avatarId, aura: profile?.aura })}
-          accessibilityLabel={L('Подарить', 'Подарувати', 'Regalar')}
+          accessibilityLabel={L('Подарить', 'Подарувати', 'Regalar', 'Presentear', 'Tặng quà', 'Beri hadiah', 'Hediye et', 'Podaruj')}
         >
           <Ionicons name="gift-outline" size={18} color={t.accent} />
         </TouchableOpacity>
@@ -768,10 +820,10 @@ export default function FriendsScreen() {
           testID={`friends-delete-${friend.uid}`}
           style={styles.deleteBtn}
           onPress={() => handleDeleteConfirm(friend.uid, name)}
-          accessibilityLabel={L('Удалить', 'Видалити', 'Eliminar')}
+          accessibilityLabel={L('Удалить', 'Видалити', 'Eliminar', 'Excluir', 'Xóa', 'Hapus', 'Sil', 'Usuń')}
         >
           <Text style={styles.deleteBtnText}>
-            {L('Удалить', 'Видалити', 'Eliminar')}
+            {L('Удалить', 'Видалити', 'Eliminar', 'Excluir', 'Xóa', 'Hapus', 'Sil', 'Usuń')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -789,7 +841,7 @@ export default function FriendsScreen() {
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={styles.headerTitle}>
-              {L('Друзья', 'Друзі', 'Amigos')}
+              {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
             </Text>
           </View>
           <View style={styles.loadingContainer}>
@@ -810,7 +862,7 @@ export default function FriendsScreen() {
             <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={styles.headerTitle}>
-            {L('Друзья', 'Друзі', 'Amigos')}
+            {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
           </Text>
         </View>
 
@@ -819,7 +871,7 @@ export default function FriendsScreen() {
 
             {/* ── Section 1: My Code ────────────────────────────────────── */}
             <Text style={styles.sectionTitle}>
-              {L('Мой код', 'Мій код', 'Mi código')}
+              {L('Мой код', 'Мій код', 'Mi código', 'Meu código', 'Mã của tôi', 'Kode saya', 'Kodum', 'Mój kod')}
             </Text>
             <View style={styles.codeCard}>
               {myCode ? (
@@ -830,14 +882,14 @@ export default function FriendsScreen() {
                       <Ionicons name="copy-outline" size={16} color={t.textPrimary} />
                       <Text style={styles.codeButtonText}>
                         {copyFeedback
-                          ? L('Скопировано!', 'Скопійовано!', '¡Copiado!')
-                          : L('Копировать', 'Копіювати', 'Copiar')}
+                          ? L('Скопировано!', 'Скопійовано!', '¡Copiado!', 'Copiado!', 'Đã sao chép!', 'Disalin!', 'Kopyalandı!', 'Skopiowano!')
+                          : L('Копировать', 'Копіювати', 'Copiar', 'Copiar', 'Sao chép', 'Salin', 'Kopyala', 'Kopiuj')}
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.codeButton} onPress={() => void handleShare()}>
                       <Ionicons name="share-outline" size={16} color={t.textPrimary} />
                       <Text style={styles.codeButtonText}>
-                        {L('Поделиться', 'Поділитись', 'Compartir')}
+                        {L('Поделиться', 'Поділитись', 'Compartir', 'Compartilhar', 'Chia sẻ', 'Bagikan', 'Paylaş', 'Udostępnij')}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -849,7 +901,7 @@ export default function FriendsScreen() {
 
             {/* ── Section 2: Add Friend ─────────────────────────────────── */}
             <Text style={styles.sectionTitle}>
-              {L('Добавить друга', 'Додати друга', 'Añadir amigo')}
+              {L('Добавить друга', 'Додати друга', 'Añadir amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
             </Text>
             <View style={styles.inputRow}>
               <TextInput
@@ -859,6 +911,11 @@ export default function FriendsScreen() {
                   'Код друга (6 символов)',
                   'Код друга (6 символів)',
                   'Código de amigo (6 símbolos)',
+                  'Código do amigo (6 caracteres)',
+                  'Mã bạn bè (6 ký tự)',
+                  'Kode teman (6 karakter)',
+                  'Arkadaş kodu (6 karakter)',
+                  'Kod znajomego (6 znaków)',
                 )}
                 placeholderTextColor={t.textSecond}
                 maxLength={6}
@@ -880,11 +937,11 @@ export default function FriendsScreen() {
               >
                 {isAdding ? (
                   <Text style={styles.addButtonText}>
-                    {L('Добавить', 'Додати', 'Añadir')}
+                    {L('Добавить', 'Додати', 'Añadir', 'Adicionar', 'Thêm', 'Tambah', 'Ekle', 'Dodaj')}
                   </Text>
                 ) : (
                   <Text style={styles.addButtonText}>
-                    {L('Добавить', 'Додати', 'Añadir')}
+                    {L('Добавить', 'Додати', 'Añadir', 'Adicionar', 'Thêm', 'Tambah', 'Ekle', 'Dodaj')}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -897,7 +954,7 @@ export default function FriendsScreen() {
             {requests.length > 0 ? (
               <>
                 <Text style={styles.sectionTitle}>
-                  {L('Активные заявки', 'Активні заявки', 'Solicitudes activas')}
+                  {L('Активные заявки', 'Активні заявки', 'Solicitudes activas', 'Solicitações ativas', 'Lời mời đang chờ', 'Permintaan aktif', 'Aktif istekler', 'Aktywne zaproszenia')}
                 </Text>
                 {requests.map(renderRequest)}
               </>
@@ -905,7 +962,7 @@ export default function FriendsScreen() {
 
             {/* ── Section 4: My Friends ────────────────────────────────── */}
             <Text style={styles.sectionTitle}>
-              {L('Мои друзья', 'Мої друзі', 'Mis amigos')}
+              {L('Мои друзья', 'Мої друзі', 'Mis amigos', 'Meus amigos', 'Bạn bè của tôi', 'Teman saya', 'Arkadaşlarım', 'Moi znajomi')}
             </Text>
             {sortedFriends.length === 0 ? (
               <Text style={styles.emptyText}>
@@ -913,6 +970,11 @@ export default function FriendsScreen() {
                   'Ещё нет друзей — добавьте по коду',
                   'Ще немає друзів',
                   'Sin amigos aún',
+                  'Ainda sem amigos — adicione por código',
+                  'Chưa có bạn bè — thêm bằng mã',
+                  'Belum ada teman — tambahkan dengan kode',
+                  'Henüz arkadaş yok — kodla ekle',
+                  'Nie masz jeszcze znajomych — dodaj kodem',
                 )}
               </Text>
             ) : (
@@ -941,7 +1003,7 @@ export default function FriendsScreen() {
                 ) : null}
                 <View style={styles.giftSheetTitleWrap}>
                   <Text style={styles.giftSheetTitle}>
-                    {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo')}
+                    {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo', 'Presente para amigo', 'Quà cho bạn bè', 'Hadiah untuk teman', 'Arkadaşa hediye', 'Prezent dla znajomego')}
                   </Text>
                   <Text style={styles.giftSheetSubtitle}>{giftTarget?.name ?? ''}</Text>
                 </View>
@@ -950,7 +1012,11 @@ export default function FriendsScreen() {
                 </TouchableOpacity>
               </View>
               <View style={styles.giftBalancePill}>
-                <Ionicons name="diamond-outline" size={15} color={t.accent} />
+                <Image
+                  source={oskolokImageForPackShards(giftBalance)}
+                  style={styles.giftShardImg}
+                  resizeMode="contain"
+                />
                 <Text style={styles.giftBalanceText}>{giftBalance}</Text>
               </View>
               {FRIEND_GIFT_CATALOG.map((gift) => {
@@ -969,11 +1035,14 @@ export default function FriendsScreen() {
                       <Text style={styles.giftOptionTitle}>{giftLabel(gift)}</Text>
                       <Text style={styles.giftOptionDesc}>{giftDescription(gift)}</Text>
                     </View>
-                    {giftBusyId === gift.id ? (
-                      <Text style={styles.giftCost}>{gift.costShards} 💎</Text>
-                    ) : (
-                      <Text style={styles.giftCost}>{gift.costShards} 💎</Text>
-                    )}
+                    <View style={styles.giftCostRow}>
+                      <Text style={styles.giftCost}>{gift.costShards}</Text>
+                      <Image
+                        source={oskolokImageForPackShards(gift.costShards)}
+                        style={styles.giftCostShardImg}
+                        resizeMode="contain"
+                      />
+                    </View>
                   </TouchableOpacity>
                 );
               })}
@@ -982,10 +1051,10 @@ export default function FriendsScreen() {
         </Modal>
         <ThemedConfirmModal
           visible={deleteTarget !== null}
-          title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?')}
+          title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?', 'Excluir amigo?', 'Xóa bạn bè?', 'Hapus teman?', 'Arkadaşı sil?', 'Usunąć znajomego?')}
           message={deleteTarget?.name ?? ''}
-          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
-          confirmLabel={L('Удалить', 'Видалити', 'Eliminar')}
+          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+          confirmLabel={L('Удалить', 'Видалити', 'Eliminar', 'Excluir', 'Xóa', 'Hapus', 'Sil', 'Usuń')}
           confirmVariant="default"
           onCancel={() => setDeleteTarget(null)}
           onConfirm={() => {

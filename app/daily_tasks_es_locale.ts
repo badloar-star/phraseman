@@ -1,12 +1,14 @@
 import type { Lang } from '../constants/i18n';
 import type { DailyTask } from './daily_tasks';
 
+export type DailyTaskSpanishStrings = { title: string; desc: string };
+
 /**
  * Canonical Spanish copy for daily tasks (neutral Spanish, Phraseman terms:
  * Lección, Tarjetas, Guardar/Save mirroring UI, Teoría, Repaso,
  * Test de nivel, Cuestionarios, Arena, XP, energía).
  */
-export const DAILY_TASK_STRINGS_ES: Record<string, { title: string; desc: string }> = {
+export const DAILY_TASK_STRINGS_ES: Record<string, DailyTaskSpanishStrings> = {
   cs1: { title: 'Primera racha', desc: 'Acierta 5 respuestas seguidas en una lección, sin errores.' },
   cs2: { title: 'Racha de diez', desc: 'Acierta 10 respuestas seguidas en una lección sin cometer errores.' },
   cs3: { title: '15 sin fallo', desc: 'Acierta 15 respuestas seguidas: no cortes la racha.' },
@@ -173,6 +175,12 @@ export const DAILY_TASK_STRINGS_ES: Record<string, { title: string; desc: string
 
 export function localizedDailyTaskStrings(lang: Lang, task: DailyTask): { title: string; desc: string } {
   if (lang === 'uk') return { title: task.titleUK, desc: task.descUK };
-  if (lang === 'es') return DAILY_TASK_STRINGS_ES[task.id] ?? { title: task.titleRU, desc: task.descRU };
+  if (lang === 'es') {
+    const es = DAILY_TASK_STRINGS_ES[task.id];
+    return {
+      title: task.titleES ?? es?.title ?? task.titleRU,
+      desc: task.descES ?? es?.desc ?? task.descRU,
+    };
+  }
   return { title: task.titleRU, desc: task.descRU };
 }

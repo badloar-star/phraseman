@@ -155,28 +155,62 @@ export default function MasteryReplayModal({
     ru: 'Пройти урок снова?',
     uk: 'Пройти урок знову?',
     es: '¿Volver a hacer la lección?',
+    'pt-BR': 'Refazer a lição?',
+    vi: 'Làm lại bài học?',
+    id: 'Ulangi pelajaran?',
+    tr: 'Dersi yeniden yap?',
+    pl: 'Powtórzyć lekcję?',
   });
   const subtitle = triLang(lang, {
     ru: `Каждое повторное перепрохождение урока делает его на ${MASTERY_REPLAY_PRICE_STEP_SHARDS} осколков дороже.`,
     uk: `Кожне повторне проходження уроку робить його на ${MASTERY_REPLAY_PRICE_STEP_SHARDS} осколків дорожчим.`,
     es: `Cada vez que repites la lección, cuesta ${MASTERY_REPLAY_PRICE_STEP_SHARDS} fragmentos más.`,
+    'pt-BR': `Cada repetição da lição fica ${MASTERY_REPLAY_PRICE_STEP_SHARDS} fragmentos mais cara.`,
+    vi: `Mỗi lần làm lại bài học sẽ tốn thêm ${MASTERY_REPLAY_PRICE_STEP_SHARDS} mảnh.`,
+    id: `Setiap kali kamu mengulang pelajaran, biayanya bertambah ${MASTERY_REPLAY_PRICE_STEP_SHARDS} fragmen.`,
+    tr: `Dersi her tekrar ettiğinde maliyeti ${MASTERY_REPLAY_PRICE_STEP_SHARDS} parça artar.`,
+    pl: `Każde powtórzenie lekcji kosztuje o ${MASTERY_REPLAY_PRICE_STEP_SHARDS} odłamków więcej.`,
   });
   const replayAgainLabel = triLang(lang, {
     ru: 'Пройти снова',
     uk: 'Пройти знову',
     es: 'Otra vez',
+    'pt-BR': 'Refazer',
+    vi: 'Làm lại',
+    id: 'Ulangi',
+    tr: 'Tekrar yap',
+    pl: 'Jeszcze raz',
   });
   const premiumLabel = triLang(lang, {
     ru: 'Премиум — безлимит',
     uk: 'Преміум — безліміт',
     es: 'Premium — ilimitado',
+    'pt-BR': 'Premium — sem limite',
+    vi: 'Premium — không giới hạn',
+    id: 'Premium — tanpa batas',
+    tr: 'Premium — sınırsız',
+    pl: 'Premium — bez limitu',
   });
   const replayPremiumLabel = triLang(lang, {
     ru: 'Пройти снова',
     uk: 'Пройти знову',
     es: 'Otra vez',
+    'pt-BR': 'Refazer',
+    vi: 'Làm lại',
+    id: 'Ulangi',
+    tr: 'Tekrar yap',
+    pl: 'Jeszcze raz',
   });
-  const cancelLabel = triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' });
+  const cancelLabel = triLang(lang, {
+    ru: 'Отмена',
+    uk: 'Скасувати',
+    es: 'Cancelar',
+    'pt-BR': 'Cancelar',
+    vi: 'Hủy',
+    id: 'Batal',
+    tr: 'İptal',
+    pl: 'Anuluj',
+  });
 
   return (
     <Modal visible={visible} transparent animationType="fade" onRequestClose={false && busy ? undefined : onClose}>

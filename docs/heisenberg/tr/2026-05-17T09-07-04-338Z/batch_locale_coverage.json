@@ -1,0 +1,3002 @@
+{
+  "mode": "batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 8525,
+    "expectedUnits": 1633,
+    "completeUnits": 1705,
+    "partialUnits": 0,
+    "missingAllLocaleUnits": 228,
+    "partialFiles": 0,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 228,
+      "vi": 228,
+      "id": 228,
+      "tr": 228,
+      "pl": 228
+    }
+  },
+  "partialFiles": [],
+  "partialUnits": [],
+  "missingAllLocaleUnits": [
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:11.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:11.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:11.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:12.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:12.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:12.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:13.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:13.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:13.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:14.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:14.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:14.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:15.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:15.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:15.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:16.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:16.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:16.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:161.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:161.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:161.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:162.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:162.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:162.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:163.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:163.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:163.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:164.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:164.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:164.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:165.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:165.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:165.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:166.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:166.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:166.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:167.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:167.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:167.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:168.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:168.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:168.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:169.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:169.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:169.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:17.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:17.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:17.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:170.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:170.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:170.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:171.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:171.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:171.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:172.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:172.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:172.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:173.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:173.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:173.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:174.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:174.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:174.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:175.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:175.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:175.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:176.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:176.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:176.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:177.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:177.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:177.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:178.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:178.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:178.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:179.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:179.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:179.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:18.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:18.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:18.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:180.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:180.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:180.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:181.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:181.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:181.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:182.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:182.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:182.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:183.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:183.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:183.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:184.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:184.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:184.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:185.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:185.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:185.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:186.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:186.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:186.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:19.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:19.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:19.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:20.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:20.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:20.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:21.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:21.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:21.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:22.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:22.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:22.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:23.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:23.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:23.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:24.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:24.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:24.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:25.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:25.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:25.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:26.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:26.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:26.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:27.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:27.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:27.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:28.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:28.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:28.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:29.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:29.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:29.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:30.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:30.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:30.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:31.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:31.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:31.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:32.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:32.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:32.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:33.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:33.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:33.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:34.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:34.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:34.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:35.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:35.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:35.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:36.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:36.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:36.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:37.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:37.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:37.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:38.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:38.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:38.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:39.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:39.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:39.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:40.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:40.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:40.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:41.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:41.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:41.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:42.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:42.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:42.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:43.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:43.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:43.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:44.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:44.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:44.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:45.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:45.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:45.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:46.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:46.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:46.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:47.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:47.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:47.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:48.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:48.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:48.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:49.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:49.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:49.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:50.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:50.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:50.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:51.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:51.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:51.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:52.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:52.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:52.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:53.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:53.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:53.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:54.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:54.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:54.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:55.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:55.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:55.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:56.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:56.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:56.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:57.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:57.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:57.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:58.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:58.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:58.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:59.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:59.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:59.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:60.sourceLocales.<locale>.literal",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:60.sourceLocales.<locale>.meaning",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/idioms_data.ts",
+      "surface": "daily-phrase",
+      "keyPath": "id:60.sourceLocales.<locale>.text",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    }
+  ],
+  "truncated": false
+}

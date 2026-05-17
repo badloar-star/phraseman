@@ -27,37 +27,15 @@ import React, {
   useMemo,
   useState,
 } from 'react';
+import {
+  EMPTY_OVERLAY_WANTS,
+  resolveNextOverlay,
+  type OverlayKey,
+  type WantsMap,
+} from './overlay_arbiter_core';
 
-export type OverlayKey =
-  | 'update'
-  | 'releaseNotes'
-  | 'releaseWave'
-  | 'broadcast'
-  | 'notifNudge'
-  | 'levelUp';
-
-// `releaseWave` идёт сразу после `update`: «у тебя свежий апдейт + вот тебе подарок».
-// Раньше broadcast — потому что это разовая модалка после установки
-// новой сборки и её приятнее показать первой, до текущих сетевых событий.
-const PRIORITY: OverlayKey[] = [
-  'update',
-  'releaseNotes',
-  'releaseWave',
-  'broadcast',
-  'notifNudge',
-  'levelUp',
-];
-
-type WantsMap = Record<OverlayKey, boolean>;
-
-const EMPTY_WANTS: WantsMap = {
-  update: false,
-  releaseNotes: false,
-  releaseWave: false,
-  broadcast: false,
-  notifNudge: false,
-  levelUp: false,
-};
+export type { OverlayKey };
+export { resolveNextOverlay };
 
 type Ctx = {
   active: OverlayKey | null;
@@ -68,19 +46,20 @@ type Ctx = {
 const OverlayArbiterContext = createContext<Ctx | null>(null);
 
 export function OverlayArbiterProvider({ children }: { children: React.ReactNode }) {
-  const [wantsMap, setWantsMap] = useState<WantsMap>(EMPTY_WANTS);
+  const [wantsMap, setWantsMap] = useState<WantsMap>(EMPTY_OVERLAY_WANTS);
+  const [active, setActive] = useState<OverlayKey | null>(null);
 
   const setWants = useCallback((key: OverlayKey, wants: boolean) => {
     setWantsMap((prev) => (prev[key] === wants ? prev : { ...prev, [key]: wants }));
   }, []);
 
-  // Активная = первая в порядке приоритета, у кого wants=true.
-  // Сменяется автоматически когда текущая активная отпускает слот (wants=false).
-  const active = useMemo<OverlayKey | null>(() => {
-    for (const k of PRIORITY) {
-      if (wantsMap[k]) return k;
-    }
-    return null;
+  // Non-preemptive queue: the current owner keeps the slot until it releases it.
+  // Priority is used only when choosing the next overlay from waiting candidates.
+  useEffect(() => {
+    setActive((prev) => {
+      const next = resolveNextOverlay(prev, wantsMap);
+      return next === prev ? prev : next;
+    });
   }, [wantsMap]);
 
   const value = useMemo<Ctx>(() => ({ active, setWants }), [active, setWants]);

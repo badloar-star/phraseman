@@ -50,7 +50,7 @@ type BtnState = 'idle' | 'correct' | 'wrong';
 const FORM_SEQ = ['past', 'pp', 'base'] as const;
 type FormKey = typeof FORM_SEQ[number];
 
-function formRowMeta(lang: Lang): Record<FormKey, { label: string; color: string; bg: string }> {
+function formRowMeta(lang: Lang, themeMode?: string): Record<FormKey, { label: string; color: string; bg: string }> {
   const sv = stringsForLang(lang).verbs;
   return {
     base: { label: `V1 · ${sv.base}`, color: '#4CAF50', bg: 'rgba(76,175,80,0.14)' },
@@ -166,7 +166,7 @@ const IRREGULAR_VERB_ES_BY_BASE: Record<string, string> = {
 
 function irregularVerbTranslation(verb: IrregularVerb, lang: Lang): string {
   if (lang === 'uk') return verb.uk;
-  if (lang === 'es') return IRREGULAR_VERB_ES_BY_BASE[verb.base] ?? verb.ru;
+  if (lang === 'es') return verb.es || IRREGULAR_VERB_ES_BY_BASE[verb.base] || verb.base;
   return verb.ru;
 }
 
@@ -259,7 +259,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
   const { theme: t, f, themeMode } = useTheme();
   const router = useRouter();
   const pack = stringsForLang(lang);
-  const formMeta = formRowMeta(lang);
+  const formMeta = formRowMeta(lang, themeMode);
   const isLightTheme = false;
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
 
@@ -495,6 +495,11 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             ru: 'Все глаголы выучены!',
             uk: 'Всі дієслова вивчено!',
             es: '¡Has aprendido todos los verbos!',
+            'pt-BR': 'Todos os verbos foram aprendidos!',
+            vi: 'Bạn đã học xong tất cả động từ!',
+            id: 'Semua kata kerja sudah dipelajari!',
+            tr: 'Tüm fiiller öğrenildi!',
+            pl: 'Wszystkie czasowniki opanowane!',
           })}
         </Text>
         <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>{learnedCnt} / {verbs.length}</Text>
@@ -509,7 +514,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
           onPress={() => router.back()}
         >
           <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
-            {triLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← Volver a la lección' })}
+            {triLang(lang, { ru: '← К уроку', uk: '← До уроку', es: '← Volver a la lección', 'pt-BR': '← Voltar à lição', vi: '← Về bài học', id: '← Kembali ke pelajaran', tr: '← Derse dön', pl: '← Do lekcji' })}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -519,7 +524,7 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
         >
           <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
           <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>
-            {triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', es: 'Desde el principio' })}
+            {triLang(lang, { ru: 'Начать заново', uk: 'Спочатку', es: 'Desde el principio', 'pt-BR': 'Começar de novo', vi: 'Bắt đầu lại', id: 'Mulai lagi', tr: 'Baştan başla', pl: 'Zacznij od nowa' })}
           </Text>
         </TouchableOpacity>
       </View>
@@ -535,6 +540,11 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
             ru: 'Что-то пошло не так. Вернитесь к уроку или откройте вкладку «Словарь» и нажмите «Начать тренировку» снова.',
             uk: 'Щось пішло не так. Поверніться до уроку або відкрийте вкладку «Словник» і натисніть «Почати тренування» знову.',
             es: 'Algo salió mal. Vuelve a la lección o abre «Vocabulario» y pulsa «Empieza a practicar» otra vez.',
+            'pt-BR': 'Algo deu errado. Volte à lição ou abra a aba “Vocabulário” e toque em “Começar treino” novamente.',
+            vi: 'Đã có lỗi xảy ra. Hãy quay lại bài học hoặc mở tab “Từ vựng” và bấm “Bắt đầu luyện tập” lần nữa.',
+            id: 'Ada yang salah. Kembali ke pelajaran atau buka tab “Kosakata” dan tekan “Mulai latihan” lagi.',
+            tr: 'Bir şeyler ters gitti. Derse dön veya “Sözlük” sekmesini açıp “Alıştırmaya başla”ya tekrar dokun.',
+            pl: 'Coś poszło nie tak. Wróć do lekcji albo otwórz zakładkę „Słownik” i ponownie stuknij „Rozpocznij trening”.',
           })}
         </Text>
       </View>
@@ -583,6 +593,11 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
                 ru: `${learnedCnt} / ${verbs.length} выучено`,
                 uk: `${learnedCnt} / ${verbs.length} вивчено`,
                 es: `${learnedCnt} / ${verbs.length} aprendidos`,
+                'pt-BR': `${learnedCnt} / ${verbs.length} aprendidos`,
+                vi: `${learnedCnt} / ${verbs.length} đã học`,
+                id: `${learnedCnt} / ${verbs.length} dipelajari`,
+                tr: `${learnedCnt} / ${verbs.length} öğrenildi`,
+                pl: `${learnedCnt} / ${verbs.length} opanowano`,
               })}
             </Text>
             <Text style={{ color: learnedCnt > 0 ? sx.second : sx.muted, fontSize: f.label, fontWeight: '600' }}>
@@ -702,16 +717,31 @@ function LearnTab({ verbs, allVerbs, lang, initCounts, onUpdate, onReset, lesson
               ru: `Глагол: ${verb.base} / ${verb.past} / ${verb.pp}`,
               uk: `Дієслово: ${verb.base} / ${verb.past} / ${verb.pp}`,
               es: `Verbo: ${verb.base} / ${verb.past} / ${verb.pp}`,
+              'pt-BR': `Verbo: ${verb.base} / ${verb.past} / ${verb.pp}`,
+              vi: `Động từ: ${verb.base} / ${verb.past} / ${verb.pp}`,
+              id: `Kata kerja: ${verb.base} / ${verb.past} / ${verb.pp}`,
+              tr: `Fiil: ${verb.base} / ${verb.past} / ${verb.pp}`,
+              pl: `Czasownik: ${verb.base} / ${verb.past} / ${verb.pp}`,
             }),
             triLang(lang, {
               ru: `Целевая форма: ${form}`,
               uk: `Цільова форма: ${form}`,
               es: `Forma objetivo: ${form}`,
+              'pt-BR': `Forma alvo: ${form}`,
+              vi: `Dạng mục tiêu: ${form}`,
+              id: `Bentuk target: ${form}`,
+              tr: `Hedef biçim: ${form}`,
+              pl: `Forma docelowa: ${form}`,
             }),
             triLang(lang, {
               ru: `Варианты: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
               uk: `Варіанти: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
               es: `Opciones: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              'pt-BR': `Opções: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              vi: `Lựa chọn: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              id: `Pilihan: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              tr: `Seçenekler: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
+              pl: `Opcje: ${options.map(o=>o===correctAnswer?`[✓${o}]`:o).join(' | ')}`,
             }),
           ].join('\n')}
           style={{ alignSelf: 'flex-end', marginTop: 4, marginBottom: 4 }}
@@ -826,6 +856,11 @@ function IrregVerbsScrollTable({ t, f, lang, allVerbs, globalCounts, lessonId }:
           ru: `Список неправильных глаголов урока ${lessonId ?? ''}`,
           uk: `Список неправильних дієслів уроку ${lessonId ?? ''}`,
           es: `Lista de verbos irregulares de la lección ${lessonId ?? ''}`,
+          'pt-BR': `Lista de verbos irregulares da lição ${lessonId ?? ''}`,
+          vi: `Danh sách động từ bất quy tắc của bài ${lessonId ?? ''}`,
+          id: `Daftar irregular verbs pelajaran ${lessonId ?? ''}`,
+          tr: `${lessonId ?? ''}. dersin düzensiz fiil listesi`,
+          pl: `Lista czasowników nieregularnych z lekcji ${lessonId ?? ''}`,
         })}
         style={{ alignSelf: 'flex-end', marginHorizontal: 16, marginTop: 8 }}
         textColor={sx.muted}
@@ -919,6 +954,11 @@ export default function LessonIrregularVerbs() {
     ru: 'Неправильные глаголы',
     uk: 'Неправильні дієслова',
     es: rootPack.lessonMenu.verbs,
+    'pt-BR': 'Verbos irregulares',
+    vi: 'Động từ bất quy tắc',
+    id: 'Irregular verbs',
+    tr: 'Düzensiz fiiller',
+    pl: 'Czasowniki nieregularne',
   });
 
   return (
@@ -975,11 +1015,21 @@ export default function LessonIrregularVerbs() {
                     ru: 'Словарь',
                     uk: 'Словник',
                     es: rootPack.lessonMenu.vocab,
+                    'pt-BR': 'Vocabulário',
+                    vi: 'Từ vựng',
+                    id: 'Kosakata',
+                    tr: 'Sözlük',
+                    pl: 'Słownik',
                   })
                 : triLang(lang, {
                     ru: 'Учить',
                     uk: 'Учити',
                     es: rootPack.words.training,
+                    'pt-BR': 'Aprender',
+                    vi: 'Học',
+                    id: 'Belajar',
+                    tr: 'Öğren',
+                    pl: 'Ucz się',
                   });
               const icon: any = key === 'dict'
                 ? (isActive ? 'list' : 'list-outline')

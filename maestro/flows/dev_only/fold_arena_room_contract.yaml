@@ -1,51 +1,22 @@
-# Pixel Fold: Арена → Комната Арены — проверка UI-контракта.
-# Pixel Fold centers content; 27%,95% = Home tab, 62%,95% = Arena tab.
+# Pixel Fold: Arena tab -> lobby contract.
+# Pixel Fold centers content; use tab ids instead of home shortcuts because the
+# current Home screen no longer exposes a dedicated Arena tile.
 appId: app.phraseman
 ---
 - runFlow: ../_shared/open_dev_client.yaml
 - runFlow: ../_dismiss_bug_hunt.yaml
 - runFlow: ../_precondition.yaml
 - tapOn:
-    point: "27%,95%"
+    id: "tab-arena"
 - waitForAnimationToEnd:
     timeout: 10000
-- runFlow:
-    when:
-      visible:
-        id: "save-progress-banner-dismiss"
-    commands:
-      - tapOn:
-          id: "save-progress-banner-dismiss"
-      - waitForAnimationToEnd:
-          timeout: 5000
-- scrollUntilVisible:
-    element:
-      id: "home-open-arena"
-    direction: DOWN
-    timeout: 20000
-    speed: 80
-    visibilityPercentage: 40
-- tapOn:
-    id: "home-open-arena"
 - extendedWaitUntil:
     visible:
       id: "screen-arena-lobby"
     timeout: 35000
-- tapOn:
-    id: "arena-room-button"
-- extendedWaitUntil:
-    visible:
-      id: "screen-arena-room"
-    timeout: 20000
 - assertVisible:
-    id: "arena-room-code-input"
+    id: "arena-find-match"
 - assertVisible:
-    id: "arena-room-create-btn"
+    id: "arena-play-with-friend"
 - assertVisible:
-    id: "arena-room-join-btn"
-- tapOn:
-    id: "arena-room-header-back"
-- extendedWaitUntil:
-    visible:
-      id: "screen-arena-lobby"
-    timeout: 15000
+    id: "arena-rating-button"

@@ -149,6 +149,26 @@ describe('friendLikeActivity', () => {
             lastActivityLikeFromUid: 'sender',
         });
     });
+    test('allows likes on legacy events whose stored uid differs from the owner path', async () => {
+        docs.set('users/target/my_events/event-1', {
+            uid: 'legacy-auth-target',
+            type: 'level_up',
+            ts: Date.now() - 1000,
+            payload: { level: 3 },
+        });
+        const result = await callLike();
+        expect(result).toMatchObject({
+            ok: true,
+            targetUid: 'target',
+            eventId: 'event-1',
+            activityLikeCount: 1,
+        });
+        expect(docs.get('users/target/my_events/event-1')).toMatchObject({
+            uid: 'target',
+            activityLikeCount: 1,
+            lastActivityLikeFromUid: 'sender',
+        });
+    });
     test('blocks a second like from the same sender on the same UTC day without incrementing', async () => {
         await callLike();
         await expect(callLike({ eventId: 'event-1' })).rejects.toMatchObject({

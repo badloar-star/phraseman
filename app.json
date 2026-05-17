@@ -61,8 +61,16 @@
         "android.permission.INTERNET",
         "android.permission.RECEIVE_BOOT_COMPLETED",
         "android.permission.VIBRATE",
-        "android.permission.POST_NOTIFICATIONS",
-        "com.google.android.gms.permission.AD_ID"
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "blockedPermissions": [
+        "com.google.android.gms.permission.AD_ID",
+        "android.permission.ACCESS_ADSERVICES_AD_ID",
+        "android.permission.ACCESS_ADSERVICES_ATTRIBUTION",
+        "android.permission.ACCESS_ADSERVICES_TOPICS",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.SYSTEM_ALERT_WINDOW"
       ]
     },
     "ios": {
@@ -127,6 +135,10 @@
             "enableShrinkResourcesInReleaseBuilds": true,
             "useLegacyPackaging": true,
             "minSdkVersion": 24,
+            "buildArchs": [
+              "armeabi-v7a",
+              "arm64-v8a"
+            ],
             "lintOptions": {
               "abortOnError": false
             },

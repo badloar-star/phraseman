@@ -85,6 +85,11 @@ export const loadFlashcards = async (): Promise<Flashcard[]> => {
   return base.map(c => ({ ...c }));
 };
 
+export const peekFlashcardsCache = (): Flashcard[] | null => {
+  if (cardsInMemory === null) return null;
+  return cardsInMemory.map(c => ({ ...c }));
+};
+
 async function persistFlashcards(cards: Flashcard[]): Promise<void> {
   const snapshot = cards.map(c => ({ ...c }));
   cardsInMemory = snapshot;

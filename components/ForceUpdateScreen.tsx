@@ -36,18 +36,23 @@ const TEXTS = {
     body: 'Ця версія більше не підтримується. Будь ласка, онови застосунок, щоб продовжити.',
     button: 'Оновити застосунок',
   },
+  es: {
+    title: 'Actualización requerida',
+    body: 'Esta versión ya no es compatible. Actualiza la app para continuar.',
+    button: 'Actualizar la app',
+  },
 } as const;
 
 export default function ForceUpdateScreen({ storeUrl, message }: ForceUpdateScreenProps) {
   const isDark = useColorScheme() === 'dark';
   const colors = isDark ? DARK : LIGHT;
-  const [lang, setLang] = useState<'ru' | 'uk'>('ru');
+  const [lang, setLang] = useState<'ru' | 'uk' | 'es'>('ru');
 
   // Блокируем кнопку "Назад" на Android + читаем мову інтерфейсу.
   useEffect(() => {
     const sub = BackHandler.addEventListener('hardwareBackPress', () => true);
     AsyncStorage.getItem('app_lang').then(v => {
-      if (v === 'uk') setLang('uk');
+      if (v === 'ru' || v === 'uk' || v === 'es') setLang(v);
     }).catch(() => {});
     return () => sub.remove();
   }, []);

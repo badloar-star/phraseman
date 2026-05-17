@@ -69,6 +69,11 @@ export interface MicroDiagnosisLabel {
   ru: string;
   uk: string;
   es: string;
+  'pt-BR'?: string;
+  vi?: string;
+  id?: string;
+  tr?: string;
+  pl?: string;
 }
 
 export interface PosMicroDiagnosis {

@@ -16,6 +16,7 @@ import { logMistake } from './mistake_log';
 import {
   getTrainerPremiumItems,
   markTrainerResult,
+  trainerTranslationForLang,
   type TrainerItem,
   type TrainerPremiumMode,
   type TrainerQueue,
@@ -134,13 +135,36 @@ function modeFromParam(value: unknown): TrainerPremiumMode {
 }
 
 function queueLabel(queue: TrainerQueue, lang: Lang): string {
-  if (queue === 'words') return triLang(lang, { ru: 'слово', uk: 'слово', es: 'palabra' });
-  if (queue === 'phrases') return triLang(lang, { ru: 'фраза', uk: 'фраза', es: 'frase' });
-  return triLang(lang, { ru: 'арена', uk: 'арена', es: 'arena' });
-}
-
-function translationFor(item: TrainerItem, lang: Lang): string {
-  return lang === 'uk' ? item.translationUk || item.translationRu : item.translationRu;
+  if (queue === 'words') return triLang(lang, {
+    ru: 'слово',
+    uk: 'слово',
+    es: 'palabra',
+    'pt-BR': "palavra",
+    vi: "t?",
+    id: "kata",
+    tr: "kelime",
+    pl: "s?owo",
+  });
+  if (queue === 'phrases') return triLang(lang, {
+    ru: 'фраза',
+    uk: 'фраза',
+    es: 'frase',
+    'pt-BR': "frase",
+    vi: "c?m c?u",
+    id: "frasa",
+    tr: "ifade",
+    pl: "fraza",
+  });
+  return triLang(lang, {
+    ru: 'арена',
+    uk: 'арена',
+    es: 'arena',
+    'pt-BR': "arena",
+    vi: "??u tr??ng",
+    id: "arena",
+    tr: "arena",
+    pl: "arena",
+  });
 }
 
 function categoryCandidates(all: TrainerItem[], item: TrainerItem, category?: WordCategory): string[] {
@@ -158,9 +182,27 @@ function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang): SmartCard
   if (item.queue === 'arena' && item.arenaQuestion) {
     return {
       item,
-      title: triLang(lang, { ru: 'Арена без давления', uk: 'Арена без тиску', es: 'Arena sin presion' }),
+      title: triLang(lang, {
+        ru: 'Арена без давления',
+        uk: 'Арена без тиску',
+        es: 'Arena sin presion',
+        'pt-BR': "Arena sem press?o",
+        vi: "??u tr??ng kh?ng ?p l?c",
+        id: "Arena tanpa tekanan",
+        tr: "Bask?s?z arena",
+        pl: "Arena bez presji",
+      }),
       prompt: item.arenaQuestion.question,
-      helper: item.arenaQuestion.rule || triLang(lang, { ru: 'Выбери правильный вариант.', uk: 'Обери правильний варіант.', es: 'Elige la opcion correcta.' }),
+      helper: item.arenaQuestion.rule || triLang(lang, {
+        ru: 'Выбери правильный вариант.',
+        uk: 'Обери правильний варіант.',
+        es: 'Elige la opcion correcta.',
+        'pt-BR': "Escolha a op??o correta.",
+        vi: "Ch?n ??p ?n ??ng.",
+        id: "Pilih opsi yang benar.",
+        tr: "Do?ru se?ene?i se?.",
+        pl: "Wybierz poprawn? opcj?.",
+      }),
       options: shuffle(item.arenaQuestion.options),
       correct: item.arenaQuestion.correct,
       accent: profile?.accent || '#FB7185',
@@ -175,7 +217,7 @@ function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang): SmartCard
         category,
         phrase: item.key,
         token: item.errorWord,
-        translation: translationFor(item, lang),
+        translation: trainerTranslationForLang(item, lang),
         candidates: categoryCandidates(all, item, category),
         lang,
       });
@@ -202,12 +244,26 @@ function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang): SmartCard
     const decoys = all.filter((candidate) => candidate.queue === 'phrases' && candidate.key !== item.key).map((candidate) => candidate.key);
     return {
       item,
-      title: triLang(lang, { ru: 'Вспомни фразу', uk: 'Згадай фразу', es: 'Recuerda la frase' }),
-      prompt: translationFor(item, lang),
+      title: triLang(lang, {
+        ru: 'Вспомни фразу',
+        uk: 'Згадай фразу',
+        es: 'Recuerda la frase',
+        'pt-BR': "Lembre a frase",
+        vi: "Nh? l?i c?m c?u",
+        id: "Ingat frasa",
+        tr: "?fadeyi hat?rla",
+        pl: "Przypomnij sobie fraz?",
+      }),
+      prompt: trainerTranslationForLang(item, lang),
       helper: triLang(lang, {
         ru: 'Попробуй вспомнить английскую фразу целиком.',
         uk: 'Спробуй згадати англійську фразу повністю.',
         es: 'Intenta recordar la frase completa en ingles.',
+        'pt-BR': "Tente lembrar a frase em ingl?s inteira.",
+        vi: "H?y c? nh? to?n b? c?m c?u ti?ng Anh.",
+        id: "Coba ingat seluruh frasa bahasa Inggris.",
+        tr: "?ngilizce ifadeyi tamamen hat?rlamaya ?al??.",
+        pl: "Spr?buj przypomnie? sobie ca?? fraz? po angielsku.",
       }),
       options: shuffle(uniq([item.key, ...decoys]).slice(0, 4)),
       correct: item.key,
@@ -217,13 +273,22 @@ function buildCard(item: TrainerItem, all: TrainerItem[], lang: Lang): SmartCard
     };
   }
 
-  const correctTranslation = translationFor(item, lang);
-  const decoys = all.filter((candidate) => candidate.queue === 'words' && candidate.key !== item.key).map((candidate) => translationFor(candidate, lang));
+  const correctTranslation = trainerTranslationForLang(item, lang);
+  const decoys = all.filter((candidate) => candidate.queue === 'words' && candidate.key !== item.key).map((candidate) => trainerTranslationForLang(candidate, lang));
   return {
     item,
     title: '',
     prompt: item.key,
-    helper: triLang(lang, { ru: 'Выбери точный перевод.', uk: 'Обери точний переклад.', es: 'Elige la traduccion exacta.' }),
+    helper: triLang(lang, {
+      ru: 'Выбери точный перевод.',
+      uk: 'Обери точний переклад.',
+      es: 'Elige la traduccion exacta.',
+      'pt-BR': "Escolha a tradu??o exata.",
+      vi: "Ch?n b?n d?ch ch?nh x?c.",
+      id: "Pilih terjemahan yang tepat.",
+      tr: "Tam ?eviriyi se?.",
+      pl: "Wybierz dok?adne t?umaczenie.",
+    }),
     options: shuffle(uniq([correctTranslation, ...decoys]).slice(0, 4)),
     correct: correctTranslation,
     accent: profile?.accent || '#60A5FA',
@@ -242,6 +307,11 @@ function buildMistakeInsight(card: SmartCard, picked: string, lang: Lang): Mista
         ru: `Ты выбрал: ${picked}. ${card.profile.mistakeWhy[lang]}`,
         uk: `Ти обрав: ${picked}. ${card.profile.mistakeWhy[lang]}`,
         es: `Elegiste: ${picked}. ${card.profile.mistakeWhy[lang]}`,
+        'pt-BR': `Voc? escolheu: ${picked}. Confira o motivo e conecte a frase ao sentido correto.`,
+        vi: `B?n ?? ch?n: ${picked}. H?y xem l? do v? n?i c?m c?u v?i ??ng ngh?a.`,
+        id: `Kamu memilih: ${picked}. Periksa alasannya dan hubungkan frasa dengan makna yang tepat.`,
+        tr: `Se?imin: ${picked}. Nedeni kontrol et ve ifadeyi do?ru anlamla ba?la.`,
+        pl: `Wybrano: ${picked}. Sprawd? pow?d i po??cz fraz? z w?a?ciwym znaczeniem.`,
       }),
       next: card.profile.nextStep[lang],
     };
@@ -249,35 +319,91 @@ function buildMistakeInsight(card: SmartCard, picked: string, lang: Lang): Mista
 
   if (card.item.queue === 'words') {
     return {
-      title: triLang(lang, { ru: 'Разбор слова', uk: 'Розбір слова', es: 'Analisis de palabra' }),
-      correctLabel: triLang(lang, { ru: 'Правильный перевод', uk: 'Правильний переклад', es: 'Traduccion correcta' }),
+      title: triLang(lang, {
+        ru: 'Разбор слова',
+        uk: 'Розбір слова',
+        es: 'Analisis de palabra',
+        'pt-BR': "An?lise da palavra",
+        vi: "Ph?n t?ch t?",
+        id: "Pembahasan kata",
+        tr: "Kelime analizi",
+        pl: "Analiza s?owa",
+      }),
+      correctLabel: triLang(lang, {
+        ru: 'Правильный перевод',
+        uk: 'Правильний переклад',
+        es: 'Traduccion correcta',
+        'pt-BR': "Tradu??o correta",
+        vi: "B?n d?ch ??ng",
+        id: "Terjemahan benar",
+        tr: "Do?ru ?eviri",
+        pl: "Poprawne t?umaczenie",
+      }),
       correctValue: card.correct,
       why: triLang(lang, {
         ru: `Ты выбрал: ${picked}. Сейчас важно связать английское слово именно с точным переводом.`,
         uk: `Ти обрав: ${picked}. Зараз важливо зв'язати англійське слово саме з точним перекладом.`,
         es: `Elegiste: ${picked}. Ahora importa unir la palabra inglesa con su traduccion exacta.`,
+        'pt-BR': `Voc? escolheu: ${picked}. Agora o importante ? ligar a palavra inglesa ? tradu??o exata.`,
+        vi: `B?n ?? ch?n: ${picked}. Gi? ?i?u quan tr?ng l? n?i t? ti?ng Anh v?i b?n d?ch ch?nh x?c.`,
+        id: `Kamu memilih: ${picked}. Sekarang yang penting adalah menghubungkan kata Inggris dengan terjemahan yang tepat.`,
+        tr: `Se?imin: ${picked}. ?imdi ?nemli olan ?ngilizce kelimeyi tam ?eviriyle e?le?tirmek.`,
+        pl: `Wybrano: ${picked}. Teraz wa?ne jest po??czenie angielskiego s?owa z dok?adnym t?umaczeniem.`,
       }),
       next: triLang(lang, {
         ru: 'Эта карточка вернется раньше, пока ответ не станет уверенным.',
         uk: 'Ця картка повернеться раніше, доки відповідь не стане впевненою.',
         es: 'Esta tarjeta volvera antes hasta que la respuesta sea segura.',
+        'pt-BR': "Este cart?o voltar? mais cedo at? a resposta ficar segura.",
+        vi: "Th? n?y s? quay l?i s?m h?n cho ??n khi c?u tr? l?i tr? n?n ch?c ch?n.",
+        id: "Kartu ini akan kembali lebih cepat sampai jawabannya terasa mantap.",
+        tr: "Cevap g?venli hale gelene kadar bu kart daha erken d?necek.",
+        pl: "Ta karta wr?ci wcze?niej, dop?ki odpowied? nie b?dzie pewna.",
       }),
     };
   }
 
   return {
-    title: triLang(lang, { ru: 'Мини-разбор', uk: 'Міні-розбір', es: 'Mini analisis' }),
-    correctLabel: triLang(lang, { ru: 'Правильный ответ', uk: 'Правильна відповідь', es: 'Respuesta correcta' }),
+    title: triLang(lang, {
+      ru: 'Мини-разбор',
+      uk: 'Міні-розбір',
+      es: 'Mini analisis',
+      'pt-BR': "Mini-an?lise",
+      vi: "Ph?n t?ch nhanh",
+      id: "Mini pembahasan",
+      tr: "Mini analiz",
+      pl: "Mini analiza",
+    }),
+    correctLabel: triLang(lang, {
+      ru: 'Правильный ответ',
+      uk: 'Правильна відповідь',
+      es: 'Respuesta correcta',
+      'pt-BR': "Resposta correta",
+      vi: "??p ?n ??ng",
+      id: "Jawaban benar",
+      tr: "Do?ru cevap",
+      pl: "Poprawna odpowied?",
+    }),
     correctValue: card.correct,
     why: triLang(lang, {
       ru: `Ты выбрал: ${picked}. Здесь тренируется точное восстановление смысла, а не узнавание знакомого варианта.`,
       uk: `Ти обрав: ${picked}. Тут тренується точне відновлення сенсу, а не впізнавання знайомого варіанта.`,
       es: `Elegiste: ${picked}. Aqui entrenamos recuperar el sentido exacto.`,
+      'pt-BR': `Voc? escolheu: ${picked}. Aqui treinamos recuperar o sentido exato, n?o apenas reconhecer uma op??o familiar.`,
+      vi: `B?n ?? ch?n: ${picked}. ? ??y ta luy?n kh?i ph?c ??ng ngh?a, kh?ng ch? nh?n ra m?t l?a ch?n quen thu?c.`,
+      id: `Kamu memilih: ${picked}. Di sini kita melatih pemulihan makna yang tepat, bukan sekadar mengenali opsi yang familiar.`,
+      tr: `Se?imin: ${picked}. Burada tan?d?k se?ene?i fark etmeyi de?il, anlam? tam olarak geri ?a??rmay? ?al???yoruz.`,
+      pl: `Wybrano: ${picked}. Tu ?wiczysz dok?adne odtworzenie sensu, a nie tylko rozpoznanie znajomej opcji.`,
     }),
     next: triLang(lang, {
       ru: 'Перед выбором проговори полный вариант в голове.',
       uk: 'Перед вибором проговори повний варіант подумки.',
       es: 'Antes de elegir, di la opcion completa mentalmente.',
+      'pt-BR': "Antes de escolher, diga mentalmente a op??o completa.",
+      vi: "Tr??c khi ch?n, h?y ??c th?m to?n b? ??p ?n trong ??u.",
+      id: "Sebelum memilih, ucapkan opsi lengkapnya di kepala.",
+      tr: "Se?meden ?nce tam se?ene?i zihninde s?yle.",
+      pl: "Przed wyborem powiedz w g?owie ca?? opcj?.",
     }),
   };
 }
@@ -377,17 +503,25 @@ export default function TrainerSmartSession() {
     if (correct) await checkAchievements({ type: 'trainer_correct', correct: 1 });
     if (!correct) logSmartTrainerMistake(current, option);
 
-    setAttempts((prev) => [
-      ...prev,
-      {
-        key: current.item.key,
-        queue: current.item.queue,
-        label: current.title || current.prompt,
-        correct,
-        category: current.category,
-        method: current.method,
-      },
-    ]);
+    const attempt = {
+      key: current.item.key,
+      queue: current.item.queue,
+      label: current.title || current.prompt,
+      correct,
+      category: current.category,
+      method: current.method,
+    };
+    const nextAttempts = [...attempts, attempt];
+    setAttempts(nextAttempts);
+    if (index + 1 >= cards.length) {
+      const sessionCorrect = nextAttempts.filter((row) => row.correct).length;
+      void checkAchievements({
+        type: 'trainer_session_result',
+        correct: sessionCorrect,
+        wrong: nextAttempts.length - sessionCorrect,
+        total: cards.length,
+      });
+    }
 
     if (!correct) {
       setMistakeInsight(buildMistakeInsight(current, option, lang));
@@ -425,11 +559,29 @@ export default function TrainerSmartSession() {
       <ScreenGradient>
         <SafeAreaView style={styles.center}>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '900' }}>
-            {triLang(lang, { ru: 'Пока нечего повторять', uk: 'Поки немає що повторювати', es: 'Nada que repasar aun' })}
+            {triLang(lang, {
+              ru: 'Пока нечего повторять',
+              uk: 'Поки немає що повторювати',
+              es: 'Nada que repasar aun',
+              'pt-BR': "Nada para repetir ainda",
+              vi: "Ch?a c? g? ?? ?n",
+              id: "Belum ada yang perlu diulang",
+              tr: "Tekrar edecek bir ?ey yok",
+              pl: "Nie ma jeszcze nic do powt?rki",
+            })}
           </Text>
           <TouchableOpacity onPress={() => router.back()} style={[styles.primaryBtn, { backgroundColor: meta.accent, marginTop: 18 }]}>
             <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
-              {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+              {triLang(lang, {
+                ru: 'Готово',
+                uk: 'Готово',
+                es: 'Listo',
+                'pt-BR': "Pronto",
+                vi: "Xong",
+                id: "Selesai",
+                tr: "Tamam",
+                pl: "Gotowe",
+              })}
             </Text>
           </TouchableOpacity>
         </SafeAreaView>
@@ -448,14 +600,50 @@ export default function TrainerSmartSession() {
                   <Ionicons name="checkmark-circle" size={34} color={meta.accent} />
                 </View>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900', textAlign: 'center' }}>
-                  {triLang(lang, { ru: 'Тренировка завершена', uk: 'Тренування завершено', es: 'Entrenamiento terminado' })}
+                  {triLang(lang, {
+                    ru: 'Тренировка завершена',
+                    uk: 'Тренування завершено',
+                    es: 'Entrenamiento terminado',
+                    'pt-BR': "Treino conclu?do",
+                    vi: "?? ho?n th?nh luy?n t?p",
+                    id: "Latihan selesai",
+                    tr: "Antrenman tamamland?",
+                    pl: "Trening zako?czony",
+                  })}
                 </Text>
               </View>
 
               <View style={styles.reportGrid}>
-                <ReportMetric label={triLang(lang, { ru: 'точность', uk: 'точність', es: 'precision' })} value={`${accuracy}%`} color={meta.accent} t={t} f={f} />
-                <ReportMetric label={triLang(lang, { ru: 'верно', uk: 'вірно', es: 'bien' })} value={`${correctCount}`} color="#34D399" t={t} f={f} />
-                <ReportMetric label={triLang(lang, { ru: 'ошибки', uk: 'помилки', es: 'errores' })} value={`${wrongCount}`} color="#FB7185" t={t} f={f} />
+                <ReportMetric label={triLang(lang, {
+                  ru: 'точность',
+                  uk: 'точність',
+                  es: 'precision',
+                  'pt-BR': "precis?o",
+                  vi: "?? ch?nh x?c",
+                  id: "akurasi",
+                  tr: "do?ruluk",
+                  pl: "dok?adno??",
+                })} value={`${accuracy}%`} color={meta.accent} t={t} f={f} />
+                <ReportMetric label={triLang(lang, {
+                  ru: 'верно',
+                  uk: 'вірно',
+                  es: 'bien',
+                  'pt-BR': "corretas",
+                  vi: "??ng",
+                  id: "benar",
+                  tr: "do?ru",
+                  pl: "poprawnie",
+                })} value={`${correctCount}`} color="#34D399" t={t} f={f} />
+                <ReportMetric label={triLang(lang, {
+                  ru: 'ошибки',
+                  uk: 'помилки',
+                  es: 'errores',
+                  'pt-BR': "erros",
+                  vi: "l?i",
+                  id: "kesalahan",
+                  tr: "hata",
+                  pl: "b??dy",
+                })} value={`${wrongCount}`} color="#FB7185" t={t} f={f} />
               </View>
 
               {posStats.length > 0 && (
@@ -477,12 +665,30 @@ export default function TrainerSmartSession() {
               <View style={styles.reportActions}>
                 <TouchableOpacity onPress={() => { hapticTap(); void loadSession(); }} style={[styles.secondaryBtn, { borderColor: meta.accent + '66', backgroundColor: meta.accent + '14' }]}>
                   <Text style={{ color: meta.accent, fontSize: f.sub, fontWeight: '900' }}>
-                    {triLang(lang, { ru: 'Еще раз', uk: 'Ще раз', es: 'Otra vez' })}
+                    {triLang(lang, {
+                      ru: 'Еще раз',
+                      uk: 'Ще раз',
+                      es: 'Otra vez',
+                      'pt-BR': "Mais uma vez",
+                      vi: "L?m l?i",
+                      id: "Sekali lagi",
+                      tr: "Bir kez daha",
+                      pl: "Jeszcze raz",
+                    })}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { hapticTap(); router.back(); }} style={[styles.nextBtn, { backgroundColor: meta.accent }]}>
                   <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
-                    {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+                    {triLang(lang, {
+                      ru: 'Готово',
+                      uk: 'Готово',
+                      es: 'Listo',
+                      'pt-BR': "Pronto",
+                      vi: "Xong",
+                      id: "Selesai",
+                      tr: "Tamam",
+                      pl: "Gotowe",
+                    })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -544,7 +750,16 @@ export default function TrainerSmartSession() {
                 {current.item.mistakeCount > 0 ? (
                   <View style={[styles.mistakeBadge, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
                     <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '900' }}>
-                      {triLang(lang, { ru: `${current.item.mistakeCount} ош.`, uk: `${current.item.mistakeCount} пом.`, es: `${current.item.mistakeCount} err.` })}
+                      {triLang(lang, {
+                        ru: `${current.item.mistakeCount} ош.`,
+                        uk: `${current.item.mistakeCount} пом.`,
+                        es: `${current.item.mistakeCount} err.`,
+                        'pt-BR': `${current.item.mistakeCount} err.`,
+                        vi: `${current.item.mistakeCount} l?i`,
+                        id: `${current.item.mistakeCount} kes.`,
+                        tr: `${current.item.mistakeCount} hata`,
+                        pl: `${current.item.mistakeCount} b?.`,
+                      })}
                     </Text>
                   </View>
                 ) : null}
@@ -687,12 +902,30 @@ function MistakeInsightModal({
             <View style={styles.modalActions}>
               <TouchableOpacity onPress={onRetry} activeOpacity={0.86} style={[styles.secondaryBtn, { borderColor: accent + '66', backgroundColor: accent + '14' }]}>
                 <Text style={{ color: accent, fontSize: f.sub, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Повторить', uk: 'Повторити', es: 'Repetir' })}
+                  {triLang(lang, {
+                    ru: 'Повторить',
+                    uk: 'Повторити',
+                    es: 'Repetir',
+                    'pt-BR': "Repetir",
+                    vi: "L?p l?i",
+                    id: "Ulangi",
+                    tr: "Tekrar et",
+                    pl: "Powt?rz",
+                  })}
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity onPress={onNext} activeOpacity={0.86} style={[styles.nextBtn, { backgroundColor: accent }]}>
                 <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Siguiente' })}
+                  {triLang(lang, {
+                    ru: 'Дальше',
+                    uk: 'Далі',
+                    es: 'Siguiente',
+                    'pt-BR': "Pr?ximo",
+                    vi: "Ti?p theo",
+                    id: "Berikutnya",
+                    tr: "?leri",
+                    pl: "Dalej",
+                  })}
                 </Text>
               </TouchableOpacity>
             </View>

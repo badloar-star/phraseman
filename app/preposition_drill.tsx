@@ -251,6 +251,11 @@ export default function PrepositionDrillScreen() {
                   uk: 'У цьому уроці немає прийменників',
                   ru: 'В этом уроке нет предлогов',
                   es: 'En esta lección no hay preposiciones.',
+                  'pt-BR': 'Esta lição não tem preposições.',
+                  vi: 'Bài học này không có giới từ.',
+                  id: 'Tidak ada preposisi dalam pelajaran ini.',
+                  tr: 'Bu derste edat yok.',
+                  pl: 'W tej lekcji nie ma przyimków.',
                 })}
               </Text>
             </View>
@@ -265,11 +270,21 @@ export default function PrepositionDrillScreen() {
     uk: 'Тренажер прийменників',
     ru: 'Тренажер предлогов',
     es: 'Práctica de preposiciones',
+    'pt-BR': 'Prática de preposições',
+    vi: 'Luyện giới từ',
+    id: 'Latihan preposisi',
+    tr: 'Edat alıştırması',
+    pl: 'Ćwiczenie przyimków',
   });
   const subtitle = triLang(lang, {
     uk: `Урок ${lessonId}: прийменники цього уроку`,
     ru: `Урок ${lessonId}: предлоги этого урока`,
     es: `Lección ${lessonId}: preposiciones de esta lección`,
+    'pt-BR': `Lição ${lessonId}: preposições desta lição`,
+    vi: `Bài ${lessonId}: giới từ của bài này`,
+    id: `Pelajaran ${lessonId}: preposisi di pelajaran ini`,
+    tr: `Ders ${lessonId}: bu dersin edatları`,
+    pl: `Lekcja ${lessonId}: przyimki z tej lekcji`,
   });
   const prepositionsLabel = pack.newPrepositions.map(p => p.text).join(', ');
 
@@ -384,7 +399,7 @@ export default function PrepositionDrillScreen() {
               <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>{title}</Text>
-            <EnergyBar size={20} />
+            <EnergyBar size={30} />
           </View>
 
           <View style={{ backgroundColor: t.bgCard, borderRadius: 14, padding: 14, borderWidth: 1, borderColor: t.border, marginBottom: 12 }}>
@@ -403,7 +418,16 @@ export default function PrepositionDrillScreen() {
                 removeClippedSubviews={effectiveOs === 'android' ? false : undefined}
               >
               <Text style={{ color: sx.muted, fontSize: f.sub, marginBottom: 8 }}>
-                {triLang(lang, { uk: 'Завдання', ru: 'Задание', es: 'Ejercicio' })} {itemIdx + 1}/{total}
+                {triLang(lang, {
+                  uk: 'Завдання',
+                  ru: 'Задание',
+                  es: 'Ejercicio',
+                  'pt-BR': 'Exercício',
+                  vi: 'Bài tập',
+                  id: 'Latihan',
+                  tr: 'Alıştırma',
+                  pl: 'Ćwiczenie',
+                })} {itemIdx + 1}/{total}
               </Text>
 
               <View
@@ -445,14 +469,37 @@ export default function PrepositionDrillScreen() {
                 <View style={{ marginTop: 6, backgroundColor: t.bgCard, borderRadius: 12, borderWidth: 1, borderColor: t.border, padding: 12 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 6 }}>
                     {isCorrect
-                      ? triLang(lang, { uk: 'Правильно', ru: 'Верно', es: 'Correcto' })
-                      : triLang(lang, { uk: 'Неправильно', ru: 'Неверно', es: 'Incorrecto' })}
+                      ? triLang(lang, {
+                        uk: 'Правильно',
+                        ru: 'Верно',
+                        es: 'Correcto',
+                        'pt-BR': 'Correto',
+                        vi: 'Đúng',
+                        id: 'Benar',
+                        tr: 'Doğru',
+                        pl: 'Poprawnie',
+                      })
+                      : triLang(lang, {
+                        uk: 'Неправильно',
+                        ru: 'Неверно',
+                        es: 'Incorrecto',
+                        'pt-BR': 'Incorreto',
+                        vi: 'Sai',
+                        id: 'Salah',
+                        tr: 'Yanlış',
+                        pl: 'Niepoprawnie',
+                      })}
                   </Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub, lineHeight: Math.round((f.sub ?? 14) * 1.45) }}>
                     {triLang(lang, {
                       uk: item.explainUK,
                       ru: item.explainRU,
                       es: item.explainES ?? item.explainRU,
+                      'pt-BR': item.explainPtBr ?? item.explainES ?? item.explainRU,
+                      vi: item.explainVi ?? item.explainES ?? item.explainRU,
+                      id: item.explainId ?? item.explainES ?? item.explainRU,
+                      tr: item.explainTr ?? item.explainES ?? item.explainRU,
+                      pl: item.explainPl ?? item.explainES ?? item.explainRU,
                     })}
                   </Text>
                   <TouchableOpacity
@@ -460,7 +507,16 @@ export default function PrepositionDrillScreen() {
                     style={{ marginTop: ds.spacing.sm, backgroundColor: '#2E7D52', borderRadius: ds.radius.md, paddingVertical: ds.spacing.sm, alignItems: 'center' }}
                   >
                     <Text style={{ color: '#fff', fontWeight: '700', fontSize: f.body }}>
-                      {triLang(lang, { uk: 'Далі', ru: 'Дальше', es: 'Siguiente' })}
+                      {triLang(lang, {
+                        uk: 'Далі',
+                        ru: 'Дальше',
+                        es: 'Siguiente',
+                        'pt-BR': 'Próximo',
+                        vi: 'Tiếp theo',
+                        id: 'Berikutnya',
+                        tr: 'Sonraki',
+                        pl: 'Dalej',
+                      })}
                     </Text>
                   </TouchableOpacity>
                 </View>
@@ -475,16 +531,31 @@ export default function PrepositionDrillScreen() {
                     uk: `Урок ${lessonId}, нові прийменники: ${prepositionsLabel}`,
                     ru: `Урок ${lessonId}, новые предлоги: ${prepositionsLabel}`,
                     es: `Lección ${lessonId}, nuevas preposiciones: ${prepositionsLabel}`,
+                    'pt-BR': `Lição ${lessonId}, novas preposições: ${prepositionsLabel}`,
+                    vi: `Bài ${lessonId}, giới từ mới: ${prepositionsLabel}`,
+                    id: `Pelajaran ${lessonId}, preposisi baru: ${prepositionsLabel}`,
+                    tr: `Ders ${lessonId}, yeni edatlar: ${prepositionsLabel}`,
+                    pl: `Lekcja ${lessonId}, nowe przyimki: ${prepositionsLabel}`,
                   }),
                   triLang(lang, {
                     uk: `Завдання: ${item.sentenceTemplate}`,
                     ru: `Задание: ${item.sentenceTemplate}`,
                     es: `Ejercicio: ${item.sentenceTemplate}`,
+                    'pt-BR': `Exercício: ${item.sentenceTemplate}`,
+                    vi: `Bài tập: ${item.sentenceTemplate}`,
+                    id: `Latihan: ${item.sentenceTemplate}`,
+                    tr: `Alıştırma: ${item.sentenceTemplate}`,
+                    pl: `Ćwiczenie: ${item.sentenceTemplate}`,
                   }),
                   triLang(lang, {
                     uk: `Варіанти: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
                     ru: `Варианты: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
                     es: `Opciones: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
+                    'pt-BR': `Opções: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
+                    vi: `Lựa chọn: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
+                    id: `Pilihan: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
+                    tr: `Seçenekler: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
+                    pl: `Opcje: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`,
                   }),
                 ].join('\n')}
                 style={{ alignSelf: 'center', marginTop: ds.spacing.md, marginBottom: ds.spacing.sm }}
@@ -502,16 +573,35 @@ export default function PrepositionDrillScreen() {
                   uk: 'Прийменники відпрацьовано!',
                   ru: 'Предлоги отработаны!',
                   es: '¡Preposiciones repasadas!',
+                  'pt-BR': 'Preposições praticadas!',
+                  vi: 'Đã luyện xong giới từ!',
+                  id: 'Preposisi selesai dilatih!',
+                  tr: 'Edatlar çalışıldı!',
+                  pl: 'Przyimki przećwiczone!',
                 })}
               </Text>
               <Text style={{ color: sx.muted, fontSize: f.bodyLg }}>
-                {triLang(lang, { uk: 'Точність: ', ru: 'Точность: ', es: 'Precisión: ' })}{accuracy}% ({correctCount}/{total})
+                {triLang(lang, {
+                  uk: 'Точність: ',
+                  ru: 'Точность: ',
+                  es: 'Precisión: ',
+                  'pt-BR': 'Precisão: ',
+                  vi: 'Độ chính xác: ',
+                  id: 'Akurasi: ',
+                  tr: 'Doğruluk: ',
+                  pl: 'Dokładność: ',
+                })}{accuracy}% ({correctCount}/{total})
               </Text>
               <Text style={{ color: sx.second, fontSize: f.body }}>
                 {triLang(lang, {
                   uk: `Помилок: ${wrongIds.length}`,
                   ru: `Ошибок: ${wrongIds.length}`,
                   es: `Errores: ${wrongIds.length}`,
+                  'pt-BR': `Erros: ${wrongIds.length}`,
+                  vi: `Lỗi: ${wrongIds.length}`,
+                  id: `Kesalahan: ${wrongIds.length}`,
+                  tr: `Hata: ${wrongIds.length}`,
+                  pl: `Błędy: ${wrongIds.length}`,
                 })}
               </Text>
 
@@ -520,7 +610,16 @@ export default function PrepositionDrillScreen() {
                 style={{ backgroundColor: t.correct, paddingHorizontal: 32, paddingVertical: 14, borderRadius: 14, marginTop: 8 }}
               >
                 <Text style={{ color: t.correctText, fontSize: f.h2, fontWeight: '700' }}>
-                  {triLang(lang, { uk: '← До уроку', ru: '← К уроку', es: '← Volver a la lección' })}
+                  {triLang(lang, {
+                    uk: '← До уроку',
+                    ru: '← К уроку',
+                    es: '← Volver a la lección',
+                    'pt-BR': '← Voltar para a lição',
+                    vi: '← Về bài học',
+                    id: '← Kembali ke pelajaran',
+                    tr: '← Derse dön',
+                    pl: '← Do lekcji',
+                  })}
                 </Text>
               </TouchableOpacity>
 
@@ -531,7 +630,16 @@ export default function PrepositionDrillScreen() {
               >
                 <Ionicons name="refresh-outline" size={18} color={t.textSecond} />
                 <Text style={{ color: t.textSecond, fontSize: f.h2, fontWeight: '600' }}>
-                  {triLang(lang, { uk: 'Ще раз', ru: 'Снова', es: 'Otra vez' })}
+                  {triLang(lang, {
+                    uk: 'Ще раз',
+                    ru: 'Снова',
+                    es: 'Otra vez',
+                    'pt-BR': 'De novo',
+                    vi: 'Làm lại',
+                    id: 'Ulangi',
+                    tr: 'Tekrar',
+                    pl: 'Jeszcze raz',
+                  })}
                 </Text>
               </TouchableOpacity>
 
@@ -541,7 +649,16 @@ export default function PrepositionDrillScreen() {
                   style={{ backgroundColor: t.bgSurface, paddingHorizontal: 28, paddingVertical: 12, borderRadius: 14, borderWidth: 1, borderColor: t.border }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                    {triLang(lang, { uk: 'Виправити помилки', ru: 'Исправить ошибки', es: 'Corregir errores' })}
+                    {triLang(lang, {
+                      uk: 'Виправити помилки',
+                      ru: 'Исправить ошибки',
+                      es: 'Corregir errores',
+                      'pt-BR': 'Corrigir erros',
+                      vi: 'Sửa lỗi',
+                      id: 'Perbaiki kesalahan',
+                      tr: 'Hataları düzelt',
+                      pl: 'Popraw błędy',
+                    })}
                   </Text>
                 </TouchableOpacity>
               )}

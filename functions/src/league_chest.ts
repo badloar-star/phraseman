@@ -3,14 +3,65 @@ import { HttpsError, onCall } from 'firebase-functions/v2/https';
 
 const REGION = 'us-central1';
 const MS_WEEK = 7 * 24 * 60 * 60 * 1000;
+const PACK_TRIAL_MS = 48 * 60 * 60 * 1000;
 const MIN_CONTRIBUTION = 500;
 const MIN_RACE_PARTICIPANTS = 10;
-const SHARDS_REWARD = 30;
+const BASE_SHARDS_MIN = 15;
+const BASE_SHARDS_MAX = 35;
+const GOLD_DUPLICATE_SHARDS = 25;
+const AURA_DUPLICATE_SHARDS = 10;
+const AVATAR_DUPLICATE_SHARDS = 12;
 const ENERGY_MS = 5 * 60 * 1000;
 const LEAGUE_CHEST_BASE_GOAL = 200_000;
 const LEAGUE_CHEST_GOAL_STEP = 20_000;
 const CROWN_AURA = 'league_chest_crown';
 const CROWN_NICK_COLOR = '#16B7D9';
+const GOLD_THEME_UNLOCK_KEY = 'league_gold_theme_unlocked_v1';
+const GOLD_THEME_UNLOCK_AT_KEY = 'league_gold_theme_unlocked_at';
+const ENERGY_OVERRIDE_KEY = 'league_chest_energy_override_v1';
+const XP_OVERRIDE_KEY = 'league_chest_xp_override_v1';
+const STREAK_SHIELD_KEY = 'chain_shield';
+const ARENA_DAILY_GIFT_BONUS_KEY = 'arena_daily_gift_bonus_v1';
+const PACK_TRIAL_GIFT_KEY = 'flashcard_pack_trial_gift_v1';
+const AVATAR_AURA_OWNED_KEY = 'avatar_aura_owned_v1';
+const AVATAR_AURA_GIFT_OWNED_KEY = 'avatar_aura_gift_owned_v1';
+const USER_AVATAR_AURA_KEY = 'user_avatar_aura';
+const CUSTOM_AVATAR_OWNED_KEY = 'custom_avatar_owned_v1';
+const CUSTOM_AVATAR_GIFT_OWNED_KEY = 'custom_avatar_gift_owned_v1';
+const AVATAR_AURA_IDS = ['aura-aurora', 'aura-ember', 'aura-mint', 'aura-violet', 'aura-gold', 'aura-coral'] as const;
+const CUSTOM_AVATAR_DROP_IDS = Array.from(
+  { length: 10 },
+  (_, index) => `custom-gen-${String(index + 1).padStart(2, '0')}`,
+) as readonly string[];
+const CUSTOM_AVATAR_GRADIENT_IDS = ['aurora', 'ember', 'cosmic', 'forest', 'citrine', 'royal', 'ruby', 'magma', 'noirgold', 'sakura'] as const;
+
+type RewardRarity = 'common' | 'rare' | 'epic' | 'legendary';
+type RewardKind =
+  | 'shards'
+  | 'xp_boost'
+  | 'energy_fast_recovery'
+  | 'streak_shield'
+  | 'arena_plays'
+  | 'pack_trial_48h'
+  | 'avatar_aura'
+  | 'custom_avatar'
+  | 'gold_theme'
+  | 'gold_theme_duplicate';
+
+type RewardDrop = {
+  id: string;
+  kind: RewardKind;
+  rarity: RewardRarity;
+  amount?: number;
+  multiplier?: number;
+  uses?: number;
+  recoveryMs?: number;
+  expiresAt?: number;
+  auraId?: string;
+  customAvatarId?: string;
+  gradientId?: string;
+  logoColor?: 'black' | 'white';
+};
 
 function sanitizeString(value: unknown, max: number): string {
   return String(value ?? '').replace(/\s+/g, ' ').trim().slice(0, max);
@@ -77,6 +128,242 @@ function parseShield(raw: unknown): { daysLeft: number } {
   } catch {
     return { daysLeft: 0 };
   }
+}
+
+function parseJsonObject(raw: unknown): Record<string, unknown> {
+  try {
+    const parsed = typeof raw === 'string' ? JSON.parse(raw) : raw;
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? parsed as Record<string, unknown>
+      : {};
+  } catch {
+    return {};
+  }
+}
+
+function getProgress(data: FirebaseFirestore.DocumentData | undefined): Record<string, unknown> {
+  const raw = data?.progress;
+  return raw && typeof raw === 'object' && !Array.isArray(raw) ? raw as Record<string, unknown> : {};
+}
+
+function getExistingField(data: FirebaseFirestore.DocumentData | undefined, key: string): unknown {
+  const progress = getProgress(data);
+  return data?.[key] ?? progress[key] ?? data?.[`progress.${key}`];
+}
+
+function todayStrUtc(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function hash32(seed: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < seed.length; i += 1) {
+    h ^= seed.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+function rollUnit(seed: string): number {
+  return hash32(seed) / 0x100000000;
+}
+
+function rollChance(seed: string, chance: number): boolean {
+  return rollUnit(seed) < chance;
+}
+
+function rollInt(seed: string, min: number, max: number): number {
+  const lo = Math.floor(min);
+  const hi = Math.floor(max);
+  return lo + Math.floor(rollUnit(seed) * (hi - lo + 1));
+}
+
+function pickOne<T>(seed: string, items: readonly T[]): T | null {
+  if (items.length === 0) return null;
+  return items[Math.min(items.length - 1, Math.floor(rollUnit(seed) * items.length))] ?? null;
+}
+
+function sumShardDrops(drops: RewardDrop[]): number {
+  return drops.reduce((sum, drop) => (
+    drop.kind === 'shards' || drop.kind === 'gold_theme_duplicate'
+      ? sum + Math.max(0, readInt(drop.amount, 0))
+      : sum
+  ), 0);
+}
+
+function buildLeagueRewardDrops(params: {
+  stableUid: string;
+  weekId: string;
+  groupId: string;
+  user: FirebaseFirestore.DocumentData | undefined;
+  expiresAt: number;
+  isCrownWinner: boolean;
+}): RewardDrop[] {
+  const { stableUid, weekId, groupId, user, expiresAt, isCrownWinner } = params;
+  const seed = `${weekId}:${groupId}:${stableUid}`;
+  const drops: RewardDrop[] = [];
+  const baseShards = rollInt(`${seed}:base_shards`, BASE_SHARDS_MIN, BASE_SHARDS_MAX);
+  drops.push({ id: 'league_shards', kind: 'shards', rarity: 'common', amount: baseShards });
+
+  const addIf = (id: string, chance: number, drop: RewardDrop) => {
+    if (rollChance(`${seed}:${id}`, chance)) drops.push(drop);
+  };
+
+  addIf('xp_boost', 0.45, {
+    id: 'league_xp_2x_3',
+    kind: 'xp_boost',
+    rarity: 'rare',
+    multiplier: 2,
+    uses: 3,
+    expiresAt,
+  });
+  addIf('energy_fast_recovery', 0.35, {
+    id: 'league_energy_5m_week',
+    kind: 'energy_fast_recovery',
+    rarity: 'rare',
+    recoveryMs: ENERGY_MS,
+    expiresAt,
+  });
+  addIf('streak_shield', 0.22, {
+    id: 'league_streak_shield_1',
+    kind: 'streak_shield',
+    rarity: 'rare',
+    amount: 1,
+  });
+  addIf('arena_plays', 0.20, {
+    id: 'league_arena_plays_5',
+    kind: 'arena_plays',
+    rarity: 'common',
+    amount: 5,
+  });
+  addIf('bonus_shards', 0.15, {
+    id: 'league_bonus_shards',
+    kind: 'shards',
+    rarity: 'rare',
+    amount: rollInt(`${seed}:bonus_shards_amount`, 10, 22),
+  });
+  addIf('pack_trial_48h', 0.08, {
+    id: 'league_pack_trial_48h',
+    kind: 'pack_trial_48h',
+    rarity: 'epic',
+    expiresAt: Date.now() + PACK_TRIAL_MS,
+  });
+
+  const ownedAuras = parseJsonObject(getExistingField(user, AVATAR_AURA_OWNED_KEY));
+  const auraCandidates = AVATAR_AURA_IDS.filter((auraId) => ownedAuras[auraId] !== true);
+  if (rollChance(`${seed}:avatar_aura`, isCrownWinner ? 0.22 : 0.10)) {
+    const auraId = pickOne(`${seed}:avatar_aura_pick`, auraCandidates);
+    if (auraId) {
+      drops.push({ id: `league_${auraId}`, kind: 'avatar_aura', rarity: 'epic', auraId });
+    } else {
+      drops.push({ id: 'league_aura_duplicate_shards', kind: 'shards', rarity: 'rare', amount: AURA_DUPLICATE_SHARDS });
+    }
+  }
+
+  if (CUSTOM_AVATAR_DROP_IDS.length > 0 && rollChance(`${seed}:custom_avatar`, isCrownWinner ? 0.12 : 0.06)) {
+    const ownedAvatars = parseJsonObject(getExistingField(user, CUSTOM_AVATAR_OWNED_KEY));
+    const avatarCandidates = CUSTOM_AVATAR_DROP_IDS.filter((avatarId) => typeof ownedAvatars[avatarId] !== 'string');
+    const customAvatarId = pickOne(`${seed}:custom_avatar_pick`, avatarCandidates);
+    const gradientId = pickOne(`${seed}:custom_avatar_gradient`, CUSTOM_AVATAR_GRADIENT_IDS) ?? 'noirgold';
+    const logoColor = rollChance(`${seed}:custom_avatar_logo`, 0.5) ? 'white' : 'black';
+    if (customAvatarId) {
+      drops.push({ id: `league_${customAvatarId}`, kind: 'custom_avatar', rarity: 'epic', customAvatarId, gradientId, logoColor });
+    } else {
+      drops.push({ id: 'league_avatar_duplicate_shards', kind: 'shards', rarity: 'rare', amount: AVATAR_DUPLICATE_SHARDS });
+    }
+  }
+
+  const hasGold = String(getExistingField(user, GOLD_THEME_UNLOCK_KEY) ?? '') === '1';
+  if (rollChance(`${seed}:gold_theme`, isCrownWinner ? 0.08 : 0.05)) {
+    if (hasGold) {
+      drops.push({ id: 'league_gold_duplicate', kind: 'gold_theme_duplicate', rarity: 'legendary', amount: GOLD_DUPLICATE_SHARDS });
+    } else {
+      drops.push({ id: 'league_gold_theme', kind: 'gold_theme', rarity: 'legendary' });
+    }
+  }
+
+  return drops;
+}
+
+function buildRewardProgressPatch(params: {
+  drops: RewardDrop[];
+  user: FirebaseFirestore.DocumentData | undefined;
+  now: number;
+  expiresAt: number;
+}): Record<string, unknown> {
+  const { drops, user, now, expiresAt } = params;
+  const today = todayStrUtc();
+  const patch: Record<string, unknown> = {};
+  const progressPatch: Record<string, unknown> = {};
+
+  const xpBoost = drops.find((drop) => drop.kind === 'xp_boost');
+  if (xpBoost) {
+    progressPatch[XP_OVERRIDE_KEY] = JSON.stringify({
+      multiplier: Math.max(1, Number(xpBoost.multiplier) || 2),
+      remainingUses: Math.max(1, readInt(xpBoost.uses, 3)),
+      expiresAt,
+    });
+  }
+
+  const energyBoost = drops.find((drop) => drop.kind === 'energy_fast_recovery');
+  if (energyBoost) {
+    progressPatch[ENERGY_OVERRIDE_KEY] = JSON.stringify({
+      recoveryMs: Math.max(60_000, readInt(energyBoost.recoveryMs, ENERGY_MS)),
+      expiresAt,
+    });
+  }
+
+  const shieldCount = drops
+    .filter((drop) => drop.kind === 'streak_shield')
+    .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 1)), 0);
+  if (shieldCount > 0) {
+    const shield = parseShield(getExistingField(user, STREAK_SHIELD_KEY));
+    const next = JSON.stringify({ daysLeft: shield.daysLeft + shieldCount, grantedAt: today });
+    patch[STREAK_SHIELD_KEY] = next;
+    progressPatch[STREAK_SHIELD_KEY] = next;
+  }
+
+  const arenaPlays = drops
+    .filter((drop) => drop.kind === 'arena_plays')
+    .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 5)), 0);
+  if (arenaPlays > 0) {
+    const cur = parseJsonObject(getExistingField(user, ARENA_DAILY_GIFT_BONUS_KEY));
+    const sameDay = cur.date === today;
+    const extra = sameDay ? Math.max(0, readInt(cur.extra, 0)) : 0;
+    progressPatch[ARENA_DAILY_GIFT_BONUS_KEY] = JSON.stringify({ date: today, extra: extra + arenaPlays });
+  }
+
+  if (drops.some((drop) => drop.kind === 'pack_trial_48h')) {
+    progressPatch[PACK_TRIAL_GIFT_KEY] = JSON.stringify({ packId: 'league_bonus_voucher', expiresAt: now + PACK_TRIAL_MS });
+  }
+
+  const auraDrop = drops.find((drop) => drop.kind === 'avatar_aura' && drop.auraId);
+  if (auraDrop?.auraId) {
+    const owned = parseJsonObject(getExistingField(user, AVATAR_AURA_OWNED_KEY));
+    progressPatch[AVATAR_AURA_OWNED_KEY] = JSON.stringify({ ...owned, [auraDrop.auraId]: true });
+    progressPatch[AVATAR_AURA_GIFT_OWNED_KEY] = auraDrop.auraId;
+    progressPatch[USER_AVATAR_AURA_KEY] = auraDrop.auraId;
+  }
+
+  const avatarDrop = drops.find((drop) => drop.kind === 'custom_avatar' && drop.customAvatarId);
+  if (avatarDrop?.customAvatarId) {
+    const owned = parseJsonObject(getExistingField(user, CUSTOM_AVATAR_OWNED_KEY));
+    const gradientId = avatarDrop.gradientId || 'noirgold';
+    const logoColor = avatarDrop.logoColor === 'white' ? 'white' : 'black';
+    progressPatch[CUSTOM_AVATAR_OWNED_KEY] = JSON.stringify({
+      ...owned,
+      [avatarDrop.customAvatarId]: `${gradientId}:${logoColor}`,
+    });
+    progressPatch[CUSTOM_AVATAR_GIFT_OWNED_KEY] = avatarDrop.customAvatarId;
+  }
+
+  if (drops.some((drop) => drop.kind === 'gold_theme')) {
+    progressPatch[GOLD_THEME_UNLOCK_KEY] = '1';
+    progressPatch[GOLD_THEME_UNLOCK_AT_KEY] = String(now);
+  }
+
+  if (Object.keys(progressPatch).length > 0) patch.progress = progressPatch;
+  return patch;
 }
 
 export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
@@ -205,10 +492,33 @@ export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
     }
 
     const user = userSnap.data() || {};
+    const isCrownWinner = !!crown && crown.uid === stableUid;
+    const rewardDrops = buildLeagueRewardDrops({
+      stableUid,
+      weekId,
+      groupId,
+      user,
+      expiresAt,
+      isCrownWinner,
+    });
+    const shardReward = sumShardDrops(rewardDrops);
     const beforeShards = Math.max(0, readInt(user.shards, 0));
-    const afterShards = beforeShards + SHARDS_REWARD;
-    const shield = parseShield(user.chain_shield);
-    const today = new Date().toISOString().split('T')[0];
+    const afterShards = beforeShards + shardReward;
+    const xpBoost = rewardDrops.find((drop) => drop.kind === 'xp_boost');
+    const energyBoost = rewardDrops.find((drop) => drop.kind === 'energy_fast_recovery');
+    const streakShieldCount = rewardDrops
+      .filter((drop) => drop.kind === 'streak_shield')
+      .reduce((sum, drop) => sum + Math.max(1, readInt(drop.amount, 1)), 0);
+    const userPatch: Record<string, unknown> = {
+      ...buildRewardProgressPatch({ drops: rewardDrops, user, now, expiresAt }),
+      updatedAt: now,
+    };
+    if (shardReward > 0) {
+      userPatch.shards = afterShards;
+      userPatch.shards_updated_at_ms = now;
+      userPatch.shards_updated_op = 'earn';
+      userPatch.shards_updated_reason = 'league_chest';
+    }
 
     tx.set(claimRef, {
       uid: stableUid,
@@ -219,33 +529,30 @@ export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
       contribution: myContribution,
       roomPoints: totalPoints,
       goal,
-      shards: SHARDS_REWARD,
-      energyRecoveryMs: ENERGY_MS,
-      xpOverrideMultiplier: 2,
-      xpOverrideUses: 3,
-      streakShieldCount: 1,
+      rewards: rewardDrops,
+      shards: shardReward,
+      energyRecoveryMs: energyBoost ? Math.max(60_000, readInt(energyBoost.recoveryMs, ENERGY_MS)) : 0,
+      xpOverrideMultiplier: xpBoost ? Math.max(1, Number(xpBoost.multiplier) || 2) : 1,
+      xpOverrideUses: xpBoost ? Math.max(1, readInt(xpBoost.uses, 3)) : 0,
+      streakShieldCount,
+      themeGoldUnlocked: rewardDrops.some((drop) => drop.kind === 'gold_theme'),
       expiresAt,
       createdAt: now,
     });
 
-    tx.set(userRef, {
-      shards: afterShards,
-      shards_updated_at_ms: now,
-      shards_updated_op: 'earn',
-      shards_updated_reason: 'league_chest',
-      chain_shield: JSON.stringify({ daysLeft: shield.daysLeft + 1, grantedAt: today }),
-      updatedAt: now,
-    }, { merge: true });
-    tx.set(userRef.collection('shard_log').doc(), {
-      ts: new Date(now).toISOString(),
-      type: 'earn',
-      amount: SHARDS_REWARD,
-      reason: 'league_chest',
-      balanceBefore: beforeShards,
-      balanceAfter: afterShards,
-      weekId,
-      groupId,
-    });
+    tx.set(userRef, userPatch, { merge: true });
+    if (shardReward > 0) {
+      tx.set(userRef.collection('shard_log').doc(), {
+        ts: new Date(now).toISOString(),
+        type: 'earn',
+        amount: shardReward,
+        reason: 'league_chest',
+        balanceBefore: beforeShards,
+        balanceAfter: afterShards,
+        weekId,
+        groupId,
+      });
+    }
 
     return {
       ok: true,
@@ -253,11 +560,13 @@ export const leagueChestClaim = onCall({ region: REGION }, async (request) => {
       crown,
       balance: afterShards,
       rewards: {
-        shards: SHARDS_REWARD,
-        energyRecoveryMs: ENERGY_MS,
-        xpOverrideMultiplier: 2,
-        xpOverrideUses: 3,
-        streakShieldCount: 1,
+        drops: rewardDrops,
+        shards: shardReward,
+        energyRecoveryMs: energyBoost ? Math.max(60_000, readInt(energyBoost.recoveryMs, ENERGY_MS)) : undefined,
+        xpOverrideMultiplier: xpBoost ? Math.max(1, Number(xpBoost.multiplier) || 2) : undefined,
+        xpOverrideUses: xpBoost ? Math.max(1, readInt(xpBoost.uses, 3)) : undefined,
+        streakShieldCount: streakShieldCount > 0 ? streakShieldCount : undefined,
+        themeGoldUnlocked: rewardDrops.some((drop) => drop.kind === 'gold_theme'),
         expiresAt,
       },
     };

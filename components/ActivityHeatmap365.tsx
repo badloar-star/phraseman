@@ -20,8 +20,10 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useFocusEffect } from 'expo-router';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import type { Theme } from '../constants/theme';
+import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import GoldBevel from './GoldBevel';
 import {
   ACTIVITY_365_GOAL_KEY,
   type Activity365Analytics,
@@ -79,6 +81,15 @@ function lerpRgb(bg: { r: number; g: number; b: number }, fg: { r: number; g: nu
 }
 
 function heatmapPalette(t: Theme): { empty: string; l1: string; l2: string; l3: string; l4: string } {
+  if (t.bgPrimary === GOLD_RICH.blackVoid) {
+    return {
+      empty: GOLD_RICH.graphite,
+      l1: GOLD_RICH.bronzeDark,
+      l2: GOLD_RICH.agedGold,
+      l3: GOLD_RICH.metalGold,
+      l4: GOLD_RICH.champagne,
+    };
+  }
   const bg = parseThemeHex(t.bgSurface2) ?? parseThemeHex(t.bgCard);
   const fg = parseThemeHex(t.correct) ?? parseThemeHex(t.accent);
   if (!bg || !fg) return { empty: t.bgSurface2, l1: t.correctBg, l2: t.correct, l3: t.correct, l4: t.correct };
@@ -99,12 +110,26 @@ function levelColor(level: 0 | 1 | 2 | 3 | 4, palette: ReturnType<typeof heatmap
   return palette.l4;
 }
 
-function monthName(month: number, lang: Lang): string {
+type ActivityMonthLang = Lang | PlannedInterfaceLang;
+
+function monthName(month: number, lang: ActivityMonthLang): string {
   const ru = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
   const uk = ['січень', 'лютий', 'березень', 'квітень', 'травень', 'червень', 'липень', 'серпень', 'вересень', 'жовтень', 'листопад', 'грудень'];
   const es = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
+  const ptBR = ['janeiro', 'fevereiro', 'março', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'];
+  const vi = ['tháng 1', 'tháng 2', 'tháng 3', 'tháng 4', 'tháng 5', 'tháng 6', 'tháng 7', 'tháng 8', 'tháng 9', 'tháng 10', 'tháng 11', 'tháng 12'];
+  const id = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+  const tr = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+  const pl = ['styczeń', 'luty', 'marzec', 'kwiecień', 'maj', 'czerwiec', 'lipiec', 'sierpień', 'wrzesień', 'październik', 'listopad', 'grudzień'];
   const idx = Math.max(0, Math.min(11, month - 1));
-  return lang === 'uk' ? uk[idx]! : lang === 'es' ? es[idx]! : ru[idx]!;
+  if (lang === 'uk') return uk[idx]!;
+  if (lang === 'es') return es[idx]!;
+  if (lang === 'pt-BR') return ptBR[idx]!;
+  if (lang === 'vi') return vi[idx]!;
+  if (lang === 'id') return id[idx]!;
+  if (lang === 'tr') return tr[idx]!;
+  if (lang === 'pl') return pl[idx]!;
+  return ru[idx]!;
 }
 
 function formatDay(dateKey: string): string {
@@ -127,10 +152,46 @@ function activeDaysLabel(days: number, lang: Lang): string {
 }
 
 function activityStatus(activeDays: number, lang: Lang): string {
-  if (activeDays >= 180) return triLang(lang, { ru: 'Сильный годовой ритм', uk: 'Сильний річний ритм', es: 'Ritmo anual fuerte' });
-  if (activeDays >= 60) return triLang(lang, { ru: 'Ритм уже заметен', uk: 'Ритм уже помітний', es: 'El ritmo ya se nota' });
-  if (activeDays >= 7) return triLang(lang, { ru: 'Ритм набирается', uk: 'Ритм набирається', es: 'El ritmo está creciendo' });
-  return triLang(lang, { ru: 'Пульс только начинается', uk: 'Пульс тільки починається', es: 'El pulso empieza' });
+  if (activeDays >= 180) return triLang(lang, {
+    ru: 'Сильный годовой ритм',
+    uk: 'Сильний річний ритм',
+    es: 'Ritmo anual fuerte',
+    'pt-BR': "Ritmo anual forte",
+    vi: "Nhịp cả năm rất tốt",
+    id: "Ritme tahunan kuat",
+    tr: "Güçlü yıllık ritim",
+    pl: "Silny rytm roczny",
+  });
+  if (activeDays >= 60) return triLang(lang, {
+    ru: 'Ритм уже заметен',
+    uk: 'Ритм уже помітний',
+    es: 'El ritmo ya se nota',
+    'pt-BR': "O ritmo já aparece",
+    vi: "Nhịp đã rõ hơn",
+    id: "Ritme sudah terlihat",
+    tr: "Ritim artık fark ediliyor",
+    pl: "Rytm jest już widoczny",
+  });
+  if (activeDays >= 7) return triLang(lang, {
+    ru: 'Ритм набирается',
+    uk: 'Ритм набирається',
+    es: 'El ritmo está creciendo',
+    'pt-BR': "O ritmo está crescendo",
+    vi: "Nhịp đang tăng lên",
+    id: "Ritme sedang tumbuh",
+    tr: "Ritim büyüyor",
+    pl: "Rytm rośnie",
+  });
+  return triLang(lang, {
+    ru: 'Пульс только начинается',
+    uk: 'Пульс тільки починається',
+    es: 'El pulso empieza',
+    'pt-BR': "O pulso começa",
+    vi: "Nhịp bắt đầu",
+    id: "Denyut mulai terasa",
+    tr: "Nabız başlıyor",
+    pl: "Puls się zaczyna",
+  });
 }
 
 function filterLabel(filter: Activity365Filter, lang: Lang): string {
@@ -150,7 +211,7 @@ function insightText(insight: Activity365Analytics['insights'][number], lang: La
   return { title: insight.titleRu, body: insight.bodyRu };
 }
 
-function monthLabel(month: Activity365Analytics['bestMonth'], lang: Lang): string {
+function monthLabel(month: Activity365Analytics['bestMonth'], lang: ActivityMonthLang): string {
   return month ? `${monthName(month.month, lang)} ${month.year}` : '-';
 }
 
@@ -202,8 +263,9 @@ function useActivity365AnalyticsData() {
 }
 
 function StatPill({ label, value, t, f }: { label: string; value: string | number; t: Theme; f: any }) {
+  const isGoldTheme = t.bgPrimary === GOLD_RICH.blackVoid;
   return (
-    <View style={[styles.statPill, { backgroundColor: t.bgSurface2, borderColor: t.border }]}>
+    <View style={[styles.statPill, { backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
       <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }} numberOfLines={1}>{label}</Text>
       <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>{value}</Text>
     </View>
@@ -213,22 +275,86 @@ function StatPill({ label, value, t, f }: { label: string; value: string | numbe
 function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose: () => void }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const isGoldTheme = t.bgPrimary === GOLD_RICH.blackVoid;
   if (!day) return null;
   const rows = [
     { icon: 'star-outline', label: 'XP', value: day.xp },
-    { icon: 'time-outline', label: triLang(lang, { ru: 'Минуты', uk: 'Хвилини', es: 'Minutos' }), value: day.minutes },
-    { icon: 'school-outline', label: triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones' }), value: day.metrics.lessons },
-    { icon: 'help-circle-outline', label: triLang(lang, { ru: 'Квизы', uk: 'Квізи', es: 'Tests' }), value: day.metrics.quizzes },
-    { icon: 'repeat-outline', label: triLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso' }), value: day.metrics.review },
-    { icon: 'trophy-outline', label: triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' }), value: day.metrics.arena },
-    { icon: 'text-outline', label: triLang(lang, { ru: 'Слова', uk: 'Слова', es: 'Palabras' }), value: day.metrics.wordsLearned },
-    { icon: 'chatbubble-ellipses-outline', label: triLang(lang, { ru: 'Фразы', uk: 'Фрази', es: 'Frases' }), value: day.metrics.phrasesLearned },
+    { icon: 'time-outline', label: triLang(lang, {
+      ru: 'Минуты',
+      uk: 'Хвилини',
+      es: 'Minutos',
+      'pt-BR': "Minutos",
+      vi: "Phút",
+      id: "Menit",
+      tr: "Dakika",
+      pl: "Minuty",
+    }), value: day.minutes },
+    { icon: 'school-outline', label: triLang(lang, {
+      ru: 'Уроки',
+      uk: 'Уроки',
+      es: 'Lecciones',
+      'pt-BR': "Lições",
+      vi: "Bài học",
+      id: "Pelajaran",
+      tr: "Dersler",
+      pl: "Lekcje",
+    }), value: day.metrics.lessons },
+    { icon: 'help-circle-outline', label: triLang(lang, {
+      ru: 'Квизы',
+      uk: 'Квізи',
+      es: 'Tests',
+      'pt-BR': "Testes",
+      vi: "Bài kiểm tra",
+      id: "Tes",
+      tr: "Testler",
+      pl: "Testy",
+    }), value: day.metrics.quizzes },
+    { icon: 'repeat-outline', label: triLang(lang, {
+      ru: 'Повторение',
+      uk: 'Повторення',
+      es: 'Repaso',
+      'pt-BR': "Revisão",
+      vi: "Ôn tập",
+      id: "Pengulangan",
+      tr: "Tekrar",
+      pl: "Powtórka",
+    }), value: day.metrics.review },
+    { icon: 'trophy-outline', label: triLang(lang, {
+      ru: 'Арена',
+      uk: 'Арена',
+      es: 'Arena',
+      'pt-BR': "Arena",
+      vi: "Đấu trường",
+      id: "Arena",
+      tr: "Arena",
+      pl: "Arena",
+    }), value: day.metrics.arena },
+    { icon: 'text-outline', label: triLang(lang, {
+      ru: 'Слова',
+      uk: 'Слова',
+      es: 'Palabras',
+      'pt-BR': "Palavras",
+      vi: "Từ",
+      id: "Kata",
+      tr: "Kelimeler",
+      pl: "Słowa",
+    }), value: day.metrics.wordsLearned },
+    { icon: 'chatbubble-ellipses-outline', label: triLang(lang, {
+      ru: 'Фразы',
+      uk: 'Фрази',
+      es: 'Frases',
+      'pt-BR': "Frases",
+      vi: "Cụm từ",
+      id: "Frasa",
+      tr: "İfadeler",
+      pl: "Zwroty",
+    }), value: day.metrics.phrasesLearned },
   ];
   return (
     <Modal visible transparent animationType="fade" onRequestClose={onClose}>
       <TouchableOpacity activeOpacity={1} onPress={onClose} style={styles.modalBackdrop}>
-        <TouchableOpacity testID="activity-365-day-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-          <LinearGradient colors={['rgba(82,160,255,0.20)', 'rgba(255,215,0,0.12)', 'rgba(0,0,0,0)']} style={styles.modalGlow}>
+        <TouchableOpacity testID="activity-365-day-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }]}>
+          <LinearGradient colors={isGoldTheme ? [GOLD_RICH.bronzeWashStrong, GOLD_RICH.mist, 'rgba(0,0,0,0)'] : ['rgba(82,160,255,0.20)', 'rgba(255,215,0,0.12)', 'rgba(0,0,0,0)']} style={styles.modalGlow}>
             <View style={styles.modalHeader}>
               <View>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
@@ -236,8 +362,26 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
                 </Text>
                 <Text style={{ color: day.active ? t.correct : t.textMuted, fontSize: f.caption, marginTop: 4 }}>
                   {day.active
-                    ? triLang(lang, { ru: 'Активный день', uk: 'Активний день', es: 'Día activo' })
-                    : triLang(lang, { ru: 'Без активности', uk: 'Без активності', es: 'Sin actividad' })}
+                    ? triLang(lang, {
+                      ru: 'Активный день',
+                      uk: 'Активний день',
+                      es: 'Día activo',
+                      'pt-BR': "Dia ativo",
+                      vi: "Ngày hoạt động",
+                      id: "Hari aktif",
+                      tr: "Aktif gün",
+                      pl: "Aktywny dzień",
+                    })
+                    : triLang(lang, {
+                      ru: 'Без активности',
+                      uk: 'Без активності',
+                      es: 'Sin actividad',
+                      'pt-BR': "Sem atividade",
+                      vi: "Không có hoạt động",
+                      id: "Tanpa aktivitas",
+                      tr: "Aktivite yok",
+                      pl: "Brak aktywności",
+                    })}
                 </Text>
               </View>
               <TouchableOpacity onPress={onClose} hitSlop={10}>
@@ -246,8 +390,8 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
             </View>
             <View style={styles.detailGrid}>
               {rows.map(row => (
-                <View key={row.label} style={[styles.detailTile, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
-                  <Ionicons name={row.icon as any} size={18} color={t.accent} />
+                <View key={row.label} style={[styles.detailTile, { borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2 }]}>
+                  <Ionicons name={row.icon as any} size={18} color={isGoldTheme ? GOLD_RICH.paleGold : t.accent} />
                   <Text style={{ color: t.textGhost, fontSize: f.caption - 2, marginTop: 7 }}>{row.label}</Text>
                   <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 2 }}>{row.value}</Text>
                 </View>
@@ -263,6 +407,7 @@ function DayDetailModal({ day, onClose }: { day: Activity365Day | null; onClose:
 function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Analytics | null; onClose: () => void }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
+  const isGoldTheme = t.bgPrimary === GOLD_RICH.blackVoid;
   const m = analytics?.currentMonth;
   const currentMonthDays = useMemo(() => (
     analytics && m ? analytics.days.filter(day => day.date.slice(0, 7) === m.key && !day.future) : []
@@ -274,11 +419,20 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
   return (
     <Modal visible={!!analytics} transparent animationType="fade" onRequestClose={onClose}>
       <TouchableOpacity activeOpacity={1} onPress={onClose} style={styles.modalBackdrop}>
-        <TouchableOpacity testID="activity-365-monthly-report-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
-          <LinearGradient colors={['rgba(255,215,0,0.20)', 'rgba(82,160,255,0.12)', 'rgba(0,0,0,0)']} style={styles.modalGlow}>
+        <TouchableOpacity testID="activity-365-monthly-report-modal" activeOpacity={1} onPress={() => {}} style={[styles.modalCard, { backgroundColor: t.bgCard, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }]}>
+          <LinearGradient colors={isGoldTheme ? [GOLD_RICH.washStrong, GOLD_RICH.bronzeWash, 'rgba(0,0,0,0)'] : ['rgba(255,215,0,0.20)', 'rgba(82,160,255,0.12)', 'rgba(0,0,0,0)']} style={styles.modalGlow}>
             <View style={styles.modalHeader}>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
-                {triLang(lang, { ru: 'Мини-отчёт месяца', uk: 'Міні-звіт місяця', es: 'Informe del mes' })}
+                {triLang(lang, {
+                  ru: 'Мини-отчёт месяца',
+                  uk: 'Міні-звіт місяця',
+                  es: 'Informe del mes',
+                  'pt-BR': "Relatório do mês",
+                  vi: "Báo cáo tháng",
+                  id: "Laporan bulan",
+                  tr: "Ay raporu",
+                  pl: "Raport miesiąca",
+                })}
               </Text>
               <TouchableOpacity onPress={onClose} hitSlop={10}>
                 <Ionicons name="close" size={22} color={t.textMuted} />
@@ -290,27 +444,100 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
                   ru: `В ${monthName(m.month, 'ru')} ты занимался ${m.activeDays} дней, набрал ${m.totalXp} XP и провёл в приложении ${m.totalMinutes} мин.`,
                   uk: `У ${monthName(m.month, 'uk')} ти займався ${m.activeDays} днів, набрав ${m.totalXp} XP і провів у застосунку ${m.totalMinutes} хв.`,
                   es: `En ${monthName(m.month, 'es')} estudiaste ${m.activeDays} días, ganaste ${m.totalXp} XP y pasaste ${m.totalMinutes} min en la app.`,
+                  'pt-BR': `Em ${monthName(m.month, 'pt-BR')} você estudou ${m.activeDays} dias, ganhou ${m.totalXp} XP e passou ${m.totalMinutes} min no app.`,
+                  vi: `Trong ${monthName(m.month, 'vi')}, bạn học ${m.activeDays} ngày, kiếm ${m.totalXp} XP và dùng ${m.totalMinutes} phút trong app.`,
+                  id: `Pada ${monthName(m.month, 'id')}, kamu belajar ${m.activeDays} hari, mendapat ${m.totalXp} XP, dan menghabiskan ${m.totalMinutes} menit di aplikasi.`,
+                  tr: `${monthName(m.month, 'tr')} ayında ${m.activeDays} gün çalıştın, ${m.totalXp} XP kazandın ve uygulamada ${m.totalMinutes} dk geçirdin.`,
+                  pl: `W miesiącu ${monthName(m.month, 'pl')} uczysz się przez ${m.activeDays} dni, zdobywasz ${m.totalXp} XP i spędzasz ${m.totalMinutes} min w aplikacji.`,
                 })
-                : triLang(lang, { ru: 'В этом месяце пока нет активности.', uk: 'Цього місяця ще немає активності.', es: 'Aún no hay actividad este mes.' })}
+                : triLang(lang, {
+                  ru: 'В этом месяце пока нет активности.',
+                  uk: 'Цього місяця ще немає активності.',
+                  es: 'Aún no hay actividad este mes.',
+                  'pt-BR': "Ainda não há atividade neste mês.",
+                  vi: "Tháng này chưa có hoạt động.",
+                  id: "Belum ada aktivitas bulan ini.",
+                  tr: "Bu ay henüz aktivite yok.",
+                  pl: "W tym miesiącu nie ma jeszcze aktywności.",
+                })}
             </Text>
             <View style={styles.statsRow}>
-              <StatPill label={triLang(lang, { ru: 'Стабильность', uk: 'Стабільність', es: 'Constancia' })} value={`${analytics?.consistencyScore ?? 0}/100`} t={t} f={f} />
-              <StatPill label={triLang(lang, { ru: 'Лучший день', uk: 'Найкращий день', es: 'Mejor día' })} value={bestDay ? formatDay(bestDay.date).slice(0, 5) : '-'} t={t} f={f} />
+              <StatPill label={triLang(lang, {
+                ru: 'Стабильность',
+                uk: 'Стабільність',
+                es: 'Constancia',
+                'pt-BR': "Constância",
+                vi: "Độ đều đặn",
+                id: "Konsistensi",
+                tr: "İstikrar",
+                pl: "Systematyczność",
+              })} value={`${analytics?.consistencyScore ?? 0}/100`} t={t} f={f} />
+              <StatPill label={triLang(lang, {
+                ru: 'Лучший день',
+                uk: 'Найкращий день',
+                es: 'Mejor día',
+                'pt-BR': "Melhor dia",
+                vi: "Ngày tốt nhất",
+                id: "Hari terbaik",
+                tr: "En iyi gün",
+                pl: "Najlepszy dzień",
+              })} value={bestDay ? formatDay(bestDay.date).slice(0, 5) : '-'} t={t} f={f} />
             </View>
             <View style={styles.statsRow}>
-              <StatPill label={triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones' })} value={totals.lessons} t={t} f={f} />
-              <StatPill label={triLang(lang, { ru: 'Квизы', uk: 'Квізи', es: 'Tests' })} value={totals.quizzes} t={t} f={f} />
-              <StatPill label={triLang(lang, { ru: 'Повтор', uk: 'Повтор', es: 'Repaso' })} value={totals.review} t={t} f={f} />
+              <StatPill label={triLang(lang, {
+                ru: 'Уроки',
+                uk: 'Уроки',
+                es: 'Lecciones',
+                'pt-BR': "Lições",
+                vi: "Bài học",
+                id: "Pelajaran",
+                tr: "Dersler",
+                pl: "Lekcje",
+              })} value={totals.lessons} t={t} f={f} />
+              <StatPill label={triLang(lang, {
+                ru: 'Квизы',
+                uk: 'Квізи',
+                es: 'Tests',
+                'pt-BR': "Testes",
+                vi: "Bài kiểm tra",
+                id: "Tes",
+                tr: "Testler",
+                pl: "Testy",
+              })} value={totals.quizzes} t={t} f={f} />
+              <StatPill label={triLang(lang, {
+                ru: 'Повтор',
+                uk: 'Повтор',
+                es: 'Repaso',
+                'pt-BR': "Revisão",
+                vi: "Ôn tập",
+                id: "Pengulangan",
+                tr: "Tekrar",
+                pl: "Powtórka",
+              })} value={totals.review} t={t} f={f} />
             </View>
-            <View style={[styles.reportSummary, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
+            <View style={[styles.reportSummary, { borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, backgroundColor: isGoldTheme ? GOLD_RICH.graphiteWarm : t.bgSurface2 }]}>
               <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
-                {triLang(lang, { ru: 'Вывод месяца', uk: 'Висновок місяця', es: 'Conclusión del mes' })}
+                {triLang(lang, {
+                  ru: 'Вывод месяца',
+                  uk: 'Висновок місяця',
+                  es: 'Conclusión del mes',
+                  'pt-BR': "Conclusão do mês",
+                  vi: "Kết luận tháng",
+                  id: "Kesimpulan bulan",
+                  tr: "Ay özeti",
+                  pl: "Wniosek z miesiąca",
+                })}
               </Text>
               <Text style={{ color: t.textSecond, fontSize: f.caption, lineHeight: f.caption * 1.4, marginTop: 5 }}>
                 {triLang(lang, {
                   ru: `Лучший месяц: ${monthLabel(analytics?.bestMonth ?? null, 'ru')}. Слабый период: ${monthLabel(analytics?.weakestMonth ?? null, 'ru')}.`,
                   uk: `Найкращий місяць: ${monthLabel(analytics?.bestMonth ?? null, 'uk')}. Слабкий період: ${monthLabel(analytics?.weakestMonth ?? null, 'uk')}.`,
                   es: `Mejor mes: ${monthLabel(analytics?.bestMonth ?? null, 'es')}. Periodo débil: ${monthLabel(analytics?.weakestMonth ?? null, 'es')}.`,
+                  'pt-BR': `Melhor mês: ${monthLabel(analytics?.bestMonth ?? null, 'pt-BR')}. Período fraco: ${monthLabel(analytics?.weakestMonth ?? null, 'pt-BR')}.`,
+                  vi: `Tháng tốt nhất: ${monthLabel(analytics?.bestMonth ?? null, 'vi')}. Giai đoạn yếu: ${monthLabel(analytics?.weakestMonth ?? null, 'vi')}.`,
+                  id: `Bulan terbaik: ${monthLabel(analytics?.bestMonth ?? null, 'id')}. Periode lemah: ${monthLabel(analytics?.weakestMonth ?? null, 'id')}.`,
+                  tr: `En iyi ay: ${monthLabel(analytics?.bestMonth ?? null, 'tr')}. Zayıf dönem: ${monthLabel(analytics?.weakestMonth ?? null, 'tr')}.`,
+                  pl: `Najlepszy miesiąc: ${monthLabel(analytics?.bestMonth ?? null, 'pl')}. Słaby okres: ${monthLabel(analytics?.weakestMonth ?? null, 'pl')}.`,
                 })}
               </Text>
             </View>
@@ -322,7 +549,8 @@ function MonthlyReportModal({ analytics, onClose }: { analytics: Activity365Anal
 }
 
 export default function ActivityHeatmap365() {
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const isGoldTheme = themeMode === 'gold';
   const { lang } = useLang();
   const { width: screenW } = useWindowDimensions();
   const { analytics, loading, reload } = useActivity365AnalyticsData();
@@ -393,61 +621,127 @@ export default function ActivityHeatmap365() {
       ru: 'Начни с 3 коротких занятий на этой неделе.',
       uk: 'Почни з 3 коротких занять цього тижня.',
       es: 'Empieza con 3 sesiones cortas esta semana.',
+      'pt-BR': "Comece com 3 sessões curtas nesta semana.",
+      vi: "Bắt đầu với 3 buổi ngắn trong tuần này.",
+      id: "Mulai dengan 3 sesi singkat minggu ini.",
+      tr: "Bu hafta 3 kısa seansla başla.",
+      pl: "Zacznij od 3 krótkich sesji w tym tygodniu.",
     })
     : safeAnalytics.currentStreak > 0
       ? triLang(lang, {
         ru: 'Продолжай серию короткой практикой сегодня.',
         uk: 'Продовж серію короткою практикою сьогодні.',
         es: 'Mantén la racha con una práctica corta hoy.',
+        'pt-BR': "Mantenha a sequência com uma prática curta hoje.",
+        vi: "Giữ chuỗi bằng một buổi luyện ngắn hôm nay.",
+        id: "Jaga rangkaian dengan latihan singkat hari ini.",
+        tr: "Bugün kısa bir pratikle seriyi koru.",
+        pl: "Utrzymaj serię krótkim ćwiczeniem dziś.",
       })
       : triLang(lang, {
         ru: 'Верни ритм одним коротким занятием сегодня.',
         uk: 'Поверни ритм одним коротким заняттям сьогодні.',
         es: 'Recupera el ritmo con una práctica corta hoy.',
+        'pt-BR': "Recupere o ritmo com uma prática curta hoje.",
+        vi: "Lấy lại nhịp bằng một buổi luyện ngắn hôm nay.",
+        id: "Pulihkan ritme dengan latihan singkat hari ini.",
+        tr: "Bugün kısa bir pratikle ritmi geri al.",
+        pl: "Odzyskaj rytm krótkim ćwiczeniem dziś.",
       });
   const insights = safeAnalytics.insights.map(item => insightText(item, lang));
   const goalProgress = Math.min(100, Math.round((safeAnalytics.goal.activeDays / Math.max(1, safeAnalytics.goal.goal)) * 100));
+  const luxuryLocations = isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined;
+  const cardGradient = isGoldTheme ? GOLD_GRADIENTS.premiumPanel : t.cardGradient;
+  const activeAccent = isGoldTheme ? GOLD_RICH.champagne : t.correct;
+  const weakAccent = isGoldTheme ? GOLD_RICH.antiqueGold : '#FFB020';
+  const quietPanel = isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.045)';
   const revealStyle = {
     opacity: revealAnim,
     transform: [{ translateY: revealAnim.interpolate({ inputRange: [0, 1], outputRange: [8, 0] }) }],
   };
 
   return (
-    <LinearGradient testID="activity-365-card" colors={t.cardGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[styles.card, { borderColor: t.border }]}>
+    <LinearGradient testID="activity-365-card" colors={cardGradient} locations={luxuryLocations} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[styles.card, { borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border }, isGoldTheme ? goldShadow(2) : null]}>
+      {isGoldTheme && <GoldBevel radius={18} intensity="normal" />}
       <TouchableOpacity testID="activity-365-toggle" activeOpacity={0.88} onPress={() => setExpanded(prev => !prev)} style={styles.topBar}>
-        <View style={[styles.iconOrb, { backgroundColor: t.correct + '1F' }]}>
-          <Ionicons name="pulse-outline" size={22} color={t.correct} />
+        <View style={[styles.iconOrb, { backgroundColor: isGoldTheme ? GOLD_RICH.wash : t.correct + '1F' }]}>
+          <Ionicons name="pulse-outline" size={22} color={activeAccent} />
         </View>
         <View style={{ flex: 1, minWidth: 0 }}>
           <Text style={[styles.title, { color: t.textMuted, fontSize: f.caption }]}>
-            {triLang(lang, { ru: 'АКТИВНОСТЬ ЗА ГОД', uk: 'АКТИВНІСТЬ ЗА РІК', es: 'ACTIVIDAD ANUAL' })}
+            {triLang(lang, {
+              ru: 'АКТИВНОСТЬ ЗА ГОД',
+              uk: 'АКТИВНІСТЬ ЗА РІК',
+              es: 'ACTIVIDAD ANUAL',
+              'pt-BR': "ATIVIDADE ANUAL",
+              vi: "HOẠT ĐỘNG CẢ NĂM",
+              id: "AKTIVITAS TAHUNAN",
+              tr: "YILLIK AKTİVİTE",
+              pl: "AKTYWNOŚĆ ROCZNA",
+            })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>
             {activeDaysText}
           </Text>
           <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '700', marginTop: 2 }} numberOfLines={1}>
-            {loading ? triLang(lang, { ru: 'Обновляем данные...', uk: 'Оновлюємо дані...', es: 'Actualizando datos...' }) : statusText}
+            {loading ? triLang(lang, {
+              ru: 'Обновляем данные...',
+              uk: 'Оновлюємо дані...',
+              es: 'Actualizando datos...',
+              'pt-BR': "Atualizando dados...",
+              vi: "Đang cập nhật dữ liệu...",
+              id: "Memperbarui data...",
+              tr: "Veriler güncelleniyor...",
+              pl: "Aktualizowanie danych...",
+            }) : statusText}
           </Text>
         </View>
-        <View style={[styles.headerStatusPill, { backgroundColor: t.correct + '1A', borderColor: t.correct + '33' }]}>
-          <Text style={{ color: t.correct, fontSize: f.caption - 1, fontWeight: '900' }}>{goalProgress}%</Text>
+        <View style={[styles.headerStatusPill, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : t.correct + '1A', borderColor: isGoldTheme ? GOLD_RICH.hairline : t.correct + '33' }]}>
+          <Text style={{ color: activeAccent, fontSize: f.caption - 1, fontWeight: '900' }}>{goalProgress}%</Text>
         </View>
         <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={19} color={t.textMuted} />
       </TouchableOpacity>
 
       <View style={styles.metricRail}>
         <View style={styles.metricItem}>
-          <Text style={{ color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>{triLang(lang, { ru: 'Серия', uk: 'Серія', es: 'Racha' })}</Text>
+          <Text style={{ color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>{triLang(lang, {
+            ru: 'Серия',
+            uk: 'Серія',
+            es: 'Racha',
+            'pt-BR': "Sequência",
+            vi: "Chuỗi",
+            id: "Rangkaian",
+            tr: "Seri",
+            pl: "Seria",
+          })}</Text>
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', marginTop: 2 }}>{analytics?.currentStreak ?? 0}</Text>
         </View>
         <View style={styles.metricDivider} />
         <View style={styles.metricItem}>
-          <Text style={{ color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>{triLang(lang, { ru: 'Лучший месяц', uk: 'Кращий місяць', es: 'Mejor mes' })}</Text>
+          <Text style={{ color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>{triLang(lang, {
+            ru: 'Лучший месяц',
+            uk: 'Кращий місяць',
+            es: 'Mejor mes',
+            'pt-BR': "Melhor mês",
+            vi: "Tháng tốt nhất",
+            id: "Bulan terbaik",
+            tr: "En iyi ay",
+            pl: "Najlepszy miesiąc",
+          })}</Text>
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>{bestMonthText}</Text>
         </View>
         <View style={styles.metricDivider} />
         <View style={styles.metricItem}>
-          <Text style={{ color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>{triLang(lang, { ru: 'До цели', uk: 'До цілі', es: 'Meta' })}</Text>
+          <Text style={{ color: t.textGhost, fontSize: f.caption - 2, fontWeight: '800' }}>{triLang(lang, {
+            ru: 'До цели',
+            uk: 'До цілі',
+            es: 'Meta',
+            'pt-BR': "Meta",
+            vi: "Mục tiêu",
+            id: "Target",
+            tr: "Hedef",
+            pl: "Cel",
+          })}</Text>
           <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900', marginTop: 2 }}>{goalProgress}%</Text>
         </View>
       </View>
@@ -461,7 +755,7 @@ export default function ActivityHeatmap365() {
           >
             <Ionicons name="chevron-back" size={18} color={t.textMuted} />
           </TouchableOpacity>
-          <View style={[styles.filterChipBig, { backgroundColor: t.correct }]}>
+          <View style={[styles.filterChipBig, { backgroundColor: isGoldTheme ? GOLD_RICH.paleGold : t.correct }]}>
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
               {filterLabel(filter, lang)}
             </Text>
@@ -480,7 +774,7 @@ export default function ActivityHeatmap365() {
         testID={expanded ? 'activity-365-map-expanded' : 'activity-365-map-collapsed'}
         activeOpacity={expanded ? 1 : 0.92}
         onPress={() => setExpanded(true)}
-        style={[styles.mapShell, { backgroundColor: t.bgSurface, borderColor: t.border }]}
+        style={[styles.mapShell, { backgroundColor: isGoldTheme ? GOLD_RICH.blackPiano : t.bgSurface, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}
         onLayout={onGridLayout}
       >
         <View
@@ -524,20 +818,29 @@ export default function ActivityHeatmap365() {
         </View>
       </TouchableOpacity>
 
-      <View style={[styles.nextStepBar, { backgroundColor: t.correct + '12', borderColor: t.correct + '26' }]}>
-        <Ionicons name="sparkles-outline" size={16} color={t.correct} />
-        <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.25 }}>
+      <View style={[styles.nextStepBar, { backgroundColor: isGoldTheme ? GOLD_RICH.bronzeWash : t.correct + '12', borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.correct + '26' }]}>
+        <Ionicons name="sparkles-outline" size={16} color={activeAccent} />
+        <Text style={{ color: isGoldTheme ? GOLD_RICH.ivoryMuted : t.textSecond, fontSize: f.caption, fontWeight: '800', flex: 1, lineHeight: f.caption * 1.25 }}>
           {nextStepText}
         </Text>
       </View>
 
       {expanded && analytics ? (
         <Animated.View style={revealStyle}>
-          <View testID="activity-365-goal-card" style={[styles.goalCard, { backgroundColor: 'rgba(255,255,255,0.045)', borderColor: t.border }]}>
+          <View testID="activity-365-goal-card" style={[styles.goalCard, { backgroundColor: quietPanel, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}>
             <View style={styles.headerRow}>
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>
-                  {triLang(lang, { ru: 'Цель на год', uk: 'Ціль на рік', es: 'Objetivo anual' })}
+                  {triLang(lang, {
+                    ru: 'Цель на год',
+                    uk: 'Ціль на рік',
+                    es: 'Objetivo anual',
+                    'pt-BR': "Objetivo anual",
+                    vi: "Mục tiêu năm",
+                    id: "Target tahunan",
+                    tr: "Yıllık hedef",
+                    pl: "Cel roczny",
+                  })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 3 }}>
                   {safeAnalytics.goal.forecastDate
@@ -545,16 +848,30 @@ export default function ActivityHeatmap365() {
                       ru: `Прогноз: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/нед.`,
                       uk: `Прогноз: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/тиж.`,
                       es: `Previsión: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/sem.`,
+                      'pt-BR': `Previsão: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/sem.`,
+                      vi: `Dự báo: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/tuần`,
+                      id: `Perkiraan: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/minggu`,
+                      tr: `Tahmin: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/hafta`,
+                      pl: `Prognoza: ${formatDay(safeAnalytics.goal.forecastDate)} · ${safeAnalytics.goal.requiredDaysPerWeek}/tydz.`,
                     })
-                    : triLang(lang, { ru: 'Начни серию, и прогноз появится.', uk: 'Почни серію, і прогноз з\'явиться.', es: 'Empieza una racha y aparecerá la previsión.' })}
+                    : triLang(lang, {
+                      ru: 'Начни серию, и прогноз появится.',
+                      uk: 'Почни серію, і прогноз з\'явиться.',
+                      es: 'Empieza una racha y aparecerá la previsión.',
+                      'pt-BR': "Comece uma sequência e a previsão aparecerá.",
+                      vi: "Bắt đầu một chuỗi và dự báo sẽ xuất hiện.",
+                      id: "Mulai rangkaian dan perkiraan akan muncul.",
+                      tr: "Bir seri başlat, tahmin görünecek.",
+                      pl: "Zacznij serię, a pojawi się prognoza.",
+                    })}
                 </Text>
               </View>
-              <Text style={{ color: safeAnalytics.goal.onTrack ? t.correct : '#FFB020', fontSize: f.body, fontWeight: '900' }}>
+              <Text style={{ color: safeAnalytics.goal.onTrack ? activeAccent : weakAccent, fontSize: f.body, fontWeight: '900' }}>
                 {safeAnalytics.goal.activeDays}/{safeAnalytics.goal.goal}
               </Text>
             </View>
             <View style={[styles.goalTrack, { backgroundColor: t.bgSurface2 }]}>
-              <View style={[styles.goalFill, { width: `${goalProgress}%`, backgroundColor: safeAnalytics.goal.onTrack ? t.correct : '#FFB020' }]} />
+              <View style={[styles.goalFill, { width: `${goalProgress}%`, backgroundColor: safeAnalytics.goal.onTrack ? activeAccent : weakAccent }]} />
             </View>
             <View style={styles.goalOptions}>
               {GOALS.map(goal => (
@@ -562,7 +879,7 @@ export default function ActivityHeatmap365() {
                   key={goal}
                   activeOpacity={0.82}
                   onPress={() => void updateGoal(goal)}
-                  style={[styles.goalBtn, { backgroundColor: safeAnalytics.goal.goal === goal ? t.correct : 'transparent', borderColor: safeAnalytics.goal.goal === goal ? t.correct : t.border }]}
+                  style={[styles.goalBtn, { backgroundColor: safeAnalytics.goal.goal === goal ? (isGoldTheme ? GOLD_RICH.paleGold : t.correct) : 'transparent', borderColor: safeAnalytics.goal.goal === goal ? activeAccent : isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border }]}
                 >
                   <Text style={{ color: safeAnalytics.goal.goal === goal ? t.correctText : t.textMuted, fontSize: f.caption, fontWeight: '900' }}>{goal}</Text>
                 </TouchableOpacity>
@@ -571,24 +888,42 @@ export default function ActivityHeatmap365() {
           </View>
 
           <View style={styles.periodGrid}>
-            <LinearGradient colors={['rgba(90,200,120,0.16)', 'rgba(90,200,120,0.04)']} style={[styles.periodCard, { borderColor: 'rgba(90,200,120,0.34)' }]}>
-              <Ionicons name="trending-up-outline" size={18} color={t.correct} />
+            <LinearGradient colors={isGoldTheme ? [GOLD_RICH.washStrong, GOLD_RICH.mist] : ['rgba(90,200,120,0.16)', 'rgba(90,200,120,0.04)']} style={[styles.periodCard, { borderColor: isGoldTheme ? GOLD_RICH.hairline : 'rgba(90,200,120,0.34)' }]}>
+              <Ionicons name="trending-up-outline" size={18} color={activeAccent} />
               <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900', marginTop: 8 }}>
-                {triLang(lang, { ru: 'Лучший месяц', uk: 'Найкращий місяць', es: 'Mejor mes' })}
+                {triLang(lang, {
+                  ru: 'Лучший месяц',
+                  uk: 'Найкращий місяць',
+                  es: 'Mejor mes',
+                  'pt-BR': "Melhor mês",
+                  vi: "Tháng tốt nhất",
+                  id: "Bulan terbaik",
+                  tr: "En iyi ay",
+                  pl: "Najlepszy miesiąc",
+                })}
               </Text>
-              <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>
+              <Text style={{ color: activeAccent, fontSize: f.body, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>
                 {monthLabel(safeAnalytics.bestMonth, lang)}
               </Text>
               <Text style={{ color: t.textGhost, fontSize: f.caption - 2, marginTop: 2 }}>
                 {safeAnalytics.bestMonth ? `${safeAnalytics.bestMonth.activeDays} / ${safeAnalytics.bestMonth.totalXp} XP` : '-'}
               </Text>
             </LinearGradient>
-            <LinearGradient colors={['rgba(255,176,32,0.16)', 'rgba(255,176,32,0.04)']} style={[styles.periodCard, { borderColor: 'rgba(255,176,32,0.34)' }]}>
-              <Ionicons name="warning-outline" size={18} color="#FFB020" />
+            <LinearGradient colors={isGoldTheme ? [GOLD_RICH.bronzeWashStrong, 'rgba(60,42,11,0.04)'] : ['rgba(255,176,32,0.16)', 'rgba(255,176,32,0.04)']} style={[styles.periodCard, { borderColor: isGoldTheme ? GOLD_RICH.hairlineDark : 'rgba(255,176,32,0.34)' }]}>
+              <Ionicons name="warning-outline" size={18} color={weakAccent} />
               <Text style={{ color: t.textPrimary, fontSize: f.caption, fontWeight: '900', marginTop: 8 }}>
-                {triLang(lang, { ru: 'Слабый период', uk: 'Слабкий період', es: 'Periodo débil' })}
+                {triLang(lang, {
+                  ru: 'Слабый период',
+                  uk: 'Слабкий період',
+                  es: 'Periodo débil',
+                  'pt-BR': "Período fraco",
+                  vi: "Giai đoạn yếu",
+                  id: "Periode lemah",
+                  tr: "Zayıf dönem",
+                  pl: "Słaby okres",
+                })}
               </Text>
-              <Text style={{ color: '#FFB020', fontSize: f.body, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>
+              <Text style={{ color: weakAccent, fontSize: f.body, fontWeight: '900', marginTop: 2 }} numberOfLines={1}>
                 {monthLabel(safeAnalytics.weakestMonth, lang)}
               </Text>
               <Text style={{ color: t.textGhost, fontSize: f.caption - 2, marginTop: 2 }}>
@@ -596,14 +931,19 @@ export default function ActivityHeatmap365() {
                   ru: `Провал ${safeAnalytics.biggestGap} дн.`,
                   uk: `Провал ${safeAnalytics.biggestGap} дн.`,
                   es: `Brecha ${safeAnalytics.biggestGap} d.`,
+                  'pt-BR': `Lacuna ${safeAnalytics.biggestGap} d.`,
+                  vi: `Khoảng trống ${safeAnalytics.biggestGap} ngày`,
+                  id: `Jeda ${safeAnalytics.biggestGap} h`,
+                  tr: `Boşluk ${safeAnalytics.biggestGap} g.`,
+                  pl: `Przerwa ${safeAnalytics.biggestGap} d.`,
                 })}
               </Text>
             </LinearGradient>
           </View>
 
           {insights.map((insight, idx) => (
-            <LinearGradient key={`${insight.title}-${idx}`} colors={idx === 0 ? ['rgba(255,215,0,0.16)', 'rgba(255,215,0,0.04)'] : ['rgba(82,160,255,0.14)', 'rgba(82,160,255,0.04)']} style={[styles.insightCard, { borderColor: idx === 0 ? 'rgba(255,215,0,0.38)' : 'rgba(82,160,255,0.30)' }]}>
-              <Ionicons name={idx === 0 ? 'sparkles-outline' : 'bulb-outline'} size={20} color={idx === 0 ? '#FFD166' : t.accent} />
+            <LinearGradient key={`${insight.title}-${idx}`} colors={isGoldTheme ? (idx === 0 ? [GOLD_RICH.washStrong, GOLD_RICH.mist] : [GOLD_RICH.bronzeWash, 'rgba(0,0,0,0)']) : idx === 0 ? ['rgba(255,215,0,0.16)', 'rgba(255,215,0,0.04)'] : ['rgba(82,160,255,0.14)', 'rgba(82,160,255,0.04)']} style={[styles.insightCard, { borderColor: isGoldTheme ? (idx === 0 ? GOLD_RICH.hairlineStrong : GOLD_RICH.hairlineQuiet) : idx === 0 ? 'rgba(255,215,0,0.38)' : 'rgba(82,160,255,0.30)' }]}>
+              <Ionicons name={idx === 0 ? 'sparkles-outline' : 'bulb-outline'} size={20} color={isGoldTheme ? (idx === 0 ? GOLD_RICH.champagne : GOLD_RICH.antiqueGold) : idx === 0 ? '#FFD166' : t.accent} />
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.label, fontWeight: '900' }}>{insight.title}</Text>
                 <Text style={{ color: t.textSecond, fontSize: f.caption, lineHeight: f.caption * 1.35, marginTop: 3 }}>{insight.body}</Text>
@@ -612,15 +952,42 @@ export default function ActivityHeatmap365() {
           ))}
 
           <View style={styles.footerTools}>
-            <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }}>{triLang(lang, { ru: 'Меньше', uk: 'Менше', es: 'Menos' })}</Text>
+            <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }}>{triLang(lang, {
+              ru: 'Меньше',
+              uk: 'Менше',
+              es: 'Menos',
+              'pt-BR': "Menos",
+              vi: "Ít hơn",
+              id: "Lebih sedikit",
+              tr: "Daha az",
+              pl: "Mniej",
+            })}</Text>
             {([0, 1, 2, 3, 4] as const).map((lv) => (
               <View key={lv} style={{ width: legendApprox, height: legendApprox, borderRadius: Math.max(1, legendApprox / 5), backgroundColor: levelColor(lv, heatPalette), borderColor: t.border, borderWidth: StyleSheet.hairlineWidth }} />
             ))}
-            <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }}>{triLang(lang, { ru: 'Больше', uk: 'Більше', es: 'Más' })}</Text>
+            <Text style={{ color: t.textGhost, fontSize: f.caption - 2 }}>{triLang(lang, {
+              ru: 'Больше',
+              uk: 'Більше',
+              es: 'Más',
+              'pt-BR': "Mais",
+              vi: "Nhiều hơn",
+              id: "Lebih banyak",
+              tr: "Daha çok",
+              pl: "Więcej",
+            })}</Text>
             <TouchableOpacity testID="activity-365-report-open" activeOpacity={0.8} onPress={() => setReportOpen(true)} style={[styles.reportBtn, { borderColor: t.border, backgroundColor: t.bgSurface2 }]}>
               <Ionicons name="document-text-outline" size={14} color={t.textMuted} />
               <Text style={{ color: t.textMuted, fontSize: f.caption - 2, fontWeight: '800' }}>
-                {triLang(lang, { ru: 'Отчёт', uk: 'Звіт', es: 'Informe' })}
+                {triLang(lang, {
+                  ru: 'Отчёт',
+                  uk: 'Звіт',
+                  es: 'Informe',
+                  'pt-BR': "Relatório",
+                  vi: "Báo cáo",
+                  id: "Laporan",
+                  tr: "Rapor",
+                  pl: "Raport",
+                })}
               </Text>
             </TouchableOpacity>
           </View>

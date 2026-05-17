@@ -14,7 +14,7 @@
  */
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { triLang, type Lang } from '../constants/i18n';
+import { triLang, type Lang, type PlannedInterfaceLang } from '../constants/i18n';
 import { addArenaPlaysBonusForToday } from './arena_daily_limit';
 import { grantClubGiftFreeBoostFromLevel } from './club_boosts';
 import {
@@ -32,7 +32,7 @@ import { getVerifiedPremiumStatus } from './premium_guard';
 import {
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATAR_OWNED_KEY,
-  CUSTOM_AVATARS,
+  CUSTOM_AVATAR_SHOP,
   customAvatarGiftLabelForLang,
   type CustomAvatarLogoColor,
 } from '../constants/custom_avatars';
@@ -63,27 +63,266 @@ export interface GiftDef {
   choices?: GiftDef[];
 }
 
+type PlannedGiftCopy = Record<PlannedInterfaceLang, string>;
+
+const PACK_FOREVER_DESC: PlannedGiftCopy = {
+  'pt-BR': 'O pacote completo foi adicionado aos seus cartões para sempre.',
+  vi: 'Toàn bộ gói đã được thêm vào thẻ của bạn vĩnh viễn.',
+  id: 'Seluruh paket ditambahkan ke kartumu selamanya.',
+  tr: 'Tam paket kartlarına kalıcı olarak eklendi.',
+  pl: 'Pełny pakiet dodano do twoich kart na stałe.',
+};
+
+const LEVEL_GIFT_PLANNED_LOCALE: Partial<Record<GiftId, { title: PlannedGiftCopy; desc: PlannedGiftCopy }>> = {
+  energy_full: {
+    title: { 'pt-BR': 'Energia cheia', vi: 'Năng lượng đầy', id: 'Energi penuh', tr: 'Tam enerji', pl: 'Pełna energia' },
+    desc: { 'pt-BR': 'Todos os espaços de energia foram restaurados agora', vi: 'Tất cả ô năng lượng được hồi phục ngay bây giờ', id: 'Semua slot energi dipulihkan sekarang', tr: 'Tüm enerji yuvaları şimdi yenilendi', pl: 'Wszystkie sloty energii zostały odnowione' },
+  },
+  energy_plus1: {
+    title: { 'pt-BR': '+1 energia até meia-noite', vi: '+1 năng lượng đến nửa đêm', id: '+1 energi sampai tengah malam', tr: 'Gece yarısına kadar +1 enerji', pl: '+1 energia do północy' },
+    desc: { 'pt-BR': 'Um espaço extra de energia até meia-noite (substitui o bônus anterior, não acumula)', vi: 'Một ô năng lượng thưởng đến nửa đêm (thay thế bonus trước, không cộng dồn)', id: 'Satu slot energi bonus sampai tengah malam (mengganti bonus sebelumnya, tidak menumpuk)', tr: 'Gece yarısına kadar bir bonus enerji yuvası (önceki bonusun yerine geçer, birikmez)', pl: 'Jeden dodatkowy slot energii do północy (zastępuje poprzedni bonus, nie kumuluje się)' },
+  },
+  xp_50: {
+    title: { 'pt-BR': '+50 XP', vi: '+50 XP', id: '+50 XP', tr: '+50 XP', pl: '+50 XP' },
+    desc: { 'pt-BR': '+50 XP instantâneos', vi: '+50 XP ngay lập tức', id: '+50 XP instan', tr: 'Anında +50 XP', pl: 'Natychmiastowe +50 XP' },
+  },
+  xp_100: {
+    title: { 'pt-BR': '+100 XP', vi: '+100 XP', id: '+100 XP', tr: '+100 XP', pl: '+100 XP' },
+    desc: { 'pt-BR': '+100 XP instantâneos', vi: '+100 XP ngay lập tức', id: '+100 XP instan', tr: 'Anında +100 XP', pl: 'Natychmiastowe +100 XP' },
+  },
+  xp_250: {
+    title: { 'pt-BR': '+250 XP', vi: '+250 XP', id: '+250 XP', tr: '+250 XP', pl: '+250 XP' },
+    desc: { 'pt-BR': '+250 XP instantâneos', vi: '+250 XP ngay lập tức', id: '+250 XP instan', tr: 'Anında +250 XP', pl: 'Natychmiastowe +250 XP' },
+  },
+  hint_1: {
+    title: { 'pt-BR': '+1 dica', vi: '+1 gợi ý', id: '+1 petunjuk', tr: '+1 ipucu', pl: '+1 podpowiedź' },
+    desc: { 'pt-BR': 'Uma dica extra nas lições de hoje', vi: 'Một gợi ý thêm trong các bài học hôm nay', id: 'Satu petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde ekstra bir ipucu', pl: 'Dodatkowa podpowiedź w dzisiejszych lekcjach' },
+  },
+  shards_3: {
+    title: { 'pt-BR': '+3 fragmentos', vi: '+3 mảnh', id: '+3 shard', tr: '+3 parça', pl: '+3 odłamki' },
+    desc: { 'pt-BR': 'Três fragmentos de conhecimento', vi: 'Ba mảnh tri thức', id: 'Tiga shard pengetahuan', tr: 'Üç bilgi parçası', pl: 'Trzy odłamki wiedzy' },
+  },
+  xp_bank_150: {
+    title: { 'pt-BR': 'Bônus ×2 para 150 XP', vi: 'Thưởng ×2 cho 150 XP', id: 'Bonus ×2 untuk 150 XP', tr: '150 XP için ×2 bonus', pl: 'Bonus ×2 na 150 XP' },
+    desc: { 'pt-BR': 'Os próximos 150 XP são dobrados. Só é gasto ao estudar', vi: '150 XP tiếp theo được nhân đôi. Chỉ dùng khi học', id: '150 XP berikutnya digandakan. Hanya terpakai saat belajar', tr: 'Sonraki 150 XP ikiye katlanır. Yalnızca çalışırken harcanır', pl: 'Następne 150 XP zostanie podwojone. Zużywa się tylko podczas nauki' },
+  },
+  focus_10m_25: {
+    title: { 'pt-BR': 'Foco 10 min', vi: 'Tập trung 10 phút', id: 'Fokus 10 menit', tr: '10 dk odak', pl: 'Fokus 10 min' },
+    desc: { 'pt-BR': '10 minutos de multiplicador de XP ×1,25', vi: '10 phút nhân XP ×1,25', id: '10 menit pengali XP ×1,25', tr: '10 dakika XP çarpanı ×1,25', pl: '10 minut mnożnika XP ×1,25' },
+  },
+  arena_extra_5: {
+    title: { 'pt-BR': '+5 partidas ranqueadas hoje', vi: '+5 trận xếp hạng hôm nay', id: '+5 game peringkat hari ini', tr: 'Bugün +5 sıralama oyunu', pl: '+5 gier rankingowych dziś' },
+    desc: { 'pt-BR': 'Hoje até 10 partidas ranqueadas (em vez de 5). Reinicia à meia-noite', vi: 'Hôm nay tối đa 10 trận xếp hạng (thay vì 5). Đặt lại lúc nửa đêm', id: 'Hari ini hingga 10 match peringkat (bukan 5). Direset tengah malam', tr: 'Bugün 5 yerine en fazla 10 sıralama maçı. Gece yarısı sıfırlanır', pl: 'Dziś do 10 meczów rankingowych zamiast 5. Reset o północy' },
+  },
+  xp_2x_24h: {
+    title: { 'pt-BR': '+100% XP por 24 horas', vi: '+100% XP trong 24 giờ', id: '+100% XP selama 24 jam', tr: '24 saat +%100 XP', pl: '+100% XP przez 24 godz.' },
+    desc: { 'pt-BR': 'Todas as atividades dão +100% XP por um dia', vi: 'Mọi hoạt động cho thêm +100% XP trong 1 ngày', id: 'Semua aktivitas memberi +100% XP selama satu hari', tr: 'Tüm çalışmalar 1 gün boyunca +%100 XP verir', pl: 'Wszystkie aktywności dają +100% XP przez 1 dzień' },
+  },
+  energy_plus2: {
+    title: { 'pt-BR': '+2 energia até meia-noite', vi: '+2 năng lượng đến nửa đêm', id: '+2 energi sampai tengah malam', tr: 'Gece yarısına kadar +2 enerji', pl: '+2 energia do północy' },
+    desc: { 'pt-BR': 'Dois espaços extras de energia até meia-noite', vi: 'Hai ô năng lượng thưởng đến nửa đêm', id: 'Dua slot energi bonus sampai tengah malam', tr: 'Gece yarısına kadar iki bonus enerji yuvası', pl: 'Dwa dodatkowe sloty energii do północy' },
+  },
+  chain_shield_1: {
+    title: { 'pt-BR': 'Escudo de sequência', vi: 'Khiên chuỗi ngày', id: 'Perisai rentetan', tr: 'Seri kalkanı', pl: 'Tarcza serii' },
+    desc: { 'pt-BR': 'Um dia sem estudar não quebra sua sequência', vi: 'Một ngày không học sẽ không làm đứt chuỗi của bạn', id: 'Satu hari tanpa belajar tidak memutus rentetanmu', tr: 'Bir gün çalışmamak serini bozmaz', pl: 'Jeden dzień bez nauki nie przerwie twojej serii' },
+  },
+  hint_3: {
+    title: { 'pt-BR': '+3 dicas', vi: '+3 gợi ý', id: '+3 petunjuk', tr: '+3 ipucu', pl: '+3 podpowiedzi' },
+    desc: { 'pt-BR': 'Três dicas extras nas lições de hoje', vi: 'Ba gợi ý thêm trong các bài học hôm nay', id: 'Tiga petunjuk ekstra di pelajaran hari ini', tr: 'Bugünkü derslerde üç ekstra ipucu', pl: 'Trzy dodatkowe podpowiedzi w dzisiejszych lekcjach' },
+  },
+  shards_6: {
+    title: { 'pt-BR': '+6 fragmentos', vi: '+6 mảnh', id: '+6 shard', tr: '+6 parça', pl: '+6 odłamków' },
+    desc: { 'pt-BR': 'Seis fragmentos: recompensa rara', vi: 'Sáu mảnh: phần thưởng hiếm', id: 'Enam shard: hadiah langka', tr: 'Altı parça: nadir ödül', pl: 'Sześć odłamków: rzadka nagroda' },
+  },
+  xp_bank_300: {
+    title: { 'pt-BR': 'Bônus ×2 para 300 XP', vi: 'Thưởng ×2 cho 300 XP', id: 'Bonus ×2 untuk 300 XP', tr: '300 XP için ×2 bonus', pl: 'Bonus ×2 na 300 XP' },
+    desc: { 'pt-BR': 'Os próximos 300 XP são dobrados. Só é gasto ao estudar', vi: '300 XP tiếp theo được nhân đôi. Chỉ dùng khi học', id: '300 XP berikutnya digandakan. Hanya terpakai saat belajar', tr: 'Sonraki 300 XP ikiye katlanır. Yalnızca çalışırken harcanır', pl: 'Następne 300 XP zostanie podwojone. Zużywa się tylko podczas nauki' },
+  },
+  focus_15m_50: {
+    title: { 'pt-BR': 'Foco 15 min', vi: 'Tập trung 15 phút', id: 'Fokus 15 menit', tr: '15 dk odak', pl: 'Fokus 15 min' },
+    desc: { 'pt-BR': '15 minutos de multiplicador de XP ×1,5', vi: '15 phút nhân XP ×1,5', id: '15 menit pengali XP ×1,5', tr: '15 dakika XP çarpanı ×1,5', pl: '15 minut mnożnika XP ×1,5' },
+  },
+  cosmetic_avatar_common: {
+    title: { 'pt-BR': 'Avatar grátis', vi: 'Avatar miễn phí', id: 'Avatar gratis', tr: 'Ücretsiz avatar', pl: 'Darmowy awatar' },
+    desc: { 'pt-BR': 'Um avatar aleatório com fundo aleatório será desbloqueado grátis', vi: 'Một avatar ngẫu nhiên với nền ngẫu nhiên sẽ được mở khóa miễn phí', id: 'Avatar acak dengan latar acak terbuka gratis', tr: 'Rastgele arka planlı bir avatar ücretsiz açılır', pl: 'Losowy awatar z losowym tłem zostanie odblokowany za darmo' },
+  },
+  cosmetic_avatar_aura: {
+    title: { 'pt-BR': 'Aura de avatar', vi: 'Hào quang avatar', id: 'Aura avatar', tr: 'Avatar aurası', pl: 'Aura awatara' },
+    desc: { 'pt-BR': 'Uma aura aleatória será desbloqueada grátis ao redor do avatar', vi: 'Một hào quang ngẫu nhiên sẽ mở khóa miễn phí quanh avatar', id: 'Aura acak terbuka gratis di sekitar avatar', tr: 'Avatarın etrafında rastgele bir aura ücretsiz açılır', pl: 'Losowa aura zostanie odblokowana za darmo wokół awatara' },
+  },
+  club_boost_free: {
+    title: { 'pt-BR': 'Boost de clube grátis', vi: 'Tăng lực câu lạc bộ miễn phí', id: 'Boost klub gratis', tr: 'Ücretsiz kulüp boostu', pl: 'Darmowy boost klubu' },
+    desc: { 'pt-BR': 'A próxima ativação de boost no clube não custa fragmentos', vi: 'Lần kích hoạt tăng lực tiếp theo trong câu lạc bộ không tốn mảnh', id: 'Aktivasi boost klub berikutnya tidak membutuhkan shard', tr: 'Kulüpteki sonraki boost etkinleştirmesi parça harcamaz', pl: 'Następna aktywacja boostu w klubie nie kosztuje odłamków' },
+  },
+  xp_2x_48h: {
+    title: { 'pt-BR': '+100% XP por 48 horas', vi: '+100% XP trong 48 giờ', id: '+100% XP selama 48 jam', tr: '48 saat +%100 XP', pl: '+100% XP przez 48 godz.' },
+    desc: { 'pt-BR': 'Todas as atividades dão +100% XP por dois dias', vi: 'Mọi hoạt động cho thêm +100% XP trong 2 ngày', id: 'Semua aktivitas memberi +100% XP selama dua hari', tr: 'Tüm çalışmalar 2 gün boyunca +%100 XP verir', pl: 'Wszystkie aktywności dają +100% XP przez 2 dni' },
+  },
+  energy_plus3: {
+    title: { 'pt-BR': '+3 energia até meia-noite', vi: '+3 năng lượng đến nửa đêm', id: '+3 energi sampai tengah malam', tr: 'Gece yarısına kadar +3 enerji', pl: '+3 energia do północy' },
+    desc: { 'pt-BR': 'Três espaços extras de energia até meia-noite', vi: 'Ba ô năng lượng thưởng đến nửa đêm', id: 'Tiga slot energi bonus sampai tengah malam', tr: 'Gece yarısına kadar üç bonus enerji yuvası', pl: 'Trzy dodatkowe sloty energii do północy' },
+  },
+  chain_shield_3: {
+    title: { 'pt-BR': 'Escudo por 3 dias', vi: 'Khiên 3 ngày', id: 'Perisai 3 hari', tr: '3 günlük kalkan', pl: 'Tarcza na 3 dni' },
+    desc: { 'pt-BR': 'Três dias de proteção para sua sequência', vi: 'Ba ngày bảo vệ chuỗi của bạn', id: 'Tiga hari perlindungan untuk rentetanmu', tr: 'Serin için üç gün koruma', pl: 'Trzy dni ochrony serii' },
+  },
+  wager_discount_25: {
+    title: { 'pt-BR': '25% de desconto na aposta', vi: 'Giảm 25% cho cược', id: 'Diskon taruhan 25%', tr: 'Bahiste %25 indirim', pl: '25% zniżki na zakład' },
+    desc: { 'pt-BR': 'A próxima aposta custa 25% menos (uma vez; usado ao apostar)', vi: 'Lần cược tiếp theo rẻ hơn 25% (một lần; dùng khi đặt cược)', id: 'Taruhan berikutnya 25% lebih murah (sekali; dipakai saat bertaruh)', tr: 'Sonraki bahis %25 daha ucuz (tek seferlik; bahis yapınca kullanılır)', pl: 'Następny zakład kosztuje 25% mniej (jednorazowo, używa się przy zakładzie)' },
+  },
+  shards_10: {
+    title: { 'pt-BR': '+10 fragmentos', vi: '+10 mảnh', id: '+10 shard', tr: '+10 parça', pl: '+10 odłamków' },
+    desc: { 'pt-BR': 'Dez fragmentos', vi: 'Mười mảnh', id: 'Sepuluh shard', tr: 'On parça', pl: 'Dziesięć odłamków' },
+  },
+  xp_bank_600: {
+    title: { 'pt-BR': 'Bônus ×2 para 600 XP', vi: 'Thưởng ×2 cho 600 XP', id: 'Bonus ×2 untuk 600 XP', tr: '600 XP için ×2 bonus', pl: 'Bonus ×2 na 600 XP' },
+    desc: { 'pt-BR': 'Os próximos 600 XP são dobrados. Só é gasto ao estudar', vi: '600 XP tiếp theo được nhân đôi. Chỉ dùng khi học', id: '600 XP berikutnya digandakan. Hanya terpakai saat belajar', tr: 'Sonraki 600 XP ikiye katlanır. Yalnızca çalışırken harcanır', pl: 'Następne 600 XP zostanie podwojone. Zużywa się tylko podczas nauki' },
+  },
+  pack_voucher_48h: {
+    title: { 'pt-BR': 'Vale de pacote 48 h', vi: 'Phiếu gói 48 giờ', id: 'Voucher paket 48 jam', tr: '48 saatlik paket kuponu', pl: 'Voucher pakietu 48 godz.' },
+    desc: { 'pt-BR': 'Um pacote pago pode ser aberto grátis por 48 horas', vi: 'Một gói trả phí có thể mở miễn phí trong 48 giờ', id: 'Satu paket berbayar bisa dibuka gratis selama 48 jam', tr: 'Bir ücretli paket 48 saat ücretsiz açılabilir', pl: 'Jeden płatny pakiet można otworzyć za darmo na 48 godzin' },
+  },
+  choice_3_level: {
+    title: { 'pt-BR': 'Escolha a recompensa', vi: 'Chọn phần thưởng', id: 'Pilih hadiah', tr: 'Ödül seç', pl: 'Wybierz nagrodę' },
+    desc: { 'pt-BR': 'Abra e escolha uma de três recompensas', vi: 'Mở và chọn một trong ba phần thưởng', id: 'Buka dan pilih satu dari tiga hadiah', tr: 'Aç ve üç ödülden birini seç', pl: 'Otwórz i wybierz jedną z trzech nagród' },
+  },
+  prem_shards_10: {
+    title: { 'pt-BR': '+10 fragmentos (Premium)', vi: '+10 mảnh (Premium)', id: '+10 shard (Premium)', tr: '+10 parça (Premium)', pl: '+10 odłamków (Premium)' },
+    desc: { 'pt-BR': 'Recompensa generosa para Premium', vi: 'Phần thưởng hào phóng cho Premium', id: 'Hadiah besar untuk Premium', tr: 'Premium için cömert ödül', pl: 'Hojna nagroda dla Premium' },
+  },
+  prem_shards_15: {
+    title: { 'pt-BR': '+15 fragmentos (Premium)', vi: '+15 mảnh (Premium)', id: '+15 shard (Premium)', tr: '+15 parça (Premium)', pl: '+15 odłamków (Premium)' },
+    desc: { 'pt-BR': 'Recompensa generosa', vi: 'Phần thưởng hào phóng', id: 'Hadiah besar', tr: 'Cömert ödül', pl: 'Hojna nagroda' },
+  },
+  prem_shards_20: {
+    title: { 'pt-BR': '+20 fragmentos (Premium)', vi: '+20 mảnh (Premium)', id: '+20 shard (Premium)', tr: '+20 parça (Premium)', pl: '+20 odłamków (Premium)' },
+    desc: { 'pt-BR': 'Muitos fragmentos por subir de nível', vi: 'Nhiều mảnh khi lên cấp', id: 'Banyak shard karena naik level', tr: 'Seviye atladığın için bol parça', pl: 'Dużo odłamków za poziom' },
+  },
+  premium_xp_bank_1000: {
+    title: { 'pt-BR': 'Bônus ×2 para 1000 XP (Premium)', vi: 'Thưởng ×2 cho 1000 XP (Premium)', id: 'Bonus ×2 untuk 1000 XP (Premium)', tr: '1000 XP için ×2 bonus (Premium)', pl: 'Bonus ×2 na 1000 XP (Premium)' },
+    desc: { 'pt-BR': 'Os próximos 1000 XP são dobrados. Só é gasto ao estudar', vi: '1000 XP tiếp theo được nhân đôi. Chỉ dùng khi học', id: '1000 XP berikutnya digandakan. Hanya terpakai saat belajar', tr: 'Sonraki 1000 XP ikiye katlanır. Yalnızca çalışırken harcanır', pl: 'Następne 1000 XP zostanie podwojone. Zużywa się tylko podczas nauki' },
+  },
+  premium_cosmetic_avatar: {
+    title: { 'pt-BR': 'Avatar Premium grátis', vi: 'Avatar Premium miễn phí', id: 'Avatar Premium gratis', tr: 'Ücretsiz Premium avatar', pl: 'Darmowy awatar Premium' },
+    desc: { 'pt-BR': 'Um avatar aleatório com fundo aleatório será desbloqueado grátis', vi: 'Một avatar ngẫu nhiên với nền ngẫu nhiên sẽ được mở khóa miễn phí', id: 'Avatar acak dengan latar acak terbuka gratis', tr: 'Rastgele arka planlı bir avatar ücretsiz açılır', pl: 'Losowy awatar z losowym tłem zostanie odblokowany za darmo' },
+  },
+  premium_cosmetic_aura: {
+    title: { 'pt-BR': 'Aura Premium grátis', vi: 'Hào quang Premium miễn phí', id: 'Aura Premium gratis', tr: 'Ücretsiz Premium aura', pl: 'Darmowa aura Premium' },
+    desc: { 'pt-BR': 'Uma aura de avatar aleatória será desbloqueada grátis', vi: 'Một hào quang avatar ngẫu nhiên sẽ được mở khóa miễn phí', id: 'Aura avatar acak terbuka gratis', tr: 'Rastgele bir avatar aurası ücretsiz açılır', pl: 'Losowa aura awatara zostanie odblokowana za darmo' },
+  },
+  prem_pack_48h: {
+    title: { 'pt-BR': 'Pacote de teste 48 h', vi: 'Gói dùng thử 48 giờ', id: 'Paket uji coba 48 jam', tr: '48 saatlik deneme paketi', pl: 'Pakiet próbny 48 godz.' },
+    desc: { 'pt-BR': 'Um pacote pago aleatório com acesso completo por 48 h (timer na loja)', vi: 'Một gói trả phí ngẫu nhiên: xem đầy đủ trong 48 giờ (xem đồng hồ ở cửa hàng)', id: 'Paket berbayar acak: akses penuh 48 jam (lihat timer di toko)', tr: 'Rastgele ücretli paket: 48 saat tam erişim (mağazadaki zamanlayıcıya bak)', pl: 'Losowy płatny pakiet: pełny dostęp przez 48 godz. (timer w sklepie)' },
+  },
+  prem_level_unlock_negotiator: {
+    title: { 'pt-BR': 'Pacote «Negotiator»', vi: 'Gói «Negotiator»', id: 'Paket «Negotiator»', tr: '«Negotiator» paketi', pl: 'Pakiet «Negotiator»' },
+    desc: PACK_FOREVER_DESC,
+  },
+  prem_level_unlock_dark_logic: {
+    title: { 'pt-BR': 'Pacote «Dark Logic»', vi: 'Gói «Dark Logic»', id: 'Paket «Dark Logic»', tr: '«Dark Logic» paketi', pl: 'Pakiet «Dark Logic»' },
+    desc: PACK_FOREVER_DESC,
+  },
+  prem_level_unlock_wild_west: {
+    title: { 'pt-BR': 'Pacote «Wild West»', vi: 'Gói «Wild West»', id: 'Paket «Wild West»', tr: '«Wild West» paketi', pl: 'Pakiet «Wild West»' },
+    desc: PACK_FOREVER_DESC,
+  },
+  prem_level_unlock_royal_tea: {
+    title: { 'pt-BR': 'Pacote «Royal Tea»', vi: 'Gói «Royal Tea»', id: 'Paket «Royal Tea»', tr: '«Royal Tea» paketi', pl: 'Pakiet «Royal Tea»' },
+    desc: PACK_FOREVER_DESC,
+  },
+  prem_level_unlock_peaky_blinders: {
+    title: { 'pt-BR': 'Pacote «Peaky Blinders»', vi: 'Gói «Peaky Blinders»', id: 'Paket «Peaky Blinders»', tr: '«Peaky Blinders» paketi', pl: 'Pakiet «Peaky Blinders»' },
+    desc: PACK_FOREVER_DESC,
+  },
+};
+
 export function giftTitleForLang(g: GiftDef, lang: Lang): string {
-  return triLang(lang, { ru: g.titleRU, uk: g.titleUK, es: g.titleES ?? g.titleRU });
+  const planned = LEVEL_GIFT_PLANNED_LOCALE[g.id]?.title;
+  return triLang(lang, {
+    ru: g.titleRU,
+    uk: g.titleUK,
+    es: g.titleES ?? g.titleRU,
+    'pt-BR': planned?.['pt-BR'] ?? g.titleES ?? g.titleRU,
+    vi: planned?.vi ?? g.titleES ?? g.titleRU,
+    id: planned?.id ?? g.titleES ?? g.titleRU,
+    tr: planned?.tr ?? g.titleES ?? g.titleRU,
+    pl: planned?.pl ?? g.titleES ?? g.titleRU,
+  });
 }
 
 export function giftDescForLang(g: GiftDef, lang: Lang): string {
-  return triLang(lang, { ru: g.descRU, uk: g.descUK, es: g.descES ?? g.descRU });
+  const planned = LEVEL_GIFT_PLANNED_LOCALE[g.id]?.desc;
+  return triLang(lang, {
+    ru: g.descRU,
+    uk: g.descUK,
+    es: g.descES ?? g.descRU,
+    'pt-BR': planned?.['pt-BR'] ?? g.descES ?? g.descRU,
+    vi: planned?.vi ?? g.descES ?? g.descRU,
+    id: planned?.id ?? g.descES ?? g.descRU,
+    tr: planned?.tr ?? g.descES ?? g.descRU,
+    pl: planned?.pl ?? g.descES ?? g.descRU,
+  });
 }
 
 export function giftLocaleStrings(lang: Lang, g: GiftDef): { title: string; desc: string } {
   return { title: giftTitleForLang(g, lang), desc: giftDescForLang(g, lang) };
 }
 
-const GIFT_RARITY_UI_LABEL: Record<GiftRarity, { ru: string; uk: string; es: string }> = {
-  common: { ru: 'Обычный', uk: 'Звичайний', es: 'Común' },
-  rare: { ru: 'Редкий', uk: 'Рідкісний', es: 'Raro' },
-  epic: { ru: '✨ Эпический', uk: '✨ Епічний', es: '✨ Épico' },
+const GIFT_RARITY_UI_LABEL: Record<GiftRarity, {
+  ru: string;
+  uk: string;
+  es: string;
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+}> = {
+  common: {
+    ru: 'Обычный',
+    uk: 'Звичайний',
+    es: 'Común',
+    'pt-BR': 'Comum',
+    vi: 'Thường',
+    id: 'Biasa',
+    tr: 'Sıradan',
+    pl: 'Zwykły',
+  },
+  rare: {
+    ru: 'Редкий',
+    uk: 'Рідкісний',
+    es: 'Raro',
+    'pt-BR': 'Raro',
+    vi: 'Hiếm',
+    id: 'Langka',
+    tr: 'Nadir',
+    pl: 'Rzadki',
+  },
+  epic: {
+    ru: '✨ Эпический',
+    uk: '✨ Епічний',
+    es: '✨ Épico',
+    'pt-BR': '✨ Épico',
+    vi: '✨ Sử thi',
+    id: '✨ Epik',
+    tr: '✨ Destansı',
+    pl: '✨ Epicki',
+  },
 };
 
 export function giftRarityUiLabel(rarity: GiftRarity | string | undefined | null, lang: Lang): string {
   const r = rarity === 'rare' || rarity === 'epic' ? rarity : 'common';
-  return triLang(lang, GIFT_RARITY_UI_LABEL[r]);
+  const label = GIFT_RARITY_UI_LABEL[r];
+  return triLang(lang, {
+    ru: label.ru,
+    uk: label.uk,
+    es: label.es,
+    'pt-BR': label['pt-BR'],
+    vi: label.vi,
+    id: label.id,
+    tr: label.tr,
+    pl: label.pl,
+  });
 }
 
 const GIFT_F2P: GiftDef[] = [
@@ -753,7 +992,7 @@ export const unlockRandomCustomAvatarGift = async (): Promise<GiftCosmeticUnlock
   try {
     const raw = await AsyncStorage.getItem(CUSTOM_AVATAR_OWNED_KEY);
     const owned: Record<string, string> = raw ? JSON.parse(raw) : {};
-    const candidates = CUSTOM_AVATARS.filter(a => !owned[a.id]);
+    const candidates = CUSTOM_AVATAR_SHOP.filter(a => !owned[a.id]);
     if (candidates.length === 0) return null;
     const avatar = candidates[Math.floor(Math.random() * candidates.length)]!;
     const gradient = CUSTOM_AVATAR_GRADIENTS[Math.floor(Math.random() * CUSTOM_AVATAR_GRADIENTS.length)]!;
@@ -781,7 +1020,7 @@ export const unlockRandomAvatarAuraGift = async (): Promise<GiftCosmeticUnlock |
   try {
     const raw = await AsyncStorage.getItem(AVATAR_AURA_OWNED_KEY);
     const owned: Record<string, true> = raw ? JSON.parse(raw) : {};
-    const candidates = AVATAR_AURAS.filter(aura => !aura.premiumOnly && !owned[aura.id]);
+    const candidates = AVATAR_AURAS.filter(aura => !aura.premiumOnly && aura.unlockLevel === undefined && !owned[aura.id]);
     if (candidates.length === 0) return null;
     const aura = candidates[Math.floor(Math.random() * candidates.length)]!;
     const next = { ...owned, [aura.id]: true };
@@ -909,7 +1148,11 @@ export const applyGift = async (
       case 'cosmetic_avatar_common':
       case 'premium_cosmetic_avatar': {
         const cosmeticUnlocked = await unlockRandomCustomAvatarGift();
-        return { success: true, cosmeticUnlocked: cosmeticUnlocked ?? undefined };
+        if (cosmeticUnlocked) return { success: true, cosmeticUnlocked };
+        const fallbackAura = await unlockRandomAvatarAuraGift();
+        if (fallbackAura) return { success: true, cosmeticUnlocked: fallbackAura };
+        await grantLevelGiftShards(6);
+        return { success: true };
       }
       case 'cosmetic_avatar_aura':
       case 'premium_cosmetic_aura': {
@@ -989,7 +1232,7 @@ export function isEnergyBonusGiftId(gid: string | undefined): boolean {
 /**
  * Сколько осколков выдаёт подарок (0 = не осколочный).
  * Единый источник правды для UI: чтобы не рисовать 💎-эмодзи там, где должна быть
- * кучка осколков из `assets/images/levels/OSKOLOK*.webp`.
+ * кучка осколков из `assets/images/shards/*.webp`.
  */
 export function giftShardAmount(gid: string | undefined): number {
   if (!gid) return 0;

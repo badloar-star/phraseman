@@ -1,4 +1,5 @@
 // Flashcards domain model shared across screen, constants, selectors and storage.
+import type { HeisenbergSourceLocale, SourceLocale } from '../source_locales';
 export type CategoryId =
   | 'emotions'
   | 'fillers'
@@ -9,6 +10,8 @@ export type CategoryId =
   | 'connectors'
   | 'saved'
   | 'custom';
+
+export type FlashcardSourceLocaleMap = Partial<Record<HeisenbergSourceLocale, string>>;
 
 export interface Category {
   id: CategoryId;
@@ -28,6 +31,8 @@ export interface CardItem {
   uk: string;
   /** Traducción al español (interfaz `es`). */
   es?: string;
+  /** Future interface/source-language card backs. English remains the studied target. */
+  sourceLocales?: FlashcardSourceLocaleMap;
   /** User-authored note (custom cards) — e.g. mnemonics, context */
   description?: string;
   transcription?: string;
@@ -57,7 +62,7 @@ export interface CardItem {
 }
 
 /** Interfaz / reverso de tarjeta: traducción según idioma UI. */
-export type FlashcardContentLang = 'ru' | 'uk' | 'es';
+export type FlashcardContentLang = SourceLocale;
 
 export function resolveFlashcardBackText(item: CardItem, lang: FlashcardContentLang): string {
   const pick = (s: string | undefined) => {
@@ -66,6 +71,7 @@ export function resolveFlashcardBackText(item: CardItem, lang: FlashcardContentL
   };
   if (lang === 'uk') return pick(item.uk) ?? pick(item.ru) ?? '';
   if (lang === 'es') return pick(item.es) ?? pick(item.ru) ?? pick(item.uk) ?? '';
+  if (lang !== 'ru') return pick(item.sourceLocales?.[lang]) ?? pick(item.es) ?? pick(item.ru) ?? pick(item.uk) ?? '';
   return pick(item.ru) ?? pick(item.uk) ?? '';
 }
 

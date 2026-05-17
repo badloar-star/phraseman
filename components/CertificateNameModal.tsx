@@ -69,6 +69,11 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
                   ru: 'Чьё имя указать на награде?',
                   uk: 'Чиє ім\'я вказати на нагороді?',
                   es: '¿Qué nombre quieres en el certificado?',
+                  'pt-BR': 'Qual nome colocar no certificado?',
+                  vi: 'Tên nào sẽ hiển thị trên chứng nhận?',
+                  id: 'Nama apa yang ingin ditampilkan di sertifikat?',
+                  tr: 'Sertifikada hangi isim yazsın?',
+                  pl: 'Jakie imię wpisać na certyfikacie?',
                 })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 8, textAlign: 'center', lineHeight: 20 }}>
@@ -76,6 +81,11 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
                   ru: 'Имя появится на награде Phraseman. Можно указать настоящее или ник.',
                   uk: 'Ім\'я з\'явиться на нагороді Phraseman. Можна вказати справжнє або нік.',
                   es: 'El nombre figurará en tu certificado Phraseman. Puedes usar tu nombre real o un apodo.',
+                  'pt-BR': 'O nome aparecerá no certificado da Phraseman. Pode ser seu nome real ou um apelido.',
+                  vi: 'Tên sẽ xuất hiện trên chứng nhận Phraseman. Bạn có thể dùng tên thật hoặc biệt danh.',
+                  id: 'Nama akan muncul di sertifikat Phraseman. Kamu bisa memakai nama asli atau nama panggilan.',
+                  tr: 'İsim Phraseman sertifikasında görünecek. Gerçek adını veya takma adını yazabilirsin.',
+                  pl: 'Imię pojawi się na certyfikacie Phraseman. Możesz podać prawdziwe imię albo nick.',
                 })}
               </Text>
 
@@ -86,6 +96,11 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
                   ru: 'Ваше имя или ник',
                   uk: 'Ваше ім\'я або нік',
                   es: 'Tu nombre o apodo',
+                  'pt-BR': 'Seu nome ou apelido',
+                  vi: 'Tên hoặc biệt danh của bạn',
+                  id: 'Nama atau panggilanmu',
+                  tr: 'Adın veya takma adın',
+                  pl: 'Twoje imię albo nick',
                 })}
                 placeholderTextColor={t.textMuted}
                 autoFocus
@@ -124,6 +139,11 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
                     ru: 'Сохранить и выдать сертификат',
                     uk: 'Зберегти і видати сертифікат',
                     es: 'Guardar y emitir el certificado',
+                    'pt-BR': 'Salvar e emitir o certificado',
+                    vi: 'Lưu và cấp chứng nhận',
+                    id: 'Simpan dan terbitkan sertifikat',
+                    tr: 'Kaydet ve sertifikayı ver',
+                    pl: 'Zapisz i wystaw certyfikat',
                   })}
                 </Text>
               </TouchableOpacity>
@@ -134,6 +154,11 @@ export default function CertificateNameModal({ visible, initialName = '', onSave
                     ru: 'Пропустить (выдать без имени)',
                     uk: 'Пропустити (видати без імені)',
                     es: 'Omitir (sin nombre en el certificado)',
+                    'pt-BR': 'Pular (emitir sem nome)',
+                    vi: 'Bỏ qua (cấp không có tên)',
+                    id: 'Lewati (terbitkan tanpa nama)',
+                    tr: 'Atla (isimsiz ver)',
+                    pl: 'Pomiń (wydaj bez imienia)',
                   })}
                 </Text>
               </TouchableOpacity>

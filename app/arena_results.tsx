@@ -213,6 +213,10 @@ export default function DuelResultsScreen() {
   const insets = useSafeAreaInsets();
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const arenaShardAccent = '#A78BFA';
+  const arenaLossAccent = '#F87171';
+  const arenaFastAccent = '#38BDF8';
+  const arenaStreakAccent = '#F97316';
   const { lang } = useLang();
 
   const [players, setPlayers] = React.useState<SessionPlayer[]>([]);
@@ -343,7 +347,16 @@ export default function DuelResultsScreen() {
     if (isRoomRun) {
       // Для режима комнаты: только свой результат — лидерборд отдельно через subscribeArenaRoomRuns
       setPlayers([
-        { sessionId, playerId: userId, score: Number(mockMyScore ?? 0), answers: [], displayName: triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú' }) },
+        { sessionId, playerId: userId, score: Number(mockMyScore ?? 0), answers: [], displayName: triLang(lang, {
+          uk: 'Ти',
+          ru: 'Ты',
+          es: 'Tú',
+          'pt-BR': "Você",
+          vi: "Bạn",
+          id: "Kamu",
+          tr: "Sen",
+          pl: "Ty",
+        }) },
       ]);
       return;
     }
@@ -355,7 +368,16 @@ export default function DuelResultsScreen() {
       }
       const oppDisplay = trimmed || mockOppNameFallbackRef.current || pickRandomBotName();
       setPlayers([
-        { sessionId, playerId: userId, score: Number(mockMyScore ?? 0), answers: [], displayName: triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú' }) },
+        { sessionId, playerId: userId, score: Number(mockMyScore ?? 0), answers: [], displayName: triLang(lang, {
+          uk: 'Ти',
+          ru: 'Ты',
+          es: 'Tú',
+          'pt-BR': "Você",
+          vi: "Bạn",
+          id: "Kamu",
+          tr: "Sen",
+          pl: "Ty",
+        }) },
         { sessionId, playerId: 'bot1', score: Number(mockOppScore ?? 0), answers: [], displayName: oppDisplay },
       ]);
       return;
@@ -455,7 +477,16 @@ export default function DuelResultsScreen() {
     if (isMockSession || !sessionId || !userId) return;
     rematchTimeoutToastRef.current = false;
     rematchDeclineToastRef.current = false;
-    const myName = players.find((p) => p.playerId === userId)?.displayName ?? triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' });
+    const myName = players.find((p) => p.playerId === userId)?.displayName ?? triLang(lang, {
+      ru: 'Игрок',
+      uk: 'Гравець',
+      es: 'Jugador',
+      'pt-BR': "Jogador",
+      vi: "Người chơi",
+      id: "Pemain",
+      tr: "Oyuncu",
+      pl: "Gracz",
+    });
     try {
       const ok = await createRematchOffer(sessionId, userId, myName);
       if (!ok) {
@@ -601,7 +632,7 @@ export default function DuelResultsScreen() {
               const wPrev = parseInt((await AsyncStorage.getItem(wKey)) ?? '0', 10) || 0;
               const wNext = wPrev + 1;
               await AsyncStorage.setItem(wKey, String(wNext));
-              checkAchievements({ type: 'arena_wager_win' }).catch(() => {});
+              checkAchievements({ type: 'arena_wager_win', count: wNext }).catch(() => {});
               checkAchievements({ type: 'wager_win_streak', count: wNext }).catch(() => {});
             })();
           }
@@ -823,18 +854,59 @@ export default function DuelResultsScreen() {
   const noStarAnim = isSpecialChallenge || isDraw || (starInfo && !isWinner && starInfo.oldStars === 0);
 
   const headlineResult = isForfeited
-    ? triLang(lang, { ru: 'Сдался', uk: 'Здався', es: 'Me rendí' })
+    ? triLang(lang, {
+      ru: 'Сдался',
+      uk: 'Здався',
+      es: 'Me rendí',
+      'pt-BR': "Desisti",
+      vi: "Tôi đã bỏ cuộc",
+      id: "Saya menyerah",
+      tr: "Vazgeçtim",
+      pl: "Poddałem się",
+    })
     : isDraw
-      ? triLang(lang, { ru: 'Ничья!', uk: 'Нічия!', es: '¡Empate!' })
+      ? triLang(lang, {
+        ru: 'Ничья!',
+        uk: 'Нічия!',
+        es: '¡Empate!',
+        'pt-BR': "Empate!",
+        vi: "Hòa!",
+        id: "Seri!",
+        tr: "Berabere!",
+        pl: "Remis!",
+      })
       : opponentSurrendered || isWinner
-        ? triLang(lang, { ru: 'Победа!', uk: 'Перемога!', es: '¡Victoria!' })
+        ? triLang(lang, {
+          ru: 'Победа!',
+          uk: 'Перемога!',
+          es: '¡Victoria!',
+          'pt-BR': "Vitória!",
+          vi: "Chiến thắng!",
+          id: "Menang!",
+          tr: "Zafer!",
+          pl: "Zwycięstwo!",
+        })
         : myRank === sorted.length && sorted.length > 0
-          ? triLang(lang, { ru: 'В следующий раз!', uk: 'Наступного разу!', es: '¡Otra vez será!' })
+          ? triLang(lang, {
+            ru: 'В следующий раз!',
+            uk: 'Наступного разу!',
+            es: '¡Otra vez será!',
+            'pt-BR': "Fica para a próxima!",
+            vi: "Lần sau nhé!",
+            id: "Mungkin lain kali!",
+            tr: "Bir dahaki sefere!",
+            pl: "Następnym razem!",
+          })
           : triLang(lang, {
-              ru: `${myRank}-е место`,
-              uk: `${myRank}-е місце`,
-              es: `${myRank}º puesto`,
-            });
+            ru: `${myRank}-е место`,
+            uk: `${myRank}-е місце`,
+            es: `${myRank}º puesto`,
+            'pt-BR': `${myRank}º lugar`,
+            vi: `Hạng ${myRank}`,
+            id: `Peringkat ${myRank}`,
+            tr: `${myRank}. sıra`,
+            pl: `${myRank}. miejsce`,
+          });
 
   useEffect(() => {
     if (hillAttemptRecordedRef.current || isForfeited || !userId || !me || isRoomRun) return;
@@ -966,7 +1038,10 @@ export default function DuelResultsScreen() {
       if (!drawOutcome && !won && wagerOpts.wagerLossStake) {
         setShardsLostWager(wagerOpts.wagerLossStake);
       }
-      if (!won) return;
+      if (!won) {
+        await AsyncStorage.removeItem('achievement_arena_win_streak');
+        return;
+      }
       recordArenaWinAchievementOnce();
       // Streak wins tracking for mock sessions
       void (async () => {
@@ -982,7 +1057,7 @@ export default function DuelResultsScreen() {
           const wPrev = parseInt((await AsyncStorage.getItem(wKey)) ?? '0', 10) || 0;
           const wNext = wPrev + 1;
           await AsyncStorage.setItem(wKey, String(wNext));
-          checkAchievements({ type: 'arena_wager_win' }).catch(() => {});
+          checkAchievements({ type: 'arena_wager_win', count: wNext }).catch(() => {});
           checkAchievements({ type: 'wager_win_streak', count: wNext }).catch(() => {});
         })();
       }
@@ -1300,7 +1375,16 @@ export default function DuelResultsScreen() {
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <TouchableOpacity
           accessibilityRole="button"
-          accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+          accessibilityLabel={triLang(lang, {
+            ru: 'Назад',
+            uk: 'Назад',
+            es: 'Volver',
+            'pt-BR': "Voltar",
+            vi: "Quay lại",
+            id: "Kembali",
+            tr: "Geri dön",
+            pl: "Wróć",
+          })}
           activeOpacity={0.85}
           onPress={() => { void goBackFromResults(); }}
           style={[styles.topBackBtn, { backgroundColor: t.bgCard, borderColor: t.border }]}
@@ -1329,6 +1413,11 @@ export default function DuelResultsScreen() {
                   ru: '🏳️ Оппонент сдался',
                   uk: '🏳️ Опонент здався',
                   es: '🏳️ El rival se rindió',
+                  'pt-BR': "🏳️ O rival desistiu",
+                  vi: "🏳️ Đối thủ đã bỏ cuộc",
+                  id: "🏳️ Lawan menyerah",
+                  tr: "🏳️ Rakip vazgeçti",
+                  pl: "🏳️ Rywal się poddał",
                 })}
               </Text>
             )}
@@ -1336,7 +1425,16 @@ export default function DuelResultsScreen() {
               {me?.score ?? 0}
             </Text>
             <Text style={[styles.myScoreLabel, { color: t.textMuted, fontSize: f.caption }]}>
-              {triLang(lang, { ru: 'очков', uk: 'очок', es: 'puntos' })}
+              {triLang(lang, {
+                ru: 'очков',
+                uk: 'очок',
+                es: 'puntos',
+                'pt-BR': "pontos",
+                vi: "điểm",
+                id: "poin",
+                tr: "puan",
+                pl: "punktów",
+              })}
             </Text>
 
             {isHillMode && (
@@ -1348,13 +1446,36 @@ export default function DuelResultsScreen() {
                 />
                 <Text style={[styles.hillResultText, { color: t.textPrimary, fontSize: f.caption }]} numberOfLines={2}>
                   {!hillResult
-                    ? triLang(lang, { ru: 'Проверяем трон...', uk: 'Перевіряємо трон...', es: 'Comprobando el trono...' })
+                    ? triLang(lang, {
+                      ru: 'Проверяем трон...',
+                      uk: 'Перевіряємо трон...',
+                      es: 'Comprobando el trono...',
+                      'pt-BR': "Verificando o trono...",
+                      vi: "Đang kiểm tra ngai...",
+                      id: "Memeriksa takhta...",
+                      tr: "Taht kontrol ediliyor...",
+                      pl: "Sprawdzanie tronu...",
+                    })
                     : hillResult.isNewChampion
-                      ? triLang(lang, { ru: 'Ты новый король Арены сегодня', uk: 'Ти новий король Арени сьогодні', es: 'Eres el rey de la Arena de hoy' })
+                      ? triLang(lang, {
+                        ru: 'Ты новый король Арены сегодня',
+                        uk: 'Ти новий король Арени сьогодні',
+                        es: 'Eres el rey de la Arena de hoy',
+                        'pt-BR': "Você é o rei da Arena hoje",
+                        vi: "Bạn là vua Đấu trường hôm nay",
+                        id: "Kamu raja Arena hari ini",
+                        tr: "Bugünün Arena kralı sensin",
+                        pl: "Jesteś dziś królem Areny",
+                      })
                       : triLang(lang, {
                         ru: `Трон держит ${hillResult.previousChampionName ?? 'чемпион'}: ${hillResult.previousScore ?? 0}`,
                         uk: `Трон тримає ${hillResult.previousChampionName ?? 'чемпіон'}: ${hillResult.previousScore ?? 0}`,
                         es: `${hillResult.previousChampionName ?? 'El campeón'} mantiene el trono: ${hillResult.previousScore ?? 0}`,
+                        'pt-BR': `${hillResult.previousChampionName ?? 'O campeão'} mantém o trono: ${hillResult.previousScore ?? 0}`,
+                        vi: `${hillResult.previousChampionName ?? 'Nhà vô địch'} giữ ngai: ${hillResult.previousScore ?? 0}`,
+                        id: `${hillResult.previousChampionName ?? 'Juara'} mempertahankan takhta: ${hillResult.previousScore ?? 0}`,
+                        tr: `${hillResult.previousChampionName ?? 'Şampiyon'} tahtı koruyor: ${hillResult.previousScore ?? 0}`,
+                        pl: `${hillResult.previousChampionName ?? 'Mistrz'} utrzymuje tron: ${hillResult.previousScore ?? 0}`,
                       })}
                 </Text>
               </View>
@@ -1367,6 +1488,11 @@ export default function DuelResultsScreen() {
                     ru: `+${clubWarResult.addedPoints} к бонусу лиги`,
                     uk: `+${clubWarResult.addedPoints} до бонусу ліги`,
                     es: `+${clubWarResult.addedPoints} para el bono de liga`,
+                    'pt-BR': `+${clubWarResult.addedPoints} para o bônus da liga`,
+                    vi: `+${clubWarResult.addedPoints} cho thưởng giải đấu`,
+                    id: `+${clubWarResult.addedPoints} untuk bonus liga`,
+                    tr: `Lig bonusu için +${clubWarResult.addedPoints}`,
+                    pl: `+${clubWarResult.addedPoints} do bonusu ligi`,
                   })}
                 </Text>
               </View>
@@ -1379,6 +1505,11 @@ export default function DuelResultsScreen() {
                     ru: `Результат отправлен в комнату ${cleanRoomCode}`,
                     uk: `Результат надіслано в кімнату ${cleanRoomCode}`,
                     es: `Resultado enviado a la sala ${cleanRoomCode}`,
+                    'pt-BR': `Resultado enviado para a sala ${cleanRoomCode}`,
+                    vi: `Đã gửi kết quả đến phòng ${cleanRoomCode}`,
+                    id: `Hasil dikirim ke room ${cleanRoomCode}`,
+                    tr: `Sonuç ${cleanRoomCode} odasına gönderildi`,
+                    pl: `Wynik wysłany do pokoju ${cleanRoomCode}`,
                   })}
                 </Text>
               </View>
@@ -1418,7 +1549,7 @@ export default function DuelResultsScreen() {
                   }}
                 >
                   <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 22, height: 22 }} resizeMode="contain" />
-                  <Text style={[{ color: '#A78BFA', fontSize: f.body, fontWeight: '700' }]}>
+                  <Text style={[{ color: arenaShardAccent, fontSize: f.body, fontWeight: '700' }]}>
                     +{shardsEarned}{' '}
                     {lang === 'es'
                       ? (shardsEarned === 1 ? 'fragmento' : 'fragmentos')
@@ -1440,7 +1571,7 @@ export default function DuelResultsScreen() {
                   }}
                 >
                   <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 22, height: 22 }} resizeMode="contain" />
-                  <Text style={[{ color: '#F87171', fontSize: f.body, fontWeight: '700' }]}>
+                  <Text style={[{ color: arenaLossAccent, fontSize: f.body, fontWeight: '700' }]}>
                     −{shardsLostWager}{' '}
                     {lang === 'es'
                       ? (shardsLostWager === 1 ? 'fragmento' : 'fragmentos')
@@ -1500,7 +1631,7 @@ export default function DuelResultsScreen() {
                   ) : flyKind === 'shard_loss' ? (
                     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
                       <Image source={oskolokImageForPackShards(shardsLostWager)} style={{ width: 76, height: 76 }} resizeMode="contain" />
-                      <Text style={{ color: '#F87171', fontWeight: '900', fontSize: 22, marginTop: 6 }}>−{shardsLostWager}</Text>
+                      <Text style={{ color: arenaLossAccent, fontWeight: '900', fontSize: 22, marginTop: 6 }}>−{shardsLostWager}</Text>
                     </View>
                   ) : (
                     <Image source={oskolokImageForPackShards(shardsEarned)} style={{ width: 76, height: 76 }} resizeMode="contain" />
@@ -1530,11 +1661,29 @@ export default function DuelResultsScreen() {
         {isRoomRun ? (
           <View style={[styles.leaderboard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
             <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
-              {triLang(lang, { ru: `Таблица комнаты ${cleanRoomCode}`, uk: `Таблиця кімнати ${cleanRoomCode}`, es: `Clasificación sala ${cleanRoomCode}` })}
+              {triLang(lang, {
+                ru: `Таблица комнаты ${cleanRoomCode}`,
+                uk: `Таблиця кімнати ${cleanRoomCode}`,
+                es: `Clasificación sala ${cleanRoomCode}`,
+                'pt-BR': `Classificação da sala ${cleanRoomCode}`,
+                vi: `Xếp hạng phòng ${cleanRoomCode}`,
+                id: `Peringkat room ${cleanRoomCode}`,
+                tr: `${cleanRoomCode} oda sıralaması`,
+                pl: `Ranking pokoju ${cleanRoomCode}`,
+              })}
             </Text>
             {roomLeaderboard.length === 0 ? (
               <Text style={[styles.playerName, { color: t.textGhost, padding: 16, textAlign: 'center', fontSize: f.sub }]}>
-                {triLang(lang, { ru: 'Результат сохраняется…', uk: 'Результат зберігається…', es: 'Guardando resultado…' })}
+                {triLang(lang, {
+                  ru: 'Результат сохраняется…',
+                  uk: 'Результат зберігається…',
+                  es: 'Guardando resultado…',
+                  'pt-BR': "Salvando resultado…",
+                  vi: "Đang lưu kết quả…",
+                  id: "Menyimpan hasil…",
+                  tr: "Sonuç kaydediliyor…",
+                  pl: "Zapisywanie wyniku…",
+                })}
               </Text>
             ) : roomLeaderboard.map((run, idx) => {
               const isMe = run.userId === userId;
@@ -1563,7 +1712,16 @@ export default function DuelResultsScreen() {
         ) : (
           <View style={[styles.leaderboard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
             <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
-              {triLang(lang, { ru: 'Результаты матча', uk: 'Результати матчу', es: 'Resultados del duelo' })}
+              {triLang(lang, {
+                ru: 'Результаты матча',
+                uk: 'Результати матчу',
+                es: 'Resultados del duelo',
+                'pt-BR': "Resultados do duelo",
+                vi: "Kết quả đấu",
+                id: "Hasil duel",
+                tr: "Düello sonuçları",
+                pl: "Wyniki pojedynku",
+              })}
             </Text>
             {sorted.map((p, idx) => {
               const isMe = p.playerId === userId;
@@ -1583,7 +1741,25 @@ export default function DuelResultsScreen() {
                     color: isMe ? t.accent : t.textPrimary,
                     fontSize: f.body,
                   }]} numberOfLines={1}>
-                    {p.displayName ?? (isMe ? triLang(lang, { ru: 'Я', uk: 'Я', es: 'Yo' }) : triLang(lang, { ru: `Игрок ${idx + 1}`, uk: `Гравець ${idx + 1}`, es: `Jugador ${idx + 1}` }))}
+                    {p.displayName ?? (isMe ? triLang(lang, {
+                      ru: 'Я',
+                      uk: 'Я',
+                      es: 'Yo',
+                      'pt-BR': "Eu",
+                      vi: "Tôi",
+                      id: "Saya",
+                      tr: "Ben",
+                      pl: "Ja",
+                    }) : triLang(lang, {
+                      ru: `Игрок ${idx + 1}`,
+                      uk: `Гравець ${idx + 1}`,
+                      es: `Jugador ${idx + 1}`,
+                      'pt-BR': `Jogador ${idx + 1}`,
+                      vi: `Người chơi ${idx + 1}`,
+                      id: `Pemain ${idx + 1}`,
+                      tr: `Oyuncu ${idx + 1}`,
+                      pl: `Gracz ${idx + 1}`,
+                    }))}
                   </Text>
                   <View style={styles.leaderboardScoreCol}>
                     <Text style={[styles.playerFinalScore, { color: t.textPrimary, fontSize: f.body }]}>
@@ -1642,12 +1818,30 @@ export default function DuelResultsScreen() {
           return (
             <View style={[styles.leaderboard, { backgroundColor: t.bgCard, borderColor: t.border }]}>
               <Text style={[styles.leaderboardTitle, { color: t.textMuted, fontSize: f.caption }]}>
-                {triLang(lang, { ru: 'Твои очки', uk: 'Твої очки', es: 'Tus puntos' })}
+                {triLang(lang, {
+                  ru: 'Твои очки',
+                  uk: 'Твої очки',
+                  es: 'Tus puntos',
+                  'pt-BR': "Seus pontos",
+                  vi: "Điểm của bạn",
+                  id: "Poinmu",
+                  tr: "Puanların",
+                  pl: "Twoje punkty",
+                })}
               </Text>
               <View style={styles.breakdown}>
                 <View style={styles.breakdownRow}>
                   <Text style={[{ color: t.textMuted, fontSize: f.caption, flex: 1, minWidth: 0 }]} numberOfLines={2}>
-                    {triLang(lang, { ru: '✓ Правильных ответов', uk: '✓ Правильних відповідей', es: '✓ Respuestas correctas' })}
+                    {triLang(lang, {
+                      ru: '✓ Правильных ответов',
+                      uk: '✓ Правильних відповідей',
+                      es: '✓ Respuestas correctas',
+                      'pt-BR': "✓ Respostas corretas",
+                      vi: "✓ Câu trả lời đúng",
+                      id: "✓ Jawaban benar",
+                      tr: "✓ Doğru cevaplar",
+                      pl: "✓ Poprawne odpowiedzi",
+                    })}
                   </Text>
                   <Text style={[{ color: t.correct, fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{myCorrect * 100}</Text>
                 </View>
@@ -1658,6 +1852,11 @@ export default function DuelResultsScreen() {
                         ru: '⚡ Бонус за скорость',
                         uk: '⚡ Бонус за швидкість',
                         es: '⚡ Bonificación por velocidad',
+                        'pt-BR': "⚡ Bônus por velocidade",
+                        vi: "⚡ Thưởng tốc độ",
+                        id: "⚡ Bonus kecepatan",
+                        tr: "⚡ Hız bonusu",
+                        pl: "⚡ Bonus za szybkość",
                       })}
                     </Text>
                     <Text style={[{ color: t.gold, fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bSpeed}</Text>
@@ -1670,9 +1869,14 @@ export default function DuelResultsScreen() {
                         ru: '🎯 Первый правильный',
                         uk: '🎯 Перша правильна',
                         es: '🎯 Primer acierto',
+                        'pt-BR': "🎯 Primeiro acerto",
+                        vi: "🎯 Câu đúng đầu tiên",
+                        id: "🎯 Jawaban benar pertama",
+                        tr: "🎯 İlk doğru",
+                        pl: "🎯 Pierwsza dobra odpowiedź",
                       })}
                     </Text>
-                    <Text style={[{ color: '#A78BFA', fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bFirst}</Text>
+                    <Text style={[{ color: arenaShardAccent, fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bFirst}</Text>
                   </View>
                 )}
                 {bStreak > 0 && (
@@ -1682,9 +1886,14 @@ export default function DuelResultsScreen() {
                         ru: '🔥 Серия подряд',
                         uk: '🔥 Серія поспіль',
                         es: '🔥 Racha de aciertos',
+                        'pt-BR': "🔥 Sequência de acertos",
+                        vi: "🔥 Chuỗi đúng",
+                        id: "🔥 Rangkaian benar",
+                        tr: "🔥 Doğru serisi",
+                        pl: "🔥 Seria trafień",
                       })}
                     </Text>
-                    <Text style={[{ color: '#F97316', fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bStreak}</Text>
+                    <Text style={[{ color: arenaStreakAccent, fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bStreak}</Text>
                   </View>
                 )}
                 {bOutspeed > 0 && (
@@ -1694,14 +1903,28 @@ export default function DuelResultsScreen() {
                         ru: '💥 Быстрый ответ (≤10с)',
                         uk: '💥 Швидка відповідь (≤10 с)',
                         es: '💥 Respuesta muy rápida (≤10 s)',
+                        'pt-BR': "💥 Resposta muito rápida (≤10 s)",
+                        vi: "💥 Trả lời rất nhanh (≤10 giây)",
+                        id: "💥 Jawaban sangat cepat (≤10 dtk)",
+                        tr: "💥 Çok hızlı cevap (≤10 sn)",
+                        pl: "💥 Bardzo szybka odpowiedź (≤10 s)",
                       })}
                     </Text>
-                    <Text style={[{ color: '#38BDF8', fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bOutspeed}</Text>
+                    <Text style={[{ color: arenaFastAccent, fontSize: f.caption, fontWeight: '700', flexShrink: 0 }]}>+{bOutspeed}</Text>
                   </View>
                 )}
                 <View style={[styles.breakdownRow, { borderTopWidth: 1, borderTopColor: t.border, marginTop: 4, paddingTop: 8 }]}>
                   <Text style={[{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', flexShrink: 0 }]}>
-                    {triLang(lang, { ru: 'Итого', uk: 'Разом', es: 'Total' })}
+                    {triLang(lang, {
+                      ru: 'Итого',
+                      uk: 'Разом',
+                      es: 'Total',
+                      'pt-BR': "Total",
+                      vi: "Tổng",
+                      id: "Total",
+                      tr: "Toplam",
+                      pl: "Razem",
+                    })}
                   </Text>
                   <Text style={[{ color: t.accent, fontSize: f.body, fontWeight: '900', flexShrink: 0 }]}>{me?.score ?? 0}</Text>
                 </View>
@@ -1716,11 +1939,25 @@ export default function DuelResultsScreen() {
           {!isMockSession && !isForfeited && !opponentSurrendered && rematchPending && isRematchTarget && (
             <View style={[styles.rematchBanner, { backgroundColor: t.bgCard, borderColor: t.gold }]}>
               <Text style={[{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginBottom: 8 }]}>
-                🥊 {rematchOffer?.byName ?? triLang(lang, { ru: 'Соперник', uk: 'Суперник', es: 'Rival' })}{' '}
+                🥊 {rematchOffer?.byName ?? triLang(lang, {
+                  ru: 'Соперник',
+                  uk: 'Суперник',
+                  es: 'Rival',
+                  'pt-BR': "Rival",
+                  vi: "Đối thủ",
+                  id: "Lawan",
+                  tr: "Rakip",
+                  pl: "Rywal",
+                })}{' '}
                 {triLang(lang, {
                   ru: 'хочет реванш',
                   uk: 'хоче реванш',
                   es: 'pide revancha',
+                  'pt-BR': "pede revanche",
+                  vi: "muốn tái đấu",
+                  id: "meminta rematch",
+                  tr: "rövanş istiyor",
+                  pl: "prosi o rewanż",
                 })}
               </Text>
               {rematchSecsLeft != null && (
@@ -1732,6 +1969,11 @@ export default function DuelResultsScreen() {
                       rematchSecsLeft === 1
                         ? `Te queda ${rematchSecsLeft} s`
                         : `Te quedan ${rematchSecsLeft} s`,
+                    'pt-BR': rematchSecsLeft === 1 ? `Resta ${rematchSecsLeft} s` : `Restam ${rematchSecsLeft} s`,
+                    vi: `Còn ${rematchSecsLeft} giây`,
+                    id: `Tersisa ${rematchSecsLeft} dtk`,
+                    tr: `${rematchSecsLeft} sn kaldı`,
+                    pl: `Zostało ${rematchSecsLeft} s`,
                   })}
                 </Text>
               )}
@@ -1743,7 +1985,16 @@ export default function DuelResultsScreen() {
                     start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }}
                   >
                     <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.body }]}>
-                      {triLang(lang, { uk: '⚔️ Прийняти', ru: '⚔️ Принять', es: '⚔️ Aceptar' })}
+                      {triLang(lang, {
+                        uk: '⚔️ Прийняти',
+                        ru: '⚔️ Принять',
+                        es: '⚔️ Aceptar',
+                        'pt-BR': "⚔️ Aceitar",
+                        vi: "⚔️ Chấp nhận",
+                        id: "⚔️ Terima",
+                        tr: "⚔️ Kabul et",
+                        pl: "⚔️ Akceptuj",
+                      })}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -1753,7 +2004,16 @@ export default function DuelResultsScreen() {
                   activeOpacity={0.8}
                 >
                   <Text style={[{ color: t.textMuted, fontSize: f.body, fontWeight: '600' }]}>
-                    {triLang(lang, { ru: 'Отказаться', uk: 'Відмовитися', es: 'Rechazar' })}
+                    {triLang(lang, {
+                      ru: 'Отказаться',
+                      uk: 'Відмовитися',
+                      es: 'Rechazar',
+                      'pt-BR': "Recusar",
+                      vi: "Từ chối",
+                      id: "Tolak",
+                      tr: "Reddet",
+                      pl: "Odrzuć",
+                    })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -1764,8 +2024,26 @@ export default function DuelResultsScreen() {
             <View style={[styles.rematchBtn, { backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border }]}>
               <Ionicons name="time-outline" size={20} color={t.textMuted} />
               <Text style={[styles.rematchText, { color: t.textMuted, fontSize: f.h2 }]}>
-                {triLang(lang, { ru: 'Реванш отправлен', uk: 'Реванш надіслано', es: 'Revancha enviada' })}
-                {rematchSecsLeft != null ? ` ${rematchSecsLeft}${triLang(lang, { ru: 'с', uk: ' с', es: ' s' })}` : ''}
+                {triLang(lang, {
+                  ru: 'Реванш отправлен',
+                  uk: 'Реванш надіслано',
+                  es: 'Revancha enviada',
+                  'pt-BR': "Revanche enviada",
+                  vi: "Đã gửi lời tái đấu",
+                  id: "Rematch dikirim",
+                  tr: "Rövanş gönderildi",
+                  pl: "Rewanż wysłany",
+                })}
+                {rematchSecsLeft != null ? ` ${rematchSecsLeft}${triLang(lang, {
+                  ru: 'с',
+                  uk: ' с',
+                  es: ' s',
+                  'pt-BR': " s",
+                  vi: " giây",
+                  id: " dtk",
+                  tr: " sn",
+                  pl: " s",
+                })}` : ''}
               </Text>
             </View>
           )}
@@ -1780,7 +2058,16 @@ export default function DuelResultsScreen() {
                 >
                   <Ionicons name="flash" size={20} color={t.correctText} />
                   <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
-                    {triLang(lang, { uk: 'Ще раз!', ru: 'Ещё раз!', es: '¡Otra vez!' })}
+                    {triLang(lang, {
+                      uk: 'Ще раз!',
+                      ru: 'Ещё раз!',
+                      es: '¡Otra vez!',
+                      'pt-BR': "Mais uma!",
+                      vi: "Lại lần nữa!",
+                      id: "Sekali lagi!",
+                      tr: "Bir daha!",
+                      pl: "Jeszcze raz!",
+                    })}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -1793,7 +2080,16 @@ export default function DuelResultsScreen() {
                 >
                   <Ionicons name="flash" size={20} color={t.correctText} />
                   <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
-                    {triLang(lang, { ru: '🥊 Реванш', uk: '🥊 Реванш', es: '🥊 Revancha' })}
+                    {triLang(lang, {
+                      ru: '🥊 Реванш',
+                      uk: '🥊 Реванш',
+                      es: '🥊 Revancha',
+                      'pt-BR': "🥊 Revanche",
+                      vi: "🥊 Tái đấu",
+                      id: "🥊 Rematch",
+                      tr: "🥊 Rövanş",
+                      pl: "🥊 Rewanż",
+                    })}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -1806,7 +2102,16 @@ export default function DuelResultsScreen() {
                 >
                   <Ionicons name="flash" size={20} color={t.correctText} />
                   <Text style={[styles.rematchText, { color: t.correctText, fontSize: f.h2 }]}>
-                    {triLang(lang, { ru: 'Ещё раз!', uk: 'Ще раз!', es: '¡Otra vez!' })}
+                    {triLang(lang, {
+                      ru: 'Ещё раз!',
+                      uk: 'Ще раз!',
+                      es: '¡Otra vez!',
+                      'pt-BR': "Mais uma!",
+                      vi: "Lại lần nữa!",
+                      id: "Sekali lagi!",
+                      tr: "Bir daha!",
+                      pl: "Jeszcze raz!",
+                    })}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -1820,7 +2125,16 @@ export default function DuelResultsScreen() {
               activeOpacity={0.8}
             >
               <Text style={[{ color: t.accent, fontSize: f.body, fontWeight: '700' }]}>
-                {triLang(lang, { ru: `Назад в комнату ${cleanRoomCode}`, uk: `Назад у кімнату ${cleanRoomCode}`, es: `Volver a la sala ${cleanRoomCode}` })}
+                {triLang(lang, {
+                  ru: `Назад в комнату ${cleanRoomCode}`,
+                  uk: `Назад у кімнату ${cleanRoomCode}`,
+                  es: `Volver a la sala ${cleanRoomCode}`,
+                  'pt-BR': `Voltar para a sala ${cleanRoomCode}`,
+                  vi: `Quay lại phòng ${cleanRoomCode}`,
+                  id: `Kembali ke room ${cleanRoomCode}`,
+                  tr: `${cleanRoomCode} odasına dön`,
+                  pl: `Wróć do pokoju ${cleanRoomCode}`,
+                })}
               </Text>
             </TouchableOpacity>
           )}
@@ -1831,7 +2145,16 @@ export default function DuelResultsScreen() {
             activeOpacity={0.8}
           >
             <Text style={[{ color: t.textMuted, fontSize: f.body, fontWeight: '600' }]}>
-              {triLang(lang, { ru: 'В Арену', uk: 'На Арену', es: 'Ir a la Arena' })}
+              {triLang(lang, {
+                ru: 'В Арену',
+                uk: 'На Арену',
+                es: 'Ir a la Arena',
+                'pt-BR': "Ir para a Arena",
+                vi: "Vào Đấu trường",
+                id: "Ke Arena",
+                tr: "Arenaya git",
+                pl: "Idź na Arenę",
+              })}
             </Text>
           </TouchableOpacity>
 
@@ -1845,6 +2168,11 @@ export default function DuelResultsScreen() {
                 ru: '🏠 На главную',
                 uk: '🏠 На головну',
                 es: '🏠 Volver al inicio',
+                'pt-BR': "🏠 Voltar ao início",
+                vi: "🏠 Về trang chính",
+                id: "🏠 Kembali ke beranda",
+                tr: "🏠 Ana ekrana dön",
+                pl: "🏠 Wróć na start",
               })}
             </Text>
           </TouchableOpacity>
@@ -1860,6 +2188,11 @@ export default function DuelResultsScreen() {
                   ru: '📖 Разбор вопросов',
                   uk: '📖 Розбір питань',
                   es: '📖 Repaso de preguntas',
+                  'pt-BR': "📖 Revisão de perguntas",
+                  vi: "📖 Ôn lại câu hỏi",
+                  id: "📖 Tinjauan pertanyaan",
+                  tr: "📖 Soru tekrarı",
+                  pl: "📖 Powtórka pytań",
                 })}
               </Text>
             </TouchableOpacity>
@@ -1885,6 +2218,11 @@ export default function DuelResultsScreen() {
                 uk: 'Розбір питань',
                 ru: 'Разбор вопросов',
                 es: 'Repaso de preguntas',
+                'pt-BR': "Revisão de perguntas",
+                vi: "Ôn lại câu hỏi",
+                id: "Tinjauan pertanyaan",
+                tr: "Soru tekrarı",
+                pl: "Powtórka pytań",
               })}
             </Text>
           </View>
@@ -1906,6 +2244,11 @@ export default function DuelResultsScreen() {
                         ru: 'Сообщить об ошибке в этом вопросе Арены',
                         uk: 'Повідомити про помилку в цьому питанні Арени',
                         es: 'Informar de un fallo en esta pregunta de la Arena',
+                        'pt-BR': "Informar um erro nesta pergunta da Arena",
+                        vi: "Báo lỗi trong câu hỏi Đấu trường này",
+                        id: "Laporkan kesalahan pada pertanyaan Arena ini",
+                        tr: "Bu Arena sorusunda hata bildir",
+                        pl: "Zgłoś błąd w tym pytaniu Areny",
                       })}
                     />
                   </View>
@@ -2050,13 +2393,27 @@ function ArenaRatingModal({ variant, t, f, lang, onClose }: {
             <>
               <Text style={{ fontSize: 52, marginBottom: 12 }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>??</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!' })}
+                {triLang(lang, {
+                  ru: 'Спасибо!',
+                  uk: 'Дякуємо!',
+                  es: '¡Gracias!',
+                  'pt-BR': "Obrigado!",
+                  vi: "Cảm ơn!",
+                  id: "Terima kasih!",
+                  tr: "Teşekkürler!",
+                  pl: "Dziękujemy!",
+                })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 8 }}>
                 {triLang(lang, {
                   ru: 'Для нас это очень важно.',
                   uk: 'Це для нас дуже важливо.',
                   es: 'Para nosotros significa muchísimo.',
+                  'pt-BR': "Isso significa muito para nós.",
+                  vi: "Điều đó có ý nghĩa rất lớn với chúng tôi.",
+                  id: "Itu sangat berarti bagi kami.",
+                  tr: "Bu bizim için çok değerli.",
+                  pl: "To dla nas bardzo dużo znaczy.",
                 })}
               </Text>
             </>

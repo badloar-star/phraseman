@@ -26,6 +26,7 @@ import {
 import { joinArenaFriendRoomAsGuest } from '../app/arena_friend_room_guest';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
+import { useOverlayVisible } from './OverlayArbiter';
 
 const INVITE_TIMEOUT_MS = 60_000;
 
@@ -44,16 +45,27 @@ export default function ArenaFriendInviteHost() {
 
   const [topInvite, setTopInvite] = useState<ArenaInviteRow | null>(null);
   const [busy, setBusy] = useState(false);
+  const overlayVisible = useOverlayVisible('arenaInvite', topInvite != null);
   const shownIdsRef = useRef<Set<string>>(new Set());
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const currentInviteRef = useRef<ArenaInviteRow | null>(null);
+  const visibleInviteIdRef = useRef<string | null>(null);
 
   // Slide-up animation
   const slideY = useRef(new Animated.Value(200)).current;
   const timerAnim = useRef(new Animated.Value(1)).current;
   const timerAnimRef = useRef<Animated.CompositeAnimation | null>(null);
 
-  const defaultName = () => triLang(lang, { ru: 'Игрок', uk: 'Гравець', es: 'Jugador' });
+  const defaultName = () => triLang(lang, {
+    ru: 'Игрок',
+    uk: 'Гравець',
+    es: 'Jugador',
+    'pt-BR': 'Jogador',
+    vi: 'Người chơi',
+    id: 'Pemain',
+    tr: 'Oyuncu',
+    pl: 'Gracz',
+  });
 
   const clearAutoDeclineTimer = () => {
     if (timerRef.current) {
@@ -70,16 +82,20 @@ export default function ArenaFriendInviteHost() {
     Animated.timing(slideY, { toValue: 200, duration: 250, useNativeDriver: true, easing: Easing.in(Easing.ease) }).start();
     setTopInvite(null);
     currentInviteRef.current = null;
+    visibleInviteIdRef.current = null;
     await setArenaInviteStatus(invite.id, 'declined');
     logEvent('arena_invite_declined', {});
   };
 
   const showInvite = (invite: ArenaInviteRow) => {
     clearAutoDeclineTimer();
+    visibleInviteIdRef.current = null;
     currentInviteRef.current = invite;
     setTopInvite(invite);
     setBusy(false);
+  };
 
+  const startInvitePresentation = (invite: ArenaInviteRow) => {
     // Slide in
     slideY.setValue(200);
     timerAnim.setValue(1);
@@ -105,6 +121,14 @@ export default function ArenaFriendInviteHost() {
       if (cur) void doDecline(cur);
     }, INVITE_TIMEOUT_MS);
   };
+
+  useEffect(() => {
+    if (!topInvite || !overlayVisible) return;
+    if (visibleInviteIdRef.current === topInvite.id) return;
+    visibleInviteIdRef.current = topInvite.id;
+    startInvitePresentation(topInvite);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [overlayVisible, topInvite?.id]);
 
   // ── Firestore subscription ─────────────────────────────────────────────────
   useEffect(() => {
@@ -149,6 +173,7 @@ export default function ArenaFriendInviteHost() {
               Animated.timing(slideY, { toValue: 200, duration: 250, useNativeDriver: true, easing: Easing.in(Easing.ease) }).start();
               setTopInvite(null);
               currentInviteRef.current = null;
+              visibleInviteIdRef.current = null;
             }
             return;
           }
@@ -218,6 +243,7 @@ export default function ArenaFriendInviteHost() {
         Animated.timing(slideY, { toValue: 200, duration: 200, useNativeDriver: true, easing: Easing.in(Easing.ease) }).start();
         setTopInvite(null);
         currentInviteRef.current = null;
+        visibleInviteIdRef.current = null;
         router.replace({ pathname: '/arena_game' as any, params: { sessionId: res.sessionId, userId: res.uid } });
         return;
       }
@@ -237,7 +263,7 @@ export default function ArenaFriendInviteHost() {
     }
   };
 
-  if (!topInvite) return null;
+  if (!topInvite || !overlayVisible) return null;
 
   const hostLabel = topInvite.fromName.trim() || defaultName();
 
@@ -290,6 +316,11 @@ export default function ArenaFriendInviteHost() {
                   ru: `Вызов от ${hostLabel}`,
                   uk: `Виклик від ${hostLabel}`,
                   es: `Reto de ${hostLabel}`,
+                  'pt-BR': `Desafio de ${hostLabel}`,
+                  vi: `Lời thách đấu từ ${hostLabel}`,
+                  id: `Tantangan dari ${hostLabel}`,
+                  tr: `${hostLabel} meydan okuyor`,
+                  pl: `Wyzwanie od ${hostLabel}`,
                 })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
@@ -297,6 +328,11 @@ export default function ArenaFriendInviteHost() {
                   ru: 'Друг зовёт сыграть на арене',
                   uk: 'Друг кличе зіграти на арені',
                   es: 'Tu amigo quiere jugar en la Arena',
+                  'pt-BR': 'Um amigo chamou você para jogar na Arena',
+                  vi: 'Bạn bè mời bạn chơi trong Arena',
+                  id: 'Teman mengajakmu bermain di Arena',
+                  tr: 'Bir arkadaşın Arenada oynamaya çağırıyor',
+                  pl: 'Znajomy zaprasza Cię do gry na Arenie',
                 })}
               </Text>
             </View>
@@ -320,7 +356,16 @@ export default function ArenaFriendInviteHost() {
               }}
             >
               <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '600' }}>
-                {triLang(lang, { ru: 'Отклонить', uk: 'Відмовитись', es: 'Rechazar' })}
+                {triLang(lang, {
+                  ru: 'Отклонить',
+                  uk: 'Відмовитись',
+                  es: 'Rechazar',
+                  'pt-BR': 'Recusar',
+                  vi: 'Từ chối',
+                  id: 'Tolak',
+                  tr: 'Reddet',
+                  pl: 'Odrzuć',
+                })}
               </Text>
             </TouchableOpacity>
 
@@ -342,7 +387,16 @@ export default function ArenaFriendInviteHost() {
                 <View />
               ) : (
                 <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>
-                  {triLang(lang, { ru: '⚡ ПРИНЯТЬ', uk: '⚡ ПРИЙНЯТИ', es: '⚡ ACEPTAR' })}
+                  {triLang(lang, {
+                    ru: '⚡ ПРИНЯТЬ',
+                    uk: '⚡ ПРИЙНЯТИ',
+                    es: '⚡ ACEPTAR',
+                    'pt-BR': '⚡ ACEITAR',
+                    vi: '⚡ CHẤP NHẬN',
+                    id: '⚡ TERIMA',
+                    tr: '⚡ KABUL ET',
+                    pl: '⚡ PRZYJMIJ',
+                  })}
                 </Text>
               )}
             </TouchableOpacity>

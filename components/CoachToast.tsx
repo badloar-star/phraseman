@@ -7,12 +7,18 @@ import { useLang } from './LangContext';
 import { triLang } from '../constants/i18n';
 import { hapticTap } from '../hooks/use-haptics';
 import { type WordCategory } from '../app/phrase_analytics';
+import { useOverlayVisible } from './OverlayArbiter';
 
 interface CoachToastProps {
   category: WordCategory;
   labelRu: string;
   labelUk: string;
   labelEs: string;
+  labelPtBr: string;
+  labelVi: string;
+  labelId: string;
+  labelTr: string;
+  labelPl: string;
   mistakeCount: number;
   weaknessScore?: number;
   priorityScore?: number;
@@ -22,6 +28,11 @@ interface CoachToastProps {
   microLabelRu?: string;
   microLabelUk?: string;
   microLabelEs?: string;
+  microLabelPtBr?: string;
+  microLabelVi?: string;
+  microLabelId?: string;
+  microLabelTr?: string;
+  microLabelPl?: string;
   diagnosisEvidenceCount?: number;
   onDismiss: () => void;
 }
@@ -33,6 +44,11 @@ export default function CoachToast({
   labelRu,
   labelUk,
   labelEs,
+  labelPtBr,
+  labelVi,
+  labelId,
+  labelTr,
+  labelPl,
   weaknessScore,
   priorityScore,
   recoveryScore,
@@ -41,16 +57,31 @@ export default function CoachToast({
   microLabelRu,
   microLabelUk,
   microLabelEs,
+  microLabelPtBr,
+  microLabelVi,
+  microLabelId,
+  microLabelTr,
+  microLabelPl,
   diagnosisEvidenceCount,
   onDismiss,
 }: CoachToastProps) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
   const router = useRouter();
+  const overlayVisible = useOverlayVisible('coachToast', true);
   const slideAnim = useRef(new Animated.Value(120)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
 
-  const categoryLabel = triLang(lang, { ru: labelRu, uk: labelUk, es: labelEs });
+  const categoryLabel = triLang(lang, {
+    ru: labelRu,
+    uk: labelUk,
+    es: labelEs,
+    'pt-BR': labelPtBr,
+    vi: labelVi,
+    id: labelId,
+    tr: labelTr,
+    pl: labelPl,
+  });
 
   const dismiss = useCallback(() => {
     Animated.parallel([
@@ -60,6 +91,7 @@ export default function CoachToast({
   }, [opacityAnim, onDismiss, slideAnim]);
 
   useEffect(() => {
+    if (!overlayVisible) return;
     Animated.parallel([
       Animated.spring(slideAnim, { toValue: 0, useNativeDriver: true, tension: 80, friction: 10 }),
       Animated.timing(opacityAnim, { toValue: 1, duration: 250, useNativeDriver: true }),
@@ -67,7 +99,7 @@ export default function CoachToast({
 
     const timer = setTimeout(dismiss, AUTO_DISMISS_MS);
     return () => clearTimeout(timer);
-  }, [dismiss, opacityAnim, slideAnim]);
+  }, [dismiss, opacityAnim, overlayVisible, slideAnim]);
 
   const handleStart = () => {
     hapticTap();
@@ -83,6 +115,11 @@ export default function CoachToast({
           ...(microLabelRu ? { microLabelRu } : {}),
           ...(microLabelUk ? { microLabelUk } : {}),
           ...(microLabelEs ? { microLabelEs } : {}),
+          ...(microLabelPtBr ? { microLabelPtBr } : {}),
+          ...(microLabelVi ? { microLabelVi } : {}),
+          ...(microLabelId ? { microLabelId } : {}),
+          ...(microLabelTr ? { microLabelTr } : {}),
+          ...(microLabelPl ? { microLabelPl } : {}),
           ...(typeof diagnosisEvidenceCount === 'number' ? { evidence: String(diagnosisEvidenceCount) } : {}),
         },
       });
@@ -90,11 +127,16 @@ export default function CoachToast({
     }
   };
 
-  const microLabel = microLabelRu || microLabelUk || microLabelEs
+  const microLabel = microLabelRu || microLabelUk || microLabelEs || microLabelPtBr || microLabelVi || microLabelId || microLabelTr || microLabelPl
     ? triLang(lang, {
         ru: microLabelRu ?? categoryLabel,
         uk: microLabelUk ?? microLabelRu ?? categoryLabel,
         es: microLabelEs ?? microLabelRu ?? categoryLabel,
+        'pt-BR': microLabelPtBr ?? microLabelEs ?? categoryLabel,
+        vi: microLabelVi ?? microLabelEs ?? categoryLabel,
+        id: microLabelId ?? microLabelEs ?? categoryLabel,
+        tr: microLabelTr ?? microLabelEs ?? categoryLabel,
+        pl: microLabelPl ?? microLabelEs ?? categoryLabel,
       })
     : null;
   const titleText = triLang(lang, {
@@ -107,11 +149,31 @@ export default function CoachToast({
     es: microLabel
       ? `Notamos dificultad con ${microLabel}`
       : `Notamos dificultad con «${categoryLabel}»`,
+    'pt-BR': microLabel
+      ? `Notamos dificuldade com ${microLabel}`
+      : `Notamos dificuldade com «${categoryLabel}»`,
+    vi: microLabel
+      ? `Chúng tôi thấy bạn gặp khó với ${microLabel}`
+      : `Chúng tôi thấy bạn gặp khó với chủ đề «${categoryLabel}»`,
+    id: microLabel
+      ? `Kami melihat kesulitan pada ${microLabel}`
+      : `Kami melihat kesulitan pada topik «${categoryLabel}»`,
+    tr: microLabel
+      ? `${microLabel} konusunda zorlandığını fark ettik`
+      : `«${categoryLabel}» konusunda zorlandığını fark ettik`,
+    pl: microLabel
+      ? `Widzimy trudność z ${microLabel}`
+      : `Widzimy trudność z tematem «${categoryLabel}»`,
   });
   const descText = triLang(lang, {
     ru: 'Если есть минутка, объясним на простом примере, как больше не допускать эту ошибку.',
     uk: 'Якщо є хвилинка, пояснимо на простому прикладі, як більше не припускатися цієї помилки.',
     es: 'Si tienes un minuto, te lo explicamos con un ejemplo sencillo para evitar este error.',
+    'pt-BR': 'Se você tiver um minuto, explicamos com um exemplo simples como evitar esse erro.',
+    vi: 'Nếu bạn có một phút, chúng tôi sẽ giải thích bằng một ví dụ đơn giản để tránh lỗi này.',
+    id: 'Jika kamu punya waktu sebentar, kami akan menjelaskannya dengan contoh sederhana agar kesalahan ini tidak terulang.',
+    tr: 'Bir dakikan varsa, bu hatayı önlemek için basit bir örnekle açıklayalım.',
+    pl: 'Jeśli masz chwilę, wyjaśnimy to na prostym przykładzie, żeby uniknąć tego błędu.',
   });
   const focusText = focusWords.length > 0 ? focusWords.join(' · ') : null;
   const hasStrongSignal = typeof weaknessScore === 'number' && weaknessScore >= 70;
@@ -119,7 +181,14 @@ export default function CoachToast({
     ru: hasStrongSignal ? 'Точный фокус' : 'Есть зацепка',
     uk: hasStrongSignal ? 'Точний фокус' : 'Є зачіпка',
     es: hasStrongSignal ? 'Foco claro' : 'Hay una pista',
+    'pt-BR': hasStrongSignal ? 'Foco claro' : 'Há uma pista',
+    vi: hasStrongSignal ? 'Trọng tâm rõ' : 'Có manh mối',
+    id: hasStrongSignal ? 'Fokus jelas' : 'Ada petunjuk',
+    tr: hasStrongSignal ? 'Net odak' : 'Bir ipucu var',
+    pl: hasStrongSignal ? 'Jasny fokus' : 'Jest trop',
   });
+
+  if (!overlayVisible) return null;
 
   return (
     <Animated.View
@@ -167,7 +236,16 @@ export default function CoachToast({
             activeOpacity={0.85}
           >
             <Text style={[styles.startBtnText, { color: t.correctText, fontSize: f.label }]}>
-              {triLang(lang, { ru: 'Объяснить', uk: 'Пояснити', es: 'Explicar' })}
+              {triLang(lang, {
+                ru: 'Объяснить',
+                uk: 'Пояснити',
+                es: 'Explicar',
+                'pt-BR': 'Explicar',
+                vi: 'Giải thích',
+                id: 'Jelaskan',
+                tr: 'Açıkla',
+                pl: 'Wyjaśnij',
+              })}
             </Text>
             <Ionicons name="arrow-forward" size={16} color={t.correctText} />
           </TouchableOpacity>

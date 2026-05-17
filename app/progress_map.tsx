@@ -36,7 +36,7 @@ import {
   giftTitleForLang,
   readGiftXpBank,
 } from './level_gift_system';
-import { triLang } from '../constants/i18n';
+import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { getXPProgress, getMaxEnergyForLevel } from '../constants/theme';
 import { TITLES } from '../constants/titles';
 
@@ -71,12 +71,16 @@ interface ActiveGiftInfo {
   desc: string;
 }
 
-const formatMsLeft = (ms: number, lang: 'ru' | 'uk' | 'es'): string => {
+const formatMsLeft = (ms: number, lang: 'ru' | 'uk' | 'es' | PlannedInterfaceLang): string => {
   const safe = Math.max(0, ms);
   const h = Math.floor(safe / 3600000);
   const m = Math.floor((safe % 3600000) / 60000);
-  if (h > 0) return lang === 'es' ? `${h}h ${String(m).padStart(2, '0')}m` : `${h}ч ${String(m).padStart(2, '0')}м`;
-  return lang === 'es' ? `${m}m` : `${m}м`;
+  if (lang === 'vi') return h > 0 ? `${h} giờ ${m} phút` : `${m} phút`;
+  if (lang === 'tr') return h > 0 ? `${h}sa ${String(m).padStart(2, '0')}dk` : `${m}dk`;
+  if (lang === 'ru' || lang === 'uk') {
+    return h > 0 ? `${h}ч ${String(m).padStart(2, '0')}м` : `${m}м`;
+  }
+  return h > 0 ? `${h}h ${String(m).padStart(2, '0')}m` : `${m}m`;
 };
 
 const MILESTONES: MilestoneInfo[] = [
@@ -136,6 +140,38 @@ const MILESTONES: MilestoneInfo[] = [
 const MILESTONE_BY_LEVEL: Partial<Record<number, MilestoneInfo>> = Object.fromEntries(
   MILESTONES.map(m => [m.level, m])
 );
+
+const MILESTONE_PLANNED_COPY: Record<number, {
+  title: Record<PlannedInterfaceLang, string>;
+  desc: Record<PlannedInterfaceLang, string>;
+  doneDesc: Record<PlannedInterfaceLang, string>;
+}> = {
+  10: {
+    title: { 'pt-BR': '+1 espaço de energia', vi: '+1 ô năng lượng', id: '+1 slot energi', tr: '+1 enerji yuvası', pl: '+1 miejsce energii' },
+    desc: { 'pt-BR': 'A energia máxima subirá para 6', vi: 'Năng lượng tối đa sẽ tăng lên 6', id: 'Energi maksimal akan naik menjadi 6', tr: 'Maksimum enerji 6 seviyesine çıkacak', pl: 'Maksymalna energia wzrośnie do 6' },
+    doneDesc: { 'pt-BR': 'Energia máxima aumentada para 6', vi: 'Năng lượng tối đa đã tăng lên 6', id: 'Energi maksimal meningkat menjadi 6', tr: 'Maksimum enerji 6 oldu', pl: 'Maksymalna energia zwiększona do 6' },
+  },
+  20: {
+    title: { 'pt-BR': '+1 espaço de energia', vi: '+1 ô năng lượng', id: '+1 slot energi', tr: '+1 enerji yuvası', pl: '+1 miejsce energii' },
+    desc: { 'pt-BR': 'A energia máxima subirá para 7', vi: 'Năng lượng tối đa sẽ tăng lên 7', id: 'Energi maksimal akan naik menjadi 7', tr: 'Maksimum enerji 7 seviyesine çıkacak', pl: 'Maksymalna energia wzrośnie do 7' },
+    doneDesc: { 'pt-BR': 'Energia máxima aumentada para 7', vi: 'Năng lượng tối đa đã tăng lên 7', id: 'Energi maksimal meningkat menjadi 7', tr: 'Maksimum enerji 7 oldu', pl: 'Maksymalna energia zwiększona do 7' },
+  },
+  30: {
+    title: { 'pt-BR': '+1 espaço de energia', vi: '+1 ô năng lượng', id: '+1 slot energi', tr: '+1 enerji yuvası', pl: '+1 miejsce energii' },
+    desc: { 'pt-BR': 'A energia máxima subirá para 8', vi: 'Năng lượng tối đa sẽ tăng lên 8', id: 'Energi maksimal akan naik menjadi 8', tr: 'Maksimum enerji 8 seviyesine çıkacak', pl: 'Maksymalna energia wzrośnie do 8' },
+    doneDesc: { 'pt-BR': 'Energia máxima aumentada para 8', vi: 'Năng lượng tối đa đã tăng lên 8', id: 'Energi maksimal meningkat menjadi 8', tr: 'Maksimum enerji 8 oldu', pl: 'Maksymalna energia zwiększona do 8' },
+  },
+  40: {
+    title: { 'pt-BR': '+1 espaço de energia', vi: '+1 ô năng lượng', id: '+1 slot energi', tr: '+1 enerji yuvası', pl: '+1 miejsce energii' },
+    desc: { 'pt-BR': 'A energia máxima subirá para 9', vi: 'Năng lượng tối đa sẽ tăng lên 9', id: 'Energi maksimal akan naik menjadi 9', tr: 'Maksimum enerji 9 seviyesine çıkacak', pl: 'Maksymalna energia wzrośnie do 9' },
+    doneDesc: { 'pt-BR': 'Energia máxima aumentada para 9', vi: 'Năng lượng tối đa đã tăng lên 9', id: 'Energi maksimal meningkat menjadi 9', tr: 'Maksimum enerji 9 oldu', pl: 'Maksymalna energia zwiększona do 9' },
+  },
+  50: {
+    title: { 'pt-BR': 'Energia máxima 10', vi: 'Năng lượng tối đa 10', id: 'Energi maksimal 10', tr: 'Maksimum enerji 10', pl: 'Maksymalna energia 10' },
+    desc: { 'pt-BR': 'Alcance o topo e vire uma lenda!', vi: 'Chạm tới đỉnh và trở thành huyền thoại!', id: 'Capai puncak dan jadi legenda!', tr: 'Zirveye ulaş ve efsane ol!', pl: 'Dotrzyj na szczyt i zostań legendą!' },
+    doneDesc: { 'pt-BR': 'Você chegou ao topo. Lenda!', vi: 'Bạn đã chạm tới đỉnh. Huyền thoại!', id: 'Kamu sudah mencapai puncak. Legenda!', tr: 'Zirveye ulaştın. Efsane!', pl: 'Dotarłeś na szczyt. Legenda!' },
+  },
+};
 
 export default function ProgressMapScreen() {
   const { theme: t, f, isDark } = useTheme();
@@ -213,12 +249,26 @@ export default function ProgressMapScreen() {
       nextActive.push({
         key: 'xp_bank',
         icon: '⚡',
-        title: triLang(lang, { ru: 'Бонус ×2', uk: 'Бонус ×2', es: 'Bono ×2' }),
+        title: triLang(lang, {
+  ru: 'Бонус ×2',
+  uk: 'Бонус ×2',
+  es: 'Bono ×2',
+  "pt-BR": 'Bônus ×2',
+  vi: 'Thưởng ×2',
+  id: 'Bonus ×2',
+  tr: 'Bonus ×2',
+  pl: 'Bonus ×2',
+}),
         desc: triLang(lang, {
-          ru: `ещё на ${xpBank.remaining} XP`,
-          uk: `ще на ${xpBank.remaining} XP`,
-          es: `por ${xpBank.remaining} XP más`,
-        }),
+  ru: `ещё на ${xpBank.remaining} XP`,
+  uk: `ще на ${xpBank.remaining} XP`,
+  es: `por ${xpBank.remaining} XP más`,
+  "pt-BR": `por mais ${xpBank.remaining} XP`,
+  vi: `thêm ${xpBank.remaining} XP`,
+  id: `untuk ${xpBank.remaining} XP lagi`,
+  tr: `${xpBank.remaining} XP daha`,
+  pl: `jeszcze ${xpBank.remaining} XP`,
+}),
       });
     }
 
@@ -230,7 +280,16 @@ export default function ProgressMapScreen() {
         nextActive.push({
           key: 'gift_focus',
           icon: '⏱️',
-          title: triLang(lang, { ru: 'Фокус', uk: 'Фокус', es: 'Foco' }),
+          title: triLang(lang, {
+  ru: 'Фокус',
+  uk: 'Фокус',
+  es: 'Foco',
+  "pt-BR": 'Foco',
+  vi: 'Tập trung',
+  id: 'Fokus',
+  tr: 'Odak',
+  pl: 'Fokus',
+}),
           desc: `×${mult.toFixed(mult % 1 === 0 ? 0 : 2)} · ${formatMsLeft(ms, lang)}`,
         });
       }
@@ -240,12 +299,26 @@ export default function ProgressMapScreen() {
       nextActive.push({
         key: 'pack_trial',
         icon: '📦',
-        title: triLang(lang, { ru: 'Ваучер набора', uk: 'Ваучер набору', es: 'Vale de pack' }),
+        title: triLang(lang, {
+  ru: 'Ваучер набора',
+  uk: 'Ваучер набору',
+  es: 'Vale de pack',
+  "pt-BR": 'Voucher de pacote',
+  vi: 'Phiếu gói thẻ',
+  id: 'Voucher paket',
+  tr: 'Paket kuponu',
+  pl: 'Voucher pakietu',
+}),
         desc: triLang(lang, {
-          ru: `${getPackTrialHoursLeft(packTrial.expiresAt)} ч доступа`,
-          uk: `${getPackTrialHoursLeft(packTrial.expiresAt)} год доступу`,
-          es: `${getPackTrialHoursLeft(packTrial.expiresAt)} h de acceso`,
-        }),
+  ru: `${getPackTrialHoursLeft(packTrial.expiresAt)} ч доступа`,
+  uk: `${getPackTrialHoursLeft(packTrial.expiresAt)} год доступу`,
+  es: `${getPackTrialHoursLeft(packTrial.expiresAt)} h de acceso`,
+  "pt-BR": `${getPackTrialHoursLeft(packTrial.expiresAt)} h de acesso`,
+  vi: `${getPackTrialHoursLeft(packTrial.expiresAt)} giờ truy cập`,
+  id: `${getPackTrialHoursLeft(packTrial.expiresAt)} jam akses`,
+  tr: `${getPackTrialHoursLeft(packTrial.expiresAt)} saat erişim`,
+  pl: `${getPackTrialHoursLeft(packTrial.expiresAt)} h dostępu`,
+}),
       });
     }
 
@@ -253,12 +326,26 @@ export default function ProgressMapScreen() {
       nextActive.push({
         key: 'arena_extra',
         icon: '🎟️',
-        title: triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' }),
+        title: triLang(lang, {
+  ru: 'Арена',
+  uk: 'Арена',
+  es: 'Arena',
+  "pt-BR": 'Arena',
+  vi: 'Đấu trường',
+  id: 'Arena',
+  tr: 'Arena',
+  pl: 'Arena',
+}),
         desc: triLang(lang, {
-          ru: `+${arenaMax - ARENA_DAILY_MAX} матчей сегодня`,
-          uk: `+${arenaMax - ARENA_DAILY_MAX} матчів сьогодні`,
-          es: `+${arenaMax - ARENA_DAILY_MAX} duelos hoy`,
-        }),
+  ru: `+${arenaMax - ARENA_DAILY_MAX} матчей сегодня`,
+  uk: `+${arenaMax - ARENA_DAILY_MAX} матчів сьогодні`,
+  es: `+${arenaMax - ARENA_DAILY_MAX} duelos hoy`,
+  "pt-BR": `+${arenaMax - ARENA_DAILY_MAX} partidas hoje`,
+  vi: `+${arenaMax - ARENA_DAILY_MAX} trận hôm nay`,
+  id: `+${arenaMax - ARENA_DAILY_MAX} pertandingan hari ini`,
+  tr: `+${arenaMax - ARENA_DAILY_MAX} maç bugün`,
+  pl: `+${arenaMax - ARENA_DAILY_MAX} pojedynków dzisiaj`,
+}),
       });
     }
 
@@ -266,12 +353,26 @@ export default function ProgressMapScreen() {
       nextActive.push({
         key: 'hints',
         icon: '💡',
-        title: triLang(lang, { ru: 'Подсказки', uk: 'Підказки', es: 'Pistas' }),
+        title: triLang(lang, {
+  ru: 'Подсказки',
+  uk: 'Підказки',
+  es: 'Pistas',
+  "pt-BR": 'Dicas',
+  vi: 'Gợi ý',
+  id: 'Petunjuk',
+  tr: 'İpuçları',
+  pl: 'Podpowiedzi',
+}),
         desc: triLang(lang, {
-          ru: `${hintsToday} на сегодня`,
-          uk: `${hintsToday} на сьогодні`,
-          es: `${hintsToday} para hoy`,
-        }),
+  ru: `${hintsToday} на сегодня`,
+  uk: `${hintsToday} на сьогодні`,
+  es: `${hintsToday} para hoy`,
+  "pt-BR": `${hintsToday} para hoje`,
+  vi: `${hintsToday} cho hôm nay`,
+  id: `${hintsToday} untuk hari ini`,
+  tr: `bugün için ${hintsToday}`,
+  pl: `${hintsToday} na dziś`,
+}),
       });
     }
 
@@ -285,12 +386,26 @@ export default function ProgressMapScreen() {
         nextActive.push({
           key: 'chain_shield',
           icon: '🛡️',
-          title: triLang(lang, { ru: 'Защита цепочки', uk: 'Захист ланцюжка', es: 'Protección de racha' }),
+          title: triLang(lang, {
+  ru: 'Защита цепочки',
+  uk: 'Захист ланцюжка',
+  es: 'Protección de racha',
+  "pt-BR": 'Proteção de sequência',
+  vi: 'Bảo vệ chuỗi',
+  id: 'Perlindungan streak',
+  tr: 'Seri koruması',
+  pl: 'Ochrona serii',
+}),
           desc: triLang(lang, {
-            ru: `${remaining} дн.`,
-            uk: `${remaining} дн.`,
-            es: `${remaining} d`,
-          }),
+  ru: `${remaining} дн.`,
+  uk: `${remaining} дн.`,
+  es: `${remaining} d`,
+  "pt-BR": `${remaining} d`,
+  vi: `${remaining} ngày`,
+  id: `${remaining} hr`,
+  tr: `${remaining} gün`,
+  pl: `${remaining} dni`,
+}),
         });
       }
     } catch {}
@@ -299,7 +414,16 @@ export default function ProgressMapScreen() {
       nextActive.push({
         key: 'wager_discount',
         icon: '🎲',
-        title: triLang(lang, { ru: 'Скидка на пари', uk: 'Знижка на парі', es: 'Descuento apuesta' }),
+        title: triLang(lang, {
+  ru: 'Скидка на пари',
+  uk: 'Знижка на парі',
+  es: 'Descuento apuesta',
+  "pt-BR": 'Desconto na aposta',
+  vi: 'Giảm giá cược',
+  id: 'Diskon taruhan',
+  tr: 'Bahis indirimi',
+  pl: 'Zniżka na zakład',
+}),
         desc: '-25%',
       });
     }
@@ -308,8 +432,26 @@ export default function ProgressMapScreen() {
       nextActive.push({
         key: 'club_boost',
         icon: '👥',
-        title: triLang(lang, { ru: 'Буст клуба', uk: 'Буст клубу', es: 'Impulso de liga' }),
-        desc: triLang(lang, { ru: '1 бесплатная активация', uk: '1 безкоштовна активація', es: '1 activación gratis' }),
+        title: triLang(lang, {
+  ru: 'Буст клуба',
+  uk: 'Буст клубу',
+  es: 'Impulso de liga',
+  "pt-BR": 'Impulso do clube',
+  vi: 'Tăng tốc câu lạc bộ',
+  id: 'Boost klub',
+  tr: 'Kulüp güçlendirmesi',
+  pl: 'Wzmocnienie klubu',
+}),
+        desc: triLang(lang, {
+  ru: '1 бесплатная активация',
+  uk: '1 безкоштовна активація',
+  es: '1 activación gratis',
+  "pt-BR": '1 ativação grátis',
+  vi: '1 lượt kích hoạt miễn phí',
+  id: '1 aktivasi gratis',
+  tr: '1 ücretsiz aktivasyon',
+  pl: '1 darmowa aktywacja',
+}),
       });
     }
 
@@ -391,10 +533,15 @@ export default function ProgressMapScreen() {
     const titleDef = TITLES.find(td => td.minLevel === lvl);
     const hasUnclaimed = !!unclaimedGifts[lvl] || !!unclaimedDual[lvl];
     const receivedGiftLabel = triLang(lang, {
-      ru: 'Получено',
-      uk: 'Отримано',
-      es: 'Reclamado',
-    });
+  ru: 'Получено',
+  uk: 'Отримано',
+  es: 'Reclamado',
+  "pt-BR": 'Recebido',
+  vi: 'Đã nhận',
+  id: 'Diklaim',
+  tr: 'Alındı',
+  pl: 'Odebrano',
+});
 
     const rowStyle = {
       flexDirection: 'row' as const,
@@ -447,10 +594,15 @@ export default function ProgressMapScreen() {
                 }}
               >
                 {triLang(lang, {
-                  ru: `Уровень ${lvl}`,
-                  uk: `Рівень ${lvl}`,
-                  es: `Nivel ${lvl}`,
-                })}
+  ru: `Уровень ${lvl}`,
+  uk: `Рівень ${lvl}`,
+  es: `Nivel ${lvl}`,
+  "pt-BR": `Nível ${lvl}`,
+  vi: `Cấp ${lvl}`,
+  id: `Level ${lvl}`,
+  tr: `Seviye ${lvl}`,
+  pl: `Poziom ${lvl}`,
+})}
               </Text>
               {isDone && !hasUnclaimed && <Ionicons name="checkmark-circle" size={16} color={isDark ? t.gold : t.accent} />}
             </View>
@@ -506,7 +658,16 @@ export default function ProgressMapScreen() {
               >
                 <Text style={{ fontSize: 14 }}>🎁</Text>
                 <Text style={{ color: '#FFD700', fontSize: f.sub, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Забрать', uk: 'Забрати', es: 'Reclamar' })}
+                  {triLang(lang, {
+  ru: 'Забрать',
+  uk: 'Забрати',
+  es: 'Reclamar',
+  "pt-BR": 'Resgatar',
+  vi: 'Nhận',
+  id: 'Klaim',
+  tr: 'Al',
+  pl: 'Odbierz',
+})}
                 </Text>
               </TouchableOpacity>
             ) : isDone || isCurrent ? (
@@ -593,30 +754,50 @@ export default function ProgressMapScreen() {
             }}
           >
             <Text style={{ fontSize: 22 }}>{triLang(lang, {
-              ru: milestone.emojiRu,
-              uk: milestone.emojiUk,
-              es: milestone.emojiRu,
-            })}</Text>
+  ru: milestone.emojiRu,
+  uk: milestone.emojiUk,
+  es: milestone.emojiRu,
+  "pt-BR": milestone.emojiRu,
+  vi: milestone.emojiRu,
+  id: milestone.emojiRu,
+  tr: milestone.emojiRu,
+  pl: milestone.emojiRu,
+})}</Text>
             <View style={{ flex: 1 }}>
               <Text style={{ color: isDone || isCurrent ? t.accent : t.textMuted, fontSize: f.body, fontWeight: '700' }}>
                 {triLang(lang, {
-                  ru: milestone.titleRu,
-                  uk: milestone.titleUk,
-                  es: milestone.titleEs,
-                })}
+  ru: milestone.titleRu,
+  uk: milestone.titleUk,
+  es: milestone.titleEs,
+  "pt-BR": MILESTONE_PLANNED_COPY[milestone.level]?.title['pt-BR'] ?? '',
+  vi: MILESTONE_PLANNED_COPY[milestone.level]?.title.vi ?? '',
+  id: MILESTONE_PLANNED_COPY[milestone.level]?.title.id ?? '',
+  tr: MILESTONE_PLANNED_COPY[milestone.level]?.title.tr ?? '',
+  pl: MILESTONE_PLANNED_COPY[milestone.level]?.title.pl ?? '',
+})}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 1 }}>
                 {isDone || isCurrent
                   ? triLang(lang, {
-                    ru: milestone.doneDescRu ?? milestone.descRu,
-                    uk: milestone.doneDescUk ?? milestone.descUk,
-                    es: milestone.doneDescEs ?? milestone.descEs,
-                  })
+  ru: milestone.doneDescRu ?? milestone.descRu,
+  uk: milestone.doneDescUk ?? milestone.descUk,
+  es: milestone.doneDescEs ?? milestone.descEs,
+  "pt-BR": MILESTONE_PLANNED_COPY[milestone.level]?.doneDesc['pt-BR'] ?? '',
+  vi: MILESTONE_PLANNED_COPY[milestone.level]?.doneDesc.vi ?? '',
+  id: MILESTONE_PLANNED_COPY[milestone.level]?.doneDesc.id ?? '',
+  tr: MILESTONE_PLANNED_COPY[milestone.level]?.doneDesc.tr ?? '',
+  pl: MILESTONE_PLANNED_COPY[milestone.level]?.doneDesc.pl ?? '',
+})
                   : triLang(lang, {
-                    ru: milestone.descRu,
-                    uk: milestone.descUk,
-                    es: milestone.descEs,
-                  })}
+  ru: milestone.descRu,
+  uk: milestone.descUk,
+  es: milestone.descEs,
+  "pt-BR": MILESTONE_PLANNED_COPY[milestone.level]?.desc['pt-BR'] ?? '',
+  vi: MILESTONE_PLANNED_COPY[milestone.level]?.desc.vi ?? '',
+  id: MILESTONE_PLANNED_COPY[milestone.level]?.desc.id ?? '',
+  tr: MILESTONE_PLANNED_COPY[milestone.level]?.desc.tr ?? '',
+  pl: MILESTONE_PLANNED_COPY[milestone.level]?.desc.pl ?? '',
+})}
               </Text>
             </View>
             {(isDone || isCurrent) && <Ionicons name="checkmark-circle" size={20} color={t.accent} />}
@@ -644,19 +825,29 @@ export default function ProgressMapScreen() {
             </TouchableOpacity>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>
               {triLang(lang, {
-                ru: 'Карта прогресса',
-                uk: 'Карта прогресу',
-                es: 'Mapa de progreso',
-              })}
+  ru: 'Карта прогресса',
+  uk: 'Карта прогресу',
+  es: 'Mapa de progreso',
+  "pt-BR": 'Mapa de progresso',
+  vi: 'Bản đồ tiến độ',
+  id: 'Peta progres',
+  tr: 'İlerleme haritası',
+  pl: 'Mapa postępów',
+})}
             </Text>
             <View style={{ alignItems: 'flex-end' }}>
               <Text style={{ color: isDark ? t.gold : t.textPrimary, fontSize: f.label, fontWeight: '700' }}>{Math.round(totalXP)} XP</Text>
               <Text style={{ color: t.textMuted, fontSize: 10 }}>
                 {triLang(lang, {
-                  ru: `Уровень ${userLevel}`,
-                  uk: `Рівень ${userLevel}`,
-                  es: `Nivel ${userLevel}`,
-                })}
+  ru: `Уровень ${userLevel}`,
+  uk: `Рівень ${userLevel}`,
+  es: `Nivel ${userLevel}`,
+  "pt-BR": `Nível ${userLevel}`,
+  vi: `Cấp ${userLevel}`,
+  id: `Level ${userLevel}`,
+  tr: `Seviye ${userLevel}`,
+  pl: `Poziom ${userLevel}`,
+})}
               </Text>
             </View>
           </View>
@@ -673,7 +864,16 @@ export default function ProgressMapScreen() {
               <View style={{ backgroundColor: t.bgCard, borderRadius: 16, padding: 14, marginBottom: 12, borderWidth: 0.5, borderColor: t.border }}>
                 <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', marginBottom: 10 }}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Активные подарки', uk: 'Активні подарунки', es: 'Regalos activos' })}
+                    {triLang(lang, {
+  ru: 'Активные подарки',
+  uk: 'Активні подарунки',
+  es: 'Regalos activos',
+  "pt-BR": 'Presentes ativos',
+  vi: 'Quà đang hoạt động',
+  id: 'Hadiah aktif',
+  tr: 'Aktif hediyeler',
+  pl: 'Aktywne prezenty',
+})}
                   </Text>
                   <View style={{ borderRadius: 999, paddingHorizontal: 8, paddingVertical: 2, backgroundColor: t.accentBg }}>
                     <Text style={{ color: t.accent, fontSize: 11, fontWeight: '800' }}>{activeGifts.length}</Text>
@@ -731,10 +931,15 @@ export default function ProgressMapScreen() {
                   screen="progress_map"
                   dataId="progress_map_levels"
                   dataText={triLang(lang, {
-                    ru: 'Карта прогресса',
-                    uk: 'Карта прогресу',
-                    es: 'Mapa de progreso',
-                  })}
+  ru: 'Карта прогресса',
+  uk: 'Карта прогресу',
+  es: 'Mapa de progreso',
+  "pt-BR": 'Mapa de progresso',
+  vi: 'Bản đồ tiến độ',
+  id: 'Peta progres',
+  tr: 'İlerleme haritası',
+  pl: 'Mapa postępów',
+})}
                 />
               </View>
             )}

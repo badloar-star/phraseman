@@ -2,6 +2,7 @@
 // Тёмная: Deep Forest Green (Duolingo-style) | Светлая: Warm Sage (Duolingo-style)
 
 import { Platform } from 'react-native';
+import { GOLD_GRADIENTS, GOLD_RICH } from './goldTheme';
 
 export const DARK = {
   // Фоны — глубокий контраст фон vs карточка
@@ -99,30 +100,67 @@ export const NEON = {
 };
 
 export const GOLD = {
-  // Coral / Finance Dark — тёмный navy + коралловый акцент (Finance App style)
-  bgPrimary:   '#14142A',   // очень тёмный navy-фиолетовый
-  bgCard:      '#1E1E3C',   // карточки чуть светлее
+  // Black Gold — deep black surfaces, champagne metal accents, thin premium rims.
+  bgPrimary:   GOLD_RICH.blackVoid,
+  bgCard:      GOLD_RICH.blackPiano,
+  bgSurface:   GOLD_RICH.graphite,
+  bgSurface2:  GOLD_RICH.graphiteRaised,
+  textPrimary: GOLD_RICH.ivory,
+  textOnCard:  GOLD_RICH.ivory,
+  textSecond:  GOLD_RICH.paleGold,
+  textMuted:   GOLD_RICH.taupe,
+  textGhost:   GOLD_RICH.taupeDeep,
+  heroTextPrimary: GOLD_RICH.ivory,
+  heroTextMuted:   GOLD_RICH.taupe,
+  border:      GOLD_RICH.hairline,
+  borderLight: '#24201A',
+  correct:     GOLD_RICH.metalGold,
+  correctBg:   GOLD_RICH.washStrong,
+  wrong:       '#B65A4A',
+  wrongBg:     'rgba(182,90,74,0.13)',
+  gold:        GOLD_RICH.metalGold,
+  goldBg:      GOLD_RICH.washStrong,
+  textOnGold:  '#0A0702',
+  accent:      GOLD_RICH.antiqueGold,
+  accentBg:    GOLD_RICH.bronzeWash,
+  correctText: '#0A0702',
+  shadowDark:       '#000000',
+  shadowLight:      'rgba(214,179,90,0.18)',
+  borderHighlight:  GOLD_RICH.hairlineStrong,
+  isGlowEnabled:    false,
+  isGlossEnabled:   false,
+  btnShadow:   GOLD_RICH.bronzeDark,
+  cardShadow:  'rgba(0,0,0,0.78)',
+  glow:        GOLD_RICH.bronzeWash,
+  cardGradient: [GOLD_GRADIENTS.premiumPanel[0], GOLD_GRADIENTS.premiumPanel[2]] as [string, string],
+  bgGradient: [GOLD_GRADIENTS.appBackground[0], GOLD_GRADIENTS.appBackground[2]] as [string, string],
+};
+
+export const CORAL = {
+  // Coral / Finance Dark: dark navy shell with coral accent.
+  bgPrimary:   '#14142A',
+  bgCard:      '#1E1E3C',
   bgSurface:   '#25254A',
   bgSurface2:  '#2E2E58',
   textPrimary: '#FFFFFF',
   textOnCard:  '#FFFFFF',
-  textSecond:  '#FF6464',   // коралловый
+  textSecond:  '#FF6464',
   textMuted:   '#9898B8',
   textGhost:   '#5A5A7A',
   heroTextPrimary: '#FFFFFF',
-  heroTextMuted:   '#9898B8',
+  heroTextMuted:   '#C9C9DD',
   border:      'rgba(255,100,100,0.15)',
   borderLight: '#1E1E3C',
-  correct:     '#4A90FF',   // синий — правильные ответы
+  correct:     '#4A90FF',
   correctBg:   'rgba(74,144,255,0.14)',
-  wrong:       '#FF6464',   // коралловый — ошибки
+  wrong:       '#FF6464',
   wrongBg:     'rgba(255,100,100,0.14)',
   gold:        '#FFD060',
   goldBg:      'rgba(255,208,96,0.14)',
   textOnGold:  '#1A1208',
   accent:      '#FF6464',
   accentBg:    'rgba(255,100,100,0.12)',
-  correctText: '#FFFFFF',   // на синем/коралловом акценте — светлый текст (не лайм)
+  correctText: '#FFFFFF',
   shadowDark:       '#050510',
   shadowLight:      'rgba(255,100,100,0.26)',
   borderHighlight:  'rgba(255,110,110,0.16)',
@@ -134,8 +172,6 @@ export const GOLD = {
   cardGradient: ['#25254A', '#08080E'] as [string, string],
   bgGradient: ['#22224A', '#0A0A18'] as [string, string],
 };
-
-
 
 // ─── LIGHT OCEAN ─────────────────────────────────────────────────────────────
 // Тёмная глубина + яркий циан; светлые карточки; как у «Сакуры» по структуре
@@ -305,7 +341,7 @@ export const MINIMAL_DARK = {
   bgGradient: ['#1A1A1A', '#121212'] as [string, string],
 };
 
-export type ThemeMode = 'dark' | 'neon' | 'gold' | 'minimalLight' | 'minimalDark';
+export type ThemeMode = 'dark' | 'neon' | 'gold' | 'coral' | 'minimalLight' | 'minimalDark';
 export type Theme = typeof DARK;
 
 export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
@@ -325,6 +361,7 @@ export function screenTextOnGradient(theme: Theme, _themeMode: ThemeMode): {
 // Убеждаемся, что все темы соответствуют одному типу (compile-time check)
 const _checkNEON:   Theme = NEON         as any;
 const _checkGOLD:   Theme = GOLD         as any;
+const _checkCORAL:  Theme = CORAL        as any;
 const _checkMINL:   Theme = MINIMAL_LIGHT as any;
 const _checkMIND:   Theme = MINIMAL_DARK  as any;
 
@@ -468,7 +505,7 @@ export const getNextLeague = (points: number) => {
 // Уровни 1-10=A1 | 11-20=A2 | 21-35=B1 | 36-50=B2
 // Формула: рост 30% на ур.1, снижается на 1% каждый уровень, минимум 5% (с ур.27)
 
-export const MAX_LEVEL = 50;
+export const MAX_LEVEL = 60;
 
 // Total XP to reach level L = 250 * (L-1)^1.82
 // Level 2 = 250 XP, Level 50 ≈ 300 000 XP
@@ -476,10 +513,35 @@ export const MAX_LEVEL = 50;
 const XP_BASE = 250;
 const XP_EXP = 1.82;
 const XP_EXP_INV = 1 / XP_EXP; // ≈ 0.5495
+const LEGENDARY_BASE_LEVEL = 50;
+const LEGENDARY_XP_STEP = 150000;
+
+const TOTAL_XP_FOR_STANDARD_LEVEL = (level: number): number => {
+  if (level <= 1) return 0;
+  return Math.round(XP_BASE * Math.pow(level - 1, XP_EXP));
+};
+
+const TOTAL_XP_FOR_LEGENDARY_LEVEL = (level: number): number => {
+  const legendaryLevels = Math.max(0, level - LEGENDARY_BASE_LEVEL);
+  return TOTAL_XP_FOR_STANDARD_LEVEL(LEGENDARY_BASE_LEVEL)
+    + Math.round((LEGENDARY_XP_STEP * legendaryLevels * (legendaryLevels + 1)) / 2);
+};
+
+const normalizeLevelForXP = (level: number, totalXP: number): number => {
+  let normalized = Math.max(1, Math.min(MAX_LEVEL, level));
+  while (normalized < MAX_LEVEL && totalXP >= TOTAL_XP_FOR_LEVEL(normalized + 1)) {
+    normalized += 1;
+  }
+  while (normalized > 1 && totalXP < TOTAL_XP_FOR_LEVEL(normalized)) {
+    normalized -= 1;
+  }
+  return normalized;
+};
 
 export const TOTAL_XP_FOR_LEVEL = (level: number): number => {
   if (level <= 1) return 0;
-  return Math.round(XP_BASE * Math.pow(level - 1, XP_EXP));
+  if (level <= LEGENDARY_BASE_LEVEL) return TOTAL_XP_FOR_STANDARD_LEVEL(level);
+  return TOTAL_XP_FOR_LEGENDARY_LEVEL(level);
 };
 
 export const LEVEL_XP = (level: number): number =>
@@ -487,7 +549,23 @@ export const LEVEL_XP = (level: number): number =>
 
 export const getLevelFromXP = (totalXP: number): number => {
   if (totalXP <= 0) return 1;
-  return Math.min(MAX_LEVEL, Math.floor(Math.pow(totalXP / XP_BASE, XP_EXP_INV)) + 1);
+  const firstLegendaryLevelXP = TOTAL_XP_FOR_LEGENDARY_LEVEL(LEGENDARY_BASE_LEVEL + 1);
+  if (totalXP < firstLegendaryLevelXP) {
+    const estimatedLevel = Math.min(
+      LEGENDARY_BASE_LEVEL,
+      Math.floor(Math.pow(totalXP / XP_BASE, XP_EXP_INV)) + 1,
+    );
+    return normalizeLevelForXP(estimatedLevel, totalXP);
+  }
+
+  const legendaryXP = totalXP - TOTAL_XP_FOR_STANDARD_LEVEL(LEGENDARY_BASE_LEVEL);
+  const legendaryLevels = Math.floor(
+    (Math.sqrt(1 + (8 * legendaryXP) / LEGENDARY_XP_STEP) - 1) / 2,
+  );
+  return normalizeLevelForXP(
+    LEGENDARY_BASE_LEVEL + Math.max(0, legendaryLevels),
+    totalXP,
+  );
 };
 
 export const getXPProgress = (totalXP: number) => {

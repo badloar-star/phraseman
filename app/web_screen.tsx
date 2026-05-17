@@ -16,7 +16,16 @@ export default function WebScreen() {
     return (
       <View style={[styles.center, { backgroundColor: t.bgPrimary }]}>
         <Text style={{ color: t.textPrimary }}>
-          {triLang(lang, { ru: 'Ссылка не указана', uk: 'Посилання не вказано', es: 'No hay URL' })}
+          {triLang(lang, {
+            ru: 'Ссылка не указана',
+            uk: 'Посилання не вказано',
+            es: 'No hay URL',
+            'pt-BR': 'URL não informado',
+            vi: 'Chưa có URL',
+            id: 'URL belum diisi',
+            tr: 'URL belirtilmedi',
+            pl: 'Nie podano URL',
+          })}
         </Text>
       </View>
     );
@@ -45,6 +54,11 @@ export default function WebScreen() {
               ru: 'Открыть в браузере',
               uk: 'Відкрити в браузері',
               es: 'Abrir en el navegador',
+              'pt-BR': 'Abrir no navegador',
+              vi: 'Mở trong trình duyệt',
+              id: 'Buka di browser',
+              tr: 'Tarayıcıda aç',
+              pl: 'Otwórz w przeglądarce',
             })}
           </Text>
         </TouchableOpacity>

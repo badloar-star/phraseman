@@ -13,7 +13,7 @@ jest.mock('../app/config', () => ({
   ...jest.requireActual<typeof import('../app/config')>('../app/config'),
   IS_EXPO_GO: true,
   CLOUD_SYNC_ENABLED: false,
-  ENABLE_SPANISH_LOCALE: true,
+  SPANISH_UI_LOCALE_ENABLED: true,
 }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 

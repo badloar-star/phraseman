@@ -41,6 +41,136 @@ const GENERAL_APP_SCREEN_IDS = new Set([
   'premium_modal',
 ]);
 
+type PlannedReportLabel = {
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+};
+
+const CATEGORY_LABEL_PLANNED: Record<string, PlannedReportLabel> = {
+  'Неверный правильный ответ': {
+    'pt-BR': 'A resposta marcada como correta está errada',
+    vi: 'Đáp án được đánh dấu là đúng bị sai',
+    id: 'Jawaban yang ditandai benar ternyata salah',
+    tr: 'Doğru işaretlenen cevap hatalı',
+    pl: 'Odpowiedź oznaczona jako poprawna jest błędna',
+  },
+  'Опечатка / ошибка в тексте': {
+    'pt-BR': 'Erro de digitação ou no texto',
+    vi: 'Lỗi chính tả hoặc lỗi trong văn bản',
+    id: 'Salah ketik atau kesalahan teks',
+    tr: 'Yazım hatası veya metin hatası',
+    pl: 'Literówka lub błąd w tekście',
+  },
+  'Неточный перевод': {
+    'pt-BR': 'Tradução imprecisa',
+    vi: 'Bản dịch chưa chính xác',
+    id: 'Terjemahan kurang akurat',
+    tr: 'Çeviri hatalı veya eksik',
+    pl: 'Niedokładne tłumaczenie',
+  },
+  'Неверная подсказка к уроку': {
+    'pt-BR': 'Dica incorreta na lição',
+    vi: 'Gợi ý trong bài học bị sai',
+    id: 'Petunjuk di pelajaran keliru',
+    tr: 'Dersteki ipucu yanlış',
+    pl: 'Błędna podpowiedź w lekcji',
+  },
+  'Баг интерфейса': {
+    'pt-BR': 'Falha na interface',
+    vi: 'Lỗi giao diện',
+    id: 'Bug antarmuka',
+    tr: 'Arayüz hatası',
+    pl: 'Błąd interfejsu',
+  },
+  'Другое': {
+    'pt-BR': 'Outro',
+    vi: 'Khác',
+    id: 'Lainnya',
+    tr: 'Diğer',
+    pl: 'Inne',
+  },
+  'Все варианты неправильные': {
+    'pt-BR': 'Todas as opções estão erradas',
+    vi: 'Tất cả lựa chọn đều sai',
+    id: 'Semua pilihan salah',
+    tr: 'Tüm seçenekler yanlış',
+    pl: 'Wszystkie odpowiedzi są błędne',
+  },
+  'Сбивает подсказка / формулировка': {
+    'pt-BR': 'A dica ou o enunciado confunde',
+    vi: 'Gợi ý hoặc cách diễn đạt gây nhầm lẫn',
+    id: 'Petunjuk atau kalimatnya membingungkan',
+    tr: 'İpucu veya ifade kafa karıştırıyor',
+    pl: 'Podpowiedź lub sformułowanie myli',
+  },
+  'Неверная форма глагола': {
+    'pt-BR': 'Forma verbal incorreta',
+    vi: 'Dạng động từ bị sai',
+    id: 'Bentuk kata kerja salah',
+    tr: 'Fiil biçimi yanlış',
+    pl: 'Nieprawidłowa forma czasownika',
+  },
+  'Ошибка в объяснении': {
+    'pt-BR': 'Erro na explicação',
+    vi: 'Lỗi trong phần giải thích',
+    id: 'Kesalahan dalam penjelasan',
+    tr: 'Açıklamada hata',
+    pl: 'Błąd w wyjaśnieniu',
+  },
+  'Опечатка в тексте': {
+    'pt-BR': 'Erro de digitação no texto',
+    vi: 'Lỗi chính tả trong văn bản',
+    id: 'Salah ketik dalam teks',
+    tr: 'Metinde yazım hatası',
+    pl: 'Literówka w tekście',
+  },
+  'Неточный пример': {
+    'pt-BR': 'Exemplo impreciso',
+    vi: 'Ví dụ chưa chính xác',
+    id: 'Contoh kurang akurat',
+    tr: 'Örnek hatalı veya eksik',
+    pl: 'Niedokładny przykład',
+  },
+  'Криво отображается интерфейс': {
+    'pt-BR': 'A interface aparece quebrada ou cobre conteúdo',
+    vi: 'Giao diện hiển thị sai hoặc che nội dung',
+    id: 'Antarmuka tampil rusak atau menutupi konten',
+    tr: 'Arayüz bozuk görünüyor veya içeriği kapatıyor',
+    pl: 'Interfejs wyświetla się źle lub zasłania treść',
+  },
+  'Не срабатывает кнопка или переход': {
+    'pt-BR': 'Um botão ou uma tela não responde',
+    vi: 'Nút hoặc màn hình không phản hồi',
+    id: 'Tombol atau perpindahan layar tidak merespons',
+    tr: 'Bir düğme veya geçiş çalışmıyor',
+    pl: 'Przycisk lub przejście nie działa',
+  },
+  'Прогресс, опыт или награды': {
+    'pt-BR': 'Progresso, XP ou recompensas',
+    vi: 'Tiến độ, XP hoặc phần thưởng',
+    id: 'Progres, XP, atau hadiah',
+    tr: 'İlerleme, XP veya ödüller',
+    pl: 'Postęp, XP lub nagrody',
+  },
+  'Подписка, покупка или осколки': {
+    'pt-BR': 'Assinatura, compra ou fragmentos',
+    vi: 'Gói đăng ký, giao dịch mua hoặc mảnh',
+    id: 'Langganan, pembelian, atau pecahan',
+    tr: 'Abonelik, satın alma veya parçalar',
+    pl: 'Subskrypcja, zakup lub odłamki',
+  },
+  'Неверный текст или картинка на экране': {
+    'pt-BR': 'Texto ou imagem incorretos na tela',
+    vi: 'Văn bản hoặc hình ảnh trên màn hình bị sai',
+    id: 'Teks atau gambar di layar salah',
+    tr: 'Ekrandaki metin veya görsel yanlış',
+    pl: 'Nieprawidłowy tekst lub obraz na ekranie',
+  },
+};
+
 interface Props {
   screen: string;
   /** машинно-читаемый ключ для поиска в коде: "lesson_5_phrase_42", "irregular_verb_go" */
@@ -180,9 +310,19 @@ export default function ReportErrorButton({
     const labelRU = parts[0] ?? '';
     const labelUK = parts[1] ?? labelRU;
     const labelES = parts[2] ?? labelRU;
+    const planned = CATEGORY_LABEL_PLANNED[labelRU] ?? CATEGORY_LABEL_PLANNED['Другое'];
     return {
       ...cat,
-      label: triLang(lang, { ru: labelRU, uk: labelUK, es: labelES }),
+      label: triLang(lang, {
+        ru: labelRU,
+        uk: labelUK,
+        es: labelES,
+        'pt-BR': planned['pt-BR'],
+        vi: planned.vi,
+        id: planned.id,
+        tr: planned.tr,
+        pl: planned.pl,
+      }),
     };
   });
   const [visible, setVisible] = useState(false);
@@ -254,6 +394,11 @@ export default function ReportErrorButton({
     ru: 'Сообщить об ошибке в тексте карточки',
     uk: 'Повідомити про помилку в тексті картки',
     es: 'Informar de un error en el texto de la tarjeta',
+    'pt-BR': 'Informar um erro no texto do cartão',
+    vi: 'Báo lỗi trong văn bản của thẻ',
+    id: 'Laporkan kesalahan pada teks kartu',
+    tr: 'Kart metnindeki hatayı bildir',
+    pl: 'Zgłoś błąd w tekście karty',
   });
 
   return (
@@ -277,6 +422,11 @@ export default function ReportErrorButton({
               ru: 'Сообщить о баге',
               uk: 'Повідомити про баг',
               es: 'Informar de un fallo',
+              'pt-BR': 'Reportar erro',
+              vi: 'Báo lỗi',
+              id: 'Laporkan bug',
+              tr: 'Hata bildir',
+              pl: 'Zgłoś błąd',
             })}
           </Text>
         )}
@@ -306,6 +456,11 @@ export default function ReportErrorButton({
                     ru: 'Подождите минуту',
                     uk: 'Зачекайте хвилину',
                     es: 'Espera un minuto',
+                    'pt-BR': 'Espere um minuto',
+                    vi: 'Vui lòng chờ một phút',
+                    id: 'Tunggu sebentar',
+                    tr: 'Bir dakika bekle',
+                    pl: 'Poczekaj chwilę',
                   })}
                 </Text>
                 <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
@@ -313,26 +468,36 @@ export default function ReportErrorButton({
                     ru: 'Вы уже отправили репорт меньше минуты назад. Попробуйте через минуту.',
                     uk: 'Ви вже надіслали репорт менше хвилини тому. Спробуйте за хвилину.',
                     es: 'Enviaste un informe hace menos de un minuto. Espera un momento antes de volver a intentarlo.',
+                    'pt-BR': 'Você enviou um relatório há menos de um minuto. Tente novamente daqui a pouco.',
+                    vi: 'Bạn vừa gửi báo cáo chưa đầy một phút trước. Hãy thử lại sau một lát.',
+                    id: 'Kamu sudah mengirim laporan kurang dari satu menit lalu. Coba lagi sebentar lagi.',
+                    tr: 'Bir dakikadan kısa süre önce bildirim gönderdin. Birazdan tekrar dene.',
+                    pl: 'Wysłano już zgłoszenie mniej niż minutę temu. Spróbuj ponownie za chwilę.',
                   })}
                 </Text>
                 <TouchableOpacity
                   onPress={() => setVisible(false)}
                   style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
                 >
-                  <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>{triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}</Text>
+                  <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>{triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido', 'pt-BR': 'Entendi', vi: 'Đã hiểu', id: 'Mengerti', tr: 'Anladım', pl: 'Rozumiem' })}</Text>
                 </TouchableOpacity>
               </View>
             ) : sent ? (
               <View style={styles.successBox}>
                 <Text style={styles.successEmoji}>🎉</Text>
                 <Text style={[styles.successTitle, { color: t.textPrimary, fontSize: f.h3 }]}>
-                  {triLang(lang, { ru: 'Сообщение принято!', uk: 'Повідомлення прийнято!', es: '¡Mensaje recibido!' })}
+                  {triLang(lang, { ru: 'Сообщение принято!', uk: 'Повідомлення прийнято!', es: '¡Mensaje recibido!', 'pt-BR': 'Mensagem recebida!', vi: 'Đã nhận báo cáo!', id: 'Laporan diterima!', tr: 'Bildirim alındı!', pl: 'Zgłoszenie przyjęte!' })}
                 </Text>
                 <Text style={{ color: t.textSecond, fontSize: f.body, textAlign: 'center' }}>
                   {triLang(lang, {
                     ru: 'Если баг подтвердится — получишь 💎 Осколок.',
                     uk: 'Якщо баг підтвердиться — отримаєш 💎 Осколок.',
                     es: 'Si confirmamos el fallo, recibirás un fragmento de conocimiento (💎).',
+                    'pt-BR': 'Se confirmarmos o erro, você receberá um fragmento de conhecimento (💎).',
+                    vi: 'Nếu lỗi được xác nhận, bạn sẽ nhận một mảnh kiến thức (💎).',
+                    id: 'Jika bug terkonfirmasi, kamu akan menerima satu pecahan pengetahuan (💎).',
+                    tr: 'Hata doğrulanırsa bir bilgi parçası (💎) alacaksın.',
+                    pl: 'Jeśli błąd się potwierdzi, otrzymasz odłamek wiedzy (💎).',
                   })}
                 </Text>
                 <XpGainBadge amount={10} visible={sent} />
@@ -341,7 +506,7 @@ export default function ReportErrorButton({
                   style={[styles.btnSend, { backgroundColor: t.accent, marginTop: 8, alignSelf: 'stretch' }]}
                 >
                   <Text style={{ color: t.correctText, fontWeight: '700', fontSize: f.body }}>
-                    {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+                    {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo', 'pt-BR': 'Pronto', vi: 'Xong', id: 'Selesai', tr: 'Tamam', pl: 'Gotowe' })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -352,6 +517,11 @@ export default function ReportErrorButton({
                     ru: 'Сообщить о проблеме',
                     uk: 'Повідомити про проблему',
                     es: 'Informar de un problema',
+                    'pt-BR': 'Reportar um problema',
+                    vi: 'Báo cáo sự cố',
+                    id: 'Laporkan masalah',
+                    tr: 'Sorun bildir',
+                    pl: 'Zgłoś problem',
                   })}
                 </Text>
                 <Text style={[styles.sub, { color: t.textSecond, fontSize: f.sub }]}>
@@ -359,6 +529,11 @@ export default function ReportErrorButton({
                     ru: 'Выберите тип проблемы — мы исправим как можно скорее',
                     uk: 'Оберіть тип проблеми — ми виправимо якомога швидше',
                     es: 'Elige el tipo de problema y lo revisaremos cuanto antes.',
+                    'pt-BR': 'Escolha o tipo de problema e vamos revisar o quanto antes.',
+                    vi: 'Chọn loại sự cố, chúng tôi sẽ kiểm tra sớm nhất có thể.',
+                    id: 'Pilih jenis masalah, kami akan meninjaunya secepat mungkin.',
+                    tr: 'Sorun türünü seç, en kısa sürede kontrol edelim.',
+                    pl: 'Wybierz typ problemu, a sprawdzimy go jak najszybciej.',
                   })}
                 </Text>
 
@@ -394,7 +569,7 @@ export default function ReportErrorButton({
                       commentRequiredError && !commentOk ? `${t.wrong}14` : t.bgSurface,
                     fontSize: f.body,
                   }]}
-                  placeholder={triLang(lang, { ru: 'Комментарий', uk: 'Коментар', es: 'Comentario' })}
+                  placeholder={triLang(lang, { ru: 'Комментарий', uk: 'Коментар', es: 'Comentario', 'pt-BR': 'Comentário', vi: 'Bình luận', id: 'Komentar', tr: 'Yorum', pl: 'Komentarz' })}
                   placeholderTextColor={t.textSecond}
                   value={comment}
                   onChangeText={(text) => {
@@ -410,7 +585,7 @@ export default function ReportErrorButton({
                 <View style={styles.row}>
                   <TouchableOpacity onPress={() => setVisible(false)} style={styles.btnCancel}>
                     <Text style={{ color: t.textSecond, fontSize: f.body }}>
-                      {triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
+                      {triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -419,7 +594,7 @@ export default function ReportErrorButton({
                     style={[styles.btnSend, { backgroundColor: selected ? t.accent : t.border }]}
                   >
                     <Text style={{ color: selected ? t.correctText : t.textPrimary, fontWeight: '700', fontSize: f.body }}>
-                      {triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar' })}
+                      {triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar', 'pt-BR': 'Enviar', vi: 'Gửi', id: 'Kirim', tr: 'Gönder', pl: 'Wyślij' })}
                     </Text>
                   </TouchableOpacity>
                 </View>

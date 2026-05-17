@@ -29,6 +29,11 @@ function headline(lang: Lang): string {
     ru: 'Сокровище зачислено',
     uk: 'Скарб зараховано',
     es: 'Tesoro acreditado',
+    'pt-BR': 'Tesouro creditado',
+    vi: 'Kho báu đã được cộng',
+    id: 'Harta telah ditambahkan',
+    tr: 'Hazine eklendi',
+    pl: 'Skarb dodany',
   });
 }
 
@@ -37,6 +42,11 @@ function tapHint(lang: Lang): string {
     ru: 'Коснись экрана, чтобы продолжить',
     uk: 'Торкнись екрана, щоб продовжити',
     es: 'Toca en cualquier sitio para seguir',
+    'pt-BR': 'Toque na tela para continuar',
+    vi: 'Chạm vào màn hình để tiếp tục',
+    id: 'Ketuk layar untuk melanjutkan',
+    tr: 'Devam etmek için ekrana dokun',
+    pl: 'Dotknij ekranu, aby kontynuować',
   });
 }
 
@@ -210,6 +220,11 @@ export default function ShardsEarnedModal({ visible, amount, reason, onClose }: 
                     ru: 'За что',
                     uk: 'За що',
                     es: 'Motivo',
+                    'pt-BR': 'Motivo',
+                    vi: 'Lý do',
+                    id: 'Alasan',
+                    tr: 'Neden',
+                    pl: 'Powód',
                   })}</Text>
                   <Text style={[styles.reasonText, { color: t.textPrimary, fontSize: f.body }]}>
                     {reason}

@@ -118,6 +118,11 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
               ru: 'Активировал',
               uk: 'Активував',
               es: 'Activado por',
+              'pt-BR': 'Ativado por',
+              vi: 'Được kích hoạt bởi',
+              id: 'Diaktifkan oleh',
+              tr: 'Etkinleştiren',
+              pl: 'Aktywował',
             })}
             : {primaryBoost.activatedBy}
             {activeBoosts.length > 1 && (
@@ -126,6 +131,11 @@ export default function ActiveBoostBar({ containerStyle }: ActiveBoostBarProps) 
                   ru: ` (еще ${activeBoosts.length - 1})`,
                   uk: ` (ще ${activeBoosts.length - 1})`,
                   es: ` (+${activeBoosts.length - 1})`,
+                  'pt-BR': ` (+${activeBoosts.length - 1})`,
+                  vi: ` (+${activeBoosts.length - 1})`,
+                  id: ` (+${activeBoosts.length - 1})`,
+                  tr: ` (+${activeBoosts.length - 1})`,
+                  pl: ` (+${activeBoosts.length - 1})`,
                 })}
               </Text>
             )}

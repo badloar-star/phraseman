@@ -40,17 +40,77 @@ export default function StatsPremiumBlur({
 
   const isLight = false;
 
-  const titleByContext: Record<StatsPremiumBlurContext, { ru: string; uk: string; es: string }> = {
-    stats:       { ru: 'Разбор твоего прогресса',   uk: 'Розбір твого прогресу',    es: 'Análisis de tu progreso' },
-    heatmap:     { ru: 'Годовой пульс обучения',     uk: 'Річний пульс навчання',    es: 'Pulso anual de aprendizaje' },
-    patterns:    { ru: 'Карта твоих слабых мест',    uk: 'Карта твоїх слабких місць', es: 'Mapa de tus puntos débiles' },
-    percentiles: { ru: 'Где ты среди всех игроков',  uk: 'Де ти серед усіх гравців', es: 'Tu posición entre todos' },
+  const titleByContext: Record<StatsPremiumBlurContext, {
+    ru: string;
+    uk: string;
+    es: string;
+    'pt-BR': string;
+    vi: string;
+    id: string;
+    tr: string;
+    pl: string;
+  }> = {
+    stats: {
+      ru: 'Разбор твоего прогресса',
+      uk: 'Розбір твого прогресу',
+      es: 'Análisis de tu progreso',
+      'pt-BR': 'Análise do seu progresso',
+      vi: 'Phân tích tiến độ của bạn',
+      id: 'Analisis progresmu',
+      tr: 'İlerlemenin analizi',
+      pl: 'Analiza twoich postępów',
+    },
+    heatmap: {
+      ru: 'Годовой пульс обучения',
+      uk: 'Річний пульс навчання',
+      es: 'Pulso anual de aprendizaje',
+      'pt-BR': 'Pulso anual de estudo',
+      vi: 'Nhịp học trong năm',
+      id: 'Denyut belajar tahunan',
+      tr: 'Yıllık öğrenme ritmi',
+      pl: 'Roczny rytm nauki',
+    },
+    patterns: {
+      ru: 'Карта твоих слабых мест',
+      uk: 'Карта твоїх слабких місць',
+      es: 'Mapa de tus puntos débiles',
+      'pt-BR': 'Mapa dos seus pontos fracos',
+      vi: 'Bản đồ điểm yếu của bạn',
+      id: 'Peta titik lemahmu',
+      tr: 'Zayıf noktalarının haritası',
+      pl: 'Mapa twoich słabych punktów',
+    },
+    percentiles: {
+      ru: 'Где ты среди всех игроков',
+      uk: 'Де ти серед усіх гравців',
+      es: 'Tu posición entre todos',
+      'pt-BR': 'Sua posição entre todos',
+      vi: 'Vị trí của bạn giữa mọi người',
+      id: 'Posisimu di antara semua pemain',
+      tr: 'Tüm oyuncular arasındaki yerin',
+      pl: 'Twoje miejsce wśród wszystkich graczy',
+    },
   };
-  const title = overrideTitle ?? triLang(lang, titleByContext[context]);
+  const titleCopy = titleByContext[context];
+  const title = overrideTitle ?? triLang(lang, {
+    ru: titleCopy.ru,
+    uk: titleCopy.uk,
+    es: titleCopy.es,
+    'pt-BR': titleCopy['pt-BR'],
+    vi: titleCopy.vi,
+    id: titleCopy.id,
+    tr: titleCopy.tr,
+    pl: titleCopy.pl,
+  });
   const ctaLabel = triLang(lang, {
     ru: 'Открыть с Premium',
     uk: 'Відкрити з Premium',
     es: 'Abrir con Premium',
+    'pt-BR': 'Abrir com Premium',
+    vi: 'Mở bằng Premium',
+    id: 'Buka dengan Premium',
+    tr: 'Premium ile aç',
+    pl: 'Otwórz z Premium',
   });
 
   const overlayContent = (

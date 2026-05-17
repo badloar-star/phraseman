@@ -188,6 +188,11 @@ export interface PrepositionDrillItem {
   explainUK: string;
   /** Пояснение после ответа для локали es; до заполнения — fallback на explainRU в UI */
   explainES?: string;
+  explainPtBr?: string;
+  explainVi?: string;
+  explainId?: string;
+  explainTr?: string;
+  explainPl?: string;
 }
 
 export interface LessonPrepositionPack {

@@ -101,9 +101,6 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
             throw new https_1.HttpsError('permission-denied', 'Sender does not match auth user');
         }
         const eventData = eventSnap.data() ?? {};
-        if (String(eventData.uid ?? targetStableId) !== targetStableId) {
-            throw new https_1.HttpsError('failed-precondition', 'Activity event owner mismatch');
-        }
         const eventLikeCount = parseCount(eventData.activityLikeCount) + 1;
         const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
         const senderProgress = (senderData.progress && typeof senderData.progress === 'object')
@@ -114,6 +111,7 @@ exports.friendLikeActivity = (0, https_1.onCall)({ region: REGION, enforceAppChe
             cleanDisplayName(senderProgress.user_name) ||
             'Friend';
         tx.set(eventRef, {
+            uid: targetStableId,
             activityLikeCount: eventLikeCount,
             activityLikedAt: now,
             lastActivityLikeFromUid: senderStableId,

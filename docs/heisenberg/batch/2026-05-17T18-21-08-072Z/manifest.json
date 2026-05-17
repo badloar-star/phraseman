@@ -1,0 +1,67 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "batch",
+  "runId": "2026-05-17T18-21-08-072Z",
+  "generatedAt": "2026-05-17T18:21:26.934Z",
+  "locales": [
+    "es",
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "auditOnly": true,
+  "outputDir": "docs/heisenberg/batch/2026-05-17T18-21-08-072Z",
+  "runs": [
+    {
+      "locale": "es",
+      "status": 1,
+      "ok": false,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang es --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=es\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1666\n[heisenberg] localized items (all): 96762\n[heisenberg] localized items (blocks): 2464\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/es/2026-05-17T18-21-08-248Z\n[heisenberg] warning: es already maps to an existing app locale.\n[heisenberg] existing-locale mode: existing-locale-production-audit\n[heisenberg] existing-locale blockers: 3\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pt-BR",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang pt-BR --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pt-BR\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1666\n[heisenberg] localized items (all): 96762\n[heisenberg] localized items (blocks): 58706\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pt-br/2026-05-17T18-21-11-543Z\n[heisenberg] integration blockers: 1\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "vi",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang vi --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=vi\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1666\n[heisenberg] localized items (all): 96762\n[heisenberg] localized items (blocks): 58706\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/vi/2026-05-17T18-21-14-786Z\n[heisenberg] integration blockers: 1\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "id",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang id --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=id\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1666\n[heisenberg] localized items (all): 96762\n[heisenberg] localized items (blocks): 58706\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/id/2026-05-17T18-21-17-838Z\n[heisenberg] integration blockers: 1\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "tr",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang tr --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=tr\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1666\n[heisenberg] localized items (all): 96762\n[heisenberg] localized items (blocks): 58706\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/tr/2026-05-17T18-21-20-834Z\n[heisenberg] integration blockers: 1\n",
+      "stderrTail": ""
+    },
+    {
+      "locale": "pl",
+      "status": 0,
+      "ok": true,
+      "command": "C:\\Program Files\\nodejs\\node.exe C:\\appsprojects\\phraseman\\scripts\\heisenberg_pipeline.cjs --lang pl --out-root docs\\heisenberg --block-size 40 --audit-only --coverage-strict --existing-locale-strict",
+      "stdoutTail": "[heisenberg] target=pl\n[heisenberg] scanning repository...\n[heisenberg] files scanned: 1666\n[heisenberg] localized items (all): 96762\n[heisenberg] localized items (blocks): 58706\n[heisenberg] translation blocks: 0\n[heisenberg] batch locale coverage partial units: 0\n[heisenberg] batch locale coverage missing-all units: 0\n[heisenberg] output: docs/heisenberg/pl/2026-05-17T18-21-23-738Z\n[heisenberg] integration blockers: 1\n",
+      "stderrTail": ""
+    }
+  ],
+  "checks": []
+}

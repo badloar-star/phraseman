@@ -18,7 +18,9 @@ import { useEnergy } from '../components/EnergyContext';
 import { useTheme } from '../components/ThemeContext';
 import { triLang } from '../constants/i18n';
 import { configureAccordionLayout } from '../constants/layoutAnimation';
-import { unlockAllFrames } from '../constants/avatars';
+import { AVATARS, unlockAllFrames } from '../constants/avatars';
+import AvatarView from '../components/AvatarView';
+import AvatarAura from '../components/AvatarAura';
 import AccordionChevronIonicons from '../components/AccordionChevronIonicons';
 import { hapticTap as doHaptic } from '../hooks/use-haptics';
 import { unlockAllAchievements, ALL_ACHIEVEMENTS, devSeedAchievementsSmoke } from './achievements';
@@ -66,11 +68,14 @@ import ArenaLimitModal from '../components/ArenaLimitModal';
 import QuizTimeoutModal from '../components/QuizTimeoutModal';
 import UserWarningModal from '../components/UserWarningModal';
 import ReportUserModal from '../components/ReportUserModal';
+import PlayerProfileModal, { type PlayerInfo } from '../components/PlayerProfileModal';
 import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import CertificatePreviewAdminModal from '../components/CertificatePreviewAdminModal';
+import LeagueChestOpenModal from '../components/LeagueChestOpenModal';
+import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import MedalToast from '../components/MedalToast';
 import type { MedalTier } from './medal_utils';
 import { DEV_MODE, STORE_URL } from './config';
@@ -101,8 +106,17 @@ import { checkCoachToastNeededWithAnalytics, type CoachToastDecision } from './c
 import CoachToast from '../components/CoachToast';
 import { injectMockLeaderboardStats, clearMockLeaderboardStats } from './leaderboard_stats';
 import ThroneRewardModal from '../components/ThroneRewardModal';
+import { AVATAR_AURAS, USER_AVATAR_AURA_KEY } from '../constants/avatar_auras';
 import { getCanonicalUserId } from './user_id_policy';
 import { ensureAnonUser } from './cloud_sync';
+import {
+  LEAGUE_BONUS_ADMIN_PREVIEW_KEY,
+  LEAGUE_CHEST_BASE_GOAL,
+  unlockLeagueGoldThemeReward,
+  revokeLeagueGoldThemeReward,
+  type LeagueBonusAvailability,
+  type LeagueChestRewardDrop,
+} from './services/league_chest_rewards';
 
 const AppInfoDialog = {
   alert(title: string, message: string) {
@@ -144,14 +158,29 @@ const ADMIN_GLOBAL_BROADCAST_PREVIEW: GlobalBroadcastModalPayload = {
   titleRu: 'Превью сообщения от команды',
   titleUk: 'Превʼю повідомлення від команди',
   titleEs: 'Vista previa del mensaje del equipo',
+  titlePtBr: 'Prévia da mensagem da equipe',
+  titleVi: 'Xem trước thông báo từ đội ngũ',
+  titleId: 'Pratinjau pesan dari tim',
+  titleTr: 'Ekip mesajı önizlemesi',
+  titlePl: 'Podgląd wiadomości od zespołu',
   messageRu: 'Так выглядит актуальная GlobalBroadcastModal из очереди _layout. Preview-only: без записи claim и без начисления награды.',
   messageUk: 'Так виглядає актуальна GlobalBroadcastModal з черги _layout. Preview-only: без запису claim і без нарахування нагороди.',
   messageEs: 'Así se ve GlobalBroadcastModal desde la cola de _layout. Preview-only: sin claim ni recompensa real.',
+  messagePtBr: 'Assim aparece a GlobalBroadcastModal atual da fila _layout. Preview-only: sem registro de claim e sem recompensa real.',
+  messageVi: 'Đây là GlobalBroadcastModal hiện tại từ hàng đợi _layout. Chỉ xem trước: không ghi claim và không cộng thưởng thật.',
+  messageId: 'Beginilah GlobalBroadcastModal aktif dari antrean _layout. Preview-only: tanpa mencatat klaim dan tanpa hadiah nyata.',
+  messageTr: '_layout kuyruğundaki güncel GlobalBroadcastModal böyle görünür. Sadece önizleme: claim yazılmaz ve gerçek ödül verilmez.',
+  messagePl: 'Tak wygląda aktualny GlobalBroadcastModal z kolejki _layout. Tylko podgląd: bez zapisu claim i bez realnej nagrody.',
   reviewUrlIos: '',
   reviewUrlAndroid: '',
   reviewCtaRu: 'Оценить приложение',
   reviewCtaUk: 'Оцінити застосунок',
   reviewCtaEs: 'Valorar la app',
+  reviewCtaPtBr: 'Avaliar o app',
+  reviewCtaVi: 'Đánh giá ứng dụng',
+  reviewCtaId: 'Nilai aplikasi',
+  reviewCtaTr: 'Uygulamayı değerlendir',
+  reviewCtaPl: 'Oceń aplikację',
   createdAt: '2026-05-14T00:00:00.000Z',
 };
 
@@ -349,6 +378,83 @@ const ButtonRow = ({ icon, label, sub, onPress, danger, testID, t, f, doHaptic }
   </TouchableOpacity>
 );
 
+function AdminCosmeticsPreview({ f }: { f: any }) {
+  return (
+    <View style={{ paddingHorizontal: 16, paddingTop: 14, paddingBottom: 18 }}>
+      <Text style={{ color: '#FFB0B0', fontSize: 15, fontWeight: '900', marginBottom: 10 }}>
+        Аватары уровней
+      </Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+        {AVATARS.map((avatar) => {
+          const level = avatar.unlockLevel;
+          return (
+            <View
+              key={`admin-avatar-${level}`}
+              style={{
+                width: 70,
+                minHeight: 82,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+                borderWidth: 1,
+                borderColor: RED_BORDER,
+                backgroundColor: 'rgba(255,255,255,0.035)',
+                paddingVertical: 8,
+              }}
+            >
+              <AvatarView avatar={String(level)} level={level} size={52} />
+              <Text style={{ color: '#FFB0B0', fontSize: 10, fontWeight: '900', marginTop: 5 }}>
+                Ур. {level}
+              </Text>
+            </View>
+          );
+        })}
+      </View>
+
+      <Text style={{ color: '#FFB0B0', fontSize: 15, fontWeight: '900', marginTop: 18, marginBottom: 10 }}>
+        Ауры
+      </Text>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+        {AVATAR_AURAS.map((aura) => {
+          const previewLevel = aura.unlockLevel || (aura.premiumOnly ? 60 : 50);
+          const unlockLabel = aura.unlockLevel
+            ? `Ур. ${aura.unlockLevel}`
+            : aura.premiumOnly
+              ? 'Premium'
+              : 'Магазин';
+          return (
+            <View
+              key={`admin-aura-${aura.id}`}
+              style={{
+                width: 92,
+                minHeight: 116,
+                alignItems: 'center',
+                justifyContent: 'center',
+                borderRadius: 10,
+                borderWidth: 1,
+                borderColor: RED_BORDER,
+                backgroundColor: 'rgba(255,255,255,0.035)',
+                paddingVertical: 9,
+                paddingHorizontal: 6,
+              }}
+            >
+              <AvatarAura auraId={aura.id} size={56}>
+                <AvatarView avatar={String(previewLevel)} level={previewLevel} size={56} />
+              </AvatarAura>
+              <Text style={{ color: '#FFB0B0', fontSize: 10, fontWeight: '900', marginTop: 7 }} numberOfLines={1}>
+                {aura.nameRu}
+              </Text>
+              <Text style={{ color: '#FF8080', fontSize: f.caption, fontWeight: '800', marginTop: 2 }} numberOfLines={1}>
+                {unlockLabel}
+              </Text>
+            </View>
+          );
+        })}
+      </View>
+    </View>
+  );
+}
+
 function AccordionSection({ id, icon, title, badge, open, onToggle, children }: {
   id: string; icon: string; title: string; badge?: number; open: boolean;
   onToggle: (id: string) => void; children: React.ReactNode;
@@ -382,7 +488,7 @@ function AccordionSection({ id, icon, title, badge, open, onToggle, children }: 
 export default function SettingsTestersFunctions() {
   const router = useRouter();
   const params = useLocalSearchParams<{ qa?: string | string[]; qaRun?: string | string[] }>();
-  const { theme: t, f, themeMode } = useTheme();
+  const { theme: t, f, themeMode, setThemeMode } = useTheme();
   const { lang } = useLang();
   const isLightTheme = themeMode === 'minimalLight';
   const platformUiPreview = usePlatformUiPreviewMode();
@@ -419,11 +525,27 @@ export default function SettingsTestersFunctions() {
   const [quizTimeoutHardMode, setQuizTimeoutHardMode] = useState<boolean | null>(null);
   const [userWarningVisible, setUserWarningVisible] = useState(false);
   const [reportUserPreviewVisible, setReportUserPreviewVisible] = useState(false);
+  const [profileCardCrownPreview, setProfileCardCrownPreview] = useState<PlayerInfo | null>(null);
+  const [profileCardCrownMyInfo, setProfileCardCrownMyInfo] = useState({
+    name: 'Phraseman',
+    avatar: '',
+    frame: '',
+    aura: '',
+    totalXP: 0,
+    leagueId: 3,
+    streak: null as number | null,
+  });
   const [updateModalVisible, setUpdateModalVisible] = useState(false);
   const [notifPermissionPreviewVisible, setNotifPermissionPreviewVisible] = useState(false);
   const [certificatePreviewVisible, setCertificatePreviewVisible] = useState(false);
   const [releaseNotesPreviewVisible, setReleaseNotesPreviewVisible] = useState(false);
   const [globalBroadcastPreview, setGlobalBroadcastPreview] = useState<GlobalBroadcastModalPayload | null>(null);
+  const [leagueChestPreview, setLeagueChestPreview] = useState<{
+    crownName?: string;
+    isCrownWinner?: boolean;
+    rewards?: LeagueChestRewardDrop[];
+  } | null>(null);
+  const [leagueBonusAvailablePreview, setLeagueBonusAvailablePreview] = useState<LeagueBonusAvailability | null>(null);
   const [qaChecks, setQaChecks] = useState<Record<string, boolean>>({
     noEnergy: false,
     arenaLimit: false,
@@ -527,6 +649,105 @@ export default function SettingsTestersFunctions() {
   >(null);
   const [freeSessionsLeft, setFreeSessionsLeft] = useState<number | null>(null);
 
+  const buildLeagueBonusPreview = useCallback((isCrownWinner: boolean): LeagueBonusAvailability => ({
+    available: true,
+    weekId: 'admin-preview-week',
+    groupId: 'admin_preview_group',
+    leagueId: 3,
+    progress: LEAGUE_CHEST_BASE_GOAL + 3 * 20_000,
+    goal: LEAGUE_CHEST_BASE_GOAL + 3 * 20_000,
+    memberCount: 18,
+    crownName: isCrownWinner ? 'Ты - лидер недели' : 'Fable9521',
+    crownUid: isCrownWinner ? 'admin-current-user' : 'admin-weekly-top',
+    isCrownWinner,
+  }), []);
+
+  const buildLeagueChestRewardPreview = useCallback((isCrownWinner: boolean): LeagueChestRewardDrop[] => {
+    const rewards: LeagueChestRewardDrop[] = [
+      { id: 'admin_league_shards', kind: 'shards', rarity: 'common', amount: 24 },
+      { id: 'admin_league_energy', kind: 'energy_fast_recovery', rarity: 'rare', recoveryMs: 5 * 60 * 1000 },
+      { id: 'admin_league_xp', kind: 'xp_boost', rarity: 'rare', multiplier: 2, uses: 3 },
+      { id: 'admin_league_aura', kind: 'avatar_aura', rarity: 'epic', auraId: 'aura-gold' },
+      { id: 'admin_league_avatar', kind: 'custom_avatar', rarity: 'epic', customAvatarId: 'future-league-avatar' },
+      { id: 'admin_league_gold', kind: 'gold_theme', rarity: 'legendary' },
+    ];
+    return isCrownWinner
+      ? [
+        ...rewards,
+        { id: 'admin_league_arena_plays', kind: 'arena_plays', rarity: 'common', amount: 5 },
+        { id: 'admin_league_bonus_shards', kind: 'shards', rarity: 'rare', amount: 18 },
+      ]
+      : rewards;
+  }, []);
+
+  const openLeagueBonusScreenPreview = useCallback(async (crownWinner = false) => {
+    await AsyncStorage.setItem(LEAGUE_BONUS_ADMIN_PREVIEW_KEY, JSON.stringify({
+      expiresAt: Date.now() + 10 * 60 * 1000,
+      crownWinner,
+    }));
+    emitAppEvent('action_toast', actionToastTri('success', {
+      ru: crownWinner
+        ? 'QA: экран лиги откроется с кнопкой «Забрать корону»'
+        : 'QA: экран лиги откроется с кнопкой «Забрать бонус лиги»',
+      uk: crownWinner
+        ? 'QA: екран ліги відкриється з кнопкою «Забрати корону»'
+        : 'QA: екран ліги відкриється з кнопкою «Забрати бонус ліги»',
+      es: crownWinner
+        ? 'QA: la liga se abrirá con “Recoger la corona”'
+        : 'QA: la liga se abrirá con “Recoger bono de liga”',
+    }));
+    router.push('/club_screen' as any);
+  }, [router]);
+
+  const openProfileCardCrownPreview = useCallback(async () => {
+    const rows = await AsyncStorage.multiGet([
+      'user_name',
+      'user_total_xp',
+      'user_avatar',
+      'user_frame',
+      USER_AVATAR_AURA_KEY,
+      'streak_count',
+      PROFILE_CARD_LEVEL_KEY,
+      PROFILE_CARD_THEME_KEY,
+      PROFILE_CARD_MOTION_KEY,
+      PROFILE_CARD_PUBLIC_FOCUS_KEY,
+    ]);
+    const map = new Map(rows);
+    const name = (map.get('user_name') || '').trim() || 'Phraseman';
+    const totalXP = Math.max(0, parseInt(map.get('user_total_xp') || '0', 10) || 0);
+    const streak = Math.max(0, parseInt(map.get('streak_count') || '0', 10) || 0);
+    const uid = (await ensureAnonUser().catch(() => null)) || 'admin-current-user';
+    const baseMyInfo = {
+      name,
+      avatar: map.get('user_avatar') || '',
+      frame: map.get('user_frame') || '',
+      aura: map.get(USER_AVATAR_AURA_KEY) || '',
+      totalXP,
+      leagueId: 3,
+      streak: streak || null,
+    };
+    setProfileCardCrownMyInfo(baseMyInfo);
+    setProfileCardCrownPreview({
+      name,
+      points: totalXP,
+      totalXp: totalXP,
+      weekXp: 12400,
+      isMe: true,
+      avatar: baseMyInfo.avatar,
+      frame: baseMyInfo.frame,
+      aura: baseMyInfo.aura,
+      leagueId: 3,
+      uid,
+      friendUid: uid,
+      isPremium: false,
+      leagueCrownExpiresAt: Date.now() + 7 * 24 * 60 * 60 * 1000,
+      profileCardLevel: parseInt(map.get(PROFILE_CARD_LEVEL_KEY) || '0', 10) || 0,
+      profileCardTheme: map.get(PROFILE_CARD_THEME_KEY) || 'classic',
+      profileCardMotion: map.get(PROFILE_CARD_MOTION_KEY) || 'none',
+      profileCardPublicFocus: map.get(PROFILE_CARD_PUBLIC_FOCUS_KEY) || 'balanced',
+    });
+  }, []);
+
   const loadTrainerDebugState = async () => {
     const raw = await AsyncStorage.getItem(DAILY_FREE_SESSION_KEY);
     if (!raw) { setFreeSessionsLeft(1); }
@@ -599,10 +820,15 @@ export default function SettingsTestersFunctions() {
     emitAppEvent('shards_earned', {
       amount: 5,
       reasonText: triLang(lang, {
-        ru: 'Admin preview: актуальная глобальная модалка осколков',
-        uk: 'Admin preview: актуальна глобальна модалка осколків',
-        es: 'Admin preview: modal global actual de fragmentos',
-      }),
+  ru: 'Admin preview: актуальная глобальная модалка осколков',
+  uk: 'Admin preview: актуальна глобальна модалка осколків',
+  es: 'Admin preview: modal global actual de fragmentos',
+  "pt-BR": 'Admin preview: modal global atual de fragmentos',
+  vi: 'Admin preview: modal mảnh toàn cục hiện tại',
+  id: 'Admin preview: modal shard global saat ini',
+  tr: 'Admin preview: güncel global parça modalı',
+  pl: 'Admin preview: aktualny globalny modal odłamków',
+}),
     });
     markQa('shardsEarned');
   };
@@ -1321,17 +1547,27 @@ export default function SettingsTestersFunctions() {
               <View style={{ flex: 1 }}>
                 <Text style={{ color: '#FFB0B0', fontSize: 15, fontWeight: '800' }}>
                   {triLang(lang, {
-                    uk: 'Повтор: 7 тестових карток',
-                    ru: 'Повтор: 7 тестовых карточек',
-                    es: 'Repaso activo: 7 tarjetas de prueba',
-                  })}
+  uk: 'Повтор: 7 тестових карток',
+  ru: 'Повтор: 7 тестовых карточек',
+  es: 'Repaso activo: 7 tarjetas de prueba',
+  "pt-BR": 'Revisão ativa: 7 cartões de teste',
+  vi: 'Ôn tập chủ động: 7 thẻ thử nghiệm',
+  id: 'Active recall: 7 kartu uji',
+  tr: 'Aktif tekrar: 7 test kartı',
+  pl: 'Aktywna powtórka: 7 kart testowych',
+})}
                 </Text>
                 <Text style={{ color: '#FF8080', fontSize: 12, marginTop: 2 }}>
                   {triLang(lang, {
-                    uk: 'Сид урок 99: старі тест-записи видаляються, потім екран «Повторення»',
-                    ru: 'Сид урок 99: старые тест-записи удаляются, затем экран «Повторение»',
-                    es: 'Semilla lección 99: se borran registros antiguos; luego la pantalla de repaso',
-                  })}
+  uk: 'Сид урок 99: старі тест-записи видаляються, потім екран «Повторення»',
+  ru: 'Сид урок 99: старые тест-записи удаляются, затем экран «Повторение»',
+  es: 'Semilla lección 99: se borran registros antiguos; luego la pantalla de repaso',
+  "pt-BR": 'Seed lição 99: registros antigos de teste são apagados; depois abre a tela de revisão',
+  vi: 'Seed bài 99: xóa bản ghi thử nghiệm cũ, rồi mở màn hình ôn tập',
+  id: 'Seed pelajaran 99: data uji lama dihapus, lalu layar review dibuka',
+  tr: 'Ders 99 seed: eski test kayıtları silinir, sonra tekrar ekranı açılır',
+  pl: 'Seed lekcji 99: stare wpisy testowe są usuwane, potem ekran powtórki',
+})}
                 </Text>
               </View>
               <Ionicons name="chevron-forward" size={18} color={RED_DIM} />
@@ -1385,6 +1621,17 @@ export default function SettingsTestersFunctions() {
               f={f}
               doHaptic={doHaptic}
             />
+          </AccordionSection>
+
+          <AccordionSection
+            id="cosmetics_preview"
+            icon="sparkles-outline"
+            title="Аватары и ауры"
+            badge={AVATARS.length + AVATAR_AURAS.length}
+            open={openSection === 'cosmetics_preview'}
+            onToggle={(id) => setOpenSection(openSection === id ? null : id)}
+          >
+            <AdminCosmeticsPreview f={f} />
           </AccordionSection>
 
           {/* ── 1. СОСТОЯНИЕ АККАУНТА ── */}
@@ -1611,6 +1858,113 @@ export default function SettingsTestersFunctions() {
               sub="+10 осколков за удержание трона до 00:00"
               onPress={() => { doHaptic(); setThroneRewardPreview(true); }}
               t={t} f={f} doHaptic={doHaptic} />
+          </AccordionSection>
+
+          <AccordionSection
+            id="league_bonus"
+            icon="gift-outline"
+            title="Бонус лиги и корона"
+            badge={10}
+            open={openSection === 'league_bonus'}
+            onToggle={id => setOpenSection(openSection === id ? null : id)}
+          >
+            <ButtonRow
+              icon="flag-outline"
+              label="Открыть лигу: цель выполнена"
+              sub="На экране лиги появится кнопка «Забрать бонус лиги»"
+              onPress={() => { void openLeagueBonusScreenPreview(false); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="trophy-outline"
+              label="Открыть лигу: забрать корону"
+              sub="На экране лиги появится кнопка «Забрать корону»"
+              onPress={() => { void openLeagueBonusScreenPreview(true); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="notifications-outline"
+              label="Тост: цель лиги выполнена"
+              sub="Тот самый тост для онлайн-пользователей"
+              onPress={() => emitAppEvent('action_toast', actionToastTri('success', {
+                ru: 'Лига выполнила цель недели. Бонус уже ждёт!',
+                uk: 'Ліга виконала ціль тижня. Бонус уже чекає!',
+                es: 'La liga completó la meta semanal. Tu bono te espera.',
+              }))}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="mail-unread-outline"
+              label="Модалка: бонус доступен"
+              sub="Для тех, кто был оффлайн и зашёл позже"
+              onPress={() => setLeagueBonusAvailablePreview(buildLeagueBonusPreview(false))}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="ribbon-outline"
+              label="Модалка: корона доступна"
+              sub="Оффлайн-вход для победителя гонки недели"
+              onPress={() => setLeagueBonusAvailablePreview(buildLeagueBonusPreview(true))}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="id-card-outline"
+              label="Карточка: моя корона"
+              sub="Открыть свою карточку с активной короной на нике"
+              onPress={() => { void openProfileCardCrownPreview(); }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="gift-outline"
+              label="Модалка: получение бонуса"
+              sub="Сундук лиги с текущим набором наград"
+              onPress={() => setLeagueChestPreview({
+                crownName: 'Fable9521',
+                isCrownWinner: false,
+                rewards: buildLeagueChestRewardPreview(false),
+              })}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="sparkles-outline"
+              label="Модалка: получение короны"
+              sub="Вариант для игрока, который набрал больше всех"
+              onPress={() => setLeagueChestPreview({
+                crownName: 'Ты - лидер недели',
+                isCrownWinner: true,
+                rewards: buildLeagueChestRewardPreview(true),
+              })}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="color-wand-outline"
+              label="Разблокировать редкую тему локально"
+              sub="QA-переключатель без ожидания реального бонуса"
+              onPress={async () => {
+                await unlockLeagueGoldThemeReward('admin_preview');
+                emitAppEvent('action_toast', actionToastTri('success', {
+                  ru: 'Редкая тема разблокирована локально',
+                  uk: 'Рідкісну тему розблоковано локально',
+                  es: 'Tema raro desbloqueado localmente',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
+            <ButtonRow
+              icon="color-palette-outline"
+              label="Сбросить редкую тему"
+              sub="Проверить, что тема снова скрыта для обычного пользователя"
+              onPress={async () => {
+                await revokeLeagueGoldThemeReward();
+                setThemeMode('minimalDark');
+                emitAppEvent('action_toast', actionToastTri('info', {
+                  ru: 'Редкая тема сброшена локально и снова скрыта до награды лиги',
+                  uk: 'Рідкісну тему скинуто локально й знову сховано до нагороди ліги',
+                  es: 'Tema raro restablecido localmente hasta la recompensa',
+                }));
+              }}
+              t={t} f={f} doHaptic={doHaptic}
+            />
           </AccordionSection>
 
           {/* ── 3. МОДАЛКИ УРОКОВ ── */}
@@ -2349,6 +2703,11 @@ export default function SettingsTestersFunctions() {
                   labelRu: 'Глаголы',
                   labelUk: 'Дієслова',
                   labelEs: 'Verbos',
+                  labelPtBr: 'Verbos',
+                  labelVi: 'Động từ',
+                  labelId: 'Kata kerja',
+                  labelTr: 'Fiiller',
+                  labelPl: 'Czasowniki',
                   mistakeCount: 3,
                   weaknessScore: 72,
                 });
@@ -2367,6 +2726,11 @@ export default function SettingsTestersFunctions() {
                   labelRu: 'Артикли',
                   labelUk: 'Артиклі',
                   labelEs: 'Artículos',
+                  labelPtBr: 'Artigos',
+                  labelVi: 'Mạo từ',
+                  labelId: 'Artikel',
+                  labelTr: 'Artikeller',
+                  labelPl: 'Przedimki',
                   mistakeCount: 3,
                   weaknessScore: 72,
                 });
@@ -2385,6 +2749,11 @@ export default function SettingsTestersFunctions() {
                   labelRu: 'Артикли',
                   labelUk: 'Артиклі',
                   labelEs: 'Artículos',
+                  labelPtBr: 'Artigos',
+                  labelVi: 'Mạo từ',
+                  labelId: 'Artikel',
+                  labelTr: 'Artikeller',
+                  labelPl: 'Przedimki',
                   mistakeCount: 3,
                   weaknessScore: 78,
                   focusWords: ['a', 'an'],
@@ -2392,6 +2761,11 @@ export default function SettingsTestersFunctions() {
                   microLabelRu: 'a/an перед звуком',
                   microLabelUk: 'a/an перед звуком',
                   microLabelEs: 'a/an antes del sonido',
+                  microLabelPtBr: 'a/an antes do som',
+                  microLabelVi: 'a/an trước âm',
+                  microLabelId: 'a/an sebelum bunyi',
+                  microLabelTr: 'sesten önce a/an',
+                  microLabelPl: 'a/an przed dźwiękiem',
                   diagnosisEvidenceCount: 3,
                 });
               }}
@@ -2409,6 +2783,11 @@ export default function SettingsTestersFunctions() {
                   labelRu: 'Предлоги',
                   labelUk: 'Прийменники',
                   labelEs: 'Preposiciones',
+                  labelPtBr: 'Preposições',
+                  labelVi: 'Giới từ',
+                  labelId: 'Preposisi',
+                  labelTr: 'Edatlar',
+                  labelPl: 'Przyimki',
                   mistakeCount: 3,
                   weaknessScore: 80,
                   focusWords: ['in', 'on', 'at'],
@@ -2416,6 +2795,11 @@ export default function SettingsTestersFunctions() {
                   microLabelRu: 'in/on/at для времени',
                   microLabelUk: 'in/on/at для часу',
                   microLabelEs: 'in/on/at para tiempo',
+                  microLabelPtBr: 'in/on/at para tempo',
+                  microLabelVi: 'in/on/at cho thời gian',
+                  microLabelId: 'in/on/at untuk waktu',
+                  microLabelTr: 'zaman için in/on/at',
+                  microLabelPl: 'in/on/at dla czasu',
                   diagnosisEvidenceCount: 3,
                 });
               }}
@@ -2901,15 +3285,25 @@ export default function SettingsTestersFunctions() {
           <ButtonRow
             icon="refresh-outline"
             label={triLang(lang, {
-              uk: 'Скинути ВСЕ дані',
-              ru: 'Сбросить ВСЕ данные',
-              es: 'Restablecer TODOS los datos',
-            })}
+  uk: 'Скинути ВСЕ дані',
+  ru: 'Сбросить ВСЕ данные',
+  es: 'Restablecer TODOS los datos',
+  "pt-BR": 'Restablecer TODOS os dados',
+  vi: 'Đặt lại TẤT CẢ dữ liệu',
+  id: 'Reset SEMUA data',
+  tr: 'TÜM verileri sıfırla',
+  pl: 'Zresetuj WSZYSTKIE dane',
+})}
             sub={triLang(lang, {
-              uk: 'Видалити весь прогрес та налаштування',
-              ru: 'Удалить весь прогресс и настройки',
-              es: 'Elimina todo el progreso y la configuración',
-            })}
+  uk: 'Видалити весь прогрес та налаштування',
+  ru: 'Удалить весь прогресс и настройки',
+  es: 'Elimina todo el progreso y la configuración',
+  "pt-BR": 'Apaga todo o progresso e as configurações',
+  vi: 'Xóa toàn bộ tiến độ và cài đặt',
+  id: 'Menghapus semua progres dan pengaturan',
+  tr: 'Tüm ilerlemeyi ve ayarları siler',
+  pl: 'Usuwa cały postęp i ustawienia',
+})}
             danger
             t={t} f={f} doHaptic={doHaptic}
             onPress={() => {
@@ -2920,15 +3314,25 @@ export default function SettingsTestersFunctions() {
           <ButtonRow
             icon="trash-outline"
             label={triLang(lang, {
-              uk: 'Скинути статистику',
-              ru: 'Сбросить статистику',
-              es: 'Restablecer estadísticas',
-            })}
+  uk: 'Скинути статистику',
+  ru: 'Сбросить статистику',
+  es: 'Restablecer estadísticas',
+  "pt-BR": 'Restablecer estatísticas',
+  vi: 'Đặt lại thống kê',
+  id: 'Reset statistik',
+  tr: 'İstatistikleri sıfırla',
+  pl: 'Zresetuj statystyki',
+})}
             sub={triLang(lang, {
-              uk: 'Скинути стрік та інші статистики',
-              ru: 'Сбросить цепочку и другую статистику',
-              es: 'Elimina la racha y el resto de estadísticas guardadas',
-            })}
+  uk: 'Скинути стрік та інші статистики',
+  ru: 'Сбросить цепочку и другую статистику',
+  es: 'Elimina la racha y el resto de estadísticas guardadas',
+  "pt-BR": 'Apaga a sequência e outras estatísticas salvas',
+  vi: 'Xóa chuỗi ngày và các thống kê khác',
+  id: 'Menghapus streak dan statistik lain',
+  tr: 'Seriyi ve diğer istatistikleri siler',
+  pl: 'Usuwa serię i inne statystyki',
+})}
             danger
             t={t} f={f} doHaptic={doHaptic}
             onPress={() => {
@@ -3010,14 +3414,24 @@ export default function SettingsTestersFunctions() {
         previewOnly
         onClose={() => setReportUserPreviewVisible(false)}
       />
+      <PlayerProfileModal
+        player={profileCardCrownPreview}
+        myInfo={profileCardCrownMyInfo}
+        onClose={() => setProfileCardCrownPreview(null)}
+      />
       <UpdateModal
         visible={updateModalVisible}
         storeUrl={STORE_URL}
         message={triLang(lang, {
-          uk: 'Тестовий preview форс-оновлення. Перевір CTA і стиль модалки.',
-          ru: 'Тестовый preview форс-обновления. Проверь CTA и стиль модалки.',
-          es: 'Vista previa de actualización forzada de prueba. Revisa el CTA y el estilo del modal.',
-        })}
+  uk: 'Тестовий preview форс-оновлення. Перевір CTA і стиль модалки.',
+  ru: 'Тестовый preview форс-обновления. Проверь CTA и стиль модалки.',
+  es: 'Vista previa de actualización forzada de prueba. Revisa el CTA y el estilo del modal.',
+  "pt-BR": 'Preview de teste da atualização forçada. Confira o CTA e o estilo do modal.',
+  vi: 'Preview thử nghiệm cập nhật bắt buộc. Kiểm tra CTA và kiểu modal.',
+  id: 'Preview uji pembaruan paksa. Periksa CTA dan gaya modal.',
+  tr: 'Zorunlu güncelleme test önizlemesi. CTA ve modal stilini kontrol et.',
+  pl: 'Podgląd testowy wymuszonej aktualizacji. Sprawdź CTA i styl modala.',
+})}
         onClose={() => setUpdateModalVisible(false)}
       />
       <NotificationPermissionModal
@@ -3060,6 +3474,22 @@ export default function SettingsTestersFunctions() {
         previewOnly
         onClose={() => setGlobalBroadcastPreview(null)}
       />
+      <LeagueChestOpenModal
+        visible={leagueChestPreview !== null}
+        crownName={leagueChestPreview?.crownName}
+        isCrownWinner={leagueChestPreview?.isCrownWinner}
+        rewards={leagueChestPreview?.rewards}
+        onClose={() => setLeagueChestPreview(null)}
+      />
+      <LeagueBonusAvailableModal
+        visible={leagueBonusAvailablePreview !== null}
+        availability={leagueBonusAvailablePreview}
+        onClose={() => setLeagueBonusAvailablePreview(null)}
+        onOpenLeague={() => {
+          setLeagueBonusAvailablePreview(null);
+          void openLeagueBonusScreenPreview(!!leagueBonusAvailablePreview?.isCrownWinner);
+        }}
+      />
       <CertificatePreviewAdminModal
         visible={certificatePreviewVisible}
         onClose={() => setCertificatePreviewVisible(false)}
@@ -3086,14 +3516,46 @@ export default function SettingsTestersFunctions() {
 
       <ThemedConfirmModal
         visible={modalUnlockAll}
-        title={triLang(lang, { uk: 'Розблокувати все?', ru: 'Разблокировать все?', es: '¿Desbloquear todo?' })}
+        title={triLang(lang, {
+  uk: 'Розблокувати все?',
+  ru: 'Разблокировать все?',
+  es: '¿Desbloquear todo?',
+  "pt-BR": 'Desbloquear tudo?',
+  vi: 'Mở khóa tất cả?',
+  id: 'Buka semua?',
+  tr: 'Her şey açılsın mı?',
+  pl: 'Odblokować wszystko?',
+})}
         message={triLang(lang, {
-          uk: 'Це розблокує всі досягнення та рамки.',
-          ru: 'Это разблокирует все достижения и рамки.',
-          es: 'Desbloqueará todos los logros y marcos.',
-        })}
-        cancelLabel={triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar' })}
-        confirmLabel={triLang(lang, { uk: 'Розблокувати', ru: 'Разблокировать', es: 'Desbloquear' })}
+  uk: 'Це розблокує всі досягнення та рамки.',
+  ru: 'Это разблокирует все достижения и рамки.',
+  es: 'Desbloqueará todos los logros y marcos.',
+  "pt-BR": 'Isso desbloqueará todas as conquistas e molduras.',
+  vi: 'Thao tác này sẽ mở khóa tất cả thành tích và khung.',
+  id: 'Ini akan membuka semua pencapaian dan bingkai.',
+  tr: 'Bu, tüm başarımları ve çerçeveleri açar.',
+  pl: 'Odblokuje wszystkie osiągnięcia i ramki.',
+})}
+        cancelLabel={triLang(lang, {
+  uk: 'Скасувати',
+  ru: 'Отмена',
+  es: 'Cancelar',
+  "pt-BR": 'Cancelar',
+  vi: 'Hủy',
+  id: 'Batal',
+  tr: 'İptal',
+  pl: 'Anuluj',
+})}
+        confirmLabel={triLang(lang, {
+  uk: 'Розблокувати',
+  ru: 'Разблокировать',
+  es: 'Desbloquear',
+  "pt-BR": 'Desbloquear',
+  vi: 'Mở khóa',
+  id: 'Buka',
+  tr: 'Aç',
+  pl: 'Odblokuj',
+})}
         onCancel={() => setModalUnlockAll(false)}
         onConfirm={() => {
           setModalUnlockAll(false);
@@ -3103,14 +3565,46 @@ export default function SettingsTestersFunctions() {
       />
       <ThemedConfirmModal
         visible={modalPremiumStrip}
-        title={triLang(lang, { uk: 'Зняти преміум?', ru: 'Снять премиум?', es: '¿Quitar Premium?' })}
+        title={triLang(lang, {
+  uk: 'Зняти преміум?',
+  ru: 'Снять премиум?',
+  es: '¿Quitar Premium?',
+  "pt-BR": 'Remover Premium?',
+  vi: 'Gỡ Premium?',
+  id: 'Hapus Premium?',
+  tr: 'Premium kaldırılsın mı?',
+  pl: 'Usunąć Premium?',
+})}
         message={triLang(lang, {
-          uk: 'Акаунт буде переведено в режим без преміуму. RevenueCat не буде змінено.',
-          ru: 'Аккаунт будет переведён в режим без премиума. RevenueCat не будет затронут.',
-          es: 'La cuenta pasará a modo sin Premium. RevenueCat no se altera.',
-        })}
-        cancelLabel={triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar' })}
-        confirmLabel={triLang(lang, { uk: 'Зняти', ru: 'Снять', es: 'Quitar' })}
+  uk: 'Акаунт буде переведено в режим без преміуму. RevenueCat не буде змінено.',
+  ru: 'Аккаунт будет переведён в режим без премиума. RevenueCat не будет затронут.',
+  es: 'La cuenta pasará a modo sin Premium. RevenueCat no se altera.',
+  "pt-BR": 'A conta será colocada no modo sem Premium. O RevenueCat não será alterado.',
+  vi: 'Tài khoản sẽ chuyển sang chế độ không Premium. RevenueCat không bị thay đổi.',
+  id: 'Akun akan dipindahkan ke mode tanpa Premium. RevenueCat tidak diubah.',
+  tr: 'Hesap Premium olmayan moda alınır. RevenueCat değişmez.',
+  pl: 'Konto przejdzie w tryb bez Premium. RevenueCat nie zostanie zmieniony.',
+})}
+        cancelLabel={triLang(lang, {
+  uk: 'Скасувати',
+  ru: 'Отмена',
+  es: 'Cancelar',
+  "pt-BR": 'Cancelar',
+  vi: 'Hủy',
+  id: 'Batal',
+  tr: 'İptal',
+  pl: 'Anuluj',
+})}
+        confirmLabel={triLang(lang, {
+  uk: 'Зняти',
+  ru: 'Снять',
+  es: 'Quitar',
+  "pt-BR": 'Remover',
+  vi: 'Gỡ',
+  id: 'Hapus',
+  tr: 'Kaldır',
+  pl: 'Usuń',
+})}
         onCancel={() => setModalPremiumStrip(false)}
         onConfirm={() => {
           setModalPremiumStrip(false);
@@ -3120,14 +3614,46 @@ export default function SettingsTestersFunctions() {
       />
       <ThemedConfirmModal
         visible={modalResetAll}
-        title={triLang(lang, { uk: 'Скинути все?', ru: 'Сбросить все?', es: '¿Restablecer todo?' })}
+        title={triLang(lang, {
+  uk: 'Скинути все?',
+  ru: 'Сбросить все?',
+  es: '¿Restablecer todo?',
+  "pt-BR": 'Restablecer tudo?',
+  vi: 'Đặt lại tất cả?',
+  id: 'Reset semuanya?',
+  tr: 'Her şey sıfırlansın mı?',
+  pl: 'Zresetować wszystko?',
+})}
         message={triLang(lang, {
-          uk: 'Це видалить уроки, досягнення, рамки, енергію, XP та всі налаштування. Це не можна скасувати!',
-          ru: 'Это удалит уроки, достижения, рамки, энергию, XP и все настройки. Это нельзя отменить!',
-          es: 'Borrará lecciones, logros, marcos, energía, XP y todos los ajustes. ¡No se puede deshacer!',
-        })}
-        cancelLabel={triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar' })}
-        confirmLabel={triLang(lang, { uk: 'Скинути', ru: 'Сбросить', es: 'Restablecer' })}
+  uk: 'Це видалить уроки, досягнення, рамки, енергію, XP та всі налаштування. Це не можна скасувати!',
+  ru: 'Это удалит уроки, достижения, рамки, энергию, XP и все настройки. Это нельзя отменить!',
+  es: 'Borrará lecciones, logros, marcos, energía, XP y todos los ajustes. ¡No se puede deshacer!',
+  "pt-BR": 'Isso apagará aulas, conquistas, molduras, energia, XP e todas as configurações. Não é possível desfazer!',
+  vi: 'Thao tác này sẽ xóa bài học, thành tích, khung, năng lượng, XP và mọi cài đặt. Không thể hoàn tác!',
+  id: 'Ini akan menghapus pelajaran, pencapaian, bingkai, energi, XP, dan semua pengaturan. Tidak bisa dibatalkan!',
+  tr: 'Bu dersleri, başarımları, çerçeveleri, enerjiyi, XP’yi ve tüm ayarları siler. Geri alınamaz!',
+  pl: 'Usunie lekcje, osiągnięcia, ramki, energię, XP i wszystkie ustawienia. Tego nie da się cofnąć!',
+})}
+        cancelLabel={triLang(lang, {
+  uk: 'Скасувати',
+  ru: 'Отмена',
+  es: 'Cancelar',
+  "pt-BR": 'Cancelar',
+  vi: 'Hủy',
+  id: 'Batal',
+  tr: 'İptal',
+  pl: 'Anuluj',
+})}
+        confirmLabel={triLang(lang, {
+  uk: 'Скинути',
+  ru: 'Сбросить',
+  es: 'Restablecer',
+  "pt-BR": 'Restablecer',
+  vi: 'Đặt lại',
+  id: 'Reset',
+  tr: 'Sıfırla',
+  pl: 'Resetuj',
+})}
         onCancel={() => setModalResetAll(false)}
         onConfirm={() => {
           setModalResetAll(false);
@@ -3138,17 +3664,45 @@ export default function SettingsTestersFunctions() {
       <ThemedConfirmModal
         visible={modalResetStats}
         title={triLang(lang, {
-          uk: 'Скинути статистику?',
-          ru: 'Сбросить статистику?',
-          es: '¿Restablecer estadísticas?',
-        })}
+  uk: 'Скинути статистику?',
+  ru: 'Сбросить статистику?',
+  es: '¿Restablecer estadísticas?',
+  "pt-BR": 'Restablecer estatísticas?',
+  vi: 'Đặt lại thống kê?',
+  id: 'Reset statistik?',
+  tr: 'İstatistikler sıfırlansın mı?',
+  pl: 'Zresetować statystyki?',
+})}
         message={triLang(lang, {
-          uk: 'Це видалить стрік, щоденну статистику та інші досягнення. Це не можна скасувати!',
-          ru: 'Это удалит цепочку дней, ежедневную статистику и другие достижения. Это нельзя отменить!',
-          es: 'Eliminará la racha, las estadísticas diarias y otros logros relacionados. ¡No se puede deshacer!',
-        })}
-        cancelLabel={triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar' })}
-        confirmLabel={triLang(lang, { uk: 'Скинути', ru: 'Сбросить', es: 'Restablecer' })}
+  uk: 'Це видалить стрік, щоденну статистику та інші досягнення. Це не можна скасувати!',
+  ru: 'Это удалит цепочку дней, ежедневную статистику и другие достижения. Это нельзя отменить!',
+  es: 'Eliminará la racha, las estadísticas diarias y otros logros relacionados. ¡No se puede deshacer!',
+  "pt-BR": 'Isso apagará a sequência, estatísticas diárias e outras conquistas relacionadas. Não é possível desfazer!',
+  vi: 'Thao tác này sẽ xóa chuỗi ngày, thống kê hằng ngày và các thành tích liên quan. Không thể hoàn tác!',
+  id: 'Ini akan menghapus streak, statistik harian, dan pencapaian terkait lainnya. Tidak bisa dibatalkan!',
+  tr: 'Bu seri günlerini, günlük istatistikleri ve ilgili başarımları siler. Geri alınamaz!',
+  pl: 'Usunie serię dni, statystyki dzienne i powiązane osiągnięcia. Tego nie da się cofnąć!',
+})}
+        cancelLabel={triLang(lang, {
+  uk: 'Скасувати',
+  ru: 'Отмена',
+  es: 'Cancelar',
+  "pt-BR": 'Cancelar',
+  vi: 'Hủy',
+  id: 'Batal',
+  tr: 'İptal',
+  pl: 'Anuluj',
+})}
+        confirmLabel={triLang(lang, {
+  uk: 'Скинути',
+  ru: 'Сбросить',
+  es: 'Restablecer',
+  "pt-BR": 'Restablecer',
+  vi: 'Đặt lại',
+  id: 'Reset',
+  tr: 'Sıfırla',
+  pl: 'Resetuj',
+})}
         onCancel={() => setModalResetStats(false)}
         onConfirm={() => {
           setModalResetStats(false);
@@ -3211,6 +3765,11 @@ export default function SettingsTestersFunctions() {
           labelRu={coachToastPreview.labelRu}
           labelUk={coachToastPreview.labelUk}
           labelEs={coachToastPreview.labelEs}
+          labelPtBr={coachToastPreview.labelPtBr}
+          labelVi={coachToastPreview.labelVi}
+          labelId={coachToastPreview.labelId}
+          labelTr={coachToastPreview.labelTr}
+          labelPl={coachToastPreview.labelPl}
           mistakeCount={coachToastPreview.mistakeCount}
           weaknessScore={coachToastPreview.weaknessScore}
           priorityScore={coachToastPreview.priorityScore}
@@ -3220,6 +3779,11 @@ export default function SettingsTestersFunctions() {
           microLabelRu={coachToastPreview.microLabelRu}
           microLabelUk={coachToastPreview.microLabelUk}
           microLabelEs={coachToastPreview.microLabelEs}
+          microLabelPtBr={coachToastPreview.microLabelPtBr}
+          microLabelVi={coachToastPreview.microLabelVi}
+          microLabelId={coachToastPreview.microLabelId}
+          microLabelTr={coachToastPreview.microLabelTr}
+          microLabelPl={coachToastPreview.microLabelPl}
           diagnosisEvidenceCount={coachToastPreview.diagnosisEvidenceCount}
           onDismiss={() => setCoachToastPreview(null)}
         />

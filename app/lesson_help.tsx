@@ -377,14 +377,76 @@ function renderLesson1TheoryEs(t: any, f: any): React.ReactNode[] {
 type TheoryContent = {
   titleRU: string;
   titleUK: string;
+  titleES?: string;
+  spanishStatus?: 'ready' | 'fallback';
   render: (t: any, isUK: boolean, f: any) => React.ReactNode[];
+  renderES?: (t: any, f: any) => React.ReactNode[];
 };
+
+function theoryTitleEsFor(lessonId: number, theory?: TheoryContent): string {
+  if (theory?.titleES) return theory.titleES;
+  return lessonId >= 1 && lessonId <= 32
+    ? lessonNamesForLang('es')[lessonId - 1] ?? `Lecci\u00f3n ${lessonId}`
+    : `Lecci\u00f3n ${lessonId}`;
+}
+
+const THEORY_TITLE_PLANNED: Record<number, {
+  ptBR: string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+}> = {
+  1: { ptBR: 'To Be: afirmações', vi: 'To Be: câu khẳng định', id: 'To Be: pernyataan', tr: 'To Be: olumlu cümleler', pl: 'To Be: zdania twierdzące' },
+  2: { ptBR: 'To Be: negações e perguntas', vi: 'To Be: phủ định và câu hỏi', id: 'To Be: negatif dan pertanyaan', tr: 'To Be: olumsuz ve soru cümleleri', pl: 'To Be: przeczenia i pytania' },
+  3: { ptBR: 'Present Simple: afirmações', vi: 'Present Simple: câu khẳng định', id: 'Present Simple: pernyataan', tr: 'Present Simple: olumlu cümleler', pl: 'Present Simple: zdania twierdzące' },
+  4: { ptBR: 'Present Simple: negação', vi: 'Present Simple: phủ định', id: 'Present Simple: negatif', tr: 'Present Simple: olumsuz cümleler', pl: 'Present Simple: przeczenia' },
+  5: { ptBR: 'Present Simple: perguntas', vi: 'Present Simple: câu hỏi', id: 'Present Simple: pertanyaan', tr: 'Present Simple: sorular', pl: 'Present Simple: pytania' },
+  6: { ptBR: 'Perguntas especiais: Where, What, When, Why, How', vi: 'Câu hỏi đặc biệt: Where, What, When, Why, How', id: 'Pertanyaan khusus: Where, What, When, Why, How', tr: 'Özel sorular: Where, What, When, Why, How', pl: 'Pytania szczegółowe: Where, What, When, Why, How' },
+  7: { ptBR: 'Have / Has: eu tenho', vi: 'Have / Has: tôi có', id: 'Have / Has: saya punya', tr: 'Have / Has: sahip olmak', pl: 'Have / Has: mam' },
+  8: { ptBR: 'Preposições de tempo: at, in, on', vi: 'Giới từ chỉ thời gian: at, in, on', id: 'Preposisi waktu: at, in, on', tr: 'Zaman edatları: at, in, on', pl: 'Przyimki czasu: at, in, on' },
+  9: { ptBR: 'There is / There are: existe / fica', vi: 'There is / There are: có / nằm ở', id: 'There is / There are: ada / terletak', tr: 'There is / There are: var / bulunur', pl: 'There is / There are: jest / znajduje się' },
+  10: { ptBR: 'Verbos modais: can, should, must, have to', vi: 'Động từ khuyết thiếu: can, should, must, have to', id: 'Kata kerja modal: can, should, must, have to', tr: 'Modal fiiller: can, should, must, have to', pl: 'Czasowniki modalne: can, should, must, have to' },
+  11: { ptBR: 'Past Simple: verbos regulares', vi: 'Past Simple: động từ có quy tắc', id: 'Past Simple: kata kerja beraturan', tr: 'Past Simple: düzenli fiiller', pl: 'Past Simple: czasowniki regularne' },
+  12: { ptBR: 'Past Simple: verbos irregulares', vi: 'Past Simple: động từ bất quy tắc', id: 'Past Simple: kata kerja tidak beraturan', tr: 'Past Simple: düzensiz fiiller', pl: 'Past Simple: czasowniki nieregularne' },
+  13: { ptBR: 'Future Simple: will', vi: 'Future Simple: will', id: 'Future Simple: will', tr: 'Future Simple: will', pl: 'Future Simple: will' },
+  14: { ptBR: 'Comparação: cheaper, better, the best', vi: 'So sánh: cheaper, better, the best', id: 'Perbandingan: cheaper, better, the best', tr: 'Karşılaştırma: cheaper, better, the best', pl: 'Porównania: cheaper, better, the best' },
+  15: { ptBR: 'Formas possessivas: my e mine', vi: 'Dạng sở hữu: my và mine', id: 'Bentuk kepemilikan: my dan mine', tr: 'İyelik biçimleri: my ve mine', pl: 'Formy dzierżawcze: my i mine' },
+  16: { ptBR: 'Phrasal verbs', vi: 'Cụm động từ', id: 'Phrasal verbs', tr: 'Phrasal verbs', pl: 'Czasowniki frazowe' },
+  17: { ptBR: 'Present Continuous: ações agora', vi: 'Present Continuous: hành động đang diễn ra', id: 'Present Continuous: tindakan sekarang', tr: 'Present Continuous: şu anda olan eylemler', pl: 'Present Continuous: czynności teraz' },
+  18: { ptBR: 'Pedidos, comandos e sugestões', vi: 'Lời nhờ, mệnh lệnh và gợi ý', id: 'Permintaan, perintah, dan saran', tr: 'Ricalar, emirler ve öneriler', pl: 'Prośby, polecenia i sugestie' },
+  19: { ptBR: 'Preposições de lugar', vi: 'Giới từ chỉ nơi chốn', id: 'Preposisi tempat', tr: 'Yer edatları', pl: 'Przyimki miejsca' },
+  20: { ptBR: 'Artigos: a, an, the', vi: 'Mạo từ: a, an, the', id: 'Artikel: a, an, the', tr: 'Artikeller: a, an, the', pl: 'Przedimki: a, an, the' },
+  21: { ptBR: 'Pronomes indefinidos', vi: 'Đại từ bất định', id: 'Kata ganti tak tentu', tr: 'Belirsiz zamirler', pl: 'Zaimki nieokreślone' },
+  22: { ptBR: 'Gerúndio: -ing como ideia de ação', vi: 'Danh động từ: -ing như một ý hành động', id: 'Gerund: -ing sebagai ide tindakan', tr: 'Gerund: eylem fikri olarak -ing', pl: 'Gerund: -ing jako idea czynności' },
+  23: { ptBR: 'Voz passiva: Present Simple', vi: 'Câu bị động: Present Simple', id: 'Kalimat pasif: Present Simple', tr: 'Edilgen çatı: Present Simple', pl: 'Strona bierna: Present Simple' },
+  24: { ptBR: 'Present Perfect: have / has + V3', vi: 'Present Perfect: have / has + V3', id: 'Present Perfect: have / has + V3', tr: 'Present Perfect: have / has + V3', pl: 'Present Perfect: have / has + V3' },
+  25: { ptBR: 'Past Continuous: ação em progresso', vi: 'Past Continuous: hành động đang diễn ra trong quá khứ', id: 'Past Continuous: tindakan sedang berlangsung', tr: 'Past Continuous: devam eden geçmiş eylem', pl: 'Past Continuous: czynność w trakcie' },
+  26: { ptBR: 'Orações condicionais: if', vi: 'Câu điều kiện: if', id: 'Kalimat pengandaian: if', tr: 'Koşul cümleleri: if', pl: 'Zdania warunkowe: if' },
+  27: { ptBR: 'Discurso indireto: said that / told me that', vi: 'Câu tường thuật: said that / told me that', id: 'Kalimat tidak langsung: said that / told me that', tr: 'Dolaylı anlatım: said that / told me that', pl: 'Mowa zależna: said that / told me that' },
+  28: { ptBR: 'Pronomes reflexivos: myself, yourself', vi: 'Đại từ phản thân: myself, yourself', id: 'Kata ganti refleksif: myself, yourself', tr: 'Dönüşlü zamirler: myself, yourself', pl: 'Zaimki zwrotne: myself, yourself' },
+  29: { ptBR: 'Used to: antes era assim, agora não', vi: 'Used to: trước đây có, bây giờ không', id: 'Used to: dulu begitu, sekarang tidak', tr: 'Used to: eskiden vardı, şimdi yok', pl: 'Used to: kiedyś tak było, teraz nie' },
+  30: { ptBR: 'Orações relativas: who, that, where, whose', vi: 'Mệnh đề quan hệ: who, that, where, whose', id: 'Klausa relatif: who, that, where, whose', tr: 'İlgi cümleleri: who, that, where, whose', pl: 'Zdania względne: who, that, where, whose' },
+  31: { ptBR: 'Construções complexas: make, let, feel, hear, would rather', vi: 'Cấu trúc phức tạp: make, let, feel, hear, would rather', id: 'Konstruksi kompleks: make, let, feel, hear, would rather', tr: 'Karmaşık yapılar: make, let, feel, hear, would rather', pl: 'Złożone konstrukcje: make, let, feel, hear, would rather' },
+  32: { ptBR: 'Aula final mista', vi: 'Bài học tổng hợp cuối cùng', id: 'Pelajaran campuran terakhir', tr: 'Son karma ders', pl: 'Ostatnia lekcja mieszana' },
+};
+
+function plannedTheoryTitle(lessonId: number, locale: keyof (typeof THEORY_TITLE_PLANNED)[number], fallback: string): string {
+  return THEORY_TITLE_PLANNED[lessonId]?.[locale] ?? fallback;
+}
+
+function hasSpanishTheoryContent(theory?: TheoryContent): boolean {
+  return theory?.spanishStatus === 'ready' && typeof theory.renderES === 'function';
+}
 
 
 const THEORY: Record<number, TheoryContent> = {
 1: {
   titleRU: 'To Be: утверждения',
   titleUK: 'To Be: ствердження',
+  titleES: 'To Be: afirmaciones',
+  spanishStatus: 'ready',
+  renderES: renderLesson1TheoryEs,
   render: (t, isUK, f) => [
     <Section key="s1" t={t} f={f} title={isUK ? '1. Що ти тренуєш у цьому уроці' : '1. Что ты тренируешь в этом уроке'} />,
 
@@ -3646,15 +3708,15 @@ const THEORY: Record<number, TheoryContent> = {
       ]}
     />,
 
-    <Section key="s8" t={t} f={f} title={isUK ? '8. Wi-Fi, money, cash, food, coffee, time' : '8. Wi-Fi, money, cash, food, coffee, time'} />,
+    <Section key="s8" t={t} f={f} title={isUK ? '8. Слова-маси і much' : '8. Слова-массы и much'} />,
 
     <Body
       key="b8a"
       t={t}
       f={f}
       text={isUK
-        ? 'У цих словах ми не говоримо про один конкретний предмет. Це доступ, гроші, готівка, їжа, кава або час як загальне поняття. Тому в уроці вони йдуть з There is, а не There are.'
-        : 'В этих словах мы не говорим об одном конкретном предмете. Это доступ, деньги, наличные, еда, кофе или время как общее понятие. Поэтому в уроке они идут с There is, а не There are.'
+        ? 'У цих словах ми не говоримо про один конкретний предмет. Це доступ, гроші, готівка, їжа, кава або час як загальне поняття. Тому в уроці вони йдуть з There is, а не There are. Для кількості зі словами-масами використовуємо much, особливо в питаннях і запереченнях: Is there much time? / There isn\'t much time.'
+        : 'В этих словах мы не говорим об одном конкретном предмете. Это доступ, деньги, наличные, еда, кофе или время как общее понятие. Поэтому в уроке они идут с There is, а не There are. Для количества со словами-массами используем much, особенно в вопросах и отрицаниях: Is there much time? / There isn\'t much time.'
       }
     />,
 
@@ -3675,6 +3737,8 @@ const THEORY: Record<number, TheoryContent> = {
         ['There is coffee', isUK ? 'Є кава' : 'Есть кофе'],
         ['There is no coffee', isUK ? 'Немає кави' : 'Нет кофе'],
         ['There is time', isUK ? 'Є час' : 'Есть время'],
+        ['Is there much time?', isUK ? 'Є багато часу?' : 'Есть много времени?'],
+        ["There isn't much time", isUK ? 'Часу небагато' : 'Времени немного'],
         ['There is no time', isUK ? 'Немає часу' : 'Нет времени'],
       ]}
     />,
@@ -3705,9 +3769,9 @@ const THEORY: Record<number, TheoryContent> = {
 
     <Warn key="w10" t={t} f={f} text={isUK ? '❌ There is idea → ✅ There is an idea. Перед idea потрібне an.' : '❌ There is idea → ✅ There is an idea. Перед idea нужно an.'} />,
 
-    <Section key="s10" t={t} f={f} title={isUK ? '10. Some і many' : '10. Some и many'} />,
+    <Section key="s10" t={t} f={f} title={isUK ? '10. Some, many і much' : '10. Some, many и much'} />,
 
-    <Body key="b10a" t={t} f={f} text={isUK ? 'У цьому уроці є some і many. Some означає «кілька / деякі», many означає «багато». Обидва слова тут стоять перед множиною.' : 'В этом уроке есть some и many. Some означает «несколько / некоторые», many означает «много». Оба слова здесь стоят перед множественным числом.'} />,
+    <Body key="b10a" t={t} f={f} text={isUK ? 'У цьому уроці є some, many і much. Some означає «кілька / деякі». Many означає «багато» перед множиною. Much означає «багато» перед словами-масами: time, money, food.' : 'В этом уроке есть some, many и much. Some означает «несколько / некоторые». Many означает «много» перед множественным числом. Much означает «много» перед словами-массами: time, money, food.'} />,
 
     <Table
       key="t10"
@@ -3718,10 +3782,11 @@ const THEORY: Record<number, TheoryContent> = {
         ['some', isUK ? 'кілька / деякі' : 'несколько / некоторые', 'There are some messages'],
         ['many', isUK ? 'багато' : 'много', 'There are many messages'],
         ['many', isUK ? 'багато' : 'много', 'There are many people / Are there many people?'],
+        ['much', isUK ? 'багато з масою' : 'много с массой', "Is there much time? / There isn't much time"],
       ]}
     />,
 
-    <Tip key="tip4" t={t} f={f} text={isUK ? 'Messages і people - множина, тому з ними використовується There are.' : 'Messages и people - множественное число, поэтому с ними используется There are.'} />,
+    <Tip key="tip4" t={t} f={f} text={isUK ? 'Messages і people - множина, тому з ними використовується There are. Time не рахується як множина, тому: Is there much time?' : 'Messages и people - множественное число, поэтому с ними используется There are. Time не считается как множественное число, поэтому: Is there much time?'} />,
 
     <Section key="s11" t={t} f={f} title={isUK ? '11. People — це множина' : '11. People - это множественное число'} />,
 
@@ -3831,7 +3896,7 @@ const THEORY: Record<number, TheoryContent> = {
       }
     />,
 
-    <Tip key="tip6" t={t} f={f} text={isUK ? 'Перед практикою тримай три моделі: There is a problem. There are problems. There is no time.' : 'Перед практикой держи три модели: There is a problem. There are problems. There is no time.'} />,
+    <Tip key="tip6" t={t} f={f} text={isUK ? 'Перед практикою тримай чотири моделі: There is a problem. There are problems. There is no time. Is there much time?' : 'Перед практикой держи четыре модели: There is a problem. There are problems. There is no time. Is there much time?'} />,
   ],
 },
 // ── УРОК 10 ──────────────────────────────────────────────────
@@ -4319,7 +4384,7 @@ const THEORY: Record<number, TheoryContent> = {
         ['cook', 'cooked', 'She cooked dinner yesterday'],
         ['watch', 'watched', 'We watched TV yesterday'],
         ['play', 'played', 'They played music yesterday'],
-        ['clean', 'cleaned', 'I cleaned dishes this morning'],
+        ['wash', 'washed', 'I washed the dishes this morning'],
         ['open', 'opened', 'You opened apps this morning'],
         ['check', 'checked', 'He checked messages this morning'],
         ['wash', 'washed', 'She washed clothes this morning'],
@@ -4463,7 +4528,7 @@ const THEORY: Record<number, TheoryContent> = {
       rows={[
         [isUK ? 'Маркер' : 'Маркер', isUK ? 'Значення' : 'Значение', isUK ? 'Приклад з уроку' : 'Пример из урока'],
         ['yesterday', isUK ? 'учора' : 'вчера', 'I worked yesterday / He called her yesterday'],
-        ['this morning', isUK ? 'сьогодні вранці' : 'сегодня утром', 'I cleaned dishes this morning'],
+        ['this morning', isUK ? 'сьогодні вранці' : 'сегодня утром', 'I washed the dishes this morning'],
         ['last week', isUK ? 'минулого тижня' : 'на прошлой неделе', 'I booked tickets last week'],
         ['last month', isUK ? 'минулого місяця' : 'в прошлом месяце', 'You saved money last month'],
         ['two hours ago', isUK ? 'дві години тому' : 'два часа назад', 'I fixed a problem two hours ago'],
@@ -4502,7 +4567,7 @@ const THEORY: Record<number, TheoryContent> = {
       rows={[
         [isUK ? 'Часовий блок' : 'Временной блок', isUK ? 'Приклади' : 'Примеры'],
         ['yesterday', 'worked yesterday / helped me yesterday / called her yesterday / prepared lunch yesterday'],
-        ['this morning', 'cleaned dishes this morning / opened apps this morning / missed a call this morning'],
+        ['this morning', 'washed the dishes this morning / opened apps this morning / missed a call this morning'],
         ['last week', 'booked tickets last week / rented a car last week / printed documents last week'],
         ['last month', 'saved money last month / visited our friends last month'],
         ['two hours ago', 'fixed a problem two hours ago / deleted messages two hours ago / mailed documents two hours ago'],
@@ -19281,10 +19346,8 @@ export default function LessonHelp() {
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
-  const theoryTitleEs =
-    lessonId >= 1 && lessonId <= 32
-      ? lessonNamesForLang('es')[lessonId - 1] ?? `Lección ${lessonId}`
-      : `Lección ${lessonId}`;
+  const theory = THEORY[lessonId];
+  const theoryTitleEs = theoryTitleEsFor(lessonId, theory);
   const isUK = lang === 'uk';
   const [xpClaimed, setXpClaimed] = useState(false);
   const [xpShown, setXpShown] = useState(false);
@@ -19332,8 +19395,6 @@ export default function LessonHelp() {
       });
   };
 
-  const theory = THEORY[lessonId];
-
   return (
     <ScreenGradient>
     <SafeAreaView style={{ flex: 1 }}>
@@ -19356,15 +19417,34 @@ export default function LessonHelp() {
               uk: `Урок ${lessonId} — Теорія`,
               ru: `Урок ${lessonId} — Теория`,
               es: `Lección ${lessonId} — Teoría`,
+              'pt-BR': `Lição ${lessonId} — Teoria`,
+              vi: `Bài ${lessonId} — Lý thuyết`,
+              id: `Pelajaran ${lessonId} — Teori`,
+              tr: `Ders ${lessonId} — Teori`,
+              pl: `Lekcja ${lessonId} — Teoria`,
             })}
           </Text>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }} numberOfLines={1}>
             {theory
-              ? triLang(lang, { uk: theory.titleUK, ru: theory.titleRU, es: theoryTitleEs })
+              ? triLang(lang, {
+                  uk: theory.titleUK,
+                  ru: theory.titleRU,
+                  es: theoryTitleEs,
+                  'pt-BR': plannedTheoryTitle(lessonId, 'ptBR', theoryTitleEs),
+                  vi: plannedTheoryTitle(lessonId, 'vi', theoryTitleEs),
+                  id: plannedTheoryTitle(lessonId, 'id', theoryTitleEs),
+                  tr: plannedTheoryTitle(lessonId, 'tr', theoryTitleEs),
+                  pl: plannedTheoryTitle(lessonId, 'pl', theoryTitleEs),
+                })
               : triLang(lang, {
                   uk: `Урок ${lessonId}`,
                   ru: `Урок ${lessonId}`,
                   es: `Lección ${lessonId}`,
+                  'pt-BR': `Lição ${lessonId}`,
+                  vi: `Bài ${lessonId}`,
+                  id: `Pelajaran ${lessonId}`,
+                  tr: `Ders ${lessonId}`,
+                  pl: `Lekcja ${lessonId}`,
                 })}
           </Text>
           <Text style={{ color: sx.muted, fontSize: f.caption, marginTop: 2 }} numberOfLines={1}>
@@ -19372,6 +19452,11 @@ export default function LessonHelp() {
               uk: 'Коротко: правило + приклади + 25 XP',
               ru: 'Коротко: правило + примеры + 25 XP',
               es: 'Resumen: regla + ejemplos + 25 XP',
+              'pt-BR': 'Resumo: regra + exemplos + 25 XP',
+              vi: 'Tóm tắt: quy tắc + ví dụ + 25 XP',
+              id: 'Ringkas: aturan + contoh + 25 XP',
+              tr: 'Kısa özet: kural + örnekler + 25 XP',
+              pl: 'Krótko: zasada + przykłady + 25 XP',
             })}
           </Text>
         </View>
@@ -19382,7 +19467,7 @@ export default function LessonHelp() {
         contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
         showsVerticalScrollIndicator={true}
       >
-        {lang === 'es' && theory && lessonId !== 1 ? (
+        {lang === 'es' && theory && !hasSpanishTheoryContent(theory) ? (
           <Warn
             t={t}
             f={f}
@@ -19390,7 +19475,7 @@ export default function LessonHelp() {
           />
         ) : null}
         {theory ? (
-          lessonId === 1 && lang === 'es' ? renderLesson1TheoryEs(t, f) : theory.render(t, isUK, f)
+          lang === 'es' && hasSpanishTheoryContent(theory) ? theory.renderES!(t, f) : theory.render(t, isUK, f)
         ) : (
           <Body
             key="fallback"
@@ -19400,6 +19485,11 @@ export default function LessonHelp() {
               uk: `Теорія для уроку ${lessonId} незабаром з\'явиться. Продовжуй практикуватись!`,
               ru: `Теория для урока ${lessonId} скоро появится. Продолжай практиковаться!`,
               es: `La teoría de la lección ${lessonId} estará disponible pronto. ¡Sigue practicando!`,
+              'pt-BR': `A teoria da lição ${lessonId} estará disponível em breve. Continue praticando!`,
+              vi: `Lý thuyết của bài ${lessonId} sẽ sớm có. Hãy tiếp tục luyện tập!`,
+              id: `Teori untuk pelajaran ${lessonId} akan segera tersedia. Tetap berlatih!`,
+              tr: `${lessonId}. dersin teorisi yakında hazır olacak. Pratik yapmaya devam et!`,
+              pl: `Teoria do lekcji ${lessonId} pojawi się wkrótce. Ćwicz dalej!`,
             })}
           />
         )}
@@ -19435,11 +19525,21 @@ export default function LessonHelp() {
                     uk: `XP отримано (+${earnedXP})`,
                     ru: `XP получено (+${earnedXP})`,
                     es: `Has obtenido +${earnedXP} XP`,
+                    'pt-BR': `Você ganhou +${earnedXP} XP`,
+                    vi: `Đã nhận +${earnedXP} XP`,
+                    id: `Mendapat +${earnedXP} XP`,
+                    tr: `+${earnedXP} XP alındı`,
+                    pl: `Otrzymano +${earnedXP} XP`,
                   })
                 : triLang(lang, {
                     uk: `Отримати ${previewXP} XP`,
                     ru: `Получить ${previewXP} XP`,
                     es: `Reclamar ${previewXP} XP`,
+                    'pt-BR': `Resgatar ${previewXP} XP`,
+                    vi: `Nhận ${previewXP} XP`,
+                    id: `Klaim ${previewXP} XP`,
+                    tr: `${previewXP} XP al`,
+                    pl: `Odbierz ${previewXP} XP`,
                   })}
             </Text>
           </TouchableOpacity>

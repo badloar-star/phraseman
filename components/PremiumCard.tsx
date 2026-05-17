@@ -16,10 +16,12 @@
  *   borderRadius — радиус скругления (по умолчанию 16)
  */
 import React from 'react';
-import { View, TouchableOpacity, ViewStyle } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { hapticTap } from '../hooks/use-haptics';
 import { useTheme, getVolumetricShadow } from './ThemeContext';
+import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS } from '../constants/goldTheme';
+import GoldBevel from './GoldBevel';
 
 interface PremiumCardProps {
   children:     React.ReactNode;
@@ -56,38 +58,42 @@ export default function PremiumCard({
 }: PremiumCardProps) {
   const { theme: t, themeMode } = useTheme();
   const longPressFiredRef = React.useRef(false);
+  const isGoldTheme = themeMode === 'gold';
+  const effectiveBorderRadius = isGoldTheme && borderRadius === 16 ? 14 : borderRadius;
 
   const shadow = getVolumetricShadow(themeMode, t, level);
 
   const disabledOpacity = 0.48;
   const outerStyle: ViewStyle = {
-    borderRadius,
+    borderRadius: effectiveBorderRadius,
     opacity: disabled ? disabledOpacity : 1,
     ...shadow,
     ...(style || {}),
   };
 
   const gradientStyle: ViewStyle = {
-    borderRadius,
+    borderRadius: effectiveBorderRadius,
     // Асимметричные рамки: сверху-слева = блик, снизу-справа = тень
-    borderTopWidth:    0.5,
-    borderLeftWidth:   0.5,
-    borderRightWidth:  0.5,
-    borderBottomWidth: 0.5,
-    borderTopColor:    active ? t.correct : t.borderHighlight,
-    borderLeftColor:   active ? t.correct : t.borderHighlight,
-    borderRightColor:  active ? t.correct : t.border,
-    borderBottomColor: active ? t.correct : t.border,
+    borderTopWidth:    isGoldTheme ? StyleSheet.hairlineWidth : 0.5,
+    borderLeftWidth:   isGoldTheme ? StyleSheet.hairlineWidth : 0.5,
+    borderRightWidth:  isGoldTheme ? StyleSheet.hairlineWidth : 0.5,
+    borderBottomWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0.5,
+    borderTopColor:    isGoldTheme ? (active ? GOLD_RICH.champagne : GOLD_RICH.hairlineStrong) : active ? t.correct : t.borderHighlight,
+    borderLeftColor:   isGoldTheme ? (active ? GOLD_RICH.paleGold : GOLD_RICH.hairline) : active ? t.correct : t.borderHighlight,
+    borderRightColor:  isGoldTheme ? (active ? GOLD_RICH.antiqueGold : GOLD_RICH.hairlineQuiet) : active ? t.correct : t.border,
+    borderBottomColor: isGoldTheme ? (active ? GOLD_RICH.bronze : GOLD_RICH.hairlineDark) : active ? t.correct : t.border,
     ...(innerStyle || {}),
   };
 
   const content = (
     <LinearGradient
-      colors={t.cardGradient}
+      colors={isGoldTheme ? (active ? GOLD_GRADIENTS.selectedTile : GOLD_GRADIENTS.premiumPanel) : t.cardGradient}
+      locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={gradientStyle}
     >
+      {isGoldTheme && <GoldBevel radius={effectiveBorderRadius} intensity={active ? 'strong' : level >= 2 ? 'normal' : 'quiet'} />}
       {children}
     </LinearGradient>
   );

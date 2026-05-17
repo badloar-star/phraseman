@@ -468,6 +468,12 @@ export const addShardsRaw = async (
   }
 };
 
+const trackShardsSpentAchievement = (amount: number): void => {
+  void import('./achievements')
+    .then(({ checkAchievements }) => checkAchievements({ type: 'shards_spent', amount }))
+    .catch(() => {});
+};
+
 // ── Потратить осколки (возвращает true если успешно) ──────────────────────
 export const spendShards = async (
   amount: number,
@@ -487,6 +493,7 @@ export const spendShards = async (
       void bumpLifetimeShardsSpent(spendAmount);
       logShardTransaction('spend', spendAmount, reason, cloudApplied.balance, cloudApplied.balanceBefore);
       emitAppEvent('shards_balance_updated', { balance: cloudApplied.balance });
+      trackShardsSpentAchievement(spendAmount);
       return true;
     }
     if (cloudApplied.reason === 'insufficient') return false;
@@ -513,6 +520,7 @@ export const spendShards = async (
       logShardTransaction('spend', spendAmount, reason, newBalance, newBalance + spendAmount);
     }
     emitAppEvent('shards_balance_updated', { balance: newBalance });
+    trackShardsSpentAchievement(spendAmount);
     return true;
   } catch {
     return false;

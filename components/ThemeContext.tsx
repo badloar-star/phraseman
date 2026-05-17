@@ -1,10 +1,14 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useWindowDimensions } from 'react-native';
-import { DARK, NEON, GOLD, MINIMAL_DARK, MINIMAL_LIGHT, Theme, ThemeMode } from '../constants/theme';
+import { DARK, NEON, GOLD, CORAL, MINIMAL_DARK, MINIMAL_LIGHT, Theme, ThemeMode } from '../constants/theme';
+import { goldShadow } from '../constants/goldTheme';
 import { computeUiScale } from '../constants/layout-scale';
-import { DEV_MODE } from '../app/config';
+import { DEV_MODE, ENABLE_DEV_TOOLS } from '../app/config';
 import { getVerifiedPremiumStatus } from '../app/premium_guard';
+import { onAppEvent } from '../app/events';
+import { hasLeagueGoldThemeReward } from '../app/services/league_chest_rewards';
+import { setOskolokThemeMode } from '../app/oskolok';
 
 // ─── ШКАЛА ШРИФТОВ ──────────────────────────────────────────────────────────
 // Duolingo использует ~16px для основного текста, ~14px для вторичного
@@ -18,10 +22,46 @@ export const FONT_SCALE: Record<FontSize, number> = {
   large:  1.30,  // большой
 };
 
-export const FONT_SIZE_LABELS: Record<FontSize, { ru: string; uk: string; es: string }> = {
-  small:  { ru: 'Маленький', uk: 'Маленький', es: 'Pequeño' },
-  medium: { ru: 'Средний',   uk: 'Середній',  es: 'Mediano' },
-  large:  { ru: 'Большой',   uk: 'Великий',   es: 'Grande' },
+export const FONT_SIZE_LABELS: Record<FontSize, {
+  ru: string;
+  uk: string;
+  es: string;
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+}> = {
+  small: {
+    ru: 'Маленький',
+    uk: 'Маленький',
+    es: 'Pequeño',
+    'pt-BR': 'Pequeno',
+    vi: 'Nhỏ',
+    id: 'Kecil',
+    tr: 'Küçük',
+    pl: 'Mały',
+  },
+  medium: {
+    ru: 'Средний',
+    uk: 'Середній',
+    es: 'Mediano',
+    'pt-BR': 'Médio',
+    vi: 'Vừa',
+    id: 'Sedang',
+    tr: 'Orta',
+    pl: 'Średni',
+  },
+  large: {
+    ru: 'Большой',
+    uk: 'Великий',
+    es: 'Grande',
+    'pt-BR': 'Grande',
+    vi: 'Lớn',
+    id: 'Besar',
+    tr: 'Büyük',
+    pl: 'Duży',
+  },
 };
 
 // Базовые размеры шрифтов (при scale=1.0)
@@ -71,6 +111,7 @@ export const getVolumetricShadow = (
   theme: Theme,
   level: 1 | 2 | 3 = 2,
 ) => {
+  if (themeMode === 'gold') return goldShadow(level);
   return {
     shadowColor:   '#000000',
     shadowOffset:  { width: 0, height: level === 1 ? 2 : level === 2 ? 3 : 5 },
@@ -98,7 +139,8 @@ interface ThemeCtx {
   /** Светлые иконки в status bar: тёмные темы + «глубокий» океан/сакура */
   statusBarLight: boolean;
   themeMode:    ThemeMode;
-  toggle:       () => void;  // cycles dark → neon → gold → ocean → sakura
+  isGoldThemeUnlocked: boolean;
+  toggle:       () => void;  // cycles available app themes
   setThemeMode: (m: ThemeMode) => void;
   fontSize:     FontSize;
   setFontSize:  (s: FontSize) => void;
@@ -123,6 +165,7 @@ const ThemeContext = createContext<ThemeCtx>({
   isDark:       true,
   statusBarLight: true,
   themeMode:    'dark',
+  isGoldThemeUnlocked: false,
   toggle:       () => {},
   setThemeMode: () => {},
   fontSize:     'medium',
@@ -146,12 +189,14 @@ const THEME_MAP: Record<ThemeMode, Theme> = {
   dark: DARK,
   neon: NEON,
   gold: GOLD,
+  coral: CORAL,
   minimalLight: MINIMAL_LIGHT,
   minimalDark: MINIMAL_DARK,
 };
-const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'dark', 'neon', 'gold'];
+const CYCLE: ThemeMode[] = ['minimalLight', 'minimalDark', 'dark', 'neon', 'coral', 'gold'];
 /** Темы только с Premium; бесплатные: `minimalDark` и `minimalLight`. */
-const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'gold'];
+const PREMIUM_ONLY_THEMES: ThemeMode[] = ['dark', 'neon', 'coral'];
+const DEV_THEME_UNLOCKS = DEV_MODE || ENABLE_DEV_TOOLS;
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   const { width: layoutW, height: layoutH } = useWindowDimensions();
@@ -159,6 +204,8 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [themeMode, setThemeModeState] = useState<ThemeMode>('minimalDark');
   const [fontSize,  setFontSizeState]  = useState<FontSize>('medium');
+  const [goldThemeUnlocked, setGoldThemeUnlocked] = useState(false);
+  setOskolokThemeMode(themeMode);
 
   useEffect(() => {
     let cancelled = false;
@@ -167,19 +214,28 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       const themeStr = pairs[0]?.[1] ?? null;
       const fontStr = pairs[1]?.[1] ?? null;
       // Тот же смысл, что PremiumProvider: не опираться только на raw premium_active (RC/грейс/оверрайды).
-      const isPremium = await getVerifiedPremiumStatus();
+      const [isPremium, hasGoldReward] = await Promise.all([
+        getVerifiedPremiumStatus(),
+        hasLeagueGoldThemeReward(),
+      ]);
       if (cancelled) return;
+      setGoldThemeUnlocked(hasGoldReward);
       // Миграция: ocean/sakura больше не поддерживаются → заменяем на dark
       let migrated = themeStr;
       if (themeStr === 'ocean' || themeStr === 'sakura') {
         migrated = 'dark';
         void AsyncStorage.setItem('app_theme', 'dark');
       }
+      if (themeStr === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS) {
+        migrated = 'coral';
+        void AsyncStorage.setItem('app_theme', 'coral');
+      }
       const valid =
-        migrated === 'neon' || migrated === 'dark' || migrated === 'gold' || migrated === 'minimalLight' || migrated === 'minimalDark';
+        migrated === 'neon' || migrated === 'dark' || migrated === 'gold' || migrated === 'coral' || migrated === 'minimalLight' || migrated === 'minimalDark';
       if (valid) {
         const t = migrated as ThemeMode;
-        if (!isPremium && !DEV_MODE && PREMIUM_ONLY_THEMES.includes(t)) {
+        const goldLocked = t === 'gold' && !hasGoldReward && !DEV_THEME_UNLOCKS;
+        if ((!isPremium && !DEV_THEME_UNLOCKS && PREMIUM_ONLY_THEMES.includes(t)) || goldLocked) {
           setThemeModeState('minimalDark');
           void AsyncStorage.setItem('app_theme', 'minimalDark');
         } else {
@@ -197,18 +253,33 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     };
   }, []);
 
+  useEffect(() => {
+    const subGold = onAppEvent('gold_theme_unlocked', () => {
+      setGoldThemeUnlocked(true);
+    });
+    const subCloud = onAppEvent('cloud_profile_hydrated', () => {
+      void hasLeagueGoldThemeReward().then(setGoldThemeUnlocked).catch(() => {});
+    });
+    return () => {
+      subGold.remove();
+      subCloud.remove();
+    };
+  }, []);
+
   const setThemeMode = useCallback((m: ThemeMode) => {
+    if (m === 'gold' && !goldThemeUnlocked && !DEV_THEME_UNLOCKS) return;
     setThemeModeState(m);
     void AsyncStorage.setItem('app_theme', m);
-  }, []);
+  }, [goldThemeUnlocked]);
 
   const toggle = useCallback(() => {
     setThemeModeState(m => {
-      const next = CYCLE[(CYCLE.indexOf(m) + 1) % CYCLE.length];
+      const cycle = CYCLE.filter(mode => mode !== 'gold' || goldThemeUnlocked || DEV_THEME_UNLOCKS);
+      const next = cycle[(cycle.indexOf(m) + 1) % cycle.length] ?? 'minimalDark';
       void AsyncStorage.setItem('app_theme', next);
       return next;
     });
-  }, []);
+  }, [goldThemeUnlocked]);
 
   const setFontSize = useCallback((s: FontSize) => {
     setFontSizeState(s);
@@ -220,34 +291,38 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     [fontSize, uiScale],
   );
   const theme = useMemo(() => THEME_MAP[themeMode], [themeMode]);
-  const isDark = themeMode === 'dark' || themeMode === 'neon' || themeMode === 'gold' || themeMode === 'minimalDark';
+  const isDark = themeMode === 'dark' || themeMode === 'neon' || themeMode === 'gold' || themeMode === 'coral' || themeMode === 'minimalDark';
   const statusBarLight = isDark;
   const ds = useMemo(() => {
     const px = (n: number) => Math.max(2, Math.round(n * uiScale));
+    const isLuxuryTheme = themeMode === 'gold';
+    const radiusBase = isLuxuryTheme
+      ? { md: 10, lg: 12, xl: 14, xxl: 18 }
+      : { md: 12, lg: 16, xl: 20, xxl: 24 };
     return {
       spacing: { xs: px(4), sm: px(8), md: px(12), lg: px(16), xl: px(24), xxl: px(32) },
-      radius: { md: px(12), lg: px(16), xl: px(20), xxl: px(24) },
+      radius: { md: px(radiusBase.md), lg: px(radiusBase.lg), xl: px(radiusBase.xl), xxl: px(radiusBase.xxl) },
       inputHeight: Math.max(44, px(52)),
       buttonHeight: Math.max(44, px(52)),
       fontFamily: 'System',
       shadow: {
         soft: {
           shadowColor: '#000',
-          shadowOffset: { width: 0, height: Math.max(1, px(2)) },
-          shadowOpacity: isDark ? 0.22 : 0.1,
-          shadowRadius: Math.max(4, px(8)),
-          elevation: Math.max(1, px(2)),
+          shadowOffset: { width: 0, height: Math.max(1, px(isLuxuryTheme ? 4 : 2)) },
+          shadowOpacity: isLuxuryTheme ? 0.42 : isDark ? 0.22 : 0.1,
+          shadowRadius: isLuxuryTheme ? Math.max(8, px(12)) : Math.max(4, px(8)),
+          elevation: Math.max(1, px(isLuxuryTheme ? 5 : 2)),
         },
         medium: {
           shadowColor: '#000',
-          shadowOffset: { width: 0, height: Math.max(2, px(6)) },
-          shadowOpacity: isDark ? 0.28 : 0.14,
-          shadowRadius: Math.max(8, px(16)),
-          elevation: Math.max(2, px(6)),
+          shadowOffset: { width: 0, height: Math.max(2, px(isLuxuryTheme ? 8 : 6)) },
+          shadowOpacity: isLuxuryTheme ? 0.56 : isDark ? 0.28 : 0.14,
+          shadowRadius: isLuxuryTheme ? Math.max(14, px(22)) : Math.max(8, px(16)),
+          elevation: Math.max(2, px(isLuxuryTheme ? 10 : 6)),
         },
       },
     };
-  }, [uiScale, isDark]);
+  }, [uiScale, isDark, themeMode]);
 
   const value = useMemo<ThemeCtx>(
     () => ({
@@ -255,6 +330,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       isDark,
       statusBarLight,
       themeMode,
+      isGoldThemeUnlocked: goldThemeUnlocked,
       toggle,
       setThemeMode,
       fontSize,
@@ -263,7 +339,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
       f,
       ds,
     }),
-    [theme, isDark, statusBarLight, themeMode, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
+    [theme, isDark, statusBarLight, themeMode, goldThemeUnlocked, toggle, setThemeMode, fontSize, setFontSize, uiScale, f, ds],
   );
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;

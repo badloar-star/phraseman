@@ -30,13 +30,27 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 1, borderColor: t.borderHighlight, maxWidth: 320, width: '100%' }}>
             <Text style={{ fontSize: 52, marginBottom: 12 }}>⏰</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
-              {triLang(lang, { ru: 'Время вышло!', uk: 'Час вийшов!', es: '¡Se acabó el tiempo!' })}
+              {triLang(lang, {
+                ru: 'Время вышло!',
+                uk: 'Час вийшов!',
+                es: '¡Se acabó el tiempo!',
+                'pt-BR': 'O tempo acabou!',
+                vi: 'Hết giờ!',
+                id: 'Waktu habis!',
+                tr: 'Süre doldu!',
+                pl: 'Czas minął!',
+              })}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginBottom: hardMode ? 8 : 24 }}>
               {triLang(lang, {
                 ru: 'Очень жаль 😔 Попробуй ещё раз!',
                 uk: 'Дуже шкода 😔 Спробуй ще раз!',
                 es: '¡Qué pena! 😔 ¡Inténtalo de nuevo!',
+                'pt-BR': 'Que pena 😔 Tente de novo!',
+                vi: 'Tiếc quá 😔 Hãy thử lại!',
+                id: 'Sayang sekali 😔 Coba lagi!',
+                tr: 'Üzgünüm 😔 Tekrar dene!',
+                pl: 'Szkoda 😔 Spróbuj jeszcze raz!',
               })}
             </Text>
             {hardMode && (
@@ -45,6 +59,11 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
                   ru: 'Подсказка: попробуй выбрать уровень полегче или выключи ручной ввод в настройках.',
                   uk: 'Підказка: спробуй вибрати рівень легше або вимкни ручне введення в налаштуваннях.',
                   es: 'Sugerencia: prueba un nivel más fácil o desactiva el teclado en Ajustes.',
+                  'pt-BR': 'Dica: tente escolher um nível mais fácil ou desative a digitação manual nas configurações.',
+                  vi: 'Gợi ý: thử chọn cấp độ dễ hơn hoặc tắt nhập thủ công trong cài đặt.',
+                  id: 'Tips: coba pilih level yang lebih mudah atau matikan input manual di pengaturan.',
+                  tr: 'İpucu: daha kolay bir seviye seçmeyi veya ayarlardan manuel yazmayı kapatmayı dene.',
+                  pl: 'Wskazówka: wybierz łatwiejszy poziom albo wyłącz ręczne wpisywanie w ustawieniach.',
                 })}
               </Text>
             )}
@@ -53,7 +72,16 @@ export default function QuizTimeoutModal({ visible, hardMode, onClose }: Props) 
               onPress={onClose}
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}
+                {triLang(lang, {
+                  ru: 'Понятно',
+                  uk: 'Зрозуміло',
+                  es: 'Entendido',
+                  'pt-BR': 'Entendi',
+                  vi: 'Đã hiểu',
+                  id: 'Mengerti',
+                  tr: 'Anladım',
+                  pl: 'Rozumiem',
+                })}
               </Text>
             </TouchableOpacity>
           </View>

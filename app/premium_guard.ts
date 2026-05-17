@@ -79,6 +79,7 @@ export async function getVerifiedPremiumStatus(): Promise<boolean> {
       invalidatePremiumCache();
       return cache(false);
     }
+    await AsyncStorage.setItem('premium_active', 'true').catch(() => {});
     return cache(true);
   }
 

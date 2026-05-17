@@ -341,8 +341,11 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
   if (!visible || !gift) return null;
 
   const rarity      = gift.rarity;
-  const borderColor = RARITY_BORDER[rarity];
-  const bgTint      = RARITY_BG[rarity];
+  const giftAccent = (r: string) => r === 'epic' ? '#FFD700' : r === 'rare' ? '#60A5FA' : t.gold;
+  const giftBorder = (r: string) => (RARITY_BORDER[r] ?? RARITY_BORDER.common);
+  const giftBg = (r: string) => (RARITY_BG[r] ?? RARITY_BG.common);
+  const borderColor = giftBorder(rarity);
+  const bgTint      = giftBg(rarity);
   const rarityLabel = giftRarityUiLabel(rarity, lang);
   const cosmeticLabel = cosmeticLabelForLang(appliedResult, lang);
   const modalScale = modalEntrance.interpolate({ inputRange: [0, 1], outputRange: [0.94, 1] });
@@ -380,7 +383,7 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                   left: 28,
                   right: 28,
                   height: 1,
-                  backgroundColor: rarity === 'epic' ? '#FFD700' : rarity === 'rare' ? '#60A5FA' : t.gold,
+                  backgroundColor: giftAccent(rarity),
                   opacity: glowOpacity,
                 }}
               />
@@ -393,10 +396,10 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                   right: 0,
                   height: 74,
                   backgroundColor: rarity === 'epic'
-                    ? 'rgba(245,158,11,0.08)'
-                    : rarity === 'rare'
-                      ? 'rgba(96,165,250,0.08)'
-                      : 'rgba(255,255,255,0.035)',
+                      ? 'rgba(245,158,11,0.08)'
+                      : rarity === 'rare'
+                        ? 'rgba(96,165,250,0.08)'
+                        : 'rgba(255,255,255,0.035)',
                 }}
               />
             </>
@@ -412,15 +415,15 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
 
           {/* Header */}
           <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '800', textTransform: 'uppercase', letterSpacing: USE_ELITE_LEVEL_GIFT_MODAL ? 1.2 : 1.5, marginBottom: USE_ELITE_LEVEL_GIFT_MODAL ? 7 : 6 }}>
-            {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}` })}
+            {triLang(lang, { ru: `Уровень ${level}`, uk: `Рівень ${level}`, es: `Nivel ${level}`, 'pt-BR': `Nível ${level}`, vi: `Cấp ${level}`, id: `Level ${level}`, tr: `Seviye ${level}`, pl: `Poziom ${level}` })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_LEVEL_GIFT_MODAL ? f.numMd + 4 : f.numMd, fontWeight: '900', marginBottom: 24, textAlign: 'center' }}>
-            {triLang(lang, { ru: '🎁 Твой подарок!', uk: '🎁 Твій подарунок!', es: '🎁 ¡Tu regalo!' })}
+            {triLang(lang, { ru: '🎁 Твой подарок!', uk: '🎁 Твій подарунок!', es: '🎁 ¡Tu regalo!', 'pt-BR': '🎁 Seu presente!', vi: '🎁 Quà của bạn!', id: '🎁 Hadiahmu!', tr: '🎁 Hediyen!', pl: '🎁 Twój prezent!' })}
           </Text>
 
           {USE_ELITE_LEVEL_GIFT_MODAL && (
             <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600', textAlign: 'center', marginTop: -16, marginBottom: 24 }}>
-              {triLang(lang, { ru: 'Подарок за прогресс', uk: 'Подарунок за прогрес', es: 'Recompensa por progreso' })}
+              {triLang(lang, { ru: 'Подарок за прогресс', uk: 'Подарунок за прогрес', es: 'Recompensa por progreso', 'pt-BR': 'Recompensa pelo progresso', vi: 'Phần thưởng cho tiến trình', id: 'Hadiah untuk progres', tr: 'İlerleme ödülü', pl: 'Nagroda za postęp' })}
             </Text>
           )}
 
@@ -448,6 +451,11 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                         ru: 'Нажми, чтобы открыть',
                         uk: 'Натисни, щоб відкрити',
                         es: 'Toca para abrir',
+                        'pt-BR': 'Toque para abrir',
+                        vi: 'Nhấn để mở',
+                        id: 'Ketuk untuk membuka',
+                        tr: 'Açmak için dokun',
+                        pl: 'Dotknij, aby otworzyć',
                       })}
                   </Text>
                 )}
@@ -461,7 +469,7 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                   style={{ marginTop: USE_ELITE_LEVEL_GIFT_MODAL ? 22 : 24, paddingVertical: USE_ELITE_LEVEL_GIFT_MODAL ? 8 : 0, paddingHorizontal: USE_ELITE_LEVEL_GIFT_MODAL ? 14 : 0 }}
                 >
                   <Text style={{ color: t.textGhost, fontSize: f.sub, textDecorationLine: USE_ELITE_LEVEL_GIFT_MODAL ? 'none' : 'underline', fontWeight: USE_ELITE_LEVEL_GIFT_MODAL ? '700' : '400' }}>
-                    {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde' })}
+                    {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde', 'pt-BR': 'Receber mais tarde', vi: 'Nhận sau', id: 'Klaim nanti', tr: 'Daha sonra al', pl: 'Odbierz później' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -527,7 +535,7 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
 
               {/* Rarity badge */}
               <Text style={{
-                color: rarity === 'epic' ? t.gold : rarity === 'rare' ? '#60A5FA' : t.textMuted,
+                color: rarity === 'common' ? t.textMuted : giftAccent(rarity),
                 fontSize: USE_ELITE_LEVEL_GIFT_MODAL ? f.caption : f.sub,
                 fontWeight: '800',
                 letterSpacing: USE_ELITE_LEVEL_GIFT_MODAL ? 1.2 : 1,
@@ -567,6 +575,11 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                       ru: `Открыто: ${cosmeticLabel}`,
                       uk: `Відкрито: ${cosmeticLabel}`,
                       es: `Desbloqueado: ${cosmeticLabel}`,
+                      'pt-BR': `Desbloqueado: ${cosmeticLabel}`,
+                      vi: `Đã mở khóa: ${cosmeticLabel}`,
+                      id: `Terbuka: ${cosmeticLabel}`,
+                      tr: `Açıldı: ${cosmeticLabel}`,
+                      pl: `Odblokowano: ${cosmeticLabel}`,
                     })}
                   </Text>
                 </View>
@@ -589,26 +602,36 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                   {energyBoostAlreadyActive ? (
                     <>
                       <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                        🔄 {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado' })}
+                        🔄 {triLang(lang, { ru: 'Буст заменён', uk: 'Буст замінено', es: 'Bono reemplazado', 'pt-BR': 'Bônus substituído', vi: 'Đã thay boost', id: 'Boost diganti', tr: 'Güçlendirme değiştirildi', pl: 'Bonus zastąpiony' })}
                       </Text>
                       <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                         {triLang(lang, {
                           ru: `Бусты энергии не суммируются — предыдущий заменён новым (+${n} до завтра)`,
                           uk: `Бусти енергії не сумуються — попередній замінено новим (+${n} до завтра)`,
                           es: `Los bonos de energía no se acumulan: el anterior queda reemplazado por uno nuevo (+${n} hasta mañana)`,
+                          'pt-BR': `Bônus de energia não acumulam — o anterior foi substituído por um novo (+${n} até amanhã)`,
+                          vi: `Boost năng lượng không cộng dồn — boost trước đã được thay bằng boost mới (+${n} đến ngày mai)`,
+                          id: `Boost energi tidak ditumpuk — yang lama diganti dengan yang baru (+${n} sampai besok)`,
+                          tr: `Enerji güçlendirmeleri birikmez — önceki yeni olanla değiştirildi (yarına kadar +${n})`,
+                          pl: `Bonusy energii się nie sumują — poprzedni zastąpiono nowym (+${n} do jutra)`,
                         })}
                       </Text>
                     </>
                   ) : (
                     <>
                       <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                        ⚡ {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche' })}
+                        ⚡ {triLang(lang, { ru: 'Действует до полуночи', uk: 'Діє до опівночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Vale até meia-noite', vi: 'Có hiệu lực đến nửa đêm', id: 'Berlaku sampai tengah malam', tr: 'Gece yarısına kadar geçerli', pl: 'Działa do północy' })}
                       </Text>
                       <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                         {triLang(lang, {
                           ru: `Эти ${n} ед. энергии исчезнут в начале следующего дня`,
                           uk: `Ці ${n} од. енергії зникнуть на початку наступного дня`,
                           es: `Estas ${n} unidades extra de energía caducan al empezar el día siguiente`,
+                          'pt-BR': `Estas ${n} unidades extras de energia expiram no começo do próximo dia`,
+                          vi: `${n} năng lượng thêm này sẽ biến mất vào đầu ngày tiếp theo`,
+                          id: `${n} energi ekstra ini akan hilang di awal hari berikutnya`,
+                          tr: `Bu ekstra ${n} enerji bir sonraki günün başında kaybolur`,
+                          pl: `Te dodatkowe ${n} jednostki energii znikną na początku następnego dnia`,
                         })}
                       </Text>
                     </>
@@ -630,13 +653,18 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                   alignItems: 'center',
                 }}>
                   <Text style={{ color: '#78350F', fontSize: f.sub, fontWeight: '700', textAlign: 'center' }}>
-                    🔄 {triLang(lang, { ru: 'Буст обновлён', uk: 'Буст оновлено', es: 'Bono actualizado' })}
+                    🔄 {triLang(lang, { ru: 'Буст обновлён', uk: 'Буст оновлено', es: 'Bono actualizado', 'pt-BR': 'Bônus atualizado', vi: 'Boost đã cập nhật', id: 'Boost diperbarui', tr: 'Güçlendirme güncellendi', pl: 'Bonus zaktualizowany' })}
                   </Text>
                   <Text style={{ color: '#92400E', fontSize: f.caption, textAlign: 'center', marginTop: 2 }}>
                     {triLang(lang, {
                       ru: 'Бусты 2× XP не суммируются — активный буст заменён новым. Таймер запущен заново.',
                       uk: 'Бусти 2× XP не сумуються — активний буст замінено новим. Таймер запущено заново.',
                       es: 'Los bonos de XP ×2 no se acumulan: el activo se sustituyó y el temporizador se reinició.',
+                      'pt-BR': 'Bônus de XP ×2 não acumulam: o bônus ativo foi substituído e o timer reiniciou.',
+                      vi: 'Boost XP ×2 không cộng dồn: boost đang bật đã được thay mới và thời gian được khởi động lại.',
+                      id: 'Boost XP ×2 tidak ditumpuk: boost aktif diganti dan timer dimulai ulang.',
+                      tr: '2× XP güçlendirmeleri birikmez: aktif güçlendirme yenisiyle değiştirildi ve süre yeniden başladı.',
+                      pl: 'Bonusy XP ×2 się nie sumują: aktywny bonus zastąpiono nowym, a licznik ruszył od nowa.',
                     })}
                   </Text>
                 </View>
@@ -662,7 +690,7 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                   }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar' })}
+                    {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz awatar' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -676,8 +704,8 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                 }}
                 style={{
                   backgroundColor: USE_ELITE_LEVEL_GIFT_MODAL
-                    ? (rarity === 'epic' ? '#B8860B' : rarity === 'rare' ? '#2563EB' : t.textPrimary)
-                    : (rarity === 'epic' ? '#B8860B' : rarity === 'rare' ? '#1D4ED8' : t.bgSurface2),
+                      ? (rarity === 'epic' ? '#B8860B' : rarity === 'rare' ? '#2563EB' : t.textPrimary)
+                      : (rarity === 'epic' ? '#B8860B' : rarity === 'rare' ? '#1D4ED8' : t.bgSurface2),
                   borderRadius: USE_ELITE_LEVEL_GIFT_MODAL ? 18 : 14,
                   paddingVertical: USE_ELITE_LEVEL_GIFT_MODAL ? 15 : 14,
                   paddingHorizontal: USE_ELITE_LEVEL_GIFT_MODAL ? 44 : 40,
@@ -695,7 +723,7 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                     fontSize: f.bodyLg,
                     fontWeight: '900',
                   }}>
-                    {triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar' })}
+                    {triLang(lang, { ru: 'Продолжить', uk: 'Продовжити', es: 'Continuar', 'pt-BR': 'Continuar', vi: 'Tiếp tục', id: 'Lanjutkan', tr: 'Devam et', pl: 'Kontynuuj' })}
                   </Text>
                 )}
                 {!USE_ELITE_LEVEL_GIFT_MODAL && (
@@ -704,7 +732,7 @@ export default function LevelGiftModal({ visible, level, userName, lang, onClose
                     fontSize: f.bodyLg,
                     fontWeight: '900',
                   }}>
-                    {triLang(lang, { ru: 'Получить!', uk: 'Отримати!', es: '¡Reclamar!' })}
+                    {triLang(lang, { ru: 'Получить!', uk: 'Отримати!', es: '¡Reclamar!', 'pt-BR': 'Receber!', vi: 'Nhận!', id: 'Klaim!', tr: 'Al!', pl: 'Odbierz!' })}
                   </Text>
                 )}
               </TouchableOpacity>

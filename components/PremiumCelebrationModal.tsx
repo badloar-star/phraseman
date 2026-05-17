@@ -335,10 +335,28 @@ export default function PremiumCelebrationModal({ visible, onClose }: PremiumCel
 
         <View pointerEvents="none" style={[styles.headlineWrap, { top: winH / 2 - 90, left: 24, right: 24 }]}>
           <Text style={[styles.headline, { fontSize: Math.max(24, f.h1) }]}>
-            {triLang(lang, { ru: '👑 Premium активирован', uk: '👑 Premium активовано', es: '👑 Premium activado' })}
+            {triLang(lang, {
+              ru: '👑 Premium активирован',
+              uk: '👑 Premium активовано',
+              es: '👑 Premium activado',
+              'pt-BR': '👑 Premium ativado',
+              vi: '👑 Đã kích hoạt Premium',
+              id: '👑 Premium aktif',
+              tr: '👑 Premium etkinleştirildi',
+              pl: '👑 Premium aktywowany',
+            })}
           </Text>
           <Text style={[styles.subtitle, { fontSize: f.body }]}>
-            {triLang(lang, { ru: 'Все возможности разблокированы — поехали', uk: 'Усі можливості розблоковано — поїхали', es: 'Todo desbloqueado — empieza ahora' })}
+            {triLang(lang, {
+              ru: 'Все возможности разблокированы — поехали',
+              uk: 'Усі можливості розблоковано — поїхали',
+              es: 'Todo desbloqueado — empieza ahora',
+              'pt-BR': 'Tudo desbloqueado — vamos começar',
+              vi: 'Đã mở khóa mọi thứ — bắt đầu thôi',
+              id: 'Semua fitur terbuka — mulai',
+              tr: 'Tüm özellikler açıldı — başlayalım',
+              pl: 'Wszystko odblokowane — zaczynamy',
+            })}
           </Text>
         </View>
 
@@ -360,6 +378,11 @@ export default function PremiumCelebrationModal({ visible, onClose }: PremiumCel
                 ru: `${FEATURES.length}/${FEATURES.length} разблокировано`,
                 uk: `${FEATURES.length}/${FEATURES.length} розблоковано`,
                 es: `${FEATURES.length}/${FEATURES.length} desbloqueado`,
+                'pt-BR': `${FEATURES.length}/${FEATURES.length} desbloqueado`,
+                vi: `${FEATURES.length}/${FEATURES.length} đã mở khóa`,
+                id: `${FEATURES.length}/${FEATURES.length} terbuka`,
+                tr: `${FEATURES.length}/${FEATURES.length} açıldı`,
+                pl: `${FEATURES.length}/${FEATURES.length} odblokowano`,
               })} ✨
             </Text>
           </Animated.View>
@@ -378,7 +401,16 @@ export default function PremiumCelebrationModal({ visible, onClose }: PremiumCel
               style={styles.ctaGradient}
             >
               <Text style={[styles.ctaText, { fontSize: f.bodyLg }]}>
-                {triLang(lang, { ru: 'Начать', uk: 'Розпочати', es: 'Comenzar' })}
+                {triLang(lang, {
+                  ru: 'Начать',
+                  uk: 'Розпочати',
+                  es: 'Comenzar',
+                  'pt-BR': 'Começar',
+                  vi: 'Bắt đầu',
+                  id: 'Mulai',
+                  tr: 'Başla',
+                  pl: 'Zacznij',
+                })}
               </Text>
               <View style={styles.ctaShimmerMask} pointerEvents="none">
                 <Animated.View style={[styles.ctaShimmer, shimmerStyle]}>

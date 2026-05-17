@@ -91,7 +91,8 @@ function rankLabelByLang(tier: RankTier, levelRoman: string, lang: Lang): string
 
 export default function ArenaLeaderboardScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const arenaLeaderboardAccent = '#F59E0B';
   const { lang } = useLang();
   const insets = useSafeAreaInsets();
   const { isPremium: myIsPremium } = usePremium();
@@ -211,6 +212,11 @@ export default function ArenaLeaderboardScreen() {
         ru: `${h}ч ${m}м`,
         uk: `${h} год ${m} хв`,
         es: `${h} h ${m} min`,
+        'pt-BR': `${h} h ${m} min`,
+        vi: `${h} giờ ${m} phút`,
+        id: `${h} j ${m} mnt`,
+        tr: `${h} sa ${m} dk`,
+        pl: `${h} godz. ${m} min`,
       });
     },
     [lang],
@@ -322,6 +328,11 @@ export default function ArenaLeaderboardScreen() {
                   uk: 'Топ-100 арени',
                   ru: 'Топ-100 арены',
                   es: 'Top 100 de la Arena',
+                  'pt-BR': 'Top 100 da Arena',
+                  vi: 'Top 100 Arena',
+                  id: 'Top 100 Arena',
+                  tr: 'Arena Top 100',
+                  pl: 'Top 100 Areny',
                 })}
               </Text>
               <TouchableOpacity
@@ -347,7 +358,7 @@ export default function ArenaLeaderboardScreen() {
                 <Text style={{ color: t.textSecond, fontSize: f.label, fontWeight: '700' }}>
                   {refreshCooldownLabel
                       ? refreshCooldownLabel
-                      : triLang(lang, { uk: 'Оновити', ru: 'Обновить', es: 'Actualizar' })}
+                      : triLang(lang, { uk: 'Оновити', ru: 'Обновить', es: 'Actualizar', 'pt-BR': 'Atualizar', vi: 'Làm mới', id: 'Perbarui', tr: 'Yenile', pl: 'Odśwież' })}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -359,6 +370,11 @@ export default function ArenaLeaderboardScreen() {
                     uk: 'Рейтинг доступний лише з увімкненою синхронізацією.',
                     ru: 'Рейтинг доступен только при включённой синхронизации.',
                     es: 'La clasificación solo está disponible con la sincronización activada.',
+                    'pt-BR': 'O ranking só está disponível com a sincronização ativada.',
+                    vi: 'Bảng xếp hạng chỉ khả dụng khi bật đồng bộ hóa.',
+                    id: 'Peringkat hanya tersedia jika sinkronisasi aktif.',
+                    tr: 'Sıralama yalnızca senkronizasyon açıkken kullanılabilir.',
+                    pl: 'Ranking jest dostępny tylko przy włączonej synchronizacji.',
                   })}
                 </Text>
               </View>
@@ -394,6 +410,11 @@ export default function ArenaLeaderboardScreen() {
                         uk: 'Поки що порожньо. Зіграй дуелі, щоб з\'явитися в рейтингу.',
                         ru: 'Пока пусто. Сыграй дуэли, чтобы попасть в рейтинг.',
                         es: 'Por ahora la clasificación está vacía. Juega partidas para aparecer.',
+                        'pt-BR': 'Ainda está vazio. Jogue duelos para aparecer no ranking.',
+                        vi: 'Hiện vẫn trống. Chơi các trận đấu để xuất hiện trên bảng xếp hạng.',
+                        id: 'Masih kosong. Mainkan duel agar muncul di peringkat.',
+                        tr: 'Şimdilik boş. Sıralamada görünmek için düellolar oyna.',
+                        pl: 'Na razie pusto. Zagraj pojedynki, aby pojawić się w rankingu.',
                       })}
                     </Text>
                   </View>
@@ -412,7 +433,7 @@ export default function ArenaLeaderboardScreen() {
                     >
                       <Text style={{ width: 36, color: t.textGhost, fontSize: f.label, fontWeight: '600' }}>#</Text>
                       <Text style={{ flex: 1, color: t.textGhost, fontSize: f.label, fontWeight: '600', minWidth: 0 }}>
-                        {triLang(lang, { uk: 'Учасник', ru: 'Участник', es: 'Participante' })}
+                        {triLang(lang, { uk: 'Учасник', ru: 'Участник', es: 'Participante', 'pt-BR': 'Participante', vi: 'Người tham gia', id: 'Peserta', tr: 'Katılımcı', pl: 'Uczestnik' })}
                       </Text>
                       <Text
                         numberOfLines={1}
@@ -426,7 +447,7 @@ export default function ArenaLeaderboardScreen() {
                           textAlign: 'right',
                         }}
                       >
-                        {triLang(lang, { uk: 'Звання', ru: 'Звание', es: 'Rango' })}
+                        {triLang(lang, { uk: 'Звання', ru: 'Звание', es: 'Rango', 'pt-BR': 'Ranque', vi: 'Hạng', id: 'Rank', tr: 'Rütbe', pl: 'Ranga' })}
                       </Text>
                     </View>
                   ) : null
@@ -530,13 +551,13 @@ export default function ArenaLeaderboardScreen() {
                           </Text>
                         )}
                         <Text numberOfLines={2} style={{ color: t.textMuted, fontSize: f.label, marginTop: 2 }}>
-                          {`${triLang(lang, { uk: 'Місце', ru: 'Место', es: 'Puesto' })} ${item.place} · ${duelLabel} · ${triLang(lang, { uk: 'рів.', ru: 'ур.', es: 'nv.' })} ${lvl}`}
+                          {`${triLang(lang, { uk: 'Місце', ru: 'Место', es: 'Puesto', 'pt-BR': 'Posição', vi: 'Vị trí', id: 'Posisi', tr: 'Sıra', pl: 'Miejsce' })} ${item.place} · ${duelLabel} · ${triLang(lang, { uk: 'рів.', ru: 'ур.', es: 'nv.', 'pt-BR': 'nív.', vi: 'cấp', id: 'lvl', tr: 'sv.', pl: 'poz.' })} ${lvl}`}
                         </Text>
                       </View>
                       {isMe && (
                         <View style={{ marginHorizontal: 8, paddingHorizontal: 7, paddingVertical: 3, borderRadius: 999, backgroundColor: t.accent + '22', borderWidth: 0.5, borderColor: t.accent + '55' }}>
                           <Text style={{ color: t.accent, fontSize: Math.max(10, f.caption - 1), fontWeight: '900' }}>
-                            {triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú' })}
+                            {triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                           </Text>
                         </View>
                       )}
@@ -623,7 +644,7 @@ export default function ArenaLeaderboardScreen() {
                   <View style={{ flex: 1, justifyContent: 'center', minWidth: 0 }}>
                     {myIsPremium ? (
                       <PremiumGoldUserName
-                        text={myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú' })}
+                        text={myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                         fontSize={15}
                       />
                     ) : (
@@ -631,7 +652,7 @@ export default function ArenaLeaderboardScreen() {
                         numberOfLines={1}
                         style={{ flex: 1, fontSize: 15, color: t.textPrimary, fontWeight: '700' }}
                       >
-                        {myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú' })}
+                        {myName.trim() || triLang(lang, { uk: 'Ви', ru: 'Вы', es: 'Tú', 'pt-BR': 'Você', vi: 'Bạn', id: 'Kamu', tr: 'Sen', pl: 'Ty' })}
                       </Text>
                     )}
                     {myDuelLabel && (
@@ -643,11 +664,16 @@ export default function ArenaLeaderboardScreen() {
                       </Text>
                     )}
                     {arenaXpPercentile !== null && (
-                      <Text numberOfLines={1} style={{ color: '#F59E0B', fontSize: f.label - 1, marginTop: 2, fontWeight: '700' }}>
+                      <Text numberOfLines={1} style={{ color: arenaLeaderboardAccent, fontSize: f.label - 1, marginTop: 2, fontWeight: '700' }}>
                         {triLang(lang, {
                           ru: `Топ ${100 - arenaXpPercentile}% в арене`,
                           uk: `Топ ${100 - arenaXpPercentile}% в арені`,
                           es: `Top ${100 - arenaXpPercentile}% en arena`,
+                          'pt-BR': `Top ${100 - arenaXpPercentile}% na arena`,
+                          vi: `Top ${100 - arenaXpPercentile}% trong arena`,
+                          id: `Top ${100 - arenaXpPercentile}% di arena`,
+                          tr: `Arena içinde top ${100 - arenaXpPercentile}%`,
+                          pl: `Top ${100 - arenaXpPercentile}% na arenie`,
                         })}
                       </Text>
                     )}

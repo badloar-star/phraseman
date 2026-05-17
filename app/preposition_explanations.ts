@@ -6,6 +6,11 @@ type Explanation = {
   ru: string;
   uk: string;
   es: string;
+  ptBr?: string;
+  vi?: string;
+  id?: string;
+  tr?: string;
+  pl?: string;
   level?: PrepositionExplanationLevel;
 };
 
@@ -42,6 +47,30 @@ function wordsAfter(sentence: string, preposition: string, count = 3): string {
 function phraseAfter(sentence: string, preposition: string): string {
   const phrase = wordsAfter(sentence, preposition, 3);
   return phrase ? `${preposition} ${phrase}` : preposition;
+}
+
+function plannedExplanationFallback(preposition: string, sentence: string): Pick<Explanation, 'ptBr' | 'vi' | 'id' | 'tr' | 'pl'> {
+  const answer = preposition.trim().toLowerCase();
+  const chunk = phraseAfter(sentence, answer) || answer;
+  return {
+    ptBr: `Aqui a preposição correta é "${answer}" na combinação "${chunk}". Ela mostra a relação entre as palavras da frase; olhe para o sentido completo, não só para uma tradução palavra por palavra.`,
+    vi: `Ở đây cần dùng giới từ "${answer}" trong cụm "${chunk}". Giới từ này thể hiện quan hệ giữa các từ trong câu; hãy nhìn vào ý nghĩa cả cụm, không chỉ dịch từng từ.`,
+    id: `Di sini preposisi yang tepat adalah "${answer}" dalam frasa "${chunk}". Preposisi ini menunjukkan hubungan antar kata; lihat makna seluruh frasa, bukan hanya terjemahan kata demi kata.`,
+    tr: `Burada "${chunk}" ifadesinde doğru edat "${answer}". Bu edat kelimeler arasındaki ilişkiyi gösterir; tek tek çeviriye değil, tüm yapının anlamına bak.`,
+    pl: `Tutaj potrzebny jest przyimek "${answer}" w połączeniu "${chunk}". Pokazuje on relację między słowami w całej frazie; patrz na sens konstrukcji, nie tylko na tłumaczenie słowo po słowie.`,
+  };
+}
+
+function withPlannedFallback(preposition: string, sentence: string, explanation: Explanation): Explanation {
+  const planned = plannedExplanationFallback(preposition, sentence);
+  return {
+    ...explanation,
+    ptBr: explanation.ptBr ?? planned.ptBr,
+    vi: explanation.vi ?? planned.vi,
+    id: explanation.id ?? planned.id,
+    tr: explanation.tr ?? planned.tr,
+    pl: explanation.pl ?? planned.pl,
+  };
 }
 
 function chunkUntil(sentence: string, preposition: string, stopWords: RegExp, maxAfter = 4): string {
@@ -1120,11 +1149,11 @@ export function explainPrepositionChoice(preposition: string, sentence: string):
   const overrideKey = makeOverrideKey(sentence, answer);
   const override = overrideKey ? PREPOSITION_OVERRIDES[overrideKey] : undefined;
   if (override) {
-    return { ru: override.ru, uk: override.uk, es: override.es, level: 'specific' };
+    return withPlannedFallback(answer, sentence, { ru: override.ru, uk: override.uk, es: override.es, level: 'specific' });
   }
 
   const matched = ruleFor(answer, sentence);
-  if (matched) return matched;
+  if (matched) return withPlannedFallback(answer, sentence, matched);
 
   const chunk = phraseAfter(sentence, answer);
   const trim = chunk && chunk.length > 0 ? chunk : answer;
@@ -1132,6 +1161,7 @@ export function explainPrepositionChoice(preposition: string, sentence: string):
     ru: `Здесь нужен предлог "${answer}" в сочетании "${trim}". Именно он передаёт нужное отношение между словами этой фразы; сравни смысл всей конструкции, а не отдельный перевод.`,
     uk: `Тут потрібен прийменник "${answer}" у сполученні "${trim}". Саме він передає потрібне відношення між словами цієї фрази; порівнюй зміст усієї конструкції, а не окремий переклад.`,
     es: `En esta frase corresponde la preposición «${answer}» en la colocación «${trim}». Es esa relación léxica y no un sustituto cualquiera; valora el significado global, no sólo una traducción palabra por palabra.`,
+    ...plannedExplanationFallback(answer, sentence),
     level: 'context',
   };
 }

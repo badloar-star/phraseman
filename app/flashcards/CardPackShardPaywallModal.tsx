@@ -226,7 +226,7 @@ export default function CardPackShardPaywallModal({
   );
   const cardShadow = useMemo(() => getVolumetricShadow(themeMode, t, 3), [themeMode, t]);
   const [reportVisible, setReportVisible] = useState(false);
-  const shardPriceImg = useMemo(() => oskolokImageForPackShards(pack.priceShards), [pack.priceShards]);
+  const shardPriceImg = useMemo(() => oskolokImageForPackShards(pack.priceShards, themeMode), [pack.priceShards, themeMode]);
 
   const backdropO = useSharedValue(0);
   const sheetY = useSharedValue(80);

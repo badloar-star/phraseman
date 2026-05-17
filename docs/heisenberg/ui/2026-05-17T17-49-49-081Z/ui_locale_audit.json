@@ -1,0 +1,3103 @@
+{
+  "generatedAt": "2026-05-17T17:49:49.080Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 580,
+    "triLangCalls": 1510,
+    "staticTriLangCalls": 1508,
+    "dynamicTriLangCalls": 2,
+    "legacyLangHelperCalls": 180,
+    "triLangMissingLocaleUnits": 20,
+    "triLangMissingAllPlannedUnits": 4,
+    "helperMissingLocaleUnits": 900,
+    "bundleMissingLocaleUnits": 10,
+    "findings": 192,
+    "byCode": {
+      "trilang-missing-all-planned-locales": 4,
+      "legacy-lang-helper-missing-planned-locales": 180,
+      "dynamic-trilang-copy": 2,
+      "lang-context-bundle-missing-planned-locale": 5,
+      "i18n-t-bundle-missing-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/hint.tsx",
+      "findings": 180,
+      "missingLocaleUnits": 900
+    },
+    {
+      "file": "app/diagnostic_test.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "components/LangContext.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/lesson_help.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/premium_modal.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "constants/i18n.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/DeleteAccountConfirmModal.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 0
+    },
+    {
+      "file": "components/ReleaseNotesModal.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 0
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/diagnostic_test.tsx",
+      "line": 1141,
+      "column": 54,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: q.hintRU, uk: q.hintUK, es: q.hintES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/diagnostic_test.tsx",
+      "line": 1290,
+      "column": 73,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: q.hintRU, uk: q.hintUK, es: q.hintES }"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 121,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Подлежащее','Підмет','Sujeto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 121,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Утверждение','Ствердження','Afirmación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 121,
+      "column": 109,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Отрицание','Заперечення','Negación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 121,
+      "column": 155,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Вопрос','Питання','Pregunta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 140,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Отрицание (нет «являться» у глагола)','Заперечення (не є)','Negación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 141,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Подлежащее','Підмет','Sujeto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 141,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Полная форма','Повна форма','Forma completa')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 141,
+      "column": 114,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Сокращение','Скорочення','Forma corta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 149,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Вопросы и краткие ответы','Питання та короткі відповіді','Preguntas y respuestas breves')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 150,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Вопрос','Питання','Pregunta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 150,
+      "column": 58,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Да','Так','Sí')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 150,
+      "column": 83,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Нет','Ні','No')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 166,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол','Дієслово','Verbo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 166,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 171,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Правило','Правило','Regla')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 171,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 197,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Подлежащее','Підмет','Sujeto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 197,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Отрицание','Заперечення','Negación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 197,
+      "column": 105,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Вопрос','Питання','Pregunta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 204,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Примеры','Приклади','Ejemplos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 205,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Утверждение','Ствердження','Afirmación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 205,
+      "column": 69,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Отрицание','Заперечення','Negación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 220,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Общие вопросы','Загальні питання','Preguntas generales')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 221,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Подлежащее','Підмет','Sujeto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 221,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Вопрос','Питання','Pregunta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 221,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Ответ','Відповідь','Respuesta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 228,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Специальные вопросы (Wh-)','Спеціальні питання (Wh-)','Preguntas Wh-')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 229,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 246,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Significado')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 246,
+      "column": 71,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 277,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Формула специального вопроса','Формула спеціального питання','Estructura de la pregunta Wh-')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 278,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Подлежащее','Підмет','Sujeto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 278,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Формула','Формула','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 278,
+      "column": 101,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 296,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Подлежащее','Підмет','Sujeto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 296,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Утверждение','Ствердження','Afirmación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 296,
+      "column": 109,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Отрицание','Заперечення','Negación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 296,
+      "column": 155,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Вопрос','Питання','Pregunta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 303,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Примеры','Приклади','Ejemplos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 304,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Предложение','Речення','Oración')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 318,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Предлог','Прийменник','Preposición')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 318,
+      "column": 65,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Употребляется с','Вживається з','Va con')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 318,
+      "column": 116,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Примеры','Приклади','Ejemplos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 341,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Число','Число','Número')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 341,
+      "column": 53,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Утверждение','Ствердження','Afirmación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 341,
+      "column": 103,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Отрицание','Заперечення','Negación')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 341,
+      "column": 149,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Вопрос','Питання','Pregunta')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 343,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Ед.ч.','Одн.','Sing.')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 344,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Мн.ч.','Мн.','Plur.')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 348,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Предлоги места','Прийменники місця','Preposiciones de lugar')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 349,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Предлог','Прийменник','Prep.')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 349,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Significado')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 349,
+      "column": 104,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 387,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол','Дієслово','Verbo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 387,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Significado')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 387,
+      "column": 101,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 425,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 425,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 425,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 433,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Правила написания','Правила написання','Reglas ortográficas')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 434,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Правило','Правило','Regla')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 434,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 460,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 460,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 460,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 468,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Частые глаголы','Часті дієслова','Verbos frecuentes')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 469,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Significado')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 513,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 513,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 513,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 518,
+      "column": 12,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Сокр.','Скор.','Contr.')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 522,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Когда использовать','Коли вживать','Cuándo usarlo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 523,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Ситуация','Ситуація','Uso')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 523,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 549,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Короткие прилагательные','Короткі прикметники','Adjetivos cortos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 550,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Обычное','Звичайне','Positivo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 550,
+      "column": 60,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Сравнит.','Порівняльне','Comparativo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 550,
+      "column": 108,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Превосх.','Найвищий','Superlativo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 560,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Длинные прилагательные','Довгі прикметники','Adjetivos largos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 561,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Обычное','Звичайне','Positivo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 561,
+      "column": 60,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Сравнит.','Порівняльне','Comparativo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 561,
+      "column": 108,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Превосх.','Найвищий','Superlativo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 569,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Исключения','Винятки','Irregulares')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 570,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Обычное','Звичайне','Positivo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 570,
+      "column": 60,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Сравнит.','Порівняльне','Comparativo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 570,
+      "column": 108,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Превосх.','Найвищий','Superlativo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 586,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Лицо','Особа','Persona')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 586,
+      "column": 53,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Перед сущ.','Перед іменником','Antes del sust.')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 586,
+      "column": 111,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Самостоятельно','Самостійно','Apartados')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 586,
+      "column": 162,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 605,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол','Дієслово','Verbo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 605,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Significado')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 605,
+      "column": 101,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 649,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 649,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 649,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 657,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Правила написания -ing','Правила написання -ing','Reglas de -ing')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 658,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Правило','Правило','Regla')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 658,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 684,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 684,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 684,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Примеры','Приклади','Ejemplos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 710,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Предлог','Прийменник','Prep.')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 710,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Significado')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 710,
+      "column": 104,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 754,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Артикль','Артикль','Art.')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 754,
+      "column": 55,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Когда использовать','Коли вживати','Cuándo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 754,
+      "column": 109,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 773,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Без артикля','Без артикля','Sin artículo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 774,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Правило','Правило','Regla')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 774,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 803,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Корень','Корінь','Raíz')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 803,
+      "column": 53,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Лицо','Особа','Personas')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 803,
+      "column": 88,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Предмет','Предмет','Cosas')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 803,
+      "column": 125,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Место','Місце','Lugar')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 812,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Когда использовать','Коли вживати','Cuándo usar')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 813,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Местоимение','Займенник','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 813,
+      "column": 62,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Употребление','Вживання','Uso')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 813,
+      "column": 103,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 839,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'После этих слов — Герундий (-ing)','Після цих слів — Герундій (-ing)','Tras estos verbos — gerundio (-ing)')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 840,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол','Дієслово','Verbo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 840,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 853,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'После этих слов — Инфинитив (to + V)','Після цих слів — Інфінітив (to + V)','Tras estos verbos — infinitivo (to + V)')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 854,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол','Дієслово','Verbo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 854,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 872,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Время','Час','Tiempo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 872,
+      "column": 51,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 872,
+      "column": 97,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 882,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Активный → Пассивный','Активний → Пасивний','Activa → pasiva')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 883,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Активный','Активний','Activa')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 883,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пассивный','Пасивний','Pasiva')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 898,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 898,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 898,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 906,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Ключевые слова','Ключові слова','Marcadores')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 907,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Слово','Слово','Palabra')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 907,
+      "column": 54,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Sentido')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 907,
+      "column": 95,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 942,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 942,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 942,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 950,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Когда использовать','Коли вживати','Cuándo usar')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 951,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Ситуация','Ситуація','Uso')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 951,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 974,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Тип','Тип','Tipo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 974,
+      "column": 47,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'If-часть','If-частина','Parte en if')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 974,
+      "column": 94,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Результат','Результат','Resultado')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 974,
+      "column": 139,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1000,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Сдвиг времён','Зміщення часів','Retroceso de tiempos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1001,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Прямая речь','Пряма мова','Directo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1001,
+      "column": 65,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Косвенная речь','Непряма мова','Indirecto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1012,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Примеры','Приклади','Ejemplos')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1013,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Прямая','Пряма','Directo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1013,
+      "column": 55,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Косвенная','Непряма','Indirecto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1029,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Подлежащее','Підмет','Sujeto')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1029,
+      "column": 59,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Возвратное','Зворотне','Reflexivo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1029,
+      "column": 104,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1049,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Форма','Форма','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1049,
+      "column": 52,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Структура','Структура','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1049,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1057,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Сравнение конструкций','Порівняння конструкцій','Otras construcciones')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1058,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Конструкция','Конструкція','Forma')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1058,
+      "column": 64,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Значение','Значення','Sentido')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1058,
+      "column": 105,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1081,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Слово','Слово','Palabra')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1081,
+      "column": 54,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Для чего','Для чого','Sirve para')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1081,
+      "column": 98,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1113,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол + объект + to + V','Дієслово + об\\'єкт + to + V','Verbo + complemento + to + V')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1114,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол','Дієслово','Verbo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1114,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1125,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол + объект + V (без to)','Дієслово + об\\'єкт + V (без to)','Verbo + complemento + V (sin to)')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1126,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Глагол','Дієслово','Verbo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1126,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1143,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Времена — обзор','Часи — огляд','Tiempo verbal — panorama')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1144,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Время','Час','Tiempo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1144,
+      "column": 51,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1144,
+      "column": 89,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Ключевые слова','Ключові слова','Marcadores')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1155,
+      "column": 16,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Важные конструкции','Важливі конструкції','Estructuras clave')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1156,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Конструкция','Конструкція','Estructura')"
+    },
+    {
+      "severity": "warning",
+      "code": "legacy-lang-helper-missing-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1156,
+      "column": 69,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Legacy L(lang, ru, uk, es) helper bypasses planned interface locales.",
+      "sample": "L(lang,'Пример','Приклад','Ejemplo')"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 19384,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: theory.titleUK, ru: theory.titleRU, es: theoryTitleEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 943,
+      "column": 75,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/DeleteAccountConfirmModal.tsx",
+      "line": 37,
+      "column": 54,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, copy)"
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PT_BR | PTBR",
+      "missing": [
+        "pt-BR"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "VI",
+      "missing": [
+        "vi"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "ID",
+      "missing": [
+        "id"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "TR",
+      "missing": [
+        "tr"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PL",
+      "missing": [
+        "pl"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/ReleaseNotesModal.tsx",
+      "line": 137,
+      "column": 30,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, TEXT.body)"
+    },
+    {
+      "severity": "warning",
+      "code": "i18n-t-bundle-missing-planned-locales",
+      "file": "constants/i18n.ts",
+      "line": 37,
+      "column": 18,
+      "keyPath": "T.<locale>",
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "constants/i18n.ts does not define UI string bundles for all planned interface locales."
+    }
+  ]
+}

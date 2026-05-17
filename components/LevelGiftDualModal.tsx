@@ -43,9 +43,31 @@ const F2P_IMAGES: Record<string, number> = {
 
 /** Подписи сундуков/карточек — не «F2P»/англ. жаргон, а нормальные RU/UK/ES. */
 const DUAL_UI = {
-  firstChest:  { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel' },
-  secondChest: { ru: 'Бонус премиум',     uk: 'Преміум-бонус',     es: 'Bono premium' },
+  firstChest:  { ru: 'Подарок за уровень', uk: 'Подарунок за рівень', es: 'Regalo por nivel', 'pt-BR': 'Presente de nível', vi: 'Quà cấp độ', id: 'Hadiah level', tr: 'Seviye hediyesi', pl: 'Prezent za poziom' },
+  secondChest: { ru: 'Бонус премиум',     uk: 'Преміум-бонус',     es: 'Bono premium',      'pt-BR': 'Bônus premium',    vi: 'Thưởng premium', id: 'Bonus premium', tr: 'Premium bonus',   pl: 'Bonus premium' },
 } as const;
+
+const firstChestLabel = (lang: Lang) => triLang(lang, {
+  ru: DUAL_UI.firstChest.ru,
+  uk: DUAL_UI.firstChest.uk,
+  es: DUAL_UI.firstChest.es,
+  'pt-BR': DUAL_UI.firstChest['pt-BR'],
+  vi: DUAL_UI.firstChest.vi,
+  id: DUAL_UI.firstChest.id,
+  tr: DUAL_UI.firstChest.tr,
+  pl: DUAL_UI.firstChest.pl,
+});
+
+const secondChestLabel = (lang: Lang) => triLang(lang, {
+  ru: DUAL_UI.secondChest.ru,
+  uk: DUAL_UI.secondChest.uk,
+  es: DUAL_UI.secondChest.es,
+  'pt-BR': DUAL_UI.secondChest['pt-BR'],
+  vi: DUAL_UI.secondChest.vi,
+  id: DUAL_UI.secondChest.id,
+  tr: DUAL_UI.secondChest.tr,
+  pl: DUAL_UI.secondChest.pl,
+});
 
 /** Заголовок карточки премиум-награды: тёмный фиолетовый на светлом фоне (не бледный #C4B5FD). */
 const PREM_LABEL_COLOR = '#D6B85C';
@@ -454,6 +476,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
 
   if (!visible || !f2pGift || !premGift) return null;
 
+  const strongestRarity = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
+    ? 'epic'
+    : f2pGift.rarity === 'rare' || premGift.rarity === 'rare'
+      ? 'rare'
+      : 'common';
   const borderC = f2pGift.rarity === 'epic' || premGift.rarity === 'epic'
     ? RARITY_BORDER.epic
     : f2pGift.rarity === 'rare' || premGift.rarity === 'rare'
@@ -528,10 +555,19 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
           )}
 
           <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? PREM_LABEL_COLOR : t.textPrimary, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 4, textAlign: 'center' }}>
-            {triLang(lang, { ru: `Премиум: уровень ${level}`, uk: `Преміум: рівень ${level}`, es: `Premium: nivel ${level}` })}
+            {triLang(lang, {
+              ru: `Премиум: уровень ${level}`,
+              uk: `Преміум: рівень ${level}`,
+              es: `Premium: nivel ${level}`,
+              'pt-BR': `Premium: nível ${level}`,
+              vi: `Premium: cấp ${level}`,
+              id: `Premium: level ${level}`,
+              tr: `Premium: seviye ${level}`,
+              pl: `Premium: poziom ${level}`,
+            })}
           </Text>
           <Text style={{ color: t.textPrimary, fontSize: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? f.h2 + 1 : f.bodyLg, fontWeight: '900', marginBottom: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 16 : 12, textAlign: 'center' }}>
-            {triLang(lang, { ru: '🎁 Два подарка', uk: '🎁 Два подарунки', es: '🎁 Dos regalos' })}
+            {triLang(lang, { ru: '🎁 Два подарка', uk: '🎁 Два подарунки', es: '🎁 Dos regalos', 'pt-BR': '🎁 Dois presentes', vi: '🎁 Hai phần quà', id: '🎁 Dua hadiah', tr: '🎁 İki hediye', pl: '🎁 Dwa prezenty' })}
           </Text>
 
           {phase === 'pair' && (
@@ -572,7 +608,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                     </TouchableOpacity>
                   )}
                   <Text style={{ color: t.textMuted, fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '700' : '400', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
-                    {triLang(lang, DUAL_UI.firstChest)}
+                    {firstChestLabel(lang)}
                   </Text>
                 </View>
                 <View style={{ flex: 1, alignItems: 'center', minWidth: 0, backgroundColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(214,184,92,0.06)' : 'transparent', borderRadius: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 18 : 0, borderWidth: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 1 : 0, borderColor: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'rgba(214,184,92,0.20)' : 'transparent', paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 12 : 0, paddingHorizontal: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 6 : 0 }}>
@@ -606,7 +642,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                     </TouchableOpacity>
                   )}
                   <Text style={{ color: PREM_LABEL_COLOR, fontSize: 10, marginTop: 6, textAlign: 'center', fontWeight: '800', textTransform: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'uppercase' : 'none', letterSpacing: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 0.5 : 0 }}>
-                    {triLang(lang, DUAL_UI.secondChest)}
+                    {secondChestLabel(lang)}
                   </Text>
                 </View>
               </View>
@@ -616,6 +652,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       ru: 'Открой оба (в любом порядке)',
                       uk: 'Відкрий обидва (будь-який порядок)',
                       es: 'Abre ambos (en cualquier orden)',
+                      'pt-BR': 'Abra os dois em qualquer ordem',
+                      vi: 'Mở cả hai theo thứ tự bất kỳ',
+                      id: 'Buka keduanya dalam urutan bebas',
+                      tr: 'İkisini de istediğin sırayla aç',
+                      pl: 'Otwórz oba w dowolnej kolejności',
                     })}
                 </Text>
               )}
@@ -625,6 +666,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                     ru: 'Ещё награда!',
                     uk: 'Ще одна винагорода!',
                     es: '¡Otra recompensa!',
+                    'pt-BR': 'Mais uma recompensa!',
+                    vi: 'Thêm một phần thưởng!',
+                    id: 'Hadiah lagi!',
+                    tr: 'Bir ödül daha!',
+                    pl: 'Jeszcze jedna nagroda!',
                   })}
                 </Text>
               )}
@@ -644,6 +690,11 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                       ru: 'Что именно ты получил',
                       uk: 'Що саме ти отримав',
                       es: 'Lo que has recibido',
+                      'pt-BR': 'O que você recebeu',
+                      vi: 'Chính xác bạn đã nhận được gì',
+                      id: 'Apa yang kamu dapatkan',
+                      tr: 'Tam olarak ne aldın',
+                      pl: 'Co dokładnie otrzymujesz',
                     })}
                   </Text>
                   <ScrollView
@@ -653,14 +704,14 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                   >
                     <GiftResultBlock
                       t={t} f={f} g={f2pGift} lang={lang}
-                      label={triLang(lang, DUAL_UI.firstChest)}
+                      label={firstChestLabel(lang)}
                       meta={f2pAppliedMeta}
                       level={level}
                     />
                     <View style={{ height: 10 }} />
                     <GiftResultBlock
                       t={t} f={f} g={premGift} lang={lang}
-                      label={triLang(lang, DUAL_UI.secondChest)}
+                      label={secondChestLabel(lang)}
                       premVisual
                       meta={premAppliedMeta}
                       level={level}
@@ -681,7 +732,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                         }}
                       >
                         <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>
-                          {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar' })}
+                          {triLang(lang, { ru: 'Открыть аватар', uk: 'Відкрити аватар', es: 'Abrir avatar', 'pt-BR': 'Abrir avatar', vi: 'Mở avatar', id: 'Buka avatar', tr: 'Avatarı aç', pl: 'Otwórz avatar' })}
                         </Text>
                       </TouchableOpacity>
                     )}
@@ -722,7 +773,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
                           />
                         )}
                         <Text style={{ color: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '#111827' : '#FFFFFF', fontSize: f.bodyLg, fontWeight: '900' }}>
-                          {triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo' })}
+                          {triLang(lang, { ru: 'Получить всё', uk: 'Отримати всі', es: 'Reclamar todo', 'pt-BR': 'Resgatar tudo', vi: 'Nhận tất cả', id: 'Klaim semua', tr: 'Hepsini al', pl: 'Odbierz wszystko' })}
                         </Text>
                       </LinearGradient>
                     </TouchableOpacity>
@@ -733,7 +784,7 @@ export default function LevelGiftDualModal({ visible, level, userName, lang, onC
               {opened.size === 0 && f2pGift && premGift && (
                 <TouchableOpacity activeOpacity={0.7} onPress={handleSkip} style={{ marginTop: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 14 : 12, paddingVertical: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 8 : 0 }}>
                   <Text style={{ color: t.textGhost, fontSize: f.sub, textAlign: 'center', textDecorationLine: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? 'none' : 'underline', fontWeight: USE_ELITE_DUAL_LEVEL_GIFT_MODAL ? '700' : '400' }}>
-                    {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde' })}
+                    {triLang(lang, { ru: 'Забрать позже', uk: 'Забрати пізніше', es: 'Reclamar más tarde', 'pt-BR': 'Resgatar mais tarde', vi: 'Nhận sau', id: 'Klaim nanti', tr: 'Daha sonra al', pl: 'Odbierz później' })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -913,6 +964,11 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level }: {
               ru: `Открыто: ${cosmeticLabel}`,
               uk: `Відкрито: ${cosmeticLabel}`,
               es: `Desbloqueado: ${cosmeticLabel}`,
+              'pt-BR': `Desbloqueado: ${cosmeticLabel}`,
+              vi: `Đã mở khóa: ${cosmeticLabel}`,
+              id: `Terbuka: ${cosmeticLabel}`,
+              tr: `Açıldı: ${cosmeticLabel}`,
+              pl: `Odblokowano: ${cosmeticLabel}`,
             })}
           </Text>
         </View>
@@ -920,7 +976,7 @@ function GiftResultBlock({ t, f, g, lang, label, premVisual, meta, level }: {
       {(g.id === 'xp_2x_24h' || g.id === 'xp_2x_48h') && meta.xpBoostAlreadyActive && (
         <View style={{ marginTop: 8, padding: 8, backgroundColor: '#FEF3C7', borderRadius: 8, borderWidth: 1, borderColor: '#D97706' }}>
           <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
-            {triLang(lang, { ru: '2× буст обновлён', uk: '2× буст оновлено', es: 'Bono de XP ×2 actualizado' })}
+            {triLang(lang, { ru: '2× буст обновлён', uk: '2× буст оновлено', es: 'Bono de XP ×2 actualizado', 'pt-BR': 'Bônus de XP ×2 atualizado', vi: 'Boost XP ×2 đã cập nhật', id: 'Boost XP ×2 diperbarui', tr: 'XP ×2 boost güncellendi', pl: 'Boost XP ×2 zaktualizowany' })}
           </Text>
         </View>
       )}
@@ -952,12 +1008,17 @@ function EnergyNote({ f, g, lang, energyBoostAlreadyActive }: {
                 ru: `Буст заменён (+${n})`,
                 uk: `Буст замінено (+${n})`,
                 es: `Bono reemplazado (+${n})`,
+                'pt-BR': `Bônus substituído (+${n})`,
+                vi: `Boost đã được thay (+${n})`,
+                id: `Boost diganti (+${n})`,
+                tr: `Boost değiştirildi (+${n})`,
+                pl: `Boost zastąpiony (+${n})`,
               })}
             </Text>
           )
         : (
             <Text style={{ color: '#78350F', fontSize: f.caption, textAlign: 'center', fontWeight: '600' }}>
-              {triLang(lang, { ru: 'До полуночи', uk: 'Діє до півночі', es: 'Vigente hasta medianoche' })}
+              {triLang(lang, { ru: 'До полуночи', uk: 'Діє до півночі', es: 'Vigente hasta medianoche', 'pt-BR': 'Até meia-noite', vi: 'Đến nửa đêm', id: 'Sampai tengah malam', tr: 'Gece yarısına kadar', pl: 'Do północy' })}
             </Text>
           )}
     </View>

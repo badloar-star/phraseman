@@ -98,32 +98,92 @@ function recallTranslationHint(item: RecallItem, lang: Lang, studyTarget: StudyT
 
 /** Подпись источника фразы на экране повторения (урок / квиз / арена / …). */
 function recallOriginCaption(item: RecallItem | undefined, lang: Lang): string {
-  if (!item) return triLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso' });
+  if (!item) return triLang(lang, {
+    ru: 'Повторение',
+    uk: 'Повторення',
+    es: 'Repaso',
+    'pt-BR': "Revis?o",
+    vi: "?n t?p",
+    id: "Ulangan",
+    tr: "Tekrar",
+    pl: "Powt?rka",
+  });
   const s = item.source;
   // lessonId 99 — служебный (admin test bench), не показываем его пользователю
-  if (item.lessonId === 99) return triLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso' });
+  if (item.lessonId === 99) return triLang(lang, {
+    ru: 'Повторение',
+    uk: 'Повторення',
+    es: 'Repaso',
+    'pt-BR': "Revis?o",
+    vi: "?n t?p",
+    id: "Ulangan",
+    tr: "Tekrar",
+    pl: "Powt?rka",
+  });
   if (s === 'quiz') {
     return item.lessonId > 0
       ? triLang(lang, {
-          ru: `Квиз · урок ${item.lessonId}`,
-          uk: `Квіз · урок ${item.lessonId}`,
-          es: `Cuestionario · lección ${item.lessonId}`,
-        })
-      : triLang(lang, { ru: 'Квиз', uk: 'Квіз', es: 'Cuestionario' });
+        ru: `Квиз · урок ${item.lessonId}`,
+        uk: `Квіз · урок ${item.lessonId}`,
+        es: `Cuestionario · lección ${item.lessonId}`,
+        'pt-BR': `Quiz ? aula ${item.lessonId}`,
+        vi: `Quiz ? b?i ${item.lessonId}`,
+        id: `Kuis ? pelajaran ${item.lessonId}`,
+        tr: `Quiz ? ders ${item.lessonId}`,
+        pl: `Quiz ? lekcja ${item.lessonId}`,
+      })
+      : triLang(lang, {
+        ru: 'Квиз',
+        uk: 'Квіз',
+        es: 'Cuestionario',
+        'pt-BR': "Quiz",
+        vi: "Quiz",
+        id: "Kuis",
+        tr: "Quiz",
+        pl: "Quiz",
+      });
   }
-  if (s === 'arena') return triLang(lang, { ru: 'Арена', uk: 'Арена', es: 'Arena' });
-  if (s === 'diagnostic') return triLang(lang, { ru: 'Диагностика', uk: 'Діагностика', es: 'Test de nivel' });
+  if (s === 'arena') return triLang(lang, {
+    ru: 'Арена',
+    uk: 'Арена',
+    es: 'Arena',
+    'pt-BR': "Arena",
+    vi: "??u tr??ng",
+    id: "Arena",
+    tr: "Arena",
+    pl: "Arena",
+  });
+  if (s === 'diagnostic') return triLang(lang, {
+    ru: 'Диагностика',
+    uk: 'Діагностика',
+    es: 'Test de nivel',
+    'pt-BR': "Teste de n?vel",
+    vi: "Ki?m tra tr?nh ??",
+    id: "Tes level",
+    tr: "Seviye testi",
+    pl: "Test poziomu",
+  });
   if (s === 'exam') {
     return triLang(lang, {
       ru: `Зачёт · урок ${item.lessonId}`,
       uk: `Залік · урок ${item.lessonId}`,
       es: `Examen · lección ${item.lessonId}`,
+      'pt-BR': `Teste ? aula ${item.lessonId}`,
+      vi: `B?i ki?m tra ? b?i ${item.lessonId}`,
+      id: `Ujian ? pelajaran ${item.lessonId}`,
+      tr: `S?nav ? ders ${item.lessonId}`,
+      pl: `Test ? lekcja ${item.lessonId}`,
     });
   }
   return triLang(lang, {
     ru: `Урок ${item.lessonId}`,
     uk: `Урок ${item.lessonId}`,
     es: `Lección ${item.lessonId}`,
+    'pt-BR': `Aula ${item.lessonId}`,
+    vi: `B?i ${item.lessonId}`,
+    id: `Pelajaran ${item.lessonId}`,
+    tr: `Ders ${item.lessonId}`,
+    pl: `Lekcja ${item.lessonId}`,
   });
 }
 
@@ -133,6 +193,11 @@ function recallCueInstruction(mode: ReviewMode, lang: Lang): string {
       ru: 'Соберите фразу: жмите слова по порядку',
       uk: 'Зберіть фразу: натискайте слова по порядку',
       es: 'Forma la frase: toca las palabras en orden',
+      'pt-BR': "Monte a frase: toque nas palavras em ordem",
+      vi: "Gh?p c?u: ch?m c?c t? theo ??ng th? t?",
+      id: "Susun frasa: ketuk kata sesuai urutan",
+      tr: "?fadeyi kur: kelimelere s?rayla dokun",
+      pl: "U??? fraz?: stukaj s?owa po kolei",
     });
   }
   if (mode === 'meaning_match') {
@@ -140,12 +205,22 @@ function recallCueInstruction(mode: ReviewMode, lang: Lang): string {
       ru: 'Что это значит? Выберите перевод',
       uk: 'Що це значить? Оберіть переклад',
       es: '¿Qué significa? Elige la traducción',
+      'pt-BR': "O que significa? Escolha a tradu??o",
+      vi: "N? ngh?a l? g?? Ch?n b?n d?ch",
+      id: "Apa artinya? Pilih terjemahan",
+      tr: "Ne anlama geliyor? ?eviriyi se?",
+      pl: "Co to znaczy? Wybierz t?umaczenie",
     });
   }
   return triLang(lang, {
     ru: 'Вспомните и напишите по-английски',
     uk: 'Згадайте і напишіть англійською',
     es: 'Recuerda y escribe en inglés',
+    'pt-BR': "Lembre e escreva em ingl?s",
+    vi: "Nh? l?i v? vi?t b?ng ti?ng Anh",
+    id: "Ingat dan tulis dalam bahasa Inggris",
+    tr: "Hat?rla ve ?ngilizce yaz",
+    pl: "Przypomnij sobie i napisz po angielsku",
   });
 }
 
@@ -883,7 +958,16 @@ export default function ReviewScreen() {
             <Ionicons name="chevron-back" size={26} color={sx.primary} />
           </TouchableOpacity>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
-            {triLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso' })}
+            {triLang(lang, {
+              ru: 'Повторение',
+              uk: 'Повторення',
+              es: 'Repaso',
+              'pt-BR': "Revis?o",
+              vi: "?n t?p",
+              id: "Ulangan",
+              tr: "Tekrar",
+              pl: "Powt?rka",
+            })}
           </Text>
         </View>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 32 }}>
@@ -893,6 +977,11 @@ export default function ReviewScreen() {
               ru: 'Нечего повторять!',
               uk: 'Нічого повторювати!',
               es: '¡Nada que repasar por ahora!',
+              'pt-BR': "Nada para revisar!",
+              vi: "Ch?a c? g? ?? ?n!",
+              id: "Belum ada yang perlu diulas!",
+              tr: "Tekrar edecek bir ?ey yok!",
+              pl: "Nie ma teraz nic do powt?rki!",
             })}
           </Text>
           <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', marginTop: 8, lineHeight: 22 }}>
@@ -900,6 +989,11 @@ export default function ReviewScreen() {
               ru: 'Допускай ошибки в уроках — они появятся здесь для повторения',
               uk: 'Допускай помилки в уроках — вони з\'являться тут для повторення',
               es: 'Si te equivocas en las lecciones, aquí aparecerán frases para repasar.',
+              'pt-BR': "Cometa erros nas aulas: eles aparecer?o aqui para revis?o.",
+              vi: "N?u b?n m?c l?i trong b?i h?c, c?c l?i ?? s? xu?t hi?n ? ??y ?? ?n l?i.",
+              id: "Jika kamu membuat kesalahan di pelajaran, kesalahan itu akan muncul di sini untuk diulas.",
+              tr: "Derslerde hata yapt???nda, tekrar i?in burada g?r?necekler.",
+              pl: "Gdy pope?nisz b??dy w lekcjach, pojawi? si? tutaj do powt?rki.",
             })}
           </Text>
           <TouchableOpacity
@@ -907,7 +1001,16 @@ export default function ReviewScreen() {
             style={{ marginTop: 32, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 14 }}
           >
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+              {triLang(lang, {
+                ru: 'Назад',
+                uk: 'Назад',
+                es: 'Volver',
+                'pt-BR': "Voltar",
+                vi: "Quay l?i",
+                id: "Kembali",
+                tr: "Geri",
+                pl: "Wstecz",
+              })}
             </Text>
           </TouchableOpacity>
         </View>
@@ -955,13 +1058,31 @@ export default function ReviewScreen() {
             <View style={{ alignItems: 'center', backgroundColor: t.correctBg, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 16 }}>
               <Text style={{ color: t.correct, fontSize: f.numLg, fontWeight: '800' }}>{correct}</Text>
               <Text style={{ color: t.correct, fontSize: f.caption, fontWeight: '600', marginTop: 2 }}>
-                {triLang(lang, { ru: 'Верно', uk: 'Вірно', es: 'Aciertos' })}
+                {triLang(lang, {
+                  ru: 'Верно',
+                  uk: 'Вірно',
+                  es: 'Aciertos',
+                  'pt-BR': "Corretas",
+                  vi: "??ng",
+                  id: "Benar",
+                  tr: "Do?ru",
+                  pl: "Poprawne",
+                })}
               </Text>
             </View>
             <View style={{ alignItems: 'center', backgroundColor: t.wrongBg, borderRadius: 16, paddingHorizontal: 24, paddingVertical: 16 }}>
               <Text style={{ color: t.wrong, fontSize: f.numLg, fontWeight: '800' }}>{wrong}</Text>
               <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '600', marginTop: 2 }}>
-                {triLang(lang, { ru: 'Ошибки', uk: 'Помилки', es: 'Errores' })}
+                {triLang(lang, {
+                  ru: 'Ошибки',
+                  uk: 'Помилки',
+                  es: 'Errores',
+                  'pt-BR': "Erros",
+                  vi: "L?i sai",
+                  id: "Kesalahan",
+                  tr: "Hatalar",
+                  pl: "B??dy",
+                })}
               </Text>
             </View>
           </View>
@@ -973,6 +1094,11 @@ export default function ReviewScreen() {
                   ru: 'заработано за повторение',
                   uk: 'зароблено за повторення',
                   es: 'XP obtenidas en Repaso',
+                  'pt-BR': "XP ganho na revis?o",
+                  vi: "XP nh?n ???c khi ?n t?p",
+                  id: "XP yang didapat dari ulangan",
+                  tr: "Tekrardan kazan?lan XP",
+                  pl: "XP zdobyte za powt?rk?",
                 })}
               </Text>
             </View>
@@ -982,6 +1108,11 @@ export default function ReviewScreen() {
               ru: 'Фразы с ошибками вернутся завтра',
               uk: 'Фрази з помилками повернуться завтра',
               es: 'Las frases con errores volverán mañana',
+              'pt-BR': "Frases com erro voltar?o amanh?",
+              vi: "C?c c?m c?u sai s? quay l?i v?o ng?y mai",
+              id: "Frasa yang salah akan kembali besok",
+              tr: "Hatal? ifadeler yar?n geri d?necek",
+              pl: "Frazy z b??dami wr?c? jutro",
             })}
           </Text>
           {/* router.back() → home.tsx обновит dueCount через focusTick → бейдж исчезнет */}
@@ -990,7 +1121,16 @@ export default function ReviewScreen() {
             style={{ marginTop: 32, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 14 }}
           >
             <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+              {triLang(lang, {
+                ru: 'Готово',
+                uk: 'Готово',
+                es: 'Listo',
+                'pt-BR': "Pronto",
+                vi: "Xong",
+                id: "Selesai",
+                tr: "Tamam",
+                pl: "Gotowe",
+              })}
             </Text>
           </TouchableOpacity>
         </View>
@@ -1001,6 +1141,11 @@ export default function ReviewScreen() {
           labelRu={coachToast.labelRu}
           labelUk={coachToast.labelUk}
           labelEs={coachToast.labelEs}
+          labelPtBr={coachToast.labelPtBr}
+          labelVi={coachToast.labelVi}
+          labelId={coachToast.labelId}
+          labelTr={coachToast.labelTr}
+          labelPl={coachToast.labelPl}
           mistakeCount={coachToast.mistakeCount}
           weaknessScore={coachToast.weaknessScore}
           priorityScore={coachToast.priorityScore}
@@ -1010,6 +1155,11 @@ export default function ReviewScreen() {
           microLabelRu={coachToast.microLabelRu}
           microLabelUk={coachToast.microLabelUk}
           microLabelEs={coachToast.microLabelEs}
+          microLabelPtBr={coachToast.microLabelPtBr}
+          microLabelVi={coachToast.microLabelVi}
+          microLabelId={coachToast.microLabelId}
+          microLabelTr={coachToast.microLabelTr}
+          microLabelPl={coachToast.microLabelPl}
           diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
           onDismiss={() => setCoachToast(null)}
         />
@@ -1030,11 +1180,25 @@ export default function ReviewScreen() {
               ru: 'Не удалось загрузить карточку. Нажми «Назад» и попробуй снова.',
               uk: 'Не вдалося завантажити картку. Натисни «Назад» і спробуй ще раз.',
               es: 'No se pudo cargar la tarjeta. Pulsa «Atrás» e inténtalo de nuevo.',
+              'pt-BR': "N?o foi poss?vel carregar o cart?o. Toque em ?Voltar? e tente novamente.",
+              vi: "Kh?ng th? t?i th?. Nh?n ?Quay l?i? r?i th? l?i.",
+              id: "Kartu tidak dapat dimuat. Ketuk ?Kembali? lalu coba lagi.",
+              tr: "Kart y?klenemedi. ?Geri? d??mesine dokunup tekrar dene.",
+              pl: "Nie uda?o si? wczyta? karty. Stuknij ?Wstecz? i spr?buj ponownie.",
             })}
           </Text>
           <TouchableOpacity onPress={() => router.back()} style={{ marginTop: 24, padding: 14 }}>
             <Text style={{ color: sx.primary, fontSize: f.body, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+              {triLang(lang, {
+                ru: 'Назад',
+                uk: 'Назад',
+                es: 'Volver',
+                'pt-BR': "Voltar",
+                vi: "Quay l?i",
+                id: "Kembali",
+                tr: "Geri",
+                pl: "Wstecz",
+              })}
             </Text>
           </TouchableOpacity>
         </SafeAreaView>
@@ -1071,7 +1235,16 @@ export default function ReviewScreen() {
         </TouchableOpacity>
         <View style={{ flex: 1 }}>
           <Text style={{ color: sx.primary, fontSize: f.h2, fontWeight: '700' }}>
-            {triLang(lang, { ru: 'Повторение', uk: 'Повторення', es: 'Repaso' })}
+            {triLang(lang, {
+              ru: 'Повторение',
+              uk: 'Повторення',
+              es: 'Repaso',
+              'pt-BR': "Revis?o",
+              vi: "?n t?p",
+              id: "Ulangan",
+              tr: "Tekrar",
+              pl: "Powt?rka",
+            })}
           </Text>
         </View>
         <Text style={{ color: sx.muted, fontSize: f.body, fontWeight: '600' }}>
@@ -1168,6 +1341,11 @@ export default function ReviewScreen() {
                   ru: 'Свайпните карточку влево или вправо, чтобы выбрать другую фразу',
                   uk: 'Свайніть картку вліво або вправо, щоб обрати іншу фразу',
                   es: 'Desliza la tarjeta para elegir otra frase',
+                  'pt-BR': "Deslize o cart?o para a esquerda ou direita para escolher outra frase",
+                  vi: "Vu?t th? sang tr?i ho?c ph?i ?? ch?n c?m c?u kh?c",
+                  id: "Geser kartu ke kiri atau kanan untuk memilih frasa lain",
+                  tr: "Ba?ka bir ifade se?mek i?in kart? sola ya da sa?a kayd?r",
+                  pl: "Przesu? kart? w lewo albo w prawo, aby wybra? inn? fraz?",
                 })}
               </Text>
             )}
@@ -1235,7 +1413,16 @@ export default function ReviewScreen() {
                 value={typeText}
                 onChangeText={setTypeText}
                 editable={status === 'playing'}
-                placeholder={triLang(lang, { ru: 'Введите ответ…', uk: 'Введіть відповідь…', es: 'Escribe la respuesta…' })}
+                placeholder={triLang(lang, {
+                  ru: 'Введите ответ…',
+                  uk: 'Введіть відповідь…',
+                  es: 'Escribe la respuesta…',
+                  'pt-BR': "Digite a resposta?",
+                  vi: "Nh?p c?u tr? l?i?",
+                  id: "Masukkan jawaban?",
+                  tr: "Cevab? yaz?",
+                  pl: "Wpisz odpowied??",
+                })}
                 placeholderTextColor={t.textGhost}
                 autoCapitalize="sentences"
                 autoCorrect={false}
@@ -1265,7 +1452,16 @@ export default function ReviewScreen() {
                   }}
                 >
                   <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-                    {triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })}
+                    {triLang(lang, {
+                      ru: 'Проверить',
+                      uk: 'Перевірити',
+                      es: 'Comprobar',
+                      'pt-BR': "Verificar",
+                      vi: "Ki?m tra",
+                      id: "Periksa",
+                      tr: "Kontrol et",
+                      pl: "Sprawd?",
+                    })}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -1305,6 +1501,11 @@ export default function ReviewScreen() {
                   ru: 'Правильный ответ:',
                   uk: 'Правильна відповідь:',
                   es: 'Respuesta correcta:',
+                  'pt-BR': "Resposta correta:",
+                  vi: "??p ?n ??ng:",
+                  id: "Jawaban benar:",
+                  tr: "Do?ru cevap:",
+                  pl: "Poprawna odpowied?:",
                 })}
               </Text>
               <Text style={{ color: t.correct, fontSize: f.bodyLg, fontWeight: '600' }}>
@@ -1343,6 +1544,11 @@ export default function ReviewScreen() {
                     ru: 'Если сжечь карточку — она больше не появится в повторении',
                     uk: 'Якщо спалити картку — вона більше не з\'явиться у повторенні',
                     es: 'Si quemas la tarjeta, no volverá a aparecer en el repaso',
+                    'pt-BR': "Se queimar o cart?o, ele n?o aparecer? mais na revis?o",
+                    vi: "N?u ??t th?, th? n?y s? kh?ng xu?t hi?n l?i trong ?n t?p",
+                    id: "Jika kartu dibakar, kartu ini tidak akan muncul lagi di ulasan",
+                    tr: "Kart? yakarsan, tekrarda bir daha g?r?nmez",
+                    pl: "Je?li spalisz kart?, nie pojawi si? ju? w powt?rce",
                   })}
                 </Animated.Text>
               )}
@@ -1367,6 +1573,11 @@ export default function ReviewScreen() {
                     ru: 'Сжечь карточку',
                     uk: 'Спалити картку',
                     es: 'Quemar tarjeta',
+                    'pt-BR': "Queimar cart?o",
+                    vi: "??t th?",
+                    id: "Bakar kartu",
+                    tr: "Kart? yak",
+                    pl: "Spal kart?",
                   })}
                 </Text>
               </TouchableOpacity>
@@ -1383,7 +1594,16 @@ export default function ReviewScreen() {
             }}
           >
             <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Далее →', uk: 'Далі →', es: 'Siguiente →' })}
+              {triLang(lang, {
+                ru: 'Далее →',
+                uk: 'Далі →',
+                es: 'Siguiente →',
+                'pt-BR': "Pr?ximo ?",
+                vi: "Ti?p theo ?",
+                id: "Berikutnya ?",
+                tr: "?leri ?",
+                pl: "Dalej ?",
+              })}
             </Text>
           </TouchableOpacity>
         </View>

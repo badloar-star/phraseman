@@ -1,0 +1,27 @@
+{
+  "mode": "structured-batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 5525,
+    "completeUnits": 1105,
+    "partialUnits": 0,
+    "partialFiles": 0,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0
+    }
+  },
+  "partialFiles": [],
+  "partialUnits": [],
+  "truncated": false
+}

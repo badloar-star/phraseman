@@ -54,6 +54,11 @@ export default function BetaTesters() {
                 ru: 'Бета-тестеры',
                 uk: 'Бета-тестери',
                 es: 'Beta testers',
+                'pt-BR': 'Beta testers',
+                vi: 'Người thử nghiệm beta',
+                id: 'Beta tester',
+                tr: 'Beta test kullanıcıları',
+                pl: 'Beta testerzy',
               })}
             </Text>
           </View>
@@ -106,6 +111,11 @@ export default function BetaTesters() {
                 ru: `Версия ${versionLabel}`,
                 uk: `Версія ${versionLabel}`,
                 es: `Versión ${versionLabel}`,
+                'pt-BR': `Versão ${versionLabel}`,
+                vi: `Phiên bản ${versionLabel}`,
+                id: `Versi ${versionLabel}`,
+                tr: `Sürüm ${versionLabel}`,
+                pl: `Wersja ${versionLabel}`,
               })}
             </Text>
           </View>

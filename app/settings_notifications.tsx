@@ -138,18 +138,55 @@ export default function SettingsNotifications() {
   };
 
   const days = lang === 'uk' ? DAYS_UK : lang === 'es' ? DAYS_ES : DAYS_RU;
-  const timeModalTitle = triLang(lang as Lang, { ru: 'Время', uk: 'Час', es: 'Hora' });
-  const timeModalCancel = triLang(lang as Lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' });
+  const timeModalTitle = triLang(lang as Lang, {
+    ru: 'Время',
+    uk: 'Час',
+    es: 'Hora',
+    'pt-BR': 'Hora',
+    vi: 'Thời gian',
+    id: 'Waktu',
+    tr: 'Saat',
+    pl: 'Godzina',
+  });
+  const timeModalCancel = triLang(lang as Lang, {
+    ru: 'Отмена',
+    uk: 'Скасувати',
+    es: 'Cancelar',
+    'pt-BR': 'Cancelar',
+    vi: 'Hủy',
+    id: 'Batal',
+    tr: 'İptal',
+    pl: 'Anuluj',
+  });
   const screenTitle = triLang(lang as Lang, {
     uk: 'Розклад занять',
     ru: 'Расписание занятий',
     es: 'Horario de recordatorios',
+    'pt-BR': 'Horário de lembretes',
+    vi: 'Lịch học',
+    id: 'Jadwal belajar',
+    tr: 'Çalışma programı',
+    pl: 'Harmonogram nauki',
   });
-  const savedLabel = triLang(lang as Lang, { ru: 'Сохранено', uk: 'Збережено', es: 'Guardado' });
+  const savedLabel = triLang(lang as Lang, {
+    ru: 'Сохранено',
+    uk: 'Збережено',
+    es: 'Guardado',
+    'pt-BR': 'Salvo',
+    vi: 'Đã lưu',
+    id: 'Tersimpan',
+    tr: 'Kaydedildi',
+    pl: 'Zapisano',
+  });
   const footerHint = triLang(lang as Lang, {
     uk: 'Повідомлення можна вимкнути в налаштуваннях телефону або тут.',
     ru: 'Уведомления можно отключить в настройках телефона или здесь.',
     es: 'Puedes desactivar las notificaciones en los ajustes del teléfono o desde esta pantalla.',
+    'pt-BR': 'Você pode desativar as notificações nas configurações do telefone ou aqui.',
+    vi: 'Bạn có thể tắt thông báo trong cài đặt điện thoại hoặc tại đây.',
+    id: 'Kamu bisa mematikan notifikasi di pengaturan ponsel atau di sini.',
+    tr: 'Bildirimleri telefon ayarlarından veya buradan kapatabilirsin.',
+    pl: 'Powiadomienia możesz wyłączyć w ustawieniach telefonu albo tutaj.',
   });
 
   return (

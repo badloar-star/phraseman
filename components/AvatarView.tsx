@@ -28,12 +28,13 @@ export default function AvatarView({ avatar, totalXP, level, size = 44, style, a
   }
   const avatarIndex = avatar && /^\d+$/.test(avatar) ? parseInt(avatar) : resolvedLevel;
   const avatarImage = getAvatarImageByIndex(avatarIndex);
+  const fallbackLevel = avatarImage ? resolvedLevel : avatarIndex;
 
   return (
     <AvatarAura auraId={auraId} size={size} style={style}>
       {avatarImage
         ? <Image source={avatarImage} style={{ width: size, height: size }} contentFit="contain" />
-        : <LevelBadge level={resolvedLevel} size={size} />
+        : <LevelBadge level={fallbackLevel} size={size} />
       }
     </AvatarAura>
   );

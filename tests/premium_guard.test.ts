@@ -61,6 +61,7 @@ test('returns true for admin override without RevenueCat call', async () => {
   const { getVerifiedPremiumStatus } = require('../app/premium_guard');
   const result = await getVerifiedPremiumStatus();
   expect(result).toBe(true);
+  expect(asyncStore.premium_active).toBe('true');
   expect(getCustomerInfo).not.toHaveBeenCalled();
 });
 

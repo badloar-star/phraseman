@@ -39,7 +39,7 @@ import { getTranscription } from './transcription';
 import { actionToastTri, emitAppEvent } from './events';
 import { CATEGORIES, STR } from './flashcards/constants';
 import { SYSTEM_CARDS } from './flashcards/system-cards';
-import { CardItem, CategoryId, resolveFlashcardBackText } from './flashcards/types';
+import { CardItem, CategoryId } from './flashcards/types';
 import {
   readCustomCards,
   readFlashcardsProgress,
@@ -78,7 +78,6 @@ import {
   fetchCommunityPackCards,
   loadPublishedCommunityMarketPacks,
 } from './community_packs/communityFirestore';
-import { isCommunityPacksCloudEnabled } from './community_packs/functionsClient';
 import { getCanonicalUserId } from './user_id_policy';
 import { flashcardContentLang } from './spanish_content_gate';
 import { checkAchievements } from './achievements';
@@ -120,9 +119,6 @@ async function getEnToUkMap(): Promise<Map<string, string>> {
   }
   return _enToUkCache;
 }
-
-// Fisher-Yates shuffle
-const shuffle = <T,>(a: T[]): T[] => { const r=[...a]; for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];} return r; };
 
 // Types and static dictionaries are moved to app/flashcards/*
 
@@ -186,7 +182,7 @@ export default function FlashcardsScreen() {
   const { speak: speakAudio, stop: stopAudio } = useAudio();
   const effectiveOs = useEffectivePlatformOS();
   useEffect(() => () => { stopAudio(); }, [stopAudio]);
-  const { theme: t, f, isDark, themeMode, statusBarLight, uiScale } = useTheme();
+  const { theme: t, f, themeMode, statusBarLight, uiScale } = useTheme();
   const isLightTheme = false;
   const { lang } = useLang();
   const { studyTarget } = useStudyTarget();
@@ -287,8 +283,8 @@ export default function FlashcardsScreen() {
   /** Просмотренные id из словаря flashcards_v1 — для ачивки «все карточки за сессию». */
   const flashAchievementSeenRef      = useRef<Set<string>>(new Set());
   const pendingRestoreRef             = useRef<{ cat: CategoryId; idx: number } | null>(null);
-  // Create / Edit / Practice mode
-  const [mode, setMode]               = useState<'view' | 'create' | 'edit' | 'practice'>('view');
+  // Create / Edit mode. Card training lives in /flashcards_swipe.
+  const [mode, setMode]               = useState<'view' | 'create' | 'edit'>('view');
   const [createStep, setCreateStep]   = useState<'front' | 'back' | 'description'>('front');
   const [editingId, setEditingId]     = useState<string | null>(null);
   const [draftEN, setDraftEN]         = useState('');
@@ -298,7 +294,6 @@ export default function FlashcardsScreen() {
   // Refs
   const backInputRef     = useRef<any>(null);
   const descriptionInputRef = useRef<any>(null);
-  const practiceInputRef = useRef<any>(null);
   const flatListRef      = useRef<any>(null);
   /** Native View wrapping FlatList — has measureInWindow (FlatList ref does not). */
   const listViewportRef  = useRef<View | null>(null);
@@ -319,6 +314,7 @@ export default function FlashcardsScreen() {
     }
     if (n > 0) {
       updateMultipleTaskProgress([{ type: 'flashcard_view', increment: n }]).catch(() => {});
+      checkAchievements({ type: 'flashcard_viewed', count: n }).catch(() => {});
     }
     for (const id of cardIds) {
       if (id) flashAchievementSeenRef.current.add(id);
@@ -337,16 +333,11 @@ export default function FlashcardsScreen() {
     }
   }, []);
 
-  // Practice state
-  const [practiceQueue,  setPracticeQueue]  = useState<CardItem[]>([]);
-  const [practiceInput,  setPracticeInput]  = useState('');
-  const [practiceStatus, setPracticeStatus] = useState<'idle'|'correct'|'wrong'>('idle');
-
   // Animations
   const flipAnim    = useRef(new Animated.Value(0)).current;
   const slideAnim   = useRef(new Animated.Value(0)).current;
   const createFlipAnim = useRef(new Animated.Value(0)).current;
-  const [savedBtnsVisible, setSavedBtnsVisible] = useState(true);
+  const [savedBtnsVisible] = useState(true);
   // Long-press delete overlay
   const [longPressedId, setLongPressedId] = useState<string | null>(null);
   // Delete hint onboarding
@@ -424,6 +415,23 @@ export default function FlashcardsScreen() {
     }
     return null;
   }, [isMarketplacePackBrowse, packDeeplink, activeFilter, marketPackCatalog]);
+
+  const swipeSourceId = useMemo(() => {
+    if (packDeeplink) {
+      const kind = currentMarketPack?.isCommunityUgc ? 'community' : 'official';
+      return `${kind}:${packDeeplink}`;
+    }
+    if (activeCat === 'custom') return 'custom:all';
+    if (activeCat === 'saved') return 'saved:all';
+    return '';
+  }, [activeCat, currentMarketPack?.isCommunityUgc, packDeeplink]);
+
+  const openSwipeGame = useCallback(() => {
+    const paramsForSwipe: { source?: string; filter?: string } = {};
+    if (swipeSourceId) paramsForSwipe.source = swipeSourceId;
+    if (swipeSourceId && activeFilter !== 'all') paramsForSwipe.filter = activeFilter;
+    router.push({ pathname: '/flashcards_swipe', params: paramsForSwipe } as any);
+  }, [activeFilter, router, swipeSourceId]);
 
   const packPremiumVisual = useMemo(() => {
     if (!currentMarketPack) return null;
@@ -994,6 +1002,8 @@ export default function FlashcardsScreen() {
       const updates: Parameters<typeof updateMultipleTaskProgress>[0] = [{ type: 'flashcard_flip', increment: 1 }];
       if (isNewView) updates.push({ type: 'flashcard_view', increment: 1 });
       updateMultipleTaskProgress(updates).catch(() => {});
+      checkAchievements({ type: 'flashcard_flipped', count: 1 }).catch(() => {});
+      if (isNewView) checkAchievements({ type: 'flashcard_viewed', count: 1 }).catch(() => {});
     }
   }, [getCardFlipAnim]);
 
@@ -1109,17 +1119,13 @@ export default function FlashcardsScreen() {
     setCreateStep('front');
     setDraftDescription('');
     createFlipAnim.setValue(0);
-  }, []);
+  }, [createFlipAnim]);
 
   useEffect(() => {
     if (Platform.OS !== 'android') return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {
       if (filterOpen) {
         setFilterOpen(false);
-        return true;
-      }
-      if (mode === 'practice') {
-        setMode('view');
         return true;
       }
       if (mode === 'create' || mode === 'edit') {
@@ -1131,38 +1137,6 @@ export default function FlashcardsScreen() {
     });
     return () => sub.remove();
   }, [mode, filterOpen, leaveCollection, cancelCreate]);
-
-  // ── Practice ───────────────────────────────────────────────────────────────
-  const startPractice = () => {
-    if (customCards.length === 0) return;
-    const shuffled = shuffle([...customCards]);
-    setPracticeQueue(shuffled);
-    setPracticeInput('');
-    setPracticeStatus('idle');
-    setMode('practice');
-  };
-
-  const submitPractice = () => {
-    if (practiceStatus !== 'idle' || practiceQueue.length === 0) return;
-    const card = practiceQueue[0];
-    const answer = practiceInput.trim().toLowerCase();
-    const correct = resolveFlashcardBackText(card, cardContentLang).trim().toLowerCase();
-    setPracticeStatus(answer === correct ? 'correct' : 'wrong');
-  };
-
-  const practiceGoNext = () => {
-    if (practiceStatus === 'correct') {
-      setPracticeQueue(q => q.slice(1));
-    } else {
-      setPracticeQueue(q => [...q.slice(1), q[0]]);
-    }
-    setPracticeInput('');
-    setPracticeStatus('idle');
-    setTimeout(() => practiceInputRef.current?.focus(), 50);
-  };
-
-  // ─────────────────────────────────────────────────────────────────────────
-
 
   // ── Create / Edit mode ────────────────────────────────────────────────────
   if (mode === 'create' || mode === 'edit') {
@@ -1294,142 +1268,6 @@ export default function FlashcardsScreen() {
     );
   }
 
-  // ── Practice mode ──────────────────────────────────────────────────────────
-  if (mode === 'practice') {
-    const practiceCard = practiceQueue[0] ?? null;
-    const practiceTr = practiceCard ? resolveFlashcardBackText(practiceCard, cardContentLang) : '';
-    const totalPr = customCards.length;
-
-    if (practiceQueue.length === 0) {
-      return (
-        <ScreenGradient>
-        <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
-          <ContentWrap>
-            <View style={[st.header, { borderBottomColor: t.border }]}>
-              <TouchableOpacity onPress={() => setMode('view')} style={{ width: 40 }}>
-                <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-              </TouchableOpacity>
-              <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
-                {triLang(lang, { ru: 'Тренировка', uk: 'Тренування', es: 'Práctica' })}
-              </Text>
-              <View style={{ width: 40 }} />
-            </View>
-            <View style={st.centerState}>
-              <Ionicons name="checkmark-circle" size={72} color={t.correct} />
-              <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight:'700', marginTop: 16, textAlign:'center' }}>
-                {triLang(lang, {
-                  ru: 'Все карточки отработаны!',
-                  uk: 'Всі картки відпрацьовано!',
-                  es: '¡Has practicado todas las tarjetas!',
-                })}
-              </Text>
-              <TouchableOpacity
-                style={{ marginTop: 24, backgroundColor: t.accent, borderRadius: 14, paddingHorizontal: 32, paddingVertical: 14 }}
-                onPress={startPractice}
-              >
-                <Text style={{ color: t.correctText, fontWeight:'700', fontSize: f.body }}>
-                  {triLang(lang, { ru: 'Начать заново', uk: 'Почати знову', es: 'Empezar de nuevo' })}
-                </Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={{ marginTop: 14 }} onPress={() => setMode('view')}>
-                <Text style={{ color: t.textSecond, fontSize: f.body }}>
-                  {triLang(lang, {
-                    ru: 'Вернуться к карточкам',
-                    uk: 'Повернутися до карток',
-                    es: 'Volver a las tarjetas',
-                  })}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </ContentWrap>
-        </SafeAreaView>
-        </ScreenGradient>
-      );
-    }
-
-    return (
-      <ScreenGradient>
-      <SafeAreaView style={[st.safe, { backgroundColor: 'transparent' }]}>
-        <StatusBar barStyle={statusBarLight ? 'light-content' : 'dark-content'} />
-        <KeyboardAvoidingView style={{ flex:1 }} behavior={effectiveOs === 'ios' ? 'padding' : 'height'}>
-        <ContentWrap>
-          <View style={[st.header, { borderBottomColor: t.border }]}>
-            <TouchableOpacity onPress={() => setMode('view')} style={{ width: 40 }}>
-              <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
-            </TouchableOpacity>
-            <Text style={[st.headerTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
-              {triLang(lang, { ru: 'Тренировка', uk: 'Тренування', es: 'Práctica' })}
-            </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub, minWidth: 40, textAlign:'right' }}>
-              {practiceQueue.length} / {totalPr}
-            </Text>
-          </View>
-
-          {/* Card */}
-          <View style={[st.cardArea, { marginTop: 8 }]}>
-            <View style={[st.card, {
-              backgroundColor: t.bgCard,
-              borderColor: practiceStatus === 'correct' ? t.correct : practiceStatus === 'wrong' ? t.wrong : t.border,
-              borderWidth: practiceStatus !== 'idle' ? 2 : 1,
-              position: 'relative',
-            }]}>
-              <Text style={{ color: t.textPrimary, fontSize: f.h1+4, fontWeight:'700', textAlign:'center' }}>
-                {practiceCard!.en}
-              </Text>
-              {practiceStatus !== 'idle' && (
-                <Text style={{ color: practiceStatus === 'correct' ? t.correct : t.wrong, fontSize: f.body, fontWeight:'600', marginTop: 12, textAlign:'center' }}>
-                  {practiceTr}
-                </Text>
-              )}
-            </View>
-          </View>
-
-          {/* Input */}
-          <View style={{ paddingHorizontal: 16, marginTop: 12 }}>
-            <TextInput
-              ref={practiceInputRef}
-              style={{
-                backgroundColor: t.bgCard, borderWidth: 1.5,
-                borderColor: practiceStatus === 'correct' ? t.correct : practiceStatus === 'wrong' ? t.wrong : t.border,
-                borderRadius: 14, padding: 14,
-                color: t.textPrimary, fontSize: f.body, textAlign: 'center',
-              }}
-              placeholder={triLang(lang, {
-                ru: 'Введи перевод...',
-                uk: 'Введи переклад...',
-                es: 'Escribe la traducción...',
-              })}
-              placeholderTextColor={t.textGhost}
-              value={practiceInput}
-              onChangeText={text => { if (practiceStatus === 'idle') setPracticeInput(text); }}
-              returnKeyType="done"
-              onSubmitEditing={practiceStatus === 'idle' ? submitPractice : practiceGoNext}
-              editable={practiceStatus === 'idle'}
-            />
-          </View>
-
-          {/* Button */}
-          <View style={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 20 }}>
-            <TouchableOpacity
-              style={[st.navBtnPrimary, {
-                backgroundColor: practiceStatus === 'correct' ? t.correct : practiceStatus === 'wrong' ? t.wrong : t.accent,
-              }]}
-              onPress={practiceStatus === 'idle' ? submitPractice : practiceGoNext}
-            >
-              <Text style={{ color: t.correctText, fontSize: f.body, fontWeight:'700' }}>
-                {practiceStatus === 'idle'
-                  ? triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })
-                  : triLang(lang, { ru: 'Дальше →', uk: 'Далі →', es: 'Siguiente →' })}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </ContentWrap>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-      </ScreenGradient>
-    );
-  }
-
   // ── Empty state ────────────────────────────────────────────────────────────
   if (!loading && filteredCards.length === 0) return (
     <ScreenGradient>
@@ -1465,6 +1303,11 @@ export default function FlashcardsScreen() {
                   ru: 'К выбору категорий',
                   uk: 'До вибору категорій',
                   es: 'Volver al menú de cartas',
+                  'pt-BR': 'Voltar às categorias',
+                  vi: 'Quay lại chọn danh mục',
+                  id: 'Kembali ke pilihan kategori',
+                  tr: 'Kategori seçimine dön',
+                  pl: 'Wróć do wyboru kategorii',
                 })}
               </Text>
             </TouchableOpacity>
@@ -1479,6 +1322,11 @@ export default function FlashcardsScreen() {
                   ru: 'Повторить',
                   uk: 'Повторити',
                   es: 'Reintentar',
+                  'pt-BR': 'Tentar novamente',
+                  vi: 'Thử lại',
+                  id: 'Coba lagi',
+                  tr: 'Tekrar dene',
+                  pl: 'Spróbuj ponownie',
                 })}
               </Text>
             </TouchableOpacity>
@@ -1493,6 +1341,11 @@ export default function FlashcardsScreen() {
                   ru: '+ Создать первую карточку',
                   uk: '+ Створити першу картку',
                   es: '+ Crear la primera tarjeta',
+                  'pt-BR': '+ Criar o primeiro cartão',
+                  vi: '+ Tạo thẻ đầu tiên',
+                  id: '+ Buat kartu pertama',
+                  tr: '+ İlk kartı oluştur',
+                  pl: '+ Utwórz pierwszą kartę',
                 })}
               </Text>
             </TouchableOpacity>
@@ -1503,7 +1356,7 @@ export default function FlashcardsScreen() {
               style={{ marginTop: 14, backgroundColor: t.bgSurface, borderRadius: 14, paddingHorizontal: 28, paddingVertical: 12, borderWidth: 1, borderColor: t.accent }}
             >
               <Text style={{ color: t.accent, fontWeight: '700', fontSize: f.body }}>
-                {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack' })}
+                {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack', 'pt-BR': '+ Criar pacote', vi: '+ Tạo bộ thẻ', id: '+ Buat paket', tr: '+ Paket oluştur', pl: '+ Utwórz zestaw' })}
               </Text>
             </TouchableOpacity>
           )}
@@ -1593,9 +1446,9 @@ export default function FlashcardsScreen() {
                     <Ionicons name="filter-outline" size={12} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
                     <Text style={{ fontSize: f.caption, fontWeight: '600', color: activeFilter !== 'all' ? t.accent : t.textSecond }}>
                       {activeFilter === 'all'
-                        ? triLang(lang, { ru: 'Фильтр', uk: 'Фільтр', es: 'Filtro' })
+                        ? triLang(lang, { ru: 'Фильтр', uk: 'Фільтр', es: 'Filtro', 'pt-BR': 'Filtro', vi: 'Bộ lọc', id: 'Filter', tr: 'Filtre', pl: 'Filtr' })
                         : (filterOptions.find(o => o.key === activeFilter)?.label ??
-                            triLang(lang, { ru: 'Фильтр', uk: 'Фільтр', es: 'Filtro' }))}
+                            triLang(lang, { ru: 'Фильтр', uk: 'Фільтр', es: 'Filtro', 'pt-BR': 'Filtro', vi: 'Bộ lọc', id: 'Filter', tr: 'Filtre', pl: 'Filtr' }))}
                     </Text>
                     <Ionicons name={filterOpen ? 'chevron-up' : 'chevron-down'} size={10} color={activeFilter !== 'all' ? t.accent : t.textSecond} />
                   </TouchableOpacity>
@@ -1627,8 +1480,91 @@ export default function FlashcardsScreen() {
           >
             <Ionicons name="add-circle-outline" size={20} color={t.correctText} />
             <Text style={{ fontSize: f.body, fontWeight: '700', color: t.correctText }}>
-              {triLang(lang, { ru: 'Добавить карточку', uk: 'Додати картку', es: 'Añadir tarjeta' })}
+              {triLang(lang, { ru: 'Добавить карточку', uk: 'Додати картку', es: 'Añadir tarjeta', 'pt-BR': 'Adicionar cartão', vi: 'Thêm thẻ', id: 'Tambah kartu', tr: 'Kart ekle', pl: 'Dodaj kartę' })}
             </Text>
+          </TouchableOpacity>
+        )}
+
+        {filteredCards.length > 0 && (
+          <TouchableOpacity
+            onPress={openSwipeGame}
+            activeOpacity={0.88}
+            style={{
+              marginHorizontal: 16,
+              marginTop: 10,
+              marginBottom: 4,
+              minHeight: 58,
+              paddingVertical: 10,
+              paddingHorizontal: 14,
+              borderRadius: 16,
+              borderWidth: 1,
+              borderColor: t.accent,
+              backgroundColor: `${t.accent}18`,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              gap: 12,
+            }}
+            accessibilityLabel={triLang(lang, {
+              ru: 'Играть с карточками',
+              uk: 'Грати з картками',
+              es: 'Jugar con tarjetas',
+              'pt-BR': 'Jogar com cartões',
+              vi: 'Chơi với thẻ',
+              id: 'Bermain dengan kartu',
+              tr: 'Kartlarla oyna',
+              pl: 'Graj kartami',
+            })}
+          >
+            <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, flex: 1, minWidth: 0 }}>
+              <View
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: 13,
+                  backgroundColor: t.accent,
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                }}
+              >
+                <Ionicons name="sparkles-outline" size={20} color={t.correctText} />
+              </View>
+              <View style={{ flex: 1, minWidth: 0 }}>
+                <Text
+                  numberOfLines={1}
+                  adjustsFontSizeToFit
+                  minimumFontScale={0.78}
+                  style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900' }}
+                >
+                  {triLang(lang, {
+                    ru: 'Играть с этими карточками',
+                    uk: 'Грати з цими картками',
+                    es: 'Jugar con estas tarjetas',
+                    'pt-BR': 'Jogar com estes cartões',
+                    vi: 'Chơi với các thẻ này',
+                    id: 'Bermain dengan kartu ini',
+                    tr: 'Bu kartlarla oyna',
+                    pl: 'Graj tymi kartami',
+                  })}
+                </Text>
+                <Text
+                  numberOfLines={1}
+                  style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', marginTop: 2 }}
+                >
+                  {triLang(lang, {
+                    ru: 'Да/Нет: подходит ли перевод',
+                    uk: 'Так/Ні: чи підходить переклад',
+                    es: 'Sí/No: ¿coincide?',
+                    'pt-BR': 'Sim/Não: a tradução combina?',
+                    vi: 'Có/Không: bản dịch có khớp không?',
+                    id: 'Ya/Tidak: apakah terjemahannya cocok?',
+                    tr: 'Evet/Hayır: çeviri uyuyor mu?',
+                    pl: 'Tak/Nie: czy tłumaczenie pasuje?',
+                  })}
+                </Text>
+              </View>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color={t.textSecond} />
           </TouchableOpacity>
         )}
 
@@ -1656,7 +1592,7 @@ export default function FlashcardsScreen() {
             >
               <Ionicons name="sync-outline" size={16} color={t.textSecond} />
               <Text style={{ fontSize: 14, fontWeight: '600', color: t.textPrimary }}>
-                {triLang(lang, { ru: 'Развернуть все', uk: 'Розгорнути всі', es: 'Desplegar todas' })}
+                {triLang(lang, { ru: 'Развернуть все', uk: 'Розгорнути всі', es: 'Desplegar todas', 'pt-BR': 'Virar todas', vi: 'Lật tất cả', id: 'Balik semua', tr: 'Hepsini çevir', pl: 'Odwróć wszystkie' })}
               </Text>
             </TouchableOpacity>
           ) : (
@@ -1673,7 +1609,7 @@ export default function FlashcardsScreen() {
             >
               <Ionicons name="sync-outline" size={15} color={allFlipped ? t.accent : t.textSecond} />
               <Text style={{ fontSize: 13, fontWeight: '600', color: allFlipped ? t.accent : t.textSecond }}>
-                {triLang(lang, { ru: 'Развернуть все', uk: 'Розгорнути всі', es: 'Desplegar todas' })}
+                {triLang(lang, { ru: 'Развернуть все', uk: 'Розгорнути всі', es: 'Desplegar todas', 'pt-BR': 'Virar todas', vi: 'Lật tất cả', id: 'Balik semua', tr: 'Hepsini çevir', pl: 'Odwróć wszystkie' })}
               </Text>
             </TouchableOpacity>
           ))}
@@ -1689,7 +1625,7 @@ export default function FlashcardsScreen() {
             style={{ alignSelf: 'flex-end', marginRight: 16, marginBottom: 2, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 6, borderWidth: 1, borderColor: '#FF6B00' }}
           >
             <Text style={{ fontSize: 9, color: '#FF6B00', fontWeight: '800' }}>
-              {triLang(lang, { ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', es: 'DEV: mostrar ayuda' })}
+              {triLang(lang, { ru: 'DEV: показать подсказку', uk: 'DEV: показати підказку', es: 'DEV: mostrar ayuda', 'pt-BR': 'DEV: mostrar dica', vi: 'DEV: hiện gợi ý', id: 'DEV: tampilkan petunjuk', tr: 'DEV: ipucunu göster', pl: 'DEV: pokaż wskazówkę' })}
             </Text>
           </TouchableOpacity>
         )}
@@ -1714,6 +1650,11 @@ export default function FlashcardsScreen() {
                 ru: 'Зажмите карточку чтобы удалить её',
                 uk: 'Затисніть картку, щоб видалити її',
                 es: 'Mantén pulsada la tarjeta para eliminarla',
+                'pt-BR': 'Segure o cartão para excluí-lo',
+                vi: 'Nhấn giữ thẻ để xóa',
+                id: 'Tekan lama kartu untuk menghapusnya',
+                tr: 'Kartı silmek için basılı tut',
+                pl: 'Przytrzymaj kartę, aby ją usunąć',
               })}
             </Text>
             <TouchableOpacity onPress={dismissDeleteHint} hitSlop={{ top: 12, bottom: 12, left: 12, right: 12 }}>
@@ -1749,16 +1690,26 @@ export default function FlashcardsScreen() {
                 f={f}
                 sourceLabels={s.source as Record<string, string>}
                 deleteLabel={s.delete}
-                voiceLabel={triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar' })}
+                voiceLabel={triLang(lang, { ru: 'Озвучить', uk: 'Озвучити', es: 'Escuchar', 'pt-BR': 'Ouvir', vi: 'Nghe', id: 'Dengarkan', tr: 'Dinle', pl: 'Odsłuchaj' })}
                 premiumExpiredTitle={triLang(lang, {
                   ru: 'Премиум истёк',
                   uk: 'Преміум закінчився',
                   es: 'Premium caducado',
+                  'pt-BR': 'Premium expirou',
+                  vi: 'Premium đã hết hạn',
+                  id: 'Premium kedaluwarsa',
+                  tr: 'Premium süresi doldu',
+                  pl: 'Premium wygasło',
                 })}
                 premiumExpiredSubtitle={triLang(lang, {
                   ru: 'Обновите Премиум чтобы увидеть эти карточки',
                   uk: 'Поновіть Преміум щоб побачити ці картки',
                   es: 'Renueva Premium para ver estas tarjetas.',
+                  'pt-BR': 'Renove o Premium para ver estes cartões.',
+                  vi: 'Gia hạn Premium để xem các thẻ này.',
+                  id: 'Perpanjang Premium untuk melihat kartu ini.',
+                  tr: 'Bu kartları görmek için Premium’u yenile.',
+                  pl: 'Odnów Premium, aby zobaczyć te karty.',
                 })}
                 cardHeight={CARD_H}
                 cardStyle={st.card}
@@ -1839,6 +1790,11 @@ export default function FlashcardsScreen() {
                   ru: `Карточки · ${activeCat}`,
                   uk: `Картки · ${activeCat}`,
                   es: `Tarjetas · ${activeCat}`,
+                  'pt-BR': `Cartões · ${activeCat}`,
+                  vi: `Thẻ · ${activeCat}`,
+                  id: `Kartu · ${activeCat}`,
+                  tr: `Kartlar · ${activeCat}`,
+                  pl: `Karty · ${activeCat}`,
                 })}
               />
             </View>

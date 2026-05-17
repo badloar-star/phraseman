@@ -1,0 +1,38 @@
+{
+  "targetLocale": "id",
+  "targetBaseLang": "id",
+  "knownLocaleConflict": false,
+  "targetRegisteredAsAppLocale": false,
+  "integrationBlockers": [
+    "Target locale is not registered as a selectable app interface/source locale yet."
+  ],
+  "collisionPatternCount": 3,
+  "pathCollisions": [
+    {
+      "file": "app/app_build_id.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/stable_id.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "app/user_id_policy.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "scripts/qa_check_id_formats.ts",
+      "kind": "path-locale-marker"
+    },
+    {
+      "file": "tests/stable_id.test.ts",
+      "kind": "path-locale-marker"
+    }
+  ],
+  "isolationPolicy": [
+    "Do not write generated target-language content into ru/uk/es fields.",
+    "Keep target language work under docs/heisenberg/<locale>/ until the integration gate is explicit.",
+    "A future apply step must add a new locale registry entry and locale-specific files, never mutate existing locale fields in place.",
+    "Before integration, run the generated manifest diff and the app test bundle."
+  ]
+}

@@ -56,6 +56,7 @@ export type CommunitySellerInboxEvent = {
   packId?: string | null;
   titleRu?: string | null;
   titleUk?: string | null;
+  titleEs?: string | null;
   [key: string]: unknown;
 };
 

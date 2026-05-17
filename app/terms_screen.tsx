@@ -48,6 +48,11 @@ export default function TermsScreen() {
             ru: 'Открыть условия на сайте Knowly',
             uk: 'Відкрити умови на сайті Knowly',
             es: 'Abrir los términos en knowlyapps.com',
+            'pt-BR': 'Abrir os termos em knowlyapps.com',
+            vi: 'Mở điều khoản trên knowlyapps.com',
+            id: 'Buka ketentuan di knowlyapps.com',
+            tr: 'Şartları knowlyapps.com üzerinde aç',
+            pl: 'Otwórz warunki na knowlyapps.com',
           })}
         >
           <Ionicons name="open-outline" size={24} color={t.textSecond} />

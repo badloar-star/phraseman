@@ -10,6 +10,7 @@ import {
 } from './marketplace';
 import { consumePackGiftTrial, getPackGiftTrial } from './pack_trial_gift';
 import { purchaseCommunityPackWithShards } from '../community_packs/purchaseCommunityPack';
+import { trackCardPackAcquiredAchievement } from './packAchievementTracking';
 
 export type CardPackShardPurchaseResult = 'ok' | 'insufficient' | 'spend_failed' | 'already_owned';
 export type CardPackVoucherRedeemResult = 'ok' | 'no_voucher' | 'not_eligible' | 'already_owned';
@@ -52,6 +53,7 @@ export async function purchaseCardPackWithShards(
   });
   logCardPackPurchasedShards(pack.id, pack.priceShards);
   void trackCardPackPurchase(pack.id);
+  void trackCardPackAcquiredAchievement();
   return 'ok';
 }
 
@@ -82,6 +84,7 @@ export async function redeemPackGiftVoucher(
   });
   logCardPackPurchasedShards(pack.id, 0);
   void trackCardPackPurchase(pack.id);
+  void trackCardPackAcquiredAchievement();
   return 'ok';
 }
 

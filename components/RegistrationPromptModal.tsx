@@ -14,7 +14,7 @@
 // ════════════════════════════════════════════════════════════════════════════
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { Modal, View, Text, Pressable, StyleSheet, Platform } from 'react-native';
+import { Modal, View, Text, Pressable, StyleSheet, Platform, Linking } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTheme } from './ThemeContext';
 import { useLang } from './LangContext';
@@ -33,6 +33,7 @@ import { clearStableId } from '../app/stable_id';
 import { ensureAnonUser } from '../app/cloud_sync';
 import { logEvent } from '../app/firebase';
 import { emitAppEvent } from '../app/events';
+import { KNOWLY_LEGAL_PRIVACY_URL, KNOWLY_LEGAL_TERMS_URL } from '../app/config';
 import { triLang } from '../constants/i18n';
 
 interface Props {
@@ -97,6 +98,36 @@ export default function RegistrationPromptModal({
         : context === 'onboarding'
         ? 'Inicio rápido'
         : 'Iniciar sesión o registrarse',
+    'pt-BR':
+      context === 'lesson1'
+        ? 'Salve seu progresso!'
+        : context === 'onboarding'
+        ? 'Início rápido'
+        : 'Entrar ou cadastrar-se',
+    vi:
+      context === 'lesson1'
+        ? 'Lưu tiến trình của bạn!'
+        : context === 'onboarding'
+        ? 'Bắt đầu nhanh'
+        : 'Đăng nhập hoặc đăng ký',
+    id:
+      context === 'lesson1'
+        ? 'Simpan progresmu!'
+        : context === 'onboarding'
+        ? 'Mulai cepat'
+        : 'Masuk atau daftar',
+    tr:
+      context === 'lesson1'
+        ? 'İlerlemeni kaydet!'
+        : context === 'onboarding'
+        ? 'Hızlı başlangıç'
+        : 'Giriş yap veya kaydol',
+    pl:
+      context === 'lesson1'
+        ? 'Zapisz swoje postępy!'
+        : context === 'onboarding'
+        ? 'Szybki start'
+        : 'Zaloguj się lub zarejestruj',
   });
 
   const defaultSubtitle = triLang(lang, {
@@ -104,32 +135,67 @@ export default function RegistrationPromptModal({
       context === 'lesson1'
         ? 'Один клик через Google — и твой прогресс в безопасности. Сменишь телефон? Прогресс с тобой. Удалишь приложение? Восстановим в один тап.'
         : context === 'onboarding'
-        ? 'Один тап — и твой прогресс сохраняется навсегда. Без паролей, без форм, без лишних шагов.'
+        ? 'Вход можно пропустить. Но если сменить телефон или случайно удалить приложение, есть риск потерять прогресс.'
         : 'Быстрый вход через Google или Apple. Прогресс синхронизируется между устройствами.',
     uk:
       context === 'lesson1'
         ? 'Один тап через Google — і твій прогрес у безпеці. Заміниш телефон? Прогрес з тобою. Видалиш додаток? Відновимо одним кліком.'
         : context === 'onboarding'
-        ? 'Один тап — і твій прогрес зберігається назавжди. Без паролів, без форм, без зайвих кроків.'
+        ? 'Можна продовжити без входу, але якщо видалити застосунок без привʼязки акаунта, прогрес може загубитися. Привʼязати акаунт можна пізніше в налаштуваннях.'
         : 'Швидкий вхід через Google або Apple. Прогрес синхронізується між пристроями.',
     es:
       context === 'lesson1'
         ? 'Con un toque en Google, tu progreso queda a salvo. ¿Cambias de móvil? Va contigo. ¿Desinstalas la app? Recupéralo con un solo toque.'
         : context === 'onboarding'
-        ? 'Un toque y tu progreso se guarda para siempre. Sin contraseñas, sin formularios ni pasos innecesarios.'
+        ? 'Puedes seguir sin iniciar sesión, pero si eliminas la app sin vincular tu cuenta, podrías perder el progreso. Puedes vincularla más tarde en Ajustes.'
         : 'Acceso rápido con Google o Apple. El progreso se sincroniza entre dispositivos.',
+    'pt-BR':
+      context === 'lesson1'
+        ? 'Com um toque no Google, seu progresso fica seguro. Vai trocar de celular? Ele vai com você. Desinstalou o app? Recupere com um toque.'
+        : context === 'onboarding'
+        ? 'Você pode continuar sem entrar, mas se apagar o app sem vincular a conta, pode perder o progresso. Dá para vincular depois em Ajustes.'
+        : 'Entrada rápida com Google ou Apple. O progresso sincroniza entre dispositivos.',
+    vi:
+      context === 'lesson1'
+        ? 'Chỉ một lần chạm qua Google là tiến trình của bạn được an toàn. Đổi điện thoại? Tiến trình đi theo bạn. Xóa ứng dụng? Khôi phục chỉ với một lần chạm.'
+        : context === 'onboarding'
+        ? 'Bạn có thể tiếp tục không đăng nhập, nhưng nếu xóa ứng dụng khi chưa liên kết tài khoản, tiến trình có thể bị mất. Bạn có thể liên kết sau trong Cài đặt.'
+        : 'Đăng nhập nhanh bằng Google hoặc Apple. Tiến trình sẽ được đồng bộ giữa các thiết bị.',
+    id:
+      context === 'lesson1'
+        ? 'Sekali ketuk lewat Google, progresmu aman. Ganti ponsel? Progres ikut. Hapus aplikasi? Pulihkan dengan satu ketukan.'
+        : context === 'onboarding'
+        ? 'Kamu bisa lanjut tanpa masuk, tetapi jika aplikasi dihapus tanpa menautkan akun, progres bisa hilang. Akun bisa ditautkan nanti di Pengaturan.'
+        : 'Masuk cepat lewat Google atau Apple. Progres disinkronkan antarperangkat.',
+    tr:
+      context === 'lesson1'
+        ? 'Google ile tek dokunuşta ilerlemen güvende kalır. Telefon değiştirirsen yanında gelir. Uygulamayı silersen tek dokunuşla geri yükleriz.'
+        : context === 'onboarding'
+        ? 'Giriş yapmadan devam edebilirsin, ama hesabını bağlamadan uygulamayı silersen ilerlemeni kaybedebilirsin. Hesabı daha sonra Ayarlar’dan bağlayabilirsin.'
+        : 'Google veya Apple ile hızlı giriş. İlerleme cihazlar arasında eşitlenir.',
+    pl:
+      context === 'lesson1'
+        ? 'Jedno kliknięcie przez Google i twoje postępy są bezpieczne. Zmieniasz telefon? Idą z tobą. Usuniesz aplikację? Odzyskamy je jednym kliknięciem.'
+        : context === 'onboarding'
+        ? 'Możesz kontynuować bez logowania, ale jeśli usuniesz aplikację bez połączenia konta, możesz stracić postępy. Konto można połączyć później w Ustawieniach.'
+        : 'Szybkie logowanie przez Google lub Apple. Postępy synchronizują się między urządzeniami.',
   });
 
   const finalTitle = title ?? defaultTitle;
   const finalSubtitle = subtitle ?? defaultSubtitle;
 
-  const labelGoogle = triLang(lang, { ru: 'Войти через Google', uk: 'Війти з Google', es: 'Entrar con Google' });
-  const labelApple = triLang(lang, { ru: 'Войти через Apple', uk: 'Війти з Apple', es: 'Entrar con Apple' });
-  const labelLater = triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde' });
+  const labelGoogle = triLang(lang, { ru: 'Войти через Google', uk: 'Війти з Google', es: 'Entrar con Google', 'pt-BR': 'Entrar com Google', vi: 'Đăng nhập bằng Google', id: 'Masuk dengan Google', tr: 'Google ile giriş yap', pl: 'Zaloguj przez Google' });
+  const labelApple = triLang(lang, { ru: 'Войти через Apple', uk: 'Війти з Apple', es: 'Entrar con Apple', 'pt-BR': 'Entrar com Apple', vi: 'Đăng nhập bằng Apple', id: 'Masuk dengan Apple', tr: 'Apple ile giriş yap', pl: 'Zaloguj przez Apple' });
+  const labelLater = triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde', 'pt-BR': 'Mais tarde', vi: 'Để sau', id: 'Nanti saja', tr: 'Daha sonra', pl: 'Później' });
   const labelPrivacy = triLang(lang, {
     ru: 'Мы не публикуем ваш email и не отправляем спам.',
     uk: 'Ми не публікуємо ваш email і не надсилаємо спам.',
     es: 'No publicamos tu correo electrónico ni enviamos spam.',
+    'pt-BR': 'Não publicamos seu email nem enviamos spam.',
+    vi: 'Chúng tôi không công khai email của bạn và không gửi spam.',
+    id: 'Kami tidak mempublikasikan emailmu dan tidak mengirim spam.',
+    tr: 'E-postanı paylaşmayız ve spam göndermeyiz.',
+    pl: 'Nie publikujemy twojego emaila i nie wysyłamy spamu.',
   });
 
   const handleSignIn = useCallback(
@@ -160,11 +226,16 @@ export default function RegistrationPromptModal({
             );
           } else {
             showInlineError(
-              triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', es: 'Acceso sin terminar' }),
+              triLang(lang, { ru: 'Вход не завершён', uk: 'Вхід не завершено', es: 'Acceso sin terminar', 'pt-BR': 'Entrada não concluída', vi: 'Chưa đăng nhập xong', id: 'Masuk belum selesai', tr: 'Giriş tamamlanmadı', pl: 'Logowanie nieukończone' }),
               triLang(lang, {
                 ru: 'Окно входа закрылось без выбора аккаунта. Нажми кнопку ещё раз или попробуй другой способ.',
                 uk: 'Вікно входу закрилось без вибору акаунта. Натисни кнопку ще раз або спробуй інший спосіб.',
                 es: 'Se cerró el acceso sin elegir cuenta. Toca de nuevo o prueba otro método.',
+                'pt-BR': 'A janela de login foi fechada sem escolher uma conta. Toque de novo ou tente outro método.',
+                vi: 'Cửa sổ đăng nhập đã đóng mà chưa chọn tài khoản. Hãy nhấn lại hoặc thử cách khác.',
+                id: 'Jendela masuk tertutup tanpa memilih akun. Ketuk lagi atau coba cara lain.',
+                tr: 'Giriş penceresi hesap seçilmeden kapandı. Tekrar dokun veya başka bir yöntem dene.',
+                pl: 'Okno logowania zamknęło się bez wyboru konta. Naciśnij ponownie albo spróbuj innej metody.',
               }),
             );
           }
@@ -174,7 +245,7 @@ export default function RegistrationPromptModal({
           if (__DEV__) console.warn('[RegistrationPromptModal] sign-in error', result.error);
           if (result.error?.includes(APPLE_ANDROID_MISSING_SERVICE_ID)) {
             showInlineError(
-              triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', es: 'Apple en Android' }),
+              triLang(lang, { ru: 'Apple на Android', uk: 'Apple на Android', es: 'Apple en Android', 'pt-BR': 'Apple no Android', vi: 'Apple trên Android', id: 'Apple di Android', tr: 'Android’da Apple', pl: 'Apple na Androidzie' }),
               triLang(lang, {
                 ru:
                   'Для входа через Apple на Android в сборке должен быть задан Services ID (переменная EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID в EAS / .env). В Apple Developer добавь тот же return URL, что у приложения (часто phraseman://apple-auth).',
@@ -182,6 +253,16 @@ export default function RegistrationPromptModal({
                   'Для входу через Apple на Android у збірці має бути заданий Services ID (змінна EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID у EAS / .env). У Apple Developer додай той самий return URL, що й у застосунку (часто phraseman://apple-auth).',
                 es:
                   'Para entrar con Apple en Android hace falta el Services ID en la build (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID en EAS / .env). En Apple Developer añade el mismo return URL que usa la app (a menudo phraseman://apple-auth).',
+                'pt-BR':
+                  'Para entrar com Apple no Android, a build precisa do Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID no EAS / .env). No Apple Developer, adicione o mesmo return URL do app (geralmente phraseman://apple-auth).',
+                vi:
+                  'Để đăng nhập bằng Apple trên Android, bản build cần Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID trong EAS / .env). Trong Apple Developer, hãy thêm cùng return URL mà ứng dụng dùng (thường là phraseman://apple-auth).',
+                id:
+                  'Untuk masuk dengan Apple di Android, build harus memiliki Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID di EAS / .env). Di Apple Developer, tambahkan return URL yang sama dengan aplikasi (seringnya phraseman://apple-auth).',
+                tr:
+                  'Android’da Apple ile giriş için build içinde Services ID gerekir (EAS / .env içinde EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID). Apple Developer’da uygulamanın kullandığı aynı return URL’yi ekle (çoğunlukla phraseman://apple-auth).',
+                pl:
+                  'Aby logować się przez Apple na Androidzie, build musi mieć Services ID (EXPO_PUBLIC_APPLE_ANDROID_SERVICE_ID w EAS / .env). W Apple Developer dodaj ten sam return URL co w aplikacji (często phraseman://apple-auth).',
               }),
             );
             return;
@@ -190,6 +271,11 @@ export default function RegistrationPromptModal({
             ru: 'Не получилось войти. Попробуй позже.',
             uk: 'Не вдалося увійти. Спробуй пізніше.',
             es: 'No se ha podido iniciar sesión. Inténtalo más tarde.',
+            'pt-BR': 'Não foi possível entrar. Tente mais tarde.',
+            vi: 'Không thể đăng nhập. Hãy thử lại sau.',
+            id: 'Tidak bisa masuk. Coba lagi nanti.',
+            tr: 'Giriş yapılamadı. Daha sonra tekrar dene.',
+            pl: 'Nie udało się zalogować. Spróbuj później.',
           });
           // Показываем код ошибки и в проде: без него бессмысленно отлаживать жалобы
           // тестеров («тапнул — выскочило "Не получилось войти"»). Один скриншот —
@@ -197,10 +283,10 @@ export default function RegistrationPromptModal({
           // firebase_auth/* (не включён провайдер) vs transaction_* (Firestore rules
           // / нет сети). Текст компактный, ничего секретного — просто мнемоника.
           const detailedMsg = result.error
-            ? `${baseMsg}\n\n${triLang(lang, { ru: 'Код:', uk: 'Код:', es: 'Código:' })} ${result.error}`
+            ? `${baseMsg}\n\n${triLang(lang, { ru: 'Код:', uk: 'Код:', es: 'Código:', 'pt-BR': 'Código:', vi: 'Mã:', id: 'Kode:', tr: 'Kod:', pl: 'Kod:' })} ${result.error}`
             : baseMsg;
           showInlineError(
-            triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error' }),
+            triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
             detailedMsg,
           );
           return;
@@ -217,11 +303,16 @@ export default function RegistrationPromptModal({
         // В проде раньше ловили throw молча → «тапнул Apple — ничего». Покажем компактную ошибку.
         const detail = String(e?.message ?? e ?? 'unknown');
         showInlineError(
-          triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error' }),
+          triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }),
           `${triLang(lang, {
             ru: 'Что-то пошло не так при входе.',
             uk: 'Щось пішло не так під час входу.',
             es: 'Algo salió mal al iniciar sesión.',
+            'pt-BR': 'Algo deu errado ao entrar.',
+            vi: 'Có lỗi xảy ra khi đăng nhập.',
+            id: 'Ada yang salah saat masuk.',
+            tr: 'Giriş sırasında bir şeyler ters gitti.',
+            pl: 'Coś poszło nie tak podczas logowania.',
           })}\n\n${detail.slice(0, 200)}`,
         );
       }
@@ -303,6 +394,11 @@ export default function RegistrationPromptModal({
                 ru: 'Ни один провайдер не доступен на этом устройстве.',
                 uk: 'Жоден провайдер не доступний на цьому пристрої.',
                 es: 'Ningún método de entrada está disponible en este dispositivo.',
+                'pt-BR': 'Nenhum método de entrada está disponível neste dispositivo.',
+                vi: 'Không có phương thức đăng nhập nào khả dụng trên thiết bị này.',
+                id: 'Tidak ada metode masuk yang tersedia di perangkat ini.',
+                tr: 'Bu cihazda kullanılabilir giriş yöntemi yok.',
+                pl: 'Na tym urządzeniu nie ma dostępnej metody logowania.',
               })}
             </Text>
           )}
@@ -339,6 +435,15 @@ export default function RegistrationPromptModal({
           <Text style={[styles.privacy, { color: t.textGhost, fontSize: f.caption }]}>
             {labelPrivacy}
           </Text>
+          <View style={styles.legalLinks}>
+            <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_PRIVACY_URL)} hitSlop={8}>
+              <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption }]}>Privacy Policy</Text>
+            </Pressable>
+            <Text style={{ color: t.textGhost, fontSize: f.caption }}>|</Text>
+            <Pressable onPress={() => Linking.openURL(KNOWLY_LEGAL_TERMS_URL)} hitSlop={8}>
+              <Text style={[styles.legalLink, { color: t.accent, fontSize: f.caption }]}>Terms of Use</Text>
+            </Pressable>
+          </View>
         </Pressable>
       </Pressable>
     </Modal>
@@ -394,6 +499,16 @@ const styles = StyleSheet.create({
     marginTop: 6,
     paddingHorizontal: 8,
     lineHeight: 16,
+  },
+  legalLinks: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginTop: 8,
+  },
+  legalLink: {
+    fontWeight: '700',
   },
   errorNote: {
     textAlign: 'center',

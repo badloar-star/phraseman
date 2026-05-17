@@ -23,32 +23,43 @@ export function AchievementProvider({ children }: { children: React.ReactNode })
   const [currentToast, setCurrentToast] = useState<Achievement | null>(null);
   // Ref чтобы избежать stale closure при быстром добавлении
   const showingRef = useRef(false);
+  const currentToastRef = useRef<Achievement | null>(null);
+  const queuedIdsRef = useRef<Set<string>>(new Set());
 
   // Показать следующий из очереди
   const showNext = useCallback(() => {
     setQueue(prev => {
       if (prev.length === 0) {
         showingRef.current = false;
+        currentToastRef.current = null;
         setCurrentToast(null);
         return prev;
       }
       const [next, ...rest] = prev;
+      queuedIdsRef.current.delete(next.id);
+      currentToastRef.current = next;
       setCurrentToast(next);
       return rest;
     });
   }, []);
 
   const dismissCurrent = useCallback(() => {
+    currentToastRef.current = null;
     setCurrentToast(null);
     // Подождать анимацию закрытия, потом показать следующий
     setTimeout(showNext, 450);
   }, [showNext]);
 
   const showAchievement = useCallback((achievement: Achievement) => {
+    if (currentToastRef.current?.id === achievement.id || queuedIdsRef.current.has(achievement.id)) {
+      return;
+    }
     if (!showingRef.current) {
       showingRef.current = true;
+      currentToastRef.current = achievement;
       setCurrentToast(achievement);
     } else {
+      queuedIdsRef.current.add(achievement.id);
       setQueue(prev => [...prev, achievement]);
     }
   }, []);

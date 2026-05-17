@@ -6,7 +6,8 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { IDIOMS, Idiom } from './idioms_data';
+import { IDIOMS, Idiom, type IdiomSourceLocaleMap } from './idioms_data';
+import type { SourceLocale } from './source_locales';
 
 export interface DailyPhrase {
   id: string;
@@ -17,6 +18,10 @@ export interface DailyPhrase {
   literal_uk: string;
   meaning_uk: string;
   text_uk: string;
+  literal_es?: string;
+  meaning_es?: string;
+  text_es?: string;
+  sourceLocales?: IdiomSourceLocaleMap;
   date: string;
   allowSave: boolean;
   order?: number;
@@ -39,6 +44,27 @@ type RemoteDailyPhraseDoc = Partial<Omit<DailyPhrase, 'date'>> & {
   scheduledDate?: string;
   savedCount?: number;
 };
+
+function normalizeSourceLocales(raw: unknown): IdiomSourceLocaleMap | undefined {
+  if (!raw || typeof raw !== 'object') return undefined;
+  const out: IdiomSourceLocaleMap = {};
+  for (const [locale, value] of Object.entries(raw as Record<string, unknown>)) {
+    if (
+      (locale === 'es' || locale === 'pt-BR' || locale === 'vi' || locale === 'id' || locale === 'tr' || locale === 'pl') &&
+      value &&
+      typeof value === 'object'
+    ) {
+      const copy = value as Record<string, unknown>;
+      const literal = typeof copy.literal === 'string' ? copy.literal : '';
+      const meaning = typeof copy.meaning === 'string' ? copy.meaning : '';
+      const text = typeof copy.text === 'string' ? copy.text : '';
+      if (literal.trim() || meaning.trim() || text.trim()) {
+        out[locale] = { literal, meaning, text };
+      }
+    }
+  }
+  return Object.keys(out).length ? out : undefined;
+}
 
 // Считаем номер дня с эпохи (UTC) для стабильного порядка
 const getDayIndex = (): number => {
@@ -65,6 +91,10 @@ function phraseFromIdiom(idiom: Idiom, date = todayKey()): DailyPhrase {
     literal_uk: idiom.literal_uk,
     meaning_uk: idiom.meaning_uk,
     text_uk: idiom.text_uk,
+    literal_es: idiom.literal_es,
+    meaning_es: idiom.meaning_es,
+    text_es: idiom.text_es,
+    sourceLocales: idiom.sourceLocales,
     date,
     scheduledDate: date,
     allowSave: true,
@@ -85,12 +115,70 @@ function normalizeRemotePhrase(id: string, raw: RemoteDailyPhraseDoc, date: stri
     literal_uk: typeof raw.literal_uk === 'string' ? raw.literal_uk : '',
     meaning_uk: typeof raw.meaning_uk === 'string' ? raw.meaning_uk : '',
     text_uk: typeof raw.text_uk === 'string' ? raw.text_uk : '',
+    literal_es: typeof raw.literal_es === 'string' ? raw.literal_es : undefined,
+    meaning_es: typeof raw.meaning_es === 'string' ? raw.meaning_es : undefined,
+    text_es: typeof raw.text_es === 'string' ? raw.text_es : undefined,
+    sourceLocales: normalizeSourceLocales(raw.sourceLocales),
     date,
     scheduledDate: typeof raw.scheduledDate === 'string' ? raw.scheduledDate : date,
     allowSave: raw.allowSave !== false,
     active: raw.active !== false,
     order: typeof raw.order === 'number' ? raw.order : undefined,
     savedCount: typeof raw.savedCount === 'number' ? Math.max(0, raw.savedCount) : 0,
+  };
+}
+
+export type DailyPhraseInterfaceLang = SourceLocale;
+
+const firstText = (...values: Array<string | undefined>): string => {
+  for (const value of values) {
+    const trimmed = value?.trim();
+    if (trimmed) return trimmed;
+  }
+  return '';
+};
+
+export function dailyPhraseCopyForLang(phrase: DailyPhrase, lang: DailyPhraseInterfaceLang) {
+  if (lang === 'uk') {
+    return {
+      literal: firstText(phrase.literal_uk, phrase.literal),
+      meaning: firstText(phrase.meaning_uk, phrase.meaning),
+      text: firstText(phrase.text_uk, phrase.text),
+      isFallback: false,
+    };
+  }
+  if (lang === 'es') {
+    const hasCompleteSpanishCopy = !!(
+      firstText(phrase.literal_es) &&
+      firstText(phrase.meaning_es) &&
+      firstText(phrase.text_es)
+    );
+    return {
+      literal: firstText(phrase.literal_es, phrase.literal),
+      meaning: firstText(phrase.meaning_es, phrase.meaning),
+      text: firstText(phrase.text_es, phrase.text),
+      isFallback: !hasCompleteSpanishCopy,
+    };
+  }
+  if (lang !== 'ru') {
+    const copy = phrase.sourceLocales?.[lang];
+    const hasCompleteCopy = !!(
+      firstText(copy?.literal) &&
+      firstText(copy?.meaning) &&
+      firstText(copy?.text)
+    );
+    return {
+      literal: firstText(copy?.literal, phrase.literal),
+      meaning: firstText(copy?.meaning, phrase.meaning),
+      text: firstText(copy?.text, phrase.text),
+      isFallback: !hasCompleteCopy,
+    };
+  }
+  return {
+    literal: firstText(phrase.literal),
+    meaning: firstText(phrase.meaning),
+    text: firstText(phrase.text),
+    isFallback: false,
   };
 }
 

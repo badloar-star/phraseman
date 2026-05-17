@@ -11,8 +11,11 @@ import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { ARENA_LOBBY_ACCEPT_MS, CLOUD_SYNC_ENABLED } from '../app/config';
 import { setSessionLobbyChoice } from '../app/services/arena_db';
 import { reserveArenaGameEntry } from '../app/arena_access_gate';
+import { useOverlayVisible } from './OverlayArbiter';
 
 const { width: SCREEN_W } = Dimensions.get('window');
+
+type MatchFoundToastHost = 'root' | 'screen';
 
 /** Не показывать тост поверх «боевого» флоу арены; на остальных экранах — можно (табы, уроки, друзья, …). */
 const MATCH_FOUND_TOAST_PATH_BLOCKLIST = [
@@ -23,16 +26,34 @@ const MATCH_FOUND_TOAST_PATH_BLOCKLIST = [
   'arena_rating',
 ] as const;
 
-function isMatchFoundToastPathAllowed(pathname: string | null | undefined): boolean {
-  if (typeof pathname !== 'string' || pathname.length === 0) return false;
+const MATCH_FOUND_TOAST_SCREEN_HOST_PATHS = [
+  'premium_modal',
+] as const;
+
+function pathHasFragment(
+  pathname: string,
+  fragments: readonly string[],
+): boolean {
   const lower = pathname.toLowerCase();
-  for (const frag of MATCH_FOUND_TOAST_PATH_BLOCKLIST) {
-    if (lower.includes(frag)) return false;
+  for (const frag of fragments) {
+    if (lower.includes(frag)) return true;
   }
-  return true;
+  return false;
 }
 
-export default function MatchFoundToast() {
+function isMatchFoundToastPathAllowed(
+  pathname: string | null | undefined,
+  host: MatchFoundToastHost,
+): boolean {
+  if (typeof pathname !== 'string' || pathname.length === 0) return false;
+  if (host === 'screen') {
+    return pathHasFragment(pathname, MATCH_FOUND_TOAST_SCREEN_HOST_PATHS);
+  }
+  if (pathHasFragment(pathname, MATCH_FOUND_TOAST_SCREEN_HOST_PATHS)) return false;
+  return !pathHasFragment(pathname, MATCH_FOUND_TOAST_PATH_BLOCKLIST);
+}
+
+export default function MatchFoundToast({ host = 'root' }: { host?: MatchFoundToastHost }) {
   const { status, sessionId, userId, isMatchHandled, isLobbyActive, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort } = useMatchmakingContext();
   const pathname = usePathname();
   const { theme: t, f } = useTheme();
@@ -55,6 +76,12 @@ export default function MatchFoundToast() {
    *  без отсрочки connectAnimatedNodeToView вызывается раньше commit\'а маунта
    *  и кидает JSApplicationIllegalArgumentException. */
   const slideInRafRef = useRef<number | null>(null);
+  const wantsToast = status === 'found'
+    && !isMatchHandled
+    && !isLobbyActive
+    && isMatchFoundToastPathAllowed(pathname, host);
+  const overlayKey = host === 'screen' ? 'matchFoundToastScreen' : 'matchFoundToast';
+  const overlayVisible = useOverlayVisible(overlayKey, wantsToast);
 
   const slideIn = () => {
     toastActiveRef.current = true;
@@ -159,10 +186,9 @@ export default function MatchFoundToast() {
   };
 
   useEffect(() => {
-    const isAllowedPath = isMatchFoundToastPathAllowed(pathname);
     // Show toast whenever a match is found and not yet handled
     // Only show on explicit safe routes. Lobby and arena flows handle navigation themselves.
-    if (status === 'found' && !isMatchHandled && !isLobbyActive && isAllowedPath) {
+    if (wantsToast && overlayVisible) {
       slideIn();
       toastAcceptEndsAtRef.current = Date.now() + ARENA_LOBBY_ACCEPT_MS;
       toastAcceptBarAnim.setValue(1);
@@ -207,7 +233,7 @@ export default function MatchFoundToast() {
       }
       stopLoops();
     };
-  }, [status, isMatchHandled, isLobbyActive, pathname, sessionId, userId, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort]);
+  }, [wantsToast, overlayVisible, sessionId, userId, markMatchHandled, cancelSearching, resumeSearchAfterLobbyAbort]);
 
   const handlePress = () => {
     if (!sessionId || !userId) return;
@@ -225,7 +251,7 @@ export default function MatchFoundToast() {
     });
   };
 
-  if (!visible) return null;
+  if (!visible || !overlayVisible) return null;
 
   const TOAST_W = SCREEN_W - 32;
 

@@ -25,14 +25,29 @@ export interface GlobalBroadcastModalPayload {
   titleUk: string;
   /** Испанский заголовок; при отсутствии в данных подставляется titleRu */
   titleEs: string;
+  titlePtBr: string;
+  titleVi: string;
+  titleId: string;
+  titleTr: string;
+  titlePl: string;
   messageRu: string;
   messageUk: string;
   messageEs: string;
+  messagePtBr: string;
+  messageVi: string;
+  messageId: string;
+  messageTr: string;
+  messagePl: string;
   reviewUrlIos: string;
   reviewUrlAndroid: string;
   reviewCtaRu: string;
   reviewCtaUk: string;
   reviewCtaEs: string;
+  reviewCtaPtBr: string;
+  reviewCtaVi: string;
+  reviewCtaId: string;
+  reviewCtaTr: string;
+  reviewCtaPl: string;
   createdAt: string;
 }
 
@@ -88,9 +103,19 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
   const titleRu = String(data.titleRu ?? '').trim() || 'Сообщение от команды';
   const titleUk = String(data.titleUk ?? '').trim() || titleRu;
   const titleEs = String(data.titleEs ?? '').trim() || titleRu;
+  const titlePtBr = String(data.titlePtBr ?? '').trim() || 'Mensagem da equipe';
+  const titleVi = String(data.titleVi ?? '').trim() || 'Thông báo từ đội ngũ';
+  const titleId = String(data.titleId ?? '').trim() || 'Pesan dari tim';
+  const titleTr = String(data.titleTr ?? '').trim() || 'Ekipten mesaj';
+  const titlePl = String(data.titlePl ?? '').trim() || 'Wiadomość od zespołu';
   const messageRu = String(data.messageRu ?? '').trim() || 'Спасибо, что вы с нами.';
   const messageUk = String(data.messageUk ?? '').trim() || messageRu;
   const messageEs = String(data.messageEs ?? '').trim() || messageRu;
+  const messagePtBr = String(data.messagePtBr ?? '').trim() || 'Obrigado por estar conosco.';
+  const messageVi = String(data.messageVi ?? '').trim() || 'Cảm ơn bạn đã đồng hành cùng chúng tôi.';
+  const messageId = String(data.messageId ?? '').trim() || 'Terima kasih sudah bersama kami.';
+  const messageTr = String(data.messageTr ?? '').trim() || 'Bizimle olduğun için teşekkürler.';
+  const messagePl = String(data.messagePl ?? '').trim() || 'Dziękujemy, że jesteś z nami.';
   const rewardType = normalizeRewardType(data.rewardType);
   const legacyShards = toSafePositiveInt(data.shards, 0);
   const rewardAmount = toSafePositiveInt(data.rewardAmount, legacyShards);
@@ -106,19 +131,44 @@ function normalizePayload(id: string, data: Record<string, unknown>): GlobalBroa
     titleRu,
     titleUk,
     titleEs,
+    titlePtBr,
+    titleVi,
+    titleId,
+    titleTr,
+    titlePl,
     messageRu,
     messageUk,
     messageEs,
+    messagePtBr,
+    messageVi,
+    messageId,
+    messageTr,
+    messagePl,
     reviewUrlIos: String(data.reviewUrlIos ?? '').trim(),
     reviewUrlAndroid: String(data.reviewUrlAndroid ?? '').trim(),
     reviewCtaRu: String(data.reviewCtaRu ?? '').trim() || 'Оценить приложение',
     reviewCtaUk: String(data.reviewCtaUk ?? '').trim() || 'Оцінити застосунок',
     reviewCtaEs: String(data.reviewCtaEs ?? '').trim() || 'Valorar la app',
+    reviewCtaPtBr: String(data.reviewCtaPtBr ?? '').trim() || 'Avaliar o app',
+    reviewCtaVi: String(data.reviewCtaVi ?? '').trim() || 'Đánh giá ứng dụng',
+    reviewCtaId: String(data.reviewCtaId ?? '').trim() || 'Nilai aplikasi',
+    reviewCtaTr: String(data.reviewCtaTr ?? '').trim() || 'Uygulamayı değerlendir',
+    reviewCtaPl: String(data.reviewCtaPl ?? '').trim() || 'Oceń aplikację',
     createdAt: String(data.createdAt ?? ''),
   };
 }
 
-export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPayload): { icon: string; labelRu: string; labelUk: string; labelEs: string } | null {
+export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPayload): {
+  icon: string;
+  labelRu: string;
+  labelUk: string;
+  labelEs: string;
+  labelPtBr: string;
+  labelVi: string;
+  labelId: string;
+  labelTr: string;
+  labelPl: string;
+} | null {
   const amount = toSafePositiveInt(payload.rewardAmount, 0);
   switch (payload.rewardType) {
     case 'none':
@@ -132,23 +182,108 @@ export function getGlobalBroadcastRewardBadge(payload: GlobalBroadcastModalPaylo
           amount === 1
             ? '+1 fragmento'
             : `+${amount} fragmentos`,
+        labelPtBr: amount === 1 ? '+1 fragmento' : `+${amount} fragmentos`,
+        labelVi: `+${amount} mảnh`,
+        labelId: `+${amount} shard`,
+        labelTr: `+${amount} parça`,
+        labelPl: `+${amount} odłamków`,
       };
     case 'xp_boost_2x_24h':
-      return { icon: '🔥', labelRu: 'x2 XP на 24 часа', labelUk: 'x2 XP на 24 години', labelEs: 'x2 XP durante 24 horas' };
+      return {
+        icon: '🔥',
+        labelRu: 'x2 XP на 24 часа',
+        labelUk: 'x2 XP на 24 години',
+        labelEs: 'x2 XP durante 24 horas',
+        labelPtBr: 'x2 XP por 24 horas',
+        labelVi: 'x2 XP trong 24 giờ',
+        labelId: 'x2 XP selama 24 jam',
+        labelTr: '24 saat x2 XP',
+        labelPl: 'x2 XP przez 24 godz.',
+      };
     case 'xp_boost_2x_48h':
-      return { icon: '🚀', labelRu: 'x2 XP на 48 часов', labelUk: 'x2 XP на 48 годин', labelEs: 'x2 XP durante 48 horas' };
+      return {
+        icon: '🚀',
+        labelRu: 'x2 XP на 48 часов',
+        labelUk: 'x2 XP на 48 годин',
+        labelEs: 'x2 XP durante 48 horas',
+        labelPtBr: 'x2 XP por 48 horas',
+        labelVi: 'x2 XP trong 48 giờ',
+        labelId: 'x2 XP selama 48 jam',
+        labelTr: '48 saat x2 XP',
+        labelPl: 'x2 XP przez 48 godz.',
+      };
     case 'chain_shield_1':
-      return { icon: '🛡️', labelRu: 'Щит цепочки на 1 день', labelUk: 'Щит стріку на 1 день', labelEs: 'Escudo de racha: 1 día' };
+      return {
+        icon: '🛡️',
+        labelRu: 'Щит цепочки на 1 день',
+        labelUk: 'Щит стріку на 1 день',
+        labelEs: 'Escudo de racha: 1 día',
+        labelPtBr: 'Escudo de sequência: 1 dia',
+        labelVi: 'Khiên chuỗi: 1 ngày',
+        labelId: 'Perisai rentetan: 1 hari',
+        labelTr: 'Seri kalkanı: 1 gün',
+        labelPl: 'Tarcza serii: 1 dzień',
+      };
     case 'chain_shield_3':
-      return { icon: '🛡️', labelRu: 'Щит цепочки на 3 дня', labelUk: 'Щит стріку на 3 дні', labelEs: 'Escudo de racha: 3 días' };
+      return {
+        icon: '🛡️',
+        labelRu: 'Щит цепочки на 3 дня',
+        labelUk: 'Щит стріку на 3 дні',
+        labelEs: 'Escudo de racha: 3 días',
+        labelPtBr: 'Escudo de sequência: 3 dias',
+        labelVi: 'Khiên chuỗi: 3 ngày',
+        labelId: 'Perisai rentetan: 3 hari',
+        labelTr: 'Seri kalkanı: 3 gün',
+        labelPl: 'Tarcza serii: 3 dni',
+      };
     case 'club_boost_free':
-      return { icon: '👥', labelRu: 'Бесплатный клубный буст', labelUk: 'Безкоштовний клубний буст', labelEs: 'Impulso de club gratuito' };
+      return {
+        icon: '👥',
+        labelRu: 'Бесплатный клубный буст',
+        labelUk: 'Безкоштовний клубний буст',
+        labelEs: 'Impulso de club gratuito',
+        labelPtBr: 'Impulso de clube grátis',
+        labelVi: 'Tăng lực câu lạc bộ miễn phí',
+        labelId: 'Boost klub gratis',
+        labelTr: 'Ücretsiz kulüp güçlendirmesi',
+        labelPl: 'Darmowy boost klubu',
+      };
     case 'arena_extra_5':
-      return { icon: '🎟️', labelRu: '+5 рейтинг-игр сегодня', labelUk: '+5 рейтинг-ігор сьогодні', labelEs: '+5 partidas extra en la Arena hoy' };
+      return {
+        icon: '🎟️',
+        labelRu: '+5 рейтинг-игр сегодня',
+        labelUk: '+5 рейтинг-ігор сьогодні',
+        labelEs: '+5 partidas extra en la Arena hoy',
+        labelPtBr: '+5 partidas ranqueadas hoje',
+        labelVi: '+5 trận xếp hạng hôm nay',
+        labelId: '+5 game peringkat hari ini',
+        labelTr: 'Bugün +5 sıralama oyunu',
+        labelPl: '+5 gier rankingowych dziś',
+      };
     case 'wager_discount_25':
-      return { icon: '🎲', labelRu: 'Скидка на пари 25%', labelUk: 'Знижка на парі 25%', labelEs: '25 % de descuento en apuestas' };
+      return {
+        icon: '🎲',
+        labelRu: 'Скидка на пари 25%',
+        labelUk: 'Знижка на парі 25%',
+        labelEs: '25 % de descuento en apuestas',
+        labelPtBr: '25% de desconto em apostas',
+        labelVi: 'Giảm 25% cho cược',
+        labelId: 'Diskon taruhan 25%',
+        labelTr: 'Bahislerde %25 indirim',
+        labelPl: '25% zniżki na zakłady',
+      };
     case 'pack_trial_48h':
-      return { icon: '📦', labelRu: 'Пробный набор на 48 часов', labelUk: 'Пробний набір на 48 годин', labelEs: 'Paquete de prueba de 48 horas' };
+      return {
+        icon: '📦',
+        labelRu: 'Пробный набор на 48 часов',
+        labelUk: 'Пробний набір на 48 годин',
+        labelEs: 'Paquete de prueba de 48 horas',
+        labelPtBr: 'Pacote de teste por 48 horas',
+        labelVi: 'Gói dùng thử 48 giờ',
+        labelId: 'Paket uji coba 48 jam',
+        labelTr: '48 saatlik deneme paketi',
+        labelPl: 'Pakiet próbny na 48 godz.',
+      };
     default:
       return null;
   }
@@ -214,9 +349,19 @@ function isRetiredLeagueSystemBroadcast(payload: GlobalBroadcastModalPayload): b
     payload.titleRu,
     payload.titleUk,
     payload.titleEs,
+    payload.titlePtBr,
+    payload.titleVi,
+    payload.titleId,
+    payload.titleTr,
+    payload.titlePl,
     payload.messageRu,
     payload.messageUk,
     payload.messageEs,
+    payload.messagePtBr,
+    payload.messageVi,
+    payload.messageId,
+    payload.messageTr,
+    payload.messagePl,
   ].join(' ').toLowerCase();
   const mentionsLeague = text.includes('\u043b\u0438\u0433') || text.includes('league');
   const mentionsSystemUpdate = text.includes('\u0441\u0438\u0441\u0442\u0435\u043c') || text.includes('system');

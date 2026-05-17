@@ -8,21 +8,12 @@ import ContentWrap from '../components/ContentWrap';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import { hapticTap } from '../hooks/use-haptics';
-import { ENABLE_SPANISH_LOCALE } from './config';
-import type { Lang } from '../constants/i18n';
-
-const LANG_OPTIONS: { code: Lang; native: string }[] = [
-  { code: 'ru', native: 'Русский' },
-  { code: 'uk', native: 'Українська' },
-  { code: 'es', native: 'Español' },
-];
+import { coerceInterfaceLang, INTERFACE_LANGUAGE_OPTIONS } from '../constants/i18n';
 
 export default function SettingsLanguage() {
   const router = useRouter();
   const { theme: t } = useTheme();
   const { lang, setLang, s } = useLang();
-
-  const visible = LANG_OPTIONS.filter((o) => o.code !== 'es' || ENABLE_SPANISH_LOCALE);
 
   return (
     <ScreenGradient>
@@ -44,15 +35,19 @@ export default function SettingsLanguage() {
           </View>
 
           <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 12, paddingBottom: 36 }}>
-            {visible.map((item) => {
+            {INTERFACE_LANGUAGE_OPTIONS.map((item) => {
+              const interfaceCode = coerceInterfaceLang(item.code);
+              const enabled = interfaceCode === item.code;
               const active = lang === item.code;
               return (
                 <TouchableOpacity
                   key={item.code}
-                  activeOpacity={0.85}
+                  activeOpacity={enabled ? 0.85 : 1}
+                  disabled={!enabled}
                   onPress={() => {
+                    if (!interfaceCode) return;
                     hapticTap();
-                    void setLang(item.code);
+                    void setLang(interfaceCode);
                   }}
                   style={{
                     flexDirection: 'row',
@@ -64,6 +59,7 @@ export default function SettingsLanguage() {
                     borderColor: active ? t.accent : t.border,
                     backgroundColor: t.bgCard,
                     marginBottom: 10,
+                    opacity: enabled ? 1 : 0.42,
                   }}
                 >
                   <Text style={{ flex: 1, color: t.textPrimary, fontSize: 15, fontWeight: active ? '800' : '600' }}>
@@ -71,6 +67,8 @@ export default function SettingsLanguage() {
                   </Text>
                   {active ? (
                     <Ionicons name="checkmark-circle" size={18} color={t.accent} />
+                  ) : !enabled ? (
+                    <Ionicons name="lock-closed" size={16} color={t.textMuted} style={{ opacity: 0.75 }} />
                   ) : (
                     <Ionicons name="chevron-forward" size={16} color={t.textMuted} style={{ opacity: 0.7 }} />
                   )}

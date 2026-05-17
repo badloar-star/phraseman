@@ -51,7 +51,7 @@ import { getCanonicalUserId } from './user_id_policy';
 import { useEffectivePlatformOS } from './platform_ui_preview';
 import { getTextInputSystemEditMenuProps } from './textInputSystemMenuProps';
 
-type Row = { id: string; en: string; ru: string; uk: string };
+type Row = { id: string; en: string; ru: string; uk: string; es?: string };
 
 function communityPackValidationToast(
   err: string,
@@ -85,15 +85,15 @@ function communityPackValidationToast(
       };
     case 'card_fields':
       return {
-        messageRu: 'У каждой карточки должны быть EN и RU.',
-        messageUk: 'У кожної картки мають бути EN та RU.',
-        messageEs: 'Cada tarjeta debe tener EN y RU.',
+        messageRu: 'У каждой карточки должны быть EN и перевод.',
+        messageUk: 'У кожної картки мають бути EN і переклад.',
+        messageEs: 'Cada tarjeta debe tener EN y traducción.',
       };
     default:
       return {
-        messageRu: 'Проверьте название, описание, цену и все карточки (EN/RU).',
-        messageUk: 'Перевірте назву, опис, ціну та всі картки (EN/RU).',
-        messageEs: 'Revisa el título, la descripción, el precio y todas las tarjetas (EN/RU).',
+        messageRu: 'Проверьте название, описание, цену и все карточки.',
+        messageUk: 'Перевірте назву, опис, ціну та всі картки.',
+        messageEs: 'Revisa el título, la descripción, el precio y todas las tarjetas.',
       };
   }
 }
@@ -107,7 +107,16 @@ export default function CommunityPackCreateScreen() {
 
   const { theme: t, f, themeMode, isDark } = useTheme();
   const { lang } = useLang();
-  const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const isLightTheme = !isDark;
 
   const [title, setTitle] = useState('');
@@ -119,6 +128,7 @@ export default function CommunityPackCreateScreen() {
   const [addCardFormOpen, setAddCardFormOpen] = useState(false);
   const [draftEn, setDraftEn] = useState('');
   const [draftRu, setDraftRu] = useState('');
+  const [draftEs, setDraftEs] = useState('');
   const [draftNote, setDraftNote] = useState('');
   const [editingIdx, setEditingIdx] = useState<number | null>(null);
   /** Extra bottom padding so ScrollView can scroll past the keyboard. */
@@ -134,6 +144,7 @@ export default function CommunityPackCreateScreen() {
   const descriptionInputRef = useRef<TextInput>(null);
   const draftEnInputRef = useRef<TextInput>(null);
   const draftRuInputRef = useRef<TextInput>(null);
+  const draftEsInputRef = useRef<TextInput>(null);
   const draftNoteInputRef = useRef<TextInput>(null);
   const draftPanelRef = useRef<View>(null);
 
@@ -221,13 +232,13 @@ export default function CommunityPackCreateScreen() {
     void (async () => {
       const sid = await getCanonicalUserId();
       if (!sid) {
-        setLoadErr(L('Нет id', 'Немає id', 'Sin ID'));
+        setLoadErr(L('Нет id', 'Немає id', 'Sin ID', 'Sem ID', 'Không có ID', 'Tanpa ID', 'ID yok', 'Brak ID'));
         return;
       }
       const snap = await fetchCommunityPackForAuthorEdit(editPackId, sid);
       if (cancelled) return;
       if (!snap) {
-        setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'El pack no está disponible para editar'));
+        setLoadErr(L('Набор недоступен для редактирования', 'Набір недоступний для редагування', 'El pack no está disponible para editar', 'O pack não está disponível para edição', 'Bộ thẻ không khả dụng để chỉnh sửa', 'Paket tidak tersedia untuk diedit', 'Paket düzenleme için kullanılamıyor', 'Pakiet nie jest dostępny do edycji'));
         return;
       }
       setTitle(snap.title);
@@ -240,6 +251,7 @@ export default function CommunityPackCreateScreen() {
           en: c.en,
           ru: c.ru,
           uk: c.uk,
+          es: c.es,
         })),
       );
     })();
@@ -270,6 +282,7 @@ export default function CommunityPackCreateScreen() {
         setAddCardFormOpen(d.addCardFormOpen);
         setDraftEn(d.draftEn);
         setDraftRu(d.draftRu);
+        setDraftEs(d.draftEs);
         setDraftNote(d.draftNote);
       }
       setDraftHydrated(true);
@@ -292,6 +305,7 @@ export default function CommunityPackCreateScreen() {
         addCardFormOpen,
         draftEn,
         draftRu,
+        draftEs,
         draftNote,
       });
     }, 420);
@@ -308,6 +322,7 @@ export default function CommunityPackCreateScreen() {
     addCardFormOpen,
     draftEn,
     draftRu,
+    draftEs,
     draftNote,
   ]);
 
@@ -325,6 +340,7 @@ export default function CommunityPackCreateScreen() {
           addCardFormOpen,
           draftEn,
           draftRu,
+          draftEs,
           draftNote,
         });
       }
@@ -342,6 +358,7 @@ export default function CommunityPackCreateScreen() {
     addCardFormOpen,
     draftEn,
     draftRu,
+    draftEs,
     draftNote,
   ]);
 
@@ -360,6 +377,7 @@ export default function CommunityPackCreateScreen() {
       if (!row) return;
       setDraftEn(row.en);
       setDraftRu(row.ru);
+      setDraftEs(row.es ?? '');
       setDraftNote(row.uk);
       setAddCardFormOpen(true);
       setEditingIdx(idx);
@@ -384,14 +402,17 @@ export default function CommunityPackCreateScreen() {
     return () => clearTimeout(timer);
   }, [editingIdx]);
 
-  const draftValid = draftEn.trim().length > 0 && draftRu.trim().length > 0;
+  const draftTranslation = lang === 'es' ? draftEs : draftRu;
+  const setDraftTranslation = lang === 'es' ? setDraftEs : setDraftRu;
+  const draftTranslationInputRef = lang === 'es' ? draftEsInputRef : draftRuInputRef;
+  const draftValid = draftEn.trim().length > 0 && draftTranslation.trim().length > 0;
   const isEditingCard = editingIdx != null;
 
   const saveDraftCard = useCallback(() => {
     Keyboard.dismiss();
     const en = draftEn.trim();
-    const ru = draftRu.trim();
-    if (!en || !ru) {
+    const translation = draftTranslation.trim();
+    if (!en || !translation) {
       emitAppEvent('action_toast', {
         type: 'error',
         messageRu: 'Заполните английский текст и перевод.',
@@ -400,31 +421,35 @@ export default function CommunityPackCreateScreen() {
       });
       return;
     }
+    const ru = lang === 'es' ? draftRu.trim() : translation;
+    const es = lang === 'es' ? translation : draftEs.trim();
     const note = draftNote.trim();
     if (editingIdx != null) {
       setRows((r) =>
         r.map((row, i) =>
-          i === editingIdx ? { ...row, en, ru, uk: note } : row,
+          i === editingIdx ? { ...row, en, ru, es: es || undefined, uk: note } : row,
         ),
       );
     } else {
       setRows((r) => {
         if (r.length >= 50) return r;
-        const next = [...r, { id: `c${r.length + 1}`, en, ru, uk: note }];
+        const next = [...r, { id: `c${r.length + 1}`, en, ru, es: es || undefined, uk: note }];
         return next.map((row, i) => ({ ...row, id: `c${i + 1}` }));
       });
     }
     setDraftEn('');
     setDraftRu('');
+    setDraftEs('');
     setDraftNote('');
     setAddCardFormOpen(false);
     setEditingIdx(null);
-  }, [draftEn, draftRu, draftNote, editingIdx]);
+  }, [draftEn, draftRu, draftEs, draftTranslation, draftNote, editingIdx, lang]);
 
   const cancelDraftCard = useCallback(() => {
     Keyboard.dismiss();
     setDraftEn('');
     setDraftRu('');
+    setDraftEs('');
     setDraftNote('');
     setAddCardFormOpen(false);
     setEditingIdx(null);
@@ -442,9 +467,10 @@ export default function CommunityPackCreateScreen() {
         addCardFormOpen,
         draftEn,
         draftRu,
+        draftEs,
         draftNote,
       }),
-    [title, description, themeIdx, rows, addCardFormOpen, draftEn, draftRu, draftNote],
+    [title, description, themeIdx, rows, addCardFormOpen, draftEn, draftRu, draftEs, draftNote],
   );
 
   const performClearLocalDraft = useCallback(() => {
@@ -457,6 +483,7 @@ export default function CommunityPackCreateScreen() {
     setAddCardFormOpen(false);
     setDraftEn('');
     setDraftRu('');
+    setDraftEs('');
     setDraftNote('');
   }, []);
 
@@ -468,18 +495,20 @@ export default function CommunityPackCreateScreen() {
     const cards = rows.map((row) => ({
       id: row.id,
       en: row.en.trim(),
-      ru: row.ru.trim(),
+      ru: row.ru.trim() || undefined,
       uk: row.uk.trim() || undefined,
+      es: row.es?.trim() || undefined,
     }));
     const p: CommunityPackSubmissionPayload = {
       title: title.trim(),
       description: description.trim(),
+      sourceLang: lang,
       priceShards: COMMUNITY_PACK_PRICE_SHARDS,
       cards,
       cardThemeKey: themeKey,
     };
     return p;
-  }, [title, description, rows, themeKey]);
+  }, [title, description, rows, themeKey, lang]);
 
   const runSubmit = useCallback(
     async (updatePackId?: string) => {
@@ -587,7 +616,7 @@ export default function CommunityPackCreateScreen() {
           <ContentWrap>
             <View style={styles.formHorizontalInset}>
               <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 24 }}>
-                {L('Создание наборов с облаком недоступно в этой сборке.', 'Створення наборів з хмарою недоступне в цьому білді.', 'Crear packs con la nube no está disponible en esta versión.')}
+                {L('Создание наборов с облаком недоступно в этой сборке.', 'Створення наборів з хмарою недоступне в цьому білді.', 'Crear packs con la nube no está disponible en esta versión.', 'A criação de packs com nuvem não está disponível nesta versão.', 'Tính năng tạo bộ thẻ bằng đám mây không khả dụng trong bản dựng này.', 'Pembuatan paket dengan cloud tidak tersedia di build ini.', 'Bulutla paket oluşturma bu sürümde kullanılamıyor.', 'Tworzenie pakietów z chmurą nie jest dostępne w tej wersji.')}
               </Text>
             </View>
           </ContentWrap>
@@ -612,7 +641,7 @@ export default function CommunityPackCreateScreen() {
               <Ionicons name="arrow-back" size={24} color={t.textPrimary} />
             </TouchableOpacity>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
-              {L('Редактирование', 'Редагування', 'Edición')}
+              {L('Редактирование', 'Редагування', 'Edición', 'Edição', 'Chỉnh sửa', 'Pengeditan', 'Düzenleme', 'Edycja')}
             </Text>
             <View style={{ width: 40 }} />
           </View>
@@ -647,8 +676,8 @@ export default function CommunityPackCreateScreen() {
             </TouchableOpacity>
             <Text style={[styles.headerTitle, { color: t.textPrimary, fontSize: f.h3 }]} numberOfLines={1}>
               {isEditMode
-                ? L('Редактировать набор', 'Редагувати набір', 'Editar pack')
-                : L('Новый набор', 'Новий набір', 'Nuevo pack')}
+                ? L('Редактировать набор', 'Редагувати набір', 'Editar pack', 'Editar pack', 'Chỉnh sửa bộ thẻ', 'Edit paket', 'Paketi düzenle', 'Edytuj pakiet')
+                : L('Новый набор', 'Новий набір', 'Nuevo pack', 'Novo pack', 'Bộ thẻ mới', 'Paket baru', 'Yeni paket', 'Nowy pakiet')}
             </Text>
             <View style={{ width: 40 }} />
           </View>
@@ -678,7 +707,7 @@ export default function CommunityPackCreateScreen() {
                   style={{ alignSelf: 'flex-start', marginBottom: 8 }}
                 >
                   <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '600', textDecorationLine: 'underline' }}>
-                    {L('Очистить сохранённый черновик', 'Очистити збережений чернетку', 'Borrar borrador guardado')}
+                    {L('Очистить сохранённый черновик', 'Очистити збережений чернетку', 'Borrar borrador guardado', 'Apagar rascunho salvo', 'Xóa bản nháp đã lưu', 'Hapus draf tersimpan', 'Kayıtlı taslağı temizle', 'Wyczyść zapisany szkic')}
                   </Text>
                 </TouchableOpacity>
               ) : null}
@@ -695,33 +724,38 @@ export default function CommunityPackCreateScreen() {
                   'Место для твоего творчества. Если пак пройдёт проверку на адекватность, он попадёт в руки других юзеров. А ты получишь их осколки.',
                   'Місце для твоєї творчості. Якщо пак пройде перевірку на адекватність, він потрапить у руки інших юзерів. А ти отримаєш їх осколки.',
                   'Aquí puedes crear tu pack. Si supera la moderación, otros usuarios podrán usarlo y tú ganarás fragmentos.',
+                  'Aqui você pode criar seu pack. Se passar pela moderação, outros usuários poderão usá-lo e você ganhará fragmentos.',
+                  'Đây là nơi bạn tạo bộ thẻ của mình. Nếu vượt qua kiểm duyệt, người dùng khác có thể dùng nó và bạn sẽ nhận được mảnh.',
+                  'Di sini kamu bisa membuat paketmu. Jika lolos moderasi, pengguna lain bisa memakainya dan kamu akan mendapatkan fragmen.',
+                  'Burada kendi paketini oluşturabilirsin. Moderasyondan geçerse diğer kullanıcılar kullanabilir ve sen parça kazanırsın.',
+                  'Tutaj możesz stworzyć swój pakiet. Jeśli przejdzie moderację, inni użytkownicy będą mogli z niego korzystać, a ty zdobędziesz odłamki.',
                 )}
               </Text>
-              <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título')} *</Text>
+              <Text style={labelStyle(t)}>{L('Название', 'Назва', 'Título', 'Título', 'Tên', 'Judul', 'Başlık', 'Tytuł')} *</Text>
               <TextInput
                 ref={titleInputRef}
                 {...getTextInputSystemEditMenuProps()}
                 value={title}
                 onChangeText={setTitle}
                 onFocus={bindScrollOnFocus(titleInputRef)}
-                placeholder={L('Название набора', 'Назва набору', 'Título del pack')}
+                placeholder={L('Название набора', 'Назва набору', 'Título del pack', 'Título do pack', 'Tên bộ thẻ', 'Judul paket', 'Paket başlığı', 'Tytuł pakietu')}
                 placeholderTextColor={t.textGhost}
                 style={fieldInputStyle(t)}
               />
-              <Text style={labelStyle(t)}>{L('Описание', 'Опис', 'Descripción')} *</Text>
+              <Text style={labelStyle(t)}>{L('Описание', 'Опис', 'Descripción', 'Descrição', 'Mô tả', 'Deskripsi', 'Açıklama', 'Opis')} *</Text>
               <TextInput
                 ref={descriptionInputRef}
                 {...getTextInputSystemEditMenuProps()}
                 value={description}
                 onChangeText={setDescription}
                 onFocus={bindScrollOnFocus(descriptionInputRef)}
-                placeholder={L('Кратко о наборе', 'Коротко про набір', 'Breve descripción del pack')}
+                placeholder={L('Кратко о наборе', 'Коротко про набір', 'Breve descripción del pack', 'Resumo do pack', 'Mô tả ngắn về bộ thẻ', 'Ringkasan paket', 'Paket hakkında kısa bilgi', 'Krótko o pakiecie')}
                 placeholderTextColor={t.textGhost}
                 multiline
                 style={[fieldInputStyle(t), { minHeight: 88, textAlignVertical: 'top' }]}
               />
 
-              <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Color de las tarjetas')}</Text>
+              <Text style={labelStyle(t)}>{L('Цвет карточек', 'Колір карток', 'Color de las tarjetas', 'Cor dos cartões', 'Màu thẻ', 'Warna kartu', 'Kart rengi', 'Kolor kart')}</Text>
               <View style={[styles.stepperPanel, { backgroundColor: t.bgCard, borderColor: t.border }]}>
                 <View style={styles.stepperRow}>
                   <TouchableOpacity
@@ -766,7 +800,7 @@ export default function CommunityPackCreateScreen() {
                 }}
               >
                 <Text style={{ color: t.accent, fontWeight: '800', fontSize: f.body }}>
-                  {L('+ Добавить карточку', '+ Додати картку', '+ Añadir tarjeta')}
+                  {L('+ Добавить карточку', '+ Додати картку', '+ Añadir tarjeta', '+ Adicionar cartão', '+ Thêm thẻ', '+ Tambah kartu', '+ Kart ekle', '+ Dodaj kartę')}
                 </Text>
               </TouchableOpacity>
 
@@ -774,11 +808,11 @@ export default function CommunityPackCreateScreen() {
                 <View ref={draftPanelRef} style={[styles.draftCardPanel, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
                   <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '800', marginBottom: 4 }}>
                     {isEditingCard
-                      ? L('Редактирование карточки', 'Редагування картки', 'Editar tarjeta')
-                      : L('Новая карточка', 'Нова картка', 'Nueva tarjeta')}
+                      ? L('Редактирование карточки', 'Редагування картки', 'Editar tarjeta', 'Editar cartão', 'Chỉnh sửa thẻ', 'Edit kartu', 'Kartı düzenle', 'Edytuj kartę')
+                      : L('Новая карточка', 'Нова картка', 'Nueva tarjeta', 'Novo cartão', 'Thẻ mới', 'Kartu baru', 'Yeni kart', 'Nowa karta')}
                   </Text>
                   <Text style={[draftLabelStyle(t), { marginTop: 8 }]}>
-                    {L('АНГЛИЙСКАЯ СТОРОНА', 'АНГЛІЙСЬКА СТОРОНА', 'LADO EN INGLÉS')}
+                    {L('АНГЛИЙСКАЯ СТОРОНА', 'АНГЛІЙСЬКА СТОРОНА', 'LADO EN INGLÉS', 'LADO EM INGLÊS', 'MẶT TIẾNG ANH', 'SISI BAHASA INGGRIS', 'İNGİLİZCE TARAF', 'STRONA ANGIELSKA')}
                   </Text>
                   <TextInput
                     ref={draftEnInputRef}
@@ -786,23 +820,23 @@ export default function CommunityPackCreateScreen() {
                     value={draftEn}
                     onChangeText={setDraftEn}
                     onFocus={bindScrollOnFocus(draftEnInputRef)}
-                    placeholder={L('Введи английский текст…', 'Введи англійський текст…', 'Escribe el texto en inglés…')}
+                    placeholder={L('Введи английский текст…', 'Введи англійський текст…', 'Escribe el texto en inglés…', 'Digite o texto em inglês…', 'Nhập nội dung tiếng Anh…', 'Masukkan teks bahasa Inggris…', 'İngilizce metni gir…', 'Wpisz tekst po angielsku…')}
                     placeholderTextColor={t.textGhost}
                     style={[fieldInputStyle(t), { borderColor: t.accent }]}
                   />
-                  <Text style={draftLabelStyle(t)}>{L('ПЕРЕВОД', 'ПЕРЕКЛАД', 'TRADUCCIÓN')}</Text>
+                  <Text style={draftLabelStyle(t)}>{L('ПЕРЕВОД', 'ПЕРЕКЛАД', 'TRADUCCIÓN', 'TRADUÇÃO', 'BẢN DỊCH', 'TERJEMAHAN', 'ÇEVİRİ', 'TŁUMACZENIE')}</Text>
                   <TextInput
-                    ref={draftRuInputRef}
+                    ref={draftTranslationInputRef}
                     {...getTextInputSystemEditMenuProps()}
-                    value={draftRu}
-                    onChangeText={setDraftRu}
-                    onFocus={bindScrollOnFocus(draftRuInputRef)}
-                    placeholder={L('Введи перевод…', 'Введи переклад…', 'Escribe la traducción…')}
+                    value={draftTranslation}
+                    onChangeText={setDraftTranslation}
+                    onFocus={bindScrollOnFocus(draftTranslationInputRef)}
+                    placeholder={L('Введи перевод…', 'Введи переклад…', 'Escribe la traducción…', 'Digite a tradução…', 'Nhập bản dịch…', 'Masukkan terjemahan…', 'Çeviriyi gir…', 'Wpisz tłumaczenie…')}
                     placeholderTextColor={t.textGhost}
                     style={fieldInputStyle(t)}
                   />
                   <Text style={draftLabelStyle(t)}>
-                    {L('ОПИСАНИЕ (НЕОБЯЗАТЕЛЬНО)', 'ОПИС (НЕОБОВ\'ЯЗКОВО)', 'DESCRIPCIÓN (OPCIONAL)')}
+                    {L('ОПИСАНИЕ (НЕОБЯЗАТЕЛЬНО)', 'ОПИС (НЕОБОВ\'ЯЗКОВО)', 'DESCRIPCIÓN (OPCIONAL)', 'DESCRIÇÃO (OPCIONAL)', 'MÔ TẢ (KHÔNG BẮT BUỘC)', 'DESKRIPSI (OPSIONAL)', 'AÇIKLAMA (İSTEĞE BAĞLI)', 'OPIS (OPCJONALNIE)')}
                   </Text>
                   <TextInput
                     ref={draftNoteInputRef}
@@ -814,6 +848,11 @@ export default function CommunityPackCreateScreen() {
                       'Краткая заметка, контекст или подсказка…',
                       'Коротка замітка, контекст або підказка…',
                       'Nota breve, contexto o pista…',
+                      'Nota breve, contexto ou dica…',
+                      'Ghi chú ngắn, ngữ cảnh hoặc gợi ý…',
+                      'Catatan singkat, konteks, atau petunjuk…',
+                      'Kısa not, bağlam veya ipucu…',
+                      'Krótka notatka, kontekst albo podpowiedź…',
                     )}
                     placeholderTextColor={t.textGhost}
                     multiline
@@ -833,7 +872,7 @@ export default function CommunityPackCreateScreen() {
                       }}
                     >
                       <Text style={{ color: t.textSecond, fontWeight: '700', fontSize: f.body }}>
-                        {L('Отмена', 'Скасувати', 'Cancelar')}
+                        {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                       </Text>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -854,8 +893,8 @@ export default function CommunityPackCreateScreen() {
                       <Ionicons name="checkmark-circle" size={22} color={t.correctText} />
                       <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.body }}>
                         {isEditingCard
-                          ? L('Обновить', 'Оновити', 'Actualizar')
-                          : L('Сохранить', 'Зберегти', 'Guardar')}
+                          ? L('Обновить', 'Оновити', 'Actualizar', 'Atualizar', 'Cập nhật', 'Perbarui', 'Güncelle', 'Zaktualizuj')
+                          : L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -872,6 +911,7 @@ export default function CommunityPackCreateScreen() {
                   en={row.en}
                   ru={row.ru}
                   uk={row.uk}
+                  es={row.es}
                   frontGradient={cardChrome.frontGradient}
                   backGradient={cardChrome.backGradient}
                   borderAccent={cardChrome.borderAccent}
@@ -905,8 +945,13 @@ export default function CommunityPackCreateScreen() {
                           'Сохранить и отправить на проверку',
                           'Зберегти й надіслати на перевірку',
                           'Guardar y enviar a revisión',
+                          'Salvar e enviar para revisão',
+                          'Lưu và gửi để kiểm duyệt',
+                          'Simpan dan kirim untuk ditinjau',
+                          'Kaydet ve incelemeye gönder',
+                          'Zapisz i wyślij do sprawdzenia',
                         )
-                      : L('Отправить на проверку', 'Надіслати на перевірку', 'Enviar a revisión')}
+                      : L('Отправить на проверку', 'Надіслати на перевірку', 'Enviar a revisión', 'Enviar para revisão', 'Gửi để kiểm duyệt', 'Kirim untuk ditinjau', 'İncelemeye gönder', 'Wyślij do sprawdzenia')}
                   </Text>
                 )}
               </TouchableOpacity>
@@ -914,7 +959,7 @@ export default function CommunityPackCreateScreen() {
                 <ReportErrorButton
                   screen="community_pack_create"
                   dataId="community_pack_editor"
-                  dataText={L('Создание набора', 'Створення набору', 'Crear pack')}
+                  dataText={L('Создание набора', 'Створення набору', 'Crear pack', 'Criar pack', 'Tạo bộ thẻ', 'Buat paket', 'Paket oluşturma', 'Tworzenie pakietu')}
                 />
               </View>
               </View>
@@ -923,28 +968,38 @@ export default function CommunityPackCreateScreen() {
         </KeyboardAvoidingView>
         <ThemedConfirmModal
           visible={clearDraftModalOpen}
-          title={L('Очистить черновик?', 'Очистити чернетку?', '¿Borrar borrador?')}
+          title={L('Очистить черновик?', 'Очистити чернетку?', '¿Borrar borrador?', 'Apagar rascunho?', 'Xóa bản nháp?', 'Hapus draf?', 'Taslak temizlensin mi?', 'Wyczyścić szkic?')}
           message={L(
             'Локальные данные этого набора будут удалены.',
             'Локальні дані цього набору буде видалено.',
             'Se borrarán los datos locales de este pack.',
+            'Os dados locais deste pack serão apagados.',
+            'Dữ liệu cục bộ của bộ thẻ này sẽ bị xóa.',
+            'Data lokal paket ini akan dihapus.',
+            'Bu paketin yerel verileri silinecek.',
+            'Lokalne dane tego pakietu zostaną usunięte.',
           )}
-          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
-          confirmLabel={L('Очистить', 'Очистити', 'Borrar')}
+          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+          confirmLabel={L('Очистить', 'Очистити', 'Borrar', 'Apagar', 'Xóa', 'Hapus', 'Temizle', 'Wyczyść')}
           confirmVariant="default"
           onCancel={() => setClearDraftModalOpen(false)}
           onConfirm={performClearLocalDraft}
         />
         <ThemedConfirmModal
           visible={resubmitPackModalOpen}
-          title={L('Повторная проверка', 'Повторна перевірка', 'Nueva revisión')}
+          title={L('Повторная проверка', 'Повторна перевірка', 'Nueva revisión', 'Nova revisão', 'Kiểm duyệt lại', 'Tinjauan ulang', 'Yeniden inceleme', 'Ponowne sprawdzenie')}
           message={L(
             'Набор исчезнет из продажи, пока не завершится проверка. Продолжить?',
             'Набір зникне з продажу, доки не завершиться перевірка. Продовжити?',
             'El pack dejará de estar a la venta hasta que termine la revisión. ¿Continuar?',
+            'O pack sairá da venda até a revisão terminar. Continuar?',
+            'Bộ thẻ sẽ tạm ẩn khỏi cửa hàng cho đến khi kiểm duyệt xong. Tiếp tục?',
+            'Paket akan hilang dari penjualan sampai tinjauan selesai. Lanjutkan?',
+            'İnceleme bitene kadar paket satıştan kalkacak. Devam edilsin mi?',
+            'Pakiet zniknie ze sprzedaży do końca sprawdzenia. Kontynuować?',
           )}
-          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
-          confirmLabel={L('Отправить', 'Надіслати', 'Enviar')}
+          cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
+          confirmLabel={L('Отправить', 'Надіслати', 'Enviar', 'Enviar', 'Gửi', 'Kirim', 'Gönder', 'Wyślij')}
           onCancel={() => setResubmitPackModalOpen(false)}
           onConfirm={() => {
             setResubmitPackModalOpen(false);

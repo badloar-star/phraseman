@@ -17,9 +17,19 @@ export type FriendGiftCatalogItem = {
   labelRu: string;
   labelUk: string;
   labelEs: string;
+  labelPtBr: string;
+  labelVi: string;
+  labelId: string;
+  labelTr: string;
+  labelPl: string;
   descRu: string;
   descUk: string;
   descEs: string;
+  descPtBr: string;
+  descVi: string;
+  descId: string;
+  descTr: string;
+  descPl: string;
 };
 
 export const FRIEND_GIFT_CATALOG: FriendGiftCatalogItem[] = [
@@ -30,9 +40,19 @@ export const FRIEND_GIFT_CATALOG: FriendGiftCatalogItem[] = [
     labelRu: '+5 рейтинг-игр',
     labelUk: '+5 рейтинг-ігор',
     labelEs: '+5 partidas Arena',
+    labelPtBr: '+5 partidas ranqueadas',
+    labelVi: '+5 trận xếp hạng',
+    labelId: '+5 game peringkat',
+    labelTr: '+5 sıralama oyunu',
+    labelPl: '+5 gier rankingowych',
     descRu: 'Дополнительные рейтинговые матчи сегодня',
     descUk: 'Додаткові рейтингові матчі сьогодні',
     descEs: 'Partidas clasificadas extra para hoy',
+    descPtBr: 'Partidas ranqueadas extras para hoje',
+    descVi: 'Thêm lượt chơi xếp hạng cho hôm nay',
+    descId: 'Pertandingan peringkat ekstra untuk hari ini',
+    descTr: 'Bugün için ek sıralama maçları',
+    descPl: 'Dodatkowe mecze rankingowe na dziś',
   },
   {
     id: 'chain_shield_1',
@@ -41,9 +61,19 @@ export const FRIEND_GIFT_CATALOG: FriendGiftCatalogItem[] = [
     labelRu: 'Щит цепочки',
     labelUk: 'Щит ланцюжка',
     labelEs: 'Escudo de racha',
+    labelPtBr: 'Escudo de sequência',
+    labelVi: 'Khiên chuỗi ngày',
+    labelId: 'Perisai rentetan',
+    labelTr: 'Seri kalkanı',
+    labelPl: 'Tarcza serii',
     descRu: 'Один день защиты цепочки',
     descUk: 'Один день захисту ланцюжка',
     descEs: 'Un dia de proteccion de racha',
+    descPtBr: 'Um dia de proteção da sequência',
+    descVi: 'Một ngày bảo vệ chuỗi',
+    descId: 'Satu hari perlindungan rentetan',
+    descTr: 'Bir günlük seri koruması',
+    descPl: 'Jeden dzień ochrony serii',
   },
   {
     id: 'xp_boost_2x_24h',
@@ -52,9 +82,19 @@ export const FRIEND_GIFT_CATALOG: FriendGiftCatalogItem[] = [
     labelRu: 'x2 XP на 24 часа',
     labelUk: 'x2 XP на 24 години',
     labelEs: 'x2 XP por 24 h',
+    labelPtBr: 'x2 XP por 24 h',
+    labelVi: 'x2 XP trong 24 giờ',
+    labelId: 'x2 XP selama 24 jam',
+    labelTr: '24 saat x2 XP',
+    labelPl: 'x2 XP na 24 godz.',
     descRu: 'Все занятия дают вдвое больше XP',
     descUk: 'Усі заняття дають удвічі більше XP',
     descEs: 'Todas las actividades dan el doble de XP',
+    descPtBr: 'Todas as atividades dão XP em dobro',
+    descVi: 'Mọi hoạt động cho gấp đôi XP',
+    descId: 'Semua aktivitas memberi XP dua kali lipat',
+    descTr: 'Tüm etkinlikler iki kat XP verir',
+    descPl: 'Wszystkie aktywności dają podwójne XP',
   },
 ];
 

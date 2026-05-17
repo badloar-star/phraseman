@@ -3110,9 +3110,9 @@
   {
     "lesson": 9,
     "id": "lesson9_phrase_45",
-    "en": "Is there time?",
-    "ru": "Есть время?",
-    "uk": "Є час?"
+    "en": "Is there much time?",
+    "ru": "Есть много времени?",
+    "uk": "Є багато часу?"
   },
   {
     "lesson": 9,
@@ -3544,7 +3544,7 @@
   {
     "lesson": 11,
     "id": "lesson11_phrase_7",
-    "en": "I cleaned dishes this morning",
+    "en": "I washed the dishes this morning",
     "ru": "Я помыл посуду сегодня утром",
     "uk": "Я помив посуд сьогодні вранці"
   },

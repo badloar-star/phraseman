@@ -1,0 +1,257 @@
+{
+  "generatedAt": "2026-05-17T17:44:02.088Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 580,
+    "triLangCalls": 1510,
+    "staticTriLangCalls": 1508,
+    "dynamicTriLangCalls": 2,
+    "triLangMissingLocaleUnits": 30,
+    "triLangMissingAllPlannedUnits": 6,
+    "bundleMissingLocaleUnits": 10,
+    "findings": 14,
+    "byCode": {
+      "trilang-missing-all-planned-locales": 6,
+      "dynamic-trilang-copy": 2,
+      "lang-context-bundle-missing-planned-locale": 5,
+      "i18n-t-bundle-missing-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/diagnostic_test.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "components/LangContext.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/hint.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/lesson_help.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/premium_modal.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/preposition_drill.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "constants/i18n.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/DeleteAccountConfirmModal.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 0
+    },
+    {
+      "file": "components/ReleaseNotesModal.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 0
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/diagnostic_test.tsx",
+      "line": 1141,
+      "column": 54,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: q.hintRU, uk: q.hintUK, es: q.hintES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/diagnostic_test.tsx",
+      "line": 1290,
+      "column": 73,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: q.hintRU, uk: q.hintUK, es: q.hintES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1155,
+      "column": 35,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: hint.titleRU, uk: hint.titleUK, es: hint.titleES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 19384,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: theory.titleUK, ru: theory.titleRU, es: theoryTitleEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 943,
+      "column": 75,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 494,
+      "column": 36,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: item.explainUK, ru: item.explainRU, es: item.explainES ?? item.explainRU, }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/DeleteAccountConfirmModal.tsx",
+      "line": 37,
+      "column": 54,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, copy)"
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PT_BR | PTBR",
+      "missing": [
+        "pt-BR"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "VI",
+      "missing": [
+        "vi"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "ID",
+      "missing": [
+        "id"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "TR",
+      "missing": [
+        "tr"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PL",
+      "missing": [
+        "pl"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/ReleaseNotesModal.tsx",
+      "line": 137,
+      "column": 30,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, TEXT.body)"
+    },
+    {
+      "severity": "warning",
+      "code": "i18n-t-bundle-missing-planned-locales",
+      "file": "constants/i18n.ts",
+      "line": 37,
+      "column": 18,
+      "keyPath": "T.<locale>",
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "constants/i18n.ts does not define UI string bundles for all planned interface locales."
+    }
+  ]
+}

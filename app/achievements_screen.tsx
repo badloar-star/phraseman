@@ -26,61 +26,252 @@ import {
 } from './achievements';
 import { triLang, type Lang } from '../constants/i18n';
 import { hapticSuccess } from '../hooks/use-haptics';
-import { STORE_URL, DEV_MODE } from './config';
+import { STORE_URL, DEV_MODE, ENABLE_DEV_TOOLS } from './config';
 import { usePremium } from '../components/PremiumContext';
 import { oskolokImageForPackShards } from './oskolok';
 import { buildAchievementShareMessage } from './achievement_share';
 
 const { width: SW } = Dimensions.get('window');
-const COLS = 4;
-const SHIELD_OUTER = Math.floor((SW - 32 - (COLS - 1) * 10) / COLS);
-const SHIELD_W = SHIELD_OUTER - 4;
+const GRID_GAP = 10;
+const GRID_SIDE_PADDING = 36;
+const GRID_WIDTH = Math.min(SW, 640) - GRID_SIDE_PADDING;
+const COLS = SW < 430 ? 3 : 4;
+const SHIELD_OUTER = Math.max(72, Math.floor((GRID_WIDTH - (COLS - 1) * GRID_GAP) / COLS));
+const SHIELD_W = Math.min(112, SHIELD_OUTER - 4);
 
 interface AchievementStats {
   streak: number;
   loginDays: number;
   lessons: number;
   perfectLessons: number;
+  lessons2x: number;
+  lessons3x: number;
+  lessons5x: number;
+  perfectLessons2x: number;
+  b2PerfectLessons: number;
   xp: number;
+  level: number;
+  weeklyXP: number;
   recallCorrect: number;
   arenaWins: number;
   shards: number;
+  shardsSpent: number;
+  quizSessions: number;
+  quizHard: number;
+  quizHardPerfect: number;
+  quizPerfectStreak: number;
+  comboBest: number;
+  dailyAllStreak: number;
+  dailyNoRerollStreak: number;
+  dailyPhraseReads: number;
+  dailyPhraseSaves: number;
+  flashcardsSaved: number;
+  flashcardsFlips: number;
+  flashcardsViewStreak: number;
+  energyRefills: number;
+  leagueTop3: number;
+  leagueChampion: number;
+  leagueDiamondWeeks: number;
+  giftsSent: number;
+  leagueChatMessages: number;
+  trainerPerfectSessions: number;
+  packsOwned: number;
+  shareCount: number;
 }
+
+const emptyAchievementStats = (): AchievementStats => ({
+  streak: 0,
+  loginDays: 0,
+  lessons: 0,
+  perfectLessons: 0,
+  lessons2x: 0,
+  lessons3x: 0,
+  lessons5x: 0,
+  perfectLessons2x: 0,
+  b2PerfectLessons: 0,
+  xp: 0,
+  level: 1,
+  weeklyXP: 0,
+  recallCorrect: 0,
+  arenaWins: 0,
+  shards: 0,
+  shardsSpent: 0,
+  quizSessions: 0,
+  quizHard: 0,
+  quizHardPerfect: 0,
+  quizPerfectStreak: 0,
+  comboBest: 0,
+  dailyAllStreak: 0,
+  dailyNoRerollStreak: 0,
+  dailyPhraseReads: 0,
+  dailyPhraseSaves: 0,
+  flashcardsSaved: 0,
+  flashcardsFlips: 0,
+  flashcardsViewStreak: 0,
+  energyRefills: 0,
+  leagueTop3: 0,
+  leagueChampion: 0,
+  leagueDiamondWeeks: 0,
+  giftsSent: 0,
+  leagueChatMessages: 0,
+  trainerPerfectSessions: 0,
+  packsOwned: 0,
+  shareCount: 0,
+});
+
+const readJsonStreak = (raw: string | null, key = 'streak'): number => {
+  try {
+    const parsed = raw ? JSON.parse(raw) : {};
+    return Math.max(0, Math.floor(Number(parsed?.[key]) || 0));
+  } catch { return 0; }
+};
+
+const readJsonStringListLength = (raw: string | null): number => {
+  try {
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.filter(x => typeof x === 'string').length : 0;
+  } catch { return 0; }
+};
 
 async function loadAchievementStats(): Promise<AchievementStats> {
   try {
-    const [streakRaw, loginRaw, xpRaw, recallRaw, arenaWinsRaw, shardsRaw] = await Promise.all([
+    const [
+      streakRaw, loginRaw, xpRaw, recallRaw, trainerRaw, arenaWinsRaw, shardsRaw, shardsSpentRaw,
+      quizSessionsRaw, quizHardRaw, quizHardPerfectRaw, quizPerfectStreakRaw, comboBestRaw,
+      dailyAllStreakRaw, dailyNoRerollRaw, dailyPhraseReadsRaw, dailyPhraseSavesRaw,
+      flashcardsSavedRaw, flashcardsFlipsRaw, flashcardsViewRaw, energyRefillsRaw,
+      leagueTop3Raw, leagueChampionRaw, leagueDiamondWeeksRaw, giftsRaw, chatRaw,
+      trainerPerfectRaw, officialPacksRaw, legacyPacksRaw, communityPacksRaw, shareRaw,
+      weeklyRaw, weeklyPeakRaw,
+    ] = await Promise.all([
       AsyncStorage.getItem('streak_count'),
       AsyncStorage.getItem('login_bonus_v1'),
       AsyncStorage.getItem('user_total_xp'),
       AsyncStorage.getItem('achievement_active_recall_correct_count'),
+      AsyncStorage.getItem('achievement_trainer_correct_count'),
       AsyncStorage.getItem('achievement_arena_win_count'),
       AsyncStorage.getItem('shards_balance'),
+      AsyncStorage.getItem('achievement_shards_spent_total'),
+      AsyncStorage.getItem('achievement_quiz_total_count'),
+      AsyncStorage.getItem('quiz_hard_count'),
+      AsyncStorage.getItem('achievement_quiz_hard_perfect_count'),
+      AsyncStorage.getItem('achievement_quiz_perfect_streak_v1'),
+      AsyncStorage.getItem('achievement_combo_best_count'),
+      AsyncStorage.getItem('achievement_all_daily_streak_v1'),
+      AsyncStorage.getItem('achievement_daily_no_reroll_streak_v1'),
+      AsyncStorage.getItem('achievement_daily_phrase_read_count'),
+      AsyncStorage.getItem('achievement_daily_phrase_save_count'),
+      AsyncStorage.getItem('achievement_flashcards_saved_count'),
+      AsyncStorage.getItem('achievement_flashcards_flip_count'),
+      AsyncStorage.getItem('achievement_flashcards_view_streak_v1'),
+      AsyncStorage.getItem('achievement_energy_refill_count'),
+      AsyncStorage.getItem('achievement_league_top3_count'),
+      AsyncStorage.getItem('achievement_league_champion_count'),
+      AsyncStorage.getItem('achievement_league_diamond_week_streak_v1'),
+      AsyncStorage.getItem('achievement_gift_sent_count'),
+      AsyncStorage.getItem('achievement_league_chat_message_count'),
+      AsyncStorage.getItem('achievement_trainer_perfect_session_count'),
+      AsyncStorage.getItem('flashcards_owned_packs_v1'),
+      AsyncStorage.getItem('flashcards_market_dev_owned_v1'),
+      AsyncStorage.getItem('community_owned_pack_ids_v1'),
+      AsyncStorage.getItem('achievement_share_count'),
+      AsyncStorage.getItem('week_points'),
+      AsyncStorage.getItem('week_xp_peak_best_v1'),
     ]);
     const streak = parseInt(streakRaw || '0') || 0;
     const xp = parseInt(xpRaw || '0') || 0;
-    const recallCorrect = parseInt(recallRaw || '0') || 0;
+    const level = Math.min(100, xp <= 0 ? 1 : Math.floor(Math.pow(xp / 250, 1 / 1.82)) + 1);
+    const weeklyXP = Math.max(parseInt(weeklyRaw || '0') || 0, parseInt(weeklyPeakRaw || '0') || 0);
+    const recallCorrect = Math.max(parseInt(recallRaw || '0') || 0, parseInt(trainerRaw || '0') || 0);
     const arenaWins = parseInt(arenaWinsRaw || '0') || 0;
     const shards = parseInt(shardsRaw || '0') || 0;
+    const shardsSpent = parseInt(shardsSpentRaw || '0') || 0;
     let loginDays = 0;
     try { loginDays = loginRaw ? JSON.parse(loginRaw).consecutiveDays || 0 : 0; } catch {}
-    let lessons = 0, perfectLessons = 0;
+    let lessons = 0, perfectLessons = 0, b2PerfectLessons = 0;
     try {
       const lessonKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_progress`);
       const lessonEntries = await AsyncStorage.multiGet(lessonKeys);
-      for (const [, saved] of lessonEntries) {
+      for (let i = 0; i < lessonEntries.length; i++) {
+        const [, saved] = lessonEntries[i];
         if (saved) {
           const p: string[] = JSON.parse(saved);
           const correct = p.filter(x => x === 'correct' || x === 'replay_correct').length;
           if (correct >= 45) {
             lessons++;
-            if (p.filter(x => x === 'wrong').length === 0) perfectLessons++;
+            if (p.filter(x => x === 'wrong').length === 0) {
+              perfectLessons++;
+              if (i >= 28 && i <= 31) b2PerfectLessons++;
+            }
           }
         }
       }
     } catch {}
-    return { streak, loginDays, lessons, perfectLessons, xp, recallCorrect, arenaWins, shards };
-  } catch { return { streak: 0, loginDays: 0, lessons: 0, perfectLessons: 0, xp: 0, recallCorrect: 0, arenaWins: 0, shards: 0 }; }
+    let lessons2x = 0, lessons3x = 0, lessons5x = 0, perfectLessons2x = 0;
+    try {
+      const passKeys = Array.from({ length: 32 }, (_, i) => `lesson${i + 1}_pass_count`);
+      const perfectPassKeys = Array.from({ length: 32 }, (_, i) => `achievement_lesson_${i + 1}_perfect_passes_v1`);
+      const [passEntries, perfectPassEntries] = await Promise.all([
+        AsyncStorage.multiGet(passKeys),
+        AsyncStorage.multiGet(perfectPassKeys),
+      ]);
+      for (const [, raw] of passEntries) {
+        const n = parseInt(raw || '0') || 0;
+        if (n >= 2) lessons2x++;
+        if (n >= 3) lessons3x++;
+        if (n >= 5) lessons5x++;
+      }
+      for (const [, raw] of perfectPassEntries) {
+        if (readJsonStringListLength(raw) >= 2) perfectLessons2x++;
+      }
+    } catch {}
+    const packSet = new Set<string>();
+    [officialPacksRaw, legacyPacksRaw, communityPacksRaw].forEach(raw => {
+      try {
+        const parsed = raw ? JSON.parse(raw) : [];
+        if (Array.isArray(parsed)) parsed.forEach(x => { if (typeof x === 'string') packSet.add(x); });
+      } catch {}
+    });
+    return {
+      streak,
+      loginDays,
+      lessons,
+      perfectLessons,
+      lessons2x,
+      lessons3x,
+      lessons5x,
+      perfectLessons2x,
+      b2PerfectLessons,
+      xp,
+      level,
+      weeklyXP,
+      recallCorrect,
+      arenaWins,
+      shards,
+      shardsSpent,
+      quizSessions: parseInt(quizSessionsRaw || '0') || 0,
+      quizHard: parseInt(quizHardRaw || '0') || 0,
+      quizHardPerfect: parseInt(quizHardPerfectRaw || '0') || 0,
+      quizPerfectStreak: readJsonStreak(quizPerfectStreakRaw),
+      comboBest: parseInt(comboBestRaw || '0') || 0,
+      dailyAllStreak: readJsonStreak(dailyAllStreakRaw),
+      dailyNoRerollStreak: readJsonStreak(dailyNoRerollRaw),
+      dailyPhraseReads: parseInt(dailyPhraseReadsRaw || '0') || 0,
+      dailyPhraseSaves: parseInt(dailyPhraseSavesRaw || '0') || 0,
+      flashcardsSaved: parseInt(flashcardsSavedRaw || '0') || 0,
+      flashcardsFlips: parseInt(flashcardsFlipsRaw || '0') || 0,
+      flashcardsViewStreak: readJsonStreak(flashcardsViewRaw),
+      energyRefills: parseInt(energyRefillsRaw || '0') || 0,
+      leagueTop3: parseInt(leagueTop3Raw || '0') || 0,
+      leagueChampion: parseInt(leagueChampionRaw || '0') || 0,
+      leagueDiamondWeeks: readJsonStreak(leagueDiamondWeeksRaw),
+      giftsSent: parseInt(giftsRaw || '0') || 0,
+      leagueChatMessages: parseInt(chatRaw || '0') || 0,
+      trainerPerfectSessions: parseInt(trainerPerfectRaw || '0') || 0,
+      packsOwned: packSet.size,
+      shareCount: parseInt(shareRaw || '0') || 0,
+    };
+  } catch { return emptyAchievementStats(); }
 }
 
 function getAchievementProgress(id: string, stats: AchievementStats): [number, number] | null {
@@ -97,18 +288,94 @@ function getAchievementProgress(id: string, stats: AchievementStats): [number, n
     if (!isNaN(n)) return [Math.min(stats.lessons, n), n];
   }
   if (id === 'lesson_all') return [Math.min(stats.lessons, 32), 32];
+  if (id === 'lesson_all_2x') return [Math.min(stats.lessons2x, 32), 32];
+  if (id === 'lesson_all_3x') return [Math.min(stats.lessons3x, 32), 32];
+  if (id === 'lesson_all_5x') return [Math.min(stats.lessons5x, 32), 32];
   if (id === 'lesson_perfect') return [Math.min(stats.perfectLessons, 1), 1];
   if (id === 'lesson_perfect3') return [Math.min(stats.perfectLessons, 3), 3];
+  if (id === 'lesson_perfect10') return [Math.min(stats.perfectLessons, 10), 10];
   if (id === 'lesson_all_perfect') return [Math.min(stats.perfectLessons, 32), 32];
+  if (id === 'lesson_all_perfect_2x') return [Math.min(stats.perfectLessons2x, 32), 32];
+  if (id === 'lesson_b2_perfect') return [Math.min(stats.b2PerfectLessons, 4), 4];
   if (id.startsWith('xp_')) {
     const n = parseInt(id.replace('xp_', ''));
     if (!isNaN(n)) return [Math.min(stats.xp, n), n];
   }
+  if (id === 'level_50') return [Math.min(stats.level, 50), 50];
+  if (id === 'weekly_xp_5000') return [Math.min(stats.weeklyXP, 5000), 5000];
+  if (id === 'weekly_xp_10000') return [Math.min(stats.weeklyXP, 10000), 10000];
   if (id === 'recall_first') return [Math.min(stats.recallCorrect, 1), 1];
   if (id === 'recall_50') return [Math.min(stats.recallCorrect, 50), 50];
+  if (id === 'trainer_100_correct') return [Math.min(stats.recallCorrect, 100), 100];
+  if (id === 'trainer_500_correct') return [Math.min(stats.recallCorrect, 500), 500];
+  if (id === 'trainer_1000_correct') return [Math.min(stats.recallCorrect, 1000), 1000];
+  if (id === 'trainer_2500_correct') return [Math.min(stats.recallCorrect, 2500), 2500];
+  if (id === 'trainer_10000_correct') return [Math.min(stats.recallCorrect, 10000), 10000];
   if (id === 'arena_first_win') return [Math.min(stats.arenaWins, 1), 1];
   if (id === 'arena_10_wins') return [Math.min(stats.arenaWins, 10), 10];
-  if (id === 'shards_100') return [Math.min(stats.shards, 100), 100];
+  if (id === 'arena_25_wins') return [Math.min(stats.arenaWins, 25), 25];
+  if (id === 'arena_50_wins') return [Math.min(stats.arenaWins, 50), 50];
+  if (id === 'arena_100_wins') return [Math.min(stats.arenaWins, 100), 100];
+  if (id.startsWith('shards_spent_')) {
+    const n = parseInt(id.replace('shards_spent_', ''));
+    if (!isNaN(n)) return [Math.min(stats.shardsSpent, n), n];
+  }
+  if (id.startsWith('shards_')) {
+    const n = parseInt(id.replace('shards_', ''));
+    if (!isNaN(n)) return [Math.min(stats.shards, n), n];
+  }
+  if (id.startsWith('quiz_') && id.endsWith('_completed')) {
+    const n = parseInt(id.replace('quiz_', '').replace('_completed', ''));
+    if (!isNaN(n)) return [Math.min(stats.quizSessions, n), n];
+  }
+  if (id === 'quiz_hard_10') return [Math.min(stats.quizHard, 10), 10];
+  if (id === 'quiz_hard_25') return [Math.min(stats.quizHard, 25), 25];
+  if (id === 'quiz_hard_perfect_3') return [Math.min(stats.quizHardPerfect, 3), 3];
+  if (id === 'quiz_hard_perfect_10') return [Math.min(stats.quizHardPerfect, 10), 10];
+  if (id === 'quiz_perfect_7_days') return [Math.min(stats.quizPerfectStreak, 7), 7];
+  if (id.startsWith('combo_')) {
+    const n = parseInt(id.replace('combo_', ''));
+    if (!isNaN(n)) return [Math.min(stats.comboBest, n), n];
+  }
+  if (id === 'daily_all_3') return [Math.min(stats.dailyAllStreak, 3), 3];
+  if (id === 'daily_all_7') return [Math.min(stats.dailyAllStreak, 7), 7];
+  if (id === 'daily_all_14') return [Math.min(stats.dailyAllStreak, 14), 14];
+  if (id === 'daily_all_30') return [Math.min(stats.dailyAllStreak, 30), 30];
+  if (id === 'daily_no_reroll_7') return [Math.min(stats.dailyNoRerollStreak, 7), 7];
+  if (id === 'daily_no_reroll_30') return [Math.min(stats.dailyNoRerollStreak, 30), 30];
+  if (id === 'daily_phrase_read_30') return [Math.min(stats.dailyPhraseReads, 30), 30];
+  if (id === 'daily_phrase_save_30') return [Math.min(stats.dailyPhraseSaves, 30), 30];
+  if (id === 'daily_phrase_save_100') return [Math.min(stats.dailyPhraseSaves, 100), 100];
+  if (id === 'flashcards_save_25') return [Math.min(stats.flashcardsSaved, 25), 25];
+  if (id === 'flashcards_save_50') return [Math.min(stats.flashcardsSaved, 50), 50];
+  if (id === 'flashcards_save_100') return [Math.min(stats.flashcardsSaved, 100), 100];
+  if (id === 'flashcards_save_250') return [Math.min(stats.flashcardsSaved, 250), 250];
+  if (id === 'flashcards_flip_100') return [Math.min(stats.flashcardsFlips, 100), 100];
+  if (id === 'flashcards_flip_500') return [Math.min(stats.flashcardsFlips, 500), 500];
+  if (id === 'flashcards_flip_1000') return [Math.min(stats.flashcardsFlips, 1000), 1000];
+  if (id === 'flashcards_view_7_days') return [Math.min(stats.flashcardsViewStreak, 7), 7];
+  if (id === 'flashcards_view_14_days') return [Math.min(stats.flashcardsViewStreak, 14), 14];
+  if (id === 'flashcards_view_30_days') return [Math.min(stats.flashcardsViewStreak, 30), 30];
+  if (id === 'energy_refill_5') return [Math.min(stats.energyRefills, 5), 5];
+  if (id === 'energy_refill_10') return [Math.min(stats.energyRefills, 10), 10];
+  if (id === 'energy_refill_25') return [Math.min(stats.energyRefills, 25), 25];
+  if (id === 'league_top3_5') return [Math.min(stats.leagueTop3, 5), 5];
+  if (id === 'league_champion_5') return [Math.min(stats.leagueChampion, 5), 5];
+  if (id === 'league_champion_10') return [Math.min(stats.leagueChampion, 10), 10];
+  if (id === 'league_diamond_4_weeks') return [Math.min(stats.leagueDiamondWeeks, 4), 4];
+  if (id === 'social_gift_5') return [Math.min(stats.giftsSent, 5), 5];
+  if (id === 'social_gift_10') return [Math.min(stats.giftsSent, 10), 10];
+  if (id === 'social_gift_25') return [Math.min(stats.giftsSent, 25), 25];
+  if (id === 'social_gift_100') return [Math.min(stats.giftsSent, 100), 100];
+  if (id === 'league_chat_10') return [Math.min(stats.leagueChatMessages, 10), 10];
+  if (id === 'league_chat_50') return [Math.min(stats.leagueChatMessages, 50), 50];
+  if (id === 'league_chat_100') return [Math.min(stats.leagueChatMessages, 100), 100];
+  if (id === 'trainer_perfect_10_sessions') return [Math.min(stats.trainerPerfectSessions, 10), 10];
+  if (id === 'trainer_perfect_50_sessions') return [Math.min(stats.trainerPerfectSessions, 50), 50];
+  if (id === 'pack_5_purchased') return [Math.min(stats.packsOwned, 5), 5];
+  if (id === 'pack_10_purchased') return [Math.min(stats.packsOwned, 10), 10];
+  if (id === 'pack_25_purchased') return [Math.min(stats.packsOwned, 25), 25];
+  if (id === 'share_achievement_10') return [Math.min(stats.shareCount, 10), 10];
   return null;
 }
 
@@ -121,6 +388,11 @@ const PREMIUM_QUIZ_ACHIEVEMENT_IDS = new Set([
   'quiz_perfect',
   'quiz_triple_perfect',
   'quiz_speed_demon',
+  'quiz_hard_10',
+  'quiz_hard_25',
+  'quiz_hard_perfect_3',
+  'quiz_hard_perfect_10',
+  'quiz_all_levels_perfect_same_day',
 ]);
 
 export function achievementNeedsPremiumQuiz(id: string): boolean {
@@ -129,118 +401,241 @@ export function achievementNeedsPremiumQuiz(id: string): boolean {
 
 // Лейбл уровня для медалей (gem_*)
 const GEM_LEVEL_LABEL: Record<string, string> = {
-  gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1',
-  gem_a2_ruby: 'A2', gem_a2_emerald: 'A2', gem_a2_diamond: 'A2',
-  gem_b1_ruby: 'B1', gem_b1_emerald: 'B1', gem_b1_diamond: 'B1',
-  gem_b2_ruby: 'B2', gem_b2_emerald: 'B2', gem_b2_diamond: 'B2',
+  gem_a1_ruby: 'A1', gem_a1_emerald: 'A1', gem_a1_diamond: 'A1', gem_a1_obsidian: 'A1', gem_a1_mythic: 'A1',
+  gem_a2_ruby: 'A2', gem_a2_emerald: 'A2', gem_a2_diamond: 'A2', gem_a2_obsidian: 'A2', gem_a2_mythic: 'A2',
+  gem_b1_ruby: 'B1', gem_b1_emerald: 'B1', gem_b1_diamond: 'B1', gem_b1_obsidian: 'B1', gem_b1_mythic: 'B1',
+  gem_b2_ruby: 'B2', gem_b2_emerald: 'B2', gem_b2_diamond: 'B2', gem_b2_obsidian: 'B2', gem_b2_mythic: 'B2',
 };
 
 // ── PNG-изображения для каждого достижения ───────────────────────────────────
 export const ACHIEVEMENT_IMAGE: Record<string, any> = {
-  streak_3:            require('../assets/images/levels/pervie tri.webp'),
-  streak_7:            require('../assets/images/levels/odna nedelya.webp'),
-  streak_14:           require('../assets/images/levels/dve nedeli.webp'),
-  streak_30:           require('../assets/images/levels/mesyac v strou.webp'),
-  streak_60:           require('../assets/images/levels/dva mesyaca.webp'),
-  streak_100:          require('../assets/images/levels/sto dney.webp'),
-  streak_200:          require('../assets/images/levels/200 dney.webp'),
-  streak_365:          require('../assets/images/levels/tseliy god.webp'),
-  streak_500:          require('../assets/images/levels/500 dney.webp'),
-  streak_repair:       require('../assets/images/levels/fenix.webp'),
-  perfect_week:        require('../assets/images/levels/idealnaya nedelya.webp'),
-  lesson_1:            require('../assets/images/levels/perviy shag.webp'),
-  lesson_3:            require('../assets/images/levels/tri uroka.webp'),
-  lesson_5:            require('../assets/images/levels/5 urokov.webp'),
-  lesson_10:           require('../assets/images/levels/10 urokov.webp'),
-  lesson_15:           require('../assets/images/levels/15 urokov.webp'),
-  lesson_20:           require('../assets/images/levels/dvadtsyaty 20 urokov.webp'),
-  lesson_all:          require('../assets/images/levels/polniy kurs.webp'),
-  lesson_perfect:      require('../assets/images/levels/ni odnoy oshibky.webp'),
-  lesson_perfect3:     require('../assets/images/levels/3 idealnych uroka.webp'),
-  lesson_all_perfect:  require('../assets/images/levels/absolut.webp'),
-  xp_100:              require('../assets/images/levels/pervaya sotnya.webp'),
-  xp_250:              require('../assets/images/levels/250 opita.webp'),
-  xp_500:              require('../assets/images/levels/500 opita.webp'),
-  xp_1000:             require('../assets/images/levels/tosyachnic.webp'),
-  xp_2500:             require('../assets/images/levels/2500 opyta.webp'),
-  xp_5000:             require('../assets/images/levels/5 tisyach opita.webp'),
-  xp_10000:            require('../assets/images/levels/10 tisyach opita.webp'),
-  xp_20000:            require('../assets/images/levels/20 tisyach opita.webp'),
-  xp_50000:            require('../assets/images/levels/pol sotny tisyach opita.webp'),
-  xp_100000:           require('../assets/images/levels/legenda.webp'),
-  wager_win:           require('../assets/images/levels/risknul pobedil.webp'),
-  personal_best:       require('../assets/images/levels/luchsaya nedelya.webp'),
-  quiz_first:          require('../assets/images/levels/perviy kviz.webp'),
-  quiz_medium:         require('../assets/images/levels/sredniy uroven.webp'),
-  quiz_hard:           require('../assets/images/levels/prinyal vyzov.webp'),
-  quiz_all_levels:     require('../assets/images/levels/polniy nabor.webp'),
-  quiz_perfect_easy:   require('../assets/images/levels/legky odeal.webp'),
-  quiz_perfect:        require('../assets/images/levels/zhelezny nervy.webp'),
-  quiz_perfect_medium: require('../assets/images/levels/metky strelok.webp'),
-  quiz_triple_perfect: require('../assets/images/levels/trizhdy ideal.webp'),
-  quiz_speed_demon:    require('../assets/images/levels/skorostboy.webp'),
-  combo_3:             require('../assets/images/levels/v potoke.webp'),
-  combo_10:            require('../assets/images/levels/sniper.webp'),
-  combo_20:            require('../assets/images/levels/nesokrushimiy.webp'),
-  combo_50:            require('../assets/images/levels/mashina.webp'),
-  combo_100:           require('../assets/images/levels/nepobedimiy.webp'),
-  daily_task_first:    require('../assets/images/levels/pervoe zadanie.webp'),
-  all_daily:           require('../assets/images/levels/vse za den.webp'),
-  daily_phrase_first:  require('../assets/images/levels/dayly phrase coral.webp'),
-  daily_phrase_save:   require('../assets/images/levels/dayly phrase ocean.webp'),
-  login_7:             require('../assets/images/levels/verny uchenic.webp'),
-  login_14:            require('../assets/images/levels/2 nedely (osobie).webp'),
-  login_30:            require('../assets/images/levels/mesyac v prilozhenii.webp'),
-  login_60:            require('../assets/images/levels/2 mesyaca v prilozhenii.webp'),
-  login_365:           require('../assets/images/levels/tseliy god v prilozhenii.webp'),
-  comeback:            require('../assets/images/levels/vozvrashenie korolya.webp'),
-  diagnosis:           require('../assets/images/levels/diagnoz postavlen.webp'),
-  night_owl:           require('../assets/images/levels/nochnoy filin.webp'),
-  early_bird:          require('../assets/images/levels/nabbiy podiem.webp'),
-  exam_first:          require('../assets/images/levels/ekzamenator.webp'),
-  exam_ace:            require('../assets/images/levels/otlychink.webp'),
-  flashcards_session:  require('../assets/images/levels/kartzhnik.webp'),
-  recall_first:        require('../assets/images/levels/active recall coral.webp'),
-  recall_50:           require('../assets/images/levels/active recall forest.webp'),
-  arena_first_win:     require('../assets/images/levels/ARENA  ICON.webp'),
-  arena_10_wins:       require('../assets/images/levels/ARENA GOLD 1.webp'),
-  shards_100:          require('../assets/images/levels/OSKOLOK 80.webp'),
-  gem_a1_ruby:         require('../assets/images/levels/rubin.webp'),
-  gem_a1_emerald:      require('../assets/images/levels/izumrud.webp'),
-  gem_a1_diamond:      require('../assets/images/levels/almaz.webp'),
-  gem_a2_ruby:         require('../assets/images/levels/rubin.webp'),
-  gem_a2_emerald:      require('../assets/images/levels/izumrud.webp'),
-  gem_a2_diamond:      require('../assets/images/levels/almaz.webp'),
-  gem_b1_ruby:         require('../assets/images/levels/rubin.webp'),
-  gem_b1_emerald:      require('../assets/images/levels/izumrud.webp'),
-  gem_b1_diamond:      require('../assets/images/levels/almaz.webp'),
-  gem_b2_ruby:         require('../assets/images/levels/rubin.webp'),
-  gem_b2_emerald:      require('../assets/images/levels/izumrud.webp'),
-  gem_b2_diamond:      require('../assets/images/levels/almaz.webp'),
-  gem_all_complete:    require('../assets/images/levels/polniy nabor.webp'),
-  social_friend_first: require('../assets/images/levels/dialog coral.webp'),
-  social_friends_3:    require('../assets/images/levels/dialog ocean.webp'),
-  social_friends_10:   require('../assets/images/levels/dialog forest.webp'),
-  social_gift_send:    require('../assets/images/levels/GIF COMMON.webp'),
-  social_gift_5:       require('../assets/images/levels/GIFT PREMIUM.webp'),
-  social_like_received: require('../assets/images/levels/achivement.webp'),
-  arena_streak_5:      require('../assets/images/levels/ARENA GOLD 1.webp'),
-  arena_streak_10:     require('../assets/images/levels/ARENA LEGEND 1.webp'),
-  arena_duel_friend:   require('../assets/images/levels/ARENA  ICON.webp'),
-  arena_wager_win:     require('../assets/images/levels/ARENA NEON.webp'),
-  arena_wager_5:       require('../assets/images/levels/ARENA GRAND 1.webp'),
-  trainer_session:     require('../assets/images/levels/active recall coral.webp'),
-  trainer_100_correct: require('../assets/images/levels/active recall forest.webp'),
-  avatar_custom:       require('../assets/images/levels/professor.webp'),
-  profile_themed:      require('../assets/images/levels/achivement.webp'),
-  pack_purchased:      require('../assets/images/levels/cards coral.webp'),
-  pack_5_purchased:    require('../assets/images/levels/cards forest.webp'),
-  share_achievement:   require('../assets/images/levels/dialog neon.webp'),
-  level_50:            require('../assets/images/levels/legenda.webp'),
-  xp_75000:            require('../assets/images/levels/pol sotny tisyach opita.webp'),
-  quiz_10_completed:   require('../assets/images/levels/quizes coral.webp'),
-  arena_streak_freeze: require('../assets/images/levels/fenix.webp'),
-  wager_win_3:         require('../assets/images/levels/risknul pobedil.webp'),
+  streak_3:                         require('../assets/images/achievements/streak_3.webp'),
+  streak_7:                         require('../assets/images/achievements/streak_7.webp'),
+  streak_14:                        require('../assets/images/achievements/streak_14.webp'),
+  streak_30:                        require('../assets/images/achievements/streak_30.webp'),
+  streak_60:                        require('../assets/images/achievements/streak_60.webp'),
+  streak_100:                       require('../assets/images/achievements/streak_100.webp'),
+  streak_200:                       require('../assets/images/achievements/streak_200.webp'),
+  streak_365:                       require('../assets/images/achievements/streak_365.webp'),
+  streak_500:                       require('../assets/images/achievements/streak_500.webp'),
+  streak_repair:                    require('../assets/images/achievements/streak_repair.webp'),
+  perfect_week:                     require('../assets/images/achievements/perfect_week.webp'),
+  lesson_1:                         require('../assets/images/achievements/lesson_1.webp'),
+  lesson_3:                         require('../assets/images/achievements/lesson_3.webp'),
+  lesson_5:                         require('../assets/images/achievements/lesson_5.webp'),
+  lesson_10:                        require('../assets/images/achievements/lesson_10.webp'),
+  lesson_15:                        require('../assets/images/achievements/lesson_15.webp'),
+  lesson_20:                        require('../assets/images/achievements/lesson_20.webp'),
+  lesson_all:                       require('../assets/images/achievements/lesson_all.webp'),
+  lesson_perfect:                   require('../assets/images/achievements/lesson_perfect.webp'),
+  lesson_perfect3:                  require('../assets/images/achievements/lesson_perfect3.webp'),
+  lesson_all_perfect:               require('../assets/images/achievements/lesson_all_perfect.webp'),
+  xp_100:                           require('../assets/images/achievements/xp_100.webp'),
+  xp_250:                           require('../assets/images/achievements/xp_250.webp'),
+  xp_500:                           require('../assets/images/achievements/xp_500.webp'),
+  xp_1000:                          require('../assets/images/achievements/xp_1000.webp'),
+  xp_2500:                          require('../assets/images/achievements/xp_2500.webp'),
+  xp_5000:                          require('../assets/images/achievements/xp_5000.webp'),
+  xp_10000:                         require('../assets/images/achievements/xp_10000.webp'),
+  xp_20000:                         require('../assets/images/achievements/xp_20000.webp'),
+  xp_50000:                         require('../assets/images/achievements/xp_50000.webp'),
+  xp_100000:                        require('../assets/images/achievements/xp_100000.webp'),
+  wager_win:                        require('../assets/images/achievements/wager_win.webp'),
+  personal_best:                    require('../assets/images/achievements/personal_best.webp'),
+  quiz_first:                       require('../assets/images/achievements/quiz_first.webp'),
+  quiz_medium:                      require('../assets/images/achievements/quiz_medium.webp'),
+  quiz_hard:                        require('../assets/images/achievements/quiz_hard.webp'),
+  quiz_all_levels:                  require('../assets/images/achievements/quiz_all_levels.webp'),
+  quiz_perfect_easy:                require('../assets/images/achievements/quiz_perfect_easy.webp'),
+  quiz_perfect:                     require('../assets/images/achievements/quiz_perfect.webp'),
+  quiz_perfect_medium:              require('../assets/images/achievements/quiz_perfect_medium.webp'),
+  quiz_triple_perfect:              require('../assets/images/achievements/quiz_triple_perfect.webp'),
+  quiz_speed_demon:                 require('../assets/images/achievements/quiz_speed_demon.webp'),
+  combo_3:                          require('../assets/images/achievements/combo_3.webp'),
+  combo_10:                         require('../assets/images/achievements/combo_10.webp'),
+  combo_20:                         require('../assets/images/achievements/combo_20.webp'),
+  combo_50:                         require('../assets/images/achievements/combo_50.webp'),
+  combo_100:                        require('../assets/images/achievements/combo_100.webp'),
+  daily_task_first:                 require('../assets/images/achievements/daily_task_first.webp'),
+  all_daily:                        require('../assets/images/achievements/all_daily.webp'),
+  daily_all_3:                      require('../assets/images/achievements/daily_all_3.webp'),
+  daily_all_7:                      require('../assets/images/achievements/daily_all_7.webp'),
+  daily_no_reroll:                  require('../assets/images/achievements/daily_no_reroll.webp'),
+  daily_phrase_first:               require('../assets/images/achievements/daily_phrase_first.webp'),
+  daily_phrase_save:                require('../assets/images/achievements/daily_phrase_save.webp'),
+  login_7:                          require('../assets/images/achievements/login_7.webp'),
+  login_14:                         require('../assets/images/achievements/login_14.webp'),
+  login_30:                         require('../assets/images/achievements/login_30.webp'),
+  login_60:                         require('../assets/images/achievements/login_60.webp'),
+  login_365:                        require('../assets/images/achievements/login_365.webp'),
+  comeback:                         require('../assets/images/achievements/comeback.webp'),
+  diagnosis:                        require('../assets/images/achievements/diagnosis.webp'),
+  night_owl:                        require('../assets/images/achievements/night_owl.webp'),
+  early_bird:                       require('../assets/images/achievements/early_bird.webp'),
+  exam_first:                       require('../assets/images/achievements/exam_first.webp'),
+  exam_ace:                         require('../assets/images/achievements/exam_ace.webp'),
+  flashcards_session:               require('../assets/images/achievements/flashcards_session.webp'),
+  flashcards_save_25:               require('../assets/images/achievements/flashcards_save_25.webp'),
+  flashcards_save_50:               require('../assets/images/achievements/flashcards_save_50.webp'),
+  flashcards_flip_100:              require('../assets/images/achievements/flashcards_flip_100.webp'),
+  flashcards_view_7_days:           require('../assets/images/achievements/flashcards_view_7_days.webp'),
+  flashcards_sources_4:             require('../assets/images/achievements/flashcards_sources_4.webp'),
+  recall_first:                     require('../assets/images/achievements/recall_first.webp'),
+  recall_50:                        require('../assets/images/achievements/recall_50.webp'),
+  arena_first_win:                  require('../assets/images/achievements/arena_first_win.webp'),
+  arena_10_wins:                    require('../assets/images/achievements/arena_10_wins.webp'),
+  shards_100:                       require('../assets/images/achievements/shards_100.webp'),
+  shards_spent_100:                 require('../assets/images/achievements/shards_spent_100.webp'),
+  energy_refill_first:              require('../assets/images/achievements/energy_refill_first.webp'),
+  energy_refill_5:                  require('../assets/images/achievements/energy_refill_5.webp'),
+  league_result_first:              require('../assets/images/achievements/league_result_first.webp'),
+  league_top3:                      require('../assets/images/achievements/league_top3.webp'),
+  league_champion:                  require('../assets/images/achievements/league_champion.webp'),
+  league_promoted:                  require('../assets/images/achievements/league_promoted.webp'),
+  league_diamond:                   require('../assets/images/achievements/league_diamond.webp'),
+  league_boost_first:               require('../assets/images/achievements/league_boost_first.webp'),
+  league_boost_5:                   require('../assets/images/achievements/league_boost_5.webp'),
+  league_boost_x3:                  require('../assets/images/achievements/league_boost_x3.webp'),
+  gem_a1_ruby:                      require('../assets/images/achievements/gem_a1_ruby.webp'),
+  gem_a1_emerald:                   require('../assets/images/achievements/gem_a1_emerald.webp'),
+  gem_a1_diamond:                   require('../assets/images/achievements/gem_a1_diamond.webp'),
+  gem_a2_ruby:                      require('../assets/images/achievements/gem_a2_ruby.webp'),
+  gem_a2_emerald:                   require('../assets/images/achievements/gem_a2_emerald.webp'),
+  gem_a2_diamond:                   require('../assets/images/achievements/gem_a2_diamond.webp'),
+  gem_b1_ruby:                      require('../assets/images/achievements/gem_b1_ruby.webp'),
+  gem_b1_emerald:                   require('../assets/images/achievements/gem_b1_emerald.webp'),
+  gem_b1_diamond:                   require('../assets/images/achievements/gem_b1_diamond.webp'),
+  gem_b2_ruby:                      require('../assets/images/achievements/gem_b2_ruby.webp'),
+  gem_b2_emerald:                   require('../assets/images/achievements/gem_b2_emerald.webp'),
+  gem_b2_diamond:                   require('../assets/images/achievements/gem_b2_diamond.webp'),
+  gem_a1_obsidian:                  require('../assets/images/achievements/gem_a1_obsidian.webp'),
+  gem_a1_mythic:                    require('../assets/images/achievements/gem_a1_mythic.webp'),
+  gem_a2_obsidian:                  require('../assets/images/achievements/gem_a2_obsidian.webp'),
+  gem_a2_mythic:                    require('../assets/images/achievements/gem_a2_mythic.webp'),
+  gem_b1_obsidian:                  require('../assets/images/achievements/gem_b1_obsidian.webp'),
+  gem_b1_mythic:                    require('../assets/images/achievements/gem_b1_mythic.webp'),
+  gem_b2_obsidian:                  require('../assets/images/achievements/gem_b2_obsidian.webp'),
+  gem_b2_mythic:                    require('../assets/images/achievements/gem_b2_mythic.webp'),
+  gem_all_complete:                 require('../assets/images/achievements/gem_all_complete.webp'),
+  gem_all_obsidian:                 require('../assets/images/achievements/gem_all_obsidian.webp'),
+  gem_all_mythic:                   require('../assets/images/achievements/gem_all_mythic.webp'),
+  social_friend_first:              require('../assets/images/achievements/social_friend_first.webp'),
+  social_friends_3:                 require('../assets/images/achievements/social_friends_3.webp'),
+  social_friends_10:                require('../assets/images/achievements/social_friends_10.webp'),
+  social_gift_send:                 require('../assets/images/achievements/social_gift_send.webp'),
+  social_gift_5:                    require('../assets/images/achievements/social_gift_5.webp'),
+  social_gift_10:                   require('../assets/images/achievements/social_gift_10.webp'),
+  social_like_received:             require('../assets/images/achievements/social_like_received.webp'),
+  social_likes_5:                   require('../assets/images/achievements/social_likes_5.webp'),
+  league_chat_first:                require('../assets/images/achievements/league_chat_first.webp'),
+  league_chat_10:                   require('../assets/images/achievements/league_chat_10.webp'),
+  arena_streak_5:                   require('../assets/images/achievements/arena_streak_5.webp'),
+  arena_streak_10:                  require('../assets/images/achievements/arena_streak_10.webp'),
+  arena_duel_friend:                require('../assets/images/achievements/arena_duel_friend.webp'),
+  arena_wager_win:                  require('../assets/images/achievements/arena_wager_win.webp'),
+  arena_wager_5:                    require('../assets/images/achievements/arena_wager_5.webp'),
+  trainer_session:                  require('../assets/images/achievements/trainer_session.webp'),
+  trainer_100_correct:              require('../assets/images/achievements/trainer_100_correct.webp'),
+  trainer_7_days:                   require('../assets/images/achievements/trainer_7_days.webp'),
+  trainer_500_correct:              require('../assets/images/achievements/trainer_500_correct.webp'),
+  trainer_perfect_session:          require('../assets/images/achievements/trainer_perfect_session.webp'),
+  avatar_custom:                    require('../assets/images/achievements/avatar_custom.webp'),
+  profile_themed:                   require('../assets/images/achievements/profile_themed.webp'),
+  pack_purchased:                   require('../assets/images/achievements/pack_purchased.webp'),
+  pack_5_purchased:                 require('../assets/images/achievements/pack_5_purchased.webp'),
+  share_achievement:                require('../assets/images/achievements/share_achievement.webp'),
+  level_50:                         require('../assets/images/achievements/level_50.webp'),
+  xp_75000:                         require('../assets/images/achievements/xp_75000.webp'),
+  quiz_10_completed:                require('../assets/images/achievements/quiz_10_completed.webp'),
+  arena_streak_freeze:              require('../assets/images/achievements/arena_streak_freeze.webp'),
+  wager_win_3:                      require('../assets/images/achievements/wager_win_3.webp'),
+  streak_150:                       require('../assets/images/achievements/streak_150.webp'),
+  streak_250:                       require('../assets/images/achievements/streak_250.webp'),
+  streak_750:                       require('../assets/images/achievements/streak_750.webp'),
+  streak_1000:                      require('../assets/images/achievements/streak_1000.webp'),
+  streak_clean_365:                 require('../assets/images/achievements/streak_clean_365.webp'),
+  perfect_month:                    require('../assets/images/achievements/perfect_month.webp'),
+  night_week:                       require('../assets/images/achievements/night_week.webp'),
+  early_week:                       require('../assets/images/achievements/early_week.webp'),
+  lesson_all_2x:                    require('../assets/images/achievements/lesson_all_2x.webp'),
+  lesson_all_3x:                    require('../assets/images/achievements/lesson_all_3x.webp'),
+  lesson_all_5x:                    require('../assets/images/achievements/lesson_all_5x.webp'),
+  lesson_perfect10:                 require('../assets/images/achievements/lesson_perfect10.webp'),
+  lesson_b2_perfect:                require('../assets/images/achievements/lesson_b2_perfect.webp'),
+  lesson_marathon_day:              require('../assets/images/achievements/lesson_marathon_day.webp'),
+  lesson_all_perfect_2x:            require('../assets/images/achievements/lesson_all_perfect_2x.webp'),
+  xp_150000:                        require('../assets/images/achievements/xp_150000.webp'),
+  xp_250000:                        require('../assets/images/achievements/xp_250000.webp'),
+  xp_500000:                        require('../assets/images/achievements/xp_500000.webp'),
+  xp_750000:                        require('../assets/images/achievements/xp_750000.webp'),
+  xp_1000000:                       require('../assets/images/achievements/xp_1000000.webp'),
+  xp_2000000:                       require('../assets/images/achievements/xp_2000000.webp'),
+  weekly_xp_5000:                   require('../assets/images/achievements/weekly_xp_5000.webp'),
+  weekly_xp_10000:                  require('../assets/images/achievements/weekly_xp_10000.webp'),
+  wager_win_10:                     require('../assets/images/achievements/wager_win_10.webp'),
+  quiz_25_completed:                require('../assets/images/achievements/quiz_25_completed.webp'),
+  quiz_50_completed:                require('../assets/images/achievements/quiz_50_completed.webp'),
+  quiz_100_completed:               require('../assets/images/achievements/quiz_100_completed.webp'),
+  quiz_hard_10:                     require('../assets/images/achievements/quiz_hard_10.webp'),
+  quiz_hard_25:                     require('../assets/images/achievements/quiz_hard_25.webp'),
+  quiz_hard_perfect_3:              require('../assets/images/achievements/quiz_hard_perfect_3.webp'),
+  quiz_hard_perfect_10:             require('../assets/images/achievements/quiz_hard_perfect_10.webp'),
+  quiz_perfect_7_days:              require('../assets/images/achievements/quiz_perfect_7_days.webp'),
+  quiz_all_levels_perfect_same_day: require('../assets/images/achievements/quiz_all_levels_perfect_same_day.webp'),
+  combo_150:                        require('../assets/images/achievements/combo_150.webp'),
+  combo_250:                        require('../assets/images/achievements/combo_250.webp'),
+  combo_500:                        require('../assets/images/achievements/combo_500.webp'),
+  daily_all_14:                     require('../assets/images/achievements/daily_all_14.webp'),
+  daily_all_30:                     require('../assets/images/achievements/daily_all_30.webp'),
+  daily_no_reroll_7:                require('../assets/images/achievements/daily_no_reroll_7.webp'),
+  daily_no_reroll_30:               require('../assets/images/achievements/daily_no_reroll_30.webp'),
+  daily_phrase_read_30:             require('../assets/images/achievements/daily_phrase_read_30.webp'),
+  daily_phrase_save_30:             require('../assets/images/achievements/daily_phrase_save_30.webp'),
+  daily_phrase_save_100:            require('../assets/images/achievements/daily_phrase_save_100.webp'),
+  login_100:                        require('../assets/images/achievements/login_100.webp'),
+  login_200:                        require('../assets/images/achievements/login_200.webp'),
+  exam_ace_5:                       require('../assets/images/achievements/exam_ace_5.webp'),
+  exam_ace_10:                      require('../assets/images/achievements/exam_ace_10.webp'),
+  flashcards_save_100:              require('../assets/images/achievements/flashcards_save_100.webp'),
+  flashcards_save_250:              require('../assets/images/achievements/flashcards_save_250.webp'),
+  flashcards_flip_500:              require('../assets/images/achievements/flashcards_flip_500.webp'),
+  flashcards_flip_1000:             require('../assets/images/achievements/flashcards_flip_1000.webp'),
+  flashcards_view_14_days:          require('../assets/images/achievements/flashcards_view_14_days.webp'),
+  flashcards_view_30_days:          require('../assets/images/achievements/flashcards_view_30_days.webp'),
+  arena_25_wins:                    require('../assets/images/achievements/arena_25_wins.webp'),
+  arena_50_wins:                    require('../assets/images/achievements/arena_50_wins.webp'),
+  arena_100_wins:                   require('../assets/images/achievements/arena_100_wins.webp'),
+  arena_streak_15:                  require('../assets/images/achievements/arena_streak_15.webp'),
+  arena_streak_25:                  require('../assets/images/achievements/arena_streak_25.webp'),
+  arena_wager_10:                   require('../assets/images/achievements/arena_wager_10.webp'),
+  arena_wager_25:                   require('../assets/images/achievements/arena_wager_25.webp'),
+  shards_250:                       require('../assets/images/achievements/shards_250.webp'),
+  shards_500:                       require('../assets/images/achievements/shards_500.webp'),
+  shards_1000:                      require('../assets/images/achievements/shards_1000.webp'),
+  shards_spent_500:                 require('../assets/images/achievements/shards_spent_500.webp'),
+  shards_spent_1000:                require('../assets/images/achievements/shards_spent_1000.webp'),
+  energy_refill_10:                 require('../assets/images/achievements/energy_refill_10.webp'),
+  energy_refill_25:                 require('../assets/images/achievements/energy_refill_25.webp'),
+  league_top3_5:                    require('../assets/images/achievements/league_top3_5.webp'),
+  league_champion_5:                require('../assets/images/achievements/league_champion_5.webp'),
+  league_champion_10:               require('../assets/images/achievements/league_champion_10.webp'),
+  league_diamond_4_weeks:           require('../assets/images/achievements/league_diamond_4_weeks.webp'),
+  social_friends_25:                require('../assets/images/achievements/social_friends_25.webp'),
+  social_friends_50:                require('../assets/images/achievements/social_friends_50.webp'),
+  social_gift_25:                   require('../assets/images/achievements/social_gift_25.webp'),
+  social_gift_100:                  require('../assets/images/achievements/social_gift_100.webp'),
+  social_likes_25:                  require('../assets/images/achievements/social_likes_25.webp'),
+  social_likes_100:                 require('../assets/images/achievements/social_likes_100.webp'),
+  league_chat_50:                   require('../assets/images/achievements/league_chat_50.webp'),
+  league_chat_100:                  require('../assets/images/achievements/league_chat_100.webp'),
+  trainer_1000_correct:             require('../assets/images/achievements/trainer_1000_correct.webp'),
+  trainer_2500_correct:             require('../assets/images/achievements/trainer_2500_correct.webp'),
+  trainer_10000_correct:            require('../assets/images/achievements/trainer_10000_correct.webp'),
+  trainer_perfect_10_sessions:      require('../assets/images/achievements/trainer_perfect_10_sessions.webp'),
+  trainer_perfect_50_sessions:      require('../assets/images/achievements/trainer_perfect_50_sessions.webp'),
+  pack_10_purchased:                require('../assets/images/achievements/pack_10_purchased.webp'),
+  pack_25_purchased:                require('../assets/images/achievements/pack_25_purchased.webp'),
+  share_achievement_10:             require('../assets/images/achievements/share_achievement_10.webp'),
 };
 
 // ── Иконки по ачивке (Ionicons) ───────────────────────────────────────────────
@@ -294,6 +689,9 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   combo_100:          'nuclear',
   daily_task_first:   'checkmark-circle',
   all_daily:          'albums',
+  daily_all_3:        'calendar',
+  daily_all_7:        'calendar-number',
+  daily_no_reroll:    'checkmark-done-circle',
   daily_phrase_first: 'chatbubble-ellipses',
   daily_phrase_save:  'file-tray-full',
   login_7:            'calendar',
@@ -308,11 +706,34 @@ export const ACHIEVEMENT_ICON: Record<string, any> = {
   exam_first:         'document-text',
   exam_ace:           'ribbon',
   flashcards_session: 'layers',
+  flashcards_save_25: 'file-tray-full',
+  flashcards_save_50: 'albums',
+  flashcards_flip_100: 'sync-circle',
+  flashcards_view_7_days: 'calendar',
+  flashcards_sources_4: 'git-network',
   recall_first:       'bulb',
   recall_50:          'library',
   arena_first_win:    'trophy',
   arena_10_wins:      'shield-checkmark',
   shards_100:         'diamond',
+  shards_spent_100:   'diamond-outline',
+  energy_refill_first: 'flash',
+  energy_refill_5:    'battery-full',
+  league_result_first: 'flag',
+  league_top3:        'podium',
+  league_champion:    'trophy',
+  league_promoted:    'trending-up',
+  league_diamond:     'diamond',
+  league_boost_first: 'rocket',
+  league_boost_5:     'speedometer',
+  league_boost_x3:    'flash',
+  social_gift_10:     'gift',
+  social_likes_5:     'heart',
+  league_chat_first:  'chatbubble',
+  league_chat_10:     'chatbubbles',
+  trainer_7_days:     'calendar',
+  trainer_500_correct: 'barbell',
+  trainer_perfect_session: 'checkmark-done-circle',
   gem_all_complete:   'trophy',
 };
 
@@ -326,6 +747,9 @@ export const CAT_COLOR: Record<string, string> = {
   special: '#10B981',
   medal:   '#E11D48',
 };
+function achievementCategoryColor(cat: string, _themeMode?: string): string {
+  return CAT_COLOR[cat] ?? '#888';
+}
 const CAT_ICON: Record<string, any> = {
   streak:  'flame',
   lessons: 'book',
@@ -346,6 +770,26 @@ const CAT_LABEL_UK: Record<string, string> = {
 const CAT_LABEL_ES: Record<string, string> = {
   streak: 'Racha', lessons: 'Lecciones', xp: 'Experiencia',
   quiz: 'Cuestionarios', combo: 'Series', special: 'Especiales', medal: 'Medallas',
+};
+const CAT_LABEL_PTBR: Record<string, string> = {
+  streak: 'Sequência', lessons: 'Lições', xp: 'Experiência',
+  quiz: 'Quizzes', combo: 'Séries', special: 'Especiais', medal: 'Medalhas',
+};
+const CAT_LABEL_VI: Record<string, string> = {
+  streak: 'Chuỗi ngày', lessons: 'Bài học', xp: 'Kinh nghiệm',
+  quiz: 'Bài quiz', combo: 'Chuỗi', special: 'Đặc biệt', medal: 'Huy chương',
+};
+const CAT_LABEL_ID: Record<string, string> = {
+  streak: 'Rangkaian', lessons: 'Pelajaran', xp: 'Pengalaman',
+  quiz: 'Kuis', combo: 'Seri', special: 'Spesial', medal: 'Medali',
+};
+const CAT_LABEL_TR: Record<string, string> = {
+  streak: 'Seri', lessons: 'Dersler', xp: 'Deneyim',
+  quiz: 'Quizler', combo: 'Seriler', special: 'Özel', medal: 'Madalyalar',
+};
+const CAT_LABEL_PL: Record<string, string> = {
+  streak: 'Seria', lessons: 'Lekcje', xp: 'Doświadczenie',
+  quiz: 'Quizy', combo: 'Serie', special: 'Specjalne', medal: 'Medale',
 };
 
 const CATEGORIES = ['streak', 'lessons', 'xp', 'quiz', 'combo', 'special', 'medal'] as const;
@@ -385,6 +829,13 @@ function achievementCountLabel(count: number, lang: Lang): string {
   return `${n} ${word}`;
 }
 
+function achievementCountPairLabel(unlocked: number, total: number, lang: Lang): string {
+  if (unlocked === total) return achievementCountLabel(unlocked, lang);
+  if (lang === 'uk') return `${unlocked}/${total} нагород`;
+  if (lang === 'es') return `${unlocked}/${total} recompensas`;
+  return `${unlocked}/${total} наград`;
+}
+
 type GridCellProps = {
   a: Achievement;
   state: AchievementState | undefined;
@@ -401,6 +852,7 @@ type GridCellProps = {
   onSelect: (achievement: Achievement) => void;
   /** Показать метку Premium (квизы средний/сложный только по подписке). */
   showPremiumQuizGate: boolean;
+  revealLockedDetails: boolean;
 };
 
 const AchievementGridCell = memo(function AchievementGridCell({
@@ -418,10 +870,11 @@ const AchievementGridCell = memo(function AchievementGridCell({
   shieldOuter,
   onSelect,
   showPremiumQuizGate,
+  revealLockedDetails,
 }: GridCellProps) {
   const unlocked = !!state?.unlockedAt;
-  const isLocked = !unlocked && !!a.secret;
-  const inProgress = !unlocked && !a.secret;
+  const isLocked = !unlocked && !!a.secret && !revealLockedDetails;
+  const inProgress = !unlocked && (!a.secret || revealLockedDetails);
   const iconName = ACHIEVEMENT_ICON[a.id] ?? fallbackCatIcon;
   const prog = inProgress ? getAchievementProgress(a.id, stats) : null;
   const progPct = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
@@ -465,7 +918,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
             >
               <Ionicons name="diamond" size={9} color="#FDE68A" />
               <Text style={{ fontSize: 9, fontWeight: '800', color: '#FEF3C7' }} maxFontSizeMultiplier={1.1}>
-                {triLang(lang, { ru: 'Премиум', uk: 'Преміум', es: 'Premium' })}
+                {triLang(lang, { ru: 'Премиум', uk: 'Преміум', es: 'Premium', 'pt-BR': 'Premium', vi: 'Premium', id: 'Premium', tr: 'Premium', pl: 'Premium' })}
               </Text>
             </View>
           </View>
@@ -510,7 +963,7 @@ const AchievementGridCell = memo(function AchievementGridCell({
         </View>
       )}
 
-      {!isLocked && (
+      {(!isLocked || revealLockedDetails) && (
         <Text
           style={{
             color: unlocked ? t.textPrimary : t.textGhost,
@@ -519,9 +972,10 @@ const AchievementGridCell = memo(function AchievementGridCell({
             textAlign: 'center',
             width: shieldOuter,
           }}
-          numberOfLines={3}
+          numberOfLines={1}
+          ellipsizeMode="tail"
           adjustsFontSizeToFit
-          minimumFontScale={0.78}
+          minimumFontScale={0.62}
           maxFontSizeMultiplier={1}
         >
           {achievementNameForLang(a, lang)}
@@ -606,7 +1060,7 @@ export const BadgeShield = memo(BadgeShieldInner);
 
 // ── Модальное окно ────────────────────────────────────────────────────────────
 function AchievementModal({
-  achievement, state, stats, t, f, isDark, onClose, onShardClaimed, isPremium,
+  achievement, state, stats, t, f, isDark, onClose, onShardClaimed, isPremium, revealLockedDetails,
 }: {
   achievement: Achievement;
   state: AchievementState | undefined;
@@ -616,17 +1070,19 @@ function AchievementModal({
   onClose: () => void;
   onShardClaimed: (achievementId: string) => void;
   isPremium: boolean;
+  revealLockedDetails: boolean;
 }) {
   const router = useRouter();
   const [claiming, setClaiming] = useState(false);
   const { lang } = useLang();
   const unlocked = !!state?.unlockedAt;
   const pendingShard = hasPendingShardReward(state);
-  const color    = CAT_COLOR[achievement.category] ?? '#888';
+  const color    = achievementCategoryColor(achievement.category);
   const iconName = ACHIEVEMENT_ICON[achievement.id] ?? 'star';
   const name     = achievementNameForLang(achievement, lang);
   const desc     = achievementDescForLang(achievement, lang);
-  const prog     = !unlocked && !achievement.secret
+  const showLockedDetails = !achievement.secret || revealLockedDetails;
+  const prog     = !unlocked && showLockedDetails
     ? getAchievementProgress(achievement.id, stats)
     : null;
   const progPct  = prog ? Math.round((prog[0] / (prog[1] || 1)) * 100) : 0;
@@ -650,7 +1106,7 @@ function AchievementModal({
             {/* Shield */}
             <BadgeShield
               unlocked={unlocked}
-              inProgress={!unlocked && !achievement.secret}
+              inProgress={!unlocked && showLockedDetails}
               color={color}
               iconName={iconName}
               size={72}
@@ -662,19 +1118,29 @@ function AchievementModal({
 
             {/* Name */}
             <Text style={{ color: unlocked ? color : t.textMuted, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginTop: 4 }}>
-              {unlocked || !achievement.secret ? name : triLang(lang, {
+              {unlocked || showLockedDetails ? name : triLang(lang, {
                 ru: 'Секретное достижение',
                 uk: 'Секретне досягнення',
                 es: 'Logro secreto',
+                'pt-BR': 'Conquista secreta',
+                vi: 'Thành tựu bí mật',
+                id: 'Pencapaian rahasia',
+                tr: 'Gizli başarı',
+                pl: 'Tajne osiągnięcie',
               })}
             </Text>
 
             {/* Description */}
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22 }}>
-              {unlocked || !achievement.secret ? desc : triLang(lang, {
+              {unlocked || showLockedDetails ? desc : triLang(lang, {
                 ru: 'Разблокируй, чтобы узнать',
                 uk: 'Розблокуй, щоб дізнатись',
                 es: 'Desbloquéalo para descubrirlo',
+                'pt-BR': 'Desbloqueie para descobrir',
+                vi: 'Mở khóa để xem',
+                id: 'Buka untuk mengetahui',
+                tr: 'Öğrenmek için aç',
+                pl: 'Odblokuj, aby zobaczyć',
               })}
             </Text>
 
@@ -693,6 +1159,11 @@ function AchievementModal({
                     ru: 'Нужен Premium: уровни Medium и Hard в квизах открываются по подписке.',
                     uk: 'Потрібен Premium: рівні Medium і Hard у квізах відкриваються за підпискою.',
                     es: 'Requiere Premium: los niveles Medium y Hard del cuestionario están en la suscripción.',
+                    'pt-BR': 'Requer Premium: os níveis Medium e Hard dos quizzes ficam na assinatura.',
+                    vi: 'Cần Premium: cấp Medium và Hard trong quiz chỉ mở với gói đăng ký.',
+                    id: 'Perlu Premium: level Medium dan Hard di kuis tersedia lewat langganan.',
+                    tr: 'Premium gerekir: quizlerde Medium ve Hard seviyeleri abonelikle açılır.',
+                    pl: 'Wymaga Premium: poziomy Medium i Hard w quizach są w subskrypcji.',
                   })}
                 </Text>
                 <TouchableOpacity
@@ -708,7 +1179,7 @@ function AchievementModal({
                   }}
                 >
                   <Text style={{ color: '#FEF3C7', fontSize: f.body, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Оформить Premium', uk: 'Оформити Premium', es: 'Conseguir Premium' })}
+                    {triLang(lang, { ru: 'Оформить Premium', uk: 'Оформити Premium', es: 'Conseguir Premium', 'pt-BR': 'Assinar Premium', vi: 'Đăng ký Premium', id: 'Dapatkan Premium', tr: 'Premium al', pl: 'Wykup Premium' })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -718,7 +1189,7 @@ function AchievementModal({
             {unlocked && state?.unlockedAt && (
               <View style={{ backgroundColor: color + '22', borderRadius: 10, paddingHorizontal: 14, paddingVertical: 6 }}>
                 <Text style={{ color, fontSize: f.sub, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Получено', uk: 'Отримано', es: 'Obtenido' })} {formatDate(state.unlockedAt)}
+                  {triLang(lang, { ru: 'Получено', uk: 'Отримано', es: 'Obtenido', 'pt-BR': 'Obtido', vi: 'Đã nhận', id: 'Diperoleh', tr: 'Alındı', pl: 'Zdobyto' })} {formatDate(state.unlockedAt)}
                 </Text>
               </View>
             )}
@@ -735,9 +1206,9 @@ function AchievementModal({
                 borderWidth: pendingShard ? 1 : 0,
                 borderColor: pendingShard ? t.correct + '55' : 'transparent',
               }}>
-                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Осколок', uk: 'Осколок', es: 'Fragmento' })} />
+                <Image source={oskolokImageForPackShards(1)} style={{ width: 44, height: 44 }} resizeMode="contain" accessibilityLabel={triLang(lang, { ru: 'Осколок', uk: 'Осколок', es: 'Fragmento', 'pt-BR': 'Fragmento', vi: 'Mảnh', id: 'Fragmen', tr: 'Parça', pl: 'Fragment' })} />
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {triLang(lang, { ru: '+1 осколок знаний', uk: '+1 осколок знань', es: '+1 fragmento de conocimiento' })}
+                  {triLang(lang, { ru: '+1 осколок знаний', uk: '+1 осколок знань', es: '+1 fragmento de conocimiento', 'pt-BR': '+1 fragmento de conhecimento', vi: '+1 mảnh tri thức', id: '+1 fragmen pengetahuan', tr: '+1 bilgi parçası', pl: '+1 fragment wiedzy' })}
                 </Text>
                 {pendingShard ? (
                   <TouchableOpacity
@@ -764,12 +1235,12 @@ function AchievementModal({
                     }}
                   >
                     <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
-                      {triLang(lang, { ru: 'Получить', uk: 'Забрати', es: 'Reclamar' })}
+                      {triLang(lang, { ru: 'Получить', uk: 'Забрати', es: 'Reclamar', 'pt-BR': 'Receber', vi: 'Nhận', id: 'Klaim', tr: 'Al', pl: 'Odbierz' })}
                     </Text>
                   </TouchableOpacity>
                 ) : (
                   <Text style={{ color: t.textMuted, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Осколок получен', uk: 'Осколок отримано', es: 'Fragmento reclamado' })}
+                    {triLang(lang, { ru: 'Осколок получен', uk: 'Осколок отримано', es: 'Fragmento reclamado', 'pt-BR': 'Fragmento recebido', vi: 'Đã nhận mảnh', id: 'Fragmen diklaim', tr: 'Parça alındı', pl: 'Fragment odebrany' })}
                   </Text>
                 )}
               </View>
@@ -784,7 +1255,7 @@ function AchievementModal({
                 <Text style={{ color: t.textGhost, fontSize: f.sub, textAlign: 'center' }}>
                   {prog[0]} / {prog[1]}
                   {prog[1] - prog[0] > 0 && progPct > 0 && (
-                    `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', es: 'faltan' })} ${prog[1] - prog[0]}`
+                    `  ·  ${triLang(lang, { ru: 'ещё', uk: 'ще', es: 'faltan', 'pt-BR': 'faltam', vi: 'còn', id: 'lagi', tr: 'kaldı', pl: 'jeszcze' })} ${prog[1] - prog[0]}`
                   )}
                 </Text>
               </View>
@@ -805,7 +1276,7 @@ function AchievementModal({
               >
                 <Ionicons name="share-outline" size={16} color={t.textSecond}/>
                 <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                  {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
+                  {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
                 </Text>
               </TouchableOpacity>
               </>
@@ -817,7 +1288,7 @@ function AchievementModal({
               style={{ backgroundColor: t.bgSurface2, borderRadius: 14, paddingVertical: 12, paddingHorizontal: 32, marginTop: 4 }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
+                {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
               </Text>
             </TouchableOpacity>
           </View>
@@ -841,6 +1312,7 @@ type AccordionSectionProps = {
   gold: string;
   premiumQuizHintDisabled: boolean;
   onSelect: (a: Achievement) => void;
+  revealLockedDetails: boolean;
 };
 
 const AccordionSection = memo(function AccordionSection({
@@ -856,6 +1328,7 @@ const AccordionSection = memo(function AccordionSection({
   gold,
   premiumQuizHintDisabled,
   onSelect,
+  revealLockedDetails,
 }: AccordionSectionProps) {
   return (
     <View style={{ marginBottom: 8 }}>
@@ -889,7 +1362,7 @@ const AccordionSection = memo(function AccordionSection({
           {section.title}
         </Text>
         <Text style={{ color: t.textGhost, fontSize: f.sub }}>
-          {achievementCountLabel(section.catUnlocked, lang)}
+          {achievementCountPairLabel(section.catUnlocked, section.catTotal, lang)}
         </Text>
         <Ionicons
           name={isOpen ? 'chevron-up' : 'chevron-down'}
@@ -902,7 +1375,7 @@ const AccordionSection = memo(function AccordionSection({
       {isOpen && (
         <View style={{ paddingTop: 14, paddingHorizontal: 2, gap: 16 }}>
           {section.data.map(row => (
-            <View key={row.rowKey} style={{ flexDirection: 'row', gap: 10 }}>
+            <View key={row.rowKey} style={{ flexDirection: 'row', gap: GRID_GAP }}>
               {row.items.map(a => (
                 <AchievementGridCell
                   key={a.id}
@@ -919,6 +1392,7 @@ const AccordionSection = memo(function AccordionSection({
                   shieldW={SHIELD_W}
                   shieldOuter={SHIELD_OUTER}
                   onSelect={onSelect}
+                  revealLockedDetails={revealLockedDetails}
                   showPremiumQuizGate={
                     !premiumQuizHintDisabled &&
                     !stateMap.get(a.id)?.unlockedAt &&
@@ -937,19 +1411,25 @@ const AccordionSection = memo(function AccordionSection({
 // ── Главный экран ─────────────────────────────────────────────────────────────
 export default function AchievementsScreen() {
   const router          = useRouter();
-  const { theme: t, f, isDark } = useTheme();
+  const { theme: t, f, isDark, themeMode } = useTheme();
   const { lang }        = useLang();
   const { isPremium }   = usePremium();
   const gold            = t.gold;
   const premiumQuizHintDisabled = isPremium || DEV_MODE;
 
   const [states, setStates]   = useState<AchievementState[]>([]);
-  const [stats, setStats]     = useState<AchievementStats>({ streak:0, loginDays:0, lessons:0, perfectLessons:0, xp:0, recallCorrect:0, arenaWins:0, shards:0 });
+  const [stats, setStats]     = useState<AchievementStats>(emptyAchievementStats());
   const [selected, setSelected] = useState<Achievement | null>(null);
   const [openCategory, setOpenCategory] = useState<string | null>(null);
+  const [devShowAllAchievements, setDevShowAllAchievements] = useState(false);
 
   useEffect(() => {
-    loadAchievementStates().then(setStates);
+    checkAchievements({ type: 'backfill' })
+      .then(() => loadAchievementStates())
+      .then(setStates)
+      .catch(() => {
+        loadAchievementStates().then(setStates);
+      });
     const interaction = InteractionManager.runAfterInteractions(() => {
       loadAchievementStats().then(setStats);
     });
@@ -965,15 +1445,17 @@ export default function AchievementsScreen() {
   }, []);
 
   const stateMap = useMemo(() => new Map(states.map(s => [s.id, s])), [states]);
+  const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;
 
   const achievementSections = useMemo((): AchievementListSection[] => {
     return CATEGORIES.flatMap(cat => {
-      const color = CAT_COLOR[cat];
+      const color = achievementCategoryColor(cat, themeMode);
       const catIcon = CAT_ICON[cat];
-      const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat] });
-      const catAchs = ALL_ACHIEVEMENTS.filter(a => a.category === cat && !!stateMap.get(a.id)?.unlockedAt);
+      const title = triLang(lang, { ru: CAT_LABEL_RU[cat], uk: CAT_LABEL_UK[cat], es: CAT_LABEL_ES[cat], 'pt-BR': CAT_LABEL_PTBR[cat], vi: CAT_LABEL_VI[cat], id: CAT_LABEL_ID[cat], tr: CAT_LABEL_TR[cat], pl: CAT_LABEL_PL[cat] });
+      const allCatAchs = ALL_ACHIEVEMENTS.filter(a => a.category === cat);
+      const catAchs = allCatAchs.filter(a => showAllAchievements || !!stateMap.get(a.id)?.unlockedAt);
       if (catAchs.length === 0) return [];
-      const catUnlocked = catAchs.length;
+      const catUnlocked = allCatAchs.filter(a => !!stateMap.get(a.id)?.unlockedAt).length;
       const rows: AchievementGridRow[] = [];
       for (let i = 0; i < catAchs.length; i += COLS) {
         const chunk = catAchs.slice(i, i + COLS);
@@ -985,17 +1467,24 @@ export default function AchievementsScreen() {
         color,
         catIcon,
         catUnlocked,
-        catTotal: catUnlocked,
+        catTotal: showAllAchievements ? allCatAchs.length : catUnlocked,
         data: rows,
       };
     });
-  }, [lang, stateMap]);
+  }, [lang, showAllAchievements, stateMap, themeMode]);
 
   const handleToggle = useCallback((cat: string) => {
     setOpenCategory(prev => (prev === cat ? null : cat));
   }, []);
 
   const unlockedCount = states.filter(s => s.unlockedAt !== null).length;
+  const totalCount = ALL_ACHIEVEMENTS.length;
+  const visibleCountLabel = showAllAchievements
+    ? achievementCountPairLabel(unlockedCount, totalCount, lang)
+    : achievementCountLabel(unlockedCount, lang);
+  const headerCountLabel = showAllAchievements
+    ? `${unlockedCount}/${totalCount}`
+    : String(unlockedCount);
 
   return (
     <ScreenGradient>
@@ -1004,20 +1493,46 @@ export default function AchievementsScreen() {
 
         {/* Хедер */}
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 14 }}>
-          <TouchableOpacity onPress={() => router.back()}>
+          <TouchableOpacity onPress={() => router.back()} style={{ flexShrink: 0 }}>
             <Ionicons name="chevron-back" size={28} color={t.textPrimary} />
           </TouchableOpacity>
-          <View style={{ flex: 1, marginLeft: 8 }}>
-            <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>
-              {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', es: 'Logros' })}
+          <View style={{ flex: 1, marginLeft: 8, minWidth: 0 }}>
+            <Text
+              numberOfLines={1}
+              adjustsFontSizeToFit
+              minimumFontScale={0.72}
+              style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', lineHeight: Math.round(f.h2 * 1.15) }}
+            >
+              {triLang(lang, { ru: 'Достижения', uk: 'Досягнення', es: 'Logros', 'pt-BR': 'Conquistas', vi: 'Thành tựu', id: 'Pencapaian', tr: 'Başarılar', pl: 'Osiągnięcia' })}
             </Text>
-            <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-              {achievementCountLabel(unlockedCount, lang)}
+            <Text numberOfLines={1} style={{ color: t.textMuted, fontSize: f.sub }}>
+              {visibleCountLabel}
             </Text>
           </View>
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 5 }}>
-            <Text style={{ color: t.textSecond, fontWeight: '800', fontSize: f.body }}>
-              {achievementCountLabel(unlockedCount, lang)}
+          {ENABLE_DEV_TOOLS && (
+            <TouchableOpacity
+              testID="achievements-dev-show-all-toggle"
+              onPress={() => setDevShowAllAchievements(prev => !prev)}
+              activeOpacity={0.8}
+              style={{
+                backgroundColor: showAllAchievements ? t.gold + '22' : t.bgCard,
+                borderRadius: 10,
+                paddingHorizontal: 10,
+                paddingVertical: 6,
+                borderWidth: 1,
+                borderColor: showAllAchievements ? t.gold + '77' : t.bgSurface2,
+                marginRight: 8,
+                flexShrink: 0,
+              }}
+            >
+              <Text numberOfLines={1} style={{ color: showAllAchievements ? t.gold : t.textSecond, fontWeight: '900', fontSize: Math.max(11, Math.min(f.sub, 14)) }}>
+                {showAllAchievements ? 'DEV: все' : 'DEV'}
+              </Text>
+            </TouchableOpacity>
+          )}
+          <View style={{ backgroundColor: t.bgCard, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 5, flexShrink: 0 }}>
+            <Text numberOfLines={1} style={{ color: t.textSecond, fontWeight: '800', fontSize: Math.max(12, Math.min(f.body, 15)) }}>
+              {headerCountLabel}
             </Text>
           </View>
         </View>
@@ -1040,6 +1555,7 @@ export default function AchievementsScreen() {
               gold={gold}
               premiumQuizHintDisabled={premiumQuizHintDisabled}
               onSelect={onSelectAchievement}
+              revealLockedDetails={showAllAchievements}
             />
           )}
           contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 40, gap: 0 }}
@@ -1049,7 +1565,7 @@ export default function AchievementsScreen() {
             <View style={{ paddingVertical: 48, alignItems: 'center', gap: 10 }}>
               <Ionicons name="trophy-outline" size={42} color={t.textGhost} />
               <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Пока нет полученных наград', uk: 'Поки немає отриманих нагород', es: 'Aún no tienes recompensas' })}
+                {triLang(lang, { ru: 'Пока нет полученных наград', uk: 'Поки немає отриманих нагород', es: 'Aún no tienes recompensas', 'pt-BR': 'Ainda não há recompensas recebidas', vi: 'Chưa có phần thưởng nào', id: 'Belum ada hadiah yang diterima', tr: 'Henüz alınan ödül yok', pl: 'Nie masz jeszcze zdobytych nagród' })}
               </Text>
             </View>
           )}
@@ -1062,6 +1578,11 @@ export default function AchievementsScreen() {
                   ru: 'Достижения',
                   uk: 'Досягнення',
                   es: 'Logros',
+                  'pt-BR': 'Conquistas',
+                  vi: 'Thành tựu',
+                  id: 'Pencapaian',
+                  tr: 'Başarılar',
+                  pl: 'Osiągnięcia',
                 })}
               />
             </View>
@@ -1081,6 +1602,7 @@ export default function AchievementsScreen() {
           onClose={() => setSelected(null)}
           onShardClaimed={onShardClaimedUpdate}
           isPremium={isPremium}
+          revealLockedDetails={showAllAchievements}
         />
       )}
     </SafeAreaView>

@@ -89,9 +89,13 @@ export const ENABLE_ARENA_RANKED_WAGER = true;
  */
 export const DEV_IAP_BYPASS = DEV_MODE && !IS_STORE_RELEASE;
 
-/** Испанский UI (`es`): только development; в прод-сборках выключен до готовности. */
-export const ENABLE_SPANISH_LOCALE =
-  typeof __DEV__ !== 'undefined' && __DEV__;
+/**
+ * Spanish interface/explanation locale.
+ *
+ * This is a source/UI language for learning English. It is intentionally
+ * separate from the dev-only "study Spanish" experiment below.
+ */
+export const SPANISH_UI_LOCALE_ENABLED = true;
 
 /**
  * DEV-only: в настройках можно выбрать язык, который учишь (EN / ES).

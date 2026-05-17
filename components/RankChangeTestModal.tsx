@@ -53,7 +53,16 @@ function buildSorted(lang: Lang): { rows: FakeRow[]; myRank: number } {
   for (let i = 0; i < base.length; i++) {
     if (i === MY_INDEX) {
       list.push({
-        name: triLang(lang, { uk: 'Ти', ru: 'Ты', es: 'Tú' }),
+        name: triLang(lang, {
+          uk: 'Ти',
+          ru: 'Ты',
+          es: 'Tú',
+          'pt-BR': 'Você',
+          vi: 'Bạn',
+          id: 'Kamu',
+          tr: 'Sen',
+          pl: 'Ty',
+        }),
         points: myPts,
         totalXp: myXp,
         isMe: true,
@@ -103,6 +112,11 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
     ru: 'Тест: Лига недели',
     uk: 'Тест: Ліга тижня',
     es: 'Prueba: Liga de la semana',
+    'pt-BR': 'Teste: Liga da semana',
+    vi: 'Kiểm tra: Giải đấu tuần',
+    id: 'Tes: Liga minggu ini',
+    tr: 'Test: Haftanın ligi',
+    pl: 'Test: liga tygodnia',
   });
 
   const renderClubRow = (row: FakeRow, i: number) => {
@@ -140,7 +154,16 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
               color: isMe ? t.textPrimary : t.textSecond,
               fontWeight: isMe ? '700' : '400',
             }}>
-              {row.name}{isMe ? triLang(lang, { uk: ' (ти)', ru: ' (ты)', es: ' (tú)' }) : ''}
+              {row.name}{isMe ? triLang(lang, {
+                uk: ' (ти)',
+                ru: ' (ты)',
+                es: ' (tú)',
+                'pt-BR': ' (você)',
+                vi: ' (bạn)',
+                id: ' (kamu)',
+                tr: ' (sen)',
+                pl: ' (ty)',
+              }) : ''}
             </Text>
           </View>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
@@ -202,7 +225,16 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
                 )}
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textMuted, fontSize: f.label, textTransform: 'uppercase', letterSpacing: 0.8 }}>
-                    {triLang(lang, { ru: 'Твоя лига', uk: 'Твоя ліга', es: 'Tu liga' })}
+                    {triLang(lang, {
+                      ru: 'Твоя лига',
+                      uk: 'Твоя ліга',
+                      es: 'Tu liga',
+                      'pt-BR': 'Sua liga',
+                      vi: 'Giải đấu của bạn',
+                      id: 'Ligamu',
+                      tr: 'Ligin',
+                      pl: 'Twoja liga',
+                    })}
                   </Text>
                   <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginTop: 2 }}>
                     {clubTierShortName(sampleLeague, lang)}
@@ -213,6 +245,11 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
                       ru: 'опыта этой недели',
                       uk: 'досвіду цього тижня',
                       es: 'de XP esta semana',
+                      'pt-BR': 'de XP esta semana',
+                      vi: 'XP tuần này',
+                      id: 'XP minggu ini',
+                      tr: 'bu haftaki XP',
+                      pl: 'XP w tym tygodniu',
                     })}
                   </Text>
                 </View>
@@ -232,6 +269,11 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
                 ru: '🧪 Тестовое окно. Реальные клубы не меняются.',
                 uk: '🧪 Тестове вікно. Реальні клуби не змінюються.',
                 es: '🧪 Ventana de prueba. Los clubes reales no cambian.',
+                'pt-BR': '🧪 Janela de teste. Clubes reais não mudam.',
+                vi: '🧪 Cửa sổ thử nghiệm. Các câu lạc bộ thật không thay đổi.',
+                id: '🧪 Jendela uji. Klub asli tidak berubah.',
+                tr: '🧪 Test penceresi. Gerçek kulüpler değişmez.',
+                pl: '🧪 Okno testowe. Prawdziwe kluby się nie zmieniają.',
               })}
             </Text>
           </ScrollView>
@@ -248,7 +290,16 @@ export default function RankChangeTestModal({ visible, mode, delta, onClose, lan
               })}
             >
               <Text style={{ color: correctText, fontWeight: '800', fontSize: f.body }}>
-                {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
+                {triLang(lang, {
+                  ru: 'Закрыть',
+                  uk: 'Закрити',
+                  es: 'Cerrar',
+                  'pt-BR': 'Fechar',
+                  vi: 'Đóng',
+                  id: 'Tutup',
+                  tr: 'Kapat',
+                  pl: 'Zamknij',
+                })}
               </Text>
             </Pressable>
           </View>

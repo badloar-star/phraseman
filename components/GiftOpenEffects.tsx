@@ -14,7 +14,6 @@ const C = {
   epic:     ['#FFD700', '#F59E0B', '#FDE68A', '#EAB308', '#FFF7ED'] as const,
   premium:  ['#A78BFA', '#7C3AED', '#C4B5FD', '#FBBF24', '#DDD6FE'] as const,
 };
-
 const pick = (arr: readonly string[], i: number) => arr[i % arr.length]!;
 
 export function GiftOpenBurst({ tier, size = 100 }: { tier: GiftAnimTier; size?: number }) {
@@ -69,8 +68,8 @@ export function GiftOpenBurst({ tier, size = 100 }: { tier: GiftAnimTier; size?:
 
   const showRing   = tier === 'epic' || tier === 'premium';
   const gradColors = tier === 'premium'
-    ? (['rgba(91,33,182,0.6)', 'rgba(250,204,21,0.35)'] as const)
-    : (['rgba(255,215,0,0.65)', 'rgba(180,83,9,0.3)'] as const);
+      ? (['rgba(91,33,182,0.6)', 'rgba(250,204,21,0.35)'] as const)
+      : (['rgba(255,215,0,0.65)', 'rgba(180,83,9,0.3)'] as const);
 
   const colorAt = (i: number) => {
     if (tier === 'sparkle')  return pick(C.sparkle, i);

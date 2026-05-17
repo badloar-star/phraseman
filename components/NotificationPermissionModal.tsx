@@ -36,6 +36,11 @@ export default function NotificationPermissionModal({
       ru: 'Включить напоминания?',
       uk: 'Увімкнути нагадування?',
       es: '¿Activar recordatorios?',
+      'pt-BR': 'Ativar lembretes?',
+      vi: 'Bật nhắc nhở?',
+      id: 'Aktifkan pengingat?',
+      tr: 'Hatırlatıcılar açılsın mı?',
+      pl: 'Włączyć przypomnienia?',
     });
   const resolvedBody =
     body ??
@@ -43,6 +48,11 @@ export default function NotificationPermissionModal({
       ru: 'Мы напомним в нужное время, чтобы ты не терял цепочку и быстрее рос в уровне.',
       uk: 'Ми нагадаємо в потрібний час, щоб ти не втрачав стрік і швидше ріс у рівні.',
       es: 'Te avisaremos en el momento adecuado para que no pierdas la racha y sigas subiendo de nivel.',
+      'pt-BR': 'Vamos lembrar você no momento certo para não perder a sequência e subir de nível mais rápido.',
+      vi: 'Chúng tôi sẽ nhắc đúng lúc để bạn không mất chuỗi và lên cấp nhanh hơn.',
+      id: 'Kami akan mengingatkan di waktu yang tepat agar streak tidak putus dan levelmu naik lebih cepat.',
+      tr: 'Serini kaybetmemen ve daha hızlı seviye atlaman için doğru zamanda hatırlatacağız.',
+      pl: 'Przypomnimy we właściwym momencie, żeby nie stracić serii i szybciej awansować.',
     });
   const resolvedPoints =
     points ??
@@ -86,6 +96,11 @@ export default function NotificationPermissionModal({
                     ru: 'Не сейчас',
                     uk: 'Не зараз',
                     es: 'Ahora no',
+                    'pt-BR': 'Agora não',
+                    vi: 'Không phải bây giờ',
+                    id: 'Nanti saja',
+                    tr: 'Şimdi değil',
+                    pl: 'Nie teraz',
                   })}
               </Text>
             </TouchableOpacity>
@@ -96,6 +111,11 @@ export default function NotificationPermissionModal({
                     ru: 'Включить',
                     uk: 'Увімкнути',
                     es: 'Activar',
+                    'pt-BR': 'Ativar',
+                    vi: 'Bật',
+                    id: 'Aktifkan',
+                    tr: 'Aç',
+                    pl: 'Włącz',
                   })}
               </Text>
             </TouchableOpacity>

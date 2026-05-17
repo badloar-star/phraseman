@@ -190,8 +190,8 @@ export function packHubCodeName(pack: FlashcardMarketPack): string {
 
 /** Заголовок пака в шапке / плитках для RU/UK/ES (для ES — titleEs або codeName офіційних наборів). */
 export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es'): string {
-  if (lang === 'uk') return pack.titleUk;
-  if (lang === 'ru') return pack.titleRu;
+  if (lang === 'uk') return pack.titleUk.trim() || pack.titleRu.trim() || pack.titleEs.trim() || packHubCodeName(pack);
+  if (lang === 'ru') return pack.titleRu.trim() || pack.titleUk.trim() || pack.titleEs.trim() || packHubCodeName(pack);
   const esTitle = pack.titleEs.trim();
   if (esTitle) return esTitle;
   if (pack.isCommunityUgc) {
@@ -204,12 +204,12 @@ export function packTitleForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'u
 
 /** Опис набору для модалки / деталей; для ES — descriptionEs або короткий фолбек без кирилиці. */
 export function packDescriptionForInterface(pack: FlashcardMarketPack, lang: 'ru' | 'uk' | 'es'): string {
-  if (lang === 'uk') return pack.descriptionUk;
-  if (lang === 'ru') return pack.descriptionRu;
+  if (lang === 'uk') return pack.descriptionUk.trim() || pack.descriptionRu.trim() || pack.descriptionEs.trim();
+  if (lang === 'ru') return pack.descriptionRu.trim() || pack.descriptionUk.trim() || pack.descriptionEs.trim();
   const es = pack.descriptionEs.trim();
   if (es) return es;
   if (pack.isCommunityUgc) {
-    return pack.descriptionUk.trim() || pack.descriptionRu.trim();
+    return pack.descriptionUk.trim() || pack.descriptionRu.trim() || pack.descriptionEs.trim();
   }
   return pack.cardCount > 0
     ? `Paquete de ${pack.cardCount} tarjetas en inglés.`
@@ -259,14 +259,15 @@ const mapPack = (id: string, data: any): FlashcardMarketPack | null => {
   if (!data) return null;
   const titleRu = String(data.titleRu ?? '').trim();
   const titleUk = String(data.titleUk ?? '').trim();
-  if (!titleRu || !titleUk) return null;
+  const titleEs = String(data.titleEs ?? '').trim();
+  if (!titleRu && !titleUk && !titleEs) return null;
   const codeNameRaw = String(data.codeName ?? '').trim();
   return {
     id,
     codeName: codeNameRaw || derivePackCodeName(id),
     titleRu,
     titleUk,
-    titleEs: String(data.titleEs ?? ''),
+    titleEs,
     descriptionRu: String(data.descriptionRu ?? ''),
     descriptionUk: String(data.descriptionUk ?? ''),
     descriptionEs: String(data.descriptionEs ?? ''),
@@ -362,16 +363,19 @@ const PACK_CARD_TEMPLATES = [
     en: 'Could you walk me through the key idea?',
     ru: 'Можешь кратко объяснить основную идею?',
     uk: 'Можеш коротко пояснити основну ідею?',
+    es: '¿Puedes explicarme brevemente la idea principal?',
   },
   {
     en: 'Let us align on the next steps.',
     ru: 'Давайте согласуем следующие шаги.',
     uk: 'Давайте узгодимо наступні кроки.',
+    es: 'Pongámonos de acuerdo sobre los próximos pasos.',
   },
   {
     en: 'I need a practical example for this.',
     ru: 'Мне нужен практический пример для этого.',
     uk: 'Мені потрібен практичний приклад для цього.',
+    es: 'Necesito un ejemplo práctico de esto.',
   },
 ];
 
@@ -382,6 +386,7 @@ export function buildDevOwnedPackCards(packs: FlashcardMarketPack[]): CardItem[]
       en: `${tpl.en} (${pack.titleRu})`,
       ru: tpl.ru,
       uk: tpl.uk,
+      es: tpl.es,
       categoryId: 'custom',
       isSystem: true,
       source: 'lesson',

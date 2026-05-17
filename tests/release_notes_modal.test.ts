@@ -3,7 +3,7 @@ jest.mock('../app/config', () => ({
   IS_EXPO_GO: false,
 }));
 
-const mockGetAppReleaseBuildId = jest.fn(() => 71);
+const mockGetAppReleaseBuildId = jest.fn(() => 73);
 
 jest.mock('../app/app_build_id', () => ({
   getAppReleaseBuildId: () => mockGetAppReleaseBuildId(),
@@ -21,7 +21,7 @@ const storage = AsyncStorage as typeof AsyncStorage & { __reset: () => void };
 describe('release notes modal gate', () => {
   beforeEach(() => {
     storage.__reset();
-    mockGetAppReleaseBuildId.mockReturnValue(71);
+    mockGetAppReleaseBuildId.mockReturnValue(73);
   });
 
   it('offers the modal to existing onboarded users on the release build', async () => {

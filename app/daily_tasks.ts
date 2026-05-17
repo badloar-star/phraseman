@@ -9,6 +9,7 @@ import { DebugLogger } from './debug-logger';
 import { withStorageLock } from './storage_mutex';
 import { spendShards } from './shards_system';
 import { bumpDailyTaskClaimed } from './lifetime_profile_stats';
+import { DAILY_TASK_STRINGS_ES } from './daily_tasks_es_locale';
 
 const DAILY_PROGRESS_WRITE_ERR_TOAST_COOLDOWN_MS = 45_000;
 let _lastDailyProgressWriteErrorToastAt = 0;
@@ -70,6 +71,8 @@ export interface DailyTask {
   titleUK: string;
   descRU: string;
   descUK: string;
+  titleES?: string;
+  descES?: string;
   icon: string;
   target: number;
   xp: number;
@@ -1861,6 +1864,23 @@ export const updateMultipleTaskProgress = async (
 
 export const getTaskById = (id: string): DailyTask | undefined =>
   ALL_TASKS.find(t => t.id === id);
+
+export type DailyTaskWithSpanishCopy = DailyTask & {
+  titleES: string;
+  descES: string;
+};
+
+export const withDailyTaskSpanishCopy = (task: DailyTask): DailyTaskWithSpanishCopy => {
+  const es = DAILY_TASK_STRINGS_ES[task.id];
+  return {
+    ...task,
+    titleES: task.titleES ?? es?.title ?? task.titleRU,
+    descES: task.descES ?? es?.desc ?? task.descRU,
+  };
+};
+
+export const getAllDailyTasksWithSpanishCopy = (): DailyTaskWithSpanishCopy[] =>
+  ALL_TASKS.map(withDailyTaskSpanishCopy);
 
 export { ALL_TASKS };
 

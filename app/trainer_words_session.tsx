@@ -22,16 +22,18 @@ import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getDueItems,
   markTrainerResult,
+  trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
+import { checkAchievements } from './achievements';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
 
@@ -43,13 +45,15 @@ const SWIPE_OUT_DURATION = 220;
 // Все переводы слов из lesson_data — плоский список для выбора похожего.
 // Импортируем динамически чтобы не тащить весь контент при старте.
 async function pickDecoyTranslation(
-  correctRu: string,
+  correctTranslation: string,
   allItems: TrainerItem[],
+  lang: Lang,
 ): Promise<string> {
   // Берём переводы других слов из очереди
   const pool = allItems
-    .filter(i => i.translationRu !== correctRu && i.translationRu)
-    .map(i => i.translationRu);
+    .map(i => trainerTranslationForLang(i, lang))
+    .filter(t => t && t !== correctTranslation);
+  const correctRu = correctTranslation;
 
   if (pool.length === 0) return correctRu; // нечего взять — вернём правильный (edge case)
 
@@ -155,12 +159,30 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef }: SwipeCardProps) {
     >
       {/* Верно оверлей */}
       <Animated.View style={[styles.decisionLabel, styles.correctLabel, { opacity: correctOpacity }]}>
-        <Text style={styles.decisionText}>✓ {triLang(lang, { ru: 'ВЕРНО', uk: 'ВІРНО', es: 'CORRECTO' })}</Text>
+        <Text style={styles.decisionText}>✓ {triLang(lang, {
+          ru: 'ВЕРНО',
+          uk: 'ВІРНО',
+          es: 'CORRECTO',
+          'pt-BR': 'CORRETO',
+          vi: 'ĐÚNG',
+          id: 'BENAR',
+          tr: 'DOĞRU',
+          pl: 'POPRAWNIE',
+        })}</Text>
       </Animated.View>
 
       {/* Неверно оверлей */}
       <Animated.View style={[styles.decisionLabel, styles.wrongLabel, { opacity: wrongOpacity }]}>
-        <Text style={styles.decisionText}>✗ {triLang(lang, { ru: 'НЕВЕРНО', uk: 'НЕВІРНО', es: 'INCORRECTO' })}</Text>
+        <Text style={styles.decisionText}>✗ {triLang(lang, {
+          ru: 'НЕВЕРНО',
+          uk: 'НЕВІРНО',
+          es: 'INCORRECTO',
+          'pt-BR': 'INCORRETO',
+          vi: 'SAI',
+          id: 'SALAH',
+          tr: 'YANLIŞ',
+          pl: 'NIEPOPRAWNIE',
+        })}</Text>
       </Animated.View>
 
       {/* Слово */}
@@ -173,7 +195,7 @@ function SwipeCard({ card, onSwipe, isTop, swipeOutRef }: SwipeCardProps) {
 
       {/* Перевод (верный или ложный) */}
       <Text style={[styles.wordRu, { color: t.textMuted, fontSize: f.bodyLg }]}>
-        {lang === 'uk' ? card.item.translationUk || card.shownTranslation : card.shownTranslation}
+        {card.shownTranslation}
       </Text>
 
     </Animated.View>
@@ -216,25 +238,27 @@ export default function TrainerWordsSession() {
       const cards: CardData[] = await Promise.all(
         items.map(async (item) => {
           const showCorrect = Math.random() > 0.5;
+          const correctTranslation = trainerTranslationForLang(item, lang);
           const shownTranslation = showCorrect
-            ? item.translationRu
-            : await pickDecoyTranslation(item.translationRu, items);
+            ? correctTranslation
+            : await pickDecoyTranslation(correctTranslation, items, lang);
           return {
             item,
             shownTranslation,
-            isCorrectTranslation: showCorrect || shownTranslation === item.translationRu,
+            isCorrectTranslation: showCorrect || shownTranslation === correctTranslation,
           };
         }),
       );
       setDeck(cards);
       setLoading(false);
     })();
-  }, [router]);
+  }, [lang, router]);
 
   const handleSwipe = useCallback(async (answeredCorrectly: boolean) => {
     const card = deck[current];
     if (!card) return;
 
+    const nextCorrect = correct + (answeredCorrectly ? 1 : 0);
     const nextWrong = wrong + (answeredCorrectly ? 0 : 1);
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
@@ -248,17 +272,24 @@ export default function TrainerWordsSession() {
     if (answeredCorrectly) {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_words', increment: 1 });
+      checkAchievements({ type: 'trainer_correct', correct: 1 }).catch(() => {});
     }
 
     const next = current + 1;
     if (next >= deck.length) {
       if (deck.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
+      checkAchievements({
+        type: 'trainer_session_result',
+        correct: nextCorrect,
+        wrong: nextWrong,
+        total: deck.length,
+      }).catch(() => {});
       setDone(true);
     } else {
       setCurrent(next);
     }
     if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
-  }, [deck, current, wrong]);
+  }, [deck, current, correct, wrong]);
 
   const handleButton = useCallback((dir: 'right' | 'left') => {
     hapticTap();
@@ -340,7 +371,16 @@ export default function TrainerWordsSession() {
             >
               <Ionicons name="close" size={32} color="#E05050" />
               <Text style={[styles.btnLabel, { color: '#E05050', fontSize: f.caption }]}>
-                {triLang(lang, { ru: 'Неверно', uk: 'Невірно', es: 'Incorrecto' })}
+                {triLang(lang, {
+                  ru: 'Неверно',
+                  uk: 'Невірно',
+                  es: 'Incorrecto',
+                  'pt-BR': 'Incorreto',
+                  vi: 'Sai',
+                  id: 'Salah',
+                  tr: 'Yanlış',
+                  pl: 'Niepoprawnie',
+                })}
               </Text>
             </TouchableOpacity>
 
@@ -350,7 +390,16 @@ export default function TrainerWordsSession() {
             >
               <Ionicons name="checkmark" size={32} color="#40C080" />
               <Text style={[styles.btnLabel, { color: '#40C080', fontSize: f.caption }]}>
-                {triLang(lang, { ru: 'Верно', uk: 'Вірно', es: 'Correcto' })}
+                {triLang(lang, {
+                  ru: 'Верно',
+                  uk: 'Вірно',
+                  es: 'Correcto',
+                  'pt-BR': 'Correto',
+                  vi: 'Đúng',
+                  id: 'Benar',
+                  tr: 'Doğru',
+                  pl: 'Poprawnie',
+                })}
               </Text>
             </TouchableOpacity>
           </View>

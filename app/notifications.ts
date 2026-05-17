@@ -9,6 +9,7 @@ import { Linking, Platform } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getTodayPhrase } from './daily_phrase_system';
 import { reserveArenaGameEntry } from './arena_access_gate';
+import { getCurrentWeekStartIso, WEEKLY_XP_KEY, WEEKLY_XP_PERIOD_START_KEY } from './weekly_xp';
 
 /** Android 8+: канал с high importance; `channelId` дублируется в каждом триггере. */
 const ANDROID_NOTIF_CHANNEL_ID = 'phraseman_reminders';
@@ -28,19 +29,32 @@ async function countCompletedLessonsFromStorage(): Promise<number> {
   return n;
 }
 
-/** Ближайшее воскресенье 20:00 (локальное) для weekly recap. */
-function getNextWeeklyRecapTime(now: Date = new Date()): Date {
+const WEEKLY_RECAP_HOUR = 20;
+const WEEKLY_RECAP_MINUTE = 10;
+const D1_REMINDER_HOUR = 20;
+const D1_REMINDER_MINUTE = 20;
+
+/** Ближайшее воскресенье 20:10 (локально) для weekly recap; 20:00 занят daily reminder. */
+export function getNextWeeklyRecapTime(now: Date = new Date()): Date {
   const target = new Date(now);
   const day = now.getDay();
   if (day === 0) {
-    target.setHours(20, 0, 0, 0);
+    target.setHours(WEEKLY_RECAP_HOUR, WEEKLY_RECAP_MINUTE, 0, 0);
     if (now.getTime() >= target.getTime()) {
       target.setDate(target.getDate() + 7);
     }
   } else {
     target.setDate(now.getDate() + (7 - day));
-    target.setHours(20, 0, 0, 0);
+    target.setHours(WEEKLY_RECAP_HOUR, WEEKLY_RECAP_MINUTE, 0, 0);
   }
+  return target;
+}
+
+/** Завтрашнее D+1 уведомление после первого урока: 20:20, вне кластера 20:00/20:10. */
+export function getNextD1PersonalizedReminderTime(now: Date = new Date()): Date {
+  const target = new Date(now);
+  target.setDate(target.getDate() + 1);
+  target.setHours(D1_REMINDER_HOUR, D1_REMINDER_MINUTE, 0, 0);
   return target;
 }
 
@@ -226,8 +240,89 @@ function pickNotif<R>(lang: Lang | string, ru: R, uk: R, es: R): R {
 }
 
 const DAILY_REMINDER_ID_KEY = 'daily_reminder_notif_id';
+const D1_PERSONALIZED_REMINDER_NOTIF_ID_KEY = 'd1_personalized_reminder_notif_id';
+const STREAK_WARNING_NOTIF_ID_KEY = 'streak_warning_notif_id';
+const PHRASE_OF_DAY_NOTIF_ID_KEY = 'phrase_of_day_notif_id';
 const WEEKLY_RECAP_NOTIF_ID_KEY = 'weekly_recap_notif_id';
 const MONTHLY_RECAP_NOTIF_ID_KEY = 'monthly_recap_notif_id';
+
+type LocalNotificationType =
+  | 'reminder'
+  | 'streak_warning'
+  | 'phrase_of_day'
+  | 'weekly_recap'
+  | 'monthly_recap'
+  | 'league_overtake'
+  | 'arena_match'
+  | 'd1_reminder'
+  | 'premium';
+
+function parseStoredNumber(raw: string | null | undefined): number {
+  const n = parseInt(raw || '0', 10);
+  return Number.isFinite(n) ? Math.max(0, n) : 0;
+}
+
+function getIsoWeekKey(d: Date): string {
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = date.getUTCDay() || 7;
+  date.setUTCDate(date.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+  const weekNum = Math.ceil((((date.getTime() - yearStart.getTime()) / 86400000) + 1) / 7);
+  return `${date.getUTCFullYear()}-W${String(weekNum).padStart(2, '0')}`;
+}
+
+function parseWeekPointsForCurrentWeek(raw: string | null | undefined, weekKey: string): number {
+  try {
+    if (!raw) return 0;
+    const data = JSON.parse(raw) as { weekKey?: string; points?: number };
+    if (data.weekKey !== weekKey) return 0;
+    const points = Number(data.points ?? 0);
+    return Number.isFinite(points) ? Math.max(0, points) : 0;
+  } catch {
+    return 0;
+  }
+}
+
+export async function readWeeklyRecapStatsForNotification(
+  now: Date = new Date(),
+): Promise<{ weekXP: number; streak: number }> {
+  const [weeklyXpRaw, weeklyPeriodRaw, weekPointsV2Raw, weekPointsRaw, streakRaw] = await Promise.all([
+    AsyncStorage.getItem(WEEKLY_XP_KEY),
+    AsyncStorage.getItem(WEEKLY_XP_PERIOD_START_KEY),
+    AsyncStorage.getItem('week_points_v2'),
+    AsyncStorage.getItem('week_points'),
+    AsyncStorage.getItem('streak_count'),
+  ]);
+
+  const currentWeeklyXpPeriod = getCurrentWeekStartIso(now);
+  const currentWeekPointsKey = getIsoWeekKey(now);
+  const fallbackWeekPoints = parseWeekPointsForCurrentWeek(weekPointsV2Raw, currentWeekPointsKey)
+    || (weekPointsV2Raw ? 0 : parseStoredNumber(weekPointsRaw));
+  const currentWeeklyXp = weeklyPeriodRaw === currentWeeklyXpPeriod
+    ? parseStoredNumber(weeklyXpRaw)
+    : 0;
+
+  return {
+    weekXP: currentWeeklyXp > 0 ? currentWeeklyXp : fallbackWeekPoints,
+    streak: parseStoredNumber(streakRaw),
+  };
+}
+
+async function cancelScheduledNotificationsByType(
+  N: Awaited<ReturnType<typeof getNotifications>>,
+  types: LocalNotificationType[],
+): Promise<void> {
+  if (!N?.getAllScheduledNotificationsAsync) return;
+  try {
+    const scheduled = await N.getAllScheduledNotificationsAsync();
+    await Promise.all((scheduled || []).map((request: any) => {
+      const type = request?.content?.data?.type;
+      const id = request?.identifier;
+      if (!id || !types.includes(type)) return Promise.resolve();
+      return N.cancelScheduledNotificationAsync(id).catch(() => {});
+    }));
+  } catch {}
+}
 
 // ── Запланировать ежедневное уведомление ─────────────────────────────────────
 export const scheduleDailyReminder = async (
@@ -243,10 +338,19 @@ export const scheduleDailyReminder = async (
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
 
-    // Отменяем только предыдущее daily reminder, не трогаем остальные уведомления
+    // Clean up both daily and old per-day reminders before creating the active reminder mode.
+    await cancelScheduledNotificationsByType(N, ['reminder']);
     const prevId = await AsyncStorage.getItem(DAILY_REMINDER_ID_KEY);
     if (prevId) {
       await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
+    }
+    const prevPerDayRaw = await AsyncStorage.getItem('per_day_notif_ids');
+    if (prevPerDayRaw) {
+      try {
+        const ids: string[] = JSON.parse(prevPerDayRaw);
+        await Promise.all(ids.map(id => N.cancelScheduledNotificationAsync(id).catch(() => {})));
+      } catch {}
+      await AsyncStorage.removeItem('per_day_notif_ids');
     }
 
     const messages = reminderMessages(lang);
@@ -272,7 +376,10 @@ export const scheduleDailyReminder = async (
 /** Ключи метаданных планирования (не самих payload). Сохранённые в sync с cancelAllScheduledNotificationsAsync. */
 const NOTIFICATION_SCHEDULE_STORAGE_KEYS = [
   DAILY_REMINDER_ID_KEY,
+  D1_PERSONALIZED_REMINDER_NOTIF_ID_KEY,
   'per_day_notif_ids',
+  STREAK_WARNING_NOTIF_ID_KEY,
+  PHRASE_OF_DAY_NOTIF_ID_KEY,
   WEEKLY_RECAP_NOTIF_ID_KEY,
   MONTHLY_RECAP_NOTIF_ID_KEY,
   'streak_warning_scheduled',
@@ -337,7 +444,7 @@ export const sendStreakWarning = async (streak: number, lang: Lang = 'ru'): Prom
 
 // ── D+1 персональное уведомление после первого урока ─────────────────────────
 // Вызывается в lesson_complete после lessonId === 1
-// Планирует уведомление на следующий день в 20:00 с точным числом фраз и дней цепочки подряд
+// Планирует уведомление на следующий день в 20:20 с точным числом фраз и дней цепочки подряд
 export const scheduleD1PersonalizedReminder = async (
   phrasesLearned: number,
   streak: number,
@@ -372,17 +479,20 @@ export const scheduleD1PersonalizedReminder = async (
             `${phrasesLearned} frases más hoy y arrancas una racha nueva. ¡Sigue! 💪`,
           );
 
-    // Завтра в 20:00
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    tomorrow.setHours(20, 0, 0, 0);
+    // Завтра в 20:20, чтобы не пересекаться с daily reminder и weekly recap
+    const tomorrow = getNextD1PersonalizedReminderTime();
     const secondsUntil = Math.floor((tomorrow.getTime() - Date.now()) / 1000);
     if (secondsUntil <= 0) return;
 
-    await N.scheduleNotificationAsync({
+    await cancelScheduledNotificationsByType(N, ['d1_reminder']);
+    const prevD1Id = await AsyncStorage.getItem(D1_PERSONALIZED_REMINDER_NOTIF_ID_KEY);
+    if (prevD1Id) await N.cancelScheduledNotificationAsync(prevD1Id).catch(() => {});
+
+    const d1Id = await N.scheduleNotificationAsync({
       content: { title, body, sound: false, data: { type: 'd1_reminder' } },
       trigger: triggerInterval(secondsUntil),
     });
+    await AsyncStorage.setItem(D1_PERSONALIZED_REMINDER_NOTIF_ID_KEY, d1Id);
   } catch {}
 };
 
@@ -499,7 +609,8 @@ export const scheduleNotifications = async (
     return;
   }
 
-  // Отменяем старые per-day уведомления
+  // Отменяем старые reminder-уведомления, включая orphaned ids после прошлых версий.
+  await cancelScheduledNotificationsByType(N, ['reminder']);
   const prevPerDayRaw = await AsyncStorage.getItem('per_day_notif_ids');
   if (prevPerDayRaw) {
     const ids: string[] = JSON.parse(prevPerDayRaw);
@@ -509,17 +620,6 @@ export const scheduleNotifications = async (
   const prevId = await AsyncStorage.getItem(DAILY_REMINDER_ID_KEY);
   if (prevId) await N.cancelScheduledNotificationAsync(prevId).catch(() => {});
   await AsyncStorage.removeItem(DAILY_REMINDER_ID_KEY);
-
-  const prevW = await AsyncStorage.getItem(WEEKLY_RECAP_NOTIF_ID_KEY);
-  if (prevW) await N.cancelScheduledNotificationAsync(prevW).catch(() => {});
-  const prevM = await AsyncStorage.getItem(MONTHLY_RECAP_NOTIF_ID_KEY);
-  if (prevM) await N.cancelScheduledNotificationAsync(prevM).catch(() => {});
-  await AsyncStorage.multiRemove([
-    WEEKLY_RECAP_NOTIF_ID_KEY,
-    MONTHLY_RECAP_NOTIF_ID_KEY,
-    'weekly_recap_scheduled',
-    'monthly_recap_scheduled',
-  ]).catch(() => {});
 
   const messages = reminderMessages(lang);
   const newIds: string[] = [];
@@ -580,7 +680,10 @@ export const scheduleStreakWarningIfNeeded = async (
 
     // Если урок уже пройден — ничего не нужно
     if (lessonDoneToday) {
-      await AsyncStorage.removeItem('streak_warning_scheduled');
+      await cancelScheduledNotificationsByType(N, ['streak_warning']);
+      const prevWarningId = await AsyncStorage.getItem(STREAK_WARNING_NOTIF_ID_KEY);
+      if (prevWarningId) await N.cancelScheduledNotificationAsync(prevWarningId).catch(() => {});
+      await AsyncStorage.multiRemove(['streak_warning_scheduled', STREAK_WARNING_NOTIF_ID_KEY]);
       return;
     }
 
@@ -732,7 +835,8 @@ export const scheduleStreakWarningIfNeeded = async (
       );
     }
 
-    await N.scheduleNotificationAsync({
+    await cancelScheduledNotificationsByType(N, ['streak_warning']);
+    const warningId = await N.scheduleNotificationAsync({
       content: {
         title,
         body,
@@ -743,13 +847,16 @@ export const scheduleStreakWarningIfNeeded = async (
     });
 
     await AsyncStorage.setItem('streak_warning_scheduled', today);
+    await AsyncStorage.setItem(STREAK_WARNING_NOTIF_ID_KEY, warningId);
   } catch {}
 };
 
 // ── Weekly Recap уведомление ──────────────────────────────────────────────────
-// Планируется на ближайшее воскресенье в 20:00
+// Планируется на ближайшее воскресенье в 20:10
 // Содержимое персонализируется по текущим данным в AsyncStorage
-export const scheduleWeeklyRecapNotification = async (
+let weeklyRecapScheduleLock: Promise<void> = Promise.resolve();
+
+const scheduleWeeklyRecapNotificationUnlocked = async (
   lang: Lang = 'ru',
   opts: { requestPermission?: boolean } = {}
 ): Promise<void> => {
@@ -759,15 +866,8 @@ export const scheduleWeeklyRecapNotification = async (
     const hasPermission = await canUseNotifications(opts.requestPermission ?? true);
     if (!hasPermission) return;
 
-    // Читаем текущую статистику
-    const [xpRaw, streakRaw] = await Promise.all([
-      AsyncStorage.getItem('user_total_xp'),
-      AsyncStorage.getItem('streak_count'),
-    ]);
-    const totalXP = parseInt(xpRaw || '0') || 0;
-    const streak = parseInt(streakRaw || '0') || 0;
-
     const now = new Date();
+    const { weekXP, streak } = await readWeeklyRecapStatsForNotification(now);
     const nextSunday = getNextWeeklyRecapTime(now);
     const secondsUntil = Math.max(1, Math.floor((nextSunday.getTime() - now.getTime()) / 1000));
 
@@ -781,25 +881,26 @@ export const scheduleWeeklyRecapNotification = async (
     const body = pickNotif(
       lang,
       _pw([
-        `Цепочка: ${streak} 🔥 · Всего XP: ${totalXP} ⭐ — так держать!`,
-        `Ты сделал ${streak} дней подряд! XP: ${totalXP} ⭐ Продолжай в том же духе! 💪`,
-        `${totalXP} XP за неделю — ты движешься к цели! 🚀 Цепочка: ${streak} 🔥`,
-        `Невероятная неделя! Цепочка ${streak} дней · ${totalXP} XP. Молодец! 🎯`,
+        `Цепочка: ${streak} 🔥 · XP за неделю: ${weekXP} ⭐ — так держать!`,
+        `Ты сделал ${streak} дней подряд! За неделю: ${weekXP} XP ⭐ Продолжай в том же духе! 💪`,
+        `${weekXP} XP за неделю — ты движешься к цели! 🚀 Цепочка: ${streak} 🔥`,
+        `Невероятная неделя! Цепочка ${streak} дней · ${weekXP} XP. Молодец! 🎯`,
       ]),
       _pw([
-        `Стрік: ${streak} 🔥 · Всього XP: ${totalXP} ⭐ — так тримати!`,
-        `Ти зробив ${streak} днів поспіль! XP: ${totalXP} ⭐ Продовжуй у тому ж дусі! 💪`,
-        `${totalXP} XP за тиждень — ти рухаєшся до мети! 🚀 Стрік: ${streak} 🔥`,
-        `Неймовірний тиждень! Стрік ${streak} днів · ${totalXP} XP. Ти молодець! 🎯`,
+        `Стрік: ${streak} 🔥 · XP за тиждень: ${weekXP} ⭐ — так тримати!`,
+        `Ти зробив ${streak} днів поспіль! За тиждень: ${weekXP} XP ⭐ Продовжуй у тому ж дусі! 💪`,
+        `${weekXP} XP за тиждень — ти рухаєшся до мети! 🚀 Стрік: ${streak} 🔥`,
+        `Неймовірний тиждень! Стрік ${streak} днів · ${weekXP} XP. Ти молодець! 🎯`,
       ]),
       _pw([
-        `Racha: ${streak} 🔥 · XP total: ${totalXP} ⭐ ¡sigue así!`,
-        `${streak} días seguidos y ${totalXP} XP acumulados; mantén el impulso 💪`,
-        `+${totalXP} XP esta semana: vas en serio 🚀 Racha ${streak} 🔥`,
-        `Semana redonda: racha ${streak} · ${totalXP} XP. Buen trabajo 🎯`,
+        `Racha: ${streak} 🔥 · XP semanal: ${weekXP} ⭐ ¡sigue así!`,
+        `${streak} días seguidos y ${weekXP} XP esta semana; mantén el impulso 💪`,
+        `+${weekXP} XP esta semana: vas en serio 🚀 Racha ${streak} 🔥`,
+        `Semana redonda: racha ${streak} · ${weekXP} XP. Buen trabajo 🎯`,
       ]),
     );
 
+    await cancelScheduledNotificationsByType(N, ['weekly_recap']);
     const prevWeeklyId = await AsyncStorage.getItem(WEEKLY_RECAP_NOTIF_ID_KEY);
     if (prevWeeklyId) await N.cancelScheduledNotificationAsync(prevWeeklyId).catch(() => {});
 
@@ -812,6 +913,31 @@ export const scheduleWeeklyRecapNotification = async (
     await AsyncStorage.setItem('weekly_recap_scheduled', nextSunday.toISOString().split('T')[0]);
   } catch {}
 };
+
+export const scheduleWeeklyRecapNotification = (
+  lang: Lang = 'ru',
+  opts: { requestPermission?: boolean } = {},
+): Promise<void> => {
+  const next = weeklyRecapScheduleLock.then(() => scheduleWeeklyRecapNotificationUnlocked(lang, opts));
+  weeklyRecapScheduleLock = next.catch(() => {});
+  return next;
+};
+
+let weeklyRecapRefreshTimer: ReturnType<typeof setTimeout> | null = null;
+
+export function refreshWeeklyRecapNotificationAfterXpChange(langHint?: Lang): void {
+  if (weeklyRecapRefreshTimer) clearTimeout(weeklyRecapRefreshTimer);
+  weeklyRecapRefreshTimer = setTimeout(() => {
+    weeklyRecapRefreshTimer = null;
+    void (async () => {
+      const enabled = await AsyncStorage.getItem('notifications_enabled').catch(() => null);
+      if (enabled !== 'true') return;
+      const storedLang = langHint ?? (await AsyncStorage.getItem('app_lang').catch(() => null));
+      const lang: Lang = storedLang === 'uk' ? 'uk' : storedLang === 'es' ? 'es' : 'ru';
+      await scheduleWeeklyRecapNotification(lang, { requestPermission: false });
+    })().catch(() => {});
+  }, 1500);
+}
 
 // ── Monthly Recap уведомление ─────────────────────────────────────────────────
 // Планируется на 1-е следующего месяца в 10:00
@@ -846,6 +972,7 @@ export const scheduleMonthlyRecapNotification = async (
       `Lecciones: ${lessons} · Racha: ${streak} 🔥 · XP: ${totalXP} ⭐`,
     );
 
+    await cancelScheduledNotificationsByType(N, ['monthly_recap']);
     const prevMonthlyId = await AsyncStorage.getItem(MONTHLY_RECAP_NOTIF_ID_KEY);
     if (prevMonthlyId) await N.cancelScheduledNotificationAsync(prevMonthlyId).catch(() => {});
 
@@ -937,10 +1064,6 @@ export const schedulePhrasOfDayNotification = async (
 
     const today = new Date().toISOString().split('T')[0];
 
-    // Только одно уведомление в день
-    const lastScheduled = await AsyncStorage.getItem('phrase_notif_scheduled');
-    if (lastScheduled === today) return;
-
     // Получить фразу дня
     const phrase = await getTodayPhrase();
 
@@ -982,7 +1105,11 @@ export const schedulePhrasOfDayNotification = async (
     const title = pickNotif(lang, '☀️ Фраза дня', '☀️ Фраза дня', '☀️ Frase del día');
     const body = teasers[teaserIdx];
 
-    await N.scheduleNotificationAsync({
+    await cancelScheduledNotificationsByType(N, ['phrase_of_day']);
+    const prevPhraseId = await AsyncStorage.getItem(PHRASE_OF_DAY_NOTIF_ID_KEY);
+    if (prevPhraseId) await N.cancelScheduledNotificationAsync(prevPhraseId).catch(() => {});
+
+    const phraseId = await N.scheduleNotificationAsync({
       content: {
         title,
         body,
@@ -993,6 +1120,7 @@ export const schedulePhrasOfDayNotification = async (
     });
 
     await AsyncStorage.setItem('phrase_notif_scheduled', today);
+    await AsyncStorage.setItem(PHRASE_OF_DAY_NOTIF_ID_KEY, phraseId);
   } catch {
   }
 };

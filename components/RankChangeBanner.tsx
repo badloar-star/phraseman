@@ -47,9 +47,32 @@ export default function RankChangeBanner({
     ru: absN === 1 ? 'позицию' : 'позиций',
     uk: absN === 1 ? 'позицію' : 'позиції',
     es: absN === 1 ? 'puesto' : 'puestos',
+    'pt-BR': absN === 1 ? 'posição' : 'posições',
+    vi: 'hạng',
+    id: 'posisi',
+    tr: 'sıra',
+    pl: absN === 1 ? 'pozycję' : 'pozycji',
   });
-  const upDir = triLang(lang, { ru: 'вверх', uk: 'вгору', es: 'arriba' });
-  const downDir = triLang(lang, { ru: 'вниз', uk: 'вниз', es: 'abajo' });
+  const upDir = triLang(lang, {
+    ru: 'вверх',
+    uk: 'вгору',
+    es: 'arriba',
+    'pt-BR': 'para cima',
+    vi: 'lên',
+    id: 'naik',
+    tr: 'yukarı',
+    pl: 'w górę',
+  });
+  const downDir = triLang(lang, {
+    ru: 'вниз',
+    uk: 'вниз',
+    es: 'abajo',
+    'pt-BR': 'para baixo',
+    vi: 'xuống',
+    id: 'turun',
+    tr: 'aşağı',
+    pl: 'w dół',
+  });
 
   let title: string;
   if (isUp) {
@@ -65,12 +88,22 @@ export default function RankChangeBanner({
         ru: `Обогнал ${passedName.trim()}`,
         uk: `Обігнав ${passedName.trim()}`,
         es: `Has adelantado a ${passedName.trim()}`,
+        'pt-BR': `Você passou ${passedName.trim()}`,
+        vi: `Bạn đã vượt qua ${passedName.trim()}`,
+        id: `Kamu melewati ${passedName.trim()}`,
+        tr: `${passedName.trim()} kişisini geçtin`,
+        pl: `Wyprzedzasz ${passedName.trim()}`,
       });
     } else {
       subtitle = triLang(lang, {
         ru: 'Ты молодец — стал выше в списке!',
         uk: 'Молодець — став вище у списку!',
         es: '¡Muy bien: has subido en la lista!',
+        'pt-BR': 'Muito bem: você subiu na lista!',
+        vi: 'Tốt lắm: bạn đã lên hạng trong danh sách!',
+        id: 'Bagus: kamu naik di daftar!',
+        tr: 'Harika: listede yükseldin!',
+        pl: 'Brawo: jesteś wyżej na liście!',
       });
     }
   } else {
@@ -79,12 +112,22 @@ export default function RankChangeBanner({
         ru: `Уступил ${lostToName.trim()}. Не сдавайся!`,
         uk: `Поступився ${lostToName.trim()}. Не здавайся!`,
         es: `${lostToName.trim()} te adelantó. ¡No te rindas!`,
+        'pt-BR': `${lostToName.trim()} passou você. Não desista!`,
+        vi: `${lostToName.trim()} đã vượt qua bạn. Đừng bỏ cuộc!`,
+        id: `${lostToName.trim()} melewatimu. Jangan menyerah!`,
+        tr: `${lostToName.trim()} seni geçti. Pes etme!`,
+        pl: `${lostToName.trim()} Cię wyprzedza. Nie poddawaj się!`,
       });
     } else {
       subtitle = triLang(lang, {
         ru: 'Ничего страшного — соберись и наверстаешь.',
         uk: 'Нічого страшного — зберись та наздоженеш.',
         es: 'No pasa nada — puedes recuperarlo.',
+        'pt-BR': 'Tudo bem — você pode recuperar.',
+        vi: 'Không sao — bạn có thể lấy lại.',
+        id: 'Tidak apa-apa — kamu bisa mengejarnya.',
+        tr: 'Sorun değil — toparlayıp geri alabilirsin.',
+        pl: 'Nic się nie stało — możesz to odrobić.',
       });
     }
   }

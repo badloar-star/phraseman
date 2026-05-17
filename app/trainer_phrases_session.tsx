@@ -27,9 +27,11 @@ import { hapticError, hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import {
   getDueItems,
   markTrainerResult,
+  trainerTranslationForLang,
   type TrainerItem,
 } from './trainer_store';
 import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
+import { checkAchievements } from './achievements';
 import {
   shuffleWordBankTiles,
   tokenizeRecallPhrase,
@@ -133,10 +135,19 @@ function WordBankMode({ item, onResult }: WordBankProps) {
       {/* Перевод — задание */}
       <View style={[styles.translationBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
         <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
-          {triLang(lang, { ru: 'Составь фразу:', uk: 'Склади фразу:', es: 'Forma la frase:' })}
+          {triLang(lang, {
+            ru: 'Составь фразу:',
+            uk: 'Склади фразу:',
+            es: 'Forma la frase:',
+            'pt-BR': 'Monte a frase:',
+            vi: 'Sắp xếp câu:',
+            id: 'Susun frasa:',
+            tr: 'Cümleyi kur:',
+            pl: 'Ułóż frazę:',
+          })}
         </Text>
         <Text style={[styles.translationMain, { color: t.textPrimary, fontSize: f.body }]}>
-          {lang === 'uk' ? item.translationUk || item.translationRu : item.translationRu}
+          {trainerTranslationForLang(item, lang)}
         </Text>
       </View>
 
@@ -147,7 +158,16 @@ function WordBankMode({ item, onResult }: WordBankProps) {
       ]}>
         {selected.length === 0
           ? <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-              {triLang(lang, { ru: 'Тут появятся слова…', uk: 'Тут з\'являться слова…', es: 'Aquí aparecerán las palabras…' })}
+              {triLang(lang, {
+                ru: 'Тут появятся слова…',
+                uk: 'Тут з\'являться слова…',
+                es: 'Aquí aparecerán las palabras…',
+                'pt-BR': 'As palavras aparecerão aqui…',
+                vi: 'Các từ sẽ xuất hiện ở đây…',
+                id: 'Kata-kata akan muncul di sini…',
+                tr: 'Kelimeler burada görünecek…',
+                pl: 'Tutaj pojawią się słowa…',
+              })}
             </Text>
           : <View style={styles.tilesRow}>
               {selected.map(tile => (
@@ -186,7 +206,16 @@ function WordBankMode({ item, onResult }: WordBankProps) {
         }]}
       >
         <Text style={[styles.checkBtnText, { fontSize: f.body }]}>
-          {triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })}
+          {triLang(lang, {
+            ru: 'Проверить',
+            uk: 'Перевірити',
+            es: 'Comprobar',
+            'pt-BR': 'Verificar',
+            vi: 'Kiểm tra',
+            id: 'Periksa',
+            tr: 'Kontrol et',
+            pl: 'Sprawdź',
+          })}
         </Text>
       </TouchableOpacity>
     </View>
@@ -232,7 +261,16 @@ function FillGapMode({ item, onResult }: FillGapProps) {
       {/* Перевод */}
       <View style={[styles.translationBox, { backgroundColor: t.bgCard, borderColor: t.border }]}>
         <Text style={[styles.translationText, { color: t.textMuted, fontSize: f.caption }]}>
-          {triLang(lang, { ru: 'Вставь пропущенное слово:', uk: 'Встав пропущене слово:', es: 'Elige la palabra que falta:' })}
+          {triLang(lang, {
+            ru: 'Вставь пропущенное слово:',
+            uk: 'Встав пропущене слово:',
+            es: 'Elige la palabra que falta:',
+            'pt-BR': 'Escolha a palavra que falta:',
+            vi: 'Chọn từ còn thiếu:',
+            id: 'Pilih kata yang hilang:',
+            tr: 'Eksik kelimeyi seç:',
+            pl: 'Wybierz brakujące słowo:',
+          })}
         </Text>
         <Text style={[styles.translationMain, { color: t.textPrimary, fontSize: f.bodyLg }]}>
           {phraseWithGap}
@@ -301,6 +339,7 @@ export default function TrainerPhrasesSession() {
     const card = deck[current];
     if (!card) return;
 
+    const nextCorrect = correct + (answeredCorrectly ? 1 : 0);
     const nextWrong = wrong + (answeredCorrectly ? 0 : 1);
     if (answeredCorrectly) setCorrect(c => c + 1);
     else setWrong(c => c + 1);
@@ -314,17 +353,24 @@ export default function TrainerPhrasesSession() {
     if (answeredCorrectly) {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_phrases', increment: 1 });
+      checkAchievements({ type: 'trainer_correct', correct: 1 }).catch(() => {});
     }
 
     const next = current + 1;
     if (next >= deck.length) {
       if (deck.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
+      checkAchievements({
+        type: 'trainer_session_result',
+        correct: nextCorrect,
+        wrong: nextWrong,
+        total: deck.length,
+      }).catch(() => {});
       setDone(true);
     } else {
       setCurrent(next);
     }
     if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
-  }, [deck, current, wrong]);
+  }, [deck, current, correct, wrong]);
 
   if (!accessReady || loading) {
     return (
@@ -358,8 +404,26 @@ export default function TrainerPhrasesSession() {
 
   const card = deck[current];
   const modeLabel = card?.mode === 'fill_gap'
-    ? triLang(lang, { ru: 'Вставь слово', uk: 'Встав слово', es: 'Completa' })
-    : triLang(lang, { ru: 'Составь фразу', uk: 'Склади фразу', es: 'Forma la frase' });
+    ? triLang(lang, {
+      ru: 'Вставь слово',
+      uk: 'Встав слово',
+      es: 'Completa',
+      'pt-BR': 'Complete',
+      vi: 'Điền từ',
+      id: 'Lengkapi',
+      tr: 'Tamamla',
+      pl: 'Uzupełnij',
+    })
+    : triLang(lang, {
+      ru: 'Составь фразу',
+      uk: 'Склади фразу',
+      es: 'Forma la frase',
+      'pt-BR': 'Monte a frase',
+      vi: 'Sắp xếp câu',
+      id: 'Susun frasa',
+      tr: 'Cümleyi kur',
+      pl: 'Ułóż frazę',
+    });
 
   return (
     <ScreenGradient>
@@ -371,7 +435,16 @@ export default function TrainerPhrasesSession() {
               <Ionicons name="chevron-back" size={28} color={sx.primary} />
             </TouchableOpacity>
             <Text style={[styles.headerTitle, { color: sx.primary, fontSize: f.body }]}>
-              {triLang(lang, { ru: 'Фразы', uk: 'Фрази', es: 'Frases' })}
+              {triLang(lang, {
+                ru: 'Фразы',
+                uk: 'Фрази',
+                es: 'Frases',
+                'pt-BR': 'Frases',
+                vi: 'Cụm từ',
+                id: 'Frasa',
+                tr: 'İfadeler',
+                pl: 'Frazy',
+              })}
             </Text>
             <Text style={{ color: sx.muted, fontSize: f.caption }}>
               {current + 1} / {deck.length}

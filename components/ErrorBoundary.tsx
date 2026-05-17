@@ -19,11 +19,13 @@ import {
   Text,
   View,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface State {
   hasError: boolean;
   error: Error | null;
   errorInfo: React.ErrorInfo | null;
+  lang: 'ru' | 'uk' | 'es';
 }
 
 interface Props {
@@ -43,6 +45,12 @@ const TEXTS = {
     retry: 'Спробувати знову',
     debugTitle: 'Технічні деталі:',
   },
+  es: {
+    title: 'Algo salió mal',
+    body: 'La app encontró un error inesperado. Ya enviamos el informe automáticamente. Intenta continuar o reinicia Phraseman.',
+    retry: 'Intentar de nuevo',
+    debugTitle: 'Detalles técnicos:',
+  },
 } as const;
 
 function getLang(): 'ru' | 'uk' {
@@ -61,6 +69,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
     hasError: false,
     error: null,
     errorInfo: null,
+    lang: 'ru',
   };
 
   static getDerivedStateFromError(error: Error): Partial<State> {
@@ -92,6 +101,11 @@ export default class ErrorBoundary extends React.Component<Props, State> {
   };
 
   componentDidMount() {
+    AsyncStorage.getItem('app_lang').then(v => {
+      if (v === 'ru' || v === 'uk' || v === 'es') {
+        this.setState({ lang: v });
+      }
+    }).catch(() => {});
     this.appStateSub = AppState.addEventListener('change', (state) => {
       if (state === 'active' && this.state.hasError) {
         this.setState({ hasError: false, error: null, errorInfo: null });
@@ -108,7 +122,7 @@ export default class ErrorBoundary extends React.Component<Props, State> {
   render() {
     if (!this.state.hasError) return this.props.children;
 
-    const tx = TEXTS[getLang()];
+    const tx = TEXTS[this.state.lang];
     const showStack = __DEV__ && this.state.error;
 
     return (

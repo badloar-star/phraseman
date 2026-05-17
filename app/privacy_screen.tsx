@@ -48,6 +48,11 @@ export default function PrivacyScreen() {
             ru: 'Открыть политику на сайте Knowly',
             uk: 'Відкрити політику на сайті Knowly',
             es: 'Abrir la política en knowlyapps.com',
+            'pt-BR': 'Abrir a política em knowlyapps.com',
+            vi: 'Mở chính sách trên knowlyapps.com',
+            id: 'Buka kebijakan di knowlyapps.com',
+            tr: 'Politikayı knowlyapps.com üzerinde aç',
+            pl: 'Otwórz politykę na knowlyapps.com',
           })}
         >
           <Ionicons name="open-outline" size={24} color={t.textSecond} />

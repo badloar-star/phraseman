@@ -7,6 +7,7 @@ import {
   JESSE_REWORKED_MARKER,
   PERSONAL_TRAINING_TAXONOMY,
 } from '../app/personal_training_taxonomy';
+import { getPersonalTrainingSummarySourceLocales } from '../app/personal_training_source_locales';
 
 const root = process.cwd();
 const outputPath = path.join(root, 'admin', 'personal-trainings.js');
@@ -15,6 +16,7 @@ const trainings = getAllDiagnosisTrainings()
   .map((training) => {
     const taxonomy = getPersonalTrainingTaxonomyEntry(training.id);
     const jesseStatus = taxonomy?.jesseStatus ?? 'legacy_needs_rework';
+    const sourceLocales = getPersonalTrainingSummarySourceLocales(training.id);
     return {
       id: training.id,
       category: training.category,
@@ -23,11 +25,20 @@ const trainings = getAllDiagnosisTrainings()
       needsJesseRework: jesseStatus !== 'reworked',
       jesseMarker: taxonomy?.jesseMarker ?? null,
       qaStatus: taxonomy?.qaStatus ?? 'PENDING',
+      cefrLevel: taxonomy?.cefrLevel ?? null,
+      prerequisites: taxonomy?.prerequisites ?? [],
+      placementRisk: taxonomy?.placementRisk ?? null,
       appPath: taxonomy?.appPath ?? `app/diagnosis_training_${training.id}.ts`,
       sourceDraft: taxonomy?.sourceDraft ?? null,
       qaReport: taxonomy?.qaReport ?? null,
-      title: training.title,
-      shortDiagnosis: training.shortDiagnosis,
+      title: {
+        ...training.title,
+        ...Object.fromEntries(Object.entries(sourceLocales).map(([locale, copy]) => [locale, copy.title])),
+      },
+      shortDiagnosis: {
+        ...training.shortDiagnosis,
+        ...Object.fromEntries(Object.entries(sourceLocales).map(([locale, copy]) => [locale, copy.shortDiagnosis])),
+      },
       stepCount: training.steps.length,
       contrastSet: training.contrastSet,
       registryPath: 'app/diagnosis_trainings.ts',

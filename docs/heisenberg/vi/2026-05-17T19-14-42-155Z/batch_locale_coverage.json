@@ -1,0 +1,701 @@
+{
+  "mode": "batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 11925,
+    "expectedUnits": 1684,
+    "completeUnits": 2385,
+    "partialUnits": 0,
+    "missingAllLocaleUnits": 51,
+    "partialFiles": 0,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 51,
+      "vi": 51,
+      "id": 51,
+      "tr": 51,
+      "pl": 51
+    }
+  },
+  "partialFiles": [],
+  "partialUnits": [],
+  "missingAllLocaleUnits": [
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.break.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.bring.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.build.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.buy.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.choose.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.come.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.cost.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.drink.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.drive.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.eat.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.fall.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.feel.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.find.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.forget.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.get.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.give.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.go.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.have.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.hear.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.hit.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.hurt.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.keep.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.know.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.leave.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.let.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.lose.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.make.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.meet.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.pay.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.put.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.read.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.ring.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.run.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.say.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.see.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.sell.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.send.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.shake.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.sing.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.sit.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.sleep.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.speak.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.stand.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.strike.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.take.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.tell.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.think.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.understand.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.wake.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.wear.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    },
+    {
+      "file": "app/irregular_verbs_data.ts",
+      "surface": "lessons",
+      "keyPath": "IRREGULAR_VERB_SOURCE_LOCALES.write.<locale>",
+      "present": [],
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ]
+    }
+  ],
+  "truncated": false
+}

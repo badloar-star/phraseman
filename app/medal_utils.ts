@@ -88,14 +88,28 @@ export const getNextMedalHint = (score: number, lang: Lang): string | null => {
 
 // ─── AsyncStorage helpers ─────────────────────────────────────────────────────
 
+const parseStoredScore = (raw: unknown): number => {
+  const n = parseFloat(String(raw ?? '0'));
+  return Number.isFinite(n) ? n : 0;
+};
+
+const parseStoredPassCount = (raw: unknown): number => {
+  const n = parseInt(String(raw ?? '0'), 10);
+  return Number.isFinite(n) && n > 0 ? n : 0;
+};
+
+export const normalizeLessonPassCount = (storedPassCount: number, bestScore: number): number =>
+  Math.max(storedPassCount, bestScore >= 4.5 ? 1 : 0);
+
 export const loadMedalInfo = async (lessonId: number): Promise<MedalInfo> => {
   try {
     const [scoreRaw, passRaw] = await AsyncStorage.multiGet([
       `lesson${lessonId}_best_score`,
       `lesson${lessonId}_pass_count`,
     ]);
-    const bestScore = parseFloat(scoreRaw[1] ?? '0') || 0;
-    const passCount = parseInt(passRaw[1]   ?? '0') || 0;
+    const bestScore = parseStoredScore(scoreRaw[1]);
+    const storedPassCount = parseStoredPassCount(passRaw[1]);
+    const passCount = normalizeLessonPassCount(storedPassCount, bestScore);
     return { tier: getMedalTier(bestScore), bestScore, passCount };
   } catch {
     return { tier: 'none', bestScore: 0, passCount: 0 };
@@ -107,35 +121,67 @@ export const saveMedalProgress = async (
   lessonId: number,
   currentScore: number,
   progressArr: string[],
-): Promise<{ newTier: MedalTier; prevTier: MedalTier; isNewBest: boolean }> => {
+): Promise<{
+  newTier: MedalTier;
+  prevTier: MedalTier;
+  isNewBest: boolean;
+  prevPassCount: number;
+  newPassCount: number;
+  passCountIncreased: boolean;
+}> => {
   try {
+    const progressTotal = Array.isArray(progressArr) && progressArr.length > 0
+      ? Math.min(progressArr.length, 50)
+      : 50;
+    const progressCorrect = Array.isArray(progressArr)
+      ? progressArr.filter(x => x === 'correct' || x === 'replay_correct').length
+      : 0;
+    const scoreForPass = Number.isFinite(currentScore)
+      ? currentScore
+      : parseFloat(((Math.min(progressCorrect, progressTotal) / progressTotal) * 5).toFixed(1));
     const [scoreRaw, passRaw] = await AsyncStorage.multiGet([
       `lesson${lessonId}_best_score`,
       `lesson${lessonId}_pass_count`,
     ]);
-    const prevBest  = parseFloat(scoreRaw[1] ?? '0') || 0;
-    const prevPass  = parseInt(passRaw[1]    ?? '0') || 0;
+    const prevBest  = parseStoredScore(scoreRaw[1]);
+    const storedPrevPass = parseStoredPassCount(passRaw[1]);
+    const prevPass  = normalizeLessonPassCount(storedPrevPass, prevBest);
     const prevTier  = getMedalTier(prevBest);
 
-    const isNewBest = currentScore > prevBest;
-    const newBest   = isNewBest ? currentScore : prevBest;
+    const isNewBest = scoreForPass > prevBest;
+    const newBest   = isNewBest ? scoreForPass : prevBest;
     const newPass   = prevPass + 1;
     const newTier   = getMedalTier(newBest);
 
-    // Save best score for lesson medal/unlock state. Count a pass only for strong 45+/50 runs.
-    const correct = progressArr.filter(x => x === 'correct' || x === 'replay_correct').length;
+    // Save best score for lesson medal/unlock state. Count a pass for strong silver+ runs.
+    const passCountIncreased = scoreForPass >= 4.5;
     const writes: [string, string][] = [
       [`lesson${lessonId}_best_score`, String(newBest)],
     ];
-    if (correct >= 45) {
+    if (passCountIncreased) {
       writes.push([`lesson${lessonId}_pass_count`, String(newPass)]);
     }
     await AsyncStorage.multiSet(writes);
     invalidateMedalsCache();
 
-    return { newTier, prevTier, isNewBest };
+    return {
+      newTier,
+      prevTier,
+      isNewBest,
+      prevPassCount: prevPass,
+      newPassCount: passCountIncreased ? newPass : prevPass,
+      passCountIncreased,
+    };
   } catch {
-    return { newTier: getMedalTier(currentScore), prevTier: 'none', isNewBest: true };
+    const tier = getMedalTier(currentScore);
+    return {
+      newTier: tier,
+      prevTier: 'none',
+      isNewBest: true,
+      prevPassCount: 0,
+      newPassCount: currentScore >= 4.5 ? 1 : 0,
+      passCountIncreased: currentScore >= 4.5,
+    };
   }
 };
 
@@ -180,9 +226,19 @@ export const checkGemAchievements = async (
       if (lessonId < from || lessonId > to) continue;
 
       // Читаем pass_count всех уроков этого уровня
-      const keys = Array.from({ length: to - from + 1 }, (_, i) => `lesson${from + i}_pass_count`);
+      const lessonIds = Array.from({ length: to - from + 1 }, (_, i) => from + i);
+      const keys = lessonIds.flatMap(id => [
+        `lesson${id}_pass_count`,
+        `lesson${id}_best_score`,
+      ]);
       const pairs = await AsyncStorage.multiGet(keys);
-      const passCounts = pairs.map(([, v]) => parseInt(v ?? '0') || 0);
+      const map = Object.fromEntries(pairs);
+      const passCounts = lessonIds.map(id =>
+        normalizeLessonPassCount(
+          parseStoredPassCount(map[`lesson${id}_pass_count`]),
+          parseStoredScore(map[`lesson${id}_best_score`]),
+        ),
+      );
       const minPasses = Math.min(...passCounts);
 
       if (minPasses >= 2) results.push({ level: lvl, gem: 'ruby' });

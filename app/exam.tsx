@@ -166,7 +166,7 @@ const EXAM_POOL: ExamQuestion[] = [
   // ── LESSON 10: Modal verbs ────────────────────────────────────────────────
   {lessonNum:10, topic:'Модальные глаголы',    topicUK:'Модальні дієслова',       q:'You ___ speak louder.',             opts:['can','could','should','must'],                                                     correct:2},
   {lessonNum:10, topic:'Модальные глаголы',    topicUK:'Модальні дієслова',       q:'She ___ swim very well.',           opts:['can','should','must','shall'],                                                     correct:0},
-  {lessonNum:10, topic:'Модальные глаголы',    topicUK:'Модальні дієслова',       q:'You ___ not park here.',            opts:['must','can','could','should'],                                                     correct:0},
+  {lessonNum:10, topic:'Модальные глаголы',    topicUK:'Модальні дієслова',       q:'No parking. You ___ park here.',   opts:["mustn't",'can','could','should'],                                                  correct:0},
   {lessonNum:10, topic:'Модальные глаголы',    topicUK:'Модальні дієслова',       q:'Which sentence is correct?',        opts:['She can to swim.','You should to stop.','He must to go.','She can swim.'],        correct:3, type:'choice4'},
   {lessonNum:10, topic:'Модальные глаголы',    topicUK:'Модальні дієслова',       q:'Correct: You [must to] leave now.', opts:['must','must to','should to','can to'],                                            correct:0, type:'error'},
   // ── LESSON 11: Past Simple regular ───────────────────────────────────────
@@ -360,7 +360,16 @@ export default function ExamScreen() {
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const {lang} = useLang();
   const insets = useSafeAreaInsets();
-  const t3 = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
+  const t3 = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const { isUnlimited, spendAmount, energy, bonusEnergy } = useEnergy();
   const [noEnergy, setNoEnergy] = useState(false);
   const certificateSvgRef = useRef<InstanceType<typeof Svg> | null>(null);
@@ -658,19 +667,24 @@ export default function ExamScreen() {
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
-          {t3('Экзамен', 'Іспит', 'Examen')}
+          {t3('Экзамен', 'Іспит', 'Examen', 'Exame', 'Bài kiểm tra', 'Ujian', 'Sınav', 'Egzamin')}
         </Text>
       </View>
       <View style={{flex:1,justifyContent:'center',alignItems:'center',padding:30}}>
         <ProgressRing progress={lessonsCompleted/32} size={90} color={t.correct} bg={t.border}/>
         <Text style={{color:sx.primary,fontSize:f.h1,fontWeight:'700',textAlign:'center',marginTop:24,marginBottom:12}}>
-          {t3('Экзамен недоступен', 'Іспит недоступний', 'Examen no disponible')}
+          {t3('Экзамен недоступен', 'Іспит недоступний', 'Examen no disponible', 'Exame indisponível', 'Bài kiểm tra chưa khả dụng', 'Ujian belum tersedia', 'Sınav kullanılamıyor', 'Egzamin niedostępny')}
         </Text>
         <Text style={{color:sx.muted,fontSize:f.body,textAlign:'center',lineHeight:24}}>
           {t3(
             'Пройди все 32 урока с оценкой 5.0 и сдай все 4 зачёта, чтобы открыть финальный тест Phraseman.',
             'Пройди всі 32 уроки з оцінкою 5.0 та склади всі 4 заліки, щоб відкрити фінальний тест Phraseman.',
             'Completa las 32 lecciones con nota 5,0 y supera los 4 exágenes de nivel para desbloquear el examen final de Phraseman.',
+            'Complete as 32 lições com nota 5,0 e passe nos 4 testes de nível para desbloquear o exame final do Phraseman.',
+            'Hoàn thành tất cả 32 bài học với điểm 5,0 và vượt qua 4 bài kiểm tra cấp độ để mở bài kiểm tra cuối của Phraseman.',
+            'Selesaikan semua 32 pelajaran dengan nilai 5,0 dan lulus 4 tes level untuk membuka ujian akhir Phraseman.',
+            'Phraseman final sınavını açmak için 32 dersin tamamını 5,0 puanla bitir ve 4 seviye testini geç.',
+            'Ukończ wszystkie 32 lekcje z oceną 5,0 i zdaj 4 testy poziomujące, aby odblokować egzamin końcowy Phraseman.',
           )}
         </Text>
         <View style={{backgroundColor:t.bgCard,borderRadius:16,padding:16,borderWidth:0.5,borderColor:t.border,width:'100%',marginTop:28}}>
@@ -678,12 +692,12 @@ export default function ExamScreen() {
             <View style={{height:'100%',width:`${lessonsCompleted/32*100}%` as any,backgroundColor:t.textSecond,borderRadius:4}}/>
           </View>
           <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:8,textAlign:'center'}}>
-            {lessonsCompleted} {t3('из 32 уроков завершено', 'з 32 уроків завершено', 'de 32 lecciones completadas')}
+            {lessonsCompleted} {t3('из 32 уроков завершено', 'з 32 уроків завершено', 'de 32 lecciones completadas', 'de 32 lições concluídas', 'trong 32 bài học đã hoàn thành', 'dari 32 pelajaran selesai', '/ 32 ders tamamlandı', 'z 32 lekcji ukończono')}
           </Text>
         </View>
         <TouchableOpacity style={{marginTop:24}} onPress={()=>router.replace('/(tabs)/' as any)}>
           <Text style={{color:sx.second,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
-            {t3('Перейти к урокам →', 'Перейти до уроків →', 'Ir a las lecciones →')}
+            {t3('Перейти к урокам →', 'Перейти до уроків →', 'Ir a las lecciones →', 'Ir para as lições →', 'Đi tới bài học →', 'Ke pelajaran →', 'Derslere git →', 'Przejdź do lekcji →')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -703,7 +717,7 @@ export default function ExamScreen() {
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
-          {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso')}
+          {t3('Итоговый тест курса', 'Підсумковий тест курсу', 'Examen integrador del curso', 'Teste final do curso', 'Bài kiểm tra tổng kết khóa học', 'Tes akhir kursus', 'Kurs final sınavı', 'Test końcowy kursu')}
         </Text>
       </View>
       <ScrollView contentContainerStyle={{padding:20}}>
@@ -715,6 +729,11 @@ export default function ExamScreen() {
                 `Текущий результат: ${certificate.pct}%. Новый пересчёт — только при ≥ 80% (награда в приложении).`,
                 `Поточний результат: ${certificate.pct}%. Новий перерахунок — лише за ≥ 80% (нагорода в застосунку).`,
                 `Resultado actual: ${certificate.pct} %. Solo se actualizará el diploma en la app si sacas ≥ 80 %.`,
+                `Resultado atual: ${certificate.pct}%. A premiação no app só será atualizada com ≥ 80%.`,
+                `Kết quả hiện tại: ${certificate.pct}%. Phần thưởng trong ứng dụng chỉ cập nhật khi đạt ≥ 80%.`,
+                `Hasil saat ini: ${certificate.pct}%. Penghargaan di aplikasi hanya diperbarui jika nilainya ≥ 80%.`,
+                `Mevcut sonuç: ${certificate.pct}%. Uygulamadaki ödül yalnızca ≥ 80% olursa güncellenir.`,
+                `Aktualny wynik: ${certificate.pct}%. Nagroda w aplikacji zaktualizuje się tylko przy wyniku ≥ 80%.`,
               )}
             </Text>
           </View>
@@ -724,42 +743,62 @@ export default function ExamScreen() {
             <Ionicons name="ribbon-outline" size={40} color={t.textSecond}/>
           </View>
           <Text style={{color:sx.primary,fontSize:f.numMd+6,fontWeight:'700',textAlign:'center'}}>
-            {t3('Что будет на экзамене', 'Що буде на іспиті', 'Qué incluye el examen')}
+            {t3('Что будет на экзамене', 'Що буде на іспиті', 'Qué incluye el examen', 'O que cai no exame', 'Bài kiểm tra gồm những gì', 'Isi ujian', 'Sınavda neler var', 'Co obejmuje egzamin')}
           </Text>
           <Text style={{color:sx.muted,fontSize:f.body,textAlign:'center',marginTop:8,lineHeight:22}}>
             {t3(
               '50 заданий: грамматика и лексика по темам уроков; оценка только в приложении (не DELE/SIELE).',
               '50 завдань: граматика й лексика за темами уроків; оцінка лише в застосунку (не DELE/SIELE).',
               '50 tareas: gramática y léxico según las lecciones; resultado orientativo en la app (no es DELE/SIELE).',
+              '50 tarefas: gramática e vocabulário dos temas das lições; resultado apenas no app (não é DELE/SIELE).',
+              '50 câu hỏi: ngữ pháp và từ vựng theo chủ đề bài học; điểm chỉ dùng trong ứng dụng (không phải DELE/SIELE).',
+              '50 soal: tata bahasa dan kosakata dari topik pelajaran; nilai hanya di aplikasi (bukan DELE/SIELE).',
+              '50 soru: ders konularına göre gramer ve kelime; sonuç sadece uygulama içindir (DELE/SIELE değildir).',
+              '50 zadań: gramatyka i słownictwo z tematów lekcji; wynik tylko w aplikacji (to nie DELE/SIELE).',
             )}
           </Text>
         </View>
         {[
-          { icon: 'timer-outline', ru: '60 минут на весь блок', uk: '60 хвилин на весь блок', es: '60 minutos para todo el bloque' },
+          { icon: 'timer-outline', ru: '60 минут на весь блок', uk: '60 хвилин на весь блок', es: '60 minutos para todo el bloque', ptBr: '60 minutos para todo o bloco', vi: '60 phút cho toàn bộ phần', id: '60 menit untuk seluruh blok', tr: 'Tüm blok için 60 dakika', pl: '60 minut na cały blok' },
           {
             icon: 'bookmark-outline',
             ru: 'Можно помечать и пропускать вопросы, затем вернуться, если есть время',
             uk: 'Можна позначати й пропускати питання, потім повернутися, якщо є час',
             es: 'Puedes marcar y saltar preguntas y volver si te da tiempo',
+            ptBr: 'Você pode marcar e pular perguntas e voltar se der tempo',
+            vi: 'Bạn có thể đánh dấu, bỏ qua câu hỏi rồi quay lại nếu còn thời gian',
+            id: 'Kamu bisa menandai dan melewati soal, lalu kembali jika masih ada waktu',
+            tr: 'Soruları işaretleyip atlayabilir, zaman kalırsa geri dönebilirsin',
+            pl: 'Możesz oznaczać i pomijać pytania, a potem wrócić, jeśli starczy czasu',
           },
           {
             icon: 'ribbon-outline',
             ru: 'Награда уровня B2 в приложении при успешной сдаче',
             uk: 'Нагорода рівня B2 у застосунку при успішній здачі',
             es: 'Insignia nivel B2 en la app al completar con éxito',
+            ptBr: 'Insígnia nível B2 no app ao concluir com sucesso',
+            vi: 'Huy hiệu cấp B2 trong ứng dụng khi hoàn thành thành công',
+            id: 'Badge level B2 di aplikasi setelah berhasil selesai',
+            tr: 'Başarıyla tamamlarsan uygulamada B2 seviyesi rozeti',
+            pl: 'Odznaka poziomu B2 w aplikacji po zdaniu testu',
             sub: true as const,
           },
         ].map((item,i)=>(
           <View key={i} style={{flexDirection:'row',alignItems:'flex-start',gap:12,marginBottom:12,backgroundColor:t.bgCard,padding:14,borderRadius:14,borderWidth:0.5,borderColor:t.border}}>
             <Ionicons name={item.icon as any} size={22} color={t.textSecond} style={{marginTop:1}}/>
             <View style={{flex:1}}>
-              <Text style={{color:t.textPrimary,fontSize:f.body,flex:1}}>{t3(item.ru, item.uk, item.es)}</Text>
+              <Text style={{color:t.textPrimary,fontSize:f.body,flex:1}}>{t3(item.ru, item.uk, item.es, item.ptBr, item.vi, item.id, item.tr, item.pl)}</Text>
               {'sub' in item && item.sub && (
                 <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:3}}>
                   {t3(
                     'диплом в приложении при результате ≥ 80%',
                     'диплом у застосунку за результатом ≥ 80%',
                     'diploma en la app con resultado ≥ 80 %',
+                    'diploma no app com resultado ≥ 80%',
+                    'chứng chỉ trong ứng dụng khi đạt ≥ 80%',
+                    'diploma di aplikasi dengan hasil ≥ 80%',
+                    '≥ 80% sonuçla uygulamada diploma',
+                    'dyplom w aplikacji przy wyniku ≥ 80%',
                   )}
                 </Text>
               )}
@@ -772,7 +811,7 @@ export default function ExamScreen() {
           activeOpacity={0.85}
         >
           <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700'}}>
-            {t3('Начать тест', 'Почати тест', 'Empezar')}
+            {t3('Начать тест', 'Почати тест', 'Empezar', 'Começar', 'Bắt đầu', 'Mulai', 'Başla', 'Rozpocznij')}
           </Text>
         </TouchableOpacity>
         {!isUnlimited && (
@@ -781,6 +820,11 @@ export default function ExamScreen() {
               `${LINGMAN_EXAM_ENERGY} ⚡ списываются за один старт · Premium — без лимита`,
               `${LINGMAN_EXAM_ENERGY} ⚡ знімаються за один старт · Premium — без ліміту`,
               `${LINGMAN_EXAM_ENERGY} ⚡ se descuentan al empezar · Premium — sin límite`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ são descontados ao começar · Premium sem limite`,
+              `Bắt đầu sẽ trừ ${LINGMAN_EXAM_ENERGY} ⚡ · Premium không giới hạn`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ dipakai saat mulai · Premium tanpa batas`,
+              `Başlangıçta ${LINGMAN_EXAM_ENERGY} ⚡ düşülür · Premium sınırsız`,
+              `${LINGMAN_EXAM_ENERGY} ⚡ pobierane przy starcie · Premium bez limitu`,
             )}
           </Text>
         )}
@@ -789,6 +833,11 @@ export default function ExamScreen() {
             'После начала таймер не останавливается',
             'Після початку таймер не зупиняється',
             'Cuando empiezas, el temporizador no se detiene',
+            'Depois de começar, o cronômetro não para',
+            'Sau khi bắt đầu, đồng hồ sẽ không dừng',
+            'Setelah mulai, timer tidak berhenti',
+            'Başladıktan sonra süre durmaz',
+            'Po rozpoczęciu licznik się nie zatrzymuje',
           )}
         </Text>
         <TouchableOpacity
@@ -796,7 +845,7 @@ export default function ExamScreen() {
           style={{ marginTop: 8, alignSelf: 'center', paddingHorizontal: 12, paddingVertical: 8 }}
         >
           <Text style={{ color: sx.second, fontSize: f.sub, textDecorationLine: 'underline' }}>
-            {t3('На главную', 'На головну', 'Volver al inicio')}
+            {t3('На главную', 'На головну', 'Volver al inicio', 'Voltar ao início', 'Về trang chủ', 'Kembali ke beranda', 'Ana sayfaya dön', 'Wróć na stronę główną')}
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -819,7 +868,7 @@ export default function ExamScreen() {
           <Ionicons name="chevron-back" size={24} color={t.textPrimary}/>
         </TouchableOpacity>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8,flex:1}}>
-          {t3('Проверка ответов', 'Перевірка відповідей', 'Revisión de respuestas')}
+          {t3('Проверка ответов', 'Перевірка відповідей', 'Revisión de respuestas', 'Revisão das respostas', 'Kiểm tra câu trả lời', 'Tinjau jawaban', 'Cevapları kontrol et', 'Sprawdzenie odpowiedzi')}
         </Text>
         <Text style={{color:isLowTime?t.wrong:t.textSecond,fontSize:f.body,fontWeight:'600'}}>
           {formatTime(totalTimeLeft)}
@@ -830,19 +879,19 @@ export default function ExamScreen() {
         <View style={{flexDirection:'row',alignItems:'center',gap:4,flexShrink:1}}>
           <View style={{width:10,height:10,borderRadius:5,backgroundColor:t.correct,flexShrink:0}}/>
           <Text style={{color:sx.second,fontSize:f.sub}} numberOfLines={1}>
-            {answered} {t3('отв.', 'відп.', 'resp.')}
+            {answered} {t3('отв.', 'відп.', 'resp.', 'resp.', 'đã trả lời', 'jawab', 'cevap', 'odp.')}
           </Text>
         </View>
         <View style={{flexDirection:'row',alignItems:'center',gap:4,flexShrink:1}}>
           <View style={{width:10,height:10,borderRadius:5,backgroundColor:t.wrong,flexShrink:0}}/>
           <Text style={{color:sx.second,fontSize:f.sub}} numberOfLines={1}>
-            {questions.length-answered} {t3('без отв.', 'без відп.', 'sin resp.')}
+            {questions.length-answered} {t3('без отв.', 'без відп.', 'sin resp.', 'sem resp.', 'chưa trả lời', 'tanpa jawaban', 'cevapsız', 'bez odp.')}
           </Text>
         </View>
         <View style={{flexDirection:'row',alignItems:'center',gap:4,flexShrink:1}}>
           <Ionicons name="bookmark" size={12} color="#D4A017"/>
           <Text style={{color:sx.second,fontSize:f.sub}} numberOfLines={1}>
-            {flagged.filter(Boolean).length} {t3('помеч.', 'позн.', 'marc.')}
+            {flagged.filter(Boolean).length} {t3('помеч.', 'позн.', 'marc.', 'marc.', 'đã đánh dấu', 'ditandai', 'işaretli', 'ozn.')}
           </Text>
         </View>
       </View>
@@ -871,7 +920,7 @@ export default function ExamScreen() {
                 <Text style={{color:isAnswered?'#D4A017':t.wrong,fontSize:f.label,fontWeight:'700'}}>{i+1}</Text>
               </View>
               <View style={{flex:1}}>
-                <Text style={{color:t.textMuted,fontSize:f.label}}>{t3('Урок', 'Урок', 'Lección')} {qItem.lessonNum}</Text>
+                <Text style={{color:t.textMuted,fontSize:f.label}}>{t3('Урок', 'Урок', 'Lección', 'Lição', 'Bài học', 'Pelajaran', 'Ders', 'Lekcja')} {qItem.lessonNum}</Text>
                 <Text style={{color:t.textPrimary,fontSize:f.sub,fontWeight:'500'}} numberOfLines={1}>{examTopicForLang(qItem, lang)}</Text>
               </View>
               <View style={{flexDirection:'row',alignItems:'center',gap:6}}>
@@ -897,6 +946,11 @@ export default function ExamScreen() {
               `⚠️ ${questions.length - answered} вопросов без ответа`,
               `⚠️ ${questions.length - answered} питань без відповіді`,
               `⚠️ ${questions.length - answered} preguntas sin respuesta`,
+              `⚠️ ${questions.length - answered} perguntas sem resposta`,
+              `⚠️ ${questions.length - answered} câu hỏi chưa trả lời`,
+              `⚠️ ${questions.length - answered} soal belum dijawab`,
+              `⚠️ ${questions.length - answered} soru cevapsız`,
+              `⚠️ ${questions.length - answered} pytań bez odpowiedzi`,
             )}
           </Text>
         )}
@@ -906,7 +960,7 @@ export default function ExamScreen() {
           activeOpacity={0.85}
         >
           <Text style={{color:t.textPrimary,fontSize:f.h2,fontWeight:'700'}}>
-            {t3('Сдать экзамен', 'Здати іспит', 'Entregar el examen')}
+            {t3('Сдать экзамен', 'Здати іспит', 'Entregar el examen', 'Enviar o exame', 'Nộp bài kiểm tra', 'Kumpulkan ujian', 'Sınavı gönder', 'Oddaj egzamin')}
           </Text>
         </TouchableOpacity>
       </View>
@@ -923,7 +977,7 @@ export default function ExamScreen() {
         <SafeAreaView style={{ flex: 1 }}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 }}>
             <Text style={{ color: sx.muted, fontSize: f.bodyLg, fontWeight: '600', marginBottom: 18 }}>
-              {t3('Приготовься', 'Приготуйся', 'Prepárate')}
+              {t3('Приготовься', 'Приготуйся', 'Prepárate', 'Prepare-se', 'Chuẩn bị', 'Bersiap', 'Hazırlan', 'Przygotuj się')}
             </Text>
             <Animated.Text
               style={{
@@ -936,7 +990,7 @@ export default function ExamScreen() {
               {countdownNum}
             </Animated.Text>
             <Text style={{ color: sx.second, fontSize: f.sub, marginTop: 18 }}>
-              {t3('Старт экзамена...', 'Старт іспиту...', 'Comienza el examen...')}
+              {t3('Старт экзамена...', 'Старт іспиту...', 'Comienza el examen...', 'Começando o exame...', 'Bắt đầu bài kiểm tra...', 'Ujian dimulai...', 'Sınav başlıyor...', 'Egzamin startuje...')}
             </Text>
           </View>
         </SafeAreaView>
@@ -975,7 +1029,7 @@ export default function ExamScreen() {
           <Ionicons name="ribbon" size={44} color={t.textSecond}/>
         </View>
         <Text style={{color:sx.primary,fontSize:f.numLg,fontWeight:'700',marginBottom:8}}>
-          {t3('Блок завершён', 'Блок завершено', 'Bloque terminado')}
+          {t3('Блок завершён', 'Блок завершено', 'Bloque terminado', 'Bloco concluído', 'Đã hoàn thành phần này', 'Blok selesai', 'Blok tamamlandı', 'Blok ukończony')}
         </Text>
         <Text style={{color:sx.muted,fontSize:f.body,textAlign:'center',lineHeight:22,marginBottom:8,paddingHorizontal:8}}>
           {pct >= 80
@@ -983,17 +1037,32 @@ export default function ExamScreen() {
                 'Сильный результат по темам курса — закрепляй слабые места в уроках.',
                 'Сильний результат за темами курсу — закріплюй слабкі місця в уроках.',
                 'Buen resultado por temas: refuerza con lecciones donde fallaste.',
+                'Resultado forte nos temas do curso — reforce os pontos fracos nas lições.',
+                'Kết quả tốt theo các chủ đề khóa học — hãy củng cố điểm yếu trong bài học.',
+                'Hasil kuat untuk topik kursus — perkuat bagian yang masih lemah di pelajaran.',
+                'Kurs konularında güçlü sonuç — zayıf noktaları derslerde pekiştir.',
+                'Mocny wynik z tematów kursu — utrwal słabsze miejsca w lekcjach.',
               )
             : pct >= 50
               ? t3(
                   'Средний балл — нормальная точка роста; вернись к «Теории» и «Словарю».',
                   'Середній бал — звичайна точка росту; повернись до «Теорії» й «Словника».',
                   'Resultado intermedio: repasa «Teoría» y «Vocabulario» en los temas marcados.',
+                  'Resultado intermediário: revise “Teoria” e “Vocabulário” nos temas marcados.',
+                  'Điểm trung bình là điểm để tiến bộ; hãy quay lại “Lý thuyết” và “Từ vựng”.',
+                  'Nilai menengah adalah titik perkembangan; kembali ke “Teori” dan “Kosakata”.',
+                  'Orta sonuç normal bir gelişim noktasıdır; “Teori” ve “Kelime” bölümlerine dön.',
+                  'Średni wynik to normalny punkt rozwoju; wróć do „Teorii” i „Słownictwa”.',
                 )
               : t3(
                   'Низкий балл не про способности — это сигнал, какие темы разобрать заново.',
                   'Низький бал не про здібності — це сигнал, які теми розібрати знову.',
                   'Un bajo porcentaje no mide «talento»: indica temas para repasar con calma.',
+                  'Uma nota baixa não mede talento: mostra quais temas revisar com calma.',
+                  'Điểm thấp không nói lên năng lực; nó cho biết chủ đề nào cần học lại.',
+                  'Nilai rendah bukan soal kemampuan; ini sinyal topik mana yang perlu diulang.',
+                  'Düşük puan yetenek meselesi değildir; hangi konulara dönmen gerektiğini gösterir.',
+                  'Niski wynik nie mówi o zdolnościach; pokazuje, które tematy warto przerobić ponownie.',
                 )}
         </Text>
         <Text style={{color:sx.second,fontSize:f.h2,marginBottom:24}}>{score} / {questions.length} — {pct}%</Text>
@@ -1003,7 +1072,7 @@ export default function ExamScreen() {
 
         <View style={{backgroundColor:t.bgCard,borderRadius:16,padding:20,borderWidth:0.5,borderColor:t.border,width:'100%',marginBottom:16}}>
           <Text style={{color:t.textMuted,fontSize:f.caption,marginBottom:12,textAlign:'center'}}>
-            {t3('Результаты по темам', 'Результати по темах', 'Resultados por temas')}
+            {t3('Результаты по темам', 'Результати по темах', 'Resultados por temas', 'Resultados por tema', 'Kết quả theo chủ đề', 'Hasil per topik', 'Konu bazında sonuçlar', 'Wyniki według tematów')}
           </Text>
           {questions
             .map((qItem, i) => ({ qItem, i, correct: choices[i] === qItem.correct }))
@@ -1044,7 +1113,7 @@ export default function ExamScreen() {
             >
               <Ionicons name="share-outline" size={18} color="#FFD700"/>
               <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'700'}}>
-                {t3('Поделиться наградой', 'Поділитися нагородою', 'Compartir diploma')}
+                {t3('Поделиться наградой', 'Поділитися нагородою', 'Compartir diploma', 'Compartilhar diploma', 'Chia sẻ phần thưởng', 'Bagikan diploma', 'Diplomayı paylaş', 'Udostępnij dyplom')}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -1053,7 +1122,7 @@ export default function ExamScreen() {
               activeOpacity={0.7}
             >
               <Text style={{color:'#FDE68A',fontSize:f.sub,textDecorationLine:'underline'}}>
-                {t3('Изменить имя на награде', 'Змінити ім\u02BCя на нагороді', 'Cambiar nombre en el diploma')}
+                {t3('Изменить имя на награде', 'Змінити ім\u02BCя на нагороді', 'Cambiar nombre en el diploma', 'Alterar nome no diploma', 'Đổi tên trên phần thưởng', 'Ubah nama di diploma', 'Diplomadaki adı değiştir', 'Zmień imię na dyplomie')}
               </Text>
             </TouchableOpacity>
           </View>
@@ -1077,12 +1146,17 @@ export default function ExamScreen() {
                 'Укажите имя — и ваш сертификат появится здесь. Без имени награда не показывается.',
                 'Вкажіть ім\u02BCя — і ваш сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
                 'Indica tu nombre y aquí aparecerá tu certificado. Sin nombre no mostramos el diploma.',
+                'Informe o nome, e seu certificado aparecerá aqui. Sem nome, o diploma não aparece.',
+                'Nhập tên, chứng chỉ của bạn sẽ xuất hiện ở đây. Không có tên thì phần thưởng sẽ không hiển thị.',
+                'Masukkan nama, dan sertifikatmu akan muncul di sini. Tanpa nama, diploma tidak ditampilkan.',
+                'Adını yaz, sertifikan burada görünecek. İsim olmadan ödül gösterilmez.',
+                'Podaj imię, a certyfikat pojawi się tutaj. Bez imienia dyplom nie będzie pokazany.',
               )}
             </Text>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:12,paddingVertical:12,paddingHorizontal:18,borderWidth:1,borderColor:'#FFD700',width:'100%',marginTop:6}}>
               <Ionicons name="create-outline" size={18} color="#FFD700"/>
               <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'700'}}>
-                {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma')}
+                {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma', 'Informar nome no diploma', 'Nhập tên trên phần thưởng', 'Masukkan nama di diploma', 'Diplomaya isim ekle', 'Podaj imię na dyplomie')}
               </Text>
             </View>
           </TouchableOpacity>
@@ -1092,7 +1166,7 @@ export default function ExamScreen() {
           onPress={() => { void startExam(); }}
         >
           <Text style={{color:t.textPrimary,fontSize:f.bodyLg,fontWeight:'600'}}>
-            {t3('🔄 Попробовать ещё раз', '🔄 Спробувати ще раз', '🔄 Intentar otra vez')}
+            {t3('🔄 Попробовать ещё раз', '🔄 Спробувати ще раз', '🔄 Intentar otra vez', '🔄 Tentar de novo', '🔄 Thử lại', '🔄 Coba lagi', '🔄 Tekrar dene', '🔄 Spróbuj ponownie')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -1101,12 +1175,12 @@ export default function ExamScreen() {
         >
           <Ionicons name="share-outline" size={18} color={t.textSecond}/>
           <Text style={{color:t.textSecond,fontSize:f.bodyLg}}>
-            {t3('Поделиться результатом', 'Поділитися результатом', 'Compartir resultado')}
+            {t3('Поделиться результатом', 'Поділитися результатом', 'Compartir resultado', 'Compartilhar resultado', 'Chia sẻ kết quả', 'Bagikan hasil', 'Sonucu paylaş', 'Udostępnij wynik')}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={{padding:14}} onPress={()=>router.replace('/(tabs)/home' as any)}>
           <Text style={{color:t.textSecond,fontSize:f.bodyLg,textDecorationLine:'underline'}}>
-            {t3('На главную', 'На головну', 'Volver al inicio')}
+            {t3('На главную', 'На головну', 'Volver al inicio', 'Voltar ao início', 'Về trang chủ', 'Kembali ke beranda', 'Ana sayfaya dön', 'Wróć na stronę główną')}
           </Text>
         </TouchableOpacity>
       </ScrollView>
@@ -1156,7 +1230,7 @@ export default function ExamScreen() {
           <Ionicons name="chevron-back" size={28} color={sx.primary}/>
         </TouchableOpacity>
         <Text style={{color:sx.primary,fontSize:f.h2,fontWeight:'700',marginLeft:8}}>
-          {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2')}
+          {t3('Моя награда B2', 'Моя нагорода B2', 'Mi diploma B2', 'Meu diploma B2', 'Phần thưởng B2 của tôi', 'Diploma B2 saya', 'B2 diplomam', 'Mój dyplom B2')}
         </Text>
       </View>
       <ScrollView contentContainerStyle={{padding:20,alignItems:'center'}}>
@@ -1190,6 +1264,11 @@ export default function ExamScreen() {
                 `Номер сертификата: ${certificate.certId}`,
                 `Номер сертифіката: ${certificate.certId}`,
                 `Identificador del certificado: ${certificate.certId}`,
+                `Número do certificado: ${certificate.certId}`,
+                `Mã chứng chỉ: ${certificate.certId}`,
+                `Nomor sertifikat: ${certificate.certId}`,
+                `Sertifika numarası: ${certificate.certId}`,
+                `Numer certyfikatu: ${certificate.certId}`,
               )}
             >
               ID: {certificate.certId}
@@ -1202,7 +1281,7 @@ export default function ExamScreen() {
             >
               <Ionicons name="share-outline" size={20} color="#FFD700"/>
               <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800',letterSpacing:0.4}}>
-                {t3('Поделиться наградой', 'Поділитися нагородою', 'Compartir diploma')}
+                {t3('Поделиться наградой', 'Поділитися нагородою', 'Compartir diploma', 'Compartilhar diploma', 'Chia sẻ phần thưởng', 'Bagikan diploma', 'Diplomayı paylaş', 'Udostępnij dyplom')}
               </Text>
             </TouchableOpacity>
             <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:8,textAlign:'center',lineHeight:18}}>
@@ -1210,6 +1289,11 @@ export default function ExamScreen() {
                 'Шеринг отправит PNG сертификата; текст используется как запасной вариант.',
                 'Шеринг надішле PNG сертифіката; текст використовується як запасний варіант.',
                 'Se compartira el PNG del diploma; el texto se usa como alternativa.',
+                'O compartilhamento envia o PNG do certificado; o texto é usado como alternativa.',
+                'Chia sẻ sẽ gửi PNG chứng chỉ; văn bản được dùng làm phương án dự phòng.',
+                'Berbagi akan mengirim PNG sertifikat; teks dipakai sebagai cadangan.',
+                'Paylaşım sertifikanın PNG dosyasını gönderir; metin yedek olarak kullanılır.',
+                'Udostępnianie wyśle PNG certyfikatu; tekst jest używany jako wariant zapasowy.',
               )}
             </Text>
 
@@ -1220,7 +1304,7 @@ export default function ExamScreen() {
             >
               <Ionicons name="create-outline" size={18} color={t.textSecond}/>
               <Text style={{color:t.textSecond,fontSize:f.body,textDecorationLine:'underline'}}>
-                {t3('Изменить имя на награде', 'Змінити ім\u02BCя на нагороді', 'Cambiar el nombre en el diploma')}
+                {t3('Изменить имя на награде', 'Змінити ім\u02BCя на нагороді', 'Cambiar el nombre en el diploma', 'Alterar nome no diploma', 'Đổi tên trên phần thưởng', 'Ubah nama di diploma', 'Diplomadaki adı değiştir', 'Zmień imię na dyplomie')}
               </Text>
             </TouchableOpacity>
           </>
@@ -1239,6 +1323,11 @@ export default function ExamScreen() {
                 'Награда готова — добавьте имя',
                 'Нагорода готова — додайте ім\u02BCя',
                 'Tu diploma está listo — añade tu nombre',
+                'Seu diploma está pronto — adicione o nome',
+                'Phần thưởng đã sẵn sàng — thêm tên',
+                'Diploma siap — tambahkan nama',
+                'Diploma hazır — adını ekle',
+                'Dyplom jest gotowy — dodaj imię',
               )}
             </Text>
             <Text style={{color:'#FDE68A',fontSize:f.body,textAlign:'center',lineHeight:f.body*1.4}}>
@@ -1246,12 +1335,17 @@ export default function ExamScreen() {
                 `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nУкажите имя — и сертификат появится ниже.`,
                 `Ваш результат: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nВкажіть ім\u02BCя — і сертифікат з\u02BCявиться нижче.`,
                 `Tu resultado: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nIndica tu nombre y el certificado aparecerá abajo.`,
+                `Seu resultado: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nInforme o nome e o certificado aparecerá abaixo.`,
+                `Kết quả của bạn: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nNhập tên và chứng chỉ sẽ xuất hiện bên dưới.`,
+                `Hasilmu: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nMasukkan nama dan sertifikat akan muncul di bawah.`,
+                `Sonucun: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nAdını yaz, sertifika aşağıda görünecek.`,
+                `Twój wynik: ${certificate.score} / ${certificate.total} · ${certificate.pct}%.\nPodaj imię, a certyfikat pojawi się niżej.`,
               )}
             </Text>
             <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center',gap:8,backgroundColor:'#B8860B',borderRadius:14,paddingVertical:14,paddingHorizontal:22,borderWidth:1.2,borderColor:'#FFD700',marginTop:6}}>
               <Ionicons name="create-outline" size={18} color="#FFD700"/>
               <Text style={{color:'#FFD700',fontSize:f.bodyLg,fontWeight:'800'}}>
-                {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma')}
+                {t3('Указать имя на награде', 'Вказати ім\u02BCя на нагороді', 'Poner nombre en el diploma', 'Informar nome no diploma', 'Nhập tên trên phần thưởng', 'Masukkan nama di diploma', 'Diplomaya isim ekle', 'Podaj imię na dyplomie')}
               </Text>
             </View>
           </TouchableOpacity>
@@ -1264,10 +1358,15 @@ export default function ExamScreen() {
         >
           <Text style={{color:t.textMuted,fontSize:f.sub,textDecorationLine:'underline'}}>
             {t3(
-              'Попробовать ещё раз — улучшить результат',
-              'Спробувати ще раз — поліпшити результат',
-              'Intentar de nuevo — mejorar la nota',
-            )}
+            'Попробовать ещё раз — улучшить результат',
+            'Спробувати ще раз — поліпшити результат',
+            'Intentar de nuevo — mejorar la nota',
+            'Tentar de novo — melhorar o resultado',
+            'Thử lại — cải thiện kết quả',
+            'Coba lagi — tingkatkan hasil',
+            'Tekrar dene — sonucu iyileştir',
+            'Spróbuj ponownie — popraw wynik',
+          )}
           </Text>
         </TouchableOpacity>
         <Text style={{color:t.textMuted,fontSize:f.caption,marginTop:4,textAlign:'center'}}>
@@ -1275,6 +1374,11 @@ export default function ExamScreen() {
             'Новый результат перезапишет награду только если наберёшь ≥ 80%',
             'Новий результат перезапише нагороду тільки якщо набереш ≥ 80%',
             'Un nuevo resultado sustituye el diploma solo si sacas ≥ 80%',
+            'Um novo resultado só substituirá o diploma se você fizer ≥ 80%',
+            'Kết quả mới chỉ ghi đè phần thưởng nếu bạn đạt ≥ 80%',
+            'Hasil baru hanya mengganti diploma jika nilainya ≥ 80%',
+            'Yeni sonuç diplomayı yalnızca ≥ 80% alırsan değiştirir',
+            'Nowy wynik nadpisze dyplom tylko przy wyniku ≥ 80%',
           )}
         </Text>
       </ScrollView>
@@ -1301,7 +1405,7 @@ export default function ExamScreen() {
         <Text style={{color:sx.second,fontSize:f.sub,fontWeight:'500'}}>{idx+1} / {questions.length}</Text>
         <View style={{backgroundColor:t.bgCard,borderRadius:10,paddingHorizontal:10,paddingVertical:4,borderWidth:0.5,borderColor:t.border,flex:1,marginHorizontal:8}}>
           <Text style={{color:t.textSecond,fontSize:f.caption,fontWeight:'600'}} numberOfLines={1} adjustsFontSizeToFit>
-            {t3('Урок', 'Урок', 'Lección')} {q.lessonNum} · {examTopicForLang(q, lang)}
+            {t3('Урок', 'Урок', 'Lección', 'Lição', 'Bài học', 'Pelajaran', 'Ders', 'Lekcja')} {q.lessonNum} · {examTopicForLang(q, lang)}
           </Text>
         </View>
         {/* Timer */}
@@ -1328,12 +1432,12 @@ export default function ExamScreen() {
       >
         {q.type === 'choice4' && (
           <Text style={{color:sx.second,fontSize:f.label,marginBottom:8,fontWeight:'600'}}>
-            🔤 {t3('Какое предложение верное?', 'Яке речення правильне?', '¿Qué frase es correcta?')}
+            🔤 {t3('Какое предложение верное?', 'Яке речення правильне?', '¿Qué frase es correcta?', 'Qual frase está correta?', 'Câu nào đúng?', 'Kalimat mana yang benar?', 'Hangi cümle doğru?', 'Które zdanie jest poprawne?')}
           </Text>
         )}
         {q.type === 'error' && (
           <Text style={{color:t.wrong,fontSize:f.label,marginBottom:8,fontWeight:'600'}}>
-            🔍 {t3('Исправь ошибку', 'Виправ помилку', 'Corrige el error')}
+            🔍 {t3('Исправь ошибку', 'Виправ помилку', 'Corrige el error', 'Corrija o erro', 'Sửa lỗi', 'Perbaiki kesalahan', 'Hatayı düzelt', 'Popraw błąd')}
           </Text>
         )}
         <ClozeGapText text={q.q} style={{color:sx.primary,fontSize:f.h2+4,fontWeight:'500',lineHeight:32,marginBottom:20}} />
@@ -1382,7 +1486,7 @@ export default function ExamScreen() {
               onPress={skipToNext}
             >
               <Text style={{color:t.textSecond, fontSize:f.body, fontWeight:'600'}}>
-                {t3('Пропустить →', 'Пропустити →', 'Omitir →')}
+                {t3('Пропустить →', 'Пропустити →', 'Omitir →', 'Pular →', 'Bỏ qua →', 'Lewati →', 'Atla →', 'Pomiń →')}
               </Text>
             </TouchableOpacity>
           ) : null}
@@ -1400,8 +1504,8 @@ export default function ExamScreen() {
               fontSize:f.body, fontWeight:'700',
             }}>
               {idx+1===questions.length
-                ? t3('Проверить →', 'Перевірити →', 'Revisar →')
-                : t3('Далее →', 'Далі →', 'Siguiente →')
+                ? t3('Проверить →', 'Перевірити →', 'Revisar →', 'Revisar →', 'Kiểm tra →', 'Tinjau →', 'Kontrol et →', 'Sprawdź →')
+                : t3('Далее →', 'Далі →', 'Siguiente →', 'Próximo →', 'Tiếp →', 'Lanjut →', 'İleri →', 'Dalej →')
               }
             </Text>
           </TouchableOpacity>

@@ -23,7 +23,8 @@ export interface FriendEvent {
   payload: Record<string, string | number>;
 }
 
-const CACHE_KEY = 'friends_activity_feed_v1';
+const CACHE_KEY = 'friends_activity_feed_v2';
+const LEGACY_CACHE_KEYS = ['friends_activity_feed_v1'];
 const CACHE_TTL_MS = 30 * 60 * 1000; // 30 минут — не фетчим чаще
 const MAX_EVENTS_PER_FRIEND = 15;
 
@@ -98,8 +99,9 @@ export async function fetchFriendsActivityFeed(
 
   try {
     const perFriendSnaps = await Promise.all(
-      friendUids.map(uid =>
-        db
+      friendUids.map(async uid => ({
+        uid,
+        snap: await db
           .collection('users')
           .doc(uid)
           .collection('my_events')
@@ -107,18 +109,18 @@ export async function fetchFriendsActivityFeed(
           .limit(MAX_EVENTS_PER_FRIEND)
           .get()
           .catch(() => null),
-      ),
+      })),
     );
 
     const events: FriendEvent[] = [];
-    for (const snap of perFriendSnaps) {
+    for (const { uid, snap } of perFriendSnaps) {
       if (!snap) continue;
       for (const doc of snap.docs as Array<{ id: string; data: () => Record<string, unknown> }>) {
         const d = doc.data();
-        if (!d.type || !d.ts || !d.uid) continue;
+        if (!d.type || !d.ts) continue;
         events.push({
           id: doc.id,
-          uid: String(d.uid),
+          uid,
           type: d.type as FriendEventType,
           ts: Number(d.ts),
           activityLikeCount: Math.max(0, Math.floor(Number(d.activityLikeCount ?? 0) || 0)),
@@ -141,7 +143,7 @@ export async function fetchFriendsActivityFeed(
 /** Принудительно сбросить кеш ленты (например после добавления нового друга). */
 export async function invalidateFriendsActivityCache(): Promise<void> {
   try {
-    await AsyncStorage.removeItem(CACHE_KEY);
+    await AsyncStorage.multiRemove([CACHE_KEY, ...LEGACY_CACHE_KEYS]);
   } catch { /* ignore */ }
 }
 

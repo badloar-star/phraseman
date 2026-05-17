@@ -1,0 +1,50 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "existing-locale-production-audit",
+  "runId": "2026-05-16T15-28-48-919Z",
+  "generatedAt": "2026-05-16T15:28:51.497Z",
+  "targetLocale": "es",
+  "targetSlug": "es",
+  "auditOnly": true,
+  "repositoryRoot": "C:\\appsprojects\\phraseman",
+  "outputDir": "docs/heisenberg/es/2026-05-16T15-28-48-919Z",
+  "filesScanned": 1577,
+  "localizedItems": 81575,
+  "surfaces": {
+    "app-other": 788,
+    "admin-site": 6,
+    "personal-training": 144,
+    "arena": 20,
+    "progression-daily-rewards": 7,
+    "lessons": 39,
+    "quizzes": 17,
+    "ui-locale": 4,
+    "docs": 168,
+    "public-web": 12,
+    "legal": 5,
+    "scripts-tools": 269,
+    "tests": 98
+  },
+  "sourceLocales": {
+    "es": 14045,
+    "uk": 34506,
+    "ru": 33024
+  },
+  "localizedItemsAll": 81575,
+  "localizedItemsForBlocks": 1972,
+  "includeSupporting": false,
+  "blockSize": 40,
+  "translationBlocks": 0,
+  "guard": {
+    "knownLocaleConflict": true,
+    "pathCollisions": 41
+  },
+  "existingLocaleAudit": {
+    "fieldCoverageGapFiles": 17,
+    "itemCoverageGapFiles": 20,
+    "productionGateFiles": 0,
+    "studyTargetConfusionFiles": 14,
+    "studyTargetMustRemain": "en"
+  },
+  "checks": []
+}

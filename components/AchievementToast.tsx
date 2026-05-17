@@ -15,6 +15,7 @@ import { REPORT_SCREENS_RUSSIAN_ONLY } from '../constants/report_ui_ru';
 import { hapticSuccess, hapticTap } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { triLang } from '../constants/i18n';
+import { useOverlayVisible } from './OverlayArbiter';
 
 const AUTO_DISMISS_MS = 3800;
 const { width: SW } = Dimensions.get('window');
@@ -29,6 +30,7 @@ export default function AchievementToast() {
   const { theme: t, f, isDark } = useTheme();
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
+  const toastOverlayVisible = useOverlayVisible('achievementToast', currentToast != null);
 
   const translateY    = useRef(new Animated.Value(160)).current;
   const swipeDy       = useRef(new Animated.Value(0)).current;
@@ -99,13 +101,14 @@ export default function AchievementToast() {
   ).current;
 
   useEffect(() => {
-    if (!currentToast) {
+    if (!currentToast || !toastOverlayVisible) {
       // Toast was dismissed externally — ensure we hide
       if (timerRef.current) clearTimeout(timerRef.current);
       if (rafInRef.current != null) {
         cancelAnimationFrame(rafInRef.current);
         rafInRef.current = null;
       }
+      setModalVisible(false);
       Animated.parallel([
         Animated.timing(translateY, { toValue: 160, duration: MOTION_DURATION.normal, useNativeDriver: true }),
         Animated.timing(opacity,    { toValue: 0,   duration: MOTION_DURATION.fast, useNativeDriver: true }),
@@ -167,7 +170,7 @@ export default function AchievementToast() {
         rafInRef.current = null;
       }
     };
-  }, [currentToast, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent]);
+  }, [currentToast, toastOverlayVisible, translateY, opacity, scale, swipeDx, swipeDy, dismissCurrent]);
 
   const animateOut = () => {
     Animated.parallel([
@@ -192,22 +195,37 @@ export default function AchievementToast() {
     animateOut();
   };
 
-  if (!displayedToast) return null;
+  if (!displayedToast || !toastOverlayVisible) return null;
 
   const name = triLang(lang, {
     uk: displayedToast.nameUk,
     ru: displayedToast.nameRu,
     es: displayedToast.nameEs ?? displayedToast.nameRu,
+    'pt-BR': 'Conquista desbloqueada',
+    vi: 'Thành tích đã mở khóa',
+    id: 'Pencapaian terbuka',
+    tr: 'Başarım açıldı',
+    pl: 'Osiągnięcie odblokowane',
   });
   const desc = triLang(lang, {
     uk: displayedToast.descUk,
     ru: displayedToast.descRu,
     es: displayedToast.descEs ?? displayedToast.descRu,
+    'pt-BR': 'Você desbloqueou uma conquista no app.',
+    vi: 'Bạn đã mở khóa một thành tích trong ứng dụng.',
+    id: 'Kamu membuka pencapaian di aplikasi.',
+    tr: 'Uygulamada bir başarım açtın.',
+    pl: 'Odblokowano osiągnięcie w aplikacji.',
   });
   const label = triLang(lang, {
     uk: 'Досягнення розблоковано!',
     ru: 'Достижение разблокировано!',
     es: '¡Logro desbloqueado!',
+    'pt-BR': 'Conquista desbloqueada!',
+    vi: 'Đã mở khóa thành tích!',
+    id: 'Pencapaian terbuka!',
+    tr: 'Başarım açıldı!',
+    pl: 'Osiągnięcie odblokowane!',
   });
   const iconName = ACHIEVEMENT_ICON[displayedToast.id] ?? 'star';
   const color = CAT_COLOR[displayedToast.category] ?? '#888';

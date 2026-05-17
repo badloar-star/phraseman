@@ -5,6 +5,14 @@ export type IncomingFriendGift = {
   id: string;
   giftId: string;
   giftLabel: string;
+  giftLabelRu?: string;
+  giftLabelUk?: string;
+  giftLabelEs?: string;
+  giftLabelPtBr?: string;
+  giftLabelVi?: string;
+  giftLabelId?: string;
+  giftLabelTr?: string;
+  giftLabelPl?: string;
   fromUid: string;
   fromName: string;
   ts: number;
@@ -54,6 +62,14 @@ export async function claimUnseenFriendGifts(limit = 5): Promise<IncomingFriendG
       id: doc.id,
       giftId: String(d.rewardType ?? d.giftId ?? ''),
       giftLabel: String(d.giftLabel ?? d.label ?? d.rewardType ?? ''),
+      giftLabelRu: typeof d.giftLabelRu === 'string' ? d.giftLabelRu : undefined,
+      giftLabelUk: typeof d.giftLabelUk === 'string' ? d.giftLabelUk : undefined,
+      giftLabelEs: typeof d.giftLabelEs === 'string' ? d.giftLabelEs : undefined,
+      giftLabelPtBr: typeof d.giftLabelPtBr === 'string' ? d.giftLabelPtBr : undefined,
+      giftLabelVi: typeof d.giftLabelVi === 'string' ? d.giftLabelVi : undefined,
+      giftLabelId: typeof d.giftLabelId === 'string' ? d.giftLabelId : undefined,
+      giftLabelTr: typeof d.giftLabelTr === 'string' ? d.giftLabelTr : undefined,
+      giftLabelPl: typeof d.giftLabelPl === 'string' ? d.giftLabelPl : undefined,
       fromUid: String(d.fromUid ?? ''),
       fromName: String(d.fromName ?? ''),
       ts: parseTs(d.ts),

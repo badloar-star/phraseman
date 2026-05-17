@@ -8445,15 +8445,15 @@
         {
           "type": "Section",
           "title": {
-            "uk": "8. Wi-Fi, money, cash, food, coffee, time",
-            "ru": "8. Wi-Fi, money, cash, food, coffee, time"
+            "uk": "8. Слова-маси і much",
+            "ru": "8. Слова-массы и much"
           }
         },
         {
           "type": "Body",
           "text": {
-            "uk": "У цих словах ми не говоримо про один конкретний предмет. Це доступ, гроші, готівка, їжа, кава або час як загальне поняття. Тому в уроці вони йдуть з There is, а не There are.",
-            "ru": "В этих словах мы не говорим об одном конкретном предмете. Это доступ, деньги, наличные, еда, кофе или время как общее понятие. Поэтому в уроке они идут с There is, а не There are."
+            "uk": "У цих словах ми не говоримо про один конкретний предмет. Це доступ, гроші, готівка, їжа, кава або час як загальне поняття. Тому в уроці вони йдуть з There is, а не There are. Для кількості зі словами-масами використовуємо much, особливо в питаннях і запереченнях: Is there much time? / There isn't much time.",
+            "ru": "В этих словах мы не говорим об одном конкретном предмете. Это доступ, деньги, наличные, еда, кофе или время как общее понятие. Поэтому в уроке они идут с There is, а не There are. Для количества со словами-массами используем much, особенно в вопросах и отрицаниях: Is there much time? / There isn't much time."
           }
         },
         {
@@ -8547,6 +8547,20 @@
               }
             ],
             [
+              "Is there much time?",
+              {
+                "uk": "Є багато часу?",
+                "ru": "Есть много времени?"
+              }
+            ],
+            [
+              "There isn't much time",
+              {
+                "uk": "Часу небагато",
+                "ru": "Времени немного"
+              }
+            ],
+            [
               "There is no time",
               {
                 "uk": "Немає часу",
@@ -8634,15 +8648,15 @@
         {
           "type": "Section",
           "title": {
-            "uk": "10. Some і many",
-            "ru": "10. Some и many"
+            "uk": "10. Some, many і much",
+            "ru": "10. Some, many и much"
           }
         },
         {
           "type": "Body",
           "text": {
-            "uk": "У цьому уроці є some і many. Some означає «кілька / деякі», many означає «багато». Обидва слова тут стоять перед множиною.",
-            "ru": "В этом уроке есть some и many. Some означает «несколько / некоторые», many означает «много». Оба слова здесь стоят перед множественным числом."
+            "uk": "У цьому уроці є some, many і much. Some означає «кілька / деякі». Many означає «багато» перед множиною. Much означає «багато» перед словами-масами: time, money, food.",
+            "ru": "В этом уроке есть some, many и much. Some означает «несколько / некоторые». Many означает «много» перед множественным числом. Much означает «много» перед словами-массами: time, money, food."
           }
         },
         {
@@ -8685,14 +8699,22 @@
                 "ru": "много"
               },
               "There are many people / Are there many people?"
+            ],
+            [
+              "much",
+              {
+                "uk": "багато з масою",
+                "ru": "много с массой"
+              },
+              "Is there much time? / There isn't much time"
             ]
           ]
         },
         {
           "type": "Tip",
           "text": {
-            "uk": "Messages і people - множина, тому з ними використовується There are.",
-            "ru": "Messages и people - множественное число, поэтому с ними используется There are."
+            "uk": "Messages і people - множина, тому з ними використовується There are. Time не рахується як множина, тому: Is there much time?",
+            "ru": "Messages и people - множественное число, поэтому с ними используется There are. Time не считается как множественное число, поэтому: Is there much time?"
           }
         },
         {
@@ -9064,8 +9086,8 @@
         {
           "type": "Tip",
           "text": {
-            "uk": "Перед практикою тримай три моделі: There is a problem. There are problems. There is no time.",
-            "ru": "Перед практикой держи три модели: There is a problem. There are problems. There is no time."
+            "uk": "Перед практикою тримай чотири моделі: There is a problem. There are problems. There is no time. Is there much time?",
+            "ru": "Перед практикой держи четыре модели: There is a problem. There are problems. There is no time. Is there much time?"
           }
         }
       ]

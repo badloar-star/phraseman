@@ -29,12 +29,30 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
 
   const title = useMemo(() => {
     if (!payload) return '';
-    return triLang(lang, { ru: payload.titleRu, uk: payload.titleUk, es: payload.titleEs });
+    return triLang(lang, {
+      ru: payload.titleRu,
+      uk: payload.titleUk,
+      es: payload.titleEs,
+      'pt-BR': payload.titlePtBr,
+      vi: payload.titleVi,
+      id: payload.titleId,
+      tr: payload.titleTr,
+      pl: payload.titlePl,
+    });
   }, [lang, payload]);
 
   const body = useMemo(() => {
     if (!payload) return '';
-    return triLang(lang, { ru: payload.messageRu, uk: payload.messageUk, es: payload.messageEs });
+    return triLang(lang, {
+      ru: payload.messageRu,
+      uk: payload.messageUk,
+      es: payload.messageEs,
+      'pt-BR': payload.messagePtBr,
+      vi: payload.messageVi,
+      id: payload.messageId,
+      tr: payload.messageTr,
+      pl: payload.messagePl,
+    });
   }, [lang, payload]);
 
   const reward = payload ? getGlobalBroadcastRewardBadge(payload) : null;
@@ -97,6 +115,11 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
             uk: 'Закрити повідомлення',
             ru: 'Закрыть сообщение',
             es: 'Cerrar mensaje',
+            'pt-BR': 'Fechar mensagem',
+            vi: 'Đóng thông báo',
+            id: 'Tutup pesan',
+            tr: 'Mesajı kapat',
+            pl: 'Zamknij wiadomość',
           })}
         />
         <View style={[styles.card, { backgroundColor: t.bgCard, borderColor: t.accent }]}>
@@ -112,7 +135,16 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
                 <Text style={styles.rewardEmoji}>{reward.icon}</Text>
               )}
               <Text style={[styles.rewardLine, { color: t.accent, fontSize: f.bodyLg }]}>
-                {triLang(lang, { ru: reward.labelRu, uk: reward.labelUk, es: reward.labelEs })}
+                {triLang(lang, {
+                  ru: reward.labelRu,
+                  uk: reward.labelUk,
+                  es: reward.labelEs,
+                  'pt-BR': reward.labelPtBr,
+                  vi: reward.labelVi,
+                  id: reward.labelId,
+                  tr: reward.labelTr,
+                  pl: reward.labelPl,
+                })}
               </Text>
             </View>
           )}
@@ -124,6 +156,11 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
                   ru: 'Откроется страница приложения в магазине.',
                   uk: 'Відкриється сторінка застосунку в магазині.',
                   es: 'Se abrirá la página de la app en la tienda.',
+                  'pt-BR': 'A página do app na loja será aberta.',
+                  vi: 'Trang ứng dụng trong cửa hàng sẽ được mở.',
+                  id: 'Halaman aplikasi di toko akan dibuka.',
+                  tr: 'Uygulamanın mağaza sayfası açılacak.',
+                  pl: 'Otworzy się strona aplikacji w sklepie.',
                 })}
               </Text>
             </View>
@@ -142,15 +179,42 @@ export default function GlobalBroadcastModal({ payload, visible, onClose, previe
             ) : (
               <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
                 {isReviewPromo && payload
-                  ? triLang(lang, { ru: payload.reviewCtaRu, uk: payload.reviewCtaUk, es: payload.reviewCtaEs })
-                  : triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}
+                  ? triLang(lang, {
+                    ru: payload.reviewCtaRu,
+                    uk: payload.reviewCtaUk,
+                    es: payload.reviewCtaEs,
+                    'pt-BR': payload.reviewCtaPtBr,
+                    vi: payload.reviewCtaVi,
+                    id: payload.reviewCtaId,
+                    tr: payload.reviewCtaTr,
+                    pl: payload.reviewCtaPl,
+                  })
+                  : triLang(lang, {
+                    ru: 'Понятно',
+                    uk: 'Зрозуміло',
+                    es: 'Entendido',
+                    'pt-BR': 'Entendi',
+                    vi: 'Đã hiểu',
+                    id: 'Mengerti',
+                    tr: 'Anladım',
+                    pl: 'Rozumiem',
+                  })}
               </Text>
             )}
           </Pressable>
           {isReviewPromo && (
             <Pressable disabled={busy} onPress={() => { void closeOnce(); }} style={styles.secondaryBtn}>
               <Text style={{ color: t.textMuted, fontWeight: '700', fontSize: f.body }}>
-                {triLang(lang, { ru: 'Позже', uk: 'Пізніше', es: 'Más tarde' })}
+                {triLang(lang, {
+                  ru: 'Позже',
+                  uk: 'Пізніше',
+                  es: 'Más tarde',
+                  'pt-BR': 'Mais tarde',
+                  vi: 'Để sau',
+                  id: 'Nanti',
+                  tr: 'Daha sonra',
+                  pl: 'Później',
+                })}
               </Text>
             </Pressable>
           )}

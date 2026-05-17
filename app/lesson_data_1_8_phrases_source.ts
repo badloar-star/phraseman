@@ -5043,9 +5043,10 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson8_phrase_26',
     english: 'We have class on Tuesdays',
-    russian: 'У нас занятие по вторникам',
-    ukrainian: 'У нас заняття щовівторка',
-    spanish: 'Tienen clase los martes.',
+    alternatives: ['We have classes on Tuesdays'],
+    russian: 'У нас занятия по вторникам',
+    ukrainian: 'У нас заняття по вівторках',
+    spanish: 'Tenemos clase los martes.',
     words: [
       { text: 'We', correct: 'We', distractors: ['us', 'our', 'me', 'they', 'way'] },
       { text: 'have', correct: 'have', distractors: ['has', 'had', 'gave', 'save', 'wave'] },

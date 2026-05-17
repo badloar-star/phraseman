@@ -25,16 +25,22 @@ import {
   subscribeLeagueChatMessages,
 } from '../app/firestore_league_chat';
 import { hapticTap } from '../hooks/use-haptics';
+import { checkAchievements } from '../app/achievements';
 
 const HIDE_UNDO_MS = 10_000;
+const CHAT_RETRY_MS = 2_500;
 const REPORT_REASONS = [
-  { id: 'insult', ru: 'Оскорбления', uk: 'Образи', es: 'Insultos' },
-  { id: 'spam', ru: 'Спам', uk: 'Спам', es: 'Spam' },
-  { id: 'unsafe', ru: 'Опасный контент', uk: 'Небезпечний контент', es: 'Contenido peligroso' },
-];
+  { id: 'insult', ru: 'Оскорбления', uk: 'Образи', es: 'Insultos', ptBR: 'Insultos', vi: 'Lăng mạ', idText: 'Hinaan', tr: 'Hakaret', pl: 'Obelgi' },
+  { id: 'spam', ru: 'Спам', uk: 'Спам', es: 'Spam', ptBR: 'Spam', vi: 'Spam', idText: 'Spam', tr: 'Spam', pl: 'Spam' },
+  { id: 'unsafe', ru: 'Опасный контент', uk: 'Небезпечний контент', es: 'Contenido peligroso', ptBR: 'Conteúdo perigoso', vi: 'Nội dung nguy hiểm', idText: 'Konten berbahaya', tr: 'Tehlikeli içerik', pl: 'Niebezpieczne treści' },
+]
 
 function sameRoom(a: LeagueChatRoom | null | undefined, b: LeagueChatRoom | null | undefined): boolean {
   return !!a && !!b && a.groupId === b.groupId && a.weekId === b.weekId && a.leagueId === b.leagueId;
+}
+
+function roomKey(room: LeagueChatRoom | null | undefined): string {
+  return room ? `${room.weekId}:${room.leagueId}:${room.groupId}` : '';
 }
 
 export default function LeagueChatPanel({
@@ -72,27 +78,32 @@ export default function LeagueChatPanel({
   const [sending, setSending] = useState(false);
   const [subscriptionNonce, setSubscriptionNonce] = useState(0);
   const [roomRetryNonce, setRoomRetryNonce] = useState(0);
+  const [authorizationRetryNonce, setAuthorizationRetryNonce] = useState(0);
+  const [authorizedRoomKey, setAuthorizedRoomKey] = useState('');
+  const [authorizingRoomKey, setAuthorizingRoomKey] = useState('');
+  const [subscriptionError, setSubscriptionError] = useState(false);
   const [reportTarget, setReportTarget] = useState<LeagueChatMessage | null>(null);
   const [reportReason, setReportReason] = useState(REPORT_REASONS[0].id);
   const [reportDetails, setReportDetails] = useState('');
   const [reportSubmitting, setReportSubmitting] = useState(false);
   const scrollRef = useRef<ScrollView | null>(null);
   const hideTimersRef = useRef<Record<string, ReturnType<typeof setTimeout>>>({});
+  const forbiddenRoomKeyRef = useRef('');
 
   useEffect(() => {
     let cancelled = false;
     void getBlockedLeagueChatUsers().then((blocked) => {
       if (!cancelled) setBlockedUsers(blocked);
     });
-    if (fallbackRoom) {
-      setRoom(fallbackRoom);
+    if (fallbackRoom && forbiddenRoomKeyRef.current !== roomKey(fallbackRoom)) {
+      setRoom((cur) => (sameRoom(cur, fallbackRoom) ? cur : fallbackRoom));
       setRoomReady(true);
       void cacheLeagueChatRoom(fallbackRoom);
     }
     void (async () => {
       const cached = await loadCachedLeagueChatRoom();
       if (cancelled) return;
-      if (cached) {
+      if (cached && forbiddenRoomKeyRef.current !== roomKey(cached)) {
         setRoom((cur) => cur ?? cached);
         setRoomReady(true);
       }
@@ -100,6 +111,7 @@ export default function LeagueChatPanel({
       const resolved = await resolveMyLeagueChatRoom();
       if (cancelled) return;
       if (resolved) {
+        if (forbiddenRoomKeyRef.current === roomKey(resolved)) forbiddenRoomKeyRef.current = '';
         setRoom((cur) => (sameRoom(cur, resolved) ? cur : resolved));
       }
       setRoomReady(true);
@@ -107,39 +119,60 @@ export default function LeagueChatPanel({
     return () => {
       cancelled = true;
     };
-  }, [fallbackRoom?.groupId, fallbackRoom?.weekId, fallbackRoom?.leagueId, roomRetryNonce]);
+  }, [fallbackRoom, roomRetryNonce]);
 
   useEffect(() => {
     if (room || !roomReady) return;
-    const id = setTimeout(() => setRoomRetryNonce((cur) => cur + 1), 2500);
+    const id = setTimeout(() => setRoomRetryNonce((cur) => cur + 1), CHAT_RETRY_MS);
     return () => clearTimeout(id);
   }, [room, roomReady, roomRetryNonce]);
 
   useEffect(() => {
+    if (!room || !subscriptionError) return;
+    const id = setTimeout(() => setAuthorizationRetryNonce((cur) => cur + 1), CHAT_RETRY_MS);
+    return () => clearTimeout(id);
+  }, [room, subscriptionError]);
+
+  useEffect(() => {
     if (!room) return;
     let cancelled = false;
+    let retryTimer: ReturnType<typeof setTimeout> | null = null;
+    const key = roomKey(room);
+    setAuthorizingRoomKey(key);
+    setSubscriptionError(false);
+    setAuthorizedRoomKey((cur) => (cur === key ? '' : cur));
     void authorizeLeagueChatRoom(room).then((status) => {
       if (cancelled) return;
+      setAuthorizingRoomKey((cur) => (cur === key ? '' : cur));
       if (status === 'authorized') {
+        if (forbiddenRoomKeyRef.current === key) forbiddenRoomKeyRef.current = '';
+        setAuthorizedRoomKey(key);
         setSubscriptionNonce((cur) => cur + 1);
       } else if (status === 'forbidden') {
+        forbiddenRoomKeyRef.current = key;
         void forgetCachedLeagueChatRoom(room);
+        setAuthorizedRoomKey((cur) => (cur === key ? '' : cur));
         setRoom((cur) => (sameRoom(cur, room) ? null : cur));
         setRoomReady(true);
+      } else {
+        retryTimer = setTimeout(() => setAuthorizationRetryNonce((cur) => cur + 1), CHAT_RETRY_MS);
       }
     });
     return () => {
       cancelled = true;
+      if (retryTimer) clearTimeout(retryTimer);
     };
-  }, [room?.groupId, room?.weekId, room?.leagueId]);
+  }, [room, authorizationRetryNonce]);
 
   useEffect(() => {
-    if (!room) {
+    const key = roomKey(room);
+    if (!room || key !== authorizedRoomKey) {
       setMessages([]);
       return;
     }
     let cancelled = false;
     const memoryMessages = getCachedLeagueChatMessagesSync(room);
+    setSubscriptionError(false);
     setMessages(memoryMessages);
     void loadCachedLeagueChatMessages(room).then((cached) => {
       if (cancelled) return;
@@ -150,16 +183,21 @@ export default function LeagueChatPanel({
       room,
       (rows) => {
         if (cancelled) return;
+        setSubscriptionError(false);
         setMessages(rows);
         requestAnimationFrame(() => scrollRef.current?.scrollToEnd({ animated: true }));
       },
-      () => {},
+      () => {
+        if (cancelled) return;
+        setSubscriptionError(true);
+        setAuthorizedRoomKey((cur) => (cur === key ? '' : cur));
+      },
     );
     return () => {
       cancelled = true;
       unsub();
     };
-  }, [room?.groupId, room?.weekId, subscriptionNonce]);
+  }, [room, authorizedRoomKey, subscriptionNonce]);
 
   const visibleMessages = useMemo(
     () => messages.filter((m) => m.authorUid === myUid || !blockedUsers[m.authorUid]),
@@ -198,10 +236,15 @@ export default function LeagueChatPanel({
     if (!text) return;
     if (draftBlocked) {
       showToast(triLang(lang, {
-        ru: 'Сообщение содержит запрещённые слова и не было отправлено.',
-        uk: 'Повідомлення містить заборонені слова і не було надіслано.',
-        es: 'El mensaje contiene palabras prohibidas y no fue enviado.',
-      }), 'error');
+  ru: 'Сообщение содержит запрещённые слова и не было отправлено.',
+  uk: 'Повідомлення містить заборонені слова і не було надіслано.',
+  es: 'El mensaje contiene palabras prohibidas y no fue enviado.',
+  "pt-BR": 'A mensagem contém palavras proibidas e não foi enviada.',
+  vi: 'Tin nhắn chứa từ bị cấm và chưa được gửi.',
+  id: 'Pesan berisi kata terlarang dan tidak dikirim.',
+  tr: 'Mesaj yasaklı kelimeler içeriyor ve gönderilmedi.',
+  pl: 'Wiadomość zawiera zakazane słowa i nie została wysłana.',
+}), 'error');
       return;
     }
     setSending(true);
@@ -210,21 +253,54 @@ export default function LeagueChatPanel({
       if (result === 'sent') {
         setDraft('');
         setDraftBlocked(false);
-        showToast(triLang(lang, { ru: 'Сообщение отправлено', uk: 'Повідомлення надіслано', es: 'Mensaje enviado' }), 'success');
+        void checkAchievements({ type: 'league_chat_message' });
+        showToast(triLang(lang, {
+  ru: 'Сообщение отправлено',
+  uk: 'Повідомлення надіслано',
+  es: 'Mensaje enviado',
+  "pt-BR": 'Mensagem enviada',
+  vi: 'Đã gửi tin nhắn',
+  id: 'Pesan terkirim',
+  tr: 'Mesaj gönderildi',
+  pl: 'Wiadomość wysłana',
+}), 'success');
       } else if (result === 'review') {
         setDraft('');
         setDraftBlocked(false);
-        showToast(triLang(lang, { ru: 'Сообщение ушло на проверку', uk: 'Повідомлення на перевірці', es: 'Mensaje en revisión' }));
+        showToast(triLang(lang, {
+  ru: 'Сообщение ушло на проверку',
+  uk: 'Повідомлення на перевірці',
+  es: 'Mensaje en revisión',
+  "pt-BR": 'Mensagem enviada para revisão',
+  vi: 'Tin nhắn đã được gửi để kiểm tra',
+  id: 'Pesan masuk peninjauan',
+  tr: 'Mesaj incelemeye gönderildi',
+  pl: 'Wiadomość trafiła do sprawdzenia',
+}));
       } else if (result === 'throttled') {
-        showToast(triLang(lang, { ru: 'Слишком часто. Подожди немного.', uk: 'Занадто часто. Трохи зачекай.', es: 'Demasiado rápido. Espera un poco.' }), 'error');
+        showToast(triLang(lang, {
+  ru: 'Слишком часто. Подожди немного.',
+  uk: 'Занадто часто. Трохи зачекай.',
+  es: 'Demasiado rápido. Espera un poco.',
+  "pt-BR": 'Rápido demais. Espere um pouco.',
+  vi: 'Quá nhanh. Đợi một chút nhé.',
+  id: 'Terlalu sering. Tunggu sebentar.',
+  tr: 'Çok sık. Biraz bekle.',
+  pl: 'Za często. Poczekaj chwilę.',
+}), 'error');
       } else {
         setDraft('');
         setDraftBlocked(false);
         showToast(triLang(lang, {
-          ru: 'Сообщение содержит запрещённые слова и не было отправлено.',
-          uk: 'Повідомлення містить заборонені слова і не було надіслано.',
-          es: 'El mensaje contiene palabras prohibidas y no fue enviado.',
-        }), 'error');
+  ru: 'Сообщение содержит запрещённые слова и не было отправлено.',
+  uk: 'Повідомлення містить заборонені слова і не було надіслано.',
+  es: 'El mensaje contiene palabras prohibidas y no fue enviado.',
+  "pt-BR": 'A mensagem contém palavras proibidas e não foi enviada.',
+  vi: 'Tin nhắn chứa từ bị cấm và chưa được gửi.',
+  id: 'Pesan berisi kata terlarang dan tidak dikirim.',
+  tr: 'Mesaj yasaklı kelimeler içeriyor ve gönderilmedi.',
+  pl: 'Wiadomość zawiera zakazane słowa i nie została wysłana.',
+}), 'error');
       }
     } finally {
       setSending(false);
@@ -249,7 +325,16 @@ export default function LeagueChatPanel({
     if (!reportTarget || reportSubmitting) return;
     const details = reportDetails.trim();
     if (!details) {
-      showToast(triLang(lang, { ru: 'Опиши причину жалобы', uk: 'Опиши причину скарги', es: 'Describe el motivo del reporte' }), 'error');
+      showToast(triLang(lang, {
+  ru: 'Опиши причину жалобы',
+  uk: 'Опиши причину скарги',
+  es: 'Describe el motivo del reporte',
+  "pt-BR": 'Descreva o motivo da denúncia',
+  vi: 'Mô tả lý do báo cáo',
+  id: 'Jelaskan alasan laporan',
+  tr: 'Şikayet nedenini açıkla',
+  pl: 'Opisz powód zgłoszenia',
+}), 'error');
       return;
     }
     const reason = REPORT_REASONS.find((item) => item.id === reportReason)?.id ?? 'other';
@@ -259,9 +344,27 @@ export default function LeagueChatPanel({
       setReportTarget(null);
       setReportReason(REPORT_REASONS[0].id);
       setReportDetails('');
-      showToast(triLang(lang, { ru: 'Жалоба отправлена', uk: 'Скаргу надіслано', es: 'Reporte enviado' }), 'success');
+      showToast(triLang(lang, {
+  ru: 'Жалоба отправлена',
+  uk: 'Скаргу надіслано',
+  es: 'Reporte enviado',
+  "pt-BR": 'Denúncia enviada',
+  vi: 'Đã gửi báo cáo',
+  id: 'Laporan terkirim',
+  tr: 'Şikayet gönderildi',
+  pl: 'Zgłoszenie wysłane',
+}), 'success');
     } catch {
-      showToast(triLang(lang, { ru: 'Не удалось отправить жалобу', uk: 'Не вдалося надіслати скаргу', es: 'No se pudo enviar el reporte' }), 'error');
+      showToast(triLang(lang, {
+  ru: 'Не удалось отправить жалобу',
+  uk: 'Не вдалося надіслати скаргу',
+  es: 'No se pudo enviar el reporte',
+  "pt-BR": 'Não foi possível enviar a denúncia',
+  vi: 'Không gửi được báo cáo',
+  id: 'Laporan gagal dikirim',
+  tr: 'Şikayet gönderilemedi',
+  pl: 'Nie udało się wysłać zgłoszenia',
+}), 'error');
     } finally {
       setReportSubmitting(false);
     }
@@ -277,13 +380,31 @@ export default function LeagueChatPanel({
       delete next[uid];
       return next;
     });
-    showToast(triLang(lang, { ru: 'Скрытие отменено', uk: 'Приховування скасовано', es: 'Ocultación cancelada' }), 'info');
+    showToast(triLang(lang, {
+  ru: 'Скрытие отменено',
+  uk: 'Приховування скасовано',
+  es: 'Ocultación cancelada',
+  "pt-BR": 'Ocultação cancelada',
+  vi: 'Đã hủy ẩn',
+  id: 'Menyembunyikan dibatalkan',
+  tr: 'Gizleme iptal edildi',
+  pl: 'Ukrywanie anulowane',
+}), 'info');
   }, [lang, showToast]);
 
   const blockUser = useCallback((message: LeagueChatMessage) => {
     hapticTap();
     if (message.authorUid === myUid) {
-      showToast(triLang(lang, { ru: 'Свои сообщения скрывать нельзя', uk: 'Свої повідомлення приховувати не можна', es: 'No puedes ocultar tus propios mensajes' }), 'info');
+      showToast(triLang(lang, {
+  ru: 'Свои сообщения скрывать нельзя',
+  uk: 'Свої повідомлення приховувати не можна',
+  es: 'No puedes ocultar tus propios mensajes',
+  "pt-BR": 'Você não pode ocultar suas próprias mensagens',
+  vi: 'Bạn không thể ẩn tin nhắn của chính mình',
+  id: 'Kamu tidak bisa menyembunyikan pesanmu sendiri',
+  tr: 'Kendi mesajlarını gizleyemezsin',
+  pl: 'Nie możesz ukrywać własnych wiadomości',
+}), 'info');
       return;
     }
 
@@ -305,14 +426,32 @@ export default function LeagueChatPanel({
           delete next[uid];
           return next;
         });
-        showToast(triLang(lang, { ru: 'Пользователь скрыт в чате', uk: 'Користувача приховано в чаті', es: 'Usuario oculto en el chat' }), 'success');
+        showToast(triLang(lang, {
+  ru: 'Пользователь скрыт в чате',
+  uk: 'Користувача приховано в чаті',
+  es: 'Usuario oculto en el chat',
+  "pt-BR": 'Usuário ocultado no chat',
+  vi: 'Đã ẩn người dùng trong chat',
+  id: 'Pengguna disembunyikan di chat',
+  tr: 'Kullanıcı sohbette gizlendi',
+  pl: 'Użytkownik ukryty na czacie',
+}), 'success');
       }).catch(() => {
         setPendingHideUntilByUid((cur) => {
           const next = { ...cur };
           delete next[uid];
           return next;
         });
-        showToast(triLang(lang, { ru: 'Не удалось скрыть участника', uk: 'Не вдалося приховати учасника', es: 'No se pudo ocultar al participante' }), 'error');
+        showToast(triLang(lang, {
+  ru: 'Не удалось скрыть участника',
+  uk: 'Не вдалося приховати учасника',
+  es: 'No se pudo ocultar al participante',
+  "pt-BR": 'Não foi possível ocultar o participante',
+  vi: 'Không ẩn được người tham gia',
+  id: 'Peserta gagal disembunyikan',
+  tr: 'Katılımcı gizlenemedi',
+  pl: 'Nie udało się ukryć uczestnika',
+}), 'error');
       });
     }, HIDE_UNDO_MS);
   }, [cancelPendingHide, lang, myUid, pendingHideUntilByUid, showToast]);
@@ -321,19 +460,37 @@ export default function LeagueChatPanel({
     return <View testID="league-chat-loading" style={{ flex: 1 }} />;
   }
 
-  if (!room) {
+  const currentRoomKey = roomKey(room);
+  const roomAuthorized = !!room && currentRoomKey === authorizedRoomKey;
+  const roomAuthorizing = !!room && currentRoomKey === authorizingRoomKey;
+
+  if (!room || !roomAuthorized || roomAuthorizing || subscriptionError) {
     return (
       <View testID="league-chat-resolving" style={{ flex: 1, padding: 18, justifyContent: 'center', alignItems: 'center', gap: 8 }}>
         <Ionicons name="chatbubbles-outline" size={28} color={t.textGhost} />
         <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '900', textAlign: 'center' }}>
-          {triLang(lang, { ru: 'Подключаем чат лиги', uk: 'Підключаємо чат ліги', es: 'Conectando el chat de liga' })}
+          {triLang(lang, {
+  ru: 'Подключаем чат лиги',
+  uk: 'Підключаємо чат ліги',
+  es: 'Conectando el chat de liga',
+  "pt-BR": 'Conectando o chat da liga',
+  vi: 'Đang kết nối chat giải đấu',
+  id: 'Menghubungkan chat liga',
+  tr: 'Lig sohbetine bağlanılıyor',
+  pl: 'Łączenie z czatem ligi',
+})}
         </Text>
         <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35), textAlign: 'center' }}>
           {triLang(lang, {
-            ru: 'Пару секунд, проверяем комнату этой недели.',
-            uk: 'Кілька секунд, перевіряємо кімнату цього тижня.',
-            es: 'Abre la liga tras sincronizar para recibir la sala semanal.',
-          })}
+  ru: 'Пару секунд, проверяем комнату этой недели.',
+  uk: 'Кілька секунд, перевіряємо кімнату цього тижня.',
+  es: 'Abre la liga tras sincronizar para recibir la sala semanal.',
+  "pt-BR": 'Só um instante, verificando a sala desta semana.',
+  vi: 'Chờ vài giây, đang kiểm tra phòng tuần này.',
+  id: 'Sebentar, kami memeriksa ruang minggu ini.',
+  tr: 'Birkaç saniye, bu haftanın odasını kontrol ediyoruz.',
+  pl: 'Chwilę, sprawdzamy pokój z tego tygodnia.',
+})}
         </Text>
       </View>
     );
@@ -352,11 +509,29 @@ export default function LeagueChatPanel({
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <Ionicons name="flag-outline" size={20} color={t.accent} />
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.sub, fontWeight: '900' }}>
-              {triLang(lang, { ru: 'Отправить жалобу?', uk: 'Надіслати скаргу?', es: 'Enviar reporte?' })}
+              {triLang(lang, {
+  ru: 'Отправить жалобу?',
+  uk: 'Надіслати скаргу?',
+  es: 'Enviar reporte?',
+  "pt-BR": 'Enviar denúncia?',
+  vi: 'Gửi báo cáo?',
+  id: 'Kirim laporan?',
+  tr: 'Şikayet gönderilsin mi?',
+  pl: 'Wysłać zgłoszenie?',
+})}
             </Text>
           </View>
           <Text style={{ color: t.textMuted, fontSize: f.caption, lineHeight: Math.round(f.caption * 1.35) }}>
-            {triLang(lang, { ru: 'Выбери причину и коротко опиши проблему. Без текста жалоба не отправится.', uk: 'Обери причину й коротко опиши проблему. Без тексту скарга не надішлеться.', es: 'Elige un motivo y describe el problema. El texto es obligatorio.' })}
+            {triLang(lang, {
+  ru: 'Выбери причину и коротко опиши проблему. Без текста жалоба не отправится.',
+  uk: 'Обери причину й коротко опиши проблему. Без тексту скарга не надішлеться.',
+  es: 'Elige un motivo y describe el problema. El texto es obligatorio.',
+  "pt-BR": 'Escolha um motivo e descreva o problema. Sem texto, a denúncia não será enviada.',
+  vi: 'Chọn lý do và mô tả ngắn vấn đề. Không có nội dung thì báo cáo sẽ không được gửi.',
+  id: 'Pilih alasan dan jelaskan masalahnya. Tanpa teks, laporan tidak akan dikirim.',
+  tr: 'Bir neden seç ve sorunu kısaca açıkla. Metin olmadan şikayet gönderilmez.',
+  pl: 'Wybierz powód i krótko opisz problem. Bez tekstu zgłoszenie nie zostanie wysłane.',
+})}
           </Text>
           <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
             {REPORT_REASONS.map((reason) => {
@@ -376,7 +551,16 @@ export default function LeagueChatPanel({
                   }}
                 >
                   <Text style={{ color: active ? t.correctText : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '800' }}>
-                    {triLang(lang, { ru: reason.ru, uk: reason.uk, es: reason.es })}
+                    {triLang(lang, {
+  ru: reason.ru,
+  uk: reason.uk,
+  es: reason.es,
+  "pt-BR": reason.ptBR,
+  vi: reason.vi,
+  id: reason.idText,
+  tr: reason.tr,
+  pl: reason.pl,
+})}
                   </Text>
                 </TouchableOpacity>
               );
@@ -386,7 +570,16 @@ export default function LeagueChatPanel({
             testID="league-chat-report-details"
             value={reportDetails}
             onChangeText={setReportDetails}
-            placeholder={triLang(lang, { ru: 'Что именно не так?', uk: 'Що саме не так?', es: 'Que ocurre?' })}
+            placeholder={triLang(lang, {
+  ru: 'Что именно не так?',
+  uk: 'Що саме не так?',
+  es: '¿Qué ocurre?',
+  "pt-BR": 'O que exatamente está errado?',
+  vi: 'Cụ thể có vấn đề gì?',
+  id: 'Apa tepatnya yang bermasalah?',
+  tr: 'Tam olarak sorun ne?',
+  pl: 'Co dokładnie jest nie tak?',
+})}
             placeholderTextColor={t.textGhost}
             multiline
             maxLength={420}
@@ -412,7 +605,16 @@ export default function LeagueChatPanel({
               style={{ paddingHorizontal: 14, paddingVertical: 10, borderRadius: 12, borderWidth: 0.5, borderColor: t.border }}
             >
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '900' }}>
-                {triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
+                {triLang(lang, {
+  ru: 'Отмена',
+  uk: 'Скасувати',
+  es: 'Cancelar',
+  "pt-BR": 'Cancelar',
+  vi: 'Hủy',
+  id: 'Batal',
+  tr: 'İptal',
+  pl: 'Anuluj',
+})}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -422,7 +624,16 @@ export default function LeagueChatPanel({
               style={{ paddingHorizontal: 14, paddingVertical: 10, borderRadius: 12, backgroundColor: t.accent, opacity: reportSubmitting || !reportDetails.trim() ? 0.5 : 1 }}
             >
               <Text style={{ color: t.correctText, fontSize: f.caption, fontWeight: '900' }}>
-                {triLang(lang, { ru: 'Отправить', uk: 'Надіслати', es: 'Enviar' })}
+                {triLang(lang, {
+  ru: 'Отправить',
+  uk: 'Надіслати',
+  es: 'Enviar',
+  "pt-BR": 'Enviar',
+  vi: 'Gửi',
+  id: 'Kirim',
+  tr: 'Gönder',
+  pl: 'Wyślij',
+})}
               </Text>
             </TouchableOpacity>
           </View>
@@ -452,16 +663,30 @@ export default function LeagueChatPanel({
         >
           <Text style={{ color: t.textGhost, fontSize: Math.max(11, f.caption - 1), lineHeight: Math.round(f.caption * 1.35), paddingHorizontal: 4, marginBottom: 4 }}>
             {triLang(lang, {
-              ru: 'Пиши по делу и поддерживай участников. Спам, ссылки и оскорбления могут привести к блокировке аккаунта.',
-              uk: 'Пиши по суті й підтримуй учасників. Спам, посилання та образи можуть призвести до блокування акаунта.',
-              es: 'Escribe con respeto. El spam, los enlaces y los insultos pueden provocar el bloqueo de la cuenta.',
-            })}
+  ru: 'Пиши по делу и поддерживай участников. Спам, ссылки и оскорбления могут привести к блокировке аккаунта.',
+  uk: 'Пиши по суті й підтримуй учасників. Спам, посилання та образи можуть призвести до блокування акаунта.',
+  es: 'Escribe con respeto. El spam, los enlaces y los insultos pueden provocar el bloqueo de la cuenta.',
+  "pt-BR": 'Escreva com respeito e ajude os participantes. Spam, links e insultos podem levar ao bloqueio da conta.',
+  vi: 'Hãy viết đúng trọng tâm và hỗ trợ người khác. Spam, liên kết và lời xúc phạm có thể khiến tài khoản bị chặn.',
+  id: 'Tulis yang relevan dan dukung peserta lain. Spam, tautan, dan hinaan bisa membuat akun diblokir.',
+  tr: 'Konuya uygun yaz ve katılımcıları destekle. Spam, bağlantılar ve hakaretler hesabın engellenmesine yol açabilir.',
+  pl: 'Pisz na temat i wspieraj uczestników. Spam, linki i obrazy mogą skończyć się blokadą konta.',
+})}
           </Text>
           {visibleMessages.length === 0 ? (
             <View testID="league-chat-empty" style={{ alignItems: 'center', paddingHorizontal: 24, gap: 8 }}>
               <Ionicons name="chatbubble-ellipses-outline" size={28} color={t.textGhost} />
               <Text style={{ color: t.textGhost, fontSize: f.sub, textAlign: 'center', lineHeight: Math.round(f.sub * 1.35) }}>
-                {triLang(lang, { ru: 'Пока тихо. Можно первым пожелать удачи.', uk: 'Поки тихо. Можна першим побажати успіху.', es: 'Aún está tranquilo. Puedes desear suerte primero.' })}
+                {triLang(lang, {
+  ru: 'Пока тихо. Можно первым пожелать удачи.',
+  uk: 'Поки тихо. Можна першим побажати успіху.',
+  es: 'Aún está tranquilo. Puedes desear suerte primero.',
+  "pt-BR": 'Ainda está quieto. Você pode ser o primeiro a desejar boa sorte.',
+  vi: 'Hiện vẫn khá yên. Bạn có thể là người đầu tiên chúc may mắn.',
+  id: 'Masih sepi. Kamu bisa jadi yang pertama mengucapkan semoga berhasil.',
+  tr: 'Şimdilik sessiz. İlk başarı dileğini sen yazabilirsin.',
+  pl: 'Na razie cisza. Możesz jako pierwszy życzyć powodzenia.',
+})}
               </Text>
             </View>
           ) : visibleMessages.map((m) => {
@@ -571,8 +796,26 @@ export default function LeagueChatPanel({
                         onPress={() => blockUser(m)}
                         accessibilityRole="button"
                         accessibilityLabel={pendingHideUntil
-                          ? triLang(lang, { ru: 'Отменить скрытие', uk: 'Скасувати приховування', es: 'Cancelar ocultación' })
-                          : triLang(lang, { ru: 'Скрыть участника', uk: 'Приховати учасника', es: 'Ocultar participante' })}
+                          ? triLang(lang, {
+  ru: 'Отменить скрытие',
+  uk: 'Скасувати приховування',
+  es: 'Cancelar ocultación',
+  "pt-BR": 'Cancelar ocultação',
+  vi: 'Hủy ẩn',
+  id: 'Batalkan sembunyikan',
+  tr: 'Gizlemeyi iptal et',
+  pl: 'Anuluj ukrycie',
+})
+                          : triLang(lang, {
+  ru: 'Скрыть участника',
+  uk: 'Приховати учасника',
+  es: 'Ocultar participante',
+  "pt-BR": 'Ocultar participante',
+  vi: 'Ẩn người tham gia',
+  id: 'Sembunyikan peserta',
+  tr: 'Katılımcıyı gizle',
+  pl: 'Ukryj uczestnika',
+})}
                         style={{
                           width: 24,
                           height: 24,
@@ -603,10 +846,15 @@ export default function LeagueChatPanel({
           {draftBlocked && (
             <Text style={{ color: '#E05252', fontSize: Math.max(10, f.caption - 1), marginBottom: 5, paddingHorizontal: 4 }}>
               {triLang(lang, {
-                ru: 'Сообщение содержит запрещённые слова',
-                uk: 'Повідомлення містить заборонені слова',
-                es: 'El mensaje contiene palabras prohibidas',
-              })}
+  ru: 'Сообщение содержит запрещённые слова',
+  uk: 'Повідомлення містить заборонені слова',
+  es: 'El mensaje contiene palabras prohibidas',
+  "pt-BR": 'A mensagem contém palavras proibidas',
+  vi: 'Tin nhắn chứa từ bị cấm',
+  id: 'Pesan berisi kata terlarang',
+  tr: 'Mesaj yasaklı kelimeler içeriyor',
+  pl: 'Wiadomość zawiera zakazane słowa',
+})}
             </Text>
           )}
           <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 8 }}>
@@ -614,7 +862,16 @@ export default function LeagueChatPanel({
               testID="league-chat-input"
               value={draft}
               onChangeText={handleDraftChange}
-              placeholder={triLang(lang, { ru: 'Сообщение...', uk: 'Повідомлення...', es: 'Mensaje...' })}
+              placeholder={triLang(lang, {
+  ru: 'Сообщение...',
+  uk: 'Повідомлення...',
+  es: 'Mensaje...',
+  "pt-BR": 'Mensagem...',
+  vi: 'Tin nhắn...',
+  id: 'Pesan...',
+  tr: 'Mesaj...',
+  pl: 'Wiadomość...',
+})}
               placeholderTextColor={t.textGhost}
               multiline
               maxLength={420}

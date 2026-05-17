@@ -1,0 +1,63 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "new-locale-preflight",
+  "runId": "2026-05-17T06-16-23-494Z",
+  "generatedAt": "2026-05-17T06:16:50.137Z",
+  "targetLocale": "pt-BR",
+  "targetSlug": "pt-br",
+  "auditOnly": true,
+  "repositoryRoot": "C:\\appsprojects\\phraseman",
+  "outputDir": "docs/heisenberg/pt-br/2026-05-17T06-16-23-494Z",
+  "filesScanned": 1622,
+  "localizedItems": 84622,
+  "surfaces": {
+    "app-other": 791,
+    "admin-site": 6,
+    "personal-training": 180,
+    "arena": 20,
+    "progression-daily-rewards": 7,
+    "lessons": 39,
+    "quizzes": 18,
+    "ui-locale": 4,
+    "docs": 170,
+    "public-web": 12,
+    "legal": 5,
+    "scripts-tools": 270,
+    "tests": 100
+  },
+  "sourceLocales": {
+    "es": 17129,
+    "uk": 34487,
+    "ru": 33006
+  },
+  "localizedItemsAll": 84622,
+  "localizedItemsForBlocks": 46725,
+  "includeSupporting": false,
+  "blockSize": 40,
+  "translationBlocks": 0,
+  "guard": {
+    "knownLocaleConflict": false,
+    "pathCollisions": 0
+  },
+  "existingLocaleAudit": null,
+  "checks": [
+    {
+      "command": "npm run audit:translations",
+      "startedAt": "2026-05-17T06:16:29.154Z",
+      "finishedAt": "2026-05-17T06:16:33.247Z",
+      "status": 0,
+      "ok": true,
+      "stdoutTail": "\n> phraseman@1.5.33 audit:translations\n> node ./scripts/audit_translations_1_32.mjs\n\nГотово. Фраз: 1600, пометок: 0\nСводка по типам: {}\n→ docs/reports/lessons_translations_audit.md\n→ docs/reports/lessons_translations_audit.json\n→ docs/reports/lessons_translations_flat.json\n",
+      "stderrTail": ""
+    },
+    {
+      "command": "npm test -- --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts --runInBand",
+      "startedAt": "2026-05-17T06:16:33.248Z",
+      "finishedAt": "2026-05-17T06:16:50.137Z",
+      "status": 0,
+      "ok": true,
+      "stdoutTail": "\n> phraseman@1.5.33 test\n> jest --testPathPattern=tests/ --no-cache --runTestsByPath tests/heisenberg_pipeline.test.ts tests/locale_ru_uk_es.test.ts --runInBand\n\n",
+      "stderrTail": "PASS tests/heisenberg_pipeline.test.ts (13.351 s)\nPASS tests/locale_ru_uk_es.test.ts\n\nTest Suites: 2 passed, 2 total\nTests:       29 passed, 29 total\nSnapshots:   0 total\nTime:        14.448 s\nRan all test suites within paths \"tests/heisenberg_pipeline.test.ts\", \"tests/locale_ru_uk_es.test.ts\".\nForce exiting Jest: Have you considered using `--detectOpenHandles` to detect async operations that kept running after all tests finished?\n"
+    }
+  ]
+}

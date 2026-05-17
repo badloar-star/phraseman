@@ -2,19 +2,22 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View, Text, StyleSheet, TouchableOpacity,
   TextInput, KeyboardAvoidingView, ScrollView,
-  Animated, BackHandler, Keyboard,
+  Animated, BackHandler, Keyboard, Easing,
   Platform,
   Image,
+  StatusBar,
+  type ImageSourcePropType,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { generateReferralCode } from '../app/referral_system';
-import { IS_BETA_TESTER, ENABLE_SPANISH_LOCALE } from '../app/config';
+import { IS_BETA_TESTER } from '../app/config';
 // Онбординг закреплён за темой "Графит" (MINIMAL_DARK) — это одна из двух
 // бесплатных тем (вторая — "Скетч"/MINIMAL_LIGHT). Импортируем под алиасом
 // `DARK`, чтобы не править все ~150 ссылок DARK.* по тексту экрана.
 import { MINIMAL_DARK as DARK } from '../constants/theme';
-import { Lang } from '../constants/i18n';
+import { isInterfaceLangEnabled, type Lang } from '../constants/i18n';
 import {
   UserProfile,
   estimateDaysToTarget,
@@ -26,7 +29,6 @@ import {
 } from '../app/types/user_profile';
 import { scheduleDailyReminder } from '../app/notifications';
 import { reserveName } from '../app/firestore_leaderboard';
-import { emitAppEvent } from '../app/events';
 import { validateProfileName } from '../app/settings/profile_name_service';
 import { enqueueThemedBlockingInfoAlert } from '../app/themed_blocking_alert_queue';
 import {
@@ -54,9 +56,25 @@ interface Props {
 const TARGET_LEVELS = ['a1', 'a2', 'b1', 'b2', 'c1'] as const;
 const PROGRESS_STEPS = ['welcome', 'name', 'streak', 'auth'] as const;
 type OnboardingStepKey = 'beta' | 'welcome' | 'demo2' | 'demo' | 'name' | 'streak' | 'auth';
+type StreakMilestoneIconKind = 'flame' | 'bolt' | 'gem' | 'crown';
 const USE_ELITE_ONBOARDING_WELCOME = true;
-const ONBOARDING_ACCENT = '#FF5B5B';
-const ONBOARDING_ACCENT_BG = 'rgba(255,91,91,0.14)';
+const ONBOARDING_ACCENT = '#F2B84B';
+const ONBOARDING_ACCENT_BG = 'rgba(242,184,75,0.16)';
+const ONBOARDING_TEXT_MUTED = '#D8CCB5';
+const ONBOARDING_BG_BETA = require('../assets/images/onboarding/onboarding-bg-beta-wide.webp');
+const ONBOARDING_BG_WELCOME = require('../assets/images/onboarding/onboarding-bg-welcome-wide.webp');
+const ONBOARDING_BG_NAME = require('../assets/images/onboarding/onboarding-bg-name-wide.webp');
+const ONBOARDING_BG_BUILDER = require('../assets/images/onboarding/onboarding-bg-builder-wide.webp');
+const ONBOARDING_BG_QUIZ = require('../assets/images/onboarding/onboarding-bg-quiz-wide.webp');
+const ONBOARDING_BG_STREAK = require('../assets/images/onboarding/onboarding-bg-streak-wide.webp');
+const ONBOARDING_BG_AUTH = require('../assets/images/onboarding/onboarding-bg-auth-wide.webp');
+const ONBOARDING_LINGMAN_ICON = require('../assets/images/onboarding/lingman-icon-transparent.png');
+const ONBOARDING_STREAK_ICONS: Record<StreakMilestoneIconKind, ImageSourcePropType> = {
+  flame: require('../assets/images/onboarding/streak-flame-medallion.png'),
+  bolt: require('../assets/images/onboarding/streak-bolt-medallion.png'),
+  gem: require('../assets/images/onboarding/streak-gem-medallion.png'),
+  crown: require('../assets/images/onboarding/streak-crown-medallion.png'),
+};
 const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
   demo2: 'welcome',
   demo: 'demo2',
@@ -67,12 +85,15 @@ const PREV_STEP: Partial<Record<OnboardingStepKey, OnboardingStepKey>> = {
 
 
 export default function Onboarding({ onDone, onLangSelect }: Props) {
-  // uk → UA; при ENABLE_SPANISH_LOCALE локали es-* → испанский; иначе RU как дефолт для остальных
+  const insets = useSafeAreaInsets();
+  const progressTopPadding = Math.max(insets.top, Platform.OS === 'android' ? StatusBar.currentHeight ?? 0 : 0) + 8;
+
+  // uk -> UA; es-* -> Spanish UI when the interface locale is enabled; otherwise RU.
   const detectLang = (): Lang => {
     try {
       const locale = Intl.DateTimeFormat().resolvedOptions().locale ?? '';
       if (locale.startsWith('uk')) return 'uk';
-      if (ENABLE_SPANISH_LOCALE && locale.toLowerCase().startsWith('es')) return 'es';
+      if (locale.toLowerCase().startsWith('es') && isInterfaceLangEnabled('es')) return 'es';
       return 'ru';
     } catch {
       return 'ru';
@@ -102,6 +123,7 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   // Global screen fade transition
   const screenFade = useRef(new Animated.Value(1)).current;
   const welcomeIntro = useRef(new Animated.Value(0)).current;
+  const lingmanPulse = useRef(new Animated.Value(0)).current;
   // Staggered milestone card anims
   const milestoneAnims = useRef([0, 1, 2, 3].map(() => new Animated.Value(0))).current;
   const btnSlide   = useRef(new Animated.Value(30)).current;
@@ -156,8 +178,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     const pct = Math.round(((idx + 1) / PROGRESS_STEPS.length) * 100);
     const prev = PREV_STEP[step];
     return (
-      <View>
-        <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingTop: 8, paddingBottom: 4 }}>
+      <View style={[styles.progressWrap, { paddingTop: progressTopPadding }]}>
+        <View style={styles.progressRow}>
           {prev ? (
             <TouchableOpacity onPress={() => goToStep(prev)} activeOpacity={0.7} style={{ padding: 8, marginRight: 8 }}>
               <Text style={{ color: ONBOARDING_ACCENT, fontSize: 20 }}>←</Text>
@@ -165,8 +187,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           ) : (
             <View style={{ width: 44 }} />
           )}
-          <View style={{ flex: 1, height: 4, backgroundColor: DARK.bgSurface, borderRadius: 2 }}>
-            <View style={{ height: 4, backgroundColor: ONBOARDING_ACCENT, width: `${pct}%`, borderRadius: 2 }} />
+          <View style={styles.progressTrack}>
+            <View style={[styles.progressFill, { width: `${pct}%` }]} />
           </View>
           <View style={{ width: 44 }} />
         </View>
@@ -200,6 +222,29 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       tension: 58,
     }).start();
   }, [step, welcomeIntro]);
+
+  useEffect(() => {
+    if (step !== 'welcome') return;
+    lingmanPulse.setValue(0);
+    const pulse = Animated.loop(
+      Animated.sequence([
+        Animated.timing(lingmanPulse, {
+          toValue: 1,
+          duration: 26000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(lingmanPulse, {
+          toValue: 0,
+          duration: 26000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    pulse.start();
+    return () => pulse.stop();
+  }, [lingmanPulse, step]);
 
   useEffect(() => {
     if (step !== 'name') {
@@ -435,7 +480,8 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
               '💬 Напиши мне в Telegram со скриншотом',
             ];
     return (
-      <SafeAreaView style={styles.container} testID="onboarding-beta-screen">
+      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-beta-screen">
+        <OnboardingArtBackground source={ONBOARDING_BG_PROFESSOR_OBSERVATORY} motion="zoomOut" />
         <ScrollView contentContainerStyle={{ alignItems: 'center', paddingHorizontal: 28, paddingVertical: 40 }} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: 52, marginBottom: 16 }}>🧪</Text>
           <Text style={[styles.appName, { marginBottom: 24 }]}>
@@ -505,9 +551,11 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     if (USE_ELITE_ONBOARDING_WELCOME) {
       const heroY = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [18, 0] });
       const heroScale = welcomeIntro.interpolate({ inputRange: [0, 1], outputRange: [0.98, 1] });
+      const lingmanScale = lingmanPulse.interpolate({ inputRange: [0, 1], outputRange: [0.96, 1.055] });
       return (
-        <SafeAreaView style={styles.container} testID="onboarding-welcome-screen">
+        <SafeAreaView edges={[]} style={styles.container} testID="onboarding-welcome-screen">
           <Animated.View style={[styles.eliteWelcomeRoot, { opacity: screenFade }]}>
+            <OnboardingArtBackground source={ONBOARDING_BG_SAGE_COUNCIL} motion="zoomOut" />
             <View pointerEvents="none" style={styles.eliteWelcomeTopLight} />
 
             <Animated.View
@@ -516,13 +564,22 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
                 { transform: [{ translateY: heroY }, { scale: heroScale }] },
               ]}
             >
-              <View style={styles.eliteWelcomeMark}>
-                <Image
-                  source={require('../assets/images/onboarding-icon.png')}
-                  style={styles.eliteWelcomeMarkLogo}
-                  resizeMode="contain"
-                />
-              </View>
+              <Animated.View style={[styles.eliteWelcomeMark, { transform: [{ scale: lingmanScale }] }]}>
+                <LinearGradient
+                  colors={['rgba(255,255,255,0.24)', 'rgba(255,255,255,0.075)', 'rgba(242,184,75,0.11)']}
+                  locations={[0, 0.46, 1]}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={styles.eliteWelcomeMarkGlass}
+                >
+                  <View pointerEvents="none" style={styles.eliteWelcomeGlassShine} />
+                  <Image
+                    source={ONBOARDING_LINGMAN_ICON}
+                    style={styles.eliteWelcomeMarkLogo}
+                    resizeMode="contain"
+                  />
+                </LinearGradient>
+              </Animated.View>
               <Text style={styles.eliteWelcomeTitle}>
                 {triOb(
                   'Английский без лишнего шума',
@@ -559,8 +616,9 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
       );
     }
     return (
-      <SafeAreaView style={styles.container} testID="onboarding-welcome-screen">
+      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-welcome-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 28 }}>
+          <OnboardingArtBackground source={ONBOARDING_BG_SAGE_COUNCIL} motion="zoomOut" />
           <Text style={{ color: DARK.gold, fontSize: 13, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 32, textAlign: 'center' }}>
             Phraseman
           </Text>
@@ -624,9 +682,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
             ];
     const correctIndex = 0;
     return (
-      <SafeAreaView style={styles.container} testID="onboarding-demo-screen">
+      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-demo-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
-        {renderProgressBar()}
+          <OnboardingArtBackground source={ONBOARDING_BG_PHRASE_ARCHIVE} motion="zoomOut" />
+          {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { paddingTop: 0, flexGrow: 1 }]} showsVerticalScrollIndicator={false}>
           <Text style={[styles.appName, { marginBottom: 8 }]}>Phraseman</Text>
           <Text style={{ color: DARK.textMuted, fontSize: 14, marginBottom: 28, textAlign: 'center' }}>
@@ -752,9 +811,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
     };
 
     return (
-      <SafeAreaView style={styles.container} testID="onboarding-demo2-screen">
+      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-demo2-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
-        {renderProgressBar()}
+          <OnboardingArtBackground source={ONBOARDING_BG_PROFESSOR_OBSERVATORY} motion="zoomOut" />
+          {renderProgressBar()}
         <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', paddingHorizontal: 28, paddingVertical: 20 }} showsVerticalScrollIndicator={false}>
           {/* Приветствие */}
           <Animated.View style={{ opacity: demo2GreetFade, marginBottom: 28 }}>
@@ -897,9 +957,10 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
   // ── Шаг 3: Имя ──────────────────────────────────────────────────────────────
   if (step === 'name') {
     return (
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView edges={[]} style={styles.container}>
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
-        {renderProgressBar()}
+          <OnboardingArtBackground source={ONBOARDING_BG_PROFESSOR_OBSERVATORY} motion="zoomOut" />
+          {renderProgressBar()}
         <KeyboardAvoidingView
           style={{ flex: 1 }}
           behavior={Platform.OS === 'ios' ? 'padding' : undefined}
@@ -996,33 +1057,36 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
 
   // ── Шаг streak: Мотивация + прогресс ────────────────────────────────────────
   if (step === 'streak') {
-    const streakMilestones =
+    const streakMilestones: { label: string; icon: StreakMilestoneIconKind; reward: string }[] =
       lang === 'es'
         ? [
-            { label: '3 días seguidos', emoji: '🔥', reward: 'La costumbre empieza' },
-            { label: '7 días seguidos', emoji: '⚡', reward: 'Ya tienes ritmo' },
-            { label: '14 días seguidos', emoji: '💎', reward: 'Practicar se vuelve más fácil' },
-            { label: '30 días seguidos', emoji: '👑', reward: 'Una racha fuerte' },
+            { label: '3 días seguidos', icon: 'flame', reward: 'La costumbre empieza' },
+            { label: '7 días seguidos', icon: 'bolt', reward: 'Ya tienes ritmo' },
+            { label: '14 días seguidos', icon: 'gem', reward: 'Practicar se vuelve más fácil' },
+            { label: '30 días seguidos', icon: 'crown', reward: 'Una racha fuerte' },
           ]
         : isUK
           ? [
-              { label: '3 дні поспіль', emoji: '🔥', reward: 'Звичка починається' },
-              { label: '7 днів поспіль', emoji: '⚡', reward: 'У тебе вже є ритм' },
-              { label: '14 днів поспіль', emoji: '💎', reward: 'Практикуватися легше' },
-              { label: '30 днів поспіль', emoji: '👑', reward: 'Сильна серія' },
+              { label: '3 дні поспіль', icon: 'flame', reward: 'Звичка починається' },
+              { label: '7 днів поспіль', icon: 'bolt', reward: 'У тебе вже є ритм' },
+              { label: '14 днів поспіль', icon: 'gem', reward: 'Практикуватися легше' },
+              { label: '30 днів поспіль', icon: 'crown', reward: 'Сильна серія' },
             ]
           : [
-              { label: '3 дня подряд', emoji: '🔥', reward: 'Хорошее начало' },
-              { label: '7 дней подряд', emoji: '⚡', reward: 'Ты держишь темп' },
-              { label: '14 дней подряд', emoji: '💎', reward: 'Становится проще' },
-              { label: '30 дней подряд', emoji: '👑', reward: 'Сильная серия' },
+              { label: '3 дня подряд', icon: 'flame', reward: 'Хорошее начало' },
+              { label: '7 дней подряд', icon: 'bolt', reward: 'Ты держишь темп' },
+              { label: '14 дней подряд', icon: 'gem', reward: 'Становится проще' },
+              { label: '30 дней подряд', icon: 'crown', reward: 'Сильная серия' },
             ];
     return (
-      <SafeAreaView style={styles.container} testID="onboarding-streak-screen">
+      <SafeAreaView edges={[]} style={styles.container} testID="onboarding-streak-screen">
         <Animated.View style={{ flex: 1, opacity: screenFade }}>
-        {renderProgressBar()}
+          <OnboardingArtBackground source={ONBOARDING_BG_PHRASE_ARCHIVE} motion="zoomOut" />
+          {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
-          <Text style={{ fontSize: 56, marginBottom: 12 }}>🔥</Text>
+          <View style={styles.streakHeroIconWrap}>
+            <OnboardingStreakIcon kind="flame" size={76} hero />
+          </View>
           <Text style={[styles.title, { marginBottom: 8 }]}>
             {pick(
               'Английский любит регулярность',
@@ -1042,15 +1106,13 @@ export default function Onboarding({ onDone, onLangSelect }: Props) {
           <View style={{ width: '100%', gap: 10, marginBottom: 32 }}>
             {streakMilestones.map((m, i) => (
               <Animated.View key={m.label} style={{ opacity: milestoneAnims[i], transform: [{ translateY: milestoneAnims[i].interpolate({ inputRange: [0, 1], outputRange: [16, 0] }) }] }}>
-              <View style={{ flexDirection: 'row', alignItems: 'center', backgroundColor: DARK.bgSurface, borderRadius: 14, padding: 14, gap: 14, borderWidth: 1, borderColor: DARK.border }}>
-                <View style={{ width: 44, height: 44, borderRadius: 22, backgroundColor: DARK.bgSurface2, alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ fontSize: 22 }}>{m.emoji}</Text>
-                </View>
+              <View style={styles.onboardingGlassCard}>
+                <OnboardingStreakIcon kind={m.icon} size={52} />
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: ONBOARDING_ACCENT, fontSize: 13, fontWeight: '700', marginBottom: 2 }}>
                     {m.label}
                   </Text>
-                  <Text style={{ color: DARK.textMuted, fontSize: 13 }}>{m.reward}</Text>
+                  <Text style={{ color: ONBOARDING_TEXT_MUTED, fontSize: 13, fontWeight: '600' }}>{m.reward}</Text>
                 </View>
               </View>
               </Animated.View>
@@ -1188,19 +1250,20 @@ function AuthOnboardingStep({
   const interactionLocked = loadingProvider !== null || authBusy;
 
   return (
-    <SafeAreaView style={styles.container} testID="onboarding-auth-screen">
+    <SafeAreaView edges={[]} style={styles.container} testID="onboarding-auth-screen">
       <Animated.View style={{ flex: 1, opacity: screenFade }}>
+        <OnboardingArtBackground source={ONBOARDING_BG_SAGE_COUNCIL} motion="zoomOut" />
         {renderProgressBar()}
         <ScrollView contentContainerStyle={[styles.center, { flexGrow: 1, paddingHorizontal: 28 }]} showsVerticalScrollIndicator={false}>
           <Text style={{ fontSize: 56, marginBottom: 12 }}>🚀</Text>
           <Text style={[styles.title, { marginBottom: 8 }]}>
             {authPick('Быстрый старт', 'Швидкий старт', 'Inicio rápido')}
           </Text>
-          <Text style={{ color: DARK.textMuted, fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28 }}>
+          <Text style={{ color: ONBOARDING_TEXT_MUTED, fontSize: 14, textAlign: 'center', lineHeight: 22, marginBottom: 28, fontWeight: '700' }}>
             {authPick(
-              'Один тап — и твой прогресс сохраняется навсегда. Сменишь телефон? Прогресс с тобой.',
-              'Один тап — і твій прогрес зберігається назавжди. Заміниш телефон? Прогрес з тобою.',
-              'Un toque y tu progreso queda guardado para siempre. ¿Cambias de móvil? Va contigo.',
+              'Вход можно пропустить. Но если сменить телефон или случайно удалить приложение, есть риск потерять прогресс.',
+              'Можна продовжити без входу, але якщо видалити застосунок без привʼязки акаунта, прогрес може загубитися. Привʼязати акаунт можна пізніше в налаштуваннях.',
+              'Puedes seguir sin iniciar sesión, pero si eliminas la app sin vincular tu cuenta, podrías perder el progreso. Puedes vincularla más tarde en Ajustes.',
             )}
           </Text>
 
@@ -1265,11 +1328,103 @@ function AuthOnboardingStep({
   );
 }
 
+function OnboardingStreakIcon({
+  kind,
+  size = 52,
+  hero = false,
+}: {
+  kind: StreakMilestoneIconKind;
+  size?: number;
+  hero?: boolean;
+}) {
+  return (
+    <View
+      style={[
+        styles.streakIconShadow,
+        hero && styles.streakHeroIconShadow,
+        { width: size, height: size },
+      ]}
+    >
+      <Image
+        source={ONBOARDING_STREAK_ICONS[kind]}
+        style={{ width: size, height: size }}
+        resizeMode="contain"
+      />
+    </View>
+  );
+}
+
 const styles = StyleSheet.create({
-  container:       { flex: 1, backgroundColor: DARK.bgPrimary },
+  container:       { flex: 1, backgroundColor: '#020304', overflow: 'hidden' },
   center:          { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 30 },
-  appName:         { color: ONBOARDING_ACCENT, fontSize: 15, fontWeight: '700', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
-  title:           { color: DARK.textPrimary, fontSize: 24, fontWeight: '600', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
+  appName:         { color: ONBOARDING_ACCENT, fontSize: 15, fontWeight: '800', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 24 },
+  title:           { color: '#FFF8E8', fontSize: 24, fontWeight: '800', textAlign: 'center', marginBottom: 40, lineHeight: 34 },
+  progressWrap: {
+    paddingTop: 0,
+  },
+  progressRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    paddingTop: 0,
+    paddingBottom: 4,
+  },
+  progressTrack: {
+    flex: 1,
+    height: 5,
+    backgroundColor: 'rgba(255,255,255,0.12)',
+    borderRadius: 999,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: 5,
+    backgroundColor: ONBOARDING_ACCENT,
+    borderRadius: 999,
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+  },
+  onboardingBg: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#020304',
+  },
+  onboardingBgImage: {
+    ...StyleSheet.absoluteFillObject,
+    opacity: 0.68,
+  },
+  onboardingBgDim: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  onboardingGlassCard: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 18,
+    padding: 14,
+    gap: 14,
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.18)',
+    backgroundColor: 'rgba(20,18,15,0.50)',
+    shadowColor: '#000',
+    shadowOpacity: 0.24,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 8 },
+  },
+  streakHeroIconWrap: {
+    marginBottom: 12,
+  },
+  streakIconShadow: {
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.28,
+    shadowRadius: 12,
+    shadowOffset: { width: 0, height: 6 },
+    elevation: 4,
+  },
+  streakHeroIconShadow: {
+    shadowOpacity: 0.42,
+    shadowRadius: 20,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 8,
+  },
   eliteWelcomeRoot: {
     flex: 1,
     paddingHorizontal: 24,
@@ -1313,15 +1468,41 @@ const styles = StyleSheet.create({
     paddingBottom: 18,
   },
   eliteWelcomeMark: {
-    width: 168,
-    height: 142,
+    width: 188,
+    height: 154,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 24,
+    marginBottom: 26,
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.34,
+    shadowRadius: 30,
+    shadowOffset: { width: 0, height: 16 },
+    elevation: 12,
+  },
+  eliteWelcomeMarkGlass: {
+    width: '100%',
+    height: '100%',
+    borderRadius: 34,
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.28)',
+    backgroundColor: 'rgba(255,255,255,0.07)',
+  },
+  eliteWelcomeGlassShine: {
+    position: 'absolute',
+    top: 10,
+    left: 16,
+    right: 16,
+    height: 42,
+    borderRadius: 999,
+    backgroundColor: 'rgba(255,255,255,0.13)',
+    opacity: 0.62,
   },
   eliteWelcomeMarkLogo: {
-    width: 168,
-    height: 142,
+    width: 138,
+    height: 106,
   },
   eliteHeroPreview: {
     width: '100%',
@@ -1404,7 +1585,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 2,
   },
   eliteWelcomeTitle: {
-    color: DARK.textPrimary,
+    color: '#FFF7E5',
     fontSize: 34,
     lineHeight: 41,
     fontWeight: '900',
@@ -1412,10 +1593,10 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   eliteWelcomeSub: {
-    color: DARK.textMuted,
+    color: ONBOARDING_TEXT_MUTED,
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
+    fontWeight: '700',
     textAlign: 'center',
     maxWidth: 310,
   },
@@ -1428,14 +1609,19 @@ const styles = StyleSheet.create({
     minHeight: 56,
     backgroundColor: ONBOARDING_ACCENT,
     paddingVertical: 17,
-    borderRadius: 16,
+    borderRadius: 18,
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.10)',
+    borderColor: 'rgba(255,244,205,0.38)',
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.36,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 8,
   },
   eliteWelcomeCtaText: {
-    color: '#FFFFFF',
+    color: '#1D1202',
     fontSize: 18,
     fontWeight: '900',
   },
@@ -1454,12 +1640,31 @@ const styles = StyleSheet.create({
   langFlag:        { fontSize: 32, marginRight: 16 },
   langLabel:       { color: DARK.textPrimary, fontSize: 20, fontWeight: '500' },
   input: {
-    width: '100%', backgroundColor: DARK.bgCard, color: DARK.textPrimary,
-    fontSize: 20, padding: 16, borderRadius: 12,
-    borderWidth: 1, borderColor: DARK.border, marginBottom: 24,
+    width: '100%',
+    backgroundColor: 'rgba(18,16,13,0.62)',
+    color: '#FFF8E8',
+    fontSize: 20,
+    padding: 16,
+    borderRadius: 16,
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.22)',
+    marginBottom: 24,
   },
-  continueBtn:     { width: '100%', backgroundColor: ONBOARDING_ACCENT, padding: 18, borderRadius: 12, alignItems: 'center' },
-  continueBtnText: { color: '#FFFFFF', fontSize: 18, fontWeight: '700' },
+  continueBtn: {
+    width: '100%',
+    backgroundColor: ONBOARDING_ACCENT,
+    padding: 18,
+    borderRadius: 18,
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'rgba(255,244,205,0.36)',
+    shadowColor: ONBOARDING_ACCENT,
+    shadowOpacity: 0.34,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 8,
+  },
+  continueBtnText: { color: '#1D1202', fontSize: 18, fontWeight: '900' },
   langHint:        { color: DARK.textGhost, fontSize: 14, fontWeight: '500', letterSpacing: 0.5, marginBottom: 32 },
   // Premium step
   premiumScroll:   { padding: 24, paddingBottom: 40, alignItems: 'center' },
@@ -1556,3 +1761,64 @@ const styles = StyleSheet.create({
     borderColor: DARK.border,
   },
 });
+
+function OnboardingArtBackground({
+  source,
+  motion = 'zoomOut',
+}: {
+  source: ImageSourcePropType;
+  motion?: 'zoomIn' | 'zoomOut';
+}) {
+  const progress = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    progress.setValue(0);
+    const anim = Animated.loop(
+      Animated.sequence([
+        Animated.timing(progress, {
+          toValue: 1,
+          duration: 32000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+        Animated.timing(progress, {
+          toValue: 0,
+          duration: 32000,
+          easing: Easing.inOut(Easing.quad),
+          useNativeDriver: true,
+        }),
+      ]),
+    );
+    anim.start();
+    return () => anim.stop();
+  }, [motion, progress, source]);
+
+  const scale = progress.interpolate({
+    inputRange: [0, 1],
+    outputRange: motion === 'zoomIn' ? [1.018, 1.0] : [1.018, 1.0],
+  });
+
+  return (
+    <>
+      <StatusBar translucent backgroundColor="transparent" barStyle="light-content" />
+      <View pointerEvents="none" style={styles.onboardingBg}>
+        <Animated.Image
+          source={source}
+          style={[styles.onboardingBgImage, { transform: [{ scale }] }]}
+          resizeMode="cover"
+        />
+        <LinearGradient
+          colors={[
+            'rgba(1,2,3,0.58)',
+            'rgba(2,3,5,0.68)',
+            'rgba(3,4,6,0.76)',
+            'rgba(2,2,3,0.90)',
+            'rgba(0,0,0,0.99)',
+          ]}
+          locations={[0, 0.32, 0.56, 0.78, 1]}
+          style={styles.onboardingBgDim}
+        />
+      </View>
+    </>
+  );
+}

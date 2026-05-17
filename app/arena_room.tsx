@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   Text, TextInput, TouchableOpacity, View, ScrollView,
-  Modal, KeyboardAvoidingView, Platform, FlatList, Clipboard, Alert,
+  Modal, KeyboardAvoidingView, Platform, FlatList, Clipboard,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
@@ -10,6 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
+import ThemedChoiceModal from '../components/ThemedChoiceModal';
+import { useOverlayVisible } from '../components/OverlayArbiter';
 import { triLang, type Lang } from '../constants/i18n';
 import { ensureArenaAuthUid } from './user_id_policy';
 import { emitAppEvent } from './events';
@@ -35,6 +37,14 @@ import {
 } from './services/arena_rooms_live';
 import { reserveArenaGameEntry } from './arena_access_gate';
 
+type ArenaRoomConfirmDialog = {
+  title: string;
+  message: string;
+  confirmLabel: string;
+  cancelLabel: string;
+  onConfirm: () => void;
+};
+
 function cleanCode(code: string): string {
   return String(code ?? '').replace(/[^A-Za-z0-9]/g, '').toUpperCase().slice(0, 6);
 }
@@ -59,6 +69,8 @@ function MemberRow({
   f: any;
   onKick: (uid: string, name: string) => void;
 }) {
+  const hostAccent = '#F59E0B';
+  const readyAccent = '#22C55E';
   return (
     <View style={{
       flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 10,
@@ -67,8 +79,8 @@ function MemberRow({
     }}>
       <View style={{
         width: 34, height: 34, borderRadius: 17,
-        backgroundColor: isHost ? '#F59E0B22' : t.bgSurface,
-        borderWidth: 1.5, borderColor: isHost ? '#F59E0B' : (member.ready ? '#22C55E' : t.border),
+        backgroundColor: isHost ? `${hostAccent}22` : t.bgSurface,
+        borderWidth: 1.5, borderColor: isHost ? hostAccent : (member.ready ? readyAccent : t.border),
         alignItems: 'center', justifyContent: 'center', marginRight: 10,
       }}>
         <Text style={{ fontSize: 16 }}>{isHost ? '👑' : (member.ready ? '✓' : '?')}</Text>
@@ -76,19 +88,46 @@ function MemberRow({
       <Text style={{ flex: 1, color: isMe ? t.accent : t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
         {member.userName}
         {isMe && <Text style={{ color: t.textMuted, fontWeight: '600' }}>
-          {triLang(lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' })}
+          {triLang(lang, {
+            ru: ' (ты)',
+            uk: ' (ти)',
+            es: ' (tú)',
+            'pt-BR': " (você)",
+            vi: " (bạn)",
+            id: " (kamu)",
+            tr: " (sen)",
+            pl: " (ty)",
+          })}
         </Text>}
       </Text>
       <View style={{
         paddingHorizontal: 8, paddingVertical: 3, borderRadius: 8,
-        backgroundColor: member.ready ? '#22C55E22' : t.bgSurface,
-        borderWidth: 1, borderColor: member.ready ? '#22C55E' : t.border,
+        backgroundColor: member.ready ? `${readyAccent}22` : t.bgSurface,
+        borderWidth: 1, borderColor: member.ready ? readyAccent : t.border,
         marginRight: meIsHost && !isMe && !isHost ? 8 : 0,
       }}>
-        <Text style={{ fontSize: f.caption - 1, fontWeight: '800', color: member.ready ? '#22C55E' : t.textMuted }}>
+        <Text style={{ fontSize: f.caption - 1, fontWeight: '800', color: member.ready ? readyAccent : t.textMuted }}>
           {member.ready
-            ? triLang(lang, { ru: 'Готов', uk: 'Готовий', es: 'Listo' })
-            : triLang(lang, { ru: 'Ожидает', uk: 'Очікує', es: 'Esperando' })}
+            ? triLang(lang, {
+              ru: 'Готов',
+              uk: 'Готовий',
+              es: 'Listo',
+              'pt-BR': "Pronto",
+              vi: "Sẵn sàng",
+              id: "Siap",
+              tr: "Hazır",
+              pl: "Gotowe",
+            })
+            : triLang(lang, {
+              ru: 'Ожидает',
+              uk: 'Очікує',
+              es: 'Esperando',
+              'pt-BR': "Esperando",
+              vi: "Đang chờ",
+              id: "Menunggu",
+              tr: "Bekliyor",
+              pl: "Oczekiwanie",
+            })}
         </Text>
       </View>
       {meIsHost && !isMe && !isHost && (
@@ -129,7 +168,11 @@ function ChatBubble({ msg, isMe, t, f }: { msg: ArenaRoomChatMessage; isMe: bool
 // ─── Главный экран ────────────────────────────────────────────────────────────
 export default function ArenaRoomScreen() {
   const router = useRouter();
-  const { theme: t, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
+  const arenaReadyAccent = '#22C55E';
+  const arenaRankAccent = '#F59E0B';
+  const arenaCtaColors = ['#F59E0B', '#7C3AED'] as [string, string];
+  const arenaReadyColors = ['#22C55E', '#16A34A'] as [string, string];
   const { lang } = useLang();
   const { code: routeCode } = useLocalSearchParams<{ code?: string }>();
 
@@ -140,6 +183,8 @@ export default function ArenaRoomScreen() {
   const [chatMessages, setChatMessages] = useState<ArenaRoomChatMessage[]>([]);
   const [unreadChat, setUnreadChat] = useState(0);
   const [showChat, setShowChat] = useState(false);
+  const [confirmDialog, setConfirmDialog] = useState<ArenaRoomConfirmDialog | null>(null);
+  const confirmDialogVisible = useOverlayVisible('arenaRoomConfirm', confirmDialog != null);
   const [chatInput, setChatInput] = useState('');
   const [busy, setBusy] = useState(false);
   const [loadingRoom, setLoadingRoom] = useState(false);
@@ -342,33 +387,103 @@ export default function ArenaRoomScreen() {
   const handleKick = useCallback((uid: string, name: string) => {
     if (!room?.code) return;
     hapticTap();
-    Alert.alert(
-      triLang(lang, { ru: 'Удалить игрока', uk: 'Видалити гравця', es: 'Expulsar jugador' }),
-      triLang(lang, { ru: `Удалить ${name} из комнаты?`, uk: `Видалити ${name} з кімнати?`, es: `¿Expulsar a ${name} de la sala?` }),
-      [
-        { text: triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' }), style: 'cancel' },
-        {
-          text: triLang(lang, { ru: 'Удалить', uk: 'Видалити', es: 'Expulsar' }), style: 'destructive',
-          onPress: () => kickArenaRoomMember(room.code, uid).catch(() => {}),
-        },
-      ],
-    );
+    const code = room.code;
+    setConfirmDialog({
+      title: triLang(lang, {
+        ru: 'Удалить игрока',
+        uk: 'Видалити гравця',
+        es: 'Expulsar jugador',
+        'pt-BR': "Expulsar jogador",
+        vi: "Mời người chơi ra khỏi phòng",
+        id: "Keluarkan pemain",
+        tr: "Oyuncuyu çıkar",
+        pl: "Wyrzuć gracza",
+      }),
+      message: triLang(lang, {
+        ru: `Удалить ${name} из комнаты?`,
+        uk: `Видалити ${name} з кімнати?`,
+        es: `¿Expulsar a ${name} de la sala?`,
+        'pt-BR': `Expulsar ${name} da sala?`,
+        vi: `Mời ${name} ra khỏi phòng?`,
+        id: `Keluarkan ${name} dari room?`,
+        tr: `${name} odadan çıkarılsın mı?`,
+        pl: `Wyrzucić ${name} z pokoju?`,
+      }),
+      cancelLabel: triLang(lang, {
+        ru: 'Отмена',
+        uk: 'Скасувати',
+        es: 'Cancelar',
+        'pt-BR': "Cancelar",
+        vi: "Hủy",
+        id: "Batal",
+        tr: "İptal",
+        pl: "Anuluj",
+      }),
+      confirmLabel: triLang(lang, {
+        ru: 'Удалить',
+        uk: 'Видалити',
+        es: 'Expulsar',
+        'pt-BR': "Expulsar",
+        vi: "Mời ra",
+        id: "Keluarkan",
+        tr: "Çıkar",
+        pl: "Wyrzuć",
+      }),
+      onConfirm: () => {
+        kickArenaRoomMember(code, uid).catch(() => {});
+      },
+    });
   }, [room?.code, lang]);
 
   const handleClose = useCallback(() => {
     if (!room?.code) return;
     hapticTap();
-    Alert.alert(
-      triLang(lang, { ru: 'Закрыть комнату', uk: 'Закрити кімнату', es: 'Cerrar sala' }),
-      triLang(lang, { ru: 'Закрыть комнату для всех?', uk: 'Закрити кімнату для всіх?', es: '¿Cerrar la sala para todos?' }),
-      [
-        { text: triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' }), style: 'cancel' },
-        {
-          text: triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' }), style: 'destructive',
-          onPress: () => closeArenaRoom(room.code).catch(() => {}),
-        },
-      ],
-    );
+    const code = room.code;
+    setConfirmDialog({
+      title: triLang(lang, {
+        ru: 'Закрыть комнату',
+        uk: 'Закрити кімнату',
+        es: 'Cerrar sala',
+        'pt-BR': "Fechar sala",
+        vi: "Đóng phòng",
+        id: "Tutup room",
+        tr: "Odayı kapat",
+        pl: "Zamknij pokój",
+      }),
+      message: triLang(lang, {
+        ru: 'Закрыть комнату для всех?',
+        uk: 'Закрити кімнату для всіх?',
+        es: '¿Cerrar la sala para todos?',
+        'pt-BR': "Fechar a sala para todos?",
+        vi: "Đóng phòng cho tất cả?",
+        id: "Tutup room untuk semua?",
+        tr: "Oda herkes için kapatılsın mı?",
+        pl: "Zamknąć pokój dla wszystkich?",
+      }),
+      cancelLabel: triLang(lang, {
+        ru: 'Отмена',
+        uk: 'Скасувати',
+        es: 'Cancelar',
+        'pt-BR': "Cancelar",
+        vi: "Hủy",
+        id: "Batal",
+        tr: "İptal",
+        pl: "Anuluj",
+      }),
+      confirmLabel: triLang(lang, {
+        ru: 'Закрыть',
+        uk: 'Закрити',
+        es: 'Cerrar',
+        'pt-BR': "Fechar",
+        vi: "Đóng",
+        id: "Tutup",
+        tr: "Kapat",
+        pl: "Zamknij",
+      }),
+      onConfirm: () => {
+        closeArenaRoom(code).catch(() => {});
+      },
+    });
   }, [room?.code, lang]);
 
   const handleCopyCode = useCallback(() => {
@@ -437,11 +552,29 @@ export default function ArenaRoomScreen() {
           </TouchableOpacity>
           <View style={{ flex: 1 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2 + 2, fontWeight: '900' }} numberOfLines={1}>
-              {triLang(lang, { ru: 'С друзьями', uk: 'З друзями', es: 'Con amigos' })}
+              {triLang(lang, {
+                ru: 'С друзьями',
+                uk: 'З друзями',
+                es: 'Con amigos',
+                'pt-BR': "Com amigos",
+                vi: "Với bạn bè",
+                id: "Dengan teman",
+                tr: "Arkadaşlarla",
+                pl: "Ze znajomymi",
+              })}
             </Text>
             {room && (
               <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                {triLang(lang, { ru: `Комната ${room.code}`, uk: `Кімната ${room.code}`, es: `Sala ${room.code}` })}
+                {triLang(lang, {
+                  ru: `Комната ${room.code}`,
+                  uk: `Кімната ${room.code}`,
+                  es: `Sala ${room.code}`,
+                  'pt-BR': `Sala ${room.code}`,
+                  vi: `Phòng ${room.code}`,
+                  id: `Room ${room.code}`,
+                  tr: `${room.code} odası`,
+                  pl: `Pokój ${room.code}`,
+                })}
               </Text>
             )}
           </View>
@@ -465,7 +598,16 @@ export default function ArenaRoomScreen() {
         {!room && (
           <View style={{ borderRadius: 18, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, padding: 16, gap: 12 }}>
             <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', textTransform: 'uppercase' }}>
-              {triLang(lang, { ru: 'Войти в комнату по коду', uk: 'Увійти в кімнату за кодом', es: 'Entrar a sala por código' })}
+              {triLang(lang, {
+                ru: 'Войти в комнату по коду',
+                uk: 'Увійти в кімнату за кодом',
+                es: 'Entrar a sala por código',
+                'pt-BR': "Entrar na sala por código",
+                vi: "Vào phòng bằng mã",
+                id: "Masuk room dengan kode",
+                tr: "Kodla odaya gir",
+                pl: "Wejdź do pokoju kodem",
+              })}
             </Text>
             <View style={{ flexDirection: 'row', gap: 10 }}>
               <TextInput
@@ -486,7 +628,16 @@ export default function ArenaRoomScreen() {
               >
                 <Ionicons name="enter-outline" size={20} color={codeInput ? t.accent : t.textMuted} />
                 <Text style={{ color: codeInput ? t.accent : t.textMuted, fontSize: f.caption, fontWeight: '800' }}>
-                  {triLang(lang, { ru: 'Войти', uk: 'Увійти', es: 'Entrar' })}
+                  {triLang(lang, {
+                    ru: 'Войти',
+                    uk: 'Увійти',
+                    es: 'Entrar',
+                    'pt-BR': "Entrar",
+                    vi: "Vào",
+                    id: "Masuk",
+                    tr: "Gir",
+                    pl: "Wejdź",
+                  })}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -494,7 +645,16 @@ export default function ArenaRoomScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
               <Text style={{ color: t.textGhost, fontSize: f.caption }}>
-                {triLang(lang, { ru: 'или', uk: 'або', es: 'o' })}
+                {triLang(lang, {
+                  ru: 'или',
+                  uk: 'або',
+                  es: 'o',
+                  'pt-BR': "ou",
+                  vi: "hoặc",
+                  id: "atau",
+                  tr: "veya",
+                  pl: "albo",
+                })}
               </Text>
               <View style={{ flex: 1, height: 1, backgroundColor: t.border }} />
             </View>
@@ -503,8 +663,26 @@ export default function ArenaRoomScreen() {
               <LinearGradient colors={[t.accent, t.accent + 'BB']} style={{ height: 54, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 }}>
                 <Ionicons name="add-circle" size={20} color={t.correctText} />
                 <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '900' }}>
-                  {busy ? triLang(lang, { ru: 'Создаём…', uk: 'Створюємо…', es: 'Creando…' })
-                       : triLang(lang, { ru: 'Создать комнату', uk: 'Створити кімнату', es: 'Crear sala' })}
+                  {busy ? triLang(lang, {
+                    ru: 'Создаём…',
+                    uk: 'Створюємо…',
+                    es: 'Creando…',
+                    'pt-BR': "Criando…",
+                    vi: "Đang tạo…",
+                    id: "Membuat…",
+                    tr: "Oluşturuluyor…",
+                    pl: "Tworzenie…",
+                  })
+                       : triLang(lang, {
+                         ru: 'Создать комнату',
+                         uk: 'Створити кімнату',
+                         es: 'Crear sala',
+                         'pt-BR': "Criar sala",
+                         vi: "Tạo phòng",
+                         id: "Buat room",
+                         tr: "Oda oluştur",
+                         pl: "Utwórz pokój",
+                       })}
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
@@ -514,6 +692,11 @@ export default function ArenaRoomScreen() {
                 ru: 'Создай комнату → поделись кодом с друзьями → все нажмите Готов → хост запускает игру',
                 uk: 'Створи кімнату → поділися кодом → всі натисніть Готовий → хост запускає гру',
                 es: 'Crea sala → comparte el código → todos pulsan Listo → el host inicia el juego',
+                'pt-BR': "Crie a sala → compartilhe o código → todos tocam Pronto → o host inicia o jogo",
+                vi: "Tạo phòng → chia sẻ mã → mọi người bấm Sẵn sàng → chủ phòng bắt đầu trò chơi",
+                id: "Buat room → bagikan kode → semua tekan Siap → host memulai game",
+                tr: "Oda oluştur → kodu paylaş → herkes Hazır der → host oyunu başlatır",
+                pl: "Utwórz pokój → udostępnij kod → wszyscy klikają Gotowe → gospodarz zaczyna grę",
               })}
             </Text>
           </View>
@@ -528,7 +711,16 @@ export default function ArenaRoomScreen() {
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <View style={{ flex: 1 }}>
                   <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800', textTransform: 'uppercase', marginBottom: 2 }}>
-                    {triLang(lang, { ru: 'Код комнаты', uk: 'Код кімнати', es: 'Código de sala' })}
+                    {triLang(lang, {
+                      ru: 'Код комнаты',
+                      uk: 'Код кімнати',
+                      es: 'Código de sala',
+                      'pt-BR': "Código da sala",
+                      vi: "Mã phòng",
+                      id: "Kode room",
+                      tr: "Oda kodu",
+                      pl: "Kod pokoju",
+                    })}
                   </Text>
                   <TouchableOpacity onPress={handleCopyCode} activeOpacity={0.7} style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
                     <Text testID="arena-room-code-display" style={{ color: t.accent, fontSize: 34, fontWeight: '900', letterSpacing: 4 }}>
@@ -544,7 +736,16 @@ export default function ArenaRoomScreen() {
                   >
                     <Ionicons name="share-social" size={15} color={t.accent} />
                     <Text style={{ color: t.accent, fontSize: f.caption, fontWeight: '800' }}>
-                      {triLang(lang, { ru: 'Пригласить', uk: 'Запросити', es: 'Invitar' })}
+                      {triLang(lang, {
+                        ru: 'Пригласить',
+                        uk: 'Запросити',
+                        es: 'Invitar',
+                        'pt-BR': "Convidar",
+                        vi: "Mời",
+                        id: "Undang",
+                        tr: "Davet et",
+                        pl: "Zaproś",
+                      })}
                     </Text>
                   </TouchableOpacity>
                   {meIsHost && (
@@ -554,7 +755,16 @@ export default function ArenaRoomScreen() {
                     >
                       <Ionicons name="close-circle-outline" size={15} color="#EF4444" />
                       <Text style={{ color: '#EF4444', fontSize: f.caption, fontWeight: '800' }}>
-                        {triLang(lang, { ru: 'Закрыть', uk: 'Закрити', es: 'Cerrar' })}
+                        {triLang(lang, {
+                          ru: 'Закрыть',
+                          uk: 'Закрити',
+                          es: 'Cerrar',
+                          'pt-BR': "Fechar",
+                          vi: "Đóng",
+                          id: "Tutup",
+                          tr: "Kapat",
+                          pl: "Zamknij",
+                        })}
                       </Text>
                     </TouchableOpacity>
                   )}
@@ -566,22 +776,49 @@ export default function ArenaRoomScreen() {
                 <View style={{ flex: 1, borderRadius: 12, backgroundColor: t.bgSurface, padding: 10, alignItems: 'center' }}>
                   <Text style={{ color: t.accent, fontSize: f.h2, fontWeight: '900' }}>{members.length}</Text>
                   <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
-                    {triLang(lang, { ru: 'в комнате', uk: 'у кімнаті', es: 'en sala' })}
+                    {triLang(lang, {
+                      ru: 'в комнате',
+                      uk: 'у кімнаті',
+                      es: 'en sala',
+                      'pt-BR': "na sala",
+                      vi: "trong phòng",
+                      id: "di room",
+                      tr: "odada",
+                      pl: "w pokoju",
+                    })}
                   </Text>
                 </View>
                 <View style={{ flex: 1, borderRadius: 12, backgroundColor: t.bgSurface, padding: 10, alignItems: 'center' }}>
-                  <Text style={{ color: '#22C55E', fontSize: f.h2, fontWeight: '900' }}>
+                  <Text style={{ color: arenaReadyAccent, fontSize: f.h2, fontWeight: '900' }}>
                     {members.filter(m => m.ready).length}/{members.length}
                   </Text>
                   <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
-                    {triLang(lang, { ru: 'готовы', uk: 'готові', es: 'listos' })}
+                    {triLang(lang, {
+                      ru: 'готовы',
+                      uk: 'готові',
+                      es: 'listos',
+                      'pt-BR': "prontos",
+                      vi: "sẵn sàng",
+                      id: "siap",
+                      tr: "hazır",
+                      pl: "gotowych",
+                    })}
                   </Text>
                 </View>
                 {myRank && (
                   <View style={{ flex: 1, borderRadius: 12, backgroundColor: t.bgSurface, padding: 10, alignItems: 'center' }}>
-                    <Text style={{ color: myRank === 1 ? '#F59E0B' : t.accent, fontSize: f.h2, fontWeight: '900' }}>#{myRank}</Text>
+                    <Text style={{ color: myRank === 1 ? arenaRankAccent : t.accent, fontSize: f.h2, fontWeight: '900' }}>#{myRank}</Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption - 1 }}>
-                      {triLang(lang, { ru: 'место', uk: 'місце', es: 'posición' })}
+                      {triLang(lang, {
+                        ru: 'место',
+                        uk: 'місце',
+                        es: 'posición',
+                        'pt-BR': "posição",
+                        vi: "vị trí",
+                        id: "posisi",
+                        tr: "sıra",
+                        pl: "miejsce",
+                      })}
                     </Text>
                   </View>
                 )}
@@ -596,14 +833,32 @@ export default function ArenaRoomScreen() {
                   activeOpacity={canStart ? 0.9 : 1}
                 >
                   <LinearGradient
-                    colors={canStart ? ['#F59E0B', '#7C3AED'] : [t.bgSurface, t.bgSurface]}
+                    colors={canStart ? arenaCtaColors : [t.bgSurface, t.bgSurface]}
                     style={{ height: 56, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, borderWidth: canStart ? 0 : 1, borderColor: t.border }}
                   >
                     <Ionicons name="play" size={22} color={canStart ? '#FFFFFF' : t.textMuted} />
                     <Text style={{ color: canStart ? '#FFFFFF' : t.textMuted, fontSize: f.body, fontWeight: '900' }}>
                       {canStart
-                        ? triLang(lang, { ru: 'Начать игру!', uk: 'Почати гру!', es: '¡Iniciar juego!' })
-                        : triLang(lang, { ru: 'Ждём готовности всех…', uk: 'Чекаємо на всіх…', es: 'Esperando a todos…' })}
+                        ? triLang(lang, {
+                          ru: 'Начать игру!',
+                          uk: 'Почати гру!',
+                          es: '¡Iniciar juego!',
+                          'pt-BR': "Iniciar jogo!",
+                          vi: "Bắt đầu chơi!",
+                          id: "Mulai game!",
+                          tr: "Oyunu başlat!",
+                          pl: "Rozpocznij grę!",
+                        })
+                        : triLang(lang, {
+                          ru: 'Ждём готовности всех…',
+                          uk: 'Чекаємо на всіх…',
+                          es: 'Esperando a todos…',
+                          'pt-BR': "Esperando todos…",
+                          vi: "Đang chờ mọi người…",
+                          id: "Menunggu semua…",
+                          tr: "Herkes bekleniyor…",
+                          pl: "Czekamy na wszystkich…",
+                        })}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -614,14 +869,32 @@ export default function ArenaRoomScreen() {
                   activeOpacity={0.88}
                 >
                   <LinearGradient
-                    colors={myReady ? ['#22C55E', '#16A34A'] : [t.bgSurface, t.bgSurface]}
+                    colors={myReady ? arenaReadyColors : [t.bgSurface, t.bgSurface]}
                     style={{ height: 54, borderRadius: 16, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8, borderWidth: myReady ? 0 : 1.5, borderColor: t.border }}
                   >
                     <Ionicons name={myReady ? 'checkmark-circle' : 'ellipse-outline'} size={22} color={myReady ? '#fff' : t.textMuted} />
                     <Text style={{ color: myReady ? '#fff' : t.textMuted, fontSize: f.body, fontWeight: '900' }}>
                       {myReady
-                        ? triLang(lang, { ru: 'Готов ✓ (нажми чтобы отменить)', uk: 'Готовий ✓ (натисни щоб скасувати)', es: 'Listo ✓ (toca para cancelar)' })
-                        : triLang(lang, { ru: 'Нажми — Я ГОТОВ', uk: 'Натисни — Я ГОТОВИЙ', es: 'Pulsa — ESTOY LISTO' })}
+                        ? triLang(lang, {
+                          ru: 'Готов ✓ (нажми чтобы отменить)',
+                          uk: 'Готовий ✓ (натисни щоб скасувати)',
+                          es: 'Listo ✓ (toca para cancelar)',
+                          'pt-BR': "Pronto ✓ (toque para cancelar)",
+                          vi: "Sẵn sàng ✓ (chạm để hủy)",
+                          id: "Siap ✓ (ketuk untuk batal)",
+                          tr: "Hazır ✓ (iptal için dokun)",
+                          pl: "Gotowe ✓ (dotknij, aby anulować)",
+                        })
+                        : triLang(lang, {
+                          ru: 'Нажми — Я ГОТОВ',
+                          uk: 'Натисни — Я ГОТОВИЙ',
+                          es: 'Pulsa — ESTOY LISTO',
+                          'pt-BR': "Toque — ESTOU PRONTO",
+                          vi: "Bấm — TÔI SẴN SÀNG",
+                          id: "Tekan — SAYA SIAP",
+                          tr: "Dokun — HAZIRIM",
+                          pl: "Kliknij — JESTEM GOTOWY",
+                        })}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -634,12 +907,30 @@ export default function ArenaRoomScreen() {
                   onPress={handleStart}
                   activeOpacity={0.9}
                 >
-                  <LinearGradient colors={['#F59E0B', '#7C3AED']} style={{ height: 46, borderRadius: 14, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 }}>
+                  <LinearGradient colors={arenaCtaColors} style={{ height: 46, borderRadius: 14, alignItems: 'center', justifyContent: 'center', flexDirection: 'row', gap: 8 }}>
                     <Ionicons name="play-outline" size={18} color="#fff" />
                     <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
                       {myRun
-                        ? triLang(lang, { ru: 'Сыграть снова', uk: 'Зіграти знову', es: 'Jugar de nuevo' })
-                        : triLang(lang, { ru: 'Играть в комнате', uk: 'Грати в кімнаті', es: 'Jugar en sala' })}
+                        ? triLang(lang, {
+                          ru: 'Сыграть снова',
+                          uk: 'Зіграти знову',
+                          es: 'Jugar de nuevo',
+                          'pt-BR': "Jogar de novo",
+                          vi: "Chơi lại",
+                          id: "Main lagi",
+                          tr: "Tekrar oyna",
+                          pl: "Zagraj ponownie",
+                        })
+                        : triLang(lang, {
+                          ru: 'Играть в комнате',
+                          uk: 'Грати в кімнаті',
+                          es: 'Jugar en sala',
+                          'pt-BR': "Jogar em sala",
+                          vi: "Chơi trong phòng",
+                          id: "Main di room",
+                          tr: "Odada oyna",
+                          pl: "Graj w pokoju",
+                        })}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -654,7 +945,16 @@ export default function ArenaRoomScreen() {
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, paddingBottom: 10 }}>
               <Ionicons name="people" size={16} color={t.textMuted} style={{ marginRight: 6 }} />
               <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '900', textTransform: 'uppercase' }}>
-                {triLang(lang, { ru: 'В комнате сейчас', uk: 'Зараз у кімнаті', es: 'En la sala ahora' })}
+                {triLang(lang, {
+                  ru: 'В комнате сейчас',
+                  uk: 'Зараз у кімнаті',
+                  es: 'En la sala ahora',
+                  'pt-BR': "Na sala agora",
+                  vi: "Đang trong phòng",
+                  id: "Di room sekarang",
+                  tr: "Şu anda odada",
+                  pl: "Teraz w pokoju",
+                })}
               </Text>
               <Text style={{ color: t.textGhost, fontSize: f.caption - 1 }}>{members.length}/20</Text>
             </View>
@@ -679,11 +979,29 @@ export default function ArenaRoomScreen() {
           <View style={{ borderRadius: 18, borderWidth: 1, borderColor: t.border, backgroundColor: t.bgCard, overflow: 'hidden' }}>
             <View style={{ flexDirection: 'row', alignItems: 'center', padding: 14, paddingBottom: 10 }}>
               <Text style={{ flex: 1, color: t.textMuted, fontSize: f.caption, fontWeight: '900', textTransform: 'uppercase' }}>
-                {triLang(lang, { ru: 'Таблица результатов', uk: 'Таблиця результатів', es: 'Clasificación' })}
+                {triLang(lang, {
+                  ru: 'Таблица результатов',
+                  uk: 'Таблиця результатів',
+                  es: 'Clasificación',
+                  'pt-BR': "Classificação",
+                  vi: "Xếp hạng",
+                  id: "Peringkat",
+                  tr: "Sıralama",
+                  pl: "Klasyfikacja",
+                })}
               </Text>
               {runs.length > 0 && (
                 <Text style={{ color: t.textGhost, fontSize: f.caption - 1 }}>
-                  {runs.length} {triLang(lang, { ru: 'игроков', uk: 'гравців', es: 'jugadores' })}
+                  {runs.length} {triLang(lang, {
+                    ru: 'игроков',
+                    uk: 'гравців',
+                    es: 'jugadores',
+                    'pt-BR': "jogadores",
+                    vi: "người chơi",
+                    id: "pemain",
+                    tr: "oyuncu",
+                    pl: "graczy",
+                  })}
                 </Text>
               )}
             </View>
@@ -692,7 +1010,16 @@ export default function ArenaRoomScreen() {
               <View style={{ padding: 24, alignItems: 'center', gap: 8 }}>
                 <Ionicons name="trophy-outline" size={32} color={t.textGhost} />
                 <Text style={{ color: t.textGhost, fontSize: f.sub, textAlign: 'center' }}>
-                  {triLang(lang, { ru: 'Пока никто не сыграл\nНажми «Играть» чтобы первым попасть в таблицу!', uk: 'Ще ніхто не зіграв\nНатисни «Грати» щоб першим потрапити до таблиці!', es: 'Aún no ha jugado nadie\n¡Juega para ser el primero en el marcador!' })}
+                  {triLang(lang, {
+                    ru: 'Пока никто не сыграл\nНажми «Играть» чтобы первым попасть в таблицу!',
+                    uk: 'Ще ніхто не зіграв\nНатисни «Грати» щоб першим потрапити до таблиці!',
+                    es: 'Aún no ha jugado nadie\n¡Juega para ser el primero en el marcador!',
+                    'pt-BR': "Ninguém jogou ainda\nJogue para ser o primeiro no placar!",
+                    vi: "Chưa ai chơi\nHãy chơi để là người đầu tiên trên bảng điểm!",
+                    id: "Belum ada yang bermain\nMainlah untuk jadi yang pertama di papan skor!",
+                    tr: "Henüz kimse oynamadı\nSkor tablosunda ilk olmak için oyna!",
+                    pl: "Nikt jeszcze nie grał\nZagraj, aby być pierwszym w tabeli!",
+                  })}
                 </Text>
               </View>
             ) : sortedRuns.map((run, idx) => {
@@ -700,14 +1027,23 @@ export default function ArenaRoomScreen() {
               const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : null;
               return (
                 <View key={run.id} style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 14, paddingVertical: 12, borderTopWidth: 0.5, borderTopColor: t.border, backgroundColor: isMe ? t.accentBg : 'transparent' }}>
-                  <Text style={{ width: 32, color: idx === 0 ? '#F59E0B' : t.textMuted, fontSize: f.body, fontWeight: '900' }}>
+                  <Text style={{ width: 32, color: idx === 0 ? arenaRankAccent : t.textMuted, fontSize: f.body, fontWeight: '900' }}>
                     {medal ?? `${idx + 1}`}
                   </Text>
                   <Text style={{ flex: 1, color: isMe ? t.accent : t.textPrimary, fontSize: f.body, fontWeight: '800' }} numberOfLines={1}>
-                    {run.userName}{isMe && <Text style={{ color: t.textMuted, fontWeight: '600' }}>{triLang(lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' })}</Text>}
+                    {run.userName}{isMe && <Text style={{ color: t.textMuted, fontWeight: '600' }}>{triLang(lang, {
+                      ru: ' (ты)',
+                      uk: ' (ти)',
+                      es: ' (tú)',
+                      'pt-BR': " (você)",
+                      vi: " (bạn)",
+                      id: " (kamu)",
+                      tr: " (sen)",
+                      pl: " (ty)",
+                    })}</Text>}
                   </Text>
                   {run.total > 0 && <Text style={{ color: t.textSecond, fontSize: f.caption, fontWeight: '800', marginRight: 10 }}>{run.correct}/{run.total}</Text>}
-                  <Text style={{ color: idx === 0 ? '#F59E0B' : (isMe ? t.accent : t.textPrimary), fontSize: f.body, fontWeight: '900', minWidth: 44, textAlign: 'right' }}>{run.score}</Text>
+                  <Text style={{ color: idx === 0 ? arenaRankAccent : (isMe ? t.accent : t.textPrimary), fontSize: f.body, fontWeight: '900', minWidth: 44, textAlign: 'right' }}>{run.score}</Text>
                 </View>
               );
             })}
@@ -721,7 +1057,16 @@ export default function ArenaRoomScreen() {
           {/* Шапка чата */}
           <View style={{ flexDirection: 'row', alignItems: 'center', padding: 16, paddingTop: 20, borderBottomWidth: 0.5, borderBottomColor: t.border }}>
             <Text style={{ flex: 1, color: t.textPrimary, fontSize: f.h2, fontWeight: '900' }}>
-              {triLang(lang, { ru: 'Чат комнаты', uk: 'Чат кімнати', es: 'Chat de sala' })}
+              {triLang(lang, {
+                ru: 'Чат комнаты',
+                uk: 'Чат кімнати',
+                es: 'Chat de sala',
+                'pt-BR': "Chat da sala",
+                vi: "Chat phòng",
+                id: "Chat room",
+                tr: "Oda sohbeti",
+                pl: "Czat pokoju",
+              })}
               <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}> {room?.code}</Text>
             </Text>
             <TouchableOpacity onPress={() => setShowChat(false)} style={{ padding: 4 }}>
@@ -739,7 +1084,16 @@ export default function ArenaRoomScreen() {
               <View style={{ alignItems: 'center', marginTop: 40 }}>
                 <Ionicons name="chatbubbles-outline" size={40} color={t.textGhost} />
                 <Text style={{ color: t.textGhost, marginTop: 8 }}>
-                  {triLang(lang, { ru: 'Нет сообщений. Начни чат!', uk: 'Немає повідомлень. Починай чат!', es: '¡Sin mensajes. ¡Empieza el chat!' })}
+                  {triLang(lang, {
+                    ru: 'Нет сообщений. Начни чат!',
+                    uk: 'Немає повідомлень. Починай чат!',
+                    es: "Sin mensajes. ¡Empieza el chat!",
+                    'pt-BR': "Sem mensagens. Comece o chat!",
+                    vi: "Chưa có tin nhắn. Bắt đầu trò chuyện!",
+                    id: "Belum ada pesan. Mulai chat!",
+                    tr: "Mesaj yok. Sohbeti başlat!",
+                    pl: "Brak wiadomości. Zacznij czat!",
+                  })}
                 </Text>
               </View>
             }
@@ -754,7 +1108,16 @@ export default function ArenaRoomScreen() {
             <TextInput
               value={chatInput}
               onChangeText={setChatInput}
-              placeholder={triLang(lang, { ru: 'Написать сообщение…', uk: 'Написати повідомлення…', es: 'Escribe un mensaje…' })}
+              placeholder={triLang(lang, {
+                ru: 'Написать сообщение…',
+                uk: 'Написати повідомлення…',
+                es: 'Escribe un mensaje…',
+                'pt-BR': "Escreva uma mensagem…",
+                vi: "Nhập tin nhắn…",
+                id: "Tulis pesan…",
+                tr: "Mesaj yaz…",
+                pl: "Napisz wiadomość…",
+              })}
               placeholderTextColor={t.textGhost}
               multiline
               maxLength={300}
@@ -771,6 +1134,20 @@ export default function ArenaRoomScreen() {
           </View>
         </KeyboardAvoidingView>
       </Modal>
+      <ThemedChoiceModal
+        visible={confirmDialogVisible}
+        title={confirmDialog?.title ?? ''}
+        message={confirmDialog?.message ?? ''}
+        choices={
+          confirmDialog
+            ? [
+                { label: confirmDialog.cancelLabel, variant: 'secondary', onPress: () => {} },
+                { label: confirmDialog.confirmLabel, onPress: confirmDialog.onConfirm },
+              ]
+            : []
+        }
+        onRequestClose={() => setConfirmDialog(null)}
+      />
     </ScreenGradient>
   );
 }

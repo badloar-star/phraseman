@@ -6,6 +6,7 @@ import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context'
 import ScreenGradient from '../components/ScreenGradient';
 import { useLang } from '../components/LangContext';
 import { useTheme } from '../components/ThemeContext';
+import { hapticTap } from '../hooks/use-haptics';
 import { CLOUD_SYNC_ENABLED, DEV_MODE, IS_BETA_TESTER, IS_EXPO_GO } from './config';
 import { primeCustomFlashcardsCache } from './flashcards_collection';
 import FlashcardsCategoryHub from './flashcards/FlashcardsCategoryHub';
@@ -35,6 +36,7 @@ export default function FlashcardsHubScreen() {
   const hubCategoryLang: 'ru' | 'uk' | 'es' = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
   const insets = useSafeAreaInsets();
   const isDevMarketEnabled = DEV_MODE || IS_BETA_TESTER;
+  const scrollBottomPadding = Math.max(insets.bottom, 16) + 12;
 
   const [marketPacks, setMarketPacks] = useState<FlashcardMarketPack[]>(
     () => peekWarmMarketplacePacks() ?? fallbackBundledMarketPacks(),
@@ -144,9 +146,20 @@ export default function FlashcardsHubScreen() {
     void loadHubMarket({ force: true });
   }, [loadHubMarket]);
 
+  const openTraining = useCallback(() => {
+    void hapticTap();
+    const owned = ownedPackIds.length > 0 ? ownedPackIds.join('|') : '';
+    router.push(
+      owned
+        ? ({ pathname: '/flashcards_swipe', params: { owned } } as any)
+        : ('/flashcards_swipe' as any),
+    );
+  }, [ownedPackIds, router]);
+
   useFocusEffect(
     useCallback(() => {
       primeCustomFlashcardsCache();
+      void import('./flashcards_swipe').catch(() => {});
       void loadHubMarket();
     }, [loadHubMarket]),
   );
@@ -208,7 +221,7 @@ export default function FlashcardsHubScreen() {
             style={styles.scrollView}
             contentContainerStyle={[
               styles.scrollContent,
-              { paddingBottom: Math.max(insets.bottom, 16) + 12 },
+              { paddingBottom: scrollBottomPadding },
             ]}
             showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
@@ -227,6 +240,7 @@ export default function FlashcardsHubScreen() {
               communityPacks={communityPacks}
               ownedCommunityPackIds={ownedCommunityPackIds}
               hubAuthorStableId={hubAuthorStableId}
+              onTrainingPress={openTraining}
             />
           </ScrollView>
         </View>

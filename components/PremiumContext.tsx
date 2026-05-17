@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AppState, InteractionManager } from 'react-native';
 import Purchases from 'react-native-purchases';
 import { getVerifiedPremiumStatus, invalidatePremiumCache } from '../app/premium_guard';
-import { DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from '../app/config';
+import { CLOUD_SYNC_ENABLED, DEV_IAP_BYPASS, FORCE_PREMIUM, IS_EXPO_GO, IS_STORE_RELEASE } from '../app/config';
 import { onAppEvent } from '../app/events';
 import { getTrialReofferBlockedByCooldown } from '../app/premium_trial_eligibility';
 import { anyPackageHasTrialIntro } from '../app/premium_trial_signal';
@@ -27,6 +27,9 @@ const PremiumContext = createContext<PremiumContextValue>({
   reload: async () => {},
 });
 
+const FOREGROUND_CLOUD_PREMIUM_REFRESH_MS = 30 * 1000;
+const MIN_BACKGROUND_FOR_CLOUD_REFRESH_MS = 2 * 1000;
+
 export function usePremium(): PremiumContextValue {
   return useContext(PremiumContext);
 }
@@ -49,6 +52,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
   const [isPremium, setIsPremium] = useState(FORCE_PREMIUM);
   const [trialEligible, setTrialEligible] = useState(false);
   const backgroundedAtRef = useRef<number | null>(null);
+  const lastForegroundCloudRefreshRef = useRef(0);
 
   const reloadTrialEligible = useCallback(async () => {
     const v = await computeTrialEligible();
@@ -71,6 +75,21 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     }
   }, [reloadTrialEligible]);
 
+  const reloadAfterCloudRefresh = useCallback(async () => {
+    if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) {
+      await reload();
+      return;
+    }
+    try {
+      const { restoreFromCloud } = await import('../app/cloud_sync');
+      await restoreFromCloud();
+    } catch {
+      /* premium state can still fall back to local/RevenueCat */
+    }
+    invalidatePremiumCache();
+    await reload();
+  }, [reload]);
+
   // Load on mount; if FORCE_PREMIUM — сбрасываем все флаги отмены премиума
   useEffect(() => {
     if (FORCE_PREMIUM) {
@@ -82,7 +101,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
     void reload();
   }, [reload]);
 
-  // Reload when app comes to foreground — only invalidate cache if background > 5 min
+  // Reload when app comes to foreground; after a background round-trip, refresh cloud admin grants first.
   useEffect(() => {
     let resumeTimer: ReturnType<typeof setTimeout> | null = null;
     let resumeTask: { cancel?: () => void } | null = null;
@@ -94,7 +113,16 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
         backgroundedAtRef.current = null;
         if (backgroundDurationMs > 5 * 60 * 1000) {
           invalidatePremiumCache();
-          void reload();
+          lastForegroundCloudRefreshRef.current = Date.now();
+          void reloadAfterCloudRefresh();
+          return;
+        }
+        const shouldRefreshCloud =
+          backgroundDurationMs >= MIN_BACKGROUND_FOR_CLOUD_REFRESH_MS &&
+          Date.now() - lastForegroundCloudRefreshRef.current >= FOREGROUND_CLOUD_PREMIUM_REFRESH_MS;
+        if (shouldRefreshCloud) {
+          lastForegroundCloudRefreshRef.current = Date.now();
+          void reloadAfterCloudRefresh();
           return;
         }
         if (resumeTimer) clearTimeout(resumeTimer);
@@ -119,7 +147,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       if (resumeTimer) clearTimeout(resumeTimer);
       resumeTask?.cancel?.();
     };
-  }, [reload]);
+  }, [reload, reloadAfterCloudRefresh]);
 
   // Instant update on purchase — set true immediately, reload only syncs cache
   useEffect(() => {

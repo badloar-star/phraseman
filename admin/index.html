@@ -156,7 +156,11 @@
     .lang-ru { background: #1a3a5c; color: #60a5fa; }
     .lang-uk { background: #1a3a1a; color: #4ade80; }
     .theme-badge { padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-    .theme-dark { background: #222; color: #aaa; border: 1px solid #333; }
+    .theme-minimalDark { background: #151923; color: #b8c0cf; border: 1px solid #2a3140; }
+    .theme-minimalLight { background: #f5f2ea; color: #3b3328; border: 1px solid #ddd5c8; }
+    .theme-dark { background: #102016; color: #48d284; border: 1px solid #2d6d47; }
+    .theme-neon { background: #171a20; color: #b6ff00; border: 1px solid #4a4f55; }
+    .theme-gold { background: #141009; color: #d7ad56; border: 1px solid #5a4622; }
     .theme-light { background: #f5f5f5; color: #333; border: 1px solid #ddd; }
     .theme-auto { background: #1a2a3a; color: #60a5fa; border: 1px solid #2a4a6a; }
 
@@ -192,6 +196,28 @@
     .cat-other { background: #2a1a3b; color: #c084fc; }
     .reports-empty { text-align: center; color: #555; padding: 60px 0; font-size: 15px; }
     .reports-count { font-size: 12px; color: #666; margin-left: auto; }
+    .pt-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 12px; padding: 0 24px 32px; }
+    .pt-card { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+    .pt-card.pt-risk-high { border-color: #7f1d1d; box-shadow: inset 0 0 0 1px rgba(248,113,113,.12); }
+    .pt-card.pt-risk-medium { border-color: #5a3a12; }
+    .pt-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+    .pt-title { color: #fff; font-size: 14px; font-weight: 800; line-height: 1.35; }
+    .pt-id { color: #777; font-family: 'Courier New', monospace; font-size: 11px; word-break: break-all; margin-top: 3px; }
+    .pt-badges { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .pt-badge { border-radius: 999px; padding: 3px 8px; font-size: 10px; font-weight: 900; letter-spacing: .35px; text-transform: uppercase; border: 1px solid #333; color: #bbb; background: #11111a; }
+    .pt-cefr-A1 { color: #86efac; border-color: #14532d; background: #071a10; }
+    .pt-cefr-A2, .pt-cefr-A2p { color: #93c5fd; border-color: #1d4ed8; background: #071225; }
+    .pt-cefr-B1, .pt-cefr-B1p { color: #c4b5fd; border-color: #5b21b6; background: #140b25; }
+    .pt-risk-low { color: #86efac; border-color: #14532d; background: #071a10; }
+    .pt-risk-medium { color: #fbbf24; border-color: #5a3a12; background: #211504; }
+    .pt-risk-high { color: #fca5a5; border-color: #7f1d1d; background: #240909; }
+    .pt-diagnosis { color: #b9b9c8; font-size: 12px; line-height: 1.45; }
+    .pt-prereq { color: #888; font-size: 11px; line-height: 1.45; }
+    .pt-prereq code { color: #a78bfa; background: #11111a; border: 1px solid #2a2a3a; border-radius: 5px; padding: 1px 5px; font-size: 10px; }
+    .pt-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; padding: 0 24px 16px; }
+    .pt-summary-card { background: #12121a; border: 1px solid #2a2a3a; border-radius: 12px; padding: 12px 14px; }
+    .pt-summary-card .label { color: #777; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .5px; }
+    .pt-summary-card .value { color: #fff; font-size: 22px; font-weight: 900; margin-top: 3px; }
     .broadcast-panel {
       background: #151523;
       border: 1px solid #2f2f4a;
@@ -1006,6 +1032,7 @@
   <div class="tab" onclick="switchTab('community-packs')">🧩 Community</div>
   <div class="tab" onclick="switchTab('card-packs')">📦 Card packs</div>
   <div class="tab" onclick="switchTab('daily-phrases')">🗓️ Фразы дня</div>
+  <div class="tab" onclick="switchTab('personal-training')">🎓 Personal Training</div>
   <div class="tab" onclick="switchTab('clubs')">🏅 Лиги</div>
   <div class="tab" onclick="switchTab('league-chat')">💬 Чат лиг</div>
   <div class="tab" onclick="switchTab('arena-ranks')">🏟 Арена · Топ</div>
@@ -1131,11 +1158,11 @@
     </select>
     <select id="f-theme" onchange="renderTable()">
       <option value="">Все темы</option>
-      <option value="dark">⚫ Dark</option>
-      <option value="neon">💜 Neon</option>
-      <option value="gold">🌟 Gold</option>
-      <option value="ocean">🌊 Ocean</option>
-      <option value="sakura">🌸 Sakura</option>
+      <option value="minimalDark">⚫ Графит</option>
+      <option value="minimalLight">✏️ Скетч</option>
+      <option value="dark">🌲 Форест</option>
+      <option value="neon">💚 Неон</option>
+      <option value="gold">🌟 Gold reward</option>
     </select>
     <select id="f-platform" onchange="renderTable()">
       <option value="">Все платформы</option>
@@ -1434,7 +1461,7 @@
 <div id="tab-premium" class="reports-tab">
   <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
     <button type="button" onclick="loadPremiumData(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">🔄 Обновить</button>
-    <button type="button" onclick="repairAdminGrantPremiumCompat()" style="background:#3a2608;border:1px solid #8a5a12;color:#fbbf24">🛠 Fix admin_grant → annual</button>
+    <button type="button" onclick="repairAdminGrantPremiumCompat()" style="background:#3a2608;border:1px solid #8a5a12;color:#fbbf24">🛠 Fix ♾ admin_grant → annual</button>
     <select id="pr-filter" onchange="renderPremiumList()">
       <option value="all">Все Premium</option>
       <option value="paid">Только оплаченные (RC)</option>
@@ -1449,7 +1476,7 @@
   </div>
   <div id="pr-summary" style="padding:0 24px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px"></div>
   <p style="padding:0 24px 12px;font-size:13px;color:#888;max-width:960px;line-height:1.5">
-    Источник: <code style="color:#a78bfa">users.progress.premium_plan</code> + <code>progress.admin_premium_override</code> + <code>progress.premium_expiry</code> + RC metadata (<code>premium_rc_period_type</code>, <code>premium_rc_product_id</code>). Trial считается по <code>premium_rc_period_type=TRIAL</code>. <strong>Срок с кнопок</strong> в карточке пользователя («Premium на срок») пишет совместимый <code>annual</code> и дату; приложение само снимет премиум после истечения. <strong>Admin override</strong> без даты переживает отмену RC. <strong>Снять</strong> — кнопка Premium (текстом) → null или очистить поля вручную.
+    Источник: <code style="color:#a78bfa">users.progress.premium_plan</code> + <code>progress.admin_premium_override</code> + <code>progress.premium_expiry</code> + RC metadata (<code>premium_rc_period_type</code>, <code>premium_rc_product_id</code>). Trial считается по <code>premium_rc_period_type=TRIAL</code>. <strong>Срок с кнопок</strong> в карточке пользователя («Premium на срок») пишет legacy-compatible <code>admin_grant</code> и дату; приложение само снимет премиум после истечения. <strong>Бессрочно</strong> пишет <code>annual</code>. <strong>Admin override</strong> без даты переживает отмену RC. <strong>Снять</strong> — кнопка Premium (текстом) → null или очистить поля вручную.
   </p>
   <div id="pr-list" style="padding:0 24px 32px"><div class="reports-empty">Загрузите пользователей сначала.</div></div>
 </div>
@@ -1931,6 +1958,35 @@
   </div>
 </div>
 
+<!-- PERSONAL TRAINING CEFR TAB -->
+<div id="tab-personal-training" class="reports-tab">
+  <div class="reports-toolbar" style="flex-wrap:wrap;gap:10px">
+    <button type="button" onclick="renderPersonalTrainingAdmin(true)" style="background:#1a3a2a;border:1px solid #2a5a3a;color:#4ade80">↻ Обновить</button>
+    <select id="pt-level-filter" onchange="renderPersonalTrainingAdmin(false)">
+      <option value="all">Все уровни</option>
+      <option value="A1">A1</option>
+      <option value="A2">A2</option>
+      <option value="A2+">A2+</option>
+      <option value="B1">B1</option>
+      <option value="B1+">B1+</option>
+    </select>
+    <select id="pt-risk-filter" onchange="renderPersonalTrainingAdmin(false)">
+      <option value="all">Все риски</option>
+      <option value="high">High risk</option>
+      <option value="medium">Medium risk</option>
+      <option value="low">Low risk</option>
+    </select>
+    <input id="pt-search" type="text" placeholder="id / title / prerequisite" oninput="renderPersonalTrainingAdmin(false)"
+      style="background:#1a1a24;border:1px solid #2a2a3a;border-radius:8px;color:#e0e0e0;padding:7px 12px;min-width:260px;font-size:13px" />
+    <span class="reports-count" id="pt-count"></span>
+  </div>
+  <div style="padding:0 24px 14px;color:#888;font-size:12px;line-height:1.5">
+    Источник: <code style="color:#a78bfa">admin/personal-trainings.js</code>. CEFR/risk/prerequisites генерируются из <code>app/personal_training_taxonomy.ts</code>.
+  </div>
+  <div id="pt-summary" class="pt-summary"></div>
+  <div id="pt-list" class="pt-grid"><div class="reports-empty">Открой вкладку для загрузки.</div></div>
+</div>
+
 <!-- ARENA LIVE TAB -->
 <div id="tab-arena-bets" class="reports-tab">
   <div style="padding:24px;display:grid;grid-template-columns:minmax(320px,520px);gap:16px;max-width:620px">
@@ -2260,6 +2316,119 @@
   })();
 </script>
 
+<script src="./personal-trainings.js"></script>
+<script>
+  function ptEscapeHtml(value) {
+    return String(value ?? '').replace(/[&<>"']/g, function(ch) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+    });
+  }
+
+  function ptCefrClass(level) {
+    return 'pt-cefr-' + String(level || 'na').replace('+', 'p');
+  }
+
+  function ptTitle(training) {
+    return training?.title?.ru || training?.title?.es || training?.id || 'Untitled';
+  }
+
+  function ptDiagnosis(training) {
+    return training?.shortDiagnosis?.ru || training?.shortDiagnosis?.es || '';
+  }
+
+  function ptSummaryCard(label, value, sub) {
+    return `<div class="pt-summary-card"><div class="label">${ptEscapeHtml(label)}</div><div class="value">${ptEscapeHtml(value)}</div>${sub ? `<div style="font-size:11px;color:#777;margin-top:3px">${ptEscapeHtml(sub)}</div>` : ''}</div>`;
+  }
+
+  window.renderPersonalTrainingAdmin = function renderPersonalTrainingAdmin(force) {
+    const manifest = window.PERSONAL_TRAININGS_MANIFEST;
+    const listEl = document.getElementById('pt-list');
+    const summaryEl = document.getElementById('pt-summary');
+    const countEl = document.getElementById('pt-count');
+    if (!listEl || !summaryEl) return;
+
+    const trainings = Array.isArray(manifest?.trainings) ? manifest.trainings : [];
+    if (!trainings.length) {
+      listEl.innerHTML = '<div class="reports-empty">Нет manifest данных. Проверь admin/personal-trainings.js.</div>';
+      if (countEl) countEl.textContent = '0';
+      return;
+    }
+
+    const levelFilter = document.getElementById('pt-level-filter')?.value || 'all';
+    const riskFilter = document.getElementById('pt-risk-filter')?.value || 'all';
+    const search = (document.getElementById('pt-search')?.value || '').trim().toLowerCase();
+    const active = trainings.filter(t => t.status === 'active');
+    const levelCounts = active.reduce((acc, t) => {
+      const level = t.cefrLevel || '—';
+      acc[level] = (acc[level] || 0) + 1;
+      return acc;
+    }, {});
+    const highRisk = active.filter(t => t.placementRisk === 'high').length;
+    const prereqTotal = active.reduce((sum, t) => sum + (Array.isArray(t.prerequisites) ? t.prerequisites.length : 0), 0);
+
+    summaryEl.innerHTML = [
+      ptSummaryCard('Active', active.length, `${manifest.jesseReworkedIds?.length || 0} Jesse reworked`),
+      ptSummaryCard('A1 / A2 / A2+', `${levelCounts.A1 || 0} / ${levelCounts.A2 || 0} / ${levelCounts['A2+'] || 0}`),
+      ptSummaryCard('B1 / B1+', `${levelCounts.B1 || 0} / ${levelCounts['B1+'] || 0}`),
+      ptSummaryCard('High risk', highRisk, `${prereqTotal} prerequisite links`),
+    ].join('');
+
+    let filtered = active.slice();
+    if (levelFilter !== 'all') filtered = filtered.filter(t => t.cefrLevel === levelFilter);
+    if (riskFilter !== 'all') filtered = filtered.filter(t => t.placementRisk === riskFilter);
+    if (search) {
+      filtered = filtered.filter(t => {
+        const hay = [
+          t.id,
+          ptTitle(t),
+          ptDiagnosis(t),
+          t.category,
+          t.cefrLevel,
+          t.placementRisk,
+          ...(Array.isArray(t.prerequisites) ? t.prerequisites : []),
+        ].join(' ').toLowerCase();
+        return hay.includes(search);
+      });
+    }
+    filtered.sort((a, b) => {
+      const order = { A1: 1, A2: 2, 'A2+': 3, B1: 4, 'B1+': 5 };
+      return (order[a.cefrLevel] || 99) - (order[b.cefrLevel] || 99)
+        || String(b.placementRisk || '').localeCompare(String(a.placementRisk || ''))
+        || String(a.id).localeCompare(String(b.id));
+    });
+
+    if (countEl) countEl.textContent = `${filtered.length} / ${active.length}`;
+    if (!filtered.length) {
+      listEl.innerHTML = '<div class="reports-empty">Ничего не найдено по фильтрам.</div>';
+      return;
+    }
+
+    listEl.innerHTML = filtered.map(t => {
+      const risk = t.placementRisk || 'unknown';
+      const level = t.cefrLevel || '—';
+      const prereqs = Array.isArray(t.prerequisites) ? t.prerequisites : [];
+      return `<div class="pt-card pt-risk-${ptEscapeHtml(risk)}">
+        <div class="pt-card-head">
+          <div>
+            <div class="pt-title">${ptEscapeHtml(ptTitle(t))}</div>
+            <div class="pt-id">${ptEscapeHtml(t.id)}</div>
+          </div>
+          <div class="pt-badges">
+            <span class="pt-badge ${ptCefrClass(level)}">${ptEscapeHtml(level)}</span>
+            <span class="pt-badge pt-risk-${ptEscapeHtml(risk)}">${ptEscapeHtml(risk)}</span>
+            <span class="pt-badge">${ptEscapeHtml(t.category || '—')}</span>
+          </div>
+        </div>
+        <div class="pt-diagnosis">${ptEscapeHtml(ptDiagnosis(t))}</div>
+        <div class="pt-prereq"><strong>Prerequisites:</strong> ${prereqs.length ? prereqs.map(id => `<code>${ptEscapeHtml(id)}</code>`).join(' ') : '—'}</div>
+        <div class="pt-prereq"><strong>Files:</strong> <code>${ptEscapeHtml(t.appPath || '')}</code></div>
+      </div>`;
+    }).join('');
+
+    if (force && typeof showToast === 'function') showToast('Personal Training manifest обновлён', 'success');
+  };
+</script>
+
 <script type="module">
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
   import { getFirestore, collection, collectionGroup, getDocs, getCountFromServer, addDoc, query, orderBy, where, limit, startAfter, deleteDoc, doc, updateDoc, getDoc, setDoc, increment, runTransaction, writeBatch, deleteField } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
@@ -2308,7 +2477,7 @@
   }
 
   const ADMIN_DEFAULT_TAB = 'app-health';
-  const ADMIN_TAB_KEYS = ['users','analytics','app-health','reports','website-inbox','user-reports','ban-list','premium','cancel-surveys','review-promo','app-messages','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','daily-phrases','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','referrals','push-notify'];
+  const ADMIN_TAB_KEYS = ['users','analytics','app-health','reports','website-inbox','user-reports','ban-list','premium','cancel-surveys','review-promo','app-messages','ugc-purchases','archive','audit','ops-log','community-packs','card-packs','daily-phrases','personal-training','clubs','league-chat','arena-ranks','arena-live','arena-bets','arena-rooms','referrals','push-notify'];
 
   function isLocalAdminVisualTestMode() {
     const host = window.location.hostname;
@@ -2723,7 +2892,7 @@
         xp, streak: parseInt(p.streak_count) || 0, streakLastDate: p.streak_last_date || null,
         lang: p.lang || p.app_lang || 'ru', premium: p.premium_plan || null,
         premiumExpiry: Math.max(0, parseInt(String(p.premium_expiry || '0'), 10) || 0),
-        theme: p.app_theme || 'neon', fontSize: p.app_font_size || 'medium',
+        theme: p.app_theme || 'minimalDark', fontSize: p.app_font_size || 'medium',
         haptics: p.haptics_tap, avatar: p.user_avatar || null, frame: p.user_avatar_frame || null,
         onboarding: !!p.onboarding_done && p.onboarding_done !== '0',
         lessons: tryJson(p.unlocked_lessons, []), flashcards: Array.isArray(tryJson(p.flashcards, [])) ? tryJson(p.flashcards, []).length : 0,
@@ -3829,7 +3998,7 @@
           lang: p.lang||p.app_lang||'ru',
           premium: p.premium_plan||null,
           premiumExpiry: Math.max(0, parseInt(String(p.premium_expiry || '0'), 10) || 0),
-          theme: p.app_theme||'neon',
+          theme: p.app_theme||'minimalDark',
           fontSize: p.app_font_size||'medium',
           haptics: p.haptics_tap,
           avatar: p.user_avatar||null,
@@ -3951,7 +4120,7 @@
     if(fl) us=us.filter(u=>u.lang===fl);
     if(fp==='premium') us=us.filter(isUserPremiumActive);
     if(fp==='free') us=us.filter(u=>!isUserPremiumActive(u));
-    if(ft) us=us.filter(u=>(u.theme||'neon')===ft);
+    if(ft) us=us.filter(u=>(u.theme||'minimalDark')===ft);
     if(fpl) us=us.filter(u=>u.platform===fpl);
     if(fver) us=us.filter(u=>(u.appVersion||'—')===fver);
     if(fAuth==='any')   us=us.filter(u=>u.linkedAuth && u.linkedAuth.provider);
@@ -4025,10 +4194,10 @@
       pgBar.style.display = 'none';
     }
 
-    const theme_icon = {dark:'⚫',neon:'💜',gold:'🌟',ocean:'🌊',sakura:'🌸'};
+    const theme_icon = {minimalDark:'⚫',minimalLight:'✏️',dark:'🌲',neon:'💚',gold:'🌟'};
     document.getElementById('tbody').innerHTML = pageUsers.map(u=>{
       const isPrem=isUserPremiumActive(u);
-      const th=u.theme||'neon';
+      const th=u.theme||'minimalDark';
       const settingsBits = [];
       if(u.settings.hardMode) settingsBits.push('💀');
       if(u.settings.autoCheck) settingsBits.push('✅');
@@ -4461,9 +4630,9 @@
       let writeVal = numericFields.includes(field) ? (parseInt(val)||0) : val;
       if (field === 'premium_plan') {
         const normalized = String(val || '').trim().toLowerCase();
-        const allowed = new Set(['monthly', 'annual', 'yearly', 'null', '']);
+        const allowed = new Set(['monthly', 'annual', 'yearly', 'admin_grant', 'null', '']);
         if (!allowed.has(normalized)) {
-          showToast('Premium: monthly / annual / yearly / null', 'err');
+          showToast('Premium: monthly / annual / yearly / admin_grant / null', 'err');
           return;
         }
         writeVal = normalized === '' || normalized === 'null' ? '' : normalized;
@@ -4564,7 +4733,7 @@
           'progress.premium_admin_grant_at': grantAt,
         });
       } else {
-        plan = 'annual';
+        plan = 'admin_grant';
         const base = _premiumGrantBaseTs(u.raw);
         const d = new Date(base);
         d.setMonth(d.getMonth() + spec.n);
@@ -4712,7 +4881,7 @@
         <div class="drow"><span class="k">Имя</span><span class="v">${u.name}</span></div>
         <div class="drow"><span class="k">Язык</span><span class="v">${u.lang==='uk'?'🇺🇦 Украинский':'🇷🇺 Русский'}</span></div>
         <div class="drow"><span class="k">Платформа</span><span class="v">${platBadge(u.platform)}</span></div>
-        <div class="drow"><span class="k">Тема</span><span class="v">${{dark:'⚫ Dark',neon:'💜 Neon',gold:'🌟 Gold',ocean:'🌊 Ocean',sakura:'🌸 Sakura'}[u.theme]||u.theme||'💜 Neon'}</span></div>
+        <div class="drow"><span class="k">Тема</span><span class="v">${{minimalDark:'⚫ Графит',minimalLight:'✏️ Скетч',dark:'🌲 Форест',neon:'💚 Неон',gold:'🌟 Gold reward'}[u.theme]||u.theme||'⚫ Графит'}</span></div>
         <div class="drow"><span class="k">Уровень знаний (тест)</span><span class="v">${klvlBadge(u.placementLevel)}</span></div>
         <div class="drow"><span class="k">Premium</span><span class="v">${premHtml}</span></div>
         <div class="drow"><span class="k">Онбординг</span><span class="v">${u.onboarding?'✅ Завершён':'❌ Нет'}</span></div>
@@ -4833,7 +5002,7 @@
         if (a === 'edit-xp')      editUserField(uid, 'user_total_xp', 'Новый XP',     u2.xp);
         if (a === 'edit-streak')  editUserField(uid, 'streak_count',  'Новый Streak', u2.streak);
         if (a === 'premium-grant') openPremiumGrantModal(uid);
-        if (a === 'edit-premium') editUserField(uid, 'premium_plan',  'Premium: monthly / annual / yearly / null', u2.premium||'');
+        if (a === 'edit-premium') editUserField(uid, 'premium_plan',  'Premium: monthly / annual / yearly / admin_grant / null', u2.premium||'');
         if (a === 'edit-shards')  editShards(uid);
         if (a === 'grant-reward') grantReward(uid, u2.name);
         if (a === 'merge')        mergeUserPrompt(uid, u2.name);
@@ -4900,6 +5069,8 @@
     if (cpTabEl) cpTabEl.classList.toggle('active', tab === 'card-packs');
     const dpTabEl = document.getElementById('tab-daily-phrases');
     if (dpTabEl) dpTabEl.classList.toggle('active', tab === 'daily-phrases');
+    const personalTrainingTabEl = document.getElementById('tab-personal-training');
+    if (personalTrainingTabEl) personalTrainingTabEl.classList.toggle('active', tab === 'personal-training');
     const arenaLiveTabEl = document.getElementById('tab-arena-live');
     if (arenaLiveTabEl) arenaLiveTabEl.classList.toggle('active', tab === 'arena-live');
     const arenaBetsTabEl = document.getElementById('tab-arena-bets');
@@ -4975,6 +5146,9 @@
     }
     if (tab === 'daily-phrases' && !window._dailyPhrasesLoaded && typeof window.loadDailyPhrases === 'function') {
       void window.loadDailyPhrases(false);
+    }
+    if (tab === 'personal-training' && typeof window.renderPersonalTrainingAdmin === 'function') {
+      window.renderPersonalTrainingAdmin(false);
     }
     const pushTab = document.getElementById('tab-push-notify');
     if (pushTab) pushTab.classList.toggle('active', tab === 'push-notify');
@@ -7174,8 +7348,8 @@
     users.forEach(u => u.lessons.forEach(id => { if(id>=0&&id<LESSON_NAMES.length) lessonCount[id]++; }));
 
     // Theme dist
-    const themes = {dark:0,neon:0,gold:0,ocean:0,sakura:0};
-    users.forEach(u => { const t=u.theme||'neon'; if(t in themes) themes[t]++; });
+    const themes = {minimalDark:0,minimalLight:0,dark:0,neon:0,gold:0};
+    users.forEach(u => { const t=u.theme||'minimalDark'; if(t in themes) themes[t]++; });
 
     // Lang dist
     const langs = {ru:0,uk:0};
@@ -7859,8 +8033,8 @@
 
   window.repairAdminGrantPremiumCompat = async function repairAdminGrantPremiumCompat() {
     const ok = await showConfirmModal({
-      title: 'Починить старые admin_grant?',
-      desc: 'Активные admin_grant будут переписаны в annual с сохранением premium_expiry. Это нужно для совместимости со старыми версиями приложения.',
+      title: 'Починить бессрочные admin_grant?',
+      desc: 'Только бессрочные active admin_grant будут переписаны в annual. Timed admin_grant с premium_expiry оставляем для совместимости с уже установленными приложениями.',
       confirmLabel: 'Починить',
       danger: false,
     });
@@ -7881,7 +8055,7 @@
         const progress = data.progress || {};
         const expiry = parseInt(String(progress.premium_expiry || '0'), 10) || 0;
         const adminOverride = String(progress.admin_premium_override || '').trim() === 'true';
-        const active = adminOverride && (expiry === 0 || expiry > now);
+        const active = adminOverride && expiry === 0;
         if (!active) return;
         batch.update(docSnap.ref, {
           'progress.premium_plan': 'annual',

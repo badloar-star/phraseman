@@ -224,8 +224,9 @@ function PlayerProfileModalBody({
   multipliers,
   onFriendRequestToast,
 }: BodyProps) {
-  const { theme: t, themeMode, f } = useTheme();
+  const { theme: t, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const profileUpgradeAccent = '#FACC15';
   const { isPremium: myIsPremium } = usePremium();
   const insets = useSafeAreaInsets();
   const isMe = player.isMe;
@@ -374,22 +375,58 @@ function PlayerProfileModalBody({
       if (result === 'sent') {
         void invalidateFriendsActivityCache();
         onFriendRequestToast(
-          triLang(lang as Lang, { ru: 'Заявка отправлена!', uk: 'Заявку надіслано!', es: '¡Solicitud enviada!' }),
+          triLang(lang as Lang, {
+            ru: 'Заявка отправлена!',
+            uk: 'Заявку надіслано!',
+            es: '¡Solicitud enviada!',
+            'pt-BR': "Solicitação enviada!",
+            vi: "Đã gửi lời mời!",
+            id: "Permintaan terkirim!",
+            tr: "İstek gönderildi!",
+            pl: "Zaproszenie wysłane!",
+          }),
           'info',
         );
       } else if (result === 'already_friends') {
         onFriendRequestToast(
-          triLang(lang as Lang, { ru: 'Вы уже друзья', uk: 'Ви вже друзі', es: 'Ya son amigos' }),
+          triLang(lang as Lang, {
+            ru: 'Вы уже друзья',
+            uk: 'Ви вже друзі',
+            es: 'Ya son amigos',
+            'pt-BR': "Vocês já são amigos",
+            vi: "Hai bạn đã là bạn bè",
+            id: "Kalian sudah berteman",
+            tr: "Zaten arkadaşsınız",
+            pl: "Już jesteście znajomymi",
+          }),
           'info',
         );
       } else if (result === 'already_sent') {
         onFriendRequestToast(
-          triLang(lang as Lang, { ru: 'Заявка уже отправлена', uk: 'Заявку вже надіслано', es: 'Solicitud ya enviada' }),
+          triLang(lang as Lang, {
+            ru: 'Заявка уже отправлена',
+            uk: 'Заявку вже надіслано',
+            es: 'Solicitud ya enviada',
+            'pt-BR': "Solicitação já enviada",
+            vi: "Lời mời đã được gửi",
+            id: "Permintaan sudah dikirim",
+            tr: "İstek zaten gönderildi",
+            pl: "Zaproszenie już wysłane",
+          }),
           'info',
         );
       } else if (result === 'self') {
         onFriendRequestToast(
-          triLang(lang as Lang, { ru: 'Это ваш профиль', uk: 'Це ваш профіль', es: 'Es tu perfil' }),
+          triLang(lang as Lang, {
+            ru: 'Это ваш профиль',
+            uk: 'Це ваш профіль',
+            es: 'Es tu perfil',
+            'pt-BR': "Este é seu perfil",
+            vi: "Đây là hồ sơ của bạn",
+            id: "Ini profilmu",
+            tr: "Bu senin profilin",
+            pl: "To twój profil",
+          }),
           'info',
         );
       } else {
@@ -398,6 +435,11 @@ function PlayerProfileModalBody({
             ru: 'Не удалось отправить. Попробуйте позже',
             uk: 'Не вдалося надіслати. Спробуйте пізніше',
             es: 'No se pudo enviar. Inténtalo más tarde',
+            'pt-BR': "Não foi possível enviar. Tente mais tarde",
+            vi: "Không gửi được. Hãy thử lại sau",
+            id: "Tidak dapat dikirim. Coba lagi nanti",
+            tr: "Gönderilemedi. Daha sonra tekrar dene",
+            pl: "Nie udało się wysłać. Spróbuj później",
           }),
           'error',
         );
@@ -430,7 +472,16 @@ function PlayerProfileModalBody({
         });
         void invalidateFriendsActivityCache();
         onFriendRequestToast(
-          triLang(lang as Lang, { ru: 'Друг удалён', uk: 'Друга видалено', es: 'Amigo eliminado' }),
+          triLang(lang as Lang, {
+            ru: 'Друг удалён',
+            uk: 'Друга видалено',
+            es: 'Amigo eliminado',
+            'pt-BR': "Amigo removido",
+            vi: "Đã xóa bạn bè",
+            id: "Teman dihapus",
+            tr: "Arkadaş silindi",
+            pl: "Znajomy usunięty",
+          }),
           'info',
         );
       })
@@ -440,6 +491,11 @@ function PlayerProfileModalBody({
             ru: 'Ошибка удаления. Попробуйте ещё раз',
             uk: 'Помилка видалення. Спробуйте ще раз',
             es: 'Error al eliminar. Inténtalo de nuevo',
+            'pt-BR': "Erro ao remover. Tente de novo",
+            vi: "Xóa bị lỗi. Hãy thử lại",
+            id: "Gagal menghapus. Coba lagi",
+            tr: "Silme hatası. Tekrar dene",
+            pl: "Błąd usuwania. Spróbuj ponownie",
           }),
           'error',
         );
@@ -449,52 +505,160 @@ function PlayerProfileModalBody({
 
   const arenaLabelText = duelRank
     ? `${arenaTierLabel(duelRank.tier as RankTier, lang as Lang)} ${duelRank.level}`
-    : triLang(lang as Lang, { ru: 'Арена не сыграна', uk: 'Арена не зіграна', es: 'Arena sin partidas' });
+    : triLang(lang as Lang, {
+      ru: 'Арена не сыграна',
+      uk: 'Арена не зіграна',
+      es: 'Arena sin partidas',
+      'pt-BR': "Arena sem partidas",
+      vi: "Đấu trường chưa có trận",
+      id: "Arena tanpa pertandingan",
+      tr: "Maçsız Arena",
+      pl: "Arena bez meczów",
+    });
   const profileFocusConfig = (() => {
     const focus = profileCardSnapshot.publicFocus;
     if (focus === 'arena') {
       return {
         icon: 'flash-outline' as const,
-        label: triLang(lang as Lang, { ru: 'Фокус арены', uk: 'Фокус арени', es: 'Enfoque arena' }),
+        label: triLang(lang as Lang, {
+          ru: 'Фокус арены',
+          uk: 'Фокус арени',
+          es: 'Enfoque arena',
+          'pt-BR': "Foco na Arena",
+          vi: "Tập trung Đấu trường",
+          id: "Fokus arena",
+          tr: "Arena odağı",
+          pl: "Fokus na Arenę",
+        }),
         value: arenaLabelText,
-        detail: duelRank ? `${duelRank.xp} XP` : triLang(lang as Lang, { ru: 'Готов к первому рангу', uk: 'Готовий до першого рангу', es: 'Listo para el primer rango' }),
+        detail: duelRank ? `${duelRank.xp} XP` : triLang(lang as Lang, {
+          ru: 'Готов к первому рангу',
+          uk: 'Готовий до першого рангу',
+          es: 'Listo para el primer rango',
+          'pt-BR': "Pronto para o primeiro rank",
+          vi: "Sẵn sàng cho hạng đầu tiên",
+          id: "Siap untuk peringkat pertama",
+          tr: "İlk rütbeye hazır",
+          pl: "Gotowe na pierwszy ranking",
+        }),
       };
     }
     if (focus === 'streak') {
       return {
         icon: 'flame-outline' as const,
-        label: triLang(lang as Lang, { ru: 'Фокус серии', uk: 'Фокус серії', es: 'Enfoque racha' }),
+        label: triLang(lang as Lang, {
+          ru: 'Фокус серии',
+          uk: 'Фокус серії',
+          es: 'Enfoque racha',
+          'pt-BR': "Foco na sequência",
+          vi: "Tập trung chuỗi",
+          id: "Fokus rangkaian",
+          tr: "Seri odağı",
+          pl: "Fokus na serię",
+        }),
         value: streak !== null ? `${streak}` : '0',
-        detail: triLang(lang as Lang, { ru: 'дней подряд', uk: 'днів поспіль', es: 'días seguidos' }),
+        detail: triLang(lang as Lang, {
+          ru: 'дней подряд',
+          uk: 'днів поспіль',
+          es: 'días seguidos',
+          'pt-BR': "dias seguidos",
+          vi: "ngày liên tiếp",
+          id: "hari berturut-turut",
+          tr: "gün üst üste",
+          pl: "dni z rzędu",
+        }),
       };
     }
     if (focus === 'league') {
       return {
         icon: 'shield-checkmark-outline' as const,
-        label: triLang(lang as Lang, { ru: 'Фокус лиги', uk: 'Фокус ліги', es: 'Enfoque liga' }),
+        label: triLang(lang as Lang, {
+          ru: 'Фокус лиги',
+          uk: 'Фокус ліги',
+          es: 'Enfoque liga',
+          'pt-BR': "Foco na liga",
+          vi: "Tập trung giải đấu",
+          id: "Fokus liga",
+          tr: "Lig odağı",
+          pl: "Fokus na ligę",
+        }),
         value: clubTierShortName(club, lang as Lang),
-        detail: triLang(lang as Lang, { ru: 'текущая лига', uk: 'поточна ліга', es: 'liga actual' }),
+        detail: triLang(lang as Lang, {
+          ru: 'текущая лига',
+          uk: 'поточна ліга',
+          es: 'liga actual',
+          'pt-BR': "liga atual",
+          vi: "giải đấu hiện tại",
+          id: "liga saat ini",
+          tr: "mevcut lig",
+          pl: "obecna liga",
+        }),
       };
     }
     if (focus === 'xp') {
       return {
         icon: 'trending-up-outline' as const,
-        label: triLang(lang as Lang, { ru: 'Фокус опыта', uk: 'Фокус досвіду', es: 'Enfoque XP' }),
+        label: triLang(lang as Lang, {
+          ru: 'Фокус опыта',
+          uk: 'Фокус досвіду',
+          es: 'Enfoque XP',
+          'pt-BR': "Foco em XP",
+          vi: "Tập trung XP",
+          id: "Fokus XP",
+          tr: "XP odağı",
+          pl: "Fokus na XP",
+        }),
         value: xp.toLocaleString(),
         detail: `Lv.${level} · ${getTitleString(level, lang)}`,
       };
     }
     return {
       icon: 'diamond-outline' as const,
-      label: triLang(lang as Lang, { ru: 'Сбалансированный профиль', uk: 'Збалансований профіль', es: 'Perfil equilibrado' }),
+      label: triLang(lang as Lang, {
+        ru: 'Сбалансированный профиль',
+        uk: 'Збалансований профіль',
+        es: 'Perfil equilibrado',
+        'pt-BR': "Perfil equilibrado",
+        vi: "Hồ sơ cân bằng",
+        id: "Profil seimbang",
+        tr: "Dengeli profil",
+        pl: "Zrównoważony profil",
+      }),
       value: `Lv.${level} · ${clubTierShortName(club, lang as Lang)}`,
-      detail: streak !== null ? `${streak} ${triLang(lang as Lang, { ru: 'дней подряд', uk: 'днів поспіль', es: 'días seguidos' })}` : arenaLabelText,
+      detail: streak !== null ? `${streak} ${triLang(lang as Lang, {
+        ru: 'дней подряд',
+        uk: 'днів поспіль',
+        es: 'días seguidos',
+        'pt-BR': "dias seguidos",
+        vi: "ngày liên tiếp",
+        id: "hari berturut-turut",
+        tr: "gün üst üste",
+        pl: "dni z rzędu",
+      })}` : arenaLabelText,
     };
   })();
   const prestigeFacts = [
     { label: 'XP', value: xp.toLocaleString() },
-    { label: triLang(lang as Lang, { ru: 'Титул', uk: 'Титул', es: 'Título' }), value: getTitleString(level, lang) },
-    { label: triLang(lang as Lang, { ru: 'Карточка', uk: 'Картка', es: 'Tarjeta' }), value: `CARD ${profileCardLevelRoman(profileCardLevel)}` },
+    { label: triLang(lang as Lang, {
+      ru: 'Титул',
+      uk: 'Титул',
+      es: 'Título',
+      'pt-BR': "Título",
+      vi: "Danh hiệu",
+      id: "Gelar",
+      tr: "Unvan",
+      pl: "Tytuł",
+    }), value: getTitleString(level, lang) },
+    { label: triLang(lang as Lang, {
+      ru: 'Карточка',
+      uk: 'Картка',
+      es: 'Tarjeta',
+      'pt-BR': "Cartão",
+      vi: "Thẻ",
+      id: "Kartu",
+      tr: "Kart",
+      pl: "Karta",
+    }), value: `CARD ${profileCardLevelRoman(profileCardLevel)}` },
   ];
 
   return (
@@ -662,7 +826,16 @@ function PlayerProfileModalBody({
               {hasLeagueCrown && (
                 <View style={{ marginTop: 10, maxWidth: '100%' }}>
                   <LeagueCrownName
-                    text={`${player.name}${isMe ? triLang(lang as Lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' }) : ''}`}
+                    text={`${player.name}${isMe ? triLang(lang as Lang, {
+                      ru: ' (ты)',
+                      uk: ' (ти)',
+                      es: ' (tú)',
+                      'pt-BR': " (você)",
+                      vi: " (bạn)",
+                      id: " (kamu)",
+                      tr: " (sen)",
+                      pl: " (ty)",
+                    }) : ''}`}
                     fontSize={f.h2}
                   />
                 </View>
@@ -673,7 +846,16 @@ function PlayerProfileModalBody({
                 showPremium,
                 themeMode,
               )}>
-                {player.name}{isMe ? triLang(lang as Lang, { ru: ' (ты)', uk: ' (ти)', es: ' (tú)' }) : ''}
+                {player.name}{isMe ? triLang(lang as Lang, {
+                  ru: ' (ты)',
+                  uk: ' (ти)',
+                  es: ' (tú)',
+                  'pt-BR': " (você)",
+                  vi: " (bạn)",
+                  id: " (kamu)",
+                  tr: " (sen)",
+                  pl: " (ty)",
+                }) : ''}
               </Text>
               )}
               <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '600', marginTop: 2 }}>
@@ -702,6 +884,11 @@ function PlayerProfileModalBody({
                     ru: 'Добавить в друзья',
                     uk: 'Додати до друзів',
                     es: 'Añadir amigo',
+                    'pt-BR': "Adicionar amigo",
+                    vi: "Thêm bạn bè",
+                    id: "Tambah teman",
+                    tr: "Arkadaş ekle",
+                    pl: "Dodaj znajomego",
                   })}
                 >
                   {false && friendRequestBusy ? (
@@ -729,7 +916,16 @@ function PlayerProfileModalBody({
               {xp.toLocaleString()}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
-              {triLang(lang as Lang, { ru: 'опыт', uk: 'досвід', es: 'experiencia' })}
+              {triLang(lang as Lang, {
+                ru: 'опыт',
+                uk: 'досвід',
+                es: 'experiencia',
+                'pt-BR': "experiência",
+                vi: "kinh nghiệm",
+                id: "pengalaman",
+                tr: "deneyim",
+                pl: "doświadczenie",
+              })}
             </Text>
           </View>
           <View style={[{ flex: 1, borderRadius: 14, padding: 14, alignItems: 'center' }, prestigeSurfaceStyle]}>
@@ -737,14 +933,32 @@ function PlayerProfileModalBody({
               {`Lv.${level}`}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
-              {triLang(lang as Lang, { ru: 'уровень', uk: 'рівень', es: 'nivel' })}
+              {triLang(lang as Lang, {
+                ru: 'уровень',
+                uk: 'рівень',
+                es: 'nivel',
+                'pt-BR': "nível",
+                vi: "cấp độ",
+                id: "level",
+                tr: "seviye",
+                pl: "poziom",
+              })}
             </Text>
           </View>
           {streak !== null && (
             <View style={[{ flex: 1, borderRadius: 14, padding: 14, alignItems: 'center' }, prestigeSurfaceStyle]}>
               <Text style={{ fontSize: f.numMd, fontWeight: '700', color: t.textPrimary }}>🔥{streak}</Text>
               <Text style={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }}>
-                {triLang(lang as Lang, { ru: 'дней подряд', uk: 'днів поспіль', es: 'días seguidos' })}
+                {triLang(lang as Lang, {
+                  ru: 'дней подряд',
+                  uk: 'днів поспіль',
+                  es: 'días seguidos',
+                  'pt-BR': "dias seguidos",
+                  vi: "ngày liên tiếp",
+                  id: "hari berturut-turut",
+                  tr: "gün üst üste",
+                  pl: "dni z rzędu",
+                })}
               </Text>
             </View>
           )}
@@ -757,6 +971,11 @@ function PlayerProfileModalBody({
                 ru: 'Лайки за активность',
                 uk: 'Лайки за активність',
                 es: 'Likes de actividad',
+                'pt-BR': "Curtidas de atividade",
+                vi: "Lượt thích hoạt động",
+                id: "Like aktivitas",
+                tr: "Aktivite beğenileri",
+                pl: "Polubienia aktywności",
               }),
               'info',
             );
@@ -766,6 +985,11 @@ function PlayerProfileModalBody({
             ru: 'Лайки за активность',
             uk: 'Лайки за активність',
             es: 'Likes de actividad',
+            'pt-BR': "Curtidas de atividade",
+            vi: "Lượt thích hoạt động",
+            id: "Like aktivitas",
+            tr: "Aktivite beğenileri",
+            pl: "Polubienia aktywności",
           })}
           style={[{
             flexDirection: 'row',
@@ -791,7 +1015,16 @@ function PlayerProfileModalBody({
               {activityLikeTotal.toLocaleString()}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }} numberOfLines={1}>
-              {triLang(lang as Lang, { ru: 'лайки за активность', uk: 'лайки за активність', es: 'likes de actividad' })}
+              {triLang(lang as Lang, {
+                ru: 'лайки за активность',
+                uk: 'лайки за активність',
+                es: 'likes de actividad',
+                'pt-BR': "curtidas de atividade",
+                vi: "lượt thích hoạt động",
+                id: "like aktivitas",
+                tr: "aktivite beğenisi",
+                pl: "polubień aktywności",
+              })}
             </Text>
           </View>
         </Pressable>
@@ -809,6 +1042,11 @@ function PlayerProfileModalBody({
                 ru: 'текущая лига',
                 uk: 'поточна ліга',
                 es: 'Liga actual',
+                'pt-BR': "Liga atual",
+                vi: "Giải đấu hiện tại",
+                id: "Liga saat ini",
+                tr: "Mevcut lig",
+                pl: "Obecna liga",
               })}
             </Text>
           </View>
@@ -900,6 +1138,11 @@ function PlayerProfileModalBody({
                   ru: 'Максимальная карточка с персональным entrance-эффектом.',
                   uk: 'Максимальна картка з персональним entrance-ефектом.',
                   es: 'Tarjeta máxima con efecto de entrada personal.',
+                  'pt-BR': "Cartão máximo com efeito de entrada pessoal.",
+                  vi: "Thẻ tối đa với hiệu ứng vào cá nhân.",
+                  id: "Kartu maksimum dengan efek masuk pribadi.",
+                  tr: "Kişisel giriş efektli maksimum kart.",
+                  pl: "Maksymalna karta z osobistym efektem wejścia.",
                 })}
               </Text>
             </View>
@@ -913,6 +1156,11 @@ function PlayerProfileModalBody({
                   ru: 'Модификаторы XP',
                   uk: 'Модифікатори XP',
                   es: 'Modificadores de XP',
+                  'pt-BR': "Modificadores de XP",
+                  vi: "Bộ điều chỉnh XP",
+                  id: "Pengubah XP",
+                  tr: "XP değiştiricileri",
+                  pl: "Modyfikatory XP",
                 })}
               </Text>
               <View style={{ backgroundColor: multipliers.total > 1 ? t.correct : t.bgCard, borderRadius: 10, paddingHorizontal: 10, paddingVertical: 3 }}>
@@ -926,7 +1174,16 @@ function PlayerProfileModalBody({
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
                   <Text style={{ fontSize: 13 }}>🏛️</Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                    {triLang(lang as Lang, { ru: 'Лига', uk: 'Ліга', es: 'Liga' })} ×{multipliers.clubM.toFixed(1)}
+                    {triLang(lang as Lang, {
+                      ru: 'Лига',
+                      uk: 'Ліга',
+                      es: 'Liga',
+                      'pt-BR': "Liga",
+                      vi: "Giải đấu",
+                      id: "Liga",
+                      tr: "Lig",
+                      pl: "Liga",
+                    })} ×{multipliers.clubM.toFixed(1)}
                   </Text>
                 </View>
               )}
@@ -934,7 +1191,16 @@ function PlayerProfileModalBody({
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
                   <Text style={{ fontSize: 13 }}>🔥</Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                    {triLang(lang as Lang, { ru: 'Цепочка', uk: 'Стрік', es: 'Racha' })} ×{multipliers.streakM.toFixed(1)}
+                    {triLang(lang as Lang, {
+                      ru: 'Цепочка',
+                      uk: 'Стрік',
+                      es: 'Racha',
+                      'pt-BR': "Sequência",
+                      vi: "Chuỗi",
+                      id: "Rangkaian",
+                      tr: "Seri",
+                      pl: "Seria",
+                    })} ×{multipliers.streakM.toFixed(1)}
                   </Text>
                 </View>
               )}
@@ -942,7 +1208,16 @@ function PlayerProfileModalBody({
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
                   <Text style={{ fontSize: 13 }}>⚡</Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                    {triLang(lang as Lang, { ru: 'Камбэк', uk: 'Повернення', es: 'Vuelta' })} ×{multipliers.comebackM.toFixed(1)}
+                    {triLang(lang as Lang, {
+                      ru: 'Камбэк',
+                      uk: 'Повернення',
+                      es: 'Vuelta',
+                      'pt-BR': "Retorno",
+                      vi: "Quay lại",
+                      id: "Kembali",
+                      tr: "Dönüş",
+                      pl: "Powrót",
+                    })} ×{multipliers.comebackM.toFixed(1)}
                   </Text>
                 </View>
               )}
@@ -950,7 +1225,16 @@ function PlayerProfileModalBody({
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, backgroundColor: t.bgCard, borderRadius: 8, paddingHorizontal: 8, paddingVertical: 4 }}>
                   <Text style={{ fontSize: 13 }}>🎁</Text>
                   <Text style={{ color: t.textSecond, fontSize: f.sub }}>
-                    {triLang(lang as Lang, { ru: 'Подарок', uk: 'Подарунок', es: 'Regalo' })} ×{multipliers.giftM.toFixed(1)}
+                    {triLang(lang as Lang, {
+                      ru: 'Подарок',
+                      uk: 'Подарунок',
+                      es: 'Regalo',
+                      'pt-BR': "Presente",
+                      vi: "Quà tặng",
+                      id: "Hadiah",
+                      tr: "Hediye",
+                      pl: "Prezent",
+                    })} ×{multipliers.giftM.toFixed(1)}
                   </Text>
                 </View>
               )}
@@ -960,6 +1244,11 @@ function PlayerProfileModalBody({
                     ru: 'Нет активных бонусов',
                     uk: 'Немає активних бонусів',
                     es: 'No hay bonificaciones activas',
+                    'pt-BR': "Não há bonificações ativas",
+                    vi: "Không có thưởng đang hoạt động",
+                    id: "Tidak ada bonus aktif",
+                    tr: "Aktif bonus yok",
+                    pl: "Brak aktywnych bonusów",
                   })}
                 </Text>
               )}
@@ -978,6 +1267,11 @@ function PlayerProfileModalBody({
                   ru: 'Ранг арены',
                   uk: 'Ранг арени',
                   es: 'Rango en la arena',
+                  'pt-BR': "Rank na Arena",
+                  vi: "Hạng Đấu trường",
+                  id: "Peringkat arena",
+                  tr: "Arena rütbesi",
+                  pl: "Ranking na Arenie",
                 })}
               </Text>
             </View>
@@ -1005,11 +1299,29 @@ function PlayerProfileModalBody({
               gap: 8,
             }}
           >
-            <Ionicons name={profileCardLevel >= PROFILE_CARD_MAX_LEVEL ? 'sparkles' : 'color-wand-outline'} size={18} color={prestigeActive ? cardVisual.accent : '#FACC15'} />
-            <Text style={{ color: prestigeActive ? cardVisual.accent : '#FACC15', fontSize: f.body, fontWeight: '900' }}>
+            <Ionicons name={profileCardLevel >= PROFILE_CARD_MAX_LEVEL ? 'sparkles' : 'color-wand-outline'} size={18} color={prestigeActive ? cardVisual.accent : profileUpgradeAccent} />
+            <Text style={{ color: prestigeActive ? cardVisual.accent : profileUpgradeAccent, fontSize: f.body, fontWeight: '900' }}>
               {profileCardLevel >= PROFILE_CARD_MAX_LEVEL
-                ? triLang(lang as Lang, { ru: 'Карточка максимального уровня', uk: 'Картка максимального рівня', es: 'Tarjeta al nivel máximo' })
-                : triLang(lang as Lang, { ru: 'Улучшить карточку', uk: 'Покращити картку', es: 'Mejorar tarjeta' })}
+                ? triLang(lang as Lang, {
+                  ru: 'Карточка максимального уровня',
+                  uk: 'Картка максимального рівня',
+                  es: 'Tarjeta al nivel máximo',
+                  'pt-BR': "Cartão no nível máximo",
+                  vi: "Thẻ ở cấp tối đa",
+                  id: "Kartu level maksimum",
+                  tr: "Maksimum seviyede kart",
+                  pl: "Karta na maksymalnym poziomie",
+                })
+                : triLang(lang as Lang, {
+                  ru: 'Улучшить карточку',
+                  uk: 'Покращити картку',
+                  es: 'Mejorar tarjeta',
+                  'pt-BR': "Melhorar cartão",
+                  vi: "Nâng cấp thẻ",
+                  id: "Tingkatkan kartu",
+                  tr: "Kartı yükselt",
+                  pl: "Ulepsz kartę",
+                })}
             </Text>
           </TouchableOpacity>
         )}
@@ -1018,10 +1330,37 @@ function PlayerProfileModalBody({
     </Animated.View>
     <ThemedConfirmModal
       visible={removeFriendConfirmOpen}
-      title={triLang(lang as Lang, { ru: 'Удалить друга?', uk: 'Видалити друга?', es: '¿Eliminar amigo?' })}
+      title={triLang(lang as Lang, {
+        ru: 'Удалить друга?',
+        uk: 'Видалити друга?',
+        es: '¿Eliminar amigo?',
+        'pt-BR': "Remover amigo?",
+        vi: "Xóa bạn bè?",
+        id: "Hapus teman?",
+        tr: "Arkadaş silinsin mi?",
+        pl: "Usunąć znajomego?",
+      })}
       message={player.name}
-      cancelLabel={triLang(lang as Lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
-      confirmLabel={triLang(lang as Lang, { ru: 'Удалить', uk: 'Видалити', es: 'Eliminar' })}
+      cancelLabel={triLang(lang as Lang, {
+        ru: 'Отмена',
+        uk: 'Скасувати',
+        es: 'Cancelar',
+        'pt-BR': "Cancelar",
+        vi: "Hủy",
+        id: "Batal",
+        tr: "İptal",
+        pl: "Anuluj",
+      })}
+      confirmLabel={triLang(lang as Lang, {
+        ru: 'Удалить',
+        uk: 'Видалити',
+        es: 'Eliminar',
+        'pt-BR': "Eliminar",
+        vi: "Xóa",
+        id: "Hapus",
+        tr: "Sil",
+        pl: "Usuń",
+      })}
       confirmVariant="default"
       onCancel={() => setRemoveFriendConfirmOpen(false)}
       onConfirm={handleRemoveFriendConfirm}

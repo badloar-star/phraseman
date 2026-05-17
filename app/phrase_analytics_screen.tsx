@@ -23,6 +23,7 @@ import { hapticTap } from '../hooks/use-haptics';
 import { ENABLE_DEV_TOOLS } from './config';
 import {
   computePhraseAnalytics,
+  type AnalyticsLocaleCopy,
   type PhraseAnalyticsResult,
   type WordCategoryStat,
   type LessonMistakeStat,
@@ -30,6 +31,8 @@ import {
   type WordCategory,
 } from './phrase_analytics';
 import { getDiagnosisTraining } from './diagnosis_trainings';
+import { loadResolvedPersonalTrainings, type ResolvedPersonalTrainingsState } from './diagnosis_training_progress';
+import { choosePersonalTrainingCandidate } from './personal_training_taxonomy';
 
 type IonName = ComponentProps<typeof Ionicons>['name'];
 
@@ -56,36 +59,69 @@ const SIGNAL = {
   },
 } as const;
 
-const GATE_BENEFITS: { icon: IonName; ru: string; uk: string; es: string }[] = [
-  { icon: 'stats-chart-outline', ru: 'Топ категорий, где чаще всего промах.', uk: 'Топ категорій, де найчастіше промах.', es: 'Categorías donde más fallas.' },
-  { icon: 'school-outline', ru: 'Уроки с самым высоким % ошибок.', uk: 'Уроки з найвищим % помилок.', es: 'Lecciones con mayor % de errores.' },
-  { icon: 'list-circle-outline', ru: 'Список фраз «уточнить и повторить».', uk: 'Список фраз «уточнити й повторити».', es: 'Lista de frases para repasar.' },
+const GATE_BENEFITS: Array<{ icon: IonName } & AnalyticsLocaleCopy> = [
+  {
+    icon: 'stats-chart-outline',
+    ru: 'Топ категорий, где чаще всего промах.',
+    uk: 'Топ категорій, де найчастіше промах.',
+    es: 'Categorías donde más fallas.',
+    ptBR: 'Categorias em que você mais erra.',
+    vi: 'Các nhóm bạn hay mắc lỗi nhất.',
+    id: 'Kategori tempat kamu paling sering salah.',
+    tr: 'En çok hata yaptığın kategoriler.',
+    pl: 'Kategorie, w których najczęściej się mylisz.',
+  },
+  {
+    icon: 'school-outline',
+    ru: 'Уроки с самым высоким % ошибок.',
+    uk: 'Уроки з найвищим % помилок.',
+    es: 'Lecciones con mayor % de errores.',
+    ptBR: 'Lições com maior % de erros.',
+    vi: 'Bài học có % lỗi cao nhất.',
+    id: 'Pelajaran dengan % kesalahan tertinggi.',
+    tr: 'En yüksek hata yüzdesine sahip dersler.',
+    pl: 'Lekcje z najwyższym % błędów.',
+  },
+  {
+    icon: 'list-circle-outline',
+    ru: 'Список фраз «уточнить и повторить».',
+    uk: 'Список фраз «уточнити й повторити».',
+    es: 'Lista de frases para repasar.',
+    ptBR: 'Lista de frases para esclarecer e revisar.',
+    vi: 'Danh sách cụm từ cần làm rõ và ôn lại.',
+    id: 'Daftar frasa untuk diperjelas dan diulang.',
+    tr: 'Netleştirip tekrar edeceğin ifadeler listesi.',
+    pl: 'Lista fraz do wyjaśnienia i powtórki.',
+  },
 ];
 
 // ── Метки категорий ───────────────────────────────────────────────────────────
 
-const CATEGORY_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
-  verb:            { ru: 'Глаголы',          uk: 'Дієслова',          es: 'Verbos' },
-  noun:            { ru: 'Существительные',   uk: 'Іменники',          es: 'Sustantivos' },
-  pronoun:         { ru: 'Местоимения',       uk: 'Займенники',        es: 'Pronombres' },
-  adjective:       { ru: 'Прилагательные',    uk: 'Прикметники',       es: 'Adjetivos' },
-  adverb:          { ru: 'Наречия',           uk: 'Прислівники',       es: 'Adverbios' },
-  preposition:     { ru: 'Предлоги',          uk: 'Прийменники',       es: 'Preposiciones' },
-  article:         { ru: 'Артикли',           uk: 'Артиклі',           es: 'Artículos' },
-  existential:     { ru: 'There is / There are', uk: 'There is / There are', es: 'There is / There are' },
-  'to-be':         { ru: 'Глагол to be',      uk: 'Дієслово to be',    es: 'Verbo to be' },
-  conjunction:     { ru: 'Союзы',             uk: 'Сполучники',        es: 'Conjunciones' },
-  modal:           { ru: 'Модальные',         uk: 'Модальні',          es: 'Modales' },
-  phrasal_particle:{ ru: 'Частицы',           uk: 'Частки',            es: 'Partículas' },
-  other:           { ru: 'Другое',            uk: 'Інше',              es: 'Otros' },
+const CATEGORY_LABELS: Record<string, AnalyticsLocaleCopy> = {
+  verb: { ru: 'Глаголы', uk: 'Дієслова', es: 'Verbos', ptBR: 'Verbos', vi: 'Động từ', id: 'Kata kerja', tr: 'Fiiller', pl: 'Czasowniki' },
+  noun: { ru: 'Существительные', uk: 'Іменники', es: 'Sustantivos', ptBR: 'Substantivos', vi: 'Danh từ', id: 'Kata benda', tr: 'İsimler', pl: 'Rzeczowniki' },
+  pronoun: { ru: 'Местоимения', uk: 'Займенники', es: 'Pronombres', ptBR: 'Pronomes', vi: 'Đại từ', id: 'Kata ganti', tr: 'Zamirler', pl: 'Zaimki' },
+  adjective: { ru: 'Прилагательные', uk: 'Прикметники', es: 'Adjetivos', ptBR: 'Adjetivos', vi: 'Tính từ', id: 'Kata sifat', tr: 'Sıfatlar', pl: 'Przymiotniki' },
+  adverb: { ru: 'Наречия', uk: 'Прислівники', es: 'Adverbios', ptBR: 'Advérbios', vi: 'Trạng từ', id: 'Kata keterangan', tr: 'Zarflar', pl: 'Przysłówki' },
+  preposition: { ru: 'Предлоги', uk: 'Прийменники', es: 'Preposiciones', ptBR: 'Preposições', vi: 'Giới từ', id: 'Preposisi', tr: 'Edatlar', pl: 'Przyimki' },
+  article: { ru: 'Артикли', uk: 'Артиклі', es: 'Artículos', ptBR: 'Artigos', vi: 'Mạo từ', id: 'Artikel', tr: 'Artikeller', pl: 'Przedimki' },
+  existential: { ru: 'There is / There are', uk: 'There is / There are', es: 'There is / There are', ptBR: 'There is / There are', vi: 'There is / There are', id: 'There is / There are', tr: 'There is / There are', pl: 'There is / There are' },
+  'to-be': { ru: 'Глагол to be', uk: 'Дієслово to be', es: 'Verbo to be', ptBR: 'Verbo to be', vi: 'Động từ to be', id: 'Kata kerja to be', tr: 'to be fiili', pl: 'Czasownik to be' },
+  conjunction: { ru: 'Союзы', uk: 'Сполучники', es: 'Conjunciones', ptBR: 'Conjunções', vi: 'Liên từ', id: 'Konjungsi', tr: 'Bağlaçlar', pl: 'Spójniki' },
+  modal: { ru: 'Модальные', uk: 'Модальні', es: 'Modales', ptBR: 'Verbos modais', vi: 'Động từ khuyết thiếu', id: 'Kata kerja modal', tr: 'Modal fiiller', pl: 'Czasowniki modalne' },
+  phrasal_particle: { ru: 'Частицы', uk: 'Частки', es: 'Partículas', ptBR: 'Partículas de phrasal verbs', vi: 'Tiểu từ trong phrasal verb', id: 'Partikel phrasal verb', tr: 'Phrasal verb parçacıkları', pl: 'Partykuły phrasal verbs' },
+  modifier: { ru: 'Modifiers', uk: 'Modifiers', es: 'Modificadores', ptBR: 'Modificadores', vi: 'Từ bổ nghĩa', id: 'Modifier', tr: 'Niteleyiciler', pl: 'Modyfikatory' },
+  determiner: { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes', ptBR: 'Determinantes', vi: 'Từ hạn định', id: 'Determiner', tr: 'Belirleyiciler', pl: 'Określniki' },
+  other: { ru: 'Другое', uk: 'Інше', es: 'Otros', ptBR: 'Outros', vi: 'Khác', id: 'Lainnya', tr: 'Diğer', pl: 'Inne' },
 };
 
 // ── ProgressBar ───────────────────────────────────────────────────────────────
 
-CATEGORY_LABELS.modifier = { ru: 'Modifiers', uk: 'Modifiers', es: 'Modificadores' };
-CATEGORY_LABELS.determiner = { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes' };
+function resolvedDiagnosisIdSet(resolved: ResolvedPersonalTrainingsState | null): Set<string> {
+  return new Set(Object.keys(resolved?.diagnoses ?? {}));
+}
 
-function chooseDiagnosisForCategory(stat: WordCategoryStat): string | null {
+function chooseDiagnosisForCategory(stat: WordCategoryStat, resolved: ResolvedPersonalTrainingsState | null): string | null {
   const words = new Set(stat.topWords.map((word) => word.trim().toLowerCase()).filter(Boolean));
   const has = (...candidates: string[]) => candidates.some((word) => words.has(word));
   const hasPart = (...parts: string[]) => [...words].some((word) => parts.some((part) => word.includes(part)));
@@ -140,7 +176,8 @@ function chooseDiagnosisForCategory(stat: WordCategoryStat): string | null {
   };
 
   const candidates = candidatesByCategory[stat.category] ?? [];
-  return candidates.find((id) => Boolean(getDiagnosisTraining(id))) ?? null;
+  const routedId = choosePersonalTrainingCandidate(candidates, resolvedDiagnosisIdSet(resolved));
+  return routedId && getDiagnosisTraining(routedId) ? routedId : null;
 }
 
 function ProgressBar({ pct }: { pct: number }) {
@@ -158,7 +195,16 @@ function ProgressBar({ pct }: { pct: number }) {
 function InsightRow({ insight }: { insight: PersonalInsight }) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const text = triLang(lang, { ru: insight.ru, uk: insight.uk, es: insight.es });
+  const text = triLang(lang, {
+    ru: insight.ru,
+    uk: insight.uk,
+    es: insight.es,
+    'pt-BR': insight.ptBR,
+    vi: insight.vi,
+    id: insight.id,
+    tr: insight.tr,
+    pl: insight.pl,
+  });
   const isPositive = insight.accent === 'green';
   const iconName: IonName = isPositive ? 'checkmark-circle-outline' : 'alert-circle-outline';
 
@@ -179,15 +225,33 @@ function InsightRow({ insight }: { insight: PersonalInsight }) {
 
 // ── CategoryRow ───────────────────────────────────────────────────────────────
 
-function CategoryRow({ stat, router }: { stat: WordCategoryStat; router: Router }) {
+function CategoryRow({
+  stat,
+  router,
+  resolvedPersonalTrainings,
+}: {
+  stat: WordCategoryStat;
+  router: Router;
+  resolvedPersonalTrainings: ResolvedPersonalTrainingsState | null;
+}) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
-  const label = triLang(lang, CATEGORY_LABELS[stat.category]);
+  const categoryCopy = CATEGORY_LABELS[stat.category] ?? CATEGORY_LABELS.other;
+  const label = triLang(lang, {
+    ru: categoryCopy.ru,
+    uk: categoryCopy.uk,
+    es: categoryCopy.es,
+    'pt-BR': categoryCopy.ptBR,
+    vi: categoryCopy.vi,
+    id: categoryCopy.id,
+    tr: categoryCopy.tr,
+    pl: categoryCopy.pl,
+  });
   const priorityScore = stat.priorityScore ?? stat.weaknessScore;
   const recoveryScore = stat.recoveryScore ?? 0;
   const isWeak = priorityScore >= 55 || (stat.pct >= 15 && recoveryScore < 25);
   const pctOpacity = priorityScore >= 70 ? 1 : priorityScore >= 45 || stat.pct >= 15 ? 0.75 : 0.45;
-  const diagnosisId = isWeak ? chooseDiagnosisForCategory(stat) : null;
+  const diagnosisId = isWeak ? chooseDiagnosisForCategory(stat, resolvedPersonalTrainings) : null;
   const openDiagnosis = () => {
     if (!diagnosisId) return;
     hapticTap();
@@ -221,6 +285,11 @@ function CategoryRow({ stat, router }: { stat: WordCategoryStat; router: Router 
                 ru: 'Персональное объяснение и упражнения',
                 uk: 'Персональне пояснення та вправи',
                 es: 'Explicación y ejercicios personalizados',
+                'pt-BR': 'Explicação e exercícios personalizados',
+                vi: 'Giải thích và bài tập cá nhân hóa',
+                id: 'Penjelasan dan latihan personal',
+                tr: 'Kişisel açıklama ve alıştırmalar',
+                pl: 'Personalne wyjaśnienie i ćwiczenia',
               })}
             </Text>
             <Ionicons name="chevron-forward" size={12} color={t.accent} style={{ opacity: 0.6 }} />
@@ -266,7 +335,7 @@ function LessonRow({ stat }: { stat: LessonMistakeStat }) {
       <View style={styles.catBody}>
         <View style={styles.lessonMeta}>
           <Text style={[styles.lessonNum, { color: t.textMuted, fontSize: f.caption }]}>
-            {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lec.' })} {stat.lessonId}
+            {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lec.', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lek.' })} {stat.lessonId}
           </Text>
         </View>
         <Text style={[styles.catLabel, { color: t.textPrimary, fontSize: f.sub }]} numberOfLines={2}>
@@ -287,6 +356,7 @@ export default function PhraseAnalyticsScreen() {
   const { lang } = useLang();
   const { isPremium } = usePremium();
   const [data, setData] = useState<PhraseAnalyticsResult | null>(null);
+  const [resolvedPersonalTrainings, setResolvedPersonalTrainings] = useState<ResolvedPersonalTrainingsState | null>(null);
   const [loading, setLoading] = useState(true);
   const [tab, setTab] = useState<'categories' | 'lessons' | 'phrases'>('categories');
   const showDevAudit = ENABLE_DEV_TOOLS;
@@ -294,8 +364,12 @@ export default function PhraseAnalyticsScreen() {
   const load = useCallback(async () => {
     setLoading(true);
     try {
-      const result = await computePhraseAnalytics();
+      const [result, resolved] = await Promise.all([
+        computePhraseAnalytics(),
+        loadResolvedPersonalTrainings(),
+      ]);
       setData(result);
+      setResolvedPersonalTrainings(resolved);
     } finally {
       setLoading(false);
     }
@@ -303,17 +377,22 @@ export default function PhraseAnalyticsScreen() {
 
   useFocusEffect(useCallback(() => { void load(); }, [load]));
 
-  const title = triLang(lang, { ru: 'Аналитика', uk: 'Аналітика', es: 'Analítica' });
+  const title = triLang(lang, { ru: 'Аналитика', uk: 'Аналітика', es: 'Analítica', 'pt-BR': 'Analítica', vi: 'Phân tích', id: 'Analitik', tr: 'Analiz', pl: 'Analityka' });
   const emptyText = triLang(lang, {
     ru: 'Пока нет данных. Пройди несколько уроков — аналитика появится здесь.',
     uk: 'Поки немає даних. Пройди кілька уроків — аналітика з\'явиться тут.',
     es: 'Sin datos aún. Completa algunas lecciones y la analítica aparecerá aquí.',
+    'pt-BR': 'Ainda sem dados. Complete algumas lições e a analítica aparecerá aqui.',
+    vi: 'Chưa có dữ liệu. Hãy hoàn thành vài bài học, phần phân tích sẽ xuất hiện ở đây.',
+    id: 'Belum ada data. Selesaikan beberapa pelajaran, lalu analitik akan muncul di sini.',
+    tr: 'Henüz veri yok. Birkaç dersi tamamla; analiz burada görünecek.',
+    pl: 'Brak danych. Ukończ kilka lekcji, a analityka pojawi się tutaj.',
   });
 
   const tabs = [
-    { key: 'categories' as const, label: triLang(lang, { ru: 'Категории', uk: 'Категорії', es: 'Categorías' }) },
-    { key: 'lessons' as const, label: triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones' }) },
-    { key: 'phrases' as const, label: triLang(lang, { ru: 'Фразы', uk: 'Фрази', es: 'Frases' }) },
+    { key: 'categories' as const, label: triLang(lang, { ru: 'Категории', uk: 'Категорії', es: 'Categorías', 'pt-BR': 'Categorias', vi: 'Danh mục', id: 'Kategori', tr: 'Kategoriler', pl: 'Kategorie' }) },
+    { key: 'lessons' as const, label: triLang(lang, { ru: 'Уроки', uk: 'Уроки', es: 'Lecciones', 'pt-BR': 'Lições', vi: 'Bài học', id: 'Pelajaran', tr: 'Dersler', pl: 'Lekcje' }) },
+    { key: 'phrases' as const, label: triLang(lang, { ru: 'Фразы', uk: 'Фрази', es: 'Frases', 'pt-BR': 'Frases', vi: 'Cụm từ', id: 'Frasa', tr: 'İfadeler', pl: 'Frazy' }) },
   ];
 
   return (
@@ -366,7 +445,7 @@ export default function PhraseAnalyticsScreen() {
                       PHRASEMAN
                     </Text>
                     <Text style={[styles.gateTitle, { color: isLightGate ? t.textPrimary : '#f2efe8', fontSize: Math.max(18, f.h2 * 0.88) }]}>
-                      {triLang(lang, { ru: 'Разбор твоих ошибок', uk: 'Розбір твоїх помилок', es: 'Análisis de tus errores' })}
+                      {triLang(lang, { ru: 'Разбор твоих ошибок', uk: 'Розбір твоїх помилок', es: 'Análisis de tus errores', 'pt-BR': 'Análise dos seus erros', vi: 'Phân tích lỗi của bạn', id: 'Analisis kesalahanmu', tr: 'Hatalarının analizi', pl: 'Analiza twoich błędów' })}
                     </Text>
                   </View>
                 </View>
@@ -376,11 +455,16 @@ export default function PhraseAnalyticsScreen() {
                     ru: 'Покажем слабые темы, уроки и фразы, которые лучше повторить сейчас.',
                     uk: 'Покажемо слабкі теми, уроки й фрази, які краще повторити зараз.',
                     es: 'Verás temas débiles, lecciones y frases para repasar ahora.',
+                    'pt-BR': 'Mostraremos temas fracos, lições e frases que vale revisar agora.',
+                    vi: 'Chúng tôi sẽ hiển thị chủ đề yếu, bài học và cụm từ nên ôn lại ngay.',
+                    id: 'Kami akan menampilkan topik lemah, pelajaran, dan frasa yang sebaiknya diulang sekarang.',
+                    tr: 'Zayıf konuları, dersleri ve şimdi tekrar etmen gereken ifadeleri göstereceğiz.',
+                    pl: 'Pokażemy słabe tematy, lekcje i frazy, które warto teraz powtórzyć.',
                   })}
                 </Text>
 
                 <Text style={[styles.gateSubLabel, { color: isLightGate ? t.textMuted : 'rgba(200,190,175,0.65)' }]}>
-                  {triLang(lang, { ru: 'ЧТО ОТКРОЕТСЯ', uk: 'ЩО ВІДКРИЄТЬСЯ', es: 'QUÉ SE DESBLOQUEA' })}
+                  {triLang(lang, { ru: 'ЧТО ОТКРОЕТСЯ', uk: 'ЩО ВІДКРИЄТЬСЯ', es: 'QUÉ SE DESBLOQUEA', 'pt-BR': 'O QUE ABRE', vi: 'SẼ MỞ KHÓA', id: 'YANG TERBUKA', tr: 'NE AÇILIR', pl: 'CO SIĘ ODBLOKUJE' })}
                 </Text>
 
                 <View style={{ gap: 12 }}>
@@ -390,7 +474,7 @@ export default function PhraseAnalyticsScreen() {
                         <Ionicons name={row.icon} size={19} color={isLightGate ? '#B8860B' : GATE_LUX.gold} />
                       </View>
                       <Text style={[styles.gateBenefitText, { color: isLightGate ? t.textPrimary : '#ebe6dc', fontSize: f.body }]}>
-                        {triLang(lang, { ru: row.ru, uk: row.uk, es: row.es })}
+                        {triLang(lang, { ru: row.ru, uk: row.uk, es: row.es, 'pt-BR': row.ptBR, vi: row.vi, id: row.id, tr: row.tr, pl: row.pl })}
                       </Text>
                     </View>
                   ))}
@@ -408,7 +492,7 @@ export default function PhraseAnalyticsScreen() {
                     style={styles.gateBtnInner}
                   >
                     <Text style={[styles.gateBtnText, { fontSize: f.body }]}>
-                      {triLang(lang, { ru: 'Открыть аналитику', uk: 'Відкрити аналітику', es: 'Abrir analítica' })}
+                      {triLang(lang, { ru: 'Открыть аналитику', uk: 'Відкрити аналітику', es: 'Abrir analítica', 'pt-BR': 'Abrir analítica', vi: 'Mở phân tích', id: 'Buka analitik', tr: 'Analizi aç', pl: 'Otwórz analitykę' })}
                     </Text>
                   </LinearGradient>
                 </TouchableOpacity>
@@ -435,7 +519,7 @@ export default function PhraseAnalyticsScreen() {
                     {data.totalMistakes}
                   </Text>
                   <Text style={[styles.summaryLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                    {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores' })}
+                    {triLang(lang, { ru: 'ошибок', uk: 'помилок', es: 'errores', 'pt-BR': 'erros', vi: 'lỗi', id: 'kesalahan', tr: 'hata', pl: 'błędów' })}
                   </Text>
                 </View>
                 <View style={[styles.summaryDivider, { backgroundColor: t.border }]} />
@@ -444,7 +528,7 @@ export default function PhraseAnalyticsScreen() {
                     {data.windowDays}
                   </Text>
                   <Text style={[styles.summaryLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                    {triLang(lang, { ru: 'дней', uk: 'днів', es: 'días' })}
+                    {triLang(lang, { ru: 'дней', uk: 'днів', es: 'días', 'pt-BR': 'dias', vi: 'ngày', id: 'hari', tr: 'gün', pl: 'dni' })}
                   </Text>
                 </View>
                 <View style={[styles.summaryDivider, { backgroundColor: t.border }]} />
@@ -453,7 +537,7 @@ export default function PhraseAnalyticsScreen() {
                     {data.categoryStats.length}
                   </Text>
                   <Text style={[styles.summaryLabel, { color: t.textMuted, fontSize: f.caption }]}>
-                    {triLang(lang, { ru: 'категорий', uk: 'категорій', es: 'categorías' })}
+                    {triLang(lang, { ru: 'категорий', uk: 'категорій', es: 'categorías', 'pt-BR': 'categorias', vi: 'danh mục', id: 'kategori', tr: 'kategori', pl: 'kategorii' })}
                   </Text>
                 </View>
               </View>
@@ -462,7 +546,7 @@ export default function PhraseAnalyticsScreen() {
               {data.insights.length > 0 && (
                 <View style={styles.section}>
                   <Text style={[styles.sectionLabel, { color: t.textMuted, fontSize: f.label }]}>
-                    {triLang(lang, { ru: 'ВЫВОДЫ', uk: 'ВИСНОВКИ', es: 'CONCLUSIONES' })}
+                    {triLang(lang, { ru: 'ВЫВОДЫ', uk: 'ВИСНОВКИ', es: 'CONCLUSIONES', 'pt-BR': 'CONCLUSÕES', vi: 'KẾT LUẬN', id: 'KESIMPULAN', tr: 'SONUÇLAR', pl: 'WNIOSKI' })}
                   </Text>
                   <View style={[styles.insightBlock, { backgroundColor: t.bgCard, borderColor: t.border }]}>
                     {data.insights.map((ins, i) => (
@@ -500,11 +584,16 @@ export default function PhraseAnalyticsScreen() {
                 <View style={styles.list}>
                   {data.categoryStats.length === 0 ? (
                     <Text style={[styles.emptyTabText, { color: t.textMuted, fontSize: f.body }]}>
-                      {triLang(lang, { ru: 'Нет данных по категориям', uk: 'Немає даних', es: 'Sin datos' })}
+                      {triLang(lang, { ru: 'Нет данных по категориям', uk: 'Немає даних', es: 'Sin datos', 'pt-BR': 'Sem dados por categoria', vi: 'Không có dữ liệu theo danh mục', id: 'Tidak ada data kategori', tr: 'Kategori verisi yok', pl: 'Brak danych kategorii' })}
                     </Text>
                   ) : (
                     data.categoryStats.map((stat) => (
-                      <CategoryRow key={stat.category} stat={stat} router={router} />
+                      <CategoryRow
+                        key={stat.category}
+                        stat={stat}
+                        router={router}
+                        resolvedPersonalTrainings={resolvedPersonalTrainings}
+                      />
                     ))
                   )}
                 </View>
@@ -528,7 +617,7 @@ export default function PhraseAnalyticsScreen() {
                       <View style={{ flex: 1 }}>
                         <Text style={[styles.phraseText, { color: t.textPrimary, fontSize: f.body }]}>{phrase}</Text>
                         <Text style={[styles.phraseLesson, { color: t.textMuted, fontSize: f.caption }]}>
-                          {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} {lessonId}
+                          {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección', 'pt-BR': 'Lição', vi: 'Bài', id: 'Pelajaran', tr: 'Ders', pl: 'Lekcja' })} {lessonId}
                         </Text>
                       </View>
                     </View>

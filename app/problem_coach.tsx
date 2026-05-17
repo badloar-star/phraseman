@@ -23,9 +23,11 @@ import {
 } from './diagnosis_training_engine';
 import {
   markFreeDiagnosisCoachCompleted,
+  markPersonalTrainingResolved,
   reserveFreeDiagnosisTraining,
 } from './diagnosis_training_progress';
 import { diagnosisCopy } from './diagnosis_training_copy';
+import { getVisibleIntroLearningBlocks } from './personal_training_intro_blocks';
 import type { DiagnosisTrainingRuntimeState } from './diagnosis_training_types';
 
 type Stage = 'intro' | 'practice' | 'done';
@@ -116,6 +118,10 @@ export default function ProblemCoach() {
     const lastStep = state.stepIndex >= diagnosisTraining.steps.length - 1;
     if (mastered || (correct && lastStep)) {
       void markFreeDiagnosisCoachCompleted(diagnosisTraining.id);
+      void markPersonalTrainingResolved({
+        category: diagnosisTraining.category,
+        microDiagnosisId: diagnosisTraining.id,
+      });
       setStage('done');
       return;
     }
@@ -134,6 +140,10 @@ export default function ProblemCoach() {
     }
     hapticTap();
     void markFreeDiagnosisCoachCompleted(diagnosisTraining.id);
+    void markPersonalTrainingResolved({
+      category: diagnosisTraining.category,
+      microDiagnosisId: diagnosisTraining.id,
+    });
     if (router.canGoBack()) router.back();
     else router.replace('/trainer' as any);
   };
@@ -208,18 +218,26 @@ export default function ProblemCoach() {
     </View>
   );
 
+  const introLearningBlocks = getVisibleIntroLearningBlocks(diagnosisTraining);
+
   const renderIntro = () => (
     <View style={styles.stack}>
       {renderIntroCard(
         'hero',
         'git-compare-outline',
-        triLang(lang, { ru: 'Личный разбор', uk: 'Особистий розбір', es: 'Diagnostico personal' }),
+        triLang(lang, {
+          ru: 'Личный разбор',
+          uk: 'Особистий розбір',
+          es: 'Diagnostico personal',
+          'pt-BR': 'Análise pessoal',
+          vi: 'Phân tích cá nhân',
+          id: 'Analisis pribadi',
+          tr: 'Kişisel analiz',
+          pl: 'Analiza osobista',
+        }),
         <>
           <Text style={[styles.heroTitle, { color: t.textPrimary, fontSize: Math.max(21, f.h2) }]}>
             {copy(diagnosisTraining.title)}
-          </Text>
-          <Text style={[styles.bodyText, styles.heroSummary, { color: t.textMuted, fontSize: f.bodyLg }]}>
-            {copy(diagnosisTraining.shortDiagnosis)}
           </Text>
         </>,
       )}
@@ -227,7 +245,16 @@ export default function ProblemCoach() {
       {renderIntroCard(
         'diagnosis',
         'search-outline',
-        triLang(lang, { ru: 'Что именно тренируем', uk: 'Що саме тренуємо', es: 'Qué entrenamos' }),
+        triLang(lang, {
+          ru: 'Что именно тренируем',
+          uk: 'Що саме тренуємо',
+          es: 'Qué entrenamos',
+          'pt-BR': 'O que vamos treinar',
+          vi: 'Cần luyện gì',
+          id: 'Yang dilatih',
+          tr: 'Tam olarak ne çalışıyoruz',
+          pl: 'Co dokładnie ćwiczymy',
+        }),
         <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
           {copy(diagnosisTraining.diagnosisText)}
         </Text>,
@@ -236,30 +263,64 @@ export default function ProblemCoach() {
       {renderIntroCard(
         'model',
         'bulb-outline',
-        triLang(lang, { ru: 'Модель в голове', uk: 'Модель у голові', es: 'Modelo mental' }),
+        triLang(lang, {
+          ru: 'Модель в голове',
+          uk: 'Модель у голові',
+          es: 'Modelo mental',
+          'pt-BR': 'Modelo mental',
+          vi: 'Mô hình trong đầu',
+          id: 'Model di kepala',
+          tr: 'Zihindeki model',
+          pl: 'Model w głowie',
+        }),
         <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
           {copy(diagnosisTraining.mentalModel)}
         </Text>,
         t.gold,
       )}
 
-      {diagnosisTraining.introBlocks.map((block, index) => {
-        const blockText = copy('text' in block ? block.text : block);
-        const blockKey = 'id' in block ? block.id : `${diagnosisTraining.id}-intro-${index}`;
-        return renderIntroCard(
-          blockKey,
-          'footsteps-outline',
-          triLang(lang, { ru: `Шаг ${index + 1}`, uk: `Крок ${index + 1}`, es: `Paso ${index + 1}` }),
-          <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
-            {blockText}
-          </Text>,
-          t.gold,
-        );
-      })}
+      {introLearningBlocks.length > 0 && renderIntroCard(
+        `${diagnosisTraining.id}-intro-guide`,
+        'footsteps-outline',
+        triLang(lang, {
+          ru: 'Короткая опора',
+          uk: 'Коротка опора',
+          es: 'Guia rapida',
+          'pt-BR': 'Apoio rápido',
+          vi: 'Gợi ý ngắn',
+          id: 'Pegangan singkat',
+          tr: 'Kısa destek',
+          pl: 'Krótka podpowiedź',
+        }),
+        <View style={styles.introGuideList}>
+          {introLearningBlocks.map((block, index) => {
+            const blockText = copy('text' in block ? block.text : block);
+            const blockKey = 'id' in block ? block.id : `${diagnosisTraining.id}-intro-${index}`;
+            return (
+              <View key={blockKey} style={styles.introGuideRow}>
+                <View style={[styles.introGuideDot, { backgroundColor: t.gold }]} />
+                <Text style={[styles.bodyText, styles.introGuideText, { color: t.textPrimary, fontSize: f.body }]}>
+                  {blockText}
+                </Text>
+              </View>
+            );
+          })}
+        </View>,
+        t.gold,
+      )}
 
       <TouchableOpacity style={primaryButtonStyle} onPress={() => { hapticTap(); setStage('practice'); }} activeOpacity={0.88}>
         <Text style={primaryButtonTextStyle}>
-          {triLang(lang, { ru: 'Начать мини-проверку', uk: 'Почати міні-перевірку', es: 'Empezar mini prueba' })}
+          {triLang(lang, {
+            ru: 'Начать мини-проверку',
+            uk: 'Почати міні-перевірку',
+            es: 'Empezar mini prueba',
+            'pt-BR': 'Começar mini-teste',
+            vi: 'Bắt đầu kiểm tra ngắn',
+            id: 'Mulai tes mini',
+            tr: 'Mini testi başlat',
+            pl: 'Rozpocznij mini-test',
+          })}
         </Text>
         <View style={styles.ctaIconWrap}>
           <Ionicons name="arrow-forward" size={18} color={t.correctText} />
@@ -280,7 +341,16 @@ export default function ProblemCoach() {
         <View style={styles.exerciseTopRow}>
           <View>
             <Text style={[styles.kicker, { color: t.accent }]}>
-              {triLang(lang, { ru: 'КОРОТКАЯ ПРАКТИКА', uk: 'КОРОТКА ПРАКТИКА', es: 'MICRO PRACTICA' })}
+              {triLang(lang, {
+                ru: 'КОРОТКАЯ ПРАКТИКА',
+                uk: 'КОРОТКА ПРАКТИКА',
+                es: 'MICRO PRACTICA',
+                'pt-BR': 'PRÁTICA RÁPIDA',
+                vi: 'LUYỆN NHANH',
+                id: 'LATIHAN SINGKAT',
+                tr: 'KISA PRATİK',
+                pl: 'KRÓTKA PRAKTYKA',
+              })}
             </Text>
             <Text style={[styles.exerciseCount, { color: t.textMuted, fontSize: f.caption }]}>
               {state.stepIndex + 1} / {diagnosisTraining.steps.length}
@@ -291,7 +361,16 @@ export default function ProblemCoach() {
 
         <View style={[styles.infoBox, { borderColor: accentBorder, backgroundColor: accentSoft }]}>
           <Text style={[styles.infoTitle, { color: t.accent, fontSize: f.label }]}>
-            {triLang(lang, { ru: 'Мысль', uk: 'Думка', es: 'Idea' })}
+            {triLang(lang, {
+              ru: 'Мысль',
+              uk: 'Думка',
+              es: 'Idea',
+              'pt-BR': 'Ideia',
+              vi: 'Ý chính',
+              id: 'Ide',
+              tr: 'Düşünce',
+              pl: 'Myśl',
+            })}
           </Text>
           <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
             {copy(step.explanationBlock)}
@@ -356,8 +435,26 @@ export default function ProblemCoach() {
               <View style={{ flex: 1 }}>
                 <Text style={[styles.feedbackTitle, { color: mainColor, fontSize: f.sub }]}>
                   {feedback.correct
-                    ? triLang(lang, { ru: 'Да, именно так', uk: 'Так, саме так', es: 'Sí, exacto' })
-                    : triLang(lang, { ru: 'Почему этот вариант сбивает', uk: 'Чому цей варіант збиває', es: 'Por qué esta opción confunde' })}
+                    ? triLang(lang, {
+                      ru: 'Да, именно так',
+                      uk: 'Так, саме так',
+                      es: 'Sí, exacto',
+                      'pt-BR': 'Sim, é isso',
+                      vi: 'Đúng, chính là vậy',
+                      id: 'Ya, tepat begitu',
+                      tr: 'Evet, tam olarak böyle',
+                      pl: 'Tak, dokładnie',
+                    })
+                    : triLang(lang, {
+                      ru: 'Почему этот вариант сбивает',
+                      uk: 'Чому цей варіант збиває',
+                      es: 'Por qué esta opción confunde',
+                      'pt-BR': 'Por que esta opção confunde',
+                      vi: 'Vì sao lựa chọn này gây nhiễu',
+                      id: 'Mengapa opsi ini membingungkan',
+                      tr: 'Bu seçenek neden yanıltıyor',
+                      pl: 'Dlaczego ta opcja myli',
+                    })}
                 </Text>
                 <Text style={[styles.bodyText, { color: t.textPrimary, fontSize: f.body }]}>
                   {copy(feedback.feedback)}
@@ -377,10 +474,37 @@ export default function ProblemCoach() {
             <TouchableOpacity style={primaryButtonStyle} onPress={handleNext} activeOpacity={0.88}>
               <Text style={primaryButtonTextStyle}>
                 {mastered
-                  ? triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })
+                  ? triLang(lang, {
+                    ru: 'Готово',
+                    uk: 'Готово',
+                    es: 'Listo',
+                    'pt-BR': 'Concluído',
+                    vi: 'Xong',
+                    id: 'Selesai',
+                    tr: 'Bitti',
+                    pl: 'Gotowe',
+                  })
                   : feedback.correct
-                    ? triLang(lang, { ru: 'Дальше', uk: 'Далі', es: 'Continuar' })
-                    : triLang(lang, { ru: 'Попробовать проще', uk: 'Спробувати простіше', es: 'Intentarlo más simple' })}
+                    ? triLang(lang, {
+                      ru: 'Дальше',
+                      uk: 'Далі',
+                      es: 'Continuar',
+                      'pt-BR': 'Continuar',
+                      vi: 'Tiếp theo',
+                      id: 'Lanjut',
+                      tr: 'Devam et',
+                      pl: 'Dalej',
+                    })
+                    : triLang(lang, {
+                      ru: 'Попробовать проще',
+                      uk: 'Спробувати простіше',
+                      es: 'Intentarlo más simple',
+                      'pt-BR': 'Tentar de forma mais simples',
+                      vi: 'Thử cách đơn giản hơn',
+                      id: 'Coba yang lebih sederhana',
+                      tr: 'Daha basit dene',
+                      pl: 'Spróbuj prościej',
+                    })}
               </Text>
               <View style={styles.ctaIconWrap}>
                 <Ionicons name="arrow-forward" size={18} color={t.correctText} />
@@ -401,24 +525,65 @@ export default function ProblemCoach() {
       </View>
       <Text style={[styles.resultTitle, { color: t.textPrimary, fontSize: f.h2 }]}>
         {mastered
-          ? triLang(lang, { ru: 'Паттерн начал собираться', uk: 'Патерн почав складатися', es: 'El patrón empieza a fijarse' })
-          : triLang(lang, { ru: 'Мини-практика завершена', uk: 'Міні-практику завершено', es: 'Mini practica terminada' })}
+          ? triLang(lang, {
+            ru: 'Паттерн начал собираться',
+            uk: 'Патерн почав складатися',
+            es: 'El patrón empieza a fijarse',
+            'pt-BR': 'O padrão começou a encaixar',
+            vi: 'Mẫu câu bắt đầu rõ hơn',
+            id: 'Pola mulai terbentuk',
+            tr: 'Kalıp oturmaya başladı',
+            pl: 'Wzorzec zaczyna się układać',
+          })
+          : triLang(lang, {
+            ru: 'Мини-практика завершена',
+            uk: 'Міні-практику завершено',
+            es: 'Mini practica terminada',
+            'pt-BR': 'Mini-prática concluída',
+            vi: 'Đã hoàn thành luyện tập ngắn',
+            id: 'Latihan mini selesai',
+            tr: 'Mini pratik tamamlandı',
+            pl: 'Mini-praktyka zakończona',
+          })}
       </Text>
       <View style={[styles.resultScoreBox, { backgroundColor: t.bgSurface, borderColor: t.border }]}>
         <Text style={[styles.resultScoreLabel, { color: t.textMuted, fontSize: f.caption }]}>
-          {triLang(lang, { ru: 'РЕЗУЛЬТАТ', uk: 'РЕЗУЛЬТАТ', es: 'RESULTADO' })}
+          {triLang(lang, {
+            ru: 'РЕЗУЛЬТАТ',
+            uk: 'РЕЗУЛЬТАТ',
+            es: 'RESULTADO',
+            'pt-BR': 'RESULTADO',
+            vi: 'KẾT QUẢ',
+            id: 'HASIL',
+            tr: 'SONUÇ',
+            pl: 'WYNIK',
+          })}
         </Text>
         <Text style={[styles.resultScoreValue, { color: t.accent }]}>
           {triLang(lang, {
             ru: `${state.correctCount} верно · серия ${state.correctStreak}`,
             uk: `${state.correctCount} правильно · серія ${state.correctStreak}`,
             es: `${state.correctCount} correctas · racha ${state.correctStreak}`,
+            'pt-BR': `${state.correctCount} corretas · sequência ${state.correctStreak}`,
+            vi: `${state.correctCount} đúng · chuỗi ${state.correctStreak}`,
+            id: `${state.correctCount} benar · runtutan ${state.correctStreak}`,
+            tr: `${state.correctCount} doğru · seri ${state.correctStreak}`,
+            pl: `${state.correctCount} poprawnie · seria ${state.correctStreak}`,
           })}
         </Text>
       </View>
       <TouchableOpacity style={primaryButtonStyle} onPress={handleStartConsolidation} activeOpacity={0.88}>
         <Text style={primaryButtonTextStyle}>
-          {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+          {triLang(lang, {
+            ru: 'Готово',
+            uk: 'Готово',
+            es: 'Listo',
+            'pt-BR': 'Concluído',
+            vi: 'Xong',
+            id: 'Selesai',
+            tr: 'Bitti',
+            pl: 'Gotowe',
+          })}
         </Text>
         <View style={styles.ctaIconWrap}>
           <Ionicons name="arrow-forward" size={18} color={t.correctText} />
@@ -501,8 +666,22 @@ const styles = StyleSheet.create({
   },
   kicker: { fontSize: 11, fontWeight: '800', letterSpacing: 1.6, textTransform: 'uppercase' },
   heroTitle: { marginTop: 1, fontWeight: '800', lineHeight: 28 },
-  heroSummary: { marginTop: 12 },
   bodyText: { lineHeight: 23, fontWeight: '500' },
+  introGuideList: { gap: 12 },
+  introGuideRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 12,
+  },
+  introGuideDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginTop: 9,
+  },
+  introGuideText: {
+    flex: 1,
+  },
   infoBox: { borderWidth: 0.5, borderRadius: 14, padding: 14, gap: 8 },
   infoTitle: { fontWeight: '800', letterSpacing: 1.0, textTransform: 'uppercase' },
   exerciseTopRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', gap: 12 },

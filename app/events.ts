@@ -12,6 +12,7 @@ export type AppEventMap = {
   energy_reload: undefined;
   premium_activated: undefined;
   premium_deactivated: undefined;
+  gold_theme_unlocked: { source: string };
   achievement_unlocked: undefined;
   account_deleted: undefined;
   /** После restoreFromCloud / мерджа user_name с облака — обновить профиль в UI. */

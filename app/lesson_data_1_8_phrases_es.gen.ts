@@ -7348,6 +7348,7 @@ export const LESSON_8_PHRASES: LessonPhrase[] = [
   {
     id: 'lesson8_phrase_26',
     english: 'We have class on Tuesdays',
+    alternatives: ['We have classes on Tuesdays'],
     russian: 'У нас занятия по вторникам',
     ukrainian: 'У нас заняття по вівторках',
     spanish: 'Tenemos clase los martes.',

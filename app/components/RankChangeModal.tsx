@@ -35,6 +35,31 @@ const TIER_LABELS_ES: Record<string, string> = {
   platinum: 'Platino', diamond: 'Diamante', master: 'Maestro',
   grandmaster: 'Gran maestro', legend: 'Leyenda',
 };
+const TIER_LABELS_PTBR: Record<string, string> = {
+  bronze: 'Bronze', silver: 'Prata', gold: 'Ouro',
+  platinum: 'Platina', diamond: 'Diamante', master: 'Mestre',
+  grandmaster: 'Grão-mestre', legend: 'Lenda',
+};
+const TIER_LABELS_VI: Record<string, string> = {
+  bronze: 'Đồng', silver: 'Bạc', gold: 'Vàng',
+  platinum: 'Bạch kim', diamond: 'Kim cương', master: 'Cao thủ',
+  grandmaster: 'Đại cao thủ', legend: 'Huyền thoại',
+};
+const TIER_LABELS_ID: Record<string, string> = {
+  bronze: 'Perunggu', silver: 'Perak', gold: 'Emas',
+  platinum: 'Platinum', diamond: 'Berlian', master: 'Master',
+  grandmaster: 'Grandmaster', legend: 'Legenda',
+};
+const TIER_LABELS_TR: Record<string, string> = {
+  bronze: 'Bronz', silver: 'Gümüş', gold: 'Altın',
+  platinum: 'Platin', diamond: 'Elmas', master: 'Usta',
+  grandmaster: 'Büyük usta', legend: 'Efsane',
+};
+const TIER_LABELS_PL: Record<string, string> = {
+  bronze: 'Brąz', silver: 'Srebro', gold: 'Złoto',
+  platinum: 'Platyna', diamond: 'Diament', master: 'Mistrz',
+  grandmaster: 'Arcymistrz', legend: 'Legenda',
+};
 export const TIER_COLORS: Record<string, string> = {
   bronze: '#CD7F32', silver: '#C0C0C0', gold: '#FFD700',
   platinum: '#E5E4E2', diamond: '#B9F2FF', master: '#9B59B6',
@@ -224,6 +249,11 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
     ru: TIER_LABELS_RU[tier] ?? tier,
     uk: TIER_LABELS_UK[tier] ?? tier,
     es: TIER_LABELS_ES[tier] ?? tier,
+    'pt-BR': TIER_LABELS_PTBR[tier] ?? tier,
+    vi: TIER_LABELS_VI[tier] ?? tier,
+    id: TIER_LABELS_ID[tier] ?? tier,
+    tr: TIER_LABELS_TR[tier] ?? tier,
+    pl: TIER_LABELS_PL[tier] ?? tier,
   });
   const rankImage = getRankImage(tier as any, level);
 
@@ -472,6 +502,11 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
                       uk: promoted ? '🚀 Підвищення рангу!' : '⬇️ Зниження рангу',
                       ru: promoted ? '🚀 Повышение ранга!' : '⬇️ Понижение ранга',
                       es: promoted ? '🚀 ¡Subes de rango!' : '⬇️ Bajada de rango',
+                      'pt-BR': promoted ? '🚀 Subiu de ranking!' : '⬇️ Queda de ranking',
+                      vi: promoted ? '🚀 Tăng hạng!' : '⬇️ Giảm hạng',
+                      id: promoted ? '🚀 Naik peringkat!' : '⬇️ Turun peringkat',
+                      tr: promoted ? '🚀 Rütbe yükseldi!' : '⬇️ Rütbe düştü',
+                      pl: promoted ? '🚀 Awans rangi!' : '⬇️ Spadek rangi',
                     })}
                   </Animated.Text>
 
@@ -495,6 +530,21 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
                       es: promoted
                         ? '¡Lo lograste — te mereces el nuevo rango!'
                         : 'No te rindas: recuperarás tu posición.',
+                      'pt-BR': promoted
+                        ? 'Você conseguiu — o novo ranking é merecido!'
+                        : 'Não desista, você vai recuperar a posição!',
+                      vi: promoted
+                        ? 'Bạn làm được rồi — hạng mới rất xứng đáng!'
+                        : 'Đừng bỏ cuộc, bạn sẽ lấy lại vị trí!',
+                      id: promoted
+                        ? 'Kamu berhasil — peringkat baru ini pantas!'
+                        : 'Jangan menyerah, kamu bisa merebut posisi lagi!',
+                      tr: promoted
+                        ? 'Başardın — yeni rütbeyi hak ettin!'
+                        : 'Pes etme, yerini geri alacaksın!',
+                      pl: promoted
+                        ? 'Udało się — nowa ranga zasłużona!'
+                        : 'Nie poddawaj się, odzyskasz pozycję!',
                     })}
                   </Animated.Text>
 
@@ -520,6 +570,11 @@ export function RankChangeModal({ visible, promoted, tier, level, onClose, accen
                               uk: promoted ? 'Чудово! 🎉' : 'Зрозуміло 💪',
                               ru: promoted ? 'Отлично! 🎉' : 'Понял 💪',
                               es: promoted ? '¡Genial! 🎉' : 'Entendido 💪',
+                              'pt-BR': promoted ? 'Ótimo! 🎉' : 'Entendi 💪',
+                              vi: promoted ? 'Tuyệt lắm! 🎉' : 'Đã hiểu 💪',
+                              id: promoted ? 'Mantap! 🎉' : 'Mengerti 💪',
+                              tr: promoted ? 'Harika! 🎉' : 'Anladım 💪',
+                              pl: promoted ? 'Świetnie! 🎉' : 'Rozumiem 💪',
                             })}
                           </Text>
                           {/* Блик-волна */}

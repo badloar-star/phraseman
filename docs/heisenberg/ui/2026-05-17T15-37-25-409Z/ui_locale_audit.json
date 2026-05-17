@@ -1,0 +1,2194 @@
+{
+  "generatedAt": "2026-05-17T15:37:25.408Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 580,
+    "triLangCalls": 1510,
+    "staticTriLangCalls": 1502,
+    "dynamicTriLangCalls": 8,
+    "triLangMissingLocaleUnits": 570,
+    "triLangMissingAllPlannedUnits": 114,
+    "bundleMissingLocaleUnits": 10,
+    "findings": 128,
+    "byCode": {
+      "trilang-missing-all-planned-locales": 114,
+      "dynamic-trilang-copy": 8,
+      "lang-context-bundle-missing-planned-locale": 5,
+      "i18n-t-bundle-missing-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/(tabs)/friends.tsx",
+      "findings": 20,
+      "missingLocaleUnits": 100
+    },
+    {
+      "file": "app/preposition_drill.tsx",
+      "findings": 17,
+      "missingLocaleUnits": 85
+    },
+    {
+      "file": "app/problem_coach.tsx",
+      "findings": 17,
+      "missingLocaleUnits": 85
+    },
+    {
+      "file": "app/premium_modal.tsx",
+      "findings": 7,
+      "missingLocaleUnits": 35
+    },
+    {
+      "file": "components/GlobalBroadcastModal.tsx",
+      "findings": 4,
+      "missingLocaleUnits": 20
+    },
+    {
+      "file": "app/friends_screen.tsx",
+      "findings": 3,
+      "missingLocaleUnits": 15
+    },
+    {
+      "file": "components/CoachToast.tsx",
+      "findings": 3,
+      "missingLocaleUnits": 15
+    },
+    {
+      "file": "app/(tabs)/settings.tsx",
+      "findings": 3,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/level_gift_system.ts",
+      "findings": 3,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/arena_game.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/avatar_select.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/beta_testers.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/diagnostic_test.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/flashcards.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/settings_themes.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/streak_stats.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "app/web_screen.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "components/AchievementToast.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "components/ActiveBoostBar.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 10
+    },
+    {
+      "file": "components/LangContext.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/ReleaseNotesModal.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/StatsPremiumBlur.tsx",
+      "findings": 2,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/_pos_analytics_audit.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/community_pack_create.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/exam.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/flashcards/FlashcardsFilterDropdown.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/hint.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/lesson_help.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/lesson1.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/privacy_screen.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/quizzes/result_view.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/shards_shop.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/terms_screen.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/DeleteAccountConfirmModal.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/EnergyBar.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/LessonEnergyLightning.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "components/PremiumGoldButton.tsx",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "constants/i18n.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "app/community_packs/ugcCardThemePresets.ts",
+      "findings": 1,
+      "missingLocaleUnits": 0
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 423,
+      "column": 54,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Подарить', uk: 'Подарувати', es: 'Regalar' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 452,
+      "column": 74,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 537,
+      "column": 57,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'дней подряд', uk: 'днів поспіль', es: 'días seguidos' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 557,
+      "column": 33,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Добавить в друзья', uk: 'Додати в друзі', es: 'Agregar amigo' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 598,
+      "column": 33,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Мой код', uk: 'Мій код', es: 'Mi código' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 629,
+      "column": 42,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Скопировано!', uk: 'Скопійовано!', es: '¡Copiado!' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 630,
+      "column": 42,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Копировать', uk: 'Копіювати', es: 'Copiar' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 644,
+      "column": 39,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Поделиться', uk: 'Поділитись', es: 'Compartir' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 652,
+      "column": 35,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Не удалось получить код. Проверьте сеть и попробуйте снова.', uk: 'Не вдалося отримати код. Перевірте мережу й спробуйте ще.', es: 'No se pudo obtener el código. Comprueba l"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 670,
+      "column": 39,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Повторить', uk: 'Повторити', es: 'Reintentar' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 694,
+      "column": 44,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'только что', uk: 'щойно', es: 'ahora mismo' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 695,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `${min} мин назад`, uk: `${min} хв тому`, es: `hace ${min} min` }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 696,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `${hrs} ч назад`, uk: `${hrs} год тому`, es: `hace ${hrs} h` }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 697,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `${days} дн назад`, uk: `${days} дн тому`, es: `hace ${days} días` }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 711,
+      "column": 74,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 797,
+      "column": 74,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 990,
+      "column": 74,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 1091,
+      "column": 67,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 1571,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: gift.labelRu, uk: gift.labelUk, es: gift.labelEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/friends.tsx",
+      "line": 1574,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: gift.descRu, uk: gift.descUk, es: gift.descEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/settings.tsx",
+      "line": 92,
+      "column": 67,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "app/(tabs)/settings.tsx",
+      "line": 545,
+      "column": 18,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, FONT_SIZE_LABELS[fontSize])"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/(tabs)/settings.tsx",
+      "line": 720,
+      "column": 39,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Настройки', uk: 'Налаштування', es: 'Ajustes', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/_pos_analytics_audit.tsx",
+      "line": 124,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'POS token audit', uk: 'POS token audit', es: 'Auditoría POS', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/arena_game.tsx",
+      "line": 303,
+      "column": 69,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Игрок', uk: 'Гравець', es: 'Jugador' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/arena_game.tsx",
+      "line": 843,
+      "column": 47,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Сообщить о проблеме в вопросе арены', uk: 'Повідомити про проблему в питанні арени', es: 'Informar de un problema en la pregunta', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/avatar_select.tsx",
+      "line": 359,
+      "column": 44,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: aura.nameRu, uk: aura.nameUk, es: aura.nameEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/avatar_select.tsx",
+      "line": 1024,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Открыть ауру «${auraName(pendingAuraPurchase)}» за осколки?`, uk: `Відкрити ауру «${auraName(pendingAuraPurchase)}» за осколки?`, es: `¿Desbloquear el aura «${auraName(pendi"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/beta_testers.tsx",
+      "line": 53,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Бета-тестеры', uk: 'Бета-тестери', es: 'Beta testers', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/beta_testers.tsx",
+      "line": 105,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Версия ${versionLabel}`, uk: `Версія ${versionLabel}`, es: `Versión ${versionLabel}`, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/community_pack_create.tsx",
+      "line": 110,
+      "column": 67,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "app/community_packs/ugcCardThemePresets.ts",
+      "line": 33,
+      "column": 12,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, UGC_CARD_THEME_LABELS[id])"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/diagnostic_test.tsx",
+      "line": 1141,
+      "column": 54,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: q.hintRU, uk: q.hintUK, es: q.hintES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/diagnostic_test.tsx",
+      "line": 1290,
+      "column": 73,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: q.hintRU, uk: q.hintUK, es: q.hintES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/exam.tsx",
+      "line": 363,
+      "column": 68,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/flashcards.tsx",
+      "line": 42,
+      "column": 53,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Тренировка карточек', uk: 'Тренування карток', es: 'Práctica de tarjetas', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/flashcards.tsx",
+      "line": 47,
+      "column": 56,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Верно/Неверно: подходит ли перевод', uk: 'Вірно/Невірно: чи підходить переклад', es: 'Correcto/Incorrecto: ¿coincide?', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/flashcards/FlashcardsFilterDropdown.tsx",
+      "line": 60,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Все', uk: 'Всі', es: 'Todas' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/friends_screen.tsx",
+      "line": 123,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/friends_screen.tsx",
+      "line": 385,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: gift.labelRu, uk: gift.labelUk, es: gift.labelEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/friends_screen.tsx",
+      "line": 388,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: gift.descRu, uk: gift.descUk, es: gift.descEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/hint.tsx",
+      "line": 1155,
+      "column": 35,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: hint.titleRU, uk: hint.titleUK, es: hint.titleES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/lesson1.tsx",
+      "line": 705,
+      "column": 28,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Урок', ru: 'Урок', es: 'Lección' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/lesson_help.tsx",
+      "line": 19384,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: theory.titleUK, ru: theory.titleRU, es: theoryTitleEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/level_gift_system.ts",
+      "line": 67,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: g.titleRU, uk: g.titleUK, es: g.titleES ?? g.titleRU }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/level_gift_system.ts",
+      "line": 71,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: g.descRU, uk: g.descUK, es: g.descES ?? g.descRU }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "app/level_gift_system.ts",
+      "line": 86,
+      "column": 10,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, GIFT_RARITY_UI_LABEL[r])"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 808,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Сейчас у тебя серия ${streakDays} дн. Premium даёт заморозку и спокойнее ритм без пауз.`, uk: `Зараз у тебе серія ${streakDays} дн. Premium дає заморозку і спокійніший ритм "
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 815,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Уроков пройдено: ${lessonsDone}. Premium откроет текущий уровень целиком, а следующий — после экзамена.`, uk: `Уроків пройдено: ${lessonsDone}. Premium відкриє поточний ріве"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 822,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Уроков пройдено: ${lessonsDone}. Premium снимает замки с уроков текущего уровня.`, uk: `Уроків пройдено: ${lessonsDone}. Premium знімає замки з уроків поточного рівня.`, es:"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 829,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `У тебя уже ${savedCards} карточек. Premium снимает лимит полностью.`, uk: `У тебе вже ${savedCards} карток. Premium знімає ліміт повністю.`, es: `Ya tienes ${savedCards} tar"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 835,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'После активации Premium ты сразу получишь больше пользы из каждой сессии.', uk: 'Після активації Premium ти відразу отримаєш більше користі з кожної сесії.', es: 'Tras activ"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 918,
+      "column": 75,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2766,
+      "column": 41,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Экран Premium', uk: 'Екран Premium', es: 'Pantalla Premium', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 250,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'У цьому уроці немає прийменників', ru: 'В этом уроке нет предлогов', es: 'En esta lección no hay preposiciones.', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 264,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Тренажер прийменників', ru: 'Тренажер предлогов', es: 'Práctica de preposiciones', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 269,
+      "column": 34,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: `Урок ${lessonId}: прийменники цього уроку`, ru: `Урок ${lessonId}: предлоги этого урока`, es: `Lección ${lessonId}: preposiciones de esta lección`, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 406,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Завдання', ru: 'Задание', es: 'Ejercicio' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 448,
+      "column": 39,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Правильно', ru: 'Верно', es: 'Correcto' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 449,
+      "column": 39,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Неправильно', ru: 'Неверно', es: 'Incorrecto' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 452,
+      "column": 36,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: item.explainUK, ru: item.explainRU, es: item.explainES ?? item.explainRU, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 463,
+      "column": 38,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Далі', ru: 'Дальше', es: 'Siguiente' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 474,
+      "column": 33,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: `Урок ${lessonId}, нові прийменники: ${prepositionsLabel}`, ru: `Урок ${lessonId}, новые предлоги: ${prepositionsLabel}`, es: `Lección ${lessonId}, nuevas preposiciones: ${pr"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 479,
+      "column": 33,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: `Завдання: ${item.sentenceTemplate}`, ru: `Задание: ${item.sentenceTemplate}`, es: `Ejercicio: ${item.sentenceTemplate}`, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 484,
+      "column": 33,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: `Варіанти: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | ')}`, ru: `Варианты: ${item.options.map(o => (o === item.correct ? `[✓${o}]` : o)).join(' | "
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 501,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Прийменники відпрацьовано!', ru: 'Предлоги отработаны!', es: '¡Preposiciones repasadas!', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 508,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Точність: ', ru: 'Точность: ', es: 'Precisión: ' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 511,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: `Помилок: ${wrongIds.length}`, ru: `Ошибок: ${wrongIds.length}`, es: `Errores: ${wrongIds.length}`, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 523,
+      "column": 34,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: '← До уроку', ru: '← К уроку', es: '← Volver a la lección' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 534,
+      "column": 34,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Ще раз', ru: 'Снова', es: 'Otra vez' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/preposition_drill.tsx",
+      "line": 544,
+      "column": 36,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Виправити помилки', ru: 'Исправить ошибки', es: 'Corregir errores' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/privacy_screen.tsx",
+      "line": 47,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Открыть политику на сайте Knowly', uk: 'Відкрити політику на сайті Knowly', es: 'Abrir la política en knowlyapps.com', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 228,
+      "column": 23,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Личный разбор', uk: 'Особистий розбір', es: 'Diagnostico personal' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 239,
+      "column": 23,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Что именно тренируем', uk: 'Що саме тренуємо', es: 'Qué entrenamos' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 248,
+      "column": 23,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Модель в голове', uk: 'Модель у голові', es: 'Modelo mental' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 258,
+      "column": 23,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Короткая опора', uk: 'Коротка опора', es: 'Guia rapida' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 278,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Начать мини-проверку', uk: 'Почати міні-перевірку', es: 'Empezar mini prueba' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 299,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'КОРОТКАЯ ПРАКТИКА', uk: 'КОРОТКА ПРАКТИКА', es: 'MICRO PRACTICA' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 310,
+      "column": 28,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Мысль', uk: 'Думка', es: 'Idea' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 375,
+      "column": 37,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Да, именно так', uk: 'Так, саме так', es: 'Sí, exacto' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 376,
+      "column": 37,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Почему этот вариант сбивает', uk: 'Чому цей варіант збиває', es: 'Por qué esta opción confunde' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 396,
+      "column": 35,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Готово', uk: 'Готово', es: 'Listo' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 398,
+      "column": 37,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Дальше', uk: 'Далі', es: 'Continuar' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 399,
+      "column": 37,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Попробовать проще', uk: 'Спробувати простіше', es: 'Intentarlo más simple' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 420,
+      "column": 27,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Паттерн начал собираться', uk: 'Патерн почав складатися', es: 'El patrón empieza a fijarse' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 421,
+      "column": 27,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Мини-практика завершена', uk: 'Міні-практику завершено', es: 'Mini practica terminada' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 425,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'РЕЗУЛЬТАТ', uk: 'РЕЗУЛЬТАТ', es: 'RESULTADO' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 428,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `${state.correctCount} верно · серия ${state.correctStreak}`, uk: `${state.correctCount} правильно · серія ${state.correctStreak}`, es: `${state.correctCount} correctas · rac"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/problem_coach.tsx",
+      "line": 437,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Готово', uk: 'Готово', es: 'Listo' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/quizzes/result_view.tsx",
+      "line": 76,
+      "column": 44,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: rankInfo.labelRU, uk: rankInfo.labelUK, es: rankInfo.labelES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/settings_themes.tsx",
+      "line": 67,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Темы', uk: 'Теми', es: 'Temas' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/settings_themes.tsx",
+      "line": 112,
+      "column": 38,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: item.labelRU, uk: item.labelUK, es: item.labelES }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/shards_shop.tsx",
+      "line": 1482,
+      "column": 41,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Магазин осколков', uk: 'Крамниця уламків', es: 'Tienda de fragmentos', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/streak_stats.tsx",
+      "line": 3915,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: engineLeague.nameRU, uk: engineLeague.nameUK, es: engineLeague.nameES ?? engineLeague.nameRU, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/streak_stats.tsx",
+      "line": 3922,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: engineLeague.descRU, uk: engineLeague.descUK, es: CLUB_DESC_ES[engineLeague.id] ?? engineLeague.descRU, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/terms_screen.tsx",
+      "line": 47,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Открыть условия на сайте Knowly', uk: 'Відкрити умови на сайті Knowly', es: 'Abrir los términos en knowlyapps.com', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/web_screen.tsx",
+      "line": 19,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Ссылка не указана', uk: 'Посилання не вказано', es: 'No hay URL' }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/web_screen.tsx",
+      "line": 44,
+      "column": 28,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Открыть в браузере', uk: 'Відкрити в браузері', es: 'Abrir en el navegador', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/AchievementToast.tsx",
+      "line": 200,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: displayedToast.nameUk, ru: displayedToast.nameRu, es: displayedToast.nameEs ?? displayedToast.nameRu, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/AchievementToast.tsx",
+      "line": 205,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: displayedToast.descUk, ru: displayedToast.descRu, es: displayedToast.descEs ?? displayedToast.descRu, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/ActiveBoostBar.tsx",
+      "line": 117,
+      "column": 36,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Активировал', uk: 'Активував', es: 'Activado por', }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/ActiveBoostBar.tsx",
+      "line": 125,
+      "column": 40,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: ` (еще ${activeBoosts.length - 1})`, uk: ` (ще ${activeBoosts.length - 1})`, es: ` (+${activeBoosts.length - 1})`, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/CoachToast.tsx",
+      "line": 55,
+      "column": 39,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: labelRu, uk: labelUk, es: labelEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/CoachToast.tsx",
+      "line": 97,
+      "column": 21,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: microLabelRu ?? categoryLabel, uk: microLabelUk ?? microLabelRu ?? categoryLabel, es: microLabelEs ?? microLabelRu ?? categoryLabel, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/CoachToast.tsx",
+      "line": 103,
+      "column": 35,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: microLabel ? `Мы заметили трудности с ${microLabel}` : `Мы заметили трудности с темой «${categoryLabel}»`, uk: microLabel ? `Ми помітили труднощі з ${microLabel}` : `Ми поміт"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/DeleteAccountConfirmModal.tsx",
+      "line": 31,
+      "column": 79,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/EnergyBar.tsx",
+      "line": 32,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Долгое нажатие — восстановить энергию за осколки', uk: 'Довге натискання — відновити енергію за осколки', es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/GlobalBroadcastModal.tsx",
+      "line": 32,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: payload.titleRu, uk: payload.titleUk, es: payload.titleEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/GlobalBroadcastModal.tsx",
+      "line": 37,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: payload.messageRu, uk: payload.messageUk, es: payload.messageEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/GlobalBroadcastModal.tsx",
+      "line": 120,
+      "column": 32,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: reward.labelRu, uk: reward.labelUk, es: reward.labelEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/GlobalBroadcastModal.tsx",
+      "line": 155,
+      "column": 35,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: payload.reviewCtaRu, uk: payload.reviewCtaUk, es: payload.reviewCtaEs }"
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PT_BR | PTBR",
+      "missing": [
+        "pt-BR"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "VI",
+      "missing": [
+        "vi"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "ID",
+      "missing": [
+        "id"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "TR",
+      "missing": [
+        "tr"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PL",
+      "missing": [
+        "pl"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/LessonEnergyLightning.tsx",
+      "line": 32,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Долгое нажатие — восстановить энергию за осколки', uk: 'Довге натискання — відновити енергію за осколки', es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/PremiumGoldButton.tsx",
+      "line": 29,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Получить Премиум', uk: 'Отримати Premium', es: 'Obtener Premium', }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/ReleaseNotesModal.tsx",
+      "line": 98,
+      "column": 31,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, TEXT.title)"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/ReleaseNotesModal.tsx",
+      "line": 99,
+      "column": 34,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, TEXT.subtitle)"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/ReleaseNotesModal.tsx",
+      "line": 104,
+      "column": 30,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, TEXT.body)"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/ReleaseNotesModal.tsx",
+      "line": 233,
+      "column": 45,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ uk: 'Закрити', ru: 'Закрыть', es: 'Cerrar', }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/ReleaseNotesModal.tsx",
+      "line": 321,
+      "column": 18,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, TEXT.cta)"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "line": 170,
+      "column": 47,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: `Награда ${amount} осколков`, uk: `Нагорода ${amount} осколків`, es: `Recompensa: ${amount} fragmentos`, }"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/ReleaseWaveBonusModal.tsx",
+      "line": 208,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'осколки знаний', uk: 'осколки знань', es: 'fragmentos de conocimiento', }"
+    },
+    {
+      "severity": "warning",
+      "code": "dynamic-trilang-copy",
+      "file": "components/StatsPremiumBlur.tsx",
+      "line": 49,
+      "column": 34,
+      "message": "triLang uses a dynamic copy object; UI locale audit cannot prove planned locales are present.",
+      "sample": "triLang(lang, titleByContext[context])"
+    },
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "components/StatsPremiumBlur.tsx",
+      "line": 50,
+      "column": 34,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru: 'Открыть с Premium', uk: 'Відкрити з Premium', es: 'Abrir con Premium', }"
+    },
+    {
+      "severity": "warning",
+      "code": "i18n-t-bundle-missing-planned-locales",
+      "file": "constants/i18n.ts",
+      "line": 37,
+      "column": 18,
+      "keyPath": "T.<locale>",
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "constants/i18n.ts does not define UI string bundles for all planned interface locales."
+    }
+  ]
+}

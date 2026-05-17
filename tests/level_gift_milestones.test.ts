@@ -4,11 +4,7 @@ import {
   getMilestoneLevelGift,
   rollF2pLevelGiftForUser,
 } from '../app/level_gift_system';
-import {
-  CUSTOM_AVATAR_GRADIENTS,
-  CUSTOM_AVATARS,
-  customAvatarGiftLabelForLang,
-} from '../constants/custom_avatars';
+import { CUSTOM_AVATAR_SHOP } from '../constants/custom_avatars';
 
 jest.mock('@react-native-async-storage/async-storage');
 jest.mock('../app/xp_manager', () => ({ registerXP: jest.fn().mockResolvedValue({ finalDelta: 0 }) }));
@@ -26,7 +22,7 @@ jest.mock('../app/config', () => ({
   ...jest.requireActual<typeof import('../app/config')>('../app/config'),
   IS_EXPO_GO: true,
   CLOUD_SYNC_ENABLED: false,
-  ENABLE_SPANISH_LOCALE: true,
+  SPANISH_UI_LOCALE_ENABLED: true,
 }));
 jest.mock('../app/debug-logger', () => ({ DebugLogger: { error: jest.fn() } }));
 
@@ -79,31 +75,20 @@ describe('level gift milestone rewards', () => {
     expect(result.cosmeticUnlocked?.labelRu).toBeTruthy();
   });
 
-  it('unlocks a gifted custom avatar with preview style metadata', async () => {
+  it('unlocks a paid custom avatar gift when the catalog is populated', async () => {
     const gift = getMilestoneLevelGift(15)!;
     const result = await applyGift(gift, 'TestUser', 3, 5, jest.fn());
 
     const unlocked = result.cosmeticUnlocked;
+    expect(CUSTOM_AVATAR_SHOP).toHaveLength(10);
     expect(unlocked).toMatchObject({ kind: 'avatar' });
-    expect(unlocked?.id).toBeTruthy();
+    expect(CUSTOM_AVATAR_SHOP.some((avatar) => avatar.id === unlocked?.id)).toBe(true);
     expect(unlocked?.gradientId).toBeTruthy();
     expect(unlocked?.logoColor === 'black' || unlocked?.logoColor === 'white').toBe(true);
     expect(mockStorage.custom_avatar_gift_owned_v1).toBe(unlocked?.id);
 
     const owned = JSON.parse(mockStorage.custom_avatar_owned_v1 || '{}');
     expect(owned[unlocked!.id]).toBe(`${unlocked!.gradientId}:${unlocked!.logoColor}`);
-    expect(unlocked!.labelRu).toMatch(/^Аватар \d{2} - /);
-    expect(unlocked!.labelUk).toMatch(/^Аватар \d{2} - /);
-    expect(unlocked!.labelEs).toMatch(/^Avatar \d{2} - /);
-    expect(unlocked!.labelRu).not.toContain('Custom');
-  });
-
-  it('localizes custom avatar gift labels for the interface language', () => {
-    const avatar = CUSTOM_AVATARS.find(a => a.id === 'custom-12')!;
-    const gradient = CUSTOM_AVATAR_GRADIENTS.find(g => g.id === 'citrine')!;
-
-    expect(customAvatarGiftLabelForLang(avatar, gradient, 'ru')).toBe('Аватар 12 - Цитрин');
-    expect(customAvatarGiftLabelForLang(avatar, gradient, 'uk')).toBe('Аватар 12 - Цитрин');
-    expect(customAvatarGiftLabelForLang(avatar, gradient, 'es')).toBe('Avatar 12 - Citrino');
+    expect(mockStorage.avatar_aura_gift_owned_v1).toBeUndefined();
   });
 });

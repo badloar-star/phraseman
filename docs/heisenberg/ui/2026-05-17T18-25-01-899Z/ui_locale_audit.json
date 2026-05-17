@@ -1,0 +1,195 @@
+{
+  "generatedAt": "2026-05-17T18:25:01.898Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 580,
+    "triLangCalls": 1506,
+    "staticTriLangCalls": 1506,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 4,
+    "triLangMissingLocaleUnits": 5,
+    "triLangMissingAllPlannedUnits": 1,
+    "helperMissingLocaleUnits": 20,
+    "bundleMissingLocaleUnits": 10,
+    "findings": 11,
+    "byCode": {
+      "trilang-missing-all-planned-locales": 1,
+      "local-trilang-helper-missing-planned-locales": 4,
+      "lang-context-bundle-missing-planned-locale": 5,
+      "i18n-t-bundle-missing-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/premium_modal.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 25
+    },
+    {
+      "file": "components/LangContext.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "constants/i18n.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 1023,
+      "column": 75,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2531,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(tag.ru, tag.uk, tag.es)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2569,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(hero.titleRu, hero.titleUk, hero.titleEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2572,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(hero.subtitleRu, hero.subtitleUk, hero.subtitleEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2610,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(b.ru, b.uk, b.es)"
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PT_BR | PTBR",
+      "missing": [
+        "pt-BR"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "VI",
+      "missing": [
+        "vi"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "ID",
+      "missing": [
+        "id"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "TR",
+      "missing": [
+        "tr"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PL",
+      "missing": [
+        "pl"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "i18n-t-bundle-missing-planned-locales",
+      "file": "constants/i18n.ts",
+      "line": 39,
+      "column": 18,
+      "keyPath": "T.<locale>",
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "constants/i18n.ts does not define UI string bundles for all planned interface locales."
+    }
+  ]
+}

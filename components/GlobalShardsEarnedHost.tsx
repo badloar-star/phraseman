@@ -3,6 +3,7 @@ import { onAppEvent } from '../app/events';
 import { labelForShardModalReason } from '../app/shard_earn_ui';
 import { useLang } from './LangContext';
 import ShardsEarnedModal from './ShardsEarnedModal';
+import { useOverlayVisible } from './OverlayArbiter';
 
 type Queued = { amount: number; reason: string };
 
@@ -12,6 +13,7 @@ type Queued = { amount: number; reason: string };
 export default function GlobalShardsEarnedHost() {
   const { lang } = useLang();
   const [active, setActive] = useState<Queued | null>(null);
+  const visible = useOverlayVisible('shardsEarned', active != null);
   const queueRef = useRef<Queued[]>([]);
   const activeRef = useRef<Queued | null>(null);
   activeRef.current = active;
@@ -42,7 +44,7 @@ export default function GlobalShardsEarnedHost() {
   return (
     <ShardsEarnedModal
       key={active ? `${active.amount}|${active.reason.slice(0, 80)}` : 'idle'}
-      visible={!!active}
+      visible={visible}
       amount={active?.amount ?? 0}
       reason={active?.reason ?? ''}
       onClose={handleClose}

@@ -15,6 +15,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import AddToFlashcard from '../components/AddToFlashcard';
 import ContentWrap from '../components/ContentWrap';
 import { triLang as pickTriLang, type Lang } from '../constants/i18n';
+import { isCorrectAnswer } from '../constants/contractions';
 import { screenTextOnGradient } from '../constants/theme';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -76,7 +77,7 @@ const vocabularyStepBaseXP = (prevCount: number): number => {
  * После верного: почти сразу (озвучка не блокирует таймер — вынесена в конец callback).
  * Неверно: дольше, чтобы увидеть ошибку.
  */
-const ANSWER_FEEDBACK_MS = { correct: 800, wrong: 400 } as const;
+const ANSWER_FEEDBACK_MS = { correct: 800, wrong: 1600 } as const;
 
 type POS = 'pronouns'|'verbs'|'irregular_verbs'|'adjectives'|'adverbs'|'nouns'|'prepositions'|'conjunctions'|'articles'|'phrases';
 interface Word { en:string; ru:string; uk:string; es:string; pos:POS; context?:string; definition?:string; }
@@ -788,6 +789,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'machine', ru: 'Машина (механизм)', uk: 'Машина (механізм)', es: 'máquina', pos: 'nouns' },
     { en: 'magazine', ru: 'Журнал', uk: 'Журнал', es: 'revista', pos: 'nouns' },
     { en: 'many', ru: 'Много', uk: 'Багато', es: 'muchos', pos: 'nouns' },
+    { en: 'much', ru: 'Много (с неисчисляемым)', uk: 'Багато (з незлічуваним)', es: 'mucho', pos: 'adverbs' },
     { en: 'mirror', ru: 'Зеркало', uk: 'Дзеркало', es: 'espejo', pos: 'nouns' },
     { en: 'mountain', ru: 'Гора', uk: 'Гора', es: 'montaña', pos: 'nouns' },
     { en: 'new', ru: 'Новый', uk: 'Новий', es: 'nuevo', pos: 'nouns' },
@@ -948,7 +950,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'saved', ru: 'Сохранил(а) / сэкономил(а)', uk: 'Зберіг(ла) / заощадив(ла)', es: 'guardó / ahorró', pos: 'verbs' },
     { en: 'turned', ru: 'Выключил(а) (с off) / повернул(а)', uk: 'Вимкнув(ла) (з off) / повернув(ла)', es: 'apagó / giró', pos: 'verbs' },
     { en: 'watched', ru: 'Посмотрел(а)', uk: 'Дивився / дивилась', es: 'vio', pos: 'verbs' },
-    { en: 'brushed', ru: 'Почистил(а) щёткой', uk: 'Почистив(ла) щіткою', es: 'cepilló', pos: 'verbs' },
+    { en: 'brush', ru: 'Чистить щёткой; расчёсывать', uk: 'Чистити щіткою; розчісувати', es: 'cepillar', pos: 'verbs' },
     { en: 'shirt', ru: 'Рубашка', uk: 'Сорочка', es: 'camisa', pos: 'nouns' },
     { en: 'shoe', ru: 'Туфля / ботинок', uk: 'Туфля / черевик', es: 'zapato', pos: 'nouns' },
     { en: 'dish', ru: 'Блюдо', uk: 'Страва', es: 'plato', pos: 'nouns' },
@@ -1008,7 +1010,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'difficult', ru: 'Сложный', uk: 'Складний', es: 'difícil', pos: 'adjectives' },
     { en: 'call', ru: 'Звонок', uk: 'Дзвінок', es: 'llamada', pos: 'nouns' },
     { en: 'days', ru: 'Дни', uk: 'Дні', es: 'días', pos: 'nouns' },
-    { en: 'shoes', ru: 'Обувь', uk: 'Взуття', es: 'zapatos', pos: 'nouns' },
+    { en: 'shoes', ru: 'Туфли / ботинки', uk: 'Туфлі / черевики', es: 'zapatos', pos: 'nouns' },
   ],
   12: [
     // Past Simple — неправильные формы (инфинитив → прошедшее)
@@ -1200,7 +1202,7 @@ const WORDS_BY_LESSON: Record<number, Word[]> = {
     { en: 'find out', ru: 'Выяснять · узнавать', uk: "З\'ясовувати · дізнаватися", es: 'averiguar / enterarse', pos: 'verbs' },
     { en: 'go back', ru: 'Возвращаться назад', uk: 'Повертатися назад', es: 'volver / regresar', pos: 'verbs' },
     { en: 'lights', ru: 'Свет · лампы', uk: 'Світло · лампи', es: 'luces', pos: 'nouns' },
-    { en: 'shoes', ru: 'Обувь · туфли', uk: 'Взуття · туфлі', es: 'zapatos', pos: 'nouns' },
+    { en: 'shoes', ru: 'Туфли / ботинки', uk: 'Туфлі / черевики', es: 'zapatos', pos: 'nouns' },
     { en: 'papers', ru: 'Бумаги', uk: 'Папери', es: 'papeles', pos: 'nouns' },
     { en: 'facts', ru: 'Факты', uk: 'Факти', es: 'hechos', pos: 'nouns' },
     { en: 'jacket', ru: 'Куртка', uk: 'Куртка', es: 'chaqueta', pos: 'nouns' },
@@ -1881,7 +1883,7 @@ function regularVerbSurfaceLemma(lower: string): string {
   if (lower.endsWith('ed') && lower.length > 4) {
     const noD = lower.slice(0, -1);
     const noEd = lower.slice(0, -2);
-    if (noD.endsWith('e')) return noD;
+    if (noD.endsWith('e') && !/(ch|sh|ss|x|z)$/.test(noEd)) return noD;
     if (noEd.length >= 2 && noEd[noEd.length - 1] === noEd[noEd.length - 2]) return noEd.slice(0, -1);
     return noEd;
   }
@@ -2460,6 +2462,9 @@ const makeOptions = (correct: Word, all: Word[]): string[] => {
   return fy([...combined.slice(0, 5).map(w => w.en), correct.en]);
 };
 
+const isLessonWordOptionCorrect = (option: string, correct: string): boolean =>
+  option === correct || isCorrectAnswer(option, correct);
+
 interface Card {
   word: Word;
   options: string[];
@@ -2618,7 +2623,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
     locked.current = true;
 
     setChosen(opt);
-    const isRight = opt === current.correctOption;
+    const isRight = isLessonWordOptionCorrect(opt, current.correctOption);
     const wordEn = current.word.en;
     if (voiceOut) speakAudio(wordEn, speechRate, { language: 'en-US' });
     if (!isRight && hapticsOn) {
@@ -2696,9 +2701,9 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
         const newCount = prevCount + 1;
         wordMistakeCountRef.current[wKey] = newCount;
         if (newCount === 2) {
-          void activateWordForTrainer(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos);
+          void activateWordForTrainer(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es);
         } else {
-          void recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos);
+          void recordWordMistake(wKey, current.word.ru, current.word.uk, lessonId, current.word.pos, current.word.es);
         }
         const resetCard = buildCard(current.word, current.roundIndex, words, lang);
         newQueue.splice(qIdx % newQueue.length, 1);
@@ -2815,6 +2820,11 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           labelRu={coachToast.labelRu}
           labelUk={coachToast.labelUk}
           labelEs={coachToast.labelEs}
+          labelPtBr={coachToast.labelPtBr}
+          labelVi={coachToast.labelVi}
+          labelId={coachToast.labelId}
+          labelTr={coachToast.labelTr}
+          labelPl={coachToast.labelPl}
           mistakeCount={coachToast.mistakeCount}
           weaknessScore={coachToast.weaknessScore}
           priorityScore={coachToast.priorityScore}
@@ -2824,6 +2834,11 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
           microLabelRu={coachToast.microLabelRu}
           microLabelUk={coachToast.microLabelUk}
           microLabelEs={coachToast.microLabelEs}
+          microLabelPtBr={coachToast.microLabelPtBr}
+          microLabelVi={coachToast.microLabelVi}
+          microLabelId={coachToast.microLabelId}
+          microLabelTr={coachToast.microLabelTr}
+          microLabelPl={coachToast.microLabelPl}
           diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
           onDismiss={() => setCoachToast(null)}
         />
@@ -2909,7 +2924,7 @@ function Training({ words, storageKey, lessonId, lang, initialLearned, initialCo
       {/* Варианты ответов — 2 колонки */}
       <View style={{ width:'100%', flexDirection:'row', flexWrap:'wrap', gap:10, paddingBottom:16 }}>
         {current.options.map((opt, i) => {
-          const isCorrect  = opt === current.correctOption;
+          const isCorrect  = isLessonWordOptionCorrect(opt, current.correctOption);
           const isSelected = opt === chosen;
           let bg = t.bgCard, borderColor = t.border, tc = t.textSecond, bw = 1;
           if (chosen !== null) {

@@ -53,6 +53,16 @@ const GIFS: Record<number, any> = {
   48: require('../assets/images/levels/48.webp'),
   49: require('../assets/images/levels/49.webp'),
   50: require('../assets/images/levels/50.webp'),
+  51: require('../assets/images/levels/51.webp'),
+  52: require('../assets/images/levels/52.webp'),
+  53: require('../assets/images/levels/53.webp'),
+  54: require('../assets/images/levels/54-readable.webp'),
+  55: require('../assets/images/levels/55-readable.webp'),
+  56: require('../assets/images/levels/56.webp'),
+  57: require('../assets/images/levels/57.webp'),
+  58: require('../assets/images/levels/58.webp'),
+  59: require('../assets/images/levels/59.webp'),
+  60: require('../assets/images/levels/60.webp'),
 };
 
 interface Props {
@@ -67,11 +77,12 @@ interface Props {
 }
 
 export default function LevelBadge({ level, size = 40, height, autoplay: autoplayEnabled = true }: Props) {
-  const clamped = Math.max(1, Math.min(50, level));
-  const source = GIFS[clamped] ?? GIFS[1];
+  const clamped = Math.max(1, Math.min(60, level));
+  const source = GIFS[clamped];
+  const fallbackSource = source ?? GIFS[1];
   return (
     <Image
-      source={source}
+      source={fallbackSource}
       style={{ width: size, height: height ?? size, borderRadius: size * 0.08 }}
       contentFit={height ? 'fill' : 'contain'}
       autoplay={autoplayEnabled}

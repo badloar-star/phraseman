@@ -21,53 +21,68 @@ async function readAppLang(): Promise<string> {
 
 function moderationTitle(result: string, lang: string): string {
   const uk = lang.startsWith('uk');
+  const es = lang.startsWith('es');
   switch (result) {
     case 'approved':
+      if (es) return 'Tu pack fue aprobado';
       return uk ? 'Ваш набір схвалено' : 'Ваш набор одобрен';
     case 'rejected':
+      if (es) return 'Tu pack fue rechazado';
       return uk ? 'Ваш набір відхилено' : 'Ваш набор отклонён';
     case 'revision_requested':
+      if (es) return 'Se necesitan cambios';
       return uk ? 'Потрібні правки' : 'Нужна доработка';
     case 'pack_removed':
+      if (es) return 'Pack retirado de la venta';
       return uk ? 'Набір знято з продажу' : 'Набор снят с продажи';
     default:
+      if (es) return 'Moderación';
       return uk ? 'Модерація' : 'Модерация';
   }
 }
 
 function okButtonLabel(lang: string): string {
+  if (lang.startsWith('es')) return 'Entendido';
   return lang.startsWith('uk') ? 'Зрозуміло' : 'Понятно';
 }
 
 function moderationBody(ev: Record<string, unknown>, lang: string): string {
   const uk = lang.startsWith('uk');
+  const es = lang.startsWith('es');
   const result = String(ev.result || '');
   const titleRu = String(ev.titleRu || '').trim();
   const titleUk = String(ev.titleUk || '').trim();
-  const packTitle = uk ? (titleUk || titleRu) : (titleRu || titleUk);
+  const titleEs = String(ev.titleEs || '').trim();
+  const packTitle = es ? (titleEs || titleUk || titleRu) : uk ? (titleUk || titleRu || titleEs) : (titleRu || titleUk || titleEs);
   const lines: string[] = [];
   if (packTitle) lines.push(packTitle);
   const sid = String(ev.submissionId || '').trim();
   const pid = String(ev.packId || '').trim();
   if (sid) {
-    lines.push(uk ? `Заявка: ${sid}` : `Заявка: ${sid}`);
+    lines.push(es ? `Solicitud: ${sid}` : uk ? `Заявка: ${sid}` : `Заявка: ${sid}`);
   } else if (pid && !packTitle) {
     // Немає title в inbox і не вдалось підвантажити з Firestore — не показуємо сирий id.
-    lines.push(uk ? 'Відкрий «Картки» — у списку своїх наборів знайдеш цей.' : 'Открой «Карточки» — в списке своих наборов найдёшь этот.');
+    lines.push(
+      es
+        ? 'Abre Tarjetas: lo encontrarás en la lista de tus packs.'
+        : uk ? 'Відкрий «Картки» — у списку своїх наборів знайдеш цей.' : 'Открой «Карточки» — в списке своих наборов найдёшь этот.',
+    );
   }
   const msg = ev.message != null ? String(ev.message).trim() : '';
   if (msg) {
-    lines.push(uk ? `Коментар:\n${msg}` : `Комментарий:\n${msg}`);
+    lines.push(es ? `Comentario:\n${msg}` : uk ? `Коментар:\n${msg}` : `Комментарий:\n${msg}`);
   } else if (result === 'revision_requested') {
     lines.push(
-      uk
+      es
+        ? 'Actualiza el pack y envíalo de nuevo.'
+        : uk
         ? 'Оновіть набір і надішліть знову.'
         : 'Доработайте набор и отправьте снова.',
     );
   } else if (result === 'approved') {
-    lines.push(uk ? 'Без додаткового коментаря.' : 'Без дополнительного комментария.');
+    lines.push(es ? 'Sin comentario adicional.' : uk ? 'Без додаткового коментаря.' : 'Без дополнительного комментария.');
   } else if (result === 'rejected') {
-    lines.push(uk ? 'Без пояснення від модератора.' : 'Без пояснения от модератора.');
+    lines.push(es ? 'Sin explicación del moderador.' : uk ? 'Без пояснення від модератора.' : 'Без пояснения от модератора.');
   }
   return lines.join('\n\n');
 }
@@ -100,12 +115,14 @@ export async function flushCommunityModerationAlertsFromInbox(): Promise<void> {
       const pid = String(rec.packId || '').trim();
       const tr = String(rec.titleRu || '').trim();
       const tuk = String(rec.titleUk || '').trim();
-      if (pid && !tr && !tuk) {
+      const tes = String(rec.titleEs || '').trim();
+      if (pid && !tr && !tuk && !tes) {
         try {
           const meta = await fetchCommunityPackMeta(pid);
           if (meta) {
             rec.titleRu = meta.titleRu;
             rec.titleUk = meta.titleUk;
+            rec.titleEs = meta.titleEs;
           }
         } catch {
           /* тіло повідомлення в moderationBody() без сирого id */

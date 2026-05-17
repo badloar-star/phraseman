@@ -89,6 +89,11 @@ export interface PersonalizedTag {
   ru: string;
   uk: string;
   es: string;
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
   /** Вес «боли»: чем выше — тем раньше показываем. 0 = неактивный тег. */
   weight: number;
 }
@@ -101,6 +106,11 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     ru: 'Безлимит энергии — учись без пауз',
     uk: 'Безліміт енергії — навчайся без пауз',
     es: 'Energía ilimitada — sin pausas',
+    'pt-BR': 'Energia ilimitada — aprenda sem pausas',
+    vi: 'Năng lượng không giới hạn — học không gián đoạn',
+    id: 'Energi tanpa batas — belajar tanpa jeda',
+    tr: 'Sınırsız enerji — ara vermeden öğren',
+    pl: 'Nieograniczona energia — ucz się bez przerw',
     weight: 20,
   },
   {
@@ -109,6 +119,11 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     ru: 'Повтори любой урок неограниченно',
     uk: 'Повторюй будь-який урок необмежено',
     es: 'Repite cualquier lección sin límites',
+    'pt-BR': 'Repita qualquer lição sem limite',
+    vi: 'Ôn lại bất kỳ bài học nào không giới hạn',
+    id: 'Ulang pelajaran apa pun tanpa batas',
+    tr: 'İstediğin dersi sınırsız tekrar et',
+    pl: 'Powtarzaj dowolną lekcję bez limitu',
     weight: 18,
   },
   {
@@ -117,6 +132,11 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     ru: 'Тренер слабых мест — умный повтор',
     uk: 'Тренер слабких місць — розумний повтор',
     es: 'Entrenador de puntos débiles',
+    'pt-BR': 'Treino dos pontos fracos',
+    vi: 'Luyện các điểm yếu',
+    id: 'Pelatih titik lemah',
+    tr: 'Zayıf noktalar için antrenör',
+    pl: 'Trener słabych punktów',
     weight: 16,
   },
   {
@@ -125,6 +145,11 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     ru: 'Подробная аналитика и карта 365 дней',
     uk: 'Детальна аналітика і карта 365 днів',
     es: 'Analítica detallada y mapa de 365 días',
+    'pt-BR': 'Análises detalhadas e mapa de 365 dias',
+    vi: 'Phân tích chi tiết và bản đồ 365 ngày',
+    id: 'Analitik detail dan peta 365 hari',
+    tr: 'Detaylı analiz ve 365 günlük harita',
+    pl: 'Szczegółowa analityka i mapa 365 dni',
     weight: 14,
   },
   {
@@ -133,6 +158,11 @@ const GENERIC_TAGS: PersonalizedTag[] = [
     ru: 'Сложные квизы и расширенные задания',
     uk: 'Складні квізи та розширені завдання',
     es: 'Quizzes difíciles y tareas avanzadas',
+    'pt-BR': 'Quizzes difíceis e tarefas avançadas',
+    vi: 'Quiz khó và bài tập nâng cao',
+    id: 'Kuis sulit dan latihan lanjutan',
+    tr: 'Zor quizler ve gelişmiş görevler',
+    pl: 'Trudne quizy i rozszerzone zadania',
     weight: 12,
   },
 ];
@@ -159,6 +189,11 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       ru: `Энергия кончалась ${n} ${ru_times(n)} — Premium даёт безлимит`,
       uk: `Енергія закінчувалась ${n} ${uk_times(n)} — Premium дає безліміт`,
       es: `Quedaste sin energía ${n} ${es_times(n)} — Premium la hace ilimitada`,
+      'pt-BR': `Você ficou sem energia ${n}x — Premium deixa ilimitada`,
+      vi: `Bạn hết năng lượng ${n} lần — Premium cho dùng không giới hạn`,
+      id: `Energi habis ${n} kali — Premium membuatnya tanpa batas`,
+      tr: `${n} kez enerjin bitti — Premium sınırsız yapar`,
+      pl: `Energia skończyła się ${n} razy — Premium daje jej bez limitu`,
       weight,
     });
   }
@@ -173,6 +208,11 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       ru: `Цепочка обрывалась ${n} ${ru_times(n)} — Premium защищает её`,
       uk: `Ланцюжок обривався ${n} ${uk_times(n)} — Premium захищає його`,
       es: `Perdiste la racha ${n} ${es_times(n)} — Premium la protege`,
+      'pt-BR': `Você perdeu a sequência ${n}x — Premium ajuda a protegê-la`,
+      vi: `Bạn mất chuỗi ${n} lần — Premium giúp bảo vệ chuỗi`,
+      id: `Streak putus ${n} kali — Premium membantu melindunginya`,
+      tr: `Serin ${n} kez bozuldu — Premium korumaya yardım eder`,
+      pl: `Seria przerwała się ${n} razy — Premium pomaga ją chronić`,
       weight,
     });
   }
@@ -187,6 +227,11 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       ru: `Hard квизы заблокированы — ты заходил ${n} ${ru_times(n)}`,
       uk: `Hard квізи заблоковані — ти заходив ${n} ${uk_times(n)}`,
       es: `Los quizzes Hard están bloqueados — intentaste ${n} ${es_times(n)}`,
+      'pt-BR': `Quizzes Hard bloqueados — você tentou ${n}x`,
+      vi: `Quiz Hard đang khóa — bạn đã thử ${n} lần`,
+      id: `Kuis Hard terkunci — kamu mencoba ${n} kali`,
+      tr: `Hard quizler kilitli — ${n} kez denedin`,
+      pl: `Quizy Hard są zablokowane — próbowano ${n} razy`,
       weight,
     });
   }
@@ -202,6 +247,11 @@ export function pickPaywallTags(stats: PaywallStats, max = 3): PersonalizedTag[]
       ru: `${h} ${ru_hours(h)} в приложении — серьёзная инвестиция`,
       uk: `${h} ${uk_hours(h)} у застосунку — серйозна інвестиція`,
       es: `${h} ${es_hours(h)} en la app — una inversión real`,
+      'pt-BR': `${h} h no app — um investimento real`,
+      vi: `${h} giờ trong ứng dụng — một khoản đầu tư thật sự`,
+      id: `${h} jam di aplikasi — investasi nyata`,
+      tr: `Uygulamada ${h} saat — gerçek bir emek`,
+      pl: `${h} godz. w aplikacji — realna inwestycja`,
       weight: h >= 50 ? 35 : h >= 10 ? 28 : 20,
     });
   }

@@ -64,7 +64,7 @@ NOUN_REPLACE: dict[str, tuple[str, str, str, str]] = {
     "minutes": ("minute", "Минута", "Хвилина", "minuto"),
     "plants": ("plant", "Растение", "Рослина", "planta"),
     "shelves": ("shelf", "Полка", "Полиця", "estante"),
-    "shoes": ("shoe", "Обувь (туфля)", "Взуття (туфля)", "zapato"),
+    "shoes": ("shoe", "Туфля / ботинок", "Туфля / черевик", "zapato"),
     "suitcases": ("suitcase", "Чемодан", "Валіза", "maleta"),
     "bags": ("bag", "Сумка", "Сумка", "bolsa"),
     "fruits": ("fruit", "Фрукт", "Фрукт", "fruta"),
@@ -172,7 +172,7 @@ def patch_word_line(line: str, report: list[str]) -> str:
 
 VOCAB_EN: dict[str, tuple[str, str, str]] = {
     "Vegetables": ("Vegetable", "Овощ", "Овоч"),
-    "Shoes": ("Shoe", "Обувь (туфля)", "Взуття (туфля)"),
+    "Shoes": ("Shoe", "Туфля / ботинок", "Туфля / черевик"),
     "Dishes": ("Dish", "Блюдо", "Страва"),
     "Batteries": ("Battery", "Батарейка", "Батарейка"),
     "Plants": ("Plant", "Растение", "Рослина"),

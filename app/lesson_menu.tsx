@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { View, Text, TouchableOpacity, Modal, Pressable, ScrollView } from 'react-native';
+import { Image, View, Text, TouchableOpacity, Modal, Pressable, ScrollView, StyleSheet } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useLocalSearchParams, useFocusEffect } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,7 +21,6 @@ import { GLOBAL_IRREGULAR_KEY } from './lesson_irregular_verbs';
 import { getLessonPrepositionPack, hasLessonPrepositionDrill } from './lesson_prepositions';
 import CircularProgress from '../components/CircularProgress';
 import { getMedalTier, getNextMedalHint, loadMedalInfo, getEarnedDots } from './medal_utils';
-import { Image } from 'react-native';
 import {
   isLessonUnlocked,
   getLessonLockInfo,
@@ -38,6 +38,8 @@ import { oskolokImageForPackShards } from './oskolok';
 import { isFreeLesson, lessonPaywallContext, requiresPremiumForLesson } from './monetization_policy';
 import { getCourseLevelForLesson, getPreviousCourseLevel } from './course_levels';
 import { primeLessonScreenFromStorage } from './lesson_screen_bootstrap';
+import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import GoldBevel from '../components/GoldBevel';
 
 // Medal images
 const MEDAL_IMAGES: Record<string, any> = {
@@ -64,23 +66,24 @@ const lessonMenuCacheById: Record<number, LessonMenuCache> = {};
 
 const emptyProgress = () => new Array(50).fill('empty');
 
-function parseProgress(progressRaw: string | null): Pick<LessonMenuCache, 'score' | 'progress' | 'progressArr'> {
+function parseProgress(
+  progressRaw: string | null,
+  bestScoreRaw?: string | null,
+): Pick<LessonMenuCache, 'score' | 'progress' | 'progressArr'> {
   try {
     if (progressRaw) {
       const progressArr: string[] = JSON.parse(progressRaw);
       const denominator = Math.min(progressArr.length, 50);
-      const correct = Math.min(
-        progressArr.filter(x => x === 'correct' || x === 'replay_correct').length,
-        denominator,
-      );
+      const { score, correctCount } = effectiveLessonStarScore(bestScoreRaw, progressRaw);
       return {
-        score: denominator > 0 ? correct / denominator * 5 : 0,
-        progress: correct,
+        score,
+        progress: Math.min(correctCount, denominator),
         progressArr: progressArr.length === 50 ? progressArr : emptyProgress(),
       };
     }
   } catch { /* keep defaults */ }
-  return { score: 0, progress: 0, progressArr: emptyProgress() };
+  const bestScore = parseFloat(bestScoreRaw ?? '0') || 0;
+  return { score: bestScore, progress: 0, progressArr: emptyProgress() };
 }
 
 function parseWordsLearned(lessonId: number, wordsRaw: string | null): number {
@@ -128,6 +131,7 @@ export async function prefetchLessonMenuCache(lessonId: number): Promise<void> {
     const [entries, medalInfo] = await Promise.all([
       AsyncStorage.multiGet([
         `lesson${id}_progress`,
+        `lesson${id}_best_score`,
         `lesson${id}_words`,
         GLOBAL_IRREGULAR_KEY,
         `lesson${id}_preposition_progress`,
@@ -137,7 +141,7 @@ export async function prefetchLessonMenuCache(lessonId: number): Promise<void> {
     const map = Object.fromEntries(entries) as Record<string, string | null>;
     const prep = parsePrepositionAnswered(id, map[`lesson${id}_preposition_progress`] ?? null);
     lessonMenuCacheById[id] = {
-      ...parseProgress(map[`lesson${id}_progress`] ?? null),
+      ...parseProgress(map[`lesson${id}_progress`] ?? null, map[`lesson${id}_best_score`] ?? null),
       wordsLearned: parseWordsLearned(id, map[`lesson${id}_words`] ?? null),
       irregularLearned: parseIrregularLearned(id, map[GLOBAL_IRREGULAR_KEY] ?? null),
       prepositionAnswered: prep.answered,
@@ -152,6 +156,7 @@ export default function LessonMenu() {
   const router = useRouter();
   const { theme:t, f, themeMode } = useTheme();
   const isLightTheme = false;
+  const isGoldTheme = themeMode === 'gold';
   const { s, lang } = useLang();
   const { energy, bonusEnergy, isUnlimited: menuEnergyUnlimited, energyReady: menuEnergyReady } = useEnergy();
   const { id: idParam } = useLocalSearchParams<{ id?: string | string[] }>();
@@ -160,16 +165,21 @@ export default function LessonMenu() {
 
   const lessonNames = lessonNamesForLang(lang);
   const fallbackLessonTitle = triLang(lang, {
-    ru: `Урок ${lessonId}`,
-    uk: `Урок ${lessonId}`,
-    es: `Lección ${lessonId}`,
-  });
+  ru: `Урок ${lessonId}`,
+  uk: `Урок ${lessonId}`,
+  es: `Lección ${lessonId}`,
+  "pt-BR": `Lição ${lessonId}`,
+  vi: `Bài ${lessonId}`,
+  id: `Pelajaran ${lessonId}`,
+  tr: `Ders ${lessonId}`,
+  pl: `Lekcja ${lessonId}`,
+});
   const lessonName = lessonNames[lessonId - 1] || fallbackLessonTitle;
   const cachedMenu = lessonMenuCacheById[lessonId];
 
   const [score,setScore] = useState(cachedMenu?.score ?? 0);
   const [progress,setProgress] = useState(cachedMenu?.progress ?? 0);
-  const [progressArr, setProgressArr] = useState<string[]>(cachedMenu?.progressArr ?? emptyProgress());
+  const [, setProgressArr] = useState<string[]>(cachedMenu?.progressArr ?? emptyProgress());
   const [wordsLearned, setWordsLearned] = useState(cachedMenu?.wordsLearned ?? 0);
   const [irregularLearned, setIrregularLearned] = useState(cachedMenu?.irregularLearned ?? 0);
   const [prepositionAnswered, setPrepositionAnswered] = useState(cachedMenu?.prepositionAnswered ?? 0);
@@ -300,23 +310,26 @@ export default function LessonMenu() {
   }, [lessonId]);
 
   const loadProgress = useCallback(() => {
-    AsyncStorage.getItem(`lesson${lessonId}_progress`).then(saved => {
+    AsyncStorage.multiGet([
+      `lesson${lessonId}_progress`,
+      `lesson${lessonId}_best_score`,
+    ]).then(entries => {
+      const map = Object.fromEntries(entries) as Record<string, string | null>;
+      const saved = map[`lesson${lessonId}_progress`] ?? null;
+      const bestRaw = map[`lesson${lessonId}_best_score`] ?? null;
       try {
         if (saved) {
           const p: string[] = JSON.parse(saved);
           const denominator = Math.min(p.length, 50);
-          const correct = Math.min(
-            p.filter(x => x === 'correct' || x === 'replay_correct').length,
-            denominator,
-          );
-          setScore(denominator > 0 ? correct / denominator * 5 : 0);
-          setProgress(correct);
+          const { score: effectiveScore, correctCount } = effectiveLessonStarScore(bestRaw, saved);
+          setScore(effectiveScore);
+          setProgress(Math.min(correctCount, denominator));
           setProgressArr(p.length === 50 ? p : new Array(50).fill('empty'));
         } else {
-          setScore(0); setProgress(0);
+          setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0);
           setProgressArr(new Array(50).fill('empty'));
         }
-      } catch { setScore(0); setProgress(0); setProgressArr(new Array(50).fill('empty')); }
+      } catch { setScore(parseFloat(bestRaw ?? '0') || 0); setProgress(0); setProgressArr(new Array(50).fill('empty')); }
       setDataLoaded(true);
     });
     loadMedalInfo(lessonId).then(info => setPassCount(info.passCount));
@@ -425,19 +438,29 @@ export default function LessonMenu() {
       testID: 'lesson-menu-primary',
       label: showMasteryPaywall
         ? triLang(lang, {
-            ru: 'Перепройти',
-            uk: 'Перепройти',
-            es: 'Repetir',
-          })
+  ru: 'Перепройти',
+  uk: 'Перепройти',
+  es: 'Repetir',
+  "pt-BR": 'Repetir',
+  vi: 'Học lại',
+  id: 'Ulangi',
+  tr: 'Tekrar et',
+  pl: 'Powtórz',
+})
         : (isStarted ? s.lessonMenu.continue : s.lessonMenu.start),
       sub: showMasteryPaywall
         ? (isStarted
             ? `${progress} / 50  ★ ${score.toFixed(1)}`
             : triLang(lang, {
-                ru: 'Условия повтора — в окне ниже',
-                uk: 'Умови повтору — у вікні нижче',
-                es: 'Condiciones de repetición — en el diálogo',
-              }))
+  ru: 'Условия повтора — в окне ниже',
+  uk: 'Умови повтору — у вікні нижче',
+  es: 'Condiciones de repetición — en el diálogo',
+  "pt-BR": 'Condições de repetição — na janela abaixo',
+  vi: 'Điều kiện học lại nằm trong cửa sổ bên dưới',
+  id: 'Syarat pengulangan ada di jendela bawah',
+  tr: 'Tekrar koşulları aşağıdaki pencerede',
+  pl: 'Warunki powtórki są w oknie poniżej',
+}))
         : (isStarted
             ? `${progress} / 50  ★ ${score.toFixed(1)}`
             : s.lessonMenu.fromScratch),
@@ -539,10 +562,15 @@ export default function LessonMenu() {
       testID: 'lesson-menu-prepositions',
       hidden: !hasLessonPrepositionDrill(lessonId),
       label: triLang(lang, {
-        ru: 'Тренажёр предлогов',
-        uk: 'Тренажер прийменників',
-        es: 'Práctica de preposiciones',
-      }),
+  ru: 'Тренажёр предлогов',
+  uk: 'Тренажер прийменників',
+  es: 'Práctica de preposiciones',
+  "pt-BR": 'Treino de preposições',
+  vi: 'Luyện giới từ',
+  id: 'Latihan preposisi',
+  tr: 'Edat alıştırması',
+  pl: 'Trening przyimków',
+}),
       sub: prepositionTotal > 0
         ? (lang === 'uk'
             ? `${prepositionAnswered}/${prepositionTotal} завдань`
@@ -578,10 +606,15 @@ export default function LessonMenu() {
       testID: 'lesson-menu-theory',
       label: s.lessonMenu.theory,
       sub: triLang(lang, {
-        ru: 'Правила и пояснения',
-        uk: 'Правила та пояснення',
-        es: 'Reglas y explicaciones',
-      }),
+  ru: 'Правила и пояснения',
+  uk: 'Правила та пояснення',
+  es: 'Reglas y explicaciones',
+  "pt-BR": 'Regras e explicações',
+  vi: 'Quy tắc và giải thích',
+  id: 'Aturan dan penjelasan',
+  tr: 'Kurallar ve açıklamalar',
+  pl: 'Zasady i wyjaśnienia',
+}),
       icon: 'book-outline' as const,
       onPress: () => { hapticTap(); router.push({ pathname: '/lesson_help', params: { id: lessonId } }); },
     },
@@ -599,51 +632,100 @@ export default function LessonMenu() {
         : 'lock-closed';
     const lockedTitle = lockReason === 'premium'
       ? triLang(lang, {
-          ru: 'Premium',
-          uk: 'Premium',
-          es: 'Premium',
-        })
+  ru: 'Premium',
+  uk: 'Premium',
+  es: 'Premium',
+  "pt-BR": 'Premium',
+  vi: 'Premium',
+  id: 'Premium',
+  tr: 'Premium',
+  pl: 'Premium',
+})
       : lockReason === 'level'
         ? triLang(lang, {
-            ru: 'Уровень пока закрыт',
-            uk: 'Рівень поки закритий',
-            es: 'Nivel bloqueado',
-          })
+  ru: 'Уровень пока закрыт',
+  uk: 'Рівень поки закритий',
+  es: 'Nivel bloqueado',
+  "pt-BR": 'Nível bloqueado',
+  vi: 'Cấp độ đang bị khóa',
+  id: 'Level masih terkunci',
+  tr: 'Seviye henüz kilitli',
+  pl: 'Poziom jest jeszcze zablokowany',
+})
         : triLang(lang, {
-            ru: 'Урок заблокирован',
-            uk: 'Урок заблоковано',
-            es: 'Lección bloqueada',
-          });
+  ru: 'Урок заблокирован',
+  uk: 'Урок заблоковано',
+  es: 'Lección bloqueada',
+  "pt-BR": 'Lição bloqueada',
+  vi: 'Bài học bị khóa',
+  id: 'Pelajaran terkunci',
+  tr: 'Ders kilitli',
+  pl: 'Lekcja zablokowana',
+});
     const lockedMessage = lockReason === 'premium'
       ? triLang(lang, {
-          ru: 'Этот урок входит в Premium.',
-          uk: 'Цей урок входить до Premium.',
-          es: 'Esta lección forma parte de Premium.',
-        })
+  ru: 'Этот урок входит в Premium.',
+  uk: 'Цей урок входить до Premium.',
+  es: 'Esta lección forma parte de Premium.',
+  "pt-BR": 'Esta lição faz parte do Premium.',
+  vi: 'Bài học này thuộc Premium.',
+  id: 'Pelajaran ini termasuk Premium.',
+  tr: 'Bu ders Premium kapsamındadır.',
+  pl: 'Ta lekcja jest częścią Premium.',
+})
       : lockReason === 'level' && prevLevel
         ? triLang(lang, {
-            ru: `Чтобы открыть уровень ${lessonLevel}, сначала сдайте зачёт ${prevLevel}.`,
-            uk: `Щоб відкрити рівень ${lessonLevel}, спочатку складіть залік ${prevLevel}.`,
-            es: `Para abrir el nivel ${lessonLevel}, primero supera el examen de ${prevLevel}.`,
-          })
+  ru: `Чтобы открыть уровень ${lessonLevel}, сначала сдайте зачёт ${prevLevel}.`,
+  uk: `Щоб відкрити рівень ${lessonLevel}, спочатку складіть залік ${prevLevel}.`,
+  es: `Para abrir el nivel ${lessonLevel}, primero supera el examen de ${prevLevel}.`,
+  "pt-BR": `Para abrir o nível ${lessonLevel}, primeiro passe no teste ${prevLevel}.`,
+  vi: `Để mở cấp ${lessonLevel}, trước tiên hãy vượt qua bài kiểm tra ${prevLevel}.`,
+  id: `Untuk membuka level ${lessonLevel}, selesaikan dulu ujian ${prevLevel}.`,
+  tr: `${lessonLevel} seviyesini açmak için önce ${prevLevel} sınavını geç.`,
+  pl: `Aby odblokować poziom ${lessonLevel}, najpierw zdaj test ${prevLevel}.`,
+})
         : triLang(lang, {
-            ru: `Пройдите урок ${prevId} с оценкой 2.5 или больше, чтобы открыть этот урок`,
-            uk: `Пройдіть урок ${prevId} з оцінкою 2.5 або більше, щоб відкрити цей урок`,
-            es: `Completa la lección ${prevId} con nota mínima de 2,5 para desbloquear esta lección`,
-          });
+  ru: `Пройдите урок ${prevId} с оценкой 2.5 или больше, чтобы открыть этот урок`,
+  uk: `Пройдіть урок ${prevId} з оцінкою 2.5 або більше, щоб відкрити цей урок`,
+  es: `Completa la lección ${prevId} con nota mínima de 2,5 para desbloquear esta lección`,
+  "pt-BR": `Conclua a lição ${prevId} com nota 2,5 ou maior para desbloquear esta lição`,
+  vi: `Hoàn thành bài ${prevId} với điểm 2.5 trở lên để mở bài này`,
+  id: `Selesaikan pelajaran ${prevId} dengan nilai 2,5 atau lebih untuk membuka pelajaran ini`,
+  tr: `Bu dersi açmak için ${prevId}. dersi 2.5 veya üzeri puanla bitir`,
+  pl: `Ukończ lekcję ${prevId} z oceną 2,5 lub wyższą, aby odblokować tę lekcję`,
+});
     const lockedButtonLabel = lockReason === 'premium'
-      ? triLang(lang, { ru: 'Получить Premium', uk: 'Отримати Premium', es: 'Obtener Premium' })
+      ? triLang(lang, {
+  ru: 'Получить Premium',
+  uk: 'Отримати Premium',
+  es: 'Obtener Premium',
+  "pt-BR": 'Obter Premium',
+  vi: 'Nhận Premium',
+  id: 'Dapatkan Premium',
+  tr: 'Premium al',
+  pl: 'Zdobądź Premium',
+})
       : lockReason === 'level' && prevLevel
         ? triLang(lang, {
-            ru: `К зачёту ${prevLevel}`,
-            uk: `До заліку ${prevLevel}`,
-            es: `Ir al examen ${prevLevel}`,
-          })
+  ru: `К зачёту ${prevLevel}`,
+  uk: `До заліку ${prevLevel}`,
+  es: `Ir al examen ${prevLevel}`,
+  "pt-BR": `Ir para o teste ${prevLevel}`,
+  vi: `Đến bài kiểm tra ${prevLevel}`,
+  id: `Ke ujian ${prevLevel}`,
+  tr: `${prevLevel} sınavına git`,
+  pl: `Do testu ${prevLevel}`,
+})
         : triLang(lang, {
-            ru: `Перейти к уроку ${prevId}`,
-            uk: `Перейти до уроку ${prevId}`,
-            es: `Ir a la lección ${prevId}`,
-          });
+  ru: `Перейти к уроку ${prevId}`,
+  uk: `Перейти до уроку ${prevId}`,
+  es: `Ir a la lección ${prevId}`,
+  "pt-BR": `Ir para a lição ${prevId}`,
+  vi: `Đi tới bài ${prevId}`,
+  id: `Buka pelajaran ${prevId}`,
+  tr: `${prevId}. derse git`,
+  pl: `Przejdź do lekcji ${prevId}`,
+});
     return (
       <ScreenGradient>
       <SafeAreaView style={{flex:1}}>
@@ -662,23 +744,40 @@ export default function LessonMenu() {
             <Ionicons name="chevron-back" size={22} color={t.heroTextPrimary}/>
           </PremiumCard>
           <Text style={{color:t.heroTextPrimary,fontSize:f.body,fontWeight:'700',letterSpacing:0.5}}>
-            {triLang(lang, { ru: 'УРОК', uk: 'УРОК', es: 'LECCIÓN' })} {lessonId}
+            {triLang(lang, {
+  ru: 'УРОК',
+  uk: 'УРОК',
+  es: 'LECCIÓN',
+  "pt-BR": 'LIÇÃO',
+  vi: 'BÀI',
+  id: 'PELAJARAN',
+  tr: 'DERS',
+  pl: 'LEKCJA',
+})} {lessonId}
           </Text>
           <View style={{width:38}}/>
         </View>
 
         {/* Заглушка */}
         <View style={{flex:1,justifyContent:'center',alignItems:'center',paddingHorizontal:32}}>
-          <View style={{
+          <LinearGradient
+            colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [t.bgCard, t.bgCard, t.bgCard]}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={{
             width:90,height:90,borderRadius:45,
             backgroundColor:t.bgCard,
-            borderWidth:1,borderColor:t.border,
+            borderWidth:1,borderColor:isGoldTheme ? GOLD_RICH.hairline : t.border,
             justifyContent:'center',alignItems:'center',
             marginBottom:24,
-            shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6
+            shadowColor:'#000',shadowOffset:{width:0,height:4},shadowOpacity:0.2,shadowRadius:8,elevation:6,
+            overflow:'hidden',
+            ...(isGoldTheme ? goldShadow(2) : {}),
           }}>
-            <Ionicons name={lockedIcon} size={40} color={t.textMuted}/>
-          </View>
+            {isGoldTheme && <GoldBevel radius={45} intensity="normal" />}
+            <Ionicons name={lockedIcon} size={40} color={isGoldTheme ? GOLD_RICH.champagne : t.textMuted}/>
+          </LinearGradient>
           <Text style={{color:t.heroTextPrimary,fontSize:f.h2,fontWeight:'700',textAlign:'center',marginBottom:12}}>
             {lockedTitle}
           </Text>
@@ -741,14 +840,23 @@ export default function LessonMenu() {
           <Ionicons name="chevron-back" size={22} color={t.heroTextPrimary}/>
         </PremiumCard>
         <Text style={{color:t.heroTextPrimary,fontSize: f.body,fontWeight:'700',letterSpacing:0.5}}>
-          {triLang(lang, { ru: 'УРОК', uk: 'УРОК', es: 'LECCIÓN' })} {lessonId}{'  '}<Text style={{fontSize: f.label,fontWeight:'700',color:
+          {triLang(lang, {
+  ru: 'УРОК',
+  uk: 'УРОК',
+  es: 'LECCIÓN',
+  "pt-BR": 'LIÇÃO',
+  vi: 'BÀI',
+  id: 'PELAJARAN',
+  tr: 'DERS',
+  pl: 'LEKCJA',
+})} {lessonId}{'  '}<Text style={{fontSize: f.label,fontWeight:'700',color:
             lessonId<=8  ? (isLightTheme?'#86EFAC':'#4CAF72') :
             lessonId<=18 ? (isLightTheme?'#93C5FD':'#40B4E8') :
             lessonId<=28 ? (isLightTheme?'#FDE047':'#D4A017') :
                            (isLightTheme?'#FCA5A5':'#DC6428')
           }}>{lessonId <= 8 ? 'A1' : lessonId <= 18 ? 'A2' : lessonId <= 28 ? 'B1' : 'B2'}</Text>
         </Text>
-        <EnergyBar size={20} />
+        <EnergyBar size={30} />
         <PremiumCard level={1} onPress={()=>{ hapticTap(); router.push('/settings_edu'); }}
           style={{width:38,height:38,borderRadius:19,marginLeft:8}}
           innerStyle={{width:38,height:38,borderRadius:19,justifyContent:'center',alignItems:'center'}}
@@ -840,23 +948,40 @@ export default function LessonMenu() {
                 fontSize={9}
               />
             ) : item.pct !== undefined ? (
-              <View style={{
+              <LinearGradient
+                colors={isGoldTheme ? GOLD_GRADIENTS.mutedPanel : [t.bgSurface, t.bgSurface, t.bgSurface]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{
                 width:44,height:44,borderRadius:22,
                 backgroundColor:t.bgSurface,
-                borderWidth:0.5,borderColor:t.border,
-              }}/>
+                borderWidth:StyleSheet.hairlineWidth,borderColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border,
+                overflow:'hidden',
+              }}>
+                {isGoldTheme && <GoldBevel radius={22} intensity="quiet" />}
+              </LinearGradient>
             ) : (
-              <View style={{
+              <LinearGradient
+                colors={isGoldTheme
+                  ? (item.disabled || item.unavailable ? GOLD_GRADIENTS.mutedPanel : GOLD_GRADIENTS.raisedTile)
+                  : [((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface), ((item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface)]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{
                 width:44,height:44,borderRadius:22,
                 backgroundColor: (item.disabled || item.unavailable) ? t.bgPrimary : t.bgSurface,
                 borderTopWidth:0.5, borderLeftWidth:0.5,
                 borderRightWidth:0.5, borderBottomWidth:0.5,
-                borderTopColor:t.borderHighlight, borderLeftColor:t.borderHighlight,
-                borderRightColor:t.border, borderBottomColor:t.border,
+                borderTopColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.borderHighlight, borderLeftColor:isGoldTheme ? GOLD_RICH.hairline : t.borderHighlight,
+                borderRightColor:isGoldTheme ? GOLD_RICH.hairlineQuiet : t.border, borderBottomColor:isGoldTheme ? GOLD_RICH.hairlineDark : t.border,
                 justifyContent:'center', alignItems:'center',
+                overflow:'hidden',
               }}>
-                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : t.textSecond}/>
-              </View>
+                {isGoldTheme && <GoldBevel radius={22} intensity={(item.disabled || item.unavailable) ? 'quiet' : 'normal'} />}
+                <Ionicons name={item.icon} size={22} color={(item.disabled || item.unavailable) ? t.textGhost : isGoldTheme ? GOLD_RICH.champagne : t.textSecond}/>
+              </LinearGradient>
             )}
             <View style={{flex:1}}>
               <Text style={{color:(item.disabled || item.unavailable) ? t.textGhost : t.textPrimary,fontSize: f.bodyLg,fontWeight:'600'}}>{item.label}</Text>
@@ -864,8 +989,12 @@ export default function LessonMenu() {
             </View>
             <Ionicons name="chevron-forward" size={18} color={item.disabled ? t.textGhost : t.textGhost}/>
             {item.cornerShardPrice != null ? (
-              <View
+              <LinearGradient
                 pointerEvents="none"
+                colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ['rgba(0,0,0,0.28)', 'rgba(0,0,0,0.28)', 'rgba(0,0,0,0.28)']}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
                 style={{
                   position: 'absolute',
                   right: 14,
@@ -878,18 +1007,20 @@ export default function LessonMenu() {
                   borderRadius: 8,
                   backgroundColor: 'rgba(0,0,0,0.28)',
                   borderWidth: 1,
-                  borderColor: 'rgba(255,215,0,0.5)',
+                  borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : 'rgba(255,215,0,0.5)',
+                  overflow: 'hidden',
                 }}
               >
+                {isGoldTheme && <GoldBevel radius={8} intensity="normal" />}
                 <Image
                   source={oskolokImageForPackShards(item.cornerShardPrice ?? MASTERY_REPLAY_BASE_SHARDS)}
-                  style={{ width: 14, height: 14 }}
+                  style={[{ width: 14, height: 14 }, isGoldTheme ? { tintColor: GOLD_RICH.champagne } : null]}
                   resizeMode="contain"
                 />
-                <Text style={{ color: '#FFD700', fontSize: 11, fontWeight: '900' }} maxFontSizeMultiplier={1}>
+                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : '#FFD700', fontSize: 11, fontWeight: '900' }} maxFontSizeMultiplier={1}>
                   {item.cornerShardPrice}
                 </Text>
-              </View>
+              </LinearGradient>
             ) : null}
           </PremiumCard>
         ))}
@@ -901,20 +1032,32 @@ export default function LessonMenu() {
         <Pressable style={{flex:1, backgroundColor:'rgba(0,0,0,0.5)'}} onPress={() => setShowLockModal(false)}>
           <View style={{flex:1, justifyContent:'flex-end'}}>
             <Pressable onPress={(e) => e.stopPropagation()}>
-              <View style={{
+              <LinearGradient
+                colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                start={{ x: 0, y: 0 }}
+                end={{ x: 1, y: 1 }}
+                style={{
                 backgroundColor:t.bgCard,
                 borderTopLeftRadius:24, borderTopRightRadius:24,
                 padding:28, paddingBottom:40,
-                borderTopWidth:0.5, borderColor:t.border,
-                alignItems:'center'
+                borderTopWidth:0.5, borderColor:isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
+                alignItems:'center',
+                overflow:'hidden',
               }}>
+                {isGoldTheme && <GoldBevel radius={24} intensity="strong" />}
                 <Text style={{fontSize:56, marginBottom:16}}>🔐</Text>
                 <Text style={{color:t.textPrimary, fontSize:f.h2, fontWeight:'700', textAlign:'center', marginBottom:12}}>
                   {triLang(lang, {
-                    ru: 'Урок заблокирован',
-                    uk: 'Урок заблоковано',
-                    es: 'Lección bloqueada',
-                  })}
+  ru: 'Урок заблокирован',
+  uk: 'Урок заблоковано',
+  es: 'Lección bloqueada',
+  "pt-BR": 'Lição bloqueada',
+  vi: 'Bài học bị khóa',
+  id: 'Pelajaran terkunci',
+  tr: 'Ders kilitli',
+  pl: 'Lekcja zablokowana',
+})}
                 </Text>
                 <Text style={{color:t.textMuted, fontSize:f.body, textAlign:'center', marginBottom:28, lineHeight:22}}>
                   {lockInfo ? getLockMessageText(lockInfo, lang) : ''}
@@ -922,47 +1065,96 @@ export default function LessonMenu() {
                 <TouchableOpacity
                   style={{
                     backgroundColor:t.accent,
-                    borderRadius:14, padding:16, width:'100%', alignItems:'center'
+                    borderRadius:14, padding:16, width:'100%', alignItems:'center',
+                    overflow:'hidden',
                   }}
                   onPress={() => {
                     hapticTap();
                     setShowLockModal(false);
                   }}
                 >
+                  {isGoldTheme && (
+                    <>
+                      <LinearGradient colors={GOLD_GRADIENTS.primaryButton} locations={[0, 0.36, 1]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
+                      <GoldBevel radius={14} intensity="strong" />
+                    </>
+                  )}
                   <Text style={{color:t.correctText, fontSize:f.body, fontWeight:'700'}}>
-                    {triLang(lang, { ru: 'Понимаю', uk: 'Розумію', es: 'Entendido' })}
+                    {triLang(lang, {
+  ru: 'Понимаю',
+  uk: 'Розумію',
+  es: 'Entendido',
+  "pt-BR": 'Entendi',
+  vi: 'Tôi hiểu',
+  id: 'Mengerti',
+  tr: 'Anladım',
+  pl: 'Rozumiem',
+})}
                   </Text>
                 </TouchableOpacity>
-              </View>
+              </LinearGradient>
             </Pressable>
           </View>
         </Pressable>
       </Modal>
       <ThemedChoiceModal
         visible={soonOpen !== null}
-        title={triLang(lang, { ru: 'Скоро', uk: 'Скоро', es: 'Próximamente' })}
+        title={triLang(lang, {
+  ru: 'Скоро',
+  uk: 'Скоро',
+  es: 'Próximamente',
+  "pt-BR": 'Em breve',
+  vi: 'Sắp có',
+  id: 'Segera hadir',
+  tr: 'Yakında',
+  pl: 'Wkrótce',
+})}
         message={
           soonOpen === 'vocab'
             ? triLang(lang, {
-                ru: 'Словарь для этого урока ещё готовится',
-                uk: 'Словник для цього уроку ще готується',
-                es: 'El vocabulario de esta lección aún está en preparación.',
-              })
+  ru: 'Словарь для этого урока ещё готовится',
+  uk: 'Словник для цього урока ще готується',
+  es: 'El vocabulario de esta lección aún está en preparación.',
+  "pt-BR": 'O vocabulário desta lição ainda está sendo preparado.',
+  vi: 'Từ vựng cho bài học này vẫn đang được chuẩn bị.',
+  id: 'Kosakata untuk pelajaran ini masih disiapkan.',
+  tr: 'Bu dersin kelime listesi hâlâ hazırlanıyor.',
+  pl: 'Słownictwo do tej lekcji jest jeszcze przygotowywane.',
+})
             : soonOpen === 'verbs'
               ? triLang(lang, {
-                  ru: 'Материал для этого урока ещё готовится',
-                  uk: 'Матеріал для цього уроку ще готується',
-                  es: 'El material de esta lección aún está en preparación.',
-                })
+  ru: 'Материал для этого урока ещё готовится',
+  uk: 'Матеріал для цього уроку ще готується',
+  es: 'El material de esta lección aún está en preparación.',
+  "pt-BR": 'O material desta lição ainda está sendo preparado.',
+  vi: 'Tài liệu cho bài học này vẫn đang được chuẩn bị.',
+  id: 'Materi untuk pelajaran ini masih disiapkan.',
+  tr: 'Bu dersin materyali hâlâ hazırlanıyor.',
+  pl: 'Materiał do tej lekcji jest jeszcze przygotowywany.',
+})
               : soonOpen === 'prepositions'
                 ? triLang(lang, {
-                    ru: 'Тренажёр предлогов временно недоступен.',
-                    uk: 'Тренажер прийменників тимчасово недоступний.',
-                    es: 'La práctica de preposiciones no está disponible por ahora.',
-                  })
+  ru: 'Тренажёр предлогов временно недоступен.',
+  uk: 'Тренажер прийменників тимчасово недоступний.',
+  es: 'La práctica de preposiciones no está disponible por ahora.',
+  "pt-BR": 'O treino de preposições não está disponível no momento.',
+  vi: 'Phần luyện giới từ hiện chưa khả dụng.',
+  id: 'Latihan preposisi sementara tidak tersedia.',
+  tr: 'Edat alıştırması şu anda kullanılamıyor.',
+  pl: 'Trening przyimków jest chwilowo niedostępny.',
+})
               : ''
         }
-        choices={[{ label: triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' }), onPress: () => {} }]}
+        choices={[{ label: triLang(lang, {
+  ru: 'Понятно',
+  uk: 'Зрозуміло',
+  es: 'Entendido',
+  "pt-BR": 'Entendi',
+  vi: 'Đã hiểu',
+  id: 'Mengerti',
+  tr: 'Anladım',
+  pl: 'Rozumiem',
+}), onPress: () => {} }]}
         onRequestClose={() => setSoonOpen(null)}
       />
 

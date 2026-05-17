@@ -37,6 +37,7 @@ exports.leagueChatReportMessage = exports.leagueChatSendMessage = exports.league
 const admin = __importStar(require("firebase-admin"));
 const https_1 = require("firebase-functions/v2/https");
 const league_chat_blocklist_generated_1 = require("./league_chat_blocklist.generated");
+const auth_identity_1 = require("./auth_identity");
 const REGION = 'us-central1';
 const MAX_MESSAGE_LENGTH = 420;
 const SEND_THROTTLE_MS = 12000;
@@ -166,15 +167,6 @@ function moderate(text) {
     const status = uniqueCategories.some((c) => c !== 'identity') ? 'blocked' : uniqueCategories.includes('identity') ? 'review' : 'clean';
     return { status, categories: uniqueCategories, reasons: uniq(reasons), normalizedText };
 }
-async function resolveStableUid(db, authUid) {
-    const direct = await db.collection('users').doc(authUid).get().catch(() => null);
-    if (direct?.exists)
-        return authUid;
-    const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
-    if (!byAuth.empty)
-        return byAuth.docs[0].id;
-    return authUid;
-}
 function readNumber(value) {
     const n = Number(value);
     return Number.isFinite(n) ? n : 0;
@@ -232,7 +224,7 @@ exports.leagueChatAuthorizeRoom = (0, https_1.onCall)({ region: REGION }, async 
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const stableUid = await resolveStableUid(db, authUid);
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId);
     const groupId = String(request.data?.groupId ?? '').trim();
     const weekId = String(request.data?.weekId ?? '').trim();
     const leagueId = Math.trunc(Number(request.data?.leagueId) || 0);
@@ -247,7 +239,7 @@ exports.leagueChatSendMessage = (0, https_1.onCall)({ region: REGION }, async (r
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const stableUid = await resolveStableUid(db, authUid);
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId);
     const text = sanitizeText(request.data?.text);
     const groupId = String(request.data?.groupId ?? '').trim();
     const weekId = String(request.data?.weekId ?? '').trim();
@@ -309,7 +301,7 @@ exports.leagueChatReportMessage = (0, https_1.onCall)({ region: REGION }, async 
         throw new https_1.HttpsError('unauthenticated', 'auth_required');
     const db = admin.firestore();
     const authUid = request.auth.uid;
-    const stableUid = await resolveStableUid(db, authUid);
+    const stableUid = await (0, auth_identity_1.resolveStableUidForAuth)(db, authUid, request.data?.stableId);
     const messageId = String(request.data?.messageId ?? '').trim();
     const reason = sanitizeText(request.data?.reason).slice(0, MAX_REPORT_REASON_LENGTH);
     if (!messageId)

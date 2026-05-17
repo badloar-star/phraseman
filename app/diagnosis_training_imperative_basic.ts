@@ -1,3 +1,5 @@
+// JESSE_REWORKED_PERSONAL_TRAINING
+// This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
 const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
@@ -5,13 +7,37 @@ const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
 const CONTRAST = ['base verb imperative', "don't + base verb", 'please', "let's", 'negative imperative', 'instructions', 'commands', 'requests'];
 const SMART_CONTRAST = ['base verb imperative', "don't + base verb", 'please', "let's", 'negative imperative', 'instructions', 'commands'];
 
-function retry(depth2: TriText, depth3: TriText, depth4: TriText): [TriText, TriText, TriText, TriText] {
-  return [
-    tri('First decide the imperative type: command, negative command, polite request, or let us suggestion.'),
-    depth2,
-    depth3,
-    depth4,
-  ];
+const option = (text: string) => ({ id: text, text });
+
+const DEFAULT_RETRY: [TriText, TriText, TriText, TriText] = [
+  tri(
+    'Сначала реши, что это: команда, запрет, вежливая просьба или предложение сделать что-то вместе.',
+    'Спочатку виріши, що це: команда, заборона, ввічливе прохання або пропозиція зробити щось разом.',
+    'First decide: command, prohibition, polite request, or suggestion together.',
+  ),
+  tri(
+    'Команда начинается сразу с действия: Open. Wait. Turn.',
+    'Команда починається одразу з дії: Open. Wait. Turn.',
+    'A command starts with the action: Open. Wait. Turn.',
+  ),
+  tri(
+    'Запрет начинается с don’t, потом идет действие: Don’t touch. Don’t open. Don’t be late.',
+    'Заборона починається з don’t, потім іде дія: Don’t touch. Don’t open. Don’t be late.',
+    "A prohibition starts with don't: Don't touch. Don't open. Don't be late.",
+  ),
+  tri(
+    'Почти подсказка: если просишь мягче, ставь please; если предлагаешь вместе, ставь let’s.',
+    'Майже підказка: якщо просиш м’якше, став please; якщо пропонуєш разом, став let’s.',
+    "Almost a hint: use please for a softer request; use let's for doing it together.",
+  ),
+];
+
+function defaultWrong(correct: string): TriText {
+  return tri(
+    `Здесь нужна форма "${correct}". В командах английский обычно не ставит you или to перед действием.`,
+    `Тут потрібна форма "${correct}". У командах англійська зазвичай не ставить you або to перед дією.`,
+    `Use "${correct}". Commands usually do not put you or to before the action.`,
+  );
 }
 
 function step(input: {
@@ -24,8 +50,8 @@ function step(input: {
   options: string[];
   correctAnswer: string;
   correctFeedback: TriText;
-  wrong: Record<string, TriText>;
-  retryFeedback: [TriText, TriText, TriText];
+  wrong?: Record<string, TriText>;
+  retryFeedback?: [TriText, TriText, TriText, TriText];
   focusWords: string[];
 }): DiagnosisTrainingStep {
   return {
@@ -35,18 +61,32 @@ function step(input: {
     type: 'single_choice',
     targetSkill: input.targetSkill,
     translation: input.translation,
-    explanationBlock: tri("Imperative usually starts with the base verb: Open, Wait, Be. Negative imperative uses don't + base verb."),
-    microTask: tri('Choose the form that works as a command, instruction, request, or suggestion.'),
+    explanationBlock: tri(
+      'Команда в английском часто начинается сразу с действия: Open the door. Wait here. Для запрета ставим don’t перед действием: Don’t touch it.',
+      'Команда в англійській часто починається одразу з дії: Open the door. Wait here. Для заборони ставимо don’t перед дією: Don’t touch it.',
+      "A command often starts with the action: Open the door. Wait here. A prohibition uses don't before the action.",
+    ),
+    microTask: tri(
+      'Выбери форму, которая звучит как нормальная команда, просьба, инструкция или предложение.',
+      'Обери форму, яка звучить як нормальна команда, прохання, інструкція або пропозиція.',
+      'Choose the form that works as a command, request, instruction, or suggestion.',
+    ),
     sentence: input.sentence,
-    answerOptions: input.options.map((text) => ({ id: text, text })),
+    answerOptions: input.options.map(option),
     correctAnswerId: input.correctAnswer,
-    correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
+    correctIndex: input.options.findIndex((item) => item === input.correctAnswer),
     correctFeedback: input.correctFeedback,
-    wrongFeedbackByOption: Object.fromEntries(input.options
-      .filter((option) => option !== input.correctAnswer)
-      .map((option) => [option, input.wrong[option] ?? tri(`Use ${input.correctAnswer}; imperative needs base verb or don't + base verb.`)])),
-    retryFeedback: retry(...input.retryFeedback),
-    fallbackExplanation: tri("Command = base verb. Negative command = don't + base verb. Please keeps the same grammar. Let's + base verb means doing it together."),
+    wrongFeedbackByOption: Object.fromEntries(
+      input.options
+        .filter((item) => item !== input.correctAnswer)
+        .map((item) => [item, input.wrong?.[item] ?? defaultWrong(input.correctAnswer)]),
+    ),
+    retryFeedback: input.retryFeedback ?? DEFAULT_RETRY,
+    fallbackExplanation: tri(
+      'Проверка за секунду: команда = действие сразу. Запрет = don’t + действие. Please делает просьбу мягче. Let’s значит “давай сделаем вместе”.',
+      'Перевірка за секунду: команда = дія одразу. Заборона = don’t + дія. Please робить прохання м’якшим. Let’s означає “давай зробимо разом”.',
+      "Quick check: command = action. Prohibition = don't + action. Please softens it. Let's means doing it together.",
+    ),
     focusWords: input.focusWords,
   };
 }
@@ -55,85 +95,125 @@ export const IMPERATIVE_BASIC_TRAINING: DiagnosisTraining = {
   id: 'imperative_basic',
   category: 'syntax',
   version: '1.0.0',
-  status: 'ready_for_mvp_review',
+  status: 'active',
   priority: 49,
   supportedLocales: ['ru', 'uk'],
-  title: tri('Imperative: commands, requests, and instructions', 'Imperative: commands, requests, and instructions'),
-  shortTitle: tri('Imperative', 'Imperative'),
-  shortDiagnosis: tri("You are building commands like normal statements, or using no/to/you where English wants base verb or don't + base verb."),
-  diagnosisText: tri("You are mixing English imperatives: adding unnecessary you, putting to before the verb, or using no instead of don't. Commands usually start with the base verb: Open the door. Don't touch it."),
-  mentalModel: tri("Imperative = action immediately. Open the door. Wait here. Please sit down. Negative instruction: Don't open it. Don't be late. Usually no subject you."),
+  title: tri('Команды и просьбы: Open / Don’t open', 'Команди й прохання: Open / Don’t open', 'Imperative: commands, requests, and instructions'),
+  shortTitle: tri('Команды и просьбы', 'Команди й прохання', 'Imperative'),
+  shortDiagnosis: tri(
+    'Ты добавляешь you, to или no там, где английскому нужна короткая команда.',
+    'Ти додаєш you, to або no там, де англійській потрібна коротка команда.',
+    "You add you, to, or no where English needs a short command.",
+  ),
+  diagnosisText: tri(
+    'Ты смешиваешь команды с обычными утверждениями. По-русски можно сказать “ты открой дверь”, а в английском базовая команда обычно короче: Open the door. Для запрета не говорим No touch it. Нормально: Don’t touch it.',
+    'Ти змішуєш команди зі звичайними твердженнями. Українською можна сказати “ти відкрий двері”, а в англійській базова команда зазвичай коротша: Open the door. Для заборони не кажемо No touch it. Нормально: Don’t touch it.',
+    "You mix commands with statements. English commands are usually short: Open the door. Negative commands use don't: Don't touch it.",
+  ),
+  mentalModel: tri(
+    'Представь кнопку действия. Если хочешь, чтобы человек сделал действие, начинай с действия: Open, Wait, Turn. Если хочешь запретить, ставь don’t перед действием: Don’t open. Если просишь мягче, добавь please. Если предлагаешь вместе, используй let’s.',
+    'Уяви кнопку дії. Якщо хочеш, щоб людина зробила дію, починай з дії: Open, Wait, Turn. Якщо хочеш заборонити, став don’t перед дією: Don’t open. Якщо просиш м’якше, додай please. Якщо пропонуєш разом, використовуй let’s.',
+    "Think of an action button. Command: Open. Prohibition: Don't open. Softer request: Please open. Together: Let's open.",
+  ),
   contrastSet: CONTRAST,
-  coreRule: tri("Positive command: base verb. Open the window. Wait here. Be careful. Negative command: Don't + base verb. Don't open it. Polite: Please wait. Let's + base verb = let's do it together."),
+  coreRule: tri(
+    'Команда: действие сразу - Open the window. Wait here. Be careful. Запрет: don’t + действие - Don’t open it. Вежливо: Please wait. Вместе: Let’s start.',
+    'Команда: дія одразу - Open the window. Wait here. Be careful. Заборона: don’t + дія - Don’t open it. Ввічливо: Please wait. Разом: Let’s start.',
+    "Command: action first. Prohibition: don't + action. Polite request: please + action. Together: let's + action.",
+  ),
   whatUserMustLearn: {
     ru: [
-      'Commands usually start with the base verb: Open the door.',
-      'Subject you is usually not needed: Open the door.',
-      'After please, the structure stays the same: Please wait here.',
-      "Negative imperative uses don't + base verb: Don't touch it.",
-      "Do not say No touch it. Say Don't touch it.",
-      "Do not say Don't to open. Say Don't open.",
-      "With be, use Don't be: Don't be late.",
-      'Be careful is a normal command with be.',
-      "Let's + base verb means let us: Let's go.",
-      'Please makes a command softer, but it does not replace grammar.',
+      'Обычная команда начинается с действия: Open the door.',
+      'You обычно не нужно: Open the door, не You open the door.',
+      'To перед командой не ставим: Wait here, не To wait here.',
+      'Please не меняет грамматику: Please wait here.',
+      'Запрет строится через don’t + действие: Don’t touch it.',
+      'No touch it - ошибка. Нормально: Don’t touch it.',
+      'После don’t не ставим to: Don’t open, не Don’t to open.',
+      'С be тоже работает don’t: Don’t be late.',
+      'Be careful - нормальная команда с be.',
+      'Let’s + действие значит “давай вместе”: Let’s go.',
     ],
     uk: [
-      'Commands usually start with the base verb: Open the door.',
-      'Subject you is usually not needed: Open the door.',
-      'After please, the structure stays the same: Please wait here.',
-      "Negative imperative uses don't + base verb: Don't touch it.",
-      "Do not say No touch it. Say Don't touch it.",
-      "Do not say Don't to open. Say Don't open.",
-      "With be, use Don't be: Don't be late.",
-      'Be careful is a normal command with be.',
-      "Let's + base verb means let us: Let's go.",
-      'Please makes a command softer, but it does not replace grammar.',
+      'Звичайна команда починається з дії: Open the door.',
+      'You зазвичай не потрібне: Open the door, не You open the door.',
+      'To перед командою не ставимо: Wait here, не To wait here.',
+      'Please не змінює граматику: Please wait here.',
+      'Заборона будується через don’t + дія: Don’t touch it.',
+      'No touch it - помилка. Нормально: Don’t touch it.',
+      'Після don’t не ставимо to: Don’t open, не Don’t to open.',
+      'З be теж працює don’t: Don’t be late.',
+      'Be careful - нормальна команда з be.',
+      'Let’s + дія означає “давай разом”: Let’s go.',
     ],
     es: [
-      'Commands start with base verb.',
+      'Commands start with the action.',
       'You is usually not needed.',
+      'Do not put to before a command.',
       'Please keeps the same structure.',
-      "Negative commands use don't + base verb.",
+      "Negative commands use don't + action.",
       "Do not say No touch it.",
       "Do not say Don't to open.",
       "Use Don't be with be.",
       'Be careful is a command.',
-      "Let's + base verb means let us.",
-      'Please makes commands softer.',
+      "Let's + action means doing it together.",
     ],
   },
   examples: [
-    { en: 'Open the door.', ru: 'Open the door.', uk: 'Open the door.', es: 'Open the door.', why: tri('The command starts with base verb open; no subject you is needed.') },
-    { en: 'Please wait here.', ru: 'Please wait here.', uk: 'Please wait here.', es: 'Please wait here.', why: tri('Please makes the request polite, but the verb stays base form: wait.') },
-    { en: "Don't touch it.", ru: "Don't touch it.", uk: "Don't touch it.", es: "Don't touch it.", why: tri("Negative command = don't + base verb.") },
-    { en: "Don't be late.", ru: "Don't be late.", uk: "Don't be late.", es: "Don't be late.", why: tri("With be in a negative command, use don't be.") },
-    { en: 'Be careful.', ru: 'Be careful.', uk: 'Be careful.', es: 'Be careful.', why: tri('Positive command with be starts with base form be.') },
-    { en: "Let's start.", ru: "Let's start.", uk: "Let's start.", es: "Let's start.", why: tri("Let's + base verb suggests doing something together.") },
-    { en: "Don't forget your keys.", ru: "Don't forget your keys.", uk: "Don't forget your keys.", es: "Don't forget your keys.", why: tri("Don't + forget is a negative instruction.") },
-    { en: 'Turn left and go straight.', ru: 'Turn left and go straight.', uk: 'Turn left and go straight.', es: 'Turn left and go straight.', why: tri('Instructions can have multiple base verbs: turn and go.') },
+    { en: 'Open the door.', ru: 'Открой дверь.', uk: 'Відчини двері.', es: 'Open the door.', why: tri('Команда начинается с open. You не нужен.', 'Команда починається з open. You не потрібне.', 'The command starts with open; you is not needed.') },
+    { en: 'Please wait here.', ru: 'Пожалуйста, подожди здесь.', uk: 'Будь ласка, зачекай тут.', es: 'Please wait here.', why: tri('Please делает просьбу мягче, но wait остается обычным действием.', 'Please робить прохання м’якшим, але wait лишається звичайною дією.', 'Please makes the request polite, but wait stays simple.') },
+    { en: "Don't touch it.", ru: 'Не трогай это.', uk: 'Не чіпай це.', es: "Don't touch it.", why: tri('Запрет строится через don’t + действие.', 'Заборона будується через don’t + дія.', "Negative command = don't + action.") },
+    { en: "Don't be late.", ru: 'Не опаздывай.', uk: 'Не запізнюйся.', es: "Don't be late.", why: tri('С be в запрете говорим don’t be.', 'З be у забороні кажемо don’t be.', "With be in a negative command, use don't be.") },
+    { en: 'Be careful.', ru: 'Будь осторожен.', uk: 'Будь обережний.', es: 'Be careful.', why: tri('Положительная команда с be начинается с Be.', 'Позитивна команда з be починається з Be.', 'Positive command with be starts with Be.') },
+    { en: "Let's start.", ru: 'Давай начнем.', uk: 'Давай почнемо.', es: "Let's start.", why: tri('Let’s значит, что мы делаем это вместе.', 'Let’s означає, що ми робимо це разом.', "Let's suggests doing something together.") },
+    { en: "Don't forget your keys.", ru: 'Не забудь ключи.', uk: 'Не забудь ключі.', es: "Don't forget your keys.", why: tri('Don’t forget - нормальная короткая инструкция.', 'Don’t forget - нормальна коротка інструкція.', "Don't + forget is a negative instruction.") },
+    { en: 'Turn left and go straight.', ru: 'Поверни налево и иди прямо.', uk: 'Поверни ліворуч і йди прямо.', es: 'Turn left and go straight.', why: tri('В инструкции может быть несколько действий подряд: turn и go.', 'В інструкції може бути кілька дій поспіль: turn і go.', 'Instructions can have several actions: turn and go.') },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('You may be building commands like normal statements. English commands usually start directly with the action: Open, Wait, Go, Do not touch.') },
-    { id: 'intro_rule', type: 'rule', text: tri("Positive command = base verb. Negative command = don't + base verb. Polite request = please + base verb.") },
-    { id: 'intro_warning', type: 'warning', text: tri("Main mistakes: You open the door, To wait here, No touch it, Don't to go. Correct: Open the door, Wait here, Don't touch it, Don't go.") },
+    {
+      id: 'intro_problem',
+      type: 'diagnosis',
+      text: tri(
+        'Ты можешь строить команды как обычные предложения: You open the door. В английском это часто звучит не как команда, а как странное утверждение. Нормально короче: Open the door.',
+        'Ти можеш будувати команди як звичайні речення: You open the door. В англійській це часто звучить не як команда, а як дивне твердження. Нормально коротше: Open the door.',
+        'You may be building commands like normal statements.',
+      ),
+    },
+    {
+      id: 'intro_rule',
+      type: 'rule',
+      text: tri(
+        'Положительная команда начинается с действия. Запрет начинается с don’t. Please смягчает просьбу. Let’s предлагает сделать вместе.',
+        'Позитивна команда починається з дії. Заборона починається з don’t. Please пом’якшує прохання. Let’s пропонує зробити разом.',
+        "Command = action. Prohibition = don't + action. Please softens. Let's means together.",
+      ),
+    },
+    {
+      id: 'intro_warning',
+      type: 'warning',
+      text: tri(
+        'Главные ловушки: лишнее you, лишнее to, no вместо don’t и don’t to. Нормально: Open the door. Wait here. Don’t touch it. Don’t go.',
+        'Головні пастки: зайве you, зайве to, no замість don’t і don’t to. Нормально: Open the door. Wait here. Don’t touch it. Don’t go.',
+        "Main traps: extra you, extra to, no instead of don't, and don't to.",
+      ),
+    },
   ],
   steps: [
-    step({ id: 'imperative_easy_001', order: 1, difficulty: 'easy', targetSkill: 'positive_command_open', sentence: '___ the door.', translation: tri('Open the door.'), options: ['Open', 'You open', 'To open', 'Opening'], correctAnswer: 'Open', correctFeedback: tri('Yes. A command starts with the base verb: Open the door.'), wrong: { 'You open': tri('In a normal command, you is not needed. Use Open the door.'), 'To open': tri('A command does not start with to. Use Open.'), Opening: tri('Opening does not work as this command. Use base verb Open.') }, retryFeedback: [tri('Command = action immediately.'), tri('Open the door.'), tri('Hint: Open the door.')], focusWords: ['open'] }),
-    step({ id: 'imperative_easy_002', order: 2, difficulty: 'easy', targetSkill: 'positive_command_wait', sentence: '___ here.', translation: tri('Wait here.'), options: ['Wait', 'You wait', 'To wait', 'Waiting'], correctAnswer: 'Wait', correctFeedback: tri('Yes. A command starts with the base verb: Wait here.'), wrong: { 'You wait': tri('You can be used for strong emphasis, but the basic command is Wait here.'), 'To wait': tri('To wait does not work as a command. Use Wait here.'), Waiting: tri('Waiting is not this command. Use base verb Wait.') }, retryFeedback: [tri('Wait here = Wait.'), tri('Wait here.'), tri('Hint: Wait here.')], focusWords: ['wait'] }),
-    step({ id: 'imperative_easy_003', order: 3, difficulty: 'easy', targetSkill: 'positive_instruction_turn', sentence: '___ left.', translation: tri('Turn left.'), options: ['Turn', 'You turn', 'To turn', 'Turning'], correctAnswer: 'Turn', correctFeedback: tri('Yes. The instruction starts with base verb: Turn left.'), wrong: { 'You turn': tri('In instructions, you is usually not needed. Use Turn left.'), 'To turn': tri('To turn is not the normal command. Use Turn.'), Turning: tri('Turning does not work as this instruction. Use Turn.') }, retryFeedback: [tri('Instruction = base verb.'), tri('Turn left.'), tri('Hint: Turn left.')], focusWords: ['turn'] }),
-    step({ id: 'imperative_contrast_001', order: 4, difficulty: 'contrast', targetSkill: 'negative_command_touch', sentence: '___ touch it.', translation: tri("Don't touch it."), options: ["Don't", 'No', 'Not', "Doesn't"], correctAnswer: "Don't", correctFeedback: tri("Yes. Negative command = Don't + base verb."), wrong: { No: tri("No touch it is wrong. Use Don't touch it."), Not: tri("Not touch it is wrong. For a command, use Don't touch it."), "Doesn't": tri("Doesn't is for he/she/it statements, not direct commands. Use Don't.") }, retryFeedback: [tri("Do not do it = Don't + verb."), tri("Don't touch it."), tri("Hint: Don't touch it.")], focusWords: ["don't touch"] }),
-    step({ id: 'imperative_contrast_002', order: 5, difficulty: 'contrast', targetSkill: 'negative_command_open', sentence: "Don't ___ the window.", translation: tri("Don't open the window."), options: ['open', 'to open', 'opening', 'opens'], correctAnswer: 'open', correctFeedback: tri("Yes. After don't in a command, use base verb: Don't open."), wrong: { 'to open': tri("After don't, do not use to. Use Don't open."), opening: tri("Don't opening is wrong. Use base verb open."), opens: tri("After don't, do not add -s. Use open.") }, retryFeedback: [tri("Don't + open."), tri("Don't open the window."), tri("Hint: Don't open the window.")], focusWords: ["don't open"] }),
-    step({ id: 'imperative_contrast_003', order: 6, difficulty: 'contrast', targetSkill: 'negative_command_forget', sentence: '___ forget your keys.', translation: tri("Don't forget your keys."), options: ["Don't", 'No', 'Not', "Aren't"], correctAnswer: "Don't", correctFeedback: tri("Yes. Don't forget = negative instruction."), wrong: { No: tri("No forget is wrong. Use Don't forget."), Not: tri("Not forget is wrong. Use Don't."), "Aren't": tri("Aren't forget is wrong. Use Don't forget.") }, retryFeedback: [tri("Do not forget = Don't forget."), tri("Don't forget your keys."), tri("Hint: Don't forget your keys.")], focusWords: ["don't forget"] }),
-    step({ id: 'imperative_contrast_004', order: 7, difficulty: 'contrast', targetSkill: 'be_careful', sentence: '___ careful.', translation: tri('Be careful.'), options: ['Be', 'You are', 'To be', 'Being'], correctAnswer: 'Be', correctFeedback: tri('Yes. A command with be starts with base form: Be careful.'), wrong: { 'You are': tri('You are careful is a statement, not a command.'), 'To be': tri('To be careful is not the direct command. Use Be careful.'), Being: tri('Being careful is not this command. Use Be careful.') }, retryFeedback: [tri('Be careful starts with Be.'), tri('Be careful.'), tri('Hint: Be careful.')], focusWords: ['be careful'] }),
-    step({ id: 'imperative_contrast_005', order: 8, difficulty: 'contrast', targetSkill: 'dont_be_late', sentence: '___ be late.', translation: tri("Don't be late."), options: ["Don't", 'No', 'Not', "Doesn't"], correctAnswer: "Don't", correctFeedback: tri("Yes. With be in a negative command, use Don't be."), wrong: { No: tri("No be late is wrong. Use Don't be late."), Not: tri("Not be late is not the command form. Use Don't be late."), "Doesn't": tri("Doesn't be late is wrong for a command. Use Don't be late.") }, retryFeedback: [tri("Do not be = Don't be."), tri("Don't be late."), tri("Hint: Don't be late.")], focusWords: ["don't be"] }),
-    step({ id: 'imperative_contrast_006', order: 9, difficulty: 'contrast', targetSkill: 'dont_be_afraid', sentence: "Don't ___ afraid.", translation: tri("Don't be afraid."), options: ['be', 'to be', 'being', 'are'], correctAnswer: 'be', correctFeedback: tri("Yes. After don't in a command, use base verb be: Don't be afraid."), wrong: { 'to be': tri("Don't to be is wrong. Use Don't be."), being: tri("Don't being is wrong. Use Don't be."), are: tri("Don't are is wrong. After don't, use be.") }, retryFeedback: [tri("Don't + be."), tri("Don't be afraid."), tri("Hint: Don't be afraid.")], focusWords: ["don't be"] }),
-    step({ id: 'imperative_mixed_001', order: 10, difficulty: 'mixed', targetSkill: 'please_wait', sentence: '___ wait here.', translation: tri('Please wait here.'), options: ['Please', 'To please', 'You please', "Don't please"], correctAnswer: 'Please', correctFeedback: tri('Yes. Please + base verb makes a polite request.'), wrong: { 'To please': tri('To please wait is wrong for this request. Use Please wait.'), 'You please': tri('You please wait is not the basic polite request. Use Please wait.'), "Don't please": tri("Don't please wait changes the meaning and sounds wrong here. Use Please wait.") }, retryFeedback: [tri('Polite = Please + verb.'), tri('Please wait here.'), tri('Hint: Please wait here.')], focusWords: ['please wait'] }),
-    step({ id: 'imperative_mixed_002', order: 11, difficulty: 'mixed', targetSkill: 'lets_go', sentence: '___ go.', translation: tri("Let's go."), options: ["Let's", 'Let', "Let's to", 'We'], correctAnswer: "Let's", correctFeedback: tri("Yes. Let's + base verb = let us: Let's go."), wrong: { Let: tri("For this meaning, use Let's, not just Let."), "Let's to": tri("After let's, do not use to. Use Let's go."), We: tri("We go is a statement, not a let's suggestion. Use Let's go.") }, retryFeedback: [tri("Let us = Let's."), tri("Let's go."), tri("Hint: Let's go.")], focusWords: ["let's go"] }),
-    step({ id: 'imperative_mixed_003', order: 12, difficulty: 'mixed', targetSkill: 'lets_start', sentence: "Let's ___ now.", translation: tri("Let's start now."), options: ['start', 'to start', 'starting', 'starts'], correctAnswer: 'start', correctFeedback: tri("Yes. After let's, use base verb: Let's start."), wrong: { 'to start': tri("After let's, do not use to. Use Let's start."), starting: tri("Let's starting is wrong. Use base verb start."), starts: tri("After let's, do not add -s. Use start.") }, retryFeedback: [tri("Let's + start."), tri("Let's start now."), tri("Hint: Let's start now.")], focusWords: ["let's start"] }),
-    step({ id: 'imperative_mixed_004', order: 13, difficulty: 'mixed_review', targetSkill: 'mixed_positive_negative', sentence: 'Choose the correct pair.', translation: tri("Open the door / Don't touch it"), options: ["Open the door / Don't touch it", 'You open the door / No touch it', 'To open the door / Not touch it', "Opening the door / Doesn't touch it"], correctAnswer: "Open the door / Don't touch it", correctFeedback: tri("Yes. Positive command = base verb. Negative command = Don't + base verb."), wrong: { 'You open the door / No touch it': tri("You is unnecessary in the basic command, and No touch it is wrong. Use Open / Don't touch."), 'To open the door / Not touch it': tri("A command does not start with to, and a negative command needs Don't."), "Opening the door / Doesn't touch it": tri("Opening is not the command, and doesn't is not used for direct commands.") }, retryFeedback: [tri("Open / Don't touch."), tri("Open the door / Don't touch it."), tri("Hint: Open the door / Don't touch it.")], focusWords: ['open', "don't touch"] }),
-    step({ id: 'imperative_mixed_005', order: 14, difficulty: 'mixed_review', targetSkill: 'mixed_be_negative_lets', sentence: 'Choose the correct set.', translation: tri("Be careful / Don't be late / Let's start"), options: ["Be careful / Don't be late / Let's start", "You are careful / No be late / Let's to start", 'To be careful / Not be late / Let start', "Being careful / Doesn't be late / We start"], correctAnswer: "Be careful / Don't be late / Let's start", correctFeedback: tri("Yes. Be careful, Don't be late, and Let's start are the correct base forms."), wrong: { "You are careful / No be late / Let's to start": tri("You are careful is a statement, No be late is wrong, and Let's to start is wrong."), 'To be careful / Not be late / Let start': tri("To be and Not be are not direct commands. For let us, use Let's."), "Being careful / Doesn't be late / We start": tri("These do not give the needed imperative forms.") }, retryFeedback: [tri("Be / Don't be / Let's."), tri("Be careful / Don't be late / Let's start."), tri("Hint: Be careful / Don't be late / Let's start.")], focusWords: ['be careful', "don't be", "let's start"] }),
-    step({ id: 'imperative_mixed_006', order: 15, difficulty: 'mixed_review', targetSkill: 'mixed_sentence_correction', sentence: 'Choose the correct sentence.', translation: tri("Please wait here and don't open the door."), options: ["Please wait here and don't open the door.", "Please to wait here and no open the door.", "You please wait here and don't to open the door.", "Please waiting here and doesn't open the door."], correctAnswer: "Please wait here and don't open the door.", correctFeedback: tri("Yes. Please wait + don't open is the correct polite instruction."), wrong: { "Please to wait here and no open the door.": tri("After please, do not use to, and no open is wrong. Use Please wait / don't open."), "You please wait here and don't to open the door.": tri("You is unnecessary, and after don't do not use to."), "Please waiting here and doesn't open the door.": tri("Please waiting is wrong, and doesn't open is not a direct command.") }, retryFeedback: [tri("Please wait + don't open."), tri("Please wait here and don't open the door."), tri("Hint: Please wait here and don't open the door.")], focusWords: ['please wait', "don't open"] }),
+    step({ id: 'imperative_easy_001', order: 1, difficulty: 'easy', targetSkill: 'positive_command_open', sentence: '___ the door.', translation: tri('Открой дверь.', 'Відчини двері.', 'Open the door.'), options: ['Open', 'You open', 'To open', 'Opening'], correctAnswer: 'Open', correctFeedback: tri('Да. Команда начинается сразу с действия: Open the door.', 'Так. Команда починається одразу з дії: Open the door.', 'Yes. A command starts with the action.'), wrong: { 'You open': tri('В базовой команде you не нужен. Скажи: Open the door.', 'У базовій команді you не потрібне. Скажи: Open the door.', 'You is not needed in the basic command.'), 'To open': tri('Команда не начинается с to. Нужно Open.', 'Команда не починається з to. Потрібно Open.', 'A command does not start with to.'), Opening: tri('Opening здесь не работает как команда. Нужно Open.', 'Opening тут не працює як команда. Потрібно Open.', 'Opening does not work as this command.') }, focusWords: ['open'] }),
+    step({ id: 'imperative_easy_002', order: 2, difficulty: 'easy', targetSkill: 'positive_command_wait', sentence: '___ here.', translation: tri('Подожди здесь.', 'Зачекай тут.', 'Wait here.'), options: ['Wait', 'You wait', 'To wait', 'Waiting'], correctAnswer: 'Wait', correctFeedback: tri('Да. Короткая команда: Wait here.', 'Так. Коротка команда: Wait here.', 'Yes. The command is Wait here.'), wrong: { 'You wait': tri('You возможно для сильного акцента, но базовая команда: Wait here.', 'You можливе для сильного акценту, але базова команда: Wait here.', 'Basic command: Wait here.'), 'To wait': tri('To wait не работает как команда. Нужно Wait.', 'To wait не працює як команда. Потрібно Wait.', 'Use Wait.'), Waiting: tri('Waiting не дает команду. Нужно Wait.', 'Waiting не дає команду. Потрібно Wait.', 'Use Wait.') }, focusWords: ['wait'] }),
+    step({ id: 'imperative_easy_003', order: 3, difficulty: 'easy', targetSkill: 'positive_instruction_turn', sentence: '___ left.', translation: tri('Поверни налево.', 'Поверни ліворуч.', 'Turn left.'), options: ['Turn', 'You turn', 'To turn', 'Turning'], correctAnswer: 'Turn', correctFeedback: tri('Да. Инструкция начинается с действия: Turn left.', 'Так. Інструкція починається з дії: Turn left.', 'Yes. The instruction starts with the action.'), wrong: { 'You turn': tri('В инструкции you обычно не нужен. Нужно Turn left.', 'В інструкції you зазвичай не потрібне. Потрібно Turn left.', 'You is usually not needed.'), 'To turn': tri('To turn не звучит как прямая инструкция. Нужно Turn.', 'To turn не звучить як пряма інструкція. Потрібно Turn.', 'Use Turn.'), Turning: tri('Turning здесь не команда. Нужно Turn.', 'Turning тут не команда. Потрібно Turn.', 'Use Turn.') }, focusWords: ['turn'] }),
+    step({ id: 'imperative_contrast_001', order: 4, difficulty: 'contrast', targetSkill: 'negative_command_touch', sentence: '___ touch it.', translation: tri('Не трогай это.', 'Не чіпай це.', "Don't touch it."), options: ["Don't", 'No', 'Not', "Doesn't"], correctAnswer: "Don't", correctFeedback: tri('Да. Запрет: don’t + действие.', 'Так. Заборона: don’t + дія.', "Yes. Negative command = don't + action."), wrong: { No: tri("No touch it - ошибка. Нормально: Don't touch it.", "No touch it - помилка. Нормально: Don't touch it.", "Use Don't touch it."), Not: tri("Not touch it не работает как команда. Нужно Don't touch it.", "Not touch it не працює як команда. Потрібно Don't touch it.", "Use Don't."), "Doesn't": tri("Doesn't здесь не подходит: это не утверждение про he/she/it. Нужен Don't.", "Doesn't тут не підходить: це не твердження про he/she/it. Потрібне Don't.", "Use Don't.") }, focusWords: ["don't touch"] }),
+    step({ id: 'imperative_contrast_002', order: 5, difficulty: 'contrast', targetSkill: 'negative_command_open', sentence: "Don't ___ the window.", translation: tri('Не открывай окно.', 'Не відчиняй вікно.', "Don't open the window."), options: ['open', 'to open', 'opening', 'opens'], correctAnswer: 'open', correctFeedback: tri('Да. После don’t идет действие без to: Don’t open.', 'Так. Після don’t іде дія без to: Don’t open.', "Yes. After don't, use the action."), wrong: { 'to open': tri('После don’t не ставим to. Нужно Don’t open.', 'Після don’t не ставимо to. Потрібно Don’t open.', "Do not use to after don't."), opening: tri('Don’t opening - ошибка. Нужно open.', 'Don’t opening - помилка. Потрібно open.', 'Use open.'), opens: tri('После don’t не добавляем -s. Нужно open.', 'Після don’t не додаємо -s. Потрібно open.', 'Use open.') }, focusWords: ["don't open"] }),
+    step({ id: 'imperative_contrast_003', order: 6, difficulty: 'contrast', targetSkill: 'negative_command_forget', sentence: '___ forget your keys.', translation: tri('Не забудь ключи.', 'Не забудь ключі.', "Don't forget your keys."), options: ["Don't", 'No', 'Not', "Aren't"], correctAnswer: "Don't", correctFeedback: tri('Да. Don’t forget - нормальная инструкция.', 'Так. Don’t forget - нормальна інструкція.', "Yes. Don't forget is a normal instruction."), wrong: { No: tri('No forget - ошибка. Нужно Don’t forget.', 'No forget - помилка. Потрібно Don’t forget.', "Use Don't forget."), Not: tri('Not forget не работает как команда. Нужно Don’t.', 'Not forget не працює як команда. Потрібно Don’t.', "Use Don't."), "Aren't": tri('Aren’t forget не работает. Нужно Don’t forget.', 'Aren’t forget не працює. Потрібно Don’t forget.', "Use Don't forget.") }, focusWords: ["don't forget"] }),
+    step({ id: 'imperative_contrast_004', order: 7, difficulty: 'contrast', targetSkill: 'be_careful', sentence: '___ careful.', translation: tri('Будь осторожен.', 'Будь обережний.', 'Be careful.'), options: ['Be', 'You are', 'To be', 'Being'], correctAnswer: 'Be', correctFeedback: tri('Да. Команда с be начинается с Be: Be careful.', 'Так. Команда з be починається з Be: Be careful.', 'Yes. A command with be starts with Be.'), wrong: { 'You are': tri('You are careful - это утверждение, не команда.', 'You are careful - це твердження, не команда.', 'This is a statement, not a command.'), 'To be': tri('To be careful не звучит как прямая команда. Нужно Be careful.', 'To be careful не звучить як пряма команда. Потрібно Be careful.', 'Use Be careful.'), Being: tri('Being careful не дает команду. Нужно Be careful.', 'Being careful не дає команду. Потрібно Be careful.', 'Use Be careful.') }, focusWords: ['be careful'] }),
+    step({ id: 'imperative_contrast_005', order: 8, difficulty: 'contrast', targetSkill: 'dont_be_late', sentence: '___ be late.', translation: tri('Не опаздывай.', 'Не запізнюйся.', "Don't be late."), options: ["Don't", 'No', 'Not', "Doesn't"], correctAnswer: "Don't", correctFeedback: tri('Да. С be в запрете говорим Don’t be.', 'Так. З be у забороні кажемо Don’t be.', "Yes. With be, use Don't be."), wrong: { No: tri('No be late - ошибка. Нужно Don’t be late.', 'No be late - помилка. Потрібно Don’t be late.', "Use Don't be late."), Not: tri('Not be late не звучит как команда. Нужно Don’t be late.', 'Not be late не звучить як команда. Потрібно Don’t be late.', "Use Don't be late."), "Doesn't": tri('Doesn’t be late здесь не работает. Нужно Don’t be late.', 'Doesn’t be late тут не працює. Потрібно Don’t be late.', "Use Don't be late.") }, focusWords: ["don't be"] }),
+    step({ id: 'imperative_contrast_006', order: 9, difficulty: 'contrast', targetSkill: 'dont_be_afraid', sentence: "Don't ___ afraid.", translation: tri('Не бойся.', 'Не бійся.', "Don't be afraid."), options: ['be', 'to be', 'being', 'are'], correctAnswer: 'be', correctFeedback: tri("Да. После don't здесь нужно be: Don't be afraid.", "Так. Після don't тут потрібне be: Don't be afraid.", "Yes. After don't, use be."), wrong: { 'to be': tri("Don't to be - ошибка. Нужно Don't be.", "Don't to be - помилка. Потрібно Don't be.", "Do not use to after don't."), being: tri("Don't being - ошибка. Нужно be.", "Don't being - помилка. Потрібно be.", 'Use be.'), are: tri("Don't are не работает. После don't нужно be.", "Don't are не працює. Після don't потрібно be.", 'Use be.') }, focusWords: ["don't be"] }),
+    step({ id: 'imperative_mixed_001', order: 10, difficulty: 'mixed', targetSkill: 'please_wait', sentence: '___ wait here.', translation: tri('Пожалуйста, подожди здесь.', 'Будь ласка, зачекай тут.', 'Please wait here.'), options: ['Please', 'To please', 'You please', "Don't please"], correctAnswer: 'Please', correctFeedback: tri('Да. Please делает просьбу мягче: Please wait here.', 'Так. Please робить прохання м’якшим: Please wait here.', 'Yes. Please makes the request polite.'), wrong: { 'To please': tri('To please wait не подходит. Нужно Please wait.', 'To please wait не підходить. Потрібно Please wait.', 'Use Please wait.'), 'You please': tri('You please wait - не базовая вежливая просьба. Нужно Please wait.', 'You please wait - не базове ввічливе прохання. Потрібно Please wait.', 'Use Please wait.'), "Don't please": tri('Don’t please wait меняет смысл и звучит неверно здесь. Нужно Please wait.', 'Don’t please wait змінює зміст і звучить неправильно тут. Потрібно Please wait.', 'Use Please wait.') }, focusWords: ['please wait'] }),
+    step({ id: 'imperative_mixed_002', order: 11, difficulty: 'mixed', targetSkill: 'lets_go', sentence: '___ go.', translation: tri('Пойдем. / Давай пойдем.', 'Ходімо. / Давай підемо.', "Let's go."), options: ["Let's", 'Let', "Let's to", 'We'], correctAnswer: "Let's", correctFeedback: tri('Да. Let’s go значит “давай пойдем”.', 'Так. Let’s go означає “давай підемо”.', "Yes. Let's go means let us go."), wrong: { Let: tri('Для значения “давай” нужна форма Let’s.', 'Для значення “давай” потрібна форма Let’s.', "Use Let's."), "Let's to": tri('После let’s не ставим to. Нужно Let’s go.', 'Після let’s не ставимо to. Потрібно Let’s go.', "Do not use to after let's."), We: tri('We go - утверждение, не предложение сделать вместе.', 'We go - твердження, не пропозиція зробити разом.', "Use Let's go.") }, focusWords: ["let's go"] }),
+    step({ id: 'imperative_mixed_003', order: 12, difficulty: 'mixed', targetSkill: 'lets_start', sentence: "Let's ___ now.", translation: tri('Давай начнем сейчас.', 'Давай почнемо зараз.', "Let's start now."), options: ['start', 'to start', 'starting', 'starts'], correctAnswer: 'start', correctFeedback: tri("Да. После let's идет действие без to: Let's start.", "Так. Після let's іде дія без to: Let's start.", "Yes. After let's, use start."), wrong: { 'to start': tri("После let's не ставим to. Нужно Let's start.", "Після let's не ставимо to. Потрібно Let's start.", "Do not use to after let's."), starting: tri("Let's starting - ошибка. Нужно Let's start.", "Let's starting - помилка. Потрібно Let's start.", 'Use start.'), starts: tri("После let's не добавляем -s. Нужно Let's start.", "Після let's не додаємо -s. Потрібно Let's start.", 'Use start.') }, focusWords: ["let's start"] }),
+    step({ id: 'imperative_mixed_004', order: 13, difficulty: 'mixed_review', targetSkill: 'mixed_positive_negative', sentence: 'Choose the correct pair.', translation: tri('Открой дверь / Не трогай это', 'Відчини двері / Не чіпай це', "Open the door / Don't touch it"), options: ["Open the door / Don't touch it", 'You open the door / No touch it', 'To open the door / Not touch it', "Opening the door / Doesn't touch it"], correctAnswer: "Open the door / Don't touch it", correctFeedback: tri('Да. Команда = Open. Запрет = Don’t touch.', 'Так. Команда = Open. Заборона = Don’t touch.', "Yes. Command = Open. Prohibition = Don't touch."), wrong: { 'You open the door / No touch it': tri('В команде лишнее you, а No touch it - ошибка.', 'У команді зайве you, а No touch it - помилка.', "Use Open / Don't touch."), 'To open the door / Not touch it': tri('Команда не начинается с to, а запрету нужен Don’t.', 'Команда не починається з to, а забороні потрібне Don’t.', "Use Open / Don't touch."), "Opening the door / Doesn't touch it": tri('Opening не команда, а doesn’t не используется для прямого запрета.', 'Opening не команда, а doesn’t не використовується для прямої заборони.', "Use Open / Don't touch.") }, focusWords: ['open', "don't touch"] }),
+    step({ id: 'imperative_mixed_005', order: 14, difficulty: 'mixed_review', targetSkill: 'mixed_be_negative_lets', sentence: 'Choose the correct set.', translation: tri('Будь осторожен / Не опаздывай / Давай начнем', 'Будь обережний / Не запізнюйся / Давай почнемо', "Be careful / Don't be late / Let's start"), options: ["Be careful / Don't be late / Let's start", "You are careful / No be late / Let's to start", 'To be careful / Not be late / Let start', "Being careful / Doesn't be late / We start"], correctAnswer: "Be careful / Don't be late / Let's start", correctFeedback: tri('Да. Be careful, Don’t be late и Let’s start - нормальные формы.', 'Так. Be careful, Don’t be late і Let’s start - нормальні форми.', "Yes. These are the correct forms."), wrong: { "You are careful / No be late / Let's to start": tri('Первое - утверждение, второе неверный запрет, третье с лишним to.', 'Перше - твердження, друге неправильна заборона, третє із зайвим to.', 'Use the first set.'), 'To be careful / Not be late / Let start': tri('To be и Not be не прямые команды. Для “давай” нужно Let’s.', 'To be і Not be не прямі команди. Для “давай” потрібне Let’s.', 'Use the first set.'), "Being careful / Doesn't be late / We start": tri('Эти формы не дают нужную команду, запрет и предложение.', 'Ці форми не дають потрібну команду, заборону й пропозицію.', 'Use the first set.') }, focusWords: ['be careful', "don't be", "let's start"] }),
+    step({ id: 'imperative_mixed_006', order: 15, difficulty: 'mixed_review', targetSkill: 'mixed_sentence_correction', sentence: 'Choose the correct sentence.', translation: tri('Пожалуйста, подожди здесь и не открывай дверь.', 'Будь ласка, зачекай тут і не відчиняй двері.', "Please wait here and don't open the door."), options: ["Please wait here and don't open the door.", "Please to wait here and no open the door.", "You please wait here and don't to open the door.", "Please waiting here and doesn't open the door."], correctAnswer: "Please wait here and don't open the door.", correctFeedback: tri('Да. Please wait + don’t open - нормальная вежливая инструкция.', 'Так. Please wait + don’t open - нормальна ввічлива інструкція.', "Yes. Please wait + don't open is correct."), wrong: { "Please to wait here and no open the door.": tri('После please не нужен to, а no open - ошибка.', 'Після please не потрібне to, а no open - помилка.', "Use Please wait and don't open."), "You please wait here and don't to open the door.": tri('You здесь лишнее, а после don’t не ставим to.', 'You тут зайве, а після don’t не ставимо to.', "Use Please wait and don't open."), "Please waiting here and doesn't open the door.": tri('Please waiting неверно, а doesn’t open не прямой запрет.', 'Please waiting неправильно, а doesn’t open не пряма заборона.', "Use Please wait and don't open.") }, focusWords: ['please wait', "don't open"] }),
   ],
   masteryRules: {
     minCorrect: 10,
@@ -147,24 +227,61 @@ export const IMPERATIVE_BASIC_TRAINING: DiagnosisTraining = {
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Normal explanation: show whether this is a command, prohibition, request, or suggestion together.'),
-    depth2: tri('Simpler: ask whether the phrase says do the action or do not do the action.'),
-    depth3: tri("Even simpler: compare Open / Don't open / Please open / Let's open."),
-    depth4: tri("Almost a hint: point directly to base verb or don't + base verb."),
+    depth1: tri(
+      'Показываем тип фразы: команда, запрет, просьба или предложение сделать вместе.',
+      'Показуємо тип фрази: команда, заборона, прохання або пропозиція зробити разом.',
+      'Show whether this is a command, prohibition, request, or suggestion together.',
+    ),
+    depth2: tri(
+      'Проще: нужно сделать действие или не делать действие?',
+      'Простіше: треба зробити дію чи не робити дію?',
+      'Simpler: do the action or do not do the action?',
+    ),
+    depth3: tri(
+      'Сравни четыре модели: Open, Don’t open, Please open, Let’s open.',
+      'Порівняй чотири моделі: Open, Don’t open, Please open, Let’s open.',
+      "Compare: Open, Don't open, Please open, Let's open.",
+    ),
+    depth4: tri(
+      'Почти подсказка: команда начинается с действия, запрет начинается с don’t.',
+      'Майже підказка: команда починається з дії, заборона починається з don’t.',
+      "Almost a hint: command starts with the action; prohibition starts with don't.",
+    ),
   },
   failureRecovery: {
-    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri("Command = base verb: Open, Wait, Go. Prohibition = Don't + base verb: Don't touch, Don't open, Don't be. Please makes it polite. Let's means let us.") },
-    afterThreeWrongInSameExercise: { action: 'show_imperative_type_hint_then_retry', card: tri("Hint: the system shows the phrase type: command, prohibition, request, or let's suggestion, but does not choose the answer.") },
-    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri("Guided mode: first choose action or prohibition. Then choose base verb or don't + base verb.") },
+    afterTwoWrongInSameExercise: {
+      action: 'show_simplified_rule_card',
+      card: tri(
+        'Стоп. Команда: Open, Wait, Go. Запрет: Don’t touch, Don’t open, Don’t be. Please смягчает просьбу. Let’s значит “давай вместе”.',
+        'Стоп. Команда: Open, Wait, Go. Заборона: Don’t touch, Don’t open, Don’t be. Please пом’якшує прохання. Let’s означає “давай разом”.',
+        "Pause. Command: Open, Wait, Go. Prohibition: Don't touch, Don't open, Don't be. Please softens. Let's means together.",
+      ),
+    },
+    afterThreeWrongInSameExercise: {
+      action: 'show_imperative_type_hint_then_retry',
+      card: tri(
+        'Подсказка: система покажет тип фразы - команда, запрет, просьба или let’s-предложение, но ответ ты выберешь сам.',
+        'Підказка: система покаже тип фрази - команда, заборона, прохання або let’s-пропозиція, але відповідь ти обереш сам.',
+        "Hint: the system shows the phrase type, but you choose the answer.",
+      ),
+    },
+    afterFourWrongInSameExercise: {
+      action: 'switch_to_guided_mode',
+      card: tri(
+        'Режим подсказки: сначала выбери действие или запрет. Потом вернись к полной фразе.',
+        'Режим підказки: спочатку обери дію або заборону. Потім повернися до повної фрази.',
+        "Guided mode: choose action or prohibition first.",
+      ),
+    },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_imperative_001', prompt: tri('Does the command Open the door start with Open or You open?'), options: ['Open', 'You open'], correctIndex: 0, thenReturnToExerciseId: 'imperative_easy_001' },
-      { id: 'guided_imperative_002', prompt: tri("Is the negative command No touch or Don't touch?"), options: ['No touch', "Don't touch"], correctIndex: 1, thenReturnToExerciseId: 'imperative_contrast_001' },
-      { id: 'guided_imperative_003', prompt: tri("After don't, do you need open or to open?"), options: ['open', 'to open'], correctIndex: 0, thenReturnToExerciseId: 'imperative_contrast_002' },
-      { id: 'guided_imperative_004', prompt: tri("Does let's mean a command to one person or a suggestion to do it together?"), options: ['command to one person', 'suggestion together'], correctIndex: 1, thenReturnToExerciseId: 'imperative_mixed_002' },
+      { id: 'guided_imperative_001', prompt: tri('Команда “открой дверь” начинается с Open или You open?', 'Команда “відчини двері” починається з Open чи You open?', 'Does the command start with Open or You open?'), options: ['Open', 'You open'], correctIndex: 0, thenReturnToExerciseId: 'imperative_easy_001' },
+      { id: 'guided_imperative_002', prompt: tri('Запрет “не трогай” - это No touch или Don’t touch?', 'Заборона “не чіпай” - це No touch чи Don’t touch?', "Is the negative command No touch or Don't touch?"), options: ['No touch', "Don't touch"], correctIndex: 1, thenReturnToExerciseId: 'imperative_contrast_001' },
+      { id: 'guided_imperative_003', prompt: tri('После don’t нужно open или to open?', 'Після don’t потрібно open чи to open?', "After don't, do you need open or to open?"), options: ['open', 'to open'], correctIndex: 0, thenReturnToExerciseId: 'imperative_contrast_002' },
+      { id: 'guided_imperative_004', prompt: tri('Let’s - это приказ одному человеку или предложение сделать вместе?', 'Let’s - це наказ одній людині чи пропозиція зробити разом?', "Does let's mean a command to one person or a suggestion together?"), options: ['приказ одному человеку', 'предложение вместе'], correctIndex: 1, thenReturnToExerciseId: 'imperative_mixed_002' },
     ],
   },
   smartTrainerConfig: {
@@ -172,7 +289,7 @@ export const IMPERATIVE_BASIC_TRAINING: DiagnosisTraining = {
     source: 'diagnosis_training',
     category: 'syntax',
     microDiagnosisId: 'imperative_basic',
-    diagnosisLabel: tri('Imperative', 'Imperative'),
+    diagnosisLabel: tri('Команды и просьбы', 'Команди й прохання', 'Imperative'),
     contrastSet: SMART_CONTRAST,
     difficultyLevel: 2,
     focusWords: ['open', 'wait', "don't touch", "don't open", 'be careful', "let's start"],
@@ -220,5 +337,3 @@ export const IMPERATIVE_BASIC_TRAINING: DiagnosisTraining = {
     hasFallbackRoute: true,
   },
 };
-
-

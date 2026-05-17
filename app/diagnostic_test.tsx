@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 import ContentWrap from '../components/ContentWrap';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
@@ -31,7 +31,7 @@ import { useEffectivePlatformOS } from './platform_ui_preview';
 import { awardOneTime } from './shards_system';
 import ReportErrorButton from '../components/ReportErrorButton';
 import ClozeGapText from '../components/ClozeGapText';
-import { triLang } from '../constants/i18n';
+import { triLang, type Lang } from '../constants/i18n';
 import { screenTextOnGradient, type ThemeMode } from '../constants/theme';
 import { loadExamReadinessSnapshot, type ExamReadinessSnapshot, EXAM_LESSON_DONE_THRESHOLD } from './exam_readiness';
 import { trackFeatureBlocked, trackFeatureStart, trackFeatureSuccess } from './app_activity';
@@ -41,7 +41,7 @@ const TIMER_SEC = 30;
 function examMenuImage(themeMode: ThemeMode) {
   return themeMode === 'minimalLight' ? require('../assets/images/levels/exam grafit.webp')
     : themeMode === 'minimalDark' ? require('../assets/images/levels/exam fog.webp')
-    : themeMode === 'gold'   ? require('../assets/images/levels/exam coral.webp')
+    : themeMode === 'gold'   ? require('../assets/images/achievements/diagnosis.webp')
     : themeMode === 'neon'   ? require('../assets/images/levels/exam neon.webp')
     :                          require('../assets/images/levels/examen forest.webp');
 }
@@ -61,6 +61,63 @@ const DIAGNOSTIC_SKILL_A11Y = {
   type: { ru: 'Задание: ввести пропущенное слово', uk: 'Завдання: ввести пропущене слово', es: 'Tarea: escribir la palabra que falta' },
 } as const;
 
+function diagnosticBuildHeader(lang: Lang): string {
+  return triLang(lang, {
+    ru: DIAGNOSTIC_BUILD_HEADER.ru,
+    uk: DIAGNOSTIC_BUILD_HEADER.uk,
+    es: DIAGNOSTIC_BUILD_HEADER.es,
+    'pt-BR': '🧩 Monte a frase com as palavras',
+    vi: '🧩 Sắp xếp từ thành câu',
+    id: '🧩 Susun frasa dari kata-kata',
+    tr: '🧩 Kelimelerden ifadeyi kur',
+    pl: '🧩 Ułóż frazę ze słów',
+  });
+}
+
+function diagnosticSkillA11y(lang: Lang, kind: keyof typeof DIAGNOSTIC_SKILL_A11Y): string {
+  const copy = DIAGNOSTIC_SKILL_A11Y[kind];
+  const planned = {
+    build: {
+      'pt-BR': 'Tarefa: montar a frase com as palavras',
+      vi: 'Nhiệm vụ: sắp xếp từ thành câu',
+      id: 'Tugas: susun frasa dari kata-kata',
+      tr: 'Görev: kelimelerden ifadeyi kur',
+      pl: 'Zadanie: ułóż frazę ze słów',
+    },
+    choice4: {
+      'pt-BR': 'Tarefa: escolher a opção correta',
+      vi: 'Nhiệm vụ: chọn đáp án đúng',
+      id: 'Tugas: pilih jawaban yang benar',
+      tr: 'Görev: doğru seçeneği seç',
+      pl: 'Zadanie: wybierz poprawną odpowiedź',
+    },
+    match: {
+      'pt-BR': 'Tarefa: relacionar palavra e significado',
+      vi: 'Nhiệm vụ: nối từ với nghĩa',
+      id: 'Tugas: cocokkan kata dan arti',
+      tr: 'Görev: kelimeyle anlamı eşleştir',
+      pl: 'Zadanie: połącz słowo ze znaczeniem',
+    },
+    type: {
+      'pt-BR': 'Tarefa: digitar a palavra que falta',
+      vi: 'Nhiệm vụ: nhập từ còn thiếu',
+      id: 'Tugas: ketik kata yang hilang',
+      tr: 'Görev: eksik kelimeyi yaz',
+      pl: 'Zadanie: wpisz brakujące słowo',
+    },
+  }[kind];
+  return triLang(lang, {
+    ru: copy.ru,
+    uk: copy.uk,
+    es: copy.es,
+    'pt-BR': planned['pt-BR'],
+    vi: planned.vi,
+    id: planned.id,
+    tr: planned.tr,
+    pl: planned.pl,
+  });
+}
+
 type QType = 'fill' | 'build' | 'choice4' | 'type' | 'match';
 
 interface Question {
@@ -68,6 +125,11 @@ interface Question {
   hintRU:  string;
   hintUK:  string;
   hintES:  string;
+  hintPTBR?: string;
+  hintVI?: string;
+  hintID?: string;
+  hintTR?: string;
+  hintPL?: string;
   opts:    string[];
   optsUK?: string[];
   optsES?: string[];
@@ -85,6 +147,19 @@ function diagnosticContentRatingItemId(q: Question): string {
     return `diag_build_${q.answer.replace(/\s+/g, '_').slice(0, 150)}`;
   }
   return `diag_${typ}_${q.phrase.replace(/\s+/g, '_').slice(0, 120)}_c${q.correct}_${q.level}`;
+}
+
+function diagnosticQuestionHint(lang: Lang, q: Question): string {
+  return triLang(lang, {
+    ru: q.hintRU,
+    uk: q.hintUK,
+    es: q.hintES,
+    'pt-BR': q.hintPTBR ?? q.hintES,
+    vi: q.hintVI ?? q.hintES,
+    id: q.hintID ?? q.hintES,
+    tr: q.hintTR ?? q.hintES,
+    pl: q.hintPL ?? q.hintES,
+  });
 }
 
 const POOL: Question[] = [
@@ -213,10 +288,10 @@ const POOL: Question[] = [
   {phrase:'She is ___ than her sister.',   hintRU:'Она ___ своей сестры.',        hintUK:'Вона ___ своєї сестри.',    hintES:'Ella es más alta que su hermana (comparativo).', opts:['tall','taller','tallest','most tall'], correct:1, level:'B1'},
   {phrase:"It\'s ___ book I\'ve read.",      hintRU:'Это ___ книга, что я читал.',  hintUK:'Це ___ книга, яку я читав.', hintES:'Es el mejor libro que he leído (superlativo).', opts:['good','better','the best','best'],    correct:2, level:'B1'},
   // B1: Build questions
-  {phrase:'Собери фразу из слов:', hintRU:'Они уже ушли.', hintUK:'Вони вже пішли.', hintES:'Ya se han marchado.',
+  {phrase:'Собери фразу из слов:', hintRU:'Они уже ушли.', hintUK:'Вони вже пішли.', hintES:'Ya se han marchado.', hintPTBR:'Eles já foram embora.', hintVI:'Họ đã rời đi rồi.', hintID:'Mereka sudah pergi.', hintTR:'Onlar çoktan ayrıldı.', hintPL:'Oni już wyszli.',
    opts:['have','They','left','already'], correct:0, level:'B1', type:'build',
    words:['They','have','already','left'], answer:'They have already left'},
-  {phrase:'Собери фразу из слов:', hintRU:'Она читала когда я пришёл.', hintUK:'Вона читала коли я прийшов.', hintES:'Estaba leyendo cuando yo llegué.',
+  {phrase:'Собери фразу из слов:', hintRU:'Она читала когда я пришёл.', hintUK:'Вона читала коли я прийшов.', hintES:'Estaba leyendo cuando yo llegué.', hintPTBR:'Ela estava lendo quando eu cheguei.', hintVI:'Cô ấy đang đọc khi tôi đến.', hintID:'Dia sedang membaca ketika saya datang.', hintTR:'Ben geldiğimde o okuyordu.', hintPL:'Ona czytała, kiedy przyszedłem.',
    opts:['I','was','when','She','reading','came'], correct:0, level:'B1', type:'build',
    words:['She','was','reading','when','I','came'], answer:'She was reading when I came'},
   // B1: Type questions
@@ -266,10 +341,10 @@ const POOL: Question[] = [
   {phrase:'He avoided ___ the problem.',   hintRU:'Он избегал ___ проблемы.',     hintUK:'Він уникав ___ проблеми.',  hintES:'«avoid» + gerundio → «discussing».', opts:['discuss','discussed','discussing','to discuss'],correct:2, level:'B2'},
   {phrase:'She decided ___ earlier.',      hintRU:'Она решила ___ раньше.',       hintUK:'Вона вирішила ___ раніше.',  hintES:'«decide» + «to» + inf. → «to leave».', opts:['leave','left','leaving','to leave'],  correct:3, level:'B2'},
   // B2: Build questions
-  {phrase:'Собери фразу из слов:', hintRU:'Если бы я знал, я бы сказал.', hintUK:'Якби я знав, я б сказав.', hintES:'Si lo supiera, lo diría.',
+  {phrase:'Собери фразу из слов:', hintRU:'Если бы я знал, я бы сказал.', hintUK:'Якби я знав, я б сказав.', hintES:'Si lo supiera, lo diría.', hintPTBR:'Se eu soubesse, eu diria.', hintVI:'Nếu tôi biết, tôi sẽ nói.', hintID:'Kalau saya tahu, saya akan mengatakannya.', hintTR:'Bilseydim söylerdim.', hintPL:'Gdybym wiedział, powiedziałbym.',
    opts:['say','I knew','would','If','I'], correct:0, level:'B2', type:'build',
    words:['If','I','knew','I','would','say'], answer:'If I knew I would say'},
-  {phrase:'Собери фразу из слов:', hintRU:'Письмо было написано ею.', hintUK:'Лист був написаний нею.', hintES:'La carta fue escrita por ella.',
+  {phrase:'Собери фразу из слов:', hintRU:'Письмо было написано ею.', hintUK:'Лист був написаний нею.', hintES:'La carta fue escrita por ella.', hintPTBR:'A carta foi escrita por ela.', hintVI:'Bức thư được cô ấy viết.', hintID:'Surat itu ditulis olehnya.', hintTR:'Mektup onun tarafından yazıldı.', hintPL:'List został napisany przez nią.',
    opts:['The','was','letter','written','her','by'], correct:0, level:'B2', type:'build',
    words:['The','letter','was','written','by','her'], answer:'The letter was written by her'},
   // B2: choice4 — translation
@@ -332,7 +407,7 @@ const POOL: Question[] = [
   {phrase:'___ she studied, better results she got.',hintRU:'Чем больше занималась...',hintUK:'Чим більше займалася...',hintES:'Correlativo: «The + comparativo..., the + comparativo».',opts:['More','The more','The most','Most'],correct:1, level:'C1', type:'type', answer:'The'},
   {phrase:'He is used to ___ up early.',   hintRU:'Он привык вставать рано.',     hintUK:'Він звик вставати рано.',    hintES:'«be used to» + gerundio → «waking».',    opts:['wake','wakes','waking','woken'],    correct:2, level:'C1', type:'type', answer:'waking'},
   // C1: Build
-  {phrase:'Собери фразу из слов:', hintRU:'Если бы она пришла, ты бы её встретил.', hintUK:'Якби вона прийшла, ти б її зустрів.', hintES:'Si hubiera venido ella, la habrías conocido.',
+  {phrase:'Собери фразу из слов:', hintRU:'Если бы она пришла, ты бы её встретил.', hintUK:'Якби вона прийшла, ти б її зустрів.', hintES:'Si hubiera venido ella, la habrías conocido.', hintPTBR:'Se ela tivesse vindo, você a teria conhecido.', hintVI:'Nếu cô ấy đã đến, bạn đã gặp cô ấy rồi.', hintID:'Jika dia datang, kamu pasti sudah bertemu dengannya.', hintTR:'Eğer o gelseydi, onunla tanışmış olurdun.', hintPL:'Gdyby przyszła, spotkałbyś ją.',
    opts:['had come','you','If','have met','would','she','her'], correct:0, level:'C1', type:'build',
    words:['If','she','had','come','you','would','have','met','her'], answer:'If she had come you would have met her'},
   {phrase:'Were I you, I ___ accept that offer.', hintRU:'Будь я на твоём месте, я бы согласился на это предложение.', hintUK:'Будь я на твоєму місці, я б погодився на пропозицію.', hintES:'If II invertido («Were I you») → «would».',
@@ -419,6 +494,7 @@ export default function DiagnosticTest() {
   const params = useLocalSearchParams();
   const isFromOnboarding = params.fromOnboarding === '1';
   const { theme: t , f, themeMode } = useTheme();
+  const insets = useSafeAreaInsets();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang, s } = useLang();
   const isUK = lang === 'uk';
@@ -789,7 +865,7 @@ export default function DiagnosticTest() {
               {s.diagnostic.correct}: {prevResult.score} / {questions.length}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 4 }}>
-              {triLang(lang, { ru: 'Дата', uk: 'Дата', es: 'Fecha' })}: {prevResult.date}
+              {triLang(lang, { ru: 'Дата', uk: 'Дата', es: 'Fecha', 'pt-BR': 'Data', vi: 'Ngày', id: 'Tanggal', tr: 'Tarih', pl: 'Data' })}: {prevResult.date}
             </Text>
           </View>
         )}
@@ -853,7 +929,7 @@ export default function DiagnosticTest() {
           <View style={{ flex: 1, minWidth: 0 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700' }}>{s.home.examBtn}</Text>
             <Text style={{ color: t.textSecond, fontSize: f.label, marginTop: 4 }}>
-              {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones' })}
+              {examLessonsDone}/32 {triLang(lang, { ru: 'уроков', uk: 'уроків', es: 'lecciones', 'pt-BR': 'lições', vi: 'bài học', id: 'pelajaran', tr: 'ders', pl: 'lekcji' })}
             </Text>
             <View style={{ width: '100%', height: 4, backgroundColor: t.bgSurface2, borderRadius: 2, marginTop: 8, overflow: 'hidden' }}>
               <View
@@ -889,6 +965,11 @@ export default function DiagnosticTest() {
               ru: '1 ⚡ за старт диагностики',
               uk: '1 ⚡ за початок діагностики',
               es: '1 ⚡ al empezar el test de nivel',
+              'pt-BR': '1 ⚡ para iniciar o teste de nível',
+              vi: '1 ⚡ để bắt đầu bài kiểm tra trình độ',
+              id: '1 ⚡ untuk memulai tes level',
+              tr: 'Seviye testini başlatmak için 1 ⚡',
+              pl: '1 ⚡ za rozpoczęcie testu poziomującego',
             })}
           </Text>
         )}
@@ -1023,50 +1104,58 @@ export default function DiagnosticTest() {
           {isAnswered ? '—' : isES ? `${timeLeft}s` : `${timeLeft}с`}
         </Text>
 
-        <View
-          style={{ flex: 1, paddingHorizontal: 20, justifyContent: 'space-between' }}
+        <ScrollView
+          style={{ flex: 1 }}
+          contentContainerStyle={{
+            flexGrow: 1,
+            paddingHorizontal: 20,
+            paddingBottom: Math.max(24, insets.bottom + 24),
+          }}
+          keyboardShouldPersistTaps="handled"
+          showsVerticalScrollIndicator={false}
         >
+        <View style={{ flexGrow: 1, justifyContent: 'space-between' }}>
           <View>
           {/* Тип вопроса */}
           {q.type === 'build' && (
             <Text
               style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
-              accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.build)}
+              accessibilityLabel={diagnosticSkillA11y(lang, 'build')}
             >
-              {triLang(lang, DIAGNOSTIC_BUILD_HEADER)}
+              {diagnosticBuildHeader(lang)}
             </Text>
           )}
           {q.type === 'choice4' && (
             <Text
               style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
-              accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.choice4)}
+              accessibilityLabel={diagnosticSkillA11y(lang, 'choice4')}
             >
-              {triLang(lang, { ru: '🔤 Выбери верный вариант', uk: '🔤 Обери правильний варіант', es: '🔤 Elige la opción correcta' })}
+              {triLang(lang, { ru: '🔤 Выбери верный вариант', uk: '🔤 Обери правильний варіант', es: '🔤 Elige la opción correcta', 'pt-BR': '🔤 Escolha a opção correta', vi: '🔤 Chọn đáp án đúng', id: '🔤 Pilih jawaban yang benar', tr: '🔤 Doğru seçeneği seç', pl: '🔤 Wybierz poprawną odpowiedź' })}
             </Text>
           )}
           {q.type === 'match' && (
             <Text
               style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
-              accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.match)}
+              accessibilityLabel={diagnosticSkillA11y(lang, 'match')}
             >
-              {triLang(lang, { ru: '🔗 Сопоставь слово и значение', uk: '🔗 Зістав слово й значення', es: '🔗 Relaciona palabra y significado' })}
+              {triLang(lang, { ru: '🔗 Сопоставь слово и значение', uk: '🔗 Зістав слово й значення', es: '🔗 Relaciona palabra y significado', 'pt-BR': '🔗 Relacione palavra e significado', vi: '🔗 Nối từ với nghĩa', id: '🔗 Cocokkan kata dan arti', tr: '🔗 Kelimeyle anlamı eşleştir', pl: '🔗 Połącz słowo ze znaczeniem' })}
             </Text>
           )}
           {q.type === 'type' && (
             <Text
               style={{ color: sx.second, fontSize: f.label, marginBottom: 4 }}
               accessibilityRole="text"
-              accessibilityLabel={triLang(lang, DIAGNOSTIC_SKILL_A11Y.type)}
+              accessibilityLabel={diagnosticSkillA11y(lang, 'type')}
             >
-              {triLang(lang, { ru: '⌨️ Введи пропущенное слово', uk: '⌨️ Введи пропущене слово', es: '⌨️ Escribe la palabra que falta' })}
+              {triLang(lang, { ru: '⌨️ Введи пропущенное слово', uk: '⌨️ Введи пропущене слово', es: '⌨️ Escribe la palabra que falta', 'pt-BR': '⌨️ Digite a palavra que falta', vi: '⌨️ Nhập từ còn thiếu', id: '⌨️ Ketik kata yang hilang', tr: '⌨️ Eksik kelimeyi yaz', pl: '⌨️ Wpisz brakujące słowo' })}
             </Text>
           )}
 
           <ClozeGapText
-            text={q.type === 'build' ? triLang(lang, { ru: q.hintRU, uk: q.hintUK, es: q.hintES }) : q.phrase}
+            text={q.type === 'build' ? diagnosticQuestionHint(lang, q) : q.phrase}
             style={{ color: sx.primary, fontSize: f.numMd + 6, fontWeight: '500', lineHeight: 36, marginBottom: 12 }}
           />
           </View>
@@ -1215,7 +1304,7 @@ export default function DiagnosticTest() {
               dataText={(() => {
                 const qSummary =
                   q.type === 'build'
-                    ? `${triLang(lang, DIAGNOSTIC_BUILD_HEADER)} — ${triLang(lang, { ru: q.hintRU, uk: q.hintUK, es: q.hintES })}`
+                    ? `${diagnosticBuildHeader(lang)} — ${diagnosticQuestionHint(lang, q)}`
                     : `Q: ${q.phrase}`;
                 const optsForReport =
                   lang === 'uk' && q.optsUK ? q.optsUK : lang === 'es' && q.optsES ? q.optsES : q.opts ?? [];
@@ -1270,6 +1359,7 @@ export default function DiagnosticTest() {
           )}
           </View>
         </View>
+        </ScrollView>
         </ContentWrap>
       </SafeAreaView>
     </KeyboardAvoidingView>

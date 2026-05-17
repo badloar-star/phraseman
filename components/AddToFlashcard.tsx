@@ -35,23 +35,27 @@ interface Props {
   // Optional rich detail fields forwarded to the saved flashcard
   literalRu?: string;
   literalUk?: string;
+  literalEs?: string;
   explanationRu?: string;
   explanationUk?: string;
+  explanationEs?: string;
   exampleEn?: string;
   exampleRu?: string;
   exampleUk?: string;
+  exampleEs?: string;
   usageNoteRu?: string;
   usageNoteUk?: string;
+  usageNoteEs?: string;
   register?: string;
   level?: string;
 }
 
 export default function AddToFlashcard({
   en, ru, uk, es, source, sourceId, size = 20,
-  literalRu, literalUk,
-  explanationRu, explanationUk,
-  exampleEn, exampleRu, exampleUk,
-  usageNoteRu, usageNoteUk,
+  literalRu, literalUk, literalEs,
+  explanationRu, explanationUk, explanationEs,
+  exampleEn, exampleRu, exampleUk, exampleEs,
+  usageNoteRu, usageNoteUk, usageNoteEs,
   register, level,
 }: Props) {
   const { theme: t } = useTheme();
@@ -155,10 +159,10 @@ export default function AddToFlashcard({
             const transcription = getTranscription(enSnap);
             const result = await addFlashcard({
               en: enSnap, ru, uk, es, transcription, source, sourceId,
-              literalRu, literalUk,
-              explanationRu, explanationUk,
-              exampleEn, exampleRu, exampleUk,
-              usageNoteRu, usageNoteUk,
+              literalRu, literalUk, literalEs,
+              explanationRu, explanationUk, explanationEs,
+              exampleEn, exampleRu, exampleUk, exampleEs,
+              usageNoteRu, usageNoteUk, usageNoteEs,
               register, level,
             });
             if (result === 'added') {
@@ -174,6 +178,7 @@ export default function AddToFlashcard({
                 updates.push({ type: 'daily_phrase_save', increment: 1 });
                 checkAchievements({ type: 'daily_phrase', action: 'save' }).catch(() => {});
               }
+              checkAchievements({ type: 'flashcard_saved', source }).catch(() => {});
               updateMultipleTaskProgress(updates).catch(() => {});
             } else if (result === 'limit_reached') {
               setSaved(false);

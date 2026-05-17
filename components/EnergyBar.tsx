@@ -13,7 +13,7 @@ import { BRAND_SHARDS_ES } from '../constants/terms_es';
 const PREMIUM_BLUE = '#4FC3F7';
 
 interface Props {
-  size?: number; // icon size, default 16
+  size?: number; // icon size, default 30
 }
 
 /**
@@ -22,7 +22,7 @@ interface Props {
  */
 const BONUS_COLOR = '#FFD700'; // gold for bonus slots
 
-export default function EnergyBar({ size = 20 }: Props) {
+export default function EnergyBar({ size = 30 }: Props) {
   const { energy, bonusEnergy, maxEnergy, formattedTime, isUnlimited } = useEnergy();
   const { theme: t, themeMode, f } = useTheme();
   const { lang } = useLang();
@@ -31,6 +31,11 @@ export default function EnergyBar({ size = 20 }: Props) {
     ru: 'Долгое нажатие — восстановить энергию за осколки',
     uk: 'Довге натискання — відновити енергію за осколки',
     es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,
+    'pt-BR': 'Mantenha pressionado para recuperar energia com fragmentos',
+    vi: 'Nhấn giữ để hồi năng lượng bằng mảnh',
+    id: 'Tahan untuk memulihkan energi dengan shard',
+    tr: 'Parçalarla enerji yenilemek için basılı tut',
+    pl: 'Przytrzymaj, aby odzyskać energię za odłamki',
   });
 
   // Scale bounce when a new energy icon fills during restore
@@ -94,11 +99,14 @@ export default function EnergyBar({ size = 20 }: Props) {
     }
   }, [bonusEnergy, bonusScaleAnims]);
 
-  const filledTint = isUnlimited ? PREMIUM_BLUE : undefined;
-  const filledColor = isUnlimited ? PREMIUM_BLUE : t.gold;
+  const premiumAccent = PREMIUM_BLUE;
+  const bonusAccent = BONUS_COLOR;
+  const filledTint = isUnlimited ? premiumAccent : undefined;
+  const filledColor = isUnlimited ? premiumAccent : t.gold;
   const emptyColor = t.textGhost;
 
   const safeBonus = Math.min(bonusEnergy, bonusScaleAnims.length);
+  const overlap = -Math.round(size * 0.45);
 
   return (
     <View style={{ alignItems: 'center' }}>
@@ -112,7 +120,7 @@ export default function EnergyBar({ size = 20 }: Props) {
       >
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
-          <Animated.View key={i} style={{ marginLeft: i > 0 ? -6 : 0, transform: [{ scale: scaleAnims[i] }] }}>
+          <Animated.View key={i} style={{ marginLeft: i > 0 ? overlap : 0, transform: [{ scale: scaleAnims[i] }] }}>
             <EnergyIcon
               filled={i < energy}
               themeColor={i < energy ? filledColor : emptyColor}
@@ -128,16 +136,16 @@ export default function EnergyBar({ size = 20 }: Props) {
         {safeBonus > 0 && Array.from({ length: safeBonus }).map((_, i) => (
           <Animated.View
             key={`bonus_${i}`}
-            style={{ marginLeft: -6, transform: [{ scale: bonusScaleAnims[i] }] }}
+            style={{ marginLeft: overlap, transform: [{ scale: bonusScaleAnims[i] }] }}
           >
             <EnergyIcon
               filled={true}
-              themeColor={BONUS_COLOR}
+              themeColor={bonusAccent}
               size={size}
               animateChange={false}
               shouldShake={false}
               themeMode={themeMode}
-              tintColor={BONUS_COLOR}
+              tintColor={bonusAccent}
             />
           </Animated.View>
         ))}

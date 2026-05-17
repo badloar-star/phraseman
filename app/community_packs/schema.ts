@@ -55,8 +55,9 @@ export type CommunityPackListingStatus =
 export type CommunityPackCardPayload = {
   id: string;
   en: string;
-  ru: string;
+  ru?: string;
   uk?: string;
+  es?: string;
 };
 
 /** Ключ палитры карточек UGC — см. `ugcCardThemePresets.ts` / `getCommunityUgcPackPaywallTheme`. */
@@ -69,16 +70,19 @@ export type CommunityPackSubmissionPayload = {
   cardThemeKey?: CommunityPackCardThemeKey;
   priceShards: number;
   cards: CommunityPackCardPayload[];
+  sourceLang?: 'ru' | 'uk' | 'es';
   /** Legacy — ігнорується, якщо задані title/description. */
   titleRu?: string;
   titleUk?: string;
+  titleEs?: string;
   descriptionRu?: string;
   descriptionUk?: string;
+  descriptionEs?: string;
 };
 
 export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload): string | null {
-  const title = String(p.title ?? p.titleRu ?? p.titleUk ?? '').trim();
-  const description = String(p.description ?? p.descriptionRu ?? p.descriptionUk ?? '').trim();
+  const title = String(p.title ?? p.titleRu ?? p.titleUk ?? p.titleEs ?? '').trim();
+  const description = String(p.description ?? p.descriptionRu ?? p.descriptionUk ?? p.descriptionEs ?? '').trim();
   if (!title || !description) return 'title_or_desc';
   const n = p.cards?.length ?? 0;
   if (n < COMMUNITY_PACK_CARD_COUNT_MIN || n > COMMUNITY_PACK_CARD_COUNT_MAX) return 'card_count';
@@ -87,22 +91,33 @@ export function validateCommunityPackPayload(p: CommunityPackSubmissionPayload):
     return 'price';
   }
   for (const c of p.cards) {
-    if (!c?.id || !String(c.en).trim() || !String(c.ru).trim()) return 'card_fields';
+    const hasSource = !!(String(c?.ru ?? '').trim() || String(c?.es ?? '').trim());
+    if (!c?.id || !String(c.en).trim() || !hasSource) return 'card_fields';
   }
   return null;
 }
 
 /** Плоский payload для Cloud Function (titleRu = titleUk = title). */
 export function buildCommunityPackPayloadForCloud(p: CommunityPackSubmissionPayload): Record<string, unknown> {
-  const title = String(p.title ?? p.titleRu ?? p.titleUk ?? '').trim();
-  const description = String(p.description ?? p.descriptionRu ?? p.descriptionUk ?? '').trim();
+  const title = String(p.title ?? p.titleRu ?? p.titleUk ?? p.titleEs ?? '').trim();
+  const description = String(p.description ?? p.descriptionRu ?? p.descriptionUk ?? p.descriptionEs ?? '').trim();
+  const sourceLang = p.sourceLang === 'es' || p.sourceLang === 'uk' ? p.sourceLang : 'ru';
+  const titleRu = sourceLang === 'ru' ? title : String(p.titleRu ?? '').trim();
+  const titleUk = sourceLang === 'uk' ? title : String(p.titleUk ?? '').trim();
+  const titleEs = sourceLang === 'es' ? title : String(p.titleEs ?? '').trim();
+  const descriptionRu = sourceLang === 'ru' ? description : String(p.descriptionRu ?? '').trim();
+  const descriptionUk = sourceLang === 'uk' ? description : String(p.descriptionUk ?? '').trim();
+  const descriptionEs = sourceLang === 'es' ? description : String(p.descriptionEs ?? '').trim();
   return {
     title,
     description,
-    titleRu: title,
-    titleUk: title,
-    descriptionRu: description,
-    descriptionUk: description,
+    sourceLang,
+    titleRu,
+    titleUk,
+    titleEs,
+    descriptionRu,
+    descriptionUk,
+    descriptionEs,
     priceShards: COMMUNITY_PACK_PRICE_SHARDS,
     cards: p.cards,
     cardThemeKey: String(p.cardThemeKey ?? '').trim() || undefined,

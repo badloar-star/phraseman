@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { spendShards, getShardsBalance } from './shards_system';
 import { emitAppEvent } from './events';
 import { DebugLogger } from './debug-logger';
+import { checkAchievements } from './achievements';
 
 const ENERGY_STORAGE_KEY = 'energy_state';
 
@@ -52,6 +53,7 @@ export async function refillEnergyWithShards(params: {
   }
   emitAppEvent('energy_reload');
   emitAppEvent('energy_purchased_shards');
+  void checkAchievements({ type: 'energy_refill' });
   return { ok: true, spent: cost };
 }
 

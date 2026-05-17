@@ -702,7 +702,16 @@ const LessonContent = React.memo(function LessonContent({
             ellipsizeMode="tail"
             style={{ color: t.textPrimary, fontSize: isSmallScreen ? f.body : f.bodyLg, fontWeight: '600', flexShrink: 1 }}
           >
-            {triLang(lang, { uk: 'Урок', ru: 'Урок', es: 'Lección' })} {lessonId}
+            {triLang(lang, {
+              uk: 'Урок',
+              ru: 'Урок',
+              es: 'Lección',
+              'pt-BR': 'Lição',
+              vi: 'Bài',
+              id: 'Pelajaran',
+              tr: 'Ders',
+              pl: 'Lekcja',
+            })} {lessonId}
           </Text>
         </LessonPressable>
         {/* Right side: energy icons + combo badge + stats */}
@@ -1848,6 +1857,7 @@ export default function LessonScreen() {
             lessonId,
             errWord,
             tokenRow?.category,
+            phrase.spanish,
           );
         }
       }

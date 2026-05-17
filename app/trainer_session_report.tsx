@@ -32,10 +32,37 @@ export default function TrainerSessionReport({
   const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
   const perfect = attempted > 0 && wrong === 0;
   const title = isEmpty
-    ? triLang(lang, { ru: 'Очередь чистая', uk: 'Черга чиста', es: 'Cola limpia' })
+    ? triLang(lang, {
+      ru: 'Очередь чистая',
+      uk: 'Черга чиста',
+      es: 'Cola limpia',
+      'pt-BR': 'Fila limpa',
+      vi: 'Hàng đợi đã trống',
+      id: 'Antrean bersih',
+      tr: 'Kuyruk temiz',
+      pl: 'Kolejka czysta',
+    })
     : perfect
-      ? triLang(lang, { ru: 'Закрыто без ошибок', uk: 'Закрито без помилок', es: 'Cerrado sin errores' })
-      : triLang(lang, { ru: 'Есть что добрать', uk: 'Є що добрати', es: 'Queda por reforzar' });
+      ? triLang(lang, {
+        ru: 'Закрыто без ошибок',
+        uk: 'Закрито без помилок',
+        es: 'Cerrado sin errores',
+        'pt-BR': 'Fechado sem erros',
+        vi: 'Hoàn thành không lỗi',
+        id: 'Selesai tanpa kesalahan',
+        tr: 'Hatasız kapatıldı',
+        pl: 'Zamknięte bez błędów',
+      })
+      : triLang(lang, {
+        ru: 'Есть что добрать',
+        uk: 'Є що добрати',
+        es: 'Queda por reforzar',
+        'pt-BR': 'Ainda falta reforçar',
+        vi: 'Còn phần cần củng cố',
+        id: 'Masih perlu diperkuat',
+        tr: 'Pekiştirilecek şeyler var',
+        pl: 'Jest co utrwalić',
+      });
   return (
     <View style={styles.root}>
       <View style={[styles.hero, { backgroundColor: t.bgCard, borderColor: accent + '55' }]}>
@@ -52,22 +79,79 @@ export default function TrainerSessionReport({
       </View>
 
       <View style={styles.metrics}>
-        <Metric label={triLang(lang, { ru: 'точность', uk: 'точність', es: 'precisión' })} value={isEmpty ? '-' : `${accuracy}%`} color={accent} />
-        <Metric label={triLang(lang, { ru: 'закреплено', uk: 'закріплено', es: 'fijadas' })} value={String(correct)} color="#40C080" />
-        <Metric label={triLang(lang, { ru: 'вернётся', uk: 'повернеться', es: 'vuelven' })} value={String(wrong)} color="#FB7185" />
+        <Metric
+          label={triLang(lang, {
+            ru: 'точность',
+            uk: 'точність',
+            es: 'precisión',
+            'pt-BR': 'precisão',
+            vi: 'độ chính xác',
+            id: 'akurasi',
+            tr: 'doğruluk',
+            pl: 'dokładność',
+          })}
+          value={isEmpty ? '-' : `${accuracy}%`}
+          color={accent}
+        />
+        <Metric
+          label={triLang(lang, {
+            ru: 'закреплено',
+            uk: 'закріплено',
+            es: 'fijadas',
+            'pt-BR': 'fixadas',
+            vi: 'đã củng cố',
+            id: 'dikuasai',
+            tr: 'pekiştirildi',
+            pl: 'utrwalone',
+          })}
+          value={String(correct)}
+          color="#40C080"
+        />
+        <Metric
+          label={triLang(lang, {
+            ru: 'вернётся',
+            uk: 'повернеться',
+            es: 'vuelven',
+            'pt-BR': 'voltam',
+            vi: 'sẽ quay lại',
+            id: 'muncul lagi',
+            tr: 'geri döner',
+            pl: 'wróci',
+          })}
+          value={String(wrong)}
+          color="#FB7185"
+        />
       </View>
 
       <View style={styles.actions}>
         {onPracticeMore && !isEmpty ? (
           <TouchableOpacity onPress={onPracticeMore} style={[styles.secondaryBtn, { borderColor: accent + '66', backgroundColor: accent + '14' }]}>
             <Text style={{ color: accent, fontSize: f.sub, fontWeight: '900' }}>
-              {triLang(lang, { ru: 'Ещё слабые', uk: 'Ще слабкі', es: 'Más débiles' })}
+              {triLang(lang, {
+                ru: 'Ещё слабые',
+                uk: 'Ще слабкі',
+                es: 'Más débiles',
+                'pt-BR': 'Mais fracas',
+                vi: 'Phần còn yếu',
+                id: 'Yang masih lemah',
+                tr: 'Zayıf kalanlar',
+                pl: 'Jeszcze słabe',
+              })}
             </Text>
           </TouchableOpacity>
         ) : null}
         <TouchableOpacity onPress={onDone} style={[styles.primaryBtn, { backgroundColor: accent }]}>
           <Text style={{ color: '#fff', fontSize: f.sub, fontWeight: '900' }}>
-            {triLang(lang, { ru: 'Готово', uk: 'Готово', es: 'Listo' })}
+            {triLang(lang, {
+              ru: 'Готово',
+              uk: 'Готово',
+              es: 'Listo',
+              'pt-BR': 'Pronto',
+              vi: 'Xong',
+              id: 'Selesai',
+              tr: 'Bitti',
+              pl: 'Gotowe',
+            })}
           </Text>
         </TouchableOpacity>
       </View>

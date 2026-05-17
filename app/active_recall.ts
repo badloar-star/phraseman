@@ -785,14 +785,14 @@ export async function recordMistakeFromDiagnostic(q: DiagnosticMistakeQ): Promis
  * С высоким errorCount записи попадают в сессию раньше обычных.
  */
 const ADMIN_BENCH_LESSON_ID = 99;
-const ADMIN_TEST_BENCH: { phrase: string; correctAnswer: string; correctAnswerUK: string }[] = [
-  { phrase: 'He is in the kitchen', correctAnswer: 'Он на кухне', correctAnswerUK: 'Він на кухні' },
-  { phrase: 'She went to the store', correctAnswer: 'Она пошла в магазин', correctAnswerUK: 'Вона пішла в магазин' },
-  { phrase: 'We will call you tomorrow', correctAnswer: 'Мы позвоним тебе завтра', correctAnswerUK: 'Ми подзвонимо тобі завтра' },
-  { phrase: 'I have never been there', correctAnswer: 'Я никогда не был там', correctAnswerUK: 'Я ніколи не був там' },
-  { phrase: 'They are waiting for us', correctAnswer: 'Они ждут нас', correctAnswerUK: 'Вони чекають на нас' },
-  { phrase: 'Could you help me please', correctAnswer: 'Не могли бы вы мне помочь', correctAnswerUK: 'Не могли б ви мені допомогти' },
-  { phrase: 'The weather is nice today', correctAnswer: 'Сегодня хорошая погода', correctAnswerUK: 'Сьогодні гарна погода' },
+const ADMIN_TEST_BENCH: { phrase: string; correctAnswer: string; correctAnswerUK: string; correctAnswerES: string }[] = [
+  { phrase: 'He is in the kitchen', correctAnswer: 'Он на кухне', correctAnswerUK: 'Він на кухні', correctAnswerES: 'Él está en la cocina' },
+  { phrase: 'She went to the store', correctAnswer: 'Она пошла в магазин', correctAnswerUK: 'Вона пішла в магазин', correctAnswerES: 'Ella fue a la tienda' },
+  { phrase: 'We will call you tomorrow', correctAnswer: 'Мы позвоним тебе завтра', correctAnswerUK: 'Ми подзвонимо тобі завтра', correctAnswerES: 'Te llamaremos mañana' },
+  { phrase: 'I have never been there', correctAnswer: 'Я никогда не был там', correctAnswerUK: 'Я ніколи не був там', correctAnswerES: 'Nunca he estado allí' },
+  { phrase: 'They are waiting for us', correctAnswer: 'Они ждут нас', correctAnswerUK: 'Вони чекають на нас', correctAnswerES: 'Nos están esperando' },
+  { phrase: 'Could you help me please', correctAnswer: 'Не могли бы вы мне помочь', correctAnswerUK: 'Не могли б ви мені допомогти', correctAnswerES: '¿Podrías ayudarme, por favor?' },
+  { phrase: 'The weather is nice today', correctAnswer: 'Сегодня хорошая погода', correctAnswerUK: 'Сьогодні гарна погода', correctAnswerES: 'Hoy hace buen tiempo' },
 ];
 
 export async function seedAdminTestReviewSession(): Promise<void> {
@@ -804,6 +804,7 @@ export async function seedAdminTestReviewSession(): Promise<void> {
     phrase: t.phrase,
     correctAnswer: t.correctAnswer,
     correctAnswerUK: t.correctAnswerUK,
+    correctAnswerES: t.correctAnswerES,
     lessonId: ADMIN_BENCH_LESSON_ID,
     errorCount: 9_000,
     repetitions: 0,

@@ -6,17 +6,18 @@ import { triLang } from '../constants/i18n';
 import { Ionicons } from '@expo/vector-icons';
 import { updateMultipleTaskProgress } from '../app/daily_tasks';
 import { checkAchievements } from '../app/achievements';
-import { getTodayPhrase, getTodayPhraseSync, subscribeTodayPhrase, DailyPhrase } from '../app/daily_phrase_system';
+import { dailyPhraseCopyForLang, getTodayPhrase, getTodayPhraseSync, subscribeTodayPhrase, DailyPhrase } from '../app/daily_phrase_system';
 import AddToFlashcard from './AddToFlashcard';
 
 const DAILY_PHRASE_IMAGES: Record<string, any> = {
-  dark:   require('../assets/images/levels/dayly phrase forest.webp'),
-  minimalDark: require('../assets/images/levels/dayly phrase fog.webp'),
-  minimalLight: require('../assets/images/levels/dayly phrase grafit.webp'),
-  neon:   require('../assets/images/levels/dayly phrase neon.webp'),
-  gold:   require('../assets/images/levels/dayly phrase coral.webp'),
-  ocean:  require('../assets/images/levels/dayly phrase ocean.webp'),
-  sakura: require('../assets/images/levels/dayly phrase sacura.webp'),
+  dark: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
+  minimalDark: require('../assets/images/home_menu/home-minimal-dark-daily-phrase.webp'),
+  minimalLight: require('../assets/images/home_menu/home-minimal-light-daily-phrase.webp'),
+  neon: require('../assets/images/home_menu/home-neon-daily-phrase.webp'),
+  gold: require('../assets/images/home_menu/home-gold-daily-phrase.webp'),
+  coral: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
+  ocean: require('../assets/images/home_menu/home-forest-daily-phrase.webp'),
+  sakura: require('../assets/images/home_menu/home-coral-daily-phrase.webp'),
 };
 
 const DAILY_PHRASE_FALLBACK_IMAGE = DAILY_PHRASE_IMAGES.dark;
@@ -54,12 +55,32 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
     return <View style={[styles.container, { backgroundColor: t.bgCard }]} />;
   }
 
-  const labelLiteral = triLang(lang, { uk: 'Дослівно', ru: 'Дословно', es: 'Traducción literal' });
-  const labelMeaning = triLang(lang, { uk: 'Що означає', ru: 'Что значит', es: 'Significado' });
+  const labelLiteral = triLang(lang, {
+    uk: 'Дослівно',
+    ru: 'Дословно',
+    es: 'Traducción literal',
+    'pt-BR': 'Tradução literal',
+    vi: 'Dịch sát nghĩa',
+    id: 'Terjemahan literal',
+    tr: 'Kelime kelime çeviri',
+    pl: 'Dosłownie',
+  });
+  const labelMeaning = triLang(lang, {
+    uk: 'Що означає',
+    ru: 'Что значит',
+    es: 'Significado',
+    'pt-BR': 'Significado',
+    vi: 'Nghĩa là gì',
+    id: 'Artinya',
+    tr: 'Anlamı',
+    pl: 'Znaczenie',
+  });
   // Контент идиом: для es пока подставляем RU-поля (см. idioms_data — без полей *_es).
-  const phraseLiteral = lang === 'uk' ? phrase.literal_uk : phrase.literal;
-  const phraseMeaning = lang === 'uk' ? phrase.meaning_uk : phrase.meaning;
-  const phraseText = lang === 'uk' ? phrase.text_uk : phrase.text;
+  const phraseLang = lang === 'uk' ? 'uk' : lang === 'es' ? 'es' : 'ru';
+  const phraseCopy = dailyPhraseCopyForLang(phrase, phraseLang);
+  const phraseLiteral = phraseCopy.literal;
+  const phraseMeaning = phraseCopy.meaning;
+  const phraseText = phraseCopy.text;
   const dailyPhraseImage = DAILY_PHRASE_IMAGES[themeMode] ?? DAILY_PHRASE_FALLBACK_IMAGE;
   const revealStyle = {
     opacity: revealAnim,
@@ -86,14 +107,23 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
           <View style={styles.editorialHeader}>
             <View style={[styles.editorialIconBox, { backgroundColor: t.bgSurface2 }]}>
               {dailyPhraseImage ? (
-                <Image source={dailyPhraseImage} style={{ width: 34, height: 34 }} resizeMode="contain" />
+                <Image source={dailyPhraseImage} style={{ width: 52, height: 52 }} resizeMode="contain" />
               ) : (
                 <Ionicons name="chatbubble-ellipses" size={24} color={t.textMuted} />
               )}
             </View>
             <View style={{ flex: 1, minWidth: 0 }}>
               <Text style={[styles.editorialKicker, { color: t.textMuted, fontSize: f.caption }]}>
-                {triLang(lang, { uk: 'Вислів дня', ru: 'Фраза дня', es: 'Frase del día' })}
+                {triLang(lang, {
+                  uk: 'Вислів дня',
+                  ru: 'Фраза дня',
+                  es: 'Frase del día',
+                  'pt-BR': 'Frase do dia',
+                  vi: 'Cụm từ hôm nay',
+                  id: 'Frasa hari ini',
+                  tr: 'Günün ifadesi',
+                  pl: 'Fraza dnia',
+                })}
               </Text>
             </View>
             <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={19} color={t.textMuted} />
@@ -137,16 +167,20 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
                 <AddToFlashcard
                   en={phrase.english}
                   ru={phrase.meaning}
-                  uk={phraseMeaning}
+                  uk={phrase.meaning_uk}
+                  es={phrase.meaning_es}
                   source="daily_phrase"
                   sourceId={phrase.id || phrase.date}
                   size={22}
                   literalRu={phrase.literal}
                   literalUk={phrase.literal_uk}
+                  literalEs={phrase.literal_es}
                   explanationRu={phrase.meaning}
                   explanationUk={phrase.meaning_uk}
+                  explanationEs={phrase.meaning_es}
                   exampleRu={phrase.text}
                   exampleUk={phrase.text_uk}
+                  exampleEs={phrase.text_es}
                 />
               </View>
               )}
@@ -173,15 +207,24 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
 
         {/* Header */}
         <View style={styles.header}>
-          <View style={{ alignItems: 'center', justifyContent: 'center', width: 36, height: 36, borderRadius: 10, backgroundColor: 'transparent' }}>
+          <View style={{ alignItems: 'center', justifyContent: 'center', width: 52, height: 52, borderRadius: 14, backgroundColor: 'transparent' }}>
             {dailyPhraseImage ? (
-              <Image source={dailyPhraseImage} style={{ width: 36, height: 36 }} resizeMode="contain" />
+              <Image source={dailyPhraseImage} style={{ width: 52, height: 52 }} resizeMode="contain" />
             ) : (
               <Ionicons name="chatbubble-ellipses" size={24} color={t.accent} />
             )}
           </View>
           <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>{triLang(lang, { uk: 'ВИСЛІВ ДНЯ', ru: 'ФРАЗА ДНЯ', es: 'FRASE DEL DÍA' })}</Text>
+            <Text style={[styles.title, { color: t.accent, fontSize: f.sub }]}>{triLang(lang, {
+              uk: 'ВИСЛІВ ДНЯ',
+              ru: 'ФРАЗА ДНЯ',
+              es: 'FRASE DEL DÍA',
+              'pt-BR': 'FRASE DO DIA',
+              vi: 'CỤM TỪ HÔM NAY',
+              id: 'FRASA HARI INI',
+              tr: 'GÜNÜN İFADESİ',
+              pl: 'FRAZA DNIA',
+            })}</Text>
           </View>
           <Ionicons name={expanded ? 'chevron-up' : 'chevron-down'} size={20} color={t.accent} />
         </View>
@@ -233,16 +276,20 @@ export default function DailyPhraseCard({ userLevel: _userLevel }: Props) {
               <AddToFlashcard
                 en={phrase.english}
                 ru={phrase.meaning}
-                uk={phraseMeaning}
+                uk={phrase.meaning_uk}
+                es={phrase.meaning_es}
                 source="daily_phrase"
                 sourceId={phrase.id || phrase.date}
                 size={22}
                 literalRu={phrase.literal}
                 literalUk={phrase.literal_uk}
+                literalEs={phrase.literal_es}
                 explanationRu={phrase.meaning}
                 explanationUk={phrase.meaning_uk}
+                explanationEs={phrase.meaning_es}
                 exampleRu={phrase.text}
                 exampleUk={phrase.text_uk}
+                exampleEs={phrase.text_es}
               />
             </View>
             )}
@@ -268,9 +315,9 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   editorialIconBox: {
-    width: 42,
-    height: 42,
-    borderRadius: 12,
+    width: 58,
+    height: 58,
+    borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
   },

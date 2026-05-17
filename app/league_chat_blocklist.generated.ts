@@ -4,7 +4,7 @@
 // - LDNOOBW: https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words (CC-BY-4.0)
 // - 4troDev/profanity.csv: https://github.com/4troDev/profanity.csv (MIT)
 // - dsojevic/profanity-list: https://github.com/dsojevic/profanity-list (MIT)
-// Local project additions are included for Russian/Ukrainian/Latin transliteration evasions.
+// Local project additions are included for source-language and Latin transliteration evasions.
 
 export const LEAGUE_CHAT_BLOCKLIST_SOURCE_COUNTS = {
   "local": 86,

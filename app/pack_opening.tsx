@@ -275,6 +275,11 @@ function FlippableCard({
               ru: 'Нажми, чтобы открыть',
               uk: 'Натисни, щоб відкрити',
               es: 'Toca para abrir',
+              'pt-BR': 'Toque para abrir',
+              vi: 'Chạm để mở',
+              id: 'Ketuk untuk membuka',
+              tr: 'Açmak için dokun',
+              pl: 'Stuknij, aby otworzyć',
             })}
           </Text>
         </Animated.View>
@@ -354,7 +359,7 @@ export default function PackOpeningScreen() {
     let cancelled = false;
     (async () => {
       if (!packId) {
-        setError(triLang(lang, { ru: 'Неизвестный набор', uk: 'Невідомий набір', es: 'Paquete desconocido' }));
+        setError(triLang(lang, { ru: 'Неизвестный набор', uk: 'Невідомий набір', es: 'Paquete desconocido', 'pt-BR': 'Pack desconhecido', vi: 'Bộ không xác định', id: 'Pack tidak dikenal', tr: 'Bilinmeyen paket', pl: 'Nieznany pakiet' }));
         setLoading(false);
         return;
       }
@@ -375,7 +380,7 @@ export default function PackOpeningScreen() {
 
         if (!foundPack) {
           if (!cancelled) {
-            setError(triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado' }));
+            setError(triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' }));
             setLoading(false);
           }
           return;
@@ -397,7 +402,7 @@ export default function PackOpeningScreen() {
         setLoading(false);
       } catch {
         if (!cancelled) {
-          setError(triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error' }));
+          setError(triLang(lang, { ru: 'Ошибка', uk: 'Помилка', es: 'Error', 'pt-BR': 'Erro', vi: 'Lỗi', id: 'Error', tr: 'Hata', pl: 'Błąd' }));
           setLoading(false);
         }
       }
@@ -471,14 +476,14 @@ export default function PackOpeningScreen() {
       <View style={[styles.fillCenter, { backgroundColor: t.bgPrimary }]}>
         <Stack.Screen options={{ headerShown: false }} />
         <Text style={{ color: t.textMuted, fontSize: f.body, marginBottom: 16 }}>
-          {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado' })}
+          {error ?? triLang(lang, { ru: 'Набор не найден', uk: 'Набір не знайдено', es: 'Paquete no encontrado', 'pt-BR': 'Pack não encontrado', vi: 'Không tìm thấy bộ', id: 'Pack tidak ditemukan', tr: 'Paket bulunamadı', pl: 'Nie znaleziono pakietu' })}
         </Text>
         <Pressable
           onPress={() => router.replace('/(tabs)/home' as any)}
           style={[styles.primaryBtn, { backgroundColor: accent }]}
         >
           <Text style={{ color: '#fff', fontSize: f.body, fontWeight: '700' }}>
-            {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás' })}
+            {triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Atrás', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
           </Text>
         </Pressable>
       </View>
@@ -505,6 +510,11 @@ export default function PackOpeningScreen() {
               ru: `Открыто ${opened} из ${total}`,
               uk: `Відкрито ${opened} з ${total}`,
               es: `${opened} de ${total} abiertas`,
+              'pt-BR': `${opened} de ${total} abertos`,
+              vi: `Đã mở ${opened} / ${total}`,
+              id: `${opened} dari ${total} dibuka`,
+              tr: `${opened} / ${total} açıldı`,
+              pl: `Otwarto ${opened} z ${total}`,
             })}
           </Text>
         </View>
@@ -532,6 +542,11 @@ export default function PackOpeningScreen() {
               ru: '💡 Нажми на карточку, чтобы открыть',
               uk: '💡 Натисни на картку, щоб відкрити',
               es: '💡 Toca una tarjeta para abrirla',
+              'pt-BR': '💡 Toque em um cartão para abrir',
+              vi: '💡 Chạm vào thẻ để mở',
+              id: '💡 Ketuk kartu untuk membuka',
+              tr: '💡 Açmak için bir karta dokun',
+              pl: '💡 Stuknij kartę, aby ją otworzyć',
             })}
           </Text>
         </View>
@@ -587,6 +602,11 @@ export default function PackOpeningScreen() {
                   ru: 'Открыть все',
                   uk: 'Відкрити всі',
                   es: 'Abrir todas',
+                  'pt-BR': 'Abrir todos',
+                  vi: 'Mở tất cả',
+                  id: 'Buka semua',
+                  tr: 'Tümünü aç',
+                  pl: 'Otwórz wszystkie',
                 })}
               </Text>
             </Pressable>
@@ -599,6 +619,11 @@ export default function PackOpeningScreen() {
                   ru: 'Перейти к карточкам',
                   uk: 'Перейти до карток',
                   es: 'Ir a las tarjetas',
+                  'pt-BR': 'Ir para os cartões',
+                  vi: 'Đi đến thẻ',
+                  id: 'Ke kartu',
+                  tr: 'Kartlara git',
+                  pl: 'Przejdź do kart',
                 })}
               </Text>
             </Pressable>
@@ -613,6 +638,11 @@ export default function PackOpeningScreen() {
                 ru: '🎉 Начать учить',
                 uk: '🎉 Почати вчити',
                 es: '🎉 Empezar a estudiar',
+                'pt-BR': '🎉 Começar a estudar',
+                vi: '🎉 Bắt đầu học',
+                id: '🎉 Mulai belajar',
+                tr: '🎉 Öğrenmeye başla',
+                pl: '🎉 Zacznij się uczyć',
               })}
             </Text>
           </Pressable>

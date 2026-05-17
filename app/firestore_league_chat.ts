@@ -6,7 +6,7 @@ import { Platform } from 'react-native';
 import Constants from 'expo-constants';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
 import { getWeekId } from './league_engine';
 import { moderateLeagueChatMessage, sanitizeLeagueChatText } from './league_chat_moderation';
 
@@ -161,10 +161,12 @@ export async function authorizeLeagueChatRoom(room: LeagueChatRoom): Promise<'au
   const normalized = normalizeRoom(room);
   if (!normalized) return 'forbidden';
   try {
-    await ensureAnonUser();
+    const stableId = await ensureAnonUser();
+    if (!stableId) return 'unavailable';
+    await ensureStableAuthLink().catch(() => false);
     await initFirebaseAppCheckIfAvailable().catch(() => {});
-    const fn = callable<LeagueChatRoom, { ok: boolean }>('leagueChatAuthorizeRoom');
-    await fn(normalized);
+    const fn = callable<LeagueChatRoom & { stableId?: string }, { ok: boolean }>('leagueChatAuthorizeRoom');
+    await fn({ ...normalized, stableId });
     await cacheLeagueChatRoom(normalized);
     return 'authorized';
   } catch (e: any) {
@@ -172,8 +174,7 @@ export async function authorizeLeagueChatRoom(room: LeagueChatRoom): Promise<'au
     if (
       code.includes('permission-denied') ||
       code.includes('not-found') ||
-      code.includes('invalid-argument') ||
-      code.includes('unauthenticated')
+      code.includes('invalid-argument')
     ) {
       return 'forbidden';
     }
@@ -186,6 +187,7 @@ export async function resolveMyLeagueChatRoom(): Promise<LeagueChatRoom | null> 
   if (!db) return null;
   const uid = await ensureAnonUser().catch(() => null);
   if (!uid) return null;
+  await ensureStableAuthLink().catch(() => false);
   const snap = await db.collection('leaderboard').doc(uid).get().catch(() => null);
   const data = snap?.exists ? snap.data() : null;
   const groupId = typeof data?.groupId === 'string' ? data.groupId : '';
@@ -259,16 +261,19 @@ export async function sendLeagueChatMessage(room: LeagueChatRoom, text: string):
 
   lastSendAt = now;
   try {
-    await ensureAnonUser();
+    const stableId = await ensureAnonUser();
+    if (!stableId) return 'offline';
+    await ensureStableAuthLink().catch(() => false);
     await initFirebaseAppCheckIfAvailable().catch(() => {});
     const fn = callable<
-      { groupId: string; weekId: string; leagueId: number; text: string; platform: string; appVersion: string },
+      { groupId: string; weekId: string; leagueId: number; stableId?: string; text: string; platform: string; appVersion: string },
       { ok: boolean; status: 'sent' | 'review' | 'blocked'; messageId?: string }
     >('leagueChatSendMessage');
     const res = await fn({
       groupId: room.groupId,
       weekId: room.weekId,
       leagueId: room.leagueId,
+      stableId,
       text: cleanText,
       platform: Platform.OS,
       appVersion: Constants.expoConfig?.version ?? 'unknown',
@@ -285,8 +290,9 @@ export async function sendLeagueChatMessage(room: LeagueChatRoom, text: string):
 
 export async function reportLeagueChatMessage(message: LeagueChatMessage, reason: string): Promise<void> {
   if (!getFirestore()) return;
-  await ensureAnonUser();
+  const stableId = await ensureAnonUser();
+  await ensureStableAuthLink().catch(() => false);
   await initFirebaseAppCheckIfAvailable().catch(() => {});
-  const fn = callable<{ messageId: string; reason: string }, { ok: boolean }>('leagueChatReportMessage');
-  await fn({ messageId: message.id, reason });
+  const fn = callable<{ messageId: string; stableId?: string | null; reason: string }, { ok: boolean }>('leagueChatReportMessage');
+  await fn({ messageId: message.id, stableId, reason });
 }

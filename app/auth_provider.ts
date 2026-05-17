@@ -41,7 +41,7 @@ import {
   resetAnonAuthCacheForSignOut,
   SYNC_KEYS,
 } from './cloud_sync';
-import { reserveName, deleteMyLeaderboardEntry, deleteMyNameReservation } from './firestore_leaderboard';
+import { reserveName } from './firestore_leaderboard';
 import { loadShardsFromCloud } from './shards_system';
 import { logEvent, recordError } from './firebase';
 import { logAppCritical } from './app_health';
@@ -1222,19 +1222,13 @@ export async function signOutAndWipeForAccountSwitch(): Promise<SignOutSwitchRes
  *     Google после удаления аккаунта вис в "loading" навсегда.
  *
  * Шаги:
- *   1. deleteMyNameReservation() — освобождаем ник в name_index/{nameLower}.
- *      ОБЯЗАТЕЛЬНО до шагов 2-3, иначе и leaderboard, и users/{uid} уже удалены,
- *      и узнать nameLower будет неоткуда (а локальный AsyncStorage очистится в шаге 5).
- *   2. deleteMyLeaderboardEntry() — сносим запись из глобального лидерборда.
- *   3. deleteCloudData() — удаляем users/{stable_id} (+ дублирующий по authUid)
- *      и пытаемся удалить Firebase Auth юзера (currentUser.delete()).
- *      ВАЖНО: auth_links/{providerUid} тут НЕ удаляется (rules не позволяют),
- *      но он становится "orphan" и лечится в signInWithProvider при ре-логине
- *      (см. ветку !remoteUserSnap.exists в транзакции выше).
- *   4. signOutCurrentProvider() — Google revoke + Firebase signOut.
- *   5. wipeLocalAccountData() + AsyncStorage.clear() — сносим локальный кеш.
- *   6. clearStableId() — сносим UUID из SecureStore + AsyncStorage + памяти.
- *   7. ensureAnonUser() — поднимаем чистую анонимную сессию + новый stable_id.
+ *   1. deleteCloudData() calls accountDeleteMine on the backend. The Cloud Function
+ *      removes users/{stable_id}, subcollections, public/social docs, indexes,
+ *      auth_links, analytics/error records and the Firebase Auth user.
+ *   2. Only after the server confirms deletion do we sign out locally.
+ *   3. wipeLocalAccountData() + AsyncStorage.clear() remove local cache.
+ *   4. clearStableId() removes the UUID from SecureStore + AsyncStorage + memory.
+ *   5. ensureAnonUser() creates a clean anonymous session with a new stable_id.
  *
  * После этого вход через Google = поведение "первый запуск на новом устройстве":
  * созданный ранее auth_links/{providerUid} будет починен (см. signInWithProvider).
@@ -1244,32 +1238,15 @@ export type DeleteAccountResult =
   | { ok: false; reason: string };
 
 export async function deleteAccountAndWipe(): Promise<DeleteAccountResult> {
-  // 1. ОСВОБОЖДАЕМ НИК. Должно идти ДО deleteMyLeaderboardEntry/deleteCloudData,
-  //    иначе оба источника nameLower (leaderboard/{uid} + users/{uid}) будут уже
-  //    стёрты, а локальный AsyncStorage.user_name очистится в шаге 5. Без этого
-  //    при следующем онбординге тот же ник вернёт 'taken' (документ name_index/{nl}
-  //    остался с привязкой к старому uid).
-  try {
-    await deleteMyNameReservation();
-  } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: name reservation delete failed', e);
-  }
-
-  // 2. Удаляем облачные данные. Без сети это просто упадёт молча (catch внутри),
-  //    локальный wipe всё равно выполняем — иначе юзер останется в зомби-состоянии.
-  try {
-    await deleteMyLeaderboardEntry();
-  } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: leaderboard delete failed', e);
-  }
   try {
     await deleteCloudData();
   } catch (e) {
-    if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: cloud delete failed', e);
+    if (__DEV__) console.warn('[auth_provider] deleteAccountAndWipe: server delete failed', e);
+    return { ok: false, reason: 'cloud_delete_failed' };
   }
 
-  // 2. Выходим из Google + Firebase Auth (revoke session, чтобы при следующем
-  //    GoogleSignin.signIn() появился picker аккаунтов; иначе автологин в тот же).
+  // The server-side callable deletes Firestore data, linked auth records and the
+  // Firebase Auth user. Only after that succeeds do we remove local state.
   try {
     await signOutCurrentProvider();
   } catch (e) {

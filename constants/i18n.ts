@@ -1,6 +1,40 @@
-// Все тексты интерфейса (RU/UK — прод; ES — включается в dev, см. ENABLE_SPANISH_LOCALE)
-import { ENABLE_SPANISH_LOCALE } from '../app/config';
+// All interface text. `es` is a UI/source language for learning English.
+import { SPANISH_UI_LOCALE_ENABLED } from '../app/config';
+import {
+  ACTIVE_INTERFACE_SOURCE_LOCALES,
+  PLANNED_INTERFACE_SOURCE_LOCALES,
+  type HeisenbergSourceLocale,
+} from '../app/source_locales';
+
 export type Lang = 'ru' | 'uk' | 'es';
+export type PlannedInterfaceLang = Exclude<HeisenbergSourceLocale, Lang>;
+export type InterfaceLanguageOptionCode = Lang | PlannedInterfaceLang;
+export type PlannedTriLangCopy = Partial<Record<PlannedInterfaceLang, string>>;
+
+export const INTERFACE_LANGS = ACTIVE_INTERFACE_SOURCE_LOCALES satisfies readonly Lang[];
+export const PLANNED_INTERFACE_LANGS = PLANNED_INTERFACE_SOURCE_LOCALES satisfies readonly PlannedInterfaceLang[];
+
+export const INTERFACE_LANGUAGE_OPTIONS = [
+  { code: 'ru', native: 'Русский' },
+  { code: 'uk', native: 'Українська' },
+  { code: 'es', native: 'Español' },
+  { code: 'pt-BR', native: 'Português (Brasil)' },
+  { code: 'vi', native: 'Tiếng Việt' },
+  { code: 'id', native: 'Bahasa Indonesia' },
+  { code: 'tr', native: 'Türkçe' },
+  { code: 'pl', native: 'Polski' },
+] as const satisfies readonly { code: InterfaceLanguageOptionCode; native: string }[];
+
+export function isInterfaceLangEnabled(lang: InterfaceLanguageOptionCode): lang is Lang {
+  if (lang === 'ru' || lang === 'uk') return true;
+  if (lang === 'es') return SPANISH_UI_LOCALE_ENABLED;
+  return false;
+}
+
+export function coerceInterfaceLang(value: unknown): Lang | null {
+  if (value !== 'ru' && value !== 'uk' && value !== 'es') return null;
+  return isInterfaceLangEnabled(value) ? value : null;
+}
 
 export const T = {
   ru: {
@@ -314,21 +348,506 @@ export const T = {
     onboardingComplete: 'Has completado la configuración inicial',
     step:            (n: number, total: number) => `${n} de ${total} pasos`,
   },
+  'pt-BR': {
+    tabLessons:   'Lições',
+    tabQuizzes:   'Quizzes',
+    tabSettings:  'Configurações',
+
+    lessonN:      (n: number) => `Lição ${n}`,
+    locked:       'Indisponível',
+
+    continueLesson:   'Continuar a lição',
+    learnWords:       'Aprender palavras novas',
+    learnVerbs:       'Aprender formas verbais',
+    lessonDescription:'Descrição da lição',
+
+    noArticle:  'sem artigo',
+
+    oops:       'Ops, errei',
+    hint:       'Dica',
+    help:       'Ajuda',
+    oral:       'Em voz alta',
+    next:       'Próximo',
+    typeAnswer: 'Digite sua resposta...',
+
+    selectLevel:  'Escolha o nível',
+    easy:         'Fácil',
+    medium:       'Médio',
+    hard:         'Difícil',
+    quizDone:     'Quiz concluído!',
+    playAgain:    'Tentar de novo',
+    selectLevel2: 'Escolher outro nível',
+    fixErrors:    'Corrigir erros',
+    correct:      'certo',
+    reviewDone:   'Todos os erros foram corrigidos!',
+
+    training:     'Treino',
+    wordList:     'Lista de palavras',
+    allLearned:   'Você aprendeu todas as palavras!',
+    wordsInLesson:(n: number) => `${n} palavras nesta lição`,
+
+    settings:       'Configurações',
+    learningSettings:'Configurações de estudo',
+    autoCheck:      'Correção automática',
+    autoCheckSub:   'Verificar ao digitar a última palavra',
+    voiceOut:       'Ler respostas em voz alta',
+    voiceOutSub:    'Reproduzir a frase depois da resposta',
+    autoAdvance:    'Avanço automático',
+    autoAdvanceSub: 'Ir para a próxima pergunta quando a resposta estiver correta',
+    hardMode:       'Modo teclado',
+    hardModeSub:    'Digitar a frase inteira manualmente',
+    speed:          'Velocidade da voz',
+    speedHint:      'Solte o controle para ouvir um exemplo',
+    slow:           'Devagar',
+    fast:           'Rápido',
+    helpMenu:       'Ajuda',
+
+    chooseLanguage: 'Escolha o idioma',
+    enterName:      'Digite seu nome ou apelido',
+    namePlaceholder:'Seu nome...',
+    continueBtn:    'Continuar',
+    nameRequired:   'Digite um nome para continuar',
+
+    whyLearnEnglish: 'Por que você está aprendendo inglês?',
+    goalTourism:     'turismo',
+    goalWork:        'trabalho',
+    goalEmigration:  'emigração',
+    goalHobby:       'hobby',
+
+    hoursPerDay:     'Quanto tempo por dia?',
+    min5:            '5 minutos',
+    min15:           '15 minutos',
+    min30:           '30 minutos',
+    min60:           '60+ minutos',
+
+    currentLevel:    'Qual é o seu nível agora?',
+    levelA1:         'Iniciante (nunca estudei)',
+    levelA2:         'Básico (sei o alfabeto)',
+    levelB1:         'Intermediário (consigo conversar)',
+    levelB2:         'Bom (entendo filmes)',
+
+    personalPlan:    'Seu plano pessoal',
+    planForGoal:     (goal: string) => `Objetivo: aprender inglês para ${goal}`,
+    planIntensity:   (min: number) => `Intensidade: ${min} minutos por dia`,
+    yourForecast:    'SUA PREVISÃO:',
+    currentLevelLabel: 'Nível atual:',
+    targetLevelLabel: 'Nível-alvo:',
+    timeTillGoal:    'Tempo até o objetivo:',
+    daysEstimate:    (days: number) => `~${days} dias`,
+    lessonsCount:    (count: number) => `${count} lições no seu ritmo`,
+    hoursPerWeek:    (hours: number) => `~${hours} horas por semana de estudo`,
+    reachTargetBy:   (date: string) => `Você deve alcançar o nível-alvo até ${date}`,
+
+    preferredTime:   'Quando você costuma ter tempo livre?',
+    setNotifications: 'Lembre-me todos os dias às {time}',
+
+    congratulations: 'Parabéns!',
+    onboardingComplete: 'Você concluiu a configuração inicial',
+    step:            (n: number, total: number) => `${n} de ${total} passos`,
+  },
+  vi: {
+    tabLessons:   'Bài học',
+    tabQuizzes:   'Quiz',
+    tabSettings:  'Cài đặt',
+
+    lessonN:      (n: number) => `Bài ${n}`,
+    locked:       'Chưa khả dụng',
+
+    continueLesson:   'Tiếp tục bài học',
+    learnWords:       'Học từ mới',
+    learnVerbs:       'Học dạng động từ',
+    lessonDescription:'Mô tả bài học',
+
+    noArticle:  'không có mạo từ',
+
+    oops:       'Ôi, sai rồi',
+    hint:       'Gợi ý',
+    help:       'Trợ giúp',
+    oral:       'Nói thành tiếng',
+    next:       'Tiếp theo',
+    typeAnswer: 'Nhập câu trả lời...',
+
+    selectLevel:  'Chọn cấp độ',
+    easy:         'Dễ',
+    medium:       'Trung bình',
+    hard:         'Khó',
+    quizDone:     'Đã hoàn thành quiz!',
+    playAgain:    'Làm lại',
+    selectLevel2: 'Chọn cấp độ khác',
+    fixErrors:    'Sửa lỗi',
+    correct:      'đúng',
+    reviewDone:   'Đã sửa tất cả lỗi!',
+
+    training:     'Luyện tập',
+    wordList:     'Danh sách từ',
+    allLearned:   'Bạn đã học hết các từ!',
+    wordsInLesson:(n: number) => `${n} từ trong bài này`,
+
+    settings:       'Cài đặt',
+    learningSettings:'Cài đặt học tập',
+    autoCheck:      'Tự động kiểm tra',
+    autoCheckSub:   'Kiểm tra khi nhập từ cuối cùng',
+    voiceOut:       'Đọc câu trả lời',
+    voiceOutSub:    'Phát câu sau khi trả lời',
+    autoAdvance:    'Tự động chuyển tiếp',
+    autoAdvanceSub: 'Chuyển sang câu tiếp theo khi trả lời đúng',
+    hardMode:       'Chế độ bàn phím',
+    hardModeSub:    'Tự nhập cả câu bằng bàn phím',
+    speed:          'Tốc độ giọng đọc',
+    speedHint:      'Thả thanh trượt để nghe ví dụ',
+    slow:           'Chậm',
+    fast:           'Nhanh',
+    helpMenu:       'Trợ giúp',
+
+    chooseLanguage: 'Chọn ngôn ngữ',
+    enterName:      'Nhập tên hoặc biệt danh',
+    namePlaceholder:'Tên của bạn...',
+    continueBtn:    'Tiếp tục',
+    nameRequired:   'Nhập tên để tiếp tục',
+
+    whyLearnEnglish: 'Vì sao bạn học tiếng Anh?',
+    goalTourism:     'du lịch',
+    goalWork:        'công việc',
+    goalEmigration:  'di cư',
+    goalHobby:       'sở thích',
+
+    hoursPerDay:     'Bao nhiêu thời gian mỗi ngày?',
+    min5:            '5 phút',
+    min15:           '15 phút',
+    min30:           '30 phút',
+    min60:           '60+ phút',
+
+    currentLevel:    'Trình độ hiện tại của bạn?',
+    levelA1:         'Mới bắt đầu (chưa từng học)',
+    levelA2:         'Cơ bản (biết bảng chữ cái)',
+    levelB1:         'Trung cấp (có thể trò chuyện)',
+    levelB2:         'Khá tốt (hiểu phim)',
+
+    personalPlan:    'Kế hoạch cá nhân của bạn',
+    planForGoal:     (goal: string) => `Mục tiêu: học tiếng Anh cho ${goal}`,
+    planIntensity:   (min: number) => `Cường độ: ${min} phút mỗi ngày`,
+    yourForecast:    'DỰ BÁO CỦA BẠN:',
+    currentLevelLabel: 'Trình độ hiện tại:',
+    targetLevelLabel: 'Mục tiêu:',
+    timeTillGoal:    'Thời gian đến mục tiêu:',
+    daysEstimate:    (days: number) => `~${days} ngày`,
+    lessonsCount:    (count: number) => `${count} bài theo nhịp của bạn`,
+    hoursPerWeek:    (hours: number) => `~${hours} giờ học mỗi tuần`,
+    reachTargetBy:   (date: string) => `Bạn sẽ đạt mục tiêu vào khoảng ${date}`,
+
+    preferredTime:   'Bạn thường rảnh lúc nào?',
+    setNotifications: 'Nhắc tôi mỗi ngày lúc {time}',
+
+    congratulations: 'Chúc mừng!',
+    onboardingComplete: 'Bạn đã hoàn tất thiết lập ban đầu',
+    step:            (n: number, total: number) => `${n} / ${total} bước`,
+  },
+  id: {
+    tabLessons:   'Pelajaran',
+    tabQuizzes:   'Kuis',
+    tabSettings:  'Pengaturan',
+
+    lessonN:      (n: number) => `Pelajaran ${n}`,
+    locked:       'Tidak tersedia',
+
+    continueLesson:   'Lanjutkan pelajaran',
+    learnWords:       'Pelajari kata baru',
+    learnVerbs:       'Pelajari bentuk kata kerja',
+    lessonDescription:'Deskripsi pelajaran',
+
+    noArticle:  'tanpa artikel',
+
+    oops:       'Ups, salah',
+    hint:       'Petunjuk',
+    help:       'Bantuan',
+    oral:       'Lisan',
+    next:       'Berikutnya',
+    typeAnswer: 'Ketik jawaban...',
+
+    selectLevel:  'Pilih level',
+    easy:         'Mudah',
+    medium:       'Sedang',
+    hard:         'Sulit',
+    quizDone:     'Kuis selesai!',
+    playAgain:    'Coba lagi',
+    selectLevel2: 'Pilih level lain',
+    fixErrors:    'Perbaiki kesalahan',
+    correct:      'benar',
+    reviewDone:   'Semua kesalahan sudah diperbaiki!',
+
+    training:     'Latihan',
+    wordList:     'Daftar kata',
+    allLearned:   'Semua kata sudah dipelajari!',
+    wordsInLesson:(n: number) => `${n} kata di pelajaran ini`,
+
+    settings:       'Pengaturan',
+    learningSettings:'Pengaturan belajar',
+    autoCheck:      'Periksa otomatis',
+    autoCheckSub:   'Periksa saat mengetik kata terakhir',
+    voiceOut:       'Bacakan jawaban',
+    voiceOutSub:    'Putar frasa setelah menjawab',
+    autoAdvance:    'Lanjut otomatis',
+    autoAdvanceSub: 'Pindah ke pertanyaan berikutnya saat jawaban benar',
+    hardMode:       'Mode keyboard',
+    hardModeSub:    'Ketik seluruh kalimat secara manual',
+    speed:          'Kecepatan suara',
+    speedHint:      'Lepaskan slider untuk mendengar contoh',
+    slow:           'Lambat',
+    fast:           'Cepat',
+    helpMenu:       'Bantuan',
+
+    chooseLanguage: 'Pilih bahasa',
+    enterName:      'Masukkan nama atau nama panggilan',
+    namePlaceholder:'Nama kamu...',
+    continueBtn:    'Lanjutkan',
+    nameRequired:   'Masukkan nama untuk melanjutkan',
+
+    whyLearnEnglish: 'Untuk apa kamu belajar bahasa Inggris?',
+    goalTourism:     'pariwisata',
+    goalWork:        'pekerjaan',
+    goalEmigration:  'emigrasi',
+    goalHobby:       'hobi',
+
+    hoursPerDay:     'Berapa lama per hari?',
+    min5:            '5 menit',
+    min15:           '15 menit',
+    min30:           '30 menit',
+    min60:           '60+ menit',
+
+    currentLevel:    'Level kamu sekarang?',
+    levelA1:         'Pemula (belum pernah belajar)',
+    levelA2:         'Dasar (tahu alfabet)',
+    levelB1:         'Menengah (bisa bercakap-cakap)',
+    levelB2:         'Baik (paham film)',
+
+    personalPlan:    'Rencana personalmu',
+    planForGoal:     (goal: string) => `Tujuan: belajar bahasa Inggris untuk ${goal}`,
+    planIntensity:   (min: number) => `Intensitas: ${min} menit per hari`,
+    yourForecast:    'PERKIRAANMU:',
+    currentLevelLabel: 'Level saat ini:',
+    targetLevelLabel: 'Level target:',
+    timeTillGoal:    'Waktu menuju target:',
+    daysEstimate:    (days: number) => `~${days} hari`,
+    lessonsCount:    (count: number) => `${count} pelajaran sesuai ritmemu`,
+    hoursPerWeek:    (hours: number) => `~${hours} jam belajar per minggu`,
+    reachTargetBy:   (date: string) => `Kamu akan mencapai level target sekitar ${date}`,
+
+    preferredTime:   'Kapan biasanya kamu punya waktu luang?',
+    setNotifications: 'Ingatkan saya setiap hari pukul {time}',
+
+    congratulations: 'Selamat!',
+    onboardingComplete: 'Kamu sudah menyelesaikan pengaturan awal',
+    step:            (n: number, total: number) => `${n} dari ${total} langkah`,
+  },
+  tr: {
+    tabLessons:   'Dersler',
+    tabQuizzes:   'Quizler',
+    tabSettings:  'Ayarlar',
+
+    lessonN:      (n: number) => `Ders ${n}`,
+    locked:       'Kullanılamaz',
+
+    continueLesson:   'Derse devam et',
+    learnWords:       'Yeni kelimeler öğren',
+    learnVerbs:       'Fiil biçimlerini öğren',
+    lessonDescription:'Ders açıklaması',
+
+    noArticle:  'articlesız',
+
+    oops:       'Oops, hata yaptım',
+    hint:       'İpucu',
+    help:       'Yardım',
+    oral:       'Sesli',
+    next:       'Sonraki',
+    typeAnswer: 'Cevabını yaz...',
+
+    selectLevel:  'Seviye seç',
+    easy:         'Kolay',
+    medium:       'Orta',
+    hard:         'Zor',
+    quizDone:     'Quiz tamamlandı!',
+    playAgain:    'Tekrar dene',
+    selectLevel2: 'Başka seviye seç',
+    fixErrors:    'Hataları düzelt',
+    correct:      'doğru',
+    reviewDone:   'Tüm hatalar düzeltildi!',
+
+    training:     'Alıştırma',
+    wordList:     'Kelime listesi',
+    allLearned:   'Tüm kelimeleri öğrendin!',
+    wordsInLesson:(n: number) => `Bu derste ${n} kelime`,
+
+    settings:       'Ayarlar',
+    learningSettings:'Öğrenme ayarları',
+    autoCheck:      'Otomatik kontrol',
+    autoCheckSub:   'Son kelime yazılınca kontrol et',
+    voiceOut:       'Cevabı seslendir',
+    voiceOutSub:    'Cevaptan sonra ifadeyi oynat',
+    autoAdvance:    'Otomatik geçiş',
+    autoAdvanceSub: 'Doğru cevaptan sonra sonraki soruya geç',
+    hardMode:       'Klavye modu',
+    hardModeSub:    'Cümleyi klavyeyle elle yaz',
+    speed:          'Ses hızı',
+    speedHint:      'Örneği dinlemek için kaydırıcıyı bırak',
+    slow:           'Yavaş',
+    fast:           'Hızlı',
+    helpMenu:       'Yardım',
+
+    chooseLanguage: 'Dil seç',
+    enterName:      'Adını veya takma adını gir',
+    namePlaceholder:'Adın...',
+    continueBtn:    'Devam et',
+    nameRequired:   'Devam etmek için ad gir',
+
+    whyLearnEnglish: 'Neden İngilizce öğreniyorsun?',
+    goalTourism:     'turizm',
+    goalWork:        'iş',
+    goalEmigration:  'göç',
+    goalHobby:       'hobi',
+
+    hoursPerDay:     'Günde ne kadar zaman?',
+    min5:            '5 dakika',
+    min15:           '15 dakika',
+    min30:           '30 dakika',
+    min60:           '60+ dakika',
+
+    currentLevel:    'Şu anki seviyen?',
+    levelA1:         'Başlangıç (hiç çalışmadım)',
+    levelA2:         'Temel (alfabeyi biliyorum)',
+    levelB1:         'Orta (konuşabiliyorum)',
+    levelB2:         'İyi (filmleri anlıyorum)',
+
+    personalPlan:    'Kişisel planın',
+    planForGoal:     (goal: string) => `Hedef: ${goal} için İngilizce öğrenmek`,
+    planIntensity:   (min: number) => `Yoğunluk: günde ${min} dakika`,
+    yourForecast:    'TAHMİNİN:',
+    currentLevelLabel: 'Mevcut seviye:',
+    targetLevelLabel: 'Hedef seviye:',
+    timeTillGoal:    'Hedefe kalan süre:',
+    daysEstimate:    (days: number) => `~${days} gün`,
+    lessonsCount:    (count: number) => `Ritmine göre ${count} ders`,
+    hoursPerWeek:    (hours: number) => `Haftada ~${hours} saat çalışma`,
+    reachTargetBy:   (date: string) => `Hedef seviyeye yaklaşık ${date} tarihinde ulaşırsın`,
+
+    preferredTime:   'Genelde ne zaman boş olursun?',
+    setNotifications: 'Her gün {time} saatinde hatırlat',
+
+    congratulations: 'Tebrikler!',
+    onboardingComplete: 'İlk kurulumu tamamladın',
+    step:            (n: number, total: number) => `${n} / ${total} adım`,
+  },
+  pl: {
+    tabLessons:   'Lekcje',
+    tabQuizzes:   'Quizy',
+    tabSettings:  'Ustawienia',
+
+    lessonN:      (n: number) => `Lekcja ${n}`,
+    locked:       'Niedostępne',
+
+    continueLesson:   'Kontynuuj lekcję',
+    learnWords:       'Ucz się nowych słów',
+    learnVerbs:       'Ucz się form czasowników',
+    lessonDescription:'Opis lekcji',
+
+    noArticle:  'bez rodzajnika',
+
+    oops:       'Ups, błąd',
+    hint:       'Podpowiedź',
+    help:       'Pomoc',
+    oral:       'Na głos',
+    next:       'Dalej',
+    typeAnswer: 'Wpisz odpowiedź...',
+
+    selectLevel:  'Wybierz poziom',
+    easy:         'Łatwy',
+    medium:       'Średni',
+    hard:         'Trudny',
+    quizDone:     'Quiz zakończony!',
+    playAgain:    'Spróbuj ponownie',
+    selectLevel2: 'Wybierz inny poziom',
+    fixErrors:    'Popraw błędy',
+    correct:      'poprawnie',
+    reviewDone:   'Wszystkie błędy poprawione!',
+
+    training:     'Trening',
+    wordList:     'Lista słów',
+    allLearned:   'Wszystkie słowa są już nauczone!',
+    wordsInLesson:(n: number) => `${n} słów w tej lekcji`,
+
+    settings:       'Ustawienia',
+    learningSettings:'Ustawienia nauki',
+    autoCheck:      'Automatyczne sprawdzanie',
+    autoCheckSub:   'Sprawdzaj po wpisaniu ostatniego słowa',
+    voiceOut:       'Odczytaj odpowiedź',
+    voiceOutSub:    'Odtwarzaj frazę po odpowiedzi',
+    autoAdvance:    'Automatyczne przejście',
+    autoAdvanceSub: 'Przejdź do następnego pytania po poprawnej odpowiedzi',
+    hardMode:       'Tryb klawiatury',
+    hardModeSub:    'Wpisuj całe zdanie ręcznie',
+    speed:          'Szybkość wymowy',
+    speedHint:      'Puść suwak, aby usłyszeć przykład',
+    slow:           'Wolno',
+    fast:           'Szybko',
+    helpMenu:       'Pomoc',
+
+    chooseLanguage: 'Wybierz język',
+    enterName:      'Wpisz imię albo nick',
+    namePlaceholder:'Twoje imię...',
+    continueBtn:    'Kontynuuj',
+    nameRequired:   'Wpisz imię, aby kontynuować',
+
+    whyLearnEnglish: 'Po co uczysz się angielskiego?',
+    goalTourism:     'turystyka',
+    goalWork:        'praca',
+    goalEmigration:  'emigracja',
+    goalHobby:       'hobby',
+
+    hoursPerDay:     'Ile czasu dziennie?',
+    min5:            '5 minut',
+    min15:           '15 minut',
+    min30:           '30 minut',
+    min60:           '60+ minut',
+
+    currentLevel:    'Twój obecny poziom?',
+    levelA1:         'Początkujący (nigdy się nie uczyłem)',
+    levelA2:         'Podstawy (znam alfabet)',
+    levelB1:         'Średni (mogę rozmawiać)',
+    levelB2:         'Dobry (rozumiem filmy)',
+
+    personalPlan:    'Twój osobisty plan',
+    planForGoal:     (goal: string) => `Cel: nauczyć się angielskiego do: ${goal}`,
+    planIntensity:   (min: number) => `Intensywność: ${min} minut dziennie`,
+    yourForecast:    'TWOJA PROGNOZA:',
+    currentLevelLabel: 'Obecny poziom:',
+    targetLevelLabel: 'Poziom docelowy:',
+    timeTillGoal:    'Czas do celu:',
+    daysEstimate:    (days: number) => `~${days} dni`,
+    lessonsCount:    (count: number) => `${count} lekcji w twoim tempie`,
+    hoursPerWeek:    (hours: number) => `~${hours} godzin nauki tygodniowo`,
+    reachTargetBy:   (date: string) => `Osiągniesz poziom docelowy około ${date}`,
+
+    preferredTime:   'Kiedy zwykle masz wolną chwilę?',
+    setNotifications: 'Przypominaj mi codziennie o {time}',
+
+    congratulations: 'Gratulacje!',
+    onboardingComplete: 'Konfiguracja początkowa zakończona',
+    step:            (n: number, total: number) => `${n} z ${total} kroków`,
+  },
 } as const;
 
 export type Strings = typeof T['ru'];
 
-/** Интерфейс (RU / UK / ES в прод-пакетах). */
-export function triLang(lang: Lang, txt: { ru: string; uk: string; es: string }): string {
+/** Интерфейс (RU / UK / ES в прод-пакетах; planned keys are stored for future activation). */
+export function triLang(lang: Lang, txt: { ru: string; uk: string; es: string } & PlannedTriLangCopy): string {
   if (lang === 'uk') return txt.uk;
-  if (lang === 'es' && ENABLE_SPANISH_LOCALE) return txt.es;
+  if (lang === 'es' && isInterfaceLangEnabled(lang)) return txt.es;
   return txt.ru;
 }
 
 /** Ключ строк в `T` для текущего языка интерфейса (RU / UK / ES). */
 export function legacyRuUk(lang: Lang): 'ru' | 'uk' | 'es' {
   if (lang === 'uk') return 'uk';
-  if (lang === 'es' && ENABLE_SPANISH_LOCALE) return 'es';
+  if (lang === 'es' && isInterfaceLangEnabled(lang)) return 'es';
   return 'ru';
 }
 
@@ -337,6 +856,6 @@ export type UiBundleLang = 'ru' | 'uk' | 'es';
 
 export function bundleLang(lang: Lang): UiBundleLang {
   if (lang === 'uk') return 'uk';
-  if (lang === 'es' && ENABLE_SPANISH_LOCALE) return 'es';
+  if (lang === 'es' && isInterfaceLangEnabled(lang)) return 'es';
   return 'ru';
 }

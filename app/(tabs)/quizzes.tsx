@@ -30,7 +30,7 @@ import LevelBadge from '../../components/LevelBadge';
 import PremiumCard from '../../components/PremiumCard';
 import ScreenGradient from '../../components/ScreenGradient';
 import { useTheme } from '../../components/ThemeContext';
-import { triLang } from '../../constants/i18n';
+import { triLang, type PlannedInterfaceLang } from '../../constants/i18n';
 import XpGainBadge from '../../components/XpGainBadge';
 import { isCorrectAnswer } from '../../constants/contractions';
 import { getXPProgress } from '../../constants/theme';
@@ -107,6 +107,15 @@ function diffWords(wrong: string, correct: string): { word: string; isWrong: boo
 // Используем QuizPhrase из quiz_data.ts
 type Phrase = QuizPhrase;
 
+const quizSourceTextForPlanned = (phrase: Phrase, locale: PlannedInterfaceLang): string =>
+  phrase.sourceLocale === locale ? phrase.sourceText ?? '' : '';
+
+const quizSourceExplanationsForPlanned = (phrase: Phrase, locale: PlannedInterfaceLang): string[] | undefined =>
+  phrase.sourceLocale === locale && phrase.sourceExplanations?.length ? phrase.sourceExplanations : undefined;
+
+const isPlannedInterfaceLang = (value: unknown): value is PlannedInterfaceLang =>
+  value === 'pt-BR' || value === 'vi' || value === 'id' || value === 'tr' || value === 'pl';
+
 // Компонент-счётчик XP: слушает Animated.Value и обновляет текст
 function XpCounter({ anim, xpNeeded, textStyle }: { anim: Animated.Value; xpNeeded: number; textStyle: object }) {
   const [displayed, setDisplayed] = useState(0);
@@ -137,9 +146,14 @@ const THEME_PALETTES: Record<string, Record<Level, { gradA: string; gradB: strin
     hard:   { gradA: '#1E2D00', gradB: '#080A00', accent: '#BFFF00' },
   },
   gold: {
-    easy:   { gradA: '#2D1E00', gradB: '#0E0800', accent: '#FBB040' },
-    medium: { gradA: '#2D0E12', gradB: '#0E0508', accent: '#E8735A' },
-    hard:   { gradA: '#002D2A', gradB: '#000E0D', accent: '#00B8A9' },
+    easy:   { gradA: '#2A210F', gradB: '#080705', accent: '#F1CC72' },
+    medium: { gradA: '#24180A', gradB: '#070504', accent: '#D7AD56' },
+    hard:   { gradA: '#191108', gradB: '#040403', accent: '#FFE3A0' },
+  },
+  coral: {
+    easy:   { gradA: '#14142A', gradB: '#25254A', accent: '#4A90FF' },
+    medium: { gradA: '#1E1E3C', gradB: '#3A1630', accent: '#FF6464' },
+    hard:   { gradA: '#0A0A18', gradB: '#2E2E58', accent: '#FFD060' },
   },
   ocean: {
     easy:   { gradA: '#0C2840', gradB: '#1A6FA0', accent: '#30C0FF' },
@@ -160,30 +174,46 @@ const THEME_TEXT: Record<string, { primary: string; secondary: string }> = {
   light:  { primary: '#0F172A', secondary: 'rgba(15,23,42,0.6)'   },
   neon:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
   gold:   { primary: '#FFFFFF', secondary: 'rgba(255,255,255,0.6)' },
+  coral:  { primary: '#FFFFFF', secondary: 'rgba(220,220,245,0.72)' },
   ocean:  { primary: 'rgba(240,252,255,0.96)', secondary: 'rgba(200,230,255,0.78)'  },
   sakura: { primary: 'rgba(255,248,252,0.96)', secondary: 'rgba(255,210,230,0.78)'  },
 };
 
 const LEVEL_CONFIG = {
   easy: {
-    labelRU: 'Легко', labelUK: 'Легко', labelES: 'Fácil', sub: 'A1–A2', color: '#4ADE80', pts: 1,
+    labelRU: 'Легко', labelUK: 'Легко', labelES: 'Fácil', labelPTBR: 'Fácil', labelVI: 'Dễ', labelID: 'Mudah', labelTR: 'Kolay', labelPL: 'Łatwy', sub: 'A1-A2', color: '#4ADE80', pts: 1,
     tagRU: 'Простые фразы повседневной речи',
     tagUK: 'Прості фрази повсякденної мови',
     tagES: 'Frases útiles del día a día',
+    tagPTBR: 'Frases úteis do dia a dia',
+    tagVI: 'Các cụm từ hữu ích hằng ngày',
+    tagID: 'Frasa berguna untuk sehari-hari',
+    tagTR: 'Günlük hayatta kullanılan pratik ifadeler',
+    tagPL: 'Przydatne zwroty na co dzień',
     icon: '🌿',
   },
   medium: {
-    labelRU: 'Средне', labelUK: 'Середньо', labelES: 'Medio', sub: 'B1–B2', color: '#FB923C', pts: 2,
-    tagRU: 'Сложнее — больше опыта за серию',
-    tagUK: 'Складніше — більше досвіду за серію',
-    tagES: 'Más difícil — más XP si mantienes la racha',
+    labelRU: 'Средне', labelUK: 'Середньо', labelES: 'Medio', labelPTBR: 'Médio', labelVI: 'Trung bình', labelID: 'Sedang', labelTR: 'Orta', labelPL: 'Średni', sub: 'B1-B2', color: '#FB923C', pts: 2,
+    tagRU: 'Сложнее - больше опыта за серию',
+    tagUK: 'Складніше - більше досвіду за серію',
+    tagES: 'Más difícil: más XP si mantienes la racha',
+    tagPTBR: 'Mais difícil: mais XP se você mantiver a sequência',
+    tagVI: 'Khó hơn: nhiều XP hơn nếu bạn giữ chuỗi',
+    tagID: 'Lebih sulit: lebih banyak XP jika streak-mu berlanjut',
+    tagTR: 'Daha zor: seriyi korursan daha fazla XP',
+    tagPL: 'Trudniej: więcej XP, jeśli utrzymasz serię',
     icon: '🔥',
   },
   hard: {
-    labelRU: 'Сложно', labelUK: 'Складно', labelES: 'Difícil', sub: 'C1–C2', color: '#A78BFA', pts: 3,
+    labelRU: 'Сложно', labelUK: 'Складно', labelES: 'Difícil', labelPTBR: 'Difícil', labelVI: 'Khó', labelID: 'Sulit', labelTR: 'Zor', labelPL: 'Trudny', sub: 'C1-C2', color: '#A78BFA', pts: 3,
     tagRU: 'Элитный уровень. Максимум опыта',
     tagUK: 'Елітний рівень. Максимум досвіду',
-    tagES: 'Nivel experto — máximo XP',
+    tagES: 'Nivel experto: máximo XP',
+    tagPTBR: 'Nível especialista: XP máximo',
+    tagVI: 'Cấp chuyên gia: XP tối đa',
+    tagID: 'Level ahli: XP maksimal',
+    tagTR: 'Uzman seviyesi: maksimum XP',
+    tagPL: 'Poziom ekspercki: maksymalne XP',
     icon: '💎',
   },
 };
@@ -353,7 +383,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
         <Text style={{ color: screenTitleColor, fontSize: f.numMd, fontWeight:'700', marginLeft:12, flex:1 }} adjustsFontSizeToFit numberOfLines={1}>
           {s.quizzes.selectLevel}
         </Text>
-        <EnergyBar size={20} />
+        <EnergyBar size={30} />
         <PremiumCard
           level={1}
           testID="quiz-level-select-settings"
@@ -369,8 +399,26 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
       <View style={{ flex:1, justifyContent:'center', paddingHorizontal:20, gap:8 }}>
         {(Object.keys(LEVEL_CONFIG) as Level[]).map(lv => {
           const c        = LEVEL_CONFIG[lv];
-          const lbl      = triLang(lang, { ru: c.labelRU, uk: c.labelUK, es: c.labelES });
-          const tag      = triLang(lang, { ru: c.tagRU, uk: c.tagUK, es: c.tagES });
+          const lbl      = triLang(lang, {
+  ru: c.labelRU,
+  uk: c.labelUK,
+  es: c.labelES,
+  "pt-BR": c.labelPTBR,
+  vi: c.labelVI,
+  id: c.labelID,
+  tr: c.labelTR,
+  pl: c.labelPL,
+});
+          const tag      = triLang(lang, {
+  ru: c.tagRU,
+  uk: c.tagUK,
+  es: c.tagES,
+  "pt-BR": c.tagPTBR,
+  vi: c.tagVI,
+  id: c.tagID,
+  tr: c.tagTR,
+  pl: c.tagPL,
+});
           const lockedByLevel = !DEV_MODE && !isPremium && lv !== 'easy';
           const lockedByDailyLimit = !DEV_MODE && !isPremium && lv === 'easy' && freeQuizState.exhausted;
           const locked   = lockedByLevel || lockedByDailyLimit;
@@ -412,7 +460,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                     borderBottomLeftRadius: isSelected ? 0 : 20,
                     borderBottomRightRadius: isSelected ? 0 : 20,
                     borderWidth: isSelected ? 2 : 1,
-                    borderColor: isSelected ? accent : (locked ? t.border : `${c.color}40`),
+                    borderColor: isSelected ? accent : (locked ? t.border : `${accent}40`),
                     borderBottomColor: isSelected ? 'transparent' : undefined,
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -437,7 +485,16 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                           <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
                           <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
                             {lockedByDailyLimit
-                              ? triLang(lang, { ru: 'Лимит', uk: 'Ліміт', es: 'Límite' })
+                              ? triLang(lang, {
+  ru: 'Лимит',
+  uk: 'Ліміт',
+  es: 'Límite',
+  "pt-BR": 'Limite',
+  vi: 'Giới hạn',
+  id: 'Batas',
+  tr: 'Limit',
+  pl: 'Limit',
+})
                               : 'Premium'}
                           </Text>
                         </View>
@@ -489,7 +546,16 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                     />
                     {/* Text */}
                     <Text style={{ color: accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
-                      {triLang(lang, { ru: 'Начать квиз', uk: 'Почати квіз', es: 'Empezar cuestionario' })} · {lbl}
+                      {triLang(lang, {
+  ru: 'Начать квиз',
+  uk: 'Почати квіз',
+  es: 'Empezar cuestionario',
+  "pt-BR": 'Começar quiz',
+  vi: 'Bắt đầu quiz',
+  id: 'Mulai kuis',
+  tr: 'Quize başla',
+  pl: 'Rozpocznij quiz',
+})} · {lbl}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -517,10 +583,15 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
             />
             <Text style={{ color: freeQuizState.exhausted ? t.textMuted : t.textSecond, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
               {triLang(lang, {
-                ru: `Бесплатные квизы сегодня: ${freeQuizState.left}/${freeQuizState.limit}`,
-                uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
-                es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
-              })}
+  ru: `Бесплатные квизы сегодня: ${freeQuizState.left}/${freeQuizState.limit}`,
+  uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
+  es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
+  "pt-BR": `Quizzes grátis hoje: ${freeQuizState.left}/${freeQuizState.limit}`,
+  vi: `Quiz miễn phí hôm nay: ${freeQuizState.left}/${freeQuizState.limit}`,
+  id: `Kuis gratis hari ini: ${freeQuizState.left}/${freeQuizState.limit}`,
+  tr: `Bugünkü ücretsiz quizler: ${freeQuizState.left}/${freeQuizState.limit}`,
+  pl: `Darmowe quizy dzisiaj: ${freeQuizState.left}/${freeQuizState.limit}`,
+})}
             </Text>
           </View>
         )}
@@ -554,7 +625,17 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
   const onGradMuted = isLightTheme ? quizGradTxt.secondary : t.textMuted;
   const onGradSecondary = isLightTheme ? quizGradTxt.secondary : t.textSecond;
   const cfg   = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
-  const label = triLang(lang, { ru: cfg.labelRU, uk: cfg.labelUK, es: cfg.labelES });
+  const levelAccent = cfg.color;
+  const label = triLang(lang, {
+  ru: cfg.labelRU,
+  uk: cfg.labelUK,
+  es: cfg.labelES,
+  "pt-BR": cfg.labelPTBR,
+  vi: cfg.labelVI,
+  id: cfg.labelID,
+  tr: cfg.labelTR,
+  pl: cfg.labelPL,
+});
 
   const [retryCount, setRetryCount] = useState(0);
 
@@ -831,10 +912,15 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
         <ContentWrap>
         <Text style={{ color:onGradMuted, fontSize: f.body }}>
           {triLang(lang, {
-            ru: 'Вопросы временно недоступны',
-            uk: 'Питання тимчасово недоступні',
-            es: 'No hay preguntas disponibles por ahora.',
-          })}
+  ru: 'Вопросы временно недоступны',
+  uk: 'Питання тимчасово недоступні',
+  es: 'No hay preguntas disponibles por ahora.',
+  "pt-BR": 'As perguntas estão temporariamente indisponíveis.',
+  vi: 'Hiện chưa có câu hỏi.',
+  id: 'Pertanyaan sementara tidak tersedia.',
+  tr: 'Sorular şu anda kullanılamıyor.',
+  pl: 'Pytania są chwilowo niedostępne.',
+})}
         </Text>
         </ContentWrap>
       </View>
@@ -849,10 +935,15 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
         <ContentWrap>
         <Text style={{ color:onGradMuted, fontSize: f.body }}>
           {triLang(lang, {
-            ru: 'Что-то пошло не так',
-            uk: 'Щось пішло не так',
-            es: 'Algo salió mal',
-          })}
+  ru: 'Что-то пошло не так',
+  uk: 'Щось пішло не так',
+  es: 'Algo salió mal',
+  "pt-BR": 'Algo deu errado',
+  vi: 'Đã xảy ra lỗi',
+  id: 'Ada yang salah',
+  tr: 'Bir şeyler ters gitti',
+  pl: 'Coś poszło nie tak',
+})}
         </Text>
         </ContentWrap>
       </View>
@@ -1021,15 +1112,24 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
     const shareLang = quizShareMessageLang(lang);
     const _qp = (a: string[]) => a[Math.floor(Math.random() * a.length)];
     const rankInfo = pct === 100
-      ? { icon:'🏆', labelRU: _qp(['Безупречно!','Идеально!','Гений!','Просто огонь! 🔥','Легенда!']), labelUK: _qp(['Бездоганно!','Ідеально!','Геній!','Просто вогонь! 🔥','Легенда!']), labelES: _qp(['¡Impecable!','¡Perfecto!','¡Genial!','¡Qué nivelazo! 🔥','¡Eres una leyenda!']), color:'#D4A017' }
+      ? { icon:'🏆', labelRU: _qp(['Безупречно!','Идеально!','Гений!','Просто огонь! 🔥','Легенда!']), labelUK: _qp(['Бездоганно!','Ідеально!','Геній!','Просто вогонь! 🔥','Легенда!']), labelES: _qp(['¡Impecable!','¡Perfecto!','¡Genial!','¡Qué nivelazo! 🔥','¡Eres una leyenda!']), labelPTBR: _qp(['Impecável!','Perfeito!','Genial!','Que nível! 🔥','Lenda!']), labelVI: _qp(['Hoàn hảo!','Tuyệt đối!','Xuất sắc!','Quá đỉnh! 🔥','Huyền thoại!']), labelID: _qp(['Sempurna!','Mantap sekali!','Jenius!','Level tinggi! 🔥','Legenda!']), labelTR: _qp(['Kusursuz!','Mükemmel!','Harika!','Çok iyi! 🔥','Efsane!']), labelPL: _qp(['Bezbłędnie!','Idealnie!','Genialnie!','Ale poziom! 🔥','Legenda!']), color:'#D4A017' }
       : pct >= 90
-      ? { icon:'🥇', labelRU: _qp(['Отлично!','Великолепно!','Ты машина!','Так держать!','Мощно!']), labelUK: _qp(['Відмінно!','Чудово!','Ти машина!','Так тримати!','Потужно!']), labelES: _qp(['¡Excelente!','¡Magnífico!','¡Qué ritmo!','¡Así se hace!','¡Impresionante!']), color:'#D4A017' }
+      ? { icon:'🥇', labelRU: _qp(['Отлично!','Великолепно!','Ты машина!','Так держать!','Мощно!']), labelUK: _qp(['Відмінно!','Чудово!','Ти машина!','Так тримати!','Потужно!']), labelES: _qp(['¡Excelente!','¡Magnífico!','¡Qué ritmo!','¡Así se hace!','¡Impresionante!']), labelPTBR: _qp(['Excelente!','Magnífico!','Que ritmo!','É assim mesmo!','Impressionante!']), labelVI: _qp(['Xuất sắc!','Tuyệt vời!','Nhịp tốt quá!','Cứ thế nhé!','Ấn tượng!']), labelID: _qp(['Luar biasa!','Hebat!','Ritmamu bagus!','Begitu caranya!','Mengesankan!']), labelTR: _qp(['Harika!','Muhteşem!','Ritmin çok iyi!','Aynen böyle!','Etkileyici!']), labelPL: _qp(['Świetnie!','Znakomicie!','Dobry rytm!','Tak trzymać!','Imponująco!']), color:'#D4A017' }
       : pct >= 70
-      ? { icon:'🥈', labelRU: _qp(['Хорошо!','Неплохо!','Молодец!','Растёшь!','Продолжай!']), labelUK: _qp(['Добре!','Непогано!','Молодець!','Зростаєш!','Продовжуй!']), labelES: _qp(['¡Bien!','¡No está mal!','¡Buen trabajo!','¡Vas mejorando!','¡Sigue así!']), color:t.textSecond }
+      ? { icon:'🥈', labelRU: _qp(['Хорошо!','Неплохо!','Молодец!','Растёшь!','Продолжай!']), labelUK: _qp(['Добре!','Непогано!','Молодець!','Зростаєш!','Продовжуй!']), labelES: _qp(['¡Bien!','¡No está mal!','¡Buen trabajo!','¡Vas mejorando!','¡Sigue así!']), labelPTBR: _qp(['Bom!','Nada mal!','Bom trabalho!','Você está melhorando!','Continue assim!']), labelVI: _qp(['Tốt!','Không tệ!','Làm tốt lắm!','Bạn đang tiến bộ!','Tiếp tục nhé!']), labelID: _qp(['Bagus!','Lumayan!','Kerja bagus!','Kamu makin maju!','Lanjutkan!']), labelTR: _qp(['İyi!','Fena değil!','İyi iş!','Gelişiyorsun!','Devam et!']), labelPL: _qp(['Dobrze!','Nieźle!','Dobra robota!','Robisz postępy!','Tak dalej!']), color:t.textSecond }
       : pct >= 50
-      ? { icon:'🥉', labelRU: _qp(['Неплохо','Можно лучше!','Ещё немного!','Почти!']), labelUK: _qp(['Непогано','Можна краще!','Ще трохи!','Майже!']), labelES: _qp(['¡No está mal!','¡Se puede mejorar!','¡Un poco más!','¡Casi!','¡Tú puedes!']), color:t.textSecond }
-      : { icon:'📚', labelRU: _qp(['Практикуйся!','Не сдавайся!','Повтори и попробуй снова!','Учимся!']), labelUK: _qp(['Тренуйся!','Не здавайся!','Повтори і спробуй знову!','Навчаємось!']), labelES: _qp(['¡Sigue practicando!','¡No te rindas!','¡Repasa e inténtalo de nuevo!','¡Ánimo, tú puedes!']), color:t.textMuted };
-    const rankLabel = triLang(lang, { ru: rankInfo.labelRU, uk: rankInfo.labelUK, es: rankInfo.labelES });
+      ? { icon:'🥉', labelRU: _qp(['Неплохо','Можно лучше!','Ещё немного!','Почти!']), labelUK: _qp(['Непогано','Можна краще!','Ще трохи!','Майже!']), labelES: _qp(['¡No está mal!','¡Se puede mejorar!','¡Un poco más!','¡Casi!','¡Tú puedes!']), labelPTBR: _qp(['Nada mal','Dá para melhorar!','Mais um pouco!','Quase!']), labelVI: _qp(['Không tệ','Có thể tốt hơn!','Thêm chút nữa!','Gần được rồi!']), labelID: _qp(['Lumayan','Masih bisa lebih baik!','Sedikit lagi!','Hampir!']), labelTR: _qp(['Fena değil','Daha iyi olabilir!','Biraz daha!','Neredeyse!']), labelPL: _qp(['Nieźle','Może być lepiej!','Jeszcze trochę!','Prawie!']), color:t.textSecond }
+      : { icon:'📚', labelRU: _qp(['Практикуйся!','Не сдавайся!','Повтори и попробуй снова!','Учимся!']), labelUK: _qp(['Тренуйся!','Не здавайся!','Повтори і спробуй знову!','Навчаємось!']), labelES: _qp(['¡Sigue practicando!','¡No te rindas!','¡Repasa e inténtalo de nuevo!','¡Ánimo, tú puedes!']), labelPTBR: _qp(['Continue praticando!','Não desista!','Revise e tente de novo!','Vamos aprender!']), labelVI: _qp(['Tiếp tục luyện tập!','Đừng bỏ cuộc!','Ôn lại rồi thử lại!','Mình học tiếp nhé!']), labelID: _qp(['Terus berlatih!','Jangan menyerah!','Ulangi dan coba lagi!','Kita belajar!']), labelTR: _qp(['Pratik yapmaya devam et!','Vazgeçme!','Tekrar et ve yeniden dene!','Öğreniyoruz!']), labelPL: _qp(['Ćwicz dalej!','Nie poddawaj się!','Powtórz i spróbuj jeszcze raz!','Uczymy się!']), color:t.textMuted };
+    const rankLabel = triLang(lang, {
+  ru: rankInfo.labelRU,
+  uk: rankInfo.labelUK,
+  es: rankInfo.labelES,
+  "pt-BR": rankInfo.labelPTBR,
+  vi: rankInfo.labelVI,
+  id: rankInfo.labelID,
+  tr: rankInfo.labelTR,
+  pl: rankInfo.labelPL,
+});
     return (
       <ScreenGradient>
       <View style={{ flex:1 }}>
@@ -1044,7 +1144,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           <Text style={{ color:t.textSecond, fontSize: f.numLg + 8, fontWeight:'700', marginBottom:8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
           {/* "+X опыта" — анимированно летит вниз к полоске */}
           <Animated.Text style={{ color:t.correct, fontSize: f.h2, fontWeight:'600', marginBottom: bonusXP > 0 ? 4 : 16, transform:[{translateY: xpFlyY}], opacity: xpFlyOpacity }}>
-            +{Math.round(earnedXP || score)} {triLang(lang, { ru: 'опыта', uk: 'досвіду', es: 'XP' })}
+            +{Math.round(earnedXP || score)} {triLang(lang, {
+  ru: 'опыта',
+  uk: 'досвіду',
+  es: 'XP',
+  "pt-BR": 'XP',
+  vi: 'XP',
+  id: 'XP',
+  tr: 'XP',
+  pl: 'XP',
+})}
           </Animated.Text>
           {bonusXP > 0 && (
             <XpGainBadge amount={Math.round(bonusXP)} visible={true} style={{ color: '#D4A017', fontSize: f.body, fontWeight: '600', marginBottom: 16 }} />
@@ -1057,7 +1166,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                 <LevelBadge level={lv} size={40} />
                 <View style={{ flex:1 }}>
                   <Text style={{ color:t.textPrimary, fontSize:f.body, fontWeight:'700' }}>
-                    {triLang(lang, { ru: `Уровень ${lv}`, uk: `Рівень ${lv}`, es: `Nivel ${lv}` })}
+                    {triLang(lang, {
+  ru: `Уровень ${lv}`,
+  uk: `Рівень ${lv}`,
+  es: `Nivel ${lv}`,
+  "pt-BR": `Nível ${lv}`,
+  vi: `Cấp ${lv}`,
+  id: `Level ${lv}`,
+  tr: `Seviye ${lv}`,
+  pl: `Poziom ${lv}`,
+})}
                   </Text>
                   <View style={{ height:5, backgroundColor:t.bgSurface, borderRadius:3, overflow:'hidden', marginTop:5 }}>
                     <Animated.View style={{ height:'100%', width: xpBarAnim.interpolate({ inputRange:[0,1], outputRange:['0%','100%'] }), backgroundColor:'#D4A017', borderRadius:3 }} />
@@ -1084,16 +1202,21 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
               >
                 <Text style={{ color:'#F87171', fontSize: f.bodyLg, fontWeight:'600' }}>
                   {triLang(lang, {
-                    ru: `🔄 Исправить ошибки (${wrongPhrases.length})`,
-                    uk: `🔄 Виправити помилки (${wrongPhrases.length})`,
-                    es: `🔄 Repasar errores (${wrongPhrases.length})`,
-                  })}
+  ru: `🔄 Исправить ошибки (${wrongPhrases.length})`,
+  uk: `🔄 Виправити помилки (${wrongPhrases.length})`,
+  es: `🔄 Repasar errores (${wrongPhrases.length})`,
+  "pt-BR": `🔄 Corrigir erros (${wrongPhrases.length})`,
+  vi: `🔄 Sửa lỗi (${wrongPhrases.length})`,
+  id: `🔄 Perbaiki kesalahan (${wrongPhrases.length})`,
+  tr: `🔄 Hataları düzelt (${wrongPhrases.length})`,
+  pl: `🔄 Popraw błędy (${wrongPhrases.length})`,
+})}
                 </Text>
               </TouchableOpacity>
             );
           })()}
           <TouchableOpacity
-            style={{ width:'100%', borderWidth:1.5, borderColor:cfg.color, padding:18, borderRadius:14, alignItems:'center', marginBottom:12, backgroundColor:t.bgCard }}
+            style={{ width:'100%', borderWidth:1.5, borderColor:levelAccent, padding:18, borderRadius:14, alignItems:'center', marginBottom:12, backgroundColor:t.bgCard }}
             onPress={() => {
               hapticTap();
               // Отменяем все pending таймеры от предыдущей игры
@@ -1120,7 +1243,7 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
               setRetryCount(c => c + 1); // принудительно перезагружает вопросы
             }}
           >
-            <Text style={{ color:cfg.color, fontSize: f.bodyLg, fontWeight:'600' }}>{s.quizzes.again}</Text>
+            <Text style={{ color:levelAccent, fontSize: f.bodyLg, fontWeight:'600' }}>{s.quizzes.again}</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ padding:14 }} onPress={() => { hapticTap(); onBack(); }}>
             <Text style={{ color:t.textMuted, fontSize: f.body }}>{s.quizzes.back}</Text>
@@ -1148,7 +1271,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           >
             <Ionicons name="share-outline" size={16} color={t.textGhost}/>
             <Text style={{ color:t.textGhost, fontSize: f.body }}>
-              {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
+              {triLang(lang, {
+  ru: 'Поделиться',
+  uk: 'Поділитися',
+  es: 'Compartir',
+  "pt-BR": 'Compartilhar',
+  vi: 'Chia sẻ',
+  id: 'Bagikan',
+  tr: 'Paylaş',
+  pl: 'Udostępnij',
+})}
             </Text>
           </TouchableOpacity>
           <TouchableOpacity
@@ -1164,10 +1296,15 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           >
             <Text style={{ color:t.textMuted, fontSize: f.body, textDecorationLine:'underline' }}>
               {triLang(lang, {
-                ru: '🏠 На главную',
-                uk: '🏠 На головну',
-                es: '🏠 Volver al inicio',
-              })}
+  ru: '🏠 На главную',
+  uk: '🏠 На головну',
+  es: '🏠 Volver al inicio',
+  "pt-BR": '🏠 Início',
+  vi: '🏠 Trang chủ',
+  id: '🏠 Beranda',
+  tr: '🏠 Ana sayfaya',
+  pl: '🏠 Strona główna',
+})}
             </Text>
           </TouchableOpacity>
         </ScrollView>
@@ -1245,11 +1382,11 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           <TouchableOpacity onPress={() => { hapticTap(); onBack(); }}>
             <Ionicons name="chevron-back" size={28} color={onGradPrimary}/>
           </TouchableOpacity>
-          <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : cfg.color, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1} adjustsFontSizeToFit>
+          <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : levelAccent, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1} adjustsFontSizeToFit>
             {reviewing ? s.quizzes.fixErrors : label}
           </Text>
           <View style={{ flexDirection:'row', alignItems:'center', position:'relative', gap:8 }}>
-            <EnergyBar size={20} />
+            <EnergyBar size={30} />
             {!reviewing && chosen === null && typedOk === null && (
               <View style={{
                 width: 34, height: 34, borderRadius: 17,
@@ -1292,7 +1429,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
 
           {/* ВОПРОС */}
           <Text style={{ color:onGradPrimary, fontSize: f.h2 + 6, fontWeight:'500', marginBottom:12, lineHeight:32 }}>
-            {triLang(lang, { uk: current.uk, ru: current.ru, es: current.es })}
+            {triLang(lang, {
+  ru: current.ru,
+  uk: current.uk,
+  es: current.es,
+  "pt-BR": quizSourceTextForPlanned(current, 'pt-BR'),
+  vi: quizSourceTextForPlanned(current, 'vi'),
+  id: quizSourceTextForPlanned(current, 'id'),
+  tr: quizSourceTextForPlanned(current, 'tr'),
+  pl: quizSourceTextForPlanned(current, 'pl'),
+})}
           </Text>
 
           {/* АНИМАЦИЯ ВСТАВКИ */}
@@ -1309,7 +1455,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
             }}>
               {(isRight === false || typedOk === false) && (
                 <Text style={{ color: t.correct, fontSize: f.label, fontWeight: '700', marginBottom: 4, letterSpacing: 0.3 }}>
-                  {triLang(lang, { ru: 'ПРАВИЛЬНО:', uk: 'ПРАВИЛЬНО:', es: 'CORRECTO:' })}
+                  {triLang(lang, {
+  ru: 'ПРАВИЛЬНО:',
+  uk: 'ПРАВИЛЬНО:',
+  es: 'CORRECTO:',
+  "pt-BR": 'CORRETO:',
+  vi: 'ĐÚNG:',
+  id: 'BENAR:',
+  tr: 'DOĞRU:',
+  pl: 'POPRAWNIE:',
+})}
                 </Text>
               )}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -1323,7 +1478,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
               {(isRight === false || typedOk === false) && displayAnswer && (
                 <>
                   <Text style={{ color: t.wrong, fontSize: f.label, fontWeight: '700', marginTop: 10, marginBottom: 4, letterSpacing: 0.3 }}>
-                    {triLang(lang, { ru: 'ВАШ ВАРИАНТ:', uk: 'ВАШ ВАРІАНТ:', es: 'TU RESPUESTA:' })}
+                    {triLang(lang, {
+  ru: 'ВАШ ВАРИАНТ:',
+  uk: 'ВАШ ВАРІАНТ:',
+  es: 'TU RESPUESTA:',
+  "pt-BR": 'SUA RESPOSTA:',
+  vi: 'CÂU TRẢ LỜI CỦA BẠN:',
+  id: 'JAWABANMU:',
+  tr: 'CEVABIN:',
+  pl: 'TWOJA ODPOWIEDŹ:',
+})}
                   </Text>
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', rowGap: 2 }}>
                     {diffWords(displayAnswer, current.answer).map((item, widx) => (
@@ -1344,12 +1508,17 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           {/* РАЗБОР ОТВЕТА */}
           {(chosen !== null || typedOk !== null) && current.explanations && (() => {
             const explanationIdx = chosen !== null ? chosen : quizPrimaryCorrectIndex(current.correct);
+            const plannedSourceExplanations = isPlannedInterfaceLang(lang)
+              ? quizSourceExplanationsForPlanned(current, lang)
+              : undefined;
             const explanationsArr =
               lang === 'uk' && current.explanationsUK?.length
                 ? current.explanationsUK
                 : lang === 'es' && current.explanationsES?.length
                   ? current.explanationsES
-                  : current.explanations;
+                  : plannedSourceExplanations?.length
+                    ? plannedSourceExplanations
+                    : current.explanations;
             const explanation = explanationsArr[explanationIdx];
             const correct =
               (chosen !== null && isQuizChoiceCorrect(chosen, current.correct)) || typedOk === true;
@@ -1368,7 +1537,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                 borderLeftColor: correct ? '#1565C0' : '#F59E0B',
               }}>
                 <Text style={{ color: correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
-                  {triLang(lang, { ru: 'РАЗБОР', uk: 'ПОЯСНЕННЯ', es: 'EXPLICACIÓN' })}
+                  {triLang(lang, {
+  ru: 'РАЗБОР',
+  uk: 'ПОЯСНЕННЯ',
+  es: 'EXPLICACIÓN',
+  "pt-BR": 'EXPLICAÇÃO',
+  vi: 'GIẢI THÍCH',
+  id: 'PENJELASAN',
+  tr: 'AÇIKLAMA',
+  pl: 'WYJAŚNIENIE',
+})}
                 </Text>
                 <Text style={{ color: isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }}>
                   {explanation}
@@ -1396,7 +1574,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
               }}
             >
               <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600' }}>
-                {triLang(lang, { ru: 'Далее', uk: 'Далі', es: 'Siguiente' })}
+                {triLang(lang, {
+  ru: 'Далее',
+  uk: 'Далі',
+  es: 'Siguiente',
+  "pt-BR": 'Próximo',
+  vi: 'Tiếp',
+  id: 'Lanjut',
+  tr: 'İleri',
+  pl: 'Dalej',
+})}
               </Text>
               <Ionicons name="arrow-forward" size={18} color={t.textPrimary}/>
             </TouchableOpacity>
@@ -1429,7 +1616,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                   onPress={() => { hapticTap(); handleTyped(); }} activeOpacity={0.8}
                 >
                   <Text style={{ color:t.textPrimary, fontSize: f.bodyLg, fontWeight:'600' }}>
-                    {triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })}
+                    {triLang(lang, {
+  ru: 'Проверить',
+  uk: 'Перевірити',
+  es: 'Comprobar',
+  "pt-BR": 'Verificar',
+  vi: 'Kiểm tra',
+  id: 'Periksa',
+  tr: 'Kontrol et',
+  pl: 'Sprawdź',
+})}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -1458,10 +1654,15 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
             }}>
               <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 19, marginBottom: 10 }}>
                 {triLang(lang, {
-                  ru: '💡 Сложно набирать вручную? Можно выключить ввод с клавиатуры.',
-                  uk: '💡 Складно набирати вручну? Можна вимкнути ввід з клавіатури.',
-                  es: '💡 ¿Te cuesta escribir con el teclado? Desactiva «Escribir con el teclado» en Ajustes.',
-                })}
+  ru: '💡 Сложно набирать вручную? Можно выключить ввод с клавиатуры.',
+  uk: '💡 Складно набирати вручну? Можна вимкнути ввід з клавіатури.',
+  es: '💡 ¿Te cuesta escribir con el teclado? Desactiva «Escribir con el teclado» en Ajustes.',
+  "pt-BR": '💡 Difícil digitar manualmente? Você pode desativar a digitação no teclado.',
+  vi: '💡 Khó nhập thủ công? Bạn có thể tắt nhập bằng bàn phím.',
+  id: '💡 Sulit mengetik manual? Kamu bisa mematikan input keyboard.',
+  tr: '💡 Elle yazmak zor mu? Klavye girişini kapatabilirsin.',
+  pl: '💡 Trudno wpisywać ręcznie? Możesz wyłączyć wpisywanie z klawiatury.',
+})}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity
@@ -1475,7 +1676,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                   }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Выключить', uk: 'Вимкнути', es: 'Desactivar' })}
+                    {triLang(lang, {
+  ru: 'Выключить',
+  uk: 'Вимкнути',
+  es: 'Desactivar',
+  "pt-BR": 'Desativar',
+  vi: 'Tắt',
+  id: 'Nonaktifkan',
+  tr: 'Kapat',
+  pl: 'Wyłącz',
+})}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -1489,10 +1699,15 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
                 >
                   <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Больше не показывать',
-                      uk: 'Більше не показувати',
-                      es: 'No volver a mostrar',
-                    })}
+  ru: 'Больше не показывать',
+  uk: 'Більше не показувати',
+  es: 'No volver a mostrar',
+  "pt-BR": 'Não mostrar novamente',
+  vi: 'Không hiển thị lại',
+  id: 'Jangan tampilkan lagi',
+  tr: 'Bir daha gösterme',
+  pl: 'Nie pokazuj ponownie',
+})}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -1515,22 +1730,41 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
           <View style={{ backgroundColor: t.bgCard, borderRadius: 24, padding: 28, alignItems: 'center', borderWidth: 0.5, borderColor: t.border, maxWidth: 320, width: '90%' }}>
             <Text style={{ fontSize: 52, marginBottom: 12 }} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.7}>⏰</Text>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 10 }}>
-              {triLang(lang, { ru: 'Время вышло!', uk: 'Час вийшов!', es: '¡Se acabó el tiempo!' })}
+              {triLang(lang, {
+  ru: 'Время вышло!',
+  uk: 'Час вийшов!',
+  es: '¡Se acabó el tiempo!',
+  "pt-BR": 'O tempo acabou!',
+  vi: 'Hết giờ!',
+  id: 'Waktu habis!',
+  tr: 'Süre doldu!',
+  pl: 'Czas minął!',
+})}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginBottom: settings.hardMode ? 8 : 24 }}>
               {triLang(lang, {
-                ru: 'Очень жаль 😔 Попробуй ещё раз!',
-                uk: 'Дуже шкода 😔 Спробуй ще раз!',
-                  es: '¡Qué pena! 😔 ¡Inténtalo otra vez!',
-              })}
+  ru: 'Очень жаль 😔 Попробуй ещё раз!',
+  uk: 'Дуже шкода 😔 Спробуй ще раз!',
+  es: '¡Qué pena! 😔 ¡Inténtalo otra vez!',
+  "pt-BR": 'Que pena 😔 Tente novamente!',
+  vi: 'Tiếc quá 😔 Thử lại nhé!',
+  id: 'Sayang sekali 😔 Coba lagi!',
+  tr: 'Yazık oldu 😔 Tekrar dene!',
+  pl: 'Szkoda 😔 Spróbuj jeszcze raz!',
+})}
             </Text>
             {settings.hardMode && (
               <Text style={{ color: t.textSecond, fontSize: f.sub, textAlign: 'center', lineHeight: 20, marginBottom: 24, opacity: 0.85 }}>
                 {triLang(lang, {
-                  ru: 'Подсказка: попробуй выбрать уровень полегче или выключи ручной ввод в настройках.',
-                  uk: 'Підказка: спробуй вибрати рівень легше або вимкни ручне введення в налаштуваннях.',
-                  es: 'Consejo: elige un nivel más fácil o desactiva «Escribir con el teclado» en Ajustes.',
-                })}
+  ru: 'Подсказка: попробуй выбрать уровень полегче или выключи ручной ввод в настройках.',
+  uk: 'Підказка: спробуй вибрати рівень легше або вимкни ручне введення в налаштуваннях.',
+  es: 'Consejo: elige un nivel más fácil o desactiva «Escribir con el teclado» en Ajustes.',
+  "pt-BR": 'Dica: tente escolher um nível mais fácil ou desative a digitação manual nas configurações.',
+  vi: 'Gợi ý: hãy chọn cấp dễ hơn hoặc tắt nhập thủ công trong cài đặt.',
+  id: 'Tips: coba pilih level yang lebih mudah atau matikan input manual di pengaturan.',
+  tr: 'İpucu: daha kolay bir seviye seçmeyi veya ayarlardan elle girişi kapatmayı dene.',
+  pl: 'Wskazówka: wybierz łatwiejszy poziom albo wyłącz ręczne wpisywanie w ustawieniach.',
+})}
               </Text>
             )}
             <TouchableOpacity
@@ -1538,7 +1772,16 @@ function QuizGame({ level, onBack, e2eInjectResults }: { level:Level; onBack:()=
               onPress={() => { hapticTap(); setShowTimeoutAlert(false); onBackRef.current(); }}
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Понятно', uk: 'Зрозуміло', es: 'Entendido' })}
+                {triLang(lang, {
+  ru: 'Понятно',
+  uk: 'Зрозуміло',
+  es: 'Entendido',
+  "pt-BR": 'Entendi',
+  vi: 'Đã hiểu',
+  id: 'Mengerti',
+  tr: 'Anladım',
+  pl: 'Rozumiem',
+})}
               </Text>
             </TouchableOpacity>
           </View>

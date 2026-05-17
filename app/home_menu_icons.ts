@@ -10,7 +10,9 @@ export type HomeMenuImageSet = {
   quizes: ImageSourcePropType;
   cards: ImageSourcePropType;
   dayTasks: ImageSourcePropType;
+  league: ImageSourcePropType;
   test: ImageSourcePropType;
+  practice: ImageSourcePropType;
   exam: ImageSourcePropType;
   shop: ImageSourcePropType;
   arena: ImageSourcePropType;
@@ -20,11 +22,13 @@ export type HomeMenuImageSet = {
 export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
   if (themeMode === 'minimalLight') {
     return {
-      lesson: require('../assets/images/levels/lesson grafit.webp'),
-      quizes: require('../assets/images/levels/quizes grafit.webp'),
-      cards: require('../assets/images/levels/cards grafit.webp'),
-      dayTasks: require('../assets/images/levels/dayli task grafit.webp'),
-      test: require('../assets/images/levels/test grafit.webp'),
+      lesson: require('../assets/images/home_menu/home-minimal-light-lessons.webp'),
+      quizes: require('../assets/images/home_menu/home-minimal-light-quizzes.webp'),
+      cards: require('../assets/images/home_menu/home-minimal-light-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/home-minimal-light-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/home-minimal-light-league.webp'),
+      test: require('../assets/images/home_menu/home-minimal-light-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/home-minimal-light-practice.webp'),
       exam: require('../assets/images/levels/exam grafit.webp'),
       shop: require('../assets/images/levels/shop grafit.webp'),
       arena: require('../assets/images/levels/arena grafit.webp'),
@@ -33,11 +37,13 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
   }
   if (themeMode === 'minimalDark') {
     return {
-      lesson: require('../assets/images/levels/lesson fog.webp'),
-      quizes: require('../assets/images/levels/quizes fog.webp'),
-      cards: require('../assets/images/levels/cards fog.webp'),
-      dayTasks: require('../assets/images/levels/day tasks fog.webp'),
-      test: require('../assets/images/levels/test fog.webp'),
+      lesson: require('../assets/images/home_menu/home-minimal-dark-lessons.webp'),
+      quizes: require('../assets/images/home_menu/home-minimal-dark-quizzes.webp'),
+      cards: require('../assets/images/home_menu/home-minimal-dark-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/home-minimal-dark-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/home-minimal-dark-league.webp'),
+      test: require('../assets/images/home_menu/home-minimal-dark-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/home-minimal-dark-practice.webp'),
       exam: require('../assets/images/levels/exam fog.webp'),
       shop: require('../assets/images/levels/shop fog.webp'),
       arena: require('../assets/images/levels/arena fog.webp'),
@@ -46,24 +52,43 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
   }
   if (themeMode === 'gold') {
     return {
-      lesson: require('../assets/images/levels/lesson coral.webp'),
-      quizes: require('../assets/images/levels/quizes coral.webp'),
-      cards: require('../assets/images/levels/cards coral.webp'),
-      dayTasks: require('../assets/images/levels/day tasks coral.webp'),
-      test: require('../assets/images/levels/test coral.webp'),
+      lesson: require('../assets/images/home_menu/home-gold-lessons.webp'),
+      quizes: require('../assets/images/home_menu/home-gold-quizzes.webp'),
+      cards: require('../assets/images/home_menu/home-gold-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/home-gold-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/home-gold-league.webp'),
+      test: require('../assets/images/home_menu/home-gold-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/home-gold-practice.webp'),
+      exam: require('../assets/images/levels/exam fog.webp'),
+      shop: require('../assets/images/levels/shop fog.webp'),
+      arena: require('../assets/images/levels/arena golfd.webp'),
+      heroMap: require('../assets/images/levels/her man fog.webp'),
+    };
+  }
+  if (themeMode === 'coral') {
+    return {
+      lesson: require('../assets/images/home_menu/home-coral-lessons.webp'),
+      quizes: require('../assets/images/home_menu/home-coral-quizzes.webp'),
+      cards: require('../assets/images/home_menu/home-coral-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/home-coral-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/home-coral-league.webp'),
+      test: require('../assets/images/home_menu/home-coral-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/home-coral-practice.webp'),
       exam: require('../assets/images/levels/exam coral.webp'),
       shop: require('../assets/images/levels/SHOP CORAL.webp'),
       arena: require('../assets/images/levels/ARENA CORAL.webp'),
-      heroMap: require('../assets/images/levels/hero map coarl.webp'),
+      heroMap: require('../assets/images/levels/hero map ocean.webp'),
     };
   }
   if (themeMode === 'neon') {
     return {
-      lesson: require('../assets/images/levels/lesson neon.webp'),
-      quizes: require('../assets/images/levels/quizes neon.webp'),
-      cards: require('../assets/images/levels/cards neon.webp'),
-      dayTasks: require('../assets/images/levels/day tasks neon.webp'),
-      test: require('../assets/images/levels/test neon.webp'),
+      lesson: require('../assets/images/home_menu/home-neon-lessons.webp'),
+      quizes: require('../assets/images/home_menu/home-neon-quizzes.webp'),
+      cards: require('../assets/images/home_menu/home-neon-cards.webp'),
+      dayTasks: require('../assets/images/home_menu/home-neon-daily-tasks.webp'),
+      league: require('../assets/images/home_menu/home-neon-league.webp'),
+      test: require('../assets/images/home_menu/home-neon-diagnostic-test.webp'),
+      practice: require('../assets/images/home_menu/home-neon-practice.webp'),
       exam: require('../assets/images/levels/exam neon.webp'),
       shop: require('../assets/images/levels/SHOP NEON.webp'),
       arena: require('../assets/images/levels/ARENA NEON.webp'),
@@ -71,11 +96,13 @@ export function getHomeMenuImages(themeMode: ThemeMode): HomeMenuImageSet {
     };
   }
   return {
-    lesson: require('../assets/images/levels/lesson forest.webp'),
-    quizes: require('../assets/images/levels/quizes forest.webp'),
-    cards: require('../assets/images/levels/cards forest.webp'),
-    dayTasks: require('../assets/images/levels/day tasks forest.webp'),
-    test: require('../assets/images/levels/test forest.webp'),
+    lesson: require('../assets/images/home_menu/home-forest-lessons.webp'),
+    quizes: require('../assets/images/home_menu/home-forest-quizzes.webp'),
+    cards: require('../assets/images/home_menu/home-forest-cards.webp'),
+    dayTasks: require('../assets/images/home_menu/home-forest-daily-tasks.webp'),
+    league: require('../assets/images/home_menu/home-forest-league.webp'),
+    test: require('../assets/images/home_menu/home-forest-diagnostic-test.webp'),
+    practice: require('../assets/images/home_menu/home-forest-practice.webp'),
     exam: require('../assets/images/levels/examen forest.webp'),
     shop: require('../assets/images/levels/SHOP FOREST.webp'),
     arena: require('../assets/images/levels/ARENA FOREST.webp'),

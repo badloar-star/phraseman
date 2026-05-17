@@ -10,6 +10,8 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { hapticMediumImpact } from '../hooks/use-haptics';
+import { useTheme } from './ThemeContext';
+import { GOLD_RICH } from '../constants/goldTheme';
 
 export interface BonusXPCardProps {
   bonusXP: number;
@@ -24,6 +26,8 @@ export default function BonusXPCard({
   position = 'bottom',
   duration = 2000,
 }: BonusXPCardProps) {
+  const { theme: t, themeMode } = useTheme();
+  const isGoldTheme = themeMode === 'gold';
   const slideAnim = useRef(new Animated.Value(0)).current;
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const scaleAnim = useRef(new Animated.Value(0.8)).current;
@@ -85,6 +89,11 @@ export default function BonusXPCard({
   }, [dismissCard, duration, opacityAnim, scaleAnim, slideAnim]);
 
   const getTierColor = () => {
+    if (isGoldTheme) {
+      if (bonusXP <= 10) return GOLD_RICH.agedGold;
+      if (bonusXP <= 20) return GOLD_RICH.metalGold;
+      return GOLD_RICH.champagne;
+    }
     if (bonusXP <= 10) return '#4ADE80'; // Зелёный (мало)
     if (bonusXP <= 20) return '#FB923C'; // Оранжевый (среднее)
     return '#A78BFA'; // Фиолетовый (большое)
@@ -118,18 +127,26 @@ export default function BonusXPCard({
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={dismissCard}
-        style={[styles.card, { borderColor: getTierColor() }]}
+        style={[
+          styles.card,
+          {
+            borderColor: getTierColor(),
+            backgroundColor: isGoldTheme
+              ? GOLD_RICH.blackPiano
+              : '#1a1a2e',
+          },
+        ]}
       >
         <Text style={styles.emoji}>{getTierEmoji()}</Text>
 
         <View style={styles.textContainer}>
-          <Text style={styles.label}>Бонус XP!</Text>
+          <Text style={[styles.label, { color: t.textPrimary }]}>Бонус XP!</Text>
           <Text style={[styles.bonus, { color: getTierColor() }]}>
             +{bonusXP}
           </Text>
         </View>
 
-        <Text style={styles.tap}>Тап</Text>
+        <Text style={[styles.tap, { color: t.textMuted }]}>Тап</Text>
       </TouchableOpacity>
     </Animated.View>
   );

@@ -78,9 +78,6 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: fals
     }
 
     const eventData = eventSnap.data() ?? {};
-    if (String(eventData.uid ?? targetStableId) !== targetStableId) {
-      throw new HttpsError('failed-precondition', 'Activity event owner mismatch');
-    }
 
     const eventLikeCount = parseCount(eventData.activityLikeCount) + 1;
     const totalLikeCount = parseCount(statsSnap.data()?.total) + 1;
@@ -95,6 +92,7 @@ export const friendLikeActivity = onCall({ region: REGION, enforceAppCheck: fals
       'Friend';
 
     tx.set(eventRef, {
+      uid: targetStableId,
       activityLikeCount: eventLikeCount,
       activityLikedAt: now,
       lastActivityLikeFromUid: senderStableId,

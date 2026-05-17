@@ -154,13 +154,18 @@ export default function ReportPackModal({
               <View style={{ alignItems: 'stretch', paddingVertical: 8 }}>
                 <Text style={{ fontSize: 48, marginBottom: 6, textAlign: 'center' }}>✅</Text>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-                  {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', es: 'Denuncia enviada' })}
+                  {triLang(lang, { uk: 'Скаргу надіслано', ru: 'Жалоба отправлена', es: 'Denuncia enviada', 'pt-BR': 'Denúncia enviada', vi: 'Đã gửi báo cáo', id: 'Laporan terkirim', tr: 'Şikayet gönderildi', pl: 'Zgłoszenie wysłane' })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.body, marginTop: 10, textAlign: 'center', lineHeight: f.body * 1.45 }}>
                   {triLang(lang, {
                     uk: 'Ваша скарга збережена. Ми розглянемо її найближчим часом. Дякуємо, що допомагаєте зробити каталог безпечнішим.',
                     ru: 'Ваша жалоба сохранена. Мы рассмотрим её в ближайшее время. Спасибо, что помогаете сделать каталог безопаснее.',
                     es: 'Tu reporte quedó registrado. Lo revisaremos pronto. Gracias por ayudar a mantener el catálogo seguro.',
+                    'pt-BR': 'Sua denúncia foi registrada. Vamos analisá-la em breve. Obrigado por ajudar a manter o catálogo mais seguro.',
+                    vi: 'Báo cáo của bạn đã được lưu. Chúng tôi sẽ xem xét sớm. Cảm ơn bạn đã giúp danh mục an toàn hơn.',
+                    id: 'Laporanmu sudah tersimpan. Kami akan meninjaunya segera. Terima kasih sudah membantu menjaga katalog tetap aman.',
+                    tr: 'Şikayetin kaydedildi. En kısa sürede inceleyeceğiz. Kataloğu daha güvenli tutmaya yardım ettiğin için teşekkürler.',
+                    pl: 'Twoje zgłoszenie zostało zapisane. Wkrótce je sprawdzimy. Dziękujemy za pomoc w dbaniu o bezpieczeństwo katalogu.',
                   })}
                 </Text>
                 <TouchableOpacity
@@ -198,6 +203,11 @@ export default function ReportPackModal({
                         uk: 'Не показувати мені цей набір',
                         ru: 'Не показывать мне этот набор',
                         es: 'No volver a mostrarme este pack',
+                        'pt-BR': 'Não mostrar este pack novamente',
+                        vi: 'Không hiển thị bộ này nữa',
+                        id: 'Jangan tampilkan pack ini lagi',
+                        tr: 'Bu paketi bir daha gösterme',
+                        pl: 'Nie pokazuj mi już tego pakietu',
                       })}
                     </Text>
                   )}
@@ -207,6 +217,11 @@ export default function ReportPackModal({
                     uk: 'Лише на цьому пристрої. Можна скинути, перевстановивши застосунок.',
                     ru: 'Только на этом устройстве. Сброс при удалении приложения.',
                     es: 'Solo en este dispositivo. Se restablece si borras la app.',
+                    'pt-BR': 'Apenas neste dispositivo. É redefinido se você apagar o app.',
+                    vi: 'Chỉ trên thiết bị này. Sẽ đặt lại nếu bạn xóa ứng dụng.',
+                    id: 'Hanya di perangkat ini. Akan direset jika kamu menghapus aplikasi.',
+                    tr: 'Yalnızca bu cihazda. Uygulamayı silersen sıfırlanır.',
+                    pl: 'Tylko na tym urządzeniu. Resetuje się po usunięciu aplikacji.',
                   })}
                 </Text>
                 <TouchableOpacity
@@ -220,7 +235,7 @@ export default function ReportPackModal({
                   }}
                 >
                   <Text style={{ color: t.correctText, fontWeight: '800' }}>
-                    {triLang(lang, { uk: 'Закрити', ru: 'Закрыть', es: 'Cerrar' })}
+                    {triLang(lang, { uk: 'Закрити', ru: 'Закрыть', es: 'Cerrar', 'pt-BR': 'Fechar', vi: 'Đóng', id: 'Tutup', tr: 'Kapat', pl: 'Zamknij' })}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -228,13 +243,18 @@ export default function ReportPackModal({
               <View style={{ alignItems: 'center', paddingVertical: 16 }}>
                 <Text style={{ fontSize: 48, marginBottom: 8 }}>⏳</Text>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', textAlign: 'center' }}>
-                  {triLang(lang, { uk: 'Зачекай 30 секунд', ru: 'Подожди 30 секунд', es: 'Espera 30 segundos' })}
+                  {triLang(lang, { uk: 'Зачекай 30 секунд', ru: 'Подожди 30 секунд', es: 'Espera 30 segundos', 'pt-BR': 'Espere 30 segundos', vi: 'Chờ 30 giây', id: 'Tunggu 30 detik', tr: '30 saniye bekle', pl: 'Poczekaj 30 sekund' })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 8, textAlign: 'center' }}>
                   {triLang(lang, {
                     uk: 'Можна надсилати скарги не частіше за раз на 30 с.',
                     ru: 'Можно отправлять жалобы не чаще раза в 30 с.',
                     es: 'Solo se puede enviar una denuncia cada 30 s.',
+                    'pt-BR': 'Você só pode enviar uma denúncia a cada 30 s.',
+                    vi: 'Bạn chỉ có thể gửi một báo cáo mỗi 30 giây.',
+                    id: 'Kamu hanya bisa mengirim laporan setiap 30 detik.',
+                    tr: 'Her 30 saniyede yalnızca bir şikayet gönderebilirsin.',
+                    pl: 'Zgłoszenie można wysłać nie częściej niż raz na 30 s.',
                   })}
                 </Text>
                 <TouchableOpacity
@@ -255,7 +275,7 @@ export default function ReportPackModal({
             ) : (
               <>
                 <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', marginBottom: 6 }}>
-                  {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', es: 'Reportar el pack' })}
+                  {triLang(lang, { uk: 'Поскаржитися на набір', ru: 'Пожаловаться на набор', es: 'Reportar el pack', 'pt-BR': 'Denunciar o pack', vi: 'Báo cáo bộ thẻ', id: 'Laporkan pack', tr: 'Paketi şikayet et', pl: 'Zgłoś pakiet' })}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 14 }} numberOfLines={2}>
                   {packTitle}
@@ -292,6 +312,11 @@ export default function ReportPackModal({
                       uk: 'Коментар (необов\'язково):',
                       ru: 'Комментарий (необязательно):',
                       es: 'Comentario (opcional):',
+                      'pt-BR': 'Comentário (opcional):',
+                      vi: 'Bình luận (không bắt buộc):',
+                      id: 'Komentar (opsional):',
+                      tr: 'Yorum (isteğe bağlı):',
+                      pl: 'Komentarz (opcjonalnie):',
                     })}
                   </Text>
                   <TextInput
@@ -303,6 +328,11 @@ export default function ReportPackModal({
                       uk: 'Опиши проблему...',
                       ru: 'Опиши проблему...',
                       es: 'Describe el problema…',
+                      'pt-BR': 'Descreva o problema...',
+                      vi: 'Mô tả vấn đề...',
+                      id: 'Jelaskan masalahnya...',
+                      tr: 'Sorunu açıkla...',
+                      pl: 'Opisz problem...',
                     })}
                     placeholderTextColor={t.textGhost}
                     style={{
@@ -336,7 +366,7 @@ export default function ReportPackModal({
                     }}
                   >
                     <Text style={{ color: t.textPrimary, fontWeight: '700' }}>
-                      {triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar' })}
+                      {triLang(lang, { uk: 'Скасувати', ru: 'Отмена', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
                     </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
@@ -357,7 +387,7 @@ export default function ReportPackModal({
                       <View />
                     ) : (
                       <Text style={{ color: !selected ? t.textMuted : t.correctText, fontWeight: '800' }}>
-                        {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', es: 'Enviar denuncia' })}
+                        {triLang(lang, { uk: 'Надіслати скаргу', ru: 'Отправить жалобу', es: 'Enviar denuncia', 'pt-BR': 'Enviar denúncia', vi: 'Gửi báo cáo', id: 'Kirim laporan', tr: 'Şikayeti gönder', pl: 'Wyślij zgłoszenie' })}
                       </Text>
                     )}
                   </TouchableOpacity>

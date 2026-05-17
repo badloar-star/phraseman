@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin';
 import { HttpsError, onCall } from 'firebase-functions/v2/https';
 import { HOT_CALLABLE_OPTIONS } from './callable_options';
+import { resolveStableUidForAuth } from './auth_identity';
 
 const GROUP_SIZE = 30;
 const BROAD_GROUP_QUERY_LIMIT = 500;
@@ -78,14 +79,6 @@ function sanitizeMember(raw: Record<string, unknown>, stableUid: string): Member
     member.leagueBoostExpiresAt = boostExpiresAt;
   }
   return member;
-}
-
-async function resolveStableUid(db: FirebaseFirestore.Firestore, authUid: string): Promise<string> {
-  const direct = await db.collection('users').doc(authUid).get().catch(() => null);
-  if (direct?.exists) return authUid;
-  const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
-  if (!byAuth.empty) return byAuth.docs[0].id;
-  return authUid;
 }
 
 async function assertCanUseLeague(db: FirebaseFirestore.Firestore, stableUid: string): Promise<void> {
@@ -170,7 +163,7 @@ export const leagueJoinOrUpdateGroup = onCall(HOT_CALLABLE_OPTIONS, async (reque
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
   await assertCanUseLeague(db, stableUid);
 
   const weekId = sanitizeString(request.data?.weekId, 16) || getWeekId();
@@ -244,7 +237,7 @@ export const leagueUpdateMyMember = onCall(HOT_CALLABLE_OPTIONS, async (request)
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
   await assertCanUseLeague(db, stableUid);
 
   const lbSnap = await db.collection('leaderboard').doc(stableUid).get();
@@ -277,7 +270,7 @@ export const leagueSyncMyBoost = onCall(HOT_CALLABLE_OPTIONS, async (request) =>
   if (!request.auth?.uid) throw new HttpsError('unauthenticated', 'auth_required');
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
   await assertCanUseLeague(db, stableUid);
 
   const lbSnap = await db.collection('leaderboard').doc(stableUid).get();

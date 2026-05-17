@@ -107,7 +107,16 @@ function LessonTile({ meta, width, lang, onPress }: LessonTileProps) {
   const press = useMemo(() => new Animated.Value(1), []);
   const lvlColor = LEVEL_COLORS[meta.level];
   const ready = meta.hasIntro;
-  const emptyLabel = triLang(lang, { ru: 'пусто', uk: 'порожньо', es: 'vacío' });
+  const emptyLabel = triLang(lang, {
+    ru: 'пусто',
+    uk: 'порожньо',
+    es: 'vacío',
+    'pt-BR': 'vazio',
+    vi: 'trống',
+    id: 'kosong',
+    tr: 'boş',
+    pl: 'pusto',
+  });
 
   const handlePressIn = () => {
     Animated.spring(press, { toValue: 0.96, useNativeDriver: true, tension: 220, friction: 7 }).start();
@@ -248,26 +257,51 @@ export default function AdminIntroPreview() {
     ru: '📖 Превью интро уроков',
     uk: '📖 Попередній перегляд інтро уроків',
     es: '📖 Vista previa de intros de lección',
+    'pt-BR': '📖 Preview das intros das lições',
+    vi: '📖 Xem trước intro bài học',
+    id: '📖 Pratinjau intro pelajaran',
+    tr: '📖 Ders intro önizlemesi',
+    pl: '📖 Podgląd intro lekcji',
   });
   const headerSubtitle = triLang(lang, {
     ru: `Готово ${totalWith}/32 · пусто ${totalEmpty} · флаг «показано»: ${shownFlagsCount}`,
     uk: `Готово ${totalWith}/32 · порожньо ${totalEmpty} · прапор «показано»: ${shownFlagsCount}`,
     es: `Con intro ${totalWith}/32 · vacío ${totalEmpty} · marca «vista»: ${shownFlagsCount}`,
+    'pt-BR': `Com intro ${totalWith}/32 · vazio ${totalEmpty} · marca «vista»: ${shownFlagsCount}`,
+    vi: `Có intro ${totalWith}/32 · trống ${totalEmpty} · cờ “đã xem”: ${shownFlagsCount}`,
+    id: `Ada intro ${totalWith}/32 · kosong ${totalEmpty} · tanda “dilihat”: ${shownFlagsCount}`,
+    tr: `Intro var ${totalWith}/32 · boş ${totalEmpty} · “gösterildi” işareti: ${shownFlagsCount}`,
+    pl: `Z intro ${totalWith}/32 · pusto ${totalEmpty} · znacznik „pokazano”: ${shownFlagsCount}`,
   });
   const resetTitle = triLang(lang, {
     ru: 'Сбросить флаги показа всех 32 уроков',
     uk: 'Скинути прапори показу всіх 32 уроків',
     es: 'Reiniciar marcas de intro de las 32 lecciones',
+    'pt-BR': 'Redefinir marcas de intro das 32 lições',
+    vi: 'Đặt lại dấu đã xem intro của cả 32 bài',
+    id: 'Reset tanda intro untuk 32 pelajaran',
+    tr: '32 dersin intro gösterildi işaretlerini sıfırla',
+    pl: 'Zresetuj znaczniki intro dla 32 lekcji',
   });
   const resetSubtitle = triLang(lang, {
     ru: 'Удаляет lesson{id}_intro_shown — интро снова появится при первом реальном входе',
     uk: "Видаляє lesson{id}_intro_shown — інтро знову з\'явиться під час першого реального входу",
     es: 'Elimina lesson{id}_intro_shown — la intro vuelve en la primera visita real',
+    'pt-BR': 'Remove lesson{id}_intro_shown — a intro aparece novamente na primeira entrada real',
+    vi: 'Xóa lesson{id}_intro_shown — intro sẽ xuất hiện lại trong lần vào thật đầu tiên',
+    id: 'Menghapus lesson{id}_intro_shown — intro akan muncul lagi saat pertama kali masuk sungguhan',
+    tr: 'lesson{id}_intro_shown silinir — intro ilk gerçek girişte tekrar görünür',
+    pl: 'Usuwa lesson{id}_intro_shown — intro pojawi się ponownie przy pierwszym prawdziwym wejściu',
   });
   const howTitle = triLang(lang, {
     ru: 'Как пользоваться',
     uk: 'Як користуватися',
     es: 'Cómo usar esto',
+    'pt-BR': 'Como usar',
+    vi: 'Cách dùng',
+    id: 'Cara menggunakan',
+    tr: 'Nasıl kullanılır',
+    pl: 'Jak używać',
   });
   const howBody = triLang(lang, {
     ru:
@@ -282,6 +316,26 @@ export default function AdminIntroPreview() {
       '• Toca una lección: verás la misma intro que el usuario.\n'
       + '• «Empezar la lección» o ✕ solo cierran la superposición; no arranca la lección.\n'
       + '• Puedes abrir la vista previa las veces que quieras: no se guarda ningún marcador.',
+    'pt-BR':
+      '• Toque no bloco da lição — abre a mesma tela de onboarding que o usuário verá.\n'
+      + '• “Começar a lição” ou ✕ dentro do preview apenas fecham o overlay. A lição não começa.\n'
+      + '• O preview pode ser aberto quantas vezes quiser — a marca de exibição NÃO é gravada.',
+    vi:
+      '• Chạm vào ô bài học — mở đúng màn hình onboarding mà người dùng sẽ thấy.\n'
+      + '• “Bắt đầu bài học” hoặc ✕ trong preview chỉ đóng overlay. Bài học không chạy.\n'
+      + '• Có thể mở preview bao nhiêu lần cũng được — cờ đã xem KHÔNG được ghi.',
+    id:
+      '• Ketuk tile pelajaran — membuka layar onboarding yang sama dengan yang akan dilihat pengguna.\n'
+      + '• “Mulai pelajaran” atau ✕ di preview hanya menutup overlay. Pelajaran tidak dimulai.\n'
+      + '• Preview bisa dibuka berkali-kali — penanda tampil TIDAK disimpan.',
+    tr:
+      '• Ders kutusuna dokunmak — kullanıcının göreceği aynı onboarding ekranını açar.\n'
+      + '• Preview içindeki “Derse başla” veya ✕ sadece overlay’i kapatır. Ders başlamaz.\n'
+      + '• Preview istediğin kadar açılabilir — gösterildi işareti KAYDEDİLMEZ.',
+    pl:
+      '• Dotknięcie kafelka lekcji otwiera ten sam ekran onboardingowy, który zobaczy użytkownik.\n'
+      + '• „Rozpocznij lekcję” albo ✕ w podglądzie tylko zamykają overlay. Lekcja się nie uruchamia.\n'
+      + '• Podgląd można otwierać dowolną liczbę razy — znacznik pokazania NIE jest zapisywany.',
   });
 
   return (
@@ -439,6 +493,11 @@ export default function AdminIntroPreview() {
           ru: 'превью интро уроков',
           uk: 'прев\'ю інтро уроків',
           es: 'vista previa de intros de lección',
+          'pt-BR': 'preview das intros das lições',
+          vi: 'xem trước intro bài học',
+          id: 'pratinjau intro pelajaran',
+          tr: 'ders intro önizlemesi',
+          pl: 'podgląd intro lekcji',
         })}
       </Text>
     </View>

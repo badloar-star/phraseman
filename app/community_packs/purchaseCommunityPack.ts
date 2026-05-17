@@ -7,6 +7,10 @@ import { packTitleForInterface, type FlashcardMarketPack } from '../flashcards/m
 import type { CardPackShardPurchaseResult } from '../flashcards/cardPackShardPurchase';
 import { callCommunityPurchasePack, isCommunityPacksCloudEnabled } from './functionsClient';
 import { addCommunityOwnedPackId, loadCommunityOwnedPackIds } from './communityOwnedStorage';
+import {
+  trackCardPackAcquiredAchievement,
+  trackExternalShardSpendAchievement,
+} from '../flashcards/packAchievementTracking';
 
 /**
  * Cloud Functions (onCall) require Firebase Auth. `cloud_sync.ensureAnonUser` only starts
@@ -122,9 +126,8 @@ export async function purchaseCommunityPackWithShards(
       await replaceShardsBalanceLocal(await getShardsBalance());
     }
     await addCommunityOwnedPackId(pack.id);
-    const allOwned = await loadCommunityOwnedPackIds();
-    const { checkAchievements } = await import('../achievements');
-    void checkAchievements({ type: 'pack_purchased', totalPacks: allOwned.length });
+    void trackCardPackAcquiredAchievement();
+    void trackExternalShardSpendAchievement(pack.priceShards);
     const titleEs =
       pack.titleEs.trim()
       || pack.titleUk.trim()

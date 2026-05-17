@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo } from 'react';
-import { Animated, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import BonusXPCard from '../../components/BonusXPCard';
 import ContentWrap from '../../components/ContentWrap';
 import LevelBadge from '../../components/LevelBadge';
@@ -13,6 +14,8 @@ import { getXPProgress, screenTextOnGradient } from '../../constants/theme';
 import type { QuizPhrase } from '../quiz_data';
 import { getQuizRankInfo, getQuizShareRank } from './results';
 import { XpCounter } from './ui';
+import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../../constants/goldTheme';
+import GoldBevel from '../../components/GoldBevel';
 
 type Props = {
   phrases: QuizPhrase[];
@@ -55,6 +58,7 @@ export default function QuizResultView({
 }: Props) {
   const { theme: t, f, themeMode } = useTheme();
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
+  const isGoldTheme = themeMode === 'gold';
   const { s, lang } = useLang();
   const sQuiz = REPORT_SCREENS_RUSSIAN_ONLY ? RU : s;
   const effectiveLang = REPORT_SCREENS_RUSSIAN_ONLY ? 'ru' : lang;
@@ -69,7 +73,16 @@ export default function QuizResultView({
   const right = results.filter(Boolean).length;
   const pct = Math.round((right / Math.max(1, total)) * 100);
   const rankInfo = getQuizRankInfo(pct, t.textSecond, t.textMuted);
-  const rankLabel = triLang(effectiveLang, { ru: rankInfo.labelRU, uk: rankInfo.labelUK, es: rankInfo.labelES });
+  const rankLabel = triLang(effectiveLang, {
+    ru: rankInfo.labelRU,
+    uk: rankInfo.labelUK,
+    es: rankInfo.labelES,
+    'pt-BR': rankInfo.labelPtBr,
+    vi: rankInfo.labelVi,
+    id: rankInfo.labelId,
+    tr: rankInfo.labelTr,
+    pl: rankInfo.labelPl,
+  });
   const wrongPhrases = phrases.filter((_, i) => !results[i]);
   const { level: lv, xpNeeded } = getXPProgress(totalXP + score);
 
@@ -79,15 +92,31 @@ export default function QuizResultView({
         <ContentWrap>
           <ScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: 'center', alignItems: 'center', padding: 30 }} showsVerticalScrollIndicator={false}>
             <Text style={{ fontSize: f.numLg + 28, marginBottom: 10 }} adjustsFontSizeToFit numberOfLines={1}>{rankInfo.icon}</Text>
-            <View style={{ backgroundColor: `${rankInfo.color}22`, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: `${rankInfo.color}55`, marginBottom: 16 }}>
-              <Text style={{ color: rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
-            </View>
+            <LinearGradient
+              colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [`${rankInfo.color}22`, `${rankInfo.color}22`, `${rankInfo.color}22`]}
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{ backgroundColor: `${rankInfo.color}22`, borderRadius: 12, paddingHorizontal: 18, paddingVertical: 8, borderWidth: 1, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : `${rankInfo.color}55`, marginBottom: 16, overflow: 'hidden' }}
+            >
+              {isGoldTheme && <GoldBevel radius={12} intensity="normal" />}
+              <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : rankInfo.color, fontSize: f.h2, fontWeight: '800', letterSpacing: 0.5 }}>{rankLabel}</Text>
+            </LinearGradient>
             <Text style={{ color: sx.primary, fontSize: f.numLg, fontWeight: '700', marginBottom: 10 }} adjustsFontSizeToFit numberOfLines={1}>{sQuiz.quizzes.done}</Text>
             <Text style={{ color: sx.primary, fontSize: f.h1, marginBottom: 4 }}>{right} / {total}</Text>
             <Text style={{ color: sx.second, fontSize: f.numLg + 8, fontWeight: '700', marginBottom: 8 }} adjustsFontSizeToFit numberOfLines={1}>{pct}%</Text>
             <Animated.Text style={{ color: t.correct, fontSize: f.h2, fontWeight: '600', marginBottom: bonusXP > 0 ? 4 : 16, transform: [{ translateY: xpFlyY }], opacity: xpFlyOpacity }}>
               +{Math.round(score)}{' '}
-              {triLang(effectiveLang, { ru: 'опыта', uk: 'досвіду', es: 'XP' })}
+              {triLang(effectiveLang, {
+                ru: 'опыта',
+                uk: 'досвіду',
+                es: 'XP',
+                'pt-BR': 'XP',
+                vi: 'XP',
+                id: 'XP',
+                tr: 'XP',
+                pl: 'XP',
+              })}
             </Animated.Text>
             {bonusXP > 0 && (
               <Text style={{ color: '#D4A017', fontSize: f.body, fontWeight: '600', marginBottom: 16 }}>
@@ -96,44 +125,92 @@ export default function QuizResultView({
                   ru: 'бонусного опыта',
                   uk: 'бонусного досвіду',
                   es: 'XP de bonificación',
+                  'pt-BR': 'XP bônus',
+                  vi: 'XP thưởng',
+                  id: 'XP bonus',
+                  tr: 'bonus XP',
+                  pl: 'bonusowego XP',
                 })}{' '}
                 🎁
               </Text>
             )}
 
-            <View style={{ backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 0.5, borderColor: t.border, padding: 14, width: '100%', flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 28 }}>
+            <LinearGradient
+              colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgCard, t.bgCard, t.bgCard]}
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={[{ backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 0.5, borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border, padding: 14, width: '100%', flexDirection: 'row', alignItems: 'center', gap: 12, marginBottom: 28, overflow: 'hidden' }, isGoldTheme ? goldShadow(2) : null]}
+            >
+              {isGoldTheme && <GoldBevel radius={14} intensity="normal" />}
               <LevelBadge level={lv} size={40} />
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                  {triLang(effectiveLang, { ru: `Уровень ${lv}`, uk: `Рівень ${lv}`, es: `Nivel ${lv}` })}
+                  {triLang(effectiveLang, {
+                    ru: `Уровень ${lv}`,
+                    uk: `Рівень ${lv}`,
+                    es: `Nivel ${lv}`,
+                    'pt-BR': `Nível ${lv}`,
+                    vi: `Cấp ${lv}`,
+                    id: `Level ${lv}`,
+                    tr: `Seviye ${lv}`,
+                    pl: `Poziom ${lv}`,
+                  })}
                 </Text>
-                <View style={{ height: 5, backgroundColor: t.bgSurface, borderRadius: 3, overflow: 'hidden', marginTop: 5 }}>
-                  <Animated.View style={{ height: '100%', width: xpBarAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }), backgroundColor: '#D4A017', borderRadius: 3 }} />
+                <View style={{ height: 6, backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.34)' : t.bgSurface, borderRadius: 3, overflow: 'hidden', marginTop: 5, borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0, borderColor: isGoldTheme ? GOLD_RICH.hairlineQuiet : 'transparent' }}>
+                  <Animated.View style={{ height: '100%', width: xpBarAnim.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }), backgroundColor: isGoldTheme ? 'transparent' : '#D4A017', borderRadius: 3, overflow: 'hidden' }}>
+                    {isGoldTheme && (
+                      <LinearGradient
+                        colors={GOLD_GRADIENTS.progressMetal}
+                        locations={[0, 0.48, 1]}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 1, y: 0 }}
+                        style={StyleSheet.absoluteFill}
+                      />
+                    )}
+                  </Animated.View>
                 </View>
                 <XpCounter anim={xpCountAnim} xpNeeded={xpNeeded} textStyle={{ color: t.textMuted, fontSize: f.label, marginTop: 3 }} />
               </View>
-            </View>
+            </LinearGradient>
 
             {wrongPhrases.length > 0 && (
               <TouchableOpacity
-                style={{ width: '100%', borderWidth: 1.5, borderColor: '#F87171', padding: 18, borderRadius: 14, alignItems: 'center', marginBottom: 12, backgroundColor: t.bgCard }}
+                style={{ width: '100%', borderWidth: isGoldTheme ? 1 : 1.5, borderColor: isGoldTheme ? GOLD_RICH.hairlineDark : '#F87171', padding: 18, borderRadius: 14, alignItems: 'center', marginBottom: 12, backgroundColor: t.bgCard, overflow: 'hidden' }}
                 onPress={() => onReviewMistakes(wrongPhrases)}
               >
+                {isGoldTheme && (
+                  <>
+                    <LinearGradient colors={GOLD_GRADIENTS.raisedTile} locations={GOLD_SURFACE_LOCATIONS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
+                    <GoldBevel radius={14} intensity="normal" />
+                  </>
+                )}
                 <Text style={{ color: '#F87171', fontSize: f.bodyLg, fontWeight: '600' }}>
                   {triLang(effectiveLang, {
                     ru: `🔄 Исправить ошибки (${wrongPhrases.length})`,
                     uk: `🔄 Виправити помилки (${wrongPhrases.length})`,
                     es: `🔄 Corregir errores (${wrongPhrases.length})`,
+                    'pt-BR': `🔄 Corrigir erros (${wrongPhrases.length})`,
+                    vi: `🔄 Sửa lỗi (${wrongPhrases.length})`,
+                    id: `🔄 Perbaiki kesalahan (${wrongPhrases.length})`,
+                    tr: `🔄 Hataları düzelt (${wrongPhrases.length})`,
+                    pl: `🔄 Popraw błędy (${wrongPhrases.length})`,
                   })}
                 </Text>
               </TouchableOpacity>
             )}
 
             <TouchableOpacity
-              style={{ width: '100%', borderWidth: 1.5, borderColor: accentColor, padding: 18, borderRadius: 14, alignItems: 'center', marginBottom: 12, backgroundColor: t.bgCard }}
+              style={{ width: '100%', borderWidth: isGoldTheme ? 1 : 1.5, borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : accentColor, padding: 18, borderRadius: 14, alignItems: 'center', marginBottom: 12, backgroundColor: t.bgCard, overflow: 'hidden' }}
               onPress={onRestart}
             >
-              <Text style={{ color: accentColor, fontSize: f.bodyLg, fontWeight: '600' }}>{sQuiz.quizzes.again}</Text>
+              {isGoldTheme && (
+                <>
+                  <LinearGradient colors={GOLD_GRADIENTS.selectedTile} locations={GOLD_SURFACE_LOCATIONS} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={StyleSheet.absoluteFill} />
+                  <GoldBevel radius={14} intensity="strong" />
+                </>
+              )}
+              <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : accentColor, fontSize: f.bodyLg, fontWeight: '600' }}>{sQuiz.quizzes.again}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ padding: 14 }} onPress={onBack}>
               <Text style={{ color: sx.muted, fontSize: f.body }}>{sQuiz.quizzes.back}</Text>
@@ -147,7 +224,16 @@ export default function QuizResultView({
             >
               <Ionicons name="share-outline" size={16} color={sx.ghost} />
               <Text style={{ color: sx.ghost, fontSize: f.body }}>
-                {triLang(effectiveLang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
+                {triLang(effectiveLang, {
+                  ru: 'Поделиться',
+                  uk: 'Поділитися',
+                  es: 'Compartir',
+                  'pt-BR': 'Compartilhar',
+                  vi: 'Chia sẻ',
+                  id: 'Bagikan',
+                  tr: 'Paylaş',
+                  pl: 'Udostępnij',
+                })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ padding: 12 }} onPress={onHome}>
@@ -156,6 +242,11 @@ export default function QuizResultView({
                   ru: '🏠 На главную',
                   uk: '🏠 На головну',
                   es: '🏠 Volver al inicio',
+                  'pt-BR': '🏠 Início',
+                  vi: '🏠 Về trang chính',
+                  id: '🏠 Ke beranda',
+                  tr: '🏠 Ana sayfaya',
+                  pl: '🏠 Do ekranu głównego',
                 })}
               </Text>
             </TouchableOpacity>

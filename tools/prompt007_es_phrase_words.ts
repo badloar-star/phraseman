@@ -542,7 +542,7 @@ function seedAltMap() {
   ALT_ES_BY_EN_ID['lesson9_phrase_7'] = ['Hay muchos coches por la calle.'];
   ALT_ES_BY_EN_ID['lesson9_phrase_21'] = ['Hay una mesa redonda en esta habitación.'];
   ALT_ES_BY_EN_ID['lesson9_phrase_37'] = ['Hay una bicicleta roja en mi garaje.'];
-  ALT_ES_BY_EN_ID['lesson9_phrase_45'] = ['Hay muchas nubes grises en el cielo.'];
+  ALT_ES_BY_EN_ID['lesson9_phrase_45'] = ['¿Hay mucho tiempo libre hoy?'];
 }
 
 function buildPhrase(p: LessonPhrase, lessonId: number): LessonPhrase {

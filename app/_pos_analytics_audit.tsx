@@ -125,6 +125,11 @@ export default function PosAnalyticsAuditScreen() {
     ru: 'POS token audit',
     uk: 'POS token audit',
     es: 'Auditoría POS',
+    'pt-BR': 'Auditoria POS',
+    vi: 'Kiểm tra token POS',
+    id: 'Audit token POS',
+    tr: 'POS token denetimi',
+    pl: 'Audyt tokenów POS',
   });
 
   return (

@@ -8,8 +8,12 @@ import { sendStreakWarning } from './notifications';
 import { markStreakLost } from './streak_revive';
 import { incrementStreakLostCount } from './paywall_personalization';
 import { repairDevSeededStreakInStorage } from './streak_safety';
+import type { Lang } from '../constants/i18n';
 
 export const LEVEL_BASE: Record<string, number> = { easy: 5, medium: 7, hard: 10 };
+
+const notificationLangFromStorageValue = (value: string | null): Lang =>
+  value === 'uk' ? 'uk' : value === 'es' ? 'es' : 'ru';
 
 export const streakMultiplier = (s: number): number =>
   s >= 30 ? 1.8 : s >= 14 ? 1.6 : s >= 7 ? 1.4 : s >= 3 ? 1.2 : 1;
@@ -194,7 +198,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
           } else {
             const prevStreak = streak;
             logStreakLost(prevStreak);
-            AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+            AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
             void markStreakLost(prevStreak);
             incrementStreakLostCount();
             streak = 1;
@@ -202,7 +206,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
         } else {
           const prevStreak = streak;
           logStreakLost(prevStreak);
-          AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+          AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
           void markStreakLost(prevStreak);
           incrementStreakLostCount();
           streak = 1;
@@ -212,7 +216,7 @@ export const updateStreakOnActivity = async (): Promise<number> => {
       else {
         const prevStreak = streak;
         logStreakLost(prevStreak);
-        AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, l === 'uk' ? 'uk' : 'ru')).catch(() => {});
+        AsyncStorage.getItem('app_lang').then(l => sendStreakWarning(prevStreak, notificationLangFromStorageValue(l))).catch(() => {});
         void markStreakLost(prevStreak);
         incrementStreakLostCount();
         streak = 1;

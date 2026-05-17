@@ -56,9 +56,9 @@ function durationStep(input: {
       ),
     ],
     fallbackExplanation: tri(
-      'For + длительность: for two hours, for years. Since + старт: since Monday, since 2020, since I moved here.',
-      'For + тривалість: for two hours, for years. Since + старт: since Monday, since 2020, since I moved here.',
-      'For + duración: for two hours, for years. Since + inicio: since Monday, since 2020, since I moved here.',
+      'Проверка простая: если дальше отрезок времени, выбирай for. Если дальше точка старта, выбирай since. Примеры: for two hours, since Monday.',
+      'Перевірка проста: якщо далі відрізок часу, обирай for. Якщо далі точка старту, обирай since. Приклади: for two hours, since Monday.',
+      'Simple check: if it is a length of time, choose for. If it is a starting point, choose since. Examples: for two hours, since Monday.',
     ),
     focusWords: input.focusWords,
   };
@@ -84,9 +84,9 @@ export const PREPOSITION_DURATION_FOR_SINCE_TRAINING: DiagnosisTraining = {
     'Confundes for y since. Normalmente el problema es que ambos pueden traducirse de forma parecida, pero el inglés distingue dos cosas: cuánto dura la acción y cuándo empezó.',
   ),
   mentalModel: tri(
-    'For = сколько времени длится. Since = с какого момента началось.',
-    'For = скільки часу триває. Since = з якого моменту почалося.',
-    'For = cuánto tiempo dura. Since = desde qué momento empezó.',
+    'Думай как о двух полках времени. For отвечает на вопрос "как долго длилось": for two hours, for three years. Since отвечает на вопрос "с какого момента началось": since Monday, since 2020.',
+    'Думай як про дві полиці часу. For відповідає на питання "як довго тривало": for two hours, for three years. Since відповідає на питання "з якого моменту почалося": since Monday, since 2020.',
+    'Think of two time shelves. For answers "how long": for two hours, for three years. Since answers "since what starting point": since Monday, since 2020.',
   ),
   contrastSet: ['for', 'since'],
   coreRule: tri(

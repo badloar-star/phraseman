@@ -16,6 +16,7 @@ import { useTheme, FontSize, FONT_SIZE_LABELS, FONT_SCALE } from '../../componen
 import ReportErrorButton from '../../components/ReportErrorButton';
 import RegistrationPromptModal from '../../components/RegistrationPromptModal';
 import ScreenGradient from '../../components/ScreenGradient';
+import DeleteAccountConfirmModal from '../../components/DeleteAccountConfirmModal';
 import { scheduleDailyReminder, cancelAllNotifications, loadNotificationSettings } from '../notifications';
 import { DebugLogger } from '../debug-logger';
 import { useLang } from '../../components/LangContext';
@@ -88,10 +89,19 @@ export default function SettingsMain() {
   }, []);
 
   const { lang, s } = useLang();
-  const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   const showInfoAlert = React.useCallback(
     (title: string, message: string) => {
-      void enqueueThemedBlockingInfoAlert(title || L('Сообщение', 'Повідомлення', 'Message'), message, 'OK');
+      void enqueueThemedBlockingInfoAlert(title || L('Сообщение', 'Повідомлення', 'Message', 'Mensagem', 'Thông báo', 'Pesan', 'Mesaj', 'Wiadomość'), message, 'OK');
     },
     [lang],
   );
@@ -148,6 +158,7 @@ export default function SettingsMain() {
   const [authReady, setAuthReady] = useState(false);
   const [authPromptVisible, setAuthPromptVisible] = useState(false);
   const [accountModalVisible, setAccountModalVisible] = useState(false);
+  const [deleteAccountModalVisible, setDeleteAccountModalVisible] = useState(false);
   /**
    * UI state для flow "Сменить аккаунт" (Variant 2):
    *   'idle'        — пользователь нигде не нажал
@@ -168,7 +179,8 @@ export default function SettingsMain() {
     const names: Record<string, { ru: string; uk: string; es: string }> = {
       dark: { ru: 'Форест', uk: 'Форест', es: 'Bosque' },
       neon: { ru: 'Неон', uk: 'Неон', es: 'Neón' },
-      gold: { ru: 'Корал', uk: 'Корал', es: 'Coral' },
+      gold: { ru: 'Золото', uk: 'Золото', es: 'Oro' },
+      coral: { ru: 'Корал', uk: 'Корал', es: 'Coral' },
       minimalLight: { ru: 'Скетч', uk: 'Скетч', es: 'Boceto' },
       minimalDark: { ru: 'Графит', uk: 'Графіт', es: 'Grafito' },
     };
@@ -237,22 +249,22 @@ export default function SettingsMain() {
 
   const saveName = async () => {
     const trimmed = newName.trim();
-    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім\'я", 'Escribe un nombre o apodo')); return; }
-    if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres')); return; }
-    if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres')); return; }
-    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido')); return; }
+    if (!trimmed) { showInfoAlert('', L('Введите имя', "Введіть ім\'я", 'Escribe un nombre o apodo', 'Digite um nome ou apelido', 'Nhập tên hoặc biệt danh', 'Masukkan nama atau nama panggilan', 'Bir ad veya takma ad gir', 'Wpisz imię lub pseudonim')); return; }
+    if (trimmed.length < 2) { showInfoAlert('', L('Минимум 2 символа', 'Мінімум 2 символи', 'Mínimo 2 caracteres', 'Mínimo de 2 caracteres', 'Tối thiểu 2 ký tự', 'Minimal 2 karakter', 'En az 2 karakter', 'Minimum 2 znaki')); return; }
+    if (trimmed.length > 20) { showInfoAlert('', L('Максимум 20 символов', 'Максимум 20 символів', 'Máximo 20 caracteres', 'Máximo de 20 caracteres', 'Tối đa 20 ký tự', 'Maksimal 20 karakter', 'En fazla 20 karakter', 'Maksymalnie 20 znaków')); return; }
+    if (containsBadWord(trimmed)) { showInfoAlert('', L('Недопустимое имя', "Недопустиме ім\'я", 'Nombre no válido', 'Nome inválido', 'Tên không hợp lệ', 'Nama tidak valid', 'Geçersiz ad', 'Niedozwolona nazwa')); return; }
 
     // Быстрая read-only проверка (UI feedback) + атомарная резервация (транзакция)
     const available = await isNameAvailable(trimmed);
     if (!available) {
-      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
+      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
       return;
     }
 
     const oldName = userName;
     const reservation = await reserveName(trimmed, oldName);
     if (reservation === 'taken') {
-      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.'));
+      showInfoAlert('', L('Это имя уже занято. Выберите другое.', "Це ім\'я вже зайняте. Оберіть інше.", 'Este nombre ya está en uso. Elige otro.', 'Esse nome já está em uso. Escolha outro.', 'Tên này đã được dùng. Hãy chọn tên khác.', 'Nama ini sudah dipakai. Pilih yang lain.', 'Bu ad zaten kullanılıyor. Başka bir ad seç.', 'Ta nazwa jest już zajęta. Wybierz inną.'));
       return;
     }
     if (reservation !== 'ok') {
@@ -262,6 +274,11 @@ export default function SettingsMain() {
           'Не удалось проверить уникальность имени. Попробуйте ещё раз.',
           'Не вдалося перевірити унікальність імені. Спробуйте ще раз.',
           'No pudimos comprobar si el nombre está libre. Inténtalo de nuevo.',
+          'Não foi possível verificar se o nome está disponível. Tente novamente.',
+          'Không thể kiểm tra tên này còn trống hay không. Hãy thử lại.',
+          'Tidak dapat memeriksa apakah nama tersedia. Coba lagi.',
+          'Adın uygun olup olmadığı kontrol edilemedi. Tekrar dene.',
+          'Nie udało się sprawdzić dostępności nazwy. Spróbuj ponownie.',
         ),
       );
       return;
@@ -384,7 +401,7 @@ export default function SettingsMain() {
         <View style={{ paddingHorizontal:20, paddingTop:14, paddingBottom:4, flexDirection:'row', alignItems:'center' }}>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={L('На главную', 'На головну', 'Inicio')}
+            accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chính', 'Beranda', 'Ana sayfa', 'Strona główna')}
             activeOpacity={0.85}
             onPress={() => { doHaptic(); goHome(); }}
             style={{
@@ -403,22 +420,22 @@ export default function SettingsMain() {
             <Ionicons name="chevron-back" size={20} color={chipTextOff} />
           </TouchableOpacity>
           <Text style={{ color: screenPrimary, fontSize: f.h2 + 6, fontWeight: 'bold', flex:1 }}>
-            {L('Настройки', 'Налаштування', 'Ajustes')}
+            {L('Настройки', 'Налаштування', 'Ajustes', 'Configurações', 'Cài đặt', 'Pengaturan', 'Ayarlar', 'Ustawienia')}
           </Text>
         </View>
 
         {ENABLE_DEV_STUDY_TARGET_LANG && (
           <View style={{ paddingHorizontal: 20, paddingTop: 6, paddingBottom: 6 }}>
             <Text style={{ color: screenMuted, fontSize: f.label, fontWeight: '600', textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 10 }}>
-              {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio')}
+              {L('Изучаемый язык', 'Мова, яку вивчаєте', 'Idioma de estudio', 'Idioma de estudo', 'Ngôn ngữ học', 'Bahasa yang dipelajari', 'Öğrenilen dil', 'Język nauki')}
             </Text>
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
               {(lang === 'es' ? (['en'] as const) : (['en', 'es'] as const)).map(code => {
                 const active = studyTarget === code;
                 const label =
                   code === 'en'
-                    ? L('Английский', 'Англійська', 'Inglés')
-                    : L('Испанский', 'Іспанська', 'Español');
+                    ? L('Английский', 'Англійська', 'Inglés', 'Inglês', 'Tiếng Anh', 'Bahasa Inggris', 'İngilizce', 'Angielski')
+                    : L('Испанский', 'Іспанська', 'Español', 'Espanhol', 'Tiếng Tây Ban Nha', 'Bahasa Spanyol', 'İspanyolca', 'Hiszpański');
                 return (
                   <TouchableOpacity
                     key={code}
@@ -453,33 +470,43 @@ export default function SettingsMain() {
                     'При испанском интерфейсе можно учить только английский.',
                     'При іспанському інтерфейсі можна вчити лише англійську.',
                     'Con la interfaz en español solo puedes estudiar inglés.',
+                    'Com a interface em espanhol, você só pode estudar inglês.',
+                    'Với giao diện tiếng Tây Ban Nha, bạn chỉ có thể học tiếng Anh.',
+                    'Dengan antarmuka bahasa Spanyol, kamu hanya bisa belajar bahasa Inggris.',
+                    'İspanyolca arayüzde yalnızca İngilizce çalışabilirsin.',
+                    'Przy hiszpańskim interfejsie możesz uczyć się tylko angielskiego.',
                   )
                 : L(
                     'Только в dev-сборке. Испанский — с интерфейсом на русском или украинском.',
                     'Лише в dev-збірці. Іспанська — з інтерфейсом російською чи українською.',
                     'Solo en build de desarrollo. El español como meta requiere interfaz en ruso o ucraniano.',
+                    'Somente na build de desenvolvimento. Espanhol como meta exige interface em russo ou ucraniano.',
+                    'Chỉ trong bản dev. Nếu học tiếng Tây Ban Nha, giao diện cần là tiếng Nga hoặc tiếng Ukraina.',
+                    'Hanya di build dev. Bahasa Spanyol sebagai target memerlukan antarmuka Rusia atau Ukraina.',
+                    'Yalnızca dev sürümünde. Hedef İspanyolca için arayüz Rusça veya Ukraynaca olmalı.',
+                    'Tylko w wersji deweloperskiej. Hiszpański jako cel wymaga interfejsu rosyjskiego albo ukraińskiego.',
                   )}
             </Text>
           </View>
         )}
 
-        <SectionTitle title={L('Профиль', 'Профіль', 'Perfil')} />
+        <SectionTitle title={L('Профиль', 'Профіль', 'Perfil', 'Perfil', 'Hồ sơ', 'Profil', 'Profil', 'Profil')} />
 
 <Row
           icon="person-outline"
-          label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo')}
+          label={L('Имя / никнейм', 'Ім\'я / нікнейм', 'Nombre o apodo', 'Nome / apelido', 'Tên / biệt danh', 'Nama / panggilan', 'Ad / takma ad', 'Imię / pseudonim')}
           sub={
-            false && !nameReady ? '' : (userName || L('Не задано', 'Не задано', 'No indicado'))
+            false && !nameReady ? '' : (userName || L('Не задано', 'Не задано', 'No indicado', 'Não definido', 'Chưa đặt', 'Belum diatur', 'Ayarlanmadı', 'Nie ustawiono'))
           }
           onPress={() => { setNewName(userName); setNameModal(true); }}
         />
         <Row
           icon="person-circle-outline"
-          label={L('Аккаунт', 'Акаунт', 'Cuenta')}
+          label={L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
           sub={
             false && !authReady ? '' : linkedAuth
                 ? `${linkedAuth.provider === 'apple' ? 'Apple' : 'Google'}${linkedAuth.email ? ` · ${linkedAuth.email}` : ''}`
-                : L('Не привязан', "Не прив\'язано", 'Sin vincular')
+                : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')
           }
           onPress={() => {
             if (!linkedAuth) {
@@ -509,6 +536,11 @@ export default function SettingsMain() {
                 'Установите никнейм, чтобы участвовать в клубах и рейтинге',
                 'Встановіть нікнейм, щоб брати участь у клубах та рейтингу',
                 'Añade un nombre o apodo para participar en el club y en la clasificación.',
+                'Adicione um apelido para participar dos clubes e do ranking.',
+                'Đặt biệt danh để tham gia câu lạc bộ và bảng xếp hạng.',
+                'Tambahkan nama panggilan untuk ikut klub dan peringkat.',
+                'Kulüplere ve sıralamaya katılmak için bir takma ad ekle.',
+                'Ustaw pseudonim, aby brać udział w klubach i rankingach.',
               )}
             </Text>
             <Ionicons name="chevron-forward" size={16} color={t.accent} />
@@ -522,10 +554,10 @@ export default function SettingsMain() {
           onPress={() => router.push('/settings_language' as any)}
         />
 
-        <SectionTitle title={L('Внешний вид', 'Зовнішній вигляд', 'Apariencia')} />
+        <SectionTitle title={L('Внешний вид', 'Зовнішній вигляд', 'Apariencia', 'Aparência', 'Giao diện', 'Tampilan', 'Görünüm', 'Wygląd')} />
         <Row
           icon="color-palette-outline"
-          label={L('Темы', 'Теми', 'Temas')}
+          label={L('Темы', 'Теми', 'Temas', 'Temas', 'Chủ đề', 'Tema', 'Temalar', 'Motywy')}
           sub={currentThemeLabel}
           onPress={() => router.push('/settings_themes' as any)}
         />
@@ -536,9 +568,18 @@ export default function SettingsMain() {
           <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 14 }}>
             <Ionicons name="text-outline" size={22} color={screenSecond} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
-              <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Размер шрифта', 'Розмір шрифту', 'Tamaño de letra')}</Text>
+              <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Размер шрифта', 'Розмір шрифту', 'Tamaño de letra', 'Tamanho da fonte', 'Cỡ chữ', 'Ukuran font', 'Yazı boyutu', 'Rozmiar czcionki')}</Text>
               <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>
-                {triLang(lang, FONT_SIZE_LABELS[fontSize])}
+                {triLang(lang, {
+                  ru: FONT_SIZE_LABELS[fontSize].ru,
+                  uk: FONT_SIZE_LABELS[fontSize].uk,
+                  es: FONT_SIZE_LABELS[fontSize].es,
+                  'pt-BR': FONT_SIZE_LABELS[fontSize]['pt-BR'],
+                  vi: FONT_SIZE_LABELS[fontSize].vi,
+                  id: FONT_SIZE_LABELS[fontSize].id,
+                  tr: FONT_SIZE_LABELS[fontSize].tr,
+                  pl: FONT_SIZE_LABELS[fontSize].pl,
+                })}
               </Text>
             </View>
           </View>
@@ -568,6 +609,11 @@ export default function SettingsMain() {
                     sz === 'small' ? 'Малый' : sz === 'medium' ? 'Средний' : 'Большой',
                     sz === 'small' ? 'Малий' : sz === 'medium' ? 'Середній' : 'Великий',
                     sz === 'small' ? 'Pequeño' : sz === 'medium' ? 'Mediano' : 'Grande',
+                    sz === 'small' ? 'Pequeno' : sz === 'medium' ? 'Médio' : 'Grande',
+                    sz === 'small' ? 'Nhỏ' : sz === 'medium' ? 'Vừa' : 'Lớn',
+                    sz === 'small' ? 'Kecil' : sz === 'medium' ? 'Sedang' : 'Besar',
+                    sz === 'small' ? 'Küçük' : sz === 'medium' ? 'Orta' : 'Büyük',
+                    sz === 'small' ? 'Mały' : sz === 'medium' ? 'Średni' : 'Duży',
                   )}
                 </Text>
               </TouchableOpacity>
@@ -579,8 +625,8 @@ export default function SettingsMain() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingVertical: 16, borderBottomWidth: 0.5, borderBottomColor: screenBorder }}>
           <Ionicons name="phone-portrait-outline" size={22} color={screenSecond} style={{ marginRight: 14 }} />
           <View style={{ flex: 1 }}>
-            <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Тактильный отклик', 'Тактильний відгук', 'Respuesta háptica')}</Text>
-            <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>{L('Вибрация на каждом нажатии', 'Вібрація на кожному натисканні', 'Vibración ligera al pulsar')}</Text>
+            <Text style={{ color: screenPrimary, fontSize: f.bodyLg }}>{L('Тактильный отклик', 'Тактильний відгук', 'Respuesta háptica', 'Resposta tátil', 'Phản hồi rung', 'Umpan balik haptik', 'Dokunsal geri bildirim', 'Reakcja haptyczna')}</Text>
+            <Text style={{ color: screenMuted, fontSize: f.caption, marginTop: 2 }}>{L('Вибрация на каждом нажатии', 'Вібрація на кожному натисканні', 'Vibración ligera al pulsar', 'Vibração leve a cada toque', 'Rung nhẹ khi chạm', 'Getaran ringan setiap ketukan', 'Her dokunuşta hafif titreşim', 'Lekka wibracja przy każdym dotknięciu')}</Text>
           </View>
           <CustomSwitch
             value={hapticTap}
@@ -592,15 +638,15 @@ export default function SettingsMain() {
           />
         </View>
 
-        <SectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje')} />
-        <Row icon="school-outline"        label={L('Настройки обучения', 'Налаштування навчання', 'Ajustes del aprendizaje')}   onPress={() => router.push('/settings_edu')} />
-        <Row icon="notifications-outline" label={L('Напоминания', 'Нагадування', 'Recordatorios')} sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria')} onPress={() => router.push('/settings_notifications')} />
+        <SectionTitle title={L('Обучение', 'Навчання', 'Aprendizaje', 'Aprendizado', 'Học tập', 'Pembelajaran', 'Öğrenme', 'Nauka')} />
+        <Row icon="school-outline"        label={L('Настройки обучения', 'Налаштування навчання', 'Ajustes del aprendizaje', 'Configurações de aprendizado', 'Cài đặt học tập', 'Pengaturan pembelajaran', 'Öğrenme ayarları', 'Ustawienia nauki')}   onPress={() => router.push('/settings_edu')} />
+        <Row icon="notifications-outline" label={L('Напоминания', 'Нагадування', 'Recordatorios', 'Lembretes', 'Nhắc nhở', 'Pengingat', 'Hatırlatıcılar', 'Przypomnienia')} sub={L('Ежедневная мотивация', 'Щоденна мотивація', 'Motivación diaria', 'Motivação diária', 'Động lực hằng ngày', 'Motivasi harian', 'Günlük motivasyon', 'Codzienna motywacja')} onPress={() => router.push('/settings_notifications')} />
 
 
-<SectionTitle title={L('Ещё', 'Ще', 'Más')} />
+<SectionTitle title={L('Ещё', 'Ще', 'Más', 'Mais', 'Thêm', 'Lainnya', 'Daha fazla', 'Więcej')} />
         <Row
           icon="at-outline"
-          label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte')}
+          label={L('Написать в поддержку', 'Написати в підтримку', 'Escribir a soporte', 'Escrever para o suporte', 'Liên hệ hỗ trợ', 'Tulis ke dukungan', 'Desteğe yaz', 'Napisz do pomocy')}
           sub="support.phraseman@gmail.com"
           onPress={() => {
             doHaptic();
@@ -610,10 +656,10 @@ export default function SettingsMain() {
           }}
         />
         {effectiveOs === 'android' && (
-          <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta')} onPress={() => router.push('/beta_testers' as any)} />
+          <Row icon="people-outline" label={L('Бета-тестеры', 'Бета-тестери', 'Probadores beta', 'Testadores beta', 'Người thử nghiệm beta', 'Penguji beta', 'Beta test kullanıcıları', 'Beta testerzy')} onPress={() => router.push('/beta_testers' as any)} />
         )}
         {ENABLE_DEV_TOOLS && (
-          <Row icon="construct-outline" label={L('Админ панель', 'Адмін панель', 'Panel admin')} onPress={() => router.push('/settings_testers' as any)} />
+          <Row icon="construct-outline" label={L('Админ панель', 'Адмін панель', 'Panel admin', 'Painel admin', 'Bảng quản trị', 'Panel admin', 'Yönetici paneli', 'Panel admina')} onPress={() => router.push('/settings_testers' as any)} />
         )}
         {/* Premium — одна плашка: контекст уже учитывает DEV / FORCE_PREMIUM / RevenueCat */}
         {isPremium ? (
@@ -634,14 +680,14 @@ export default function SettingsMain() {
             <Ionicons name="diamond" size={26} color={premiumActiveIcon} style={{ marginRight: 14 }} />
             <View style={{ flex: 1 }}>
               <Text style={{ color: premiumActiveTitle, fontSize: f.bodyLg, fontWeight: '800' }}>
-                Premium {L('активирован', 'активовано', 'activo')} ✓
+                Premium {L('активирован', 'активовано', 'activo', 'ativado', 'đã kích hoạt', 'aktif', 'aktif', 'aktywne')} ✓
               </Text>
               <Text style={{ color: premiumActiveSub, fontSize: f.caption, marginTop: 2 }}>
                 {premiumPlan === 'yearly'
-                  ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual')
+                  ? L('Годовая подписка', 'Річна підписка', 'Suscripción anual', 'Assinatura anual', 'Gói hằng năm', 'Langganan tahunan', 'Yıllık abonelik', 'Subskrypcja roczna')
                   : premiumPlan === 'monthly'
-                    ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual')
-                    : L('Подписка активна', 'Підписка активна', 'Suscripción activa')}
+                    ? L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual', 'Assinatura mensal', 'Gói hằng tháng', 'Langganan bulanan', 'Aylık abonelik', 'Subskrypcja miesięczna')
+                    : L('Подписка активна', 'Підписка активна', 'Suscripción activa', 'Assinatura ativa', 'Gói đăng ký đang hoạt động', 'Langganan aktif', 'Abonelik aktif', 'Subskrypcja aktywna')}
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={premiumActiveIcon} />
@@ -658,12 +704,24 @@ export default function SettingsMain() {
                 Premium
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginTop: 2 }}>
-                {L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual')}
+                {L('Месячный или годовой план', 'Місячний або річний план', 'Plan mensual o anual', 'Plano mensal ou anual', 'Gói tháng hoặc năm', 'Paket bulanan atau tahunan', 'Aylık veya yıllık plan', 'Plan miesięczny albo roczny')}
               </Text>
             </View>
             <Ionicons name="chevron-forward" size={18} color={t.textGhost} />
           </TouchableOpacity>
         )}
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => {
+            doHaptic();
+            setDeleteAccountModalVisible(true);
+          }}
+          style={{ alignSelf: 'center', marginTop: -4, paddingHorizontal: 18, paddingVertical: 10 }}
+        >
+          <Text style={{ color: screenGhost, fontSize: f.caption, fontWeight: '600', textAlign: 'center' }}>
+            {L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
+          </Text>
+        </TouchableOpacity>
 
         {/* Подвал */}
         <View style={{ alignItems:'center', paddingVertical:32, marginTop:20, borderTopWidth:0.5, borderTopColor:screenBorder }}>
@@ -694,7 +752,7 @@ export default function SettingsMain() {
               PHRASEMAN
             </Text>
             <Text style={{ color:screenMuted, fontSize:f.caption, marginTop:4, textAlign:'center' }}>
-              by Professor Lingman
+              by Knowly
             </Text>
           </TouchableOpacity>
           <View style={{ alignItems: 'center', marginTop: 16 }}>
@@ -705,6 +763,11 @@ export default function SettingsMain() {
                 ru: 'Настройки',
                 uk: 'Налаштування',
                 es: 'Ajustes',
+                'pt-BR': 'Configurações',
+                vi: 'Cài đặt',
+                id: 'Pengaturan',
+                tr: 'Ayarlar',
+                pl: 'Ustawienia',
               })}
             />
           </View>
@@ -722,14 +785,19 @@ export default function SettingsMain() {
         }}
       />
 
+      <DeleteAccountConfirmModal
+        visible={deleteAccountModalVisible}
+        onRequestClose={() => setDeleteAccountModalVisible(false)}
+      />
+
       <Modal visible={accountModalVisible} transparent animationType="fade" onRequestClose={() => setAccountModalVisible(false)}>
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
           <View style={{ width: '100%', maxWidth: 380, backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 1, borderColor: t.border }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 8 }}>
-              {L('Аккаунт', 'Акаунт', 'Cuenta')}
+              {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22 }}>
-              {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', "Не прив\'язано", 'Sin vincular')}
+              {linkedAuth ? (linkedAuth.provider === 'apple' ? 'Apple' : 'Google') : L('Не привязан', "Не прив\'язано", 'Sin vincular', 'Não vinculada', 'Chưa liên kết', 'Belum ditautkan', 'Bağlı değil', 'Nie połączono')}
             </Text>
             {!!linkedAuth?.email && (
               <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 2 }}>
@@ -744,7 +812,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Отмена', 'Скасувати', 'Cancelar')}
+                  {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                 </Text>
               </TouchableOpacity>
 
@@ -759,10 +827,25 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
-                  {L('Сменить аккаунт', 'Змінити акаунт', 'Cambiar de cuenta')}
+                  {L('Сменить аккаунт', 'Змінити акаунт', 'Cambiar de cuenta', 'Trocar de conta', 'Đổi tài khoản', 'Ganti akun', 'Hesap değiştir', 'Zmień konto')}
                 </Text>
               </TouchableOpacity>
             </View>
+
+            <TouchableOpacity
+              activeOpacity={0.8}
+              onPress={() => {
+                navigateAfterModalClose(
+                  () => setAccountModalVisible(false),
+                  () => setDeleteAccountModalVisible(true),
+                );
+              }}
+              style={{ marginTop: 14, paddingTop: 14, borderTopWidth: 0.5, borderTopColor: t.border }}
+            >
+              <Text style={{ color: t.wrong, fontSize: f.caption, fontWeight: '800', textAlign: 'right' }}>
+                {L('Удалить аккаунт и данные', 'Видалити акаунт і дані', 'Eliminar cuenta y datos', 'Excluir conta e dados', 'Xóa tài khoản và dữ liệu', 'Hapus akun dan data', 'Hesabı ve verileri sil', 'Usuń konto i dane')}
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -777,13 +860,18 @@ export default function SettingsMain() {
         <View style={{ flex: 1, backgroundColor: 'rgba(0,0,0,0.7)', justifyContent: 'center', alignItems: 'center', paddingHorizontal: 20 }}>
           <View style={{ width: '100%', maxWidth: 380, backgroundColor: t.bgCard, borderRadius: 16, padding: 20, borderWidth: 1, borderColor: t.border }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', marginBottom: 12 }}>
-              {L('Сменить аккаунт?', 'Змінити акаунт?', '¿Cambiar de cuenta?')}
+              {L('Сменить аккаунт?', 'Змінити акаунт?', '¿Cambiar de cuenta?', 'Trocar de conta?', 'Đổi tài khoản?', 'Ganti akun?', 'Hesap değiştirilsin mi?', 'Zmienić konto?')}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.body, lineHeight: 22, marginBottom: 8 }}>
               {L(
                 'Текущий прогресс останется привязан к аккаунту, под которым ты сейчас вошёл. Чтобы вернуться — войди под ним снова.',
                 "Поточний прогрес залишиться прив\'язаним до акаунту, під яким ти зараз увійшов. Щоб повернутися до нього — увійди тим самим акаунтом знову.",
                 'Tu progreso quedará vinculado a la cuenta con la que iniciaste sesión. Para recuperarlo, vuelve a entrar con la misma cuenta.',
+                'Seu progresso atual ficará vinculado à conta em que você está conectado agora. Para voltar, entre nela novamente.',
+                'Tiến độ hiện tại sẽ gắn với tài khoản bạn đang đăng nhập. Muốn quay lại, hãy đăng nhập lại bằng tài khoản đó.',
+                'Progres saat ini akan tetap terhubung ke akun yang sedang kamu pakai. Untuk kembali, masuk lagi dengan akun yang sama.',
+                'Mevcut ilerlemen şu anda giriş yaptığın hesaba bağlı kalacak. Geri dönmek için aynı hesapla tekrar giriş yap.',
+                'Obecny postęp pozostanie przypisany do konta, na którym jesteś teraz zalogowany. Aby wrócić, zaloguj się na nie ponownie.',
               )}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 20 }}>
@@ -791,6 +879,11 @@ export default function SettingsMain() {
                 'Перед выходом сохраним всё в облако. Если нет интернета — выход будет отменён.',
                 'Перед виходом ми збережемо все в хмарі. Якщо немає інтернету — вихід буде відкладено.',
                 'Antes de cerrar sesión guardamos todo en la nube. Sin conexión, se cancelará el cierre de sesión.',
+                'Antes de sair, vamos salvar tudo na nuvem. Sem internet, a saída será cancelada.',
+                'Trước khi đăng xuất, chúng tôi sẽ lưu mọi thứ lên đám mây. Nếu không có internet, việc đăng xuất sẽ bị hủy.',
+                'Sebelum keluar, semuanya akan disimpan ke cloud. Jika tidak ada internet, proses keluar akan dibatalkan.',
+                'Çıkmadan önce her şeyi buluta kaydedeceğiz. İnternet yoksa çıkış iptal edilir.',
+                'Przed wylogowaniem zapiszemy wszystko w chmurze. Bez internetu wylogowanie zostanie anulowane.',
               )}
             </Text>
 
@@ -801,7 +894,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.textMuted, fontSize: f.body, fontWeight: '700' }}>
-                  {L('Отмена', 'Скасувати', 'Cancelar')}
+                  {L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}
                 </Text>
               </TouchableOpacity>
 
@@ -814,14 +907,19 @@ export default function SettingsMain() {
                   setSwitchAccountStage('idle');
                   if (!res.ok) {
                     showInfoAlert(
-                      L('Не удалось выйти', 'Не вдалося вийти', 'No se pudo cerrar sesión'),
+                      L('Не удалось выйти', 'Не вдалося вийти', 'No se pudo cerrar sesión', 'Não foi possível sair', 'Không thể đăng xuất', 'Tidak dapat keluar', 'Çıkış yapılamadı', 'Nie udało się wylogować'),
                       res.reason === 'sync_failed'
                         ? L(
                             'Нет связи с сервером. Прогресс не сохранён в облако — попробуй позже, когда появится интернет.',
                             "Немає зв\'язку з сервером. Прогрес не збережено в хмару — спробуй пізніше, коли з\'явиться інтернет.",
                             'Sin conexión con el servidor: el progreso no se guardó en la nube. Inténtalo de nuevo cuando tengas internet.',
+                            'Sem conexão com o servidor: o progresso não foi salvo na nuvem. Tente de novo quando tiver internet.',
+                            'Không có kết nối với máy chủ: tiến độ chưa được lưu lên đám mây. Hãy thử lại khi có internet.',
+                            'Tidak ada koneksi ke server: progres belum disimpan ke cloud. Coba lagi saat internet tersedia.',
+                            'Sunucuyla bağlantı yok: ilerleme buluta kaydedilmedi. İnternet olduğunda tekrar dene.',
+                            'Brak połączenia z serwerem: postęp nie został zapisany w chmurze. Spróbuj ponownie, gdy będzie internet.',
                           )
-                        : L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Error desconocido. Inténtalo de nuevo.'),
+                        : L('Неизвестная ошибка. Попробуй ещё раз.', 'Невідома помилка. Спробуй ще раз.', 'Error desconocido. Inténtalo de nuevo.', 'Erro desconhecido. Tente novamente.', 'Lỗi không xác định. Hãy thử lại.', 'Error tidak dikenal. Coba lagi.', 'Bilinmeyen hata. Tekrar dene.', 'Nieznany błąd. Spróbuj ponownie.'),
                     );
                     return;
                   }
@@ -831,7 +929,7 @@ export default function SettingsMain() {
                 style={{ paddingHorizontal: 10, paddingVertical: 8 }}
               >
                 <Text style={{ color: t.correct, fontSize: f.body, fontWeight: '800' }}>
-                  {L('Продолжить', 'Продовжити', 'Continuar')}
+                  {L('Продолжить', 'Продовжити', 'Continuar', 'Continuar', 'Tiếp tục', 'Lanjutkan', 'Devam et', 'Kontynuuj')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -845,10 +943,10 @@ export default function SettingsMain() {
           <View style={{ width: '100%', maxWidth: 280, backgroundColor: t.bgCard, borderRadius: 16, padding: 28, borderWidth: 1, borderColor: t.border, alignItems: 'center' }}>
             <Ionicons name="shield-checkmark" size={28} color={t.correct} />
             <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', marginTop: 16, textAlign: 'center' }}>
-              {L('Аккаунт', 'Акаунт', 'Cuenta')}
+              {L('Аккаунт', 'Акаунт', 'Cuenta', 'Conta', 'Tài khoản', 'Akun', 'Hesap', 'Konto')}
             </Text>
             <Text style={{ color: t.textMuted, fontSize: f.sub, marginTop: 6, textAlign: 'center' }}>
-              {L('Не закрывай приложение', 'Не закривай застосунок', 'No cierres la app')}
+              {L('Не закрывай приложение', 'Не закривай застосунок', 'No cierres la app', 'Não feche o app', 'Đừng đóng ứng dụng', 'Jangan tutup aplikasi', 'Uygulamayı kapatma', 'Nie zamykaj aplikacji')}
             </Text>
           </View>
         </View>
@@ -868,13 +966,13 @@ export default function SettingsMain() {
           <Pressable onPress={(e) => e.stopPropagation()}>
             <View style={{ width: '80%', minWidth: 280, backgroundColor: t.bgCard, borderRadius: 16, padding: 24 }}>
             <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '600', marginBottom: 16 }}>
-              {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre')}
+              {L('Изменить имя', 'Змінити ім\'я', 'Cambiar nombre', 'Alterar nome', 'Đổi tên', 'Ubah nama', 'Adı değiştir', 'Zmień nazwę')}
             </Text>
             <TextInput
               style={{ backgroundColor: t.bgPrimary, color: t.textPrimary, fontSize: f.h2, padding: 14, borderRadius: 10, borderWidth: 1, borderColor: t.border, marginBottom: 20 }}
               value={newName}
               onChangeText={setNewName}
-              placeholder={L('Введите имя...', 'Введіть ім\'я...', 'Escribe tu nombre...')}
+              placeholder={L('Введите имя...', 'Введіть ім\'я...', 'Escribe tu nombre...', 'Digite seu nome...', 'Nhập tên...', 'Masukkan nama...', 'Adını gir...', 'Wpisz imię...')}
               placeholderTextColor={t.textGhost}
               autoFocus maxLength={20}
               returnKeyType="done"
@@ -883,10 +981,10 @@ export default function SettingsMain() {
             />
             <View style={{ flexDirection: 'row', gap: 12 }}>
               <TouchableOpacity activeOpacity={0.7} style={{ flex: 1, padding: 12, borderRadius: 10, borderWidth: 1, borderColor: t.border, alignItems: 'center' }} onPress={() => { doHaptic(); closeNameModal(); }}>
-                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1} adjustsFontSizeToFit>{L('Отмена', 'Скасувати', 'Cancelar')}</Text>
+                <Text style={{ color: t.textMuted, fontSize: f.body }} numberOfLines={1} adjustsFontSizeToFit>{L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'Vazgeç', 'Anuluj')}</Text>
               </TouchableOpacity>
               <TouchableOpacity activeOpacity={0.8} style={{ flex: 1, padding: 12, borderRadius: 10, backgroundColor: t.accent, borderWidth: 1, borderColor: t.accent, alignItems: 'center' }} onPress={() => { doHaptic(); void saveName(); }}>
-                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>{L('Сохранить', 'Зберегти', 'Guardar')}</Text>
+                <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }} numberOfLines={1} adjustsFontSizeToFit>{L('Сохранить', 'Зберегти', 'Guardar', 'Salvar', 'Lưu', 'Simpan', 'Kaydet', 'Zapisz')}</Text>
               </TouchableOpacity>
             </View>
             </View>

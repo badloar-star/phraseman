@@ -35,6 +35,8 @@ import ReportErrorButton from '../components/ReportErrorButton';
 import ScreenGradient from '../components/ScreenGradient';
 import ContentWrap from '../components/ContentWrap';
 import PressableScale from '../components/PressableScale';
+import GoldBevel from '../components/GoldBevel';
+import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 import { addShardsRaw, getShardsBalance, loadShardsFromCloud, peekLastKnownShardsBalance } from './shards_system';
 import { SHARDS_PACKS, totalShardsFromPack, type ShardsPack } from './shards_shop_catalog';
 import {
@@ -359,6 +361,7 @@ function savingsVsStarterFromStore(
 export default function ShardsShopScreen() {
   const router = useRouter();
   const { theme: t, f, isDark, themeMode, statusBarLight } = useTheme();
+  const isGoldTheme = themeMode === 'gold';
   const { width: winW, contentMaxW, insets } = useScreen();
   const { lang } = useLang();
   const lb = bundleLang(lang);
@@ -832,11 +835,11 @@ export default function ShardsShopScreen() {
 
     const paywallMood = isPaywallAtmosphereMode(themeMode);
     const borderColor = isBest
-      ? `${t.gold}55`
+      ? (isGoldTheme ? GOLD_RICH.hairlineStrong : `${t.gold}55`)
       : isPopular
-        ? `${t.accent}50`
+        ? (isGoldTheme ? GOLD_RICH.hairline : `${t.accent}50`)
         : paywallMood
-          ? `${t.accent}22`
+          ? (isGoldTheme ? GOLD_RICH.hairlineQuiet : `${t.accent}22`)
           : t.border;
 
     const hasRevenuePackage = !!pkg;
@@ -886,10 +889,23 @@ export default function ShardsShopScreen() {
               borderWidth: 1,
               borderColor,
               overflow: 'hidden',
-              backgroundColor: t.bgCard,
-              ...cardShadow,
+              backgroundColor: isGoldTheme ? 'transparent' : t.bgCard,
+              ...(isGoldTheme ? goldShadow(isBest ? 2 : 1) : cardShadow),
             }}
           >
+            {isGoldTheme && (
+              <>
+                <LinearGradient
+                  pointerEvents="none"
+                  colors={isBest ? GOLD_GRADIENTS.selectedTile : GOLD_GRADIENTS.raisedTile}
+                  locations={GOLD_SURFACE_LOCATIONS}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 1 }}
+                  style={StyleSheet.absoluteFill}
+                />
+                <GoldBevel radius={16} intensity={isBest ? 'strong' : 'normal'} />
+              </>
+            )}
             {(isPopular || isBest) && (
               <View style={{ position: 'absolute', top: 10, right: 10, zIndex: 2 }}>
                 <HitBadgeShell
@@ -897,7 +913,7 @@ export default function ShardsShopScreen() {
                     borderRadius: 999,
                     paddingHorizontal: 9,
                     paddingVertical: 3,
-                    backgroundColor: isBest ? t.gold : t.accent,
+                    backgroundColor: isBest ? (isGoldTheme ? GOLD_RICH.champagne : t.gold) : t.accent,
                   }}
                 >
                   <Text style={{ color: isBest ? '#1a1208' : ctaOnAccent, fontSize: 9, fontWeight: '900', letterSpacing: 0.4 }}>
@@ -1046,7 +1062,8 @@ export default function ShardsShopScreen() {
               </Text>
             </View>
             <LinearGradient
-              colors={[`${t.accent}35`, `${t.accent}10`]}
+              colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : [`${t.accent}35`, `${t.accent}10`]}
+              locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={{ borderRadius: 18, padding: 1 }}
@@ -1059,13 +1076,14 @@ export default function ShardsShopScreen() {
                   paddingHorizontal: 12,
                   paddingVertical: 8,
                   borderRadius: 17,
-                  backgroundColor: t.bgCard,
+                  backgroundColor: isGoldTheme ? 'transparent' : t.bgCard,
                   borderWidth: 1,
-                  borderColor: `${t.accent}30`,
+                  borderColor: isGoldTheme ? GOLD_RICH.hairline : `${t.accent}30`,
                   minWidth: 96,
                   justifyContent: 'center',
                 }}
               >
+                {isGoldTheme && <GoldBevel radius={17} intensity="normal" />}
                 <Image source={oskolokImageForPackShards(balance)} style={{ width: 24, height: 24 }} contentFit="contain" />
                 <Text style={{ color: t.textPrimary, fontSize: f.numMd, fontWeight: '900' }}>{balance}</Text>
                 {/* Бейдж активного 48-год подарунка — лише на вкладці «Картки», бо тільки там його можна обміняти. */}
@@ -1465,6 +1483,11 @@ export default function ShardsShopScreen() {
                   ru: 'Магазин осколков',
                   uk: 'Крамниця уламків',
                   es: 'Tienda de fragmentos',
+                  'pt-BR': 'Loja de fragmentos',
+                  vi: 'Cửa hàng mảnh',
+                  id: 'Toko shard',
+                  tr: 'Parça mağazası',
+                  pl: 'Sklep z odłamkami',
                 })}
               />
             </View>

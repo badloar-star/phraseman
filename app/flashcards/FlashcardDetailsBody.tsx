@@ -39,8 +39,15 @@ type Props = {
   f: Record<string, number>;
 };
 
-const LITERAL_LABEL: Record<FlashcardContentLang, string> = { ru: 'Дословно', uk: 'Дослівно', es: 'Literal' };
-const CONTEXT_LABEL: Record<FlashcardContentLang, string> = {
+type FlashcardDetailLabelLang = 'ru' | 'uk' | 'es';
+
+function flashcardDetailLabelLang(lang: FlashcardContentLang): FlashcardDetailLabelLang {
+  if (lang === 'uk' || lang === 'es') return lang;
+  return 'ru';
+}
+
+const LITERAL_LABEL: Record<FlashcardDetailLabelLang, string> = { ru: 'Дословно', uk: 'Дослівно', es: 'Literal' };
+const CONTEXT_LABEL: Record<FlashcardDetailLabelLang, string> = {
   ru: 'Контекст',
   uk: 'Контекст',
   es: 'Contexto',
@@ -50,6 +57,7 @@ const CONTEXT_LABEL: Record<FlashcardContentLang, string> = {
  * Розгорнуті деталі: дослівний переклад (поля literal*) — окрема секція з міткою; пояснення/контекст/нотатка — далі в блоці з рейкою.
  */
 function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
+  const labelLang = flashcardDetailLabelLang(lang);
   const literalText = useMemo(() => {
     const raw =
       lang === 'uk'
@@ -114,11 +122,11 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
 
   const reportDataText = useMemo(() => {
     const bits: string[] = [`EN: ${item.en}`];
-    if (literalText) bits.push(`${LITERAL_LABEL[lang]}: ${literalText}`);
+    if (literalText) bits.push(`${LITERAL_LABEL[labelLang]}: ${literalText}`);
     if (bodyText) bits.push(bodyText);
-    if (exampleText) bits.push(`${CONTEXT_LABEL[lang]}:\n${exampleText}`);
+    if (exampleText) bits.push(`${CONTEXT_LABEL[labelLang]}:\n${exampleText}`);
     return bits.join('\n\n');
-  }, [item.en, literalText, bodyText, exampleText, lang]);
+  }, [item.en, literalText, bodyText, exampleText, labelLang]);
 
   const hideReportFlag = item.categoryId === 'custom';
 
@@ -143,7 +151,7 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
               marginBottom: 6,
             }}
           >
-            {LITERAL_LABEL[lang]}:
+            {LITERAL_LABEL[labelLang]}:
           </Text>
           <View style={[ss.blockRail, { borderLeftColor: `${t.accent}99` }]}>
             <Text
@@ -205,7 +213,7 @@ function FlashcardDetailsBodyImpl({ item, lang, t, f }: Props) {
               marginBottom: 6,
             }}
           >
-            {CONTEXT_LABEL[lang]}:
+            {CONTEXT_LABEL[labelLang]}:
           </Text>
           <View style={[ss.blockRail, { borderLeftColor: `${t.accent}55` }]}>
             <Text

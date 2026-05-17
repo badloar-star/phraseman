@@ -13,12 +13,28 @@ import {
   type PosMicroDiagnosisId,
 } from './pos_micro_diagnosis';
 
+type CoachToastLabel = {
+  ru: string;
+  uk: string;
+  es: string;
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+};
+
 export interface CoachToastResult {
   show: true;
   category: WordCategory;
   labelRu: string;
   labelUk: string;
   labelEs: string;
+  labelPtBr: string;
+  labelVi: string;
+  labelId: string;
+  labelTr: string;
+  labelPl: string;
   mistakeCount: number;
   weaknessScore: number;
   priorityScore?: number;
@@ -28,6 +44,11 @@ export interface CoachToastResult {
   microLabelRu?: string;
   microLabelUk?: string;
   microLabelEs?: string;
+  microLabelPtBr?: string;
+  microLabelVi?: string;
+  microLabelId?: string;
+  microLabelTr?: string;
+  microLabelPl?: string;
   diagnosisEvidenceCount?: number;
 }
 
@@ -48,6 +69,11 @@ export interface CoachToastRouteParams {
   coachMicroLabelRu?: string;
   coachMicroLabelUk?: string;
   coachMicroLabelEs?: string;
+  coachMicroLabelPtBr?: string;
+  coachMicroLabelVi?: string;
+  coachMicroLabelId?: string;
+  coachMicroLabelTr?: string;
+  coachMicroLabelPl?: string;
   coachDiagnosisEvidenceCount?: string;
 }
 
@@ -59,25 +85,169 @@ const MIN_ANALYTICS_PRIORITY_SCORE = 72;
 const MIN_ANALYTICS_EXACT_MISTAKES = 3;
 const MIN_ANALYTICS_RECENT_MISTAKES = 1;
 
-const CATEGORY_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
-  verb:             { ru: 'Глаголы',            uk: 'Дієслова',            es: 'Verbos' },
-  noun:             { ru: 'Существительные',     uk: 'Іменники',            es: 'Sustantivos' },
-  pronoun:          { ru: 'Местоимения',         uk: 'Займенники',          es: 'Pronombres' },
-  adjective:        { ru: 'Прилагательные',      uk: 'Прикметники',         es: 'Adjetivos' },
-  adverb:           { ru: 'Наречия',             uk: 'Прислівники',         es: 'Adverbios' },
-  preposition:      { ru: 'Предлоги',            uk: 'Прийменники',         es: 'Preposiciones' },
-  modifier:         { ru: 'Modifiers',           uk: 'Modifiers',           es: 'Modificadores' },
-  syntax:           { ru: 'Syntax',              uk: 'Syntax',              es: 'Sintaxis' },
-  article:          { ru: 'Артикли',             uk: 'Артиклі',             es: 'Artículos' },
-  existential:      { ru: 'There is / There are', uk: 'There is / There are', es: 'There is / There are' },
-  'to-be':          { ru: 'Глагол to be',        uk: 'Дієслово to be',      es: 'Verbo to be' },
-  conjunction:      { ru: 'Союзы',               uk: 'Сполучники',          es: 'Conjunciones' },
-  modal:            { ru: 'Модальные глаголы',   uk: 'Модальні дієслова',   es: 'Verbos modales' },
-  phrasal_particle: { ru: 'Фразовые частицы',    uk: 'Фразові частки',      es: 'Partículas verbales' },
-  other:            { ru: 'Другое',              uk: 'Інше',                es: 'Otro' },
+const CATEGORY_LABELS: Record<string, CoachToastLabel> = {
+  verb: {
+    ru: 'Глаголы',
+    uk: 'Дієслова',
+    es: 'Verbos',
+    'pt-BR': 'Verbos',
+    vi: 'Động từ',
+    id: 'Kata kerja',
+    tr: 'Fiiller',
+    pl: 'Czasowniki',
+  },
+  noun: {
+    ru: 'Существительные',
+    uk: 'Іменники',
+    es: 'Sustantivos',
+    'pt-BR': 'Substantivos',
+    vi: 'Danh từ',
+    id: 'Kata benda',
+    tr: 'İsimler',
+    pl: 'Rzeczowniki',
+  },
+  pronoun: {
+    ru: 'Местоимения',
+    uk: 'Займенники',
+    es: 'Pronombres',
+    'pt-BR': 'Pronomes',
+    vi: 'Đại từ',
+    id: 'Kata ganti',
+    tr: 'Zamirler',
+    pl: 'Zaimki',
+  },
+  adjective: {
+    ru: 'Прилагательные',
+    uk: 'Прикметники',
+    es: 'Adjetivos',
+    'pt-BR': 'Adjetivos',
+    vi: 'Tính từ',
+    id: 'Kata sifat',
+    tr: 'Sıfatlar',
+    pl: 'Przymiotniki',
+  },
+  adverb: {
+    ru: 'Наречия',
+    uk: 'Прислівники',
+    es: 'Adverbios',
+    'pt-BR': 'Advérbios',
+    vi: 'Trạng từ',
+    id: 'Kata keterangan',
+    tr: 'Zarflar',
+    pl: 'Przysłówki',
+  },
+  preposition: {
+    ru: 'Предлоги',
+    uk: 'Прийменники',
+    es: 'Preposiciones',
+    'pt-BR': 'Preposições',
+    vi: 'Giới từ',
+    id: 'Preposisi',
+    tr: 'Edatlar',
+    pl: 'Przyimki',
+  },
+  modifier: {
+    ru: 'Modifiers',
+    uk: 'Modifiers',
+    es: 'Modificadores',
+    'pt-BR': 'Modificadores',
+    vi: 'Từ bổ nghĩa',
+    id: 'Modifier',
+    tr: 'Niteleyiciler',
+    pl: 'Modyfikatory',
+  },
+  syntax: {
+    ru: 'Syntax',
+    uk: 'Syntax',
+    es: 'Sintaxis',
+    'pt-BR': 'Sintaxe',
+    vi: 'Cú pháp',
+    id: 'Sintaksis',
+    tr: 'Sözdizimi',
+    pl: 'Składnia',
+  },
+  article: {
+    ru: 'Артикли',
+    uk: 'Артиклі',
+    es: 'Artículos',
+    'pt-BR': 'Artigos',
+    vi: 'Mạo từ',
+    id: 'Artikel',
+    tr: 'Artikeller',
+    pl: 'Przedimki',
+  },
+  existential: {
+    ru: 'There is / There are',
+    uk: 'There is / There are',
+    es: 'There is / There are',
+    'pt-BR': 'There is / There are',
+    vi: 'There is / There are',
+    id: 'There is / There are',
+    tr: 'There is / There are',
+    pl: 'There is / There are',
+  },
+  'to-be': {
+    ru: 'Глагол to be',
+    uk: 'Дієслово to be',
+    es: 'Verbo to be',
+    'pt-BR': 'Verbo to be',
+    vi: 'Động từ to be',
+    id: 'Kata kerja to be',
+    tr: 'to be fiili',
+    pl: 'Czasownik to be',
+  },
+  conjunction: {
+    ru: 'Союзы',
+    uk: 'Сполучники',
+    es: 'Conjunciones',
+    'pt-BR': 'Conjunções',
+    vi: 'Liên từ',
+    id: 'Konjungsi',
+    tr: 'Bağlaçlar',
+    pl: 'Spójniki',
+  },
+  modal: {
+    ru: 'Модальные глаголы',
+    uk: 'Модальні дієслова',
+    es: 'Verbos modales',
+    'pt-BR': 'Verbos modais',
+    vi: 'Động từ khuyết thiếu',
+    id: 'Kata kerja modal',
+    tr: 'Modal fiiller',
+    pl: 'Czasowniki modalne',
+  },
+  phrasal_particle: {
+    ru: 'Фразовые частицы',
+    uk: 'Фразові частки',
+    es: 'Partículas verbales',
+    'pt-BR': 'Partículas de phrasal verbs',
+    vi: 'Tiểu từ trong phrasal verb',
+    id: 'Partikel phrasal verb',
+    tr: 'Phrasal verb parçacıkları',
+    pl: 'Partykuły phrasal verbs',
+  },
+  other: {
+    ru: 'Другое',
+    uk: 'Інше',
+    es: 'Otro',
+    'pt-BR': 'Outro',
+    vi: 'Khác',
+    id: 'Lainnya',
+    tr: 'Diğer',
+    pl: 'Inne',
+  },
 };
 
-CATEGORY_LABELS.determiner = { ru: 'Determiners', uk: 'Determiners', es: 'Determinantes' };
+CATEGORY_LABELS.determiner = {
+  ru: 'Determiners',
+  uk: 'Determiners',
+  es: 'Determinantes',
+  'pt-BR': 'Determinantes',
+  vi: 'Từ hạn định',
+  id: 'Determiner',
+  tr: 'Belirleyiciler',
+  pl: 'Określniki',
+};
 
 function firstParam(value: unknown): string | undefined {
   if (Array.isArray(value)) return typeof value[0] === 'string' ? value[0] : undefined;
@@ -104,7 +274,7 @@ function parseFocusWordsParam(value: unknown): string[] {
     .slice(0, 4);
 }
 
-export function coachToastLabelsForCategory(category: WordCategory): { ru: string; uk: string; es: string } {
+export function coachToastLabelsForCategory(category: WordCategory): CoachToastLabel {
   return CATEGORY_LABELS[category];
 }
 
@@ -121,6 +291,11 @@ export function coachToastDecisionToRouteParams(decision: CoachToastDecision): C
     ...(decision.microLabelRu ? { coachMicroLabelRu: decision.microLabelRu } : {}),
     ...(decision.microLabelUk ? { coachMicroLabelUk: decision.microLabelUk } : {}),
     ...(decision.microLabelEs ? { coachMicroLabelEs: decision.microLabelEs } : {}),
+    ...(decision.microLabelPtBr ? { coachMicroLabelPtBr: decision.microLabelPtBr } : {}),
+    ...(decision.microLabelVi ? { coachMicroLabelVi: decision.microLabelVi } : {}),
+    ...(decision.microLabelId ? { coachMicroLabelId: decision.microLabelId } : {}),
+    ...(decision.microLabelTr ? { coachMicroLabelTr: decision.microLabelTr } : {}),
+    ...(decision.microLabelPl ? { coachMicroLabelPl: decision.microLabelPl } : {}),
     ...(typeof decision.diagnosisEvidenceCount === 'number'
       ? { coachDiagnosisEvidenceCount: String(decision.diagnosisEvidenceCount) }
       : {}),
@@ -140,6 +315,11 @@ export function coachToastDecisionFromRouteParams(params: CoachToastRouteParams 
     labelRu: labels.ru,
     labelUk: labels.uk,
     labelEs: labels.es,
+    labelPtBr: labels['pt-BR'],
+    labelVi: labels.vi,
+    labelId: labels.id,
+    labelTr: labels.tr,
+    labelPl: labels.pl,
     mistakeCount: numberParam(params.coachMistakeCount) ?? 1,
     weaknessScore: numberParam(params.coachWeaknessScore) ?? 0,
     priorityScore: numberParam(params.coachPriorityScore),
@@ -149,6 +329,11 @@ export function coachToastDecisionFromRouteParams(params: CoachToastRouteParams 
     microLabelRu: firstParam(params.coachMicroLabelRu) ?? microLabel?.ru,
     microLabelUk: firstParam(params.coachMicroLabelUk) ?? microLabel?.uk,
     microLabelEs: firstParam(params.coachMicroLabelEs) ?? microLabel?.es,
+    microLabelPtBr: firstParam(params.coachMicroLabelPtBr) ?? microLabel?.['pt-BR'],
+    microLabelVi: firstParam(params.coachMicroLabelVi) ?? microLabel?.vi,
+    microLabelId: firstParam(params.coachMicroLabelId) ?? microLabel?.id,
+    microLabelTr: firstParam(params.coachMicroLabelTr) ?? microLabel?.tr,
+    microLabelPl: firstParam(params.coachMicroLabelPl) ?? microLabel?.pl,
     diagnosisEvidenceCount: numberParam(params.coachDiagnosisEvidenceCount),
   };
 }
@@ -203,6 +388,11 @@ export function checkCoachToastNeeded(wrongMistakes: PhraseMistakeInput[]): Coac
       labelRu: label.ru,
       labelUk: label.uk,
       labelEs: label.es,
+      labelPtBr: label['pt-BR'],
+      labelVi: label.vi,
+      labelId: label.id,
+      labelTr: label.tr,
+      labelPl: label.pl,
       mistakeCount: top.count,
       weaknessScore: top.weaknessScore,
       focusWords: micro?.focusWords.length ? micro.focusWords : focusWordsForCategory(wrongMistakes, top.category),
@@ -210,6 +400,11 @@ export function checkCoachToastNeeded(wrongMistakes: PhraseMistakeInput[]): Coac
       microLabelRu: micro?.label.ru,
       microLabelUk: micro?.label.uk,
       microLabelEs: micro?.label.es,
+      microLabelPtBr: micro?.label['pt-BR'],
+      microLabelVi: micro?.label.vi,
+      microLabelId: micro?.label.id,
+      microLabelTr: micro?.label.tr,
+      microLabelPl: micro?.label.pl,
       diagnosisEvidenceCount: micro?.evidenceCount,
     };
   } catch {
@@ -242,6 +437,11 @@ export async function checkCoachToastNeededWithAnalytics(
       labelRu: label.ru,
       labelUk: label.uk,
       labelEs: label.es,
+      labelPtBr: label['pt-BR'],
+      labelVi: label.vi,
+      labelId: label.id,
+      labelTr: label.tr,
+      labelPl: label.pl,
       mistakeCount: Math.max(top.count, stat.recentMistakeCount || stat.exactMistakeCount || stat.mistakeCount),
       weaknessScore: stat.weaknessScore,
       priorityScore: stat.priorityScore,
@@ -251,6 +451,11 @@ export async function checkCoachToastNeededWithAnalytics(
       microLabelRu: micro?.label.ru,
       microLabelUk: micro?.label.uk,
       microLabelEs: micro?.label.es,
+      microLabelPtBr: micro?.label['pt-BR'],
+      microLabelVi: micro?.label.vi,
+      microLabelId: micro?.label.id,
+      microLabelTr: micro?.label.tr,
+      microLabelPl: micro?.label.pl,
       diagnosisEvidenceCount: micro?.evidenceCount,
     };
   } catch {

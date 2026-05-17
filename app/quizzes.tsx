@@ -24,7 +24,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLang } from '../components/LangContext';
 import ScreenGradient from '../components/ScreenGradient';
 import { useTheme } from '../components/ThemeContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { isCorrectAnswer } from '../constants/contractions';
 import { getXPProgress, screenTextOnGradient } from '../constants/theme';
 import { MOTION_DURATION, MOTION_SCALE, MOTION_SPRING } from '../constants/motion';
@@ -76,6 +76,15 @@ import { MultBadge, StreakBreak } from './quizzes/ui';
 
 // Используем QuizPhrase из quiz_data.ts
 type Phrase = QuizPhrase;
+
+const quizSourceTextForPlanned = (phrase: Phrase, locale: PlannedInterfaceLang): string =>
+  phrase.sourceLocale === locale ? phrase.sourceText ?? '' : '';
+
+const quizSourceExplanationsForPlanned = (phrase: Phrase, locale: PlannedInterfaceLang): string[] | undefined =>
+  phrase.sourceLocale === locale && phrase.sourceExplanations?.length ? phrase.sourceExplanations : undefined;
+
+const isPlannedInterfaceLang = (value: unknown): value is PlannedInterfaceLang =>
+  value === 'pt-BR' || value === 'vi' || value === 'id' || value === 'tr' || value === 'pl';
 
 // Theme and level constants are extracted to app/quizzes/constants.ts
 
@@ -189,7 +198,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
         <Text style={{ color:sx.primary, fontSize: f.numMd, fontWeight:'700', marginLeft:12, flex:1 }} adjustsFontSizeToFit numberOfLines={1}>
           {s.quizzes.selectLevel}
         </Text>
-        <EnergyBar size={20} />
+        <EnergyBar size={30} />
         <PremiumCard
           level={1}
           testID="quiz-level-select-settings"
@@ -205,8 +214,26 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
       <View style={{ flex:1, justifyContent:'center', paddingHorizontal:20, gap:8 }}>
         {(Object.keys(LEVEL_CONFIG) as Level[]).map(lv => {
           const c        = LEVEL_CONFIG[lv];
-          const lbl      = triLang(lang, { ru: c.labelRU, uk: c.labelUK, es: c.labelES });
-          const tag      = triLang(lang, { ru: c.tagRU, uk: c.tagUK, es: c.tagES });
+          const lbl      = triLang(lang, {
+  ru: c.labelRU,
+  uk: c.labelUK,
+  es: c.labelES,
+  "pt-BR": c.labelPTBR,
+  vi: c.labelVI,
+  id: c.labelID,
+  tr: c.labelTR,
+  pl: c.labelPL,
+});
+          const tag      = triLang(lang, {
+  ru: c.tagRU,
+  uk: c.tagUK,
+  es: c.tagES,
+  "pt-BR": c.tagPTBR,
+  vi: c.tagVI,
+  id: c.tagID,
+  tr: c.tagTR,
+  pl: c.tagPL,
+});
           const lockedByLevel = !DEV_MODE && !isPremium && lv !== 'easy';
           const lockedByDailyLimit = !DEV_MODE && !isPremium && lv === 'easy' && freeQuizState.exhausted;
           const locked   = lockedByLevel || lockedByDailyLimit;
@@ -246,7 +273,7 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                     borderBottomLeftRadius: isSelected ? 0 : 20,
                     borderBottomRightRadius: isSelected ? 0 : 20,
                     borderWidth: isSelected ? 2 : 1,
-                    borderColor: isSelected ? accent : (locked ? t.border : `${c.color}40`),
+                    borderColor: isSelected ? accent : (locked ? t.border : `${accent}40`),
                     borderBottomColor: isSelected ? 'transparent' : undefined,
                     flexDirection: 'row',
                     alignItems: 'center',
@@ -271,7 +298,16 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                           <Ionicons name="lock-closed" size={10} color={t.textSecond}/>
                           <Text style={{ color:t.textSecond, fontSize: f.label, fontWeight:'700' }}>
                             {lockedByDailyLimit
-                              ? triLang(lang, { ru: 'Лимит', uk: 'Ліміт', es: 'Límite' })
+                              ? triLang(lang, {
+  ru: 'Лимит',
+  uk: 'Ліміт',
+  es: 'Límite',
+  "pt-BR": 'Limite',
+  vi: 'Giới hạn',
+  id: 'Batas',
+  tr: 'Limit',
+  pl: 'Limit',
+})
                               : 'Premium'}
                           </Text>
                         </View>
@@ -323,7 +359,16 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
                     />
                     {/* Text */}
                     <Text style={{ color: accent, fontSize: f.body, fontWeight:'800', zIndex: 1 }}>
-                      {triLang(lang, { ru: 'Начать квиз', uk: 'Почати квіз', es: 'Empezar cuestionario' })} · {lbl}
+                      {triLang(lang, {
+  ru: 'Начать квиз',
+  uk: 'Почати квіз',
+  es: 'Empezar cuestionario',
+  "pt-BR": 'Começar quiz',
+  vi: 'Bắt đầu quiz',
+  id: 'Mulai kuis',
+  tr: 'Quize başla',
+  pl: 'Rozpocznij quiz',
+})} · {lbl}
                     </Text>
                   </TouchableOpacity>
                 );
@@ -336,10 +381,15 @@ function LevelSelect({ onSelect }: { onSelect:(l:Level)=>void }) {
             <Ionicons name={freeQuizState.exhausted ? 'lock-closed' : 'flash-outline'} size={18} color={freeQuizState.exhausted ? t.textMuted : t.accent} />
             <Text style={{ color: freeQuizState.exhausted ? t.textMuted : t.textSecond, fontSize: f.sub, fontWeight: '800', flex: 1 }}>
               {triLang(lang, {
-                ru: `Бесплатные квизы сегодня: ${freeQuizState.left}/${freeQuizState.limit}`,
-                uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
-                es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
-              })}
+  ru: `Бесплатные квизы сегодня: ${freeQuizState.left}/${freeQuizState.limit}`,
+  uk: `Безкоштовні квізи сьогодні: ${freeQuizState.left}/${freeQuizState.limit}`,
+  es: `Cuestionarios gratis hoy: ${freeQuizState.left}/${freeQuizState.limit}`,
+  "pt-BR": `Quizzes grátis hoje: ${freeQuizState.left}/${freeQuizState.limit}`,
+  vi: `Quiz miễn phí hôm nay: ${freeQuizState.left}/${freeQuizState.limit}`,
+  id: `Kuis gratis hari ini: ${freeQuizState.left}/${freeQuizState.limit}`,
+  tr: `Bugünkü ücretsiz quizler: ${freeQuizState.left}/${freeQuizState.limit}`,
+  pl: `Darmowe quizy dzisiaj: ${freeQuizState.left}/${freeQuizState.limit}`,
+})}
             </Text>
           </View>
         )}
@@ -379,7 +429,17 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   const onGradMuted = t.textMuted;
   const onGradSecondary = t.textSecond;
   const cfg   = LEVEL_CONFIG[level] ?? LEVEL_CONFIG['easy'];
-  const label = triLang(lang, { ru: cfg.labelRU, uk: cfg.labelUK, es: cfg.labelES });
+  const levelAccent = cfg.color;
+  const label = triLang(lang, {
+  ru: cfg.labelRU,
+  uk: cfg.labelUK,
+  es: cfg.labelES,
+  "pt-BR": cfg.labelPTBR,
+  vi: cfg.labelVI,
+  id: cfg.labelID,
+  tr: cfg.labelTR,
+  pl: cfg.labelPL,
+});
 
   const [retryCount, setRetryCount] = useState(0);
 
@@ -453,6 +513,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
   // results в ref — чтобы handleTap не читал устаревший стейт из замыкания
   const resultsRef  = useRef<boolean[]>([]);
   const freeQuizCompletionMarkedRef = useRef(false);
+  const quizSessionCountedRef = useRef(false);
   const wrongMistakesRef = useRef<PhraseMistakeInput[]>([]);
 
   const insertAnim  = useRef(new Animated.Value(0)).current;
@@ -535,6 +596,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
     if (!DEV_MODE && !isPremium && !freeQuizCompletionMarkedRef.current) {
       freeQuizCompletionMarkedRef.current = true;
       void incrementFreeDailyQuizCount();
+    }
+    if (!quizSessionCountedRef.current) {
+      quizSessionCountedRef.current = true;
+      void (async () => {
+        const totalKey = 'achievement_quiz_total_count';
+        const prev = parseInt((await AsyncStorage.getItem(totalKey)) ?? '0', 10) || 0;
+        const next = prev + 1;
+        await AsyncStorage.setItem(totalKey, String(next));
+        await checkAchievements({ type: 'quiz_session_count', count: next });
+      })();
     }
     checkAchievements({ type: 'quiz', level, perfect }).catch(() => {});
     const doneUpdates: Parameters<typeof updateMultipleTaskProgress>[0] = [];
@@ -634,17 +705,27 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         <Text style={{ fontSize: 42, marginBottom: 10 }}>📭</Text>
         <Text style={{ color:onGradPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
           {triLang(lang, {
-            ru: 'Вопросы временно недоступны',
-            uk: 'Питання тимчасово недоступні',
-            es: 'Las preguntas no están disponibles',
-          })}
+  ru: 'Вопросы временно недоступны',
+  uk: 'Питання тимчасово недоступні',
+  es: 'Las preguntas no están disponibles',
+  "pt-BR": 'As perguntas estão indisponíveis',
+  vi: 'Câu hỏi tạm thời chưa khả dụng',
+  id: 'Pertanyaan sementara tidak tersedia',
+  tr: 'Sorular şu anda kullanılamıyor',
+  pl: 'Pytania są chwilowo niedostępne',
+})}
         </Text>
         <Text style={{ color:onGradMuted, fontSize: f.body, marginTop: 10, textAlign: 'center' }}>
           {triLang(lang, {
-            ru: 'Попробуй снова или вернись позже.',
-            uk: 'Спробуй ще раз або повернись пізніше.',
-            es: 'Vuelve a intentarlo más tarde.',
-          })}
+  ru: 'Попробуй снова или вернись позже.',
+  uk: 'Спробуй ще раз або повернись пізніше.',
+  es: 'Vuelve a intentarlo más tarde.',
+  "pt-BR": 'Tente novamente ou volte mais tarde.',
+  vi: 'Hãy thử lại hoặc quay lại sau.',
+  id: 'Coba lagi atau kembali nanti.',
+  tr: 'Tekrar dene veya daha sonra gel.',
+  pl: 'Spróbuj ponownie albo wróć później.',
+})}
         </Text>
         <TouchableOpacity
           onPress={() => setRetryCount(v => v + 1)}
@@ -652,10 +733,15 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         >
           <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
             {triLang(lang, {
-              ru: 'Повторить',
-              uk: 'Повторити',
-              es: 'Reintentar',
-            })}
+  ru: 'Повторить',
+  uk: 'Повторити',
+  es: 'Reintentar',
+  "pt-BR": 'Tentar de novo',
+  vi: 'Thử lại',
+  id: 'Coba lagi',
+  tr: 'Tekrar dene',
+  pl: 'Spróbuj ponownie',
+})}
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -664,10 +750,15 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
         >
           <Text style={{ color: t.textMuted, fontSize: f.sub, textDecorationLine: 'underline' }}>
             {triLang(lang, {
-              ru: 'Вернуться на главную',
-              uk: 'Повернутися на головну',
-              es: 'Volver al inicio',
-            })}
+  ru: 'Вернуться на главную',
+  uk: 'Повернутися на головну',
+  es: 'Volver al inicio',
+  "pt-BR": 'Voltar ao início',
+  vi: 'Quay lại trang chủ',
+  id: 'Kembali ke beranda',
+  tr: 'Ana sayfaya dön',
+  pl: 'Wróć na stronę główną',
+})}
           </Text>
         </TouchableOpacity>
         </ContentWrap>
@@ -850,7 +941,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           score={score}
           bonusXP={bonusXP}
           totalXP={totalXP}
-          accentColor={cfg.color}
+          accentColor={levelAccent}
           xpFlyY={xpFlyY}
           xpFlyOpacity={xpFlyOpacity}
           xpBarAnim={xpBarAnim}
@@ -914,6 +1005,11 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             labelRu={coachToast.labelRu}
             labelUk={coachToast.labelUk}
             labelEs={coachToast.labelEs}
+            labelPtBr={coachToast.labelPtBr}
+            labelVi={coachToast.labelVi}
+            labelId={coachToast.labelId}
+            labelTr={coachToast.labelTr}
+            labelPl={coachToast.labelPl}
             mistakeCount={coachToast.mistakeCount}
             weaknessScore={coachToast.weaknessScore}
             priorityScore={coachToast.priorityScore}
@@ -923,6 +1019,11 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             microLabelRu={coachToast.microLabelRu}
             microLabelUk={coachToast.microLabelUk}
             microLabelEs={coachToast.microLabelEs}
+            microLabelPtBr={coachToast.microLabelPtBr}
+            microLabelVi={coachToast.microLabelVi}
+            microLabelId={coachToast.microLabelId}
+            microLabelTr={coachToast.microLabelTr}
+            microLabelPl={coachToast.microLabelPl}
             diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
             onDismiss={() => setCoachToast(null)}
           />
@@ -993,7 +1094,7 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           <TouchableOpacity onPress={onBack}>
             <Ionicons name="chevron-back" size={28} color={onGradPrimary}/>
           </TouchableOpacity>
-          <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : cfg.color, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1} adjustsFontSizeToFit>
+          <Text style={{ color: isLightTheme ? (level === 'easy' ? '#16803C' : level === 'medium' ? '#C2410C' : '#6D28D9') : levelAccent, fontSize: f.body, fontWeight:'700', flex:1, textAlign:'center' }} numberOfLines={1} adjustsFontSizeToFit>
             {reviewing ? s.quizzes.fixErrors : label}
           </Text>
           <View style={{ flexDirection:'row', alignItems:'center', position:'relative', gap:8 }}>
@@ -1038,7 +1139,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
 
           {/* ВОПРОС */}
           <Text style={{ color:onGradPrimary, fontSize: f.h2 + 6, fontWeight:'500', marginBottom:12, lineHeight:32 }}>
-            {triLang(lang, { ru: current.ru, uk: current.uk, es: current.es })}
+            {triLang(lang, {
+  ru: current.ru,
+  uk: current.uk,
+  es: current.es,
+  "pt-BR": quizSourceTextForPlanned(current, 'pt-BR'),
+  vi: quizSourceTextForPlanned(current, 'vi'),
+  id: quizSourceTextForPlanned(current, 'id'),
+  tr: quizSourceTextForPlanned(current, 'tr'),
+  pl: quizSourceTextForPlanned(current, 'pl'),
+})}
           </Text>
 
           {/* АНИМАЦИЯ ВСТАВКИ */}
@@ -1055,7 +1165,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             }}>
               {(isRight === false || typedOk === false) && (
                 <Text style={{ color: t.correct, fontSize: f.label, fontWeight: '700', marginBottom: 4, letterSpacing: 0.3 }}>
-                  {triLang(lang, { ru: 'ПРАВИЛЬНО:', uk: 'Вірно:', es: 'CORRECTO:' })}
+                  {triLang(lang, {
+  ru: 'ПРАВИЛЬНО:',
+  uk: 'Вірно:',
+  es: 'CORRECTO:',
+  "pt-BR": 'CORRETO:',
+  vi: 'ĐÚNG:',
+  id: 'BENAR:',
+  tr: 'DOĞRU:',
+  pl: 'POPRAWNIE:',
+})}
                 </Text>
               )}
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
@@ -1071,7 +1190,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               {(isRight === false || typedOk === false) && displayAnswer && (
                 <>
                   <Text style={{ color: t.wrong, fontSize: f.label, fontWeight: '700', marginTop: 10, marginBottom: 4, letterSpacing: 0.3 }}>
-                    {triLang(lang, { ru: 'ВАШ ВАРИАНТ:', uk: 'ВАШ ВАРІАНТ:', es: 'TU RESPUESTA:' })}
+                    {triLang(lang, {
+  ru: 'ВАШ ВАРИАНТ:',
+  uk: 'ВАШ ВАРІАНТ:',
+  es: 'TU RESPUESTA:',
+  "pt-BR": 'SUA RESPOSTA:',
+  vi: 'CÂU TRẢ LỜI CỦA BẠN:',
+  id: 'JAWABANMU:',
+  tr: 'CEVABIN:',
+  pl: 'TWOJA ODPOWIEDŹ:',
+})}
                   </Text>
                   <View style={{ flexDirection: 'row', flexWrap: 'wrap', rowGap: 2 }}>
                     {diffWords(displayAnswer, current.answer).map((item, idx) => (
@@ -1104,12 +1232,17 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
           {/* РАЗБОР ОТВЕТА */}
           {(chosen !== null || typedOk !== null) && current.explanations && (() => {
             const explanationIdx = chosen !== null ? chosen : quizPrimaryCorrectIndex(current.correct);
+            const plannedSourceExplanations = isPlannedInterfaceLang(lang)
+              ? quizSourceExplanationsForPlanned(current, lang)
+              : undefined;
             const explanationsArr =
               lang === 'uk' && current.explanationsUK?.length
                 ? current.explanationsUK
                 : lang === 'es' && current.explanationsES?.length
                   ? current.explanationsES
-                  : current.explanations;
+                  : plannedSourceExplanations?.length
+                    ? plannedSourceExplanations
+                    : current.explanations;
             const explanation = explanationsArr[explanationIdx];
             const correct =
               (chosen !== null && isQuizChoiceCorrect(chosen, current.correct)) || typedOk === true;
@@ -1128,7 +1261,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                 borderLeftColor: correct ? '#1565C0' : '#F59E0B',
               }}>
                 <Text style={{ color: correct ? (isLightTheme ? '#0D47A1' : '#4A90FF') : (isLightTheme ? '#92400E' : '#D4A017'), fontSize: f.label, fontWeight: '700', marginBottom: 6, letterSpacing: 0.3 }}>
-                  {triLang(lang, { ru: 'РАЗБОР', uk: 'ПОЯСНЕННЯ', es: 'EXPLICACIÓN' })}
+                  {triLang(lang, {
+  ru: 'РАЗБОР',
+  uk: 'ПОЯСНЕННЯ',
+  es: 'EXPLICACIÓN',
+  "pt-BR": 'EXPLICAÇÃO',
+  vi: 'GIẢI THÍCH',
+  id: 'PENJELASAN',
+  tr: 'AÇIKLAMA',
+  pl: 'WYJAŚNIENIE',
+})}
                 </Text>
                 <Text style={{ color: isLightTheme ? (correct ? '#0D47A1' : '#78350F') : t.textPrimary, fontSize: f.body, lineHeight: f.body * 1.5 }}>
                   {explanation}
@@ -1150,10 +1292,15 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                   value={typed}
                   onChangeText={setTyped}
                   placeholder={triLang(lang, {
-                    ru: 'Введите ответ...',
-                    uk: 'Введіть відповідь...',
-                    es: 'Escribe tu respuesta...',
-                  })}
+  ru: 'Введите ответ...',
+  uk: 'Введіть відповідь...',
+  es: 'Escribe tu respuesta...',
+  "pt-BR": 'Digite sua resposta...',
+  vi: 'Nhập câu trả lời...',
+  id: 'Ketik jawabanmu...',
+  tr: 'Cevabını yaz...',
+  pl: 'Wpisz odpowiedź...',
+})}
                   placeholderTextColor={t.textGhost}
                   autoCapitalize="none"
                   autoCorrect={false}
@@ -1168,7 +1315,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                   onPress={handleTyped} activeOpacity={0.8}
                 >
                   <Text style={{ color:t.textPrimary, fontSize: f.bodyLg, fontWeight:'600' }}>
-                    {triLang(lang, { ru: 'Проверить', uk: 'Перевірити', es: 'Comprobar' })}
+                    {triLang(lang, {
+  ru: 'Проверить',
+  uk: 'Перевірити',
+  es: 'Comprobar',
+  "pt-BR": 'Verificar',
+  vi: 'Kiểm tra',
+  id: 'Periksa',
+  tr: 'Kontrol et',
+  pl: 'Sprawdź',
+})}
                   </Text>
                 </TouchableOpacity>
               )}
@@ -1197,10 +1353,15 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
             }}>
               <Text style={{ color: t.textMuted, fontSize: f.sub, lineHeight: 19, marginBottom: 10 }}>
                 {triLang(lang, {
-                  ru: '💡 Сложно набирать вручную? Можно выключить ввод с клавиатуры.',
-                  uk: '💡 Складно набирати вручну? Можна вимкнути ввід з клавіатури.',
-                  es: '💡 ¿Cuesta escribir a mano? Puedes desactivar el teclado.',
-                })}
+  ru: '💡 Сложно набирать вручную? Можно выключить ввод с клавиатуры.',
+  uk: '💡 Складно набирати вручну? Можна вимкнути ввід з клавіатури.',
+  es: '💡 ¿Cuesta escribir a mano? Puedes desactivar el teclado.',
+  "pt-BR": '💡 Difícil digitar manualmente? Você pode desativar o teclado.',
+  vi: '💡 Khó nhập thủ công? Bạn có thể tắt bàn phím.',
+  id: '💡 Sulit mengetik manual? Kamu bisa mematikan keyboard.',
+  tr: '💡 Elle yazmak zor mu? Klavyeyi kapatabilirsin.',
+  pl: '💡 Trudno wpisywać ręcznie? Możesz wyłączyć klawiaturę.',
+})}
               </Text>
               <View style={{ flexDirection: 'row', gap: 10 }}>
                 <TouchableOpacity
@@ -1213,7 +1374,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                   }}
                 >
                   <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '600' }}>
-                    {triLang(lang, { ru: 'Выключить', uk: 'Вимкнути', es: 'Desactivar' })}
+                    {triLang(lang, {
+  ru: 'Выключить',
+  uk: 'Вимкнути',
+  es: 'Desactivar',
+  "pt-BR": 'Desativar',
+  vi: 'Tắt',
+  id: 'Nonaktifkan',
+  tr: 'Kapat',
+  pl: 'Wyłącz',
+})}
                   </Text>
                 </TouchableOpacity>
                 <TouchableOpacity
@@ -1226,10 +1396,15 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
                 >
                   <Text style={{ color: t.textGhost, fontSize: f.caption, textAlign: 'center' }}>
                     {triLang(lang, {
-                      ru: 'Больше не показывать',
-                      uk: 'Більше не показувати',
-                      es: 'No volver a mostrar',
-                    })}
+  ru: 'Больше не показывать',
+  uk: 'Більше не показувати',
+  es: 'No volver a mostrar',
+  "pt-BR": 'Não mostrar novamente',
+  vi: 'Không hiển thị lại',
+  id: 'Jangan tampilkan lagi',
+  tr: 'Bir daha gösterme',
+  pl: 'Nie pokazuj ponownie',
+})}
                   </Text>
                 </TouchableOpacity>
               </View>
@@ -1256,7 +1431,16 @@ function QuizGame({ level, onBack }: { level:Level; onBack:()=>void }) {
               }}
             >
               <Text style={{ color: nextReady ? t.correctText : t.textMuted, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Далее', uk: 'Далі', es: 'Siguiente' })}
+                {triLang(lang, {
+  ru: 'Далее',
+  uk: 'Далі',
+  es: 'Siguiente',
+  "pt-BR": 'Próximo',
+  vi: 'Tiếp',
+  id: 'Lanjut',
+  tr: 'İleri',
+  pl: 'Dalej',
+})}
               </Text>
               <Ionicons name="arrow-forward" size={18} color={nextReady ? t.correctText : t.textMuted}/>
             </TouchableOpacity>

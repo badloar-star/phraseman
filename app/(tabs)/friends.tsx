@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useFocusEffect, useRouter } from 'expo-router';
 import {
-  View, Text, TouchableOpacity, TextInput, ScrollView,
+  View, Text, Image, TouchableOpacity, TextInput, ScrollView,
   Share, Keyboard, StyleSheet, Modal,
 } from 'react-native';
 import { SafeAreaProvider, SafeAreaView, initialWindowMetrics } from 'react-native-safe-area-context';
@@ -68,6 +68,7 @@ import {
 } from '../friend_activity_likes';
 import { trackActivity } from '../app_activity';
 import { getShardsBalance } from '../shards_system';
+import { oskolokImageForPackShards } from '../oskolok';
 import { claimUnseenFriendGifts } from '../friend_gift_inbox';
 import { emitAppEvent } from '../events';
 import {
@@ -76,6 +77,7 @@ import {
   sendFriendGiftWithShards,
   type FriendGiftId,
 } from '../friend_gifts';
+import { checkAchievements } from '../achievements';
 
 // Тёплый кеш (дублирует root layout — если вкладка подгрузилась отдельным чанком).
 startFriendsTabSwrPrime();
@@ -418,7 +420,16 @@ function FriendRow({
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
           <TouchableOpacity
             testID={`friend-gift-${profile.uid}`}
-            accessibilityLabel={triLang(lang as any, { ru: 'Подарить', uk: 'Подарувати', es: 'Regalar' })}
+            accessibilityLabel={triLang(lang as any, {
+              ru: 'Подарить',
+              uk: 'Подарувати',
+              es: 'Regalar',
+              'pt-BR': 'Presentear',
+              vi: 'Tặng quà',
+              id: 'Beri hadiah',
+              tr: 'Hediye gönder',
+              pl: 'Podaruj',
+            })}
             onPress={onGift}
             hitSlop={{ top: 8, bottom: 8, left: 10, right: 10 }}
           >
@@ -447,7 +458,6 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
   t: any;
   f: any;
 }) {
-  const B = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
   const hasLeagueCrown = Number(profile.leagueCrownExpiresAt) > Date.now();
   return (
     <View testID={`friend-request-row-${profile.uid}`} style={{
@@ -479,7 +489,18 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
           onPress={onAccept}
           style={{ backgroundColor: t.accent, borderRadius: 10, paddingVertical: 8, paddingHorizontal: 12, minWidth: 96, alignItems: 'center' }}
         >
-          <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>{B('Принять', 'Прийняти', 'Aceptar')}</Text>
+          <Text style={{ color: t.correctText, fontSize: f.sub, fontWeight: '800' }}>
+            {triLang(lang as any, {
+              ru: 'Принять',
+              uk: 'Прийняти',
+              es: 'Aceptar',
+              'pt-BR': 'Aceitar',
+              vi: 'Chấp nhận',
+              id: 'Terima',
+              tr: 'Kabul et',
+              pl: 'Przyjmij',
+            })}
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           testID={`friend-request-decline-${profile.uid}`}
@@ -495,7 +516,18 @@ function RequestRow({ profile, onAccept, onDecline, lang, t, f }: {
             borderColor: t.border,
           }}
         >
-          <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700' }}>{B('Отклонить', 'Відхилити', 'Rechazar')}</Text>
+          <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700' }}>
+            {triLang(lang as any, {
+              ru: 'Отклонить',
+              uk: 'Відхилити',
+              es: 'Rechazar',
+              'pt-BR': 'Recusar',
+              vi: 'Từ chối',
+              id: 'Tolak',
+              tr: 'Reddet',
+              pl: 'Odrzuć',
+            })}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -532,7 +564,16 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
           </Text>
           {profile.streak > 0 && (
             <Text style={{ color: '#FF9500', fontSize: f.sub, marginTop: 2 }}>
-              🔥 {profile.streak} {triLang(lang as any, { ru: 'дней подряд', uk: 'днів поспіль', es: 'días seguidos' })}
+              🔥 {profile.streak} {triLang(lang as any, {
+                ru: 'дней подряд',
+                uk: 'днів поспіль',
+                es: 'días seguidos',
+                'pt-BR': 'dias seguidos',
+                vi: 'ngày liên tiếp',
+                id: 'hari berturut-turut',
+                tr: 'gün üst üste',
+                pl: 'dni z rzędu',
+              })}
             </Text>
           )}
         </View>
@@ -552,7 +593,16 @@ function FoundUserCard({ profile, onAdd, onClose, isAdding, lang, t, f }: {
       >
         <Ionicons name="person-add" size={18} color={t.correctText} />
         <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '800' }}>
-          {triLang(lang as any, { ru: 'Добавить в друзья', uk: 'Додати в друзі', es: 'Agregar amigo' })}
+          {triLang(lang as any, {
+            ru: 'Добавить в друзья',
+            uk: 'Додати в друзі',
+            es: 'Agregar amigo',
+            'pt-BR': 'Adicionar amigo',
+            vi: 'Thêm bạn bè',
+            id: 'Tambah teman',
+            tr: 'Arkadaş ekle',
+            pl: 'Dodaj znajomego',
+          })}
         </Text>
       </TouchableOpacity>
     </View>
@@ -593,7 +643,16 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         <Ionicons name="qr-code-outline" size={18} color={t.textSecond} />
         <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', letterSpacing: 1.2, textTransform: 'uppercase' }}>
-          {triLang(lang as any, { ru: 'Мой код', uk: 'Мій код', es: 'Mi código' })}
+          {triLang(lang as any, {
+            ru: 'Мой код',
+            uk: 'Мій код',
+            es: 'Mi código',
+            'pt-BR': 'Meu código',
+            vi: 'Mã của tôi',
+            id: 'Kode saya',
+            tr: 'Kodum',
+            pl: 'Mój kod',
+          })}
         </Text>
       </View>
       {code ? (
@@ -624,8 +683,26 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
               <Ionicons name={copied ? 'checkmark' : 'copy-outline'} size={16} color={copied ? '#fff' : t.textPrimary} />
               <Text style={{ color: copied ? '#fff' : t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
                 {copied
-                  ? triLang(lang as any, { ru: 'Скопировано!', uk: 'Скопійовано!', es: '¡Copiado!' })
-                  : triLang(lang as any, { ru: 'Копировать', uk: 'Копіювати', es: 'Copiar' })}
+                  ? triLang(lang as any, {
+                    ru: 'Скопировано!',
+                    uk: 'Скопійовано!',
+                    es: '¡Copiado!',
+                    'pt-BR': 'Copiado!',
+                    vi: 'Đã sao chép!',
+                    id: 'Tersalin!',
+                    tr: 'Kopyalandı!',
+                    pl: 'Skopiowano!',
+                  })
+                  : triLang(lang as any, {
+                    ru: 'Копировать',
+                    uk: 'Копіювати',
+                    es: 'Copiar',
+                    'pt-BR': 'Copiar',
+                    vi: 'Sao chép',
+                    id: 'Salin',
+                    tr: 'Kopyala',
+                    pl: 'Kopiuj',
+                  })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity
@@ -639,7 +716,16 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
             >
               <Ionicons name="share-outline" size={16} color={t.textPrimary} />
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '600' }}>
-                {triLang(lang as any, { ru: 'Поделиться', uk: 'Поділитись', es: 'Compartir' })}
+                {triLang(lang as any, {
+                  ru: 'Поделиться',
+                  uk: 'Поділитись',
+                  es: 'Compartir',
+                  'pt-BR': 'Compartilhar',
+                  vi: 'Chia sẻ',
+                  id: 'Bagikan',
+                  tr: 'Paylaş',
+                  pl: 'Udostępnij',
+                })}
               </Text>
             </TouchableOpacity>
           </View>
@@ -651,6 +737,11 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
               ru: 'Не удалось получить код. Проверьте сеть и попробуйте снова.',
               uk: 'Не вдалося отримати код. Перевірте мережу й спробуйте ще.',
               es: 'No se pudo obtener el código. Comprueba la red e inténtalo de nuevo.',
+              'pt-BR': 'Não foi possível obter o código. Verifique a rede e tente de novo.',
+              vi: 'Không thể lấy mã. Hãy kiểm tra mạng và thử lại.',
+              id: 'Tidak dapat mengambil kode. Periksa jaringan dan coba lagi.',
+              tr: 'Kod alınamadı. Ağı kontrol edip tekrar dene.',
+              pl: 'Nie udało się pobrać kodu. Sprawdź sieć i spróbuj ponownie.',
             })}
           </Text>
           {onRetryLoad && (
@@ -665,7 +756,16 @@ function CodeCard({ code, onCopy, onShare, copied, lang, t, f, layout = 'standal
               }}
             >
               <Text style={{ color: t.correctText, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang as any, { ru: 'Повторить', uk: 'Повторити', es: 'Reintentar' })}
+                {triLang(lang as any, {
+                  ru: 'Повторить',
+                  uk: 'Повторити',
+                  es: 'Reintentar',
+                  'pt-BR': 'Tentar de novo',
+                  vi: 'Thử lại',
+                  id: 'Coba lagi',
+                  tr: 'Tekrar dene',
+                  pl: 'Spróbuj ponownie',
+                })}
               </Text>
             </TouchableOpacity>
           )}
@@ -689,39 +789,111 @@ function formatEventTime(ts: number, lang: string): string {
   const min = Math.floor(diff / 60000);
   const hrs = Math.floor(diff / 3600000);
   const days = Math.floor(diff / 86400000);
-  if (min < 2) return triLang(lang as any, { ru: 'только что', uk: 'щойно', es: 'ahora mismo' });
-  if (min < 60) return triLang(lang as any, { ru: `${min} мин назад`, uk: `${min} хв тому`, es: `hace ${min} min` });
-  if (hrs < 24) return triLang(lang as any, { ru: `${hrs} ч назад`, uk: `${hrs} год тому`, es: `hace ${hrs} h` });
-  if (days < 7) return triLang(lang as any, { ru: `${days} дн назад`, uk: `${days} дн тому`, es: `hace ${days} días` });
-  return new Date(ts).toLocaleDateString(lang === 'uk' ? 'uk-UA' : lang === 'es' ? 'es-ES' : 'ru-RU', { day: 'numeric', month: 'short' });
+  if (min < 2) return triLang(lang as any, {
+    ru: 'только что',
+    uk: 'щойно',
+    es: 'ahora mismo',
+    'pt-BR': 'agora mesmo',
+    vi: 'vừa xong',
+    id: 'baru saja',
+    tr: 'az önce',
+    pl: 'przed chwilą',
+  });
+  if (min < 60) return triLang(lang as any, {
+    ru: `${min} мин назад`,
+    uk: `${min} хв тому`,
+    es: `hace ${min} min`,
+    'pt-BR': `há ${min} min`,
+    vi: `${min} phút trước`,
+    id: `${min} menit lalu`,
+    tr: `${min} dk önce`,
+    pl: `${min} min temu`,
+  });
+  if (hrs < 24) return triLang(lang as any, {
+    ru: `${hrs} ч назад`,
+    uk: `${hrs} год тому`,
+    es: `hace ${hrs} h`,
+    'pt-BR': `há ${hrs} h`,
+    vi: `${hrs} giờ trước`,
+    id: `${hrs} jam lalu`,
+    tr: `${hrs} sa önce`,
+    pl: `${hrs} godz. temu`,
+  });
+  if (days < 7) return triLang(lang as any, {
+    ru: `${days} дн назад`,
+    uk: `${days} дн тому`,
+    es: `hace ${days} días`,
+    'pt-BR': `há ${days} dias`,
+    vi: `${days} ngày trước`,
+    id: `${days} hari lalu`,
+    tr: `${days} gün önce`,
+    pl: `${days} dni temu`,
+  });
+  const dateLocale =
+    lang === 'uk' ? 'uk-UA'
+    : lang === 'es' ? 'es-ES'
+    : lang === 'pt-BR' ? 'pt-BR'
+    : lang === 'vi' ? 'vi-VN'
+    : lang === 'id' ? 'id-ID'
+    : lang === 'tr' ? 'tr-TR'
+    : lang === 'pl' ? 'pl-PL'
+    : 'ru-RU';
+  return new Date(ts).toLocaleDateString(dateLocale, { day: 'numeric', month: 'short' });
+}
+
+function giftEventLabel(payload: Record<string, string | number>, lang: string): string {
+  const fallback = String(payload.giftLabel ?? payload.giftId ?? '');
+  if (lang === 'pt-BR') return String(payload.giftLabelPtBr ?? fallback);
+  if (lang === 'vi') return String(payload.giftLabelVi ?? fallback);
+  if (lang === 'id') return String(payload.giftLabelId ?? fallback);
+  if (lang === 'tr') return String(payload.giftLabelTr ?? fallback);
+  if (lang === 'pl') return String(payload.giftLabelPl ?? fallback);
+  if (lang === 'es') return String(payload.giftLabelEs ?? fallback);
+  if (lang === 'uk') return String(payload.giftLabelUk ?? fallback);
+  return String(payload.giftLabelRu ?? fallback);
 }
 
 function eventText(event: FriendEvent, friendName: string, lang: string): string {
   const n = friendName;
   const p = event.payload;
-  const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   if (event.type === 'friend_gift_sent') {
-    return L(`${n} отправил подарок: ${p.giftLabel ?? p.giftId}`, `${n} надіслав подарунок: ${p.giftLabel ?? p.giftId}`, `${n} envió un regalo: ${p.giftLabel ?? p.giftId}`);
+    const gift = giftEventLabel(p, lang);
+    return L(`${n} отправил подарок: ${gift}`, `${n} надіслав подарунок: ${gift}`, `${n} envió un regalo: ${gift}`, `${n} enviou um presente: ${gift}`, `${n} đã gửi quà: ${gift}`, `${n} mengirim hadiah: ${gift}`, `${n} hediye gönderdi: ${gift}`, `${n} wysłał prezent: ${gift}`);
   }
   if (event.type === 'friend_gift_received') {
-    return L(`${n} получил подарок: ${p.giftLabel ?? p.giftId}`, `${n} отримав подарунок: ${p.giftLabel ?? p.giftId}`, `${n} recibió un regalo: ${p.giftLabel ?? p.giftId}`);
+    const gift = giftEventLabel(p, lang);
+    return L(`${n} получил подарок: ${gift}`, `${n} отримав подарунок: ${gift}`, `${n} recibió un regalo: ${gift}`, `${n} recebeu um presente: ${gift}`, `${n} đã nhận quà: ${gift}`, `${n} menerima hadiah: ${gift}`, `${n} hediye aldı: ${gift}`, `${n} otrzymał prezent: ${gift}`);
   }
   switch (event.type) {
     case 'level_up':
-      return L(`${n} достиг уровня ${p.level}`, `${n} досяг рівня ${p.level}`, `${n} alcanzó el nivel ${p.level}`);
+      return L(`${n} достиг уровня ${p.level}`, `${n} досяг рівня ${p.level}`, `${n} alcanzó el nivel ${p.level}`, `${n} alcançou o nível ${p.level}`, `${n} đạt cấp ${p.level}`, `${n} mencapai level ${p.level}`, `${n} ${p.level}. seviyeye ulaştı`, `${n} osiągnął poziom ${p.level}`);
     case 'lesson_complete': {
-      const lvlMap: Record<string, string> = { easy: L('лёгкий', 'легкий', 'fácil'), medium: L('средний', 'середній', 'medio'), hard: L('сложный', 'складний', 'difícil') };
+      const lvlMap: Record<string, string> = {
+        easy: L('лёгкий', 'легкий', 'fácil', 'fácil', 'dễ', 'mudah', 'kolay', 'łatwy'),
+        medium: L('средний', 'середній', 'medio', 'médio', 'vừa', 'sedang', 'orta', 'średni'),
+        hard: L('сложный', 'складний', 'difícil', 'difícil', 'khó', 'sulit', 'zor', 'trudny'),
+      };
       const lvlName = lvlMap[String(p.level)] ?? String(p.level);
-      return L(`${n} прошёл урок (${lvlName})`, `${n} пройшов урок (${lvlName})`, `${n} completó la lección (${lvlName})`);
+      return L(`${n} прошёл урок (${lvlName})`, `${n} пройшов урок (${lvlName})`, `${n} completó la lección (${lvlName})`, `${n} concluiu a lição (${lvlName})`, `${n} hoàn thành bài học (${lvlName})`, `${n} menyelesaikan pelajaran (${lvlName})`, `${n} dersi tamamladı (${lvlName})`, `${n} ukończył lekcję (${lvlName})`);
     }
     case 'achievement':
-      return L(`${n} получил достижение ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} отримав досягнення ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueó logro ${p.icon ?? '🏆'} «${p.nameRu}»`);
+      return L(`${n} получил достижение ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} отримав досягнення ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueó logro ${p.icon ?? '🏆'} «${p.nameRu}»`, `${n} desbloqueou uma conquista ${p.icon ?? '🏆'}`, `${n} đã mở khóa một thành tích ${p.icon ?? '🏆'}`, `${n} membuka pencapaian ${p.icon ?? '🏆'}`, `${n} bir başarı açtı ${p.icon ?? '🏆'}`, `${n} odblokował osiągnięcie ${p.icon ?? '🏆'}`);
     case 'streak_milestone':
-      return L(`${n} держит серию ${p.days} дней подряд 🔥`, `${n} тримає серію ${p.days} днів поспіль 🔥`, `${n} lleva ${p.days} días seguidos 🔥`);
+      return L(`${n} держит серию ${p.days} дней подряд 🔥`, `${n} тримає серію ${p.days} днів поспіль 🔥`, `${n} lleva ${p.days} días seguidos 🔥`, `${n} mantém uma sequência de ${p.days} dias 🔥`, `${n} giữ chuỗi ${p.days} ngày liên tiếp 🔥`, `${n} menjaga rangkaian ${p.days} hari berturut-turut 🔥`, `${n} ${p.days} günlük seriyi sürdürüyor 🔥`, `${n} utrzymuje serię ${p.days} dni z rzędu 🔥`);
     case 'arena_rank_up':
-      return L(`${n} поднялся до ранга «${p.rank}» на арене ⚔️`, `${n} піднявся до рангу «${p.rank}» на арені ⚔️`, `${n} subió al rango «${p.rank}» en la arena ⚔️`);
+      return L(`${n} поднялся до ранга «${p.rank}» на арене ⚔️`, `${n} піднявся до рангу «${p.rank}» на арені ⚔️`, `${n} subió al rango «${p.rank}» en la arena ⚔️`, `${n} subiu para o rank «${p.rank}» na arena ⚔️`, `${n} lên hạng «${p.rank}» trong đấu trường ⚔️`, `${n} naik ke peringkat «${p.rank}» di arena ⚔️`, `${n} arenada «${p.rank}» rütbesine yükseldi ⚔️`, `${n} awansował do rangi „${p.rank}” na arenie ⚔️`);
     case 'arena_rank_down':
-      return L(`${n} потерял ранг на арене`, `${n} втратив ранг на арені`, `${n} bajó de rango en la arena`);
+      return L(`${n} потерял ранг на арене`, `${n} втратив ранг на арені`, `${n} bajó de rango en la arena`, `${n} caiu de rank na arena`, `${n} bị tụt hạng trong đấu trường`, `${n} turun peringkat di arena`, `${n} arenada rütbe kaybetti`, `${n} stracił rangę na arenie`);
     default:
       return `${n} — ${event.type}`;
   }
@@ -763,12 +935,22 @@ function ActivityTab({
   profiles: Record<string, FriendProfile>;
   lang: string; t: any; f: any;
 }) {
+  const { themeMode } = useTheme();
   const [events, setEvents] = useState<FriendEvent[]>([]);
   const [loading, setLoading] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [todayLike, setTodayLike] = useState<FriendActivityLikeTodayState | null>(null);
   const [likeBusyEventId, setLikeBusyEventId] = useState<string | null>(null);
-  const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   const showActivityLikeToast = useCallback((type: 'success' | 'error' | 'info', ru: string, uk: string, es: string) => {
     emitAppEvent('action_toast', { type, messageRu: ru, messageUk: uk, messageEs: es });
@@ -792,7 +974,7 @@ function ActivityTab({
         const total = await fetchActivityLikeTotal(myUid);
         if (total > 0) {
           const { checkAchievements } = await import('../achievements');
-          void checkAchievements({ type: 'achievement_liked' });
+          void checkAchievements({ type: 'achievement_liked', likeTotal: total });
         }
       } catch {}
     })();
@@ -846,7 +1028,7 @@ function ActivityTab({
       <View testID="friends-activity-empty-no-friends" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
         <Ionicons name="people-outline" size={40} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-          {L('Добавьте друзей, чтобы видеть их активность', 'Додайте друзів, щоб бачити їхню активність', 'Agrega amigos para ver su actividad')}
+          {L('Добавьте друзей, чтобы видеть их активность', 'Додайте друзів, щоб бачити їхню активність', 'Agrega amigos para ver su actividad', 'Adicione amigos para ver a atividade deles', 'Thêm bạn bè để xem hoạt động của họ', 'Tambahkan teman untuk melihat aktivitas mereka', 'Etkinliklerini görmek için arkadaş ekle', 'Dodaj znajomych, aby widzieć ich aktywność')}
         </Text>
       </View>
     );
@@ -857,10 +1039,10 @@ function ActivityTab({
       <View testID="friends-activity-empty" style={{ alignItems: 'center', paddingTop: 60, gap: 12 }}>
         <Ionicons name="pulse-outline" size={40} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center' }}>
-          {L('Пока нет активности', 'Поки немає активності', 'Sin actividad aún')}
+          {L('Пока нет активности', 'Поки немає активності', 'Sin actividad aún', 'Ainda sem atividade', 'Chưa có hoạt động', 'Belum ada aktivitas', 'Henüz etkinlik yok', 'Brak aktywności')}
         </Text>
         <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center' }}>
-          {L('Здесь появятся достижения и прогресс ваших друзей', 'Тут з\'являться досягнення та прогрес ваших друзів', 'Aquí aparecerán logros y progreso de tus amigos')}
+          {L('Здесь появятся достижения и прогресс ваших друзей', 'Тут з\'являться досягнення та прогрес ваших друзів', 'Aquí aparecerán logros y progreso de tus amigos', 'Aqui aparecerão conquistas e progresso dos seus amigos', 'Thành tích và tiến độ của bạn bè sẽ xuất hiện ở đây', 'Pencapaian dan progres temanmu akan muncul di sini', 'Arkadaşlarının başarıları ve ilerlemesi burada görünecek', 'Tutaj pojawią się osiągnięcia i postępy znajomych')}
         </Text>
       </View>
     );
@@ -876,13 +1058,14 @@ function ActivityTab({
       >
         <Ionicons name="refresh-outline" size={16} color={t.textMuted} />
         <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-          {L('Обновить', 'Оновити', 'Actualizar')}
+          {L('Обновить', 'Оновити', 'Actualizar', 'Atualizar', 'Làm mới', 'Perbarui', 'Yenile', 'Odśwież')}
         </Text>
       </TouchableOpacity>
       {events.map(event => {
         const profile = profiles[event.uid];
-        const name = profile?.name ?? L('Друг', 'Друг', 'Amigo');
+        const name = profile?.name ?? L('Друг', 'Друг', 'Amigo', 'Amigo', 'Bạn bè', 'Teman', 'Arkadaş', 'Znajomy');
         const color = eventIconColor(event.type, t.accent);
+        const likeColor = '#FF2D55';
         const likeCount = Math.max(0, Math.floor(Number(event.activityLikeCount ?? 0) || 0));
         const likedToday = todayLike?.targetUid === event.uid && todayLike?.eventId === event.id;
         const busy = likeBusyEventId === `${event.uid}:${event.id}`;
@@ -916,7 +1099,7 @@ function ActivityTab({
               activeOpacity={0.78}
               onPress={() => { void handleActivityLike(event); }}
               accessibilityRole="button"
-              accessibilityLabel={L('Лайк за активность', 'Лайк за активність', 'Like de actividad')}
+              accessibilityLabel={L('Лайк за активность', 'Лайк за активність', 'Like de actividad', 'Like de atividade', 'Thích hoạt động', 'Like aktivitas', 'Etkinlik beğenisi', 'Polubienie aktywności')}
               style={{
                 minWidth: 44,
                 minHeight: 44,
@@ -931,8 +1114,8 @@ function ActivityTab({
                 opacity: busy ? 0.55 : 1,
               }}
             >
-              <Ionicons name={likedToday ? 'heart' : 'heart-outline'} size={19} color={likedToday ? '#FF2D55' : t.textMuted} />
-              <Text style={{ color: likedToday ? '#FF2D55' : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
+              <Ionicons name={likedToday ? 'heart' : 'heart-outline'} size={19} color={likedToday ? likeColor : t.textMuted} />
+              <Text style={{ color: likedToday ? likeColor : t.textMuted, fontSize: Math.max(10, f.caption - 1), fontWeight: '900', marginTop: 1 }}>
                 {likeCount}
               </Text>
             </TouchableOpacity>
@@ -960,7 +1143,16 @@ function AddFriendModal({
   loadError: boolean; onRetryLoad: () => void;
   lang: string; t: any; f: any;
 }) {
-  const L = (ru: string, uk: string, es: string) => triLang(lang as any, { ru, uk, es });
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
   return (
     <Modal visible={visible} animationType="slide" presentationStyle="pageSheet" onRequestClose={onClose}>
       <SafeAreaProvider initialMetrics={initialWindowMetrics}>
@@ -968,7 +1160,7 @@ function AddFriendModal({
         <View style={{ flex: 1 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', paddingHorizontal: 20, paddingTop: 16, paddingBottom: 8 }}>
             <Text style={{ flex: 1, fontSize: f.h2 ?? 22, fontWeight: '800', color: t.textPrimary }}>
-              {L('Добавить друга', 'Додати друга', 'Agregar amigo')}
+              {L('Добавить друга', 'Додати друга', 'Agregar amigo', 'Adicionar amigo', 'Thêm bạn bè', 'Tambah teman', 'Arkadaş ekle', 'Dodaj znajomego')}
             </Text>
             <TouchableOpacity onPress={onClose} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
               <Ionicons name="close" size={26} color={t.textMuted} />
@@ -987,7 +1179,7 @@ function AddFriendModal({
               onRetryLoad={onRetryLoad}
             />
             <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-              {L('Введите код друга', 'Введіть код друга', 'Ingresa el código del amigo')}
+              {L('Введите код друга', 'Введіть код друга', 'Ingresa el código del amigo', 'Digite o código do amigo', 'Nhập mã bạn bè', 'Masukkan kode teman', 'Arkadaş kodunu gir', 'Wpisz kod znajomego')}
             </Text>
             <View style={{ flexDirection: 'row', gap: 10 }}>
             <TextInput
@@ -1041,8 +1233,8 @@ function AddFriendModal({
 
             {addFeedback && (
               <View testID="friends-add-feedback" style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                <Ionicons name="checkmark-circle-outline" size={16} color="#34C759" />
-                <Text style={{ color: '#34C759', fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
+                <Ionicons name="checkmark-circle-outline" size={16} color={t.correct} />
+                <Text style={{ color: t.correct, fontSize: f.sub, fontWeight: '600' }}>{addFeedback}</Text>
               </View>
             )}
           </ScrollView>
@@ -1061,7 +1253,16 @@ export default function FriendsTabScreen() {
   const { isPremium } = usePremium();
   const router = useRouter();
   const { goHome } = useTabNav();
-  const L = (ru: string, uk: string, es: string) => triLang(lang, { ru, uk, es });
+  const L = (
+    ru: string,
+    uk: string,
+    es: string,
+    ptBr: string,
+    vi: string,
+    id: string,
+    tr: string,
+    pl: string,
+  ) => triLang(lang as any, { ru, uk, es, 'pt-BR': ptBr, vi, id, tr, pl });
 
   /** Только код из `ensure…` — без старого кеша первым кадром (не мигать «чужим» кодом). */
   const [myCode, setMyCode] = useState<string | null>(null);
@@ -1174,12 +1375,17 @@ export default function FriendsTabScreen() {
       const gifts = await claimUnseenFriendGifts();
       if (gifts.length === 0) return;
       const first = gifts[0];
-      const from = first.fromName || L('друг', 'друг', 'amigo');
-      const gift = first.giftLabel || first.giftId;
+      const from = first.fromName || L('друг', 'друг', 'amigo', 'amigo', 'bạn bè', 'teman', 'arkadaş', 'znajomy');
+      const gift =
+        lang === 'es'
+          ? first.giftLabelEs || first.giftLabel || first.giftId
+          : lang === 'uk'
+            ? first.giftLabelUk || first.giftLabel || first.giftId
+            : first.giftLabelRu || first.giftLabel || first.giftId;
       showFeedback(
         gifts.length === 1
-          ? L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`)
-          : L(`Новые подарки от друзей: ${gifts.length}`, `Нові подарунки від друзів: ${gifts.length}`, `Regalos nuevos de amigos: ${gifts.length}`),
+          ? L(`${from} подарил: ${gift}`, `${from} подарував: ${gift}`, `${from} te regaló: ${gift}`, `${from} deu um presente: ${gift}`, `${from} đã tặng: ${gift}`, `${from} memberi hadiah: ${gift}`, `${from} hediye verdi: ${gift}`, `${from} podarował: ${gift}`)
+          : L(`Новые подарки от друзей: ${gifts.length}`, `Нові подарунки від друзів: ${gifts.length}`, `Regalos nuevos de amigos: ${gifts.length}`, `Novos presentes de amigos: ${gifts.length}`, `Quà mới từ bạn bè: ${gifts.length}`, `Hadiah baru dari teman: ${gifts.length}`, `Arkadaşlardan yeni hediyeler: ${gifts.length}`, `Nowe prezenty od znajomych: ${gifts.length}`),
       );
       emitAppEvent('action_toast', {
         type: 'success',
@@ -1192,7 +1398,7 @@ export default function FriendsTabScreen() {
     } catch {
       /* ignore */
     }
-  }, [L]);
+  }, [L, lang]);
 
   useFocusEffect(
     useCallback(() => {
@@ -1241,6 +1447,9 @@ export default function FriendsTabScreen() {
         hadSwrForUser = true;
         swrHadFriendsRef.current = w.friends.length > 0;
         setFriends(w.friends);
+        if (w.friends.length > 0) {
+          void checkAchievements({ type: 'friend_added', totalFriends: w.friends.length }).catch(() => {});
+        }
         setRequests(w.requests);
         const fromWarmProf = (w.profiles as Record<string, FriendProfile>) ?? {};
         const allUids = [
@@ -1282,6 +1491,9 @@ export default function FriendsTabScreen() {
         if (data.length === 0 && fromCache && swrHadFriendsRef.current) return;
         clearLiveResolveTimer();
         setFriends(data);
+        if (data.length > 0) {
+          void checkAchievements({ type: 'friend_added', totalFriends: data.length }).catch(() => {});
+        }
         setFriendsLiveResolved(true);
       });
 
@@ -1376,7 +1588,7 @@ export default function FriendsTabScreen() {
           result: 'blocked',
           tags: { reason: 'not_found', codeLength: codeUpper.length },
         });
-        setSearchError(L('Пользователь с таким кодом не найден', 'Користувача з таким кодом не знайдено', 'No se encontró usuario con ese código'));
+        setSearchError(L('Пользователь с таким кодом не найден', 'Користувача з таким кодом не знайдено', 'No se encontró usuario con ese código', 'Nenhum usuário encontrado com esse código', 'Không tìm thấy người dùng với mã này', 'Pengguna dengan kode ini tidak ditemukan', 'Bu kodla kullanıcı bulunamadı', 'Nie znaleziono użytkownika z tym kodem'));
         return;
       }
       const myUid = await ensureAnonUser();
@@ -1410,6 +1622,11 @@ export default function FriendsTabScreen() {
           'Профиль найден, но еще не синхронизирован. Откройте профиль на втором устройстве и попробуйте снова.',
           'Профіль знайдено, але ще не синхронізовано. Відкрийте профіль на другому пристрої та спробуйте ще раз.',
           'Perfil encontrado, pero aun no esta sincronizado. Abre el perfil en el segundo dispositivo e intenta de nuevo.',
+          'Perfil encontrado, mas ainda não está sincronizado. Abra o perfil no segundo dispositivo e tente de novo.',
+          'Hồ sơ đã được tìm thấy, nhưng chưa đồng bộ. Hãy mở hồ sơ trên thiết bị thứ hai rồi thử lại.',
+          'Profil ditemukan, tetapi belum tersinkron. Buka profil di perangkat kedua lalu coba lagi.',
+          'Profil bulundu, ama henüz senkronize edilmedi. Profili ikinci cihazda açıp tekrar dene.',
+          'Profil znaleziony, ale nie jest jeszcze zsynchronizowany. Otwórz profil na drugim urządzeniu i spróbuj ponownie.',
         ));
         return;
       }
@@ -1437,7 +1654,7 @@ export default function FriendsTabScreen() {
         result: 'error',
         tags: { codeLength: codeInput.length, error: e instanceof Error ? e.message : String(e) },
       });
-      setSearchError(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
+      setSearchError(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
       setIsSearching(false);
     }
@@ -1465,18 +1682,18 @@ export default function FriendsTabScreen() {
         setFoundUser(null);
         setCodeInput('');
         void invalidateFriendsActivityCache();
-        showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!'));
+        showFeedback(L('Заявка отправлена!', 'Заявку надіслано!', '¡Solicitud enviada!', 'Solicitação enviada!', 'Đã gửi lời mời!', 'Permintaan terkirim!', 'İstek gönderildi!', 'Zaproszenie wysłane!'));
       } else if (result === 'already_friends') {
         setFoundUser(null);
-        showFeedback(L('Вы уже друзья', 'Ви вже друзі', 'Ya son amigos'));
+        showFeedback(L('Вы уже друзья', 'Ви вже друзі', 'Ya son amigos', 'Vocês já são amigos', 'Hai bạn đã là bạn bè', 'Kalian sudah berteman', 'Zaten arkadaşsınız', 'Już jesteście znajomymi'));
       } else if (result === 'already_sent') {
         setFoundUser(null);
-        showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Solicitud ya enviada'));
+        showFeedback(L('Заявка уже отправлена', 'Заявку вже надіслано', 'Solicitud ya enviada', 'Solicitação já enviada', 'Lời mời đã được gửi', 'Permintaan sudah dikirim', 'İstek zaten gönderildi', 'Zaproszenie już wysłane'));
       } else if (result === 'self') {
         setFoundUser(null);
         showFeedback(randomSelfFriendCodeMessage(L));
       } else {
-        showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
+        showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
       }
     } catch (e) {
       void import('../app_health')
@@ -1495,7 +1712,7 @@ export default function FriendsTabScreen() {
         result: 'error',
         tags: { targetUid: foundUser.uid, error: e instanceof Error ? e.message : String(e) },
       });
-      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo'));
+      showFeedback(L('Ошибка. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error. Inténtalo de nuevo', 'Erro. Tente novamente', 'Lỗi. Hãy thử lại', 'Error. Coba lagi', 'Hata. Tekrar dene', 'Błąd. Spróbuj ponownie'));
     } finally {
       setIsAdding(false);
     }
@@ -1514,7 +1731,7 @@ export default function FriendsTabScreen() {
     if (!myCode) return;
     hapticTap();
     await Share.share({
-      message: L('Мой код в PhraseMan:', 'Мій код у PhraseMan:', 'Mi código en PhraseMan:') + ' ' + myCode,
+      message: L('Мой код в PhraseMan:', 'Мій код у PhraseMan:', 'Mi código en PhraseMan:', 'Meu código no PhraseMan:', 'Mã của tôi trong PhraseMan:', 'Kode saya di PhraseMan:', 'PhraseMan kodum:', 'Mój kod w PhraseMan:') + ' ' + myCode,
     });
   }, [myCode]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -1530,21 +1747,39 @@ export default function FriendsTabScreen() {
   };
 
   const giftLabel = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
-    triLang(lang, { ru: gift.labelRu, uk: gift.labelUk, es: gift.labelEs });
+    triLang(lang, {
+      ru: gift.labelRu,
+      uk: gift.labelUk,
+      es: gift.labelEs,
+      'pt-BR': gift.labelPtBr,
+      vi: gift.labelVi,
+      id: gift.labelId,
+      tr: gift.labelTr,
+      pl: gift.labelPl,
+    });
 
   const giftDescription = (gift: (typeof FRIEND_GIFT_CATALOG)[number]) =>
-    triLang(lang, { ru: gift.descRu, uk: gift.descUk, es: gift.descEs });
+    triLang(lang, {
+      ru: gift.descRu,
+      uk: gift.descUk,
+      es: gift.descEs,
+      'pt-BR': gift.descPtBr,
+      vi: gift.descVi,
+      id: gift.descId,
+      tr: gift.descTr,
+      pl: gift.descPl,
+    });
 
   const handleSendGift = async (giftId: FriendGiftId) => {
     if (!giftTarget || giftBusyId) return;
     const gift = FRIEND_GIFT_CATALOG.find(x => x.id === giftId);
     if (!gift) return;
     if (!isFriendGiftsCloudEnabled()) {
-      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronizacion en la nube'));
+      showFeedback(L('Подарки доступны только с облачной синхронизацией', 'Подарунки доступні лише з хмарною синхронізацією', 'Los regalos requieren sincronizacion en la nube', 'Os presentes exigem sincronização na nuvem', 'Quà tặng cần đồng bộ đám mây', 'Hadiah memerlukan sinkronisasi cloud', 'Hediyeler için bulut senkronizasyonu gerekir', 'Prezenty wymagają synchronizacji w chmurze'));
       return;
     }
     if (giftBalance < gift.costShards) {
-      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos'));
+      showFeedback(L('Не хватает осколков', 'Не вистачає осколків', 'No tienes suficientes fragmentos', 'Fragmentos insuficientes', 'Không đủ mảnh', 'Pecahan tidak cukup', 'Parça yetersiz', 'Za mało odłamków'));
       return;
     }
     hapticTap();
@@ -1558,7 +1793,7 @@ export default function FriendsTabScreen() {
       });
       setGiftBalance(res.senderBalanceAfter);
       setGiftTarget(null);
-      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado'));
+      showFeedback(L('Подарок отправлен', 'Подарунок надіслано', 'Regalo enviado', 'Presente enviado', 'Đã gửi quà', 'Hadiah terkirim', 'Hediye gönderildi', 'Prezent wysłany'));
       await trackActivity('friends:send_gift', {
         feature: 'friends',
         screen: 'friends',
@@ -1568,7 +1803,7 @@ export default function FriendsTabScreen() {
     } catch (e) {
       const msg = e instanceof Error ? e.message : String(e);
       if (msg.includes('resource-exhausted') || msg.includes('limit')) {
-        showFeedback(L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy'));
+        showFeedback(L('Лимит подарков на сегодня уже исчерпан', 'Ліміт подарунків на сьогодні вже вичерпано', 'Ya alcanzaste el limite de regalos de hoy', 'Você atingiu o limite de presentes de hoje', 'Bạn đã hết lượt tặng quà hôm nay', 'Batas hadiah hari ini sudah tercapai', 'Bugünkü hediye sınırına ulaştın', 'Dzisiejszy limit prezentów został już wykorzystany'));
         await trackActivity('friends:send_gift', {
           feature: 'friends',
           screen: 'friends',
@@ -1579,8 +1814,8 @@ export default function FriendsTabScreen() {
       }
       showFeedback(
         msg.includes('precondition') || msg.includes('Not enough')
-          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa')
-          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo'),
+          ? L('Не хватает осколков или дружба уже не активна', 'Не вистачає осколків або дружба вже не активна', 'Faltan fragmentos o la amistad ya no esta activa', 'Fragmentos insuficientes ou amizade não está mais ativa', 'Không đủ mảnh hoặc tình bạn không còn hoạt động', 'Pecahan tidak cukup atau pertemanan sudah tidak aktif', 'Parça yetersiz veya arkadaşlık artık aktif değil', 'Za mało odłamków albo znajomość nie jest już aktywna')
+          : L('Не удалось отправить подарок', 'Не вдалося надіслати подарунок', 'No se pudo enviar el regalo', 'Não foi possível enviar o presente', 'Không gửi được quà', 'Hadiah tidak dapat dikirim', 'Hediye gönderilemedi', 'Nie udało się wysłać prezentu'),
       );
       await trackActivity('friends:send_gift', {
         feature: 'friends',
@@ -1660,7 +1895,7 @@ export default function FriendsTabScreen() {
         <View style={{ flexDirection: 'row', alignItems: 'center', paddingTop: 12, paddingBottom: 6, marginBottom: 14 }}>
           <TouchableOpacity
             accessibilityRole="button"
-            accessibilityLabel={L('На главную', 'На головну', 'Inicio')}
+            accessibilityLabel={L('На главную', 'На головну', 'Inicio', 'Início', 'Trang chủ', 'Beranda', 'Ana sayfa', 'Strona główna')}
             style={{
               width: 36, height: 36, borderRadius: 18,
               backgroundColor: t.bgCard, borderWidth: 0.5, borderColor: t.border,
@@ -1672,7 +1907,7 @@ export default function FriendsTabScreen() {
             <Ionicons name="chevron-back" size={20} color={t.textPrimary} />
           </TouchableOpacity>
           <Text style={{ color: t.textPrimary, fontSize: f.h1 ?? 28, fontWeight: '900', letterSpacing: -0.5, flex: 1 }}>
-            {L('Друзья', 'Друзі', 'Amigos')}
+            {L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')}
           </Text>
           <TouchableOpacity
             testID="friends-open-add"
@@ -1702,8 +1937,8 @@ export default function FriendsTabScreen() {
           {(['friends', 'activity'] as const).map(tab => {
             const active = activeTab === tab;
             const label = tab === 'friends'
-              ? L('Друзья', 'Друзі', 'Amigos')
-              : L('Активность', 'Активність', 'Actividad');
+              ? L('Друзья', 'Друзі', 'Amigos', 'Amigos', 'Bạn bè', 'Teman', 'Arkadaşlar', 'Znajomi')
+              : L('Активность', 'Активність', 'Actividad', 'Atividade', 'Hoạt động', 'Aktivitas', 'Etkinlik', 'Aktywność');
             return (
               <TouchableOpacity
                 testID={`friends-tab-${tab}`}
@@ -1737,7 +1972,7 @@ export default function FriendsTabScreen() {
               <>
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                   <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-                    {L('Активные заявки', 'Активні заявки', 'Solicitudes activas')}
+                    {L('Активные заявки', 'Активні заявки', 'Solicitudes activas', 'Solicitações ativas', 'Lời mời đang chờ', 'Permintaan aktif', 'Aktif istekler', 'Aktywne zaproszenia')}
                   </Text>
                   <View style={{ backgroundColor: t.accent, borderRadius: 10, paddingHorizontal: 7, paddingVertical: 2 }}>
                     <Text style={{ color: t.correctText, fontSize: 11, fontWeight: '800' }}>{requests.length}</Text>
@@ -1752,7 +1987,7 @@ export default function FriendsTabScreen() {
                       acceptFriendRequest(req.fromUid)
                         .then(() => { void invalidateFriendsActivityCache(); })
                         .catch(() => {
-                          showFeedback(L('Ошибка при принятии. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar'));
+                          showFeedback(L('Ошибка при принятии. Попробуйте ещё раз', 'Помилка. Спробуйте ще раз', 'Error al aceptar', 'Erro ao aceitar', 'Lỗi khi chấp nhận', 'Gagal menerima', 'Kabul ederken hata', 'Błąd przy akceptacji'));
                         });
                     }}
                     onDecline={() => { hapticTap(); void declineFriendRequest(req.fromUid); }}
@@ -1763,11 +1998,11 @@ export default function FriendsTabScreen() {
             )}
             <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 12, gap: 6 }}>
               <Text style={{ color: t.textSecond, fontSize: f.sub, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1, flex: 1 }}>
-                {L('Список друзей', 'Список друзів', 'Lista de amigos')}
+                {L('Список друзей', 'Список друзів', 'Lista de amigos', 'Lista de amigos', 'Danh sách bạn bè', 'Daftar teman', 'Arkadaş listesi', 'Lista znajomych')}
               </Text>
               {sortedFriends.length > 0 && (
                 <Text style={{ color: t.textMuted, fontSize: f.sub }}>
-                  {L('по XP', 'за XP', 'por XP')}
+                  {L('по XP', 'за XP', 'por XP', 'por XP', 'theo XP', 'berdasarkan XP', "XP'ye göre", 'wg XP')}
                 </Text>
               )}
             </View>
@@ -1782,10 +2017,10 @@ export default function FriendsTabScreen() {
                   <Ionicons name="people-outline" size={28} color={t.textMuted} />
                 </View>
                 <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700', textAlign: 'center' }}>
-                  {L('Пока нет друзей', 'Поки немає друзів', 'Sin amigos aún')}
+                  {L('Пока нет друзей', 'Поки немає друзів', 'Sin amigos aún', 'Ainda sem amigos', 'Chưa có bạn bè', 'Belum ada teman', 'Henüz arkadaş yok', 'Brak znajomych')}
                 </Text>
                 <Text style={{ color: t.textMuted, fontSize: f.sub, textAlign: 'center', lineHeight: 20 }}>
-                  {L('Нажмите иконку + вверху справа', 'Натисніть іконку + вгорі праворуч', 'Pulsa el ícono + arriba a la derecha')}
+                  {L('Нажмите иконку + вверху справа', 'Натисніть іконку + вгорі праворуч', 'Pulsa el ícono + arriba a la derecha', 'Toque no ícone + no canto superior direito', 'Nhấn biểu tượng + ở góc trên bên phải', 'Ketuk ikon + di kanan atas', 'Sağ üstteki + simgesine dokun', 'Stuknij ikonę + w prawym górnym rogu')}
                 </Text>
               </View>
               )
@@ -1816,7 +2051,7 @@ export default function FriendsTabScreen() {
           <ReportErrorButton
             screen="friends_tab"
             dataId="friends_tab_main"
-            dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos')}
+            dataText={L('Вкладка друзья', 'Вкладка друзі', 'Pestaña amigos', 'Aba amigos', 'Tab bạn bè', 'Tab teman', 'Arkadaşlar sekmesi', 'Karta znajomych')}
           />
         </View>
 
@@ -1873,7 +2108,7 @@ export default function FriendsTabScreen() {
               ) : null}
               <View style={{ flex: 1 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.h3, fontWeight: '900' }}>
-                  {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo')}
+                  {L('Подарок другу', 'Подарунок другу', 'Regalo para amigo', 'Presente para amigo', 'Quà cho bạn bè', 'Hadiah untuk teman', 'Arkadaşına hediye', 'Prezent dla znajomego')}
                 </Text>
                 <Text style={{ color: t.textSecond, fontSize: f.sub, marginTop: 2 }} numberOfLines={1}>
                   {giftTarget?.name ?? ''}
@@ -1905,13 +2140,19 @@ export default function FriendsTabScreen() {
               borderRadius: 999,
               backgroundColor: t.bgSurface,
             }}>
-              <Ionicons name="diamond-outline" size={15} color={t.accent} />
+              <Image
+                source={oskolokImageForPackShards(giftBalance)}
+                style={{ width: 20, height: 20 }}
+                resizeMode="contain"
+              />
               <Text style={{ color: t.textPrimary, fontSize: f.sub, fontWeight: '800' }}>{giftBalance}</Text>
             </View>
 
             {FRIEND_GIFT_CATALOG.map(gift => {
               const cannotAfford = giftBalance < gift.costShards;
               const disabled = giftBusyId !== null;
+              const displayCost = cannotAfford ? gift.costShards - giftBalance : gift.costShards;
+              const displayCostText = cannotAfford ? `+${displayCost}` : `${displayCost}`;
               return (
                 <TouchableOpacity
                   key={gift.id}
@@ -1949,19 +2190,16 @@ export default function FriendsTabScreen() {
                       {giftDescription(gift)}
                     </Text>
                   </View>
-                  {giftBusyId === gift.id ? (
-                    <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900', minWidth: 48, textAlign: 'right' }}>
-                      {cannotAfford
-                        ? L(`+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`)
-                        : `${gift.costShards} 💎`}
+                  <View style={{ minWidth: 62, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: 4 }}>
+                    <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900', textAlign: 'right' }}>
+                      {displayCostText}
                     </Text>
-                  ) : (
-                    <Text style={{ color: t.accent, fontSize: f.body, fontWeight: '900', minWidth: 48, textAlign: 'right' }}>
-                      {cannotAfford
-                        ? L(`+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`, `+${gift.costShards - giftBalance} 💎`)
-                        : `${gift.costShards} 💎`}
-                    </Text>
-                  )}
+                    <Image
+                      source={oskolokImageForPackShards(displayCost)}
+                      style={{ width: 22, height: 22 }}
+                      resizeMode="contain"
+                    />
+                  </View>
                 </TouchableOpacity>
               );
             })}
@@ -1983,18 +2221,23 @@ export default function FriendsTabScreen() {
       />
       <ThemedConfirmModal
         visible={giftConfirm !== null}
-        title={L('Отправить подарок?', 'Надіслати подарунок?', '¿Enviar regalo?')}
+        title={L('Отправить подарок?', 'Надіслати подарунок?', '¿Enviar regalo?', 'Enviar presente?', 'Gửi quà?', 'Kirim hadiah?', 'Hediye gönderilsin mi?', 'Wysłać prezent?')}
         message={
           giftConfirm
             ? L(
                 `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} за ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} осколков`,
                 `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} за ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} осколків`,
                 `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} por ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} fragmentos`,
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} por ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} fragmentos`,
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} với ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} mảnh`,
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} seharga ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} pecahan`,
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} parça karşılığında`,
+                `${giftConfirm.target.name}: ${giftLabel(FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId) ?? FRIEND_GIFT_CATALOG[0])} za ${FRIEND_GIFT_CATALOG.find(x => x.id === giftConfirm.giftId)?.costShards ?? 0} odłamków`,
               )
             : ''
         }
-        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
-        confirmLabel={L('Подарить', 'Подарувати', 'Regalar')}
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
+        confirmLabel={L('Подарить', 'Подарувати', 'Regalar', 'Presentear', 'Tặng', 'Beri hadiah', 'Hediye et', 'Podaruj')}
         confirmVariant="accent"
         testIDPrefix="friends-gift-confirm"
         onCancel={() => setGiftConfirm(null)}
@@ -2006,10 +2249,10 @@ export default function FriendsTabScreen() {
       />
       <ThemedConfirmModal
         visible={deleteTarget !== null}
-        title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?')}
+        title={L('Удалить друга?', 'Видалити друга?', '¿Eliminar amigo?', 'Remover amigo?', 'Xóa bạn bè?', 'Hapus teman?', 'Arkadaşı sil?', 'Usunąć znajomego?')}
         message={deleteTarget?.name ?? ''}
-        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar')}
-        confirmLabel={L('Удалить', 'Видалити', 'Eliminar')}
+        cancelLabel={L('Отмена', 'Скасувати', 'Cancelar', 'Cancelar', 'Hủy', 'Batal', 'İptal', 'Anuluj')}
+        confirmLabel={L('Удалить', 'Видалити', 'Eliminar', 'Remover', 'Xóa', 'Hapus', 'Sil', 'Usuń')}
         confirmVariant="default"
         testIDPrefix="friends-delete-confirm"
         onCancel={() => setDeleteTarget(null)}
@@ -2020,7 +2263,7 @@ export default function FriendsTabScreen() {
             deleteFriend(target.uid)
               .then(() => { void invalidateFriendsActivityCache(); })
               .catch(() => {
-                showFeedback(L('Ошибка удаления. Попробуйте ещё раз', 'Помилка видалення. Спробуйте ще раз', 'Error al eliminar. Inténtalo de nuevo'));
+                showFeedback(L('Ошибка удаления. Попробуйте ещё раз', 'Помилка видалення. Спробуйте ще раз', 'Error al eliminar. Inténtalo de nuevo', 'Erro ao remover. Tente novamente', 'Không xóa được. Hãy thử lại', 'Gagal menghapus. Coba lagi', 'Silme hatası. Tekrar dene', 'Błąd usuwania. Spróbuj ponownie'));
               });
           }
         }}

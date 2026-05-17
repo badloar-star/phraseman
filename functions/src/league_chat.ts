@@ -5,6 +5,7 @@ import {
   LEAGUE_CHAT_REVIEW_TERMS,
   LEAGUE_CHAT_SEXUAL_TERMS,
 } from './league_chat_blocklist.generated';
+import { resolveStableUidForAuth } from './auth_identity';
 
 const REGION = 'us-central1';
 const MAX_MESSAGE_LENGTH = 420;
@@ -137,14 +138,6 @@ function moderate(text: string): { status: 'clean' | 'review' | 'blocked'; categ
   return { status, categories: uniqueCategories, reasons: uniq(reasons), normalizedText };
 }
 
-async function resolveStableUid(db: FirebaseFirestore.Firestore, authUid: string): Promise<string> {
-  const direct = await db.collection('users').doc(authUid).get().catch(() => null);
-  if (direct?.exists) return authUid;
-  const byAuth = await db.collection('users').where('firebaseAuthUid', '==', authUid).limit(1).get();
-  if (!byAuth.empty) return byAuth.docs[0].id;
-  return authUid;
-}
-
 function readNumber(value: unknown): number {
   const n = Number(value);
   return Number.isFinite(n) ? n : 0;
@@ -220,7 +213,7 @@ export const leagueChatAuthorizeRoom = onCall({ region: REGION }, async (request
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
   const groupId = String(request.data?.groupId ?? '').trim();
   const weekId = String(request.data?.weekId ?? '').trim();
   const leagueId = Math.trunc(Number(request.data?.leagueId) || 0);
@@ -236,7 +229,7 @@ export const leagueChatSendMessage = onCall({ region: REGION }, async (request) 
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
   const text = sanitizeText(request.data?.text);
   const groupId = String(request.data?.groupId ?? '').trim();
   const weekId = String(request.data?.weekId ?? '').trim();
@@ -304,7 +297,7 @@ export const leagueChatReportMessage = onCall({ region: REGION }, async (request
 
   const db = admin.firestore();
   const authUid = request.auth.uid;
-  const stableUid = await resolveStableUid(db, authUid);
+  const stableUid = await resolveStableUidForAuth(db, authUid, request.data?.stableId);
   const messageId = String(request.data?.messageId ?? '').trim();
   const reason = sanitizeText(request.data?.reason).slice(0, MAX_REPORT_REASON_LENGTH);
   if (!messageId) throw new HttpsError('invalid-argument', 'message_required');

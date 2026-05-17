@@ -42,6 +42,7 @@ export interface TrainerItem {
   translationRu: string;
   /** Для слов/глаголов: перевод (uk) */
   translationUk: string;
+  translationEs?: string;
   /** Для фраз: слово на котором была ошибка (для режима fill-the-gap) */
   errorWord?: string;
   /** Для арены: исходный вопрос в формате арены */
@@ -114,6 +115,12 @@ function withTrainerCategory(item: TrainerItem): TrainerItem {
     : item;
 }
 
+export function trainerTranslationForLang(item: Pick<TrainerItem, 'translationRu' | 'translationUk' | 'translationEs'>, lang: 'ru' | 'uk' | 'es'): string {
+  if (lang === 'uk') return item.translationUk || item.translationRu || item.translationEs || '';
+  if (lang === 'es') return item.translationEs || item.translationRu || item.translationUk || '';
+  return item.translationRu || item.translationUk || item.translationEs || '';
+}
+
 async function load(): Promise<TrainerItem[]> {
   try {
     const raw = await AsyncStorage.getItem(STORAGE_KEY);
@@ -141,6 +148,7 @@ export async function recordWordMistake(
   translationUk: string,
   lessonId: number,
   rawCategory?: string,
+  translationEs?: string,
 ): Promise<void> {
   const key = wordEn.trim().toLowerCase();
   const items = await load();
@@ -150,6 +158,7 @@ export async function recordWordMistake(
     existing.mistakeCount += 1;
     existing.translationRu = translationRu;
     existing.translationUk = translationUk;
+    if (translationEs) existing.translationEs = translationEs;
     Object.assign(existing, trainerCategory(wordEn, rawCategory));
     // nextDue === 0 означает "ещё не активировано" — не трогаем, ждём activateWordForTrainer
     if (existing.nextDue !== 0) {
@@ -172,6 +181,7 @@ export async function recordWordMistake(
     queue: 'words',
     translationRu,
     translationUk,
+    translationEs,
     lessonId,
     ...trainerCategory(wordEn, rawCategory),
     mistakeCount: 1,
@@ -194,6 +204,7 @@ export async function activateWordForTrainer(
   translationUk: string,
   lessonId: number,
   rawCategory?: string,
+  translationEs?: string,
 ): Promise<void> {
   const key = wordEn.trim().toLowerCase();
   const items = await load();
@@ -203,6 +214,7 @@ export async function activateWordForTrainer(
     existing.mistakeCount += 1;
     existing.translationRu = translationRu;
     existing.translationUk = translationUk;
+    if (translationEs) existing.translationEs = translationEs;
     Object.assign(existing, trainerCategory(wordEn, rawCategory));
     if (existing.nextDue === 0) {
       // Первый раз достиг порога — активируем
@@ -217,6 +229,7 @@ export async function activateWordForTrainer(
     queue: 'words',
     translationRu,
     translationUk,
+    translationEs,
     lessonId,
     ...trainerCategory(wordEn, rawCategory),
     mistakeCount: 2,
@@ -241,6 +254,7 @@ export async function recordPhraseMistake(
   lessonId: number,
   errorWord?: string,
   rawCategory?: string,
+  translationEs?: string,
 ): Promise<void> {
   const key = phraseEn.trim();
   const items = await load();
@@ -250,6 +264,7 @@ export async function recordPhraseMistake(
     existing.mistakeCount += 1;
     existing.translationRu = translationRu;
     existing.translationUk = translationUk;
+    if (translationEs) existing.translationEs = translationEs;
     if (errorWord) existing.errorWord = errorWord;
     Object.assign(existing, trainerCategory(errorWord, rawCategory));
     if (existing.archived) {
@@ -268,6 +283,7 @@ export async function recordPhraseMistake(
     queue: 'phrases',
     translationRu,
     translationUk,
+    translationEs,
     errorWord,
     lessonId,
     ...(errorWord ? trainerCategory(errorWord, rawCategory) : {}),
@@ -624,6 +640,30 @@ const DEV_PHRASES = [
   { key: 'The weather is nice today',      ru: 'Сегодня хорошая погода',        uk: 'Сьогодні гарна погода',            errorWord: 'weather' },
 ];
 
+const DEV_WORDS_ES_ITEMS = [
+  { key: 'angry', es: 'enfadado' },
+  { key: 'forest', es: 'bosque' },
+  { key: 'believe', es: 'creer' },
+  { key: 'careful', es: 'cuidadoso' },
+  { key: 'borrow', es: 'pedir prestado' },
+  { key: 'carry', es: 'llevar' },
+  { key: 'early', es: 'temprano' },
+  { key: 'gather', es: 'reunir' },
+] as const;
+
+const DEV_PHRASES_ES_ITEMS = [
+  { key: 'She went to the store', es: 'Ella fue a la tienda' },
+  { key: 'He is in the kitchen', es: 'El esta en la cocina' },
+  { key: 'We will call you tomorrow', es: 'Te llamaremos manana' },
+  { key: 'I have never been there', es: 'Nunca he estado alli' },
+  { key: 'They are waiting for us', es: 'Nos estan esperando' },
+  { key: 'Could you help me please', es: 'Podrias ayudarme, por favor' },
+  { key: 'The weather is nice today', es: 'Hoy hace buen tiempo' },
+] as const;
+
+const DEV_WORDS_ES: Record<string, string> = Object.fromEntries(DEV_WORDS_ES_ITEMS.map(item => [item.key, item.es]));
+const DEV_PHRASES_ES: Record<string, string> = Object.fromEntries(DEV_PHRASES_ES_ITEMS.map(item => [item.key, item.es]));
+
 const DEV_ARENA = [
   { question: 'She ___ to the store yesterday', correct: 'went',    options: ['go', 'went', 'gone', 'goes'],   rule: 'Past Simple' },
   { question: 'I ___ never seen this before',   correct: 'have',    options: ['have', 'had', 'has', 'having'], rule: 'Present Perfect' },
@@ -698,6 +738,7 @@ export async function devSeedTrainer(): Promise<void> {
       items.push({
         key: w.key, queue: 'words',
         translationRu: w.ru, translationUk: w.uk,
+        translationEs: DEV_WORDS_ES[w.key],
         lessonId: 1, mistakeCount: 2, correctStreak: 0,
         nextDue: todayMs, createdAt: now, archived: false,
       });
@@ -716,6 +757,7 @@ export async function devSeedTrainer(): Promise<void> {
       items.push({
         key: p.key, queue: 'phrases',
         translationRu: p.ru, translationUk: p.uk,
+        translationEs: DEV_PHRASES_ES[p.key],
         errorWord: p.errorWord,
         lessonId: 1, mistakeCount: 1, correctStreak: 0,
         nextDue: todayMs, createdAt: now, archived: false,
@@ -777,6 +819,7 @@ export async function devSeedTrainerScenario(scenario: TrainerDevScenario): Prom
       queue: 'phrases',
       translationRu: p.ru,
       translationUk: p.uk,
+      translationEs: DEV_PHRASES_ES[p.key],
       errorWord: p.errorWord,
       lessonId: 1 + i,
       mistakeCount: scenario === 'hard' ? 4 + (i % 3) : 1 + (i % 2),
@@ -787,6 +830,7 @@ export async function devSeedTrainerScenario(scenario: TrainerDevScenario): Prom
       queue: 'words',
       translationRu: w.ru,
       translationUk: w.uk,
+      translationEs: DEV_WORDS_ES[w.key],
       lessonId: 1 + i,
       mistakeCount: scenario === 'hard' ? 3 + (i % 4) : 2,
       correctStreak: scenario === 'weak' ? (i % 2) : 2,

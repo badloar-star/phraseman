@@ -59,6 +59,7 @@ type Props = {
   ownedCommunityPackIds?: string[];
   /** Stable id автора — кнопка «редагувати» на своїх UGC. */
   hubAuthorStableId?: string | null;
+  onTrainingPress: () => void;
   /** Для контрасту підписей / сегментів на `ScreenGradient` (Океан / Сакура). */
   themeMode: ThemeMode;
 };
@@ -70,6 +71,11 @@ const TILE_RADIUS = 18;
 const STAGGER_MS = 42;
 const STAGGER_CAP = 14;
 const ENTRANCE_DURATION = 400;
+
+const HUB_CATEGORY_PLANNED_LABELS: Record<string, { ptBR: string; vi: string; id: string; tr: string; pl: string }> = {
+  saved: { ptBR: 'Salvos', vi: 'Đã lưu', id: 'Tersimpan', tr: 'Kaydedilenler', pl: 'Zapisane' },
+  custom: { ptBR: 'Criar', vi: 'Tạo', id: 'Buat', tr: 'Oluştur', pl: 'Utwórz' },
+};
 
 const enteringForIndex = (i: number) =>
   FadeInDown.duration(ENTRANCE_DURATION)
@@ -339,6 +345,7 @@ export default function FlashcardsCategoryHub({
   communityPacks = [],
   ownedCommunityPackIds = [],
   hubAuthorStableId = null,
+  onTrainingPress,
   themeMode,
 }: Props) {
   const router = useRouter();
@@ -653,6 +660,11 @@ export default function FlashcardsCategoryHub({
                     ru: 'Пожаловаться на набор',
                     uk: 'Поскаржитися на набір',
                     es: 'Reportar el pack',
+                    'pt-BR': 'Reportar o pacote',
+                    vi: 'Báo cáo bộ thẻ',
+                    id: 'Laporkan paket',
+                    tr: 'Paketi bildir',
+                    pl: 'Zgłoś zestaw',
                   })}
                 </Text>
               </TouchableOpacity>
@@ -683,6 +695,11 @@ export default function FlashcardsCategoryHub({
                     ru: 'Не показывать мне',
                     uk: 'Не показувати мені',
                     es: 'No mostrarme',
+                    'pt-BR': 'Não mostrar para mim',
+                    vi: 'Đừng hiển thị cho tôi',
+                    id: 'Jangan tampilkan untuk saya',
+                    tr: 'Bana gösterme',
+                    pl: 'Nie pokazuj mi',
                   })}
                 </Text>
               </TouchableOpacity>
@@ -712,7 +729,7 @@ export default function FlashcardsCategoryHub({
           </Text>
           {pack.isPendingUpdateReview ? (
             <Text style={{ fontSize: 9, color: isGradientSurface ? hubLabelAccent : t.accent, fontWeight: '800', marginTop: 3, textAlign: 'center' }}>
-              {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación' })}
+              {triLang(lang, { ru: 'На модерации', uk: 'На модерації', es: 'En moderación', 'pt-BR': 'Em moderação', vi: 'Đang kiểm duyệt', id: 'Dalam moderasi', tr: 'İncelemede', pl: 'W moderacji' })}
             </Text>
           ) : null}
         </Reanimated.View>
@@ -721,7 +738,8 @@ export default function FlashcardsCategoryHub({
 
   const renderHubCategoryTiles = () =>
     hubCategories.map((cat) => {
-      const label = triLang(lang, { ru: cat.labelRU, uk: cat.labelUK, es: cat.labelES });
+      const plannedLabel = HUB_CATEGORY_PLANNED_LABELS[cat.id];
+      const label = triLang(lang, { ru: cat.labelRU, uk: cat.labelUK, es: cat.labelES, 'pt-BR': plannedLabel.ptBR, vi: plannedLabel.vi, id: plannedLabel.id, tr: plannedLabel.tr, pl: plannedLabel.pl });
       const i = tileAnimIndex++;
       return (
         <Reanimated.View
@@ -767,6 +785,58 @@ export default function FlashcardsCategoryHub({
       );
     });
 
+  const renderTrainingTile = () => {
+    const i = tileAnimIndex++;
+    const label = triLang(lang, {
+      ru: 'Тренировка',
+      uk: 'Тренування',
+      es: 'Práctica',
+      'pt-BR': 'Praticar',
+      vi: 'Luyện tập',
+      id: 'Latihan',
+      tr: 'Pratik',
+      pl: 'Trening',
+    });
+
+    return (
+      <Reanimated.View
+        key="training"
+        {...(!reduceMotion ? { entering: enteringForIndex(i) } : {})}
+        style={{ width: tileW, alignItems: 'center', paddingBottom: 6 }}
+      >
+        <HubTileShell
+          testID="flashcards-hub-tile-training"
+          a11y="qa-flashcards-hub-tile-training"
+          width={tileW}
+          reduceMotion={reduceMotion}
+          onPress={onTrainingPress}
+        >
+          <View
+            style={[
+              {
+                width: tileW,
+                height: tileW,
+                borderRadius: TILE_RADIUS,
+                borderWidth: 1,
+                borderColor: t.border,
+                backgroundColor: t.bgSurface,
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+              },
+              shadowForTile(t, 'base'),
+            ]}
+          >
+            <Ionicons name="play-circle-outline" size={iconSize} color={t.textPrimary} />
+          </View>
+        </HubTileShell>
+        <Text style={labelStyle(true)} numberOfLines={2}>
+          {label}
+        </Text>
+      </Reanimated.View>
+    );
+  };
+
   const hubSegmentTabs = cloudCommunityEnabled ? (
     <View
       style={{
@@ -776,9 +846,9 @@ export default function FlashcardsCategoryHub({
         marginBottom: 14,
       }}
     >
-      {renderHubSegmentTab('mine', triLang(lang, { ru: 'Мои', uk: 'Мої', es: 'Mis' }))}
-      {renderHubSegmentTab('showcase', triLang(lang, { ru: 'Витрина', uk: 'Вітрина', es: 'Vitrina' }))}
-      {renderHubSegmentTab('community', triLang(lang, { ru: 'Сообщество', uk: 'Спільнота', es: 'Comunidad' }))}
+      {renderHubSegmentTab('mine', triLang(lang, { ru: 'Мои', uk: 'Мої', es: 'Mis', 'pt-BR': 'Meus', vi: 'Của tôi', id: 'Milik saya', tr: 'Benim', pl: 'Moje' }))}
+      {renderHubSegmentTab('showcase', triLang(lang, { ru: 'Витрина', uk: 'Вітрина', es: 'Vitrina', 'pt-BR': 'Vitrine', vi: 'Gian hàng', id: 'Etalase', tr: 'Vitrin', pl: 'Witryna' }))}
+      {renderHubSegmentTab('community', triLang(lang, { ru: 'Сообщество', uk: 'Спільнота', es: 'Comunidad', 'pt-BR': 'Comunidade', vi: 'Cộng đồng', id: 'Komunitas', tr: 'Topluluk', pl: 'Społeczność' }))}
     </View>
   ) : null;
 
@@ -798,6 +868,7 @@ export default function FlashcardsCategoryHub({
             }}
           >
             {renderHubCategoryTiles()}
+            {renderTrainingTile()}
             {renderPackTiles(mineTabPacksOnlyOwned, isPackInMineOwned, false)}
           </View>
         ) : hubPackSegment === 'showcase' ? (
@@ -838,6 +909,11 @@ export default function FlashcardsCategoryHub({
                     ru: 'Продолжить создание набора',
                     uk: 'Продовжити створення набору',
                     es: 'Seguir creando el pack',
+                    'pt-BR': 'Continuar criando o pacote',
+                    vi: 'Tiếp tục tạo bộ thẻ',
+                    id: 'Lanjut membuat paket',
+                    tr: 'Paketi oluşturmaya devam et',
+                    pl: 'Kontynuuj tworzenie zestawu',
                   })}
                 </Text>
               </TouchableOpacity>
@@ -861,7 +937,7 @@ export default function FlashcardsCategoryHub({
               }}
             >
               <Text style={{ color: t.correctText, fontWeight: '800', fontSize: labelSize + 2 }}>
-                {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack' })}
+                {triLang(lang, { ru: '+ Создать набор', uk: '+ Створити набір', es: '+ Crear pack', 'pt-BR': '+ Criar pacote', vi: '+ Tạo bộ thẻ', id: '+ Buat paket', tr: '+ Paket oluştur', pl: '+ Utwórz zestaw' })}
               </Text>
             </TouchableOpacity>
             {visibleCommunityPacks.length === 0 ? (
@@ -871,6 +947,11 @@ export default function FlashcardsCategoryHub({
                     ru: 'Здесь появятся наборы после публикации и модерации.',
                     uk: 'Тут з\'являться набори після публікації та модерації.',
                     es: 'Aquí verás packs tras publicarlos y moderarlos.',
+                    'pt-BR': 'Os pacotes aparecerão aqui após publicação e moderação.',
+                    vi: 'Các bộ thẻ sẽ xuất hiện ở đây sau khi đăng và kiểm duyệt.',
+                    id: 'Paket akan muncul di sini setelah dipublikasikan dan dimoderasi.',
+                    tr: 'Paketler yayınlanıp incelendikten sonra burada görünür.',
+                    pl: 'Zestawy pojawią się tutaj po publikacji i moderacji.',
                   })}
                 </Text>
               ) : null
@@ -891,6 +972,7 @@ export default function FlashcardsCategoryHub({
           }}
         >
           {renderHubCategoryTiles()}
+          {renderTrainingTile()}
           {renderPackTiles(marketPacks, (p) => ownedPackIds.includes(p.id), false)}
         </View>
       )}
@@ -902,22 +984,37 @@ export default function FlashcardsCategoryHub({
             ru: 'Карточки: категории и пакеты',
             uk: 'Картки: категорії та пакети',
             es: 'Tarjetas: categorías y packs',
+            'pt-BR': 'Cartões: categorias e pacotes',
+            vi: 'Thẻ: danh mục và bộ thẻ',
+            id: 'Kartu: kategori dan paket',
+            tr: 'Kartlar: kategoriler ve paketler',
+            pl: 'Karty: kategorie i zestawy',
           })}
         />
       </View>
       <ThemedConfirmModal
         visible={discardDraftForNewOpen}
-        title={triLang(lang, { ru: 'Новый набор', uk: 'Новий набір', es: 'Nuevo pack' })}
+        title={triLang(lang, { ru: 'Новый набор', uk: 'Новий набір', es: 'Nuevo pack', 'pt-BR': 'Novo pacote', vi: 'Bộ thẻ mới', id: 'Paket baru', tr: 'Yeni paket', pl: 'Nowy zestaw' })}
         message={triLang(lang, {
           ru: 'Черновик на устройстве будет удалён. Продолжить?',
           uk: 'Чернетку на пристрої буде видалено. Продовжити?',
           es: 'Se borrará el borrador en el dispositivo. ¿Continuar?',
+          'pt-BR': 'O rascunho no dispositivo será excluído. Continuar?',
+          vi: 'Bản nháp trên thiết bị sẽ bị xóa. Tiếp tục?',
+          id: 'Draf di perangkat akan dihapus. Lanjutkan?',
+          tr: 'Cihazdaki taslak silinecek. Devam edilsin mi?',
+          pl: 'Szkic na urządzeniu zostanie usunięty. Kontynuować?',
         })}
-        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
+        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar', 'pt-BR': 'Cancelar', vi: 'Hủy', id: 'Batal', tr: 'İptal', pl: 'Anuluj' })}
         confirmLabel={triLang(lang, {
           ru: 'Удалить и создать новый',
           uk: 'Видалити й створити новий',
           es: 'Eliminar y crear otro',
+          'pt-BR': 'Excluir e criar novo',
+          vi: 'Xóa và tạo mới',
+          id: 'Hapus dan buat baru',
+          tr: 'Sil ve yenisini oluştur',
+          pl: 'Usuń i utwórz nowy',
         })}
         confirmVariant="default"
         onCancel={() => setDiscardDraftForNewOpen(false)}

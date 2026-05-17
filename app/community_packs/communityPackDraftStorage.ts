@@ -4,7 +4,7 @@ import { UGC_CARD_THEME_IDS } from './ugcCardThemePresets';
 
 const STORAGE_KEY = 'community_pack_create_draft_v1';
 
-export type CommunityPackCreateDraftRow = { id: string; en: string; ru: string; uk: string };
+export type CommunityPackCreateDraftRow = { id: string; en: string; ru: string; uk: string; es?: string };
 
 export type CommunityPackCreateDraftV1 = {
   v: 1;
@@ -17,6 +17,7 @@ export type CommunityPackCreateDraftV1 = {
   addCardFormOpen: boolean;
   draftEn: string;
   draftRu: string;
+  draftEs: string;
   draftNote: string;
 };
 
@@ -33,7 +34,8 @@ function isRow(x: unknown): x is CommunityPackCreateDraftRow {
     typeof o.id === 'string' &&
     typeof o.en === 'string' &&
     typeof o.ru === 'string' &&
-    typeof o.uk === 'string'
+    typeof o.uk === 'string' &&
+    (o.es === undefined || typeof o.es === 'string')
   );
 }
 
@@ -46,6 +48,7 @@ export function communityPackCreateDraftIsMeaningful(d: CommunityPackCreateDraft
     d.addCardFormOpen ||
     d.draftEn.trim().length > 0 ||
     d.draftRu.trim().length > 0 ||
+    d.draftEs.trim().length > 0 ||
     d.draftNote.trim().length > 0
   );
 }
@@ -72,6 +75,7 @@ function parseDraft(raw: string | null): CommunityPackCreateDraftV1 | null {
       addCardFormOpen: o.addCardFormOpen === true,
       draftEn: typeof o.draftEn === 'string' ? o.draftEn : '',
       draftRu: typeof o.draftRu === 'string' ? o.draftRu : '',
+      draftEs: typeof o.draftEs === 'string' ? o.draftEs : '',
       draftNote: typeof o.draftNote === 'string' ? o.draftNote : '',
     };
   } catch {
@@ -104,6 +108,7 @@ export async function saveCommunityPackCreateDraft(d: Omit<CommunityPackCreateDr
     addCardFormOpen: d.addCardFormOpen,
     draftEn: d.draftEn,
     draftRu: d.draftRu,
+    draftEs: d.draftEs,
     draftNote: d.draftNote,
   };
   try {

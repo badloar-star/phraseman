@@ -200,6 +200,18 @@ export const toAmE = (lowercased: string): string => {
   return result;
 };
 
+const ANSWER_EQUIVALENTS: [RegExp, string][] = [
+  [/\bseldom\b/g, 'rarely'],
+];
+
+export const toCanonicalAnswerLexis = (lowercased: string): string => {
+  let result = lowercased;
+  for (const [pattern, replacement] of ANSWER_EQUIVALENTS) {
+    result = result.replace(pattern, replacement);
+  }
+  return result;
+};
+
 /**
  * Нормализует текст:
  * 1. NFKC (полноширинные A–Z / . ! ? и т.д. → обычные ASCII-символы)
@@ -237,6 +249,7 @@ export const normalize = (text: string): string => {
   result = result.replace(/\bcannot\b/g, 'can not');
   // BrE → AmE: чтобы британские эквиваленты засчитывались как правильные
   result = toAmE(result);
+  result = toCanonicalAnswerLexis(result);
   return result.replace(/\s+/g, ' ').trim().toLowerCase();
 };
 

@@ -16,7 +16,8 @@
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { CLOUD_SYNC_ENABLED, IS_EXPO_GO } from './config';
-import { ensureAnonUser } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink } from './cloud_sync';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { GroupMember, getWeekId } from './league_engine';
 import { getMyWeekPoints } from './hall_of_fame_utils';
 import { getVerifiedPremiumStatus } from './premium_guard';
@@ -387,6 +388,8 @@ export async function getOrCreateLeagueGroup(
   if (!db) return null;
   const uid = await ensureAnonUser();
   if (!uid) return null;
+  await ensureStableAuthLink().catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
 
   // Читаем аватар и рамку чтобы сохранить их в данных участника
   const [
@@ -446,10 +449,10 @@ export async function getOrCreateLeagueGroup(
 
   try {
     const fn = callable<
-      { weekId: string; leagueId: number; member: Record<string, unknown> },
+      { weekId: string; leagueId: number; stableId?: string; member: Record<string, unknown> },
       { ok: boolean; groupId: string; weekId: string; leagueId: number }
     >('leagueJoinOrUpdateGroup');
-    const res = await fn({ weekId, leagueId: normLeagueIdData(leagueId, 0), member: memberData });
+    const res = await fn({ weekId, leagueId: normLeagueIdData(leagueId, 0), stableId: uid, member: memberData });
     const groupId = res.data?.groupId;
     if (groupId) {
       return await fetchGroupMembers(db, groupId, uid, myName, myWeekPoints);
@@ -733,6 +736,8 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
   if (!db) return;
   const uid = await ensureAnonUser();
   if (!uid) return;
+  await ensureStableAuthLink().catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
   try {
     const [
       [, avatarRaw],
@@ -757,8 +762,9 @@ async function _doUpdateGroupPoints(weekPoints: number): Promise<void> {
     ]);
     const memberPremium = await getVerifiedPremiumStatus().catch(() => false);
     const memberTotalXp = totalXpRaw ? parseInt(totalXpRaw, 10) || 0 : 0;
-    const fn = callable<{ member: Record<string, unknown> }, { ok: boolean }>('leagueUpdateMyMember');
+    const fn = callable<{ stableId?: string; member: Record<string, unknown> }, { ok: boolean }>('leagueUpdateMyMember');
     await fn({
+      stableId: uid,
       member: {
         points: weekPoints,
         uid,
@@ -969,12 +975,14 @@ export async function syncMyLeagueMemberBoostToCloud(): Promise<void> {
   if (!db) return;
   const uid = await ensureAnonUser();
   if (!uid) return;
+  await ensureStableAuthLink().catch(() => false);
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
   const boost = await loadActiveLeagueBoost();
   try {
-    const fn = callable<{ multiplier?: number; expiresAt?: number }, { ok: boolean }>('leagueSyncMyBoost');
+    const fn = callable<{ stableId?: string; multiplier?: number; expiresAt?: number }, { ok: boolean }>('leagueSyncMyBoost');
     await fn(boost && Date.now() < boost.expiresAt
-      ? { multiplier: boost.multiplier, expiresAt: boost.expiresAt }
-      : {});
+      ? { stableId: uid, multiplier: boost.multiplier, expiresAt: boost.expiresAt }
+      : { stableId: uid });
   } catch { /* empty */ }
 }
 

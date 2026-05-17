@@ -1,6 +1,6 @@
 jest.mock('../app/config', () => ({
   ...jest.requireActual<typeof import('../app/config')>('../app/config'),
-  ENABLE_SPANISH_LOCALE: true,
+  SPANISH_UI_LOCALE_ENABLED: true,
 }));
 
 import { bundleLang, triLang } from '../constants/i18n';

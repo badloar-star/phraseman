@@ -11,6 +11,8 @@ import { BRAND_SHARDS_ES } from '../constants/terms_es';
 import { hapticTap } from '../hooks/use-haptics';
 
 const PREMIUM_BLUE = '#4FC3F7';
+const ENERGY_ICON_SIZE = 30;
+const ENERGY_ICON_OVERLAP = -Math.round(ENERGY_ICON_SIZE * 0.45);
 
 interface Props {
   energyCount: number; // 0-5
@@ -31,6 +33,11 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
     ru: 'Долгое нажатие — восстановить энергию за осколки',
     uk: 'Довге натискання — відновити енергію за осколки',
     es: `Mantén pulsado para recuperar energía con ${BRAND_SHARDS_ES}`,
+    'pt-BR': 'Mantenha pressionado para recuperar energia com fragmentos',
+    vi: 'Nhấn giữ để hồi năng lượng bằng mảnh',
+    id: 'Tahan untuk memulihkan energi dengan shard',
+    tr: 'Parçalarla enerji yenilemek için basılı tut',
+    pl: 'Przytrzymaj, aby odzyskać energię za odłamki',
   });
   const [refillModal, setRefillModal] = useState(false);
   const premiumTint = isUnlimited ? PREMIUM_BLUE : undefined;
@@ -71,11 +78,11 @@ export default function LessonEnergyLightning({ energyCount, maxEnergy = 5, shou
       >
       <View style={styles.stackContainer}>
         {Array.from({ length: maxEnergy }).map((_, i) => (
-          <View key={i} style={{ marginLeft: i > 0 ? -8 : 0 }}>
+          <View key={i} style={{ marginLeft: i > 0 ? ENERGY_ICON_OVERLAP : 0 }}>
             <EnergyIcon
               filled={i < energyCount}
               themeColor={i < energyCount ? filledColor : t.textGhost}
-              size={20}
+              size={ENERGY_ICON_SIZE}
               animateChange={true}
               shouldShake={shouldShake}
               themeMode={themeMode}

@@ -139,8 +139,32 @@ function shellNeon(): CardPackPaywallTheme {
   };
 }
 
-/** GOLD: navy + coral + синій correct, світлий текст на CTA (як у темі) */
+/** GOLD: black gold shell with restrained metal edges and champagne CTA. */
 function shellGold(): CardPackPaywallTheme {
+  return {
+    backdropBase: 'rgba(5,5,4,0.92)',
+    outerGlow: [
+      'rgba(241,204,114,0.28)',
+      'rgba(145,105,36,0.18)',
+      'rgba(0,0,0,0.58)',
+    ],
+    borderAccent: 'rgba(255,235,174,0.26)',
+    handleColorLight: 'rgba(83,60,20,0.28)',
+    handleColorDark: 'rgba(241,204,114,0.38)',
+    iconBg: ['#231C10', '#11100B'],
+    iconBorder: 'rgba(241,204,114,0.24)',
+    priceBorder: 'rgba(241,204,114,0.18)',
+    priceGradient: ['rgba(241,204,114,0.10)', 'rgba(0,0,0,0)'],
+    ctaColors: ['#F5DB93', '#B8862F'],
+    ctaForeground: '#171106',
+    ctaGlowTop: 'rgba(241,204,114,0.32)',
+    goShopCta: ['#D7AD56', '#5E4213'],
+    goShopForeground: '#171106',
+  };
+}
+
+/** CORAL: navy + coral accent shell matching the standalone Coral theme. */
+function shellCoral(): CardPackPaywallTheme {
   return {
     backdropBase: 'rgba(8,5,30,0.9)',
     outerGlow: [
@@ -214,6 +238,7 @@ const SHELL: Record<ThemeMode, CardPackPaywallTheme> = {
   dark: shellDark(),
   neon: shellNeon(),
   gold: shellGold(),
+  coral: shellCoral(),
   minimalLight: shellGold(),
   minimalDark: shellDark(),
 };

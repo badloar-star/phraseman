@@ -8,7 +8,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import Constants from 'expo-constants';
 import * as Linking from 'expo-linking';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Animated, AppState, Image, InteractionManager, Modal, Platform, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, AppState, Image, InteractionManager, Modal, Platform, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AchievementProvider, useAchievement } from '../components/AchievementContext';
 import AchievementToast from '../components/AchievementToast';
@@ -24,6 +24,7 @@ import { ThemeProvider, useTheme } from '../components/ThemeContext';
 import UpdateModal from '../components/UpdateModal';
 import ReleaseNotesModal from '../components/ReleaseNotesModal';
 import GlobalBroadcastModal from '../components/GlobalBroadcastModal';
+import LeagueBonusAvailableModal from '../components/LeagueBonusAvailableModal';
 import NotificationPermissionModal from '../components/NotificationPermissionModal';
 import { getMaxEnergyForLevel } from '../constants/theme';
 import type { Lang } from '../constants/i18n';
@@ -31,7 +32,7 @@ import { getTitleColor, getTitleForLevel } from '../constants/titles';
 import { ENABLE_DEV_TOOLS, IS_EXPO_GO } from './config';
 import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 import { checkAchievements, getPendingNotifications, markAchievementsNotified } from './achievements';
-import { ensureAnonUser, restoreFromCloud, syncToCloud } from './cloud_sync';
+import { ensureAnonUser, ensureStableAuthLink, restoreFromCloud, syncToCloud } from './cloud_sync';
 import { repairLessonUnlocksAfterRestore } from './lesson_lock_system';
 import { registerInLeagueGroupSilently } from './firestore_leagues';
 import { PlayInstallReferrer } from 'react-native-play-install-referrer';
@@ -39,7 +40,7 @@ import { migrateWeekPointsIfNeeded, updateStreakOnActivity } from './hall_of_fam
 import { preloadImages } from './image_preload';
 import { prefetchQuizPhrases } from './quiz_phrases_loader';
 import {
-  checkLeagueOvertakeNotification, getNextWeeklyRecapDateKey, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
+  checkLeagueOvertakeNotification, getNotifSettingsSnapshot, hydrateNotifSettingsFromStorage, isNotificationPermissionGranted, requestNotificationPermissionWithFallback, scheduleDailyReminder, scheduleMonthlyRecapNotification, scheduleNotifications, schedulePhrasOfDayNotification, scheduleStreakWarningIfNeeded, scheduleWeeklyRecapNotification, setupNotificationTapHandler,
 } from './notifications';
 import { initRevenueCat } from './revenuecat_init';
 import { prefetchMarketplacePacks } from './flashcards/marketplace';
@@ -73,6 +74,13 @@ import { startFriendsTabSwrPrime } from './friends_tab_swr_warm';
 import { OverlayArbiterProvider, useOverlayVisible } from '../components/OverlayArbiter';
 import ErrorBoundary from '../components/ErrorBoundary';
 import { trackActivity } from './app_activity';
+import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
+import GoldBevel from '../components/GoldBevel';
+import {
+  checkLeagueBonusAvailability,
+  subscribeLeagueBonusAvailability,
+  type LeagueBonusAvailability,
+} from './services/league_chest_rewards';
 
 /** Список друзей с диска в память до открытия вкладки — чтобы первый кадр вкладки мог сразу показать строки. */
 startFriendsTabSwrPrime();
@@ -262,7 +270,6 @@ const runSessionChecks = async () => {
 
     const langRaw = await AsyncStorage.getItem('app_lang');
     const lang: Lang = langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru';
-    const now = new Date();
 
     // ── 3. Восстановление напоминаний: daily ИЛИ per-day (расписание), не оба
     const notifEnabled = notifEnabledRaw;
@@ -282,18 +289,8 @@ const runSessionChecks = async () => {
       scheduleStreakWarningIfNeeded(lang, { requestPermission: false }).catch(() => {});
       schedulePhrasOfDayNotification(lang, { requestPermission: false }).catch(() => {});
 
-      const weeklyScheduled = await AsyncStorage.getItem('weekly_recap_scheduled');
-      const nextSundayStr = getNextWeeklyRecapDateKey(now);
-      if (weeklyScheduled !== nextSundayStr) {
-        scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(() => {});
-      }
-
-      const monthlyScheduled = await AsyncStorage.getItem('monthly_recap_scheduled');
-      const firstNextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-      const firstNextMonthStr = firstNextMonth.toISOString().split('T')[0];
-      if (monthlyScheduled !== firstNextMonthStr) {
-        scheduleMonthlyRecapNotification(lang, { requestPermission: false }).catch(() => {});
-      }
+      scheduleWeeklyRecapNotification(lang, { requestPermission: false }).catch(() => {});
+      scheduleMonthlyRecapNotification(lang, { requestPermission: false }).catch(() => {});
     }
 
     // ── 6. League Overtake Notification ─────────────────────────────────────
@@ -318,8 +315,9 @@ const runSessionChecks = async () => {
 
 // ── Глобальная очередь повышений уровня — показывает модалки независимо от экрана ──
 function GlobalLevelUpHandler() {
-  const { theme: t, isDark, f } = useTheme();
+  const { theme: t, isDark, f, themeMode } = useTheme();
   const { lang } = useLang();
+  const isGoldTheme = themeMode === 'gold';
 
   const [showLevelUp, setShowLevelUp] = useState(false);
   const [showGiftModal, setShowGiftModal] = useState(false);
@@ -460,7 +458,7 @@ function GlobalLevelUpHandler() {
         statusBarTranslucent
         onRequestClose={() => {}}
       >
-        <View style={{ flex: 1, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(3,5,10,0.86)' : 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
+        <View style={{ flex: 1, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'rgba(0,0,0,0.90)' : 'rgba(3,5,10,0.86)') : 'rgba(0,0,0,0.6)', justifyContent: 'center', alignItems: 'center', padding: 24 }}>
           <Animated.View testID="level-up-modal" style={{
             transform: [
               { translateY: levelUpTranslateY },
@@ -469,19 +467,26 @@ function GlobalLevelUpHandler() {
             opacity: levelUpOpacity,
             borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
             width: '100%', maxWidth: USE_ELITE_LEVEL_UP_MODAL ? 368 : 360,
-            shadowColor: USE_ELITE_LEVEL_UP_MODAL ? '#F6C85F' : '#000',
-            shadowOpacity: USE_ELITE_LEVEL_UP_MODAL ? 0.28 : 0.4,
-            shadowRadius: USE_ELITE_LEVEL_UP_MODAL ? 34 : 24,
+            shadowColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? '#000000' : '#F6C85F') : '#000',
+            shadowOpacity: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 0.78 : 0.28) : 0.4,
+            shadowRadius: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 38 : 34) : 24,
             elevation: 20,
             overflow: 'hidden',
+            ...(USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? goldShadow(3) : {}),
           }}>
-            <LinearGradient colors={USE_ELITE_LEVEL_UP_MODAL ? [t.bgSurface, t.bgCard, t.bgSurface2] : t.cardGradient} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{
+            <LinearGradient
+              colors={USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_GRADIENTS.premiumPanel : [t.bgSurface, t.bgCard, t.bgSurface2]) : t.cardGradient}
+              locations={USE_ELITE_LEVEL_UP_MODAL && isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={{
               borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 32 : 28,
               padding: USE_ELITE_LEVEL_UP_MODAL ? 26 : 28,
               alignItems: 'center',
               borderWidth: 1,
-              borderColor: USE_ELITE_LEVEL_UP_MODAL ? t.border : t.textSecond + '44',
+              borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairlineStrong : t.border) : t.textSecond + '44',
             }}>
+              {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && <GoldBevel radius={32} intensity="strong" />}
               {USE_ELITE_LEVEL_UP_MODAL && (
                 <>
                   <Animated.View
@@ -492,7 +497,7 @@ function GlobalLevelUpHandler() {
                       left: 34,
                       right: 34,
                       height: 1,
-                      backgroundColor: t.gold,
+                      backgroundColor: isGoldTheme ? GOLD_RICH.champagne : t.gold,
                       opacity: levelUpGlowOpacity,
                     }}
                   />
@@ -504,10 +509,10 @@ function GlobalLevelUpHandler() {
                       left: 0,
                       right: 0,
                       height: 82,
-                      backgroundColor: 'rgba(246,200,95,0.055)',
+                      backgroundColor: isGoldTheme ? GOLD_RICH.washStrong : 'rgba(246,200,95,0.055)',
                     }}
                   />
-                  <Text style={{ color: t.gold, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 }}>
+                  <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : t.gold, fontSize: f.label, fontWeight: '900', textTransform: 'uppercase', letterSpacing: 1.2, marginBottom: 12 }}>
                     {lang === 'uk' ? 'Новий рівень' : lang === 'es' ? 'Nuevo nivel' : 'Новый уровень'}
                   </Text>
                 </>
@@ -534,8 +539,8 @@ function GlobalLevelUpHandler() {
                 </View>
               )}
 
-              <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.05)' : t.bgSurface, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 999 : 16, marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.12)' : 'transparent' }}>
-                <Text style={{ color: t.gold, fontWeight: '800', fontSize: f.caption }}>
+              <View style={{ backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.bronzeWash : 'rgba(255,255,255,0.05)') : t.bgSurface, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 8 : 6, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 999 : 16, marginTop: USE_ELITE_LEVEL_UP_MODAL ? 14 : 10, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairline : 'rgba(255,255,255,0.12)') : 'transparent' }}>
+                <Text style={{ color: isGoldTheme ? GOLD_RICH.champagne : t.gold, fontWeight: '800', fontSize: f.caption }}>
                   {lang === 'uk'
                     ? `+100 XP — бонус за ${currentLevel} рівень`
                     : lang === 'es'
@@ -559,9 +564,21 @@ function GlobalLevelUpHandler() {
               <TouchableOpacity
                 testID="level-up-dismiss"
                 onPress={dismissLevelUp}
-                style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 22 : 20, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? t.textPrimary : t.accent, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 46 : 40, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 14 : 12, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? 'rgba(255,255,255,0.18)' : 'transparent' }}
+                style={{ marginTop: USE_ELITE_LEVEL_UP_MODAL ? 22 : 20, backgroundColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? 'transparent' : t.textPrimary) : t.accent, borderRadius: USE_ELITE_LEVEL_UP_MODAL ? 18 : 16, paddingHorizontal: USE_ELITE_LEVEL_UP_MODAL ? 46 : 40, paddingVertical: USE_ELITE_LEVEL_UP_MODAL ? 14 : 12, borderWidth: USE_ELITE_LEVEL_UP_MODAL ? 1 : 0, borderColor: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? GOLD_RICH.hairlineStrong : 'rgba(255,255,255,0.18)') : 'transparent', overflow: 'hidden' }}
               >
-                <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? t.bgPrimary : t.correctText, fontWeight: '900', fontSize: f.bodyLg }}>
+                {USE_ELITE_LEVEL_UP_MODAL && isGoldTheme && (
+                  <>
+                    <LinearGradient
+                      colors={GOLD_GRADIENTS.primaryButton}
+                      locations={[0, 0.36, 1]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 1, y: 1 }}
+                      style={StyleSheet.absoluteFill}
+                    />
+                    <GoldBevel radius={18} intensity="strong" />
+                  </>
+                )}
+                <Text style={{ color: USE_ELITE_LEVEL_UP_MODAL ? (isGoldTheme ? t.textOnGold : t.bgPrimary) : t.correctText, fontWeight: '900', fontSize: f.bodyLg }}>
                   {USE_ELITE_LEVEL_UP_MODAL
                     ? (lang === 'uk' ? 'Продовжити' : lang === 'es' ? 'Continuar' : 'Продолжить')
                     : (() => {
@@ -632,6 +649,7 @@ function AppContent() {
 
   const [releaseNotesOffer, setReleaseNotesOffer] = useState(false);
   const [globalBroadcastModal, setGlobalBroadcastModal] = useState<GlobalBroadcastModalPayload | null>(null);
+  const [leagueBonusAvailable, setLeagueBonusAvailable] = useState<LeagueBonusAvailability | null>(null);
   const [notifNudgeVisible, setNotifNudgeVisible] = useState(false);
   const [notifNudgeMissedDays, setNotifNudgeMissedDays] = useState(0);
   const { setLang, lang } = useLang();
@@ -796,6 +814,48 @@ function AppContent() {
     const t = setTimeout(() => { void checkGlobalBroadcastFn(); }, 1400);
     return () => clearTimeout(t);
   }, [checkGlobalBroadcastFn]);
+
+  const showLeagueBonusAvailableOnce = useCallback(async (availability: LeagueBonusAvailability, source: 'live' | 'startup') => {
+    const seenKey = `league_bonus_available_seen_${availability.weekId}_${availability.groupId}`;
+    const seen = await AsyncStorage.getItem(seenKey).catch(() => null);
+    if (seen === '1') return;
+    await AsyncStorage.setItem(seenKey, '1').catch(() => {});
+    emitAppEvent('action_toast', {
+      type: 'success',
+      messageRu: availability.isCrownWinner
+        ? 'Цель лиги выполнена. Ты лидер недели, корона готова к выдаче.'
+        : 'Цель лиги выполнена. Бонус лиги готов к получению.',
+      messageUk: availability.isCrownWinner
+        ? 'Ціль ліги виконано. Ти лідер тижня, корона готова до видачі.'
+        : 'Ціль ліги виконано. Бонус ліги готовий до отримання.',
+      messageEs: availability.isCrownWinner
+        ? 'Meta de liga completada. Lideras la semana y la corona está lista.'
+        : 'Meta de liga completada. El bono de liga está listo.',
+    });
+    if (source === 'startup' || pathname !== '/club_screen') {
+      setLeagueBonusAvailable(availability);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
+    if (!ready || showOnboarding || isBanned) return;
+    const timer = setTimeout(() => {
+      void checkLeagueBonusAvailability()
+        .then((availability) => {
+          if (availability) void showLeagueBonusAvailableOnce(availability, 'startup');
+        })
+        .catch(() => {});
+    }, 1800);
+    return () => clearTimeout(timer);
+  }, [isBanned, ready, showLeagueBonusAvailableOnce, showOnboarding]);
+
+  useEffect(() => {
+    if (!ready || showOnboarding || isBanned) return;
+    const unsubscribe = subscribeLeagueBonusAvailability((availability) => {
+      void showLeagueBonusAvailableOnce(availability, 'live');
+    });
+    return unsubscribe;
+  }, [isBanned, ready, showLeagueBonusAvailableOnce, showOnboarding]);
 
   useEffect(() => installForegroundUsageMsTracker(), []);
 
@@ -1008,7 +1068,8 @@ function AppContent() {
         await migrateWeekPointsIfNeeded().catch(() => {});
         await updateStreakOnActivity().catch(() => {});
         await runSessionChecks().catch(() => {});
-        syncToCloud().catch(() => {});
+        await syncToCloud().catch(() => {});
+        await ensureStableAuthLink().catch(() => false);
         registerInLeagueGroupSilently().catch(() => {});
         getVerifiedPremiumStatus().then(isPrem => {
           emitAppEvent(isPrem ? 'premium_activated' : 'premium_deactivated');
@@ -1030,6 +1091,7 @@ function AppContent() {
       preloadImages().catch(() => {});
       InteractionManager.runAfterInteractions(() => {
         prefetchQuizPhrases();
+        void import('./flashcards_swipe').catch(() => {});
         import('./flashcards_collection')
           .then((m) => m.primeFlashcardsCollectionCache())
           .catch(() => {});
@@ -1209,7 +1271,9 @@ function AppContent() {
   const updateModalVisible = useOverlayVisible('update', !!updateInfo && !updateModalHiddenForStore);
   const releaseNotesModalVisible = useOverlayVisible('releaseNotes', releaseNotesOffer);
   const broadcastModalVisible = useOverlayVisible('broadcast', !!globalBroadcastModal);
+  const leagueBonusAvailableModalVisible = useOverlayVisible('leagueBonusAvailable', !!leagueBonusAvailable);
   const notifNudgeModalVisible = useOverlayVisible('notifNudge', notifNudgeVisible);
+  const firstLessonSheetVisible = useOverlayVisible('firstLessonSheet', showFirstLessonSheet);
 
   if (!ready) {
     return (
@@ -1290,6 +1354,7 @@ function AppContent() {
       <Stack.Screen name="avatar_select" />
       <Stack.Screen name="flashcards" />
       <Stack.Screen name="flashcards_collection" />
+      <Stack.Screen name="flashcards_swipe" />
       <Stack.Screen name="community_pack_create" />
       <Stack.Screen name="pack_opening" options={{ presentation: 'modal', animation: 'fade' }} />
       <Stack.Screen name="achievements_screen" />
@@ -1394,11 +1459,21 @@ function AppContent() {
       onClose={() => setGlobalBroadcastModal(null)}
     />
 
+    <LeagueBonusAvailableModal
+      visible={leagueBonusAvailableModalVisible}
+      availability={leagueBonusAvailable}
+      onClose={() => setLeagueBonusAvailable(null)}
+      onOpenLeague={() => {
+        setLeagueBonusAvailable(null);
+        router.push('/club_screen' as any);
+      }}
+    />
+
     {/* Bottomsheet первого урока после онбординга */}
     {showFirstLessonSheet && (
       <Modal
         transparent
-        visible={showFirstLessonSheet}
+        visible={firstLessonSheetVisible}
         animationType="slide"
         statusBarTranslucent
         onRequestClose={() => {

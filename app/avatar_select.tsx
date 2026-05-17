@@ -27,6 +27,8 @@ import {
   NO_AVATAR_AURA_ID,
   PREMIUM_AVATAR_AURA_ID,
   USER_AVATAR_AURA_KEY,
+  getAvatarAuraById,
+  isAvatarAuraUnlockedByLevel,
   isPremiumAvatarAura,
   normalizeAvatarAuraId,
   type AvatarAuraDef,
@@ -36,7 +38,7 @@ import {
   CUSTOM_AVATAR_GRADIENTS,
   CUSTOM_AVATAR_OWNED_KEY,
   CUSTOM_AVATAR_RESTYLE_COST,
-  CUSTOM_AVATARS,
+  CUSTOM_AVATAR_SHOP,
   CustomAvatarLogoColor,
   CustomAvatarDef,
   customAvatarGradientNameForLang,
@@ -55,6 +57,7 @@ import { getLevelFromXP } from '../constants/theme';
 import { getTitleString } from '../constants/titles';
 import { ENABLE_DEV_TOOLS } from './config';
 import { getShardsBalance, spendShards } from './shards_system';
+import { oskolokImageForPackShards } from './oskolok';
 import { emitAppEvent } from './events';
 import { syncToCloud } from './cloud_sync';
 import { pushMyScoreImmediate } from './firestore_leaderboard';
@@ -84,7 +87,6 @@ import {
 type OwnedAvatars = Record<string, string>;
 type OwnedAuras = Record<string, true>;
 
-const SHARD_ICON = require('../assets/images/levels/OSKOLOK.webp');
 const { width: SCREEN_W } = Dimensions.get('window');
 const GRID_GAP = 8;
 const GRID_PAD = 16;
@@ -221,7 +223,7 @@ function ShardCost({ amount, color }: { amount: number; color: string }) {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3 }}>
       <Text style={{ color, fontSize: 11, fontWeight: '900' }}>{amount}</Text>
-      <Image source={SHARD_ICON} style={{ width: 14, height: 14 }} resizeMode="contain" />
+      <Image source={oskolokImageForPackShards(amount)} style={{ width: 14, height: 14 }} resizeMode="contain" />
     </View>
   );
 }
@@ -306,6 +308,7 @@ const invalidateAvatarDependentCaches = async (nextAvatar: string, nextAura?: st
     'club_remote_refresh_at_v2',
     'friend_profiles_cache_v1',
     'friends_tab_swr_v1',
+    'friends_activity_feed_v2',
     'friends_activity_feed_v1',
   ]).catch(() => {});
 };
@@ -314,6 +317,8 @@ export default function AvatarSelect() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
   const { theme: t, f } = useTheme();
+  const avatarAccent = '#A78BFA';
+  const avatarPremiumAccent = '#FACC15';
   const { lang } = useLang();
   const { isPremium } = usePremium();
   const [level, setLevel] = useState(1);
@@ -355,7 +360,16 @@ export default function AvatarSelect() {
   const profileTitle = getTitleString(level, 'ru');
   const cardLevelText = profileCardSnapshot.level > 0 ? profileCardLevelRoman(profileCardSnapshot.level) : '0';
   const auraName = useCallback(
-    (aura: AvatarAuraDef) => triLang(lang, { ru: aura.nameRu, uk: aura.nameUk, es: aura.nameEs }),
+    (aura: AvatarAuraDef) => triLang(lang, {
+      ru: aura.nameRu,
+      uk: aura.nameUk,
+      es: aura.nameEs,
+      'pt-BR': aura.namePtBr,
+      vi: aura.nameVi,
+      id: aura.nameId,
+      tr: aura.nameTr,
+      pl: aura.namePl,
+    }),
     [lang],
   );
   const profileCardStats = useMemo(
@@ -454,7 +468,12 @@ export default function AvatarSelect() {
       setGiftedAvatarId(giftedRaw || null);
       setGiftedAuraId(giftedAuraRaw || null);
       const storedAura = normalizeAvatarAuraId(auraRaw) ?? null;
-      setActiveAuraId(storedAura && (!isPremiumAvatarAura(storedAura) || isPremium) ? storedAura : null);
+      const storedAuraDef = getAvatarAuraById(storedAura);
+      const storedAuraLockedByLevel = !!storedAuraDef?.unlockLevel
+        && !isAvatarAuraUnlockedByLevel(storedAuraDef, lvl)
+        && !nextOwnedAuras[storedAuraDef.id];
+      const storedAuraLockedByPremium = isPremiumAvatarAura(storedAura) && !isPremium;
+      setActiveAuraId(storedAura && !storedAuraLockedByLevel && !storedAuraLockedByPremium ? storedAura : null);
       setActiveAvatar(avatarRaw || getBestAvatarForLevel(lvl));
       setShards(await getShardsBalance());
       getCanonicalUserId()
@@ -588,10 +607,15 @@ export default function AvatarSelect() {
       }
 
       const isPremiumAura = aura.premiumOnly === true;
-      const isOwned = isPremiumAura ? isPremium : !!ownedAuras[aura.id];
+      const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
+      const isOwned = isPremiumAura ? isPremium : unlockedByLevel || !!ownedAuras[aura.id];
       if (!isOwned) {
         if (isPremiumAura) {
           router.push({ pathname: '/premium_modal', params: { context: 'avatar_aura' } } as any);
+          return;
+        }
+        if (aura.unlockLevel !== undefined) {
+          showToast('info', `Откроется на уровне ${aura.unlockLevel}`);
           return;
         }
         const currentShards = await getShardsBalance();
@@ -705,8 +729,8 @@ export default function AvatarSelect() {
         </TouchableOpacity>
         <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '800', flex: 1 }}>Аватар</Text>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-          <Text style={{ color: '#A78BFA', fontSize: 16, fontWeight: '900' }}>{shards}</Text>
-          <Image source={SHARD_ICON} style={{ width: 20, height: 20 }} resizeMode="contain" />
+          <Text style={{ color: avatarAccent, fontSize: 16, fontWeight: '900' }}>{shards}</Text>
+          <Image source={oskolokImageForPackShards(shards)} style={{ width: 20, height: 20 }} resizeMode="contain" />
         </View>
       </View>
 
@@ -836,7 +860,7 @@ export default function AvatarSelect() {
                 {nextProfileCardDef ? (
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 3, marginTop: 2 }}>
                     <Text style={{ color: '#111827', fontSize: 10, fontWeight: '900' }}>{nextProfileCardDef.cost}</Text>
-                    <Image source={SHARD_ICON} style={{ width: 12, height: 12 }} resizeMode="contain" />
+                    <Image source={oskolokImageForPackShards(nextProfileCardDef.cost)} style={{ width: 12, height: 12 }} resizeMode="contain" />
                   </View>
                 ) : null}
               </TouchableOpacity>
@@ -895,7 +919,7 @@ export default function AvatarSelect() {
         ) : null}
 
         <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: GRID_GAP, justifyContent: 'center' }}>
-          {CUSTOM_AVATARS.map((avatar) => {
+          {CUSTOM_AVATAR_SHOP.map((avatar) => {
             const isOwned = !!owned[avatar.id];
             const isGifted = isOwned && giftedAvatarId === avatar.id;
             const ownedStyle = decodeOwnedStyle(owned[avatar.id]);
@@ -955,8 +979,9 @@ export default function AvatarSelect() {
             </TouchableOpacity>
             {AVATAR_AURAS.map((aura) => {
               const isPremiumAura = aura.premiumOnly === true;
-              const isOwned = isPremiumAura ? isPremium : !!ownedAuras[aura.id];
-              const isGifted = !isPremiumAura && isOwned && giftedAuraId === aura.id;
+              const unlockedByLevel = isAvatarAuraUnlockedByLevel(aura, level);
+              const isOwned = isPremiumAura ? isPremium : unlockedByLevel || !!ownedAuras[aura.id];
+              const isGifted = !isPremiumAura && !!ownedAuras[aura.id] && giftedAuraId === aura.id;
               const isActive = effectiveAuraId === aura.id;
               return (
                 <TouchableOpacity
@@ -985,8 +1010,10 @@ export default function AvatarSelect() {
                     {isOwned
                       ? <Text style={{ color: isGifted ? t.accent : t.textMuted, fontSize: 9, fontWeight: '800' }}>{isGifted ? 'Подарок' : 'Открыта'}</Text>
                       : isPremiumAura
-                        ? <Text style={{ color: '#FACC15', fontSize: 9, fontWeight: '900' }}>Premium</Text>
-                        : <ShardCost amount={AVATAR_AURA_BUY_COST} color={t.textMuted} />}
+                        ? <Text style={{ color: avatarPremiumAccent, fontSize: 9, fontWeight: '900' }}>Premium</Text>
+                        : aura.unlockLevel !== undefined
+                          ? <Text style={{ color: t.textMuted, fontSize: 9, fontWeight: '900' }}>Ур. {aura.unlockLevel}</Text>
+                          : <ShardCost amount={AVATAR_AURA_BUY_COST} color={t.textMuted} />}
                   </View>
                 </TouchableOpacity>
               );
@@ -1024,6 +1051,11 @@ export default function AvatarSelect() {
                 ru: `Открыть ауру «${auraName(pendingAuraPurchase)}» за осколки?`,
                 uk: `Відкрити ауру «${auraName(pendingAuraPurchase)}» за осколки?`,
                 es: `¿Desbloquear el aura «${auraName(pendingAuraPurchase)}» con fragmentos?`,
+                'pt-BR': `Desbloquear a aura «${auraName(pendingAuraPurchase)}» com fragmentos?`,
+                vi: `Mở khóa hào quang «${auraName(pendingAuraPurchase)}» bằng mảnh?`,
+                id: `Buka aura «${auraName(pendingAuraPurchase)}» dengan shard?`,
+                tr: `«${auraName(pendingAuraPurchase)}» aurasını parçalarla aç?`,
+                pl: `Odblokować aurę „${auraName(pendingAuraPurchase)}” za odłamki?`,
               })}
             </Text>
             <View style={{ marginTop: 12, flexDirection: 'row', alignItems: 'center', gap: 8 }}>
@@ -1075,7 +1107,7 @@ export default function AvatarSelect() {
                     return (
                       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 5, marginTop: 3 }}>
                         <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '800' }}>{visibleCost}</Text>
-                        <Image source={SHARD_ICON} style={{ width: 18, height: 18 }} resizeMode="contain" />
+                        <Image source={oskolokImageForPackShards(visibleCost)} style={{ width: 18, height: 18 }} resizeMode="contain" />
                       </View>
                     );
                   })()}

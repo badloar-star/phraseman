@@ -1,0 +1,1055 @@
+{
+  "mode": "batch-locale-coverage",
+  "requiredLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl",
+    "es"
+  ],
+  "productOnly": true,
+  "summary": {
+    "localizedItemsChecked": 27878,
+    "expectedUnits": 2212,
+    "completeUnits": 14135,
+    "partialUnits": 50,
+    "missingAllLocaleUnits": 0,
+    "partialFiles": 1,
+    "missingByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 50,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    },
+    "missingAllByLocale": {
+      "pt-BR": 0,
+      "vi": 0,
+      "id": 0,
+      "tr": 0,
+      "pl": 0,
+      "es": 0
+    }
+  },
+  "partialFiles": [
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ]
+    }
+  ],
+  "partialUnits": [
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "adjective_comparison.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 18,
+        "vi": 22,
+        "tr": 30,
+        "pl": 34
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "adjective_comparison.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 17,
+        "vi": 21,
+        "tr": 29,
+        "pl": 33
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "adjective_vs_adverb.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 40,
+        "vi": 44,
+        "tr": 52,
+        "pl": 56
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "adjective_vs_adverb.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 39,
+        "vi": 43,
+        "tr": 51,
+        "pl": 55
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "adverb_frequency_position.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 62,
+        "vi": 66,
+        "tr": 74,
+        "pl": 78
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "adverb_frequency_position.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 61,
+        "vi": 65,
+        "tr": 73,
+        "pl": 77
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "article_a_an.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 84,
+        "vi": 88,
+        "tr": 96,
+        "pl": 100
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "article_a_an.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 83,
+        "vi": 87,
+        "tr": 95,
+        "pl": 99
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "article_the_specific.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 106,
+        "vi": 110,
+        "tr": 118,
+        "pl": 122
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "article_the_specific.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 105,
+        "vi": 109,
+        "tr": 117,
+        "pl": 121
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "article_zero.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 128,
+        "vi": 132,
+        "tr": 140,
+        "pl": 144
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "article_zero.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 127,
+        "vi": 131,
+        "tr": 139,
+        "pl": 143
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "condition_second_basic.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 150,
+        "vi": 154,
+        "tr": 162,
+        "pl": 166
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "condition_second_basic.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 149,
+        "vi": 153,
+        "tr": 161,
+        "pl": 165
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "condition_zero_first.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 172,
+        "vi": 176,
+        "tr": 184,
+        "pl": 188
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "condition_zero_first.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 171,
+        "vi": 175,
+        "tr": 183,
+        "pl": 187
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "conjunction_logic.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 194,
+        "vi": 198,
+        "tr": 206,
+        "pl": 210
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "conjunction_logic.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 193,
+        "vi": 197,
+        "tr": 205,
+        "pl": 209
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "determiner_this_that_these_those.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 216,
+        "vi": 220,
+        "tr": 228,
+        "pl": 232
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "determiner_this_that_these_those.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 215,
+        "vi": 219,
+        "tr": 227,
+        "pl": 231
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "future_present_continuous_arrangements.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 238,
+        "vi": 242,
+        "tr": 250,
+        "pl": 254
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "future_present_continuous_arrangements.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 237,
+        "vi": 241,
+        "tr": 249,
+        "pl": 253
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "future_will_going_to.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 260,
+        "vi": 264,
+        "tr": 272,
+        "pl": 276
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "future_will_going_to.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 259,
+        "vi": 263,
+        "tr": 271,
+        "pl": 275
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "imperative_basic.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 282,
+        "vi": 286,
+        "tr": 294,
+        "pl": 298
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "imperative_basic.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 281,
+        "vi": 285,
+        "tr": 293,
+        "pl": 297
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "infinitive_vs_gerund_basic.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 304,
+        "vi": 308,
+        "tr": 316,
+        "pl": 320
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "infinitive_vs_gerund_basic.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 303,
+        "vi": 307,
+        "tr": 315,
+        "pl": 319
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_base_form.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 326,
+        "vi": 330,
+        "tr": 338,
+        "pl": 342
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_base_form.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 325,
+        "vi": 329,
+        "tr": 337,
+        "pl": 341
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_can_could_ability_request.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 348,
+        "vi": 352,
+        "tr": 360,
+        "pl": 364
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_can_could_ability_request.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 347,
+        "vi": 351,
+        "tr": 359,
+        "pl": 363
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_force.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 370,
+        "vi": 374,
+        "tr": 382,
+        "pl": 386
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_force.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 369,
+        "vi": 373,
+        "tr": 381,
+        "pl": 385
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_may_might_probability.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 392,
+        "vi": 396,
+        "tr": 404,
+        "pl": 408
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_may_might_probability.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 391,
+        "vi": 395,
+        "tr": 403,
+        "pl": 407
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_should_must_have_to.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 414,
+        "vi": 418,
+        "tr": 426,
+        "pl": 430
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modal_should_must_have_to.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 413,
+        "vi": 417,
+        "tr": 425,
+        "pl": 429
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modifier_very_really_quite.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 436,
+        "vi": 440,
+        "tr": 448,
+        "pl": 452
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "modifier_very_really_quite.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 435,
+        "vi": 439,
+        "tr": 447,
+        "pl": 451
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "noun_possessive_apostrophe_s.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 458,
+        "vi": 462,
+        "tr": 470,
+        "pl": 474
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "noun_possessive_apostrophe_s.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 457,
+        "vi": 461,
+        "tr": 469,
+        "pl": 473
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "noun_singular_plural_basic.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 480,
+        "vi": 484,
+        "tr": 492,
+        "pl": 496
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "noun_singular_plural_basic.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 479,
+        "vi": 483,
+        "tr": 491,
+        "pl": 495
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "object_order_give_me_it.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 502,
+        "vi": 506,
+        "tr": 514,
+        "pl": 518
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "object_order_give_me_it.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 501,
+        "vi": 505,
+        "tr": 513,
+        "pl": 517
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "past_continuous_basic.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 524,
+        "vi": 528,
+        "tr": 536,
+        "pl": 540
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "past_continuous_basic.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 523,
+        "vi": 527,
+        "tr": 535,
+        "pl": 539
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "past_simple_vs_past_continuous.<locale>.shortDiagnosis",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 546,
+        "vi": 550,
+        "tr": 558,
+        "pl": 562
+      }
+    },
+    {
+      "file": "app/personal_training_source_locales.ts",
+      "surface": "personal-training",
+      "keyPath": "past_simple_vs_past_continuous.<locale>.title",
+      "present": [
+        "pt-BR",
+        "vi",
+        "tr",
+        "pl"
+      ],
+      "missing": [
+        "id"
+      ],
+      "lineByLocale": {
+        "pt-BR": 545,
+        "vi": 549,
+        "tr": 557,
+        "pl": 561
+      }
+    }
+  ],
+  "missingAllLocaleUnits": [],
+  "truncated": false
+}

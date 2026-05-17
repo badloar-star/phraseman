@@ -22,6 +22,7 @@ import { emitAppEvent } from './events';
 import { getCanonicalUserId } from './user_id_policy';
 import { addWeeklyXp } from './weekly_xp';
 import { consumeLeagueChestXpOverrideMultiplier } from './services/league_chest_rewards';
+import { refreshWeeklyRecapNotificationAfterXpChange } from './notifications';
 // stationary_clubs feature удалён — мультипликатор фиксирован 1.
 
 /** Уровень клуба недели (очки группы): +0.1 к множителю за каждый шаг от базового. */
@@ -196,6 +197,7 @@ export const registerXP = async (
     // via SYNC_KEYS in cloud_sync.ts → users/{canonicalUid}.progress.weekly_xp.
     if (finalDelta > 0) {
       await addWeeklyXp(finalDelta);
+      refreshWeeklyRecapNotificationAfterXpChange(lang);
     }
 
     // 3.1. Уведомляем все подписчики о смене XP
@@ -251,6 +253,7 @@ export const registerXP = async (
     // checkAchievements → registerXP('achievement_reward') → checkAchievements → ...
     if (finalDelta > 0 && source !== 'achievement_reward' && source !== 'level_up_bonus') {
       await checkAchievements({ type: 'xp', totalXP: newTotal });
+      await checkAchievements({ type: 'time_of_day' });
     }
     if (finalDelta > 0 && source === 'wager_win') {
       await checkAchievements({ type: 'wager_win' });

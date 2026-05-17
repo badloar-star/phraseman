@@ -1,41 +1,56 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Animated, Easing, Image } from 'react-native';
-import { ThemeMode } from '../constants/theme';
+import type { ThemeMode } from '../constants/theme';
 
-const ENERGY_IMAGES: Partial<Record<ThemeMode, any>> = {
-  dark:   require('../assets/images/levels/ENERGY FOREST.webp'),
-  neon:   require('../assets/images/levels/ENERGY NEON.webp'),
-  gold:   require('../assets/images/levels/ENERGY CORAL.webp'),
-  minimalDark: require('../assets/images/levels/ENERGY FOREST.webp'),
-  minimalLight: require('../assets/images/levels/ENERGY CORAL.webp'),
+type EnergyVariant = 'normal' | 'frozen';
+type EnergyAssetThemeMode = ThemeMode | 'crimson';
+
+const ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
+  dark: require('../assets/images/energy/energy-forest.png'),
+  neon: require('../assets/images/energy/energy-neon.png'),
+  gold: require('../assets/images/energy/energy-gold.png'),
+  coral: require('../assets/images/energy/energy-coral.png'),
+  crimson: require('../assets/images/energy/energy-crimson.png'),
+  minimalDark: require('../assets/images/energy/energy-graphite.png'),
+  minimalLight: require('../assets/images/energy/energy-sketch.png'),
+};
+
+const FROZEN_ENERGY_IMAGES: Partial<Record<EnergyAssetThemeMode, any>> = {
+  dark: require('../assets/images/energy/energy-forest-frozen.png'),
+  neon: require('../assets/images/energy/energy-neon-frozen.png'),
+  gold: require('../assets/images/energy/energy-gold-frozen.png'),
+  coral: require('../assets/images/energy/energy-coral-frozen.png'),
+  crimson: require('../assets/images/energy/energy-crimson-frozen.png'),
+  minimalDark: require('../assets/images/energy/energy-graphite-frozen.png'),
+  minimalLight: require('../assets/images/energy/energy-sketch-frozen.png'),
 };
 
 interface EnergyIconProps {
   filled: boolean;
   themeColor: string;
-  size?: number; // default 20
+  size?: number;
   animateChange?: boolean;
-  shouldShake?: boolean; // Trigger shake animation when energy runs out
+  shouldShake?: boolean;
   themeMode?: ThemeMode;
-  tintColor?: string; // override tint for premium blue
+  tintColor?: string;
   isPremium?: boolean;
+  variant?: EnergyVariant;
 }
 
 export default function EnergyIcon({
   filled,
-  themeColor,
-  size = 20,
+  size = 30,
   animateChange = true,
   shouldShake = false,
   themeMode,
   tintColor,
   isPremium = false,
+  variant = 'normal',
 }: EnergyIconProps) {
   const emptyOpacity = 0.4;
   const opacityAnim = useRef(new Animated.Value(filled ? 1 : emptyOpacity)).current;
   const shakeAnim = useRef(new Animated.Value(0)).current;
 
-  // Animate when filled state changes
   useEffect(() => {
     if (animateChange) {
       Animated.timing(opacityAnim, {
@@ -48,7 +63,6 @@ export default function EnergyIcon({
     }
   }, [filled, animateChange, opacityAnim, emptyOpacity]);
 
-  // Shake animation when shouldShake is triggered
   useEffect(() => {
     if (shouldShake) {
       shakeAnim.setValue(0);
@@ -61,14 +75,17 @@ export default function EnergyIcon({
     }
   }, [shouldShake, shakeAnim]);
 
-  const fallbackEnergyImage = require('../assets/images/levels/ENERGY FOREST.webp');
-  const energyImage = isPremium
-    ? require('../assets/images/levels/PREMIUM ENERGY.webp')
-    : (themeMode ? ENERGY_IMAGES[themeMode] : undefined) ?? fallbackEnergyImage;
+  const fallbackEnergyImage = require('../assets/images/energy/energy-forest.png');
+  const themedEnergyImage = themeMode
+    ? (variant === 'frozen' ? FROZEN_ENERGY_IMAGES[themeMode] : ENERGY_IMAGES[themeMode])
+    : undefined;
+  const energyImage = variant === 'frozen'
+    ? themedEnergyImage ?? FROZEN_ENERGY_IMAGES.dark ?? fallbackEnergyImage
+    : themedEnergyImage ?? fallbackEnergyImage;
 
-  // Compute tint for light themes where default PNG colors are hard to see
   const computedTint = (() => {
-    if (isPremium) return undefined; // premium image has its own colors — no tint
+    if (variant === 'frozen') return undefined;
+    if (isPremium) return undefined;
     if (tintColor) return tintColor;
     return undefined;
   })();

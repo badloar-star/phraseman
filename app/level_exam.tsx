@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../components/ThemeContext';
 import { useLang } from '../components/LangContext';
-import { triLang } from '../constants/i18n';
+import { triLang, type PlannedInterfaceLang } from '../constants/i18n';
 import { screenTextOnGradient } from '../constants/theme';
 import { hapticTap } from '../hooks/use-haptics';
 import ReportErrorButton from '../components/ReportErrorButton';
@@ -19,6 +19,7 @@ import { saveExamProgress, type MedalTier } from './medal_utils';
 import { getPremiumCourseLevel, markPremiumCourseLevelReached, unlockLesson } from './lesson_lock_system';
 import { addShards, awardOneTime } from './shards_system';
 import ThemedConfirmModal from '../components/ThemedConfirmModal';
+import GoldBevel from '../components/GoldBevel';
 import { buildLevelExamEnglish, buildLevelExamHintPair, recordMistake } from './active_recall';
 import { trackFeatureError, trackFeatureStart, trackFeatureSuccess } from './app_activity';
 import { logMistake } from './mistake_log';
@@ -27,6 +28,7 @@ import { isUserFacingCategory, normalizeWordCategory, type WordCategory } from '
 import { getCourseLevelIndex, getFirstLessonForLevel, getNextCourseLevel, getPreviousCourseLevel, type CourseLevel } from './course_levels';
 import { getVerifiedPremiumStatus } from './premium_guard';
 import { lessonPaywallContext } from './monetization_policy';
+import { GOLD_GRADIENTS, GOLD_RICH, GOLD_SURFACE_LOCATIONS, goldShadow } from '../constants/goldTheme';
 
 const MEDAL_IMAGES_EXAM: Record<string, any> = {
   bronze:  require('../assets/images/levels/bronza.webp'),
@@ -45,6 +47,237 @@ interface LevelQ {
   opts:    string[];
   correct: number;
   type?:   QType;
+}
+
+const LEVEL_TOPIC_PLANNED: Record<string, Record<PlannedInterfaceLang, string>> = {
+  'El verbo to be': {
+    'pt-BR': 'Verbo to be',
+    vi: 'Động từ to be',
+    id: 'Kata kerja to be',
+    tr: 'To be fiili',
+    pl: 'Czasownik to be',
+  },
+  'Negación con to be': {
+    'pt-BR': 'Negação com to be',
+    vi: 'Phủ định với to be',
+    id: 'Negasi dengan to be',
+    tr: 'To be ile olumsuzluk',
+    pl: 'Przeczenia z to be',
+  },
+  'Present Simple: afirmativo': {
+    'pt-BR': 'Present Simple: afirmativo',
+    vi: 'Present Simple: câu khẳng định',
+    id: 'Present Simple: afirmatif',
+    tr: 'Present Simple: olumlu cümle',
+    pl: 'Present Simple: zdania twierdzące',
+  },
+  'Present Simple: negación': {
+    'pt-BR': 'Present Simple: negativo',
+    vi: 'Present Simple: câu phủ định',
+    id: 'Present Simple: negatif',
+    tr: 'Present Simple: olumsuz cümle',
+    pl: 'Present Simple: przeczenia',
+  },
+  'Present Simple: preguntas': {
+    'pt-BR': 'Present Simple: perguntas',
+    vi: 'Present Simple: câu hỏi',
+    id: 'Present Simple: pertanyaan',
+    tr: 'Present Simple: sorular',
+    pl: 'Present Simple: pytania',
+  },
+  'Preguntas con wh-': {
+    'pt-BR': 'Perguntas com wh-',
+    vi: 'Câu hỏi wh-',
+    id: 'Pertanyaan wh-',
+    tr: 'Wh- soruları',
+    pl: 'Pytania wh-',
+  },
+  'El verbo to have': {
+    'pt-BR': 'Verbo to have',
+    vi: 'Động từ to have',
+    id: 'Kata kerja to have',
+    tr: 'To have fiili',
+    pl: 'Czasownik to have',
+  },
+  'Preposiciones de tiempo': {
+    'pt-BR': 'Preposições de tempo',
+    vi: 'Giới từ chỉ thời gian',
+    id: 'Preposisi waktu',
+    tr: 'Zaman edatları',
+    pl: 'Przyimki czasu',
+  },
+  'There is / There are': {
+    'pt-BR': 'There is / There are',
+    vi: 'There is / There are',
+    id: 'There is / There are',
+    tr: 'There is / There are',
+    pl: 'There is / There are',
+  },
+  'Verbos modales': {
+    'pt-BR': 'Verbos modais',
+    vi: 'Động từ khuyết thiếu',
+    id: 'Kata kerja modal',
+    tr: 'Modal fiiller',
+    pl: 'Czasowniki modalne',
+  },
+  'Past Simple: regulares': {
+    'pt-BR': 'Past Simple: verbos regulares',
+    vi: 'Past Simple: động từ có quy tắc',
+    id: 'Past Simple: beraturan',
+    tr: 'Past Simple: düzenli fiiller',
+    pl: 'Past Simple: czasowniki regularne',
+  },
+  'Past Simple: irregulares': {
+    'pt-BR': 'Past Simple: verbos irregulares',
+    vi: 'Past Simple: động từ bất quy tắc',
+    id: 'Past Simple: tidak beraturan',
+    tr: 'Past Simple: düzensiz fiiller',
+    pl: 'Past Simple: czasowniki nieregularne',
+  },
+  'Future Simple (will)': {
+    'pt-BR': 'Future Simple (will)',
+    vi: 'Future Simple (will)',
+    id: 'Future Simple (will)',
+    tr: 'Future Simple (will)',
+    pl: 'Future Simple (will)',
+  },
+  'Grados de comparación': {
+    'pt-BR': 'Graus de comparação',
+    vi: 'Cấp so sánh',
+    id: 'Tingkat perbandingan',
+    tr: 'Karşılaştırma dereceleri',
+    pl: 'Stopniowanie przymiotników',
+  },
+  'Pronombres y adjetivos posesivos': {
+    'pt-BR': 'Pronomes e adjetivos possessivos',
+    vi: 'Đại từ và tính từ sở hữu',
+    id: 'Kata ganti dan kata sifat kepunyaan',
+    tr: 'İyelik zamirleri ve sıfatları',
+    pl: 'Zaimki i przymiotniki dzierżawcze',
+  },
+  'Verbos frasales': {
+    'pt-BR': 'Phrasal verbs',
+    vi: 'Cụm động từ',
+    id: 'Phrasal verbs',
+    tr: 'Phrasal verbs',
+    pl: 'Czasowniki frazowe',
+  },
+  'Present Continuous': {
+    'pt-BR': 'Present Continuous',
+    vi: 'Present Continuous',
+    id: 'Present Continuous',
+    tr: 'Present Continuous',
+    pl: 'Present Continuous',
+  },
+  Imperativo: {
+    'pt-BR': 'Imperativo',
+    vi: 'Câu mệnh lệnh',
+    id: 'Imperatif',
+    tr: 'Emir kipi',
+    pl: 'Tryb rozkazujący',
+  },
+  'Preposiciones de lugar': {
+    'pt-BR': 'Preposições de lugar',
+    vi: 'Giới từ chỉ nơi chốn',
+    id: 'Preposisi tempat',
+    tr: 'Yer edatları',
+    pl: 'Przyimki miejsca',
+  },
+  'Artículos (a/an/the)': {
+    'pt-BR': 'Artigos (a/an/the)',
+    vi: 'Mạo từ (a/an/the)',
+    id: 'Artikel (a/an/the)',
+    tr: 'Artikeller (a/an/the)',
+    pl: 'Przedimki (a/an/the)',
+  },
+  'Pronombres indefinidos': {
+    'pt-BR': 'Pronomes indefinidos',
+    vi: 'Đại từ bất định',
+    id: 'Kata ganti tak tentu',
+    tr: 'Belgisiz zamirler',
+    pl: 'Zaimki nieokreślone',
+  },
+  'Gerundio (-ing)': {
+    'pt-BR': 'Gerúndio (-ing)',
+    vi: 'Danh động từ (-ing)',
+    id: 'Gerund (-ing)',
+    tr: 'Gerund (-ing)',
+    pl: 'Gerundium (-ing)',
+  },
+  'Voz pasiva': {
+    'pt-BR': 'Voz passiva',
+    vi: 'Câu bị động',
+    id: 'Passive Voice',
+    tr: 'Edilgen çatı',
+    pl: 'Strona bierna',
+  },
+  'Present Perfect': {
+    'pt-BR': 'Present Perfect',
+    vi: 'Present Perfect',
+    id: 'Present Perfect',
+    tr: 'Present Perfect',
+    pl: 'Present Perfect',
+  },
+  'Past Continuous': {
+    'pt-BR': 'Past Continuous',
+    vi: 'Past Continuous',
+    id: 'Past Continuous',
+    tr: 'Past Continuous',
+    pl: 'Past Continuous',
+  },
+  'Oraciones condicionales (if)': {
+    'pt-BR': 'Orações condicionais (if)',
+    vi: 'Câu điều kiện (if)',
+    id: 'Kalimat kondisional (if)',
+    tr: 'Koşul cümleleri (if)',
+    pl: 'Zdania warunkowe (if)',
+  },
+  'Estilo indirecto': {
+    'pt-BR': 'Discurso indireto',
+    vi: 'Câu tường thuật',
+    id: 'Kalimat tidak langsung',
+    tr: 'Dolaylı anlatım',
+    pl: 'Mowa zależna',
+  },
+  'Pronombres reflexivos': {
+    'pt-BR': 'Pronomes reflexivos',
+    vi: 'Đại từ phản thân',
+    id: 'Kata ganti refleksif',
+    tr: 'Dönüşlülük zamirleri',
+    pl: 'Zaimki zwrotne',
+  },
+  'Used to': {
+    'pt-BR': 'Used to',
+    vi: 'Used to',
+    id: 'Used to',
+    tr: 'Used to',
+    pl: 'Used to',
+  },
+  'Oraciones relativas': {
+    'pt-BR': 'Orações relativas',
+    vi: 'Mệnh đề quan hệ',
+    id: 'Relative clauses',
+    tr: 'İlgi cümlecikleri',
+    pl: 'Zdania względne',
+  },
+  'Construcciones con objeto e infinitivo': {
+    'pt-BR': 'Construções com objeto e infinitivo',
+    vi: 'Cấu trúc tân ngữ và động từ nguyên mẫu',
+    id: 'Konstruksi objek dan infinitif',
+    tr: 'Nesne ve mastar yapıları',
+    pl: 'Konstrukcje z dopełnieniem i bezokolicznikiem',
+  },
+  'Repaso general': {
+    'pt-BR': 'Revisão geral',
+    vi: 'Ôn tập tổng hợp',
+    id: 'Ulangan umum',
+    tr: 'Genel tekrar',
+    pl: 'Powtórka ogólna',
+  },
+};
+
+function levelTopicPlanned(q: LevelQ, locale: PlannedInterfaceLang): string {
+  return LEVEL_TOPIC_PLANNED[q.topicES]?.[locale] ?? q.topicES;
 }
 
 function levelExamCategory(q: LevelQ, token?: string): WordCategory | undefined {
@@ -93,7 +326,7 @@ const QUESTION_POOL: LevelQ[] = [
   // L10
   {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',topicES:'Verbos modales',q:'You ___ speak louder.',opts:['can','could','should','must'],correct:2},
   {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',topicES:'Verbos modales',q:'She ___ swim very well.',opts:['can','should','must','shall'],correct:0},
-  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',topicES:'Verbos modales',q:'You ___ not park here.',opts:['must','can','could','should'],correct:0},
+  {lessonNum:10,topic:'Модальные глаголы',topicUK:'Модальні дієслова',topicES:'Verbos modales',q:'No parking. You ___ park here.',opts:["mustn't",'can','could','should'],correct:0},
   // L11
   {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',topicES:'Past Simple: regulares',q:'She ___ the letter yesterday.',opts:['send','sends','sent','sending'],correct:2},
   {lessonNum:11,topic:'Past Simple — правильные',topicUK:'Past Simple — правильні',topicES:'Past Simple: regulares',q:'They ___ football last week.',opts:['play','plays','played','playing'],correct:2},
@@ -188,11 +421,11 @@ const LEVEL_RANGES: Record<string, [number, number]> = {
   A1: [1, 8], A2: [9, 18], B1: [19, 28], B2: [29, 32],
 };
 
-const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
-  A1: { ru: 'Зачёт A1', uk: 'Залік A1', es: 'Examen de nivel A1' },
-  A2: { ru: 'Зачёт A2', uk: 'Залік A2', es: 'Examen de nivel A2' },
-  B1: { ru: 'Зачёт B1', uk: 'Залік B1', es: 'Examen de nivel B1' },
-  B2: { ru: 'Зачёт B2', uk: 'Залік B2', es: 'Examen de nivel B2' },
+const LEVEL_LABELS: Record<string, { ru: string; uk: string; es: string } & Record<PlannedInterfaceLang, string>> = {
+  A1: { ru: 'Зачёт A1', uk: 'Залік A1', es: 'Examen de nivel A1', 'pt-BR': 'Teste de nível A1', vi: 'Bài kiểm tra trình độ A1', id: 'Ujian level A1', tr: 'A1 seviye sınavı', pl: 'Test poziomu A1' },
+  A2: { ru: 'Зачёт A2', uk: 'Залік A2', es: 'Examen de nivel A2', 'pt-BR': 'Teste de nível A2', vi: 'Bài kiểm tra trình độ A2', id: 'Ujian level A2', tr: 'A2 seviye sınavı', pl: 'Test poziomu A2' },
+  B1: { ru: 'Зачёт B1', uk: 'Залік B1', es: 'Examen de nivel B1', 'pt-BR': 'Teste de nível B1', vi: 'Bài kiểm tra trình độ B1', id: 'Ujian level B1', tr: 'B1 seviye sınavı', pl: 'Test poziomu B1' },
+  B2: { ru: 'Зачёт B2', uk: 'Залік B2', es: 'Examen de nivel B2', 'pt-BR': 'Teste de nível B2', vi: 'Bài kiểm tra trình độ B2', id: 'Ujian level B2', tr: 'B2 seviye sınavı', pl: 'Test poziomu B2' },
 };
 
 const PASS_PCT = 70; // минимум % для сдачи
@@ -213,6 +446,7 @@ const INTRO_Q_COUNT = 30;
 export default function LevelExam() {
   const router = useRouter();
   const { theme: t, f, themeMode } = useTheme();
+  const isGoldTheme = themeMode === 'gold';
   const sx = useMemo(() => screenTextOnGradient(t, themeMode), [t, themeMode]);
   const { lang } = useLang();
   const { level } = useLocalSearchParams<{ level: string }>();
@@ -256,6 +490,11 @@ export default function LevelExam() {
             ru: 'Premium откроет уроки уровня и доступ к зачёту. Без Premium доступны только первые 3 урока.',
             uk: 'Premium відкриє уроки рівня і доступ до заліку. Без Premium доступні лише перші 3 уроки.',
             es: 'Premium abre las lecciones del nivel y el acceso al examen. Sin Premium solo están disponibles las 3 primeras lecciones.',
+            'pt-BR': "O Premium abre as aulas do n?vel e o acesso ao teste. Sem Premium, s? as 3 primeiras aulas ficam dispon?veis.",
+            vi: "Premium m? c?c b?i h?c c?a c?p ?? v? quy?n truy c?p v?o b?i ki?m tra. Kh?ng c? Premium, ch? 3 b?i h?c ??u ti?n kh? d?ng.",
+            id: "Premium membuka pelajaran level ini dan akses ke ujian. Tanpa Premium, hanya 3 pelajaran pertama yang tersedia.",
+            tr: "Premium, seviyenin derslerini ve s?nava eri?imi a?ar. Premium olmadan yaln?zca ilk 3 ders kullan?labilir.",
+            pl: "Premium odblokowuje lekcje poziomu i dost?p do testu. Bez Premium dost?pne s? tylko pierwsze 3 lekcje.",
           }));
           setAccessState('blocked');
         }
@@ -274,15 +513,25 @@ export default function LevelExam() {
         setAccessBlockKind('level');
         setBlockedText(prevLevel
           ? triLang(lang, {
-              ru: `Чтобы открыть уровень ${examLevel}, сначала сдайте зачёт ${prevLevel}.`,
-              uk: `Щоб відкрити рівень ${examLevel}, спочатку складіть залік ${prevLevel}.`,
-              es: `Para abrir el nivel ${examLevel}, primero supera el examen de ${prevLevel}.`,
-            })
+            ru: `Чтобы открыть уровень ${examLevel}, сначала сдайте зачёт ${prevLevel}.`,
+            uk: `Щоб відкрити рівень ${examLevel}, спочатку складіть залік ${prevLevel}.`,
+            es: `Para abrir el nivel ${examLevel}, primero supera el examen de ${prevLevel}.`,
+            'pt-BR': `Para abrir o n?vel ${examLevel}, primeiro passe no teste ${prevLevel}.`,
+            vi: `?? m? c?p ?? ${examLevel}, tr??c ti?n h?y v??t qua b?i ki?m tra ${prevLevel}.`,
+            id: `Untuk membuka level ${examLevel}, selesaikan dulu ujian ${prevLevel}.`,
+            tr: `${examLevel} seviyesini a?mak i?in ?nce ${prevLevel} s?nav?n? ge?.`,
+            pl: `Aby odblokowa? poziom ${examLevel}, najpierw zalicz test ${prevLevel}.`,
+          })
           : triLang(lang, {
-              ru: 'Этот зачёт пока недоступен.',
-              uk: 'Цей залік поки недоступний.',
-              es: 'Este examen todavía no está disponible.',
-            }));
+            ru: 'Этот зачёт пока недоступен.',
+            uk: 'Цей залік поки недоступний.',
+            es: 'Este examen todavía no está disponible.',
+            'pt-BR': "Este teste ainda n?o est? dispon?vel.",
+            vi: "B?i ki?m tra n?y hi?n ch?a kh? d?ng.",
+            id: "Ujian ini belum tersedia.",
+            tr: "Bu s?nav hen?z kullan?lam?yor.",
+            pl: "Ten test nie jest jeszcze dost?pny.",
+          }));
         setAccessState('blocked');
       }
     })().catch(() => {
@@ -292,6 +541,11 @@ export default function LevelExam() {
           ru: 'Не удалось проверить доступ к зачёту. Попробуйте открыть его ещё раз.',
           uk: 'Не вдалося перевірити доступ до заліку. Спробуйте відкрити його ще раз.',
           es: 'No se pudo comprobar el acceso al examen. Inténtalo de nuevo.',
+          'pt-BR': "N?o foi poss?vel verificar o acesso ao teste. Tente abri-lo de novo.",
+          vi: "Kh?ng th? ki?m tra quy?n truy c?p v?o b?i ki?m tra. H?y th? m? l?i.",
+          id: "Tidak dapat memeriksa akses ke ujian. Coba buka lagi.",
+          tr: "S?nava eri?im kontrol edilemedi. Tekrar a?may? dene.",
+          pl: "Nie uda?o si? sprawdzi? dost?pu do testu. Spr?buj otworzy? go jeszcze raz.",
         }));
         setAccessState('blocked');
       }
@@ -299,9 +553,28 @@ export default function LevelExam() {
     return () => { cancelled = true; };
   }, [lang, lvl]);
 
-  const title = LEVEL_LABELS[lvl]
-    ? triLang(lang, LEVEL_LABELS[lvl])
-    : triLang(lang, { ru: `Зачёт ${lvl}`, uk: `Залік ${lvl}`, es: `Examen de nivel ${lvl}` });
+  const levelLabel = LEVEL_LABELS[lvl];
+  const title = levelLabel
+    ? triLang(lang, {
+        ru: levelLabel.ru,
+        uk: levelLabel.uk,
+        es: levelLabel.es,
+        'pt-BR': levelLabel['pt-BR'],
+        vi: levelLabel.vi,
+        id: levelLabel.id,
+        tr: levelLabel.tr,
+        pl: levelLabel.pl,
+      })
+    : triLang(lang, {
+        ru: `Зачёт ${lvl}`,
+        uk: `Залік ${lvl}`,
+        es: `Examen de nivel ${lvl}`,
+        'pt-BR': `Teste de nível ${lvl}`,
+        vi: `Bài kiểm tra trình độ ${lvl}`,
+        id: `Ujian level ${lvl}`,
+        tr: `${lvl} seviye sınavı`,
+        pl: `Test poziomu ${lvl}`,
+      });
   const total = questions.length;
   const q = idx < questions.length ? questions[idx] : undefined;
   const chosen = choices[idx] ?? null;
@@ -424,16 +697,30 @@ export default function LevelExam() {
             </View>
             <Text style={{ color: '#FFFFFF', fontSize: f.h2, fontWeight: '800', textAlign: 'center', marginBottom: 12 }}>
               {checking
-                ? triLang(lang, { ru: 'Проверяем доступ', uk: 'Перевіряємо доступ', es: 'Comprobando acceso' })
+                ? triLang(lang, {
+                  ru: 'Проверяем доступ',
+                  uk: 'Перевіряємо доступ',
+                  es: 'Comprobando acceso',
+                  'pt-BR': "Verificando acesso",
+                  vi: "?ang ki?m tra quy?n truy c?p",
+                  id: "Memeriksa akses",
+                  tr: "Eri?im kontrol ediliyor",
+                  pl: "Sprawdzanie dost?pu",
+                })
                 : title}
             </Text>
             <Text style={{ color: 'rgba(255,255,255,0.74)', fontSize: f.bodyLg, lineHeight: 24, textAlign: 'center', marginBottom: 26 }}>
               {checking
                 ? triLang(lang, {
-                    ru: 'Секунду, сверяем текущий уровень.',
-                    uk: 'Секунду, звіряємо поточний рівень.',
-                    es: 'Un segundo, estamos comprobando tu nivel actual.',
-                  })
+                  ru: 'Секунду, сверяем текущий уровень.',
+                  uk: 'Секунду, звіряємо поточний рівень.',
+                  es: 'Un segundo, estamos comprobando tu nivel actual.',
+                  'pt-BR': "Um segundo, estamos conferindo seu n?vel atual.",
+                  vi: "Ch? m?t ch?t, ch?ng t?i ?ang ki?m tra c?p ?? hi?n t?i c?a b?n.",
+                  id: "Sebentar, kami sedang memeriksa levelmu saat ini.",
+                  tr: "Bir saniye, mevcut seviyeni kontrol ediyoruz.",
+                  pl: "Chwileczk?, sprawdzamy Tw?j aktualny poziom.",
+                })
                 : blockedText}
             </Text>
             {!checking && (
@@ -457,8 +744,26 @@ export default function LevelExam() {
               >
                 <Text style={{ color: LX.ink, fontSize: f.body, fontWeight: '900' }}>
                   {accessBlockKind === 'premium'
-                    ? triLang(lang, { ru: 'Получить Premium', uk: 'Отримати Premium', es: 'Obtener Premium' })
-                    : triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Ir a lecciones' })}
+                    ? triLang(lang, {
+                      ru: 'Получить Premium',
+                      uk: 'Отримати Premium',
+                      es: 'Obtener Premium',
+                      'pt-BR': "Obter Premium",
+                      vi: "M? Premium",
+                      id: "Dapatkan Premium",
+                      tr: "Premium al",
+                      pl: "Kup Premium",
+                    })
+                    : triLang(lang, {
+                      ru: 'К урокам',
+                      uk: 'До уроків',
+                      es: 'Ir a lecciones',
+                      'pt-BR': "Ir para as aulas",
+                      vi: "??n b?i h?c",
+                      id: "Ke pelajaran",
+                      tr: "Derslere git",
+                      pl: "Do lekcji",
+                    })}
                 </Text>
               </TouchableOpacity>
             )}
@@ -474,31 +779,77 @@ export default function LevelExam() {
       {
         icon: 'reader-outline' as const,
         value: String(INTRO_Q_COUNT),
-        cap: triLang(lang, { ru: 'ВОПРОСОВ', uk: 'ЗАПИТАНЬ', es: 'PREGUNTAS' }),
+        cap: triLang(lang, {
+          ru: 'ВОПРОСОВ',
+          uk: 'ЗАПИТАНЬ',
+          es: 'PREGUNTAS',
+          'pt-BR': "PERGUNTAS",
+          vi: "C?U H?I",
+          id: "PERTANYAAN",
+          tr: "SORU",
+          pl: "PYTANIA",
+        }),
       },
       {
         icon: 'ribbon-outline' as const,
         value: `${PASS_PCT}%`,
-        cap: triLang(lang, { ru: 'ДЛЯ СДАЧИ', uk: 'ДЛЯ ЗДАЧІ', es: 'PARA APROBAR' }),
+        cap: triLang(lang, {
+          ru: 'ДЛЯ СДАЧИ',
+          uk: 'ДЛЯ ЗДАЧІ',
+          es: 'PARA APROBAR',
+          'pt-BR': "PARA PASSAR",
+          vi: "?? ??T",
+          id: "UNTUK LULUS",
+          tr: "GE?MEK ???N",
+          pl: "DO ZALICZENIA",
+        }),
       },
       {
         icon: 'refresh-circle-outline' as const,
-        value: triLang(lang, { ru: 'БЕЗ', uk: 'БЕЗ', es: 'SIN' }),
-        cap: triLang(lang, { ru: 'ШТРАФА', uk: 'ШТРАФУ', es: 'PENALIZAR' }),
+        value: triLang(lang, {
+          ru: 'БЕЗ',
+          uk: 'БЕЗ',
+          es: 'SIN',
+          'pt-BR': "SEM",
+          vi: "KH?NG",
+          id: "TANPA",
+          tr: "YOK",
+          pl: "BEZ",
+        }),
+        cap: triLang(lang, {
+          ru: 'ШТРАФА',
+          uk: 'ШТРАФУ',
+          es: 'PENALIZAR',
+          'pt-BR': "PENALIDADE",
+          vi: "PH?T",
+          id: "PENALTI",
+          tr: "CEZA",
+          pl: "KARY",
+        }),
       },
     ];
     const introBody = triLang(lang, {
       ru: `${INTRO_Q_COUNT} вопросов по ключевым темам уровня ${lvl}. Для перехода дальше нужно набрать минимум ${PASS_PCT}%. Если результат не устроит, зачёт можно пройти повторно — без штрафа, с сохранением лучшего результата.`,
       uk: `${INTRO_Q_COUNT} запитань за ключовими темами рівня ${lvl}. Щоб перейти далі, потрібно набрати щонайменше ${PASS_PCT}%. Якщо результат не влаштує, залік можна пройти повторно — без штрафу, зі збереженням найкращого результату.`,
       es: `${INTRO_Q_COUNT} preguntas sobre los temas clave del nivel ${lvl}. Para avanzar necesitas al menos un ${PASS_PCT} %. Si quieres mejorar, puedes repetir el examen sin penalización: guardaremos tu mejor resultado.`,
+      'pt-BR': `${INTRO_Q_COUNT} perguntas sobre os temas principais do n?vel ${lvl}. Para avan?ar, voc? precisa acertar pelo menos ${PASS_PCT}%. Se quiser melhorar, pode refazer o teste sem penalidade: vamos guardar seu melhor resultado.`,
+      vi: `${INTRO_Q_COUNT} c?u h?i v? c?c ch? ?? ch?nh c?a c?p ?? ${lvl}. ?? ?i ti?p, b?n c?n ??t ?t nh?t ${PASS_PCT}%. N?u mu?n c?i thi?n, b?n c? th? l?m l?i b?i ki?m tra kh?ng b? ph?t; k?t qu? t?t nh?t s? ???c gi? l?i.`,
+      id: `${INTRO_Q_COUNT} pertanyaan tentang topik utama level ${lvl}. Untuk lanjut, kamu perlu mendapat minimal ${PASS_PCT}%. Jika ingin memperbaiki hasil, kamu bisa mengulang ujian tanpa penalti; hasil terbaikmu akan disimpan.`,
+      tr: `${lvl} seviyesinin ana konular?ndan ${INTRO_Q_COUNT} soru. Devam etmek i?in en az %${PASS_PCT} alman gerekir. Sonucunu iyile?tirmek istersen s?nav? cezas?z tekrar edebilirsin; en iyi sonucun saklan?r.`,
+      pl: `${INTRO_Q_COUNT} pyta? z g??wnych temat?w poziomu ${lvl}. Aby przej?? dalej, potrzebujesz co najmniej ${PASS_PCT}%. Je?li chcesz poprawi? wynik, mo?esz powt?rzy? test bez kary; zapiszemy najlepszy rezultat.`,
     });
     const premiumNote =
       lvl !== 'B2'
         ? triLang(lang, {
-            ru: 'С Premium все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
-            uk: 'З Premium усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',
-            es: 'Con Premium todas las lecciones del nivel actual están abiertas; el siguiente nivel se abrirá al aprobar este examen.',
-          })
+          ru: 'С Premium все уроки текущего уровня открыты сразу; следующий уровень откроется после сдачи этого зачёта.',
+          uk: 'З Premium усі уроки поточного рівня відкриті одразу; наступний рівень відкриється після складання цього заліку.',
+          es: 'Con Premium todas las lecciones del nivel actual están abiertas; el siguiente nivel se abrirá al aprobar este examen.',
+          'pt-BR': "Com Premium, todas as aulas do n?vel atual ficam abertas de uma vez; o pr?ximo n?vel ser? aberto depois que voc? passar neste teste.",
+          vi: "V?i Premium, t?t c? b?i h?c c?a c?p ?? hi?n t?i ???c m? ngay; c?p ?? ti?p theo s? m? sau khi b?n v??t qua b?i ki?m tra n?y.",
+          id: "Dengan Premium, semua pelajaran di level saat ini langsung terbuka; level berikutnya akan terbuka setelah kamu lulus ujian ini.",
+          tr: "Premium ile mevcut seviyenin t?m dersleri hemen a??l?r; bir sonraki seviye bu s?nav? ge?tikten sonra a??l?r.",
+          pl: "Z Premium wszystkie lekcje obecnego poziomu s? od razu otwarte; nast?pny poziom odblokuje si? po zaliczeniu tego testu.",
+        })
         : null;
 
     return (
@@ -626,7 +977,16 @@ export default function LevelExam() {
                 >
                   <Ionicons name="sparkles" size={20} color={LX.ink} />
                   <Text style={{ color: LX.ink, fontSize: f.bodyLg, fontWeight: '800' }}>
-                    {triLang(lang, { ru: 'Начать зачёт', uk: 'Почати залік', es: 'Empezar examen' })}
+                    {triLang(lang, {
+                      ru: 'Начать зачёт',
+                      uk: 'Почати залік',
+                      es: 'Empezar examen',
+                      'pt-BR': "Come?ar teste",
+                      vi: "B?t ??u b?i ki?m tra",
+                      id: "Mulai ujian",
+                      tr: "S?nava ba?la",
+                      pl: "Rozpocznij test",
+                    })}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>
@@ -640,6 +1000,11 @@ export default function LevelExam() {
                   ru: `Зачёт уровня ${lvl}: вступление`,
                   uk: `Залік рівня ${lvl}: вступ`,
                   es: `Examen de nivel ${lvl}: intro`,
+                  'pt-BR': `Teste de n?vel ${lvl}: introdu??o`,
+                  vi: `B?i ki?m tra tr?nh ?? ${lvl}: m? ??u`,
+                  id: `Ujian level ${lvl}: pengantar`,
+                  tr: `${lvl} seviye s?nav?: giri?`,
+                  pl: `Test poziomu ${lvl}: wst?p`,
                 })}
                 textColor={sx.muted}
               />
@@ -683,10 +1048,37 @@ export default function LevelExam() {
               {medalImproved && (
                 <Text style={{ color: t.gold, fontSize: f.bodyLg, fontWeight: '700', marginTop: 4 }}>
                   {examMedalTier === 'gold'
-                    ? triLang(lang, { ru: '🥇 Золото!', uk: '🥇 Золото!', es: '🥇 ¡Oro!' })
+                    ? triLang(lang, {
+                      ru: '🥇 Золото!',
+                      uk: '🥇 Золото!',
+                      es: '🥇 ¡Oro!',
+                      'pt-BR': "?? Ouro!",
+                      vi: "?? V?ng!",
+                      id: "?? Emas!",
+                      tr: "?? Alt?n!",
+                      pl: "?? Z?oto!",
+                    })
                     : examMedalTier === 'silver'
-                      ? triLang(lang, { ru: '🥈 Новая медаль!', uk: '🥈 Нова медаль!', es: '🥈 ¡Nueva medalla!' })
-                      : triLang(lang, { ru: '🥉 Новая медаль!', uk: '🥉 Нова медаль!', es: '🥉 ¡Nueva medalla!' })}
+                      ? triLang(lang, {
+                        ru: '🥈 Новая медаль!',
+                        uk: '🥈 Нова медаль!',
+                        es: '🥈 ¡Nueva medalla!',
+                        'pt-BR': "?? Nova medalha!",
+                        vi: "?? Huy ch??ng m?i!",
+                        id: "?? Medali baru!",
+                        tr: "?? Yeni madalya!",
+                        pl: "?? Nowy medal!",
+                      })
+                      : triLang(lang, {
+                        ru: '🥉 Новая медаль!',
+                        uk: '🥉 Нова медаль!',
+                        es: '🥉 ¡Nueva medalla!',
+                        'pt-BR': "?? Nova medalha!",
+                        vi: "?? Huy ch??ng m?i!",
+                        id: "?? Medali baru!",
+                        tr: "?? Yeni madalya!",
+                        pl: "?? Nowy medal!",
+                      })}
                 </Text>
               )}
               <Text style={{ color: sx.primary, fontSize: f.h1, fontWeight: '800' }}>{pct}%</Text>
@@ -695,6 +1087,11 @@ export default function LevelExam() {
                   ru: `${correctCount} из ${total} правильно`,
                   uk: `${correctCount} з ${total} правильно`,
                   es: `${correctCount} de ${total} acertadas`,
+                  'pt-BR': `${correctCount} de ${total} corretas`,
+                  vi: `${correctCount} / ${total} c?u ??ng`,
+                  id: `${correctCount} dari ${total} benar`,
+                  tr: `${total} sorudan ${correctCount} do?ru`,
+                  pl: `${correctCount} z ${total} poprawnie`,
                 })}
               </Text>
               <Text style={{ color: sx.muted, fontSize: f.sub }}>
@@ -702,48 +1099,120 @@ export default function LevelExam() {
                   ru: `Попытка №${examPassCount}`,
                   uk: `Спроба №${examPassCount}`,
                   es: `Intento n.º ${examPassCount}`,
+                  'pt-BR': `Tentativa n? ${examPassCount}`,
+                  vi: `L?n th? s? ${examPassCount}`,
+                  id: `Percobaan ke-${examPassCount}`,
+                  tr: `${examPassCount}. deneme`,
+                  pl: `Podej?cie nr ${examPassCount}`,
                 })}
               </Text>
             </View>
 
             {/* Прогресс-бар */}
-            <View style={{ height: 8, backgroundColor: t.bgSurface, borderRadius: 4, overflow: 'hidden' }}>
-              <View style={{ height: '100%', width: `${pct}%` as any, backgroundColor: passed ? t.correct : t.wrong, borderRadius: 4 }} />
+            <View
+              style={{
+                height: 8,
+                backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.44)' : t.bgSurface,
+                borderRadius: 4,
+                overflow: 'hidden',
+                borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
+                borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
+              }}
+            >
+              {isGoldTheme ? (
+                <LinearGradient
+                  colors={passed ? GOLD_GRADIENTS.progressMetal : (['#7A302A', '#2A0D0B', '#140605'] as [string, string, string])}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={{ height: '100%', width: `${pct}%` as any, borderRadius: 4 }}
+                />
+              ) : (
+                <View style={{ height: '100%', width: `${pct}%` as any, backgroundColor: passed ? t.correct : t.wrong, borderRadius: 4 }} />
+              )}
             </View>
 
             <Text style={{ color: sx.muted, fontSize: f.body, textAlign: 'center', lineHeight: 22, marginTop: 12, paddingHorizontal: 8 }}>
               {!passed
                 ? triLang(lang, {
-                    ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по ошибкам.`,
-                    uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за помилками.`,
-                    es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
-                  })
+                  ru: `Ниже ${PASS_PCT}% зачёт не засчитан — вернись к «Теории», «Словарю» и «Формам глаголов» по ошибкам.`,
+                  uk: `Нижче ${PASS_PCT}% залік не зараховано — повернись до «Теорії», «Словника» й форм дієслів за помилками.`,
+                  es: `Por debajo del ${PASS_PCT} % no hay aprobado: repasa «Teoría», «Vocabulario» y verbos en los temas fallidos.`,
+                  'pt-BR': `Abaixo de ${PASS_PCT}%, o teste n?o conta como aprovado ? volte a ?Teoria?, ?Vocabul?rio? e ?Formas verbais? nos temas em que errou.`,
+                  vi: `D??i ${PASS_PCT}% th? ch?a ??t: h?y quay l?i ?L? thuy?t?, ?T? v?ng? v? ?D?ng ??ng t?? ? c?c ch? ?? b? sai.`,
+                  id: `Di bawah ${PASS_PCT}%, ujian belum lulus ? kembali ke ?Teori?, ?Kosakata?, dan ?Bentuk kata kerja? pada topik yang salah.`,
+                  tr: `%${PASS_PCT} alt? ge?erli say?lmaz ? hata yapt???n konularda ?Teori?, ?Kelime? ve ?Fiil formlar?? b?l?mlerine d?n.`,
+                  pl: `Poni?ej ${PASS_PCT}% test nie jest zaliczony ? wr?? do ?Teorii?, ?S?ownika? i ?Form czasownik?w? przy tematach z b??dami.`,
+                })
                 : pct >= 90
                   ? triLang(lang, {
-                      ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы удерживать планку.',
-                      uk: 'Чудово за темами рівня — закріплюй слабкі уроки, щоб тримати планку.',
-                      es: 'Muy bien por temas del nivel: refuerza lecciones flojas para mantener el ritmo.',
-                    })
+                    ru: 'Отлично по темам уровня — закрепи слабые уроки, чтобы удерживать планку.',
+                    uk: 'Чудово за темами рівня — закріплюй слабкі уроки, щоб тримати планку.',
+                    es: 'Muy bien por temas del nivel: refuerza lecciones flojas para mantener el ritmo.',
+                    'pt-BR': "Muito bem nos temas do n?vel: reforce as aulas mais fracas para manter o ritmo.",
+                    vi: "B?n l?m r?t t?t ? c?c ch? ?? c?a c?p ?? n?y: h?y c?ng c? c?c b?i c?n y?u ?? gi? nh?p.",
+                    id: "Bagus sekali untuk topik level ini: perkuat pelajaran yang masih lemah agar ritmenya terjaga.",
+                    tr: "Seviye konular?nda ?ok iyi: tempoyu korumak i?in zay?f dersleri peki?tir.",
+                    pl: "Bardzo dobrze z temat?w tego poziomu: utrwal s?absze lekcje, ?eby utrzyma? form?.",
+                  })
                   : triLang(lang, {
-                      ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
-                      uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
-                      es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
-                    })}
+                    ru: `Зачёт сдан (${PASS_PCT}%+) — при желании добейся ${90}% для золота.`,
+                    uk: `Залік здано (${PASS_PCT}%+) — за бажанням добийся ${90}% для золота.`,
+                    es: `Aprobado (${PASS_PCT} %+); si quieres, apunta al ${90} % para el oro.`,
+                    'pt-BR': `Teste aprovado (${PASS_PCT}%+); se quiser, mire em ${90}% para ganhar ouro.`,
+                    vi: `?? ??t (${PASS_PCT}%+); n?u mu?n, h?y nh?m t?i ${90}% ?? l?y v?ng.`,
+                    id: `Lulus (${PASS_PCT}%+); kalau mau, kejar ${90}% untuk emas.`,
+                    tr: `Ge?tin (%${PASS_PCT}+); istersen alt?n i?in %${90} hedefle.`,
+                    pl: `Zaliczone (${PASS_PCT}%+); je?li chcesz, celuj w ${90}% na z?oto.`,
+                  })}
             </Text>
 
             {/* Ошибки */}
             {wrongItems.length > 0 && (
               <View style={{ gap: 8 }}>
                 <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                  {triLang(lang, { ru: 'Ошибки:', uk: 'Помилки:', es: 'Errores:' })}
+                  {triLang(lang, {
+                    ru: 'Ошибки:',
+                    uk: 'Помилки:',
+                    es: 'Errores:',
+                    'pt-BR': "Erros:",
+                    vi: "L?i sai:",
+                    id: "Kesalahan:",
+                    tr: "Hatalar:",
+                    pl: "B??dy:",
+                  })}
                 </Text>
                 {wrongItems.map((item, i) => (
-                  <View key={i} style={{ backgroundColor: t.bgCard, borderRadius: 12, borderWidth: 0.5, borderColor: t.border, padding: 14, gap: 6 }}>
-                    <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700' }}>
-                      {triLang(lang, { ru: item.q.topic ?? '', uk: item.q.topicUK ?? '', es: item.q.topicES ?? '' })}
+                  <LinearGradient
+                    key={i}
+                    colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
+                    locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                    start={isGoldTheme ? { x: 0, y: 0 } : undefined}
+                    end={isGoldTheme ? { x: 1, y: 1 } : undefined}
+                    style={{
+                      borderRadius: 12,
+                      borderWidth: 0.5,
+                      borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border,
+                      padding: 14,
+                      gap: 6,
+                      overflow: 'hidden',
+                      ...(isGoldTheme ? goldShadow(1) : {}),
+                    }}
+                  >
+                    {isGoldTheme && <GoldBevel radius={12} intensity="quiet" />}
+                    <Text style={{ color: t.textMuted, fontSize: f.label, fontWeight: '700', zIndex: 10 }}>
+                      {triLang(lang, {
+                        ru: item.q.topic ?? '',
+                        uk: item.q.topicUK ?? '',
+                        es: item.q.topicES ?? '',
+                        'pt-BR': levelTopicPlanned(item.q, 'pt-BR'),
+                        vi: levelTopicPlanned(item.q, 'vi'),
+                        id: levelTopicPlanned(item.q, 'id'),
+                        tr: levelTopicPlanned(item.q, 'tr'),
+                        pl: levelTopicPlanned(item.q, 'pl'),
+                      })}
                     </Text>
-                    <ClozeGapText text={item.q.q ?? ''} style={{ color: t.textPrimary, fontSize: f.body }} />
-                    <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap' }}>
+                    <ClozeGapText text={item.q.q ?? ''} style={{ color: t.textPrimary, fontSize: f.body, zIndex: 10 }} />
+                    <View style={{ flexDirection: 'row', gap: 8, flexWrap: 'wrap', zIndex: 10 }}>
                       {item.chosen !== null && item.chosen !== undefined && (
                         <Text style={{ color: t.wrong, fontSize: f.sub }}>
                           ✗ {item.q.opts?.[item.chosen] ?? '—'}
@@ -753,7 +1222,7 @@ export default function LevelExam() {
                         ✓ {item.q.opts?.[item.correct] ?? '—'}
                       </Text>
                     </View>
-                  </View>
+                  </LinearGradient>
                 ))}
               </View>
             )}
@@ -761,19 +1230,67 @@ export default function LevelExam() {
             {/* Кнопки */}
             <TouchableOpacity
               onPress={() => { hapticTap(); startExam(); }}
-              style={{ backgroundColor: t.bgCard, borderRadius: 14, borderWidth: 0.5, borderColor: t.border, paddingVertical: 14, alignItems: 'center' }}
+              style={{
+                borderRadius: 14,
+                borderWidth: 0.5,
+                borderColor: isGoldTheme ? GOLD_RICH.hairline : t.border,
+                overflow: 'hidden',
+                ...(isGoldTheme ? goldShadow(1) : {}),
+              }}
             >
-              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Попробовать ещё раз', uk: 'Спробувати ще раз', es: 'Intentar de nuevo' })}
+              <LinearGradient
+                colors={isGoldTheme ? GOLD_GRADIENTS.raisedTile : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                start={isGoldTheme ? { x: 0, y: 0 } : undefined}
+                end={isGoldTheme ? { x: 1, y: 1 } : undefined}
+                style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 16 }}
+              >
+                {isGoldTheme && <GoldBevel radius={14} intensity="quiet" />}
+              <Text style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '700', zIndex: 10 }}>
+                {triLang(lang, {
+                  ru: 'Попробовать ещё раз',
+                  uk: 'Спробувати ще раз',
+                  es: 'Intentar de nuevo',
+                  'pt-BR': "Tentar de novo",
+                  vi: "Th? l?i",
+                  id: "Coba lagi",
+                  tr: "Tekrar dene",
+                  pl: "Spr?buj ponownie",
+                })}
               </Text>
+              </LinearGradient>
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => { hapticTap(); router.back(); }}
-              style={{ backgroundColor: t.accent, borderRadius: 14, paddingVertical: 14, alignItems: 'center' }}
+              style={{
+                borderRadius: 14,
+                borderWidth: isGoldTheme ? 1 : 0,
+                borderColor: isGoldTheme ? GOLD_RICH.edgeLight : 'transparent',
+                overflow: 'hidden',
+                ...(isGoldTheme ? goldShadow(2) : {}),
+              }}
             >
-              <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'К урокам', uk: 'До уроків', es: 'Volver a las lecciones' })}
+              <LinearGradient
+                colors={isGoldTheme ? GOLD_GRADIENTS.primaryButton : ([t.accent, t.accent, t.accent] as [string, string, string])}
+                locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+                start={isGoldTheme ? { x: 0, y: 0 } : undefined}
+                end={isGoldTheme ? { x: 1, y: 1 } : undefined}
+                style={{ paddingVertical: 14, alignItems: 'center', paddingHorizontal: 16 }}
+              >
+                {isGoldTheme && <GoldBevel radius={14} intensity="strong" />}
+              <Text style={{ color: isGoldTheme ? GOLD_RICH.blackPiano : t.correctText, fontSize: f.bodyLg, fontWeight: '700', zIndex: 10 }}>
+                {triLang(lang, {
+                  ru: 'К урокам',
+                  uk: 'До уроків',
+                  es: 'Volver a las lecciones',
+                  'pt-BR': "Voltar ?s aulas",
+                  vi: "Quay l?i b?i h?c",
+                  id: "Kembali ke pelajaran",
+                  tr: "Derslere d?n",
+                  pl: "Wr?? do lekcji",
+                })}
               </Text>
+              </LinearGradient>
             </TouchableOpacity>
             <View style={{ alignItems: 'center', marginTop: 8 }}>
               <ReportErrorButton
@@ -783,6 +1300,11 @@ export default function LevelExam() {
                   ru: `Зачёт ${lvl}: результат ${pct}%`,
                   uk: `Залік ${lvl}: результат ${pct}%`,
                   es: `Examen ${lvl}: resultado ${pct}%`,
+                  'pt-BR': `Teste ${lvl}: resultado ${pct}%`,
+                  vi: `B?i ki?m tra ${lvl}: k?t qu? ${pct}%`,
+                  id: `Ujian ${lvl}: hasil ${pct}%`,
+                  tr: `${lvl} s?nav?: sonu? %${pct}`,
+                  pl: `Test ${lvl}: wynik ${pct}%`,
                 })}
                 textColor={sx.muted}
               />
@@ -812,8 +1334,26 @@ export default function LevelExam() {
             <Ionicons name="close" size={26} color={sx.primary} />
           </TouchableOpacity>
           <View style={{ flex: 1, marginHorizontal: 12 }}>
-            <View style={{ height: 6, backgroundColor: t.bgSurface, borderRadius: 3, overflow: 'hidden' }}>
-              <View style={{ height: '100%', width: `${progressPct}%` as any, backgroundColor: t.accent, borderRadius: 3 }} />
+            <View
+              style={{
+                height: 6,
+                backgroundColor: isGoldTheme ? 'rgba(0,0,0,0.44)' : t.bgSurface,
+                borderRadius: 3,
+                overflow: 'hidden',
+                borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 0,
+                borderColor: isGoldTheme ? GOLD_RICH.hairline : 'transparent',
+              }}
+            >
+              {isGoldTheme ? (
+                <LinearGradient
+                  colors={GOLD_GRADIENTS.progressMetal}
+                  start={{ x: 0, y: 0 }}
+                  end={{ x: 1, y: 0 }}
+                  style={{ height: '100%', width: `${progressPct}%` as any, borderRadius: 3 }}
+                />
+              ) : (
+                <View style={{ height: '100%', width: `${progressPct}%` as any, backgroundColor: t.accent, borderRadius: 3 }} />
+              )}
             </View>
           </View>
           <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', minWidth: 48, textAlign: 'right' }}>
@@ -824,13 +1364,45 @@ export default function LevelExam() {
         <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }} bounces={false}>
           {/* Топик */}
           <Text style={{ color: sx.muted, fontSize: f.label, fontWeight: '700', textTransform: 'uppercase', letterSpacing: 1 }}>
-            {triLang(lang, { ru: q.topic, uk: q.topicUK, es: q.topicES })} · {triLang(lang, { ru: 'Урок', uk: 'Урок', es: 'Lección' })} {q.lessonNum}
+            {triLang(lang, {
+              ru: q.topic,
+              uk: q.topicUK,
+              es: q.topicES,
+              'pt-BR': levelTopicPlanned(q, 'pt-BR'),
+              vi: levelTopicPlanned(q, 'vi'),
+              id: levelTopicPlanned(q, 'id'),
+              tr: levelTopicPlanned(q, 'tr'),
+              pl: levelTopicPlanned(q, 'pl'),
+            })} · {triLang(lang, {
+              ru: 'Урок',
+              uk: 'Урок',
+              es: 'Lección',
+              'pt-BR': "Aula",
+              vi: "B?i h?c",
+              id: "Pelajaran",
+              tr: "Ders",
+              pl: "Lekcja",
+            })} {q.lessonNum}
           </Text>
 
           {/* Вопрос */}
-          <View style={{ backgroundColor: t.bgCard, borderRadius: 16, borderWidth: 0.5, borderColor: t.border, padding: 20 }}>
-            <ClozeGapText text={q.q} style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600', lineHeight: 26 }} />
-          </View>
+          <LinearGradient
+            colors={isGoldTheme ? GOLD_GRADIENTS.premiumPanel : ([t.bgCard, t.bgCard, t.bgCard] as [string, string, string])}
+            locations={isGoldTheme ? GOLD_SURFACE_LOCATIONS : undefined}
+            start={isGoldTheme ? { x: 0, y: 0 } : undefined}
+            end={isGoldTheme ? { x: 1, y: 1 } : undefined}
+            style={{
+              borderRadius: 16,
+              borderWidth: 0.5,
+              borderColor: isGoldTheme ? GOLD_RICH.hairlineStrong : t.border,
+              padding: 20,
+              overflow: 'hidden',
+              ...(isGoldTheme ? goldShadow(2) : {}),
+            }}
+          >
+            {isGoldTheme && <GoldBevel radius={16} intensity="normal" />}
+            <ClozeGapText text={q.q} style={{ color: t.textPrimary, fontSize: f.bodyLg, fontWeight: '600', lineHeight: 26, zIndex: 10 }} />
+          </LinearGradient>
 
           {/* Варианты ответов */}
           <View style={{ gap: 10 }}>
@@ -870,8 +1442,26 @@ export default function LevelExam() {
             >
               <Text style={{ color: t.correctText, fontSize: f.bodyLg, fontWeight: '700' }}>
                 {idx + 1 < total
-                  ? triLang(lang, { ru: 'Далее →', uk: 'Далі →', es: 'Siguiente →' })
-                  : triLang(lang, { ru: 'Завершить', uk: 'Завершити', es: 'Terminar' })}
+                  ? triLang(lang, {
+                    ru: 'Далее →',
+                    uk: 'Далі →',
+                    es: 'Siguiente →',
+                    'pt-BR': "Pr?ximo ?",
+                    vi: "Ti?p theo ?",
+                    id: "Berikutnya ?",
+                    tr: "?leri ?",
+                    pl: "Dalej ?",
+                  })
+                  : triLang(lang, {
+                    ru: 'Завершить',
+                    uk: 'Завершити',
+                    es: 'Terminar',
+                    'pt-BR': "Finalizar",
+                    vi: "Ho?n th?nh",
+                    id: "Selesai",
+                    tr: "Bitir",
+                    pl: "Zako?cz",
+                  })}
               </Text>
             </TouchableOpacity>
           )}
@@ -887,14 +1477,46 @@ export default function LevelExam() {
       </ContentWrap>
       <ThemedConfirmModal
         visible={exitExamConfirm}
-        title={triLang(lang, { ru: 'Выйти?', uk: 'Вийти?', es: '¿Salir del examen?' })}
+        title={triLang(lang, {
+          ru: 'Выйти?',
+          uk: 'Вийти?',
+          es: '¿Salir del examen?',
+          'pt-BR': "Sair do teste?",
+          vi: "Tho?t b?i ki?m tra?",
+          id: "Keluar dari ujian?",
+          tr: "S?navdan ??k?ls?n m??",
+          pl: "Wyj?? z testu?",
+        })}
         message={triLang(lang, {
           ru: 'Прогресс зачёта будет потерян',
           uk: 'Прогрес заліку буде втрачено',
           es: 'Perderás el progreso de este examen.',
+          'pt-BR': "O progresso deste teste ser? perdido.",
+          vi: "Ti?n tr?nh b?i ki?m tra s? b? m?t.",
+          id: "Progres ujian ini akan hilang.",
+          tr: "Bu s?navdaki ilerlemen kaybolacak.",
+          pl: "Post?p w tym te?cie zostanie utracony.",
         })}
-        cancelLabel={triLang(lang, { ru: 'Отмена', uk: 'Скасувати', es: 'Cancelar' })}
-        confirmLabel={triLang(lang, { ru: 'Выйти', uk: 'Вийти', es: 'Salir' })}
+        cancelLabel={triLang(lang, {
+          ru: 'Отмена',
+          uk: 'Скасувати',
+          es: 'Cancelar',
+          'pt-BR': "Cancelar",
+          vi: "H?y",
+          id: "Batal",
+          tr: "?ptal",
+          pl: "Anuluj",
+        })}
+        confirmLabel={triLang(lang, {
+          ru: 'Выйти',
+          uk: 'Вийти',
+          es: 'Salir',
+          'pt-BR': "Sair",
+          vi: "Tho?t",
+          id: "Keluar",
+          tr: "??k",
+          pl: "Wyjd?",
+        })}
         onCancel={() => setExitExamConfirm(false)}
         onConfirm={() => {
           setExitExamConfirm(false);

@@ -1,51 +1,64 @@
+// JESSE_REWORKED_PERSONAL_TRAINING
+// This file is protected from legacy replacement unless this exact id is being rebuilt.
 import type { DiagnosisTraining, DiagnosisTrainingStep, TriText } from './diagnosis_training_types';
 
-const tri = (ru: string, uk: string, es: string): TriText => ({ ru, uk, es });
+const tri = (ru: string, uk = ru, es = ru): TriText => ({ ru, uk, es });
 
-const DEMO_CONTRAST = ['this', 'that', 'these', 'those', 'singular', 'plural', 'near', 'far'];
+const CONTRAST_SET = ['this', 'that', 'these', 'those', 'singular', 'plural', 'near', 'far'];
 
-function demoWrong(correct: string): Record<string, TriText> {
-  return {
-    This: tri(`This ne podhodit zdes. Nuzhen ${correct}: prover singular/plural i near/far.`, `This ne pidkhodyt tut. Potriben ${correct}: perevir singular/plural i near/far.`, `This no encaja aqui. Necesitamos ${correct}: revisa singular/plural y near/far.`),
-    That: tri(`That ne podhodit zdes. Nuzhen ${correct}: prover singular/plural i near/far.`, `That ne pidkhodyt tut. Potriben ${correct}: perevir singular/plural i near/far.`, `That no encaja aqui. Necesitamos ${correct}: revisa singular/plural y near/far.`),
-    These: tri(`These ne podhodit zdes. Nuzhen ${correct}: prover singular/plural i near/far.`, `These ne pidkhodyt tut. Potriben ${correct}: perevir singular/plural i near/far.`, `These no encaja aqui. Necesitamos ${correct}: revisa singular/plural y near/far.`),
-    Those: tri(`Those ne podhodit zdes. Nuzhen ${correct}: prover singular/plural i near/far.`, `Those ne pidkhodyt tut. Potriben ${correct}: perevir singular/plural i near/far.`, `Those no encaja aqui. Necesitamos ${correct}: revisa singular/plural y near/far.`),
-    this: tri(`This ne podhodit zdes. Nuzhen ${correct}: prover noun number i distance.`, `This ne pidkhodyt tut. Potriben ${correct}: perevir noun number i distance.`, `This no encaja aqui. Necesitamos ${correct}: revisa noun number y distance.`),
-    that: tri(`That ne podhodit zdes. Nuzhen ${correct}: prover noun number i distance.`, `That ne pidkhodyt tut. Potriben ${correct}: perevir noun number i distance.`, `That no encaja aqui. Necesitamos ${correct}: revisa noun number y distance.`),
-    these: tri(`These ne podhodit zdes. Nuzhen ${correct}: prover noun number i distance.`, `These ne pidkhodyt tut. Potriben ${correct}: perevir noun number i distance.`, `These no encaja aqui. Necesitamos ${correct}: revisa noun number y distance.`),
-    those: tri(`Those ne podhodit zdes. Nuzhen ${correct}: prover noun number i distance.`, `Those ne pidkhodyt tut. Potriben ${correct}: perevir noun number i distance.`, `Those no encaja aqui. Necesitamos ${correct}: revisa noun number y distance.`),
-    Any: tri(`Any znachit any/cualquier, no zdes nuzhen demonstrative ${correct}.`, `Any oznachaie any/cualquier, ale tut potriben demonstrative ${correct}.`, `Any significa cualquier, pero aqui necesitamos demonstrative ${correct}.`),
-    them: tri(`Them eto object pronoun, ne determiner pered noun. Nuzhen ${correct}.`, `Them tse object pronoun, ne determiner pered noun. Potriben ${correct}.`, `Them es object pronoun, no determiner antes de noun. Necesitamos ${correct}.`),
-    Them: tri(`Them eto object pronoun. Dlya ukazaniya na predmet nuzhen ${correct}.`, `Them tse object pronoun. Dlia vkazannia na predmet potriben ${correct}.`, `Them es object pronoun. Para senalar la cosa necesitamos ${correct}.`),
-    It: tri(`It = one thing. Esli predmetov mnogo, nuzhna plural demonstrative forma: ${correct}.`, `It = one thing. Yakshcho predmetiv bahato, potribna plural demonstrative forma: ${correct}.`, `It = una cosa. Si hay varias, necesitamos forma plural demonstrative: ${correct}.`),
-  };
-}
+const option = (text: string) => ({ id: text, text });
 
-function retry(line: string): [TriText, TriText, TriText, TriText] {
-  return [
-    tri(line, line, line),
-    tri('Sdelai dve proverki: one or many? near or far?', 'Zroby dvi perevirky: one or many? near or far?', 'Haz dos comprobaciones: one or many? near or far?'),
-    tri('Table: this book / that book / these books / those books.', 'Table: this book / that book / these books / those books.', 'Tabla: this book / that book / these books / those books.'),
-    tri('Pochti podskazka: vyberi formu po number + distance.', 'Maizhe pidkazka: obery formu za number + distance.', 'Casi pista: elige la forma por number + distance.'),
-  ];
-}
+const retry = (main: string): [TriText, TriText, TriText, TriText] => [
+  tri(main, main, 'Check two things: how many, and how close.'),
+  tri(
+    'Сделай две проверки: один предмет или несколько? Рядом или далеко?',
+    'Зроби дві перевірки: один предмет чи кілька? Поруч чи далеко?',
+    'Haz dos comprobaciones: una cosa o varias? Cerca o lejos?',
+  ),
+  tri(
+    'Карта простая: один рядом, один далеко, несколько рядом, несколько далеко. Сначала количество, потом дистанция.',
+    'Карта проста: одне поруч, одне далеко, кiлька поруч, кiлька далеко. Спочатку кiлькiсть, потiм дистанцiя.',
+    'Mapa: this book, that book, these books, those books.',
+  ),
+  tri(
+    'Если после слова идет множественная форма, this/that уже ломаются.',
+    'Якщо після слова йде форма для кількох речей, this/that уже ламаються.',
+    'Si después viene una palabra para varias cosas, this/that ya se rompen.',
+  ),
+];
 
-function demoStep(input: {
+const defaultWrong = (correctAnswer: string): TriText => tri(
+  `Не этот выбор. Здесь нужно "${correctAnswer}": смотри на количество и дистанцию.`,
+  `Не цей вибір. Тут потрібно "${correctAnswer}": дивись на кількість і дистанцію.`,
+  `No es esta opción. Aquí necesitamos "${correctAnswer}": mira cantidad y distancia.`,
+);
+
+function step(input: {
   id: string;
   order: number;
   difficulty: DiagnosisTrainingStep['difficulty'];
   targetSkill: string;
   sentence: string;
   translation: TriText;
+  explanationBlock: TriText;
+  microTask?: TriText;
   options: string[];
-  correctAnswer: string;
+  correctAnswerId: string;
   correctFeedback: TriText;
-  wrong?: Record<string, TriText>;
+  wrongFeedbackByOption?: Record<string, TriText>;
   retryLine: string;
+  fallbackExplanation?: TriText;
   focusWords: string[];
-  context?: TriText;
 }): DiagnosisTrainingStep {
-  const wrong = { ...demoWrong(input.correctAnswer), ...(input.wrong ?? {}) };
+  const wrongFeedbackByOption = Object.fromEntries(
+    input.options
+      .filter((item) => item !== input.correctAnswerId)
+      .map((item) => [
+        item,
+        input.wrongFeedbackByOption?.[item] ?? defaultWrong(input.correctAnswerId),
+      ]),
+  );
+
   return {
     id: input.id,
     order: input.order,
@@ -53,33 +66,23 @@ function demoStep(input: {
     type: 'single_choice',
     targetSkill: input.targetSkill,
     translation: input.translation,
-    explanationBlock: input.context ?? tri(
-      'Snachala prover noun number, potom distance ot speaker.',
-      'Spershu perevir noun number, potim distance vid speaker.',
-      'Primero revisa noun number, luego distance desde el hablante.',
-    ),
-    microTask: tri(
-      'Vyberi this, that, these ili those.',
-      'Obery this, that, these abo those.',
-      'Elige this, that, these o those.',
+    explanationBlock: input.explanationBlock,
+    microTask: input.microTask ?? tri(
+      'Выбери указательное слово, которое нормально звучит в этой фразе.',
+      'Обери вказівне слово, яке нормально звучить у цій фразі.',
+      'Elige la palabra demostrativa que suena natural en esta frase.',
     ),
     sentence: input.sentence,
-    answerOptions: input.options.map((text) => ({ id: text, text })),
-    correctAnswerId: input.correctAnswer,
-    correctIndex: input.options.findIndex((option) => option === input.correctAnswer),
+    answerOptions: input.options.map(option),
+    correctAnswerId: input.correctAnswerId,
+    correctIndex: input.options.findIndex((item) => item === input.correctAnswerId),
     correctFeedback: input.correctFeedback,
-    wrongFeedbackByOption: Object.fromEntries(input.options
-      .filter((option) => option !== input.correctAnswer)
-      .map((option) => [option, wrong[option] ?? tri(
-        `Ne sovsem. Zdes nuzhen "${input.correctAnswer}": number + distance reshayut vybor.`,
-        `Ne zovsim. Tut potriben "${input.correctAnswer}": number + distance vyrishuiut vybir.`,
-        `No exactamente. Aqui necesitamos "${input.correctAnswer}": number + distance deciden.`,
-      )])),
+    wrongFeedbackByOption,
     retryFeedback: retry(input.retryLine),
-    fallbackExplanation: tri(
-      'This = one near. That = one far. These = many near. Those = many far.',
-      'This = one near. That = one far. These = many near. Those = many far.',
-      'This = one near. That = one far. These = many near. Those = many far.',
+    fallbackExplanation: input.fallbackExplanation ?? tri(
+      'This - для одного близкого предмета. That - для одного далекого. These - для нескольких близких. Those - для нескольких далеких.',
+      'This - для однієї близької речі. That - для однієї далекої. These - для кількох близьких. Those - для кількох далеких.',
+      'This para una cosa cerca. That para una cosa lejos. These para varias cerca. Those para varias lejos.',
     ),
     focusWords: input.focusWords,
   };
@@ -89,64 +92,472 @@ export const DETERMINER_THIS_THAT_THESE_THOSE_TRAINING: DiagnosisTraining = {
   id: 'determiner_this_that_these_those',
   category: 'determiner',
   version: '1.0.0',
-  status: 'ready_for_mvp_review',
+  status: 'active',
   priority: 19,
   supportedLocales: ['ru', 'uk', 'es'],
-  title: tri('This / That / These / Those: blizko, daleko, odin ili mnogo', 'This / That / These / Those: blyzko, daleko, odyn chy bahato', 'This / That / These / Those: cerca, lejos, uno o varios'),
+  title: tri(
+    'This / That / These / Those: одно или несколько, рядом или далеко',
+    'This / That / These / Those: одне чи кілька, поруч чи далеко',
+    'This / That / These / Those: una cosa o varias, cerca o lejos',
+  ),
   shortTitle: tri('This / That / These / Those', 'This / That / These / Those', 'This / That / These / Those'),
-  shortDiagnosis: tri('Ty putaesh this, that, these i those.', 'Ty plutaiesh this, that, these i those.', 'Confundes this, that, these y those.'),
+  shortDiagnosis: tri(
+    'Ты выбираешь this/that/these/those по переводу, а не по ситуации.',
+    'Ти обираєш this/that/these/those за перекладом, а не за ситуацією.',
+    'Eliges this/that/these/those por traducción, no por la situación.',
+  ),
   diagnosisText: tri(
-    'Ty putaesh demonstratives. Angliiskii trebuet dve proverki: odin predmet ili mnogo, i predmet blizko ili daleko ot speaker.',
-    'Ty plutaiesh demonstratives. Anhliiska potrebuie dvi perevirky: odyn predmet chy bahato, i predmet blyzko chy daleko vid speaker.',
-    'Confundes demonstratives. El ingles exige dos comprobaciones: una cosa o varias, y cerca o lejos del hablante.',
+    'В этой ошибке проблема не в слове "этот". В английском нужно быстро понять две вещи: один предмет или несколько, и это рядом или далеко от говорящего.',
+    'У цій помилці проблема не в слові "цей". В англійській треба швидко зрозуміти дві речі: один предмет чи кілька, і це поруч чи далеко від мовця.',
+    'El problema no es la traducción de "este". En inglés tienes que decidir dos cosas: una cosa o varias, y cerca o lejos del hablante.',
   ),
   mentalModel: tri(
-    'This = odin predmet ryadom. That = odin predmet daleko. These = neskolko predmetov ryadom. Those = neskolko predmetov daleko.',
-    'This = odyn predmet poruch. That = odyn predmet daleko. These = kilka predmetiv poruch. Those = kilka predmetiv daleko.',
-    'This = una cosa cerca. That = una cosa lejos. These = varias cosas cerca. Those = varias cosas lejos.',
+    'Не переводи по одному слову. Проверь: сколько предметов? Где они относительно говорящего? После этого выбор почти автоматический.',
+    'Не перекладай по одному слову. Перевір: скільки предметів? Де вони відносно мовця? Після цього вибір майже автоматичний.',
+    'No traduzcas palabra por palabra. Comprueba: cuántas cosas? Dónde están respecto al hablante? Después la elección casi sale sola.',
   ),
-  contrastSet: DEMO_CONTRAST,
+  contrastSet: CONTRAST_SET,
   coreRule: tri(
-    'this phone = odin phone ryadom. that phone = odin phone daleko. these phones = phones ryadom. those phones = phones daleko.',
-    'this phone = odyn phone poruch. that phone = odyn phone daleko. these phones = phones poruch. those phones = phones daleko.',
-    'this phone = este telefono cerca. that phone = ese telefono lejos. these phones = estos telefonos cerca. those phones = esos telefonos lejos.',
+    'This book, that book, these books, those books. Один близко, один далеко, несколько близко, несколько далеко.',
+    'This book, that book, these books, those books. Одне близько, одне далеко, кілька близько, кілька далеко.',
+    'This book, that book, these books, those books. Una cerca, una lejos, varias cerca, varias lejos.',
   ),
   whatUserMustLearn: {
-    ru: ['This + singular near.', 'That + singular far.', 'These + plural near.', 'Those + plural far.', 'This/that require singular noun.', 'These/those require plural noun.', 'Ne this books i ne these book.', 'This/that can stand alone: This is good.', 'These/those can stand alone: These are mine.', 'Time: this week = current period, that day = known/past period.'],
-    uk: ['This + singular near.', 'That + singular far.', 'These + plural near.', 'Those + plural far.', 'This/that require singular noun.', 'These/those require plural noun.', 'Ne this books i ne these book.', 'This/that can stand alone: This is good.', 'These/those can stand alone: These are mine.', 'Time: this week = current period, that day = known/past period.'],
-    es: ['This + singular near.', 'That + singular far.', 'These + plural near.', 'Those + plural far.', 'This/that necesitan singular noun.', 'These/those necesitan plural noun.', 'No this books ni these book.', 'This/that pueden ir solos: This is good.', 'These/those pueden ir solos: These are mine.', 'Tiempo: this week = periodo actual, that day = periodo conocido/pasado.'],
+    ru: [
+      'This работает с одним близким предметом.',
+      'That работает с одним далеким предметом.',
+      'These работает с несколькими близкими предметами.',
+      'Those работает с несколькими далекими предметами.',
+      'This books звучит сломанно, потому что books - это не одна книга.',
+      'These book звучит сломанно, потому что book - это одна книга.',
+      'These are my keys звучит нормально; This my keys не звучит.',
+      'This week обычно про текущую неделю.',
+      'That day обычно про уже известный или далекий день.',
+    ],
+    uk: [
+      'This працює з одним близьким предметом.',
+      'That працює з одним далеким предметом.',
+      'These працює з кількома близькими предметами.',
+      'Those працює з кількома далекими предметами.',
+      'This books звучить зламано, бо books - це не одна книга.',
+      'These book звучить зламано, бо book - це одна книга.',
+      'These are my keys звучить нормально; This my keys не звучить.',
+      'This week зазвичай про поточний тиждень.',
+      'That day зазвичай про вже відомий або далекий день.',
+    ],
+    es: [
+      'This funciona con una cosa cercana.',
+      'That funciona con una cosa lejana.',
+      'These funciona con varias cosas cercanas.',
+      'Those funciona con varias cosas lejanas.',
+      'This books suena roto porque books no es un libro.',
+      'These book suena roto porque book es un libro.',
+      'These are my keys suena natural; This my keys no.',
+      'This week normalmente habla de la semana actual.',
+      'That day normalmente habla de un día ya conocido o lejano.',
+    ],
   },
   examples: [
-    { en: 'This book is useful.', ru: 'Eta kniga poleznaya.', uk: 'Tsia knyha korysna.', es: 'Este libro es util.', why: tri('Book = one near, znachit this.', 'Book = one near, otzhe this.', 'Book = one near, por eso this.') },
-    { en: 'That book is expensive.', ru: 'Ta kniga dorogaya.', uk: 'Ta knyha doroha.', es: 'Ese/aquel libro es caro.', why: tri('Book = one far, znachit that.', 'Book = one far, otzhe that.', 'Book = one far, por eso that.') },
-    { en: 'These books are useful.', ru: 'Eti knigi poleznye.', uk: 'Tsi knyhy korysni.', es: 'Estos libros son utiles.', why: tri('Books = plural near, znachit these.', 'Books = plural near, otzhe these.', 'Books = plural near, por eso these.') },
-    { en: 'Those books are expensive.', ru: 'Te knigi dorogie.', uk: 'Ti knyhy dorohi.', es: 'Esos/aquellos libros son caros.', why: tri('Books = plural far, znachit those.', 'Books = plural far, otzhe those.', 'Books = plural far, por eso those.') },
-    { en: 'This is my phone.', ru: 'Eto moi telefon.', uk: 'Tse mii telefon.', es: 'Este es mi telefono.', why: tri('This can stand alone for one near thing.', 'This can stand alone for one near thing.', 'This puede ir solo para una cosa cerca.') },
-    { en: 'Those are not my keys.', ru: 'Te klyuchi ne moi.', uk: 'Ti kliuchi ne moi.', es: 'Esas no son mis llaves.', why: tri('Those stands alone for plural far things.', 'Those stands alone for plural far things.', 'Those va solo para varias cosas lejos.') },
-    { en: "I don't understand this question.", ru: 'Ya ne ponimayu etot vopros.', uk: 'Ya ne rozumiiu tse pytannia.', es: 'No entiendo esta pregunta.', why: tri('Question = one current thing before us: this question.', 'Question = one current thing before us: this question.', 'Question = una cosa actual delante: this question.') },
-    { en: 'Do you remember that day?', ru: 'Ty pomnish tot den?', uk: 'Ty pamiataiesh toi den?', es: 'Recuerdas aquel dia?', why: tri('That day points to a known or distant day in the past.', 'That day points to a known or distant day in the past.', 'That day senala un dia conocido o lejano en el pasado.') },
+    {
+      en: 'This phone is mine.',
+      ru: 'Этот телефон мой.',
+      uk: 'Цей телефон мій.',
+      es: 'Este teléfono es mío.',
+      why: tri('Телефон один и рядом. Поэтому this phone.', 'Телефон один і поруч. Тому this phone.', 'El teléfono es uno y está cerca. Por eso this phone.'),
+    },
+    {
+      en: 'That bag over there is yours.',
+      ru: 'Та сумка там твоя.',
+      uk: 'Та сумка там твоя.',
+      es: 'Esa bolsa de allí es tuya.',
+      why: tri('Сумка одна и не рядом. Поэтому that bag.', 'Сумка одна і не поруч. Тому that bag.', 'La bolsa es una y está lejos. Por eso that bag.'),
+    },
+    {
+      en: 'These keys are mine.',
+      ru: 'Эти ключи мои.',
+      uk: 'Ці ключі мої.',
+      es: 'Estas llaves son mías.',
+      why: tri('Ключей несколько и они рядом. Поэтому these keys.', 'Ключів кілька і вони поруч. Тому these keys.', 'Hay varias llaves y están cerca. Por eso these keys.'),
+    },
+    {
+      en: 'Those houses across the street are old.',
+      ru: 'Те дома через дорогу старые.',
+      uk: 'Ті будинки через дорогу старі.',
+      es: 'Esas casas al otro lado de la calle son antiguas.',
+      why: tri('Домов несколько и они далеко. Поэтому those houses.', 'Будинків кілька і вони далеко. Тому those houses.', 'Hay varias casas y están lejos. Por eso those houses.'),
+    },
+    {
+      en: 'These are my notes.',
+      ru: 'Это мои заметки.',
+      uk: 'Це мої нотатки.',
+      es: 'Estas son mis notas.',
+      why: tri('Заметок несколько, фраза стоит сама: these are.', 'Нотаток кілька, фраза стоїть сама: these are.', 'Hay varias notas, la frase va sola: these are.'),
+    },
+    {
+      en: 'I am busy this week.',
+      ru: 'Я занят на этой неделе.',
+      uk: 'Я зайнятий цього тижня.',
+      es: 'Estoy ocupado esta semana.',
+      why: tri('Текущая неделя как будто близко к нам во времени: this week.', 'Поточний тиждень ніби близько до нас у часі: this week.', 'La semana actual está cerca en el tiempo: this week.'),
+    },
   ],
   introBlocks: [
-    { id: 'intro_problem', type: 'diagnosis', text: tri('Ne perevodi tolko kak etot/tot. Snachala prover: one or many, near or far.', 'Ne perekladai lyshe yak tsei/toi. Spershu perevir: one or many, near or far.', 'No traduzcas solo como este/ese. Primero revisa: one or many, near or far.') },
-    { id: 'intro_rule', type: 'rule', text: tri('Map: this = one near, that = one far, these = many near, those = many far.', 'Map: this = one near, that = one far, these = many near, those = many far.', 'Mapa: this = one near, that = one far, these = many near, those = many far.') },
-    { id: 'intro_warning', type: 'warning', text: tri('Main error: number. This book, but these books. That lesson, but those lessons.', 'Main error: number. This book, but these books. That lesson, but those lessons.', 'Error principal: number. This book, pero these books. That lesson, pero those lessons.') },
+    {
+      id: 'intro_problem',
+      type: 'diagnosis',
+      text: tri(
+        'Русское "это" слишком удобное: им можно закрыть почти все. В английском нужно сказать точнее.',
+        'Українське "це" занадто зручне: ним можна закрити майже все. В англійській треба сказати точніше.',
+        'En español también puedes apoyarte en la traducción. En inglés hay que ser más preciso.',
+      ),
+    },
+    {
+      id: 'intro_rule',
+      type: 'rule',
+      text: tri(
+        'Задай себе два вопроса: сколько предметов? Они рядом или далеко?',
+        'Постав собі два питання: скільки предметів? Вони поруч чи далеко?',
+        'Hazte dos preguntas: cuántas cosas? Están cerca o lejos?',
+      ),
+    },
+    {
+      id: 'intro_warning',
+      type: 'warning',
+      text: tri(
+        'Самая дорогая ошибка: сказать this books или these book. Собеседник понимает слова, но фраза звучит криво.',
+        'Найдорожча помилка: сказати this books або these book. Співрозмовник розуміє слова, але фраза звучить криво.',
+        'El error más caro: decir this books o these book. La otra persona entiende las palabras, pero la frase suena torcida.',
+      ),
+    },
   ],
   steps: [
-    demoStep({ id: 'demo_easy_001', order: 1, difficulty: 'easy', targetSkill: 'this_singular_near', sentence: '___ book is useful.', translation: tri('Eta kniga poleznaya.', 'Tsia knyha korysna.', 'Este libro es util.'), context: tri('Book ryadom so speaker.', 'Book poruch iz speaker.', 'El libro esta cerca del hablante.'), options: ['This', 'These', 'Those', 'Any'], correctAnswer: 'This', correctFeedback: tri('Da. Book = one near. One near = this.', 'Tak. Book = one near. One near = this.', 'Si. Book = one near. One near = this.'), wrong: { These: tri('These is plural: these books. Zdes one book, so this.', 'These is plural: these books. Tut one book, so this.', 'These es plural: these books. Aqui hay one book, por eso this.'), Those: tri('Those is plural far: those books. Zdes one book near, so this.', 'Those is plural far: those books. Tut one book near, so this.', 'Those es plural lejos: those books. Aqui hay one book near, por eso this.') }, retryLine: 'One book near = this book.', focusWords: ['this'] }),
-    demoStep({ id: 'demo_easy_002', order: 2, difficulty: 'easy', targetSkill: 'that_singular_far', sentence: '___ house is beautiful.', translation: tri('Tot dom krasivyi.', 'Toi budynok krasyvyi.', 'Esa/aquella casa es bonita.'), context: tri('House daleko ot speaker.', 'House daleko vid speaker.', 'La casa esta lejos del hablante.'), options: ['This', 'That', 'These', 'Those'], correctAnswer: 'That', correctFeedback: tri('Da. House = one far. One far = that.', 'Tak. House = one far. One far = that.', 'Si. House = one far. One far = that.'), wrong: { This: tri('This = one near. House is far, so that.', 'This = one near. House is far, so that.', 'This = one near. House esta lejos, por eso that.'), Those: tri('Those = plural far. House is singular, so that.', 'Those = plural far. House is singular, so that.', 'Those = plural far. House es singular, por eso that.') }, retryLine: 'One house far = that house.', focusWords: ['that'] }),
-    demoStep({ id: 'demo_easy_003', order: 3, difficulty: 'easy', targetSkill: 'this_singular_near', sentence: "I don't understand ___ question.", translation: tri('Ya ne ponimayu etot vopros.', 'Ya ne rozumiiu tse pytannia.', 'No entiendo esta pregunta.'), context: tri('Question pryamo seichas pered student.', 'Question pryamo zaraz pered student.', 'La pregunta esta justo ahora delante del alumno.'), options: ['this', 'these', 'those', 'them'], correctAnswer: 'this', correctFeedback: tri('Da. Question = one current thing before us. Use this question.', 'Tak. Question = one current thing before us. Use this question.', 'Si. Question = one current thing before us. Usa this question.'), wrong: { these: tri('These needs plural noun: these questions. Here question is singular, so this.', 'These needs plural noun: these questions. Here question is singular, so this.', 'These necesita plural noun: these questions. Aqui question es singular, por eso this.'), those: tri('Those needs plural and usually far distance. Here one current question = this.', 'Those needs plural and usually far distance. Here one current question = this.', 'Those necesita plural y distancia lejana. Aqui one current question = this.') }, retryLine: 'Current singular question = this question.', focusWords: ['this'] }),
-    demoStep({ id: 'demo_contrast_001', order: 4, difficulty: 'contrast', targetSkill: 'these_plural_near', sentence: '___ books are useful.', translation: tri('Eti knigi poleznye.', 'Tsi knyhy korysni.', 'Estos libros son utiles.'), context: tri('Books ryadom so speaker.', 'Books poruch iz speaker.', 'Los libros estan cerca del hablante.'), options: ['This', 'That', 'These', 'Those'], correctAnswer: 'These', correctFeedback: tri('Da. Books = plural near. Many near = these.', 'Tak. Books = plural near. Many near = these.', 'Si. Books = plural near. Many near = these.'), wrong: { This: tri('This is singular: this book. Here books is plural, so use these books.', 'This is singular: this book. Here books is plural, so use these books.', 'This es singular: this book. Aqui books es plural, por eso these books.'), That: tri('That is singular: that book. Here books is plural and near, so these.', 'That is singular: that book. Here books is plural and near, so these.', 'That es singular: that book. Aqui books es plural y cerca, por eso these.'), Those: tri('Those = plural far. Books are near, so these.', 'Those = plural far. Books are near, so these.', 'Those = plural far. Books estan cerca, por eso these.') }, retryLine: 'Books = plural. Near = these.', focusWords: ['these'] }),
-    demoStep({ id: 'demo_contrast_002', order: 5, difficulty: 'contrast', targetSkill: 'those_plural_far', sentence: '___ shoes are too expensive.', translation: tri('Te tufli slishkom dorogie.', 'Ti tufli zanadto dorohi.', 'Esos zapatos son demasiado caros.'), context: tri('Shoes daleko ot speaker.', 'Shoes daleko vid speaker.', 'Los zapatos estan lejos del hablante.'), options: ['This', 'That', 'These', 'Those'], correctAnswer: 'Those', correctFeedback: tri('Da. Shoes = plural far. Many far = those.', 'Tak. Shoes = plural far. Many far = those.', 'Si. Shoes = plural far. Many far = those.'), wrong: { This: tri('This = singular near. Shoes is plural, so not this.', 'This = singular near. Shoes is plural, so not this.', 'This = singular near. Shoes es plural, por eso no this.'), That: tri('That = one far. Shoes are plural, so use those shoes.', 'That = one far. Shoes are plural, so use those shoes.', 'That = one far. Shoes es plural, por eso those shoes.'), These: tri('These = plural near. Shoes are far, so those.', 'These = plural near. Shoes are far, so those.', 'These = plural near. Shoes estan lejos, por eso those.') }, retryLine: 'Shoes = plural. Far = those.', focusWords: ['those'] }),
-    demoStep({ id: 'demo_contrast_003', order: 6, difficulty: 'contrast', targetSkill: 'these_plural_near', sentence: 'I like ___ examples.', translation: tri('Mne nravyatsya eti primery.', 'Meni podobaiutsia tsi pryklady.', 'Me gustan estos ejemplos.'), context: tri('Examples v current lesson.', 'Examples v current lesson.', 'Los ejemplos estan en la leccion actual.'), options: ['this', 'that', 'these', 'those'], correctAnswer: 'these', correctFeedback: tri('Da. Examples = plural and current/near. Use these examples.', 'Tak. Examples = plural and current/near. Use these examples.', 'Si. Examples = plural and current/near. Usa these examples.'), wrong: { this: tri('This = singular: this example. Here examples is plural, so these.', 'This = singular: this example. Here examples is plural, so these.', 'This = singular: this example. Aqui examples es plural, por eso these.'), that: tri('That = singular: that example. Here examples is plural, so these.', 'That = singular: that example. Here examples is plural, so these.', 'That = singular: that example. Aqui examples es plural, por eso these.'), those: tri('Those usually marks plural far. These examples are current/near, so these.', 'Those usually marks plural far. These examples are current/near, so these.', 'Those suele marcar plural lejos. Estos ejemplos son actuales/cerca, por eso these.') }, retryLine: 'Examples plural and current = these examples.', focusWords: ['these'] }),
-    demoStep({ id: 'demo_contrast_004', order: 7, difficulty: 'contrast', targetSkill: 'this_singular_agreement', sentence: 'Choose the correct phrase.', translation: tri('Vyberi pravilnuyu frazu.', 'Obery pravylnu frazu.', 'Elige la frase correcta.'), options: ['this lesson', 'this lessons', 'these lesson', 'those lesson'], correctAnswer: 'this lesson', correctFeedback: tri('Da. This requires singular noun: this lesson.', 'Tak. This requires singular noun: this lesson.', 'Si. This necesita singular noun: this lesson.'), retryLine: 'This/that + singular. These/those + plural.', focusWords: ['this'] }),
-    demoStep({ id: 'demo_contrast_005', order: 8, difficulty: 'contrast', targetSkill: 'these_plural_agreement', sentence: 'Choose the correct phrase.', translation: tri('Vyberi pravilnuyu frazu.', 'Obery pravylnu frazu.', 'Elige la frase correcta.'), options: ['these lessons', 'these lesson', 'this lessons', 'that lessons'], correctAnswer: 'these lessons', correctFeedback: tri('Da. These requires plural noun: these lessons.', 'Tak. These requires plural noun: these lessons.', 'Si. These necesita plural noun: these lessons.'), retryLine: 'Lessons plural. Plural near = these lessons.', focusWords: ['these'] }),
-    demoStep({ id: 'demo_contrast_006', order: 9, difficulty: 'contrast', targetSkill: 'those_plural_agreement', sentence: 'Choose the correct phrase.', translation: tri('Vyberi pravilnuyu frazu.', 'Obery pravylnu frazu.', 'Elige la frase correcta.'), options: ['those people', 'that people', 'this people', 'those person'], correctAnswer: 'those people', correctFeedback: tri('Da. People works as plural. Plural far = those people.', 'Tak. People works as plural. Plural far = those people.', 'Si. People funciona como plural. Plural far = those people.'), retryLine: 'People = plural. Plural far = those.', focusWords: ['those'] }),
-    demoStep({ id: 'demo_mixed_001', order: 10, difficulty: 'mixed', targetSkill: 'standalone_this_is', sentence: '___ is my phone.', translation: tri('Eto moi telefon.', 'Tse mii telefon.', 'Este es mi telefono.'), context: tri('Phone ryadom so speaker.', 'Phone poruch iz speaker.', 'El telefono esta cerca del hablante.'), options: ['This', 'These', 'Those', 'Them'], correctAnswer: 'This', correctFeedback: tri('Da. One thing near, standalone: this is.', 'Tak. One thing near, standalone: this is.', 'Si. One thing near, standalone: this is.'), wrong: { These: tri('These = plural and needs are: These are. Here one phone, so This is.', 'These = plural and needs are: These are. Here one phone, so This is.', 'These = plural y necesita are: These are. Aqui one phone, por eso This is.'), Those: tri('Those = plural far. Here one phone near, so This.', 'Those = plural far. Here one phone near, so This.', 'Those = plural far. Aqui one phone near, por eso This.') }, retryLine: 'One near thing = this. After this goes is.', focusWords: ['this'] }),
-    demoStep({ id: 'demo_mixed_002', order: 11, difficulty: 'mixed', targetSkill: 'standalone_these_are', sentence: '___ are my keys.', translation: tri('Eto moi klyuchi.', 'Tse moi kliuchi.', 'Estas son mis llaves.'), context: tri('Keys ryadom so speaker.', 'Keys poruch iz speaker.', 'Las llaves estan cerca del hablante.'), options: ['This', 'That', 'These', 'It'], correctAnswer: 'These', correctFeedback: tri('Da. Keys = plural near. Use these are.', 'Tak. Keys = plural near. Use these are.', 'Si. Keys = plural near. Usa these are.'), wrong: { This: tri('This = one thing and usually this is. Keys are plural, so these are.', 'This = one thing and usually this is. Keys are plural, so these are.', 'This = one thing y normalmente this is. Keys es plural, por eso these are.'), That: tri('That = one thing far and goes with is. Keys are plural, so these are.', 'That = one thing far and goes with is. Keys are plural, so these are.', 'That = one thing far y va con is. Keys es plural, por eso these are.') }, retryLine: 'Keys plural near = these are.', focusWords: ['these'] }),
-    demoStep({ id: 'demo_mixed_003', order: 12, difficulty: 'mixed', targetSkill: 'standalone_those_are', sentence: '___ are not my bags.', translation: tri('Te sumki ne moi.', 'Ti sumky ne moi.', 'Esas no son mis bolsas.'), context: tri('Bags daleko ot speaker.', 'Bags daleko vid speaker.', 'Las bolsas estan lejos del hablante.'), options: ['That', 'This', 'Those', 'It'], correctAnswer: 'Those', correctFeedback: tri('Da. Bags = plural far. Use those are.', 'Tak. Bags = plural far. Use those are.', 'Si. Bags = plural far. Usa those are.'), wrong: { That: tri('That = one far. Bags are plural, so those.', 'That = one far. Bags are plural, so those.', 'That = one far. Bags es plural, por eso those.'), This: tri('This = one near. Bags are plural and far, so those.', 'This = one near. Bags are plural and far, so those.', 'This = one near. Bags es plural y lejos, por eso those.') }, retryLine: 'Bags plural far = those are.', focusWords: ['those'] }),
-    demoStep({ id: 'demo_mixed_004', order: 13, difficulty: 'mixed_review', targetSkill: 'time_this_current', sentence: 'I am busy ___ week.', translation: tri('Ya zanyat na etoi nedele.', 'Ya zainiatyi tsoho tyzhnia.', 'Estoy ocupado esta semana.'), context: tri('Current week.', 'Current week.', 'Semana actual.'), options: ['this', 'that', 'these', 'those'], correctAnswer: 'this', correctFeedback: tri('Da. Current week = this week.', 'Tak. Current week = this week.', 'Si. Current week = this week.'), wrong: { that: tri('That week usually means an mentioned/past/future week. Current week = this week.', 'That week usually means an mentioned/past/future week. Current week = this week.', 'That week suele ser una semana mencionada/pasada/futura. Current week = this week.') }, retryLine: 'Current period = this.', focusWords: ['this'] }),
-    demoStep({ id: 'demo_mixed_005', order: 14, difficulty: 'mixed_review', targetSkill: 'time_that_past_reference', sentence: 'I will never forget ___ day.', translation: tri('Ya nikogda ne zabudu tot den.', 'Ya nikoly ne zabudu toi den.', 'Nunca olvidare aquel dia.'), context: tri('Important day in the past, clear from context.', 'Important day in the past, clear from context.', 'Dia importante del pasado, claro por contexto.'), options: ['this', 'that', 'these', 'those'], correctAnswer: 'that', correctFeedback: tri('Da. Day = singular, known/distant in the past. Use that day.', 'Tak. Day = singular, known/distant in the past. Use that day.', 'Si. Day = singular, known/distant in the past. Usa that day.'), wrong: { this: tri('This day sounds current/near. Here it is a known past day, so that.', 'This day sounds current/near. Here it is a known past day, so that.', 'This day suena actual/cercano. Aqui es dia pasado conocido, por eso that.') }, retryLine: 'One known day in the past = that day.', focusWords: ['that'] }),
-    demoStep({ id: 'demo_mixed_006', order: 15, difficulty: 'mixed_review', targetSkill: 'mixed_demonstrative_pair', sentence: 'Choose the correct pair.', translation: tri('Vyberi pravilnuyu paru.', 'Obery pravylnu paru.', 'Elige la pareja correcta.'), options: ['this book / these books', 'this books / these book', 'that books / those book', 'these book / those book'], correctAnswer: 'this book / these books', correctFeedback: tri('Da. This + singular book. These + plural books.', 'Tak. This + singular book. These + plural books.', 'Si. This + singular book. These + plural books.'), retryLine: 'This/that one. These/those many.', focusWords: ['this', 'these'] }),
+    step({
+      id: 'demo_easy_001',
+      order: 1,
+      difficulty: 'easy',
+      targetSkill: 'this_one_near',
+      sentence: '___ phone is mine.',
+      translation: tri('Этот телефон мой.', 'Цей телефон мій.', 'Este teléfono es mío.'),
+      explanationBlock: tri(
+        'Телефон один и рядом с говорящим. Такая ситуация просит this.',
+        'Телефон один і поруч з мовцем. Така ситуація просить this.',
+        'El teléfono es uno y está cerca del hablante. Esta situación pide this.',
+      ),
+      options: ['This', 'These', 'Those', 'Them'],
+      correctAnswerId: 'This',
+      correctFeedback: tri('Да. Один близкий телефон: this phone.', 'Так. Один близький телефон: this phone.', 'Sí. Un teléfono cercano: this phone.'),
+      wrongFeedbackByOption: {
+        These: tri('These для нескольких близких предметов. Здесь телефон один, нужно this.', 'These для кількох близьких предметів. Тут телефон один, потрібно this.', 'These es para varias cosas cercanas. Aquí hay un teléfono, necesitamos this.'),
+        Those: tri('Those для нескольких далеких предметов. Здесь телефон один и рядом, нужно this.', 'Those для кількох далеких предметів. Тут телефон один і поруч, потрібно this.', 'Those es para varias cosas lejanas. Aquí hay un teléfono cercano, necesitamos this.'),
+        Them: tri('Them не ставится перед phone. Для "этот телефон" нужно this phone.', 'Them не ставимо перед phone. Для "цей телефон" потрібно this phone.', 'Them no va antes de phone. Para "este teléfono" necesitamos this phone.'),
+      },
+      retryLine: 'Один телефон рядом = this phone.',
+      focusWords: ['this'],
+    }),
+    step({
+      id: 'demo_easy_002',
+      order: 2,
+      difficulty: 'easy',
+      targetSkill: 'that_one_far',
+      sentence: '___ bag over there is yours.',
+      translation: tri('Та сумка там твоя.', 'Та сумка там твоя.', 'Esa bolsa de allí es tuya.'),
+      explanationBlock: tri(
+        'Over there уже показал дистанцию. Сумка одна и не рядом.',
+        'Over there уже показав дистанцію. Сумка одна і не поруч.',
+        'Over there ya marcó distancia. La bolsa es una y no está cerca.',
+      ),
+      options: ['This', 'That', 'These', 'Those'],
+      correctAnswerId: 'That',
+      correctFeedback: tri('Да. Одна сумка там: that bag.', 'Так. Одна сумка там: that bag.', 'Sí. Una bolsa allí: that bag.'),
+      wrongFeedbackByOption: {
+        This: tri('This звучит так, будто сумка рядом. Over there просит that.', 'This звучить так, ніби сумка поруч. Over there просить that.', 'This suena como si la bolsa estuviera cerca. Over there pide that.'),
+        These: tri('These для нескольких близких предметов. Здесь одна сумка там, нужно that.', 'These для кількох близьких предметів. Тут одна сумка там, потрібно that.', 'These es para varias cosas cercanas. Aquí hay una bolsa allí, necesitamos that.'),
+        Those: tri('Those для нескольких далеких предметов. Здесь сумка одна, нужно that.', 'Those для кількох далеких предметів. Тут сумка одна, потрібно that.', 'Those es para varias cosas lejanas. Aquí hay una bolsa, necesitamos that.'),
+      },
+      retryLine: 'Одна сумка далеко = that bag.',
+      focusWords: ['that'],
+    }),
+    step({
+      id: 'demo_easy_003',
+      order: 3,
+      difficulty: 'easy',
+      targetSkill: 'these_many_near',
+      sentence: '___ shoes are new.',
+      translation: tri('Эти туфли новые.', 'Ці туфлі нові.', 'Estos zapatos son nuevos.'),
+      explanationBlock: tri(
+        'Shoes - это не один предмет в фразе. Они рядом, поэтому нужно these.',
+        'Shoes - це не один предмет у фразі. Вони поруч, тому потрібно these.',
+        'Shoes no habla de una sola cosa en esta frase. Están cerca, por eso necesitamos these.',
+      ),
+      options: ['This', 'That', 'These', 'Those'],
+      correctAnswerId: 'These',
+      correctFeedback: tri('Да. Несколько близких предметов: these shoes.', 'Так. Кілька близьких предметів: these shoes.', 'Sí. Varias cosas cercanas: these shoes.'),
+      wrongFeedbackByOption: {
+        This: tri('This был бы для одного предмета. Shoes - несколько, нужно these.', 'This був би для одного предмета. Shoes - кілька, потрібно these.', 'This sería para una cosa. Shoes son varias, necesitamos these.'),
+        That: tri('That был бы для одного далекого предмета. Shoes - несколько и рядом, нужно these.', 'That був би для одного далекого предмета. Shoes - кілька і поруч, потрібно these.', 'That sería para una cosa lejana. Shoes son varias y están cerca, necesitamos these.'),
+        Those: tri('Those работает, когда предметы далеко. Здесь они рядом, нужно these.', 'Those працює, коли предмети далеко. Тут вони поруч, потрібно these.', 'Those funciona cuando las cosas están lejos. Aquí están cerca, necesitamos these.'),
+      },
+      retryLine: 'Shoes рядом = these shoes.',
+      focusWords: ['these'],
+    }),
+    step({
+      id: 'demo_easy_004',
+      order: 4,
+      difficulty: 'easy',
+      targetSkill: 'those_many_far',
+      sentence: '___ mountains in the distance are beautiful.',
+      translation: tri('Те горы вдали красивые.', 'Ті гори вдалині красиві.', 'Esas montañas a lo lejos son bonitas.'),
+      explanationBlock: tri(
+        'In the distance значит: не рядом. Гор в фразе не одна.',
+        'In the distance означає: не поруч. Гір у фразі не одна.',
+        'In the distance significa que no están cerca. Hay varias montañas.',
+      ),
+      options: ['This', 'That', 'These', 'Those'],
+      correctAnswerId: 'Those',
+      correctFeedback: tri('Да. Несколько далеких предметов: those mountains.', 'Так. Кілька далеких предметів: those mountains.', 'Sí. Varias cosas lejanas: those mountains.'),
+      wrongFeedbackByOption: {
+        This: tri('This для одного близкого предмета. Mountains - несколько и далеко, нужно those.', 'This для одного близького предмета. Mountains - кілька і далеко, потрібно those.', 'This es para una cosa cercana. Mountains son varias y están lejos, necesitamos those.'),
+        That: tri('That для одного далекого предмета. Mountains - несколько, нужно those.', 'That для одного далекого предмета. Mountains - кілька, потрібно those.', 'That es para una cosa lejana. Mountains son varias, necesitamos those.'),
+        These: tri('These для предметов рядом. In the distance просит those.', 'These для предметів поруч. In the distance просить those.', 'These es para cosas cercanas. In the distance pide those.'),
+      },
+      retryLine: 'Mountains далеко = those mountains.',
+      focusWords: ['those'],
+    }),
+    step({
+      id: 'demo_contrast_001',
+      order: 5,
+      difficulty: 'contrast',
+      targetSkill: 'these_books_near',
+      sentence: '___ books are on my desk.',
+      translation: tri('Эти книги на моем столе.', 'Ці книги на моєму столі.', 'Estos libros están en mi escritorio.'),
+      explanationBlock: tri(
+        'Books на столе рядом с говорящим. Их несколько.',
+        'Books на столі поруч з мовцем. Їх кілька.',
+        'Books están en el escritorio cerca del hablante. Hay varios.',
+      ),
+      options: ['These', 'This', 'Those', 'That'],
+      correctAnswerId: 'These',
+      correctFeedback: tri('Да. Books рядом и их несколько: these books.', 'Так. Books поруч і їх кілька: these books.', 'Sí. Books están cerca y son varios: these books.'),
+      wrongFeedbackByOption: {
+        This: tri('This для одного предмета. Здесь books - несколько книг рядом, нужно these books.', 'This для одного предмета. Тут books - кілька книг поруч, потрібно these books.', 'This es para una cosa. Aquí books son varios libros cerca, necesitamos these books.'),
+        Those: tri('Those для нескольких далеких предметов. Здесь книги на моем столе, нужно these.', 'Those для кількох далеких предметів. Тут книги на моєму столі, потрібно these.', 'Those es para varias cosas lejanas. Aquí los libros están en mi escritorio, necesitamos these.'),
+        That: tri('That для одного далекого предмета. Здесь books - несколько книг рядом, нужно these.', 'That для одного далекого предмета. Тут books - кілька книг поруч, потрібно these.', 'That es para una cosa lejana. Aquí books son varios libros cerca, necesitamos these.'),
+      },
+      retryLine: 'Books на моем столе = these books.',
+      focusWords: ['these'],
+    }),
+    step({
+      id: 'demo_contrast_002',
+      order: 6,
+      difficulty: 'contrast',
+      targetSkill: 'those_houses_far',
+      sentence: '___ houses across the street are old.',
+      translation: tri('Те дома через дорогу старые.', 'Ті будинки через дорогу старі.', 'Esas casas al otro lado de la calle son antiguas.'),
+      explanationBlock: tri(
+        'Across the street показал дистанцию. Домов несколько.',
+        'Across the street показав дистанцію. Будинків кілька.',
+        'Across the street marca distancia. Hay varias casas.',
+      ),
+      options: ['Those', 'That', 'These', 'This'],
+      correctAnswerId: 'Those',
+      correctFeedback: tri('Да. Несколько домов далеко: those houses.', 'Так. Кілька будинків далеко: those houses.', 'Sí. Varias casas lejos: those houses.'),
+      wrongFeedbackByOption: {
+        That: tri('That для одного далекого предмета. Здесь houses - несколько домов, поэтому нужно those houses.', 'That для одного далекого предмета. Тут houses - кілька будинків, тому потрібно those houses.', 'That es para una cosa lejana. Aquí houses son varias casas, por eso necesitamos those houses.'),
+        These: tri('These для нескольких предметов рядом. Across the street просит those.', 'These для кількох предметів поруч. Across the street просить those.', 'These es para varias cosas cerca. Across the street pide those.'),
+        This: tri('This для одного предмета рядом. Здесь домов несколько и они далеко, нужно those.', 'This для одного предмета поруч. Тут будинків кілька і вони далеко, потрібно those.', 'This es para una cosa cerca. Aquí son varias casas lejos, necesitamos those.'),
+      },
+      retryLine: 'Houses через дорогу = those houses.',
+      focusWords: ['those'],
+    }),
+    step({
+      id: 'demo_contrast_003',
+      order: 7,
+      difficulty: 'contrast',
+      targetSkill: 'this_current_question',
+      sentence: "I don't understand ___ question.",
+      translation: tri('Я не понимаю этот вопрос.', 'Я не розумію це питання.', 'No entiendo esta pregunta.'),
+      explanationBlock: tri(
+        'Вопрос перед нами прямо сейчас. Он один.',
+        'Питання перед нами прямо зараз. Воно одне.',
+        'La pregunta está delante ahora mismo. Es una.',
+      ),
+      options: ['this', 'that', 'these', 'those'],
+      correctAnswerId: 'this',
+      correctFeedback: tri('Да. Один текущий вопрос: this question.', 'Так. Одне поточне питання: this question.', 'Sí. Una pregunta actual: this question.'),
+      wrongFeedbackByOption: {
+        that: tri('That question звучит как другой, уже отодвинутый вопрос. Здесь текущий вопрос: this question.', 'That question звучить як інше, вже відсунуте питання. Тут поточне питання: this question.', 'That question suena como otra pregunta ya alejada. Aquí es la pregunta actual: this question.'),
+        these: tri('These нужно для нескольких вопросов: these questions. Здесь question один, нужно this.', 'These потрібно для кількох питань: these questions. Тут question одне, потрібно this.', 'These sirve para varias preguntas: these questions. Aquí question es una, necesitamos this.'),
+        those: tri('Those нужно для нескольких далеких вопросов. Здесь один текущий вопрос, нужно this.', 'Those потрібно для кількох далеких питань. Тут одне поточне питання, потрібно this.', 'Those sirve para varias preguntas lejanas. Aquí hay una pregunta actual, necesitamos this.'),
+      },
+      retryLine: 'Текущий вопрос = this question.',
+      focusWords: ['this'],
+    }),
+    step({
+      id: 'demo_contrast_004',
+      order: 8,
+      difficulty: 'contrast',
+      targetSkill: 'that_known_past_day',
+      sentence: 'Do you remember ___ day?',
+      translation: tri('Ты помнишь тот день?', "Ти пам'ятаєш той день?", 'Recuerdas aquel día?'),
+      explanationBlock: tri(
+        'День уже известен из контекста и не про прямо сейчас. Такая ссылка просит that.',
+        'День уже відомий з контексту і не про прямо зараз. Така згадка просить that.',
+        'El día ya está claro por contexto y no habla de ahora mismo. Esa referencia pide that.',
+      ),
+      options: ['this', 'that', 'these', 'those'],
+      correctAnswerId: 'that',
+      correctFeedback: tri('Да. Один известный день не прямо сейчас: that day.', 'Так. Один відомий день не прямо зараз: that day.', 'Sí. Un día conocido, no de ahora mismo: that day.'),
+      wrongFeedbackByOption: {
+        this: tri('This day звучит как сегодня или текущий день. Воспоминание о том дне просит that day.', 'This day звучить як сьогодні або поточний день. Спогад про той день просить that day.', 'This day suena como hoy o el día actual. El recuerdo de aquel día pide that day.'),
+        these: tri('These не работает с day. Если дней несколько, было бы these days.', 'These не працює з day. Якби днів було кілька, було б these days.', 'These no funciona con day. Si fueran varios días, sería these days.'),
+        those: tri('Those не работает с day. Если дней несколько далеко, было бы those days.', 'Those не працює з day. Якби днів було кілька далеко, було б those days.', 'Those no funciona con day. Si fueran varios días lejanos, sería those days.'),
+      },
+      retryLine: 'Тот известный день = that day.',
+      focusWords: ['that'],
+    }),
+    step({
+      id: 'demo_mixed_001',
+      order: 9,
+      difficulty: 'mixed',
+      targetSkill: 'agreement_pair_this_these',
+      sentence: 'Choose the correct pair.',
+      translation: tri('Выбери правильную пару.', 'Обери правильну пару.', 'Elige la pareja correcta.'),
+      explanationBlock: tri(
+        'Проверяем пару: одна книга и несколько книг.',
+        'Перевіряємо пару: одна книга і кілька книг.',
+        'Comprobamos el par: un libro y varios libros.',
+      ),
+      options: ['this book / these books', 'this books / these book', 'that books / those book', 'these book / those book'],
+      correctAnswerId: 'this book / these books',
+      correctFeedback: tri('Да. Одна книга: this book. Несколько книг: these books.', 'Так. Одна книга: this book. Кілька книг: these books.', 'Sí. Un libro: this book. Varios libros: these books.'),
+      wrongFeedbackByOption: {
+        'this books / these book': tri('Порядок перепутан. Нужно this book для одной книги и these books для нескольких.', 'Порядок сплутаний. Потрібно this book для однієї книги і these books для кількох.', 'El par está cruzado. Necesitamos this book para uno y these books para varios.'),
+        'that books / those book': tri('That не дружит с books, а those не дружит с book. Нужно согласование: this book / these books.', 'That не дружить з books, а those не дружить з book. Потрібне узгодження: this book / these books.', 'That no encaja con books, y those no encaja con book. Necesitamos concordancia: this book / these books.'),
+        'these book / those book': tri('These и those просят слово для нескольких предметов: books. Здесь правильная пара this book / these books.', 'These і those просять слово для кількох предметів: books. Тут правильна пара this book / these books.', 'These y those piden una palabra para varias cosas: books. El par correcto es this book / these books.'),
+      },
+      retryLine: 'Одна книга = this book. Несколько книг = these books.',
+      focusWords: ['this', 'these'],
+    }),
+    step({
+      id: 'demo_mixed_002',
+      order: 10,
+      difficulty: 'mixed',
+      targetSkill: 'standalone_these_are',
+      sentence: '___ my keys.',
+      translation: tri('Это мои ключи.', 'Це мої ключі.', 'Estas son mis llaves.'),
+      explanationBlock: tri(
+        'Ключей несколько. Когда фраза стоит сама, после these идет are.',
+        'Ключів кілька. Коли фраза стоїть сама, після these іде are.',
+        'Hay varias llaves. Cuando la frase va sola, después de these viene are.',
+      ),
+      options: ['These are', 'This', 'Those are', 'That is'],
+      correctAnswerId: 'These are',
+      correctFeedback: tri('Да. Несколько близких предметов: These are my keys.', 'Так. Кілька близьких предметів: These are my keys.', 'Sí. Varias cosas cercanas: These are my keys.'),
+      wrongFeedbackByOption: {
+        This: tri('This говорит об одном предмете. Здесь ключей несколько и они рядом, нужно these are my keys.', 'This говорить про один предмет. Тут ключів кілька і вони поруч, потрібно these are my keys.', 'This habla de una cosa. Aquí hay varias llaves cerca, necesitamos these are my keys.'),
+        'Those are': tri('Those are грамматически нормально, но значит, что ключи далеко. Здесь они рядом: These are my keys.', 'Those are граматично нормально, але означає, що ключі далеко. Тут вони поруч: These are my keys.', 'Those are es gramatical, pero marca que las llaves están lejos. Aquí están cerca: These are my keys.'),
+        'That is': tri('That is про один далекий предмет. Ключей несколько и они рядом: these are my keys.', 'That is про один далекий предмет. Ключів кілька і вони поруч: these are my keys.', 'That is habla de una cosa lejana. Hay varias llaves cerca: these are my keys.'),
+      },
+      retryLine: 'Ключи рядом = these are my keys.',
+      focusWords: ['these'],
+    }),
+    step({
+      id: 'demo_mixed_003',
+      order: 11,
+      difficulty: 'mixed',
+      targetSkill: 'standalone_those_are',
+      sentence: '___ your seats over there.',
+      translation: tri('Вот ваши места там.', 'Он ваші місця там.', 'Esos son sus asientos allí.'),
+      explanationBlock: tri(
+        'Seats - несколько мест, over there - не рядом.',
+        'Seats - кілька місць, over there - не поруч.',
+        'Seats son varios asientos, over there marca distancia.',
+      ),
+      options: ['Those are', 'That is', 'These are', 'This is'],
+      correctAnswerId: 'Those are',
+      correctFeedback: tri('Да. Несколько мест там: Those are your seats.', 'Так. Кілька місць там: Those are your seats.', 'Sí. Varios asientos allí: Those are your seats.'),
+      wrongFeedbackByOption: {
+        'That is': tri('That is про один предмет. Seats - несколько, нужно Those are.', 'That is про один предмет. Seats - кілька, потрібно Those are.', 'That is habla de una cosa. Seats son varios, necesitamos Those are.'),
+        'These are': tri('These are про предметы рядом. Over there просит Those are.', 'These are про предмети поруч. Over there просить Those are.', 'These are habla de cosas cercanas. Over there pide Those are.'),
+        'This is': tri('This is про один близкий предмет. Seats - несколько и там, нужно Those are.', 'This is про один близький предмет. Seats - кілька і там, потрібно Those are.', 'This is habla de una cosa cercana. Seats son varios y están allí, necesitamos Those are.'),
+      },
+      retryLine: 'Seats over there = Those are.',
+      focusWords: ['those'],
+    }),
+    step({
+      id: 'demo_mixed_004',
+      order: 12,
+      difficulty: 'mixed_review',
+      targetSkill: 'this_current_week',
+      sentence: 'I am busy ___ week.',
+      translation: tri('Я занят на этой неделе.', 'Я зайнятий цього тижня.', 'Estoy ocupado esta semana.'),
+      explanationBlock: tri(
+        'Речь про текущую неделю. Время как будто рядом с нами.',
+        'Мова про поточний тиждень. Час ніби поруч з нами.',
+        'Hablamos de la semana actual. El tiempo está cerca de nosotros.',
+      ),
+      options: ['this', 'that', 'these', 'those'],
+      correctAnswerId: 'this',
+      correctFeedback: tri('Да. Текущая неделя = this week.', 'Так. Поточний тиждень = this week.', 'Sí. La semana actual = this week.'),
+      wrongFeedbackByOption: {
+        that: tri('That week обычно про другую, уже названную неделю. Текущая неделя = this week.', 'That week зазвичай про інший, уже названий тиждень. Поточний тиждень = this week.', 'That week suele hablar de otra semana ya mencionada. La semana actual = this week.'),
+        these: tri('These не работает с week. Для текущей недели нужно this week.', 'These не працює з week. Для поточного тижня потрібно this week.', 'These no funciona con week. Para la semana actual necesitamos this week.'),
+        those: tri('Those не работает с week. Для текущей недели нужно this week.', 'Those не працює з week. Для поточного тижня потрібно this week.', 'Those no funciona con week. Para la semana actual necesitamos this week.'),
+      },
+      retryLine: 'Текущая неделя = this week.',
+      focusWords: ['this'],
+    }),
+    step({
+      id: 'demo_mixed_005',
+      order: 13,
+      difficulty: 'mixed_review',
+      targetSkill: 'that_past_memory',
+      sentence: 'I will never forget ___ evening.',
+      translation: tri('Я никогда не забуду тот вечер.', 'Я ніколи не забуду той вечір.', 'Nunca olvidaré aquella noche.'),
+      explanationBlock: tri(
+        'Evening уже известен по контексту и отдален во времени.',
+        'Vечір уже відомий з контексту і віддалений у часі.',
+        'Evening ya está claro por contexto y está lejos en el tiempo.',
+      ),
+      options: ['that', 'this', 'these', 'those'],
+      correctAnswerId: 'that',
+      correctFeedback: tri('Да. Один известный вечер в прошлом: that evening.', 'Так. Один відомий вечір у минулому: that evening.', 'Sí. Una noche conocida en el pasado: that evening.'),
+      wrongFeedbackByOption: {
+        this: tri('This evening обычно про сегодняшний вечер или близкое время. Здесь воспоминание, нужно that evening.', 'This evening зазвичай про сьогоднішній вечір або близький час. Тут спогад, потрібно that evening.', 'This evening suele ser esta noche o tiempo cercano. Aquí es un recuerdo, necesitamos that evening.'),
+        these: tri('These не работает с evening. Если говорим про один вечер, нужно that evening.', 'These не працює з evening. Якщо говоримо про один вечір, потрібно that evening.', 'These no funciona con evening. Si hablamos de una noche, necesitamos that evening.'),
+        those: tri('Those не работает с evening. Если говорим про один вечер, нужно that evening.', 'Those не працює з evening. Якщо говоримо про один вечір, потрібно that evening.', 'Those no funciona con evening. Si hablamos de una noche, necesitamos that evening.'),
+      },
+      retryLine: 'Тот вечер воспоминания = that evening.',
+      focusWords: ['that'],
+    }),
+    step({
+      id: 'demo_mixed_006',
+      order: 14,
+      difficulty: 'mixed_review',
+      targetSkill: 'mixed_sentence_repair',
+      sentence: 'Choose the natural sentence.',
+      translation: tri('Выбери естественную фразу.', 'Обери природну фразу.', 'Elige la frase natural.'),
+      explanationBlock: tri(
+        'Тут одна фраза собирает оба правила: ключей несколько и рядом, папка одна и далеко.',
+        'Тут одна фраза збирає обидва правила: ключів кілька і поруч, папка одна і далеко.',
+        'Una frase une las dos reglas: varias llaves cerca, una carpeta lejos.',
+      ),
+      options: [
+        'These are my keys, and that folder over there is yours.',
+        'This are my keys, and those folder over there is yours.',
+        'These is my keys, and that folders over there is yours.',
+        'That are my keys, and these folder over there is yours.',
+      ],
+      correctAnswerId: 'These are my keys, and that folder over there is yours.',
+      correctFeedback: tri('Да. These are для ключей рядом; that folder для одной папки там.', 'Так. These are для ключів поруч; that folder для однієї папки там.', 'Sí. These are para las llaves cerca; that folder para una carpeta allí.'),
+      wrongFeedbackByOption: {
+        'This are my keys, and those folder over there is yours.': tri('This are ломается с ключами, а those folder ломается с одной папкой. Нужно These are my keys, and that folder...', 'This are ламається з ключами, а those folder ламається з однією папкою. Потрібно These are my keys, and that folder...', 'This are se rompe con keys, y those folder se rompe con una carpeta. Necesitamos These are my keys, and that folder...'),
+        'These is my keys, and that folders over there is yours.': tri('These просит are, а that не дружит с folders. Нужно These are my keys, and that folder...', 'These просить are, а that не дружить з folders. Потрібно These are my keys, and that folder...', 'These pide are, y that no encaja con folders. Necesitamos These are my keys, and that folder...'),
+        'That are my keys, and these folder over there is yours.': tri('That are не подходит к ключам рядом, а these folder не подходит к одной папке. Нужно These are my keys, and that folder...', 'That are не підходить до ключів поруч, а these folder не підходить до однієї папки. Потрібно These are my keys, and that folder...', 'That are no encaja con llaves cerca, y these folder no encaja con una carpeta. Necesitamos These are my keys, and that folder...'),
+      },
+      retryLine: 'Ключей несколько рядом: these are. Папка одна там: that folder.',
+      focusWords: ['these', 'that'],
+    }),
   ],
   masteryRules: {
     minCorrect: 10,
@@ -154,30 +565,95 @@ export const DETERMINER_THIS_THAT_THESE_THOSE_TRAINING: DiagnosisTraining = {
     requireCorrectAfterWrong: true,
     requireMixedReview: true,
     maxAllowedCriticalMistakes: 2,
-    criticalMistakeIds: ['this_plural_error', 'these_singular_error', 'that_plural_error', 'those_singular_error', 'near_far_confusion', 'standalone_this_these_agreement_error', 'be_agreement_with_demonstrative_error', 'time_reference_this_that_error'],
+    criticalMistakeIds: [
+      'this_with_many_things',
+      'these_with_one_thing',
+      'that_with_many_things',
+      'those_with_one_thing',
+      'near_far_confusion',
+      'standalone_are_is_confusion',
+      'time_reference_confusion',
+    ],
     repeatIfCorrectRateBelow: 0.78,
     unlockSmartTrainerAfterMastery: true,
   },
   adaptiveFeedbackPolicy: {
     maxDepth: 4,
-    depth1: tri('Pokazyvaem noun number i distance.', 'Pokazuiemo noun number i distance.', 'Mostramos noun number y distance.'),
-    depth2: tri('Proshche: one or many? near or far?', 'Prostishe: one or many? near or far?', 'Mas simple: one or many? near or far?'),
-    depth3: tri('Table: this book / that book / these books / those books.', 'Table: this book / that book / these books / those books.', 'Tabla: this book / that book / these books / those books.'),
-    depth4: tri('Pochti podskazka: priamo ukazyvaem this/that/these/those.', 'Maizhe pidkazka: priamo vkazuiemo this/that/these/those.', 'Casi pista: indicamos this/that/these/those.'),
+    depth1: tri('Сразу смотри на две вещи: сколько и где.', 'Одразу дивись на дві речі: скільки і де.', 'Mira dos cosas: cuántas y dónde.'),
+    depth2: tri(
+      'Если предмет один, не бери these/those. Если предметов несколько, не бери this/that.',
+      'Якщо предмет один, не бери these/those. Якщо предметів кілька, не бери this/that.',
+      'Si es una cosa, no uses these/those. Si son varias, no uses this/that.',
+    ),
+    depth3: tri(
+      'Еще проще: рядом выбираем одну пару слов, далеко - другую. Единственное и множественное число решают окончательно.',
+      'Ще простiше: поруч обираємо одну пару слiв, далеко - iншу. Однина i множина вирiшують остаточно.',
+      'Cerca: this phone, these phones. Lejos: that phone, those phones.',
+    ),
+    depth4: tri(
+      'Почти подсказка: для одного близко this, для одного далеко that, для нескольких близко these, для нескольких далеко those.',
+      'Майже підказка: для одного близько this, для одного далеко that, для кількох близько these, для кількох далеко those.',
+      'Casi pista: una cosa cerca this, una cosa lejos that, varias cerca these, varias lejos those.',
+    ),
   },
   failureRecovery: {
-    afterTwoWrongInSameExercise: { action: 'show_simplified_rule_card', card: tri('One near = this. One far = that. Many near = these. Many far = those.', 'One near = this. One far = that. Many near = these. Many far = those.', 'One near = this. One far = that. Many near = these. Many far = those.') },
-    afterThreeWrongInSameExercise: { action: 'show_number_distance_hint_then_retry', card: tri('Sistema pokazhet number i distance, no ne vyberet formu.', 'Systema pokazhe number i distance, ale ne obere formu.', 'El sistema muestra number y distance, pero no elige la forma.') },
-    afterFourWrongInSameExercise: { action: 'switch_to_guided_mode', card: tri('Guided mode: first one/many, then near/far.', 'Guided mode: first one/many, then near/far.', 'Modo guiado: primero one/many, luego near/far.') },
+    afterTwoWrongInSameExercise: {
+      action: 'show_simplified_rule_card',
+      card: tri(
+        'Сколько предметов? Один или несколько. Где они? Рядом или далеко.',
+        'Скільки предметів? Один чи кілька. Де вони? Поруч чи далеко.',
+        'Cuántas cosas? Una o varias. Dónde están? Cerca o lejos.',
+      ),
+    },
+    afterThreeWrongInSameExercise: {
+      action: 'show_number_distance_hint_then_retry',
+      card: tri(
+        'Мы подсветим количество и дистанцию, но выбор все равно за тобой.',
+        'Ми підсвітимо кількість і дистанцію, але вибір все одно за тобою.',
+        'Marcamos cantidad y distancia, pero la elección sigue siendo tuya.',
+      ),
+    },
+    afterFourWrongInSameExercise: {
+      action: 'switch_to_guided_mode',
+      card: tri(
+        'Guided mode: сначала сколько предметов, потом где они.',
+        'Guided mode: спочатку скільки предметів, потім де вони.',
+        'Modo guiado: primero cuántas cosas, luego dónde están.',
+      ),
+    },
   },
   guidedMode: {
     enabled: true,
     triggerAfterWrongAttempts: 4,
     tasks: [
-      { id: 'guided_demo_001', prompt: tri('Book = one thing or many?', 'Book = one thing or many?', 'Book = one thing or many?'), options: ['one', 'many'], correctIndex: 0, thenReturnToExerciseId: 'demo_easy_001' },
-      { id: 'guided_demo_002', prompt: tri('Books = one thing or many?', 'Books = one thing or many?', 'Books = one thing or many?'), options: ['one', 'many'], correctIndex: 1, thenReturnToExerciseId: 'demo_contrast_001' },
-      { id: 'guided_demo_003', prompt: tri('One thing far: this or that?', 'One thing far: this or that?', 'One thing far: this or that?'), options: ['this', 'that'], correctIndex: 1, thenReturnToExerciseId: 'demo_easy_002' },
-      { id: 'guided_demo_004', prompt: tri('Many things near: these or those?', 'Many things near: these or those?', 'Many things near: these or those?'), options: ['these', 'those'], correctIndex: 0, thenReturnToExerciseId: 'demo_contrast_001' },
+      {
+        id: 'guided_demo_001',
+        prompt: tri('Phone: один предмет или несколько?', 'Phone: один предмет чи кілька?', 'Phone: una cosa o varias?'),
+        options: ['one', 'several'],
+        correctIndex: 0,
+        thenReturnToExerciseId: 'demo_easy_001',
+      },
+      {
+        id: 'guided_demo_002',
+        prompt: tri('Books: один предмет или несколько?', 'Books: один предмет чи кілька?', 'Books: una cosa o varias?'),
+        options: ['one', 'several'],
+        correctIndex: 1,
+        thenReturnToExerciseId: 'demo_contrast_001',
+      },
+      {
+        id: 'guided_demo_003',
+        prompt: tri('Over there: рядом или далеко?', 'Over there: поруч чи далеко?', 'Over there: cerca o lejos?'),
+        options: ['near', 'far'],
+        correctIndex: 1,
+        thenReturnToExerciseId: 'demo_easy_002',
+      },
+      {
+        id: 'guided_demo_004',
+        prompt: tri('Keys рядом и их несколько. Что лучше?', 'Keys поруч і їх кілька. Що краще?', 'Keys cerca y son varias. Qué suena mejor?'),
+        options: ['this is', 'these are'],
+        correctIndex: 1,
+        thenReturnToExerciseId: 'demo_mixed_002',
+      },
     ],
   },
   smartTrainerConfig: {
@@ -186,16 +662,31 @@ export const DETERMINER_THIS_THAT_THESE_THOSE_TRAINING: DiagnosisTraining = {
     category: 'determiner',
     microDiagnosisId: 'determiner_this_that_these_those',
     diagnosisLabel: tri('This / That / These / Those', 'This / That / These / Those', 'This / That / These / Those'),
-    contrastSet: DEMO_CONTRAST,
+    contrastSet: CONTRAST_SET,
     focusWords: ['this', 'that', 'these', 'those'],
-    focusPatterns: ['this_singular_near', 'that_singular_far', 'these_plural_near', 'those_plural_far', 'this_singular_agreement', 'these_plural_agreement', 'those_plural_agreement', 'standalone_this_is', 'standalone_these_are', 'standalone_those_are', 'time_this_current', 'time_that_past_reference', 'mixed_demonstrative_pair'],
+    focusPatterns: [
+      'this_one_near',
+      'that_one_far',
+      'these_many_near',
+      'those_many_far',
+      'standalone_these_are',
+      'standalone_those_are',
+      'this_current_week',
+      'that_past_memory',
+    ],
     includeFailedItems: true,
     includeRecoveredItems: true,
     includeSimilarItems: true,
     minItems: 12,
     recommendedItems: 20,
     difficultyLevel: 2,
-    difficultyEscalation: { start: 'easy', afterCorrectInRow: 3, next: 'contrast', afterCorrectInRowAtContrast: 3, final: 'mixed_review' },
+    difficultyEscalation: {
+      start: 'easy',
+      afterCorrectInRow: 3,
+      next: 'contrast',
+      afterCorrectInRowAtContrast: 3,
+      final: 'mixed_review',
+    },
   },
   analyticsEvents: {
     start: 'diagnosis_training_determiner_demonstrative_start',
@@ -209,7 +700,18 @@ export const DETERMINER_THIS_THAT_THESE_THOSE_TRAINING: DiagnosisTraining = {
     onGuidedMode: 'diagnosis_training_guided_mode_started',
     onMastery: 'diagnosis_training_mastered',
     onSmartTrainerOpen: 'diagnosis_training_smart_trainer_opened',
-    payload: { category: 'determiner', microDiagnosisId: 'determiner_this_that_these_those', contrastSet: ['this', 'that', 'these', 'those'], logExactToken: true, logMistakeType: true, logExerciseId: true, logAttemptCount: true, logFeedbackDepth: true, logNounNumber: true, logDistance: true },
+    payload: {
+      category: 'determiner',
+      microDiagnosisId: 'determiner_this_that_these_those',
+      contrastSet: ['this', 'that', 'these', 'those'],
+      logExactToken: true,
+      logMistakeType: true,
+      logExerciseId: true,
+      logAttemptCount: true,
+      logFeedbackDepth: true,
+      logQuantity: true,
+      logDistance: true,
+    },
   },
   routing: {
     diagnosisTrainerRoute: '/problem_coach?category=determiner&microDiagnosisId=determiner_this_that_these_those',
@@ -233,5 +735,3 @@ export const DETERMINER_THIS_THAT_THESE_THOSE_TRAINING: DiagnosisTraining = {
     hasFallbackRoute: true,
   },
 };
-
-

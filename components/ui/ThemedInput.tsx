@@ -19,7 +19,8 @@ export default function ThemedInput({
   error,
   secureTextEntry,
 }: ThemedInputProps) {
-  const { theme: t, f, ds } = useTheme();
+  const { theme: t, f, ds, themeMode } = useTheme();
+  const isGoldTheme = themeMode === 'gold';
   return (
     <View style={{ gap: ds.spacing.xs }}>
       <Text style={{ color: t.textMuted, fontSize: f.caption, fontWeight: '600' }}>{label}</Text>
@@ -35,7 +36,8 @@ export default function ThemedInput({
             minHeight: ds.inputHeight,
             borderRadius: ds.radius.lg,
             backgroundColor: t.bgCard,
-            borderColor: error ? t.wrong : t.border,
+            borderColor: error ? t.wrong : isGoldTheme ? t.borderHighlight : t.border,
+            borderWidth: isGoldTheme ? StyleSheet.hairlineWidth : 1,
             color: t.textPrimary,
             fontSize: f.body,
           },

@@ -56,6 +56,40 @@ const STUB_TOPICS: Array<{ topic: string; topicUK: string; topicES: string; corr
   { topic: 'Present Perfect',            topicUK: 'Present Perfect',     topicES: 'Present Perfect',       correct: true  },
 ];
 
+type PlannedTopicCopy = {
+  'pt-BR': string;
+  vi: string;
+  id: string;
+  tr: string;
+  pl: string;
+};
+
+const STUB_TOPIC_PLANNED: Record<string, PlannedTopicCopy> = {
+  'Глагол be': { 'pt-BR': 'Verbo be', vi: 'Động từ be', id: 'Kata kerja be', tr: 'be fiili', pl: 'Czasownik be' },
+  'Present Simple': { 'pt-BR': 'Present Simple', vi: 'Present Simple', id: 'Present Simple', tr: 'Present Simple', pl: 'Present Simple' },
+  'Артикль a/an/the': { 'pt-BR': 'Artigo a/an/the', vi: 'Mạo từ a/an/the', id: 'Artikel a/an/the', tr: 'a/an/the artikelleri', pl: 'Przedimki a/an/the' },
+  'Множественное число': { 'pt-BR': 'Plural', vi: 'Số nhiều', id: 'Bentuk jamak', tr: 'Çoğul', pl: 'Liczba mnoga' },
+  'Местоимения': { 'pt-BR': 'Pronomes', vi: 'Đại từ', id: 'Kata ganti', tr: 'Zamirler', pl: 'Zaimki' },
+  'Past Simple': { 'pt-BR': 'Past Simple', vi: 'Past Simple', id: 'Past Simple', tr: 'Past Simple', pl: 'Past Simple' },
+  'Will / Future': { 'pt-BR': 'Will / futuro', vi: 'Will / tương lai', id: 'Will / future', tr: 'Will / gelecek', pl: 'Will / przyszłość' },
+  'Модальные can/must': { 'pt-BR': 'Modais can/must', vi: 'Động từ khuyết thiếu can/must', id: 'Modal can/must', tr: 'Can/must modal fiilleri', pl: 'Czasowniki modalne can/must' },
+  'Сравнительная степень': { 'pt-BR': 'Comparativos', vi: 'Dạng so sánh hơn', id: 'Tingkat perbandingan', tr: 'Karşılaştırma derecesi', pl: 'Stopień wyższy' },
+  'Present Continuous': { 'pt-BR': 'Present Continuous', vi: 'Present Continuous', id: 'Present Continuous', tr: 'Present Continuous', pl: 'Present Continuous' },
+  'Предлоги места': { 'pt-BR': 'Preposições de lugar', vi: 'Giới từ chỉ nơi chốn', id: 'Preposisi tempat', tr: 'Yer edatları', pl: 'Przyimki miejsca' },
+  'Some / any': { 'pt-BR': 'Some / any', vi: 'Some / any', id: 'Some / any', tr: 'Some / any', pl: 'Some / any' },
+  'There is / there are': { 'pt-BR': 'There is / there are', vi: 'There is / there are', id: 'There is / there are', tr: 'There is / there are', pl: 'There is / there are' },
+  'Притяжательные': { 'pt-BR': 'Possessivos', vi: 'Từ sở hữu', id: 'Possessive', tr: 'İyelik yapıları', pl: 'Formy dzierżawcze' },
+  'Past Continuous': { 'pt-BR': 'Past Continuous', vi: 'Past Continuous', id: 'Past Continuous', tr: 'Past Continuous', pl: 'Past Continuous' },
+  'Going to': { 'pt-BR': 'Going to', vi: 'Going to', id: 'Going to', tr: 'Going to', pl: 'Going to' },
+  'Условные I типа': { 'pt-BR': 'Condicional tipo I', vi: 'Câu điều kiện loại 1', id: 'Conditional type I', tr: '1. tip koşul cümlesi', pl: 'Pierwszy tryb warunkowy' },
+  'Герундий (-ing)': { 'pt-BR': 'Gerúndio (-ing)', vi: 'Danh động từ (-ing)', id: 'Gerund (-ing)', tr: 'Gerund (-ing)', pl: 'Gerundium (-ing)' },
+  'Inf / -ing': { 'pt-BR': 'Infinitivo / -ing', vi: 'Infinitive / -ing', id: 'Infinitive / -ing', tr: 'Infinitive / -ing', pl: 'Infinitive / -ing' },
+  'Present Perfect': { 'pt-BR': 'Present Perfect', vi: 'Present Perfect', id: 'Present Perfect', tr: 'Present Perfect', pl: 'Present Perfect' },
+};
+
+const plannedTopicFor = (topic: string): PlannedTopicCopy =>
+  STUB_TOPIC_PLANNED[topic] ?? { 'pt-BR': topic, vi: topic, id: topic, tr: topic, pl: topic };
+
 export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: Props) {
   const { theme: t, f } = useTheme();
   const { lang } = useLang();
@@ -223,7 +257,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
               <Ionicons name="ribbon" size={44} color={t.textSecond} />
             </View>
             <Text style={{ color: t.textPrimary, fontSize: f.numLg, fontWeight: '700', marginBottom: 8 }}>
-              {triLang(lang, { ru: 'Экзамен завершён!', uk: 'Іспит завершено!', es: '¡Examen terminado!' })}
+              {triLang(lang, { ru: 'Экзамен завершён!', uk: 'Іспит завершено!', es: '¡Examen terminado!', 'pt-BR': 'Exame concluído!', vi: 'Bài kiểm tra đã hoàn tất!', id: 'Ujian selesai!', tr: 'Sınav tamamlandı!', pl: 'Egzamin ukończony!' })}
             </Text>
             <Text style={{ color: t.textSecond, fontSize: f.h2, marginBottom: 24 }}>
               {cert.score} / {cert.total} — {cert.pct}%
@@ -239,28 +273,31 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
               }}
             >
               <Text style={{ color: t.textMuted, fontSize: f.caption, marginBottom: 12, textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Результаты по темам', uk: 'Результати по темах', es: 'Resultados por temas' })}
+                {triLang(lang, { ru: 'Результаты по темам', uk: 'Результати по темах', es: 'Resultados por temas', 'pt-BR': 'Resultados por tema', vi: 'Kết quả theo chủ đề', id: 'Hasil per topik', tr: 'Konuya göre sonuçlar', pl: 'Wyniki według tematów' })}
               </Text>
-              {topics.map((q, i) => (
-                <View
-                  key={i}
-                  style={{
-                    flexDirection: 'row', alignItems: 'center', paddingVertical: 6,
-                    borderBottomWidth: i < topics.length - 1 ? 0.5 : 0, borderBottomColor: t.border,
-                  }}
-                >
-                  <Ionicons
-                    name={q.correct ? 'checkmark-circle' : 'close-circle'}
-                    size={16}
-                    color={q.correct ? t.correct : t.wrong}
-                    style={{ marginRight: 8 }}
-                  />
-                  <Text style={{ color: t.textMuted, fontSize: f.label, marginRight: 6, width: 26 }}>{i + 1}.</Text>
-                  <Text style={{ color: q.correct ? t.textPrimary : t.textSecond, fontSize: f.sub, flex: 1 }}>
-                    {triLang(lang, { ru: q.topic, uk: q.topicUK, es: q.topicES })}
-                  </Text>
-                </View>
-              ))}
+              {topics.map((q, i) => {
+                const planned = plannedTopicFor(q.topic);
+                return (
+                  <View
+                    key={i}
+                    style={{
+                      flexDirection: 'row', alignItems: 'center', paddingVertical: 6,
+                      borderBottomWidth: i < topics.length - 1 ? 0.5 : 0, borderBottomColor: t.border,
+                    }}
+                  >
+                    <Ionicons
+                      name={q.correct ? 'checkmark-circle' : 'close-circle'}
+                      size={16}
+                      color={q.correct ? t.correct : t.wrong}
+                      style={{ marginRight: 8 }}
+                    />
+                    <Text style={{ color: t.textMuted, fontSize: f.label, marginRight: 6, width: 26 }}>{i + 1}.</Text>
+                    <Text style={{ color: q.correct ? t.textPrimary : t.textSecond, fontSize: f.sub, flex: 1 }}>
+                      {triLang(lang, { ru: q.topic, uk: q.topicUK, es: q.topicES, 'pt-BR': planned['pt-BR'], vi: planned.vi, id: planned.id, tr: planned.tr, pl: planned.pl })}
+                    </Text>
+                  </View>
+                );
+              })}
             </View>
 
             {showCert && hasName && (
@@ -275,7 +312,7 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                 <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 12 }}>
                   <Ionicons name="ribbon" size={22} color="#FFD700" />
                   <Text style={{ color: '#FFD700', fontSize: f.bodyLg, fontWeight: '800', letterSpacing: 1.2 }}>
-                    {triLang(lang, { ru: 'СЕРТИФИКАТ', uk: 'СЕРТИФІКАТ', es: 'CERTIFICADO' })}
+                    {triLang(lang, { ru: 'СЕРТИФИКАТ', uk: 'СЕРТИФІКАТ', es: 'CERTIFICADO', 'pt-BR': 'CERTIFICADO', vi: 'CHỨNG CHỈ', id: 'SERTIFIKAT', tr: 'SERTİFİKA', pl: 'CERTYFIKAT' })}
                   </Text>
                 </View>
                 <View style={{ borderRadius: 12, overflow: 'hidden', borderWidth: 1, borderColor: '#d4a017', marginBottom: 12 }}>
@@ -305,6 +342,11 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                       ru: 'Поделиться сертификатом',
                       uk: 'Поділитися сертифікатом',
                       es: 'Compartir certificado',
+                      'pt-BR': 'Compartilhar certificado',
+                      vi: 'Chia sẻ chứng chỉ',
+                      id: 'Bagikan sertifikat',
+                      tr: 'Sertifikayı paylaş',
+                      pl: 'Udostępnij certyfikat',
                     })}
                   </Text>
                 </TouchableOpacity>
@@ -318,6 +360,11 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                       ru: 'Изменить имя на сертификате',
                       uk: 'Змінити ім\u02BCя на сертифікаті',
                       es: 'Cambiar el nombre en el diploma',
+                      'pt-BR': 'Alterar nome no certificado',
+                      vi: 'Đổi tên trên chứng chỉ',
+                      id: 'Ubah nama di sertifikat',
+                      tr: 'Sertifikadaki adı değiştir',
+                      pl: 'Zmień imię na certyfikacie',
                     })}
                   </Text>
                 </TouchableOpacity>
@@ -347,6 +394,11 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                     ru: 'Укажите имя — и ваш сертификат появится здесь. Без имени награда не показывается.',
                     uk: 'Вкажіть ім\u02BCя — і ваш сертифікат з\u02BCявиться тут. Без імені нагорода не показується.',
                     es: 'Indica tu nombre y tu diploma aparecerá aquí. Sin nombre no mostramos la recompensa.',
+                    'pt-BR': 'Informe seu nome e o certificado aparecerá aqui. Sem nome, a recompensa não é exibida.',
+                    vi: 'Nhập tên của bạn, chứng chỉ sẽ xuất hiện ở đây. Không có tên thì phần thưởng không hiển thị.',
+                    id: 'Masukkan namamu, sertifikat akan muncul di sini. Tanpa nama, hadiah tidak ditampilkan.',
+                    tr: 'Adını gir, sertifikan burada görünsün. İsim olmadan ödül gösterilmez.',
+                    pl: 'Podaj imię, a certyfikat pojawi się tutaj. Bez imienia nagroda nie jest pokazywana.',
                   })}
                 </Text>
                 <View style={{
@@ -360,6 +412,11 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                       ru: 'Указать имя на награде',
                       uk: 'Вказати ім\u02BCя на нагороді',
                       es: 'Indicar nombre en el diploma',
+                      'pt-BR': 'Informar nome no certificado',
+                      vi: 'Nhập tên trên chứng chỉ',
+                      id: 'Masukkan nama di sertifikat',
+                      tr: 'Ödüle isim ekle',
+                      pl: 'Podaj imię na nagrodzie',
                     })}
                   </Text>
                 </View>
@@ -379,6 +436,11 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
                   ru: '🔄 Попробовать ещё раз',
                   uk: '🔄 Спробувати ще раз',
                   es: '🔄 Intentar de nuevo',
+                  'pt-BR': '🔄 Tentar novamente',
+                  vi: '🔄 Thử lại',
+                  id: '🔄 Coba lagi',
+                  tr: '🔄 Tekrar dene',
+                  pl: '🔄 Spróbuj ponownie',
                 })}
               </Text>
             </TouchableOpacity>
@@ -389,12 +451,12 @@ export default function ExamResultPreviewAdminModal({ visible, onClose, cert }: 
             >
               <Ionicons name="share-outline" size={18} color={t.textSecond} />
               <Text style={{ color: t.textSecond, fontSize: f.bodyLg }}>
-                {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', es: 'Compartir el resultado' })}
+                {triLang(lang, { ru: 'Поделиться результатом', uk: 'Поділитися результатом', es: 'Compartir el resultado', 'pt-BR': 'Compartilhar resultado', vi: 'Chia sẻ kết quả', id: 'Bagikan hasil', tr: 'Sonucu paylaş', pl: 'Udostępnij wynik' })}
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ padding: 14 }} onPress={onClose} activeOpacity={0.7}>
               <Text style={{ color: t.textSecond, fontSize: f.bodyLg, textDecorationLine: 'underline' }}>
-                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio' })}
+                {triLang(lang, { ru: 'На главную', uk: 'На головну', es: 'Volver al inicio', 'pt-BR': 'Ir para o início', vi: 'Về trang chính', id: 'Ke beranda', tr: 'Ana sayfaya dön', pl: 'Na stronę główną' })}
               </Text>
             </TouchableOpacity>
 

@@ -186,6 +186,11 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
     ru: `${wins} побед${wins === 1 ? 'а' : wins < 5 ? 'ы' : ''} сегодня — никто тебя не скинул`,
     uk: `${wins} перемог сьогодні — ніхто тебе не скинув`,
     es: `${wins} victorias hoy — nadie te destronó`,
+    'pt-BR': `${wins} vitória${wins === 1 ? '' : 's'} hoje — ninguém tirou você do trono`,
+    vi: `${wins} chiến thắng hôm nay — chưa ai hạ bạn khỏi ngai`,
+    id: `${wins} kemenangan hari ini — belum ada yang menjatuhkanmu`,
+    tr: `Bugün ${wins} galibiyet — kimse seni tahttan indirmedi`,
+    pl: `Wygrane dzisiaj: ${wins} — nikt Cię nie zrzucił`,
   });
 
   return (
@@ -285,6 +290,11 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
                   ru: 'Ты удержал трон!',
                   uk: 'Ти втримав трон!',
                   es: '¡Mantuviste el trono!',
+                  'pt-BR': 'Você manteve o trono!',
+                  vi: 'Bạn đã giữ được ngai!',
+                  id: 'Kamu mempertahankan takhta!',
+                  tr: 'Tahtı korudun!',
+                  pl: 'Utrzymałeś tron!',
                 })}
               </Text>
               {/* Линия-декор под заголовком */}
@@ -333,7 +343,16 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
                     +{shards}
                   </Text>
                   <Text style={[styles.rewardLabel, { fontSize: f.caption ?? 11 }]}>
-                    {triLang(lang, { ru: 'ОСКОЛКОВ', uk: 'ОСКОЛКІВ', es: 'FRAGMENTOS' })}
+                    {triLang(lang, {
+                      ru: 'ОСКОЛКОВ',
+                      uk: 'ОСКОЛКІВ',
+                      es: 'FRAGMENTOS',
+                      'pt-BR': 'FRAGMENTOS',
+                      vi: 'MẢNH',
+                      id: 'FRAGMEN',
+                      tr: 'PARÇA',
+                      pl: 'ODŁAMKI',
+                    })}
                   </Text>
                 </View>
               </LinearGradient>
@@ -365,7 +384,16 @@ export default function ThroneRewardModal({ visible, shards, wins, onClose }: Th
                     start={{ x: 0, y: 0 }} end={{ x: 0, y: 1 }}
                   />
                   <Text style={[styles.btnText, { fontSize: f.body ?? 15 }]}>
-                    {triLang(lang, { ru: 'Забрать награду', uk: 'Забрати нагороду', es: 'Reclamar recompensa' })}
+                    {triLang(lang, {
+                      ru: 'Забрать награду',
+                      uk: 'Забрати нагороду',
+                      es: 'Reclamar recompensa',
+                      'pt-BR': 'Resgatar recompensa',
+                      vi: 'Nhận thưởng',
+                      id: 'Klaim hadiah',
+                      tr: 'Ödülü al',
+                      pl: 'Odbierz nagrodę',
+                    })}
                   </Text>
                 </LinearGradient>
               </TouchableOpacity>

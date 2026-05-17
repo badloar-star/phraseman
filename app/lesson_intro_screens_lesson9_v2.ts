@@ -93,7 +93,7 @@ export const LESSON_9_INTRO_SCREENS: LessonIntroScreen[] = [
       highlightRules: [
         'There is / There are = accent.',
         'Wrong literal translation = danger.',
-        'Russian/Ukrainian meaning words можно выделять strong.',
+        'Source-language meaning words можно выделять strong.',
       ],
       forbiddenContent: [
         'Не добавлять here/there как место.',

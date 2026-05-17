@@ -57,7 +57,16 @@ export default function FlashcardsFilterDropdown({
             style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12 }}
           >
             <Text style={{ fontSize: f.body, color: activeFilter === 'all' ? t.accent : t.textPrimary, fontWeight: activeFilter === 'all' ? '700' : '400' }}>
-              {triLang(lang, { ru: 'Все', uk: 'Всі', es: 'Todas' })}
+              {triLang(lang, {
+                ru: 'Все',
+                uk: 'Всі',
+                es: 'Todas',
+                'pt-BR': 'Todas',
+                vi: 'Tất cả',
+                id: 'Semua',
+                tr: 'Tümü',
+                pl: 'Wszystkie',
+              })}
             </Text>
             {activeFilter === 'all' && <Ionicons name="checkmark" size={16} color={t.accent} />}
           </TouchableOpacity>

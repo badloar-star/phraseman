@@ -1,6 +1,12 @@
 /**
- * Reads canonical legal/terms_of_use_en.json + legal/privacy_policy_en.json
- * and writes terms.html + privacy.html + admin/oauth-privacy.html (same wording as the in-app screens).
+ * Reads canonical legal/terms_of_use_en.json + legal/privacy_policy_en.json and writes:
+ * - terms.html
+ * - privacy.html
+ * - admin/oauth-privacy.html
+ * - knowly-www/legal/terms/index.html
+ * - knowly-www/legal/privacy/index.html
+ * - knowly-www/legal/data-deletion/index.html
+ *
  * Run: npm run legal:sync
  */
 import fs from 'fs';
@@ -10,6 +16,7 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.join(__dirname, '..');
 const LEGAL = path.join(ROOT, 'legal');
+const KNOWLY_WWW = path.join(ROOT, 'knowly-www');
 
 function escapeHtml(s) {
   return String(s)
@@ -19,15 +26,30 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
-/** Split on double newline to <p>; single newlines to <br/> */
 function bodyHtmlSimple(body) {
-  return body
+  return String(body)
     .split(/\n\n+/)
-    .map((para) => `<p>${escapeHtml(para).replace(/\n/g, '<br/>')}</p>`)
+    .map((para) => `<p>${escapeHtml(para).replace(/\n/g, '<br />')}</p>`)
     .join('\n');
 }
 
-function wrapPage({ title, sections, metaLine }) {
+function renderLegalBlocks(sections) {
+  return sections
+    .map((s) => {
+      const h = escapeHtml(s.heading);
+      const inner = bodyHtmlSimple(s.body);
+      return `        <h2>${h}</h2>\n${inner.split('\n').map((line) => `        ${line}`).join('\n')}`;
+    })
+    .join('\n\n');
+}
+
+function extractDate(sections) {
+  const first = sections[0]?.body?.split('\n\n')[0] || '';
+  const match = first.match(/Last updated:\s*([^\n]+)/i);
+  return match ? match[1].trim() : '';
+}
+
+function rootPage({ title, sections, date }) {
   const blocks = sections
     .map((s) => {
       const h = escapeHtml(s.heading);
@@ -50,7 +72,6 @@ function wrapPage({ title, sections, metaLine }) {
       --text: #e8eaf0;
       --text-secondary: #9196a8;
       --accent: #5b7fff;
-      --radius: 10px;
     }
     @media (prefers-color-scheme: light) {
       :root {
@@ -84,7 +105,7 @@ function wrapPage({ title, sections, metaLine }) {
 <div class="container">
   <header>
     <h1>${escapeHtml(title)}</h1>
-    <p class="meta">${metaLine}</p>
+    <p class="meta">Application: <span class="app-name">Phraseman</span> | Developer: <span class="app-name">Knowly</span> | Last updated: <strong>${escapeHtml(date)}</strong>.</p>
   </header>
 ${blocks}
 </div>
@@ -93,41 +114,202 @@ ${blocks}
 `;
 }
 
+function knowlyPage({ title, sections, date, active }) {
+  const privacyClass = active === 'privacy' ? ' class="km-active"' : '';
+  const termsClass = active === 'terms' ? ' class="km-active"' : '';
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>${escapeHtml(title)} &middot; Knowly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/knowly.css" />
+</head>
+<body>
+  <div class="km-page-bg" aria-hidden="true"></div>
+  <div class="km-shell">
+    <header class="km-nav">
+      <a class="km-brand" href="/">
+        <span class="km-mark" aria-hidden="true"></span>
+        <span>
+          <span class="km-brand-name">Knowly</span><br />
+          <span class="km-brand-tag">mobile app studio</span>
+        </span>
+      </a>
+      <nav class="km-nav-links" aria-label="Nav">
+        <a href="/">Home</a>
+        <a href="/download/">Phraseman</a>
+        <a href="/legal/privacy/"${privacyClass}>Privacy Policy</a>
+        <a href="/legal/terms/"${termsClass}>Terms</a>
+        <a href="/contact/" class="km-cta">Contact</a>
+      </nav>
+      <button type="button" id="km-burger" class="km-burger" aria-label="Menu">&#9776;</button>
+    </header>
+    <div id="km-overlay" class="km-overlay" aria-hidden="true"></div>
+    <aside id="km-drawer" class="km-drawer" aria-label="Menu">
+      <div style="font-family:Syne,sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px">Knowly</div>
+      <a href="/" data-drawer-close>Home</a>
+      <a href="/download/" data-drawer-close>Phraseman</a>
+      <div class="km-drawer-h">Legal</div>
+      <a href="/legal/privacy/" data-drawer-close>Privacy Policy</a>
+      <a href="/legal/terms/" data-drawer-close>Terms</a>
+      <a href="/contact/" data-drawer-close>Contact</a>
+    </aside>
+
+    <main class="km-main km-section km-article">
+      <div class="legal-document">
+        <h1>${escapeHtml(title)}</h1>
+        <p class="meta">
+          Application: <strong style="color:var(--km-text)">Phraseman</strong> &middot; Developer:
+          <strong style="color:var(--km-text)">Knowly</strong> &middot; Last updated <strong>${escapeHtml(date)}</strong>.
+        </p>
+
+${renderLegalBlocks(sections)}
+      </div>
+    </main>
+
+    <footer class="km-footer">
+      <div class="km-footer-inner">
+        <nav class="km-footer-links">
+          <a href="/">Home</a>
+          <a href="/download/">Phraseman</a>
+          <a href="/legal/privacy/">Privacy</a>
+          <a href="/legal/terms/">Terms</a>
+          <a href="/legal/data-deletion/">Data deletion</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>
+`;
+}
+
+function dataDeletionPage({ date }) {
+  const title = 'Delete Your Phraseman Account and Data';
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>${title} &middot; Knowly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/knowly.css" />
+</head>
+<body>
+  <div class="km-page-bg" aria-hidden="true"></div>
+  <div class="km-shell">
+    <header class="km-nav">
+      <a class="km-brand" href="/">
+        <span class="km-mark" aria-hidden="true"></span>
+        <span>
+          <span class="km-brand-name">Knowly</span><br />
+          <span class="km-brand-tag">mobile app studio</span>
+        </span>
+      </a>
+      <nav class="km-nav-links" aria-label="Nav">
+        <a href="/">Home</a>
+        <a href="/download/">Phraseman</a>
+        <a href="/legal/privacy/">Privacy Policy</a>
+        <a href="/legal/terms/">Terms</a>
+        <a href="/contact/" class="km-cta">Contact</a>
+      </nav>
+      <button type="button" id="km-burger" class="km-burger" aria-label="Menu">&#9776;</button>
+    </header>
+    <div id="km-overlay" class="km-overlay" aria-hidden="true"></div>
+    <aside id="km-drawer" class="km-drawer" aria-label="Menu">
+      <div style="font-family:Syne,sans-serif;font-weight:800;font-size:1.2rem;margin-bottom:12px">Knowly</div>
+      <a href="/" data-drawer-close>Home</a>
+      <a href="/download/" data-drawer-close>Phraseman</a>
+      <div class="km-drawer-h">Legal</div>
+      <a href="/legal/privacy/" data-drawer-close>Privacy Policy</a>
+      <a href="/legal/terms/" data-drawer-close>Terms</a>
+      <a href="/contact/" data-drawer-close>Contact</a>
+    </aside>
+
+    <main class="km-main km-section km-article">
+      <div class="legal-document">
+        <h1>${title}</h1>
+        <p class="meta">
+          Application: <strong style="color:var(--km-text)">Phraseman</strong> &middot; Developer:
+          <strong style="color:var(--km-text)">Knowly</strong> &middot; Last updated <strong>${escapeHtml(date)}</strong>.
+        </p>
+
+        <h2>How to request deletion</h2>
+        <p>Open Phraseman and go to Settings &gt; Account &gt; Delete account. Confirm the deletion in the app. The app sends an authenticated deletion request to Knowly, then signs you out and clears local app data from the device after the server confirms the request.</p>
+        <p>If you cannot access the app, email <a href="mailto:support.phraseman@gmail.com?subject=Delete%20My%20Data">support.phraseman@gmail.com</a> with subject "Delete My Data". Include the email or sign-in method you used with Phraseman. We may need to verify your request before deleting account data.</p>
+
+        <h2>Data deleted or de-identified</h2>
+        <p>The deletion flow is designed to delete or de-identify active account data controlled by Knowly, including your Firebase Auth user, users/{stable_id} cloud profile and progress data, leaderboard/profile records, authentication links, friend/referral indexes, social and multiplayer records, community pack records, chat/report/moderation records linked to the account where deletion is appropriate, app activity/error records linked to the account, RevenueCat-linked app records controlled by Knowly, and local app data on the device.</p>
+
+        <h2>Data that may be retained</h2>
+        <p>Some records may remain where retention is required or permitted for legal compliance, payment, tax, accounting, fraud prevention, security, dispute handling, chargebacks/refunds, moderation integrity, backups, or records held by app stores and third-party processors under their own policies.</p>
+        <p>Deleting your Phraseman account does not automatically cancel an active App Store or Google Play subscription. You must cancel subscriptions in the relevant store subscription settings.</p>
+
+        <h2>Questions</h2>
+        <p>For privacy, parental, or account deletion requests, email <a href="mailto:support.phraseman@gmail.com">support.phraseman@gmail.com</a>.</p>
+        <p>See also the <a href="/legal/privacy/">Privacy Policy</a> and <a href="/legal/terms/">Terms of Use</a>.</p>
+      </div>
+    </main>
+
+    <footer class="km-footer">
+      <div class="km-footer-inner">
+        <nav class="km-footer-links">
+          <a href="/">Home</a>
+          <a href="/download/">Phraseman</a>
+          <a href="/legal/privacy/">Privacy</a>
+          <a href="/legal/terms/">Terms</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+  <script src="/assets/site.js" defer></script>
+</body>
+</html>
+`;
+}
+
+function writeFileEnsured(filePath, contents) {
+  fs.mkdirSync(path.dirname(filePath), { recursive: true });
+  fs.writeFileSync(filePath, contents, 'utf8');
+}
+
 function main() {
-  const termsPath = path.join(LEGAL, 'terms_of_use_en.json');
-  const privacyPath = path.join(LEGAL, 'privacy_policy_en.json');
-  const terms = JSON.parse(fs.readFileSync(termsPath, 'utf8'));
-  const privacy = JSON.parse(fs.readFileSync(privacyPath, 'utf8'));
+  const terms = JSON.parse(fs.readFileSync(path.join(LEGAL, 'terms_of_use_en.json'), 'utf8'));
+  const privacy = JSON.parse(fs.readFileSync(path.join(LEGAL, 'privacy_policy_en.json'), 'utf8'));
+  const termsDate = extractDate(terms);
+  const privacyDate = extractDate(privacy);
+  const termsTitle = 'Terms of Use - Phraseman by Knowly';
+  const privacyTitle = 'Privacy Policy - Phraseman by Knowly';
 
-  const firstTerms = terms[0]?.body?.split('\n\n')[0] || '';
-  const dateMatch = firstTerms.match(/Last updated:\s*([^\n]+)/i);
-  const dateStr = dateMatch ? dateMatch[1].trim() : '';
+  const termsRoot = rootPage({ title: termsTitle, sections: terms, date: termsDate });
+  const privacyRoot = rootPage({ title: privacyTitle, sections: privacy, date: privacyDate });
 
-  const metaTerms = `Application: <span class="app-name">Phraseman</span> &nbsp;|&nbsp; Developer: <span class="app-name">Knowly</span> &nbsp;|&nbsp; Last updated: <strong>${escapeHtml(dateStr)}</strong>.`;
-
-  const firstPriv = privacy[0]?.body?.split('\n\n')[0] || '';
-  const d2 = firstPriv.match(/Last updated:\s*([^\n]+)/i);
-  const dateStr2 = d2 ? d2[1].trim() : '';
-  const metaPriv = `Application: <span class="app-name">Phraseman</span> &nbsp;|&nbsp; Developer: <span class="app-name">Knowly</span> &nbsp;|&nbsp; Last updated: <strong>${escapeHtml(dateStr2)}</strong>.`;
-
-  fs.writeFileSync(
-    path.join(ROOT, 'terms.html'),
-    wrapPage({ title: 'Terms of Use — Phraseman by Knowly', sections: terms, metaLine: metaTerms }),
-    'utf8',
+  writeFileEnsured(path.join(ROOT, 'terms.html'), termsRoot);
+  writeFileEnsured(path.join(ROOT, 'privacy.html'), privacyRoot);
+  writeFileEnsured(path.join(ROOT, 'admin', 'oauth-privacy.html'), privacyRoot);
+  writeFileEnsured(
+    path.join(KNOWLY_WWW, 'legal', 'terms', 'index.html'),
+    knowlyPage({ title: termsTitle, sections: terms, date: termsDate, active: 'terms' }),
   );
-  const privacyHtml = wrapPage({
-    title: 'Privacy Policy — Phraseman by Knowly',
-    sections: privacy,
-    metaLine: metaPriv,
-  });
-  fs.writeFileSync(path.join(ROOT, 'privacy.html'), privacyHtml, 'utf8');
-  const adminOAuthPrivacy = path.join(ROOT, 'admin', 'oauth-privacy.html');
-  try {
-    fs.writeFileSync(adminOAuthPrivacy, privacyHtml, 'utf8');
-  } catch (e) {
-    console.warn('Could not write admin/oauth-privacy.html:', e?.message || e);
-  }
-  console.log('Wrote terms.html, privacy.html, and admin/oauth-privacy.html from legal/*.json');
+  writeFileEnsured(
+    path.join(KNOWLY_WWW, 'legal', 'privacy', 'index.html'),
+    knowlyPage({ title: privacyTitle, sections: privacy, date: privacyDate, active: 'privacy' }),
+  );
+  writeFileEnsured(
+    path.join(KNOWLY_WWW, 'legal', 'data-deletion', 'index.html'),
+    dataDeletionPage({ date: privacyDate }),
+  );
+
+  console.log('Wrote root, admin, and knowly-www legal HTML from legal/*.json');
 }
 
 main();

@@ -6,6 +6,8 @@ import {
   ACTIVE_PERSONAL_TRAINING_IDS,
   JESSE_REWORKED_MARKER,
 } from '../app/personal_training_taxonomy';
+import { PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES } from '../app/personal_training_source_locales';
+import { PLANNED_INTERFACE_SOURCE_LOCALES } from '../app/source_locales';
 
 const ROOT = path.resolve(__dirname, '..');
 const ADMIN_MANIFEST_PATH = path.join(ROOT, 'admin', 'personal-trainings.js');
@@ -21,8 +23,13 @@ function readAdminManifest(): {
     jesseStatus: string;
     needsJesseRework: boolean;
     jesseMarker: string | null;
+    cefrLevel: string | null;
+    prerequisites: string[];
+    placementRisk: string | null;
     appPath: string;
     registryPath: string;
+    title: Record<string, string>;
+    shortDiagnosis: Record<string, string>;
   }>;
 } {
   const raw = fs.readFileSync(ADMIN_MANIFEST_PATH, 'utf8');
@@ -62,6 +69,9 @@ describe('admin personal trainings manifest', () => {
       expect(training?.jesseStatus).toBe('reworked');
       expect(training?.needsJesseRework).toBe(false);
       expect(training?.jesseMarker).toBe(JESSE_REWORKED_MARKER);
+      expect(training?.cefrLevel).toMatch(/^(A1|A2|A2\+|B1|B1\+)$/);
+      expect(training?.placementRisk).toMatch(/^(low|medium|high)$/);
+      expect(Array.isArray(training?.prerequisites)).toBe(true);
       expect(training?.appPath).toBe(`app/diagnosis_training_${id}.ts`);
       expect(training?.registryPath).toBe('app/diagnosis_trainings.ts');
     }
@@ -85,6 +95,26 @@ describe('admin personal trainings manifest', () => {
       expect(training?.jesseStatus).toBe('legacy_needs_rework');
       expect(training?.needsJesseRework).toBe(true);
       expect(training?.jesseMarker).toBeNull();
+    }
+  });
+
+  it('syncs planned source-language titles and short diagnoses for translated summary batches', () => {
+    const manifest = readAdminManifest();
+    const cyrillic = /[А-Яа-яЁёІіЇїЄєҐґ]/;
+
+    for (const [id, sourceLocales] of Object.entries(PERSONAL_TRAINING_SUMMARY_SOURCE_LOCALES)) {
+      const training = manifest.trainings.find((item) => item.id === id);
+      expect(training).toBeTruthy();
+
+      for (const locale of PLANNED_INTERFACE_SOURCE_LOCALES) {
+        const expected = sourceLocales[locale];
+        if (!expected) continue;
+
+        expect(training?.title[locale]).toBe(expected.title);
+        expect(training?.shortDiagnosis[locale]).toBe(expected.shortDiagnosis);
+        expect(training?.title[locale]).not.toMatch(cyrillic);
+        expect(training?.shortDiagnosis[locale]).not.toMatch(cyrillic);
+      }
     }
   });
 });

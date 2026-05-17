@@ -35,6 +35,7 @@ import { prefetchLessonMenuCache } from './lesson_menu';
 import { COURSE_LEVEL_RANGES, getCourseLevelForLesson } from './course_levels';
 import RegistrationPromptModal from '../components/RegistrationPromptModal';
 import CoachToast from '../components/CoachToast';
+import { useOverlayVisible } from '../components/OverlayArbiter';
 import { AUTH_PROMPT_SHOWN_KEY, getLinkedAuthInfo } from './auth_provider';
 import { buildCelebrationShareBody } from './celebration_share_messages';
 import { buildLessonShareMessage } from './lesson_share';
@@ -125,13 +126,18 @@ function ReviewModal({ visible, context, t, f, bottomInset, lang, onClose }: {
             <>
               <Text style={{ fontSize: 40, marginBottom: 12 }}>🙏</Text>
               <Text style={{ color: t.textPrimary, fontSize: f.h2, fontWeight: '700', textAlign: 'center' }}>
-                {triLang(lang, { ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!' })}
+                {triLang(lang, { ru: 'Спасибо!', uk: 'Дякуємо!', es: '¡Gracias!', 'pt-BR': 'Obrigado!', vi: 'Cảm ơn!', id: 'Terima kasih!', tr: 'Teşekkürler!', pl: 'Dziękujemy!' })}
               </Text>
               <Text style={{ color: t.textMuted, fontSize: f.body, textAlign: 'center', marginTop: 8 }}>
                 {triLang(lang, {
                   ru: 'Это значит для нас очень много.',
                   uk: 'Це для нас дуже багато значить.',
                   es: 'Para nosotros es muy importante.',
+                  'pt-BR': 'Isso significa muito para nós.',
+                  vi: 'Điều này rất có ý nghĩa với chúng tôi.',
+                  id: 'Ini sangat berarti bagi kami.',
+                  tr: 'Bu bizim için çok önemli.',
+                  pl: 'To dla nas bardzo dużo znaczy.',
                 })}
               </Text>
             </>
@@ -177,9 +183,9 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
   };
 
   const medalLabel = (tier: MedalTier) => {
-    if (tier === 'bronze') return triLang(lang, { ru: '🥉 Бронзовая медаль!', uk: '🥉 Бронзова медаль!', es: '¡🥉 Medalla de bronce!' });
-    if (tier === 'silver') return triLang(lang, { ru: '🥈 Серебряная медаль!', uk: '🥈 Срібна медаль!', es: '¡🥈 Medalla de plata!' });
-    return triLang(lang, { ru: '🥇 Золотая медаль!', uk: '🥇 Золота медаль!', es: '¡🥇 Medalla de oro!' });
+    if (tier === 'bronze') return triLang(lang, { ru: '🥉 Бронзовая медаль!', uk: '🥉 Бронзова медаль!', es: '¡🥉 Medalla de bronce!', 'pt-BR': '🥉 Medalha de bronze!', vi: '🥉 Huy chương đồng!', id: '🥉 Medali perunggu!', tr: '🥉 Bronz madalya!', pl: '🥉 Brązowy medal!' });
+    if (tier === 'silver') return triLang(lang, { ru: '🥈 Серебряная медаль!', uk: '🥈 Срібна медаль!', es: '¡🥈 Medalla de plata!', 'pt-BR': '🥈 Medalha de prata!', vi: '🥈 Huy chương bạc!', id: '🥈 Medali perak!', tr: '🥈 Gümüş madalya!', pl: '🥈 Srebrny medal!' });
+    return triLang(lang, { ru: '🥇 Золотая медаль!', uk: '🥇 Золота медаль!', es: '¡🥇 Medalla de oro!', 'pt-BR': '🥇 Medalha de ouro!', vi: '🥇 Huy chương vàng!', id: '🥇 Medali emas!', tr: '🥇 Altın madalya!', pl: '🥇 Złoty medal!' });
   };
 
   const shareMessage = () => {
@@ -199,12 +205,22 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
       ru: 'Отличная работа! Продолжай учиться!',
       uk: 'Чудова робота! Продовжуй навчання!',
       es: '¡Buen trabajo! Sigue con el inglés.',
+      'pt-BR': 'Bom trabalho! Continue estudando inglês.',
+      vi: 'Làm tốt lắm! Hãy tiếp tục học tiếng Anh.',
+      id: 'Kerja bagus! Terus belajar bahasa Inggris.',
+      tr: 'Harika iş! İngilizce çalışmaya devam et.',
+      pl: 'Dobra robota! Ucz się dalej angielskiego.',
     });
   } else if (notif.kind === 'lesson_unlock') {
     modalTitle = triLang(lang, {
       ru: '🔓 Урок разблокирован!',
       uk: '🔓 Урок розблоковано!',
       es: '🔓 ¡Lección desbloqueada!',
+      'pt-BR': '🔓 Lição desbloqueada!',
+      vi: '🔓 Đã mở khóa bài học!',
+      id: '🔓 Pelajaran terbuka!',
+      tr: '🔓 Ders açıldı!',
+      pl: '🔓 Lekcja odblokowana!',
     });
     modalSub =
       notif.unlockedLessonId
@@ -212,6 +228,11 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
             ru: `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_RU[notif.unlockedLessonId - 1]}» теперь доступен!`,
             uk: `Урок ${notif.unlockedLessonId} «${LESSON_NAMES_UK[notif.unlockedLessonId - 1]}» тепер доступний!`,
             es: `¡La Lección ${notif.unlockedLessonId} («${lessonNamesForLang('es')[notif.unlockedLessonId - 1] ?? ''}») ya está disponible!`,
+            'pt-BR': `A Lição ${notif.unlockedLessonId} agora está disponível!`,
+            vi: `Bài ${notif.unlockedLessonId} hiện đã mở!`,
+            id: `Pelajaran ${notif.unlockedLessonId} sekarang tersedia!`,
+            tr: `Ders ${notif.unlockedLessonId} artık açık!`,
+            pl: `Lekcja ${notif.unlockedLessonId} jest już dostępna!`,
           })
         : undefined;
   } else if (notif.kind === 'level_exam_unlock') {
@@ -219,22 +240,42 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
       ru: `📋 Зачёт ${notif.cefrLevel} доступен!`,
       uk: `📋 Залік ${notif.cefrLevel} доступний!`,
       es: `📋 ¡Examen ${notif.cefrLevel} disponible!`,
+      'pt-BR': `📋 Avaliação ${notif.cefrLevel} disponível!`,
+      vi: `📋 Bài kiểm tra ${notif.cefrLevel} đã mở!`,
+      id: `📋 Ujian ${notif.cefrLevel} tersedia!`,
+      tr: `📋 ${notif.cefrLevel} sınavı açık!`,
+      pl: `📋 Test ${notif.cefrLevel} jest dostępny!`,
     });
     modalSub = triLang(lang, {
       ru: `Все уроки уровня ${notif.cefrLevel} пройдены на 4.5+! Теперь можешь сдать зачёт.`,
       uk: `Всі уроки рівня ${notif.cefrLevel} пройдено на 4.5+! Тепер можеш скласти залік.`,
       es: `¡Todas las lecciones del nivel ${notif.cefrLevel} con nota 4,5 o más! Ya puedes hacer el examen de nivel.`,
+      'pt-BR': `Todas as lições do nível ${notif.cefrLevel} foram concluídas com 4,5+! Agora você pode fazer a avaliação.`,
+      vi: `Tất cả bài học cấp ${notif.cefrLevel} đã đạt 4,5+! Giờ bạn có thể làm bài kiểm tra.`,
+      id: `Semua pelajaran level ${notif.cefrLevel} selesai dengan 4,5+! Sekarang kamu bisa mengikuti ujian level.`,
+      tr: `${notif.cefrLevel} seviyesindeki tüm dersler 4,5+ ile tamamlandı! Şimdi sınava girebilirsin.`,
+      pl: `Wszystkie lekcje poziomu ${notif.cefrLevel} ukończone na 4,5+! Możesz teraz podejść do testu.`,
     });
   } else {
     modalTitle = triLang(lang, {
       ru: '🎓 Экзамен Лингмана открыт!',
       uk: '🎓 Іспит Лінгмана відкрито!',
       es: '🎓 ¡Examen de Lingman desbloqueado!',
+      'pt-BR': '🎓 Exame Lingman desbloqueado!',
+      vi: '🎓 Đã mở kỳ thi Lingman!',
+      id: '🎓 Ujian Lingman terbuka!',
+      tr: '🎓 Lingman sınavı açıldı!',
+      pl: '🎓 Egzamin Lingmana odblokowany!',
     });
     modalSub = triLang(lang, {
       ru: 'Все уроки = 5.0 и все зачёты сданы! Финальный экзамен открыт.',
       uk: 'Всі уроки = 5.0 та всі заліки здано! Фінальний іспит відкрито.',
       es: '¡Todas las lecciones a 5,0 y todos los exámenes de nivel superados! Examen final abierto.',
+      'pt-BR': 'Todas as lições = 5,0 e todas as avaliações concluídas! O exame final está aberto.',
+      vi: 'Tất cả bài học đạt 5,0 và mọi bài kiểm tra đã hoàn thành! Kỳ thi cuối đã mở.',
+      id: 'Semua pelajaran = 5,0 dan semua ujian level selesai! Ujian akhir terbuka.',
+      tr: 'Tüm dersler 5,0 ve tüm sınavlar tamamlandı! Final sınavı açıldı.',
+      pl: 'Wszystkie lekcje na 5,0 i wszystkie testy zaliczone! Egzamin końcowy jest otwarty.',
     });
   }
   return (
@@ -295,7 +336,7 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
         >
           <Ionicons name="share-outline" size={18} color={t.textSecond} />
           <Text style={{ color: t.textSecond, fontSize: f.body, fontWeight: '600' }}>
-            {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir' })}
+            {triLang(lang, { ru: 'Поделиться', uk: 'Поділитися', es: 'Compartir', 'pt-BR': 'Compartilhar', vi: 'Chia sẻ', id: 'Bagikan', tr: 'Paylaş', pl: 'Udostępnij' })}
           </Text>
         </TouchableOpacity>
 
@@ -305,7 +346,7 @@ function AchievementNotifModal({ notif, lang, t, f, lessonId, lessonScore, lesso
           style={{ marginTop: 14, backgroundColor: t.accent, borderRadius: 16, paddingHorizontal: 40, paddingVertical: 12 }}
         >
           <Text style={{ color: t.correctText, fontWeight: '800', fontSize: f.bodyLg }}>
-            {triLang(lang, { ru: 'Отлично!', uk: 'Чудово!', es: '¡Genial!' })}
+            {triLang(lang, { ru: 'Отлично!', uk: 'Чудово!', es: '¡Genial!', 'pt-BR': 'Ótimo!', vi: 'Tuyệt!', id: 'Bagus!', tr: 'Harika!', pl: 'Świetnie!' })}
           </Text>
         </TouchableOpacity>
       </Animated.View>
@@ -331,6 +372,11 @@ export default function LessonComplete() {
     coachMicroLabelRu?: string;
     coachMicroLabelUk?: string;
     coachMicroLabelEs?: string;
+    coachMicroLabelPtBr?: string;
+    coachMicroLabelVi?: string;
+    coachMicroLabelId?: string;
+    coachMicroLabelTr?: string;
+    coachMicroLabelPl?: string;
     coachDiagnosisEvidenceCount?: string;
   }>();
   const { id } = params;
@@ -349,6 +395,7 @@ export default function LessonComplete() {
   // Notification queue
   const [, setNotifQueue] = useState<Notif[]>([]);
   const [activeNotif, setActiveNotif] = useState<Notif | null>(null);
+  const activeNotifVisible = useOverlayVisible('lessonCompleteNotif', activeNotif != null);
 
   const [coachToast, setCoachToast] = useState<CoachToastDecision | null>(null);
 
@@ -370,6 +417,11 @@ export default function LessonComplete() {
     params.coachMicroLabelRu,
     params.coachMicroLabelUk,
     params.coachMicroLabelEs,
+    params.coachMicroLabelPtBr,
+    params.coachMicroLabelVi,
+    params.coachMicroLabelId,
+    params.coachMicroLabelTr,
+    params.coachMicroLabelPl,
     params.coachDiagnosisEvidenceCount,
   ]);
   const [masteryReplayPrice, setMasteryReplayPrice] = useState(MASTERY_REPLAY_BASE_SHARDS);
@@ -438,7 +490,7 @@ export default function LessonComplete() {
           }
         } catch {}
       }
-      checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount }).catch(() => {});
+      checkAchievements({ type: 'lesson_complete', lessonCount, wasPerfect, perfectCount, lessonId }).catch(() => {});
       if (wasPerfect) {
         const nP = await addShards('lesson_perfect', suppress);
         if (nP > 0) shardKeys.push('lesson_perfect');
@@ -508,7 +560,7 @@ export default function LessonComplete() {
           const streakRaw = await AsyncStorage.getItem('streak_count');
           const d1Streak = parseInt(streakRaw || '0') || 0;
           const langRaw = await AsyncStorage.getItem('app_lang');
-          const d1Lang = (langRaw === 'uk' ? 'uk' : 'ru') as 'ru' | 'uk';
+          const d1Lang: Lang = langRaw === 'uk' ? 'uk' : langRaw === 'es' ? 'es' : 'ru';
           scheduleD1PersonalizedReminder(d1Phrases, d1Streak, d1Lang).catch(() => {});
         } catch {}
       }
@@ -564,11 +616,14 @@ export default function LessonComplete() {
         const totalAnswers = Array.isArray(p) && p.length > 0 ? Math.min(p.length, 50) : 50;
         const score = parseFloat(((Math.min(correct, totalAnswers) / totalAnswers) * 5).toFixed(1));
         setLessonScore(score);
-        const { newTier, prevTier, isNewBest } = await saveMedalProgress(lessonId, score, p);
+        const { newTier, prevTier, isNewBest, newPassCount } = await saveMedalProgress(lessonId, score, p);
         void syncToCloud({ forceNow: true }).catch(() => {});
         setMedalTier(newTier);
         const medalUpgraded = isNewBest && newTier !== prevTier && newTier !== 'none';
         setMedalImproved(medalUpgraded);
+        if (correct >= 45 && p.filter(x => x === 'wrong').length === 0 && newPassCount > 0) {
+          checkAchievements({ type: 'lesson_perfect_pass', lessonId, passCount: newPassCount }).catch(() => {});
+        }
 
         // Build notification queue
         const queue: Notif[] = [];
@@ -668,7 +723,7 @@ export default function LessonComplete() {
     <SafeAreaView style={{ flex: 1 }}>
       <TouchableOpacity
         accessibilityRole="button"
-        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver' })}
+        accessibilityLabel={triLang(lang, { ru: 'Назад', uk: 'Назад', es: 'Volver', 'pt-BR': 'Voltar', vi: 'Quay lại', id: 'Kembali', tr: 'Geri', pl: 'Wstecz' })}
         activeOpacity={0.85}
         onPress={goBackFromComplete}
         style={{
@@ -713,9 +768,9 @@ export default function LessonComplete() {
               color: t.gold, fontSize: f.bodyLg, fontWeight: '700',
               marginTop: 6, opacity: fadeAnim,
             }}>
-              {medalTier === 'bronze' && triLang(lang, { ru: '🥉 Новая медаль!', uk: '🥉 Нова медаль!', es: '¡🥉 Medalla nueva!' })}
-              {medalTier === 'silver' && triLang(lang, { ru: '🥈 Новая медаль!', uk: '🥈 Нова медаль!', es: '¡🥈 Medalla nueva!' })}
-              {medalTier === 'gold'   && triLang(lang, { ru: '🥇 Золото!', uk: '🥇 Золото!', es: '¡🥇 Oro!' })}
+              {medalTier === 'bronze' && triLang(lang, { ru: '🥉 Новая медаль!', uk: '🥉 Нова медаль!', es: '¡🥉 Medalla nueva!', 'pt-BR': '🥉 Nova medalha!', vi: '🥉 Huy chương mới!', id: '🥉 Medali baru!', tr: '🥉 Yeni madalya!', pl: '🥉 Nowy medal!' })}
+              {medalTier === 'silver' && triLang(lang, { ru: '🥈 Новая медаль!', uk: '🥈 Нова медаль!', es: '¡🥈 Medalla nueva!', 'pt-BR': '🥈 Nova medalha!', vi: '🥈 Huy chương mới!', id: '🥈 Medali baru!', tr: '🥈 Yeni madalya!', pl: '🥈 Nowy medal!' })}
+              {medalTier === 'gold'   && triLang(lang, { ru: '🥇 Золото!', uk: '🥇 Золото!', es: '¡🥇 Oro!', 'pt-BR': '🥇 Ouro!', vi: '🥇 Vàng!', id: '🥇 Emas!', tr: '🥇 Altın!', pl: '🥇 Złoto!' })}
             </Animated.Text>
           )}
         </Animated.View>
@@ -843,7 +898,7 @@ export default function LessonComplete() {
         lang={lang}
         onClose={() => setShowReview(false)}
       />
-      {activeNotif && (
+      {activeNotif && activeNotifVisible && (
         <AchievementNotifModal
           notif={activeNotif}
           lang={lang}
@@ -878,6 +933,11 @@ export default function LessonComplete() {
           labelRu={coachToast.labelRu}
           labelUk={coachToast.labelUk}
           labelEs={coachToast.labelEs}
+          labelPtBr={coachToast.labelPtBr}
+          labelVi={coachToast.labelVi}
+          labelId={coachToast.labelId}
+          labelTr={coachToast.labelTr}
+          labelPl={coachToast.labelPl}
           mistakeCount={coachToast.mistakeCount}
           weaknessScore={coachToast.weaknessScore}
           priorityScore={coachToast.priorityScore}
@@ -887,6 +947,11 @@ export default function LessonComplete() {
           microLabelRu={coachToast.microLabelRu}
           microLabelUk={coachToast.microLabelUk}
           microLabelEs={coachToast.microLabelEs}
+          microLabelPtBr={coachToast.microLabelPtBr}
+          microLabelVi={coachToast.microLabelVi}
+          microLabelId={coachToast.microLabelId}
+          microLabelTr={coachToast.microLabelTr}
+          microLabelPl={coachToast.microLabelPl}
           diagnosisEvidenceCount={coachToast.diagnosisEvidenceCount}
           onDismiss={() => setCoachToast(null)}
         />

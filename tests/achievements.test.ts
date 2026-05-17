@@ -1,3 +1,4 @@
+/* eslint-disable import/first */
 import fs from 'fs';
 import path from 'path';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -30,6 +31,7 @@ import {
   loadAchievementStates,
 } from '../app/achievements';
 import { ACHIEVEMENT_ES } from '../app/achievements_es_locale';
+import { MAX_LEVEL } from '../constants/theme';
 
 const idsOf = (items: { id: string }[]) => items.map(x => x.id);
 
@@ -64,6 +66,15 @@ describe('achievements', () => {
     expect(missingImages).toEqual([]);
   });
 
+  it('does not define level achievements above the real level cap', () => {
+    const impossibleLevelIds = ALL_ACHIEVEMENTS
+      .map(a => ({ id: a.id, match: a.id.match(/^level_(\d+)$/) }))
+      .filter(({ match }) => match && Number(match[1]) > MAX_LEVEL)
+      .map(({ id }) => id);
+
+    expect(impossibleLevelIds).toEqual([]);
+  });
+
   it('does not leave the achievements promo count hard-coded to the old total', () => {
     const files = [
       path.join(__dirname, '..', 'app', 'streak_stats.tsx'),
@@ -92,24 +103,74 @@ describe('achievements', () => {
     expect(source).not.toContain('`${ALL_ACHIEVEMENTS.length} нагород`');
   });
 
-  it('renders achievements screen as earned-only collection', () => {
+  it('renders achievements screen as earned-only by default with a dev-only all rewards toggle', () => {
     const screenPath = path.join(__dirname, '..', 'app', 'achievements_screen.tsx');
     const source = fs.readFileSync(screenPath, 'utf8');
 
-    expect(source).toContain("a.category === cat && !!stateMap.get(a.id)?.unlockedAt");
+    expect(source).toContain('const showAllAchievements = ENABLE_DEV_TOOLS && devShowAllAchievements;');
+    expect(source).toContain('showAllAchievements || !!stateMap.get(a.id)?.unlockedAt');
+    expect(source).toContain('testID="achievements-dev-show-all-toggle"');
     expect(source).toContain('if (catAchs.length === 0) return [];');
     expect(source).not.toContain('unlockedCount} / {total}');
   });
 
+  it('wires card pack achievements into both official and community purchase flows', () => {
+    const officialPurchasePath = path.join(__dirname, '..', 'app', 'flashcards', 'cardPackShardPurchase.ts');
+    const communityPurchasePath = path.join(__dirname, '..', 'app', 'community_packs', 'purchaseCommunityPack.ts');
+    const officialSource = fs.readFileSync(officialPurchasePath, 'utf8');
+    const communitySource = fs.readFileSync(communityPurchasePath, 'utf8');
+
+    expect(officialSource).toContain('trackCardPackAcquiredAchievement()');
+    expect(communitySource).toContain('trackCardPackAcquiredAchievement()');
+    expect(communitySource).toContain('trackExternalShardSpendAchievement(pack.priceShards)');
+  });
+
+  it('keeps flashcard source achievement aligned with live save sources', () => {
+    const files = [
+      path.join(__dirname, '..', 'app', '(tabs)', 'quizzes.tsx'),
+      path.join(__dirname, '..', 'app', 'quizzes.tsx'),
+      path.join(__dirname, '..', 'app', 'lesson1.tsx'),
+      path.join(__dirname, '..', 'app', 'lesson_words.tsx'),
+      path.join(__dirname, '..', 'app', 'lesson_irregular_verbs.tsx'),
+      path.join(__dirname, '..', 'components', 'DailyPhraseCard.tsx'),
+    ];
+    const sources = new Set<string>();
+    for (const file of files) {
+      const source = fs.readFileSync(file, 'utf8');
+      for (const match of source.matchAll(/source="(lesson|word|verb|dialog|daily_phrase)"/g)) {
+        sources.add(match[1]);
+      }
+    }
+
+    expect(sources).toEqual(new Set(['lesson', 'word', 'verb', 'daily_phrase']));
+    expect(ALL_ACHIEVEMENTS.some(a => a.id === `flashcards_sources_${sources.size}`)).toBe(true);
+  });
+
+  it('wires friend count achievements for both accepted and observed friendships', () => {
+    const acceptPath = path.join(__dirname, '..', 'app', 'firestore_friend_requests.ts');
+    const tabPath = path.join(__dirname, '..', 'app', '(tabs)', 'friends.tsx');
+    const rootPath = path.join(__dirname, '..', 'app', 'friends_screen.tsx');
+
+    expect(fs.readFileSync(acceptPath, 'utf8')).toContain("type: 'friend_added'");
+    expect(fs.readFileSync(tabPath, 'utf8')).toContain("type: 'friend_added'");
+    expect(fs.readFileSync(rootPath, 'utf8')).toContain("type: 'friend_added'");
+  });
+
   it('can unlock every achievement through its public event contract', async () => {
-    await checkAchievements({ type: 'streak', streak: 500 });
+    jest.useFakeTimers().setSystemTime(new Date(2026, 4, 1, 12, 0, 0));
+    for (let i = 0; i < 31; i += 1) {
+      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
+      await checkAchievements({ type: 'streak', streak: 1000 });
+    }
+    jest.useRealTimers();
     await checkAchievements({ type: 'streak_repair' });
     await checkAchievements({ type: 'perfect_week' });
 
-    await checkAchievements({ type: 'xp', totalXP: 100000 });
+    await AsyncStorage.setItem('week_points', '10000');
+    await checkAchievements({ type: 'xp', totalXP: 2000000 });
     await checkAchievements({ type: 'wager_win' });
     await checkAchievements({ type: 'personal_best' });
-    await checkAchievements({ type: 'level_reached', level: 50 });
+    await checkAchievements({ type: 'level_reached', level: 100 });
 
     await checkAchievements({
       type: 'lesson_complete',
@@ -117,54 +178,124 @@ describe('achievements', () => {
       wasPerfect: true,
       perfectCount: 32,
     });
+    jest.useFakeTimers().setSystemTime(new Date(2026, 5, 1, 12, 0, 0));
+    for (let lessonId = 1; lessonId <= 10; lessonId += 1) {
+      await checkAchievements({ type: 'lesson_complete', lessonCount: 32, wasPerfect: true, perfectCount: 32, lessonId });
+    }
+    jest.useRealTimers();
+    await AsyncStorage.multiSet([
+      ...Array.from({ length: 32 }, (_, i) => [`lesson${i + 1}_pass_count`, '10'] as [string, string]),
+      ...Array.from({ length: 32 }, (_, i) => [`achievement_lesson_${i + 1}_perfect_passes_v1`, JSON.stringify([1, 2])] as [string, string]),
+      ...Array.from({ length: 4 }, (_, i) => [`lesson${29 + i}_progress`, JSON.stringify(Array.from({ length: 45 }, () => 'correct'))] as [string, string]),
+    ]);
+    await checkAchievements({ type: 'backfill' });
 
     await checkAchievements({ type: 'quiz', level: 'easy', perfect: true });
     await checkAchievements({ type: 'quiz', level: 'medium', perfect: true });
-    for (let i = 0; i < 5; i += 1) {
+    for (let i = 0; i < 25; i += 1) {
       await checkAchievements({ type: 'quiz', level: 'hard', perfect: true });
     }
+    jest.useFakeTimers().setSystemTime(new Date(2026, 6, 1, 12, 0, 0));
+    for (let i = 0; i < 7; i += 1) {
+      jest.setSystemTime(new Date(2026, 6, 1 + i, 12, 0, 0));
+      await checkAchievements({ type: 'quiz', level: 'easy', perfect: true });
+    }
+    jest.useRealTimers();
 
-    await checkAchievements({ type: 'combo', count: 100 });
-    await checkAchievements({ type: 'daily_task', allDone: true });
-    await checkAchievements({ type: 'daily_phrase', action: 'read' });
-    await checkAchievements({ type: 'daily_phrase', action: 'save' });
-    await checkAchievements({ type: 'friend_added', totalFriends: 10 });
-    for (let i = 0; i < 5; i += 1) {
+    await checkAchievements({ type: 'combo', count: 500 });
+    jest.useFakeTimers().setSystemTime(new Date('2026-05-01T12:00:00'));
+    for (let i = 0; i < 30; i += 1) {
+      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
+      await checkAchievements({ type: 'daily_task', allDone: true, noReroll: true });
+    }
+    jest.useRealTimers();
+    for (let i = 0; i < 100; i += 1) {
+      await checkAchievements({ type: 'daily_phrase', action: 'read' });
+      await checkAchievements({ type: 'daily_phrase', action: 'save' });
+    }
+    await checkAchievements({ type: 'friend_added', totalFriends: 50 });
+    for (let i = 0; i < 100; i += 1) {
       await checkAchievements({ type: 'gift_sent' });
     }
-    await checkAchievements({ type: 'achievement_liked' });
-    await checkAchievements({ type: 'achievement_shared' });
+    await checkAchievements({ type: 'achievement_liked', likeTotal: 100 });
+    for (let i = 0; i < 100; i += 1) {
+      await checkAchievements({ type: 'league_chat_message' });
+    }
+    for (let i = 0; i < 10; i += 1) {
+      await checkAchievements({ type: 'achievement_shared' });
+    }
 
     await checkAchievements({ type: 'login', consecutiveDays: 365 });
     await checkAchievements({ type: 'comeback' });
     await checkAchievements({ type: 'diagnosis' });
 
     jest.useFakeTimers().setSystemTime(new Date('2026-05-12T23:30:00'));
-    await checkAchievements({ type: 'time_of_day' });
-    jest.setSystemTime(new Date('2026-05-12T05:30:00'));
-    await checkAchievements({ type: 'time_of_day' });
+    for (let i = 0; i < 7; i += 1) {
+      jest.setSystemTime(new Date(2026, 4, 12 + i, 23, 30, 0));
+      await checkAchievements({ type: 'time_of_day' });
+    }
+    for (let i = 0; i < 7; i += 1) {
+      jest.setSystemTime(new Date(2026, 5, 1 + i, 5, 30, 0));
+      await checkAchievements({ type: 'time_of_day' });
+    }
     jest.useRealTimers();
 
-    await checkAchievements({ type: 'exam', pct: 95 });
+    for (let i = 0; i < 10; i += 1) {
+      await checkAchievements({ type: 'exam', pct: 95 });
+    }
     await checkAchievements({ type: 'flashcards_session' });
+    await checkAchievements({ type: 'flashcard_saved', count: 250, source: 'lesson' });
+    for (const source of ['word', 'verb', 'daily_phrase']) {
+      await checkAchievements({ type: 'flashcard_saved', source });
+    }
+    await checkAchievements({ type: 'flashcard_flipped', count: 1000 });
+    jest.useFakeTimers().setSystemTime(new Date('2026-05-01T12:00:00'));
+    for (let i = 0; i < 30; i += 1) {
+      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
+      await checkAchievements({ type: 'flashcard_viewed', count: 1 });
+    }
+    jest.useRealTimers();
     await checkAchievements({ type: 'active_recall', correct: 50 });
 
-    for (let i = 0; i < 10; i += 1) {
+    for (let i = 0; i < 100; i += 1) {
       await checkAchievements({ type: 'arena_win' });
     }
-    await checkAchievements({ type: 'arena_win_streak', streak: 10 });
+    await checkAchievements({ type: 'arena_win_streak', streak: 25 });
     await checkAchievements({ type: 'arena_duel_friend_win' });
-    for (let i = 0; i < 5; i += 1) {
-      await checkAchievements({ type: 'arena_wager_win' });
+    for (let i = 0; i < 25; i += 1) {
+      await checkAchievements({ type: 'arena_wager_win', count: i + 1 });
     }
-    await checkAchievements({ type: 'wager_win_streak', count: 3 });
+    await checkAchievements({ type: 'wager_win_streak', count: 10 });
     await checkAchievements({ type: 'streak_freeze_used' });
-    await checkAchievements({ type: 'shards', balance: 100 });
-    await checkAchievements({ type: 'trainer_correct', correct: 100 });
+    await checkAchievements({ type: 'shards', balance: 1000 });
+    await checkAchievements({ type: 'shards_spent', amount: 1000 });
+    for (let i = 0; i < 25; i += 1) {
+      await checkAchievements({ type: 'energy_refill' });
+    }
+    jest.useFakeTimers().setSystemTime(new Date(2026, 7, 3, 12, 0, 0));
+    for (let i = 0; i < 10; i += 1) {
+      jest.setSystemTime(new Date(2026, 7, 3 + i * 7, 12, 0, 0));
+      await checkAchievements({ type: 'league_result', myRank: 1, totalInGroup: 10, promoted: true, newLeagueId: 8 });
+    }
+    jest.useRealTimers();
+    for (let i = 0; i < 4; i += 1) {
+      await checkAchievements({ type: 'league_boost', multiplier: 2 });
+    }
+    await checkAchievements({ type: 'league_boost', multiplier: 3 });
+    jest.useFakeTimers().setSystemTime(new Date('2026-05-01T12:00:00'));
+    for (let i = 0; i < 7; i += 1) {
+      jest.setSystemTime(new Date(2026, 4, 1 + i, 12, 0, 0));
+      await checkAchievements({ type: 'trainer_correct', correct: 1 });
+    }
+    jest.useRealTimers();
+    await checkAchievements({ type: 'trainer_correct', correct: 9993 });
+    for (let i = 0; i < 50; i += 1) {
+      await checkAchievements({ type: 'trainer_session_result', correct: 5, wrong: 0, total: 5 });
+    }
     await checkAchievements({ type: 'avatar_custom_set' });
     await checkAchievements({ type: 'profile_theme_set' });
-    await checkAchievements({ type: 'pack_purchased', totalPacks: 5 });
-    await checkAchievements({ type: 'quiz_session_count', count: 10 });
+    await checkAchievements({ type: 'pack_purchased', totalPacks: 25 });
+    await checkAchievements({ type: 'quiz_session_count', count: 100 });
 
     for (const level of ['A1', 'A2', 'B1', 'B2']) {
       await checkAchievements({ type: 'gem', level, gem: 'ruby' });
@@ -175,6 +306,46 @@ describe('achievements', () => {
     const unlocked = await unlockedIds();
     const missing = idsOf(ALL_ACHIEVEMENTS).filter(id => !unlocked.has(id));
     expect(missing).toEqual([]);
+  });
+
+  it('unlocks recall milestones from the live trainer_correct event', async () => {
+    await checkAchievements({ type: 'trainer_correct', correct: 50 });
+
+    const unlocked = await unlockedIds();
+    expect(unlocked.has('recall_first')).toBe(true);
+    expect(unlocked.has('recall_50')).toBe(true);
+    expect(unlocked.has('trainer_session')).toBe(false);
+
+    await checkAchievements({ type: 'trainer_session_result', correct: 3, wrong: 2, total: 5 });
+    const afterSession = await unlockedIds();
+    expect(afterSession.has('trainer_session')).toBe(true);
+  });
+
+  it('backfills newly added progress achievements from existing local state', async () => {
+    await AsyncStorage.multiSet([
+      ['flashcards_v1', JSON.stringify([
+        ...Array.from({ length: 47 }, (_, i) => ({ id: `l${i}`, en: `lesson ${i}`, source: 'lesson' })),
+        { id: 'w1', en: 'word', source: 'word' },
+        { id: 'v1', en: 'verb', source: 'verb' },
+        { id: 'dp1', en: 'daily phrase', source: 'daily_phrase' },
+      ])],
+      ['flashcards_owned_packs_v1', JSON.stringify(['official_1', 'official_2', 'official_3'])],
+      ['community_owned_pack_ids_v1', JSON.stringify(['community_1', 'community_2'])],
+      ['shards_lifetime_spent_v1', '125'],
+      ['achievement_trainer_correct_count', '100'],
+    ]);
+
+    await checkAchievements({ type: 'backfill' });
+
+    const unlocked = await unlockedIds();
+    expect(unlocked.has('flashcards_save_25')).toBe(true);
+    expect(unlocked.has('flashcards_save_50')).toBe(true);
+    expect(unlocked.has('flashcards_sources_4')).toBe(true);
+    expect(unlocked.has('pack_purchased')).toBe(true);
+    expect(unlocked.has('pack_5_purchased')).toBe(true);
+    expect(unlocked.has('shards_spent_100')).toBe(true);
+    expect(unlocked.has('recall_50')).toBe(true);
+    expect(unlocked.has('trainer_100_correct')).toBe(true);
   });
 
   it('dev smoke seed opens all achievements and fills progress counters', async () => {

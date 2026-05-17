@@ -27,6 +27,7 @@ import { updateMultipleTaskProgress, type TaskType } from './daily_tasks';
 import { consumeTrainerSessionEntry } from './trainer_session';
 import { logTrainerDirectGateBlocked } from './firebase';
 import TrainerSessionReport from './trainer_session_report';
+import { checkAchievements } from './achievements';
 
 type BtnState = 'idle' | 'correct' | 'wrong';
 
@@ -97,6 +98,7 @@ export default function TrainerArenaSession() {
     flash(isOk);
 
     await markTrainerResult(item.key, 'arena', isOk);
+    const nextCorrect = correct + (isOk ? 1 : 0);
     const nextWrong = wrong + (isOk ? 0 : 1);
     const updates: { type: TaskType; increment: number }[] = [];
     if (!dailySessionTracked.current) {
@@ -106,12 +108,19 @@ export default function TrainerArenaSession() {
     if (isOk) {
       updates.push({ type: 'recall_answers', increment: 1 });
       updates.push({ type: 'trainer_arena', increment: 1 });
+      checkAchievements({ type: 'trainer_correct', correct: 1 }).catch(() => {});
     }
 
     setTimeout(() => {
       const next = current + 1;
       if (next >= items.length) {
         if (items.length >= 5 && nextWrong === 0) updates.push({ type: 'recall_perfect', increment: 1 });
+        checkAchievements({
+          type: 'trainer_session_result',
+          correct: nextCorrect,
+          wrong: nextWrong,
+          total: items.length,
+        }).catch(() => {});
         setDone(true);
       } else {
         setCurrent(next);
@@ -120,7 +129,7 @@ export default function TrainerArenaSession() {
       }
       if (updates.length > 0) updateMultipleTaskProgress(updates).catch(() => {});
     }, isOk ? 700 : 1100);
-  }, [locked, items, current, wrong, flash]);
+  }, [locked, items, current, correct, wrong, flash]);
 
   if (!accessReady || loading) {
     return (

@@ -139,6 +139,9 @@ body {
   color: var(--km-text);
   background: rgba(255, 255, 255, 0.06);
 }
+.km-nav-links a.km-active {
+  color: var(--km-text);
+}
 .km-nav-links a.km-cta,
 a.km-btn-primary {
   background: linear-gradient(135deg, var(--km-accent), #4d6dff);

@@ -25,13 +25,13 @@ import { DEV_MODE, IS_BETA_TESTER } from './config';
 
 import { oskolokImageForPackShards } from './oskolok';
 
-const CATEGORY_LABELS: Record<string, { ru: string; uk: string; es: string }> = {
-  business: { ru: 'Бизнес', uk: 'Бізнес', es: 'Negocios' },
-  travel: { ru: 'Путешествия', uk: 'Подорожі', es: 'Viajes' },
-  daily: { ru: 'На каждый день', uk: 'На щодень', es: 'Día a día' },
-  exam: { ru: 'Экзамен', uk: 'Іспит', es: 'Examen' },
-  slang: { ru: 'Сленг', uk: 'Сленг', es: 'Coloquial' },
-  verbs: { ru: 'Глаголы', uk: 'Дієслова', es: 'Verbos' },
+const CATEGORY_LABELS: Record<string, { ru: string; uk: string; es: string; 'pt-BR': string; vi: string; id: string; tr: string; pl: string }> = {
+  business: { ru: 'Бизнес', uk: 'Бізнес', es: 'Negocios', 'pt-BR': 'Negócios', vi: 'Kinh doanh', id: 'Bisnis', tr: 'İş', pl: 'Biznes' },
+  travel: { ru: 'Путешествия', uk: 'Подорожі', es: 'Viajes', 'pt-BR': 'Viagens', vi: 'Du lịch', id: 'Perjalanan', tr: 'Seyahat', pl: 'Podróże' },
+  daily: { ru: 'На каждый день', uk: 'На щодень', es: 'Día a día', 'pt-BR': 'Dia a dia', vi: 'Hằng ngày', id: 'Sehari-hari', tr: 'Günlük', pl: 'Na co dzień' },
+  exam: { ru: 'Экзамен', uk: 'Іспит', es: 'Examen', 'pt-BR': 'Exame', vi: 'Bài thi', id: 'Ujian', tr: 'Sınav', pl: 'Egzamin' },
+  slang: { ru: 'Сленг', uk: 'Сленг', es: 'Coloquial', 'pt-BR': 'Gírias', vi: 'Tiếng lóng', id: 'Slang', tr: 'Argo', pl: 'Slang' },
+  verbs: { ru: 'Глаголы', uk: 'Дієслова', es: 'Verbos', 'pt-BR': 'Verbos', vi: 'Động từ', id: 'Kata kerja', tr: 'Fiiller', pl: 'Czasowniki' },
 };
 
 export default function FlashcardsMarketDevScreen() {
@@ -73,19 +73,29 @@ export default function FlashcardsMarketDevScreen() {
     ru: 'Маркет карточек (DEV)',
     uk: 'Маркет карток (DEV)',
     es: 'Mercado de tarjetas (DEV)',
+    'pt-BR': 'Mercado de cartões (DEV)',
+    vi: 'Chợ thẻ (DEV)',
+    id: 'Market kartu (DEV)',
+    tr: 'Kart marketi (DEV)',
+    pl: 'Market kart (DEV)',
   });
   const subtitle = triLang(lang, {
     ru: 'Read-only прототип: смотрим UX и каталог, без покупок.',
     uk: 'Read-only прототип: дивимось UX і каталог, без покупок.',
     es: 'Prototipo de solo lectura: probamos el UX y el catálogo, sin compras.',
+    'pt-BR': 'Protótipo somente leitura: avaliamos UX e catálogo, sem compras.',
+    vi: 'Nguyên mẫu chỉ đọc: kiểm tra UX và danh mục, không mua hàng.',
+    id: 'Prototipe read-only: cek UX dan katalog, tanpa pembelian.',
+    tr: 'Salt okunur prototip: UX ve kataloğu inceliyoruz, satın alma yok.',
+    pl: 'Prototyp tylko do odczytu: sprawdzamy UX i katalog, bez zakupów.',
   });
   const topPacks = useMemo(
     () => [...packs].sort((a, b) => b.cardCount - a.cardCount || b.priceShards - a.priceShards).slice(0, 4),
     [packs],
   );
 
-  const buyLabel = triLang(lang, { ru: 'Купить (DEV)', uk: 'Купити (DEV)', es: 'Comprar (DEV)' });
-  const ownedLabel = triLang(lang, { ru: 'Уже куплено', uk: 'Вже придбано', es: 'Ya lo tienes' });
+  const buyLabel = triLang(lang, { ru: 'Купить (DEV)', uk: 'Купити (DEV)', es: 'Comprar (DEV)', 'pt-BR': 'Comprar (DEV)', vi: 'Mua (DEV)', id: 'Beli (DEV)', tr: 'Satın al (DEV)', pl: 'Kup (DEV)' });
+  const ownedLabel = triLang(lang, { ru: 'Уже куплено', uk: 'Вже придбано', es: 'Ya lo tienes', 'pt-BR': 'Já comprado', vi: 'Đã mua', id: 'Sudah dibeli', tr: 'Zaten alındı', pl: 'Już kupione' });
 
   const handleDryRunBuy = useCallback(async (pack: FlashcardMarketPack) => {
     if (buyingPackId) return;
@@ -120,8 +130,8 @@ export default function FlashcardsMarketDevScreen() {
       emitAppEvent(
         'action_toast',
         actionToastTri('success', {
-          ru: `DEV: пак "${pack.titleRu}" помечен как купленный (без списания).`,
-          uk: `DEV: пак "${pack.titleUk}" позначено як придбаний (без списання).`,
+          ru: `DEV: пак "${packTitleForInterface(pack, 'ru')}" помечен как купленный (без списания).`,
+          uk: `DEV: пак "${packTitleForInterface(pack, 'uk')}" позначено як придбаний (без списання).`,
           es: `DEV: el pack «${packTitleForInterface(pack, 'es')}» ha quedado marcado como comprado (sin cargo).`,
         }),
       );
@@ -177,6 +187,11 @@ export default function FlashcardsMarketDevScreen() {
                 ru: 'Этап 1: каталог. Этап 2: покупка за осколки и ownership.',
                 uk: 'Етап 1: каталог. Етап 2: купівля за осколки та ownership.',
                 es: 'Fase 1: catálogo. Fase 2: pagos con fragmentos y colección propia.',
+                'pt-BR': 'Fase 1: catálogo. Fase 2: compra com fragmentos e ownership.',
+                vi: 'Giai đoạn 1: danh mục. Giai đoạn 2: mua bằng mảnh và quyền sở hữu.',
+                id: 'Tahap 1: katalog. Tahap 2: pembelian dengan pecahan dan ownership.',
+                tr: 'Aşama 1: katalog. Aşama 2: parçalarla satın alma ve sahiplik.',
+                pl: 'Etap 1: katalog. Etap 2: zakup za odłamki i ownership.',
               })}
             </Text>
           </View>
@@ -185,8 +200,8 @@ export default function FlashcardsMarketDevScreen() {
             {topPacks.map((pack) => (
               <View key={`top_${pack.id}`} style={{ borderWidth: 1, borderColor: t.border, borderRadius: 999, paddingHorizontal: 10, paddingVertical: 5, backgroundColor: t.bgCard }}>
                 <Text style={{ color: t.textSecond, fontSize: f.caption }}>
-                  {triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top' })} · {pack.cardCount}{' '}
-                  {triLang(lang, { ru: 'карточек', uk: 'карток', es: 'tarjetas' })} · {packTitleForInterface(pack, ifaceLang)}
+                  {triLang(lang, { ru: 'Топ', uk: 'Топ', es: 'Top', 'pt-BR': 'Top', vi: 'Top', id: 'Top', tr: 'Top', pl: 'Top' })} · {pack.cardCount}{' '}
+                  {triLang(lang, { ru: 'карточек', uk: 'карток', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' })} · {packTitleForInterface(pack, ifaceLang)}
                 </Text>
               </View>
             ))}
@@ -195,7 +210,7 @@ export default function FlashcardsMarketDevScreen() {
           {!loading && ownedPackIds.length > 0 && (
             <View style={{ backgroundColor: t.bgSurface, borderWidth: 1, borderColor: t.border, borderRadius: 14, padding: 12, gap: 8 }}>
               <Text style={{ color: t.textPrimary, fontSize: f.body, fontWeight: '700' }}>
-                {triLang(lang, { ru: 'Мои наборы (DEV)', uk: 'Мої набори (DEV)', es: 'Mis packs (DEV)' })}
+                {triLang(lang, { ru: 'Мои наборы (DEV)', uk: 'Мої набори (DEV)', es: 'Mis packs (DEV)', 'pt-BR': 'Meus packs (DEV)', vi: 'Bộ của tôi (DEV)', id: 'Pack saya (DEV)', tr: 'Paketlerim (DEV)', pl: 'Moje pakiety (DEV)' })}
               </Text>
               {packs
                 .filter((p) => ownedPackIds.includes(p.id))
@@ -213,6 +228,11 @@ export default function FlashcardsMarketDevScreen() {
                           ru: 'Открыть в карточках (DEV)',
                           uk: 'Відкрити в картках (DEV)',
                           es: 'Abrir en tarjetas (DEV)',
+                          'pt-BR': 'Abrir nos cartões (DEV)',
+                          vi: 'Mở trong thẻ (DEV)',
+                          id: 'Buka di kartu (DEV)',
+                          tr: 'Kartlarda aç (DEV)',
+                          pl: 'Otwórz w kartach (DEV)',
                         })}
                       </Text>
                     </TouchableOpacity>
@@ -260,18 +280,18 @@ export default function FlashcardsMarketDevScreen() {
                   <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10, marginTop: 10, flexWrap: 'wrap' }}>
                     <Text style={{ color: t.textMuted, fontSize: f.caption }}>{catLabel}</Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                      • {pack.cardCount} {triLang(lang, { ru: 'карточек', uk: 'карток', es: 'tarjetas' })}
+                      • {pack.cardCount} {triLang(lang, { ru: 'карточек', uk: 'карток', es: 'tarjetas', 'pt-BR': 'cartões', vi: 'thẻ', id: 'kartu', tr: 'kart', pl: 'kart' })}
                     </Text>
                     <Text style={{ color: t.textMuted, fontSize: f.caption }}>
-                      • {triLang(lang, { ru: 'продаж', uk: 'продажів', es: 'ventas' })}: {pack.salesCount}
+                      • {triLang(lang, { ru: 'продаж', uk: 'продажів', es: 'ventas', 'pt-BR': 'vendas', vi: 'lượt bán', id: 'penjualan', tr: 'satış', pl: 'sprzedaży' })}: {pack.salesCount}
                     </Text>
                   </View>
 
                   <View style={{ marginTop: 12, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
                     <Text style={{ color: t.textSecond, fontSize: f.caption }}>
                       {pack.isOfficial
-                        ? triLang(lang, { ru: 'Официальный пак', uk: 'Офіційний пак', es: 'Pack oficial' })
-                        : `${triLang(lang, { ru: 'Автор', uk: 'Автор', es: 'Autor' })}: ${pack.authorName}`}
+                        ? triLang(lang, { ru: 'Официальный пак', uk: 'Офіційний пак', es: 'Pack oficial', 'pt-BR': 'Pack oficial', vi: 'Pack chính thức', id: 'Pack resmi', tr: 'Resmi paket', pl: 'Oficjalny pakiet' })
+                        : `${triLang(lang, { ru: 'Автор', uk: 'Автор', es: 'Autor', 'pt-BR': 'Autor', vi: 'Tác giả', id: 'Penulis', tr: 'Yazar', pl: 'Autor' })}: ${pack.authorName}`}
                     </Text>
                     <TouchableOpacity
                       onPress={() => handleDryRunBuy(pack)}
@@ -288,7 +308,7 @@ export default function FlashcardsMarketDevScreen() {
                     >
                       <Text style={{ color: isOwned ? t.correct : t.textSecond, fontSize: f.caption, fontWeight: '700' }}>
                         {isBuying
-                          ? triLang(lang, { ru: 'Покупаем...', uk: 'Купуємо...', es: 'Comprando…' })
+                          ? triLang(lang, { ru: 'Покупаем...', uk: 'Купуємо...', es: 'Comprando…', 'pt-BR': 'Comprando...', vi: 'Đang mua...', id: 'Membeli...', tr: 'Satın alınıyor...', pl: 'Kupowanie...' })
                           : isOwned
                             ? ownedLabel
                             : buyLabel}

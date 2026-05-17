@@ -35,13 +35,16 @@ const UGC_CARD_THEME_KEYS = new Set([
 type SubmissionPayload = {
   title?: string;
   description?: string;
+  sourceLang?: 'ru' | 'uk' | 'es';
   titleRu: string;
   titleUk: string;
+  titleEs?: string;
   descriptionRu?: string;
   descriptionUk?: string;
+  descriptionEs?: string;
   cardThemeKey?: string;
   priceShards: number;
-  cards: Array<{ id: string; en: string; ru: string; uk?: string }>;
+  cards: Array<{ id: string; en: string; ru?: string; uk?: string; es?: string }>;
 };
 
 function trimModeratorMessage(raw: unknown): string {
@@ -55,34 +58,57 @@ function moderatorMessageOrNull(s: string): string | null {
 }
 
 function normalizeSubmissionPayload(raw: SubmissionPayload): SubmissionPayload {
-  const titleSingle = String(raw.title ?? raw.titleRu ?? raw.titleUk ?? '').trim();
-  let descSingle = String(raw.description ?? raw.descriptionRu ?? raw.descriptionUk ?? '').trim();
-  if (!titleSingle) {
-    throw new HttpsError('invalid-argument', 'title required');
-  }
+  const sourceLang = raw.sourceLang === 'es' || raw.sourceLang === 'uk' ? raw.sourceLang : 'ru';
+  const titleSingle = String(raw.title ?? raw.titleRu ?? raw.titleUk ?? raw.titleEs ?? '').trim();
+  let descSingle = String(raw.description ?? raw.descriptionRu ?? raw.descriptionUk ?? raw.descriptionEs ?? '').trim();
   if (!descSingle) {
     descSingle = titleSingle;
+  }
+  const titleRu = (sourceLang === 'ru' ? titleSingle : String(raw.titleRu ?? '').trim()).slice(0, 200);
+  const titleUk = (sourceLang === 'uk' ? titleSingle : String(raw.titleUk ?? '').trim()).slice(0, 200);
+  const titleEs = (sourceLang === 'es' ? titleSingle : String(raw.titleEs ?? '').trim()).slice(0, 200);
+  const descriptionRu = sourceLang === 'ru' ? descSingle : String(raw.descriptionRu ?? '').trim();
+  const descriptionUk = sourceLang === 'uk' ? descSingle : String(raw.descriptionUk ?? '').trim();
+  const descriptionEs = sourceLang === 'es' ? descSingle : String(raw.descriptionEs ?? '').trim();
+  if (!titleRu && !titleUk && !titleEs) {
+    throw new HttpsError('invalid-argument', 'title required');
   }
   const n = raw.cards?.length ?? 0;
   if (n < CARD_MIN || n > CARD_MAX) {
     throw new HttpsError('invalid-argument', `Cards must be ${CARD_MIN}–${CARD_MAX}`);
   }
-  for (const c of raw.cards) {
-    if (!c?.id || !String(c.en).trim() || !String(c.ru).trim()) {
-      throw new HttpsError('invalid-argument', 'Each card needs id, en, ru');
+  const cards = raw.cards.map((c, i) => {
+    const id = String(c?.id ?? `c${i + 1}`).trim() || `c${i + 1}`;
+    const en = String(c?.en ?? '').trim();
+    const ru = String(c?.ru ?? '').trim();
+    const uk = String(c?.uk ?? '').trim();
+    const es = String(c?.es ?? '').trim();
+    const hasSource = !!(ru || es);
+    if (!c?.id || !String(c.en).trim() || !hasSource) {
+      throw new HttpsError('invalid-argument', 'Each card needs id, en, and a source-language translation');
     }
-  }
+    return {
+      id,
+      en,
+      ...(ru ? { ru } : {}),
+      ...(uk ? { uk } : {}),
+      ...(es ? { es } : {}),
+    };
+  });
   let cardThemeKey = String(raw.cardThemeKey ?? 'neon_lime').trim();
   if (!UGC_CARD_THEME_KEYS.has(cardThemeKey)) {
     cardThemeKey = 'neon_lime';
   }
   return {
-    titleRu: titleSingle,
-    titleUk: titleSingle,
-    descriptionRu: descSingle,
-    descriptionUk: descSingle,
+    sourceLang,
+    titleRu,
+    titleUk,
+    titleEs,
+    descriptionRu,
+    descriptionUk,
+    descriptionEs,
     priceShards: UGC_PACK_PRICE_SHARDS,
-    cards: raw.cards,
+    cards,
     cardThemeKey,
   };
 }
@@ -165,8 +191,10 @@ export const communitySubmitPackForReview = onCall(async (request) => {
       const previousPayloadSnapshot = {
         titleRu: pd.titleRu ?? '',
         titleUk: pd.titleUk ?? '',
+        titleEs: pd.titleEs ?? '',
         descriptionRu: pd.descriptionRu ?? '',
         descriptionUk: pd.descriptionUk ?? '',
+        descriptionEs: pd.descriptionEs ?? '',
         priceShards: pd.priceShards ?? 0,
         cards: pd.cards ?? [],
         cardThemeKey: pd.cardThemeKey ?? null,
@@ -248,6 +276,7 @@ export const communityModerateSubmission = onCall(async (request) => {
         message: msgForInbox,
         titleRu: (d.payload?.titleRu ?? '').trim().slice(0, 200) || null,
         titleUk: (d.payload?.titleUk ?? '').trim().slice(0, 200) || null,
+        titleEs: (d.payload?.titleEs ?? '').trim().slice(0, 200) || null,
         createdAt: now,
         seen: false,
       });
@@ -309,8 +338,10 @@ export const communityModerateSubmission = onCall(async (request) => {
         submissionId: editTarget,
         titleRu: payload.titleRu.trim(),
         titleUk: payload.titleUk.trim(),
+        titleEs: (payload.titleEs ?? '').trim() || null,
         descriptionRu: (payload.descriptionRu ?? '').trim() || null,
         descriptionUk: (payload.descriptionUk ?? '').trim() || null,
+        descriptionEs: (payload.descriptionEs ?? '').trim() || null,
         priceShards: Math.floor(Number(payload.priceShards)),
         cards: payload.cards,
         cardCount: payload.cards.length,
@@ -340,8 +371,10 @@ export const communityModerateSubmission = onCall(async (request) => {
       submissionId,
       titleRu: payload.titleRu.trim(),
       titleUk: payload.titleUk.trim(),
+      titleEs: (payload.titleEs ?? '').trim() || null,
       descriptionRu: (payload.descriptionRu ?? '').trim() || null,
       descriptionUk: (payload.descriptionUk ?? '').trim() || null,
+      descriptionEs: (payload.descriptionEs ?? '').trim() || null,
       priceShards: Math.floor(Number(payload.priceShards)),
       cards: payload.cards,
       cardCount: payload.cards.length,
@@ -371,6 +404,7 @@ function buildSellerInboxModerationRow(params: {
   message: string | null;
   titleRu: string | null;
   titleUk: string | null;
+  titleEs: string | null;
 }): Record<string, unknown> {
   const row: Record<string, unknown> = {
     type: 'moderation_result',
@@ -382,6 +416,7 @@ function buildSellerInboxModerationRow(params: {
   if (params.message) row.message = params.message;
   if (params.titleRu) row.titleRu = params.titleRu;
   if (params.titleUk) row.titleUk = params.titleUk;
+  if (params.titleEs) row.titleEs = params.titleEs;
   return row;
 }
 
@@ -423,6 +458,7 @@ export const communityAdminModeratePack = onCall({ region: 'us-central1' }, asyn
       const now = Date.now();
       const tRu = String(pack.titleRu ?? '').trim().slice(0, 200) || null;
       const tUk = String(pack.titleUk ?? '').trim().slice(0, 200) || null;
+      const tEs = String(pack.titleEs ?? '').trim().slice(0, 200) || null;
 
       const writeInbox = (result: 'revision_requested' | 'pack_removed') => {
         if (!authorStableId) return;
@@ -436,6 +472,7 @@ export const communityAdminModeratePack = onCall({ region: 'us-central1' }, asyn
             message: msgForInbox,
             titleRu: tRu,
             titleUk: tUk,
+            titleEs: tEs,
           }),
         );
       };

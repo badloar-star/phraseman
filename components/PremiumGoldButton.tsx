@@ -30,6 +30,11 @@ export default function PremiumGoldButton({ f, paywallContext = 'no_energy', onP
       ru: 'Получить Премиум',
       uk: 'Отримати Premium',
       es: 'Obtener Premium',
+      'pt-BR': 'Obter Premium',
+      vi: 'Nhận Premium',
+      id: 'Dapatkan Premium',
+      tr: 'Premium al',
+      pl: 'Uzyskaj Premium',
     });
 
   useEffect(() => {

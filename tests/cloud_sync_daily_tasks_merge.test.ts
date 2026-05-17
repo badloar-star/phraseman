@@ -75,6 +75,20 @@ describe('streak cloud restore safety', () => {
     expect(SYNC_KEYS).toContain('login_bonus_v1');
   });
 
+  it('syncs achievement progress counters before they unlock', () => {
+    expect(SYNC_KEYS).toEqual(expect.arrayContaining([
+      'achievement_trainer_correct_count',
+      'achievement_active_recall_correct_count',
+      'achievement_flashcards_saved_count',
+      'achievement_flashcards_flip_count',
+      'achievement_shards_spent_total',
+      'achievement_league_boost_count',
+      'achievement_league_chat_message_count',
+      'achievement_all_daily_streak_v1',
+      'flashcards_v1',
+    ]));
+  });
+
   it('restores daily login bonus state with cloud progress', async () => {
     const loginBonus = JSON.stringify({ lastDate: '2026-05-13', consecutiveDays: 12 });
 
@@ -308,6 +322,11 @@ describe('streak cloud restore safety', () => {
 });
 
 describe('premium cloud sync safety', () => {
+  beforeEach(() => {
+    (AsyncStorage as any).__reset?.();
+    jest.clearAllMocks();
+  });
+
   it('does not sync empty local premium fields that could overwrite an admin grant in Firestore', () => {
     const local = {
       premium_plan: null,
@@ -330,5 +349,30 @@ describe('premium cloud sync safety', () => {
     expect(shouldSyncPremiumProgressField('premium_plan', local.premium_plan, local)).toBe(true);
     expect(shouldSyncPremiumProgressField('admin_premium_override', local.admin_premium_override, local)).toBe(true);
     expect(shouldSyncPremiumProgressField('premium_expiry', local.premium_expiry, local)).toBe(true);
+  });
+
+  it('hydrates admin-granted premium into the local active flag when local XP wins restore', async () => {
+    const expiry = String(Date.now() + 30 * 24 * 60 * 60 * 1000);
+
+    await AsyncStorage.multiSet([
+      ['user_total_xp', '13000'],
+      ['streak_count', '20'],
+      ['premium_active', 'false'],
+    ]);
+
+    const restored = await __cloudSyncTestHooks.applyRestoreFromUserDoc(makeCloudUserDoc({
+      user_total_xp: '12000',
+      streak_count: '14',
+      premium_plan: 'annual',
+      admin_premium_override: 'true',
+      premium_expiry: expiry,
+      premium_admin_grant_at: String(Date.now()),
+    }));
+
+    expect(restored).toBe(true);
+    await expect(AsyncStorage.getItem('premium_plan')).resolves.toBe('annual');
+    await expect(AsyncStorage.getItem('admin_premium_override')).resolves.toBe('true');
+    await expect(AsyncStorage.getItem('premium_expiry')).resolves.toBe(expiry);
+    await expect(AsyncStorage.getItem('premium_active')).resolves.toBe('true');
   });
 });

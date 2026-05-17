@@ -91,6 +91,17 @@ describe('isCorrectAnswer — punctuation and unicode confusables', () => {
       'We will go\uFF0E',
     )).toBe(true);
   });
+
+  it('accepts seldom and rarely as equivalent frequency adverbs', () => {
+    expect(isCorrectAnswer(
+      'We seldom go back to that old city',
+      'We rarely go back to that old city',
+    )).toBe(true);
+    expect(isCorrectAnswer(
+      'I rarely get out of this old building at night',
+      'I seldom get out of this old building at night',
+    )).toBe(true);
+  });
 });
 
 describe('toAmE — direct BrE → AmE', () => {

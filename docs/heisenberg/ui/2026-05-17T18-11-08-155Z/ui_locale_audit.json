@@ -1,0 +1,979 @@
+{
+  "generatedAt": "2026-05-17T18:11:08.155Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": false,
+  "summary": {
+    "filesScanned": 579,
+    "triLangCalls": 1506,
+    "staticTriLangCalls": 1506,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 53,
+    "triLangMissingLocaleUnits": 5,
+    "triLangMissingAllPlannedUnits": 1,
+    "helperMissingLocaleUnits": 265,
+    "bundleMissingLocaleUnits": 10,
+    "findings": 60,
+    "byCode": {
+      "trilang-missing-all-planned-locales": 1,
+      "local-trilang-helper-missing-planned-locales": 53,
+      "lang-context-bundle-missing-planned-locale": 5,
+      "i18n-t-bundle-missing-planned-locales": 1
+    }
+  },
+  "topFiles": [
+    {
+      "file": "app/premium_modal.tsx",
+      "findings": 54,
+      "missingLocaleUnits": 270
+    },
+    {
+      "file": "components/LangContext.tsx",
+      "findings": 5,
+      "missingLocaleUnits": 5
+    },
+    {
+      "file": "constants/i18n.ts",
+      "findings": 1,
+      "missingLocaleUnits": 5
+    }
+  ],
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "trilang-missing-all-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 951,
+      "column": 75,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Static triLang copy has ru/uk/es, but planned interface locales are not present yet.",
+      "sample": "{ ru, uk, es }"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 1638,
+      "column": 28,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(item.textRu, item.textUk, item.textEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2027,
+      "column": 28,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(row.ru, row.uk, row.es)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2201,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(item.ru, item.uk, item.es)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2212,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Остаться с Premium', 'Залишитись з Premium', 'Seguir con Premium')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2262,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Попробовать 3 дня бесплатно?', 'Спробувати 3 дні безкоштовно?', 'Probar 3 días gratis?')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2265,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L( 'Магазин показывает trial для этого плана. Оплата начнется только после пробного периода, если не отменить подписку.', 'Магазин показує trial для цього плану. Оплата почнеться л"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2293,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Начать 3 дня бесплатно', 'Почати 3 дні безкоштовно', 'Empezar 3 días gratis')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2306,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Нет, продолжить бесплатно', 'Ні, продовжити безкоштовно', 'No, continuar gratis')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2373,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Попробуй Premium 3 дня бесплатно', 'Спробуй Premium 3 дні безкоштовно', 'Prueba Premium 3 días gratis')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2382,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Без списания сейчас • Отмена в любой момент', 'Без списання зараз • Скасування в будь-який час', 'Sin cargo ahora • Cancela cuando quieras')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2391,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Почему Premium тебе нужен', 'Чому Premium тобі потрібен', 'Por qué necesitas Premium')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2410,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(tag.ru, tag.uk, tag.es)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2448,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(hero.titleRu, hero.titleUk, hero.titleEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2451,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(hero.subtitleRu, hero.subtitleUk, hero.subtitleEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2459,
+      "column": 18,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Что ты получишь', 'Що ти отримаєш', 'Lo que obtienes')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2483,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(b.ru, b.uk, b.es)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2492,
+      "column": 18,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Для тебя сейчас', 'Для тебе зараз', 'Para ti ahora')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2521,
+      "column": 18,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Что меняется с Premium', 'Що змінюється з Premium', 'Qué cambia con Premium')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2524,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(row.freeRu, row.freeUk, row.freeEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2525,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(row.titleRu, row.titleUk, row.titleEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2526,
+      "column": 31,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(row.premRu, row.premUk, row.premEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2528,
+      "column": 42,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(row.premRu2!, row.premUk2!, row.premEs2!)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2578,
+      "column": 99,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Заморозка цепочки', 'Заморозка стріку', 'Protección de racha')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2580,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Серия не сгорит при пропуске дня', 'Захисти серію — навіть якщо пропустив день', 'Protege tu racha aunque te saltes un día')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2616,
+      "column": 37,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('/ год', '/ рік', '/ año')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2621,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Годовая подписка', 'Річна підписка', 'Suscripción anual')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2624,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L( 'Годовой доступ ко всем возможностям Premium', 'Річний доступ до всіх можливостей Premium', 'Acceso anual a todas las funciones Premium', )"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2637,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Бесплатно', 'Безкоштовно', 'Gratis')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2640,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('на 3 дня', 'на 3 дні', 'durante 3 días')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2643,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(`затем ${priceStr} ${periodLabel}`, `потім ${priceStr} ${periodLabel}`, `luego ${priceStr} ${periodLabel}`)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2657,
+      "column": 28,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('...', '...', '...')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2668,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Выбран самый выгодный план', 'Обрано найвигідніший план', 'Plan más rentable seleccionado')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2699,
+      "column": 37,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('/ месяц', '/ місяць', '/mes')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2704,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Ежемесячная подписка', 'Щомісячна підписка', 'Suscripción mensual')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2707,
+      "column": 26,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L( 'Месячный доступ ко всем возможностям Premium', 'Місячний доступ до всіх можливостей Premium', 'Acceso mensual a todas las funciones Premium', )"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2718,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Бесплатно', 'Безкоштовно', 'Gratis')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2721,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('на 3 дня', 'на 3 дні', 'durante 3 días')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2724,
+      "column": 30,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(`затем ${priceStr} / месяц`, `потім ${priceStr} / місяць`, `luego ${priceStr} / mes`)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2736,
+      "column": 28,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('...', '...', '...')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2747,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Выбран гибкий ежемесячный план', 'Обрано гнучкий щомісячний план', 'Plan mensual flexible')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2760,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('/год', '/рік', '/año')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2761,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('/мес', '/міс', '/mes')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2763,
+      "column": 19,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Premium', 'Premium', 'Premium')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2765,
+      "column": 21,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L( `🚀 3 дня бесплатно — затем ${ctaPrice}${periodStr}`, `🚀 3 дні безкоштовно — потім ${ctaPrice}${periodStr}`, `🚀 3 días gratis — luego ${ctaPrice}${periodStr}`, )"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2771,
+      "column": 23,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('🚀 Получить Premium', '🚀 Отримати Premium', '🚀 Obtener Premium')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2772,
+      "column": 23,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('🚀 Оформить месячную подписку', '🚀 Оформити місячну підписку', '🚀 Contratar suscripción mensual')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2807,
+      "column": 20,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('✓ Без списания сейчас', '✓ Без списання зараз', '✓ Sin cobro ahora')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2811,
+      "column": 18,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('✓ Отмена в любой момент', '✓ Скасування в будь-який час', '✓ Cancela cuando quieras')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2822,
+      "column": 18,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Восстановить подписку', 'Відновити підписку', 'Restaurar suscripción')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2835,
+      "column": 18,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L('Продолжить бесплатно', 'Продовжити безкоштовно', 'Continuar gratis')"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2845,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L( 'Store price appears before purchase.', 'Store price appears before purchase.', 'Store price appears before purchase.', )"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2958,
+      "column": 24,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L(trialRu, trialUk, trialEs)"
+    },
+    {
+      "severity": "warning",
+      "code": "local-trilang-helper-missing-planned-locales",
+      "file": "app/premium_modal.tsx",
+      "line": 2970,
+      "column": 22,
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "Local helper L(ru, uk, es) returns triLang without planned interface locales.",
+      "sample": "L( 'Ссылки Privacy Policy и Terms of Use ниже дополняют условия покупки в магазине приложений.', 'Посилання Privacy Policy та Terms of Use нижче доповнюють умови покупки в магазині"
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PT_BR | PTBR",
+      "missing": [
+        "pt-BR"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "VI",
+      "missing": [
+        "vi"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "ID",
+      "missing": [
+        "id"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "TR",
+      "missing": [
+        "tr"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "lang-context-bundle-missing-planned-locale",
+      "file": "components/LangContext.tsx",
+      "keyPath": "PL",
+      "missing": [
+        "pl"
+      ],
+      "message": "components/LangContext.tsx does not define a full runtime string bundle for this planned interface locale."
+    },
+    {
+      "severity": "warning",
+      "code": "i18n-t-bundle-missing-planned-locales",
+      "file": "constants/i18n.ts",
+      "line": 37,
+      "column": 18,
+      "keyPath": "T.<locale>",
+      "missing": [
+        "pt-BR",
+        "vi",
+        "id",
+        "tr",
+        "pl"
+      ],
+      "message": "constants/i18n.ts does not define UI string bundles for all planned interface locales."
+    }
+  ]
+}

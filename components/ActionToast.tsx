@@ -6,6 +6,7 @@ import { useLang } from './LangContext';
 import { hapticError, hapticSoftImpact, hapticSuccess } from '../hooks/use-haptics';
 import { MOTION_DURATION, MOTION_SPRING } from '../constants/motion';
 import { useGlobalBottomOverlayOffset } from '../hooks/use-global-bottom-overlay-offset';
+import { useOverlayVisible } from './OverlayArbiter';
 
 type ToastPayload = {
   type: 'success' | 'error' | 'info';
@@ -34,10 +35,13 @@ export default function ActionToast() {
   const { lang } = useLang();
   const bottomOffset = useGlobalBottomOverlayOffset();
   const [toast, setToast] = useState<ToastPayload | null>(null);
+  const [overlayWanted, setOverlayWanted] = useState(false);
+  const overlayVisible = useOverlayVisible('actionToast', overlayWanted);
   const y = useRef(new Animated.Value(120)).current;
   const opacity = useRef(new Animated.Value(0)).current;
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const queueRef = useRef<ToastPayload[]>([]);
+  const pendingStartRef = useRef<ToastPayload | null>(null);
   const busyRef = useRef(false);
   /** Ключ текущего показа — глушим повторы того же текста, пока он на экране или уже в очереди. */
   const showingKeyRef = useRef<string | null>(null);
@@ -96,6 +100,7 @@ export default function ActionToast() {
         }
 
         if (next) {
+          showingKeyRef.current = toastKey(next);
           /** Следующий маунт тоже на новом кадре — иначе пара unmount→mount
            *  в одном кадре снова ловит Fabric race. */
           rafOut.current = requestAnimationFrame(() => {
@@ -105,6 +110,7 @@ export default function ActionToast() {
         } else {
           busyRef.current = false;
           showingKeyRef.current = null;
+          setOverlayWanted(false);
         }
       });
     }, AUTO_DISMISS_MS);
@@ -125,12 +131,21 @@ export default function ActionToast() {
 
     if (!busyRef.current) {
       busyRef.current = true;
-      startCycle(payload);
+      showingKeyRef.current = k;
+      pendingStartRef.current = payload;
+      setOverlayWanted(true);
       return;
     }
     if (queueRef.current.length >= MAX_QUEUE) queueRef.current.shift();
     queueRef.current.push(payload);
-  }, [startCycle]);
+  }, []);
+
+  useEffect(() => {
+    if (!overlayVisible || toast || !pendingStartRef.current) return;
+    const next = pendingStartRef.current;
+    pendingStartRef.current = null;
+    startCycle(next);
+  }, [overlayVisible, startCycle, toast]);
 
   useEffect(() => {
     const sub = onAppEvent('action_toast', (payload) => enqueue(payload));
@@ -142,7 +157,7 @@ export default function ActionToast() {
     };
   }, [enqueue]);
 
-  if (!toast) return null;
+  if (!toast || !overlayVisible) return null;
 
   const border = toast.type === 'error' ? t.wrong : toast.type === 'success' ? t.correct : t.border;
   const icon = toast.type === 'error' ? '⚠️' : toast.type === 'success' ? '✅' : 'ℹ️';

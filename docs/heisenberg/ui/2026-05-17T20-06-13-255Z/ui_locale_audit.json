@@ -1,0 +1,27 @@
+{
+  "generatedAt": "2026-05-17T20:06:13.255Z",
+  "mode": "ui-locale-audit",
+  "plannedLocales": [
+    "pt-BR",
+    "vi",
+    "id",
+    "tr",
+    "pl"
+  ],
+  "activationReady": true,
+  "summary": {
+    "filesScanned": 581,
+    "triLangCalls": 1505,
+    "staticTriLangCalls": 1505,
+    "dynamicTriLangCalls": 0,
+    "legacyLangHelperCalls": 0,
+    "triLangMissingLocaleUnits": 0,
+    "triLangMissingAllPlannedUnits": 0,
+    "helperMissingLocaleUnits": 0,
+    "bundleMissingLocaleUnits": 0,
+    "findings": 0,
+    "byCode": {}
+  },
+  "topFiles": [],
+  "findings": []
+}

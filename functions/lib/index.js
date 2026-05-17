@@ -56,6 +56,10 @@ const { leagueChatAuthorizeRoom, leagueChatSendMessage, leagueChatReportMessage 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueJoinOrUpdateGroup, leagueUpdateMyMember, leagueSyncMyBoost } = require('./league_groups');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const { authEnsureStableLink } = require('./auth_identity');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { accountDeleteMine } = require('./account_delete');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leaderboardPushMyScore, leaderboardUpdatePremium, leaderboardUpdateDailyAnalytics, nameCheckAvailability, nameReserve, nameReleaseMine, } = require('./leaderboard');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { leagueChestClaim } = require('./league_chest');
@@ -81,6 +85,8 @@ exports.leagueChatReportMessage = leagueChatReportMessage;
 exports.leagueJoinOrUpdateGroup = leagueJoinOrUpdateGroup;
 exports.leagueUpdateMyMember = leagueUpdateMyMember;
 exports.leagueSyncMyBoost = leagueSyncMyBoost;
+exports.authEnsureStableLink = authEnsureStableLink;
+exports.accountDeleteMine = accountDeleteMine;
 exports.leaderboardPushMyScore = leaderboardPushMyScore;
 exports.leaderboardUpdatePremium = leaderboardUpdatePremium;
 exports.leaderboardUpdateDailyAnalytics = leaderboardUpdateDailyAnalytics;

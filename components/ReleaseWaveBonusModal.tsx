@@ -171,6 +171,11 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
               ru: `Награда ${amount} осколков`,
               uk: `Нагорода ${amount} осколків`,
               es: `Recompensa: ${amount} fragmentos`,
+              'pt-BR': `Recompensa: ${amount} fragmentos`,
+              vi: `Phần thưởng: ${amount} mảnh`,
+              id: `Hadiah: ${amount} fragmen`,
+              tr: `Ödül: ${amount} parça`,
+              pl: `Nagroda: ${amount} odłamków`,
             })}
           >
             <Animated.View
@@ -209,6 +214,11 @@ export default function ReleaseWaveBonusModal({ visible, onClose, previewMode = 
                 ru: 'осколки знаний',
                 uk: 'осколки знань',
                 es: 'fragmentos de conocimiento',
+                'pt-BR': 'fragmentos de conhecimento',
+                vi: 'mảnh kiến thức',
+                id: 'fragmen pengetahuan',
+                tr: 'bilgi parçaları',
+                pl: 'odłamki wiedzy',
               })}
             </Text>
           </View>

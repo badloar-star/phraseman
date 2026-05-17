@@ -509,6 +509,11 @@ function buildItemsForLesson(lessonId: number, lessonPrepositions: Set<string>) 
         explainRU: explanation.ru,
         explainUK: explanation.uk,
         explainES: explanation.es,
+        explainPtBr: explanation.ptBr,
+        explainVi: explanation.vi,
+        explainId: explanation.id,
+        explainTr: explanation.tr,
+        explainPl: explanation.pl,
       });
     }
   }

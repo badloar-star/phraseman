@@ -1,0 +1,44 @@
+{
+  "pipeline": "heisenberg",
+  "mode": "new-locale-preflight",
+  "runId": "2026-05-16T20-05-36-476Z",
+  "generatedAt": "2026-05-16T20:05:39.470Z",
+  "targetLocale": "pt-BR",
+  "targetSlug": "pt-br",
+  "auditOnly": true,
+  "repositoryRoot": "C:\\Users\\CodexSandboxOffline\\.codex\\.sandbox\\cwd\\7b6d41a89141c47f",
+  "outputDir": "docs/heisenberg/pt-br/2026-05-16T20-05-36-476Z",
+  "filesScanned": 1622,
+  "localizedItems": 84422,
+  "surfaces": {
+    "app-other": 791,
+    "admin-site": 6,
+    "personal-training": 180,
+    "arena": 20,
+    "progression-daily-rewards": 7,
+    "lessons": 39,
+    "quizzes": 18,
+    "ui-locale": 4,
+    "docs": 170,
+    "public-web": 12,
+    "legal": 5,
+    "scripts-tools": 270,
+    "tests": 100
+  },
+  "sourceLocales": {
+    "es": 16929,
+    "uk": 34487,
+    "ru": 33006
+  },
+  "localizedItemsAll": 84422,
+  "localizedItemsForBlocks": 46525,
+  "includeSupporting": false,
+  "blockSize": 40,
+  "translationBlocks": 0,
+  "guard": {
+    "knownLocaleConflict": false,
+    "pathCollisions": 0
+  },
+  "existingLocaleAudit": null,
+  "checks": []
+}

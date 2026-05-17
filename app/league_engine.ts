@@ -7,7 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadWeekLeaderboard } from './hall_of_fame_utils';
 import { getOrCreateLeagueGroup, updateMyGroupPoints } from './firestore_leagues';
 
-import type { Lang } from '../constants/i18n';
+import type { Lang, PlannedInterfaceLang } from '../constants/i18n';
 
 export interface ClubDef {
   id:         number;
@@ -169,6 +169,116 @@ export const CLUB_DESC_ES: Record<number, string> = {
   10: 'Estás en una zona legendaria: tu XP se duplica (+100%).',
   11: 'La cima del ranking en la app; bonificación máxima de un +110% de XP.',
 };
+
+export const CLUB_NAME_PLANNED: Record<number, Record<PlannedInterfaceLang, string>> = {
+  0: { 'pt-BR': 'Liga de Cobre', vi: 'Đồng', id: 'Tembaga', tr: 'Bakır', pl: 'Miedź' },
+  1: { 'pt-BR': 'Liga de Bronze', vi: 'Đồng', id: 'Perunggu', tr: 'Bronz', pl: 'Brąz' },
+  2: { 'pt-BR': 'Liga de Prata', vi: 'Bạc', id: 'Perak', tr: 'Gümüş', pl: 'Srebro' },
+  3: { 'pt-BR': 'Liga de Ouro', vi: 'Vàng', id: 'Emas', tr: 'Altın', pl: 'Złoto' },
+  4: { 'pt-BR': 'Liga de Platina', vi: 'Bạch kim', id: 'Platinum', tr: 'Platin', pl: 'Platyna' },
+  5: { 'pt-BR': 'Liga Esmeralda', vi: 'Ngọc lục bảo', id: 'Zamrud', tr: 'Zümrüt', pl: 'Szmaragd' },
+  6: { 'pt-BR': 'Liga Safira', vi: 'Lam ngọc', id: 'Safir', tr: 'Safir', pl: 'Szafir' },
+  7: { 'pt-BR': 'Liga Rubi', vi: 'Hồng ngọc', id: 'Rubi', tr: 'Yakut', pl: 'Rubin' },
+  8: { 'pt-BR': 'Liga Diamante', vi: 'Kim cương', id: 'Berlian', tr: 'Elmas', pl: 'Diament' },
+  9: { 'pt-BR': 'Liga Diamante Negro', vi: 'Kim cương đen', id: 'Berlian hitam', tr: 'Siyah Elmas', pl: 'Czarny Diament' },
+  10: { 'pt-BR': 'Liga Éter', vi: 'Ê-te', id: 'Eter', tr: 'Eter', pl: 'Eter' },
+  11: { 'pt-BR': 'Liga Suprema', vi: 'Giải đấu tối cao', id: 'Liga tertinggi', tr: 'En Üst Lig', pl: 'Liga Najwyższa' },
+};
+
+export const CLUB_DESC_PLANNED: Record<number, Record<PlannedInterfaceLang, string>> = {
+  0: {
+    'pt-BR': 'Seu primeiro passo já conta: entre todos os dias e mantenha o hábito; ainda sem bônus de XP.',
+    vi: 'Bước đầu tiên đã được tính: vào mỗi ngày để giữ thói quen; hiện chưa có thưởng XP.',
+    id: 'Langkah pertamamu sudah berarti: masuk setiap hari dan jaga kebiasaan; belum ada bonus XP.',
+    tr: 'İlk adımın bile önemli: her gün gir ve alışkanlığı koru; XP bonusu henüz yok.',
+    pl: 'Pierwszy krok już się liczy: wchodź codziennie i utrzymaj nawyk; na razie bez bonusu XP.',
+  },
+  1: {
+    'pt-BR': 'Você fortalece a base e mostra constância: +10% de XP em cada aula.',
+    vi: 'Bạn đang củng cố nền tảng và giữ nhịp: nhận +10% XP cho mỗi bài học.',
+    id: 'Kamu memperkuat dasar dan menunjukkan konsistensi: +10% XP untuk setiap pelajaran.',
+    tr: 'Temeli güçlendiriyor ve istikrar gösteriyorsun: her ders için +%10 XP.',
+    pl: 'Wzmacniasz podstawy i pokazujesz regularność: +10% XP za każdą lekcję.',
+  },
+  2: {
+    'pt-BR': 'Você continua explorando quando muitos param; mantenha a curiosidade e ganhe +20% de XP.',
+    vi: 'Bạn vẫn tiếp tục khám phá khi nhiều người dừng lại; giữ sự tò mò và nhận +20% XP.',
+    id: 'Kamu terus menjelajah saat banyak orang berhenti; jaga rasa ingin tahu dan dapatkan +20% XP.',
+    tr: 'Birçok kişi dururken sen keşfetmeye devam ediyorsun; merakını koru ve +%20 XP kazan.',
+    pl: 'Idziesz dalej, gdy inni odpuszczają; utrzymaj ciekawość i zgarnij +20% XP.',
+  },
+  3: {
+    'pt-BR': 'Você constrói com prática real; cada repetição conta e soma +30% de XP.',
+    vi: 'Bạn xây tiến bộ bằng luyện tập thật; mỗi lần lặp lại đều tính và cộng +30% XP.',
+    id: 'Kamu membangun dengan latihan nyata; setiap pengulangan berarti dan memberi +30% XP.',
+    tr: 'Gerçek pratikle ilerliyorsun; her tekrar sayılır ve +%30 XP getirir.',
+    pl: 'Budujesz przez prawdziwą praktykę; każde powtórzenie ma znaczenie i daje +30% XP.',
+  },
+  4: {
+    'pt-BR': 'Você busca padrões e estrutura; sua estabilidade vale +40% de XP.',
+    vi: 'Bạn tìm ra quy luật và cấu trúc; sự ổn định của bạn được thưởng +40% XP.',
+    id: 'Kamu mencari pola dan struktur; kestabilanmu memberi +40% XP.',
+    tr: 'Kalıpları ve yapıyı arıyorsun; istikrarın +%40 XP ile ödüllenir.',
+    pl: 'Szukasz wzorców i struktury; stabilność daje Ci +40% XP.',
+  },
+  5: {
+    'pt-BR': 'Sua disciplina aparece nos resultados; o ritmo sobe com +50% de XP.',
+    vi: 'Kỷ luật của bạn thể hiện trong kết quả; nhịp học tăng với +50% XP.',
+    id: 'Disiplinmu terlihat dari hasil; ritmenya naik dengan +50% XP.',
+    tr: 'Disiplinin sonuçlarda görünüyor; tempo +%50 XP ile artıyor.',
+    pl: 'Twoja dyscyplina widać w wynikach; tempo rośnie dzięki +50% XP.',
+  },
+  6: {
+    'pt-BR': 'Você domina cada vez mais o idioma; seu progresso merece +60% de XP.',
+    vi: 'Bạn ngày càng làm chủ tiếng Anh tốt hơn; tiến bộ này xứng đáng +60% XP.',
+    id: 'Kamu makin menguasai bahasa; progresmu layak mendapat +60% XP.',
+    tr: 'Dile her geçen gün daha çok hakimsin; ilerlemen +%60 XP’yi hak ediyor.',
+    pl: 'Coraz lepiej panujesz nad językiem; postęp zasługuje na +60% XP.',
+  },
+  7: {
+    'pt-BR': 'Paixão e bom ritmo no ranking; mantenha o impulso com +70% de XP.',
+    vi: 'Đam mê và nhịp tốt trên bảng xếp hạng; giữ đà với +70% XP.',
+    id: 'Semangat dan ritme bagus di peringkat; pertahankan dorongan dengan +70% XP.',
+    tr: 'Sıralamada tutku ve iyi tempo; ivmeyi +%70 XP ile koru.',
+    pl: 'Pasja i dobre tempo w rankingu; utrzymaj rozpęd dzięki +70% XP.',
+  },
+  8: {
+    'pt-BR': 'Força de vontade e clareza; seu esforço se transforma em +80% de XP.',
+    vi: 'Ý chí mạnh và định hướng rõ; nỗ lực của bạn đổi thành +80% XP.',
+    id: 'Kemauan kuat dan arah jelas; usahamu berubah menjadi +80% XP.',
+    tr: 'Güçlü irade ve netlik; emeğin +%80 XP’ye dönüşür.',
+    pl: 'Silna wola i jasność działania; wysiłek przekłada się na +80% XP.',
+  },
+  9: {
+    'pt-BR': 'Elite entre a elite; quase ninguém chega aqui, e o bônus é +90% de XP.',
+    vi: 'Tinh hoa trong nhóm tinh hoa; rất ít người tới đây, phần thưởng là +90% XP.',
+    id: 'Elite di antara elite; tidak banyak yang sampai di sini, bonusnya +90% XP.',
+    tr: 'Elitlerin eliti; buraya çok az kişi gelir, bonusun +%90 XP.',
+    pl: 'Elita wśród elity; mało kto tu dociera, a bonus to +90% XP.',
+  },
+  10: {
+    'pt-BR': 'Você está em uma zona lendária: seu XP dobra automaticamente (+100%).',
+    vi: 'Bạn đang ở vùng huyền thoại: XP của bạn tự động nhân đôi (+100%).',
+    id: 'Kamu berada di zona legendaris: XP otomatis berlipat dua (+100%).',
+    tr: 'Efsanevi bölgedesin: XP’in otomatik olarak ikiye katlanır (+%100).',
+    pl: 'Jesteś w strefie legend: XP podwaja się automatycznie (+100%).',
+  },
+  11: {
+    'pt-BR': 'O topo do ranking no app; bônus máximo de +110% de XP.',
+    vi: 'Đỉnh bảng xếp hạng trong ứng dụng; thưởng tối đa +110% XP.',
+    id: 'Puncak peringkat di aplikasi; bonus maksimal +110% XP.',
+    tr: 'Uygulamadaki sıralamanın zirvesi; maksimum +%110 XP bonusu.',
+    pl: 'Szczyt rankingu w aplikacji; maksymalny bonus +110% XP.',
+  },
+};
+
+export function clubNamePlanned(leagueId: number, locale: PlannedInterfaceLang): string {
+  return CLUB_NAME_PLANNED[leagueId]?.[locale] ?? '';
+}
+
+export function clubDescPlanned(leagueId: number, locale: PlannedInterfaceLang): string {
+  return CLUB_DESC_PLANNED[leagueId]?.[locale] ?? '';
+}
 
 /** @deprecated использовать CLUBS */
 export const LEAGUES = CLUBS.map(c => ({

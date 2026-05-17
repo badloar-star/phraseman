@@ -110,10 +110,34 @@ export const ES_PLURAL_WEEKDAY_GLOSS: Record<string, string> = {
   Sundays: 'Los domingos',
 };
 
+const SINGULAR_NOUN_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string }> = {
+  book: { ru: 'Книга', uk: 'Книжка', es: 'libro' },
+  car: { ru: 'Машина', uk: 'Машина', es: 'carro' },
+};
+
+const VERB_PROMPT_OVERRIDES: Record<string, { ru: string; uk: string; es: string }> = {
+  bring: { ru: 'Приносить', uk: 'Приносити', es: 'traer' },
+  brush: { ru: 'Чистить щёткой; расчёсывать', uk: 'Чистити щіткою; розчісувати', es: 'cepillar' },
+  find: { ru: 'Находить', uk: 'Знаходити', es: 'encontrar' },
+};
+
 /**
  * Текст подсказки для раунда «узнай перевод» (RU / UK / ES).
  */
 export function lessonWordRecognitionPrompt(word: LessonWordGlossInput, lang: Lang): string {
+  const enLower = word.en.trim().toLowerCase();
+  const verbPrompt = word.pos === 'verbs' ? VERB_PROMPT_OVERRIDES[enLower] : undefined;
+  if (verbPrompt) {
+    if (lang === 'es') return verbPrompt.es;
+    if (lang === 'ru') return verbPrompt.ru;
+    if (lang === 'uk') return verbPrompt.uk;
+  }
+  const singularNoun = word.pos === 'nouns' ? SINGULAR_NOUN_PROMPT_OVERRIDES[enLower] : undefined;
+  if (singularNoun) {
+    if (lang === 'es') return singularNoun.es;
+    if (lang === 'ru') return singularNoun.ru;
+    if (lang === 'uk') return singularNoun.uk;
+  }
   if (lang === 'es') {
     if (word.es?.trim()) return word.es;
     const manual = LESSON_WORD_ES[word.en]?.trim();
@@ -125,17 +149,25 @@ export function lessonWordRecognitionPrompt(word: LessonWordGlossInput, lang: La
     return word.ru;
   }
   const raw = stripTrailingEnglishHeadwordParen(lang === 'uk' ? word.uk : word.ru, word.en, word.pos);
+  // tableware is narrower than generic "dishes"; keep "Посуда" free for dishes.
+  if (enLower === 'tableware') {
+    if (lang === 'ru') return 'Столовая посуда';
+    if (lang === 'uk') return 'Столовий посуд';
+  }
   // Узкий смысл (не confusing с what / now / early) задаём короткой глоссой как в словаре.
   if (lang === 'ru' && word.en === 'when') return 'Когда';
   if (lang === 'uk' && word.en === 'when') return 'Коли';
+  // Thursday: RU is «Четверг»; «Четвер» is Ukrainian and can leak from stale rows.
+  if (lang === 'ru' && enLower === 'thursday') return 'Четверг';
+  if (lang === 'uk' && enLower === 'thursday') return 'Четвер';
   // Глагол visit ≠ сущ. views («просмотры»): показываем короткое пояснение прямо в подсказке.
-  if (lang === 'ru' && word.en.toLowerCase() === 'visit') return 'Посещать (наведываться; не «просмотр» страницы — view)';
-  if (lang === 'ru' && word.en.toLowerCase() === 'visits') return 'Посещает (она/он: she visits…; не «просмотры» — views)';
-  if (lang === 'uk' && word.en.toLowerCase() === 'visit') return 'Відвідувати (не «перегляд» сторінки — view)';
-  if (lang === 'uk' && word.en.toLowerCase() === 'visits') return 'Відвідує (вона/він: she visits…; не «перегляди» — views)';
+  if (lang === 'ru' && enLower === 'visit') return 'Посещать (наведываться; не «просмотр» страницы — view)';
+  if (lang === 'ru' && enLower === 'visits') return 'Посещает (она/он: she visits…; не «просмотры» — views)';
+  if (lang === 'uk' && enLower === 'visit') return 'Відвідувати (не «перегляд» сторінки — view)';
+  if (lang === 'uk' && enLower === 'visits') return 'Відвідує (вона/він: she visits…; не «перегляди» — views)';
   // fruits — мн. ч.; жалобы lesson_words word_fruits («Плодиков» и т.п. в старых сборках).
-  if (lang === 'ru' && word.en.toLowerCase() === 'fruits') return 'Фрукты';
-  if (lang === 'uk' && word.en.toLowerCase() === 'fruits') return 'Фрукти';
+  if (lang === 'ru' && enLower === 'fruits') return 'Фрукты';
+  if (lang === 'uk' && enLower === 'fruits') return 'Фрукти';
   // Словарная мн. числа — «детали» (номинатив), не «деталями» (твор.).
   if (lang === 'ru' && word.en === 'details' && /^деталями$/i.test(raw.trim())) return 'Детали';
   if (lang !== 'ru' || !EN_PLURAL_WEEKDAYS.has(word.en)) return raw;

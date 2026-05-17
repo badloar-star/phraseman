@@ -8,6 +8,7 @@ import {
   markTrainerResult,
   recordPhraseMistake,
   recordWordMistake,
+  trainerTranslationForLang,
   type TrainerItem,
 } from '../app/trainer_store';
 import {
@@ -118,6 +119,7 @@ const makeTrainerStoreItem = (override: Partial<TrainerItem>): TrainerItem => ({
   queue: override.queue ?? 'phrases',
   translationRu: override.translationRu ?? 'тест',
   translationUk: override.translationUk ?? 'тест',
+  translationEs: override.translationEs,
   lessonId: override.lessonId ?? 1,
   mistakeCount: override.mistakeCount ?? 1,
   correctStreak: override.correctStreak ?? 0,
@@ -153,6 +155,20 @@ const POS_SAMPLE_DRILLS: Partial<Record<WordCategory, { phrase: string; token: s
 };
 
 // ── Trainer mode tests ────────────────────────────────────────────────────────
+describe('trainerTranslationForLang', () => {
+  it('uses Spanish source copy for Spanish UI and keeps safe fallbacks', () => {
+    const item = makeTrainerStoreItem({
+      translationRu: 'RU copy',
+      translationUk: 'UK copy',
+      translationEs: 'ES copy',
+    });
+
+    expect(trainerTranslationForLang(item, 'es')).toBe('ES copy');
+    expect(trainerTranslationForLang(item, 'uk')).toBe('UK copy');
+    expect(trainerTranslationForLang({ ...item, translationEs: undefined }, 'es')).toBe('RU copy');
+  });
+});
+
 describe('getTrainerItems — due mode', () => {
   it('returns only items due today (nextDue ≤ end of today)', async () => {
     const endOfToday = new Date();
@@ -2343,7 +2359,7 @@ describe('mistake_log analytics', () => {
       priority: 31,
     }));
     expect(training.supportedLocales).toEqual(['ru', 'uk']);
-    expect(training.contrastSet).toEqual(['subject', 'verb', 'object', 'place', 'time', 'adverb position', 'Russian/Ukrainian flexible order']);
+    expect(training.contrastSet).toEqual(['subject', 'verb', 'object', 'place', 'time', 'adverb position', 'source-language flexible order']);
     expect(training.examples?.length).toBeGreaterThanOrEqual(6);
     expect(training.steps.length).toBeGreaterThanOrEqual(12);
     expect(training.masteryRules).toEqual(expect.objectContaining({

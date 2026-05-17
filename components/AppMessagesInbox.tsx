@@ -10,6 +10,7 @@ import {
   View,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Image } from 'expo-image';
 import { Ionicons } from '@expo/vector-icons';
 import { useLang } from './LangContext';
 import { usePremium } from './PremiumContext';
@@ -24,6 +25,15 @@ import {
   setAppMessageReaction,
   subscribeUserAppMessages,
 } from '../app/app_messages';
+
+const MESSAGE_ICON_IMAGES = {
+  dark: require('../assets/images/messages/message-forest.webp'),
+  neon: require('../assets/images/messages/message-neon.webp'),
+  gold: require('../assets/images/messages/message-gold.webp'),
+  coral: require('../assets/images/messages/message-coral.webp'),
+  minimalLight: require('../assets/images/messages/message-minimal-light.webp'),
+  minimalDark: require('../assets/images/messages/message-minimal-dark.webp'),
+};
 
 function inboxText(lang: 'ru' | 'uk' | 'es') {
   if (lang === 'uk') {
@@ -177,6 +187,7 @@ export default function AppMessagesInbox() {
       muted: '#657084',
       soft: '#8791A2',
     };
+  const headerIcon = MESSAGE_ICON_IMAGES[themeMode] ?? MESSAGE_ICON_IMAGES.minimalDark;
 
   const renderList = () => (
     <>
@@ -314,7 +325,7 @@ export default function AppMessagesInbox() {
         onPress={openInbox}
         style={styles.headerButton}
       >
-        <Ionicons name="mail-outline" size={24} color={t.heroTextPrimary ?? t.textPrimary} />
+        <Image source={headerIcon} style={styles.headerIcon} contentFit="contain" />
         {unreadCount > 0 && (
           <Animated.View style={[styles.badge, { transform: [{ scale: badgePulse }] }]}>
             <Text style={styles.badgeText}>{unreadCount > 99 ? '99+' : String(unreadCount)}</Text>
@@ -345,15 +356,19 @@ export default function AppMessagesInbox() {
 
 const styles = StyleSheet.create({
   headerButton: {
-    width: 34,
-    height: 34,
+    width: 56,
+    height: 42,
     alignItems: 'center',
     justifyContent: 'center',
   },
+  headerIcon: {
+    width: 52,
+    height: 36,
+  },
   badge: {
     position: 'absolute',
-    top: -4,
-    right: -7,
+    top: -2,
+    right: -4,
     minWidth: 18,
     height: 18,
     paddingHorizontal: 4,

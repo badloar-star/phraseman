@@ -86,7 +86,10 @@ export function useAudio() {
     const settings = getUserSettingsSnapshot();
     const safeRate = normalizeSpeechRate(rate ?? settings.speechRate);
     const language = opts?.language?.trim() || inferExpoSpeechLanguage(normalized);
-    const requestedVoice = opts?.voice?.trim() || settings.speechVoiceId.trim();
+    const hasVoiceOverride = !!opts && Object.prototype.hasOwnProperty.call(opts, 'voice');
+    const requestedVoice = hasVoiceOverride
+      ? (opts.voice ?? '').trim()
+      : settings.speechVoiceId.trim();
 
     pendingTimerRef.current = setTimeout(() => {
       pendingTimerRef.current = null;

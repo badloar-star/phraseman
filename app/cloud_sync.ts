@@ -16,6 +16,7 @@ import { clearArenaAuthUidCache, getAuthUserId, getCanonicalUserId, ensureArenaA
 import { processAdminGrantForCelebration } from './premium_celebration_state';
 import { invalidatePremiumCache } from './premium_guard';
 import { normalizeDevSeededStreakValue, repairDevSeededStreakInStorage } from './streak_safety';
+import { initFirebaseAppCheckIfAvailable } from './app_check_init';
 
 /** Одна строка прогресса по заданию (как TaskProgress в daily_tasks, без лишних импортов). */
 type DailyTaskProgressRow = {
@@ -127,7 +128,25 @@ export const SYNC_KEYS = [
   'streak_last_date',
   'unlocked_lessons',
   'flashcards',
+  'flashcards_v1',
   'achievements_state',
+  // ── Прогресс достижений (отдельные счётчики до момента unlock) ───────────
+  'achievement_active_recall_correct_count',
+  'achievement_trainer_correct_count',
+  'achievement_trainer_correct_streak_v1',
+  'achievement_all_daily_streak_v1',
+  'achievement_flashcards_saved_count',
+  'achievement_flashcards_flip_count',
+  'achievement_flashcards_view_streak_v1',
+  'achievement_flashcards_source_set_v1',
+  'achievement_shards_spent_total',
+  'achievement_energy_refill_count',
+  'achievement_league_boost_count',
+  'achievement_league_chat_message_count',
+  'achievement_gift_sent_count',
+  'achievement_arena_win_count',
+  'achievement_arena_win_streak',
+  'achievement_arena_wager_win_count',
   'active_recall_items',
   'onboarding_done',
   'lang',
@@ -172,6 +191,10 @@ export const SYNC_KEYS = [
   'flashcard_pack_trial_gift_v1',
   'club_gift_free_boost_v1',
   'wager_discount',
+  'league_chest_energy_override_v1',
+  'league_chest_xp_override_v1',
+  'league_gold_theme_unlocked_v1',
+  'league_gold_theme_unlocked_at',
 
   // ── Зачёты уровней A1/A2/B1/B2 (без них unlock B1/B2 откатывается) ─────────
   'level_exam_A1_passed',
@@ -261,12 +284,15 @@ const ANON_AUTH_READY_TIMEOUT_MS = 8_000;
 const SYNC_DEBOUNCE_MS = 5 * 60_000;
 const SYNC_HEARTBEAT_MS = 60 * 60_000;
 const ACTIVITY_STAMP_INTERVAL_MS = 45 * 60_000;
+const STABLE_AUTH_LINK_TIMEOUT_MS = 12_000;
 
 let syncTimer: ReturnType<typeof setTimeout> | null = null;
 let syncInFlight: Promise<void> | null = null;
 let pendingSync = false;
 let lastSuccessfulSyncAt = 0;
 let lastActivityStampAt = 0;
+let stableAuthLinkPromise: Promise<boolean> | null = null;
+let stableAuthLinkKey = '';
 
 function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
@@ -325,6 +351,20 @@ function hasLocalPremiumSyncState(data: Record<string, string | null>): boolean 
     'premium_rc_purchased_at_ms',
     'premium_rc_updated_at',
   ].some((key) => premiumValuePresent(data[key]));
+}
+
+function adminPremiumActiveFromProgress(data: Record<string, unknown>): boolean | null {
+  const plan = String(data['premium_plan'] ?? '').trim().toLowerCase();
+  const override = String(data['admin_premium_override'] ?? '').trim();
+  const expiry = parseProgressInt(data['premium_expiry']);
+  const hasPlan = !!plan && plan !== 'null' && plan !== 'undefined';
+  const legacyAdminPlan = plan === 'admin_grant' && override !== 'false';
+  const isAdminGrant = override === 'true' || legacyAdminPlan;
+
+  if (!isAdminGrant) {
+    return override === 'false' ? false : null;
+  }
+  return hasPlan && (expiry <= 0 || expiry > Date.now());
 }
 
 export function shouldSyncPremiumProgressField(
@@ -463,6 +503,66 @@ export async function ensureAnonUser(): Promise<string | null> {
   return stableId;
 }
 
+async function waitForFirebaseAuthUid(): Promise<string | null> {
+  let authUid = getAuthUserId();
+  if (authUid) return authUid;
+  for (let i = 0; i < 4; i += 1) {
+    await new Promise((resolve) => setTimeout(resolve, 350));
+    authUid = getAuthUserId();
+    if (authUid) return authUid;
+  }
+  return null;
+}
+
+function callable<TReq, TRes>(name: string) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getApp } = require('@react-native-firebase/app');
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { getFunctions, httpsCallable } = require('@react-native-firebase/functions');
+  const typedHttpsCallable = httpsCallable as <Req, Res>(
+    functionsInstance: unknown,
+    callableName: string,
+  ) => (data: Req) => Promise<{ data: Res }>;
+  return typedHttpsCallable<TReq, TRes>(getFunctions(getApp(), 'us-central1'), name);
+}
+
+export async function ensureStableAuthLink(): Promise<boolean> {
+  if (!CLOUD_SYNC_ENABLED || IS_EXPO_GO) return true;
+  const stableId = await ensureAnonUser();
+  const authUid = await waitForFirebaseAuthUid();
+  if (!stableId || !authUid) return false;
+
+  const key = `${stableId}:${authUid}`;
+  if (stableAuthLinkPromise && stableAuthLinkKey === key) return stableAuthLinkPromise;
+
+  stableAuthLinkKey = key;
+  stableAuthLinkPromise = (async () => {
+    try {
+      await initFirebaseAppCheckIfAvailable().catch(() => {});
+      const fn = callable<{ stableId: string }, { ok: boolean; stableUid: string; authUid: string }>('authEnsureStableLink');
+      await withTimeout(fn({ stableId }), STABLE_AUTH_LINK_TIMEOUT_MS, 'auth_link_callable');
+      return true;
+    } catch {
+      const db = getFirestore();
+      if (!db) return false;
+      try {
+        await withTimeout(
+          db.collection('users').doc(stableId).set({ firebaseAuthUid: authUid, updatedAt: Date.now() }, { merge: true }),
+          STABLE_AUTH_LINK_TIMEOUT_MS,
+          'auth_link_firestore',
+        );
+        return true;
+      } catch {
+        return false;
+      }
+    } finally {
+      stableAuthLinkPromise = null;
+    }
+  })();
+
+  return stableAuthLinkPromise;
+}
+
 /**
  * Сбросить in-memory кеш ensureAnonAuthReady().
  * Вызывается из auth_provider.signOutCurrentProvider() после auth.signOut(),
@@ -473,6 +573,8 @@ export async function ensureAnonUser(): Promise<string | null> {
  */
 export function resetAnonAuthCacheForSignOut(): void {
   _anonAuthReady = null;
+  stableAuthLinkPromise = null;
+  stableAuthLinkKey = '';
   clearArenaAuthUidCache();
 }
 
@@ -771,13 +873,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   // Если timestamp новее нашего last seen marker — поднимает pending для PremiumCelebrationModal.
   // Срабатывает один раз на каждый grant (повторная выдача ставит новый ts → снова сработает).
   // Revoked or expired admin grants can keep the old timestamp in progress.
-  const cloudPremiumPlan = String(cloudData['premium_plan'] ?? '').trim();
-  const cloudPremiumExpiry = parseProgressInt(cloudData['premium_expiry']);
-  const cloudAdminPremiumActive =
-    String(cloudData['admin_premium_override'] ?? '').trim() === 'true' &&
-    !!cloudPremiumPlan &&
-    cloudPremiumPlan !== 'null' &&
-    (cloudPremiumExpiry <= 0 || cloudPremiumExpiry > Date.now());
+  const cloudAdminPremiumActive = adminPremiumActiveFromProgress(cloudData);
   void processAdminGrantForCelebration(
     cloudAdminPremiumActive ? cloudData['premium_admin_grant_at'] : null,
   );
@@ -855,6 +951,9 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
       }
     }
     stickyPairs.push(...await buildGiftEntitlementStickyPairs(cloudData));
+    if (cloudAdminPremiumActive !== null) {
+      stickyPairs.push(['premium_active', cloudAdminPremiumActive ? 'true' : 'false']);
+    }
     if (stickyPairs.length > 0) {
       await AsyncStorage.multiSet(stickyPairs);
       if (cloudHasPremiumAdminState) invalidatePremiumCache();
@@ -884,6 +983,7 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
     }
   }
   if (cloudData['achievements_state']) pairs.push(['achievements_v1', cloudData['achievements_state']]);
+  if (!cloudData['flashcards_v1'] && cloudData['flashcards']) pairs.push(['flashcards_v1', String(cloudData['flashcards'])]);
   if (cloudData['lang']) pairs.push(['app_lang', cloudData['lang']]);
   if (cloudData['user_avatar_frame']) pairs.push(['user_frame', cloudData['user_avatar_frame']]);
   const dailyBlob = cloudData['daily_tasks_progress'];
@@ -895,6 +995,10 @@ async function applyRestoreFromUserDoc(doc: { exists: boolean; data: () => Recor
   }
   if (pairs.length > 0) {
     await AsyncStorage.multiSet(pairs);
+    if (cloudHasPremiumAdminState) invalidatePremiumCache();
+  }
+  if (cloudAdminPremiumActive !== null) {
+    await AsyncStorage.setItem('premium_active', cloudAdminPremiumActive ? 'true' : 'false');
     if (cloudHasPremiumAdminState) invalidatePremiumCache();
   }
   if (fullRestoreDaily) {
@@ -1120,21 +1224,23 @@ export async function wipeLocalAccountData(): Promise<void> {
 // Вызывается при нажатии "Удалить аккаунт" в настройках.
 export async function deleteCloudData(): Promise<void> {
   if (!CLOUD_SYNC_ENABLED) return;
-  const db = getFirestore();
-  const auth = getAuth();
-  if (!db || !auth) return;
+  if (IS_EXPO_GO) return;
   const canonicalUid = await getCanonicalUserId();
-  const authUid = auth.currentUser?.uid ?? null;
-  if (!canonicalUid && !authUid) return;
-  try {
-    // Delete both canonical and auth docs (if different) to avoid identity drift leftovers.
-    const docIds = Array.from(new Set([canonicalUid, authUid].filter(Boolean) as string[]));
-    await Promise.all(docIds.map((id) => db.collection('users').doc(id).delete().catch(() => {})));
-    // Удаляем аккаунт Firebase (требование Apple — удалять, а не только данные)
-    await auth.currentUser?.delete();
-  } catch {
-    // Игнорируем — локальные данные уже удалены через AsyncStorage.clear()
-  }
+  await initFirebaseAppCheckIfAvailable().catch(() => {});
+  const fn = callable<
+    { stableId?: string | null },
+    {
+      ok: boolean;
+      stableUid: string;
+      authUid: string;
+      docsDeleted: number;
+      docsUpdated: number;
+      queriesRun: number;
+      authDeleted: boolean;
+    }
+  >('accountDeleteMine');
+  const res = await withTimeout(fn({ stableId: canonicalUid }), 60_000, 'account_delete_callable');
+  if (!res.data?.ok) throw new Error('account_delete_failed');
 }
 
 /* expo-router route shim: keeps utility module from warning when discovered as route */
